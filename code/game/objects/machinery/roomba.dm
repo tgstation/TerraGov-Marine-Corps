@@ -114,7 +114,6 @@
 			continue
 		sucked_one = TRUE
 		sucker.store_in_cryo()
-		GLOB.cryoed_item_list[CRYO_REQ] += sucker
 		counter++
 	stuck_counter = 0
 	if(sucked_one && prob(10))

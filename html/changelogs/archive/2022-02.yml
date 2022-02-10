@@ -1,0 +1,177 @@
+2022-02-01:
+  Canohaaaaaaa:
+  - qol: 'Warrior : punching someone missing a limb will default to hitting them in
+      the chest instead of entirely failing.'
+  - bugfix: 'Warrior : Warrior''s primordial can no longer be stacked by repeatedly
+      punching someone''s missing limb.'
+  - bugfix: 'Praetorian''s primordial : Acid dash can now be bound to a key.'
+2022-02-02:
+  BraveMole:
+  - bugfix: Fix bull primo
+  - bugfix: Fix gib animation
+  - bugfix: Marine can no longer shuffle xenos
+  Mechanelize:
+  - bugfix: fixed larva spawn menu sound
+  novaepee:
+  - qol: Prep signs for marine role in shipside. Now you can stumble to your leader,
+      smartgunner, corpsman, or engineer job easier; thanks to RipGrayson for making
+      these due to Vahalla!
+  - bugfix: Fix Vahalla's TerraGovTech Requisition Vendor sprites
+  - rscdel: No more free additional tricord pill bottles in Sulaco
+  - rscadd: the hypospray belt! The belt is loaded with bicaridine, kelotane, tramadol,
+      dexalin, tricordrazine, inaprovaline, spaceacillin, hypervene, peridaxon, and
+      quickclot hypospray along with reagent bottles.
+2022-02-03:
+  Losenis:
+  - qol: Tx11 now has burst auto, less spamclicking needed for the same thing burst
+      offers
+  novaepee:
+  - rscadd: tricord pill bottles in all medical belts, whether med rig or lifesaver
+  - rscdel: option to buy tricord pill bottle in corpsman vendor
+  - qol: corpsmen can get tricord pill bottle in belt
+  - balance: tricord pill bottle round start
+  - qol: Infinite packets and ammo boxes
+  - balance: It will affect marine's storage since they can bring a buttload of ammo
+      boxes, but the effect size will be small
+2022-02-04:
+  BraveMole:
+  - bugfix: Fix projectiles hitting allies in aim mode
+  QualityVan:
+  - rscadd: Necrosis removal surgery clears germs on its own
+2022-02-05:
+  AzonStarfall:
+  - bugfix: Mapping fixes for the Minerva
+  Three333Digit:
+  - rscdel: removes optical meson scanner from engivend
+  - rscdel: removes welding goggles from essential engineer kit
+  - balance: moves them to engineer clothing vendor instead
+  - balance: meson or healthhud choice in synth vendor
+2022-02-06:
+  BraveMole:
+  - qol: The vote button is kept while changing mob
+  - qol: If a vote has only one choice (wink wink distress), it is skipped
+  - bugfix: Xeno doors are no longer opaque when opened
+  - bugfix: You can now click a door as a xeno to open it (it was opening then immediatly
+      closing)
+  - qol: Prevent warrior from lunging if the target is too far
+  - balance: Reduce big sentry scatter to 2
+  Lumipharon:
+  - code_imp: removed unneeded code
+  - bugfix: Energy pistol is no longer more accurate one handed than wielded
+  - bugfix: T-26 can actually use all 3 ammo types now
+  Mechanelize:
+  - spellcheck: fixed two overwatch typos
+  TiviPlus:
+  - bugfix: maybe fixed shuttle lights being dark
+  - bugfix: fixed movable lights colors not showing
+  Vondiech:
+  - rscadd: Heat absorbent coifs on both landing pads on icy caves for those who may
+      have forgotten to bring one!
+  - expansion: Added 6 new locations the caves of icy caves and increased the middle
+      of icy caves to be slightly more open for combat.
+  novaepee:
+  - bugfix: T-29 Smart Machinegun unwelded mob sprites; it was reversed and had no
+      back / north face sprite
+2022-02-07:
+  BraveMole:
+  - balance: Remove chain explosions
+  - qol: Robots no longer have chem in their bodies
+  Canohaaaaaaa:
+  - bugfix: 'Primordial drone : you can no longer eat a plasma fruit while under the
+      effects of plasma surge fix : Primordial drone has a proper description now'
+  Lumipharon:
+  - bugfix: DNR's no longer show as revivable on the minimap
+  RipGrayson:
+  - qol: Snow storms are significantly less blinding
+  TiviPlus:
+  - bugfix: fixed hud layering
+  Vondiech:
+  - rscadd: added heat absorbent coif crates to each LZ of ice colony.
+  Waselon:
+  - balance: T-60, T-18, TX-11, Minigun, Laser Machinegun recieved new scatter values
+  breadhunt:
+  - bugfix: Mortar flares now actually produce light
+  - balance: ..and so mortar flares are no longer useless
+  novaepee:
+  - bugfix: Fix hypospray belt not accepting specific autoinjectors
+  - code_imp: Moving YouTool code to marine_vending.dm
+  - bugfix: Now you can save cable coil, crowbar, welding tool, wirecutters, wrench,
+      and screwdriver anywhere you want in your loadout beside inside an engineering
+      belt or tool pouch
+  - rscadd: Hypospray has 30u and 20u for set transfer reagent
+  - qol: amount per transfer in hypospray menu
+2022-02-08:
+  BraveMole:
+  - bugfix: No more weird shuffle when moving diagonaly
+  - balance: Xeno upgrade threshold is now standardised (gorger, wraith and king were
+      completly broken)
+  - balance: Queen get mature quicker, no other changes
+  - qol: Xeno can upgrade even when hurt
+  - balance: It's easier to get primo as a t2 and especially as a t3
+  - balance: When evolving up, you will lose one upgrade (for exemple, from elder
+      T1 to mature T2). When regressing, the opposite happens. This should fix some
+      exploits
+  - balance: You no longer get back full plasma when upgrading
+  - balance: ssd xenos can mature as well
+  - balance: Engineers get a free teleporter in their kit.
+  - rscadd: 'You can put one teleporter on your back sprite: Change teleporter sprite
+      to something prettier. Sprites by Kuro'
+  - balance: Primo runner snatch windup reduced from 1 seconds to 0,5
+  Lumipharon:
+  - rscadd: new var to control autoburst extra (extra) delay
+  RipGrayson:
+  - balance: Plasmacutters will now cut down walls without leaving a girder
+  - bugfix: Plasmacutters now respect resistance flags and cannot destroy turfs that
+      have RESIST_ALL or PLASMACUTTER_IMMUNE.
+  - bugfix: Plasmacutters no longer spam "can't cut through this" messages when destroying
+      some closed turfs.
+  - bugfix: Fixes a rare situation where plasmacutters would take multiple charges
+      to cut down some ship walls.
+  - refactor: Refactored plasmacutter behavior for closed turfs.
+  TiviPlus:
+  - bugfix: fixed synth vendor having a medhud when synths get a built in one
+  - bugfix: fixed some defender primordial bugs
+  novaepee:
+  - code_imp: Difference between shipside and planetside NanotrasenMed Plus
+  - rscadd: shipside NanotrasenMed Plus is now shared
+  - balance: All shipside shall have the same amount of medical supplies that come
+      out of the shipside NanotrasenMed Plus
+  - balance: shipside NanotrasenMed Plus cannot be moved
+  - bugfix: no nade chain in any item
+2022-02-09:
+  BraveMole:
+  - rscadd: Evacuation can prevent xeno major
+  - bugfix: Fix teleporter deleting cell when undeployed
+  - bugfix: Fix webbings fitting in bags
+  - rscdel: Remove useless xeno respawn timer stat information
+  He11Force, BOT Purple:
+  - rscadd: Adds new 5 DM zones for EORG ispired by Counter-Strike
+  RipGrayson:
+  - rscadd: The ship AI can now make vox announcements.
+  - rscadd: Ported the TG vox system.
+  - soundadd: Ported 600 vox words for use in the AI's vox system
+  Three333Digit:
+  - balance: you can attach bipod to tl127 and mosin
+  TiviPlus:
+  - rscadd: 'Added a motorbike sidecar which can be bought in req, attached to motorbikes
+      and detached with a wrench spriteadd: Sprite by xana'
+  - bugfix: xenonauten essentials has descsriptions now
+  Waselon:
+  - rscadd: Added minelayer
+  hyper2snyper:
+  - rscadd: Adds the 6E Chameleon Cape
+  - bugfix: Fixes the Tyr neck guard issue where it layered over everything including
+      smoke and such.
+  - code_imp: Modified attachment code to rely on the /modular armor type less.
+  novaepee:
+  - rscdel: Remove stored egg from carrier's game panel
+  - bugfix: misspelling on primo crusher's rapid advance
+  - imagedel: Remove an old title painting since it shows an old gun that we don't
+      use.
+  - imageadd: allow an old title painting to be used! Finally, a xenomorph title painting!
+  - imageadd: Add a new title painting thanks to Lich! It's also animated, making
+      it one of the rare title paintings that actually animate!
+  - imageadd: resprite MarineMed
+  - bugfix: standardize corpsman prep to have TerraGovTech Medic Vendor and MarineMed
+      with the sheer exception of Theseus. The MarineMed is in prep but not in corpsman
+      prep.

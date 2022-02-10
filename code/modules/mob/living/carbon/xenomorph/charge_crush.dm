@@ -161,7 +161,7 @@
 	if(charger.incapacitated())
 		return FALSE
 
-	if((charge_dir != charger.dir || charger.moving_diagonally) && !agile_charge)
+	if(charge_dir != charger.dir && !agile_charge)
 		return FALSE
 
 	if(charger.pulledby)
@@ -361,9 +361,9 @@
 			crush_sound = "alien_tail_attack"
 			to_chat(owner, span_notice("Now goring on impact."))
 
-/datum/action/xeno_action/ready_charge/bull_charge/agile_charge
-	agile_charge = TRUE
-
+/datum/action/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()
+	var/mob/living/carbon/xenomorph/X = owner
+	agile_charge = (X.upgrade == XENO_UPGRADE_FOUR)
 
 // ***************************************
 // *********** Pre-Crush

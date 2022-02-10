@@ -38,11 +38,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/sundering					= 0 		// How many stacks of sundering to apply to a mob on hit
+	///how much damage airbursts do to mobs around the target, multiplier of the bullet's damage
+	var/airburst_multiplier	= 0.1		
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
 	///If this ammo is hitscan, the icon of beam coming out from the gun
 	var/hitscan_effect_icon = "beam"
+	///A multiplier applied to piercing projectile, that reduces its damage/penetration/sundering on hit
+	var/on_pierce_multiplier = 1
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -66,10 +70,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/proc/knockback(mob/victim, obj/projectile/proj, max_range = 2)
 	if(!victim || victim == proj.firer)
 		CRASH("knockback called [victim ? "without a mob target" : "while the mob target was the firer"]")
-	if(proj.distance_travelled > max_range || victim.lying_angle) shake_camera(victim, 2, 1) //Three tiles away or more, basically.
 
 	else //Two tiles away or less.
-		shake_camera(victim, 3, 4)
 		if(isliving(victim)) //This is pretty ugly, but what can you do.
 			if(isxeno(victim))
 				var/mob/living/carbon/xenomorph/target = victim
@@ -89,7 +91,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!isliving(victim))
 		return
 	if(shake && (proj.distance_travelled > max_range || victim.lying_angle))
-		shake_camera(victim, shake + 1, shake)
 		return
 	var/impact_message = ""
 	if(isxeno(victim))
@@ -108,7 +109,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			stagger *= 0.5
 			stun = 0
 	if(shake)
-		shake_camera(victim, shake+2, shake+3)
 		if(isxeno(victim))
 			impact_message += span_xenodanger("We are shaken by the sudden impact!")
 		else
@@ -162,7 +162,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
 			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
 		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
-		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
+		victim.apply_damage(proj.damage * proj.airburst_multiplier, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
 	var/effect_icon = ""
@@ -378,7 +378,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 1.5
 
 /datum/ammo/bullet/revolver/tp44/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, stagger = 0, slowdown = 0.5, knockback = 0, shake = 0)
+	staggerstun(M, P, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -575,13 +575,13 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/rifle/tx8/impact
 	name = "high velocity impact bullet"
 	hud_state = "hivelo_impact"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
 	damage = 25
-	penetration = 45
+	penetration = 30
 	sundering = 5
 
 /datum/ammo/bullet/rifle/tx8/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 20, stagger = 2, slowdown = 1, knockback = 1)
+	staggerstun(M, P, max_range = 20, slowdown = 1, shake = 0)
 
 /datum/ammo/bullet/rifle/mpi_km
 	name = "crude heavy rifle bullet"
@@ -675,7 +675,6 @@ datum/ammo/bullet/revolver/tp44
 		var/mob/living/carbon/human/H = M
 		if(H.species?.count_human) //no effect on synths
 			H.apply_effects(6,8)
-		shake_camera(H, 2, 1)
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
@@ -1136,15 +1135,16 @@ datum/ammo/bullet/revolver/tp44
 	name = "railgun round"
 	hud_state = "alloy_spike"
 	icon_state 	= "blue_bullet"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 9
 	damage = 150
 	penetration = 70
 	sundering = 90
 	bullet_color = COLOR_PULSE_BLUE
+	on_pierce_multiplier = 0.85
 
-/datum/ammo/bullet/railgun/on_hit_mob(mob/M,obj/projectile/P)
+/datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
 
 /*
@@ -1607,8 +1607,26 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/pistol/disabler/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
 
-// Plasma //
+/datum/ammo/energy/lasgun/marine/xray
+	name = "xray heat bolt"
+	icon_state = "u_laser"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
+	damage = 25
+	penetration = 5
+	sundering = 1
+	max_range = 15
+	hitscan_effect_icon = "u_laser_beam"
 
+/datum/ammo/energy/lasgun/marine/xray/piercing
+	name = "xray piercing bolt"
+	icon_state = "xray"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	damage = 25
+	penetration = 100
+	max_range = 10
+	hitscan_effect_icon = "xray_beam"
+
+// Plasma //
 
 /datum/ammo/energy/plasma
 	name = "plasma bolt"
@@ -1626,9 +1644,10 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/plasma_pistol
 	name = "ionized plasma bolt"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "electrothermal"
+	hud_state_empty = "electrothermal_empty"
 	damage = 40
-	max_range = 7
+	max_range = 14
 	penetration = 5
 	shell_speed = 1.5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_EXPLOSIVE
@@ -1642,7 +1661,15 @@ datum/ammo/bullet/revolver/tp44
 	var/fire_color = "green"
 
 /datum/ammo/energy/plasma_pistol/on_hit_turf(turf/T, obj/projectile/proj)
-	T.ignite(heat, burn_damage, fire_color)
+	var/burn_mod = 1
+	if(istype(T, /turf/closed/wall))
+		burn_mod = 3
+	T.ignite(heat, burn_damage * burn_mod, fire_color)
+	for(var/mob/living/mob_caught in T)
+		if(mob_caught.stat == DEAD)
+			continue
+		mob_caught.adjust_fire_stacks(burn_damage)
+		mob_caught.IgniteMob()
 
 /datum/ammo/energy/plasma_pistol/on_hit_mob(mob/M, obj/projectile/proj)
 	var/turf/T = get_turf(M)
@@ -1708,7 +1735,7 @@ datum/ammo/bullet/revolver/tp44
 
 ///Set up the list of reagents the spit transfers upon impact
 /datum/ammo/xeno/toxin/proc/set_reagents()
-	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin/light = reagent_transfer_amount)
+	spit_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = reagent_transfer_amount)
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/C, obj/projectile/P)
 	drop_neuro_smoke(get_turf(C))
@@ -1859,6 +1886,9 @@ datum/ammo/bullet/revolver/tp44
 
 	new /obj/effect/alien/resin/sticky(T)
 
+/datum/ammo/xeno/sticky/turret
+	max_range = 9
+
 /datum/ammo/xeno/acid
 	name = "acid spit"
 	icon_state = "xeno_acid"
@@ -1907,6 +1937,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	name = "acid turret splash"
 	shell_speed = 2
+	max_range = 9
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/projectile/P)
 	var/turf/T = get_turf(M)
@@ -2137,6 +2168,47 @@ datum/ammo/bullet/revolver/tp44
 	hit_eye_blur = 4
 	hit_drowsyness = 2
 	fixed_spread_range = 2
+
+/datum/ammo/xeno/hugger
+	name = "hugger ammo"
+	ping = ""
+	flags_ammo_behavior = AMMO_XENO
+	damage = 0
+	max_range = 6
+	shell_speed = 1
+	bullet_color = ""
+	icon_state = "facehugger"
+	///The type of hugger thrown
+	var/obj/item/clothing/mask/facehugger/hugger_type = /obj/item/clothing/mask/facehugger
+
+/datum/ammo/xeno/hugger/on_hit_mob(mob/M, obj/projectile/proj)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(M))
+	hugger.go_idle()
+
+/datum/ammo/xeno/hugger/on_hit_obj(obj/O, obj/projectile/proj)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(O))
+	hugger.go_idle()
+
+/datum/ammo/xeno/hugger/on_hit_turf(turf/T, obj/projectile/P)
+	var/target = (T.density && isturf(P.loc)) ? P.loc : T
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(target)
+	hugger.go_idle()
+
+/datum/ammo/xeno/hugger/do_at_max_range(obj/projectile/P)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(P))
+	hugger.go_idle()
+
+/datum/ammo/xeno/hugger/slash
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/slash
+
+/datum/ammo/xeno/hugger/neuro
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/neuro
+
+/datum/ammo/xeno/hugger/resin
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/resin
+
+/datum/ammo/xeno/hugger/acid
+	hugger_type = /obj/item/clothing/mask/facehugger/combat/acid
 
 /*
 //================================================

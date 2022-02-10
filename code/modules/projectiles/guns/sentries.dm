@@ -39,6 +39,10 @@
 	max_w_class = 5
 	storage_slots = 6
 	max_storage_space = 16
+	can_hold = list(
+		/obj/item/weapon/gun/sentry,
+		/obj/item/ammo_magazine/sentry,
+	)
 	bypass_w_limit = list(
 		/obj/item/weapon/gun/sentry,
 		/obj/item/ammo_magazine/sentry,
@@ -57,6 +61,8 @@
 	turret_range = 8
 	deploy_time = 8 SECONDS
 	max_shells = 50
+
+	scatter = 2
 
 	ammo_datum_type = /datum/ammo/bullet/turret
 	default_ammo_type = /obj/item/ammo_magazine/sentry
@@ -131,7 +137,7 @@
 	burst_delay = 0.2 SECONDS
 	burst_amount = 3
 	extra_delay = 0.3 SECONDS
-	scatter = 2
+	scatter = 3
 
 	deploy_time = 3 SECONDS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)

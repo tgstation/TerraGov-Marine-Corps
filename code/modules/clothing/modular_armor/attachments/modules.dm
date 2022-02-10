@@ -216,6 +216,7 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
+	prefered_slot = SLOT_HEAD
 	///Mod for extra eye protection when activated.
 	var/eye_protection_mod = 2
 
@@ -262,6 +263,7 @@
 	zoom_viewsize = 12
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	prefered_slot = SLOT_HEAD
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
 	zoom(user)
@@ -291,6 +293,7 @@
 	item_state = "antenna_head_a"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	prefered_slot = SLOT_HEAD
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 

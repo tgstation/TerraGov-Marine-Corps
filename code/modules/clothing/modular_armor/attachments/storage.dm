@@ -169,6 +169,7 @@
 		/obj/item/detpack,
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
+		/obj/item/tool/solderingtool,
 	)
 	cant_hold = list()
 

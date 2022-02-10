@@ -204,12 +204,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 					else
 						dat += "[span_warning("None")]<br>"
-					dat += "<B>[current_squad.name] Beacon Targets:</b><br>"
-					if(length(GLOB.active_orbital_beacons))
-						for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in current_squad.squad_orbital_beacons)
-							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
-					else
-						dat += "[span_warning("None transmitting")]<br>"
 					dat += "<b>Selected Target:</b><br>"
 					if(!selected_target) // Clean the targets if nothing is selected
 						dat += "[span_warning("None")]<br>"
@@ -306,7 +300,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				return
 			selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 			current_squad = selected
-			current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
+			current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Game panel for objectives.")
 			current_squad.message_squad("Your Overwatch officer is: [operator.name].")
 			if(issilicon(usr))
 				to_chat(usr, span_boldnotice("Tactical data for squad '[current_squad]' loaded. All tactical functions initialized."))
@@ -447,12 +441,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 				else
 					dat += "[span_warning("None")]<br>"
-				dat += "<B>Beacon Targets:</b><br>"
-				if(length(GLOB.active_orbital_beacons))
-					for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in GLOB.active_orbital_beacons)
-						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
-				else
-					dat += "[span_warning("None transmitting")]<br>"
 				dat += "<b>Selected Target:</b><br>"
 				if(!selected_target) // Clean the targets if nothing is selected
 					dat += "[span_warning("None")]<br>"
@@ -771,11 +759,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return
 
 	if(!which)
-		var/choice = input(src, "Choose an order") in command_aura_allowed + "help" + "cancel"
+		var/choice = tgui_input_list(src, "Choose an order", items = command_aura_allowed + "help")
 		if(choice == "help")
 			to_chat(src, span_notice("<br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br>"))
 			return
-		if(choice == "cancel")
+		if(!choice)
 			return
 		command_aura = choice
 	else

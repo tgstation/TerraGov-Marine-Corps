@@ -1,9 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/space)
 "ab" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/deathmatch)
 "ac" = (
 /obj/structure/largecrate/guns/merc,

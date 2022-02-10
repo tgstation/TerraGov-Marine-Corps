@@ -685,21 +685,16 @@
 
 /datum/action/xeno_action/activable/xeno_spit/give_action(mob/living/L)
 	. = ..()
-	AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/fire))
+	owner.AddComponent(/datum/component/automatedfire/autofire, get_cooldown(), _fire_mode = GUN_FIREMODE_AUTOMATIC,  _callback_reset_fire = CALLBACK(src, .proc/reset_fire), _callback_fire = CALLBACK(src, .proc/fire))
 
 /datum/action/xeno_action/activable/xeno_spit/remove_action(mob/living/L)
-	. = ..()
-	qdel(GetComponent(/datum/component/automatedfire/autofire))
-
+	qdel(owner.GetComponent(/datum/component/automatedfire/autofire))
+	return ..()
 
 /datum/action/xeno_action/activable/xeno_spit/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
 	button.overlays += image('icons/mob/actions.dmi', button, "shift_spit_[X.ammo.icon_state]")
-
-/datum/action/xeno_action/activable/xeno_spit/on_xeno_upgrade()
-	. = ..()
-	update_fire_delay()
 
 /datum/action/xeno_action/activable/xeno_spit/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -716,6 +711,7 @@
 			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
 			break
 	to_chat(X, span_notice("We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma)."))
+	X.update_spits(TRUE)
 	update_button_icon()
 
 /datum/action/xeno_action/activable/xeno_spit/deselect()
@@ -746,10 +742,10 @@
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
 	if(!owner.GetComponent(/datum/component/ai_controller)) //If its not an ai it will register to listen for clicks instead of use this proc. We want to call start_fire from here only if the owner is an ai.
 		return
-	start_fire(object = A)
+	start_fire(object = A, can_use_ability_flags = XACT_IGNORE_SELECTED_ABILITY) 
 
 ///Starts the xeno firing.
-/datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params)
+/datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
 	SIGNAL_HANDLER
 	var/list/modifiers = params2list(params)
 	if(((modifiers["right"] || modifiers["middle"]) && (modifiers["shift"] || modifiers["ctrl"] || modifiers["left"])) || \
@@ -757,7 +753,7 @@
 	(modifiers["left"] && !modifiers["shift"]))
 		return
 	var/mob/living/carbon/xenomorph/xeno = owner
-	if(!can_use_ability(object))
+	if(!can_use_ability(object, TRUE, can_use_ability_flags))
 		return fail_activate()
 	set_target(get_turf_on_clickcatcher(object, xeno, params))
 	if(!current_target)
@@ -765,7 +761,7 @@
 	xeno.visible_message(span_xenowarning("\The [xeno] spits at \the [current_target]!"), \
 	span_xenowarning("We spit at \the [current_target]!") )
 
-	SEND_SIGNAL(src, COMSIG_XENO_FIRE)
+	SEND_SIGNAL(owner, COMSIG_XENO_FIRE)
 	xeno?.client?.mouse_pointer_icon = 'icons/effects/xeno_target.dmi'
 
 ///Fires the spit projectile.
@@ -819,11 +815,7 @@
 /datum/action/xeno_action/activable/xeno_spit/proc/stop_fire()
 	SIGNAL_HANDLER
 	owner?.client?.mouse_pointer_icon = initial(owner.client.mouse_pointer_icon)
-	SEND_SIGNAL(src, COMSIG_XENO_STOP_FIRE)
-
-///Updates the auto-fire components fire delay.
-/datum/action/xeno_action/activable/proc/update_fire_delay()
-	SEND_SIGNAL(src, COMSIG_XENO_AUTOFIREDELAY_MODIFIED, get_cooldown())
+	SEND_SIGNAL(owner, COMSIG_XENO_STOP_FIRE)
 
 /datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()
 	return TRUE
@@ -869,6 +861,8 @@
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 	target_flags = XABB_MOB_TARGET
 	use_state_flags = XACT_USE_BUCKLED
+	/// Whatever our victim is injected with.
+	var/sting_chemical = /datum/reagent/toxin/xeno_neurotoxin
 
 /datum/action/xeno_action/activable/neurotox_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -906,7 +900,18 @@
 	GLOB.round_statistics.sentinel_neurotoxin_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
 
-	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+	X.recurring_injection(A, sting_chemical, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+
+//Ozelomelyn Sting
+/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn
+	name = "Ozelomelyn Sting"
+	action_icon_state = "drone_sting"
+	mechanics_text = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
+	ability_name = "ozelomelyn sting"
+	cooldown_timer = 25 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_OZELOMELYN_STING
+	plasma_cost = 100
+	sting_chemical = /datum/reagent/toxin/xeno_ozelomelyn
 
 
 // ***************************************

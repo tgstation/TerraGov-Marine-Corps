@@ -4,7 +4,6 @@
 /area/template_noop)
 "ab" = (
 /turf/closed/wall/mainship/white{
-	tiles_with = list(/turf/closed/wall/mainship/white,/obj/structure/window/framed/mainship/white)
 	},
 /area/shuttle/big_ert)
 "ac" = (

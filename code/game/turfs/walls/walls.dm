@@ -9,19 +9,11 @@
 	opacity = TRUE
 	explosion_block = 2
 
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed,
-		/obj/structure/window_frame,
-		/obj/structure/girder,
-		/obj/machinery/door,
-	)
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES|SMOOTH_XENO_STRUCTURES
+	walltype = "metal"
 
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-
-	var/walltype = "metal"
-	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
-
 
 	var/wall_integrity
 	var/max_integrity = 1000 //Wall will break down to girders if damage reaches this point
@@ -47,10 +39,6 @@
 	if(isnull(wall_integrity))
 		wall_integrity = max_integrity
 
-	//smooth wall stuff
-	relativewall()
-	relativewall_neighbours()
-
 	for(var/obj/item/explosive/mine/M in src)
 		if(M)
 			visible_message(span_warning("\The [M] is sealed inside the wall as it is built"))
@@ -70,8 +58,8 @@
 			T = get_step(src, i)
 
 			//update junction type of nearby walls
-			if(iswallturf(T))
-				T.relativewall()
+			if(T.smoothing_behavior)
+				T.smooth_self()
 
 			//nearby glowshrooms updated
 			for(var/obj/structure/glowshroom/shroom in T)
@@ -260,7 +248,7 @@
 		return
 	if(devastated)
 		make_girder(TRUE)
-	else if (explode)
+	else if(explode)
 		make_girder(TRUE)
 	else
 		make_girder(FALSE)
@@ -339,15 +327,7 @@
 		to_chat(user, "[span_warning("[src] is much too tough for you to do anything to it with [I]")].")
 
 	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!P.start_cut(user, name, src))
-			return
-
-		if(!do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
-			return
-
-		P.cut_apart(user, name, src)
-		dismantle_wall()
+		return
 
 	else if(wall_integrity < max_integrity && iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I

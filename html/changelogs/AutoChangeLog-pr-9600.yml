@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - imageadd: "TGstation fire extinguisher sprites for item and mob"
+  - imagedel: "CM SS13 fire extinguisher sprites for item and mob"

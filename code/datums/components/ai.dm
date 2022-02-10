@@ -19,10 +19,6 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 /datum/component/ai_controller/Initialize(behavior_type, atom/atom_to_escort)
 	. = ..()
 
-	if((length(GLOB.ai_instances_active) + 1) >= AI_INSTANCE_HARDCAP)
-		message_admins("Notice: An AI controller was initialized but because there's already too many AI controllers existing, the initialization was canceled.")
-		return COMPONENT_INCOMPATIBLE
-
 	if(!ismob(parent)) //Requires a mob as the element action states needed to be apply depend on several mob defines like cached_multiplicative_slowdown or do_actions
 		stack_trace("An AI controller was initialized on a parent that isn't compatible with the ai component. Parent type: [parent.type]")
 		return COMPONENT_INCOMPATIBLE
@@ -30,15 +26,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		stack_trace("An AI controller was initialized without a mind to initialize parameter; component removed")
 		return COMPONENT_INCOMPATIBLE
 	ai_behavior = new behavior_type(src, parent, atom_to_escort, isliving(parent))
-	for(var/obj/effect/ai_node/node in range(7))
-		ai_behavior.current_node = node
-		break
-	//Iniatialise the behavior of the ai
-	ai_behavior.late_initialize()
-	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/RemoveComponent)
-	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)
-	RegisterSignal(parent, COMSIG_MOB_LOGIN, .proc/stop_controlling)
-	GLOB.ai_instances_active += src
+	start_ai()
 
 //Removes registered signals and action states, useful for scenarios like when the parent is destroyed or a client is taking over
 /datum/component/ai_controller/proc/handle_combat_log()
@@ -46,38 +34,44 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	return DONT_LOG
 
 /datum/component/ai_controller/RemoveComponent()
-	clean_up()
+	clean_up(FALSE)
 	return ..()
 
-/datum/component/ai_controller/proc/clean_up()
+///Stop the ai behaviour from processing and clean current action
+/datum/component/ai_controller/proc/clean_up(register_for_logout = TRUE)
 	SIGNAL_HANDLER
 	GLOB.ai_instances_active -= src
 	UnregisterSignal(parent, COMSIG_COMBAT_LOG)
+	UnregisterSignal(parent, COMSIG_MOB_LOGIN)
 	UnregisterSignal(parent, COMSIG_MOB_DEATH)
 	if(ai_behavior)
 		STOP_PROCESSING(SSprocessing, ai_behavior)
-		ai_behavior.cleanup_current_action()
+		ai_behavior.cleanup_signals()
+		if(register_for_logout)
+			RegisterSignal(parent, COMSIG_MOB_LOGOUT, .proc/start_ai)
+			return
 		ai_behavior = null
 
-///Stop this ai controller from acting on the mob
-/datum/component/ai_controller/proc/stop_controlling()
+///Start the ai behaviour 
+/datum/component/ai_controller/proc/start_ai()
 	SIGNAL_HANDLER
-	STOP_PROCESSING(SSprocessing, ai_behavior)
-	ai_behavior.cleanup_current_action()
-	GLOB.ai_instances_active -= src
-	RegisterSignal(parent, COMSIG_MOB_LOGOUT, .proc/resume_controlling)
-
-///Resume this ai controller process
-/datum/component/ai_controller/proc/resume_controlling()
-	SIGNAL_HANDLER
-	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
+	if(!ai_behavior || QDELETED(parent))
+		return
 	if((length(GLOB.ai_instances_active) + 1) >= AI_INSTANCE_HARDCAP)
 		message_admins("Notice: An AI controller failed resume because there's already too many AI controllers existing.")
+		ai_behavior = null
 		return
-	START_PROCESSING(SSprocessing, ai_behavior)
+	for(var/obj/effect/ai_node/node in range(7))
+		ai_behavior.current_node = node
+		break
+	//Iniatialise the behavior of the ai
 	ai_behavior.late_initialize()
+	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/RemoveComponent)
+	RegisterSignal(parent, COMSIG_MOB_LOGIN, .proc/clean_up)
+	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)
+	UnregisterSignal(parent, COMSIG_MOB_LOGOUT)
 	GLOB.ai_instances_active += src
 
 /datum/component/ai_controller/Destroy()
-	clean_up()
+	clean_up(FALSE)
 	return ..()

@@ -63,6 +63,7 @@
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/tool/taperoll/engineering,
+		/obj/item/tool/solderingtool,
 	)
 
 
@@ -136,12 +137,12 @@
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/dexalin(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/healthanalyzer(src)
 
@@ -178,12 +179,12 @@
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
@@ -225,14 +226,55 @@
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+
+/obj/item/storage/belt/hypospraybelt
+	name = "\improper M276 pattern hypospray belt"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent_containers."
+	icon_state = "hypospraybelt"
+	item_state = "medicbag"
+	storage_slots = 18
+	max_storage_space = 42
+	max_w_class = 2
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/hypospray/advanced,
+		/obj/item/storage/bottlecase,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline,
+		/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin,
+		/obj/item/reagent_containers/hypospray/autoinjector/hypervene,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot,
+	)
+
+/obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
+	. = ..()
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/reagent_containers/hypospray/advanced/bicaridine(src)
+	new /obj/item/storage/bottlecase/bica(src)
+	new /obj/item/reagent_containers/hypospray/advanced/kelotane(src)
+	new /obj/item/storage/bottlecase/kelo(src)
+	new /obj/item/reagent_containers/hypospray/advanced/dylovene(src)
+	new /obj/item/storage/bottlecase/dylo(src)
+	new /obj/item/reagent_containers/hypospray/advanced/tramadol(src)
+	new /obj/item/storage/bottlecase/tram(src)
+	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
+	new /obj/item/storage/bottlecase/tricord(src)
+	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
 
 /obj/item/storage/belt/combatLifesaver/upp
 	name ="\improper Type 41 pattern lifesaver bag"
@@ -621,7 +663,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type_limits = list(
 		/obj/item/weapon/gun = 1,
-		/obj/item/cell/lasgun/lasrifle/marine = 2,
+		/obj/item/cell/lasgun/lasrifle = 2,
 	)
 	storage_slots = 7
 	max_storage_space = 15
@@ -635,7 +677,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/cell/lasgun/lasrifle/marine,
+		/obj/item/cell/lasgun/lasrifle,
 	)
 
 /obj/item/storage/belt/gun/Destroy()
@@ -712,7 +754,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/cell/lasgun/lasrifle/marine,
+		/obj/item/cell/lasgun/lasrifle,
 	)
 
 /obj/item/storage/belt/gun/pistol/m4a3/full/Initialize()

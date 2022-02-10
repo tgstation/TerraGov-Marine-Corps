@@ -154,8 +154,6 @@
 	var/huggers_max = 0
 	///delay between the throw hugger ability activation for carriers
 	var/hugger_delay = 0
-	///maximum amount of eggs a carrier can carry at one time.
-	var/eggs_max = 0
 
 	// *** Defender Abilities *** //
 	///modifying amount to the crest defense ability for defenders. Positive integers only.
@@ -224,13 +222,13 @@
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
 	xenomorph.AddComponent(/datum/component/bump_attack)
-	if(caste_flags & CAN_RIDE_CRUSHER)
+	if(caste_flags & CASTE_CAN_RIDE_CRUSHER)
 		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
 	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
 	bump_attack?.RemoveComponent()
-	if(caste_flags & CAN_RIDE_CRUSHER)
+	if(caste_flags & CASTE_CAN_RIDE_CRUSHER)
 		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
 
 /mob/living/carbon/xenomorph
@@ -316,9 +314,12 @@
 
 	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
-	var/selected_resin = /turf/closed/wall/resin/regenerating //which resin structure to build when we secrete resin
-	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile //which reagent to slash with using reagent slash
-
+	///which resin structure to build when we secrete resin
+	var/selected_resin = /turf/closed/wall/resin/regenerating
+	///which reagent to slash with using reagent slash
+	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
+	///which plant to place when we use sow
+	var/obj/structure/xeno/plant/selected_plant = /obj/structure/xeno/plant/heal_fruit
 	//Naming variables
 	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.
 
