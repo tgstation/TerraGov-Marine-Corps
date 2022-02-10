@@ -247,7 +247,9 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos", "Pri
 		if(!silent)
 			to_chat(buyer, span_xenonotice("You must be a ruler to buy this!"))
 		return FALSE
-
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
+		to_chat(buyer, span_xenonotice("You can't buy this while shutters are closed!"))
+		return FALSE
 
 /datum/hive_upgrade/primordial/queen
 	name = PRIMORDIAL_QUEEN
