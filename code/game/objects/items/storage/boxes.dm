@@ -966,12 +966,12 @@
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_te"
 	can_hold = list(
-		/obj/item/cell/lasgun/lasrifle/marine,
+		/obj/item/cell/lasgun/lasrifle,
 	)
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full
 	spawn_number = 30
-	spawn_type = /obj/item/cell/lasgun/lasrifle/marine
+	spawn_type = /obj/item/cell/lasgun/lasrifle
 
 // -Marksmen-
 

@@ -48,8 +48,8 @@
 	muzzle_flash = null //TO DO.
 	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
 	ammo_datum_type  = /datum/ammo/energy/taser
-	default_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle/marine)
+	default_ammo_type = /obj/item/cell/lasgun/lasrifle
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	rounds_per_shot = 500
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	gun_skill_category = GUN_SKILL_PISTOLS
@@ -114,8 +114,8 @@
 	ammo_datum_type  = /datum/ammo/energy/tesla
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	default_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle/marine)
+	default_ammo_type = /obj/item/cell/lasgun/lasrifle
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	muzzle_flash_color = COLOR_TESLA_BLUE
 
@@ -284,15 +284,13 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle
 	name = "\improper TX-73 lasrifle MK2"
 	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines."
-	force = 20 //Large and hefty! Includes stock bonus.
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx73"
 	item_state = "tx73"
 	max_shots = 50 //codex stuff
-	load_method = CELL //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/M43
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	rounds_per_shot = 10
+	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
@@ -317,9 +315,8 @@
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
 	fire_delay = 2
-	default_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle/marine)
-
+	default_ammo_type = /obj/item/cell/lasgun/lasrifle
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	var/list/datum/lasrifle/base/mode_list = list(
 	)
 
@@ -397,13 +394,9 @@
 	desc = "A Terra Experimental laser rifle, abbreviated as the TE-R. It has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
-	force = 20
 	icon_state = "ter"
 	item_state = "ter"
-	icon = 'icons/Marine/gun64.dmi'
-	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 50 //codex stuff
-	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
 	rounds_per_shot = 12
@@ -469,14 +462,11 @@
 	desc = "A TerraGov standard issue laser pistol abbreviated as TE-P. It has an integrated charge selector for normal, heat and taser settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_pistol_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
-	force = 20
 	icon_state = "tep"
 	item_state = "tep"
-	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_equip_slot = ITEM_SLOT_BELT
 	max_shots = 30 //codex stuff
-	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_diff = null
 	rounds_per_shot = 20
@@ -546,11 +536,8 @@
 	desc = "A TerraGov standard issue laser carbine, otherwise known as TE-C for short. It has an integrated charge selector for burst and scatter settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
-	force = 20
 	icon_state = "tec"
 	item_state = "tec"
-	icon = 'icons/Marine/gun64.dmi'
-	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 40 //codex stuff
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
@@ -625,13 +612,10 @@
 	desc = "The T-ES, a Terra Experimental standard issue laser sniper rifle, it has an integrated charge selector for normal and heat settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_sniper_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
-	force = 20
 	icon_state = "tes"
 	item_state = "tes"
-	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 12 //codex stuff
-	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
 	rounds_per_shot = 50
@@ -692,13 +676,10 @@
 	desc = "A Terra Experimental standard issue machine laser gun, often called as the TE-M by marines. It has a fire switch for normal and efficiency modes. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_machine_laser_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
-	force = 20
 	icon_state = "tem"
 	item_state = "tem"
-	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 150 //codex stuff
-	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	ammo_diff = null
 	rounds_per_shot = 4

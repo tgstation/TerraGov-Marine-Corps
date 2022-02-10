@@ -26,7 +26,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
-			/obj/item/cell/lasgun/lasrifle/marine = -1,
+			/obj/item/cell/lasgun/lasrifle = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -193,7 +193,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
-			/obj/item/cell/lasgun/lasrifle/marine = -1,
+			/obj/item/cell/lasgun/lasrifle = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -344,7 +344,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
-			/obj/item/cell/lasgun/lasrifle/marine = -1,
+			/obj/item/cell/lasgun/lasrifle = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -657,7 +657,7 @@
 
 	product_ads = "Power cell running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-		/obj/item/cell/lasgun/lasrifle/marine = 10,
+		/obj/item/cell/lasgun/lasrifle = 10,
 	)
 
 
