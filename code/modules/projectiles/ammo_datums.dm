@@ -734,14 +734,16 @@ datum/ammo/bullet/revolver/tp44
 	damage = 35
 	damage_falloff = 4
 	penetration = 5
-	sundering = 10
+	sundering = 2
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 3)
 
+// apparently this wasnt a child
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
 	icon_state = "buckshot"
+	flags_ammo_behavior = AMMO_SUNDERING
 	shell_speed = 2
 	accuracy_var_low = 9
 	accuracy_var_high = 9
@@ -749,8 +751,8 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 10
 	damage = 30
 	damage_falloff = 4
-	penetration = 4
-	sundering = 10
+	penetration = 1
+	sundering = 1
 
 //buckshot variant only used by the masterkey shotgun attachment.
 /datum/ammo/bullet/shotgun/buckshot/masterkey
