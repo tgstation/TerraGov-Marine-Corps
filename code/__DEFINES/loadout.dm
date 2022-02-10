@@ -121,7 +121,6 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/effect/essentials_set/leader = list(CAT_ESS, "Essential SL Set", 0, "white"),
 		/obj/item/beacon/supply_beacon = list(CAT_LEDSUP, "Supply beacon", 10, "black"),
-		/obj/item/beacon/orbital_bombardment_beacon = list(CAT_LEDSUP, "Orbital beacon", 15, "black"),
 		/obj/item/tool/shovel/etool = list(CAT_LEDSUP, "Entrenching tool", 1, "black"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_LEDSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "black"),
 		/obj/item/explosive/plastique = list(CAT_LEDSUP, "Plastique explosive", 2, "black"),
@@ -706,7 +705,6 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	SQUAD_LEADER = list(
 		/obj/item/explosive/plastique = 1,
 		/obj/item/beacon/supply_beacon = 2,
-		/obj/item/beacon/orbital_bombardment_beacon = 1,
 		/obj/item/whistle = 1,
 		/obj/item/radio = 1,
 		/obj/item/binoculars/tactical = 1,

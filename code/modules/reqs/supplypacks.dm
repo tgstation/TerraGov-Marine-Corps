@@ -36,12 +36,6 @@ OPERATIONS
 	contains = list(/obj/item/beacon/supply_beacon)
 	cost = 10
 
-/datum/supply_packs/operations/beacons_orbital
-	name = "orbital beacon"
-	contains = list(/obj/item/beacon/orbital_bombardment_beacon)
-	cost = 30
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "fulton extraction pack"
 	contains = list(/obj/item/fulton_extraction_pack)
