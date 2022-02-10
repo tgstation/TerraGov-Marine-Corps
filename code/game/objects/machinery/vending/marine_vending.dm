@@ -1237,7 +1237,6 @@
 	products = list(
 		"Weapon" = list(
 			/obj/item/weapon/gun/energy/lasgun/tesla = -1,
-			/obj/item/cell/lasgun/tesla = -1,
 			/obj/item/weapon/gun/rifle/railgun = -1,
 			/obj/item/ammo_magazine/railgun = -1,
 			/obj/item/weapon/gun/rifle/tx8 = -1,

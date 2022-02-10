@@ -13,13 +13,6 @@
 	///Magazine flags.
 	var/flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER
 
-/obj/item/cell/lasgun/tesla// Large special battery
-	name = "\improper Energy Rifle battery"
-	desc = "An advanced, ultrahigh capacity battery used to power experimental weapons."
-	base_ammo_icon = "m43_e"
-	icon_state = "m43_e"
-	maxcharge = 2000
-
 /obj/item/cell/lasgun/M43
 	name = "\improper M43 lasgun battery"
 	desc = "A specialized high density battery used to power the M43 lasgun."
