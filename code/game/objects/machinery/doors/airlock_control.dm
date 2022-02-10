@@ -106,18 +106,6 @@ obj/machinery/door/airlock/proc/send_status(var/bumped = 0)
 
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 
-
-/obj/machinery/door/airlock/open(surpress_send)
-	. = ..()
-	if(!surpress_send)
-		INVOKE_ASYNC(src, .proc/send_status)
-
-
-obj/machinery/door/airlock/close(surpress_send)
-	. = ..()
-	if(!surpress_send)
-		INVOKE_ASYNC(src, .proc/send_status)
-
 obj/machinery/door/airlock/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
 	if(new_frequency)

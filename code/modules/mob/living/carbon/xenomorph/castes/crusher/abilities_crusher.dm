@@ -176,7 +176,7 @@
 	keybind_signal = COMSIG_XENOABILITY_ADVANCE
 
 /datum/action/xeno_action/activable/advance/on_cooldown_finish()
-	to_chat(owner, span_xenowarning("<b>We can now rapidly cgareg forward again.</b>"))
+	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))
 	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 

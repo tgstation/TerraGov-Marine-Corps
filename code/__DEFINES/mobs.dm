@@ -1,5 +1,7 @@
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
+///Comment out if you don't want VOX to be enabled and have players download the voice sounds.
+#define AI_VOX
 
 //Mob movement define
 #define DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER 1.6
@@ -408,7 +410,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define GOGGLES_LAYER 11	//For putting Ballistic goggles and potentially other things above masks
 #define HEAD_LAYER 10
 #define COLLAR_LAYER 9
-#define HANDCUFF_LAYER 8
+#define CAPE_LAYER 8
+#define HANDCUFF_LAYER 7
 #define L_HAND_LAYER 6
 #define R_HAND_LAYER 5
 #define BURST_LAYER 4 //Chestburst overlay
@@ -765,3 +768,18 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 //do_mob() flags
 #define IGNORE_LOC_CHANGE (1<<0)
 #define IGNORE_HAND (1<<1)
+
+#define TIER_ONE_YOUNG_THRESHOLD 60
+#define TIER_ONE_MATURE_THRESHOLD 120
+#define TIER_ONE_ELDER_THRESHOLD 240
+#define TIER_ONE_ANCIENT_THRESHOLD 240
+
+#define TIER_TWO_YOUNG_THRESHOLD 120
+#define TIER_TWO_MATURE_THRESHOLD 240
+#define TIER_TWO_ELDER_THRESHOLD 480
+#define TIER_TWO_ANCIENT_THRESHOLD 240
+
+#define TIER_THREE_YOUNG_THRESHOLD 250
+#define TIER_THREE_MATURE_THRESHOLD 500
+#define TIER_THREE_ELDER_THRESHOLD 1000
+#define TIER_THREE_ANCIENT_THRESHOLD 100

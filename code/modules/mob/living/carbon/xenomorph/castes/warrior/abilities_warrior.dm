@@ -73,6 +73,11 @@
 	if(!.)
 		return FALSE
 
+	if(get_dist_euclide_square(A, owner) > 36)
+		if(!silent)
+			to_chat(owner, span_xenonotice("You are too far!"))
+		return FALSE
+
 	if(!isliving(A)) //We can only lunge at the living; expanded to xenos in order to allow for supportive applications; lunging > throwing to safety
 		if(!silent)
 			to_chat(owner, span_xenodanger("We can't [name] at that!"))

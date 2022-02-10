@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "robot visors now rewind, going left to right right to left, instead of going left to right and jumping to the start again."

@@ -62,6 +62,8 @@
 	deploy_time = 8 SECONDS
 	max_shells = 50
 
+	scatter = 2
+
 	ammo_datum_type = /datum/ammo/bullet/turret
 	default_ammo_type = /obj/item/ammo_magazine/sentry
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)

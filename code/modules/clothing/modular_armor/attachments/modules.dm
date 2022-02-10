@@ -216,6 +216,7 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
+	prefered_slot = SLOT_HEAD
 	///Mod for extra eye protection when activated.
 	var/eye_protection_mod = 2
 
@@ -262,6 +263,7 @@
 	zoom_viewsize = 12
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	prefered_slot = SLOT_HEAD
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
 	zoom(user)
@@ -291,6 +293,7 @@
 	item_state = "antenna_head_a"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	prefered_slot = SLOT_HEAD
 	/// Reference to the datum used by the supply drop console
 	var/datum/supply_beacon/beacon_datum
 
@@ -304,10 +307,6 @@
 	if(!is_ground_level(user.z))
 		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
 		return FALSE
-	var/area/A = get_area(user)
-	if(A && istype(A) && A.ceiling >= CEILING_METAL)
-		to_chat(user, span_warning("You have to be outside or under a glass ceiling to activate this."))
-		return
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
 	user.show_message(span_notice("The [src] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\""), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))

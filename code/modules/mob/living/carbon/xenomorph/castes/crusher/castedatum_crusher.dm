@@ -24,7 +24,7 @@
 	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 250
+	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
 	deevolves_to = /mob/living/carbon/xenomorph/bull
 
@@ -78,7 +78,7 @@
 	max_health = 345
 
 	// *** Evolution *** //
-	upgrade_threshold = 750
+	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 65, "acid" = 90)
@@ -107,7 +107,7 @@
 	max_health = 370
 
 	// *** Evolution *** //
-	upgrade_threshold = 1750
+	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 80, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 70, "acid" = 95)
@@ -136,7 +136,7 @@
 	max_health = 400
 
 	// *** Evolution *** //
-	upgrade_threshold = 1750
+	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)
@@ -163,9 +163,6 @@
 
 	// *** Health *** //
 	max_health = 400
-
-	// *** Evolution *** //
-	upgrade_threshold = 1750
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)

@@ -99,8 +99,8 @@
 		return FALSE
 	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
-	I.forceMove(src)
 	user.temporarilyRemoveItemFromInventory(I)
+	I.forceMove(internal_item)
 	kit.cell = I
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	update_icon()
@@ -122,7 +122,8 @@
 	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 
 	resistance_flags = RESIST_ALL
-	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
+	w_class = WEIGHT_CLASS_BULKY
+	flags_equip_slot = ITEM_SLOT_BACK
 	///The linked teleporter
 	var/obj/item/teleporter_kit/linked_teleporter
 	///The optional cell to power the teleporter if off the grid

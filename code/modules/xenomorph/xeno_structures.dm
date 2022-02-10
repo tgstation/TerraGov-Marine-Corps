@@ -1311,6 +1311,17 @@ TUNNEL
 	///How long should the buff last
 	var/duration = 1 MINUTES
 
+/obj/structure/xeno/plant/plasma_fruit/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!isxeno(user))
+		return
+	var/mob/living/carbon/xenomorph/X = user
+	if(X.has_status_effect(STATUS_EFFECT_PLASMA_SURGE))
+		to_chat(X, span_xenowarning("We already have increased plasma regeneration!"))
+		return FALSE
+
 /obj/structure/xeno/plant/plasma_fruit/on_use(mob/user)
 	to_chat(user, span_warning("We begin consuming [src]..."))
 	if(!do_after(user, 2 SECONDS, FALSE, src))
@@ -1338,9 +1349,9 @@ TUNNEL
 	desc = "A beautiful flower, what purpose it could serve to the alien hive is beyond you however..."
 	icon_state = "stealth_plant_immature"
 	mature_icon_state = "stealth_plant"
-	maturation_time = 5 MINUTES
+	maturation_time = 4 MINUTES
 	///The radius of the passive structure camouflage, requires line of sight
-	var/camouflage_range = 5
+	var/camouflage_range = 7
 	///The range of the active stealth ability, does not require line of sight
 	var/active_camouflage_pulse_range = 10
 	///How long should veil last

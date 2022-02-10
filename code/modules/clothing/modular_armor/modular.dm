@@ -110,34 +110,6 @@
 	. = ..()
 	update_icon() //Update for greyscale.
 
-/obj/item/clothing/suit/modular/equipped(mob/user, slot)
-	. = ..()
-	if(slot != SLOT_WEAR_SUIT)
-		return
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYADD(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/new_action = new(module)
-		new_action.give_action(user)
-
-/obj/item/clothing/suit/modular/unequipped(mob/unequipper, slot)
-	. = ..()
-	if(slot != SLOT_WEAR_SUIT)
-		return
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYREMOVE(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in module.actions
-		old_action.remove_action(unequipper)
-
 /obj/item/clothing/suit/modular/update_icon()
 	. = ..()
 	if(current_variant)
@@ -375,37 +347,59 @@
 			"Desert" = ARMOR_PALETTE_DESERT,
 			"Black" = ARMOR_PALETTE_BLACK,
 			"Grey" = ARMOR_PALETTE_GREY,
+			"Gun Metal" = ARMOR_PALETTE_GUN_METAL,
+			"Night Slate" = ARMOR_PALETTE_NIGHT_SLATE,
+			"Fall" = ARMOR_PALETTE_FALL,
 		),
 		"Red" = list(
 			"Dark Red" = ARMOR_PALETTE_RED,
 			"Bronze Red" = ARMOR_PALETTE_BRONZE_RED,
 			"Red" = ARMOR_PALETTE_LIGHT_RED,
+			"Blood Red" = ARMOR_PALETTE_BLOOD_RED,
 		),
 		"Green" = list(
 			"Green" = ARMOR_PALETTE_GREEN,
 			"Emerald" = ARMOR_PALETTE_EMERALD,
 			"Lime" = ARMOR_PALETTE_LIME,
 			"Mint" = ARMOR_PALETTE_MINT,
+			"Jade" = ARMOR_PALETTE_JADE,
+			"Leaf" = ARMOR_PALETTE_LEAF,
+			"Forest" = ARMOR_PALETTE_FOREST,
+			"Smoked Green" = ARMOR_PALETTE_SMOKED_GREEN,
 		),
 		"Purple" = list(
 			"Purple" = ARMOR_PALETTE_PURPLE,
 			"Lavander" = ARMOR_PALETTE_LAVANDER,
+			"Lilac" = ARMOR_PALETTE_LILAC,
+			"Iris Purple" = ARMOR_PALETTE_IRIS_PURPLE,
+			"Orchid" = ARMOR_PALETTE_ORCHID,
+			"Grape" = ARMOR_PALETTE_GRAPE,
 		),
 		"Blue" = list(
 			"Dark Blue" = ARMOR_PALETTE_BLUE,
 			"Blue" = ARMOR_PALETTE_LIGHT_BLUE,
 			"Cottonwood" = ARMOR_PALETTE_COTTONWOOD,
 			"Aqua" = ARMOR_PALETTE_AQUA,
+			"Cerulean" = ARMOR_PALETTE_CERULEAN,
+			"Sea Blue" = ARMOR_PALETTE_SEA_BLUE,
+			"Cloud" = ARMOR_PALETTE_CLOUD,
 		),
 		"Yellow" = list(
 			"Gold" = ARMOR_PALETTE_YELLOW,
 			"Yellow" = ARMOR_PALETTE_LIGHT_YELLOW,
+			"Angelic Gold" = ARMOR_PALETTE_ANGELIC,
+			"Honey" = ARMOR_PALETTE_HONEY,
+		),
+		"Orange" = list(
+			"Orange" = ARMOR_PALETTE_ORANGE,
+			"Beige" = ARMOR_PALETTE_BEIGE,
+			"Earth" = ARMOR_PALETTE_EARTH,
 		),
 		"Pink" = list(
 			"Salmon" = ARMOR_PALETTE_SALMON_PINK,
 			"Magenta" = ARMOR_PALETTE_MAGENTA_PINK,
+			"Sakura" = ARMOR_PALETTE_SAKURA,
 		),
-		"Orange" = ARMOR_PALETTE_ORANGE,
 	)
 	///Some defines to determin if the armor piece is allowed to be recolored.
 	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
@@ -538,39 +532,6 @@
 	var/obj/item/armor_module/storage/armor_storage = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 	if(armor_storage.storage.handle_mousedrop(usr, over_object))
 		return ..()
-
-/obj/item/clothing/head/modular/equipped(mob/user, slot)
-	. = ..()
-	if(slot != SLOT_HEAD)
-		return
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYADD(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/new_action = new(module)
-		new_action.give_action(user)
-	update_clothing_icon()
-
-
-/obj/item/clothing/head/modular/unequipped(mob/unequipper, slot)
-	. = ..()
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYREMOVE(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in module.actions
-		if(!old_action)
-			continue
-		old_action.remove_action(unequipper)
-		module.actions = null
-
-	update_clothing_icon()
 
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	. = ..()

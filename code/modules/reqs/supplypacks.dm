@@ -36,12 +36,6 @@ OPERATIONS
 	contains = list(/obj/item/beacon/supply_beacon)
 	cost = 10
 
-/datum/supply_packs/operations/beacons_orbital
-	name = "orbital beacon"
-	contains = list(/obj/item/beacon/orbital_bombardment_beacon)
-	cost = 30
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "fulton extraction pack"
 	contains = list(/obj/item/fulton_extraction_pack)
@@ -210,21 +204,8 @@ WEAPONS
 
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
-	contains = list(
-		/obj/item/weapon/gun/energy/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-	)
+	contains = list(/obj/item/weapon/gun/energy/lasgun/tesla)
 	cost = 60
-
-/datum/supply_packs/ammo
-	name = "Energy Rifle cells 3x"
-	contains = list(
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-	)
-	cost = 10
 
 /datum/supply_packs/weapons/recoillesskit
 	name = "T-160 Recoilless rifle kit"
@@ -486,6 +467,11 @@ EXPLOSIVES
 	notes = "Contains 5 mines"
 	contains = list(/obj/item/storage/box/explosive_mines)
 	cost = 15
+
+/datum/supply_packs/explosives/explosives_minelayer
+	name = "M21 APRDS \"Minelayer\""
+	contains = list(/obj/item/minelayer)
+	cost = 5
 
 /datum/supply_packs/explosives/explosives_razor
 	name = "Razorburn grenade box crate"
@@ -968,8 +954,8 @@ ENGINEERING
 		/obj/item/storage/belt/utility/full,
 		/obj/item/storage/belt/utility/full,
 		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/suit/storage/hazardvest/lime,
+		/obj/item/clothing/suit/storage/hazardvest/blue,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/hardhat,
@@ -1015,7 +1001,7 @@ ENGINEERING
 	contains = list(/obj/machinery/power/port_gen/pacman/mobile_power)
 	cost = 20
 
-/datum/supply_packs/engineering/teleporter 
+/datum/supply_packs/engineering/teleporter
 	name = "Teleporter pads"
 	contains = list(/obj/effect/teleporter_linker)
 	cost = 50
@@ -1339,6 +1325,11 @@ VEHICLES
 	name = "All-Terrain Motorbike"
 	cost = 40
 	contains = list(/obj/vehicle/ridden/motorbike)
+
+/datum/supply_packs/vehicles/sidecar
+	name = "Sidecar motorbike upgrade"
+	cost = 20
+	contains = list(/obj/item/sidecar)
 
 /datum/supply_packs/vehicles/droid_combat
 	name = "Combat droid with weapon equipped"

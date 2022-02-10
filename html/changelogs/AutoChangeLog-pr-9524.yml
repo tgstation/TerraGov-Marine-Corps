@@ -1,0 +1,6 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "The Athena tactical map console, which shows planetside minimap; it is in the drop pod bay"
+  - qol: "marines using drop pods can use the Athena tactical map console to see planetside minimap, which reveal planetside marines' location; that said, you still have to use webmap to actually get coordinates"
+  - balance: "Drop pods have information that tactically mobilize marines from shipside to planetside; they can get solid positioning on xenomorphs and help marines faster armed with information"

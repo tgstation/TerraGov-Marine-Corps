@@ -180,15 +180,9 @@
 
 /obj/machinery/door/proc/open()
 	SIGNAL_HANDLER_DOES_SLEEP
-	if(!density)
-		return TRUE
-	if(operating > 0 || !loc)
+	if(operating || welded || locked || !loc)
 		return FALSE
-	if(!SSticker)
-		return FALSE
-	if(!operating)
-		operating = TRUE
-
+	operating = TRUE
 	do_animate("opening")
 	icon_state = "door0"
 	set_opacity(FALSE)
