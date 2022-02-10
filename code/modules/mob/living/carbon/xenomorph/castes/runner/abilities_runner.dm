@@ -437,7 +437,7 @@
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	succeed_activate()
 	var/mob/living/carbon/xenomorph/X = A
-	if(!do_after(owner, 0,5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
+	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
 	stolen_item = victim.get_active_held_item()
