@@ -24505,7 +24505,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "poJ" = (
-/obj/machinery/miner/damaged/platinum,
+/obj/machinery/miner/damaged,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
 "poX" = (

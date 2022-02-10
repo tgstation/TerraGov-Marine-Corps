@@ -43101,7 +43101,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "iDz" = (
-/obj/machinery/miner/damaged/platinum,
+/obj/machinery/miner/damaged,
 /turf/open/floor/prison,
 /area/prison/research/secret/dissection)
 "iFe" = (
@@ -44187,7 +44187,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "lPU" = (
-/obj/machinery/miner/damaged/platinum,
+/obj/machinery/miner/damaged,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
