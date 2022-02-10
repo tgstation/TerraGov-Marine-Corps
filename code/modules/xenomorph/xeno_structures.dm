@@ -1349,9 +1349,9 @@ TUNNEL
 	desc = "A beautiful flower, what purpose it could serve to the alien hive is beyond you however..."
 	icon_state = "stealth_plant_immature"
 	mature_icon_state = "stealth_plant"
-	maturation_time = 5 MINUTES
+	maturation_time = 4 MINUTES
 	///The radius of the passive structure camouflage, requires line of sight
-	var/camouflage_range = 5
+	var/camouflage_range = 7
 	///The range of the active stealth ability, does not require line of sight
 	var/active_camouflage_pulse_range = 10
 	///How long should veil last
