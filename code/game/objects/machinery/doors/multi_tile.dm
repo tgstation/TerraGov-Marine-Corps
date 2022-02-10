@@ -78,11 +78,6 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	openspeed = 4 //shorter open animation.
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock,
-	)
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic
 	name = "\improper Airlock"
@@ -204,7 +199,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear
 	opacity = TRUE
 	width = 3
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
 

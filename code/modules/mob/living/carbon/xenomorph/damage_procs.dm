@@ -8,9 +8,8 @@
 		return
 
 	if(severity < EXPLODE_LIGHT) //Actually means higher.
-		for(var/i in stomach_contents)
-			var/mob/living/carbon/prey = i
-			prey.ex_act(severity + 1)
+		if(eaten_mob)
+			eaten_mob.ex_act(severity + 1)
 	var/bomb_armor = soft_armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0
@@ -140,7 +139,7 @@
 	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
 		return
 	//If we're alive and health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
-	if(stat == DEAD || (health > max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)))
+	if(stat == DEAD || (health > max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)) || xeno_caste.caste_flags & CASTE_DO_NOT_ALERT_LOW_LIFE)
 		return
 
 	var/list/filter_list = list()
@@ -161,31 +160,41 @@
 
 	return damage
 
+///Handles overheal for xeno receiving damage
+#define HANDLE_OVERHEAL(amount) \
+	if(overheal && amount > 0) { \
+		var/reduction = min(amount, overheal); \
+		amount -= reduction; \
+		adjustOverheal(src, -reduction); \
+	} \
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
-
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
+
+	HANDLE_OVERHEAL(amount)
 
 	bruteloss = max(bruteloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
 
-
 /mob/living/carbon/xenomorph/adjustFireLoss(amount, updating_health = FALSE)
-
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
+	HANDLE_OVERHEAL(amount)
+
 	fireloss = max(fireloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
+
+#undef HANDLE_OVERHEAL
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)
@@ -221,8 +230,8 @@
 				splash_chance += 30 //Same tile? BURN
 			splash_chance += distance * -15
 			i++
-			victim.visible_message("<span class='danger'>\The [victim] is scalded with hissing green blood!</span>", \
-			"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
+			victim.visible_message(span_danger("\The [victim] is scalded with hissing green blood!"), \
+			span_danger("You are splattered with sizzling blood! IT BURNS!"))
 			if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60))
 				victim.emote("scream") //Topkek
 			victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.

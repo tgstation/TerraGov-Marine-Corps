@@ -135,6 +135,8 @@
 			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to bolt [airlock] but it's already locked!")
 		else
 			airlock.locked = TRUE
+			var/turf/current_turf = get_turf(airlock)
+			current_turf.flags_atom |= AI_BLOCKED
 	else
 		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 

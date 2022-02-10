@@ -14,11 +14,6 @@
 	resistance_flags = RESIST_ALL
 	var/atom/movable/grabbed_thing
 
-
-/obj/item/grab/dropped(mob/user)
-	user.stop_pulling()
-	. = ..()
-
 /obj/item/grab/Destroy()
 	grabbed_thing = null
 	if(ismob(loc))
@@ -26,6 +21,25 @@
 		M.stop_pulling()
 	return ..()
 
+/obj/item/grab/dropped(mob/user)
+	user.stop_pulling()
+	return ..()
+
+
+/obj/item/grab/on_thrown(mob/living/carbon/user, atom/target)
+	if(!ismob(grabbed_thing))
+		return
+	if(user.grab_state < GRAB_NECK)
+		to_chat(user, span_warning("You need a better grip!"))
+		return
+	var/mob/living/M = grabbed_thing
+	var/turf/start_T = get_turf(user) //Get the start and target tile for the descriptors
+	var/turf/end_T = get_turf(target)
+	if(start_T && end_T)
+		var/start_T_descriptor = "tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]"
+		var/end_T_descriptor = "tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]"
+		log_combat(user, M, "thrown", addition="from [start_T_descriptor] with the target [end_T_descriptor]")
+	return M
 
 /obj/item/grab/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	if(user.pulling == user.buckled)
@@ -63,20 +77,20 @@
 	switch(grab_state)
 		if(GRAB_AGGRESSIVE)
 			log_combat(src, victim, "aggressive grabbed")
-			visible_message("<span class='danger'>[src] grabs [victim] aggressively!</span>",
-				"<span class='danger'>You grab [victim] aggressively!</span>",
-				"<span class='hear'>You hear aggressive shuffling!</span>", ignored_mob = victim)
-			to_chat(victim, "<span class='userdanger'>[src] grabs you aggressively!</span>")
+			visible_message(span_danger("[src] grabs [victim] aggressively!"),
+				span_danger("You grab [victim] aggressively!"),
+				span_hear("You hear aggressive shuffling!"), ignored_mob = victim)
+			to_chat(victim, span_userdanger("[src] grabs you aggressively!"))
 			victim.drop_all_held_items()
 			if(victim.pulling)
 				victim.stop_pulling()
 		if(GRAB_NECK)
 			icon_state = "disarm/kill"
 			log_combat(src, victim, "neck grabbed")
-			visible_message("<span class='danger'>[src] grabs [victim] by the neck!</span>",
-				"<span class='danger'>You grab [victim] by the neck!</span>",
-				"<span class='hear'>You hear aggressive shuffling!</span>", ignored_mob = victim)
-			to_chat(victim, "<span class='userdanger'>[src] grabs you by the neck!</span>")
+			visible_message(span_danger("[src] grabs [victim] by the neck!"),
+				span_danger("You grab [victim] by the neck!"),
+				span_hear("You hear aggressive shuffling!"), ignored_mob = victim)
+			to_chat(victim, span_userdanger("[src] grabs you by the neck!"))
 			victim.drop_all_held_items()
 			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
 			if(!victim.buckled && !victim.density)
@@ -84,10 +98,10 @@
 		if(GRAB_KILL)
 			icon_state = "disarm/kill1"
 			log_combat(src, victim, "strangled")
-			visible_message("<span class='danger'>[src] is strangling [victim]!</span>",
-				"<span class='danger'>You're strangling [victim]!</span>",
-				"<span class='hear'>You hear aggressive shuffling!</span>", ignored_mob = victim)
-			to_chat(victim, "<span class='userdanger'>[src] is strangling you!</span>")
+			visible_message(span_danger("[src] is strangling [victim]!"),
+				span_danger("You're strangling [victim]!"),
+				span_hear("You hear aggressive shuffling!"), ignored_mob = victim)
+			to_chat(victim, span_userdanger("[src] is strangling you!"))
 			victim.drop_all_held_items()
 			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
 			if(!victim.buckled && !victim.density)

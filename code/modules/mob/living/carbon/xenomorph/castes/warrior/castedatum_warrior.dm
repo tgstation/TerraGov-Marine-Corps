@@ -6,6 +6,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/warrior
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
+	primordial_upgrade_name = PRIMORDIAL_WARRIOR
 	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
@@ -23,13 +24,13 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 120
+	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/crusher)
+	evolves_to = list(/mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/gorger)
 	deevolves_to = /mob/living/carbon/xenomorph/defender
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_IS_STRONG
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_IS_STRONG|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 40, "acid" = 36)
@@ -41,8 +42,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/headbite,
-		/datum/action/xeno_action/activable/devour,
 		/datum/action/xeno_action/toggle_agility,
 		/datum/action/xeno_action/activable/lunge,
 		/datum/action/xeno_action/activable/fling,
@@ -72,7 +71,7 @@
 	max_health = 310
 
 	// *** Evolution *** //
-	upgrade_threshold = 360
+	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 34, "bullet" = 45, "laser" = 45, "energy" = 34, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 45, "acid" = 36)
@@ -101,7 +100,7 @@
 	max_health = 330
 
 	// *** Evolution *** //
-	upgrade_threshold = 840
+	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 38, "bullet" = 50, "laser" = 50, "energy" = 38, "bomb" = XENO_BOMB_RESIST_2, "bio" = 40, "rad" = 40, "fire" = 50, "acid" = 40)
@@ -130,7 +129,7 @@
 	max_health = 350
 
 	// *** Evolution *** //
-	upgrade_threshold = 1320
+	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 50)
@@ -138,3 +137,40 @@
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
 	agility_speed_armor = -30
+
+/datum/xeno_caste/warrior/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A champion of the hive, methodically shatters its opponents with punches rather slashes."
+	primordial_message = "Our rhythm is unmatched and our strikes lethal, no single foe can stand against us."
+	upgrade = XENO_UPGRADE_FOUR
+
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
+	// *** Speed *** //
+	speed = -0.5
+
+	// *** Plasma *** //
+	plasma_max = 120
+	plasma_gain = 12
+
+	// *** Health *** //
+	max_health = 350
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 50)
+
+	// *** Warrior Abilities *** //
+	agility_speed_increase = -0.6
+	agility_speed_armor = -30
+
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/toggle_agility,
+		/datum/action/xeno_action/activable/lunge,
+		/datum/action/xeno_action/activable/fling,
+		/datum/action/xeno_action/activable/toss,
+		/datum/action/xeno_action/activable/punch,
+		/datum/action/xeno_action/activable/punch/jab,
+	)

@@ -43,7 +43,7 @@
 	soft_armor = list("melee" = 5, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	flags_armor_protection = CHEST|GROIN|LEGS
 	siemens_coefficient = 0.9
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/security2
 	name = "security officer's uniform"
@@ -52,15 +52,15 @@
 	item_state = "r_suit"
 	soft_armor = list("melee" = 5, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	siemens_coefficient = 0.9
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/security/corp
 	icon_state = "sec_corporate"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/warden/corp
 	icon_state = "warden_corporate"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/tactical
 	name = "tactical jumpsuit"
@@ -79,22 +79,24 @@
 	item_state = "det"
 	soft_armor = list("melee" = 5, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	siemens_coefficient = 0.9
-	rollable_sleeves = TRUE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/det/black
 	icon_state = "detective2"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/det/slob
 	icon_state = "polsuit"
-	rollable_sleeves = TRUE
+	adjustment_variants = list(
+		"Down" = "_d",
+	)
 
 /obj/item/clothing/under/rank/det/grey
 	name = "noir suit"
 	desc = "A hard-boiled private investigator's grey suit, complete with tie clip."
 	icon_state = "greydet"
 	item_state = "greydet"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /*
 * Head of Security
@@ -121,7 +123,7 @@
 
 /obj/item/clothing/under/rank/head_of_security/corp
 	icon_state = "hos_corporate"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 //Jensen cosplay gear
 /obj/item/clothing/under/rank/head_of_security/jensen
@@ -130,7 +132,7 @@
 	icon_state = "jensen"
 	item_state = "jensen"
 	siemens_coefficient = 0.6
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /*
 *Blart Uniform

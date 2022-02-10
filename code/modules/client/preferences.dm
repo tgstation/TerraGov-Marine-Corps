@@ -24,6 +24,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ui_style_alpha = 230
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
+	var/tgui_input = TRUE
+	var/tgui_input_big_buttons = FALSE
+	var/tgui_input_buttons_swap = FALSE
 	var/toggles_deadchat = TOGGLES_DEADCHAT_DEFAULT
 	var/toggles_chat = TOGGLES_CHAT_DEFAULT
 	var/toggles_sound = TOGGLES_SOUND_DEFAULT
@@ -34,11 +37,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	var/ghost_form = GHOST_DEFAULT_FORM
 	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION
-	var/observer_actions = TRUE
 
 	var/show_typing = TRUE
 	var/windowflashing = TRUE
-	var/focus_chat = FALSE
 	var/clientfps = 0
 
 	// Custom Keybindings
@@ -184,9 +185,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
-		if(!load_loadout_manager() || loadout_manager.version != CURRENT_LOADOUT_VERSION)
-			loadout_manager = new
-			reset_loadouts_file()
+		loadout_manager = new
+		loadout_manager.loadouts_data = load_loadout_list()
 		if(load_preferences() && load_character())
 			C.set_fullscreen(fullscreen_mode)
 			return

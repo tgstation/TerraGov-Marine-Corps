@@ -26,11 +26,11 @@
 
 
 /datum/buildmode_mode/area_edit/show_help(client/c)
-	to_chat(c, "<span class='notice'>***********************************************************</span>")
-	to_chat(c, "<span class='notice'>Left Mouse Button on obj/turf/mob  = Paint area</span>")
-	to_chat(c, "<span class='notice'>Right Mouse Button on obj/turf/mob = Select area to paint</span>")
-	to_chat(c, "<span class='notice'>Right Mouse Button on buildmode button = Create new area</span>")
-	to_chat(c, "<span class='notice'>***********************************************************</span>")
+	to_chat(c, span_notice("***********************************************************"))
+	to_chat(c, span_notice("Left Mouse Button on obj/turf/mob  = Paint area"))
+	to_chat(c, span_notice("Right Mouse Button on obj/turf/mob = Select area to paint"))
+	to_chat(c, span_notice("Right Mouse Button on buildmode button = Create new area"))
+	to_chat(c, span_notice("***********************************************************"))
 
 
 /datum/buildmode_mode/area_edit/change_settings(client/c)
@@ -56,7 +56,7 @@
 
 	if(left_click)
 		if(!storedarea)
-			to_chat(c, "<span class='warning'>Configure or select the area you want to paint first!</span>")
+			to_chat(c, span_warning("Configure or select the area you want to paint first!"))
 			return
 		var/turf/T = get_turf(object)
 		if(get_area(T) != storedarea)

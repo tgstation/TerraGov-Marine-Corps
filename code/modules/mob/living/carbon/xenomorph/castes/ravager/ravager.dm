@@ -14,11 +14,6 @@
 	pixel_x = -16
 	old_x = -16
 
-/mob/living/carbon/xenomorph/ravager/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/plasma_on_attack, 1.5)
-	AddElement(/datum/element/plasma_on_attacked, 0.5)
-
 // ***************************************
 // *********** Mob overrides
 // ***************************************
@@ -42,10 +37,13 @@
 	. = ..()
 	if(!endure)
 		return
-	return RAVAGER_ENDURE_HP_LIMIT
+	var/datum/action/xeno_action/endure/endure_ability = actions_by_path[/datum/action/xeno_action/endure]
+	return endure_ability.endure_threshold
 
 /mob/living/carbon/xenomorph/ravager/get_death_threshold()
 	. = ..()
 	if(!endure)
 		return
-	return RAVAGER_ENDURE_HP_LIMIT
+	var/datum/action/xeno_action/endure/endure_ability = actions_by_path[/datum/action/xeno_action/endure]
+	return endure_ability.endure_threshold
+

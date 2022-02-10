@@ -19,46 +19,41 @@
 	var/datum/reagents/R = src.reagents
 
 	if(!R.total_volume || !R)
-		to_chat(user, "<span class='warning'>The [src.name] is empty!</span>")
+		to_chat(user, span_warning("The [src.name] is empty!"))
 		return FALSE
 
-	if(M == user)
-
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
-			if(H.species.species_flags & IS_SYNTHETIC)
-				to_chat(H, "<span class='warning'>You have a monitor for a head, where do you think you're going to put that?</span>")
+	if(iscarbon(M))
+		if(M == user)
+			var/mob/living/carbon/H = M
+			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+				to_chat(M, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
+			to_chat(M,span_notice("You swallow a gulp from \the [src]."))
+			if(reagents.total_volume)
+				reagents.reaction(M, INGEST)
+				reagents.trans_to(M, gulp_size)
+			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
+			return TRUE
+		else
+			var/mob/living/carbon/H = M
+			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
+				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
+				return
+			M.visible_message(span_warning("[user] attempts to feed [M] \the [src]."))
+			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
+				return
+			M.visible_message(span_warning("[user] feeds [M] \the [src]."))
 
-		to_chat(M,"<span class='notice'>You swallow a gulp from \the [src].</span>")
-		if(reagents.total_volume)
-			reagents.reaction(M, INGEST)
-			reagents.trans_to(M, gulp_size)
+			var/rgt_list_text = get_reagent_list_text()
 
-		playsound(M.loc,'sound/items/drink.ogg', 15, 1)
-		return TRUE
-	else if(istype(M,/mob/living/carbon/human))
+			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 
-		var/mob/living/carbon/human/H = M
-		if(H.species.species_flags & IS_SYNTHETIC)
-			to_chat(H, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
-			return
+			if(reagents.total_volume)
+				reagents.reaction(M, INGEST)
+				reagents.trans_to(M, gulp_size)
 
-		visible_message("<span class='warning'>[user] attempts to feed [M] [src].</span>")
-		if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
-			return
-		visible_message("<span class='warning'>[user] feeds [M] [src].</span>")
-
-		var/rgt_list_text = get_reagent_list_text()
-
-		log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
-
-		if(reagents.total_volume)
-			reagents.reaction(M, INGEST)
-			reagents.trans_to(M, gulp_size)
-
-		playsound(M.loc,'sound/items/drink.ogg', 15, 1)
-		return TRUE
+			playsound(M.loc,'sound/items/drink.ogg', 15, 1)
+			return TRUE
 
 	return FALSE
 
@@ -69,31 +64,31 @@
 
 	if(target.is_refillable())
 		if(!is_drainable())
-			to_chat(user, "<span class='notice'>[src]'s tab isn't open!</span>")
+			to_chat(user, span_notice("[src]'s tab isn't open!"))
 			return
 		if(!reagents.total_volume)
-			to_chat(user, "<span class='warning'>[src] is empty.</span>")
+			to_chat(user, span_warning("[src] is empty."))
 			return
 		if(target.reagents.holder_full())
-			to_chat(user, "<span class='warning'>[target] is full.</span>")
+			to_chat(user, span_warning("[target] is full."))
 			return
 
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You transfer [trans] units of the solution to [target].</span>")
+		to_chat(user, span_notice("You transfer [trans] units of the solution to [target]."))
 
 	else if(target.is_drainable()) //A dispenser Transfer FROM it TO us.
 		if(!is_refillable())
-			to_chat(user, "<span class='notice'>[src]'s tab isn't open!</span>")
+			to_chat(user, span_notice("[src]'s tab isn't open!"))
 			return
 		if(!target.reagents.total_volume)
-			to_chat(user, "<span class='warning'>[target] is empty.</span>")
+			to_chat(user, span_warning("[target] is empty."))
 			return
 		if(reagents.holder_full())
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			to_chat(user, span_warning("[src] is full."))
 			return
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>")
+		to_chat(user, span_notice("You fill [src] with [trans] units of the contents of [target]."))
 
 	return ..()
 

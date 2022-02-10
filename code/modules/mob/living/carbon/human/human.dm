@@ -6,7 +6,11 @@
 	if(!species)
 		set_species()
 
-	var/datum/reagents/R = new /datum/reagents(1000)
+	var/datum/reagents/R
+	if(species.species_flags & NO_CHEM_METABOLIZATION)
+		R = new /datum/reagents(0)
+	else
+		R = new /datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
 
@@ -29,6 +33,8 @@
 	issue_order_focus.give_action(src)
 	var/datum/action/innate/order/rally_order/send_rally_order = new
 	send_rally_order.give_action(src)
+	var/datum/action/innate/message_squad/screen_orders = new
+	screen_orders.give_action(src)
 
 	//makes order hud visible
 	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_ORDER]
@@ -43,6 +49,7 @@
 	RegisterSignal(src, COMSIG_KB_GIVE, .proc/give_signal_handler)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
+	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
 	SIGNAL_HANDLER
@@ -67,8 +74,8 @@
 	//and display them
 	add_to_all_mob_huds()
 
-	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_BASIC]
-	hud_to_add.add_hud_to(src)
+	GLOB.huds[DATA_HUD_BASIC].add_hud_to(src)
+	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(src)
 
 
 
@@ -107,6 +114,11 @@
 			stat(null, "You are affected by a HOLD order.")
 		if(marksman_aura)
 			stat(null, "You are affected by a FOCUS order.")
+		var/datum/game_mode/mode = SSticker.mode
+		if(mode.flags_round_type & MODE_WIN_POINTS)
+			stat("Points needed to win:", mode.win_points_needed)
+			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
+			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)
@@ -160,7 +172,7 @@
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
-		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
+		visible_message(span_danger("[M] [M.attacktext] [src]!"))
 		log_combat(M, src, "attacked")
 		var/damage = M.melee_damage
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
@@ -191,7 +203,6 @@
 	<BR><B>Suit Storage:</B> <A href='?src=[REF(src)];item=[SLOT_S_STORE]'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
 	<BR>
 	[handcuffed ? "<BR><A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : ""]
-	[suit?.hastie ? "<BR><A href='?src=[REF(src)];tie=1'>Remove Accessory</A>" : ""]
 	[internal ? "<BR><A href='?src=[REF(src)];internal=1'>Remove Internal</A>" : ""]
 	<BR><A href='?src=[REF(src)];splints=1'>Remove Splints</A>
 	<BR><A href='?src=[REF(src)];pockets=1'>Empty Pockets</A>
@@ -202,18 +213,6 @@
 	var/datum/browser/browser = new(user, "mob[name]", "<div align='center'>[name]</div>", 380, 540)
 	browser.set_content(dat)
 	browser.open(FALSE)
-
-// called when something steps onto a human
-// this handles mulebots and vehicles
-/mob/living/carbon/human/Crossed(atom/movable/AM)
-	. = ..()
-	if(istype(AM, /obj/machinery/bot/mulebot))
-		var/obj/machinery/bot/mulebot/MB = AM
-		MB.RunOver(src)
-
-	if(istype(AM, /obj/vehicle))
-		var/obj/vehicle/V = AM
-		V.RunOver(src)
 
 
 //gets assignment from ID or ID inside PDA or PDA itself
@@ -233,10 +232,9 @@
 /mob/living/carbon/human/proc/get_authentification_name(if_no_id = "Unknown")
 	var/obj/item/card/id/id = wear_id
 	if (istype(id))
-		. = id.registered_name
+		return id.registered_name
 	else
 		return if_no_id
-	return
 
 //gets paygrade from ID
 //paygrade is a user's actual rank, as defined on their ID.  size 1 returns an abbreviation, size 0 returns the full rank name, the third input is used to override what is returned if no paygrade is assigned.
@@ -330,7 +328,7 @@
 					var/obj/item/card/id/dogtag/DT = wear_id
 					if(!DT.dogtag_taken)
 						if(stat == DEAD)
-							to_chat(usr, "<span class='notice'>You take [src]'s information tag, leaving the ID tag</span>")
+							to_chat(usr, span_notice("You take [src]'s information tag, leaving the ID tag"))
 							DT.dogtag_taken = TRUE
 							DT.icon_state = "dogtag_taken"
 							var/obj/item/dogtag/D = new(loc)
@@ -338,9 +336,9 @@
 							D.fallen_assignements = list(DT.assignment)
 							usr.put_in_hands(D)
 						else
-							to_chat(usr, "<span class='warning'>You can't take a dogtag's information tag while its owner is alive.</span>")
+							to_chat(usr, span_warning("You can't take a dogtag's information tag while its owner is alive."))
 					else
-						to_chat(usr, "<span class='warning'>Someone's already taken [src]'s information tag.</span>")
+						to_chat(usr, span_warning("Someone's already taken [src]'s information tag."))
 					return
 			//police skill lets you strip multiple items from someone at once.
 			if(!usr.do_actions || usr.skills.getRating("police") >= SKILL_POLICE_MP)
@@ -359,10 +357,10 @@
 			var/placing = FALSE
 
 			if(place_item && !(place_item.flags_item & ITEM_ABSTRACT) && (place_item.mob_can_equip(src, SLOT_L_STORE, TRUE) || place_item.mob_can_equip(src, SLOT_R_STORE, TRUE)))
-				to_chat(usr, "<span class='notice'>You try to place [place_item] into [src]'s pocket.</span>")
+				to_chat(usr, span_notice("You try to place [place_item] into [src]'s pocket."))
 				placing = TRUE
 			else
-				to_chat(usr, "<span class='notice'>You try to empty [src]'s pockets.</span>")
+				to_chat(usr, span_notice("You try to empty [src]'s pockets."))
 
 			if(do_mob(usr, src, POCKET_STRIP_DELAY))
 				if(placing)
@@ -381,7 +379,7 @@
 						if(l_store && !(l_store.flags_item & NODROP))
 							dropItemToGround(l_store)
 					else
-						to_chat(usr, "<span class='notice'>[src]'s pockets are empty.</span>")
+						to_chat(usr, span_notice("[src]'s pockets are empty."))
 
 
 				// Update strip window
@@ -394,9 +392,9 @@
 		if(!usr.do_actions)
 			log_combat(usr, src, "attempted to toggle internals")
 			if(internal)
-				usr.visible_message("<span class='danger'>[usr] is trying to disable [src]'s internals</span>", null, null, 3)
+				usr.visible_message(span_danger("[usr] is trying to disable [src]'s internals"), null, null, 3)
 			else
-				usr.visible_message("<span class='danger'>[usr] is trying to enable [src]'s internals.</span>", null, null, 3)
+				usr.visible_message(span_danger("[usr] is trying to enable [src]'s internals."), null, null, 3)
 
 			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC))
 				if (internal)
@@ -413,7 +411,7 @@
 						else if (istype(belt, /obj/item/tank))
 							internal = belt
 						if (internal)
-							visible_message("<span class='notice'>[src] is now running on internals.</span>", null, null, 1)
+							visible_message(span_notice("[src] is now running on internals."), null, null, 1)
 							if (hud_used && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
 
@@ -444,21 +442,6 @@
 							limbcount++
 					if(limbcount)
 						new /obj/item/stack/medical/splint(loc, limbcount)
-
-	if(href_list["tie"])
-		if(!usr.do_actions)
-			if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
-				var/obj/item/clothing/under/U = w_uniform
-				if(U.hastie)
-					log_combat(usr, src, "attempted to remove accessory ([U.hastie])")
-					if(istype(U.hastie, /obj/item/clothing/tie/holobadge) || istype(U.hastie, /obj/item/clothing/tie/medal))
-						visible_message("<span class='danger'>[usr] tears off \the [U.hastie] from [src]'s [U]!</span>", null, null, 5)
-					else
-						visible_message("<span class='danger'>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</span>", null, null, 5)
-						if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
-							if(U == w_uniform && U.hastie)
-								U.remove_accessory(usr)
-
 	if(href_list["sensor"])
 		if(!usr.do_actions)
 
@@ -468,7 +451,7 @@
 				to_chat(usr, "The controls are locked.")
 			else
 				var/oldsens = U.has_sensor
-				visible_message("<span class='danger'>[usr] is trying to modify [src]'s sensors!</span>", null, null, 4)
+				visible_message(span_danger("[usr] is trying to modify [src]'s sensors!"), null, null, 4)
 				if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 					if(U == w_uniform)
 						if(U.has_sensor >= 2)
@@ -528,7 +511,7 @@
 
 
 			if(!modified)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+				to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
 
 	if (href_list["secrecord"])
 		if(hasHUD(usr,"security"))
@@ -555,7 +538,7 @@
 								read = 1
 
 			if(!read)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+				to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
 
 	if (href_list["secrecordComment"])
 		if(hasHUD(usr,"security"))
@@ -582,7 +565,7 @@
 								to_chat(usr, "<a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>")
 
 			if(!read)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+				to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
 
 	if (href_list["secrecordadd"])
 		if(hasHUD(usr,"security"))
@@ -635,7 +618,7 @@
 										U.handle_regular_hud_updates()
 
 			if(!modified)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+				to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
 
 	if (href_list["medrecord"])
 		if(hasHUD(usr,"medical"))
@@ -663,7 +646,7 @@
 								read = 1
 
 			if(!read)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+				to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
 
 	if (href_list["medrecordComment"])
 		if(hasHUD(usr,"medical"))
@@ -690,7 +673,7 @@
 								to_chat(usr, "<a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>")
 
 			if(!read)
-				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
+				to_chat(usr, span_warning("Unable to locate a data core entry for this person."))
 
 	if (href_list["medrecordadd"])
 		if(hasHUD(usr,"medical"))
@@ -717,31 +700,31 @@
 
 	if (href_list["medholocard"])
 		if(!species?.count_human)
-			to_chat(usr, "<span class='warning'>Triage holocards only works on organic humanoid entities.</span>")
+			to_chat(usr, span_warning("Triage holocards only works on organic humanoid entities."))
 			return
 		var/newcolor = tgui_input_list(usr, "Choose a triage holo card to add to the patient:", "Triage holo card", list("black", "red", "orange", "none"))
 		if(!newcolor)
 			return
 		if(get_dist(usr, src) > 7)
-			to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
+			to_chat(usr, span_warning("[src] is too far away."))
 			return
 		if(newcolor == "none")
 			if(!holo_card_color)
 				return
 			holo_card_color = null
-			to_chat(usr, "<span class='notice'>You remove the holo card on [src].</span>")
+			to_chat(usr, span_notice("You remove the holo card on [src]."))
 		else if(newcolor != holo_card_color)
 			holo_card_color = newcolor
-			to_chat(usr, "<span class='notice'>You add a [newcolor] holo card on [src].</span>")
+			to_chat(usr, span_notice("You add a [newcolor] holo card on [src]."))
 		update_targeted()
 
 	if (href_list["scanreport"])
 		if(hasHUD(usr,"medical"))
 			if(!ishuman(src))
-				to_chat(usr, "<span class='warning'>This only works on humanoids.</span>")
+				to_chat(usr, span_warning("This only works on humanoids."))
 				return
 			if(get_dist(usr, src) > 7)
-				to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
+				to_chat(usr, span_warning("[src] is too far away."))
 				return
 
 			for(var/datum/data/record/R in GLOB.datacore.medical)
@@ -777,13 +760,13 @@
 
 /mob/living/carbon/human/proc/fireman_carry(mob/living/carbon/target)
 	if(!can_be_firemanned(target) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
-		to_chat(src, "<span class='warning'>You can't fireman carry [target] while they're standing!</span>")
+		to_chat(src, span_warning("You can't fireman carry [target] while they're standing!"))
 		return
-	visible_message("<span class='notice'>[src] starts lifting [target] onto [p_their()] back...</span>",
-	"<span class='notice'>You start to lift [target] onto your back...</span>")
+	visible_message(span_notice("[src] starts lifting [target] onto [p_their()] back..."),
+	span_notice("You start to lift [target] onto your back..."))
 	var/delay = 5 SECONDS - LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
 	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
-		visible_message("<span class='warning'>[src] fails to fireman carry [target]!</span>")
+		visible_message(span_warning("[src] fails to fireman carry [target]!"))
 		return
 	//Second check to make sure they're still valid to be carried
 	if(!can_be_firemanned(target) || incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
@@ -793,7 +776,6 @@
 /mob/living/carbon/human/buckle_mob(mob/living/buckling_mob, force = FALSE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0, silent)
 	if(!force)//humans are only meant to be ridden through piggybacking and special cases
 		return FALSE
-	LoadComponent(/datum/component/riding/human)
 	return ..()
 
 
@@ -842,7 +824,7 @@
 
 
 /mob/living/carbon/human/proc/play_xylophone()
-	visible_message("<span class='warning'> [src] begins playing his ribcage like a xylophone. It's quite spooky.</span>","<span class='notice'> You begin to play a spooky refrain on your ribcage.</span>","<span class='warning'> You hear a spooky xylophone melody.</span>")
+	visible_message(span_warning(" [src] begins playing his ribcage like a xylophone. It's quite spooky."),span_notice(" You begin to play a spooky refrain on your ribcage."),span_warning(" You hear a spooky xylophone melody."))
 	var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 	playsound(loc, song, 25, 1)
 
@@ -873,25 +855,25 @@
 		self = TRUE
 
 	if(!self)
-		usr.visible_message("<span class='notice'>[usr] kneels down, puts [usr.p_their()] hand on [src]'s wrist and begins counting their pulse.</span>",
-		"<span class='notice'>You begin counting [src]'s pulse.</span>", null, 3)
+		usr.visible_message(span_notice("[usr] kneels down, puts [usr.p_their()] hand on [src]'s wrist and begins counting their pulse."),
+		span_notice("You begin counting [src]'s pulse."), null, 3)
 	else
-		usr.visible_message("<span class='notice'>[usr] begins counting their pulse.</span>",
-		"<span class='notice'>You begin counting your pulse.</span>", null, 3)
+		usr.visible_message(span_notice("[usr] begins counting their pulse."),
+		span_notice("You begin counting your pulse."), null, 3)
 
 	if(handle_pulse())
-		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
+		to_chat(usr, span_notice("[self ? "You have a" : "[src] has a"] pulse! Counting..."))
 	else
-		to_chat(usr, "<span class='warning'> [src] has no pulse!</span>")
+		to_chat(usr, span_warning(" [src] has no pulse!"))
 		return
 
 	to_chat(usr, "You must[self ? "" : " both"] remain still until counting is finished.")
 
 	if(!do_mob(usr, src, 6 SECONDS))
-		to_chat(usr, "<span class='warning'>You failed to check the pulse. Try again.</span>")
+		to_chat(usr, span_warning("You failed to check the pulse. Try again."))
 		return
 
-	to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [get_pulse(GETPULSE_HAND)].</span>")
+	to_chat(usr, span_notice("[self ? "Your" : "[src]'s"] pulse is [get_pulse(GETPULSE_HAND)]."))
 
 
 /mob/living/carbon/human/verb/view_manifest()
@@ -960,6 +942,7 @@
 
 	INVOKE_ASYNC(src, .proc/regenerate_icons)
 	INVOKE_ASYNC(src, .proc/update_body)
+	INVOKE_ASYNC(src, .proc/update_hair)
 	INVOKE_ASYNC(src, .proc/restore_blood)
 
 	if(!(species.species_flags & NO_STAMINA))
@@ -986,16 +969,16 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/disable_lights(clothing = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE, forced = FALSE)
+/mob/living/carbon/human/disable_lights(clothing = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE, forced = FALSE, light_again = FALSE)
 	var/light_off = 0
 	var/goes_out = 0
 	if(clothing)
 		if(istype(wear_suit, /obj/item/clothing/suit))
 			var/obj/item/clothing/suit/S = wear_suit
-			if(S.turn_light(src, FALSE, 0, FALSE, forced))
+			if(S.turn_light(src, FALSE, 0, FALSE, forced, light_again))
 				light_off++
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			H.turn_light(src, FALSE, 0,FALSE, forced)
+			H.turn_light(src, FALSE, 0,FALSE, forced, light_again)
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))
@@ -1004,7 +987,7 @@
 				light_off++
 	if(guns)
 		for(var/obj/item/weapon/gun/lit_gun in contents)
-			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments, ATTACHMENT_SLOT_RAIL)
+			var/obj/item/attachable/flashlight/lit_rail_flashlight = LAZYACCESS(lit_gun.attachments_by_slot, ATTACHMENT_SLOT_RAIL)
 			if(!isattachmentflashlight(lit_rail_flashlight))
 				continue
 			lit_rail_flashlight.turn_light(src, FALSE, 0, FALSE, forced)
@@ -1039,19 +1022,19 @@
 		spark_system.start(src)
 	if(!silent)
 		if(goes_out && light_off)
-			to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
+			to_chat(src, span_notice("Your sources of light short and fizzle out."))
 			return
 		if(goes_out)
 			if(goes_out > 1)
-				to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
+				to_chat(src, span_notice("Your sources of light fizzle out."))
 				return
-			to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
+			to_chat(src, span_notice("Your source of light fizzles out."))
 			return
 		if(light_off)
 			if(light_off > 1)
-				to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
+				to_chat(src, span_notice("Your sources of light short out."))
 				return
-			to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+			to_chat(src, span_notice("Your source of light shorts out."))
 
 
 

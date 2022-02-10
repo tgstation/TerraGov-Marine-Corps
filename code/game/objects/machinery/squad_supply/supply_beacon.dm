@@ -28,18 +28,18 @@
 /// Set this beacon on the ground and activate it
 /obj/item/beacon/proc/activate(mob/living/carbon/human/H)
 	if(!is_ground_level(H.z))
-		to_chat(H, "<span class='warning'>You have to be on the planet to use this or it won't transmit.</span>")
+		to_chat(H, span_warning("You have to be on the planet to use this or it won't transmit."))
 		return FALSE
 	var/area/A = get_area(H)
 	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
-		to_chat(H, "<span class='warning'>This won't work if you're standing deep underground.</span>")
+		to_chat(H, span_warning("This won't work if you're standing deep underground."))
 		return FALSE
 	if(istype(A, /area/shuttle/dropship))
-		to_chat(H, "<span class='warning'>You have to be outside the dropship to use this or it won't transmit.</span>")
+		to_chat(H, span_warning("You have to be outside the dropship to use this or it won't transmit."))
 		return FALSE
 	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating("leadership"))
-	H.visible_message("<span class='notice'>[H] starts setting up [src] on the ground.</span>",
-	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
+	H.visible_message(span_notice("[H] starts setting up [src] on the ground."),
+	span_notice("You start setting up [src] on the ground and inputting all the data it needs."))
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		return FALSE
 	GLOB.active_orbital_beacons += src
@@ -62,8 +62,8 @@
 /// Deactivate this beacon and put it in the hand of the human
 /obj/item/beacon/proc/deactivate(mob/living/carbon/human/H)
 	var/delay = max(1 SECONDS, activation_time * 0.5 - 2 SECONDS * H.skills.getRating("leadership")) //Half as long as setting it up.
-	H.visible_message("<span class='notice'>[H] starts removing [src] from the ground.</span>",
-	"<span class='notice'>You start removing [src] from the ground, deactivating it.</span>")
+	H.visible_message(span_notice("[H] starts removing [src] from the ground."),
+	span_notice("You start removing [src] from the ground, deactivating it."))
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		return FALSE
 	GLOB.active_orbital_beacons -= src
@@ -142,10 +142,13 @@
 	beacon_datum = null
 
 /obj/item/beacon/supply_beacon/activate(mob/living/carbon/human/H)
+	var/area/A = get_area(H)
+	if(A.flags_area & OB_CAS_IMMUNE)
+		to_chat(H, span_warning("Our payload won't reach this target!"))
+		return
 	. = ..()
 	if(!.)
 		return
-	var/area/A = get_area(H)
 	beacon_datum = new /datum/supply_beacon("[H.name] + [A]", loc, H.faction)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)
 

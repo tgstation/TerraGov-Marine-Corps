@@ -9,7 +9,7 @@
 	if(!user.client)
 		return
 	if(!linked_bug)
-		user.audible_message("<span class='warning'>[src] lets off a shrill beep!</span>")
+		user.audible_message(span_warning("[src] lets off a shrill beep!"))
 	if("spypopup_map" in user.client.screen_maps) //alright, the popup this object uses is already IN use, so the window is open. no point in doing any other work here, so we're good.
 		return
 	user.client.setup_popup("spypopup", 3, 3, 2)
@@ -69,9 +69,11 @@
 	// NOT apply to map popups. If there's ever a way to make planesmasters
 	// omnipresent, then this wouldn't be needed.
 	cam_plane_masters = list()
-	for(var/plane in subtypesof(/obj/screen/plane_master))
-		var/obj/screen/instance = new plane()
+	for(var/plane in subtypesof(/obj/screen/plane_master) - /obj/screen/plane_master/blackness)
+		var/obj/screen/plane_master/instance = new plane()
 		instance.assigned_map = "spypopup_map"
+		if(instance.blend_mode_override)
+			instance.blend_mode = instance.blend_mode_override
 		instance.del_on_map_removal = FALSE
 		instance.screen_loc = "spypopup_map:CENTER"
 		cam_plane_masters += instance
@@ -82,7 +84,7 @@
 	qdel(cam_screen)
 	QDEL_LIST(cam_plane_masters)
 	qdel(tracker)
-	. = ..()
+	return ..()
 
 /obj/item/spy_bug/proc/update_view()//this doesn't do anything too crazy, just updates the vis_contents of its screen obj
 	cam_screen.vis_contents.Cut()

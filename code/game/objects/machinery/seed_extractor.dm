@@ -23,7 +23,7 @@
 			new_seed_type = GLOB.seed_types[F.plantname]
 
 		if(new_seed_type)
-			to_chat(user, "<span class='notice'>You extract some seeds from [I].</span>")
+			to_chat(user, span_notice("You extract some seeds from [I]."))
 			var/produce = rand(1, 4)
 			for(var/i = 1 to produce)
 				var/obj/item/seeds/seeds = new(get_turf(src), FALSE)
@@ -39,5 +39,5 @@
 		var/obj/item/stack/tile/grass/S = I
 		if(!S.use(1))
 			return
-		to_chat(user, "<span class='notice'>You extract some seeds from the grass tile.</span>")
+		to_chat(user, span_notice("You extract some seeds from the grass tile."))
 		new /obj/item/seeds/grassseed(loc)

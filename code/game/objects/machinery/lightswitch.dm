@@ -41,9 +41,6 @@
 	to_chat(user, "It is [on? "on" : "off"].")
 
 
-/obj/machinery/light_switch/attack_paw(mob/living/carbon/human/user)
-	attack_hand(user)
-
 /obj/machinery/light_switch/attack_hand(mob/living/user)
 	. = ..()
 	if(.)

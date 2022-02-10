@@ -8,12 +8,12 @@
 
 ///Return true if the item was found in a linked vendor and successfully bought
 /proc/buy_item_in_vendor(obj/item/item_to_buy_type, datum/loadout_seller/seller, mob/living/user)
-	//Some items are allowed to bypass the buy checks
-	if(is_type_in_typecache(item_to_buy_type, GLOB.bypass_loadout_check_item))
-		return TRUE
+
+	if(seller.faction != FACTION_NEUTRAL && is_type_in_typecache(item_to_buy_type, GLOB.hvh_restricted_items_list))
+		return FALSE
 
 	//If we can find it for in a shared vendor, we buy it
-	for(var/type in GLOB.loadout_linked_vendor)
+	for(var/type in GLOB.loadout_linked_vendor[seller.faction])
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
 			if(item_datum.product_path == item_to_buy_type && item_datum.amount != 0)
 				item_datum.amount--
@@ -42,6 +42,8 @@
 		if(item_to_buy_type != item_type)
 			continue
 		item_info = listed_products[item_type]
+		if(item_info[1] == CAT_ESS)
+			return FALSE
 		if(seller.available_points < item_info[3])
 			return FALSE
 		seller.available_points -= item_info[3]
@@ -70,16 +72,6 @@
 		seller.available_points -= points_cost
 		return TRUE
 
-/// Will put back an item in a linked vendor
-/proc/sell_back_item_in_vendor(item_to_give_back_type)
-	for(var/type in GLOB.loadout_linked_vendor)
-		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
-			if(item_datum.product_path != item_to_give_back_type)
-				continue
-			if(item_datum.amount >= 0)
-				item_datum.amount++
-			return
-
 ///Return wich type of item_representation should representate any item_type
 /proc/item2representation_type(item_type)
 	if(ispath(item_type, /obj/item/weapon/gun))
@@ -88,6 +80,8 @@
 		return /datum/item_representation/modular_armor
 	if(ispath(item_type, /obj/item/armor_module/armor))
 		return /datum/item_representation/armor_module/colored
+	if(ispath(item_type, /obj/item/armor_module/storage))
+		return /datum/item_representation/armor_module/storage
 	if(ispath(item_type, /obj/item/storage))
 		return /datum/item_representation/storage
 	if(ispath(item_type, /obj/item/clothing/suit/storage))
@@ -96,19 +90,19 @@
 		return /datum/item_representation/modular_helmet
 	if(ispath(item_type, /obj/item/clothing/under))
 		return /datum/item_representation/uniform_representation
-	if(ispath(item_type, /obj/item/clothing/tie/storage))
-		return /datum/item_representation/tie
 	if(ispath(item_type, /obj/item/ammo_magazine/handful))
 		return /datum/item_representation/handful_representation
 	if(ispath(item_type, /obj/item/stack))
 		return /datum/item_representation/stack
 	if(ispath(item_type, /obj/item/card/id))
 		return /datum/item_representation/id
+	if(ispath(item_type, /obj/item/clothing/shoes/marine))
+		return /datum/item_representation/boot
 	return /datum/item_representation
 
 /// Return TRUE if this handful should be buyable, aka if it's corresponding aka box is in a linked vendor
 /proc/is_handful_buyable(ammo_type)
-	for(var/datum/vending_product/item_datum AS in GLOB.vending_records[/obj/machinery/vending/marine/shared])
+	for(var/datum/vending_product/item_datum AS in GLOB.vending_records[/obj/machinery/vending/weapon])
 		var/product_path = item_datum.product_path
 		if(!ispath(product_path, /obj/item/ammo_magazine))
 			continue
@@ -118,7 +112,7 @@
 	return FALSE
 
 /// Will give a headset corresponding to the user job to the user
-/proc/give_free_headset(mob/living/carbon/human/user)
+/proc/give_free_headset(mob/living/carbon/human/user, faction)
 	if(user.wear_ear)
 		return
 	if(user.job.outfit.ears)
@@ -126,7 +120,8 @@
 		return
 	if(!user.assigned_squad)
 		return
-	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
+	var/headset_type = faction == FACTION_TERRAGOV_REBEL ? /obj/item/radio/headset/mainship/marine/rebel : /obj/item/radio/headset/mainship/marine
+	user.equip_to_slot_or_del(new headset_type(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
 
 /// Will check if the selected category can be bought according to the buying_bitfield
 /proc/can_buy_category(category, buying_bitfield)
@@ -176,3 +171,12 @@
 		return
 	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
 	return loadout
+
+/proc/convert_loadouts_list(list/loadouts_data)
+	var/list/new_loadouts_data = list()
+	for(var/i = 1 to length(loadouts_data) step 2)
+		var/next_loadout_data = list()
+		next_loadout_data += loadouts_data[i]
+		next_loadout_data += loadouts_data[++i]
+		new_loadouts_data += list(next_loadout_data)
+	return new_loadouts_data

@@ -26,7 +26,7 @@ Redefine as needed.
 	if(user.incapacitated() || !tkMaxRangeCheck(user, src))
 		return FALSE
 	new /obj/effect/temp_visual/telekinesis(get_turf(src))
-	user.UnarmedAttack(src, FALSE) // attack_hand, attack_paw, etc
+	user.UnarmedAttack(src, FALSE) // attack_hand, etc
 	add_fingerprint(user, "attack_tk")
 
 
@@ -173,7 +173,7 @@ Redefine as needed.
 /proc/tkMaxRangeCheck(mob/user, atom/target)
 	var/d = get_dist(user, target)
 	if(d > TK_MAXRANGE)
-		to_chat(user, "<span class ='warning'>Your mind won't reach that far.</span>")
+		target.balloon_alert(user, "It's too far!")
 		return
 	return TRUE
 

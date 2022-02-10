@@ -178,7 +178,7 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 
 	if(istype(I, /obj/item/stack/sheet/mineral/plastic) || istype(I, /obj/item/stack/sheet/metal))
 		if(isliving(loc))
-			to_chat(user, "<span class='warning'>How do you intend to patch a hardsuit while someone is wearing it?</span>")
+			to_chat(user, span_warning("How do you intend to patch a hardsuit while someone is wearing it?"))
 			return
 
 		if(!damage || !burn_damage)
@@ -197,14 +197,14 @@ GLOBAL_LIST_INIT(breach_burn_descriptors, list(
 		var/obj/item/tool/weldingtool/WT = I
 
 		if(isliving(loc))
-			to_chat(user, "<span class='warning'>How do you intend to patch a hardsuit while someone is wearing it?</span>")
+			to_chat(user, span_warning("How do you intend to patch a hardsuit while someone is wearing it?"))
 			return
 		if(!damage || !brute_damage)
 			to_chat(user, "There is no structural damage on \the [src] to repair.")
 			return
 
 		if(!WT.remove_fuel(5))
-			to_chat(user, "<span class='warning'>You need more welding fuel to repair this suit.</span>")
+			to_chat(user, span_warning("You need more welding fuel to repair this suit."))
 			return
 
 		repair_breaches(BRUTE, 3, user)

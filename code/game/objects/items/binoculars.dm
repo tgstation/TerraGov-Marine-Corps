@@ -10,10 +10,12 @@
 	throwforce = 5.0
 	throw_range = 15
 	throw_speed = 3
+	zoom_tile_offset = 11
+	zoom_viewsize = 12
 
 
 /obj/item/binoculars/attack_self(mob/user)
-	zoom(user, 11, 12)
+	zoom(user)
 
 #define MODE_CAS 0
 #define MODE_RAILGUN 1
@@ -49,23 +51,23 @@
 	..()
 	switch(mode)
 		if(MODE_CAS)
-			to_chat(user, "<span class='notice'>They are currently set to CAS marking mode.</span>")
+			to_chat(user, span_notice("They are currently set to CAS marking mode."))
 		if(MODE_RANGE_FINDER)
-			to_chat(user, "<span class='notice'>They are currently set to range finding mode.</span>")
+			to_chat(user, span_notice("They are currently set to range finding mode."))
 		if(MODE_RAILGUN)
-			to_chat(user, "<span class='notice'>They are currently set to railgun targeting mode.</span>")
+			to_chat(user, span_notice("They are currently set to railgun targeting mode."))
 		if(MODE_ORBITAL)
-			to_chat(user, "<span class='notice'>They are currently set to orbital bombardment mode.</span>")
-	to_chat(user, "<span class='notice'>Use on a mortar to link it for remote targeting.</span>")
+			to_chat(user, span_notice("They are currently set to orbital bombardment mode."))
+	to_chat(user, span_notice("Use on a mortar to link it for remote targeting."))
 	if(linked_mortar)
-		to_chat(user, "<span class='notice'>They are currently linked to a mortar.</span>")
+		to_chat(user, span_notice("They are currently linked to a mortar."))
 		return
-	to_chat(user, "<span class='notice'>They are not linked to a mortar.</span>")
+	to_chat(user, span_notice("They are not linked to a mortar."))
 
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
 		QDEL_NULL(laser)
-	. = ..()
+	return ..()
 
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
@@ -137,35 +139,38 @@
 		mode = MODE_CAS
 	switch(mode)
 		if(MODE_CAS)
-			to_chat(user, "<span class='notice'>You switch [src] to CAS marking mode.</span>")
+			to_chat(user, span_notice("You switch [src] to CAS marking mode."))
 		if(MODE_RAILGUN)
-			to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
+			to_chat(user, span_notice("You switch [src] to railgun targeting mode."))
 		if(MODE_ORBITAL)
-			to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
+			to_chat(user, span_notice("You switch [src] to orbital bombardment targeting mode."))
 		if(MODE_RANGE_FINDER)
-			to_chat(user, "<span class='notice'>You switch [src] to range finding mode.</span>")
+			to_chat(user, span_notice("You switch [src] to range finding mode."))
 	update_icon()
 	playsound(user, 'sound/items/binoculars.ogg', 15, 1)
 
 /obj/item/binoculars/tactical/proc/acquire_coordinates(atom/A, mob/living/carbon/human/user)
 	var/turf/TU = get_turf(A)
 	targetturf = TU
-	to_chat(user, "<span class='notice'>COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y].</span>")
+	to_chat(user, span_notice("COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 
 /obj/item/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
 
 	if(laser)
-		to_chat(user, "<span class='warning'>You're already targeting something.</span>")
+		to_chat(user, span_warning("You're already targeting something."))
 		return
 
 	if(world.time < laser_cooldown)
-		to_chat(user, "<span class='warning'>[src]'s laser battery is recharging.</span>")
+		to_chat(user, span_warning("[src]'s laser battery is recharging."))
 		return
 
-	if(user.client.eye != src)
-		to_chat(user, "<span class='warning'>You can't focus properly through \the [src] while looking through something else.</span>")
+	var/turf/TU = get_turf(A)
+	var/distance = get_dist(TU, get_turf(user))
+	var/zoom_screen_size = zoom_tile_offset + zoom_viewsize + 1
+	if(TU.z != user.z || distance == -1 || (distance > zoom_screen_size))
+		to_chat(user, span_warning("You can't focus properly through \the [src] while looking through something else."))
 		return
 
 
@@ -180,7 +185,6 @@
 		laz_name += " ([S.name])"
 
 
-	var/turf/TU = get_turf(A)
 	var/area/targ_area = get_area(A)
 	if(!istype(TU))
 		return
@@ -194,19 +198,22 @@
 			if(CEILING_METAL)
 				is_outside = TRUE
 	if(!is_outside)
-		to_chat(user, "<span class='warning'>DEPTH WARNING: Target too deep for ordnance.</span>")
+		to_chat(user, span_warning("DEPTH WARNING: Target too deep for ordnance."))
 		return
 	if(user.do_actions)
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
 	if(mode != MODE_RANGE_FINDER)
-		to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
+		to_chat(user, span_notice("INITIATING LASER TARGETING. Stand still."))
 		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 			return
+	if(targ_area.flags_area & OB_CAS_IMMUNE)
+		to_chat(user, span_warning("Our payload won't reach this target!"))
+		return
 	switch(mode)
 		if(MODE_CAS)
-			to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
-			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, laz_name, S)
+			to_chat(user, span_notice("TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE."))
+			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, 0, laz_name, S)
 			laser = CS
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			while(laser)
@@ -215,44 +222,44 @@
 					break
 		if(MODE_RANGE_FINDER)
 			if(!linked_mortar)
-				to_chat(user, "<span class='notice'>No linked mortar found.</span>")
+				to_chat(user, span_notice("No linked mortar found."))
 				return
 			targetturf = TU
-			to_chat(user, "<span class='notice'>COORDINATES TARGETED: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y].</span>")
+			to_chat(user, span_notice("COORDINATES TARGETED: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y]."))
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			linked_mortar.recieve_target(TU,src,user)
 			return
 		if(MODE_RAILGUN)
-			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
+			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)
-				to_chat(user, "[icon2html(src, user)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
+				to_chat(user, "[icon2html(src, user)] [span_warning("The Rail Gun hasn't cooled down yet!")]")
 			else if(!targ_area)
-				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
+				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
 			else
-				var/obj/effect/overlay/temp/laser_target/RGL = new (TU, laz_name, S)
+				var/obj/effect/overlay/temp/laser_target/RGL = new (TU, 0, laz_name, S)
 				laser = RGL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					return
-				to_chat(user, "<span class='notice'>TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE.</span>")
+				to_chat(user, span_notice("TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE."))
 				while(laser)
 					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,user)
 					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
 						QDEL_NULL(laser)
 						break
 		if(MODE_ORBITAL)
-			to_chat(user, "<span class='notice'>ACQUIRING TARGET. ORBITAL CANNON TRIANGULATING. DON'T MOVE.</span>")
+			to_chat(user, span_notice("ACQUIRING TARGET. ORBITAL CANNON TRIANGULATING. DON'T MOVE."))
 			if(!targ_area)
-				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
+				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
 			else
-				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, laz_name, S)
+				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
 				laser = OBL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 15 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
 					QDEL_NULL(laser)
 					return
-				to_chat(user, "<span class='notice'>TARGET ACQUIRED. ORBITAL CANNON IS READY TO FIRE.</span>")
+				to_chat(user, span_notice("TARGET ACQUIRED. ORBITAL CANNON IS READY TO FIRE."))
 				// Wait for that ALT click to fire
 				current_turf = TU
 				ob_fired = FALSE // Reset the fired state
@@ -273,10 +280,10 @@
 	var/turf/target = locate(current_turf.x + x_offset,current_turf.y + y_offset,current_turf.z)
 	GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target, user)
 	var/warhead_type = GLOB.marine_main_ship.orbital_cannon.tray.warhead.name
-	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
-		to_chat(AI, "<span class='warning'>NOTICE - Orbital bombardment triggered by ground operator. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(current_turf)]</span>")
+	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
+		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered by ground operator. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(current_turf)]"))
 		playsound(AI,'sound/machines/triple_beep.ogg', 25, 1, 20)
-	to_chat(user, "<span class='notice'>FIRING REQUEST RECIEVED. CLEAR TARGET AREA</span>")
+	to_chat(user, span_notice("FIRING REQUEST RECIEVED. CLEAR TARGET AREA"))
 	log_attack("[key_name(user)] fired a [warhead_type] in [AREACOORD(current_turf)].")
 	message_admins("[ADMIN_TPMONTY(user)] fired a [warhead_type] in [ADMIN_VERBOSEJMP(current_turf)].")
 	QDEL_NULL(laser)

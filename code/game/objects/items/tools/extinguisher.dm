@@ -22,7 +22,7 @@
 	create_reagents(max_water, AMOUNT_VISIBLE, list(/datum/reagent/water = max_water))
 
 /obj/item/tool/extinguisher/mini
-	name = "fire extinguisher"
+	name = "mini fire extinguisher"
 	desc = "A light and compact fibreglass-framed model fire extinguisher."
 	icon_state = "miniFE0"
 	item_state = "miniFE"
@@ -54,7 +54,7 @@
 	if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(src,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, 50)
-		to_chat(user, "<span class='notice'>\The [src] is now refilled</span>")
+		to_chat(user, span_notice("\The [src] is now refilled"))
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 

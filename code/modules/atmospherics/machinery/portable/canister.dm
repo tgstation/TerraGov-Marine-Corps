@@ -57,8 +57,7 @@
 
 
 /obj/machinery/portable_atmospherics/canister/Destroy()
-	qdel(pump)
-	pump = null
+	QDEL_NULL(pump)
 	return ..()
 
 /obj/machinery/portable_atmospherics/canister/update_icon()

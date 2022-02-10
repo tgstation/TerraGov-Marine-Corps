@@ -27,20 +27,20 @@
 
 //Update this whenever you need to take advantage of more recent byond features
 #define MIN_COMPILER_VERSION 513
-#define MIN_COMPILER_BUILD 1523
+#define MIN_COMPILER_BUILD 1539
 #ifndef SPACEMAN_DMM
 #if DM_VERSION < MIN_COMPILER_VERSION || DM_BUILD < MIN_COMPILER_BUILD
 //Don't forget to update this part
 #error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 513.1523 or higher
+#error You need version 513.1539 or higher
 #endif
 #endif
 
 //Update this whenever the byond version is stable so people stop updating to hilariously broken versions
 #define MAX_COMPILER_VERSION 514
-#define MAX_COMPILER_BUILD 1554
+#define MAX_COMPILER_BUILD 1575
 #if DM_VERSION > MAX_COMPILER_VERSION || DM_BUILD > MAX_COMPILER_BUILD
-#warn WARNING! your byond version is over the recommended version(MAX_COMPILER_VERSION:MAX_COMPILER_BUILD)! There may be unexpected byond bugs!
+#warn WARNING! your byond version is over the recommended version! There may be unexpected byond bugs!
 #endif
 
 //Don't load extools on 514
@@ -83,4 +83,17 @@
 
 #ifdef CITESTING
 #define TESTING
+#endif
+
+//#define SHADOW_DEBUG
+
+#ifdef TGS
+// TGS performs its own build of dm.exe, but includes a prepended TGS define.
+#define CBT
+#endif
+
+#if !defined(CBT) && !defined(SPACEMAN_DMM)
+#warn Building with Dream Maker is no longer supported and will result in errors.
+#warn In order to build, run BUILD.cmd in the root directory.
+#warn Consider switching to VSCode editor instead, where you can press Ctrl+Shift+B to build.
 #endif

@@ -21,6 +21,11 @@
 	throw_range = 20
 	force = 0
 
+/obj/item/toy/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return FALSE
+	attack_hand(X)
+
 
 /*
 * Balloons
@@ -45,7 +50,7 @@
 		return
 	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to(src, 10)
-		to_chat(user, "<span class='notice'>You fill the balloon with the contents of [A].</span>")
+		to_chat(user, span_notice("You fill the balloon with the contents of [A]."))
 		desc = "A translucent balloon with some form of liquid sloshing around in it."
 		update_icon()
 
@@ -68,7 +73,7 @@
 			return
 
 		desc = "A translucent balloon with some form of liquid sloshing around in it."
-		to_chat(user, "<span class='notice'>You fill the balloon with the contents of [I].</span>")
+		to_chat(user, span_notice("You fill the balloon with the contents of [I]."))
 		I.reagents.trans_to(src, 10)
 
 	update_icon()
@@ -76,7 +81,7 @@
 
 /obj/item/toy/balloon/throw_impact(atom/hit_atom)
 	if(src.reagents.total_volume >= 1)
-		src.visible_message("<span class='warning'> The [src] bursts!</span>","You hear a pop and a splash.")
+		src.visible_message(span_warning(" The [src] bursts!"),"You hear a pop and a splash.")
 		src.reagents.reaction(get_turf(hit_atom), TOUCH)
 		for(var/atom/A in get_turf(hit_atom))
 			src.reagents.reaction(A, TOUCH)
@@ -141,7 +146,7 @@
 	var/colourName = "red" //for updateIcon purposes
 
 /obj/item/toy/crayon/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>[user] is jamming the [name] up [user.p_their()] nose and into [user.p_their()] brain. It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	user.visible_message(span_danger("[user] is jamming the [name] up [user.p_their()] nose and into [user.p_their()] brain. It looks like [user.p_theyre()] trying to commit suicide."))
 	return (BRUTELOSS|OXYLOSS)
 
 /*
@@ -153,30 +158,39 @@
 	icon_state = "snappop"
 	w_class = WEIGHT_CLASS_TINY
 
-	throw_impact(atom/hit_atom)
-		..()
-		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-		s.set_up(3, 1, src)
-		s.start()
-		new /obj/effect/decal/cleanable/ash(src.loc)
-		src.visible_message("<span class='warning'> The [src.name] explodes!</span>","<span class='warning'> You hear a snap!</span>")
-		playsound(src, 'sound/effects/snap.ogg', 25, 1)
-		qdel(src)
-
-/obj/item/toy/snappop/Crossed(atom/movable/H)
+/obj/item/toy/snappop/Initialize()
 	. = ..()
-	if((ishuman(H))) //i guess carp and shit shouldn't set them off
-		var/mob/living/carbon/M = H
-		if(M.m_intent == MOVE_INTENT_RUN)
-			to_chat(M, "<span class='warning'>You step on the snap pop!</span>")
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
-			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-			s.set_up(2, 0, src)
-			s.start()
-			new /obj/effect/decal/cleanable/ash(src.loc)
-			src.visible_message("<span class='warning'> The [src.name] explodes!</span>","<span class='warning'> You hear a snap!</span>")
-			playsound(src, 'sound/effects/snap.ogg', 25, 1)
-			qdel(src)
+/obj/item/toy/snappop/throw_impact(atom/hit_atom)
+	..()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(3, 1, src)
+	s.start()
+	new /obj/effect/decal/cleanable/ash(src.loc)
+	src.visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
+	playsound(src, 'sound/effects/snap.ogg', 25, 1)
+	qdel(src)
+
+/obj/item/toy/snappop/proc/on_cross(datum/source, atom/movable/H, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!ishuman(H)) //i guess carp and shit shouldn't set them off
+		return
+	var/mob/living/carbon/M = H
+	if(M.m_intent != MOVE_INTENT_RUN)
+		return
+	to_chat(M, span_warning("You step on the snap pop!"))
+
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(2, 0, src)
+	s.start()
+	new /obj/effect/decal/cleanable/ash(src.loc)
+	visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
+	playsound(src, 'sound/effects/snap.ogg', 25, 1)
+	qdel(src)
 
 /*
 * Water flower
@@ -210,12 +224,12 @@
 
 	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to(src, 10)
-		to_chat(user, "<span class='notice'>You refill your flower!</span>")
+		to_chat(user, span_notice("You refill your flower!"))
 		return
 
 	else if (src.reagents.total_volume < 1)
 		src.empty = 1
-		to_chat(user, "<span class='notice'>Your flower has run dry!</span>")
+		to_chat(user, span_notice("Your flower has run dry!"))
 		return
 
 	else
@@ -237,7 +251,7 @@
 				for(var/atom/T in get_turf(D))
 					D.reagents.reaction(T)
 					if(ismob(T) && T:client)
-						to_chat(T:client, "<span class='warning'>[user] has sprayed you with water!</span>")
+						to_chat(T:client, span_warning("[user] has sprayed you with water!"))
 				sleep(4)
 			qdel(D)
 
@@ -259,7 +273,7 @@
 //all credit to skasi for toy mech fun ideas
 /obj/item/toy/prize/attack_self(mob/user as mob)
 	if(cooldown < world.time - 8)
-		to_chat(user, "<span class='notice'>You play with [src].</span>")
+		to_chat(user, span_notice("You play with [src]."))
 		playsound(user, 'sound/mecha/mechstep.ogg', 15, 1)
 		cooldown = world.time
 
@@ -269,7 +283,7 @@
 		return
 	if(loc == user)
 		if(cooldown < world.time - 8)
-			to_chat(user, "<span class='notice'>You play with [src].</span>")
+			to_chat(user, span_notice("You play with [src]."))
 			playsound(user, 'sound/mecha/mechturn.ogg', 15, 1)
 			cooldown = world.time
 			return
@@ -381,9 +395,9 @@
 	else if(sides == 20 && result == 1)
 		comment = "Ouch, bad luck."
 	icon_state = "[name][result]"
-	user.visible_message("<span class='notice'>[user] has thrown [src]. It lands on [result]. [comment]</span>", \
-						"<span class='notice'>You throw [src]. It lands on a [result]. [comment]</span>", \
-						"<span class='notice'>You hear [src] landing on a [result]. [comment]</span>")
+	user.visible_message(span_notice("[user] has thrown [src]. It lands on [result]. [comment]"), \
+						span_notice("You throw [src]. It lands on a [result]. [comment]"), \
+						span_notice("You hear [src] landing on a [result]. [comment]"))
 
 
 
@@ -414,8 +428,8 @@
 
 /obj/item/toy/plush/attack_self(mob/user)
 	if(world.time > last_hug_time)
-		user.visible_message("<span class='notice'>[user] hugs [src]! How cute! </span>", \
-							"<span class='notice'>You hug [src]. Dawwww... </span>")
+		user.visible_message(span_notice("[user] hugs [src]! How cute! "), \
+							span_notice("You hug [src]. Dawwww... "))
 		last_hug_time = world.time + 50 //5 second cooldown
 
 /obj/item/toy/plush/Initialize()
@@ -515,12 +529,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 
 
-/obj/item/toy/beach_ball/basketball/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(!CONFIG_GET(flag/fun_allowed))
-		return FALSE
-	attack_hand(X)
-
-
 /obj/structure/hoop
 	name = "basketball hoop"
 	desc = "Boom, Shakalaka!"
@@ -543,7 +551,7 @@
 
 		var/mob/living/L = G.grabbed_thing
 		if(user.grab_state < GRAB_AGGRESSIVE)
-			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+			to_chat(user, span_warning("You need a better grip to do that!"))
 			return
 		L.forceMove(loc)
 		L.Paralyze(10 SECONDS)
@@ -551,14 +559,14 @@
 			if(X.id == id)
 				X.score(side, 3)// 3 points for dunking a mob
 				// no break, to update multiple scoreboards
-		visible_message("<span class='danger'>[user] dunks [L] into the [src]!</span>")
+		visible_message(span_danger("[user] dunks [L] into the [src]!"))
 
 	else if(get_dist(src, user) < 2)
 		user.transferItemToLoc(I, loc)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side)
-		visible_message("<span class='notice'>[user] dunks [I] into the [src]!</span>")
+		visible_message(span_notice("[user] dunks [I] into the [src]!"))
 
 
 /obj/structure/hoop/CanAllowThrough(atom/movable/mover, turf/target)
@@ -571,9 +579,9 @@
 				if(X.id == id)
 					X.score(side)
 					// no break, to update multiple scoreboards
-			visible_message("<span class='notice'> Swish! \the [I] lands in \the [src].</span>", 3)
+			visible_message(span_notice(" Swish! \the [I] lands in \the [src]."), 3)
 		else
-			visible_message("<span class='warning'> \the [I] bounces off of \the [src]'s rim!</span>", 3)
+			visible_message(span_warning(" \the [I] bounces off of \the [src]'s rim!"), 3)
 		return FALSE
 	else
 		return ..()

@@ -25,6 +25,13 @@ Stepping directly on the mine will also blow it up
 	/// Tripwire holds reference to the tripwire obj that is used to trigger an explosion
 	var/obj/effect/mine_tripwire/tripwire
 
+/obj/item/explosive/mine/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/item/explosive/mine/Destroy()
 	QDEL_NULL(tripwire)
 	return ..()
@@ -52,32 +59,39 @@ Stepping directly on the mine will also blow it up
 /// attack_self is used to arm the mine
 /obj/item/explosive/mine/attack_self(mob/living/user)
 	if(!user.loc || user.loc.density)
-		to_chat(user, "<span class='warning'>You can't plant a mine here.</span>")
+		to_chat(user, span_warning("You can't plant a mine here."))
 		return
 
 	if(locate(/obj/item/explosive/mine) in get_turf(src))
-		to_chat(user, "<span class='warning'>There already is a mine at this position!</span>")
+		to_chat(user, span_warning("There already is a mine at this position!"))
 		return
 
 	if(armed)
 		return
 
-	user.visible_message("<span class='notice'>[user] starts deploying [src].</span>", \
-	"<span class='notice'>You start deploying [src].</span>")
+	user.visible_message(span_notice("[user] starts deploying [src]."), \
+	span_notice("You start deploying [src]."))
 	if(!do_after(user, 40, TRUE, src, BUSY_ICON_HOSTILE))
-		user.visible_message("<span class='notice'>[user] stops deploying [src].</span>", \
-	"<span class='notice'>You stop deploying \the [src].</span>")
+		user.visible_message(span_notice("[user] stops deploying [src]."), \
+	span_notice("You stop deploying \the [src]."))
 		return
-	user.visible_message("<span class='notice'>[user] finishes deploying [src].</span>", \
-	"<span class='notice'>You finish deploying [src].</span>")
+	user.visible_message(span_notice("[user] finishes deploying [src]."), \
+	span_notice("You finish deploying [src]."))
 	var/obj/item/card/id/id = user.get_idcard()
-	iff_signal = id?.iff_signal
+	deploy_mine(user, id?.iff_signal)
+
+///this proc is used to deploy a mine
+/obj/item/explosive/mine/proc/deploy_mine(mob/living/user, iff_sig)
+	iff_signal = iff_sig
 	anchored = TRUE
 	armed = TRUE
 	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 	update_icon()
-	user.drop_held_item()
-	setDir(user.dir) //The direction it is planted in is the direction the user faces at that time
+	if(user)
+		user.drop_held_item()
+		setDir(user.dir)
+	else
+		setDir(pick(CARDINAL_ALL_DIRS))
 	tripwire = new /obj/effect/mine_tripwire(get_step(loc, dir))
 	tripwire.linked_mine = src
 
@@ -88,8 +102,8 @@ Stepping directly on the mine will also blow it up
 	if(!ismultitool(I) || !anchored)
 		return
 
-	user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
-	"<span class='notice'>You start disarming [src].</span>")
+	user.visible_message(span_notice("[user] starts disarming [src]."), \
+	span_notice("You start disarming [src]."))
 
 	if(!do_after(user, 8 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops disarming [src].", \
@@ -104,8 +118,7 @@ Stepping directly on the mine will also blow it up
 	QDEL_NULL(tripwire)
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
-/obj/item/explosive/mine/Crossed(atom/A)
-	. = ..()
+/obj/item/explosive/mine/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
 	if(!isliving(A))
 		return
 	if(CHECK_MULTIPLE_BITFIELDS(A.flags_pass, HOVERING))
@@ -124,9 +137,9 @@ Stepping directly on the mine will also blow it up
 	if(id?.iff_signal & iff_signal)
 		return FALSE
 
-	L.visible_message("<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it.</span>", \
-	"<span class='danger'>[icon2html(src, viewers(L))] \The [src] clicks as you move in front of it.</span>", \
-	"<span class='danger'>You hear a click.</span>")
+	L.visible_message(span_danger("[icon2html(src, viewers(L))] \The [src] clicks as [L] moves in front of it."), \
+	span_danger("[icon2html(src, viewers(L))] \The [src] clicks as you move in front of it."), \
+	span_danger("You hear a click."))
 
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
@@ -141,8 +154,8 @@ Stepping directly on the mine will also blow it up
 
 	if(X.a_intent == INTENT_HELP)
 		return
-	X.visible_message("<span class='danger'>[X] has slashed [src]!</span>", \
-	"<span class='danger'>We slash [src]!</span>")
+	X.visible_message(span_danger("[X] has slashed [src]!"), \
+	span_danger("We slash [src]!"))
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
 
@@ -164,13 +177,20 @@ Stepping directly on the mine will also blow it up
 	resistance_flags = UNACIDABLE
 	var/obj/item/explosive/mine/linked_mine
 
+/obj/effect/mine_tripwire/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/effect/mine_tripwire/Destroy()
 	linked_mine = null
 	return ..()
 
 /// When crossed the tripwire triggers the linked mine
-/obj/effect/mine_tripwire/Crossed(atom/A)
-	. = ..()
+/obj/effect/mine_tripwire/proc/on_cross(datum/source, atom/A, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(!linked_mine)
 		qdel(src)
 		return

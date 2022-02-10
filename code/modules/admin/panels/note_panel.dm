@@ -10,7 +10,7 @@
 
 /proc/create_message(type, target_key, admin_ckey, text, timestamp, server, secret, logged = 1, browse, expiry, note_severity)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 	if(!type)
 		return
@@ -87,8 +87,20 @@
 		if(!note_severity)
 			return
 	var/datum/db_query/query_create_message = SSdbcore.NewQuery({"
-		INSERT INTO [format_table_name("messages")] (type, targetckey, adminckey, text, timestamp, server, server_ip, server_port, round_id, secret, expire_timestamp, severity, playtime)
-		VALUES (:type, :target_ckey, :admin_ckey, :text, :timestamp, :server, INET_ATON(:internet_address), :port, :round_id, :secret, :expiry, :note_severity, :playtime)
+		INSERT INTO [format_table_name("messages")] SET
+			type = :type,
+			targetckey = :target_ckey,
+			adminckey = :admin_ckey,
+			text = :text,
+			timestamp = :timestamp,
+			server = :server,
+			server_ip = INET_ATON(:internet_address),
+			server_port = :port,
+			round_id = :round_id,
+			secret = :secret,
+			expire_timestamp = :expiry,
+			severity = :note_severity,
+			playtime = (SELECT minutes FROM [format_table_name("role_time")] WHERE ckey = :target_ckey AND job = 'Living')
 	"}, list(
 		"type" = type,
 		"target_ckey" = target_ckey,
@@ -101,8 +113,7 @@
 		"round_id" = GLOB.round_id,
 		"secret" = secret,
 		"expiry" = expiry || null,
-		"note_severity" = note_severity,
-		"playtime" = "(SELECT minutes FROM [format_table_name("role_time")] WHERE ckey = '[target_ckey]' AND job = 'Living')",
+		"note_severity" = note_severity
 	))
 	var/pm = "[key_name(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]: [text]"
 	var/header = "[key_name_admin(usr)] has created a [type][(type == "note" || type == "message" || type == "watchlist entry") ? " for [target_key]" : ""]"
@@ -124,7 +135,7 @@
 
 /proc/delete_message(message_id, logged = 1, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -168,7 +179,7 @@
 
 /proc/edit_message(message_id, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -219,7 +230,7 @@
 
 /proc/edit_message_expiry(message_id, browse)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -291,7 +302,7 @@
 
 /proc/edit_message_severity(message_id)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -343,7 +354,7 @@
 
 /proc/toggle_message_secrecy(message_id)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 	message_id = text2num(message_id)
 	if(!message_id)
@@ -388,9 +399,13 @@
 
 /proc/browse_messages(type, target_ckey, index, linkless = FALSE, filter, agegate = FALSE)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
+
+	//Needs to be requested before url retrieval since you can view your notes before SSassets finishes initialization
+	var/datum/asset/notes_assets = get_asset_datum(/datum/asset/simple/notes)
 	var/list/output = list()
+
 	var/ruler = "<hr style='background:#000000; border:0; height:3px'>"
 	var/list/navbar = list("<a href='?_src_=holder;[HrefToken()];nonalpha=1'>All</a><a href='?_src_=holder;[HrefToken()];nonalpha=2'>#</a>")
 	for(var/letter in GLOB.alphabet)
@@ -426,7 +441,8 @@
 				server,
 				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), lasteditor),
 				expire_timestamp,
-				playtime
+				playtime,
+				round_id
 			FROM [format_table_name("messages")]
 			WHERE type = :type AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)
 		"}, list("type" = type))
@@ -448,10 +464,11 @@
 			var/editor_key = query_get_type_messages.item[8]
 			var/expire_timestamp = query_get_type_messages.item[9]
 			var/playtime = query_get_type_messages.item[10]
+			var/round_id = query_get_type_messages.item[11]
 			output += "<b>"
 			if(type == "watchlist entry")
 				output += "[t_key] | "
-			output += "[timestamp] | [server] | [admin_key] | [get_exp_format(text2num(playtime))] Living Playtime"
+			output += "[timestamp] | [server] |	Round [round_id] | [admin_key] | [get_exp_format(text2num(playtime))] Living Playtime"
 			if(expire_timestamp)
 				output += " | Expires [expire_timestamp]"
 			output += "</b>"
@@ -476,7 +493,10 @@
 				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = lasteditor), lasteditor),
 				DATEDIFF(NOW(), timestamp),
 				IFNULL((SELECT byond_key FROM [format_table_name("player")] WHERE ckey = targetckey), targetckey),
-				expire_timestamp, severity
+				expire_timestamp,
+				severity,
+				playtime,
+				round_id
 			FROM [format_table_name("messages")]
 			WHERE type <> 'memo' AND targetckey = :targetckey AND deleted = 0 AND (expire_timestamp > NOW() OR expire_timestamp IS NULL)
 			ORDER BY timestamp DESC
@@ -507,6 +527,8 @@
 			target_key = query_get_messages.item[10]
 			var/expire_timestamp = query_get_messages.item[11]
 			var/severity = query_get_messages.item[12]
+			var/playtime = query_get_messages.item[13]
+			var/round_id = query_get_messages.item[14]
 			var/alphatext = ""
 			var/nsd = CONFIG_GET(number/note_stale_days)
 			var/nfd = CONFIG_GET(number/note_fresh_days)
@@ -523,7 +545,7 @@
 			var/list/data = list("<div style='margin:0px;[alphatext]'><p class='severity'>")
 			if(severity)
 				data += "<img src='[SSassets.transport.get_asset_url("[severity]_button.png")]' height='24' width='24'></img> "
-			data += "<b>[timestamp] | [server] | [admin_key][secret ? " | <i>- Secret</i>" : ""]"
+			data += "<b>[timestamp] | [server] | Round [round_id] | [admin_key][secret ? " | <i>- Secret</i>" : ""] | [get_exp_format(text2num(playtime))] Living Playtime"
 			if(expire_timestamp)
 				data += " | Expires [expire_timestamp]"
 			data += "</b></p><center>"
@@ -631,7 +653,6 @@
 		output += "<center><a href='?_src_=holder;[HrefToken()];addmessageempty=1'>Add message</a><a href='?_src_=holder;[HrefToken()];addwatchempty=1'>Add watchlist entry</a><a href='?_src_=holder;[HrefToken()];addnoteempty=1'>Add note</a></center>"
 		output += ruler
 	var/datum/browser/browser = new(usr, "Note panel", "Manage player notes", 1000, 500)
-	var/datum/asset/notes_assets = get_asset_datum(/datum/asset/simple/notes)
 	notes_assets.send(usr.client)
 	browser.set_content(jointext(output, ""))
 	browser.open()
@@ -639,7 +660,7 @@
 
 /proc/get_message_output(type, target_ckey)
 	if(!SSdbcore.Connect())
-		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
+		to_chat(usr, span_danger("Failed to establish database connection."))
 		return
 	if(!type)
 		return
@@ -668,7 +689,7 @@
 		var/editor_key = query_get_message_output.item[5]
 		switch(type)
 			if("message")
-				output += "<font color='red' size='3'><b>Admin message left by <span class='prefix'>[admin_key]</span> on [timestamp]</b></font>"
+				output += "<font color='red' size='3'><b>Admin message left by [span_prefix("[admin_key]")] on [timestamp]</b></font>"
 				output += "<br><font color='red'>[text]</font><br>"
 				var/datum/db_query/query_message_read = SSdbcore.NewQuery(
 					"UPDATE [format_table_name("messages")] SET type = 'message sent' WHERE id = :id",
@@ -682,9 +703,9 @@
 			if("watchlist entry")
 				addtimer(CALLBACK(GLOBAL_PROC, .proc/print_watchlist, key_name(target_ckey), timestamp, text), 2 SECONDS)
 			if("memo")
-				output += "<span class='memo'>Memo by <span class='prefix'>[admin_key]</span> on [timestamp]"
+				output += "[span_memo("Memo by <span class='prefix'>[admin_key]")] on [timestamp]"
 				if(editor_key)
-					output += "<br><span class='memoedit'>Last edit by [editor_key] <A href='?_src_=holder;[HrefToken()];messageedits=[message_id]'>(Click here to see edit log)</A></span>"
+					output += "<br>[span_memoedit("Last edit by [editor_key] <A href='?_src_=holder;[HrefToken()];messageedits=[message_id]'>(Click here to see edit log)</A>")]"
 				output += "<br>[text]</span><br>"
 	qdel(query_get_message_output)
 	return output

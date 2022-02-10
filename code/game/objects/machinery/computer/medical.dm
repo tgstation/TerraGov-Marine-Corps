@@ -109,16 +109,6 @@
 					dat += "<a href='?src=\ref[src];screen=1'>Back</a>"
 					dat += "<br><b>Medical Robots:</b>"
 					var/bdat = null
-					for(var/obj/machinery/bot/medbot/M in GLOB.machines)
-
-						if(M.z != src.z)	continue	//only find medibots on the same z-level as the computer
-						var/turf/bl = get_turf(M)
-						if(bl)	//if it can't find a turf for the medibot, then it probably shouldn't be showing up
-							bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.on ? "Online" : "Offline"]<br>"
-							if((!isnull(M.reagent_glass)) && M.use_beaker)
-								bdat += "Reservoir: \[[M.reagent_glass.reagents.total_volume]/[M.reagent_glass.reagents.maximum_volume]\]<br>"
-							else
-								bdat += "Using Internal Synthesizer.<br>"
 					if(!bdat)
 						dat += "<br><center>None detected</center>"
 					else
@@ -231,7 +221,7 @@
 							src.active1.fields["sex"] = "Male"
 				if("age")
 					if (istype(src.active1, /datum/data/record))
-						var/t1 = input("Please input age:", "Med. records", src.active1.fields["age"], null)  as num
+						var/t1 = tgui_input_number(usr, "Please input age:", "Med. records", src.active1.fields["age"])
 						if ((!( t1 ) || !( src.authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && !issilicon(usr)) || src.active1 != a1))
 							return
 						src.active1.fields["age"] = t1

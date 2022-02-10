@@ -100,10 +100,12 @@
 			.["ui_style_alpha"] = ui_style_alpha
 			.["windowflashing"] = windowflashing
 			.["auto_fit_viewport"] = auto_fit_viewport
-			.["focus_chat"] = focus_chat
 			.["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			.["tgui_fancy"] = tgui_fancy
 			.["tgui_lock"] = tgui_lock
+			.["tgui_input"] = tgui_input
+			.["tgui_input_big_buttons"] = tgui_input_big_buttons
+			.["tgui_input_buttons_swap"] = tgui_input_buttons_swap
 			.["clientfps"] = clientfps
 			.["chat_on_map"] = chat_on_map
 			.["max_chat_length"] = max_chat_length
@@ -270,11 +272,10 @@
 			age = clamp(new_age, AGE_MIN, AGE_MAX)
 
 		if("toggle_gender")
-			if(gender == MALE)
-				gender = FEMALE
+			gender = params["newgender"]
+			if(gender == FEMALE)
 				f_style = "Shaved"
 			else
-				gender = MALE
 				underwear = 1
 
 
@@ -285,8 +286,11 @@
 
 		if("species")
 			var/choice = tgui_input_list(ui.user, "What species do you want to play with?", "Species choice", get_playable_species())
-			if(choice)
-				species = choice
+			if(!choice || species == choice)
+				return
+			species = choice
+			var/datum/species/S = GLOB.all_species[species]
+			real_name = S.random_name(gender)
 
 		if("body_type")
 			var/choice = tgui_input_list(ui.user, "What body type do you want?", "Body type choice", GLOB.body_types_list)
@@ -358,9 +362,9 @@
 				if(!islist(gear))
 					gear = list()
 				gear += choice
-				to_chat(user, "<span class='notice'>Added '[choice]' for [C.cost] points ([MAX_GEAR_COST - total_cost] points remaining).</span>")
+				to_chat(user, span_notice("Added '[choice]' for [C.cost] points ([MAX_GEAR_COST - total_cost] points remaining)."))
 			else
-				to_chat(user, "<span class='warning'>Adding '[choice]' will exceed the maximum loadout cost of [MAX_GEAR_COST] points.</span>")
+				to_chat(user, span_warning("Adding '[choice]' will exceed the maximum loadout cost of [MAX_GEAR_COST] points."))
 
 		if("loadoutremove")
 			gear.Remove(params["gear"])
@@ -521,13 +525,6 @@
 			if(auto_fit_viewport && parent)
 				parent.fit_viewport()
 
-		if("focus_chat")
-			focus_chat = !focus_chat
-			if(focus_chat)
-				winset(user, null, "input.focus=true")
-			else
-				winset(user, null, "map.focus=true")
-
 		if("mute_xeno_health_alert_messages")
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
 
@@ -536,6 +533,15 @@
 
 		if("tgui_lock")
 			tgui_lock = !tgui_lock
+
+		if("tgui_input")
+			tgui_input = !tgui_input
+
+		if("tgui_input_big_buttons")
+			tgui_input_big_buttons = !tgui_input_big_buttons
+
+		if("tgui_input_buttons_swap")
+			tgui_input_buttons_swap = !tgui_input_buttons_swap
 
 		if("clientfps")
 			var/desiredfps = text2num(params["newValue"])
@@ -671,7 +677,7 @@
 			var/expires = "This is a permanent ban."
 			if(ban_details["expiration_time"])
 				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
-			to_chat(user, "<span class='danger'>You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [params["role"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]</span>")
+			to_chat(user, span_danger("You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [params["role"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]"))
 
 		if("update-character-preview")
 			update_preview_icon()

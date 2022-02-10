@@ -20,5 +20,8 @@
 /datum/element/plasma_on_attack/proc/damage_dealt(datum/source, mob/living/attacked, damage)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/furious = source
+	if(attacked.stat == DEAD)
+		to_chat(furious, span_notice("This thing is already dead. Why bother touching it?"))
+		return NONE
 	furious.gain_plasma(damage * damage_plasma_multiplier)
 

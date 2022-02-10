@@ -82,7 +82,7 @@
 
 /obj/hitby(atom/movable/AM)
 	. = ..()
-	visible_message("<span class='warning'>[src] was hit by [AM].</span>", visible_message_flags = COMBAT_MESSAGE)
+	visible_message(span_warning("[src] was hit by [AM]."), visible_message_flags = COMBAT_MESSAGE)
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -97,7 +97,7 @@
 		return
 	. = ..()
 	playsound(loc, P.hitsound, 50, 1)
-	visible_message("<span class='warning'>\the [src] is damaged by \the [P]!</span>", visible_message_flags = COMBAT_MESSAGE)
+	visible_message(span_warning("\the [src] is damaged by \the [P]!"), visible_message_flags = COMBAT_MESSAGE)
 	bullet_ping(P)
 	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, turn(P.dir, 180), P.ammo.penetration)
 
@@ -129,19 +129,19 @@
 	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, X) & COMPONENT_NO_ATTACK_ALIEN)
 		return
 	if(!(resistance_flags & XENO_DAMAGEABLE))
-		to_chat(X, "<span class='warning'>We stare at \the [src] cluelessly.</span>")
+		to_chat(X, span_warning("We stare at \the [src] cluelessly."))
 		return
 	if(effects)
-		X.visible_message("<span class='danger'>[X] has slashed [src]!</span>",
-		"<span class='danger'>We slash [src]!</span>")
+		X.visible_message(span_danger("[X] has slashed [src]!"),
+		span_danger("We slash [src]!"))
 		X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 		playsound(loc, "alien_claw_metal", 25)
 	attack_generic(X, damage_amount, damage_type, damage_flag, effects, armor_penetration)
 
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)
-	L.visible_message("<span class='danger'>[L] nudges its head against [src].</span>", \
-	"<span class='danger'>You nudge your head against [src].</span>")
+	L.visible_message(span_danger("[L] nudges its head against [src]."), \
+	span_danger("You nudge your head against [src]."))
 
 
 ///the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.

@@ -51,27 +51,27 @@
 
 	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
 		if(oxygentanks >= 10)
-			to_chat(user, "<span class='notice'>[src] is full.</span>")
+			to_chat(user, span_notice("[src] is full."))
 			return
 
 		user.drop_held_item()
 		I.forceMove(src)
 		oxytanks += I
 		oxygentanks++
-		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		to_chat(user, span_notice("You put [I] in [src]."))
 		if(oxygentanks < 5)
 			update_icon()
 
 	else if(istype(I, /obj/item/tank/phoron))
 		if(phorontanks >= 10)
-			to_chat(user, "<span class='notice'>[src] is full.</span>")
+			to_chat(user, span_notice("[src] is full."))
 			return
 
 		user.drop_held_item()
 		I.forceMove(src)
 		platanks += I
 		phorontanks++
-		to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+		to_chat(user, span_notice("You put [I] in [src]."))
 		if(oxygentanks < 6)
 			update_icon()
 
@@ -90,7 +90,7 @@
 			else
 				O = new /obj/item/tank/oxygen(loc)
 			O.loc = loc
-			to_chat(usr, "<span class='notice'>You take [O] out of [src].</span>")
+			to_chat(usr, span_notice("You take [O] out of [src]."))
 			oxygentanks--
 			update_icon()
 	if(href_list["phoron"])
@@ -102,7 +102,7 @@
 			else
 				P = new /obj/item/tank/phoron(loc)
 			P.loc = loc
-			to_chat(usr, "<span class='notice'>You take [P] out of [src].</span>")
+			to_chat(usr, span_notice("You take [P] out of [src]."))
 			phorontanks--
 			update_icon()
 

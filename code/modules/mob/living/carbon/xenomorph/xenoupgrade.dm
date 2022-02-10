@@ -4,11 +4,12 @@
 		return // smelly badmins
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
+	upgrade_stored = 0
 	if(!silent)
-		visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
-		"<span class='xenonotice'>We begin to twist and contort.</span>")
+		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
+		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
-	set_datum()
+	set_datum(FALSE)
 	var/selected_ability_type = selected_ability?.type
 
 	for(var/check_existing_actions in xeno_abilities) //Remove xenos actions we shouldn't have
@@ -33,37 +34,42 @@
 			break
 
 	if(queen_chosen_lead)
-		give_rally_hive_ability() //Give them back their rally hive ability
+		give_rally_abilities() //Give them back their rally hive ability
 
 	switch(upgrade)
 		//FIRST UPGRADE
 		if(XENO_UPGRADE_ONE)
 			if(!silent)
-				to_chat(src, "<span class='xenodanger'>We feel a bit stronger.</span>")
+				to_chat(src, span_xenodanger("We feel a bit stronger."))
 
 		//SECOND UPGRADE
 		if(XENO_UPGRADE_TWO)
 			if(!silent)
-				to_chat(src, "<span class='xenodanger'>We feel a whole lot stronger.</span>")
+				to_chat(src, span_xenodanger("We feel a whole lot stronger."))
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.elder_T2++
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.elder_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.elder_queen++
+					SSmonitor.stats.elder_T4++
 
 		//FINAL UPGRADE
 		if(XENO_UPGRADE_THREE)
 			if(!silent)
-				to_chat(src, "<span class='xenoannounce'>[xeno_caste.ancient_message]</span>")
+				to_chat(src, span_xenoannounce("[xeno_caste.ancient_message]"))
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.ancient_T2++
 				if(XENO_TIER_THREE)
 					SSmonitor.stats.ancient_T3++
 				if(XENO_TIER_FOUR)
-					SSmonitor.stats.ancient_queen++
+					SSmonitor.stats.ancient_T4++
+
+		//PURCHASED UPGRADE
+		if(XENO_UPGRADE_FOUR)
+			if(!silent)
+				to_chat(src, span_xenoannounce(xeno_caste.primordial_message))
 
 	generate_name() //Give them a new name now
 
@@ -87,6 +93,9 @@
 /mob/living/carbon/xenomorph/runner/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/runner/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----RUNNER END-----//
 //================//
 //-----BULL START-----//
@@ -100,6 +109,9 @@
 /mob/living/carbon/xenomorph/bull/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/bull/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----BULL END-----//
 //================//
 //-----DRONE START-----//
@@ -112,6 +124,9 @@
 
 /mob/living/carbon/xenomorph/drone/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/drone/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //-----DRONE END-----//
 //================//
@@ -144,6 +159,9 @@
 /mob/living/carbon/xenomorph/carrier/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/carrier/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //-----CARRIER END-----//
 //================//
 //----HIVELORD START----//
@@ -157,20 +175,12 @@
 /mob/living/carbon/xenomorph/hivelord/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/hivelord/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----HIVELORD END----//
 //================//
-//----HIVEMIND START----//
 
-/mob/living/carbon/xenomorph/hivemind/mature
-	upgrade = XENO_UPGRADE_ONE
-
-/mob/living/carbon/xenomorph/hivemind/elder
-	upgrade = XENO_UPGRADE_TWO
-
-/mob/living/carbon/xenomorph/hivemind/ancient
-	upgrade = XENO_UPGRADE_THREE
-
-//----HIVEMIND END----//
 //================//
 //----PRAETORIAN START----//
 
@@ -182,6 +192,9 @@
 
 /mob/living/carbon/xenomorph/praetorian/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/praetorian/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----PRAETORIAN END----//
 //================//
@@ -196,6 +209,9 @@
 /mob/living/carbon/xenomorph/ravager/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/ravager/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----RAVAGER END----//
 //================//
 //----SENTINEL START----//
@@ -209,6 +225,9 @@
 /mob/living/carbon/xenomorph/sentinel/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/sentinel/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----SENTINEL END----//
 //================//
 //-----SPITTER START-----//
@@ -221,6 +240,9 @@
 
 /mob/living/carbon/xenomorph/spitter/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/spitter/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //-----SPITTER END-----//
 //================//
@@ -251,6 +273,9 @@
 /mob/living/carbon/xenomorph/hunter/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/hunter/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----HUNTER END----//
 //================//
 //HUNTER ERT START
@@ -280,6 +305,9 @@
 /mob/living/carbon/xenomorph/queen/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/queen/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----QUEEN END----//
 //============//
 //---CRUSHER START---//
@@ -293,7 +321,26 @@
 /mob/living/carbon/xenomorph/crusher/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/crusher/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //---CRUSHER END---//
+//============//
+//---GORGER START---//
+
+/mob/living/carbon/xenomorph/gorger/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/gorger/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/gorger/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/gorger/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
+//---GORGER END---//
 //============//
 //---BOILER START---//
 
@@ -305,6 +352,9 @@
 
 /mob/living/carbon/xenomorph/boiler/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/boiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //---BOILER END---//
 //============//
@@ -319,6 +369,9 @@
 /mob/living/carbon/xenomorph/defender/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/defender/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //---DEFENDER END---//
 //============//
 //----WARRIOR START----//
@@ -331,6 +384,9 @@
 
 /mob/living/carbon/xenomorph/warrior/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/warrior/primordial
+	upgrade = XENO_UPGRADE_FOUR
 
 //----WARRIOR END----//
 //============//
@@ -345,6 +401,9 @@
 /mob/living/carbon/xenomorph/Defiler/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/Defiler/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----DEFILER END----//
 //============//
 //----SHRIKE START----//
@@ -358,6 +417,9 @@
 /mob/living/carbon/xenomorph/shrike/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/shrike/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
 //----SHRIKE END----//
 //============//
 
@@ -369,3 +431,6 @@
 
 /mob/living/carbon/xenomorph/wraith/ancient
 	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/wraith/primordial
+	upgrade = XENO_UPGRADE_FOUR

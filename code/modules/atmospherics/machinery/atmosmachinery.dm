@@ -42,7 +42,7 @@
 	if(is_type_in_list(src, GLOB.ventcrawl_machinery) && isliving(user))
 		var/mob/living/L = user
 		if(L.can_ventcrawl())
-			to_chat(L, "<span class='notice'>Alt-click to crawl through it.</span>")
+			to_chat(L, span_notice("Alt-click to crawl through it."))
 
 /obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
 	. = ..()
@@ -183,17 +183,17 @@
 
 	var/turf/T = get_turf(src)
 	if (level==1 && isturf(T) && T.intact_tile)
-		to_chat(user, "<span class='warning'>You must remove the plating first!</span>")
+		to_chat(user, span_warning("You must remove the plating first!"))
 		return TRUE
-	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
+	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
 
 	user.visible_message( \
 		"[user] unfastens \the [src].", \
-		"<span class='notice'>You unfasten \the [src].</span>", \
-		"<span class='italics'>You hear ratchet.</span>")
+		span_notice("You unfasten \the [src]."), \
+		span_italics("You hear ratchet."))
 	deconstruct(TRUE)
 	return TRUE
 
@@ -238,27 +238,34 @@
 		A.addMember(src)
 	build_network()
 
-/obj/machinery/atmospherics/Entered(atom/movable/AM)
-	if(istype(AM, /mob/living))
-		var/mob/living/L = AM
+/obj/machinery/atmospherics/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	if(istype(arrived, /mob/living))
+		var/mob/living/L = arrived
 		L.ventcrawl_layer = piping_layer
 	return ..()
 
 
 /obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
+
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_VENTCRAWL))
 		return FALSE
-	TIMER_COOLDOWN_START(user, COOLDOWN_VENTCRAWL, 2 SECONDS)
-	if(!isxenohunter(user) ) //Hunters silently enter/exit/move through vents.
-		visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
-	to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")
-	if(!do_after(user, 20, FALSE, src))
+	var/silent_crawl = FALSE
+	var/vent_crawl_exit_time = 2 SECONDS
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/X = user
+		silent_crawl = X.xeno_caste.silent_vent_crawl
+		vent_crawl_exit_time = X.xeno_caste.vent_exit_speed
+	TIMER_COOLDOWN_START(user, COOLDOWN_VENTCRAWL, vent_crawl_exit_time)
+	if(!silent_crawl) //Xenos with silent crawl can silently enter/exit/move through vents.
+		visible_message(span_warning("You hear something squeezing through the ducts."))
+	to_chat(user, span_notice("You begin to climb out of [src]"))
+	if(!do_after(user, vent_crawl_exit_time, FALSE, src))
 		return FALSE
 	user.remove_ventcrawl()
 	user.forceMove(T)
-	user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
-	"<span class='notice'>You climb out of [src].</span>")
-	if(!isxenohunter(user))
+	user.visible_message(span_warning("[user] climbs out of [src].</span>"), \
+	span_notice("You climb out of [src].</span>"))
+	if(!silent_crawl)
 		playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
 
@@ -284,7 +291,11 @@
 					user.update_pipe_vision(target_move)
 				user.forceMove(target_move)
 				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
-				if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_VENTSOUND))
+				var/silent_crawl = FALSE //Some creatures can move through the vents silently
+				if(isxeno(user))
+					var/mob/living/carbon/xenomorph/X = user
+					silent_crawl = X.xeno_caste.silent_vent_crawl
+				if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_VENTSOUND) || silent_crawl)
 					return
 				TIMER_COOLDOWN_START(user, COOLDOWN_VENTSOUND, 3 SECONDS)
 				playsound(src, pick('sound/effects/alien_ventcrawl1.ogg','sound/effects/alien_ventcrawl2.ogg'), 50, TRUE, -3)

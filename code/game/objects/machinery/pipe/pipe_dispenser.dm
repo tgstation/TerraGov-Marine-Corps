@@ -65,19 +65,19 @@
 	. = ..()
 
 	if(istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
-		to_chat(usr, "<span class='notice'>You put [I] back into [src].</span>")
+		to_chat(usr, span_notice("You put [I] back into [src]."))
 		qdel(I)
 
 	else if(iswrench(I))
 		if(anchored)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>")
+			to_chat(user, span_notice("You begin to unfasten \the [src] from the floor..."))
 
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				return
 
 			user.visible_message("[user] unfastens \the [src].", \
-				"<span class='notice'> You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
+				span_notice(" You have unfastened \the [src]. Now it can be pulled somewhere else."), \
 				"You hear ratchet.")
 			anchored = FALSE
 			machine_stat |= MAINT
@@ -86,13 +86,13 @@
 				usr << browse(null, "window=pipedispenser")
 		else
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			to_chat(user, "<span class='notice'>You begin to fasten \the [src] to the floor...</span>")
+			to_chat(user, span_notice("You begin to fasten \the [src] to the floor..."))
 
 			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 				return
 
 			user.visible_message("[user] fastens \the [src].", \
-				"<span class='notice'> You have fastened \the [src]. Now it can dispense pipes.</span>", \
+				span_notice(" You have fastened \the [src]. Now it can dispense pipes."), \
 				"You hear ratchet.")
 			anchored = TRUE
 			machine_stat &= ~MAINT
@@ -171,7 +171,7 @@
 			var/obj/structure/disposalconstruct/C = new (loc, p_type)
 
 			//if(!C.can_place())
-			//	to_chat(usr, "<span class='warning'>There's not enough room to build that here!</span>")
+			//	to_chat(usr, span_warning("There's not enough room to build that here!"))
 			//	qdel(C)
 			//	return
 			if(href_list["dir"])

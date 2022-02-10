@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(shuttle)
 	moveShuttleToDock(shuttleId, D, timed)
 
 /**
- * Skip the transit to directly go to the destination. This is not instantanious
+ * Skip the transit to directly go to the destination. This is not instantaneous
  * shuttleId : Id of the shuttle to move
  * dockId : Id of the destination dockId
  */
@@ -175,6 +175,7 @@ SUBSYSTEM_DEF(shuttle)
 	else
 		if(M.initiate_docking(D) != DOCKING_SUCCESS)
 			return 2
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHUTTLE_TAKEOFF, shuttleId, D)
 	return 0	//dock successful
 
 /datum/controller/subsystem/shuttle/proc/request_transit_dock(obj/docking_port/mobile/M)

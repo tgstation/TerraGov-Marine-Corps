@@ -5,7 +5,6 @@
 	verb_say = "beeps"
 	verb_yell = "blares"
 	anchored = TRUE
-	obj_flags = CAN_BE_HIT
 	destroy_sound = 'sound/effects/metal_crash.ogg'
 	interaction_flags = INTERACT_MACHINE_DEFAULT
 
@@ -26,6 +25,9 @@
 	. = ..()
 	GLOB.machines += src
 	component_parts = list()
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom |= AI_BLOCKED
 
 
 /obj/machinery/Destroy()
@@ -34,12 +36,22 @@
 	if(istype(circuit)) //There are some uninitialized legacy path circuits.
 		QDEL_NULL(circuit)
 	operator = null
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom &= ~ AI_BLOCKED
 	return ..()
 
 
 /obj/machinery/proc/is_operational()
 	return !(machine_stat & (NOPOWER|BROKEN|MAINT|DISABLED))
 
+
+/obj/machinery/proc/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel = 0, custom_deconstruct = FALSE)
+	. = !(flags_atom & NODECONSTRUCT) && crowbar.tool_behaviour == TOOL_CROWBAR
+	if(!. || custom_deconstruct)
+		return
+	crowbar.play_tool_sound(src, 50)
+	deconstruct(TRUE)
 
 /obj/machinery/deconstruct(disassembled = TRUE)
 	if(!(flags_atom & NODECONSTRUCT))
@@ -165,10 +177,10 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
-			visible_message("<span class='warning'>[H] stares cluelessly at [src] and drools.</span>")
+			visible_message(span_warning("[H] stares cluelessly at [src] and drools."))
 			return FALSE
 		if(prob(H.getBrainLoss()))
-			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
+			to_chat(user, span_warning("You momentarily forget how to use [src]."))
 			return FALSE
 
 	return TRUE
@@ -176,6 +188,8 @@
 
 /obj/machinery/attack_ai(mob/living/silicon/ai/user)
 	if(!is_operational())
+		return FALSE
+	if(!(interaction_flags & INTERACT_SILICON_ALLOWED))
 		return FALSE
 	return interact(user)
 
@@ -238,7 +252,7 @@
 	N.fields["last_scan_time"] = od["stationtime"]
 	N.fields["last_scan_result"] = dat
 	N.fields["autodoc_data"] = generate_autodoc_surgery_list(H)
-	visible_message("<span class='notice'>\The [src] pings as it stores the scan report of [H.real_name]</span>")
+	visible_message(span_notice("\The [src] pings as it stores the scan report of [H.real_name]"))
 	playsound(loc, 'sound/machines/ping.ogg', 25, 1)
 	use_power(active_power_usage)
 	return dat

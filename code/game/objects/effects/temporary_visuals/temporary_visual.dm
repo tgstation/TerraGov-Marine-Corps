@@ -18,8 +18,8 @@
 
 
 /obj/effect/temp_visual/Destroy()
-	. = ..()
 	deltimer(timerid)
+	return ..()
 
 
 /obj/effect/temp_visual/ex_act()

@@ -66,7 +66,7 @@
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
-		to_chat(user, "<span class='notice'>It is too far away to read.</span>")
+		to_chat(user, span_notice("It is too far away to read."))
 
 
 /obj/item/paper/verb/rename()
@@ -97,23 +97,23 @@
 
 /obj/item/paper/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(user.zone_selected == "eyes")
-		user.visible_message("<span class='notice'>You show the paper to [M]. </span>", \
-			"<span class='notice'> [user] holds up a paper and shows it to [M]. </span>")
+		user.visible_message(span_notice("You show the paper to [M]. "), \
+			span_notice(" [user] holds up a paper and shows it to [M]. "))
 		examine(M)
 
 	else if(user.zone_selected == "mouth") // lipstick wiping
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H == user)
-				to_chat(user, "<span class='notice'>You wipe off the lipstick with [src].</span>")
+				to_chat(user, span_notice("You wipe off the lipstick with [src]."))
 				H.lip_style = null
 				H.update_body()
 			else
-				user.visible_message("<span class='warning'>[user] begins to wipe [H]'s lipstick off with \the [src].</span>", \
-									"<span class='notice'>You begin to wipe off [H]'s lipstick.</span>")
+				user.visible_message(span_warning("[user] begins to wipe [H]'s lipstick off with \the [src]."), \
+									span_notice("You begin to wipe off [H]'s lipstick."))
 				if(do_after(user, 10, TRUE, H, BUSY_ICON_FRIENDLY))
-					user.visible_message("<span class='notice'>[user] wipes [H]'s lipstick off with \the [src].</span>", \
-										"<span class='notice'>You wipe off [H]'s lipstick.</span>")
+					user.visible_message(span_notice("[user] wipes [H]'s lipstick off with \the [src]."), \
+										span_notice("You wipe off [H]'s lipstick."))
 					H.lip_style = null
 					H.update_body()
 
@@ -233,7 +233,7 @@
 				qdel(src)
 
 			else
-				to_chat(user, "<span class='warning'>You must hold \the [P] steady to burn \the [src].</span>")
+				to_chat(user, span_warning("You must hold \the [P] steady to burn \the [src]."))
 
 
 /obj/item/paper/Topic(href, href_list)
@@ -281,7 +281,7 @@
 		if(istype(I, /obj/item/paper/carbon))
 			var/obj/item/paper/carbon/C = I
 			if(!C.iscopy && !C.copied)
-				to_chat(user, "<span class='notice'>Take off the carbon copy first.</span>")
+				to_chat(user, span_notice("Take off the carbon copy first."))
 				return
 		if(loc != user)
 			return
@@ -292,7 +292,7 @@
 			B.name = I.name
 		user.dropItemToGround(I)
 		user.dropItemToGround(src)
-		to_chat(user, "<span class='notice'>You clip \the [I] to [src].</span>")
+		to_chat(user, span_notice("You clip \the [I] to [src]."))
 		B.attach_doc(src, user, TRUE)
 		B.attach_doc(I, user, TRUE)
 		user.put_in_hands(B)
@@ -330,7 +330,7 @@
 		stamped += I.type
 		overlays += stampoverlay
 
-		to_chat(user, "<span class='notice'>You stamp the paper with your rubber stamp.</span>")
+		to_chat(user, span_notice("You stamp the paper with your rubber stamp."))
 		playsound(src, 'sound/items/stamp.ogg', 15, 1)
 
 	else if(I.heat >= 400)
@@ -507,3 +507,11 @@ then, for every time you included a field, increment fields. */
 	we've uncovered. This is a massive breakthrough in our progress! We haven't breached into the area yet, but we've moved in some consoles in case it's compatible with the technology we have. <BR>
 	Though, it seems there's another chamber in front of it. Scans show some kind of moving figures, though the scanner might just be broken or misinterpreting some basalt dust."}
 
+/obj/item/paper/chemistry
+	name = "Notice from Terragov"
+	info = {"After a routine inspection from the Terragov Chemical Regulatory comittee, we have found that this vessel has, one, an unlicensed access issue that must be amended, and two, nearly double the authorized deployment of chemical vendors. <BR>
+	We are updating the access requirements on your chemistry bay, as well as confiscating the additional vendors until further notice. Have a nice day."}
+
+/obj/item/paper/memorial
+	name = "Memorial Note"
+	info = {"May the souls of our fallen brothers be at rest; not that we may find solace in their passing, but that we should take our due initiative to press on in their memory."}

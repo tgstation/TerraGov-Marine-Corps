@@ -67,6 +67,8 @@
 	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi', "Vox" = 'icons/mob/species/vox/eyes.dmi')
 	prescription = TRUE
 
 /obj/item/clothing/glasses/hud/medgoggles
@@ -78,6 +80,8 @@
 	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi', "Vox" = 'icons/mob/species/vox/eyes.dmi')
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
 	flags_equip_slot = ITEM_SLOT_EYES
 	goggles = TRUE
@@ -92,6 +96,8 @@
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. For the disabled and/or edgy Corpsman."
 	icon_state = "medpatchhud"
 	deactive_state = "degoggles_medpatch"
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi', "Vox" = 'icons/mob/species/vox/eyes.dmi')
 	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
@@ -102,6 +108,8 @@
 	icon_state = "medglasses"
 	item_state = "medglasses"
 	deactive_state = "degoggles_medglasses"
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi', "Vox" = 'icons/mob/species/vox/eyes.dmi')
 	prescription = TRUE
 	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
@@ -110,6 +118,8 @@
 /obj/item/clothing/glasses/hud/security
 	name = "\improper PatrolMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi', "Vox" = 'icons/mob/species/vox/eyes.dmi')
 	icon_state = "securityhud"
 	deactive_state = "degoggles_sec"
 	toggleable = 1
@@ -132,6 +142,8 @@
 	desc = "A heads-up display that scans any nearby xenomorph's data."
 	icon_state = "securityhud"
 	deactive_state = "degoggles_sec"
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi', "Vox" = 'icons/mob/species/vox/eyes.dmi')
 	flags_armor_protection = NONE
 	toggleable = TRUE
 	hud_type = DATA_HUD_XENO_STATUS
@@ -142,6 +154,8 @@
 	desc = "A heads-up display that scans human pain and perceived health."
 	icon_state = "securityhud"
 	deactive_state = "degoggles_sec"
+	species_exception = list(/datum/species/robot)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi', "Vox" = 'icons/mob/species/vox/eyes.dmi')
 	toggleable = TRUE
 	hud_type = DATA_HUD_MEDICAL_PAIN
 	actions_types = list(/datum/action/item_action/toggle)

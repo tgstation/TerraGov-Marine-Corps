@@ -29,10 +29,10 @@
 		return
 
 	if(busy)
-		to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
+		to_chat(user, span_warning("Someone else is currently using [src]."))
 		return
 	if(firing)
-		to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
+		to_chat(user, span_warning("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
 		return
 
 	ui_interact(user)
@@ -95,8 +95,8 @@
 			new_name = params["name"]
 			last_three_inputs["coords_three"]["name"] = new_name
 	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
-		usr.visible_message("<span class='notice'>[usr] adjusts [src]'s firing angle and distance.</span>",
-		"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
+		usr.visible_message(span_notice("[usr] adjusts [src]'s firing angle and distance."),
+		span_notice("You adjust [src]'s firing angle and distance to match the new coordinates."))
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		// allows for offsetting using the dial, I had accidentally misplaced this.
 		var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
@@ -138,38 +138,38 @@
 		var/obj/item/mortal_shell/mortar_shell = I
 
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
+			to_chat(user, span_warning("Your programming restricts operating heavy weaponry."))
 			return
 
 		if(busy)
-			to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
+			to_chat(user, span_warning("Someone else is currently using [src]."))
 			return
 
 		if(!is_ground_level(z))
-			to_chat(user, "<span class='warning'>You cannot fire [src] here.</span>")
+			to_chat(user, span_warning("You cannot fire [src] here."))
 			return
 
 		if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
-			to_chat(user, "<span class='warning'>[src] needs to be aimed first.</span>")
+			to_chat(user, span_warning("[src] needs to be aimed first."))
 			return
 
 		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
 		if(get_dist(loc, selfown) < 7)
-			to_chat(usr, "<span class='warning'>You cannot target this coordinate, it is too close to your mortar.</span>")
+			to_chat(user, span_warning("You cannot target this coordinate, it is too close to your mortar."))
 			return
 
 		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
 		if(!isturf(T))
-			to_chat(user, "<span class='warning'>You cannot fire [src] to this target.</span>")
+			to_chat(user, span_warning("You cannot fire [src] to this target."))
 			return
 
 		var/area/A = get_area(T)
 		if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
-			to_chat(user, "<span class='warning'>You cannot hit the target. It is probably underground.</span>")
+			to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
 			return
 
-		user.visible_message("<span class='notice'>[user] starts loading \a [mortar_shell.name] into [src].</span>",
-		"<span class='notice'>You start loading \a [mortar_shell.name] into [src].</span>")
+		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
+		span_notice("You start loading \a [mortar_shell.name] into [src]."))
 		playsound(loc, 'sound/weapons/guns/interact/mortar_reload.ogg', 50, 1)
 		busy = TRUE
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_HOSTILE))
@@ -178,9 +178,9 @@
 
 		busy = FALSE
 
-		user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
-		"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
-		visible_message("[icon2html(src, viewers(src))] <span class='danger'>The [name] fires!</span>")
+		user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
+		span_notice("You load \a [mortar_shell.name] into [src]."))
+		visible_message("[icon2html(src, viewers(src))] [span_danger("The [name] fires!")]")
 		user.transferItemToLoc(mortar_shell, src)
 		playsound(loc, 'sound/weapons/guns/fire/mortar_fire.ogg', 50, 1)
 		firing = TRUE
@@ -201,7 +201,7 @@
 	var/obj/item/binoculars/tactical/binocs = I
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(binocs.set_mortar(src))
-		to_chat(user, "<span class='notice'>You link the mortar to the [binocs] allowing for remote targeting.</span>")
+		to_chat(user, span_notice("You link the mortar to the [binocs] allowing for remote targeting."))
 		return
 	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
@@ -221,11 +221,11 @@
 /obj/machinery/deployable/mortar/wrench_act(mob/living/user, obj/item/I)
 
 	if(busy)
-		to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
+		to_chat(user, span_warning("Someone else is currently using [src]."))
 		return
 
 	if(firing)
-		to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
+		to_chat(user, span_warning("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
 		return
 
 	return ..()
@@ -233,24 +233,27 @@
 //The portable mortar item
 /obj/item/mortar_kit
 	name = "\improper M402 mortar"
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Use 'Unique Action' to deploy."
+	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Use Ctrl-Click to deploy."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar"
 
 	max_integrity = 200
 	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
 	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mortar, 5 SECONDS)
 
+/obj/item/mortar_kit/attack_self(mob/user)
+	do_unique_action(user)
+
 /obj/item/mortar_kit/unique_action(mob/user)
 	var/area/current_area = get_area(src)
 	if(current_area.ceiling >= CEILING_METAL)
-		to_chat(user, "<span class='warning'>You probably shouldn't deploy [src] indoors.</span>")
+		to_chat(user, span_warning("You probably shouldn't deploy [src] indoors."))
 		return
 	return ..()
 
@@ -328,29 +331,27 @@
 	icon_state = "mortar_ammo_flr"
 
 /obj/item/mortal_shell/flare/detonate(turf/T)
-
-	new /obj/item/flashlight/flare/on/illumination(T)
+	new /obj/effect/mortar_flare(T)
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
-//Special flare subtype for the illumination flare shell
-//Acts like a flare, just even stronger, and set length
-/obj/item/flashlight/flare/on/illumination
-	name = "illumination flare"
-	desc = "It's really bright, and unreachable."
-	icon_state = "" //No sprite
-	invisibility = INVISIBILITY_MAXIMUM //Can't be seen or found, it's "up in the sky"
+///Name_swap of the CAS flare
+/obj/effect/mortar_flare
+	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
-	light_range = 7 //Way brighter than most lights
+	light_color = COLOR_VERY_SOFT_YELLOW
+	light_system = HYBRID_LIGHT
+	light_power = 8
+	light_range = 9 //Way brighter than most lights
 
-/obj/item/flashlight/flare/on/illumination/Initialize()
+/obj/effect/mortar_flare/Initialize()
 	. = ..()
-	fuel = rand(400, 500) // Half the duration of a flare, but justified since it's invincible
+	var/turf/T = get_turf(src)
+	set_light(light_power)
+	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
+	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
+	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.
 
-/obj/item/flashlight/flare/on/illumination/turn_off()
-
-	..()
-	qdel(src)
 
 /obj/structure/closet/crate/mortar_ammo
 	name = "\improper M402 mortar ammo crate"
@@ -403,6 +404,13 @@
 	new /obj/item/mortal_shell/plasmaloss(src)
 	new /obj/item/mortal_shell/plasmaloss(src)
 	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/binoculars/tactical/range(src)

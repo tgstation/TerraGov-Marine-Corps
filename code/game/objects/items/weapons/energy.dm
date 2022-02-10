@@ -2,8 +2,8 @@
 	flags_atom = NOBLOODY
 
 /obj/item/weapon/energy/suicide_act(mob/user)
-	user.visible_message(pick("<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>", \
-						"<span class='danger'>[user] is falling on the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>"))
+	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku."), \
+						span_danger("[user] is falling on the [name]! It looks like [user.p_theyre()] trying to commit suicide.")))
 	return (BRUTELOSS|FIRELOSS)
 
 
@@ -23,19 +23,19 @@
 	edge = 1
 
 /obj/item/weapon/energy/axe/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>[user] swings the [name] towards [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	user.visible_message(span_danger("[user] swings the [name] towards [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide."))
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/weapon/energy/axe/attack_self(mob/user)
 	active = !active
 	if(active)
-		to_chat(user, "<span class='notice'>The axe is now energised.</span>")
+		to_chat(user, span_notice("The axe is now energised."))
 		force = 150
 		icon_state = "axe1"
 		w_class = WEIGHT_CLASS_HUGE
 		heat = 3500
 	else
-		to_chat(user, "<span class='notice'>The axe can now be concealed.</span>")
+		to_chat(user, span_notice("The axe can now be concealed."))
 		force = 40
 		icon_state = "axe0"
 		w_class = WEIGHT_CLASS_HUGE
@@ -78,7 +78,7 @@
 			icon_state = "sword[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>[src] is now active.</span>")
+		to_chat(user, span_notice("[src] is now active."))
 
 	else
 		force = 3
@@ -86,7 +86,7 @@
 		icon_state = "[base_sword_icon]0"
 		w_class = WEIGHT_CLASS_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
+		to_chat(user, span_notice("[src] can now be concealed."))
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user

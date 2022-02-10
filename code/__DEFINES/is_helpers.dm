@@ -31,7 +31,6 @@
 
 #define ismineralturf(A) (istype(A, /turf/closed/mineral))
 
-
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
 
@@ -52,11 +51,13 @@
 #define isvox(H) (is_species(H, /datum/species/vox))
 #define isvoxarmalis(H) (is_species(H, /datum/species/vox/armalis))
 #define isIPC(H) (is_species(H, /datum/species/machine))
+#define isrobot(H) (is_species(H, /datum/species/robot))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
 #define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
 #define ismoth(H) (is_species(H, /datum/species/moth))
 #define issectoid(H) (is_species(H, /datum/species/sectoid))
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
+#define iszombie(H) (is_species(H, /datum/species/zombie))
 
 //Monkey species and subtypes
 #define ismonkey(H) (is_species(H, /datum/species/monkey))
@@ -89,6 +90,7 @@
 #define isxenoboiler(A) (istype(A, /mob/living/carbon/xenomorph/boiler))
 #define isxenocarrier(A) (istype(A, /mob/living/carbon/xenomorph/carrier))
 #define isxenocrusher(A) (istype(A, /mob/living/carbon/xenomorph/crusher))
+#define isxenogorger(A) (istype(A, /mob/living/carbon/xenomorph/gorger))
 #define isxenodrone(A) (istype(A, /mob/living/carbon/xenomorph/drone))
 #define isxenohivelord(A) (istype(A, /mob/living/carbon/xenomorph/hivelord))
 #define isxenohunter(A) (istype(A, /mob/living/carbon/xenomorph/hunter))
@@ -106,8 +108,6 @@
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
 #define isxenowraith(A) (istype(A, /mob/living/carbon/xenomorph/wraith))
-
-#define isresinsilo(A) (istype(A, /obj/structure/xeno/resin/silo))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
@@ -169,8 +169,6 @@
 
 #define isuniform(A) (istype(A, /obj/item/clothing/under))
 
-#define iswebbing(A) (istype(A, /obj/item/clothing/tie/storage))
-
 #define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
 
 #define ismodulararmormodule(A) (istype(A, /obj/item/armor_module))
@@ -180,8 +178,6 @@
 #define ismodulararmorarmorpiece(A) (istype(A, /obj/item/armor_module/armor))
 
 #define ismodularhelmet(A) (istype(A, /obj/item/clothing/head/modular))
-
-#define ishelmetmodule(A) (istype (A, /obj/item/helmet_module))
 
 #define isattachmentflashlight(A) (istype(A, /obj/item/attachable/flashlight))
 
@@ -203,6 +199,10 @@
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
+#define isfactorypart(I) (istype(I, /obj/item/factory_part))
+
+#define isfactoryrefill(I) (istype(I, /obj/item/factory_refill))
+
 #define isstructure(A) (istype(A, /obj/structure))
 
 #define iscable(A) (istype(A, /obj/structure/cable))
@@ -215,11 +215,19 @@
 
 #define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
 
+#define isvehicle(A) (istype(A, /obj/vehicle))
+
 #define isorgan(A) (istype(A, /datum/limb))
 
 #define isidcard(A) (istype(A, /obj/item/card/id))
 
+#define isuav(A) (istype(A, /obj/vehicle/unmanned))
+
+#define isdroid(A) (istype(A, /obj/vehicle/unmanned/droid))
+
 #define isreagentcontainer(A) (istype(A, /obj/item/reagent_containers)) //Checks for if something is a reagent container.
+
+#define is_research_product(A) (istype(A, /obj/item/research_product)) //Checks if item is research item
 
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))

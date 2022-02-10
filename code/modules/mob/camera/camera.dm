@@ -20,9 +20,9 @@
 
 
 /mob/camera/Destroy()
-	. = ..()
 	if(call_life)
 		GLOB.living_cameras -= src
+	return ..()
 
 
 /mob/camera/forceMove(atom/destination)

@@ -237,9 +237,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aI" = (
-/obj/machinery/marine_turret{
-	dir = 8
-	},
+/obj/item/weapon/gun/sentry/big_sentry/premade,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "aJ" = (
@@ -257,14 +255,6 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/crash/squadmarine,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
-"aM" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 1
-	},
-/obj/machinery/light/small,
 /obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
@@ -288,13 +278,6 @@
 "aR" = (
 /obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/plating,
-/area/shuttle/canterbury)
-"aS" = (
-/obj/machinery/vending/engivend,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "aT" = (
 /obj/item/fuelCell/full,
@@ -350,15 +333,11 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "be" = (
 /turf/open/floor/mainship,
-/area/shuttle/canterbury)
-"bf" = (
-/obj/machinery/marine_selector/clothes/synth,
-/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bg" = (
 /obj/structure/cable,
@@ -418,7 +397,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/marine/shared,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bt" = (
@@ -534,12 +513,6 @@
 /obj/structure/window/framed/mainship/white/canterbury,
 /turf/open/floor/plating,
 /area/shuttle/canterbury/medical)
-"bM" = (
-/obj/machinery/marine_turret{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "bO" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -826,10 +799,6 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
-"cX" = (
-/obj/machinery/marine_turret,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "cY" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -863,10 +832,30 @@
 	},
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
+"vY" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/mainship/orange/full,
+/area/shuttle/canterbury)
 "zE" = (
 /obj/structure/window/framed/mainship/canterbury,
 /obj/structure/cable,
 /turf/open/floor/plating,
+/area/shuttle/canterbury)
+"zN" = (
+/obj/machinery/vending/engivend,
+/obj/machinery/light/small{
+	dir = 8;
+	status = 0
+	},
+/turf/open/floor/mainship/orange/full,
+/area/shuttle/canterbury)
+"Bu" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
+/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/machinery/light/small,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Hv" = (
 /obj/structure/window/reinforced/toughened{
@@ -882,6 +871,10 @@
 "RS" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
+"UG" = (
+/obj/machinery/marine_selector/clothes/synth,
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 
 (1,1,1) = {"
@@ -961,7 +954,7 @@ an
 av
 aB
 aI
-aL
+Bu
 an
 aR
 bb
@@ -984,9 +977,9 @@ ab
 ab
 cV
 aJ
-aM
-an
-aS
+aL
+aN
+zN
 cv
 aT
 bo
@@ -1008,8 +1001,8 @@ ab
 cF
 aJ
 cR
-aN
-bf
+UG
+vY
 bg
 bl
 bo
@@ -1064,7 +1057,7 @@ bO
 aJ
 aJ
 aJ
-cX
+aI
 cZ
 co
 "}
@@ -1144,7 +1137,7 @@ aa
 an
 ax
 cQ
-bM
+aI
 cU
 an
 aW

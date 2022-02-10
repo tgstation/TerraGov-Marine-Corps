@@ -32,8 +32,9 @@
 /proc/xeno_status_output(list/xenolist, ignore_leads = TRUE, user)
 	var/xenoinfo = ""
 	var/leadprefix = (ignore_leads?"":"<b>(-L-)</b>")
-	for(var/i in xenolist)
-		var/mob/living/carbon/xenomorph/X = i
+	for(var/mob/living/carbon/xenomorph/X AS in xenolist)
+		if(X.xeno_caste.tier == XENO_TIER_MINION)
+			continue
 		if(ignore_leads && X.queen_chosen_lead)
 			continue
 		xenoinfo += "<tr><td>[leadprefix]<a href='byond://?src=\ref[user];track_xeno_name=[X.nicknumber]'>[X.name]</a> "
@@ -44,7 +45,7 @@
 		switch(X.health/X.maxHealth)
 			if(0.33 to 0.66)
 				hp_color = "orange"
-			if(0 to 0.33)
+			if(-1 to 0.33)
 				hp_color = "red"
 
 		var/distance = get_dist(user, X)
@@ -59,7 +60,7 @@
 ///Relays health and location data about resin silos belonging to the same hive as the input user
 /proc/resin_silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
 	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
-	for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
+	for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
 		if(resin_silo.associated_hive == hive)
 
 			var/hp_color = "green"
@@ -112,7 +113,7 @@
 			continue
 
 		switch(initial(T.tier))
-			if(XENO_TIER_ZERO)
+			if(XENO_TIER_ZERO || XENO_TIER_MINION)
 				continue
 			if(XENO_TIER_FOUR)
 				tier4counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
@@ -137,6 +138,7 @@
 	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
 	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
 	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
+	dat += "<b>Minions: [length(hive.xenos_by_tier[XENO_TIER_MINION])] Sisters<BR>"
 	dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
 	dat += "<b>Hivemind: [hivemind_text]<BR>"
 	if(hive.hivenumber == XENO_HIVE_NORMAL)
@@ -145,8 +147,9 @@
 	dat += "<table cellspacing=4>"
 	dat += xenoinfo
 	dat += "</table>"
-	var/larva_generated = SSsilo.current_larva_spawn_rate/8
-	dat += "<b>Larvas generated in one minute: [larva_generated]<BR>"
+	dat += "<b>Larva points generated in one minute: [SSsilo.current_larva_spawn_rate]<BR>"
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	dat += "<b>Points needed for next larva: [xeno_job.job_points_needed - xeno_job.job_points]"
 	dat += resin_silo_status_output(user, hive)
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
@@ -168,16 +171,16 @@
 			else
 				if(X.nicknumber != xeno_name)
 					continue
-			to_chat(usr,"<span class='notice'> You will now track [X.name]</span>")
-			tracked = X
+			to_chat(usr,span_notice(" You will now track [X.name]"))
+			set_tracked(X)
 			break
 
 	if(href_list["track_silo_number"])
 		var/silo_number = href_list["track_silo_number"]
-		for(var/obj/structure/xeno/resin/silo/resin_silo AS in GLOB.xeno_resin_silos)
+		for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
 			if(resin_silo.associated_hive == hive && num2text(resin_silo.number_silo) == silo_number)
-				tracked = resin_silo
-				to_chat(usr,"<span class='notice'> You will now track [resin_silo.name]</span>")
+				set_tracked(resin_silo)
+				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
 				break
 
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
@@ -191,8 +194,13 @@
 	var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 	HS.xeno_message(message, span_class, size, force, target, sound, apply_preferences, filter_list, arrow_type, arrow_color, report_distance)
 
+///returns TRUE if we are permitted to evo to the next case FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
-	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_THREE)
+	if(upgrade == XENO_UPGRADE_THREE)
+		if(!xeno_caste.primordial_upgrade_name)
+			return FALSE
+		return hive.upgrades_by_name[xeno_caste.primordial_upgrade_name].times_bought
+	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
@@ -214,16 +222,12 @@
 	else //Upgrade process finished or impossible
 		stat("Upgrade Progress:", "(FINISHED)")
 
+	stat("Health:", "[health]/[xeno_caste.max_health]")
+
 	if(xeno_caste.plasma_max > 0)
 		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
 
-	if(hivenumber != XENO_HIVE_CORRUPTED)
-		if(hive.slashing_allowed == XENO_SLASHING_ALLOWED)
-			stat("Slashing of hosts status:", "ALLOWED")
-		else if(hive.slashing_allowed == XENO_SLASHING_RESTRICTED)
-			stat("Slashing of hosts status:","RESTRICTED")
-		else
-			stat("Slashing of hosts status:","FORBIDDEN")
+	stat("Sunder:", "[100-sunder]% armor left")
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
@@ -283,15 +287,15 @@
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
-	if(incapacitated() || lying_angle || buckled)
-		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+	if(incapacitated() || lying_angle)
+		to_chat(src, span_warning("We cannot do this in our current state."))
 		return 0
 	return 1
 
 ///A simple handler for checking your state. Will ignore if the xeno is lying down
 /mob/living/carbon/xenomorph/proc/check_concious_state()
-	if(incapacitated() || buckled)
-		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+	if(incapacitated())
+		to_chat(src, span_warning("We cannot do this in our current state."))
 		return FALSE
 	return TRUE
 
@@ -299,13 +303,13 @@
 /mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
 	if(stat)
 		if(!silent)
-			to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
+			to_chat(src, span_warning("We cannot do this in our current state."))
 		return FALSE
 
 	if(value)
 		if(plasma_stored < value)
 			if(!silent)
-				to_chat(src, "<span class='warning'>We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored.</span>")
+				to_chat(src, span_warning("We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored."))
 			return FALSE
 	return TRUE
 
@@ -346,18 +350,17 @@
 
 
 /mob/living/carbon/xenomorph/proc/update_progression()
-	if(upgrade_possible()) //upgrade possible
-		if(client && ckey) // pause for ssd/ghosted
-			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
-				if(upgrade_stored >= xeno_caste.upgrade_threshold)
-					if(health == maxHealth && !incapacitated() && !handcuffed)
-						upgrade_xeno(upgrade_next())
-				else
-					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
-					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-					var/upgrade_points = 1 + (stored_larva/6)
-					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
+	if(!upgrade_possible()) //upgrade possible
+		return
+	if(upgrade_stored >= xeno_caste.upgrade_threshold)
+		if(!incapacitated())
+			upgrade_xeno(upgrade_next())
+		return
+	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	var/upgrade_points = 1 + (stored_larva/6) + hive.get_upgrade_boost()
+	upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
 	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
@@ -370,11 +373,11 @@
 	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1))
+	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost()
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
-		to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")
+		to_chat(src, span_xenodanger("Our carapace crackles and our tendons strengthen. We are ready to evolve!"))
 		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
 
 
@@ -404,10 +407,9 @@
 	if(isliving(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		if(SEND_SIGNAL(src, COMSIG_XENO_LIVING_THROW_HIT, hit_atom) & COMPONENT_KEEP_THROWING)
 			return FALSE
-		set_throwing(FALSE) //Resert throwing since something was hit.
+		stop_throw() //Resert throwing since something was hit.
 		return TRUE
-	SEND_SIGNAL(src, COMSIG_XENO_NONE_THROW_HIT)
-	set_throwing(FALSE) //Resert throwing since something was hit.
+	stop_throw() //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
 
 /mob/living/carbon/xenomorph/proc/toggle_nightvision(new_lighting_alpha)
@@ -481,7 +483,7 @@
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
 		if(locate(/turf/closed/wall/resin) in loc)
-			to_chat(src, "<span class='warning'>We decide not to drop [F] after all.</span>")
+			to_chat(src, span_warning("We decide not to drop [F] after all."))
 			return
 
 	. = ..()
@@ -492,25 +494,25 @@
 	if(QDELETED(Q) || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
 		leader_aura_strength = 0
 		leader_current_aura = ""
-		to_chat(src, "<span class='xenowarning'>Our pheromones wane. The Queen is no longer granting us her pheromones.</span>")
+		to_chat(src, span_xenowarning("Our pheromones wane. The Queen is no longer granting us her pheromones."))
 	else
 		leader_aura_strength = Q.xeno_caste.aura_strength
 		leader_current_aura = Q.current_aura
-		to_chat(src, "<span class='xenowarning'>Our pheromones have changed. The Queen has new plans for the Hive.</span>")
+		to_chat(src, span_xenowarning("Our pheromones have changed. The Queen has new plans for the Hive."))
 
 
-/mob/living/carbon/xenomorph/proc/update_spits()
+/mob/living/carbon/xenomorph/proc/update_spits(skip_ammo_choice = FALSE)
 	if(!ammo && length(xeno_caste.spit_types))
 		ammo = GLOB.ammo_list[xeno_caste.spit_types[1]]
 	if(!ammo || !xeno_caste.spit_types || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
-	for(var/i in 1 to xeno_caste.spit_types.len)
-		var/datum/ammo/A = GLOB.ammo_list[xeno_caste.spit_types[i]]
-		if(ammo.icon_state == A.icon_state)
-			ammo = A
-			return
-	ammo = GLOB.ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
-	return
+	if(!skip_ammo_choice)
+		for(var/i in 1 to xeno_caste.spit_types.len)
+			var/datum/ammo/A = GLOB.ammo_list[xeno_caste.spit_types[i]]
+			if(ammo.icon_state == A.icon_state)
+				ammo = A
+				break
+	SEND_SIGNAL(src, COMSIG_XENO_AUTOFIREDELAY_MODIFIED, xeno_caste.spit_delay + ammo?.added_spit_delay)
 
 /mob/living/carbon/xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.
@@ -553,7 +555,7 @@
 	var/armor_block = run_armor_check(BODY_ZONE_CHEST, "acid")
 	var/damage = X.xeno_caste.acid_spray_damage_on_hit
 	INVOKE_ASYNC(src, .proc/apply_acid_spray_damage, damage, armor_block)
-	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
+	to_chat(src, span_xenodanger("\The [X] showers you in corrosive acid!"))
 
 /mob/living/carbon/proc/apply_acid_spray_damage(damage, armor_block)
 	apply_damage(damage, BURN, null, armor_block, updating_health = TRUE)
@@ -578,8 +580,7 @@
 		return
 	var/pipe = start_ventcrawl()
 	if(pipe)
-		handle_ventcrawl(pipe)
-
+		handle_ventcrawl(pipe, xeno_caste.vent_enter_speed, xeno_caste.silent_vent_crawl)
 
 /mob/living/carbon/xenomorph/verb/toggle_xeno_mobhud()
 	set name = "Toggle Xeno Status HUD"
@@ -592,32 +593,26 @@
 		H.add_hud_to(src)
 	else
 		H.remove_hud_from(src)
-	to_chat(src, "<span class='notice'>You have [xeno_mobhud ? "enabled" : "disabled"] the Xeno Status HUD.</span>")
+	to_chat(src, span_notice("You have [xeno_mobhud ? "enabled" : "disabled"] the Xeno Status HUD."))
 
 
-/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)
+/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
 	if(!C?.can_sting() || !toxin)
 		return FALSE
-	var/datum/reagent/body_tox
+	if(!do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
+		return FALSE
 	var/i = 1
-	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
+	to_chat(C, span_danger("You feel a tiny prick."))
+	to_chat(src, span_xenowarning("Our stinger injects our victim with [initial(toxin.name)]!"))
+	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
+	playsound(C, "alien_drool", 15, TRUE)
+	do
 		face_atom(C)
 		if(stagger)
 			return FALSE
-		body_tox = C.reagents.get_reagent(toxin)
-		if(CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
-			to_chat(src, "<span class='warning'>We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside.</span>")
-			return FALSE
 		do_attack_animation(C)
-		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-		playsound(C, "alien_drool", 15, TRUE)
 		C.reagents.add_reagent(toxin, transfer_amount)
-		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between stings.
-			body_tox = C.reagents.get_reagent(toxin)
-		to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
-		to_chat(src, "<span class='xenowarning'>Our stinger injects our victim with [body_tox.name]!</span>")
-		if(body_tox.volume > body_tox.overdose_threshold)
-			to_chat(src, "<span class='danger'>We sense the host is saturated with [body_tox.name].</span>")
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 
@@ -625,7 +620,7 @@
 	return FALSE
 
 /mob/living/carbon/human/can_sting()
-	if(species?.species_flags & IS_SYNTHETIC)
+	if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 		return FALSE
 	if(stat != DEAD)
 		return TRUE
@@ -667,10 +662,10 @@
 
 ///Eject the mob inside our belly, and putting it in a cocoon if needed
 /mob/living/carbon/xenomorph/proc/eject_victim(make_cocoon = FALSE, turf/eject_location = loc)
-	if(!LAZYLEN(stomach_contents))
+	if(!eaten_mob)
 		return
-	var/mob/living/carbon/victim = stomach_contents[1]
-	LAZYREMOVE(stomach_contents, victim)
+	var/mob/living/carbon/victim = eaten_mob
+	eaten_mob = null
 	if(make_cocoon)
 		ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 		if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
@@ -679,3 +674,19 @@
 		return
 	victim.forceMove(eject_location)
 	REMOVE_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
+
+///Set the var tracked to to_track
+/mob/living/carbon/xenomorph/proc/set_tracked(atom/to_track)
+	if(tracked)
+		UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
+	tracked = to_track
+	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, .proc/clean_tracked)
+
+///Signal handler to null tracked
+/mob/living/carbon/xenomorph/proc/clean_tracked(atom/to_track)
+	SIGNAL_HANDLER
+	tracked = null
+
+///Handles empowered abilities, should return TRUE if the ability should be empowered. Empowerable should be FALSE if the ability cannot itself be empowered but has interactions with empowerable abilities
+/mob/living/carbon/xenomorph/proc/empower(empowerable = TRUE)
+	return FALSE

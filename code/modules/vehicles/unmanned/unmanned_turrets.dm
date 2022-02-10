@@ -7,8 +7,16 @@
 	var/turret_type = TURRET_TYPE_LIGHT
 	///Ammo typepath we use when attached
 	var/ammo_type = /datum/ammo/bullet/smg
+	/// Amount of projectiles in this turret
+	var/current_rounds = 200
+	/// The max amount of projectiles in this turret
+	var/max_rounds = 200
 	///This var must match the unmanned vehicles turret_pattern then be added 
 	var/turret_pattern = PATTERN_TRACKED
+	/// The fire rate of this turret in byond tick
+	var/fire_delay = 5
+	///Typepath of the ammo to reload it.
+	var/magazine_type = /obj/item/ammo_magazine/box11x35mm
 
 
 /obj/item/uav_turret/heavy
@@ -16,6 +24,8 @@
 	icon_state = "heavy_cannon_obj"
 	turret_type = TURRET_TYPE_HEAVY
 	ammo_type = /datum/ammo/bullet/machinegun
+	fire_delay = 8
+	magazine_type = /obj/item/ammo_magazine/box12x40mm //I think this is the correct one?
 
 /obj/item/uav_turret/droid
 	name = "droid energetic cannon"
@@ -23,3 +33,5 @@
 	turret_pattern = PATTERN_DROID
 	turret_type = TURRET_TYPE_DROIDLASER
 	ammo_type = /datum/ammo/energy/droidblast
+	current_rounds = 300
+	max_rounds = 300

@@ -27,6 +27,9 @@
 /datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, user))
 		return
+	if(!text2path("[item_type]"))
+		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
+		return
 	var/obj/item/item = new item_type(master)
 	return item
 
@@ -67,6 +70,8 @@
 		if(!isitem(thing_in_content))
 			continue
 		item_representation_type = item2representation_type(thing_in_content.type)
+		if(item_representation_type == /datum/item_representation/storage) //Storage nested in storage tends to be erased by jatum, so just give the default content
+			item_representation_type = /datum/item_representation
 		contents += new item_representation_type(thing_in_content)
 
 /datum/item_representation/storage/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
@@ -92,7 +97,6 @@
 			storage.handle_item_insertion(item_to_insert)
 			continue
 		item_to_insert.forceMove(get_turf(user))
-
 
 /**
  * Allow to representate stacks of item of type /obj/item/stack
@@ -147,3 +151,29 @@
 	id.iff_signal = iff_signal
 	return id
 
+/datum/item_representation/boot
+	/// The item stored in the boot
+	var/datum/item_representation/boot_content
+
+/datum/item_representation/boot/New(obj/item/item_to_copy)
+	if(!item_to_copy)
+		return
+	if(!istype(item_to_copy, /obj/item/clothing/shoes/marine))
+		CRASH("/datum/item_representation/boot created from an item that is not a marine boot")
+	..()
+	var/obj/item/clothing/shoes/marine/marine_shoes = item_to_copy
+	for(var/atom/item_in_pocket AS in marine_shoes.pockets.contents)
+		var/item_representation_type = item2representation_type(item_in_pocket.type)
+		boot_content = new item_representation_type(item_in_pocket)
+
+/datum/item_representation/boot/instantiate_object(datum/loadout_seller/seller, master, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/clothing/shoes/marine/marine_shoes = .
+	marine_shoes.pockets.delete_contents()
+	var/obj/item/item_in_pocket = boot_content.instantiate_object(seller, master, user)
+	if(!item_in_pocket)
+		return
+	if(marine_shoes.pockets.can_be_inserted(item_in_pocket))
+		marine_shoes.pockets.handle_item_insertion(item_in_pocket)

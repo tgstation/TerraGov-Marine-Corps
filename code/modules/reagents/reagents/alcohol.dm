@@ -56,16 +56,16 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	if(istype(O,/obj/item/paper))
 		var/obj/item/paper/paperaffected = O
 		paperaffected.clearpaper()
-		to_chat(usr, "<span class='warning'>The [name] dissolves the ink on the paper.</span>")
+		to_chat(usr, span_warning("The [name] dissolves the ink on the paper."))
 	if(istype(O,/obj/item/book))
 		if(volume > 5)
 			var/obj/item/book/affectedbook = O
 			affectedbook.dat = null
-			to_chat(usr, "<span class='warning'>The [name] dissolves the ink on the book.</span>")
+			to_chat(usr, span_warning("The [name] dissolves the ink on the book."))
 		else
-			to_chat(usr, "<span class='warning'>[O]'s ink is smeared by [name], but doesn't wash away!</span>")
+			to_chat(usr, span_warning("[O]'s ink is smeared by [name], but doesn't wash away!"))
 
-/datum/reagent/consumable/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/consumable/ethanol/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(method in list(TOUCH, VAPOR, PATCH))
 		L.adjust_fire_stacks(round(volume * 0.65))
@@ -287,7 +287,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 				var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 				if(istype(E))
 					if(H.species.species_flags ~! NO_PAIN)
-						to_chat(H, "<span class='danger'>You clutch for a moment as you feel a scorching pain covering your abdomen!</span>")
+						to_chat(H, span_danger("You clutch for a moment as you feel a scorching pain covering your abdomen!"))
 						H.Stun(60)
 					E.take_damage(20)
 	return ..()

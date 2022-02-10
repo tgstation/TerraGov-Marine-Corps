@@ -43,13 +43,6 @@ export const GameSettings = (props, context) => {
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
-                label="Focus Chat"
-                value="focus_chat"
-                action="focus_chat"
-                leftLabel={'Enabled'}
-                rightLabel={'Disabled'}
-              />
-              <ToggleFieldPreference
                 label="Unique action behaviour"
                 value="unique_action_use_active_hand"
                 action="unique_action_use_active_hand"
@@ -83,6 +76,29 @@ export const GameSettings = (props, context) => {
                 action="tgui_lock"
                 leftLabel={'Free (default)'}
                 rightLabel={'Primary monitor'}
+              />
+              <ToggleFieldPreference
+                label="TGUI Input boxes"
+                value="tgui_input"
+                action="tgui_input"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="TGUI Input Buttons"
+                value="tgui_input_big_buttons"
+                action="tgui_input_big_buttons"
+                leftLabel={'Normal'}
+                leftValue={0}
+                rightLabel={'Large'}
+                rightValue={1}
+              />
+              <ToggleFieldPreference
+                label="TGUI Input Buttons placement"
+                value="tgui_input_buttons_swap"
+                action="tgui_input_buttons_swap"
+                leftLabel={'Submit/Cancel'}
+                rightLabel={'Cancel/Submit'}
               />
               <ToggleFieldPreference
                 label="Tooltips"
@@ -149,18 +165,18 @@ export const GameSettings = (props, context) => {
                 label="Show self combat messages"
                 value="mute_self_combat_messages"
                 action="mute_self_combat_messages"
-                leftValue={1}
+                leftValue={0}
                 leftLabel={'Enabled'}
-                rightValue={0}
+                rightValue={1}
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
                 label="Show others combat messages"
                 value="mute_others_combat_messages"
                 action="mute_others_combat_messages"
-                leftValue={1}
+                leftValue={0}
                 leftLabel={'Enabled'}
-                rightValue={0}
+                rightValue={1}
                 rightLabel={'Disabled'}
               />
             </LabeledList>

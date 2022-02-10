@@ -3,7 +3,7 @@
 		return
 
 	if(new_type == /mob/new_player)
-		to_chat(usr, "<span class='warning'>Cannot convert into a new_player.</span>")
+		to_chat(usr, span_warning("Cannot convert into a new_player."))
 		return
 
 	var/mob/M
@@ -13,7 +13,7 @@
 		M = new new_type(loc)
 
 	if(!istype(M))
-		to_chat(usr, "<span class='warning'>Invalid typepath.</span>")
+		to_chat(usr, span_warning("Invalid typepath."))
 		qdel(M)
 		return
 
@@ -35,6 +35,14 @@
 
 	return M
 
+
+/mob/living/carbon/human/change_mob_type(new_type, turf/location, new_name, delete_old_mob, subspecies)
+	if(!ispath(new_type, /mob/living/carbon/human))
+		return ..()
+	var/mob/living/carbon/carbon_path = new_type
+	if(!subspecies)
+		subspecies = initial(carbon_path.species)
+	on_transformation(subspecies)
 
 /mob/new_player/change_mob_type(new_type, turf/location, new_name, delete_old_mob, subspecies)
 	return

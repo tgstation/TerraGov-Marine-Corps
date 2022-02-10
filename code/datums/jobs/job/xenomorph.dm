@@ -7,6 +7,7 @@
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_SHOW_OPEN_POSITIONS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 	job_points_needed  = 10 //Redefined via config.
+	faction = FACTION_XENO
 	html_description = {"
 		<b>Difficulty</b>: Variable<br /><br />
 		<b>You answer to the</b> acting Hive leader<br /><br />
@@ -27,10 +28,6 @@
 	if(length(GLOB.xeno_resin_silos))
 		return pick(GLOB.xeno_resin_silos)
 	return pick(GLOB.spawns_by_job[/datum/job/xenomorph])
-
-/datum/job/xenomorph/add_job_points(amount, origin = MARINE_SPAWN_ORIGIN)
-	. = ..()
-	SSblackbox.record_feedback("tally", "round_statistics", 0.125 * amount, origin)
 
 /datum/job/xenomorph/radio_help_message(mob/M)
 	. = ..()

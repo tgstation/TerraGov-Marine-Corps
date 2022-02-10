@@ -45,7 +45,7 @@
 		)
 
 	///Overlay effect to cut into the darkness and provide light.
-	var/obj/effect/overlay/light_visible/visible_mask
+	var/image/visible_mask
 	///Lazy list to track the turfs being affected by our light, to determine their visibility.
 	var/list/turf/affected_turfs
 	///Movable atom currently holding the light. Parent might be a flashlight, for example, but that might be held by a mob or something else.
@@ -63,7 +63,10 @@
 
 	. = ..()
 
-	visible_mask = new()
+	visible_mask = image('icons/effects/light_overlays/light_32.dmi', icon_state = "light")
+	visible_mask.plane = O_LIGHTING_VISUAL_PLANE
+	visible_mask.appearance_flags = RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM
+	visible_mask.alpha = 0
 	if(!isnull(_range))
 		movable_parent.set_light_range(_range)
 	set_range(parent, movable_parent.light_range)
@@ -109,14 +112,13 @@
 /datum/component/overlay_lighting/Destroy()
 	set_holder(null)
 	clean_old_turfs()
-	QDEL_NULL(visible_mask)
+	visible_mask = null
 	return ..()
 
 
 ///Clears the affected_turfs lazylist, removing from its contents the effects of being near the light.
 /datum/component/overlay_lighting/proc/clean_old_turfs()
-	for(var/t in affected_turfs)
-		var/turf/lit_turf = t
+	for(var/turf/lit_turf AS in affected_turfs)
 		lit_turf.dynamic_lumcount -= lum_power
 	affected_turfs = null
 
@@ -140,15 +142,15 @@
 
 ///Adds the luminosity and source for the afected movable atoms to keep track of their visibility.
 /datum/component/overlay_lighting/proc/add_dynamic_lumi(atom/movable/affected_movable)
-	LAZYSET(affected_movable.affected_dynamic_lights, src, lumcount_range + 1)
-	affected_movable.vis_contents += visible_mask
+	LAZYSET(affected_movable.affected_movable_lights, src, lumcount_range + 1)
+	affected_movable.underlays += visible_mask
 	affected_movable.update_dynamic_luminosity()
 
 
 ///Removes the luminosity and source for the afected movable atoms to keep track of their visibility.
 /datum/component/overlay_lighting/proc/remove_dynamic_lumi(atom/movable/affected_movable)
-	LAZYREMOVE(affected_movable.affected_dynamic_lights, src)
-	affected_movable.vis_contents -= visible_mask
+	LAZYREMOVE(affected_movable.affected_movable_lights, src)
+	affected_movable.underlays -= visible_mask
 	affected_movable.update_dynamic_luminosity()
 
 
@@ -198,6 +200,7 @@
 
 ///Called when parent changes loc.
 /datum/component/overlay_lighting/proc/on_parent_moved(atom/movable/source, OldLoc, Dir, Forced)
+	SIGNAL_HANDLER
 	check_holder()
 	if(!(overlay_lighting_flags & LIGHTING_ON) || !current_holder)
 		return
@@ -206,6 +209,7 @@
 
 ///Changes the range which the light reaches. 0 means no light, 6 is the maximum value.
 /datum/component/overlay_lighting/proc/set_range(atom/source, new_range)
+	SIGNAL_HANDLER
 	if(range == new_range)
 		return
 	if(range == 0)
@@ -213,6 +217,8 @@
 	range = clamp(CEILING(new_range, 0.5), 1, 6)
 	var/pixel_bounds = ((range - 1) * 64) + 32
 	lumcount_range = CEILING(range, 1)
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays -= visible_mask
 	visible_mask.icon = light_overlays["[pixel_bounds]"]
 	if(pixel_bounds == 32)
 		visible_mask.transform = null
@@ -221,24 +227,37 @@
 	var/matrix/transform = new
 	transform.Translate(-offset, -offset)
 	visible_mask.transform = transform
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays += visible_mask
 	if(overlay_lighting_flags & LIGHTING_ON)
 		make_luminosity_update()
 
 
 ///Changes the intensity/brightness of the light by altering the visual object's alpha.
 /datum/component/overlay_lighting/proc/set_power(atom/source, new_power)
+	SIGNAL_HANDLER
 	set_lum_power(new_power >= 0 ? 0.5 : -0.5)
 	set_alpha = min(230, (abs(new_power) * 120) + 30)
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays -= visible_mask
 	visible_mask.alpha = set_alpha
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays += visible_mask
 
 
 ///Changes the light's color, pretty straightforward.
 /datum/component/overlay_lighting/proc/set_color(atom/source, new_color)
+	SIGNAL_HANDLER
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays -= visible_mask
 	visible_mask.color = new_color
+	if(current_holder && overlay_lighting_flags & LIGHTING_ON)
+		current_holder.underlays += visible_mask
 
 
 ///Toggles the light on and off.
 /datum/component/overlay_lighting/proc/on_toggle(atom/source, new_value)
+	SIGNAL_HANDLER
 	if(new_value) //Truthy value input, turn on.
 		turn_on()
 		return

@@ -24,7 +24,7 @@
 		return
 	if(!user.client)
 		return
-	if (!map)
+	if(!map)
 		map = SSminimaps.fetch_minimap_object(targetted_zlevel, allowed_flags)
 	user.client.screen += map
 

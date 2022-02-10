@@ -1,5 +1,6 @@
 /obj/effect/ai_node/spawner
 	name = "AI spawner node"
+	invisibility = INVISIBILITY_OBSERVER
 	///typepath or list of typepaths for the spawner to pick from
 	var/spawntypes
 	///Amount of types to spawn for each squad created

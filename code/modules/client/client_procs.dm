@@ -1,8 +1,8 @@
 #define UPLOAD_LIMIT 1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN 10000000	//Restricts admin uploads to the server to 10MB
 
-#define MAX_RECOMMENDED_CLIENT 1557
-#define MIN_RECOMMENDED_CLIENT 1526
+#define MAX_RECOMMENDED_CLIENT 1575
+#define MIN_RECOMMENDED_CLIENT 1575
 #define REQUIRED_CLIENT_MAJOR 513
 #define REQUIRED_CLIENT_MINOR 1493
 
@@ -55,7 +55,7 @@
 				msg += " Administrators have been informed."
 				log_game("[key_name(src)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
 				message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
-			to_chat(src, "<span class='danger'>[msg]</span>")
+			to_chat(src, span_danger("[msg]"))
 			return
 	var/stl = CONFIG_GET(number/second_topic_limit)
 	if (!holder && stl)
@@ -67,18 +67,20 @@
 			topiclimiter[SECOND_COUNT] = 0
 		topiclimiter[SECOND_COUNT] += 1
 		if (topiclimiter[SECOND_COUNT] > stl)
-			to_chat(src, "<span class='danger'>Your previous action was ignored because you've done too many in a second</span>")
+			to_chat(src, span_danger("Your previous action was ignored because you've done too many in a second"))
 			return
 
 	if(tgui_Topic(href_list))
 		return
+	if(href_list["reload_tguipanel"])
+		nuke_chat()
 
 	//Logs all hrefs.
 	log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 
 	//byond bug ID:2256651
 	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
-		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
+		to_chat(src, span_danger("An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)"))
 		src << browse("...", "window=asset_cache_browser")
 		return
 	if (href_list["asset_cache_preload_data"])
@@ -184,10 +186,10 @@
 					matches += "ID ([computer_id])"
 				if(matches)
 					if(C)
-						message_admins("<span class='danger'><B>Notice: </B></span><span class='notice'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)].</span>")
+						message_admins(span_danger("<B>Notice: </B></span><span class='notice'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)]."))
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(C)].")
 					else
-						message_admins("<span class='danger'><B>Notice: </B></span><span class='notice'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)] (no longer logged in). </span>")
+						message_admins(span_danger("<B>Notice: </B></span><span class='notice'>[key_name_admin(src)] has the same [matches] as [key_name_admin(C)] (no longer logged in). "))
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(C)] (no longer logged in).")
 
 	if(GLOB.player_details[ckey])
@@ -212,9 +214,9 @@
 	tgui_panel.initialize()
 
 	if(byond_version < REQUIRED_CLIENT_MAJOR || (byond_build && byond_build < REQUIRED_CLIENT_MINOR))
-		//to_chat(src, "<span class='userdanger'>Your version of byond is severely out of date.</span>")
-		to_chat(src, "<span class='userdanger'>TGMC now requires the first stable [REQUIRED_CLIENT_MAJOR] build, please update your client to [REQUIRED_CLIENT_MAJOR].[MIN_RECOMMENDED_CLIENT].</span>")
-		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
+		//to_chat(src, span_userdanger("Your version of byond is severely out of date."))
+		to_chat(src, span_userdanger("TGMC now requires the first stable [REQUIRED_CLIENT_MAJOR] build, please update your client to [REQUIRED_CLIENT_MAJOR].[MIN_RECOMMENDED_CLIENT]."))
+		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
 		return
 
@@ -225,25 +227,29 @@
 		return
 
 	if(byond_build < MIN_RECOMMENDED_CLIENT)
-		to_chat(src, "<span class='userdanger'>Your version of byond has known client crash issues, it's recommended you update your version.</span>")
-		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
+		to_chat(src, span_userdanger("Your version of byond has known client crash issues, it's recommended you update your version."))
+		to_chat(src, span_danger("Please download a new version of byond. You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download 514.[MIN_RECOMMENDED_CLIENT]."))
+
+	if(byond_build < 1555)
+		to_chat(src, span_userdanger("Your version of byond might have rendering lag issues, it is recommended you update your version to above Byond version 1555 if you encounter them."))
+		to_chat(src, span_danger("You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
 
 	if(byond_build > MAX_RECOMMENDED_CLIENT)
-		to_chat(src, "<span class='userdanger'>Your version of byond is likely to be very buggy.</span>")
-		to_chat(src, "<span class='danger'>Please download a old version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
+		to_chat(src, span_userdanger("Your version of byond is likely to be very buggy."))
+		to_chat(src, span_danger("It is recommended you install an older version of byond. You can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download 514.[MAX_RECOMMENDED_CLIENT]."))
 
 	if(num2text(byond_build) in GLOB.blacklisted_builds)
 		log_access("Failed login: [key] - blacklisted byond version")
-		to_chat(src, "<span class='userdanger'>Your version of byond is blacklisted.</span>")
-		to_chat(src, "<span class='danger'>Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]].</span>")
-		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
+		to_chat(src, span_userdanger("Your version of byond is blacklisted."))
+		to_chat(src, span_danger("Byond build [byond_build] ([byond_version].[byond_build]) has been blacklisted for the following reason: [GLOB.blacklisted_builds[num2text(byond_build)]]."))
+		to_chat(src, span_danger("Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions."))
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
 		return
 
 	if(GLOB.custom_info)
 		to_chat(src, "<h1 class='alert'>Custom Information</h1>")
 		to_chat(src, "<h2 class='alert'>The following custom information has been set for this round:</h2>")
-		to_chat(src, "<span class='alert'>[GLOB.custom_info]</span>")
+		to_chat(src, span_alert("[GLOB.custom_info]"))
 		to_chat(src, "<br>")
 
 	connection_time = world.time
@@ -260,10 +266,10 @@
 		if(nnpa >= 0)
 			message_admins("New user: [key_name_admin(src)] is connecting here for the first time.")
 	else if(isnum(cached_player_age) && cached_player_age < nnpa)
-		message_admins("New user: [key_name_admin(src)] just connected with an age of [cached_player_age] day[(player_age == 1 ? "" : "s")]")
+		message_admins("New user: [key_name_admin(src)] just connected with a DB saved age of [cached_player_age] day[(player_age == 1 ? "" : "s")]")
 	if(CONFIG_GET(flag/use_account_age_for_jobs) && account_age >= 0)
 		player_age = account_age
-	if(account_age >= 0 && account_age < nnpa)
+	if(account_age >= 0 && account_age < CONFIG_GET(number/notify_new_account_age))
 		message_admins("[key_name_admin(src)] (IP: [address], ID: [computer_id]) is a new BYOND account [account_age] day[(account_age == 1 ? "" : "s")] old, created on [account_join_date].")
 
 
@@ -276,7 +282,7 @@
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
-		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
+		to_chat(src, span_info("You have unread updates in the changelog."))
 		if(CONFIG_GET(flag/aggressive_changelog))
 			changes()
 		else
@@ -341,6 +347,9 @@
 //////////////////
 /client/Del()
 	if(!gc_destroyed)
+		// Yes this is the same as what's found in qdel(). Yes it does need to be here
+		// Get off my back
+		SEND_SIGNAL(src, COMSIG_PARENT_QDELETING, TRUE)
 		Destroy()
 	return ..()
 
@@ -422,7 +431,7 @@
 				if(ab)
 					log_admin_private("[key_name(src)] is likely using the middle click aimbot exploit.")
 					message_admins("[ADMIN_TPMONTY(mob)] is likely using the middle click aimbot exploit.")
-			to_chat(src, "<span class='danger'>[msg]</span>")
+			to_chat(src, span_danger("[msg]"))
 			return
 
 	var/scl = CONFIG_GET(number/second_click_limit)
@@ -435,12 +444,8 @@
 			clicklimiter[SECOND_COUNT] = 0
 		clicklimiter[SECOND_COUNT] += 1+(!!ab)
 		if(clicklimiter[SECOND_COUNT] > scl)
-			to_chat(src, "<span class='danger'>Your previous click was ignored because you've done too many in a second</span>")
+			to_chat(src, span_danger("Your previous click was ignored because you've done too many in a second"))
 			return
-
-//Hijack for FC.
-	if(prefs.focus_chat)
-		winset(src, null, "input.focus=true")
 
 	return ..()
 
@@ -471,6 +476,12 @@
 		if (CONFIG_GET(flag/asset_simple_preload))
 			addtimer(CALLBACK(SSassets.transport, /datum/asset_transport.proc/send_assets_slow, src, SSassets.transport.preload), 5 SECONDS)
 
+#if (PRELOAD_RSC == 0)
+		for (var/name in GLOB.vox_sounds)
+			var/file = GLOB.vox_sounds[name]
+			Export("##action=load_rsc", file)
+			stoplag()
+#endif
 
 //Hook, override it to run code when dir changes
 //Like for /atoms, but clients are their own snowflake FUCK
@@ -541,16 +552,17 @@
 	if(!query_client_in_db.Execute())
 		qdel(query_client_in_db)
 		return
-
+	var/client_is_in_db = query_client_in_db.NextRow()
 	//If we aren't an admin, and the flag is set
 	if(CONFIG_GET(flag/panic_bunker) && !holder && !GLOB.deadmins[ckey])
 		var/living_recs = CONFIG_GET(number/panic_bunker_living)
 		//Relies on pref existing, but this proc is only called after that occurs, so we're fine.
 		var/minutes = get_exp_living(pure_numeric = TRUE)
-		if(minutes <= living_recs)
-			var/reject_message = "Failed Login: [key] - Account attempting to connect during panic bunker, but they do not have the required living time [minutes]/[living_recs]"
+		if((minutes < living_recs) || (!living_recs && !client_is_in_db))
+			var/reject_message = "Failed Login: [key] - [client_is_in_db ? "":"New "]Account attempting to connect during panic bunker, but\
+			[living_recs ? "they do not have the required living time [minutes]/[living_recs]": "was rejected"]"
 			log_access(reject_message)
-			message_admins("<span class='adminnotice'>[reject_message]</span>")
+			message_admins(span_adminnotice("[reject_message]"))
 			var/message = CONFIG_GET(string/panic_bunker_message)
 			message = replacetext(message, "%minutes%", living_recs)
 			to_chat(src, message)
@@ -558,14 +570,14 @@
 			var/list/panic_addr = CONFIG_GET(string/panic_server_address)
 			if(panic_addr && !connectiontopic_a["redirect"])
 				var/panic_name = CONFIG_GET(string/panic_server_name)
-				to_chat(src, "<span class='notice'>Sending you to [panic_name ? panic_name : panic_addr].</span>")
+				to_chat(src, span_notice("Sending you to [panic_name ? panic_name : panic_addr]."))
 				winset(src, null, "command=.options")
 				src << link("[panic_addr]?redirect=1")
 			qdel(query_client_in_db)
 			qdel(src)
 			return
 
-	if(!query_client_in_db.NextRow())
+	if(!client_is_in_db)
 		new_player = 1
 		account_join_date = findJoinDate()
 		var/datum/db_query/query_add_player = SSdbcore.NewQuery({"
@@ -703,7 +715,7 @@
 	if (oldcid)
 		if (!topic || !topic["token"] || !tokens[ckey] || topic["token"] != tokens[ckey])
 			if (!cidcheck_spoofckeys[ckey])
-				message_admins("<span class='adminnotice'>[key_name(src)] appears to have attempted to spoof a cid randomizer check.</span>")
+				message_admins(span_adminnotice("[key_name(src)] appears to have attempted to spoof a cid randomizer check."))
 				cidcheck_spoofckeys[ckey] = TRUE
 			cidcheck[ckey] = computer_id
 			tokens[ckey] = cid_check_reconnect()
@@ -719,11 +731,11 @@
 		if (oldcid != computer_id && computer_id != lastcid) //IT CHANGED!!!
 			cidcheck -= ckey //so they can try again after removing the cid randomizer.
 
-			to_chat(src, "<span class='userdanger'>Connection Error:</span>")
-			to_chat(src, "<span class='danger'>Invalid ComputerID(spoofed). Please remove the ComputerID spoofer from your byond installation and try again.</span>")
+			to_chat(src, span_userdanger("Connection Error:"))
+			to_chat(src, span_danger("Invalid ComputerID(spoofed). Please remove the ComputerID spoofer from your byond installation and try again."))
 
 			if (!cidcheck_failedckeys[ckey])
-				message_admins("<span class='adminnotice'>[key_name(src)] has been detected as using a cid randomizer. Connection rejected.</span>")
+				message_admins(span_adminnotice("[key_name(src)] has been detected as using a cid randomizer. Connection rejected."))
 				send2tgs_adminless_only("CidRandomizer", "[key_name(src)] has been detected as using a cid randomizer. Connection rejected.")
 				cidcheck_failedckeys[ckey] = TRUE
 				note_randomizer_user()
@@ -734,11 +746,11 @@
 			return TRUE
 		else
 			if (cidcheck_failedckeys[ckey])
-				message_admins("<span class='adminnotice'>[key_name_admin(src)] has been allowed to connect after showing they removed their cid randomizer</span>")
+				message_admins(span_adminnotice("[key_name_admin(src)] has been allowed to connect after showing they removed their cid randomizer"))
 				send2tgs_adminless_only("CidRandomizer", "[key_name(src)] has been allowed to connect after showing they removed their cid randomizer.")
 				cidcheck_failedckeys -= ckey
 			if (cidcheck_spoofckeys[ckey])
-				message_admins("<span class='adminnotice'>[key_name_admin(src)] has been allowed to connect after appearing to have attempted to spoof a cid randomizer check because it <i>appears</i> they aren't spoofing one this time</span>")
+				message_admins(span_adminnotice("[key_name_admin(src)] has been allowed to connect after appearing to have attempted to spoof a cid randomizer check because it <i>appears</i> they aren't spoofing one this time"))
 				cidcheck_spoofckeys -= ckey
 			cidcheck -= ckey
 	else if (computer_id != lastcid)
@@ -869,13 +881,13 @@ GLOBAL_VAR_INIT(automute_on, null)
 
 	if(mute)
 		if(GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
-			to_chat(src, "<span class='danger'>You have exceeded the spam filter. An auto-mute was applied.</span>")
+			to_chat(src, span_danger("You have exceeded the spam filter. An auto-mute was applied."))
 			create_message("note", ckey(key), "SYSTEM", "Automuted due to spam. Last message: '[last_message]'", null, null, FALSE, TRUE, null, FALSE, "Minor")
 			mute(src, mute_type, TRUE)
 		return TRUE
 
 	if(warning && GLOB.automute_on && !check_rights(R_ADMIN, FALSE))
-		to_chat(src, "<span class='danger'>You are nearing the spam filter limit.</span>")
+		to_chat(src, span_danger("You are nearing the spam filter limit."))
 
 /client/vv_edit_var(var_name, var_value)
 	switch(var_name)

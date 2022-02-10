@@ -34,10 +34,10 @@
 	if (M.stat != CONSCIOUS || !ishuman(M))
 		return
 	if (occupant)
-		to_chat(user, "<span class='boldnotice'>The scanner is already occupied!</span>")
+		to_chat(user, span_boldnotice("The scanner is already occupied!"))
 		return
 	if (M.abiotic())
-		to_chat(user, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
+		to_chat(user, span_boldnotice("Subject cannot have abiotic items on."))
 		return
 	M.forceMove(src)
 	occupant = M
@@ -91,14 +91,14 @@
 		return
 
 	else if(occupant)
-		to_chat(user, "<span class='warning'>The scanner is already occupied!</span>")
+		to_chat(user, span_warning("The scanner is already occupied!"))
 		return
 
 	var/obj/item/grab/G = I
 	if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
 		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
 		if(!C.bodybag_occupant)
-			to_chat(user, "<span class='warning'>The stasis bag is empty!</span>")
+			to_chat(user, span_warning("The stasis bag is empty!"))
 			return
 		M = C.bodybag_occupant
 		C.open()
@@ -110,7 +110,7 @@
 		return
 
 	if(M.abiotic())
-		to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
+		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 
 	M.forceMove(src)
@@ -119,6 +119,18 @@
 	for(var/obj/O in src)
 		O.forceMove(loc)
 
+/obj/machinery/bodyscanner/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(!occupant)
+		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		return
+	if(X.status_flags & INCORPOREAL || X.do_actions)
+		return
+	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
+	if(!do_after(X, 2 SECONDS))
+		return
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	go_out()	
 
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)
@@ -151,7 +163,6 @@
 		if(EXPLODE_HEAVY)
 			if (prob(50))
 				qdel(src)
-
 
 /obj/machinery/body_scanconsole
 	name = "Body Scanner Console"
@@ -215,7 +226,7 @@
 	if(!occupant)
 		return
 	if(!hasHUD(user,"medical"))
-		to_chat(user, "<span class='notice'>It contains: [occupant].</span>")
+		to_chat(user, span_notice("It contains: [occupant]."))
 		return
 	var/mob/living/carbon/human/H = occupant
 	for(var/datum/data/record/R in GLOB.datacore.medical) //Again, for consistency with other medical machines/devices

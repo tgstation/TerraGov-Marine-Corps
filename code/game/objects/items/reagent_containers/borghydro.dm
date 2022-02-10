@@ -30,7 +30,7 @@
 
 /obj/item/reagent_containers/borghypo/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
 
 /obj/item/reagent_containers/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg+
 	if(++charge_tick < recharge_time)
@@ -44,11 +44,11 @@
 		return
 
 	if(!reagent_volumes[reagent_ids[mode]])
-		to_chat(user, "<span class='warning'>The injector is empty.</span>")
+		to_chat(user, span_warning("The injector is empty."))
 		return
 
-	to_chat(user, "<span class='notice'> You inject [M] with the injector.</span>")
-	to_chat(M, "<span class='notice'> [user] injects you with the injector.</span>")
+	to_chat(user, span_notice(" You inject [M] with the injector."))
+	to_chat(M, span_notice(" [user] injects you with the injector."))
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 
 	reagents.reaction(M, INJECT)
@@ -56,15 +56,15 @@
 		var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
 		M.reagents.add_reagent(reagent_ids[mode], t)
 		reagent_volumes[reagent_ids[mode]] -= t
-		// to_chat(user, "<span class='notice'>[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>")
-		to_chat(user, "<span class='notice'> [t] units of <span class='warning'> [reagent_ids[mode]] <span class='notice'> injected for a total of <span class='warning'> [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]<span class='notice'>. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>")
+		// to_chat(user, span_notice("[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining."))
+		to_chat(user, span_notice(" [t] units of <span class='warning'> [reagent_ids[mode]] <span class='notice'> injected for a total of <span class='warning'> [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]<span class='notice'>. [reagent_volumes[reagent_ids[mode]]] units remaining."))
 
 /obj/item/reagent_containers/borghypo/attack_self(mob/user)
 	var/selection = tgui_input_list(user, "Please select a reagent:", "Reagent", reagent_ids)
 	if(!selection)
 		return
 	var/datum/reagent/R = GLOB.chemical_reagents_list[selection]
-	to_chat(user, "<span class='notice'> Synthesizer is now producing '[R.name]'.</span>")
+	to_chat(user, span_notice(" Synthesizer is now producing '[R.name]'."))
 	mode = reagent_ids.Find(selection)
 	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
 
@@ -76,4 +76,4 @@
 
 	var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
 
-	to_chat(user, "<span class='notice'>It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.</span>")
+	to_chat(user, span_notice("It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left."))

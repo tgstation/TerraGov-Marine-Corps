@@ -215,11 +215,6 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	openspeed = 4 //shorter open animation.
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock,
-	)
 
 /obj/machinery/door/airlock/mainship/security
 	name = "\improper Security Airlock"
@@ -291,6 +286,7 @@
 
 /obj/machinery/door/airlock/mainship/command/canterbury //For wall-smoothing
 	req_access = list(ACCESS_MARINE_DROPSHIP)
+	smoothing_groups = SMOOTH_CANTERBURY
 
 /obj/machinery/door/airlock/mainship/command/cic
 	name = "\improper Combat Information Center"
@@ -369,6 +365,17 @@
 
 /obj/machinery/door/airlock/mainship/secure/evac
 	name = "\improper Evacuation Airlock"
+
+/obj/machinery/door/airlock/mainship/secure/evac/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_EVACUATION_STARTED, .proc/force_open)
+
+///Force open that door
+/obj/machinery/door/airlock/mainship/secure/proc/force_open()
+	SIGNAL_HANDLER
+	unlock(TRUE)
+	INVOKE_ASYNC(src, .proc/open, TRUE)
+	lock(TRUE)
 
 /obj/machinery/door/airlock/mainship/secure/rebel/evac
 	name = "\improper Evacuation Airlock"
@@ -848,10 +855,12 @@
 	icon = 'icons/obj/doors/mainship/dropship1_side.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	id = "sh_dropship1"
 	openspeed = 4 //shorter open animation.
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
-	aiControlDisabled = TRUE
+
+/obj/machinery/door/airlock/canAIControl(mob/user)
+	return TRUE
 
 /obj/machinery/door/airlock/dropship_hatch/proc/lockdown()
 	unlock()
@@ -893,10 +902,12 @@
 	icon = 'icons/obj/doors/mainship/dropship1_pilot.dmi'
 	name = "\improper Cockpit"
 	req_access = list(ACCESS_MARINE_DROPSHIP)
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	no_panel = TRUE
 	not_weldable = TRUE
-	aiControlDisabled = TRUE
+
+/obj/machinery/door/airlock/hatch/cockpit/canAIControl(mob/user)
+	return TRUE
 
 /obj/machinery/door/airlock/hatch/cockpit/rebel
 	req_access = list(ACCESS_MARINE_DROPSHIP_REBEL)

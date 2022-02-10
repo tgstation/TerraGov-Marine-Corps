@@ -43,7 +43,7 @@ params
 		for(var/opt in options)
 			admin_specific_options += " <a href='byond://?src=[ref];adminapproval=[approval_id];option=[opt]'>\[[uppertext(opt)]\]</a>"
 		admin_specific_options += " Default: [uppertext(default_option)] (after [delay / 10] seconds)"
-		to_chat(C, "<span class='admin'><span class='prefix'>APPROVAL REQUEST:</span> <span class='message linkify'>[admin_message] | [admin_specific_options]</span></span>")
+		to_chat(C, span_admin("[span_prefix("APPROVAL REQUEST:")] <span class='message linkify'>[admin_message] | [admin_specific_options]</span>"))
 		window_flash(C)
 		if(admin_sound) // Additional send the sound if set
 			SEND_SOUND(C, admin_sound)

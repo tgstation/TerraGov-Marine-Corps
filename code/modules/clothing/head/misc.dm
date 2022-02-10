@@ -14,6 +14,7 @@
 	desc = "Smells nice."
 	item_state = "hairflower"
 	flags_armor_protection = NONE
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
@@ -240,10 +241,22 @@
 	anti_hug = 10 //Lel
 
 /obj/item/clothing/head/white_dress
-	name = "White Dress Hat"
-	desc = "The white dress hat for your dress uniform."
+	name = "Dress White Cap"
+	desc = "The dress white cap for your dress uniform."
 	icon_state = "white_dress" //with thanks to Baystation12
 	item_state = "white_dress" //with thanks to Baystation12
+
+/obj/item/clothing/head/garrisoncap
+	name = "Garrison Cap"
+	desc = "The garrison cap for your service uniform. It reminds you of a shur for the external female genitalia."
+	icon_state = "garrisoncap" //with thanks to Fitz 'Pancake' Sholl
+	item_state = "garrisoncap" //with thanks to Fitz 'Pancake' Sholl
+
+/obj/item/clothing/head/servicecap
+	name = "Service Cap"
+	desc = "The service cap for your service uniform. Technically, this is for officers, but the BX is full of these cap, so why not grab one?"
+	icon_state = "servicecap" //with thanks to Fitz 'Pancake' Sholl
+	item_state = "servicecap" //with thanks to Fitz 'Pancake' Sholl
 
 /obj/item/clothing/head/techpriest
 	name = "Techpriest hood"

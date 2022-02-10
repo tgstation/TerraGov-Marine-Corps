@@ -132,7 +132,7 @@
 			return
 		var/camera_location
 		var/turf/myturf = get_turf(src)
-		if(eyeobj.use_static != USE_STATIC_NONE)
+		if(eyeobj.use_static)
 			if((!length(z_lock) || (myturf.z in z_lock)) && GLOB.cameranet.checkTurfVis(myturf))
 				camera_location = myturf
 			else
@@ -175,12 +175,12 @@
 		return
 
 	if(!target.can_track(current_user))
-		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
+		to_chat(current_user, span_warning("Target is not near any active cameras."))
 		tracking_target = null
 		return
 
 	tracking_target = target
-	to_chat(current_user, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+	to_chat(current_user, span_notice("Now tracking [target.get_visible_name()] on camera."))
 	start_processing()
 
 
@@ -190,11 +190,11 @@
 
 	if(!tracking_target.can_track(current_user))
 		if(!cameraticks)
-			to_chat(current_user, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
+			to_chat(current_user, span_warning("Target is not near any active cameras. Attempting to reacquire..."))
 		cameraticks++
 		if(cameraticks > 9)
 			tracking_target = null
-			to_chat(current_user, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
+			to_chat(current_user, span_warning("Unable to reacquire, cancelling track..."))
 			return PROCESS_KILL
 	else
 		cameraticks = 0
@@ -240,10 +240,10 @@
 	var/turf/T = get_turf(target)
 	if(!T)
 		return
-	if(T.z != z && use_static != USE_STATIC_NONE)
+	if(T.z != z && use_static)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
-	forceMove(T)
-	if(use_static != USE_STATIC_NONE)
+	abstract_move(T)
+	if(use_static)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
 	if(visible_icon && eye_user.client)
 		eye_user.client.images -= user_image

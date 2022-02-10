@@ -122,10 +122,10 @@
 	if(human_user.incapacitated() || human_user.lying_angle)
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_JETPACK))
-		to_chat(human_user,"<span class='warning'>You cannot use the jetpack yet!</span>")
+		to_chat(human_user,span_warning("You cannot use the jetpack yet!"))
 		return
 	if(fuel_left < FUEL_USE)
-		to_chat(human_user,"<span class='warning'>The jetpack ran out of fuel!</span>")
+		to_chat(human_user,span_warning("The jetpack ran out of fuel!"))
 		return
 	INVOKE_ASYNC(src, .proc/use_jetpack, A, human_user)
 
@@ -142,6 +142,7 @@
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
 
 /obj/item/jetpack_marine/apply_custom(image/standing)
+	. = ..()
 	if(lit)
 		standing.overlays += image('icons/mob/back.dmi',src,"+jetpack_lit")
 
@@ -165,7 +166,7 @@
 		return ..()
 	var/obj/structure/reagent_dispensers/fueltank/FT = target
 	if(FT.reagents.total_volume == 0)
-		to_chat(user, "<span class='warning'>Out of fuel!</span>")
+		to_chat(user, span_warning("Out of fuel!"))
 		return
 
 	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
@@ -175,7 +176,7 @@
 	change_fuel_indicator()
 	update_icon()
 	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
-	to_chat(user, "<span class='notice'>You refill [src] with [target].</span>")
+	to_chat(user, span_notice("You refill [src] with [target]."))
 
 /obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -183,7 +184,7 @@
 		return
 	var/obj/item/ammo_magazine/flamer_tank/FT = I
 	if(FT.current_rounds == 0)
-		to_chat(user, "<span class='warning'>Out of fuel!</span>")
+		to_chat(user, span_warning("Out of fuel!"))
 		return
 
 	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
@@ -192,5 +193,5 @@
 	fuel_indicator = FUEL_INDICATOR_FULL
 	change_fuel_indicator()
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
+	to_chat(user, span_notice("You refill [src] with [I]."))
 	update_icon()

@@ -91,3 +91,5 @@
 
 	/// Can they interact with station electronics
 	var/has_unlimited_silicon_privilege = 0
+	///The faction this mob belongs to
+	var/faction = FACTION_NEUTRAL

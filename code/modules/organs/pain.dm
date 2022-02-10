@@ -31,28 +31,28 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 				else 					drop_r_hand()
 				i++
 			if(i) msg += ", [pick("fumbling with","struggling with","losing control of")] your [i < 2 ? "hand" : "hands"]"
-			to_chat(H, "<span class='warning'>[msg].</span>")
+			to_chat(H, span_warning("[msg]."))
 
 	if(burning)
 		switch(amount)
 			if(1 to 10)
-				msg = "<span class='warning'>Your [partname] burns.</span>"
+				msg = span_warning("Your [partname] burns.")
 			if(11 to 90)
 				flash_weak_pain()
-				msg = "<span class='danger'>Your [partname] burns badly!</span>"
+				msg = span_danger("Your [partname] burns badly!")
 			if(91 to INFINITY)
 				flash_pain()
-				msg = "<span class='highdanger'>OH GOD! Your [partname] is on fire!</span>"
+				msg = span_highdanger("OH GOD! Your [partname] is on fire!")
 	else
 		switch(amount)
 			if(1 to 10)
-				msg = "<span class='warning'>Your [partname] hurts.</span>"
+				msg = span_warning("Your [partname] hurts.")
 			if(11 to 90)
 				flash_weak_pain()
-				msg = "<span class='danger'>Your [partname] hurts badly.</span>"
+				msg = span_danger("Your [partname] hurts badly.")
 			if(91 to INFINITY)
 				flash_pain()
-				msg = "<span class='highdanger'>OH GOD! Your [partname] is hurting terribly!</span>"
+				msg = span_highdanger("OH GOD! Your [partname] is hurting terribly!")
 	if(msg && (msg != last_pain_message || prob(10)))
 		last_pain_message = msg
 		to_chat(src, msg)
@@ -71,8 +71,8 @@ mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 	if(analgesic)
 		return
 
-	var/msg = "<span class='danger'>[message]</span>"
-	if(flash_strength >= 1) msg = "<span class='highdanger'>[message]</span>"
+	var/msg = span_danger("[message]")
+	if(flash_strength >= 1) msg = span_highdanger("[message]")
 
 	// Anti message spam checks
 	if(msg && ((msg != last_pain_message) || (world.time >= next_pain_time)))

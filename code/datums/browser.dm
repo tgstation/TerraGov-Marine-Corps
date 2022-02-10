@@ -17,6 +17,7 @@
 
 /datum/browser/New(nuser, nwindow_id, ntitle = 0, nwidth = 0, nheight = 0, atom/nref = null)
 	user = nuser
+	RegisterSignal(user, COMSIG_PARENT_QDELETING, .proc/clean_browser)
 	window_id = nwindow_id
 	if(ntitle)
 		title = format_text(ntitle)
@@ -27,6 +28,14 @@
 	if(nref)
 		ref = nref
 
+///Signal handler to clean the user
+/datum/browser/proc/clean_browser()
+	SIGNAL_HANDLER
+	qdel(src)
+
+/datum/browser/Destroy(force, ...)
+	user = null
+	return ..()
 
 /datum/browser/proc/add_head_content(nhead_content)
 	head_content = nhead_content
@@ -102,7 +111,7 @@
 /datum/browser/proc/open(use_onclose = TRUE)
 	if(isnull(window_id))	//null check because this can potentially nuke goonchat
 		stack_trace("Browser [title] tried to open with a null ID")
-		to_chat(user, "<span class='userdanger'>The [title] browser you tried to open failed a sanity check! Please report this on github!</span>")
+		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on github!"))
 		return
 	var/window_size = ""
 	if(width && height)

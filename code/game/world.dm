@@ -100,6 +100,7 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
+	GLOB.world_mob_tag_log = "[GLOB.log_directory]/mob_tags.log"
 	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
 	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
 	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
@@ -115,6 +116,7 @@ GLOBAL_VAR(restart_counter)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_manifest_log)
 	start_log(GLOB.world_href_log)
+	start_log(GLOB.world_mob_tag_log)
 	start_log(GLOB.sql_error_log)
 	start_log(GLOB.world_telecomms_log)
 	start_log(GLOB.world_qdel_log)

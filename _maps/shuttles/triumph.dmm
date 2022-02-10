@@ -92,7 +92,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "at" = (
-/obj/item/radio/intercom/dropship{
+/obj/item/radio/intercom/dropship/triumph{
 	pixel_x = 21;
 	pixel_y = 16
 	},
@@ -182,7 +182,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/triumph)
 "aJ" = (
-/obj/item/radio/intercom/dropship,
+/obj/item/radio/intercom/dropship/triumph,
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin6"
 	},
@@ -196,7 +196,7 @@
 	},
 /area/shuttle/dropship/triumph)
 "aM" = (
-/obj/item/radio/intercom/dropship,
+/obj/item/radio/intercom/dropship/triumph,
 /turf/open/shuttle/dropship/seven,
 /area/shuttle/dropship/triumph)
 "aN" = (
@@ -333,7 +333,7 @@
 	},
 /area/shuttle/dropship/triumph)
 "bk" = (
-/obj/item/radio/intercom/dropship,
+/obj/item/radio/intercom/dropship/triumph,
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/triumph)
 "bl" = (

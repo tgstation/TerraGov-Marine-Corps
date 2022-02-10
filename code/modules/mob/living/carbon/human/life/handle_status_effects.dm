@@ -17,10 +17,10 @@
 	if(command_aura)
 		command_aura_tick--
 
-		if(command_aura_tick < 1)
+		if(command_aura_tick < 1 || IsMute()) //Null the command aura if we're muted or its duration is over
 			command_aura = null
 
-		if(stat == CONSCIOUS)
+		if(stat == CONSCIOUS) //Must be conscious
 			command_aura_strength = skills.getRating("leadership") - 1
 			var/command_aura_range = round(4 + command_aura_strength * 1)
 			for(var/mob/living/carbon/human/H in range(command_aura_range, src))

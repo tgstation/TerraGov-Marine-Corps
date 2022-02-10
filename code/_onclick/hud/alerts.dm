@@ -210,13 +210,12 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 		return
 	var/paramslist = params2list(params)
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
-		to_chat(usr, "<span class='boldnotice'>[name]</span> - <span class='info'>[desc]</span>")
+		to_chat(usr, span_boldnotice("[name]</span> - <span class='info'>[desc]"))
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)
 
 /obj/screen/alert/Destroy()
-	. = ..()
-	// nulling the obj references.
 	master = null
 	owner = null
+	return ..()

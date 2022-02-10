@@ -19,6 +19,10 @@
 	. = ..()
 	if(!ignore_weed_destruction)
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /// Destroy the alien effect when the weed it was on is destroyed
 /obj/effect/alien/proc/weed_removed()
@@ -35,9 +39,9 @@
 		return I.attack_obj(src, user)
 
 
-/obj/effect/alien/Crossed(atom/movable/O)
-	. = ..()
-	if(!QDELETED(src) && istype(O, /obj/vehicle/multitile/hitbox/cm_armored))
+/obj/effect/alien/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(istype(O, /obj/vehicle/multitile/hitbox/cm_armored))
 		tank_collision(O)
 
 /obj/effect/alien/flamer_fire_act()
@@ -71,7 +75,7 @@
 
 
 /obj/effect/alien/resin/attack_hand(mob/living/user)
-	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
+	to_chat(usr, span_warning("You scrape ineffectively at \the [src]."))
 	return TRUE
 
 
@@ -88,6 +92,36 @@
 
 	ignore_weed_destruction = TRUE
 
+/obj/effect/alien/resin/sticky/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/slow_down_crosser
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/effect/alien/resin/sticky/proc/slow_down_crosser(datum/source, atom/movable/crosser)
+	SIGNAL_HANDLER
+	if(crosser.throwing || crosser.buckled)
+		return
+
+	if(isvehicle(crosser))
+		var/obj/vehicle/vehicle = crosser
+		vehicle.last_move_time += slow_amt
+		return
+
+	if(!ishuman(crosser))
+		return
+
+	if(CHECK_MULTIPLE_BITFIELDS(crosser.flags_pass, HOVERING))
+		return
+
+	var/mob/living/carbon/human/victim = crosser
+
+	if(victim.lying_angle)
+		return
+
+	victim.next_move_slowdown += slow_amt
+
 /obj/effect/alien/resin/sticky/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
@@ -99,23 +133,6 @@
 		return
 
 	return ..()
-
-
-/obj/effect/alien/resin/sticky/Crossed(atom/movable/AM)
-	. = ..()
-	if(!ishuman(AM))
-		return
-
-	if(CHECK_MULTIPLE_BITFIELDS(AM.flags_pass, HOVERING))
-		return
-
-	var/mob/living/carbon/human/H = AM
-
-	if(H.lying_angle)
-		return
-
-	H.next_move_slowdown += slow_amt
-
 
 // Praetorian Sticky Resin spit uses this.
 /obj/effect/alien/resin/sticky/thin
@@ -133,34 +150,25 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
-	max_integrity = 50
+	max_integrity = 100
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_XENO_STRUCTURES
 	var/close_delay = 10 SECONDS
+	
 
-	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
 /obj/structure/mineral_door/resin/Initialize()
 	. = ..()
 
-	relativewall()
-	relativewall_neighbours()
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
 
-/obj/structure/mineral_door/resin/CanAllowThrough(atom/movable/mover, turf/target)
+/obj/structure/mineral_door/resin/Cross(atom/movable/mover, turf/target)
 	. = ..()
 	if(!. && isxeno(mover))
 		Open()
 		return TRUE
 
-
-/obj/structure/mineral_door/resin/attack_paw(mob/living/carbon/human/user)
-	if(user.a_intent == INTENT_HARM)
-		user.visible_message("<span class='xenowarning'>\The [user] claws at \the [src].</span>", \
-		"<span class='xenowarning'>You claw at \the [src].</span>")
-		playsound(loc, "alien_resin_break", 25)
-		take_damage(rand(40, 60))
-	else
-		return TryToSwitchState(user)
 
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	var/turf/cur_loc = M.loc
@@ -178,12 +186,12 @@
 		TryToSwitchState(X)
 		return TRUE
 
-	X.visible_message("<span class='warning'>\The [X] digs into \the [src] and begins ripping it down.</span>", \
-	"<span class='warning'>We dig into \the [src] and begin ripping it down.</span>", null, 5)
+	X.visible_message(span_warning("\The [X] digs into \the [src] and begins ripping it down."), \
+	span_warning("We dig into \the [src] and begin ripping it down."), null, 5)
 	playsound(src, "alien_resin_break", 25)
 	if(do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
-		X.visible_message("<span class='danger'>[X] rips down \the [src]!</span>", \
-		"<span class='danger'>We rip down \the [src]!</span>", null, 5)
+		X.visible_message(span_danger("[X] rips down \the [src]!"), \
+		span_danger("We rip down \the [src]!"), null, 5)
 		qdel(src)
 
 /obj/structure/mineral_door/resin/flamer_fire_act()
@@ -202,7 +210,7 @@
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
 	density = FALSE
-	opacity = FALSE
+	set_opacity(FALSE)
 	state = 1
 	update_icon()
 	addtimer(CALLBACK(src, .proc/Close), close_delay)
@@ -223,7 +231,7 @@
 /// Change the icon and density of the door
 /obj/structure/mineral_door/resin/proc/do_close()
 	density = TRUE
-	opacity = TRUE
+	set_opacity(TRUE)
 	state = 0
 	update_icon()
 	isSwitchingStates = 0
@@ -240,7 +248,6 @@
 	..()
 
 /obj/structure/mineral_door/resin/Destroy()
-	relativewall_neighbours()
 	var/turf/T
 	for(var/i in GLOB.cardinals)
 		T = get_step(loc, i)
@@ -271,257 +278,6 @@
 	max_integrity = 160
 	hardness = 2.0
 
-/*
-* Egg
-*/
-
-/obj/effect/alien/egg
-	desc = "It looks like a weird egg"
-	name = "egg"
-	icon_state = "Egg Growing"
-	density = FALSE
-	flags_atom = CRITICAL_ATOM
-	max_integrity = 80
-	var/obj/item/clothing/mask/facehugger/hugger = null
-	var/hugger_type = /obj/item/clothing/mask/facehugger/stasis
-	var/trigger_size = 1
-	var/list/egg_triggers = list()
-	var/status = EGG_GROWING
-	var/hivenumber = XENO_HIVE_NORMAL
-
-/obj/effect/alien/egg/prop //just useful as a map prop
-	icon_state = "Egg Opened"
-	status = EGG_BURST
-	trigger_size = 0
-
-/obj/effect/alien/egg/Initialize()
-	. = ..()
-	if(hugger_type)
-		hugger = new hugger_type(src)
-		hugger.hivenumber = hivenumber
-		if(!hugger.stasis)
-			hugger.go_idle(TRUE)
-	if(status == EGG_GROWING)
-		addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
-	else if(status == EGG_GROWN)
-		deploy_egg_triggers()
-
-/obj/effect/alien/egg/Destroy()
-	QDEL_LIST(egg_triggers)
-	return ..()
-
-/obj/effect/alien/egg/proc/transfer_to_hive(new_hivenumber)
-	if(hivenumber == new_hivenumber)
-		return
-	hivenumber = new_hivenumber
-	if(hugger)
-		hugger.hivenumber = new_hivenumber
-
-/obj/effect/alien/egg/proc/Grow()
-	if(status == EGG_GROWING)
-		update_status(EGG_GROWN)
-		deploy_egg_triggers()
-
-/obj/effect/alien/egg/proc/deploy_egg_triggers()
-	QDEL_LIST(egg_triggers)
-	var/list/turf/target_locations = filled_turfs(src, trigger_size, "circle", FALSE)
-	for(var/turf/trigger_location in target_locations)
-		egg_triggers += new /obj/effect/egg_trigger(trigger_location, src)
-
-/obj/effect/alien/egg/ex_act(severity)
-	Burst(TRUE)//any explosion destroys the egg.
-
-/obj/effect/alien/egg/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(M.status_flags & INCORPOREAL)
-		return FALSE
-
-	if(!istype(M))
-		return attack_hand(M)
-
-	if(!issamexenohive(M))
-		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		M.visible_message("<span class='xenowarning'>[M] crushes \the [src].","<span class='xenowarning'>We crush \the [src].")
-		Burst(TRUE)
-		return
-
-	switch(status)
-		if(EGG_BURST, EGG_DESTROYED)
-			if(M.xeno_caste.can_hold_eggs)
-				M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
-				"<span class='xenonotice'>We clear the hatched egg.</span>")
-				playsound(src.loc, "alien_resin_break", 25)
-				M.plasma_stored++
-				qdel(src)
-		if(EGG_GROWING)
-			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")
-		if(EGG_GROWN)
-			to_chat(M, "<span class='xenonotice'>We retrieve the child.</span>")
-			Burst(FALSE)
-
-/obj/effect/alien/egg/proc/Burst(kill = TRUE) //drops and kills the hugger if any is remaining
-	if(kill)
-		if(status != EGG_DESTROYED)
-			QDEL_NULL(hugger)
-			QDEL_LIST(egg_triggers)
-			update_status(EGG_DESTROYED)
-			flick("Egg Exploding", src)
-			playsound(src.loc, "sound/effects/alien_egg_burst.ogg", 25)
-	else
-		if(status in list(EGG_GROWN, EGG_GROWING))
-			update_status(EGG_BURSTING)
-			QDEL_LIST(egg_triggers)
-			flick("Egg Opening", src)
-			playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
-			addtimer(CALLBACK(src, .proc/unleash_hugger), 1 SECONDS)
-
-/obj/effect/alien/egg/proc/unleash_hugger()
-	if(status != EGG_DESTROYED && hugger)
-		status = EGG_BURST
-		hugger.forceMove(loc)
-		hugger.go_active(TRUE)
-		hugger = null
-
-/obj/effect/alien/egg/proc/update_status(new_stat)
-	if(new_stat)
-		status = new_stat
-		update_icon()
-
-/obj/effect/alien/egg/update_icon()
-	overlays.Cut()
-	if(hivenumber != XENO_HIVE_NORMAL && GLOB.hive_datums[hivenumber])
-		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
-		color = hive.color
-	else
-		color = null
-	switch(status)
-		if(EGG_DESTROYED)
-			icon_state = "Egg Exploded"
-			return
-		if(EGG_BURSTING || EGG_BURST)
-			icon_state = "Egg Opened"
-		if(EGG_GROWING)
-			icon_state = "Egg Growing"
-		if(EGG_GROWN)
-			icon_state = "Egg"
-	if(on_fire)
-		overlays += "alienegg_fire"
-
-/obj/effect/alien/egg/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(hugger_type == null)
-		return // This egg doesn't take huggers
-
-	if(istype(I, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/F = I
-		if(F.stat == DEAD)
-			to_chat(user, "<span class='xenowarning'>This child is dead.</span>")
-			return
-
-		if(status == EGG_DESTROYED)
-			to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
-			return
-
-		if(hugger)
-			to_chat(user, "<span class='xenowarning'>This one is occupied with a child.</span>")
-			return
-
-		visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
-		user.transferItemToLoc(F, src)
-		F.go_idle(TRUE)
-		hugger = F
-		update_status(EGG_GROWN)
-		deploy_egg_triggers()
-
-
-/obj/effect/alien/egg/deconstruct(disassembled = TRUE)
-	Burst(TRUE)
-	return ..()
-
-/obj/effect/alien/egg/flamer_fire_act() // gotta kill the egg + hugger
-	Burst(TRUE)
-
-/obj/effect/alien/egg/fire_act()
-	Burst(TRUE)
-
-/obj/effect/alien/egg/HasProximity(atom/movable/AM)
-	if((status != EGG_GROWN) || QDELETED(hugger) || !iscarbon(AM))
-		return FALSE
-	var/mob/living/carbon/C = AM
-	if(!C.can_be_facehugged(hugger))
-		return FALSE
-	Burst(FALSE)
-	return TRUE
-
-//The invisible traps around the egg to tell it there's a mob right next to it.
-/obj/effect/egg_trigger
-	name = "egg trigger"
-	icon = 'icons/effects/effects.dmi'
-	anchored = TRUE
-	mouse_opacity = 0
-	invisibility = INVISIBILITY_MAXIMUM
-	var/obj/effect/alien/egg/linked_egg
-
-/obj/effect/egg_trigger/Initialize(mapload, obj/effect/alien/egg/source_egg)
-	. = ..()
-	linked_egg = source_egg
-
-
-/obj/effect/egg_trigger/Crossed(atom/A)
-	. = ..()
-	if(!linked_egg) //something went very wrong
-		qdel(src)
-	else if(get_dist(src, linked_egg) != 1 || !isturf(linked_egg.loc)) //something went wrong
-		loc = linked_egg
-	else if(iscarbon(A))
-		var/mob/living/carbon/C = A
-		linked_egg.HasProximity(C)
-
-
-
-/obj/effect/alien/egg/gas
-	icon_state = "Egg"
-	hugger_type = null
-	trigger_size = 2
-	status = EGG_GROWN
-	///Holds a typepath for the gas particle to create
-	var/gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium
-	///Bonus size for certain gasses
-	var/gas_size_bonus = 0
-
-/obj/effect/alien/egg/gas/Burst(kill)
-	var/spread = EGG_GAS_DEFAULT_SPREAD
-	if(kill) // Kill is more violent
-		spread = EGG_GAS_KILL_SPREAD
-	spread += gas_size_bonus
-
-	QDEL_LIST(egg_triggers)
-	update_status(EGG_DESTROYED)
-	flick("Egg Exploding", src)
-	playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
-
-	var/datum/effect_system/smoke_spread/xeno/NS = new gas_type(src)
-	NS.set_up(spread, get_turf(src))
-	NS.start()
-
-/obj/effect/alien/egg/gas/HasProximity(atom/movable/AM)
-	if(issamexenohive(AM))
-		return FALSE
-	Burst(FALSE)
-	return TRUE
-
-/obj/effect/alien/egg/gas/attack_alien(mob/living/carbon/xenomorph/M, damage_amount = M.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(status != EGG_GROWN)
-		return ..()
-
-	if(!issamexenohive(M) || M.a_intent != INTENT_HELP)
-		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
-		M.visible_message("<span class='xenowarning'>[M] crushes \the [src].","<span class='xenowarning'>We crush \the [src].")
-		Burst(TRUE)
-		return
-
-	to_chat(M, "<span class='warning'>That egg is filled with gas and has no child to retrieve.</span>")
-
 /obj/item/resin_jelly
 	name = "resin jelly"
 	desc = "A foul, viscous resin jelly that doesnt seem to burn easily."
@@ -538,7 +294,7 @@
 		return attack_hand(X)
 	if(X.do_actions)
 		return
-	X.visible_message("<span class='notice'>[X] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
+	X.visible_message(span_notice("[X] starts to cover themselves in a foul substance..."), span_xenonotice("We begin to cover ourselves in a foul substance..."))
 	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_MEDICAL))
 		return
 	activate_jelly(X)
@@ -548,7 +304,7 @@
 		return
 	if(user.do_actions)
 		return
-	user.visible_message("<span class='notice'>[user] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
+	user.visible_message(span_notice("[user] starts to cover themselves in a foul substance..."), span_xenonotice("We begin to cover ourselves in a foul substance..."))
 	if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_MEDICAL))
 		return
 	activate_jelly(user)
@@ -557,19 +313,19 @@
 	if(!isxeno(user))
 		return TRUE
 	if(!isxeno(M))
-		to_chat(user, "<span class='xenonotice'>We cannot apply the [src] to this creature.</span>")
+		to_chat(user, span_xenonotice("We cannot apply the [src] to this creature."))
 		return FALSE
 	if(user.do_actions)
 		return FALSE
 	if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_MEDICAL))
 		return FALSE
-	user.visible_message("<span class='notice'>[user] smears a viscous substance on [M].</span>","<span class='xenonotice'>We carefully smear [src] onto [user].</span>")
+	user.visible_message(span_notice("[user] smears a viscous substance on [M]."),span_xenonotice("We carefully smear [src] onto [user]."))
 	activate_jelly(M)
 	user.temporarilyRemoveItemFromInventory(src)
 	return FALSE
 
 /obj/item/resin_jelly/proc/activate_jelly(mob/living/carbon/xenomorph/user)
-	user.visible_message("<span class='notice'>[user]'s chitin begins to gleam with an unseemly glow...</span>", "<span class='xenonotice'>We feel powerful as we are covered in [src]!</span>")
+	user.visible_message(span_notice("[user]'s chitin begins to gleam with an unseemly glow..."), span_xenonotice("We feel powerful as we are covered in [src]!"))
 	user.emote("roar")
 	user.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)
 	qdel(src)
@@ -587,5 +343,5 @@
 	var/mob/living/carbon/xenomorph/X = hit_atom
 	if(X.fire_resist_modifier <= -20)
 		return
-	X.visible_message("<span class='notice'>[X] is splattered with jelly!</span>")
+	X.visible_message(span_notice("[X] is splattered with jelly!"))
 	INVOKE_ASYNC(src, .proc/activate_jelly, X)

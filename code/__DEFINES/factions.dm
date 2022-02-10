@@ -2,6 +2,7 @@
 #define FACTION_TERRAGOV "TerraGov"
 #define FACTION_TERRAGOV_REBEL "TerraGov Rebel"
 #define FACTION_XENO "Xeno"
+#define FACTION_ZOMBIE "Zombie"
 #define FACTION_CLF "Colonial Liberation Force"
 #define FACTION_DEATHSQUAD "Deathsquad"
 #define FACTION_FREELANCERS "Freelancers"
@@ -16,6 +17,7 @@
 #define FACTION_HIVEBOT "Hivebot"
 #define FACTION_HOSTILE "Hostile"
 #define FACTION_PIRATE "Pirate"
+#define FACTION_VALHALLA "Valhalla"
 
 //Alignement are currently only used by req.
 ///Mob with a neutral alignement cannot be sold by anyone
@@ -62,4 +64,10 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_FREELANCERS = TGMC_LOYALIST_IFF,
 	FACTION_DEATHSQUAD = DEATHSQUAD_IFF,
 	FACTION_SOM = SON_OF_MARS_IFF,
+))
+
+//List of correspond factions to data hud
+GLOBAL_LIST_INIT(faction_to_data_hud, list(
+	FACTION_TERRAGOV = DATA_HUD_SQUAD_TERRAGOV,
+	FACTION_TERRAGOV_REBEL = DATA_HUD_SQUAD_REBEL,
 ))

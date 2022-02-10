@@ -1,14 +1,20 @@
 /obj/item/fulton_extraction_pack
 	name = "fulton extraction pack"
-	desc = "A balloon that can be used to extract equipment or personnel to a Fulton Recovery Beacon. Anything not bolted down can be moved. Link the pack to a beacon by using the pack in hand."
+	desc = "A balloon that can be used to extract equipment or personnel. Anything not bolted down can be moved."
 	icon = 'icons/obj/items/fulton.dmi'
 	icon_state = "extraction_pack"
 	w_class = WEIGHT_CLASS_NORMAL
 	tool_behaviour = TOOL_FULTON
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	///Reference to the balloon vis obj effect
 	var/atom/movable/vis_obj/fulton_baloon/baloon
 	var/obj/effect/fulton_extraction_holder/holder_obj
+	/// How many times you can use the fulton before it goes poof
+	var/uses = 3
+
+/obj/item/fulton_extraction_pack/examine(mob/user)
+	. = ..()
+	to_chat(user, "It has [uses] uses remaining.")
 
 
 /obj/item/fulton_extraction_pack/Initialize()
@@ -30,8 +36,12 @@
 	var/datum/export_report/export_report = spirited_away.supply_export(user.faction)
 	if(export_report)
 		SSpoints.export_history += export_report
-	user.visible_message("<span class='notice'>[user] finishes attaching [src] to [spirited_away] and activates it.</span>",\
-	"<span class='notice'>You attach the pack to [spirited_away] and activate it. This looks like it will yield [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"].</span>", null, 5)
+	user.visible_message(span_notice("[user] finishes attaching [src] to [spirited_away] and activates it."),\
+	span_notice("You attach the pack to [spirited_away] and activate it. This looks like it will yield [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"]."), null, 5)
+	uses--
+	if(uses < 1)
+		user.temporarilyRemoveItemFromInventory(src) //Removes the item without qdeling it, qdeling it this early will break the rest of the procs
+		moveToNullspace()
 
 	qdel(spirited_away)
 
@@ -40,21 +50,21 @@
 	if(user.do_actions)
 		return FALSE
 	if(active)
-		to_chat(user, "<span class='warning'>The fulton device is not yet ready to extract again. Wait a moment.</span>")
+		to_chat(user, span_warning("The fulton device is not yet ready to extract again. Wait a moment."))
 		return FALSE
-	user.visible_message("<span class='notice'>[user] starts attaching [src] to [spirited_away].</span>",\
-	"<span class='notice'>You start attaching the pack to [spirited_away]...</span>", null, 5)
+	user.visible_message(span_notice("[user] starts attaching [src] to [spirited_away]."),\
+	span_notice("You start attaching the pack to [spirited_away]..."), null, 5)
 	if(!do_after(user, 5 SECONDS, TRUE, spirited_away))
 		return FALSE
 	if(!isturf(spirited_away.loc))
-		to_chat(user, "<span class='warning'>The fulton device cannot extract [spirited_away]. Place it on the ground.</span>")
+		to_chat(user, span_warning("The fulton device cannot extract [spirited_away]. Place it on the ground."))
 		return FALSE
 	if(spirited_away.anchored)
-		to_chat(user, "<span class='warning'>[spirited_away] is anchored, it cannot be extracted!</span>")
+		to_chat(user, span_warning("[spirited_away] is anchored, it cannot be extracted!"))
 		return FALSE
 	var/area/bathhouse = get_area(spirited_away)
 	if(bathhouse.ceiling >= CEILING_METAL)
-		to_chat(user, "<span class='warning'>You cannot extract [spirited_away] while indoors!</span>")
+		to_chat(user, span_warning("You cannot extract [spirited_away] while indoors!"))
 		return FALSE
 	return TRUE
 
@@ -92,6 +102,8 @@
 	holder_obj.pixel_z = initial(pixel_z)
 	holder_obj.vis_contents -= baloon
 	baloon.icon_state = initial(baloon.icon_state)
+	if(uses < 1)
+		qdel(src)
 	active = FALSE
 
 
@@ -104,11 +116,11 @@
 //Overrides.
 /mob/living/carbon/xenomorph/fulton_act(mob/living/user, obj/item/I)
 	if(!SSpoints)
-		to_chat(user, "<span class='notice'>Failure to form link with destination target.</span>")
+		to_chat(user, span_notice("Failure to form link with destination target."))
 		return TRUE
 
 	if(stat != DEAD)
-		to_chat(user, "<span class='warning'>The extraction device buzzes, complaining. This one seems to be alive still.</span>")
+		to_chat(user, span_warning("The extraction device buzzes, complaining. This one seems to be alive still."))
 		return TRUE
 
 	var/obj/item/fulton_extraction_pack/ext_pack = I
@@ -117,10 +129,10 @@
 
 /mob/living/carbon/human/fulton_act(mob/living/user, obj/item/I)
 	if(!can_sell_human_body(src, user.faction))
-		to_chat(user, "<span class='notice'>High command is not interested in this target.</span>")
+		to_chat(user, span_notice("High command is not interested in this target."))
 		return TRUE
 	if(stat != DEAD)
-		to_chat(user, "<span class='warning'>The extraction device buzzes, complaining. This one seems to be alive still.</span>")
+		to_chat(user, span_warning("The extraction device buzzes, complaining. This one seems to be alive still."))
 		return TRUE
 	var/obj/item/fulton_extraction_pack/ext_pack = I
 	ext_pack.extract(src, user)
@@ -130,14 +142,14 @@
 /obj/structure/table/fulton_act(mob/living/user, obj/item/I)
 	if(!flipped)
 		return FALSE //Place it in.
-	to_chat(user, "<span class='warning'>Cannot extract [src].</span>")
+	to_chat(user, span_warning("Cannot extract [src]."))
 	return TRUE
 
 
 /obj/structure/closet/fulton_act(mob/living/user, obj/item/I)
 	if(opened)
 		return FALSE //Place it in.
-	to_chat(user, "<span class='warning'>Cannot extract [src].</span>")
+	to_chat(user, span_warning("Cannot extract [src]."))
 	return TRUE
 
 
@@ -146,11 +158,11 @@
 		return FALSE //Place it in.
 
 	if(!SSpoints)
-		to_chat(user, "<span class='warning'>Failure to form link with destination target.</span>")
+		to_chat(user, span_warning("Failure to form link with destination target."))
 		return TRUE
 
 	if(length(contents))
-		to_chat(user, "<span class='warning'>Maximum weight surpassed. Empty [src] in order to extract it.</span>")
+		to_chat(user, span_warning("Maximum weight surpassed. Empty [src] in order to extract it."))
 		return TRUE
 
 	var/obj/item/fulton_extraction_pack/ext_pack = I
@@ -177,27 +189,27 @@
 	if(!isturf(target.loc) || !ismovableatom(target))
 		return FALSE
 	if(active)
-		to_chat(user, "<span class='warning'>The fulton device is not yet ready to extract again. Wait a moment.</span>")
+		to_chat(user, span_warning("The fulton device is not yet ready to extract again. Wait a moment."))
 		return FALSE
 	. = TRUE
 	if(istype(target, /obj/structure/fulton_extraction_point))
 		if(linked_extraction_point && linked_extraction_point == target)
 			linked_extraction_point = null
-			to_chat(user, "<span class='notice'>Extraction point unlinked.</span>")
+			to_chat(user, span_notice("Extraction point unlinked."))
 		else
 			linked_extraction_point = target
-			to_chat(user, "<span class='notice'>Extraction point linked.</span>")
+			to_chat(user, span_notice("Extraction point linked."))
 		return
 	if(length(allowed_target_tags) && !(target.tag in allowed_target_tags))
 		return
 	if(must_be_used_outdoors)
 		var/area/target_area = get_area(target)
 		if(target_area.ceiling >= CEILING_METAL)
-			to_chat(user, "<span class='warning'>You cannot extract [target] while indoors!</span>")
+			to_chat(user, span_warning("You cannot extract [target] while indoors!"))
 			return
 	var/atom/movable/movable_target = target
 	if(care_about_anchored && movable_target.anchored)
-		to_chat(user, "<span class='warning'>[target] is anchored, it cannot be extracted!</span>")
+		to_chat(user, span_warning("[target] is anchored, it cannot be extracted!"))
 		return FALSE
 	if(do_after_time && (user.do_actions || !do_after(user, do_after_time, TRUE, target)))
 		return

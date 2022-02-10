@@ -48,7 +48,7 @@
 
 	//light stuff
 
-	///Light systems, both shouldn't be active at the same time.
+	///Light systems, only one of the three should be active at the same time.
 	var/light_system = STATIC_LIGHT
 	///Range of the light in tiles. Zero means no light.
 	var/light_range = 0
@@ -59,14 +59,25 @@
 	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
 	var/light_on = FALSE
 	///Our light source. Don't fuck with this directly unless you have a good reason!
-	var/tmp/datum/light_source/light
+	var/tmp/datum/dynamic_light_source/light
 	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
-	var/tmp/list/light_sources
+	var/tmp/list/hybrid_light_sources
 
 	///The config type to use for greyscaled sprites. Both this and greyscale_colors must be assigned to work.
 	var/greyscale_config
 	///A string of hex format colors to be used by greyscale sprites, ex: "#0054aa#badcff"
 	var/greyscale_colors
+
+	//Values should avoid being close to -16, 16, -48, 48 etc.
+	//Best keep them within 10 units of a multiple of 32, as when the light is closer to a wall, the probability
+	//that a shadow extends to opposite corners of the light mask square is increased, resulting in more shadow
+	//overlays.
+	///x offset for dynamic lights on this atom
+	var/light_pixel_x
+	///y offset for dynamic lights on this atom
+	var/light_pixel_y
+	///typepath for the lighting maskfor dynamic light sources
+	var/light_mask_type = null
 
 	// popup chat messages
 	/// Last name used to calculate a color for the chatmessage overlays
@@ -79,6 +90,11 @@
 	var/list/hud_possible
 	///Reference to atom being orbited
 	var/atom/orbit_target
+
+	///Whether this atom smooths with things around it, and what type of smoothing if any.
+	var/smoothing_behavior = NO_SMOOTHING
+	///Bitflags to mark the members of specific smoothing groups, in where they all smooth with each other.
+	var/smoothing_groups = NONE
 
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
@@ -156,12 +172,6 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	return !density
 
-/// Returns true or false to allow the mover to move out of the atom
-/atom/proc/CheckExit(atom/movable/mover, turf/target)
-	SHOULD_CALL_PARENT(TRUE)
-	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir) || (mover.status_flags & INCORPOREAL))
-		return TRUE
-	return FALSE
 
 // Convenience proc for reagents handling.
 /atom/proc/is_open_container()
@@ -226,7 +236,7 @@ directive is properly returned.
 	set category = "IC"
 
 	if(is_blind(src))
-		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
+		to_chat(src, span_notice("Something is there but you can't see it."))
 		return
 
 	face_atom(A)
@@ -266,14 +276,14 @@ directive is properly returned.
 					var/total_volume = 0
 					for(var/datum/reagent/R in reagents.reagent_list)
 						total_volume += R.volume
-					to_chat(user, "<span class='notice'>[total_volume] units of various reagents.</span>")
+					to_chat(user, span_notice("[total_volume] units of various reagents."))
 				else
 					to_chat(user, "<span class='notice'>Nothing.")
 			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
 				if(reagents.total_volume)
-					to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
+					to_chat(user, span_notice("It has [reagents.total_volume] unit\s left."))
 				else
-					to_chat(user, "<span class='warning'>It's empty.</span>")
+					to_chat(user, span_warning("It's empty."))
 			else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
 				if(isxeno(user))
 					return
@@ -289,15 +299,15 @@ directive is properly returned.
 			else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
 				var/obj/item/reagent_containers/C = src
 				if(!reagents.total_volume)
-					to_chat(user, "<span class='notice'>\The [src] is empty!</span>")
+					to_chat(user, span_notice("\The [src] is empty!"))
 				else if (reagents.total_volume<= C.volume*0.3)
-					to_chat(user, "<span class='notice'>\The [src] is almost empty!</span>")
+					to_chat(user, span_notice("\The [src] is almost empty!"))
 				else if (reagents.total_volume<= C.volume*0.6)
-					to_chat(user, "<span class='notice'>\The [src] is half full!</span>")
+					to_chat(user, span_notice("\The [src] is half full!"))
 				else if (reagents.total_volume<= C.volume*0.9)
-					to_chat(user, "<span class='notice'>\The [src] is almost full!</span>")
+					to_chat(user, span_notice("\The [src] is almost full!"))
 				else
-					to_chat(user, "<span class='notice'>\The [src] is full!</span>")
+					to_chat(user, span_notice("\The [src] is full!"))
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user)
 
@@ -359,6 +369,21 @@ directive is properly returned.
 /atom/proc/relaymove()
 	return
 
+/**
+ * A special case of relaymove() in which the person relaying the move may be "driving" this atom
+ *
+ * This is a special case for vehicles and ridden animals where the relayed movement may be handled
+ * by the riding component attached to this atom. Returns TRUE as long as there's nothing blocking
+ * the movement, or FALSE if the signal gets a reply that specifically blocks the movement
+ */
+/atom/proc/relaydrive(mob/living/user, direction)
+	return !(SEND_SIGNAL(src, COMSIG_RIDDEN_DRIVER_MOVE, user, direction) & COMPONENT_DRIVER_BLOCK_MOVE)
+
+/**
+ * React to being hit by an explosion
+ *
+ * Default behaviour is to call [contents_explosion][/atom/proc/contents_explosion] and send the [COMSIG_ATOM_EX_ACT] signal
+ */
 /atom/proc/ex_act(severity, epicenter_dist, impact_range)
 	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
 		contents_explosion(severity, epicenter_dist, impact_range)
@@ -418,6 +443,10 @@ directive is properly returned.
 			log_dsay(log_text)
 		if(LOG_OOC)
 			log_ooc(log_text)
+		if(LOG_XOOC)
+			log_xooc(log_text)
+		if(LOG_MOOC)
+			log_mooc(log_text)
 		if(LOG_ADMIN)
 			log_admin(log_text)
 		if(LOG_LOOC)
@@ -666,13 +695,18 @@ Proc for attack log creation, because really why not
 
 	update_greyscale()
 
-	if(light_system == STATIC_LIGHT && light_power && light_range)
+	if(light_system != MOVABLE_LIGHT && light_power && light_range)
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
-		if(isturf(loc) && opacity)
-			var/turf/T = loc
-			T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+		if(isturf(loc))
+			if(opacity)
+				var/turf/T = loc
+				T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+
+			if(smoothing_behavior)
+				smooth_self()
+				smooth_neighbors()
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -706,18 +740,32 @@ Proc for attack log creation, because really why not
 	.["Modify Filters"] = "?_src_=vars;[HrefToken()];filteredit=[REF(src)]"
 	.["Modify Greyscale Colors"] = "?_src_=vars;[HrefToken()];modify_greyscale=[REF(src)]"
 
-/atom/Entered(atom/movable/AM, atom/oldloc)
-	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, oldloc)
+/atom/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, arrived, old_loc, old_locs)
 
 
-/atom/Exit(atom/movable/AM, atom/newloc)
-	. = ..()
-	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, AM, newloc) & COMPONENT_ATOM_BLOCK_EXIT)
+/**
+ * An atom is attempting to exit this atom's contents
+ *
+ * Default behaviour is to send the [COMSIG_ATOM_EXIT]
+ */
+/atom/Exit(atom/movable/leaving, direction, list/knownblockers = list())
+	// Don't call `..()` here, otherwise `Uncross()` gets called.
+	// See the doc comment on `Uncross()` to learn why this is bad.
+	if(SEND_SIGNAL(src, COMSIG_ATOM_EXIT, leaving, direction, knownblockers) & COMPONENT_ATOM_BLOCK_EXIT)
+		for(var/atom/movable/thing AS in knownblockers)
+			var/signalreturn = SEND_SIGNAL(leaving, COMSIG_MOVABLE_PREBUMP_EXIT_MOVABLE, thing)
+			if(signalreturn & COMPONENT_MOVABLE_PREBUMP_STOPPED)
+				return FALSE
+			if(signalreturn & COMPONENT_MOVABLE_PREBUMP_PLOWED)
+				continue // no longer in the way
+			leaving.Bump(thing)
+			return FALSE
 		return FALSE
+	return TRUE
 
-
-/atom/Exited(atom/movable/AM, atom/newloc)
-	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, newloc)
+/atom/Exited(atom/movable/AM, direction)
+	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, direction)
 
 
 // Stacks and storage redefined procs.
@@ -738,7 +786,7 @@ Proc for attack log creation, because really why not
 /atom/proc/multitool_check_buffer(user, obj/item/I, silent = FALSE)
 	if(!istype(I, /obj/item/multitool))
 		if(user && !silent)
-			to_chat(user, "<span class='warning'>[I] has no data buffer!</span>")
+			to_chat(user, span_warning("[I] has no data buffer!"))
 		return FALSE
 	return TRUE
 
@@ -764,7 +812,7 @@ Proc for attack log creation, because really why not
 /atom/proc/fulton_act(mob/living/user, obj/item/I)
 	if(!isturf(loc))
 		return FALSE //Storage screens, worn containers, anything we want to be able to interact otherwise.
-	to_chat(user, "<span class='warning'>Cannot extract [src].</span>")
+	to_chat(user, span_warning("Cannot extract [src]."))
 	return TRUE
 
 ///This proc is called on atoms when they are loaded into a shuttle
@@ -827,23 +875,6 @@ Proc for attack log creation, because really why not
 	add_fingerprint(usr, "topic")
 
 
-/atom/vv_edit_var(var_name, var_value)
-	switch(var_name)
-		if("light_range")
-			set_light(l_range = var_value)
-			return TRUE
-
-		if("light_power")
-			set_light(l_power = var_value)
-			return TRUE
-
-		if("light_color")
-			set_light(l_color = var_value)
-			return TRUE
-
-	return ..()
-
-
 /atom/can_interact(mob/user)
 	. = ..()
 	if(!.)
@@ -879,7 +910,7 @@ Proc for attack log creation, because really why not
  * originated_turf: if not null, will check if the obj_turf is closer than distance_max to originated_turf, and the proc will return if not
  * distance_max: used to check if originated_turf is close to obj.loc
 */
-/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE)
+/atom/proc/turn_light(mob/user = null, toggle_on , cooldown = 1 SECONDS, sparks = FALSE, forced = FALSE, light_again = FALSE)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LIGHT) && !forced)
 		return STILL_ON_COOLDOWN
 	if(cooldown <= 0)
@@ -887,7 +918,7 @@ Proc for attack log creation, because really why not
 	TIMER_COOLDOWN_START(src, COOLDOWN_LIGHT, cooldown)
 	if(toggle_on == light_on)
 		return NO_LIGHT_STATE_CHANGE
-	if(forced && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
+	if(light_again && !toggle_on) //Is true when turn light is called by nightfall and the light is already on
 		addtimer(CALLBACK(src, .proc/reset_light), cooldown + 1)
 	if(sparks && light_on)
 		var/datum/effect_system/spark_spread/spark_system = new

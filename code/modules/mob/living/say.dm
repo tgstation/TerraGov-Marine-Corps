@@ -79,7 +79,7 @@ GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
 
 	if(ic_blocked)
 		//The filter warning message shows the sanitized message though.
-		to_chat(src, "<span class='warning'>That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span></span>")
+		to_chat(src, span_warning("That message contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[message]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return
 
@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
 		return
 
 	if(!can_speak_vocal(message))
-		to_chat(src, "<span class='warning'>You find yourself unable to speak!</span>")
+		to_chat(src, span_warning("You find yourself unable to speak!"))
 		return
 
 	var/message_range = 7
@@ -179,18 +179,25 @@ GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
 
 	var/deaf_message
 	var/deaf_type
+	var/avoid_highlight
+	if(istype(speaker, /atom/movable/virtualspeaker))
+		var/atom/movable/virtualspeaker/virt = speaker
+		avoid_highlight = src == virt.source
+	else
+		avoid_highlight = src == speaker
+
 	if(speaker != src)
 		if(!radio_freq) //These checks have to be seperate, else people talking on the radio will make "You can't hear yourself!" appear when hearing people over the radio while deaf.
-			deaf_message = "<span class='name'>[speaker]</span> [speaker.verb_say] something but you cannot hear [speaker.p_them()]."
+			deaf_message = "[span_name("[speaker]")] [speaker.verb_say] something but you cannot hear [speaker.p_them()]."
 			deaf_type = 1
 	else
-		deaf_message = "<span class='notice'>You can't hear yourself!</span>"
+		deaf_message = span_notice("You can't hear yourself!")
 		deaf_type = 2 // Since you should be able to hear yourself without looking
 
 	// Recompose message for AI hrefs, language incomprehension.
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
 	message = hear_intercept(message, speaker, message_language, raw_message, radio_freq, spans, message_mode)
-	show_message(message, 2, deaf_message, deaf_type)
+	show_message(message, 2, deaf_message, deaf_type, avoid_highlight)
 	return message
 
 
@@ -335,6 +342,7 @@ GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
 	say("#[message]", bubble_type, spans, sanitize, language, ignore_spam, forced)
 
 
+///Returns false by default
 /mob/proc/binarycheck()
 	return FALSE
 
@@ -347,7 +355,7 @@ GLOBAL_LIST_INIT(department_radio_keys_rebel, list(
 /mob/living/proc/can_speak_basic(message, ignore_spam = FALSE) //Check BEFORE handling of xeno and ling channels
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "<span class='danger'>You cannot speak in IC (muted).</span>")
+			to_chat(src, span_danger("You cannot speak in IC (muted)."))
 			return FALSE
 		if(!ignore_spam && client.handle_spam_prevention(message, MUTE_IC))
 			return FALSE

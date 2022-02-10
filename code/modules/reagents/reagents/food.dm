@@ -11,7 +11,6 @@
 	var/nutriment_factor = 1
 	var/adj_temp = 0
 	var/targ_temp = BODYTEMP_NORMAL
-	taste_description = "generic food"
 
 /datum/reagent/consumable/on_mob_life(mob/living/L, metabolism)
 	current_cycle++
@@ -28,7 +27,6 @@
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
 	nutriment_factor = 15
 	color = "#664330" // rgb: 102, 67, 48
-
 	var/brute_heal = 1
 	var/burn_heal = 0
 	var/blood_gain = 0.4
@@ -47,6 +45,7 @@
 	// taste data can sometimes be ("salt" = 3, "chips" = 1)
 	// and we want it to be in the form ("salt" = 0.75, "chips" = 0.25)
 	// which is called "normalizing"
+
 	if(!supplied_data)
 		supplied_data = data
 
@@ -76,6 +75,7 @@
 	counterlist_normalise(taste_amounts)
 
 	data = taste_amounts
+
 
 /datum/reagent/consumable/sugar
 	name = "Sugar"
@@ -118,7 +118,7 @@
 	taste_multi = 1.5
 	targ_temp = BODYTEMP_NORMAL + 15
 	adj_temp = 5
-	var/discomfort_message = "<span class='danger'>Your insides feel uncomfortably hot!</span>"
+	var/discomfort_message = span_danger("Your insides feel uncomfortably hot!")
 	var/agony_start = 20
 	var/agony_amount = 2
 
@@ -148,11 +148,11 @@
 	taste_description = "scorching agony"
 	taste_multi = 10
 	targ_temp = BODYTEMP_HEAT_DAMAGE_LIMIT_ONE + 5
-	discomfort_message = "<span class='danger'>You feel like your insides are burning!</span>"
+	discomfort_message = span_danger("You feel like your insides are burning!")
 	agony_start = 3
 	agony_amount = 4
 
-/datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/L, method = TOUCH, volume, metabolism, show_message = TRUE, touch_protection = 0)
+/datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/L, method = TOUCH, volume, show_message = TRUE, touch_protection = 0)
 	. = ..()
 	if(!(method in list(TOUCH, VAPOR)) || !ishuman(L))
 		return
@@ -180,11 +180,11 @@
 			safe_thing = victim.glasses
 	if( eyes_covered && mouth_covered )
 		if(show_message)
-			to_chat(victim, "<span class='danger'>Your [safe_thing.name] protects you from the pepperspray!</span>")
+			to_chat(victim, span_danger("Your [safe_thing.name] protects you from the pepperspray!"))
 		return
 	else if( mouth_covered )	// Reduced effects if partially protected
 		if(show_message)
-			to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
+			to_chat(victim, span_danger("Your [safe_thing] protect your face from the pepperspray!"))
 		victim.blur_eyes(15)
 		victim.blind_eyes(5)
 		victim.Stun(10 SECONDS)
@@ -194,7 +194,7 @@
 		return
 	else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
 		if(show_message)
-			to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
+			to_chat(victim, span_danger("Your [safe_thing] protects you from most of the pepperspray!"))
 		if(!(victim.species && (victim.species.species_flags & NO_PAIN)))
 			if(prob(10))
 				victim.Stun(20)
@@ -205,7 +205,7 @@
 			if(prob(10))
 				victim.emote("scream")
 		if(show_message)
-			to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
+			to_chat(victim, span_danger("You're sprayed directly in the eyes with pepperspray!"))
 		victim.blur_eyes(25)
 		victim.blind_eyes(10)
 		victim.Stun(10 SECONDS)

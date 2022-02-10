@@ -1,9 +1,15 @@
+///Should return a /datum/export_report if overriden
 /atom/movable/proc/supply_export(faction_selling)
 	return 0
 
+/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req/supply_export(faction_selling)
+	SSpoints.supply_points[faction_selling] += 1
+	return new /datum/export_report(1, name, faction_selling)
 
 /mob/living/carbon/xenomorph/supply_export(faction_selling)
 	switch(tier)
+		if(XENO_TIER_MINION)
+			. = 5
 		if(XENO_TIER_ZERO)
 			. = 15
 		if(XENO_TIER_ONE)

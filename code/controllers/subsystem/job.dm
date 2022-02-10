@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(job)
 	var/list/squads = list()			//List of potential squads.
 	///Assoc list of all joinable squads, categorised by faction
 	var/list/active_squads = list()
-	///assoc list of squad_name_string->squad_reference for easy lookup
+	///assoc list of squad_name_string->squad_reference for easy lookup, categorised in factions
 	var/list/squads_by_name = list()
 
 	var/list/unassigned = list()		//Players who need jobs.
@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(job)
 	var/list/all_jobs = subtypesof(/datum/job)
 	var/list/all_squads = subtypesof(/datum/squad)
 	if(!length(all_jobs))
-		to_chat(world, "<span class='boldnotice'>Error setting up jobs, no job datums found</span>")
+		to_chat(world, span_boldnotice("Error setting up jobs, no job datums found"))
 		return FALSE
 
 	for(var/J in all_jobs)
@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(job)
 		if(!squad)
 			continue
 		squads[squad.id] = squad
-		squads_by_name[squad.name] = squad
+		LAZYSET(squads_by_name[squad.faction], squad.name, squad)
 	return TRUE
 
 

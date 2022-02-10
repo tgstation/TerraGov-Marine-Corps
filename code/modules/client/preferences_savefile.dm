@@ -4,7 +4,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 43
+#define SAVEFILE_VERSION_MAX 44
 
 /datum/preferences/proc/savefile_needs_update(savefile/S)
 	var/savefile_version
@@ -26,9 +26,9 @@
 
 /datum/preferences/proc/update_preferences(current_version, savefile/S)
 	if(current_version < 39)
-		key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
+		key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key)
 		parent.update_movement_keys(src)
-		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [!focus_chat ? "Hotkey" : "Classic"] mode</span>")
+		to_chat(parent, span_userdanger("Empty keybindings, setting to default"))
 
 	// Add missing keybindings for T L O M for when they were removed as defaults
 	if(current_version < 42)
@@ -45,13 +45,13 @@
 			if(!(kb_path in key_bindings[key]))
 				key_bindings[key] += list(kb_path)
 
-		to_chat(parent, "<span class='userdanger'>Forced keybindings for say (T), me (M), ooc (O), looc (L) have been applied.</span>")
+		to_chat(parent, span_userdanger("Forced keybindings for say (T), me (M), ooc (O), looc (L) have been applied."))
 
 	// Reset the xeno crit health alerts to default
 	if(current_version < 43)
 		WRITE_FILE(S["mute_xeno_health_alert_messages"], TRUE)
 		mute_xeno_health_alert_messages = TRUE
-		to_chat(parent, "<span class='userdanger'>Preferences for Mute xeno health alert messages have been reverted to default settings; these are now muted. Go into Preferences and set Mute xeno health alert messages to No if you wish to get xeno critical health alerts.</span>")
+		to_chat(parent, span_userdanger("Preferences for Mute xeno health alert messages have been reverted to default settings; these are now muted. Go into Preferences and set Mute xeno health alert messages to No if you wish to get xeno critical health alerts."))
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -80,7 +80,14 @@
 		WRITE_FILE(S["max_chat_length"], max_chat_length)
 		WRITE_FILE(S["see_chat_non_mob"], see_chat_non_mob)
 
+	if(savefile_version == 43)
+		var/datum/loadout_manager/manager = load_loadout_manager()
+		if(istype(manager))
+			loadout_manager.loadouts_data = convert_loadouts_list(manager?.loadouts_data)
+
+
 	savefile_version = SAVEFILE_VERSION_MAX
+	save_preferences()
 	return TRUE
 
 
@@ -139,8 +146,6 @@
 	READ_FILE(S["ghost_orbit"], ghost_orbit)
 	READ_FILE(S["ghost_form"], ghost_form)
 	READ_FILE(S["ghost_others"], ghost_others)
-	READ_FILE(S["observer_actions"], observer_actions)
-	READ_FILE(S["focus_chat"], focus_chat)
 	READ_FILE(S["clientfps"], clientfps)
 	READ_FILE(S["parallax"], parallax)
 	READ_FILE(S["tooltips"], tooltips)
@@ -186,8 +191,6 @@
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
-	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
-	focus_chat		= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	clientfps		= sanitize_integer(clientfps, 0, 240, initial(clientfps))
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
@@ -219,7 +222,7 @@
 	try
 		WRITE_FILE(S["savefile_write_test"], "lebowskilebowski")
 	catch
-		to_chat(parent, "<span class='warning'>Writing to the savefile failed, please try again.</span>")
+		to_chat(parent, span_warning("Writing to the savefile failed, please try again."))
 		return FALSE
 
 	WRITE_FILE(S["version"], savefile_version)
@@ -248,8 +251,6 @@
 	ghost_orbit		= sanitize_inlist(ghost_orbit, GLOB.ghost_orbits, initial(ghost_orbit))
 	ghost_form		= sanitize_inlist_assoc(ghost_form, GLOB.ghost_forms, initial(ghost_form))
 	ghost_others	= sanitize_inlist(ghost_others, GLOB.ghost_others_options, initial(ghost_others))
-	observer_actions= sanitize_integer(observer_actions, FALSE, TRUE, initial(observer_actions))
-	focus_chat		= sanitize_integer(focus_chat, FALSE, TRUE, initial(focus_chat))
 	clientfps		= sanitize_integer(clientfps, 0, 240, initial(clientfps))
 	parallax = sanitize_integer(parallax, PARALLAX_INSANE, PARALLAX_DISABLE, null)
 	tooltips		= sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
@@ -289,8 +290,6 @@
 	WRITE_FILE(S["ghost_orbit"], ghost_orbit)
 	WRITE_FILE(S["ghost_form"], ghost_form)
 	WRITE_FILE(S["ghost_others"], ghost_others)
-	WRITE_FILE(S["observer_actions"], observer_actions)
-	WRITE_FILE(S["focus_chat"], focus_chat)
 	WRITE_FILE(S["clientfps"], clientfps)
 	WRITE_FILE(S["parallax"], parallax)
 	WRITE_FILE(S["tooltips"], tooltips)
@@ -401,7 +400,7 @@
 
 	real_name		= reject_bad_name(real_name, TRUE)
 	random_name		= sanitize_integer(random_name, TRUE, TRUE, initial(random_name))
-	gender			= sanitize_gender(gender)
+	gender			= sanitize_gender(gender, TRUE, TRUE)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species			= sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity		= sanitize_ethnicity(ethnicity)
@@ -472,7 +471,7 @@
 	try
 		WRITE_FILE(S["savefile_write_test"], "lebowskilebowski")
 	catch
-		to_chat(parent, "<span class='warning'>Writing to the savefile failed, please try again.</span>")
+		to_chat(parent, span_warning("Writing to the savefile failed, please try again."))
 		return FALSE
 
 	be_special		= sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
@@ -484,7 +483,7 @@
 
 	real_name		= reject_bad_name(real_name, TRUE)
 	random_name		= sanitize_integer(random_name, FALSE, TRUE, initial(random_name))
-	gender			= sanitize_gender(gender)
+	gender			= sanitize_gender(gender, TRUE, TRUE)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	species			= sanitize_inlist(species, GLOB.all_species, initial(species))
 	ethnicity		= sanitize_ethnicity(ethnicity)
@@ -633,8 +632,8 @@
 	var/datum/loadout/loadout = jatum_deserialize(loadout_json)
 	return loadout
 
-///Serialize and save into a savefile the loadout manager
-/datum/preferences/proc/save_loadout_manager()
+///Save the loadout list
+/datum/preferences/proc/save_loadout_list(loadouts_data, loadout_version)
 	if(!path)
 		return FALSE
 	if(!fexists(path))
@@ -642,13 +641,33 @@
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		return FALSE
-	loadout_manager.loadout_vendor = null
-	var/json_loadout_manager = jatum_serialize(loadout_manager)
 	S.cd = "/loadouts"
-	WRITE_FILE(S["loadouts_manager"], json_loadout_manager)
+	loadouts_data = sanitize_islist(loadouts_data, list())
+	WRITE_FILE(S["loadouts_list"], loadouts_data)
+	WRITE_FILE(S["loadout_version"], loadout_version)
 	return TRUE
 
-///Load from a savefile and unserialize the loadout manager
+///Load the loadout list
+/datum/preferences/proc/load_loadout_list()
+	if(!path)
+		return FALSE
+	if(!fexists(path))
+		return FALSE
+	var/savefile/S = new /savefile(path)
+	if(!S)
+		return FALSE
+	S.cd = "/loadouts"
+	var/loadout_version = 0
+	READ_FILE(S["loadout_version"], loadout_version)
+
+	var/list/loadouts_data = list()
+	READ_FILE(S["loadouts_list"], loadouts_data)
+	return sanitize_islist(loadouts_data, list())
+
+/**
+ * Load from a savefile and unserialize the loadout manager
+ * This is deprecated and should be used only to convert old loadout list save system to new one
+ */
 /datum/preferences/proc/load_loadout_manager()
 	if(!path)
 		return FALSE
@@ -662,8 +681,9 @@
 	READ_FILE(S["loadouts_manager"], json_loadout_manager)
 	if(!json_loadout_manager)
 		return FALSE
-	loadout_manager = jatum_deserialize(json_loadout_manager)
-	return !isnull(loadout_manager)
+	var/datum/loadout_manager/manager = jatum_deserialize(json_loadout_manager)
+	return manager
+
 
 ///Erase all loadouts that could be saved on the savefile
 /datum/preferences/proc/reset_loadouts_file()

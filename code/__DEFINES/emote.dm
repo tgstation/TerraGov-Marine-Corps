@@ -6,3 +6,4 @@
 #define EMOTE_MUZZLE_IGNORE (1<<2) //Will only work if the emote is EMOTE_AUDIBLE
 #define EMOTE_RESTRAINT_CHECK (1<<3) //Checks if the mob is restrained before performing the emote
 #define NO_KEYBIND (1<<4) //This emote has no keybind
+#define EMOTE_ARMS_CHECK (1<<5) //Checks if the mob has arms

@@ -88,9 +88,23 @@
 //Multitile special cases.
 /obj/structure/Adjacent(atom/neighbor)
 	if(bound_width > 32 || bound_height > 32)
-		for(var/X in locs)
-			var/turf/T = X
-			if(T.Adjacent(neighbor, target = neighbor, mover = src))
+		for(var/turf/myloc AS in locs)
+			if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
+				return TRUE
+	else
+		if(neighbor == loc)
+			return TRUE
+		if(!isturf(loc))
+			return FALSE
+		if(loc.Adjacent(neighbor, neighbor, src))
+			return TRUE
+	return FALSE
+
+//Multitile special cases.
+/obj/vehicle/Adjacent(atom/neighbor)
+	if(bound_width > 32 || bound_height > 32)
+		for(var/turf/myloc AS in locs)
+			if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
 				return TRUE
 	else
 		if(neighbor == loc)
@@ -103,18 +117,16 @@
 
 
 /mob/living/silicon/decoy/Adjacent(atom/neighbor)
-	for(var/X in locs)
-		var/turf/T = X
-		if(T.Adjacent(neighbor, target = neighbor, mover = src))
+	for(var/turf/myloc AS in locs)
+		if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
 			return TRUE
 	return FALSE
 
 
 /obj/machinery/door/Adjacent(atom/neighbor)
 	if(bound_width > 32 || bound_height > 32)
-		for(var/X in locs)
-			var/turf/T = X
-			if(T.Adjacent(neighbor, target = neighbor, mover = src))
+		for(var/turf/myloc AS in locs)
+			if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
 				return TRUE
 	else
 		if(neighbor == loc)
@@ -151,18 +163,14 @@
 
 /obj/projectile/Adjacent(atom/neighbor) //Projectiles don't behave like regular items.
 	var/turf/T = get_turf(loc)
-	if(!T)
-		return FALSE
-	return T.Adjacent(neighbor, target = neighbor, mover = src)
+	return T?.Adjacent(neighbor, target = neighbor, mover = src)
 
 
-/obj/item/detpack/Adjacent(neighbor) //Snowflake detpacks.
+/obj/item/detpack/Adjacent(atom/neighbor) //Snowflake detpacks.
 	if(neighbor == loc)
 		return TRUE
 	var/turf/T = get_turf(loc)
-	if(!T)
-		return FALSE
-	return T.Adjacent(neighbor, target = neighbor, mover = src)
+	return T?.Adjacent(neighbor, target = neighbor, mover = src)
 
 
 /*

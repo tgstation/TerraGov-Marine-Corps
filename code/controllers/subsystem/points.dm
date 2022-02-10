@@ -92,7 +92,7 @@ SUBSYSTEM_DEF(points)
 		cost += SP.cost
 	if(cost > supply_points[user.faction])
 		return
-	var/obj/docking_port/mobile/supply_shuttle = SSshuttle.getShuttle("supply")
+	var/obj/docking_port/mobile/supply_shuttle = SSshuttle.getShuttle(SHUTTLE_SUPPLY)
 	if(length(shoppinglist[O.faction]) >= supply_shuttle.return_number_of_turfs())
 		return
 	requestlist -= "[O.id]"
@@ -102,14 +102,14 @@ SUBSYSTEM_DEF(points)
 	supply_points[user.faction] -= cost
 	LAZYADDASSOCSIMPLE(shoppinglist[O.faction], "[O.id]", O)
 	if(GLOB.directory[O.orderer])
-		to_chat(GLOB.directory[O.orderer], "<span class='notice'>Your request [O.id] has been approved!</span>")
+		to_chat(GLOB.directory[O.orderer], span_notice("Your request [O.id] has been approved!"))
 
 /datum/controller/subsystem/points/proc/deny_request(datum/supply_order/O)
 	requestlist -= "[O.id]"
 	deniedrequests["[O.id]"] = O
 	O.authorised_by = "denied"
 	if(GLOB.directory[O.orderer])
-		to_chat(GLOB.directory[O.orderer], "<span class='notice'>Your request [O.id] has been denied!</span>")
+		to_chat(GLOB.directory[O.orderer], span_notice("Your request [O.id] has been denied!"))
 
 /datum/controller/subsystem/points/proc/copy_order(datum/supply_order/O)
 	var/datum/supply_order/NO = new
@@ -174,6 +174,8 @@ SUBSYSTEM_DEF(points)
 /datum/controller/subsystem/points/proc/submit_request(mob/living/user, reason)
 	var/list/ckey_shopping_cart = request_shopping_cart[user.ckey]
 	if(!length(ckey_shopping_cart))
+		return
+	if(length(ckey_shopping_cart) > 20)
 		return
 	if(NON_ASCII_CHECK(reason))
 		return

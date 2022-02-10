@@ -23,7 +23,7 @@
 		if(istype(P, /obj/item/paper/carbon))
 			var/obj/item/paper/carbon/C = P
 			if(!C.iscopy && !C.copied)
-				to_chat(user, "<span class='notice'>Take off the carbon copy first.</span>")
+				to_chat(user, span_notice("Take off the carbon copy first."))
 				return
 
 		if(loc != user)
@@ -49,7 +49,7 @@
 		user.dropItemToGround(I)
 		for(var/obj/O in I)
 			attach_doc(O, user, TRUE)
-		to_chat(user, "<span class='notice'>You add \the [I] to [src].</span>")
+		to_chat(user, span_notice("You add \the [I] to [src]."))
 		qdel(I)
 
 	else if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/toy/crayon))
@@ -81,14 +81,14 @@
 				qdel(src)
 
 			else
-				to_chat(user, "<span class='warning'>You must hold \the [P] steady to burn \the [src].</span>")
+				to_chat(user, span_warning("You must hold \the [P] steady to burn \the [src]."))
 
 /obj/item/paper_bundle/examine(mob/user)
 	. = ..()
 	if(in_range(user, src))
 		src.attack_self(user)
 	else
-		to_chat(user, "<span class='notice'>It is too far away to read.</span>")
+		to_chat(user, span_notice("It is too far away to read."))
 
 /obj/item/paper_bundle/attack_self(mob/user as mob)
 	if(ishuman(user))
@@ -151,7 +151,7 @@
 		if(href_list["remove"])
 			var/obj/item/W = contents[page]
 			usr.put_in_hands(W)
-			to_chat(usr, "<span class='notice'>You remove the [W.name] from the bundle.</span>")
+			to_chat(usr, span_notice("You remove the [W.name] from the bundle."))
 			amount--
 			if(amount == 1)
 				var/obj/item/paper/P = contents[1]
@@ -170,7 +170,7 @@
 		src.attack_self(src.loc)
 		updateUsrDialog()
 	else
-		to_chat(usr, "<span class='notice'>You need to hold it in hands!</span>")
+		to_chat(usr, span_notice("You need to hold it in hands!"))
 
 /obj/item/paper_bundle/verb/rename()
 	set name = "Rename bundle"
@@ -186,7 +186,7 @@
 	set category = "Object"
 	set src in usr
 
-	to_chat(usr, "<span class='notice'>You loosen the bundle.</span>")
+	to_chat(usr, span_notice("You loosen the bundle."))
 	for(var/obj/O in src)
 		O.forceMove(usr.loc)
 	usr.dropItemToGround(src)
@@ -229,7 +229,7 @@
 	I.forceMove(src)
 	amount++
 	if(!no_message)
-		to_chat(user, "<span class='notice'>You add [I] to [src].</span>")
+		to_chat(user, span_notice("You add [I] to [src]."))
 	if(screen == 2)
 		screen = 1
 	update_icon()

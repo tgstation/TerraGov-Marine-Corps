@@ -105,61 +105,61 @@
 
 // Shuttles start here:
 /datum/map_template/shuttle/dropship_one
-	shuttle_id = "alamo"
+	shuttle_id = SHUTTLE_ALAMO
 	name = "Alamo"
 
 /datum/map_template/shuttle/dropship_two
-	shuttle_id = "normandy"
+	shuttle_id = SHUTTLE_NORMANDY
 	name = "Normandy"
 
 /datum/map_template/shuttle/dropship_three
-	shuttle_id = "triumph"
+	shuttle_id = SHUTTLE_TRIUMPH
 	name = "Triumph"
 
 /datum/map_template/shuttle/cas
-	shuttle_id = "casplane"
+	shuttle_id = SHUTTLE_CAS
 	name = "Condor Jet"
 
 /datum/map_template/shuttle/minidropship
-	shuttle_id = "minidropship"
+	shuttle_id = SHUTTLE_TADPOLE
 	name = "Tadpole Drop Shuttle"
 
 /datum/map_template/shuttle/escape_pod
-	shuttle_id = "escape_pod"
+	shuttle_id = SHUTTLE_ESCAPE_POD
 	name = "Escape Pod"
 
 /datum/map_template/shuttle/small_ert
-	shuttle_id = "distress"
+	shuttle_id = SHUTTLE_DISTRESS
 	name = "Distress"
 
 /datum/map_template/shuttle/small_ert/pmc
-	shuttle_id = "distress_pmc"
+	shuttle_id = SHUTTLE_DISTRESS_PMC
 	name = "Distress PMC"
 
 /datum/map_template/shuttle/small_ert/upp
-	shuttle_id = "distress_upp"
+	shuttle_id = SHUTTLE_DISTRESS_UPP
 	name = "Distress UPP"
 
 /datum/map_template/shuttle/small_ert/ufo
-	shuttle_id = "distress_ufo"
+	shuttle_id = SHUTTLE_DISTRESS_UFO
 	name = "Small UFO"
 
 /datum/map_template/shuttle/big_ert
-	shuttle_id = "big_ert"
+	shuttle_id = SHUTTLE_BIG_ERT
 	name = "Big ERT"
 
 /datum/map_template/shuttle/supply
-	shuttle_id = "supply"
-	name = "Supply"
+	shuttle_id = SHUTTLE_SUPPLY
+	name = SHUTTLE_SUPPLY
 
 /datum/map_template/shuttle/tgs_canterbury
-	shuttle_id = "tgs_canterbury"
+	shuttle_id = SHUTTLE_CANTERBURY
 	name = "Canterbury"
 
 /datum/map_template/shuttle/tgs_bigbury
-	shuttle_id = "tgs_bigbury"
+	shuttle_id = SHUTTLE_BIGBURY
 	name = "Bigbury"
 
 /datum/map_template/shuttle/escape_shuttle
-	shuttle_id = "escape_shuttle"
+	shuttle_id = SHUTTLE_ESCAPE_SHUTTLE
 	name = "Escape Shuttle"

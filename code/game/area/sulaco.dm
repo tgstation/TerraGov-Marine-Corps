@@ -248,6 +248,15 @@
 	name = "Sulaco Drop pod bay"
 	icon_state = "storage"
 
+/area/sulaco/hangar/storage
+	name = "Sulaco Hangar Workshop"
+	icon_state = "hangar_storage"
+
+/area/sulaco/hangar/cas
+	name = "Sulaco Hangar CAS Plane"
+	icon_state = "hangar_cas"
+
+
 /area/sulaco/command/eva
 	name = "Sulaco EVA Storage"
 	icon_state = "storage"
@@ -284,10 +293,10 @@
 /area/shuttle/drop1
 	ambience = list('sound/ambience/ambigen10.ogg','sound/ambience/ambispace.ogg','sound/ambience/ambisin4.ogg','sound/ambience/signal.ogg')
 
-/area/shuttle/drop1/Enter(atom/movable/O, atom/oldloc)
-	if(istype(O, /obj/structure/barricade))
-		return 0
-	return 1
+/area/shuttle/drop1/Enter(atom/movable/arrived, direction)
+	if(istype(arrived, /obj/structure/barricade))
+		return FALSE
+	return TRUE
 
 /area/shuttle/drop1/sulaco
 	name = "Dropship Alamo"
@@ -320,11 +329,12 @@
 /area/shuttle/drop1/lz1
 	name = "Alamo Landing Zone"
 	icon_state = "away1"
+	flags_area = NONE
 
-/area/shuttle/drop2/Enter(atom/movable/O, atom/oldloc)
-	if(istype(O, /obj/structure/barricade))
-		return 0
-	return 1
+/area/shuttle/drop2/Enter(atom/movable/arrived, direction)
+	if(istype(arrived, /obj/structure/barricade))
+		return FALSE
+	return TRUE
 
 /area/shuttle/drop2/sulaco
 	name = "Dropship Normandy"
@@ -357,6 +367,7 @@
 /area/shuttle/drop2/lz2
 	name = "Normandy Landing Zone"
 	icon_state = "away2"
+	flags_area = NONE
 
 
 

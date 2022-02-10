@@ -29,20 +29,20 @@
 
 
 /datum/surgery_step/head/peel/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] starts peeling back tattered flesh where [target]'s head used to be with \the [tool].</span>", \
-	"<span class='notice'>You start peeling back tattered flesh where [target]'s head used to be with \the [tool].</span>")
+	user.visible_message(span_notice("[user] starts peeling back tattered flesh where [target]'s head used to be with \the [tool]."), \
+	span_notice("You start peeling back tattered flesh where [target]'s head used to be with \the [tool]."))
 	..()
 
 /datum/surgery_step/head/peel/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] peels back tattered flesh where [target]'s head used to be with \the [tool].</span>",	\
-	"<span class='notice'>You peel back tattered flesh where [target]'s head used to be with \the [tool].</span>")
+	user.visible_message(span_notice("[user] peels back tattered flesh where [target]'s head used to be with \the [tool]."),	\
+	span_notice("You peel back tattered flesh where [target]'s head used to be with \the [tool]."))
 	affected.limb_replacement_stage = 1
 
 /datum/surgery_step/head/peel/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.parent)
 		affected = affected.parent
-		user.visible_message("<span class='warning'>[user]'s hand slips, ripping [target]'s [affected.display_name] open!</span>", \
-		"<span class='warning'>Your hand slips,  ripping [target]'s [affected.display_name] open!</span>")
+		user.visible_message(span_warning("[user]'s hand slips, ripping [target]'s [affected.display_name] open!"), \
+		span_warning("Your hand slips,  ripping [target]'s [affected.display_name] open!"))
 		affected.createwound(CUT, 10)
 		affected.update_wounds()
 
@@ -59,20 +59,20 @@
 	reattach_step = 1
 
 /datum/surgery_step/head/shape/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] is beginning to reshape [target]'s esophagal and vocal region with \the [tool].</span>", \
-	"<span class='notice'>You start to reshape [target]'s head esophagal and vocal region with \the [tool].</span>")
+	user.visible_message(span_notice("[user] is beginning to reshape [target]'s esophagal and vocal region with \the [tool]."), \
+	span_notice("You start to reshape [target]'s head esophagal and vocal region with \the [tool]."))
 	..()
 
 /datum/surgery_step/head/shape/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] has finished repositioning flesh and tissue to something anatomically recognizable where [target]'s head used to be with \the [tool].</span>",	\
-	"<span class='notice'>You have finished repositioning flesh and tissue to something anatomically recognizable where [target]'s head used to be with \the [tool].</span>")
+	user.visible_message(span_notice("[user] has finished repositioning flesh and tissue to something anatomically recognizable where [target]'s head used to be with \the [tool]."),	\
+	span_notice("You have finished repositioning flesh and tissue to something anatomically recognizable where [target]'s head used to be with \the [tool]."))
 	affected.limb_replacement_stage = 2
 
 /datum/surgery_step/head/shape/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.parent)
 		affected = affected.parent
-		user.visible_message("<span class='warning'>[user]'s hand slips, further rending flesh on [target]'s neck!</span>", \
-		"<span class='warning'>Your hand slips, further rending flesh on [target]'s neck!</span>")
+		user.visible_message(span_warning("[user]'s hand slips, further rending flesh on [target]'s neck!"), \
+		span_warning("Your hand slips, further rending flesh on [target]'s neck!"))
 		target.apply_damage(10, BRUTE, affected, updating_health = TRUE)
 
 
@@ -88,20 +88,20 @@
 	reattach_step = 2
 
 /datum/surgery_step/head/suture/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] is stapling and suturing flesh into place in [target]'s esophagal and vocal region with \the [tool].</span>", \
-	"<span class='notice'>You start to staple and suture flesh into place in [target]'s esophagal and vocal region with \the [tool].</span>")
+	user.visible_message(span_notice("[user] is stapling and suturing flesh into place in [target]'s esophagal and vocal region with \the [tool]."), \
+	span_notice("You start to staple and suture flesh into place in [target]'s esophagal and vocal region with \the [tool]."))
 	..()
 
 /datum/surgery_step/head/suture/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] has finished stapling [target]'s neck into place with \the [tool].</span>",	\
-	"<span class='notice'>You have finished stapling [target]'s neck into place with \the [tool].</span>")
+	user.visible_message(span_notice("[user] has finished stapling [target]'s neck into place with \the [tool]."),	\
+	span_notice("You have finished stapling [target]'s neck into place with \the [tool]."))
 	affected.limb_replacement_stage = 3
 
 /datum/surgery_step/head/suture/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.parent)
 		affected = affected.parent
-		user.visible_message("<span class='warning'>[user]'s hand slips, ripping apart flesh on [target]'s neck!</span>", \
-		"<span class='warning'>Your hand slips, ripping apart flesh on [target]'s neck!</span>")
+		user.visible_message(span_warning("[user]'s hand slips, ripping apart flesh on [target]'s neck!"), \
+		span_warning("Your hand slips, ripping apart flesh on [target]'s neck!"))
 		target.apply_damage(10, BRUTE, affected, updating_health = TRUE)
 
 
@@ -118,13 +118,13 @@
 	reattach_step = 3
 
 /datum/surgery_step/head/prepare/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] starts adjusting area around [target]'s neck with \the [tool].</span>", \
-	"<span class='notice'>You start adjusting area around [target]'s neck with \the [tool].</span>")
+	user.visible_message(span_notice("[user] starts adjusting area around [target]'s neck with \the [tool]."), \
+	span_notice("You start adjusting area around [target]'s neck with \the [tool]."))
 	..()
 
 /datum/surgery_step/head/prepare/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] has finished adjusting the area around [target]'s neck with \the [tool].</span>",	\
-	"<span class='notice'>You have finished adjusting the area around [target]'s neck with \the [tool].</span>")
+	user.visible_message(span_notice("[user] has finished adjusting the area around [target]'s neck with \the [tool]."),	\
+	span_notice("You have finished adjusting the area around [target]'s neck with \the [tool]."))
 	affected.limb_replacement_stage = 0
 	affected.add_limb_flags(LIMB_AMPUTATED)
 	affected.setAmputatedTree()
@@ -132,8 +132,8 @@
 /datum/surgery_step/head/prepare/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	if(affected.parent)
 		affected = affected.parent
-		user.visible_message("<span class='warning'>[user]'s hand slips, searing [target]'s neck!</span>", \
-		"<span class='warning'>Your hand slips, searing [target]'s [affected.display_name]!</span>")
+		user.visible_message(span_warning("[user]'s hand slips, searing [target]'s neck!"), \
+		span_warning("Your hand slips, searing [target]'s [affected.display_name]!"))
 		target.apply_damage(10, BURN, affected, updating_health = TRUE)
 
 
@@ -150,13 +150,13 @@
 			return 1
 
 /datum/surgery_step/head/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] starts attaching [tool] to [target]'s reshaped neck.</span>", \
-	"<span class='notice'>You start attaching [tool] to [target]'s reshaped neck.</span>")
+	user.visible_message(span_notice("[user] starts attaching [tool] to [target]'s reshaped neck."), \
+	span_notice("You start attaching [tool] to [target]'s reshaped neck."))
 	..()
 
 /datum/surgery_step/head/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] has attached [target]'s head to the body.</span>",	\
-	"<span class='notice'>You have attached [target]'s head to the body.</span>")
+	user.visible_message(span_notice("[user] has attached [target]'s head to the body."),	\
+	span_notice("You have attached [target]'s head to the body."))
 
 	//Update our dear victim to have a head again
 
@@ -176,6 +176,6 @@
 	qdel(B)
 
 /datum/surgery_step/head/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='warning'>[user]'s hand slips, damaging connectors on [target]'s neck!</span>", \
-	"<span class='warning'>Your hand slips, damaging connectors on [target]'s neck!</span>")
+	user.visible_message(span_warning("[user]'s hand slips, damaging connectors on [target]'s neck!"), \
+	span_warning("Your hand slips, damaging connectors on [target]'s neck!"))
 	target.apply_damage(10, BRUTE, affected, 0, TRUE, updating_health = TRUE)

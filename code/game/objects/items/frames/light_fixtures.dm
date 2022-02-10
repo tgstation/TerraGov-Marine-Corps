@@ -7,13 +7,7 @@
 	icon_state = "tube-construct-item"
 	flags_atom = CONDUCT
 	var/fixture_type = "tube"
-	var/obj/machinery/light/newlight = null
 	var/sheets_refunded = 2
-
-/obj/item/frame/light_fixture/Destroy()
-	QDEL_NULL(newlight)
-	return ..()
-	
 
 /obj/item/frame/light_fixture/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -30,7 +24,7 @@
 		return
 	var/turf/loc = get_turf(usr)
 	if (!isfloorturf(loc))
-		to_chat(usr, "<span class='warning'>[src.name] cannot be placed on this spot.</span>")
+		to_chat(usr, span_warning("[src.name] cannot be placed on this spot."))
 		return
 	to_chat(usr, "Attaching [src] to the wall.")
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
@@ -38,6 +32,7 @@
 	var/constrloc = usr.loc
 	if (!do_after(usr, 30, TRUE, on_wall, BUSY_ICON_BUILD))
 		return
+	var/obj/machinery/light/newlight
 	switch(fixture_type)
 		if("bulb")
 			newlight = new /obj/machinery/light_construct/small(constrloc)

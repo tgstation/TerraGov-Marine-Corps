@@ -71,7 +71,7 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
 	if(!ishuman(L))
 		return
-
+	var/mob/living/carbon/human/H = L
 	if(job_flags & JOB_FLAG_PROVIDES_BANK_ACCOUNT)
 		var/datum/money_account/bank_account = create_account(L.real_name, rand(50, 500) * 10)
 		var/list/remembered_info = list()
@@ -84,7 +84,6 @@ GLOBAL_PROTECT(exp_specialmap)
 		M.mind.store_memory(remembered_info.Join("<br>"))
 		M.mind.initial_account = bank_account
 
-		var/mob/living/carbon/human/H = L
 		var/obj/item/card/id/id = H.wear_id
 		if(istype(id))
 			id.associated_account_number = bank_account.account_number
@@ -148,10 +147,10 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /datum/job/proc/radio_help_message(mob/M)
 	to_chat(M, {"
-<span class='role_body'>|______________________|</span>
-<span class='role_header'>You are \an [title]!</span>
-<span class='role_body'>As \an <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.</span>
-<span class='role_body'>|______________________|</span>
+[span_role_body("|______________________|")]
+[span_role_header("You are \an [title]!")]
+[span_role_body("As \an <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")]
+[span_role_body("|______________________|")]
 "})
 	if(!(job_flags & JOB_FLAG_NOHEADSET))
 		to_chat(M, "<b>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</b>")
@@ -202,8 +201,10 @@ GLOBAL_PROTECT(exp_specialmap)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
 			continue
-		if(isxenosjob(scaled_job) && respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
-			continue
+		if(isxenosjob(scaled_job))
+			if(respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
+				continue
+			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
 		scaled_job.add_job_points(jobworth[index])
 	return TRUE
 
@@ -233,6 +234,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/previous_amount = total_positions
 	total_positions += amount
 	manage_job_lists(previous_amount)
+	log_debug("[amount] positions were added to [src]. It has [total_positions] positions and [current_positions] were taken")
 	return TRUE
 
 /datum/job/proc/remove_job_positions(amount)
@@ -267,12 +269,12 @@ GLOBAL_PROTECT(exp_specialmap)
 	job = assigned_role
 	skills = getSkillsType(job.return_skills_type(player?.prefs))
 	faction = job.faction
-	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	job.announce(src)
 
 
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()
+	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	comm_title = job.comm_title
 	if(job.outfit)
 		var/id_type = job.outfit.id ? job.outfit.id : /obj/item/card/id

@@ -70,7 +70,10 @@ const BasicSection = (props: BasicSectionProps, context: any) => {
   const { searchText, source, title } = props;
   const things = source.filter(searchFor(searchText));
   things.sort(compareNumberedText);
-  return source.length > 0 && (
+  if (source.length <= 0) {
+    return null;
+  }
+  return (
     <Section title={`${title} - (${source.length})`}>
       {things.map((thing: OrbitList) => (
         <Button

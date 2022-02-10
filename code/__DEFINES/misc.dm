@@ -34,6 +34,10 @@
 #define FLOOR_WET_LUBE 2
 #define FLOOR_WET_ICE 3
 
+//stages of shoe tying-ness
+#define SHOES_TIED 1
+#define SHOES_KNOTTED 2
+
 //subtypesof(), typesof() without the parent path
 #define subtypesof(typepath) ( typesof(typepath) - typepath )
 
@@ -132,3 +136,5 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define LIGHT_EMPTY 1
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
+
+GLOBAL_VAR_INIT(geothermal_generator_ammount, 0)

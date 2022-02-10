@@ -108,8 +108,9 @@ SUBSYSTEM_DEF(explosions)
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range, throw_range)
 	var/started_at = REALTIMEOFDAY
 	if(adminlog)
-		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
 		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)]")
+		if(is_mainship_level(epicenter.z))
+			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
 
 	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 	// Stereo users will also hear the direction of the explosion!
@@ -142,7 +143,7 @@ SUBSYSTEM_DEF(explosions)
 					if(is_mainship_level(epicenter.z))
 						M.playsound_local(epicenter, null, 40, 1, frequency, falloff = 5, S = creak_sound)//ship groaning under explosion effect
 					if(baseshakeamount > 0)
-						shake_camera(M, 25, clamp(baseshakeamount, 0, 10))
+						shake_camera(M, 15, clamp(baseshakeamount, 0, 5))
 				// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 				else if(dist <= far_dist)
 					var/far_volume = clamp(far_dist, 30, 60) // Volume is based on explosion size and dist
@@ -151,7 +152,7 @@ SUBSYSTEM_DEF(explosions)
 					if(is_mainship_level(epicenter.z))
 						M.playsound_local(epicenter, null, far_volume*3, 1, frequency, falloff = 5, S = creak_sound)//ship groaning under explosion effect
 					if(baseshakeamount > 0)
-						shake_camera(M, 10, clamp(baseshakeamount*0.25, 0, 2.5))
+						shake_camera(M, 7, clamp(baseshakeamount*0.15, 0, 1.5))
 
 	if(heavy_impact_range > 1)
 		var/datum/effect_system/explosion/E
@@ -189,11 +190,11 @@ SUBSYSTEM_DEF(explosions)
 	else
 		if(flame_range > 0) //this proc shouldn't be used for flames only, but here we are
 			if(usr)
-				to_chat(usr, "<span class='narsiesmall'>Please don't use explosions for flames-only, use flame_radius()</span>")
+				to_chat(usr, span_narsiesmall("Please don't use explosions for flames-only, use flame_radius()"))
 			flameturf += turfs_in_range
 		if(throw_range > 0) //admemes, what have you done
 			if(usr)
-				to_chat(usr, "<span class='narsie'>Stop using explosions for memes!</span>")
+				to_chat(usr, span_narsie("Stop using explosions for memes!"))
 			for(var/t in turfs_in_range)
 				var/turf/throw_turf = t
 				throwTurf[throw_turf] += list(epicenter)

@@ -128,7 +128,7 @@
 		. = hearers(vision_range, targets_from) - src //Remove self, so we don't suicide
 
 		for(var/HM in range(vision_range, targets_from))
-			if(can_see(targets_from, HM, vision_range))
+			if(line_of_sight(targets_from, HM, vision_range))
 				. += HM
 	else
 		. = list()
@@ -365,7 +365,7 @@
 /mob/living/simple_animal/hostile/proc/OpenFire(atom/A)
 	if(CheckFriendlyFire(A))
 		return
-	visible_message("<span class='danger'><b>[src]</b> [ranged_message] at [A]!</span>")
+	visible_message(span_danger("<b>[src]</b> [ranged_message] at [A]!"))
 
 
 	if(rapid > 1)
@@ -394,7 +394,7 @@
 
 
 /mob/living/simple_animal/hostile/Move(atom/newloc, dir , step_x , step_y)
-	if(dodging && approaching_target && prob(dodge_prob) && moving_diagonally == 0 && isturf(loc) && isturf(newloc))
+	if(dodging && approaching_target && prob(dodge_prob) && isturf(loc) && isturf(newloc))
 		return dodge(newloc,dir)
 	else
 		return ..()

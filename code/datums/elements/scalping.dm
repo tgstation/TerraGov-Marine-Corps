@@ -15,10 +15,10 @@
 		return NONE
 	if(M.a_intent == INTENT_HARM)
 		return NONE
-	M.visible_message("<span class='notice'>[user] starts to tear into [M] with \the [source]</span>" ,"<span class='notice'>You start hacking away at [M] with \the [source]</span>")
+	M.visible_message(span_notice("[user] starts to tear into [M] with \the [source]") ,span_notice("You start hacking away at [M] with \the [source]"))
 	if(!do_after(user, 2 SECONDS, TRUE, M))
 		return NONE
-	M.visible_message("<span class='danger'>[user] brutally scalps [M]!</span>", "<span class='danger'> You brutally scalp [M] 	with \the [source]!</span>")
+	M.visible_message(span_danger("[user] brutally scalps [M]!"), span_danger(" You brutally scalp [M] 	with \the [source]!"))
 	var/obj/item/scalp/scalp = new(get_turf(M))
 	scalp.name = M.name + "'s " + initial(scalp.name)
 	return COMPONENT_ITEM_NO_ATTACK

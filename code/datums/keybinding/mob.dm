@@ -5,7 +5,6 @@
 
 /datum/keybinding/mob/face_north
 	hotkey_keys = list("CtrlW", "CtrlNorth")
-	classic_keys = list("CtrlNorth")
 	name = "face_north"
 	full_name = "Face North"
 	description = ""
@@ -22,7 +21,6 @@
 
 /datum/keybinding/mob/face_east
 	hotkey_keys = list("CtrlD", "CtrlEast")
-	classic_keys = list("CtrlEast")
 	name = "face_east"
 	full_name = "Face East"
 	description = ""
@@ -39,7 +37,6 @@
 
 /datum/keybinding/mob/face_south
 	hotkey_keys = list("CtrlS", "CtrlSouth")
-	classic_keys = list("CtrlSouth")
 	name = "face_south"
 	full_name = "Face South"
 	description = ""
@@ -55,7 +52,6 @@
 
 /datum/keybinding/mob/face_west
 	hotkey_keys = list("CtrlA", "CtrlWest")
-	classic_keys = list("CtrlWest")
 	name = "face_west"
 	full_name = "Face West"
 	description = ""
@@ -117,7 +113,6 @@
 
 /datum/keybinding/mob/swap_hands
 	hotkey_keys = list("X")
-	classic_keys = list("Northeast") // PAGEUP
 	name = "swap_hands"
 	full_name = "Swap hands"
 	description = ""
@@ -134,7 +129,6 @@
 	name = "say"
 	full_name = "Say"
 	hotkey_keys = list("T")
-	classic_keys = list("T")
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_SAY_DOWN
 
@@ -150,7 +144,6 @@
 	name = "me"
 	full_name = "Me"
 	hotkey_keys = list("M")
-	classic_keys = list("M")
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_ME_DOWN
 
@@ -164,7 +157,6 @@
 
 /datum/keybinding/mob/activate_inhand
 	hotkey_keys = list("Z")
-	classic_keys = list("Southeast") // PAGEDOWN
 	name = "activate_inhand"
 	full_name = "Activate in-hand"
 	description = "Uses whatever item you have inhand"
@@ -192,7 +184,7 @@
 	var/mob/M = user.mob
 	var/obj/item/I = M.get_active_held_item()
 	if(!I)
-		to_chat(user, "<span class='warning'>You have nothing to drop in your hand!</span>")
+		to_chat(user, span_warning("You have nothing to drop in your hand!"))
 	else
 		user.mob.dropItemToGround(I)
 	return TRUE
@@ -341,3 +333,9 @@
 		return
 	user.body_l_leg()
 	return TRUE
+
+/datum/keybinding/mob/toggle_minimap
+	name = "toggle_minimap"
+	full_name = "Toggle minimap"
+	description = "Toggle the minimap screen"
+	keybind_signal = COMSIG_KB_TOGGLE_MINIMAP

@@ -140,7 +140,7 @@ if grep -ni '/obj/structure/mineral_door/resin' _maps/**/*.dmm; then
     echo "Do not directly add resin doors on maps, use landmarks."
     st=1
 fi;
-if grep -ni '/obj/structure/xeno/resin/xeno_turret' _maps/**/*.dmm; then
+if grep -ni '/obj/structure/xeno/xeno_turret' _maps/**/*.dmm; then
     echo "Do not directly add xeno turrets on maps, use landmarks."
     st=1
 fi;

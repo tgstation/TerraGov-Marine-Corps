@@ -55,7 +55,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 
-		to_chat(user, "<span class='notice'>You put the [I] into \the [src].</span>")
+		to_chat(user, span_notice("You put the [I] into \the [src]."))
 		update_icon()
 
 	else if(istype(I, /obj/item/tool/pen))

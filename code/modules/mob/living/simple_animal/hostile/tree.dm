@@ -36,8 +36,8 @@
 		var/mob/living/carbon/C = target
 		if(prob(15))
 			C.Paralyze(20 SECONDS)
-			C.visible_message("<span class='danger'>\The [src] knocks down \the [C]!</span>", \
-					"<span class='userdanger'>\The [src] knocks you down!</span>")
+			C.visible_message(span_danger("\The [src] knocks down \the [C]!"), \
+					span_userdanger("\The [src] knocks you down!"))
 
 
 /mob/living/simple_animal/hostile/tree/festivus

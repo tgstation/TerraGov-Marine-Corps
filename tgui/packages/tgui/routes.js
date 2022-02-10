@@ -47,13 +47,13 @@ export const getRoutedComponent = store => {
     }
   }
   const name = config?.interface;
-  let esModule;
   const interfacePathBuilders = [
     name => `./${name}.tsx`,
     name => `./${name}.js`,
     name => `./${name}/index.tsx`,
     name => `./${name}/index.js`,
   ];
+  let esModule;
   while (!esModule && interfacePathBuilders.length > 0) {
     const interfacePathBuilder = interfacePathBuilders.shift();
     const interfacePath = interfacePathBuilder(name);

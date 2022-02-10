@@ -65,14 +65,15 @@
 	if(tmp_sound && (!(flags_emote & EMOTE_FORCED_AUDIO) || !intentional))
 		playsound(user, tmp_sound, 50, flags_emote & EMOTE_VARY)
 
-	for(var/i in GLOB.dead_mob_list)
-		var/mob/M = i
-		if(isnewplayer(M) || !M.client)
-			continue
-		var/T = get_turf(user)
-		if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
-			continue
-		M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
+	if(user.client)
+		for(var/i in GLOB.dead_mob_list)
+			var/mob/M = i
+			if(isnewplayer(M) || !M.client)
+				continue
+			var/T = get_turf(user)
+			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
+				continue
+			M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
 
 	if(emote_type == EMOTE_AUDIBLE)
 		user.audible_message(msg, audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
@@ -137,24 +138,24 @@
 
 		if(sound || get_sound(user))
 			if(HAS_TRAIT(user, TRAIT_MUTED))
-				to_chat(user, "<span class='danger'>You're muted, and can't make any sounds!</span>")
+				user.balloon_alert(user, "You are muted!")
 				return FALSE
 			if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_EMOTE))
-				to_chat(user, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
+				user.balloon_alert(user, "You just did an audible emote")
 				return FALSE
 			else
 				TIMER_COOLDOWN_START(user, COOLDOWN_EMOTE, 8 SECONDS)
 
 		if(user.client)
 			if(user.client.prefs.muted & MUTE_IC)
-				to_chat(user, "<span class='warning'>You cannot send emotes (muted).</span>")
+				to_chat(user, span_warning("You cannot send emotes (muted)."))
 				return FALSE
 
 			if(user.client.handle_spam_prevention(message, MUTE_IC))
 				return FALSE
 
 			if(is_banned_from(user.ckey, "Emote"))
-				to_chat(user, "<span class='warning'>You cannot send emotes (banned).</span>")
+				to_chat(user, span_warning("You cannot send emotes (banned)."))
 				return FALSE
 
 	if(status_check && !is_type_in_typecache(user, mob_type_ignore_stat_typecache))
@@ -164,9 +165,9 @@
 
 			switch(user.stat)
 				if(UNCONSCIOUS)
-					to_chat(user, "<span class='notice'>You cannot [key] while unconscious.</span>")
+					to_chat(user, span_notice("You cannot [key] while unconscious."))
 				if(DEAD)
-					to_chat(user, "<span class='notice'>You cannot [key] while dead.</span>")
+					to_chat(user, span_notice("You cannot [key] while dead."))
 
 			return FALSE
 
@@ -176,11 +177,20 @@
 				if(L.incapacitated())
 					if(!intentional)
 						return FALSE
-					to_chat(user, "<span class='notice'>You cannot [key] while stunned.</span>")
+					user.balloon_alert(user, "You cannot [key] while stunned")
 					return FALSE
+
+		if(flags_emote & EMOTE_ARMS_CHECK)
+			///okay snapper
+			var/mob/living/carbon/snapper = user
+			var/datum/limb/left_hand = snapper.get_limb("l_hand")
+			var/datum/limb/right_hand = snapper.get_limb("r_hand")
+			if((!left_hand.is_usable()) && (!right_hand.is_usable()))
+				to_chat(user, span_notice("You cannot [key] without a working hand."))
+				return FALSE
 
 		if((flags_emote & EMOTE_RESTRAINT_CHECK) && user.restrained())
 			if(!intentional)
 				return FALSE
-			to_chat(user, "<span class='notice'>You cannot [key] while restrained.</span>")
+			user.balloon_alert(user, "You cannot [key] while restrained")
 			return FALSE

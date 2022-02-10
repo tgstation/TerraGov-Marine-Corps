@@ -20,8 +20,8 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomps")
 
 	playsound(X.loc, 'sound/effects/bang.ogg', 25, 0)
-	X.visible_message("<span class='xenodanger'>[X] smashes into the ground!</span>", \
-	"<span class='xenodanger'>We smash into the ground!</span>")
+	X.visible_message(span_xenodanger("[X] smashes into the ground!"), \
+	span_xenodanger("We smash into the ground!"))
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
 	for(var/mob/living/M in range(1, get_turf(X)))
@@ -34,25 +34,27 @@
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
 			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
 			M.Paralyze(3 SECONDS)
-			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
+			to_chat(M, span_highdanger("You are stomped on by [X]!"))
 			shake_camera(M, 3, 3)
 		else
 			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
-			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
-			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE) 
+			to_chat(M, span_highdanger("You reel from the shockwave of [X]'s stomp!"))
+			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
 			M.Paralyze(0.5 SECONDS)
 
 /datum/action/xeno_action/activable/stomp/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/stomp/ai_should_use(target)
+/datum/action/xeno_action/activable/stomp/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 // ***************************************
@@ -70,7 +72,7 @@
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='xenowarning'><b>We can now crest toss again.</b></span>")
+	to_chat(X, span_xenowarning("<b>We can now crest toss again.</b>"))
 	playsound(X, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
@@ -78,26 +80,30 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!owner.Adjacent(A) || !isliving(A))
+	if(!owner.Adjacent(A) || !ismovable(A))
 		return FALSE
-	var/mob/living/L = A
-	if(L.stat == DEAD || isnestedhost(L)) //no bully
+	var/atom/movable/movable_atom = A
+	if(movable_atom.anchored)
 		return FALSE
+	if(isliving(A))
+		var/mob/living/L = A
+		if(L.stat == DEAD || isnestedhost(L)) //no bully
+			return FALSE
 
-/datum/action/xeno_action/activable/cresttoss/use_ability(atom/A)
+/datum/action/xeno_action/activable/cresttoss/use_ability(atom/movable/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/L = A
-	X.face_atom(L) //Face towards the target so we don't look silly
-
-	var/facing = get_dir(X, L)
+	X.face_atom(A) //Face towards the target so we don't look silly
+	var/facing = get_dir(X, A)
 	var/toss_distance = X.xeno_caste.crest_toss_distance
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
 	var/big_mob_message
 
-	if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
-		toss_distance = FLOOR(toss_distance * 0.5, 1)
-		big_mob_message = ", struggling mightily to heft its bulk"
+	if(isliving(A))
+		var/mob/living/L = A
+		if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
+			toss_distance = FLOOR(toss_distance * 0.5, 1)
+			big_mob_message = ", struggling mightily to heft its bulk"
 
 	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
 		for(var/x in 1 to toss_distance)
@@ -106,47 +112,39 @@
 				break
 			T = temp
 	else
-		facing = get_dir(L, X)
+		facing = get_dir(A, X)
 		var/turf/throw_origin = get_step(T, facing)
 		if(isclosedturf(throw_origin)) //Make sure the victim can actually go to the target turf
-			to_chat(X, "<span class='xenowarning'>We try to fling [L] behind us, but there's no room!</span>")
+			to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
 			return fail_activate()
 		for(var/obj/O in throw_origin)
-			if(!O.CanPass(L, get_turf(X)) && !istype(O, /obj/structure/barricade)) //Ignore barricades because they will once thrown anyway
-				to_chat(X, "<span class='xenowarning'>We try to fling [L] behind us, but there's no room!</span>")
+			if(!O.CanPass(A, get_turf(X)) && !istype(O, /obj/structure/barricade)) //Ignore barricades because they will once thrown anyway
+				to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
 				return fail_activate()
 
-		L.forceMove(throw_origin) //Move the victim behind us before flinging
+		A.forceMove(throw_origin) //Move the victim behind us before flinging
 		for(var/x = 0, x < toss_distance, x++)
 			temp = get_step(T, facing)
 			if (!temp)
 				break
 			T = temp //Throw target
 
-	//The target location deviates up to 1 tile in any direction //No.
-	/*var/scatter_x = rand(-1,1)
-	var/scatter_y = rand(-1,1)
-	var/turf/new_target = locate(T.x + round(scatter_x),T.y + round(scatter_y),T.z) //Locate an adjacent turf.
-	if(new_target)
-		T = new_target//Looks like we found a turf.
-	*/
-
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
-	X.visible_message("<span class='xenowarning'>\The [X] flings [L] away with its crest[big_mob_message]!</span>", \
-	"<span class='xenowarning'>We fling [L] away with our crest[big_mob_message]!</span>")
+	X.visible_message(span_xenowarning("\The [X] flings [A] away with its crest[big_mob_message]!"), \
+	span_xenowarning("We fling [A] away with our crest[big_mob_message]!"))
 
 	succeed_activate()
 
-	L.throw_at(T, toss_distance, 1, X, TRUE)
+	A.throw_at(T, toss_distance, 1, X, TRUE)
 
 	//Handle the damage
-	if(!X.issamexenohive(L)) //Friendly xenos don't take damage.
+	if(!X.issamexenohive(A) && isliving(A)) //Friendly xenos don't take damage.
 		var/damage = toss_distance * 6
-
+		var/mob/living/L = A
 		L.take_overall_damage_armored(damage, BRUTE, "melee", updating_health = TRUE)
 		shake_camera(L, 2, 2)
-		playsound(L,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
+		playsound(A, pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 
 	add_cooldown()
 	addtimer(CALLBACK(X, /mob/.proc/update_icons), 3)
@@ -154,11 +152,72 @@
 /datum/action/xeno_action/activable/cresttoss/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/cresttoss/ai_should_use(target)
+/datum/action/xeno_action/activable/cresttoss/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	return TRUE
+
+// ***************************************
+// *********** Advance
+// ***************************************
+/datum/action/xeno_action/activable/advance
+	name = "Rapid Advance"
+	action_icon_state = "crest_defense"
+	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
+	ability_name = "rapid advance"
+	plasma_cost = 175
+	cooldown_timer = 30 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+
+/datum/action/xeno_action/activable/advance/on_cooldown_finish()
+	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))
+	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	return ..()
+
+/datum/action/xeno_action/activable/advance/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(get_dist(owner, A) > 7)
+		return FALSE
+
+
+/datum/action/xeno_action/activable/advance/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	X.face_atom(A)
+	X.set_canmove(FALSE)
+	if(!do_after(X, 10, TRUE, X, BUSY_ICON_DANGER))
+		X.set_canmove(TRUE)
+		return fail_activate()
+	X.set_canmove(TRUE)
+
+	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
+	if(charge)
+		charge.do_start_crushing()
+		charge.valid_steps_taken = charge.max_steps_buildup - 1
+	for(var/i=0 to get_dist(X, A))
+		var/aimdir = get_dir(X,A)
+		if(i % 2)
+			playsound(X, "alien_charge", 50)
+			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
+		X.Move(get_step(X, aimdir), aimdir)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/xeno_action/activable/advance/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/advance/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE

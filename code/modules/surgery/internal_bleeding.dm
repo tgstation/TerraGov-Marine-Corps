@@ -22,14 +22,14 @@
 				return 1
 
 /datum/surgery_step/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] starts patching the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>" , \
-	"<span class='notice'>You start patching the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>")
+	user.visible_message(span_notice("[user] starts patching the damaged vein in [target]'s [affected.display_name] with \the [tool].") , \
+	span_notice("You start patching the damaged vein in [target]'s [affected.display_name] with \the [tool]."))
 	target.custom_pain("The pain in [affected.display_name] is unbearable!",1)
 	..()
 
 /datum/surgery_step/fix_vein/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='notice'>[user] has patched the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>", \
-		"<span class='notice'>You have patched the damaged vein in [target]'s [affected.display_name] with \the [tool].</span>")
+	user.visible_message(span_notice("[user] has patched the damaged vein in [target]'s [affected.display_name] with \the [tool]."), \
+		span_notice("You have patched the damaged vein in [target]'s [affected.display_name] with \the [tool]."))
 
 	for(var/datum/wound/W in affected.wounds)
 		if(W.internal)
@@ -39,7 +39,7 @@
 		user:bloody_hands(target, 0)
 
 /datum/surgery_step/fix_vein/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message("<span class='warning'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>" , \
-	"<span class='warning'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!</span>")
+	user.visible_message(span_warning("[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!") , \
+	span_warning("Your hand slips, smearing [tool] in the incision in [target]'s [affected.display_name]!"))
 	affected.take_damage_limb(5, 0)
 	target.updatehealth()

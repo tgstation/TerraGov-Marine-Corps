@@ -18,7 +18,9 @@
 		//Blood regeneration if there is some space
 		if(blood_volume < BLOOD_VOLUME_NORMAL)
 			blood_volume += 0.1 // regenerate blood VERY slowly
-
+		
+		heart_multi = initial(heart_multi)
+		
 		// Damaged heart virtually reduces the blood volume, as the blood isn't
 		// being pumped properly anymore.
 		if(species && species.has_organ["heart"])
@@ -27,20 +29,16 @@
 			if(!heart)
 				heart_multi *= 0.5 //you'd die in seconds but you can't remove internal organs even with varediting.
 
-			if(!(reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05) && heart.damage > 1)
-				if(heart.damage < heart.min_bruised_damage)
-					heart_multi = 0.9
-					blood_volume = max(blood_volume - 0.1, 0) //nulls regeneration
-				else if(heart.damage < heart.min_broken_damage)
-					heart_multi = 0.7
-					blood_volume = max(blood_volume - 0.5, 0)
-				else
-					heart_multi = 0.5
+			if(heart && reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) < 0.05 && heart.damage > 1)
+				if(heart.is_broken())
+					heart_multi *= 0.5
 					blood_volume = max(blood_volume - 1.3, 0)
-			else
-				heart_multi = 1
-
-
+				else if(heart.is_bruised())
+					heart_multi *= 0.7
+					blood_volume = max(blood_volume - 0.5, 0)	
+				else
+					heart_multi *= 0.9
+					blood_volume = max(blood_volume - 0.1, 0) //nulls regeneration
 
 
 
@@ -50,7 +48,7 @@
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(1))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "<span class='warning'>You feel [word]</span>")
+					to_chat(src, span_warning("You feel [word]"))
 				if(oxyloss < 20)
 					adjustOxyLoss(3)
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
@@ -65,13 +63,13 @@
 				if(prob(15))
 					Unconscious(rand(20,60))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "<span class='warning'>You feel extremely [word]</span>")
+					to_chat(src, span_warning("You feel extremely [word]"))
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				adjustOxyLoss(5)
 				adjustToxLoss(2)
 				if(prob(15))
 					var/word = pick("dizzy","woozy","faint")
-					to_chat(src, "<span class='warning'>You feel extremely [word]</span>")
+					to_chat(src, span_warning("You feel extremely [word]"))
 			if(0 to BLOOD_VOLUME_SURVIVE)
 				death()
 

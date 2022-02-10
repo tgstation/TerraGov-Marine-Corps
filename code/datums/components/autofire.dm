@@ -24,22 +24,20 @@
 	///Callback to ask the parent to fire
 	var/datum/callback/callback_fire
 
-/datum/component/automatedfire/autofire/Initialize(_auto_fire_shot_delay = 0.3 SECONDS, _burstfire_shot_delay, _burst_shots_to_fire = 3, _fire_mode = GUN_FIREMODE_SEMIAUTO, datum/callback/_callback_bursting, datum/callback/_callback_reset_fire, datum/callback/_callback_fire)
+/datum/component/automatedfire/autofire/Initialize(_auto_fire_shot_delay = 0.3 SECONDS, _auto_burst_fire_shot_delay, _burstfire_shot_delay, _burst_shots_to_fire = 3, _fire_mode = GUN_FIREMODE_SEMIAUTO, datum/callback/_callback_bursting, datum/callback/_callback_reset_fire, datum/callback/_callback_fire)
 	. = ..()
-	if(!isatom(parent))
-		return COMPONENT_INCOMPATIBLE
 
 	RegisterSignal(parent, COMSIG_GUN_FIRE_MODE_TOGGLE, .proc/modify_fire_mode)
-	RegisterSignal(parent, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, .proc/modify_fire_shot_delay)
+	RegisterSignal(parent, list(COMSIG_GUN_AUTOFIREDELAY_MODIFIED, COMSIG_XENO_AUTOFIREDELAY_MODIFIED), .proc/modify_fire_shot_delay)
 	RegisterSignal(parent, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, .proc/modify_burst_shots_to_fire)
 	RegisterSignal(parent, COMSIG_GUN_BURST_SHOT_DELAY_MODIFIED, .proc/modify_burstfire_shot_delay)
-	RegisterSignal(parent, COMSIG_GUN_FIRE, .proc/initiate_shot)
-	RegisterSignal(parent, COMSIG_GUN_STOP_FIRE, .proc/stop_firing)
-	
+	RegisterSignal(parent, list(COMSIG_GUN_FIRE, COMSIG_XENO_FIRE), .proc/initiate_shot)
+	RegisterSignal(parent, list(COMSIG_GUN_STOP_FIRE, COMSIG_XENO_STOP_FIRE), .proc/stop_firing)
+
 	auto_fire_shot_delay = _auto_fire_shot_delay
 	burstfire_shot_delay = _burstfire_shot_delay
 	burst_shots_to_fire = _burst_shots_to_fire
-	auto_burst_fire_shot_delay = 3 * auto_fire_shot_delay
+	auto_burst_fire_shot_delay = _auto_burst_fire_shot_delay ? _auto_burst_fire_shot_delay : 2 * auto_fire_shot_delay
 	fire_mode = _fire_mode
 	callback_bursting = _callback_bursting
 	callback_reset_fire = _callback_reset_fire
@@ -50,7 +48,7 @@
 	QDEL_NULL(callback_reset_fire)
 	QDEL_NULL(callback_bursting)
 	return ..()
-	
+
 ///Setter for fire mode
 /datum/component/automatedfire/autofire/proc/modify_fire_mode(datum/source, _fire_mode)
 	SIGNAL_HANDLER

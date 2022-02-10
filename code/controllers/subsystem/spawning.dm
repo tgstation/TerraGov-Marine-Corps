@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(spawning)
 
 ///Admin proc to unregister and reregister AI node spawners for example for varedits on WO
 /datum/controller/subsystem/spawning/proc/reset_ai()
-	for(var/obj/effect/ai_node/spawner/spawner in spawnerdata)
+	for(var/obj/effect/ai_node/spawner/spawner AS in spawnerdata)
 		unregisterspawner(spawner)
 		registerspawner(spawner, spawner.spawndelay, spawner.spawntypes, spawner.maxamount, spawner.spawnamount, spawner.use_postspawn ? CALLBACK(spawner, /obj/effect/ai_node/spawner.proc/postspawn) : null)
 
@@ -54,6 +54,7 @@ SUBSYSTEM_DEF(spawning)
 /datum/controller/subsystem/spawning/proc/remove_mob(mob/source)
 	SIGNAL_HANDLER
 	callbacks_by_mob[source].Invoke()
+	UnregisterSignal(source, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH))
 
 /**
  * Removes a mob from a spawners mobs spawned list
@@ -76,7 +77,7 @@ SUBSYSTEM_DEF(spawning)
 		spawnerdata[spawner].fire_increment = 0
 		var/turf/spawnpoint = get_turf(spawner)
 		var/list/squad = list()
-		for(var/b=0 to spawnerdata[spawner].spawnamount)
+		for(var/b = 0 to spawnerdata[spawner].spawnamount)
 			if(length(spawnerdata[spawner].spawnedmobs) >= spawnerdata[spawner].max_allowed_mobs)
 				break
 			var/spawntype = pick(spawnerdata[spawner].spawntypes)

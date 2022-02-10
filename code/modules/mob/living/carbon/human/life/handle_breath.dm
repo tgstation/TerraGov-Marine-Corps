@@ -95,9 +95,9 @@
 	if(!ISINRANGE_EX(breath_temp, species.cold_level_1, species.heat_level_1))
 		if(prob(20))
 			if(breath_temp < species.cold_level_1)
-				to_chat(src, "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>")
+				to_chat(src, span_danger("You feel your face freezing and icicles forming in your lungs!"))
 			else
-				to_chat(src, "<span class='danger'>You feel your face burning and a searing heat in your lungs!</span>")
+				to_chat(src, span_danger("You feel your face burning and a searing heat in your lungs!"))
 
 		switch(breath_temp)
 			if(-INFINITY to species.cold_level_3)

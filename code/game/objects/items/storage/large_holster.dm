@@ -13,14 +13,18 @@
 	var/base_icon = "m37_holster"
 	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 
-
 /obj/item/storage/large_holster/update_icon()
+	. = ..()
 	var/mob/user = loc
+	if(istype(user)) 
+		user.update_inv_back()
+		user.update_inv_belt()
+		user.update_inv_s_store()
+	
+
+/obj/item/storage/large_holster/update_icon_state()
 	icon_state = "[base_icon][contents.len?"_full":""]"
 	item_state = icon_state
-	if(istype(user)) user.update_inv_back()
-	if(istype(user)) user.update_inv_s_store()
-
 
 /obj/item/storage/large_holster/equipped(mob/user, slot)
 	if(slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)
@@ -53,12 +57,16 @@
 	)
 
 /obj/item/storage/large_holster/m37/full/Initialize()
-	. = ..()
-	icon_state = "m37_holster_full"
 	new /obj/item/weapon/gun/shotgun/pump(src)
-	base_icon = icon_state
+	update_icon()
+	return ..()	
 
-/obj/item/storage/large_holster/machete
+/// This is here to allow easier pathing and more consistent storage.
+/obj/item/storage/large_holster/blade
+	name = "\improper default holster"
+	desc = "You shouldn't see this."
+
+/obj/item/storage/large_holster/blade/machete
 	name = "\improper H5 pattern M2132 machete scabbard"
 	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
 	base_icon = "machete_holster"
@@ -66,20 +74,20 @@
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	can_hold = list(/obj/item/weapon/claymore/mercsword/machete, /obj/item/weapon/claymore/harvester)
 
-/obj/item/storage/large_holster/machete/full/Initialize()
+/obj/item/storage/large_holster/blade/machete/full/Initialize()
 	. = ..()
 	icon_state = "machete_holster_full"
 	new /obj/item/weapon/claymore/mercsword/machete(src)
 
-/obj/item/storage/large_holster/machete/full_harvester
+/obj/item/storage/large_holster/blade/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
 
-/obj/item/storage/large_holster/machete/full_harvester/Initialize()
+/obj/item/storage/large_holster/blade/machete/full_harvester/Initialize()
 	. = ..()
 	icon_state = "machete_holster_full"
 	new /obj/item/weapon/claymore/harvester(src)
 
-/obj/item/storage/large_holster/katana
+/obj/item/storage/large_holster/blade/katana
 	name = "\improper katana scabbard"
 	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back, waist or armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
 	base_icon = "katana_holster"
@@ -89,12 +97,12 @@
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	can_hold = list(/obj/item/weapon/katana)
 
-/obj/item/storage/large_holster/katana/full/Initialize()
+/obj/item/storage/large_holster/blade/katana/full/Initialize()
 	. = ..()
 	icon_state = "katana_holster_full"
 	new /obj/item/weapon/katana(src)
 
-/obj/item/storage/large_holster/officer
+/obj/item/storage/large_holster/blade/officer
 	name = "\improper officer sword scabbard"
 	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
 	base_icon = "officer_sheath"
@@ -102,7 +110,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)
 
-/obj/item/storage/large_holster/officer/full/Initialize()
+/obj/item/storage/large_holster/blade/officer/full/Initialize()
 	. = ..()
 	icon_state = "officer_sheath_full"
 	new /obj/item/weapon/claymore/mercsword/officersword(src)
@@ -117,9 +125,8 @@
 
 /obj/item/storage/large_holster/t35/full/Initialize()
 	. = ..()
-	icon_state = "t35_holster_full"
 	new /obj/item/weapon/gun/shotgun/pump/t35(src)
-	base_icon = icon_state
+	update_icon()
 
 /obj/item/storage/large_holster/m25
 	name = "\improper M276 pattern M25 holster rig"
@@ -138,9 +145,6 @@
 	else
 		icon_state = base_icon
 		item_state = base_icon
-	if(ismob(loc))
-		var/mob/user = loc
-		user.update_inv_belt()
 
 /obj/item/storage/large_holster/m25/full/Initialize()
 	. = ..()
@@ -154,10 +158,9 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	base_icon = "t19_holster"
 	flags_equip_slot = ITEM_SLOT_BELT
-	can_hold = list(/obj/item/weapon/gun/smg/standard_smg)
+	can_hold = list(/obj/item/weapon/gun/smg/standard_machinepistol)
 
-/obj/item/storage/large_holster/t19/update_icon()
-	var/mob/user = loc
+/obj/item/storage/large_holster/t19/update_icon_state()
 	if(contents.len)
 		var/obj/I = contents[1]
 		icon_state = "[base_icon]_full_[I.icon_state]"
@@ -165,9 +168,8 @@
 	else
 		icon_state = base_icon
 		item_state = base_icon
-	if(istype(user)) user.update_inv_belt()
 
 /obj/item/storage/large_holster/t19/full/Initialize()
 	. = ..()
-	new /obj/item/weapon/gun/smg/standard_smg(src)
+	new /obj/item/weapon/gun/smg/standard_machinepistol(src)
 	update_icon()

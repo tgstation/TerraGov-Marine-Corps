@@ -84,6 +84,15 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
+"kf" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/warning{
+	dir = 4
+	},
+/area/lv624/lazarus/robotics)
 "km" = (
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/tile/vault,
@@ -109,13 +118,12 @@
 /obj/item/mecha_parts/chassis/gygax,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
-"pu" = (
+"oe" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/warning{
-	dir = 4
+/obj/effect/ai_node,
+/turf/open/floor/tile/vault{
+	dir = 8
 	},
 /area/lv624/lazarus/robotics)
 "pQ" = (
@@ -125,12 +133,6 @@
 "qx" = (
 /turf/open/floor/plating/warning{
 	dir = 4
-	},
-/area/lv624/lazarus/robotics)
-"qA" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/tile/vault{
-	dir = 8
 	},
 /area/lv624/lazarus/robotics)
 "qE" = (
@@ -167,6 +169,20 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/robotics)
+"uk" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/plating/warning{
+	dir = 1
+	},
+/area/lv624/lazarus/robotics)
+"uR" = (
+/obj/effect/landmark/start/job/survivor,
+/obj/effect/ai_node,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
 "vO" = (
 /obj/machinery/mecha_part_fabricator,
 /turf/open/floor/plating/platebot,
@@ -193,6 +209,11 @@
 	dir = 1
 	},
 /area/lv624/lazarus/robotics)
+"zF" = (
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
 "zI" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/item/stack/sheet/metal{
@@ -208,11 +229,6 @@
 "zW" = (
 /obj/machinery/constructable_frame/state_2,
 /turf/open/floor/tile/vault,
-/area/lv624/lazarus/robotics)
-"BJ" = (
-/turf/open/floor/plating/warning{
-	dir = 8
-	},
 /area/lv624/lazarus/robotics)
 "Cx" = (
 /obj/structure/computerframe,
@@ -255,12 +271,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/robotics)
-"GE" = (
+"Id" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/plating/warning{
-	dir = 1
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
 "Ix" = (
 /obj/structure/largecrate/random,
@@ -280,10 +294,9 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
-"Ne" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/plating/warning,
+"JN" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "Ny" = (
 /obj/machinery/vending/tool,
@@ -315,12 +328,21 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/machinery/vending/engineering,
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "PQ" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"Rv" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
 /area/lv624/lazarus/robotics)
 "TB" = (
 /obj/structure/cable,
@@ -356,6 +378,7 @@
 "Yr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
+/obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -400,7 +423,7 @@ Dy
 Dy
 DP
 ar
-BJ
+zF
 zI
 DP
 Dy
@@ -417,7 +440,7 @@ ZQ
 Cx
 DP
 cl
-qA
+uR
 Jv
 DP
 tz
@@ -455,7 +478,7 @@ Uv
 eY
 DP
 EM
-hh
+JN
 jz
 Dy
 la
@@ -496,8 +519,8 @@ Dy
 "}
 (8,1,1) = {"
 Gz
-GE
-jP
+uk
+oe
 jP
 jP
 jP
@@ -507,8 +530,8 @@ jP
 jP
 jP
 jP
-jP
-Ne
+oe
+Id
 Gz
 "}
 (9,1,1) = {"
@@ -566,11 +589,11 @@ la
 la
 Dy
 vO
-hh
+JN
 hh
 CR
 jg
-TB
+Rv
 PQ
 CR
 hh
@@ -604,7 +627,7 @@ Dy
 Dy
 DP
 ex
-pu
+kf
 qx
 DP
 Dy

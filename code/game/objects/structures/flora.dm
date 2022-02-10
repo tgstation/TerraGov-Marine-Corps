@@ -68,13 +68,13 @@
 	if(I.hitsound)
 		playsound(get_turf(src), I.hitsound, 50, 0, 0)
 
-	user.visible_message("<span class='notice'>[user] begins to cut down [src] with [I].</span>","<span class='notice'>You begin to cut down [src] with [I].</span>", "You hear the sound of sawing.")
+	user.visible_message(span_notice("[user] begins to cut down [src] with [I]."),span_notice("You begin to cut down [src] with [I]."), "You hear the sound of sawing.")
 	var/cut_force = min(1, I.force)
 	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
 	if(!do_after(user, cutting_time , TRUE, src, BUSY_ICON_BUILD))
 		return
 
-	user.visible_message("<span class='notice'>[user] fells [src] with the [I].</span>","<span class='notice'>You fell [src] with the [I].</span>", "You hear the sound of a tree falling.")
+	user.visible_message(span_notice("[user] fells [src] with the [I]."),span_notice("You fell [src] with the [I]."), "You hear the sound of a tree falling.")
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
 	for(var/i in 1 to log_amount)
 		new /obj/item/grown/log(get_turf(src))
@@ -129,9 +129,9 @@
 		return
 
 	if(ckeys_that_took[user.ckey])
-		to_chat(user, "<span class='warning'>There are no presents with your name on.</span>")
+		to_chat(user, span_warning("There are no presents with your name on."))
 		return
-	to_chat(user, "<span class='warning'>After a bit of rummaging, you locate a gift with your name on it!</span>")
+	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
 	ckeys_that_took[user.ckey] = TRUE
 	var/obj/item/G = new gift_type(src)
 	user.put_in_hands(G)
@@ -445,7 +445,7 @@
 
 	var/mob/living/L = user
 
-	to_chat(L, "<span class='warning'>You cut \the [src] away with \the [I].</span>")
+	to_chat(L, span_warning("You cut \the [src] away with \the [I]."))
 	L.do_attack_animation(src, used_item = I)
 	playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
 	qdel(src)
@@ -475,7 +475,7 @@
 	icon = 'icons/obj/flora/rocks2.dmi'
 	density = TRUE
 	max_integrity = 250
-	layer = ABOVE_FLY_LAYER
+	layer = ABOVE_TURF_LAYER
 	coverage = 100
 	icon_state = "basalt"
 

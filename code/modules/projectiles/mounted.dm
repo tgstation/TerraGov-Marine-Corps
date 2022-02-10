@@ -6,57 +6,46 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER
 	use_power = FALSE
-	max_integrity = 100
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
-	hud_possible = list(MACHINE_HEALTH_HUD, SENTRY_AMMO_HUD)
+	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
 ///generates the icon based on how much ammo it has.
 /obj/machinery/deployable/mounted/update_icon_state(mob/user)
 	. = ..()
 	var/obj/item/weapon/gun/gun = internal_item
-	if(!gun.current_mag)
+	if(!length(gun.chamber_items) || !gun.chamber_items[gun.current_chamber_position])
 		icon_state = default_icon_state + "_e"
 	else
 		icon_state = default_icon_state
+
 	hud_set_gun_ammo()
 
-/obj/machinery/deployable/mounted/Initialize(mapload, _internal_item)
+/obj/machinery/deployable/mounted/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	if(!istype(internal_item, /obj/item/weapon/gun))
 		CRASH("[internal_item] was attempted to be deployed within the type /obj/machinery/deployable/mounted without being a gun]")
-	
-	var/obj/item/weapon/gun/new_gun = internal_item 
 
-	if(istype(new_gun.current_mag, /obj/item/ammo_magazine/internal) || istype(new_gun, /obj/item/weapon/gun/launcher))
-		CRASH("[new_gun] has been deployed, however it is incompatible because of either an internal magazine, or it is a launcher.")
+	var/obj/item/weapon/gun/new_gun = internal_item
 
+	new_gun.set_gun_user(null)
 
-///This is called when a user tries to operate the gun
-/obj/machinery/deployable/mounted/interact(mob/user)
-	if(!ishuman(user))
-		return TRUE
-	var/mob/living/carbon/human/human_user = user
-	if(get_step(src, REVERSE_DIR(dir)) != human_user.loc) //cant man the gun from the barrels side
-		to_chat(human_user, "<span class='warning'>You should be behind [src] to man it!</span>")
-		return TRUE
-	if(operator) //If there is already a operator then they're manning it.
-		if(!operator.interactee)
-			stack_trace("/obj/machinery/deployable/mounted/interact(mob/user) called by user [human_user] with an operator with a null interactee: [operator].")
-			operator = null //this shouldn't happen, but just in case
-		to_chat(human_user, "<span class='warning'>Someone's already controlling it.</span>")
-		return TRUE
-	if(human_user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
-		human_user.unset_interaction()
-	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(human_user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
-		return TRUE
-	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
-	do_attack_animation(src, ATTACK_EFFECT_GRAB)
-	visible_message("[icon2html(src, viewers(src))] <span class='notice'>[human_user] mans the [src]!</span>",
-		"<span class='notice'>You man the gun!</span>")
-
+/obj/machinery/deployable/mounted/Destroy()
+	operator?.unset_interaction()
 	return ..()
 
+/obj/machinery/deployable/mounted/AltClick(mob/user)
+	. = ..()
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user)) //Damn you zack, yoinking mags from pipes as a runner.
+		return
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.unload(user)
+	update_icon()
+
+/obj/machinery/deployable/mounted/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.do_unique_action(internal_gun, user)
 
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
@@ -71,30 +60,46 @@
 
 	reload(user, I)
 
-
-///Reloads gun
+///Reloads the internal_item
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
-	if(!istype(ammo_magazine, /obj/item/ammo_magazine))
-		return
-
-	var/obj/item/ammo_magazine/ammo = ammo_magazine
 	var/obj/item/weapon/gun/gun = internal_item
-	if(!istype(gun, ammo.gun_type))
-		return
-	if(ammo.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>[ammo] is empty!</span>")
-		return
-
-	if(gun.current_mag)
-		gun.unload(user,0,1)
+	if(length(gun.chamber_items))
+		gun.unload(user)
 		update_icon_state()
 
-	var/tac_reload_time = max(0.5 SECONDS, 1.5 SECONDS - user.skills.getRating("firearms") * 5)
-	if(!do_after(user, tac_reload_time, TRUE, src, BUSY_ICON_FRIENDLY))
-		return
-	
-	gun.reload(user, ammo_magazine)
+	gun.reload(ammo_magazine, user)
 	update_icon_state()
+
+	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+		return
+	gun.do_unique_action(gun, user)
+
+
+///This is called when a user tries to operate the gun
+/obj/machinery/deployable/mounted/interact(mob/user)
+	if(!ishuman(user))
+		return TRUE
+	var/mob/living/carbon/human/human_user = user
+	if(get_step(src, REVERSE_DIR(dir)) != human_user.loc) //cant man the gun from the barrels side
+		to_chat(human_user, span_warning("You should be behind [src] to man it!"))
+		return TRUE
+	if(operator) //If there is already a operator then they're manning it.
+		if(!operator.interactee)
+			stack_trace("/obj/machinery/deployable/mounted/interact(mob/user) called by user [human_user] with an operator with a null interactee: [operator].")
+			operator = null //this shouldn't happen, but just in case
+		to_chat(human_user, span_warning("Someone's already controlling it."))
+		return TRUE
+	if(human_user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
+		human_user.unset_interaction()
+	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(human_user, span_warning("Your programming restricts operating heavy weaponry."))
+		return TRUE
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
+	do_attack_animation(src, ATTACK_EFFECT_GRAB)
+	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans the [src]!")]",
+		span_notice("You man the gun!"))
+
+	return ..()
 
 ///Sets the user as manning the internal gun
 /obj/machinery/deployable/mounted/on_set_interaction(mob/user)
@@ -112,9 +117,6 @@
 
 	for(var/datum/action/action AS in gun.actions)
 		action.give_action(operator)
-	var/obj/screen/ammo/hud = operator.hud_used.ammo
-	hud.add_hud(operator, internal_item)
-	hud.update_hud(operator, internal_item)
 
 	gun.set_gun_user(operator)
 
@@ -157,7 +159,7 @@
 		operator.unset_interaction()
 		return FALSE
 	if(operator.get_active_held_item())
-		to_chat(operator, "<span class='warning'>You need a free hand to shoot the [src].</span>")
+		to_chat(operator, span_warning("You need a free hand to shoot the [src]."))
 		return FALSE
 
 	var/atom/target = object
@@ -185,7 +187,7 @@
 	var/left = leftright[1] - 1
 	var/right = leftright[2] + 1
 	if(!(left == (angle-1)) && !(right == (angle+1)))
-		to_chat(operator, "<span class='warning'> [src] cannot be rotated so violently.</span>")
+		to_chat(operator, span_warning(" [src] cannot be rotated so violently."))
 		return FALSE
 	var/turf/move_to = get_step(src, REVERSE_DIR(angle))
 	var/mob/living/carbon/human/user = operator
@@ -208,17 +210,22 @@
 
 	UnregisterSignal(operator, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEDRAG))
 	var/obj/item/weapon/gun/gun = internal_item
+	if(HAS_TRAIT(gun, TRAIT_GUN_IS_AIMING))
+		gun.toggle_aim_mode(operator)
 	gun.UnregisterSignal(operator, COMSIG_MOB_MOUSEUP)
 
 	for(var/datum/action/action AS in gun.actions)
 		action.remove_action(operator)
-	var/obj/screen/ammo/hud = operator.hud_used.ammo
-	hud.remove_hud(operator)
 
-	for(var/attachable in gun.attachments)
+	for(var/key in gun.attachments_by_slot)
+		var/obj/item/attachable = gun.attachments_by_slot[key]
+		if(!attachable)
+			continue
 		if(!istype(attachable, /obj/item/attachable/scope))
 			continue
 		var/obj/item/attachable/scope/scope = attachable
+		if(!scope.zoom)
+			continue
 		scope.zoom_item_turnoff(operator, operator)
 
 	operator.client?.view_size.reset_to_default()

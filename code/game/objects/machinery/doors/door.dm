@@ -26,6 +26,8 @@
 	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/list/fillers
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
 	//Multi-tile doors
 	dir = EAST
@@ -41,12 +43,13 @@
 
 	if(width > 1)
 		handle_multidoor()
+	var/turf/current_turf = get_turf(src)
+	current_turf.flags_atom &= ~ AI_BLOCKED
 
 /obj/machinery/door/Destroy()
-	. = ..()
 	for(var/o in fillers)
 		qdel(o)
-	density = FALSE
+	return ..()
 
 /obj/machinery/door/proc/handle_multidoor()
 	fillers = list()
@@ -81,13 +84,6 @@
 		for(var/m in O.buckled_mobs)
 			Bumped(m)
 
-	if(istype(AM, /obj/machinery/bot))
-		var/obj/machinery/bot/bot = AM
-		if(src.check_access(bot.botcard))
-			if(density)
-				open()
-		return
-
 
 /obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -106,10 +102,6 @@
 			open()
 		else
 			flick("door_deny", src)
-
-
-/obj/machinery/door/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
 
 
 /obj/machinery/door/attack_hand(mob/living/user)
@@ -188,15 +180,9 @@
 
 /obj/machinery/door/proc/open()
 	SIGNAL_HANDLER_DOES_SLEEP
-	if(!density)
-		return TRUE
-	if(operating > 0 || !loc)
+	if(operating || welded || locked || !loc)
 		return FALSE
-	if(!SSticker)
-		return FALSE
-	if(!operating)
-		operating = TRUE
-
+	operating = TRUE
 	do_animate("opening")
 	icon_state = "door0"
 	set_opacity(FALSE)
@@ -249,18 +235,6 @@
 /obj/machinery/door/proc/autoclose()
 	if(!density && !operating && !locked && !welded && autoclose)
 		close()
-
-/obj/machinery/door/Move(new_loc, new_dir)
-	. = ..()
-
-	if(width > 1)
-		var/turf/T = get_turf(src)
-		var/expansion_dir = initial(dir)
-
-		for(var/t in fillers)
-			var/obj/effect/opacifier/O = t
-			T = get_step(T,expansion_dir)
-			O.loc = T
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'

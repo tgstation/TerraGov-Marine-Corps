@@ -79,7 +79,7 @@
 
 			if ("head")
 				return "[limb_name]_[get_gender_name(gender)]"
-			
+
 			if ("synthetic head")
 				return "head_[get_gender_name(gender)]"
 
@@ -181,7 +181,7 @@
 					. = FALSE
 	if(!. && error_msg && user)
 		// Might need re-wording.
-		to_chat(user, "<span class='alert'>There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into.</span>")
+		to_chat(user, span_alert("There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into."))
 
 
 /mob/living/carbon/human/has_brain()

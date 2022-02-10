@@ -513,11 +513,11 @@ Nitrous Oxide
 		if (AALARM_SCREEN_MODE)
 			output += "<a href='?src=\ref[src];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br><b>Air machinery mode for the area:</b><ul>"
 			var/list/modes = list(AALARM_MODE_SCRUBBING   = "Filtering - Scrubs out contaminants",\
-				AALARM_MODE_REPLACEMENT = "<span class='notice'>Replace Air - Siphons out air while replacing</span>",\
+				AALARM_MODE_REPLACEMENT = span_notice("Replace Air - Siphons out air while replacing"),\
 				AALARM_MODE_PANIC       = "<font color='red'>Panic - Siphons air out of the room</font>",\
 				AALARM_MODE_CYCLE       = "<font color='red'>Cycle - Siphons air before replacing</font>",\
 				AALARM_MODE_FILL        = "<font color='green'>Fill - Shuts off scrubbers and opens vents</font>",\
-				AALARM_MODE_OFF         = "<span class='notice'>Off - Shuts off vents and scrubbers</span>",)
+				AALARM_MODE_OFF         = span_notice("Off - Shuts off vents and scrubbers"),)
 			for (var/m=1,m<=modes.len,m++)
 				if (mode==m)
 					output += "<li><A href='?src=\ref[src];mode=[m]'><b>[modes[m]]</b></A> (selected)</li>"
@@ -593,8 +593,8 @@ table tr:first-child th:first-child { border: none;}
 		var/list/selected = TLV["temperature"]
 		var/max_temperature = min(selected[3] - T0C, MAX_TEMPERATURE)
 		var/min_temperature = max(selected[2] - T0C, MIN_TEMPERATURE)
-		var/input_temperature = input("What temperature would you like the system to mantain? (Capped between [min_temperature]C and [max_temperature]C)", "Thermostat Controls") as num|null
-		if(!input_temperature || input_temperature > max_temperature || input_temperature < min_temperature)
+		var/input_temperature = tgui_input_number(usr, "What temperature would you like the system to mantain? (Capped between [min_temperature]C and [max_temperature]C)", "Thermostat Controls", max_value = max_temperature, min_value = min_temperature)
+		if(!input_temperature)
 			to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
 		else
 			target_temperature = input_temperature + T0C
@@ -619,7 +619,7 @@ table tr:first-child th:first-child { border: none;}
 				var/threshold = text2num(href_list["var"])
 				var/list/selected = TLV[env]
 				var/list/thresholds = list("lower bound", "low warning", "high warning", "upper bound")
-				var/newval = input("Enter [thresholds[threshold]] for [env]", "Alarm triggers", selected[threshold]) as null|num
+				var/newval = tgui_input_number(usr, "Enter [thresholds[threshold]] for [env]", "Alarm Triggers", selected[threshold])
 				if (isnull(newval) || ..() || (locked && !issilicon(usr)))
 					return
 				if (newval<0)
@@ -711,42 +711,36 @@ table tr:first-child th:first-child { border: none;}
 					return
 
 				if(!allowed(usr) || wires.is_cut(WIRE_IDSCAN))
-					to_chat(user, "<span class='warning'>Access denied.</span>")
+					to_chat(user, span_warning("Access denied."))
 					return
 
 				locked = !locked
-				to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
+				to_chat(user, span_notice("You [locked ? "lock" : "unlock"] the Air Alarm interface."))
 				updateUsrDialog()
 
 		if(1)
 			if(iscablecoil(I))
 				var/obj/item/stack/cable_coil/C = I
 				if(!C.use(5))
-					to_chat(user, "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>")
+					to_chat(user, span_warning("You need 5 pieces of cable to do wire \the [src]."))
 					return
 
-				to_chat(user, "<span class='notice'>You wire \the [src].</span>")
+				to_chat(user, span_notice("You wire \the [src]."))
 				buildstage = 2
 				update_icon()
 				first_run()
 
 			else if(iscrowbar(I))
-				user.visible_message("<span class='notice'>[user] starts prying out [src]'s circuits.</span>",
-				"<span class='notice'>You start prying out [src]'s circuits.</span>")
+				user.visible_message(span_notice("[user] starts prying out [src]'s circuits."),
+				span_notice("You start prying out [src]'s circuits."))
 
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
-				user.visible_message("<span class='notice'>[user] pries out [src]'s circuits.</span>",
-				"<span class='notice'>You pry out [src]'s circuits.</span>")
-				var/obj/item/circuitboard/airalarm/circuit
-				if(!electronics)
-					circuit = new /obj/item/circuitboard/airalarm(loc)
-				else
-					circuit = new electronics(loc)
-					if(electronics.is_general_board)
-						circuit.set_general()
+				user.visible_message(span_notice("[user] pries out [src]'s circuits."),
+				span_notice("You pry out [src]'s circuits."))
+				new /obj/item/circuitboard/airalarm(loc)
 				electronics = null
 				buildstage = 0
 				update_icon()

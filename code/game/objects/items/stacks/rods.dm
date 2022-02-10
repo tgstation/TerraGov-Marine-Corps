@@ -19,24 +19,24 @@
 	if(istype(W, /obj/item/stack/barbed_wire)) //making razorwire obstacles
 		var/obj/item/stack/barbed_wire/B = W
 		if(amount < 4)
-			to_chat(user, "<span class='warning'>You need [4 - amount] more [src] to make a razor wire obstacle!</span>")
+			to_chat(user, span_warning("You need [4 - amount] more [src] to make a razor wire obstacle!"))
 			return
 		use(4)
 		B.use(1)
 		var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
-		to_chat(user, "<span class='notice'>You combine the rods and barbed wire into [M]!</span>")
+		to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
 
 	if (iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(amount < 4)
-			to_chat(user, "<span class='warning'>You need at least four rods to do this.</span>")
+			to_chat(user, span_warning("You need at least four rods to do this."))
 			return
 
 		if(WT.remove_fuel(0,user))
 			var/obj/item/stack/sheet/metal/new_item = new(usr.loc)
 			new_item.add_to_stacks(usr)
-			visible_message("<span class='warning'>[src] is shaped into metal by [user] with the weldingtool.</span>", null, "<span class='warning'> You hear welding.</span>")
+			visible_message(span_warning("[src] is shaped into metal by [user] with the weldingtool."), null, span_warning(" You hear welding."))
 			var/obj/item/stack/rods/R = src
 			var/replace = (user.get_inactive_held_item()==R)
 			R.use(4)
@@ -51,7 +51,7 @@
 	if(!istype(user.loc,/turf)) return 0
 
 	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-		to_chat(usr, "<span class='warning'>No. This area is needed for the dropships and personnel.</span>")
+		to_chat(usr, span_warning("No. This area is needed for the dropships and personnel."))
 		return
 
 	if (locate(/obj/structure/grille, usr.loc))
@@ -66,15 +66,15 @@
 
 	else if(!CHECK_BITFIELD(obj_flags, IN_USE))
 		if(amount < 4)
-			to_chat(user, "<span class='notice'>You need at least four rods to do this.</span>")
+			to_chat(user, span_notice("You need at least four rods to do this."))
 			return
-		to_chat(usr, "<span class='notice'>Assembling grille...</span>")
+		to_chat(usr, span_notice("Assembling grille..."))
 		ENABLE_BITFIELD(obj_flags, IN_USE)
 		if (!do_after(usr, 20, TRUE, src, BUSY_ICON_BUILD))
 			DISABLE_BITFIELD(obj_flags, IN_USE)
 			return
 		new /obj/structure/grille/ ( usr.loc )
-		to_chat(usr, "<span class='notice'>You assemble a grille</span>")
+		to_chat(usr, span_notice("You assemble a grille"))
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 		use(4)
 

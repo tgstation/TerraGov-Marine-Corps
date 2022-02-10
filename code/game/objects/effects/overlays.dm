@@ -1,6 +1,5 @@
 /obj/effect/overlay
 	name = "overlay"
-	var/i_attached//Added for possible image attachments to objects. For hallucinations and the like.
 
 /obj/effect/overlay/beam//Not actually a projectile, just an effect.
 	name="beam"
@@ -58,10 +57,10 @@
 	icon_state = "laser_target3"
 	layer = ABOVE_FLY_LAYER
 
-/obj/effect/overlay/temp/Initialize()
+/obj/effect/overlay/temp/Initialize(mapload, effect_duration)
 	. = ..()
 	flick(icon_state, src)
-	QDEL_IN(src, effect_duration)
+	QDEL_IN(src, effect_duration ? effect_duration : src.effect_duration)
 
 /obj/effect/overlay/temp/point
 	name = "arrow"
@@ -89,7 +88,7 @@
 	if(source_binoc)
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 		source_binoc = null
-	. = ..()
+	return ..()
 
 /obj/effect/overlay/temp/laser_target
 	name = "laser"
@@ -103,7 +102,7 @@
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
 
-/obj/effect/overlay/temp/laser_target/Initialize(mapload, named, assigned_squad = null)
+/obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	if(named)
 		name = "[named] laser"
@@ -123,7 +122,7 @@
 	if(linked_cam)
 		qdel(linked_cam)
 		linked_cam = null
-	. = ..()
+	return ..()
 
 /obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
 	return
@@ -131,35 +130,37 @@
 /obj/effect/overlay/temp/laser_target/examine(user)
 	. = ..()
 	if(ishuman(user))
-		to_chat(usr, "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>")
+		to_chat(usr, span_danger("It's a laser to designate artillery targets, get away from it!"))
 
 /obj/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
 
-/obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, named, assigned_squad = null)
+/obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
-	linked_cam = new(loc, name)
+	linked_cam = new(src, name)
 	GLOB.active_cas_targets += src
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 
 /obj/effect/overlay/temp/laser_target/cas/Destroy()
-	. = ..()
 	GLOB.active_cas_targets -= src
+	return ..()
 
 /obj/effect/overlay/temp/laser_target/cas/examine(user)
 	. = ..()
 	if(ishuman(user))
-		to_chat(usr, "<span class='danger'>It's a laser to designate cas targets, get away from it!</span>")
+		to_chat(usr, span_danger("It's a laser to designate cas targets, get away from it!"))
 
 /obj/effect/overlay/temp/laser_target/OB
 	icon_state = "laser_target2"
 
-/obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, named, assigned_squad)
+/obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 	GLOB.active_laser_targets += src
 
 /obj/effect/overlay/temp/laser_target/OB/Destroy()
-	. = ..()
 	GLOB.active_laser_targets -= src
+	return ..()
 
 /obj/effect/overlay/temp/blinking_laser //not used for CAS anymore but some admin buttons still use it
 	name = "blinking laser"
@@ -210,7 +211,7 @@
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 14
 
-/obj/effect/overlay/temp/gib_animation/Initialize(mapload, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
@@ -229,7 +230,7 @@
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	effect_duration = 10
 
-/obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, mob/source_mob, gib_icon, new_icon)
+/obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, effect_duration, mob/source_mob, gib_icon, new_icon)
 	. = ..()
 	icon = new_icon
 
@@ -241,7 +242,7 @@
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 12
 
-/obj/effect/overlay/temp/dust_animation/Initialize(mapload, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/dust_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
@@ -258,3 +259,11 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	alpha = 0
 	vis_flags = NONE
+	blocks_emissive = NONE
+
+/obj/effect/overlay/temp/timestop_effect
+	icon = 'icons/effects/160x160.dmi'
+	icon_state = "time"
+	pixel_x = -60
+	pixel_y = -50
+	alpha = 70

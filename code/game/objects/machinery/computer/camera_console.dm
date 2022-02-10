@@ -151,9 +151,8 @@
 			stack_trace("Camera in a cameranet has a non-list camera network")
 			continue
 		var/list/tempnetwork = C.network & network
-		if(length(tempnetwork))
+		if(length(tempnetwork) && C.c_tag)
 			valid_cams["[C.c_tag]"] = C
-			// valid_cams["[C.c_tag][(C.status ? null : " (Deactivated)")]"] = C
 	return valid_cams
 
 
@@ -230,7 +229,7 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "consoleleft"
 	circuit = null
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 
 /obj/machinery/computer/security/dropship/one

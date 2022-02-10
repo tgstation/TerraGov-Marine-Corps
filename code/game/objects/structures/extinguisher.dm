@@ -38,7 +38,7 @@
 		user.drop_held_item()
 		contents += I
 		has_extinguisher = I
-		to_chat(user, "<span class='notice'>You place [I] in [src].</span>")
+		to_chat(user, span_notice("You place [I] in [src]."))
 
 	opened = !opened
 
@@ -51,16 +51,12 @@
 		return
 	if(has_extinguisher)
 		user.put_in_hands(has_extinguisher)
-		to_chat(user, "<span class='notice'>You take [has_extinguisher] from [src].</span>")
+		to_chat(user, span_notice("You take [has_extinguisher] from [src]."))
 		has_extinguisher = null
 		opened = 1
 	else
 		opened = !opened
 	update_icon()
-
-/obj/structure/extinguisher_cabinet/attack_paw(mob/living/carbon/human/user)
-	return attack_hand(user)
-
 
 /obj/structure/extinguisher_cabinet/update_icon()
 	overlays.Cut()

@@ -1,10 +1,8 @@
 /datum/game_mode/infestation/crash
 	name = "Crash"
 	config_tag = "Crash"
-	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
-	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
+	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DEAD_GRAB_FORBIDDEN
 	flags_xeno_abilities = ABILITY_CRASH
-
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/squad/engineer = 8,
@@ -23,13 +21,15 @@
 	var/marines_evac = CRASH_EVAC_NONE
 
 	// Shuttle details
-	var/shuttle_id = "tgs_canterbury"
+	var/shuttle_id = SHUTTLE_CANTERBURY
 	var/obj/docking_port/mobile/crashmode/shuttle
 
 	// Round start info
 	var/starting_squad = "Alpha"
-
-	var/larva_check_interval = 0
+	///How long between two larva check
+	var/larva_check_interval = 2 MINUTES
+	///Last time larva balance was checked
+	var/last_larva_check
 	bioscan_interval = 0
 
 
@@ -46,7 +46,7 @@
 
 	// Spawn the ship
 	if(TGS_CLIENT_COUNT >= 25)
-		shuttle_id = "tgs_bigbury"
+		shuttle_id = SHUTTLE_BIGBURY
 	if(!SSmapping.shuttle_templates[shuttle_id])
 		message_admins("Gamemode: couldn't find a valid shuttle template for [shuttle_id]")
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
@@ -81,7 +81,7 @@
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/xeno/resin/silo(i)
+		new /obj/structure/xeno/silo(i)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(HEADBITE_DEATH)
@@ -89,12 +89,19 @@
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
 
-	for(var/i in GLOB.shuttle_controls_list)
-		var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable = i
+	for(var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable AS in GLOB.shuttle_controls_list)
 		if(istype(computer_to_disable, /obj/machinery/computer/shuttle/shuttle_control/canterbury))
 			continue
 		computer_to_disable.machine_stat |= BROKEN
 		computer_to_disable.update_icon()
+
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
+	
+	if(!(flags_round_type & MODE_INFESTATION))
+		return
 
 	for(var/i in GLOB.alive_xeno_list)
 		if(isxenolarva(i)) // Larva
@@ -104,17 +111,13 @@
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
 
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(HN)
 		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
 
 
 /datum/game_mode/infestation/crash/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
+	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
 	priority_announce("Scheduled for landing in T-10 Minutes. Prepare for landing. Known hostiles near LZ. Detonation Protocol Active, planet disposable. Marines disposable.", type = ANNOUNCEMENT_PRIORITY)
 	playsound(shuttle, 'sound/machines/warning-buzzer.ogg', 75, 0, 30)
 
@@ -122,16 +125,13 @@
 /datum/game_mode/infestation/crash/process()
 	. = ..()
 
-	if(world.time > larva_check_interval)
+	if(world.time > last_larva_check + larva_check_interval)
 		balance_scales()
+		last_larva_check = world.time
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
 	shuttle.crashing = FALSE
-
-	// We delay this a little because the shuttle takes some time to land, and we want to the xenos to know the position of the marines.
-	bioscan_interval = world.time + 30 SECONDS
-
 
 /datum/game_mode/infestation/crash/check_finished(force_end)
 	if(round_finished)
@@ -229,23 +229,20 @@
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 
 /datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
-	to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
+	to_chat(src, span_warning("This power doesn't work in this gamemode."))
 	return FALSE
 
 /datum/game_mode/infestation/crash/proc/balance_scales()
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	if(stored_larva)
+		return //No need for respawns
 	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
-	var/larvapoints = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
 	if(!num_xenos)
-		if(!length(GLOB.xeno_resin_silos))
-			check_finished(TRUE)
-			return //RIP benos.
-		if(stored_larva)
-			return //No need for respawns nor to end the game. They can use their burrowed larvas.
-		xeno_job.add_job_positions(max(1, round(larvapoints, 1))) //At least one, rounded to nearest integer if more.
+		xeno_job.add_job_positions(1)
 		return
-	if(round(larvapoints, 1) < 1)
+	var/larva_surplus = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
+	if(larva_surplus < 1)
 		return //Things are balanced, no burrowed needed
-	xeno_job.add_job_positions(round(larvapoints, 1)) //However many burrowed they can afford to buy, rounded to nearest integer.
+	xeno_job.add_job_positions(1)

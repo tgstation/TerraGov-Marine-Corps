@@ -6,14 +6,20 @@ SUBSYSTEM_DEF(evacuation)
 	var/pod_cooldown
 	var/evac_time
 	var/evac_status = EVACUATION_STATUS_STANDING_BY
+	///list of alarm lights that we activate with self detruct
+	var/list/alarm_lights = list()
 
 	var/obj/machinery/self_destruct/console/dest_master
-	var/dest_rods[]
+	var/list/dest_rods
 	var/dest_cooldown
 	var/dest_index = 1
 	var/dest_status = NUKE_EXPLOSION_INACTIVE
 
 	var/flags_scuttle = FLAGS_SDEVAC_TIMELOCK
+	///How many marines were on ship when the dropship crashed
+	var/initial_human_on_ship = 0
+	///How many marines escaped
+	var/human_escaped = 0
 
 
 /datum/controller/subsystem/evacuation/proc/prepare()
@@ -21,7 +27,7 @@ SUBSYSTEM_DEF(evacuation)
 	if(!dest_master)
 		stack_trace("SSevacuation: Could not find dest_master.")
 		return FALSE
-	dest_rods = new
+	dest_rods = list()
 	for(var/obj/machinery/self_destruct/rod/I in dest_master.loc.loc)
 		dest_rods += I
 	if(!length(dest_rods))
@@ -33,8 +39,27 @@ SUBSYSTEM_DEF(evacuation)
 	dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / length(dest_rods)
 	dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
 
-
 /datum/controller/subsystem/evacuation/fire()
+	process_evacuation()
+	if(dest_status != NUKE_EXPLOSION_ACTIVE)
+		return
+	if(!dest_master.loc || dest_master.active_state != SELF_DESTRUCT_MACHINE_ARMED || dest_index > length(dest_rods))
+		return
+
+	var/obj/machinery/self_destruct/rod/I = dest_rods[dest_index]
+	if(world.time < dest_cooldown + I.activate_time)
+		return
+
+	I.toggle()
+
+	if(++dest_index > length(dest_rods))
+		return
+
+	I = dest_rods[dest_index]
+	I.activate_time = world.time
+
+///Deal with the escape pods, launching them when needed
+/datum/controller/subsystem/evacuation/proc/process_evacuation()
 	switch(evac_status)
 		if(EVACUATION_STATUS_INITIATING)
 			if(world.time < evac_time + EVACUATION_AUTOMATIC_DEPARTURE)
@@ -50,23 +75,6 @@ SUBSYSTEM_DEF(evacuation)
 			var/obj/docking_port/mobile/escape_pod/P = pick_n_take(pod_list)
 			P.launch()
 
-	switch(dest_status)
-		if(NUKE_EXPLOSION_ACTIVE)
-			if(!dest_master.loc || dest_master.active_state != SELF_DESTRUCT_MACHINE_ARMED || dest_index > length(dest_rods))
-				return
-
-			var/obj/machinery/self_destruct/rod/I = dest_rods[dest_index]
-			if(world.time < dest_cooldown + I.activate_time)
-				return
-
-			I.toggle()
-
-			if(++dest_index > length(dest_rods))
-				return
-
-			I = dest_rods[dest_index]
-			I.activate_time = world.time
-
 
 
 /datum/controller/subsystem/evacuation/proc/initiate_evacuation(override)
@@ -77,12 +85,12 @@ SUBSYSTEM_DEF(evacuation)
 	GLOB.enter_allowed = FALSE
 	evac_time = world.time
 	evac_status = EVACUATION_STATUS_INITIATING
-	priority_announce("Emergency evacuation has been triggered. Please proceed to the escape pods.", "Priority Alert", sound = 'sound/AI/evacuate.ogg')
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EVACUATION_STARTED)
+	priority_announce("Emergency evacuation has been triggered. Please proceed to the escape pods. Evacuation in [EVACUATION_AUTOMATIC_DEPARTURE/600] minutes.", "Priority Alert", sound = 'sound/AI/evacuate.ogg')
 	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 	pod_list = SSshuttle.escape_pods.Copy()
-	for(var/i in pod_list)
-		var/obj/docking_port/mobile/escape_pod/P = i
-		P.prep_for_launch()
+	for(var/obj/docking_port/mobile/escape_pod/pod AS in pod_list)
+		pod.prep_for_launch()
 	return TRUE
 
 
@@ -101,9 +109,8 @@ SUBSYSTEM_DEF(evacuation)
 	evac_time = null
 	evac_status = EVACUATION_STATUS_STANDING_BY
 	priority_announce("Evacuation has been cancelled.", "Priority Alert", sound = 'sound/AI/evacuate_cancelled.ogg')
-	for(var/i in pod_list)
-		var/obj/docking_port/mobile/escape_pod/P = i
-		P.unprep_for_launch()
+	for(var/obj/docking_port/mobile/escape_pod/pod AS in pod_list)
+		pod.unprep_for_launch()
 	return TRUE
 
 
@@ -128,6 +135,8 @@ SUBSYSTEM_DEF(evacuation)
 	dest_status = NUKE_EXPLOSION_ACTIVE
 	dest_master.toggle()
 	GLOB.marine_main_ship.set_security_level(SEC_LEVEL_DELTA)
+	for(var/obj/machinery/floor_warn_light/self_destruct/light AS in alarm_lights)
+		light.enable()
 	return TRUE
 
 
@@ -139,7 +148,7 @@ SUBSYSTEM_DEF(evacuation)
 	for(i in SSevacuation.dest_rods)
 		I = i
 		if(I.active_state == SELF_DESTRUCT_MACHINE_ARMED && !override)
-			dest_master.visible_message("<span class='warning'>WARNING: Unable to cancel detonation. Please disarm all control rods.</span>")
+			dest_master.visible_message(span_warning("WARNING: Unable to cancel detonation. Please disarm all control rods."))
 			return FALSE
 
 	dest_status = NUKE_EXPLOSION_INACTIVE
@@ -152,6 +161,8 @@ SUBSYSTEM_DEF(evacuation)
 	priority_announce("The emergency destruct system has been deactivated.", "Priority Alert", sound = 'sound/AI/selfdestruct_deactivated.ogg')
 	if(evac_status == EVACUATION_STATUS_STANDING_BY)
 		GLOB.marine_main_ship.set_security_level(SEC_LEVEL_RED, TRUE)
+	for(var/obj/machinery/floor_warn_light/self_destruct/light AS in alarm_lights)
+		light.disable()
 	return TRUE
 
 
@@ -163,7 +174,7 @@ SUBSYSTEM_DEF(evacuation)
 	for(var/i in dest_rods)
 		I = i
 		if(I.active_state != SELF_DESTRUCT_MACHINE_ARMED && !override)
-			dest_master.visible_message("<span class='warning'>WARNING: Unable to trigger detonation. Please arm all control rods.</span>")
+			dest_master.visible_message(span_warning("WARNING: Unable to trigger detonation. Please arm all control rods."))
 			return FALSE
 
 	priority_announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")

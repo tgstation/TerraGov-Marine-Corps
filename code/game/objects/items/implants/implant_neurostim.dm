@@ -28,10 +28,10 @@
 
 	if(accidental) //was triggered by random chance or EMP
 		playsound(implant_owner, 'sound/machines/buzz-two.ogg', 60, 1)
-		implant_owner.visible_message("<span class='warning'>Something buzzes inside [implant_owner][part ? "'s [part.display_name]" : ""].</span>")
+		implant_owner.visible_message(span_warning("Something buzzes inside [implant_owner][part ? "'s [part.display_name]" : ""]."))
 	else
 		playsound(implant_owner, 'sound/machines/twobeep.ogg', 60, 1)
-		implant_owner.visible_message("<span class='warning'>Something beeps inside [implant_owner][part ? "'s [part.display_name]" : ""].</span>")
+		implant_owner.visible_message(span_warning("Something beeps inside [implant_owner][part ? "'s [part.display_name]" : ""]."))
 	addtimer(CALLBACK(src, .proc/shock_sparks), 1 SECONDS)
 
 ///Plays a shocky animation
@@ -44,7 +44,7 @@
 
 ///Shocks the owner for whatever reason
 /obj/item/implant/neurostim/proc/shock_collar()
-	implant_owner.visible_message("<span class='danger'>[implant_owner] convulses in pain!</span>", "<span class='danger'>Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!</span>")
+	implant_owner.visible_message(span_danger("[implant_owner] convulses in pain!"), span_danger("Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!"))
 	implant_owner.flash_act(1, TRUE)
 	implant_owner.AdjustStun(20 SECONDS)
 	implant_owner.Paralyze(20 SECONDS)
@@ -58,7 +58,7 @@
 		return FALSE
 	phrase = p
 	user.mind.store_memory("[src] in [target] can be made to deliver negative stimulus by saying something containing the phrase ''[phrase]'', <B>say [phrase]</B> to attempt to activate.", 0, 0)
-	to_chat(user, "<span class='notice'>[src] in [target] can be made to deliver negative stimulus by saying something containing the phrase ''[phrase]'', <B>say [phrase]</B> to attempt to activate.</span>")
+	to_chat(user, span_notice("[src] in [target] can be made to deliver negative stimulus by saying something containing the phrase ''[phrase]'', <B>say [phrase]</B> to attempt to activate."))
 	return ..()
 
 

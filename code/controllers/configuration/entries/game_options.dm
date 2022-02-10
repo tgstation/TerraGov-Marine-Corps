@@ -87,6 +87,8 @@
 
 /datum/config_entry/flag/fun_allowed //a lot of LRP features
 
+/datum/config_entry/flag/xenos_on_strike
+
 /datum/config_entry/number/min_xenos
 	config_entry_value = 5
 	min_val = 1
@@ -110,11 +112,6 @@
 	config_entry_value = FALSE
 
 /datum/config_entry/number/marine_respawn
-	config_entry_value = 30 MINUTES
-	max_val = 30 MINUTES
-	min_val = 0
-
-/datum/config_entry/number/xeno_respawn
 	config_entry_value = 30 MINUTES
 	max_val = 30 MINUTES
 	min_val = 0

@@ -27,7 +27,7 @@ FLOOR SAFES
 	anchored = TRUE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	var/spawnkey = 1 //Spawn safe code on top of it?
 	var/open = 0		//is the safe open?
 	var/tumbler_1_pos	//the tumbler position- from 0 to 72
@@ -62,9 +62,9 @@ FLOOR SAFES
 /obj/structure/safe/proc/check_unlocked(mob/user as mob, canhear)
 	if(user && canhear)
 		if(tumbler_1_pos == tumbler_1_open)
-			to_chat(user, "<span class='notice'>You hear a [pick("tonk", "krunk", "plunk")] from [src].</span>")
+			to_chat(user, span_notice("You hear a [pick("tonk", "krunk", "plunk")] from [src]."))
 		if(tumbler_2_pos == tumbler_2_open)
-			to_chat(user, "<span class='notice'>You hear a [pick("tink", "krink", "plink")] from [src].</span>")
+			to_chat(user, span_notice("You hear a [pick("tink", "krink", "plink")] from [src]."))
 	if(tumbler_1_pos == tumbler_1_open && tumbler_2_pos == tumbler_2_open)
 		if(user) visible_message("<b>[pick("Spring", "Sprang", "Sproing", "Clunk", "Click")]!</b>")
 		return 1
@@ -135,13 +135,13 @@ FLOOR SAFES
 
 	if(href_list["open"])
 		if(check_unlocked())
-			to_chat(user, "<span class='notice'>You [open ? "close" : "open"] [src].</span>")
+			to_chat(user, span_notice("You [open ? "close" : "open"] [src]."))
 			open = !open
 			update_icon()
 			updateUsrDialog()
 			return
 		else
-			to_chat(user, "<span class='notice'>You can't [open ? "close" : "open"] [src], the lock is engaged!</span>")
+			to_chat(user, span_notice("You can't [open ? "close" : "open"] [src], the lock is engaged!"))
 			return
 
 	if(href_list["decrement"])
@@ -186,11 +186,11 @@ FLOOR SAFES
 	else if(I.w_class + space <= maxspace)
 		space += I.w_class
 		if(user.transferItemToLoc(I, src))
-			to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+			to_chat(user, span_notice("You put [I] in [src]."))
 		updateUsrDialog()
 
 	else
-		to_chat(user, "<span class='notice'>[I] won't fit in [src].</span>")
+		to_chat(user, span_notice("[I] won't fit in [src]."))
 
 
 //FLOOR SAFES

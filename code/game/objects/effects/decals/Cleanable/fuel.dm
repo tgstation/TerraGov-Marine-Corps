@@ -17,6 +17,10 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir)
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 	amount = amt
 	burn_lvl = rand(0, 25)
 	fire_lvl = rand(5,30)
@@ -33,7 +37,14 @@
 		amount += other.amount
 		qdel(other)
 	fuel_spread()
+	RegisterSignal(loc, COMSIG_TURF_THROW_ENDED_HERE, .proc/ignite_check_wrapper)
 
+///called when someonething moves over the fuel
+/obj/effect/decal/cleanable/liquid_fuel/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(AM.throwing)
+		return	//If something lands on our turf, it's caught via signal instead
+	check_ignite(AM)
 
 /obj/effect/decal/cleanable/liquid_fuel/proc/fuel_spread()
 	//Allows liquid fuels to sometimes flow into other tiles.
@@ -72,16 +83,17 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/tool/lighter))
-		ignite_fuel()
-		user.visible_message("<span class='notice'>[user] ignites \the [src]</span>", "<span class='notice'>You ignite some fuel on [src]</span>")
+	if(I.damtype == BURN)
+		ignite_fuel(I)
 		log_attack("[key_name(user)] ignites [src] in fuel in [AREACOORD(user)]")
 
 /obj/effect/decal/cleanable/liquid_fuel/flamer_fire_act()
 	. = ..()
 	ignite_fuel()
 
-/obj/effect/decal/cleanable/liquid_fuel/proc/ignite_fuel()
+/obj/effect/decal/cleanable/liquid_fuel/proc/ignite_fuel(igniter)
+	if(igniter)
+		visible_message(span_warning("[igniter] ignites the spilled fuel!"))
 	new /obj/flamer_fire(loc, fire_lvl, burn_lvl, f_color)
 	var/turf/S = get_turf(src)
 	for(var/D in CARDINAL_DIRS)
@@ -89,6 +101,25 @@
 		for(var/obj/effect/decal/cleanable/liquid_fuel/other in T)
 			INVOKE_NEXT_TICK(other, .proc/ignite_fuel)	//Spread effect
 	qdel(src)
+
+///Ignites when something hot enters our loc, either via crossed or signal wrapper
+/obj/effect/decal/cleanable/liquid_fuel/proc/check_ignite(atom/movable/igniter)
+	if(isitem(igniter))
+		var/obj/item/ignitem = igniter
+		if(ignitem.damtype != BURN)
+			return
+	else if(isliving(igniter))
+		var/mob/living/burner_mob = igniter
+		if(!burner_mob.on_fire)
+			return
+	else
+		return
+	ignite_fuel(igniter)
+
+///Wrapper for ignition via signals rather than from crossed
+/obj/effect/decal/cleanable/liquid_fuel/proc/ignite_check_wrapper(signal_source, atom/movable/igniter)
+	SIGNAL_HANDLER
+	check_ignite(igniter)
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"

@@ -2,19 +2,12 @@
 	Animals & All Unspecified
 */
 /mob/living/UnarmedAttack(atom/A, has_proximity, modifiers)
+	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
+		return
 	A.attack_animal(src)
 
 
 /atom/proc/attack_animal(mob/user as mob)
-	return
-
-
-
-/*
-	Monkeys //todo kill this proc :)
-*/
-
-/atom/proc/attack_paw(mob/living/carbon/human/user)
 	return
 
 
@@ -64,7 +57,13 @@
  * * user: The mob clicking on the atom
  */
 /atom/proc/attack_hand_alternate(mob/living/user)
-	return
+	. = FALSE
+	if(QDELETED(src))
+		stack_trace("attack_hand_alternate on a qdeleted atom")
+		return TRUE
+	add_fingerprint(user, "attack_hand_alternate")
+	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, user) & COMPONENT_NO_ATTACK_HAND)
+		return TRUE
 
 /*
 	New Players:

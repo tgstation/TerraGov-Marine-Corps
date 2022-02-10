@@ -13,16 +13,15 @@
 	upgrade = XENO_UPGRADE_ZERO
 	pull_speed = -2
 
-
 // ***************************************
 // *********** Icon
 // ***************************************
 /mob/living/carbon/xenomorph/defender/handle_special_state()
 	if(fortify)
-		icon_state = "Defender Fortify"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Fortify"
 		return TRUE
 	if(crest_defense)
-		icon_state = "Defender Crest"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Crest"
 		return TRUE
 	return FALSE
 
@@ -64,6 +63,6 @@
 
 /mob/living/carbon/xenomorph/defender/lay_down()
 	if(fortify) // Ensure the defender isn't fortified while laid down
-		to_chat(src, "<span class='warning'>You can't do that right now.</span>")
+		to_chat(src, span_warning("You can't do that right now."))
 		return
 	return ..()

@@ -9,9 +9,12 @@
 
 /datum/game_mode/infestation/post_setup()
 	. = ..()
-	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
-	for(var/i in GLOB.xeno_weed_node_turfs)
-		new /obj/effect/alien/weeds/node(i)
+	if(bioscan_interval)
+		TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
+	var/weed_type
+	for(var/turf/T in GLOB.xeno_weed_node_turfs)
+		weed_type = pickweight(GLOB.weed_prob_list)
+		new weed_type(T)
 	for(var/turf/T AS in GLOB.xeno_resin_wall_turfs)
 		T.ChangeTurf(/turf/closed/wall/resin, T.type)
 	for(var/i in GLOB.xeno_resin_door_turfs)
@@ -76,8 +79,8 @@
 		for(var/i in GLOB.alive_xeno_list)
 			var/mob/M = i
 			SEND_SOUND(M, S)
-			to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
-			to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[BIOSCAN_LOCATION(show_locations, hostLocationS)], [numHostsPlanet || "none"] scattered elsewhere[BIOSCAN_LOCATION(show_locations, hostLocationP)] and [numHostsTransitr ? "approximately [numHostsTransitr]":"no"] host[numHostsTransitr > 1 ? "s":""] on the metal bird in transit.</span>")
+			to_chat(M, span_xenoannounce("The Queen Mother reaches into your mind from worlds away."))
+			to_chat(M, span_xenoannounce("To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[BIOSCAN_LOCATION(show_locations, hostLocationS)], [numHostsPlanet || "none"] scattered elsewhere[BIOSCAN_LOCATION(show_locations, hostLocationP)] and [numHostsTransitr ? "approximately [numHostsTransitr]":"no"] host[numHostsTransitr > 1 ? "s":""] on the metal bird in transit."))
 
 	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
 	var/input = {"Bioscan complete.
@@ -148,6 +151,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		round_finished = MODE_INFESTATION_M_MAJOR
 		return TRUE
 	if(round_stage == INFESTATION_MARINE_CRASHING && !num_humans_ship)
+		if(SSevacuation.human_escaped > SSevacuation.initial_human_on_ship * 0.5)
+			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //xenos have control of the ship, but most marines managed to flee
+			round_finished = MODE_INFESTATION_X_MINOR
+			return
 		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
@@ -155,8 +162,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 /datum/game_mode/infestation/declare_completion()
 	. = ..()
-	to_chat(world, "<span class='round_header'>|[round_finished]|</span>")
-	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name].</span>")
+	to_chat(world, span_round_header("|[round_finished]|"))
+	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the [SSmapping.configs[SHIP_MAP].map_name] and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 	var/sound/xeno_track
 	var/sound/human_track
 	var/sound/ghost_track
@@ -221,7 +228,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	if(!HN.living_xeno_ruler)
 		return
 
-	var/dat = "<span class='round_body'>The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as <span class='boldnotice'>[HN.living_xeno_ruler]</span></span>"
+	var/dat = span_round_body("The surviving xenomorph ruler was:<br>[HN.living_xeno_ruler.key] as [span_boldnotice("[HN.living_xeno_ruler]")]")
 
 	to_chat(world, dat)
 
@@ -256,7 +263,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 
 /datum/game_mode/infestation/announce()
-	to_chat(world, "<span class='round_header'>The current map is - [SSmapping.configs[GROUND_MAP].map_name]!</span>")
+	to_chat(world, span_round_header("The current map is - [SSmapping.configs[GROUND_MAP].map_name]!"))
 
 /datum/game_mode/infestation/attempt_to_join_as_larva(mob/dead/observer/observer)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]

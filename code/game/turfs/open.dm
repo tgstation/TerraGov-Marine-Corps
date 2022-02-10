@@ -11,9 +11,9 @@
 	var/mediumxenofootstep = FOOTSTEP_HARD
 	var/heavyxenofootstep = FOOTSTEP_GENERIC_HEAVY
 
-/turf/open/Entered(atom/A, atom/OL)
-	if(iscarbon(A))
-		var/mob/living/carbon/C = A
+/turf/open/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs) //todo refactor this entire proc is garbage
+	if(iscarbon(arrived))
+		var/mob/living/carbon/C = arrived
 		if(!C.lying_angle && !(C.buckled && istype(C.buckled,/obj/structure/bed/chair)))
 			if(ishuman(C))
 				var/mob/living/carbon/human/H = C
@@ -108,16 +108,16 @@
 	layer = RIVER_OVERLAY_LAYER
 	plane = FLOOR_PLANE
 
-/turf/open/beach/water/Entered(atom/movable/AM)
+/turf/open/beach/water/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
 	if(has_catwalk)
 		return
-	if(iscarbon(AM))
-		var/mob/living/carbon/C = AM
+	if(iscarbon(arrived))
+		var/mob/living/carbon/C = arrived
 		var/beachwater_slowdown = 1.75
 
 		if(ishuman(C))
-			var/mob/living/carbon/human/H = AM
+			var/mob/living/carbon/human/H = arrived
 			cleanup(H)
 
 		else if(isxeno(C))
@@ -191,12 +191,13 @@
 	shoefootstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD
 	mediumxenofootstep = FOOTSTEP_PLATING
+	smoothing_behavior = NO_SMOOTHING
 
 
 /turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	if(ispath(planned_building, /turf/closed/wall/)) // Shuttles move and will leave holes in the floor during transit
 		if(!silent)
-			to_chat(builder, "<span class='warning'>This place seems unable to support a wall.</span>")
+			to_chat(builder, span_warning("This place seems unable to support a wall."))
 		return FALSE
 	return ..()
 
@@ -207,17 +208,39 @@
 	name = "floor"
 	icon_state = "rasputin1"
 
+/turf/open/shuttle/dropship/two
+	icon_state = "rasputin2"
 /turf/open/shuttle/dropship/three
 	icon_state = "rasputin3"
 
+/turf/open/shuttle/dropship/four
+	icon_state = "rasputin4"
 /turf/open/shuttle/dropship/five
 	icon_state = "rasputin5"
+
+/turf/open/shuttle/dropship/six
+	icon_state = "rasputin6"
 
 /turf/open/shuttle/dropship/seven
 	icon_state = "rasputin7"
 
 /turf/open/shuttle/dropship/eight
 	icon_state = "rasputin8"
+
+/turf/open/shuttle/dropship/nine
+	icon_state = "rasputin9"
+
+/turf/open/shuttle/dropship/ten
+	icon_state = "rasputin10"
+
+/turf/open/shuttle/dropship/eleven
+	icon_state = "rasputin11"
+
+/turf/open/shuttle/dropship/twelve
+	icon_state = "rasputin12"
+
+/turf/open/shuttle/dropship/thirteen
+	icon_state = "rasputin13"
 
 /turf/open/shuttle/dropship/grating
 	icon = 'icons/turf/elevator.dmi'
@@ -274,6 +297,7 @@
 /turf/open/lavaland/lava
 	name = "lava"
 	icon_state = "full"
+	light_system = STATIC_LIGHT //theres a lot of lava, dont change this
 	light_range = 2
 	light_power = 1.4
 	light_color = LIGHT_COLOR_LAVA
@@ -308,18 +332,22 @@
 /turf/open/lavaland/lava/single/corners
 	icon_state = "single_corners"
 
-/turf/open/lavaland/lava/New()
-	..()
+/turf/open/lavaland/lava/Initialize()
+	. = ..()
+	var/turf/current_turf = get_turf(src)
+	if(current_turf && density)
+		current_turf.flags_atom |= AI_BLOCKED
 
-/turf/open/lavaland/lava/Entered(atom/movable/AM)
-	if(burn_stuff(AM))
+/turf/open/lavaland/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	if(burn_stuff(arrived))
 		START_PROCESSING(SSobj, src)
 
-/turf/open/lavaland/lava/Exited(atom/movable/Obj, atom/newloc)
+/turf/open/lavaland/lava/Exited(atom/movable/leaver, direction)
 	. = ..()
-	if(isliving(Obj))
-		var/mob/living/L = Obj
-		if(!islava(newloc) && !L.on_fire)
+	if(isliving(leaver))
+		var/mob/living/L = leaver
+		if(!islava(get_step(src, direction)) && !L.on_fire)
 			L.update_fire()
 
 /turf/open/lavaland/lava/process()
@@ -356,17 +384,20 @@
 		var/obj/item/stack/rods/R = C
 		var/turf/open/lavaland/catwalk/H = locate(/turf/open/lavaland/catwalk, src)
 		if(H)
-			to_chat(user, "<span class='warning'>There is already a catwalk here!</span>")
+			to_chat(user, span_warning("There is already a catwalk here!"))
 			return
 		if(!do_after(user, 5 SECONDS, FALSE))
-			to_chat(user, "<span class='warning'>It takes time to construct a catwalk!</span>")
+			to_chat(user, span_warning("It takes time to construct a catwalk!"))
 			return
 		if(R.use(4))
-			to_chat(user, "<span class='notice'>You construct a heatproof catwalk.</span>")
+			to_chat(user, span_notice("You construct a heatproof catwalk."))
 			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 			ChangeTurf(/turf/open/lavaland/catwalk/built)
+			var/turf/current_turf = get_turf(src)
+			if(current_turf && density)
+				current_turf.flags_atom &= ~AI_BLOCKED
 		else
-			to_chat(user, "<span class='warning'>You need four rods to build a heatproof catwalk.</span>")
+			to_chat(user, span_warning("You need four rods to build a heatproof catwalk."))
 		return
 
 /turf/open/lavaland/basalt
@@ -394,6 +425,7 @@
 
 /turf/open/lavaland/basalt/glowing
 	icon_state = "basaltglow"
+	light_system = STATIC_LIGHT
 	light_range = 4
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
@@ -401,6 +433,7 @@
 /turf/open/lavaland/catwalk
 	name = "catwalk"
 	icon_state = "lavacatwalk"
+	light_system = STATIC_LIGHT
 	light_range = 1.4
 	light_power = 2
 	light_color = LIGHT_COLOR_LAVA
@@ -424,4 +457,7 @@
 		return
 	deconstructing = FALSE
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
+	var/turf/current_turf = get_turf(src)
+	if(current_turf)
+		current_turf.flags_atom |= AI_BLOCKED
 	ChangeTurf(/turf/open/lavaland/lava)
