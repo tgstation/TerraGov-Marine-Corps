@@ -208,6 +208,16 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/tl102)
 	cost = 10
 
+/datum/supply_packs/weapons/tl34_gun
+	name = "TL-34 Automatic Grenade Smart Launching System"
+	contains = list(/obj/item/weapon/gun/marine_agsls)
+	cost = 450
+
+/datum/supply_packs/weapons/tl34_ammo
+	name = "TL-102 mounted heavy smartgun ammo"
+	contains = list(/obj/item/ammo_magazine/marine_agsls)
+	cost = 10
+
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
 	contains = list(

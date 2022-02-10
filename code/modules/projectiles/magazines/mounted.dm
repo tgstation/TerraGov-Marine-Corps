@@ -40,3 +40,15 @@
 	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	reload_delay = 1 SECONDS
+
+/obj/item/ammo_magazine/marine_agsls
+	name = "TL-34 box magazine (40mm Grenade)"
+	desc = "A box of 50 40mm Smart Grenades, cannot be used as normal grenades.."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "ags_mag"
+	flags_magazine = NONE
+	caliber = CALIBER_40MM
+	max_rounds = 50
+	default_ammo =  /datum/ammo/rocket/ags
+	reload_delay = 3 SECONDS

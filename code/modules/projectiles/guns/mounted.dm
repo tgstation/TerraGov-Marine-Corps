@@ -201,3 +201,43 @@
 	deploy_time = 1 SECONDS
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
+
+///An absolute monstrosity, a fully automatic IFF grenade launcher. It will shred whatever it sees..
+/obj/item/weapon/gun/marine_agsls
+	name = "\improper TL-34 Automatic Grenade Smart Launching System"
+	desc = "The TL-34 AGSLS, is a heavy, 40mm automatic belt fed grenade launcher used by the Marine Corps meant to turn absolutely whatever is on the other side to a pile of gore and blood. It is capable of smart-firing 40mm impact grenades anywhere, any place. It is however, extremely expensive. Just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed. Uses 40mm Smart Grenades in drums.."
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "ags"
+	caliber = CALIBER_40MM
+	fire_sound = 'sound/weapons/guns/fire/ags.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/marine_agsls
+
+	scatter = 4
+	fire_delay = 0.3 SECONDS
+	burst_amount = 1
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/agsls,
+	)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/agsls,
+	)
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/marine_agsls,
+	)
+
+	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
+
+	max_integrity = 400
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 100, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)

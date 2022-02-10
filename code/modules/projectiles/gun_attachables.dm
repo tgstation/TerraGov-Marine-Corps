@@ -676,6 +676,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_viewsize = 0
 	zoom_tile_offset = 3
 
+/obj/item/attachable/scope/unremovable/agsls
+	name = "TL-34 smart sight"
+	desc = "An unremovable smart sight built for use with the TL-34, it does nearly all the aiming work for the gun's integrated IFF systems."
+	icon_state = "sniperscope_invisible"
+	zoom_viewsize = 0
+	zoom_tile_offset = 3
+
 /obj/item/attachable/scope/unremovable/tl102/nest
 	zoom_tile_offset = 6
 
@@ -684,7 +691,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(SEND_SIGNAL(user, COMSIG_ITEM_ZOOM) &  COMSIG_ITEM_ALREADY_ZOOMED)
 			zoom(user)
 		return TRUE
-	
+
 	if(!(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		if(user)
 			to_chat(user, span_warning("You must hold [master_gun] with two hands to use [src]."))

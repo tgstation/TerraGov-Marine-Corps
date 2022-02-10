@@ -1327,9 +1327,9 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/ags
 	name = "high explosive grenade"
-	icon_state = "grenade_ags"
+	icon_state = "grenade_projectile"
 	hud_state = "grenade_he"
-	hud_state_empty = "rocket_empty"
+	hud_state_empty = "grenade_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	armor_type = "bomb"
 	damage_falloff = 0
@@ -1338,7 +1338,8 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 20
 	max_range = 30
 	damage = 100
-	penetration = 100
+	penetration = 10
+	sundering = 10
 
 /datum/ammo/rocket/ags/drop_nade(turf/T)
 	explosion(T, 0, 2, 2, 3, adminlog = FALSE)
