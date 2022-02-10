@@ -1,0 +1,4 @@
+author: "EvilMelonTheSecond"
+delete-after: True
+changes: 
+  - rscadd: "Rightclicking handheld charger now takes out the battery instead of leftclick"
