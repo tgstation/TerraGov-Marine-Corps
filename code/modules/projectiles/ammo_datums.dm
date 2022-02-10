@@ -395,7 +395,6 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0
 	accuracy = 15
 	accurate_range = 15
-	scatter = -15
 	damage = 30
 	penetration = 10
 
@@ -601,7 +600,6 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 30
 	max_range = 40
 	damage = 65
-	scatter = -15
 	penetration = 15
 	sundering = 2
 
@@ -937,7 +935,6 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 4
 	accurate_range = 30
 	max_range = 40
-	scatter = -20
 	damage = 80
 	penetration = 60
 	sundering = 15
@@ -950,7 +947,6 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SUNDERING
 	accuracy_var_high = 7
 	max_range = 20
-	scatter = 15
 	damage = 50
 	penetration = 20
 	sundering = 5
@@ -1041,7 +1037,6 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range = 15
 	damage = 20
-	scatter = -10
 	penetration = 20
 	sundering = 1
 
