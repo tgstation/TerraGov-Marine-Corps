@@ -114,7 +114,7 @@
 
 /obj/item/teleporter_kit
 	name = "\improper ASRS Bluespace teleporter"
-	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter."
+	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter. Ctrl+Click to deploy."
 	icon = 'icons/Marine/teleporter.dmi'
 	icon_state = "teleporter"
 
@@ -133,6 +133,7 @@
 /obj/item/teleporter_kit/Initialize()
 	. = ..()
 	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, 2 SECONDS)
+	cell = new /obj/item/cell/high(src)
 
 /obj/item/teleporter_kit/Destroy()
 	linked_teleporter = null
