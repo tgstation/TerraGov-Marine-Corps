@@ -774,7 +774,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/list/turf/turfs_affected = list()
 	var/turf/central_turf = get_turf(owner)
 	for(var/turf/affected_turf in view(range, central_turf))
-		ADD_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(owner))
+		ADD_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(src))
 		turfs_affected += affected_turf
 		affected_turf.add_filter("wraith_magic", 2, drop_shadow_filter(color = "#04080FAA", size = -10))
 	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE)
@@ -787,7 +787,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 ///Remove the bullet freeze effect on affected turfs
 /datum/action/xeno_action/timestop/proc/remove_bullet_freeze(list/turf/turfs_affected, turf/central_turfA)
 	for(var/turf/affected_turf AS in turfs_affected)
-		REMOVE_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(owner))
+		REMOVE_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(src))
 		if(HAS_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET))
 			continue
 		SEND_SIGNAL(affected_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
