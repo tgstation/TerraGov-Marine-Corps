@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "You can send supply drop in caves"
-  - bugfix: "Supply beacons no longer can be used as OB beacon"

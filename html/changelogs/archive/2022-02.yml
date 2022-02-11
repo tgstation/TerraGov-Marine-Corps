@@ -175,3 +175,39 @@
   - bugfix: standardize corpsman prep to have TerraGovTech Medic Vendor and MarineMed
       with the sheer exception of Theseus. The MarineMed is in prep but not in corpsman
       prep.
+2022-02-11:
+  BraveMole:
+  - bugfix: Fix Tx73
+  - bugfix: Fix neurotoxin sting being on queen and shrike primos
+  - qol: You can deploy all deployable items by cntrl clicking the ground
+  - balance: You can send supply drop in caves
+  - bugfix: Supply beacons no longer can be used as OB beacon
+  Canohaaaaaaa:
+  - balance: 'Primordial drone : Reduced plasma cost and cooldown, night shade takes
+      less time to grow and has greater range.'
+  EvilMelonTheSecond:
+  - rscadd: Rightclicking handheld charger now takes out the battery instead of leftclick
+  Lumipharon:
+  - balance: DMR is no longer pinpoint accurate unwielded.
+  - rscadd: Add a var to control airburst damage for future FUN weapons
+  SplinterGP:
+  - bugfix: robot visors now rewind, going left to right right to left, instead of
+      going left to right and jumping to the start again.
+  XSlayer300:
+  - expansion: Added more colors for the Jaeger armor.
+  - imageadd: Resprited the snow storm.
+  novaepee:
+  - rscdel: Remove any mention of /obj/item/cell/lasgun/tesla
+  - rscadd: two new reflective safety vests!
+  - soundadd: two new reflective safety vests!
+  - imageadd: TGstation fire extinguisher sprites for item and mob
+  - imagedel: CM SS13 fire extinguisher sprites for item and mob
+  - bugfix: Wraith's Time Stop Action Icon is now actually in game and in codebase
+  - rscadd: The Athena tactical map console, which shows planetside minimap; it is
+      in the drop pod bay
+  - qol: marines using drop pods can use the Athena tactical map console to see planetside
+      minimap, which reveal planetside marines' location; that said, you still have
+      to use webmap to actually get coordinates
+  - balance: Drop pods have information that tactically mobilize marines from shipside
+      to planetside; they can get solid positioning on xenomorphs and help marines
+      faster armed with information
