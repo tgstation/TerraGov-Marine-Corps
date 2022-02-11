@@ -1,0 +1,6 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - soundadd: "Added new original AI vox to replace the ancient half life vox."
+  - soundadd: "Added 300 extra lines for the AI vox system."
+  - sounddel: "Removed all Half Life vox"
