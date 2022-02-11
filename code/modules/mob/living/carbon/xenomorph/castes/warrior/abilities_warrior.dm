@@ -56,8 +56,8 @@
 	action_icon_state = "lunge"
 	mechanics_text = "Pounce up to 5 tiles and grab a target, knocking them down and putting them in your grasp."
 	ability_name = "lunge"
-	plasma_cost = 25
-	cooldown_timer = 20 SECONDS
+	plasma_cost = 0
+	cooldown_timer = 3 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
 	target_flags = XABB_MOB_TARGET
 	/// The target of our lunge, we keep it to check if we are adjacent everytime we move
@@ -111,7 +111,10 @@
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
-	X.throw_at(get_step_towards(A, X), 6, 2, X)
+	if(lunge_target.Adjacent(X)) //They're already in range, neck grab without lunging.
+		lunge_grab(X, lunge_target)
+	else
+		X.throw_at(get_step_towards(A, X), 6, 2, X)
 
 	if(X.pulling && !isxeno(X.pulling)) //If we grabbed something give us combo.
 		X.empower(empowerable = FALSE) //Doesn't have a special interaction
