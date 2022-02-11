@@ -532,7 +532,7 @@
 		else if(open(user))
 			return
 	. = ..()
-	for(var/mob/M in content_watchers)
+	for(var/mob/M AS in content_watchers)
 		close(M)
 
 
