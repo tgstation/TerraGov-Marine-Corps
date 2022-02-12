@@ -1039,6 +1039,46 @@ SUPPLIES
 	)
 	cost = 5
 
+/datum/supply_packs/supplies/demolitionist
+	name = "Demolitionist equipment crate"
+	contains = list(/obj/item/storage/box/spec/demolitionist)
+	cost = 5
+
+/datum/supply_packs/supplies/sniper
+	name = "Sniper equipment crate"
+	contains = list(/obj/item/storage/box/spec/sniper)
+	cost = 5
+
+/datum/supply_packs/supplies/scout
+	name = "Scout equipment crate"
+	contains = list(/obj/item/storage/box/spec/scout)
+	cost = 5
+
+/datum/supply_packs/supplies/scoutshotgun
+	name = "Shotgun scout equipment crate"
+	contains = list(/obj/item/storage/box/spec/scoutshotgun)
+	cost = 5
+
+/datum/supply_packs/supplies/tracker
+	name = "Tracker scout equipment crate"
+	contains = list(/obj/item/storage/box/spec/tracker)
+	cost = 5
+
+/datum/supply_packs/supplies/pyro
+	name = "Pyrotechnician equipment crate"
+	contains = list(/obj/item/storage/box/spec/pyro)
+	cost = 5
+
+/datum/supply_packs/supplies/heavy_grenadier
+	name = "Heavy Grenadier equipment crate"
+	contains = list(/obj/item/storage/box/spec/heavy_grenadier)
+	cost = 5
+
+/datum/supply_packs/supplies/heavy_gunner
+	name = "Heavy Minigunner equipment crate"
+	contains = list(/obj/item/storage/box/spec/heavy_gunner)
+	cost = 5
+
 /*******************************************************************************
 Imports
 *******************************************************************************/

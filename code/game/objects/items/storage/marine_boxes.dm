@@ -213,8 +213,6 @@
 	new /obj/item/detpack(src)
 	new /obj/item/assembly/signaler(src)
 
-
-
 /obj/item/storage/box/spec/sniper
 	name = "\improper Sniper equipment"
 	desc = "A large case containing your very own long-range sniper rifle. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
@@ -293,7 +291,6 @@
 	new /obj/item/explosive/grenade/smokebomb/cloak(src)
 	new /obj/item/bodybag/tarp(src)
 
-
 /obj/item/storage/box/spec/scoutshotgun
 	name = "\improper Scout equipment"
 	desc = "A large case containing Scout equipment; this one features the ZX-76 assault shotgun. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
@@ -315,6 +312,7 @@
 	new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/weapon/gun/shotgun/zx76(src)
 	new /obj/item/ammo_magazine/shotgun/incendiary(src)
 	new /obj/item/ammo_magazine/shotgun/incendiary(src)
 	new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
@@ -322,7 +320,6 @@
 	new /obj/item/explosive/grenade/smokebomb/cloak(src)
 	new /obj/item/explosive/grenade/smokebomb/cloak(src)
 	new /obj/item/explosive/grenade/smokebomb/cloak(src)
-
 
 /obj/item/storage/box/spec/tracker
 	name = "\improper Scout equipment"
@@ -382,15 +379,13 @@
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
 	new /obj/item/ammo_magazine/flamer_tank/large/X(src)
 
-
-
 /obj/item/storage/box/spec/heavy_grenadier
 	name = "\improper Heavy Grenadier case"
 	desc = "A large case containing B17 Heavy Armor and a heavy-duty multi-shot grenade launcher, the Armat Systems M92. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
+	storage_slots = 9
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -426,7 +421,6 @@
 	new /obj/item/weapon/gun/minigun(src)
 	new /obj/item/belt_harness/marine(src)
 	new /obj/item/ammo_magazine/minigun_powerpack(src)
-
 
 /obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
 	name = "specialist kit"
@@ -478,9 +472,7 @@
 			new /obj/item/storage/box/spec/tracker (T)
 	qdel(src)
 
-
 ////////////////// portable marine kits ///////////////////////////:
-
 
 /obj/item/storage/box/squadmarine
 	icon = 'icons/Marine/marine-weapons.dmi'
