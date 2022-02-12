@@ -531,7 +531,7 @@ should be alright.
 
 	to_chat(usr, span_notice("You toggle the safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "<b>off</b>" : "<b>on</b>"]."))
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
-	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
+	if(!HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		ADD_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
 	else
 		REMOVE_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
