@@ -1,0 +1,4 @@
+author: "Canohaaaaaaa"
+delete-after: True
+changes: 
+  - bugfix: "Warrior : Adjacent lunges now properly work."
