@@ -303,8 +303,8 @@
 		if(new_xeno)
 			qdel(new_xeno)
 		return
-
-	new_xeno.upgrade_xeno(upgrade, TRUE)
+	if(tier != XENO_TIER_ONE || !regression )
+		new_xeno.upgrade_xeno(upgrade, TRUE)
 	if(!regression && upgrade != XENO_UPGRADE_INVALID)
 		new_xeno.upgrade_xeno(new_xeno.upgrade_prev(), TRUE)
 
