@@ -1,5 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - bugfix: "Wraith primo effect was staying if the wraith was killed during the effect"
-  - bugfix: "Runner primo works again"

@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes: 
-  - bugfix: "Sentries should no longer runtime when losing their target nor show weird behavior at the edge of their range."

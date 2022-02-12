@@ -211,3 +211,18 @@
   - balance: Drop pods have information that tactically mobilize marines from shipside
       to planetside; they can get solid positioning on xenomorphs and help marines
       faster armed with information
+2022-02-12:
+  Bizzonium:
+  - refactor: make SSrunechat to be subsystem of SStimer
+  BraveMole:
+  - bugfix: Wraith primo effect was staying if the wraith was killed during the effect
+  - bugfix: Runner primo works again
+  DeltaFire15:
+  - bugfix: Sentries should no longer runtime when losing their target nor show weird
+      behavior at the edge of their range.
+  RipGrayson:
+  - soundadd: Added new original AI vox to replace the ancient half life vox.
+  - soundadd: Added 300 extra lines for the AI vox system.
+  - sounddel: Removed all Half Life vox
+  Three333Digit:
+  - balance: teleporter comes with a high-cap cell installed
