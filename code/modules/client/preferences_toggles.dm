@@ -124,7 +124,7 @@
 	prefs.toggles_sound ^= SOUND_VOX_ANNOUNCEMENTS 
 	prefs.save_preferences()
 
-	to_chat(src, span_notice("You will [(prefs.toggles_sound & SOUND_VOX_ANNOUNCEMENTS ) ? "now" : "no longer"] hear AI Vox speech and announcements."))
+	to_chat(src, span_notice("You will [(prefs.toggles_sound & SOUND_VOX_ANNOUNCEMENTS ) ? "now" : "no longer"] hear AI vox speech and announcements."))
 	mob.stop_sound_channel(CHANNEL_VOX)
 
 
