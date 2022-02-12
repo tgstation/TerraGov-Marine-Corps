@@ -11,9 +11,6 @@
 	///primordial message that is shown when a caste becomes primordial
 	var/primordial_message = ""
 
-	///name of primordial upgrade this caste looks for, keep this as define
-	var/primordial_upgrade_name = ""
-
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
 	///used to match appropriate wound overlays
