@@ -641,6 +641,7 @@ ARMOR
 	name = "Jaeger Surt fireproof module"
 	contains = list(
 		/obj/item/armor_module/module/fire_proof,
+		/obj/item/clothing/shoes/marine/pyro,
 	)
 	cost = 12
 
