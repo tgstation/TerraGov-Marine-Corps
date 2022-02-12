@@ -112,6 +112,10 @@
 		beaker = null
 		updateUsrDialog()
 
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
+	update_icon_state()
+	return ..()
+
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon_state()
 	if(!on)
 		icon_state = "cell-off"
