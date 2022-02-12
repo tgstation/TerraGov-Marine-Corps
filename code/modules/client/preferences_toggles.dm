@@ -116,6 +116,16 @@
 		if(!isnewplayer(mob))
 			return
 		mob.stop_sound_channel(CHANNEL_LOBBYMUSIC)
+	
+/client/verb/toggle_vox_announcements()
+	set category = "Preferences"
+	set name = "Toggle Vox Announcements"
+
+	prefs.toggles_sound ^= SOUND_VOX_ANNOUNCEMENTS 
+	prefs.save_preferences()
+
+	to_chat(src, span_notice("You will [(prefs.toggles_sound & SOUND_VOX_ANNOUNCEMENTS ) ? "now" : "no longer"] hear AI Vox speech and announcements."))
+	mob.stop_sound_channel(CHANNEL_VOX)
 
 
 /client/verb/toggle_ooc_self()
