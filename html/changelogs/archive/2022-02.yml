@@ -226,3 +226,21 @@
   - sounddel: Removed all Half Life vox
   Three333Digit:
   - balance: teleporter comes with a high-cap cell installed
+2022-02-13:
+  BraveMole:
+  - bugfix: Fix larva regress exploit
+  - bugfix: Fix a visual bug with lasers and wraith primo
+  - rscadd: Primos can be bought by tiers
+  Canohaaaaaaa:
+  - bugfix: Razorwires no longer apply their slowdown twice when resisted out of (notabily
+      by Crushers).
+  - bugfix: 'Warrior : Adjacent lunges now properly work.'
+  DeltaFire15:
+  - balance: Primordial Boiler's lance globs have perfect (base) accuracy at long
+      range and are somewhat faster.
+  Passe2142:
+  - bugfix: Added in the proc view center on loc.
+  Waselon:
+  - balance: T-26 AMR price reduced from 75 to 65
+  - balance: Crusher speed increased from 0.1 to -0.1
+  - balance: Reqtorio cost balance. Grenades and smart ammo are now more profitable.

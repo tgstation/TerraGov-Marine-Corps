@@ -1,4 +1,0 @@
-author: "Canohaaaaaaa"
-delete-after: True
-changes: 
-  - bugfix: "Razorwires no longer apply their slowdown twice when resisted out of (notabily by Crushers)."
