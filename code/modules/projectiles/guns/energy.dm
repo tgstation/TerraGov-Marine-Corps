@@ -769,6 +769,7 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.3
+	var/mode_index = 1
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_rifle_mode/xray,
 		"Piercing" = /datum/lasrifle/base/energy_rifle_mode/xray/piercing,
@@ -791,3 +792,37 @@
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the xray rifle's charge mode to piercing mode."
 	radial_icon_state = "laser"
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/xray/unique_action(mob/user)
+	if(!user)
+		CRASH("switch_modes called with no user.")
+	mode_index = mode_index + 1
+	if(mode_index > length(mode_list))
+		mode_index = 1
+	var/fake_choice = mode_list[mode_index]
+	var/datum/lasrifle/base/choice = mode_list[fake_choice]
+	
+	gun_firemode = initial(choice.fire_mode)
+	ammo_datum_type = initial(choice.ammo_datum_type)
+	fire_delay = initial(choice.fire_delay)
+	burst_amount = initial(choice.burst_amount)
+	fire_sound = initial(choice.fire_sound)
+	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
+	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
+	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
+	
+	base_gun_icon = initial(choice.icon_state)
+	update_icon()
+	to_chat(user, initial(choice.message_to_user))
+	var/old_drain_amount = rounds_per_shot
+	rounds_per_shot = initial(choice.rounds_per_shot)
+	if(length(chamber_items))
+		adjust_current_rounds(chamber_items[current_chamber_position], old_drain_amount - rounds_per_shot)
+	user?.hud_used.update_ammo_hud(user, src)
+	if(!in_chamber || !length(chamber_items))
+		return
+	QDEL_NULL(in_chamber)
+	
+	in_chamber = get_ammo_object(chamber_items[current_chamber_position])
+	playsound(user, 'sound/weapons/emitter.ogg', 5, 0, 2)
+	return
