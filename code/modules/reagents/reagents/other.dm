@@ -676,3 +676,89 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
+
+/datum/reagent/turbo
+	name = "Turbo Inhalant"
+	description = "A chemical compound derived from various stimulants that increases speed and stamina."
+	reagent_state = LIQUID
+	color = "#FAFAFA"
+	overdose_threshold = REAGENTS_OVERDOSE/3	//10u overdose threshold
+	addiction_threshold = 5
+	custom_metabolism = REAGENTS_METABOLISM/2	//Metabolizes twice as slow to compensate for potency
+
+/datum/reagent/turbo/proc/modify_stamina_regen(datum/source, regen_modifier)
+	if(volume > 0)
+		regen_modifier += 2
+		return
+
+/datum/reagent/turbo/on_mob_add(mob/living/L, metabolism)
+	..()
+	RegisterSignal(L, COMSIG_STAMINA_REGEN, .proc/modify_stamina_regen)
+	to_chat(L, span_notice("The world around you slows down slightly. You feel like you could run for hours!"))
+	L.max_stamina_buffer = 75	//1.5x more stamina "health"
+	L.adjustStaminaLoss(-25)	//Initial stamina boost to pair with the increase in max stamina
+
+/datum/reagent/turbo/on_mob_delete(mob/living/L, metabolism)
+	UnregisterSignal(L, COMSIG_STAMINA_REGEN)
+	to_chat(L, span_notice("You feel out of breath, the world returning to normal..."))
+	L.max_stamina_buffer = 50	//Restore max stamina to default
+	L.adjustStaminaLoss(20)	//To simulate the user being "drained" of energy after it wears off
+	..()
+
+/datum/reagent/turbo/on_mob_life(mob/living/L, metabolism)
+	if(prob(5))
+		to_chat(L, span_bold("Faster, faster, faster!"))
+	L.jitter(5)
+	if(prob(10))
+		L.emote(pick("twitch", "shiver","blinkr"))
+	..()
+
+/datum/reagent/turbo/overdose_process(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("Everything is slowing down even further!"))
+	if(prob(20))
+		if(!L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
+			step(L, pick(GLOB.alldirs))
+		L.visible_message("<span class='danger'>[L]'s limbs spasm!")
+		L.drop_all_held_items()
+	L.adjustToxLoss(3)
+	L.adjustOxyLoss(2)
+	L.adjust_blurriness(10)
+	L.jitter(10)
+	..()
+
+/datum/reagent/turbo/addiction_act_stage1(mob/living/L, metabolism)
+	L.jitter(5)
+	if(prob(10))
+		L.emote(pick("twitch","drool","shiver"))
+	..()
+
+/datum/reagent/turbo/addiction_act_stage2(mob/living/L, metabolism)
+	L.jitter(10)
+	L.dizzy(10)
+	if(prob(20))
+		L.emote(pick("twitch","drool","shiver"))
+	..()
+
+/datum/reagent/turbo/addiction_act_stage3(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("You feel the energy from your body evaporating..."))
+	if(prob(10) && !L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
+		step(L, pick(GLOB.alldirs))
+	L.max_stamina_buffer = 25	//Halved user's stamina "health"
+	L.jitter(20)
+	L.dizzy(20)
+	if(prob(40))
+		L.emote(pick("twitch","drool","shiver"))
+	L.stuttering += 1
+	..()
+
+/datum/reagent/turbo/addiction_act_stage4(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("You feel out of breath, the rest of the world going by faster than you!"))
+	if(prob(30) && !L.incapacitated(TRUE) && !L.pulledby && isfloorturf(L.loc))
+		step(L, pick(GLOB.alldirs))
+	L.max_stamina_buffer = 10	//Severely lowers stamina "health"
+	L.jitter(50)
+	L.dizzy(40)
+	if(prob(50))
+		L.emote(pick("twitch","drool","shiver"))
+	L.stuttering += 2
+	..()

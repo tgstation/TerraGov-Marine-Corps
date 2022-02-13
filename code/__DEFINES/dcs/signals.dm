@@ -775,3 +775,6 @@
 
 //Signals for ais
 #define ESCORTING_ATOM_BEHAVIOUR_CHANGED "escorting_behaviour_changed"
+
+//Not sure where else this could go
+#define COMSIG_STAMINA_REGEN "stamina_regen"

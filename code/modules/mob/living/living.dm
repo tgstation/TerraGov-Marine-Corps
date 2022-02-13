@@ -43,12 +43,17 @@
 
 
 /mob/living/proc/handle_staminaloss()
+	var/list/regen_modifier = list()
+	var/regen_bonus = 1
+	SEND_SIGNAL(src, COMSIG_STAMINA_REGEN, regen_modifier)
+	for(var/values in regen_modifier)
+		regen_bonus *= values
 	if(world.time < last_staminaloss_dmg + 3 SECONDS)
 		return
 	if(staminaloss > 0)
-		adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
+		adjustStaminaLoss((-maxHealth * 0.2) * regen_bonus, TRUE, FALSE)	//Default tired regen speed is 20 per tick
 	else if(staminaloss > -max_stamina_buffer)
-		adjustStaminaLoss(-max_stamina_buffer * 0.08, TRUE, FALSE)
+		adjustStaminaLoss((-max_stamina_buffer * 0.08) * regen_bonus, TRUE, FALSE)	//Default normal regen speed is 4 per tick
 
 
 /mob/living/proc/handle_regular_hud_updates()
