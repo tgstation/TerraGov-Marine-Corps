@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes: 
+  - bugfix: "You can no longer send deployables into nullspace by deploying it to your hand."
