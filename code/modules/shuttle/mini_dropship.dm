@@ -44,6 +44,8 @@
 	var/mob/living/ui_user
 	/// If this computer was damaged by a xeno
 	var/damaged = FALSE
+	/// Is dropship launching
+	var/launching = FALSE
 	/// How long before you can launch tadpole after a landing
 	var/launching_delay = 10 SECONDS
 
@@ -89,6 +91,7 @@
 	if(fly_state == next_fly_state)
 		return
 	fly_state = next_fly_state
+	launching = FALSE
 	if(fly_state == SHUTTLE_IN_SPACE)
 		shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit)
 	if(to_transit)
@@ -116,6 +119,9 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TADPOLE_LAUNCHING))
 		to_chat(ui_user, span_warning("The dropship's engines are not ready yet"))
 		return
+	if(launching)
+		to_chat(ui_user, span_warning("The dropship already taking off"))
+		return
 	shuttle_port.shuttle_computer = src
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LAUNCHED)
 	if(fly_state == SHUTTLE_ON_GROUND)
@@ -127,9 +133,14 @@
 		next_fly_state = SHUTTLE_IN_SPACE
 		destination_fly_state = SHUTTLE_IN_ATMOSPHERE
 	SSshuttle.moveShuttleToTransit(shuttleId, TRUE)
+	launching = TRUE
 
 ///The action of sending the shuttle back to its shuttle port on main ship
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/return_to_ship()
+	if(launching)
+		to_chat(ui_user, span_warning("The dropship already taking off"))
+		return
+
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
 	shuttle_port.shuttle_computer = src
 	to_transit = TRUE
@@ -140,6 +151,7 @@
 	open_prompt = FALSE
 	clean_ui_user()
 	SSshuttle.moveShuttle(shuttleId, origin_port_id, TRUE)
+	launching = TRUE
 
 /// Toggle the vision between small nightvision and turf vision
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/toggle_nvg()
