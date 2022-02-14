@@ -113,6 +113,10 @@
 	if(CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
 		to_chat(user, "<span class = 'notice'>You cannot disassemble [src] without a wrench.</span>")
 		return
+	if(operator)
+		to_chat(user, "<span class = 'notice'>You cannot disassemble [src] when someone uses it.</span>")
+		return
+
 	disassemble(user)
 
 /obj/machinery/deployable/wrench_act(mob/living/user, obj/item/I)
