@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/sundering					= 0 		// How many stacks of sundering to apply to a mob on hit
 	///how much damage airbursts do to mobs around the target, multiplier of the bullet's damage
-	var/airburst_multiplier	= 0.1		
+	var/airburst_multiplier	= 0.1
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
@@ -1083,9 +1083,9 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
-	damage = 50
-	penetration = 5
-	damage_falloff = 0.5
+	damage = 25
+	penetration = 20
+	damage_falloff = 0.25
 
 /datum/ammo/bullet/turret/dumb
 	icon_state = "bullet"
@@ -1096,8 +1096,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
-	damage = 25
-	penetration = 5
+	damage = 20
+	penetration = 20
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SENTRY
 
 
