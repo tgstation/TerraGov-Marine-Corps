@@ -19,6 +19,7 @@
 
 /obj/machinery/atmospherics/components/update_icon()
 	update_icon_nopipes()
+	update_icon_state()
 
 	underlays.Cut()
 
