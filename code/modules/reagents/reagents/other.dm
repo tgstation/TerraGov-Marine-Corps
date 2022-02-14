@@ -696,7 +696,6 @@
 	RegisterSignal(L, COMSIG_STAMINA_REGEN, .proc/modify_stamina_regen)
 	to_chat(L, span_notice("The world around you slows down slightly. You feel like you could run for hours!"))
 	L.max_stamina_buffer = 75	//1.5x more stamina "health"
-	L.adjustStaminaLoss(-25)	//Initial stamina boost to pair with the increase in max stamina
 
 /datum/reagent/turbo/on_mob_delete(mob/living/L, metabolism)
 	UnregisterSignal(L, COMSIG_STAMINA_REGEN)
