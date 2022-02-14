@@ -96,7 +96,7 @@
 		return TRUE
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	do_attack_animation(src, ATTACK_EFFECT_GRAB)
-	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans the [src]!")]",
+	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans [src]!")]",
 		span_notice("You man the gun!"))
 
 	return ..()
@@ -173,22 +173,23 @@
 
 	var/angle = get_dir(src, target)
 	var/obj/item/weapon/gun/gun = internal_item
+	var/aim_toogle = HAS_TRAIT(gun, TRAIT_GUN_IS_AIMING)
+
 	//we can only fire in a 90 degree cone
 	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
 		operator.setDir(dir)
 		gun.set_target(target)
 		update_icon_state()
 		return TRUE
+
 	if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_NO_ROTATE))
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")
 		return FALSE
 
-	var/list/leftright = LeftAndRightOfDir(dir)
-	var/left = leftright[1] - 1
-	var/right = leftright[2] + 1
-	if(!(left == (angle-1)) && !(right == (angle+1)))
-		to_chat(operator, span_warning(" [src] cannot be rotated so violently."))
+	if(can_be_rotated(angle))
+		to_chat(operator, span_warning("[src] cannot be rotated so violently."))
 		return FALSE
+
 	var/turf/move_to = get_step(src, REVERSE_DIR(angle))
 	var/mob/living/carbon/human/user = operator
 
@@ -196,12 +197,26 @@
 		to_chat(operator, "You cannot rotate [src] that way.")
 		return FALSE
 
+	INVOKE_ASYNC(src, .proc/set_auto_aim_mode, aim_toogle, gun, user)
+
 	setDir(angle)
 	user.set_interaction(src)
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
+	operator.visible_message("[operator] rotates [src].","You rotate [src].")
 	return FALSE
 
+/obj/machinery/deployable/mounted/proc/set_auto_aim_mode(aim_toogle, gun, operator)
+	var/obj/item/weapon/gun/gun_with_new_dir = gun
+
+	if(aim_toogle)
+		gun_with_new_dir.toggle_aim_mode(operator)
+
+/obj/machinery/deployable/mounted/proc/can_be_rotated(angle)
+	var/list/leftright = LeftAndRightOfDir(dir)
+	var/left = leftright[1] - 1
+	var/right = leftright[2] + 1
+
+	return !(left == (angle-1)) && !(right == (angle+1))
 
 ///Unsets the user from manning the internal gun
 /obj/machinery/deployable/mounted/on_unset_interaction(mob/user)
