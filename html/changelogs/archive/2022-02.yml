@@ -244,3 +244,10 @@
   - balance: T-26 AMR price reduced from 75 to 65
   - balance: Crusher speed increased from 0.1 to -0.1
   - balance: Reqtorio cost balance. Grenades and smart ammo are now more profitable.
+2022-02-14:
+  Notamaniac:
+  - bugfix: You can no longer send deployables into nullspace by deploying it to your
+      hand.
+  - bugfix: After 5 whole months, the safety on all TGMC weapons has now been fixed.
+      The brave marine that decided to toggle their safety on has been generously
+      awarded time in solitary for discovering this horrendous oversight.
