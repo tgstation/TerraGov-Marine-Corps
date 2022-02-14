@@ -10,9 +10,6 @@
 
 	var/list/doors = list()
 	var/list/cryopods = list()
-	var/max_capacity // set this to override determining capacity by number of cryopods
-	///Number of marines that escaped
-	var/human_escaped = 0
 
 /obj/docking_port/mobile/escape_pod/escape_shuttle
 	name = "escape shuttle"
@@ -30,26 +27,15 @@
 		SSshuttle.escape_pods -= src
 	. = ..()
 
-/obj/docking_port/mobile/escape_pod/proc/check_capacity()
-	var/capacity = 0
-	for(var/t in return_turfs())
-		var/turf/T = t
+/obj/docking_port/mobile/escape_pod/proc/count_escaped_humans()
+	for(var/turf/T AS in return_turfs())
 		for(var/mob/living/carbon/human/marine in T.GetAllContents())
 			if(marine.stat == DEAD)
 				continue
-			human_escaped++
-		for(var/obj/machinery/cryopod/evacuation/E in T.GetAllContents())
-			capacity++
-	if(max_capacity)
-		capacity = max_capacity
-	return human_escaped <= capacity
+			SSevacuation.human_escaped++
 
 /obj/docking_port/mobile/escape_pod/proc/launch(manual = FALSE)
 	if(!can_launch || launch_status == NOLAUNCH)
-		return
-	if(!check_capacity())
-		playsound(return_center_turf(),'sound/effects/alert.ogg', 25, 1)
-		addtimer(CALLBACK(src, .proc/launch), 10 SECONDS, TIMER_UNIQUE)
 		return
 	playsound(return_center_turf(),'sound/effects/escape_pod_warmup.ogg', 25, 1)
 	if(manual)
@@ -79,7 +65,7 @@
 	if(!can_launch)
 		return
 	playsound(return_center_turf(),'sound/effects/escape_pod_launch.ogg', 25, 1)
-	SSevacuation.human_escaped += human_escaped
+	count_escaped_humans()
 	SSshuttle.moveShuttleToTransit(id, TRUE)
 
 /obj/docking_port/stationary/escape_pod
