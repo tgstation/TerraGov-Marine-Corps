@@ -1,6 +1,7 @@
 #define TELEPORTING_COST 250
 /obj/machinery/deployable/teleporter
 	density = FALSE
+	resistance_flags = XENO_DAMAGEABLE
 	idle_power_usage = 50
 	///List of all teleportable types
 	var/static/list/teleportable_types = typecacheof(list(
