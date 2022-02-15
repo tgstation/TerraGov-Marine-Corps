@@ -114,7 +114,7 @@
 		to_chat(user, "<span class = 'notice'>You cannot disassemble [src] without a wrench.</span>")
 		return
 	if(operator)
-		to_chat(user, "<span class = 'notice'>You cannot disassemble [src] when someone uses it.</span>")
+		to_chat(user, span_notice("You cannot disassemble [src] while someone is using it."))
 		return
 
 	disassemble(user)
