@@ -616,6 +616,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_allow_movement = TRUE
 	///how much slowdown the scope gives when zoomed. You want this to be slowdown you want minus aim_speed_mod
 	var/zoom_slowdown = 1
+	/// scope zoom delay, delay before you can aim.
+	var/scope_delay = 0
 	///boolean as to whether a scope can apply nightvision
 	var/has_nightvision = FALSE
 	///boolean as to whether the attachment is currently giving nightvision
@@ -668,6 +670,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_viewsize = 0
 	zoom_tile_offset = 3
 
+/obj/item/attachable/scope/unremovable/standard_atgun
+	name = "MG-08/495 long range ironsights"
+	desc = "An unremovable set of long range scopes, very complex. Requires time to aim.."
+	icon_state = "sniperscope_invisible"
+	flags_attach_features = ATTACH_ACTIVATION
+	scope_delay = 3 SECONDS
+
+
 
 /obj/item/attachable/scope/unremovable/tl102
 	name = "TL-102 smart sight"
@@ -684,13 +694,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(SEND_SIGNAL(user, COMSIG_ITEM_ZOOM) &  COMSIG_ITEM_ALREADY_ZOOMED)
 			zoom(user)
 		return TRUE
-	
+
 	if(!(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		if(user)
 			to_chat(user, span_warning("You must hold [master_gun] with two hands to use [src]."))
 		return FALSE
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
 		user.setDir(master_gun.loc.dir)
+	if(!do_after(user, scope_delay, TRUE, src, BUSY_ICON_BAR))
+		return
 	zoom(user)
 	update_icon()
 	return TRUE

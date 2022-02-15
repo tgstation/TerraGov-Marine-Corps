@@ -1323,25 +1323,43 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 100
 
 /datum/ammo/rocket/atgun_shell
-	name = "high explosive shell"
-	icon_state = "shell"
-	hud_state = "shell_he"
+	name = "high explosive ballistic cap shell"
+	hud_state = "shell_heat"
 	hud_state_empty = "shell_empty"
 	handful_icon_state = "atgun_shell"
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
-	armor_type = "bomb"
-	damage_falloff = 0
-	shell_speed = 2
-	accuracy = 40
-	accurate_range = 20
-	max_range = 30
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 3
 	damage = 100
 	penetration = 50
-	sundering = 50
+	sundering = 10
 	handful_amount = 1
 
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
-	explosion(T, 0, 3, 4, 5)
+	explosion(T, 0, 1, 4, 2)
+
+/datum/ammo/rocket/atgun_shell/apcr
+	name = "tungsten penetrator"
+	hud_state = "shell_he"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 1
+	damage = 150
+	penetration = 100
+	sundering = 55
+
+/datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
+	explosion(T, 0, 0, 1, 0)
+
+/datum/ammo/rocket/atgun_shell/he
+	name = "high velocity high explosive shell"
+	hud_state = "shell_he"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	shell_speed = 4
+	damage = 50
+	penetration = 50
+	sundering = 25
+
+/datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
+	explosion(T, 0, 3, 6, 0)
 
 /*
 //================================================

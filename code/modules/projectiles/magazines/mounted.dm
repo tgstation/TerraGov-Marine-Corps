@@ -42,8 +42,8 @@
 	reload_delay = 1 SECONDS
 
 /obj/item/ammo_magazine/standard_atgun
-	name = "PT-36 shell (37MM Shell)"
-	desc = "A 37mm shell for light anti tank guns."
+	name = "PT-36 AP-HE shell(37MM Shell)"
+	desc = "A 37mm shell for light anti tank guns. Will penetrate walls and fortifications, before hitting a target and exploding, has less payload and punch than usual rounds."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-atgun.dmi'
 	icon_state = "pak_ammo"
@@ -52,3 +52,13 @@
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/atgun_shell
 	reload_delay = 1 SECONDS
+
+/obj/item/ammo_magazine/standard_atgun/apcr
+	name = "PT-36 APCR shell (37MM Shell)"
+	desc = "A 37mm tungsten shell for light anti tank guns made to penetrate threw just about everything, but it won't leave a big hole."
+	default_ammo = /datum/ammo/rocket/atgun_shell/apcr
+
+/obj/item/ammo_magazine/standard_atgun/he
+	name = "PT-36 HE (37MM Shell)"
+	desc = "A 37mm shell for light anti tank guns made to destroy fortifications, the high amount of payload gives it a slow speed. But it leave quite a hole."
+	default_ammo = /datum/ammo/rocket/atgun_shell/he
