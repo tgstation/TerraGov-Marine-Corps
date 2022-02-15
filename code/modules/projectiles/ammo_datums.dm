@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/sundering					= 0 		// How many stacks of sundering to apply to a mob on hit
 	///how much damage airbursts do to mobs around the target, multiplier of the bullet's damage
-	var/airburst_multiplier	= 0.1		
+	var/airburst_multiplier	= 0.1
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
@@ -1321,6 +1321,27 @@ datum/ammo/bullet/revolver/tp44
 	damage = 100
 	penetration = 100
 	sundering = 100
+
+/datum/ammo/rocket/atgun_shell
+	name = "high explosive shell"
+	icon_state = "shell"
+	hud_state = "shell_he"
+	hud_state_empty = "shell_empty"
+	handful_icon_state = "atgun_shell"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	armor_type = "bomb"
+	damage_falloff = 0
+	shell_speed = 2
+	accuracy = 40
+	accurate_range = 20
+	max_range = 30
+	damage = 100
+	penetration = 50
+	sundering = 50
+	handful_amount = 1
+
+/datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
+	explosion(T, 0, 3, 4, 5)
 
 /*
 //================================================

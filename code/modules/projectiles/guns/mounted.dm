@@ -201,3 +201,76 @@
 	deploy_time = 1 SECONDS
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
+
+//-------------------------------------------------------
+//PAK Towed Light AT
+
+/obj/item/weapon/gun/standard_atgun
+	name = "\improper PT-36"
+	desc = "The PT-36 is a revived concept of a towed light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light bunker busting. Best used by two people. It can move around with wheels, and has a ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE USED. It uses several types of 37mm shells boxes."
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	icon = 'icons/Marine/marine-atgun.dmi'
+	icon_state = "pak"
+	item_state = "pak"
+	fire_animation = "pak_fire"
+	caliber = CALIBER_37MM // codex
+	max_shells = 1 //codex
+	force = 40
+	aim_slowdown = 1.2
+	wield_delay = 2 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
+	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
+	opened_sound = 'sound/weapons/guns/interact/martini_open.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/standard_atgun
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/standard_atgun,
+//		/obj/item/ammo_magazine/standard_lightat/ap,
+	)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 22, "under_x" = 28, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
+
+	flags_item = TWOHANDED|GUN_DEPLOYED_FIRE_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
+	aim_fire_delay = 0.5 SECONDS
+	soft_armor = list("melee" = 60, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
+
+	scatter = 0
+	recoil = 3
+	scatter_unwielded = 45
+	fire_delay = 1 SECONDS
+	burst_amount = 1
+	deploy_time = 1 SECONDS
+	undeploy_time = 2000 SECONDS
+	max_integrity = 2000
+
+/obj/item/weapon/gun/standard_atgun/Initialize()
+	. = ..()
+	sponson = new sponson(src)
+	AddElement(/datum/element/deployable_item, /obj/machinery/deployable, 5 SECONDS)
+
+/obj/item/storage/internal/ammo_rack
+	storage_slots = 10
+	max_w_class = WEIGHT_CLASS_BULKY
+	can_hold = list(/obj/item/ammo_magazine/standard_atgun)
+
+
+/obj/item/weapon/gun/standard_atgun/attack_hand_alternate(mob/living/user)
+	return sponson.open(user)
+
+obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
+	if(!ishuman(user))
+		return FALSE
+
+	if(user.lying_angle || user.incapacitated()) //Can't use your inventory when lying
+		return FALSE
+
+	if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
+		return FALSE
+
+	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
+		open(user)
+		return FALSE

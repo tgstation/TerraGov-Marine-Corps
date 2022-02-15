@@ -40,3 +40,15 @@
 	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	reload_delay = 1 SECONDS
+
+/obj/item/ammo_magazine/standard_atgun
+	name = "PT-36 shell (37MM Shell)"
+	desc = "A 37mm shell for light anti tank guns."
+	w_class = WEIGHT_CLASS_BULKY
+	icon = 'icons/Marine/marine-atgun.dmi'
+	icon_state = "pak_ammo"
+	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
+	caliber = CALIBER_37MM
+	max_rounds = 1
+	default_ammo = /datum/ammo/rocket/atgun_shell
+	reload_delay = 1 SECONDS
