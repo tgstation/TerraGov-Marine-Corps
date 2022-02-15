@@ -186,7 +186,10 @@
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")
 		return FALSE
 
-	if(can_be_rotated(angle))
+	var/list/leftright = LeftAndRightOfDir(dir)
+	var/left = leftright[1] - 1
+	var/right = leftright[2] + 1
+	if(!(left == (angle-1)) && !(right == (angle+1)))
 		to_chat(operator, span_warning("[src] cannot be rotated so violently."))
 		return FALSE
 
@@ -210,13 +213,6 @@
 
 	if(aim_toogle)
 		gun_with_new_dir.toggle_aim_mode(operator)
-
-/obj/machinery/deployable/mounted/proc/can_be_rotated(angle)
-	var/list/leftright = LeftAndRightOfDir(dir)
-	var/left = leftright[1] - 1
-	var/right = leftright[2] + 1
-
-	return !(left == (angle-1)) && !(right == (angle+1))
 
 ///Unsets the user from manning the internal gun
 /obj/machinery/deployable/mounted/on_unset_interaction(mob/user)
