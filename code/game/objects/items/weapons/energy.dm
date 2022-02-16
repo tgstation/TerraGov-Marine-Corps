@@ -47,8 +47,8 @@
 	name = "energy sword"
 	desc = "May the force be within you."
 	icon_state = "sword0"
-	force = 10.0
-	throwforce = 12.0
+	force = 10
+	throwforce = 12
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
