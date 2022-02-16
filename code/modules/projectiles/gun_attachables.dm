@@ -701,7 +701,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		return FALSE
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
 		user.setDir(master_gun.loc.dir)
-	if(!do_after(user, scope_delay, TRUE, src, BUSY_ICON_BAR))
+	if(do_after(user, scope_delay, TRUE, src, BUSY_ICON_BAR))
 		return TRUE
 	zoom(user)
 	update_icon()
