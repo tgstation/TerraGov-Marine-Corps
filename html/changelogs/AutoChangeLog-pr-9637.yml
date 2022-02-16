@@ -1,5 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - soundadd: "Vox sounds now take less space."
-  - soundadd: "Added more vox lines."

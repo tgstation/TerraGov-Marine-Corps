@@ -251,3 +251,10 @@
   - bugfix: After 5 whole months, the safety on all TGMC weapons has now been fixed.
       The brave marine that decided to toggle their safety on has been generously
       awarded time in solitary for discovering this horrendous oversight.
+2022-02-15:
+  Naaanii:
+  - rscdel: Removes evac max capacity.
+  - bugfix: Fixed an apparent infinite loop check.
+  RipGrayson:
+  - soundadd: Vox sounds now take less space.
+  - soundadd: Added more vox lines.

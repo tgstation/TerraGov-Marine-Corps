@@ -1,5 +1,0 @@
-author: "Naaanii"
-delete-after: True
-changes: 
-  - rscdel: "Removes evac max capacity."
-  - bugfix: "Fixed an apparent infinite loop check."
