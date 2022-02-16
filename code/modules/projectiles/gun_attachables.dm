@@ -671,8 +671,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_tile_offset = 3
 
 /obj/item/attachable/scope/unremovable/standard_atgun
-	name = "MG-08/495 long range ironsights"
-	desc = "An unremovable set of long range scopes, very complex. Requires time to aim.."
+	name = "TAT-36 long range scope"
+	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim.."
 	icon_state = "sniperscope_invisible"
 	flags_attach_features = ATTACH_ACTIVATION
 	scope_delay = 3 SECONDS

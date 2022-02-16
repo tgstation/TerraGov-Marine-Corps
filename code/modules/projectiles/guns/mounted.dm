@@ -203,12 +203,11 @@
 	max_integrity = 200
 
 //-------------------------------------------------------
-//PAK Towed Light AT
+//TAT-36 Anti Tank Gun
 
 /obj/item/weapon/gun/standard_atgun
-	name = "\improper PT-36"
-	desc = "The PT-36 is a revived concept of a towed light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light bunker busting on a short notice. Best used by two people. It can move around with wheels, and has a ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes."
-	flags_equip_slot = ITEM_SLOT_BACK
+	name = "\improper TAT-36 anti tank gun"
+	desc = "The TAT-36 is a light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has a ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-atgun.dmi'
 	icon_state = "pak"

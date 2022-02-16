@@ -197,6 +197,11 @@ WEAPONS
 	contains = list(/obj/item/storage/box/tl102)
 	cost = 80
 
+/datum/supply_packs/weapons/antitankgun
+	name = "TAT-36 Anti Tank Gun"
+	contains = list(/obj/item/storage/box/tl102)
+	cost = 50
+
 /datum/supply_packs/weapons/m56d
 	name = "TL-102 mounted heavy smartgun ammo"
 	contains = list(/obj/item/ammo_magazine/tl102)
