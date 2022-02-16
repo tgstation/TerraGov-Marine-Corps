@@ -29,10 +29,9 @@
 	else
 		showpipe = FALSE
 		plane = FLOOR_PLANE
-		return ..()
 
 	if(!showpipe)
-		return //no need to update the pipes if they aren't showing
+		return ..()
 
 	var/connected = 0 //Direction bitset
 
