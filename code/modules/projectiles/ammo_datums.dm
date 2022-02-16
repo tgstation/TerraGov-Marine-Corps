@@ -1341,7 +1341,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "tungsten penetrator"
 	hud_state = "shell_he"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	shell_speed = 1
+	shell_speed = 5
 	damage = 150
 	penetration = 100
 	sundering = 55
