@@ -19,7 +19,6 @@
 
 /obj/machinery/atmospherics/components/update_icon()
 	update_icon_nopipes()
-	update_icon_state()
 
 	underlays.Cut()
 
@@ -30,6 +29,7 @@
 	else
 		showpipe = FALSE
 		plane = FLOOR_PLANE
+		return ..()
 
 	if(!showpipe)
 		return //no need to update the pipes if they aren't showing
@@ -49,6 +49,7 @@
 
 	if(!shift_underlay_only)
 		PIPING_LAYER_SHIFT(src, piping_layer)
+	return ..()
 
 /obj/machinery/atmospherics/components/proc/get_pipe_underlay(state, dir, color = null)
 	if(color)
