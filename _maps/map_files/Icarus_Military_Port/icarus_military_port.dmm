@@ -572,13 +572,9 @@
 	},
 /area/shuttle/drop2/lz2)
 "aLH" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/closed/mineral,
+/obj/effect/ai_node,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "aMQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -1281,7 +1277,7 @@
 "bOB" = (
 /obj/structure/catwalk,
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/toxic,
+/turf/open/ground/river,
 /area/bigredv2/caves/northeast)
 "bPc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1425,9 +1421,9 @@
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/admin_building)
 "bXK" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 4
-	},
+/obj/effect/landmark/weed_node,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "bYD" = (
 /obj/machinery/landinglight/ds1/delaytwo,
@@ -2294,15 +2290,9 @@
 /turf/closed/wall/r_wall,
 /area/shuttle/drop2/lz2)
 "dwM" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 4
-	},
+/obj/structure/catwalk,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating,
 /area/bigredv2/caves/northeast)
 "dwN" = (
 /obj/structure/closet/l3closet/janitor,
@@ -2754,7 +2744,7 @@
 /area/bigredv2/caves/northeast)
 "dYO" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 4
 	},
 /area/bigredv2/caves/northeast)
@@ -2785,7 +2775,7 @@
 /area/bigredv2/outside/admin_building)
 "ebt" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 8
 	},
 /area/bigredv2/caves/northeast)
@@ -2798,8 +2788,8 @@
 /area/shuttle/drop1/lz1)
 "ecj" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 1
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway/edge{
+	dir = 4
 	},
 /area/bigredv2/caves/northeast)
 "edy" = (
@@ -2807,7 +2797,7 @@
 /area/bigredv2/outside/admin_building)
 "edE" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 5
 	},
 /area/bigredv2/caves/northeast)
@@ -2936,13 +2926,9 @@
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
 "esN" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+/obj/structure/catwalk,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 8
 	},
 /area/bigredv2/caves/northeast)
@@ -3000,7 +2986,7 @@
 /area/shuttle/drop1/lz1)
 "ewf" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic,
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway,
 /area/bigredv2/caves/northeast)
 "ewh" = (
 /obj/structure/cable,
@@ -3180,17 +3166,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/engineering)
-"eKl" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 5
-	},
-/area/bigredv2/caves/northeast)
 "eKY" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/mainship,
@@ -3439,15 +3414,9 @@
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/drop2/lz2)
 "eYD" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 4
-	},
+/obj/structure/catwalk,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river,
 /area/bigredv2/caves/northeast)
 "eYE" = (
 /obj/structure/largecrate/random/barrel/yellow,
@@ -3468,7 +3437,9 @@
 /turf/open/floor/mainship/stripesquare,
 /area/bigredv2/outside/c)
 "fac" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic,
+/obj/structure/catwalk,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway,
 /area/bigredv2/caves/northeast)
 "faK" = (
 /turf/open/floor/mainship/red{
@@ -3827,9 +3798,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/admin_building)
 "fzt" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 10
-	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "fAO" = (
 /turf/open/floor/mainship/mono,
@@ -3844,13 +3815,9 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/engineering)
 "fBV" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
+	dir = 6
 	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
 /area/bigredv2/caves/northeast)
 "fBW" = (
 /obj/machinery/landinglight/ds2/delaytwo{
@@ -3880,15 +3847,9 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "fEk" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 1
-	},
+/obj/structure/catwalk,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "fEA" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -3904,16 +3865,9 @@
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/admin_building)
 "fEQ" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 9
-	},
-/area/bigredv2/caves/northeast)
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "fFo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4265,17 +4219,6 @@
 "ghR" = (
 /turf/closed/wall/mainship/outer,
 /area/bigredv2/caves/northeast)
-"ghT" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 6
-	},
-/area/bigredv2/caves/northeast)
 "giC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -4311,16 +4254,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"gli" = (
-/obj/structure/disposalpipe/trunk,
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
-/area/bigredv2/caves/northeast)
 "gma" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating,
@@ -4467,18 +4400,8 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
-/area/bigredv2/caves/northeast)
-"gwM" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 6
-	},
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river,
 /area/bigredv2/caves/northeast)
 "gwP" = (
 /obj/structure/cable,
@@ -4543,18 +4466,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
-"gAA" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
-/area/bigredv2/caves/northeast)
 "gBd" = (
 /obj/structure/cargo_container/nt,
 /obj/effect/decal/warning_stripes/thin{
@@ -4629,17 +4540,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
-"gFf" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 1
-	},
-/area/bigredv2/caves/northeast)
 "gGj" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/emails,
@@ -4685,31 +4585,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
-"gIU" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic,
-/area/bigredv2/caves/northeast)
 "gJw" = (
 /obj/machinery/computer3/server,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/caves/lambda_lab)
-"gKd" = (
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
-/area/bigredv2/caves/northeast)
 "gKt" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
@@ -4879,34 +4758,12 @@
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/mainship/floor,
 /area/bigredv2/outside/cargo)
-"hcx" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 5
-	},
-/area/bigredv2/caves/northeast)
 "hdo" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
-"heW" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 8
-	},
-/area/bigredv2/caves/northeast)
 "hgV" = (
 /obj/structure/largecrate/random,
 /turf/open/shuttle/dropship/three,
@@ -5052,15 +4909,6 @@
 /obj/structure/cable,
 /turf/open/floor/carpet,
 /area/bigredv2/outside/c)
-"hqI" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/deep_water_toxic,
-/area/bigredv2/caves/northeast)
 "hrs" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo,
@@ -5125,17 +4973,6 @@
 /obj/item/tool/weldingtool,
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/c)
-"hua" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 4
-	},
-/area/bigredv2/caves/northeast)
 "huo" = (
 /obj/structure/largecrate/supply/machine,
 /turf/open/floor/plating,
@@ -5247,11 +5084,6 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"hBT" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 1
-	},
-/area/bigredv2/caves/northeast)
 "hBX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -5564,11 +5396,6 @@
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
-"hVx" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 4
-	},
-/area/bigredv2/caves/northeast)
 "hVU" = (
 /turf/closed/shuttle/dropship3{
 	icon_state = "68"
@@ -5696,17 +5523,6 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/bigredv2/outside/c)
-"ifI" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 10
-	},
-/area/bigredv2/caves/northeast)
 "igV" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -6554,8 +6370,9 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
 "jrw" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 9
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
+	dir = 10
 	},
 /area/bigredv2/caves/northeast)
 "jrE" = (
@@ -6593,11 +6410,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/engineering)
-"jvw" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 8
-	},
-/area/bigredv2/caves/northeast)
 "jvI" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -7171,7 +6983,7 @@
 /area/bigredv2/outside/c)
 "klx" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 1
 	},
 /area/bigredv2/caves/northeast)
@@ -7660,13 +7472,7 @@
 /turf/closed/mineral/indestructible,
 /area/shuttle/drop1/lz1)
 "kUR" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway/edge{
 	dir = 8
 	},
 /area/bigredv2/caves/northeast)
@@ -7827,7 +7633,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
 "ldJ" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 5
 	},
 /area/bigredv2/caves/northeast)
@@ -8688,8 +8495,8 @@
 /area/bigredv2/caves/northeast)
 "mih" = (
 /obj/effect/landmark/weed_node,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 10
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
+	dir = 9
 	},
 /area/bigredv2/caves/northeast)
 "miI" = (
@@ -9134,21 +8941,6 @@
 	icon_state = "114"
 	},
 /area/bigredv2/outside/c)
-"mVF" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 4
-	},
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic,
-/area/bigredv2/caves/northeast)
 "mVL" = (
 /obj/structure/dropship_piece/two/corner/rearleft,
 /turf/closed/shuttle/dropship2{
@@ -9424,9 +9216,6 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
-"ntr" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge,
-/area/bigredv2/caves/northeast)
 "ntF" = (
 /obj/structure/cargo_container/ch_green{
 	dir = 4
@@ -9682,17 +9471,6 @@
 /obj/structure/closet/l3closet/janitor,
 /turf/open/floor/plating,
 /area/janitor)
-"nQx" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 1
-	},
-/area/bigredv2/caves/northeast)
 "nQJ" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/tcomms,
@@ -9879,7 +9657,7 @@
 /area/bigredv2/outside/c)
 "ohx" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic,
+/turf/open/ground/river,
 /area/bigredv2/caves/northeast)
 "oiv" = (
 /obj/structure/caspart/internalengine/left,
@@ -11079,7 +10857,9 @@
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
 "pXm" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
+/obj/effect/forcefield/fog/passable_fog,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 8
 	},
 /area/bigredv2/caves/northeast)
@@ -12187,9 +11967,6 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
-"rxK" = (
-/turf/open/ground/river/desertdam/toxic,
-/area/bigredv2/caves/northeast)
 "rxN" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -13579,6 +13356,7 @@
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
 "tjD" = (
+/obj/effect/forcefield/fog/passable_fog,
 /turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 6
 	},
@@ -13962,11 +13740,6 @@
 /obj/machinery/mining/brace/active,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
-"tKC" = (
-/turf/open/ground/river/desertdam/toxic/shallow_edge_toxic{
-	dir = 4
-	},
-/area/bigredv2/caves/northeast)
 "tKZ" = (
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
@@ -14275,8 +14048,8 @@
 "ueN" = (
 /obj/structure/catwalk,
 /obj/effect/ai_node,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 1
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway/edge{
+	dir = 4
 	},
 /area/bigredv2/caves/northeast)
 "ufb" = (
@@ -14936,15 +14709,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/library)
-"uXs" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic,
-/area/bigredv2/caves/northeast)
 "uXC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -14969,8 +14733,8 @@
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
 "uZC" = (
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 1
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway/edge{
+	dir = 4
 	},
 /area/bigredv2/caves/northeast)
 "vax" = (
@@ -14982,6 +14746,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/cargo)
 "vbQ" = (
+/obj/effect/forcefield/fog/passable_fog,
 /turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 1
 	},
@@ -15754,17 +15519,6 @@
 /obj/structure/morgue/crematorium,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/medical)
-"wgJ" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic{
-	dir = 10
-	},
-/area/bigredv2/caves/northeast)
 "whb" = (
 /obj/structure/barricade/guardrail{
 	dir = 4
@@ -15815,15 +15569,6 @@
 /obj/structure/cable,
 /turf/closed/wall/mainship,
 /area/bigredv2/outside/c)
-"wjZ" = (
-/obj/effect/particle_effect/smoke/phosphorus{
-	dir = 1;
-	lifetime = 99999;
-	minimum_effect_delay = 3;
-	strength = 3
-	},
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic,
-/area/bigredv2/caves/northeast)
 "wkh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -15844,9 +15589,8 @@
 /area/bigredv2/outside/cargo)
 "wlk" = (
 /obj/structure/catwalk,
-/turf/open/ground/river/desertdam/toxic/shallow_water_cave_waterway_toxic/edge{
-	dir = 4
-	},
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway/edge,
 /area/bigredv2/caves/northeast)
 "wlH" = (
 /obj/structure/cable,
@@ -60883,10 +60627,10 @@ kYY
 lwX
 lwX
 ghR
-ghT
-tKC
-hua
-ifI
+sFI
+sFI
+sFI
+sFI
 ghR
 lwX
 lwX
@@ -61138,12 +60882,12 @@ kYY
 kYY
 kYY
 lwX
-nQx
-uXs
-uXs
-uXs
-uXs
-dwM
+xou
+sFI
+sFI
+sFI
+sFI
+leg
 lwX
 lwX
 lwX
@@ -61395,12 +61139,12 @@ kYY
 kYY
 xDz
 kYY
-fEk
-uXs
-uXs
-uXs
-uXs
-wjZ
+wud
+sFI
+sFI
+sFI
+sFI
+jXr
 kYY
 kYY
 kYY
@@ -61652,14 +61396,14 @@ kYY
 vxK
 kYY
 kYY
-fEk
-uXs
-uXs
-uXs
-uXs
-wjZ
-kYY
-vxK
+wud
+sFI
+sFI
+sFI
+sFI
+jXr
+ldQ
+bXK
 kYY
 vxK
 kYY
@@ -61909,16 +61653,16 @@ lwX
 kYY
 kYY
 kYY
-fEk
-uXs
-uXs
-uXs
-uXs
-wjZ
+wud
+sFI
+sFI
+sFI
+sFI
+jXr
 kYY
 kYY
-kYY
-kYY
+ldQ
+ldQ
 kYY
 kYY
 kYY
@@ -62166,12 +61910,12 @@ lwX
 kYY
 kYY
 kYY
-fEk
-uXs
-uXs
-uXs
-uXs
-wjZ
+wud
+sFI
+sFI
+sFI
+sFI
+jXr
 kYY
 kYY
 kYY
@@ -62423,10 +62167,10 @@ kYY
 kYY
 kYY
 kYY
-eKl
-nQx
-uXs
-uXs
+ldJ
+xou
+sFI
+sFI
 lwX
 lwX
 lwX
@@ -62680,17 +62424,17 @@ kYY
 kYY
 wqS
 kYY
-kYY
-fEk
-uXs
-uXs
+ldQ
+wud
+sFI
+sFI
 lwX
 lwX
 lwX
 lwX
 kYY
 kYY
-kYY
+ldQ
 kYY
 kYY
 kYY
@@ -62937,17 +62681,17 @@ kYY
 kYY
 vCi
 xBX
-kYY
-fEk
-uXs
-uXs
+ldQ
+wud
+sFI
+sFI
 lwX
 lwX
 lwX
 kYY
 kYY
-kYY
-kYY
+ldQ
+ldQ
 kYY
 kYY
 kYY
@@ -63194,15 +62938,15 @@ lwX
 kYY
 vCi
 xBX
-kYY
-fEk
-uXs
-uXs
+ldQ
+wud
+sFI
+sFI
 lwX
 lwX
 lwX
 kYY
-cUK
+dwM
 cUK
 xDz
 kYY
@@ -63226,7 +62970,7 @@ lwX
 lwX
 kYY
 kLx
-kYY
+ldQ
 lwX
 lwX
 lwX
@@ -63449,24 +63193,24 @@ lwX
 lwX
 vCi
 nxq
-xDz
-fzt
-pXm
-ntr
-rxK
-rxK
-jvw
-pXm
-pXm
-pXm
+aLH
+afR
+dif
+lbW
+sFI
+sFI
+iMO
+dif
+dif
+dif
+esN
 ebt
-ebt
-pXm
-jrw
+led
+jCi
 kYY
 kYY
 kYY
-kYY
+ldQ
 kYY
 kYY
 kLx
@@ -63482,7 +63226,7 @@ kYY
 lwX
 lwX
 kYY
-kYY
+ldQ
 kYY
 lwX
 lwX
@@ -63703,26 +63447,26 @@ cuP
 lwX
 lwX
 lwX
-aLH
+lwX
 xBX
 xBX
-kYY
-fEk
-fEQ
-gIU
-gIU
-gIU
-gIU
-gIU
-gIU
-hcx
+ldQ
+wud
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+eYD
 ohx
-ohx
-uXs
+lcj
 kUR
-jrw
+jCi
 kYY
-kYY
+ldQ
 kYY
 kYY
 kYY
@@ -63734,7 +63478,7 @@ vxK
 kYY
 xBX
 xBX
-xBX
+fEk
 kYY
 lwX
 lwX
@@ -63960,24 +63704,24 @@ cuP
 lwX
 lwX
 lwX
-kUR
+iMO
 ebt
 ebt
-pXm
-fBV
-gFf
-hqI
-hqI
-hqI
-hqI
-hqI
-hqI
-heW
+dif
+lbW
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+eYD
 ohx
-ohx
-uXs
-uXs
-fac
+lcj
+lcj
+jGR
 kYY
 kYY
 kYY
@@ -63988,17 +63732,17 @@ kYY
 lwX
 lwX
 lwX
-wgJ
+afR
 ebt
 ebt
-ebt
-pXm
-lwX
-pXm
-pXm
-pXm
-pXm
 esN
+dif
+lwX
+dif
+dif
+pXm
+dif
+dif
 vzh
 vzh
 vzh
@@ -64217,25 +63961,25 @@ cuP
 lwX
 lwX
 lwX
-uXs
+sFI
 ohx
 ohx
-rxK
-uXs
-gFf
-hqI
-hqI
-gAA
-gAA
-hqI
-hqI
-heW
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
 wlk
 dYO
 uZC
-rxK
-fac
-kYY
+lcj
+jGR
+ldQ
 kYY
 kYY
 kYY
@@ -64245,16 +63989,16 @@ mih
 lwX
 lwX
 lwX
-ntr
+lbW
 ohx
 ohx
 ohx
-mVF
-uXs
-uXs
-uXs
-uXs
-uXs
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
 vzh
 vzh
 vzh
@@ -64474,43 +64218,43 @@ cuP
 lwX
 lwX
 lwX
-uXs
+sFI
 ohx
 ohx
-uXs
-uXs
-gFf
-hqI
-gli
+sFI
+sFI
+sFI
+sFI
+sFI
 ghR
 ghR
-gKd
-hqI
-heW
+sFI
+sFI
+sFI
+fac
 cUK
-cUK
-hBT
-uXs
-kUR
-esN
-esN
-esN
-esN
-esN
-esN
-fBV
-uXs
-uXs
-uXs
-uXs
+dYA
+sFI
+iMO
+dif
+dif
+dif
+dif
+dif
+dif
+lbW
+sFI
+sFI
+sFI
+sFI
 ohx
 bOB
 ohx
-mVF
-rxK
-uXs
-rxK
-uXs
+sFI
+sFI
+sFI
+sFI
+sFI
 vzh
 vzh
 vzh
@@ -64731,43 +64475,43 @@ cuP
 lwX
 lwX
 lwX
-eYD
+sEr
 dYO
 dYO
-eYD
-nQx
-gFf
-hqI
-gli
+sEr
+xou
+sFI
+sFI
+sFI
 ghR
 ghR
-gKd
-hqI
-heW
-fac
+sFI
+sFI
+sFI
+jXr
 kYY
-hBT
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
+dYA
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
 ohx
 ohx
 ohx
-mVF
-rxK
-mVF
-uXs
-mVF
+sFI
+sFI
+sFI
+sFI
+sFI
 vzh
 vzh
 vzh
@@ -64988,43 +64732,43 @@ cuP
 lwX
 lwX
 kYY
-kYY
+ldQ
 xBX
 xBX
+ldQ
+wud
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+jXr
 kYY
-fEk
-gFf
-hqI
-hqI
-gwp
-gwp
-hqI
-hqI
-heW
-fac
-kYY
-fEk
-uXs
-uXs
-rxK
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
+dYA
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
 ohx
 ohx
 ohx
-mVF
-rxK
-mVF
-uXs
-mVF
+sFI
+sFI
+sFI
+sFI
+sFI
 vzh
 vzh
 vzh
@@ -65245,43 +64989,43 @@ cuP
 lwX
 lwX
 kYY
-kYY
+ldQ
 vCi
 vCi
-kYY
-fEk
-gFf
-hqI
-hqI
-hqI
-hqI
-hqI
-hqI
-heW
-fac
-kYY
-eKl
-eYD
-nQx
-rxK
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
+ldQ
+wud
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+jXr
+ldQ
+vWd
+sEr
+xou
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
 ohx
 ohx
 ohx
-mVF
-rxK
-mVF
-uXs
-mVF
+sFI
+sFI
+sFI
+sFI
+sFI
 vzh
 vzh
 vzh
@@ -65329,8 +65073,8 @@ mLP
 sJC
 edF
 lxg
-lxg
-lxg
+fEQ
+fEQ
 lxg
 lxg
 edF
@@ -65505,41 +65249,41 @@ kYY
 kYY
 vxK
 kYY
+ldQ
+wud
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+jXr
 kYY
-fEk
-ghT
-hua
-hua
-hua
-hua
-hua
-hua
-ifI
-fac
-kYY
-kYY
-kYY
-ldJ
-uZC
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
+ldQ
+ldQ
+vWd
+xou
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
 ohx
 ohx
 ohx
-mVF
-rxK
-uXs
-rxK
-rxK
-uXs
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
 vzh
 vzh
 vzh
@@ -65585,7 +65329,7 @@ xvF
 xvF
 sJC
 edF
-lxg
+fEQ
 pim
 lxg
 lxg
@@ -65762,42 +65506,42 @@ kYY
 kYY
 kYY
 xDz
+ldQ
+ldJ
+sEr
+sEr
+xou
+sFI
+sFI
+leg
+sEr
+sEr
+tjD
+kYY
+kYY
+kYY
 kYY
 ldJ
-bXK
-bXK
-nQx
-uXs
-uXs
-hVx
-bXK
-bXK
-gwM
-kYY
-kYY
-kYY
-kYY
-ldJ
-nQx
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
+xou
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
 ohx
 ohx
 ohx
-mVF
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
 vzh
 vzh
 vzh
@@ -65846,7 +65590,7 @@ kuc
 kuc
 mKG
 wGd
-lxg
+fEQ
 edF
 edF
 edF
@@ -66019,43 +65763,43 @@ kYY
 kYY
 kYY
 kYY
-kYY
+ldQ
 kYY
 lwX
 lwX
-fEk
-uXs
-uXs
-jvw
-pXm
-jrw
+dYA
+lcj
+sFI
+iMO
+led
+jCi
 kYY
 vxK
 kYY
 kYY
 kYY
 kYY
-fEk
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
-uXs
+wud
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
+sFI
 cUK
 cUK
-cUK
-eYD
-eYD
-bXK
-bXK
-bXK
-bXK
-bXK
-bXK
+dwM
+sEr
+sEr
+sEr
+sEr
+sEr
+sEr
+sEr
+sEr
 vzh
 vzh
 vzh
@@ -66103,7 +65847,7 @@ pJE
 pJE
 pJE
 izm
-lxg
+fEQ
 lxg
 pim
 edF
@@ -66283,34 +66027,34 @@ lwX
 lwX
 lwX
 lwX
-uXs
-uXs
-fac
+lcj
+sFI
+jGR
 kYY
 kYY
+ldQ
+ldQ
 kYY
 kYY
+wud
+sFI
+sFI
+leg
+sMW
+sMW
+sMW
+sMW
+sMW
+sMW
+fBV
+kYY
+ldQ
+ldQ
+kYY
+ldQ
 kYY
 kYY
-hBT
-rxK
-rxK
-hVx
-bXK
-bXK
-bXK
-bXK
-bXK
-bXK
-gwM
-kYY
-kYY
-kYY
-kYY
-kYY
-kYY
-kYY
-kYY
+ldQ
 kYY
 kYY
 vzh
@@ -66533,26 +66277,26 @@ lwX
 kYY
 sWB
 kYY
-kYY
+ldQ
 vxK
 kYY
 lwX
 lwX
 lwX
 lwX
-uXs
-mVF
-fac
+sFI
+sFI
+jXr
 kYY
 kYY
-kYY
+ldQ
 kYY
 kYY
 lwX
-fEk
-uXs
-uXs
-fac
+wud
+sFI
+sFI
+jXr
 kYY
 kYY
 kYY
@@ -66602,7 +66346,7 @@ vzh
 lwX
 kYY
 xDB
-kYY
+ldQ
 vxK
 kYY
 hEd
@@ -66790,26 +66534,26 @@ lwX
 lwX
 kYY
 kYY
+ldQ
 kYY
 kYY
-kYY
 lwX
 lwX
 lwX
 lwX
-rxK
-rxK
-jvw
-pXm
+sFI
+lcj
+iMO
+dif
 jrw
 kYY
 vxK
 kYY
 lwX
-fEk
-uXs
-uXs
-fac
+wud
+sFI
+sFI
+jXr
 kYY
 kYY
 kYY
@@ -66819,13 +66563,13 @@ lwX
 kYY
 kYY
 kYY
+ldQ
 kYY
-kYY
-kYY
+ldQ
 kYY
 vxK
 kYY
-kYY
+ldQ
 kYY
 hEd
 kYY
@@ -67054,19 +66798,19 @@ kYY
 kYY
 lwX
 lwX
-mVF
-mVF
-mVF
-mVF
-fac
+sFI
+sFI
+sFI
+sFI
+jXr
 kYY
 kYY
 kYY
 lwX
-fEk
-uXs
-uXs
-kUR
+wud
+sFI
+sFI
+iMO
 jrw
 kYY
 kYY
@@ -67082,7 +66826,7 @@ kYY
 kYY
 kYY
 kYY
-xDz
+aLH
 kYY
 hEd
 kYY
@@ -67107,15 +66851,15 @@ sWB
 sWB
 kYY
 kYY
-kYY
+ldQ
 kYY
 vxK
-kYY
+ldQ
 wud
 lcj
 sFI
 jXr
-kYY
+ldQ
 kYY
 xDz
 lwX
@@ -67320,11 +67064,11 @@ vCi
 kYY
 lwX
 lwX
-fEk
-uXs
-uXs
-uXs
-fac
+wud
+sFI
+sFI
+sFI
+jXr
 kYY
 kYY
 lwX
@@ -67336,7 +67080,7 @@ kYY
 kYY
 kYY
 kYY
-kYY
+ldQ
 kYY
 kYY
 kYY
@@ -67367,12 +67111,12 @@ xDz
 kYY
 kYY
 kYY
-kYY
-dYA
+ldQ
+wud
 sFI
 sFI
 iMO
-jCi
+jrw
 kYY
 kYY
 xDz
@@ -67385,7 +67129,7 @@ kYY
 kYY
 hGM
 vKf
-lxg
+fEQ
 lxg
 aTA
 kTa
@@ -67625,7 +67369,7 @@ kYY
 kYY
 kYY
 kYY
-dYA
+wud
 lUx
 sFI
 sFI
@@ -67847,7 +67591,7 @@ kYY
 kYY
 kYY
 kYY
-kYY
+ldQ
 kYY
 kYY
 kYY
@@ -67882,7 +67626,7 @@ kYY
 vxK
 kYY
 kYY
-dYA
+wud
 lUx
 lcj
 lcj
@@ -67903,7 +67647,7 @@ lxg
 lxg
 pim
 lxg
-lxg
+fEQ
 lxg
 lxg
 edF
@@ -68083,10 +67827,10 @@ kYY
 kYY
 kYY
 kYY
-fEk
-uXs
-uXs
-fac
+wud
+sFI
+sFI
+jGR
 kYY
 kYY
 kYY
@@ -68139,7 +67883,7 @@ kYY
 kYY
 kYY
 kYY
-vWd
+ldJ
 xou
 sFI
 lcj
@@ -68147,7 +67891,7 @@ iMO
 jCi
 kYY
 kYY
-kYY
+ldQ
 kYY
 vxK
 kYY
@@ -68156,11 +67900,11 @@ kYY
 kYY
 hGM
 lxg
+fEQ
 lxg
 lxg
 lxg
-lxg
-lxg
+fEQ
 lxg
 lxg
 edF
@@ -68340,10 +68084,10 @@ vxK
 kYY
 lwX
 lwX
-fEk
-uXs
-uXs
-fac
+wud
+sFI
+sFI
+jGR
 kYY
 kYY
 kYY
@@ -68402,7 +68146,7 @@ lUx
 lUx
 lcj
 jXr
-kYY
+ldQ
 kYY
 kYY
 kYY
@@ -68597,10 +68341,10 @@ kYY
 kYY
 lwX
 lwX
-fEk
-uXs
-uXs
-fac
+wud
+sFI
+sFI
+jGR
 kYY
 kYY
 kYY
@@ -68608,7 +68352,7 @@ kYY
 kYY
 kYY
 kYY
-kYY
+ldQ
 kYY
 kYY
 kYY
@@ -68659,7 +68403,7 @@ xou
 sFI
 sFI
 iMO
-jCi
+jrw
 kYY
 kYY
 hEd
@@ -68856,8 +68600,8 @@ lwX
 lwX
 lwX
 lwX
-uXs
-fac
+sFI
+jGR
 kYY
 kYY
 kYY
@@ -69121,7 +68865,7 @@ lwX
 lwX
 kYY
 kYY
-kYY
+ldQ
 kYY
 kYY
 vzh
@@ -69377,7 +69121,7 @@ lwX
 lwX
 lwX
 kYY
-kYY
+ldQ
 kYY
 qWO
 dif
@@ -69683,12 +69427,12 @@ kYY
 kYY
 kYY
 kYY
-kYY
+ldQ
 dYA
 sFI
 sFI
 jGR
-kYY
+ldQ
 kYY
 kYY
 lwX
@@ -69938,13 +69682,13 @@ kYY
 kYY
 kYY
 kYY
-kYY
+ldQ
 kYY
 kYY
 wud
 sFI
 sFI
-jGR
+jXr
 kYY
 kYY
 lwX
@@ -70449,7 +70193,7 @@ kYY
 xDz
 kYY
 kYY
-kYY
+ldQ
 vxK
 xDz
 hEd
@@ -71438,7 +71182,7 @@ kYY
 kYY
 kYY
 kYY
-kYY
+ldQ
 rRc
 kYY
 kYY
@@ -71691,7 +71435,7 @@ tjD
 kYY
 kYY
 kYY
-kYY
+ldQ
 kYY
 kYY
 kYY
@@ -71945,15 +71689,15 @@ kYY
 kYY
 xDz
 kYY
-kYY
+ldQ
 kYY
 vxK
 kYY
 kYY
+ldQ
 kYY
 kYY
-kYY
-rRc
+fzt
 xDz
 kYY
 kYY
@@ -72203,7 +71947,7 @@ kYY
 kYY
 kYY
 kYY
-kYY
+ldQ
 kYY
 kYY
 kYY
@@ -72461,7 +72205,7 @@ vzh
 kYY
 kYY
 kYY
-kYY
+ldQ
 kYY
 kYY
 kYY
