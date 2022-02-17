@@ -1070,16 +1070,17 @@
 	spawn_type = /obj/item/ammo_magazine/standard_mmg
 
 
-/obj/item/storage/box/visual/magazine/compact/standard_mmg
+/obj/item/storage/box/visual/magazine/compact/heavymachinegun
 	name = "MG-08/495 drum box"
 	desc = "A box specifically designed to hold a large amount ofMG-08/495 drum."
 	storage_slots = 10
+	max_storage_space = 10
 	closed_overlay = "mag_box_small_overlay_t27"
 	can_hold = list(
 		/obj/item/ammo_magazine/heavymachinegun,
 	)
 
-/obj/item/storage/box/visual/magazine/compact/standard_mmg/full
+/obj/item/storage/box/visual/magazine/compact/heavymachinegun/full
 	spawn_number = 10
 	spawn_type = /obj/item/ammo_magazine/heavymachinegun
 

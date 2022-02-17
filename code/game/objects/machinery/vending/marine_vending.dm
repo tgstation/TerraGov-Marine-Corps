@@ -65,6 +65,8 @@
 			/obj/item/ammo_magazine/standard_gpmg = -1,
 			/obj/item/weapon/gun/standard_mmg = 5,
 			/obj/item/ammo_magazine/standard_mmg = -1,
+			/obj/item/weapon/gun/heavymachinegun = 1,
+			/obj/item/ammo_magazine/heavymachinegun = 10,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -86,8 +88,6 @@
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/energy/lasgun/tesla = 2,
-			/obj/item/weapon/gun/heavymachinegun = 1,
-			/obj/item/ammo_magazine/heavymachinegun = 4,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/storage/box/recoilless_system = 2,
