@@ -1073,8 +1073,7 @@
 /obj/item/storage/box/visual/magazine/compact/heavymachinegun
 	name = "MG-08/495 drum box"
 	desc = "A box specifically designed to hold a large amount ofMG-08/495 drum."
-	storage_slots = 10
-	max_storage_space = 10
+	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_t27"
 	can_hold = list(
 		/obj/item/ammo_magazine/heavymachinegun,
