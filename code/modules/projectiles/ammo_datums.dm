@@ -1341,7 +1341,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "tungsten penetrator"
 	hud_state = "shell_he"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	shell_speed = 5
+	shell_speed = 4
 	damage = 150
 	penetration = 100
 	sundering = 55
@@ -1353,7 +1353,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "high velocity high explosive shell"
 	hud_state = "shell_he"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
-	shell_speed = 4
+	shell_speed = 2
 	damage = 50
 	penetration = 50
 	sundering = 25
