@@ -709,9 +709,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/zoom_item_turnoff(datum/source, mob/living/carbon/user)
 	if(ismob(source))
-		activate(source, TRUE)
+		INVOKE_ASYNC(src, .proc/activate, source, TRUE)
 	else
-		activate(user, TRUE)
+		INVOKE_ASYNC(src, .proc/activate, user, TRUE)
 
 /obj/item/attachable/scope/onzoom(mob/living/user)
 	if(zoom_allow_movement)
