@@ -232,7 +232,7 @@
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 3 SECONDS
+	aim_time = 3 SECONDS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
 	soft_armor = list("melee" = 60, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
@@ -254,6 +254,7 @@
 
 /obj/item/storage/internal/ammo_rack
 	storage_slots = 10
+	max_storage_space = 40
 	max_w_class = WEIGHT_CLASS_BULKY
 	can_hold = list(/obj/item/ammo_magazine/standard_atgun)
 
@@ -277,3 +278,13 @@ obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
 	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
 		open(user)
 		return FALSE
+
+/obj/machinery/deployable/mounted/atgun/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(2000)
+		if(EXPLODE_HEAVY)
+			take_damage(rand(400, 500))
+		if(EXPLODE_LIGHT)
+			take_damage(rand(10, 50))
+

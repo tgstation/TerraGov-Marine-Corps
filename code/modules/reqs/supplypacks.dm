@@ -197,15 +197,42 @@ WEAPONS
 	contains = list(/obj/item/storage/box/tl102)
 	cost = 80
 
+/datum/supply_packs/weapons/m56d
+	name = "TL-102 mounted heavy smartgun ammo"
+	contains = list(/obj/item/ammo_magazine/tl102)
+	cost = 10
+
 /datum/supply_packs/weapons/antitankgun
 	name = "TAT-36 Anti Tank Gun"
 	contains = list(/obj/item/storage/box/tl102)
 	cost = 50
 
-/datum/supply_packs/weapons/m56d
-	name = "TL-102 mounted heavy smartgun ammo"
-	contains = list(/obj/item/ammo_magazine/tl102)
-	cost = 10
+/datum/supply_packs/weapons/antitankgunammo
+	name = "TAT-36 AP-HE Shell (x3)"
+	contains = list(
+	 	/obj/item/ammo_magazine/standard_atgun,
+	 	/obj/item/ammo_magazine/standard_atgun,
+	 	/obj/item/ammo_magazine/standard_atgun,
+	 	)
+	cost = 2
+
+/datum/supply_packs/weapons/antitankgunammo/apcr
+	name = "TAT-36 APCR Shell (x3)"
+	contains = list(
+	 	/obj/item/ammo_magazine/standard_atgun/apcr,
+	 	/obj/item/ammo_magazine/standard_atgun/apcr,
+	 	/obj/item/ammo_magazine/standard_atgun/apcr,
+	 	)
+	cost = 2
+
+/datum/supply_packs/weapons/antitankgunammo/he
+	name = "TAT-36 HE Shell (x3)"
+	contains = list(
+	 	/obj/item/ammo_magazine/standard_atgun/he,
+	 	/obj/item/ammo_magazine/standard_atgun/he,
+	 	/obj/item/ammo_magazine/standard_atgun/he,
+	 	)
+	cost = 2
 
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"

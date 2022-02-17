@@ -142,13 +142,13 @@
 	supplies = list(/obj/item/storage/box/tl102 = 2)
 
 /obj/structure/largecrate/supply/weapons/standard_atgun
-	name = "\improper TAT-36 and ammo chest (x1, x9)"
+	name = "\improper TAT-36 and ammo chest (x1, x10)"
 	desc = "A supply crate containing a TAT-36 and a full set of ammo to load into the sponson."
 	supplies = list(
 		/obj/item/weapon/gun/standard_atgun = 1,
-		/obj/item/ammo_magazine/standard_atgun = 3,
+		/obj/item/ammo_magazine/standard_atgun = 4,
 		/obj/item/ammo_magazine/standard_atgun/apcr = 3,
-		/obj/item/ammo_magazine/standard_atgun = 3,
+		/obj/item/ammo_magazine/standard_atgun/he = 3,
 	)
 
 

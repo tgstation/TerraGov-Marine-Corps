@@ -1335,7 +1335,7 @@ datum/ammo/bullet/revolver/tp44
 	handful_amount = 1
 
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
-	explosion(T, 0, 1, 4, 2)
+	explosion(T, 0, 2, 3, 2)
 
 /datum/ammo/rocket/atgun_shell/apcr
 	name = "tungsten penetrator"
@@ -1359,7 +1359,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 25
 
 /datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
-	explosion(T, 0, 3, 6, 0)
+	explosion(T, 0, 3, 5, 0)
 
 /*
 //================================================

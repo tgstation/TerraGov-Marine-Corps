@@ -216,6 +216,8 @@
 	var/list/aim_fire_delay_mods = list()
 	///Determines character slowdown from aim mode. Default is 66%
 	var/aim_speed_modifier = 6
+	/// Time to enter aim mode, generally one second.
+	var/aim_time = 1 SECONDS
 
 	///How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_amount = 1
