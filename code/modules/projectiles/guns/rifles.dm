@@ -277,8 +277,6 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
-		/obj/item/weapon/gun/shotgun/combat/masterkey,
-		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
@@ -294,12 +292,12 @@
 	aim_speed_modifier = 3
 
 	autoburst_delay = 0.5 SECONDS
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.35 SECONDS
 	burst_amount = 3
-	burst_delay = 0.2 SECONDS
-	extra_delay = 0.2 SECONDS
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.15 SECONDS
 	accuracy_mult = 1.25
-	scatter = 6
+	scatter = 0
 
 //-------------------------------------------------------
 //M412 Pulse Rifle
