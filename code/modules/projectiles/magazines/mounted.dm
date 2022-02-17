@@ -56,7 +56,7 @@
 	caliber = CALIBER_37MM
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/atgun_shell
-	reload_delay = 1 SECONDS
+	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/standard_atgun/apcr
 	name = "TAT-36 APCR shell (37mm Shell)"
@@ -66,7 +66,7 @@
 	default_ammo = /datum/ammo/rocket/atgun_shell/apcr
 
 /obj/item/ammo_magazine/standard_atgun/he
-	name = "TAT-36 HE (37MM Shell)"
+	name = "TAT-36 HE (37mm Shell)"
 	desc = "A 37mm shell for light anti tank guns made to destroy fortifications, the high amount of payload gives it a slow speed. But it leaves quite a hole."
 	icon_state = "tat36_shell_he"
 	item_state = "tat36_he"

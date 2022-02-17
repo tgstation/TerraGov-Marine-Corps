@@ -214,9 +214,8 @@
 	item_state = "tat36"
 	caliber = CALIBER_37MM // codex
 	max_shells = 1 //codex
-	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tat36.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_atgun
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/standard_atgun,
@@ -232,13 +231,13 @@
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_time = 3 SECONDS
+	aim_time = 4 SECONDS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
 	soft_armor = list("melee" = 60, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	scatter = 0
 	recoil = 3
-	fire_delay = 1 SECONDS
+	fire_delay = 3 SECONDS
 	burst_amount = 1
 	deploy_time = 1 SECONDS
 	undeploy_time = 2000 SECONDS

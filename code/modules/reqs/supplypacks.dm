@@ -204,8 +204,8 @@ WEAPONS
 
 /datum/supply_packs/weapons/antitankgun
 	name = "TAT-36 Anti Tank Gun"
-	contains = list(/obj/item/storage/box/tl102)
-	cost = 50
+	contains = list(/obj/item/weapon/gun/standard_atgun)
+	cost = 60
 
 /datum/supply_packs/weapons/antitankgunammo
 	name = "TAT-36 AP-HE Shell (x3)"
