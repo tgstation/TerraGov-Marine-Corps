@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes: 
+  - bugfix: "Cryotube should now update it's icon properly"
