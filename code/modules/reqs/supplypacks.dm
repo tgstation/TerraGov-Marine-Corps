@@ -213,7 +213,7 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun,
 		/obj/item/ammo_magazine/standard_atgun,
 		/obj/item/ammo_magazine/standard_atgun,
-	 )
+	)
 	cost = 2
 
 /datum/supply_packs/weapons/antitankgunammo/apcr
@@ -222,7 +222,7 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/apcr,
 		/obj/item/ammo_magazine/standard_atgun/apcr,
 		/obj/item/ammo_magazine/standard_atgun/apcr,
-	 )
+	)
 	cost = 2
 
 /datum/supply_packs/weapons/antitankgunammo/he
@@ -231,7 +231,7 @@ WEAPONS
 		/obj/item/ammo_magazine/standard_atgun/he,
 		/obj/item/ammo_magazine/standard_atgun/he,
 		/obj/item/ammo_magazine/standard_atgun,
-	 )
+	)
 	cost = 2
 
 /datum/supply_packs/weapons/tesla
