@@ -1326,7 +1326,6 @@ datum/ammo/bullet/revolver/tp44
 	name = "high explosive ballistic cap shell"
 	hud_state = "shell_heat"
 	hud_state_empty = "shell_empty"
-	handful_icon_state = "atgun_shell"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 3
 	damage = 100
