@@ -215,7 +215,7 @@
 	caliber = CALIBER_37MM // codex
 	max_shells = 1 //codex
 	fire_sound = 'sound/weapons/guns/fire/martini.ogg'
-	reload_sound = 'sound/weapons/guns/interact/martini_reload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/martini_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_atgun
 	allowed_ammo_types = list(

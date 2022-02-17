@@ -1324,6 +1324,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/atgun_shell
 	name = "high explosive ballistic cap shell"
+	icon_state = "atgun"
 	hud_state = "shell_heat"
 	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
