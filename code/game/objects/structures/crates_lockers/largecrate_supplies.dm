@@ -151,7 +151,6 @@
 		/obj/item/ammo_magazine/standard_atgun/he = 3,
 	)
 
-
 /obj/structure/largecrate/supply/ammo
 	name = "ammunition case"
 	icon_state = "case"
