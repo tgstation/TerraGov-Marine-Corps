@@ -1,0 +1,6 @@
+author: "DeltaFire15"
+delete-after: True
+changes: 
+  - balance: "Xenomorphs cannot use abilities nor attack while on a solid turf (e.g. a wall). This excludes attacking walls so you can still break your resin wall if you got yourself stuck aswell as the \"toggle resting\" ability and Hivemind's change form & Wraith's phase-shift / resync.
+tweak: Resin doors start open if built on your own tile."
+  - bugfix: "Added XACT_DO_AFTER_ATTACK to bitfields.dm as it was missing (aka it gets \"translated\" into readable language during varediting of that var)"
