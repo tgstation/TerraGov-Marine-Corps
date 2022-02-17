@@ -211,3 +211,50 @@
   - balance: Drop pods have information that tactically mobilize marines from shipside
       to planetside; they can get solid positioning on xenomorphs and help marines
       faster armed with information
+2022-02-12:
+  Bizzonium:
+  - refactor: make SSrunechat to be subsystem of SStimer
+  BraveMole:
+  - bugfix: Wraith primo effect was staying if the wraith was killed during the effect
+  - bugfix: Runner primo works again
+  DeltaFire15:
+  - bugfix: Sentries should no longer runtime when losing their target nor show weird
+      behavior at the edge of their range.
+  RipGrayson:
+  - soundadd: Added new original AI vox to replace the ancient half life vox.
+  - soundadd: Added 300 extra lines for the AI vox system.
+  - sounddel: Removed all Half Life vox
+  Three333Digit:
+  - balance: teleporter comes with a high-cap cell installed
+2022-02-13:
+  BraveMole:
+  - bugfix: Fix larva regress exploit
+  - bugfix: Fix a visual bug with lasers and wraith primo
+  - rscadd: Primos can be bought by tiers
+  Canohaaaaaaa:
+  - bugfix: Razorwires no longer apply their slowdown twice when resisted out of (notabily
+      by Crushers).
+  - bugfix: 'Warrior : Adjacent lunges now properly work.'
+  DeltaFire15:
+  - balance: Primordial Boiler's lance globs have perfect (base) accuracy at long
+      range and are somewhat faster.
+  Passe2142:
+  - bugfix: Added in the proc view center on loc.
+  Waselon:
+  - balance: T-26 AMR price reduced from 75 to 65
+  - balance: Crusher speed increased from 0.1 to -0.1
+  - balance: Reqtorio cost balance. Grenades and smart ammo are now more profitable.
+2022-02-14:
+  Notamaniac:
+  - bugfix: You can no longer send deployables into nullspace by deploying it to your
+      hand.
+  - bugfix: After 5 whole months, the safety on all TGMC weapons has now been fixed.
+      The brave marine that decided to toggle their safety on has been generously
+      awarded time in solitary for discovering this horrendous oversight.
+2022-02-15:
+  Naaanii:
+  - rscdel: Removes evac max capacity.
+  - bugfix: Fixed an apparent infinite loop check.
+  RipGrayson:
+  - soundadd: Vox sounds now take less space.
+  - soundadd: Added more vox lines.

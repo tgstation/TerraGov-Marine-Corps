@@ -54,7 +54,7 @@
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return TRUE
 
-	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) == dir))
+	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) & dir))
 		return TRUE
 
 obj/structure/platform_decoration
