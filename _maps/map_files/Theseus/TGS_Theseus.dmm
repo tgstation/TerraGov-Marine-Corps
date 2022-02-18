@@ -5371,14 +5371,6 @@
 /obj/item/cell/high,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"bzr" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters{
-	id = qm_warehouse;
-	name = "\improper Warehouse Shutters"
-	},
-/turf/open/space/basic,
-/area/mainship/squads/req)
 "bzs" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -16077,8 +16069,11 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "pLZ" = (
-/obj/structure/closet/crate/ammo,
-/turf/open/floor/prison/cleanmarked,
+/obj/machinery/door/poddoor/shutters{
+	id = "qm_warehouse";
+	name = "\improper Warehouse Shutters"
+	},
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "pNi" = (
 /obj/machinery/door/firedoor/mainship{
@@ -18613,11 +18608,11 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/delta)
 "utR" = (
-/obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/shutters{
-	id = qm_warehouse;
+	id = "qm_warehouse";
 	name = "\improper Warehouse Shutters"
 	},
+/obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "uuf" = (
@@ -63894,11 +63889,11 @@ bnF
 bnF
 bnF
 bnF
-bzr
+utR
 utR
 pLZ
 utR
-bzr
+utR
 bnF
 bnF
 bnF
