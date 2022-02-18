@@ -258,3 +258,20 @@
   RipGrayson:
   - soundadd: Vox sounds now take less space.
   - soundadd: Added more vox lines.
+2022-02-18:
+  DeltaFire15:
+  - balance: 'Xenomorphs cannot use abilities nor attack while on a solid turf (e.g.
+      a wall). This excludes attacking walls so you can still break your resin wall
+      if you got yourself stuck aswell as the "toggle resting" ability and Hivemind''s
+      change form & Wraith''s phase-shift / resync. tweak: Resin doors start open
+      if built on your own tile.'
+  - bugfix: Added XACT_DO_AFTER_ATTACK to bitfields.dm as it was missing (aka it gets
+      "translated" into readable language during varediting of that var)
+  Lumipharon:
+  - balance: teleporters are no longer invulnerable to xenos
+  Notamaniac:
+  - bugfix: Cryotube should now update it's icon properly
+  TiviPlus:
+  - bugfix: fixed wraith effects cutting each other
+  novaepee:
+  - balance: tadpole gets dedicated wall dispenser that can refill specific autoinjectors
