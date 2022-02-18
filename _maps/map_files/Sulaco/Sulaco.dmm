@@ -209,6 +209,7 @@
 /obj/item/tool/screwdriver,
 /obj/item/tool/wrench,
 /obj/item/tool/crowbar,
+/obj/item/paper/factoryhowto,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "aaP" = (
@@ -10245,8 +10246,8 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
 "bEP" = (
-/obj/structure/closet/crate/construction,
-/turf/open/floor/prison,
+/obj/structure/closet/crate/weapon,
+/turf/open/floor/prison/cleanmarked,
 /area/sulaco/cargo/office)
 "bER" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -11965,10 +11966,10 @@
 /area/sulaco/engineering/atmos)
 "eKx" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/weapon,
 /obj/machinery/alarm{
 	dir = 4
 	},
+/obj/structure/closet/crate/construction,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "eLg" = (
@@ -17258,6 +17259,13 @@
 /obj/item/stack/conveyor/thirty,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
+"obX" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 4;
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/cargo)
 "oct" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
@@ -18703,6 +18711,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/vending/cargo_supply,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "qoV" = (
@@ -20195,6 +20204,13 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating,
 /area/sulaco/bridge)
+"sKr" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 8;
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/prison,
+/area/sulaco/cargo/office)
 "sKM" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -20286,12 +20302,12 @@
 /area/sulaco/hallway/central_hall)
 "sPk" = (
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 8
-	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
+	},
+/obj/machinery/door/poddoor/shutters{
+	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo/office)
@@ -20361,6 +20377,12 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
+"sWz" = (
+/obj/structure/window/framed/mainship/gray/toughened,
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/poddoor/shutters,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo/office)
 "sWN" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -46646,7 +46668,7 @@ vDU
 mDu
 mDu
 bOh
-bEP
+alk
 eOE
 alk
 alk
@@ -46905,7 +46927,7 @@ mDu
 baT
 aaN
 alk
-alk
+bEP
 alk
 alk
 nio
@@ -47166,7 +47188,7 @@ qod
 mte
 peT
 qZW
-alk
+sKr
 uxf
 hSX
 gPi
@@ -47421,9 +47443,9 @@ mqT
 mqT
 mqT
 mqT
-ptg
+sWz
 sPk
-ptg
+sWz
 mqT
 mqT
 ptg
@@ -47677,7 +47699,7 @@ baT
 bPM
 gpi
 bPM
-fCm
+obX
 fCm
 agN
 lZd

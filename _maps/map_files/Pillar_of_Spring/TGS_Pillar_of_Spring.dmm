@@ -3451,6 +3451,10 @@
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/mainship/command/cic)
+"li" = (
+/obj/structure/closet/crate/weapon,
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
 "lj" = (
 /obj/structure/rack,
 /obj/item/tool/crowbar,
@@ -7867,6 +7871,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/orange/corner,
 /area/mainship/engineering/ce_room)
+"yY" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 1;
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "yZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
@@ -9002,6 +9013,10 @@
 /area/mainship/squads/general)
 "CE" = (
 /obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	name = "\improper Warehouse Shutters"
+	},
 /turf/open/space/basic,
 /area/mainship/squads/req)
 "CF" = (
@@ -9230,6 +9245,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
+"Dl" = (
+/obj/machinery/door_control/mainship/req{
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "Dm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11840,6 +11861,7 @@
 /obj/item/tool/wrench,
 /obj/item/tool/crowbar,
 /obj/item/tool/screwdriver,
+/obj/item/paper/factoryhowto,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "KM" = (
@@ -11923,8 +11945,9 @@
 /area/mainship/command/self_destruct)
 "Le" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 2
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -48289,7 +48312,7 @@ kM
 kM
 QE
 CE
-oq
+Dl
 Rl
 eh
 eh
@@ -48801,7 +48824,7 @@ pu
 pI
 sy
 kM
-kM
+yY
 CE
 Mj
 Rl
@@ -49056,7 +49079,7 @@ pb
 kM
 pv
 kM
-kM
+li
 UK
 Jb
 qG

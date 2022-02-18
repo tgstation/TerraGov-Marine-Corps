@@ -5355,6 +5355,9 @@
 /area/mainship/squads/req)
 "bzr" = (
 /obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters{
+	name = "\improper Warehouse Shutters"
+	},
 /turf/open/space/basic,
 /area/mainship/squads/req)
 "bzs" = (
@@ -9093,7 +9096,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/cic_maptable,
+/obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -9370,6 +9373,10 @@
 	dir = 1
 	},
 /area/mainship/hallways/aft_hallway)
+"dLP" = (
+/obj/structure/closet/crate/weapon,
+/turf/open/floor/mainship/cargo,
+/area/mainship/squads/req)
 "dMh" = (
 /turf/open/floor/mainship/silver{
 	dir = 8
@@ -11007,7 +11014,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/bridge)
 "gST" = (
-/obj/machinery/vending/cargo_supply,
+/obj/structure/rack,
+/obj/item/tool/screwdriver,
+/obj/item/tool/wrench,
+/obj/item/tool/crowbar,
+/obj/item/paper/factoryhowto,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
@@ -13017,6 +13028,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/basketball)
+"kHS" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 8;
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "kHU" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -16012,8 +16030,9 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "pLZ" = (
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 8
+/obj/machinery/door/poddoor/shutters{
+	dir = 8;
+	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
@@ -16998,7 +17017,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/cic_maptable,
 /turf/open/floor/mainship/green{
 	dir = 4
 	},
@@ -18542,6 +18561,9 @@
 /area/mainship/squads/delta)
 "utR" = (
 /obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters{
+	name = "\improper Warehouse Shutters"
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "uuf" = (
@@ -19204,6 +19226,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"vCU" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 4;
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "vDb" = (
 /obj/structure/table/mainship,
 /obj/item/paper,
@@ -20004,6 +20033,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"xdy" = (
+/obj/machinery/vending/weapon,
+/turf/open/floor/mainship/green,
+/area/mainship/squads/req)
 "xgM" = (
 /obj/structure/dropship_equipment/weapon/rocket_pod,
 /turf/open/floor/mainship/mono,
@@ -63544,7 +63577,7 @@ iWe
 iWe
 iWe
 iWe
-iWe
+kHS
 iWe
 iWe
 adF
@@ -64056,7 +64089,7 @@ bAG
 bwn
 iWe
 iWe
-iWe
+vCU
 iWe
 iWe
 iWe
@@ -64317,7 +64350,7 @@ vfW
 lBa
 dqa
 dpC
-jFn
+dLP
 lDM
 bnF
 bJN
@@ -64568,7 +64601,7 @@ iWe
 bxX
 bAG
 bDM
-bAG
+xdy
 bnF
 iLR
 iLR

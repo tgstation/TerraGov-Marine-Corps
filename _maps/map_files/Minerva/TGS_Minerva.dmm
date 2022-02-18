@@ -1562,6 +1562,10 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
+"fa" = (
+/obj/machinery/vending/cargo_supply,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "fb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -4922,8 +4926,17 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
+"qu" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 8;
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "qw" = (
-/obj/machinery/door_control/old/req,
+/obj/machinery/door_control/old/req{
+	name = "ASRS conveyor belt public shutter"
+	},
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -4936,8 +4949,10 @@
 	},
 /area/mainship/living/evacuation)
 "qy" = (
-/obj/machinery/door/airlock/mainship/marine/requisitions,
-/turf/open/space/basic,
+/obj/machinery/door/poddoor/shutters{
+	name = "\improper Warehouse Shutters"
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "qz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -5560,6 +5575,20 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/droppod)
+"sT" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/door_control/mainship/req{
+	dir = 1;
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "sU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -5695,7 +5724,9 @@
 /area/mainship/hallways/port_hallway)
 "ts" = (
 /obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	name = "\improper ASRS conveyor belt public shutter"
+	},
 /turf/open/space/basic,
 /area/mainship/squads/req)
 "tu" = (
@@ -5730,7 +5761,9 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
 	},
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	name = "\improper ASRS conveyor belt public shutter"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "tA" = (
@@ -5903,6 +5936,10 @@
 /area/mainship/squads/req)
 "uf" = (
 /obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	name = "\improper Warehouse Shutters"
+	},
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
 "ug" = (
@@ -5913,8 +5950,16 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
+"uk" = (
+/obj/machinery/door_control/mainship/req{
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "ul" = (
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	name = "\improper ASRS conveyor belt public shutter"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "un" = (
@@ -5925,6 +5970,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
+"up" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 4;
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "uq" = (
 /obj/machinery/light{
 	dir = 8
@@ -7117,13 +7169,15 @@
 "xU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
+	dir = 2;
+	name = "\improper ASRS conveyor belt public shutter"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "xV" = (
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
+	dir = 2;
+	name = "\improper ASRS conveyor belt public shutter"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -7362,19 +7416,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "yB" = (
-/obj/machinery/door_control{
-	dir = 1;
-	id = "reqaccess";
-	name = "Requisitions Access"
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
+/obj/structure/closet/crate/weapon,
+/turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "yC" = (
 /obj/machinery/power/apc/mainship,
@@ -9447,10 +9490,11 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/bridgebunks)
 "EN" = (
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 2
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	name = "\improper Warehouse Shutters"
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "EO" = (
 /turf/closed/wall/mainship,
@@ -9699,6 +9743,13 @@
 	dir = 4
 	},
 /area/mainship/squads/general)
+"Fp" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters{
+	name = "\improper Warehouse Shutters"
+	},
+/turf/closed/wall/mainship,
+/area/mainship/squads/req)
 "Fq" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/blue{
@@ -10966,7 +11017,8 @@
 "Jf" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
+	dir = 2;
+	name = "\improper ASRS conveyor belt public shutter"
 	},
 /turf/open/space/basic,
 /area/mainship/squads/req)
@@ -14662,6 +14714,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"Uz" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 4;
+	name = "ASRS conveyor belt public shutter"
+	},
+/turf/open/floor/mainship/black{
+	dir = 8
+	},
+/area/mainship/hallways/starboard_hallway)
 "UA" = (
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/mainship/tcomms,
@@ -24576,7 +24637,7 @@ pK
 qV
 qV
 sO
-gY
+qu
 gY
 vU
 wL
@@ -24672,9 +24733,9 @@ SA
 SA
 SA
 SA
-uf
+Fp
 qy
-uf
+Fp
 SA
 ug
 wL
@@ -24764,13 +24825,13 @@ gY
 iK
 gY
 jz
-gY
+yB
 jF
 SA
 wQ
 wQ
 wQ
-wQ
+up
 wQ
 wQ
 wQ
@@ -24862,7 +24923,7 @@ gY
 iM
 jD
 lt
-gY
+fa
 jF
 SA
 wQ
@@ -25059,9 +25120,9 @@ lq
 gY
 pJ
 vV
-yB
+jF
 uf
-wQ
+uk
 pT
 vi
 vi
@@ -25255,7 +25316,7 @@ gY
 gY
 jz
 gY
-jF
+sT
 uf
 wQ
 pT
@@ -25751,7 +25812,7 @@ jM
 pV
 eg
 jM
-jM
+Uz
 WS
 WS
 WS
