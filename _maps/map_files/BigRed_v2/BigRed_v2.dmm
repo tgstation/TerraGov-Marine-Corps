@@ -3473,6 +3473,7 @@
 /obj/structure/sign/safety/autodoc{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 4
 	},
@@ -6749,12 +6750,14 @@
 "ayO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ayP" = (
 /obj/item/weapon/broken_bottle,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/doctor,
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ayQ" = (
@@ -24241,6 +24244,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
+"oAv" = (
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
 "oBu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -24588,6 +24598,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"pGd" = (
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
 "pJm" = (
 /obj/effect/decal/sandedge{
 	dir = 4
@@ -26037,6 +26051,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/caves/southeast)
+"tqa" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
 "tqJ" = (
 /obj/effect/landmark/corpsespawner,
 /turf/open/shuttle/escapepod,
@@ -43571,8 +43590,8 @@ atr
 dKh
 awO
 aqz
-koF
-koF
+oAv
+pGd
 iAh
 awl
 apC
@@ -44006,7 +44025,7 @@ iGQ
 awT
 axz
 avw
-koF
+pGd
 azv
 avw
 ayH
@@ -44440,7 +44459,7 @@ azR
 lgf
 koF
 koF
-cHm
+tqa
 azA
 cHm
 aBf
