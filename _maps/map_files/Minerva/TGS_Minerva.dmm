@@ -3721,6 +3721,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "my" = (
@@ -4767,6 +4770,9 @@
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "pM" = (
@@ -4927,9 +4933,15 @@
 /turf/open/floor/mainship_hull,
 /area/space)
 "qu" = (
-/obj/machinery/door_control/mainship/req{
-	dir = 8;
-	name = "Requisition Warehouse Shutters"
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/light{
+	light_color = "#da2f1b"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -5952,6 +5964,7 @@
 /area/mainship/hull/port_hull)
 "uk" = (
 /obj/machinery/door_control/mainship/req{
+	dir = 8;
 	name = "Requisition Warehouse Shutters"
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -5972,7 +5985,7 @@
 /area/mainship/hallways/starboard_hallway)
 "up" = (
 /obj/machinery/door_control/mainship/req{
-	dir = 4;
+	dir = 1;
 	name = "Requisition Warehouse Shutters"
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -24637,8 +24650,8 @@ pK
 qV
 qV
 sO
-qu
 gY
+iO
 vU
 wL
 xS
@@ -24831,7 +24844,7 @@ SA
 wQ
 wQ
 wQ
-up
+wQ
 wQ
 wQ
 wQ
@@ -25022,7 +25035,7 @@ iL
 gY
 oM
 ls
-jF
+qu
 SA
 wQ
 pT
@@ -25122,7 +25135,7 @@ pJ
 vV
 jF
 uf
-uk
+wQ
 pT
 vi
 vi
@@ -25228,7 +25241,7 @@ sV
 vi
 vi
 iH
-wQ
+up
 Jf
 qw
 Io
@@ -25616,7 +25629,7 @@ wQ
 wQ
 rg
 wQ
-wQ
+uk
 wQ
 wQ
 wQ
