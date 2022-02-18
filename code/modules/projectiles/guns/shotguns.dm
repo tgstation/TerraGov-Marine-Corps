@@ -238,7 +238,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/attachable/motiondetector,
 	)
 
@@ -931,7 +930,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/t35stock,
 		/obj/item/attachable/motiondetector,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/attachable/buildasentry,
 	)
 
