@@ -10699,6 +10699,9 @@
 "cvJ" = (
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "cwp" = (
@@ -13514,7 +13517,9 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/storage2)
 "hKB" = (
-/obj/machinery/door_control/old/req,
+/obj/machinery/door_control/old/req{
+	name = "ASRS conveyor belt public shutter"
+	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "hKJ" = (
@@ -17260,8 +17265,11 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "obX" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door_control/mainship/req{
 	dir = 4;
+	id = "qm_warehouse";
 	name = "Requisition Warehouse Shutters"
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -20207,6 +20215,7 @@
 "sKr" = (
 /obj/machinery/door_control/mainship/req{
 	dir = 8;
+	id = "qm_warehouse";
 	name = "Requisition Warehouse Shutters"
 	},
 /turf/open/floor/prison,
@@ -20307,6 +20316,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters{
+	id = qm_warehouse;
 	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/prison/plate,
@@ -20380,7 +20390,10 @@
 "sWz" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/poddoor/shutters,
+/obj/machinery/door/poddoor/shutters{
+	id = qm_warehouse;
+	name = "\improper Warehouse Shutters"
+	},
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo/office)
 "sWN" = (
@@ -21420,8 +21433,10 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "uEa" = (
-/obj/machinery/door_control/old/req,
-/obj/structure/table/mainship,
+/obj/machinery/door_control/mainship/req{
+	dir = 1;
+	name = "ASRS conveyor belt public shutter"
+	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo)
 "uFe" = (
@@ -22462,6 +22477,9 @@
 /area/mainship/command/self_destruct)
 "wsa" = (
 /obj/machinery/computer/camera_advanced/overwatch/req,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "wth" = (
@@ -47699,10 +47717,10 @@ baT
 bPM
 gpi
 bPM
-obX
+fCm
 fCm
 agN
-lZd
+obX
 lZd
 lZd
 wKj
@@ -48992,7 +49010,7 @@ abV
 abV
 abV
 xpj
-fCm
+uEa
 txO
 hKB
 vSd
@@ -49506,7 +49524,7 @@ vln
 exd
 exd
 fsG
-uEa
+fCm
 lpY
 whS
 dya

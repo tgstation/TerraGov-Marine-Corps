@@ -4422,9 +4422,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "on" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -4568,9 +4565,6 @@
 /area/mainship/squads/req)
 "oI" = (
 /obj/structure/rack,
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
 /obj/item/tool/weldpack,
@@ -5062,6 +5056,16 @@
 /obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
+"qx" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/door_control/mainship/req{
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "qz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -5359,6 +5363,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
+"rH" = (
+/obj/machinery/door_control/mainship/req{
+	name = "ASRS conveyor belt public shutter"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "rI" = (
 /obj/item/clothing/head/warning_cone,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -5366,6 +5376,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"rJ" = (
+/obj/structure/cable,
+/obj/machinery/door_control/mainship/req{
+	dir = 8;
+	name = "ASRS conveyor belt public shutter"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "rK" = (
 /obj/structure/safe,
 /obj/item/moneybag,
@@ -7874,6 +7892,7 @@
 "yY" = (
 /obj/machinery/door_control/mainship/req{
 	dir = 1;
+	id = "qm_warehouse";
 	name = "Requisition Warehouse Shutters"
 	},
 /turf/open/floor/mainship/mono,
@@ -9246,9 +9265,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "Dl" = (
-/obj/machinery/door_control/mainship/req{
-	name = "Requisition Warehouse Shutters"
-	},
+/obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "Dm" = (
@@ -11007,6 +11024,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
+"Ix" = (
+/obj/structure/cable,
+/obj/machinery/door_control/mainship/req{
+	dir = 1;
+	name = "ASRS conveyor belt public shutter"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "Iy" = (
 /obj/structure/table/mainship,
 /obj/item/tool/kitchen/utensil/fork,
@@ -11947,6 +11972,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
+	id = qm_warehouse;
 	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/mainship/mono,
@@ -14540,6 +14566,9 @@
 /area/mainship/hallways/starboard_hallway)
 "SR" = (
 /obj/machinery/vending/armor_supply,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "ST" = (
@@ -16669,7 +16698,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "Zy" = (
-/obj/machinery/door_control/old/req,
+/obj/machinery/door_control/mainship/req{
+	dir = 4;
+	name = "ASRS conveyor belt public shutter"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "Zz" = (
@@ -48312,7 +48344,7 @@ kM
 kM
 QE
 CE
-Dl
+kM
 Rl
 eh
 eh
@@ -48826,7 +48858,7 @@ sy
 kM
 yY
 CE
-Mj
+qx
 Rl
 eh
 eh
@@ -49091,9 +49123,9 @@ eh
 eh
 eh
 XW
-JN
+Ix
 Ne
-jy
+rH
 Uu
 jy
 AR
@@ -49338,7 +49370,7 @@ kM
 kM
 kM
 kM
-kM
+Dl
 qG
 os
 nL
@@ -49602,7 +49634,7 @@ yZ
 Wp
 JN
 JN
-JN
+rJ
 JN
 JN
 px

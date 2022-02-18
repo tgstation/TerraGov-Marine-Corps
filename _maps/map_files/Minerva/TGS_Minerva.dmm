@@ -4522,6 +4522,13 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"oP" = (
+/obj/machinery/door/poddoor/shutters{
+	id = qm_warehouse;
+	name = "\improper Warehouse Shutters"
+	},
+/turf/closed/wall/mainship,
+/area/mainship/squads/req)
 "oR" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -4962,6 +4969,7 @@
 /area/mainship/living/evacuation)
 "qy" = (
 /obj/machinery/door/poddoor/shutters{
+	id = qm_warehouse;
 	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/mainship/mono,
@@ -5597,6 +5605,7 @@
 	},
 /obj/machinery/door_control/mainship/req{
 	dir = 1;
+	id = "qm_warehouse";
 	name = "Requisition Warehouse Shutters"
 	},
 /turf/open/floor/mainship/mono,
@@ -5950,6 +5959,7 @@
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
+	id = qm_warehouse;
 	name = "\improper Warehouse Shutters"
 	},
 /turf/closed/wall/mainship,
@@ -5965,7 +5975,7 @@
 "uk" = (
 /obj/machinery/door_control/mainship/req{
 	dir = 8;
-	name = "Requisition Warehouse Shutters"
+	name = "ASRS conveyor belt public shutter"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -5986,7 +5996,7 @@
 "up" = (
 /obj/machinery/door_control/mainship/req{
 	dir = 1;
-	name = "Requisition Warehouse Shutters"
+	name = "ASRS conveyor belt public shutter"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -7981,6 +7991,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/grunt_rnr)
+"Ac" = (
+/obj/machinery/door_control/mainship/req{
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "Ae" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced{
@@ -9505,6 +9522,7 @@
 "EN" = (
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
+	id = qm_warehouse;
 	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/mainship/mono,
@@ -9757,10 +9775,11 @@
 	},
 /area/mainship/squads/general)
 "Fp" = (
-/obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/shutters{
+	id = qm_warehouse;
 	name = "\improper Warehouse Shutters"
 	},
+/obj/structure/window/framed/mainship/requisitions,
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
 "Fq" = (
@@ -13910,6 +13929,14 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/engineering/ce_room)
+"RY" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 4;
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "RZ" = (
 /obj/machinery/autolathe,
 /turf/open/floor/mainship/orange{
@@ -14383,6 +14410,17 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
+"Tt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
+/obj/machinery/door_control/mainship/req{
+	dir = 8;
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "Tv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -24648,7 +24686,7 @@ zS
 XD
 pK
 qV
-qV
+Tt
 sO
 gY
 iO
@@ -24748,7 +24786,7 @@ SA
 SA
 Fp
 qy
-Fp
+oP
 SA
 ug
 wL
@@ -24844,7 +24882,7 @@ SA
 wQ
 wQ
 wQ
-wQ
+RY
 wQ
 wQ
 wQ
@@ -25133,9 +25171,9 @@ lq
 gY
 pJ
 vV
-jF
+sT
 uf
-wQ
+Ac
 pT
 vi
 vi
@@ -25329,7 +25367,7 @@ gY
 gY
 jz
 gY
-sT
+jF
 uf
 wQ
 pT
