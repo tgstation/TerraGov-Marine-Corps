@@ -239,13 +239,9 @@
 	recoil = 3
 	fire_delay = 3 SECONDS
 	burst_amount = 1
-	deploy_time = 1 SECONDS
 	undeploy_time = 2000 SECONDS
 	max_integrity = 2000
-
-/obj/item/weapon/gun/standard_atgun/Initialize()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/atgun, 5 SECONDS)
-	. = ..()
+	deployed_item = /obj/machinery/deployable/mounted/atgun
 
 /obj/machinery/deployable/mounted/atgun
 	anchored = FALSE // You can wheel this around!
@@ -269,9 +265,6 @@ obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
 		return FALSE
 
 	if(user.lying_angle || user.incapacitated()) //Can't use your inventory when lying
-		return FALSE
-
-	if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
 		return FALSE
 
 	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
