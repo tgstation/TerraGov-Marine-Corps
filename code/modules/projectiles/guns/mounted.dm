@@ -59,6 +59,7 @@
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
+	deployed_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 125
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -140,6 +141,7 @@
 
 	deploy_time = 8 SECONDS
 	undeploy_time = 3 SECONDS
+	deployed_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 150
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -185,6 +187,7 @@
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	deployed_item = /obj/machinery/deployable/mounted
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
