@@ -403,6 +403,7 @@
 			/obj/item/ammo_magazine/pistol/derringer = -1,
 		),
 		"Specialized" = list(
+			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/energy/lasgun/tesla = -1,
@@ -542,7 +543,6 @@
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 5,
 			/obj/item/fulton_extraction_pack = 2,
-			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
 			/obj/item/radio/headset/mainship/marine/bravo = -1,
 			/obj/item/radio/headset/mainship/marine/charlie = -1,
