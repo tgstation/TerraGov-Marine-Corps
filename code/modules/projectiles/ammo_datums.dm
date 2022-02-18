@@ -2261,10 +2261,10 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME
 	armor_type = "fire"
 	max_range = 6
-	damage = 50
+	damage = 40
 	bullet_color = LIGHT_COLOR_FIRE
 	var/fire_color = "red"
-	var/burnlevel = 24
+	var/burnlevel = 20
 	var/burntime = 17
 	var/fire_delay = 20
 
