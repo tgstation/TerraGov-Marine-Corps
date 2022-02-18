@@ -9021,12 +9021,13 @@
 /turf/open/floor/mainship/black/corner,
 /area/mainship/squads/general)
 "CE" = (
-/obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
+	id = "qm_warehouse";
 	name = "\improper Warehouse Shutters"
 	},
-/turf/open/space/basic,
+/obj/structure/window/framed/mainship/requisitions,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "CF" = (
 /obj/structure/disposalpipe/segment{
@@ -11960,7 +11961,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
-	id = qm_warehouse;
+	id = "qm_warehouse";
 	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/mainship/mono,

@@ -1522,13 +1522,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
-"eT" = (
-/obj/machinery/door/poddoor/shutters{
-	id = qm_warehouse;
-	name = "\improper Warehouse Shutters"
-	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/req)
 "eU" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/autodoc,
@@ -4976,7 +4969,7 @@
 /area/mainship/living/evacuation)
 "qy" = (
 /obj/machinery/door/poddoor/shutters{
-	id = qm_warehouse;
+	id = "qm_warehouse";
 	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/mainship/mono,
@@ -5958,10 +5951,10 @@
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
-	id = qm_warehouse;
+	id = "qm_warehouse";
 	name = "\improper Warehouse Shutters"
 	},
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "ug" = (
 /obj/structure/window/framed/mainship/requisitions,
@@ -9525,7 +9518,7 @@
 "EN" = (
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
-	id = qm_warehouse;
+	id = "qm_warehouse";
 	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/mainship/mono,
@@ -9779,7 +9772,7 @@
 /area/mainship/squads/general)
 "Fp" = (
 /obj/machinery/door/poddoor/shutters{
-	id = qm_warehouse;
+	id = "qm_warehouse";
 	name = "\improper Warehouse Shutters"
 	},
 /obj/structure/window/framed/mainship/requisitions,
@@ -24793,7 +24786,7 @@ SA
 SA
 Fp
 qy
-eT
+Fp
 SA
 ug
 wL

@@ -20316,7 +20316,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters{
-	id = qm_warehouse;
+	id = "qm_warehouse";
 	name = "\improper Warehouse Shutters"
 	},
 /turf/open/floor/prison/plate,
@@ -20388,12 +20388,12 @@
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
 "sWz" = (
-/obj/structure/window/framed/mainship/gray/toughened,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/poddoor/shutters{
-	id = qm_warehouse;
+	id = "qm_warehouse";
 	name = "\improper Warehouse Shutters"
 	},
+/obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo/office)
 "sWN" = (
