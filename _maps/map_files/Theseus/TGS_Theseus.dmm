@@ -10302,12 +10302,6 @@
 	dir = 1
 	},
 /area/mainship/shipboard/port_point_defense)
-"fyQ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/req)
 "fzU" = (
 /obj/machinery/door_control/mainship/corporate{
 	dir = 4
@@ -10547,6 +10541,14 @@
 	dir = 4
 	},
 /area/mainship/shipboard/brig)
+"fWE" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 4;
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "fYx" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/power/terminal{
@@ -10604,6 +10606,10 @@
 /turf/open/floor/mainship/green/corner{
 	dir = 4
 	},
+/area/mainship/squads/req)
+"gaR" = (
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "gaW" = (
 /obj/structure/cable,
@@ -14694,6 +14700,12 @@
 /obj/item/clothing/mask/breath/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
+"nmb" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "nmg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -15989,14 +16001,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
-"pBw" = (
-/obj/machinery/door_control/mainship/req{
-	dir = 4;
-	id = "qm_warehouse";
-	name = "Requisition Warehouse Shutters"
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/req)
 "pBI" = (
 /obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/light{
@@ -16027,15 +16031,6 @@
 	dir = 8
 	},
 /area/mainship/hallways/port_hallway)
-"pDH" = (
-/obj/machinery/door_control/mainship/req{
-	dir = 4;
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/mainship/green{
-	dir = 8
-	},
-/area/mainship/squads/req)
 "pES" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/basketball)
@@ -16082,11 +16077,8 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "pLZ" = (
-/obj/machinery/door/poddoor/shutters{
-	id = qm_warehouse;
-	name = "\improper Warehouse Shutters"
-	},
-/turf/open/floor/mainship/floor,
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/prison/cleanmarked,
 /area/mainship/squads/req)
 "pNi" = (
 /obj/machinery/door/firedoor/mainship{
@@ -17703,6 +17695,12 @@
 "sBz" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
+"sDp" = (
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 2
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "sGK" = (
 /obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/mainship/tcomms,
@@ -19620,6 +19618,15 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"whQ" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 4;
+	name = "ASRS conveyor belt public shutter"
+	},
+/turf/open/floor/mainship/green{
+	dir = 8
+	},
+/area/mainship/squads/req)
 "wif" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -20092,12 +20099,6 @@
 "xdy" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/green,
-/area/mainship/squads/req)
-"xgH" = (
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "xgM" = (
 /obj/structure/dropship_equipment/weapon/rocket_pod,
@@ -61582,7 +61583,7 @@ bwe
 iWe
 hit
 hit
-pDH
+whQ
 hit
 hit
 iWe
@@ -62091,7 +62092,7 @@ wcO
 bpq
 iWe
 iWe
-xgH
+sDp
 bKU
 jiv
 xhL
@@ -64149,13 +64150,13 @@ bBX
 bsV
 bAG
 bwn
-fyQ
+nmb
 iWe
 iWe
 iWe
-pBw
+fWE
 iWe
-fyQ
+nmb
 bAG
 bnF
 bJN
@@ -64669,7 +64670,7 @@ iLR
 iLR
 iLR
 bnF
-bDM
+gaR
 kWq
 bnF
 bJO

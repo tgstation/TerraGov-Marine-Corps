@@ -4895,6 +4895,16 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/self_destruct)
+"pR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/door_control/mainship/req{
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "pS" = (
 /obj/machinery/light{
 	dir = 4
@@ -5056,16 +5066,6 @@
 /obj/item/tool/pen,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
-"qx" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/door_control/mainship/req{
-	id = "qm_warehouse";
-	name = "Requisition Warehouse Shutters"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
 "qz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -5363,12 +5363,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
-"rH" = (
-/obj/machinery/door_control/mainship/req{
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_hallway)
 "rI" = (
 /obj/item/clothing/head/warning_cone,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -5376,14 +5370,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"rJ" = (
-/obj/structure/cable,
-/obj/machinery/door_control/mainship/req{
-	dir = 8;
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
 "rK" = (
 /obj/structure/safe,
 /obj/item/moneybag,
@@ -8394,6 +8380,10 @@
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"AD" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "AE" = (
 /obj/machinery/door/poddoor/mainship/umbilical/south{
 	dir = 2
@@ -9265,8 +9255,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
 "Dl" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/mono,
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "Dm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -11024,14 +11014,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
-"Ix" = (
-/obj/structure/cable,
-/obj/machinery/door_control/mainship/req{
-	dir = 1;
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
 "Iy" = (
 /obj/structure/table/mainship,
 /obj/item/tool/kitchen/utensil/fork,
@@ -11889,6 +11871,12 @@
 /obj/item/paper/factoryhowto,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"KL" = (
+/obj/machinery/door_control/mainship/req{
+	name = "ASRS conveyor belt public shutter"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "KM" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship/hardened{
@@ -13032,6 +13020,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"Oo" = (
+/obj/structure/cable,
+/obj/machinery/door_control/mainship/req{
+	dir = 8;
+	name = "ASRS conveyor belt public shutter"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "Op" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -14570,6 +14566,14 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
+"SS" = (
+/obj/structure/cable,
+/obj/machinery/door_control/mainship/req{
+	dir = 1;
+	name = "ASRS conveyor belt public shutter"
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "ST" = (
 /obj/item/tool/mop,
@@ -48858,7 +48862,7 @@ sy
 kM
 yY
 CE
-qx
+pR
 Rl
 eh
 eh
@@ -49110,7 +49114,7 @@ kM
 pb
 kM
 pv
-kM
+Dl
 li
 UK
 Jb
@@ -49123,9 +49127,9 @@ eh
 eh
 eh
 XW
-Ix
+SS
 Ne
-rH
+KL
 Uu
 jy
 AR
@@ -49370,7 +49374,7 @@ kM
 kM
 kM
 kM
-Dl
+AD
 qG
 os
 nL
@@ -49634,7 +49638,7 @@ yZ
 Wp
 JN
 JN
-rJ
+Oo
 JN
 JN
 px

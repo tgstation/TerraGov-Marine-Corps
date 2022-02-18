@@ -10016,7 +10016,7 @@
 /area/sulaco/liaison/quarters)
 "bfC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/crate/ammo,
+/obj/structure/closet/crate/internals,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "bgm" = (
@@ -10247,7 +10247,7 @@
 /area/sulaco/hallway/lower_foreship)
 "bEP" = (
 /obj/structure/closet/crate/weapon,
-/turf/open/floor/prison/cleanmarked,
+/turf/open/floor/prison/marked,
 /area/sulaco/cargo/office)
 "bER" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -12034,7 +12034,9 @@
 	},
 /area/sulaco/hangar/droppod)
 "eOE" = (
-/obj/structure/closet/crate/internals,
+/obj/structure/rack,
+/obj/item/conveyor_switch_construct,
+/obj/item/stack/conveyor/thirty,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "eON" = (
@@ -17259,10 +17261,8 @@
 	},
 /area/space)
 "obO" = (
-/obj/structure/rack,
-/obj/item/conveyor_switch_construct,
-/obj/item/stack/conveyor/thirty,
-/turf/open/floor/prison,
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/prison/marked,
 /area/sulaco/cargo/office)
 "obX" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -46686,8 +46686,8 @@ vDU
 mDu
 mDu
 bOh
-alk
 eOE
+alk
 alk
 alk
 alk
@@ -46944,7 +46944,7 @@ nzi
 mDu
 baT
 aaN
-alk
+obO
 bEP
 alk
 alk
@@ -47200,7 +47200,7 @@ aaa
 nzi
 mDu
 bOh
-obO
+alk
 gcc
 qod
 mte
