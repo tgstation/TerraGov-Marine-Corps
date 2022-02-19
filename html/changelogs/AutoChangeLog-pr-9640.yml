@@ -1,0 +1,4 @@
+author: "Loyavas"
+delete-after: True
+changes: 
+  - expansion: "Added ACCESS_MARINE_LOGISTICS access to the Liaison ID card"
