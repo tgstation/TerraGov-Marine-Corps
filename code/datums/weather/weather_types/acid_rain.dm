@@ -6,10 +6,10 @@
 	telegraph_duration = 400
 	telegraph_message = span_highdanger("Thunder rumbles far above. You hear acidic droplets hissing against the canopy. Seek shelter!")
 	telegraph_sound = 'sound/weather/acidrain/acidrain_start.ogg'
-	telegraph_overlay = "rain_med"
+	telegraph_overlay = "acid_rain_med"
 
 	weather_message = span_highdanger("<i>Acidic rain pours down around you! Get inside!</i>")
-	weather_overlay = "rain_high"
+	weather_overlay = "acid_rain_high"
 	weather_duration_lower = 600
 	weather_duration_upper = 1500
 
