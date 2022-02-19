@@ -172,12 +172,12 @@
 		user?.hud_used.update_ammo_hud(user, src)
 		if(current_rounds <= 0)
 			user.temporarilyRemoveItemFromInventory(src)
-			QDEL_NULL(src)
+			qdel(src)
 		return rounds //Give the number created.
 	else
 		update_icon()
 		if(current_rounds <= 0)
-			QDEL_NULL(src)
+			qdel(src)
 		return new_handful
 
 ///Called on a /ammo_magazine that wishes to be a handful. It generates all the data required for the handful.
