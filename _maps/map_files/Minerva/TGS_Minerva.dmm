@@ -4953,13 +4953,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "qw" = (
-/obj/machinery/door_control/old/req{
+/obj/machinery/door_control/mainship/req{
+	dir = 1;
 	name = "ASRS conveyor belt public shutter"
 	},
-/turf/open/floor/mainship/black{
-	dir = 1
-	},
-/area/mainship/hallways/starboard_hallway)
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "qx" = (
 /obj/structure/closet/firecloset,
 /obj/item/clothing/mask/gas,
@@ -5986,12 +5985,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "up" = (
-/obj/machinery/door_control/mainship/req{
-	dir = 1;
+/obj/machinery/door_control/old/req{
 	name = "ASRS conveyor belt public shutter"
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "uq" = (
 /obj/machinery/light{
 	dir = 8
@@ -24493,7 +24491,7 @@ gY
 kv
 sN
 fQ
-gY
+kv
 vS
 wJ
 xR
@@ -24689,7 +24687,7 @@ qV
 AH
 sO
 gY
-iO
+gY
 vU
 wL
 xS
@@ -25279,9 +25277,9 @@ sV
 vi
 vi
 iH
-up
+wQ
 Jf
-qw
+Ot
 Io
 Jo
 Ci
@@ -25377,9 +25375,9 @@ vi
 vi
 vi
 oi
-wQ
+qw
 xU
-WS
+up
 zR
 Bf
 Cm
