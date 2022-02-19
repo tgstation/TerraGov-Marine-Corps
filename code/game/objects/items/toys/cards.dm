@@ -43,7 +43,7 @@
 		if(52)
 			icon_state = "deck"
 		if(1 to 51)
-			icon_state = "deck_open"
+			icon_state = "deck_half"
 		if(0)
 			icon_state = "deck_empty"
 
