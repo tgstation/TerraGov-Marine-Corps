@@ -1932,10 +1932,10 @@
 "aiS" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/door/airlock/multi_tile/mainship/generic/canteen,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
 	dir = 2
 	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "aiV" = (
