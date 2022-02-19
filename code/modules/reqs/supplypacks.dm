@@ -333,7 +333,19 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial_ammo
 	name = "T-26 AMR magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
+	cost = 3
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/antimaterial_incend_ammo
+	name = "T-26 AMR incendiary magazine"
+	contains = list(/obj/item/ammo_magazine/sniper/incendiary)
 	cost = 5
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/antimaterial_flak_ammo
+	name = "T-26 AMR flak magazine"
+	contains = list(/obj/item/ammo_magazine/sniper/flak)
+	cost = 4
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specminigun
