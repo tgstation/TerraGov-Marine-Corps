@@ -189,7 +189,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade4, /datum/ammo/xeno/acid/heavy)
 
 	acid_spray_damage_on_hit = 47
 	acid_spray_structure_damage = 69

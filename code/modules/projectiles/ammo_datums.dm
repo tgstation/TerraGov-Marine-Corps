@@ -1803,6 +1803,10 @@ datum/ammo/bullet/revolver/tp44
 	smoke_strength = 0.75
 	reagent_transfer_amount = 6.5
 
+/datum/ammo/xeno/toxin/upgrade3
+	smoke_strength = 0.8
+	reagent_transfer_amount = 7
+
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
@@ -1823,6 +1827,10 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/toxin/heavy/upgrade3
 	smoke_strength = 1
 	reagent_transfer_amount = 10
+
+/datum/ammo/xeno/toxin/heavy/upgrade4
+	smoke_strength = 1.05
+	reagent_transfer_amount = 10.5
 
 
 /datum/ammo/xeno/sticky
