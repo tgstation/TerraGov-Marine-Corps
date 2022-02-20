@@ -49,18 +49,25 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/on_pierce_multiplier = 1
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
+	on_hit_all(get_turf(proj), obj/projectile/proj)
 	return
 
 /datum/ammo/proc/on_shield_block(mob/M, obj/projectile/proj) //Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.
 	return
 
 /datum/ammo/proc/on_hit_turf(turf/T, obj/projectile/proj) //Special effects when hitting dense turfs.
+	on_hit_all(T, obj/projectile/proj)
 	return
 
 /datum/ammo/proc/on_hit_mob(mob/M, obj/projectile/proj) //Special effects when hitting mobs.
+	on_hit_all(get_turf(M), obj/projectile/proj)
 	return
 
 /datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj) //Special effects when hitting objects.
+	on_hit_all(get_turf(O), obj/projectile/proj)
+	return
+
+/datum/ammo/proc/on_hit_all(target, obj/projectile/proj) //Special effects when hitting anything, to be called by the above specific on_hit procs.
 	return
 
 ///Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled
