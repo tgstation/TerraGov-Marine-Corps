@@ -275,3 +275,20 @@
   - bugfix: fixed wraith effects cutting each other
   novaepee:
   - balance: tadpole gets dedicated wall dispenser that can refill specific autoinjectors
+2022-02-20:
+  Loyavas:
+  - expansion: Added ACCESS_MARINE_LOGISTICS access to the Liaison ID card
+  Lumipharon:
+  - rscadd: Add T-26 incendiary and flak ammo to req
+  - balance: Decreased the cost of basic T-26 ammo to be in line with T-81 ammo
+  - balance: Increased the AOE damage of flak ammo slightly
+  Notamaniac:
+  - bugfix: The dropship sentry and dropship MG should work now.
+  Three333Digit:
+  - balance: miner upgrades in engineer point vendor for 4 points (does not include
+      autominer)
+  novaepee:
+  - rscadd: MG-08/495 gets ammo box
+  - balance: more dakka for the mg; add 6 more drums to round-start, totaling up to
+      10 MG-08/495 drums
+  - bugfix: move MG-08/495 to machinegun tab

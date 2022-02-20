@@ -1,6 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscadd: "MG-08/495 gets ammo box"
-  - balance: "more dakka for the mg; add 6 more drums to round-start, totaling up to 10 MG-08/495 drums"
-  - bugfix: "move MG-08/495 to machinegun tab"

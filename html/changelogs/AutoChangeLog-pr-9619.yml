@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - rscadd: "Add T-26 incendiary and flak ammo to req"
-  - balance: "Decreased the cost of basic T-26 ammo to be in line with T-81 ammo"
-  - balance: "Increased the AOE damage of flak ammo slightly"
