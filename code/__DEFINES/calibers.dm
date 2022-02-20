@@ -59,7 +59,7 @@
 #define CALIBER_84MM "84mm rocket"
 #define CALIBER_67MM "67mm shell"
 #define CALIBER_68MM "68mm rocket"
-#define CALIBER_37MM "37mm" //Light AT Cannon
+#define CALIBER_37MM "37mm"
 
 #define CALIBER_ROCKETARRAY "rocket array"
 #define CALIBER_ROCKETTOY "toy rocket"

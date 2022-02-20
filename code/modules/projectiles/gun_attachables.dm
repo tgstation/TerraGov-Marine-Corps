@@ -677,8 +677,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	flags_attach_features = ATTACH_ACTIVATION
 	scope_delay = 4 SECONDS
 
-
-
 /obj/item/attachable/scope/unremovable/tl102
 	name = "TL-102 smart sight"
 	desc = "An unremovable smart sight built for use with the tl102, it does nearly all the aiming work for the gun's integrated IFF systems."
