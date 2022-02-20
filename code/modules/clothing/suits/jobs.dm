@@ -192,7 +192,7 @@
 
 //Engineering
 /obj/item/clothing/suit/storage/hazardvest
-	name = "hazard vest"
+	name = "orange reflective safety vest"
 	desc = "A high-visibility vest used in work zones."
 	icon_state = "hazard"
 	item_state = "hazard"
@@ -216,6 +216,16 @@
 	flags_armor_protection = CHEST
 
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
+
+/obj/item/clothing/suit/storage/hazardvest/lime
+	name = "lime reflective safety vest"
+	icon_state = "hazard_lime"
+	item_state = "hazard_lime"
+
+/obj/item/clothing/suit/storage/hazardvest/blue
+	name = "blue reflective safety vest"
+	icon_state = "hazard_blue"
+	item_state = "hazard_blue"
 
 //Lawyer
 /obj/item/clothing/suit/storage/lawyer/bluejacket

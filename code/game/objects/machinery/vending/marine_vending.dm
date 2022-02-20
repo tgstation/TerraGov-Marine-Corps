@@ -26,7 +26,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
-			/obj/item/cell/lasgun/lasrifle/marine = -1,
+			/obj/item/cell/lasgun/lasrifle = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -65,6 +65,8 @@
 			/obj/item/ammo_magazine/standard_gpmg = -1,
 			/obj/item/weapon/gun/standard_mmg = 5,
 			/obj/item/ammo_magazine/standard_mmg = -1,
+			/obj/item/weapon/gun/heavymachinegun = 1,
+			/obj/item/ammo_magazine/heavymachinegun = 10,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -86,8 +88,6 @@
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/energy/lasgun/tesla = 2,
-			/obj/item/weapon/gun/heavymachinegun = 1,
-			/obj/item/ammo_magazine/heavymachinegun = 4,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/storage/box/recoilless_system = 2,
@@ -193,7 +193,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
-			/obj/item/cell/lasgun/lasrifle/marine = -1,
+			/obj/item/cell/lasgun/lasrifle = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -344,7 +344,7 @@
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_mlaser = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = -1,
-			/obj/item/cell/lasgun/lasrifle/marine = -1,
+			/obj/item/cell/lasgun/lasrifle = -1,
 		),
 		"SMGs" = list(
 			/obj/item/weapon/gun/smg/standard_smg = -1,
@@ -657,7 +657,7 @@
 
 	product_ads = "Power cell running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-		/obj/item/cell/lasgun/lasrifle/marine = 10,
+		/obj/item/cell/lasgun/lasrifle = 10,
 	)
 
 
@@ -1237,7 +1237,6 @@
 	products = list(
 		"Weapon" = list(
 			/obj/item/weapon/gun/energy/lasgun/tesla = -1,
-			/obj/item/cell/lasgun/tesla = -1,
 			/obj/item/weapon/gun/rifle/railgun = -1,
 			/obj/item/ammo_magazine/railgun = -1,
 			/obj/item/weapon/gun/rifle/tx8 = -1,

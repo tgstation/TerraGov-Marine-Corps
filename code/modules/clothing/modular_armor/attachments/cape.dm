@@ -74,13 +74,37 @@
 	greyscale_colors = VISOR_PALETTE_GOLD
 	flags_item_map_variant = NONE
 	colorable_colors = list(
-		"Gold" = VISOR_PALETTE_GOLD,
-		"Green" = VISOR_PALETTE_GREEN,
-		"Black" = VISOR_PALETTE_BLACK,
-		"Orange" = VISOR_PALETTE_ORANGE,
-		"Red" = VISOR_PALETTE_RED,
-		"Purple" = VISOR_PALETTE_PURPLE,
-		"Blue" = VISOR_PALETTE_BLUE,
+		"Default" = list(
+			"Gold" = VISOR_PALETTE_GOLD,
+			"Silver" = VISOR_PALETTE_SILVER,
+			"Black" = VISOR_PALETTE_BLACK,
+		),
+		"Red" = list(
+			"Red" = VISOR_PALETTE_RED,
+		),
+		"Green" = list(
+			"Green" = VISOR_PALETTE_GREEN,
+		),
+		"Purple" = list(
+			"Purple" = VISOR_PALETTE_PURPLE,
+			"Magenta" = VISOR_PALETTE_MAGENTA,
+		),
+		"Blue" = list(
+			"Blue" = VISOR_PALETTE_BLUE,
+			"Ice Blue" = VISOR_PALETTE_ICE,
+			"Sky Blue" = VISOR_PALETTE_SKY_BLUE,
+		),
+		"Yellow" = list(
+			"Honey" = VISOR_PALETTE_HONEY,
+			"Metallic Bronze" = VISOR_PALETTE_METALLIC_BRONZE,
+		),
+		"Orange" = list(
+			"Orange" = VISOR_PALETTE_ORANGE,
+		),
+		"Pink" = list(
+			"Salmon" = VISOR_PALETTE_SALMON,
+			"Pearl Pink" = VISOR_PALETTE_PEARL_PINK,
+		),
 	)
 
 /obj/item/armor_module/armor/cape_highlight/half

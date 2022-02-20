@@ -36,12 +36,6 @@ OPERATIONS
 	contains = list(/obj/item/beacon/supply_beacon)
 	cost = 10
 
-/datum/supply_packs/operations/beacons_orbital
-	name = "orbital beacon"
-	contains = list(/obj/item/beacon/orbital_bombardment_beacon)
-	cost = 30
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "fulton extraction pack"
 	contains = list(/obj/item/fulton_extraction_pack)
@@ -210,21 +204,8 @@ WEAPONS
 
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
-	contains = list(
-		/obj/item/weapon/gun/energy/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-	)
+	contains = list(/obj/item/weapon/gun/energy/lasgun/tesla)
 	cost = 60
-
-/datum/supply_packs/ammo
-	name = "Energy Rifle cells 3x"
-	contains = list(
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-	)
-	cost = 10
 
 /datum/supply_packs/weapons/recoillesskit
 	name = "T-160 Recoilless rifle kit"
@@ -346,13 +327,25 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial
 	name = "T-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 75
+	cost = 65
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial_ammo
 	name = "T-26 AMR magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
+	cost = 3
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/antimaterial_incend_ammo
+	name = "T-26 AMR incendiary magazine"
+	contains = list(/obj/item/ammo_magazine/sniper/incendiary)
 	cost = 5
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/antimaterial_flak_ammo
+	name = "T-26 AMR flak magazine"
+	contains = list(/obj/item/ammo_magazine/sniper/flak)
+	cost = 4
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specminigun
@@ -973,8 +966,8 @@ ENGINEERING
 		/obj/item/storage/belt/utility/full,
 		/obj/item/storage/belt/utility/full,
 		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/suit/storage/hazardvest/lime,
+		/obj/item/clothing/suit/storage/hazardvest/blue,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/hardhat,
@@ -1452,7 +1445,7 @@ FACTORY
 /datum/supply_packs/factory/phosphosrefill
 	name = "Phosphorus-resistant plates refill"
 	contains = list(/obj/item/factory_refill/phosnade_refill)
-	cost = 60
+	cost = 90
 
 /datum/supply_packs/factory/bignaderefill
 	name = "Rounded M15 plates refill"
@@ -1462,27 +1455,27 @@ FACTORY
 /datum/supply_packs/factory/sadar_refill_he
 	name = "SADAR HE missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_he_refill)
-	cost = 100
+	cost = 50
 
 /datum/supply_packs/factory/sadar_refill_ap
 	name = "SADAR AP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_ap_refill)
-	cost = 110
+	cost = 60
 
 /datum/supply_packs/factory/sadar_refill_wp
 	name = "SADAR WP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_wp_refill)
-	cost = 110
+	cost = 40
 
 /datum/supply_packs/factory/standard_recoilless_refill
 	name = "Recoilless standard missile assembly refill"
 	contains = list(/obj/item/factory_refill/normal_rr_missile_refill)
-	cost = 20
+	cost = 30
 
 /datum/supply_packs/factory/light_recoilless_refill
 	name = "Recoilless light missile assembly refill"
 	contains = list(/obj/item/factory_refill/light_rr_missile_refill)
-	cost = 20
+	cost = 30
 
 /datum/supply_packs/factory/pizzarefill
 	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
@@ -1492,7 +1485,7 @@ FACTORY
 /datum/supply_packs/factory/smartrifle_ammo_refill
 	name = "Smart rifle bullet parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_rifle_box_refill)
-	cost = 30
+	cost = 20
 
 /datum/supply_packs/factory/smartgun_magazine_refill
 	name = "Smart machinegun drum parts refill"
@@ -1512,20 +1505,14 @@ FACTORY
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"
 	contains = list(/obj/item/factory_refill/claymore_refill)
-	cost = 20
-
+	cost = 30
 
 /datum/supply_packs/factory/mateba_speedloader_refill
 	name = "Mateba autorevolver speedloader assembly refill"
 	contains = list(/obj/item/factory_refill/mateba_speedloader_refill)
-	cost = 20
+	cost = 30
 
 /datum/supply_packs/factory/railgun_magazine_refill
 	name = "Railgun magazine assembly refill"
 	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
 	cost = 20
-
-/datum/supply_packs/factory/scout_rifle_magazine_refill
-	name = "TX-8 scout rifle magazine assembly refill"
-	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
-	cost = 90

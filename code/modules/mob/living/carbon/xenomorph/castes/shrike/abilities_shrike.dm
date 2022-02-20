@@ -359,7 +359,7 @@
 /obj/item/explosive/grenade/gravity/prime()
 	new /obj/effect/overlay/temp/emp_pulse(loc)
 	playsound(loc, 'sound/effects/EMPulse.ogg', 50)
-	for(var/atom/movable/victim in view(3))//yes this throws EVERYONE
+	for(var/atom/movable/victim in view(3, loc))//yes this throws EVERYONE
 		if(victim.anchored)
 			continue
 		if(isliving(victim))

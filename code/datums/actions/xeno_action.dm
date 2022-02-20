@@ -114,6 +114,10 @@
 		if(!silent)
 			to_chat(owner, span_warning("We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more."))
 		return FALSE
+	if(!(flags_to_check & XACT_USE_CLOSEDTURF) && isclosedturf(get_turf(X)))
+		if(!silent)
+			to_chat(owner, span_warning("We can't do this while in a solid object!"))
+		return FALSE
 
 	if(!should_show())
 		return FALSE

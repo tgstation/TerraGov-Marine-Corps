@@ -2,7 +2,6 @@
 	caste_name = "Queen"
 	display_name = "Queen"
 	caste_type_path = /mob/living/carbon/xenomorph/queen
-	primordial_upgrade_name = PRIMORDIAL_QUEEN
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 	job_type = /datum/job/xenomorph/queen
 
@@ -217,7 +216,7 @@
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
-		/datum/action/xeno_action/activable/neurotox_sting,
+		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,
