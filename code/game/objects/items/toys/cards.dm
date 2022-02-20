@@ -28,7 +28,7 @@
 
 /obj/item/toy/deck/examine(mob/user)
 	..()
-	to_chat(user,"<span class='notice'>Right-click the pack to draw a card. Click-drag to someone to deal them a card. Use the 'discard' verb to place cards down. You can also use the cards in your hand to conceal or reveal them.</span>")
+	to_chat(user,"<span class='notice'>Right-click the pack to draw a card. Click-drag to someone to deal them a card. Right click a card to discard it, and place it face up. You can also use the cards in your hand to conceal or reveal them.</span>")
 
 /obj/item/toy/deck/attackby(obj/item/I, mob/user, params)
 	. = ..()
