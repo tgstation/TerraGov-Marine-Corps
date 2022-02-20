@@ -26,6 +26,9 @@
 			P.card_icon = "[suit]_[number]"
 			cards += P
 
+/obj/item/toy/deck/examine(mob/user)
+	..()
+	to_chat(user,"<span class='notice'>Right-click the pack to draw a card. Click-drag to someone to deal them a card. Use the 'discard' verb to place cards down. You can also use the cards in your hand to conceal or reveal them.</span>")
 
 /obj/item/toy/deck/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -38,7 +41,7 @@
 		qdel(I)
 		to_chat(user, "You place your cards on the bottom of the deck.")
 
-/obj/item/toy/deck/update_icon_state()
+/obj/item/toy/deck/update_icon()
 	switch(cards.len)
 		if(52)
 			icon_state = "deck"
@@ -54,12 +57,17 @@
 	set desc = "Draw a card from a deck."
 	set src in view(1)
 
-	if(usr.stat || !Adjacent(usr)) return
+	draw(usr)
 
-	if(!ishuman(usr))
+/obj/item/toy/deck/attack_hand_alternate(mob/living/user)
+	draw(user)
+
+//Takes a card from the deck, and (if possible) puts it in the user's hand
+/obj/item/toy/deck/proc/draw(mob/user)
+	if(user.stat || !Adjacent(user)) return
+
+	if(!ishuman(user))
 		return
-
-	var/mob/living/carbon/human/user = usr
 
 	if(!cards.len)
 		to_chat(usr, "There are no cards in the deck.")
@@ -181,19 +189,25 @@
 			user.put_in_hands(src)
 		update_icon()
 
-
+//Takes a selected card, and puts it down, face-up, in front
 /obj/item/toy/handcard/verb/discard()
 
 	set category = "Object"
 	set name = "Discard"
 	set desc = "Place a card from your hand in front of you."
 
+	discard_card(usr)
+
+/obj/item/toy/handcard/attack_hand_alternate(mob/living/user)
+	discard_card(user)
+
+/obj/item/toy/handcard/proc/discard_card(mob/user)
 	var/list/to_discard = list()
 	for(var/datum/playingcard/P in cards)
 		to_discard[P.name] = P
-	var/discarding = tgui_input_list(usr, "Which card do you wish to put down?", null, to_discard)
+	var/discarding = tgui_input_list(user, "Which card do you wish to put down?", null, to_discard)
 
-	if(!discarding || !usr || gc_destroyed || loc != usr) return
+	if(!discarding || !user || gc_destroyed || loc != user) return
 
 	var/datum/playingcard/card = to_discard[discarding]
 	if(card.gc_destroyed)
@@ -208,13 +222,14 @@
 	qdel(to_discard)
 
 	var/obj/item/toy/handcard/H = new(src.loc)
+	H.icon = icon
 	H.cards += card
 	cards -= card
 	H.concealed = 0
 	H.update_icon()
 	src.update_icon()
-	usr.visible_message("\The [usr] plays \the [discarding].")
-	H.loc = get_step(usr,usr.dir)
+	usr.visible_message("\The [user] plays \the [discarding].")
+	H.loc = get_step(user,user.dir)
 
 	if(!cards.len)
 		qdel(src)
@@ -227,11 +242,11 @@
 /obj/item/toy/handcard/examine(mob/user)
 	..()
 	if(cards.len)
-		to_chat(user, "It has [cards.len] cards.")
+		to_chat(user, "It has <span class='notice'>[cards.len]</span> cards.")
 		if((!concealed || loc == user))
-			to_chat(user, "The cards are: ")
+			to_chat(user, "<span class='notice'>The cards are:</span> ")
 			for(var/datum/playingcard/P in cards)
-				to_chat(user, "The [P.name].")
+				to_chat(user, "-[P.name]")
 
 /obj/item/toy/handcard/update_icon(direction = 0)
 	if(cards.len > 1)
@@ -315,7 +330,7 @@
 		cards += P
 		for(var/k in 0 to 1) //two of each colour of number
 			I = new()
-			I.name += "[colour] skip"
+			I.name = "[colour] skip"
 			I.card_icon = "[colour] skip"
 			cards += I
 		for(var/k in 0 to 1)
@@ -325,7 +340,7 @@
 			cards += I
 		for(var/k in 0 to 1)
 			I = new()
-			I.name += "[colour] draw 2"
+			I.name = "[colour] draw 2"
 			I.card_icon = "[colour] draw 2"
 			cards += I
 		for(var/i in 1 to 9)
@@ -344,7 +359,7 @@
 		P.card_icon = "Draw 4"
 		cards += P
 
-/obj/item/toy/deck/update_icon()
+/obj/item/toy/deck/kotahi/update_icon()
 	switch(cards.len)
 		if(72 to 108) icon_state = "deck"
 		if(37 to 72) icon_state = "deck_half"
