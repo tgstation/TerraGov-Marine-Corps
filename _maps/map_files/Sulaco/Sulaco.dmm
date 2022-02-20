@@ -20724,10 +20724,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
-"tsM" = (
-/obj/machinery/vending/cargo_supply,
-/turf/open/floor/prison,
-/area/sulaco/cargo/office)
 "ttl" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -47472,7 +47468,7 @@ ptg
 hCz
 ali
 akh
-tsM
+alk
 rIv
 hCz
 nIP
