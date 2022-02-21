@@ -49,22 +49,22 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/on_pierce_multiplier = 1
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
-	on_hit_all(get_turf(proj), obj/projectile/proj)
+	on_hit_all(get_turf(proj), proj)
 	return
 
 /datum/ammo/proc/on_shield_block(mob/M, obj/projectile/proj) //Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.
 	return
 
 /datum/ammo/proc/on_hit_turf(turf/T, obj/projectile/proj) //Special effects when hitting dense turfs.
-	on_hit_all(T, obj/projectile/proj)
+	on_hit_all(T, proj)
 	return
 
 /datum/ammo/proc/on_hit_mob(mob/M, obj/projectile/proj) //Special effects when hitting mobs.
-	on_hit_all(get_turf(M), obj/projectile/proj)
+	on_hit_all(get_turf(M), proj)
 	return
 
 /datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj) //Special effects when hitting objects.
-	on_hit_all(get_turf(O), obj/projectile/proj)
+	on_hit_all(get_turf(O), proj)
 	return
 
 /datum/ammo/proc/on_hit_all(target, obj/projectile/proj) //Special effects when hitting anything, to be called by the above specific on_hit procs.
@@ -1211,9 +1211,9 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 100
 
 /datum/ammo/rocket/wp/on_hit_all(target, obj/projectile/proj)
-	if(!T || !isturf(T))
+	if(!target || !isturf(target))
 		return
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	playsound(target, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(3, target, 27, 27, 27, 17)
 
 /datum/ammo/rocket/wp/quad
@@ -1236,9 +1236,9 @@ datum/ammo/bullet/revolver/tp44
 	smoke_system.set_up(3, target)
 	smoke_system.start()
 	smoke_system = null
-	T.visible_message(span_danger("The rocket explodes into white gas!") )
+	target.visible_message(span_danger("The rocket explodes into white gas!") )
 	playsound(target, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(3, T, 27, 27, 27, 17)
+	flame_radius(3, target, 27, 27, 27, 17)
 
 /datum/ammo/rocket/wp/quad/ds
 	name = "super thermobaric rocket"
@@ -1924,25 +1924,25 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2
 	max_range = 9
 
-/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/projectile/P)
-	var/turf/target = get_turf(O)
-	if(!target)
-		target = get_turf(P)
+/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/projectile/proj)
+	var/turf/T = get_turf(O)
+	if(!T)
+		T = get_turf(proj)
 
 	if(O.density && !(O.flags_atom & ON_BORDER))
-		target = get_turf(get_step(target, turn(P.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
+		T = get_turf(get_step(T, turn(proj.dir, 180))) //If the object is dense and not a border object like barricades, we instead drop in the location just prior to the target
 
-	on_hit_all(target, obj/projectile/proj)
+	on_hit_all(T, proj)
 
 
-/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/P)
-	if(!target)
-		target = get_turf(P)
+/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/projectile/proj)
+	if(!T)
+		T = get_turf(proj)
 
-	if(isclosedturf(target))
-		target = get_turf(get_step(target, turn(P.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
+	if(isclosedturf(T))
+		T = get_turf(get_step(T, turn(proj.dir, 180))) //If the turf is closed, we instead drop in the location just prior to the turf
 
-	on_hit_all(target, obj/projectile/proj)
+	on_hit_all(T, proj)
 
 /datum/ammo/xeno/acid/on_hit_all(target, obj/projectile/proj) //Leaves behind an acid pool; defaults to 1-3 seconds.
 	if(target.density)
@@ -2031,7 +2031,7 @@ datum/ammo/bullet/revolver/tp44
 
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	on_hit_all(get_turf(Proj), obj/projectile/proj)
+	on_hit_all(get_turf(proj), proj)
 
 	if(!istype(victim) || victim.stat == DEAD || victim.issamexenohive(proj.firer))
 		return
@@ -2053,7 +2053,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/boiler_gas/on_hit_turf(turf/T, obj/projectile/P)
 	var/target = (T.density && isturf(P.loc)) ? P.loc : T
-	on_hit_all(target, obj/projectile/proj) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
+	on_hit_all(target, P) //we don't want the gas globs to land on dense turfs, they block smoke expansion.
 
 /datum/ammo/xeno/boiler_gas/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
@@ -2307,16 +2307,16 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 10
 
 /datum/ammo/grenade_container/on_hit_mob(mob/M,obj/projectile/P)
-	on_hit_all(get_turf(P), obj/projectile/proj)
+	on_hit_all(get_turf(P), P)
 
 /datum/ammo/grenade_container/on_hit_obj(obj/O,obj/projectile/P)
-	on_hit_all(get_turf(P), obj/projectile/proj)
+	on_hit_all(get_turf(P), P)
 
 /datum/ammo/grenade_container/on_hit_turf(turf/T,obj/projectile/P)
-	on_hit_all(get_turf(P), obj/projectile/proj)
+	on_hit_all(get_turf(P), P)
 
 /datum/ammo/grenade_container/do_at_max_range(obj/projectile/P)
-	on_hit_all(get_turf(P), obj/projectile/proj)
+	on_hit_all(get_turf(P), P)
 
 /datum/ammo/grenade_container/on_hit_all(target, obj/projectile/proj)
 	var/obj/item/explosive/grenade/G = new nade_type(target)
