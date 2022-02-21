@@ -1,0 +1,5 @@
+author: "novaepee, RipGrayson"
+delete-after: True
+changes: 
+  - expansion: "Acid rain is now colored; don't go outside if it starts raining green"
+  - code_imp: "Normal rain uses rain_high, the previous acid rain sprite, for nice effect"
