@@ -1236,7 +1236,7 @@ datum/ammo/bullet/revolver/tp44
 	smoke_system.set_up(3, target)
 	smoke_system.start()
 	smoke_system = null
-	target.visible_message(span_danger("The rocket explodes into white gas!") )
+	target:visible_message(span_danger("The rocket explodes into white gas!") )
 	playsound(target, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(3, target, 27, 27, 27, 17)
 
@@ -1945,7 +1945,7 @@ datum/ammo/bullet/revolver/tp44
 	on_hit_all(T, proj)
 
 /datum/ammo/xeno/acid/on_hit_all(target, obj/projectile/proj) //Leaves behind an acid pool; defaults to 1-3 seconds.
-	if(target.density)
+	if(target:density)
 		return
 
 	new /obj/effect/xenomorph/spray(target, puddle_duration, puddle_acid_damage)
@@ -2072,7 +2072,7 @@ datum/ammo/bullet/revolver/tp44
 	smoke_system.set_up(range, target)
 	smoke_system.start()
 	smoke_system = null
-	target.visible_message(danger_message)
+	target:visible_message(danger_message)
 
 /datum/ammo/xeno/boiler_gas/corrosive
 	name = "glob of acid"
