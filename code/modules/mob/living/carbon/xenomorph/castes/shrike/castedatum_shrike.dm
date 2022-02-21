@@ -3,7 +3,6 @@
 	display_name = "Shrike"
 	upgrade_name = ""
 	caste_desc = "A psychically unstable xeno. The Shrike controls the hive when there's no Queen and acts as its successor when there is."
-	primordial_upgrade_name = PRIMORDIAL_SHRIKE
 	job_type = /datum/job/xenomorph/queen
 	caste_type_path = /mob/living/carbon/xenomorph/shrike
 
@@ -184,7 +183,7 @@
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/lay_egg,
-		/datum/action/xeno_action/activable/neurotox_sting,
+		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/place_acidwell,

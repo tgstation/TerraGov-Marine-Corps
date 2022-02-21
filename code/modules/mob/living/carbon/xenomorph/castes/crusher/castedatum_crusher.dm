@@ -4,7 +4,6 @@
 	upgrade_name = ""
 	caste_desc = "A huge tanky xenomorph."
 	caste_type_path = /mob/living/carbon/xenomorph/crusher
-	primordial_upgrade_name = PRIMORDIAL_CRUSHER
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -15,7 +14,7 @@
 	attack_delay = 8
 
 	// *** Speed *** //
-	speed = 0.1
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -69,7 +68,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Speed *** //
-	speed = 0.1
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 300
@@ -98,7 +97,7 @@
 	melee_damage = 24
 
 	// *** Speed *** //
-	speed = 0.1
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 400
@@ -127,7 +126,7 @@
 	melee_damage = 24
 
 	// *** Speed *** //
-	speed = 0.1
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 400
@@ -156,7 +155,7 @@
 	melee_damage = 24
 
 	// *** Speed *** //
-	speed = 0.1
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 400

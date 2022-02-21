@@ -17,6 +17,7 @@
 	name = "Change form"
 	action_icon_state = "manifest"
 	mechanics_text = "Change from your incorporal form to your physical on and vice-versa."
+	use_state_flags = XACT_USE_CLOSEDTURF
 
 /datum/action/xeno_action/change_form/action_activate()
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner

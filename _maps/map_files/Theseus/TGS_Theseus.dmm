@@ -965,7 +965,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
 /area/mainship/hallways/hangar/droppod)
 "adq" = (
 /obj/structure/rack,
@@ -4274,8 +4276,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/structure/table/mainship,
-/obj/machinery/computer/droppod_control,
+/obj/machinery/cic_maptable/droppod_maptable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "bol" = (
@@ -5753,6 +5754,9 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/structure/table/mainship,
+/obj/machinery/computer/droppod_control,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "bCW" = (
@@ -8148,6 +8152,8 @@
 /obj/structure/table/mainship,
 /obj/item/flashlight/combat,
 /obj/item/clothing/suit/storage/hazardvest,
+/obj/item/clothing/suit/storage/hazardvest/lime,
+/obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
 /obj/item/storage/pouch/medkit/full,
 /obj/item/storage/pouch/medical/full,
@@ -48621,7 +48627,7 @@ byG
 byG
 byG
 adp
-brX
+vuE
 iZq
 bja
 wxQ

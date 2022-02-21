@@ -10220,11 +10220,6 @@
 /obj/machinery/floor_warn_light/self_destruct,
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
-"bvu" = (
-/obj/machinery/computer/droppod_control,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/sterile/plain,
-/area/sulaco/hangar/droppod)
 "bvV" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/prison,
@@ -11245,7 +11240,6 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "djX" = (
-/obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
@@ -11253,7 +11247,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison/arrow/clean{
+	dir = 1
+	},
 /area/sulaco/hangar/droppod)
 "dka" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
@@ -11382,7 +11378,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison/arrow/clean{
+	dir = 1
+	},
 /area/sulaco/hangar/droppod)
 "dwJ" = (
 /obj/machinery/door/firedoor,
@@ -11722,18 +11720,7 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "ehA" = (
-/obj/structure/rack,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/turf/open/floor/mainship/sterile/plain,
+/turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/droppod)
 "ehJ" = (
 /obj/structure/window/reinforced{
@@ -14478,6 +14465,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
+"jql" = (
+/obj/machinery/cic_maptable/droppod_maptable,
+/obj/machinery/light,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "jqy" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -17700,7 +17692,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison/arrow/clean{
+	dir = 1
+	},
 /area/sulaco/hangar/droppod)
 "oGK" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -17791,7 +17785,9 @@
 	holo_range = 7;
 	name = "modfied holopad"
 	},
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison/arrow/clean{
+	dir = 1
+	},
 /area/sulaco/hangar/droppod)
 "oKP" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -18685,7 +18681,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison/arrow/clean{
+	dir = 1
+	},
 /area/sulaco/hangar/droppod)
 "qod" = (
 /obj/machinery/door/poddoor/railing{
@@ -21736,7 +21734,6 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/marine)
 "vhM" = (
-/obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
@@ -21744,7 +21741,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/prison/bright_clean,
+/turf/open/floor/prison/arrow/clean{
+	dir = 1
+	},
 /area/sulaco/hangar/droppod)
 "viB" = (
 /obj/structure/rack,
@@ -23333,6 +23332,13 @@
 	},
 /turf/open/floor/freezer,
 /area/sulaco/cafeteria/kitchen)
+"yaW" = (
+/obj/machinery/light,
+/obj/structure/table/mainship,
+/obj/machinery/computer/droppod_control,
+/obj/structure/cable,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "ybp" = (
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
@@ -58635,7 +58641,7 @@ rFM
 rFM
 rFM
 vhM
-xca
+jql
 xca
 xca
 jQS
@@ -59920,7 +59926,7 @@ rFM
 rFM
 rFM
 djX
-xca
+yaW
 uTr
 xca
 tgw
@@ -60177,7 +60183,7 @@ rFM
 rFM
 rFM
 oGA
-bvu
+ehA
 xca
 kcP
 tgw

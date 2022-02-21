@@ -707,7 +707,6 @@
 		/obj/item/explosive/plastique,
 		/obj/item/beacon/supply_beacon,
 		/obj/item/beacon/supply_beacon,
-		/obj/item/beacon/orbital_bombardment_beacon,
 		/obj/item/whistle,
 		/obj/item/radio,
 		/obj/item/binoculars/tactical,
@@ -719,7 +718,6 @@
 /obj/effect/essentials_set/commander
 	spawned_gear_list = list(
 		/obj/item/beacon/supply_beacon,
-		/obj/item/beacon/orbital_bombardment_beacon,
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,

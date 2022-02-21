@@ -66,8 +66,8 @@
 	name = "Sow"
 	action_icon_state = "place_trap"
 	mechanics_text = "Sow the seeds of an alien plant."
-	plasma_cost = 500
-	cooldown_timer = 1 MINUTES
+	plasma_cost = 200
+	cooldown_timer = 45 SECONDS
 	use_state_flags = XACT_USE_LYING
 	keybind_signal = COMSIG_XENOABILITY_DROP_PLANT
 	alternate_keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
