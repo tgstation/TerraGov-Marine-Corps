@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes: 
+  - bugfix: "Marines can no longer create 0 handfuls and shoot phantom ammo."
