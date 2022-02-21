@@ -1,0 +1,5 @@
+author: "vilereaver41"
+delete-after: True
+changes: 
+  - balance: "Acidwell now 400 down from 500"
+  - balance: "Filling an acidwell is now 150 down from 200"
