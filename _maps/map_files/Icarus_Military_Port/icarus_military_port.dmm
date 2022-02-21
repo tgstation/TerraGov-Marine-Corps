@@ -115,6 +115,13 @@
 	},
 /turf/open/space/basic,
 /area/shuttle/drop2/lz2)
+"agc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/drop2/lz2)
 "agy" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -4758,10 +4765,6 @@
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/mainship/floor,
 /area/bigredv2/outside/cargo)
-"hcU" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
 "hdo" = (
 /obj/machinery/light{
 	dir = 4
@@ -5943,6 +5946,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/cargo)
+"iHc" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/drop2/lz2)
 "iHR" = (
 /obj/structure/prop/mainship/hangar_stencil,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6985,12 +6994,6 @@
 /obj/structure/dropship_piece/two/corner/rearleft,
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/c)
-"kln" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
 "klx" = (
 /obj/structure/catwalk,
 /turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
@@ -7097,12 +7100,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/admin_building)
-"ktW" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
 "kuc" = (
 /obj/effect/forcefield/fog/passable_fog,
 /turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
@@ -7223,13 +7220,6 @@
 	icon_state = "29"
 	},
 /area/bigredv2/outside/c)
-"kyz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
 "kyF" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/intel_computer,
@@ -8025,6 +8015,12 @@
 /obj/structure/table/mainship,
 /turf/open/shuttle/dropship/five,
 /area/bigredv2/outside/c)
+"lBw" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/drop2/lz2)
 "lBK" = (
 /obj/structure/table/mainship,
 /obj/item/newspaper,
@@ -8970,6 +8966,10 @@
 	icon_state = "54"
 	},
 /area/bigredv2/outside/c)
+"mVT" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/stripesquare,
+/area/shuttle/drop2/lz2)
 "mWv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -9288,12 +9288,6 @@
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/cargo)
-"nyo" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
 "nzR" = (
 /turf/closed/shuttle/cas/leftwingclose,
 /area/bigredv2/outside/c)
@@ -9704,6 +9698,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/lambda_lab)
+"okt" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/drop2/lz2)
 "olf" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -10226,6 +10226,12 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
+"oTB" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/drop2/lz2)
 "oTI" = (
 /obj/structure/rack,
 /obj/item/explosive/grenade/m15,
@@ -10540,6 +10546,13 @@
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/space/basic,
 /area/bigredv2/outside/c)
+"psJ" = (
+/obj/structure/cable,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/drop2/lz2)
 "ptj" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -11445,11 +11458,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/medical)
-"qKP" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/attach_point/crew_weapon/dropship1,
-/turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
 "qLc" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/dark,
@@ -12224,6 +12232,10 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
+"rJH" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/stripesquare,
+/area/shuttle/drop2/lz2)
 "rKf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12687,6 +12699,11 @@
 /obj/structure/cable,
 /turf/closed/wall/r_wall/prison,
 /area/bigredv2/outside/c)
+"snD" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/attach_point/crew_weapon/dropship1,
+/turf/open/floor/mainship/mono,
+/area/shuttle/drop2/lz2)
 "snR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -12735,12 +12752,6 @@
 	},
 /turf/open/floor/carpet,
 /area/bigredv2/outside/c)
-"ssY" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
 "sth" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -14018,13 +14029,6 @@
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/tcomms,
 /area/bigredv2/outside/c)
-"ubp" = (
-/obj/structure/cable,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/drop2/lz2)
 "ubw" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -15518,10 +15522,6 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
-"vZR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/drop2/lz2)
 "wab" = (
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
@@ -23900,11 +23900,11 @@ fAO
 fAO
 fAO
 cff
-ktW
+okt
 wLy
 wLy
 wLy
-kln
+lBw
 fAO
 fAO
 eMG
@@ -24161,7 +24161,7 @@ wPe
 cgR
 cgR
 cgR
-nyo
+iHc
 fAO
 fAO
 fAO
@@ -24415,10 +24415,10 @@ czu
 czu
 czu
 wRN
-vZR
-qKP
-vZR
-kyz
+mVT
+snD
+mVT
+agc
 czu
 czu
 czu
@@ -24672,10 +24672,10 @@ jBJ
 jBJ
 jBJ
 wSA
-hcU
-hcU
+rJH
+rJH
 uSM
-ubp
+psJ
 jBJ
 jBJ
 jBJ
@@ -24932,7 +24932,7 @@ xpb
 xON
 xON
 oIi
-ssY
+oTB
 fAO
 fAO
 fAO
