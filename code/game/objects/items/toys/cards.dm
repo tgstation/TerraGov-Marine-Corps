@@ -27,7 +27,7 @@
 			cards += P
 
 /obj/item/toy/deck/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user,"<span class='notice'>Right-click the pack to draw a card. Click-drag to someone to deal them a card. Right click a card to discard it, and place it face up. You can also use the cards in your hand to conceal or reveal them.</span>")
 
 /obj/item/toy/deck/attackby(obj/item/I, mob/user, params)
@@ -62,7 +62,7 @@
 /obj/item/toy/deck/attack_hand_alternate(mob/living/user)
 	draw(user)
 
-//Takes a card from the deck, and (if possible) puts it in the user's hand
+/// Takes a card from the deck, and (if possible) puts it in the user's hand
 /obj/item/toy/deck/proc/draw(mob/user)
 	if(user.stat || !Adjacent(user)) return
 
@@ -189,7 +189,7 @@
 			user.put_in_hands(src)
 		update_icon()
 
-//Takes a selected card, and puts it down, face-up, in front
+/// Takes a selected card, and puts it down, face-up, in front
 /obj/item/toy/handcard/verb/discard()
 
 	set category = "Object"
@@ -207,7 +207,8 @@
 		to_discard[P.name] = P
 	var/discarding = tgui_input_list(user, "Which card do you wish to put down?", null, to_discard)
 
-	if(!discarding || !user || gc_destroyed || loc != user) return
+	if(!discarding || !user || gc_destroyed || loc != user)
+		return
 
 	var/datum/playingcard/card = to_discard[discarding]
 	if(card.gc_destroyed)
@@ -227,9 +228,9 @@
 	cards -= card
 	H.concealed = 0
 	H.update_icon()
-	src.update_icon()
-	usr.visible_message("\The [user] plays \the [discarding].")
-	H.loc = get_step(user,user.dir)
+	update_icon()
+	user.visible_message("\The [user] plays \the [discarding].")
+	H.loc = get_step(user, user.dir)
 
 	if(!cards.len)
 		qdel(src)
@@ -240,7 +241,7 @@
 	user.visible_message("\The [user] [concealed ? "conceals" : "reveals"] their hand.")
 
 /obj/item/toy/handcard/examine(mob/user)
-	..()
+	. = ..()
 	if(cards.len)
 		to_chat(user, "It has <span class='notice'>[cards.len]</span> cards.")
 		if((!concealed || loc == user))
@@ -359,7 +360,7 @@
 		P.card_icon = "Draw 4"
 		cards += P
 
-/obj/item/toy/deck/kotahi/update_icon()
+/obj/item/toy/deck/kotahi/update_icon_state()
 	switch(cards.len)
 		if(72 to 108) icon_state = "deck"
 		if(37 to 72) icon_state = "deck_half"
