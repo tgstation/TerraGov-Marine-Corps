@@ -23,10 +23,8 @@
 /turf/open/floor/plating/dmg1,
 /area/icy_caves/caves/crashed_ship)
 "af" = (
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/turf/closed/wall/r_wall/unmeltable,
+/area/icy_caves/outpost/security)
 "ag" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/landmark/nuke_spawn,
@@ -59,9 +57,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "an" = (
 /obj/structure/xenoautopsy/tank/broken,
 /obj/effect/decal/cleanable/blood/xeno,
@@ -283,9 +279,7 @@
 "bd" = (
 /obj/structure/barricade/guardrail,
 /turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "bf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -483,9 +477,7 @@
 "bK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "bL" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 5
@@ -545,9 +537,7 @@
 /turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "bX" = (
 /turf/closed/ice_rock/singlePart,
 /area/icy_caves/caves)
@@ -636,9 +626,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "cp" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners,
@@ -660,18 +648,14 @@
 /obj/structure/cable,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "ct" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison{
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "cu" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -683,15 +667,11 @@
 "cv" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "cw" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "cx" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -699,9 +679,7 @@
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "cy" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -716,22 +694,16 @@
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "cD" = (
 /obj/item/tool/surgery/circular_saw,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "cE" = (
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "cF" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -741,9 +713,7 @@
 	dir = 5
 	},
 /turf/open/shuttle/escapepod/plain,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "cG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -759,28 +729,19 @@
 "cH" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "cI" = (
 /turf/closed/ice/thin/single,
 /area/icy_caves/caves/northern)
-"cJ" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/r_wall,
-/area/library{
-	name = "\improper kitchen area"
-	})
 "cK" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/ice_rock/corners,
-/area/icy_caves/caves/northern)
+/turf/closed/shuttle/dropship2{
+	icon_state = "52"
+	},
+/area/space)
 "cL" = (
 /obj/structure/monorail,
 /turf/open/floor/mainship_hull,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "cM" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
@@ -788,16 +749,12 @@
 "cN" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/green2,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "cO" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "cP" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/corner,
@@ -811,9 +768,7 @@
 "cT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "cW" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 2
@@ -847,9 +802,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "de" = (
 /turf/closed/ice/thin/junction{
 	dir = 1
@@ -860,9 +813,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "dg" = (
 /obj/structure/lattice,
 /obj/structure/monorail{
@@ -873,9 +824,7 @@
 	},
 /obj/structure/dropship_piece/two/front,
 /turf/open/shuttle/escapepod/plain,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "dh" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 1
@@ -887,9 +836,7 @@
 	pixel_x = 16
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "dj" = (
 /turf/closed/ice,
 /area/icy_caves/caves/west)
@@ -925,18 +872,14 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "du" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "dv" = (
 /obj/machinery/camera/autoname/mainship/dropship_one{
 	dir = 8;
@@ -944,9 +887,7 @@
 	},
 /obj/structure/largecrate/supply/explosives,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "dw" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 4
@@ -966,9 +907,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "dA" = (
 /obj/machinery/light,
 /turf/open/floor/plating/ground/ice,
@@ -1014,24 +953,18 @@
 "dL" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "dN" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "dO" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "dQ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/corner{
@@ -1076,15 +1009,11 @@
 /turf/closed/shuttle/dropship2{
 	icon_state = "24"
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/space)
 "ea" = (
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "eb" = (
 /turf/closed/ice/end,
 /area/icy_caves/caves/west)
@@ -1096,9 +1025,7 @@
 "ed" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "eg" = (
 /obj/machinery/light{
 	dir = 8
@@ -1178,20 +1105,17 @@
 /turf/closed/ice/intersection,
 /area/icy_caves/caves/northern)
 "ev" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/turf/closed/shuttle/dropship2{
+	icon_state = "54"
+	},
+/area/space)
 "ew" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "ex" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -1199,9 +1123,7 @@
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "ey" = (
 /turf/closed/ice,
 /area/icy_caves/caves/crashed_ship)
@@ -1232,15 +1154,11 @@
 	},
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "eD" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "eF" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/corner{
@@ -1294,9 +1212,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "eO" = (
 /obj/structure/table/reinforced,
 /obj/item/tool/surgery/scalpel/laser3,
@@ -1304,17 +1220,13 @@
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 8
 	},
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "eP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "eR" = (
 /turf/closed/ice/end{
 	dir = 1
@@ -1327,9 +1239,7 @@
 "eT" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "eU" = (
 /obj/machinery/light{
 	dir = 8
@@ -1389,25 +1299,18 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/fire,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "fc" = (
-/obj/structure/bed/chair{
-	dir = 4
+/turf/closed/shuttle/dropship2/transparent{
+	icon_state = "109"
 	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/space)
 "fd" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/powercell,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "fe" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
@@ -1418,9 +1321,7 @@
 /obj/item/clothing/glasses/welding,
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "ff" = (
 /obj/structure/rack,
 /obj/structure/rack,
@@ -1428,9 +1329,7 @@
 /obj/effect/spawner/random/toolbox,
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "fg" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tool,
@@ -1438,9 +1337,7 @@
 /obj/effect/spawner/random/tool,
 /obj/item/storage/belt/utility/full,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "fh" = (
 /turf/closed/ice/thin/junction,
 /area/icy_caves/caves/south)
@@ -1549,9 +1446,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "fE" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -1646,9 +1541,7 @@
 "gf" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "gh" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 9
@@ -1715,9 +1608,7 @@
 /turf/closed/shuttle/dropship2{
 	icon_state = "104"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/space)
 "gF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -1740,9 +1631,7 @@
 /obj/structure/monorail,
 /obj/structure/dropship_piece/two/front,
 /turf/open/floor/mainship_hull,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "gL" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -1760,9 +1649,7 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/cargo,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "gN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -1777,18 +1664,14 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "gQ" = (
 /obj/structure/dropship_piece/one/corner/middleright,
 /obj/structure/dropship_piece/two/corner/rearright,
 /turf/open/floor/mainship_hull/dir{
 	dir = 10
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/space)
 "gS" = (
 /turf/closed/ice/thin/end{
 	dir = 8
@@ -1815,15 +1698,11 @@
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "ha" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "hb" = (
 /turf/closed/ice/junction,
 /area/icy_caves/caves/south)
@@ -1835,9 +1714,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "he" = (
 /turf/closed/ice/junction{
 	dir = 4
@@ -1939,9 +1816,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "hA" = (
 /obj/machinery/light{
 	dir = 4
@@ -1951,9 +1826,7 @@
 "hB" = (
 /obj/structure/largecrate/supply,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "hD" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating/ground/ice,
@@ -1969,9 +1842,7 @@
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "hI" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/ai_node,
@@ -2011,9 +1882,7 @@
 /obj/machinery/vending/medical,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "hU" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
@@ -2026,25 +1895,19 @@
 	dir = 8
 	},
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "hX" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "hY" = (
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/turf/closed/wall/r_wall,
+/area/icy_caves/outpost/mining)
 "hZ" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "ib" = (
 /obj/machinery/light{
 	dir = 1
@@ -2079,9 +1942,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "im" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
@@ -2089,9 +1950,7 @@
 "in" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall/unmeltable,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "io" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -2103,14 +1962,11 @@
 "ip" = (
 /obj/structure/closet/l3closet/janitor,
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "ir" = (
+/obj/structure/cable,
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/mining)
 "iu" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -2122,9 +1978,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "iG" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -2141,17 +1995,13 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ2)
 "iL" = (
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/mining)
 "iN" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "iQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -2186,20 +2036,12 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
-"jc" = (
-/obj/machinery/door/poddoor/mainship/indestructible,
-/turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
 "jd" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "je" = (
 /turf/closed/ice/thin/corner{
 	dir = 1
@@ -2209,29 +2051,21 @@
 /obj/item/stool,
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "jk" = (
 /obj/structure/table/mainship,
 /obj/item/tool/surgery/cautery,
 /obj/item/tool/surgery/retractor,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "jl" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "jn" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/library)
 "jo" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -2299,9 +2133,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "jM" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
@@ -2374,9 +2206,7 @@
 "jY" = (
 /obj/machinery/door/airlock/mainship/security,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "ka" = (
 /obj/machinery/door/airlock/multi_tile/mainship/research,
 /turf/open/floor/tile/dark,
@@ -2397,18 +2227,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/office)
 "ke" = (
 /turf/closed/ice/junction,
 /area/icy_caves/outpost/outside)
 "kf" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "kg" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/mining/east)
@@ -2445,9 +2271,7 @@
 	},
 /obj/structure/dropship_piece/two/front,
 /turf/open/shuttle/escapepod/plain,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "ko" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/singlePart{
@@ -2472,9 +2296,7 @@
 "kt" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "ku" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/tile/dark,
@@ -2511,9 +2333,7 @@
 "kD" = (
 /obj/structure/barricade/guardrail,
 /turf/open/floor/mainship/red/full,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "kE" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/ice,
@@ -2526,9 +2346,7 @@
 "kI" = (
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/space)
 "kJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -2568,9 +2386,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "kS" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/intersection,
@@ -2594,17 +2410,13 @@
 	dir = 4
 	},
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "la" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "lc" = (
 /turf/closed/ice/straight{
 	dir = 4
@@ -2637,9 +2449,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "ln" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/thin/corner{
@@ -2665,9 +2475,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "lx" = (
 /obj/machinery/light{
 	dir = 8
@@ -2737,9 +2545,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "lP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -2757,9 +2563,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "lS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -2795,9 +2599,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 6
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/space)
 "mb" = (
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/outpost/LZ1)
@@ -2821,9 +2623,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "mh" = (
 /turf/closed/ice/thin/junction{
 	dir = 4
@@ -2844,9 +2644,7 @@
 	pixel_x = -16
 	},
 /turf/open/floor/mainship/tcomms,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "mk" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
@@ -2900,9 +2698,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "mv" = (
 /turf/closed/ice_rock/corners,
 /area/space)
@@ -2914,9 +2710,7 @@
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 9
 	},
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "mx" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 8
@@ -3001,16 +2795,12 @@
 /turf/closed/shuttle/dropship2{
 	icon_state = "103"
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/space)
 "mV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "mX" = (
 /obj/machinery/light{
 	dir = 4
@@ -3024,9 +2814,7 @@
 "mZ" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "nb" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/straight{
@@ -3088,15 +2876,11 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "nt" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "nu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -3109,16 +2893,12 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "nw" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "nx" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -3138,21 +2918,15 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "nD" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "nF" = (
 /obj/structure/janitorialcart,
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "nH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3166,9 +2940,7 @@
 "nK" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "nL" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/outside/center)
@@ -3186,9 +2958,7 @@
 "nR" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "nS" = (
 /turf/open/floor/plating/dmg1,
 /area/icy_caves/caves/crashed_ship)
@@ -3229,9 +2999,7 @@
 /area/icy_caves/outpost/mining/west)
 "oe" = (
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "of" = (
 /turf/closed/ice/thin/end{
 	dir = 4
@@ -3272,9 +3040,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "oq" = (
 /obj/machinery/light{
 	dir = 8
@@ -3292,9 +3058,7 @@
 "ov" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/library)
 "ow" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside/center)
@@ -3327,10 +3091,11 @@
 /turf/closed/ice,
 /area/icy_caves/caves)
 "oG" = (
-/turf/closed/ice_rock/corners,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/mining)
 "oI" = (
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
@@ -3348,9 +3113,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "oN" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/tile/dark,
@@ -3370,9 +3133,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "oR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -3381,9 +3142,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "oS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -3394,9 +3153,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "oU" = (
 /obj/item/tool/pickaxe,
 /obj/structure/rack,
@@ -3419,9 +3176,7 @@
 /area/icy_caves/caves/west)
 "pc" = (
 /turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "pf" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner{
@@ -3441,14 +3196,10 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "pi" = (
 /turf/open/floor/mainship/red/full,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "pj" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
@@ -3458,9 +3209,7 @@
 /area/icy_caves/caves/northern)
 "pl" = (
 /turf/closed/wall/r_wall/unmeltable,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "pm" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/structure/cable,
@@ -3473,9 +3222,7 @@
 "pn" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "po" = (
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
@@ -3491,9 +3238,7 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "ps" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/dmg1,
@@ -3508,9 +3253,7 @@
 	},
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "pw" = (
 /obj/machinery/light{
 	dir = 8
@@ -3558,9 +3301,7 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "pF" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/smg/m25,
@@ -3578,23 +3319,17 @@
 /area/icy_caves/caves/west)
 "pJ" = (
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "pL" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "pN" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "pO" = (
 /obj/item/ammo_casing,
 /turf/open/floor/tile/dark,
@@ -3609,25 +3344,20 @@
 /obj/effect/spawner/random/powercell,
 /obj/item/explosive/plastique,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "pQ" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "pR" = (
 /obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ2)
 "pS" = (
+/obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/mining)
 "pT" = (
 /obj/effect/landmark/fob_sentry,
 /obj/effect/ai_node,
@@ -3645,9 +3375,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "pX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3664,14 +3392,7 @@
 "pZ" = (
 /obj/item/paper/crumpled/bloody,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
-"qa" = (
-/turf/open/floor/mainship_hull/dir{
-	dir = 8
-	},
-/area/space)
+/area/icy_caves/outpost/research)
 "qb" = (
 /obj/machinery/conveyor{
 	dir = 5
@@ -3730,9 +3451,7 @@
 	dir = 4
 	},
 /turf/open/shuttle/dropship/seven,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "ql" = (
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
@@ -3783,9 +3502,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/space)
 "qw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -3814,9 +3531,7 @@
 	dir = 4
 	},
 /turf/open/shuttle/dropship/seven,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "qB" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark,
@@ -3941,9 +3656,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "rh" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/machinery/door/airlock/multi_tile/mainship/research{
@@ -3957,9 +3670,7 @@
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "rl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -4328,9 +4039,7 @@
 	on = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "sE" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -4341,9 +4050,7 @@
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "sH" = (
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
@@ -4384,9 +4091,7 @@
 	dir = 5
 	},
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "tb" = (
 /obj/structure/sink,
 /obj/machinery/light{
@@ -4472,9 +4177,7 @@
 "tx" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "tB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -4506,9 +4209,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "tG" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark/yellow2{
@@ -4574,9 +4275,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer/med_data,
 /turf/open/floor/mainship/mono,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "tU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -4649,16 +4348,12 @@
 "ul" = (
 /obj/structure/dropship_piece/two/corner/rearright,
 /turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/space)
 "un" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "uo" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -4692,9 +4387,7 @@
 "uu" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/plating/plating_catwalk,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "uv" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/grilledcheese,
@@ -4712,9 +4405,7 @@
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "uy" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -4764,9 +4455,7 @@
 "uO" = (
 /obj/structure/dropship_piece/two/corner/rearleft,
 /turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/space)
 "uP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -4796,9 +4485,7 @@
 "uS" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "uT" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4842,9 +4529,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "vf" = (
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/outpost/outside)
@@ -4879,9 +4564,7 @@
 /turf/closed/shuttle/dropship2{
 	icon_state = "25"
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/space)
 "vo" = (
 /obj/machinery/light{
 	dir = 1
@@ -4920,9 +4603,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "vx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -4996,9 +4677,7 @@
 "vT" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "vV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -5008,9 +4687,7 @@
 "vW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "vX" = (
 /obj/item/flashlight,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5021,9 +4698,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "wa" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/LZ2)
@@ -5058,9 +4733,7 @@
 	dir = 1
 	},
 /turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "wg" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/freezer,
@@ -5068,9 +4741,7 @@
 "wh" = (
 /obj/structure/morgue/crematorium,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "wi" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/tile/dark/green2{
@@ -5080,9 +4751,7 @@
 "wj" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "wk" = (
 /turf/open/floor/tile/dark/red2/corner,
 /area/icy_caves/outpost/security)
@@ -5111,15 +4780,11 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "ws" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "wu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
@@ -5168,9 +4833,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "wH" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark/brown2,
@@ -5192,9 +4855,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "wP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -5224,7 +4885,7 @@
 	dir = 2
 	},
 /turf/open/shuttle/escapepod/plain,
-/area/space)
+/area/icy_caves/outpost/office)
 "wW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -5295,9 +4956,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "xr" = (
 /obj/machinery/mineral/stacking_machine,
 /obj/machinery/conveyor{
@@ -5308,9 +4967,7 @@
 "xs" = (
 /obj/structure/barricade/guardrail,
 /turf/open/floor/mainship/red/full,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "xt" = (
 /obj/structure/largecrate/supply/medicine,
 /turf/open/floor/plating,
@@ -5336,9 +4993,7 @@
 "xz" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "xA" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -5380,9 +5035,7 @@
 "xS" = (
 /obj/machinery/computer3/server,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "xT" = (
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 4
@@ -5398,9 +5051,7 @@
 "xW" = (
 /obj/structure/largecrate/supply/explosives/mortar_flare,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "xX" = (
 /turf/closed/ice/thin/straight,
 /area/icy_caves/caves/south)
@@ -5410,9 +5061,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "ya" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice_rock/single,
@@ -5423,16 +5072,14 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "yd" = (
 /obj/structure/monorail,
 /obj/machinery/door/poddoor/mainship/indestructible{
 	dir = 2
 	},
 /turf/open/floor/mainship_hull,
-/area/space)
+/area/icy_caves/outpost/office)
 "yg" = (
 /obj/structure/bookcase/manuals,
 /obj/machinery/light{
@@ -5451,9 +5098,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "yj" = (
 /obj/structure/closet/crate/secure/weapon,
 /obj/item/weapon/gun/smg/m25,
@@ -5500,9 +5145,7 @@
 "yz" = (
 /obj/structure/bed/chair,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "yB" = (
 /turf/closed/ice/thin/junction{
 	dir = 8
@@ -5526,7 +5169,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
-/area/space)
+/area/icy_caves/outpost/office)
 "yG" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -5540,9 +5183,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "yJ" = (
 /obj/structure/closet/crate/construction,
 /obj/item/cell/hyper,
@@ -5565,9 +5206,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "yR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5593,9 +5232,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "yZ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/fourway,
@@ -5603,9 +5240,7 @@
 "ze" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "zh" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -5676,15 +5311,13 @@
 "zu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor,
 /turf/open/floor/mainship/red/full,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "zv" = (
-/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/mining)
 "zw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -5761,9 +5394,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "zP" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -5779,9 +5410,7 @@
 "zR" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "zS" = (
 /obj/machinery/landinglight/ds1/delaytwo,
 /obj/machinery/floodlight/landing,
@@ -5808,11 +5437,11 @@
 /turf/closed/ice/straight,
 /area/icy_caves/outpost/LZ1)
 "zW" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/mining)
 "zY" = (
 /obj/structure/closet/crate/medical,
 /obj/item/stack/nanopaste,
@@ -5828,9 +5457,7 @@
 	dir = 2
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "Aa" = (
 /obj/item/storage/box/flashbangs,
 /obj/item/storage/box/m94,
@@ -6000,9 +5627,7 @@
 /area/icy_caves/outpost/refinery)
 "AJ" = (
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "AK" = (
 /turf/closed/ice/end{
 	dir = 1
@@ -6031,17 +5656,13 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "AR" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "AS" = (
 /obj/machinery/power/geothermal,
 /obj/machinery/light/small{
@@ -6116,9 +5737,7 @@
 /turf/open/floor/tile/dark/green2{
 	dir = 8
 	},
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "Bi" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/prison/kitchen,
@@ -6140,10 +5759,14 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "Bp" = (
-/turf/closed/wall/r_wall,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/mining)
 "Bq" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/prison/kitchen,
@@ -6154,9 +5777,7 @@
 "Bt" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Bu" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -6192,18 +5813,14 @@
 /turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "BF" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "BI" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -6229,18 +5846,14 @@
 /turf/closed/shuttle/dropship2{
 	icon_state = "52"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "BO" = (
 /obj/machinery/door/airlock/multi_tile/secure{
 	dir = 2
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "BP" = (
 /turf/closed/ice/junction{
 	dir = 4
@@ -6281,9 +5894,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "BX" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6292,16 +5903,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
-"BY" = (
-/obj/structure/lattice,
-/obj/structure/monorail{
-	dir = 6
-	},
-/obj/structure/monorail{
-	dir = 10
-	},
-/turf/open/shuttle/escapepod/plain,
-/area/space)
 "BZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6311,15 +5912,11 @@
 "Cd" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Ch" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "Ci" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -6338,9 +5935,7 @@
 	dir = 5
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Cm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6370,15 +5965,11 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "Cw" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "Cx" = (
 /obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable,
@@ -6387,9 +5978,7 @@
 "CA" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "CC" = (
 /obj/machinery/space_heater,
 /turf/open/floor/tile/dark/purple2{
@@ -6406,9 +5995,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 10
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "CN" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/south)
@@ -6439,9 +6026,7 @@
 "CX" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "CZ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -6463,9 +6048,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "Dg" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -6500,9 +6083,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Dn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6518,9 +6099,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Dp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/singleEnd{
@@ -6555,11 +6134,11 @@
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
 "Dz" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2
+	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/bridge)
 "DB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice_rock/singlePart{
@@ -6628,22 +6207,11 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
-"DU" = (
-/turf/open/floor/mainship_hull/dir{
-	dir = 4
-	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/space)
 "DV" = (
 /obj/structure/mopbucket,
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "DW" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -6672,9 +6240,7 @@
 	dir = 2
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "Eb" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
@@ -6706,7 +6272,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
 	},
-/area/space)
+/area/icy_caves/outpost/security)
 "Ej" = (
 /obj/structure/table,
 /obj/item/stack/nanopaste,
@@ -6718,9 +6284,7 @@
 /obj/structure/table/mainship,
 /obj/item/storage/toolbox/electrical,
 /turf/open/floor/plating/plating_catwalk,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "El" = (
 /obj/structure/table/reinforced,
 /obj/effect/landmark/dropship_console_spawn_lz2,
@@ -6765,9 +6329,7 @@
 /obj/effect/decal/cleanable/mucus,
 /obj/structure/table,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "Ey" = (
 /obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -6790,9 +6352,7 @@
 "EG" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "EH" = (
 /turf/open/floor/tile/dark/green2{
 	dir = 1
@@ -6827,12 +6387,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice/thin/junction,
 /area/icy_caves/outpost/LZ1)
-"EP" = (
-/obj/structure/window/framed/colony/reinforced,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
 "EQ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice/thin/corner{
@@ -6854,9 +6408,7 @@
 "EX" = (
 /obj/structure/largecrate/supply/floodlights,
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "EZ" = (
 /obj/item/ammo_casing,
 /obj/structure/cable,
@@ -6883,9 +6435,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "Ff" = (
 /turf/open/floor/tile/dark/blue2,
 /area/icy_caves/outpost/office)
@@ -6907,9 +6457,7 @@
 "Fj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "Fk" = (
 /obj/structure/barricade/guardrail,
 /obj/structure/bed/chair/dropship/passenger{
@@ -6937,9 +6485,7 @@
 "Fq" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "Fr" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/purple2{
@@ -6980,9 +6526,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Fy" = (
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
@@ -7010,9 +6554,7 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "FJ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -7038,9 +6580,7 @@
 "FO" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/office)
 "FP" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/excavation_site_spawner,
@@ -7052,9 +6592,7 @@
 /turf/closed/shuttle/dropship2/transparent{
 	icon_state = "109"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "FU" = (
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor/plating,
@@ -7072,9 +6610,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "FX" = (
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 8
@@ -7106,9 +6642,7 @@
 "Gf" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "Gh" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -7117,16 +6651,12 @@
 /obj/structure/cable,
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/mainship/tcomms,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Gj" = (
 /obj/machinery/computer/operating,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "Gk" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -7151,9 +6681,7 @@
 "Gn" = (
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Go" = (
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
@@ -7180,9 +6708,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Gz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/singleT,
@@ -7197,9 +6723,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "GF" = (
 /turf/closed/wall,
 /area/icy_caves/caves/west)
@@ -7225,9 +6749,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "GK" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
@@ -7260,7 +6782,7 @@
 	dir = 2
 	},
 /turf/open/shuttle/escapepod/plain,
-/area/space)
+/area/icy_caves/outpost/security)
 "GO" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -7273,9 +6795,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "GR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7332,15 +6852,11 @@
 /turf/closed/shuttle/dropship2/transparent{
 	icon_state = "109"
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "He" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "Hf" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/dorms)
@@ -7367,9 +6883,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Hl" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/tile/dark,
@@ -7384,11 +6898,6 @@
 "Ho" = (
 /turf/closed/ice/end,
 /area/icy_caves/caves/northern)
-"Hp" = (
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
 "Hq" = (
 /turf/closed/ice_rock/fourway,
 /area/icy_caves/caves/east)
@@ -7397,9 +6906,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "Hu" = (
 /obj/structure/closet/crate/science,
 /turf/open/floor/tile/dark/purple2{
@@ -7414,9 +6921,7 @@
 "Hw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Hx" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -7433,19 +6938,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
-"HC" = (
-/obj/structure/monorail,
-/obj/structure/lattice,
-/obj/structure/monorail{
-	dir = 4
-	},
-/turf/open/floor/mainship_hull,
-/area/space)
-"HD" = (
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
 "HE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -7479,9 +6971,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 6
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "HM" = (
 /obj/item/ammo_casing,
 /turf/open/floor/tile/dark/brown2/corner{
@@ -7510,9 +7000,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "HR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -7534,17 +7022,13 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "HU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "HV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/corners{
@@ -7567,9 +7051,7 @@
 /area/icy_caves/outpost/kitchen)
 "Ic" = (
 /turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Ie" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
@@ -7582,9 +7064,7 @@
 	dir = 6
 	},
 /turf/open/floor/mainship/cargo,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Ig" = (
 /obj/docking_port/mobile/crashmode/bigbury,
 /turf/closed/ice,
@@ -7602,9 +7082,7 @@
 "Ij" = (
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "Ik" = (
 /obj/structure/table,
 /obj/item/storage/box/flashbangs,
@@ -7619,9 +7097,7 @@
 "Im" = (
 /obj/item/shard,
 /turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "In" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -7680,9 +7156,7 @@
 "Iz" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "IA" = (
 /obj/machinery/light,
 /obj/effect/landmark/excavation_site_spawner,
@@ -7721,9 +7195,7 @@
 "II" = (
 /obj/item/paper/crumpled/bloody/csheet,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "IJ" = (
 /obj/machinery/vending/security,
 /turf/open/floor/tile/dark/red2{
@@ -7736,18 +7208,14 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "IN" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "IO" = (
 /obj/structure/closet/crate/construction,
 /obj/item/stack/sheet/metal/medium_stack,
@@ -7766,9 +7234,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "IR" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -7785,14 +7251,10 @@
 "IV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "IW" = (
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "IX" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark,
@@ -7800,9 +7262,7 @@
 "IY" = (
 /obj/item/tool/surgery/hemostat,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "IZ" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/closed/wall/r_wall,
@@ -7850,9 +7310,7 @@
 "Jn" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Jo" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
@@ -7927,9 +7385,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "JH" = (
 /obj/structure/table,
 /obj/item/reagent_containers/spray/pepper,
@@ -7971,9 +7427,7 @@
 	dir = 9
 	},
 /turf/open/shuttle/escapepod/plain,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "JS" = (
 /obj/structure/closet/crate/freezer/rations,
 /turf/open/floor/tile/dark,
@@ -8020,9 +7474,7 @@
 "Kf" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Kg" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -8079,9 +7531,7 @@
 /area/icy_caves/outpost/security)
 "Kv" = (
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Ky" = (
 /obj/machinery/space_heater,
 /turf/open/floor/tile/dark,
@@ -8135,9 +7585,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "KM" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 9
@@ -8153,9 +7601,7 @@
 /turf/closed/shuttle/dropship2{
 	icon_state = "54"
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "KS" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 5
@@ -8222,9 +7668,7 @@
 	on = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "Lq" = (
 /obj/machinery/power/geothermal,
 /obj/machinery/light/small,
@@ -8236,15 +7680,11 @@
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "Ls" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Lt" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
@@ -8267,9 +7707,7 @@
 "Lw" = (
 /obj/structure/closet/l3closet/virology,
 /turf/open/floor/plating/plating_catwalk,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "Lx" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 10
@@ -8421,24 +7859,18 @@
 "Mc" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "Me" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Mf" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mainship/red/full,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Mg" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 5
@@ -8515,9 +7947,7 @@
 /obj/machinery/optable,
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "Mw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -8527,9 +7957,7 @@
 "Mx" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Mz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice/corner{
@@ -8539,9 +7967,7 @@
 "MA" = (
 /obj/structure/barricade/guardrail,
 /turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "MB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -8605,16 +8031,12 @@
 /area/icy_caves/outpost/office)
 "MS" = (
 /turf/closed/wall/r_wall,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "MT" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/cheeseburger,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "MV" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -8634,18 +8056,14 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "MY" = (
 /obj/item/reagent_containers/spray/pepper,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "MZ" = (
 /obj/machinery/door/airlock/mainship/command/free_access{
 	dir = 1;
@@ -8659,9 +8077,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Nc" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -8706,15 +8122,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ1)
-"No" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
 "Np" = (
 /turf/closed/ice/intersection,
 /area/icy_caves/outpost/LZ2)
@@ -8810,9 +8217,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "NN" = (
 /obj/structure/filingcabinet,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8834,9 +8239,7 @@
 /area/icy_caves/outpost/garage)
 "NR" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "NS" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/closet/cabinet,
@@ -8849,14 +8252,6 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/outside)
-"NU" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
 "NW" = (
 /turf/open/shuttle/dropship/seven,
 /area/space)
@@ -8877,9 +8272,7 @@
 	dir = 10
 	},
 /turf/open/shuttle/escapepod/plain,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Oe" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/brown2{
@@ -8901,9 +8294,7 @@
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Ol" = (
 /turf/closed/ice/straight{
 	dir = 4
@@ -8949,9 +8340,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/tcomms,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Oy" = (
 /obj/docking_port/mobile/crashmode/bigbury,
 /turf/open/floor/tile/dark/red2{
@@ -8994,7 +8383,7 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
 	},
-/area/space)
+/area/icy_caves/outpost/security)
 "OJ" = (
 /turf/closed/ice/end,
 /area/icy_caves/outpost/outside)
@@ -9014,9 +8403,7 @@
 /area/icy_caves/outpost/outside)
 "OP" = (
 /turf/open/floor/mainship/red/full,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "OQ" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/kitchen,
@@ -9033,9 +8420,7 @@
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Pc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9056,9 +8441,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Pi" = (
 /turf/closed/ice/corner{
 	dir = 8
@@ -9082,9 +8465,7 @@
 "Pp" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Pq" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -9137,9 +8518,7 @@
 "PG" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "PI" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
@@ -9165,9 +8544,7 @@
 	welded = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "PO" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
@@ -9177,9 +8554,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "PQ" = (
 /obj/item/ammo_casing,
 /obj/item/weapon/gun/smg/m25,
@@ -9230,9 +8605,7 @@
 /area/icy_caves/outpost/office)
 "PZ" = (
 /turf/open/floor/tile/dark/green2,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "Qa" = (
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
@@ -9262,9 +8635,7 @@
 /obj/structure/prop/mainship/sensor_computer2,
 /obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Qh" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 6
@@ -9284,9 +8655,7 @@
 "Qm" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "Qn" = (
 /obj/structure/barricade/guardrail,
 /obj/structure/bed/chair/dropship/passenger{
@@ -9316,9 +8685,7 @@
 /area/icy_caves/caves/south)
 "Qt" = (
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "Qw" = (
 /turf/closed/ice/corner{
 	dir = 4
@@ -9343,9 +8710,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/red/full,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "QF" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -9400,9 +8765,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "QR" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark/brown2,
@@ -9515,9 +8878,7 @@
 	dir = 1
 	},
 /turf/open/shuttle/dropship/floor,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Rt" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -9526,9 +8887,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Ru" = (
 /obj/structure/table/woodentable,
 /obj/structure/paper_bin,
@@ -9542,18 +8901,14 @@
 /turf/closed/shuttle/dropship2{
 	icon_state = "103"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Rx" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/blood,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "Ry" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
@@ -9619,9 +8974,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship_hull,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "RN" = (
 /turf/closed/ice_rock/corners{
 	dir = 5
@@ -9685,9 +9038,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Sf" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -9696,9 +9047,7 @@
 	dir = 10;
 	icon_state = "bright_clean2"
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Sg" = (
 /turf/closed/ice/end{
 	dir = 4
@@ -9754,17 +9103,13 @@
 /turf/closed/shuttle/dropship2{
 	icon_state = "104"
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "St" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Sv" = (
 /turf/closed/ice_rock/singleT{
 	dir = 4
@@ -9816,9 +9161,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "SO" = (
 /turf/closed/ice_rock/eastWall,
 /area/icy_caves/caves/west)
@@ -9837,9 +9180,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "ST" = (
 /turf/closed/ice/straight{
 	dir = 4
@@ -9867,9 +9208,7 @@
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 1
 	},
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "Tb" = (
 /turf/closed/ice_rock/singleT{
 	dir = 1
@@ -9896,9 +9235,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Tj" = (
 /obj/machinery/light{
 	dir = 8
@@ -9929,17 +9266,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Tt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "Tu" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 1
@@ -9959,9 +9292,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Tz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -9985,17 +9316,13 @@
 	dir = 8
 	},
 /turf/open/shuttle/dropship/seven,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "TD" = (
 /obj/machinery/camera{
 	dir = 9
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "TE" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -10019,9 +9346,7 @@
 /area/icy_caves/caves/east)
 "TK" = (
 /turf/open/floor/mainship/red,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "TL" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -10035,9 +9360,7 @@
 /obj/effect/spawner/gibspawner/human,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "TQ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -10078,16 +9401,6 @@
 	dir = 6
 	},
 /area/icy_caves/caves)
-"TZ" = (
-/obj/structure/lattice,
-/obj/structure/monorail{
-	dir = 10
-	},
-/obj/structure/monorail{
-	dir = 6
-	},
-/turf/open/shuttle/escapepod/plain,
-/area/space)
 "Ub" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -10233,12 +9546,6 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/security)
-"UR" = (
-/obj/structure/largecrate/supply/medicine/medivend,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
 "US" = (
 /obj/structure/table,
 /obj/item/clothing/suit/chef/classic,
@@ -10253,9 +9560,7 @@
 "UU" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "UV" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
@@ -10289,9 +9594,7 @@
 /turf/closed/shuttle/dropship2/transparent{
 	icon_state = "109"
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/space)
 "Vb" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 10
@@ -10328,9 +9631,7 @@
 "Vj" = (
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "Vk" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow,
@@ -10352,9 +9653,7 @@
 	dir = 10
 	},
 /turf/open/floor/mainship/cargo,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Vr" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -10366,16 +9665,12 @@
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "Vt" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 9
 	},
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/office)
 "Vu" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice/thin/corner{
@@ -10421,9 +9716,7 @@
 	},
 /obj/structure/xenoautopsy/tank,
 /turf/open/shuttle/dropship/seven,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "VI" = (
 /turf/closed/ice/intersection,
 /area/icy_caves/caves/northern)
@@ -10458,9 +9751,7 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/cargo,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "VM" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/security)
@@ -10496,9 +9787,7 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "VT" = (
 /turf/closed/ice/thin/straight,
 /area/icy_caves/outpost/LZ1)
@@ -10530,9 +9819,7 @@
 /obj/item/shard,
 /obj/effect/decal/cleanable/blood/xtracks,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "Wa" = (
 /obj/structure/largecrate/supply/explosives,
 /obj/item/explosive/plastique,
@@ -10545,18 +9832,14 @@
 	name = "Canteen"
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "Wd" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "We" = (
 /turf/closed/ice/junction{
 	dir = 1
@@ -10568,17 +9851,13 @@
 	},
 /obj/structure/xenoautopsy/tank/alien,
 /turf/open/shuttle/dropship/seven,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Wi" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Wj" = (
 /turf/closed/ice/thin/end{
 	dir = 4
@@ -10589,9 +9868,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/icy_caves/outpost/office)
 "Wm" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
@@ -10603,15 +9880,11 @@
 "Wp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/office)
 "Wr" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "Ws" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -10654,9 +9927,7 @@
 	pixel_x = 16
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "WD" = (
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/LZ1)
@@ -10688,9 +9959,7 @@
 "WP" = (
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "WQ" = (
 /turf/closed/ice/thin/end{
 	dir = 8
@@ -10729,9 +9998,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 "WY" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/medbay)
@@ -10764,9 +10031,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "Xi" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -10855,9 +10120,7 @@
 /obj/structure/window/framed/colony/reinforced,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "XA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
@@ -10931,9 +10194,7 @@
 "XQ" = (
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/office{
-	name = "\improper underground Offices"
-	})
+/area/space)
 "XR" = (
 /obj/structure/closet/crate,
 /obj/item/storage/box/lightstick/red,
@@ -11001,9 +10262,7 @@
 "Yh" = (
 /obj/machinery/power/apc/drained,
 /turf/open/floor/tile/dark,
-/area/library{
-	name = "\improper kitchen area"
-	})
+/area/library)
 "Yi" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/green2{
@@ -11022,9 +10281,7 @@
 	dir = 5
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Yl" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/caves)
@@ -11045,9 +10302,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Yp" = (
 /turf/closed/ice/corner,
 /area/icy_caves/caves/south)
@@ -11062,9 +10317,7 @@
 "Yr" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Yv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -11107,9 +10360,7 @@
 	dir = 6
 	},
 /turf/open/shuttle/escapepod/plain,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "YF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -11155,9 +10406,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/medbay{
-	name = "\improper research"
-	})
+/area/icy_caves/outpost/medbay)
 "YQ" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/space)
@@ -11179,9 +10428,7 @@
 	on = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/icy_caves/outpost/research{
-	name = "\improper monorail area"
-	})
+/area/icy_caves/outpost/security)
 "YW" = (
 /turf/closed/ice,
 /area/icy_caves/caves/south)
@@ -11227,9 +10474,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/purple/whitepurplefull,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/bridge)
 "Zg" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark,
@@ -11395,9 +10640,7 @@
 "ZV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/mainship,
-/area/icy_caves/outpost/security{
-	name = "\improper underground hallway"
-	})
+/area/icy_caves/outpost/mining)
 "ZW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -11421,9 +10664,7 @@
 	dir = 2
 	},
 /turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery{
-	name = "\improper morgue"
-	})
+/area/icy_caves/outpost/research)
 
 (1,1,1) = {"
 YQ
@@ -11778,10 +11019,10 @@ zR
 zR
 zR
 zR
-ir
-ir
-ir
-ir
+WY
+WY
+WY
+WY
 Yf
 Yf
 Yf
@@ -11937,7 +11178,7 @@ kY
 Vj
 AJ
 eO
-ir
+WY
 Yf
 Yf
 Yf
@@ -12093,7 +11334,7 @@ Ex
 II
 AJ
 kf
-ir
+WY
 Yf
 Yf
 Yf
@@ -12249,7 +11490,7 @@ Fq
 tx
 AJ
 kf
-ir
+WY
 Yf
 Yf
 Yf
@@ -12405,7 +11646,7 @@ AJ
 MY
 gZ
 yH
-ir
+WY
 Yf
 Yf
 Yf
@@ -12533,18 +11774,18 @@ nR
 nR
 nR
 nR
-Bp
-Bp
-Bp
-Bp
-Bp
-Bp
-af
-af
-af
-af
-af
-af
+FZ
+FZ
+FZ
+FZ
+FZ
+FZ
+FZ
+VM
+VM
+VM
+VM
+VM
 Yf
 Yf
 Yf
@@ -12561,7 +11802,7 @@ AJ
 HU
 AJ
 Lr
-ir
+WY
 Yf
 Yf
 Yf
@@ -12685,22 +11926,22 @@ Qg
 mj
 GQ
 yb
-Bp
+FZ
 Ls
-HD
+Mj
 GJ
-HD
-HD
+Mj
+Mj
 GJ
-HD
+Mj
 nK
 Gn
-af
+FZ
 Fv
-pS
-No
-pS
-af
+Ie
+YF
+Ie
+VM
 Yf
 Yf
 Yf
@@ -12708,16 +11949,16 @@ Yf
 Yf
 Yf
 Yf
-ir
+WY
 Mc
 Mc
-ir
+WY
 AJ
 AJ
 HU
 AJ
 GE
-ir
+WY
 Yf
 Yf
 Yf
@@ -12841,21 +12082,21 @@ op
 Ox
 yi
 Dm
-Bp
-HD
-HD
-HD
-HD
+FZ
+Mj
+Mj
+Mj
+Mj
 vT
-HD
-HD
-HD
+Mj
+Mj
+Mj
 wj
-af
-pS
-pS
+FZ
+Ie
+Ie
 St
-pS
+Ie
 IW
 IW
 IW
@@ -12867,13 +12108,13 @@ IW
 IW
 Kv
 Cd
-ir
+WY
 Mc
-hY
+Kp
 YP
 Mc
-ir
-ir
+WY
+WY
 IW
 IW
 IW
@@ -12998,20 +12239,20 @@ co
 oR
 lO
 iN
-zW
-zW
-zW
+Kb
+Kb
+Kb
 ph
-zW
-zW
-zW
-zW
-zW
+Kb
+Kb
+Kb
+Kb
+Kb
 kd
-Dz
-Dz
+Jk
+Jk
 UU
-pS
+Ie
 pQ
 Kv
 Kv
@@ -13155,19 +12396,19 @@ oQ
 yi
 zu
 TK
-HD
-HD
+Mj
+Mj
 yO
-HD
-HD
-HD
-HD
-HD
+Mj
+Mj
+Mj
+Mj
+Mj
 Wp
-pS
-pS
+Ie
+Ie
 Wd
-Dz
+Jk
 am
 IV
 IV
@@ -13311,19 +12552,19 @@ wG
 ct
 OP
 TK
-HD
-HD
+Mj
+Mj
 yO
-HD
-HD
-HD
-HD
-HD
-pS
-pS
-pS
+Mj
+Mj
+Mj
+Mj
+Mj
+Mj
+Ie
+Ie
 il
-pS
+Ie
 Mx
 Cd
 Kv
@@ -13348,7 +12589,7 @@ Iz
 Kv
 PP
 Kv
-zZ
+Dz
 Kv
 Kv
 ix
@@ -13465,21 +12706,21 @@ gP
 yi
 yi
 yi
-EP
-HD
-HD
-HD
-yO
-HD
-HD
-HD
-HD
-HD
 FO
-pS
-pS
+Mj
+Mj
+Mj
+yO
+Mj
+Mj
+Mj
+Mj
+Mj
+FO
+Ie
+Ie
 St
-pS
+Ie
 pQ
 Kv
 Kv
@@ -13621,21 +12862,21 @@ fD
 yi
 Do
 wq
-Bp
+FZ
 Wk
-HD
-HD
+Mj
+Mj
 yO
-HD
+Mj
 vT
-HD
-HD
-HD
-af
-pS
-pS
+Mj
+Mj
+Mj
+FZ
+Ie
+Ie
 St
-pS
+Ie
 IW
 Kv
 Yo
@@ -13768,39 +13009,39 @@ YQ
 (16,1,1) = {"
 YQ
 pl
-Bp
-Bp
-Bp
-Bp
-Bp
+FZ
+FZ
+FZ
+FZ
+FZ
 wO
 yi
 Hj
 kR
-Bp
-HD
-HD
-HD
+FZ
+Mj
+Mj
+Mj
 ds
-HD
-HD
-HD
-HD
+Mj
+Mj
+Mj
+Mj
 gf
-af
+FZ
 dv
 hB
 St
-pS
+Ie
 pE
 Yr
 Cw
 Cw
-zv
+vM
 BO
 Cw
 VS
-iL
+tH
 IW
 IW
 IW
@@ -13928,48 +13169,48 @@ Gs
 Gs
 Gs
 Gs
-Bp
+FZ
 jY
-Bp
-EP
-EP
-Bp
+FZ
+FO
+FO
+FZ
 pu
-Bp
-Bp
-Bp
-HD
+FZ
+FZ
+FZ
+Mj
 VL
 Vq
 Vq
 Vq
-af
-af
-af
+FZ
+VM
+VM
 St
-pS
+Ie
 PG
 Gs
 Cw
 hT
-Hp
-Hp
-Hp
+qm
+qm
+qm
 AQ
+tH
+Gs
+Gs
+Gs
+hY
 iL
-Gs
-Gs
-Gs
-IW
-Kv
-PP
-IW
+zv
+hY
 DV
 EX
 jd
 Qt
 Qt
-IW
+hY
 Gs
 Il
 IW
@@ -14079,10 +13320,10 @@ YQ
 "}
 (18,1,1) = {"
 YQ
-YQ
-YQ
-Bp
-Bp
+pl
+pl
+FZ
+FZ
 OP
 OP
 OP
@@ -14093,39 +13334,39 @@ kD
 OP
 Mf
 OP
-Bp
-Bp
+FZ
+FZ
 SS
 Se
 Se
 Se
 Vt
 CH
-af
+VM
 mg
-pS
+Ie
 PG
 Gs
 Cw
 tT
-Hp
+qm
 pZ
 IY
 Tt
-iL
+tH
 Gs
 Gs
 Gs
-IW
-FW
-Na
+hY
+oG
+zW
 SN
 ZV
 ZV
 Vs
 NR
 NR
-IW
+hY
 Gs
 Il
 bI
@@ -14235,7 +13476,7 @@ YQ
 "}
 (19,1,1) = {"
 cW
-qa
+Me
 yF
 jL
 Me
@@ -14249,39 +13490,39 @@ BN
 BN
 BN
 qu
-Rw
-BN
-jc
-jc
+mS
+cK
+kI
+kI
 XQ
 XQ
 dZ
 ma
-af
+VM
 St
-pS
+Ie
 PG
 Gs
 Cw
 Ch
-Hp
+qm
 cD
-Hp
+qm
 Fe
-iL
+tH
 Gs
 Gs
 Gs
-IW
+hY
 Lo
 jl
-IW
+hY
 nF
 mZ
 PN
 Lw
 Lw
-IW
+hY
 Gs
 Il
 bR
@@ -14391,7 +13632,7 @@ YQ
 "}
 (20,1,1) = {"
 cW
-BY
+Od
 wT
 Od
 JR
@@ -14413,31 +13654,31 @@ NW
 NW
 fs
 UZ
-pS
+Ie
 St
-pS
+Ie
 PG
 Gs
 Cw
 WX
-Hp
+qm
 pn
 Mv
 ns
+tH
+hY
+hY
+hY
+hY
 iL
-IW
-IW
-IW
-IW
-Kv
-PP
-IW
-IW
-IW
-IW
-IW
-IW
-IW
+zv
+hY
+hY
+hY
+hY
+hY
+hY
+hY
 Gs
 Il
 bJ
@@ -14547,7 +13788,7 @@ YQ
 "}
 (21,1,1) = {"
 cW
-HC
+RM
 yd
 RM
 cL
@@ -14568,26 +13809,26 @@ ch
 Af
 us
 Wy
-Hc
-pS
+fc
+Ie
 St
-pS
-af
+Ie
+VM
 Gs
 Cw
 xS
-Hp
+qm
 IY
 jk
 Tt
-iL
+tH
 EX
 jd
 ze
-IW
-Kv
-PP
-IW
+hY
+iL
+zv
+hY
 Gs
 Gs
 Gs
@@ -14703,7 +13944,7 @@ YQ
 "}
 (22,1,1) = {"
 cW
-TZ
+YB
 GN
 YB
 cF
@@ -14725,25 +13966,25 @@ yv
 NW
 XL
 UZ
-pS
+Ie
 St
-pS
-af
+Ie
+VM
 Gs
 Cw
 Gj
 cD
 ll
-Hp
+qm
 Df
 Ea
 Ij
 IN
 Qt
 zZ
-Cd
+pS
 Ct
-IW
+hY
 Ae
 Ae
 Ae
@@ -14862,8 +14103,8 @@ cW
 OI
 Eh
 IP
-DU
-DU
+OI
+OI
 oM
 Ss
 KP
@@ -14873,33 +14114,33 @@ KP
 KP
 KP
 DS
-Ss
-KP
+gE
+ev
 kI
 kI
 vn
 vn
 vn
 gQ
-af
+VM
 St
-pS
+Ie
 PG
 Gs
 Cw
 ws
 cH
-Hp
+qm
 ZZ
-Hp
+qm
+tH
+hY
+ir
+hY
+hY
 iL
-IW
-Yr
-IW
-IW
-Kv
-PP
-IW
+zv
+hY
 bA
 bA
 Nd
@@ -15015,10 +14256,10 @@ YQ
 "}
 (24,1,1) = {"
 YQ
-YQ
-YQ
 af
 af
+VM
+VM
 pi
 pi
 pi
@@ -15029,17 +14270,17 @@ xs
 pi
 QD
 pi
-af
-af
+VM
+VM
 tF
 lv
-af
-af
+VM
+VM
 rg
 HL
-af
+VM
 mg
-pS
+Ie
 PG
 Gs
 Cw
@@ -15048,14 +14289,14 @@ TD
 la
 ZZ
 ve
-iL
+tH
 Gs
 Gs
 Ae
-IW
-Kv
+hY
+iL
 FH
-IW
+hY
 bM
 bM
 Fu
@@ -15176,42 +14417,42 @@ Yf
 Yf
 Yf
 Yf
-af
+VM
 Wr
-af
-af
-pS
+VM
+VM
+Ie
 Th
 Th
-af
-af
-af
-pS
+VM
+VM
+VM
+Ie
 gM
 If
-pS
-af
-af
-af
-af
+Ie
+VM
+VM
+VM
+VM
 St
-pS
+Ie
 PG
 Gs
 Cw
-iL
-iL
-iL
-iL
-iL
-iL
+tH
+tH
+tH
+tH
+tH
+tH
 Gs
 Qo
 bP
-IW
-Kv
+hY
+iL
 Ct
-IW
+hY
 SR
 SR
 Sg
@@ -15335,21 +14576,21 @@ Yf
 PG
 Jn
 pN
-af
+VM
 dL
-pS
-pS
-No
-pS
-pS
-pS
-pS
-pS
-pS
-pS
+Ie
+Ie
+YF
+Ie
+Ie
+Ie
+Ie
+Ie
+Ie
+Ie
 Fv
-pS
-pS
+Ie
+Ie
 Wi
 HT
 PG
@@ -15364,10 +14605,10 @@ Ae
 Qo
 bI
 Rh
-IW
-Kv
+hY
+iL
 yV
-IW
+hY
 im
 SR
 SR
@@ -15488,26 +14729,26 @@ Yf
 Yf
 Yf
 Yf
-af
+VM
 oT
 pN
-af
+VM
 pW
 dL
-pS
+Ie
 St
-pS
-pS
-pS
-pS
+Ie
+Ie
+Ie
+Ie
 dL
-pS
-pS
-pS
-pS
-pS
+Ie
+Ie
+Ie
+Ie
+Ie
 dd
-pS
+Ie
 PG
 Gs
 Gs
@@ -15520,10 +14761,10 @@ PD
 Ho
 bJ
 eB
-IW
-Kv
-MX
-IW
+hY
+iL
+Bp
+hY
 SR
 SR
 SR
@@ -15644,26 +14885,26 @@ Yf
 Yf
 Yf
 Yf
-af
+VM
 Ek
 uu
-af
-pS
-pS
-pS
+VM
+Ie
+Ie
+Ie
 St
-pS
+Ie
 EG
-pS
-pS
-pS
+Ie
+Ie
+Ie
 lR
 lR
-pS
-pS
-pS
+Ie
+Ie
+Ie
 St
-pS
+Ie
 PG
 Gs
 Gs
@@ -15800,26 +15041,26 @@ Yf
 Yf
 Yf
 Yf
-af
+VM
 Gx
 YV
-af
-pS
-pS
-pS
+VM
+Ie
+Ie
+Ie
 Wi
-Dz
-Dz
-Dz
-Dz
+Jk
+Jk
+Jk
+Jk
 du
 Hw
 Hw
 sG
-Dz
-Dz
+Jk
+Jk
 UU
-pS
+Ie
 PG
 Gs
 Gs
@@ -15956,26 +15197,26 @@ Yf
 Yf
 Yf
 Yf
-af
+VM
 ip
 hd
 Ts
-Dz
-Dz
-Dz
+Jk
+Jk
+Jk
 UU
-pS
+Ie
 di
 Pg
-pS
+Ie
 KL
-af
-af
+VM
+VM
 yz
-pS
-pS
+Ie
+Ie
 St
-pS
+Ie
 PG
 Gs
 Gs
@@ -16112,24 +15353,24 @@ Yf
 Yf
 Yf
 Yf
-af
-af
-af
-af
-pS
-pS
-pS
+VM
+VM
+VM
+VM
+Ie
+Ie
+Ie
 St
-af
-af
-af
+VM
+VM
+VM
 xW
-pS
+Ie
 Rt
-fc
-pS
-pS
-pS
+YX
+Ie
+Ie
+Ie
 St
 EG
 PG
@@ -16271,21 +15512,21 @@ Yf
 Yf
 Yf
 Yf
-af
+VM
 pW
-pS
-pS
+Ie
+Ie
 St
-af
-Gs
-af
+VM
+Yf
+VM
 hB
-pS
-pS
-pS
-pS
-pS
-pS
+Ie
+Ie
+Ie
+Ie
+Ie
+Ie
 St
 Kf
 PG
@@ -16427,23 +15668,23 @@ Yf
 Yf
 Yf
 Yf
-af
-pS
-pS
-pS
+VM
+Ie
+Ie
+Ie
 St
-af
-Gs
-af
-UR
+VM
+Yf
+VM
+Ie
 dL
-pS
-pS
-pS
-pS
-pS
+Ie
+Ie
+Ie
+Ie
+Ie
 il
-pS
+Ie
 PG
 Gs
 Gs
@@ -16583,23 +15824,23 @@ Yf
 cp
 cp
 cp
-cJ
+ov
 cv
 cv
 cv
 cx
-cJ
-cK
 ov
-af
-pS
-af
-af
-pS
-pS
+cp
+ov
+VM
+Ie
+VM
+VM
+Ie
+Ie
 hZ
 St
-pS
+Ie
 PG
 Gs
 Gs
@@ -16745,17 +15986,17 @@ pJ
 Wc
 BF
 MS
-oG
+Yf
 jn
-af
-pS
-af
-af
+VM
+Ie
+VM
+VM
 pW
-pS
-pS
+Ie
+Ie
 St
-pS
+Ie
 PG
 Gs
 Gs
@@ -16902,16 +16143,16 @@ Bf
 Hr
 MS
 MS
-cJ
-af
+ov
+VM
 pW
-pS
-pS
-pS
-pS
-pS
+Ie
+Ie
+Ie
+Ie
+Ie
 St
-pS
+Ie
 PG
 Gs
 Gs
@@ -17058,16 +16299,16 @@ pJ
 cC
 pJ
 pJ
-cJ
-pS
+ov
+Ie
 vW
-Dz
-Dz
-Dz
-Dz
-Dz
+Jk
+Jk
+Jk
+Jk
+Jk
 UU
-pS
+Ie
 PG
 Gs
 Ae
@@ -17215,13 +16456,13 @@ HQ
 Xh
 pJ
 cO
-pS
-pS
-pS
-pS
-pS
-pS
-pS
+Ie
+Ie
+Ie
+Ie
+Ie
+Ie
+Ie
 St
 Kf
 PG
@@ -17371,15 +16612,15 @@ nv
 MT
 cN
 eC
-pS
-pS
-pS
-pS
-pS
-pS
+Ie
+Ie
+Ie
+Ie
+Ie
+Ie
 EG
 il
-pS
+Ie
 PG
 Il
 ce
@@ -17527,15 +16768,15 @@ IK
 eD
 PZ
 cv
-pS
-pS
-pS
-pS
-pS
-pS
-pS
+Ie
+Ie
+Ie
+Ie
+Ie
+Ie
+Ie
 St
-pS
+Ie
 PG
 Qo
 ce
@@ -17685,13 +16926,13 @@ pJ
 cO
 di
 Pg
-pS
-pS
-pS
-pS
-pS
+Ie
+Ie
+Ie
+Ie
+Ie
 St
-pS
+Ie
 PG
 PD
 by
@@ -17839,15 +17080,15 @@ eP
 ha
 Qm
 cs
-af
-af
-af
-af
-pS
-pS
-pS
+VM
+VM
+VM
+VM
+Ie
+Ie
+Ie
 St
-pS
+Ie
 PG
 ot
 Ho
@@ -17997,13 +17238,13 @@ pJ
 cs
 Yf
 Yf
-Gs
+Yf
 PG
 pW
-pS
-pS
+Ie
+Ie
 St
-pS
+Ie
 Xz
 SR
 SR
@@ -18153,13 +17394,13 @@ cs
 cs
 Yf
 Yf
-Il
+qs
 PG
-No
-pS
-pS
+YF
+Ie
+Ie
 St
-pS
+Ie
 Tx
 Zl
 WO
@@ -18309,13 +17550,13 @@ Yf
 Yf
 Yf
 Yf
-Il
+qs
 PG
-NU
-Dz
-Dz
+YR
+Jk
+Jk
 dz
-Dz
+Jk
 mV
 Tz
 Tz
@@ -18467,10 +17708,10 @@ Yf
 Yf
 qs
 PG
-pS
-pS
+Ie
+Ie
 dL
-pS
+Ie
 Pg
 pr
 Zl
@@ -18624,7 +17865,7 @@ re
 qy
 PG
 Xz
-ev
+bO
 xZ
 Xz
 PG
