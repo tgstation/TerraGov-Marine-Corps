@@ -38,6 +38,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/sundering					= 0 		// How many stacks of sundering to apply to a mob on hit
+	///how much damage airbursts do to mobs around the target, multiplier of the bullet's damage
+	var/airburst_multiplier	= 0.1
 	var/flags_ammo_behavior = NONE
 	///Determines what color our bullet will be when it flies
 	var/bullet_color = COLOR_WHITE
@@ -160,7 +162,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
 			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
 		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
-		victim.apply_damage(proj.damage * 0.1, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
+		victim.apply_damage(proj.damage * proj.airburst_multiplier, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
 	var/effect_icon = ""
@@ -393,7 +395,6 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0
 	accuracy = 15
 	accurate_range = 15
-	scatter = -15
 	damage = 30
 	penetration = 10
 
@@ -599,7 +600,6 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 30
 	max_range = 40
 	damage = 65
-	scatter = -15
 	penetration = 15
 	sundering = 2
 
@@ -935,7 +935,6 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 4
 	accurate_range = 30
 	max_range = 40
-	scatter = -20
 	damage = 80
 	penetration = 60
 	sundering = 15
@@ -948,7 +947,6 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SUNDERING
 	accuracy_var_high = 7
 	max_range = 20
-	scatter = 15
 	damage = 50
 	penetration = 20
 	sundering = 5
@@ -959,6 +957,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 90
 	penetration = 0
 	sundering = 25
+	airburst_multiplier	= 0.2
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
@@ -1039,7 +1038,6 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range = 15
 	damage = 20
-	scatter = -10
 	penetration = 20
 	sundering = 1
 
@@ -1726,7 +1724,7 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_high = 3
 	damage = 40
 	stagger_stacks = 1.1
-	slowdown_stacks = 1.1
+	slowdown_stacks = 1.5
 	smoke_strength = 0.5
 	smoke_range = 0
 	reagent_transfer_amount = 4
@@ -2150,6 +2148,9 @@ datum/ammo/bullet/revolver/tp44
 	hit_eye_blur = 16
 	hit_drowsyness = 18
 	fixed_spread_range = 2
+	accuracy = 100
+	accurate_range = 30
+	shell_speed = 1.5
 
 /datum/ammo/xeno/boiler_gas/corrosive/lance
 	name = "pressurized glob of acid"
@@ -2166,6 +2167,9 @@ datum/ammo/bullet/revolver/tp44
 	hit_eye_blur = 4
 	hit_drowsyness = 2
 	fixed_spread_range = 2
+	accuracy = 100
+	accurate_range = 30
+	shell_speed = 1.5
 
 /datum/ammo/xeno/hugger
 	name = "hugger ammo"

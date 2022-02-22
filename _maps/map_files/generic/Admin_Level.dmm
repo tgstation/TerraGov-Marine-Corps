@@ -8185,9 +8185,9 @@
 /obj/item/clothing/under/marine/imperial,
 /obj/item/clothing/shoes/marine/imperial,
 /obj/item/weapon/gun/energy/lasgun/lasrifle,
-/obj/item/cell/lasgun/lasrifle/highcap,
-/obj/item/cell/lasgun/lasrifle/highcap,
-/obj/item/cell/lasgun/lasrifle/highcap,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
 /turf/open/floor/wood,
 /area/centcom/valhalla/port)
 "lce" = (
@@ -13631,7 +13631,7 @@
 /obj/item/clothing/shoes/techpriest,
 /obj/item/clothing/suit/techpriest,
 /obj/item/clothing/under/techpriest,
-/obj/item/cell/lasgun/lasrifle/highcap,
+/obj/item/cell/lasgun/lasrifle,
 /obj/item/weapon/gun/energy/lasgun/lasrifle,
 /turf/open/floor/tile/vault{
 	dir = 5

@@ -648,6 +648,7 @@
 		/obj/item/ammo_magazine/tl102,
 		/obj/item/ammo_magazine/standard_lmg,
 		/obj/item/ammo_magazine/standard_mmg,
+		/obj/item/ammo_magazine/heavymachinegun,
 		/obj/item/ammo_magazine/standard_smartmachinegun,
 		/obj/item/cell/lasgun,
 	)
@@ -966,12 +967,12 @@
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_te"
 	can_hold = list(
-		/obj/item/cell/lasgun/lasrifle/marine,
+		/obj/item/cell/lasgun/lasrifle,
 	)
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full
 	spawn_number = 30
-	spawn_type = /obj/item/cell/lasgun/lasrifle/marine
+	spawn_type = /obj/item/cell/lasgun/lasrifle
 
 // -Marksmen-
 
@@ -1067,6 +1068,20 @@
 /obj/item/storage/box/visual/magazine/compact/standard_mmg/full
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/standard_mmg
+
+
+/obj/item/storage/box/visual/magazine/compact/heavymachinegun
+	name = "MG-08/495 drum box"
+	desc = "A box specifically designed to hold a large amount ofMG-08/495 drum."
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_mg08"
+	can_hold = list(
+		/obj/item/ammo_magazine/heavymachinegun,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/heavymachinegun/full
+	spawn_number = 10
+	spawn_type = /obj/item/ammo_magazine/heavymachinegun
 
 /obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun
 	name = "T-29 drum box"

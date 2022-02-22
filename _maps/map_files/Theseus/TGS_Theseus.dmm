@@ -965,7 +965,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
+	},
 /area/mainship/hallways/hangar/droppod)
 "adq" = (
 /obj/structure/rack,
@@ -4274,8 +4276,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/structure/table/mainship,
-/obj/machinery/computer/droppod_control,
+/obj/machinery/cic_maptable/droppod_maptable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "bol" = (
@@ -5753,6 +5754,9 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/structure/table/mainship,
+/obj/machinery/computer/droppod_control,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "bCW" = (
@@ -8148,6 +8152,8 @@
 /obj/structure/table/mainship,
 /obj/item/flashlight/combat,
 /obj/item/clothing/suit/storage/hazardvest,
+/obj/item/clothing/suit/storage/hazardvest/lime,
+/obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
 /obj/item/storage/pouch/medkit/full,
 /obj/item/storage/pouch/medical/full,
@@ -8356,6 +8362,9 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/alpha)
+"chJ" = (
+/turf/open/floor/plating/mainship,
+/area/mainship/hull/port_hull)
 "cik" = (
 /obj/machinery/shower{
 	dir = 4
@@ -9556,6 +9565,12 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
+"dXO" = (
+/obj/docking_port/stationary/escape_pod/escape_shuttle{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/hull/starboard_hull)
 "dYx" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -9563,6 +9578,9 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
+"dYA" = (
+/turf/open/floor/plating/mainship,
+/area/mainship/hull/starboard_hull)
 "dZB" = (
 /turf/open/floor/mainship/purple{
 	dir = 1
@@ -12438,6 +12456,12 @@
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/mainship/squads/alpha)
+"jwN" = (
+/obj/machinery/door/airlock/mainship/secure/evac{
+	dir = 2
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/port_hull)
 "jxr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -15260,6 +15284,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
+"omA" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/hull/port_hull)
 "ooo" = (
 /obj/structure/disposalpipe/junction,
 /obj/structure/cable,
@@ -15851,6 +15881,12 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/alpha)
+"puC" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/hull/starboard_hull)
 "pvn" = (
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/mainship/tcomms,
@@ -18471,6 +18507,12 @@
 	},
 /turf/open/floor/mainship/red/full,
 /area/mainship/hallways/hangar)
+"una" = (
+/obj/docking_port/stationary/escape_pod/escape_shuttle{
+	dir = 2
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/hull/port_hull)
 "uns" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
@@ -20365,6 +20407,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/blue/corner,
 /area/mainship/squads/delta)
+"xQK" = (
+/obj/machinery/door/airlock/mainship/secure/evac{
+	dir = 2
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/starboard_hull)
 "xQX" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
@@ -48579,7 +48627,7 @@ byG
 byG
 byG
 adp
-brX
+vuE
 iZq
 bja
 wxQ
@@ -71439,12 +71487,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aai
+aap
+aap
+aap
+aap
+aap
+aap
 aai
 aai
 aai
@@ -71485,17 +71533,17 @@ czn
 aVs
 tUM
 aVk
+aVs
+aVs
+aVs
+aVs
+aVs
 aVk
 aVk
 aVk
 aVk
 aVk
 aVk
-aaa
-aaa
-aaa
-aaa
-aaa
 aaa
 aaa
 aaa
@@ -71696,18 +71744,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aai
+aap
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+aap
 vyf
 aap
 aap
@@ -71741,18 +71789,18 @@ aVs
 aVs
 aVs
 phl
-aVk
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVs
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+aVs
 aaa
 aaa
 aaa
@@ -71953,18 +72001,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aai
+aap
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+aap
 vyf
 aap
 aaE
@@ -71998,18 +72046,18 @@ aVB
 aVB
 aVs
 phl
-aVk
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVs
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+aVs
 aaa
 aaa
 aaa
@@ -72210,18 +72258,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aai
+aap
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+aap
 eCj
 aap
 aaE
@@ -72255,18 +72303,18 @@ aVB
 aVB
 aVs
 tUM
-aVk
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVs
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+aVs
 aaa
 aaa
 aaa
@@ -72467,18 +72515,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aai
+aap
+puC
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dXO
+xQK
 gAi
 aap
 aaE
@@ -72512,18 +72560,18 @@ aVB
 aVB
 aVs
 uaA
-aVk
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+jwN
+una
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+omA
+aVs
 aaa
 aaa
 aaa
@@ -72724,18 +72772,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aai
+aap
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+aap
 eCj
 aap
 aaE
@@ -72769,18 +72817,18 @@ aVB
 aVB
 aVs
 tUM
-aVk
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVs
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+aVs
 aaa
 aaa
 aaa
@@ -72981,18 +73029,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aai
+aap
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+aap
 vyf
 aap
 aap
@@ -73026,18 +73074,18 @@ aVs
 aVs
 aVs
 phl
-aVk
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVs
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+aVs
 aaa
 aaa
 aaa
@@ -73238,18 +73286,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aai
+aap
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+dYA
+aap
 gPG
 bLv
 jxr
@@ -73283,18 +73331,18 @@ btF
 btF
 tih
 iev
-aVk
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVs
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+chJ
+aVs
 aaa
 aaa
 aaa
@@ -73495,18 +73543,18 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aai
+aap
+aap
+aap
+aap
+aap
+aap
+aap
+aap
+aap
+aap
+aap
+aap
 aai
 aap
 aap
@@ -73540,18 +73588,18 @@ aVs
 aVs
 aVs
 aVk
-aVk
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
+aVs
 aaa
 aaa
 aaa

@@ -128,7 +128,10 @@
 
 
 /obj/structure/razorwire/proc/on_exited(datum/source, atom/movable/AM, direction)
-	if(isliving(AM))
+	if(!isliving(AM))
+		return
+	var/mob/living/crossing_mob = AM
+	if(CHECK_BITFIELD(crossing_mob.restrained_flags, RESTRAINED_RAZORWIRE))
 		razorwire_untangle(AM)
 
 /obj/structure/razorwire/Destroy()

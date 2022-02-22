@@ -6,7 +6,6 @@
 	caste_type_path = /mob/living/carbon/xenomorph/gorger
 	ancient_message = "We are eternal. We will persevere where others will dry and wither."
 	primordial_message = "There is nothing we can't withstand."
-	primordial_upgrade_name = PRIMORDIAL_GORGER
 
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE

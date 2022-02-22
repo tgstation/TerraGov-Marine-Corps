@@ -73,6 +73,8 @@
 	var/damage_marine_falloff = 0
 
 	var/scatter = 0 //Chance of scattering, also maximum amount scattered. High variance.
+	///damage airburst inflicts, as a multiplier of proj.damage
+	var/airburst_multiplier = 0
 
 	/// The iff signal that will be compared to the target's one, to apply iff if needed
 	var/iff_signal = NONE
@@ -146,6 +148,7 @@
 	penetration = ammo.penetration
 	sundering 	= ammo.sundering
 	scatter		= ammo.scatter
+	airburst_multiplier = ammo.airburst_multiplier
 	accuracy   += ammo.accuracy
 	accuracy   *= rand(95 - ammo.accuracy_var_low, 105 + ammo.accuracy_var_high) * 0.01 //Rand only works with integers.
 	damage_falloff = ammo.damage_falloff
@@ -977,6 +980,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
 		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
 		laser_effect.RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, /atom/movable/hitscan_projectile_effect.proc/remove_effect)
+		laser_effect.RegisterSignal(src, COMSIG_PARENT_QDELETING, /atom/movable/hitscan_projectile_effect.proc/remove_effect)
 		return
 	qdel(src)
 

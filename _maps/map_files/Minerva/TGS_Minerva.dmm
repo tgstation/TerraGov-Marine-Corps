@@ -3889,6 +3889,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/evacuation)
+"nd" = (
+/obj/machinery/vending/marine_medic,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/general)
 "nf" = (
 /obj/structure/lattice,
 /turf/closed/shuttle/ert{
@@ -6170,9 +6174,8 @@
 	},
 /area/mainship/hallways/port_hallway)
 "uI" = (
-/obj/machinery/computer/droppod_control,
-/obj/structure/table/mainship,
-/turf/open/floor/plating/plating_catwalk,
+/obj/machinery/cic_maptable/droppod_maptable,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "uJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7653,18 +7656,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
 "yT" = (
-/obj/structure/rack,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/tool/crowbar/red,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/obj/item/weapon/claymore/mercsword/machete,
-/turf/open/floor/plating/plating_catwalk,
+/obj/structure/table/mainship,
+/obj/machinery/computer/droppod_control,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "yU" = (
 /obj/structure/cable,
@@ -13109,6 +13103,8 @@
 "Pj" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/suit/storage/hazardvest,
+/obj/item/clothing/suit/storage/hazardvest/lime,
+/obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
 /obj/item/storage/pouch/medkit/full,
 /obj/item/storage/pouch/medical/full,
@@ -24646,7 +24642,7 @@ Am
 Am
 Am
 SP
-yT
+Am
 Vo
 cj
 Io
@@ -24744,7 +24740,7 @@ TY
 TY
 TY
 SP
-Vo
+uI
 Vo
 Ot
 Io
@@ -25430,7 +25426,7 @@ TY
 TY
 TY
 AQ
-Vo
+yT
 Vo
 FJ
 Io
@@ -25528,7 +25524,7 @@ Am
 Am
 Am
 SP
-uI
+Am
 Vo
 cj
 Io
@@ -27037,7 +27033,7 @@ tc
 dm
 Hv
 sr
-IH
+nd
 JM
 KR
 sr

@@ -138,3 +138,184 @@
       out of the shipside NanotrasenMed Plus
   - balance: shipside NanotrasenMed Plus cannot be moved
   - bugfix: no nade chain in any item
+2022-02-09:
+  BraveMole:
+  - rscadd: Evacuation can prevent xeno major
+  - bugfix: Fix teleporter deleting cell when undeployed
+  - bugfix: Fix webbings fitting in bags
+  - rscdel: Remove useless xeno respawn timer stat information
+  He11Force, BOT Purple:
+  - rscadd: Adds new 5 DM zones for EORG ispired by Counter-Strike
+  RipGrayson:
+  - rscadd: The ship AI can now make vox announcements.
+  - rscadd: Ported the TG vox system.
+  - soundadd: Ported 600 vox words for use in the AI's vox system
+  Three333Digit:
+  - balance: you can attach bipod to tl127 and mosin
+  TiviPlus:
+  - rscadd: 'Added a motorbike sidecar which can be bought in req, attached to motorbikes
+      and detached with a wrench spriteadd: Sprite by xana'
+  - bugfix: xenonauten essentials has descsriptions now
+  Waselon:
+  - rscadd: Added minelayer
+  hyper2snyper:
+  - rscadd: Adds the 6E Chameleon Cape
+  - bugfix: Fixes the Tyr neck guard issue where it layered over everything including
+      smoke and such.
+  - code_imp: Modified attachment code to rely on the /modular armor type less.
+  novaepee:
+  - rscdel: Remove stored egg from carrier's game panel
+  - bugfix: misspelling on primo crusher's rapid advance
+  - imagedel: Remove an old title painting since it shows an old gun that we don't
+      use.
+  - imageadd: allow an old title painting to be used! Finally, a xenomorph title painting!
+  - imageadd: Add a new title painting thanks to Lich! It's also animated, making
+      it one of the rare title paintings that actually animate!
+  - imageadd: resprite MarineMed
+  - bugfix: standardize corpsman prep to have TerraGovTech Medic Vendor and MarineMed
+      with the sheer exception of Theseus. The MarineMed is in prep but not in corpsman
+      prep.
+2022-02-11:
+  BraveMole:
+  - bugfix: Fix Tx73
+  - bugfix: Fix neurotoxin sting being on queen and shrike primos
+  - qol: You can deploy all deployable items by cntrl clicking the ground
+  - balance: You can send supply drop in caves
+  - bugfix: Supply beacons no longer can be used as OB beacon
+  Canohaaaaaaa:
+  - balance: 'Primordial drone : Reduced plasma cost and cooldown, night shade takes
+      less time to grow and has greater range.'
+  EvilMelonTheSecond:
+  - rscadd: Rightclicking handheld charger now takes out the battery instead of leftclick
+  Lumipharon:
+  - balance: DMR is no longer pinpoint accurate unwielded.
+  - rscadd: Add a var to control airburst damage for future FUN weapons
+  SplinterGP:
+  - bugfix: robot visors now rewind, going left to right right to left, instead of
+      going left to right and jumping to the start again.
+  XSlayer300:
+  - expansion: Added more colors for the Jaeger armor.
+  - imageadd: Resprited the snow storm.
+  novaepee:
+  - rscdel: Remove any mention of /obj/item/cell/lasgun/tesla
+  - rscadd: two new reflective safety vests!
+  - soundadd: two new reflective safety vests!
+  - imageadd: TGstation fire extinguisher sprites for item and mob
+  - imagedel: CM SS13 fire extinguisher sprites for item and mob
+  - bugfix: Wraith's Time Stop Action Icon is now actually in game and in codebase
+  - rscadd: The Athena tactical map console, which shows planetside minimap; it is
+      in the drop pod bay
+  - qol: marines using drop pods can use the Athena tactical map console to see planetside
+      minimap, which reveal planetside marines' location; that said, you still have
+      to use webmap to actually get coordinates
+  - balance: Drop pods have information that tactically mobilize marines from shipside
+      to planetside; they can get solid positioning on xenomorphs and help marines
+      faster armed with information
+2022-02-12:
+  Bizzonium:
+  - refactor: make SSrunechat to be subsystem of SStimer
+  BraveMole:
+  - bugfix: Wraith primo effect was staying if the wraith was killed during the effect
+  - bugfix: Runner primo works again
+  DeltaFire15:
+  - bugfix: Sentries should no longer runtime when losing their target nor show weird
+      behavior at the edge of their range.
+  RipGrayson:
+  - soundadd: Added new original AI vox to replace the ancient half life vox.
+  - soundadd: Added 300 extra lines for the AI vox system.
+  - sounddel: Removed all Half Life vox
+  Three333Digit:
+  - balance: teleporter comes with a high-cap cell installed
+2022-02-13:
+  BraveMole:
+  - bugfix: Fix larva regress exploit
+  - bugfix: Fix a visual bug with lasers and wraith primo
+  - rscadd: Primos can be bought by tiers
+  Canohaaaaaaa:
+  - bugfix: Razorwires no longer apply their slowdown twice when resisted out of (notabily
+      by Crushers).
+  - bugfix: 'Warrior : Adjacent lunges now properly work.'
+  DeltaFire15:
+  - balance: Primordial Boiler's lance globs have perfect (base) accuracy at long
+      range and are somewhat faster.
+  Passe2142:
+  - bugfix: Added in the proc view center on loc.
+  Waselon:
+  - balance: T-26 AMR price reduced from 75 to 65
+  - balance: Crusher speed increased from 0.1 to -0.1
+  - balance: Reqtorio cost balance. Grenades and smart ammo are now more profitable.
+2022-02-14:
+  Notamaniac:
+  - bugfix: You can no longer send deployables into nullspace by deploying it to your
+      hand.
+  - bugfix: After 5 whole months, the safety on all TGMC weapons has now been fixed.
+      The brave marine that decided to toggle their safety on has been generously
+      awarded time in solitary for discovering this horrendous oversight.
+2022-02-15:
+  Naaanii:
+  - rscdel: Removes evac max capacity.
+  - bugfix: Fixed an apparent infinite loop check.
+  RipGrayson:
+  - soundadd: Vox sounds now take less space.
+  - soundadd: Added more vox lines.
+2022-02-18:
+  DeltaFire15:
+  - balance: 'Xenomorphs cannot use abilities nor attack while on a solid turf (e.g.
+      a wall). This excludes attacking walls so you can still break your resin wall
+      if you got yourself stuck aswell as the "toggle resting" ability and Hivemind''s
+      change form & Wraith''s phase-shift / resync. tweak: Resin doors start open
+      if built on your own tile.'
+  - bugfix: Added XACT_DO_AFTER_ATTACK to bitfields.dm as it was missing (aka it gets
+      "translated" into readable language during varediting of that var)
+  Lumipharon:
+  - balance: teleporters are no longer invulnerable to xenos
+  Notamaniac:
+  - bugfix: Cryotube should now update it's icon properly
+  TiviPlus:
+  - bugfix: fixed wraith effects cutting each other
+  novaepee:
+  - balance: tadpole gets dedicated wall dispenser that can refill specific autoinjectors
+2022-02-20:
+  Loyavas:
+  - expansion: Added ACCESS_MARINE_LOGISTICS access to the Liaison ID card
+  Lumipharon:
+  - rscadd: Add T-26 incendiary and flak ammo to req
+  - balance: Decreased the cost of basic T-26 ammo to be in line with T-81 ammo
+  - balance: Increased the AOE damage of flak ammo slightly
+  Notamaniac:
+  - bugfix: The dropship sentry and dropship MG should work now.
+  Three333Digit:
+  - balance: miner upgrades in engineer point vendor for 4 points (does not include
+      autominer)
+  novaepee:
+  - rscadd: MG-08/495 gets ammo box
+  - balance: more dakka for the mg; add 6 more drums to round-start, totaling up to
+      10 MG-08/495 drums
+  - bugfix: move MG-08/495 to machinegun tab
+2022-02-22:
+  2kajowsmol:
+  - balance: Headbands are no longer able to be decapitated
+  2whatever2:
+  - balance: Plasma pistol can no longer shoot onehanded while attached to a gun.
+      Note that this doesn't prevent from plasma pistol shooting one-handed while
+      unattached.
+  Notamaniac:
+  - qol: Left click takes cells out of handheld chargers again
+  - bugfix: Marines can no longer create 0 handfuls and shoot phantom ammo.
+  Pariah919:
+  - bugfix: laser pistol fits in shoulder holster
+  - balance: pistol belts can hold 6 lasgun magazines
+  Passe2142:
+  - balance: Build time from 15s to 10s.
+  breadhunt:
+  - balance: Announcements (including command ones) can now be heard while deaf, in
+      crit, or dead.
+  novaepee:
+  - bugfix: TGMC Hollywood signs
+  novaepee, RipGrayson:
+  - expansion: Acid rain is now colored; don't go outside if it starts raining green
+  - code_imp: Normal rain uses rain_high, the previous acid rain sprite, for nice
+      effect
+  vilereaver41:
+  - balance: Acidwell now 400 down from 500
+  - balance: Filling an acidwell is now 150 down from 200

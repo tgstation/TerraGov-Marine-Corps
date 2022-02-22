@@ -169,8 +169,6 @@
 
 #define isuniform(A) (istype(A, /obj/item/clothing/under))
 
-#define iswebbing(A) (istype(A, /obj/item/clothing/tie/storage))
-
 #define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
 
 #define ismodulararmormodule(A) (istype(A, /obj/item/armor_module))
