@@ -528,6 +528,13 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/hypervene
 	greyscale_colors = "#AC6D32#ffffff"
 
+/obj/item/storage/pill_bottle/ryetalyn
+	name = "ryetalyn pill bottle"
+	desc = "A purge medication used to rapidly remove toxins. Do not mix with bicaridine, kelotane, or tricordrazine."
+	icon_state = "pill_canister1"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/ryetalyn
+	greyscale_colors = "#ff99ff#ffffff"
+
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
 	desc = "Contains pills commonly used by untrained Squad Marines to avoid seeing their Squad Medic."

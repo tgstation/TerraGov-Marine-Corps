@@ -795,6 +795,7 @@
 			/obj/item/storage/pill_bottle/peridaxon = 8,
 			/obj/item/storage/pill_bottle/quickclot = 8,
 			/obj/item/storage/pill_bottle/hypervene = 8,
+			/obj/item/storage/pill_bottle/ryetalyn = 8,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 24,
