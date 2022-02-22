@@ -41,7 +41,7 @@
 		qdel(I)
 		to_chat(user, "You place your cards on the bottom of the deck.")
 
-/obj/item/toy/deck/update_icon()
+/obj/item/toy/deck/update_icon_state()
 	switch(cards.len)
 		if(52)
 			icon_state = "deck"
@@ -201,6 +201,7 @@
 /obj/item/toy/handcard/attack_hand_alternate(mob/living/user)
 	discard_card(user)
 
+/// Takes a selected card, and puts it down, face-up, in front
 /obj/item/toy/handcard/proc/discard_card(mob/user)
 	var/list/to_discard = list()
 	for(var/datum/playingcard/P in cards)
@@ -243,9 +244,9 @@
 /obj/item/toy/handcard/examine(mob/user)
 	. = ..()
 	if(cards.len)
-		to_chat(user, "It has <span class='notice'>[cards.len]</span> cards.")
+		to_chat(user, span_notice("It has [cards.len] cards. "))
 		if((!concealed || loc == user))
-			to_chat(user, "<span class='notice'>The cards are:</span> ")
+			to_chat(user, span_notice("The cards are: "))
 			for(var/datum/playingcard/P in cards)
 				to_chat(user, "-[P.name]")
 
