@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - balance: "Announcements (including command ones) can now be heard while deaf, in crit, or dead."

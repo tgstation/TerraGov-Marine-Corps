@@ -292,3 +292,30 @@
   - balance: more dakka for the mg; add 6 more drums to round-start, totaling up to
       10 MG-08/495 drums
   - bugfix: move MG-08/495 to machinegun tab
+2022-02-22:
+  2kajowsmol:
+  - balance: Headbands are no longer able to be decapitated
+  2whatever2:
+  - balance: Plasma pistol can no longer shoot onehanded while attached to a gun.
+      Note that this doesn't prevent from plasma pistol shooting one-handed while
+      unattached.
+  Notamaniac:
+  - qol: Left click takes cells out of handheld chargers again
+  - bugfix: Marines can no longer create 0 handfuls and shoot phantom ammo.
+  Pariah919:
+  - bugfix: laser pistol fits in shoulder holster
+  - balance: pistol belts can hold 6 lasgun magazines
+  Passe2142:
+  - balance: Build time from 15s to 10s.
+  breadhunt:
+  - balance: Announcements (including command ones) can now be heard while deaf, in
+      crit, or dead.
+  novaepee:
+  - bugfix: TGMC Hollywood signs
+  novaepee, RipGrayson:
+  - expansion: Acid rain is now colored; don't go outside if it starts raining green
+  - code_imp: Normal rain uses rain_high, the previous acid rain sprite, for nice
+      effect
+  vilereaver41:
+  - balance: Acidwell now 400 down from 500
+  - balance: Filling an acidwell is now 150 down from 200
