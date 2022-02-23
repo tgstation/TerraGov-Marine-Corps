@@ -114,13 +114,22 @@
 	name = "lockdown override"
 	id = "landing_zone"
 	icon_state = "shutterctrl"
+	/// Has the shutters alarm been played?
+	var/alarm_played = 0
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
-	. = ..()
-	playsound_z(z, 'sound/effects/shutters_alarm.ogg', 100) // woop woop, shutters opening.
+	if(alarm_played > 0)
+		. = ..()
+	else
+		playsound_z(z, 'sound/effects/shutters_alarm.ogg', 100) // woop woop, shutters opening.
+		addtimer(CALLBACK(src, .proc/played_alarm), 200)
+
+/obj/machinery/button/door/open_only/landing_zone/proc/played_alarm()
+	alarm_played += 1
+	pulsed()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_SHUTTERS_EARLY)
 
 /obj/machinery/button/door/open_only/landing_zone/lz2
