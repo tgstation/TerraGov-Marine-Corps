@@ -116,6 +116,8 @@
 	icon_state = "shutterctrl"
 	/// Has the shutters alarm been played?
 	var/alarm_played = 0
+	/// Preventing spam
+	var/alarm_being_played = 0
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
@@ -123,8 +125,11 @@
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
 	if(alarm_played > 0)
 		. = ..()
+	if(alarm_being_played > 0) // spam bad
+		return
 	else
 		playsound_z(z, 'sound/effects/shutters_alarm.ogg', 100) // woop woop, shutters opening.
+		alarm_being_played += 1
 		addtimer(CALLBACK(src, .proc/played_alarm), 200)
 
 /obj/machinery/button/door/open_only/landing_zone/proc/played_alarm()
