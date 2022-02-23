@@ -120,6 +120,7 @@
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
 	. = ..()
+	playsound_z(z, 'sound/effects/shutters_alarm.ogg', 100) // woop woop, shutters opening.
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_SHUTTERS_EARLY)
 
 /obj/machinery/button/door/open_only/landing_zone/lz2
@@ -231,7 +232,7 @@
 	var/mob/living/xeno
 	///What spawner is linked with this spawner
 	var/link = CLOSE
-	
+
 
 /obj/machinery/button/valhalla_button/attack_hand(mob/living/user)
 	var/xeno_wanted = tgui_input_list(user, "What xeno do you want to spawn?", "Xeno spawn", GLOB.all_xeno_types)
@@ -245,7 +246,7 @@
 	SIGNAL_HANDLER
 	xeno = null
 
-/obj/machinery/button/valhalla_button/far 
+/obj/machinery/button/valhalla_button/far
 	link = FAR
 
 /obj/machinery/button/valhalla_button/far2
