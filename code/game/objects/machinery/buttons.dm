@@ -242,7 +242,6 @@
 	///What spawner is linked with this spawner
 	var/link = CLOSE
 
-
 /obj/machinery/button/valhalla_button/attack_hand(mob/living/user)
 	var/xeno_wanted = tgui_input_list(user, "What xeno do you want to spawn?", "Xeno spawn", GLOB.all_xeno_types)
 	if(!xeno_wanted)
