@@ -128,9 +128,9 @@
 	if(alarm_being_played > 0) // spam bad
 		return
 	else
-		playsound_z(z, 'sound/effects/shutters_alarm.ogg', 100) // woop woop, shutters opening.
+		playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
 		alarm_being_played += 1
-		addtimer(CALLBACK(src, .proc/played_alarm), 200)
+		addtimer(CALLBACK(src, .proc/played_alarm), 185)
 
 /obj/machinery/button/door/open_only/landing_zone/proc/played_alarm()
 	alarm_played += 1
