@@ -1,6 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - bugfix: "Detpacks now delete properly when destroyed"
-  - bugfix: "Detpacks no longer break when picked up and placed again"
-  - bugfix: "Detpacks are now immune to explosions, meaning they aren't instantly deleted by other detpacks placed too close"

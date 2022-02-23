@@ -1,8 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - bugfix: "Fixes card deck sprites on draw, and playing card sprites on discard"
-  - bugfix: "Standard decks now update properly when they are full"
-  - qol: "Fixed a couple Kotahi card names"
-  - qol: "Right-click on decks and cards now draws and discards respectively"
-  - qol: "Improved descriptions on decks and on playing cards"

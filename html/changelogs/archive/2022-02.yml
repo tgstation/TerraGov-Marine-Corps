@@ -319,3 +319,16 @@
   vilereaver41:
   - balance: Acidwell now 400 down from 500
   - balance: Filling an acidwell is now 150 down from 200
+2022-02-23:
+  Canohaaaaaaa:
+  - imageadd: Big explosions now release cosmetic shockwaves.
+  breadhunt:
+  - bugfix: Fixes card deck sprites on draw, and playing card sprites on discard
+  - bugfix: Standard decks now update properly when they are full
+  - qol: Fixed a couple Kotahi card names
+  - qol: Right-click on decks and cards now draws and discards respectively
+  - qol: Improved descriptions on decks and on playing cards
+  - bugfix: Detpacks now delete properly when destroyed
+  - bugfix: Detpacks no longer break when picked up and placed again
+  - bugfix: Detpacks are now immune to explosions, meaning they aren't instantly deleted
+      by other detpacks placed too close
