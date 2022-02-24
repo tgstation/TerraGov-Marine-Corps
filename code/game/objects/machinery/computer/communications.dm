@@ -9,7 +9,6 @@
 #define STATE_STATUSDISPLAY 8
 #define STATE_ALERT_LEVEL 9
 #define STATE_CONFIRM_LEVEL 10
-#define STATE_SANCTIONED 11
 
 //Note: Commented out procs are things I left alone and did not revise. Usually AI-related interactions.
 
@@ -122,11 +121,7 @@
 
 		if("sanction")
 			if(authenticated == 2)
-				if (state == STATE_SANCTIONED)
-					to_chat (usr, span_warning("Sanctions have already been issued. You wouldn't want to issue multiple sanctions, would you?"))
-					return FALSE
-				to_chat(usr, span_warning("The TerraGov Marine Corps have issued formal sanctions against the xenos for their unjustified invasion of the colony."))
-				state = STATE_SANCTIONED
+				priority_announce("The TerraGov Marine Corps have issued formal sanctions against the xenos for their unjustified invasion of the colony.", type = ANNOUNCEMENT_PRIORITY)
 
 		if("award")
 			if(!isliving(usr))
@@ -464,4 +459,3 @@
 #undef STATE_STATUSDISPLAY
 #undef STATE_ALERT_LEVEL
 #undef STATE_CONFIRM_LEVEL
-#undef STATE_SANCTIONED
