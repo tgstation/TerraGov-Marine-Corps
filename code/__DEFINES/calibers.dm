@@ -42,7 +42,6 @@
 #define CALIBER_10X27_INCENDIARY_CASELESS "10x27mm incendiary caseless"
 #define CALIBER_10x26_CASELESS "10x26mm caseless" //GPMG and SG
 #define CALIBER_ALIEN "alien alloy"
-#define CALIBER_20X28_GRENADE "20x28mm grenade"
 
 // --- Shotguns ---
 #define CALIBER_12G "12 gauge"
@@ -56,6 +55,7 @@
 #define CALIBER_RAILGUN "rail projectile"
 
 // --- Explosives ---
+#define CALIBER_20MM "20x28mm grenade"
 #define CALIBER_40MM "40mm grenade"
 #define CALIBER_84MM "84mm rocket"
 #define CALIBER_67MM "67mm shell"

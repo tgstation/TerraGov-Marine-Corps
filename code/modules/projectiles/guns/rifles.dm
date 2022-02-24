@@ -1405,7 +1405,7 @@
 	fire_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
-	caliber = CALIBER_20X28_GRENADE //codex
+	caliber = CALIBER_20MM //codex
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list()
 
@@ -1441,7 +1441,7 @@
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 30 //codex
 	wield_delay = 0.8 SECONDS
-	default_ammo_type = /obj/item/ammo_magazine/rifle/TX29
+	default_ammo_type = /obj/item/ammo_magazine/rifle/tx29
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx29)
 	attachable_allowed = list(
 		/obj/item/weapon/gun/rifle/tx29launcher,
@@ -1470,7 +1470,7 @@
 	starting_attachment_types = list(/obj/item/weapon/gun/rifle/tx29launcher)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 19, "stock_y" = 23)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	
+
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
 	fire_delay = 0.2 SECONDS

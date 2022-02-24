@@ -360,7 +360,7 @@
 /obj/item/ammo_magazine/rifle/tx29launcher
 	name = "\improper TX-29 20mm HE grenade magazine"
 	desc = "A 20mm magazine loaded with HE grenades. For use with the TX-29."
-	caliber = CALIBER_20x28_GRENADE
+	caliber = CALIBER_20MM
 	icon_state = "t18"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/tx29launcher

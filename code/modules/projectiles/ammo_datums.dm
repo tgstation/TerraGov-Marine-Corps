@@ -1183,8 +1183,8 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 15
 	sundering = 15
 
-/datum/ammo/tx29launcher/airburst/drop_nade(turf/T)
-	airburst(turf/T, obj/projectile/proj)
+/datum/ammo/tx29launcher/airburst/drop_nade(turf/T, obj/projectile/P)
+	airburst(T, P)
 
 /datum/ammo/tx29launcher/incendiary
 	name = "20mm incendiary grenade"
