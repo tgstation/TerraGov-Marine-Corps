@@ -122,6 +122,9 @@
 		if("sanction")
 			if(authenticated == 2)
 				priority_announce("The TerraGov Marine Corps have issued formal sanctions against the xenos for their unjustified invasion of the colony.", type = ANNOUNCEMENT_PRIORITY)
+				for(var/i in (GLOB.xeno_mob_list + GLOB.observer_list))
+					var/mob/M = i
+					to_chat(M, "<br><h2 class='alert'>Queen Mother Report</h2><br>[span_warning("The marines have issued illegal sanctions against us, for our perfectly justified actions!")]<br><br>")
 
 		if("award")
 			if(!isliving(usr))
