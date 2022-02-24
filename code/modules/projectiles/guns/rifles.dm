@@ -1391,3 +1391,93 @@
 	fire_delay = 0.2 SECONDS
 	scatter = 2
 	wield_delay = 0.5 SECONDS
+
+//-------------------------------------------------------
+// TX29 20mm grenade launcher
+
+/obj/item/weapon/gun/rifle/tx29launcher
+	name = "TX29 20mm grenade launcher"
+	desc = "A weapon-mounted, reloadable, five-shot grenade launcher."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = ""
+	max_shells = 5 //codex
+	max_chamber_items = 1
+	fire_delay = 1 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
+	caliber = CALIBER_20X28_GRENADE //codex
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_allowed = list()
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	pixel_shift_x = 14
+	pixel_shift_y = 18
+	default_ammo_type = /obj/item/ammo_magazine/rifle/tx29launcher
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/tx29launcher,
+		/obj/item/ammo_magazine/rifle/tx29launcher/airburst,
+		/obj/item/ammo_magazine/rifle/tx29launcher/incendiary,
+	)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	burst_amount = 1
+	accuracy_mult = 1.15
+	flags_attach_features = NONE
+	slot = ATTACHMENT_SLOT_STOCK
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+
+//-------------------------------------------------------
+// TX29 rifle
+
+/obj/item/weapon/gun/rifle/tx29
+	name = "\improper TX-29 assault rifle"
+	desc = "The TX-29 is a dual barrel air-burst weapon support weapons. It features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and a lower assault rifle with somewhat reduced capacity. Somewhat cumbersome to use due to its size and weight. Uses 10x24mm caseless ammunition."
+	icon_state = "t18"
+	item_state = "t18"
+	fire_sound = "gun_t12"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	caliber = CALIBER_10X24_CASELESS //codex
+	max_shells = 30 //codex
+	wield_delay = 0.8 SECONDS
+	default_ammo_type = /obj/item/ammo_magazine/rifle/TX29
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx29)
+	attachable_allowed = list(
+		/obj/item/weapon/gun/rifle/tx29launcher,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	starting_attachment_types = list(/obj/item/weapon/gun/rifle/tx29launcher)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 19, "stock_y" = 23)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 2
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.15 SECONDS
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1
+	scatter = 2
+	scatter_unwielded = 15
+	burst_scatter_mult = 2
+	aim_slowdown = 0.5

@@ -1143,6 +1143,58 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
 
+/datum/ammo/tx29launcher
+	name = "20mm HE grenade"
+	icon_state = "missile"
+	hud_state = "rocket_he"
+	hud_state_empty = "rocket_empty"
+	ping = null //no bounce off.
+	sound_bounce	= "rocket_bounce"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	armor_type = "bomb"
+	damage_falloff = 0
+	shell_speed = 2
+	accurate_range = 10
+	max_range = 12
+	damage = 20			//impact damage from a grenade to the dome
+	penetration = 0
+	sundering = 0
+	shrapnel_chance = 0
+	bullet_color = LIGHT_COLOR_FIRE
+
+/datum/ammo/tx29launcher/drop_nade(turf/T)
+	explosion(T, 0, 0, 3, 2)
+
+/datum/ammo/tx29launcher/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/tx29launcher/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+
+/datum/ammo/tx29launcher/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T)
+
+/datum/ammo/tx29launcher/do_at_max_range(obj/projectile/P)
+	drop_nade(get_turf(P))
+
+/datum/ammo/tx29launcher/airburst
+	name = "20mm airburst grenade"
+	airburst_multiplier	= 1
+	penetration = 15
+	sundering = 15
+
+/datum/ammo/tx29launcher/airburst/drop_nade(turf/T)
+	airburst(turf/T, obj/projectile/proj)
+
+/datum/ammo/tx29launcher/incendiary
+	name = "20mm incendiary grenade"
+
+/datum/ammo/tx29launcher/incendiary/drop_nade(turf/T, radius = 2)
+	if(!T || !isturf(T))
+		return
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	flame_radius(radius, T, 20, 20, 20, 12)
+
 /*
 //================================================
 					Rocket Ammo
