@@ -1468,7 +1468,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "pulse bolt"
 	icon_state = "pulse2"
 	hud_state = "pulse"
-	damage = 85 // this is gotta hurt...
+	damage = 90 // this is gotta hurt...
 	max_range = 40
 	penetration = 100
 	sundering = 100
