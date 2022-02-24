@@ -9,6 +9,7 @@
 #define STATE_STATUSDISPLAY 8
 #define STATE_ALERT_LEVEL 9
 #define STATE_CONFIRM_LEVEL 10
+#define STATE_SANCTIONED 11
 
 //Note: Commented out procs are things I left alone and did not revise. Usually AI-related interactions.
 
@@ -118,6 +119,14 @@
 				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
 				log_game("[key_name(usr)] has just sent a command announcement.")
 				cooldown_message = world.time
+
+		if("sanction")
+			if(authenticated == 2)
+				if (state == STATE_SANCTIONED)
+					to_chat (usr, span_warning("Sanctions have already been issued. You wouldn't want to issue multiple sanctions, would you?"))
+					return FALSE
+				to_chat(usr, span_warning("The TerraGov Marine Corps have issued formal sanctions against the xenos for their unjustified invasion of the colony."))
+				state = STATE_SANCTIONED
 
 		if("award")
 			if(!isliving(usr))
