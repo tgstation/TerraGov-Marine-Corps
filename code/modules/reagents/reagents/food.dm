@@ -84,6 +84,7 @@
 	taste_multi = 1.5 // stop sugar drowning out other flavours
 	nutriment_factor = 10
 	taste_description = "sweetness"
+	var/blood_gain = 0.2
 
 /datum/reagent/consumable/virus_food
 	name = "Virus Food"
