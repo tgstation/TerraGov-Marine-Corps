@@ -263,7 +263,7 @@
 /obj/machinery/deployable/mounted/atgun/attack_hand_alternate(mob/living/user)
 	return sponson.open(user)
 
-obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
+/obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
 	if(!ishuman(user))
 		return FALSE
 
