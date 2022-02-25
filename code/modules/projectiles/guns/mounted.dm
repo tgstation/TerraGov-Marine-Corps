@@ -264,10 +264,7 @@
 	return sponson.open(user)
 
 /obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
-	if(!ishuman(user))
-		return FALSE
-
-	if(user.lying_angle || user.incapacitated()) //Can't use your inventory when lying
+	if(!ishuman(user) || user.lying_angle || user.incapacitated())
 		return FALSE
 
 	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block

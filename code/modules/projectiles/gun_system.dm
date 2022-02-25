@@ -340,9 +340,8 @@
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
-	if(flags_item)
-		if(deployed_item)
-			AddElement(/datum/element/deployable_item, deployed_item, deploy_time, undeploy_time)
+	if(deployed_item)
+		AddElement(/datum/element/deployable_item, deployed_item, deploy_time, undeploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
