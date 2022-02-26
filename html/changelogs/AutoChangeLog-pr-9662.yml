@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - soundadd: "Replaced the old TTS vox voice with a more modern version."
+  - sounddel: "Removed all old TTS vox in favor of a new version."
