@@ -1419,7 +1419,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!isgun(attaching_to))
 		return FALSE
 	var/obj/item/weapon/gun/attaching_gun = attaching_to
-	if(ispath(attaching_gun.deploy_type, /obj/machinery/deployable/mounted/sentry))
+	if(ispath(attaching_gun.deployed_item, /obj/machinery/deployable/mounted/sentry))
 		to_chat(attacher, span_warning("[attaching_gun] is already a sentry!"))
 		return FALSE
 	return ..()
