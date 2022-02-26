@@ -251,3 +251,281 @@
 					/obj/item/trash/barcardine,\
 					/obj/item/trash/mre)
 
+///random civilian clothing for flavor
+/obj/effect/spawner/random/clothing
+	name = "Random clothing spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/clothing/suit/bio_suit,\
+					/obj/item/clothing/suit/bomber,\
+					/obj/item/clothing/suit/ianshirt,\
+					/obj/item/clothing/suit/radiation,\
+					/obj/item/clothing/suit/space,\
+					/obj/item/clothing/suit/space/rig/mining,\
+					/obj/item/clothing/suit/storage/hazardvest,\
+					/obj/item/clothing/suit/storage/hazardvest/lime,\
+					/obj/item/clothing/suit/storage/hazardvest/blue,\
+					/obj/item/clothing/suit/storage/labcoat,\
+					/obj/item/clothing/suit/wcoat,\
+					/obj/item/clothing/under/colonist,\
+					/obj/item/clothing/under/color/black,\
+					/obj/item/clothing/under/color/blackf,\
+					/obj/item/clothing/under/darkred,\
+					/obj/item/clothing/under/darkblue,\
+					/obj/item/clothing/under/gentlesuit,\
+					/obj/item/clothing/under/lawyer/female,\
+					/obj/item/clothing/under/liaison_suit,\
+					/obj/item/clothing/under/liaison_suit/formal,\
+					/obj/item/clothing/under/pj/blue,\
+					/obj/item/clothing/under/rank/cargo,\
+					/obj/item/clothing/under/rank/cargotech,\
+					/obj/item/clothing/under/rank/chaplain,\
+					/obj/item/clothing/under/rank/det,\
+					/obj/item/clothing/under/rank/engineer,\
+					/obj/item/clothing/under/rank/head_of_security/alt,\
+					/obj/item/clothing/under/rank/medical,\
+					/obj/item/clothing/under/rank/prisoner,\
+					/obj/item/clothing/under/rank/research_director/rdalt,\
+					/obj/item/clothing/under/rank/ro_suit,\
+					/obj/item/clothing/under/suit_jacket,\
+					/obj/item/clothing/under/suit_jacket/charcoal,\
+					/obj/item/clothing/under/swimsuit,\
+					/obj/item/clothing/under/rank/miner)
+
+///random civilian hats for flavor
+/obj/effect/spawner/random/hats
+	name = "Random hat spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/clothing/head/bandanna/red,\
+					/obj/item/clothing/head/beret,\
+					/obj/item/clothing/head/bomb_hood/security,\
+					/obj/item/clothing/head/boonie,\
+					/obj/item/clothing/head/bowler,\
+					/obj/item/clothing/head/bowlerhat,\
+					/obj/item/clothing/head/chaplain_hood,\
+					/obj/item/clothing/head/collectable/hardhat,\
+					/obj/item/clothing/head/collectable/HoS,\
+					/obj/item/clothing/head/collectable/rabbitears,\
+					/obj/item/clothing/head/collectable/tophat,\
+					/obj/item/clothing/head/collectable/welding,\
+					/obj/item/clothing/head/det_hat,\
+					/obj/item/clothing/head/det_hat/black,\
+					/obj/item/clothing/head/hardhat,\
+					/obj/item/clothing/head/hardhat/red,\
+					/obj/item/clothing/head/hardhat/white,\
+					/obj/item/clothing/head/headband,\
+					/obj/item/clothing/head/headband/rambo,\
+					/obj/item/clothing/head/headband/red,\
+					/obj/item/clothing/head/headband/snake,\
+					/obj/item/clothing/head/helmet,\
+					/obj/item/clothing/head/helmet/durag/jungle,\
+					/obj/item/clothing/head/helmet/gladiator,\
+					/obj/item/clothing/head/helmet/space,\
+					/obj/item/clothing/head/helmet/space/rig,\
+					/obj/item/clothing/head/helmet/space/syndicate,\
+					/obj/item/clothing/under/rank/head_of_security/alt,\
+					/obj/item/clothing/head/powdered_wig,\
+					/obj/item/clothing/head/radiation,\
+					/obj/item/clothing/head/soft,\
+					/obj/item/clothing/head/soft/red,\
+					/obj/item/clothing/head/strawhat,\
+					/obj/item/clothing/head/warning_cone,\
+					/obj/item/clothing/head/collectable/paper,\
+					/obj/item/clothing/head/helmet/riot)
+
+///random kitchen items
+/obj/effect/spawner/random/kitchen
+	name = "Random kitchen utensil spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/tool/kitchen/utensil/fork,\
+					/obj/item/tool/kitchen/utensil/pfork,\
+					/obj/item/tool/kitchen/utensil/spoon,\
+					/obj/item/tool/kitchen/utensil/pspoon,\
+					/obj/item/tool/kitchen/utensil/knife,\
+					/obj/item/tool/kitchen/utensil/pknife,\
+					/obj/item/tool/kitchen/rollingpin,\
+					/obj/item/tool/kitchen/tray)
+
+///random cables
+/obj/effect/spawner/random/cable
+	name = "Random cable spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/stack/cable_coil,\
+					/obj/item/stack/cable_coil/cut,\
+					/obj/item/stack/cable_coil/five,\
+					/obj/item/stack/cable_coil/twentyfive)
+
+///BALLISTIC WEAPONS///
+
+///random guns
+/obj/effect/spawner/random/gun //restricted to ballistic weapons available on the ship, no auto-9s here
+	name = "Random ballistic ammunition spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/weapon/gun/rifle/standard_assaultrifle,\
+					/obj/item/weapon/gun/rifle/standard_carbine,\
+					/obj/item/weapon/gun/rifle/standard_skirmishrifle,\
+					/obj/item/weapon/gun/rifle/tx11,\
+					/obj/item/weapon/gun/smg/standard_smg,\
+					/obj/item/weapon/gun/smg/standard_machinepistol,\
+					/obj/item/weapon/gun/rifle/standard_dmr,\
+					/obj/item/weapon/gun/rifle/standard_br,\
+					/obj/item/weapon/gun/rifle/chambered,\
+					/obj/item/weapon/gun/shotgun/pump/bolt,\
+					/obj/item/weapon/gun/shotgun/double/martini,\
+					/obj/item/weapon/gun/pistol/standard_pistol,\
+					/obj/item/weapon/gun/pistol/standard_heavypistol,\
+					/obj/item/weapon/gun/revolver/standard_revolver,\
+					/obj/item/weapon/gun/pistol/standard_pocketpistol,\
+					/obj/item/weapon/gun/pistol/vp70,\
+					/obj/item/weapon/gun/pistol/plasma_pistol,\
+					/obj/item/weapon/gun/shotgun/double/derringer,\
+					/obj/item/weapon/gun/rifle/pepperball,\
+					/obj/item/weapon/gun/shotgun/pump/lever/repeater,\
+					/obj/item/weapon/gun/shotgun/pump/bolt,\
+					/obj/item/weapon/gun/shotgun/double/marine,\
+					/obj/item/weapon/gun/rifle/standard_autoshotgun,\
+					/obj/item/weapon/gun/shotgun/combat/standardmarine,\
+					/obj/item/weapon/gun/shotgun)
+
+///random shotguns
+/obj/effect/spawner/random/gun/shotgun
+	name = "Random shotgun spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/weapon/gun/shotgun/pump/lever/repeater,\
+					/obj/item/weapon/gun/shotgun/pump/bolt,\
+					/obj/item/weapon/gun/shotgun,\
+					/obj/item/weapon/gun/shotgun/double/marine,\
+					/obj/item/weapon/gun/rifle/standard_autoshotgun,\
+					/obj/item/weapon/gun/shotgun/combat/standardmarine,\
+					/obj/item/weapon/gun/shotgun/pump/t35)
+
+///random machineguns
+/obj/effect/spawner/random/gun/machineguns
+	name = "Random machinegun spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/weapon/gun/rifle/standard_lmg,\
+					/obj/item/weapon/gun/rifle/standard_gpmg,\
+					/obj/item/weapon/gun/standard_mmg,\
+					/obj/item/weapon/gun/heavymachinegun)
+
+///random rifles
+/obj/effect/spawner/random/gun/rifles
+	name = "Random rifle spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/weapon/gun/rifle/standard_assaultrifle,\
+					/obj/item/weapon/gun/rifle/standard_carbine,\
+					/obj/item/weapon/gun/rifle/standard_skirmishrifle,\
+					/obj/item/weapon/gun/rifle/tx11)
+
+///random sidearms
+/obj/effect/spawner/random/gun/sidearms
+	name = "Random sidearm spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/weapon/gun/pistol/standard_pistol,\
+					/obj/item/weapon/gun/pistol/standard_heavypistol,\
+					/obj/item/weapon/gun/revolver/standard_revolver,\
+					/obj/item/weapon/gun/pistol/vp70,\
+					/obj/item/weapon/gun/pistol/standard_pocketpistol)
+
+///random melee weapons
+/obj/effect/spawner/random/melee
+	name = "Random melee weapons spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/weapon/claymore/mercsword/machete,\
+					/obj/item/weapon/combat_knife,\
+					/obj/item/attachable/bayonetknife,\
+					/obj/item/weapon/baseballbat,\
+					/obj/item/weapon/baseballbat/metal,\
+					/obj/item/weapon/broken_bottle,\
+					/obj/item/tool/hatchet,\
+					/obj/item/tool/kitchen/knife,\
+					/obj/item/tool/kitchen/knife/butcher,\
+					/obj/item/weapon/twohanded/spear,\
+					/obj/item/weapon/twohanded/spear/tactical,\
+					/obj/item/weapon/twohanded/fireaxe)
+
+
+///BALLISTIC WEAPON AMMO///
+
+///random ammunition
+/obj/effect/spawner/random/ammo
+	name = "Random ballistic ammunition spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/ammo_magazine/rifle/standard_assaultrifle,\
+					/obj/item/ammo_magazine/rifle/standard_carbine,\
+					/obj/item/ammo_magazine/rifle/standard_skirmishrifle,\
+					/obj/item/ammo_magazine/rifle/tx11,\
+					/obj/item/ammo_magazine/smg/standard_smg,\
+					/obj/item/ammo_magazine/smg/standard_machinepistol,\
+					/obj/item/ammo_magazine/rifle/standard_dmr,\
+					/obj/item/ammo_magazine/rifle/standard_br,\
+					/obj/item/ammo_magazine/rifle/chamberedrifle,\
+					/obj/item/ammo_magazine/rifle/bolt,\
+					/obj/item/ammo_magazine/rifle/martini,\
+					/obj/item/ammo_magazine/pistol/standard_pistol,\
+					/obj/item/ammo_magazine/pistol/standard_heavypistol,\
+					/obj/item/ammo_magazine/revolver/standard_revolver,\
+					/obj/item/ammo_magazine/pistol/standard_pocketpistol,\
+					/obj/item/ammo_magazine/pistol/vp70,\
+					/obj/item/ammo_magazine/pistol/plasma_pistol,\
+					/obj/item/ammo_magazine/pistol/derringer,\
+					/obj/item/ammo_magazine/rifle/pepperball,\
+					/obj/item/ammo_magazine/shotgun,\
+					/obj/item/ammo_magazine/shotgun/flechette,\
+					/obj/item/ammo_magazine/shotgun,\
+					/obj/item/ammo_magazine/rifle/tx15_slug)
+
+///for specific ranged weapon ammo spawners we don't spawn anything that marines couldn't get back on their ship
+
+///random shotgun ammunition
+/obj/effect/spawner/random/ammo/shotgun
+	name = "Random shotgun ammunition spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/ammo_magazine/shotgun/buckshot,\
+					/obj/item/ammo_magazine/shotgun/flechette,\
+					/obj/item/ammo_magazine/shotgun,\
+					/obj/item/ammo_magazine/rifle/tx15_slug)
+
+///random machinegun ammunition
+/obj/effect/spawner/random/ammo/machinegun
+	name = "Random machinegun ammunition spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/ammo_magazine/standard_lmg,\
+					/obj/item/ammo_magazine/standard_gpmg,\
+					/obj/item/ammo_magazine/standard_mmg,\
+					/obj/item/ammo_magazine/heavymachinegun)
+
+///random rifle ammunition
+/obj/effect/spawner/random/ammo/rifle
+	name = "Random rifle ammunition spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/ammo_magazine/rifle/standard_assaultrifle,\
+					/obj/item/ammo_magazine/rifle/standard_carbine,\
+					/obj/item/ammo_magazine/rifle/standard_skirmishrifle,\
+					/obj/item/ammo_magazine/rifle/tx11)
+
+///random sidearm ammunition
+/obj/effect/spawner/random/ammo/sidearm
+	name = "Random sidearm ammunition spawner"
+	icon_state = "random_trash"
+	item_to_spawn()
+		return pick(/obj/item/ammo_magazine/pistol/standard_pistol,\
+					/obj/item/ammo_magazine/pistol/standard_heavypistol,\
+					/obj/item/ammo_magazine/revolver/standard_revolver,\
+					/obj/item/ammo_magazine/pistol/vp70,\
+					/obj/item/ammo_magazine/pistol/derringer,\
+					/obj/item/ammo_magazine/pistol/standard_pocketpistol)
+
