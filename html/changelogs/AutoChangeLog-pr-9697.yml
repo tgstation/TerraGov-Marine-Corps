@@ -1,4 +1,0 @@
-author: "vilereaver41"
-delete-after: True
-changes: 
-  - bugfix: "bad regions and messed up apc's are now fixed"

@@ -339,3 +339,14 @@
       variety and content
   - balance: Buff DS armor values and resistance. Remove slowdown
   - admin: DS is actually OP now, use them with caution admins.
+2022-02-26:
+  2whatever2:
+  - bugfix: Plasma pistol actually only works when fully wielded while attached to
+      a gun.
+  Lumipharon:
+  - config: Made the ALF and type 71 seasonal actually be in rotation
+  RipGrayson:
+  - soundadd: Replaced the old TTS vox voice with a more modern version.
+  - sounddel: Removed all old TTS vox in favor of a new version.
+  vilereaver41:
+  - bugfix: bad regions and messed up apc's are now fixed
