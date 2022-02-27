@@ -1329,8 +1329,8 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "shell_empty"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 3
-	damage = 100
-	penetration = 50
+	damage = 90
+	penetration = 30
 	sundering = 10
 	handful_amount = 1
 

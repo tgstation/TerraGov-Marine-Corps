@@ -236,6 +236,7 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_time = 4 SECONDS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
+	resistance_flags = UNACIDABLE
 	soft_armor = list("melee" = 60, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	scatter = 0
@@ -243,7 +244,7 @@
 	fire_delay = 3 SECONDS
 	burst_amount = 1
 	undeploy_time = 2000 SECONDS
-	max_integrity = 2000
+	max_integrity = 800
 	deployed_item = /obj/machinery/deployable/mounted/atgun
 
 /obj/machinery/deployable/mounted/atgun
@@ -274,9 +275,9 @@
 /obj/machinery/deployable/mounted/atgun/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(2000)
+			take_damage(800)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(400, 500))
+			take_damage(rand(300, 400))
 		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 50))
 
