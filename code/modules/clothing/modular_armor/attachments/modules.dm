@@ -228,6 +228,13 @@
 	///Spark system used to generate sparks when the armor takes damage
 	var/datum/effect_system/spark_spread/spark_system
 
+	///Shield color when the shield is 0 - 33% full
+	var/shield_color_low = COLOR_MAROON
+	///Shield color when the shield is 33 - 66% full
+	var/shield_color_mid = COLOR_MOSTLY_PURE_RED
+	///Shield color when the shield is 66% to full
+	var/shield_color_full = COLOR_BLUE_LIGHT
+
 	///Delay it takes to start recharging again once the shield is completely broken.
 	var/broken_shield_charge_delay = 5 SECONDS
 	///Cooldown used to determin when the shieild should start charging once more.
@@ -250,8 +257,8 @@
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/parent_examine)
 	saved_soft_armor = parent.soft_armor
 	saved_hard_armor = parent.hard_armor
-	parent.hard_armor = parent.hard_armor.setRating(0, 0, 0, 0, 0, 0, fire = 0, acid = 0)
-	parent.soft_armor = parent.soft_armor.setRating(0, 0, 0, 0, 0, 0, fire = 0, acid = 0)
+	parent.hard_armor = parent.hard_armor.setRating(0, 0, 0, 0, 0, 0, 0, 0, 0)
+	parent.soft_armor = parent.soft_armor.setRating(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 
 /obj/item/armor_module/module/eshield/on_detach(obj/item/detaching_from, mob/user)
@@ -298,12 +305,12 @@
 	if(shield_left > 0)
 		shield_health = shield_left
 		switch(shield_left / max_shield_health)
-			if(0 to 0.2)
-				affected.add_filter("eshield", 1, outline_filter(1, COLOR_MAROON))
-			if(0.2 to 0.6)
-				affected.add_filter("eshield", 1, outline_filter(1, COLOR_MOSTLY_PURE_RED))
-			if(0.6 to 1)
-				affected.add_filter("eshield", 1, outline_filter(1, COLOR_BLUE_LIGHT))
+			if(0 to 0.33)
+				affected.add_filter("eshield", 1, outline_filter(1, shield_color_low))
+			if(0.33 to 0.66)
+				affected.add_filter("eshield", 1, outline_filter(1, shield_color_mid))
+			if(0.66 to 1)
+				affected.add_filter("eshield", 1, outline_filter(1, shield_color_full))
 		spark_system.start()
 	else
 		shield_health = 0
