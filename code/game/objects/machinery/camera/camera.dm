@@ -376,6 +376,9 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("landing zones")
 
+/obj/machinery/camera/autoname/lz_camera/Initialize(mapload)
+	. = ..()
+	icon_state = "" //remove visibility on map load
 
 /obj/machinery/camera/autoname/lz_camera/emp_act(severity)
 	return

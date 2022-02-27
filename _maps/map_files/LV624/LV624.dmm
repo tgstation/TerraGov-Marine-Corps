@@ -11778,6 +11778,7 @@
 /area/lv624/ground/jungle7)
 "kez" = (
 /obj/structure/jungle/vines/heavy,
+/obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport2)
 "keK" = (
@@ -15101,7 +15102,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "odC" = (
-/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/jungle/vines,
 /obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport2)
@@ -17648,10 +17649,11 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
 "rqK" = (
-/obj/machinery/miner/damaged,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/lazarus/spaceport2)
 "rqQ" = (
 /obj/item/stack/sheet/animalhide/xeno{
 	color = "#524e4e";
@@ -34797,7 +34799,7 @@ vWz
 rRx
 rRx
 rRx
-vWz
+odC
 vWz
 kez
 tBK
@@ -37634,8 +37636,8 @@ vEW
 tNU
 vbu
 hiy
-ybc
-odC
+rqK
+yaB
 jro
 iwB
 mOs
@@ -37988,8 +37990,8 @@ srR
 vvX
 uoM
 pQz
-ybc
-odC
+rqK
+yaB
 jro
 iwB
 mOs
@@ -42751,7 +42753,7 @@ aET
 wEJ
 bjM
 adg
-rqK
+miC
 hYO
 aES
 mOs
