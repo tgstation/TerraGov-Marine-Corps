@@ -1279,6 +1279,11 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 15
 	sundering = 1.5
 
+/datum/ammo/bullet/tx29airburst_spread/incendiary/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	T.ignite(5, 10)
+
 /datum/ammo/bullet/tx29airburst_spread/incendiary/on_leave_turf(turf/T, atom/firer)
 	drop_flame(T)
 
