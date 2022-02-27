@@ -295,3 +295,63 @@
 
 /obj/effect/decal/lvsanddecal/full
 	icon_state = "lvsanddecal_full"
+
+/obj/effect/decal/tracks/human1
+	icon = 'icons/effects/fluidtracks.dmi'
+	icon_state = "human1"
+	color = "#9bf500"
+
+/obj/effect/decal/tracks/human1/bloody
+	color = "#860707"
+
+/obj/effect/decal/tracks/human1/wet
+	color = "#626464"
+	alpha = 140
+	
+/obj/effect/decal/tracks/human2
+	icon = 'icons/effects/fluidtracks.dmi'
+	icon_state = "human2"
+	color = "#9bf500"
+
+/obj/effect/decal/tracks/human2/bloody
+	color = "#860707"
+
+/obj/effect/decal/tracks/paw1
+	icon = 'icons/effects/fluidtracks.dmi'
+	icon_state = "paw1"
+	color = "#9bf500"
+
+/obj/effect/decal/tracks/paw1/bloody
+	color = "#860707"
+
+/obj/effect/decal/tracks/paw2
+	icon = 'icons/effects/fluidtracks.dmi'
+	icon_state = "paw2"
+	color = "#9bf500"
+
+/obj/effect/decal/tracks/paw2/bloody
+	color = "#860707"
+
+/obj/effect/decal/tracks/claw1
+	icon = 'icons/effects/fluidtracks.dmi'
+	icon_state = "claw1"
+	color = "#9bf500"
+
+/obj/effect/decal/tracks/claw1/bloody
+	color = "#860707"
+
+/obj/effect/decal/tracks/claw2
+	icon = 'icons/effects/fluidtracks.dmi'
+	icon_state = "claw2"
+	color = "#9bf500"
+
+/obj/effect/decal/tracks/claw2/bloody
+	color = "#860707"
+
+/obj/effect/decal/tracks/wheels
+	icon = 'icons/effects/fluidtracks.dmi'
+	icon_state = "wheels"
+	color = "#9bf500"
+
+/obj/effect/decal/tracks/wheels/bloody
+	color = "#860707"

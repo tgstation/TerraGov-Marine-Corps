@@ -388,8 +388,7 @@
 					/obj/item/weapon/gun/shotgun/pump/bolt,\
 					/obj/item/weapon/gun/shotgun/double/marine,\
 					/obj/item/weapon/gun/rifle/standard_autoshotgun,\
-					/obj/item/weapon/gun/shotgun/combat/standardmarine,\
-					/obj/item/weapon/gun/shotgun)
+					/obj/item/weapon/gun/shotgun/combat/standardmarine)
 
 ///random shotguns
 /obj/effect/spawner/random/gun/shotgun
@@ -399,7 +398,6 @@
 		return pick(/obj/item/weapon/gun/shotgun/pump/lever/repeater,\
 					/obj/item/weapon/gun/shotgun/pump/bolt,\
 					/obj/item/weapon/gun/shotgun/pump/cmb,\
-					/obj/item/weapon/gun/shotgun,\
 					/obj/item/weapon/gun/shotgun/double/marine,\
 					/obj/item/weapon/gun/rifle/standard_autoshotgun,\
 					/obj/item/weapon/gun/shotgun/combat/standardmarine,\
@@ -479,7 +477,6 @@
 					/obj/item/ammo_magazine/pistol/plasma_pistol,\
 					/obj/item/ammo_magazine/pistol/derringer,\
 					/obj/item/ammo_magazine/rifle/pepperball,\
-					/obj/item/ammo_magazine/shotgun,\
 					/obj/item/ammo_magazine/shotgun/flechette,\
 					/obj/item/ammo_magazine/shotgun,\
 					/obj/item/ammo_magazine/rifle/tx15_slug)
