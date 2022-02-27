@@ -1187,7 +1187,7 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = LIGHT_COLOR_FIRE
 
 /datum/ammo/tx29launcher/drop_nade(turf/T)
-	explosion(T, 0, 0, 3, 2)
+	explosion(T, 0, 0, 2, 2)
 
 /datum/ammo/tx29launcher/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
@@ -1227,7 +1227,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/tx29launcher/airburst/do_at_max_range(obj/projectile/proj)
 	var/main_proj_angle = Get_Angle(proj.firer, get_turf(proj))
 	bonus_projectiles_amount = 5
-	fire_directionalburst(proj, proj.firer, proj.loc, 4, proj.projectile_speed, main_proj_angle)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
 	bonus_projectiles_amount = 0
 
 /datum/ammo/bullet/tx29airburst_spread
@@ -1241,6 +1241,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 1
 	penetration = 20
 	sundering = 2.5
+
 /datum/ammo/tx29launcher/incendiary
 	name = "20mm incendiary grenade"
 	bonus_projectiles_type = /datum/ammo/bullet/tx29airburst_spread/incendiary
@@ -1267,7 +1268,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/tx29launcher/incendiary/do_at_max_range(obj/projectile/proj)
 	var/main_proj_angle = Get_Angle(proj.firer, get_turf(proj))
 	bonus_projectiles_amount = 5
-	fire_directionalburst(proj, proj.firer, proj.loc, 4, proj.projectile_speed, main_proj_angle)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
 	bonus_projectiles_amount = 0
 
 /datum/ammo/bullet/tx29airburst_spread/incendiary
