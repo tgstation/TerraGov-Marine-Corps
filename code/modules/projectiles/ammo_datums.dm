@@ -190,6 +190,30 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle -= 360
 		new_proj.fire_at(shooter.Adjacent(target) ? target : null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
+/datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
+	var/effect_icon = ""
+	var/proj_type = /obj/projectile
+	if(istype(main_proj, /obj/projectile/hitscan))
+		proj_type = /obj/projectile/hitscan
+		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
+		effect_icon = main_proj_hitscan.effect_icon
+	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
+		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
+		if(bonus_projectiles_type)
+			new_proj.generate_bullet(bonus_projectiles_type)
+			var/obj/item/weapon/gun/g = source
+			if(source) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
+				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
+		else //If no bonus type is defined then the extra projectiles are the same as the main one.
+			new_proj.generate_bullet(src)
+
+		//Scatter here is how many degrees extra stuff deviate from the main projectile, first two the same amount, one to each side, and from then on the extra pellets keep widening the arc.
+		var/new_angle = angle + ( (rand(0, main_proj.ammo.bonus_projectiles_scatter)) * (prob(50) ? 1 : -1) )
+		if(new_angle < 0)
+			new_angle += 360
+		else if(new_angle > 360)
+			new_angle -= 360
+		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.loc, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 /datum/ammo/proc/drop_flame(turf/T)
 	if(!istype(T))
@@ -1179,21 +1203,83 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/tx29launcher/airburst
 	name = "20mm airburst grenade"
-	airburst_multiplier	= 1
-	penetration = 15
-	sundering = 15
+	bonus_projectiles_type = /datum/ammo/bullet/tx29airburst_spread
+	bonus_projectiles_scatter = 30
 
-/datum/ammo/tx29launcher/airburst/drop_nade(turf/T, obj/projectile/P)
-	airburst(T, P)
+/datum/ammo/tx29launcher/airburst/on_hit_mob(mob/M, obj/projectile/proj)
+	var/main_proj_angle = Get_Angle(proj.firer, M)
+	bonus_projectiles_amount = 5
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 0
 
+/datum/ammo/tx29launcher/airburst/on_hit_obj(obj/O, obj/projectile/proj)
+	var/main_proj_angle = Get_Angle(proj.firer, O)
+	bonus_projectiles_amount = 5
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx29launcher/airburst/on_hit_turf(turf/T, obj/projectile/proj)
+	var/main_proj_angle = Get_Angle(proj.firer, T)
+	bonus_projectiles_amount = 5
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx29launcher/airburst/do_at_max_range(obj/projectile/proj)
+	var/main_proj_angle = Get_Angle(proj.firer, get_turf(proj))
+	bonus_projectiles_amount = 5
+	fire_directionalburst(proj, proj.firer, proj.loc, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 0
+
+/datum/ammo/bullet/tx29airburst_spread
+	name = "flechette"
+	icon_state = "flechette"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
+	accuracy_var_low = 15
+	accuracy_var_high = 5
+	max_range = 4
+	damage = 20
+	damage_falloff = 1
+	penetration = 20
+	sundering = 2.5
 /datum/ammo/tx29launcher/incendiary
 	name = "20mm incendiary grenade"
+	bonus_projectiles_type = /datum/ammo/bullet/tx29airburst_spread/incendiary
+	bonus_projectiles_scatter = 30
 
-/datum/ammo/tx29launcher/incendiary/drop_nade(turf/T, radius = 2)
-	if(!T || !isturf(T))
-		return
-	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(radius, T, 20, 20, 20, 12)
+/datum/ammo/tx29launcher/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
+	var/main_proj_angle = Get_Angle(proj.firer, M)
+	bonus_projectiles_amount = 5
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx29launcher/incendiary/on_hit_obj(obj/O, obj/projectile/proj)
+	var/main_proj_angle = Get_Angle(proj.firer, O)
+	bonus_projectiles_amount = 5
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx29launcher/incendiary/on_hit_turf(turf/T, obj/projectile/proj)
+	var/main_proj_angle = Get_Angle(proj.firer, T)
+	bonus_projectiles_amount = 5
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx29launcher/incendiary/do_at_max_range(obj/projectile/proj)
+	var/main_proj_angle = Get_Angle(proj.firer, get_turf(proj))
+	bonus_projectiles_amount = 5
+	fire_directionalburst(proj, proj.firer, proj.loc, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 0
+
+/datum/ammo/bullet/tx29airburst_spread/incendiary
+	name = "incendiary flechette"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE|AMMO_INCENDIARY|AMMO_LEAVE_TURF
+	damage = 10
+	damage_falloff = 1
+	penetration = 15
+	sundering = 1.5
+
+/datum/ammo/bullet/tx29airburst_spread/incendiary/on_leave_turf(turf/T, atom/firer)
+	drop_flame(T)
 
 /*
 //================================================
