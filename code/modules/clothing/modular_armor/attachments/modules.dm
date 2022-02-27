@@ -233,8 +233,8 @@
 
 	///Delay it takes to start recharging again once the shield is completely broken.
 	var/broken_shield_charge_delay = 5 SECONDS
-	///Cooldown used to determin when the shieild should start charging once more.
-	COOLDOWN_DECLARE(broken)
+	///Cooldown used to determine when the shield should start charging again after it is broken.
+	COOLDOWN_DECLARE(shield_broken_cooldown)
 
 
 /obj/item/armor_module/module/eshield/Initialize()
@@ -257,13 +257,17 @@
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_PARENT_EXAMINE))
 	return ..()
 
+///Called to give extra info on parent examine.
 /obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/examiner)
+	SIGNAL_HANDLER
 	to_chat(examiner, span_notice("Recharge Rate: [recharge_rate/2] health per second\nCurrent Shield Health: [shield_health]\nMaximum Shield Health: [max_shield_health]\n"))
-	if(COOLDOWN_CHECK(src, broken))
+	if(COOLDOWN_CHECK(src, shield_broken_cooldown))
 		return
-	to_chat(examiner, span_warning("Your shield is broken! It will recharge again in [COOLDOWN_TIMELEFT(src, broken)/10] seconds!"))
+	to_chat(examiner, span_warning("Your shield is broken! It will recharge again in [COOLDOWN_TIMELEFT(src, shield_broken_cooldown)/10] seconds!"))
 
+///Handles starting the shield when the parent is equiped to the correct slot.
 /obj/item/armor_module/module/eshield/proc/handle_equip(datum/source, mob/equipper, slot)
+	SIGNAL_HANDLER
 	if(!isliving(equipper))
 		return
 	if(slot != SLOT_WEAR_SUIT)
@@ -271,21 +275,23 @@
 		STOP_PROCESSING(SSobj, src)
 		equipper.remove_filter("eshield")
 		shield_health = 0
+		return
+	if(COOLDOWN_CHECK(src, shield_broken_cooldown))
+		START_PROCESSING(SSobj, src)
+		playsound(equipper, 'sound/items/eshield_recharge.ogg', 40)
 	else
-		if(COOLDOWN_CHECK(src, broken))
-			START_PROCESSING(SSobj, src)
-			playsound(equipper, 'sound/items/eshield_recharge.ogg', 40)
-		else
-			addtimer(CALLBACK(src, .proc/begin_recharge), COOLDOWN_TIMELEFT(src, broken))
+		addtimer(CALLBACK(src, .proc/begin_recharge), COOLDOWN_TIMELEFT(src, shield_broken_cooldown))
 
-		RegisterSignal(equipper, COMSIG_LIVING_SHIELDCALL, .proc/handle_shield)
+	RegisterSignal(equipper, COMSIG_LIVING_SHIELDCALL, .proc/handle_shield)
 
-
+///Adds the correct proc callback to the shield list for intercepting damage.
 /obj/item/armor_module/module/eshield/proc/handle_shield(datum/source, list/affecting_shields, dam_type)
+	SIGNAL_HANDLER
 	if(!shield_health)
 		return
 	affecting_shields += CALLBACK(src, .proc/intercept_damage)
 
+///Handles the interception of damage.
 /obj/item/armor_module/module/eshield/proc/intercept_damage(attack_type, incoming_damage, damage_type, silent)
 	if(shield_health <= 0)
 		return incoming_damage
@@ -302,14 +308,15 @@
 			if(0.66 to 1)
 				affected.add_filter("eshield", 1, outline_filter(1, shield_color_full))
 		spark_system.start()
-	else
-		shield_health = 0
-		STOP_PROCESSING(SSobj, src)
-		addtimer(CALLBACK(src, .proc/begin_recharge), broken_shield_charge_delay)
-		COOLDOWN_START(src, broken, broken_shield_charge_delay)
-		parent.say("Warning: Shield is down! Rebooting in [broken_shield_charge_delay/10] seconds!")
-		return shield_left * -1
+		return 0
+	shield_health = 0
+	STOP_PROCESSING(SSobj, src)
+	addtimer(CALLBACK(src, .proc/begin_recharge), broken_shield_charge_delay)
+	COOLDOWN_START(src, shield_broken_cooldown, broken_shield_charge_delay)
+	parent.say("Warning: Shield is down! Rebooting in [broken_shield_charge_delay/10] seconds!")
+	return shield_left * -1
 
+///Starts the shield recharging after it has been broken.
 /obj/item/armor_module/module/eshield/proc/begin_recharge()
 	if(!ishuman(parent.loc))
 		return
@@ -321,10 +328,7 @@
 
 
 /obj/item/armor_module/module/eshield/process()
-	var/new_shield_health = shield_health + recharge_rate
-	if(new_shield_health > max_shield_health)
-		new_shield_health = max_shield_health
-	shield_health = new_shield_health
+	shield_health = min(shield_health + recharge_rate, max_shield_health)
 	if(shield_health == max_shield_health)
 		return
 	var/percentage_left = shield_health/max_shield_health
