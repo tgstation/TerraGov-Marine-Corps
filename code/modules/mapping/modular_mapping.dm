@@ -80,7 +80,7 @@
 	template_width = 80
 	template_height = 33
 	min_player_num = 0
-	max_player_num = 50
+	max_player_num = 45
 
 /datum/map_template/modular/lv624/cavemapfour
 	name = "LV cavern four"

@@ -445,6 +445,7 @@
 	name = "vines"
 	desc = "A mass of twisted vines."
 	icon = 'icons/effects/spacevines.dmi'
+	icon_state = "light2"
 
 /obj/structure/jungle/vines/attackby(obj/item/I, mob/user, params)
 	. = ..()

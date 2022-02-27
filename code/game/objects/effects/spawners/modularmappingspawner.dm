@@ -59,8 +59,8 @@
 
 /obj/effect/spawner/modularmap/lv624/largecentralcave
 	mapid = "lvcaveslakearea"
-	spawner_height = 80
-	spawner_width = 33
+	spawner_height = 33
+	spawner_width = 80
 
 
 /************BIG RED******/

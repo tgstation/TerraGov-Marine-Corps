@@ -40,6 +40,12 @@
 "cQ" = (
 /turf/closed/mineral/indestructible,
 /area/lv624/ground/caves/rock)
+"df" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
+/turf/open/floor/plating/asteroidfloor,
+/area/lv624/ground/caves/central2)
 "dq" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/plating/ground/dirt,
@@ -196,6 +202,7 @@
 "pr" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/weed_node,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "pL" = (
@@ -228,6 +235,7 @@
 /area/lv624/ground/caves/central2)
 "rQ" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "rS" = (
@@ -252,6 +260,8 @@
 /area/lv624/ground/caves/central2)
 "th" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "tw" = (
@@ -272,7 +282,7 @@
 "ui" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Leisure Dome"
+	name = "\improper Xenomorph Research Dome"
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
@@ -281,7 +291,7 @@
 "uz" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	name = "\improper Leisure Dome"
+	name = "\improper Xenomorph Research Dome"
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central2)
@@ -308,6 +318,12 @@
 /obj/structure/table/reinforced,
 /obj/item/camera,
 /turf/open/floor/dark2,
+/area/lv624/ground/caves/central2)
+"wd" = (
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "wD" = (
 /obj/structure/table/reinforced,
@@ -340,11 +356,17 @@
 /obj/effect/decal/lvsanddecal{
 	dir = 8
 	},
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "yj" = (
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
+"yW" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/decal/lvsanddecal/full,
+/turf/open/floor/plating/asteroidfloor,
+/area/lv624/ground/caves/central2)
 "zB" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
@@ -384,8 +406,7 @@
 /area/lv624/ground/caves/central2)
 "BZ" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
-	name = "\improper Leisure Dome"
+	name = "\improper Xenomorph Research Dome"
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/lv624/ground/caves/central2)
@@ -438,10 +459,19 @@
 /obj/machinery/computer/atmos_alert,
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
+"Gy" = (
+/obj/effect/ai_node,
+/obj/effect/decal/lvsanddecal/full,
+/turf/open/floor/plating/asteroidfloor,
+/area/lv624/ground/caves/central2)
 "GN" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
+"GW" = (
+/obj/effect/decal/lvsanddecal/full,
+/turf/open/floor/plating/asteroidfloor,
+/area/lv624/ground/caves/central2)
 "Ho" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/silver{
@@ -470,9 +500,14 @@
 /turf/open/floor/dark2,
 /area/lv624/ground/caves/central2)
 "It" = (
-/obj/machinery/miner/damaged/platinum,
+/obj/effect/decal/lvsanddecal{
+	dir = 4
+	},
+/obj/effect/decal/lvsanddecal{
+	dir = 8
+	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/dirt,
+/turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "IL" = (
 /obj/item/ammo_casing/bullet,
@@ -486,8 +521,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
+"JQ" = (
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidfloor,
+/area/lv624/ground/caves/central2)
 "JS" = (
 /obj/effect/ai_node,
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "Kh" = (
@@ -539,6 +581,8 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central2)
 "Nt" = (
+/obj/effect/decal/lvsanddecal/full,
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "NJ" = (
@@ -638,6 +682,7 @@
 /obj/effect/decal/lvsanddecal{
 	dir = 4
 	},
+/obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/ground/caves/central2)
 "RM" = (
@@ -1232,15 +1277,15 @@ lx
 lx
 Yr
 lx
-Nt
+GW
 Nt
 Yr
 lx
-Nt
+GW
 lx
-Nt
+GW
 lx
-Nt
+GW
 lx
 Xe
 Xe
@@ -1268,14 +1313,14 @@ lx
 lx
 Nt
 Nt
-Nt
+GW
 lx
 Nt
 lx
 lx
 Ra
 lx
-Nt
+wd
 lx
 Xe
 Xe
@@ -1307,10 +1352,10 @@ lx
 lx
 lx
 lx
-Nt
+GW
 lx
 lx
-Nt
+GW
 Yr
 lx
 Xe
@@ -1367,7 +1412,7 @@ Xe
 Xe
 lx
 AO
-Nt
+JQ
 Yr
 YH
 YH
@@ -1381,8 +1426,8 @@ Xe
 Xe
 lx
 lx
-Nt
-Nt
+GW
+JQ
 lx
 YH
 YH
@@ -1472,7 +1517,7 @@ Xe
 lx
 lx
 Nt
-Nt
+GW
 YH
 Xe
 Xe
@@ -1488,7 +1533,7 @@ lx
 Yr
 lx
 AO
-Nt
+JQ
 lx
 AO
 lx
@@ -1593,8 +1638,8 @@ YH
 lx
 lx
 lx
-Nt
-Nt
+JQ
+GW
 lx
 YH
 YH
@@ -1611,7 +1656,7 @@ Xe
 YH
 lx
 lx
-Nt
+GW
 lx
 YH
 YH
@@ -1645,7 +1690,7 @@ Xe
 YH
 YH
 lx
-Nt
+GW
 Nt
 jf
 YH
@@ -1786,7 +1831,7 @@ lx
 lx
 Nt
 Nt
-Nt
+GW
 YH
 Xe
 Xe
@@ -1803,7 +1848,7 @@ Xe
 Xe
 Xe
 lx
-Nt
+GW
 lx
 lx
 YH
@@ -1820,7 +1865,7 @@ YH
 Yr
 lx
 lx
-Nt
+GW
 lx
 YH
 Xe
@@ -1839,7 +1884,7 @@ Xe
 Xe
 lx
 lx
-Nt
+JQ
 lx
 lx
 YH
@@ -1854,7 +1899,7 @@ Xe
 YH
 lx
 lx
-Nt
+GW
 lx
 lx
 YH
@@ -1874,7 +1919,7 @@ Xe
 Xe
 lx
 lx
-Nt
+GW
 lx
 YH
 YH
@@ -1926,7 +1971,7 @@ lx
 YH
 lx
 rQ
-Nt
+GW
 lx
 YH
 Xe
@@ -1943,7 +1988,7 @@ Xe
 Xe
 lx
 lx
-rQ
+df
 lx
 lx
 lx
@@ -1960,7 +2005,7 @@ Xe
 lx
 lx
 lx
-Nt
+GW
 Nt
 lx
 YH
@@ -1980,7 +2025,7 @@ Yr
 lx
 lx
 lx
-Nt
+GW
 lx
 Xe
 cQ
@@ -2013,7 +2058,7 @@ YH
 lx
 lx
 lx
-Nt
+GW
 Nt
 lx
 lx
@@ -2032,7 +2077,7 @@ lx
 lx
 lx
 lx
-Nt
+GW
 Nt
 lx
 YH
@@ -2067,7 +2112,7 @@ Xe
 lx
 lx
 AO
-Nt
+GW
 lx
 Yr
 lx
@@ -2105,21 +2150,21 @@ lx
 lx
 lx
 lx
-Nt
-Nt
+JQ
+GW
 lx
 lx
 lx
 lx
 lx
 lx
-Nt
+GW
 AO
 Nt
-Nt
+GW
 AO
 lx
-Nt
+GW
 AO
 lx
 Xe
@@ -2141,18 +2186,18 @@ lx
 lx
 lx
 Nt
-Nt
+GW
 Nt
 lx
 lx
 Yr
 Nt
-Nt
+GW
 lx
 Nt
 Yr
 lx
-Nt
+JQ
 lx
 Yr
 lx
@@ -2224,7 +2269,7 @@ ev
 lx
 YH
 lx
-Nt
+GW
 lx
 jf
 lx
@@ -2258,7 +2303,7 @@ lx
 ev
 lx
 lx
-Nt
+GW
 lx
 jf
 lx
@@ -2292,7 +2337,7 @@ Rl
 lx
 ev
 Je
-Nt
+GW
 lx
 lx
 lx
@@ -2330,7 +2375,7 @@ lx
 Nt
 lx
 Yr
-Nt
+GW
 lx
 lx
 lx
@@ -2364,7 +2409,7 @@ ev
 lx
 lx
 Je
-Nt
+GW
 lx
 lx
 lx
@@ -2397,10 +2442,10 @@ Rl
 lx
 ev
 lx
-Nt
+GW
 Ma
 lx
-Nt
+GW
 lx
 lx
 lx
@@ -2466,8 +2511,8 @@ BL
 Df
 MK
 ev
-Nt
-Nt
+GW
+JQ
 lx
 lx
 AO
@@ -2504,8 +2549,8 @@ ev
 Nt
 JS
 lx
+gk
 It
-Ma
 ha
 yf
 lx
@@ -2538,7 +2583,7 @@ MK
 ev
 lx
 lx
-Nt
+GW
 lx
 lx
 lx
@@ -2606,9 +2651,9 @@ Yg
 Rl
 lx
 ev
-Nt
+GW
 SK
-Nt
+GW
 lx
 lx
 OG
@@ -2712,7 +2757,7 @@ Rl
 Yr
 ev
 lx
-JS
+Gy
 OG
 MC
 ik
@@ -2771,7 +2816,7 @@ Xe
 Xe
 Xe
 lx
-Nt
+GW
 lx
 lx
 lx
@@ -2781,7 +2826,7 @@ Yr
 lx
 lx
 ev
-Nt
+JQ
 lx
 qh
 Au
@@ -2808,7 +2853,7 @@ ev
 ev
 ev
 ev
-th
+yW
 ev
 ev
 ev
@@ -2845,7 +2890,7 @@ lx
 lx
 lx
 lx
-Nt
+GW
 lx
 Yr
 lx
@@ -2876,18 +2921,18 @@ YH
 YH
 lx
 Yr
-Nt
+GW
 Yr
 lx
-Nt
+GW
+lx
+JQ
 lx
 Nt
 lx
-Nt
 lx
 lx
-lx
-Nt
+GW
 lx
 Ra
 lx

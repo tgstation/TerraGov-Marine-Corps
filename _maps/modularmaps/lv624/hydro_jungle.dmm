@@ -555,7 +555,9 @@
 	opacity = 0
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/maintenance,
+/obj/machinery/door/airlock/mainship/secure{
+	dir = 1
+	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "Vq" = (

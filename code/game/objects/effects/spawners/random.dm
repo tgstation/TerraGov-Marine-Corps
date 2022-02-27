@@ -254,7 +254,7 @@
 ///random civilian clothing for flavor
 /obj/effect/spawner/random/clothing
 	name = "Random clothing spawner"
-	icon_state = "random_trash"
+	icon_state = "random_clothes"
 	item_to_spawn()
 		return pick(/obj/item/clothing/suit/bio_suit,\
 					/obj/item/clothing/suit/bomber,\
@@ -295,7 +295,7 @@
 ///random civilian hats for flavor
 /obj/effect/spawner/random/hats
 	name = "Random hat spawner"
-	icon_state = "random_trash"
+	icon_state = "random_hat"
 	item_to_spawn()
 		return pick(/obj/item/clothing/head/bandanna/red,\
 					/obj/item/clothing/head/beret,\
@@ -337,7 +337,7 @@
 ///random kitchen items
 /obj/effect/spawner/random/kitchen
 	name = "Random kitchen utensil spawner"
-	icon_state = "random_trash"
+	icon_state = "random_utensil"
 	item_to_spawn()
 		return pick(/obj/item/tool/kitchen/utensil/fork,\
 					/obj/item/tool/kitchen/utensil/pfork,\
@@ -351,7 +351,7 @@
 ///random cables
 /obj/effect/spawner/random/cable
 	name = "Random cable spawner"
-	icon_state = "random_trash"
+	icon_state = "random_cable"
 	item_to_spawn()
 		return pick(/obj/item/stack/cable_coil,\
 					/obj/item/stack/cable_coil/cut,\
@@ -363,7 +363,7 @@
 ///random guns
 /obj/effect/spawner/random/gun //restricted to ballistic weapons available on the ship, no auto-9s here
 	name = "Random ballistic ammunition spawner"
-	icon_state = "random_trash"
+	icon_state = "random_rifle"
 	item_to_spawn()
 		return pick(/obj/item/weapon/gun/rifle/standard_assaultrifle,\
 					/obj/item/weapon/gun/rifle/standard_carbine,\
@@ -394,10 +394,11 @@
 ///random shotguns
 /obj/effect/spawner/random/gun/shotgun
 	name = "Random shotgun spawner"
-	icon_state = "random_trash"
+	icon_state = "random_shotgun"
 	item_to_spawn()
 		return pick(/obj/item/weapon/gun/shotgun/pump/lever/repeater,\
 					/obj/item/weapon/gun/shotgun/pump/bolt,\
+					/obj/item/weapon/gun/shotgun/pump/cmb,\
 					/obj/item/weapon/gun/shotgun,\
 					/obj/item/weapon/gun/shotgun/double/marine,\
 					/obj/item/weapon/gun/rifle/standard_autoshotgun,\
@@ -407,17 +408,16 @@
 ///random machineguns
 /obj/effect/spawner/random/gun/machineguns
 	name = "Random machinegun spawner"
-	icon_state = "random_trash"
+	icon_state = "random_machinegun"
 	item_to_spawn()
 		return pick(/obj/item/weapon/gun/rifle/standard_lmg,\
 					/obj/item/weapon/gun/rifle/standard_gpmg,\
-					/obj/item/weapon/gun/standard_mmg,\
-					/obj/item/weapon/gun/heavymachinegun)
+					/obj/item/weapon/gun/standard_mmg)
 
 ///random rifles
 /obj/effect/spawner/random/gun/rifles
 	name = "Random rifle spawner"
-	icon_state = "random_trash"
+	icon_state = "random_rifle"
 	item_to_spawn()
 		return pick(/obj/item/weapon/gun/rifle/standard_assaultrifle,\
 					/obj/item/weapon/gun/rifle/standard_carbine,\
@@ -427,18 +427,19 @@
 ///random sidearms
 /obj/effect/spawner/random/gun/sidearms
 	name = "Random sidearm spawner"
-	icon_state = "random_trash"
+	icon_state = "random_sidearm"
 	item_to_spawn()
 		return pick(/obj/item/weapon/gun/pistol/standard_pistol,\
 					/obj/item/weapon/gun/pistol/standard_heavypistol,\
 					/obj/item/weapon/gun/revolver/standard_revolver,\
+					/obj/item/weapon/gun/revolver/cmb,\
 					/obj/item/weapon/gun/pistol/vp70,\
 					/obj/item/weapon/gun/pistol/standard_pocketpistol)
 
 ///random melee weapons
 /obj/effect/spawner/random/melee
 	name = "Random melee weapons spawner"
-	icon_state = "random_trash"
+	icon_state = "random_melee"
 	item_to_spawn()
 		return pick(/obj/item/weapon/claymore/mercsword/machete,\
 					/obj/item/weapon/combat_knife,\
@@ -449,8 +450,6 @@
 					/obj/item/tool/hatchet,\
 					/obj/item/tool/kitchen/knife,\
 					/obj/item/tool/kitchen/knife/butcher,\
-					/obj/item/weapon/twohanded/spear,\
-					/obj/item/weapon/twohanded/spear/tactical,\
 					/obj/item/weapon/twohanded/fireaxe)
 
 
@@ -459,7 +458,7 @@
 ///random ammunition
 /obj/effect/spawner/random/ammo
 	name = "Random ballistic ammunition spawner"
-	icon_state = "random_trash"
+	icon_state = "random_ammo"
 	item_to_spawn()
 		return pick(/obj/item/ammo_magazine/rifle/standard_assaultrifle,\
 					/obj/item/ammo_magazine/rifle/standard_carbine,\
@@ -490,17 +489,16 @@
 ///random shotgun ammunition
 /obj/effect/spawner/random/ammo/shotgun
 	name = "Random shotgun ammunition spawner"
-	icon_state = "random_trash"
+	icon_state = "random_shotgun_ammo"
 	item_to_spawn()
 		return pick(/obj/item/ammo_magazine/shotgun/buckshot,\
 					/obj/item/ammo_magazine/shotgun/flechette,\
-					/obj/item/ammo_magazine/shotgun,\
-					/obj/item/ammo_magazine/rifle/tx15_slug)
+					/obj/item/ammo_magazine/shotgun)
 
 ///random machinegun ammunition
 /obj/effect/spawner/random/ammo/machinegun
 	name = "Random machinegun ammunition spawner"
-	icon_state = "random_trash"
+	icon_state = "random_machinegun_ammo"
 	item_to_spawn()
 		return pick(/obj/item/ammo_magazine/standard_lmg,\
 					/obj/item/ammo_magazine/standard_gpmg,\
@@ -510,7 +508,7 @@
 ///random rifle ammunition
 /obj/effect/spawner/random/ammo/rifle
 	name = "Random rifle ammunition spawner"
-	icon_state = "random_trash"
+	icon_state = "random_rifle_ammo"
 	item_to_spawn()
 		return pick(/obj/item/ammo_magazine/rifle/standard_assaultrifle,\
 					/obj/item/ammo_magazine/rifle/standard_carbine,\
@@ -520,12 +518,12 @@
 ///random sidearm ammunition
 /obj/effect/spawner/random/ammo/sidearm
 	name = "Random sidearm ammunition spawner"
-	icon_state = "random_trash"
+	icon_state = "random_sidearm_ammo"
 	item_to_spawn()
 		return pick(/obj/item/ammo_magazine/pistol/standard_pistol,\
 					/obj/item/ammo_magazine/pistol/standard_heavypistol,\
 					/obj/item/ammo_magazine/revolver/standard_revolver,\
 					/obj/item/ammo_magazine/pistol/vp70,\
 					/obj/item/ammo_magazine/pistol/derringer,\
+					/obj/item/ammo_magazine/revolver/cmb,\
 					/obj/item/ammo_magazine/pistol/standard_pocketpistol)
-

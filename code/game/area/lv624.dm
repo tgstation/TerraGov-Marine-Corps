@@ -194,7 +194,7 @@
 //Caves
 /area/lv624/ground/caves/rock //catchall for closed turfs we want immune to rain/easily visible to map editing tools
 	name ="Enclosed Area"
-	icon_state = "white"
+	icon_state = "transparent"
 
 /area/lv624/ground/caves/west1
 	name ="Western Caves"

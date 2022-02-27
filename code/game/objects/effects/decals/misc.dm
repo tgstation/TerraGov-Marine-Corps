@@ -292,3 +292,6 @@
 
 /obj/effect/decal/lvsanddecal/corner
 	icon_state = "lvsanddecal_corner"
+
+/obj/effect/decal/lvsanddecal/full
+	icon_state = "lvsanddecal_full"
