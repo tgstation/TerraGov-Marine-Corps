@@ -277,7 +277,7 @@
 		if(EXPLODE_DEVASTATE)
 			take_damage(800)
 		if(EXPLODE_HEAVY)
-			take_damage(rand(300, 400))
+			take_damage(rand(150, 200))
 		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 50))
 
