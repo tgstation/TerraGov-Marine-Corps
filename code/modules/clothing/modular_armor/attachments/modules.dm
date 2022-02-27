@@ -221,10 +221,6 @@
 	///Amount to recharge per tick, processes once every two seconds.
 	var/recharge_rate = 8
 
-	///Soft armor datum of the parent when attached. Used to restore the original armor.
-	var/datum/saved_soft_armor
-	///Hard armor datum of the parent when attached. Used to restore the original armor.
-	var/datum/saved_hard_armor
 	///Spark system used to generate sparks when the armor takes damage
 	var/datum/effect_system/spark_spread/spark_system
 
@@ -255,16 +251,10 @@
 	. = ..()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_equip)
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/parent_examine)
-	saved_soft_armor = parent.soft_armor
-	saved_hard_armor = parent.hard_armor
-	parent.hard_armor = parent.hard_armor.setRating(0, 0, 0, 0, 0, 0, 0, 0, 0)
-	parent.soft_armor = parent.soft_armor.setRating(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 
 /obj/item/armor_module/module/eshield/on_detach(obj/item/detaching_from, mob/user)
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_PARENT_EXAMINE))
-	parent.soft_armor = saved_soft_armor
-	parent.hard_armor = saved_hard_armor
 	return ..()
 
 /obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/examiner)
