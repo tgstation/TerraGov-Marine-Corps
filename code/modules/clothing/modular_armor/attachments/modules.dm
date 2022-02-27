@@ -204,6 +204,145 @@
 	chemsystem.RemoveComponent()
 	return ..()
 
+
+/obj/item/armor_module/module/eshield
+	name = "Arrowhead Energy Shield System"
+	desc = "A brand new innovation in armor systems, this device creates a shield around the user that is capable of negating all damage. If it sustains too much it will deactivate, and, due to the install requirements, leave the user completely vunerable."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "mod_eshield"
+	item_state = "mod_eshield_a"
+	slot = ATTACHMENT_SLOT_MODULE
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_eshield_xn")
+
+	///Current shield Health
+	var/shield_health = 0
+	///Maximum shield Health
+	var/max_shield_health = 40
+	///Amount to recharge per tick, processes once every two seconds.
+	var/recharge_rate = 8
+
+	///Soft armor datum of the parent when attached. Used to restore the original armor.
+	var/datum/saved_soft_armor
+	///Hard armor datum of the parent when attached. Used to restore the original armor.
+	var/datum/saved_hard_armor
+	///Spark system used to generate sparks when the armor takes damage
+	var/datum/effect_system/spark_spread/spark_system
+
+	///Delay it takes to start recharging again once the shield is completely broken.
+	var/broken_shield_charge_delay = 5 SECONDS
+	///Cooldown used to determin when the shieild should start charging once more.
+	COOLDOWN_DECLARE(broken)
+
+
+/obj/item/armor_module/module/eshield/Initialize()
+	. = ..()
+	spark_system = new()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+
+/obj/item/armor_module/module/eshield/Destroy()
+	QDEL_NULL(spark_system)
+	return ..()
+
+/obj/item/armor_module/module/eshield/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_equip)
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/parent_examine)
+	saved_soft_armor = parent.soft_armor
+	saved_hard_armor = parent.hard_armor
+	parent.hard_armor = parent.hard_armor.setRating(0, 0, 0, 0, 0, 0, fire = 0, acid = 0)
+	parent.soft_armor = parent.soft_armor.setRating(0, 0, 0, 0, 0, 0, fire = 0, acid = 0)
+
+
+/obj/item/armor_module/module/eshield/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_PARENT_EXAMINE))
+	parent.soft_armor = saved_soft_armor
+	parent.hard_armor = saved_hard_armor
+	return ..()
+
+/obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/examiner)
+	to_chat(examiner, span_notice("Recharge Rate: [recharge_rate/2] health per second\nCurrent Shield Health: [shield_health]\nMaximum Shield Health: [max_shield_health]\n"))
+	if(COOLDOWN_CHECK(src, broken))
+		return
+	to_chat(examiner, span_warning("Your shield is broken! It will recharge again in [COOLDOWN_TIMELEFT(src, broken)/10] seconds!"))
+
+/obj/item/armor_module/module/eshield/proc/handle_equip(datum/source, mob/equipper, slot)
+	if(!isliving(equipper))
+		return
+	if(slot != SLOT_WEAR_SUIT)
+		UnregisterSignal(equipper, COMSIG_LIVING_SHIELDCALL)
+		STOP_PROCESSING(SSobj, src)
+		equipper.remove_filter("eshield")
+		shield_health = 0
+	else
+		if(COOLDOWN_CHECK(src, broken))
+			START_PROCESSING(SSobj, src)
+			playsound(equipper, 'sound/items/eshield_recharge.ogg', 40)
+		else
+			addtimer(CALLBACK(src, .proc/begin_recharge), COOLDOWN_TIMELEFT(src, broken))
+
+		RegisterSignal(equipper, COMSIG_LIVING_SHIELDCALL, .proc/handle_shield)
+
+
+/obj/item/armor_module/module/eshield/proc/handle_shield(datum/source, list/affecting_shields, dam_type)
+	if(!shield_health)
+		return
+	affecting_shields += CALLBACK(src, .proc/intercept_damage)
+
+/obj/item/armor_module/module/eshield/proc/intercept_damage(attack_type, incoming_damage, damage_type, silent)
+	if(shield_health <= 0)
+		return incoming_damage
+	var/shield_left = shield_health - incoming_damage
+	var/mob/living/affected = parent.loc
+	affected.remove_filter("eshield")
+	if(shield_left > 0)
+		shield_health = shield_left
+		switch(shield_left / max_shield_health)
+			if(0 to 0.2)
+				affected.add_filter("eshield", 1, outline_filter(1, COLOR_MAROON))
+			if(0.2 to 0.6)
+				affected.add_filter("eshield", 1, outline_filter(1, COLOR_MOSTLY_PURE_RED))
+			if(0.6 to 1)
+				affected.add_filter("eshield", 1, outline_filter(1, COLOR_BLUE_LIGHT))
+		spark_system.start()
+	else
+		shield_health = 0
+		STOP_PROCESSING(SSobj, src)
+		addtimer(CALLBACK(src, .proc/begin_recharge), broken_shield_charge_delay)
+		COOLDOWN_START(src, broken, broken_shield_charge_delay)
+		parent.say("Warning: Shield is down! Rebooting in [broken_shield_charge_delay/10] seconds!")
+		return shield_left * -1
+
+/obj/item/armor_module/module/eshield/proc/begin_recharge()
+	if(!ishuman(parent.loc))
+		return
+	var/mob/living/carbon/human/wearer = parent.loc
+	if(wearer.wear_suit != parent)
+		return
+	playsound(wearer, 'sound/items/eshield_recharge.ogg', 40)
+	START_PROCESSING(SSobj, src)
+
+
+/obj/item/armor_module/module/eshield/process()
+	var/new_shield_health = shield_health + recharge_rate
+	if(new_shield_health > max_shield_health)
+		new_shield_health = max_shield_health
+	shield_health = new_shield_health
+	if(shield_health == max_shield_health)
+		return
+	var/percentage_left = shield_health/max_shield_health
+	var/mob/living/affected = parent.loc
+	affected.remove_filter("eshield")
+	switch(percentage_left)
+		if(0 to 0.2)
+			playsound(affected, 'sound/items/eshield_down.ogg', 40)
+			affected.add_filter("eshield", 1, outline_filter(1, COLOR_MAROON))
+		if(0.2 to 0.6)
+			affected.add_filter("eshield", 1, outline_filter(1, COLOR_MOSTLY_PURE_RED))
+		if(0.6 to 1)
+			affected.add_filter("eshield", 1, outline_filter(1, COLOR_BLUE_LIGHT))
+
+
 /**
  *   Helmet
 */
