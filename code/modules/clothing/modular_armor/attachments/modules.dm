@@ -230,6 +230,8 @@
 	var/shield_color_mid = COLOR_MOSTLY_PURE_RED
 	///Shield color when the shield is 66% to full
 	var/shield_color_full = COLOR_BLUE_LIGHT
+	///Current shield color
+	var/current_color
 
 	///Delay it takes to start recharging again once the shield is completely broken.
 	var/broken_shield_charge_delay = 5 SECONDS
@@ -331,17 +333,21 @@
 	shield_health = min(shield_health + recharge_rate, max_shield_health)
 	if(shield_health == max_shield_health)
 		return
-	var/percentage_left = shield_health/max_shield_health
-	var/mob/living/affected = parent.loc
-	affected.remove_filter("eshield")
-	switch(percentage_left)
+	var/new_color
+	switch(shield_health/max_shield_health)
 		if(0 to 0.2)
 			playsound(affected, 'sound/items/eshield_down.ogg', 40)
-			affected.add_filter("eshield", 1, outline_filter(1, COLOR_MAROON))
+			new_color = (shield_color_low != current_color) ? shield_color_low : null
 		if(0.2 to 0.6)
-			affected.add_filter("eshield", 1, outline_filter(1, COLOR_MOSTLY_PURE_RED))
+			new_color = (shield_color_mid != current_color) ? shield_color_mid : null
 		if(0.6 to 1)
-			affected.add_filter("eshield", 1, outline_filter(1, COLOR_BLUE_LIGHT))
+			new_color = (shield_color_full != current_color) ? shield_color_full : null
+	if(!new_color)
+		return
+	var/mob/living/affected = parent.loc
+	affected.remove_filter("eshield")
+	affected.add_filter("eshield", 1, outline_filter(1, new_color))
+
 
 
 /**
