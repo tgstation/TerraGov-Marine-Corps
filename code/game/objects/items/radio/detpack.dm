@@ -55,8 +55,10 @@
 		nullvars()
 	else
 		nullvars()
-		return ..()
+	return ..()
 
+/obj/item/detpack/ex_act()
+	return
 
 /obj/item/detpack/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
@@ -280,6 +282,8 @@
 			if(T.drag_delay < 3) //Anything with a fast drag delay we need to modify to avoid kamikazi tactics
 				target_drag_delay = T.drag_delay
 				T.drag_delay = 3
+		if(radio_connection == null)
+			set_frequency(frequency)
 		update_icon()
 
 /obj/item/detpack/proc/change_to_loud_sound()

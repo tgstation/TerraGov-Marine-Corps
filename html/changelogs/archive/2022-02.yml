@@ -319,3 +319,39 @@
   vilereaver41:
   - balance: Acidwell now 400 down from 500
   - balance: Filling an acidwell is now 150 down from 200
+2022-02-23:
+  Canohaaaaaaa:
+  - imageadd: Big explosions now release cosmetic shockwaves.
+  breadhunt:
+  - bugfix: Fixes card deck sprites on draw, and playing card sprites on discard
+  - bugfix: Standard decks now update properly when they are full
+  - qol: Fixed a couple Kotahi card names
+  - qol: Right-click on decks and cards now draws and discards respectively
+  - qol: Improved descriptions on decks and on playing cards
+  - bugfix: Detpacks now delete properly when destroyed
+  - bugfix: Detpacks no longer break when picked up and placed again
+  - bugfix: Detpacks are now immune to explosions, meaning they aren't instantly deleted
+      by other detpacks placed too close
+2022-02-25:
+  SpaceLoveSs13:
+  - rscadd: Added blue energy sword
+  - rscadd: Added e-shields[expandable and retractable one] and e-swords to DS. More
+      variety and content
+  - balance: Buff DS armor values and resistance. Remove slowdown
+  - admin: DS is actually OP now, use them with caution admins.
+2022-02-26:
+  2whatever2:
+  - bugfix: Plasma pistol actually only works when fully wielded while attached to
+      a gun.
+  Lumipharon:
+  - config: Made the ALF and type 71 seasonal actually be in rotation
+  RipGrayson:
+  - soundadd: Replaced the old TTS vox voice with a more modern version.
+  - sounddel: Removed all old TTS vox in favor of a new version.
+  vilereaver41:
+  - bugfix: bad regions and messed up apc's are now fixed
+2022-02-28:
+  Lumipharon:
+  - bugfix: Bouncy revolver bullets now actually bounce from what they hit
+  novaepee:
+  - soundadd: bull charge action icon; that's it

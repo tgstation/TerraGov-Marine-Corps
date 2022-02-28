@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(shooter.Adjacent(target) ? target : null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
+		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.loc, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 
 /datum/ammo/proc/drop_flame(turf/T)
@@ -1468,7 +1468,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "pulse bolt"
 	icon_state = "pulse2"
 	hud_state = "pulse"
-	damage = 85 // this is gotta hurt...
+	damage = 90 // this is gotta hurt...
 	max_range = 40
 	penetration = 100
 	sundering = 100
