@@ -316,7 +316,7 @@
 	addtimer(CALLBACK(src, .proc/begin_recharge), broken_shield_charge_delay)
 	COOLDOWN_START(src, shield_broken_cooldown, broken_shield_charge_delay)
 	parent.say("Warning: Shield is down! Rebooting in [broken_shield_charge_delay/10] seconds!")
-	return shield_left * -1
+	return -shield_left
 
 ///Starts the shield recharging after it has been broken.
 /obj/item/armor_module/module/eshield/proc/begin_recharge()
