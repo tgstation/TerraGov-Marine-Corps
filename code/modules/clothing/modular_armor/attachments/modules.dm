@@ -336,7 +336,7 @@
 	var/new_color
 	switch(shield_health/max_shield_health)
 		if(0 to 0.2)
-			playsound(affected, 'sound/items/eshield_down.ogg', 40)
+			playsound(parent.loc, 'sound/items/eshield_down.ogg', 40)
 			new_color = (shield_color_low != current_color) ? shield_color_low : null
 		if(0.2 to 0.6)
 			new_color = (shield_color_mid != current_color) ? shield_color_mid : null
