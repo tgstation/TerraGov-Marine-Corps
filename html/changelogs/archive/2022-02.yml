@@ -350,3 +350,8 @@
   - sounddel: Removed all old TTS vox in favor of a new version.
   vilereaver41:
   - bugfix: bad regions and messed up apc's are now fixed
+2022-02-28:
+  Lumipharon:
+  - bugfix: Bouncy revolver bullets now actually bounce from what they hit
+  novaepee:
+  - soundadd: bull charge action icon; that's it
