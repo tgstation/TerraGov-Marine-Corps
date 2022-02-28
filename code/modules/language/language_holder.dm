@@ -143,7 +143,7 @@
 
 
 /datum/language_holder/machine
-	languages = list(/datum/language/common, /datum/language/machine)
+	languages = list(/datum/language/common, /datum/language/machine, /datum/language/xenocommon)
 
 /datum/language_holder/sectoid
 	languages = list(/datum/language/sectoid)
