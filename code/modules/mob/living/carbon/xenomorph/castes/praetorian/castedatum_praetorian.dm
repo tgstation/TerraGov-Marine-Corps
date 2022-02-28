@@ -34,7 +34,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/toxin/gloom)
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_range = 5
@@ -85,7 +85,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/toxin/gloom/upgrade1)
 
 	acid_spray_damage_on_hit = 39
 	acid_spray_structure_damage = 53
@@ -119,7 +119,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/toxin/gloom/upgrade2)
 
 	acid_spray_damage_on_hit = 43
 	acid_spray_structure_damage = 61
@@ -154,7 +154,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/toxin/gloom/upgrade3)
 
 	acid_spray_damage_on_hit = 47
 	acid_spray_structure_damage = 69
@@ -186,7 +186,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
-	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy)
+	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/toxin/gloom/upgrade3)
 
 	acid_spray_damage_on_hit = 47
 	acid_spray_structure_damage = 69

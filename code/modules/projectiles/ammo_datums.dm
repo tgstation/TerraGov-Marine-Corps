@@ -1923,11 +1923,34 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 
-/datum/ammo/xeno/acid/heavy
-	name = "acid splash"
-	added_spit_delay = 2
-	spit_cost = 70
-	damage = 30
+/datum/ammo/xeno/toxin/gloom
+	name = "acid gloom"
+	icon_state = "xeno_acid"
+	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
+	added_spit_delay = 1
+	spit_cost = 100
+	damage = 25
+	damage_type = BURN
+	bullet_color = COLOR_LIME
+	reagent_transfer_amount = 0
+	smoke_strength = 0.4
+	smoke_range = 0
+
+/datum/ammo/xeno/toxin/gloom/set_smoke()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid/gloom()
+
+/datum/ammo/xeno/toxin/gloom/upgrade1
+	smoke_strength = 0.45
+
+/datum/ammo/xeno/toxin/gloom/upgrade2
+	smoke_strength = 0.5
+
+/datum/ammo/xeno/toxin/gloom/upgrade3
+	smoke_strength = 0.55
+
+
+
+
 
 /datum/ammo/xeno/acid/heavy/turret
 	damage = 20

@@ -275,6 +275,14 @@
 	color = "#86B028" //Mostly green?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
+//Praetorian Gloom smoke
+/obj/effect/particle_effect/smoke/xeno/burn/gloom
+	lifetime = 5
+	alpha = 60
+	opacity = FALSE
+	color = "#5ae248" //Mostly green?
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+
 //Xeno light acid smoke.for acid huggers
 /obj/effect/particle_effect/smoke/xeno/burn/light
 	lifetime = 4 //Lasts for less time
@@ -351,6 +359,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno/acid
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn
+
+/datum/effect_system/smoke_spread/xeno/acid/gloom
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/gloom
 
 /datum/effect_system/smoke_spread/xeno/acid/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/light
