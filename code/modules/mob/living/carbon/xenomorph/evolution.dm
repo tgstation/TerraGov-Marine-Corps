@@ -282,14 +282,13 @@
 			qdel(new_xeno)
 		return
 
-	if(!regression)
-		if(upgrade != XENO_UPGRADE_INVALID)
-			new_xeno.upgrade_xeno(upgrade_prev(), TRUE)
-	else
+	if(regression)
 		if(tier == XENO_TIER_ONE)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_INVALID, TRUE)
 		else
-			new_xeno.upgrade_xeno(upgrade_next(), TRUE)
+			new_xeno.upgrade_xeno(upgrade_next(FALSE), TRUE)
+	else if(upgrade != XENO_UPGRADE_INVALID)
+		new_xeno.upgrade_xeno(upgrade_prev(), TRUE)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
 
