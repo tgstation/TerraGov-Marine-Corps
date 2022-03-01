@@ -115,25 +115,25 @@
 	id = "landing_zone"
 	icon_state = "shutterctrl"
 	/// Has the shutters alarm been played?
-	var/alarm_played = 0
-	/// Preventing spam
-	var/alarm_being_played = 0
+	var/alarm_played = FALSE
+	/// Is the alarm *being* played - Anti spam measure
+	var/alarm_being_played = FALSE
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
-	if(alarm_played > 0)
+	if(alarm_played == TRUE)
 		. = ..()
-	if(alarm_being_played > 0) // spam bad
+	if(alarm_being_played == TRUE) // spam bad
 		return
 	else
 		playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
-		alarm_being_played += 1
+		alarm_being_played = TRUE
 		addtimer(CALLBACK(src, .proc/played_alarm), 185)
 
 /obj/machinery/button/door/open_only/landing_zone/proc/played_alarm()
-	alarm_played += 1
+	alarm_played = TRUE
 	pulsed()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_SHUTTERS_EARLY)
 
