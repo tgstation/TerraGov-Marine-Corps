@@ -1412,10 +1412,10 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	pixel_shift_x = 14
 	pixel_shift_y = 18
-	default_ammo_type = /obj/item/ammo_magazine/rifle/tx29launcher
+	default_ammo_type = null
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/tx29launcher,
-		/obj/item/ammo_magazine/rifle/tx29launcher/airburst,
+		/obj/item/ammo_magazine/rifle/tx29launcher/he,
 		/obj/item/ammo_magazine/rifle/tx29launcher/incendiary,
 	)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
@@ -1439,7 +1439,7 @@
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
 	caliber = CALIBER_10X24_CASELESS //codex
-	max_shells = 30 //codex
+	max_shells = 36 //codex
 	wield_delay = 0.8 SECONDS
 	default_ammo_type = /obj/item/ammo_magazine/rifle/tx29
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx29)
@@ -1475,9 +1475,10 @@
 	aim_speed_modifier = 2
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
+	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1
 	scatter = 2
 	scatter_unwielded = 15
 	burst_scatter_mult = 2
-	aim_slowdown = 0.5
+	aim_slowdown = 0.6

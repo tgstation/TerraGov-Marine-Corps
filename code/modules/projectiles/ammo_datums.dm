@@ -190,6 +190,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle -= 360
 		new_proj.fire_at(shooter.Adjacent(target) ? target : null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
+/// A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
 /datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
 	var/effect_icon = ""
 	var/proj_type = /obj/projectile
@@ -207,7 +208,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
 			new_proj.generate_bullet(src)
 
-		//Scatter here is how many degrees extra stuff deviate from the main projectile, first two the same amount, one to each side, and from then on the extra pellets keep widening the arc.
+		///Scatter here is how many degrees extra stuff deviate from the main projectile's firing angle. Fully randomised with no 45 degree cap like normal bullets
 		var/new_angle = angle + ( (rand(0, main_proj.ammo.bonus_projectiles_scatter)) * (prob(50) ? 1 : -1) )
 		if(new_angle < 0)
 			new_angle += 360
@@ -1168,7 +1169,7 @@ datum/ammo/bullet/revolver/tp44
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
 
 /datum/ammo/tx29launcher
-	name = "20mm HE grenade"
+	name = "20mm airburst grenade"
 	icon_state = "missile"
 	hud_state = "rocket_he"
 	hud_state_empty = "rocket_empty"
@@ -1185,50 +1186,36 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 0
 	shrapnel_chance = 0
 	bullet_color = LIGHT_COLOR_FIRE
-
-/datum/ammo/tx29launcher/drop_nade(turf/T)
-	explosion(T, 0, 0, 2, 2)
-
-/datum/ammo/tx29launcher/on_hit_mob(mob/M, obj/projectile/P)
-	drop_nade(get_turf(M))
-
-/datum/ammo/tx29launcher/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(O))
-
-/datum/ammo/tx29launcher/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T)
-
-/datum/ammo/tx29launcher/do_at_max_range(obj/projectile/P)
-	drop_nade(get_turf(P))
-
-/datum/ammo/tx29launcher/airburst
-	name = "20mm airburst grenade"
 	bonus_projectiles_type = /datum/ammo/bullet/tx29airburst_spread
 	bonus_projectiles_scatter = 30
 
-/datum/ammo/tx29launcher/airburst/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/tx29launcher/on_hit_mob(mob/M, obj/projectile/proj)
 	var/main_proj_angle = Get_Angle(proj.firer, M)
-	bonus_projectiles_amount = 5
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 6
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
 	bonus_projectiles_amount = 0
 
-/datum/ammo/tx29launcher/airburst/on_hit_obj(obj/O, obj/projectile/proj)
+/datum/ammo/tx29launcher/on_hit_obj(obj/O, obj/projectile/proj)
 	var/main_proj_angle = Get_Angle(proj.firer, O)
-	bonus_projectiles_amount = 5
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 6
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
 	bonus_projectiles_amount = 0
 
-/datum/ammo/tx29launcher/airburst/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/tx29launcher/on_hit_turf(turf/T, obj/projectile/proj)
 	var/main_proj_angle = Get_Angle(proj.firer, T)
-	bonus_projectiles_amount = 5
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 6
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
 	bonus_projectiles_amount = 0
 
-/datum/ammo/tx29launcher/airburst/do_at_max_range(obj/projectile/proj)
+/datum/ammo/tx29launcher/do_at_max_range(obj/projectile/proj)
 	var/main_proj_angle = Get_Angle(proj.firer, get_turf(proj))
-	bonus_projectiles_amount = 5
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
+	bonus_projectiles_amount = 6
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
 	bonus_projectiles_amount = 0
+
+/datum/ammo/tx29launcher/incendiary
+	name = "20mm incendiary grenade"
+	bonus_projectiles_type = /datum/ammo/bullet/tx29airburst_spread/incendiary
 
 /datum/ammo/bullet/tx29airburst_spread
 	name = "flechette"
@@ -1238,45 +1225,20 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_high = 5
 	max_range = 4
 	damage = 20
-	damage_falloff = 1
+	damage_falloff = 2
 	penetration = 20
 	sundering = 2.5
+	on_pierce_multiplier = 0.9
 
-/datum/ammo/tx29launcher/incendiary
-	name = "20mm incendiary grenade"
-	bonus_projectiles_type = /datum/ammo/bullet/tx29airburst_spread/incendiary
-	bonus_projectiles_scatter = 30
-
-/datum/ammo/tx29launcher/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
-	var/main_proj_angle = Get_Angle(proj.firer, M)
-	bonus_projectiles_amount = 5
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
-	bonus_projectiles_amount = 0
-
-/datum/ammo/tx29launcher/incendiary/on_hit_obj(obj/O, obj/projectile/proj)
-	var/main_proj_angle = Get_Angle(proj.firer, O)
-	bonus_projectiles_amount = 5
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
-	bonus_projectiles_amount = 0
-
-/datum/ammo/tx29launcher/incendiary/on_hit_turf(turf/T, obj/projectile/proj)
-	var/main_proj_angle = Get_Angle(proj.firer, T)
-	bonus_projectiles_amount = 5
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
-	bonus_projectiles_amount = 0
-
-/datum/ammo/tx29launcher/incendiary/do_at_max_range(obj/projectile/proj)
-	var/main_proj_angle = Get_Angle(proj.firer, get_turf(proj))
-	bonus_projectiles_amount = 5
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, proj.projectile_speed, main_proj_angle)
-	bonus_projectiles_amount = 0
+/datum/ammo/tx29airburst_spread/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 3, stagger = 0.1, slowdown = 0.1, shake = 0)
 
 /datum/ammo/bullet/tx29airburst_spread/incendiary
 	name = "incendiary flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 10
 	damage_falloff = 1
-	penetration = 15
+	penetration = 10
 	sundering = 1.5
 
 /datum/ammo/bullet/tx29airburst_spread/incendiary/drop_flame(turf/T)
@@ -1286,6 +1248,25 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/tx29airburst_spread/incendiary/on_leave_turf(turf/T, atom/firer)
 	drop_flame(T)
+
+/datum/ammo/tx29launcher/he
+	name = "20mm HE grenade"
+	bonus_projectiles_type = null
+
+/datum/ammo/tx29launcher/he/drop_nade(turf/T)
+	explosion(T, 0, 0, 2, 2)
+
+/datum/ammo/tx29launcher/he/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/tx29launcher/he/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+
+/datum/ammo/tx29launcher/he/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T)
+
+/datum/ammo/tx29launcher/he/do_at_max_range(obj/projectile/P)
+	drop_nade(get_turf(P))
 
 /*
 //================================================

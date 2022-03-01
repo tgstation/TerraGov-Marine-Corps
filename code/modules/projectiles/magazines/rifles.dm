@@ -354,12 +354,12 @@
 	icon_state = "t18"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 30
+	max_rounds = 36
 	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/tx29launcher
-	name = "\improper TX-29 20mm HE grenade magazine"
-	desc = "A 20mm magazine loaded with HE grenades. For use with the TX-29."
+	name = "\improper TX-29 20mm airburst grenade magazine"
+	desc = "A 20mm magazine loaded with airburst grenades. For use with the TX-29."
 	caliber = CALIBER_20MM
 	icon_state = "t18"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -367,10 +367,10 @@
 	max_rounds = 5
 	icon_state_mini = "mag_rifle_big"
 
-/obj/item/ammo_magazine/rifle/tx29launcher/airburst
-	name = "\improper TX-29 20mm airburst grenade magazine"
-	desc = "A 20mm magazine loaded with airburst grenades. For use with the TX-29."
-	default_ammo = /datum/ammo/tx29launcher/airburst
+/obj/item/ammo_magazine/rifle/tx29launcher/he
+	name = "\improper TX-29 20mm HE grenade magazine"
+	desc = "A 20mm magazine loaded with HE grenades. For use with the TX-29."
+	default_ammo = /datum/ammo/tx29launcher/he
 	icon_state = "t18"					//placeholder
 	icon_state_mini = "mag_rifle_big"	//placeholder
 
