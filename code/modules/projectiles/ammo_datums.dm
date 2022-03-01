@@ -1927,26 +1927,26 @@ datum/ammo/bullet/revolver/tp44
 	name = "acid gloom"
 	icon_state = "xeno_acid"
 	flags_ammo_behavior = AMMO_XENO|AMMO_EXPLOSIVE|AMMO_SKIPS_ALIENS
-	added_spit_delay = 0.5
+	added_spit_delay = 1
 	spit_cost = 80
-	damage = 10.5
+	damage = 12
 	damage_type = BURN
 	bullet_color = COLOR_LIME
 	reagent_transfer_amount = 0
-	smoke_strength = 0.45
+	smoke_strength = 0.55
 	smoke_range = 0
 
 /datum/ammo/xeno/toxin/gloom/set_smoke()
 	smoke_system = new /datum/effect_system/smoke_spread/xeno/acid/gloom()
 
 /datum/ammo/xeno/toxin/gloom/upgrade1
-	smoke_strength = 0.50
+	smoke_strength = 0.60
 
 /datum/ammo/xeno/toxin/gloom/upgrade2
-	smoke_strength = 0.55
+	smoke_strength = 0.65
 
 /datum/ammo/xeno/toxin/gloom/upgrade3
-	smoke_strength = 0.60
+	smoke_strength = 0.70
 
 
 
