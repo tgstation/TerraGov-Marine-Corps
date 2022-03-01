@@ -1,0 +1,5 @@
+author: "Canohaaaaaaa"
+delete-after: True
+changes: 
+  - balance: "Warrior : punch no longer knocks down sentries"
+  - balance: "Defender : forward charge no longer knocks down sentries"
