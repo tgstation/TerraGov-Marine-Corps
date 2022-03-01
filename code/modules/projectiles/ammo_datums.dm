@@ -684,6 +684,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 70
 	penetration = 15
 	sundering = 2
+	on_pierce_multiplier = 0.75
 	bullet_color = COLOR_TAN_ORANGE
 
 /datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M, obj/projectile/P)
