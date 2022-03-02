@@ -116,25 +116,29 @@
 	icon_state = "shutterctrl"
 	/// Has the shutters alarm been played?
 	var/alarm_played = FALSE
-	/// Is the alarm *being* played - Anti spam measure
-	var/alarm_being_played = FALSE
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
 
-/obj/machinery/button/door/open_only/landing_zone/pulsed()
-	if(alarm_played == TRUE)
-		. = ..()
-	if(alarm_being_played == TRUE) // spam bad
+/obj/machinery/button/door/open_only/landing_zone/attack_hand(mob/living/user)
+	if((machine_stat & (NOPOWER|BROKEN)))
 		return
-	else
-		playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
-		alarm_being_played = TRUE
-		addtimer(CALLBACK(src, .proc/played_alarm), 185)
+	if(!allowed(user))
+		to_chat(user, span_danger("Access Denied"))
+		flick("[initial(icon_state)]-denied", src)
+		return
+	if(alarm_played)
+		return
+	use_power(active_power_usage)
+	icon_state = "[initial(icon_state)]1"
 
-/obj/machinery/button/door/open_only/landing_zone/proc/played_alarm()
+	playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
 	alarm_played = TRUE
-	pulsed()
+	addtimer(CALLBACK(src, /atom/movable/.proc/update_icon), 1.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/pulsed), 185)
+
+/obj/machinery/button/door/open_only/landing_zone/pulsed()
+	. = ..()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_SHUTTERS_EARLY)
 
 /obj/machinery/button/door/open_only/landing_zone/lz2
