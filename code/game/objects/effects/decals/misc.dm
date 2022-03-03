@@ -17,7 +17,6 @@
 	icon_state = "whitedecal"
 	layer = ABOVE_TURF_LAYER
 	mouse_opacity = 0
-	resistance_flags = NONE
 
 /obj/effect/decal/tile/ex_act(severity)
 	switch(severity)
@@ -263,7 +262,6 @@
 
 /obj/effect/decal/grassdecal
 	name = "grass"
-	gender = PLURAL
 	density = FALSE
 	anchored = TRUE
 	icon = 'icons/turf/ground_map.dmi'
