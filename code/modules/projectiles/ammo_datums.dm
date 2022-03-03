@@ -1170,9 +1170,11 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/tx29launcher
 	name = "20mm airburst grenade"
-	icon_state = "missile"
-	hud_state = "rocket_he"
+	icon_state = "grenade"
+	hud_state = "shotgun_flechette"
 	hud_state_empty = "rocket_empty"
+	handful_icon_state = "shotgun flechette shell"
+	handful_amount = 3
 	ping = null //no bounce off.
 	sound_bounce	= "rocket_bounce"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
@@ -1180,7 +1182,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0
 	shell_speed = 2
 	accurate_range = 10
-	max_range = 12
+	max_range = 15
 	damage = 20			//impact damage from a grenade to the dome
 	penetration = 0
 	sundering = 0
@@ -1215,6 +1217,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/tx29launcher/incendiary
 	name = "20mm incendiary grenade"
+	hud_state = "shotgun_fire"
+	handful_icon_state = "incendiary slug"
 	bonus_projectiles_type = /datum/ammo/bullet/tx29airburst_spread/incendiary
 
 /datum/ammo/bullet/tx29airburst_spread
@@ -1236,7 +1240,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/tx29airburst_spread/incendiary
 	name = "incendiary flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
-	damage = 10
+	damage = 15
 	damage_falloff = 1
 	penetration = 10
 	sundering = 1.5
