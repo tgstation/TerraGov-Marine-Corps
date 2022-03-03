@@ -604,8 +604,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 		if(ismob(thing_to_hit) && (CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)))
 			return !(CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB))
-		else
-			return !(CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOVABLE))
+
+		return !(CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOVABLE))
 
 	return FALSE
 
