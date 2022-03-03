@@ -1081,7 +1081,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/obj/structure/stairs/cornerdark,
+/obj/structure/stairs/cornerdark/seamless,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "auJ" = (
@@ -1180,10 +1180,10 @@
 /area/lv624/ground/sand6)
 "avX" = (
 /obj/effect/decal/sandytile,
-/obj/structure/stairs/cornerdark{
+/obj/effect/ai_node,
+/obj/structure/stairs/cornerdark/seamless{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -1240,9 +1240,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand6)
 "awF" = (
-/obj/structure/stairs{
-	icon_state = "rampbottomold"
-	},
+/obj/structure/stairs/seamless,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -1920,9 +1918,8 @@
 /area/lv624/ground/sand2)
 "aFz" = (
 /obj/docking_port/stationary/crashmode,
-/obj/structure/stairs{
-	dir = 8;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -2429,7 +2426,7 @@
 	},
 /area/lv624/ground/river2)
 "aMA" = (
-/obj/structure/stairs{
+/obj/structure/stairs/seamless{
 	dir = 1
 	},
 /turf/open/floor/tile/darkish,
@@ -2899,7 +2896,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "aTv" = (
-/turf/closed/wall/mineral/sandstone,
+/turf/closed/wall/r_wall/chigusa,
 /area/lv624/ground/river3)
 "aTw" = (
 /obj/structure/jungle/vines/heavy,
@@ -4565,9 +4562,8 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 4;
@@ -4725,18 +4721,6 @@
 /obj/structure/jungle/plantbot1,
 /turf/open/ground/grass,
 /area/lv624/ground/compound/n)
-"bDv" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/obj/structure/stairs/railstairs{
-	icon_state = "stairleftrailup"
-	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellowfull"
-	},
-/area/lv624/lazarus/sandtemple)
 "bDC" = (
 /obj/structure/jungle/planttop1,
 /turf/closed/wall,
@@ -4790,9 +4774,8 @@
 "bHz" = (
 /obj/structure/platform,
 /obj/structure/platform,
-/obj/structure/stairs{
-	dir = 8;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -4967,7 +4950,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/kitchen)
 "bQN" = (
-/obj/structure/stairs/cornerdark,
+/obj/structure/stairs/cornerdark/seamless,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "bRp" = (
@@ -5335,9 +5318,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle8)
 "cnF" = (
-/obj/structure/stairs/railstairs{
-	icon_state = "stairleftrailup"
-	},
+/obj/structure/stairs/seamless/platform,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "cnX" = (
@@ -6553,9 +6534,8 @@
 /area/lv624/lazarus/atmos)
 "dPa" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/stairs{
-	dir = 8;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -6793,10 +6773,10 @@
 	},
 /area/lv624/lazarus/spaceport2)
 "edH" = (
-/obj/structure/stairs{
+/obj/structure/jungle/vines,
+/obj/structure/stairs/seamless{
 	dir = 1
 	},
-/obj/structure/jungle/vines,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "eek" = (
@@ -7244,9 +7224,8 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 4
 	},
 /turf/open/shuttle{
 	icon_state = "floor6"
@@ -7565,7 +7544,7 @@
 	},
 /area/lv624/lazarus/engineering)
 "fbm" = (
-/obj/structure/stairs/cornerdark{
+/obj/structure/stairs/cornerdark/seamless{
 	dir = 4
 	},
 /turf/open/floor/tile/darkish,
@@ -7898,7 +7877,7 @@
 /area/lv624/ground/river3)
 "fvo" = (
 /obj/effect/decal/sandytile,
-/obj/structure/stairs/cornerdark{
+/obj/structure/stairs/cornerdark/seamless{
 	dir = 8
 	},
 /turf/open/floor{
@@ -9004,7 +8983,7 @@
 	},
 /area/lv624/lazarus/spaceport2)
 "gLx" = (
-/obj/structure/stairs/cornerdark,
+/obj/structure/stairs/cornerdark/seamless,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
 "gLI" = (
@@ -9893,7 +9872,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/structure/stairs/cornerdark,
+/obj/structure/stairs/cornerdark/seamless,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -10097,9 +10076,8 @@
 /area/lv624/lazarus/sandtemple)
 "iaK" = (
 /obj/structure/platform,
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -10391,9 +10369,8 @@
 	},
 /area/lv624/ground/jungle8)
 "iwX" = (
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 4;
@@ -10406,7 +10383,7 @@
 /area/lv624/lazarus/canteen)
 "ixO" = (
 /obj/effect/decal/sandytile,
-/obj/structure/stairs/cornerdark{
+/obj/structure/stairs/cornerdark/seamless{
 	dir = 4
 	},
 /turf/open/floor{
@@ -10426,7 +10403,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "iyS" = (
-/obj/structure/stairs{
+/obj/structure/stairs/seamless{
 	dir = 1
 	},
 /turf/open/floor{
@@ -10534,7 +10511,7 @@
 /area/lv624/ground/river2)
 "iFv" = (
 /obj/effect/decal/sandytile,
-/obj/structure/stairs/cornerdark,
+/obj/structure/stairs/cornerdark/seamless,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -10698,8 +10675,8 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/obj/structure/stairs/cornerdark,
 /obj/structure/jungle/vines,
+/obj/structure/stairs/cornerdark/seamless,
 /turf/open/floor/bcircuit/off,
 /area/lv624/lazarus/sandtemple)
 "iRo" = (
@@ -11241,7 +11218,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/obj/structure/stairs/cornerdark{
+/obj/structure/stairs/cornerdark/seamless{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -11352,9 +11329,8 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "jDs" = (
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 4
 	},
 /turf/open/shuttle{
 	icon_state = "floor6"
@@ -13225,7 +13201,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/obj/structure/stairs/cornerdark{
+/obj/structure/stairs/cornerdark/seamless{
 	dir = 4
 	},
 /turf/open/floor/bcircuit/off,
@@ -13491,8 +13467,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "mdX" = (
-/obj/structure/stairs/railstairs{
-	icon_state = "stairrightrailup"
+/obj/structure/stairs/seamless/platform{
+	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -14559,11 +14535,10 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "nsg" = (
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "rampbottomold"
-	},
 /obj/effect/landmark/weed_node,
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "nss" = (
@@ -15278,11 +15253,10 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "rampbottomold"
-	},
 /obj/structure/jungle/vines,
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
 /turf/open/shuttle{
 	icon_state = "floor6"
 	},
@@ -15879,7 +15853,7 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "pca" = (
-/obj/structure/stairs{
+/obj/structure/stairs/seamless{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -16084,9 +16058,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "pqm" = (
-/obj/structure/stairs/railstairs{
-	icon_state = "stairleftrailup"
-	},
+/obj/structure/stairs/seamless/platform,
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -17966,9 +17938,8 @@
 /area/lv624/lazarus/kitchen)
 "rHa" = (
 /obj/structure/platform,
-/obj/structure/stairs{
-	dir = 8;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -18058,7 +18029,7 @@
 /area/lv624/lazarus/tablefort)
 "rKy" = (
 /obj/effect/decal/sandytile,
-/obj/structure/stairs/cornerdark{
+/obj/structure/stairs/cornerdark/seamless{
 	dir = 1
 	},
 /turf/open/floor{
@@ -18158,8 +18129,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle3)
 "rPF" = (
-/obj/structure/stairs/railstairs{
-	icon_state = "stairrightrailup"
+/obj/structure/stairs/seamless/platform{
+	dir = 1
 	},
 /turf/open/floor{
 	dir = 4;
@@ -18329,9 +18300,8 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 4;
@@ -18935,7 +18905,7 @@
 /obj/structure/platform_decoration{
 	dir = 8
 	},
-/obj/structure/stairs/cornerdark{
+/obj/structure/stairs/cornerdark/seamless{
 	dir = 8
 	},
 /turf/open/floor{
@@ -19386,9 +19356,7 @@
 /turf/open/space/basic,
 /area/lv624/lazarus/robotics)
 "tnH" = (
-/obj/structure/stairs{
-	icon_state = "rampbottomold"
-	},
+/obj/structure/stairs/seamless,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "tnI" = (
@@ -19694,9 +19662,8 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "tIj" = (
-/obj/structure/stairs{
-	dir = 8;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -19949,7 +19916,7 @@
 /obj/structure/platform{
 	dir = 4
 	},
-/obj/structure/stairs/cornerdark{
+/obj/structure/stairs/cornerdark/seamless{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -20761,9 +20728,8 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/lazarus/sandtemple)
 "uQH" = (
-/obj/structure/stairs{
-	dir = 8;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 4;
@@ -20913,9 +20879,8 @@
 "uZj" = (
 /obj/structure/platform,
 /obj/structure/platform,
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -21435,9 +21400,8 @@
 /area/lv624/lazarus/spaceport)
 "vKj" = (
 /obj/structure/platform,
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 4
 	},
 /turf/open/floor{
 	dir = 4;
@@ -22659,9 +22623,8 @@
 /area/lv624/lazarus/quartstorage)
 "wWW" = (
 /obj/structure/platform_decoration,
-/obj/structure/stairs{
-	dir = 8;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 8
 	},
 /turf/open/floor{
 	dir = 4;
@@ -22757,9 +22720,8 @@
 	},
 /area/lv624/lazarus/fitness)
 "xaN" = (
-/obj/structure/stairs{
-	dir = 4;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -23462,9 +23424,8 @@
 /area/lv624/lazarus/main_hall)
 "xPW" = (
 /obj/effect/decal/remains/xeno,
-/obj/structure/stairs{
-	dir = 8;
-	icon_state = "rampbottomold"
+/obj/structure/stairs/seamless{
+	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
@@ -57423,7 +57384,7 @@ pqY
 tyv
 lpp
 aiO
-bDv
+pqm
 uQH
 tIj
 tIj
