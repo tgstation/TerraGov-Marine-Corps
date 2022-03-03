@@ -16,37 +16,42 @@
 /obj/item/stack/snow/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tool/shovel))
-		var/obj/item/tool/shovel/ET = I
-		if(!isturf(loc))
-			return
+	if(!istype(I, /obj/item/tool/shovel))
+		return
 
-		if(ET.dirt_amt && ET.dirt_type == DIRT_TYPE_SNOW)
-			if(amount < max_amount + ET.dirt_amt)
-				amount += ET.dirt_amt
-			else
-				new /obj/item/stack/snow(loc, ET.dirt_amt)
-			ET.dirt_amt = 0
-			ET.update_icon()
-			return
+	var/obj/item/tool/shovel/ET = I
+	if(ET.folded)
+		to_chat(user, span_warning("You must unfold your shovel first!"))
+		return
 
-		to_chat(user, span_notice("You start taking snow from [src]."))
-		playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
+	if(!isturf(loc))
+		return
 
-		if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
-			return
-
-		var/transf_amt = ET.dirt_amt_per_dig
-		if(amount < ET.dirt_amt_per_dig)
-			transf_amt = amount
-
-		ET.dirt_amt = transf_amt
-		ET.dirt_type = DIRT_TYPE_SNOW
-		to_chat(user, span_notice("You take snow from [src]."))
+	if(ET.dirt_amt && ET.dirt_type == DIRT_TYPE_SNOW)
+		if(amount < max_amount + ET.dirt_amt)
+			amount += ET.dirt_amt
+		else
+			new /obj/item/stack/snow(loc, ET.dirt_amt)
+		ET.dirt_amt = 0
 		ET.update_icon()
-		use(transf_amt)
-		return TRUE
+		return
 
+	to_chat(user, span_notice("You start taking snow from [src]."))
+	playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
+
+	if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
+		return
+
+	var/transf_amt = ET.dirt_amt_per_dig
+	if(amount < ET.dirt_amt_per_dig)
+		transf_amt = amount
+
+	ET.dirt_amt = transf_amt
+	ET.dirt_type = DIRT_TYPE_SNOW
+	to_chat(user, span_notice("You take snow from [src]."))
+	ET.update_icon()
+	use(transf_amt)
+	return TRUE
 
 /obj/item/stack/snow/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
