@@ -114,11 +114,11 @@
 	name = "lockdown override"
 	id = "landing_zone"
 	icon_state = "shutterctrl"
-	/// Has the shutters alarm been played?
-	var/alarm_played = FALSE
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
+	/// Has the shutters alarm been played?
+	var/alarm_played = FALSE
 
 /obj/machinery/button/door/open_only/landing_zone/attack_hand(mob/living/user)
 	if((machine_stat & (NOPOWER|BROKEN)))
@@ -128,12 +128,13 @@
 		flick("[initial(icon_state)]-denied", src)
 		return
 	if(alarm_played)
+		flick("[initial(icon_state)]-denied", src)
 		return
 	use_power(active_power_usage)
 	icon_state = "[initial(icon_state)]1"
 
-	playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
 	alarm_played = TRUE
+	playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
 	addtimer(CALLBACK(src, /atom/movable/.proc/update_icon), 1.5 SECONDS)
 	addtimer(CALLBACK(src, .proc/pulsed), 185)
 
