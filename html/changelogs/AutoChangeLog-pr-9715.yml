@@ -1,0 +1,4 @@
+author: "DeltaFire15"
+delete-after: True
+changes: 
+  - bugfix: "Wraiths are once again able to recall themselves due to brazil-space being a closed turf."
