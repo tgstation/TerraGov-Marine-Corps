@@ -22788,10 +22788,6 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/southeast)
 "kyU" = (
-/obj/machinery/camera/autoname/mainship/dropship_one{
-	dir = 8;
-	pixel_x = 16
-	},
 /obj/structure/largecrate/random/barrel/blue,
 /obj/machinery/light{
 	dir = 4
@@ -23656,13 +23652,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"mZj" = (
-/obj/machinery/camera/autoname/mainship/dropship_one{
-	dir = 8;
-	pixel_x = 16
-	},
-/turf/closed/wall/r_wall,
-/area/bigredv2/caves/southeast)
 "nad" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24940,13 +24929,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/w)
-"qAb" = (
-/obj/machinery/camera/autoname/mainship/dropship_one{
-	dir = 4;
-	pixel_x = -16
-	},
-/turf/closed/wall/r_wall,
-/area/bigredv2/caves/southeast)
 "qAN" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
@@ -26288,17 +26270,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
-"uaa" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/camera/autoname/mainship/dropship_one{
-	dir = 8;
-	pixel_x = 16
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/caves/southeast)
 "uan" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/ai_node,
@@ -27354,12 +27325,6 @@
 	dir = 1
 	},
 /area/bigredv2/caves/southwest)
-"wUh" = (
-/obj/machinery/camera{
-	dir = 5
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "wUS" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -27836,12 +27801,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
-"ygy" = (
-/obj/machinery/camera{
-	dir = 9
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "ygC" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -50658,7 +50617,7 @@ bwF
 bwF
 vKO
 hqP
-ygy
+sQi
 jWg
 sQi
 qON
@@ -52831,7 +52790,7 @@ hqP
 sJC
 sQi
 sQi
-wUh
+sQi
 sQi
 hqP
 aab
@@ -72135,7 +72094,7 @@ rLv
 ryJ
 rAy
 keq
-mZj
+lsK
 ecB
 uaO
 fbT
@@ -72357,7 +72316,7 @@ sWX
 gQW
 wPE
 fbT
-qAb
+lsK
 xes
 fVW
 rKd
@@ -73876,7 +73835,7 @@ lsK
 lsK
 lsK
 lsK
-qAb
+lsK
 hOF
 rKd
 pqd
@@ -74519,7 +74478,7 @@ eIa
 uKx
 weA
 weA
-mZj
+lsK
 dAw
 lIk
 uKx
@@ -76049,7 +76008,7 @@ hHX
 lsK
 xYL
 gHr
-uaa
+gHr
 sPH
 lsK
 aab
