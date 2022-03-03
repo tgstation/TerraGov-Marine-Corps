@@ -1,0 +1,4 @@
+author: "2whatever2"
+delete-after: True
+changes: 
+  - bugfix: "Plasma pistol actually doesn't shoot onehanded or while wielding while attached to a gun"
