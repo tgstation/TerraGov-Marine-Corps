@@ -14087,6 +14087,10 @@
 	dir = 9
 	},
 /area/lv624/lazarus/hydroponics)
+"mNI" = (
+/obj/structure/curtain/temple,
+/turf/open/floor/bcircuit/off,
+/area/lv624/lazarus/sandtemple)
 "mNU" = (
 /obj/structure/table,
 /obj/item/trash/snack_bowl{
@@ -21577,6 +21581,12 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle10)
+"vSk" = (
+/obj/structure/curtain/temple,
+/turf/open/shuttle{
+	icon_state = "floor6"
+	},
+/area/lv624/lazarus/sandtemple)
 "vSx" = (
 /obj/structure/platform{
 	dir = 1
@@ -56845,11 +56855,11 @@ xLJ
 qfl
 qfl
 qfl
-hxa
-eYX
-eYX
-eYX
-hxa
+mNI
+vSk
+vSk
+vSk
+mNI
 qfl
 qfl
 oRZ
