@@ -275,13 +275,8 @@
 	icon_state = "grassdecal_center"
 
 /obj/effect/decal/lvsanddecal
-	name = "dirt"
-	gender = PLURAL
-	density = FALSE
-	anchored = TRUE
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "lvsanddecal_edge"
-	mouse_opacity = 0
 
 
 /obj/effect/decal/lvsanddecal/corner
