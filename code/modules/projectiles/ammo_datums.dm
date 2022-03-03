@@ -1220,7 +1220,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/tx29airburst_spread
 	name = "flechette"
 	icon_state = "flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
 	accuracy_var_low = 15
 	accuracy_var_high = 5
 	max_range = 4
@@ -1235,7 +1235,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/tx29airburst_spread/incendiary
 	name = "incendiary flechette"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE|AMMO_INCENDIARY|AMMO_LEAVE_TURF
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 10
 	damage_falloff = 1
 	penetration = 10

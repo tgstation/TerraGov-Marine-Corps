@@ -59,6 +59,7 @@
 #define AMMO_LEAVE_TURF (1<<18) //If the projectile does something with on_leave_turf()
 #define AMMO_PASS_THROUGH_TURF (1<<19) //If the projectile passes through walls causing damage to them
 #define AMMO_PASS_THROUGH_MOVABLE (1<<20) //If the projectile passes through mobs and objects causing damage to them
+#define AMMO_PASS_THROUGH_MOB (1<<21) //If the projectile passes through mobs only causing damage to them
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
