@@ -261,12 +261,8 @@
 
 
 /obj/effect/decal/grassdecal
-	name = "grass"
-	density = FALSE
-	anchored = TRUE
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "grassdecal_edge"
-	mouse_opacity = 0
 
 
 /obj/effect/decal/grassdecal/corner
