@@ -1399,19 +1399,17 @@
 	name = "TX29 20mm grenade launcher"
 	desc = "A weapon-mounted, reloadable, five-shot grenade launcher."
 	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = ""
+	icon_state = "tx29gl"
+	placed_overlay_iconstate = "tx29gl"
 	max_shells = 5 //codex
 	max_chamber_items = 1
 	fire_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_20MM //codex
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list()
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
-	pixel_shift_x = 14
-	pixel_shift_y = 18
 	default_ammo_type = null
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/tx29launcher,
@@ -1432,7 +1430,6 @@
 /obj/item/weapon/gun/rifle/tx29
 	name = "\improper TX-29 assault rifle"
 	desc = "The TX-29 is a dual barrel air-burst support weapon. It features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and a lower assault rifle with somewhat reduced capacity. Somewhat cumbersome to use due to its size and weight. Uses 10x24mm caseless ammunition."
-	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx29"
 	item_state = "t25"
 	fire_sound = "gun_t12"
@@ -1469,7 +1466,7 @@
 	flags_gun_features = GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/weapon/gun/rifle/tx29launcher)
-	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 12,"rail_x" = 21, "rail_y" = 18, "under_x" = 28, "under_y" = 9, "stock_x" = 19, "stock_y" = 23)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 22, "under_x" = 21, "under_y" = 14, "stock_x" = -1, "stock_y" = 17)
 	actions_types = list(/datum/action/item_action/aim_mode)
 
 	aim_fire_delay = 0.1 SECONDS
