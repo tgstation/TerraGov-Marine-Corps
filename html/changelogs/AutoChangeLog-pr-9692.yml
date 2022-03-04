@@ -1,9 +1,0 @@
-author: "vilereaver41"
-delete-after: True
-changes: 
-  - bugfix: "95% of lava is now gone"
-  - balance: "lz's are a bit bigger and harder to penetrate into"
-  - balance: "south of map is more xeno oriented for a better hive structure"
-  - rscadd: "new acid smoke enviormental effect made from acid splash remains on the turfs around xeno area with a strength of 3"
-  - rscadd: "zones and regions are now properly done north, northeast/etc meaning Tadpol and drop pods now work"
-  - bugfix: "removed some useless outer map features that were meant for cosmetic but were really ugly"

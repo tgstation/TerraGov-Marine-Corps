@@ -1,5 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - bugfix: "Entrenching tools now start folded and as such will now save in loadouts."
-  - bugfix: "Folded Entrenching tools can no longer pick up snow piles."
