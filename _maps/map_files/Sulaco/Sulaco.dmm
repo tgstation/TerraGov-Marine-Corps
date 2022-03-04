@@ -1842,6 +1842,10 @@
 	},
 /turf/open/floor/mainship_hull/gray,
 /area/space)
+"aia" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
+/turf/open/floor/prison/red,
+/area/sulaco/hangar/one)
 "aib" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
@@ -1979,6 +1983,7 @@
 	},
 /area/sulaco/hangar/one)
 "aje" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/prison/red/corner{
 	dir = 1
 	},
@@ -2494,6 +2499,12 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
+"amC" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/prison,
+/area/sulaco/cargo/prep)
 "amI" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -2845,6 +2856,9 @@
 	dir = 8;
 	pixel_x = -1;
 	pixel_y = -1
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 9
 	},
 /turf/open/floor/prison/red{
 	dir = 1
@@ -7799,11 +7813,6 @@
 	dir = 8
 	},
 /area/sulaco/marine)
-"aNh" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/cargo/prep)
 "aNk" = (
 /obj/structure/morgue{
 	dir = 8
@@ -10232,12 +10241,6 @@
 	dir = 4
 	},
 /area/sulaco/engineering)
-"bDI" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/cargo/prep)
 "bEO" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -10300,6 +10303,13 @@
 	dir = 1
 	},
 /area/sulaco/hallway/central_hall2)
+"bJj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/cargo/prep)
 "bJt" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -11469,6 +11479,13 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"dJz" = (
+/obj/structure/window/framed/mainship/gray/toughened,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 2
+	},
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "dJG" = (
 /obj/structure/largecrate/random,
 /obj/effect/decal/cleanable/cobweb{
@@ -11683,10 +11700,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
-"eie" = (
-/obj/structure/closet/crate/weapon,
-/turf/open/floor/prison/marked,
-/area/sulaco/cargo/office)
 "ejF" = (
 /obj/structure/table/mainship,
 /obj/item/tool/kitchen/tray,
@@ -12458,6 +12471,13 @@
 	},
 /turf/closed/wall/mainship/gray,
 /area/sulaco/maintenance/lower_maint2)
+"fFL" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/sulaco/hallway/lower_main_hall)
 "fGh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
@@ -12519,6 +12539,12 @@
 /obj/machinery/light/small,
 /turf/open/floor/prison/red,
 /area/mainship/shipboard/weapon_room)
+"fOt" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 8
+	},
+/turf/closed/wall/mainship/gray,
+/area/sulaco/maintenance/lower_maint2)
 "fOA" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/adv,
@@ -12538,6 +12564,12 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/bridge/office)
+"fRO" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/sulaco/cargo/prep)
 "fSz" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/tile/dark2,
@@ -12582,6 +12614,17 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
+"fWB" = (
+/obj/structure/table/mainship,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/structure/cable,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/turf/open/floor/prison/red/corner{
+	dir = 1
+	},
+/area/sulaco/hangar/one)
 "fXe" = (
 /obj/machinery/light,
 /turf/open/floor/prison/whitegreen/corner{
@@ -12689,12 +12732,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/red,
 /area/sulaco/briefing)
-"ghR" = (
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/hallway/lower_main_hall)
 "gim" = (
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -13268,19 +13305,18 @@
 /obj/structure/largecrate/guns,
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
+"hof" = (
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/hallway/lower_main_hall)
 "hoF" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
 /area/sulaco/research)
-"hpb" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/cargo/prep)
 "hpv" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -13808,9 +13844,9 @@
 	},
 /area/sulaco/medbay)
 "ipz" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison/red,
-/area/sulaco/cargo/prep)
+/obj/effect/decal/siding,
+/turf/open/floor/mainship/terragov/south,
+/area/space)
 "ipF" = (
 /obj/effect/decal/siding{
 	dir = 6
@@ -13844,12 +13880,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
-"isA" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/sulaco/cargo/prep)
 "iti" = (
 /obj/structure/closet/walllocker/hydrant,
 /obj/structure/closet/crate,
@@ -13967,6 +13997,13 @@
 	},
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
+"iBj" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2
+	},
+/obj/machinery/door/firedoor,
+/turf/open/floor/plating,
+/area/mainship/living/starboard_garden)
 "iBF" = (
 /obj/machinery/light{
 	dir = 4
@@ -14323,13 +14360,6 @@
 /obj/machinery/door/firedoor,
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering/ce)
-"jeW" = (
-/obj/structure/window/framed/mainship/gray/toughened,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/turf/open/floor/prison/plate,
-/area/sulaco/cargo)
 "jfN" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -14583,9 +14613,13 @@
 	},
 /area/space)
 "jCJ" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison,
-/area/sulaco/cargo/prep)
+/obj/effect/decal/siding{
+	dir = 6
+	},
+/turf/open/floor/mainship/terragov/south{
+	dir = 6
+	},
+/area/space)
 "jDL" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 4
@@ -14682,16 +14716,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
-"jKJ" = (
-/obj/effect/decal/cleanable/cobweb{
-	dir = 1
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint2)
 "jLl" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 1
@@ -14831,13 +14855,6 @@
 	resistance_flags = 3
 	},
 /area/sulaco/medbay)
-"jYi" = (
-/obj/machinery/door_control/mainship/req{
-	dir = 1;
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/cargo)
 "jYl" = (
 /obj/effect/decal/siding{
 	dir = 10
@@ -15062,9 +15079,9 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/marine)
 "kqQ" = (
-/obj/effect/decal/siding,
-/turf/open/floor/mainship/terragov/south,
-/area/space)
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/sulaco/hangar/one)
 "krk" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 9
@@ -15170,18 +15187,6 @@
 	dir = 6
 	},
 /area/space)
-"kGB" = (
-/obj/structure/table/mainship,
-/obj/item/weapon/gun/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/item/ammo_magazine/smg/m25,
-/obj/item/ammo_magazine/smg/m25,
-/turf/open/floor/prison/red/corner{
-	dir = 1
-	},
-/area/sulaco/hangar/one)
 "kGN" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -15309,12 +15314,6 @@
 "kOr" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/hangar/storage)
-"kPf" = (
-/obj/effect/decal/cleanable/cobweb{
-	dir = 8
-	},
-/turf/closed/wall/mainship/gray,
-/area/sulaco/maintenance/lower_maint2)
 "kRy" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -15387,6 +15386,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/vending/weapon,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
 "kXj" = (
@@ -15396,13 +15396,10 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "kXs" = (
-/obj/effect/decal/siding{
-	dir = 6
-	},
-/turf/open/floor/mainship/terragov/south{
-	dir = 6
-	},
-/area/space)
+/obj/structure/table/mainship,
+/obj/machinery/computer/supplydrop_console,
+/turf/open/floor/prison,
+/area/sulaco/cargo/office)
 "kYg" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -15453,10 +15450,14 @@
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "lcd" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/supplydrop_console,
-/turf/open/floor/prison,
-/area/sulaco/cargo/office)
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/prison/red{
+	dir = 8
+	},
+/area/sulaco/hangar/one)
 "lde" = (
 /obj/effect/decal/siding,
 /turf/open/floor/mainship/terragov/north,
@@ -15496,10 +15497,6 @@
 "lgl" = (
 /turf/closed/wall/mainship/gray,
 /area/shuttle/distress/arrive_2)
-"liN" = (
-/obj/structure/closet/crate/ammo,
-/turf/open/floor/prison/marked,
-/area/sulaco/cargo/office)
 "ljR" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 8
@@ -15690,13 +15687,8 @@
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "lvm" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison/red{
-	dir = 8
-	},
+/obj/effect/ai_node,
+/turf/open/floor/prison,
 /area/sulaco/hangar/one)
 "lwx" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -16052,6 +16044,12 @@
 	dir = 4
 	},
 /area/space)
+"maG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/cargo/prep)
 "mbw" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -16096,6 +16094,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
+"mdu" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 1
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "mee" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/green{
@@ -16252,8 +16260,12 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "mte" = (
-/obj/effect/ai_node,
-/turf/open/floor/prison,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/red{
+	dir = 4
+	},
 /area/sulaco/hangar/one)
 "mur" = (
 /obj/structure/cable,
@@ -16559,16 +16571,6 @@
 /obj/item/reagent_containers/food/snacks/flour,
 /turf/open/floor/freezer,
 /area/sulaco/cafeteria/kitchen)
-"mPz" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 10
-	},
-/obj/effect/ai_node,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 10
-	},
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/cargo)
 "mPO" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
@@ -16674,13 +16676,14 @@
 	},
 /area/sulaco/research)
 "mZj" = (
-/obj/machinery/light{
-	dir = 4
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/turf/open/floor/prison/red{
-	dir = 4
+/obj/machinery/gear{
+	id = "supply_elevator_gear"
 	},
-/area/sulaco/hangar/one)
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "mZO" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -16814,10 +16817,6 @@
 	dir = 4
 	},
 /area/sulaco/marine)
-"nqH" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/turf/open/floor/prison,
-/area/sulaco/hangar/one)
 "nqJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/ship_ammo/minirocket,
@@ -16918,13 +16917,13 @@
 /turf/open/floor/wood,
 /area/sulaco/marine/chapel/chapel_office)
 "nEh" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "supply_elevator_railing"
 	},
-/obj/machinery/gear{
-	id = "supply_elevator_gear"
+/turf/open/floor/prison/arrow{
+	dir = 1
 	},
-/turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "nFU" = (
 /obj/structure/cable,
@@ -17249,13 +17248,13 @@
 	},
 /area/space)
 "obO" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 2;
-	id = "supply_elevator_railing"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/turf/open/floor/prison/arrow{
-	dir = 1
+/obj/machinery/gear{
+	id = "supply_elevator_gear"
 	},
+/turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "obX" = (
 /obj/machinery/door/firedoor/mainship,
@@ -17430,14 +17429,13 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "ooe" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
+/obj/structure/target_stake,
+/obj/item/target,
+/obj/item/clothing/suit/replica,
+/turf/open/floor/prison/red{
+	dir = 8
 	},
-/obj/machinery/gear{
-	id = "supply_elevator_gear"
-	},
-/turf/open/floor/prison/plate,
-/area/sulaco/cargo)
+/area/sulaco/hangar/one)
 "opj" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -17508,13 +17506,11 @@
 /turf/open/floor/plating/platebotc,
 /area/mainship/living/starboard_garden)
 "otR" = (
-/obj/structure/target_stake,
-/obj/item/target,
-/obj/item/clothing/suit/replica,
-/turf/open/floor/prison/red{
-	dir = 8
+/obj/machinery/door/poddoor/railing{
+	id = "supply_elevator_railing"
 	},
-/area/sulaco/hangar/one)
+/turf/open/floor/prison,
+/area/sulaco/cargo)
 "oub" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -17627,6 +17623,7 @@
 /area/sulaco/command/ai)
 "oBg" = (
 /obj/machinery/door/poddoor/railing{
+	dir = 8;
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/prison,
@@ -17938,6 +17935,7 @@
 /obj/machinery/power/apc/mainship{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/red,
 /area/sulaco/cargo/prep)
 "oWg" = (
@@ -17976,6 +17974,16 @@
 	icon_state = "warnplatecorner"
 	},
 /area/sulaco/hangar)
+"oZM" = (
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/prison/marked,
+/area/sulaco/cargo/office)
+"pad" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/turf/open/floor/prison,
+/area/sulaco/hangar/one)
 "pbw" = (
 /obj/structure/table/mainship,
 /obj/machinery/light/small,
@@ -18001,12 +18009,13 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "peT" = (
-/obj/machinery/door/poddoor/railing{
+/obj/machinery/door_control/mainship/req{
 	dir = 8;
-	id = "supply_elevator_railing"
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
 	},
 /turf/open/floor/prison,
-/area/sulaco/cargo)
+/area/sulaco/cargo/office)
 "pfc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
@@ -18268,17 +18277,15 @@
 /turf/open/floor/plating,
 /area/sulaco/hangar/cas)
 "pwD" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/door_control/mainship/req{
+	dir = 4;
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
 	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 9
-	},
-/turf/open/floor/prison/red{
-	dir = 1
-	},
-/area/sulaco/cargo/prep)
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/cargo)
 "pwN" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -18322,13 +18329,10 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "pxX" = (
-/obj/machinery/door_control/mainship/req{
-	dir = 8;
-	id = "qm_warehouse";
-	name = "Requisition Warehouse Shutters"
+/turf/open/floor/prison/red{
+	dir = 6
 	},
-/turf/open/floor/prison,
-/area/sulaco/cargo/office)
+/area/sulaco/hangar/one)
 "pxY" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/liaison/quarters)
@@ -18384,15 +18388,9 @@
 /turf/open/floor/plating,
 /area/sulaco/briefing)
 "pGN" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/door_control/mainship/req{
-	dir = 4;
-	id = "qm_warehouse";
-	name = "Requisition Warehouse Shutters"
-	},
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/cargo)
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/prison,
+/area/sulaco/cargo/office)
 "pHg" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
@@ -18406,10 +18404,13 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "pHm" = (
-/turf/open/floor/prison/red{
-	dir = 6
+/obj/machinery/door/poddoor/railing{
+	id = "supply_elevator_railing"
 	},
-/area/sulaco/hangar/one)
+/turf/open/floor/prison/arrow{
+	dir = 8
+	},
+/area/sulaco/cargo)
 "pHZ" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -18609,9 +18610,9 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "qhv" = (
-/obj/machinery/vending/armor_supply,
-/turf/open/floor/prison,
-/area/sulaco/cargo/office)
+/obj/docking_port/stationary/supply,
+/turf/open/floor/mainship/empty,
+/area/sulaco/cargo)
 "qhI" = (
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
@@ -18660,10 +18661,11 @@
 /area/sulaco/medbay)
 "qjZ" = (
 /obj/machinery/door/poddoor/railing{
+	dir = 8;
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/prison/arrow{
-	dir = 8
+	dir = 4
 	},
 /area/sulaco/cargo)
 "qkp" = (
@@ -18719,9 +18721,9 @@
 	},
 /area/sulaco/hangar/droppod)
 "qod" = (
-/obj/docking_port/stationary/supply,
-/turf/open/floor/mainship/empty,
-/area/sulaco/cargo)
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/prison,
+/area/sulaco/cargo/office)
 "qoV" = (
 /obj/structure/bed/chair,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -18762,14 +18764,12 @@
 	},
 /area/sulaco/engineering/atmos)
 "qrM" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 8;
-	id = "supply_elevator_railing"
-	},
-/turf/open/floor/prison/arrow{
+/obj/structure/window/reinforced{
 	dir = 4
 	},
-/area/sulaco/cargo)
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/prison/marked,
+/area/sulaco/hangar/one)
 "qrR" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/bright_clean,
@@ -19093,18 +19093,6 @@
 /obj/item/reagent_containers/glass/bucket/janibucket,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
-"raK" = (
-/obj/structure/table/mainship,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/item/weapon/gun/shotgun/pump,
-/obj/item/ammo_magazine/shotgun,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/turf/open/floor/prison/red{
-	dir = 5
-	},
-/area/sulaco/hangar/one)
 "rbr" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -19437,13 +19425,6 @@
 	},
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
-"rxm" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2
-	},
-/obj/machinery/door/firedoor,
-/turf/open/floor/plating,
-/area/mainship/living/starboard_garden)
 "rxK" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -19507,14 +19488,13 @@
 	},
 /area/sulaco/hallway/central_hall)
 "rEe" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+/obj/machinery/alarm{
 	dir = 4
 	},
-/turf/open/floor/prison/red{
-	dir = 1
+/turf/open/floor/prison/red/corner{
+	dir = 8
 	},
-/area/sulaco/cargo/prep)
+/area/sulaco/hangar/one)
 "rFM" = (
 /obj/structure/droppod,
 /obj/structure/dropprop,
@@ -19651,6 +19631,12 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
+"rPI" = (
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 2
+	},
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "rPM" = (
 /obj/machinery/door/airlock/mainship/marine/general{
 	dir = 1
@@ -19674,12 +19660,6 @@
 /obj/effect/landmark/start/job/pilotofficer,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
-"rRo" = (
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/turf/open/floor/prison/plate,
-/area/sulaco/cargo)
 "rSe" = (
 /obj/item/radio/intercom/general{
 	dir = 8
@@ -20100,9 +20080,12 @@
 	},
 /area/mainship/command/self_destruct)
 "sBH" = (
-/obj/machinery/vending/uniform_supply,
-/turf/open/floor/prison,
-/area/sulaco/cargo/office)
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/red/corner,
+/area/sulaco/hangar/one)
 "sBO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -20221,12 +20204,13 @@
 /turf/open/floor/plating,
 /area/sulaco/bridge)
 "sKr" = (
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/airlock/mainship/marine/requisitions{
+	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison/marked,
-/area/sulaco/hangar/one)
+/obj/machinery/door/firedoor,
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo/office)
 "sKM" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -20426,10 +20410,6 @@
 	dir = 6
 	},
 /area/mainship/shipboard/weapon_room)
-"sXm" = (
-/obj/machinery/autolathe,
-/turf/open/floor/prison,
-/area/sulaco/cargo/office)
 "sXL" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -20653,12 +20633,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
-"toz" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
-	dir = 4
-	},
-/turf/open/floor/prison/red,
-/area/sulaco/hangar/one)
 "toM" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -20744,6 +20718,10 @@
 "ttL" = (
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint3)
+"tue" = (
+/obj/structure/closet/crate/weapon,
+/turf/open/floor/prison/marked,
+/area/sulaco/cargo/office)
 "tur" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -21360,13 +21338,14 @@
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
 "uxf" = (
-/obj/machinery/alarm{
-	dir = 4
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/turf/open/floor/prison/red/corner{
-	dir = 8
+/obj/machinery/gear{
+	id = "supply_elevator_gear"
 	},
-/area/sulaco/hangar/one)
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "uyf" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions{
 	dir = 1
@@ -21407,12 +21386,18 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/engineering)
 "uBX" = (
-/obj/machinery/power/apc/mainship{
-	dir = 8
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "supply_elevator_railing"
 	},
-/obj/structure/cable,
-/turf/open/floor/prison/red/corner,
-/area/sulaco/hangar/one)
+/obj/machinery/holopad{
+	active_power_usage = 130;
+	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a larger lense.";
+	holo_range = 7;
+	name = "modfied holopad"
+	},
+/turf/open/floor/prison/arrow,
+/area/sulaco/cargo)
 "uCA" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/security/wooden_tv,
@@ -21430,13 +21415,14 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "uEa" = (
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 8
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
-/obj/machinery/door/firedoor,
+/obj/machinery/gear{
+	id = "supply_elevator_gear"
+	},
 /turf/open/floor/prison/plate,
-/area/sulaco/cargo/office)
+/area/sulaco/cargo)
 "uFe" = (
 /obj/machinery/door/firedoor,
 /turf/open/floor/prison/arrow/clean,
@@ -21592,14 +21578,16 @@
 /turf/open/floor/wood,
 /area/mainship/living/basketball)
 "uQQ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
+/obj/structure/closet/crate,
+/obj/item/target/alien,
+/obj/item/target/alien,
+/obj/item/target/alien,
+/obj/item/target/alien,
+/obj/item/target/alien,
+/turf/open/floor/prison/red{
+	dir = 10
 	},
-/obj/machinery/gear{
-	id = "supply_elevator_gear"
-	},
-/turf/open/floor/prison/plate,
-/area/sulaco/cargo)
+/area/sulaco/hangar/one)
 "uRy" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/machinery/door/firedoor,
@@ -21650,18 +21638,17 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "uVS" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 1;
-	id = "supply_elevator_railing"
+/obj/structure/cable,
+/obj/structure/closet/crate,
+/obj/item/target,
+/obj/item/target,
+/obj/item/target,
+/obj/item/target,
+/obj/item/target,
+/turf/open/floor/prison/red{
+	dir = 6
 	},
-/obj/machinery/holopad{
-	active_power_usage = 130;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a larger lense.";
-	holo_range = 7;
-	name = "modfied holopad"
-	},
-/turf/open/floor/prison/arrow,
-/area/sulaco/cargo)
+/area/sulaco/hangar/one)
 "uWC" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison,
@@ -21722,13 +21709,16 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "vaf" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
+/obj/machinery/camera/autoname{
+	dir = 1
 	},
-/obj/machinery/gear{
-	id = "supply_elevator_gear"
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 5
 	},
-/turf/open/floor/prison/plate,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo)
 "vai" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -21888,16 +21878,15 @@
 	},
 /area/sulaco/marine)
 "vln" = (
-/obj/structure/closet/crate,
-/obj/item/target/alien,
-/obj/item/target/alien,
-/obj/item/target/alien,
-/obj/item/target/alien,
-/obj/item/target/alien,
-/turf/open/floor/prison/red{
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 10
 	},
-/area/sulaco/hangar/one)
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/cargo)
 "vlG" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
@@ -22202,20 +22191,12 @@
 /turf/open/floor/prison,
 /area/sulaco/hangar/one)
 "vSc" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 10
+/obj/machinery/door_control/mainship/req{
+	dir = 1;
+	name = "ASRS conveyor belt public shutter"
 	},
-/obj/structure/closet/crate,
-/obj/item/target,
-/obj/item/target,
-/obj/item/target,
-/obj/item/target,
-/obj/item/target,
-/turf/open/floor/prison/red{
-	dir = 6
-	},
-/area/sulaco/hangar/one)
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/cargo)
 "vSd" = (
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
@@ -22265,13 +22246,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
-"vUT" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/prison,
-/area/sulaco/hallway/lower_main_hall)
 "vVz" = (
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
@@ -22492,6 +22466,11 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"wre" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/cargo/prep)
 "wsa" = (
 /obj/machinery/computer/camera_advanced/overwatch/req,
 /obj/machinery/light{
@@ -22504,16 +22483,6 @@
 	dir = 1
 	},
 /area/space)
-"wvr" = (
-/obj/machinery/status_display,
-/turf/closed/wall/mainship/gray,
-/area/sulaco/cargo/office)
-"wwI" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison,
-/area/sulaco/cargo/prep)
 "wwQ" = (
 /turf/open/floor/cult,
 /area/sulaco/morgue)
@@ -22919,6 +22888,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
+"xaI" = (
+/obj/machinery/status_display,
+/turf/closed/wall/mainship/gray,
+/area/sulaco/cargo/office)
 "xba" = (
 /obj/machinery/holopad{
 	active_power_usage = 130;
@@ -23394,6 +23367,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
+"xRv" = (
+/obj/machinery/autolathe,
+/turf/open/floor/prison,
+/area/sulaco/cargo/office)
 "xTi" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -23551,17 +23528,16 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "yht" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+/obj/structure/table/mainship,
+/obj/structure/cable,
+/obj/item/weapon/gun/shotgun/pump,
+/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/turf/open/floor/prison/red{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 5
-	},
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/sulaco/cargo)
+/area/sulaco/hangar/one)
 "yhJ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -46733,8 +46709,8 @@ hqJ
 alk
 alk
 anD
-liN
-eie
+oZM
+tue
 dZI
 hCz
 bjX
@@ -47491,23 +47467,23 @@ bOh
 mqT
 aVH
 gsz
-lcd
+kXs
 sWz
 sPk
-pxX
-qhv
-sBH
+peT
+pGN
+qod
 ptg
 alk
 alk
-sXm
+xRv
 ali
 akh
 alk
 rIv
 hCz
 nIP
-wvr
+xaI
 bjX
 jPq
 puw
@@ -47755,7 +47731,7 @@ obX
 lZd
 lZd
 wKj
-uEa
+sKr
 wKj
 hCz
 jBX
@@ -48008,12 +47984,12 @@ bPM
 fCm
 fCm
 tBy
-pGN
+pwD
 uOd
 uOd
 fqX
 fqX
-yht
+vaf
 lpY
 vSd
 amd
@@ -48263,13 +48239,13 @@ dyW
 bPM
 bPM
 fCm
-nEh
-oBg
-oBg
-qjZ
-oBg
-oBg
-uQQ
+mZj
+otR
+otR
+pHm
+otR
+otR
+uxf
 ajb
 txO
 vSd
@@ -48784,17 +48760,17 @@ abV
 abV
 abV
 iYq
-mPz
+vln
 nKk
 fpZ
-aNh
+wre
 uig
-wwI
-hpb
-bDI
+amC
+bJj
+maG
 bkk
-vUT
-ghR
+fFL
+hof
 bjX
 aam
 abb
@@ -49034,15 +49010,15 @@ gDf
 hWs
 gPi
 fCm
-obO
+nEh
 abV
 abV
-qod
+qhv
 abV
 abV
-uVS
+uBX
 fCm
-rRo
+rPI
 hKB
 vSd
 qWi
@@ -49298,9 +49274,9 @@ abV
 abV
 abV
 xpj
-jYi
+vSc
 txO
-isA
+fRO
 vSd
 qWi
 vSd
@@ -49556,7 +49532,7 @@ abV
 abV
 xpj
 fCm
-jeW
+dJz
 whS
 dya
 vwH
@@ -49805,13 +49781,13 @@ abj
 bPM
 bPM
 fCm
-ooe
-peT
-peT
-qrM
-peT
-peT
-vaf
+obO
+oBg
+oBg
+qjZ
+oBg
+oBg
+uEa
 fCm
 lpY
 alx
@@ -50071,9 +50047,9 @@ fCm
 fCm
 fCm
 lpY
-ipz
-jCJ
-pwD
+alx
+vSd
+aoM
 alx
 vSd
 jSM
@@ -50330,7 +50306,7 @@ uPG
 vdJ
 alx
 fmQ
-rEe
+aoM
 alx
 fmQ
 rpg
@@ -50575,19 +50551,19 @@ aPn
 ace
 kVY
 nJV
-lvm
-otR
+lcd
+ooe
 kVY
 kji
 aRy
 iKy
-uxf
-vln
+rEe
+uQQ
 eAf
 pTz
 alx
 vSd
-rEe
+aoM
 mdt
 vSd
 jSM
@@ -50839,9 +50815,9 @@ aed
 aRy
 vuy
 miH
-tBz
+aia
 aje
-nqH
+pad
 oVi
 kWQ
 aoU
@@ -51089,7 +51065,7 @@ aPn
 ajc
 bhA
 bhA
-mte
+lvm
 bhA
 bhA
 aiV
@@ -51098,7 +51074,7 @@ vRR
 bhA
 rsV
 jOl
-bhA
+kqQ
 erP
 erP
 erP
@@ -51351,11 +51327,11 @@ sCO
 bhA
 tBz
 aRy
-sKr
+qrM
 bhA
-toz
+tBz
 lSl
-bhA
+kqQ
 erP
 slc
 kjm
@@ -51603,16 +51579,16 @@ aPn
 alm
 lfO
 mlv
-mZj
+mte
 lfO
 lfO
-pHm
+pxX
 aRy
 vuy
-uBX
-vSc
-raK
-kGB
+sBH
+uVS
+yht
+fWB
 erP
 sQE
 nxT
@@ -52126,8 +52102,8 @@ una
 una
 una
 una
-jKJ
-rxm
+mdu
+iBj
 xBs
 xve
 dOR
@@ -52383,7 +52359,7 @@ aQh
 aQh
 aQh
 aQh
-kPf
+fOt
 erP
 oUA
 jJe
@@ -57256,7 +57232,7 @@ mDu
 mDu
 anK
 fsG
-kqQ
+ipz
 mDu
 mDu
 mDu
@@ -57513,7 +57489,7 @@ mDu
 mDu
 aTg
 gcc
-kXs
+jCJ
 mDu
 mDu
 mDu
