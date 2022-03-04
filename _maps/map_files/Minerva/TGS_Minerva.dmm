@@ -5739,7 +5739,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
 	name = "\improper ASRS conveyor belt public shutter"
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "tu" = (
 /obj/structure/closet/emcloset,
@@ -11061,7 +11061,7 @@
 	dir = 2;
 	name = "\improper ASRS conveyor belt public shutter"
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "Ji" = (
 /obj/structure/cable,

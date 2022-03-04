@@ -1310,9 +1310,12 @@
 	},
 /area/mainship/squads/general)
 "em" = (
-/obj/machinery/vending/nanomed,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_hallway)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "en" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/mainship/mono,
@@ -10277,7 +10280,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "Gu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -11507,7 +11510,7 @@
 "JO" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/airlock/mainship/marine/requisitions,
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "JQ" = (
 /obj/structure/cable,
@@ -11609,6 +11612,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"Kf" = (
+/obj/machinery/vending/nanomed,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "Kg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -12568,12 +12575,20 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "MZ" = (
-/obj/machinery/firealarm,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "Na" = (
-/obj/machinery/alarm,
-/turf/open/floor/mainship/mono,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "Nb" = (
 /obj/machinery/firealarm{
@@ -12600,7 +12615,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
 	dir = 2
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "Nf" = (
 /obj/structure/cable,
@@ -12770,12 +12785,9 @@
 	},
 /area/mainship/squads/general)
 "NA" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
+/obj/machinery/firealarm,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/hallways/starboard_hallway)
 "NC" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -13905,6 +13917,10 @@
 	dir = 5
 	},
 /area/mainship/squads/general)
+"QS" = (
+/obj/machinery/alarm,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "QT" = (
 /obj/machinery/telecomms/server/presets/requisitions,
 /turf/open/floor/mainship/tcomms,
@@ -14022,13 +14038,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "Rj" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
 "Rl" = (
@@ -15633,10 +15647,8 @@
 	},
 /area/mainship/living/cryo_cells)
 "Wp" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "Wr" = (
@@ -16065,6 +16077,10 @@
 "XD" = (
 /obj/machinery/door/poddoor/shutters/mainship/req/ro,
 /obj/machinery/door/firedoor/mainship,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "XE" = (
@@ -47074,7 +47090,7 @@ Ig
 kN
 YE
 ea
-jy
+NA
 Uu
 jy
 PE
@@ -47588,7 +47604,7 @@ Sv
 do
 pq
 qG
-jy
+Kf
 Uu
 jy
 PE
@@ -48359,7 +48375,7 @@ eh
 IJ
 JN
 Ne
-em
+jy
 Uu
 oY
 PE
@@ -48873,7 +48889,7 @@ eh
 UV
 JN
 kj
-MZ
+jy
 Uu
 jy
 PE
@@ -49637,14 +49653,14 @@ qG
 Xn
 yZ
 Wp
-JN
+em
 JN
 Oo
 JN
 JN
 px
 TF
-Na
+jy
 Hb
 jy
 AR
@@ -49901,7 +49917,7 @@ Tb
 qG
 qG
 qG
-jy
+QS
 Hb
 jy
 qC
@@ -50149,9 +50165,9 @@ NY
 rF
 rF
 rF
-NA
 rF
-jy
+rF
+MZ
 jy
 Zy
 jy
@@ -50408,7 +50424,7 @@ JL
 JL
 Rj
 yv
-RB
+Na
 RB
 RB
 OD

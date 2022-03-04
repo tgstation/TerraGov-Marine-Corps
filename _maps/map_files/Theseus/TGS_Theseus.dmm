@@ -388,7 +388,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
 	dir = 2
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "abA" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -1915,13 +1915,6 @@
 	dir = 8
 	},
 /area/mainship/living/basketball)
-"aAP" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/turf/open/space/basic,
-/area/mainship/squads/req)
 "aAV" = (
 /obj/machinery/alarm,
 /turf/open/floor/mainship/orange{
@@ -4215,7 +4208,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
 	dir = 2
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bnH" = (
 /obj/structure/cable,
@@ -4225,7 +4218,7 @@
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bnI" = (
 /obj/machinery/cryopod,
@@ -10552,7 +10545,7 @@
 /area/mainship/shipboard/brig)
 "fWE" = (
 /obj/machinery/door_control/mainship/req{
-	dir = 4;
+	dir = 8;
 	id = "qm_warehouse";
 	name = "Requisition Warehouse Shutters"
 	},
@@ -13079,11 +13072,11 @@
 /area/mainship/living/basketball)
 "kHS" = (
 /obj/machinery/door_control/mainship/req{
-	dir = 8;
+	dir = 4;
 	id = "qm_warehouse";
 	name = "Requisition Warehouse Shutters"
 	},
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "kHU" = (
 /obj/machinery/door/firedoor/mainship{
@@ -63651,7 +63644,7 @@ aWH
 jQk
 bjV
 vCU
-aAP
+bnG
 bpF
 brm
 bnD
@@ -63661,9 +63654,9 @@ iWe
 iWe
 iWe
 iWe
-kHS
 iWe
 iWe
+fWE
 adF
 bnD
 bnD
@@ -64175,10 +64168,10 @@ nmb
 iWe
 iWe
 iWe
-fWE
+iWe
 iWe
 nmb
-bAG
+kHS
 bnF
 bJN
 wfH
