@@ -385,10 +385,10 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "abz" = (
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
+/obj/vehicle/ridden/motorbike{
+	dir = 4
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "abA" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -902,12 +902,9 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "adh" = (
-/obj/machinery/door_control/old/req{
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/mainship/green/corner{
-	dir = 1
-	},
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "adi" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector{
@@ -1915,6 +1912,14 @@
 	dir = 8
 	},
 /area/mainship/living/basketball)
+"aAP" = (
+/obj/machinery/door_control/mainship/req{
+	dir = 8;
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "aAV" = (
 /obj/machinery/alarm,
 /turf/open/floor/mainship/orange{
@@ -4197,27 +4202,24 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 5
+	dir = 1
 	},
 /area/mainship/squads/req)
 "bnF" = (
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
 "bnG" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
+/obj/machinery/door_control/mainship/req{
+	dir = 4;
+	id = "qm_warehouse";
+	name = "Requisition Warehouse Shutters"
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/green,
 /area/mainship/squads/req)
 "bnH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bnI" = (
@@ -4490,15 +4492,11 @@
 	},
 /area/mainship/squads/alpha)
 "bpF" = (
-/obj/machinery/light{
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door_control/old/req{
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/mainship/green{
-	dir = 5
-	},
+/obj/structure/cable,
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "bpG" = (
 /obj/effect/landmark/start/latejoin_gateway,
@@ -4659,11 +4657,9 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "brm" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
+/area/mainship/hallways/port_hallway)
 "brn" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -5106,11 +5102,8 @@
 /area/mainship/living/cafeteria_starboard)
 "bwe" = (
 /obj/item/radio/intercom/general,
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/open/floor/mainship/green{
-	dir = 9
+	dir = 1
 	},
 /area/mainship/squads/req)
 "bwf" = (
@@ -5248,12 +5241,6 @@
 /area/mainship/hallways/hangar)
 "byg" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
 /turf/open/floor/mainship/green{
 	dir = 8
 	},
@@ -6254,6 +6241,7 @@
 /obj/machinery/gear{
 	id = "supply_elevator_gear"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bJL" = (
@@ -6901,6 +6889,7 @@
 	dir = 8;
 	id = "supply_elevator_railing"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "bQb" = (
@@ -8977,13 +8966,8 @@
 	},
 /area/mainship/command/cic)
 "dbv" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/turf/open/floor/plating,
+/obj/structure/cable,
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "dbD" = (
 /obj/machinery/landinglight/ds2/delayone{
@@ -9821,18 +9805,6 @@
 "eDN" = (
 /turf/open/floor/mainship/silver/corner,
 /area/mainship/hallways/bow_hallway)
-"eEE" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/door_control/mainship/req{
-	dir = 1;
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/mainship/green{
-	dir = 6
-	},
-/area/mainship/squads/req)
 "eEW" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint{
@@ -10376,13 +10348,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
-"fFq" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/req)
 "fFB" = (
 /obj/machinery/light{
 	dir = 8
@@ -10543,14 +10508,6 @@
 	dir = 4
 	},
 /area/mainship/shipboard/brig)
-"fWE" = (
-/obj/machinery/door_control/mainship/req{
-	dir = 8;
-	id = "qm_warehouse";
-	name = "Requisition Warehouse Shutters"
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/req)
 "fYx" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/power/terminal{
@@ -11037,12 +10994,6 @@
 	dir = 5
 	},
 /area/mainship/hallways/bow_hallway)
-"gSD" = (
-/obj/vehicle/ridden/motorbike{
-	dir = 4
-	},
-/turf/open/floor/mainship/cargo,
-/area/mainship/squads/req)
 "gSF" = (
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/disposalpipe/segment{
@@ -11873,6 +11824,7 @@
 	dir = 8;
 	id = "supply_elevator_railing"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
@@ -12212,6 +12164,7 @@
 	id = "supply_elevator_gear"
 	},
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "jbI" = (
@@ -12388,12 +12341,6 @@
 	dir = 5
 	},
 /area/mainship/hallways/aft_hallway)
-"jpq" = (
-/obj/machinery/door_control/old/req{
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/port_hallway)
 "jrq" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -13011,11 +12958,6 @@
 "kCg" = (
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/firing_range)
-"kCp" = (
-/turf/open/floor/mainship/green{
-	dir = 9
-	},
-/area/mainship/squads/req)
 "kCs" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/orange,
@@ -13070,14 +13012,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/basketball)
-"kHS" = (
-/obj/machinery/door_control/mainship/req{
-	dir = 4;
-	id = "qm_warehouse";
-	name = "Requisition Warehouse Shutters"
-	},
-/turf/open/floor/mainship/green,
-/area/mainship/squads/req)
 "kHU" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -15503,19 +15437,6 @@
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
-"oHW" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
 "oIu" = (
 /obj/machinery/door/airlock/mainship/marine/general/corps{
 	dir = 2
@@ -15896,14 +15817,6 @@
 /obj/item/bedsheet/yellow,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
-"prr" = (
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
 "prM" = (
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
@@ -16430,7 +16343,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 10
+	dir = 8
 	},
 /area/mainship/squads/req)
 "qrh" = (
@@ -16780,16 +16693,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
-"qVf" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/turf/open/floor/plating,
-/area/mainship/squads/req)
 "qVk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17257,10 +17160,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_umbilical)
-"rTt" = (
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
 "rTw" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -17454,13 +17353,6 @@
 	dir = 4
 	},
 /area/mainship/medical/operating_room_three)
-"siC" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
-/turf/open/floor/plating,
-/area/mainship/squads/req)
 "siJ" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 8
@@ -17706,15 +17598,6 @@
 "sBz" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
-"sDp" = (
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "sGK" = (
 /obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/mainship/tcomms,
@@ -18305,15 +18188,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
-"tKO" = (
-/obj/machinery/door_control/mainship/req{
-	dir = 8;
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/mainship/green{
-	dir = 4
-	},
-/area/mainship/squads/req)
 "tLN" = (
 /obj/machinery/status_display{
 	pixel_y = 30
@@ -19294,13 +19168,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"vCU" = (
-/obj/machinery/door_control/mainship/req{
-	dir = 1;
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_hallway)
 "vDb" = (
 /obj/structure/table/mainship,
 /obj/item/paper,
@@ -19535,10 +19402,7 @@
 /turf/open/floor/mainship/orange,
 /area/mainship/hallways/repair_bay)
 "vZh" = (
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
-/obj/structure/window/framed/mainship/requisitions,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/green/full,
 /area/mainship/squads/req)
 "wav" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -19632,15 +19496,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
-"whQ" = (
-/obj/machinery/door_control/mainship/req{
-	dir = 4;
-	name = "ASRS conveyor belt public shutter"
-	},
-/turf/open/floor/mainship/green{
-	dir = 8
-	},
-/area/mainship/squads/req)
 "wif" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -61083,7 +60938,7 @@ bnE
 seG
 bnD
 bnD
-tKO
+bnD
 bnD
 bnD
 pyl
@@ -61336,14 +61191,14 @@ vaF
 bAG
 bGj
 bnF
-bnF
-rTt
-prr
+abz
+seG
 vZh
 vZh
 vZh
-rTt
-siC
+vZh
+vZh
+seG
 bnF
 bnF
 kfp
@@ -61597,7 +61452,7 @@ bwe
 iWe
 hit
 hit
-whQ
+hit
 hit
 hit
 iWe
@@ -61850,7 +61705,7 @@ bpn
 kzX
 bGl
 byg
-adh
+vaF
 iBQ
 qDD
 qDD
@@ -62106,7 +61961,7 @@ wcO
 bpq
 iWe
 iWe
-sDp
+seG
 bKU
 jiv
 xhL
@@ -62873,8 +62728,8 @@ aWH
 aLX
 bjV
 biu
-bnG
-kCp
+hit
+hit
 hit
 sPW
 hit
@@ -62887,11 +62742,11 @@ xhL
 xhL
 bAK
 qNt
-gSD
+hit
 hit
 acl
 qqs
-qVf
+hit
 ruj
 hIv
 ruj
@@ -63148,7 +63003,7 @@ pAc
 vKY
 brl
 acn
-oHW
+acn
 jJv
 lPI
 bne
@@ -63387,12 +63242,12 @@ aWH
 aFq
 bjV
 biu
-abz
+seG
 iWe
 bBX
-iWe
-iWe
-bMP
+dbv
+dbv
+adh
 bJI
 bPT
 bPT
@@ -63400,13 +63255,13 @@ itb
 bPT
 bPT
 iZS
-iWe
-iWe
-iWe
-bBX
-iWe
 dbv
-ruj
+dbv
+dbv
+bpF
+dbv
+dbv
+brm
 bQw
 ruj
 cbn
@@ -63643,10 +63498,10 @@ vTf
 aWH
 jQk
 bjV
-vCU
-bnG
-bpF
-brm
+biu
+bnD
+ace
+bBX
 bnD
 bnD
 gas
@@ -63656,14 +63511,14 @@ iWe
 iWe
 iWe
 iWe
-fWE
+aAP
 adF
 bnD
 bnD
 bBX
-eEE
-fFq
-jpq
+ace
+bnD
+ruj
 bQw
 ruj
 cbn
@@ -64171,7 +64026,7 @@ iWe
 iWe
 iWe
 nmb
-kHS
+bnG
 bnF
 bJN
 wfH
