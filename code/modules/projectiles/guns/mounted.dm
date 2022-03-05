@@ -236,7 +236,6 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_time = 4 SECONDS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
-	resistance_flags = UNACIDABLE
 	soft_armor = list("melee" = 60, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	scatter = 0
@@ -250,6 +249,7 @@
 /obj/machinery/deployable/mounted/atgun
 	anchored = FALSE // You can wheel this around!
 	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
+	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
 
 /obj/item/storage/internal/ammo_rack
 	storage_slots = 10
