@@ -11694,8 +11694,8 @@
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
 "aSW" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)
 "aTa" = (
 /obj/effect/landmark/weed_node,
@@ -19459,9 +19459,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/office_complex)
-"bHg" = (
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/southeast)
 "bHH" = (
 /obj/effect/attach_point/electronics/dropship1,
 /turf/open/floor/plating,
@@ -19488,13 +19485,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
-"bOL" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast)
-"bPJ" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/rock)
 "bQc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -24487,10 +24477,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
-"sVy" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "sWC" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -24612,6 +24598,10 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"tvE" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "twQ" = (
 /obj/effect/spawner/random/tool,
 /turf/open/floor,
@@ -58545,7 +58535,7 @@ uQw
 tLc
 tLc
 uQw
-sVy
+tvE
 tLc
 tLc
 tLc
@@ -59160,12 +59150,12 @@ hqP
 hqP
 hqP
 hqP
-xvL
+aSW
 tLc
 uQw
 tLc
 tLc
-xvL
+aSW
 tLc
 hqP
 hqP
@@ -60025,7 +60015,7 @@ hqP
 hqP
 hqP
 hqP
-xvL
+aSW
 tLc
 tLc
 ycM
@@ -60281,7 +60271,7 @@ hqP
 hqP
 tLc
 tLc
-tLc
+tvE
 uQw
 hqP
 hqP
@@ -60893,7 +60883,7 @@ hqP
 hqP
 tLc
 tLc
-uQw
+ycM
 tLc
 hqP
 hqP
@@ -61109,7 +61099,7 @@ hqP
 hqP
 hqP
 tLc
-bOL
+aSW
 tLc
 tLc
 hqP
@@ -61335,7 +61325,7 @@ hqP
 hqP
 tLc
 tLc
-sVy
+tvE
 eXF
 hqP
 hqP
@@ -61564,7 +61554,7 @@ tLc
 tLc
 tLc
 tLc
-sVy
+tvE
 tLc
 tLc
 tLc
@@ -61748,7 +61738,7 @@ tzo
 tzo
 ttW
 hqP
-aSW
+olJ
 hqP
 hqP
 hqP
@@ -61776,11 +61766,11 @@ hqP
 hqP
 hqP
 tLc
+tvE
 tLc
 tLc
 tLc
-tLc
-tLc
+tvE
 tLc
 tLc
 tLc
@@ -61965,7 +61955,7 @@ kPf
 kPf
 kPf
 edV
-bHg
+hqP
 hqP
 hqP
 hqP
@@ -61981,7 +61971,7 @@ tLc
 tLc
 tLc
 uQw
-sVy
+tvE
 tLc
 uQw
 tLc
@@ -62234,7 +62224,7 @@ hqP
 tLc
 tLc
 tLc
-tLc
+tvE
 hqP
 hqP
 hqP
@@ -62409,13 +62399,13 @@ hqP
 hqP
 hqP
 tLc
-sVy
+tvE
 tLc
-tLc
+tvE
 uQw
 tLc
 tLc
-tLc
+tvE
 tLc
 tLc
 xvL
@@ -62447,10 +62437,10 @@ hqP
 hqP
 hqP
 hqP
-bPJ
 tLc
 tLc
-sVy
+tLc
+tvE
 tLc
 hqP
 hqP
@@ -62824,13 +62814,13 @@ hqP
 hqP
 hqP
 hqP
+bmm
 tzo
 tzo
 tzo
 tzo
 tzo
-tzo
-tzo
+bmm
 tzo
 ttW
 tLc
@@ -63070,7 +63060,7 @@ hqP
 hqP
 tLc
 tLc
-sVy
+tvE
 tLc
 tLc
 uQw
@@ -63295,30 +63285,30 @@ tLc
 tLc
 tLc
 tLc
+tvE
+tLc
+tLc
+tLc
+tLc
+tvE
 tLc
 tLc
 tLc
 tLc
 tLc
 tLc
-sVy
 tLc
 tLc
-tLc
-tLc
-tLc
-tLc
-tLc
-sVy
+tvE
 tLc
 tLc
 tLc
 tLc
 bLJ
 tLc
-sVy
+tvE
 tLc
-tLc
+tvE
 hqP
 hqP
 hqP
@@ -63490,11 +63480,11 @@ hqP
 tLc
 tLc
 tLc
+tvE
 tLc
 tLc
 tLc
-tLc
-tLc
+tvE
 hqP
 hqP
 hqP
@@ -63682,7 +63672,7 @@ tzo
 tzo
 tzo
 tzo
-tzo
+bmm
 xJh
 tzo
 tzo
@@ -63692,7 +63682,7 @@ ttW
 tzo
 tzo
 ttW
-tzo
+bmm
 tzo
 ttW
 hqP
@@ -63721,15 +63711,15 @@ hqP
 hqP
 hqP
 hqP
+tvE
 tLc
 tLc
 tLc
+tvE
 tLc
+uQw
 tLc
-tLc
-ycM
-tLc
-tLc
+tvE
 tLc
 tLc
 tLc
@@ -63924,7 +63914,7 @@ tLc
 tLc
 xvL
 xvL
-sVy
+tLc
 tLc
 tLc
 tLc
@@ -64136,12 +64126,12 @@ bmm
 tzo
 ttW
 bLJ
-tLc
+tvE
 tLc
 xvL
 tLc
 tLc
-tLc
+tvE
 tLc
 tLc
 hqP
@@ -64570,7 +64560,7 @@ tzo
 tzo
 tzo
 xvL
-sVy
+tLc
 tLc
 xvL
 hqP
@@ -64593,12 +64583,12 @@ hqP
 hqP
 hqP
 hqP
-tLc
+tvE
 tLc
 tLc
 tLc
 uQw
-tLc
+tvE
 tLc
 tLc
 tLc
@@ -64777,7 +64767,7 @@ tzo
 tzo
 tzo
 tzo
-xJh
+djA
 tzo
 tzo
 tzo
@@ -64814,12 +64804,12 @@ hqP
 tLc
 tLc
 tLc
+tvE
 tLc
 tLc
+uQw
 tLc
-ycM
-tLc
-tLc
+tvE
 tLc
 hqP
 hqP
@@ -65682,7 +65672,7 @@ hqP
 tLc
 tLc
 tLc
-sVy
+tvE
 tLc
 tLc
 tLc
@@ -65898,7 +65888,7 @@ hqP
 hqP
 tLc
 tLc
-uQw
+ycM
 tLc
 tLc
 tLc
@@ -66309,7 +66299,7 @@ tLc
 tLc
 uQw
 tLc
-tLc
+tvE
 hqP
 hqP
 hqP
@@ -66982,7 +66972,7 @@ hqP
 hqP
 tLc
 tLc
-sVy
+tLc
 tLc
 tLc
 tLc
@@ -67177,10 +67167,10 @@ tLc
 tLc
 tLc
 tLc
-sVy
+tvE
 uQw
 tLc
-tLc
+tvE
 tLc
 tLc
 tLc
@@ -67614,14 +67604,14 @@ tLc
 tLc
 tLc
 tLc
+tvE
 tLc
 tLc
 tLc
 tLc
 tLc
 tLc
-tLc
-tLc
+tvE
 tLc
 tLc
 tLc
@@ -68482,7 +68472,7 @@ uQw
 tLc
 tLc
 tLc
-sVy
+tLc
 tLc
 tLc
 tLc
@@ -68910,13 +68900,13 @@ tzo
 tzo
 tzo
 tLc
+tvE
 tLc
 tLc
 tLc
 tLc
 tLc
-tLc
-tLc
+tvE
 tLc
 tLc
 tLc
@@ -68934,9 +68924,9 @@ tLc
 oLB
 tLc
 uQw
-sVy
+tvE
 tLc
-uQw
+ycM
 tLc
 dGX
 hqP
@@ -69778,7 +69768,7 @@ tzo
 tzo
 tzo
 tLc
-tLc
+tvE
 tLc
 tLc
 tLc
