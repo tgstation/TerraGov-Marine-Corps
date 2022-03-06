@@ -1,0 +1,4 @@
+author: "Vondiech"
+delete-after: True
+changes: 
+  - rscadd: "Shutters now has an alarm sound played to the entire z-level when the button is pushed, shutters open at the end of this 18.5ish seconds sound effect."
