@@ -72,7 +72,7 @@
 			to_chat(user, "You put a new snow layer on the ground.")
 			T.slayer += 1
 			T.update_icon(TRUE, FALSE)
-			use(1)
+			use(5)
 
 /obj/item/stack/snow/attack_self(mob/user)
 	var/turf/T = get_turf(user)
@@ -83,8 +83,8 @@
 	if(user.do_actions)
 		return
 
-	if(amount < 3)
-		to_chat(user, span_warning("You need 3 layers of snow to build a barricade."))
+	if(amount < 5)
+		to_chat(user, span_warning("You need 5 layers of snow to build a barricade."))
 		return
 
 	//Using same safeties as other constructions
@@ -102,7 +102,7 @@
 	span_notice("You start assembling a snow barricade."))
 	if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 		return
-	if(amount < 3)
+	if(amount < 5)
 		return
 	for(var/obj/O in user.loc) //Objects, we don't care about mobs. Turfs are checked elsewhere
 		if(O.density)
