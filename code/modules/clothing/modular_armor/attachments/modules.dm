@@ -187,7 +187,8 @@
 
 /obj/item/armor_module/module/chemsystem
 	name = "Vali chemical enhancement module"
-	desc = "A module that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function.\nThis substance needs to be gathered using an applicable wepon or tool."
+	desc = "Designed for mounting on modular armour
+	A module that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function.\nThis substance needs to be gathered using an applicable wepon or tool."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_chemsystem"
 	item_state = "mod_chemsystem_a"
@@ -207,7 +208,7 @@
 */
 /obj/item/armor_module/module/welding
 	name = "Welding Helmet Module"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this module can be flipped up or down to function as a welding mask."
+	desc = "Designed for mounting on a modular helmet. This module can be toggled on or off to function as welding protection for your delicate eyes."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
@@ -251,7 +252,7 @@
 
 /obj/item/armor_module/module/binoculars
 	name = "Binocular Helmet Module"
-	desc = "Designed for mounting on a modular helmet. This module can be toggled on or off to function as welding protection for your delicate eyes."
+	desc = "Designed for mounting on a modular helmet. Can be flipped down to view into the distance."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "binocular_head"
 	item_state = "binocular_head_a"
