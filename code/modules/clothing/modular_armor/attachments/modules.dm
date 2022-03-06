@@ -24,7 +24,7 @@
  * Mini autodoc module
  */
 /obj/item/armor_module/module/valkyrie_autodoc
-	name = "\improper Valkyrie Automedical Armor System"
+	name = "\improper Valkyrie Automedical Armour System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	desc = "Designed for mounting on modular armour. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered. Will definitely impact mobility."
 	icon_state = "mod_autodoc"
@@ -76,7 +76,7 @@
  * Extra armor module
 */
 /obj/item/armor_module/module/tyr_extra_armor
-	name = "\improper Mark 2 Tyr Armor Reinforcement"
+	name = "\improper Mark 2 Tyr Armour Reinforcement"
 	desc = "Designed for mounting on modular armour. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This newer version has improved protection. Will definitely impact mobility."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_armor"
@@ -88,7 +88,7 @@
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_armor_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_armor_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_armor_xn")
 
 /obj/item/armor_module/module/tyr_extra_armor/mark1
-	name = "\improper Mark 1 Tyr Armor Reinforcement"
+	name = "\improper Mark 1 Tyr Armour Reinforcement"
 	desc = "Designed for mounting on modular armour. A substantial amount of additional armour plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.4
@@ -101,7 +101,7 @@
 	item_state = "tyr_head_a"
 	soft_armor = list("melee" = 15, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "tyr_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "tyr_head_xn")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "tyr_head_xn")
 
 /**
  * Environment protecttion module
@@ -113,7 +113,7 @@
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
 	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
-	slowdown = 0.2
+	slowdown = 0.2 //Something this useful needs a downside.
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_biohazard_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_biohazard_xn")
 	///siemens coefficient mod for gas protection.
@@ -142,7 +142,7 @@
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
 	soft_armor = list("bio" = 15, "rad" = 10, "acid" = 15)
-	slowdown = 0.2 //So it isn't literally 100% better than running stock jaeger.
+	slowdown = 0.2
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
 	name = "Mark 2 Mimir Environmental Helmet System"
@@ -152,7 +152,7 @@
 	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
 	slowdown = 0
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "mimir_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "mimir_head_xn")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "mimir_head_xn")
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
 	name = "Mark 1 Mimir Environmental Helmet System"
@@ -175,7 +175,7 @@
  * Extra armor module
 */
 /obj/item/armor_module/module/ballistic_armor
-	name = "\improper Reflective Ballistic Armor Reinforcement"
+	name = "\improper Reflective Ballistic Armour Reinforcement"
 	desc = "Designed for mounting on modular armour. A substantial amount of additional reflective ballistic armour plating designed to reduce the impact of friendly fire incidents, will lessen the affects of bullets and lasers. Will impact mobility."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_ff"
@@ -187,8 +187,7 @@
 
 /obj/item/armor_module/module/chemsystem
 	name = "Vali chemical enhancement module"
-	desc = "Designed for mounting on modular armour
-	A module that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function.\nThis substance needs to be gathered using an applicable wepon or tool."
+	desc = "Designed for mounting on modular armour. This experimental module runs on green blood taken from xenos with harvester class weapons; Green blood heals the user and boosts any chems in the suit injection system. \nUse the suit menu to connect harvester class weapons, control the injection system, find chem boost information, and more."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_chemsystem"
 	item_state = "mod_chemsystem_a"
@@ -286,7 +285,7 @@
 
 /obj/item/armor_module/module/antenna
 	name = "Antenna helmet module"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this module is able to provide quick readuts of the users coordinates."
+	desc = "Designed for mounting on a modular Helmet. This module is able to provide a readout of the user's coordinates and connect to the shipside supply console."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "antenna_head"
 	item_state = "antenna_head_a"
