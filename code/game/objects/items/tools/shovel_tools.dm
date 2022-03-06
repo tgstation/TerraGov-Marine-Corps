@@ -132,23 +132,24 @@
 	name = "entrenching tool"
 	desc = "Used to dig holes and bash heads in. Folds in to fit in small spaces. Use a sharp item on it to sharpen it."
 	icon = 'icons/Marine/marine-items.dmi'
-	icon_state = "etool"
-	force = 30
+	icon_state = "etool_c"
+	force = 2
 	throwforce = 2
 	item_state = "crowbar"
 	hitsound = "swing_hit"
-	w_class = WEIGHT_CLASS_BULKY //three for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets appearntly.
+	w_class = WEIGHT_CLASS_SMALL //three for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets appearntly.
+	folded = TRUE
 	dirt_overlay = "etool_overlay"
 	dirt_amt_per_dig = 5
 	shovelspeed = 20
 
 /obj/item/tool/shovel/etool/update_icon_state()
-	if(folded)
-		icon_state = "etool_c"
+	if(!folded && !sharp)
+		icon_state = "etool"
 	else if(sharp)
 		icon_state = "etool_s"
 	else
-		icon_state = "etool"
+		icon_state = "etool_c"
 	..()
 
 /obj/item/tool/shovel/etool/attack_self(mob/user as mob)
@@ -156,16 +157,16 @@
 		to_chat(user, "It has been sharpened and cannot be folded")
 		return
 	folded = !folded
-	if(folded)
-		w_class = WEIGHT_CLASS_SMALL
-		force = 2
-	else
+	if(!folded)
 		w_class = WEIGHT_CLASS_BULKY
 		force = 30
+	else
+		w_class = WEIGHT_CLASS_SMALL
+		force = 2
 	..()
 
 /obj/item/tool/shovel/etool/attackby(obj/item/I, mob/user, params)
-	if(!I.sharp)
+	if(!I.sharp && !folded)
 		return ..()
 	if(sharp)
 		to_chat(user, span_notice("The entrenching tool is already sharpened."))
@@ -187,4 +188,3 @@
 	. = ..()
 	if(sharp)
 		to_chat(user, span_notice(" This one has been sharpened and can no longer be folded."))
-

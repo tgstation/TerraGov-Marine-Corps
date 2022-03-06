@@ -8,3 +8,26 @@
       multiplier in a nutshell.
   Lefunny:
   - rscadd: Synths and AI can speak in xenocommon now
+2022-03-04:
+  2whatever2:
+  - bugfix: Plasma pistol actually doesn't shoot onehanded or while wielding while
+      attached to a gun
+  Arctrooper8:
+  - bugfix: Entrenching tools now start folded and as such will now save in loadouts.
+  - bugfix: Folded Entrenching tools can no longer pick up snow piles.
+  DeltaFire15:
+  - bugfix: Wraiths are once again able to recall themselves due to brazil-space being
+      a closed turf.
+  RipGrayson:
+  - balance: Marines can no longer spy on xenomorph activity in Big Red's underground
+      complex.
+  vilereaver41:
+  - bugfix: 95% of lava is now gone
+  - balance: lz's are a bit bigger and harder to penetrate into
+  - balance: south of map is more xeno oriented for a better hive structure
+  - rscadd: new acid smoke enviormental effect made from acid splash remains on the
+      turfs around xeno area with a strength of 3
+  - rscadd: zones and regions are now properly done north, northeast/etc meaning Tadpol
+      and drop pods now work
+  - bugfix: removed some useless outer map features that were meant for cosmetic but
+      were really ugly
