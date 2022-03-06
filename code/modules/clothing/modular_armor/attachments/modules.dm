@@ -95,7 +95,7 @@
 
 /obj/item/armor_module/module/tyr_head
 	name = "Tyr Helmet System"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to most damaging hazards, like bullets and melee."
+	desc = "Designed for mounting on a modular Helmet. When attached, this system provides substantial resistance to most damaging hazards, ranging from xeno slashes to friendly fire incidents."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "tyr_head"
 	item_state = "tyr_head_a"
