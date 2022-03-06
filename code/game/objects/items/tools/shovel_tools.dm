@@ -84,7 +84,6 @@
 					var/turf/open/floor/plating/ground/snow/ST = T
 					if(!ST.slayer)
 						return
-					transf_amt = min(ST.slayer, dirt_amt_per_dig)
 					ST.slayer -= 1
 					ST.update_icon(1,0)
 					to_chat(user, span_notice("You dig up some snow."))

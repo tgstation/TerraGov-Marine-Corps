@@ -64,6 +64,9 @@
 			if(T.slayer >= 3)
 				to_chat(user, "This ground is already full of snow.")
 				return
+			if(amount < 5)
+				to_chat(user, span_warning("You need 5 piles of snow to cover the ground."))
+				return
 			to_chat(user, "You start putting some snow back on the ground.")
 			if(!do_after(user, 15, FALSE, target, BUSY_ICON_BUILD))
 				return
@@ -84,7 +87,7 @@
 		return
 
 	if(amount < 5)
-		to_chat(user, span_warning("You need 5 layers of snow to build a barricade."))
+		to_chat(user, span_warning("You need 5 piles of snow to build a barricade."))
 		return
 
 	//Using same safeties as other constructions
@@ -112,4 +115,4 @@
 	user.visible_message(span_notice("[user] assembles a snow barricade."),
 	span_notice("You assemble a snow barricade."))
 	SB.setDir(user.dir)
-	use(3)
+	use(5)
