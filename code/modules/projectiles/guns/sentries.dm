@@ -55,12 +55,13 @@
 
 /obj/item/weapon/gun/sentry/big_sentry
 	name = "\improper UA 571-C sentry gun"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with a M30 autocannon and a 25-round box magazine."
+	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a M30 autocannon and a 500-round drum magazine."
 	icon_state = "sentry"
 
 	turret_range = 8
-	deploy_time = 8 SECONDS
-	max_shells = 50
+	deploy_time = 6 SECONDS
+	max_shells = 500
+	fire_delay = 0.25 SECONDS
 
 	scatter = 2
 
@@ -126,14 +127,14 @@
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 100-round drum magazine."
 	icon_state = "minisentry"
 
-	max_shells = 100
+	max_shells = 300
 	knockdown_threshold = 80
 
 	ammo_datum_type = /datum/ammo/bullet/turret/mini
 	default_ammo_type = /obj/item/ammo_magazine/minisentry
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minisentry)
 
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.2 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 3
 	extra_delay = 0.3 SECONDS

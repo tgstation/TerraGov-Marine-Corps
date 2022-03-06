@@ -1084,9 +1084,9 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
-	damage = 50
-	penetration = 5
-	damage_falloff = 0.5
+	damage = 25
+	penetration = 20
+	damage_falloff = 0.25
 
 /datum/ammo/bullet/turret/dumb
 	icon_state = "bullet"
@@ -1097,8 +1097,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
-	damage = 25
-	penetration = 5
+	damage = 20
+	penetration = 20
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SENTRY
 
 
