@@ -251,7 +251,7 @@
 
 /obj/item/armor_module/module/binoculars
 	name = "Binocular Helmet Module"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, can be flipped down to view into the distance."
+	desc = "Designed for mounting on a modular helmet. This module can be toggled on or off to function as welding protection for your delicate eyes."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "binocular_head"
 	item_state = "binocular_head_a"
