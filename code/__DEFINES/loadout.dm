@@ -710,7 +710,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/explosive/plastique = 1,
 		/obj/item/beacon/supply_beacon = 2,
 		/obj/item/whistle = 1,
-		/obj/item/radio = 1,
+		/obj/item/compass = 1,
 		/obj/item/binoculars/tactical = 1,
 		/obj/item/pinpointer/pool = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
