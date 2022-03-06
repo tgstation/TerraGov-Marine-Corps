@@ -26,10 +26,10 @@
 /obj/item/armor_module/module/valkyrie_autodoc
 	name = "\improper Valkyrie Automedical Armor System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Has a variety of chemicals it can inject, as well as automatically securing the bones and body of the wearer, to minimize the impact of broken bones or mangled limbs in the field. Will definitely impact mobility."
+	desc = "Designed for mounting on modular armour. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered. Will definitely impact mobility."
 	icon_state = "mod_autodoc"
 	item_state = "mod_autodoc_a"
-	slowdown = 0.25
+	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_autodoc_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_autodoc_xn")
 	var/static/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
@@ -59,9 +59,7 @@
 	icon_state = "mod_fire"
 	item_state = "mod_fire_a"
 	hard_armor = list("fire" = 200)
-	slowdown = 0.4
-	/// How much the suit light is modified by
-	light_mod = -2
+	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_fire_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_fire_xn")
 
