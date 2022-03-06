@@ -87,7 +87,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
 		/obj/item/armor_module/module/hlin_explosive_armor,
-		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/vor_accident_prevention,
 		/obj/item/armor_module/module/chemsystem,
 
 		/obj/item/armor_module/storage/general,
@@ -234,7 +234,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection,
 		/obj/item/armor_module/module/mimir_environment_protection/mark1,
 		/obj/item/armor_module/module/hlin_explosive_armor,
-		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/vor_accident_prevention,
 		/obj/item/armor_module/module/chemsystem,
 
 		/obj/item/armor_module/storage/general,

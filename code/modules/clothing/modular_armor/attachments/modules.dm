@@ -174,8 +174,8 @@
 /**
  * Extra armor module
 */
-/obj/item/armor_module/module/ballistic_armor
-	name = "\improper Reflective Ballistic Armour Reinforcement"
+/obj/item/armor_module/module/vor_accident_prevention
+	name = "\improper Vor Accident Prevention Plating"
 	desc = "Designed for mounting on modular armour. A substantial amount of additional reflective ballistic armour plating designed to reduce the impact of friendly fire incidents, will lessen the affects of bullets and lasers. Will impact mobility."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_ff"
