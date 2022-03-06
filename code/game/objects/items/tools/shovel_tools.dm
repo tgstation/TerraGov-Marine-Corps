@@ -85,7 +85,7 @@
 					if(!ST.slayer)
 						return
 					transf_amt = min(ST.slayer, dirt_amt_per_dig)
-					ST.slayer -= transf_amt
+					ST.slayer -= 1
 					ST.update_icon(1,0)
 					to_chat(user, span_notice("You dig up some snow."))
 				else
