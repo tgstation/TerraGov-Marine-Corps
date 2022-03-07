@@ -351,7 +351,7 @@
 	name = "\improper TX-29 magazine (10x24mm)"
 	desc = "A 10mm carbine magazine."
 	caliber = CALIBER_10X24_CASELESS
-	icon_state = "t18"
+	icon_state = "tx29"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 36
@@ -361,24 +361,20 @@
 	name = "\improper TX-29 20mm airburst grenade magazine"
 	desc = "A 20mm magazine loaded with airburst grenades. For use with the TX-29."
 	caliber = CALIBER_20MM
-	icon_state = "t18"
+	icon_state = "tx29launcher_airburst"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/tx29launcher
 	max_rounds = 5
-	icon_state_mini = "mag_rifle_big"
+	icon_state_mini = "mag_sniper"
 
 /obj/item/ammo_magazine/rifle/tx29launcher/he
 	name = "\improper TX-29 20mm HE grenade magazine"
 	desc = "A 20mm magazine loaded with HE grenades. For use with the TX-29."
 	default_ammo = /datum/ammo/tx29launcher/he
-	icon_state = "t18"					//placeholder
-	icon_state_mini = "mag_rifle_big"	//placeholder
+	icon_state = "tx29launcher_he"
 
 /obj/item/ammo_magazine/rifle/tx29launcher/incendiary
 	name = "\improper TX-29 20mm incendiary grenade magazine"
 	desc = "A 20mm magazine loaded with incendiary grenades. For use with the TX-29."
 	default_ammo = /datum/ammo/tx29launcher/incendiary
-	icon_state = "t18"					//placeholder
-	icon_state_mini = "mag_rifle_big"	//placeholder
-
-
+	icon_state = "tx29launcher_incendiary"

@@ -1431,7 +1431,7 @@
 	name = "\improper TX-29 assault rifle"
 	desc = "The TX-29 is a dual barrel air-burst support weapon. It features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and a lower assault rifle with somewhat reduced capacity. Somewhat cumbersome to use due to its size and weight. Uses 10x24mm caseless ammunition."
 	icon_state = "tx29"
-	item_state = "t25"
+	item_state = "tx29"
 	fire_sound = "gun_t12"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
