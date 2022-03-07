@@ -194,7 +194,7 @@
 	span_xenowarning("We send out a huge blast of psychic energy!"))
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
-	playsound(owner, "alien_roar", 50)
+	playsound(owner, "alien_shrikefling", 50)
 
 			//Held facehuggers get killed for balance reasons
 	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
