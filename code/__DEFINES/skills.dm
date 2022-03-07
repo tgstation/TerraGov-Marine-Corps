@@ -63,6 +63,7 @@
 #define SKILL_ENGINEER_PLASTEEL 2	//plasteel barricade repair
 #define SKILL_ENGINEER_ENGI 3	//hacking&&planet engine fixing&&apc building (combat engi)
 #define SKILL_ENGINEER_MASTER 4	//Telecomms fixing, faster engine fixing (ST)
+#define SKILL_ENGINEER_SYNTHETIC 5 //Synthetic only, makes synthetic better at being a POG / support
 //higher levels give faster engine repair.
 
 

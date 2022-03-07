@@ -298,7 +298,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/synthetic
 	name = SYNTHETIC
-	engineer = SKILL_ENGINEER_MASTER
+	engineer = SKILL_ENGINEER_SYNTHETIC
 	construction = SKILL_CONSTRUCTION_MASTER
 	firearms = SKILL_FIREARMS_UNTRAINED
 	medical = SKILL_MEDICAL_EXPERT
@@ -313,7 +313,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/early_synthetic
 	name = "Early Synthetic"
-	engineer = SKILL_ENGINEER_MASTER
+	engineer = SKILL_ENGINEER_SYNTHETIC
 	construction = SKILL_CONSTRUCTION_MASTER
 	firearms = SKILL_FIREARMS_UNTRAINED
 	medical = SKILL_MEDICAL_EXPERT
