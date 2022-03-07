@@ -235,7 +235,7 @@
 	var/current_color
 
 	///Delay it takes to start recharging again once the shield is completely broken.
-	var/broken_shield_charge_delay = 5 SECONDS
+	var/broken_shield_charge_delay = 10 SECONDS
 	///Cooldown used to determine when the shield should start charging again after it is broken.
 	COOLDOWN_DECLARE(shield_broken_cooldown)
 
