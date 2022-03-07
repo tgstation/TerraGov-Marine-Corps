@@ -207,6 +207,24 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/energy/lasgun/tesla)
 	cost = 60
 
+/datum/supply_packs/weapons/tx29kit
+	name = "TX-29 support rifle kit"
+	contains = list(/obj/item/storage/box/recoilless_system)
+	cost = 60
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/tx29_airburst
+	name = "TX-29 airburst grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx29launcher)
+	cost = 5
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/tx29_incendiary
+	name = "TX-29 incendiary grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx29launcher/incendiary)
+	cost = 7
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/recoillesskit
 	name = "T-160 Recoilless rifle kit"
 	contains = list(/obj/item/storage/box/recoilless_system)

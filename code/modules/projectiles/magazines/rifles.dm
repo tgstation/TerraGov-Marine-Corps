@@ -349,7 +349,7 @@
 
 /obj/item/ammo_magazine/rifle/tx29
 	name = "\improper TX-29 magazine (10x24mm)"
-	desc = "A 10mm carbine magazine."
+	desc = "A small capacity 10mm rifle magazine. Differs from a T-18 magazine enough to bypass relevant patents."
 	caliber = CALIBER_10X24_CASELESS
 	icon_state = "tx29"
 	w_class = WEIGHT_CLASS_NORMAL
