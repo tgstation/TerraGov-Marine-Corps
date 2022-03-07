@@ -206,8 +206,8 @@
 
 
 /obj/item/armor_module/module/eshield
-	name = "Arrowhead energy shield system"
-	desc = "A brand new innovation in armor systems, this device creates a shield around the user that is capable of negating all damage. If it sustains too much it will deactivate, and, due to the install requirements, leave the user completely vunerable."
+	name = "Arrowhead Energy Shield System"
+	desc = "A brand new innovation in armor systems, this module creates a shield around the user that is capable of negating all damage. If it sustains too much it will deactivate, and leave the user vulnerable."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_eshield"
 	item_state = "mod_eshield_a"
@@ -296,7 +296,7 @@
 
 ///Handles the interception of damage.
 /obj/item/armor_module/module/eshield/proc/intercept_damage(attack_type, incoming_damage, damage_type, silent)
-	if(shield_health <= 0)
+	if(shield_health <= 0 || attack_type == COMBAT_TOUCH_ATTACK) //Touch attack so runners can pounce
 		return incoming_damage
 	var/shield_left = shield_health - incoming_damage
 	var/mob/living/affected = parent.loc
