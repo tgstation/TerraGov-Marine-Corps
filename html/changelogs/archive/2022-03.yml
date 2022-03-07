@@ -31,3 +31,13 @@
       and drop pods now work
   - bugfix: removed some useless outer map features that were meant for cosmetic but
       were really ugly
+2022-03-07:
+  Pariah919:
+  - balance: Sentry rebalance, 571s have much higher capacity and fire much faster,
+      aswell as deploy faster. 580s have a bit less damage, higher pen and higher
+      fire delay, and more capacity.
+  RipGrayson:
+  - bugfix: You can now make footsteps again as a marine.
+  Vondiech:
+  - rscadd: Shutters now has an alarm sound played to the entire z-level when the
+      button is pushed, shutters open at the end of this 18.5ish seconds sound effect.
