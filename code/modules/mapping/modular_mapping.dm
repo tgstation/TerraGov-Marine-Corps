@@ -50,6 +50,118 @@
 	template_width = 20
 	template_height = 20
 
+/datum/map_template/modular/lv624/lakebase
+	name = "LV lake"
+	mappath = "_maps/modularmaps/lv624/lakebase.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+	min_player_num = 60
+	max_player_num = INFINITY
+
+/datum/map_template/modular/lv624/cavemapone
+	name = "LV cavern one"
+	mappath = "_maps/modularmaps/lv624/newcavevar1.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+
+/datum/map_template/modular/lv624/cavemaptwo
+	name = "LV cavern two"
+	mappath = "_maps/modularmaps/lv624/newcavevar2.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+
+/datum/map_template/modular/lv624/cavemapthree
+	name = "LV cavern three"
+	mappath = "_maps/modularmaps/lv624/newcavevar3.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+	min_player_num = 0
+	max_player_num = 45
+
+/datum/map_template/modular/lv624/cavemapfour
+	name = "LV cavern four"
+	mappath = "_maps/modularmaps/lv624/newcavevar4.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+
+/datum/map_template/modular/lv624/cavemapfive
+	name = "LV cavern five"
+	mappath = "_maps/modularmaps/lv624/newcavevar5.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+
+/datum/map_template/modular/lv624/cavemapsix
+	name = "LV cavern six"
+	mappath = "_maps/modularmaps/lv624/newcavevar6.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+
+/datum/map_template/modular/lv624/cavemapseven
+	name = "LV cavern seven"
+	mappath = "_maps/modularmaps/lv624/newcavevar7.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+
+/datum/map_template/modular/lv624/cavemapeight
+	name = "LV cavern eight"
+	mappath = "_maps/modularmaps/lv624/newcavevar8.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+
+/datum/map_template/modular/lv624/cavemapnine
+	name = "LV cavern nine"
+	mappath = "_maps/modularmaps/lv624/newcavevar9.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+
+/datum/map_template/modular/lv624/cavemapten
+	name = "LV cavern ten"
+	mappath = "_maps/modularmaps/lv624/newcavevar10.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+
+/datum/map_template/modular/lv624/cavemapeleven
+	name = "LV cavern eleven"
+	mappath = "_maps/modularmaps/lv624/newcavevar11.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+
+/datum/map_template/modular/lv624/cavemaptwelve
+	mappath = "_maps/modularmaps/lv624/newcavevar12.dmm"
+	modular_id = "lvcaveslakearea"
+	template_width = 80
+	template_height = 33
+	min_player_num = 65
+	max_player_num = INFINITY
+
+/datum/map_template/modular/lv624/medicaldomeone
+	name = "Medical dome one"
+	mappath = "_maps/modularmaps/lv624/medbayone.dmm"
+	modular_id = "lvmedicaldome"
+	template_width = 15
+	template_height = 15
+	keepcentered = TRUE
+
+/datum/map_template/modular/lv624/medicaldometwo
+	name = "Medical dome two"
+	mappath = "_maps/modularmaps/lv624/medbaytwo.dmm"
+	modular_id = "lvmedicaldome"
+	template_width = 15
+	template_height = 15
+	keepcentered = TRUE
+
 /datum/map_template/modular/lv624/dome_atmos
 	name = "LV atmos dome"
 	mappath = "_maps/modularmaps/lv624/atmospherics.dmm"
