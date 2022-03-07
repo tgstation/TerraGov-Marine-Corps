@@ -206,7 +206,7 @@
 
 
 /obj/item/armor_module/module/eshield
-	name = "Arrowhead Energy Shield System"
+	name = "Arrowhead energy shield system"
 	desc = "A brand new innovation in armor systems, this device creates a shield around the user that is capable of negating all damage. If it sustains too much it will deactivate, and, due to the install requirements, leave the user completely vunerable."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_eshield"
