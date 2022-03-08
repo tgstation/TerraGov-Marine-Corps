@@ -59,7 +59,9 @@
 	icon_state = "mod_fire"
 	item_state = "mod_fire_a"
 	hard_armor = list("fire" = 200)
-	slowdown = 0.2
+	slowdown = 0.4
+	/// How much the suit light is modified by
+	light_mod = -2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_fire_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_fire_xn")
 
@@ -135,7 +137,6 @@
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
 	return ..()
 
-// The mark 1 version, made to protect you from just gas.
 /obj/item/armor_module/module/mimir_environment_protection/mark1
 	name = "\improper Mark 1 Mimir Environmental Resistance System"
 	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds. Will impact mobility."
@@ -174,8 +175,8 @@
 /**
  * Extra armor module
 */
-/obj/item/armor_module/module/vor_accident_prevention
-	name = "\improper Vor Accident Prevention Plating"
+/obj/item/armor_module/module/ballistic_armor
+	name = "\improper Hod Accident Prevention Plating"
 	desc = "Designed for mounting on modular armor. A substantial amount of additional reflective ballistic armor plating designed to reduce the impact of friendly fire incidents, will lessen the affects of bullets and lasers. Will impact mobility."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_ff"
@@ -203,7 +204,7 @@
 	return ..()
 
 /**
- *   Helmet
+ *   Helmet Modules
 */
 /obj/item/armor_module/module/welding
 	name = "Welding Helmet Module"
