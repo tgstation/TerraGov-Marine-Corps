@@ -303,7 +303,7 @@
 	barricade_type = "snow"
 	max_integrity = 75
 	stack_type = /obj/item/stack/snow
-	stack_amount = 3
+	stack_amount = 5
 	destroyed_stack_amount = 0
 	can_wire = FALSE
 

@@ -141,7 +141,15 @@
 	desc = "A supply crate containing two boxed TL-102 mounted heavy smartguns."
 	supplies = list(/obj/item/storage/box/tl102 = 2)
 
-
+/obj/structure/largecrate/supply/weapons/standard_atgun
+	name = "\improper TAT-36 anti tank gun and ammo chest (x1, x10)"
+	desc = "A supply crate containing a TAT-36 and a full set of ammo to load into the sponson."
+	supplies = list(
+		/obj/item/weapon/gun/standard_atgun = 1,
+		/obj/item/ammo_magazine/standard_atgun = 4,
+		/obj/item/ammo_magazine/standard_atgun/apcr = 3,
+		/obj/item/ammo_magazine/standard_atgun/he = 3,
+	)
 
 /obj/structure/largecrate/supply/ammo
 	name = "ammunition case"

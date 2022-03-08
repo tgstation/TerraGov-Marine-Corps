@@ -1,0 +1,906 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aG" = (
+/obj/item/reagent_containers/spray,
+/obj/item/healthanalyzer,
+/obj/structure/table,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"bX" = (
+/obj/machinery/bodyscanner,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"cj" = (
+/obj/structure/table,
+/obj/item/clothing/glasses/sunglasses/blindfold,
+/obj/item/clothing/mask/muzzle,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"cQ" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"eq" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"gn" = (
+/obj/machinery/sleep_console{
+	density = 0
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"gM" = (
+/obj/structure/table,
+/obj/item/storage/surgical_tray,
+/obj/item/reagent_containers/spray/surgery,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"gX" = (
+/obj/structure/table,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"hi" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"hm" = (
+/obj/machinery/door/airlock/colony/medical/domesurgery{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"iD" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/lv624/lazarus/medbay)
+"iY" = (
+/obj/machinery/door_control{
+	dir = 4;
+	id = "OR2";
+	name = "OR2 Shutters";
+	pixel_x = -30
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"jW" = (
+/obj/item/shard,
+/obj/structure/window_frame/colony/reinforced,
+/turf/open/floor/plating,
+/area/lv624/lazarus/medbay)
+"kY" = (
+/obj/structure/table,
+/obj/structure/paper_bin{
+	pixel_y = 6
+	},
+/obj/item/tool/pen{
+	pixel_y = 7
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"lN" = (
+/obj/machinery/light,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"mF" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"nc" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/structure/window/reinforced/tinted,
+/obj/machinery/shower{
+	dir = 4;
+	pixel_y = -10
+	},
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/medbay)
+"pi" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"pz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"pC" = (
+/obj/structure/table,
+/obj/item/tool/surgery/bonesetter,
+/obj/item/tool/surgery/cautery,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"pV" = (
+/obj/structure/bed/chair,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"qf" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"qy" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker{
+	pixel_x = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"qM" = (
+/obj/machinery/door/airlock/colony/medical/domestorage{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/mainship{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "OR2";
+	name = "\improper Shutters";
+	opacity = 0
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"rk" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"rn" = (
+/obj/structure/table,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/storage/firstaid,
+/obj/item/storage/firstaid,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"rx" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"rN" = (
+/obj/effect/landmark/corpsespawner/doctor,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"rR" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"tB" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"ub" = (
+/obj/machinery/bioprinter,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"uZ" = (
+/obj/structure/table,
+/obj/machinery/door_control{
+	id = "OR2";
+	name = "OR2 Shutters"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"vI" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "OR2";
+	name = "\improper Shutters";
+	opacity = 0
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/medbay)
+"wi" = (
+/obj/machinery/door/window{
+	dir = 2
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"wu" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"wZ" = (
+/turf/open/floor/tile/blue/whitebluecorner,
+/area/lv624/lazarus/medbay)
+"xA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"yy" = (
+/turf/open/ground/grass,
+/area/lv624/lazarus/medbay)
+"yD" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/crate/medical,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/box/bodybags,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/medbay)
+"yE" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"yK" = (
+/obj/structure/table,
+/obj/item/clothing/glasses/eyepatch,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"zs" = (
+/obj/machinery/door/airlock/colony/medical/domelockers{
+	dir = 1
+	},
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "OR1"
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"AU" = (
+/obj/structure/table,
+/obj/item/clothing/suit/surgical,
+/obj/item/clothing/gloves/latex,
+/obj/structure/sink{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Be" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "OR1"
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/medbay)
+"By" = (
+/obj/structure/table,
+/obj/item/folder/blue,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"BO" = (
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Ec" = (
+/obj/structure/closet/secure_closet/medical3,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Gs" = (
+/obj/item/bodybag{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/bodybag{
+	pixel_x = 6;
+	pixel_y = 3
+	},
+/obj/item/bodybag,
+/obj/structure/table,
+/obj/item/tank/anesthetic,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"GT" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"GU" = (
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/lazarus/medbay)
+"HP" = (
+/obj/structure/table,
+/obj/item/storage/box/masks,
+/obj/item/storage/box/gloves,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"IB" = (
+/obj/structure/bed/chair/wheelchair,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Jb" = (
+/obj/item/clothing/suit/surgical,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"JI" = (
+/obj/structure/table,
+/obj/item/reagent_containers/hypospray/autoinjector/quickclot,
+/obj/item/tool/surgery/bonegel,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Ku" = (
+/obj/structure/closet/crate/medical,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/box/bodybags,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"KI" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"LC" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"LY" = (
+/obj/machinery/door_control{
+	id = "OR1";
+	name = "OR1 Shutters"
+	},
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"MQ" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Nd" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "OR1";
+	name = "OR1 Shutters";
+	pixel_x = 30
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"NL" = (
+/obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Ow" = (
+/turf/closed/wall,
+/area/lv624/lazarus/medbay)
+"OW" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 1;
+	name = "\improper Medical Dome"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"PZ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Qh" = (
+/obj/structure/table,
+/obj/item/stack/sheet/plasteel{
+	amount = 10
+	},
+/obj/item/stack/sheet/metal{
+	amount = 30
+	},
+/obj/item/stack/sheet/metal{
+	amount = 30
+	},
+/obj/item/stack/rods{
+	amount = 40
+	},
+/obj/item/stack/rods{
+	amount = 40
+	},
+/obj/item/autopsy_scanner,
+/obj/structure/mirror{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Ry" = (
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	dir = 1;
+	name = "\improper Medical Dome"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Ta" = (
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Te" = (
+/obj/machinery/sleeper,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Tx" = (
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/medbay)
+"Um" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"UQ" = (
+/turf/template_noop,
+/area/template_noop)
+"Vm" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Vq" = (
+/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Vy" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/structure/window/reinforced/tinted,
+/obj/machinery/shower{
+	dir = 8;
+	pixel_y = -10
+	},
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/medbay)
+"VQ" = (
+/obj/item/storage/firstaid/toxin,
+/obj/structure/table,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Xm" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/lv624/lazarus/medbay)
+"XM" = (
+/obj/structure/table,
+/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+/obj/item/stack/medical/heal_pack/ointment,
+/obj/item/storage/box/masks,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Yd" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"YX" = (
+/obj/machinery/body_scanconsole,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"Zn" = (
+/obj/structure/bed/roller,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"ZH" = (
+/obj/structure/table,
+/obj/item/reagent_containers/hypospray,
+/obj/item/tool/surgery/FixOVein,
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+"ZN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/turf/open/floor/tile/blue/whitebluecorner{
+	dir = 2
+	},
+/area/lv624/lazarus/medbay)
+
+(1,1,1) = {"
+UQ
+UQ
+UQ
+UQ
+yy
+Tx
+iD
+jW
+iD
+Tx
+UQ
+UQ
+UQ
+UQ
+UQ
+"}
+(2,1,1) = {"
+UQ
+Tx
+Tx
+Tx
+Tx
+Tx
+PZ
+BO
+BO
+Tx
+iD
+iD
+iD
+Tx
+UQ
+"}
+(3,1,1) = {"
+UQ
+Tx
+ub
+hi
+LC
+Ow
+XM
+BO
+bX
+Tx
+ZH
+Gs
+JI
+iD
+UQ
+"}
+(4,1,1) = {"
+UQ
+Tx
+gM
+GT
+wu
+Be
+VQ
+GT
+YX
+BO
+BO
+NL
+pC
+iD
+UQ
+"}
+(5,1,1) = {"
+UQ
+Tx
+AU
+pz
+Nd
+zs
+BO
+KI
+BO
+BO
+BO
+KI
+aG
+iD
+UQ
+"}
+(6,1,1) = {"
+Tx
+Tx
+Ow
+Ow
+Ow
+Ow
+LY
+BO
+BO
+BO
+BO
+lN
+Ow
+Tx
+Tx
+"}
+(7,1,1) = {"
+Tx
+Ec
+mF
+yD
+nc
+Xm
+HP
+GT
+BO
+BO
+BO
+wi
+BO
+Zn
+iD
+"}
+(8,1,1) = {"
+Tx
+rN
+qf
+MQ
+BO
+hm
+BO
+KI
+BO
+BO
+pV
+kY
+rR
+Vm
+OW
+"}
+(9,1,1) = {"
+Tx
+Ec
+Qh
+xA
+Vy
+Xm
+tB
+wZ
+Ku
+BO
+BO
+wi
+BO
+Zn
+iD
+"}
+(10,1,1) = {"
+Tx
+Tx
+Ow
+Ow
+Ow
+Ow
+uZ
+BO
+BO
+BO
+BO
+lN
+Ow
+Tx
+Tx
+"}
+(11,1,1) = {"
+UQ
+Tx
+Um
+ZN
+iY
+qM
+Vq
+qf
+Jb
+BO
+BO
+IB
+By
+iD
+UQ
+"}
+(12,1,1) = {"
+UQ
+Tx
+Um
+pi
+BO
+vI
+rn
+BO
+Te
+BO
+BO
+BO
+yK
+iD
+UQ
+"}
+(13,1,1) = {"
+UQ
+Tx
+yE
+cQ
+eq
+Ow
+qy
+rx
+gn
+Tx
+gX
+cj
+gX
+iD
+UQ
+"}
+(14,1,1) = {"
+UQ
+Tx
+Tx
+Tx
+Tx
+Tx
+rk
+Yd
+BO
+Tx
+iD
+iD
+iD
+Tx
+UQ
+"}
+(15,1,1) = {"
+UQ
+UQ
+UQ
+UQ
+GU
+Tx
+Ta
+Ry
+iD
+Tx
+UQ
+UQ
+UQ
+UQ
+UQ
+"}

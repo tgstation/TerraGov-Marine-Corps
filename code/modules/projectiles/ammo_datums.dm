@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(shooter.Adjacent(target) ? target : null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
+		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.loc, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 /// A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
 /datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
@@ -960,9 +960,9 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 4
 	accurate_range = 30
 	max_range = 40
-	damage = 80
-	penetration = 60
-	sundering = 15
+	damage = 90
+	penetration = 80
+	sundering = 0
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -1109,9 +1109,9 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
-	damage = 50
-	penetration = 5
-	damage_falloff = 0.5
+	damage = 25
+	penetration = 20
+	damage_falloff = 0.25
 
 /datum/ammo/bullet/turret/dumb
 	icon_state = "bullet"
@@ -1122,8 +1122,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
-	damage = 25
-	penetration = 5
+	damage = 20
+	penetration = 20
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SENTRY
 
 
@@ -1454,6 +1454,45 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 100
 	sundering = 100
 
+/datum/ammo/rocket/atgun_shell
+	name = "high explosive ballistic cap shell"
+	icon_state = "atgun"
+	hud_state = "shell_heat"
+	hud_state_empty = "shell_empty"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 3
+	damage = 90
+	penetration = 30
+	sundering = 10
+	handful_amount = 1
+
+/datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 2)
+
+/datum/ammo/rocket/atgun_shell/apcr
+	name = "tungsten penetrator"
+	hud_state = "shell_he"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 4
+	damage = 150
+	penetration = 100
+	sundering = 55
+
+/datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
+	explosion(T, 0, 0, 1, 0)
+
+/datum/ammo/rocket/atgun_shell/he
+	name = "high velocity high explosive shell"
+	hud_state = "shell_he"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	shell_speed = 2
+	damage = 50
+	penetration = 50
+	sundering = 25
+
+/datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
+	explosion(T, 0, 3, 5, 0)
+
 /*
 //================================================
 					Energy Ammo
@@ -1599,7 +1638,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "pulse bolt"
 	icon_state = "pulse2"
 	hud_state = "pulse"
-	damage = 85 // this is gotta hurt...
+	damage = 90 // this is gotta hurt...
 	max_range = 40
 	penetration = 100
 	sundering = 100

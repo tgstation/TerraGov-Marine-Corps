@@ -750,7 +750,7 @@
 	desc = "A heavy-duty bag carried by Nanotrasen commandos."
 	icon_state = "commandopack"
 	storage_slots = null
-	max_storage_space = 30
+	max_storage_space = 40
 	access_delay = 0
 
 /obj/item/storage/backpack/captain

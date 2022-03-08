@@ -1,0 +1,17 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - rscadd: "Added a number of random weapon spawners for use in mapping."
+  - rscadd: "Added a number of random weapon ammunition spawners for use in mapping."
+  - expansion: "LV624 cave lake now has over a dozen variations."
+  - expansion: "LV624 medbay now has over a variation."
+  - bugfix: "Fixed a number of LV624 pipes that went nowhere."
+  - bugfix: "Fixed some wrong LV624 cables that caused powering the colony to be much harder than it should have been."
+  - bugfix: "Miners now properly show up when editing maps."
+  - bugfix: "Gibs now properly show up when editing maps."
+  - bugfix: "Vines now properly show up when editing maps."
+  - bugfix: "Bullet casings now properly show up when editing maps."
+  - imageadd: "Created icons for new weapon and ammunition spawners."
+  - imageadd: "Created a new icon for corpse spawners."
+  - imageadd: "Created some new stair icons for better use with stair corners."
+  - imageadd: "Ported a CM camera icon so LZ cameras will properly show up when editing maps."

@@ -1,0 +1,4 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - bugfix: "Squad Leader helmets now use the proper Xenonauten sprites."
