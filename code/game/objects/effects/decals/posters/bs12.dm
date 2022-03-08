@@ -163,26 +163,10 @@
 	icon_state="bsposter33"
 	name = "Tools, tools, tools"
 	desc = "You can never have enough tools, thats for sure!"
-
 /datum/poster/bay_34
 	icon_state="bsposter34"
-	name = "Power Up!"
-	desc = "High reward, higher risk!"
-
-/datum/poster/bay_35
-	icon_state="bsposter35"
-	name = "Lamarr"
-	desc = "This is a poster depicting the pet and mascot of the NSS Exodus science department."
-
-/datum/poster/bay_36
-	icon_state="bsposter36"
-	name = "Fancy Borg"
-	desc = "A poster depicting a cyborg using the service module. 'Fancy Borg' is written on it."
-
-/datum/poster/bay_37
-	icon_state="bsposter37"
-	name = "Fancier Borg"
-	desc = "A poster depicting a cyborg using the service module. 'Fancy Borg' is written on it. This is even fancier than the first poster."
+	name = "Lusty Xenomorph"
+	desc = "A heretical poster depicting the titular star of an equally heretical book."
 
 /datum/poster/bay_38
 	icon_state="bsposter38"
