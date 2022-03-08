@@ -140,6 +140,7 @@
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
 	. = ..()
+	playsound_z(z, 'sound/effects/shutters_afteropen.ogg', 15)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_SHUTTERS_EARLY)
 
 /obj/machinery/button/door/open_only/landing_zone/lz2

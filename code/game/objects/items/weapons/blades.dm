@@ -48,6 +48,7 @@
 	item_state = "energy_katana"
 	force = 60
 	attack_speed = 12
+	hitsound = 'sound/weapons/harvesterhit.ogg'
 	w_class = WEIGHT_CLASS_BULKY
 	flags_item = DRAINS_XENO
 
