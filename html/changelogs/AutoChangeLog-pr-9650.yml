@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "TAT-36 AT gun, a deployed anti tank gun, with several shell types."
-  - code_imp: "adds a scope time zoom stat, only the TAT-36 uses it, which takes 3 seconds to enter scoped status. Also adds an aim time speed for time that it takes to enter aim mode."

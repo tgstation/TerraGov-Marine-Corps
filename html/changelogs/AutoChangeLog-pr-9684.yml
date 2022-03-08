@@ -1,9 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscdel: "Remove choice to get smoke grenade from SL vendor"
-  - rscdel: "Remove choice to get M40 HEDP grenade from SL vendor"
-  - rscdel: "Remove choice to get CAS flare box from SL vendor"
-  - rscdel: "Remove Station bounded radio and ziptie box since SL never use this"
-  - rscadd: "Change placement of certain stuff like whistle, fulton, deployable overwatch camera, signaler, and tarp to make sense of SL vendor"
-  - balance: "Update flamethrower on SL; I might just remove this since this is an old and forgotten relic"
