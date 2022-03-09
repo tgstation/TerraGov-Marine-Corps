@@ -468,13 +468,6 @@
 	template_width = 41
 	template_height = 43
 
-/datum/map_template/modular/bigred/southwestcornersix
-	name = "Big red southwestern corner"
-	mappath = "_maps/modularmaps/big_red/bigredcaveswvar6.dmm"
-	modular_id = "brswcorner"
-	template_width = 41
-	template_height = 43
-
 /datum/map_template/modular/bigred/lambdalockone
 	name = "Big red lockdown shutters"
 	mappath = "_maps/modularmaps/big_red/bigreddoor1.dmm"
