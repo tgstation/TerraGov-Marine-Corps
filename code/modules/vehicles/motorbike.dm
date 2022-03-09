@@ -207,9 +207,15 @@
 	return ..()
 
 /obj/item/storage/internal/motorbike_pack
-	storage_slots = 4
+	storage_slots = 2
 	max_w_class = WEIGHT_CLASS_SMALL
 	max_storage_space = 8
+	bypass_w_limit = list(
+		/obj/item/reagent_containers/jerrycan,
+	)
+	can_hold = list(
+		/obj/item/reagent_containers/jerrycan,
+	)
 
 
 /obj/item/storage/internal/motorbike_pack/handle_mousedrop(mob/user, obj/over_object)
