@@ -115,7 +115,7 @@
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
 	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
-	slowdown = 0.2 //Something this useful needs a downside.
+	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_biohazard_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_biohazard_xn")
 	///siemens coefficient mod for gas protection.
