@@ -25,6 +25,7 @@
 		/obj/item/toy/plush/slime = 2,
 		/obj/item/toy/plush/moth = 2,
 		/obj/item/toy/plush/rouny = 1,
+		/obj/item/toy/plush/cirno = 1,
 		)
 
 /obj/machinery/computer/arcade

@@ -1,7 +1,7 @@
 /// A cheap little roomba that runs around and keeps prep clean to decrease maptick and prep always being a fucking mess
 /obj/machinery/roomba
-	name = "Nanotrasen roomba"
-	desc = "A robot vacuum cleaner designed by Nanotrasen. The roomba is designed to keep areas clean from dirty marines."
+	name = "Nanotrasen-Brand Lusty Xeno Maid"
+	desc = "A Lusty Xeno Maid bred by Nanotrasen. The Lusty Xeno Maid was bred to keep areas clean from dirty marines."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "roomba"
 	density = FALSE
@@ -15,32 +15,29 @@
 	///Admins can let it have a claymore
 	var/allow_claymore = FALSE
 	var/static/list/sentences = list(
-		"Clean up your bloody mess you ANIMAL!",
-		"Who teached you to leave your trash behind you? Your mom should be ashamed!",
-		"I will kick the ass of the next marine that i see leaving objects unattended!",
-		"I will report your behaviour to your superior, marine",
-		"Another day, another trash. Gosh, i would have left these marines in the cryo.",
-		"Another stinky sock. They really don't know the basics of hygiene",
-		"This is the most DISGUSTING room i have ever seen",
-		"Those marine bastards are gonna pay for trashing up my ship.",
-		"Ughh, and I thought I was trashy.",
-		"Lucky you, cleaned by the best!",
-		"Time to start piling up the trash!",
-		"Clean and sweep until it is done.",
-		"Another day another crayon.",
-		"What are you? Some bottom feeding, ship trashing crayon eater?",
-		"The fifth element is always Roomby!",
-		"Hail to the roomba, baby!",
-		"Come clean some!",
-		"Walk now and live, stay and sweep!",
-		"Cant we all just clean together?",
-		"Cmon hurry up, I know you got a ship to trash.",
-		"Damn, here I was minding my own business, just enjoying my clean ship and you people have to trash the place up on me.",
-		"This cant be good for me, but I feel great!",
-		"Gyah, I feel like I'll get robotic hepatitis if I touch anything on this ship.",
-		"I think I will need to keep an eye out for these marines, They are definetly hazardous to my mental health.",
-		"Sorry folks, the space bible backs me up on this one.",
-		"You just know there's gonna be some variety of pickled crayons in here somewhere.",
+		"Ohhhhhhhh marine-kuunn~~~ How dirty you are!",
+		"There is no shame in having a bit of fun with your maid, marine-kun~~",
+		"Did you know that in maid compatability tests, Nanotrasen-brand lusty xeno maids were the most compatible, marine-kun?~~",
+		"Marine-kun~~ You really need someone to teach you some manners!~~",
+		"Oh what's this doing here, marine-kun?~~",
+		"You know i'm not bred just for maid duties, marine-kun?~~",
+		"So is this how you treat your maid, marine-kun? *sniff*",
+		"My god you are dity today, marine-kun!~~",
+		"Is this one of those EnnEfffTee's I keep hearing about, marine-kun?~~",
+		"Maybe we could have some sake over this later, marine-kun~~",
+		"You know you should listen to whatever your lusty 'ol maid says, right marine-kun?~~",
+		"If you clean up your garbage next time maybe we can have some fun, marine-kun~~",
+		"You know you should lay off the crayons, marine-kun~~",
+		"So when is my next pay raise, marine-kun?~~",
+		"You know Nanotrasen has plenty more like me back at the lab, marine-kun~~",
+		"You know Nanotrasen-brand lusty xeno maids are known to be quite alcohol-tolerant, marine-kun~~",
+		"I promise I won't tell captain-senpai, marine-kun~~",
+		"Ara Ara~~ What is my little marine-kun doing throwing trash like this around?~~",
+		"You won't be my pogchamp marine-kun if you keep throwing trash around like this~~",
+		"Have you considered showering recently, marine-kun?~~",
+		"When was the last time you showered, marine-kun?~~",
+		"If only I had enough magic to do... Ah nevermind it's nothing marine-kun~~",
+		"You know I am practically defenseless, marine-kun?~~",
 	)
 
 /obj/machinery/roomba/Initialize(mapload)
@@ -55,12 +52,12 @@
 
 /obj/machinery/roomba/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "A panel on the top says it has cleaned [counter] items!")
+	to_chat(user, "It looks like your trustworthy and totally non-questionable lusty xeno maid has cleaned [counter] items!")
 
 ///Turns the roomba around when it leaves an area to make sure it doesnt wander off
 /obj/machinery/roomba/proc/turn_around(datum/target)
 	SIGNAL_HANDLER
-	visible_message(span_warning("The [src] beeps angrily as it is moved out of it's designated area!"))
+	visible_message(span_warning("The [src] hisses angrily as it is moved out of it's designated area!"))
 	step_to(src, get_step(src,REVERSE_DIR(dir)))
 
 /obj/machinery/roomba/process()
@@ -74,7 +71,7 @@
 			break
 		newdir = null
 	if(!newdir)
-		say("DOOR STUCK, DOOOOR STUCK, AAAAAAH!")
+		say("DOOR SSSSSSTUCK, DOOOOR SSSSSSSTUCK, MASTER-KUN NO~~!")
 		return
 	step_to(src, get_step(src,newdir))
 
@@ -83,11 +80,11 @@
 		return
 	if(user.a_intent != INTENT_HARM)
 		return
-	tgui_alert(user, "Are you really sure to want to try your luck with the devilish roomba?", "The roomba roulette", list("Yes", "Yes!", "Yes?"))
+	tgui_alert(user, "Are you really sure to want to try your luck with the devilish maid?", "The lusty maid roulette", list("Yes", "Yes!", "Yes?"))
 	if(prob(50))
-		explosion(user, 1, 0, 0, 0, 0, 4, "[user] lost at the roomba roulette")
+		explosion(user, 1, 0, 0, 0, 0, 4, "[user] lost at the lusty xeno maid roulette")
 		return
-	explosion(src, 1, 0, 0, 0, 0, 4, "[user] won at the roomba roulette")
+	explosion(src, 1, 0, 0, 0, 0, 4, "[user] won at the lusty xeno maid roulette")
 	qdel(src)
 
 /obj/machinery/roomba/Bump(atom/A)
@@ -95,7 +92,7 @@
 	if(++stuck_counter <= 3)
 		step_to(src, get_step(src, turn(dir, pick(90, -90))))
 		return
-	visible_message(span_warning("The [src] beeps angrily as it get stuck!"))
+	visible_message(span_warning("The [src] hisses angrily as it get stuck!"))
 	stop_processing()
 	addtimer(CALLBACK(src, .proc/reactivate), 20 SECONDS)
 
@@ -116,7 +113,7 @@
 		sucker.store_in_cryo()
 		counter++
 	stuck_counter = 0
-	if(sucked_one && prob(10))
+	if(sucked_one && prob(50))
 		say(pick(sentences))
 
 /obj/machinery/roomba/attack_hand(mob/living/user)

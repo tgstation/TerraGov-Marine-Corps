@@ -521,6 +521,14 @@
 	attack_verb = list("slashes", "bites", "pounces")
 
 
+/obj/item/toy/plush/cirno
+	name = "Ice fairy plushie"
+	desc = "A plushie depicting an adorable ice fairy. It's cold to the touch."
+	icon_state = "cirnoplush"
+	item_state = "cirnoplush"
+	attack_verb = list("freezes")
+
+
 /obj/item/toy/beach_ball/basketball
 	name = "basketball"
 	icon_state = "basketball"
