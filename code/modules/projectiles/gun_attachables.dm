@@ -117,6 +117,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///what firemodes this attachment allows/adds.
 	var/gun_firemode_list_mod = null
 
+	///allows the gun to be used as a crowbar
+	var/pry_mod = FALSE
+
 	///lazylist of attachment slot offsets for a gun.
 	var/list/gun_attachment_offset_mod
 
@@ -172,6 +175,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.add_ammo_mod(ammo_mod)
 	if(charge_mod)
 		master_gun.charge_cost				+= charge_mod
+	if(pry_mod)
+		master_gun.pry_capable = IS_PRY_CAPABLE_SIMPLE
 	for(var/i in gun_firemode_list_mod)
 		master_gun.add_firemode(i, user)
 
@@ -228,6 +233,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.remove_ammo_mod(ammo_mod)
 	if(master_gun.charge_cost)
 		master_gun.charge_cost -= charge_mod
+	if(pry_mod)
+		master_gun.pry_capable = FALSE
 	for(var/i in gun_firemode_list_mod)
 		master_gun.remove_firemode(i, user)
 
@@ -317,6 +324,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
 	sharp = IS_SHARP_ITEM_ACCURATE
+	pry_mod = TRUE
 
 /obj/item/attachable/bayonet/screwdriver_act(mob/living/user, obj/item/I)
 	to_chat(user, span_notice("You modify the bayonet back into a combat knife."))
@@ -349,6 +357,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
 	sharp = IS_SHARP_ITEM_ACCURATE
+	pry_mod = TRUE
 
 /obj/item/attachable/bayonetknife/Initialize()
 	. = ..()
