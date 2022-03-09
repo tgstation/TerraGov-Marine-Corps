@@ -7890,10 +7890,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"za" = (
-/obj/machinery/vending/nanomed,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_hallway)
 "zb" = (
 /obj/machinery/alarm,
 /turf/open/floor/mainship/mono,
@@ -11123,10 +11119,6 @@
 	dir = 9
 	},
 /area/mainship/medical/lower_medical)
-"IP" = (
-/obj/machinery/alarm,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_hallway)
 "IQ" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -47529,7 +47521,7 @@ Sv
 do
 pq
 kM
-za
+jy
 Uu
 jy
 PE
@@ -49842,7 +49834,7 @@ kM
 kM
 kM
 kM
-IP
+jy
 Hb
 jy
 qC
@@ -50098,7 +50090,7 @@ jy
 jy
 jy
 jy
-AR
+jy
 jy
 Hb
 jy
@@ -50355,7 +50347,7 @@ RB
 OD
 wQ
 RB
-wS
+RB
 RB
 CG
 nQ
@@ -50612,7 +50604,7 @@ jy
 PT
 jy
 jy
-AR
+jy
 jy
 jy
 jy

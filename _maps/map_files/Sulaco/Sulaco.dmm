@@ -2520,8 +2520,11 @@
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "and" = (
-/obj/machinery/light/small{
+/obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/sulaco/cargo/prep)
@@ -12819,7 +12822,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/cargo_supply,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "gtD" = (
@@ -16798,6 +16800,12 @@
 /obj/machinery/holopad,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
+"noK" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/cargo)
 "npi" = (
 /obj/structure/ship_ammo/minirocket/illumination,
 /turf/open/floor/prison,
@@ -17257,6 +17265,12 @@
 	dir = 10
 	},
 /area/mainship/living/basketball)
+"odn" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/cargo)
 "oed" = (
 /turf/open/floor/plating{
 	dir = 8;
@@ -18556,6 +18570,14 @@
 	dir = 4
 	},
 /area/sulaco/marine)
+"qaT" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/sulaco/cargo)
 "qcz" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -18763,6 +18785,12 @@
 	dir = 6
 	},
 /area/sulaco/engineering/atmos)
+"qsz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "qtr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -21125,17 +21153,11 @@
 /turf/open/floor/plating/platebotc,
 /area/sulaco/hydro)
 "ueP" = (
-/obj/structure/barricade/metal{
-	dir = 4
-	},
 /obj/machinery/light{
-	dir = 8
+	dir = 1
 	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/prison/marked,
-/area/sulaco/cargo/prep)
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "ufs" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -47941,15 +47963,15 @@ aaa
 nzi
 mDu
 baT
-bPM
+ueP
 bwe
 bPM
-fCm
+odn
 fCm
 tBy
 peT
 uOd
-uOd
+qaT
 fqX
 fqX
 uVS
@@ -47958,7 +47980,7 @@ vSd
 amd
 aoL
 aoL
-ueP
+aoL
 arE
 hFf
 bjX
@@ -49999,10 +50021,10 @@ mDu
 baT
 aiS
 aiS
-bPM
+qsz
 fCm
 fCm
-fCm
+noK
 fCm
 fCm
 fCm
