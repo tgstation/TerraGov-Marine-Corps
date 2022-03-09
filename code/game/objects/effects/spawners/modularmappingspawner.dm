@@ -69,6 +69,71 @@
 	spawner_width = 29
 	spawner_height = 25
 
+/obj/effect/spawner/modularmap/bigred/fence
+	mapid = "brfence"
+	spawner_width = 24
+	spawner_height = 8
+
+/obj/effect/spawner/modularmap/bigred/medbay
+	mapid = "brmedbay"
+	spawner_width = 33
+	spawner_height = 26
+
+/obj/effect/spawner/modularmap/bigred/generalstore
+	mapid = "brgeneral"
+	spawner_width = 31
+	spawner_height = 14
+
+/obj/effect/spawner/modularmap/bigred/southwesteast
+	mapid = "brsweast"
+	spawner_width = 44
+	spawner_height = 22
+
+/obj/effect/spawner/modularmap/bigred/toolshed
+	mapid = "brtoolshed"
+	spawner_width = 16
+	spawner_height = 9
+
+/obj/effect/spawner/modularmap/bigred/secorner
+	mapid = "brsecorner"
+	spawner_width = 71
+	spawner_height = 67
+
+/obj/effect/spawner/modularmap/bigred/swcorner
+	mapid = "brswcorner"
+	spawner_width = 41
+	spawner_height = 43
+
+/obj/effect/spawner/modularmap/bigred/lambdalock
+	mapid = "brlambdalock"
+	spawner_width = 1
+	spawner_height = 2
+
+/obj/effect/spawner/modularmap/bigred/office
+	mapid = "broffice"
+	spawner_width = 28
+	spawner_height = 23
+
+/obj/effect/spawner/modularmap/bigred/east
+	mapid = "breastcaves"
+	spawner_width = 66
+	spawner_height = 42
+
+/obj/effect/spawner/modularmap/bigred/cargoarea
+	mapid = "brcargo"
+	spawner_width = 54
+	spawner_height = 22
+
+/obj/effect/spawner/modularmap/bigred/landingzonetwo
+	mapid = "brlz2"
+	spawner_width = 43
+	spawner_height = 38
+
+/obj/effect/spawner/modularmap/bigred/landingzoneone
+	mapid = "brlz1"
+	spawner_width = 85
+	spawner_height = 38
+
 /************EORG**********/
 /obj/effect/spawner/modularmap/admin/eorg
 	mapid = "EORG"

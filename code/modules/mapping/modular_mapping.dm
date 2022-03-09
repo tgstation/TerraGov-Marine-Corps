@@ -202,6 +202,360 @@
 	template_height = 15
 	keepcentered = TRUE
 
+/datum/map_template/modular/bigred/eastone
+	name = "Big red east caves"
+	mappath = "_maps/modularmaps/big_red/bigredcavevar1.dmm"
+	modular_id = "breastcaves"
+	template_width = 66
+	template_height = 42
+
+/datum/map_template/modular/bigred/easttwo
+	name = "Big red east caves"
+	mappath = "_maps/modularmaps/big_red/bigredcavevar2.dmm"
+	modular_id = "breastcaves"
+	template_width = 66
+	template_height = 42
+
+/datum/map_template/modular/bigred/eastthree
+	name = "Big red east caves"
+	mappath = "_maps/modularmaps/big_red/bigredcavevar3.dmm"
+	modular_id = "breastcaves"
+	template_width = 66
+	template_height = 42
+
+/datum/map_template/modular/bigred/eastfour
+	name = "Big red east caves"
+	mappath = "_maps/modularmaps/big_red/bigredcavevar4.dmm"
+	modular_id = "breastcaves"
+	template_width = 66
+	template_height = 42
+
+/datum/map_template/modular/bigred/eastfive
+	name = "Big red east caves"
+	mappath = "_maps/modularmaps/big_red/bigredcavevar5.dmm"
+	modular_id = "breastcaves"
+	template_width = 66
+	template_height = 42
+
+/datum/map_template/modular/bigred/cargoareaone
+	name = "Big red cargo area"
+	mappath = "_maps/modularmaps/big_red/bigredcargoareavar1.dmm"
+	modular_id = "brcargo"
+	template_width = 54
+	template_height = 22
+
+/datum/map_template/modular/bigred/cargoareatwo
+	name = "Big red cargo area"
+	mappath = "_maps/modularmaps/big_red/bigredcargoareavar2.dmm"
+	modular_id = "brcargo"
+	template_width = 54
+	template_height = 22
+
+/datum/map_template/modular/bigred/lz1one
+	name = "Big red landing zone one"
+	mappath = "_maps/modularmaps/big_red/bigredlzvar1.dmm"
+	modular_id = "brlz1"
+	template_width = 85
+	template_height = 38
+
+/datum/map_template/modular/bigred/lz1two
+	name = "Big red landing zone one"
+	mappath = "_maps/modularmaps/big_red/bigredlzvar2.dmm"
+	modular_id = "brlz1"
+	template_width = 85
+	template_height = 38
+
+/datum/map_template/modular/bigred/lz2one
+	name = "Big red landing zone two"
+	mappath = "_maps/modularmaps/big_red/bigredlz2var1.dmm"
+	modular_id = "brlz2"
+	template_width = 43
+	template_height = 38
+
+/datum/map_template/modular/bigred/lz2two
+	name = "Big red landing zone two"
+	mappath = "_maps/modularmaps/big_red/bigredlz2var2.dmm"
+	modular_id = "brlz2"
+	template_width = 43
+	template_height = 38
+
+/datum/map_template/modular/bigred/fenceone
+	name = "Big red fence"
+	mappath = "_maps/modularmaps/big_red/bigredfencevar1.dmm"
+	modular_id = "brfence"
+	template_width = 24
+	template_height = 8
+
+/datum/map_template/modular/bigred/fencetwo
+	name = "Big red fence"
+	mappath = "_maps/modularmaps/big_red/bigredfencevar2.dmm"
+	modular_id = "brfence"
+	template_width = 24
+	template_height = 8	
+
+/datum/map_template/modular/bigred/medbayone
+	name = "Big red medbay"
+	mappath = "_maps/modularmaps/big_red/bigredmedbayvar1.dmm"
+	modular_id = "brmedbay"
+	template_width = 33
+	template_height = 26	
+
+/datum/map_template/modular/bigred/medbaytwo
+	name = "Big red medbay"
+	mappath = "_maps/modularmaps/big_red/bigredmedbayvar2.dmm"
+	modular_id = "brmedbay"
+	template_width = 33
+	template_height = 26
+
+/datum/map_template/modular/bigred/medbaythree
+	name = "Big red medbay"
+	mappath = "_maps/modularmaps/big_red/bigredmedbayvar3.dmm"
+	modular_id = "brmedbay"
+	template_width = 33
+	template_height = 26
+
+/datum/map_template/modular/bigred/medbayfour
+	name = "Big red medbay"
+	mappath = "_maps/modularmaps/big_red/bigredmedbayvar4.dmm"
+	modular_id = "brmedbay"
+	template_width = 33
+	template_height = 26
+
+/datum/map_template/modular/bigred/medbayfive
+	name = "Big red medbay"
+	mappath = "_maps/modularmaps/big_red/bigredmedbayvar5.dmm"
+	modular_id = "brmedbay"
+	template_width = 33
+	template_height = 26
+
+/datum/map_template/modular/bigred/medbaysix
+	name = "Big red medbay"
+	mappath = "_maps/modularmaps/big_red/bigredmedbayvar6.dmm"
+	modular_id = "brmedbay"
+	template_width = 33
+	template_height = 26	
+
+/datum/map_template/modular/bigred/officeone
+	name = "Big red office"
+	mappath = "_maps/modularmaps/big_red/bigredofficevar1.dmm"
+	modular_id = "broffice"
+	template_width = 28
+	template_height = 23
+
+/datum/map_template/modular/bigred/officetwo
+	name = "Big red office"
+	mappath = "_maps/modularmaps/big_red/bigredofficevar2.dmm"
+	modular_id = "broffice"
+	template_width = 28
+	template_height = 23
+
+/datum/map_template/modular/bigred/officethree
+	name = "Big red office"
+	mappath = "_maps/modularmaps/big_red/bigredofficevar3.dmm"
+	modular_id = "broffice"
+	template_width = 28
+	template_height = 23
+
+/datum/map_template/modular/bigred/officefour
+	name = "Big red office"
+	mappath = "_maps/modularmaps/big_red/bigredofficevar4.dmm"
+	modular_id = "broffice"
+	template_width = 28
+	template_height = 23
+
+/datum/map_template/modular/bigred/secornerone
+	name = "Big red southeastern caves"
+	mappath = "_maps/modularmaps/big_red/bigredsecornervar1.dmm"
+	modular_id = "brsecorner"
+	template_width = 71
+	template_height = 67
+
+/datum/map_template/modular/bigred/secornertwo
+	name = "Big red southeastern caves"
+	mappath = "_maps/modularmaps/big_red/bigredsecornervar2.dmm"
+	modular_id = "brsecorner"
+	template_width = 71
+	template_height = 67
+
+/datum/map_template/modular/bigred/secornerthree
+	name = "Big red southeastern caves"
+	mappath = "_maps/modularmaps/big_red/bigredsecornervar3.dmm"
+	modular_id = "brsecorner"
+	template_width = 71
+	template_height = 67
+
+/datum/map_template/modular/bigred/secornerfour
+	name = "Big red southeastern caves"
+	mappath = "_maps/modularmaps/big_red/bigredsecornervar4.dmm"
+	modular_id = "brsecorner"
+	template_width = 71
+	template_height = 67
+
+/datum/map_template/modular/bigred/secornerfive
+	name = "Big red southeastern caves"
+	mappath = "_maps/modularmaps/big_red/bigredsecornervar5.dmm"
+	modular_id = "brsecorner"
+	template_width = 71
+	template_height = 67	
+
+/datum/map_template/modular/bigred/secornersix
+	name = "Big red southeastern caves"
+	mappath = "_maps/modularmaps/big_red/bigredsecornervar6.dmm"
+	modular_id = "brsecorner"
+	template_width = 71
+	template_height = 67
+
+/datum/map_template/modular/bigred/toolshedone
+	name = "Big red tool shed"
+	mappath = "_maps/modularmaps/big_red/bigredtoolshedvar1.dmm"
+	modular_id = "brtoolshed"
+	template_width = 16
+	template_height = 9	
+
+/datum/map_template/modular/bigred/toolshedtwo
+	name = "Big red tool shed"
+	mappath = "_maps/modularmaps/big_red/bigredtoolshedvar2.dmm"
+	modular_id = "brtoolshed"
+	template_width = 16
+	template_height = 9	
+
+/datum/map_template/modular/bigred/toolshedthree
+	name = "Big red tool shed"
+	mappath = "_maps/modularmaps/big_red/bigredtoolshedvar3.dmm"
+	modular_id = "brtoolshed"
+	template_width = 16
+	template_height = 9	
+
+/datum/map_template/modular/bigred/toolshedfour
+	name = "Big red tool shed"
+	mappath = "_maps/modularmaps/big_red/bigredtoolshedvar4.dmm"
+	modular_id = "brtoolshed"
+	template_width = 16
+	template_height = 9	
+
+/datum/map_template/modular/bigred/southwestcornerone
+	name = "Big red southwestern corner"
+	mappath = "_maps/modularmaps/big_red/bigredcaveswvar1.dmm"
+	modular_id = "brswcorner"
+	template_width = 41
+	template_height = 43
+
+/datum/map_template/modular/bigred/southwestcornertwo
+	name = "Big red southwestern corner"
+	mappath = "_maps/modularmaps/big_red/bigredcaveswvar2.dmm"
+	modular_id = "brswcorner"
+	template_width = 41
+	template_height = 43
+
+/datum/map_template/modular/bigred/southwestcornerthree
+	name = "Big red southwestern corner"
+	mappath = "_maps/modularmaps/big_red/bigredcaveswvar3.dmm"
+	modular_id = "brswcorner"
+	template_width = 41
+	template_height = 43
+
+/datum/map_template/modular/bigred/southwestcornerfour
+	name = "Big red southwestern corner"
+	mappath = "_maps/modularmaps/big_red/bigredcaveswvar4.dmm"
+	modular_id = "brswcorner"
+	template_width = 41
+	template_height = 43
+
+/datum/map_template/modular/bigred/southwestcornerfive
+	name = "Big red southwestern corner"
+	mappath = "_maps/modularmaps/big_red/bigredcaveswvar5.dmm"
+	modular_id = "brswcorner"
+	template_width = 41
+	template_height = 43
+
+/datum/map_template/modular/bigred/southwestcornersix
+	name = "Big red southwestern corner"
+	mappath = "_maps/modularmaps/big_red/bigredcaveswvar6.dmm"
+	modular_id = "brswcorner"
+	template_width = 41
+	template_height = 43
+
+/datum/map_template/modular/bigred/lambdalockone
+	name = "Big red lockdown shutters"
+	mappath = "_maps/modularmaps/big_red/bigreddoor1.dmm"
+	modular_id = "brlambdalock"
+	template_width = 1
+	template_height = 2
+	min_player_num = 45
+	max_player_num = INFINITY
+
+/datum/map_template/modular/bigred/lambdalocktwo
+	name = "Big red lockdown shutters"
+	mappath = "_maps/modularmaps/big_red/bigreddoor2.dmm"
+	modular_id = "brlambdalock"
+	template_width = 1
+	template_height = 2
+
+/datum/map_template/modular/bigred/lambdalockthree
+	name = "Big red lockdown shutters"
+	mappath = "_maps/modularmaps/big_red/bigreddoor3.dmm"
+	modular_id = "brlambdalock"
+	template_width = 1
+	template_height = 2
+	min_player_num = 45
+	max_player_num = INFINITY
+
+/datum/map_template/modular/bigred/lambdalockfour
+	name = "Big red lockdown shutters"
+	mappath = "_maps/modularmaps/big_red/bigreddoor4.dmm"
+	modular_id = "brlambdalock"
+	template_width = 1
+	template_height = 2
+
+/datum/map_template/modular/bigred/generalstoreone
+	name = "Big red general store"
+	mappath = "_maps/modularmaps/big_red/bigredgeneralstorevar1.dmm"
+	modular_id = "brgeneral"
+	template_width = 31
+	template_height = 14
+
+/datum/map_template/modular/bigred/generalstoretwo
+	name = "Big red general store"
+	mappath = "_maps/modularmaps/big_red/bigredgeneralstorevar2.dmm"
+	modular_id = "brgeneral"
+	template_width = 31
+	template_height = 14
+
+/datum/map_template/modular/bigred/sweastone
+	name = "Big red general store"
+	mappath = "_maps/modularmaps/big_red/bigredsweastcornervar1.dmm"
+	modular_id = "brsweast"
+	template_width = 44
+	template_height = 22
+
+/datum/map_template/modular/bigred/sweasttwo
+	name = "Big red general store"
+	mappath = "_maps/modularmaps/big_red/bigredsweastcornervar2.dmm"
+	modular_id = "brsweast"
+	template_width = 44
+	template_height = 22
+
+/datum/map_template/modular/bigred/sweastthree
+	name = "Big red general store"
+	mappath = "_maps/modularmaps/big_red/bigredsweastcornervar3.dmm"
+	modular_id = "brsweast"
+	template_width = 44
+	template_height = 22
+
+/datum/map_template/modular/bigred/sweastfour
+	name = "Big red general store"
+	mappath = "_maps/modularmaps/big_red/bigredsweastcornervar4.dmm"
+	modular_id = "brsweast"
+	template_width = 44
+	template_height = 22
+
+/datum/map_template/modular/bigred/sweastfive
+	name = "Big red general store"
+	mappath = "_maps/modularmaps/big_red/bigredsweastcornervar5.dmm"
+	modular_id = "brsweast"
+	template_width = 44
+	template_height = 22
+
 /datum/map_template/modular/bigred/barracks
 	name = "Big red Barracks"
 	mappath = "_maps/modularmaps/big_red/barracks.dmm"

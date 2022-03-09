@@ -1,0 +1,223 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/cult,
+/area/bigredv2/outside/chapel)
+"g" = (
+/turf/open/floor/engine/cult{
+	dir = 2
+	},
+/area/bigredv2/outside/chapel)
+"M" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/engine/cult{
+	dir = 2
+	},
+/area/bigredv2/outside/chapel)
+"V" = (
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
+/turf/open/floor/engine/cult{
+	dir = 2
+	},
+/area/bigredv2/outside/chapel)
+
+(1,1,1) = {"
+a
+a
+a
+a
+g
+g
+g
+a
+a
+"}
+(2,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+a
+"}
+(3,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+a
+"}
+(4,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+a
+"}
+(5,1,1) = {"
+a
+a
+g
+g
+g
+g
+g
+a
+a
+"}
+(6,1,1) = {"
+a
+g
+a
+V
+V
+V
+a
+g
+a
+"}
+(7,1,1) = {"
+g
+g
+g
+g
+g
+g
+g
+g
+a
+"}
+(8,1,1) = {"
+g
+g
+g
+g
+g
+g
+g
+g
+a
+"}
+(9,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+a
+"}
+(10,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+g
+"}
+(11,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+g
+"}
+(12,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+g
+"}
+(13,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+a
+"}
+(14,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+a
+"}
+(15,1,1) = {"
+M
+g
+g
+g
+g
+g
+g
+g
+a
+"}
+(16,1,1) = {"
+g
+g
+g
+g
+g
+g
+g
+g
+a
+"}
+(17,1,1) = {"
+a
+g
+g
+g
+g
+g
+g
+g
+a
+"}
+(18,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
