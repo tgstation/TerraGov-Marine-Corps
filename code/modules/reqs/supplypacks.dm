@@ -241,8 +241,14 @@ WEAPONS
 
 /datum/supply_packs/weapons/tx29kit
 	name = "TX-29 support rifle kit"
-	contains = list(/obj/item/storage/box/recoilless_system)
+	contains = list(/obj/item/storage/box/tx29_system)
 	cost = 60
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/tx29mag
+	name = "TX-29 rifle magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx29)
+	cost = 1
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/tx29_airburst

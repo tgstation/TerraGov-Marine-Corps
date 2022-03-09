@@ -177,7 +177,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "tx29_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 7
+	storage_slots = 5
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -185,8 +185,6 @@
 /obj/item/storage/box/tx29_system/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/weapon/gun/rifle/tx29(src)
-	new /obj/item/ammo_magazine/rifle/tx29launcher(src)
-	new /obj/item/ammo_magazine/rifle/tx29launcher(src)
 	new /obj/item/ammo_magazine/rifle/tx29launcher(src)
 	new /obj/item/ammo_magazine/rifle/tx29launcher(src)
 	new /obj/item/ammo_magazine/rifle/tx29launcher/incendiary(src)

@@ -91,8 +91,6 @@
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/storage/box/recoilless_system = 2,
-			/obj/item/storage/box/tx29_system = 3,
-			/obj/item/ammo_magazine/rifle/tx29 = -1,
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
@@ -546,6 +544,8 @@
 	products = list(
 		"Surplus Special Equipment" = list(
 			/obj/item/beacon/supply_beacon = 1,
+			/obj/item/storage/box/tx29_system = 1,
+			/obj/item/ammo_magazine/rifle/tx29 = 6,
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
