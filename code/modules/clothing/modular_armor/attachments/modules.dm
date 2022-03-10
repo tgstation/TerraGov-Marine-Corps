@@ -222,6 +222,7 @@
 /obj/item/armor_module/module/welding/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	parent.AddComponent(/datum/component/clothing_tint, TINT_5, active)
+	base_icon = icon_state
 
 /obj/item/armor_module/module/welding/on_detach(obj/item/detaching_from, mob/user)
 	parent.GetComponent(/datum/component/clothing_tint)
