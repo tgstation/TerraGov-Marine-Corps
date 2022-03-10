@@ -82,3 +82,9 @@
       camera, signaler, and tarp to make sense of SL vendor
   - balance: Update flamethrower on SL; I might just remove this since this is an
       old and forgotten relic
+2022-03-10:
+  Notamaniac:
+  - bugfix: Powerpacks don't disappear on your back when they run out of ammo anymore
+  - imageadd: Powerpacks have been resprited
+  novaepee:
+  - rscadd: New posters! Soon to add in shipside maps.
