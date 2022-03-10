@@ -55,11 +55,13 @@
 /obj/item/armor_module/module/fire_proof
 	name = "\improper Surt Pyrotechnical Insulation System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will impact mobility."
+	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will definitely impact mobility."
 	icon_state = "mod_fire"
 	item_state = "mod_fire_a"
 	hard_armor = list("fire" = 200)
-	slowdown = 0.2
+	slowdown = 0.3
+	/// How much the suit light is modified by
+	light_mod = -2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_fire_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_fire_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_fire_xn")
 
