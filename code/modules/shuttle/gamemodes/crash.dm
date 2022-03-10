@@ -2,6 +2,8 @@
 /obj/docking_port/stationary/crashmode
 	id = "canterbury_dock"
 	name = "Canterbury Crash Site"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "crash_site"
 	dir = SOUTH
 	width = 19
 	height = 31

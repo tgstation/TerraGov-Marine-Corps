@@ -1323,6 +1323,45 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 100
 	sundering = 100
 
+/datum/ammo/rocket/atgun_shell
+	name = "high explosive ballistic cap shell"
+	icon_state = "atgun"
+	hud_state = "shell_heat"
+	hud_state_empty = "shell_empty"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 3
+	damage = 90
+	penetration = 30
+	sundering = 10
+	handful_amount = 1
+
+/datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 2)
+
+/datum/ammo/rocket/atgun_shell/apcr
+	name = "tungsten penetrator"
+	hud_state = "shell_he"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 4
+	damage = 150
+	penetration = 100
+	sundering = 55
+
+/datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
+	explosion(T, 0, 0, 1, 0)
+
+/datum/ammo/rocket/atgun_shell/he
+	name = "high velocity high explosive shell"
+	hud_state = "shell_he"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	shell_speed = 2
+	damage = 50
+	penetration = 50
+	sundering = 25
+
+/datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
+	explosion(T, 0, 3, 5, 0)
+
 /*
 //================================================
 					Energy Ammo

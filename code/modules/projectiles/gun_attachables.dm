@@ -616,6 +616,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_allow_movement = TRUE
 	///how much slowdown the scope gives when zoomed. You want this to be slowdown you want minus aim_speed_mod
 	var/zoom_slowdown = 1
+	/// scope zoom delay, delay before you can aim.
+	var/scope_delay = 0
 	///boolean as to whether a scope can apply nightvision
 	var/has_nightvision = FALSE
 	///boolean as to whether the attachment is currently giving nightvision
@@ -668,6 +670,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_viewsize = 0
 	zoom_tile_offset = 3
 
+/obj/item/attachable/scope/unremovable/standard_atgun
+	name = "TAT-36 long range scope"
+	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim.."
+	icon_state = "sniperscope_invisible"
+	flags_attach_features = ATTACH_ACTIVATION
+	scope_delay = 4 SECONDS
 
 /obj/item/attachable/scope/unremovable/tl102
 	name = "TL-102 smart sight"
@@ -684,22 +692,24 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(SEND_SIGNAL(user, COMSIG_ITEM_ZOOM) &  COMSIG_ITEM_ALREADY_ZOOMED)
 			zoom(user)
 		return TRUE
-	
+
 	if(!(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		if(user)
 			to_chat(user, span_warning("You must hold [master_gun] with two hands to use [src]."))
 		return FALSE
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
 		user.setDir(master_gun.loc.dir)
+	if(!do_after(user, scope_delay, TRUE, src, BUSY_ICON_BAR))
+		return FALSE
 	zoom(user)
 	update_icon()
 	return TRUE
 
 /obj/item/attachable/scope/zoom_item_turnoff(datum/source, mob/living/carbon/user)
 	if(ismob(source))
-		activate(source, TRUE)
+		INVOKE_ASYNC(src, .proc/activate, source, TRUE)
 	else
-		activate(user, TRUE)
+		INVOKE_ASYNC(src, .proc/activate, user, TRUE)
 
 /obj/item/attachable/scope/onzoom(mob/living/user)
 	if(zoom_allow_movement)
@@ -1409,15 +1419,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!isgun(attaching_to))
 		return FALSE
 	var/obj/item/weapon/gun/attaching_gun = attaching_to
-	if(CHECK_BITFIELD(attaching_gun.flags_gun_features, GUN_IS_SENTRY))
+	if(ispath(attaching_gun.deployed_item, /obj/machinery/deployable/mounted/sentry))
 		to_chat(attacher, span_warning("[attaching_gun] is already a sentry!"))
 		return FALSE
 	return ..()
 
 /obj/item/attachable/buildasentry/on_attach(attaching_item, mob/user)
 	. = ..()
-	ENABLE_BITFIELD(master_gun.flags_gun_features, GUN_IS_SENTRY)
 	ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYABLE)
+	master_gun.deployed_item = /obj/machinery/deployable/mounted/sentry/buildasentry
 	master_gun.ignored_terrains = list(
 		/obj/machinery/deployable/mounted,
 		/obj/machinery/miner,
@@ -1433,17 +1443,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			/obj/structure/window/framed/prison,
 		)
 	master_gun.turret_flags |= TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
-	master_gun.AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
+	master_gun.AddElement(/datum/element/deployable_item, master_gun.deployed_item, deploy_time, undeploy_time)
 	update_icon()
 
 /obj/item/attachable/buildasentry/on_detach(detaching_item, mob/user)
 	. = ..()
 	var/obj/item/weapon/gun/detaching_gun = detaching_item
-	DISABLE_BITFIELD(detaching_gun.flags_gun_features, GUN_IS_SENTRY)
 	DISABLE_BITFIELD(detaching_gun.flags_item, IS_DEPLOYABLE)
 	detaching_gun.ignored_terrains = null
+	detaching_gun.deployed_item = null
 	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
-	detaching_gun.RemoveElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry/buildasentry, deploy_time, undeploy_time)
+	detaching_gun.RemoveElement(/datum/element/deployable_item, master_gun.deployed_item, deploy_time, undeploy_time)
 
 
 /obj/item/attachable/shoulder_mount

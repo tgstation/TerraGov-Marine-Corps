@@ -59,6 +59,7 @@
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
+	deployed_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 125
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -140,6 +141,7 @@
 
 	deploy_time = 8 SECONDS
 	undeploy_time = 3 SECONDS
+	deployed_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 150
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -185,6 +187,7 @@
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	deployed_item = /obj/machinery/deployable/mounted
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
@@ -201,3 +204,80 @@
 	deploy_time = 1 SECONDS
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
+
+//-------------------------------------------------------
+//TAT-36 Anti Tank Gun
+
+/obj/item/weapon/gun/standard_atgun
+	name = "\improper TAT-36 anti tank gun"
+	desc = "The TAT-36 is a light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has a ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes."
+	w_class = WEIGHT_CLASS_BULKY
+	icon = 'icons/Marine/marine-atgun.dmi'
+	icon_state = "tat36"
+	item_state = "tat36"
+	caliber = CALIBER_37MM // codex
+	max_shells = 1 //codex
+	fire_sound = 'sound/weapons/guns/fire/tat36.ogg'
+	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/standard_atgun
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/standard_atgun,
+		/obj/item/ammo_magazine/standard_atgun/apcr,
+		/obj/item/ammo_magazine/standard_atgun/he,
+	)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 22, "under_x" = 28, "under_y" = 13, "stock_x" = 0, "stock_y" = 0)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/standard_atgun)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_time = 4 SECONDS
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
+	soft_armor = list("melee" = 60, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+
+	scatter = 0
+	recoil = 3
+	fire_delay = 3 SECONDS
+	burst_amount = 1
+	undeploy_time = 2000 SECONDS
+	max_integrity = 800
+	deployed_item = /obj/machinery/deployable/mounted/atgun
+
+/obj/machinery/deployable/mounted/atgun
+	anchored = FALSE // You can wheel this around!
+	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
+	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
+
+/obj/item/storage/internal/ammo_rack
+	storage_slots = 10
+	max_storage_space = 40
+	max_w_class = WEIGHT_CLASS_BULKY
+	can_hold = list(/obj/item/ammo_magazine/standard_atgun)
+
+/obj/machinery/deployable/mounted/atgun/Initialize()
+	. = ..()
+	sponson = new sponson(src)
+
+/obj/machinery/deployable/mounted/atgun/attack_hand_alternate(mob/living/user)
+	return sponson.open(user)
+
+/obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
+	if(!ishuman(user) || user.lying_angle || user.incapacitated())
+		return FALSE
+
+	if(over_object == user && Adjacent(user)) //This must come before the screen objects only block
+		open(user)
+		return FALSE
+
+/obj/machinery/deployable/mounted/atgun/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(800)
+		if(EXPLODE_HEAVY)
+			take_damage(rand(150, 200))
+		if(EXPLODE_LIGHT)
+			take_damage(rand(10, 50))
+

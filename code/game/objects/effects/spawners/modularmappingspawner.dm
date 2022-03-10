@@ -52,6 +52,17 @@
 	spawner_height = 15
 	spawner_width = 15
 
+/obj/effect/spawner/modularmap/lv624/medicaldome
+	mapid = "lvmedicaldome"
+	spawner_height = 15
+	spawner_width = 15
+
+/obj/effect/spawner/modularmap/lv624/largecentralcave
+	mapid = "lvcaveslakearea"
+	spawner_height = 33
+	spawner_width = 80
+
+
 /************BIG RED******/
 /obj/effect/spawner/modularmap/bigred/operations //todo decrease y by one
 	mapid = "broperations"
