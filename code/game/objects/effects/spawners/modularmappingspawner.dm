@@ -79,10 +79,50 @@
 	spawner_width = 33
 	spawner_height = 26
 
+/obj/effect/spawner/modularmap/bigred/medbaypassage
+	mapid = "brmedbaypassage"
+	spawner_width = 6
+	spawner_height = 3
+
 /obj/effect/spawner/modularmap/bigred/generalstore
 	mapid = "brgeneral"
 	spawner_width = 31
 	spawner_height = 14
+
+/obj/effect/spawner/modularmap/bigred/chapel
+	mapid = "brchapel"
+	spawner_width = 18
+	spawner_height = 9
+
+/obj/effect/spawner/modularmap/bigred/eta
+	mapid = "breta"
+	spawner_width = 26
+	spawner_height = 24
+
+/obj/effect/spawner/modularmap/bigred/lambdatunnel
+	mapid = "brlambdatunnel"
+	spawner_width = 25
+	spawner_height = 6
+
+/obj/effect/spawner/modularmap/bigred/lambdacave
+	mapid = "brlambdacave"
+	spawner_width = 15
+	spawner_height = 15
+
+/obj/effect/spawner/modularmap/bigred/dorms
+	mapid = "brdorms"
+	spawner_width = 19
+	spawner_height = 7
+
+/obj/effect/spawner/modularmap/bigred/cargo
+	mapid = "brcargo"
+	spawner_width = 19
+	spawner_height = 19
+
+/obj/effect/spawner/modularmap/bigred/engineering
+	mapid = "brengineering"
+	spawner_width = 30
+	spawner_height = 27
 
 /obj/effect/spawner/modularmap/bigred/southwesteast
 	mapid = "brsweast"
@@ -120,7 +160,7 @@
 	spawner_height = 42
 
 /obj/effect/spawner/modularmap/bigred/cargoarea
-	mapid = "brcargo"
+	mapid = "brcargoarea"
 	spawner_width = 54
 	spawner_height = 22
 

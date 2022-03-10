@@ -240,16 +240,30 @@
 /datum/map_template/modular/bigred/cargoareaone
 	name = "Big red cargo area"
 	mappath = "_maps/modularmaps/big_red/bigredcargoareavar1.dmm"
-	modular_id = "brcargo"
+	modular_id = "brcargoarea"
 	template_width = 54
 	template_height = 22
 
 /datum/map_template/modular/bigred/cargoareatwo
 	name = "Big red cargo area"
 	mappath = "_maps/modularmaps/big_red/bigredcargoareavar2.dmm"
-	modular_id = "brcargo"
+	modular_id = "brcargoarea"
 	template_width = 54
 	template_height = 22
+
+/datum/map_template/modular/bigred/chapelone
+	name = "Big red chapel"
+	mappath = "_maps/modularmaps/big_red/bigredchapelvar1.dmm"
+	modular_id = "brchapel"
+	template_width = 18
+	template_height = 9
+
+/datum/map_template/modular/bigred/chapeltwo
+	name = "Big red chapel"
+	mappath = "_maps/modularmaps/big_red/bigredchapelvar2.dmm"
+	modular_id = "brchapel"
+	template_width = 18
+	template_height = 9
 
 /datum/map_template/modular/bigred/lz1one
 	name = "Big red landing zone one"
@@ -261,6 +275,34 @@
 /datum/map_template/modular/bigred/lz1two
 	name = "Big red landing zone one"
 	mappath = "_maps/modularmaps/big_red/bigredlzvar2.dmm"
+	modular_id = "brlz1"
+	template_width = 85
+	template_height = 38
+
+/datum/map_template/modular/bigred/lz1three
+	name = "Big red landing zone one"
+	mappath = "_maps/modularmaps/big_red/bigredlzvar3.dmm"
+	modular_id = "brlz1"
+	template_width = 85
+	template_height = 38
+
+/datum/map_template/modular/bigred/lz1four
+	name = "Big red landing zone one"
+	mappath = "_maps/modularmaps/big_red/bigredlzvar4.dmm"
+	modular_id = "brlz1"
+	template_width = 85
+	template_height = 38
+
+/datum/map_template/modular/bigred/lz1five
+	name = "Big red landing zone one"
+	mappath = "_maps/modularmaps/big_red/bigredlzvar5.dmm"
+	modular_id = "brlz1"
+	template_width = 85
+	template_height = 38
+
+/datum/map_template/modular/bigred/lz1six
+	name = "Big red landing zone one"
+	mappath = "_maps/modularmaps/big_red/bigredlzvar6.dmm"
 	modular_id = "brlz1"
 	template_width = 85
 	template_height = 38
@@ -333,6 +375,13 @@
 	mappath = "_maps/modularmaps/big_red/bigredmedbayvar6.dmm"
 	modular_id = "brmedbay"
 	template_width = 33
+	template_height = 26
+
+/datum/map_template/modular/bigred/medbayseven
+	name = "Big red medbay"
+	mappath = "_maps/modularmaps/big_red/bigredmedbayvar7.dmm"
+	modular_id = "brmedbay"
+	template_width = 33
 	template_height = 26	
 
 /datum/map_template/modular/bigred/officeone
@@ -362,6 +411,139 @@
 	modular_id = "broffice"
 	template_width = 28
 	template_height = 23
+
+/datum/map_template/modular/bigred/cargoone
+	name = "Big red cargo"
+	mappath = "_maps/modularmaps/big_red/bigredcargovar1.dmm"
+	modular_id = "brcargo"
+	template_width = 19
+	template_height = 19
+
+/datum/map_template/modular/bigred/cargotwo
+	name = "Big red cargo"
+	mappath = "_maps/modularmaps/big_red/bigredcargovar2.dmm"
+	modular_id = "brcargo"
+	template_width = 19
+	template_height = 19
+
+/datum/map_template/modular/bigred/engione
+	name = "Big red engineering"
+	mappath = "_maps/modularmaps/big_red/bigredengineeringvar1.dmm"
+	modular_id = "brengineering"
+	template_width = 30
+	template_height = 27
+
+/datum/map_template/modular/bigred/engitwo
+	name = "Big red engineering"
+	mappath = "_maps/modularmaps/big_red/bigredengineeringvar2.dmm"
+	modular_id = "brengineering"
+	template_width = 30
+	template_height = 27
+
+/datum/map_template/modular/bigred/engithree
+	name = "Big red engineering"
+	mappath = "_maps/modularmaps/big_red/bigredengineeringvar3.dmm"
+	modular_id = "brengineering"
+	template_width = 30
+	template_height = 27
+
+/datum/map_template/modular/bigred/engifour
+	name = "Big red engineering"
+	mappath = "_maps/modularmaps/big_red/bigredengineeringvar4.dmm"
+	modular_id = "brengineering"
+	template_width = 30
+	template_height = 27
+
+/datum/map_template/modular/bigred/etaone
+	name = "Big red eta"
+	mappath = "_maps/modularmaps/big_red/bigredetavar1.dmm"
+	modular_id = "breta"
+	template_width = 26
+	template_height = 24
+
+/datum/map_template/modular/bigred/etatwo
+	name = "Big red eta"
+	mappath = "_maps/modularmaps/big_red/bigredetavar2.dmm"
+	modular_id = "breta"
+	template_width = 26
+	template_height = 24
+
+/datum/map_template/modular/bigred/etathree
+	name = "Big red eta"
+	mappath = "_maps/modularmaps/big_red/bigredetavar3.dmm"
+	modular_id = "breta"
+	template_width = 26
+	template_height = 24
+
+/datum/map_template/modular/bigred/etafour
+	name = "Big red eta"
+	mappath = "_maps/modularmaps/big_red/bigredetavar4.dmm"
+	modular_id = "breta"
+	template_width = 26
+	template_height = 24
+
+/datum/map_template/modular/bigred/etafive
+	name = "Big red eta"
+	mappath = "_maps/modularmaps/big_red/bigredetavar5.dmm"
+	modular_id = "breta"
+	template_width = 26
+	template_height = 24
+
+/datum/map_template/modular/bigred/medbaypassageone
+	name = "Big red nedbay passage"
+	mappath = "_maps/modularmaps/big_red/bigredmedbaypassagevar1.dmm"
+	modular_id = "brmedbaypassage"
+	template_width = 6
+	template_height = 3
+
+/datum/map_template/modular/bigred/medbaypassagetwo
+	name = "Big red medbaypassage"
+	mappath = "_maps/modularmaps/big_red/bigredmedbaypassagevar2.dmm"
+	modular_id = "brmedbaypassage"
+	template_width = 6
+	template_height = 3
+
+/datum/map_template/modular/bigred/dormsone
+	name = "Big red dorms"
+	mappath = "_maps/modularmaps/big_red/bigreddormvar1.dmm"
+	modular_id = "brdorms"
+	template_width = 19
+	template_height = 7
+
+/datum/map_template/modular/bigred/dormstwo
+	name = "Big red dorms"
+	mappath = "_maps/modularmaps/big_red/bigreddormvar2.dmm"
+	modular_id = "brdorms"
+	template_width = 19
+	template_height = 7
+
+/datum/map_template/modular/bigred/lambdatunneltwo
+	name = "Big red lambda caves"
+	mappath = "_maps/modularmaps/big_red/bigredlambdatunnelvar2.dmm"
+	modular_id = "brlambdatunnel"
+	template_width = 25
+	template_height = 6
+
+/datum/map_template/modular/bigred/lambdacavesone
+	name = "Big red lambda tunnel"
+	mappath = "_maps/modularmaps/big_red/bigredlambdacave1.dmm"
+	modular_id = "brlambdacave"
+	template_width = 15
+	template_height = 15
+
+/datum/map_template/modular/bigred/lambdatunnelone
+	name = "Big red lambda tunnel"
+	mappath = "_maps/modularmaps/big_red/bigredlambdatunnelvar1.dmm"
+	modular_id = "brlambdatunnel"
+	template_width = 25
+	template_height = 6
+
+/datum/map_template/modular/bigred/lambdacavestwo
+	name = "Big red dorms"
+	mappath = "_maps/modularmaps/big_red/bigredlambdacave2.dmm"
+	modular_id = "brlambdacave"
+	template_width = 15
+	template_height = 15
 
 /datum/map_template/modular/bigred/secornerone
 	name = "Big red southeastern caves"

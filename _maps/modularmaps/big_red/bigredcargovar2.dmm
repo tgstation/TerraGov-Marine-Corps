@@ -1,0 +1,1139 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"ar" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Cargo Offices"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"at" = (
+/obj/structure/cargo_container/green{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"aw" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"aU" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/bomb_supply,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"aV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"ba" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/engineering)
+"bm" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"bw" = (
+/obj/structure/closet/firecloset/full,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"bE" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"bH" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"bK" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "Cargonia";
+	name = "\improper Cargo Shutters"
+	},
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"bR" = (
+/obj/structure/table,
+/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/tool,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"bX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/structure/cargo_container/gorg,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"cq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"cD" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"cH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"dq" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/wall,
+/area/bigredv2/outside/cargo)
+"dx" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/cargo)
+"dB" = (
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"eS" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/engineering)
+"fe" = (
+/obj/structure/largecrate,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"fj" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"fl" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"hf" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"hG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"hM" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/largecrate,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"hS" = (
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"hT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"iZ" = (
+/obj/structure/cargo_container/ch_green{
+	dir = 4
+	},
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"jd" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"la" = (
+/obj/machinery/computer/ordercomp,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"li" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	dir = 1;
+	name = "\improper Cargo Bay Quartermaster"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"lj" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"lz" = (
+/obj/structure/largecrate/random/barrel,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"lA" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"lI" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Cargonia";
+	name = "\improper Cargo Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"mf" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"nn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/light,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"nD" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"nH" = (
+/obj/structure/largecrate/random,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"nS" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"nX" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Engineering Complex"
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/engineering)
+"oo" = (
+/obj/machinery/light,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"or" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "Cargonia";
+	name = "Storm Shutters"
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"ou" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/largecrate/random/barrel,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"pt" = (
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/structure/cargo_container/gorg,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"pE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"pF" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"pI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/largecrate/random,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"pV" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"qP" = (
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"qU" = (
+/obj/structure/cargo_container/nt{
+	dir = 4
+	},
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"rB" = (
+/obj/structure/cargo_container/ch_green{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"ss" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"sR" = (
+/obj/item/flashlight,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"ts" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"uf" = (
+/turf/open/floor/marking/loadingarea,
+/area/bigredv2/outside/cargo)
+"uR" = (
+/obj/machinery/autolathe,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"uY" = (
+/turf/open/floor/marking/delivery,
+/area/bigredv2/outside/cargo)
+"vw" = (
+/obj/structure/filingcabinet,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"vM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"vU" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 4
+	},
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"wh" = (
+/obj/structure/cargo_container/green{
+	dir = 4
+	},
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"wn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"wz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"wH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"xy" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"xB" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/largecrate/random,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"xE" = (
+/obj/structure/cargo_container/ch_green,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"xO" = (
+/obj/item/reagent_containers/glass/bottle/tramadol,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"yl" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Cargo Bay Quartermaster"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"yP" = (
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"zb" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"zT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	on = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"BG" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"BJ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/barricade/wooden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"BP" = (
+/obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Cd" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"CI" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 1;
+	name = "\improper Cargo Bay"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"CO" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"CW" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Eb" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/marking/loadingarea,
+/area/bigredv2/outside/cargo)
+"Et" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"EI" = (
+/obj/structure/largecrate,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"Fu" = (
+/obj/structure/filingcabinet,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"FA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"FH" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/delivery,
+/area/bigredv2/outside/cargo)
+"FX" = (
+/obj/structure/cargo_container/nt,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"Gu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/megaphone,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"GC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"GZ" = (
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Hu" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Hw" = (
+/obj/structure/cargo_container/hd_blue,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"HW" = (
+/obj/structure/bed/chair/office/dark,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Ik" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Iw" = (
+/obj/structure/cargo_container/gorg,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"IE" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"IF" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"IP" = (
+/obj/structure/table,
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Jd" = (
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"Je" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/trashcart,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"Jf" = (
+/obj/effect/spawner/random/tool,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Jg" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/tool,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Ji" = (
+/obj/structure/largecrate,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Js" = (
+/obj/structure/table,
+/obj/effect/spawner/random/ammo,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"JL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"JU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"KD" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/mainship/security/glass/free_access{
+	name = "\improper Cargo Bay Security"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"LD" = (
+/obj/structure/largecrate,
+/turf/open/floor/marking/loadingarea,
+/area/bigredv2/outside/cargo)
+"Mw" = (
+/obj/structure/closet/emcloset,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Op" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tool,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Ov" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/bomb_supply,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"OL" = (
+/obj/machinery/power/apc,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Pf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"PF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/obj/structure/largecrate,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Qn" = (
+/obj/effect/landmark/corpsespawner/security{
+	corpseuniform = /obj/item/clothing/under/colonist;
+	name = "Colonist Ethan Peser"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"QV" = (
+/obj/structure/cargo_container/nt{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Sh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"TG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/tool/lighter/random,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Ut" = (
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"VF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cargo_container/green,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+"Wb" = (
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"WM" = (
+/turf/closed/wall,
+/area/bigredv2/outside/cargo)
+"Xm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Yn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Zk" = (
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/marking/delivery,
+/area/bigredv2/outside/cargo)
+"ZE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"ZF" = (
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"ZT" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/largecrate,
+/turf/open/floor/marking/bot,
+/area/bigredv2/outside/cargo)
+
+(1,1,1) = {"
+Jd
+Jd
+Jd
+dx
+bK
+bK
+bK
+dx
+WM
+WM
+Cd
+CI
+dq
+WM
+WM
+WM
+yl
+WM
+WM
+"}
+(2,1,1) = {"
+FH
+Zk
+uY
+GC
+GZ
+xy
+GZ
+fj
+GZ
+GZ
+Cd
+xy
+GZ
+GC
+WM
+Ik
+GZ
+ts
+WM
+"}
+(3,1,1) = {"
+Jf
+GZ
+GZ
+uf
+xE
+ou
+hS
+FX
+Iw
+xy
+bE
+GZ
+GZ
+xy
+WM
+GZ
+HW
+Op
+lI
+"}
+(4,1,1) = {"
+mf
+mf
+vM
+GZ
+rB
+PF
+GZ
+QV
+ad
+GZ
+CW
+wH
+BP
+mf
+li
+mf
+zb
+Op
+lI
+"}
+(5,1,1) = {"
+Ji
+GZ
+Yn
+uf
+iZ
+Et
+hS
+qU
+qP
+GZ
+Cd
+GZ
+lA
+pI
+cD
+vw
+lA
+la
+lI
+"}
+(6,1,1) = {"
+lA
+BG
+pV
+hM
+mf
+hT
+mf
+hG
+mf
+hT
+bm
+Qn
+lA
+cH
+cD
+vw
+GZ
+GZ
+lI
+"}
+(7,1,1) = {"
+fe
+GZ
+Yn
+uf
+EI
+Je
+hS
+ZT
+hS
+GZ
+nn
+WM
+xB
+GZ
+WM
+Fu
+xy
+GZ
+WM
+"}
+(8,1,1) = {"
+GZ
+xy
+Yn
+GZ
+lA
+lA
+IF
+lA
+GZ
+GZ
+Cd
+Xm
+GZ
+nH
+WM
+cD
+yl
+cD
+eS
+"}
+(9,1,1) = {"
+GZ
+GZ
+Yn
+Eb
+Et
+Hw
+hS
+VF
+hS
+GZ
+Cd
+Gu
+GZ
+GZ
+fj
+xy
+GZ
+oo
+eS
+"}
+(10,1,1) = {"
+xy
+GZ
+Yn
+GZ
+GZ
+fl
+GZ
+at
+lz
+zT
+CO
+GZ
+GZ
+GZ
+GZ
+lA
+GZ
+nD
+nX
+"}
+(11,1,1) = {"
+GZ
+GZ
+bH
+LD
+hS
+vU
+hS
+wh
+EI
+GZ
+pF
+cq
+cq
+cq
+cq
+cq
+jd
+BJ
+ba
+"}
+(12,1,1) = {"
+bw
+Mw
+ss
+GZ
+GZ
+xy
+GZ
+GZ
+GZ
+xy
+ZE
+JU
+xO
+xy
+GZ
+GZ
+GZ
+bR
+eS
+"}
+(13,1,1) = {"
+WM
+WM
+WM
+WM
+cD
+cD
+cD
+WM
+Ik
+GZ
+ZE
+wn
+IE
+GZ
+IE
+lA
+GZ
+bR
+eS
+"}
+(14,1,1) = {"
+Js
+Js
+uR
+WM
+xy
+GZ
+GZ
+WM
+OL
+Wb
+ZE
+wn
+dB
+GZ
+bX
+lA
+xy
+IP
+eS
+"}
+(15,1,1) = {"
+JL
+Sh
+oo
+WM
+lA
+lA
+fj
+WM
+GZ
+cH
+ZE
+lA
+pt
+GZ
+FA
+GZ
+GZ
+Op
+eS
+"}
+(16,1,1) = {"
+lA
+aw
+mf
+ar
+wz
+Pf
+mf
+ar
+mf
+Hu
+CO
+lA
+yP
+xy
+pt
+GZ
+GZ
+aU
+eS
+"}
+(17,1,1) = {"
+IF
+TG
+lA
+GZ
+lA
+lj
+GZ
+GZ
+GZ
+lA
+pE
+GZ
+ZF
+IF
+yP
+GZ
+xy
+Jg
+eS
+"}
+(18,1,1) = {"
+GZ
+GZ
+GZ
+WM
+Ik
+Yn
+GZ
+WM
+GZ
+sR
+nS
+GZ
+Ut
+GZ
+Ut
+GZ
+GZ
+Ov
+eS
+"}
+(19,1,1) = {"
+cD
+cD
+WM
+WM
+cD
+KD
+cD
+WM
+GZ
+GZ
+nS
+hf
+or
+GZ
+fj
+fj
+fj
+aV
+eS
+"}
