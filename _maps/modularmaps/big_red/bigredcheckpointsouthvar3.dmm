@@ -145,7 +145,6 @@
 /obj/structure/bed/chair/office/light{
 	dir = 4;
 	icon_state = "officechair_white";
-	tag = ""
 	},
 /turf/open/floor{
 	icon_state = "dark"

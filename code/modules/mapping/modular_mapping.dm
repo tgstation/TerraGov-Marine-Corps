@@ -608,13 +608,6 @@
 	template_width = 4
 	template_height = 4
 
-/datum/map_template/modular/bigred/checkpointthree
-	name = "Big red checkpoint"
-	mappath = "_maps/modularmaps/big_red/bigredcheckpointvar3.dmm"
-	modular_id = "brcheckpoint"
-	template_width = 4
-	template_height = 4
-
 /datum/map_template/modular/bigred/checkpointsouththree
 	name = "Big red checkpoint south"
 	mappath = "_maps/modularmaps/big_red/bigredcheckpointsouthvar2.dmm"
