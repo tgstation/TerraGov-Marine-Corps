@@ -16,11 +16,11 @@
 /obj/item/storage/large_holster/update_icon()
 	. = ..()
 	var/mob/user = loc
-	if(istype(user)) 
+	if(istype(user))
 		user.update_inv_back()
 		user.update_inv_belt()
 		user.update_inv_s_store()
-	
+
 
 /obj/item/storage/large_holster/update_icon_state()
 	icon_state = "[base_icon][contents.len?"_full":""]"
@@ -59,7 +59,7 @@
 /obj/item/storage/large_holster/m37/full/Initialize()
 	new /obj/item/weapon/gun/shotgun/pump(src)
 	update_icon()
-	return ..()	
+	return ..()
 
 /// This is here to allow easier pathing and more consistent storage.
 /obj/item/storage/large_holster/blade
@@ -173,3 +173,48 @@
 	. = ..()
 	new /obj/item/weapon/gun/smg/standard_machinepistol(src)
 	update_icon()
+
+
+/obj/item/storage/large_holster/rpg
+	name = "\improper TGMC rocket bag"
+	desc = "This backpack can hold 5 67mm shells or 80mm rockets."
+	icon_state = "marine_rocket"
+	item_state = "marine_rocket"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 5 //It can hold 5 rockets.
+	max_storage_space = 21
+	max_w_class = 4
+	bypass_w_limit = list(
+		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
+	)
+	can_hold = list(
+		/obj/item/ammo_magazine/rocket,
+		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
+		)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //what does this do???
+	flags_equip_slot = ITEM_SLOT_BACK
+	var/obj/item/weapon/gun/current_gun
+
+///keep for sound on draw?
+/obj/item/storage/large_holster/rpg/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if (use_sound)
+		playsound(loc, use_sound, 15, 1, 6)
+
+/obj/item/storage/large_holster/rpg/proc/update_gun_icon() //only called when a gun is put in or removed.
+	var/mob/user = loc
+	if(current_gun)
+		//playsound(src,drawSound, 15, 1)
+		icon_state += "_g"
+		item_state = icon_state
+	else
+		//playsound(src,sheatheSound, 15, 1) ///sound missing
+		icon_state = copytext(icon_state,1,-2)
+		item_state = icon_state
+
+	if(istype(user)) user.update_inv_back()
+	if(istype(user)) user.update_inv_s_store()
+
+/obj/item/storage/large_holster/rpg/update_icon_state()
+	return
