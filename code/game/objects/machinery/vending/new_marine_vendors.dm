@@ -414,6 +414,7 @@
 	. = ..()
 	listed_products = list(
 		/obj/effect/essentials_set/commander = list(CAT_STD, "Standard Commander kit ", 0, "white"),
+		/obj/effect/essentials_set/jaeger_commander = list(CAT_STD, "Jaeger Commander kit ", 0, "white"),
 		/obj/effect/modular_set/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
 		/obj/effect/modular_set/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
@@ -722,6 +723,20 @@
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
 		/obj/item/whistle,
+		/obj/item/storage/box/MRE,
+	)
+
+/obj/effect/essentials_set/jaeger_commander
+	spawned_gear_list = list(
+		/obj/item/beacon/supply_beacon,
+		/obj/item/healthanalyzer,
+		/obj/item/roller/medevac,
+		/obj/item/medevac_beacon,
+		/obj/item/whistle,
+		/obj/item/storage/box/MRE,
+		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/suit/modular,
+		/obj/item/facepaint/green,
 	)
 
 /obj/effect/essentials_set/synth
