@@ -439,7 +439,7 @@
 		/obj/item/armor_module/module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
 		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
 		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
-		/obj/item/clothing/head/headband/red = list(CAT_HEL, "FC Headband", 0, "black"),
+		/obj/item/clothing/head/headband/fc = list(CAT_HEL, "FC Headband", 0, "black"),
 		/obj/item/clothing/head/tgmcberet/fc = list(CAT_HEL, "FC Beret", 0, "black"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/general = list(CAT_MOD, "General Purpose Storage Module", 0, "black"),
@@ -710,7 +710,6 @@
 		/obj/item/whistle,
 		/obj/item/radio,
 		/obj/item/binoculars/tactical,
-		/obj/item/attachable/motiondetector,
 		/obj/item/pinpointer/pool,
 		/obj/item/clothing/glasses/hud/health,
 	)
@@ -722,9 +721,6 @@
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
 		/obj/item/whistle,
-		/obj/item/attachable/motiondetector,
-		/obj/item/clothing/suit/modular,
-		/obj/item/facepaint/green,
 	)
 
 /obj/effect/essentials_set/synth
@@ -771,7 +767,6 @@
 	desc = "A set of light Xenonauten pattern armor, including an armor suit and helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x,
-		/obj/item/clothing/head/modular/marine/m10x/heavy,
 		/obj/item/clothing/suit/modular/xenonauten/light,
 	)
 
@@ -779,7 +774,6 @@
 	desc = "A set of medium Xenonauten pattern armor, including an armor suit and helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x,
-		/obj/item/clothing/head/modular/marine/m10x/heavy,
 		/obj/item/clothing/suit/modular/xenonauten,
 	)
 
@@ -787,23 +781,25 @@
 	desc = "A set of heavy Xenonauten pattern armor, including an armor suit and helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x,
-		/obj/item/clothing/head/modular/marine/m10x/heavy,
 		/obj/item/clothing/suit/modular/xenonauten/heavy,
 	)
 
 /obj/effect/essentials_set/xenonauten_light/leader
+	desc = "A set of light Xenonauten pattern armor, including an armor suit and stronger helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten/light,
 	)
 
 /obj/effect/essentials_set/xenonauten_medium/leader
+	desc = "A set of medium Xenonauten pattern armor, including an armor suit and stronger helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten,
 	)
 
 /obj/effect/essentials_set/xenonauten_heavy/leader
+	desc = "A set of heavy Xenonauten pattern armor, including an armor suit and stronger helmet."
 	spawned_gear_list = list(
 		/obj/item/clothing/head/modular/marine/m10x/leader,
 		/obj/item/clothing/suit/modular/xenonauten/heavy,
