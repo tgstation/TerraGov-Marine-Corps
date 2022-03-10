@@ -516,7 +516,6 @@
 /turf/open/lavaland/basalt,
 /area/bigredv2/outside/c)
 "da" = (
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southwest)
 "db" = (
@@ -952,10 +951,6 @@
 /area/barren/civilian)
 "fi" = (
 /obj/item/organ/xenos/eggsac,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
-/obj/effect/xenomorph/acid,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/south)
 "fl" = (
@@ -1188,7 +1183,6 @@
 /turf/open/floor/tile/dark2,
 /area/barren/engie/engine)
 "gs" = (
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/lavaland/basalt,
 /area/bigredv2/outside/n)
 "gt" = (
@@ -1753,9 +1747,6 @@
 /area/bigredv2/caves/south)
 "jA" = (
 /obj/item/organ/xenos/acidgland,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southwest)
 "jB" = (
@@ -2449,7 +2440,6 @@
 	},
 /area/barren/civilian)
 "nJ" = (
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/south)
 "nK" = (
@@ -2660,9 +2650,6 @@
 	},
 /area/bigredv2/outside/c)
 "oT" = (
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/south)
 "oU" = (
@@ -4202,10 +4189,6 @@
 /area/barren/misc/genstorage)
 "xX" = (
 /obj/item/organ/xenos/acidgland,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
-/obj/effect/xenomorph/acid,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/south)
 "xY" = (
@@ -4459,9 +4442,6 @@
 /area/bigredv2/outside/general_offices)
 "zF" = (
 /obj/item/organ/xenos/acidgland,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southeast)
 "zH" = (
@@ -4882,7 +4862,6 @@
 /turf/open/floor/tile/vault,
 /area/barren/civilian)
 "Cg" = (
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/tile/dark2,
 /area/barren/misc/refinery)
 "Ci" = (
@@ -4904,10 +4883,6 @@
 /area/bigredv2/outside/c)
 "Cl" = (
 /obj/item/organ/xenos/eggsac,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
-/obj/effect/xenomorph/acid,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southeast)
 "Cn" = (
@@ -6312,9 +6287,6 @@
 /area/barren/engie/engine)
 "Ks" = (
 /obj/item/organ/xenos/eggsac,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
 /obj/effect/xenomorph/acid,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southwest)
@@ -6610,14 +6582,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/lavaland/basalt,
 /area/bigredv2/outside/w)
-"Mr" = (
-/obj/item/organ/xenos/hivenode,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
-/obj/effect/xenomorph/acid,
-/turf/open/lavaland/basalt,
-/area/bigredv2/caves/south)
 "Mt" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
@@ -6870,10 +6834,6 @@
 /turf/open/floor,
 /area/barren/cave/lz1)
 "NX" = (
-/obj/effect/xenomorph/acid,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southeast)
 "NY" = (
@@ -7196,10 +7156,6 @@
 /area/barren/cave/lz1)
 "PZ" = (
 /obj/item/organ/xenos/acidgland,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
-/obj/effect/xenomorph/acid,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southwest)
 "Qc" = (
@@ -7222,10 +7178,6 @@
 /area/barren/cave/lz1)
 "Qk" = (
 /obj/item/organ/xenos/hivenode,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
-/obj/effect/xenomorph/acid,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southwest)
 "Qm" = (
@@ -7267,10 +7219,6 @@
 /turf/open/floor/tile/dark2,
 /area/barren/engie/engine)
 "Qx" = (
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
-/obj/effect/xenomorph/acid,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southwest)
 "Qy" = (
@@ -8332,10 +8280,6 @@
 /turf/open/floor/freezer,
 /area/barren/medical/research)
 "WY" = (
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
-/obj/effect/xenomorph/acid,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/south)
 "Xa" = (
@@ -8587,10 +8531,6 @@
 /area/barren/civilian/cook)
 "YR" = (
 /obj/item/organ/xenos/plasmavessel,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
-/obj/effect/xenomorph/acid,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southeast)
 "YS" = (
@@ -8667,11 +8607,7 @@
 /turf/open/floor/plating,
 /area/maintenance/dormitory)
 "Zm" = (
-/obj/effect/xenomorph/acid,
 /obj/item/organ/xenos/acidgland,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southeast)
 "Zn" = (
@@ -8688,9 +8624,6 @@
 /area/barren/security)
 "Zq" = (
 /obj/item/organ/xenos/eggsac,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/south)
 "Zs" = (
@@ -8715,10 +8648,6 @@
 /area/bigredv2/outside/general_offices)
 "Zz" = (
 /obj/item/organ/xenos/acidgland,
-/obj/effect/particle_effect/smoke/xeno/burn{
-	lifetime = 99999999
-	},
-/obj/effect/xenomorph/acid,
 /turf/open/lavaland/basalt,
 /area/bigredv2/caves/southeast)
 "ZB" = (
@@ -26495,8 +26424,8 @@ Zd
 Zd
 Zg
 Zg
-xX
-Mr
+VJ
+ij
 Zg
 WF
 Zg

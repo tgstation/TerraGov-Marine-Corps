@@ -1,0 +1,5 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - rscadd: "standardizes, modernizes, and improves all the module descriptions."
+  - balance: "FF armor module now has laser armor, and a cool new name!"

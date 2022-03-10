@@ -30,6 +30,7 @@
 	dir = 9
 	},
 /obj/machinery/chem_master,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "aag" = (
@@ -96,7 +97,6 @@
 /obj/item/mass_spectrometer,
 /obj/item/reagent_scanner,
 /obj/item/tool/hand_labeler,
-/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -353,6 +353,9 @@
 	name = "modifed holopad"
 	},
 /mob/living/simple_animal/catslug/newt,
+/obj/structure/bed/stool{
+	pixel_y = 8
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -374,6 +377,7 @@
 /area/sulaco/medbay/chemistry)
 "abm" = (
 /obj/machinery/chem_master,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/chemistry)
 "abn" = (
@@ -479,13 +483,8 @@
 	},
 /area/sulaco/medbay/west)
 "abE" = (
-/obj/structure/sign/directions/science{
-	dir = 1
-	},
-/obj/machinery/camera/autoname,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
+/obj/structure/sign/chemistry,
+/turf/closed/wall/mainship/white,
 /area/sulaco/medbay/west)
 "abF" = (
 /obj/structure/cable,
@@ -506,15 +505,11 @@
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "abJ" = (
-/obj/machinery/light{
-	dir = 8
+/obj/structure/sign/directions/science{
+	dir = 1
 	},
-/obj/structure/cable,
-/obj/machinery/power/apc/mainship{
-	dir = 4
-	},
-/turf/open/floor/prison/whitegreen/corner,
-/area/sulaco/medbay/chemistry)
+/turf/closed/wall/mainship/white,
+/area/sulaco/medbay/west)
 "abL" = (
 /obj/machinery/light{
 	dir = 8
@@ -566,9 +561,9 @@
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay)
 "abY" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/structure/cable,
-/obj/effect/ai_node,
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry,
+/obj/machinery/door/firedoor,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -608,9 +603,7 @@
 	},
 /area/sulaco/hangar/one)
 "acf" = (
-/obj/machinery/door/airlock/mainship/medical/glass/chemistry,
 /obj/structure/cable,
-/obj/machinery/door/firedoor,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -624,15 +617,21 @@
 	},
 /area/sulaco/medbay/west)
 "ach" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor,
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/mainship/medical/glass{
+	dir = 2
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
 /area/sulaco/medbay/west)
 "aci" = (
-/obj/structure/cable,
+/obj/structure/bed/stool{
+	pixel_y = 8
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -644,10 +643,16 @@
 	},
 /area/sulaco/medbay/west)
 "acm" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/light{
+	dir = 8
+	},
 /obj/structure/cable,
-/turf/open/floor/prison/whitegreen/corner,
-/area/sulaco/medbay/west)
+/obj/machinery/chem_master,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay/chemistry)
 "aco" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/structure/cable,
@@ -717,18 +722,22 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "acy" = (
-/obj/machinery/door/firedoor/mainship,
 /obj/structure/cable,
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/ai_node,
 /turf/open/floor/prison/whitegreen/corner{
-	dir = 1
+	dir = 4
 	},
 /area/sulaco/medbay/west)
 "acz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/prison/whitegreen/corner,
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
 /area/sulaco/medbay/west)
 "acA" = (
 /obj/structure/cable,
@@ -8957,7 +8966,6 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/reagent_containers/glass/beaker,
-/obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 5
 	},
@@ -18840,12 +18848,14 @@
 	},
 /area/sulaco/medbay/surgery_two)
 "qAW" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -21406,6 +21416,13 @@
 	dir = 4
 	},
 /area/sulaco/marine/chapel)
+"uJG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay/west)
 "uKB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -23132,11 +23149,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "xKv" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
 /obj/machinery/holopad{
@@ -23145,6 +23158,8 @@
 	holo_range = 7;
 	name = "modfied holopad"
 	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -23280,8 +23295,14 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "xWb" = (
-/obj/structure/sign/chemistry,
-/turf/closed/wall/mainship/white,
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
+/obj/structure/table/mainship,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
 /area/sulaco/medbay/chemistry)
 "xWz" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -48380,7 +48401,7 @@ aTg
 aVH
 bjX
 aam
-aam
+abJ
 aam
 abN
 aam
@@ -48639,10 +48660,10 @@ bjX
 aam
 abb
 abC
-abR
-abD
+acy
+acz
 ach
-abD
+uJG
 xKv
 abD
 acI
@@ -48895,11 +48916,11 @@ leD
 bjX
 aam
 abE
-abG
+aam
 abY
-acm
-acy
-acz
+aam
+aam
+abG
 qAW
 oxv
 aam
@@ -49152,9 +49173,9 @@ xKR
 bIb
 aan
 xWb
-aan
+acm
 acf
-aan
+abl
 aan
 acj
 onD
@@ -49409,7 +49430,7 @@ xKR
 bjX
 uPy
 aaq
-abJ
+aax
 aci
 abk
 aan
