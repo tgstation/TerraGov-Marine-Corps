@@ -949,6 +949,12 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
+"cW" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "cX" = (
 /turf/open/floor/mainship/black/corner{
 	dir = 4
@@ -2701,6 +2707,12 @@
 	},
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/squads/req)
+"iI" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/briefing)
 "iK" = (
 /obj/item/frame/table,
 /obj/item/frame/table,
@@ -6551,6 +6563,13 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
+"vY" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "wb" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -8478,6 +8497,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
+"BG" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/briefing)
 "BH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -10466,6 +10491,12 @@
 	dir = 1
 	},
 /area/mainship/squads/general)
+"Hw" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "Hx" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -24820,7 +24851,7 @@ SA
 yA
 Io
 Jo
-Ci
+BG
 LH
 Ci
 Nr
@@ -24913,7 +24944,7 @@ sP
 vg
 vg
 vW
-wQ
+Hw
 gY
 Ot
 Io
@@ -25003,7 +25034,7 @@ oM
 ls
 qu
 SA
-wQ
+cW
 pT
 vi
 vi
@@ -25212,7 +25243,7 @@ gY
 Ot
 Io
 Jo
-Ci
+iI
 NB
 dJ
 Ci
@@ -25689,7 +25720,7 @@ ug
 SA
 mz
 SA
-hS
+vY
 gY
 gY
 gY

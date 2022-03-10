@@ -4287,6 +4287,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "nR" = (
@@ -45467,7 +45468,7 @@ xd
 Kr
 xd
 Sr
-gL
+FG
 PE
 WP
 WP
@@ -46752,7 +46753,7 @@ NF
 ea
 FE
 rT
-gL
+FG
 PE
 WP
 WP
@@ -50604,7 +50605,7 @@ jy
 PT
 jy
 jy
-jy
+FJ
 jy
 jy
 jy
