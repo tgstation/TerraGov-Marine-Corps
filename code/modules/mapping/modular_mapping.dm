@@ -594,6 +594,13 @@
 	template_width = 12
 	template_height = 10
 
+/datum/map_template/modular/bigred/checkpointsouththree
+	name = "Big red checkpoint south"
+	mappath = "_maps/modularmaps/big_red/bigredcheckpointsouthvar3.dmm"
+	modular_id = "brcheckpointsouth"
+	template_width = 12
+	template_height = 10
+
 /datum/map_template/modular/bigred/checkpointone
 	name = "Big red checkpoint"
 	mappath = "_maps/modularmaps/big_red/bigredcheckpointvar1.dmm"
@@ -601,19 +608,13 @@
 	template_width = 4
 	template_height = 4
 
+
 /datum/map_template/modular/bigred/checkpointtwo
 	name = "Big red checkpoint"
 	mappath = "_maps/modularmaps/big_red/bigredcheckpointvar2.dmm"
 	modular_id = "brcheckpoint"
 	template_width = 4
 	template_height = 4
-
-/datum/map_template/modular/bigred/checkpointsouththree
-	name = "Big red checkpoint south"
-	mappath = "_maps/modularmaps/big_red/bigredcheckpointsouthvar2.dmm"
-	modular_id = "brcheckpointsouth"
-	template_width = 12
-	template_height = 10
 
 /datum/map_template/modular/bigred/libraryone
 	name = "Big red library"
