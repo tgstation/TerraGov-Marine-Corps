@@ -3,14 +3,12 @@
 /turf/open/floor{
 	dir = 4;
 	icon_state = "asteroidwarning";
-	tag = "icon-asteroidwarning (EAST)"
 	},
 /area/bigredv2/outside/s)
 "ah" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/item/shard{
 	icon_state = "small";
-	tag = "icon-small"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
@@ -28,7 +26,6 @@
 /turf/open/floor{
 	dir = 1;
 	icon_state = "asteroidfloor";
-	tag = "icon-asteroidfloor (NORTH)"
 	},
 /area/bigredv2/outside/s)
 "aJ" = (
@@ -40,7 +37,6 @@
 /obj/machinery/computer3/server/rack,
 /obj/effect/decal/warning_stripes{
 	icon_state = "U-N";
-	tag = "icon-U-N"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -135,14 +131,12 @@
 /turf/open/floor{
 	dir = 4;
 	icon_state = "asteroidwarning";
-	tag = "icon-asteroidwarning (EAST)"
 	},
 /area/bigredv2/outside/s)
 "me" = (
 /obj/machinery/computer3/server/rack,
 /obj/effect/decal/warning_stripes{
 	icon_state = "U-S";
-	tag = "icon-U-S"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -224,7 +218,6 @@
 /turf/open/floor{
 	dir = 1;
 	icon_state = "asteroidfloor";
-	tag = "icon-asteroidfloor (NORTH)"
 	},
 /area/bigredv2/outside/s)
 "qy" = (
@@ -232,7 +225,6 @@
 /turf/open/floor{
 	dir = 1;
 	icon_state = "asteroidfloor";
-	tag = "icon-asteroidfloor (NORTH)"
 	},
 /area/bigredv2/outside/s)
 "qW" = (
@@ -253,7 +245,6 @@
 /turf/open/floor{
 	dir = 8;
 	icon_state = "asteroidwarning";
-	tag = "icon-asteroidwarning (WEST)"
 	},
 /area/bigredv2/outside/s)
 "rQ" = (
@@ -376,7 +367,6 @@
 /turf/open/floor{
 	dir = 1;
 	icon_state = "asteroidfloor";
-	tag = "icon-asteroidfloor (NORTH)"
 	},
 /area/bigredv2/outside/s)
 "BB" = (
@@ -481,7 +471,6 @@
 /turf/open/floor{
 	dir = 8;
 	icon_state = "asteroidwarning";
-	tag = "icon-asteroidwarning (WEST)"
 	},
 /area/bigredv2/outside/s)
 "Ig" = (
@@ -502,7 +491,6 @@
 /obj/structure/cryofeed,
 /turf/open/floor/bcircuit/anim{
 	icon_state = "bcircuitoff";
-	tag = "icon-bcircuitoff"
 	},
 /area/bigredv2/outside/filtration_plant)
 "JS" = (
@@ -524,7 +512,6 @@
 /turf/open/floor{
 	dir = 4;
 	icon_state = "asteroidwarning";
-	tag = "icon-asteroidwarning (EAST)"
 	},
 /area/bigredv2/outside/s)
 "KI" = (
@@ -536,7 +523,6 @@
 /turf/open/floor{
 	dir = 1;
 	icon_state = "asteroidfloor";
-	tag = "icon-asteroidfloor (NORTH)"
 	},
 /area/bigredv2/outside/s)
 "Lx" = (
@@ -615,7 +601,6 @@
 	},
 /turf/open/floor/bcircuit/anim{
 	icon_state = "bcircuitoff";
-	tag = "icon-bcircuitoff"
 	},
 /area/bigredv2/outside/filtration_plant)
 "OG" = (
@@ -625,7 +610,6 @@
 "Pb" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "U-N";
-	tag = "icon-U-N"
 	},
 /obj/machinery/computer3/server/rack,
 /turf/open/floor,
@@ -637,7 +621,6 @@
 "Qp" = (
 /obj/effect/decal/warning_stripes{
 	icon_state = "U-S";
-	tag = "icon-U-S"
 	},
 /obj/machinery/computer3/server/rack,
 /turf/open/floor,
@@ -680,7 +663,6 @@
 /turf/open/floor{
 	dir = 4;
 	icon_state = "asteroidwarning";
-	tag = "icon-asteroidwarning (EAST)"
 	},
 /area/bigredv2/outside/s)
 "Uk" = (
@@ -713,7 +695,6 @@
 "Xt" = (
 /obj/machinery/light{
 	dir = 1;
-	tag = "icon-tube1 (NORTH)"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
