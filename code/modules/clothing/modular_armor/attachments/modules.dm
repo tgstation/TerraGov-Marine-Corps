@@ -244,7 +244,7 @@
 	active = !active
 	SEND_SIGNAL(parent, COMSIG_ITEM_TOGGLE_ACTION, user)
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
-	icon_state = initial(icon_state) + "[active ? "_active" : ""]"
+	icon_state = base_icon + "[active ? "_active" : ""]"
 	item_state = icon_state + "_a"
 	parent.update_icon()
 	user.update_inv_head()
