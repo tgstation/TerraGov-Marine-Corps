@@ -615,6 +615,14 @@
 	template_width = 16
 	template_height = 9	
 
+
+/datum/map_template/modular/bigred/toolshedfive
+	name = "Big red tool shed"
+	mappath = "_maps/modularmaps/big_red/bigredtoolshedvar5.dmm"
+	modular_id = "brtoolshed"
+	template_width = 16
+	template_height = 9	
+
 /datum/map_template/modular/bigred/southwestcornerone
 	name = "Big red southwestern corner"
 	mappath = "_maps/modularmaps/big_red/bigredcaveswvar1.dmm"
