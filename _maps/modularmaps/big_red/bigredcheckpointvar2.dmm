@@ -1,0 +1,65 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 8
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/se)
+"h" = (
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/se)
+"i" = (
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/se)
+"I" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 8
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/se)
+"N" = (
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"T" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/door/poddoor/mainship{
+	dir = 8
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/se)
+"W" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/se)
+"Z" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/caves/rock)
+
+(1,1,1) = {"
+Z
+I
+T
+a
+"}
+(2,1,1) = {"
+N
+W
+h
+h
+"}
+(3,1,1) = {"
+N
+W
+i
+h
+"}
+(4,1,1) = {"
+Z
+I
+a
+a
+"}

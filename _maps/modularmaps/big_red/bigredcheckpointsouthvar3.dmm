@@ -1,0 +1,375 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/bigred,
+/area/space)
+"c" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"d" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/tool,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"e" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	dir = 4;
+	icon_state = "door_locked";
+	locked = 1;
+	name = "\improper Checkpoint Office"
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"f" = (
+/obj/item/radio,
+/obj/structure/table/mainship,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"h" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/gibspawner/human,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"j" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"k" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/gcircuit,
+/area/space)
+"l" = (
+/obj/item/trash/sosjerky,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"m" = (
+/obj/structure/table/mainship,
+/turf/open/floor/gcircuit,
+/area/space)
+"n" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	dir = 1;
+	name = "\improper Checkpoint Office"
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"o" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/secure_data{
+	dir = 8
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"q" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"s" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/metal/small_stack,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"t" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"u" = (
+/obj/structure/inflatable,
+/turf/open/floor/gcircuit,
+/area/space)
+"v" = (
+/obj/structure/rack,
+/obj/item/storage/firstaid,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"w" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/technology_scanner,
+/turf/open/floor/gcircuit,
+/area/space)
+"z" = (
+/obj/machinery/power/apc{
+	start_charge = 0
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"A" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/security/wooden_tv{
+	dir = 8
+	},
+/turf/open/floor/gcircuit,
+/area/space)
+"B" = (
+/obj/structure/table/mainship,
+/obj/item/restraints/handcuffs,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"E" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4;
+	icon_state = "officechair_white";
+	tag = ""
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"F" = (
+/obj/structure/largecrate,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"G" = (
+/turf/closed/wall/r_wall,
+/area/space)
+"H" = (
+/turf/open/floor/gcircuit,
+/area/space)
+"I" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/space)
+"L" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"P" = (
+/obj/structure/rack,
+/obj/item/clothing/mask/gas,
+/obj/item/flashlight,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"Q" = (
+/obj/structure/largecrate,
+/turf/open/floor/gcircuit,
+/area/space)
+"R" = (
+/obj/structure/table/mainship,
+/obj/item/ashtray/bronze,
+/obj/item/trash/cigbutt/cigarbutt,
+/turf/open/floor/gcircuit,
+/area/space)
+"S" = (
+/obj/structure/table/mainship,
+/obj/item/attachable/motiondetector,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"U" = (
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"W" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"X" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/machinery/vending/security,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/space)
+"Y" = (
+/obj/structure/closet/secure_closet/marshal,
+/turf/open/floor/gcircuit,
+/area/space)
+
+(1,1,1) = {"
+G
+G
+G
+G
+G
+G
+G
+G
+G
+a
+"}
+(2,1,1) = {"
+W
+k
+c
+f
+S
+B
+X
+u
+G
+a
+"}
+(3,1,1) = {"
+I
+m
+U
+l
+j
+j
+U
+u
+G
+a
+"}
+(4,1,1) = {"
+G
+R
+E
+j
+U
+j
+j
+H
+G
+a
+"}
+(5,1,1) = {"
+G
+A
+o
+U
+U
+j
+U
+Y
+G
+a
+"}
+(6,1,1) = {"
+G
+G
+G
+G
+e
+G
+G
+G
+G
+a
+"}
+(7,1,1) = {"
+G
+F
+F
+U
+j
+U
+d
+m
+G
+a
+"}
+(8,1,1) = {"
+G
+z
+U
+j
+j
+U
+U
+w
+G
+a
+"}
+(9,1,1) = {"
+n
+j
+j
+U
+U
+j
+U
+H
+G
+a
+"}
+(10,1,1) = {"
+G
+U
+h
+t
+U
+j
+j
+H
+G
+a
+"}
+(11,1,1) = {"
+G
+t
+L
+q
+v
+s
+P
+Q
+G
+a
+"}
+(12,1,1) = {"
+G
+G
+G
+G
+G
+G
+G
+G
+G
+a
+"}

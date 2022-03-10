@@ -124,6 +124,26 @@
 	spawner_width = 30
 	spawner_height = 27
 
+/obj/effect/spawner/modularmap/bigred/atmos
+	mapid = "bratmos"
+	spawner_width = 24
+	spawner_height = 25
+
+/obj/effect/spawner/modularmap/bigred/cargoentry
+	mapid = "brcargoentry"
+	spawner_width = 3
+	spawner_height = 5
+
+/obj/effect/spawner/modularmap/bigred/checkpointsouth
+	mapid = "brcheckpointsouth"
+	spawner_width = 12
+	spawner_height = 10
+
+/obj/effect/spawner/modularmap/bigred/checkpoint
+	mapid = "brcheckpoint"
+	spawner_width = 4
+	spawner_height = 4
+
 /obj/effect/spawner/modularmap/bigred/southwesteast
 	mapid = "brsweast"
 	spawner_width = 44
@@ -148,6 +168,16 @@
 	mapid = "brlambdalock"
 	spawner_width = 1
 	spawner_height = 2
+
+/obj/effect/spawner/modularmap/bigred/lambdatunnelsouth
+	mapid = "brlambdatunnelsouth"
+	spawner_width = 22
+	spawner_height = 11
+
+/obj/effect/spawner/modularmap/bigred/library
+	mapid = "brlibrary"
+	spawner_width = 11
+	spawner_height = 18
 
 /obj/effect/spawner/modularmap/bigred/office
 	mapid = "broffice"
