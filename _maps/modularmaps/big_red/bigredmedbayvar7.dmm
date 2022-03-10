@@ -52,8 +52,6 @@
 /obj/structure/sink{
 	dir = 8;
 	icon_state = "sink";
-	pixel_x = -12;
-	pixel_y = 2
 	},
 /obj/item/tool/surgery/scalpel/manager,
 /turf/open/floor{
@@ -166,8 +164,6 @@
 /obj/machinery/door_control{
 	id = "Medical";
 	name = "Storm Shutters";
-	pixel_x = 0;
-	pixel_y = -32
 	},
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -248,7 +244,6 @@
 /area/bigredv2/outside/medical)
 "fb" = (
 /obj/structure/sign/safety/medical{
-	pixel_x = 32
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/head/surgery/blue,
@@ -283,8 +278,6 @@
 /obj/structure/sink{
 	dir = 4;
 	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
 	},
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -585,7 +578,6 @@
 "mL" = (
 /obj/structure/bed/chair,
 /obj/structure/sign/nosmoking_2{
-	pixel_x = -28
 	},
 /turf/open/floor{
 	dir = 2;
@@ -1258,7 +1250,6 @@
 /area/bigredv2/outside/medical)
 "Bm" = (
 /obj/structure/sign/safety/autodoc{
-	pixel_x = 32
 	},
 /obj/item/stack/sheet/metal{
 	amount = 1
@@ -1716,8 +1707,6 @@
 "Km" = (
 /obj/structure/table,
 /obj/structure/extinguisher_cabinet{
-	pixel_x = -27;
-	pixel_y = 0
 	},
 /obj/item/storage/box/beakers,
 /obj/effect/decal/cleanable/dirt,
@@ -1962,7 +1951,6 @@
 /area/bigredv2/outside/medical)
 "Qk" = (
 /obj/structure/sign/safety/autodoc{
-	pixel_x = -32
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"

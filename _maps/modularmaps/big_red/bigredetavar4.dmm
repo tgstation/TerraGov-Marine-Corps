@@ -74,7 +74,6 @@
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1";
-	tag = "icon-tube1 (EAST)"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -1006,7 +1005,6 @@
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1";
-	tag = "icon-tube1 (EAST)"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)

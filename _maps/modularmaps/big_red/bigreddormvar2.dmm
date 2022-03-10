@@ -152,8 +152,6 @@
 	freerange = 1;
 	frequency = 1469;
 	name = "General Listening Channel";
-	pixel_x = 30;
-	pixel_y = 0
 	},
 /turf/open/floor,
 /area/space)
