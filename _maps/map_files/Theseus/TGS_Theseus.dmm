@@ -5113,6 +5113,9 @@
 /area/mainship/living/cafeteria_starboard)
 "bwe" = (
 /obj/item/radio/intercom/general,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -6628,6 +6631,9 @@
 /area/mainship/command/cic)
 "bMA" = (
 /obj/structure/largecrate/guns/russian,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/mainship/green{
 	dir = 1
 	},
@@ -16785,6 +16791,13 @@
 /mob/living/simple_animal/cat/Jones,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
+"rbv" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship/green,
+/area/mainship/squads/req)
 "rbA" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -61949,7 +61962,7 @@ xhL
 xhL
 xhL
 bAK
-qNK
+rbv
 bnF
 cnU
 hFj
@@ -62463,7 +62476,7 @@ xhL
 xhL
 xhL
 bAK
-qNK
+rbv
 bnF
 bnF
 bnF
