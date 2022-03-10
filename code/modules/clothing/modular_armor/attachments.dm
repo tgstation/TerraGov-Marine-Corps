@@ -40,6 +40,9 @@
 	///Light modifier for attachment to an armor piece
 	var/light_mod = 0
 
+	///Replacement for initial icon that allows for the code to work with multiple variants
+	var/base_icon
+
 	///Assoc list that uses the parents type as a key. type = "new_icon_state". This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.
 	var/list/variants_by_parent_type = list()
 
@@ -196,7 +199,7 @@
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
-	item_state = initial(icon_state) + "_a"
+	item_state = base_icon + "_a"
 	update_icon()
 
 /obj/item/armor_module/armor/on_attach(obj/item/attaching_to, mob/user)
