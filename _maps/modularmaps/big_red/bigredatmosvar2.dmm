@@ -2,13 +2,13 @@
 "ab" = (
 /turf/open/floor{
 	dir = 4;
-	icon_state = "asteroidwarning";
+	icon_state = "asteroidwarning"
 	},
 /area/bigredv2/outside/s)
 "ah" = (
 /obj/structure/window_frame/colony/reinforced,
 /obj/item/shard{
-	icon_state = "small";
+	icon_state = "small"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
@@ -25,7 +25,7 @@
 "aI" = (
 /turf/open/floor{
 	dir = 1;
-	icon_state = "asteroidfloor";
+	icon_state = "asteroidfloor"
 	},
 /area/bigredv2/outside/s)
 "aJ" = (
@@ -36,7 +36,7 @@
 "bv" = (
 /obj/machinery/computer3/server/rack,
 /obj/effect/decal/warning_stripes{
-	icon_state = "U-N";
+	icon_state = "U-N"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -77,10 +77,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "hZ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor,
+/obj/structure/sign/safety/vent,
+/turf/closed/wall/r_wall,
 /area/bigredv2/outside/filtration_plant)
 "ij" = (
 /obj/effect/ai_node,
@@ -130,13 +128,13 @@
 /obj/effect/ai_node,
 /turf/open/floor{
 	dir = 4;
-	icon_state = "asteroidwarning";
+	icon_state = "asteroidwarning"
 	},
 /area/bigredv2/outside/s)
 "me" = (
 /obj/machinery/computer3/server/rack,
 /obj/effect/decal/warning_stripes{
-	icon_state = "U-S";
+	icon_state = "U-S"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -217,14 +215,14 @@
 /obj/machinery/light,
 /turf/open/floor{
 	dir = 1;
-	icon_state = "asteroidfloor";
+	icon_state = "asteroidfloor"
 	},
 /area/bigredv2/outside/s)
 "qy" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor{
 	dir = 1;
-	icon_state = "asteroidfloor";
+	icon_state = "asteroidfloor"
 	},
 /area/bigredv2/outside/s)
 "qW" = (
@@ -244,7 +242,7 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor{
 	dir = 8;
-	icon_state = "asteroidwarning";
+	icon_state = "asteroidwarning"
 	},
 /area/bigredv2/outside/s)
 "rQ" = (
@@ -366,7 +364,7 @@
 /obj/effect/ai_node,
 /turf/open/floor{
 	dir = 1;
-	icon_state = "asteroidfloor";
+	icon_state = "asteroidfloor"
 	},
 /area/bigredv2/outside/s)
 "BB" = (
@@ -399,11 +397,9 @@
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "Eo" = (
-/obj/structure/closet/firecloset/full,
-/obj/structure/sign/safety/vent{
-	pixel_x = 32
-	},
-/turf/open/floor,
+/obj/structure/window/framed/colony,
+/obj/structure/sign/safety/vent,
+/turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "Er" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -470,7 +466,7 @@
 "HO" = (
 /turf/open/floor{
 	dir = 8;
-	icon_state = "asteroidwarning";
+	icon_state = "asteroidwarning"
 	},
 /area/bigredv2/outside/s)
 "Ig" = (
@@ -490,7 +486,7 @@
 "JO" = (
 /obj/structure/cryofeed,
 /turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff";
+	icon_state = "bcircuitoff"
 	},
 /area/bigredv2/outside/filtration_plant)
 "JS" = (
@@ -511,7 +507,7 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor{
 	dir = 4;
-	icon_state = "asteroidwarning";
+	icon_state = "asteroidwarning"
 	},
 /area/bigredv2/outside/s)
 "KI" = (
@@ -522,7 +518,7 @@
 /obj/effect/ai_node,
 /turf/open/floor{
 	dir = 1;
-	icon_state = "asteroidfloor";
+	icon_state = "asteroidfloor"
 	},
 /area/bigredv2/outside/s)
 "Lx" = (
@@ -600,7 +596,7 @@
 	name = "\improper coolant feed"
 	},
 /turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff";
+	icon_state = "bcircuitoff"
 	},
 /area/bigredv2/outside/filtration_plant)
 "OG" = (
@@ -609,7 +605,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Pb" = (
 /obj/effect/decal/warning_stripes{
-	icon_state = "U-N";
+	icon_state = "U-N"
 	},
 /obj/machinery/computer3/server/rack,
 /turf/open/floor,
@@ -620,7 +616,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Qp" = (
 /obj/effect/decal/warning_stripes{
-	icon_state = "U-S";
+	icon_state = "U-S"
 	},
 /obj/machinery/computer3/server/rack,
 /turf/open/floor,
@@ -662,7 +658,7 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 4;
-	icon_state = "asteroidwarning";
+	icon_state = "asteroidwarning"
 	},
 /area/bigredv2/outside/s)
 "Uk" = (
@@ -694,7 +690,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Xt" = (
 /obj/machinery/light{
-	dir = 1;
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -715,12 +711,6 @@
 	icon_state = "bot"
 	},
 /area/bigredv2/outside/s)
-"Zo" = (
-/obj/structure/sign/safety/vent{
-	pixel_x = 32
-	},
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/filtration_plant)
 "ZA" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall/unmeltable,
@@ -791,7 +781,7 @@ Qk
 mQ
 eB
 Gf
-hZ
+Xt
 VL
 Rz
 Rz
@@ -980,7 +970,7 @@ rl
 yi
 Mk
 Gf
-hZ
+Xt
 Rz
 zG
 ao
@@ -1093,7 +1083,7 @@ Rz
 Rz
 eB
 nO
-hZ
+Xt
 kN
 RM
 Kq
@@ -1281,11 +1271,11 @@ Nw
 Kl
 Xt
 Ae
-Eo
+Ae
 Rz
 Rz
 eB
-Zo
+Kl
 kO
 kO
 kO
@@ -1307,11 +1297,11 @@ Nw
 Nw
 Kl
 Kl
-Kl
+hZ
 Kl
 tF
 Da
-tF
+Eo
 Kl
 kO
 kO
