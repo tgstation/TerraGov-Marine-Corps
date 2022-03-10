@@ -2203,7 +2203,6 @@
 	pixel_y = 3
 	},
 /obj/item/tool/hand_labeler,
-/obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/dropper,
 /obj/machinery/alarm{
@@ -2459,6 +2458,7 @@
 "id" = (
 /obj/machinery/chem_master,
 /obj/machinery/firealarm,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/surgery_hallway)
 "ig" = (
@@ -2597,8 +2597,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "iD" = (
-/obj/structure/filingcabinet,
 /obj/machinery/camera/autoname/mainship,
+/obj/machinery/chem_dispenser,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -8296,19 +8296,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "As" = (
-/obj/structure/table/mainship,
-/obj/item/storage/belt/medical,
-/obj/item/storage/firstaid/adv,
-/obj/item/storage/firstaid/o2{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid,
-/obj/item/storage/firstaid/fire{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/healthanalyzer,
+/obj/machinery/chem_master,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -10554,6 +10543,8 @@
 	pixel_y = 9
 	},
 /obj/item/healthanalyzer,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -11735,6 +11726,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
+"KC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/bed/stool{
+	pixel_y = 8
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/medical_science)
 "KD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -14012,7 +14012,6 @@
 	pixel_y = 3
 	},
 /obj/item/tool/hand_labeler,
-/obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/dropper,
 /obj/machinery/alarm{
@@ -14189,6 +14188,7 @@
 "RU" = (
 /obj/machinery/chem_master,
 /obj/machinery/firealarm,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/chemistry)
 "RV" = (
@@ -43332,7 +43332,7 @@ dX
 QC
 nD
 As
-BI
+KC
 iL
 fK
 EL
