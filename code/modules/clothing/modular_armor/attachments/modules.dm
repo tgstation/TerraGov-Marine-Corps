@@ -11,7 +11,7 @@
  */
 /obj/item/armor_module/module/better_shoulder_lamp
 	name = "\improper Baldur Light Amplification System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight."
+	desc = "Designed for mounting on modular armor. Substantially increases the power output of your modular armor's mounted flashlight. Be the light in the darkness."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_lamp"
 	item_state = "mod_lamp_a"
@@ -26,10 +26,10 @@
 /obj/item/armor_module/module/valkyrie_autodoc
 	name = "\improper Valkyrie Automedical Armor System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Has a variety of chemicals it can inject, as well as automatically securing the bones and body of the wearer, to minimize the impact of broken bones or mangled limbs in the field. Will definitely impact mobility."
+	desc = "Designed for mounting on modular armor. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered. Will definitely impact mobility."
 	icon_state = "mod_autodoc"
 	item_state = "mod_autodoc_a"
-	slowdown = 0.25
+	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_autodoc_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_autodoc_xn")
 	var/static/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
@@ -55,7 +55,7 @@
 /obj/item/armor_module/module/fire_proof
 	name = "\improper Surt Pyrotechnical Insulation System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will impact mobility somewhat."
+	desc = "Designed for mounting on modular armor. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will impact mobility."
 	icon_state = "mod_fire"
 	item_state = "mod_fire_a"
 	hard_armor = list("fire" = 200)
@@ -79,7 +79,7 @@
 */
 /obj/item/armor_module/module/tyr_extra_armor
 	name = "\improper Mark 2 Tyr Armor Reinforcement"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. Will definitely impact mobility."
+	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This newer version has improved protection. Will definitely impact mobility."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_armor"
 	item_state = "mod_armor_a"
@@ -91,13 +91,13 @@
 
 /obj/item/armor_module/module/tyr_extra_armor/mark1
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. This older version has worse protection. Will definitely impact mobility."
+	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.4
 
 /obj/item/armor_module/module/tyr_head
 	name = "Tyr Helmet System"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to most damaging hazards, like bullets and melee."
+	desc = "Designed for mounting on a modular Helmet. When attached, this system provides substantial resistance to most damaging hazards, ranging from xeno slashes to friendly fire incidents."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "tyr_head"
 	item_state = "tyr_head_a"
@@ -110,7 +110,7 @@
 */
 /obj/item/armor_module/module/mimir_environment_protection
 	name = "\improper Mark 2 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, biological and radiological exposure. This newer version provides a large amount of resistance to acid. Best paired with the Mimir Environmental Helmet System and a gas mask. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
+	desc = "Designed for mounting on modular armor. This newer model provides great resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds. Will impact mobility."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
@@ -137,18 +137,17 @@
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
 	return ..()
 
-// The mark 1 version, made to protect you from just gas.
 /obj/item/armor_module/module/mimir_environment_protection/mark1
 	name = "\improper Mark 1 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, biological and radiological exposure. This older version provides a small amount of protection to acid. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
+	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds. Will impact mobility."
 	icon_state = "mod_biohazard"
 	item_state = "mod_biohazard_a"
 	soft_armor = list("bio" = 15, "rad" = 10, "acid" = 15)
-	slowdown = 0.2 //So it isn't literally 100% better than running stock jaeger.
+	slowdown = 0.2
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
 	name = "Mark 2 Mimir Environmental Helmet System"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases, biological and radiological exposure. This newer model provides a large amount of protection to acid. Best paired with the Mimir Environmental Resistance System. Will impact mobility when attached."
+	desc = "Designed for mounting on a modular helmet. This newer model provides great resistance to acid, biological, and even radiological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
 	icon_state = "mimir_head"
 	item_state = "mimir_head_a"
 	soft_armor = list("bio" = 40, "rad" = 50, "acid" = 30)
@@ -158,13 +157,13 @@
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
 	name = "Mark 1 Mimir Environmental Helmet System"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases, biological and radiological exposure. This older version provides a small amount of protection to acid. Best paired with the Mimir Environmental Resistance System and a gas mask."
+	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will make the user impervious to xeno gas clouds."
 	soft_armor = list("bio" = 15, "acid" = 15)
 
 //Explosive defense armor
 /obj/item/armor_module/module/hlin_explosive_armor
 	name = "Hlin Explosive Compensation Module"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Uses a complex set of armor plating and compensation to lessen the effect of explosions, at the cost of making the user slower."
+	desc = "Designed for mounting on modular armor. Uses a complex set of armor plating and compensation to lessen the effect of explosions. Will impact mobility"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_boomimmune"
 	item_state = "mod_boomimmune_a"
@@ -177,19 +176,19 @@
  * Extra armor module
 */
 /obj/item/armor_module/module/ballistic_armor
-	name = "\improper Ballistic Armor Reinforcement"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns against bullets and nothing else. Will definitely impact mobility."
+	name = "\improper Hod Accident Prevention Plating"
+	desc = "Designed for mounting on modular armor. A substantial amount of additional reflective ballistic armor plating designed to reduce the impact of friendly fire incidents, will lessen the affects of bullets and lasers. Will impact mobility."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_ff"
 	item_state = "mod_ff_a"
-	soft_armor = list("melee" = 0, "bullet" = 40, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 40, "laser" = 40, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_ff_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_ff_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_ff_xn")
 
 /obj/item/armor_module/module/chemsystem
 	name = "Vali chemical enhancement module"
-	desc = "A module that enhances the strength of reagents in the body. Requires a special substance, gathered from xenomorph lifeforms, to function.\nThis substance needs to be gathered using an applicable wepon or tool."
+	desc = "Designed for mounting on modular armor. This experimental module runs on green blood taken from xenos with harvester class weapons; Green blood heals the user and boosts any chems in the suit injection system. \nUse the suit menu to connect harvester class weapons, control the injection system, find chem boost information, and more."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_chemsystem"
 	item_state = "mod_chemsystem_a"
@@ -205,11 +204,11 @@
 	return ..()
 
 /**
- *   Helmet
+ *   Helmet Modules
 */
 /obj/item/armor_module/module/welding
 	name = "Welding Helmet Module"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this module can be flipped up or down to function as a welding mask."
+	desc = "Designed for mounting on a modular helmet. This module can be toggled on or off to function as welding protection for your delicate eyes."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
@@ -253,7 +252,7 @@
 
 /obj/item/armor_module/module/binoculars
 	name = "Binocular Helmet Module"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, can be flipped down to view into the distance."
+	desc = "Designed for mounting on a modular helmet. Can be flipped down to view into the distance."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "binocular_head"
 	item_state = "binocular_head_a"
@@ -287,7 +286,7 @@
 
 /obj/item/armor_module/module/antenna
 	name = "Antenna helmet module"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this module is able to provide quick readuts of the users coordinates."
+	desc = "Designed for mounting on a modular Helmet. This module is able to provide a readout of the user's coordinates and connect to the shipside supply console."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "antenna_head"
 	item_state = "antenna_head_a"
