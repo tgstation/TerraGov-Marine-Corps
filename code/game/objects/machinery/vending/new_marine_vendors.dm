@@ -696,7 +696,6 @@
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
 		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/cell/high,
-		/obj/item/tool/shovel/etool,
 		/obj/item/lightreplacer,
 		/obj/item/circuitboard/apc,
 		/obj/item/tool/solderingtool,
@@ -708,9 +707,8 @@
 		/obj/item/beacon/supply_beacon,
 		/obj/item/beacon/supply_beacon,
 		/obj/item/whistle,
-		/obj/item/radio,
+		/obj/item/compass,
 		/obj/item/binoculars/tactical,
-		/obj/item/attachable/motiondetector,
 		/obj/item/pinpointer/pool,
 		/obj/item/clothing/glasses/hud/health,
 	)
@@ -722,7 +720,6 @@
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
 		/obj/item/whistle,
-		/obj/item/attachable/motiondetector,
 		/obj/item/clothing/suit/modular,
 		/obj/item/facepaint/green,
 	)
