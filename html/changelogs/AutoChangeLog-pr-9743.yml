@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscdel: "acid gas landmark in Barrenquilla"
+  - rscdel: "free plasma cutters in Barrenquilla"
