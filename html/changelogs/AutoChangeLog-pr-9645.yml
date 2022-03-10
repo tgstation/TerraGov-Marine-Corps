@@ -1,4 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - balance: "Sentry rebalance, 571s have much higher capacity and fire much faster, aswell as deploy faster. 580s have a bit less damage, higher pen and higher fire delay, and more capacity."

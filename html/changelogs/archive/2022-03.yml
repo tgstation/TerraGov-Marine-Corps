@@ -31,3 +31,60 @@
       and drop pods now work
   - bugfix: removed some useless outer map features that were meant for cosmetic but
       were really ugly
+2022-03-07:
+  Pariah919:
+  - balance: Sentry rebalance, 571s have much higher capacity and fire much faster,
+      aswell as deploy faster. 580s have a bit less damage, higher pen and higher
+      fire delay, and more capacity.
+  RipGrayson:
+  - bugfix: You can now make footsteps again as a marine.
+  Vondiech:
+  - rscadd: Shutters now has an alarm sound played to the entire z-level when the
+      button is pushed, shutters open at the end of this 18.5ish seconds sound effect.
+2022-03-08:
+  Arctrooper8:
+  - balance: replaces SL essentials kit radio with a compass
+  - balance: shovels and signalers are now free, infinite, and found in the utility
+      tab.
+  - qol: Extinguishers have been moved to utility, jetpacks moved to specialized,
+      and Squad Engineer point vendor alongside utility tab slightly sorted.
+  - bugfix: Squad Leader helmets now use the proper Xenonauten sprites.
+  - balance: Digging up snow now gives a 5 stack of snow like all other dig tiles,
+      snow cades now also need five to be built.
+  Pariah919:
+  - rscadd: TAT-36 AT gun, a deployed anti tank gun, with several shell types.
+  - code_imp: adds a scope time zoom stat, only the TAT-36 uses it, which takes 3
+      seconds to enter scoped status. Also adds an aim time speed for time that it
+      takes to enter aim mode.
+  RipGrayson:
+  - rscadd: Added a number of random weapon spawners for use in mapping.
+  - rscadd: Added a number of random weapon ammunition spawners for use in mapping.
+  - expansion: LV624 cave lake now has over a dozen variations.
+  - expansion: LV624 medbay now has over a variation.
+  - bugfix: Fixed a number of LV624 pipes that went nowhere.
+  - bugfix: Fixed some wrong LV624 cables that caused powering the colony to be much
+      harder than it should have been.
+  - bugfix: Miners now properly show up when editing maps.
+  - bugfix: Gibs now properly show up when editing maps.
+  - bugfix: Vines now properly show up when editing maps.
+  - bugfix: Bullet casings now properly show up when editing maps.
+  - imageadd: Created icons for new weapon and ammunition spawners.
+  - imageadd: Created a new icon for corpse spawners.
+  - imageadd: Created some new stair icons for better use with stair corners.
+  - imageadd: Ported a CM camera icon so LZ cameras will properly show up when editing
+      maps.
+  novaepee:
+  - rscdel: Remove choice to get smoke grenade from SL vendor
+  - rscdel: Remove choice to get M40 HEDP grenade from SL vendor
+  - rscdel: Remove choice to get CAS flare box from SL vendor
+  - rscdel: Remove Station bounded radio and ziptie box since SL never use this
+  - rscadd: Change placement of certain stuff like whistle, fulton, deployable overwatch
+      camera, signaler, and tarp to make sense of SL vendor
+  - balance: Update flamethrower on SL; I might just remove this since this is an
+      old and forgotten relic
+2022-03-10:
+  Notamaniac:
+  - bugfix: Powerpacks don't disappear on your back when they run out of ammo anymore
+  - imageadd: Powerpacks have been resprited
+  novaepee:
+  - rscadd: New posters! Soon to add in shipside maps.
