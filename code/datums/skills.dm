@@ -283,6 +283,15 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	melee_weapons = SKILL_MELEE_WEAK
 	police = SKILL_POLICE_MP
 
+/datum/skills/liaison
+	name = "CL"
+	medical = SKILL_MEDICAL_COMPETENT
+	leadership = SKILL_LEAD_BEGINNER
+	firearms = SKILL_FIREARMS_TRAINED
+	cqc = SKILL_CQC_TRAINED
+	police = SKILL_POLICE_MP
+	
+
 /datum/skills/ai
 	name = "AI"
 	engineer = SKILL_ENGINEER_MASTER
