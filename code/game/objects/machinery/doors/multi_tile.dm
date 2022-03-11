@@ -142,7 +142,7 @@
 
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor
 	name = "\improper Security Airlock"
-	icon = 'icons/obj/doors/mainship/2x1secdoor.dmi'
+	icon = 'icons/obj/doors/mainship/2x1secdoor_glass.dmi'
 	opacity = FALSE
 	glass = TRUE
 	req_access = list(ACCESS_MARINE_BRIG)
