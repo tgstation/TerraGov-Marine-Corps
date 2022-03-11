@@ -1,0 +1,6 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - rscadd: "Added about 110 new modular mapping inserts to Big Red."
+  - expansion: "Big Red is optimized to use modular mapping almost everywhere."
+  - bugfix: "Fixed a bugged icon state when editing certain areas on Big Red."

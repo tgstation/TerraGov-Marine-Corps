@@ -1,6 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - qol: "All shipside maps have two chem dispensers and chem masters next to each other for marines to use and a dedicated chem lab for researcher."
-  - qol: "Move bluespace beaker to spawn on top of chem master."
-  - balance: "All shipside maps have three bluespace beakers."

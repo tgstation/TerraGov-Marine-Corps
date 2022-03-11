@@ -88,3 +88,16 @@
   - imageadd: Powerpacks have been resprited
   novaepee:
   - rscadd: New posters! Soon to add in shipside maps.
+2022-03-11:
+  Arctrooper8:
+  - rscadd: standardizes, modernizes, and improves all the module descriptions.
+  - balance: FF armor module now has laser armor, and a cool new name!
+  Loyavas:
+  - rscadd: Added 5 paygrades for Liaison
+  novaepee:
+  - rscdel: acid gas landmark in Barrenquilla
+  - rscdel: free plasma cutters in Barrenquilla
+  - qol: All shipside maps have two chem dispensers and chem masters next to each
+      other for marines to use and a dedicated chem lab for researcher.
+  - qol: Move bluespace beaker to spawn on top of chem master.
+  - balance: All shipside maps have three bluespace beakers.

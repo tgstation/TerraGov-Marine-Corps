@@ -52,7 +52,7 @@
 
 /area/bigredv2/caves/rock
 	name = "Enclosed Area"
-	icon_state = "white"
+	icon_state = "transparent"
 
 /area/bigredv2/caves/north
 	name = "Northern Caves"

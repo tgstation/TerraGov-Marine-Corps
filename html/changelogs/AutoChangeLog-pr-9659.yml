@@ -1,0 +1,9 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "Public access to ASRS conveyor belt BUT private access to the rest of req"
+  - rscdel: "Walls that surround ASRS conveyor so that marines can enter ASRS conveyor without the need of a door / shutters"
+  - rscadd: "more dedicated shutters for req people to control traffic into req"
+  - qol: "add crates next to operational vendor so that req people can CLICK FAST and move stuff from operational vendor to Alamo or tadpole op"
+  - qol: "make supply drop closer to ARSR conveyor belt"
+  - expansion: "PoS and Sulaco for more room to build Reqtorio"
