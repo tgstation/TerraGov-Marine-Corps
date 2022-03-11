@@ -13274,10 +13274,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
-"jPb" = (
-/obj/effect/spawner/modularmap/bigred/northlambda,
-/turf/open/space/basic,
-/area/space)
 "jPS" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand,
@@ -13370,10 +13366,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/virology)
-"kxo" = (
-/obj/effect/spawner/modularmap/bigred/southeta,
-/turf/open/space/basic,
-/area/space)
 "kzV" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -13580,6 +13572,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
+"lTt" = (
+/obj/effect/spawner/modularmap/bigred/southeta,
+/turf/open/space/basic,
+/area/space)
 "lUa" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
@@ -14466,6 +14462,10 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
+"rqw" = (
+/obj/effect/spawner/modularmap/bigred/westeta,
+/turf/open/space/basic,
+/area/space)
 "rqW" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/structure/cable,
@@ -14901,10 +14901,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south)
-"uqA" = (
-/obj/effect/spawner/modularmap/bigred/westeta,
-/turf/open/space/basic,
-/area/space)
 "usQ" = (
 /obj/structure/cable,
 /obj/effect/decal/sandedge,
@@ -15573,6 +15569,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
+"yht" = (
+/obj/effect/spawner/modularmap/bigred/northlambda,
+/turf/open/space/basic,
+/area/space)
 "ykI" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -25341,7 +25341,7 @@ aaa
 aaa
 aaa
 aaa
-uqA
+rqw
 aaa
 aaa
 "}
@@ -38578,7 +38578,7 @@ aaa
 aaa
 aaa
 aaa
-kxo
+lTt
 aaa
 aaa
 "}
@@ -44909,7 +44909,7 @@ aaa
 aaa
 aaa
 aaa
-jPb
+yht
 hqP
 hqP
 hqP
@@ -46215,7 +46215,7 @@ aaa
 hqP
 vyZ
 vyZ
-vyZ
+gav
 vyZ
 iaW
 vyZ
@@ -46435,7 +46435,7 @@ vyZ
 vyZ
 vyZ
 vyZ
-vyZ
+gav
 vyZ
 gav
 kKe
@@ -49256,7 +49256,7 @@ afX
 vyZ
 vyZ
 vyZ
-vyZ
+gav
 vyZ
 kKe
 hqP
@@ -49482,7 +49482,7 @@ hqP
 hqP
 vyZ
 vyZ
-vyZ
+gav
 vyZ
 vyZ
 vyZ
