@@ -13,7 +13,7 @@
 	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 	var/sheatheSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 	///the snowflake item(s) that will update the sprite. ///currently setup for a single item, or item and it's children in the case of belt holsters. Lists could be used for various items, but would require more work.
-	var/holsterable_allowed = NULL
+	var/holsterable_allowed = null
 	///starts empty - need to check out shit that starts full to see what happens
 	var/holstered = FALSE
 
@@ -39,26 +39,27 @@
 ///if the item being inserted is the snowflake item, update sprite and make it swoosh
 /obj/item/storage/holster/handle_item_insertion(obj/item/W, prevent_warning = 0)
 	. = ..()
-	if(. && W == holsterable_allowed)
+	if (. && (istype(W,holsterable_allowed)))
 		holstered = TRUE
 		update_holster_icon()
-	return
+	return 1
 
 ///if the item being removed is the snowflake item, update sprite and make it swoosh
 /obj/item/storage/holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
-	if(. && W == holsterable_allowed)
+	if (. && (istype(W,holsterable_allowed)))
 		holstered = FALSE
 		update_holster_icon()
+	return
 
 ///only called when the snowflake item is put in or removed. What actually updates the icon
 /obj/item/storage/holster/proc/update_holster_icon()
 	var/mob/user = loc
-	if(holstered) 	///sheathe the snowflake item ///may need to inverse the holstered code to make it actually make sense
+	if(holstered)
 		playsound(src,sheatheSound, 15, 1)
 		icon_state += "_g"
 		item_state = icon_state
-	else			///draws the snowflake item
+	else
 		playsound(src,drawSound, 15, 1)
 		icon_state = copytext(icon_state,1,-2)
 		item_state = icon_state
@@ -75,7 +76,6 @@
 		user.update_inv_back()
 		user.update_inv_belt()
 		user.update_inv_s_store()
-
 
 //////actual backpack holster items////////
 /obj/item/storage/holster/backholster
