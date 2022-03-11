@@ -1290,7 +1290,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "ee" = (
-<<<<<<< HEAD
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/aft_hallway)
@@ -1300,12 +1299,6 @@
 	},
 /turf/closed/wall/mainship/outer,
 /area/mainship/shipboard/weapon_room)
-=======
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/mainship/generic/pilot,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
->>>>>>> fafb2511343afbd8711bb5105dba3743aa32928c
 "eh" = (
 /turf/open/floor/mainship/empty,
 /area/mainship/squads/req)
