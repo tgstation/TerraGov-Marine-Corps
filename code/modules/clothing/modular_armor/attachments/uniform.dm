@@ -158,6 +158,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
 		/obj/item/weapon/gun/smg/standard_machinepistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 	)
 
 /obj/item/armor_module/storage/uniform/holster/armpit

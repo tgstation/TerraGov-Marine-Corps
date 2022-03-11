@@ -663,7 +663,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type_limits = list(
 		/obj/item/weapon/gun = 1,
-		/obj/item/cell/lasgun/lasrifle = 2,
 	)
 	storage_slots = 7
 	max_storage_space = 15

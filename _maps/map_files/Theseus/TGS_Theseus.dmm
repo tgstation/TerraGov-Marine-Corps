@@ -2141,6 +2141,7 @@
 /area/mainship/living/starboard_emb)
 "aJj" = (
 /obj/machinery/chem_master,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -5339,6 +5340,7 @@
 "byW" = (
 /obj/machinery/chem_master,
 /obj/machinery/light,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -9530,7 +9532,6 @@
 "dUJ" = (
 /obj/structure/table/mainship,
 /obj/item/tool/hand_labeler,
-/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/chemistry)
 "dVK" = (
@@ -9966,6 +9967,7 @@
 /area/mainship/squads/req)
 "eRr" = (
 /obj/machinery/chem_master,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/medical_science)
 "eRE" = (
@@ -10231,8 +10233,6 @@
 	pixel_x = 5
 	},
 /obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/glass/beaker/bluespace,
-/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/medical_science)
 "ftB" = (

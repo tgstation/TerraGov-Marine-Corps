@@ -199,6 +199,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	plasma_cost = 25
 	cooldown_timer = WRAITH_PHASE_SHIFT_COOLDOWN
 	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
+	use_state_flags = XACT_USE_CLOSEDTURF
 	var/turf/starting_turf = null
 	var/phase_shift_active = FALSE
 	var/phase_shift_duration_timer_id
@@ -361,6 +362,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	mechanics_text = "Resynchronize with realspace, ending Phase Shift's effect and returning you to where the Phase Shift began with minimal cooldown."
 	cooldown_timer = 1 SECONDS //Token for anti-spam
 	keybind_signal = COMSIG_XENOABILITY_RESYNC
+	use_state_flags = XACT_USE_CLOSEDTURF
 
 /datum/action/xeno_action/resync/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -702,7 +704,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Recall"
 	action_icon_state = "Recall"
 	mechanics_text = "We recall a target we've banished back from the depths of nullspace."
-	use_state_flags = XACT_USE_NOTTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
+	use_state_flags = XACT_USE_NOTTURF|XACT_USE_CLOSEDTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
 	cooldown_timer = 1 SECONDS //Token for anti-spam
 	keybind_signal = COMSIG_XENOABILITY_RECALL
 
