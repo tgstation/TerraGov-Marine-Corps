@@ -272,6 +272,49 @@
 	template_width = 54
 	template_height = 22
 
+/datum/map_template/modular/bigred/cargoareathree
+	name = "Big red cargo area"
+	mappath = "_maps/modularmaps/big_red/bigredcargoareavar3.dmm"
+	modular_id = "brcargoarea"
+	template_width = 54
+	template_height = 22
+
+/datum/map_template/modular/bigred/cargoareafour
+	name = "Big red cargo area"
+	mappath = "_maps/modularmaps/big_red/bigredcargoareavar4.dmm"
+	modular_id = "brcargoarea"
+	template_width = 54
+	template_height = 22
+
+
+/datum/map_template/modular/bigred/cargoareafive
+	name = "Big red cargo area"
+	mappath = "_maps/modularmaps/big_red/bigredcargoareavar5.dmm"
+	modular_id = "brcargoarea"
+	template_width = 54
+	template_height = 22
+
+/datum/map_template/modular/bigred/cargoareasix
+	name = "Big red cargo area"
+	mappath = "_maps/modularmaps/big_red/bigredcargoareavar6.dmm"
+	modular_id = "brcargoarea"
+	template_width = 54
+	template_height = 22
+
+/datum/map_template/modular/bigred/cargoareaseven
+	name = "Big red cargo area"
+	mappath = "_maps/modularmaps/big_red/bigredcargoareavar7.dmm"
+	modular_id = "brcargoarea"
+	template_width = 54
+	template_height = 22
+
+/datum/map_template/modular/bigred/cargoareaeight
+	name = "Big red cargo area"
+	mappath = "_maps/modularmaps/big_red/bigredcargoareavar8.dmm"
+	modular_id = "brcargoarea"
+	template_width = 54
+	template_height = 22
+
 /datum/map_template/modular/bigred/chapelone
 	name = "Big red chapel"
 	mappath = "_maps/modularmaps/big_red/bigredchapelvar1.dmm"
