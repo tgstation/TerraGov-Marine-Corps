@@ -1,0 +1,4 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - bugfix: "makes the essentials kit edits actually work now, oops."
