@@ -64,6 +64,11 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"fz" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "fZ" = (
 /obj/machinery/light{
 	dir = 4
@@ -131,6 +136,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
+"nS" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "ob" = (
 /turf/open/space/basic,
 /area/space)
@@ -245,6 +254,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south)
+"zA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "zV" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
@@ -2509,11 +2523,11 @@ ge
 Vd
 PT
 Zx
-Aw
+fz
 Zx
 PT
 Aw
-Zx
+nS
 Zx
 PT
 Zx
@@ -2749,11 +2763,11 @@ Cf
 Cf
 Ya
 zs
-Cf
+zA
 zs
 zs
 zs
-Cf
+zA
 zs
 fZ
 Mk
