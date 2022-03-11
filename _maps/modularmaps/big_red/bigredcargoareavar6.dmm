@@ -283,7 +283,6 @@
 /obj/machinery/light{
 	dir = 1;
 	icon_state = "tube1";
-	tag = "icon-tube1 (NORTH)"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -550,7 +549,6 @@
 /obj/machinery/light{
 	dir = 1;
 	icon_state = "tube1";
-	tag = "icon-tube1 (NORTH)"
 	},
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
