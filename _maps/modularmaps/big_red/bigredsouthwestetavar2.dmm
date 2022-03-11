@@ -50,6 +50,11 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
+"eI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "fU" = (
 /obj/structure/table,
 /obj/structure/xenoautopsy,
@@ -118,6 +123,7 @@
 /area/space)
 "mL" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "mS" = (
@@ -487,6 +493,10 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
+/area/bigredv2/outside/nanotrasen_lab/inside)
+"YW" = (
+/obj/effect/ai_node,
+/turf/open/ground/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 
 (1,1,1) = {"
@@ -1859,7 +1869,7 @@ TD
 lQ
 uH
 uH
-uH
+NF
 uH
 uH
 uH
@@ -2662,15 +2672,15 @@ RQ
 RQ
 AZ
 OL
-RQ
+eI
 OL
 OL
 OL
-RQ
+eI
 OL
 AZ
 uL
-tQ
+RH
 uL
 IX
 uH
@@ -2822,15 +2832,15 @@ Og
 KO
 EW
 uM
-uM
-uM
-EW
-uM
-uM
+YW
 uM
 EW
 uM
+YW
 uM
+EW
+uM
+YW
 uM
 IX
 TD
