@@ -40,6 +40,10 @@
 	dir = 4
 	},
 /obj/structure/mirror,
+/obj/effect/decal/cleanable/blood/oil{
+	desc = "You should really clean that up before someone sees it.";
+	name = "familiar yellowish stain"
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/commandbunks)
 "aah" = (
@@ -1475,6 +1479,10 @@
 /obj/structure/mirror{
 	dir = 4
 	},
+/obj/effect/decal/cleanable/blood/oil{
+	desc = "You should really clean that up before someone sees it.";
+	name = "familiar yellowish stain"
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "aoz" = (
@@ -2405,10 +2413,16 @@
 /area/mainship/squads/alpha)
 "aWN" = (
 /obj/machinery/marine_selector/clothes/medic,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWO" = (
 /obj/machinery/marine_selector/clothes/smartgun,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWQ" = (
@@ -2418,6 +2432,9 @@
 /area/mainship/squads/alpha)
 "aWR" = (
 /obj/machinery/marine_selector/clothes/engi,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWX" = (
@@ -6781,6 +6798,7 @@
 "bNX" = (
 /obj/machinery/cryopod/right,
 /obj/machinery/light,
+/obj/structure/sign/prop4,
 /turf/open/floor/mainship/cargo,
 /area/mainship/living/cryo_cells)
 "bOb" = (
@@ -8289,6 +8307,7 @@
 /area/mainship/squads/delta)
 "ceh" = (
 /obj/machinery/marine_selector/clothes/medic,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cei" = (
@@ -8301,6 +8320,7 @@
 /area/mainship/squads/delta)
 "cek" = (
 /obj/machinery/marine_selector/clothes/engi,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cen" = (
@@ -9699,6 +9719,14 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/bow_hallway)
+"emj" = (
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "enM" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
@@ -10917,6 +10945,7 @@
 /area/mainship/squads/req)
 "gEw" = (
 /obj/machinery/vending/weapon,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "gEJ" = (
@@ -11283,6 +11312,17 @@
 	dir = 8
 	},
 /area/mainship/command/self_destruct)
+"hlz" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/sign/poster,
+/turf/open/floor/mainship,
+/area/mainship/squads/alpha)
 "hmg" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/secure/tcomms{
@@ -11747,6 +11787,12 @@
 /obj/item/toy/plush/rouny,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
+"ibZ" = (
+/obj/structure/sign/poster{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/mainship/living/starboard_emb)
 "icL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -11841,6 +11887,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
+"ilP" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/obj/effect/decal/cleanable/blood/oil{
+	desc = "What the hell is this? Is this . . . Oh, you do not want to think about that.";
+	name = "weird yellowish stain"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/starboard_emb)
 "inF" = (
 /turf/closed/wall/mainship,
 /area/mainship/command/cic)
@@ -12656,6 +12713,17 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
+"jTI" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/sign/poster,
+/turf/open/floor/mainship,
+/area/mainship/squads/alpha)
 "jTN" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/generic{
@@ -13236,6 +13304,12 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
+"kTz" = (
+/obj/structure/sign/poster{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/mainship/living/port_emb)
 "kUl" = (
 /obj/effect/decal/warning_stripes/box/small{
 	dir = 1
@@ -15261,6 +15335,12 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/living/numbertwobunks)
+"ojV" = (
+/obj/structure/sign/poster{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/mainship/shipboard/firing_range)
 "oka" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -15268,6 +15348,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "olA" = (
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/open/floor/mainship/white{
 	dir = 9
 	},
@@ -15623,6 +15706,7 @@
 /area/mainship/engineering/lower_engineering)
 "oYB" = (
 /obj/machinery/marine_selector/clothes/smartgun,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "oYC" = (
@@ -16100,6 +16184,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"pTD" = (
+/obj/structure/toilet,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/oil{
+	desc = "What the hell is this? Is this . . . Oh, you do not want to think about that.";
+	name = "weird yellowish stain"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/port_emb)
 "pTW" = (
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
@@ -16941,6 +17036,11 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/port_point_defense)
+"rnt" = (
+/obj/machinery/light,
+/obj/structure/sign/prop4,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_hallway)
 "rnS" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -17377,6 +17477,9 @@
 "seI" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
+	},
+/obj/structure/sign/poster{
+	dir = 4
 	},
 /turf/open/floor/mainship/red/corner{
 	dir = 8
@@ -19293,6 +19396,7 @@
 "vKs" = (
 /obj/machinery/cryopod,
 /obj/machinery/light,
+/obj/structure/sign/prop4,
 /turf/open/floor/mainship/cargo,
 /area/mainship/living/cryo_cells)
 "vKP" = (
@@ -19350,6 +19454,19 @@
 	},
 /turf/open/floor/engine,
 /area/mainship/hull/port_hull)
+"vPZ" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/delta)
 "vQr" = (
 /obj/effect/landmark/start/latejoin_cryo,
 /obj/structure/cable,
@@ -19663,6 +19780,12 @@
 "wtO" = (
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
+"wvd" = (
+/obj/structure/sign/poster{
+	dir = 4
+	},
+/turf/closed/wall/mainship,
+/area/mainship/living/starboard_emb)
 "wvf" = (
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
@@ -20177,6 +20300,9 @@
 /area/mainship/hallways/bow_hallway)
 "xvC" = (
 /obj/machinery/marine_selector/clothes/leader,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "xwJ" = (
@@ -20192,6 +20318,10 @@
 	},
 /obj/structure/sink{
 	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/oil{
+	desc = "What the hell is this? Is this . . . Oh, you do not want to think about that.";
+	name = "weird yellowish stain"
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/brig_cells)
@@ -42454,7 +42584,7 @@ aaa
 aai
 rbR
 bgb
-bdX
+emj
 bdX
 bdX
 bhd
@@ -57401,7 +57531,7 @@ bVS
 uYi
 bZb
 bSO
-syl
+pTD
 ofA
 ead
 cir
@@ -57873,7 +58003,7 @@ aXM
 jMY
 aXJ
 aME
-vND
+ilP
 aXM
 uyS
 uGA
@@ -58130,11 +58260,11 @@ aXM
 aXM
 iaS
 aXM
+wvd
 aXM
-aXM
 aXm
 aXm
-aXm
+ojV
 aXm
 aXm
 aXm
@@ -58168,11 +58298,11 @@ bSO
 bSO
 bSO
 bSO
+kTz
 bSO
 bSO
 bSO
-bSO
-bSO
+kTz
 bSO
 can
 bSO
@@ -59672,11 +59802,11 @@ aXM
 aXM
 ako
 aXM
+ibZ
 aXM
 aXM
 aXM
-aXM
-aXM
+ibZ
 aXM
 gdk
 aXM
@@ -61249,7 +61379,7 @@ ext
 bQw
 ruj
 cbn
-mmE
+vPZ
 bZQ
 awz
 ktN
@@ -61478,7 +61608,7 @@ kMY
 brj
 oWI
 ahU
-oaW
+hlz
 aWH
 ayo
 bke
@@ -62763,7 +62893,7 @@ bCp
 brj
 oDF
 puB
-vTf
+jTI
 aWH
 aLX
 bjV
@@ -63048,7 +63178,7 @@ jJv
 lPI
 bne
 cbn
-mmE
+vPZ
 tBV
 iLV
 ktN
@@ -63791,7 +63921,7 @@ kMY
 brj
 oWI
 ahU
-oaW
+hlz
 aWH
 biu
 bjV
@@ -64562,7 +64692,7 @@ kMY
 brj
 oWI
 ahU
-oaW
+hlz
 aWH
 mRy
 bjV
@@ -65104,7 +65234,7 @@ kuC
 bQA
 bWC
 cbn
-mmE
+vPZ
 ruy
 awz
 cei
@@ -67136,7 +67266,7 @@ bbj
 bbi
 aLX
 gYz
-blj
+rnt
 blZ
 bnL
 brt
@@ -67907,7 +68037,7 @@ hol
 bbi
 aoU
 gYz
-blj
+rnt
 blZ
 bnR
 bpN

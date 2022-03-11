@@ -163,6 +163,7 @@
 	icon_state="bsposter33"
 	name = "Tools, tools, tools"
 	desc = "You can never have enough tools, thats for sure!"
+
 /datum/poster/bay_34
 	icon_state="bsposter34"
 	name = "Lusty Xenomorph"
@@ -170,8 +171,8 @@
 
 /datum/poster/bay_35
 	icon_state="bsposter35"
-	name = "TerraGov: United for Humanity"
-	desc = "A poster depicting TerraGov's logo and motto, reminding viewers of who's looking out for humankind against the Xenomorph menace."
+	name = "A Memory of a Space Hero"
+	desc = "The Unga weaves as the Unga wills. Even if he is using The Sword that Cannot Slay or Chase Xenomorphs, he will die Ungaing."
 
 /datum/poster/bay_36
 	icon_state="bsposter36"
@@ -232,6 +233,11 @@
 	icon_state="bsposter47"
 	name = "Security pinup"
 	desc = "This is a pin-up poster. A dark skinned white haired girl poses in the sunlight wearing a tank top with her stomach exposed. The text on the poster states \"M, Succubus of Security.\" and a lipstick mark stains the top right corner, as if kissed by the model herself."
+
+/datum/poster/bay_48
+	icon_state="bsposter48"
+	name = "L’Escrimeuse (The Fencing Girl)"
+	desc = "The picture of a nattily attired fencing girl, seated in the corner of a fencing room, with one knee gracefully crossed over the other, on her shapely breast the red mark which indicates to her opponent the heart, his vital mark is one of the most popular pictures of the late 19th century and early 20th century. It has gone into thousands of Western homes and clubs."
 
 /datum/poster/bay_49
 	icon_state="bsposter49"
@@ -339,11 +345,6 @@
 	name = "Fruit Bowl"
 	desc = " Simple, yet awe-inspiring."
 
-/datum/poster/bay_70
-	icon_state="bsposter70"
-	name = "Enlist" // but I thought deathsquad was never acknowledged
-	desc = "Enlist in the Nanotrasen Deathsquadron reserves today!"
-
 /datum/poster/bay_71
 	icon_state="bsposter71"
 	name = "Moffuchi's Pizza"
@@ -370,7 +371,7 @@
 	desc = "Andromeda Bitters: good for the body, good for the soul. Made in New Trinidad, now and forever."
 
 /datum/poster/bay_76
-	icon_state="bsposter82"
+	icon_state="bsposter76"
 	name = "Miss Researcher 2558"
 	desc = "A large piece of space-resistant printed paper. This pin-up poster depicts a woman wearing a NanoTrasen labcoat, a bikini, and a sheepish grin. She's shyly posing atop some highly specialized research equipment."
 
