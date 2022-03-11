@@ -12957,10 +12957,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering)
-"hEX" = (
-/obj/effect/spawner/modularmap/bigred/westeta,
-/turf/open/space/basic,
-/area/space)
 "hFi" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -13278,6 +13274,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
+"jPb" = (
+/obj/effect/spawner/modularmap/bigred/northlambda,
+/turf/open/space/basic,
+/area/space)
 "jPS" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand,
@@ -13370,6 +13370,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/virology)
+"kxo" = (
+/obj/effect/spawner/modularmap/bigred/southeta,
+/turf/open/space/basic,
+/area/space)
 "kzV" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -14571,10 +14575,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/bar)
-"spz" = (
-/obj/effect/spawner/modularmap/bigred/northlambda,
-/turf/open/space/basic,
-/area/space)
 "srg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -14901,6 +14901,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south)
+"uqA" = (
+/obj/effect/spawner/modularmap/bigred/westeta,
+/turf/open/space/basic,
+/area/space)
 "usQ" = (
 /obj/structure/cable,
 /obj/effect/decal/sandedge,
@@ -14910,10 +14914,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/north)
-"utQ" = (
-/obj/effect/spawner/modularmap/bigred/southeta,
-/turf/open/space/basic,
-/area/space)
 "uvF" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -25341,7 +25341,7 @@ aaa
 aaa
 aaa
 aaa
-hEX
+uqA
 aaa
 aaa
 "}
@@ -38578,7 +38578,7 @@ aaa
 aaa
 aaa
 aaa
-utQ
+kxo
 aaa
 aaa
 "}
@@ -44909,7 +44909,7 @@ aaa
 aaa
 aaa
 aaa
-spz
+jPb
 hqP
 hqP
 hqP
@@ -50344,7 +50344,7 @@ adu
 vyZ
 vyZ
 kKe
-vyZ
+adu
 vyZ
 vyZ
 kKe
