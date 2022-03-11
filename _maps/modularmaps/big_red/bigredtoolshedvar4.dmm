@@ -1,0 +1,384 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 10
+	},
+/area/bigredv2/outside/c)
+"b" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"d" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/spawner/random/trash,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"e" = (
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"f" = (
+/obj/structure/sign/securearea,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/c)
+"g" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"h" = (
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"i" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/c)
+"j" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 9
+	},
+/area/bigredv2/outside/c)
+"m" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/trash,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"o" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"p" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"q" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/kitchen,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"r" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/secure/locked/free_access{
+	name = "\improper Emergency Vault"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"s" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 6
+	},
+/area/bigredv2/outside/c)
+"t" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
+"v" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"w" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"x" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 5
+	},
+/area/bigredv2/outside/c)
+"y" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/storage)
+"A" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"E" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"G" = (
+/obj/structure/rack,
+/obj/structure/sign/securearea,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"H" = (
+/obj/structure/rack,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"J" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"K" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/c)
+"L" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
+"N" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/toolbox,
+/obj/structure/sign/securearea,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"O" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/c)
+"Q" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
+"S" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"T" = (
+/obj/effect/spawner/random/trash,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
+"U" = (
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
+"X" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"Z" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+
+(1,1,1) = {"
+t
+j
+L
+L
+L
+Z
+J
+Q
+a
+"}
+(2,1,1) = {"
+U
+O
+y
+y
+y
+y
+y
+y
+i
+"}
+(3,1,1) = {"
+U
+f
+y
+H
+e
+e
+G
+y
+i
+"}
+(4,1,1) = {"
+U
+O
+y
+H
+T
+e
+q
+y
+i
+"}
+(5,1,1) = {"
+t
+O
+y
+q
+e
+T
+H
+y
+i
+"}
+(6,1,1) = {"
+U
+O
+y
+H
+e
+e
+H
+y
+i
+"}
+(7,1,1) = {"
+U
+O
+y
+H
+S
+e
+g
+y
+X
+"}
+(8,1,1) = {"
+U
+O
+y
+H
+h
+e
+H
+y
+E
+"}
+(9,1,1) = {"
+U
+K
+y
+H
+h
+e
+m
+y
+i
+"}
+(10,1,1) = {"
+U
+O
+y
+H
+v
+b
+H
+y
+i
+"}
+(11,1,1) = {"
+U
+O
+y
+g
+d
+e
+H
+y
+i
+"}
+(12,1,1) = {"
+U
+O
+y
+H
+p
+e
+H
+y
+i
+"}
+(13,1,1) = {"
+U
+K
+y
+H
+p
+T
+H
+y
+i
+"}
+(14,1,1) = {"
+U
+f
+y
+H
+p
+e
+N
+y
+i
+"}
+(15,1,1) = {"
+U
+O
+y
+y
+r
+y
+y
+y
+i
+"}
+(16,1,1) = {"
+U
+x
+w
+w
+o
+J
+A
+A
+s
+"}
