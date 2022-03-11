@@ -622,6 +622,20 @@
 	template_width = 22
 	template_height = 11
 
+/datum/map_template/modular/bigred/lambdatunnelsouththree
+	name = "Big red lambda tunnel"
+	mappath = "_maps/modularmaps/big_red/bigredlambdatunnelsouthvar3.dmm"
+	modular_id = "brlambdatunnelsouth"
+	template_width = 22
+	template_height = 11
+
+/datum/map_template/modular/bigred/lambdatunnelsouthfour
+	name = "Big red lambda tunnel"
+	mappath = "_maps/modularmaps/big_red/bigredlambdatunnelsouthvar4.dmm"
+	modular_id = "brlambdatunnelsouth"
+	template_width = 22
+	template_height = 11	
+
 /datum/map_template/modular/bigred/checkpointsouthone
 	name = "Big red checkpoint south"
 	mappath = "_maps/modularmaps/big_red/bigredcheckpointsouthvar1.dmm"
