@@ -145,6 +145,7 @@
 /area/bigredv2/outside/nw)
 "le" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
 	},
@@ -521,6 +522,10 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
+"Kp" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/bigredv2/outside/nw)
 "KI" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -675,6 +680,11 @@
 /obj/structure/cargo_container/horizontal{
 	dir = 4
 	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
+"Xr" = (
+/obj/machinery/light,
+/obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "Xv" = (
@@ -1250,11 +1260,11 @@ em
 em
 Pe
 em
-em
+xF
 em
 Pe
 em
-UW
+Xr
 Gg
 Cd
 YI
@@ -1673,7 +1683,7 @@ UG
 qC
 ZO
 MM
-tt
+Kp
 aB
 HC
 em
