@@ -8721,23 +8721,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-<<<<<<< HEAD
 "BC" = (
 /obj/structure/window/framed/mainship/hull,
 /obj/structure/sign/poster,
 /turf/open/space/basic,
 /area/mainship/hull/lower_hull)
-=======
-"BB" = (
-/obj/machinery/door/poddoor/railing{
-	dir = 8;
-	id = "supply_elevator_railing"
-	},
-/turf/open/floor/mainship/cargo/arrow{
-	dir = 4
-	},
-/area/mainship/squads/req)
->>>>>>> fafb2511343afbd8711bb5105dba3743aa32928c
 "BD" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/emails,
