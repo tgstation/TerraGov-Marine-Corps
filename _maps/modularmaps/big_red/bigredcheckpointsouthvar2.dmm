@@ -9,10 +9,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
-"T" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 
 (1,1,1) = {"
 A
@@ -52,9 +48,9 @@ a
 "}
 (4,1,1) = {"
 A
-T
-T
-T
+a
+a
+a
 a
 a
 a

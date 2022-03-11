@@ -552,6 +552,48 @@
 	template_width = 19
 	template_height = 7
 
+/datum/map_template/modular/bigred/lambdatunnelnorthone
+	name = "Big red lambda caves"
+	mappath = "_maps/modularmaps/big_red/bigrednorthlambdavar1.dmm"
+	modular_id = "brlambdatunnelnorth"
+	template_width = 65
+	template_height = 32
+
+/datum/map_template/modular/bigred/lambdatunnelnorthtwo
+	name = "Big red lambda caves"
+	mappath = "_maps/modularmaps/big_red/bigrednorthlambdavar2.dmm"
+	modular_id = "brlambdatunnelnorth"
+	template_width = 65
+	template_height = 32
+
+/datum/map_template/modular/bigred/lambdatunnelnorththree
+	name = "Big red lambda caves"
+	mappath = "_maps/modularmaps/big_red/bigrednorthlambdavar3.dmm"
+	modular_id = "brlambdatunnelnorth"
+	template_width = 65
+	template_height = 32
+
+/datum/map_template/modular/bigred/lambdatunnelnorthfour
+	name = "Big red lambda caves"
+	mappath = "_maps/modularmaps/big_red/bigrednorthlambdavar4.dmm"
+	modular_id = "brlambdatunnelnorth"
+	template_width = 65
+	template_height = 32
+
+/datum/map_template/modular/bigred/lambdatunnelnorthfive
+	name = "Big red lambda caves"
+	mappath = "_maps/modularmaps/big_red/bigrednorthlambdavar5.dmm"
+	modular_id = "brlambdatunnelnorth"
+	template_width = 65
+	template_height = 32
+
+/datum/map_template/modular/bigred/lambdatunnelnorthsix
+	name = "Big red lambda caves"
+	mappath = "_maps/modularmaps/big_red/bigrednorthlambdavar6.dmm"
+	modular_id = "brlambdatunnelnorth"
+	template_width = 65
+	template_height = 32
+
 /datum/map_template/modular/bigred/lambdatunneltwo
 	name = "Big red lambda caves"
 	mappath = "_maps/modularmaps/big_red/bigredlambdatunnelvar2.dmm"
@@ -601,13 +643,82 @@
 	template_width = 12
 	template_height = 10
 
+/datum/map_template/modular/bigred/westetaone
+	name = "Big red southwest eta"
+	mappath = "_maps/modularmaps/big_red/bigredsouthwestetavar1.dmm"
+	modular_id = "brsouthwesteta"
+	template_width = 61
+	template_height = 38
+
+/datum/map_template/modular/bigred/westetatwo
+	name = "Big red southwest eta"
+	mappath = "_maps/modularmaps/big_red/bigredsouthwestetavar2.dmm"
+	modular_id = "brsouthwesteta"
+	template_width = 61
+	template_height = 38
+
+/datum/map_template/modular/bigred/westetathree
+	name = "Big red southwest eta"
+	mappath = "_maps/modularmaps/big_red/bigredsouthwestetavar3.dmm"
+	modular_id = "brsouthwesteta"
+	template_width = 61
+	template_height = 38
+
+/datum/map_template/modular/bigred/westetafour
+	name = "Big red southwest eta"
+	mappath = "_maps/modularmaps/big_red/bigredsouthwestetavar4.dmm"
+	modular_id = "brsouthwesteta"
+	template_width = 61
+	template_height = 38
+
+/datum/map_template/modular/bigred/westetafive
+	name = "Big red southwest eta"
+	mappath = "_maps/modularmaps/big_red/bigredsouthwestetavar5.dmm"
+	modular_id = "brsouthwesteta"
+	template_width = 61
+	template_height = 38
+
+/datum/map_template/modular/bigred/southetaone
+	name = "Big red southwest eta"
+	mappath = "_maps/modularmaps/big_red/bigredsouthetavar1.dmm"
+	modular_id = "brsoutheta"
+	template_width = 23
+	template_height = 10
+
+/datum/map_template/modular/bigred/southetatwo
+	name = "Big red southwest eta"
+	mappath = "_maps/modularmaps/big_red/bigredsouthetavar2.dmm"
+	modular_id = "brsoutheta"
+	template_width = 23
+	template_height = 10
+
+/datum/map_template/modular/bigred/southetathree
+	name = "Big red southwest eta"
+	mappath = "_maps/modularmaps/big_red/bigredsouthetavar3.dmm"
+	modular_id = "brsoutheta"
+	template_width = 23
+	template_height = 10
+
+datum/map_template/modular/bigred/southetafour
+	name = "Big red southwest eta"
+	mappath = "_maps/modularmaps/big_red/bigredsouthetavar4.dmm"
+	modular_id = "brsoutheta"
+	template_width = 23
+	template_height = 10	
+
+datum/map_template/modular/bigred/southetafive
+	name = "Big red southwest eta"
+	mappath = "_maps/modularmaps/big_red/bigredsouthetavar5.dmm"
+	modular_id = "brsoutheta"
+	template_width = 23
+	template_height = 10	
+
 /datum/map_template/modular/bigred/checkpointone
 	name = "Big red checkpoint"
 	mappath = "_maps/modularmaps/big_red/bigredcheckpointvar1.dmm"
 	modular_id = "brcheckpoint"
 	template_width = 4
 	template_height = 4
-
 
 /datum/map_template/modular/bigred/checkpointtwo
 	name = "Big red checkpoint"

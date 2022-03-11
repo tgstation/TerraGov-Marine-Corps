@@ -134,6 +134,21 @@
 	spawner_width = 3
 	spawner_height = 5
 
+/obj/effect/spawner/modularmap/bigred/northlambda
+	mapid = "brlambdatunnelnorth"
+	spawner_width = 65
+	spawner_height = 32
+
+/obj/effect/spawner/modularmap/bigred/westeta
+	mapid = "brsouthwesteta"
+	spawner_width = 61
+	spawner_height = 38
+
+/obj/effect/spawner/modularmap/bigred/southeta
+	mapid = "brsoutheta"
+	spawner_width = 23
+	spawner_height = 10	
+
 /obj/effect/spawner/modularmap/bigred/checkpointsouth
 	mapid = "brcheckpointsouth"
 	spawner_width = 12
