@@ -1652,7 +1652,6 @@
 /area/ice_colony/exterior/underground/caves/open)
 "agH" = (
 /obj/structure/table,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "agI" = (
@@ -1756,7 +1755,6 @@
 "ahf" = (
 /obj/structure/table,
 /obj/structure/cable,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "ahj" = (
@@ -16874,7 +16872,6 @@
 /area/ice_colony/surface/excavation/storage)
 "beW" = (
 /obj/structure/table,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
@@ -17663,7 +17660,6 @@
 /area/ice_colony/underground/westroadtunnel)
 "bhI" = (
 /obj/structure/closet/crate,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/excavation)
 "bhJ" = (
@@ -26393,7 +26389,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bKy" = (
 /obj/structure/table,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -29681,7 +29676,6 @@
 	pixel_x = 16;
 	pixel_y = 29
 	},
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
 	},
@@ -29733,7 +29727,6 @@
 /obj/item/storage/box/lightstick/red,
 /obj/item/storage/box/lightstick,
 /obj/item/storage/box/lightstick,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
 	},
@@ -30298,7 +30291,6 @@
 /area/ice_colony/exterior/underground/caves/ice_se)
 "bXT" = (
 /obj/structure/table,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "bXU" = (

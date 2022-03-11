@@ -18959,7 +18959,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCU" = (
 /obj/structure/table,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
