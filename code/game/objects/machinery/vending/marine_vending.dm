@@ -87,6 +87,10 @@
 		"Specialized" = list(
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
+			/obj/item/weapon/gun/rifle/tx29 = 1,
+			/obj/item/ammo_magazine/rifle/tx29launcher = 2,
+			/obj/item/ammo_magazine/rifle/tx29launcher/incendiary = 2,
+			/obj/item/ammo_magazine/rifle/tx29 = -1,
 			/obj/item/weapon/gun/energy/lasgun/tesla = 2,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
@@ -108,7 +112,7 @@
 		"Grenades" = list(
 			/obj/item/explosive/grenade = 600,
 			/obj/item/explosive/grenade/m15 = 30,
-			/obj/item/explosive/grenade/impact = 125,
+			/obj/item/explosive/grenade/impact = 100,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/smokebomb/cloak = 25,
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
@@ -544,8 +548,6 @@
 	products = list(
 		"Surplus Special Equipment" = list(
 			/obj/item/beacon/supply_beacon = 1,
-			/obj/item/storage/box/tx29_system = 1,
-			/obj/item/ammo_magazine/rifle/tx29 = 6,
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
