@@ -1343,6 +1343,8 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.5 SECONDS
+	///Same delay as normal burst mode
+	autoburst_delay = 0.7 SECONDS
 	accuracy_mult = 1
 	scatter = 7
 	burst_amount = 4
