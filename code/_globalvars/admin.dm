@@ -3,6 +3,7 @@ GLOBAL_VAR_INIT(dooc_allowed, TRUE)
 GLOBAL_VAR_INIT(dsay_allowed, TRUE)
 GLOBAL_VAR_INIT(enter_allowed, TRUE)
 GLOBAL_VAR_INIT(respawn_allowed, TRUE)
+GLOBAL_VAR_INIT(valhalla_allowed, TRUE)
 
 GLOBAL_VAR_INIT(respawntime, 30 MINUTES)
 GLOBAL_VAR_INIT(fileaccess_timer, 0)

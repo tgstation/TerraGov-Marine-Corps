@@ -7,6 +7,7 @@
 	layer = OBJ_LAYER
 	plane = GAME_PLANE
 	opacity = FALSE
+	resistance_flags = PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/cas/computer
 	name = "Condor piloting computer"

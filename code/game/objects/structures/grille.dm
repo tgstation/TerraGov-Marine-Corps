@@ -146,16 +146,8 @@
 /obj/structure/grille/mainship
 	icon = 'icons/turf/mainship.dmi'
 	icon_state = "grille0"
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/machinery/door/airlock,
-		/obj/structure/grille/mainship,
-	)
-
-/obj/structure/grille/mainship/Initialize()
-	. = ..()
-	relativewall()
-	relativewall_neighbours()
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
 /obj/structure/grille/mainship/update_icon()
-	relativewall()
+	smooth_self()

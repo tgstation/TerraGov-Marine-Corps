@@ -6,7 +6,11 @@
 	if(!species)
 		set_species()
 
-	var/datum/reagents/R = new /datum/reagents(1000)
+	var/datum/reagents/R
+	if(species.species_flags & NO_CHEM_METABOLIZATION)
+		R = new /datum/reagents(0)
+	else
+		R = new /datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
 
@@ -70,8 +74,8 @@
 	//and display them
 	add_to_all_mob_huds()
 
-	var/datum/atom_hud/hud_to_add = GLOB.huds[DATA_HUD_BASIC]
-	hud_to_add.add_hud_to(src)
+	GLOB.huds[DATA_HUD_BASIC].add_hud_to(src)
+	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(src)
 
 
 
@@ -965,16 +969,16 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/disable_lights(clothing = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE, forced = FALSE)
+/mob/living/carbon/human/disable_lights(clothing = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE, forced = FALSE, light_again = FALSE)
 	var/light_off = 0
 	var/goes_out = 0
 	if(clothing)
 		if(istype(wear_suit, /obj/item/clothing/suit))
 			var/obj/item/clothing/suit/S = wear_suit
-			if(S.turn_light(src, FALSE, 0, FALSE, forced))
+			if(S.turn_light(src, FALSE, 0, FALSE, forced, light_again))
 				light_off++
 		for(var/obj/item/clothing/head/hardhat/H in contents)
-			H.turn_light(src, FALSE, 0,FALSE, forced)
+			H.turn_light(src, FALSE, 0,FALSE, forced, light_again)
 			light_off++
 		for(var/obj/item/flashlight/L in contents)
 			if(istype(L, /obj/item/flashlight/flare))

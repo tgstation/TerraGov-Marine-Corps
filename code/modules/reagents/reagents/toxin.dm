@@ -466,17 +466,9 @@
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	custom_metabolism = REAGENTS_METABOLISM * 2
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 1
 	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	scannable = TRUE
 	toxpwr = 0
-
-/datum/reagent/toxin/xeno_neurotoxin/light
-	name = "Light Neurotoxin"
-	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time. This one seems to be weaker enough to not remove other chemicals."
-	purge_rate = 0
-
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
@@ -513,39 +505,7 @@
 	if(L.eye_blurry < 30) //So we don't have the visual acuity of Mister Magoo forever
 		L.adjust_blurriness(1.3)
 
-
 	return ..()
-
-/datum/reagent/toxin/xeno_neurotoxin/light/on_mob_life(mob/living/L, metabolism)
-	. = .. ()
-	switch(current_cycle)
-		if(21 to 45)
-			purge_rate = 0.2
-		if(46 to INFINITY)
-			purge_rate = 1
-
-/datum/reagent/toxin/xeno_growthtoxin
-	name = "Larval Accelerant"
-	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
-	reagent_state = LIQUID
-	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 3
-	overdose_threshold = REAGENTS_OVERDOSE
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
-	toxpwr = 0
-	scannable = TRUE
-
-/datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
-	L.jitter(1) //So unga know to get treated
-	return ..()
-
-/datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustOxyLoss(2)
-	L.jitter(4)
-
-/datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.Losebreath(2)
 
 /datum/reagent/toxin/xeno_hemodile //Slows its victim. The slow becomes twice as strong with each other xeno toxin in the victim's system.
 	name = "Hemodile"
@@ -565,6 +525,9 @@
 		slowdown_multiplier *= 2
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		slowdown_multiplier *= 2
+
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
 		slowdown_multiplier *= 2
 
 	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
@@ -670,6 +633,28 @@
 		C.drip(DEFILER_SANGUINAL_DAMAGE) //Causes bleeding
 
 	return ..()
+
+/datum/reagent/toxin/xeno_ozelomelyn // deals capped toxloss and purges at a rapid rate
+	name = "Ozelomelyn"
+	description = "A potent Xenomorph chemical that quickly purges other chemicals in a bloodstream, causing small scale poisoning in a organism that won't progress. Appears to be strangely water based.."
+	reagent_state = LIQUID
+	color = "#f1ddcf"
+	custom_metabolism = 1.5 // metabolizes decently quickly. A sting does 15 at the same rate as neurotoxin.
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0 // This is going to do slightly snowflake tox damage.
+	purge_list = list(/datum/reagent/medicine)
+	purge_rate = 5
+
+/datum/reagent/toxin/xeno_ozelomelyn/on_mob_life(mob/living/L, metabolism)
+	if(L.getToxLoss() < 40) // if our toxloss is below 40, do 0.75 tox damage.
+		L.adjustToxLoss(0.75)
+		if(prob(15))
+			to_chat(L, span_warning("Your veins feel like water and you can feel a growing itchy feeling in them!") )
+		return ..()
+	if(prob(15))
+		to_chat(L, span_warning("Your veins feel like water..") )
+		return ..()
 
 /datum/reagent/zombium
 	name = "Zombium"

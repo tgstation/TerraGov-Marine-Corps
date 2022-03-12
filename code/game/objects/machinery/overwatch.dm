@@ -85,6 +85,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/delta
 	name = "Delta Overwatch Console"
 
+/obj/machinery/computer/camera_advanced/overwatch/req
+	icon_state = "overwatch_req"
+	name = "Requisition Overwatch Console"
+	desc = "Big Brother Requisition demands to see money flowing into the void that is greed."
+
 /obj/machinery/computer/camera_advanced/overwatch/rebel
 	faction = FACTION_TERRAGOV_REBEL
 	req_access = list(ACCESS_MARINE_BRIDGE_REBEL)
@@ -199,12 +204,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 					else
 						dat += "[span_warning("None")]<br>"
-					dat += "<B>[current_squad.name] Beacon Targets:</b><br>"
-					if(length(GLOB.active_orbital_beacons))
-						for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in current_squad.squad_orbital_beacons)
-							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
-					else
-						dat += "[span_warning("None transmitting")]<br>"
 					dat += "<b>Selected Target:</b><br>"
 					if(!selected_target) // Clean the targets if nothing is selected
 						dat += "[span_warning("None")]<br>"
@@ -301,7 +300,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				return
 			selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 			current_squad = selected
-			current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
+			current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Game panel for objectives.")
 			current_squad.message_squad("Your Overwatch officer is: [operator.name].")
 			if(issilicon(usr))
 				to_chat(usr, span_boldnotice("Tactical data for squad '[current_squad]' loaded. All tactical functions initialized."))
@@ -442,12 +441,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 				else
 					dat += "[span_warning("None")]<br>"
-				dat += "<B>Beacon Targets:</b><br>"
-				if(length(GLOB.active_orbital_beacons))
-					for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in GLOB.active_orbital_beacons)
-						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
-				else
-					dat += "[span_warning("None transmitting")]<br>"
 				dat += "<b>Selected Target:</b><br>"
 				if(!selected_target) // Clean the targets if nothing is selected
 					dat += "[span_warning("None")]<br>"
@@ -466,6 +459,39 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	popup.set_content(dat)
 	popup.open()
 
+
+/obj/machinery/computer/camera_advanced/overwatch/req/interact(mob/living/user)
+	. = ..()
+	if(.)
+		return
+
+	var/dat
+	if(!operator)
+		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>----------</A><BR>"
+	else
+		dat += "<B>Main Operator:</b> <A href='?src=\ref[src];operation=change_main_operator'>[operator.name]</A><BR>"
+		dat += "   <A href='?src=\ref[src];operation=logout_main'>{Stop Overwatch}</A><BR>"
+		dat += "----------------------<br>"
+		switch(state)
+			if(OW_MAIN)
+				for(var/datum/squad/S AS in watchable_squads)
+					dat += "<b>[S.name] Squad</b> <a href='?src=\ref[src];operation=message;current_squad=\ref[S]'>\[Message Squad\]</a><br>"
+					if(S.squad_leader)
+						dat += "<b>Leader:</b> <a href='?src=\ref[src];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
+						dat += "<a href='?src=\ref[src];operation=sl_message;current_squad=\ref[S]'>\[MSG\]</a><br>"
+					else
+						dat += "<b>Leader:</b> <font color=red>NONE</font><br>"
+					if(S.overwatch_officer)
+						dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
+					else
+						dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
+					dat += "<A href='?src=\ref[src];operation=monitor[S.id]'>[S.name] Squad Monitor</a><br>"
+			if(OW_MONITOR)//Info screen.
+				dat += get_squad_info()
+
+	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>Requisition Overwatch Console</div>", 550, 550)
+	popup.set_content(dat)
+	popup.open()
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/send_to_squads(txt)
 	for(var/datum/squad/squad AS in watchable_squads)
@@ -733,11 +759,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return
 
 	if(!which)
-		var/choice = input(src, "Choose an order") in command_aura_allowed + "help" + "cancel"
+		var/choice = tgui_input_list(src, "Choose an order", items = command_aura_allowed + "help")
 		if(choice == "help")
 			to_chat(src, span_notice("<br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br>"))
 			return
-		if(choice == "cancel")
+		if(!choice)
 			return
 		command_aura = choice
 	else

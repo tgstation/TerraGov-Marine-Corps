@@ -75,7 +75,7 @@
 	if(!isitem(target) && !ishuman(target) && !isdroid(target))	//only items, droids, and mobs can be flung.
 		return FALSE
 	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
-	if(!owner.line_of_sight(target, max_dist))
+	if(!line_of_sight(owner, target, max_dist))
 		if(!silent)
 			to_chat(owner, span_warning("We must get closer to fling, our mind cannot reach this far."))
 		return FALSE
@@ -250,7 +250,7 @@
 	if(dist > heal_range)
 		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
 		return FALSE
-	else if(!owner.line_of_sight(target))
+	else if(!line_of_sight(owner, target))
 		to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE
 	return TRUE
@@ -296,7 +296,7 @@
 	name = "Place acid well"
 	action_icon_state = "place_trap"
 	mechanics_text = "Place an acid well that can put out fires."
-	plasma_cost = 500
+	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 
 /datum/action/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
@@ -359,7 +359,7 @@
 /obj/item/explosive/grenade/gravity/prime()
 	new /obj/effect/overlay/temp/emp_pulse(loc)
 	playsound(loc, 'sound/effects/EMPulse.ogg', 50)
-	for(var/atom/movable/victim in view(3))//yes this throws EVERYONE
+	for(var/atom/movable/victim in view(3, loc))//yes this throws EVERYONE
 		if(victim.anchored)
 			continue
 		if(isliving(victim))

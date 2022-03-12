@@ -1,6 +1,7 @@
 /datum/ai_behavior/xeno/illusion
 	target_distance = 3 //We attack only nearby
 	base_action = ESCORTING_ATOM
+	is_offered_on_creation = FALSE
 
 /datum/ai_behavior/xeno/illusion/New(loc, parent_to_assign, escorted_atom)
 	if(!escorted_atom)

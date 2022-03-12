@@ -5,7 +5,7 @@
 	icon_state = "ua571c"
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = CALIBER_10X28
-	max_rounds = 75
+	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret
 
 /obj/item/ammo_magazine/minisentry
@@ -15,7 +15,7 @@
 	icon_state = "ua580"
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = CALIBER_10X20
-	max_rounds = 100
+	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/turret/mini
 
 /obj/item/ammo_magazine/sentry_premade/dumb
@@ -24,7 +24,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = CALIBER_10X28
-	max_rounds = 50
+	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret/dumb
 
 /obj/item/ammo_magazine/sentry/fob_sentry

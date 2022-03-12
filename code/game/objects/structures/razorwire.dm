@@ -106,6 +106,8 @@
 
 /obj/structure/razorwire/proc/razorwire_untangle(mob/living/entangled)
 	SIGNAL_HANDLER
+	if((entangled.flags_pass & PASSSMALLSTRUCT) || entangled.status_flags & INCORPOREAL)
+		return
 	entangled.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
 	do_razorwire_untangle(entangled)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
@@ -126,7 +128,11 @@
 
 
 /obj/structure/razorwire/proc/on_exited(datum/source, atom/movable/AM, direction)
-	razorwire_untangle(AM)
+	if(!isliving(AM))
+		return
+	var/mob/living/crossing_mob = AM
+	if(CHECK_BITFIELD(crossing_mob.restrained_flags, RESTRAINED_RAZORWIRE))
+		razorwire_untangle(AM)
 
 /obj/structure/razorwire/Destroy()
 	for(var/i in entangled_list)

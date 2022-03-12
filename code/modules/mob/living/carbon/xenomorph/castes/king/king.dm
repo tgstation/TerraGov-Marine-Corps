@@ -47,6 +47,9 @@
 	SSmonitor.stats.king--
 	hive.king_present = max(hive.king_present - 1, 0)
 
+/mob/living/carbon/xenomorph/king/upgrade_possible()
+	return (upgrade != XENO_UPGRADE_THREE)
+
 ///resin pod that creates the king xeno after a delay
 /obj/structure/resin/king_pod
 	name = "psychic echo chamber"
@@ -93,7 +96,7 @@
 	for(var/mob/living/carbon/xenomorph/xenomorph_alive AS in shuffle(GLOB.alive_xeno_list))
 		if(xenomorph_alive.hivenumber != ownerhive)
 			continue
-		if(!(xenomorph_alive.xeno_caste.caste_flags & CAN_BECOME_KING))
+		if(!(xenomorph_alive.xeno_caste.caste_flags & CASTE_CAN_BECOME_KING))
 			continue
 		var/accept_to_be_king = tgui_alert(xenomorph_alive, "The fate has landed and you, and you can become the King. Do you accept?", "Rise of the King", list("Accept", "Leave it for another xeno"), 20 SECONDS)
 		if(accept_to_be_king != "Accept")

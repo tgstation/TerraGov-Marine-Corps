@@ -22,12 +22,12 @@
 	max_health = 290
 
 	// *** Evolution *** //
-	upgrade_threshold = 250
+	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
 	deevolves_to = /mob/living/carbon/xenomorph/spitter
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 35, "acid" = 28)
@@ -78,7 +78,7 @@
 	max_health = 320
 
 	// *** Evolution *** //
-	upgrade_threshold = 750
+	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 40, "acid" = 33)
@@ -112,7 +112,7 @@
 	max_health = 340
 
 	// *** Evolution *** //
-	upgrade_threshold = 1750
+	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 45, "acid" = 35)
@@ -147,7 +147,7 @@
 	max_health = 360
 
 	// *** Evolution *** //
-	upgrade_threshold = 2750
+	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 38, "rad" = 38, "fire" = 50, "acid" = 38)
@@ -161,3 +161,50 @@
 
 	// *** Pheromones *** //
 	aura_strength = 4.5
+
+/datum/xeno_caste/praetorian/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "An aberrant creature extremely proficient with acid, keep your distance if you don't wish to be burned."
+	upgrade = XENO_UPGRADE_FOUR
+	primordial_message = "The strongest of acids flows through our veins, let's reduce them to dust."
+
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
+	// *** Speed *** //
+	speed = -0.5
+
+	// *** Plasma *** //
+	plasma_max = 1000
+	plasma_gain = 80
+
+	// *** Health *** //
+	max_health = 360
+
+	// *** Defense *** //
+	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 38, "rad" = 38, "fire" = 50, "acid" = 38)
+
+	// *** Ranged Attack *** //
+	spit_delay = 1 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy)
+
+	acid_spray_damage_on_hit = 47
+	acid_spray_structure_damage = 69
+
+	// *** Pheromones *** //
+	aura_strength = 4.5
+
+	// *** Ranged Attack *** //
+	charge_type = CHARGE_TYPE_LARGE
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/activable/psydrain,
+		/datum/action/xeno_action/place_acidwell,
+		/datum/action/xeno_action/activable/corrosive_acid,
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/spray_acid/cone,
+		/datum/action/xeno_action/activable/acid_dash,
+		/datum/action/xeno_action/toggle_pheromones,
+	)

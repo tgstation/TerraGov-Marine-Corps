@@ -16,7 +16,7 @@
 	///List of the attachment overlay images. This is so that we can easily swap overlays in and out.
 	var/list/attachable_overlays
 
-/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachmments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
+/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -32,15 +32,15 @@
 	attachable_overlays += slots
 
 	var/obj/parent_object = parent
-	if(length(starting_attachmments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
-		for(var/starting_attachment_type in starting_attachmments)
+	if(length(starting_attachments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
+		for(var/starting_attachment_type in starting_attachments)
 			attach_without_user(attachment = new starting_attachment_type())
 
 	update_parent_overlay()
 
 	RegisterSignal(parent, COMSIG_PARENT_ATTACKBY, .proc/start_handle_attachment) //For attaching.
 	RegisterSignal(parent, list(COMSIG_ATOM_UPDATE_OVERLAYS, COMSIG_ATOM_UPDATE_ICON), .proc/update_parent_overlay) //Updating the attachment overlays.
-	RegisterSignal(parent, list(COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), .proc/attach_without_user)
+	RegisterSignal(parent, list(COMSIG_LOADOUT_VENDOR_VENDED_GUN_ATTACHMENT, COMSIG_LOADOUT_VENDOR_VENDED_ATTACHMENT_GUN, COMSIG_LOADOUT_VENDOR_VENDED_ARMOR_ATTACHMENT), .proc/attach_without_user)
 
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_detach) //For Detaching
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references) //Dels attachments.
@@ -293,7 +293,10 @@
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			icon_state = attachment.icon_state
 			icon = attachment.icon
-		overlay = image(icon, parent_item, icon_state, attachment_data[ATTACHMENT_LAYER])
+			overlay = image(icon, parent_item, icon_state)
+			overlay.overlays += attachment.overlays
+		else
+			overlay = image(icon, parent_item, icon_state)
 		var/slot_x = 0 //This and slot_y are for the event that the parent did not have an overlay_offsets. In that case the offsets default to 0
 		var/slot_y = 0
 		for(var/attachment_slot in attachment_offsets)
@@ -316,6 +319,10 @@
 ///Updates the mob sprite of the attachment.
 /datum/component/attachment_handler/proc/apply_custom(datum/source, image/standing)
 	SIGNAL_HANDLER
+	var/obj/item/parent_item = parent
+	if(!ismob(parent_item.loc))
+		return
+	var/mob/living/carbon/human/wearer = parent_item.loc
 	for(var/slot in slots)
 		var/obj/item/attachment = slots[slot]
 		if(!attachment)
@@ -323,6 +330,8 @@
 		var/list/attachment_data = attachment_data_by_slot[slot]
 		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 			continue
+		if(attachment_data[ATTACHMENT_LAYER])
+			wearer.remove_overlay(attachment_data[ATTACHMENT_LAYER])
 		var/icon = attachment.icon
 		var/icon_state = attachment.icon_state
 		var/suffix = ""
@@ -335,13 +344,19 @@
 			else
 				icon = attachment_data[OVERLAY_ICON]
 				suffix = attachment.icon == icon ? "_a" : ""
-		var/image/new_overlay
-		new_overlay = image(icon, source, icon_state + suffix, attachment_data[ATTACHMENT_LAYER])
+		var/image/new_overlay = image(icon, wearer, icon_state + suffix, -attachment_data[ATTACHMENT_LAYER])
+		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
+			new_overlay.overlays += attachment.overlays
 		if(attachment_data[MOB_PIXEL_SHIFT_X])
 			new_overlay.pixel_x += attachment_data[MOB_PIXEL_SHIFT_X]
 		if(attachment_data[MOB_PIXEL_SHIFT_Y])
 			new_overlay.pixel_y += attachment_data[MOB_PIXEL_SHIFT_Y]
-		standing.overlays += new_overlay
+		if(!attachment_data[ATTACHMENT_LAYER])
+			standing.overlays += new_overlay
+			continue
+		wearer.overlays_standing[attachment_data[ATTACHMENT_LAYER]] = new_overlay
+		wearer.apply_overlay(attachment_data[ATTACHMENT_LAYER])
+
 
 ///Deletes the attachments when the parent deletes.
 /datum/component/attachment_handler/proc/clean_references()

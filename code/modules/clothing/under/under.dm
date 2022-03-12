@@ -31,6 +31,10 @@
 		/obj/item/armor_module/storage/uniform/holster/armpit,
 		/obj/item/armor_module/storage/uniform/holster/waist,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/armor/cape,
+		/obj/item/armor_module/armor/cape/half,
+		/obj/item/armor_module/armor/cape/short,
+		/obj/item/armor_module/armor/cape/scarf,
 		/obj/item/clothing/tie,
 		/obj/item/clothing/tie/blue,
 		/obj/item/clothing/tie/red,
@@ -63,8 +67,9 @@
 		ATTACHMENT_SLOT_UNIFORM,
 		ATTACHMENT_SLOT_UNIFORM_TIE,
 		ATTACHMENT_SLOT_BADGE,
+		ATTACHMENT_SLOT_CAPE,
 	)
-	///Typepath list of allowed attachment types.
+	///Typepath list of uniform variants.
 	var/list/adjustment_variants = list(
 		"Down" = "_d",
 	)

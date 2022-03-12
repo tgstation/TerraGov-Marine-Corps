@@ -41,10 +41,9 @@
 	pixel_y = new_port.pixel_y
 	return TRUE
 
-/obj/machinery/portable_atmospherics/Move()
+/obj/machinery/portable_atmospherics/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
 	. = ..()
-	if(.)
-		disconnect()
+	disconnect()
 
 /obj/machinery/portable_atmospherics/proc/disconnect()
 	if(!connected_port)

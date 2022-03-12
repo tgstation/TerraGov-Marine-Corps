@@ -3,7 +3,7 @@ GLOBAL_LIST_EMPTY(all_huds)
 
 
 //GLOBAL HUD LIST
-GLOBAL_LIST_INIT(huds, list(
+GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, list(
 	DATA_HUD_BASIC = new /datum/atom_hud/simple,
 	DATA_HUD_SECURITY_ADVANCED = new /datum/atom_hud/security,
 	DATA_HUD_MEDICAL_BASIC = new /datum/atom_hud/medical/basic,
@@ -19,6 +19,7 @@ GLOBAL_LIST_INIT(huds, list(
 	DATA_HUD_XENO_TACTICAL = new /datum/atom_hud/xeno_tactical,
 	DATA_HUD_SQUAD_REBEL = new /datum/atom_hud/squad_rebel,
 	DATA_HUD_XENO_DEBUFF = new /datum/atom_hud/xeno_debuff,
+	DATA_HUD_XENO_HEART = new /datum/atom_hud/xeno_heart,
 	))
 
 

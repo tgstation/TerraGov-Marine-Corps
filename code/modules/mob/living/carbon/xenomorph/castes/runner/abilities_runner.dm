@@ -46,13 +46,13 @@
 
 	playsound(src, "alien_roar[rand(1,6)]", 50)
 	use_plasma(10) //Base cost of the Savage
-	src.visible_message(span_danger("\ [src] savages [M]!"), \
+	visible_message(span_danger("\ [src] savages [M]!"), \
 	span_xenodanger("We savage [M]!"), null, 5)
-	var/extra_dam = min(15, plasma_stored * 0.2)
+	var/extra_dam = max(15, plasma_stored * 0.2)
 	GLOB.round_statistics.runner_savage_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
 	M.attack_alien_harm(src, extra_dam, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
-	use_plasma(extra_dam * 5) //Expend plasma equal to 4 times the extra damage.
+	use_plasma(extra_dam * 2)
 	savage_used = TRUE
 	addtimer(CALLBACK(src, .proc/savage_cooldown), xeno_caste.savage_cooldown)
 
@@ -115,7 +115,7 @@
 	if(victim_paralyze_time)
 		M.Paralyze(victim_paralyze_time)
 
-	step_to(X, M)
+	X.forceMove(get_turf(M))
 	if(freeze_on_hit_time)
 		X.Immobilize(freeze_on_hit_time)
 	if(X.savage) //If Runner Savage is toggled on, attempt to use it.
@@ -193,7 +193,7 @@
 /datum/action/xeno_action/activable/pounce/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	if(get_dist(target, owner) > 6)
+	if(!line_of_sight(owner, target, 6))
 		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return FALSE
@@ -405,6 +405,8 @@
 	cooldown_timer = 60 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SNATCH
 	target_flags = XABB_MOB_TARGET
+	///If the runner have an item
+	var/obj/item/stolen_item = FALSE
 	///Mutable appearance of the stolen item
 	var/mutable_appearance/stolen_appearance
 	///A list of slot to check for items, in order of priority
@@ -413,6 +415,11 @@
 		SLOT_BACK,
 		SLOT_SHOES,
 	)
+
+/datum/action/xeno_action/activable/snatch/action_activate()
+	if(!stolen_item)
+		return ..()
+	drop_item()
 
 /datum/action/xeno_action/activable/snatch/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -429,11 +436,11 @@
 
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	succeed_activate()
-	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_HOSTILE))
-		to_chat(owner, span_xenowarning("Your victim moved, you failed to snatch an item"))
+	var/mob/living/carbon/xenomorph/X = A
+	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
-	var/obj/item/stolen_item = victim.get_active_held_item()
+	stolen_item = victim.get_active_held_item()
 	if(!stolen_item)
 		stolen_item = victim.get_inactive_held_item()
 		for(var/slot in slots_to_steal_from)
@@ -450,6 +457,7 @@
 	stolen_appearance.layer = ABOVE_OBJ_LAYER
 	addtimer(CALLBACK(src, .proc/drop_item, stolen_item), 3 SECONDS)
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, .proc/owner_turned)
+	owner.add_movespeed_modifier(MOVESPEED_ID_SNATCH, TRUE, 0, NONE, TRUE, 2)
 	owner_turned(null, null, owner.dir)
 	add_cooldown()
 
@@ -482,8 +490,12 @@
 	owner.overlays += stolen_appearance
 
 ///Force the xeno owner to drop the stolen item
-/datum/action/xeno_action/activable/snatch/proc/drop_item(obj/item/stolen_item)
+/datum/action/xeno_action/activable/snatch/proc/drop_item()
+	if(!stolen_item)
+		return
+	owner.remove_movespeed_modifier(MOVESPEED_ID_SNATCH)
 	stolen_item.forceMove(get_turf(owner))
+	stolen_item = null
 	owner.overlays -= stolen_appearance
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)

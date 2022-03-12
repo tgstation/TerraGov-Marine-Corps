@@ -94,8 +94,9 @@
 	SSmobs.stop_processing(src)
 	job = null
 	LAZYREMOVE(GLOB.ssd_living_mobs, src)
+	GLOB.key_to_time_of_death[key] = world.time
 	if(stat != DEAD && job?.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))//Only some jobs cost you your respawn timer.
-		GLOB.key_to_time_of_death[key] = world.time
+		GLOB.key_to_time_of_role_death[key] = world.time
 	. = ..()
 	hard_armor = null
 	soft_armor = null
@@ -201,7 +202,7 @@
 	. = ..()
 
 	if(pulledby)
-		if(moving_diagonally != FIRST_DIAG_STEP && get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller and not in the middle of a diagonal move.
+		if(get_dist(src, pulledby) > 1 && (pulledby != moving_from_pull))//separated from our puller
 			pulledby.stop_pulling()
 		else if(isliving(pulledby))
 			var/mob/living/living_puller = pulledby
@@ -317,7 +318,7 @@
 /mob/living/Bump(atom/A)
 	. = ..()
 	if(.) //We are thrown onto something.
-		return
+		return FALSE
 	if(buckled || now_pushing)
 		return
 	if(isliving(A))
@@ -336,16 +337,13 @@
 						to_chat(src, span_warning("[L] is restraining [P], you cannot push past."))
 					return
 
-		if(moving_diagonally)//no mob swap during diagonal moves.
-			return
-
-		if(!L.buckled && !L.anchored)
+		if(!L.buckled && !L.anchored && !moving_diagonally)
 			var/mob_swap = FALSE
 			//the puller can always swap with its victim if on grab intent
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
 				mob_swap = TRUE
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
+			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.mob_size < MOB_SIZE_XENO)
 				mob_swap = TRUE
 			else if((mob_size >= MOB_SIZE_XENO || mob_size > L.mob_size) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap = TRUE
@@ -376,7 +374,7 @@
 				now_pushing = FALSE
 
 				if(!move_failed)
-					return
+					return TURF_ENTER_ALREADY_MOVED
 
 		if(mob_size < L.mob_size) //Can't go around pushing things larger than us.
 			return
@@ -390,30 +388,41 @@
 			if(!COOLDOWN_CHECK(H,  xeno_push_delay))
 				return
 			COOLDOWN_START(H, xeno_push_delay, XENO_HUMAN_PUSHED_DELAY)
-		PushAM(A)
+		if(PushAM(A))
+			return TURF_ENTER_ALREADY_MOVED
 
 
 //Called when we want to push an atom/movable
 /mob/living/proc/PushAM(atom/movable/AM)
 	if(AM.anchored)
-		return TRUE
+		return
 	if(now_pushing)
-		return TRUE
-	if(moving_diagonally)// no pushing during diagonal moves.
-		return TRUE
+		return
+	if(moving_diagonally) // No pushing in diagonal move
+		return
 	if(!client && (mob_size < MOB_SIZE_SMALL))
 		return
 	now_pushing = TRUE
-	var/t = get_dir(src, AM)
+	var/dir_to_target = get_dir(src, AM)
+
+	// If there's no dir_to_target then the player is on the same turf as the atom they're trying to push.
+	// This can happen when a player is stood on the same turf as a directional window. All attempts to push
+	// the window will fail as get_dir will return 0 and the player will be unable to move the window when
+	// it should be pushable.
+	// In this scenario, we will use the facing direction of the /mob/living attempting to push the atom as
+	// a fallback.
+	if(!dir_to_target)
+		dir_to_target = dir
+
 	if(istype(AM, /obj/structure/window))
 		var/obj/structure/window/W = AM
 		if(W.is_full_window())
-			for(var/obj/structure/window/win in get_step(W,t))
+			for(var/obj/structure/window/win in get_step(W, dir_to_target))
 				now_pushing = FALSE
 				return
 	if(pulling == AM)
 		stop_pulling()
-	AM.Move(get_step(AM.loc, t), t, glide_size)
+	AM.Move(get_step(AM.loc, dir_to_target), dir_to_target, glide_size)
 	now_pushing = FALSE
 
 
@@ -496,14 +505,11 @@
 
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
-	var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	SA.remove_from_hud(src)
-	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
-	XI.remove_from_hud(src)
-	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
-	RE.remove_from_hud(src)
-	var/datum/atom_hud/xeno_debuff/xeno_debuff_visuals = GLOB.huds[DATA_HUD_XENO_DEBUFF]
-	xeno_debuff_visuals.remove_from_hud(src)
+	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_INFECTION].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_REAGENTS].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_DEBUFF].remove_from_hud(src)
+	GLOB.huds[DATA_HUD_XENO_HEART].remove_from_hud(src)
 
 	smokecloaked = TRUE
 
@@ -514,14 +520,11 @@
 
 	alpha = initial(alpha)
 
-	var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	SA.add_to_hud(src)
-	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
-	XI.add_to_hud(src)
-	var/datum/atom_hud/xeno_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
-	RE.add_to_hud(src)
-	var/datum/atom_hud/xeno_debuff/xeno_debuff_visuals = GLOB.huds[DATA_HUD_XENO_DEBUFF]
-	xeno_debuff_visuals.add_to_hud(src)
+	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_INFECTION].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_REAGENTS].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_DEBUFF].add_to_hud(src)
+	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(src)
 
 	smokecloaked = FALSE
 
@@ -667,15 +670,9 @@ below 100 is not dizzy
 	if (!tile)
 		return FALSE
 	var/turf/our_tile = get_turf(src)
-	//Squad Leaders and above have reduced cooldown and get a bigger arrow
-	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
-		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 2.5 SECONDS)
-		var/obj/visual = new /obj/effect/overlay/temp/point(our_tile, invisibility)
-		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
-	else
-		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-		var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, invisibility)
-		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
+	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
+	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0, invisibility)
+	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
 

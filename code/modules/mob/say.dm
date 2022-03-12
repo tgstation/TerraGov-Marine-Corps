@@ -1,37 +1,43 @@
+///what clients use to speak. when you type a message into the chat bar in say mode, this is the first thing that goes off serverside.
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
+	set instant = TRUE
 
 	if(!message)
 		return
 
-	say(message)
+	//queue this message because verbs are scheduled to process after SendMaps in the tick and speech is pretty expensive when it happens.
+	//by queuing this for next tick the mc can compensate for its cost instead of having speech delay the start of the next tick
+	SSspeech_controller.queue_say_for_mob(src, message, SPEECH_CONTROLLER_QUEUE_SAY_VERB)
 
 
 /mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
+	set instant = TRUE
 
 	if(!message)
 		return
 
 	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	emote("me", EMOTE_VISIBLE, message, TRUE)
+	SSspeech_controller.queue_say_for_mob(src, message, SPEECH_CONTROLLER_QUEUE_EMOTE_VERB)
 
 
 /mob/verb/whisper_verb(message as text)
 	set name = "Whisper"
 	set category = "IC"
+	set instant = TRUE
 
 	if(!message)
 		return
 
-	whisper(message)
+	SSspeech_controller.queue_say_for_mob(src, message, SPEECH_CONTROLLER_QUEUE_WHISPER_VERB)
 
 
 /mob/proc/whisper(message, datum/language/language)
-	say(message, language)
+	say(message, language = language)
 
 
 /mob/proc/say_dead(message)

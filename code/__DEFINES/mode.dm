@@ -23,7 +23,7 @@
 #define EVACUATION_STATUS_IN_PROGRESS 2
 #define EVACUATION_STATUS_COMPLETE 3
 
-#define EVACUATION_AUTOMATIC_DEPARTURE 3 MINUTES //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
+#define EVACUATION_AUTOMATIC_DEPARTURE 8 MINUTES //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
 #define EVACUATION_ESTIMATE_DEPARTURE ((evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1)
 #define EVACUATION_POD_LAUNCH_COOLDOWN 5 SECONDS
 
@@ -111,8 +111,8 @@
 #define AFK_TIMER 5 MINUTES
 #define TIME_BEFORE_TAKING_BODY 5 MINUTES
 
-#define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_death[M.key]) < SSticker.mode?.respawn_time)
-#define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
+#define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_role_death[M.key]) < SSticker.mode?.respawn_time)
+#define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_role_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))
 
 #define COUNT_IGNORE_HUMAN_SSD (1<<0)
 #define COUNT_IGNORE_XENO_SSD (1<<1)

@@ -121,17 +121,17 @@
 //-------------------------------------------------------
 //MAR-40 AK CLONE //AK47 and FN FAL together as one.
 
-/obj/item/ammo_magazine/rifle/ak47
-	name = "\improper AK magazine (7.62x39mm)"
+/obj/item/ammo_magazine/rifle/mpi_km
+	name = "\improper MPi-KM magazine (7.62x39mm)"
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms."
 	caliber = CALIBER_762X39
 	icon_state = "ak47"
-	default_ammo = /datum/ammo/bullet/rifle/ak47
+	default_ammo = /datum/ammo/bullet/rifle/mpi_km
 	max_rounds = 40
 	icon_state_mini = "mag_rifle_big"
 
-/obj/item/ammo_magazine/rifle/ak47/extended
-	name = "\improper AK extended magazine (7.62x39mm)"
+/obj/item/ammo_magazine/rifle/mpi_km/extended
+	name = "\improper MPi-KM extended magazine (7.62x39mm)"
 	desc = "A 7.62x39mm Kalashnikov magazine, this one carries more rounds than the average magazine."
 	icon_state = "ak47_ext"
 	bonus_overlay = "ak47_ex"
@@ -210,7 +210,7 @@
 	desc = "A 7.62x39mm magazine that fits in the Type 71 rifle."
 	caliber = CALIBER_762X39
 	icon_state = "type_71"
-	default_ammo = /datum/ammo/bullet/rifle/ak47
+	default_ammo = /datum/ammo/bullet/rifle/mpi_km
 	max_rounds = 42
 	icon_state_mini = "mag_rifle_big"
 
@@ -341,5 +341,5 @@
 	caliber = CALIBER_762X39
 	icon_state = "mkh98"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	max_rounds = 26
+	max_rounds = 30
 	icon_state_mini = "mag_rifle"

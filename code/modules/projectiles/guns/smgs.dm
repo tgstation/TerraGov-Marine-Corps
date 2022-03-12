@@ -8,7 +8,7 @@
 	load_method = MAGAZINE //codex
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY
-	movement_acc_penalty_mult = 3
+	movement_acc_penalty_mult = 2
 	wield_delay = 0.4 SECONDS
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -24,6 +24,7 @@
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
 	recoil_unwielded = 0.5
+	akimbo_additional_delay = 0.2
 
 //-------------------------------------------------------
 // T-19 Machinepistol. It fits here more.
@@ -64,7 +65,7 @@
 	recoil_unwielded = 0
 	scatter = 0
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 2 //Made to be better used one handed.
+	scatter_unwielded = 4 //Made to be better used one handed.
 	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 0
@@ -112,9 +113,9 @@
 
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.9
-	scatter = -2
+	scatter = 2
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 20
+	scatter_unwielded = 8
 	aim_slowdown = 0.25
 	burst_amount = 0
 
@@ -167,9 +168,9 @@
 
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
-	scatter = 20
+	scatter = 7
 	fire_delay = 0.2 SECONDS
-	scatter_unwielded = 30
+	scatter_unwielded = 15
 	aim_slowdown = 0.15
 	burst_amount = 3
 
@@ -201,7 +202,7 @@
 	accuracy_mult_unwielded = 0.95
 	damage_mult = 1.2
 	aim_slowdown = 0.4
-	scatter = 10
+	scatter = 4
 
 /obj/item/weapon/gun/smg/m25/elite/pmc
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -239,8 +240,8 @@
 	burst_amount = 4
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 1.25
-	scatter = 35
-	scatter_unwielded = 45
+	scatter = 12
+	scatter_unwielded = 24
 	damage_mult = 1.2
 
 //-------------------------------------------------------
@@ -264,7 +265,7 @@
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.75
-	scatter_unwielded = 40
+	scatter_unwielded = 20
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.3
 
@@ -320,8 +321,8 @@
 	burst_amount = 6
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.75
-	scatter = 20
-	scatter_unwielded = 25
+	scatter = 5
+	scatter_unwielded = 15
 	aim_slowdown = 0.3
 	wield_delay = 0.35 SECONDS
 
@@ -349,6 +350,6 @@
 	accuracy_mult_unwielded = 0.9
 	accuracy_mult = 1
 	scatter = 0
-	scatter_unwielded = 10
+	scatter_unwielded = 4
 	aim_slowdown = 0.15
 	wield_delay = 0.2 SECONDS

@@ -22,7 +22,7 @@
 
 
 /mob/living/carbon/human/gib_animation()
-	new /obj/effect/overlay/temp/gib_animation(loc, src, species ? species.gibbed_anim : "gibbed-h")
+	new /obj/effect/overlay/temp/gib_animation(loc, 0, src, species ? species.gibbed_anim : "gibbed-h")
 
 /mob/living/carbon/human/spawn_gibs()
 	if(species)
@@ -40,7 +40,7 @@
 
 
 /mob/living/carbon/human/dust_animation()
-	new /obj/effect/overlay/temp/dust_animation(loc, src, "dust-h")
+	new /obj/effect/overlay/temp/dust_animation(loc, 0, src, "dust-h")
 
 
 /mob/living/carbon/human/death(gibbing, deathmessage, silent, special_death_message)
@@ -69,6 +69,8 @@
 	LAZYREMOVE(GLOB.alive_human_list_faction[faction], src)
 	LAZYREMOVE(GLOB.humans_by_zlevel["[z]"], src)
 	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
+
+	hud_list[HEART_STATUS_HUD].icon_state = "beating_heart"
 
 	return ..()
 

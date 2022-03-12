@@ -110,12 +110,6 @@
 	if(isobj(mover)) //No grenades/bullets should cross this
 		return FALSE
 	if(isxeno(mover))
-		var/mob/living/carbon/xenomorph/moving_xeno = mover
-		for(var/tummy_resident in moving_xeno.stomach_contents)//Dead code, to be removed
-			if(ishuman(tummy_resident))
-				var/mob/living/carbon/human/H = tummy_resident
-				if(!HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
-					return FALSE
 		return TRUE
 	if(ishuman(mover) && !issynth(mover))
 		var/mob/living/carbon/human/H = mover
@@ -212,3 +206,10 @@
 	plane = LIGHTING_PLANE
 	layer = BACKGROUND_LAYER + LIGHTING_PRIMARY_LAYER
 	blend_mode = BLEND_ADD
+
+/obj/effect/overlay/temp/timestop_effect
+	icon = 'icons/effects/160x160.dmi'
+	icon_state = "time"
+	layer = FLY_LAYER
+	plane = GAME_PLANE
+	alpha = 70

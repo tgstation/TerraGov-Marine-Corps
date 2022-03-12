@@ -3,6 +3,7 @@
 /datum/ai_behavior/xeno
 	sidestep_prob = 25
 	identifier = IDENTIFIER_XENO
+	is_offered_on_creation = TRUE
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
 	///If the mob parent can heal itself and so should flee
@@ -10,12 +11,15 @@
 
 /datum/ai_behavior/xeno/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
 	..()
-	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, /datum/ai_behavior.proc/deal_with_obstacle)
-	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), .proc/refresh_abilities)
-	RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/check_for_critical_health)
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM //Killing time
 	src.can_heal = can_heal
+
+/datum/ai_behavior/xeno/late_initialize()
+	. = ..()
+	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, /datum/ai_behavior.proc/deal_with_obstacle)
+	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), .proc/refresh_abilities)
+	RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/check_for_critical_health)
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/xeno/proc/refresh_abilities()
@@ -91,10 +95,12 @@
 
 /datum/ai_behavior/xeno/deal_with_obstacle(datum/source, direction)
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
+	if(obstacle_turf.flags_atom & AI_BLOCKED)
+		return
 	for(var/thing in obstacle_turf.contents)
 		if(istype(thing, /obj/structure/window_frame))
-			mob_parent.loc = obstacle_turf
-			mob_parent.next_move_slowdown += 1 SECONDS
+			LAZYINCREMENT(mob_parent.do_actions, obstacle_turf)
+			addtimer(CALLBACK(src, .proc/climb_window_frame, obstacle_turf), 2 SECONDS)
 			return COMSIG_OBSTACLE_DEALT_WITH
 		if(istype(thing, /obj/structure/closet))
 			var/obj/structure/closet/closet = thing
@@ -139,6 +145,12 @@
 	if(can_heal && living_mob.resting)
 		SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
 		UnregisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN)
+
+/datum/ai_behavior/xeno/cleanup_signals()
+	. = ..()
+	UnregisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE)
+	UnregisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED))
+	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
 ///Signal handler to try to attack our target
 /datum/ai_behavior/xeno/proc/attack_target(datum/soure, atom/attacked)
@@ -223,5 +235,12 @@
 	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
 
+///Move the ai mob on top of the window_frame
+/datum/ai_behavior/xeno/proc/climb_window_frame(turf/window_turf)
+	mob_parent.loc = window_turf
+	mob_parent.last_move_time = world.time
+	LAZYDECREMENT(mob_parent.do_actions, window_turf)
+
 /datum/ai_behavior/xeno/ranged
 	distance_to_maintain = 5
+	minimum_health = 0.3

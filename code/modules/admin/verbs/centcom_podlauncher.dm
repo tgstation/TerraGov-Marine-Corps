@@ -179,7 +179,7 @@
 			var/list/expNames = list("Devastation", "Heavy Damage", "Light Damage", "Flame") //Explosions have a range of different types of damage
 			var/list/boomInput = list()
 			for (var/i=1 to expNames.len) //Gather input from the user for the value of each type of damage
-				boomInput.Add(input("[expNames[i]] Range", "Enter the [expNames[i]] range of the explosion. WARNING: This ignores the bomb cap!", 0) as null|num)
+				boomInput.Add(usr, tgui_input_number("[expNames[i]] Range", "Enter the [expNames[i]] range of the explosion. WARNING: This ignores the bomb cap!", 0))
 				if (isnull(boomInput[i]))
 					return
 				if (!isnum(boomInput[i])) //If the user doesn't input a number, set that specific explosion value to zero
@@ -201,7 +201,7 @@
 				damageChoice = 0
 				temp_pod.damage = 0
 				return
-			var/damageInput = input("How much damage to deal", "Enter the amount of brute damage dealt by getting hit", 0) as null|num
+			var/damageInput = tgui_input_number(usr, "How much damage to deal", "Enter the amount of brute damage dealt by getting hit", 0)
 			if (isnull(damageInput))
 				return
 			if (!isnum(damageInput)) //Sanitize the input for damage to deal.s
@@ -225,10 +225,10 @@
 				temp_pod.adminNamed = FALSE
 				temp_pod.setStyle(temp_pod.style) //This resets the name of the pod based on it's current style (see supplypod/setStyle() proc)
 				return
-			var/nameInput= input("Custom name", "Enter a custom name", GLOB.pod_styles[temp_pod.style][POD_NAME]) as null|text //Gather input for name and desc
+			var/nameInput= tgui_input_text(usr, "Custom name", "Enter a custom name", GLOB.pod_styles[temp_pod.style][POD_NAME], encode = FALSE) //Gather input for name and desc
 			if (isnull(nameInput))
 				return
-			var/descInput = input("Custom description", "Enter a custom desc", GLOB.pod_styles[temp_pod.style][POD_DESC]) as null|text //The POD_STYLES is used to get the name, desc, or icon state based on the pod's style
+			var/descInput = tgui_input_text(usr, "Custom description", "Enter a custom desc", GLOB.pod_styles[temp_pod.style][POD_DESC], encode = FALSE) //The POD_STYLES is used to get the name, desc, or icon state based on the pod's style
 			if (isnull(descInput))
 				return
 			temp_pod.name = nameInput
@@ -285,7 +285,7 @@
 			if (temp_pod.fallDuration != initial(temp_pod.fallDuration)) //If the landing delay has already been changed when we push the "change value" button, then set it to default
 				temp_pod.fallDuration = initial(temp_pod.fallDuration)
 				return
-			var/timeInput = input("Enter the duration of the pod's falling animation, in seconds", "Delay Time",  initial(temp_pod.fallDuration) * 0.1) as null|num
+			var/timeInput = tgui_input_number(usr, "Enter the duration of the pod's falling animation, in seconds", "Delay Time",  initial(temp_pod.fallDuration) * 0.1)
 			if (isnull(timeInput))
 				return
 			if (!isnum(timeInput)) //Sanitize input, if it doesnt check out, error and set to default
@@ -297,7 +297,7 @@
 			if (temp_pod.landingDelay != initial(temp_pod.landingDelay)) //If the landing delay has already been changed when we push the "change value" button, then set it to default
 				temp_pod.landingDelay = initial(temp_pod.landingDelay)
 				return
-			var/timeInput = input("Enter the time it takes for the pod to land, in seconds", "Delay Time", initial(temp_pod.landingDelay) * 0.1) as null|num
+			var/timeInput = tgui_input_number(usr, "Enter the time it takes for the pod to land, in seconds", "Delay Time", initial(temp_pod.landingDelay) * 0.1)
 			if (isnull(timeInput))
 				return
 			if (!isnum(timeInput)) //Sanitize input, if it doesnt check out, error and set to default
@@ -309,7 +309,7 @@
 			if (temp_pod.openingDelay != initial(temp_pod.openingDelay)) //If the opening delay has already been changed when we push the "change value" button, then set it to default
 				temp_pod.openingDelay = initial(temp_pod.openingDelay)
 				return
-			var/timeInput = input("Enter the time it takes for the pod to open after landing, in seconds", "Delay Time", initial(temp_pod.openingDelay) * 0.1) as null|num
+			var/timeInput = tgui_input_number(usr, "Enter the time it takes for the pod to open after landing, in seconds", "Delay Time", initial(temp_pod.openingDelay) * 0.1)
 			if (isnull(timeInput))
 				return
 			if (!isnum(timeInput)) //Sanitize input
@@ -321,7 +321,7 @@
 			if (temp_pod.departureDelay != initial(temp_pod.departureDelay)) //If the departure delay has already been changed when we push the "change value" button, then set it to default
 				temp_pod.departureDelay = initial(temp_pod.departureDelay)
 				return
-			var/timeInput = input("Enter the time it takes for the pod to leave after opening, in seconds", "Delay Time", initial(temp_pod.departureDelay) * 0.1) as null|num
+			var/timeInput = tgui_input_number(usr, "Enter the time it takes for the pod to leave after opening, in seconds", "Delay Time", initial(temp_pod.departureDelay) * 0.1)
 			if (isnull(timeInput))
 				return
 			if (!isnum(timeInput))
@@ -339,7 +339,7 @@
 			var/soundInput = input(holder, "Please pick a sound file to play when the pod lands! NOTICE: Take a note of exactly how long the sound is.", "Pick a Sound File") as null|sound
 			if (isnull(soundInput))
 				return
-			var/timeInput =  input(holder, "What is the exact length of the sound file, in seconds. This number will be used to line the sound up so that it finishes right as the pod lands!", "Pick a Sound File", 0.3) as null|num
+			var/timeInput =  tgui_input_number(holder, "What is the exact length of the sound file, in seconds. This number will be used to line the sound up so that it finishes right as the pod lands!", "Pick a Sound File", 0.3)
 			if (isnull(timeInput))
 				return
 			if (!isnum(timeInput))

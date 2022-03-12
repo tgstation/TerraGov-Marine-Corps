@@ -184,3 +184,158 @@
   - bugfix: Fix hivemind space freeze bug
   novaepee:
   - bugfix: code
+2021-12-16:
+  BraveMole:
+  - bugfix: Fix carrier timing exploit
+  - bugfix: Fix some untangle razor wire bug
+  - qol: Prevent bad name by randomising the name on species change
+  - bugfix: Fix tarp getting spotted by minions
+  - bugfix: Fix storage nested in storage. Aka, pills and synrigue case in pouches
+      or things like that
+  - bugfix: Fix marine knife boot not updating sprite
+  - bugfix: Deevo from queen works as intended
+  - bugfix: Wraith can no longer regress while shifted
+  novaepee:
+  - imageadd: New carrier sprites!
+2021-12-17:
+  BraveMole:
+  - rscdel: Remove middle click swap
+  - balance: Tool vendor is now a shared vendor with unlimited supplies
+  - balance: Tool vendor no longer has contraband, the huge tank welder is moved to
+      engie points
+  - expansion: Tool vendor is now linked with loadout system
+  - qol: Tool pouches contains a welding tool rather than a multi-tool
+  - rscadd: Bring back grenade chain explosion
+  - refactor: Rework combat floodlights into something simpler
+  - bugfix: Properly rebrand ak47
+  - qol: You can point even in darkness (if you can see it, like xenos do). Cooldown
+      is 1 second for everyone
+  KrabSpider:
+  - bugfix: Repeater now has a proper left in-hand sprite...stray pixels are also
+      fixed
+  Walarks:
+  - expansion: adds a new xeno caste
+  - expansion: gives all xenos 150 max overheal to be used for gorger ability
+  - bugfix: pre-spawned humans now have the non-defibbable trait
+  - bugfix: attack animation no longer cancels other animations on same object as
+      long as both have the ANIMATION_PARALLEL flag
+  chesse20:
+  - rscdel: You can no longer vend specific flavors of protein bars
+  - bugfix: Stopped filling your hands with fake protein bars
+  - bugfix: nutriment has taste as intended
+  - qol: Protein bars now vend into your hands as they should
+  ivanmixo:
+  - balance: The resin silo can no longer be quickly cut apart by a resin silo
+  - bugfix: The silo being destroyed should trigger the silo collapse timer every
+      time now
+2021-12-18:
+  Arctrooper8:
+  - rscadd: Changes the flower pin to weight class tiny
+  - rscadd: Allows the flower pin to be placed inside the helmet and be added to helmet
+      sprite
+  - refactor: removes helmet_garb.dmi and replaces usage of it with modular_helmet_storage.dmi
+2021-12-19:
+  BraveMole:
+  - bugfix: Camera laze is no longer visible
+  - bugfix: Fix searching in camera input list
+  - bugfix: Fix automatic miner upgrade removal
+  KrabSpider:
+  - bugfix: Repeater left in-hand is no longer reversed. Right hand looks less ugly.
+  RipGrayson:
+  - bugfix: Fixed sinks being inside walls when oriented north.
+  - imageadd: Added some directionals for wall mounted mirrors.
+2021-12-20:
+  Kait:
+  - expansion: 'Added a recipe for QC+, making it craftable. The recipe for 1 unit
+      is: 2 parts Lemo, 2 parts Iron, 2 parts Quick-Clot.'
+  Pariah919:
+  - balance: masterkey has a higher damage multplier malus, 0.45 from 0.7.
+  Three333Digit:
+  - qol: FOB drone now has meson vision
+  - qol: FOB drone now has a bigger light radius
+  Waselon:
+  - rscadd: Added Vali spear
+2021-12-21:
+  BraveMole:
+  - expansion: Can save boot content in loadout
+  - bugfix: Fix acid armor value for jaeger heavy
+  - rscdel: Remove focus chat option
+  Verlurk:
+  - balance: Razorwire grenades and canisters can no longer have their contents removed.
+  ivanmixo:
+  - bugfix: Burn overlays update when you patch yourself with cable
+  - bugfix: Fixes patching burnt wires with cable giving the wrong message
+  psykzz:
+  - code_imp: Removed xeno specific throw card.
+2021-12-23:
+  DeltaFire15:
+  - bugfix: Boiler glob-related action icons should display correctly again.
+  KrabSpider:
+  - balance: Repeater max (status effect) range decreased to 3 from 4.
+  Mrrpip:
+  - rscadd: Added Medical Nanites to the common marine vendors, son!
+  novaepee:
+  - qol: Synthetic spawns with high-capacity industrial blowtorch
+  - balance: Add in T-25 ammo box for smartgunners to buy in their vendor.
+2021-12-24:
+  Waselon:
+  - bugfix: adjusted flame cone code to work with the spear
+  - code_imp: moved harvester code into component
+  - code_imp: made needed changes to blade and spear
+2021-12-25:
+  BraveMole:
+  - qol: Req supply back reorganised
+  - qol: Added a search function to req
+  - rscdel: Remove attachment from req
+2021-12-26:
+  BraveMole:
+  - rscadd: Valhalla(Tm) resort location. Use the join valhalla verb in OOC when you
+      are dead to join
+  - rscadd: Throw looks better (no more stuttered direction change)
+  Canohaaaaaaa:
+  - bugfix: fixed warrior punch doing more damage than it's suposed to
+  KrabSpider:
+  - balance: Increases bolt action rifle slowdown to 1.5 from 1 and decreases max
+      range to 17 (from the meme that is 40 tiles)
+  Pariah919:
+  - balance: MKH98 changes- 0.2 fire delay from 0.25, 30 round magazines, 0.5 wield
+      delay from 0.6, 0.35 aim slowdown from 0.45.
+  RipGrayson:
+  - bugfix: Fixed a bug preventing CAS without flares on LV624.
+  TheLeopold:
+  - balance: Surgical apron can hold one medical item in suit slot.
+  Verlurk:
+  - rscdel: Removed Tyr helmet attachment from Mark 2 crate, as it's free in surplus
+      vendors.
+  novaepee:
+  - bugfix: Change from 5 SG points to 6 SG points to buy ammo boxes; I have integrity
+  - qol: You can actually see progression of a wounded Wraith
+  - imageadd: ibit
+  - imageadd: New sprites for T-25 ammo box
+  - imagedel: Goodbye, cube
+  - qol: Researcher has medical radio to talk in medical.
+  - bugfix: Researcher is under support now instead of flavour.
+  - rscadd: Walten Clements, medical's bull terrier, is here to help MDs, researchers,
+      and CMO on diagnosing marines in their trauma.
+  - imageadd: New cryobag sprites! Taken from CM.
+  - qol: A little animation glow when someone is inside cryobag.
+2021-12-27:
+  Pill-U:
+  - qol: add tool vendors to canterbury and bigbury
+  novaepee:
+  - rscadd: Give requisition overwatch!
+  - qol: RO doesn't have to run to CIC anymore
+2021-12-28:
+  Pill-U:
+  - balance: Change mini pepperball magazine size from 3 to 2
+  Verlurk:
+  - bugfix: Alamo console spelling error rectified.
+  novaepee:
+  - qol: infinite fire extinguishers are now in vendors! Find it in the Specialized
+      tab under flamethrowers. I wonder why I put infinite fire extinguishers underneath
+      flamethrowers.
+2021-12-29:
+  SplinterGP:
+  - code_imp: changes alot of how line_of_sight() works, making line of sights checks
+      be an actual line, instead of some test that sometimes blocked some places you
+      could see, still can happen but less

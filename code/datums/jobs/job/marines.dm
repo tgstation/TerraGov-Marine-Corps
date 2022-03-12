@@ -186,7 +186,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_pistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/lightreplacer, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/circuitboard/general, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
 /datum/job/terragov/squad/engineer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
@@ -510,7 +510,6 @@ You are also in charge of communicating with command and letting them know about
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/beacon/supply_beacon, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/beacon/supply_beacon, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/beacon/orbital_bombardment_beacon, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)

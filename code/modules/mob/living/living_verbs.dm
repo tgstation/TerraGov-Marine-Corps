@@ -39,10 +39,12 @@
 		ADD_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
 		if(!silent)
 			to_chat(src, span_notice("You are now resting."))
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_REST)
 	else
 		REMOVE_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
 		if(!silent)
 			to_chat(src, span_notice("You get up."))
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_UNREST)
 	update_resting()
 
 
@@ -66,14 +68,11 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 	ghostize(FALSE)
 
-/mob/living/verb/point_to(atom/A in view(client.view, loc))
+/mob/living/verb/point_to(atom/A)
 	set name = "Point To"
 	set category = "Object"
 
 	if(!isturf(loc))
-		return FALSE
-
-	if(!(A in view(client.view, loc))) //Target is no longer visible to us.
 		return FALSE
 
 	if(!A.mouse_opacity) //Can't click it? can't point at it.

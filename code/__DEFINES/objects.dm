@@ -102,7 +102,6 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define SENTRY_ALERT_HOSTILE 2
 #define SENTRY_ALERT_FALLEN 3
 #define SENTRY_ALERT_DAMAGE 4
-#define SENTRY_ALERT_BATTERY 5
 #define SENTRY_ALERT_DESTROYED 6
 #define SENTRY_ALERT_DELAY 20 SECONDS
 #define SENTRY_DAMAGE_ALERT_DELAY 4 SECONDS
@@ -242,7 +241,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 //Xeno turrets define
 #define TURRET_SCAN_RANGE 25
-#define TURRET_SCAN_FREQUENCY 16 SECONDS
+#define TURRET_SCAN_FREQUENCY 10 SECONDS
 #define TURRET_HEALTH_REGEN 8
 
 //Unmanned vehicle define

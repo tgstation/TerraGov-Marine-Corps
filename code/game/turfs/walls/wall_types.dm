@@ -29,9 +29,6 @@
 		icon_state = "[walltype][junction]"
 	junctiontype = junction
 
-/turf/closed/wall/mainship/nosmooth //for SD and other special walls
-	tiles_with = list(/turf/closed/wall,/obj/structure/window/framed,/obj/structure/window_frame,/obj/structure/girder)
-
 /turf/closed/wall/mainship/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
@@ -43,16 +40,7 @@
 	name = "reinforced hull"
 
 /turf/closed/wall/mainship/outer/canterbury
-	tiles_with = list(
-		/obj/structure/window/framed/mainship/white/canterbury,
-		/obj/structure/window/framed/mainship/hull/canterbury,
-		/obj/structure/window/framed/mainship/canterbury,
-		/turf/closed/wall/mainship/white/canterbury,
-		/turf/closed/wall/mainship/outer/canterbury,
-		/obj/machinery/door/poddoor/shutters/transit,
-		/obj/machinery/door/airlock/mainship/marine/canterbury,
-		/obj/machinery/door/airlock/mainship/command/canterbury,
-	)
+	smoothing_groups = SMOOTH_CANTERBURY
 
 /turf/closed/wall/mainship/white
 	walltype = "wwall"
@@ -89,13 +77,15 @@
 	junctiontype = junction
 
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
+	smoothing_groups = SMOOTH_CANTERBURY
 
 /turf/closed/wall/mainship/research/can_be_dissolved()
 	return FALSE
 
 /turf/closed/wall/mainship/research/containment/wall
 	name = "cell wall"
-	tiles_with = null
+	smoothing_behavior = NO_SMOOTHING
+	smoothing_groups = NONE
 	walltype = null
 
 /turf/closed/wall/mainship/research/containment/wall/corner
@@ -194,6 +184,7 @@
 	desc = "A huge chunk of metal used to separate rooms on spaceships from the cold void of space."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "sulaco0"
+	color = "#616161"
 
 	max_integrity = 3000
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
@@ -242,6 +233,7 @@
 	icon_state = "riveted"
 	opacity = TRUE
 	resistance_flags = RESIST_ALL
+	smoothing_behavior = NO_SMOOTHING
 
 /turf/closed/wall/indestructible/ex_act(severity)
 	return
@@ -250,6 +242,9 @@
 	return
 
 /turf/closed/wall/indestructible/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter)) //needed for user feedback, if not included the user will not receive a message when trying plasma cutter wall/indestructible turfs
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
+		to_chat(user, span_warning("[P] can't cut through this!"))
 	return
 
 /turf/closed/wall/indestructible/can_be_dissolved()
@@ -279,7 +274,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(0,15)]"
+		icon_state = "title_painting[rand(0,17)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
@@ -293,7 +288,6 @@
 	var/mineral
 	var/last_event = 0
 	var/active = null
-	tiles_with = list(/turf/closed/wall/mineral)
 
 /turf/closed/wall/mineral/gold
 	name = "gold wall"
@@ -349,8 +343,12 @@
 /turf/closed/wall/cult
 	name = "wall"
 	desc = "The patterns engraved on the wall seem to shift as you try to focus on them. You feel sick"
-	icon_state = "cult0"
-	walltype = "cult"
+	icon = 'icons/turf/walls/cult.dmi'
+	icon_state = "cult_wall-0-0-0-0"
+	walltype = "cult_wall"
+	color = "#88574b"
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
 /turf/closed/wall/clock
 	name = "brass wall"
@@ -359,6 +357,7 @@
 
 /turf/closed/wall/vault
 	icon_state = "rockvault"
+	smoothing_behavior = NO_SMOOTHING
 
 /turf/closed/wall/vault/New(location,type)
 	..()
