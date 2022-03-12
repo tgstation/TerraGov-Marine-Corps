@@ -101,3 +101,26 @@
       other for marines to use and a dedicated chem lab for researcher.
   - qol: Move bluespace beaker to spawn on top of chem master.
   - balance: All shipside maps have three bluespace beakers.
+2022-03-12:
+  Arctrooper8:
+  - bugfix: makes the essentials kit edits actually work now, oops.
+  Lumipharon:
+  - bugfix: M42C and SVD have their correct pen and sunder values again
+  Redstonize:
+  - balance: Light marksman bullet gets 5 AP, 2.5 damage and 0.25 sunder.
+  - balance: The T-64 Battle rifle gets slightly better stats in autoburst and burst,
+      can no longer use UBF, plasma pistol and masterkey.
+  RipGrayson:
+  - rscadd: Added about 110 new modular mapping inserts to Big Red.
+  - expansion: Big Red is optimized to use modular mapping almost everywhere.
+  - bugfix: Fixed a bugged icon state when editing certain areas on Big Red.
+  novaepee:
+  - rscadd: Public access to ASRS conveyor belt BUT private access to the rest of
+      req
+  - rscdel: Walls that surround ASRS conveyor so that marines can enter ASRS conveyor
+      without the need of a door / shutters
+  - rscadd: more dedicated shutters for req people to control traffic into req
+  - qol: add crates next to operational vendor so that req people can CLICK FAST and
+      move stuff from operational vendor to Alamo or tadpole op
+  - qol: make supply drop closer to ARSR conveyor belt
+  - expansion: PoS and Sulaco for more room to build Reqtorio
