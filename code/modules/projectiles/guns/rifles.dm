@@ -1403,7 +1403,7 @@
 	placed_overlay_iconstate = "tx29gl"
 	max_shells = 5 //codex
 	max_chamber_items = 1
-	fire_delay = 1 SECONDS
+	fire_delay = 1.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_20MM //codex
@@ -1429,7 +1429,7 @@
 
 /obj/item/weapon/gun/rifle/tx29
 	name = "\improper TX-29 assault rifle"
-	desc = "The TX-29 is a dual barrel air-burst support weapon. It features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and a lower assault rifle with somewhat reduced capacity. Somewhat cumbersome to use due to its size and weight. Uses 10x24mm caseless ammunition."
+	desc = "Officially designated an Objective Individual Combat Weapon, The TX-29 features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight."
 	icon_state = "tx29"
 	item_state = "tx29"
 	fire_sound = "gun_t12"
@@ -1479,4 +1479,4 @@
 	scatter = 2
 	scatter_unwielded = 15
 	burst_scatter_mult = 2
-	aim_slowdown = 0.6
+	aim_slowdown = 1
