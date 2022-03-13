@@ -560,5 +560,5 @@
 
 /obj/structure/sign/prop4
 	name = "TerraGov: United for Humanity"
-	desc = "A poster depicting TerraGov's logo and motto, reminding marines of who's looking out for humankind against the Xenomorph menace. Semper Fi."
+	desc = "A poster depicting TerraGov's logo and motto, reminding marines of who's looking out for humankind against the Xenomorph menace."
 	icon_state = "prop4"
