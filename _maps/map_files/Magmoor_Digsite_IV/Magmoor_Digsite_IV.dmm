@@ -12005,7 +12005,7 @@
 /turf/open/floor/marking/delivery,
 /area/magmoor/mining/refinery)
 "iDv" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	dir = 2;
 	name = "Security Department"
 	},
@@ -15146,7 +15146,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "kPA" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	dir = 2;
 	name = "Security Department"
 	},

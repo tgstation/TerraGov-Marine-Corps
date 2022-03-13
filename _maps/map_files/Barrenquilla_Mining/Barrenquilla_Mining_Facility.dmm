@@ -3211,7 +3211,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/barren/medical/research)
 "sg" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	dir = 2
 	},
 /turf/open/floor/tile/red/redtaupe,
@@ -3368,7 +3368,7 @@
 /area/barren/cave/lz2)
 "ta" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},

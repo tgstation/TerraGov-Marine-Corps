@@ -301,12 +301,15 @@
 	req_access = list(ACCESS_NT_CORPORATE)
 
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor
-	name = "\improper Security Glass Airlock"
-	icon = 'icons/obj/doors/mainship/2x1secdoor_glass.dmi'
+	name = "\improper Security Airlock"
+	icon = 'icons/obj/doors/mainship/2x1secdoor.dmi'
 	opacity = FALSE
 	glass = TRUE
 	req_access = list(ACCESS_MARINE_BRIG)
 
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass
+	name = "\improper Security Glass Airlock"
+	icon = 'icons/obj/doors/mainship/2x1secdoor_glass.dmi'
 
 /obj/machinery/door/airlock/multi_tile/mainship/handle_multidoor()
 	if(!(width > 1)) return //Bubblewrap
