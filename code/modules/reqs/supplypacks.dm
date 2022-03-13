@@ -239,22 +239,34 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/energy/lasgun/tesla)
 	cost = 60
 
-/datum/supply_packs/weapons/tx29
-	name = "TX-29 Objective Individual Combat Weapon"
-	contains = list(/obj/item/weapon/gun/rifle/tx29)
+/datum/supply_packs/weapons/tx54
+	name = "TX-54 semiautomatic airburst grenade launcher"
+	contains = list(/obj/item/weapon/gun/rifle/tx54)
+	cost = 30
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/tx55
+	name = "TX-55 Objective Individual Combat Weapon"
+	contains = list(/obj/item/weapon/gun/rifle/tx55)
 	cost = 40
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/tx29_airburst
-	name = "TX-29 airburst grenade magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx29launcher)
+/datum/supply_packs/weapons/tx54_airburst
+	name = "A 20mm magazine loaded with airburst grenades. For use with the TX-54 or TX-55."
+	contains = list(/obj/item/ammo_magazine/rifle/tx54)
 	cost = 5
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/tx29_incendiary
-	name = "TX-29 incendiary grenade magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/tx29launcher/incendiary)
-	cost = 7
+/datum/supply_packs/weapons/tx54_incendiary
+	name = "A 20mm magazine loaded with incendiary grenades. For use with the TX-54 or TX-55."
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/incendiary)
+	cost = 5
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/tx54_he
+	name = "A 20mm magazine loaded with HE grenades. For use with the TX-54 or TX-55."
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/he)
+	cost = 8
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/recoillesskit

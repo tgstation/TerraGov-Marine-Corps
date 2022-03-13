@@ -1168,7 +1168,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
 
-/datum/ammo/tx29launcher
+/datum/ammo/tx54
 	name = "20mm airburst grenade"
 	icon_state = "grenade"
 	hud_state = "grenade_airburst"
@@ -1188,40 +1188,40 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 0
 	shrapnel_chance = 0
 	bullet_color = LIGHT_COLOR_FIRE
-	bonus_projectiles_type = /datum/ammo/bullet/tx29airburst_spread
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread
 	bonus_projectiles_scatter = 30
 
-/datum/ammo/tx29launcher/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
 	var/main_proj_angle = Get_Angle(proj.firer, M)
 	bonus_projectiles_amount = 6
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
 	bonus_projectiles_amount = 0
 
-/datum/ammo/tx29launcher/on_hit_obj(obj/O, obj/projectile/proj)
+/datum/ammo/tx54/on_hit_obj(obj/O, obj/projectile/proj)
 	var/main_proj_angle = Get_Angle(proj.firer, O)
 	bonus_projectiles_amount = 6
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
 	bonus_projectiles_amount = 0
 
-/datum/ammo/tx29launcher/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/tx54/on_hit_turf(turf/T, obj/projectile/proj)
 	var/main_proj_angle = Get_Angle(proj.firer, T)
 	bonus_projectiles_amount = 6
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
 	bonus_projectiles_amount = 0
 
-/datum/ammo/tx29launcher/do_at_max_range(obj/projectile/proj)
+/datum/ammo/tx54/do_at_max_range(obj/projectile/proj)
 	var/main_proj_angle = Get_Angle(proj.firer, get_turf(proj))
 	bonus_projectiles_amount = 6
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
 	bonus_projectiles_amount = 0
 
-/datum/ammo/tx29launcher/incendiary
+/datum/ammo/tx54/incendiary
 	name = "20mm incendiary grenade"
 	hud_state = "grenade_fire"
 	handful_icon_state = "20mm_incendiary"
-	bonus_projectiles_type = /datum/ammo/bullet/tx29airburst_spread/incendiary
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/incendiary
 
-/datum/ammo/bullet/tx29airburst_spread
+/datum/ammo/bullet/tx54_spread
 	name = "flechette"
 	icon_state = "flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
@@ -1234,10 +1234,10 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 2.5
 	on_pierce_multiplier = 0.9
 
-/datum/ammo/tx29airburst_spread/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, max_range = 3, stagger = 0.1, slowdown = 0.1, shake = 0)
 
-/datum/ammo/bullet/tx29airburst_spread/incendiary
+/datum/ammo/bullet/tx54_spread/incendiary
 	name = "incendiary flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 15
@@ -1245,33 +1245,33 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 10
 	sundering = 1.5
 
-/datum/ammo/bullet/tx29airburst_spread/incendiary/drop_flame(turf/T)
+/datum/ammo/bullet/tx54_spread/incendiary/drop_flame(turf/T)
 	if(!istype(T))
 		return
 	T.ignite(5, 10)
 
-/datum/ammo/bullet/tx29airburst_spread/incendiary/on_leave_turf(turf/T, atom/firer)
+/datum/ammo/bullet/tx54_spread/incendiary/on_leave_turf(turf/T, atom/firer)
 	drop_flame(T)
 
-/datum/ammo/tx29launcher/he
+/datum/ammo/tx54/he
 	name = "20mm HE grenade"
 	hud_state = "grenade_he"
 	handful_icon_state = "20mm_he"
 	bonus_projectiles_type = null
 
-/datum/ammo/tx29launcher/he/drop_nade(turf/T)
+/datum/ammo/tx54/he/drop_nade(turf/T)
 	explosion(T, 0, 0, 2, 2)
 
-/datum/ammo/tx29launcher/he/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/tx54/he/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
 
-/datum/ammo/tx29launcher/he/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/tx54/he/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(O))
 
-/datum/ammo/tx29launcher/he/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/tx54/he/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T)
 
-/datum/ammo/tx29launcher/he/do_at_max_range(obj/projectile/P)
+/datum/ammo/tx54/he/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P))
 
 /*

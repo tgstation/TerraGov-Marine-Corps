@@ -345,36 +345,36 @@
 	icon_state_mini = "mag_rifle"
 
 //-------------------------------------------------------
-//TX29
+//TX-54 and TX-55
 
-/obj/item/ammo_magazine/rifle/tx29
-	name = "\improper TX-29 magazine (10x24mm)"
+/obj/item/ammo_magazine/rifle/tx55
+	name = "\improper TX-55 magazine (10x24mm)"
 	desc = "A small capacity 10mm rifle magazine. Differs from a T-18 magazine enough to bypass relevant patents."
 	caliber = CALIBER_10X24_CASELESS
-	icon_state = "tx29"
+	icon_state = "tx55"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 36
 	icon_state_mini = "mag_rifle_big"
 
-/obj/item/ammo_magazine/rifle/tx29launcher
-	name = "\improper TX-29 20mm airburst grenade magazine"
-	desc = "A 20mm magazine loaded with airburst grenades. For use with the TX-29."
+/obj/item/ammo_magazine/rifle/tx54
+	name = "\improper 20mm airburst grenade magazine"
+	desc = "A 20mm magazine loaded with airburst grenades. For use with the TX-54 or TX-55."
 	caliber = CALIBER_20MM
-	icon_state = "tx29launcher_airburst"
+	icon_state = "tx54_airburst"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/tx29launcher
+	default_ammo = /datum/ammo/tx54
 	max_rounds = 5
 	icon_state_mini = "mag_sniper"
 
-/obj/item/ammo_magazine/rifle/tx29launcher/he
-	name = "\improper TX-29 20mm HE grenade magazine"
-	desc = "A 20mm magazine loaded with HE grenades. For use with the TX-29."
-	default_ammo = /datum/ammo/tx29launcher/he
-	icon_state = "tx29launcher_he"
+/obj/item/ammo_magazine/rifle/tx54/he
+	name = "\improper 20mm HE grenade magazine"
+	desc = "A 20mm magazine loaded with HE grenades. For use with the TX-54 or TX-55."
+	default_ammo = /datum/ammo/tx54/he
+	icon_state = "tx54_he"
 
-/obj/item/ammo_magazine/rifle/tx29launcher/incendiary
-	name = "\improper TX-29 20mm incendiary grenade magazine"
-	desc = "A 20mm magazine loaded with incendiary grenades. For use with the TX-29."
-	default_ammo = /datum/ammo/tx29launcher/incendiary
-	icon_state = "tx29launcher_incendiary"
+/obj/item/ammo_magazine/rifle/tx54/incendiary
+	name = "\improper 20mm incendiary grenade magazine"
+	desc = "A 20mm magazine loaded with incendiary grenades. For use with the TX-54 or TX-55."
+	default_ammo = /datum/ammo/tx54/incendiary
+	icon_state = "tx54_incendiary"

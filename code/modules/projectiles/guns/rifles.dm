@@ -1393,59 +1393,84 @@
 	wield_delay = 0.5 SECONDS
 
 //-------------------------------------------------------
-// TX29 20mm grenade launcher
-
-/obj/item/weapon/gun/rifle/tx29launcher
-	name = "TX29 20mm grenade launcher"
-	desc = "A weapon-mounted, reloadable, five-shot grenade launcher."
-	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "tx29gl"
-	placed_overlay_iconstate = "tx29gl"
+// TX-54 grenade launcher
+/obj/item/weapon/gun/rifle/tx54
+	name = "TX-54 grenade launcher"
+	desc = "A magazine fed, semiautomatic grenade launcher designed to shoot airbursting smart grenades. Does not have IFF."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "tx54"
+	item_state = "tx54" ///todo
 	max_shells = 5 //codex
 	max_chamber_items = 1
 	fire_delay = 1.2 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_20MM //codex
-	attachable_allowed = list()
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
 
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	default_ammo_type = null
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/rifle/tx29launcher,
-		/obj/item/ammo_magazine/rifle/tx29launcher/he,
-		/obj/item/ammo_magazine/rifle/tx29launcher/incendiary,
+		/obj/item/ammo_magazine/rifle/tx54,
+		/obj/item/ammo_magazine/rifle/tx54/he,
+		/obj/item/ammo_magazine/rifle/tx54/incendiary,
 	)
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 20, "under_x" = 28, "under_y" = 13, "stock_x" = -1, "stock_y" = 17)
+	aim_slowdown = 0.8
+	wield_delay = 0.8 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.15
+
+//-------------------------------------------------------
+// TX55 built in grenade launcher
+
+/obj/item/weapon/gun/rifle/tx54/mini
+	name = "TX55 20mm grenade launcher"
+	desc = "A weapon-mounted, reloadable, five-shot grenade launcher."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "tx55gl"
+	placed_overlay_iconstate = "tx55gl"
+	attachable_allowed = list()
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	flags_attach_features = NONE
 	slot = ATTACHMENT_SLOT_STOCK
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 
 //-------------------------------------------------------
-// TX29 rifle
+// TX55 rifle
 
-/obj/item/weapon/gun/rifle/tx29
-	name = "\improper TX-29 assault rifle"
-	desc = "Officially designated an Objective Individual Combat Weapon, The TX-29 features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight."
-	icon_state = "tx29"
-	item_state = "tx29"
+/obj/item/weapon/gun/rifle/tx55
+	name = "\improper TX-55 assault rifle"
+	desc = "Officially designated an Objective Individual Combat Weapon, The TX-55 features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight."
+	icon_state = "tx55"
+	item_state = "tx55"
 	fire_sound = "gun_t12"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
 	caliber = CALIBER_10X24_CASELESS //codex
 	max_shells = 36 //codex
-	wield_delay = 0.8 SECONDS
-	default_ammo_type = /obj/item/ammo_magazine/rifle/tx29
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx29)
+	wield_delay = 1 SECONDS
+	default_ammo_type = /obj/item/ammo_magazine/rifle/tx55
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx55)
 	attachable_allowed = list(
-		/obj/item/weapon/gun/rifle/tx29launcher,
+		/obj/item/weapon/gun/rifle/tx54/mini,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
@@ -1465,7 +1490,7 @@
 
 	flags_gun_features = GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = list(/obj/item/weapon/gun/rifle/tx29launcher)
+	starting_attachment_types = list(/obj/item/weapon/gun/rifle/tx54/mini)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 22, "under_x" = 21, "under_y" = 14, "stock_x" = -1, "stock_y" = 17)
 	actions_types = list(/datum/action/item_action/aim_mode)
 

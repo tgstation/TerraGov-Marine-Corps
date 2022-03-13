@@ -171,27 +171,6 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
 	new /obj/item/storage/backpack/rpg(src)
 
-/obj/item/storage/box/tx29_system
-	name = "\improper TX-29 crate"
-	desc = "A large case containing a TX-29 squad support weapon and its grenade launcher payload. Standard rifle magazines sold separately. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
-	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "tx29_case"
-	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 5
-	slowdown = 1
-	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
-	foldable = null
-
-/obj/item/storage/box/tx29_system/Initialize(mapload, ...)
-	. = ..()
-	new /obj/item/weapon/gun/rifle/tx29(src)
-	new /obj/item/ammo_magazine/rifle/tx29launcher(src)
-	new /obj/item/ammo_magazine/rifle/tx29launcher(src)
-	new /obj/item/ammo_magazine/rifle/tx29launcher/incendiary(src)
-	new /obj/item/ammo_magazine/rifle/tx29launcher/incendiary(src)
-
-
-
 ////////////////// new specialist systems ///////////////////////////:
 
 
