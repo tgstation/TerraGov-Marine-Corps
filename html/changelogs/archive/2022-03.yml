@@ -124,3 +124,8 @@
       move stuff from operational vendor to Alamo or tadpole op
   - qol: make supply drop closer to ARSR conveyor belt
   - expansion: PoS and Sulaco for more room to build Reqtorio
+2022-03-13:
+  Lumipharon:
+  - bugfix: The ALF machinecarbine no longer shoots abnormally fast on autoburst.
+  novaepee:
+  - rscdel: Remove all free plasma cutters in all planetsides
