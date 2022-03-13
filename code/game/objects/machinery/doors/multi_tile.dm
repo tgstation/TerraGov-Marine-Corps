@@ -125,6 +125,10 @@
 	opacity = FALSE
 	glass = TRUE
 
+/obj/machinery/door/airlock/multi_tile/mainship/marine/requisitions
+	name = "\improper Requisitions Bay"
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+
 /obj/machinery/door/airlock/multi_tile/mainship/marine/general/sl
 	name = "\improper Squad Leader Preparations"
 	req_access = list(ACCESS_MARINE_LEADER)
