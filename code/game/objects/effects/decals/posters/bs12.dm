@@ -233,11 +233,6 @@
 	name = "Security pinup"
 	desc = "This is a pin-up poster. A dark skinned white haired girl poses in the sunlight wearing a tank top with her stomach exposed. The text on the poster states \"M, Succubus of Security.\" and a lipstick mark stains the top right corner, as if kissed by the model herself."
 
-/datum/poster/bay_48
-	icon_state="bsposter48"
-	name = "L’Escrimeuse (The Fencing Girl)"
-	desc = "The picture of a nattily attired fencing girl, seated in the corner of a fencing room, with one knee gracefully crossed over the other, on her shapely breast the red mark which indicates to her opponent the heart, his vital mark is one of the most popular pictures of the late 19th century and early 20th century. It has gone into thousands of Western homes and clubs."
-
 /datum/poster/bay_49
 	icon_state="bsposter49"
 	name = "Engineering recruitment"
