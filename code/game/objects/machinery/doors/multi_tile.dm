@@ -106,13 +106,13 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic/rnr
 	name = "\improper Rest and Recreation"
 
-/obj/machinery/door/airlock/multi_tile/mainship/generic2
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/2x1almayerdoor.dmi'
 	opacity = FALSE
 	glass = TRUE
 
-/obj/machinery/door/airlock/multi_tile/mainship/generic2/glass
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass
 	name = "\improper Glass Airlock"
 	icon = 'icons/obj/doors/mainship/2x1almayerdoor_glass.dmi'
 
@@ -140,8 +140,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/marine/general/corps
 	name = "\improper Corpsman Preparations"
 	req_access = list(ACCESS_MARINE_MEDPREP)
-	opacity = FALSE
-	glass = TRUE
 
 /obj/machinery/door/airlock/multi_tile/mainship/marine/general/engi
 	name = "\improper Engineer Preparations"
