@@ -480,4 +480,57 @@
 				"'H.O.G.A.N.' Core AI Module",
 	)
 
+///BROKEN MARINE VENDOR PROPS
 
+/obj/structure/prop/brokenvendor
+	name = "\improper Broken vendor"
+	icon = 'icons/Marine/mainship_props.dmi'
+	desc = "The insides of this vendor are visible and rusted through, you get the feeling there's no fixing this machine."
+
+/obj/structure/prop/brokenvendor/brokenweaponsrack
+	icon_state = "marinearmory-broken"
+
+/obj/structure/prop/brokenvendor/brokenuniformvendor
+	name = "\improper Broken automated uniform closet"
+	icon_state = "marineuniform-broken"
+
+/obj/structure/prop/brokenvendor/brokenuniformvendor/specialist
+	name = "\improper Broken specialist equipment rack"
+	icon_state = "specialist-broken"
+	desc = "You study the rusted hulk in vain trying to determine what this vendor was before realizing that it's hopeless."
+
+/obj/structure/prop/brokenvendor/brokenspecialistvendor/sg
+	name = "\improper Broken automated smart gunner closet"
+	icon_state = "marineuniform-broken"
+
+/obj/structure/prop/brokenvendor/brokenspecialistvendor/leader
+	name = "\improper Broken automated leader closet"
+	icon_state = "marineuniform-broken"
+
+/obj/structure/prop/brokenvendor/brokenspecialistvendor/corpsman
+	name = "\improper Broken automated corpsman closet"
+	icon_state = "marineuniform-broken"
+
+/obj/structure/prop/brokenvendor/brokenspecialistvendor/engineer
+	name = "\improper Broken automated engineer closet"
+	icon_state = "marineuniform-broken"	
+
+/obj/structure/prop/brokenvendor/brokenmarinemedvendor
+	icon_state = "marinemed-broken"
+
+/obj/structure/prop/brokenvendor/brokennanomedvendor
+	icon_state = "med-broken"
+
+/obj/structure/prop/brokenvendor/brokencorpsmanvendor
+	icon_state = "corpsmanvendor-broken"
+
+/obj/structure/prop/brokenvendor/engivend
+	icon_state = "engivend-broken"
+
+/obj/structure/prop/brokenvendor/surplusclothes
+	name = "\improper Broken surplus clothes vendor"
+	icon_state = "surplus_clothes-broken"
+
+/obj/structure/prop/brokenvendor/surplusarmor
+	name = "\improper Broken armor clothes vendor"
+	icon_state = "surplus_armor-broken"

@@ -53,10 +53,16 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
 "fO" = (
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
 /area/bigredv2/outside/se)
+"gn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/s)
 "gp" = (
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/asteroidfloor,
@@ -94,6 +100,11 @@
 	dir = 9
 	},
 /area/bigredv2/outside/se)
+"kM" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/s)
 "lk" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -166,6 +177,7 @@
 "oq" = (
 /obj/structure/window_frame/colony,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "pa" = (
@@ -198,6 +210,7 @@
 	},
 /area/bigredv2/outside/se)
 "rE" = (
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
@@ -312,6 +325,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
+"Df" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "Do" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -330,6 +347,7 @@
 /area/bigredv2/outside/s)
 "FB" = (
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -358,6 +376,19 @@
 /obj/item/radio/headset/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"Hp" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/se)
+"HC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/se)
 "Ja" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -385,6 +416,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"Lx" = (
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/s)
 "Mx" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/s)
@@ -415,6 +450,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -427,6 +463,7 @@
 /area/bigredv2/outside/se)
 "Sm" = (
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -469,6 +506,7 @@
 /area/bigredv2/outside/filtration_plant)
 "UZ" = (
 /obj/effect/decal/cleanable/blood/drip,
+/obj/structure/cable,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
 "Va" = (
@@ -513,6 +551,12 @@
 	dir = 9
 	},
 /area/bigredv2/outside/se)
+"Zd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/s)
 "ZP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -552,7 +596,7 @@ xO
 mK
 gW
 az
-tv
+kM
 eM
 nP
 tv
@@ -579,7 +623,7 @@ xO
 GS
 sK
 az
-nP
+Lx
 nP
 nP
 nP
@@ -633,7 +677,7 @@ az
 mw
 az
 az
-tv
+kM
 nP
 bN
 rg
@@ -660,7 +704,7 @@ mH
 mE
 UW
 az
-nP
+Lx
 nP
 bN
 rg
@@ -687,7 +731,7 @@ WR
 mE
 JL
 dV
-nP
+Lx
 nP
 bN
 rg
@@ -714,7 +758,7 @@ KG
 hO
 WR
 dV
-nP
+Lx
 nP
 bN
 rg
@@ -741,7 +785,7 @@ WR
 Ol
 WR
 dV
-nP
+Lx
 nP
 uG
 bN
@@ -768,7 +812,7 @@ WR
 Ha
 Cf
 dV
-yy
+Zd
 eM
 nP
 tv
@@ -795,7 +839,7 @@ tY
 sw
 xP
 az
-lQ
+gn
 nP
 nP
 lQ
@@ -822,7 +866,7 @@ sr
 sr
 sr
 az
-lQ
+gn
 nP
 uG
 bN
@@ -849,7 +893,7 @@ jI
 jI
 jI
 az
-lQ
+gn
 nP
 bN
 rg
@@ -876,7 +920,7 @@ ll
 Xx
 ll
 az
-yy
+Zd
 nP
 bN
 rg
@@ -903,7 +947,7 @@ dZ
 dZ
 dZ
 az
-lQ
+gn
 nP
 bN
 rg
@@ -930,7 +974,7 @@ az
 az
 az
 az
-nP
+Lx
 nP
 bN
 rg
@@ -957,7 +1001,7 @@ kn
 ik
 wW
 ik
-Rf
+Hp
 PO
 GN
 XX
@@ -1016,8 +1060,8 @@ Sm
 fO
 Sm
 Rv
-RL
-RL
+HC
+HC
 RL
 RL
 eu
@@ -1044,7 +1088,7 @@ ik
 Rf
 ZP
 ik
-ik
+Df
 ik
 ik
 ik
@@ -1071,7 +1115,7 @@ ik
 Rf
 ZP
 ik
-ik
+Df
 ik
 ik
 ik
@@ -1098,7 +1142,7 @@ ik
 Rf
 Jw
 ik
-ik
+Df
 ik
 wW
 ik
@@ -1125,7 +1169,7 @@ ik
 JX
 ar
 ik
-ik
+Df
 ik
 ik
 kI
@@ -1152,7 +1196,7 @@ ik
 Rf
 ar
 ik
-ik
+Df
 ik
 kI
 WC

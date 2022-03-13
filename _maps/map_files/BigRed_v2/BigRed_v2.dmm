@@ -6663,14 +6663,15 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMJ" = (
-/obj/machinery/chem_dispenser/soda{
-	pixel_y = 32
-	},
 /obj/machinery/door_control{
 	dir = 8;
 	id = "Bar Complex";
 	name = "Storm Shutters"
 	},
+/obj/machinery/chem_dispenser/soda{
+	dir = 8
+	},
+/obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMK" = (
@@ -6790,7 +6791,6 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aNY" = (
-/obj/structure/table/woodentable,
 /obj/item/trash/raisins,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
@@ -9341,6 +9341,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bnh" = (
@@ -9437,6 +9438,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bnG" = (
@@ -9497,8 +9499,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bof" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/general_air_control,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "boi" = (
@@ -38923,7 +38925,7 @@ bkE
 bly
 bng
 bnF
-bof
+bnc
 bov
 xKU
 fOu
@@ -39139,7 +39141,7 @@ bkE
 blV
 nbV
 bnh
-bnG
+bkQ
 bnG
 bow
 bpa
@@ -39356,7 +39358,7 @@ bkM
 blW
 bkM
 bnk
-bnH
+bof
 bkE
 box
 bkE
