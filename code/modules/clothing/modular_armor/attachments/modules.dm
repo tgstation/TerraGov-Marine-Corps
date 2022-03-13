@@ -233,7 +233,8 @@
 	var/shield_color_full = COLOR_BLUE_LIGHT
 	///Current shield color
 	var/current_color
-
+	///Delay it takes to start recharging again after the shield has been damaged.
+	var/damaged_shield_cooldown = 15 SECONDS
 	///Delay it takes to start recharging again once the shield is completely broken.
 	var/broken_shield_charge_delay = 10 SECONDS
 	///Cooldown used to determine when the shield should start charging again after it is broken.
@@ -301,6 +302,7 @@
 	var/shield_left = shield_health - incoming_damage
 	var/mob/living/affected = parent.loc
 	affected.remove_filter("eshield")
+	var/charge_cooldown = damaged_shield_cooldown
 	if(shield_left > 0)
 		shield_health = shield_left
 		switch(shield_left / max_shield_health)
@@ -311,13 +313,15 @@
 			if(0.66 to 1)
 				affected.add_filter("eshield", 1, outline_filter(1, shield_color_full))
 		spark_system.start()
-		return 0
-	shield_health = 0
+	else
+		shield_health = 0
+		charge_cooldown = COOLDOWN_CHECK(src, shield_broken_cooldown) ? (COOLDOWN_TIMELEFT(src, shield_broken_cooldown) + shield_broken_cooldown) : shield_broken_cooldown
+		parent.say("Warning: Shield is down! Rebooting in [charge_cooldown/10] seconds!")
 	STOP_PROCESSING(SSobj, src)
-	addtimer(CALLBACK(src, .proc/begin_recharge), broken_shield_charge_delay)
-	COOLDOWN_START(src, shield_broken_cooldown, broken_shield_charge_delay)
-	parent.say("Warning: Shield is down! Rebooting in [broken_shield_charge_delay/10] seconds!")
-	return -shield_left
+	if(COOLDOWN_CHECK(src, shield_broken_cooldown))
+		addtimer(CALLBACK(src, .proc/begin_recharge), charge_cooldown)
+	COOLDOWN_START(src, shield_broken_cooldown, charge_cooldown)
+	return shield_left ? 0 : -shield_left
 
 ///Starts the shield recharging after it has been broken.
 /obj/item/armor_module/module/eshield/proc/begin_recharge()
