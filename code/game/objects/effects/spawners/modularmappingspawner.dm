@@ -11,7 +11,10 @@
 	var/spawner_width = 0
 
 /obj/effect/spawner/modularmap/Initialize(mapload)
-	. = ..()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/spawner/modularmap/LateInitialize(mapload)
 	var/datum/map_template/modular/template
 	template = pick(SSmapping.modular_templates[mapid])
 	var/errored = FALSE
