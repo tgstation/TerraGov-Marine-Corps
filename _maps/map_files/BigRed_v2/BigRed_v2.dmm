@@ -12840,11 +12840,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
-"gPx" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
 "gQc" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Engineering Workshop"
@@ -13959,6 +13954,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"owS" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/west)
 "oxg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/marking/asteroidwarning{
@@ -14347,11 +14346,10 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "qPG" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 8
-	},
-/area/bigredv2/outside/virology)
+/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "qQd" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark/purple2/corner{
@@ -17840,7 +17838,7 @@ tQg
 tQg
 jOB
 tQg
-tQg
+owS
 tQg
 tQg
 sNF
@@ -19787,7 +19785,7 @@ aaa
 aaa
 vUc
 riz
-qPG
+riz
 vUc
 aLT
 aMz
@@ -59902,7 +59900,7 @@ uLR
 uLR
 uLR
 uLR
-gPx
+qPG
 uLR
 qIY
 dGX
