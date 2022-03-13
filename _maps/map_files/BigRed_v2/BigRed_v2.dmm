@@ -12840,6 +12840,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
+"gPx" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "gQc" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Engineering Workshop"
@@ -59893,16 +59898,16 @@ vyZ
 adu
 vyZ
 uLR
-vyZ
-vyZ
-vyZ
-vyZ
-adu
-vyZ
-kKe
-hqP
-hqP
-hqP
+uLR
+uLR
+uLR
+uLR
+gPx
+uLR
+qIY
+dGX
+dGX
+dGX
 dGX
 dGX
 dGX
