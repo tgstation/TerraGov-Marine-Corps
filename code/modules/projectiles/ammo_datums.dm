@@ -1192,6 +1192,7 @@ datum/ammo/bullet/revolver/tp44
 	bonus_projectiles_scatter = 30
 
 /datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
 	var/main_proj_angle = Get_Angle(proj.firer, M)
 	bonus_projectiles_amount = 6
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
