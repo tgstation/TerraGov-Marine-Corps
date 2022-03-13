@@ -29,6 +29,12 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
+"eI" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
 "gi" = (
 /obj/structure/jungle/vines,
 /turf/closed/wall,
@@ -309,6 +315,9 @@
 "JF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/largecrate/random/barrel/red,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/open/floor/tile/neutral,
 /area/lv624/lazarus/quartstorage)
 "Kr" = (
@@ -635,7 +644,7 @@ ov
 Bv
 RN
 Ph
-RN
+eI
 Ct
 RN
 RN
