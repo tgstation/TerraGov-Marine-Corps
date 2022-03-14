@@ -6900,6 +6900,10 @@
 	dir = 1
 	},
 /area/mainship/living/evacuation)
+"xb" = (
+/obj/item/sidecar,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "xd" = (
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -24834,7 +24838,7 @@ gt
 gY
 gY
 iK
-gY
+xb
 sT
 yB
 jF

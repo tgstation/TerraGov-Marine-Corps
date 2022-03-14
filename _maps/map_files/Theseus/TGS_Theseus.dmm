@@ -15506,6 +15506,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
+"oRD" = (
+/obj/item/sidecar,
+/turf/open/floor/mainship/floor,
+/area/mainship/squads/req)
 "oRR" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -64788,7 +64792,7 @@ iWe
 iWe
 iWe
 iWe
-iWe
+oRD
 bAG
 bIH
 tMR

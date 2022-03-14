@@ -10217,6 +10217,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"Gn" = (
+/obj/item/sidecar,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "Go" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -48279,7 +48283,7 @@ kM
 kM
 kM
 Vq
-kM
+Gn
 kM
 kM
 CE
