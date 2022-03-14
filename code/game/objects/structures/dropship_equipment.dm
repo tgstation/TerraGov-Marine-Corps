@@ -628,9 +628,25 @@
 
 	if(ammo_warn_sound)
 		playsound(target_turf, ammo_warn_sound, 70, 1)
-	var/obj/effect/overlay/blinking_laser/laser = new (target_turf)
+
+	//Lase
+	var/obj/effect/overlay/blinking_laser/laserdot = new SA.cas_effect(target_turf)
+	laserdot.dir = attackdir
+	var/list/effects_to_delete = list(laserdot) //Let's make a list of things we'll need to delete on impact
+
+	//Marine-only visuals
+	var/predicted_dangerous_turfs = SA.get_turfs_to_impact(target_turf, attackdir) //Gets a list of turfs that could be dangerous
+
+	for(var/turf/impact in predicted_dangerous_turfs)
+		effects_to_delete += new /obj/effect/overlay/blinking_laser/marine/lines(impact)
+
 	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, target_turf, attackdir), ammo_travelling_time)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, laser), ammo_travelling_time)
+	addtimer(CALLBACK(src, .proc/cleanup_effects, effects_to_delete), ammo_travelling_time)
+
+/// Qdels everything in effects_to_delete
+/obj/structure/dropship_equipment/weapon/proc/cleanup_effects(effects_to_delete)
+	for(var/obj/effect/effect in effects_to_delete)
+		qdel(effect)
 
 /obj/structure/dropship_equipment/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
