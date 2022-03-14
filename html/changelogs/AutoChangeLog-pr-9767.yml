@@ -1,0 +1,7 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "Add posters in PoS, Theseus, and Minerva. For Sulaco, I will wait for Derrick to do his thing."
+  - imageadd: "Add more posters"
+  - imagedel: "Delete redundant poster"
+  - code_imp: "directional poster!"
