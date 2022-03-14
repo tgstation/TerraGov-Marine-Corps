@@ -366,7 +366,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/tile/arrival{
+/turf/open/floor/tile/brown{
 	dir = 4
 	},
 /area/lv624/lazarus/quartstorage)
@@ -494,7 +494,7 @@ Iu
 "}
 (2,1,1) = {"
 Iu
-WN
+gi
 gJ
 iE
 gJ
