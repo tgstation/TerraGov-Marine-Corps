@@ -135,7 +135,8 @@
 	. = ..()
 	dir = pick(1,2,4,8) //Randomises type, for variation
 
-/obj/effect/overlay/temp/Initialize(mapload, effect_duration)	. = ..()
+/obj/effect/overlay/temp/Initialize(mapload, effect_duration)
+	. = ..()
 	flick(icon_state, src)
 	QDEL_IN(src, effect_duration ? effect_duration : src.effect_duration)
 
