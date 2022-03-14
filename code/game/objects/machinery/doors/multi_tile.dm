@@ -87,6 +87,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic/noglass
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/2x1personaldoor.dmi'
+	glass = FALSE
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen
 	name = "\improper Canteen"
@@ -110,11 +111,12 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/2x1almayerdoor.dmi'
 	opacity = FALSE
-	glass = TRUE
+	glass = FALSE
 
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass
 	name = "\improper Glass Airlock"
 	icon = 'icons/obj/doors/mainship/2x1almayerdoor_glass.dmi'
+	glass = TRUE
 
 //PREP DOORS
 
@@ -273,12 +275,13 @@
 	name = "\improper Engineering Airlock"
 	icon = 'icons/obj/doors/mainship/2x1engidoor.dmi'
 	opacity = FALSE
-	glass = TRUE
+	glass = FALSE
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
 
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass
 	name = "\improper Engineering Glass Airlock"
 	icon = 'icons/obj/doors/mainship/2x1engidoor_glass.dmi'
+	glass = TRUE
 
 //COMMAND
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor
@@ -302,12 +305,13 @@
 	name = "\improper Security Airlock"
 	icon = 'icons/obj/doors/mainship/2x1secdoor.dmi'
 	opacity = FALSE
-	glass = TRUE
+	glass = FALSE
 	req_access = list(ACCESS_MARINE_BRIG)
 
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass
 	name = "\improper Security Glass Airlock"
 	icon = 'icons/obj/doors/mainship/2x1secdoor_glass.dmi'
+	glass = TRUE
 
 /obj/machinery/door/airlock/multi_tile/mainship/handle_multidoor()
 	if(!(width > 1)) return //Bubblewrap
