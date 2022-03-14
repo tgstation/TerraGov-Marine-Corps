@@ -129,3 +129,8 @@
   - bugfix: The ALF machinecarbine no longer shoots abnormally fast on autoburst.
   novaepee:
   - rscdel: Remove all free plasma cutters in all planetsides
+2022-03-14:
+  KrabSpider:
+  - balance: Forward charge now uses BUSY_ICON_DANGER instead of BUSY_ICON_GENERIC.
+  novaepee:
+  - rscadd: Barrenquilla has fire extinguishers around lava

@@ -1,4 +1,0 @@
-author: "KrabSpider"
-delete-after: True
-changes: 
-  - balance: "Forward charge now uses BUSY_ICON_DANGER instead of BUSY_ICON_GENERIC."
