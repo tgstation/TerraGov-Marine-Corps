@@ -236,7 +236,7 @@
 	///Delay it takes to start recharging again after the shield has been damaged.
 	var/damaged_shield_cooldown = 10 SECONDS
 	///Cooldown used to determine when the shield should start charging again after it is broken.
-	COOLDOWN_DECLARE(shield_broken_cooldown)
+	COOLDOWN_DECLARE(shield_damaged_cooldown)
 
 
 /obj/item/armor_module/module/eshield/Initialize()
@@ -263,9 +263,9 @@
 /obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/examiner)
 	SIGNAL_HANDLER
 	to_chat(examiner, span_notice("Recharge Rate: [recharge_rate/2] health per second\nCurrent Shield Health: [shield_health]\nMaximum Shield Health: [max_shield_health]\n"))
-	if(COOLDOWN_CHECK(src, shield_broken_cooldown))
+	if(COOLDOWN_CHECK(src, shield_damaged_cooldown))
 		return
-	to_chat(examiner, span_warning("Your shield is broken! It will recharge again in [COOLDOWN_TIMELEFT(src, shield_broken_cooldown)/10] seconds!"))
+	to_chat(examiner, span_warning("Charging is delayed! It will start recharging again in [COOLDOWN_TIMELEFT(src, shield_damaged_cooldown)/10] seconds!"))
 
 ///Handles starting the shield when the parent is equiped to the correct slot.
 /obj/item/armor_module/module/eshield/proc/handle_equip(datum/source, mob/equipper, slot)
@@ -278,11 +278,11 @@
 		equipper.remove_filter("eshield")
 		shield_health = 0
 		return
-	if(COOLDOWN_CHECK(src, shield_broken_cooldown))
+	if(COOLDOWN_CHECK(src, shield_damaged_cooldown))
 		START_PROCESSING(SSobj, src)
 		playsound(equipper, 'sound/items/eshield_recharge.ogg', 40)
 	else
-		addtimer(CALLBACK(src, .proc/begin_recharge), COOLDOWN_TIMELEFT(src, shield_broken_cooldown))
+		addtimer(CALLBACK(src, .proc/begin_recharge), COOLDOWN_TIMELEFT(src, shield_damaged_cooldown))
 
 	RegisterSignal(equipper, COMSIG_LIVING_SHIELDCALL, .proc/handle_shield)
 
@@ -312,15 +312,16 @@
 		spark_system.start()
 	else
 		shield_health = 0
+		return -shield_left
 	STOP_PROCESSING(SSobj, src)
-	if(COOLDOWN_CHECK(src, shield_broken_cooldown))
+	if(COOLDOWN_CHECK(src, shield_damaged_cooldown))
 		addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown)
-	COOLDOWN_START(src, shield_broken_cooldown, damaged_shield_cooldown)
-	return shield_left ? 0 : -shield_left
+	COOLDOWN_START(src, shield_damaged_cooldown, damaged_shield_cooldown)
+	return 0
 
 ///Starts the shield recharging after it has been broken.
 /obj/item/armor_module/module/eshield/proc/begin_recharge()
-	if(!ishuman(parent.loc))
+	if(!ishuman(parent.loc) || isdead(parent.loc))
 		return
 	var/mob/living/carbon/human/wearer = parent.loc
 	if(wearer.wear_suit != parent)
