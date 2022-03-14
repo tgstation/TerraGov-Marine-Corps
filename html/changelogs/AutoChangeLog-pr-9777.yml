@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - imageadd: "New Field Commander Minimap Icon so it doesn't look like bravo SG 2.0"
