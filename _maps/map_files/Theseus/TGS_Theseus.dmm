@@ -12346,6 +12346,12 @@
 	dir = 5
 	},
 /area/mainship/hallways/aft_hallway)
+"jqk" = (
+/obj/structure/sign/poster{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/mainship/squads/alpha)
 "jrq" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -12391,6 +12397,7 @@
 /obj/item/tool/crowbar,
 /obj/item/tool/hand_labeler,
 /obj/machinery/light,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship,
 /area/mainship/squads/alpha)
 "jwN" = (
@@ -17925,6 +17932,12 @@
 "toW" = (
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
+"toX" = (
+/obj/structure/sign/poster{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/mainship/living/port_emb)
 "tpP" = (
 /obj/structure/prop/mainship/sensor_computer3/sd,
 /obj/machinery/camera/autoname/mainship,
@@ -19628,6 +19641,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/basketball)
+"wvZ" = (
+/obj/structure/sign/poster{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/mainship/squads/delta)
 "wxQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -19762,6 +19781,19 @@
 	dir = 5
 	},
 /area/mainship/living/basketball)
+"wLT" = (
+/obj/structure/table/mainship,
+/obj/item/tool/screwdriver,
+/obj/item/tool/crowbar,
+/obj/item/tool/hand_labeler,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/delta)
 "wMx" = (
 /obj/machinery/light{
 	dir = 4
@@ -20131,6 +20163,12 @@
 /obj/machinery/marine_selector/clothes/leader,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
+"xwo" = (
+/obj/structure/sign/poster{
+	dir = 8
+	},
+/turf/closed/wall/mainship,
+/area/mainship/living/starboard_emb)
 "xwJ" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/firealarm,
@@ -59624,11 +59662,11 @@ aXM
 aXM
 ako
 aXM
+xwo
 aXM
 aXM
 aXM
-aXM
-aXM
+xwo
 aXM
 gdk
 aXM
@@ -59663,11 +59701,11 @@ bSO
 jTN
 bSO
 bSO
+toX
 bSO
 bSO
 bSO
-bSO
-bSO
+toX
 aGn
 bSO
 bSO
@@ -61715,7 +61753,7 @@ ruj
 bQw
 ruj
 cbn
-bQH
+wLT
 pGn
 pGn
 pGn
@@ -62449,7 +62487,7 @@ aai
 rbR
 aWH
 aWH
-aWH
+jqk
 aWH
 aWH
 bri
@@ -62486,7 +62524,7 @@ nsv
 bQw
 ruj
 cbn
-bQH
+wLT
 pGn
 pGn
 pGn
@@ -62495,7 +62533,7 @@ vJr
 cec
 cbn
 cbn
-cbn
+wvZ
 cbn
 cbn
 jAD
@@ -63257,7 +63295,7 @@ ruj
 bQw
 ruj
 cbn
-bQH
+wLT
 pGn
 pGn
 pGn
@@ -63477,7 +63515,7 @@ aai
 rbR
 aWH
 aWH
-aWH
+jqk
 aWH
 aWH
 blS
@@ -63523,7 +63561,7 @@ vJr
 xpE
 cbn
 cbn
-cbn
+wvZ
 cbn
 cbn
 fZA
@@ -64028,7 +64066,7 @@ rbP
 rMd
 eeo
 cbn
-bQH
+wLT
 pGn
 pGn
 pGn
@@ -64505,7 +64543,7 @@ aai
 tDH
 aWH
 aWH
-aWH
+jqk
 aWH
 aWH
 bri
@@ -64551,7 +64589,7 @@ vJr
 cec
 cbn
 cbn
-cbn
+wvZ
 cbn
 cbn
 qae
@@ -64799,7 +64837,7 @@ nsv
 bQA
 ruj
 cbn
-bQH
+wLT
 pGn
 pGn
 pGn
@@ -65276,7 +65314,7 @@ aai
 bQl
 aWH
 aWH
-aWH
+jqk
 aWH
 aWH
 aWH
@@ -65322,7 +65360,7 @@ jsv
 cbn
 cbn
 cbn
-cbn
+wvZ
 cbn
 cbn
 eEW
