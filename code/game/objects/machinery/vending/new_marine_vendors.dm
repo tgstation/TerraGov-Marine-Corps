@@ -188,8 +188,6 @@
 						new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
-					if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
-						new /obj/item/clothing/mask/rebreather/scarf(loc)
 
 			if(use_points)
 				I.marine_points -= cost
