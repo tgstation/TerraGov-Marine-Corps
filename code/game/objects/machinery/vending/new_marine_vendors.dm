@@ -603,7 +603,7 @@
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/essentials_set/basicmodular
+/obj/effect/essentials_set/basic_jaeger
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
@@ -619,7 +619,7 @@
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/essentials_set/basic_smartgunnermodular
+/obj/effect/essentials_set/basic_jaeger_smartgunner
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
@@ -635,7 +635,7 @@
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/essentials_set/basic_squadleadermodular
+/obj/effect/essentials_set/basic_jaeger_squadleader
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
@@ -651,7 +651,7 @@
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/essentials_set/basic_medicmodular
+/obj/effect/essentials_set/basic_jaeger_medic
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
@@ -667,7 +667,7 @@
 		/obj/item/storage/box/MRE,
 	)
 
-/obj/effect/essentials_set/basic_engineermodular
+/obj/effect/essentials_set/basic_jaeger_engineer
 	spawned_gear_list = list(
 		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
@@ -709,7 +709,6 @@
 		/obj/item/whistle,
 		/obj/item/compass,
 		/obj/item/binoculars/tactical,
-		/obj/item/attachable/motiondetector,
 		/obj/item/pinpointer/pool,
 		/obj/item/clothing/glasses/hud/health,
 	)
@@ -721,8 +720,19 @@
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
 		/obj/item/whistle,
-		/obj/item/attachable/motiondetector,
+		/obj/item/storage/box/MRE,
+	)
+
+/obj/effect/essentials_set/jaeger_commander
+	spawned_gear_list = list(
+		/obj/item/clothing/under/marine/jaeger,
 		/obj/item/clothing/suit/modular,
+		/obj/item/beacon/supply_beacon,
+		/obj/item/healthanalyzer,
+		/obj/item/roller/medevac,
+		/obj/item/medevac_beacon,
+		/obj/item/whistle,
+		/obj/item/storage/box/MRE,
 		/obj/item/facepaint/green,
 	)
 
