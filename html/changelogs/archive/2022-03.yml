@@ -134,3 +134,35 @@
   - balance: Forward charge now uses BUSY_ICON_DANGER instead of BUSY_ICON_GENERIC.
   novaepee:
   - rscadd: Barrenquilla has fire extinguishers around lava
+2022-03-15:
+  RipGrayson:
+  - balance: One variation of Big Red medbay has been reworked and no longer has razor
+      wire.
+  - balance: Tweaked a single LZ variation so that it could be easily caded without
+      knocking down walls.
+  - balance: Adjusted signage on Big Red LZs to better point out when a wall is breachable
+      by xenos.
+  - balance: Adjusted some APCs to be more visible.
+  - bugfix: Fixed a variation of southeast Big Red that was always lit without a proper
+      apc.
+  - bugfix: Fixed some vendors improperly working groundside on Big Red.
+  - bugfix: Fixed some Big Red atmos variations starting without weeds.
+  - bugfix: Removed some space tiles in one variation of Big Red southeast caves.
+  - bugfix: Removed multiple miners from Big Red container area
+  - bugfix: Fixed some spotty fog coverage near Big Red Lambda labs.
+  - bugfix: Removed a floating light at Big Red ETA labs.
+  - bugfix: Fixed a atmos variation lacking a proper APC in Big Red.
+  - bugfix: Fixed a variation of Big Red atmos checkpoint that always had it's APC
+      unwired.
+  - bugfix: Patched a variation of Big Red EVA that had its APC hidden inside a door.
+  - bugfix: Fixed a mapping insert of LZ1 that had the north caves start unweeded.
+  - balance: Removed the empty space around Ice Colony.
+  chesse20:
+  - rscadd: New dome on lv624 with posters in it
+  novaepee:
+  - rscadd: Add posters in PoS, Theseus, and Minerva. For Sulaco, I will wait for
+      Derrick to do his thing.
+  - imageadd: Add more posters
+  - imagedel: Delete redundant poster
+  - code_imp: directional poster!
+  - imageadd: New Field Commander Minimap Icon so it doesn't look like bravo SG 2.0
