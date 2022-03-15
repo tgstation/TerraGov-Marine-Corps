@@ -179,7 +179,7 @@
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
 
-/obj/effect/overlay/temp/laser_target/Initialize(mapload, named, assigned_squad = null)
+/obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	if(named)
 		name = "[named] laser"
@@ -288,7 +288,7 @@
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 14
 
-obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
@@ -307,7 +307,7 @@ obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/s
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	effect_duration = 10
 
-/obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, mob/source_mob, gib_icon, new_icon)
+/obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, effect_duration, mob/source_mob, gib_icon, new_icon)
 	. = ..()
 	icon = new_icon
 
@@ -319,18 +319,11 @@ obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/s
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 12
 
-obj/effect/overlay/temp/dust_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/dust_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
-
-/obj/effect/overlay/temp/timestop_effect
-	icon = 'icons/effects/160x160.dmi'
-	icon_state = "time"
-	pixel_x = -60
-	pixel_y = -50
-	alpha = 70
 
 ///Lighting overlay for the Light overlay component
 /obj/effect/overlay/light_visible
@@ -344,3 +337,10 @@ obj/effect/overlay/temp/dust_animation/Initialize(mapload, effect_duration, mob/
 	alpha = 0
 	vis_flags = NONE
 	blocks_emissive = NONE
+	
+	/obj/effect/overlay/temp/timestop_effect
+	icon = 'icons/effects/160x160.dmi'
+	icon_state = "time"
+	pixel_x = -60
+	pixel_y = -50
+	alpha = 70	
