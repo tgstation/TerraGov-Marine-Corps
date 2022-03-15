@@ -245,12 +245,6 @@ WEAPONS
 	cost = 30
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/weapons/tx55
-	name = "TX-55 Objective Individual Combat Weapon"
-	contains = list(/obj/item/weapon/gun/rifle/tx55)
-	cost = 40
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/weapons/tx54_airburst
 	name = "A 20mm magazine loaded with airburst grenades. For use with the TX-54 or TX-55."
 	contains = list(/obj/item/ammo_magazine/rifle/tx54)
@@ -260,7 +254,7 @@ WEAPONS
 /datum/supply_packs/weapons/tx54_incendiary
 	name = "A 20mm magazine loaded with incendiary grenades. For use with the TX-54 or TX-55."
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/incendiary)
-	cost = 5
+	cost = 7
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/tx54_he

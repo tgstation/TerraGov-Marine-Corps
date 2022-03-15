@@ -87,11 +87,9 @@
 		"Specialized" = list(
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
-			/obj/item/weapon/gun/rifle/tx55 = 1,
-			/obj/item/weapon/gun/rifle/tx54 = 1,
+			/obj/item/weapon/gun/rifle/tx54 = 2,
 			/obj/item/ammo_magazine/rifle/tx54 = 6,
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 2,
-			/obj/item/ammo_magazine/rifle/tx55 = -1,
 			/obj/item/weapon/gun/energy/lasgun/tesla = 2,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
