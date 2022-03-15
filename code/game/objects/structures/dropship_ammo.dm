@@ -28,10 +28,12 @@
 	///Type of ammo
 	var/ammo_type
 
-	///Explosion ratings, for explosive weapons
-	var/devastating_explosion_range = 0 //HE OB uses this
-	var/heavy_explosion_range = 0 //Mortar splash damage uses this
-	var/light_explosion_range = 0 //HEDP uses this
+	///Range of the centre of the explosion
+	var/devastating_explosion_range = 0
+	///Range of the middle bit of the explosion
+	var/heavy_explosion_range = 0
+	///Range of the outer radius of the explosion
+	var/light_explosion_range = 0
 	///Fire radius, for incendiary weapons
 	var/fire_range = 0
 	///Type of CAS dot indicator effect to be used
@@ -92,7 +94,7 @@
 
 	//If it's CAS_AMMO_HARMLESS, we don't need to do anything
 
-	return FALSE //For anything else needed, add a special version of this proc in the subtype
+	return //For anything else needed, add a special version of this proc in the subtype
 
 
 /// "Mini" version of explode() code, returns the tiles that *would* be hit if an explosion were to happen
@@ -129,11 +131,8 @@
 	var/list/turfs_impacted = list(epicenter)
 	var/list/outline_turfs_impacted = list()
 
-	for(var/t in turfs_in_range)
-		if(!isnull(turfs_by_dist[t])) //Already processed.
-			continue
+	for(var/turf/affected_turf AS in turfs_in_range)
 
-		var/turf/affected_turf = t
 		var/dist = turfs_in_range[epicenter]
 		var/turf/expansion_wave_loc = epicenter
 
@@ -459,7 +458,7 @@
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, small_animation = TRUE) //relatively weak
 	flame_radius(fire_range, impact, 60, 30) //cooking for a long time
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
-	warcrime.set_up(fire_range + 1, impact, 7) //we want this a bit bigger than the fire
+	warcrime.set_up(fire_range + 1, impact, 7)
 	warcrime.start()
 	qdel(src)
 
@@ -533,7 +532,6 @@
 
 /obj/structure/ship_ammo/minirocket/smoke/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0)// Smaller explosion
 	var/datum/effect_system/expl_particles/P = new
 	P.set_up(4, 0, impact)
 	P.start()
@@ -555,7 +553,7 @@
 
 /obj/structure/ship_ammo/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0)// Smaller explosion
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0)
 	var/datum/effect_system/expl_particles/P = new
 	P.set_up(4, 0, impact)
 	P.start()
@@ -568,15 +566,10 @@
 	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy."
 	icon_state = "minirocket_ilm"
 	point_cost = 25 // Not a real rocket, so its cheap
-	devastating_explosion_range = 0
-	heavy_explosion_range = 0
-	light_explosion_range = 2
-	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/flare
 
 /obj/structure/ship_ammo/minirocket/illumination/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
-	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, throw_range = 0)// Smaller explosion to prevent this becoming the PO meta
 	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
 	P.set_up(4, 0, impact)
 	P.start()
