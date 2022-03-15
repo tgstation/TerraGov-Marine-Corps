@@ -110,13 +110,6 @@
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
 	flags_item_map_variant = NONE
 
-/obj/item/clothing/head/headband/fc
-	name = "\improper Field Commander headband"
-	desc = "Be the awesome and badass field commander you always wanted to be. It commands loyalty and bravery in all who gaze upon it."
-	icon_state = "headband_snake"
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
-	flags_item_map_variant = NONE
-
 /obj/item/clothing/head/tgmccap
 	name = "\improper TGMC cap"
 	desc = "A casual cap occasionally worn by Squad-leaders and Combat-Engineers. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
