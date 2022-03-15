@@ -338,7 +338,7 @@
 	vis_flags = NONE
 	blocks_emissive = NONE
 	
-	/obj/effect/overlay/temp/timestop_effect
+/obj/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "time"
 	pixel_x = -60
