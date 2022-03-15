@@ -321,7 +321,7 @@
 
 ///Starts the shield recharging after it has been broken.
 /obj/item/armor_module/module/eshield/proc/begin_recharge()
-	if(!ishuman(parent.loc) || isdead(parent.loc))
+	if(!COOLDOWN_CHECK(src, shield_damaged_cooldown) || !ishuman(parent.loc) || isdead(parent.loc))
 		return
 	var/mob/living/carbon/human/wearer = parent.loc
 	if(wearer.wear_suit != parent)
@@ -331,6 +331,9 @@
 
 
 /obj/item/armor_module/module/eshield/process()
+	if(!COOLDOWN_CHECK(src, shield_damaged_cooldown))
+		STOP_PROCESSING(SSobj, src)
+		return
 	shield_health = min(shield_health + recharge_rate, max_shield_health)
 	if(shield_health == max_shield_health)
 		return
