@@ -163,3 +163,9 @@ s
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife, SLOT_IN_BOOT)
+
+/datum/outfit/job/freelancer/leader/one
+	suit_store = /obj/item/weapon/gun/rifle/tx11
+
+/datum/outfit/job/freelancer/leader/two
+	suit_store = /obj/item/weapon/gun/rifle/mkh
