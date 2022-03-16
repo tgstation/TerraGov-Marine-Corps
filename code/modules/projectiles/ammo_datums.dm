@@ -1330,8 +1330,8 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "atgun"
 	hud_state = "shell_heat"
 	hud_state_empty = "shell_empty"
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
-	shell_speed = 3
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
+	shell_speed = 2
 	damage = 90
 	penetration = 30
 	sundering = 10
@@ -1356,7 +1356,6 @@ datum/ammo/bullet/revolver/tp44
 	name = "high velocity high explosive shell"
 	hud_state = "shell_he"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
-	shell_speed = 2
 	damage = 50
 	penetration = 50
 	sundering = 25
