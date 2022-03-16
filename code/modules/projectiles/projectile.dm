@@ -655,7 +655,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	. -= (proj.accuracy - (proj.accuracy * ( (proj.distance_travelled/proj.ammo.accurate_range)*(proj.distance_travelled/proj.ammo.accurate_range) ) ))
 	if(!anchored)
 		. *= 0.5 //Half the protection from unaffixed structures.
-	if (. >= 100 && !(flags_atom & ON_BORDER))
+	if (. >= 90 && !(flags_atom & ON_BORDER))
 		. = 90 ///make shift defenses shouldn't block bullets 100% of the time
 	return prob(.)
 
