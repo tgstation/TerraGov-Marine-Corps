@@ -243,7 +243,7 @@
 	fire_delay = 3 SECONDS
 	burst_amount = 1
 	undeploy_time = 2000 SECONDS
-	max_integrity = 800
+	max_integrity = 500
 	deployed_item = /obj/machinery/deployable/mounted/atgun
 
 /obj/machinery/deployable/mounted/atgun
