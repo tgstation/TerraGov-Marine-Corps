@@ -650,13 +650,15 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(!uncrossing)
 				proj.uncross_scheduled += src
 			return FALSE //No effect now, but we save the reference to check on exiting the tile.
-		. *= uncrossing ? 0.5 : 1.5 //Higher hitchance when shooting in the barricade's direction.
-	//Bypass chance calculation. Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
-	. -= (proj.accuracy - (proj.accuracy * ( (proj.distance_travelled/proj.ammo.accurate_range)*(proj.distance_travelled/proj.ammo.accurate_range) ) ))
+		if (uncrossing)
+			return FALSE //you don't hit the cade from behind.
 	if(!anchored)
 		. *= 0.5 //Half the protection from unaffixed structures.
-	if (. >= 90 && !(flags_atom & ON_BORDER))
-		. = 90 ///make shift defenses shouldn't block bullets 100% of the time
+	///50% better protection when shooting from outside accurate range.
+	if(proj.distance_travelled > proj.ammo.accurate_range)
+		. *= 1.5
+///Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
+	. = min(. , . + 100 - proj.accuracy)
 	return prob(.)
 
 

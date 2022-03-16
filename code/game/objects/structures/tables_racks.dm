@@ -13,7 +13,7 @@
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
-	coverage = 60
+	coverage = 10
 	var/parts = /obj/item/frame/table
 	var/table_status = TABLE_STATUS_FIRM
 	var/sheet_type = /obj/item/stack/sheet/metal
@@ -420,6 +420,7 @@
 	if(dir != NORTH)
 		layer = FLY_LAYER
 	flipped = TRUE
+	coverage = 60
 	flags_atom |= ON_BORDER
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))
 		var/obj/structure/table/T = locate() in get_step(src,D)
@@ -438,6 +439,7 @@
 
 	layer = initial(layer)
 	flipped = FALSE
+	coverage = 10
 	climbable = initial(climbable)
 	flags_atom &= ~ON_BORDER
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
@@ -452,6 +454,7 @@
 
 /obj/structure/table/flipped
 	flipped = TRUE //Just not to get the icon updated on Initialize()
+	coverage = 60
 
 
 /obj/structure/table/flipped/Initialize()

@@ -18,7 +18,7 @@
 	var/basestate = "window"
 	var/junction = 0
 	var/reinforced = FALSE
-	coverage = 125
+	coverage = 50
 
 /obj/structure/window_frame/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
