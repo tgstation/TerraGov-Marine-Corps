@@ -608,9 +608,9 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	penetration = 10
-	damage = 30
-	sundering = 1
+	penetration = 15
+	damage = 32.5
+	sundering = 1.25
 
 /datum/ammo/bullet/rifle/standard_br/incendiary
 	name = "incendiary light marksman bullet"
@@ -969,6 +969,7 @@ datum/ammo/bullet/revolver/tp44
 	handful_amount = 5
 	damage = 75
 	penetration = 35
+	sundering = 15
 
 /datum/ammo/bullet/sniper/martini
 	name = "crude heavy sniper bullet"
@@ -989,6 +990,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accuracy = 40
 	damage = 100
+	penetration = 60
 	sundering = 50
 
 /datum/ammo/bullet/sniper/pfc
@@ -1328,8 +1330,8 @@ datum/ammo/bullet/revolver/tp44
 	icon_state = "atgun"
 	hud_state = "shell_heat"
 	hud_state_empty = "shell_empty"
-	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOVABLE
-	shell_speed = 3
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
+	shell_speed = 2
 	damage = 90
 	penetration = 30
 	sundering = 10
@@ -1354,7 +1356,6 @@ datum/ammo/bullet/revolver/tp44
 	name = "high velocity high explosive shell"
 	hud_state = "shell_he"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
-	shell_speed = 2
 	damage = 50
 	penetration = 50
 	sundering = 25
