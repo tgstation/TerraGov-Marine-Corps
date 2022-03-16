@@ -11,8 +11,6 @@
 #define MARINE_CAN_BUY_GLASSES (1 << 10)
 #define MARINE_CAN_BUY_MASK (1 << 11)
 #define MARINE_CAN_BUY_ESSENTIALS (1 << 12)
-#define MARINE_CAN_BUY_ATTACHMENT (1 << 13)
-#define MARINE_CAN_BUY_ATTACHMENT2 (1 << 14)
 
 #define MARINE_CAN_BUY_WEBBING (1 << 15)
 #define MARINE_CAN_BUY_MODULE (1 << 16)
@@ -33,7 +31,6 @@
 #define CAT_BEL "BELT"
 #define CAT_GLA "GLASSES"
 #define CAT_MAS "MASKS"
-#define CAT_ATT "GUN ATTACHMENTS"
 #define CAT_MOD "JAEGER STORAGE MODULES"
 #define CAT_ARMMOD "JAEGER ARMOR MODULES"
 
@@ -56,7 +53,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_BEL = list(MARINE_CAN_BUY_BELT),
 		CAT_GLA = list(MARINE_CAN_BUY_GLASSES),
 		CAT_MAS = list(MARINE_CAN_BUY_MASK),
-		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
 		CAT_ESS = list(MARINE_CAN_BUY_ESSENTIALS),
 		CAT_MEDSUP = null,
 		CAT_ENGSUP = null,
@@ -282,16 +278,6 @@ GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 		/obj/item/armor_module/module/ballistic_armor = list(CAT_ARMMOD, "Hod Accident Prevention Plating", 0,"black"),
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 		/obj/effect/essentials_set/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
-		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0,"orange"),
-		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0,"black"),
-		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0,"orange"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0,"black"),
-		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0,"black"),
-		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0,"black"),
-		/obj/item/attachable/scope/mini = list(CAT_ATT, "Mini scope", 0,"black"),
-		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0,"orange"),
-		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0,"black"),
-		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0,"black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
