@@ -13,7 +13,7 @@
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
-	coverage = 10
+	coverage = 60
 	var/parts = /obj/item/frame/table
 	var/table_status = TABLE_STATUS_FIRM
 	var/sheet_type = /obj/item/stack/sheet/metal
@@ -579,7 +579,7 @@
 	anchored = TRUE
 	throwpass = TRUE	//You can throw objects over this, despite it's density.
 	climbable = TRUE
-	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal 
+	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
 	var/parts = /obj/item/frame/rack
