@@ -209,6 +209,15 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	psypoint_cost = 50
 	turret_type = /obj/structure/xeno/xeno_turret/sticky
 
+/datum/hive_upgrade/defence/turret/double
+	name = "Double Acid turret"
+	desc = "Places a double acid spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog and on a weeded area."
+	icon = "acidturret"
+	psypoint_cost = XENO_TURRET_PRICE
+	flags_gamemode = ABILITY_DISTRESS
+	turret_type = /obj/structure/xeno/xeno_turret/double
+
+
 /datum/hive_upgrade/xenos
 	category = "Xenos"
 

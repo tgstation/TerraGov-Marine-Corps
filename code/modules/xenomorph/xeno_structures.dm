@@ -1080,6 +1080,14 @@ TUNNEL
 	ammo = /datum/ammo/xeno/sticky/turret
 	firerate = 5
 
+/obj/structure/xeno/xeno_turret/double
+	name = "double acid turret"
+	icon = 'icons/Xeno/acidturret.dmi'
+	icon_state = XENO_TURRET_DOUBLE_ICONSTATE
+	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid very quickly agianst intruders."
+	range = 6
+	firerate = 2.5
+
 /obj/structure/xeno/xeno_turret/hugger_turret
 	name = "hugger turret"
 	icon_state = "hugger_turret"

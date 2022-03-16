@@ -9,6 +9,7 @@
 
 #define XENO_TURRET_ACID_ICONSTATE "acid_turret"
 #define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
+#define XENO_TURRET_DOUBLE_ICONSTATE "acid_turret_double"
 
 //Plant defines
 #define HEAL_PLANT "life fruit"
