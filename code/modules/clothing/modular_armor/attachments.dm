@@ -70,8 +70,10 @@
 	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
 	if(!length(variants_by_parent_type) || !(parent.type in variants_by_parent_type))
+		base_icon = icon_state
 		return
 	icon_state = variants_by_parent_type[parent.type]
+	base_icon = icon_state
 	update_icon()
 
 /// Called when the module is removed from the armor.
