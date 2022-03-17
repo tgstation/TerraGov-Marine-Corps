@@ -110,8 +110,6 @@
 	storage =  /obj/item/storage/internal/modular/ammo_mag
 	slowdown = 0.1
 
-/obj/item/armor_module/storage/ammo_mag/freelancer
-
 /obj/item/armor_module/storage/ammo_mag/freelancer/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/m16(storage)
@@ -187,8 +185,6 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag"
 	storage =  /obj/item/storage/internal/modular/medical
-
-/obj/item/armor_module/storage/medical/freelancer
 
 /obj/item/armor_module/storage/medical/freelancer/Initialize()
 	. = ..()
