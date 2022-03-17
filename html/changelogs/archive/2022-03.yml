@@ -166,3 +166,7 @@
   - imagedel: Delete redundant poster
   - code_imp: directional poster!
   - imageadd: New Field Commander Minimap Icon so it doesn't look like bravo SG 2.0
+2022-03-17:
+  Pariah919:
+  - balance: APHE on AT Gun now flies slower, and now passes through turfs/walls and
+      not mobs.
