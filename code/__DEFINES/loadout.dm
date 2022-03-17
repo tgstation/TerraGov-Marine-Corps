@@ -229,7 +229,7 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 
 GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 		/obj/effect/essentials_set/basic = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/basicmodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/basic_jaeger = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/essentials_set/robot = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/modular_set/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
 		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
@@ -306,7 +306,7 @@ GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 		/obj/effect/essentials_set/basic_engineer = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/basic_engineermodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/basic_jaeger_engineer = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/essentials_set/robot = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/item/clothing/glasses/welding = list(CAT_GLA, "Welding Goggles", 0, "white"),
 		/obj/item/clothing/glasses/meson = list(CAT_GLA, "Optical Meson Scanner", 0, "white"),
@@ -371,7 +371,7 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 		/obj/effect/essentials_set/basic_medic = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/basic_medicmodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/basic_jaeger_medic = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/essentials_set/robot = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/modular_set/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
 		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
@@ -422,7 +422,7 @@ GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 		/obj/effect/essentials_set/basic_smartgunner = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/basic_smartgunnermodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/basic_jaeger_smartgunner = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/essentials_set/robot = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/modular_set/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
 		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
@@ -478,7 +478,7 @@ GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 
 GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/effect/essentials_set/basic_squadleader = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/basic_squadleadermodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/basic_jaeger_squadleader = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/essentials_set/robot = list(CAT_STD, "Essential Combat Robot Kit", 0, "white"),
 		/obj/effect/modular_set/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
 		/obj/effect/modular_set/scout = list(CAT_AMR, "Light Scout Jaeger kit", 0, "orange"),
