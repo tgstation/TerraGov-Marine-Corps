@@ -1,5 +1,5 @@
 /obj/item/pinpointer
-	name = "pinpointer"
+	name = "Xeno structure pinpointer"
 	icon_state = "pinoff"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -12,9 +12,7 @@
 
 /obj/item/pinpointer/Initialize()
 	. = ..()
-	tracked_list += GLOB.nuke_disk_generators
-	tracked_list += GLOB.nuke_list
-	tracked_list += GLOB.xeno_critical_structure
+	tracked_list = GLOB.xeno_critical_structure
 
 /obj/item/pinpointer/proc/set_target(mob/living/user)
 	if(!length(tracked_list))
