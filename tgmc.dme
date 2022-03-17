@@ -384,6 +384,7 @@
 #include "code\datums\gamemodes\civil_war.dm"
 #include "code\datums\gamemodes\crash.dm"
 #include "code\datums\gamemodes\distress.dm"
+#include "code\datums\gamemodes\nuclear_war.dm"
 #include "code\datums\gamemodes\extended.dm"
 #include "code\datums\gamemodes\game_mode.dm"
 #include "code\datums\gamemodes\infestation.dm"
