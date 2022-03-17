@@ -4,11 +4,15 @@
 	resistance_flags = XENO_DAMAGEABLE
 	idle_power_usage = 50
 	///List of all teleportable types
-	var/static/list/teleportable_types = typecacheof(list(
+	var/static/list/teleportable_types = list(
 		/obj/structure/closet,
 		/mob/living/carbon/human,
 		/obj/machinery,
-	))
+	)
+	///List of banned teleportable types
+	var/static/list/blacklisted_types = list(
+		/obj/machinery/nuclearbomb
+	)
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
 	. = ..()
@@ -46,6 +50,8 @@
 	
 	var/list/atom/movable/teleporting = list()
 	for(var/atom/movable/thing in loc)
+		if(is_type_in_list(thing, blacklisted_types))
+			continue
 		if(is_type_in_list(thing, teleportable_types) && !thing.anchored)
 			teleporting += thing
 	
