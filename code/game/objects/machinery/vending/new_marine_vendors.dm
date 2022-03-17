@@ -181,14 +181,13 @@
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM && !issynth(usr))
 				var/mob/living/carbon/human/H = usr
-				var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
-				new headset_type(loc, H.assigned_squad, vendor_role)
-				if(!istype(H.job, /datum/job/terragov/squad/engineer))
-					new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
-				if(istype(H.job, /datum/job/terragov/squad/leader))
-					new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
-				if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
-					new /obj/item/clothing/mask/rebreather/scarf(loc)
+				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
+					var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
+					new headset_type(loc, H.assigned_squad, vendor_role)
+					if(!istype(H.job, /datum/job/terragov/squad/engineer))
+						new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
+					if(istype(H.job, /datum/job/terragov/squad/leader))
+						new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 
 			if(use_points)
 				I.marine_points -= cost
