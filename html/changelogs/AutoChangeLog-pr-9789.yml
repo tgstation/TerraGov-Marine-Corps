@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "Give a button outside of Tadpole when someone lockdowns tadpole from inside so that you can open tadpole's shutters from the outside."
