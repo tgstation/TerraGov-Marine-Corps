@@ -1309,6 +1309,7 @@
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,
 			/obj/item/armor_module/module/hlin_explosive_armor = -1,
 			/obj/item/attachable/heatlens = -1,
+			/obj/item/storage/backpack/lightpack = -1,
 		)
 	)
 
