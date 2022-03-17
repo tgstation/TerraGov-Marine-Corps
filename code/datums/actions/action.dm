@@ -1,7 +1,7 @@
 /datum/action
 	var/name = "Generic Action"
 	var/desc
-	var/obj/target = null
+	var/datum/target = null
 	var/obj/screen/action_button/button = null
 	var/mob/owner
 	var/action_icon = 'icons/mob/actions.dmi'
@@ -19,12 +19,13 @@
 	target = Target
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_action)
 	button = new
-	if(target)
+	if(isobj(target))
+		var/obj/target_obj = target
 		var/image/IMG
-		if(ispath(target))
-			IMG = image(initial(target.icon), button, initial(target.icon_state))
+		if(ispath(target_obj))
+			IMG = image(initial(target_obj.icon), button, initial(target_obj.icon_state))
 		else
-			IMG = image(target.icon, button, target.icon_state)
+			IMG = image(target_obj.icon, button, target_obj.icon_state)
 		IMG.pixel_x = 0
 		IMG.pixel_y = 0
 		button.overlays += IMG
