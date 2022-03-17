@@ -62182,7 +62182,7 @@
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/clipboard,
-/obj/item/pinpointer,
+/obj/item/pinpointer/crash,
 /obj/machinery/vending/nanomed,
 /obj/machinery/power/apc/drained{
 	dir = 1

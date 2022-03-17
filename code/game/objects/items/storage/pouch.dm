@@ -59,7 +59,7 @@
 	. = ..()
 	new /obj/item/binoculars/tactical(src)
 	new /obj/item/megaphone(src)
-	new /obj/item/pinpointer(src)
+	new /obj/item/pinpointer/pool(src)
 
 
 /obj/item/storage/pouch/general/som
