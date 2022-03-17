@@ -1,4 +1,3 @@
-#define CONNECT "Connect"
 #define EXTRACT "Extract"
 #define LOAD "Load up"
 #define BOOST_CONFIG "Switch Boost"
@@ -202,7 +201,6 @@
 ///Shows the radial menu with suit options. It is separate from configure() due to linters
 /datum/component/chem_booster/proc/show_radial()
 	var/list/radial_options = list(
-		CONNECT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_connect"),
 		BOOST_CONFIG = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
 		EXTRACT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract"),
 		LOAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_load"),
@@ -504,7 +502,6 @@
 	action_icon_state = "vali_weapon_connect"
 	keybind_signal = COMSIG_KB_VALI_CONNECT
 
-#undef CONNECT
 #undef EXTRACT
 #undef LOAD
 #undef BOOST_CONFIG
