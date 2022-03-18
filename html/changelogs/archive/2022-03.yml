@@ -170,3 +170,31 @@
   Pariah919:
   - balance: APHE on AT Gun now flies slower, and now passes through turfs/walls and
       not mobs.
+2022-03-18:
+  Arctrooper8:
+  - qol: Leader armor essential sets have have their own description now.
+  - rscdel: The enclosed helmet no longer comes with the Xenonauten essentials kit
+      (check your surplus vendor to find it)
+  - bugfix: SLs can now save their leader helmets in their loadouts
+  - rscadd: FC now has a specific essentials kit for jaeger
+  - rscdel: SL and FC no longer start with an extra motion detector
+  - code_imp: renamed jaeger essentials kits pathtype to better convey what they are
+      to coders
+  - qol: Removed the extra coif that is given with essentials on cold maps.
+  - qol: FC is not given an extra pair of gloves and a worse radio anymore.
+  novaepee:
+  - rscadd: restock the Flight surgeron medical equipment dispenser, that funny medical
+      box in tadpole, to an inventory similar to the NanotrasenMed Plus so that medbus
+      can rise again. Yes, you can refill.
+  - balance: restock the Flight surgeron medical equipment dispenser, that funny medical
+      box in tadpole, to an inventory similar to the NanotrasenMed Plus so that medbus
+      can rise again
+  - rscadd: Give a button outside of Tadpole when someone lockdowns tadpole from inside
+      so that you can open tadpole's shutters from the outside.
+  - soundadd: decrease volume on all combat robot's voices
+  novaepee, MJP:
+  - balance: Aim mode on AT gun takes 6 seconds to do.
+  - balance: Reduce AT gun's health to 500, originally 800.
+  - balance: Scope on AT gun now takes 2 seconds to use.
+  - balance: Scope on AT gun now 7 tiles instead of 11 tiles that it inherits.
+  - bugfix: Remove AT gun having IFF.

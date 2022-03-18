@@ -1,6 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - qol: "Leader armor essential sets have have their own description now."
-  - rscdel: "The enclosed helmet no longer comes with the Xenonauten essentials kit (check your surplus vendor to find it)"
-  - bugfix: "SLs can now save their leader helmets in their loadouts"

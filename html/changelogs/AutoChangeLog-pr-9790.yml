@@ -1,6 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - rscadd: "FC now has a specific essentials kit for jaeger"
-  - rscdel: "SL and FC no longer start with an extra motion detector"
-  - code_imp: "renamed jaeger essentials kits pathtype to better convey what they are to coders"
