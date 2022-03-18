@@ -62,9 +62,11 @@
 	id = /obj/item/card/id/silver
 	belt = /obj/item/storage/belt/grenade/wp
 	ears = /obj/item/radio/headset/distress/dutch
+	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	w_uniform = /obj/item/clothing/under/colonist/clf
 	shoes = /obj/item/clothing/shoes/black
-	wear_suit = /obj/item/clothing/suit/storage/faction/militia
+	wear_suit = /obj/item/clothing/suit/storage/marine/harness/boomvest
+	head = /obj/item/clothing/head/tgmcberet/green
 	gloves = /obj/item/clothing/gloves/black
 	suit_store = /obj/item/weapon/gun/smg/uzi/clf
 	l_store = /obj/item/storage/pill_bottle/zoom
@@ -105,6 +107,7 @@
 	w_uniform = /obj/item/clothing/under/colonist/clf
 	shoes = /obj/item/clothing/shoes/black
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia/medic
+	head = /obj/item/clothing/head/tgmcberet/bloodred
 	gloves = /obj/item/clothing/gloves/black
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/uzi/clf
