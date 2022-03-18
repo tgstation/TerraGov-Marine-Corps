@@ -73,7 +73,7 @@
 		base_icon = icon_state
 		return
 	icon_state = variants_by_parent_type[parent.type]
-	base_icon = icon_state
+	base_icon = variants_by_parent_type[parent.type]
 	update_icon()
 
 /// Called when the module is removed from the armor.
@@ -201,7 +201,6 @@
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
-	item_state = base_icon + "_a"
 	update_icon()
 
 /obj/item/armor_module/armor/on_attach(obj/item/attaching_to, mob/user)
