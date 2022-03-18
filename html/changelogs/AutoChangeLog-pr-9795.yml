@@ -1,8 +1,0 @@
-author: "novaepee, MJP"
-delete-after: True
-changes: 
-  - balance: "Aim mode on AT gun takes 6 seconds to do."
-  - balance: "Reduce AT gun's health to 500, originally 800."
-  - balance: "Scope on AT gun now takes 2 seconds to use."
-  - balance: "Scope on AT gun now 7 tiles instead of 11 tiles that it inherits."
-  - bugfix: "Remove AT gun having IFF."
