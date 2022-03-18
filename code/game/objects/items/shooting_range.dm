@@ -40,6 +40,12 @@
 			to_chat(user, "You start fitting the target onto the stake.")
 			if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
 				return
+			if(istype(targetcushion, /obj/structure/target_stake/occupied))
+				new /obj/structure/target_stake/occupied(src.loc)
+			else if(istype(targetcushion, /obj/structure/target_stake/occupied/alien))
+				new /obj/structure/target_stake/occupied/alien(src.loc)
+			else if(istype(targetcushion, /obj/structure/target_stake/occupied/syndicate))
+				new /obj/structure/target_stake/occupied/syndicate(src.loc)		
 			new targetcushion.target_type(src.loc)
 			to_chat(user, "You slide the target into the stake.")
 			qdel(src) //delete original target_stake
@@ -76,7 +82,7 @@
 				return
 	
 	/obj/structure/target_stake/occupied/attack_hand(mob/living/user)
-		to_chat(user, "You start removing the target on the stake.")
+		to_chat(user, "You start removing the target from the stake.")
 		if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
 			return
 		///create new target stake to create the illusion of a new one
