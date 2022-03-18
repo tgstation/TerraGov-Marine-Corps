@@ -212,7 +212,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/new_angle = angle + ( (rand(0, main_proj.ammo.bonus_projectiles_scatter)) * (prob(50) ? 1 : -1) )
 		if(new_angle < 0)
 			new_angle += 360
-		else if(new_angle > 360)
+		if(new_angle > 360)
 			new_angle -= 360
 		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.loc, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
@@ -1193,27 +1193,23 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
-	var/main_proj_angle = Get_Angle(proj.firer, M)
 	bonus_projectiles_amount = 6
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, M) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/on_hit_obj(obj/O, obj/projectile/proj)
-	var/main_proj_angle = Get_Angle(proj.firer, O)
 	bonus_projectiles_amount = 6
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, O) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/on_hit_turf(turf/T, obj/projectile/proj)
-	var/main_proj_angle = Get_Angle(proj.firer, T)
 	bonus_projectiles_amount = 6
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, T) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/do_at_max_range(obj/projectile/proj)
-	var/main_proj_angle = Get_Angle(proj.firer, get_turf(proj))
 	bonus_projectiles_amount = 6
-	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, main_proj_angle)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, get_turf(proj)) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/incendiary

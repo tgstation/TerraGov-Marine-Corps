@@ -127,10 +127,7 @@
 		return
 	if(AM.projectile_hit(src))
 		AM.do_projectile_hit(src)
-		if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
-			qdel(src)
-			return
-		if(!(ismob(AM) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)))
+		if( (!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)) || (!(ismob(AM) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB))) )
 			qdel(src)
 			return
 	permutated[AM] = TRUE //Don't want to hit them again.
@@ -445,9 +442,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(border_escaped_through), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
-					continue
-				if(ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB))
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = i
 				break
@@ -494,9 +489,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
-					continue
-				if(ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB))
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = i
 				break
@@ -519,9 +512,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue //We act as if we were entering the tile through the opposite direction, to check for barricade blockage.
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
-					continue
-				if(ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB))
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = i
 				break
@@ -1073,9 +1064,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(border_escaped_through), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
-					continue
-				if(ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB))
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = TRUE
 				break
@@ -1099,9 +1088,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
-					continue
-				if(ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB))
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = TRUE
 				break
@@ -1117,9 +1104,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue //We act as if we were entering the tile through the opposite direction, to check for barricade blockage.
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
-					continue
-				if(ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB))
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = TRUE
 				break
