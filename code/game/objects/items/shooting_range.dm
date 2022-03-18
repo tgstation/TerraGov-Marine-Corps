@@ -10,17 +10,13 @@
 	density = FALSE
 	resistance_flags = INDESTRUCTIBLE
 	///what kind of occupied stake we're going to get after application of target
-	var/target_type = /obj/structure/target_stake/occupied
 
 	/obj/item/target/syndicate
 		icon_state = "target_s"
 		desc = "A shooting target that looks like a hostile agent."
-		target_type = /obj/structure/target_stake/occupied/syndicate
-
 	/obj/item/target/alien
 		icon_state = "target_q"
 		desc = "A shooting target with a threatening silhouette."
-		target_type = /obj/structure/target_stake/occupied/alien
 	
 ///Basically these are for the firing range
 /obj/structure/target_stake
@@ -46,7 +42,6 @@
 				new /obj/structure/target_stake/occupied/alien(src.loc)
 			else if(istype(targetcushion, /obj/structure/target_stake/occupied/syndicate))
 				new /obj/structure/target_stake/occupied/syndicate(src.loc)		
-			new targetcushion.target_type(src.loc)
 			to_chat(user, "You slide the target into the stake.")
 			qdel(src) //delete original target_stake
 			qdel(I) //delete targetting dummy in users hand
