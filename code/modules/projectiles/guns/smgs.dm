@@ -335,6 +335,7 @@
 	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire selector to full auto for maximum firepower. Use two if you really want to go ham."
 	icon_state = "uzi"
 	item_state = "uzi"
+	flags_equip_slot = ITEM_SLOT_BELT
 	caliber = CALIBER_9X19 //codex
 	max_shells = 32 //codex
 	fire_sound = 'sound/weapons/guns/fire/uzi.ogg'
@@ -343,13 +344,23 @@
 	cocked_sound = 'sound/weapons/guns/interact/uzi_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/smg/uzi
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/uzi, /obj/item/ammo_magazine/smg/uzi/extended)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
-
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 24,"rail_x" = 11, "rail_y" = 27, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet,
+	)
 	fire_delay = 0.15 SECONDS
 	burst_amount = 4
-	accuracy_mult_unwielded = 0.9
+	accuracy_mult_unwielded = 1
 	accuracy_mult = 1
 	scatter = 0
-	scatter_unwielded = 4
+	scatter_unwielded = 2
 	aim_slowdown = 0.15
 	wield_delay = 0.2 SECONDS
+
+/obj/item/weapon/gun/smg/uzi/clf
+	default_ammo_type = /obj/item/ammo_magazine/smg/uzi/extended
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness)

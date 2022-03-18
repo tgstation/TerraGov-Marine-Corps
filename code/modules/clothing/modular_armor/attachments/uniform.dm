@@ -37,6 +37,14 @@
 	icon_state = "vest_black"
 	storage = /obj/item/storage/internal/vest
 
+/obj/item/armor_module/storage/uniform/black_vest/clf/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/smg/uzi/extended(storage)
+	new /obj/item/ammo_magazine/smg/uzi/extended(storage)
+	new /obj/item/ammo_magazine/smg/uzi/extended(storage)
+	new /obj/item/ammo_magazine/smg/uzi/extended(storage)
+	new /obj/item/ammo_magazine/smg/uzi/extended(storage)
+
 /obj/item/storage/internal/vest
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL

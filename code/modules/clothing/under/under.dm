@@ -22,6 +22,7 @@
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/uniform/webbing,
 		/obj/item/armor_module/storage/uniform/black_vest,
+		/obj/item/armor_module/storage/uniform/black_vest/clf,
 		/obj/item/armor_module/storage/uniform/brown_vest,
 		/obj/item/armor_module/storage/uniform/white_vest,
 		/obj/item/armor_module/storage/uniform/white_vest/surgery,

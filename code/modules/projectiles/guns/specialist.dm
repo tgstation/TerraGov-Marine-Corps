@@ -587,6 +587,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 3
 	scatter = -100
 
+/obj/item/weapon/gun/launcher/rocket/sadar/wp
+	default_ammo_type = /obj/item/ammo_magazine/rocket/sadar/wp
+
 /obj/item/weapon/gun/launcher/rocket/sadar/Initialize(mapload, spawn_empty)
 	. = ..()
 	SSmonitor.stats.sadar_in_use += src

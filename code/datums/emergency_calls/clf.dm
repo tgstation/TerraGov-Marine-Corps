@@ -3,6 +3,10 @@
 	name = "CLF Cell"
 	base_probability = 20
 	alignement_factor = 0
+	///Number of current Grenadiers in this squad.
+	var/grenadiers
+	///Max amount of Grenadiers allowed in this squad.
+	var/max_grenadiers = 2
 
 
 /datum/emergency_call/clf/print_backstory(mob/living/carbon/human/H)
@@ -32,6 +36,13 @@
 		var/datum/job/J = SSjob.GetJobType(/datum/job/clf/leader)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, span_notice("You are a leader of the local resistance group, the Colonial Liberation Front."))
+		return
+
+	if(grenadiers < max_grenadiers)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/clf/grenadier)
+		H.apply_assigned_role_to_spawn(J)
+		to_chat(H, span_notice("You are a Grenadier of the local resistance group, the Colonial Liberation Front."))
+		grenadiers++
 		return
 
 	if(medics < max_medics)

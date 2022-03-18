@@ -613,6 +613,18 @@
 	new /obj/item/explosive/grenade(src)
 	new /obj/item/explosive/grenade(src)
 
+/obj/item/storage/belt/grenade/wp/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/explosive/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/phosphorus(src)
+
 /obj/item/storage/belt/grenade/b17
 	name = "\improper M276 pattern M40 HEDP rig Mk II"
 	w_class = WEIGHT_CLASS_BULKY

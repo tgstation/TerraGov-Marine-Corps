@@ -188,8 +188,6 @@
 	icon_state = "mod_medic_bag"
 	storage =  /obj/item/storage/internal/modular/medical
 
-/obj/item/armor_module/storage/medical/freelancer
-
 /obj/item/armor_module/storage/medical/freelancer/Initialize()
 	. = ..()
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(storage)

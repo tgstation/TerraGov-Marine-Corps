@@ -336,6 +336,8 @@
 		if("CLF2")
 			. = size ? "CLF " : "CLF Medic"
 		if("CLF3")
+			. = size ? "CLF " : "CLF Grenadier"
+		if("CLF4")
 			. = size ? "CLF " : "CLF Leader"
 		if("SOM1")
 			. = size ? "SOM " : "SOM Standard"

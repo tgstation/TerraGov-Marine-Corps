@@ -106,6 +106,7 @@
 	caliber = CALIBER_9X21
 	icon_state = "uzi"
 	max_rounds = 32
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_magazine/smg/uzi/extended
 	name = "\improper GAL9 extended magazine (9mm)"

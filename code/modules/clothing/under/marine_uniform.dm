@@ -309,6 +309,9 @@
 	icon_state = "colonist"
 	has_sensor = 2
 
+/obj/item/clothing/under/colonist/clf
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/clf)
+
 /obj/item/clothing/under/CM_uniform
 	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."

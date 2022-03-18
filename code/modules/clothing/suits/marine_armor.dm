@@ -677,7 +677,7 @@
 
 
 //this one is for CLF
-/obj/item/clothing/suit/storage/militia
+/obj/item/clothing/suit/storage/faction/militia
 	name = "\improper colonial militia hauberk"
 	desc = "The hauberk of a colonist militia member, created from boiled leather and some modern armored plates. While primitive compared to most modern suits of armor, it gives the wearer almost perfect mobility, which suits the needs of the local colonists. "
 	icon = 'icons/obj/clothing/cm_suits.dmi'
@@ -707,6 +707,17 @@
 		/obj/item/weapon/baseballbat,
 	)
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/suit/storage/faction/militia/leader
+	attachments_by_slot = list(ATTACHMENT_SLOT_MODULE)
+	attachments_allowed = list(/obj/item/armor_module/module/fire_proof)
+	starting_attachments = list(/obj/item/armor_module/module/fire_proof)
+
+/obj/item/clothing/suit/storage/faction/militia/medic
+	pockets = null
+	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
+	attachments_allowed = list(/obj/item/armor_module/storage/medical/freelancer)
+	starting_attachments = list(/obj/item/armor_module/storage/medical/freelancer)
 
 /obj/item/clothing/suit/storage/CMB
 	name = "\improper CMB jacket"
