@@ -713,6 +713,7 @@
 /area/desert_dam/exterior/valley
 	minimap_color = MINIMAP_AREA_COLONY
 	always_unpowered = FALSE
+
 /area/desert_dam/exterior/valley/valley_northwest
 	name = "Northwest Valley"
 	icon_state = "valley_north_west"
