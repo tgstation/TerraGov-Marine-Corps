@@ -170,9 +170,6 @@
 
 #define SHADOW_RENDER_TARGET "SHADOW_RENDER_TARGET"
 
-/// Plane for balloon text (text that fades up)
-#define BALLOON_CHAT_PLANE 110
-
 #define O_LIGHTING_VISUAL_PLANE 120
 #define O_LIGHTING_VISUAL_LAYER 16
 #define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
@@ -182,6 +179,9 @@
 #define LIGHTING_SECONDARY_LAYER 16	//The colourful, usually small lights that go on top
 
 #define LIGHTING_SHADOW_LAYER 17	//Where the shadows happen
+
+/// Plane for balloon text (text that fades up)
+#define BALLOON_CHAT_PLANE 150.1
 
 #define ABOVE_LIGHTING_PLANE 150
 #define ABOVE_LIGHTING_LAYER 18
