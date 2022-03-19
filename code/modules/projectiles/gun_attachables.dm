@@ -635,6 +635,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	has_nightvision = TRUE
 
+/obj/item/attachable/scope/optical
+	name = "T-49 Optical imaging scope"
+	icon_state = "nvscope"
+	desc = "A rail-mounted scope designed for the TX-55 and TX-54. Features low light optical imaging capabilities and assists with precision aiming. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	has_nightvision = TRUE
+
 /obj/item/attachable/scope/mosin
 	name = "Mosin nagant rail scope"
 	icon_state = "mosinscope"
@@ -744,6 +750,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	user.see_in_dark = 32
 	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	user.sync_lighting_plane_alpha()
+	return TRUE
+
+/obj/item/attachable/scope/optical/update_remote_sight(mob/living/user)
+	. = ..()
+	user.see_in_dark = 2
 	return TRUE
 
 /obj/item/attachable/scope/unremovable/laser_sniper_scope

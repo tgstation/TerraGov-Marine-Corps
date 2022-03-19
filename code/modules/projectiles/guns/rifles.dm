@@ -1407,6 +1407,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_20MM //codex
 	attachable_allowed = list(
+		/obj/item/attachable/scope/optical
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
@@ -1468,6 +1469,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/rifle/tx55
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx55)
 	attachable_allowed = list(
+		/obj/item/attachable/scope/optical
 		/obj/item/weapon/gun/rifle/tx54/mini,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
