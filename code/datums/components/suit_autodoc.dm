@@ -169,7 +169,8 @@
 	SIGNAL_HANDLER
 	if(!iscarbon(user))
 		return
-	UnregisterSignal(wearer, COMSIG_KB_SUITANALYZER)
+	if(wearer)
+		UnregisterSignal(wearer, COMSIG_KB_SUITANALYZER)
 	remove_actions()
 	disable()
 	wearer = null

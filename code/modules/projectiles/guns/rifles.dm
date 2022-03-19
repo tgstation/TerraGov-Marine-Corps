@@ -557,11 +557,8 @@
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
 
-/obj/item/weapon/gun/rifle/m16/freelancerleader
-	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/scope/mini, /obj/item/attachable/extended_barrel)
-
 /obj/item/weapon/gun/rifle/m16/freelancer
-	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/weapon/gun/shotgun/combat/masterkey)
 
 /obj/item/weapon/gun/rifle/m16/somleader
 	starting_attachment_types = list(/obj/item/attachable/reddot)
@@ -621,7 +618,7 @@
 	scatter = 3
 
 /obj/item/weapon/gun/rifle/famas/freelancermedic
-	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/suppressor)
+	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
 
 
 //-------------------------------------------------------
