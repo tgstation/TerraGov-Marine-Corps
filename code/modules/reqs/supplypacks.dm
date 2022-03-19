@@ -305,7 +305,10 @@ WEAPONS
 
 /datum/supply_packs/weapons/specdemo
 	name = "T-152 SADAR Rocket Launcher"
-	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
+	contains = list(
+		/obj/item/weapon/gun/launcher/rocket/sadar,
+		/obj/item/storage/backpack/rpg,
+	)
 	cost = SADAR_PRICE
 	available_against_xeno_only = TRUE
 
