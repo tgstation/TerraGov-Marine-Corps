@@ -666,7 +666,6 @@
 //EXTERIOR
 //under open sky
 /area/desert_dam/exterior
-	requires_power = 1
 	always_unpowered = TRUE
 
 /area/desert_dam/exterior/rock
@@ -675,7 +674,7 @@
 
 /area/desert_dam/exterior/landing
 	always_unpowered = FALSE
-	
+
 //Landing Pad for the Alamo. THIS IS NOT THE SHUTTLE AREA
 /area/desert_dam/exterior/landing/landing_pad_one
 	name = "Airstrip Landing Pad"
@@ -725,6 +724,8 @@
 /area/desert_dam/exterior/valley/tradeship
 	name = "NTT Jerry-Cabot"
 	icon_state = "dark160"
+	requires_power = FALSE
+	always_unpowered = FALSE
 
 //Away from LZ
 
