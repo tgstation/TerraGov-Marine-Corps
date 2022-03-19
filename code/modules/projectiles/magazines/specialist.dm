@@ -127,7 +127,7 @@
 	desc = "A rocket tube for the T-152 rocket launcher."
 	caliber = CALIBER_84MM
 	icon_state = "rocket"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket
 	reload_delay = 60
@@ -152,7 +152,7 @@
 	desc = "A high explosive shell for the T-160 recoilless rifle. Causes a heavy explosion over a small area. Requires specialized storage to carry."
 	caliber = CALIBER_67MM
 	icon_state = "shell"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless
 	reload_delay = 30
@@ -162,7 +162,7 @@
 	desc = "A light explosive shell for the T-160 recoilless rifle. Causes a light explosion over a large area. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
 	caliber = CALIBER_67MM
 	icon_state = "shell_le"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/light
 	reload_delay = 10
@@ -172,7 +172,7 @@
 	desc = "A high explosive-anti tank shell for the T-160 recoilless rifle. Causes a medium explosion over a small area after impacting. Requires specialized storage to carry."
 	caliber = CALIBER_67MM
 	icon_state = "shell_heat"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/heat
 	reload_delay = 30
