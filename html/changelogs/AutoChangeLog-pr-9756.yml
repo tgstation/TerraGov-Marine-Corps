@@ -1,0 +1,7 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - rscadd: "Xenonauten welding helmet module now has a new sprite."
+  - rscadd: "Helmet modules now come in miniature crates similar to their suit module counterparts."
+  - balance: "gives squad engineers access to superior welding protection."
+  - code_imp: "added var/base_icon in the attachments file, an alternative for initial_icon."

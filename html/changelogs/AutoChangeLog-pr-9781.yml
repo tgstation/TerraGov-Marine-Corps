@@ -1,0 +1,18 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - code_imp: "Allows the armor type /storage to have pockets set to null."
+  - bugfix: "Fixes a runtime with valk when unequipping it."
+  - balance: "Freelancers are modernized!"
+  - balance: "Freelancer Leader now has a magazine storage module and valk.
+He will carry a grenade belt.
+His gun now has a mag harness, bayonet and masterkey."
+  - balance: "Freelancer Medic now has Baldur, Binocs and a Medical storage module.
+He now carries tweezers and MeraDerm.
+His Famas now has a bayonet and a magnetic harness."
+  - balance: "Freelancer now has baldur and Binocs.
+His m16 will now have a magnetic harness, a masterkey and a bayonet.
+His stick grenades have been replaced with m15s
+He now has a shoulder holster for his sidearm.
+He now carries 30 plasteel."
+  - balance: "freelancers no longer carry MREs or radios."

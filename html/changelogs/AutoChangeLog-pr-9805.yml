@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "New gamemode, nuclear war (or discrash or crashtess)."
+  - balance: "No more crash pinpointer, but pool pinpointer can target all critical xeno struture (silos, spawner, towers)"

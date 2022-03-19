@@ -198,3 +198,6 @@
   - balance: Scope on AT gun now takes 2 seconds to use.
   - balance: Scope on AT gun now 7 tiles instead of 11 tiles that it inherits.
   - bugfix: Remove AT gun having IFF.
+2022-03-19:
+  BraveMole:
+  - balance: Nuke can no longer be teleported

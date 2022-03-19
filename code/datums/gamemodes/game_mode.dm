@@ -41,6 +41,8 @@
 	var/datum/emergency_call/picked_call = null //Which distress call is currently active
 	var/on_distress_cooldown = FALSE
 	var/waiting_for_candidates = FALSE
+	/// Ponderation rate of silos output. 1 is normal, 2 is twice 
+	var/silo_scaling = 1
 
 
 /datum/game_mode/New()

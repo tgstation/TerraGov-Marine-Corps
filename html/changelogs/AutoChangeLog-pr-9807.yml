@@ -1,0 +1,9 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - qol: "Made it so marines can now spawn xenos of any maturity in Valhalla"
+  - qol: "Valhalla now has xeno HUDs scattered around the firing ranges."
+  - qol: "Valhalla now has a special vendor for testing seasonal weapons."
+  - qol: "Updated Valhalla vendors to have Harvester spear and rocket sledge."
+  - bugfix: "Fixed marines being unable to spawn queens, kings, and gorgers in Valhalla."
+  - bugfix: "Fixed ammo for some weapon types not being in Valhalla vendors"
