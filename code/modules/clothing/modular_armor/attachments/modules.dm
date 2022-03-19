@@ -213,6 +213,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_xn")
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
@@ -244,11 +245,26 @@
 	active = !active
 	SEND_SIGNAL(parent, COMSIG_ITEM_TOGGLE_ACTION, user)
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
-	icon_state = initial(icon_state) + "[active ? "_active" : ""]"
+	icon_state = base_icon + "[active ? "_active" : ""]"
 	item_state = icon_state + "_a"
 	parent.update_icon()
 	user.update_inv_head()
 
+/obj/item/armor_module/module/welding/superior
+	name = "Superior Welding Helmet Module"
+	desc = "Designed for mounting on a modular helmet. This more expensive module can be toggled on or off to function as welding protection for your delicate eyes, strangely smells like potatoes."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "welding_head"
+	item_state = "welding_head_a"
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_superior_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_superior_xn")
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	active = FALSE
+	prefered_slot = SLOT_HEAD
+
+/obj/item/armor_module/module/welding/superior/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	parent.AddComponent(/datum/component/clothing_tint, TINT_4, active)
 
 /obj/item/armor_module/module/binoculars
 	name = "Binocular Helmet Module"
