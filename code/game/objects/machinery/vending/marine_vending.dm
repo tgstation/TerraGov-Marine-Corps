@@ -19,6 +19,7 @@
 			/obj/item/weapon/gun/rifle/tx11 = -1,
 			/obj/item/ammo_magazine/rifle/tx11 = -1,
 			/obj/item/weapon/gun/shotgun/pump/lever/repeater = -1,
+			/obj/item/ammo_magazine/packet/p4570 = -1,
 		),
 		"Energy Weapons" = list(
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
@@ -1278,11 +1279,15 @@
 			/obj/item/ammo_magazine/rifle/standard_smartrifle = -1,
 			/obj/item/ammo_magazine/packet/t25 = -1,
 			/obj/item/weapon/gun/launcher/rocket/oneuse = -1,
+			/obj/item/ammo_magazine/rocket/oneuse = -1,
 			/obj/item/storage/belt/gun/mateba/full = -1,
 			/obj/item/ammo_magazine/revolver/mateba = -1,
 			/obj/item/ammo_magazine/packet/mateba = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle/flak = -1,
 			/obj/item/ammo_magazine/flamer_tank/backtank/X = -1,
+			/obj/item/weapon/claymore/harvester = -1,
+			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
+			/obj/item/weapon/twohanded/rocketsledge = -1,
 		),
 		"Equipment" = list(
 			/obj/item/clothing/mask/gas/swat = -1,
@@ -1304,6 +1309,63 @@
 			/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet = -1,
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,
 			/obj/item/armor_module/module/hlin_explosive_armor = -1,
+			/obj/item/attachable/heatlens = -1,
+			/obj/item/storage/backpack/lightpack = -1,
+		)
+	)
+
+/obj/machinery/vending/valhalla_seasonal_req
+	name = "\improper TerraGovTech seasonal vendor"
+	desc = "A automated rack hooked up to a colossal storage of items."
+	icon_state = "requisitionop"
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+	products = list(
+		"Weapon" = list(
+			/obj/item/weapon/gun/revolver/small = -1,
+			/obj/item/ammo_magazine/revolver/small = -1,
+			/obj/item/weapon/gun/revolver/single_action/m44 = -1,
+			/obj/item/ammo_magazine/revolver = -1,
+			/obj/item/weapon/gun/pistol/g22 = -1,
+			/obj/item/ammo_magazine/pistol/g22 = -1,
+			/obj/item/weapon/gun/pistol/heavy = -1,
+			/obj/item/ammo_magazine/pistol/heavy = -1,
+			/obj/item/weapon/gun/pistol/vp78 = -1,
+			/obj/item/ammo_magazine/pistol/vp78 = -1,
+			/obj/item/weapon/gun/pistol/highpower = -1,
+			/obj/item/ammo_magazine/pistol/highpower = -1,
+			/obj/item/weapon/gun/revolver/judge = -1,
+			/obj/item/ammo_magazine/revolver/judge = -1,
+			/obj/item/ammo_magazine/revolver/judge/buckshot = -1,
+			/obj/item/weapon/gun/revolver/upp = -1,
+			/obj/item/ammo_magazine/revolver/upp = -1,
+			/obj/item/weapon/gun/smg/uzi = -1,
+			/obj/item/ammo_magazine/smg/uzi = -1,
+			/obj/item/weapon/gun/revolver/cmb = -1,
+			/obj/item/ammo_magazine/revolver/cmb = -1,
+			/obj/item/weapon/gun/smg/m25 = -1,
+			/obj/item/ammo_magazine/smg/m25 = -1,
+			/obj/item/weapon/gun/smg/mp7 = -1,
+			/obj/item/ammo_magazine/smg/mp7 = -1,
+			/obj/item/weapon/gun/rifle/mkh = -1,
+			/obj/item/ammo_magazine/rifle/mkh = -1,
+			/obj/item/weapon/gun/smg/ppsh = -1,
+			/obj/item/ammo_magazine/smg/ppsh = -1,
+			/obj/item/ammo_magazine/smg/ppsh/extended = -1,
+			/obj/item/weapon/gun/shotgun/combat = -1,
+			/obj/item/weapon/gun/shotgun/pump/cmb = -1,
+			/obj/item/weapon/gun/rifle/mpi_km = -1,
+			/obj/item/ammo_magazine/rifle/mpi_km = -1,
+			/obj/item/weapon/gun/rifle/m16 = -1,
+			/obj/item/ammo_magazine/rifle/m16 = -1,
+			/obj/item/weapon/gun/rifle/m412 = -1,
+			/obj/item/ammo_magazine/rifle = -1,
+			/obj/item/weapon/gun/rifle/m41a = -1,
+			/obj/item/ammo_magazine/rifle/m41a = -1,
+			/obj/item/weapon/gun/rifle/type71/seasonal = -1,
+			/obj/item/ammo_magazine/rifle/type71 = -1,
+			/obj/item/weapon/gun/rifle/alf_machinecarbine = -1,
+			/obj/item/ammo_magazine/rifle/alf_machinecarbine = -1,
 		)
 	)
 
