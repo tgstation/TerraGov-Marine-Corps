@@ -201,3 +201,40 @@
 2022-03-19:
   BraveMole:
   - balance: Nuke can no longer be teleported
+2022-03-20:
+  Arctrooper8:
+  - rscadd: Xenonauten welding helmet module now has a new sprite.
+  - rscadd: Helmet modules now come in miniature crates similar to their suit module
+      counterparts.
+  - balance: gives squad engineers access to superior welding protection.
+  - code_imp: added var/base_icon in the attachments file, an alternative for initial_icon.
+  - balance: Surt light debuff has been reverted
+  BraveMole:
+  - rscadd: New gamemode, nuclear war (or discrash or crashtess).
+  - balance: No more crash pinpointer, but pool pinpointer can target all critical
+      xeno struture (silos, spawner, towers)
+  Loyavas:
+  - bugfix: Adjusted CL rank abbreviations
+  RipGrayson:
+  - qol: Made it so marines can now spawn xenos of any maturity in Valhalla
+  - qol: Valhalla now has xeno HUDs scattered around the firing ranges.
+  - qol: Valhalla now has a special vendor for testing seasonal weapons.
+  - qol: Updated Valhalla vendors to have Harvester spear and rocket sledge.
+  - bugfix: Fixed marines being unable to spawn queens, kings, and gorgers in Valhalla.
+  - bugfix: Fixed ammo for some weapon types not being in Valhalla vendors
+  - rscdel: Removed Barrenquilla from the game.
+  hyper2snyper:
+  - code_imp: Allows the armor type /storage to have pockets set to null.
+  - bugfix: Fixes a runtime with valk when unequipping it.
+  - balance: Freelancers are modernized!
+  - balance: Freelancer Leader now has a magazine storage module and valk. He will
+      carry a grenade belt. His gun now has a mag harness, bayonet and masterkey.
+  - balance: Freelancer Medic now has Baldur, Binocs and a Medical storage module.
+      He now carries tweezers and MeraDerm. His Famas now has a bayonet and a magnetic
+      harness.
+  - balance: Freelancer now has baldur and Binocs. His m16 will now have a magnetic
+      harness, a masterkey and a bayonet. His stick grenades have been replaced with
+      m15s He now has a shoulder holster for his sidearm. He now carries 30 plasteel.
+  - balance: freelancers no longer carry MREs or radios.
+  novaepee and Lumipharon:
+  - balance: Engineer's teleporter has health of 250, half of what it used to have
