@@ -8,12 +8,14 @@
 	max_w_class = 4 ///normally the special item will be larger than what should fit. Child items will have lower limits and an override
 	storage_slots = 1
 	max_storage_space = 4
+	flags_equip_slot = ITEM_SLOT_BACK
 	draw_mode = 1
+	allow_drawing_method = TRUE
 	var/base_icon = "m37_holster" ///what is this used for in large_holster code?
 	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 	var/sheatheSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 	///the snowflake item(s) that will update the sprite. ///currently setup for a single item, or item and it's children in the case of belt holsters. Lists could be used for various items, but would require more work.
-	var/holsterable_allowed = null
+	var/list/holsterable_allowed = list()
 	///starts empty - need to check out shit that starts full to see what happens
 	var/holstered = FALSE
 
@@ -39,7 +41,7 @@
 ///if the item being inserted is the snowflake item, update sprite and make it swoosh
 /obj/item/storage/holster/handle_item_insertion(obj/item/W, prevent_warning = 0)
 	. = ..()
-	if (. && (istype(W,holsterable_allowed)))
+	if (. && (W.type in holsterable_allowed) )
 		holstered = TRUE
 		update_holster_icon()
 	return 1
@@ -47,7 +49,7 @@
 ///if the item being removed is the snowflake item, update sprite and make it swoosh
 /obj/item/storage/holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
-	if (. && (istype(W,holsterable_allowed)))
+	if (. && (W.type in holsterable_allowed) )
 		holstered = FALSE
 		update_holster_icon()
 	return
@@ -57,11 +59,11 @@
 	var/mob/user = loc
 	if(holstered)
 		playsound(src,sheatheSound, 15, 1)
-		icon_state += "_g"
+		icon_state += "_full"
 		item_state = icon_state
 	else
 		playsound(src,drawSound, 15, 1)
-		icon_state = copytext(icon_state,1,-2)
+		icon_state = copytext(icon_state,1,-5)
 		item_state = icon_state
 
 	if(istype(user)) 			///is there a way to tell it what slot src is in and only update that?
@@ -82,7 +84,6 @@
 	name = "Backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too"
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') ///robots have snowflake backpack icons
-	flags_equip_slot = ITEM_SLOT_BACK
 	max_w_class = 3 //normal items
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS ///0 out for satchel types
@@ -113,16 +114,136 @@
 	storage_slots = 5 //It can hold 5 rockets.
 	max_w_class = 4
 	access_delay = 0
-	holsterable_allowed = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
-	)
-	storage_type_limits = list(
-		/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1,
-	)
+	holsterable_allowed = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle,)
+	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle,)
+	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1,)
 	can_hold = list(
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own damn sprites, pls.
-	flags_equip_slot = ITEM_SLOT_BACK
+
+//////one slot items/////
+
+////swords////
+/obj/item/storage/holster/machete
+	name = "\improper H5 pattern M2132 machete scabbard"
+	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
+	base_icon = "machete_holster"
+	icon_state = "machete_holster"
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	holsterable_allowed = list(
+		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/claymore/harvester
+	)
+	can_hold = list(
+		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/claymore/harvester
+	)
+
+/obj/item/storage/holster/machete/full/Initialize()
+	. = ..()
+	icon_state = "machete_holster_full"
+	new /obj/item/weapon/claymore/mercsword/machete(src)
+
+/obj/item/storage/holster/machete/full_harvester
+	name = "H5 Pattern M2132 harvester scabbard"
+
+/obj/item/storage/holster/machete/full_harvester/Initialize()
+	. = ..()
+	icon_state = "machete_holster_full"
+	new /obj/item/weapon/claymore/harvester(src)
+
+/obj/item/storage/holster/katana
+	name = "\improper katana scabbard"
+	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back, waist or armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
+	base_icon = "katana_holster"
+	icon_state = "katana_holster"
+	force = 12
+	attack_verb = list("bludgeoned", "struck", "cracked")
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	holsterable_allowed = list(/obj/item/weapon/katana)
+	can_hold = list(/obj/item/weapon/katana)
+
+/obj/item/storage/holster/katana/full/Initialize()
+	. = ..()
+	icon_state = "katana_holster_full"
+	new /obj/item/weapon/katana(src)
+
+/obj/item/storage/holster/officer
+	name = "\improper officer sword scabbard"
+	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
+	base_icon = "officer_sheath"
+	icon_state = "officer_sheath"
+	flags_equip_slot = ITEM_SLOT_BELT
+	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword)
+	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)
+
+/obj/item/storage/holster/officer/full/Initialize()
+	. = ..()
+	icon_state = "officer_sheath_full"
+	new /obj/item/weapon/claymore/mercsword/officersword(src)
+
+/////guns////
+
+/obj/item/storage/holster/m37
+	name = "\improper L44 shotgun scabbard"
+	desc = "A large leather holster allowing the storage of any shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
+	icon_state = "m37_holster"
+	holsterable_allowed = list(
+		/obj/item/weapon/gun/shotgun/combat,
+		/obj/item/weapon/gun/shotgun/pump,
+	)
+	can_hold = list(
+		/obj/item/weapon/gun/shotgun/combat,
+		/obj/item/weapon/gun/shotgun/pump,
+	)
+
+/obj/item/storage/holster/m37/full/Initialize()
+	. = ..()
+	icon_state = "m37_holster_full"
+	new /obj/item/weapon/gun/shotgun/pump(src)
+
+/obj/item/storage/holster/t35
+	name = "\improper L44 T-35 scabbard"
+	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
+	icon_state = "t35_holster"
+	holsterable_allowed = list(/obj/item/weapon/gun/shotgun/pump/t35)
+	can_hold = list(
+		/obj/item/weapon/gun/shotgun/pump/t35,
+	)
+
+/obj/item/storage/holster/t35/full/Initialize()
+	. = ..()
+	icon_state = "t35_holster_full"
+	new /obj/item/weapon/gun/shotgun/pump/t35(src)
+
+/obj/item/storage/holster/m25
+	name = "\improper M276 pattern M25 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the M25 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	icon_state = "m25_holster"
+	icon = 'icons/obj/clothing/belts.dmi'
+	base_icon = "m25_holster"
+	flags_equip_slot = ITEM_SLOT_BELT
+	holsterable_allowed = list(/obj/item/weapon/gun/smg/m25)
+	can_hold = list(/obj/item/weapon/gun/smg/m25)
+
+/obj/item/storage/holster/m25/full/Initialize()
+	. = ..()
+	icon_state = "m25_holster_full"
+	new /obj/item/weapon/gun/smg/m25(src)
+
+/obj/item/storage/holster/t19
+	name = "\improper M276 pattern T-19 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the T-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	icon_state = "t19_holster"
+	icon = 'icons/obj/clothing/belts.dmi'
+	base_icon = "t19_holster"
+	flags_equip_slot = ITEM_SLOT_BELT
+	holsterable_allowed = list(/obj/item/weapon/gun/smg/standard_machinepistol)
+	can_hold = list(/obj/item/weapon/gun/smg/standard_machinepistol)
+
+/obj/item/storage/holster/t19/full/Initialize()
+	. = ..()
+	icon_state = "t19_holster_full"
+	new /obj/item/weapon/gun/smg/standard_machinepistol(src)
