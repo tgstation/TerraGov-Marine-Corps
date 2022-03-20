@@ -11,7 +11,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	draw_mode = 1
 	allow_drawing_method = TRUE
-	var/base_icon = "m37_holster" ///what is this used for in large_holster code?
+	var/base_icon = "m37_holster" ///is used to store the 'empty' sprite name
 	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 	var/sheatheSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 	///the snowflake item(s) that will update the sprite. ///currently setup for a single item, or item and it's children in the case of belt holsters. Lists could be used for various items, but would require more work.
@@ -110,6 +110,7 @@
 	desc = "This backpack can hold 5 67mm shells or 80mm rockets."
 	icon_state = "marine_rocket"
 	item_state = "marine_rocket"
+	base_icon = "marine_rocket"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 5 //It can hold 5 rockets.
 	max_w_class = 4
@@ -129,8 +130,8 @@
 /obj/item/storage/holster/machete
 	name = "\improper H5 pattern M2132 machete scabbard"
 	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
-	base_icon = "machete_holster"
 	icon_state = "machete_holster"
+	base_icon = "machete_holster"
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	holsterable_allowed = list(
 		/obj/item/weapon/claymore/mercsword/machete,
@@ -157,8 +158,8 @@
 /obj/item/storage/holster/katana
 	name = "\improper katana scabbard"
 	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back, waist or armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
-	base_icon = "katana_holster"
 	icon_state = "katana_holster"
+	base_icon = "katana_holster"
 	force = 12
 	attack_verb = list("bludgeoned", "struck", "cracked")
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
@@ -173,8 +174,8 @@
 /obj/item/storage/holster/officer
 	name = "\improper officer sword scabbard"
 	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
-	base_icon = "officer_sheath"
 	icon_state = "officer_sheath"
+	base_icon = "officer_sheath"
 	flags_equip_slot = ITEM_SLOT_BELT
 	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword)
 	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)
@@ -190,6 +191,7 @@
 	name = "\improper L44 shotgun scabbard"
 	desc = "A large leather holster allowing the storage of any shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "m37_holster"
+	base_icon = "m37_holster"
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/pump,
@@ -208,6 +210,7 @@
 	name = "\improper L44 T-35 scabbard"
 	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "t35_holster"
+	base_icon = "t35_holster"
 	holsterable_allowed = list(/obj/item/weapon/gun/shotgun/pump/t35)
 	can_hold = list(
 		/obj/item/weapon/gun/shotgun/pump/t35,
