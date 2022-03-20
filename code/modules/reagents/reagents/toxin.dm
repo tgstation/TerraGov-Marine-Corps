@@ -441,11 +441,6 @@
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 	custom_metabolism = REAGENTS_METABOLISM * 5
-
-/datum/reagent/toxin/nanites/on_mob_add(mob/living/L, metabolism)
-	to_chat(L, span_userdanger("Your body begins to twist and deform! Get out of the razorburn!"))
-	. = ..()
-
 /datum/reagent/toxin/nanites/on_mob_life(mob/living/L, metabolism)
 	L.apply_damages(2.5*effect_str, 1.5*effect_str, 1.5*effect_str) //DO NOT DRINK THIS. Seriously!
 	L.blood_volume -= 5

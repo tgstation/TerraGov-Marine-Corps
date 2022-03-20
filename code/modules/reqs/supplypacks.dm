@@ -517,12 +517,6 @@ EXPLOSIVES
 	contains = list(/obj/item/minelayer)
 	cost = 5
 
-/datum/supply_packs/explosives/explosives_razor
-	name = "Razorburn grenade box crate"
-	notes = "Containers 20 razor burns"
-	contains = list(/obj/item/storage/box/visual/grenade/razorburn)
-	cost = 50
-
 /datum/supply_packs/explosives/explosives_hedp
 	name = "M40 HEDP high explosive grenade box crate"
 	notes = "Contains 25 grenades"

@@ -40,14 +40,6 @@
 		else
 			return ..()
 
-/obj/item/explosive/grenade/chem_grenade/razorburn_smol/attackby(obj/item/I, mob/user, params)
-	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
-	return
-
-/obj/item/explosive/grenade/chem_grenade/razorburn_large/attackby(obj/item/I, mob/user, params)
-	to_chat(user, span_notice("The [initial(name)] is hermetically sealed, and does not open."))
-	return
-
 /obj/item/explosive/grenade/chem_grenade/attackby(obj/item/I, mob/user, params)
 	if(I.tool_behaviour == TOOL_SCREWDRIVER)
 		if(stage == CG_WIRED)
@@ -236,51 +228,6 @@
 	beakers += B1
 	beakers += B2
 	icon_state = initial(icon_state) +"_locked"
-
-
-/obj/item/explosive/grenade/chem_grenade/razorburn_smol
-	name = "Razorburn Grenade"
-	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
-	icon_state = "grenade_razorburn"
-	stage = CG_READY
-	icon_state_mini = "grenade_chem_yellow"
-
-
-/obj/item/explosive/grenade/chem_grenade/razorburn_smol/Initialize(mapload, ...)
-	. = ..()
-	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
-
-	B1.reagents.add_reagent(/datum/reagent/toxin/nanites, 10) // 1 tile radius
-	B2.reagents.add_reagent(/datum/reagent/foaming_agent, 5)
-
-	beakers += B1
-	beakers += B2
-	icon_state = initial(icon_state) +"_locked"
-
-/obj/item/explosive/grenade/chem_grenade/razorburn_large
-	name = "Razorburn Canister"
-	desc = "Contains construction nanites ready to turn a large area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
-	icon_state = "grenade_large_razorburn"
-	stage = CG_READY
-	icon_state_mini = "grenade_chem_yellow"
-
-
-/obj/item/explosive/grenade/chem_grenade/razorburn_large/Initialize(mapload, ...)
-	. = ..()
-	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
-
-	B1.reagents.add_reagent(/datum/reagent/toxin/nanites, 40) // 3 tile radius
-	B2.reagents.add_reagent(/datum/reagent/foaming_agent, 30)
-
-	beakers += B1
-	beakers += B2
-	icon_state = initial(icon_state) +"_locked"
-
-
-
-
 
 /obj/item/explosive/grenade/chem_grenade/incendiary
 	name = "Incendiary Grenade"

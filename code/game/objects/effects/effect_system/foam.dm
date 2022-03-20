@@ -42,14 +42,6 @@
 	STOP_PROCESSING(SSfastprocess, src)
 	if(foam_flags & METAL_FOAM)
 		new /obj/structure/foamedmetal(loc)
-	if(foam_flags & RAZOR_FOAM)
-		var/turf/mystery_turf = get_turf(loc)
-		if(!isopenturf(mystery_turf))
-			return
-
-		var/turf/open/T = mystery_turf
-		if(T.allow_construction) //No loopholes.
-			new /obj/structure/razorwire(loc)
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
 
@@ -105,12 +97,12 @@
 // foam disolves when heated
 // except metal foams
 /obj/effect/particle_effect/foam/fire_act(exposed_temperature, exposed_volume)
-	if(!(foam_flags & METAL_FOAM|RAZOR_FOAM) && prob(max(0, exposed_temperature - 475)))
+	if(!(foam_flags & METAL_FOAM) && prob(max(0, exposed_temperature - 475)))
 		kill_foam()
 
 /obj/effect/particle_effect/foam/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
 	SIGNAL_HANDLER
-	if(foam_flags & METAL_FOAM|RAZOR_FOAM)
+	if(foam_flags & METAL_FOAM)
 		return
 	if (iscarbon(AM))
 		var/mob/living/carbon/C = AM
