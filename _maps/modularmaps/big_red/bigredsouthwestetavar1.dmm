@@ -222,12 +222,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"uE" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "uU" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
@@ -3007,7 +3001,7 @@ qZ
 Is
 Zh
 Is
-uE
+Is
 qZ
 qZ
 gc

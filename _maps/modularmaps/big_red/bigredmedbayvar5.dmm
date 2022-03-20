@@ -335,13 +335,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
-"jb" = (
-/obj/machinery/power/apc{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/bigredv2/outside/medical)
 "jz" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -1195,6 +1188,8 @@
 /obj/item/clothing/glasses/regular/hipster,
 /obj/structure/rack,
 /obj/effect/spawner/random/cable,
+/obj/machinery/power/apc,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "GW" = (
@@ -1683,7 +1678,6 @@
 /area/bigredv2/outside/medical)
 "Tp" = (
 /obj/effect/ai_node,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "TI" = (
@@ -2500,7 +2494,7 @@ jH
 oG
 GV
 oD
-jb
+oD
 dQ
 oG
 Us
@@ -2527,7 +2521,7 @@ SE
 aH
 oc
 Or
-Or
+oD
 Tp
 vx
 oG

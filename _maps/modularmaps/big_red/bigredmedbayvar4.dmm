@@ -199,10 +199,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "gd" = (
-/obj/machinery/power/apc{
-	dir = 4
-	},
-/obj/structure/cable,
+/obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "ge" = (
@@ -1096,7 +1093,6 @@
 /area/bigredv2/outside/medical)
 "EQ" = (
 /obj/effect/ai_node,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "EV" = (
@@ -1320,6 +1316,8 @@
 /obj/item/clothing/glasses/regular/hipster,
 /obj/structure/rack,
 /obj/effect/spawner/random/cable,
+/obj/machinery/power/apc,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "KC" = (
@@ -1710,6 +1708,10 @@
 	dir = 6
 	},
 /area/bigredv2/outside/medical)
+"Uq" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
 "Uv" = (
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 8
@@ -2442,7 +2444,7 @@ cY
 SR
 Kw
 zT
-gd
+zT
 mu
 SR
 mI
@@ -2469,10 +2471,10 @@ ZO
 yy
 KC
 oC
-oC
+zT
 EQ
 ku
-SR
+gd
 mI
 "}
 (21,1,1) = {"
@@ -2659,7 +2661,7 @@ Nc
 SR
 JD
 Co
-Hm
+PK
 Hm
 EO
 IG
@@ -2742,9 +2744,9 @@ ZP
 YG
 SR
 SR
-SR
-SR
-SR
+gd
+gd
+gd
 SR
 Ti
 Ti
@@ -2770,7 +2772,7 @@ Hm
 jg
 SR
 yX
-yX
+Uq
 yX
 yX
 We

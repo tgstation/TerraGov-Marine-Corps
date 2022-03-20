@@ -110,8 +110,6 @@
 	storage =  /obj/item/storage/internal/modular/ammo_mag
 	slowdown = 0.1
 
-/obj/item/armor_module/storage/ammo_mag/freelancer
-
 /obj/item/armor_module/storage/ammo_mag/freelancer/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/m16(storage)
