@@ -44,6 +44,10 @@
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
+"bg" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating/icefloor,
+/area/bigredv2/outside/c)
 "bj" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -246,9 +250,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/office_complex)
 "gR" = (
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
 /area/bigredv2/outside/office_complex)
@@ -303,7 +304,6 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "jD" = (
@@ -365,9 +365,6 @@
 	freerange = 1;
 	name = "General Listening Channel";
 	pixel_y = -28
-	},
-/obj/structure/barricade/plasteel{
-	dir = 4
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/bigredv2/outside/office_complex)
@@ -1050,9 +1047,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "FT" = (
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/bigredv2/outside/office_complex)
 "FV" = (
@@ -1161,6 +1155,11 @@
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/office_complex)
+"Kz" = (
+/obj/machinery/door/poddoor/mainship/open,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/mainship/mono,
+/area/bigredv2/outside/office_complex)
 "Lx" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -1196,6 +1195,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/stack/sheet/plasteel,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "MJ" = (
@@ -1334,9 +1334,6 @@
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/office_complex)
 "Qr" = (
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
 /obj/effect/decal/tracks/wheels/bloody{
 	dir = 4
 	},
@@ -1690,7 +1687,7 @@ oU
 cj
 cj
 cj
-cj
+bg
 cj
 Uz
 Uz
@@ -1714,7 +1711,7 @@ sB
 oU
 Uz
 Uz
-ZD
+Kz
 ZD
 ZD
 Uz
@@ -1841,9 +1838,9 @@ wl
 Uz
 MN
 zb
-ea
-ea
-ea
+Yr
+Yr
+Yr
 iB
 LE
 iS
@@ -1993,10 +1990,10 @@ fs
 Qr
 lp
 Uz
-ea
-ea
-ea
-ea
+Yr
+Yr
+Yr
+Yr
 Uz
 SE
 si

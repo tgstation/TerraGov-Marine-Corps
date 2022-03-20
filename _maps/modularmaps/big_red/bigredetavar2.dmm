@@ -31,7 +31,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/PMC,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin3";
+	icon_state = "rasputin3"
 	},
 /area/bigredv2/outside/general_offices)
 "bL" = (
@@ -53,7 +53,7 @@
 	icon_state = "gib6"
 	},
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "cN" = (
@@ -65,14 +65,14 @@
 "cZ" = (
 /obj/structure/computerframe,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "dv" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/effect/ai_node,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin3";
+	icon_state = "rasputin3"
 	},
 /area/bigredv2/outside/general_offices)
 "dE" = (
@@ -93,7 +93,7 @@
 /area/bigredv2/outside/general_offices)
 "ef" = (
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin6";
+	icon_state = "rasputin6"
 	},
 /area/bigredv2/outside/general_offices)
 "ei" = (
@@ -131,14 +131,14 @@
 "eX" = (
 /obj/structure/bed/chair{
 	dir = 8;
-	icon_state = "chair";
+	icon_state = "chair"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "fd" = (
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "ff" = (
@@ -179,7 +179,7 @@
 /area/bigredv2/outside/general_offices)
 "hH" = (
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin7";
+	icon_state = "rasputin7"
 	},
 /area/bigredv2/outside/general_offices)
 "hU" = (
@@ -199,7 +199,7 @@
 /obj/item/stack/sheet/mineral/plastic,
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "ie" = (
@@ -260,7 +260,7 @@
 /obj/structure/rack,
 /obj/item/restraints/handcuffs,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "kc" = (
@@ -285,7 +285,7 @@
 	icon_state = "gib6"
 	},
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin3";
+	icon_state = "rasputin3"
 	},
 /area/bigredv2/outside/general_offices)
 "kU" = (
@@ -402,7 +402,7 @@
 /obj/machinery/washing_machine,
 /obj/item/clothing/under/darkred,
 /turf/open/floor{
-	icon_state = "freezerfloor";
+	icon_state = "freezerfloor"
 	},
 /area/bigredv2/outside/general_offices)
 "pW" = (
@@ -412,7 +412,7 @@
 /area/bigredv2/outside/general_offices)
 "qa" = (
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin4";
+	icon_state = "rasputin4"
 	},
 /area/bigredv2/outside/general_offices)
 "qd" = (
@@ -471,7 +471,7 @@
 	},
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "sm" = (
@@ -481,7 +481,7 @@
 	},
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "sn" = (
@@ -495,7 +495,7 @@
 /obj/item/stack/sheet/mineral/diamond,
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "su" = (
@@ -523,7 +523,7 @@
 	},
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "un" = (
@@ -539,7 +539,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin3";
+	icon_state = "rasputin3"
 	},
 /area/bigredv2/outside/general_offices)
 "uS" = (
@@ -598,7 +598,7 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "yC" = (
@@ -609,7 +609,7 @@
 "yL" = (
 /turf/open/floor/plating{
 	dir = 8;
-	icon_state = "platingdmg3";
+	icon_state = "platingdmg3"
 	},
 /area/bigredv2/outside/general_offices)
 "zx" = (
@@ -618,7 +618,7 @@
 /area/bigredv2/outside/general_offices)
 "zM" = (
 /turf/open/shuttle/dropship{
-	icon_state = "floor8";
+	icon_state = "floor8"
 	},
 /area/bigredv2/outside/general_offices)
 "zP" = (
@@ -631,7 +631,7 @@
 	},
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "zS" = (
@@ -650,14 +650,14 @@
 "Al" = (
 /obj/effect/ai_node,
 /turf/open/floor{
-	icon_state = "freezerfloor";
+	icon_state = "freezerfloor"
 	},
 /area/bigredv2/outside/general_offices)
 "Ap" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor{
 	dir = 2;
-	icon_state = "whitegreenfull";
+	icon_state = "whitegreenfull"
 	},
 /area/bigredv2/outside/hydroponics)
 "Ar" = (
@@ -669,7 +669,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/ai_node,
 /turf/open/shuttle/dropship{
-	icon_state = "floor8";
+	icon_state = "floor8"
 	},
 /area/bigredv2/outside/general_offices)
 "AE" = (
@@ -678,7 +678,7 @@
 	name = "\improper Dormitories Lavatory"
 	},
 /turf/open/floor{
-	icon_state = "freezerfloor";
+	icon_state = "freezerfloor"
 	},
 /area/bigredv2/outside/general_offices)
 "AW" = (
@@ -700,7 +700,7 @@
 "BI" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin3";
+	icon_state = "rasputin3"
 	},
 /area/bigredv2/outside/general_offices)
 "BM" = (
@@ -716,7 +716,7 @@
 /obj/machinery/washing_machine,
 /obj/item/clothing/under/brown,
 /turf/open/floor{
-	icon_state = "freezerfloor";
+	icon_state = "freezerfloor"
 	},
 /area/bigredv2/outside/general_offices)
 "CJ" = (
@@ -773,7 +773,7 @@
 /obj/item/stack/sheet/mineral/gold,
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "Ff" = (
@@ -802,7 +802,7 @@
 	dir = 4
 	},
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "FR" = (
@@ -813,7 +813,7 @@
 /area/bigredv2/outside/general_offices)
 "FW" = (
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin3";
+	icon_state = "rasputin3"
 	},
 /area/bigredv2/outside/general_offices)
 "FY" = (
@@ -838,7 +838,7 @@
 "GA" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "GG" = (
@@ -869,7 +869,7 @@
 /obj/structure/rack,
 /obj/effect/ai_node,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "HG" = (
@@ -891,7 +891,7 @@
 "Im" = (
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "Ix" = (
@@ -972,7 +972,7 @@
 "LQ" = (
 /obj/machinery/light{
 	dir = 8;
-	icon_state = "tube1";
+	icon_state = "tube1"
 	},
 /turf/open/floor/plating{
 	icon_state = "wood-broken3"
@@ -991,7 +991,7 @@
 "Mw" = (
 /obj/machinery/washing_machine,
 /turf/open/floor{
-	icon_state = "freezerfloor";
+	icon_state = "freezerfloor"
 	},
 /area/bigredv2/outside/general_offices)
 "ML" = (
@@ -1036,7 +1036,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin3";
+	icon_state = "rasputin3"
 	},
 /area/bigredv2/outside/general_offices)
 "OE" = (
@@ -1057,7 +1057,7 @@
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/corpsespawner/PMC,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "PH" = (
@@ -1067,7 +1067,7 @@
 	},
 /turf/open/floor/plating{
 	dir = 8;
-	icon_state = "platingdmg3";
+	icon_state = "platingdmg3"
 	},
 /area/bigredv2/outside/general_offices)
 "PM" = (
@@ -1077,7 +1077,7 @@
 /area/bigredv2/outside/general_offices)
 "Qq" = (
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "Qv" = (
@@ -1101,7 +1101,7 @@
 "QS" = (
 /obj/effect/landmark/corpsespawner/PMC,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "RJ" = (
@@ -1126,7 +1126,7 @@
 /obj/machinery/washing_machine,
 /obj/item/clothing/under/lightbrown,
 /turf/open/floor{
-	icon_state = "freezerfloor";
+	icon_state = "freezerfloor"
 	},
 /area/bigredv2/outside/general_offices)
 "Su" = (
@@ -1134,13 +1134,13 @@
 /obj/item/mass_spectrometer/adv,
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "Sw" = (
 /obj/item/clothing/under/darkred,
 /turf/open/floor{
-	icon_state = "freezerfloor";
+	icon_state = "freezerfloor"
 	},
 /area/bigredv2/outside/general_offices)
 "Th" = (
@@ -1178,7 +1178,7 @@
 /obj/effect/ai_node,
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "UC" = (
@@ -1197,13 +1197,13 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/remains,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "UP" = (
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "UX" = (
@@ -1213,21 +1213,21 @@
 	},
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "UY" = (
 /obj/item/stack/sheet/plasteel,
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "Vj" = (
 /obj/item/stack/rods,
 /turf/open/floor/plating{
 	dir = 8;
-	icon_state = "platingdmg3";
+	icon_state = "platingdmg3"
 	},
 /area/bigredv2/outside/general_offices)
 "Vn" = (
@@ -1244,7 +1244,7 @@
 /area/bigredv2/outside/general_offices)
 "Vu" = (
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin8";
+	icon_state = "rasputin8"
 	},
 /area/bigredv2/outside/general_offices)
 "Wm" = (
@@ -1260,7 +1260,7 @@
 "Wp" = (
 /obj/structure/rack,
 /turf/open/shuttle/dropship{
-	icon_state = "rasputin15";
+	icon_state = "rasputin15"
 	},
 /area/bigredv2/outside/general_offices)
 "Wv" = (
@@ -1280,25 +1280,21 @@
 /area/bigredv2/outside/general_offices)
 "XC" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	dir = 4;
-	name = "\improper Dormitories EVA";
-	req_one_access = null
+	name = "\improper Engineering Storage Airlock"
 	},
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "XT" = (
 /turf/open/floor{
-	icon_state = "freezerfloor";
+	icon_state = "freezerfloor"
 	},
 /area/bigredv2/outside/general_offices)
 "Yq" = (
 /obj/structure/barricade/wooden{
-	desc = "This barricade is heavily reinforced. Nothing short of blasting it open seems like it'll do the trick, that or melting the breams supporting it...";
-	dir = 8;
-	health = 25000
+	dir = 8
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
@@ -1323,7 +1319,7 @@
 /obj/item/clothing/under/redcoat,
 /turf/open/floor{
 	dir = 2;
-	icon_state = "dark";
+	icon_state = "dark"
 	},
 /area/bigredv2/outside/general_offices)
 "ZH" = (
