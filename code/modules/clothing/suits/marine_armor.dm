@@ -640,6 +640,41 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 50, "energy" = 60, "bomb" = 40, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 50)
+	attachments_by_slot = list(ATTACHMENT_SLOT_MODULE)
+	attachments_allowed = list(/obj/item/armor_module/module/better_shoulder_lamp)
+	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp)
+
+/obj/item/clothing/suit/storage/faction/freelancer/leader
+	pockets = null
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/freelancer,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/freelancer,
+	)
+
+/obj/item/clothing/suit/storage/faction/freelancer/medic
+	pockets = null
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical/freelancer,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical/freelancer,
+	)
+
+
 
 //this one is for CLF
 /obj/item/clothing/suit/storage/militia

@@ -1,5 +1,5 @@
 /obj/item/pinpointer
-	name = "pinpointer"
+	name = "Xeno structure pinpointer"
 	icon_state = "pinoff"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
@@ -10,6 +10,9 @@
 	var/atom/movable/target
 	var/list/tracked_list
 
+/obj/item/pinpointer/Initialize()
+	. = ..()
+	tracked_list = GLOB.xeno_critical_structure
 
 /obj/item/pinpointer/proc/set_target(mob/living/user)
 	if(!length(tracked_list))
@@ -66,29 +69,3 @@
 		if(16 to INFINITY)
 			icon_state = "pinonfar"
 
-/obj/item/pinpointer/crash
-	name = "nuke pinpointer"
-	desc = "A pinpointer designed to detect the encrypted emissions of nuclear devices"
-
-
-/obj/item/pinpointer/crash/Initialize()
-	. = ..()
-	tracked_list += GLOB.nuke_disk_generators
-	tracked_list += GLOB.nuke_list
-
-
-/obj/item/pinpointer/crash/examine(mob/user)
-	. = ..()
-	for(var/i in GLOB.nuke_list)
-		var/obj/machinery/nuclearbomb/bomb = i
-		if(!bomb.timer_enabled)
-			continue
-		to_chat(user, "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]")
-
-/obj/item/pinpointer/pool
-	name = "pool pinpointer"
-	desc = "A pinpointer able to detect the psychic energy emmaning from spawning pools"
-
-/obj/item/pinpointer/pool/Initialize()
-	. = ..()
-	tracked_list = GLOB.xeno_resin_silos
