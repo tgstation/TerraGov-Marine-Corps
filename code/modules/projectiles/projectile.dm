@@ -620,20 +620,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /obj/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(!density)
-		return FALSE
-	if(layer >= OBJ_LAYER || src == proj.original_target)
-		return TRUE
-	return FALSE
-
-/obj/do_projectile_hit(obj/projectile/proj)
-	proj.ammo.on_hit_obj(src, proj)
-	if(QDELETED(src)) //on_hit_obj could delete the object
-		return
-	bullet_act(proj)
-
-
-/obj/structure/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(!density && !(obj_flags & PROJ_IGNORE_DENSITY)) //structure is passable
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
@@ -661,6 +647,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	. = min(. , . + 100 - proj.accuracy)
 	return prob(.)
 
+/obj/do_projectile_hit(obj/projectile/proj)
+	proj.ammo.on_hit_obj(src, proj)
+	if(QDELETED(src)) //on_hit_obj could delete the object
+		return
+	bullet_act(proj)
 
 /obj/structure/window/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
