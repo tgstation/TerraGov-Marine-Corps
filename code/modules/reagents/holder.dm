@@ -204,6 +204,8 @@
 	else
 		if(!target.reagents)
 			return
+		if(!isliving(target))
+			return	
 		R = target.reagents
 
 	if(amount < 0)

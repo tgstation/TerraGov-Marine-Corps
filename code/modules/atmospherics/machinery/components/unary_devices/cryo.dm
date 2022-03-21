@@ -224,6 +224,12 @@
 	. = ..()
 
 	if(istype(I, /obj/item/reagent_containers/glass))
+		
+		for(var/datum/reagent/X in I.reagents.reagent_list)
+			if(X.medbayblacklist)
+				to_chat(user, span_warning("The cryo cell's automatic safety features beep softly, they must have detected a harmful substance in the beaker."))
+				return
+
 		if(beaker)
 			to_chat(user, span_warning("A beaker is already loaded into the machine."))
 			return
@@ -231,10 +237,12 @@
 		if(istype(I, /obj/item/reagent_containers/glass/bucket))
 			to_chat(user, span_warning("That's too big to fit!"))
 			return
-
+		
 		beaker =  I
+		
 
 		var/reagentnames = ""
+
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			reagentnames += ", [R.name]"
 

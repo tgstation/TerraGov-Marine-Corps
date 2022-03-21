@@ -282,7 +282,10 @@
 		if(beaker)
 			if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
 				for(var/datum/reagent/x in occupant.reagents.reagent_list)
-					occupant.reagents.trans_to(beaker, 10)
+					if(x.medbayblacklist)
+						occupant.reagents.remove_reagent(x.type, 1000)
+					else
+						occupant.reagents.trans_to(beaker, 10)
 
 
 	updateUsrDialog()
@@ -367,6 +370,10 @@
 
 /obj/machinery/sleeper/proc/toggle_filter()
 	if(!occupant)
+		filtering = 0
+		return
+	if(ismonkey(occupant))
+		to_chat(usr, span_scanner("Unknown biological subject detected, dialysis not available. Please contact a licensed supplier for further assistance."))
 		filtering = 0
 		return
 	if(filtering)
