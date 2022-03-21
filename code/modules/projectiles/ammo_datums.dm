@@ -1416,7 +1416,7 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = COLOR_TESLA_BLUE
 
 /datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
-	zap_beam(proj, 2, damage)
+	zap_beam(proj, 3, damage)
 
 /datum/ammo/energy/droidblast
 	name = "energetic plasma bolt"
