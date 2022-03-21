@@ -1410,13 +1410,13 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
 	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS
-	shell_speed = 0.1
-	damage = 20
+	shell_speed = 0.3
+	damage = 40
 	penetration = 20
 	bullet_color = COLOR_TESLA_BLUE
 
 /datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
-	zap_beam(proj, 4, damage)
+	zap_beam(proj, 2, damage)
 
 /datum/ammo/energy/droidblast
 	name = "energetic plasma bolt"
