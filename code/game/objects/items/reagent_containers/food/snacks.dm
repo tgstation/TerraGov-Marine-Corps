@@ -1325,8 +1325,9 @@
 	package = FALSE
 
 /obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/M)
-	to_chat(M, "<span class = 'warning'>Something inside of you suddently expands!</span>")
-
+	to_chat(M, span_warning("Something inside of you suddently expands!</span>"))
+	M.visible_message(span_notice("[M] finishes eating \the [src]."))
+	usr.dropItemToGround(src)
 	if(!ishuman(M))
 		return ..()
 	//Do not try to understand.
@@ -1349,6 +1350,7 @@
 	else 		//someone is having a bad day
 		E.createwound(CUT, 30)
 		surprise.embed_into(M, E)
+	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
 	visible_message(span_warning("\The [src] expands!"))
