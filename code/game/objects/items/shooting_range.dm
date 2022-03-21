@@ -40,13 +40,13 @@
 		if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
 			return
 		if(istype(targetcushion, /obj/item/target/default))
-			new /obj/structure/target_stake/occupied(src.loc)
+			new /obj/structure/target_stake/occupied(loc)
 		else if(istype(targetcushion, /obj/item/target/alien))
-			new /obj/structure/target_stake/occupied/alien(src.loc)
+			new /obj/structure/target_stake/occupied/alien(loc)
 		else if(istype(targetcushion, /obj/item/target/syndicate))
-			new /obj/structure/target_stake/occupied/syndicate(src.loc)		
+			new /obj/structure/target_stake/occupied/syndicate(loc)		
 		else //default to a regular human target
-			new /obj/structure/target_stake/occupied(src.loc)
+			new /obj/structure/target_stake/occupied(loc)
 		to_chat(user, "You slide the target into the stake.")
 		qdel(src) //delete original target_stake
 		qdel(I) //delete targetting dummy in users hand
@@ -60,6 +60,17 @@
 	///what kind of target to drop when a player removes a dummy from the targetting stake
 	var/cushion_type = "default"
 
+/obj/structure/target_stake/occupied/welder_act(mob/living/user, obj/item/I)
+	. = ..()
+	var/obj/item/tool/weldingtool/usedwelder = I
+	if(!do_after(user, TARGETTING_DUMMY_WELD_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+		return
+	if(usedwelder.remove_fuel(2, user))
+		overlays.Cut()
+		obj_integrity = max_integrity
+		to_chat(usr, "You slice off [src]'s uneven chunks of aluminum and patch the bullet holes, it looks practically new.")
+		return
+
 /obj/structure/target_stake/occupied/alien
 	icon_state = "target_stake_target_q"
 	cushion_type = "alien"
@@ -68,32 +79,18 @@
 	icon_state = "target_stake_target_s"
 	cushion_type = "syndicate"
 
-/obj/structure/target_stake/occupied/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(istype(I, /obj/item/target))
-		to_chat(usr, "You can't seem to fit a second target on the stake.")
-	if(iswelder(I))
-		var/obj/item/tool/weldingtool/usedwelder = I
-		if(!do_after(user, TARGETTING_DUMMY_WELD_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
-			return
-		if(usedwelder.remove_fuel(2, user))
-			overlays.Cut()
-			obj_integrity = max_integrity
-			to_chat(usr, "You slice off [src]'s uneven chunks of aluminum and patch the bullet holes, it looks practically new.")
-			return
-	
 /obj/structure/target_stake/occupied/attack_hand(mob/living/user)
 	to_chat(user, "You start removing the target from the stake.")
 	if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
 		return
 	///create new target stake to create the illusion of a new one		
-	new /obj/structure/target_stake(src.loc)
+	new /obj/structure/target_stake(loc)
 	if(obj_integrity < 2000) //if critically damaged we don't give the user a new target dummy after removal
 		to_chat(user, "As remove the last shreds of the target from the stake, you conclude there's nothing worth salvaging from the mess.")
 		qdel(src)
 		return
 	///dump new target at the foot of the user
-	switch(src.cushion_type)
+	switch(cushion_type)
 		if("default")
 			new /obj/item/target/default(get_turf(user))
 		if("alien")
