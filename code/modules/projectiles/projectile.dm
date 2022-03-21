@@ -626,8 +626,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return TRUE
 	if(!throwpass)
 		return TRUE
-	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.iff_signal || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
-		return FALSE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
 	. = coverage //Hitchance.
@@ -638,6 +636,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			return FALSE //No effect now, but we save the reference to check on exiting the tile.
 		if (uncrossing)
 			return FALSE //you don't hit the cade from behind.
+	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.iff_signal || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds are better at getting past cover
+		. *= 0.8
 	if(!anchored)
 		. *= 0.5 //Half the protection from unaffixed structures.
 	///50% better protection when shooting from outside accurate range.
