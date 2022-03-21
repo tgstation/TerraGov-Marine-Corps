@@ -8,6 +8,8 @@
 	plane = GAME_PLANE
 	opacity = FALSE
 	resistance_flags = PLASMACUTTER_IMMUNE
+	///Might be cheesy cover otherwise, also it sits above the ground
+	coverage = 25
 
 /turf/closed/shuttle/cas/computer
 	name = "Condor piloting computer"

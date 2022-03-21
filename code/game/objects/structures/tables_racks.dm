@@ -580,7 +580,8 @@
 	density = TRUE
 	layer = TABLE_LAYER
 	anchored = TRUE
-	throwpass = TRUE	//You can throw objects over this, despite it's density.
+	throwpass = TRUE	//You can shoot past it
+	coverage = 20
 	climbable = TRUE
 	var/dropmetal = TRUE   //if true drop metal when destroyed; mostly used when we need large amounts of racks without marines hoarding the metal
 	max_integrity = 40

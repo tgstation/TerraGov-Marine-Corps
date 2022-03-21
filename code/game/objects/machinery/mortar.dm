@@ -5,6 +5,7 @@
 
 	anchored = TRUE
 	density = TRUE
+	coverage = 20
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	/// list of the target x and y, and the dialing we can do to them
 	var/list/coords = list("name"= "", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
