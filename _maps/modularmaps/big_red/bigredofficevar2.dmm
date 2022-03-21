@@ -44,6 +44,10 @@
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
+"bg" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating/icefloor,
+/area/bigredv2/outside/c)
 "bj" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -133,7 +137,7 @@
 /turf/open/floor/mainship/red/full,
 /area/bigredv2/outside/office_complex)
 "cu" = (
-/obj/machinery/vending/armor_supply,
+/obj/structure/prop/brokenvendor/surplusarmor,
 /turf/open/floor/mainship,
 /area/bigredv2/outside/office_complex)
 "cv" = (
@@ -246,9 +250,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/office_complex)
 "gR" = (
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/stripesquare,
 /area/bigredv2/outside/office_complex)
@@ -282,14 +283,7 @@
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "hT" = (
-/obj/machinery/loadout_vendor,
-/turf/open/floor/mainship/cargo,
-/area/bigredv2/outside/office_complex)
-"ii" = (
-/obj/structure/window/reinforced/toughened{
-	dir = 4
-	},
-/obj/machinery/marine_selector/gear/leader,
+/obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "iB" = (
@@ -310,7 +304,6 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "jD" = (
@@ -350,10 +343,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/office_complex)
-"kd" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/mainship/orange/full,
-/area/bigredv2/outside/office_complex)
 "lh" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning,
@@ -377,9 +366,6 @@
 	name = "General Listening Channel";
 	pixel_y = -28
 	},
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/bigredv2/outside/office_complex)
 "ls" = (
@@ -395,7 +381,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "md" = (
-/obj/machinery/vending/uniform_supply,
+/obj/structure/prop/brokenvendor/surplusclothes,
 /turf/open/floor/mainship/red/full,
 /area/bigredv2/outside/office_complex)
 "mh" = (
@@ -412,7 +398,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "mq" = (
-/obj/machinery/vending/MarineMed,
+/obj/structure/prop/brokenvendor/brokenmarinemedvendor,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/office_complex)
 "mv" = (
@@ -692,7 +678,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/machinery/vending/weapon,
+/obj/structure/prop/brokenvendor/brokenweaponsrack,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "vy" = (
@@ -729,7 +715,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "vX" = (
-/obj/machinery/marine_selector/clothes/engi,
+/obj/structure/prop/brokenvendor/brokenuniformvendor,
 /turf/open/floor/mainship/red/full,
 /area/bigredv2/outside/office_complex)
 "wf" = (
@@ -791,17 +777,13 @@
 /obj/machinery/cell_charger,
 /obj/item/radio,
 /obj/item/tool/crowbar,
-/obj/item/pinpointer/crash,
+/obj/item/pinpointer,
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/office_complex)
-"ya" = (
-/obj/machinery/marine_selector/gear/medic,
-/turf/open/floor/mainship/red/full,
-/area/bigredv2/outside/office_complex)
 "yh" = (
-/obj/machinery/vending/medical,
+/obj/structure/prop/brokenvendor/brokennanomedvendor,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/office_complex)
 "yn" = (
@@ -940,7 +922,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "CW" = (
-/obj/machinery/marine_selector/clothes/synth,
+/obj/machinery/constructable_frame/state_2,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "Dc" = (
@@ -999,7 +981,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/machinery/marine_selector/clothes/leader,
+/obj/structure/prop/brokenvendor/brokenspecialistvendor/leader,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "Fu" = (
@@ -1049,7 +1031,7 @@
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/clipboard,
-/obj/item/pinpointer/crash,
+/obj/item/pinpointer,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/blue,
 /area/bigredv2/outside/office_complex)
@@ -1065,9 +1047,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "FT" = (
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/bigredv2/outside/office_complex)
 "FV" = (
@@ -1152,10 +1131,6 @@
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/office_complex)
-"JE" = (
-/obj/machinery/marine_selector/gear/engi,
-/turf/open/floor/mainship/red/full,
-/area/bigredv2/outside/office_complex)
 "JK" = (
 /obj/machinery/autolathe,
 /turf/open/floor/mainship/cargo,
@@ -1179,6 +1154,11 @@
 /obj/machinery/vending/nanomed,
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/mainship/sterile,
+/area/bigredv2/outside/office_complex)
+"Kz" = (
+/obj/machinery/door/poddoor/mainship/open,
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "Lx" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -1215,6 +1195,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/stack/sheet/plasteel,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "MJ" = (
@@ -1242,7 +1223,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "Nj" = (
-/obj/machinery/vending/engivend,
+/obj/structure/prop/brokenvendor/engivend,
 /turf/open/floor/mainship/orange/full,
 /area/bigredv2/outside/office_complex)
 "Nk" = (
@@ -1280,7 +1261,7 @@
 	},
 /area/bigredv2/outside/office_complex)
 "Ow" = (
-/obj/machinery/marine_selector/clothes/medic,
+/obj/structure/prop/brokenvendor/brokenspecialistvendor/corpsman,
 /turf/open/floor/mainship/red/full,
 /area/bigredv2/outside/office_complex)
 "OS" = (
@@ -1330,7 +1311,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/weapon,
+/obj/structure/prop/brokenvendor/brokenweaponsrack,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "PV" = (
@@ -1353,9 +1334,6 @@
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/office_complex)
 "Qr" = (
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
 /obj/effect/decal/tracks/wheels/bloody{
 	dir = 4
 	},
@@ -1404,10 +1382,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
-"RW" = (
-/obj/machinery/marine_selector/clothes,
-/turf/open/floor/mainship/red/full,
-/area/bigredv2/outside/office_complex)
 "Sj" = (
 /obj/structure/window_frame/mainship,
 /turf/open/floor/plating,
@@ -1416,11 +1390,11 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/machinery/loadout_vendor,
+/obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/office_complex)
 "SE" = (
-/obj/machinery/marine_selector/gear/smartgun,
+/obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
 /turf/open/floor/mainship/red/full,
 /area/bigredv2/outside/office_complex)
 "SK" = (
@@ -1511,10 +1485,10 @@
 /turf/open/floor/mainship/tcomms,
 /area/bigredv2/outside/office_complex)
 "We" = (
-/obj/machinery/marine_selector/clothes/smartgun,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/prop/brokenvendor/brokenspecialistvendor/sg,
 /turf/open/floor/mainship/red/full,
 /area/bigredv2/outside/office_complex)
 "Wm" = (
@@ -1713,7 +1687,7 @@ oU
 cj
 cj
 cj
-cj
+bg
 cj
 Uz
 Uz
@@ -1737,7 +1711,7 @@ sB
 oU
 Uz
 Uz
-ZD
+Kz
 ZD
 ZD
 Uz
@@ -1841,7 +1815,7 @@ Zw
 uk
 zG
 CW
-kd
+Nj
 bQ
 dp
 Uz
@@ -1864,9 +1838,9 @@ wl
 Uz
 MN
 zb
-ea
-ea
-ea
+Yr
+Yr
+Yr
 iB
 LE
 iS
@@ -1948,7 +1922,7 @@ cu
 Uz
 bO
 tl
-RW
+vX
 Jt
 We
 Uz
@@ -1992,15 +1966,15 @@ Au
 zG
 Uz
 Ft
-ii
+Sv
 Uz
 cp
 Uz
-RW
+vX
 uL
 uk
 ek
-RW
+vX
 Uz
 Ys
 uC
@@ -2016,16 +1990,16 @@ fs
 Qr
 lp
 Uz
-ea
-ea
-ea
-ea
+Yr
+Yr
+Yr
+Yr
 Uz
-JE
+SE
 si
 vL
 jK
-ya
+SE
 Uz
 Ys
 Tx

@@ -49,6 +49,7 @@
 "fX" = (
 /obj/structure/window_frame/colony,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "gB" = (
@@ -71,6 +72,11 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"hT" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/s)
 "iw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -144,6 +150,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/s)
+"or" = (
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/s)
 "ov" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -160,12 +170,14 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "rr" = (
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
 /area/bigredv2/outside/se)
 "rv" = (
 /obj/effect/decal/cleanable/blood/drip,
+/obj/structure/cable,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
 "sb" = (
@@ -232,6 +244,10 @@
 "xg" = (
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"xR" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "yq" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -319,6 +335,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
+"Gp" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/se)
 "GH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -347,6 +370,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Jv" = (
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -401,6 +425,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
+"OJ" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/se)
 "Po" = (
 /obj/structure/table,
 /turf/open/floor,
@@ -431,6 +461,11 @@
 "Qq" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/s)
+"Qs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/s)
 "QP" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -443,6 +478,7 @@
 /area/bigredv2/outside/s)
 "Sd" = (
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -482,6 +518,12 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"Xz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/s)
 "XH" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -507,6 +549,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -515,6 +558,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "YP" = (
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -552,7 +596,7 @@ nd
 ov
 LD
 RB
-DC
+hT
 aU
 mw
 DC
@@ -579,7 +623,7 @@ nd
 EQ
 lM
 RB
-mw
+or
 mw
 mw
 mw
@@ -633,7 +677,7 @@ RB
 cc
 RB
 RB
-DC
+hT
 mw
 kv
 Uj
@@ -660,7 +704,7 @@ Ez
 hS
 XH
 RB
-mw
+or
 mw
 kv
 Uj
@@ -687,7 +731,7 @@ jp
 hS
 xg
 zp
-mw
+or
 mw
 kv
 Uj
@@ -714,7 +758,7 @@ LM
 Hm
 jp
 zp
-mw
+or
 mw
 kv
 Uj
@@ -741,7 +785,7 @@ jp
 WB
 jp
 zp
-mw
+or
 mw
 br
 kv
@@ -768,7 +812,7 @@ jp
 De
 ln
 zp
-Bi
+Xz
 aU
 mw
 DC
@@ -795,7 +839,7 @@ Po
 Uu
 Jg
 RB
-vb
+Qs
 mw
 mw
 vb
@@ -822,7 +866,7 @@ Qe
 Qe
 Qe
 RB
-vb
+Qs
 mw
 br
 kv
@@ -849,7 +893,7 @@ YM
 YM
 YM
 RB
-vb
+Qs
 mw
 kv
 Uj
@@ -876,7 +920,7 @@ Bf
 Bq
 Bf
 RB
-Bi
+Xz
 mw
 kv
 Uj
@@ -903,7 +947,7 @@ wO
 wO
 wO
 RB
-vb
+Qs
 mw
 kv
 Uj
@@ -930,7 +974,7 @@ RB
 RB
 RB
 RB
-mw
+or
 mw
 kv
 Uj
@@ -957,7 +1001,7 @@ hz
 VI
 tf
 VI
-MC
+OJ
 no
 Qd
 TB
@@ -1016,8 +1060,8 @@ Sd
 YP
 Sd
 YE
-gB
-gB
+Gp
+Gp
 gB
 gB
 iw
@@ -1044,7 +1088,7 @@ VI
 MC
 Qi
 VI
-VI
+xR
 VI
 VI
 VI
@@ -1071,7 +1115,7 @@ VI
 MC
 Qi
 VI
-VI
+xR
 VI
 VI
 VI
@@ -1098,7 +1142,7 @@ VI
 MC
 GH
 VI
-VI
+xR
 VI
 tf
 VI
@@ -1125,7 +1169,7 @@ VI
 Fx
 tU
 VI
-VI
+xR
 VI
 VI
 nm
@@ -1152,7 +1196,7 @@ VI
 MC
 tU
 VI
-VI
+xR
 VI
 nm
 hB

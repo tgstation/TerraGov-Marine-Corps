@@ -88,7 +88,7 @@
 //T64 BR
 
 /obj/item/ammo_magazine/rifle/standard_br
-	name = "\improper T-64 magazine (10x26mm)"
+	name = "\improper T-64 magazine (10x26.5mm)"
 	desc = "A 10mm battle rifle magazine."
 	caliber = CALIBER_10x265_CASELESS
 	icon_state = "t64"

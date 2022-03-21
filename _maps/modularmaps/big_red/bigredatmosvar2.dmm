@@ -22,6 +22,11 @@
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"aD" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "aI" = (
 /turf/open/floor{
 	dir = 1;
@@ -43,6 +48,7 @@
 "dJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "eB" = (
@@ -55,6 +61,17 @@
 	dir = 1;
 	icon_state = "bot"
 	},
+/area/bigredv2/outside/filtration_plant)
+"fl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
+"fr" = (
+/obj/machinery/portable_atmospherics/scrubber/huge,
+/obj/effect/decal/warning_stripes,
+/obj/structure/cable,
+/turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "fx" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
@@ -70,6 +87,16 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
+"hs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "hT" = (
@@ -89,6 +116,11 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
+"iw" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "iU" = (
@@ -124,6 +156,13 @@
 	icon_state = "bot"
 	},
 /area/bigredv2/outside/s)
+"lv" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "lQ" = (
 /obj/effect/ai_node,
 /turf/open/floor{
@@ -143,6 +182,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "nl" = (
@@ -157,6 +197,7 @@
 	name = "Airlock Shutters";
 	pixel_y = 25
 	},
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "nz" = (
@@ -192,6 +233,7 @@
 	name = "\improper Atmospherics Condenser Storage";
 	req_one_access = null
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "pM" = (
@@ -220,6 +262,7 @@
 /area/bigredv2/outside/s)
 "qy" = (
 /obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/weed_node,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "asteroidfloor"
@@ -236,6 +279,8 @@
 "rD" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "rK" = (
@@ -255,6 +300,14 @@
 	icon_state = "delivery"
 	},
 /area/bigredv2/outside/filtration_plant)
+"tA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor{
+	dir = 4;
+	icon_state = "asteroidwarning"
+	},
+/area/bigredv2/outside/s)
 "tF" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -289,6 +342,13 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"uW" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor{
+	dir = 4;
+	icon_state = "asteroidwarning"
+	},
+/area/bigredv2/outside/s)
 "vd" = (
 /obj/item/tank/air,
 /obj/effect/decal/cleanable/dirt,
@@ -300,6 +360,13 @@
 	icon_state = "bot"
 	},
 /area/bigredv2/outside/s)
+"wb" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor{
+	dir = 8;
+	icon_state = "asteroidwarning"
+	},
+/area/bigredv2/outside/s)
 "wE" = (
 /obj/machinery/door/airlock/mainship/engineering{
 	name = "\improper Filtration Facility";
@@ -308,10 +375,16 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "wG" = (
 /obj/item/weapon/twohanded/fireaxe,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
+"wP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "xr" = (
@@ -322,6 +395,13 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"xF" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "bot"
+	},
+/area/bigredv2/outside/s)
 "xP" = (
 /obj/structure/table,
 /obj/item/circuitboard/solar_tracker,
@@ -330,6 +410,11 @@
 "yi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/radio/headset,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
+"ze" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "zq" = (
@@ -367,6 +452,16 @@
 	icon_state = "asteroidfloor"
 	},
 /area/bigredv2/outside/s)
+"Au" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/s)
+"AY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "BB" = (
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor{
@@ -374,6 +469,19 @@
 	icon_state = "bot"
 	},
 /area/bigredv2/outside/s)
+"BK" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
+"BY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "CZ" = (
 /obj/structure/table,
 /obj/machinery/computer/atmos_alert{
@@ -384,6 +492,7 @@
 "Da" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/window/framed/colony,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "Dr" = (
@@ -405,6 +514,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Ez" = (
@@ -424,18 +534,29 @@
 	dir = 9
 	},
 /area/bigredv2/outside/se)
+"EW" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/filtration_plant)
 "Ff" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Fj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
+"Fp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "FE" = (
@@ -443,6 +564,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
+"Ge" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "Gf" = (
 /turf/closed/wall,
 /area/bigredv2/outside/filtration_plant)
@@ -461,6 +586,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "HO" = (
@@ -469,10 +595,26 @@
 	icon_state = "asteroidwarning"
 	},
 /area/bigredv2/outside/s)
+"Ie" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/filtration_plant)
 "Ig" = (
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/s)
+"Ih" = (
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
+"Im" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "IA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -527,6 +669,8 @@
 "LA" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "LF" = (
@@ -573,6 +717,13 @@
 	icon_state = "bot"
 	},
 /area/bigredv2/outside/filtration_plant)
+"NR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "NU" = (
 /obj/machinery/portable_atmospherics/scrubber/huge,
 /obj/effect/decal/warning_stripes,
@@ -591,6 +742,10 @@
 /obj/item/tool/pickaxe,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"OA" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/outside/se)
 "OF" = (
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
@@ -601,6 +756,7 @@
 /area/bigredv2/outside/filtration_plant)
 "OG" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Pb" = (
@@ -610,6 +766,13 @@
 /obj/machinery/computer3/server/rack,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"Qa" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "asteroidfloor"
+	},
+/area/bigredv2/outside/s)
 "Qk" = (
 /obj/structure/closet/wardrobe/atmospherics_yellow,
 /turf/open/floor,
@@ -624,6 +787,8 @@
 "QP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Rz" = (
@@ -640,8 +805,17 @@
 	dir = 4
 	},
 /obj/item/frame/table,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"Sd" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor{
+	dir = 1;
+	icon_state = "asteroidfloor"
+	},
+/area/bigredv2/outside/s)
 "Sm" = (
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
@@ -661,11 +835,31 @@
 	icon_state = "asteroidwarning"
 	},
 /area/bigredv2/outside/s)
+"TS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "Uk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"UR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
+"Vu" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/s)
 "VL" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -677,6 +871,7 @@
 	req_one_access = null
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Wg" = (
@@ -694,9 +889,15 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"XD" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "XR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "YQ" = (
@@ -742,7 +943,7 @@ Kq
 aI
 aI
 aI
-aI
+Qa
 aI
 aI
 aI
@@ -751,7 +952,7 @@ jH
 "}
 (2,1,1) = {"
 Qk
-kN
+Im
 am
 Gf
 Ez
@@ -759,36 +960,36 @@ uE
 Ez
 Ez
 Gf
-Rz
+BK
 Rz
 wG
 Kq
 Kw
 Kw
 Kq
+Sd
+aI
+Qa
+aI
 KM
-aI
-aI
-aI
-KM
-aI
+Qa
 aI
 Al
 NX
 "}
 (3,1,1) = {"
 Qk
-mQ
+BY
 eB
 Gf
 Xt
 VL
-Rz
+BK
 Rz
 uK
 Rz
 iu
-Rz
+BK
 Kq
 Kq
 Kq
@@ -798,15 +999,15 @@ ab
 ab
 ab
 Tz
+uW
 ab
-ab
-ab
+uW
 zq
 "}
 (4,1,1) = {"
 Qk
-kN
-Rz
+Im
+BK
 Gf
 Nz
 eE
@@ -814,7 +1015,7 @@ Nz
 uE
 Gf
 Rz
-kN
+NR
 Rz
 Uk
 CZ
@@ -822,7 +1023,7 @@ YQ
 Kl
 nw
 Lx
-Lx
+Vu
 Dx
 Lx
 Dx
@@ -844,7 +1045,7 @@ Xt
 kN
 Rz
 Rz
-Rz
+BK
 pM
 Kl
 Ab
@@ -859,16 +1060,16 @@ zq
 "}
 (6,1,1) = {"
 nl
-zG
+hs
 rl
 Gf
-Rz
+ze
 me
 bv
-Rz
+BK
 Gf
 Rz
-kN
+NR
 uE
 uE
 uE
@@ -889,17 +1090,17 @@ rl
 Ff
 ZT
 xr
+aD
 Rz
-Rz
-Rz
-VL
+BK
+XD
 uK
-Rz
+Ih
 mQ
 Ez
 Nu
 uE
-Rz
+BK
 rQ
 Lx
 tS
@@ -916,20 +1117,20 @@ dJ
 Fj
 rD
 tF
-Rz
+Ih
 Qp
 Pb
-rl
+fl
 tF
 rl
-kN
+Im
 uE
 uE
 Nu
 Rz
 rQ
 Lx
-tS
+Au
 Lx
 Lx
 Lx
@@ -943,12 +1144,12 @@ XR
 Dr
 Hr
 VS
-IA
+AY
 QP
-ZT
-VL
+TS
+XD
 tF
-Rz
+BK
 mQ
 uE
 uE
@@ -958,7 +1159,7 @@ rQ
 GI
 tS
 Lx
-Lx
+Vu
 hT
 Zj
 vB
@@ -970,16 +1171,16 @@ rl
 yi
 Mk
 Gf
-Xt
+lv
 Rz
 zG
 ao
 Gf
 Xt
-kN
+UR
 Rz
 Rz
-Rz
+BK
 eB
 Kl
 Ab
@@ -987,7 +1188,7 @@ LF
 Lx
 KI
 Lx
-vB
+xF
 vB
 GI
 zq
@@ -1009,7 +1210,7 @@ Kq
 nU
 nU
 Kq
-Lx
+Vu
 tS
 Lx
 Lx
@@ -1030,7 +1231,7 @@ kN
 Rz
 Gf
 Rz
-kN
+Im
 JS
 Kq
 OF
@@ -1039,10 +1240,10 @@ Kq
 HO
 rK
 HO
+wb
 HO
 HO
-HO
-HO
+wb
 HO
 zq
 "}
@@ -1054,7 +1255,7 @@ Gf
 pX
 VL
 Er
-IA
+wP
 Wg
 IA
 LA
@@ -1075,16 +1276,16 @@ zq
 "}
 (14,1,1) = {"
 qW
-qW
+Ie
 qW
 Gf
 tN
 Rz
-Rz
+BK
 eB
 nO
 Xt
-kN
+Im
 RM
 Kq
 OF
@@ -1093,8 +1294,8 @@ Kq
 lQ
 KE
 ab
-ab
-Tz
+uW
+tA
 ab
 ab
 lQ
@@ -1111,7 +1312,7 @@ YQ
 xP
 Gf
 Rz
-kN
+Im
 JS
 Kq
 JO
@@ -1137,9 +1338,9 @@ Gf
 nO
 Gf
 Gf
-Rz
-kN
-Rz
+BK
+Im
+BK
 Kq
 nU
 nU
@@ -1157,7 +1358,7 @@ kO
 (17,1,1) = {"
 pe
 Nw
-Nw
+Ge
 Nw
 Nw
 Kl
@@ -1165,26 +1366,26 @@ Xt
 Oj
 Oj
 Rz
-kN
+Im
 om
 Gf
 kO
-kO
+OA
 kO
 kO
 fN
 kO
 kO
 kO
-kO
-kO
-kO
+OA
+OA
+OA
 kO
 "}
 (18,1,1) = {"
 pe
 Nw
-Nw
+Ge
 Nw
 EN
 Rz
@@ -1198,10 +1399,10 @@ rl
 kO
 kO
 kO
-kO
+OA
 fN
 kO
-kO
+OA
 kO
 kO
 kO
@@ -1211,18 +1412,18 @@ kO
 (19,1,1) = {"
 ij
 Nw
-Nw
+Ge
 Nw
 IH
+BK
+BK
 Rz
 Rz
-Rz
-Rz
-ug
+iw
 hp
-Rz
-Rz
-kO
+BK
+BK
+OA
 kO
 kO
 jY
@@ -1244,36 +1445,36 @@ aJ
 Rz
 Rz
 Rz
-rl
+Fp
 vd
-Rz
+Ih
 Gy
 Rz
 kO
-kO
+OA
 kO
 kO
 fN
 kO
+OA
 kO
-kO
-kO
+OA
 jY
 kO
 jY
 "}
 (21,1,1) = {"
 Nw
+Ge
 Nw
-Nw
-Nw
+Ge
 Nw
 Kl
 Xt
 Ae
 Ae
 Rz
-Rz
+aD
 eB
 Kl
 kO
@@ -1286,15 +1487,15 @@ kO
 kO
 kO
 kO
-kO
+OA
 kO
 "}
 (22,1,1) = {"
+Ge
 Nw
 Nw
 Nw
-Nw
-Nw
+Ge
 Kl
 Kl
 hZ
@@ -1304,8 +1505,8 @@ Da
 Eo
 Kl
 kO
-kO
-kO
+OA
+OA
 kO
 fN
 kO
@@ -1319,7 +1520,7 @@ kO
 (23,1,1) = {"
 Nw
 Nw
-Nw
+Ge
 Nw
 Nw
 Nw
@@ -1327,7 +1528,7 @@ Nw
 Nw
 Kl
 NU
-NU
+fr
 NU
 Kl
 pe
@@ -1338,10 +1539,10 @@ NZ
 kO
 kO
 kO
+OA
 kO
 kO
-kO
-kO
+OA
 "}
 (24,1,1) = {"
 ij
@@ -1354,7 +1555,7 @@ Nw
 ij
 Kl
 Kl
-Kl
+EW
 Kl
 Kl
 pe

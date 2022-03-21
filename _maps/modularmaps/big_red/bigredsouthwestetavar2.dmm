@@ -328,12 +328,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"Hd" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "IX" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
@@ -2934,7 +2928,7 @@ TD
 uH
 zp
 uH
-Hd
+uH
 TD
 TD
 NA

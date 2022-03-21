@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - bugfix: "Fixed Chigusa's green nuke disc generator being unable to be powered."
