@@ -182,3 +182,9 @@
 	blend_mode = BLEND_ADD
 	blend_mode_override = BLEND_ADD
 	render_relay_plane = null
+
+/obj/screen/plane_master/balloonalert
+	name = "ballon alert plane master"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	plane = BALLOON_CHAT_PLANE
+	appearance_flags = PLANE_MASTER

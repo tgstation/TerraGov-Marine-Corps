@@ -162,13 +162,15 @@
 /// The layer you should use if you _really_ don't want an emissive overlay to be blocked.
 #define EMISSIVE_LAYER_UNBLOCKABLE 9999
 
-
 #define LIGHTING_BACKPLANE_LAYER 14.5
 
 #define LIGHTING_PLANE 100
 #define LIGHTING_RENDER_TARGET "LIGHT_PLANE"
 
 #define SHADOW_RENDER_TARGET "SHADOW_RENDER_TARGET"
+
+/// Plane for balloon text (text that fades up)
+#define BALLOON_CHAT_PLANE 110
 
 #define O_LIGHTING_VISUAL_PLANE 120
 #define O_LIGHTING_VISUAL_LAYER 16
@@ -179,9 +181,6 @@
 #define LIGHTING_SECONDARY_LAYER 16	//The colourful, usually small lights that go on top
 
 #define LIGHTING_SHADOW_LAYER 17	//Where the shadows happen
-
-/// Plane for balloon text (text that fades up)
-#define BALLOON_CHAT_PLANE 150.1
 
 #define ABOVE_LIGHTING_PLANE 150
 #define ABOVE_LIGHTING_LAYER 18
