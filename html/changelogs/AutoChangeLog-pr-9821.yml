@@ -1,0 +1,10 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - balance: "Removed all barricades from Big Red crashed variation of Canterbury."
+  - balance: "Changed a variation of Big Red LZ1 to be easier to barricade."
+  - balance: "Removed most barricades in a variation of Big Red medbay."
+  - balance: "Increased weed coverage of Big Red ETA and virology."
+  - bugfix: "Big Red Virology is no longer unbuildable before shutter drop depending on LZ2 variation."
+  - bugfix: "Removed a duplicate shutter lockdown button from a variation of Big Red LZ2."
+  - bugfix: "Sanitized a bad variable in a variation of Big Red Eva that could cause a runtime."
