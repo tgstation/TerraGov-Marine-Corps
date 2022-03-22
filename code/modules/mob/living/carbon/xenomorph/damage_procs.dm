@@ -7,86 +7,45 @@
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
-	if(severity < EXPLODE_LIGHT) //Actually means higher.
+	if(severity > EXPLODE_LIGHT)
 		if(eaten_mob)
 			eaten_mob.ex_act(severity + 1)
+
 	var/bomb_armor = soft_armor.getRating("bomb")
+	var/bomb_armor_multiplier = 0
+
+	if(severity == EXPLODE_DEVASTATE && bomb_armor < XENO_BOMB_RESIST_1)
+		return gib()    //Gibs unprotected benos
+
+	switch(bomb_armor)
+		if(XENO_BOMB_RESIST_4 to INFINITY)
+			bomb_armor_multiplier = 4
+		if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
+			bomb_armor_multiplier = 3
+		if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
+			bomb_armor_multiplier = 2
+		if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
+			bomb_armor_multiplier = 1
+		else
+			bomb_armor_multiplier = 0 //most beno are here
+
+	//Slowdown and stagger
+	var/ex_multiplier = 2 + severity - bomb_armor_multiplier
+	add_slowdown(max(0, ex_multiplier))
+	adjust_stagger(max(0, ex_multiplier - 2))
+	if(bomb_armor_multiplier > 3)
+		return //XENO_BOMB_RESIST_4 only gets slowdown
+
+	//Sunder
+	ex_multiplier = severity == EXPLODE_DEVASTATE ? 1 : 0
+	adjust_sunder(max(0, 50*(severity-1) + 10*ex_multiplier - 5*bomb_armor_multiplier*(1+ex_multiplier)))
+
+	//Damage
 	var/b_loss = 0
 	var/f_loss = 0
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			switch(bomb_armor)
-				if(XENO_BOMB_RESIST_4 to INFINITY)
-					add_slowdown(2)
-					return
-				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(70, 80)
-					f_loss = rand(70, 80)
-					add_slowdown(3)
-					adjust_sunder(80)
-				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
-					b_loss = rand(75, 85)
-					f_loss = rand(75, 85)
-					adjust_stagger(4)
-					add_slowdown(4)
-					adjust_sunder(90)
-				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
-					b_loss = rand(80, 90)
-					f_loss = rand(80, 90)
-					adjust_stagger(5)
-					add_slowdown(5)
-					adjust_sunder(100)
-				else //Lower than XENO_BOMB_RESIST_1
-					return gib()
-		if(EXPLODE_HEAVY)
-			switch(bomb_armor)
-				if(XENO_BOMB_RESIST_4 to INFINITY)
-					add_slowdown(1)
-					return
-				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(50, 50)
-					f_loss = rand(50, 50)
-					add_slowdown(2)
-					adjust_sunder(35)
-				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
-					b_loss = rand(55, 55)
-					f_loss = rand(55, 55)
-					adjust_stagger(1)
-					add_slowdown(3)
-					adjust_sunder(40)
-				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
-					b_loss = rand(60, 70)
-					f_loss = rand(60, 70)
-					adjust_stagger(4)
-					add_slowdown(4)
-					adjust_sunder(45)
-				else //Lower than XENO_BOMB_RESIST_1
-					b_loss = rand(65, 75)
-					f_loss = rand(65, 75)
-					adjust_stagger(5)
-					add_slowdown(5)
-					adjust_sunder(50)
-		if(EXPLODE_LIGHT)
-			switch(bomb_armor)
-				if(XENO_BOMB_RESIST_4 to INFINITY)
-					return //Immune
-				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(30, 40)
-					f_loss = rand(30, 40)
-				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
-					b_loss = rand(35, 45)
-					f_loss = rand(35, 45)
-					add_slowdown(1)
-				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
-					b_loss = rand(40, 50)
-					f_loss = rand(40, 50)
-					adjust_stagger(2)
-					add_slowdown(2)
-				else //Lower than XENO_BOMB_RESIST_1
-					b_loss = rand(45, 55)
-					f_loss = rand(45, 55)
-					adjust_stagger(4)
-					add_slowdown(4)
+	ex_multiplier = max(0, 25 + 20*severity - 5*bomb_armor_multiplier)
+	b_loss = rand(ex_multiplier, ex_multiplier+10)
+	f_loss = rand(ex_multiplier, ex_multiplier+10)
 
 	apply_damage(b_loss, BRUTE, updating_health = TRUE)
 	apply_damage(f_loss, BURN, updating_health = TRUE)
