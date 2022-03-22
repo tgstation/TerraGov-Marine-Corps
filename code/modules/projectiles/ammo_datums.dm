@@ -1414,6 +1414,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	penetration = 20
 	bullet_color = COLOR_TESLA_BLUE
+	var/drain_multiplier = 0.3 //Drains 10% of max plasma on hit
 
 /datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
 	zap_beam(proj, 3, damage)
@@ -1421,6 +1422,9 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/tesla/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, max_range = 10, slowdown = 3, stagger = 2)
+	var/mob/living/carbon/xenomorph/X = M
+	X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+
 
 /datum/ammo/energy/droidblast
 	name = "energetic plasma bolt"
