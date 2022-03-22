@@ -2,7 +2,7 @@
 #define TARGETTING_DUMMY_WELD_DELAY 10
 
 // Targets, the things that actually get shot!
-/obj/item/target/
+/obj/item/target
 	name = "shooting target"
 	desc = "A shooting target."
 	icon = 'icons/obj/objects.dmi'
