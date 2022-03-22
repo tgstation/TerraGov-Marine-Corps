@@ -504,9 +504,11 @@
 /datum/reagents/proc/reaction(atom/A, method=TOUCH, volume_modifier=1, show_message = 1)
 	var/react_type
 	if(isliving(A))
+		var/mob/living/L = A
+		if (L.stat == DEAD)
+			return
 		react_type = "LIVING"
 		if(method == INGEST)
-			var/mob/living/L = A
 			L.taste(src)
 	else if (isturf(A))
 		react_type = "TURF"
