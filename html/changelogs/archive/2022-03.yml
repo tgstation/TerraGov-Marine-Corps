@@ -238,3 +238,18 @@
   - balance: freelancers no longer carry MREs or radios.
   novaepee and Lumipharon:
   - balance: Engineer's teleporter has health of 250, half of what it used to have
+2022-03-22:
+  RipGrayson:
+  - balance: Removed all barricades from Big Red crashed variation of Canterbury.
+  - balance: Changed a variation of Big Red LZ1 to be easier to barricade.
+  - balance: Removed most barricades in a variation of Big Red medbay.
+  - balance: Increased weed coverage of Big Red ETA and virology.
+  - bugfix: Big Red Virology is no longer unbuildable before shutter drop depending
+      on LZ2 variation.
+  - bugfix: Removed a duplicate shutter lockdown button from a variation of Big Red
+      LZ2.
+  - bugfix: Sanitized a bad variable in a variation of Big Red Eva that could cause
+      a runtime.
+  - bugfix: Fixed an oversight where you could spawn infinite monkeys from a nulled
+      monkey cube.
+  - bugfix: Fixed Chigusa's green nuke disc generator being unable to be powered.

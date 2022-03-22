@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - bugfix: "Fixed an oversight where you could spawn infinite monkeys from a nulled monkey cube."
