@@ -1407,7 +1407,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = CALIBER_20MM //codex
 	attachable_allowed = list(
-		/obj/item/attachable/scope/optical
+		/obj/item/attachable/scope/optical,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
@@ -1422,6 +1422,7 @@
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	starting_attachment_types = list(/obj/item/attachable/scope/optical)
 	default_ammo_type = null
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/tx54,
@@ -1469,7 +1470,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/rifle/tx55
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx55)
 	attachable_allowed = list(
-		/obj/item/attachable/scope/optical
+		/obj/item/attachable/scope/optical,
 		/obj/item/weapon/gun/rifle/tx54/mini,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
@@ -1492,7 +1493,10 @@
 
 	flags_gun_features = GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = list(/obj/item/weapon/gun/rifle/tx54/mini)
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/rifle/tx54/mini,
+		/obj/item/attachable/scope/optical,
+		)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 22, "under_x" = 21, "under_y" = 14, "stock_x" = -1, "stock_y" = 17)
 	actions_types = list(/datum/action/item_action/aim_mode)
 

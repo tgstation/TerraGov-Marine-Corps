@@ -637,9 +637,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 /obj/item/attachable/scope/optical
 	name = "T-49 Optical imaging scope"
-	icon_state = "nvscope"
+	icon_state = "imagerscope"
 	desc = "A rail-mounted scope designed for the TX-55 and TX-54. Features low light optical imaging capabilities and assists with precision aiming. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	has_nightvision = TRUE
+	aim_speed_mod = 0.3
+	wield_delay_mod = 0.2 SECONDS
+	zoom_tile_offset = 7
+	zoom_viewsize = 4
 
 /obj/item/attachable/scope/mosin
 	name = "Mosin nagant rail scope"
