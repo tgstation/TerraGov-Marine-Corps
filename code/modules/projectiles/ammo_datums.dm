@@ -1418,6 +1418,10 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
 	zap_beam(proj, 3, damage)
 
+
+/datum/ammo/energy/tesla/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, max_range = 10, slowdown = 3, stagger = 2)
+
 /datum/ammo/energy/droidblast
 	name = "energetic plasma bolt"
 	icon_state = "pulse2"
