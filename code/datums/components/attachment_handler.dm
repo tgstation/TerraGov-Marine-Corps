@@ -93,10 +93,10 @@
 	slots[slot] = attachment
 	attachment_data_by_slot[slot] = attachment_data
 
-	var/obj/parent_object = parent
+	var/obj/parent_obj = parent
 	///The gun has another gun attached to it
 	if(isgun(attachment) && isgun(parent) )
-		parent_object:gunattachment = attachment
+		parent_obj:gunattachment = attachment
 
 	on_attach?.Invoke(attachment, attacker)
 
