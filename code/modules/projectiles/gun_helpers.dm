@@ -688,7 +688,7 @@ should be alright.
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay)
 		///if your attached weapon has aim mode, stops it from aimming
-		if(/datum/action/item_action/aim_mode in gunattachment.actions_types)
+		if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
 			REMOVE_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 			gunattachment:modify_fire_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming."))
@@ -715,7 +715,7 @@ should be alright.
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
 	modify_fire_delay(aim_fire_delay)
 	///if your attached weapon has aim mode, makes it aim
-	if(/datum/action/item_action/aim_mode in gunattachment.actions_types)
+	if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
 		ADD_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 		gunattachment:modify_fire_delay(aim_fire_delay)
 	to_chat(user, span_notice("You line up your aim, allowing you to shoot past allies.</b>"))
