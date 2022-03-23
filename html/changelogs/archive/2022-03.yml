@@ -253,3 +253,14 @@
   - bugfix: Fixed an oversight where you could spawn infinite monkeys from a nulled
       monkey cube.
   - bugfix: Fixed Chigusa's green nuke disc generator being unable to be powered.
+2022-03-23:
+  Pariah919:
+  - balance: Savage mulitpliters 1/4th'ed, less max damage. But it will use less plasma
+      because of this.
+  RipGrayson:
+  - bugfix: Fixed a confusing varedit of grass on LV-624.
+  - bugfix: Fixed balloon alerts being invisible.
+  Walarks:
+  - code_imp: keybinds are easily assignable to all actions now
+  - qol: adds keybind to vali configure action, moves connecting a weapon from the
+      configure menu to its own action

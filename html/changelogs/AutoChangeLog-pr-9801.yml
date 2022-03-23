@@ -1,5 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - code_imp: "keybinds are easily assignable to all actions now"
-  - qol: "adds keybind to vali configure action, moves connecting a weapon from the configure menu to its own action"
