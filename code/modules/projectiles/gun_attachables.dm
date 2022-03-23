@@ -89,7 +89,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/shot_marine_damage_falloff = 0
 	///Modifies aim mode fire rate debuff by a %
 	var/aim_mode_delay_mod = 0
-
+	///adds aim mode to the gun
+	var/add_aim_mode = FALSE
 	///the delay between shots, for attachments that fire stuff
 	var/attachment_firing_delay = 0
 
@@ -152,6 +153,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
 	master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay) * aim_mode_delay_mod)
+	if(add_aim_mode)
+		var/datum/action/item_action/aim_mode/A = new (master_gun)
+		///actually gives the user aim_mode if they're holding the gun
+		if(user)
+			A.give_action(user)
 	if(delay_mod)
 		master_gun.modify_fire_delay(delay_mod)
 	if(burst_delay_mod)
@@ -174,7 +180,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.charge_cost				+= charge_mod
 	for(var/i in gun_firemode_list_mod)
 		master_gun.add_firemode(i, user)
-
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
 	if(silence_mod)
@@ -208,6 +213,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
 	master_gun.remove_aim_mode_fire_delay(name)
+	if(add_aim_mode)
+		var/datum/action/item_action/aim_mode/action_to_delete = locate() in master_gun.actions
+		QDEL_NULL(action_to_delete)
 	if(delay_mod)
 		master_gun.modify_fire_delay(-delay_mod)
 	if(burst_delay_mod)
@@ -644,6 +652,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	wield_delay_mod = 0.2 SECONDS
 	zoom_tile_offset = 7
 	zoom_viewsize = 2
+	add_aim_mode = TRUE
 
 /obj/item/attachable/scope/mosin
 	name = "Mosin nagant rail scope"
