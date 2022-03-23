@@ -643,7 +643,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	aim_speed_mod = 0.3
 	wield_delay_mod = 0.2 SECONDS
 	zoom_tile_offset = 7
-	zoom_viewsize = 4
+	zoom_viewsize = 2
 
 /obj/item/attachable/scope/mosin
 	name = "Mosin nagant rail scope"
