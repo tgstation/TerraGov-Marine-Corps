@@ -1697,6 +1697,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/mob/living/living_user = user
 	if(master_gun == living_user.get_inactive_held_item() || master_gun == living_user.get_active_held_item())
 		new_action.give_action(living_user)
+	attached_to:gunattachment = src
 	activate(user)
 	update_icon(user)
 
@@ -1714,6 +1715,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(master_gun.active_attachable == src)
 		master_gun.active_attachable = null
 	master_gun = null
+	attached_to:gunattachment = null
 	update_icon(user)
 
 ///This activates the weapon for use.
