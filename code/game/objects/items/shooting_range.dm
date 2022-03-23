@@ -16,11 +16,11 @@
 /obj/item/target/syndicate
 	icon_state = "target_s"
 	desc = "A shooting target that looks like a hostile agent."
-	
+
 /obj/item/target/alien
 	icon_state = "target_q"
 	desc = "A shooting target with a threatening silhouette."
-	
+
 ///Basically these are for the firing range
 /obj/structure/target_stake
 	name = "target stake"
@@ -33,25 +33,24 @@
 	soft_armor = list("melee" = 80, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 120, "bio" = 100, "rad" = 0, "fire" = 100, "acid" = 0)
 
 /obj/structure/target_stake/attackby(obj/item/I, mob/user, params)
-	. = ..()		
-	if(istype(I, /obj/item/target))
-		var/obj/item/target/targetcushion = I
-		to_chat(user, "You start fitting the target onto the stake.")
-		if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
-			return
-		if(istype(targetcushion, /obj/item/target/default))
-			new /obj/structure/target_stake/occupied(loc)
-		else if(istype(targetcushion, /obj/item/target/alien))
-			new /obj/structure/target_stake/occupied/alien(loc)
-		else if(istype(targetcushion, /obj/item/target/syndicate))
-			new /obj/structure/target_stake/occupied/syndicate(loc)		
-		else //default to a regular human target
-			new /obj/structure/target_stake/occupied(loc)
-		to_chat(user, "You slide the target into the stake.")
-		qdel(src) //delete original target_stake
-		qdel(I) //delete targetting dummy in users hand
+	. = ..()
+	if(!istype(I, /obj/item/target))
 		return
-
+	var/obj/item/target/targetcushion = I
+	to_chat(user, "You start fitting the target onto the stake.")
+	if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+		return
+	if(istype(targetcushion, /obj/item/target/default))
+		new /obj/structure/target_stake/occupied(loc)
+	else if(istype(targetcushion, /obj/item/target/alien))
+		new /obj/structure/target_stake/occupied/alien(loc)
+	else if(istype(targetcushion, /obj/item/target/syndicate))
+		new /obj/structure/target_stake/occupied/syndicate(loc)
+	else //default to a regular human target
+		new /obj/structure/target_stake/occupied(loc)
+	to_chat(user, "You slide the target into the stake.")
+	qdel(src) //delete original target_stake
+	qdel(I) //delete targetting dummy in users hand
 
 ///These are occupied variations for targetting stakes
 /obj/structure/target_stake/occupied
@@ -74,7 +73,7 @@
 /obj/structure/target_stake/occupied/alien
 	icon_state = "target_stake_target_q"
 	cushion_type = "alien"
-		
+
 /obj/structure/target_stake/occupied/syndicate
 	icon_state = "target_stake_target_s"
 	cushion_type = "syndicate"
@@ -83,7 +82,7 @@
 	to_chat(user, "You start removing the target from the stake.")
 	if(!do_after(user, TARGETTING_DUMMY_USE_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
 		return
-	///create new target stake to create the illusion of a new one		
+	///create new target stake to create the illusion of a new one
 	new /obj/structure/target_stake(loc)
 	if(obj_integrity < 2000) //if critically damaged we don't give the user a new target dummy after removal
 		to_chat(user, "As remove the last shreds of the target from the stake, you conclude there's nothing worth salvaging from the mess.")
