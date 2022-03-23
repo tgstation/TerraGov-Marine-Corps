@@ -1451,6 +1451,7 @@
 	slot = ATTACHMENT_SLOT_STOCK
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
+	actions_types = list(/datum/action/item_action/aim_mode)
 
 //-------------------------------------------------------
 // TX55 rifle
@@ -1498,7 +1499,6 @@
 		/obj/item/attachable/scope/optical,
 		)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 22, "under_x" = 21, "under_y" = 14, "stock_x" = -1, "stock_y" = 17)
-	actions_types = list(/datum/action/item_action/aim_mode)
 
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
