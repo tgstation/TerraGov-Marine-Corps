@@ -5,6 +5,8 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "target_stake"
 	density = TRUE
+	///ungas need to actually hit this
+	coverage = 90
 	flags_atom = CONDUCT
 	var/obj/item/target/pinned_target // the current pinned target
 
