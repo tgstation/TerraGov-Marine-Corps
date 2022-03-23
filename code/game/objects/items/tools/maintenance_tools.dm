@@ -397,6 +397,18 @@
 		to_chat(user, span_notice("You refill [FT] with [lowertext(FT.caliber)]."))
 		FT.update_icon()
 
+	else if(istype(I, /obj/item/weapon/twohanded/rocketsledge))
+		var/obj/item/weapon/twohanded/rocketsledge/RS = I
+		if(RS.reagents.get_reagent_amount(/datum/reagent/fuel) == RS.max_fuel || !reagents.total_volume)
+			return ..()
+
+		var/fuel_transfer_amount = min(reagents.total_volume, (RS.max_fuel - RS.reagents.get_reagent_amount(/datum/reagent/fuel)))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		RS.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, span_notice("You refill [RS] with fuel."))
+		RS.update_icon()
+
 	else
 		to_chat(user, span_notice("The tank scoffs at your insolence.  It only provides services to welders and flamethrowers."))
 
@@ -494,6 +506,16 @@
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
 	icon_state = "handheldcharger_black"
 
+/obj/item/tool/handheld_charger/attack_hand_alternate(mob/living/user)
+	if(!cell)
+		return ..()
+	cell.update_icon()
+	user.put_in_active_hand(cell)
+	cell = null
+	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
+	to_chat(user, span_notice("You remove the cell from [src]."))
+	icon_state = "handheldcharger_black_empty"
+
 /obj/item/tool/handheld_charger/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
@@ -505,7 +527,6 @@
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	to_chat(user, span_notice("You remove the cell from [src]."))
 	icon_state = "handheldcharger_black_empty"
-
 
 /obj/item/tool/handheld_charger/Destroy()
 	QDEL_NULL(cell)

@@ -411,12 +411,12 @@
 	soft_armor = list("melee" = 55, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 70, "bio" = 30, "rad" = 20, "fire" = 65, "acid" = 65)
 	flags_item_map_variant = NONE
 
+/*===========================Death Commando============================*/
 /obj/item/clothing/suit/storage/marine/veteran/PMC/commando
 	name = "\improper PMC commando armor"
 	desc = "A heavily armored suit built by who-knows-what for elite operations. It is a fully self-contained system and is heavily corrosion resistant."
 	icon_state = "commando_armor"
-	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
-	soft_armor = list("melee" = 90, "bullet" = 120, "laser" = 200, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
+	soft_armor = list("melee" = 90, "bullet" = 120, "laser" = 200, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -640,6 +640,41 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 50, "energy" = 60, "bomb" = 40, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 50)
+	attachments_by_slot = list(ATTACHMENT_SLOT_MODULE)
+	attachments_allowed = list(/obj/item/armor_module/module/better_shoulder_lamp)
+	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp)
+
+/obj/item/clothing/suit/storage/faction/freelancer/leader
+	pockets = null
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/freelancer,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/freelancer,
+	)
+
+/obj/item/clothing/suit/storage/faction/freelancer/medic
+	pockets = null
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_STORAGE,
+		ATTACHMENT_SLOT_MODULE,
+	)
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical/freelancer,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/medical/freelancer,
+	)
+
+
 
 //this one is for CLF
 /obj/item/clothing/suit/storage/militia
@@ -811,7 +846,7 @@
 	item_state = "robot_armor_medium"
 	species_exception = list(/datum/species/robot)
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 50)
+	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 65, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 55)
 	slowdown = 0.5
 
 /obj/item/clothing/suit/storage/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
@@ -825,7 +860,7 @@
 	desc = "Light armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 	icon_state = "robot_armor_light"
 	item_state = "robot_armor_light"
-	soft_armor = list("melee" = 35, "bullet" = 55, "laser" = 50, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 45)
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	slowdown = 0.3
 
 /obj/item/clothing/suit/storage/marine/robot/heavy
@@ -833,17 +868,17 @@
 	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
 	icon_state = "robot_armor_heavy"
 	item_state = "robot_armor_heavy"
-	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45,"acid" = 55)
+	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 60)
 	slowdown = 0.7
 
 /obj/item/clothing/suit/storage/marine/harness/cowboy
-	name = "reinforced reather jacket with webbing"
+	name = "reinforced leather jacket with webbing"
 	desc = "The 'reinforced leather' is more of a selling point to captains and the like who would like to consider the cool jacket to actually be of use. However, in all circumstances that matter, this will provide no armor. It does come with a nice harness for storage on the front."
 	icon_state = "leather_jacket_webbing"
 	item_state = "leather_jacket_webbing"
 	flags_item_map_variant = NONE
 
-/obj/item/clothing/suit/cowboy
+/obj/item/clothing/suit/storage/marine/cowboy
 	name = "reinforced leather jacket"
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"

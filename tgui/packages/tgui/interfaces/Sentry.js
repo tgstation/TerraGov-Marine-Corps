@@ -11,9 +11,6 @@ export const Sentry = (props, context) => {
     fire_mode,
     health,
     health_max,
-    has_cell,
-    cell_charge,
-    cell_maxcharge,
     safety_toggle,
     manual_override,
     alerts_on,
@@ -26,19 +23,6 @@ export const Sentry = (props, context) => {
       <Window.Content>
         <Section title={name}>
           <LabeledList>
-            <LabeledList.Item
-              label="Power Cell Status">
-              <ProgressBar
-                content={has_cell
-                  ?cell_charge + ' W out of ' + cell_maxcharge + ' W'
-                  : 'No cell inserted'}
-                value={cell_charge/cell_maxcharge}
-                ranges={{
-                  good: [0.67, Infinity],
-                  average: [0.33, 0.67],
-                  bad: [-Infinity, 0.33],
-                }} />
-            </LabeledList.Item>
             <LabeledList.Item
               label="Structural Integrity">
               <ProgressBar
@@ -97,8 +81,7 @@ export const Sentry = (props, context) => {
                 <Button
                   selected={radial_mode}
                   onClick={() => act('toggle_radial')}
-                  icon={radial_mode ? "check" : "times"}
-                  disabled={!has_cell}>
+                  icon={radial_mode ? "check" : "times"}>
                   Radial Mode
                 </Button>
               }

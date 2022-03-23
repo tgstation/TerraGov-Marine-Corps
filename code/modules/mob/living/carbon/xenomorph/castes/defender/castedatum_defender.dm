@@ -3,7 +3,6 @@
 	display_name = "Defender"
 	upgrade_name = ""
 	caste_desc = "An alien with an armored crest. It looks like it's still developing."
-	primordial_upgrade_name = PRIMORDIAL_DEFENDER
 
 	caste_type_path = /mob/living/carbon/xenomorph/defender
 
@@ -26,12 +25,12 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 80
-	upgrade_threshold = 60
+	upgrade_threshold = TIER_ONE_YOUNG_THRESHOLD
 
 	evolves_to = list(/mob/living/carbon/xenomorph/warrior)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CAN_BECOME_KING
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 25, "energy" = 20, "bomb" = XENO_BOMB_RESIST_2, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
@@ -75,7 +74,7 @@
 	max_health = 280
 
 	// *** Evolution *** //
-	upgrade_threshold = 180
+	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 33, "bullet" = 33, "laser" = 28, "energy" = 25, "bomb" = XENO_BOMB_RESIST_2, "bio" = 25, "rad" = 25, "fire" = 33, "acid" = 25)
@@ -104,7 +103,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 420
+	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 28, "bomb" = XENO_BOMB_RESIST_2, "bio" = 28, "rad" = 28, "fire" = 35, "acid" = 28)
@@ -134,7 +133,7 @@
 	max_health = 320
 
 	// *** Evolution *** //
-	upgrade_threshold = 660
+	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
@@ -162,9 +161,6 @@
 
 	// *** Health *** //
 	max_health = 320
-
-	// *** Evolution *** //
-	upgrade_threshold = 660
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)

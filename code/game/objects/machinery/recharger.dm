@@ -163,3 +163,6 @@ obj/machinery/recharger/emp_act(severity)
 		overlays += "recharger-taser"
 	else if(istype(charging, /obj/item/weapon/baton))
 		overlays += "recharger-baton"
+
+/obj/machinery/recharger/nopower
+	use_power = NO_POWER_USE

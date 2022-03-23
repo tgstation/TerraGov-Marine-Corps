@@ -150,6 +150,28 @@
 /obj/structure/bed/chair/sofa/corner
 	icon_state = "sofacorner"
 
+/obj/structure/bed/chair/sofa/corsat
+	name = "comfy sofa"
+	desc = "It looks comfy."
+	icon_state = "couch_hori2"
+
+/obj/structure/bed/chair/sofa/corsat/left
+	icon_state = "couch_hori1"
+
+/obj/structure/bed/chair/sofa/corsat/right
+	icon_state = "couch_hori3"
+
+/obj/structure/bed/chair/sofa/corsat/verticaltop
+	icon_state = "couch_vet3"
+
+/obj/structure/bed/chair/sofa/corsat/verticalmiddle
+	icon_state = "couch_vet2"
+
+/obj/structure/bed/chair/sofa/corsat/verticalsouth
+	icon_state = "couch_vet1"
+
+//cm benches do not have corners
+
 
 /obj/structure/bed/chair/pew
 	name = "chapel pew"
@@ -157,6 +179,8 @@
 	icon_state = "pews"
 
 /obj/structure/bed/chair/office
+	name = "Office Chair"
+	desc = "A novel idea of a spinning chair with wheels on the bottom, for office work only."
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE
 	drag_delay = 1 //Pulling something on wheels is easy

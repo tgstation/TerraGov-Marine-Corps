@@ -259,7 +259,7 @@
 		label(usr)
 
 	else if(href_list["set_transfer"])
-		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", list(1, 3, 5, 10, 15))
+		var/N = tgui_input_list(usr, "Amount per transfer from this:", "[src]", list(30, 20, 15, 10, 5, 3, 1))
 		if(!N)
 			return
 
@@ -337,12 +337,84 @@
 		/datum/reagent/medicine/nanoblood = 60,
 	)
 
+/obj/item/reagent_containers/hypospray/advanced/bicaridine
+	name = "Bicaridine hypospray"
+	desc = "A hypospray loaded with bicaridine."
+	list_reagents = list(
+		/datum/reagent/medicine/bicaridine = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/kelotane
+	name = "Kelotane hypospray"
+	desc = "A hypospray loaded with kelotane."
+	list_reagents = list(
+		/datum/reagent/medicine/kelotane = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/dylovene
+	name = "Dylovene hypospray"
+	desc = "A hypospray loaded with dylovene."
+	list_reagents = list(
+		/datum/reagent/medicine/dylovene = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/tramadol
+	name = "Tramadol hypospray"
+	desc = "A hypospray loaded with tramadol."
+	list_reagents = list(
+		/datum/reagent/medicine/tramadol = 60,
+	)
+
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine
 	name = "Tricordrazine hypospray"
 	desc = "A hypospray loaded with tricordrazine."
 	list_reagents = list(
 		/datum/reagent/medicine/tricordrazine = 60,
 	)
+
+/obj/item/reagent_containers/hypospray/advanced/inaprovaline
+	name = "Inaprovaline hypospray"
+	desc = "A hypospray loaded with inaprovaline."
+	list_reagents = list(
+		/datum/reagent/medicine/inaprovaline = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/spaceacillin
+	name = "Spaceacillin hypospray"
+	desc = "A hypospray loaded with spaceacillin."
+	list_reagents = list(
+		/datum/reagent/medicine/spaceacillin = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/hypervene
+	name = "Hypervene hypospray"
+	desc = "A hypospray loaded with hypervene."
+	list_reagents = list(
+		/datum/reagent/hypervene = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/peridaxon
+	name = "Peridaxon hypospray"
+	desc = "A hypospray loaded with peridaxon."
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/quickclot
+	name = "Quickclot hypospray"
+	desc = "A hypospray loaded with quickclot."
+	list_reagents = list(
+		/datum/reagent/medicine/quickclot = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/dexalin
+	name = "Dexalin hypospray"
+	desc = "A hypospray loaded with dexalin."
+	list_reagents = list(
+		/datum/reagent/medicine/dexalin = 60,
+	)
+
+
 
 /obj/item/reagent_containers/hypospray/advanced/update_icon()
 	. = ..()

@@ -88,7 +88,7 @@
 //T64 BR
 
 /obj/item/ammo_magazine/rifle/standard_br
-	name = "\improper T-64 magazine (10x26mm)"
+	name = "\improper T-64 magazine (10x26.5mm)"
 	desc = "A 10mm battle rifle magazine."
 	caliber = CALIBER_10x265_CASELESS
 	icon_state = "t64"
@@ -341,5 +341,5 @@
 	caliber = CALIBER_762X39
 	icon_state = "mkh98"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
-	max_rounds = 26
+	max_rounds = 30
 	icon_state_mini = "mag_rifle"

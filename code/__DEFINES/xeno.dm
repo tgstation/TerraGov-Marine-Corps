@@ -1,13 +1,28 @@
 //Xeno structure flags
 #define IGNORE_WEED_REMOVAL (1<<0)
+#define HAS_OVERLAY (1<<1)
+#define CRITICAL_STRUCTURE (1<<2)
 
-//Weeds define
+//Weeds defines
 #define WEED "weed sac"
 #define STICKY_WEED "sticky weed sac"
 #define RESTING_WEED "resting weed sac"
 
 #define XENO_TURRET_ACID_ICONSTATE "acid_turret"
 #define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
+
+//Plant defines
+#define HEAL_PLANT "life fruit"
+#define ARMOR_PLANT "hard fruit"
+#define PLASMA_PLANT "power fruit"
+#define STEALTH_PLANT "night shade"
+#define STEALTH_PLANT_PASSIVE_CAMOUFLAGE_ALPHA 64
+
+//Xeno reagents defines
+#define DEFILER_NEUROTOXIN "Neurotoxin"
+#define DEFILER_HEMODILE "Hemodile"
+#define DEFILER_TRANSVITOX "Transvitox"
+#define DEFILER_OZELOMELYN "Ozelomelyn"
 
 #define TRAP_HUGGER "hugger"
 #define TRAP_SMOKE_NEURO "neurotoxin gas"
@@ -42,31 +57,38 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 		/datum/reagent/toxin/xeno_neurotoxin,
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
+		/datum/reagent/toxin/xeno_ozelomelyn,
 		))
 
+//List of toxins improving defile's damage
+GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
+		/datum/reagent/toxin/xeno_ozelomelyn,
+		/datum/reagent/toxin/xeno_hemodile,
+		/datum/reagent/toxin/xeno_transvitox,
+		/datum/reagent/toxin/xeno_neurotoxin
+		)))
+
+//List of plant types
+GLOBAL_LIST_INIT(plant_type_list, list(
+		/obj/structure/xeno/plant/heal_fruit,
+		/obj/structure/xeno/plant/armor_fruit,
+		/obj/structure/xeno/plant/plasma_fruit,
+		/obj/structure/xeno/plant/stealth_plant
+		))
+
+//List of plant images
+GLOBAL_LIST_INIT(plant_images_list, list(
+		HEAL_PLANT = image('icons/Xeno/plants.dmi', icon_state = "heal_fruit"),
+		ARMOR_PLANT = image('icons/Xeno/plants.dmi', icon_state = "armor_fruit"),
+		PLASMA_PLANT = image('icons/Xeno/plants.dmi', icon_state = "plasma_fruit"),
+		STEALTH_PLANT = image('icons/Xeno/plants.dmi', icon_state = "stealth_plant")
+		))
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
 #define UPGRADE_FLAG_ONETIME (1<<0)
 
-
-//xeno primordial defines
-#define PRIMORDIAL_QUEEN "Primordial Queen"
-#define PRIMORDIAL_SHRIKE "Primordial Shrike"
-#define PRIMORDIAL_DEFILER "Primordial Defiler"
-#define PRIMORDIAL_SENTINEL "Primordial Sentinel"
-#define PRIMORDIAL_SPITTER "Primordial Spitter"
-#define PRIMORDIAL_RAVAGER "Primordial Ravager"
-#define PRIMORDIAL_CRUSHER "Primordial Crusher"
-#define PRIMORDIAL_GORGER "Primordial Gorger"
-#define PRIMORDIAL_HUNTER "Primordial Hunter"
-#define PRIMORDIAL_DEFENDER "Primordial Defender"
-#define PRIMORDIAL_RUNNER "Primordial Runner"
-#define PRIMORDIAL_WRAITH "Primordial Wraith"
-#define PRIMORDIAL_HIVELORD "Primordial Hivelord"
-#define PRIMORDIAL_WARRIOR "Primordial Warrior"
-#define PRIMORDIAL_BULL "Primordial Bull"
-#define PRIMORDIAL_BOILER "Primordial Boiler"
+#define GHOSTS_CAN_TAKE_MINIONS "Smart Minions"
 
 GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 	/mob/living/carbon/xenomorph/beetle/ai,

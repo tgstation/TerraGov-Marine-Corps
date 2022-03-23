@@ -64,6 +64,7 @@
 	..()
 
 /datum/surgery_step/necro/treat_necrosis/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	affected.germ_level = 0
 	affected.remove_limb_flags(LIMB_NECROTIZED)
 	target.update_body()
 

@@ -39,6 +39,27 @@
 	maxHealth = 300 //Foreshadowing the health of other K9
 
 
+/mob/living/simple_animal/corgi/bullterrier
+	name = "\improper bull terrier"
+	real_name = "bull terrier"
+	desc = "It's a bull terrier. Is that the Target dog?"
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "bullterrier"
+	icon_living = "bullterrier"
+	icon_dead = "bullterrier_dead"
+
+
+/mob/living/simple_animal/corgi/walten
+	name = "Walten Clements"
+	gender = MALE
+	desc = "Sir, this is chief Walten Clements. He resides in medbay as this is also his realms. His minions wear scrubs for bacterial control, and they pay him in pets and treats. Do not be concern if he gets COPD as he is kept in a healthy diet full of black coffee and an exercise regimen with plenty of cardio and stretching. His daily concern is accounting; his supply of treats must be met with acute attention. Good day to you, marine."
+	icon = 'icons/mob/pets.dmi'
+	icon_state = "walten"
+	icon_living = "walten"
+	icon_dead = "walten_dead"
+	health = 300
+
+
 /mob/living/simple_animal/corgi/exoticcorgi
 	name = "Exotic Corgi"
 	desc = "As cute as it is colorful!"

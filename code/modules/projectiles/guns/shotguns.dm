@@ -23,8 +23,8 @@
 	fire_delay = 6
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
-	scatter = 20
-	scatter_unwielded = 40
+	scatter = 5
+	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
 
@@ -60,8 +60,8 @@
 	fire_delay = 15 //one shot every 1.5 seconds.
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
-	scatter = 20
-	scatter_unwielded = 40
+	scatter = 5
+	scatter_unwielded = 10
 	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than T-32.
 	recoil = 2
 	recoil_unwielded = 4
@@ -105,8 +105,8 @@
 	fire_delay = 14 //one shot every 1.4 seconds.
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 0.65
-	scatter = 10
-	scatter_unwielded = 30
+	scatter = 4
+	scatter_unwielded = 12
 	damage_mult = 0.7  //30% less damage. Faster firerate.
 	recoil = 0 //It has a stock on the sprite.
 	recoil_unwielded = 2
@@ -114,7 +114,7 @@
 
 /obj/item/weapon/gun/shotgun/combat/masterkey
 	name = "masterkey shotgun"
-	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness drastically in exchange for fitting as a attachment.."
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with any normal 12 gauge shell. The short barrel reduces the ammo's effectiveness drastically in exchange for fitting as a attachment.."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "masterkey"
 	max_chamber_items = 2
@@ -125,8 +125,10 @@
 	detach_delay = 3 SECONDS
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_CAN_POINTBLANK|GUN_WIELDED_FIRING_ONLY
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
-	damage_mult = 0.45
-	recoil = 0
+	damage_mult = 0.6 // 40% less damage, but MUCH higher falloff.
+	damage_falloff_mult = 2
+	scatter = 3
+	fire_delay = 20 // Base shotgun fire delay.
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 
@@ -160,8 +162,8 @@
 	burst_delay = 2
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
-	scatter = 20
-	scatter_unwielded = 40
+	scatter = 5
+	scatter_unwielded = 8
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.6
@@ -179,8 +181,8 @@
 	fire_delay = 2
 	accuracy_mult = 0.85
 	accuracy_mult_unwielded = 0.85
-	scatter = 20
-	scatter_unwielded = 40
+	scatter = 5
+	scatter_unwielded = 10
 	recoil = 3
 	recoil_unwielded = 5
 
@@ -218,8 +220,8 @@
 	burst_amount = 1
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
-	scatter = 10
-	scatter_unwielded = 40
+	scatter = 4
+	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
 
@@ -265,8 +267,8 @@
 	fire_delay = 20
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
-	scatter = 20
-	scatter_unwielded = 40
+	scatter = 5
+	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.45
@@ -304,7 +306,7 @@
 	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 1
 	scatter = 5
-	scatter_unwielded = 35
+	scatter_unwielded = 10
 	recoil = 0 // It has a stock. It's on the sprite.
 	recoil_unwielded = 0
 	cock_delay = 12
@@ -337,6 +339,7 @@
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
@@ -358,7 +361,7 @@
 	accuracy_mult = 1.45
 	accuracy_mult_unwielded = 0.7
 	scatter = -25
-	scatter_unwielded = 40
+	scatter_unwielded = 12
 	recoil = 0
 	recoil_unwielded = 4
 	cock_delay = 12
@@ -409,7 +412,7 @@
 	accuracy_mult = 1.45
 
 	scatter = -25
-	scatter_unwielded = 30
+	scatter_unwielded = 20
 
 	recoil = 2
 	recoil_unwielded = 4
@@ -442,7 +445,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 	fire_delay = 0.5 SECONDS
-	scatter = 30
+	scatter = 3
 	recoil = 1
 	recoil_unwielded = 1
 	aim_slowdown = 0
@@ -487,8 +490,8 @@
 	fire_delay = 8
 	accuracy_mult = 1.30
 	accuracy_mult_unwielded = 0.7
-	scatter = 15
-	scatter_unwielded = 40
+	scatter = 3
+	scatter_unwielded = 7
 	recoil = 2
 	recoil_unwielded = 4
 	cock_delay = 6
@@ -533,7 +536,7 @@
 	accuracy_mult_unwielded = 0.8
 	damage_falloff_mult = 0.5
 	scatter = -5
-	scatter_unwielded = 15
+	scatter_unwielded = 7
 	recoil = 0
 	recoil_unwielded = 2
 	cock_delay = 2
@@ -621,8 +624,8 @@
 	fire_delay = 20
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
-	scatter = 20
-	scatter_unwielded = 40
+	scatter = 5
+	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.45
@@ -676,5 +679,5 @@
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
 	extra_delay = 0.5 SECONDS
 	scatter = 2
-	burst_scatter_mult = 4 // 2x4=8
+	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1

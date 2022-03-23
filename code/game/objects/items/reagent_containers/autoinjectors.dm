@@ -141,6 +141,13 @@
 	icon_state = "autoinjector-9"
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 15)
 
+/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin
+	name = "spaceacillin autoinjector"
+	desc = "An auto-injector loaded with 3 doses of spaceacillin, an emergency medicine that help combat against infection before necrosis appears."
+	icon_state = "autoinjector-1"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
+
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
 	desc = "An auto-injector loaded with 3 uses of hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomiting."
@@ -169,6 +176,26 @@
 		/datum/reagent/medicine/dexalin = 8,
 		/datum/reagent/medicine/inaprovaline = 8,
 		/datum/reagent/toxin = 5,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/virilyth //not accessible during normal play, only for valhalla
+	name = "virilyth autoinjector"
+	desc = "A large auto-injector freshly loaded with virilynth."
+	icon_state = "autoinjector-8"
+	amount_per_transfer_from_this = 10
+	volume = 50
+	list_reagents = list(
+		/datum/reagent/virilyth = 50,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/rezadone //not accessible during normal play, only for valhalla
+	name = "rezadone autoinjector"
+	desc = "A large auto-injector freshly loaded with rezadone."
+	icon_state = "autoinjector-8"
+	amount_per_transfer_from_this = 10
+	volume = 50
+	list_reagents = list(
+		/datum/reagent/medicine/rezadone = 50,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine
@@ -200,6 +227,16 @@
 	amount_per_transfer_from_this = 4
 	volume = 12
 	list_reagents = list(/datum/reagent/medicine/neuraline = 12)
+
+/obj/item/reagent_containers/hypospray/autoinjector/peridaxon
+	name = "peridaxon autoinjector"
+	desc = "An auto-injector loaded with 3 doses of Peridaxon, a chemical that suppresses organ damage."
+	icon_state = "autoinjector-8"
+	amount_per_transfer_from_this = 5
+	volume = 15
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon = 3,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "peridaxon Plus autoinjector"

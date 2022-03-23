@@ -75,7 +75,7 @@ const NormalOperation = (props, context) => {
                 <Button
                   onClick={() => act("cycle_time_change", { cycle_time_change: time_between_cycle })}
                   selected={data.time_between_cycle === time_between_cycle}>
-                  {time_between_cycle ? time_between_cycle + " Seconds" : "Instantanious"}
+                  {time_between_cycle ? time_between_cycle + " Seconds" : "Instantaneous"}
                 </Button>
               </Stack.Item>
             );

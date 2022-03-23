@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(xeno_resin_wall_turfs)
 GLOBAL_LIST_EMPTY(xeno_resin_door_turfs)
 GLOBAL_LIST_EMPTY(xeno_spawner)
 GLOBAL_LIST_EMPTY(xeno_structure)
+GLOBAL_LIST_EMPTY(xeno_critical_structure)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 GLOBAL_LIST_EMPTY(lz1_shuttle_console_turfs_list)
@@ -57,10 +58,11 @@ GLOBAL_LIST_EMPTY(unmanned_vehicles)
 
 GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/structure/closet/crate,
+	/obj/structure/largecrate/supply,
 	/obj/machinery/vending)))
 
 //hypersleep related
-GLOBAL_LIST_INIT(cryoed_item_list, list(CRYO_ALPHA = list(), CRYO_BRAVO = list(), CRYO_CHARLIE = list(), CRYO_DELTA =list(), CRYO_SEC = list(), CRYO_REQ = list(), CRYO_ENGI = list(), CRYO_MED = list()))
+GLOBAL_LIST_EMPTY(cryoed_item_list)
 
 GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 	/obj/item/clothing/mask/cigarette,

@@ -100,10 +100,12 @@
 			.["ui_style_alpha"] = ui_style_alpha
 			.["windowflashing"] = windowflashing
 			.["auto_fit_viewport"] = auto_fit_viewport
-			.["focus_chat"] = focus_chat
 			.["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			.["tgui_fancy"] = tgui_fancy
 			.["tgui_lock"] = tgui_lock
+			.["tgui_input"] = tgui_input
+			.["tgui_input_big_buttons"] = tgui_input_big_buttons
+			.["tgui_input_buttons_swap"] = tgui_input_buttons_swap
 			.["clientfps"] = clientfps
 			.["chat_on_map"] = chat_on_map
 			.["max_chat_length"] = max_chat_length
@@ -523,13 +525,6 @@
 			if(auto_fit_viewport && parent)
 				parent.fit_viewport()
 
-		if("focus_chat")
-			focus_chat = !focus_chat
-			if(focus_chat)
-				winset(user, null, "input.focus=true")
-			else
-				winset(user, null, "map.focus=true")
-
 		if("mute_xeno_health_alert_messages")
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
 
@@ -538,6 +533,15 @@
 
 		if("tgui_lock")
 			tgui_lock = !tgui_lock
+
+		if("tgui_input")
+			tgui_input = !tgui_input
+
+		if("tgui_input_big_buttons")
+			tgui_input_big_buttons = !tgui_input_big_buttons
+
+		if("tgui_input_buttons_swap")
+			tgui_input_buttons_swap = !tgui_input_buttons_swap
 
 		if("clientfps")
 			var/desiredfps = text2num(params["newValue"])

@@ -185,7 +185,7 @@
 
 /mob/living/carbon/xenomorph/proc/grabbed_self_attack()
 	SIGNAL_HANDLER
-	if(!(xeno_caste.caste_flags & CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
+	if(!(xeno_caste.caste_flags & CASTE_CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
 		return NONE
 	var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
 	if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
@@ -311,12 +311,6 @@
 	hud_to_add.add_hud_to(src)
 	hud_to_add = GLOB.huds[DATA_HUD_XENO_DEBUFF]
 	hud_to_add.add_hud_to(src)
-
-/mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
-	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-	new /obj/effect/overlay/temp/point/big(T)
-	visible_message("<b>[src]</b> points to [A]")
-	return TRUE
 
 /mob/living/carbon/xenomorph/get_permeability_protection()
 	return XENO_PERM_COEFF

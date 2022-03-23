@@ -187,7 +187,7 @@
 
 	if(owner.do_actions)
 		return FALSE
-	if(!owner.line_of_sight(target) || get_dist(owner, target) > 2)
+	if(!line_of_sight(owner, target, 2) || get_dist(owner, target) > 2)
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
@@ -266,7 +266,7 @@
 /datum/action/xeno_action/activable/psychic_link
 	name = "Psychic Link"
 	action_icon_state = "psychic_link"
-	mechanics_text = "Link to a xenomorph and take some damage in their place. During this time, you can't move. Use rest action to cancel."
+	mechanics_text = "Link to a xenomorph and take some damage in their place. Unrest to cancel."
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
@@ -287,29 +287,58 @@
 		if(!silent)
 			to_chat(owner, span_notice("You are too hurt to link."))
 		return FALSE
-	if(!owner.line_of_sight(target) || get_dist(owner, target) > GORGER_PSYCHIC_LINK_RANGE)
+	if(!line_of_sight(owner, target, GORGER_PSYCHIC_LINK_RANGE))
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
-	if(!do_mob(owner, target, GORGER_PSYCHIC_LINK_CHANNEL, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED))
+		if(!silent)
+			to_chat(owner, span_notice("You are already linked to a xenomorph."))
+		return FALSE
+	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
+		if(!silent)
+			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
+		return FALSE
+	if(!do_mob(owner, target, GORGER_PSYCHIC_LINK_CHANNEL, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_LOC_CHANGE, extra_checks = new/datum/callback/(src, .proc/channel_checks, target)))
+		if(!silent)
+			to_chat(owner, span_warning("The linking was interrupted."))
+		return FALSE
+	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED))
+		if(!silent)
+			to_chat(owner, span_notice("You are already linked to a xenomorph."))
+		return FALSE
+	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
+		if(!silent)
+			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
 		return FALSE
 	return TRUE
 
+///Runs checks while the status is being applied
+/datum/action/xeno_action/activable/psychic_link/proc/channel_checks(atom/target)
+	return (get_dist(owner, target) <= GORGER_PSYCHIC_LINK_RANGE)
+
 /datum/action/xeno_action/activable/psychic_link/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
+	var/psychic_link = owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH, TRUE)
+	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, .proc/status_removed)
 	target.balloon_alert(owner_xeno, "Link successul.")
 	owner_xeno.balloon_alert(target, "[owner_xeno] has linked to you.")
 	if(!owner_xeno.resting)
 		owner_xeno.set_resting(TRUE, TRUE)
 	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, .proc/cancel_psychic_link)
-	add_cooldown()
 	succeed_activate()
 
-///Cancels the status effect
+///Removes the status effect on unrest
 /datum/action/xeno_action/activable/psychic_link/proc/cancel_psychic_link(datum/source)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+
+///Cancels the status effect
+/datum/action/xeno_action/activable/psychic_link/proc/status_removed(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
+	add_cooldown()
 
 /datum/action/xeno_action/activable/psychic_link/ai_should_use(atom/target)
 	return FALSE

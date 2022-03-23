@@ -31,7 +31,6 @@
 
 #define ismineralturf(A) (istype(A, /turf/closed/mineral))
 
-
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
 
@@ -169,8 +168,6 @@
 #define issuitwithstorage(A) (istype(A, /obj/item/clothing/suit/storage))
 
 #define isuniform(A) (istype(A, /obj/item/clothing/under))
-
-#define iswebbing(A) (istype(A, /obj/item/clothing/tie/storage))
 
 #define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
 

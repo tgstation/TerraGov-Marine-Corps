@@ -180,7 +180,7 @@
 /area/shuttle/canterbury)
 "aR" = (
 /obj/structure/table/reinforced,
-/obj/item/pinpointer/crash,
+/obj/item/pinpointer,
 /obj/item/tool/crowbar,
 /obj/item/radio,
 /obj/item/lightreplacer,
@@ -492,7 +492,7 @@
 /obj/item/clipboard,
 /obj/item/tool/pen,
 /obj/structure/paper_bin,
-/obj/item/pinpointer/crash,
+/obj/item/pinpointer,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -548,12 +548,6 @@
 /obj/machinery/vending/weapon,
 /obj/structure/window/reinforced{
 	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
-"cM" = (
-/obj/machinery/light{
-	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
@@ -726,7 +720,7 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/pinpointer/crash,
+/obj/item/pinpointer,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "tP" = (
@@ -927,7 +921,7 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/obj/item/pinpointer/crash,
+/obj/item/pinpointer,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "KD" = (
@@ -1015,6 +1009,13 @@
 /area/shuttle/canterbury)
 "TE" = (
 /turf/open/floor/mainship/tcomms,
+/area/shuttle/canterbury)
+"TS" = (
+/obj/machinery/vending/tool,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "Ub" = (
 /obj/machinery/light{
@@ -1345,7 +1346,7 @@ an
 ac
 uT
 sR
-ab
+TS
 bw
 Ot
 ap
@@ -1378,7 +1379,7 @@ an
 ac
 ac
 ac
-cM
+ac
 ac
 as
 ac

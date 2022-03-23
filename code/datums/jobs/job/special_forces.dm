@@ -54,7 +54,7 @@
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/g22, SLOT_IN_R_POUCH)
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/black_vest, SLOT_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/armor_module/storage/uniform/black_vest, SLOT_L_HAND)
 
 
 //Special Force breacher
@@ -156,4 +156,4 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/tricordrazine, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/standard_revolver, SLOT_IN_L_POUCH)
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/black_vest, SLOT_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/armor_module/storage/uniform/black_vest, SLOT_L_HAND)

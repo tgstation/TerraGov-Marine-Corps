@@ -57,6 +57,8 @@
 #define AMMO_IFF (1<<16) //Used to identify ammo that have intrinsec IFF properties
 #define AMMO_HITSCAN (1<<17) //If the projectile from this ammo is hitscan
 #define AMMO_LEAVE_TURF (1<<18) //If the projectile does something with on_leave_turf()
+#define AMMO_PASS_THROUGH_TURF (1<<19) //If the projectile passes through walls causing damage to them
+#define AMMO_PASS_THROUGH_MOVABLE (1<<20) //If the projectile passes through mobs and objects causing damage to them
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -70,11 +72,10 @@
 #define GUN_DEPLOYED_FIRE_ONLY (1<<7)
 #define GUN_IS_ATTACHMENT (1<<8)
 #define GUN_ATTACHMENT_FIRE_ONLY (1<<9)
-#define GUN_IS_SENTRY (1<<10)
-#define GUN_ENERGY (1<<11)
-#define GUN_AMMO_COUNT_BY_PERCENTAGE (1<<12)
-#define GUN_AMMO_COUNT_BY_SHOTS_REMAINING (1<<13)
-#define GUN_NO_PITCH_SHIFT_NEAR_EMPTY (1<<14)
+#define GUN_ENERGY (1<<10)
+#define GUN_AMMO_COUNT_BY_PERCENTAGE (1<<11)
+#define GUN_AMMO_COUNT_BY_SHOTS_REMAINING (1<<12)
+#define GUN_NO_PITCH_SHIFT_NEAR_EMPTY (1<<13)
 
 //reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
 #define AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION (1<<0)
@@ -88,6 +89,7 @@
 #define AMMO_RECIEVER_ROTATES_CHAMBER (1<<8)
 #define AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS (1<<9)
 #define AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE (1<<10)
+#define AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE (1<<11) //The ammo stay in the magazine until the last moment
 
 #define FLAMER_IS_LIT (1<<0)
 #define FLAMER_NO_LIT_OVERLAY (1<<1)
@@ -125,8 +127,8 @@
 
 //Define sniper laser multipliers
 
-#define SNIPER_LASER_DAMAGE_MULTIPLIER 1.5 //+50% damage vs the aimed target
-#define SNIPER_LASER_ARMOR_MULTIPLIER 1.5 //+50% penetration vs the aimed target
+#define SNIPER_LASER_DAMAGE_MULTIPLIER 1.7 //+70% damage vs the aimed target
+#define SNIPER_LASER_ARMOR_MULTIPLIER 1.7 //+70% penetration vs the aimed target
 #define SNIPER_LASER_SLOWDOWN_STACKS 3
 
 //Define lasrifle
@@ -157,6 +159,7 @@
 #define SMOKE_NEURO_LIGHT (1<<16) //Effectively a sub-flag of Neuro; precludes higher impact effects
 #define SMOKE_HUGGER_PACIFY (1<<17) //Smoke that pacifies huggers in its area; mainly used for vision blocking smoke
 #define SMOKE_XENO_SANGUINAL (1<<18) //Toxic crimson smoke created by the Defiler's Defile ability.
+#define SMOKE_XENO_OZELOMELYN (1<<19) //Smoke that purges chemicals and does minor capped toxin damage for Defiler.
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

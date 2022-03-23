@@ -3658,7 +3658,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "qq" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/whiskey_outpost/outside/south)
 "qr" = (
 /obj/structure/largecrate/supply/explosives/mines,
@@ -3815,7 +3815,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "qQ" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/whiskey_outpost/outside/east)
 "qR" = (
 /turf/open/floor/plating/asteroidwarning{
@@ -3924,7 +3924,7 @@
 /turf/open/ground/jungle/path,
 /area/whiskey_outpost/outside/east)
 "rl" = (
-/obj/item/factory_refill/phosnade,
+/obj/item/factory_refill/phosnade_refill,
 /obj/structure/rack,
 /obj/item/paper/factoryhowto,
 /turf/open/floor/prison,
@@ -4050,7 +4050,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
 "sg" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/whiskey_outpost/outside/west)
 "sj" = (
 /obj/effect/ai_node,
@@ -4933,7 +4933,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/north)
 "BR" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/whiskey_outpost)
 "BX" = (
 /obj/structure/table/woodentable,
@@ -6865,7 +6865,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Xz" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/indestructible,
 /area/whiskey_outpost/outside/north)
 "XB" = (
 /obj/machinery/marine_selector/clothes,
@@ -16094,7 +16094,7 @@ aS
 aS
 aS
 aS
-vB
+aS
 ak
 ak
 bW
@@ -16246,7 +16246,7 @@ aS
 aS
 aS
 aS
-vB
+aS
 aS
 ak
 yw

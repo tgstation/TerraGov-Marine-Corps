@@ -112,6 +112,8 @@ SUBSYSTEM_DEF(explosions)
 		if(is_mainship_level(epicenter.z))
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
 
+	if(max_range >= 6 || heavy_impact_range)
+		new /obj/effect/temp_visual/shockwave(epicenter, max_range)
 	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 	// Stereo users will also hear the direction of the explosion!
 
@@ -143,7 +145,7 @@ SUBSYSTEM_DEF(explosions)
 					if(is_mainship_level(epicenter.z))
 						M.playsound_local(epicenter, null, 40, 1, frequency, falloff = 5, S = creak_sound)//ship groaning under explosion effect
 					if(baseshakeamount > 0)
-						shake_camera(M, 25, clamp(baseshakeamount, 0, 10))
+						shake_camera(M, 15, clamp(baseshakeamount, 0, 5))
 				// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
 				else if(dist <= far_dist)
 					var/far_volume = clamp(far_dist, 30, 60) // Volume is based on explosion size and dist
@@ -152,7 +154,7 @@ SUBSYSTEM_DEF(explosions)
 					if(is_mainship_level(epicenter.z))
 						M.playsound_local(epicenter, null, far_volume*3, 1, frequency, falloff = 5, S = creak_sound)//ship groaning under explosion effect
 					if(baseshakeamount > 0)
-						shake_camera(M, 10, clamp(baseshakeamount*0.25, 0, 2.5))
+						shake_camera(M, 7, clamp(baseshakeamount*0.15, 0, 1.5))
 
 	if(heavy_impact_range > 1)
 		var/datum/effect_system/explosion/E

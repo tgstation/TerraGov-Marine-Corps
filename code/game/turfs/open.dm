@@ -191,6 +191,7 @@
 	shoefootstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_HARD
 	mediumxenofootstep = FOOTSTEP_PLATING
+	smoothing_behavior = NO_SMOOTHING
 
 
 /turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
@@ -207,17 +208,39 @@
 	name = "floor"
 	icon_state = "rasputin1"
 
+/turf/open/shuttle/dropship/two
+	icon_state = "rasputin2"
 /turf/open/shuttle/dropship/three
 	icon_state = "rasputin3"
 
+/turf/open/shuttle/dropship/four
+	icon_state = "rasputin4"
 /turf/open/shuttle/dropship/five
 	icon_state = "rasputin5"
+
+/turf/open/shuttle/dropship/six
+	icon_state = "rasputin6"
 
 /turf/open/shuttle/dropship/seven
 	icon_state = "rasputin7"
 
 /turf/open/shuttle/dropship/eight
 	icon_state = "rasputin8"
+
+/turf/open/shuttle/dropship/nine
+	icon_state = "rasputin9"
+
+/turf/open/shuttle/dropship/ten
+	icon_state = "rasputin10"
+
+/turf/open/shuttle/dropship/eleven
+	icon_state = "rasputin11"
+
+/turf/open/shuttle/dropship/twelve
+	icon_state = "rasputin12"
+
+/turf/open/shuttle/dropship/thirteen
+	icon_state = "rasputin13"
 
 /turf/open/shuttle/dropship/grating
 	icon = 'icons/turf/elevator.dmi'

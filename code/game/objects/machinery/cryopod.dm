@@ -1,5 +1,3 @@
-#define CRYOCONSOLE_MOB_LIST 1
-#define CRYOCONSOLE_ITEM_LIST 2
 
 /obj/machinery/computer/cryopod
 	name = "hypersleep bay console"
@@ -8,34 +6,6 @@
 	icon_state = "cellconsole"
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
 	resistance_flags = RESIST_ALL
-	var/cryotypes = list(CRYO_REQ, CRYO_ALPHA, CRYO_BRAVO, CRYO_CHARLIE, CRYO_DELTA)
-	var/mode = CRYOCONSOLE_ITEM_LIST
-	var/category = CRYO_REQ
-
-/obj/machinery/computer/cryopod/medical
-	cryotypes = list(CRYO_MED)
-	category = CRYO_MED
-
-/obj/machinery/computer/cryopod/eng
-	cryotypes = list(CRYO_ENGI)
-	category = CRYO_ENGI
-
-/obj/machinery/computer/cryopod/alpha
-	cryotypes = list(CRYO_ALPHA)
-	category = CRYO_ALPHA
-
-/obj/machinery/computer/cryopod/bravo
-	cryotypes = list(CRYO_BRAVO)
-	category = CRYO_BRAVO
-
-/obj/machinery/computer/cryopod/charlie
-	cryotypes = list(CRYO_CHARLIE)
-	category = CRYO_CHARLIE
-
-/obj/machinery/computer/cryopod/delta
-	cryotypes = list(CRYO_DELTA)
-	category = CRYO_DELTA
-
 
 /obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()
@@ -45,53 +15,18 @@
 	if(!SSticker)
 		return
 
-	var/dat = "<hr/><br/><b>Cryogenic Oversight Control for [initial(category)]</b><br/>"
-	dat += "<i>Welcome, [user.name == "Unknown" ? "John Doe" : user.name].</i><br/><br/><hr/>"
-	var/mob_list = mode != CRYOCONSOLE_MOB_LIST ? "<a href='byond://?src=\ref[src];mode=[CRYOCONSOLE_MOB_LIST]'>Cryosleep Logs</a>" : "<b>Cryosleep Logs</b>"
-	var/item_list = mode != CRYOCONSOLE_ITEM_LIST ? "<a href='byond://?src=\ref[src];mode=[CRYOCONSOLE_ITEM_LIST]'>Inventory Storage</a>" : "<b>Inventory Storage</b>"
-	dat += "<center><table><tr><td><center>[mob_list]</center><td><td><center>[item_list]</center><td><tr><table></center>"
+	var/dat = "<i>Welcome, [user.name == "Unknown" ? "John Doe" : user.name].</i><br/><br/><hr/>"
 
-	switch(mode)
-		if(CRYOCONSOLE_MOB_LIST)
-			dat += "<hr/><b>Recently stored Crewmembers :</b><br/>"
-			dat += {"
-			<style>
-				.cryo {border-collapse: collapse; color:#ffffff}
-				.cryo tr:nth-child(even) {color:#f0f0f0}
-				.cryo td, th {border:1px solid #666666; padding: 4px}
-				.cryo td {text-align: left}
-				.cryo th {text-align:center; font-weight: bold}
-			</style>
-			<table class='cryo' width='100%'>
-			<tr><th><b>Name</b></th><th><b>Rank</b></th><th><b>Time</b></th></tr>
-			"}
-			for(var/data in GLOB.cryoed_mob_list)
-				var/list/infos = GLOB.cryoed_mob_list[data]
-				if(!istype(infos))
-					continue
-				var/who = infos[1]
-				var/work = infos[2]
-				var/when = infos[3]
-				dat += "<tr><td>[who]</td><td>[work]</td><td>[when]</td></tr>"
-			dat += "</table>"
-
-		if(CRYOCONSOLE_ITEM_LIST)
-			dat += "<b>Recently stored objects</b><br/><hr/><br/>"
-			dat +="<table style='text-align:justify'><tr>"
-			for(var/dept in cryotypes)
-				dat += "<th style='border:2px solid #777777'>"
-				dat += category != dept ? "<a href='byond://?src=\ref[src];category=[dept]'>[dept]</a>" : "<b>[dept]</b>"
-				dat += "<th>"
-			dat += "<tr></table>"
-			dat += "<center><a href='byond://?src=\ref[src];allitems=TRUE'>Dispense All</a></center><br/>"
-			var/list/stored_items = GLOB.cryoed_item_list[category]
-			for(var/A in stored_items)
-				var/obj/item/I = A
-				if(QDELETED(I))
-					stored_items -= I
-					continue
-				dat += "<p style='text-align:left'><a href='byond://?src=\ref[src];item=\ref[I]'>[I.name]</a></p>"
-			dat += "<hr/>"
+	dat += "<b>Recently stored objects</b><br/><hr/><br/>"
+	dat +="<table style='text-align:justify'><tr>"
+	dat += "<tr></table>"
+	dat += "<center><a href='byond://?src=\ref[src];allitems=TRUE'>Dispense All</a></center><br/>"
+	for(var/obj/item/I AS in GLOB.cryoed_item_list)
+		if(QDELETED(I))
+			GLOB.cryoed_item_list -= I
+			continue
+		dat += "<p style='text-align:left'><a href='byond://?src=\ref[src];item=\ref[I]'>[I.name]</a></p>"
+	dat += "<hr/>"
 
 	var/datum/browser/popup = new(user, "cryopod_console", "<div align='center'>Cryogenics</div>")
 	popup.set_content(dat)
@@ -103,27 +38,20 @@
 	if(.)
 		return
 
-	if(href_list["mode"])
-		mode = text2num(href_list["mode"])
-
-	else if(href_list["category"])
-		category = href_list["category"]
-
-	else if(href_list["item"])
-		var/obj/item/I = locate(href_list["item"]) in GLOB.cryoed_item_list[category]
+	if(href_list["item"])
+		var/obj/item/I = locate(href_list["item"]) in GLOB.cryoed_item_list
 		dispense_item(I, usr)
 
 	else if(href_list["allitems"])
 
-		if(!length(GLOB.cryoed_item_list[category]))
-			to_chat(usr, span_warning("There is nothing to recover from [category] storage."))
+		if(!length(GLOB.cryoed_item_list))
+			to_chat(usr, span_warning("There is nothing to recover from storage."))
 			updateUsrDialog()
 			return
 
 		visible_message(span_notice("[src] beeps happily as it disgorges the desired objects."))
 
-		for(var/A in GLOB.cryoed_item_list[category])
-			var/obj/item/I = A
+		for(var/obj/item/I AS in GLOB.cryoed_item_list)
 			dispense_item(I, usr, FALSE)
 
 	updateUsrDialog()
@@ -131,19 +59,16 @@
 
 /obj/machinery/computer/cryopod/proc/dispense_item(obj/item/I, mob/user, message = TRUE)
 	if(!istype(I) || QDELETED(I))
-		GLOB.cryoed_item_list[category] -= I
+		GLOB.cryoed_item_list -= I
 		CRASH("Deleted or erroneous variable ([I]) called for hypersleep inventory retrivial.")
-	if(!(I in GLOB.cryoed_item_list[category]))
+	if(!(I in GLOB.cryoed_item_list))
 		if(message)
 			to_chat(user, span_warning("[I] is no longer in storage."))
 		return
 	if(message)
 		visible_message(span_notice("[src] beeps happily as it disgorges [I]."))
 	I.forceMove(get_turf(src))
-	GLOB.cryoed_item_list[category] -= I
-
-#undef CRYOCONSOLE_MOB_LIST
-#undef CRYOCONSOLE_ITEM_LIST
+	GLOB.cryoed_item_list -= I
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
@@ -173,8 +98,8 @@
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-
-	var/mob/living/occupant //Person waiting to be despawned.
+	///Person waiting to be taken by ghosts
+	var/mob/living/occupant
 	var/orient_right = FALSE // Flips the sprite.
 	var/obj/item/radio/radio
 	/// The frequency of the radio
@@ -206,6 +131,7 @@
 
 /obj/machinery/cryopod/Destroy()
 	QDEL_NULL(radio)
+	go_out()
 	return ..()
 
 /obj/machinery/cryopod/update_icon()
@@ -213,22 +139,14 @@
 	var/mirror = orient_right ? "-r" : ""
 	icon_state = "body_scanner_[occupied][mirror]"
 
-
-/mob/living/proc/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
-
+///Despawn the mob, remove its job and store its item
+/mob/living/proc/despawn()
 	//Handle job slot/tater cleanup.
 	if(job in SSjob.active_joinable_occupations)
 		job.free_job_positions(1)
-		if(ismedicaljob(job))
-			dept_console = CRYO_MED
-		else if(isengineeringjob(job))
-			dept_console = CRYO_ENGI
 
-	var/list/stored_items = list()
 	for(var/obj/item/W in src)
-		stored_items.Add(W.store_in_cryo())
-	GLOB.cryoed_item_list[dept_console] += stored_items
-
+		W.store_in_cryo()
 
 	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if((R.fields["name"] == real_name))
@@ -245,70 +163,32 @@
 
 	GLOB.real_names_joined -= real_name
 
-	GLOB.key_to_time_of_death[key] = world.time
+	GLOB.key_to_time_of_role_death[key] = world.time
 
 	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 
-	//Make an announcement and log the person entering storage.
-	var/data = num2text(length(GLOB.cryoed_mob_list))
-	GLOB.cryoed_mob_list += data
-	GLOB.cryoed_mob_list[data] = list(real_name, job ? job.title : "Unassigned", gameTimestamp())
-
-	if(pod)
-		pod.visible_message(span_notice("[pod] hums and hisses as it moves [real_name] into hypersleep storage."))
-		pod.occupant = null
-		pod.update_icon()
-		pod.radio.talk_into(pod, "[real_name] has entered long-term hypersleep storage. Belongings moved to hypersleep inventory.", pod.frequency)
-
 	qdel(src)
 
-
-/mob/living/carbon/human/despawn(obj/machinery/cryopod/pod, dept_console = CRYO_REQ)
-	if(assigned_squad)
-		switch(assigned_squad.id)
-			if(ALPHA_SQUAD)
-				dept_console = CRYO_ALPHA
-			if(BRAVO_SQUAD)
-				dept_console = CRYO_BRAVO
-			if(CHARLIE_SQUAD)
-				dept_console = CRYO_CHARLIE
-			if(DELTA_SQUAD)
-				dept_console = CRYO_DELTA
-		assigned_squad.remove_from_squad(src)
+/mob/living/carbon/human/despawn()
+	assigned_squad?.remove_from_squad(src)
 	return ..()
 
-
-/obj/item/proc/store_in_cryo(list/items, nullspace_it = TRUE)
-
-	//bandaid for special cases (mob_holders, intellicards etc.) which are NOT currently handled on their own.
-	if(locate(/mob) in src)
-		forceMove(src, get_turf(src))
-		return
-
-	if(is_type_in_typecache(src, GLOB.do_not_preserve))
+/obj/item/proc/store_in_cryo()
+	if(is_type_in_typecache(src, GLOB.do_not_preserve) || flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP))
 		qdel(src)
 		return
+	moveToNullspace()
+	GLOB.cryoed_item_list += src
 
-	LAZYADD(items, src)
-
-	if(flags_item & (ITEM_ABSTRACT|NODROP|DELONDROP) || (is_type_in_typecache(src, GLOB.do_not_preserve_empty) && !length(contents)))
-		items -= src
-		qdel(src)
-	else if(nullspace_it)
-		moveToNullspace()
-	return items
-
-/obj/item/storage/store_in_cryo(list/items, nullspace_it = TRUE)
-	for(var/O in src)
-		var/obj/item/I = O
-		I.store_in_cryo(items, FALSE)
+/obj/item/storage/store_in_cryo()
+	for(var/obj/item/I AS in src)
+		I.store_in_cryo()
 	return ..()
 
-/obj/item/clothing/suit/storage/store_in_cryo(list/items, nullspace_it = TRUE)
-	for(var/O in pockets)
-		var/obj/item/I = O
+/obj/item/clothing/suit/storage/store_in_cryo()
+	for(var/obj/item/I AS in pockets)
 		pockets.remove_from_storage(I, loc)
-		items = I.store_in_cryo(items)
+		I.store_in_cryo()
 	return ..()
 
 /obj/machinery/cryopod/attackby(obj/item/I, mob/user, params)
@@ -390,16 +270,11 @@
 			to_chat(helper, span_notice("[user] is dead!"))
 			return
 
-		if(!user.client && user.afk_status == MOB_RECENTLY_DISCONNECTED)
-			to_chat(helper, span_notice("You should wait another [round((timeleft(user.afk_timer_id) * 0.1) / 60, 2)] minutes before they are ready to enter cryosleep."))
-			return
-
 		helper.visible_message(span_notice("[helper] starts putting [user] into [src]."),
 		span_notice("You start putting [user] into [src]."))
 	else
 		user.visible_message(span_notice("[user] starts climbing into [src]."),
 		span_notice("You start climbing into [src]."))
-
 
 	var/mob/initiator = helper ? helper : user
 	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))
@@ -413,45 +288,10 @@
 
 	occupant = user
 	update_icon()
-	log_game("[key_name(user)] has entered a stasis pod.")
-	message_admins("[ADMIN_TPMONTY(user)] has entered a stasis pod.")
-
-	RegisterSignal(user, COMSIG_MOB_DEATH, .proc/go_out)
-
-	if(user.afk_status == MOB_DISCONNECTED)
-		addtimer(CALLBACK(src, .proc/despawn_mob, user), 5 SECONDS)
-		return
-
-	to_chat(user, span_notice("You feel cool air surround you. You go numb as your senses turn inward."))
-	to_chat(user, span_boldnotice("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
-
-	RegisterSignal(user, COMSIG_CARBON_SETAFKSTATUS, .proc/on_user_afk_change)
-
-
-/obj/machinery/cryopod/proc/despawn_mob(mob/living/carbon/user)
-	if(QDELETED(user) || user.loc != src)
-		return
-	user.despawn(src)
-
-
-/obj/machinery/cryopod/proc/on_user_afk_change(datum/source, new_status, afk_timer)
-	SIGNAL_HANDLER
-	if(new_status != MOB_DISCONNECTED)
-		return
-	UnregisterSignal(source, list(COMSIG_CARBON_SETAFKSTATUS, COMSIG_MOB_DEATH))
-	var/mob/living/carbon/user = source
-	if(user.loc != src)
-		stack_trace("[user] disconnected while linked to [src] but without being inside it")
-		return
-	user.despawn(src)
-
 
 /obj/machinery/cryopod/proc/go_out()
-	SIGNAL_HANDLER
 	if(QDELETED(occupant))
 		return
-
-	UnregisterSignal(occupant, list(COMSIG_CARBON_SETAFKSTATUS, COMSIG_MOB_DEATH))
 
 	//Eject any items that aren't meant to be in the pod.
 	var/list/items = contents - radio
@@ -462,3 +302,16 @@
 
 	occupant = null
 	update_icon()
+
+/obj/machinery/cryopod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(!occupant)
+		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		return
+	if(X.status_flags & INCORPOREAL || X.do_actions)
+		return
+	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
+	if(!do_after(X, 2 SECONDS))
+		return
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	go_out()	

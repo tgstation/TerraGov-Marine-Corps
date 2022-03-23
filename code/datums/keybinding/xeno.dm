@@ -64,12 +64,6 @@
 	description = "Increases damage for yourself and nearby teammates."
 	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
 
-/datum/keybinding/xeno/larval_growth_sting
-	name = "larval_growth_sting"
-	full_name = "Larval Growth Sting"
-	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker."
-	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
-
 /datum/keybinding/xeno/corrosive_acid
 	name = "corrosive_acid"
 	full_name = "Corrosive Acid"
@@ -99,6 +93,12 @@
 	full_name = "Neurotoxin Sting"
 	description = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
+
+/datum/keybinding/xeno/ozelomelyn_sting
+	name = "ozelomelyn_sting"
+	full_name = "Ozelomelyn Sting"
+	description = "A channeled melee attack that injects the target with Ozelomelyn over a few seconds, purging chemicals and dealing minor toxin damage to a moderate cap while inside them."
+	keybind_signal = COMSIG_XENOABILITY_OZELOMELYN_STING
 
 /datum/keybinding/xeno/transfer_plasma
 	name = "transfer_plasma"
@@ -510,6 +510,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
 
+/datum/keybinding/xeno/acid_dash
+	name = "acid_dash"
+	full_name = "Praetorian : Acid Dash"
+	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
+	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
+
 /datum/keybinding/xeno/toggle_savage
 	name = "toggle_savage"
 	full_name = "Runner: Toggle Savage"
@@ -670,6 +676,18 @@
 	full_name = "Vent crawl"
 	description = "Enter an air vent and crawl through the pipe system."
 	keybind_signal = COMSIG_XENOABILITY_VENTCRAWL
+
+/datum/keybinding/xeno/sow
+	name = "sow"
+	full_name = "Drone : Sow"
+	description = "Plant the seeds of an alien plant."
+	keybind_signal = COMSIG_XENOABILITY_DROP_PLANT
+
+/datum/keybinding/xeno/sow_select_plant
+	name = "choose_plant"
+	full_name = "Drone : Choose plant"
+	description = "Pick what type of plant to sow."
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
 
 /datum/keybinding/xeno/vent/down(client/user)
 	. = ..()

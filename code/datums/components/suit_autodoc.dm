@@ -131,7 +131,6 @@
 /datum/component/suit_autodoc/proc/RegisterSignals(mob/user)
 	RegisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
 
-
 /**
 	Removes specific user signals
 */
@@ -443,8 +442,9 @@
 	action_icon_state = "suit_toggle"
 
 /datum/action/suit_autodoc/scan
-	name = "Suit Automedic User Scan"
+	name = "User Medical Scan"
 	action_icon_state = "suit_scan"
+	keybind_signal = COMSIG_KB_SUITANALYZER
 
 /datum/action/suit_autodoc/configure
 	name = "Configure Suit Automedic"

@@ -45,17 +45,9 @@ map research_outpost
 	maxplayers 40
 endmap
 
-map barrenquilla_mining
-	minplayers 30
-	maxplayers 80
-endmap
-
 map whiskey_outpost_v2
 endmap
 
 map magmoor_digsite_iv
 	minplayers 20
-endmap
-
-map marine_hq
 endmap

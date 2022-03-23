@@ -31,6 +31,7 @@
 	. = ..()
 	pockets = new pockets(src)
 	RegisterSignal(pockets, COMSIG_ATOM_UPDATE_ICON, /atom/proc/update_icon)
+	update_icon()
 
 /obj/item/clothing/shoes/marine/Destroy()
 	QDEL_NULL(pockets)
