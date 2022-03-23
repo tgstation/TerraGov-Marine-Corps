@@ -180,7 +180,7 @@
 /area/shuttle/canterbury)
 "aR" = (
 /obj/structure/table/reinforced,
-/obj/item/pinpointer/crash,
+/obj/item/pinpointer,
 /obj/item/tool/crowbar,
 /obj/item/radio,
 /obj/item/lightreplacer,
@@ -492,7 +492,7 @@
 /obj/item/clipboard,
 /obj/item/tool/pen,
 /obj/structure/paper_bin,
-/obj/item/pinpointer/crash,
+/obj/item/pinpointer,
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -720,7 +720,7 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/pinpointer/crash,
+/obj/item/pinpointer,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "tP" = (
@@ -921,7 +921,7 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/obj/item/pinpointer/crash,
+/obj/item/pinpointer,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "KD" = (

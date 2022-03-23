@@ -10,9 +10,12 @@
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
 	GLOB.xeno_structure += src
+	if(xeno_structure_flags & CRITICAL_STRUCTURE)
+		GLOB.xeno_critical_structure += src
 
 /obj/structure/xeno/Destroy()
 	GLOB.xeno_structure -= src
+	GLOB.xeno_critical_structure -= src
 	return ..()
 
 /obj/structure/xeno/ex_act(severity)
@@ -700,7 +703,7 @@ TUNNEL
 	bound_height = 96
 	max_integrity = 1000
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL|CRITICAL_STRUCTURE
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
@@ -1099,6 +1102,7 @@ TUNNEL
 	bound_height = 64
 	obj_integrity = 600
 	max_integrity = 600
+	xeno_structure_flags = CRITICAL_STRUCTURE
 	///hivenumber of this tower
 	var/hivenumber
 	///boost amt to be added per tower per cycle
@@ -1132,6 +1136,7 @@ TUNNEL
 	bound_height = 64
 	obj_integrity = 400
 	max_integrity = 400
+	xeno_structure_flags = CRITICAL_STRUCTURE
 	///hivenumber of this tower
 	var/hivenumber
 	///boost amt to be added per tower per cycle
@@ -1163,7 +1168,7 @@ TUNNEL
 	bound_height = 96
 	max_integrity = 500
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
 
 /obj/structure/xeno/spawner/Initialize()
 	. = ..()

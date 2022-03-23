@@ -247,12 +247,18 @@
 	name = "\improper USL medic fatigues"
 	icon_state = "upp_uniform_medic"
 
+//Freelancers
+
 /obj/item/clothing/under/marine/veteran/freelancer
 	name = "freelancer fatigues"
 	desc = "A set of loose fitting fatigues, perfect for an informal mercenary. Smells like gunpowder, apple pie, and covered in grease and sake stains."
 	icon_state = "freelancer_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/freelancer)
+
+
+//Dutch
 
 /obj/item/clothing/under/marine/veteran/dutch
 	name = "\improper Dutch's Dozen uniform"

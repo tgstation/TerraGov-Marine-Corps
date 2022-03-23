@@ -675,7 +675,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim.."
 	icon_state = "sniperscope_invisible"
 	flags_attach_features = ATTACH_ACTIVATION
-	scope_delay = 4 SECONDS
+	scope_delay = 2 SECONDS
+	zoom_tile_offset = 7
 
 /obj/item/attachable/scope/unremovable/tl102
 	name = "TL-102 smart sight"

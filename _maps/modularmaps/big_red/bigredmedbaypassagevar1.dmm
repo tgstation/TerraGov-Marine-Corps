@@ -1,0 +1,108 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
+"g" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"q" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper Medical Command Complex"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"w" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"z" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"A" = (
+/obj/structure/sign/safety/medical{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"B" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper Medical Command Complex"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"C" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/admin_building)
+"F" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"I" = (
+/turf/closed/wall,
+/area/bigredv2/outside/admin_building)
+"L" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"X" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"Y" = (
+/obj/structure/sign/safety/medical{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
+"Z" = (
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+
+(1,1,1) = {"
+Y
+a
+a
+"}
+(2,1,1) = {"
+I
+B
+C
+"}
+(3,1,1) = {"
+g
+F
+g
+"}
+(4,1,1) = {"
+X
+z
+Z
+"}
+(5,1,1) = {"
+I
+q
+C
+"}
+(6,1,1) = {"
+A
+L
+w
+"}
