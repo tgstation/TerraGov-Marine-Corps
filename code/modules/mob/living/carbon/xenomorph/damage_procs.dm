@@ -7,7 +7,7 @@
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
-	if(severity > EXPLODE_LIGHT)
+	if(severity == EXPLODE_HEAVY || severity == EXPLODE_DEVASTATE)
 		if(eaten_mob)
 			eaten_mob.ex_act(severity + 1)
 
