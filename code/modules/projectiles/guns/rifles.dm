@@ -1454,6 +1454,7 @@
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 	actions_types = list(/datum/action/item_action/aim_mode)
+	starting_attachment_types = list()
 
 //-------------------------------------------------------
 // TX55 rifle
@@ -1499,7 +1500,7 @@
 	starting_attachment_types = list(
 		/obj/item/weapon/gun/rifle/tx54/mini,
 		/obj/item/attachable/scope/optical,
-		)
+	)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 22, "under_x" = 21, "under_y" = 14, "stock_x" = -1, "stock_y" = 17)
 
 	aim_fire_delay = 0.1 SECONDS
