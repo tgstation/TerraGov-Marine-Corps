@@ -375,4 +375,4 @@
 	corpsegloves = /obj/item/clothing/gloves/latex
 	corpseshoes = /obj/item/clothing/shoes/marine
 	corpsepocket1 = /obj/item/tweezers
-	corpsepocket2 = /obj/item/glasses
+	corpsepocket2 = /obj/item/clothing/glasses/meson
