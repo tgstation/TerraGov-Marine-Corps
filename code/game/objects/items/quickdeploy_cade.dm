@@ -64,3 +64,23 @@
 /obj/item/quikdeploy/cade/plasteel
 	thing_to_deploy = /obj/structure/barricade/plasteel
 	icon_state = "plasteel"
+
+///A shield that can be deployed as a barricade
+/obj/item/weapon/shield/riot/marine/deployable
+	name = "\improper TL-182 deployable shield"
+	desc = "A heavy shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade. Alt click to tighten the strap."
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "marine_shield"
+	flags_equip_slot = ITEM_SLOT_BACK
+	max_integrity = 200
+	integrity_failure = 50
+	var/deployed_item = /obj/structure/barricade/deployable
+	var/deploy_time = 0
+	var/undeploy_time = 0
+	flags_item = IS_DEPLOYABLE
+
+
+/obj/item/weapon/shield/riot/marine/deployable/Initialize()
+	. = ..()
+	if(deployed_item)
+		AddElement(/datum/element/deployable_item, deployed_item, deploy_time, undeploy_time)

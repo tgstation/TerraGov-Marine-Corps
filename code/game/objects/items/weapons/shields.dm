@@ -207,3 +207,4 @@
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, TRUE)
 		to_chat(user, span_notice("[src] can now be concealed."))
 	add_fingerprint(user, "turned [active ? "on" : "off"]")
+

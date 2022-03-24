@@ -1146,3 +1146,11 @@
 		user.visible_message(span_notice("[user] replaces a damaged sandbag, repairing [src]."),
 		span_notice("You replace a damaged sandbag, repairing it [src]."))
 		update_icon()
+
+/obj/structure/barricade/deployable
+	icon_state = "metal_0"
+	max_integrity = 200
+	barricade_type = "metal"
+	///Whether this barricade has damaged states ///gotta make this part work, then can remove
+	can_change_dmg_state = TRUE
+	var/flags_item = IS_DEPLOYABLE

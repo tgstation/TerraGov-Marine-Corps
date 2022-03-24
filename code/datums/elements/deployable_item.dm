@@ -55,10 +55,10 @@
 
 ///Handles the conversion of item into machine. Source is the Item to be deployed, user is who is deploying. If user is null, a direction must be set.
 /datum/element/deployable_item/proc/finish_deploy(obj/item/item_to_deploy, mob/user, turf/location, direction)
-	
+
 	var/direction_to_deploy
 	var/obj/deployed_machine
-	
+
 	if(user)
 		if(!ishuman(user) || CHECK_BITFIELD(item_to_deploy.flags_item, NODROP))
 			return
