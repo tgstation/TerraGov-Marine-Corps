@@ -98,7 +98,6 @@
 			new /obj/item/target/syndicate(get_turf(user))
 	to_chat(user, "You take the target out of the stake.")
 	qdel(src)
-	return
 
 /obj/structure/target_stake/occupied/examine(mob/user)
 	. = ..()
