@@ -243,19 +243,16 @@ WEAPONS
 	name = "TX-54 airburst grenade launcher"
 	contains = list(/obj/item/weapon/gun/rifle/tx54)
 	cost = 30
-	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/tx54_airburst
 	name = "TX-54 airburst grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54)
-	cost = 5
-	available_against_xeno_only = TRUE
+	cost = 4
 
 /datum/supply_packs/weapons/tx54_incendiary
 	name = "TX-54 incendiary grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/incendiary)
-	cost = 7
-	available_against_xeno_only = TRUE
+	cost = 6
 
 /datum/supply_packs/weapons/tx54_he
 	name = "TX-54 HE grenade magazine"

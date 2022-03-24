@@ -1396,7 +1396,7 @@
 // TX-54 grenade launcher
 /obj/item/weapon/gun/rifle/tx54
 	name = "TX-54 grenade launcher"
-	desc = "A magazine fed, semiautomatic grenade launcher designed to shoot airbursting smart grenades. Does not have IFF."
+	desc = "A magazine fed, semiautomatic grenade launcher designed to shoot airbursting smart grenades. Requires a T49 scope for precision aiming."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx54"
 	item_state = "tx54" ///todo
@@ -1435,6 +1435,8 @@
 	wield_delay = 0.8 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.15
+	aim_fire_delay = 0.2 SECONDS
+	aim_speed_modifier = 2
 
 //-------------------------------------------------------
 // TX55 built in grenade launcher
@@ -1458,7 +1460,7 @@
 
 /obj/item/weapon/gun/rifle/tx55
 	name = "\improper TX-55 assault rifle"
-	desc = "Officially designated an Objective Individual Combat Weapon, The TX-55 features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight."
+	desc = "Officially designated an Objective Individual Combat Weapon, The TX-55 features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight. Requires a T49 scope for precision aiming."
 	icon_state = "tx55"
 	item_state = "tx55"
 	fire_sound = "gun_t12"

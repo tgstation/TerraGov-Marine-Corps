@@ -1179,7 +1179,7 @@ datum/ammo/bullet/revolver/tp44
 	sound_bounce	= "rocket_bounce"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	armor_type = "bomb"
-	damage_falloff = 0
+	damage_falloff = 0.5
 	shell_speed = 2
 	accurate_range = 12
 	max_range = 15
@@ -1194,21 +1194,25 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
 	bonus_projectiles_amount = 6
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, M) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/on_hit_obj(obj/O, obj/projectile/proj)
 	bonus_projectiles_amount = 6
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, O) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/on_hit_turf(turf/T, obj/projectile/proj)
 	bonus_projectiles_amount = 6
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, T) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/do_at_max_range(obj/projectile/proj)
 	bonus_projectiles_amount = 6
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, get_turf(proj)) )
 	bonus_projectiles_amount = 0
 
@@ -1219,14 +1223,13 @@ datum/ammo/bullet/revolver/tp44
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/incendiary
 
 /datum/ammo/bullet/tx54_spread
-	name = "flechette"
+	name = "Shrapnel"
 	icon_state = "flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
 	accuracy_var_low = 15
 	accuracy_var_high = 5
 	max_range = 4
 	damage = 20
-	damage_falloff = 2
 	penetration = 20
 	sundering = 2.5
 	on_pierce_multiplier = 0.9
@@ -1238,7 +1241,6 @@ datum/ammo/bullet/revolver/tp44
 	name = "incendiary flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
 	damage = 15
-	damage_falloff = 1
 	penetration = 10
 	sundering = 1.5
 
