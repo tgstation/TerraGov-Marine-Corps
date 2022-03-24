@@ -2233,9 +2233,16 @@
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
 "aKb" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "desert"
+/obj/structure/platform_decoration{
+	dir = 1
+	},
+/obj/effect/decal/sandytile,
+/obj/effect/decal/grassdecal{
+	dir = 1
+	},
+/turf/open/floor{
+	dir = 4;
+	icon_state = "whiteyellowfull"
 	},
 /area/lv624/lazarus/sandtemple)
 "aKk" = (
@@ -4166,9 +4173,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "boc" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "desert0"
-	},
+/turf/open/floor/plating/ground/dirt/typezero,
 /area/lv624/lazarus/sandtemple)
 "bom" = (
 /turf/open/ground/coast{
@@ -6950,9 +6955,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "enu" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "desert_dug"
-	},
+/turf/open/floor/plating/ground/dirt/dug,
 /area/lv624/lazarus/sandtemple)
 "env" = (
 /turf/open/ground/coast,
@@ -10947,8 +10950,14 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "jhl" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "desert"
+/obj/effect/decal/sandytile,
+/obj/effect/ai_node,
+/obj/effect/decal/grassdecal{
+	dir = 1
+	},
+/turf/open/floor{
+	dir = 4;
+	icon_state = "whiteyellowfull"
 	},
 /area/lv624/lazarus/sandtemple)
 "jhE" = (
@@ -11803,9 +11812,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "kgA" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "desert3"
-	},
+/turf/open/floor/plating/ground/dirt/typethree,
 /area/lv624/lazarus/sandtemple)
 "kgH" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -16330,9 +16337,7 @@
 "pJO" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "desert2"
-	},
+/turf/open/floor/plating/ground/dirt/typetwo,
 /area/lv624/lazarus/sandtemple)
 "pKc" = (
 /obj/effect/ai_node,
@@ -18618,9 +18623,7 @@
 /turf/closed/wall,
 /area/lv624/lazarus/research)
 "swp" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "desert1"
-	},
+/turf/open/floor/plating/ground/dirt/typeone,
 /area/lv624/lazarus/sandtemple)
 "swL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -19788,6 +19791,9 @@
 /obj/structure/platform_decoration,
 /obj/effect/decal/sandytile,
 /obj/effect/decal/sandytile,
+/obj/effect/decal/grassdecal{
+	dir = 1
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "whiteyellowfull"
@@ -57762,11 +57768,11 @@ bSn
 hXx
 kEN
 hXx
-iEL
+aKb
 sDl
 uQw
 kgA
-jhl
+bsq
 pJO
 oZK
 sDl
@@ -57939,12 +57945,12 @@ eHw
 hXx
 hXx
 hXx
-fBA
+jhl
 sDl
 uQw
-aKb
+jGj
 enu
-jhl
+bsq
 oZK
 qyo
 bQm
@@ -58120,7 +58126,7 @@ tML
 sDl
 uQw
 swp
-jhl
+bsq
 boc
 oZK
 sDl

@@ -162,7 +162,6 @@
 /// The layer you should use if you _really_ don't want an emissive overlay to be blocked.
 #define EMISSIVE_LAYER_UNBLOCKABLE 9999
 
-
 #define LIGHTING_BACKPLANE_LAYER 14.5
 
 #define LIGHTING_PLANE 100
