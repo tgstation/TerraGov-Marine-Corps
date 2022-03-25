@@ -1,0 +1,7 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - refactor: "Coverage now works - window frames and other obstacles can actually block bullets, certain objects no longer always block bullets"
+  - balance: "Snipers, rockets and IFF weapons no longer completely ignore cover"
+  - balance: "Slightly buffed window frame HP, in particular reinforced window frames"
+  - balance: "Flipped tables now actually block bullets better than non flipped tables"
