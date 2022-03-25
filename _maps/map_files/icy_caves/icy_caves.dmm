@@ -889,10 +889,11 @@
 /turf/open/floor/prison/red,
 /area/icy_caves/caves/cavesbrig)
 "du" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail/breakroom)
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice_rock/corners{
+	dir = 9
+	},
+/area/icy_caves/caves)
 "dv" = (
 /obj/structure/largecrate/supply/explosives,
 /turf/open/floor/tile/dark,
@@ -1309,11 +1310,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "fc" = (
-/obj/structure/bed/chair{
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice_rock/singleT{
 	dir = 1
 	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail)
+/area/icy_caves/caves)
 "fd" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/powercell,
@@ -1523,10 +1524,6 @@
 	dir = 4
 	},
 /area/icy_caves/caves/south)
-"fX" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northern)
 "fY" = (
 /turf/closed/ice/thin/junction{
 	dir = 8
@@ -2075,6 +2072,10 @@
 	dir = 4
 	},
 /area/icy_caves/caves/alienstuff)
+"iA" = (
+/obj/structure/bed/chair,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northwestmonorail)
 "iF" = (
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 1
@@ -2288,6 +2289,10 @@
 	},
 /turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
+"jK" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice_rock/singlePart,
+/area/icy_caves/caves/northern)
 "jL" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 8
@@ -2415,10 +2420,10 @@
 /area/icy_caves/outpost/refinery)
 "kl" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/ice/end{
-	dir = 1
+/turf/closed/ice_rock/singlePart{
+	dir = 9
 	},
-/area/icy_caves/caves/northern)
+/area/icy_caves/caves)
 "km" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
@@ -2788,15 +2793,11 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "lR" = (
-/obj/structure/bed/chair{
-	dir = 8
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice_rock/singleEnd{
+	dir = 1
 	},
-/obj/structure/cable,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail)
+/area/icy_caves/caves)
 "lS" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -3485,6 +3486,11 @@
 "oW" = (
 /turf/closed/ice_rock/westWall,
 /area/icy_caves/caves)
+"oY" = (
+/obj/effect/decal/remains/human,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern)
 "oZ" = (
 /obj/machinery/space_heater,
 /turf/open/floor/plating,
@@ -4779,10 +4785,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
-"ug" = (
-/obj/structure/bed/chair,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail)
 "uh" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/green2/corner{
@@ -5184,6 +5186,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
+"vO" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice/end,
+/area/icy_caves/caves/northern)
 "vP" = (
 /obj/structure/powerloader_wreckage,
 /turf/open/floor/tile/dark/brown2{
@@ -5536,6 +5542,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
+"xp" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northwestmonorail)
 "xq" = (
 /obj/effect/decal/remains/human,
 /turf/open/floor/prison,
@@ -5766,6 +5779,11 @@
 /turf/closed/wall,
 /area/icy_caves/outpost/engineering)
 "yz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northwestmonorail/breakroom)
+"yA" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
@@ -5902,6 +5920,10 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
+"zg" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice_rock/singleEnd,
+/area/icy_caves/caves/northern)
 "zh" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -7645,6 +7667,12 @@
 "Gs" = (
 /turf/closed/ice_rock/corners,
 /area/icy_caves/caves/northern)
+"Gt" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice/junction{
+	dir = 1
+	},
+/area/icy_caves/caves/northern)
 "Gu" = (
 /turf/closed/ice,
 /area/icy_caves/outpost/outside)
@@ -7815,11 +7843,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
-"Hb" = (
-/obj/effect/decal/remains/human,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northern)
 "Hd" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
@@ -7958,6 +7981,16 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/medbay)
+"HK" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northwestmonorail)
 "HL" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 6
@@ -8039,6 +8072,12 @@
 /obj/machinery/computer/camera,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
+"Ia" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northwestmonorail)
 "Ib" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -8662,12 +8701,11 @@
 	},
 /area/icy_caves/caves/south)
 "KL" = (
-/obj/structure/bed/chair{
-	dir = 8
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice_rock/singlePart{
+	dir = 6
 	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail)
+/area/icy_caves/caves)
 "KM" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 9
@@ -9009,7 +9047,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "Mf" = (
 /obj/structure/bed/chair{
-	dir = 4
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
@@ -9520,6 +9558,10 @@
 /obj/effect/landmark/corpsespawner/prison_security,
 /turf/open/floor/prison/red,
 /area/icy_caves/caves/cavesbrig)
+"Ok" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/icy_caves/caves/northern)
 "Ol" = (
 /turf/closed/ice/straight{
 	dir = 4
@@ -10246,10 +10288,9 @@
 	},
 /area/icy_caves/caves/northern)
 "Rt" = (
-/obj/structure/bed/chair,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail)
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice/junction,
+/area/icy_caves/caves/northern)
 "Ru" = (
 /obj/structure/table/woodentable,
 /obj/structure/paper_bin,
@@ -11946,6 +11987,11 @@
 	dir = 6
 	},
 /turf/open/shuttle/escapepod/plain,
+/area/icy_caves/caves/northwestmonorail)
+"YE" = (
+/obj/structure/bed/chair,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "YF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -16491,8 +16537,8 @@ Cl
 Cl
 Cl
 Cl
-lR
-KL
+HK
+xp
 Cl
 Gx
 qI
@@ -16649,7 +16695,7 @@ qI
 Hw
 sG
 sG
-Rt
+YE
 Pm
 qI
 XV
@@ -16802,10 +16848,10 @@ oL
 qI
 qI
 qI
-fc
+Mf
 XV
 XV
-ug
+iA
 Gx
 qI
 XV
@@ -16959,8 +17005,8 @@ xW
 qI
 qI
 qI
-yz
-Mf
+yA
+Ia
 qI
 Gx
 Qr
@@ -18665,7 +18711,7 @@ cJ
 Yh
 IU
 Fj
-du
+yz
 zH
 eP
 sW
@@ -19755,25 +19801,25 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-Yf
-re
-Yf
-Yf
-qy
-PD
-VI
-by
+cp
+cp
+cp
+cp
+dK
+cp
+cp
+du
+dQ
+eu
+eF
 yh
 yh
 yh
 yh
-Lm
-by
-Lm
-Fu
+mC
+eF
+mC
+Gt
 QK
 ci
 IC
@@ -19781,9 +19827,9 @@ cm
 SR
 SR
 SR
-fX
+Ok
 Hd
-Hb
+oY
 Lm
 VI
 Fu
@@ -19911,7 +19957,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 Yf
 Yf
 qy
@@ -19929,7 +19975,7 @@ bl
 bI
 XP
 PD
-VI
+eu
 Ho
 KU
 cm
@@ -20067,7 +20113,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 Yf
 qy
 lX
@@ -20085,7 +20131,7 @@ Io
 Rh
 XP
 Sg
-Lm
+mC
 Nd
 Ho
 cn
@@ -20223,7 +20269,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 qs
 lX
 WS
@@ -20241,7 +20287,7 @@ bP
 bR
 bS
 bP
-PD
+dQ
 VI
 Nd
 QK
@@ -20379,7 +20425,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 qy
 nM
 nM
@@ -20397,7 +20443,7 @@ bR
 bJ
 Tu
 ca
-ot
+Rt
 VI
 Fu
 bl
@@ -20535,7 +20581,7 @@ Yf
 Yf
 Yf
 Yf
-qy
+du
 qz
 nM
 XH
@@ -20553,7 +20599,7 @@ Rh
 bI
 bL
 QZ
-Lm
+mC
 bM
 by
 SR
@@ -20691,7 +20737,7 @@ Yf
 Yf
 Yf
 qy
-VU
+ss
 VU
 XH
 SR
@@ -20709,7 +20755,7 @@ bI
 eB
 bR
 Rh
-XP
+zg
 bP
 SR
 SR
@@ -20724,7 +20770,7 @@ bS
 bJ
 eB
 bN
-fX
+Ok
 Hd
 lK
 dF
@@ -20847,7 +20893,7 @@ Yf
 Yf
 qs
 aG
-WS
+yZ
 aK
 aP
 im
@@ -20865,7 +20911,7 @@ Ry
 bI
 bY
 bY
-cd
+jK
 eB
 SR
 SR
@@ -21003,7 +21049,7 @@ Yf
 Yf
 qy
 qz
-XH
+GW
 XH
 SR
 SR
@@ -21020,8 +21066,8 @@ bJ
 Tu
 Rh
 XP
-SR
-SR
+yh
+yh
 SR
 im
 SR
@@ -21159,7 +21205,7 @@ Yf
 qs
 lX
 aH
-lG
+kq
 aM
 SR
 ok
@@ -21315,7 +21361,7 @@ Yf
 qs
 qH
 WS
-aK
+fc
 aM
 im
 SR
@@ -21471,7 +21517,7 @@ Yf
 qs
 Vb
 aI
-eY
+kl
 aM
 SR
 SR
@@ -21627,7 +21673,7 @@ Yf
 Yf
 oW
 RN
-qz
+Mr
 qz
 SR
 SR
@@ -21783,7 +21829,7 @@ Yf
 Yf
 Yf
 qs
-aG
+lR
 aH
 lG
 im
@@ -21939,7 +21985,7 @@ Yf
 Yf
 Yf
 Yf
-RN
+mE
 Vb
 aK
 SR
@@ -22095,7 +22141,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 RN
 Vb
 lG
@@ -22251,7 +22297,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 qs
 lX
 eY
@@ -22407,7 +22453,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 qs
 Vb
 pq
@@ -22424,7 +22470,7 @@ bJ
 eB
 bJ
 eB
-SR
+yh
 SR
 aX
 SR
@@ -22563,7 +22609,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 Yf
 RN
 qz
@@ -22580,7 +22626,7 @@ bI
 bL
 bI
 bL
-bl
+jo
 SR
 SR
 SR
@@ -22719,7 +22765,7 @@ Yf
 Yf
 Yf
 Yf
-Yf
+cp
 Yf
 qs
 qz
@@ -22729,14 +22775,14 @@ SR
 SR
 im
 SR
-kl
+ok
 Nd
 bJ
 eB
 bJ
 eB
 Ry
-SR
+yh
 bS
 im
 SR
@@ -22875,24 +22921,24 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Yf
-oW
-RN
-VU
-lX
-lG
-SR
-SR
+cp
+cp
+cp
+mY
+mE
+ss
+KL
+kq
 yh
-ot
-pk
-pk
-pk
-pk
-Ho
-SR
+yh
+yh
+Rt
+sb
+sb
+sb
+sb
+vO
+yh
 SR
 SR
 SR
