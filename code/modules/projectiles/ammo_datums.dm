@@ -209,7 +209,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_proj.generate_bullet(src)
 
 		///Scatter here is how many degrees extra stuff deviate from the main projectile's firing angle. Fully randomised with no 45 degree cap like normal bullets
-		var/new_angle = angle + ( (rand(0, main_proj.ammo.bonus_projectiles_scatter)) * (prob(50) ? 1 : -1) )
+		var/f = (i-1)
+		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((f % 2) ? (-(f + 1) * 0.5) : (f * 0.5)))
 		if(new_angle < 0)
 			new_angle += 360
 		if(new_angle > 360)
@@ -1189,29 +1190,29 @@ datum/ammo/bullet/revolver/tp44
 	shrapnel_chance = 0
 	bullet_color = LIGHT_COLOR_FIRE
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread
-	bonus_projectiles_scatter = 30
+	bonus_projectiles_scatter = 10
 
 /datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
-	bonus_projectiles_amount = 6
+	bonus_projectiles_amount = 7
 	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, M) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/on_hit_obj(obj/O, obj/projectile/proj)
-	bonus_projectiles_amount = 6
+	bonus_projectiles_amount = 7
 	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, O) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/on_hit_turf(turf/T, obj/projectile/proj)
-	bonus_projectiles_amount = 6
+	bonus_projectiles_amount = 7
 	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, T) )
 	bonus_projectiles_amount = 0
 
 /datum/ammo/tx54/do_at_max_range(obj/projectile/proj)
-	bonus_projectiles_amount = 6
+	bonus_projectiles_amount = 7
 	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, get_turf(proj)) )
 	bonus_projectiles_amount = 0
@@ -1231,8 +1232,8 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 4
 	damage = 20
 	penetration = 20
-	sundering = 2.5
-	on_pierce_multiplier = 0.9
+	sundering = 3
+	damage_falloff = 0
 
 /datum/ammo/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, max_range = 3, stagger = 0.1, slowdown = 0.1, shake = 0)
@@ -1257,6 +1258,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "grenade_he"
 	handful_icon_state = "20mm_he"
 	bonus_projectiles_type = null
+	max_range = 12
 
 /datum/ammo/tx54/he/drop_nade(turf/T)
 	explosion(T, 0, 0, 2, 2)

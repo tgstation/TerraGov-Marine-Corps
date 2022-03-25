@@ -364,7 +364,7 @@
 	icon_state = "tx54_airburst"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/tx54
-	max_rounds = 5
+	max_rounds = 8
 	icon_state_mini = "mag_sniper"
 
 /obj/item/ammo_magazine/rifle/tx54/he

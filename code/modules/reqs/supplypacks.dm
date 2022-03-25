@@ -257,7 +257,7 @@ WEAPONS
 /datum/supply_packs/weapons/tx54_he
 	name = "TX-54 HE grenade magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx54/he)
-	cost = 8
+	cost = 10
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/recoillesskit
