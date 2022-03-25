@@ -237,7 +237,7 @@
 		if(istype(I, /obj/item/reagent_containers/glass/bucket))
 			to_chat(user, span_warning("That's too big to fit!"))
 			return
-		
+
 		beaker =  I
 		
 
