@@ -7,6 +7,7 @@
 
 	anchored = TRUE
 	density = TRUE
+	coverage = 30
 
 	icon_state = "bioprinter"
 
