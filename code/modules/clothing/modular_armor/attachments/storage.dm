@@ -10,6 +10,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_is_bag"
 	slot = ATTACHMENT_SLOT_STORAGE
+	w_class = WEIGHT_CLASS_BULKY
 	///Internal storage of the module. Its parent is switched to the parent item when attached.
 	var/obj/item/storage/internal/storage = /obj/item/storage/internal/modular
 	///If TRUE it will add extra overlays for the items within.
@@ -110,6 +111,13 @@
 	storage =  /obj/item/storage/internal/modular/ammo_mag
 	slowdown = 0.1
 
+/obj/item/armor_module/storage/ammo_mag/freelancer/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/m16(storage)
+	new /obj/item/ammo_magazine/rifle/m16(storage)
+	new /obj/item/ammo_magazine/rifle/m16(storage)
+	new /obj/item/ammo_magazine/rifle/m16(storage)
+
 /obj/item/storage/internal/modular/ammo_mag
 	max_storage_space = 15
 	storage_slots = 4
@@ -178,6 +186,14 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag"
 	storage =  /obj/item/storage/internal/modular/medical
+
+/obj/item/armor_module/storage/medical/freelancer/Initialize()
+	. = ..()
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(storage)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(storage)
+	new /obj/item/storage/pill_bottle/meralyne(storage)
+	new /obj/item/storage/pill_bottle/dermaline(storage)
+	new /obj/item/storage/pill_bottle/tramadol(storage)
 
 /obj/item/storage/internal/modular/medical
 	max_storage_space = 30

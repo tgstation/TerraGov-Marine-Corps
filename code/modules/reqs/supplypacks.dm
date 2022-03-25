@@ -75,7 +75,7 @@ OPERATIONS
 
 /datum/supply_packs/operations/pinpointer
 	name = "pool tracker crate"
-	contains = list(/obj/item/pinpointer/pool)
+	contains = list(/obj/item/pinpointer)
 	cost = 20
 	available_against_xeno_only = TRUE
 

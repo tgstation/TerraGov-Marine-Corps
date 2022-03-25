@@ -30,6 +30,7 @@
 		/obj/item/armor_module/storage/uniform/holster,
 		/obj/item/armor_module/storage/uniform/holster/armpit,
 		/obj/item/armor_module/storage/uniform/holster/waist,
+		/obj/item/armor_module/storage/uniform/holster/freelancer,
 		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/armor/cape,
 		/obj/item/armor_module/armor/cape/half,
