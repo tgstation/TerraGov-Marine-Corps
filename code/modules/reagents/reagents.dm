@@ -61,6 +61,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/effect_str = 1
 	///Used for certain chems we don't want being extracted via dialysis or being used in cryo, makes all important medical machines (dispenser, cryo etc...) refuse to interact with the reagent
 	var/medbayblacklist = FALSE
+	///If true allow foam and smoke to transfer reagent into mobs
+	var/reactinmob = TRUE
 
 /datum/reagent/New()
 	. = ..()

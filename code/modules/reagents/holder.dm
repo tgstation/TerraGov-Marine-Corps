@@ -504,11 +504,9 @@
 /datum/reagents/proc/reaction(atom/A, method=TOUCH, volume_modifier=1, show_message = 1)
 	var/react_type
 	if(isliving(A))
-		var/mob/living/L = A
-		if (L.stat == DEAD)
-			return
 		react_type = "LIVING"
 		if(method == INGEST)
+			var/mob/living/L = A
 			L.taste(src)
 	else if (isturf(A))
 		react_type = "TURF"
@@ -521,9 +519,11 @@
 		var/datum/reagent/R = reagent
 		switch(react_type)
 			if("LIVING")
+				var/mob/living/L = A
+				if(!R.reactinmob && L.stat == DEAD)
+					return
 				var/touch_protection = 0
 				if(method == VAPOR)
-					var/mob/living/L = A
 					touch_protection = CLAMP01(1 -  L.get_permeability_protection())
 				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection)
 			if("TURF")
