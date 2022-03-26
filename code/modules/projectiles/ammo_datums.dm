@@ -2131,7 +2131,7 @@ datum/ammo/bullet/revolver/tp44
 		var/mob/living/carbon/xenomorph/X = firer
 		smoke_system.strength = X.xeno_caste.bomb_strength
 		if(fixed_spread_range == -1)
-			range = max(2, range + X.upgrade_as_number())
+			range = max(2, range + min(X.upgrade_as_number(), 3))
 		else
 			range = fixed_spread_range
 	smoke_system.set_up(range, T)
