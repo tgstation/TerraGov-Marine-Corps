@@ -190,6 +190,32 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle -= 360
 		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.loc, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
+/// A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
+/datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
+	var/effect_icon = ""
+	var/proj_type = /obj/projectile
+	if(istype(main_proj, /obj/projectile/hitscan))
+		proj_type = /obj/projectile/hitscan
+		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
+		effect_icon = main_proj_hitscan.effect_icon
+	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
+		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
+		if(bonus_projectiles_type)
+			new_proj.generate_bullet(bonus_projectiles_type)
+			var/obj/item/weapon/gun/g = source
+			if(source) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
+				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
+		else //If no bonus type is defined then the extra projectiles are the same as the main one.
+			new_proj.generate_bullet(src)
+
+		///Scatter here is how many degrees extra stuff deviate from the main projectile's firing angle. Fully randomised with no 45 degree cap like normal bullets
+		var/f = (i-1)
+		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((f % 2) ? (-(f + 1) * 0.5) : (f * 0.5)))
+		if(new_angle < 0)
+			new_angle += 360
+		if(new_angle > 360)
+			new_angle -= 360
+		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.loc, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 /datum/ammo/proc/drop_flame(turf/T)
 	if(!istype(T))
@@ -1144,6 +1170,112 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
+
+/datum/ammo/tx54
+	name = "20mm airburst grenade"
+	icon_state = "grenade"
+	hud_state = "grenade_airburst"
+	hud_state_empty = "grenade_empty"
+	handful_icon_state = "20mm_airburst"
+	handful_amount = 3
+	ping = null //no bounce off.
+	sound_bounce	= "rocket_bounce"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	armor_type = "bomb"
+	damage_falloff = 0.5
+	shell_speed = 2
+	accurate_range = 12
+	max_range = 15
+	damage = 12			//impact damage from a grenade to the dome
+	penetration = 0
+	sundering = 0
+	shrapnel_chance = 0
+	bullet_color = LIGHT_COLOR_FIRE
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread
+	bonus_projectiles_scatter = 10
+
+/datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
+	bonus_projectiles_amount = 7
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, M) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx54/on_hit_obj(obj/O, obj/projectile/proj)
+	bonus_projectiles_amount = 7
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, O) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx54/on_hit_turf(turf/T, obj/projectile/proj)
+	bonus_projectiles_amount = 7
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, T) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx54/do_at_max_range(obj/projectile/proj)
+	bonus_projectiles_amount = 7
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, get_turf(proj)) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx54/incendiary
+	name = "20mm incendiary grenade"
+	hud_state = "grenade_fire"
+	handful_icon_state = "20mm_incendiary"
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/incendiary
+
+/datum/ammo/bullet/tx54_spread
+	name = "Shrapnel"
+	icon_state = "flechette"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	accuracy_var_low = 15
+	accuracy_var_high = 5
+	max_range = 4
+	damage = 20
+	penetration = 20
+	sundering = 3
+	damage_falloff = 0
+
+/datum/ammo/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 3, stagger = 0.1, slowdown = 0.1, shake = 0)
+
+/datum/ammo/bullet/tx54_spread/incendiary
+	name = "incendiary flechette"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
+	damage = 15
+	penetration = 10
+	sundering = 1.5
+
+/datum/ammo/bullet/tx54_spread/incendiary/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	T.ignite(5, 10)
+
+/datum/ammo/bullet/tx54_spread/incendiary/on_leave_turf(turf/T, atom/firer)
+	drop_flame(T)
+
+/datum/ammo/tx54/he
+	name = "20mm HE grenade"
+	hud_state = "grenade_he"
+	handful_icon_state = "20mm_he"
+	bonus_projectiles_type = null
+	max_range = 12
+
+/datum/ammo/tx54/he/drop_nade(turf/T)
+	explosion(T, 0, 0, 2, 2)
+
+/datum/ammo/tx54/he/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/tx54/he/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+
+/datum/ammo/tx54/he/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T)
+
+/datum/ammo/tx54/he/do_at_max_range(obj/projectile/P)
+	drop_nade(get_turf(P))
 
 /*
 //================================================
