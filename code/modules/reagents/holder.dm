@@ -520,7 +520,7 @@
 		switch(react_type)
 			if("LIVING")
 				var/mob/living/L = A
-				if(!R.reactinmob && L.stat == DEAD)
+				if(!R.reactindeadmob && L.stat == DEAD)
 					return
 				var/touch_protection = 0
 				if(method == VAPOR)
