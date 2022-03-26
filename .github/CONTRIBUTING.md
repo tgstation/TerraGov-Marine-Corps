@@ -793,7 +793,7 @@ Any new map or map change must comply to these specifications.
 #### TGM Format & Map Merge
 
 New maps should be converted into the .tgm format before making a pull request. All edits to existing maps should be correctly map merged. This is done using the [Map Merge](https://tgstation13.org/wiki/Map_Merger) utility included in the repo to convert the file to TGM format.
-Likewise, you MUST run Map Merge prior to opening your PR when updating existing maps to minimize the change differences (even when using third party mapping programs such as StrongDMM).
+It is HIGHLY recommend to use third party mapping programs such as StrongDMM to make map changes easier.
 
 #### Variable Editing (Var-edits)
 
