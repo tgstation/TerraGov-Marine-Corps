@@ -43,9 +43,15 @@
 	//Damage
 	var/b_loss = 0
 	var/f_loss = 0
-	ex_multiplier = max(0, 25 + 20*severity - 5*bomb_armor_multiplier)
-	b_loss = rand(ex_multiplier, ex_multiplier+10)
-	f_loss = rand(ex_multiplier, ex_multiplier+10)
+	//Prae gets 80 damage at base from light ex (nade)
+	//  120 for heavy (CAS minirocket), 160 for devastating (CAS rocket epicenter)
+	//Queen gets 20 less in each case
+	ex_multiplier = max(0, 50 + 40*severity - 10*bomb_armor_multiplier)
+	b_loss = ex_multiplier/2
+	f_loss = ex_multiplier/2
+	// Add up to 20 random damage
+	b_loss = b_loss + rand(0, 10)
+	f_loss = f_loss + rand(0, 10)
 
 	apply_damage(b_loss, BRUTE, updating_health = TRUE)
 	apply_damage(f_loss, BURN, updating_health = TRUE)
