@@ -11,6 +11,7 @@
 	throwpass = TRUE
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
+	coverage = 20
 	///Time before the ammo impacts
 	var/travelling_time = 10 SECONDS
 	///type of equipment that accept this type of ammo.
@@ -527,7 +528,6 @@
 	desc = "A pack of laser guided screening smoke mini rockets."
 	icon_state = "minirocket_smoke"
 	point_cost = 25
-
 	cas_effect = /obj/effect/overlay/blinking_laser/smoke
 
 /obj/structure/ship_ammo/minirocket/smoke/detonate_on(turf/impact, attackdir = NORTH)

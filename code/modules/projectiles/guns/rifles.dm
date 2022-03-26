@@ -81,6 +81,7 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
+	extra_delay = 0.05 SECONDS
 	accuracy_mult = 1.10
 	scatter = 2
 	burst_scatter_mult = 0.25
@@ -152,6 +153,7 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
+	extra_delay = 0.05 SECONDS
 	accuracy_mult = 1.15
 	scatter = 0
 	wield_delay = 0.7 SECONDS
@@ -557,11 +559,8 @@
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
 
-/obj/item/weapon/gun/rifle/m16/freelancerleader
-	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/scope/mini, /obj/item/attachable/extended_barrel)
-
 /obj/item/weapon/gun/rifle/m16/freelancer
-	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/weapon/gun/shotgun/combat/masterkey)
 
 /obj/item/weapon/gun/rifle/m16/somleader
 	starting_attachment_types = list(/obj/item/attachable/reddot)
@@ -621,7 +620,7 @@
 	scatter = 3
 
 /obj/item/weapon/gun/rifle/famas/freelancermedic
-	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/suppressor)
+	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
 
 
 //-------------------------------------------------------
@@ -1301,6 +1300,7 @@
 	fire_delay = 0.25 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
+	extra_delay = 0.05 SECONDS
 	accuracy_mult = 1.15
 	scatter = 0
 	wield_delay = 0.6 SECONDS

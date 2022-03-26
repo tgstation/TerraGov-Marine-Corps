@@ -35,9 +35,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "dt" = (
@@ -127,10 +124,6 @@
 	},
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
-"jk" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/west)
 "jK" = (
 /turf/closed/mineral/bigred,
 /area/shuttle/drop2/lz2)
@@ -168,9 +161,6 @@
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	name = "\improper Virology Lab Cell"
 	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "mH" = (
@@ -182,12 +172,6 @@
 "ni" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
-"nx" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/west)
 "oc" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 8
@@ -387,9 +371,6 @@
 	},
 /area/shuttle/drop2/lz2)
 "zY" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "Av" = (
@@ -410,9 +391,6 @@
 	},
 /area/shuttle/drop2/lz2)
 "Bg" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "BT" = (
@@ -743,12 +721,6 @@
 	dir = 6
 	},
 /area/shuttle/drop2/lz2)
-"YP" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/virology)
 "YQ" = (
 /obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/marking/asteroidwarning,
@@ -1455,9 +1427,9 @@ NY
 NY
 "}
 (18,1,1) = {"
-jk
-jk
-ZV
+mc
+mc
+iQ
 ZV
 ZV
 ZV
@@ -1495,9 +1467,9 @@ NY
 oW
 "}
 (19,1,1) = {"
-nx
 mc
 mc
+iQ
 mc
 mc
 mc
@@ -1535,9 +1507,9 @@ mc
 mc
 "}
 (20,1,1) = {"
-YP
+xo
 mc
-mc
+iQ
 mc
 mc
 mc
@@ -1575,9 +1547,9 @@ mc
 mc
 "}
 (21,1,1) = {"
-YP
+xo
 mc
-mc
+iQ
 mc
 mc
 mc
@@ -1615,9 +1587,9 @@ mc
 mc
 "}
 (22,1,1) = {"
-YP
+xo
 mc
-mc
+iQ
 mc
 mc
 mc
@@ -1655,9 +1627,9 @@ po
 mc
 "}
 (23,1,1) = {"
-YP
+xo
 mc
-mc
+iQ
 mc
 mc
 Dq
@@ -1695,9 +1667,9 @@ mc
 po
 "}
 (24,1,1) = {"
-YP
+xo
 mc
-mc
+iQ
 mc
 Dq
 Dq
@@ -1735,9 +1707,9 @@ ZV
 ZV
 "}
 (25,1,1) = {"
-YP
+xo
 mc
-mc
+iQ
 mc
 Dq
 Dq
@@ -1777,7 +1749,7 @@ iQ
 (26,1,1) = {"
 zY
 mc
-mc
+iQ
 mc
 Dq
 cA
@@ -1817,7 +1789,7 @@ iQ
 (27,1,1) = {"
 zY
 mc
-mc
+iQ
 mc
 Dq
 Dq
@@ -1857,7 +1829,7 @@ iQ
 (28,1,1) = {"
 zY
 xo
-mc
+iQ
 mc
 Dq
 Dq
@@ -1897,7 +1869,7 @@ iQ
 (29,1,1) = {"
 mq
 xo
-mc
+iQ
 mc
 Dq
 Dq
@@ -1937,7 +1909,7 @@ iQ
 (30,1,1) = {"
 Bg
 xo
-mc
+iQ
 mc
 Dq
 Dq
@@ -1977,7 +1949,7 @@ iQ
 (31,1,1) = {"
 Bg
 xo
-mc
+iQ
 mc
 Dq
 Dq
@@ -2017,7 +1989,7 @@ iQ
 (32,1,1) = {"
 dh
 xo
-mc
+iQ
 Dq
 Dq
 Dq
@@ -2055,9 +2027,9 @@ jK
 iQ
 "}
 (33,1,1) = {"
-YP
 xo
-mc
+xo
+iQ
 Px
 zI
 cA
@@ -2096,8 +2068,8 @@ iQ
 "}
 (34,1,1) = {"
 HR
-mc
-mc
+ZV
+iQ
 aX
 aX
 pc

@@ -798,6 +798,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		hive_flags |= HIVE_CAN_COLLAPSE_FROM_SILO
 	else if(!(hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
 		return
+	if(SSticker.mode.name != "Distress Signal")
+		return
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 	if(D.round_stage != INFESTATION_MARINE_DEPLOYMENT)
 		if(D?.siloless_hive_timer)

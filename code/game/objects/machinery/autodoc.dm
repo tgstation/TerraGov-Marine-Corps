@@ -33,6 +33,7 @@
 	icon_state = "autodoc_open"
 	density = TRUE
 	anchored = TRUE
+	coverage = 20
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
 	var/locked = FALSE
 	var/mob/living/carbon/human/occupant = null
@@ -184,7 +185,7 @@
 	if(!do_after(X, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	go_out()	
+	go_out()
 
 #define LIMB_SURGERY 1
 #define ORGAN_SURGERY 2

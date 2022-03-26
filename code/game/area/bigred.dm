@@ -62,6 +62,21 @@
 	name = "Southern Caves"
 	icon_state = "south"
 
+/area/bigredv2/caves/rustedpreparea
+	name = "Rusted Prep Area"
+	icon_state = "yellow"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+
+/area/bigredv2/caves/undergroundrobotics
+	name = "Underground robotics lab"
+	icon_state = "yellow"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+
+/area/bigredv2/caves/secomplex
+	name = "Underground research complex"
+	icon_state = "yellow"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL	
+
 /area/bigredv2/caves/east
 	name = "Eastern Caves"
 	icon_state = "east"
@@ -157,6 +172,12 @@
 
 /area/bigredv2/outside/chapel
 	name = "Chapel"
+	icon_state = "courtroom"
+	ceiling = CEILING_METAL
+	outside = FALSE
+
+/area/bigredv2/outside/southcheckpoint
+	name = "South Checkpoint"
 	icon_state = "courtroom"
 	ceiling = CEILING_METAL
 	outside = FALSE

@@ -4,6 +4,7 @@
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
+	coverage = 30
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 2000

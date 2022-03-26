@@ -11,6 +11,8 @@
 	///How many times the computer can be smashed by a Xeno before it is disabled.
 	var/durability = 2
 	resistance_flags = UNACIDABLE
+	///they don't provide good cover
+	coverage = 15
 
 /obj/machinery/computer/Initialize()
 	. = ..()
