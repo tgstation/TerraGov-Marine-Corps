@@ -40,7 +40,7 @@
 	var/sunder_loss = 50*(severity-1) - 5*bomb_armor_multiplier
 	if(severity == EXPLODE_DEVASTATE)
 		sunder_loss = sunder_loss - 5*bomb_armor_multiplier //For big boom armor matters more
-	adjust_sunder(max(0, sunder_loss)
+	adjust_sunder(max(0, sunder_loss))
 
 	//Damage
 
