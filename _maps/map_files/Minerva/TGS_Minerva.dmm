@@ -4140,6 +4140,10 @@
 /obj/item/clothing/suit/replica,
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/firing_range)
+"nJ" = (
+/obj/structure/dropship_equipment/weapon/rocket_pod,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "nK" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/mainship/cargo/arrow{
@@ -4952,6 +4956,10 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
 /area/mainship/command/corporateliaison)
+"qp" = (
+/obj/structure/ship_ammo/rocket/keeper,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "qq" = (
 /obj/structure/prop/mainship/name_stencil{
 	icon_state = "TGMC3"
@@ -6817,7 +6825,8 @@
 /obj/machinery/door_control/mainship/ammo{
 	dir = 1
 	},
-/turf/open/floor/mainship/mono,
+/obj/structure/ship_ammo/heavygun,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "wJ" = (
 /obj/structure/table/reinforced,
@@ -9091,6 +9100,10 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"Dy" = (
+/obj/structure/ship_ammo/minirocket,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "DA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -10037,6 +10050,10 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
+"FY" = (
+/obj/structure/dropship_equipment/weapon/minirocket_pod,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "FZ" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -21946,8 +21963,8 @@ fS
 VC
 OS
 iE
-dP
-dP
+qp
+qp
 sJ
 OS
 VC
@@ -22038,14 +22055,14 @@ Wu
 aD
 aZ
 VC
-VC
+FY
 VC
 aW
 VC
 OS
 jv
-VC
-VC
+mR
+mR
 jv
 OS
 VC
@@ -22136,14 +22153,14 @@ eC
 aW
 aZ
 VC
-VC
+nJ
 VC
 aW
 VC
 OS
 jw
-VC
-VC
+dP
+dP
 tk
 OS
 VC
@@ -22239,10 +22256,10 @@ cC
 aW
 VC
 OS
-pe
+Dy
 eC
 cD
-pe
+Dy
 OS
 VC
 iy
@@ -22533,7 +22550,7 @@ VC
 aW
 jq
 OS
-VC
+pe
 VC
 VC
 wI
