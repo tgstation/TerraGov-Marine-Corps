@@ -395,7 +395,7 @@
 
 /obj/docking_port/mobile/marine_dropship/casplane/getStatusText()
 	switch(mode)
-		if(SHUTTLE_IDLE||SHUTTLE_RECHARGING)
+		if(SHUTTLE_IDLE, SHUTTLE_RECHARGING)
 			switch(state)
 				if(PLANE_STATE_FLYING)
 					return "In-mission"
