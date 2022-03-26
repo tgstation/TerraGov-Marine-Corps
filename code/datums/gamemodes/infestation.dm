@@ -21,6 +21,8 @@
 		T.ChangeTurf(/turf/closed/wall/resin, T.type)
 	for(var/i in GLOB.xeno_resin_door_turfs)
 		new /obj/structure/mineral_door/resin(i)
+	for(var/h in GLOB.xeno_tunnel_turfs)
+		new /obj/structure/xeno/tunnel(h)
 
 /datum/game_mode/infestation/scale_roles()
 	. = ..()

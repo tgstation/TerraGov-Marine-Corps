@@ -159,7 +159,7 @@
 	icon_state = "hole"
 
 /obj/effect/landmark/xeno_tunnel/Initialize()
-	GLOB.xeno_tunnels += loc
+	GLOB.xeno_tunnel_turfs += loc
 	..()
 	return INITIALIZE_HINT_QDEL
 
