@@ -238,3 +238,46 @@
   - balance: freelancers no longer carry MREs or radios.
   novaepee and Lumipharon:
   - balance: Engineer's teleporter has health of 250, half of what it used to have
+2022-03-22:
+  RipGrayson:
+  - balance: Removed all barricades from Big Red crashed variation of Canterbury.
+  - balance: Changed a variation of Big Red LZ1 to be easier to barricade.
+  - balance: Removed most barricades in a variation of Big Red medbay.
+  - balance: Increased weed coverage of Big Red ETA and virology.
+  - bugfix: Big Red Virology is no longer unbuildable before shutter drop depending
+      on LZ2 variation.
+  - bugfix: Removed a duplicate shutter lockdown button from a variation of Big Red
+      LZ2.
+  - bugfix: Sanitized a bad variable in a variation of Big Red Eva that could cause
+      a runtime.
+  - bugfix: Fixed an oversight where you could spawn infinite monkeys from a nulled
+      monkey cube.
+  - bugfix: Fixed Chigusa's green nuke disc generator being unable to be powered.
+2022-03-23:
+  Pariah919:
+  - balance: Savage mulitpliters 1/4th'ed, less max damage. But it will use less plasma
+      because of this.
+  RipGrayson:
+  - bugfix: Fixed a confusing varedit of grass on LV-624.
+  - bugfix: Fixed balloon alerts being invisible.
+  Walarks:
+  - code_imp: keybinds are easily assignable to all actions now
+  - qol: adds keybind to vali configure action, moves connecting a weapon from the
+      configure menu to its own action
+2022-03-26:
+  Lumipharon:
+  - refactor: Coverage now works - window frames and other obstacles can actually
+      block bullets, certain objects no longer always block bullets
+  - balance: Snipers, rockets and IFF weapons no longer completely ignore cover
+  - balance: Slightly buffed window frame HP, in particular reinforced window frames
+  - balance: Flipped tables now actually block bullets better than non flipped tables
+  - bugfix: Jaeger storage modules are bulky, and no longer fit in other jaeger storage
+      modules.
+  RipGrayson:
+  - bugfix: You can now use a plasmacutter to remove target stakes.
+  - rscadd: New marine corpse spawners for use by mappers.
+  - balance: The crashed Canterbury variation in Big Red no longer has indestructible
+      walls.
+  - bugfix: Fixed an incorrect area in Big Red causing weather to look weird.
+  novaepee:
+  - rscadd: Add fire extinguishers in Alamo

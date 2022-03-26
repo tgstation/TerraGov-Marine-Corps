@@ -854,6 +854,7 @@ TUNNEL
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
+	throwpass = FALSE
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses

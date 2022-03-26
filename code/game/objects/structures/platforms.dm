@@ -9,7 +9,7 @@
 	climbable = TRUE
 	anchored = TRUE
 	density = TRUE
-	throwpass = TRUE //You can throw objects over this, despite its density.
+	coverage = 10
 	layer = OBJ_LAYER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	flags_atom = ON_BORDER
