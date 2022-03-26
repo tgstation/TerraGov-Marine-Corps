@@ -6894,6 +6894,12 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle6)
+"ekn" = (
+/obj/effect/landmark/xeno_tunnel{
+	name = "Southeast tunnel"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle1)
 "ekr" = (
 /obj/machinery/conveyor{
 	dir = 8
@@ -10663,6 +10669,12 @@
 "iPZ" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
+"iQo" = (
+/obj/effect/landmark/xeno_tunnel{
+	name = "Southwest tunnel"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/ruin)
 "iQu" = (
 /obj/structure/platform{
 	dir = 1
@@ -27242,7 +27254,7 @@ rHH
 kPr
 bgf
 vXW
-tnW
+iQo
 lpu
 mcU
 kPr
@@ -58923,7 +58935,7 @@ mOs
 gCL
 gCL
 kau
-obT
+ekn
 sdC
 fuT
 sgf

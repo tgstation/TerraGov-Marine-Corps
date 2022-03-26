@@ -153,6 +153,16 @@
 	..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/xeno_tunnel
+	name = "xeno tunnel landmark"
+	icon = 'icons/Xeno/effects.dmi'
+	icon_state = "hole"
+
+/obj/effect/landmark/xeno_tunnel/Initialize()
+	GLOB.xeno_tunnels += loc
+	..()
+	return INITIALIZE_HINT_QDEL
+
 /obj/effect/landmark/xeno_silo_spawn
 	name = "xeno silo spawn landmark"
 	icon = 'icons/Xeno/resin_silo.dmi'
