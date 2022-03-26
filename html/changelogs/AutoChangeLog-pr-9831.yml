@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - rscadd: "New marine corpse spawners for use by mappers."
-  - balance: "The crashed Canterbury variation in Big Red no longer has indestructible walls."
-  - bugfix: "Fixed an incorrect area in Big Red causing weather to look weird."

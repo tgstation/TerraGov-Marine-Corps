@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Jaeger storage modules are bulky, and no longer fit in other jaeger storage modules."

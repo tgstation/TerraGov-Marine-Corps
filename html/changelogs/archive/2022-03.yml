@@ -264,3 +264,20 @@
   - code_imp: keybinds are easily assignable to all actions now
   - qol: adds keybind to vali configure action, moves connecting a weapon from the
       configure menu to its own action
+2022-03-26:
+  Lumipharon:
+  - refactor: Coverage now works - window frames and other obstacles can actually
+      block bullets, certain objects no longer always block bullets
+  - balance: Snipers, rockets and IFF weapons no longer completely ignore cover
+  - balance: Slightly buffed window frame HP, in particular reinforced window frames
+  - balance: Flipped tables now actually block bullets better than non flipped tables
+  - bugfix: Jaeger storage modules are bulky, and no longer fit in other jaeger storage
+      modules.
+  RipGrayson:
+  - bugfix: You can now use a plasmacutter to remove target stakes.
+  - rscadd: New marine corpse spawners for use by mappers.
+  - balance: The crashed Canterbury variation in Big Red no longer has indestructible
+      walls.
+  - bugfix: Fixed an incorrect area in Big Red causing weather to look weird.
+  novaepee:
+  - rscadd: Add fire extinguishers in Alamo
