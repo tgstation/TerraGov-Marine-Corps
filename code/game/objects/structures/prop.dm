@@ -15,6 +15,7 @@
 /obj/machinery/prop/mainship
 	name = "GENERIC SHIP PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P01' IF SEEN IN ROUND WITH LOCATION"
+	coverage = 15
 
 /obj/machinery/prop/mainship/hangar/dropship_part_fabricator
 
@@ -70,6 +71,7 @@
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P02' IF SEEN IN ROUND WITH LOCATION"
 	density = TRUE
 	anchored = TRUE
+	coverage = 15
 
 /obj/structure/prop/mainship/minigun_crate
 	name = "30mm ammo crate"
@@ -135,6 +137,7 @@
 	bound_width = 64
 	bound_height = 32
 	resistance_flags = UNACIDABLE
+	throwpass = FALSE
 	var/list/fallen_list
 
 /obj/structure/prop/mainship/ship_memorial/attackby(obj/item/I, mob/user)
@@ -263,7 +266,7 @@
 	name = "\improper Barred Airlock"
 	icon = 'icons/Marine/mainship_props.dmi'
 	resistance_flags = RESIST_ALL
-	desc = "It opens and closes." 
+	desc = "It opens and closes."
 
 /obj/structure/prop/mainship/doorblocker/maint
 	name = "\improper Maintenance Hatch"
@@ -335,7 +338,7 @@
 
 /obj/structure/prop/mainship/propcarp/Initialize(mapload) //slightly randomize carp to simulate life
 	. = ..()
-	var/pickedrotate = pick(0,1,2,4,8,10) 
+	var/pickedrotate = pick(0,1,2,4,8,10)
 	switch(pickedrotate) //prop carp can randomly move two tiles in any direction
 		if(0) //1/6th chance of not moving in a random direction
 			return
@@ -411,7 +414,7 @@
 /obj/structure/prop/mainship/meterprop/random/Initialize(mapload)
 	. = ..()
 	kpa = rand(9.3, 21.4)
-	kelvin = rand(10.3, 28.4) 
+	kelvin = rand(10.3, 28.4)
 
 /obj/structure/prop/mainship/pipeprop //does not init and so doesn't generate lag at all
 	name = "pipe"
@@ -513,7 +516,7 @@
 
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/engineer
 	name = "\improper Broken automated engineer closet"
-	icon_state = "marineuniform-broken"	
+	icon_state = "marineuniform-broken"
 
 /obj/structure/prop/brokenvendor/brokenmarinemedvendor
 	icon_state = "marinemed-broken"

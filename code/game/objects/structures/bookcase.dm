@@ -6,6 +6,7 @@
 	anchored = TRUE
 	density = TRUE
 	opacity = TRUE
+	throwpass = FALSE
 
 /obj/structure/bookcase/Initialize()
 	. = ..()

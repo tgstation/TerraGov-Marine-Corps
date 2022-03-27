@@ -1,0 +1,4 @@
+author: "Arctrooper8/RipGrayson"
+delete-after: True
+changes: 
+  - soundadd: "New marine defib sound: AI voice telling you to revive followed by defib warble."

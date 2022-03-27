@@ -1,6 +1,7 @@
 /obj/structure/flora
 	anchored = TRUE
 	max_integrity = 25
+	coverage = 30
 	var/on_fire = FALSE
 
 /obj/structure/flora/ex_act(severity)

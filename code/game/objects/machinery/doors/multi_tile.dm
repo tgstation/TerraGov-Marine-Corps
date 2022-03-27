@@ -9,6 +9,8 @@
 
 	return ..()
 
+
+///Due to inheritance from parent we need no icon_state, just icon
 /obj/machinery/door/airlock/multi_tile/glass
 	name = "Glass Airlock"
 	icon = 'icons/obj/doors/Door2x1glass.dmi'
@@ -248,10 +250,19 @@
 	req_one_access = null
 
 //MEDICAL
+/obj/machinery/door/airlock/multi_tile/mainship/generic/personal
+	name = "\improper Airlock"
+	icon = 'icons/obj/doors/mainship/2x1personaldoor.dmi'
 
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor
 	name = "\improper Medical Airlock"
 	icon = 'icons/obj/doors/mainship/2x1medidoor.dmi'
+	opacity = FALSE
+	glass = TRUE
+
+/obj/machinery/door/airlock/multi_tile/mainship/personalglass
+	name = "\improper Large Airlock"
+	icon = 'icons/obj/doors/mainship/2x1personaldoor_glass.dmi'
 	opacity = FALSE
 	glass = TRUE
 
