@@ -6003,18 +6003,9 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
 "zu" = (
-<<<<<<< HEAD
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
 /turf/open/floor/mainship/red/full,
 /area/prison/monorail/west)
-=======
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
-	},
-/area/icy_caves/caves/northwestmonorail)
->>>>>>> 89ad5f146f31f4e6005f4f5673956e3c686b15a1
 "zw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
