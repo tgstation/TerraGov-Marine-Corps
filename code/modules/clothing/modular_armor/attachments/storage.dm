@@ -125,6 +125,14 @@
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 
+/obj/item/armor_module/storage/ammo_mag/tx54/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/tx54(storage)
+	new /obj/item/ammo_magazine/rifle/tx54(storage)
+	new /obj/item/ammo_magazine/rifle/tx54/incendiary(storage)
+	new /obj/item/ammo_magazine/rifle/tx54/incendiary(storage)
+
+
 /obj/item/storage/internal/modular/ammo_mag
 	max_storage_space = 15
 	storage_slots = 4

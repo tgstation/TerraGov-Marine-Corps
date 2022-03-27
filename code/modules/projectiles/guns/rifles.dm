@@ -1458,6 +1458,7 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	flags_attach_features = NONE
 	slot = ATTACHMENT_SLOT_STOCK
+	default_ammo_type = /obj/item/ammo_magazine/rifle/tx54
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -1521,3 +1522,11 @@
 	scatter_unwielded = 15
 	burst_scatter_mult = 2
 	aim_slowdown = 1
+
+/obj/item/weapon/gun/rifle/tx55/freelancer
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/rifle/tx54/mini,
+		/obj/item/attachable/scope/optical,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/gyro,
+	)

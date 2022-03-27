@@ -669,6 +669,16 @@
 		/obj/item/armor_module/storage/ammo_mag/tx11,
 	)
 
+/obj/item/clothing/suit/storage/faction/freelancer/leader/tx54
+	attachments_allowed = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/tx54,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/tx54,
+	)
+
 /obj/item/clothing/suit/storage/faction/freelancer/medic
 	pockets = null
 	attachments_by_slot = list(
