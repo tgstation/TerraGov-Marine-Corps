@@ -32,6 +32,8 @@
 	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
 	var/real_explosion_block
 
+	///odds of a projectile hitting the object, if throwpass is true and the object is dense
+	var/coverage = 50
 /obj/Initialize()
 	. = ..()
 	if(islist(soft_armor))

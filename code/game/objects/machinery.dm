@@ -21,6 +21,9 @@
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
 	var/mob/living/carbon/human/operator
 
+	///Whether bullets can bypass the object even though it's dense
+	throwpass = TRUE
+
 /obj/machinery/Initialize()
 	. = ..()
 	GLOB.machines += src
