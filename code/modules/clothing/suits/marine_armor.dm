@@ -652,7 +652,6 @@
 	)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
-<<<<<<< HEAD
 		/obj/item/armor_module/storage/ammo_mag/m16,
 	)
 	starting_attachments = list(
