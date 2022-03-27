@@ -177,12 +177,6 @@
 	},
 /turf/open/ground/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"np" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/south)
 "ob" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3186,7 +3180,7 @@ Wl
 Kp
 kE
 Kp
-np
+Kp
 Wl
 Wl
 Vu

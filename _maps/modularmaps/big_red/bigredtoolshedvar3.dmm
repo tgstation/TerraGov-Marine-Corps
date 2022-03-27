@@ -8,6 +8,11 @@
 	dir = 10
 	},
 /area/bigredv2/outside/c)
+"b" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/ammo/machinegun,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
 "c" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -20,17 +25,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor,
-/area/bigredv2/outside/storage)
-"e" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun/sidearms,
-/turf/open/floor,
-/area/bigredv2/outside/storage)
-"f" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/gun/rifles,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "g" = (
@@ -63,13 +57,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
-"l" = (
+"m" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "n" = (
@@ -123,13 +113,11 @@
 "A" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/gun,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "B" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/gun,
-/obj/effect/spawner/random/gun/sidearms,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "C" = (
@@ -174,20 +162,12 @@
 "K" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "L" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/ammo/shotgun,
 /obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "M" = (
@@ -210,6 +190,13 @@
 	dir = 5
 	},
 /area/bigredv2/outside/c)
+"Q" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo,
+/turf/open/floor,
+/area/bigredv2/outside/storage)
 "R" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/gun/machineguns,
@@ -225,25 +212,14 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/storage)
-"T" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/gun,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/structure/sign/securearea,
-/turf/open/floor,
-/area/bigredv2/outside/storage)
 "U" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/ammo/machinegun,
 /obj/effect/spawner/random/ammo/machinegun,
-/obj/effect/spawner/random/ammo/machinegun,
-/obj/effect/spawner/random/ammo/machinegun,
-/obj/effect/spawner/random/ammo,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 "V" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/rifles,
 /obj/structure/sign/securearea,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
@@ -264,7 +240,6 @@
 /area/bigredv2/outside/c)
 "Z" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/sidearms,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
 
@@ -316,7 +291,7 @@ v
 s
 D
 r
-l
+Z
 J
 J
 Z
@@ -327,7 +302,7 @@ v
 y
 D
 r
-w
+Z
 J
 J
 R
@@ -338,7 +313,7 @@ v
 y
 D
 r
-K
+L
 u
 J
 o
@@ -360,7 +335,7 @@ O
 y
 Y
 r
-U
+b
 X
 J
 Z
@@ -374,7 +349,7 @@ r
 L
 d
 c
-R
+Z
 r
 v
 "}
@@ -382,10 +357,10 @@ v
 y
 D
 r
-l
+m
 i
 J
-e
+Z
 r
 v
 "}
@@ -393,10 +368,10 @@ v
 y
 D
 r
-U
+Z
 i
 J
-f
+Z
 r
 v
 "}
@@ -404,7 +379,7 @@ v
 y
 Y
 r
-w
+Z
 i
 J
 B
@@ -415,10 +390,10 @@ v
 y
 I
 r
-K
+Q
 i
 J
-T
+V
 r
 v
 "}

@@ -6,7 +6,7 @@
 	anchored = FALSE
 	density = TRUE
 	drag_delay = 1
-	throwpass = TRUE
+	coverage = 20
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/storage/bag/trash/mybag

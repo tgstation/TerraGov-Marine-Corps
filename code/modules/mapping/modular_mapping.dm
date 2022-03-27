@@ -194,6 +194,14 @@
 	template_height = 15
 	keepcentered = TRUE
 
+/datum/map_template/modular/lv624/dome_cargo_bay_two
+	name = "LV cargo dome"
+	mappath = "_maps/modularmaps/lv624/cargo_bay2.dmm"
+	modular_id = "lvdome"
+	template_width = 15
+	template_height = 15
+	keepcentered = TRUE
+
 /datum/map_template/modular/lv624/dome_internal_affairs
 	name = "LV internal affairs dome"
 	mappath = "_maps/modularmaps/lv624/internal_affairs.dmm"
@@ -390,7 +398,7 @@
 	mappath = "_maps/modularmaps/big_red/bigredmedbayvar1.dmm"
 	modular_id = "brmedbay"
 	template_width = 33
-	template_height = 26	
+	template_height = 26
 
 /datum/map_template/modular/bigred/medbaytwo
 	name = "Big red medbay"
@@ -432,7 +440,7 @@
 	mappath = "_maps/modularmaps/big_red/bigredmedbayvar7.dmm"
 	modular_id = "brmedbay"
 	template_width = 33
-	template_height = 26	
+	template_height = 26
 
 /datum/map_template/modular/bigred/officeone
 	name = "Big red office"
@@ -677,7 +685,7 @@
 	mappath = "_maps/modularmaps/big_red/bigredlambdatunnelsouthvar4.dmm"
 	modular_id = "brlambdatunnelsouth"
 	template_width = 22
-	template_height = 11	
+	template_height = 11
 
 /datum/map_template/modular/bigred/checkpointsouthone
 	name = "Big red checkpoint south"
@@ -761,14 +769,14 @@ datum/map_template/modular/bigred/southetafour
 	mappath = "_maps/modularmaps/big_red/bigredsouthetavar4.dmm"
 	modular_id = "brsoutheta"
 	template_width = 23
-	template_height = 10	
+	template_height = 10
 
 datum/map_template/modular/bigred/southetafive
 	name = "Big red southwest eta"
 	mappath = "_maps/modularmaps/big_red/bigredsouthetavar5.dmm"
 	modular_id = "brsoutheta"
 	template_width = 23
-	template_height = 10	
+	template_height = 10
 
 /datum/map_template/modular/bigred/checkpointone
 	name = "Big red checkpoint"
@@ -859,7 +867,7 @@ datum/map_template/modular/bigred/southetafive
 	mappath = "_maps/modularmaps/big_red/bigredsecornervar5.dmm"
 	modular_id = "brsecorner"
 	template_width = 71
-	template_height = 67	
+	template_height = 67
 
 /datum/map_template/modular/bigred/secornersix
 	name = "Big red southeastern caves"
@@ -880,28 +888,28 @@ datum/map_template/modular/bigred/southetafive
 	mappath = "_maps/modularmaps/big_red/bigredtoolshedvar1.dmm"
 	modular_id = "brtoolshed"
 	template_width = 16
-	template_height = 9	
+	template_height = 9
 
 /datum/map_template/modular/bigred/toolshedtwo
 	name = "Big red tool shed"
 	mappath = "_maps/modularmaps/big_red/bigredtoolshedvar2.dmm"
 	modular_id = "brtoolshed"
 	template_width = 16
-	template_height = 9	
+	template_height = 9
 
 /datum/map_template/modular/bigred/toolshedthree
 	name = "Big red tool shed"
 	mappath = "_maps/modularmaps/big_red/bigredtoolshedvar3.dmm"
 	modular_id = "brtoolshed"
 	template_width = 16
-	template_height = 9	
+	template_height = 9
 
 /datum/map_template/modular/bigred/toolshedfour
 	name = "Big red tool shed"
 	mappath = "_maps/modularmaps/big_red/bigredtoolshedvar4.dmm"
 	modular_id = "brtoolshed"
 	template_width = 16
-	template_height = 9	
+	template_height = 9
 
 
 /datum/map_template/modular/bigred/toolshedfive
@@ -909,7 +917,7 @@ datum/map_template/modular/bigred/southetafive
 	mappath = "_maps/modularmaps/big_red/bigredtoolshedvar5.dmm"
 	modular_id = "brtoolshed"
 	template_width = 16
-	template_height = 9	
+	template_height = 9
 
 /datum/map_template/modular/bigred/southwestcornerone
 	name = "Big red southwestern corner"

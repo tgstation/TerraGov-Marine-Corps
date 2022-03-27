@@ -19,6 +19,7 @@
 	max_integrity = 40
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
+	coverage = 10
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 1
 	var/foldabletype //To fold into an item (e.g. roller bed item)

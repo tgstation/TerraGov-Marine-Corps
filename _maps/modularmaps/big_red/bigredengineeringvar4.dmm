@@ -25,11 +25,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"by" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 1
-	},
-/area/bigredv2/outside/s)
 "bK" = (
 /obj/structure/table,
 /obj/effect/spawner/random/powercell,
@@ -60,10 +55,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"cL" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/sw)
 "dk" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -119,9 +110,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"gb" = (
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/outside/s)
 "gi" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -137,9 +125,6 @@
 	dir = 1
 	},
 /area/bigredv2/caves/southwest)
-"hd" = (
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/outside/s)
 "hH" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
@@ -163,12 +148,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"jG" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 1
-	},
-/area/bigredv2/outside/sw)
 "ke" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 4
@@ -211,15 +190,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"lA" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 9
-	},
-/area/bigredv2/outside/sw)
-"mi" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/outside/s)
 "mN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -311,11 +281,6 @@
 	dir = 10
 	},
 /area/bigredv2/caves/southwest)
-"sD" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 1
-	},
-/area/bigredv2/outside/sw)
 "sG" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/cavetodirt{
@@ -406,10 +371,6 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"xl" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/outside/s)
 "xo" = (
 /obj/structure/table,
 /obj/effect/spawner/random/toolbox,
@@ -469,7 +430,7 @@
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
-/area/bigredv2/outside/s)
+/area/bigredv2/caves/southwest)
 "zA" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/southwest)
@@ -478,7 +439,7 @@
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
 	},
-/area/bigredv2/outside/s)
+/area/bigredv2/caves/southwest)
 "Aq" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
@@ -487,10 +448,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/southwest)
-"Ax" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/sw)
 "AW" = (
 /obj/machinery/computer/area_atmos,
 /turf/open/floor,
@@ -598,11 +555,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"Gf" = (
-/turf/open/floor/plating/ground/mars/cavetodirt{
-	dir = 8
-	},
-/area/bigredv2/outside/s)
 "Gm" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -675,11 +627,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"Kg" = (
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 5
-	},
-/area/bigredv2/outside/sw)
 "Ky" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -828,11 +775,6 @@
 /obj/item/analyzer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"Rg" = (
-/turf/open/floor/plating/ground/mars/cavetodirt{
-	dir = 9
-	},
-/area/bigredv2/outside/s)
 "Rp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -881,21 +823,12 @@
 	dir = 5
 	},
 /area/bigredv2/caves/southwest)
-"Tn" = (
-/turf/open/floor/plating/ground/mars/cavetodirt{
-	dir = 1
-	},
-/area/bigredv2/outside/s)
 "TA" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"TL" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/outside/s)
 "TQ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -1259,7 +1192,7 @@ ZD
 ZD
 ZD
 ZD
-NS
+fd
 Au
 pQ
 zl
@@ -1287,8 +1220,8 @@ vP
 ZD
 ZD
 ZD
-NS
-NS
+fd
+fd
 pQ
 zA
 tF
@@ -1315,9 +1248,9 @@ OK
 vP
 ZD
 ZD
-NS
-NS
-lA
+fd
+fd
+pQ
 qd
 ze
 fd
@@ -1344,9 +1277,9 @@ qy
 vP
 ZD
 ZD
-NS
-Ax
-sD
+fd
+Yr
+ha
 zA
 ze
 fd
@@ -1373,9 +1306,9 @@ Qe
 vP
 ZD
 ZD
-NS
-NS
-sD
+fd
+fd
+ha
 Ky
 ze
 ZD
@@ -1403,8 +1336,8 @@ vP
 ZD
 ZD
 ZD
-NS
-sD
+fd
+ha
 zA
 ze
 ZD
@@ -1432,8 +1365,8 @@ vP
 ZD
 ZD
 ZD
-NS
-sD
+fd
+ha
 zA
 ze
 ZD
@@ -1461,8 +1394,8 @@ vP
 ZD
 ZD
 ZD
-NS
-jG
+fd
+zo
 zA
 ze
 ZD
@@ -1491,7 +1424,7 @@ ZD
 ZD
 ZD
 ZD
-sD
+ha
 zA
 ze
 ZD
@@ -1519,8 +1452,8 @@ vP
 ZD
 ZD
 ZD
-NS
-sD
+fd
+ha
 Ky
 ze
 fd
@@ -1547,9 +1480,9 @@ Qe
 vP
 ZD
 ZD
-NS
-NS
-sD
+fd
+fd
+ha
 zA
 ze
 Yr
@@ -1575,10 +1508,10 @@ jg
 OK
 vP
 ZD
-NS
-NS
-NS
-Kg
+fd
+fd
+fd
+hH
 zA
 zA
 zl
@@ -1604,10 +1537,10 @@ jg
 OK
 vP
 ZD
-cL
-NS
-Ax
-NS
+Au
+fd
+Yr
+fd
 Ta
 zA
 zA
@@ -1633,10 +1566,10 @@ OK
 Ek
 vP
 ZD
-NS
-Ax
-NS
-NS
+fd
+Yr
+fd
+fd
 fd
 hH
 TQ
@@ -1662,9 +1595,9 @@ OK
 AW
 vP
 ZD
-NS
-NS
-NS
+fd
+fd
+fd
 ZD
 ZD
 fd
@@ -1692,19 +1625,19 @@ OK
 vP
 ZD
 ZD
-NS
-NS
+fd
+fd
 ZD
 ZD
 ZD
-qS
-by
-Dp
-Dp
-Dp
-Dp
-Tn
-hd
+fd
+ha
+zA
+zA
+zA
+zA
+Dw
+RB
 "}
 (25,1,1) = {"
 se
@@ -1726,14 +1659,14 @@ ZD
 ZD
 ZD
 ZD
-qS
+fd
 zo
-Dp
-xl
-Rg
-Gf
-hd
-gb
+zA
+Ky
+ks
+SV
+RB
+zc
 "}
 (26,1,1) = {"
 vP
@@ -1756,13 +1689,13 @@ ZD
 ZD
 ZD
 ZD
-by
-Dp
-Dp
-Tn
-hd
-hd
-TL
+ha
+zA
+zA
+Dw
+RB
+RB
+fm
 "}
 (27,1,1) = {"
 pe
@@ -1786,12 +1719,12 @@ ZD
 ZD
 ZD
 ZD
-Dp
-xl
-Tn
-hd
-hd
-hd
+zA
+Ky
+Dw
+RB
+RB
+RB
 "}
 (28,1,1) = {"
 xM
@@ -1816,11 +1749,11 @@ ZD
 ZD
 ZD
 ZD
-Dp
+zA
 Ah
-hd
-gb
-hd
+RB
+zc
+RB
 "}
 (29,1,1) = {"
 xM
@@ -1846,10 +1779,10 @@ Dp
 ZD
 ZD
 ZD
-Tn
-hd
-mi
-hd
+Dw
+RB
+vs
+RB
 "}
 (30,1,1) = {"
 xM

@@ -272,6 +272,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
+/obj/structure/sign/safety/hazard,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "gO" = (
@@ -304,11 +305,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "hy" = (
-/obj/structure/table,
-/obj/item/clothing/mask/gas,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
+/obj/item/ore,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "hz" = (
@@ -3420,7 +3418,7 @@ hC
 hC
 hC
 hC
-Vw
+hy
 Hj
 RI
 Hj
@@ -3462,7 +3460,7 @@ hC
 qI
 hI
 Xz
-Pz
+Ay
 hI
 xY
 uQ
@@ -3499,7 +3497,7 @@ Wl
 hC
 hC
 Ek
-hI
+PH
 IH
 hI
 hI
@@ -3541,10 +3539,10 @@ hC
 cG
 hI
 hI
-Vw
-hI
-hI
 hy
+hI
+hI
+CA
 Bk
 xD
 Ur
@@ -3582,7 +3580,7 @@ hC
 jP
 hI
 Pz
-hI
+PH
 hI
 QD
 Bk
@@ -3660,10 +3658,10 @@ hC
 hC
 hC
 Jz
-hI
-hI
+PH
+PH
 AF
-hI
+PH
 gF
 Bk
 og
@@ -3702,7 +3700,7 @@ hC
 hC
 cW
 cW
-Pz
+Ay
 hI
 LD
 Bk
@@ -3744,7 +3742,7 @@ Pz
 hI
 cW
 cW
-Bi
+mq
 Bk
 Yw
 CH

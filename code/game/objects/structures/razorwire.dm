@@ -8,6 +8,7 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	throwpass = TRUE	//You can throw objects over this
+	coverage = 5
 	climbable = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	var/list/entangled_list

@@ -89,7 +89,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/shot_marine_damage_falloff = 0
 	///Modifies aim mode fire rate debuff by a %
 	var/aim_mode_delay_mod = 0
-
+	///adds aim mode to the gun
+	var/add_aim_mode = FALSE
 	///the delay between shots, for attachments that fire stuff
 	var/attachment_firing_delay = 0
 
@@ -152,6 +153,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
 	master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay) * aim_mode_delay_mod)
+	if(add_aim_mode)
+		var/datum/action/item_action/aim_mode/A = new (master_gun)
+		///actually gives the user aim_mode if they're holding the gun
+		if(user)
+			A.give_action(user)
 	if(delay_mod)
 		master_gun.modify_fire_delay(delay_mod)
 	if(burst_delay_mod)
@@ -174,7 +180,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.charge_cost				+= charge_mod
 	for(var/i in gun_firemode_list_mod)
 		master_gun.add_firemode(i, user)
-
 	master_gun.update_force_list() //This updates the gun to use proper force verbs.
 
 	if(silence_mod)
@@ -208,6 +213,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 	master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
 	master_gun.remove_aim_mode_fire_delay(name)
+	if(add_aim_mode)
+		var/datum/action/item_action/aim_mode/action_to_delete = locate() in master_gun.actions
+		QDEL_NULL(action_to_delete)
 	if(delay_mod)
 		master_gun.modify_fire_delay(-delay_mod)
 	if(burst_delay_mod)
@@ -635,6 +643,17 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	has_nightvision = TRUE
 
+/obj/item/attachable/scope/optical
+	name = "T-49 Optical imaging scope"
+	icon_state = "imagerscope"
+	desc = "A rail-mounted scope designed for the TX-55 and TX-54. Features low light optical imaging capabilities and assists with precision aiming. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	has_nightvision = TRUE
+	aim_speed_mod = 0.3
+	wield_delay_mod = 0.2 SECONDS
+	zoom_tile_offset = 7
+	zoom_viewsize = 2
+	add_aim_mode = TRUE
+
 /obj/item/attachable/scope/mosin
 	name = "Mosin nagant rail scope"
 	icon_state = "mosinscope"
@@ -675,7 +694,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	desc = "An unremovable set of long range scopes, very complex to properly range. Requires time to aim.."
 	icon_state = "sniperscope_invisible"
 	flags_attach_features = ATTACH_ACTIVATION
-	scope_delay = 4 SECONDS
+	scope_delay = 2 SECONDS
+	zoom_tile_offset = 7
 
 /obj/item/attachable/scope/unremovable/tl102
 	name = "TL-102 smart sight"
@@ -744,6 +764,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	user.see_in_dark = 32
 	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	user.sync_lighting_plane_alpha()
+	return TRUE
+
+/obj/item/attachable/scope/optical/update_remote_sight(mob/living/user)
+	. = ..()
+	user.see_in_dark = 2
 	return TRUE
 
 /obj/item/attachable/scope/unremovable/laser_sniper_scope
@@ -1682,6 +1707,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/mob/living/living_user = user
 	if(master_gun == living_user.get_inactive_held_item() || master_gun == living_user.get_active_held_item())
 		new_action.give_action(living_user)
+	attached_to:gunattachment = src
 	activate(user)
 	update_icon(user)
 
@@ -1699,6 +1725,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(master_gun.active_attachable == src)
 		master_gun.active_attachable = null
 	master_gun = null
+	attached_to:gunattachment = null
 	update_icon(user)
 
 ///This activates the weapon for use.

@@ -948,6 +948,10 @@
 	},
 /obj/effect/landmark/weed_node,
 /obj/effect/spawner/random/trash,
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "TU" = (
@@ -1021,9 +1025,6 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "WW" = (
-/obj/machinery/power/apc{
-	dir = 4
-	},
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
@@ -1348,7 +1349,7 @@ or
 yV
 Eb
 ae
-WW
+Vr
 TM
 SA
 Ly
@@ -1375,7 +1376,7 @@ bN
 tw
 Er
 se
-Vr
+WW
 Vr
 Er
 tw
