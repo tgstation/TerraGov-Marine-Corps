@@ -93,6 +93,11 @@
 	slots[slot] = attachment
 	attachment_data_by_slot[slot] = attachment_data
 
+	var/obj/parent_obj = parent
+	///The gun has another gun attached to it
+	if(isgun(attachment) && isgun(parent) )
+		parent_obj:gunattachment = attachment
+
 	on_attach?.Invoke(attachment, attacker)
 
 	if(attachment_data[ON_ATTACH])
@@ -105,7 +110,7 @@
 	update_parent_overlay()
 	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 		return
-	var/obj/parent_obj = parent
+
 	if(!ismob(parent_obj.loc))
 		return
 	var/mob/wearing_mob = parent_obj.loc
