@@ -562,6 +562,9 @@
 /obj/item/weapon/gun/rifle/m16/freelancer
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/weapon/gun/shotgun/combat/masterkey)
 
+/obj/item/weapon/gun/rifle/m16/ugl
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/weapon/gun/grenade_launcher/underslung)
+
 /obj/item/weapon/gun/rifle/m16/somleader
 	starting_attachment_types = list(/obj/item/attachable/reddot)
 
@@ -808,7 +811,13 @@
 
 	placed_overlay_iconstate = "lmg"
 
-
+/obj/item/weapon/gun/rifle/m412l1_hpr/freelancer
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/irremoveable/rifle,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bipod,
+	)
 //-------------------------------------------------------
 //USL TYPE 71 RIFLE
 
@@ -1357,6 +1366,12 @@
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
 	damage_falloff_mult = 3
+
+/obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet,
+	)
 
 //-------------------------------------------------------
 // MKH-98
