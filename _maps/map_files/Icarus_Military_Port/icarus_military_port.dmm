@@ -6170,6 +6170,11 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/admin_building)
+"jvO" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "jwh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6351,11 +6356,11 @@
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/admin_building)
 "jKT" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
+	dir = 5
 	},
-/turf/open/floor/mainship/floor,
-/area/shuttle/drop1/lz1)
+/area/bigredv2/caves/southeast)
 "jKZ" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 4
@@ -6741,6 +6746,13 @@
 /obj/structure/grille,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
+"klL" = (
+/obj/effect/forcefield/fog/passable_fog,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
+	dir = 10
+	},
+/area/bigredv2/caves/northeast)
 "kmv" = (
 /obj/machinery/light{
 	dir = 8
@@ -6795,6 +6807,11 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
+"krh" = (
+/obj/effect/forcefield/fog/passable_fog,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "kry" = (
 /obj/structure/showcase{
 	icon_state = "broadcaster_send"
@@ -7073,6 +7090,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/darkred{
 	dir = 8
 	},
@@ -7392,6 +7410,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/c)
 "lfq" = (
@@ -8210,6 +8229,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
 "mjG" = (
@@ -8420,6 +8440,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/bigredv2/outside/c)
 "mBJ" = (
@@ -8645,11 +8666,10 @@
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/drop2/lz2)
 "mWv" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/closed/wall/mainship,
-/area/bigredv2/outside/c)
+/obj/effect/landmark/excavation_site_spawner,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "mWE" = (
 /obj/structure/caspart{
 	icon_state = "68"
@@ -9127,6 +9147,7 @@
 /area/janitor)
 "nOU" = (
 /obj/machinery/power/apc/drained,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/janitor)
 "nPi" = (
@@ -9225,6 +9246,7 @@
 /area/bigredv2/outside/c)
 "nYd" = (
 /obj/machinery/power/apc/drained,
+/obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/bigredv2/outside/c)
 "oax" = (
@@ -9929,6 +9951,7 @@
 /obj/machinery/power/apc{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
 "pcg" = (
@@ -12854,11 +12877,10 @@
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
 "tco" = (
-/obj/machinery/power/apc{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/bigredv2/outside/c)
+/obj/effect/ai_node,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/outside/admin_building)
 "tcZ" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/plating/mainship,
@@ -14276,7 +14298,13 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/cargo)
+"vbz" = (
+/obj/effect/forcefield/fog/passable_fog,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/outside/admin_building)
 "vbQ" = (
+/obj/effect/forcefield/fog/passable_fog,
 /obj/effect/forcefield/fog/passable_fog,
 /turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
 	dir = 1
@@ -14358,6 +14386,11 @@
 /obj/structure/mopbucket,
 /turf/open/floor/plating,
 /area/bigredv2/outside/c)
+"vhH" = (
+/obj/effect/forcefield/fog/passable_fog,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "vic" = (
 /turf/open/floor/mainship/floor,
 /area/bigredv2/outside/storage)
@@ -15344,10 +15377,9 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "wGd" = (
-/turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway{
-	dir = 10
-	},
-/area/bigredv2/caves/southeast)
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/outside/admin_building)
 "wHm" = (
 /obj/structure/lattice,
 /turf/open/floor/mainship_hull,
@@ -20500,10 +20532,10 @@ dob
 dob
 dob
 dob
-dob
-mWv
-qHK
-qHK
+xQy
+jmn
+ntN
+ntN
 ntN
 nOR
 oxY
@@ -29497,7 +29529,7 @@ mke
 kbw
 vml
 mYH
-xQy
+dob
 kZU
 wjA
 rdA
@@ -29747,15 +29779,15 @@ dob
 dob
 dob
 dob
-dob
-dob
-dob
-dob
-dob
-dob
-dob
 xQy
 xQy
+xQy
+xQy
+xQy
+xQy
+xQy
+dob
+dob
 wjA
 ode
 ozP
@@ -42418,8 +42450,8 @@ mnd
 mnd
 mnd
 mnd
-xEW
-xEW
+wGd
+wGd
 nfA
 xEW
 xEW
@@ -42675,11 +42707,11 @@ mnd
 mnd
 mnd
 mnd
-xEW
-xEW
-xEW
-xEW
-xEW
+vbz
+wGd
+wGd
+wGd
+wGd
 mnd
 mnd
 mnd
@@ -42931,10 +42963,10 @@ dob
 cjx
 qqV
 ahi
-xEW
-xEW
-xEW
-xEW
+wGd
+wGd
+wGd
+wGd
 xEW
 mnd
 mnd
@@ -43188,9 +43220,9 @@ dob
 pzf
 rDE
 ahi
-nfA
-xEW
-xEW
+tco
+wGd
+wGd
 nfA
 mnd
 mnd
@@ -43445,10 +43477,10 @@ mSY
 pzf
 rDE
 ahi
-xEW
-xEW
-xEW
-xEW
+wGd
+wGd
+wGd
+wGd
 mnd
 mnd
 mnd
@@ -43702,9 +43734,9 @@ mSY
 pzf
 rDE
 ahi
-xEW
-xEW
-xEW
+wGd
+wGd
+wGd
 mnd
 mnd
 mnd
@@ -43959,9 +43991,9 @@ mSY
 qmV
 fxx
 ahi
-xEW
-xEW
-xEW
+wGd
+wGd
+wGd
 mnd
 mnd
 mnd
@@ -44216,8 +44248,8 @@ mSY
 mnd
 ahi
 ahi
-xEW
-xEW
+wGd
+wGd
 mnd
 mnd
 mnd
@@ -44472,8 +44504,8 @@ gju
 mSY
 mnd
 mnd
-xEW
-xEW
+wGd
+wGd
 vxs
 vxs
 wmL
@@ -49889,8 +49921,8 @@ xhP
 xhP
 xhP
 xhP
-jKT
-gSp
+bLq
+xhP
 xhP
 xhP
 xhP
@@ -50147,7 +50179,7 @@ xhP
 xhP
 xhP
 xhP
-bIc
+xhP
 xhP
 xhP
 xhP
@@ -50404,7 +50436,7 @@ xhP
 xhP
 xhP
 xhP
-bIc
+xhP
 xhP
 xhP
 xhP
@@ -50661,7 +50693,7 @@ xhP
 xhP
 xhP
 xhP
-bIc
+xhP
 xhP
 xhP
 xhP
@@ -54728,7 +54760,7 @@ pza
 rVZ
 dob
 vCM
-tco
+mLg
 aZi
 jbk
 uGD
@@ -64499,11 +64531,11 @@ xaK
 mLP
 sJC
 edF
-lxg
 fEQ
 fEQ
-lxg
-lxg
+fEQ
+fEQ
+fEQ
 edF
 edF
 edF
@@ -64758,9 +64790,9 @@ sJC
 edF
 fEQ
 pim
-lxg
-lxg
-lxg
+fEQ
+fEQ
+fEQ
 edF
 edF
 edF
@@ -65016,7 +65048,7 @@ edF
 kuc
 kuc
 mKG
-wGd
+jAC
 fEQ
 edF
 edF
@@ -65275,8 +65307,8 @@ pJE
 pJE
 izm
 fEQ
-lxg
-pim
+fEQ
+jvO
 edF
 edF
 edF
@@ -65515,7 +65547,7 @@ vzh
 vzh
 vzh
 vzh
-kYY
+ldQ
 kYY
 kYY
 kYY
@@ -65533,8 +65565,8 @@ pJE
 jGq
 kuc
 jAC
-lxg
-lxg
+fEQ
+fEQ
 edF
 edF
 xTs
@@ -65771,8 +65803,8 @@ vzh
 vzh
 vzh
 lwX
-kYY
-xDB
+ldQ
+mWv
 ldQ
 vxK
 kYY
@@ -65791,8 +65823,8 @@ pJE
 kFG
 dEz
 jAC
-lxg
-lxg
+fEQ
+fEQ
 edF
 xTs
 jzC
@@ -66029,7 +66061,7 @@ wud
 sFI
 iMO
 jCi
-kYY
+ldQ
 kYY
 kYY
 kYY
@@ -66041,7 +66073,7 @@ kYY
 kYY
 kYY
 edF
-lxg
+fEQ
 vbQ
 pJE
 akt
@@ -66287,7 +66319,7 @@ lcj
 sFI
 jXr
 ldQ
-kYY
+ldQ
 xDz
 lwX
 lwX
@@ -66299,7 +66331,7 @@ vxK
 kYY
 hGM
 lxg
-aTA
+jKT
 eoP
 kTa
 pJE
@@ -66544,7 +66576,7 @@ sFI
 sFI
 iMO
 jrw
-kYY
+ldQ
 kYY
 xDz
 kYY
@@ -66556,8 +66588,8 @@ kYY
 kYY
 hGM
 vKf
+krh
 fEQ
-lxg
 aTA
 kTa
 pJE
@@ -66801,8 +66833,8 @@ lUx
 sFI
 sFI
 jXr
-vxK
-kYY
+bXK
+ldQ
 kYY
 kYY
 kYY
@@ -66814,9 +66846,9 @@ kYY
 hGM
 lxg
 lxg
-lxg
-lxg
-aTA
+fEQ
+fEQ
+jKT
 dVs
 dVs
 dVs
@@ -67059,7 +67091,7 @@ lcj
 lcj
 jXr
 kYY
-kYY
+ldQ
 kYY
 kYY
 kYY
@@ -67073,10 +67105,10 @@ lxg
 lxg
 lxg
 pim
-lxg
 fEQ
-lxg
-lxg
+krh
+fEQ
+fEQ
 edF
 edF
 xTs
@@ -67316,7 +67348,7 @@ sFI
 lcj
 iMO
 jCi
-kYY
+ldQ
 kYY
 ldQ
 kYY
@@ -67331,9 +67363,9 @@ fEQ
 lxg
 lxg
 lxg
+krh
 fEQ
-lxg
-lxg
+fEQ
 edF
 edF
 xTs
@@ -67573,7 +67605,7 @@ lUx
 lUx
 lcj
 jXr
-ldQ
+vhH
 kYY
 kYY
 kYY
@@ -67589,7 +67621,7 @@ lxg
 lxg
 lxg
 lxg
-pim
+jvO
 lxg
 edF
 edF
@@ -67830,7 +67862,7 @@ xou
 sFI
 sFI
 iMO
-jrw
+klL
 kYY
 kYY
 hEd
@@ -68087,7 +68119,7 @@ wud
 lcj
 sFI
 sFI
-jGR
+jXr
 kYY
 sWB
 sWB
@@ -68344,8 +68376,8 @@ vWd
 xou
 lcj
 sFI
-jGR
-vxK
+jXr
+bXK
 sWB
 sWB
 kYY
@@ -68602,8 +68634,8 @@ uLJ
 sFI
 sFI
 jGR
-kYY
-kYY
+ldQ
+ldQ
 kYY
 kYY
 lwX
@@ -68860,7 +68892,7 @@ sFI
 sFI
 jGR
 ldQ
-kYY
+ldQ
 kYY
 lwX
 lwX
