@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - rscadd: "Adds the TX-54, a magazine fed grenade launcher utilising 20mm airbursting grenades
-remove: Impact grenades are no longer available roundstart"
-  - bugfix: "grenades fired from weapons no longer always point north mid flight"

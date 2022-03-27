@@ -281,3 +281,32 @@
   - bugfix: Fixed an incorrect area in Big Red causing weather to look weird.
   novaepee:
   - rscadd: Add fire extinguishers in Alamo
+2022-03-27:
+  Arctrooper8/RipGrayson:
+  - soundadd: 'New marine defib sound: AI voice telling you to revive followed by
+      defib warble.'
+  Lumipharon:
+  - bugfix: Boiler gas cloud no longer scales in size past Ancient
+  - rscadd: 'Adds the TX-54, a magazine fed grenade launcher utilising 20mm airbursting
+      grenades remove: Impact grenades are no longer available roundstart'
+  - bugfix: grenades fired from weapons no longer always point north mid flight
+  RipGrayson:
+  - qol: Icy Caves power cables are no longer concealed under walls.
+  - balance: The ship in Icy Caves NW complex is now slightly more open.
+  - balance: Adjusted fog in Icy Caves monorail area to better match the room it's
+      in.
+  - balance: The weapon vault area in Icy Caves now starts locked.
+  - balance: Removed a large amount of groundside explosive crates in Icy Caves.
+  - bugfix: NE monorail complex on Icy Caves no longer has weather.
+  - bugfix: Fixed an unpowered APC in Icy Caves monorail complex.
+  - bugfix: Fixed a misplaced APC in Icy Caves LZ1.
+  - bugfix: Altered spawn protection fog in north Icy Caves so that it can no longer
+      be bypassed with a plasma cutter.
+  - bugfix: Replaced a spawner in Icy Caves that could spawn admin weapons like Auto-9s.
+  - imageadd: Ported a set of 2x1 CM doors to be used in Icy Caves.
+  hyper2snyper:
+  - bugfix: Fixes magazines deleting themselves when emptied by hand.
+  novaepee:
+  - balance: T18, T12, and Tx11 burst firerates have all been nerfed with burst fire
+      delay of 0.05 seconds. Don't worry, slap on BFA, and you're good. MJP will balance
+      BFA to make sure you have your funny brr
