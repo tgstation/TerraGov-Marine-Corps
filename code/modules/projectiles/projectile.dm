@@ -569,7 +569,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /obj/projectile/proc/scan_a_turf(turf/turf_to_scan, cardinal_move)
 	if(turf_to_scan.density) //Handle wall hit.
-		ammo.on_hit_turf(turf_to_scan, src)
+		if((ammo.flags_ammo_behavior & (AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF)) != (AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF))
+			ammo.on_hit_turf(turf_to_scan, src)
 		turf_to_scan.bullet_act(src)
 		return !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF)
 

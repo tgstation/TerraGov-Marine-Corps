@@ -1472,10 +1472,6 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 2)
 
-/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/T, obj/projectile/P)
-	if(T == P.original_target_turf)	//Only detonate at the target, not on wall passes.
-		return ..()
-
 /datum/ammo/rocket/atgun_shell/apcr
 	name = "tungsten penetrator"
 	hud_state = "shell_he"
