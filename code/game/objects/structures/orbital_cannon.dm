@@ -14,6 +14,7 @@
 	bound_height = 64
 	bound_y = 64
 	resistance_flags = RESIST_ALL
+	throwpass = FALSE
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE

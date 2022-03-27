@@ -118,6 +118,8 @@
 	density = TRUE
 	appearance_flags = TILE_BOUND|KEEP_TOGETHER
 	opacity = FALSE
+	///you can't shoot it to death
+	coverage = 15
 
 /obj/structure/caspart/leftprong
 	icon_state = "28"

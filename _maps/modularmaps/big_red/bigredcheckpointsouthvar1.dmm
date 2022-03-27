@@ -6,7 +6,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/se)
 "k" = (
-/turf/open/floor/gcircuit,
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/se)
 "s" = (
 /obj/effect/decal/cleanable/dirt,
@@ -27,7 +27,7 @@
 	},
 /area/bigredv2/outside/se)
 "E" = (
-/turf/open/floor/gcircuit,
+/turf/open/floor/podhatch/floor,
 /area/bigredv2/caves/rock)
 "I" = (
 /turf/closed/wall,

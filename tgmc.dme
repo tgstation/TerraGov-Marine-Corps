@@ -911,7 +911,6 @@
 #include "code\game\objects\structures\supports.dm"
 #include "code\game\objects\structures\tables_racks.dm"
 #include "code\game\objects\structures\tank_dispenser.dm"
-#include "code\game\objects\structures\target_stake.dm"
 #include "code\game\objects\structures\teleporter.dm"
 #include "code\game\objects\structures\toolboxtrophy.dm"
 #include "code\game\objects\structures\watercloset.dm"
