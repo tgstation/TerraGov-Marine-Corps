@@ -652,11 +652,21 @@
 	)
 	attachments_allowed = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/ammo_mag/freelancer,
+		/obj/item/armor_module/storage/ammo_mag/m16,
 	)
 	starting_attachments = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/ammo_mag/freelancer,
+		/obj/item/armor_module/storage/ammo_mag/m16,
+	)
+
+/obj/item/clothing/suit/storage/faction/freelancer/leader/tx11
+	attachments_allowed = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/tx11,
+	)
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/ammo_mag/tx11,
 	)
 
 /obj/item/clothing/suit/storage/faction/freelancer/medic

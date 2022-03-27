@@ -1244,6 +1244,12 @@
 /obj/item/weapon/gun/rifle/tx11/scopeless
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11)
 
+/obj/item/weapon/gun/rifle/tx11/freelancerone
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/rifle/tx11/freelancertwo
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/motiondetector, /obj/item/attachable/bayonet, /obj/item/attachable/lasersight)
+
 //-------------------------------------------------------
 //T-21 Assault Rifle
 
