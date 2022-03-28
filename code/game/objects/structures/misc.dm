@@ -5,6 +5,7 @@
 	desc = "A stand with the empty body of a cyborg bolted to it."
 	density = TRUE
 	anchored = TRUE
+	coverage = 15
 
 /obj/structure/showcase/two
 	icon_state = "showcase_2"

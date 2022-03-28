@@ -4,6 +4,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
 	density = TRUE
+	coverage = 10
 	layer = TABLE_LAYER
 	anchored = TRUE
 	resistance_flags = UNACIDABLE

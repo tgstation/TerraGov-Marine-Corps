@@ -574,9 +574,27 @@
 	icon_state = "26"
 	},
 /area/shuttle/dropship/alamo)
+"iV" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
 "vw" = (
 /obj/structure/dropship_piece/one/engine/leftbottom,
 /turf/template_noop,
+/area/shuttle/dropship/alamo)
+"yA" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 8
+	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "Dp" = (
 /turf/open/shuttle/dropship/ten,
@@ -685,7 +703,7 @@ aS
 bo
 aI
 bx
-aI
+iV
 bl
 aI
 bX
@@ -702,7 +720,7 @@ aK
 bj
 aN
 bd
-aN
+yA
 aN
 bj
 Dp
@@ -748,7 +766,7 @@ aK
 bl
 aI
 be
-aI
+iV
 aI
 bl
 Dp
@@ -777,7 +795,7 @@ aS
 bq
 aN
 bd
-aN
+yA
 bj
 aN
 ca

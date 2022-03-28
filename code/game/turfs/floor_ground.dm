@@ -23,6 +23,21 @@
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
 
+/turf/open/floor/plating/ground/dirt/dug
+	icon_state = "desert_dug"
+
+/turf/open/floor/plating/ground/dirt/typezero
+	icon_state = "desert0"
+
+/turf/open/floor/plating/ground/dirt/typeone
+	icon_state = "desert1"
+
+/turf/open/floor/plating/ground/dirt/typetwo
+	icon_state = "desert2"
+
+/turf/open/floor/plating/ground/dirt/typethree
+	icon_state = "desert3"
+
 /turf/open/floor/plating/ground/dirt/Initialize()
 	. = ..()
 	if(rand(0,15) == 0)
