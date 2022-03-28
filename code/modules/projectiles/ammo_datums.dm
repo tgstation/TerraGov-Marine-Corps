@@ -997,7 +997,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "high caliber rifle bullet"
 	hud_state = "minigun"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
-	damage = 118
+	damage = 120
 	penetration = 30
 	sundering = 0
 	accurate_range_min = 8
