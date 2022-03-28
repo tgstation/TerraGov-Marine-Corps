@@ -191,7 +191,7 @@
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 		)
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own damn sprites, pls.
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //what does this do???
 	flags_equip_slot = ITEM_SLOT_BACK
 	var/obj/item/weapon/gun/current_gun
 
@@ -205,30 +205,16 @@
 /obj/item/storage/large_holster/rpg/proc/update_gun_icon() //only called when a gun is put in or removed.
 	var/mob/user = loc
 	if(current_gun)
-		playsound(src,drawSound, 15, 1) ///see below, doubling up sounds.
+		//playsound(src,drawSound, 15, 1)
 		icon_state += "_g"
 		item_state = icon_state
 	else
-		playsound(src,drawSound, 15, 1) ///should work now, pretty sure this stacks with the sounds below
+		//playsound(src,sheatheSound, 15, 1) ///sound missing
 		icon_state = copytext(icon_state,1,-2)
 		item_state = icon_state
 
 	if(istype(user)) user.update_inv_back()
-
-///all items being inserted and removed (inherits sound from parent but it needs to .=: due to the other things it does. Fix is to simply null the sound from this specific item, but a bit jank)
-/obj/item/storage/large_holster/rpg/handle_item_insertion(obj/item/W, prevent_warning = 0)
-	. = ..()
-	if (use_sound)
-		playsound(loc, use_sound, 15, 1, 6)
-	return 1
-
-/obj/item/storage/large_holster/rpg/remove_from_storage(obj/item/W, atom/new_location, mob/user)
-	. = ..()
-	if (use_sound)
-		playsound(loc, use_sound, 15, 1, 6)
-
-
+	if(istype(user)) user.update_inv_s_store()
 
 /obj/item/storage/large_holster/rpg/update_icon_state()
 	return
-
