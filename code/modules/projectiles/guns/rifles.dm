@@ -1109,7 +1109,7 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = CALIBER_86X70 //codex
-	max_shells = 7 //codex
+	max_shells = 12 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/chamberedrifle
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/chamberedrifle,
@@ -1119,6 +1119,8 @@
 		/obj/item/attachable/scope/unremovable/tl127,
 		/obj/item/attachable/stock/tl127stock,
 		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -1132,7 +1134,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_fire_delay = 1 SECONDS
+	aim_fire_delay = 0.60 SECONDS
 
 	starting_attachment_types = list(
 		/obj/item/attachable/scope/unremovable/tl127,
@@ -1140,8 +1142,8 @@
 	)
 
 	burst_amount = 0
-	fire_delay = 1.35 SECONDS
-	accuracy_mult = 1.35
+	fire_delay = 1.4 SECONDS
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.7
 	scatter = -5
 	scatter_unwielded = 20
