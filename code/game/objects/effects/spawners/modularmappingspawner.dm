@@ -32,9 +32,10 @@
 	if(!template)
 		stack_trace("Mapping error: room loaded with no template")
 		message_admins("Warning, modular mapping error, please report this to coders and get it fixed ASAP")
-		return INITIALIZE_HINT_QDEL
+		qdel(src)
+		return
 	INVOKE_ASYNC(template, /datum/map_template.proc/load, get_turf(src), template.keepcentered)
-	return INITIALIZE_HINT_QDEL
+	qdel(src)
 
 /*********Types********/
 
