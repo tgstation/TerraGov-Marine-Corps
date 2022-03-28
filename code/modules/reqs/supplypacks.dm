@@ -482,13 +482,6 @@ WEAPONS
 	contains = list(/obj/structure/largecrate/supply/ammo/standard_ammo)
 	containertype = null
 	cost = 20
-
-/datum/supply_packs/weapons/pfcflak
-	name = "Tl-127 Flak Magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/flak)
-	cost = 5
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/weapons/xray_gun
 	name = "TE-X Laser Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/xray)

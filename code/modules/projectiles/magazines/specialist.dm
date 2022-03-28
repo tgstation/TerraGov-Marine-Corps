@@ -27,11 +27,11 @@
 	icon_state_mini = "mag_sniper_blue"
 
 
-/obj/item/ammo_magazine/rifle/chamberedrifle/flak
-	name = "TL-127 bolt action rifle flak magazine"
-	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the TL-127."
+/obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint
+	name = "TL-127 bolt action rifle hollow point magazine"
+	desc = "A box magazine filled with 8.6x70mm rifle hollow point rounds for the TL-127."
 	icon_state = "tl127_flak"
-	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
+	default_ammo = /datum/ammo/bullet/sniper/pfc/hollowpoint
 	icon_state_mini = "mag_sniper_blue"
 
 //M42C magazine
