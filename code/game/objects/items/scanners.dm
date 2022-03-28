@@ -72,7 +72,6 @@ REAGENT SCANNER
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 5
 	throw_range = 10
-	interaction_flags = INTERACT_DOESNT_REQUIRE_SIGHT
 	///Skill required to bypass the fumble time.
 	var/skill_threshold = SKILL_MEDICAL_PRACTICED
 	///Skill required to have the scanner auto refresh
@@ -105,6 +104,9 @@ REAGENT SCANNER
 	if(user.skills.getRating("medical") < upper_skill_threshold)
 		return
 	START_PROCESSING(SSobj, src)
+
+/obj/item/healthanalyzer/ui_state(mob/user)
+	return GLOB.not_incapacitated_state
 
 /obj/item/healthanalyzer/process()
 	if(get_dist(get_turf(current_user), get_turf(patient)) > track_distance)
