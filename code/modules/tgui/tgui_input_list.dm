@@ -148,10 +148,10 @@
 		"items" = items,
 		"message" = message,
 		"preferences" = list(),
-		"title" = title
+		"title" = title,
+		"large_buttons" = user.client.prefs.tgui_input_big_buttons,
+		"swapped_buttons" = user.client.prefs.tgui_input_buttons_swap,
 	)
-	.["preferences"]["large_buttons"] = user.client.prefs.tgui_input_big_buttons
-	.["preferences"]["swapped_buttons"] = user.client.prefs.tgui_input_buttons_swap
 
 /datum/tgui_list_input/ui_data(mob/user)
 	. = list()
