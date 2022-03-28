@@ -1015,6 +1015,19 @@
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/chamberedrifle
 
+/obj/item/storage/box/visual/magazine/compact/chamberedrifle/hollowpoint
+	name = "TL-127 hollow point magazine box"
+	desc = "A box specifically designed to hold a medium amount of TL-127 hollow point magazines."
+	storage_slots = 15
+	closed_overlay = "mag_box_small_overlay_tl127"
+	can_hold = list(
+		/obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/chamberedrifle/hollowpoint/full
+	spawn_number = 15
+	spawn_type = /obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint
+
 /obj/item/storage/box/visual/magazine/compact/mosin
 	name = "mosin packet box"
 	desc = "A box specifically designed to hold a large amount of mosin packets."

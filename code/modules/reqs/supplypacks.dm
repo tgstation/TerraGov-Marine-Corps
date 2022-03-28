@@ -380,6 +380,11 @@ WEAPONS
 	cost = 4
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/weapons/chamberedrifle_hollowpoint_ammo
+	name = "TL-127 Hollow Point Ammo box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/chamberedrifle/hollowpoint/full)
+	cost = 5
+	available_against_xeno_only = TRUE
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)

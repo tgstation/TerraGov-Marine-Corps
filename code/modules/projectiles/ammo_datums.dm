@@ -1004,7 +1004,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0.25
 /datum/ammo/bullet/sniper/pfc/hollowpoint
 	name = "high caliber hollow point rifle bullet"
-	hud_state = "sniper_supersonic"
+	hud_state = "pistol_hollow"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
 	damage = 120
 	penetration = 30
