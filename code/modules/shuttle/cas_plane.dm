@@ -443,8 +443,11 @@
 				if(PLANE_STATE_PREPARED)
 					owner.turn_off_engines()
 		if("cycle_attackdir")
-			owner.attackdir = turn(owner.attackdir, 90)
-			. = TRUE
+			if(params["newdir"] == null)
+				owner.attackdir = turn(owner.attackdir, 90)
+				return TRUE
+			owner.attackdir = params["newdir"]
+			return TRUE
 
 
 
