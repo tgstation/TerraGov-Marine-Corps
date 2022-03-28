@@ -6142,6 +6142,7 @@
 	pixel_y = -3
 	},
 /obj/machinery/door/window,
+/obj/structure/window/reinforced/tinted,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/numbertwobunks)
 "tP" = (
