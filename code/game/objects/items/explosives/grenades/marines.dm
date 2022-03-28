@@ -89,9 +89,9 @@
 	if(!active || stuck_to || isturf(hit_atom))
 		return
 	var/image/stuck_overlay = image(icon, hit_atom, initial(icon_state) + "_stuck")
-	stuck_overlay.pixel_x += rand(-5, 5)
-	stuck_overlay.pixel_y += rand(-7, 7)
-	hit_atom.overlays += stuck_overlay
+	stuck_overlay.pixel_x = rand(-5, 5)
+	stuck_overlay.pixel_y = rand(-7, 7)
+	hit_atom.add_overlay(stuck_overlay)
 	forceMove(hit_atom)
 	saved_overlay = stuck_overlay
 	stuck_to = hit_atom
@@ -99,7 +99,7 @@
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
-		stuck_to.overlays -= saved_overlay
+		stuck_to.remove_overlay(saved_overlay)
 		clean_refs()
 	return ..()
 
