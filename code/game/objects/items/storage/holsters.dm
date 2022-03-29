@@ -14,9 +14,9 @@
 	var/base_icon = "m37_holster" ///is used to store the 'empty' sprite name
 	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 	var/sheatheSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
-	///the snowflake item(s) that will update the sprite. ///currently setup for a single item, or item and it's children in the case of belt holsters. Lists could be used for various items, but would require more work.
+	///the snowflake item(s) that will update the sprite.
 	var/list/holsterable_allowed = list()
-	///starts empty - need to check out shit that starts full to see what happens
+	///is the special item currently in the holster
 	var/holstered = FALSE
 
 /obj/item/storage/holster/equipped(mob/user, slot)
@@ -28,7 +28,6 @@
 	mouse_opacity = initial(mouse_opacity)
 	..()
 
-////draw delay code, might not need to be in the parent, but probably doesn't hurt?
 /obj/item/storage/holster/should_access_delay(obj/item/item, mob/user, taking_out) ///defaults to 0
 	if(!taking_out) // Always allow items to be tossed in instantly
 		return FALSE
@@ -38,15 +37,15 @@
 			return TRUE
 	return FALSE
 
-///if the item being inserted is the snowflake item, update sprite and make it swoosh
+///check to see if the item being inserted is the snowflake item
 /obj/item/storage/holster/handle_item_insertion(obj/item/W, prevent_warning = 0)
 	. = ..()
 	if (. && (W.type in holsterable_allowed) )
 		holstered = TRUE
 		update_holster_icon()
-	return 1
+	return
 
-///if the item being removed is the snowflake item, update sprite and make it swoosh
+///check to see if the item being removed is the snowflake item
 /obj/item/storage/holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
 	if (. && (W.type in holsterable_allowed) )
@@ -54,22 +53,18 @@
 		update_holster_icon()
 	return
 
-///only called when the snowflake item is put in or removed. What actually updates the icon
+///only called when the snowflake item is put in or removed
 /obj/item/storage/holster/proc/update_holster_icon()
-	var/mob/user = loc
 	if(holstered)
 		playsound(src,sheatheSound, 15, 1)
-		icon_state += "_full"
+		icon_state = base_icon + "_full"
 		item_state = icon_state
-	else
+	if(!holstered)
 		playsound(src,drawSound, 15, 1)
-		icon_state = copytext(icon_state,1,-5)
+		icon_state = base_icon
 		item_state = icon_state
-
-	if(istype(user)) 			///is there a way to tell it what slot src is in and only update that?
-		user.update_inv_back()
-		user.update_inv_belt()
-		user.update_inv_s_store()
+	///actually updates the icon
+	update_icon()
 
 /obj/item/storage/holster/update_icon()
 	. = ..()
@@ -79,7 +74,7 @@
 		user.update_inv_belt()
 		user.update_inv_s_store()
 
-//////actual backpack holster items////////
+///backpack type holster items
 /obj/item/storage/holster/backholster
 	name = "Backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too"
@@ -88,7 +83,7 @@
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS ///0 out for satchel types
 
-///only applies on storage, not withdrawal. All items
+///only applies on storage of all items, not withdrawal
 /obj/item/storage/holster/backholster/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -104,7 +99,7 @@
 	..()
 
 
-///test rpg bag///
+///RR bag
 /obj/item/storage/holster/backholster/rpg
 	name = "\improper TGMC rocket bag"
 	desc = "This backpack can hold 5 67mm shells or 80mm rockets."
@@ -112,11 +107,12 @@
 	item_state = "marine_rocket"
 	base_icon = "marine_rocket"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 5 //It can hold 5 rockets.
+	storage_slots = 5
 	max_w_class = 4
 	access_delay = 0
 	holsterable_allowed = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle,)
 	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle,)
+	///only one RR per bag
 	storage_type_limits = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle = 1,)
 	can_hold = list(
 		/obj/item/ammo_magazine/rocket,
@@ -124,9 +120,9 @@
 	)
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own damn sprites, pls.
 
-//////one slot items/////
+///one slot holsters
 
-////swords////
+///swords
 /obj/item/storage/holster/machete
 	name = "\improper H5 pattern M2132 machete scabbard"
 	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
@@ -185,7 +181,7 @@
 	icon_state = "officer_sheath_full"
 	new /obj/item/weapon/claymore/mercsword/officersword(src)
 
-/////guns////
+///guns
 
 /obj/item/storage/holster/m37
 	name = "\improper L44 shotgun scabbard"
