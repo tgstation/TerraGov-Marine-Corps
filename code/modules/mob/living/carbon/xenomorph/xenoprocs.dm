@@ -268,6 +268,19 @@
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
 		stat("Recovery pheromone strength:", msg_holder)
+	if(plasma_aura)
+		switch(plasma_aura)
+			if(-INFINITY to 1.0)
+				msg_holder = "Very weak"
+			if(1.1 to 2.0)
+				msg_holder = "Weak"
+			if(2.1 to 2.9)
+				msg_holder = "Medium"
+			if(3.0 to 3.9)
+				msg_holder = "Strong"
+			if(4.0 to INFINITY)
+				msg_holder = "Very strong"
+		stat("Plasma pheromone strength:", msg_holder)
 
 	switch(hivenumber)
 		if(XENO_HIVE_NORMAL)
