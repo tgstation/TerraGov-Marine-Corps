@@ -194,7 +194,7 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/rebreather/scarf/freelancer
-	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer/Veteran
+	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer/veteran
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
@@ -318,7 +318,7 @@
 	belt = /obj/item/storage/belt/grenade/b17
 	mask = /obj/item/clothing/mask/rebreather/scarf/freelancer
 	ears = /obj/item/radio/headset/distress/dutch
-	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer/Veteran
+	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer/veteran
 	shoes = /obj/item/clothing/shoes/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/leader
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC

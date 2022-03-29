@@ -285,7 +285,7 @@ GLOBAL_PROTECT(exp_specialmap)
 				stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
 			QDEL_NULL(wear_id)
 		equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
-		var/datum/outfit/variant = pick(typesof(job.outfit)) ///probs can just add the new statement here and remove the line below?
+		var/datum/outfit/variant = pick(typesof(job.outfit))
 		variant = new variant
 		job.outfit.handle_id(src)
 		variant.equip(src)
