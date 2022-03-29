@@ -220,7 +220,7 @@
 							Z.recovery_new = leader_aura_strength
 
 /mob/living/carbon/xenomorph/proc/handle_aura_receiver()
-	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
+	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new || plasma_aura != plasma_new)
 		set_frenzy_aura(frenzy_new)
 		if(warding_aura != warding_new)
 			soft_armor = soft_armor.modifyAllRatings(-warding_aura * 2.5)
