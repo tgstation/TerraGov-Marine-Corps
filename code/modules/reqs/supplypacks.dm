@@ -508,7 +508,7 @@ WEAPONS
 	name = "TL-127 Hollow Point Magazines Belt"
 	contains = list(
 		/obj/item/storage/belt/marine/tl127_hollowpoint,
-		/obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint
+		/obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint,
 	)
 	cost = 6
 	available_against_xeno_only = TRUE
