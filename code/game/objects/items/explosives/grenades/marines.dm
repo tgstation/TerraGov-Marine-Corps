@@ -99,7 +99,7 @@
 
 /obj/item/explosive/grenade/sticky/prime()
 	if(stuck_to)
-		stuck_to.remove_overlay(saved_overlay)
+		stuck_to.remove_overlays(saved_overlay)
 		clean_refs()
 	return ..()
 
