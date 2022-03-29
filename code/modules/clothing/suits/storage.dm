@@ -31,6 +31,7 @@
 ///Takes off src after a delay.
 /obj/item/clothing/suit/storage/proc/handle_drop_delay(mob/user, slot)
 	if(!do_after(user, time_to_unequip, TRUE, src, BUSY_ICON_FRIENDLY))
+		user.balloon_alert(user, "You stop taking off \the [src]")
 		to_chat(user, "You stop taking off \the [src]")
 		return
 	user.dropItemToGround(src)

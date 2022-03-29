@@ -59,6 +59,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(istype(A, /obj/item/clothing/mask/facehugger))
 		if(isturf(get_turf(A)) && X.Adjacent(A))
 			if(!X.issamexenohive(A))
+				X.balloon_alert(X, "That facehugger is tainted!")
 				to_chat(X, span_warning("That facehugger is tainted!"))
 				X.dropItemToGround(A)
 				return fail_activate()
@@ -69,6 +70,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!istype(F) || F.stat == DEAD) //empty active hand
 		//if no hugger in active hand, we take one from our storage
 		if(!X.huggers)
+			X.balloon_alert(X, "We don't have any facehuggers to use!")
 			to_chat(X, span_warning("We don't have any facehuggers to use!"))
 			return fail_activate()
 
@@ -76,6 +78,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		X.huggers--
 
 		X.put_in_active_hand(F)
+		X.balloon_alert(X, "We grab one of the facehuggers in our storage. Now sheltering: [X.huggers] / [X.xeno_caste.huggers_max].")
 		to_chat(X, span_xenonotice("We grab one of the facehuggers in our storage. Now sheltering: [X.huggers] / [X.xeno_caste.huggers_max]."))
 
 	if(!cooldown_id)
@@ -93,14 +96,17 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 /mob/living/carbon/xenomorph/carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
 	if(huggers < xeno_caste.huggers_max)
 		if(F.stat == DEAD && !forced)
+			balloon_alert(src, "This young one has already expired, we cannot salvage it.")
 			to_chat(src, span_notice("This young one has already expired, we cannot salvage it."))
 			return
 		F.kill_hugger()
 		huggers++
 		if(message)
 			playsound(src, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
+			balloon_alert(src, "We salvage this young one's biomass to produce another. Now sheltering: [huggers] / [xeno_caste.huggers_max].")
 			to_chat(src, span_notice("We salvage this young one's biomass to produce another. Now sheltering: [huggers] / [xeno_caste.huggers_max]."))
 	else if(message)
+		balloon_alert(src, "We can't carry any more facehuggers!")
 		to_chat(src, span_warning("We can't carry any more facehuggers!"))
 
 // ***************************************
@@ -118,11 +124,13 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
+			owner.balloon_alert(owner, "We can't do that here.")
 			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
 	if(!(locate(/obj/effect/alien/weeds) in T))
 		if(!silent)
+			owner.balloon_alert(owner, "We can only shape on weeds. We must find some resin before we start building!")
 			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
@@ -138,6 +146,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	GLOB.round_statistics.trap_holes++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
 	new /obj/structure/xeno/trap(T, owner)
+	owner.balloon_alert(owner, "We place a trap on the weeds, but it still needs to be filled.")
 	to_chat(owner, span_xenonotice("We place a trap on the weeds, but it still needs to be filled."))
 
 // ***************************************
@@ -153,6 +162,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/spawn_hugger/on_cooldown_finish()
+	owner.balloon_alert(owner, "We can now spawn another young one.")
 	to_chat(owner, span_xenodanger("We can now spawn another young one."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
@@ -164,6 +174,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 	if(X.huggers >= X.xeno_caste.huggers_max)
 		if(!silent)
+			X.balloon_alert(X, "We can't host any more young ones!")
 			to_chat(X, span_xenowarning("We can't host any more young ones!"))
 		return FALSE
 
@@ -171,6 +182,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 
 	X.huggers++
+	X.balloon_alert(X, "We spawn a young one via the miracle of asexual internal reproduction, adding it to our stores.")
 	to_chat(X, span_xenowarning("We spawn a young one via the miracle of asexual internal reproduction, adding it to our stores. Now sheltering: [X.huggers] / [X.xeno_caste.huggers_max]."))
 	playsound(X, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
 	succeed_activate()
@@ -210,7 +222,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		X.selected_hugger_type = GLOB.hugger_type_list[i+1]
 
 	var/atom/A = X.selected_hugger_type
-	to_chat(X, span_notice("We will now spawn <b>[initial(A.name)]\s</b> when using the Spawn Hugger ability."))
+	X.balloon_alert(X, "We will now spawn <b>[initial(A.name)]\s</b> when using the spawn hugger ability.")
+	to_chat(X, span_notice("We will now spawn <b>[initial(A.name)]\s</b> when using the spawn hugger ability."))
 	update_button_icon()
 	succeed_activate()
 	return COMSIG_KB_ACTIVATED
@@ -224,6 +237,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		if(initial(hugger_type.name) == hugger_choice)
 			X.selected_hugger_type = hugger_type
 			break
+	X.balloon_alert(X, "We will now spawn <b>[hugger_choice]\s</b> when using the spawn hugger ability.")
 	to_chat(X, span_notice("We will now spawn <b>[hugger_choice]\s</b> when using the spawn hugger ability."))
 	update_button_icon()
 	return succeed_activate()
@@ -241,6 +255,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
 	if(blocker && blocker != owner && blocker.stat != DEAD)
 		if(!silent)
+			owner.balloon_alert(owner, "You cannot build with [blocker] in the way!")
 			to_chat(owner, span_xenowarning("You cannot build with [blocker] in the way!"))
 		return FALSE
 
@@ -251,6 +266,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	if(!alien_weeds)
 		if(!silent)
+			owner.balloon_alert(owner, "No weeds here!")
 			to_chat(owner, span_xenowarning("No weeds here!"))
 		return FALSE
 
@@ -260,6 +276,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
 		if(get_dist(turret, owner) < 6)
 			if(!silent)
+				owner.balloon_alert(owner, "Another turret is too close!")
 				to_chat(owner, span_xenowarning("Another turret is too close!"))
 			return FALSE
 

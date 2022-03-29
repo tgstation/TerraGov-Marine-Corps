@@ -69,6 +69,7 @@
 	else
 		flip_down()
 	if(user)
+		user.balloon_alert(user, "You [up ? "push [src] up out of your face" : "flip [src] down to protect your eyes"].")
 		to_chat(usr, "You [up ? "push [src] up out of your face" : "flip [src] down to protect your eyes"].")
 
 	update_clothing_icon()	//so our mob-overlays update

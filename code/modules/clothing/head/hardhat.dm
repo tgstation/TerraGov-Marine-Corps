@@ -21,6 +21,7 @@
 
 /obj/item/clothing/head/hardhat/attack_self(mob/user)
 	if(!isturf(user.loc))
+		user.balloon_alert(user, "You cannot turn the light on while in [user.loc]")
 		to_chat(user, "You cannot turn the light on while in [user.loc]")
 		return
 	turn_light(user, !light_on)

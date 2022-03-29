@@ -88,6 +88,7 @@
 
 /obj/item/clothing/suit/storage/marine/attack_self(mob/user)
 	if(!isturf(user.loc))
+		user.balloon_alert(user, "You cannot turn the light on while in [user.loc].")
 		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
@@ -566,6 +567,7 @@
 
 /obj/item/clothing/suit/storage/faction/attack_self(mob/user)
 	if(!isturf(user.loc))
+		user.balloon_alert(user, "You cannot turn the light on while in [user.loc].")
 		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
 
@@ -852,6 +854,7 @@
 /obj/item/clothing/suit/storage/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
 	. = ..()
 	if(!isrobot(M))
+		M.balloon_alert(M, "You can't equip this as it requires mounting bolts on your body!")
 		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
 		return FALSE
 

@@ -34,11 +34,13 @@
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
 			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
 			M.Paralyze(3 SECONDS)
+			M.balloon_alert(M, "You are stomped on by [X]!")
 			to_chat(M, span_highdanger("You are stomped on by [X]!"))
 			shake_camera(M, 3, 3)
 		else
 			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
+			M.balloon_alert(M, "You reel from the shockwave of [X]'s stomp!")
 			to_chat(M, span_highdanger("You reel from the shockwave of [X]'s stomp!"))
 			M.take_overall_damage_armored(damage, BRUTE, "melee", FALSE, FALSE, TRUE)
 			M.Paralyze(0.5 SECONDS)
@@ -72,6 +74,7 @@
 
 /datum/action/xeno_action/activable/cresttoss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
+	X.balloon_alert(X, "<b>We can now crest toss again.</b>")
 	to_chat(X, span_xenowarning("<b>We can now crest toss again.</b>"))
 	playsound(X, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
@@ -115,10 +118,12 @@
 		facing = get_dir(A, X)
 		var/turf/throw_origin = get_step(T, facing)
 		if(isclosedturf(throw_origin)) //Make sure the victim can actually go to the target turf
+			X.balloon_alert(X, "We try to fling [A] behind us, but there's no room!")
 			to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
 			return fail_activate()
 		for(var/obj/O in throw_origin)
 			if(!O.CanPass(A, get_turf(X)) && !istype(O, /obj/structure/barricade)) //Ignore barricades because they will once thrown anyway
+				X.balloon_alert(X, "We try to fling [A] behind us, but there's no room!")
 				to_chat(X, span_xenowarning("We try to fling [A] behind us, but there's no room!"))
 				return fail_activate()
 
@@ -131,6 +136,8 @@
 
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
+	X.balloon_alert_to_viewers("\The [X] flings [A] away with its crest[big_mob_message]!", ignored_mobs = X)
+	X.balloon_alert(X, "We fling [A] away with our crest[big_mob_message]!")
 	X.visible_message(span_xenowarning("\The [X] flings [A] away with its crest[big_mob_message]!"), \
 	span_xenowarning("We fling [A] away with our crest[big_mob_message]!"))
 
@@ -176,6 +183,7 @@
 	keybind_signal = COMSIG_XENOABILITY_ADVANCE
 
 /datum/action/xeno_action/activable/advance/on_cooldown_finish()
+	owner.balloon_alert(owner, "<b>We can now rapidly charge forward again.</b>")
 	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))
 	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()

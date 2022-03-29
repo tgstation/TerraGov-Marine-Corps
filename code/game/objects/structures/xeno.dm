@@ -190,13 +190,13 @@
 		return TRUE
 
 	balloon_alert_to_viewers("\The [X] digs into \the [src] and begins ripping it down.", ignored_mobs = X)
-	balloon_alert(X, "We dig into \the [src] and begin ripping it down.")
+	X.balloon_alert(X, "We dig into \the [src] and begin ripping it down.")
 	X.visible_message(span_warning("\The [X] digs into \the [src] and begins ripping it down."), \
 	span_warning("We dig into \the [src] and begin ripping it down."), null, 5)
 	playsound(src, "alien_resin_break", 25)
 	if(do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE))
 		balloon_alert_to_viewers("[X] rips down \the [src]!", ignored_mobs = X)
-		balloon_alert(X, "We rip down \the [src]!")
+		X.balloon_alert(X, "We rip down \the [src]!")
 		X.visible_message(span_danger("[X] rips down \the [src]!"), \
 		span_danger("We rip down \the [src]!"), null, 5)
 		qdel(src)
@@ -302,7 +302,7 @@
 	if(X.do_actions)
 		return
 	balloon_alert_to_viewers("[X] starts to cover themselves in a foul substance...", ignored_mobs = X)
-	balloon_alert(X, "We begin to cover ourselves in a foul substance...")
+	X.balloon_alert(X, "We begin to cover ourselves in a foul substance...")
 	X.visible_message(span_notice("[X] starts to cover themselves in a foul substance..."), span_xenonotice("We begin to cover ourselves in a foul substance..."))
 	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_MEDICAL))
 		return
@@ -314,7 +314,7 @@
 	if(user.do_actions)
 		return
 	balloon_alert_to_viewers("[user] starts to cover themselves in a foul substance...", ignored_mobs = user)
-	balloon_alert(user, "We begin to cover ourselves in a foul substance...")
+	user.balloon_alert(user, "We begin to cover ourselves in a foul substance...")
 	user.visible_message(span_notice("[user] starts to cover themselves in a foul substance..."), span_xenonotice("We begin to cover ourselves in a foul substance..."))
 	if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_MEDICAL))
 		return
@@ -332,7 +332,7 @@
 	if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_MEDICAL))
 		return FALSE
 	balloon_alert_to_viewers("[user] smears a viscous substance on [M].", ignored_mobs = user)
-	balloon_alert(user, "We carefully smear [src] onto [user].")
+	user.balloon_alert(user, "We carefully smear [src] onto [user].")
 	user.visible_message(span_notice("[user] smears a viscous substance on [M]."),span_xenonotice("We carefully smear [src] onto [user]."))
 	activate_jelly(M)
 	user.temporarilyRemoveItemFromInventory(src)
@@ -340,7 +340,7 @@
 
 /obj/item/resin_jelly/proc/activate_jelly(mob/living/carbon/xenomorph/user)
 	balloon_alert_to_viewers("[user]'s chitin begins to gleam with an unseemly glow...", ignored_mobs = usr)
-	balloon_alert(user, "We feel powerful as we are covered in [src]!")
+	user.balloon_alert(user, "We feel powerful as we are covered in [src]!")
 	user.visible_message(span_notice("[user]'s chitin begins to gleam with an unseemly glow..."), span_xenonotice("We feel powerful as we are covered in [src]!"))
 	user.emote("roar")
 	user.apply_status_effect(STATUS_EFFECT_RESIN_JELLY_COATING)

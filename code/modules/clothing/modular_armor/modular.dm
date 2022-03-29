@@ -141,6 +141,7 @@
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/under/undersuit = H.w_uniform
 		if(!istype(undersuit, allowed_uniform_type))
+			user.balloon_alert(user, "You must be wearing a marine jumpsuit to equip this.")
 			to_chat(user, span_warning("You must be wearing a marine jumpsuit to equip this."))
 			return FALSE
 	return ..()
@@ -151,6 +152,7 @@
 	if(.)
 		return
 	if(!isturf(user.loc))
+		user.balloon_alert(user, "You cannot turn the light on while in [user.loc].")
 		to_chat(user, span_warning("You cannot turn the light on while in [user.loc]."))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
@@ -203,6 +205,7 @@
 		return
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
+		user.balloon_alert(user, "\the [paint] is out of color!")
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 	paint.uses--
@@ -469,6 +472,7 @@
 
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
+		user.balloon_alert(user, "\the [paint] is out of color!")
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 

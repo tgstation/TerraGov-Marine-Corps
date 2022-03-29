@@ -19,7 +19,7 @@
 				return
 
 			if(!target.is_injectable() && !ismob(target)) //You can inject humans and food but you cant remove the shit.
-				balloon_alert(user, "You cannot directly fill this object.")
+				user.balloon_alert(user, "You cannot directly fill this object.")
 				to_chat(user, span_warning("You cannot directly fill this object."))
 				return
 
@@ -50,7 +50,7 @@
 						addtimer(CALLBACK(reagents, /datum/reagents.proc/reaction, safe_thing, TOUCH), 5)
 
 
-						balloon_alert(user, "You transfer [trans] units of the solution.")
+						user.balloon_alert(user, "You transfer [trans] units of the solution.")
 						to_chat(user, span_notice("You transfer [trans] units of the solution."))
 						if (reagents.total_volume<=0)
 							filled = 0

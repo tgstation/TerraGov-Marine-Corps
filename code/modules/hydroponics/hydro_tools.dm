@@ -43,10 +43,12 @@
 		grown_reagents = H.reagents
 
 	if(!grown_seed)
+		balloon_alert("[src] can tell you nothing about [target].")
 		to_chat(user, span_warning("[src] can tell you nothing about [target]."))
 		return
 
 	var/dat
+	balloon_alert_to_viewers(" [user] runs the scanner over [target].", ignored_mobs = user)
 	user.visible_message(span_notice(" [user] runs the scanner over [target]."))
 
 	dat += "<h2>General Data</h2>"

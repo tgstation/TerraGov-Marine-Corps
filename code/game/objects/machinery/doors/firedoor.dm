@@ -122,24 +122,24 @@
 
 	var/turf/cur_loc = X.loc
 	if(blocked)
-		balloon_alert(X, "\The [src] is welded shut.")
+		X.balloon_alert(X, "\The [src] is welded shut.")
 		to_chat(X, span_warning("\The [src] is welded shut."))
 		return FALSE
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
 	if(!density)
-		balloon_alert(X, "\The [src] is already open!.")
+		X.balloon_alert(X, "\The [src] is already open!.")
 		to_chat(X, span_warning("\The [src] is already open!"))
 		return FALSE
 
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	X.visible_message(span_warning("\The [X] digs into \the [src] and begins to pry it open."), \
 	span_warning("We dig into \the [src] and begin to pry it open."), null, 5)
-	balloon_alert(X, "We dig into \the [src] and begin to pry it open.")
+	X.balloon_alert(X, "We dig into \the [src] and begin to pry it open.")
 
 	if(do_after(X, 30, FALSE, src, BUSY_ICON_BUILD))
 		if(blocked)
-			balloon_alert(X, "\The [src] is welded shut.")
+			X.balloon_alert(X, "\The [src] is welded shut.")
 			to_chat(X, span_warning("\The [src] is welded shut."))
 			return FALSE
 		if(density) //Make sure it's still closed
@@ -148,7 +148,7 @@
 				balloon_alert_to_viewers("\The [X] pries \the [src] open.", ignored_mobs = X)
 				X.visible_message(span_danger("\The [X] pries \the [src] open."), \
 				span_danger("We pry \the [src] open."), null, 5)
-				balloon_alert(X, "We pry \the [src] open.")
+				X.balloon_alert(X, "We pry \the [src] open.")
 
 /obj/machinery/door/firedoor/attack_hand(mob/living/user)
 	. = ..()
@@ -158,7 +158,7 @@
 		return//Already doing something.
 
 	if(blocked)
-		balloon_alert(user, "\The [src] is welded solid!")
+		user.balloon_alert(user, "\The [src] is welded solid!")
 		to_chat(user, span_warning("\The [src] is welded solid!"))
 		return
 
@@ -219,7 +219,7 @@
 
 		blocked = !blocked
 		balloon_alert_to_viewers("\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W].", ignored_mobs = user)
-		balloon_alert(user, "You [blocked ? "weld" : "unweld"] \the [src] with \the [W].")
+		user.balloon_alert(user, "You [blocked ? "weld" : "unweld"] \the [src] with \the [W].")
 		user.visible_message(span_danger("\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W]."),\
 		"You [blocked ? "weld" : "unweld"] \the [src] with \the [W].",\
 		"You hear something being welded.")
@@ -228,14 +228,14 @@
 
 	else if(blocked)
 		balloon_alert_to_viewers("\The [user] pries at \the [src] with \a [I], but \the [src] is welded in place!", ignored_mobs = user)
-		balloon_alert(user, "You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!")
+		user.balloon_alert(user, "You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!")
 		user.visible_message(span_danger("\The [user] pries at \the [src] with \a [I], but \the [src] is welded in place!"),\
 		"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
 		"You hear someone struggle and metal straining.")
 
 	else if(I.pry_capable)
 		balloon_alert_to_viewers("\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [I]!", ignored_mobs = user)
-		balloon_alert(user, "You start forcing \the [src] [density ? "open" : "closed"] with \the [I]!")
+		user.balloon_alert(user, "You start forcing \the [src] [density ? "open" : "closed"] with \the [I]!")
 		user.visible_message(span_danger("\The [user] starts to force \the [src] [density ? "open" : "closed"] with \a [I]!"),\
 				span_notice("You start forcing \the [src] [density ? "open" : "closed"] with \the [I]!"),\
 				"You hear metal strain.")
@@ -248,7 +248,7 @@
 			return
 
 		balloon_alert_to_viewers("\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [I]!", ignored_mobs = user)
-		balloon_alert(user, "You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [I]!")
+		user.balloon_alert(user, "You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [I]!")
 		user.visible_message(span_danger("\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [I]!"),\
 			span_notice("You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [I]!"),\
 			"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")

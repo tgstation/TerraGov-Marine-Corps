@@ -286,6 +286,7 @@
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
 	if(incapacitated() || lying_angle)
+		balloon_alert(src, "We cannot do this in our current state.")
 		to_chat(src, span_warning("We cannot do this in our current state."))
 		return 0
 	return 1
@@ -293,6 +294,7 @@
 ///A simple handler for checking your state. Will ignore if the xeno is lying down
 /mob/living/carbon/xenomorph/proc/check_concious_state()
 	if(incapacitated())
+		balloon_alert(src, "We cannot do this in our current state.")
 		to_chat(src, span_warning("We cannot do this in our current state."))
 		return FALSE
 	return TRUE
@@ -301,12 +303,14 @@
 /mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
 	if(stat)
 		if(!silent)
+			balloon_alert(src, "We cannot do this in our current state.")
 			to_chat(src, span_warning("We cannot do this in our current state."))
 		return FALSE
 
 	if(value)
 		if(plasma_stored < value)
 			if(!silent)
+				balloon_alert(src, "We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored.")
 				to_chat(src, span_warning("We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored."))
 			return FALSE
 	return TRUE
@@ -375,6 +379,7 @@
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
+		balloon_alert(src, "Our carapace crackles and our tendons strengthen. We are ready to evolve!")
 		to_chat(src, span_xenodanger("Our carapace crackles and our tendons strengthen. We are ready to evolve!"))
 		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
 

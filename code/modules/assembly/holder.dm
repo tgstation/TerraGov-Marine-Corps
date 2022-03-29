@@ -105,6 +105,7 @@
 	. = ..()
 	if(.)
 		return TRUE
+	user.balloon_alert(user, "You disassemble [src]!")
 	to_chat(user, span_notice("You disassemble [src]!"))
 	if(a_left)
 		a_left.on_detach()

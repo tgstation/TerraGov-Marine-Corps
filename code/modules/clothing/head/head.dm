@@ -137,9 +137,11 @@
 
 	flipped_cap = !flipped_cap
 	if(flipped_cap)
+		balloon_alert(usr, "You spin the hat backwards! You look like a tool.")
 		to_chat(usr, "You spin the hat backwards! You look like a tool.")
 		icon_state = base_cap_icon + "_b"
 	else
+		balloon_alert(usr, "You spin the hat back forwards. That's better.")
 		to_chat(usr, "You spin the hat back forwards. That's better.")
 		icon_state = base_cap_icon
 
@@ -268,10 +270,12 @@
 		if(src.icon_state == "ushankadown")
 			src.icon_state = "ushankaup"
 			src.item_state = "ushankaup"
+			user.balloon_alert(user, "You raise the ear flaps on the ushanka.")
 			to_chat(user, "You raise the ear flaps on the ushanka.")
 		else
 			src.icon_state = "ushankadown"
 			src.item_state = "ushankadown"
+			user.balloon_alert(user, "You lower the ear flaps on the ushanka.")
 			to_chat(user, "You lower the ear flaps on the ushanka.")
 
 

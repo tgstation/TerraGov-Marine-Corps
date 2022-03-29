@@ -85,6 +85,7 @@
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 		if(!welded)
+			user.balloon_alert(user, "\The [P] can only cut open welds!")
 			to_chat(user, span_warning("\The [P] can only cut open welds!"))
 			return FALSE
 		if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)))
@@ -100,16 +101,22 @@
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
 		if(WT.remove_fuel(1, user))
+			balloon_alert_to_viewers("[user] starts welding [src] with [WT].", ignored_mobs = user)
+			user.balloon_alert(user, "You start welding [src] with [WT].")
 			user.visible_message(span_notice("[user] starts welding [src] with [WT]."), \
 			span_notice("You start welding [src] with [WT]."))
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				playsound(get_turf(src), 'sound/items/welder2.ogg', 25, 1)
 				if(!welded)
+					balloon_alert_to_viewers("[user] welds [src] shut.", ignored_mobs = user)
+					user.balloon_alert(user, "You weld [src] shut.")
 					user.visible_message(span_notice("[user] welds [src] shut."), \
 					span_notice("You weld [src] shut."))
 					welded = TRUE
 				else
+					balloon_alert_to_viewers("[user] welds [src] open.", ignored_mobs = user)
+					user.balloon_alert(user, "You weld [src] open.")
 					user.visible_message(span_notice("[user] welds [src] open."), \
 					span_notice("You weld [src] open."))
 					welded = FALSE
@@ -118,6 +125,7 @@
 				pipe_vision_img.plane = ABOVE_HUD_PLANE
 				return TRUE
 			else
+				user.balloon_alert(user, "[WT] needs to be on to start this task.")
 				to_chat(user, span_warning("[WT] needs to be on to start this task."))
 				return FALSE
 		else
@@ -128,6 +136,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)
 	. = ..()
 	if(. && on && is_operational())
+		user.balloon_alert(user, "You cannot unwrench [src], turn it off first!")
 		to_chat(user, span_warning("You cannot unwrench [src], turn it off first!"))
 		return FALSE
 
@@ -148,6 +157,8 @@
 		return
 	if(!welded || !(do_after(X, 20, FALSE, src, BUSY_ICON_HOSTILE)))
 		return
+	balloon_alert_to_viewers("[X] furiously claws at [src]!", ignored_mobs = X)
+	X.balloon_alert(X, "We manage to clear away the stuff blocking the vent")
 	X.visible_message("[X] furiously claws at [src]!", "We manage to clear away the stuff blocking the vent", "You hear loud scraping noises.")
 	welded = FALSE
 	update_icon()

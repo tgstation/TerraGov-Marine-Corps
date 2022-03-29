@@ -465,16 +465,16 @@ Contains most of the procs that are called when a mob is attacked by something
 		return TRUE
 
 	if(!(hurtlimb.limb_status & LIMB_ROBOT))
-		balloon_alert(user, "Limb not robotic")
+		user.balloon_alert(user, "Limb not robotic")
 		return TRUE
 
 
 	if(!hurtlimb.brute_dam)
-		balloon_alert(user, "Nothing to fix!")
+		user.balloon_alert(user, "Nothing to fix!")
 		return TRUE
 
 	if(user.do_actions)
-		balloon_alert(user, "Already busy!")
+		user.balloon_alert(user, "Already busy!")
 		return TRUE
 
 	var/repair_time = 1 SECONDS

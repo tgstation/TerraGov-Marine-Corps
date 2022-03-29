@@ -130,6 +130,7 @@
 		if(plasma_stored < 5)
 			use_plasma(plasma_stored)
 			current_aura = null
+			balloon_alert(src, "We have run out of plasma and stopped emitting pheromones.")
 			to_chat(src, span_warning("We have run out of plasma and stopped emitting pheromones."))
 		else
 			use_plasma(5)

@@ -30,7 +30,7 @@
 		return
 
 	if(busy)
-		balloon_alert(user, "Someone else is currently using [src].")
+		user.balloon_alert(user, "Someone else is currently using [src].")
 		to_chat(user, span_warning("Someone else is currently using [src]."))
 		return
 	if(firing)
@@ -141,40 +141,40 @@
 		var/obj/item/mortal_shell/mortar_shell = I
 
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			balloon_alert(user, "Your programming restricts operating heavy weaponry.")
+			user.balloon_alert(user, "Your programming restricts operating heavy weaponry.")
 			to_chat(user, span_warning("Your programming restricts operating heavy weaponry."))
 			return
 
 		if(busy)
-			balloon_alert(user, "Someone else is currently using [src].")
+			user.balloon_alert(user, "Someone else is currently using [src].")
 			to_chat(user, span_warning("Someone else is currently using [src]."))
 			return
 
 		if(!is_ground_level(z))
-			balloon_alert(user, "You cannot fire [src] here.")
+			user.balloon_alert(user, "You cannot fire [src] here.")
 			to_chat(user, span_warning("You cannot fire [src] here."))
 			return
 
 		if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
-			balloon_alert(user, "[src] needs to be aimed first.")
+			user.balloon_alert(user, "[src] needs to be aimed first.")
 			to_chat(user, span_warning("[src] needs to be aimed first."))
 			return
 
 		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
 		if(get_dist(loc, selfown) < 7)
-			balloon_alert(user, "You cannot target this coordinate, it is too close to your mortar.")
+			user.balloon_alert(user, "You cannot target this coordinate, it is too close to your mortar.")
 			to_chat(user, span_warning("You cannot target this coordinate, it is too close to your mortar."))
 			return
 
 		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
 		if(!isturf(T))
-			balloon_alert(user, "You cannot fire [src] to this target.")
+			user.balloon_alert(user, "You cannot fire [src] to this target.")
 			to_chat(user, span_warning("You cannot fire [src] to this target."))
 			return
 
 		var/area/A = get_area(T)
 		if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
-			balloon_alert(user, "You cannot hit the target. It is probably underground.")
+			user.balloon_alert(user, "You cannot hit the target. It is probably underground.")
 			to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
 			return
 
@@ -211,10 +211,10 @@
 	var/obj/item/binoculars/tactical/binocs = I
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(binocs.set_mortar(src))
-		balloon_alert(user, "You link the mortar to the [binocs] allowing for remote targeting.")
+		user.balloon_alert(user, "You link the mortar to the [binocs] allowing for remote targeting.")
 		to_chat(user, span_notice("You link the mortar to the [binocs] allowing for remote targeting."))
 		return
-	balloon_alert(user, "You disconnect the [binocs] from their linked mortar.")
+	user.balloon_alert(user, "You disconnect the [binocs] from their linked mortar.")
 	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
 
 ///Proc called by tactical binoculars to send targeting information.
@@ -233,12 +233,12 @@
 /obj/machinery/deployable/mortar/wrench_act(mob/living/user, obj/item/I)
 
 	if(busy)
-		balloon_alert(user, "Someone else is currently using [src].")
+		user.balloon_alert(user, "Someone else is currently using [src].")
 		to_chat(user, span_warning("Someone else is currently using [src]."))
 		return
 
 	if(firing)
-		balloon_alert(user, "[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.")
+		user.balloon_alert(user, "[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.")
 		to_chat(user, span_warning("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
 		return
 
@@ -267,7 +267,7 @@
 /obj/item/mortar_kit/unique_action(mob/user)
 	var/area/current_area = get_area(src)
 	if(current_area.ceiling >= CEILING_METAL)
-		balloon_alert(user, "You can't deploy [src] indoors.")
+		user.balloon_alert(user, "You can't deploy [src] indoors.")
 		to_chat(user, span_warning("You probably shouldn't deploy [src] indoors."))
 		return
 	return ..()

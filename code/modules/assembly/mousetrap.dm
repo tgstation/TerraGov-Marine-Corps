@@ -62,8 +62,10 @@
 
 /obj/item/assembly/mousetrap/attack_self(mob/living/carbon/human/user)
 	if(!armed)
+		user.balloon_alert(user, "You arm [src].")
 		to_chat(user, span_notice("You arm [src]."))
 	else
+		user.balloon_alert(user, "You disarm [src].")
 		to_chat(user, span_notice("You disarm [src]."))
 	armed = !armed
 	update_icon()

@@ -47,7 +47,7 @@
 /obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
 	if(istype(A, /obj/item/storage/pill_bottle)) //this should only run if its a pillbottle
 		if(reagents.total_volume >= volume)
-			balloon_alert(user, "[src] is full.")
+			user.balloon_alert(user, "[src] is full.")
 			to_chat(user, span_warning("[src] is full."))
 			return  //early returning if its full
 
@@ -73,7 +73,7 @@
 		return
 	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're draining
 		if(reagents.holder_full())
-			balloon_alert(user, "[src] is full.")
+			user.balloon_alert(user, "[src] is full.")
 			to_chat(user, span_warning("[src] is full."))
 			inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 			update_icon() //So we now display as Inject
@@ -105,7 +105,7 @@
 
 		else if(istype(A, /obj)) //if not mob
 			if(!A.reagents.total_volume)
-				balloon_alert(user, "[A] is empty.")
+				user.balloon_alert(user, "[A] is empty.")
 				to_chat(user, "<span class='warning'>[A] is empty.")
 				return
 
@@ -115,7 +115,7 @@
 
 			var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
 
-			balloon_alert(user, "You fill [src] with [trans] units of the solution.")
+			user.balloon_alert(user, "You fill [src] with [trans] units of the solution.")
 			to_chat(user, span_notice("You fill [src] with [trans] units of the solution."))
 
 		on_reagent_change()
@@ -123,11 +123,11 @@
 
 
 	if(!reagents.total_volume)
-		balloon_alert(user, "[src] is empty.")
+		user.balloon_alert(user, "[src] is empty.")
 		to_chat(user, span_warning("[src] is empty."))
 		return
 	if(!A.is_injectable() && !ismob(A))
-		balloon_alert(user, "You cannot directly fill this object.")
+		user.balloon_alert(user, "You cannot directly fill this object.")
 		to_chat(user, span_warning("You cannot directly fill this object."))
 		return
 	if(skilllock && user.skills.getRating("medical") < SKILL_MEDICAL_NOVICE)
@@ -155,7 +155,7 @@
 
 	if(ismob(A))
 		var/mob/M = A
-		balloon_alert(user, "[span_notice("You inject [M] with [src]")].")
+		user.balloon_alert(user, "[span_notice("You inject [M] with [src]")].")
 		to_chat(user, "[span_notice("You inject [M] with [src]")].")
 		to_chat(M, span_warning("You feel a tiny prick!"))
 

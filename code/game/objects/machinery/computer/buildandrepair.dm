@@ -15,7 +15,7 @@
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
-				balloon_alert(user, "You wrench the frame into place.")
+				user.balloon_alert(user, "You wrench the frame into place.")
 				to_chat(user, span_notice("You wrench the frame into place."))
 				anchored = TRUE
 				state = 1
@@ -30,7 +30,7 @@
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					return FALSE
 
-				balloon_alert(user, "You deconstruct the frame.")
+				user.balloon_alert(user, "You deconstruct the frame.")
 				to_chat(user, span_notice("You deconstruct the frame."))
 				new /obj/item/stack/sheet/metal(loc, 5)
 				qdel(src)
@@ -40,7 +40,7 @@
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
-				balloon_alert(user, "You unfasten the frame.")
+				user.balloon_alert(user, "You unfasten the frame.")
 				to_chat(user, span_notice("You unfasten the frame."))
 				anchored = FALSE
 				state = 0
@@ -50,7 +50,7 @@
 					return
 
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-				balloon_alert(user, "You place the circuit board inside the frame.")
+				user.balloon_alert(user, "You place the circuit board inside the frame.")
 				to_chat(user, span_notice("You place the circuit board inside the frame."))
 				icon_state = "1"
 				circuit = I
@@ -58,14 +58,14 @@
 
 			else if(isscrewdriver(I) && circuit)
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				balloon_alert(user, "You screw the circuit board into place.")
+				user.balloon_alert(user, "You screw the circuit board into place.")
 				to_chat(user, span_notice("You screw the circuit board into place."))
 				state = 2
 				icon_state = "2"
 
 			else if(iscrowbar(I) && circuit)
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-				balloon_alert(user, "You remove the circuit board.")
+				user.balloon_alert(user, "You remove the circuit board.")
 				to_chat(user, span_notice("You remove the circuit board."))
 				state = 1
 				icon_state = "0"
@@ -74,7 +74,7 @@
 		if(2)
 			if(isscrewdriver(I) && circuit)
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				balloon_alert(user, "You unfasten the circuit board.")
+				user.balloon_alert(user, "You unfasten the circuit board.")
 				to_chat(user, span_notice("You unfasten the circuit board."))
 				state = 1
 				icon_state = "1"
@@ -91,14 +91,14 @@
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 2 || !C.use(5))
 					return FALSE
 
-				balloon_alert(user, "You add cables to the frame.")
+				user.balloon_alert(user, "You add cables to the frame.")
 				to_chat(user, span_notice("You add cables to the frame."))
 				state = 3
 				icon_state = "3"
 		if(3)
 			if(iswirecutter(I))
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-				balloon_alert(user, "You remove the cables.")
+				user.balloon_alert(user, "You remove the cables.")
 				to_chat(user, span_notice("You remove the cables."))
 				state = 2
 				icon_state = "2"
@@ -122,7 +122,7 @@
 		if(4)
 			if(iscrowbar(I))
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-				balloon_alert(user, "You remove the glass panel.")
+				user.balloon_alert(user, "You remove the glass panel.")
 				to_chat(user, span_notice("You remove the glass panel."))
 				state = 3
 				icon_state = "3"
@@ -130,7 +130,7 @@
 
 			else if(isscrewdriver(I))
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				balloon_alert(user, "You connect the monitor.")
+				user.balloon_alert(user, "You connect the monitor.")
 				to_chat(user, span_notice("You connect the monitor."))
 				var/B = new circuit.build_path(loc)
 				circuit.construct(B)

@@ -103,10 +103,10 @@
 	if(amount < 5)
 		to_chat(user, span_warning("You need at least five [name] to do this."))
 		return
-	balloon_alert_to_viewers("[user] starts assembling a sandbag barricade.", ignored_mobs = user)
+	user.balloon_alert_to_viewers("[user] starts assembling a sandbag barricade.", ignored_mobs = user)
 	user.visible_message(span_notice("[user] starts assembling a sandbag barricade."),
 	span_notice("You start assembling a sandbag barricade."))
-	balloon_alert(user, "You start assembling a sandbag barricade.")
+	user.balloon_alert(user, "You start assembling a sandbag barricade.")
 	var/building_time = LERP(2 SECONDS, 1 SECONDS, user.skills.getPercent("construction", SKILL_ENGINEER_MASTER))
 	if(!do_after(user, building_time, TRUE, src, BUSY_ICON_BUILD))
 		return
@@ -114,9 +114,9 @@
 		if(O.density && (!(O.flags_atom & ON_BORDER) || O.dir == user.dir))
 			return
 	var/obj/structure/barricade/sandbags/SB = new(user.loc, user.dir)
-	balloon_alert_to_viewers("[user] assembles a sandbag barricade.", ignored_mobs = user)
+	user.balloon_alert_to_viewers("[user] assembles a sandbag barricade.", ignored_mobs = user)
 	user.visible_message(span_notice("[user] assembles a sandbag barricade."),
 	span_notice("You assemble a sandbag barricade."))
-	balloon_alert(user, "You assemble a sandbag barricade.")
+	user.balloon_alert(user, "You assemble a sandbag barricade.")
 	SB.setDir(user.dir)
 	use(5)

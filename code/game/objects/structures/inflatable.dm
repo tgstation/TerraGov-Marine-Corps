@@ -23,7 +23,7 @@
 
 	attack_self(mob/user)
 		playsound(loc, 'sound/items/zip.ogg', 25, 1)
-		balloon_alert(user, "You inflate [src].")
+		user.balloon_alert(user, "You inflate [src].")
 		to_chat(user, span_notice("You inflate [src]."))
 		new /obj/structure/inflatable/door(user.loc)
 		qdel(src)

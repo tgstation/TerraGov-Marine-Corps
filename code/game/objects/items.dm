@@ -198,7 +198,7 @@
 	if(!istype(user))
 		return
 	if(anchored)
-		balloon_alert(user, "[src] is anchored to the ground.")
+		user.balloon_alert(user, "[src] is anchored to the ground.")
 		to_chat(user, "[src] is anchored to the ground.")
 		return
 
@@ -427,7 +427,7 @@
 			return FALSE
 
 	if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		balloon_alert(H, "Your programming prevents you from wearing this.")
+		H.balloon_alert(H, "Your programming prevents you from wearing this.")
 		to_chat(H, span_warning("Your programming prevents you from wearing this."))
 		return FALSE
 
@@ -475,7 +475,7 @@
 				return FALSE
 			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
 				if(warning)
-					balloon_alert(H, "You need a jumpsuit before you can attach this [name].")
+					H.balloon_alert(H, "You need a jumpsuit before you can attach this [name].")
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
 			if(!(flags_equip_slot & ITEM_SLOT_BELT))
@@ -516,7 +516,7 @@
 				return FALSE
 			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
 				if(warning)
-					balloon_alert(H, "You need a jumpsuit before you can attach this [name].")
+					H.balloon_alert(H, "You need a jumpsuit before you can attach this [name].")
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
 			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
@@ -528,7 +528,7 @@
 				return FALSE
 			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
 				if(warning)
-					balloon_alert(H, "You need a jumpsuit before you can attach this [name].")
+					H.balloon_alert(H, "You need a jumpsuit before you can attach this [name].")
 					to_chat(H, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
 			if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
@@ -541,7 +541,7 @@
 				return FALSE
 			if(!H.wear_suit && (SLOT_WEAR_SUIT in mob_equip))
 				if(warning)
-					balloon_alert(H, "You need a jumpsuit before you can attach this [name].")
+					H.balloon_alert(H, "You need a jumpsuit before you can attach this [name].")
 					to_chat(H, span_warning("You need a suit before you can attach this [name]."))
 				return FALSE
 			if(!H.wear_suit.allowed)
@@ -847,7 +847,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/extinguish(atom/target, mob/user)
 	if (reagents.total_volume < 1)
-		balloon_alert(user, "\The [src]'s water reserves are empty.")
+		user.balloon_alert(user, "\The [src]'s water reserves are empty.")
 		to_chat(user, span_warning("\The [src]'s water reserves are empty."))
 		return
 

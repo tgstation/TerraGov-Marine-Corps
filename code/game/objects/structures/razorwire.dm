@@ -179,7 +179,7 @@
 	var/mob/living/M = G.grabbed_thing
 	if(user.a_intent == INTENT_HARM)
 		if(user.grab_state <= GRAB_AGGRESSIVE)
-			balloon_alert(user, "You need a better grip to do that!")
+			user.balloon_alert(user, "You need a better grip to do that!")
 			to_chat(user, span_warning("You need a better grip to do that!"))
 			return
 
@@ -187,7 +187,7 @@
 		var/def_zone = ran_zone()
 		M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
 		balloon_alert_to_viewers("[user] spartas [M]'s into [src]!", ignored_mobs = user)
-		balloon_alert(user, "You sparta [M]'s against [src]!")
+		user.balloon_alert(user, "You sparta [M]'s against [src]!")
 		user.visible_message(span_danger("[user] spartas [M]'s into [src]!"),
 		span_danger("You sparta [M]'s against [src]!"))
 		log_combat(user, M, "spartaed", "", "against \the [src]")
@@ -201,7 +201,7 @@
 
 /obj/structure/razorwire/wirecutter_act(mob/living/user, obj/item/I)
 	balloon_alert_to_viewers("[user] starts disassembling [src].", ignored_mobs = user)
-	balloon_alert(user, "You start disassembling [src].")
+	user.balloon_alert(user, "You start disassembling [src].")
 	user.visible_message(span_notice("[user] starts disassembling [src]."),
 	span_notice("You start disassembling [src]."))
 	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating("engineer"))
@@ -210,7 +210,7 @@
 		return TRUE
 
 	balloon_alert_to_viewers("[user] disassembles [src].", ignored_mobs = user)
-	balloon_alert(user, "You disassemble [src].")
+	user.balloon_alert(user, "You disassemble [src].")
 	user.visible_message(span_notice("[user] disassembles [src]."),
 	span_notice("You disassemble [src]."))
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)

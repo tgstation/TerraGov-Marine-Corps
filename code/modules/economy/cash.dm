@@ -36,6 +36,7 @@
 			h_user.temporarilyRemoveItemFromInventory(src)
 			h_user.temporarilyRemoveItemFromInventory(bundle)
 			h_user.put_in_hands(bundle)
+		user.balloon_alert(user, "You add [worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.")
 		to_chat(user, span_notice("You add [worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now."))
 		qdel(src)
 

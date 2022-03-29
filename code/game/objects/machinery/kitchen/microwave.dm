@@ -51,7 +51,7 @@
 
 	if(broken == 2 && isscrewdriver(I))
 		balloon_alert_to_viewers("[user] starts to fix part of the microwave.", ignored_mobs = user)
-		balloon_alert(user, "You start to fix part of the microwave.")
+		user.balloon_alert(user, "You start to fix part of the microwave.")
 		user.visible_message( span_notice("[user] starts to fix part of the microwave."), \
 			span_notice("You start to fix part of the microwave."))
 
@@ -59,14 +59,14 @@
 			return TRUE
 
 		balloon_alert_to_viewers("[user] fixes part of the microwave.", ignored_mobs = user)
-		balloon_alert(user, "You have fixed part of the microwave.")
+		user.balloon_alert(user, "You have fixed part of the microwave.")
 		user.visible_message(span_notice("[user] fixes part of the microwave."), \
 			span_notice("You have fixed part of the microwave."))
 		broken = 1
 
 	else if(broken == 1 && iswrench(I))
 		balloon_alert_to_viewers("[user] fixes part of the microwave.", ignored_mobs = user)
-		balloon_alert(user, "You have fixed part of the microwave.")
+		user.balloon_alert(user, "You have fixed part of the microwave.")
 		user.visible_message(span_notice("[user] starts to fix part of the microwave."), \
 			span_notice("You start to fix part of the microwave."))
 
@@ -74,7 +74,7 @@
 			return TRUE
 
 		balloon_alert_to_viewers("[user] fixes the microwave.", ignored_mobs = user)
-		balloon_alert(user, "You have fixed the microwave.")
+		user.balloon_alert(user, "You have fixed the microwave.")
 		user.visible_message( span_notice("[user] fixes the microwave."), \
 			span_notice("You have fixed the microwave."))
 		icon_state = "mw"
@@ -83,18 +83,18 @@
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 
 	else if(broken > 2)
-		balloon_alert(user, "It's broken!")
+		user.balloon_alert(user, "It's broken!")
 		to_chat(user, span_warning("It's broken!"))
 		return TRUE
 
 	else if(dirty == 100)
-		balloon_alert(user, "It's dirty!")
+		user.balloon_alert(user, "It's dirty!")
 		if(!istype(I, /obj/item/reagent_containers/spray/cleaner))
 			to_chat(user, span_warning("It's dirty!"))
 			return TRUE
 
 		balloon_alert_to_viewers("[user] starts to clean \the [src].", ignored_mobs = user)
-		balloon_alert(user, "You start to clean \the [src].")
+		user.balloon_alert(user, "You start to clean \the [src].")
 		user.visible_message(span_notice("[user] starts to clean \the [src]."), \
 			span_notice("You start to clean \the [src]."))
 
@@ -102,7 +102,7 @@
 			return TRUE
 
 		balloon_alert_to_viewers("[user] has cleaned \the [src].", ignored_mobs = user)
-		balloon_alert(user, "You have cleaned \the [src].")
+		user.balloon_alert(user, "You have cleaned \the [src].")
 		user.visible_message(span_notice("[user] has cleaned \the [src]."), \
 			span_notice("You have cleaned \the [src]."))
 		dirty = 0
@@ -120,14 +120,14 @@
 			new S.type(src)
 			S.use(1)
 			balloon_alert_to_viewers("[user] has added one of [I] to \the [src].", ignored_mobs = user)
-			balloon_alert(user, "You add one of [I] to \the [src].")
+			user.balloon_alert(user, "You add one of [I] to \the [src].")
 			user.visible_message(span_notice("[user] has added one of [I] to \the [src]."), \
 				span_notice("You add one of [I] to \the [src]."))
 
 		else if(user.drop_held_item())
 			I.forceMove(src)
 			balloon_alert_to_viewers("[user] has added \the [I] to \the [src].", ignored_mobs = user)
-			balloon_alert(user, "You add \the [I] to \the [src].")
+			user.balloon_alert(user, "You add \the [I] to \the [src].")
 			user.visible_message(span_notice("[user] has added \the [I] to \the [src]."), \
 				span_notice("You add \the [I] to \the [src]."))
 
@@ -141,7 +141,7 @@
 		for(var/i in I.reagents.reagent_list)
 			var/datum/reagent/R = i
 			if(!(R.type in acceptable_reagents))
-				balloon_alert(user, "Your [I] contains components unsuitable for cookery.")
+				user.balloon_alert(user, "Your [I] contains components unsuitable for cookery.")
 				to_chat(user, span_warning("Your [I] contains components unsuitable for cookery."))
 				return TRUE
 
@@ -151,7 +151,7 @@
 		return TRUE
 
 	else
-		balloon_alert(user, "You have no idea what you can cook with this [I].")
+		user.balloon_alert(user, "You have no idea what you can cook with this [I].")
 		to_chat(user, span_warning("You have no idea what you can cook with this [I]."))
 
 	return TRUE

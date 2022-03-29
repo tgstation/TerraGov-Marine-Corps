@@ -456,12 +456,12 @@
 		return
 
 	if(SEND_SIGNAL(M, COMSIG_MOB_ENABLE_STEALTH) & STEALTH_ALREADY_ACTIVE)
-		balloon_alert(M, "You are already cloaked!")
+		M.balloon_alert(M, "You are already cloaked!")
 		to_chat(M, span_warning("You are already cloaked!"))
 		return FALSE
 
 	if (camo_cooldown_timer)
-		balloon_alert(M, "Your thermal cloak is still recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
+		M.balloon_alert(M, "Your thermal cloak is still recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		to_chat(M, "<span class='warning'>Your thermal cloak is still recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		return
 
@@ -470,8 +470,8 @@
 	wearer = M
 
 	RegisterSignal(wearer, COMSIG_MOB_ENABLE_STEALTH, .proc/on_other_activate)
-	balloon_alert_to_viewers("[M] fades into thin air!", ignored_mobs = M)
-	balloon_alert(M, "You activate your cloak's camouflage.")
+	M.balloon_alert_to_viewers("[M] fades into thin air!", ignored_mobs = M)
+	M.balloon_alert(M, "You activate your cloak's camouflage.")
 	M.visible_message("[M] fades into thin air!", span_notice("You activate your cloak's camouflage."))
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
@@ -544,7 +544,7 @@
 	var/cooldown = round( (initial(camo_energy) - camo_energy) / SCOUT_CLOAK_INACTIVE_RECOVERY * 10) //Should be 20 seconds after a full depletion with inactive recovery at 5
 	if(cooldown)
 		camo_cooldown_timer = world.time + cooldown //recalibration and recharge time scales inversely with charge remaining
-		balloon_alert(user, "Your thermal cloak is recalibrating!")
+		user.balloon_alert(user, "Your thermal cloak is recalibrating!")
 		to_chat(user, "<span class='warning'>Your thermal cloak is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		process_camo_cooldown(user, cooldown)
 
@@ -568,7 +568,7 @@
 	camo_energy = initial(camo_energy)
 	playsound(loc,'sound/effects/EMPulse.ogg', 25, 0, 1)
 	if(wearer)
-		balloon_alert(wearer, "Your thermal cloak is ready to cloak again.")
+		wearer.balloon_alert(wearer, "Your thermal cloak is ready to cloak again.")
 		to_chat(wearer, span_danger("Your thermal cloak has recalibrated and is ready to cloak again."))
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/examine(mob/user)
@@ -609,13 +609,13 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/human/wearer = source
 	if(damage >= 15)
-		balloon_alert(wearer, "Your cloak shimmers from the damage!")
+		wearer.balloon_alert(wearer, "Your cloak shimmers from the damage!")
 		to_chat(wearer, span_danger("Your cloak shimmers from the damage!"))
 		apply_shimmer()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken() //This is used by multiple signals passing different parameters.
 	SIGNAL_HANDLER
-	balloon_alert(wearer, "Your cloak shimmers from your actions!")
+	wearer.balloon_alert(wearer, "Your cloak shimmers from your actions!")
 	to_chat(wearer, span_danger("Your cloak shimmers from your actions!"))
 	apply_shimmer()
 
@@ -697,7 +697,7 @@
 			return ..()
 
 		reagents.trans_to(I, T.max_fuel)
-		balloon_alert(user, "Welder refilled!")
+		user.balloon_alert(user, "Welder refilled!")
 		to_chat(user, span_notice("Welder refilled!"))
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 
@@ -735,7 +735,7 @@
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to(src, max_fuel)
-		balloon_alert(user, "You crack the cap off the top of the pack and fill it back up again from the tank.")
+		user.balloon_alert(user, "You crack the cap off the top of the pack and fill it back up again from the tank.")
 		to_chat(user, span_notice("You crack the cap off the top of the pack and fill it back up again from the tank."))
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return

@@ -74,6 +74,7 @@
 		parent?.AddElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, greyscale_config, greyscale_colors)
 	else
 		parent?.RemoveElement(/datum/element/special_clothing_overlay/modular_helmet_visor, HEAD_LAYER, greyscale_config, greyscale_colors)
+	user.balloon_alert(user, "You turn [ visor_emissive_on ? "on" : "off" ] \the [src]'s internal lighting.")
 	to_chat(user, span_notice("You turn [ visor_emissive_on ? "on" : "off" ] \the [src]'s internal lighting."))
 	update_icon()
 	parent.update_icon()

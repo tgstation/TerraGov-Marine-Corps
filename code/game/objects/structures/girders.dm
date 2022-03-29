@@ -60,7 +60,7 @@
 				if(stack.amount < 2)
 					return
 				balloon_alert_to_viewers("[user] begins to add metal to the [src].", ignored_mobs = user)
-				balloon_alert(user, "Now adding plating...")
+				user.balloon_alert(user, "Now adding plating...")
 				to_chat(user, span_notice("Now adding plating..."))
 				if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 					return TRUE
@@ -68,7 +68,7 @@
 					return TRUE
 				stack.use(2)
 				balloon_alert_to_viewers("[user] adds metal to the[src].", ignored_mobs = user)
-				balloon_alert(user, "You added the metal to the girder!")
+				user.balloon_alert(user, "You added the metal to the girder!")
 				to_chat(user, span_notice("You added the metal to the girder!"))
 				change_state(GIRDER_BROKEN_PATCHED)
 				return TRUE
@@ -78,7 +78,7 @@
 				if(stack.amount < (reinforced ? 15 : 2))
 					return TRUE
 				balloon_alert_to_viewers("[user] begins to add metal plating to the [src].", ignored_mobs = user)
-				balloon_alert(user, "Now adding plating...")
+				user.balloon_alert(user, "Now adding plating...")
 				to_chat(user, span_notice("Now adding plating..."))
 				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), TRUE, src, BUSY_ICON_BUILD))
 					return TRUE
@@ -86,7 +86,7 @@
 					return TRUE
 				stack.use(reinforced ? 15 : 2)
 				balloon_alert_to_viewers("[user] adds metal plating to the [src].", ignored_mobs = user)
-				balloon_alert(user, "You added the plating!")
+				user.balloon_alert(user, "You added the plating!")
 				to_chat(user, span_notice("You added the plating!"))
 				change_state(GIRDER_BUILDING1_LOOSE)
 				reinforcement = (reinforced ? GIRDER_REINF_PLASTEEL : GIRDER_REINF_METAL)
@@ -100,7 +100,7 @@
 					return TRUE
 				var/old_girder_state = girder_state
 				balloon_alert_to_viewers("[user] begins to add metal plating to the [src].", ignored_mobs = user)
-				balloon_alert(user, "Now adding plating...")
+				user.balloon_alert(user, "Now adding plating...")
 				to_chat(user, span_notice("Now adding plating..."))
 				if(!do_after(user, 4 SECONDS * (reinforced ? 2 : 1), TRUE, src, BUSY_ICON_BUILD))
 					return TRUE
@@ -108,7 +108,7 @@
 					return TRUE
 				stack.use(reinforced ? 15 : 2)
 				balloon_alert_to_viewers("[user] adds metal plating to the [src].", ignored_mobs = user)
-				balloon_alert(user, "You added the plating!")
+				user.balloon_alert(user, "You added the plating!")
 				to_chat(user, span_notice("You added the plating!"))
 				change_state(girder_state + 1)
 				return TRUE
@@ -135,7 +135,7 @@
 				return TRUE
 			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 			balloon_alert_to_viewers("[user] welds the [girder_state == GIRDER_BROKEN_PATCHED ? "girder together" : "metal to the girder"]!", ignored_mobs = user)
-			balloon_alert(user, "You weld the [girder_state == GIRDER_BROKEN_PATCHED ? "girder together" : "metal to the girder"]!")
+			user.balloon_alert(user, "You weld the [girder_state == GIRDER_BROKEN_PATCHED ? "girder together" : "metal to the girder"]!")
 			to_chat(user, span_notice("You weld the [girder_state == GIRDER_BROKEN_PATCHED ? "girder together" : "metal to the girder"]!"))
 			change_state(girder_state + 1)
 			return TRUE
@@ -148,13 +148,13 @@
 	switch(girder_state)
 		if(GIRDER_BROKEN)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			balloon_alert(user, "Now unbolting the remaining girder base.")
+			user.balloon_alert(user, "Now unbolting the remaining girder base.")
 			to_chat(user, span_notice("Now unbolting the remaining girder base."))
 			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(girder_state != GIRDER_BROKEN)
 				return TRUE
-			balloon_alert(user, "You scrap what is left from the girder!")
+			user.balloon_alert(user, "You scrap what is left from the girder!")
 			to_chat(user, span_notice("You scrap what is left from the girder!"))
 			new /obj/item/stack/sheet/metal(loc)
 			qdel(src)
@@ -164,7 +164,7 @@
 			if(anchored)
 				return FALSE
 			if(!isfloorturf(T) && !isbasalt(T) && !islavacatwalk(T) && !isopengroundturf(T))
-				balloon_alert(user, "The girder must be secured on the floor!")
+				user.balloon_alert(user, "The girder must be secured on the floor!")
 				to_chat(usr, span_warning("The girder must be secured on the floor!"))
 				return FALSE
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -173,7 +173,7 @@
 				return TRUE
 			if(anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
-			balloon_alert(user, "You secured the girder!")
+			user.balloon_alert(user, "You secured the girder!")
 			to_chat(user, span_notice("You secured the girder!"))
 			anchored = TRUE
 			modify_max_integrity(150)
@@ -190,14 +190,14 @@
 				return FALSE
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			balloon_alert_to_viewers("[user] starts dislodging [src] from the ground.", ignored_mobs = user)
-			balloon_alert(user, "Now dislodging the girder...")
+			user.balloon_alert(user, "Now dislodging the girder...")
 			to_chat(user, span_notice("Now dislodging the girder..."))
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(!anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
 			balloon_alert_to_viewers("[user] dislodges the [src] from the ground.", ignored_mobs = user)
-			balloon_alert(user, "You dislodged the girder!")	
+			user.balloon_alert(user, "You dislodged the girder!")	
 			to_chat(user, span_notice("You dislodged the girder!"))
 			anchored = FALSE
 			modify_max_integrity(50)
@@ -214,7 +214,7 @@
 				return TRUE
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			balloon_alert_to_viewers("[user] pries the external reinforcement layer out of the [src].", ignored_mobs = user)
-			balloon_alert(user, "You pry the external reinforcement layer out of the girder!")	
+			user.balloon_alert(user, "You pry the external reinforcement layer out of the girder!")	
 			to_chat(user, span_notice("You pry the external reinforcement layer out of the girder!"))
 			new reinforcement(loc) //This should come before change_state() as the var may get nulled there.
 			change_state(girder_state - 1)
@@ -231,21 +231,21 @@
 				return FALSE
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			balloon_alert_to_viewers("[user] begins to dissassemble the [src].", ignored_mobs = user)
-			balloon_alert(user, "Now dissassembling the girder")	
+			user.balloon_alert(user, "Now dissassembling the girder")	
 			to_chat(user, span_notice("Now dissassembling the girder"))
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 			if(anchored || girder_state != GIRDER_NORMAL)
 				return TRUE
 			balloon_alert_to_viewers("[user] finishes dissassembling the [src].", ignored_mobs = user)
-			balloon_alert(user, "You finished dissassembling the girder!")		
+			user.balloon_alert(user, "You finished dissassembling the girder!")		
 			to_chat(user, span_notice("You finished dissassembling the girder!"))
 			new /obj/item/stack/sheet/metal(loc)
 			qdel(src)
 			return TRUE
 		if(GIRDER_BUILDING1_LOOSE, GIRDER_BUILDING2_LOOSE)
 			balloon_alert_to_viewers("[user] starts securing [src]'s support structs.", ignored_mobs = user)
-			balloon_alert(user, "Now securing support struts")	
+			user.balloon_alert(user, "Now securing support struts")	
 			to_chat(user, span_notice("Now securing support struts"))
 			var/old_girder_state = girder_state
 			var/work_time = 3 SECONDS
@@ -257,13 +257,13 @@
 				return TRUE
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			balloon_alert_to_viewers("[user] finishes securing [src]'s support structs.", ignored_mobs = user)
-			balloon_alert(user, "You secured the support struts!")	
+			user.balloon_alert(user, "You secured the support struts!")	
 			to_chat(user, span_notice("You secured the support struts!"))
 			change_state(girder_state + 1)
 			return TRUE
 		if(GIRDER_BUILDING1_SECURED, GIRDER_BUILDING2_SECURED)
 			balloon_alert_to_viewers("[user] starts detaching [src]'s support structs.", ignored_mobs = user)
-			balloon_alert(user, "Now unsecuring support struts!")	
+			user.balloon_alert(user, "Now unsecuring support struts!")	
 			to_chat(user, span_notice("Now unsecuring support struts"))
 			var/old_girder_state = girder_state
 			var/work_time = 3 SECONDS
@@ -275,7 +275,7 @@
 				return TRUE
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			balloon_alert_to_viewers("[user] unsecures the struts supporting [src].", ignored_mobs = user)
-			balloon_alert(user, "You unsecured the support struts!")	
+			user.balloon_alert(user, "You unsecured the support struts!")	
 			to_chat(user, span_notice("You unsecured the support struts!"))
 			change_state(girder_state - 1)
 			return TRUE
@@ -289,12 +289,12 @@
 		if(GIRDER_BROKEN_PATCHED)
 			playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 			balloon_alert_to_viewers("[user] begins to cut [src]'s metal plate.", ignored_mobs = user)
-			balloon_alert(user, "Now cutting the metal plate...")	
+			user.balloon_alert(user, "Now cutting the metal plate...")	
 			to_chat(user, span_notice("Now cutting the metal plate..."))
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 			balloon_alert_to_viewers("[user] finishes cutting [src]'s metal plate.", ignored_mobs = user)
-			balloon_alert(user, "You finished cutting the metal plate!")		
+			user.balloon_alert(user, "You finished cutting the metal plate!")		
 			to_chat(user, span_notice("You finished cutting the metal plate!"))
 			deconstruct()
 			return TRUE
@@ -304,7 +304,7 @@
 			if(reinforcement == GIRDER_REINF_PLASTEEL)
 				work_time += 3 SECONDS
 			balloon_alert_to_viewers("[user] starts cutting [src]'s support structs.", ignored_mobs = user)
-			balloon_alert(user, "Now cutting the support struts...")	
+			user.balloon_alert(user, "Now cutting the support struts...")	
 			to_chat(user, span_notice("Now cutting the support struts..."))
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return
@@ -312,7 +312,7 @@
 				return TRUE
 			playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 			balloon_alert_to_viewers("[user] finishes cutting [src]'s support structs.", ignored_mobs = user)
-			balloon_alert(user, "You've cut the support struts!")
+			user.balloon_alert(user, "You've cut the support struts!")
 			to_chat(user, span_notice("You've cut the support struts!"))
 			change_state(girder_state - 1)
 	return FALSE

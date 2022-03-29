@@ -264,11 +264,14 @@
 	switch(icon_state)
 		if("ia_jacket_open")
 			src.icon_state = "ia_jacket"
+			balloon_alert(usr, "You button up the jacket.")
 			to_chat(usr, "You button up the jacket.")
 		if("ia_jacket")
 			src.icon_state = "ia_jacket_open"
+			balloon_alert(usr, "You unbutton the jacket.")
 			to_chat(usr, "You unbutton the jacket.")
 		else
+			balloon_alert(usr, "You attempt to button-up the velcro on your [src], before promptly realising that it won't work.")
 			to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising that it won't work.")
 			return FALSE
 	update_clothing_icon()	//so our overlays update

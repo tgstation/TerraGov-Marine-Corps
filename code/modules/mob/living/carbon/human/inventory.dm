@@ -454,10 +454,12 @@
 	if(I.flags_item & ITEM_ABSTRACT)
 		return
 	if(I.flags_item & NODROP)
+		balloon_alert(src, "You can't remove \the [I.name], it appears to be stuck!")
 		to_chat(src, span_warning("You can't remove \the [I.name], it appears to be stuck!"))
 		return
 	log_combat(src, M, "attempted to remove [key_name(I)] ([slot_to_process])")
 
+	balloon_alert_to_viewers("[src] tries to remove [M]'s [I.name].")
 	M.visible_message(span_danger("[src] tries to remove [M]'s [I.name]."), \
 					span_userdanger("[src] tries to remove [M]'s [I.name]."), null, 5)
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE))
@@ -475,11 +477,15 @@
 /mob/living/carbon/human/stripPanelEquip(obj/item/I, mob/M, slot_to_process)
 	if(I && !(I.flags_item & ITEM_ABSTRACT))
 		if(I.flags_item & NODROP)
+			balloon_alert(src, "You can't put \the [I.name] on [M], it's stuck to your hand!")
 			to_chat(src, span_warning("You can't put \the [I.name] on [M], it's stuck to your hand!"))
 			return
 		if(!I.mob_can_equip(M, slot_to_process, TRUE))
+			balloon_alert(src, "You can't put \the [I.name] on [M]!")
 			to_chat(src, span_warning("You can't put \the [I.name] on [M]!"))
 			return
+			
+		balloon_alert_to_viewers("[src] tries to put [I] on [M].")
 		visible_message(span_notice("[src] tries to put [I] on [M]."), null , null, 5)
 		if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC))
 			if(!M.get_item_by_slot(slot_to_process))

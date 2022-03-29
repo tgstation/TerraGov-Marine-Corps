@@ -16,6 +16,7 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
+		X.balloon_alert(X, "We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!")
 		to_chat(X, span_xenowarning("We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!"))
 		return FALSE
 
@@ -23,6 +24,8 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	GLOB.round_statistics.defender_tail_sweeps++
+	X.balloon_alert(X, "We sweep our tail in a wide circle!")
+	X.balloon_alert_to_viewers("\The [X] sweeps its tail in a wide circle!", ignored_mobs = X)
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweeps")
 	X.visible_message(span_xenowarning("\The [X] sweeps its tail in a wide circle!"), \
 	span_xenowarning("We sweep our tail in a wide circle!"))
@@ -51,6 +54,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
 
+		H.balloon_alert(H, "We are struck by \the [X]'s tail sweep!")
 		to_chat(H, span_xenowarning("We are struck by \the [X]'s tail sweep!"))
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
@@ -62,6 +66,7 @@
 
 /datum/action/xeno_action/tail_sweep/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
+	X.balloon_alert(X, "We gather enough strength to tail sweep again.")
 	to_chat(X, span_notice("We gather enough strength to tail sweep again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
@@ -112,6 +117,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/rack))
 		var/obj/structure/S = target
+		X.balloon_alert_to_viewers("[X] plows straight through [S]!", ignored_mobs = X)
 		X.visible_message(span_danger("[X] plows straight through [S]!"), null, null, 5)
 		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 		return // stay registered
@@ -126,6 +132,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/forward_charge/on_cooldown_finish()
+	owner.balloon_alert(owner, "Our exoskeleton quivers as we get ready to use Forward Charge again.")
 	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use Forward Charge again."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	return ..()
@@ -140,13 +147,17 @@
 	if(defender.fortify)
 		var/datum/action/xeno_action/fortify/fortify_action = X.actions_by_path[/datum/action/xeno_action/fortify]
 		if(fortify_action.cooldown_id)
+			X.balloon_alert(X, "We cannot yet untuck ourselves from our fortified stance!")
 			to_chat(X, span_xenowarning("We cannot yet untuck ourselves from our fortified stance!"))
 			return fail_activate()
 
 		fortify_action.set_fortify(FALSE, TRUE)
 		fortify_action.add_cooldown()
+		X.balloon_alert(X, "We rapidly untuck ourselves, preparing to surge forward.")
 		to_chat(X, span_xenowarning("We rapidly untuck ourselves, preparing to surge forward."))
 
+	X.balloon_alert_to_viewers("[X] charges towards \the [A]!", ignored_mobs = X)
+	X.balloon_alert(X, "We charge towards \the [A]!")
 	X.visible_message(span_danger("[X] charges towards \the [A]!"), \
 	span_danger("We charge towards \the [A]!") )
 	X.emote("roar")
@@ -205,6 +216,7 @@
 
 /datum/action/xeno_action/toggle_crest_defense/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/defender/X = owner
+	X.balloon_alert(X, "We can [X.crest_defense ? "raise" : "lower"] our crest.")
 	to_chat(X, span_notice("We can [X.crest_defense ? "raise" : "lower"] our crest."))
 	return ..()
 
@@ -220,10 +232,12 @@
 	if(X.fortify)
 		var/datum/action/xeno_action/fortify/FT = X.actions_by_path[/datum/action/xeno_action/fortify]
 		if(FT.cooldown_id)
+			X.balloon_alert(X, "We cannot yet untuck ourselves!")
 			to_chat(X, span_xenowarning("We cannot yet untuck ourselves!"))
 			return fail_activate()
 		FT.set_fortify(FALSE, TRUE)
 		FT.add_cooldown()
+		X.balloon_alert(X, "We carefully untuck, keeping our crest lowered.")
 		to_chat(X, span_xenowarning("We carefully untuck, keeping our crest lowered."))
 
 	set_crest_defense(TRUE, was_fortified)
@@ -235,6 +249,7 @@
 	X.crest_defense = on
 	if(on)
 		if(!silent)
+			X.balloon_alert(X, "We tuck ourselves into a defensive stance.")
 			to_chat(X, span_xenowarning("We tuck ourselves into a defensive stance."))
 		GLOB.round_statistics.defender_crest_lowerings++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
@@ -245,6 +260,7 @@
 		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, X.xeno_caste.crest_defense_slowdown)
 	else
 		if(!silent)
+			X.balloon_alert(X, "We raise our crest.")
 			to_chat(X, span_xenowarning("We raise our crest."))
 		GLOB.round_statistics.defender_crest_raises++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
@@ -277,6 +293,7 @@
 
 /datum/action/xeno_action/fortify/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
+	X.balloon_alert(X, "We can [X.fortify ? "stand up" : "fortify"] again.")
 	to_chat(X, span_notice("We can [X.fortify ? "stand up" : "fortify"] again."))
 	return ..()
 
@@ -292,10 +309,12 @@
 	if(X.crest_defense)
 		var/datum/action/xeno_action/toggle_crest_defense/CD = X.actions_by_path[/datum/action/xeno_action/toggle_crest_defense]
 		if(CD.cooldown_id)
+			X.balloon_alert(X, "We cannot yet transition to a defensive stance!")
 			to_chat(X, span_xenowarning("We cannot yet transition to a defensive stance!"))
 			return fail_activate()
 		CD.set_crest_defense(FALSE, TRUE)
 		CD.add_cooldown()
+		X.balloon_alert(X, "We tuck our lowered crest into ourselves.")
 		to_chat(X, span_xenowarning("We tuck our lowered crest into ourselves."))
 
 	set_fortify(TRUE, was_crested)
@@ -309,6 +328,7 @@
 	if(on)
 		ADD_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 		if(!silent)
+			X.balloon_alert(X, "We tuck ourselves into a defensive stance.")
 			to_chat(X, span_xenowarning("We tuck ourselves into a defensive stance."))
 		var/fortifyAB = X.xeno_caste.fortify_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
@@ -316,6 +336,7 @@
 		last_fortify_bonus = fortifyAB
 	else
 		if(!silent)
+			X.balloon_alert(X, "We resume our normal stance.")
 			to_chat(X, span_xenowarning("We resume our normal stance."))
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_fortify_bonus)
 		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
@@ -342,6 +363,7 @@
 
 /datum/action/xeno_action/activable/regenerate_skin/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
+	X.balloon_alert(X, "We feel we are ready to shred our skin and grow another.")
 	to_chat(X, span_notice("We feel we are ready to shred our skin and grow another."))
 	return ..()
 
@@ -352,10 +374,13 @@
 		return fail_activate()
 
 	if(X.on_fire)
+		X.balloon_alert(X, "We can't use that while on fire.")
 		to_chat(X, span_xenowarning("We can't use that while on fire."))
 		return fail_activate()
 
 	X.emote("roar")
+	X.balloon_alert_to_viewers("The skin on \the [X] shreds and a new layer can be seen in it's place!", ignored_mobs = X)
+	X.balloon_alert(X, "We shed our skin, showing the fresh new layer underneath!")
 	X.visible_message(span_warning("The skin on \the [X] shreds and a new layer can be seen in it's place!"),
 		span_notice("We shed our skin, showing the fresh new layer underneath!"))
 
@@ -388,6 +413,7 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
+		X.balloon_alert(X, "We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!")
 		to_chat(X, span_xenowarning("We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!"))
 		return FALSE
 
@@ -399,6 +425,8 @@
 		return fail_activate()
 	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
+	owner.balloon_alert_to_viewers("\The [owner] starts swinging its tail in a circle!", ignored_mobs = owner)
+	owner.balloon_alert(owner, "We start swinging our tail in a wide circle!")
 	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
 		span_xenowarning("We start swinging our tail in a wide circle!"))
 	do_spin() //kick it off
@@ -428,6 +456,7 @@
 		slapped.Paralyze(3)
 		shake_camera(slapped, 2, 1)
 
+		slapped.balloon_alert(slapped, "We are struck by \the [X]'s flying tail!")
 		to_chat(slapped, span_xenowarning("We are struck by \the [X]'s flying tail!"))
 		playsound(slapped, 'sound/weapons/alien_claw_block.ogg', 50, 1)
 

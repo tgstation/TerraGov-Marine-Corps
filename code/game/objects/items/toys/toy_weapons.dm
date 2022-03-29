@@ -28,20 +28,20 @@
 
 		if (istype(A, /obj/item/toy/gun_ammo))
 			if (src.bullets >= 7)
-				balloon_alert(user, "It's already fully loaded!")
+				user.balloon_alert(user, "It's already fully loaded!")
 				to_chat(user, span_notice("It's already fully loaded!"))
 				return 1
 			if (A.amount_left <= 0)
-				balloon_alert(user, "There are no more caps!")
+				user.balloon_alert(user, "There are no more caps!")
 				to_chat(user, span_warning("There are no more caps!"))
 				return 1
 			if (A.amount_left < (7 - bullets))
 				src.bullets += A.amount_left
-				balloon_alert(user, "You reload [A.amount_left] caps\s!")
+				user.balloon_alert(user, "You reload [A.amount_left] caps\s!")
 				to_chat(user, span_warning("You reload [A.amount_left] caps\s!"))
 				A.amount_left = 0
 			else
-				balloon_alert(user, "You reload [7 - bullets] caps\s!")
+				user.balloon_alert(user, "You reload [7 - bullets] caps\s!")
 				to_chat(user, span_warning("You reload [7 - bullets] caps\s!"))
 				A.amount_left -= 7 - bullets
 				bullets = 7

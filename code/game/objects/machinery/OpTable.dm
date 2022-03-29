@@ -56,7 +56,7 @@
 		return
 	if(anes_tank)
 		user.put_in_active_hand(anes_tank)
-		balloon_alert(user, ("You remove \the [anes_tank] from \the [src]."))
+		user.balloon_alert(user, ("You remove \the [anes_tank] from \the [src]."))
 		to_chat(user, span_notice("You remove \the [anes_tank] from \the [src]."))
 		anes_tank = null
 

@@ -83,7 +83,7 @@
 /obj/structure/closet/proc/can_open(mob/living/user)
 	if(welded || locked)
 		if(user)
-			balloon_alert(user, "It won't budge!")
+			user.balloon_alert(user, "It won't budge!")
 			to_chat(user, span_notice("It won't budge!"))
 		return FALSE
 	return TRUE
@@ -93,13 +93,13 @@
 	for(var/obj/structure/closet/closet in loc)
 		if(closet != src && !closet.wall_mounted)
 			if(user)
-				balloon_alert(user, "There's more than one closet here, it's too cramped to close.")
+				user.balloon_alert(user, "There's more than one closet here, it's too cramped to close.")
 				to_chat(user, span_danger("There's more than one closet here, it's too cramped to close.") )
 			return FALSE
 	for(var/mob/living/mob_to_stuff in loc)
 		if(mob_to_stuff.anchored || mob_to_stuff.mob_size > max_mob_size)
 			if(user)
-				balloon_alert(user, "[mob_to_stuff] is preventing [src] from closing.")
+				user.balloon_alert(user, "[mob_to_stuff] is preventing [src] from closing.")
 				to_chat(user, span_danger("[mob_to_stuff] is preventing [src] from closing."))
 			return FALSE
 	return TRUE
@@ -243,7 +243,7 @@
 			return TRUE
 		new /obj/item/stack/sheet/metal(drop_location())
 		balloon_alert_to_viewers("\The [src] has been cut apart by [user] with [welder].", ignored_mobs = user)
-		balloon_alert(user, "You hear welding.")
+		user.balloon_alert(user, "You hear welding.")
 		visible_message(span_notice("\The [src] has been cut apart by [user] with [welder]."), "You hear welding.")
 		qdel(src)
 		return TRUE
@@ -254,7 +254,7 @@
 	welded = !welded
 	update_icon()
 	balloon_alert_to_viewers("[src] has been [welded ? "welded shut" : "unwelded"] by [user.name].", ignored_mobs = user)
-	balloon_alert(user, "You hear welding.")
+	user.balloon_alert(user, "You hear welding.")
 	visible_message(span_warning("[src] has been [welded ? "welded shut" : "unwelded"] by [user.name]."), "You hear welding.")
 	return TRUE
 
@@ -263,13 +263,13 @@
 	if(opened)
 		return FALSE
 	if(isspaceturf(loc) && !anchored)
-		balloon_alert(user, "You need a firmer floor to wrench [src] down.")
+		user.balloon_alert(user, "You need a firmer floor to wrench [src] down.")
 		to_chat(user, span_warning("You need a firmer floor to wrench [src] down."))
 		return TRUE
 	setAnchored(!anchored)
 	wrenchy_tool.play_tool_sound(src, 75)
 	balloon_alert_to_viewers("[user] [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.", ignored_mobs = user)
-	balloon_alert(user, "You [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.")
+	user.balloon_alert(user, "You [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground.")
 	user.visible_message(span_notice("[user] [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground."), \
 					span_notice("You [anchored ? "anchored" : "unanchored"] \the [src] [anchored ? "to" : "from"] the ground."), \
 					span_italics("You hear a ratchet."))
@@ -385,7 +385,7 @@
 	if(opened || (!locked && !welded) ) //Did get opened in the meatime.
 		return TRUE
 	balloon_alert_to_viewers("[user] successfully broke out of [src]!", ignored_mobs = user)
-	balloon_alert(user, "You successfully break out of [src]!")
+	user.balloon_alert(user, "You successfully break out of [src]!")
 	user.visible_message(span_danger("[user] successfully broke out of [src]!"),
 		span_notice("You successfully break out of [src]!"))
 	return bust_open()
@@ -422,24 +422,24 @@
 		return
 	if(opened)
 		if(!silent)
-			balloon_alert(user, "Close \the [src] first.")
+			user.balloon_alert(user, "Close \the [src] first.")
 			to_chat(user, span_notice("Close \the [src] first."))
 		return
 	if(broken)
 		if(!silent)
-			balloon_alert(user, "\The [src] is broken!")
+			user.balloon_alert(user, "\The [src] is broken!")
 			to_chat(user, span_warning("\The [src] is broken!"))
 		return FALSE
 
 	if(!allowed(user))
 		if(!silent)
-			balloon_alert(user, "Access Denied")
+			user.balloon_alert(user, "Access Denied")
 			to_chat(user, span_notice("Access Denied"))
 		return FALSE
 
 	locked = !locked
 	balloon_alert_to_viewers("[user] [locked ? null : "un"]locks [src].", ignored_mobs = user)
-	balloon_alert(user, "You [locked ? null : "un"]lock [src].")
+	user.balloon_alert(user, "You [locked ? null : "un"]lock [src].")
 	user.visible_message(span_notice("[user] [locked ? null : "un"]locks [src]."),
 						span_notice("You [locked ? null : "un"]lock [src]."))
 	update_icon()

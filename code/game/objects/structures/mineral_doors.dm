@@ -111,7 +111,7 @@
 		user.do_attack_animation(src, used_item = W)
 		hardness -= W.force * multiplier * 0.01
 		if(!P)
-			balloon_alert(user, "You hit the [name] with your [W.name]!")
+			user.balloon_alert(user, "You hit the [name] with your [W.name]!")
 			to_chat(user, "You hit the [name] with your [W.name]!")
 		CheckHardness()
 		return

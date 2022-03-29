@@ -44,7 +44,7 @@
 	new /obj/structure/camera_assembly(constrloc, constrdir)
 
 	balloon_alert_to_viewers("[user] attaches [src] to the wall.", ignored_mobs = user)
-	balloon_alert(user, "You attach [src] to the wall.")
+	user.balloon_alert(user, "You attach [src] to the wall.")
 	user.visible_message("[user] attaches [src] to the wall.", \
 		"You attach [src] to the wall.")
 
@@ -102,7 +102,7 @@
 			if(!weld(I, user))
 				return
 
-			balloon_alert(user, "You weld [src] securely into place.")
+			user.balloon_alert(user, "You weld [src] securely into place.")
 			to_chat(user, span_notice("You weld [src] securely into place."))
 			anchored = TRUE
 			state = STATE_WELDED
@@ -114,7 +114,7 @@
 					to_chat(user, span_warning("You need two lengths of cable to wire a camera!"))
 					return
 
-				balloon_alert(user, "You add wires to [src].")
+				user.balloon_alert(user, "You add wires to [src].")
 				to_chat(user, span_notice("You add wires to [src]."))
 				state = STATE_WIRED
 
@@ -123,7 +123,7 @@
 				if(!weld(I, user))
 					return
 
-				balloon_alert(user, "You unweld [src] from its place.")
+				user.balloon_alert(user, "You unweld [src] from its place.")
 				to_chat(user, span_notice("You unweld [src] from its place."))
 				anchored = TRUE
 				state = STATE_WRENCHED
@@ -162,7 +162,7 @@
 
 	new /obj/item/stack/cable_coil(drop_location(), 2)
 	I.play_tool_sound(src)
-	balloon_alert(user, "You cut the wires from the circuits.")
+	user.balloon_alert(user, "You cut the wires from the circuits.")
 	to_chat(user, span_notice("You cut the wires from the circuits."))
 	state = STATE_WELDED
 	return TRUE
@@ -172,7 +172,7 @@
 	if(state != STATE_WRENCHED)
 		return FALSE
 	I.play_tool_sound(src)
-	balloon_alert(user, "You detach [src] from its place.")
+	user.balloon_alert(user, "You detach [src] from its place.")
 	to_chat(user, span_notice("You detach [src] from its place."))
 	new /obj/item/frame/camera(drop_location())
 

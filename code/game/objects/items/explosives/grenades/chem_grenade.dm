@@ -55,7 +55,7 @@
 				to_chat(user, span_warning("You need to add at least one beaker before locking the [initial(name)] assembly!"))
 			else
 				stage_change(CG_READY)
-				balloon_alert(user, "You lock the [initial(name)] assembly.")
+				user.balloon_alert(user, "You lock the [initial(name)] assembly.")
 				to_chat(user, span_notice("You lock the [initial(name)] assembly."))
 				I.play_tool_sound(src, 25)
 
@@ -77,7 +77,7 @@
 			if(I.reagents.total_volume)
 				if(!user.transferItemToLoc(I, src))
 					return
-				balloon_alert(user, "You add [I] to the [initial(name)] assembly.")
+				user.balloon_alert(user, "You add [I] to the [initial(name)] assembly.")
 				to_chat(user, span_notice("You add [I] to the [initial(name)] assembly."))
 				beakers += I
 				var/reagent_list = pretty_string_from_reagent_list(I.reagents)
@@ -98,7 +98,7 @@
 		assemblyattacher = user.ckey
 
 		stage_change(CG_WIRED)
-		balloon_alert(user, "You add [A] to the [initial(name)] assembly.")
+		user.balloon_alert(user, "You add [A] to the [initial(name)] assembly.")
 		to_chat(user, span_notice("You add [A] to the [initial(name)] assembly."))
 
 	else if(stage == CG_EMPTY && istype(I, /obj/item/stack/cable_coil))
@@ -106,7 +106,7 @@
 		if (C.use(1))
 			det_time = 50 // In case the cable_coil was removed and readded.
 			stage_change(CG_WIRED)
-			balloon_alert(user, "You rig the [initial(name)] assembly.")
+			user.balloon_alert(user, "You rig the [initial(name)] assembly.")
 			to_chat(user, span_notice("You rig the [initial(name)] assembly."))
 		else
 			to_chat(user, span_warning("You need one length of coil to wire the assembly!"))
@@ -114,7 +114,7 @@
 
 	else if(stage == CG_READY && I.tool_behaviour == TOOL_WIRECUTTER && !active)
 		stage_change(CG_WIRED)
-		balloon_alert(user, "You unlock the [initial(name)] assembly.")
+		user.balloon_alert(user, "You unlock the [initial(name)] assembly.")
 		to_chat(user, span_notice("You unlock the [initial(name)] assembly."))
 
 	else if(stage == CG_WIRED && I.tool_behaviour == TOOL_WRENCH)
@@ -126,7 +126,7 @@
 				var/reagent_list = pretty_string_from_reagent_list(O.reagents)
 				user.log_message("removed [O] ([reagent_list]) from [src]", LOG_GAME)
 			beakers = list()
-			balloon_alert(user, "You open the [initial(name)] assembly and remove the payload.")
+			user.balloon_alert(user, "You open the [initial(name)] assembly and remove the payload.")
 			to_chat(user, span_notice("You open the [initial(name)] assembly and remove the payload."))
 			return // First use of the wrench remove beakers, then use the wrench to remove the activation mechanism.
 		if(nadeassembly)
@@ -136,7 +136,7 @@
 		else // If "nadeassembly = null && stage == CG_WIRED", then it most have been cable_coil that was used.
 			new /obj/item/stack/cable_coil(get_turf(src),1)
 		stage_change(CG_EMPTY)
-		balloon_alert(user, "You remove the activation mechanism from the [initial(name)] assembly.")
+		user.balloon_alert(user, "You remove the activation mechanism from the [initial(name)] assembly.")
 		to_chat(user, span_notice("You remove the activation mechanism from the [initial(name)] assembly."))
 	else
 		return ..()

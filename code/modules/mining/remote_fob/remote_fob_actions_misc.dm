@@ -24,9 +24,11 @@
 	var/turf/build_area = get_area(build_target)
 
 	if(build_area.density)
+		owner.balloon_alert(owner, "No space to build anything here.")
 		to_chat(owner, "<span class='warning'>No space to build anything here.")
 		return FALSE
 	if(fobdrone.do_actions)
+		owner.balloon_alert(owner, "You are already building something.")
 		to_chat(owner, "<span class='warning'>You are already building something.")
 		return FALSE
 
@@ -46,6 +48,7 @@
 		return
 
 	if(console.metal_remaining < 4)
+		owner.balloon_alert(owner, "Out of material.")
 		to_chat(owner, span_warning("Out of material."))
 		return
 
@@ -55,10 +58,12 @@
 		if(!thing.density) //not dense, move on
 			continue
 		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
+			owner.balloon_alert(owner, "No space here for a barricade.")
 			to_chat(owner, span_warning("No space here for a barricade."))
 			return
 		if(thing.dir != fobdrone.dir)
 			continue
+		owner.balloon_alert(owner, "No space here for a barricade.")
 		to_chat(owner, span_warning("No space here for a barricade."))
 		return
 	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
@@ -68,13 +73,16 @@
 	cade.setDir(fobdrone.dir)
 	if(console.do_wiring)
 		if(console.metal_remaining <= 1)
+			owner.balloon_alert(owner, "Not enough material for razor-wiring.")
 			to_chat(owner, span_warning("Not enough material for razor-wiring."))
 			return
 
 		console.metal_remaining -=2
 		cade.wire()
+		owner.balloon_alert(owner, "Barricade placed with wiring. [console.metal_remaining] metal sheets remaining.")
 		to_chat(owner, span_notice("Barricade placed with wiring. [console.metal_remaining] metal sheets remaining."))
 		return
+	owner.balloon_alert(owner, "Barricade placed. [console.metal_remaining] metal sheets remaining.")
 	to_chat(owner, span_notice("Barricade placed. [console.metal_remaining] metal sheets remaining."))
 
 /datum/action/innate/remote_fob/plast_cade
@@ -87,6 +95,7 @@
 		return
 
 	if(console.plasteel_remaining < 5)
+		owner.balloon_alert(owner, "Out of material.")
 		to_chat(owner, span_warning("Out of material."))
 		return
 
@@ -96,10 +105,12 @@
 		if(!thing.density) //not dense, move on
 			continue
 		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
+			owner.balloon_alert(owner, "No space here for a barricade.")
 			to_chat(owner, span_warning("No space here for a barricade."))
 			return
 		if(thing.dir != fobdrone.dir)
 			continue
+		owner.balloon_alert(owner, "No space here for a barricade.")
 		to_chat(owner, span_warning("No space here for a barricade."))
 		return
 	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
@@ -112,6 +123,7 @@
 	cade.update_icon()
 	if(console.do_wiring)
 		if(console.metal_remaining <= 1)
+			owner.balloon_alert(owner, "Not enough material for razor-wiring.")
 			to_chat(owner, span_warning("Not enough material for razor-wiring."))
 			return
 
@@ -130,6 +142,7 @@
 	if(.)
 		return
 	console.do_wiring = !console.do_wiring
+	owner.balloon_alert(owner, "Will now [console.do_wiring ? "do wiring" : "stop wiring"].")
 	to_chat(owner, span_notice("Will now [console.do_wiring ? "do wiring" : "stop wiring"]."))
 
 /datum/action/innate/remote_fob/sentry
@@ -150,6 +163,7 @@
 			if(istype(thing, cade))
 				break
 			else
+				owner.balloon_alert(owner, "No space here for a sentry.")
 				to_chat(owner, span_warning("No space here for a sentry."))
 				return
 	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
@@ -167,9 +181,11 @@
 	if(.)
 		return
 	if(console.metal_remaining <= 0)
+		owner.balloon_alert(owner, "Nothing to eject.")
 		to_chat(owner, span_warning("Nothing to eject."))
 		return
 	console.eject_mat(EJECT_METAL)
+	owner.balloon_alert(owner, "Metal sheets ejected.")
 	to_chat(owner, span_notice("Metal sheets ejected."))
 
 
@@ -182,7 +198,9 @@
 	if(.)
 		return
 	if(console.plasteel_remaining <= 0)
+		owner.balloon_alert(owner, "Nothing to eject.")
 		to_chat(owner, span_warning("Nothing to eject."))
 		return
 	console.eject_mat(EJECT_PLASTEEL)
+	owner.balloon_alert(owner, "Plasteel sheets ejected.")
 	to_chat(owner, span_notice("Plasteel sheets ejected."))

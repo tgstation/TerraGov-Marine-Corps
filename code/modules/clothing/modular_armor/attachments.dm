@@ -260,6 +260,7 @@
 
 	var/obj/item/facepaint/paint = I
 	if(paint.uses < 1)
+		user.balloon_alert(user, "\the [paint] is out of color!")
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return
 

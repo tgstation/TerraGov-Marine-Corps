@@ -39,12 +39,12 @@
 
 	var/list/xeno_rewards = xeno_tier_rewards[target_xeno.tier]
 	if(!xeno_rewards)
-		balloon_alert(user, "You can't research this.")
+		user.balloon_alert(user, "You can't research this.")
 		to_chat(user, span_notice("You can't research this."))
 		return ..()
 
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
-		balloon_alert(user, "[target_xeno] has already been probed.")
+		user.balloon_alert(user, "[target_xeno] has already been probed.")
 		to_chat(user, span_notice("[target_xeno] has already been probed."))
 		return ..()
 
@@ -60,7 +60,7 @@
 		return ..()
 
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
-		balloon_alert(user, "[target_xeno] has already been probed.")
+		user.balloon_alert(user, "[target_xeno] has already been probed.")
 		to_chat(user, span_notice("[target_xeno] has already been probed."))
 		return ..()
 

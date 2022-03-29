@@ -244,7 +244,7 @@
 			return
 
 		balloon_alert_to_viewers("[user] takes position to throw [G] [ladder_dir_name] [src].", ignored_mobs = user)
-		balloon_alert(user, "You take position to throw [G] [ladder_dir_name] [src].")
+		user.balloon_alert(user, "You take position to throw [G] [ladder_dir_name] [src].")
 		user.visible_message(span_warning("[user] takes position to throw [G] [ladder_dir_name] [src]."),
 		span_warning("You take position to throw [G] [ladder_dir_name] [src]."))
 
@@ -252,7 +252,7 @@
 			return
 
 		balloon_alert_to_viewers("[user] throws [G] [ladder_dir_name] [src]!", ignored_mobs = user)
-		balloon_alert(user, "You throw [G] [ladder_dir_name] [src]")
+		user.balloon_alert(user, "You throw [G] [ladder_dir_name] [src]")
 		user.visible_message(span_warning("[user] throws [G] [ladder_dir_name] [src]!"),
 		span_warning("You throw [G] [ladder_dir_name] [src]"))
 		user.drop_held_item()
@@ -294,7 +294,7 @@
 			return
 
 		balloon_alert_to_viewers("[user] throws [F] [ladder_dir_name] [src]!", ignored_mobs = user)
-		balloon_alert(user, "You throw [F] [ladder_dir_name] [src]")
+		user.balloon_alert(user, "You throw [F] [ladder_dir_name] [src]")
 		user.visible_message(span_warning("[user] throws [F] [ladder_dir_name] [src]!"),
 		span_warning("You throw [F] [ladder_dir_name] [src]"))
 		user.drop_held_item()

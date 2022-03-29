@@ -72,7 +72,7 @@
 	else if(isscrewdriver(I))
 		open = !open
 		balloon_alert_to_viewers(" [user] [open ? "opens" : "closes"] the hatch on the [src].", ignored_mobs = user) 
-		balloon_alert(" You [open ? "open" : "close"] the hatch on the [src].")
+		user.balloon_alert(user, " You [open ? "open" : "close"] the hatch on the [src].")
 		user.visible_message(span_notice(" [user] [open ? "opens" : "closes"] the hatch on the [src]."), span_notice(" You [open ? "open" : "close"] the hatch on the [src]."))
 		update_icon()
 

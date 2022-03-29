@@ -65,6 +65,7 @@
 	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, .proc/update_charging)
 	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
 	if(verbose)
+		charger.balloon_alert(charger, "We will charge when moving, now.")
 		to_chat(charger, span_xenonotice("We will charge when moving, now."))
 
 
@@ -74,6 +75,7 @@
 		do_stop_momentum()
 	UnregisterSignal(charger, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE))
 	if(verbose)
+		charger.balloon_alert(charger, "We will no longer charge when moving.")
 		to_chat(charger, span_xenonotice("We will no longer charge when moving."))
 	valid_steps_taken = 0
 	charge_ability_on = FALSE
@@ -353,13 +355,16 @@
 		if(CHARGE_BULL)
 			charge_type = CHARGE_BULL
 			crush_sound = initial(crush_sound)
+			owner.balloon_alert(owner, "Now charging normally.")
 			to_chat(owner, span_notice("Now charging normally."))
 		if(CHARGE_BULL_HEADBUTT)
 			charge_type = CHARGE_BULL_HEADBUTT
+			owner.balloon_alert(owner, "Now headbutting on impact.")
 			to_chat(owner, span_notice("Now headbutting on impact."))
 		if(CHARGE_BULL_GORE)
 			charge_type = CHARGE_BULL_GORE
 			crush_sound = "alien_tail_attack"
+			owner.balloon_alert(owner, "Now goring on impact.")
 			to_chat(owner, span_notice("Now goring on impact."))
 
 /datum/action/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()

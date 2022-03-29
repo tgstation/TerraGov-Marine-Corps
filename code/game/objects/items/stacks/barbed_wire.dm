@@ -42,7 +42,7 @@
 	use(1)
 
 	var/obj/structure/razorwire/M = new /obj/item/stack/razorwire(user.loc, 1)
-	balloon_alert(user, "You combine the rods and barbed wire into [M]!")
+	user.balloon_alert(user, "You combine the rods and barbed wire into [M]!")
 	to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
 
 /obj/item/stack/razorwire
@@ -77,26 +77,26 @@
 
 	var/turf/mystery_turf = get_step(user.loc,user.dir)
 	if(!isopenturf(mystery_turf))
-		balloon_alert(user, "We can't build here!")
+		user.balloon_alert(user, "We can't build here!")
 		to_chat(user, span_warning("We can't build here!"))
 		return
 
 	var/turf/open/target = mystery_turf
 
 	if(check_blocked_turf(target)) //check if blocked
-		balloon_alert(user, "There is insufficient room to deploy [src]!")
+		user.balloon_alert(user, "There is insufficient room to deploy [src]!")
 		to_chat(user, span_warning("There is insufficient room to deploy [src]!"))
 		return
 
 	if(!target.allow_construction) //We shouldn't be building here.
-		balloon_alert(user, "We can't build here!")
+		user.balloon_alert(user, "We can't build here!")
 		to_chat(user, span_warning("We can't build here!"))
 		return
 
 	balloon_alert_to_viewers("[user] starts assembling [src].", ignored_mobs = user)
 	user.visible_message(span_notice("[user] starts assembling [src]."),
 	span_notice("You start assembling [src]."))
-	balloon_alert(user, "You start assembling [src].")
+	user.balloon_alert(user, "You start assembling [src].")
 	var/delay_assembly = SKILL_TASK_EASY
 	if(user.skills.getRating("engineer")) //Higher skill lowers the delay.
 		delay_assembly -= 0.5 SECONDS + user.skills.getRating("engineer") * 2

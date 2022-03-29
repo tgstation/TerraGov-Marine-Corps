@@ -214,6 +214,7 @@
 			absorbing_damage *= (100 - soft_armor.getRating(damage_type)) * 0.01 //Now apply soft armor
 			if(absorbing_damage <= 0)
 				if(!silent)
+					affected.balloon_alert(affected, "\The [parent_item.name] [. ? "softens" : "soaks"] the damage!")
 					to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
 				return
 			if(transfer_damage_cb)
@@ -240,6 +241,7 @@
 		parent_item.take_damage(incoming_damage, armour_penetration = 100) //Armor has already been accounted for, this should destroy the parent and thus the component.
 		return
 	if(!silent)
+		affected.balloon_alert(affected, "\The [parent_item.name] [. ? "softens" : "soaks"] the damage!")
 		to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
 	parent_item.take_damage(incoming_damage, armour_penetration = 100)
 
@@ -295,11 +297,13 @@
 	if(absorbing_damage <= 0)
 		if(!.)
 			if(!silent)
+				affected.balloon_alert(affected, "\The [parent_item.name] soaks the damage!")
 				to_chat(affected, span_avoidharm("\The [parent_item.name] soaks the damage!"))
 			return
 	if(transfer_damage_cb)
 		return transfer_damage_cb.Invoke(absorbing_damage, ., silent)
 	else if(!silent)
+		affected.balloon_alert(affected, "\The [parent_item.name] softens the damage!")
 		to_chat(affected, span_avoidharm("\The [parent_item.name] softens the damage!"))
 
 
@@ -309,6 +313,7 @@
 	if(absorbing_damage >= shield_integrity)
 		. += absorbing_damage - shield_integrity
 	if(!silent)
+		affected.balloon_alert(affected, "\The [parent_item.name] [. ? "softens" : "soaks"] the damage!")
 		to_chat(affected, span_avoidharm("\The [parent_item.name] [. ? "softens" : "soaks"] the damage!"))
 	damage_overhealth(absorbing_damage)
 

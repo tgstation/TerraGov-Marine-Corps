@@ -139,13 +139,13 @@ Buildable meters
 	var/flags = initial(fakeA.pipe_flags)
 	for(var/obj/machinery/atmospherics/M in loc)
 		if((M.pipe_flags & flags & PIPING_ONE_PER_TURF))	//Only one dense/requires density object per tile, eg connectors/cryo/heater/coolers.
-			balloon_alert(user, "Something is hogging the tile!")
+			user.balloon_alert(user, "Something is hogging the tile!")
 			to_chat(user, span_warning("Something is hogging the tile!"))
 			return TRUE
 		if((M.piping_layer != piping_layer) && !((M.pipe_flags | flags) & PIPING_ALL_LAYER)) //don't continue if either pipe goes across all layers
 			continue
 		if(M.GetInitDirections() & SSair.get_init_dirs(pipe_type, fixed_dir()))	// matches at least one direction on either type of pipe
-			balloon_alert(user, "There is already a pipe at that location!")
+			user.balloon_alert(user, "There is already a pipe at that location!")
 			to_chat(user, span_warning("There is already a pipe at that location!"))
 			return TRUE
 	// no conflicts found
@@ -203,12 +203,12 @@ Buildable meters
 			pipe = P
 			break
 	if(!pipe)
-		balloon_alert(user, "You need to fasten it to a pipe!")
+		user.balloon_alert(user, "You need to fasten it to a pipe!")
 		to_chat(user, span_warning("You need to fasten it to a pipe!"))
 		return TRUE
 	new /obj/machinery/meter(loc, piping_layer)
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	balloon_alert(user, "You fasten the meter to the pipe.")
+	user.balloon_alert(user, "You fasten the meter to the pipe.")
 	to_chat(user, span_notice("You fasten the meter to the pipe."))
 	qdel(src)
 
@@ -223,7 +223,7 @@ Buildable meters
 
 	new /obj/machinery/meter/turf(loc, piping_layer)
 	playsound(src.loc, 'sound/items/screwdriver.ogg', 25, 1)
-	balloon_alert(user, "You fasten the meter to the [loc.name].")
+	user.balloon_alert(user, "You fasten the meter to the [loc.name].")
 	to_chat(user, span_notice("You fasten the meter to the [loc.name]."))
 	qdel(src)
 

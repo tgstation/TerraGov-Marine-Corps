@@ -96,8 +96,10 @@
 		if(!A.secured && !secured)
 			holder = new /obj/item/assembly_holder(get_turf(src))
 			holder.assemble(src, A, user)
+			user.balloon_alert(user, "You attach and secure \the [A] to \the [src]!")
 			to_chat(user, span_notice("You attach and secure \the [A] to \the [src]!"))
 		else
+			user.balloon_alert(user, "Both devices must be in attachable mode to be attached together.")
 			to_chat(user, span_warning("Both devices must be in attachable mode to be attached together."))
 
 
@@ -105,8 +107,10 @@
 	if(..())
 		return TRUE
 	if(toggle_secure())
+		user.balloon_alert(user, "\The [src] is ready!")
 		to_chat(user, span_notice("\The [src] is ready!"))
 	else
+		user.balloon_alert(user, "\The [src] can now be attached!")
 		to_chat(user, span_notice("\The [src] can now be attached!"))
 	return TRUE
 

@@ -35,7 +35,7 @@
 /obj/structure/cocoon/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(anchored && victim && ishuman(user))
-		balloon_alert(user, "There seems to be someone inside it. You think you can open it with a sharp object.")
+		user.balloon_alert(user, "There seems to be someone inside it. You think you can open it with a sharp object.")
 		to_chat(user, span_notice("There seems to be someone inside it. You think you can open it with a sharp object."))
 
 /obj/structure/cocoon/process()

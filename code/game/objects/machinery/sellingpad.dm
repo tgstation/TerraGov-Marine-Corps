@@ -66,11 +66,11 @@
 	anchored = !anchored
 	if(anchored)
 		to_chat(user, "You bolt the [src] to the ground, activating it.")
-		balloon_alert(user, "You bolt the [src] to the ground, activating it.")
+		user.balloon_alert(user, "You bolt the [src] to the ground, activating it.")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 		icon_state = "broadcaster"
 	else
 		to_chat(user, "You unbolt the [src] from the ground, deactivating it.")
-		balloon_alert(user, "You unbolt the [src] from the ground, deactivating it.")
+		user.balloon_alert(user, "You unbolt the [src] from the ground, deactivating it.")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 		icon_state = "broadcaster_off"

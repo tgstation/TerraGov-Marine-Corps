@@ -31,18 +31,22 @@
 				return TRUE
 
 			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
+				H.balloon_alert(H, "Can't help this one. Body has gone cold.")
 				to_chat(H, span_boldnotice("Can't help this one. Body has gone cold."))
 				return FALSE
 
 			if(species?.species_flags & ROBOTIC_LIMBS)
+				H.balloon_alert(H, "You cant help this one, [p_they()] have no lungs!")
 				to_chat(H, span_boldnotice("You cant help this one, [p_they()] have no lungs!"))
 				return FALSE
 
 			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
+				H.balloon_alert(H, "Remove [p_their()] mask!")
 				to_chat(H, span_boldnotice("Remove [p_their()] mask!"))
 				return FALSE
 
 			if((H.head && (H.head.flags_inventory & COVERMOUTH)) || (H.wear_mask && (H.wear_mask.flags_inventory & COVERMOUTH)))
+				H.balloon_alert(H, "Remove your mask!")
 				to_chat(H, span_boldnotice("Remove your mask!"))
 				return FALSE
 
@@ -50,6 +54,7 @@
 			if(H.do_actions)
 				return TRUE
 
+			balloon_alert_to_viewers("[H] is trying perform CPR on [src]!", ignored_mobs = H)
 			H.visible_message(span_danger("[H] is trying perform CPR on [src]!"), null, null, 4)
 
 			if(!do_mob(H, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
@@ -59,6 +64,8 @@
 				var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 				adjustOxyLoss(-suff)
 				updatehealth()
+				balloon_alert_to_viewers(" [H] performs CPR on [src]!", ignored_mobs = H)
+				balloon_alert(src, "You feel a breath of fresh air enter your lungs. It feels good.")
 				visible_message(span_warning(" [H] performs CPR on [src]!"),
 					span_boldnotice("You feel a breath of fresh air enter your lungs. It feels good."),
 					vision_distance = 3)

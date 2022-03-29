@@ -47,7 +47,7 @@
 			return
 		I.forceMove(src)
 		scan = I
-		balloon_alert(user, "You insert [I].")
+		user.balloon_alert(user, "You insert [I].")
 		to_chat(user, "You insert [I].")
 
 

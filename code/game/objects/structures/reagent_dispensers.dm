@@ -108,7 +108,7 @@
 
 
 /obj/structure/reagent_dispensers/fueltank/wrench_act(mob/living/user, obj/item/I)
-	balloon_alert(user, "You wrench [src]'s faucet [modded ? "closed" : "open"]")
+	user.balloon_alert(user, "You wrench [src]'s faucet [modded ? "closed" : "open"]")
 	balloon_alert_to_viewers("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", ignored_mobs = user)
 	user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 	"You wrench [src]'s faucet [modded ? "closed" : "open"]")
@@ -123,7 +123,7 @@
 	var/obj/item/tool/weldingtool/W = I
 	if(!W.welding)
 		if(W.reagents.has_reagent(/datum/reagent/fuel, W.max_fuel))
-			balloon_alert(user, "Your [W.name] is already full!")
+			user.balloon_alert(user, "Your [W.name] is already full!")
 			to_chat(user, span_warning("Your [W.name] is already full!"))
 			return
 		reagents.trans_to(W, W.max_fuel)
@@ -144,7 +144,7 @@
 	if(!istype(I, /obj/item/assembly_holder))
 		return
 	if(rig)
-		balloon_alert(user, "There is another device in the way.")
+		user.balloon_alert(user, "There is another device in the way.")
 		to_chat(user, span_warning("There is another device in the way."))
 		return
 

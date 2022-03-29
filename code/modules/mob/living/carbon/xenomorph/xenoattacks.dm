@@ -76,6 +76,8 @@
 	if(src == X)
 		return TRUE
 	if(isxenolarva(X)) //Larvas can't eat people
+		balloon_alert_to_viewers("[X] nudges its head against [src].", ignored_mobs = X)
+		X.balloon_alert(X, "We nudge our head against [src].")
 		X.visible_message(span_danger("[X] nudges its head against \the [src]."), \
 		span_danger("We nudge our head against \the [src]."))
 		return FALSE

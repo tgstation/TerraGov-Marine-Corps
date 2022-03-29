@@ -94,7 +94,7 @@
 	new /obj/effect/decal/cleanable/crayon(target, colour, shadeColour, drawtype)
 	uses--
 	if(uses <= 0)
-		balloon_alert(user, "You used up your crayon!")
+		user.balloon_alert(user, "You used up your crayon!")
 		to_chat(user, span_warning("You used up your crayon!"))
 		qdel(src)
 
@@ -106,7 +106,7 @@
 	"You took a bit of \the [src] and swallowed it.")
 	uses -= 5
 	if(uses <= 0)
-		balloon_alert(user, "You ate the whole crayon!")
+		user.balloon_alert(user, "You ate the whole crayon!")
 		to_chat(user, span_warning("You ate the whole crayon!"))
 		qdel(src)
 

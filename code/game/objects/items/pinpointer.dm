@@ -16,7 +16,7 @@
 
 /obj/item/pinpointer/proc/set_target(mob/living/user)
 	if(!length(tracked_list))
-		balloon_alert(user, "No traceable signals found!")
+		user.balloon_alert(user, "No traceable signals found!")
 		to_chat(user, span_warning("No traceable signals found!"))
 		return
 	target = tgui_input_list(user, "Select the item you wish to track.", "Pinpointer", tracked_list)
@@ -42,7 +42,7 @@
 		return
 	active = TRUE
 	START_PROCESSING(SSobj, src)
-	balloon_alert(user, "You activate the pinpointer")
+	user.balloon_alert(user, "You activate the pinpointer")
 	to_chat(user, span_notice("You activate the pinpointer"))
 
 
@@ -51,7 +51,7 @@
 	target = null
 	STOP_PROCESSING(SSobj, src)
 	icon_state = "pinoff"
-	balloon_alert(user, "You deactivate the pinpointer")
+	user.balloon_alert(user, "You deactivate the pinpointer")
 	to_chat(user, span_notice("You deactivate the pinpointer"))
 
 

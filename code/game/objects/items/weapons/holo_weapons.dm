@@ -29,14 +29,14 @@
 		icon_state = "sword[sword_color]"
 		w_class = WEIGHT_CLASS_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
-		balloon_alert(user, "The [src] flares and hums with energy.")
+		user.balloon_alert(user, "The [src] flares and hums with energy.")
 		to_chat(user, span_notice("[src] is now active."))
 	else
 		force = 3
 		icon_state = "sword0"
 		w_class = WEIGHT_CLASS_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
-		balloon_alert(user, "The [src] deactivates with a whoosh, it can now be concealed.")
+		user.balloon_alert(user, "The [src] deactivates with a whoosh, it can now be concealed.")
 		to_chat(user, span_notice("[src] can now be concealed."))
 
 	if(istype(user,/mob/living/carbon/human))

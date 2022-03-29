@@ -288,7 +288,7 @@
 		var/mob/living/M = G.grabbed_thing
 		if(user.a_intent == INTENT_HARM)
 			if(user.grab_state <= GRAB_AGGRESSIVE)
-				balloon_alert(user, "You need a better grip to do that!")
+				user.balloon_alert(user, "You need a better grip to do that!")
 				to_chat(user, span_warning("You need a better grip to do that!"))
 				return
 
@@ -542,7 +542,7 @@
 
 	if(table_status == TABLE_STATUS_FIRM)
 		balloon_alert_to_viewers("[usr] starts weakening [src].", ignored_mobs = usr)
-		balloon_alert(user, "You start weakening [src].")
+		user.balloon_alert(user, "You start weakening [src].")
 		user.visible_message(span_notice("[user] starts weakening [src]."),
 		span_notice("You start weakening [src]."))
 		playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
@@ -550,14 +550,14 @@
 			return TRUE
 
 		balloon_alert_to_viewers("[user] weakens [src].", ignored_mobs = user)
-		balloon_alert(user, "You weaken [src].")
+		user.balloon_alert(user, "You weaken [src].")
 		user.visible_message(span_notice("[user] weakens [src]."),
 			span_notice("You weaken [src]"))
 		table_status = TABLE_STATUS_WEAKENED
 		return TRUE
 
 	balloon_alert_to_viewers("[usr] starts welding [src] back together.", ignored_mobs = usr)
-	balloon_alert(user, "You start welding [src] back together.")
+	user.balloon_alert(user, "You start welding [src] back together.")
 	user.visible_message(span_notice("[user] starts welding [src] back together."),
 		span_notice("You start welding [src] back together."))
 	playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
@@ -565,7 +565,7 @@
 		return TRUE
 
 	balloon_alert_to_viewers("[usr] welds [src] back together.", ignored_mobs = usr)
-	balloon_alert(user, "You weld [src] back together.")
+	user.balloon_alert(user, "You weld [src] back together.")
 	user.visible_message(span_notice("[user] welds [src] back together."),
 		span_notice("You weld [src] back together."))
 	table_status = TABLE_STATUS_FIRM

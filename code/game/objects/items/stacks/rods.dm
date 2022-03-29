@@ -24,7 +24,7 @@
 		use(4)
 		B.use(1)
 		var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
-		balloon_alert(user, "You combine the rods and barbed wire into [M]!")
+		user.balloon_alert(user, "You combine the rods and barbed wire into [M]!")
 		to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
 
 	if (iswelder(W))

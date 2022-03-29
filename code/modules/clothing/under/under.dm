@@ -145,15 +145,18 @@
 	if (user.incapacitated(TRUE))
 		return
 	if(has_sensor >= 2)
+		user.balloon_alert(user, "The sensors in [src] can't be modified.")
 		to_chat(user, "The sensors in [src] can't be modified.")
 		return FALSE
 	if(has_sensor <= 0)
+		user.balloon_alert(user, "[src] does not have any sensors.")
 		to_chat(user, "[src] does not have any sensors.")
 		return FALSE
 
 	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
 	var/switchMode = tgui_input_list(user, "Select a sensor mode:", "Suit Sensor Mode", modes)
 	if(get_dist(user, src) > 1)
+		user.balloon_alert(user, "You have moved too far away.")
 		to_chat(user, "You have moved too far away.")
 		return
 	sensor_mode = modes.Find(switchMode) - 1
@@ -166,22 +169,30 @@
 	if (loc == user)
 		switch(sensor_mode)
 			if(0)
+				user.balloon_alert(user, "You disable your suit's remote sensing equipment.")
 				to_chat(user, "You disable your suit's remote sensing equipment.")
 			if(1)
+				user.balloon_alert(user, "Your suit will now report whether you are live or dead.")
 				to_chat(user, "Your suit will now report whether you are live or dead.")
 			if(2)
+				user.balloon_alert(user, "Your suit will now report your vital lifesigns.")
 				to_chat(user, "Your suit will now report your vital lifesigns.")
 			if(3)
+				user.balloon_alert(user, "Your suit will now report your vital lifesigns as well as your coordinate position.")
 				to_chat(user, "Your suit will now report your vital lifesigns as well as your coordinate position.")
 	else if (ismob(loc))
 		switch(sensor_mode)
 			if(0)
+				balloon_alert_to_viewers("[user] disables [loc]'s remote sensing equipment.", ignored_mobs = user)
 				visible_message(span_warning("[user] disables [loc]'s remote sensing equipment."), null, null, 1)
 			if(1)
+				balloon_alert_to_viewers("[user] turns [loc]'s remote sensors to binary.", ignored_mobs = user)
 				visible_message("[user] turns [loc]'s remote sensors to binary.", null, null, 1)
 			if(2)
+				balloon_alert_to_viewers("[user] sets [loc]'s sensors to track vitals.", ignored_mobs = user)
 				visible_message("[user] sets [loc]'s sensors to track vitals.", null, null, 1)
 			if(3)
+				balloon_alert_to_viewers("[user] sets [loc]'s sensors to maximum.", ignored_mobs = user)
 				visible_message("[user] sets [loc]'s sensors to maximum.", null, null, 1)
 
 /obj/item/clothing/under/verb/toggle()
@@ -200,6 +211,7 @@
 	if(usr.stat)
 		return
 	if(!length(adjustment_variants))
+		balloon_alert(usr, "You cannot roll down the uniform!")
 		to_chat(usr, span_warning("You cannot roll down the uniform!"))
 		return
 	var/variant = null

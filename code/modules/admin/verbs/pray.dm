@@ -36,8 +36,10 @@
 				html = mentor_msg)
 
 	if(liaison)
+		usr.balloon_alert_to_viewers("Your corporate overlords at Nanotrasen have received your message.")
 		to_chat(usr, "Your corporate overlords at Nanotrasen have received your message.")
 	else
+		usr.balloon_alert_to_viewers("Your prayers have been received by the gods.")
 		to_chat(usr, "Your prayers have been received by the gods.")
 
 	log_prayer(msg)

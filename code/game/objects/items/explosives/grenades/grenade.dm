@@ -35,7 +35,7 @@
 		return
 
 	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		balloon_alert(user, "Your programming prevents you from operating this device!")
+		user.balloon_alert(user, "Your programming prevents you from operating this device!")
 		to_chat(user, span_warning("Your programming prevents you from operating this device!"))
 		return
 

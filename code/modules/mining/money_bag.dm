@@ -57,6 +57,7 @@
 
 	if(istype(I, /obj/item/coin))
 		var/obj/item/coin/C = I
+		user.balloon_alert(user, "You add the [C] into the bag.")
 		to_chat(user, span_notice("You add the [C] into the bag."))
 		user.drop_held_item()
 		C.forceMove(src)
@@ -65,6 +66,7 @@
 		var/obj/item/moneybag/C = I
 		for(var/obj/O in C.contents)
 			O.forceMove(src)
+		user.balloon_alert(user, "You empty the [C] into the bag.")
 		to_chat(user, span_notice("You empty the [C] into the bag."))
 
 

@@ -86,10 +86,10 @@
 						return
 					ST.slayer -= 1
 					ST.update_icon(1,0)
-					balloon_alert(user, "You dig up some snow.")
+					user.balloon_alert(user, "You dig up some snow.")
 					to_chat(user, span_notice("You dig up some snow."))
 				else
-					balloon_alert(user, "You dig up some dirt.")
+					user.balloon_alert(user, "You dig up some dirt.")
 					to_chat(user, span_notice("You dig up some dirt."))
 				dirt_amt = transf_amt
 				dirt_type = turfdirt
@@ -97,7 +97,7 @@
 
 		else
 			var/turf/T = target
-			balloon_alert(user, "you dump the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]!")
+			user.balloon_alert(user, "you dump the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]!")
 			to_chat(user, span_notice("you dump the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]!"))
 			playsound(user.loc, "rustle", 30, 1, 6)
 			if(dirt_type == DIRT_TYPE_SNOW)

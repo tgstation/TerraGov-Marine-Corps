@@ -21,6 +21,7 @@
 
 	var/mob/living/carbon/human/H = M
 	if(!H.w_uniform)
+		H.balloon_alert(H, "You need to be wearing somethng under this to be able to equip it.")
 		to_chat(H, span_warning("You need to be wearing somethng under this to be able to equip it."))
 		return FALSE
 
@@ -289,10 +290,12 @@
 
 	if(!holstered)
 		if(!istype(usr.get_active_held_item(), /obj/item/weapon/gun))
+			balloon_alert(usr, "You need your gun equiped to holster it.")
 			to_chat(usr, span_notice("You need your gun equiped to holster it."))
 			return
 		var/obj/item/weapon/gun/W = usr.get_active_held_item()
 		if (W.w_class > 3)
+			balloon_alert(usr, "This gun won't fit in \the belt!")
 			to_chat(usr, span_warning("This gun won't fit in \the belt!"))
 			return
 		holstered = usr.get_active_held_item()
@@ -301,6 +304,7 @@
 		usr.visible_message(span_notice(" \The [usr] holsters \the [holstered]."), "You holster \the [holstered].")
 	else
 		if(istype(usr.get_active_held_item(),/obj) && istype(usr.get_inactive_held_item(),/obj))
+			balloon_alert(usr, "You need an empty hand to draw the gun!")
 			to_chat(usr, span_warning("You need an empty hand to draw the gun!"))
 		else
 			if(usr.a_intent == INTENT_HARM)

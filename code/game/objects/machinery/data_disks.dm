@@ -14,7 +14,7 @@
 
 /obj/item/disk/data/attack_self(mob/user as mob)
 	src.read_only = !src.read_only
-	balloon_alert(user, "You flip the write-protect tab to [src.read_only ? "protected" : "unprotected"].")
+	user.balloon_alert(user, "You flip the write-protect tab to [src.read_only ? "protected" : "unprotected"].")
 	to_chat(user, "You flip the write-protect tab to [src.read_only ? "protected" : "unprotected"].")
 
 /obj/item/disk/data/examine(mob/user)

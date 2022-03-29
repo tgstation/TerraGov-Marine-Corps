@@ -56,13 +56,19 @@
 /mob/living/carbon/xenomorph/crusher/proc/carry_xeno(mob/living/carbon/target, forced = FALSE)
 	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
 		if(forced)
+			balloon_alert(src, "You cannot mount [src]")
 			to_chat(target, span_xenowarning("You cannot mount [src]"))
 			return
+		balloon_alert(src, "[target] cannot mount you!")
 		to_chat(src, span_xenowarning("[target] cannot mount you!"))
 		return
+	
+	balloon_alert_to_viewers("[forced ? "[target] starts to mount on [src]" : "[src] starts hoisting [target] onto [p_their()] back..."]", ignored_mobs = src)
+	balloon_alert(src, "[forced ? "[target] starts to mount on your back" : "You start to lift [target] onto your back..."]")
 	visible_message(span_notice("[forced ? "[target] starts to mount on [src]" : "[src] starts hoisting [target] onto [p_their()] back..."]"),
 	span_notice("[forced ? "[target] starts to mount on your back" : "You start to lift [target] onto your back..."]"))
 	if(!do_mob(forced ? target : src, forced ? src : target, 5 SECONDS, target_display = BUSY_ICON_HOSTILE))
+		balloon_alert_to_viewers("[forced ? "[target] fails to mount on [src]" : "[src] fails to carry [target]!"]", ignored_mobs = src)
 		visible_message(span_warning("[forced ? "[target] fails to mount on [src]" : "[src] fails to carry [target]!"]"))
 		return
 	//Second check to make sure they're still valid to be carried

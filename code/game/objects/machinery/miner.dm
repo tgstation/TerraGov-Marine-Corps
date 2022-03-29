@@ -80,13 +80,13 @@
 		balloon_alert_to_viewers("[user] fumbles around figuring out how to install the module on [src].", ignored_mobs = user)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to install the module on [src]."),
 		span_notice("You fumble around figuring out how to install the module on [src]."))
-		balloon_alert(user, "You fumble around figuring out how to install the module on [src].")
+		user.balloon_alert(user, "You fumble around figuring out how to install the module on [src].")
 		var/fumbling_time = 15 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	balloon_alert_to_viewers("[user] begins attaching a module to [src]'s sockets.", ignored_mobs = user)
 	user.visible_message(span_notice("[user] begins attaching a module to [src]'s sockets."))
-	balloon_alert(user, "You begin installing the [upgrade] on the miner.")
+	user.balloon_alert(user, "You begin installing the [upgrade] on the miner.")
 	to_chat(user, span_info("You begin installing the [upgrade] on the miner."))
 	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
@@ -128,7 +128,7 @@
 			balloon_alert(user, "You need more welding fuel to complete this task!")
 			to_chat(user, span_info("You need more welding fuel to complete this task!"))
 			return FALSE
-		balloon_alert(user, "You begin uninstalling the [miner_upgrade_type] from the miner!")
+		user.balloon_alert(user, "You begin uninstalling the [miner_upgrade_type] from the miner!")
 		to_chat(user, span_info("You begin uninstalling the [miner_upgrade_type] from the miner!"))
 		user.visible_message(span_notice("[user] begins dismantling the [miner_upgrade_type] from the miner."))
 		balloon_alert_to_viewers("[user] begins dismantling the [miner_upgrade_type] from the miner.", ignored_mobs = user)
@@ -165,7 +165,7 @@
 		balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s internals.", ignored_mobs = user)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s internals."),
 		span_notice("You fumble around figuring out [src]'s internals."))
-		balloon_alert(user, "You fumble around figuring out [src]'s internals.", ignored_mobs = user)
+		user.balloon_alert(user, "You fumble around figuring out [src]'s internals.", ignored_mobs = user)
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
 			return FALSE
@@ -173,7 +173,7 @@
 	balloon_alert_to_viewers("[user] starts welding [src]'s internal damage.", ignored_mobs = user)
 	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
 	span_notice("You start welding [src]'s internal damage."))
-	balloon_alert(user, "You start welding [src]'s internal damage.")
+	user.balloon_alert(user, "You start welding [src]'s internal damage.")
 	if(!do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
 		return FALSE
 	if(miner_status != MINER_DESTROYED )
@@ -184,7 +184,7 @@
 	balloon_alert_to_viewers("[user] welds [src]'s internal damage.", ignored_mobs = user)
 	user.visible_message(span_notice("[user] welds [src]'s internal damage."),
 	span_notice("You weld [src]'s internal damage."))
-	balloon_alert(user, "You weld [src]'s internal damage.")
+	user.balloon_alert(user, "You weld [src]'s internal damage.")
 	return TRUE
 
 /obj/machinery/miner/wirecutter_act(mob/living/user, obj/item/I)
@@ -194,7 +194,7 @@
 		balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s wiring.", ignored_mobs = user)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring."),
 		span_notice("You fumble around figuring out [src]'s wiring."))
-		balloon_alert(user, "You fumble around figuring out [src]'s wiring.")
+		user.balloon_alert(user, "You fumble around figuring out [src]'s wiring.")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
@@ -202,7 +202,7 @@
 	balloon_alert_to_viewers("[user] starts securing [src]'s wiring.", ignored_mobs = user)
 	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
 	span_notice("You start securing [src]'s wiring."))
-	balloon_alert(user, "You start securing [src]'s wiring.")
+	user.balloon_alert(user, "You start securing [src]'s wiring.")
 	if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_MEDIUM_DAMAGE)
@@ -213,7 +213,7 @@
 	balloon_alert_to_viewers("[user] secures [src]'s wiring.", ignored_mobs = user)
 	user.visible_message(span_notice("[user] secures [src]'s wiring."),
 	span_notice("You secure [src]'s wiring."))
-	balloon_alert(user, "You secure [src]'s wiring.")
+	user.balloon_alert(user, "You secure [src]'s wiring.")
 	return TRUE
 
 /obj/machinery/miner/wrench_act(mob/living/user, obj/item/I)
@@ -223,13 +223,13 @@
 		balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s tubing and plating.", ignored_mobs = user)
 		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s tubing and plating."),
 		span_notice("You fumble around figuring out [src]'s tubing and plating."))
-		balloon_alert(user, "You fumble around figuring out [src]'s tubing and plating.")
+		user.balloon_alert(user, "You fumble around figuring out [src]'s tubing and plating.")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	balloon_alert_to_viewers("[user] starts repairing [src]'s tubing and plating.", ignored_mobs = user)
-	balloon_alert(user, "You start repairing [src]'s tubing and plating.")
+	user.balloon_alert(user, "You start repairing [src]'s tubing and plating.")
 	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 	span_notice("You start repairing [src]'s tubing and plating."))
 	if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD))
@@ -242,7 +242,7 @@
 	balloon_alert_to_viewers("[user] repairs [src]'s tubing and plating.", ignored_mobs = user)
 	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
 	span_notice("You repair [src]'s tubing and plating."))
-	balloon_alert(user, "You repair [src]'s tubing and plating.")
+	user.balloon_alert(user, "You repair [src]'s tubing and plating.")
 	start_processing()
 	faction = user.faction
 	return TRUE
@@ -268,15 +268,15 @@
 
 /obj/machinery/miner/attack_hand(mob/living/user)
 	if(miner_status != MINER_RUNNING)
-		balloon_alert(user, "[src] is damaged!")
+		user.balloon_alert(user, "[src] is damaged!")
 		to_chat(user, span_warning("[src] is damaged!"))
 		return
 	if(miner_upgrade_type == MINER_AUTOMATED)
-		balloon_alert(user, "[src] is automated!")
+		user.balloon_alert(user, "[src] is automated!")
 		to_chat(user, span_warning("[src] is automated!"))
 		return
 	if(!stored_mineral)
-		balloon_alert(user, "You repair [src]'s tubing and plating.")
+		user.balloon_alert(user, "You repair [src]'s tubing and plating.")
 		to_chat(user, span_warning("You repair [src]'s tubing and plating."))
 		return
 
@@ -320,7 +320,7 @@
 	if(miner_upgrade_type == MINER_RESISTANT && !(X.mob_size == MOB_SIZE_BIG || X.xeno_caste.caste_flags & CASTE_IS_STRONG))
 		X.visible_message(span_notice("[X]'s claws bounce off of [src]'s reinforced plating."),
 		span_notice("We can't slash through [src]'s reinforced plating!"))
-		balloon_alert(X, "We can't slash through [src]'s reinforced plating!")
+		X.balloon_alert(X, "We can't slash through [src]'s reinforced plating!")
 		return
 	while(miner_status != MINER_DESTROYED)
 		if(!do_after(X, 3 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))

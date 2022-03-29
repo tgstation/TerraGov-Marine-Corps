@@ -39,6 +39,7 @@
 		else
 			reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, GAS_INHALE_REAGENT_TRANSFER_AMOUNT * S.strength)
 		if(prob(10 * S.strength)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
+			balloon_alert(src, "You feel your body going numb and lifeless!")
 			to_chat(src, span_danger("You feel your body going numb and lifeless!"))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_HEMODILE))
 		reagents.add_reagent(/datum/reagent/toxin/xeno_hemodile, GAS_INHALE_REAGENT_TRANSFER_AMOUNT * S.strength)
@@ -60,12 +61,15 @@
 		else
 			reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
 		if(prob(10 * S.strength * protection))
+			balloon_alert(src, "Your body goes numb where the gas touches it!")
 			to_chat(src, span_danger("Your body goes numb where the gas touches it!"))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_HEMODILE) && (internal || has_smoke_protection())) //either inhaled or this.
 		reagents.add_reagent(/datum/reagent/toxin/xeno_hemodile, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
 		if(prob(10 * S.strength * protection))
+			balloon_alert(src, "Your muscles' strength drains away where the gas makes contact!")
 			to_chat(src, span_danger("Your muscles' strength drains away where the gas makes contact!"))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_TRANSVITOX) && (internal || has_smoke_protection())) //either inhaled or this.
 		reagents.add_reagent(/datum/reagent/toxin/xeno_transvitox, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
 		if(prob(10 * S.strength * protection))
+			balloon_alert(src, "Your exposed wounds coagulate with a dark green tint!")
 			to_chat(src, span_danger("Your exposed wounds coagulate with a dark green tint!"))

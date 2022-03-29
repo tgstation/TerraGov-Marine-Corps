@@ -39,12 +39,14 @@
 	if(istype(I, /obj/item/stack/sheet/wood))
 		var/obj/item/stack/S = I
 		var/stackamount = S.get_amount()
+		user.balloon_alert(user, "You put [stackamount] [I]s in [src].")
 		to_chat(user, span_notice("You put [stackamount] [I]s in [src]."))
 		grill_fuel += (100 * stackamount)
 		S.use(stackamount)
 		update_icon()
 		return
 	if(I.resistance_flags & INDESTRUCTIBLE)
+		user.balloon_alert(user, "You don't feel it would be wise to grill [I]...")
 		to_chat(user, span_warning("You don't feel it would be wise to grill [I]..."))
 		return ..()
 	//else if(IS_EDIBLE(I))
@@ -52,15 +54,18 @@
 		if(I.flags_item & (ITEM_ABSTRACT|DELONDROP|NODROP))
 			return ..()
 		else if(HAS_TRAIT(I, TRAIT_FOOD_GRILLED))
+			user.balloon_alert(user, "[I] has already been grilled!")
 			to_chat(user, span_notice("[I] has already been grilled!"))
 			return
 		else if(grill_fuel <= 0)
+			user.balloon_alert(user, "There is not enough fuel!")
 			to_chat(user, span_warning("There is not enough fuel!"))
 			return
 		else if(!grilled_item && user.transferItemToLoc(I, src))
 			grilled_item = I
 			RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, .proc/GrillCompleted)
 			ADD_TRAIT(grilled_item, TRAIT_FOOD_GRILLED, "boomers")
+			user.balloon_alert(user, "You put the [grilled_item] on [src].")
 			to_chat(user, span_notice("You put the [grilled_item] on [src]."))
 			update_icon()
 			grill_loop.start(src)
@@ -125,6 +130,7 @@
 
 /obj/machinery/grill/attack_hand(mob/user, list/modifiers)
 	if(grilled_item)
+		user.balloon_alert(user, "You take out [grilled_item] from [src].")
 		to_chat(user, span_notice("You take out [grilled_item] from [src]."))
 		grilled_item.forceMove(drop_location())
 		update_icon()

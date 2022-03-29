@@ -80,7 +80,9 @@
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL)
 		return
-
+	
+	balloon_alert_to_viewers("\The [X] starts tearing down \the [src]!", ignored_mobs = X)
+	X.balloon_alert(X, "We start to tear down \the [src].")
 	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
 	if(!do_after(X, 4 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
@@ -88,6 +90,8 @@
 	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	balloon_alert_to_viewers("\The [X] tears down \the [src]!", ignored_mobs = X)
+	X.balloon_alert(X, "We tear down \the [src].")
 	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
 	span_xenonotice("We tear down \the [src]."))
 	playsound(src, "alien_resin_break", 25)
@@ -95,6 +99,7 @@
 
 
 /turf/closed/wall/resin/attack_hand(mob/living/user)
+	user.balloon_alert(user, "You scrape ineffectively at \the [src].")
 	to_chat(user, span_warning("You scrape ineffectively at \the [src]."))
 	return TRUE
 

@@ -123,11 +123,15 @@
 
 	switch(maturity_stage)
 		if(1)
+			balloon_alert(xenomorph, "The child is not developed yet.")
 			to_chat(xenomorph, span_xenowarning("The child is not developed yet."))
 		if(2)
+			balloon_alert(xenomorph, "We retrieve the child.")
 			to_chat(xenomorph, span_xenonotice("We retrieve the child."))
 			burst()
 		if(3, 4)
+			balloon_alert_to_viewers("\The [xenomorph] clears the hatched egg.", ignored_mobs = xenomorph)
+			balloon_alert(xenomorph, "We clear the hatched egg.")
 			xenomorph.visible_message(span_xenonotice("\The [xenomorph] clears the hatched egg."), \
 			span_xenonotice("We clear the hatched egg."))
 			playsound(loc, "alien_resin_break", 25)
@@ -144,19 +148,24 @@
 /obj/effect/alien/egg/hugger/proc/insert_new_hugger(obj/item/clothing/mask/facehugger/facehugger, mob/user)
 	if(facehugger.stat == DEAD)
 		if(user)
+			user.balloon_alert(user, "This child is dead.")
 			to_chat(user, span_xenowarning("This child is dead."))
 		return FALSE
 
 	if(maturity_stage != stage_ready_to_burst + 1)
 		if(user)
+			user.balloon_alert(user, "This egg is not usable.")
 			to_chat(user, span_xenowarning("This egg is not usable."))
 		return FALSE
 
 	if(hugger_type)
 		if(user)
+			user.balloon_alert(user, "This one is occupied with a child.")
 			to_chat(user, span_xenowarning("This one is occupied with a child."))
 		return FALSE
 	if(user)
+		balloon_alert(src, "You place the child into [src].")
+		balloon_alert_to_viewers("[user] slides [facehugger] back into [src].", ignored_mobs = src)
 		user.visible_message(span_xenowarning("[user] slides [facehugger] back into [src]."),span_xenonotice("You place the child into [src]."))
 	hugger_type = facehugger.type
 	qdel(facehugger)
@@ -195,6 +204,8 @@
 
 /obj/effect/alien/egg/gas/attack_alien(mob/living/carbon/xenomorph/xenomorph, damage_amount = xenomorph.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(maturity_stage > stage_ready_to_burst)
+		balloon_alert_to_viewers("\The [xenomorph] clears the hatched egg.", ignored_mobs = xenomorph)
+		balloon_alert(xenomorph, "We clear the hatched egg.")
 		xenomorph.visible_message(span_xenonotice("\The [xenomorph] clears the hatched egg."), \
 		span_xenonotice("We clear the broken egg."))
 		playsound(loc, "alien_resin_break", 25)
@@ -206,5 +217,6 @@
 		burst(TRUE)
 		return
 
+	balloon_alert(xenomorph, "The egg is filled with gas and has no child to retrieve.")
 	to_chat(xenomorph, span_warning("That egg is filled with gas and has no child to retrieve."))
 

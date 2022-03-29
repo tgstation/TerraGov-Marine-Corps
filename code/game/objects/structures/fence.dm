@@ -32,7 +32,7 @@
 	if(istype(I, /obj/item/stack/rods) && obj_integrity < max_integrity)
 		if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_PLASTEEL)
 			balloon_alert_to_viewers("[user] fumbles around figuring out how to fix [src]'s wiring.", ignored_mobs = user)
-			balloon_alert(user, "You fumble around figuring out how to fix [src]'s wiring.")
+			user.balloon_alert(user, "You fumble around figuring out how to fix [src]'s wiring.")
 			user.visible_message(span_notice("[user] fumbles around figuring out how to fix [src]'s wiring."),
 			span_notice("You fumble around figuring out how to fix [src]'s wiring."))
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("construction")
@@ -45,12 +45,12 @@
 			amount_needed = 4
 
 		if(R.amount < amount_needed)
-			balloon_alert(user, "You need more metal rods to repair [src].")
+			user.balloon_alert(user, "You need more metal rods to repair [src].")
 			to_chat(user, "<span class='warning'>You need more metal rods to repair [src].")
 			return
 
 		balloon_alert_to_viewers("[user] starts repairing [src] with [R].", ignored_mobs = user)
-		balloon_alert(user, "You start repairing [src] with [R]")
+		user.balloon_alert(user, "You start repairing [src] with [R]")
 		user.visible_message(span_notice("[user] starts repairing [src] with [R]."),
 		"<span class='notice'>You start repairing [src] with [R]")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
@@ -59,7 +59,7 @@
 			return
 
 		if(R.amount < amount_needed)
-			balloon_alert(user, "You need more metal rods to repair [src].")
+			user.balloon_alert(user, "You need more metal rods to repair [src].")
 			to_chat(user, "<span class='warning'>You need more metal rods to repair [src].")
 			return
 
@@ -70,7 +70,7 @@
 		update_icon()
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		balloon_alert_to_viewers("[user] repairs [src] with [R].", ignored_mobs = user)
-		balloon_alert(user, "[user] repairs [src] with [R].")
+		user.balloon_alert(user, "[user] repairs [src] with [R].")
 		user.visible_message(span_notice("[user] repairs [src] with [R]."),
 		"<span class='notice'>You repair [src] with [R]")
 
@@ -107,7 +107,7 @@
 
 	else if(iswirecutter(I))
 		balloon_alert_to_viewers("[user] starts cutting through [src] with [I].", ignored_mobs = user)
-		balloon_alert(user, "You start cutting through [src] with [I]")
+		user.balloon_alert(user, "You start cutting through [src] with [I]")
 		user.visible_message(span_notice("[user] starts cutting through [src] with [I]."),
 		"<span class='notice'>You start cutting through [src] with [I]")
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
@@ -116,7 +116,7 @@
 
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		balloon_alert_to_viewers("[user] cuts through [src] with [I].", ignored_mobs = user)
-		balloon_alert(user, "You cut through [src] with [I]")
+		user.balloon_alert(user, "You cut through [src] with [I]")
 		user.visible_message(span_notice("[user] cuts through [src] with [I]."),
 		"<span class='notice'>You cut through [src] with [I]")
 		deconstruct(TRUE)

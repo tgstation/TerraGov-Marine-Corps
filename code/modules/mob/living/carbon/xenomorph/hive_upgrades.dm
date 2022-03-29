@@ -73,6 +73,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 	if(buildloc.density)
 		if(!silent)
+			buyer.balloon_alert(buyer, "You cannot build in a dense location!")
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 
@@ -86,6 +87,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	var/turf/buildloc = get_step(buyer, SOUTHWEST)
 
 	var/atom/built = new building_type(buildloc, buyer.hivenumber)
+	buyer.balloon_alert(buyer, "We build \a [built] for [psypoint_cost] psy points.")
 	to_chat(buyer, span_notice("We build \a [built] for [psypoint_cost] psy points."))
 	log_game("[buyer] has built \a [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
 	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
@@ -110,11 +112,13 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 	if(buildloc.density)
 		if(!silent)
+			buyer.balloon_alert(buyer, "You cannot build in a dense location!")
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 
 	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
 		if(get_dist(silo, buyer) < 15)
+			buyer.balloon_alert(buyer, "Another silo is too close!")
 			to_chat(buyer, span_xenowarning("Another silo is too close!"))
 			return FALSE
 /datum/hive_upgrade/building/evotower
@@ -163,6 +167,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
 	if(blocker && blocker != buyer && blocker.stat != DEAD)
 		if(!silent)
+			buyer.balloon_alert(buyer, "You cannot build with [blocker] in the way!")
 			to_chat(buyer, span_xenowarning("You cannot build with [blocker] in the way!"))
 		return FALSE
 
@@ -173,6 +178,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 	if(!alien_weeds)
 		if(!silent)
+			buyer.balloon_alert(buyer, "No weeds here!")
 			to_chat(buyer, span_xenowarning("No weeds here!"))
 		return FALSE
 
@@ -182,6 +188,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
 		if(get_dist(turret, buyer) < 6)
 			if(!silent)
+				buyer.balloon_alert(buyer, "Another turret is too close!")
 				to_chat(buyer, span_xenowarning("Another turret is too close!"))
 			return FALSE
 
@@ -194,6 +201,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!can_buy(buyer, FALSE))
 		return FALSE
 
+	buyer.balloon_alert(buyer, "We build a new acid turret, spending [psypoint_cost] psychic points in the process")
 	to_chat(buyer, span_xenowarning("We build a new acid turret, spending [psypoint_cost] psychic points in the process"))
 	new turret_type(get_turf(buyer), buyer.hivenumber)
 

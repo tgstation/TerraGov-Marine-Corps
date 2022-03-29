@@ -53,14 +53,17 @@
 		return fail_activate()
 
 	if(locate(/obj/structure/xeno/trap) in T)
+		owner.balloon_alert(owner, "There is a resin trap in the way!")
 		to_chat(owner, span_warning("There is a resin trap in the way!"))
 		return fail_activate()
 
 	if(!T.is_weedable())
+		owner.balloon_alert(owner, "Bad place for a garden!")
 		to_chat(owner, span_warning("Bad place for a garden!"))
 		return fail_activate()
 
 	if(locate(weed_type) in T)
+		owner.balloon_alert(owner, "There's a pod here already!")
 		to_chat(owner, span_warning("There's a pod here already!"))
 		return fail_activate()
 
@@ -86,6 +89,7 @@
 		if(initial(weed_type_possible.name) == weed_choice)
 			weed_type = weed_type_possible
 			break
+	owner.balloon_alert(owner, "We will now spawn [weed_choice] when using the plant weeds ability!")
 	to_chat(owner, "<span class='notice'>We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability.</span>")
 	update_button_icon()
 
@@ -111,9 +115,11 @@
 /datum/action/xeno_action/activable/plant_weeds/ranged/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/area/a_area = get_area(A)
 	if(is_type_in_typecache(a_area, GLOB.wraith_no_incorporeal_pass_areas) && SSmonitor.gamestate == SHUTTERS_CLOSED)
+		owner.balloon_alert(owner, "You cannot plant weeds here yet!")
 		to_chat(owner, span_warning("You cannot plant weeds here yet!"))
 		return FALSE
 	if(!line_of_sight(owner, get_turf(A)))
+		owner.balloon_alert(owner, "You cannot plant weeds without line of sight!")
 		to_chat(owner, span_warning("You cannot plant weeds without line of sight!"))
 		return FALSE
 	return ..()
@@ -159,6 +165,7 @@
 	else
 		X.selected_resin = buildable_structures[i+1]
 	var/atom/A = X.selected_resin
+	X.balloon_alert(X, "We will now build <b>[initial(A.name)]\s</b> when secreting resin.")
 	to_chat(X, span_notice("We will now build <b>[initial(A.name)]\s</b> when secreting resin."))
 	update_button_icon()
 
@@ -185,10 +192,12 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
 	if(blocker && blocker != X && blocker.stat != DEAD)
+		owner.balloon_alert(X, "Can't do that with [blocker] in the way!")
 		to_chat(X, span_warning("Can't do that with [blocker] in the way!"))
 		return fail_activate()
 
 	if(!T.is_weedable())
+		owner.balloon_alert(X, "We can't do that here.")
 		to_chat(X, span_warning("We can't do that here."))
 		return fail_activate()
 
@@ -203,6 +212,7 @@
 		return fail_activate()
 
 	if(!alien_weeds)
+		owner.balloon_alert(X, "We can only shape on weeds.")
 		to_chat(X, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return fail_activate()
 
@@ -221,6 +231,7 @@
 					wall_support = TRUE
 					break
 		if(!wall_support)
+			owner.balloon_alert(X, "Resin doors need a wall or resin door next to them to stand up.")
 			to_chat(X, span_warning("Resin doors need a wall or resin door next to them to stand up."))
 			return fail_activate()
 
@@ -256,9 +267,12 @@
 					wall_support = TRUE
 					break
 		if(!wall_support)
+			owner.balloon_alert(X, "Resin doors need a wall or resin door next to them to stand up.")
 			to_chat(X, span_warning("Resin doors need a wall or resin door next to them to stand up."))
 			return fail_activate()
 	var/atom/AM = X.selected_resin
+	owner.balloon_alert_to_viewers(X, "\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!", ignored_mobs = X)
+	owner.balloon_alert(X, "We regurgitate some resin and shape it into \a [initial(AM.name)].")
 	X.visible_message(span_xenowarning("\The [X] regurgitates a thick substance and shapes it into \a [initial(AM.name)]!"), \
 	span_xenonotice("We regurgitate some resin and shape it into \a [initial(AM.name)]."), null, 5)
 	playsound(owner.loc, "alien_resin_build", 25)
@@ -340,6 +354,8 @@
 		return FALSE
 
 	if(X.current_aura == aura_type)
+		X.balloon_alert_to_viewers("\The [X] stops emitting strange pheromones.", ignored_mobs = X)
+		X.balloon_alert(X, "We stop emitting [X.current_aura] pheromones.")
 		X.visible_message(span_xenowarning("\The [X] stops emitting strange pheromones."), \
 		span_xenowarning("We stop emitting [X.current_aura] pheromones."), null, 5)
 		X.current_aura = null
@@ -349,6 +365,8 @@
 		return fail_activate() // dont use plasma
 
 	X.current_aura = aura_type
+	X.balloon_alert(X, "We begin to emit '[X.current_aura]' pheromones.")
+	X.balloon_alert_to_viewers("\The [X] begins to emit strange-smelling pheromones.", ignored_mobs = X)
 	X.visible_message(span_xenowarning("\The [X] begins to emit strange-smelling pheromones."), \
 	span_xenowarning("We begin to emit '[X.current_aura]' pheromones."), null, 5)
 	playsound(X.loc, "alien_drool", 25)
@@ -403,15 +421,18 @@
 
 	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
+			owner.balloon_alert(owner, "We can't give that caste plasma.")
 			to_chat(owner, span_warning("We can't give that caste plasma."))
 			return FALSE
 
 	if(get_dist(owner, target) > max_range)
 		if(!silent)
+			owner.balloon_alert(owner, "We need to be closer to [target].")
 			to_chat(owner, span_warning("We need to be closer to [target]."))
 		return FALSE
 
 	if(target.plasma_stored >= target.xeno_caste.plasma_max) //We can't select targets that won't benefit
+		owner.balloon_alert(owner, "[target] already has full plasma.")
 		to_chat(owner, span_xenowarning("[target] already has full plasma."))
 		return FALSE
 
@@ -419,6 +440,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/xenomorph/target = A
 
+	X.balloon_alert(X, "We start focusing our plasma towards [target].")
 	to_chat(X, span_notice("We start focusing our plasma towards [target]."))
 	new /obj/effect/temp_visual/transfer_plasma(get_turf(X)) //Cool SFX that confirms our source and our target
 	new /obj/effect/temp_visual/transfer_plasma(get_turf(target)) //Cool SFX that confirms our source and our target
@@ -445,6 +467,8 @@
 
 	X.use_plasma(amount)
 	target.gain_plasma(amount)
+	target.balloon_alert(target, "[X] has transfered [amount] units of plasma to us.")
+	X.balloon_alert(X, "We have transferred [amount] units of plasma to [target].")
 	to_chat(target, span_xenodanger("[X] has transfered [amount] units of plasma to us. We now have [target.plasma_stored]/[target.xeno_caste.plasma_max]."))
 	to_chat(X, span_xenodanger("We have transferred [amount] units of plasma to [target]. We now have [X.plasma_stored]/[X.xeno_caste.plasma_max]."))
 	playsound(X, "alien_drool", 25)
@@ -476,6 +500,7 @@
 		var/obj/O = A
 		if(CHECK_BITFIELD(O.resistance_flags, RESIST_ALL))
 			if(!silent)
+				owner.balloon_alert(owner, "We cannot dissolve \the [O].")
 				to_chat(owner, span_warning("We cannot dissolve \the [O]."))
 			return FALSE
 		if(O.acid_check(acid_type))
@@ -498,6 +523,7 @@
 			var/turf/closed/wall/wall_target = T
 			if(wall_target.acided_hole)
 				if(!silent)
+					owner.balloon_alert(owner, "[wall_target] is already weakened.")
 					to_chat(owner, span_warning("[wall_target] is already weakened."))
 				return FALSE
 
@@ -541,6 +567,7 @@
 		var/dissolvability = T.can_be_dissolved()
 		switch(dissolvability)
 			if(0)
+				X.balloon_alert(X, "We cannot dissolve \the [T].")
 				to_chat(X, span_warning("We cannot dissolve \the [T]."))
 				return fail_activate()
 			if(1)
@@ -554,6 +581,7 @@
 				return fail_activate()
 		to_chat(X, span_xenowarning("We begin generating enough acid to melt through \the [T]."))
 	else
+		X.balloon_alert(X, "We cannot dissolve \the [A].")
 		to_chat(X, span_warning("We cannot dissolve \the [A]."))
 		return fail_activate()
 
@@ -570,6 +598,8 @@
 	if(istype(A, /obj/vehicle/multitile/root/cm_armored))
 		var/obj/vehicle/multitile/root/cm_armored/R = A
 		R.take_damage_type( (1 * newacid.acid_strength) * 20, "acid", X)
+		X.balloon_alert_to_viewers("\The [X] vomits globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!", ignored_mobs = X)
+		X.balloon_alert(X, "We vomit globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!")
 		X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!"), \
 			span_xenowarning("We vomit globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid!"), null, 5)
 		playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
@@ -600,6 +630,7 @@
 
 	if(!isturf(A))
 		log_combat(X, A, "spat on", addition="with corrosive acid")
+	X.balloon_alert(X, "We vomit globs of vile stuff all over \the [A]")
 	X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), \
 	span_xenowarning("We vomit globs of vile stuff all over \the [A]. It begins to sizzle and melt under the bubbling mess of acid!"), null, 5)
 	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
@@ -655,6 +686,7 @@
 
 /datum/action/xeno_action/activable/spray_acid/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	owner.balloon_alert(owner, "We feel our acid glands refill. We can spray acid again.")
 	to_chat(owner, span_xenodanger("We feel our acid glands refill. We can spray acid again."))
 	return ..()
 
@@ -710,6 +742,7 @@
 				break
 			X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
 			break
+	X.balloon_alert(X, "We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).")
 	to_chat(X, span_notice("We will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma)."))
 	X.update_spits(TRUE)
 	update_button_icon()
@@ -727,6 +760,7 @@
 		return FALSE
 	if(X.ammo?.spit_cost > X.plasma_stored)
 		if(!silent)
+			X.balloon_alert(X, "We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!")
 			to_chat(X, span_warning("We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!"))
 		return FALSE
 
@@ -736,6 +770,7 @@
 
 /datum/action/xeno_action/activable/xeno_spit/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
+	X.balloon_alert(X,  "We can spit again.")
 	to_chat(X, span_notice("We feel our neurotoxin glands swell with ichor. We can spit again."))
 	return ..()
 
@@ -758,6 +793,8 @@
 	set_target(get_turf_on_clickcatcher(object, xeno, params))
 	if(!current_target)
 		return
+	xeno.balloon_alert_to_viewers("\The [xeno] spits at \the [current_target]!", ignored_mobs = xeno)
+	xeno.balloon_alert(xeno, "We spit at \the [current_target]!")
 	xeno.visible_message(span_xenowarning("\The [xeno] spits at \the [current_target]!"), \
 	span_xenowarning("We spit at \the [current_target]!") )
 
@@ -844,9 +881,11 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.layer != XENO_HIDING_LAYER)
 		X.layer = XENO_HIDING_LAYER
+		X.balloon_alert(X,  "We are now hiding.")
 		to_chat(X, span_notice("We are now hiding."))
 	else
 		X.layer = MOB_LAYER
+		X.balloon_alert(X,  "We have stopped hiding.")
 		to_chat(X, span_notice("We have stopped hiding."))
 
 
@@ -871,11 +910,13 @@
 
 	if(!A?.can_sting())
 		if(!silent)
+			owner.balloon_alert(owner,  "Our sting won't affect this target!")
 			to_chat(owner, span_warning("Our sting won't affect this target!"))
 		return FALSE
 	if(!owner.Adjacent(A))
 		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
+			X.balloon_alert(X, "We can't reach this target!")
 			to_chat(X, span_warning("We can't reach this target!"))
 			X.recent_notice = world.time //anti-notice spam
 		return FALSE
@@ -887,6 +928,7 @@
 
 /datum/action/xeno_action/activable/neurotox_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	owner.balloon_alert(owner,  "We can use our Neurotoxin Sting again.")
 	to_chat(owner, span_xenodanger("We feel our neurotoxin glands refill. We can use our Neurotoxin Sting again."))
 	return ..()
 

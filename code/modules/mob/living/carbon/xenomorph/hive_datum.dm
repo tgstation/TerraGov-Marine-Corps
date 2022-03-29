@@ -738,6 +738,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	xeno_candidate.mind.transfer_to(new_xeno, TRUE)
 	new_xeno.playsound_local(new_xeno, 'sound/effects/xeno_newlarva.ogg')
+	new_xeno.balloon_alert(new_xeno, "We are a xenomorph larva awakened from slumber!")
 	to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva awakened from slumber!"))
 	if(!larva_already_reserved)
 		xeno_job.occupy_job_positions(1)

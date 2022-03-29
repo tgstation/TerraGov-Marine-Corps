@@ -114,7 +114,7 @@ LINEN BINS
 		I.forceMove(src)
 		sheets += I
 		amount++
-		balloon_alert(user, "You put [I] in [src].")
+		user.balloon_alert(user, "You put [I] in [src].")
 		to_chat(user, span_notice("You put [I] in [src]."))
 
 	else if(amount && !hidden && I.w_class < 4)	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
@@ -123,7 +123,7 @@ LINEN BINS
 
 		I.forceMove(src)
 		hidden = I
-		balloon_alert(user, "You hide [I] among the sheets.")
+		user.balloon_alert(user, "You hide [I] among the sheets.")
 		to_chat(user, span_notice("You hide [I] among the sheets."))
 
 /obj/structure/bedsheetbin/attack_hand(mob/living/user)
@@ -143,7 +143,7 @@ LINEN BINS
 
 		B.loc = user.loc
 		user.put_in_hands(B)
-		balloon_alert(user, "You take [B] out of [src].")
+		user.balloon_alert(user, "You take [B] out of [src].")
 		to_chat(user, span_notice("You take [B] out of [src]."))
 
 		if(hidden)

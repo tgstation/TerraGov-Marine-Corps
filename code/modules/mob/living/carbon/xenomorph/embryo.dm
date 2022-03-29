@@ -88,11 +88,14 @@
 	switch(stage)
 		if(2)
 			if(prob(2))
+				balloon_alert(affected_mob, "[pick("Your chest hurts a little bit", "Your stomach hurts")].")
 				to_chat(affected_mob, span_warning("[pick("Your chest hurts a little bit", "Your stomach hurts")]."))
 		if(3)
 			if(prob(2))
+				balloon_alert(affected_mob, "[pick("Your throat feels sore", "Mucous runs down the back of your throat")].")
 				to_chat(affected_mob, span_warning("[pick("Your throat feels sore", "Mucous runs down the back of your throat")]."))
 			else if(prob(1))
+				balloon_alert(affected_mob, "Your muscles ache.")
 				to_chat(affected_mob, span_warning("Your muscles ache."))
 				if(prob(20))
 					affected_mob.take_limb_damage(1)
@@ -145,6 +148,7 @@
 	//If we have a candidate, transfer it over.
 	if(picked)
 		picked.mind.transfer_to(new_xeno, TRUE)
+		balloon_alert(new_xeno, "We are a xenomorph larva inside a host! Move to burst out of it!")
 		to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva inside a host! Move to burst out of it!"))
 		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
 
@@ -157,6 +161,7 @@
 
 	victim.chestburst = 1
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	balloon_alert(src, "We start bursting out of [victim]'s chest!")
 	to_chat(src, span_danger("We start bursting out of [victim]'s chest!"))
 
 	victim.Unconscious(40 SECONDS)
