@@ -217,3 +217,9 @@
 /datum/greyscale_config/protein
 	json_config = 'code/datums/greyscale/json_configs/protein.json'
 	icon_file = 'icons/obj/items/food.dmi'
+
+///ammo
+
+/datum/greyscale_config/tx54
+	json_config = 'code/datums/greyscale/json_configs/ammo.json'
+	icon_file = 'icons/obj/items/ammo.dmi'

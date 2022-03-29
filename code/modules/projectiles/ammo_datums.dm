@@ -1193,6 +1193,8 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = LIGHT_COLOR_FIRE
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread
 	bonus_projectiles_scatter = 10
+	greyscale_config = /datum/greyscale_config/tx54
+	greyscale_colors = "#3ab0c9"
 
 /datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
@@ -1224,6 +1226,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "grenade_fire"
 	handful_icon_state = "20mm_incendiary"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/incendiary
+	greyscale_colors = "#b02323"
 
 /datum/ammo/bullet/tx54_spread
 	name = "Shrapnel"
@@ -1261,6 +1264,7 @@ datum/ammo/bullet/revolver/tp44
 	handful_icon_state = "20mm_he"
 	bonus_projectiles_type = null
 	max_range = 12
+	greyscale_colors = "#fa7923"
 
 /datum/ammo/tx54/he/drop_nade(turf/T)
 	explosion(T, 0, 0, 2, 2)
