@@ -202,6 +202,12 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/tl102)
 	cost = 10
 
+/datum/supply_packs/weapons/chamberedrifle_hollowpoint
+	name = "TL-127 hollow point ammo box"
+	contains = list(/obj/item/storage/box/visual/magazine/compact/chamberedrifle/hollowpoint/full)
+	cost = 27
+	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/antitankgun
 	name = "TAT-36 Anti Tank Gun"
 	contains = list(/obj/item/weapon/gun/standard_atgun)
@@ -381,10 +387,11 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/chamberedrifle_hollowpoint_ammo
-	name = "TL-127 Hollow Point Ammo box"
-	contains = list(/obj/item/storage/box/visual/magazine/compact/chamberedrifle/hollowpoint/full)
-	cost = 5
+	name = "TL-127 Bolt Action Rifle HP magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint)
+	cost = 2
 	available_against_xeno_only = TRUE
+
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
@@ -496,6 +503,15 @@ WEAPONS
 	name = "Rocket Sledge"
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
 	cost = 60
+
+/datum/supply_packs/weapons/chamberedrifle_hollowpoint_ammo_belt
+	name = "TL-127 Hollow Point Magazines Belt"
+	contains = list(
+		/obj/item/storage/belt/marine/tl127_hollowpoint,
+		/obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint
+	)
+	cost = 6
+	available_against_xeno_only = TRUE
 
 /*******************************************************************************
 EXPLOSIVES

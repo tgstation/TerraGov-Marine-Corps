@@ -1018,14 +1018,14 @@
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle/hollowpoint
 	name = "TL-127 hollow point magazine box"
 	desc = "A box specifically designed to hold a medium amount of TL-127 hollow point magazines."
-	storage_slots = 15
+	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_tl127"
 	can_hold = list(
 		/obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint,
 	)
 
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle/hollowpoint/full
-	spawn_number = 15
+	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint
 
 /obj/item/storage/box/visual/magazine/compact/mosin

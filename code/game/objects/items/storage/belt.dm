@@ -401,6 +401,15 @@
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 
+/obj/item/storage/belt/marine/tl127_hollowpoint/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint(src)
+	new /obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint(src)
+
 /obj/item/storage/belt/marine/antimaterial/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/sniper/flak(src)
