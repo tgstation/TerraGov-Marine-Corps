@@ -233,6 +233,7 @@
 	frenzy_new = 0
 	warding_new = 0
 	recovery_new = 0
+	plasma_new = 0
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	if(!client)
