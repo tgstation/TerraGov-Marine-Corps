@@ -39,7 +39,7 @@
 
 	// *** Pheromones *** //
 	aura_strength = 3.5 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
-	aura_allowed = list("frenzy", "warding", "recovery")
+	aura_allowed = list("frenzy", "plasma", "warding", "recovery")
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2 //Amount of leaders allowed

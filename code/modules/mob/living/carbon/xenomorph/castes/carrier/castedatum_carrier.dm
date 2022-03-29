@@ -40,7 +40,7 @@
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
-	aura_allowed = list("frenzy", "warding", "recovery")
+	aura_allowed = list("frenzy", "plasma", "warding", "recovery")
 
 	// *** Carrier Abilities *** //
 	huggers_max = 4

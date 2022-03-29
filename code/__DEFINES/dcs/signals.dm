@@ -583,6 +583,7 @@
 #define COMSIG_XENOABILITY_SECRETE_RESIN "xenoability_secrete_resin"
 #define COMSIG_XENOABILITY_SECRETE_RESIN_SILO "xenoability_secrete_resin_silo"
 #define COMSIG_XENOABILITY_EMIT_RECOVERY "xenoability_emit_recovery"
+#define COMSIG_XENOABILITY_EMIT_PLASMA "xenoability_emit_plasma"
 #define COMSIG_XENOABILITY_EMIT_WARDING "xenoability_emit_warding"
 #define COMSIG_XENOABILITY_EMIT_FRENZY "xenoability_emit_frenzy"
 #define COMSIG_XENOABILITY_TRANSFER_PLASMA "xenoability_transfer_plasma"

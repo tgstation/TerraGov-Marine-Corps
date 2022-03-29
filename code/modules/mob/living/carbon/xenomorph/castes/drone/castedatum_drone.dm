@@ -44,7 +44,7 @@
 
 	// *** Pheromones *** //
 	aura_strength = 1 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
-	aura_allowed = list("frenzy", "warding", "recovery")
+	aura_allowed = list("frenzy", "plasma", "warding", "recovery")
 
 	// *** Abilities *** //
 	actions = list(

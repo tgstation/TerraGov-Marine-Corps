@@ -330,7 +330,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.current_aura)
 		return ..()
-	if(prob(33)) //Since the pheromones go from recovery => warding => frenzy, this enables AI to somewhat randomly pick one of the three pheros to emit
+	if(prob(25)) //Since the pheromones go from recovery => plasma => warding => frenzy, this enables AI to somewhat randomly pick one of the four pheros to emit
 		return ..()
 	return TRUE
 
@@ -364,6 +364,13 @@
 	mechanics_text = "Increases healing for yourself and nearby teammates."
 	aura_type = "recovery"
 	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
+
+/datum/action/xeno_action/pheromones/emit_plasma
+	full_name = "Emit Plasma Pheromones"
+	action_icon_state = "emit_plasma"
+	mechanics_text = "Increases the plasma gain for yourself and nearby teammates."
+	aura_type = "plasma"
+	keybind_signal = COMSIG_XENOABILITY_EMIT_PLASMA
 
 /datum/action/xeno_action/pheromones/emit_warding
 	name = "Emit Warding Pheromones"
@@ -742,7 +749,7 @@
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
 	if(!owner.GetComponent(/datum/component/ai_controller)) //If its not an ai it will register to listen for clicks instead of use this proc. We want to call start_fire from here only if the owner is an ai.
 		return
-	start_fire(object = A, can_use_ability_flags = XACT_IGNORE_SELECTED_ABILITY) 
+	start_fire(object = A, can_use_ability_flags = XACT_IGNORE_SELECTED_ABILITY)
 
 ///Starts the xeno firing.
 /datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)

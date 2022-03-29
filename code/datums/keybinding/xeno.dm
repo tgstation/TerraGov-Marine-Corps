@@ -52,6 +52,12 @@
 	description = "Increases healing for yourself and nearby teammates."
 	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
 
+/datum/keybinding/xeno/emit_plasma
+	name = "emit_plasma"
+	full_name = "Emit Plasma Pheromones"
+	description = "Increases the plasma gain for yourself and nearby teammates."
+	keybind_signal = COMSIG_XENOABILITY_EMIT_PLASMA
+
 /datum/keybinding/xeno/emit_warding
 	name = "emit_warding"
 	full_name = "Emit Warding Pheromones"

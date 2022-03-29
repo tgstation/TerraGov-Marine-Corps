@@ -125,7 +125,7 @@
 	///The strength of our aura. Zero means we can't emit one
 	var/aura_strength = 0
 	///The 'types' of pheremones a xenomorph caste can emit.
-	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
+	var/aura_allowed = list("frenzy", "plasma", "warding", "recovery") //"Evolving" removed for the time being
 
 	// *** Defiler Abilities *** //
 	var/list/available_reagents_define = list() //reagents available for select reagent
