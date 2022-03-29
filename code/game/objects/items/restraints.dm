@@ -25,10 +25,12 @@
 	span_notice("You attempt to remove [cuffs]... (This will take around [DisplayTimeText(cuffs.breakouttime)] and you need to stand still.)"))
 
 	if(!do_after(src, cuffs.breakouttime, FALSE, target = src))
+		balloon_alert(src, "You fail to remove [cuffs]!")
 		to_chat(src, span_warning("You fail to remove [cuffs]!"))
 		DISABLE_BITFIELD(cuffs.flags_item, BEING_REMOVED)
 		return FALSE
 
+	balloon_alert_to_viewers("[src] manages to remove [cuffs]!")
 	visible_message(span_danger("[src] manages to remove [cuffs]!"),
 	span_notice("You successfully remove [cuffs]."))
 

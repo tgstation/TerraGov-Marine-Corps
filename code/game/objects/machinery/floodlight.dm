@@ -30,11 +30,13 @@
 		return
 	if(toggle_on)
 		if(user)
+			balloon_alert(user, "You turn on the light.")
 			to_chat(user, span_notice("You turn on the light."))
 		set_light(brightness_on)
 		DISABLE_BITFIELD(resistance_flags, UNACIDABLE)
 		return
 	if(user)
+		balloon_alert(user, "You turn off the light.")
 		to_chat(user, span_notice("You turn off the light."))
 	set_light(0)
 	ENABLE_BITFIELD(resistance_flags, UNACIDABLE)
@@ -116,16 +118,19 @@
 /// Handles the wrench act .
 /obj/machinery/floodlightcombat/wrench_act(mob/living/user, obj/item/I)
 	. = ..()
+	balloon_alert(user, "You begin wrenching \the [src]'s bolts.")
 	to_chat(user , span_notice("You begin wrenching \the [src]'s bolts."))
 	playsound(loc, 'sound/items/ratchet.ogg', 60, FALSE)
 	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
 	if(anchored)
+		balloon_alert(user, "You unwrench \the [src]'s bolts.")
 		to_chat(user , span_notice("You unwrench \the [src]'s bolts."))
 		anchored = FALSE
 		if(light_on)
 			turn_light(user, FALSE, forced = TRUE)
 	else
+		balloon_alert(user, "You wrench down \the [src]'s bolts.")
 		to_chat(user , span_notice("You wrench down \the [src]'s bolts."))
 		anchored = TRUE
 
@@ -139,6 +144,7 @@
 	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
 	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+	balloon_alert(user, "You remove [cell] from \the [src].")
 	to_chat(user , span_notice("You remove [cell] from \the [src]."))
 	user.put_in_hands(cell)
 	cell = null

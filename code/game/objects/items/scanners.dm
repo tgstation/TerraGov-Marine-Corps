@@ -74,7 +74,9 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user) //Integrated analyzers don't need special training to be used quickly.
 	var/dat = ""
 	if((user.getBrainLoss() >= 60) && prob(50))
+		balloon_alert(user, "You try to analyze the floor's vitals!")
 		to_chat(user, span_warning("You try to analyze the floor's vitals!"))
+		balloon_alert_to_viewers("[user] has analyzed the floor's vitals!")
 		visible_message(span_warning("[user] has analyzed the floor's vitals!"))
 		user.show_message(span_notice("Health Analyzer results for The floor:\n\t Overall Status: Healthy"), 1)
 		user.show_message(span_notice("\t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
@@ -87,6 +89,7 @@ REAGENT SCANNER
 		if(!do_mob(user, M, fduration, BUSY_ICON_UNSKILLED))
 			return
 	if(isxeno(M))
+		balloon_alert(user, "[src] can't make sense of this creature.")
 		to_chat(user, span_warning("[src] can't make sense of this creature."))
 		return
 	to_chat(user, "<span class='notice'>[user] has analyzed [M]'s vitals.")

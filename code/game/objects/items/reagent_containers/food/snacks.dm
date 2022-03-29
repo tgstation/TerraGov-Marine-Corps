@@ -35,8 +35,10 @@
 		return
 
 	if(M == usr)
+		balloon_alert(usr, "You finish eating \the [src].")
 		to_chat(usr, span_notice("You finish eating \the [src]."))
 	else
+		balloon_alert_to_viewers("[M] finishes eating \the [src].", ignored_mobs = M)
 		M.visible_message(span_notice("[M] finishes eating \the [src]."))
 
 	usr.dropItemToGround(src)	//so icons update :[
@@ -75,14 +77,19 @@
 				to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
 			if (fullness <= 50)
+				balloon_alert(M, "You hungrily chew out a piece of \the [src] and gobble it!")
 				to_chat(M, span_warning("You hungrily chew out a piece of \the [src] and gobble it!"))
 			if (fullness > 50 && fullness <= 150)
+				balloon_alert(M, "You hungrily begin to eat \the [src].")
 				to_chat(M, span_warning("You hungrily begin to eat \the [src]."))
 			if (fullness > 150 && fullness <= 350)
+				balloon_alert(M, "You take a bite of \the [src].")
 				to_chat(M, span_warning("You take a bite of \the [src]."))
 			if (fullness > 350 && fullness <= 550)
+				balloon_alert(M, "You unwillingly chew a bit of \the [src].")
 				to_chat(M, span_warning("You unwillingly chew a bit of \the [src]."))
 			if (fullness > (550 * (1 + C.overeatduration / 2000)))	// The more you eat - the more you can eat
+				balloon_alert(M, "You cannot force any more of \the [src] to go down your throat.")
 				to_chat(M, span_warning("You cannot force any more of \the [src] to go down your throat."))
 				return FALSE
 		else
@@ -91,8 +98,10 @@
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			if (fullness <= (550 * (1 + C.overeatduration / 1000)))
+				balloon_alert(M, "[user] attempts to feed \the [M] [src].")
 				M.visible_message(span_warning("[user] attempts to feed \the [M] [src]."))
 			else
+				balloon_alert_to_viewers("[user] cannot force anymore of \the [src] down [M]'s throat.", ignored_mobs = user)
 				M.visible_message(span_warning("[user] cannot force anymore of \the [src] down [M]'s throat."))
 				return FALSE
 

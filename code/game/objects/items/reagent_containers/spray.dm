@@ -27,10 +27,12 @@
 
 	if((A.is_drainable() && !A.is_refillable()) && get_dist(src,A) <= 1)
 		if(!A.reagents.total_volume)
+			balloon_alert(user, "[A] is empty!")
 			to_chat(user, span_warning("[A] is empty."))
 			return
 
 		if(reagents.holder_full())
+			balloon_alert(user, "[src] is full.")
 			to_chat(user, span_warning("[src] is full."))
 			return
 
@@ -39,10 +41,12 @@
 		return
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
+		balloon_alert(user, "[src] is empty!")
 		to_chat(user, span_notice("[src] is empty!"))
 		return
 
 	if(safety)
+		balloon_alert(user, "<span class = 'warning'>The safety is on!</span>")
 		to_chat(user, "<span class = 'warning'>The safety is on!</span>")
 		return
 

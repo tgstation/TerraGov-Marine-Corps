@@ -109,6 +109,7 @@
 	var/obj/item/tool/weldingtool/welder = I
 
 	if(!(machine_stat & DISABLED) && durability == initial(durability))
+		balloon_alert(user, "The [src] doesn't need welding!")
 		to_chat(user, span_notice("The [src] doesn't need welding!"))
 		return FALSE
 
@@ -122,19 +123,24 @@
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
+	balloon_alert_to_viewers("[user] begins repairing damage to [src].", ignored_mobs = user)
 	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 	span_notice("You begin repairing the damage to [src]."))
+	balloon_alert(user, "You begin repairing the damage to [src].")
 	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
 	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return
 
 	if(!welder.remove_fuel(2, user))
+		balloon_alert(user, "Not enough fuel to finish the task.")
 		to_chat(user, span_warning("Not enough fuel to finish the task."))
 		return TRUE
 
+	balloon_alert_to_viewers("[user] repairs [src]'s damage.", ignored_mobs = user)
 	user.visible_message(span_notice("[user] repairs [src]'s damage."),
 	span_notice("You repair [src]."))
+	to_chat(user, span_warning("You repair [src]."))
 	machine_stat &= ~DISABLED //Remove the disabled flag
 	durability = initial(durability) //Reset its durability to its initial value
 	update_icon()
@@ -145,8 +151,10 @@
 
 	if(isscrewdriver(I) && circuit)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_MASTER)
+			balloon_alert_to_viewers("[user] fumbles around figuring out how to deconstruct [src].", ignored_mobs = user)
 			user.visible_message(span_notice("[user] fumbles around figuring out how to deconstruct [src]."),
 			span_notice("You fumble around figuring out how to deconstruct [src]."))
+			balloon_alert(user, "You fumble around figuring out how to deconstruct [src].")
 			var/fumbling_time = 50 * ( SKILL_ENGINEER_MASTER - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
@@ -170,6 +178,7 @@
 			A.state = 3
 			A.icon_state = "3"
 		else
+			balloon_alert(user, "You disconnect the monitor.")
 			to_chat(user, span_notice("You disconnect the monitor."))
 			A.state = 4
 			A.icon_state = "4"
@@ -197,18 +206,22 @@
 		return FALSE
 
 	if(resistance_flags & INDESTRUCTIBLE)
+		balloon_alert(X, "We're unable to damage this!")
 		to_chat(X, span_xenowarning("We're unable to damage this!"))
 		return
 
 	if(machine_stat & (BROKEN|DISABLED)) //If we're already broken or disabled, don't bother
+		balloon_alert(X, "This peculiar thing is already broken!")
 		to_chat(X, span_xenowarning("This peculiar thing is already broken!"))
 		return
 
 	if(durability <= 0)
 		set_disabled()
+		balloon_alert(X, "We smash the annoying device, disabling it!")
 		to_chat(X, span_xenowarning("We smash the annoying device, disabling it!"))
 	else
 		durability--
+		balloon_alert(X, "We smash the annoying device!")
 		to_chat(X, span_xenowarning("We smash the annoying device!"))
 
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2) //SFX

@@ -55,6 +55,7 @@
 
 	if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		balloon_alert(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
 		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
 		overlays.Cut()
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
@@ -73,6 +74,7 @@
 
 	if(accept_check(I))
 		if(length(contents) >= max_n_of_items)
+			balloon_alert(user, "\The [src] is full.")
 			to_chat(user, span_notice("\The [src] is full."))
 			return TRUE
 		else if(!user.drop_held_item())
@@ -85,6 +87,8 @@
 		else
 			item_quants[I.name] = 1
 
+		balloon_alert_to_viewers("[user] has added \the [I] to \the [src].", ignored_mobs = user)
+		balloon_alert(user, "You add \the [I] to \the [src].")
 		user.visible_message("<span class='notice'>[user] has added \the [I] to \the [src].", \
 							"<span class='notice'>You add \the [I] to \the [src].")
 		updateUsrDialog()
@@ -97,6 +101,7 @@
 				continue
 
 			if(contents.len >= max_n_of_items)
+				balloon_alert(user, "\The [src] is full.")
 				to_chat(user, span_notice("\The [src] is full."))
 				return TRUE
 
@@ -117,6 +122,7 @@
 		updateUsrDialog()
 
 	else
+		balloon_alert(user, "\The [src] smartly refuses [I].")
 		to_chat(user, span_notice("\The [src] smartly refuses [I]."))
 		return TRUE
 

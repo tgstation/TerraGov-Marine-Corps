@@ -26,6 +26,7 @@
 	if(!incapacitated(TRUE))
 		set_resting(FALSE, FALSE)
 	else
+		balloon_alert(src, "You fail to get get up.")
 		to_chat(src, span_notice("You fail to get up."))
 
 /mob/living/proc/set_resting(rest, silent = TRUE)
@@ -38,11 +39,13 @@
 	if(resting)
 		ADD_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
 		if(!silent)
+			balloon_alert(src, "You are now resting.")
 			to_chat(src, span_notice("You are now resting."))
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_REST)
 	else
 		REMOVE_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
 		if(!silent)
+			balloon_alert(src, "You get up.")
 			to_chat(src, span_notice("You get up."))
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_UNREST)
 	update_resting()

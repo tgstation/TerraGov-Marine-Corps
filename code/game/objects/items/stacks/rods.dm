@@ -24,6 +24,7 @@
 		use(4)
 		B.use(1)
 		var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
+		balloon_alert(user, "You combine the rods and barbed wire into [M]!")
 		to_chat(user, span_notice("You combine the rods and barbed wire into [M]!"))
 
 	if (iswelder(W))
@@ -74,6 +75,7 @@
 			DISABLE_BITFIELD(obj_flags, IN_USE)
 			return
 		new /obj/structure/grille/ ( usr.loc )
+		balloon_alert(usr, "You assemble a grille")
 		to_chat(usr, span_notice("You assemble a grille"))
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 		use(4)

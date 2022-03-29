@@ -144,6 +144,7 @@
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
 		if(D.fallen_names)
+			balloon_alert(user, "You add [D] to [src].")
 			to_chat(user, span_notice("You add [D] to [src]."))
 			if(!fallen_list)
 				fallen_list = list()

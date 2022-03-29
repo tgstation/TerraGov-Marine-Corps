@@ -35,14 +35,17 @@
 
 	if(affecting.body_part == HEAD)
 		if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
+			balloon_alert(user, "You can't apply [src] through [H.head]!")
 			to_chat(user, span_warning("You can't apply [src] through [H.head]!"))
 			return TRUE
 	else
 		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
+			balloon_alert(user, "You can't apply [src] through [H.wear_suit]!")
 			to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
 			return TRUE
 
 	if(affecting.limb_status & LIMB_ROBOT)
+		balloon_alert(user, "This isn't useful at all on a robotic limb.")
 		to_chat(user, span_warning("This isn't useful at all on a robotic limb."))
 		return TRUE
 
@@ -50,6 +53,7 @@
 
 	if(user.skills.getRating("medical") < skill_level_needed)
 		if(user.do_actions)
+			balloon_alert(user, "You're busy with something else right now!")
 			to_chat(user, span_warning("You're busy with something else right now!"))
 		if(!do_mob(user, M, unskilled_delay, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 			return TRUE
@@ -97,6 +101,7 @@
 ///Purely visual, generates the success/failure messages for using a health pack
 /obj/item/stack/medical/heal_pack/proc/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
 	if(!success)
+		balloon_alert(user, "The wounds on [patient]'s [target_limb.display_name] have already been treated.")
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
 	user.visible_message(span_notice("[user] treats the wounds on [patient]'s [target_limb.display_name] with [src]."),

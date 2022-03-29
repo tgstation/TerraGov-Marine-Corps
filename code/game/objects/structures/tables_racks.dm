@@ -288,6 +288,7 @@
 		var/mob/living/M = G.grabbed_thing
 		if(user.a_intent == INTENT_HARM)
 			if(user.grab_state <= GRAB_AGGRESSIVE)
+				balloon_alert(user, "You need a better grip to do that!")
 				to_chat(user, span_warning("You need a better grip to do that!"))
 				return
 
@@ -344,9 +345,12 @@
 		return
 
 	if(!flip(get_cardinal_dir(usr, src)))
+		balloon_alert(usr, "[src] won't budge.")
 		to_chat(usr, span_warning("[src] won't budge."))
 		return
 
+	balloon_alert_to_viewers("[usr] flips [src]!", ignored_mobs = usr)
+	balloon_alert(usr, "You flip [src]!")
 	usr.visible_message(span_warning("[usr] flips [src]!"),
 	span_warning("You flip [src]!"))
 
@@ -389,6 +393,7 @@
 		return
 
 	if(!unflipping_check())
+		balloon_alert(usr, "[src] won't budge.")
 		to_chat(usr, span_warning("[src] won't budge."))
 		return
 
@@ -536,23 +541,31 @@
 		return FALSE
 
 	if(table_status == TABLE_STATUS_FIRM)
+		balloon_alert_to_viewers("[usr] starts weakening [src].", ignored_mobs = usr)
+		balloon_alert(user, "You start weakening [src].")
 		user.visible_message(span_notice("[user] starts weakening [src]."),
-		span_notice("You start weakening [src]"))
+		span_notice("You start weakening [src]."))
 		playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
 		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
 			return TRUE
 
+		balloon_alert_to_viewers("[user] weakens [src].", ignored_mobs = user)
+		balloon_alert(user, "You weaken [src].")
 		user.visible_message(span_notice("[user] weakens [src]."),
 			span_notice("You weaken [src]"))
 		table_status = TABLE_STATUS_WEAKENED
 		return TRUE
 
+	balloon_alert_to_viewers("[usr] starts welding [src] back together.", ignored_mobs = usr)
+	balloon_alert(user, "You start welding [src] back together.")
 	user.visible_message(span_notice("[user] starts welding [src] back together."),
 		span_notice("You start welding [src] back together."))
 	playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
 	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
 		return TRUE
 
+	balloon_alert_to_viewers("[usr] welds [src] back together.", ignored_mobs = usr)
+	balloon_alert(user, "You weld [src] back together.")
 	user.visible_message(span_notice("[user] welds [src] back together."),
 		span_notice("You weld [src] back together."))
 	table_status = TABLE_STATUS_FIRM

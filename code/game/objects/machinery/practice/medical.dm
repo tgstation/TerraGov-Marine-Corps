@@ -24,6 +24,7 @@
 	else
 		var/choice = tgui_input_list(user, "What surgery would you like to simulate?", null, list("larval host", "broken bones", "missing limbs", "damaged organs"))
 		if(!choice)
+			balloon_alert(user, "You must select a surgery to start the simulation.")
 			to_chat(user, span_notice("You must select a surgery to start the simulation."))
 			return
 		switch(choice)

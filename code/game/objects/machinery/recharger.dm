@@ -27,6 +27,7 @@
 			to_chat(user, span_warning("Remove [charging] first!"))
 			return
 		anchored = !anchored
+		balloon_alert(user, "You [anchored ? "attached" : "detached"] the recharger.")
 		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 

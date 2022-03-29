@@ -39,5 +39,6 @@
 		var/obj/item/stack/tile/grass/S = I
 		if(!S.use(1))
 			return
+		balloon_alert(user, "You extract some seeds from the grass tile.")
 		to_chat(user, span_notice("You extract some seeds from the grass tile."))
 		new /obj/item/seeds/grassseed(loc)

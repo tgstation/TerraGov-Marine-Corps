@@ -27,6 +27,7 @@
 /obj/item/explosive/plastique/attack_self(mob/user)
 	var/newtime = tgui_input_number(usr, "Please set the timer.", "Timer", 10, 60, 10)
 	timer = newtime
+	balloon_alert(user, "Timer set for [timer] seconds.")
 	to_chat(user, "Timer set for [timer] seconds.")
 
 /obj/item/explosive/plastique/afterattack(atom/target, mob/user, flag)

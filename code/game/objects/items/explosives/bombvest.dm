@@ -26,12 +26,15 @@
 /obj/item/clothing/suit/storage/marine/harness/boomvest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
 	if(issynth(activator) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		balloon_alert(user, "Your programming restricts operating explosive devices.")
 		to_chat(user, span_warning("Your programming restricts operating explosive devices."))
 		return TRUE
 	if(user.alpha != 255)
+		balloon_alert(user, "Your cloak prevents you from detonating [src]!")
 		to_chat(user, span_warning("Your cloak prevents you from detonating [src]!"))
 		return TRUE
 	if(activator.wear_suit != src)
+		balloon_alert(activator, "Due to the rigging of this device, it can only be detonated while worn.")
 		to_chat(activator, "Due to the rigging of this device, it can only be detonated while worn.") //If you are going to use this, you have to accept death. No armor allowed.
 		return FALSE
 	if(istype(activator.l_hand, /obj/item/weapon/shield/riot) || istype(activator.r_hand, /obj/item/weapon/shield/riot) || istype(activator.back, /obj/item/weapon/shield/riot))

@@ -180,9 +180,11 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
+			
 			visible_message(span_warning("[H] stares cluelessly at [src] and drools."))
 			return FALSE
 		if(prob(H.getBrainLoss()))
+			balloon_alert(H, "You momentarily forget how to use [src]!")
 			to_chat(user, span_warning("You momentarily forget how to use [src]."))
 			return FALSE
 

@@ -115,6 +115,8 @@
 			printing = TRUE
 			addtimer(VARSET_CALLBACK(src, printing, FALSE), printing_time)
 
+			balloon_alert_to_viewers("[usr] started a program to regenerate a nuclear disk code.", ignored_mobs = usr)
+			balloon_alert(usr, "You started a program to generate a nuclear disk code.")
 			usr.visible_message("[usr] started a program to regenerate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
 			if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
 				return
@@ -125,6 +127,8 @@
 		printing = TRUE
 		addtimer(VARSET_CALLBACK(src, printing, FALSE), segment_time)
 
+		balloon_alert_to_viewers("[usr] started a program to generate a nuclear disk code.", ignored_mobs = usr)
+		balloon_alert(usr, "You started a program to generate a nuclear disk code.")
 		usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
 		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
 			return
@@ -144,11 +148,13 @@
 		visible_message(span_notice("[src] beeps as it ready to print."))
 		return
 
-	visible_message(span_notice("[src] beeps as it program requires attention."))
+	balloon_alert("[src] beeps softly for further authentication.")
+	visible_message(span_notice("[src] beeps softly for further authentication."))
 
 
 /obj/machinery/computer/nuke_disk_generator/proc/print_disc()
 	disk = new disk_type(loc)
+	balloon_alert_to_viewers("[src] beeps as it finishes printing the disc.")
 	visible_message(span_notice("[src] beeps as it finishes printing the disc."))
 	reprintable = TRUE
 

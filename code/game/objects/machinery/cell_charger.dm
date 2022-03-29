@@ -67,6 +67,7 @@
 			return
 
 		anchored = !anchored
+		balloon_alert(user, "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground")
 		to_chat(user, "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 

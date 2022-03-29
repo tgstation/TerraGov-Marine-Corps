@@ -50,6 +50,7 @@
 	else if(ishuman(user) && user.hallucination > 50 && prob(10) && !operating)
 		var/mob/living/carbon/human/H = user
 		if(!H.gloves || H.gloves.siemens_coefficient)
+			balloon_alert(H, "You feel a powerful shock course through your body!")
 			to_chat(H, span_danger("You feel a powerful shock course through your body!"))
 			H.adjustStaminaLoss(200)
 			return
@@ -209,14 +210,17 @@
 		if(shock(X, 70))
 			return
 	if(locked)
+		balloon_alert(X, "\The [src] is bolted down tight.")
 		to_chat(X, span_warning("\The [src] is bolted down tight."))
 		return FALSE
 	if(welded)
+		balloon_alert(X, "\The [src] is welded shut.")
 		to_chat(X, span_warning("\The [src] is welded shut."))
 		return FALSE
 	if(!istype(cur_loc))
 		return FALSE //Some basic logic here
 	if(!density)
+		balloon_alert(X, "\The [src] is already open!")
 		to_chat(X, span_warning("\The [src] is already open!"))
 		return FALSE
 
@@ -231,9 +235,11 @@
 		if(!do_after(X, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE) && !X.lying_angle)
 			return FALSE
 	if(locked)
+		balloon_alert(X, "\The [src] is bolted down tight.")
 		to_chat(X, span_warning("\The [src] is bolted down tight."))
 		return FALSE
 	if(welded)
+		balloon_alert(X, "\The [src] is welded shut.")
 		to_chat(X, span_warning("\The [src] is welded shut."))
 		return FALSE
 
@@ -248,6 +254,7 @@
 			to_chat(M, span_warning("\The [AM] prevents you from squeezing under \the [src]!"))
 			return
 	if(locked || welded) //Can't pass through airlocks that have been bolted down or welded
+		balloon_alert(M, "\The [src] is locked down tight. You can't squeeze underneath!")
 		to_chat(M, span_warning("\The [src] is locked down tight. You can't squeeze underneath!"))
 		return
 	M.visible_message(span_warning("\The [M] scuttles underneath \the [src]!"), \
@@ -290,6 +297,7 @@
 		var/obj/item/tool/weldingtool/W = I
 
 		if(not_weldable)
+			balloon_alert(user, "\The [src] would require something a lot stronger than [W] to weld!")
 			to_chat(user, span_warning("\The [src] would require something a lot stronger than [W] to weld!"))
 			return
 
@@ -297,6 +305,8 @@
 			if(!W.tool_start_check(user, amount = 0))
 				return
 
+			balloon_alert_to_viewers("[user] is [welded ? "unwelding":"welding"] the airlock.", ignored_mobs = user)
+			balloon_alert(user, "You begin [welded ? "unwelding":"welding"] the airlock...")
 			user.visible_message(span_notice("[user] is [welded ? "unwelding":"welding"] the airlock."), \
 							span_notice("You begin [welded ? "unwelding":"welding"] the airlock..."), \
 							span_italics("You hear welding."))
@@ -305,17 +315,22 @@
 				return
 
 			welded = !welded
+			balloon_alert_to_viewers("[user.name] has [welded? "welded shut":"unwelded"] [src].", ignored_mobs = user)
+			balloon_alert(user, "You [welded ? "weld the airlock shut":"unweld the airlock"].")
 			user.visible_message("[user.name] has [welded? "welded shut":"unwelded"] [src].", \
 								span_notice("You [welded ? "weld the airlock shut":"unweld the airlock"]."))
 			update_icon()
 		else
 			if(obj_integrity >= max_integrity)
+				balloon_alert(user, "The airlock doesn't need repairing.")
 				to_chat(user, span_notice("The airlock doesn't need repairing."))
 				return
 
 			if(!W.tool_start_check(user, amount=0))
 				return
 
+			balloon_alert_to_viewers("[user] is welding the airlock.", ignored_mobs = user)
+			balloon_alert(user, "You begin repairing the airlock...")
 			user.visible_message(span_notice("[user] is welding the airlock."), \
 							span_notice("You begin repairing the airlock..."), \
 							span_italics("You hear welding."))
@@ -325,6 +340,8 @@
 
 			repair_damage(max_integrity)
 			DISABLE_BITFIELD(machine_stat, BROKEN)
+			balloon_alert_to_viewers("[user.name] has repaired [src].", ignored_mobs = user)
+			balloon_alert(user, "You finish repairing the airlock.")
 			user.visible_message(span_notice("[user.name] has repaired [src]."), \
 								span_notice("You finish repairing the airlock."))
 			update_icon()
@@ -343,6 +360,8 @@
 
 	else if(I.pry_capable == IS_PRY_CAPABLE_CROWBAR && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && !hasPower() && !locked)))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+			balloon_alert_to_viewers("[user] fumbles around figuring out how to deconstruct [src].", ignored_mobs = user)
+			balloon_alert(user, "You fumble around figuring out how to deconstruct [src].")
 			user.visible_message(span_notice("[user] fumbles around figuring out how to deconstruct [src]."),
 			span_notice("You fumble around figuring out how to deconstruct [src]."))
 
@@ -355,11 +374,14 @@
 			return
 
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+		balloon_alert_to_viewers("[user] starts removing the electronics from the airlock assembly.", ignored_mobs = user)
+		balloon_alert(user, "You start removing electronics from the airlock assembly.")
 		user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
 
 		if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
+		balloon_alert(user, "You removed the airlock electronics!")
 		to_chat(user, span_notice("You removed the airlock electronics!"))
 
 		var/obj/structure/door_assembly/DA = new assembly_type(loc)
@@ -394,12 +416,15 @@
 		qdel(src)
 
 	else if(hasPower() && I.pry_capable != IS_PRY_CAPABLE_FORCE)
+		balloon_alert(user, "The airlock's motors resist your efforts to force it.")
 		to_chat(user, span_warning("The airlock's motors resist your efforts to force it."))
 
 	else if(locked)
+		balloon_alert(user, "The airlock's bolts prevent it from being forced.")
 		to_chat(user, span_warning("The airlock's bolts prevent it from being forced."))
 
 	else if(welded)
+		balloon_alert(user, "The airlock is welded shut.")
 		to_chat(user, span_warning("The airlock is welded shut."))
 
 	else if(I.pry_capable == IS_PRY_CAPABLE_FORCE)
@@ -416,14 +441,17 @@
 /obj/machinery/door/airlock/screwdriver_act(mob/user, obj/item/I)
 	. = ..()
 	if(no_panel)
+		balloon_alert(user, "\The [src] has no panel to open!")
 		to_chat(user, span_warning("\The [src] has no panel to open!"))
 		return
 
 	machine_stat ^= PANEL_OPEN
 	if(machine_stat & PANEL_OPEN)
+		balloon_alert(user, "You open [src]'s panel.")
 		to_chat(user, span_notice("You open [src]'s panel."))
 		playsound(loc, 'sound/items/screwdriver2.ogg', 25, 1)
 	else
+		balloon_alert(user, "You close [src]'s panel.")
 		to_chat(user, span_notice("You close [src]'s panel."))
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 	update_icon()
@@ -565,10 +593,12 @@
 		return
 
 	if(welded)
+		balloon_alert(user, "The airlock has been welded shut.")
 		to_chat(user, span_warning("The airlock has been welded shut."))
 		return
 
 	if(locked)
+		balloon_alert(user, "The door bolts are down.")
 		to_chat(user, span_warning("The door bolts are down."))
 		return
 
@@ -583,6 +613,7 @@
 		return
 
 	if(wires.is_cut(WIRE_SHOCK))
+		balloon_alert(user, "The electrification wire is cut.")
 		to_chat(user, span_warning("The electrification wire is cut."))
 		return
 
@@ -595,6 +626,7 @@
 		return
 
 	if(wires.is_cut(WIRE_SHOCK))
+		balloon_alert(user, "The electrification wire is cut.")
 		to_chat(user, span_warning("The electrification wire is cut."))
 		return
 
@@ -606,6 +638,7 @@
 		return
 
 	if(wires.is_cut(WIRE_SHOCK))
+		balloon_alert(user, "The electrification wire is cut.")
 		to_chat(user, span_warning("The electrification wire is cut."))
 		return
 
@@ -617,6 +650,7 @@
 		return
 
 	if(emergency)
+		balloon_alert(user, "Emergency access is already enabled.")
 		to_chat(user, span_warning("Emergency access is already enabled."))
 		return
 
@@ -630,6 +664,7 @@
 		return
 
 	if(!emergency)
+		balloon_alert(user, "Emergency access is already disabled.")
 		to_chat(user, span_warning("Emergency access is already disabled."))
 		return
 
@@ -642,14 +677,17 @@
 		return
 
 	if(wires.is_cut(WIRE_BOLTS))
+		balloon_alert(user, "The door bolt wire is cut.")
 		to_chat(user, span_warning("The door bolt wire is cut."))
 		return
 
 	if(!locked)
+		balloon_alert(user, "The door bolts are already up.")
 		to_chat(user, span_warning("The door bolts are already up."))
 		return
 
 	if(!hasPower())
+		balloon_alert(user, "Cannot raise door bolts due to power failure.")
 		to_chat(user, span_warning("Cannot raise door bolts due to power failure."))
 		return
 
@@ -662,6 +700,7 @@
 		return
 
 	if(wires.is_cut(WIRE_BOLTS))
+		balloon_alert(user, "The door bolt wire is cut.")
 		to_chat(user, span_warning("The door bolt wire is cut."))
 		return
 

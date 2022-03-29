@@ -61,6 +61,8 @@
 		return
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 
+	balloon_alert_to_viewers("[user] kicks [src].", ignored_mobs = user)
+	balloon_alert(user, "You kick [src].")
 	user.visible_message(span_warning("[user] kicks [src]."), \
 						span_warning("You kick [src]."), \
 						"You hear twisting metal.")
@@ -117,6 +119,7 @@
 				to_chat(user, span_notice("There is already a window facing this way there."))
 				return
 
+		balloon_alert(user, "You start placing the window.")
 		to_chat(user, span_notice("You start placing the window."))
 
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
@@ -132,6 +135,7 @@
 			return
 
 		var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)
+		balloon_alert(user, "You place the [WD] on [src].")
 		to_chat(user, span_notice("You place the [WD] on [src]."))
 		WD.update_icon()
 

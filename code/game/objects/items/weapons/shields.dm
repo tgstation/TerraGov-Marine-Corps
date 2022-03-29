@@ -62,6 +62,7 @@
 			to_chat(user, span_warning("You need one metal sheet to repair the base of [src]."))
 			return
 
+		balloon_alert_to_viewers("[user] begins to repair the base of [src].")
 		visible_message(span_notice("[user] begins to repair the base of [src]."))
 
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
@@ -71,6 +72,7 @@
 			return
 
 		repair_damage(max_integrity * 0.2)
+		balloon_alert_to_viewers("[user] repairs the base of [src].")
 		visible_message(span_notice("[user] repairs the base of [src]."))
 
 
@@ -102,8 +104,10 @@
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
+	balloon_alert_to_viewers("[user] begins repairing damage to [src].", ignored_mobs = user)
 	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 	span_notice("You begin repairing the damage to [src]."))
+	balloon_alert(user, "You begin repairing the damage to [src].")
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
 	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
@@ -116,6 +120,7 @@
 		to_chat(user, span_warning("Not enough fuel to finish the task."))
 		return TRUE
 
+	balloon_alert_to_viewers("[user] repairs some damage on [src].")
 	user.visible_message(span_notice("[user] repairs some damage on [src]."),
 	span_notice("You repair [src]."))
 	repair_damage(40)

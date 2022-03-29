@@ -29,12 +29,14 @@
 		return
 
 	if(scan)
+		balloon_alert(usr, "You remove \the [scan] from \the [src].")
 		to_chat(usr, "You remove \the [scan] from \the [src].")
 		scan.loc = get_turf(src)
 		if(!usr.get_active_held_item() && istype(usr,/mob/living/carbon/human))
 			usr.put_in_hands(scan)
 		scan = null
 	else
+		balloon_alert(usr, "There is nothing to remove from the console.")
 		to_chat(usr, "There is nothing to remove from the console.")
 
 /obj/machinery/computer/secure_data/attackby(obj/item/I, mob/user, params)
@@ -45,6 +47,7 @@
 			return
 		I.forceMove(src)
 		scan = I
+		balloon_alert(user, "You insert [I].")
 		to_chat(user, "You insert [I].")
 
 

@@ -32,6 +32,7 @@
 
 		L.forceMove(loc)
 		L.Paralyze(10 SECONDS)
+		balloon_alert_to_viewers("[user] puts [L] on the table.")
 		user.visible_message(span_danger("[user] puts [L] on the table."))
 
 	else

@@ -129,6 +129,7 @@
 	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, X) & COMPONENT_NO_ATTACK_ALIEN)
 		return
 	if(!(resistance_flags & XENO_DAMAGEABLE))
+		balloon_alert(X, "We stare at \the [src] cluelessly.")
 		to_chat(X, span_warning("We stare at \the [src] cluelessly."))
 		return
 	if(effects)

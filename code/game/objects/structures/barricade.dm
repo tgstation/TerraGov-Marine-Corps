@@ -119,6 +119,8 @@
 		return FALSE
 
 	if(is_wired)
+		balloon_alert_to_viewers("The barbed wire slices into [X]!", ignored_mobs = X)
+		balloon_alert(X, "The barbed wire slices into us!")
 		X.visible_message(span_danger("The barbed wire slices into [X]!"),
 		span_danger("The barbed wire slices into us!"), null, 5)
 		X.apply_damage(10, updating_health = TRUE)
@@ -139,6 +141,8 @@
 		if(!can_wire)
 			return
 
+		balloon_alert_to_viewers("[user] starts setting up [I] on [src].", ignored_mobs = user)
+		balloon_alert(user, "You start setting up [I] on [src].")
 		user.visible_message(span_notice("[user] starts setting up [I] on [src]."),
 		span_notice("You start setting up [I] on [src]."))
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || !can_wire)
@@ -267,6 +271,7 @@
 	set src in oview(1)
 
 	if(anchored)
+		balloon_alert(usr, "It is fastened to the floor, you can't rotate it!")
 		to_chat(usr, span_warning("It is fastened to the floor, you can't rotate it!"))
 		return FALSE
 
@@ -278,6 +283,7 @@
 	set src in oview(1)
 
 	if(anchored)
+		balloon_alert(usr, "It is fastened to the floor, you can't rotate it!")
 		to_chat(usr, span_warning("It is fastened to the floor, you can't rotate it!"))
 		return FALSE
 
@@ -286,6 +292,7 @@
 
 /obj/structure/barricade/attack_hand_alternate(mob/living/user)
 	if(anchored)
+		balloon_alert(user, "It is fastened to the floor, you can't rotate it!")
 		to_chat(user, span_warning("It is fastened to the floor, you can't rotate it!"))
 		return FALSE
 
@@ -329,12 +336,15 @@
 			to_chat(user, span_warning(" You are already shoveling!"))
 			return
 
+		balloon_alert_to_viewers("[user] starts clearing out \the [src].", ignored_mobs = user)
+		balloon_alert(user, "You start removing \the [src].")
 		user.visible_message("[user] starts clearing out \the [src].", "You start removing \the [src].")
 
 		if(!do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		if(!ET.folded)
+			balloon_alert_to_viewers(" \The [user] removes \the [src].")
 			user.visible_message(span_notice(" \The [user] removes \the [src]."))
 			var/deconstructed = TRUE
 			for(var/obj/effect/xenomorph/acid/A in loc)
@@ -406,6 +416,7 @@
 			return
 
 		visible_message(span_notice("[user] begins to repair [src]."))
+		balloon_alert_to_viewers("[user] begins to repair [src].")
 
 		if(!do_after(user,20, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
@@ -415,6 +426,7 @@
 
 		repair_damage(max_integrity)
 		visible_message(span_notice("[user] repairs [src]."))
+		balloon_alert_to_viewers("[user] repairs [src].")
 
 
 /*----------------------*/
@@ -481,9 +493,11 @@
 			return attempt_barricade_upgrade(I, user, params)
 
 		if(metal_sheets.get_amount() < 2)
+			balloon_alert(user, "You need two metal sheets to repair the base of [src].")
 			to_chat(user, span_warning("You need two metal sheets to repair the base of [src]."))
 			return FALSE
 
+		balloon_alert_to_viewers("[user] begins to repair the base of [src].")
 		visible_message(span_notice("[user] begins to repair the base of [src]."))
 
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
@@ -493,19 +507,23 @@
 			return FALSE
 
 		repair_damage(max_integrity * 0.3)
+		balloon_alert_to_viewers("[user] repairs the base of [src].")
 		visible_message(span_notice("[user] repairs the base of [src]."))
 
 
 
 /obj/structure/barricade/metal/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
 	if(barricade_upgrade_type)
+		balloon_alert(user, "[src] is already upgraded.")
 		to_chat(user, span_warning("[src] is already upgraded."))
 		return FALSE
 	if(obj_integrity < max_integrity)
+		balloon_alert(user, "You need [src] to be at full health before you can upgrade it.")
 		to_chat(user, span_warning("You need [src] to be at full health before you can upgrade it."))
 		return FALSE
 
 	if(metal_sheets.get_amount() < CADE_UPGRADE_REQUIRED_SHEETS)
+		balloon_alert(user, "You need at least [CADE_UPGRADE_REQUIRED_SHEETS] metal sheets to repair the base of [src].")
 		to_chat(user, span_warning("You need at least [CADE_UPGRADE_REQUIRED_SHEETS] metal sheets to repair the base of [src]."))
 		return FALSE
 
@@ -513,12 +531,16 @@
 	var/choice = show_radial_menu(user, src, cade_types, require_near = TRUE, tooltips = TRUE)
 
 	if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
+		balloon_alert_to_viewers("[user] fumbles around figuring out how to attach armor plates to [src].", ignored_mobs = user)
+		balloon_alert(user, "You fumble around figuring out how to attach armor plates on [src].")
 		user.visible_message(span_notice("[user] fumbles around figuring out how to attach armor plates to [src]."),
 		span_notice("You fumble around figuring out how to attach armor plates on [src]."))
 		var/fumbling_time = 2 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
+	balloon_alert_to_viewers("[user] begins attaching [choice] to [src]", ignored_mobs = user)
+	balloon_alert(user, "You begin attaching [choice] to [src].")
 	user.visible_message(span_notice("[user] begins attaching [choice] to [src]."),
 		span_notice("You begin attaching [choice] to [src]."))
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
@@ -537,6 +559,7 @@
 
 	barricade_upgrade_type = choice
 
+	balloon_alert(user, "You attach [choice] to [src].")
 	user.visible_message(span_notice("[user] attaches [choice] to [src]."),
 		span_notice("You attach [choice] to [src]."))
 
@@ -571,20 +594,27 @@
 			return TRUE
 
 	if(obj_integrity <= max_integrity * 0.3)
+		balloon_alert(user, "[src] has sustained too much structural damage and needs more metal plates to be repaired.")
 		to_chat(user, span_warning("[src] has sustained too much structural damage and needs more metal plates to be repaired."))
 		return TRUE
 
 	if(obj_integrity == max_integrity)
+		balloon_alert(user, "[src] doesn't need repairs.")
 		to_chat(user, span_warning("[src] doesn't need repairs."))
 		return TRUE
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+		balloon_alert(user, "You fumble around figuring out how to repair [src].")
+		balloon_alert_to_viewers("[user] fumbles around figuring out how to repair [src].", ignored_mobs = user)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
 		span_notice("You fumble around figuring out how to repair [src]."))
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
 			return TRUE
 
+
+	balloon_alert_to_viewers("[user] begins repairing damage to [src].", ignored_mobs = user)
+	balloon_alert(user, "[user] begins repairing damage to [src].")
 	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 	span_notice("You begin repairing the damage to [src]."))
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
@@ -596,9 +626,12 @@
 		return TRUE
 
 	if(!WT.remove_fuel(2, user))
+		balloon_alert(user, "Not enough fuel to finish the task.")
 		to_chat(user, span_warning("Not enough fuel to finish the task."))
 		return TRUE
 
+	balloon_alert_to_viewers("[user] repairs some damage on [src].", ignored_mobs = user)
+	balloon_alert(user, "You repair [src].")
 	user.visible_message(span_notice("[user] repairs some damage on [src]."),
 	span_notice("You repair [src]."))
 	repair_damage(150)
@@ -613,6 +646,8 @@
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
+				balloon_alert_to_viewers("[user] fumbles around figuring out how to assemble [src].", ignored_mobs = user)
+				balloon_alert(user, "You fumble around figuring out how to assemble [src].")
 				user.visible_message(span_notice("[user] fumbles around figuring out how to assemble [src]."),
 				span_notice("You fumble around figuring out how to assemble [src]."))
 				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
@@ -623,6 +658,8 @@
 			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 
+			balloon_alert_to_viewers("[user] set [src]'s protection panel back.", ignored_mobs = user)
+			balloon_alert(user, "You set [src]'s protection panel back.")
 			user.visible_message(span_notice("[user] set [src]'s protection panel back."),
 			span_notice("You set [src]'s protection panel back."))
 			build_state = BARRICADE_METAL_FIRM
@@ -630,6 +667,8 @@
 
 		if(BARRICADE_METAL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
 			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
+				balloon_alert_to_viewers("[user] fumbles around figuring out how to disassemble [src].", ignored_mobs = user)
+				balloon_alert(user, "You fumble around figuring out how to disassemble [src].")
 				user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
 				span_notice("You fumble around figuring out how to disassemble [src]."))
 				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
@@ -641,6 +680,8 @@
 			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 
+			balloon_alert_to_viewers("[user] removes [src]'s protection panel.", ignored_mobs = user)
+			balloon_alert(user, "You remove [src]'s protection panels, exposing the anchor bolts.")
 			user.visible_message(span_notice("[user] removes [src]'s protection panel."),
 			span_notice("You remove [src]'s protection panels, exposing the anchor bolts."))
 			build_state = BARRICADE_METAL_ANCHORED
@@ -653,6 +694,8 @@
 	switch(build_state)
 		if(BARRICADE_METAL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
+				balloon_alert_to_viewers("[user] fumbles around figuring out how to disassemble [src].", ignored_mobs = user)
+				balloon_alert(user, "You fumble around figuring out how to disassemble [src].")
 				user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
 				span_notice("You fumble around figuring out how to disassemble [src]."))
 				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
@@ -663,6 +706,8 @@
 			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 
+			balloon_alert_to_viewers("[user] loosens [src]'s anchor bolts.", ignored_mobs = user)
+			balloon_alert(user, "You loosen [src]'s anchor bolts.")
 			user.visible_message(span_notice("[user] loosens [src]'s anchor bolts."),
 			span_notice("You loosen [src]'s anchor bolts."))
 			build_state = BARRICADE_METAL_LOOSE
@@ -675,15 +720,19 @@
 
 			var/turf/mystery_turf = get_turf(src)
 			if(!isopenturf(mystery_turf))
+				balloon_alert(user, "We can't anchor the barricade here!")
 				to_chat(user, span_warning("We can't anchor the barricade here!"))
 				return TRUE
 
 			var/turf/open/T = mystery_turf
 			if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
+				balloon_alert(user, "We can't anchor the barricade here!")
 				to_chat(user, span_warning("We can't anchor the barricade here!"))
 				return TRUE
 
 			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
+				balloon_alert_to_viewers("[user] fumbles around figuring out how to assemble [src].", ignored_mobs = user)
+				balloon_alert(user, "You fumble around figuring out how to assemble [src].")
 				user.visible_message(span_notice("[user] fumbles around figuring out how to assemble [src]."),
 				span_notice("You fumble around figuring out how to assemble [src]."))
 				var/fumbling_time = 1 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
@@ -692,6 +741,7 @@
 
 			for(var/obj/structure/barricade/B in loc)
 				if(B != src && B.dir == dir)
+					balloon_alert(user, "There's already a barricade here.")
 					to_chat(user, span_warning("There's already a barricade here."))
 					return TRUE
 
@@ -699,6 +749,8 @@
 			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 
+			balloon_alert_to_viewers("[user] secures [src]'s anchor bolts.", ignored_mobs = user)
+			balloon_alert(user, "You secure [src]'s anchor bolts.")
 			user.visible_message(span_notice("[user] secures [src]'s anchor bolts."),
 			span_notice("You secure [src]'s anchor bolts."))
 			build_state = BARRICADE_METAL_ANCHORED
@@ -714,12 +766,16 @@
 	switch(build_state)
 		if(BARRICADE_METAL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
 			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
+				balloon_alert_to_viewers("[user] fumbles around figuring out how to disassemble [src].", ignored_mobs = user)
+				balloon_alert(user, "You fumble around figuring out how to disassemble [src].")
 				user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
 				span_notice("You fumble around figuring out how to disassemble [src]."))
 				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
+			balloon_alert_to_viewers("[user] starts unseating [src]'s panels.", ignored_mobs = user)
+			balloon_alert(user, "You start unseating [src]'s panels.")
 			user.visible_message(span_notice("[user] starts unseating [src]'s panels."),
 			span_notice("You start unseating [src]'s panels."))
 
@@ -727,6 +783,8 @@
 			if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 
+			balloon_alert_to_viewers("[user] takes [src]'s panels apart.", ignored_mobs = user)
+			balloon_alert(user, "You take [src]'s panels apart.")
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
@@ -741,16 +799,21 @@
 		if(BARRICADE_METAL_FIRM)
 
 			if(!barricade_upgrade_type) //Check to see if we actually have upgrades to remove.
+				balloon_alert(user, "This barricade has no upgrades to remove!")
 				to_chat(user, span_warning("This barricade has no upgrades to remove!"))
 				return TRUE
 
 			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
+				balloon_alert_to_viewers("[user] fumbles around figuring out how to disassemble [src]'s armor plates.", ignored_mobs = user)
+				balloon_alert(user, "You fumble around figuring out how to disassemble [src]'s armor plates..")
 				user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]'s armor plates."),
 				span_notice("You fumble around figuring out how to disassemble [src]'s armor plates.."))
 				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
+			balloon_alert_to_viewers("[user] starts disassembling [src]'s armor plates.", ignored_mobs = user)
+			balloon_alert(user, "You start disassembling [src]'s armor plates.")
 			user.visible_message(span_notice("[user] starts disassembling [src]'s armor plates."),
 			span_notice("You start disassembling [src]'s armor plates."))
 
@@ -758,6 +821,8 @@
 			if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 
+			balloon_alert_to_viewers("[user] takes [src]'s armor plates apart.", ignored_mobs = user)
+			balloon_alert(user, "You take [src]'s armor plates apart.")
 			user.visible_message(span_notice("[user] takes [src]'s armor plates apart."),
 			span_notice("You take [src]'s armor plates apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
@@ -850,9 +915,11 @@
 			return
 
 		if(plasteel_sheets.get_amount() < 2)
+			balloon_alert(user, "You need two plasteel sheets to repair the base of [src].")
 			to_chat(user, span_warning("You need two plasteel sheets to repair the base of [src]."))
 			return
 
+		balloon_alert_to_viewers("[user] begins to repair the base of [src].", ignored_mobs = user)
 		visible_message(span_notice("[user] begins to repair the base of [src]."))
 
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
@@ -862,6 +929,7 @@
 			return
 
 		repair_damage(max_integrity * 0.3)
+		balloon_alert_to_viewers("[user] repairs the base of [src].", ignored_mobs = user)
 		visible_message(span_notice("[user] repairs the base of [src]."))
 		return
 
@@ -874,6 +942,8 @@
 		var/obj/item/tool/weldingtool/WT = I
 
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
+			balloon_alert_to_viewers("[user] fumbles around figuring out how to repair [src].", ignored_mobs = user)
+			balloon_alert(user, "You fumble around figuring out how to repair [src].")
 			user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
 			span_notice("You fumble around figuring out how to repair [src]."))
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
@@ -881,10 +951,12 @@
 				return
 
 		if(obj_integrity <= max_integrity * 0.3)
+			balloon_alert(user, "[src] has sustained too much structural damage and needs more plasteel plates to be repaired.")
 			to_chat(user, span_warning("[src] has sustained too much structural damage and needs more plasteel plates to be repaired."))
 			return
 
 		if(obj_integrity == max_integrity)
+			balloon_alert(user, "[src] doesn't need repairs.")
 			to_chat(user, span_warning("[src] doesn't need repairs."))
 			return
 
@@ -892,6 +964,8 @@
 			return FALSE
 
 
+		balloon_alert_to_viewers("[user] begins repairing damage to [src].", ignored_mobs = user)
+		balloon_alert(user, "You begin repairing the damage to [src].")
 		user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 		span_notice("You begin repairing the damage to [src]."))
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
@@ -902,6 +976,8 @@
 			return
 
 		busy = FALSE
+		balloon_alert_to_viewers("[user] repairs some damage on [src].", ignored_mobs = user)
+		balloon_alert(user, "[user] repairs some damage on [src].")
 		user.visible_message(span_notice("[user] repairs some damage on [src]."),
 		span_notice("You repair [src]."))
 		repair_damage(150)
@@ -915,6 +991,8 @@
 		if(BARRICADE_PLASTEEL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
 			if(isscrewdriver(I))
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
+					balloon_alert_to_viewers("[user] fumbles around figuring out how to disassemble [src].", ignored_mobs = user)
+					balloon_alert(user, "You fumble around figuring out how to disassemble [src].")
 					user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
 					span_notice("You fumble around figuring out how to disassemble [src]."))
 					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
@@ -923,18 +1001,22 @@
 
 				for(var/obj/structure/barricade/B in loc)
 					if(B != src && B.dir == dir)
+						balloon_alert(user, "There's already a barricade here.")
 						to_chat(user, span_warning("There's already a barricade here."))
 						return
 
 				if(!do_after(user, 1, TRUE, src, BUSY_ICON_BUILD))
 					return
 
+				balloon_alert_to_viewers("[user] removes [src]'s protection panel.", ignored_mobs = user)
+				balloon_alert(user, "You remove [src]'s protection panels, exposing the anchor bolts.")
 				user.visible_message(span_notice("[user] removes [src]'s protection panel."),
-
 				span_notice("You remove [src]'s protection panels, exposing the anchor bolts."))
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 				build_state = BARRICADE_PLASTEEL_ANCHORED
 			else if(iscrowbar(I))
+				balloon_alert_to_viewers(" [user] [linked ? "un" : "" ]links [src].", ignored_mobs = user)
+				balloon_alert(user, "You [linked ? "un" : "" ]link [src].")
 				user.visible_message(span_notice(" [user] [linked ? "un" : "" ]links [src]."), span_notice("You [linked ? "un" : "" ]link [src]."))
 				linked = !linked
 				for(var/direction in GLOB.cardinals)
@@ -944,11 +1026,15 @@
 		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(isscrewdriver(I))
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
+					balloon_alert_to_viewers("[user] fumbles around figuring out how to assemble [src].", ignored_mobs = user)
+					balloon_alert(user, "You fumble around figuring out how to assemble [src].")
 					user.visible_message(span_notice("[user] fumbles around figuring out how to assemble [src]."),
 					span_notice("You fumble around figuring out how to assemble [src]."))
 					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
+				balloon_alert_to_viewers("[user] set [src]'s protection panel back.", ignored_mobs = user)
+				balloon_alert(user, "You set [src]'s protection panel back.")
 				user.visible_message(span_notice("[user] set [src]'s protection panel back."),
 				span_notice("You set [src]'s protection panel back."))
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
@@ -956,11 +1042,15 @@
 
 			else if(iswrench(I))
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
+					balloon_alert_to_viewers("[user] fumbles around figuring out how to disassemble [src].", ignored_mobs = user)
+					balloon_alert(user, "You fumble around figuring out how to disassemble [src].")
 					user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
 					span_notice("You fumble around figuring out how to disassemble [src]."))
 					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
+				balloon_alert_to_viewers("[user] loosens [src]'s anchor bolts.", ignored_mobs = user)
+				balloon_alert(user, "You loosen [src]'s anchor bolts.")
 				user.visible_message(span_notice("[user] loosens [src]'s anchor bolts."),
 				span_notice("You loosen [src]'s anchor bolts."))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -973,20 +1063,26 @@
 
 				var/turf/mystery_turf = get_turf(src)
 				if(!isopenturf(mystery_turf))
+					balloon_alert(user, "We can't anchor the barricade here!")
 					to_chat(user, span_warning("We can't anchor the barricade here!"))
 					return
 
 				var/turf/open/T = mystery_turf
 				if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
+					balloon_alert(user, "We can't anchor the barricade here!")
 					to_chat(user, span_warning("We can't anchor the barricade here!"))
 					return
 
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
+					balloon_alert_to_viewers("[user] fumbles around figuring out how to assemble [src].", ignored_mobs = user)
+					balloon_alert(user, "You fumble around figuring out how to assemble [src].")
 					user.visible_message(span_notice("[user] fumbles around figuring out how to assemble [src]."),
 					span_notice("You fumble around figuring out how to assemble [src]."))
 					var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
+				balloon_alert_to_viewers("[user] secures [src]'s anchor bolts.", ignored_mobs = user)
+				balloon_alert(user, "You secure [src]'s anchor bolts.")
 				user.visible_message(span_notice("[user] secures [src]'s anchor bolts."),
 				span_notice("You secure [src]'s anchor bolts."))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -997,11 +1093,15 @@
 
 			else if(iscrowbar(I))
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
+					balloon_alert_to_viewers("[user] fumbles around figuring out how to disassemble [src].", ignored_mobs = user)
+					balloon_alert(user, "You fumble around figuring out how to disassemble [src].")
 					user.visible_message(span_notice("[user] fumbles around figuring out how to disassemble [src]."),
 					span_notice("You fumble around figuring out how to disassemble [src]."))
 					var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating("engineer") )
 					if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 						return
+				balloon_alert_to_viewers("[user] starts unseating [src]'s panels.", ignored_mobs = user)
+				balloon_alert(user, "You start unseating [src]'s panels.")
 				user.visible_message(span_notice("[user] starts unseating [src]'s panels."),
 				span_notice("You start unseating [src]'s panels."))
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
@@ -1012,6 +1112,8 @@
 					return
 
 				busy = FALSE
+				balloon_alert_to_viewers("[user] takes [src]'s panels apart.", ignored_mobs = user)
+				balloon_alert(user, "You take [src]'s panels apart.")
 				user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 				span_notice("You take [src]'s panels apart."))
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
@@ -1038,6 +1140,8 @@
 	closed = !closed
 	density = !density
 
+	balloon_alert_to_viewers("[user] flips [src] [closed ? "closed" :"open"].", ignored_mobs = user)
+	balloon_alert(user, "You flip [src] [closed ? "closed" :"open"].")
 	user?.visible_message(span_notice("[user] flips [src] [closed ? "closed" :"open"]."),
 		span_notice("You flip [src] [closed ? "closed" :"open"]."))
 
@@ -1112,9 +1216,13 @@
 	if(istype(I, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = I
 		if(!ET.folded)
+			balloon_alert_to_viewers("[user] starts disassembling [src].", ignored_mobs = user)
+			balloon_alert(user, "You start disassembling [src].")
 			user.visible_message(span_notice("[user] starts disassembling [src]."),
 			span_notice("You start disassembling [src]."))
 			if(do_after(user, ET.shovelspeed, TRUE, src, BUSY_ICON_BUILD))
+				balloon_alert_to_viewers("[user] disassembles [src].", ignored_mobs = user)
+				balloon_alert(user, "You disassemble [src].")
 				user.visible_message(span_notice("[user] disassembles [src]."),
 				span_notice("You disassemble [src]."))
 				var/deconstructed = TRUE
@@ -1128,12 +1236,16 @@
 
 	if(istype(I, /obj/item/stack/sandbags) )
 		if(obj_integrity == max_integrity)
+			balloon_alert(user, "[src] isn't in need of repairs!")
 			to_chat(user, span_warning("[src] isn't in need of repairs!"))
 			return
 		var/obj/item/stack/sandbags/D = I
 		if(D.get_amount() < 1)
+			balloon_alert(user, "You need a sandbag to repair [src].")
 			to_chat(user, span_warning("You need a sandbag to repair [src]."))
 			return
+		
+		balloon_alert_to_viewers("[user] begins to replace [src]'s damaged sandbags...")
 		visible_message(span_notice("[user] begins to replace [src]'s damaged sandbags..."))
 
 		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
@@ -1143,6 +1255,7 @@
 			return
 
 		repair_damage(max_integrity * 0.2) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
+		balloon_alert_to_viewers("[user] replaces a damaged sandbag, repairing [src].")
 		user.visible_message(span_notice("[user] replaces a damaged sandbag, repairing [src]."),
 		span_notice("You replace a damaged sandbag, repairing it [src]."))
 		update_icon()

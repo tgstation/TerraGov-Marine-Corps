@@ -23,8 +23,10 @@
 	if(!(buckling_mob.buckle_flags & CAN_BE_BUCKLED) && !force)
 		if(!silent)
 			if(buckling_mob == usr)
+				balloon_alert(buckling_mob, "You are unable to buckle yourself to [src]!")
 				to_chat(buckling_mob, span_warning("You are unable to buckle yourself to [src]!"))
 			else
+				balloon_alert(usr, "You are unable to buckle [buckling_mob] to [src]!")
 				to_chat(usr, span_warning("You are unable to buckle [buckling_mob] to [src]!"))
 		return FALSE
 

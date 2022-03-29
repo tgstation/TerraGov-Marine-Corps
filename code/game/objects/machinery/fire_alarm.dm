@@ -91,10 +91,16 @@ FIRE ALARM
 			if(ismultitool(I))
 				detecting = !detecting
 				if(detecting)
+					balloon_alert_to_viewers(" [user] has reconnected [src]'s detecting unit!", ignored_mobs = user)
+					balloon_alert(user, "You have reconnected [src]'s detecting unit.")
 					user.visible_message(span_warning(" [user] has reconnected [src]'s detecting unit!"), "You have reconnected [src]'s detecting unit.")
 				else
+					balloon_alert_to_viewers(" [user] has disconnected [src]'s detecting unit!", ignored_mobs = user)
+					balloon_alert(user, "You have disconnected [src]'s detecting unit.")
 					user.visible_message(span_warning(" [user] has disconnected [src]'s detecting unit!"), "You have disconnected [src]'s detecting unit.")
 			else if(iswirecutter(I))
+				balloon_alert_to_viewers(" [user] has cut the wires inside \the [src]!", ignored_mobs = user)
+				balloon_alert(user, "You have cut the wires inside \the [src].")
 				user.visible_message(span_warning(" [user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 				buildstage = 1
@@ -103,6 +109,7 @@ FIRE ALARM
 			if(iscablecoil(I))
 				var/obj/item/stack/cable_coil/C = I
 				if(C.use(5))
+					balloon_alert(user, "You wire \the [src].")
 					to_chat(user, span_notice("You wire \the [src]."))
 					buildstage = 2
 					return
@@ -110,6 +117,7 @@ FIRE ALARM
 					to_chat(user, span_warning("You need 5 pieces of cable to do wire \the [src]."))
 					return
 			else if(iscrowbar(I))
+				balloon_alert(user, "You pry out the circuit!")
 				to_chat(user, "You pry out the circuit!")
 				playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 				spawn(20)
@@ -119,6 +127,7 @@ FIRE ALARM
 					update_icon()
 		if(0)
 			if(istype(I, /obj/item/circuitboard/firealarm))
+				balloon_alert(user, "You insert the circuit!")
 				to_chat(user, "You insert the circuit!")
 				electronics = I
 				qdel(I)
@@ -126,6 +135,7 @@ FIRE ALARM
 				update_icon()
 
 			else if(iswrench(I))
+				balloon_alert(user, "You remove the fire alarm assembly from the wall!")
 				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/frame/fire_alarm/frame = new /obj/item/frame/fire_alarm
 				frame.forceMove(user.loc)

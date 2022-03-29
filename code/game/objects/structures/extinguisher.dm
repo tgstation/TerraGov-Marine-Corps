@@ -38,6 +38,7 @@
 		user.drop_held_item()
 		contents += I
 		has_extinguisher = I
+		balloon_alert(user, "You place [I] in [src].")
 		to_chat(user, span_notice("You place [I] in [src]."))
 
 	opened = !opened
@@ -51,6 +52,7 @@
 		return
 	if(has_extinguisher)
 		user.put_in_hands(has_extinguisher)
+		balloon_alert(user, "You take [has_extinguisher] from [src].")
 		to_chat(user, span_notice("You take [has_extinguisher] from [src]."))
 		has_extinguisher = null
 		opened = 1

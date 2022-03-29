@@ -56,6 +56,7 @@
 		return
 	if(anes_tank)
 		user.put_in_active_hand(anes_tank)
+		balloon_alert(user, ("You remove \the [anes_tank] from \the [src]."))
 		to_chat(user, span_notice("You remove \the [anes_tank] from \the [src]."))
 		anes_tank = null
 
@@ -74,6 +75,7 @@
 	if(!anes_tank)
 		to_chat(user, span_warning("There is no anesthetic tank connected to the table, load one first."))
 		return FALSE
+	balloon_alert_to_viewers("[user] begins to connect [buckling_mob] to the anesthetic system.")
 	buckling_mob.visible_message(span_notice("[user] begins to connect [buckling_mob] to the anesthetic system."))
 	if(!do_after(user, 2.5 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
 		if(buckling_mob != victim)
@@ -92,6 +94,7 @@
 		to_chat(user, span_danger("You can't fit the gas mask over their face!"))
 		return FALSE
 	buckling_human.internal = anes_tank
+	balloon_alert_to_viewers("[span_notice("[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.")]'")
 	buckling_human.visible_message("[span_notice("[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.")]'")
 	to_chat(buckling_human, span_information("You begin to feel sleepy."))
 	buckling_human.setDir(SOUTH)
@@ -103,6 +106,7 @@
 	if(!.)
 		return
 	if(!silent)
+		balloon_alert_to_viewers("[user] turns off the anesthetic and removes the mask from [buckled_mob].")
 		buckled_mob.visible_message(span_notice("[user] turns off the anesthetic and removes the mask from [buckled_mob]."))
 
 
@@ -186,6 +190,7 @@
 			return
 		user.transferItemToLoc(I, src)
 		anes_tank = I
+		balloon_alert(usr, ("You connect \the [anes_tank] to \the [src]."))
 		to_chat(user, span_notice("You connect \the [anes_tank] to \the [src]."))
 
 	if(!istype(I, /obj/item/grab))

@@ -33,6 +33,7 @@
 	if(ischaplainjob(living_user.job))
 		if(A.reagents && A.reagents.has_reagent(/datum/reagent/water)) //blesses all the water in the holder
 			to_chat(user, span_notice("You bless [A]."))
+			balloon_alert_to_viewers("[user] blesses [A] with their [src].", ignored_mobs = user)
 			var/water2holy = A.reagents.get_reagent_amount(/datum/reagent/water)
 			A.reagents.del_reagent(/datum/reagent/water)
 			A.reagents.add_reagent(/datum/reagent/water/holywater,water2holy)

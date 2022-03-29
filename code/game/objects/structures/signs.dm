@@ -34,6 +34,7 @@
 	. = ..()
 
 	if(isscrewdriver(I) && !istype(src, /obj/structure/sign/double))
+		balloon_alert(user, "You unfasten the sign with your [I].")
 		to_chat(user, "You unfasten the sign with your [I].")
 		var/obj/item/sign/S = new(loc)
 		S.name = name
@@ -71,6 +72,7 @@
 		S.name = name
 		S.desc = desc
 		S.icon_state = sign_state
+		balloon_alert(user, "You fasten \the [S] with your [I].")
 		to_chat(user, "You fasten \the [S] with your [I].")
 		qdel(src)
 

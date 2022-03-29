@@ -357,16 +357,19 @@
 	if(length(can_hold))
 		if(!is_type_in_typecache(W, can_hold))
 			if(warning)
+				balloon_alert(usr, "[src] cannot hold [W].")
 				to_chat(usr, span_notice("[src] cannot hold [W]."))
 			return FALSE
 
 	if(is_type_in_typecache(W, cant_hold)) //Check for specific items which this container can't hold.
 		if(warning)
+			balloon_alert(usr, "[src] cannot hold [W].")
 			to_chat(usr, span_notice("[src] cannot hold [W]."))
 		return FALSE
 
 	if(!is_type_in_typecache(W, bypass_w_limit) && W.w_class > max_w_class)
 		if(warning)
+			balloon_alert(usr, "[W] is too long for this [src].")
 			to_chat(usr, span_notice("[W] is too long for this [src]."))
 		return FALSE
 
@@ -376,12 +379,14 @@
 
 	if(sum_storage_cost > max_storage_space)
 		if(warning)
+			balloon_alert(usr, "[src] is full, make some space.")
 			to_chat(usr, span_notice("[src] is full, make some space."))
 		return FALSE
 
 	if(W.w_class >= w_class && istype(W, /obj/item/storage) && !is_type_in_typecache(W.type, bypass_w_limit))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 			if(warning)
+				balloon_alert(usr, "[src] cannot hold [W] as it's a storage item of the same size.")
 				to_chat(usr, span_notice("[src] cannot hold [W] as it's a storage item of the same size."))
 			return FALSE //To prevent the stacking of same sized storage items.
 
@@ -390,6 +395,7 @@
 			continue
 		if(storage_type_limits[limited_type] == 0)
 			if(warning)
+				balloon_alert(usr, "[src] can't fit any more of those.")
 				to_chat(usr, span_warning("[src] can't fit any more of those.") )
 			return FALSE
 
@@ -412,6 +418,7 @@
 		return TRUE
 
 	if(LAZYLEN(user.do_actions))
+		balloon_alert(usr, "You are busy doing something else!")
 		to_chat(user, span_warning("You are busy doing something else!"))
 		return FALSE
 
@@ -546,8 +553,10 @@
 	collection_mode = !collection_mode
 	switch (collection_mode)
 		if(1)
+			balloon_alert(usr, "[src] now picks up all items in a tile at once.")
 			to_chat(usr, "[src] now picks up all items in a tile at once.")
 		if(0)
+			balloon_alert(usr, "[src] now picks up one item at a time.")
 			to_chat(usr, "[src] now picks up one item at a time.")
 
 
@@ -557,8 +566,10 @@
 	set category = "Object"
 	draw_mode = !draw_mode
 	if(draw_mode)
+		balloon_alert(usr, "Clicking [src] with an empty hand now puts the last stored item in your hand.")
 		to_chat(usr, "Clicking [src] with an empty hand now puts the last stored item in your hand.")
 	else
+		balloon_alert(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
 		to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
 
 

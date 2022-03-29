@@ -123,14 +123,20 @@
 
 	switch(active_state)
 		if(SELF_DESTRUCT_MACHINE_ACTIVE)
+			balloon_alert_to_viewers("[user] twists and releases the control rod, arming it.", ignored_mobs = user)
+			balloon_alert(user, "You twist and release the control rod, arming it.")
 			to_chat(user, span_notice("You twist and release the control rod, arming it."))
 			playsound(src, 'sound/machines/switch.ogg', 25, 1)
 			icon_state = "rod_4"
 			active_state = SELF_DESTRUCT_MACHINE_ARMED
 		if(SELF_DESTRUCT_MACHINE_ARMED)
+			balloon_alert_to_viewers("[user] twists and releases the control rod, disarming it.", ignored_mobs = user)
+			balloon_alert(user, "You twist and release the control rod, disarming it.")
 			to_chat(user, span_notice("You twist and release the control rod, disarming it."))
 			playsound(src, 'sound/machines/switch.ogg', 25, 1)
 			icon_state = "rod_3"
 			active_state = SELF_DESTRUCT_MACHINE_ACTIVE
 		else
+			balloon_alert_to_viewers("[user] futilely tries to twist the control rod but it doesn't respond, it must not be ready.", ignored_mobs = user)
+			balloon_alert(user, "The control rod is not ready.")
 			to_chat(user, span_warning("The control rod is not ready."))

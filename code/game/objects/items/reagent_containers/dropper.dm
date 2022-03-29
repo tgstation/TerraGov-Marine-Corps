@@ -23,6 +23,7 @@
 				return
 
 			if(!target.is_injectable() && !ismob(target)) //You can inject humans and food but you cant remove the shit.
+				balloon_alert(user, "You cannot directly fill this object.")
 				to_chat(user, span_warning("You cannot directly fill this object."))
 				return
 
@@ -31,6 +32,7 @@
 			if(ismob(target))
 
 				var/time = 20 //2/3rds the time of a syringe
+				balloon_alert_to_viewers("[user] is trying to squirt something into [target]'s eyes!")
 				visible_message(span_danger("[user] is trying to squirt something into [target]'s eyes!"))
 
 				if(!do_mob(user, target, time, BUSY_ICON_HOSTILE))
@@ -55,15 +57,18 @@
 							safe_thing.create_reagents(100)
 						trans = src.reagents.trans_to(safe_thing, amount_per_transfer_from_this)
 
+						balloon_alert_to_viewers("[user] tries to squirt something into [target]s eyes, but fails!")
 						visible_message(span_danger("[user] tries to squirt something into [target]s eyes, but fails!"))
 						addtimer(CALLBACK(reagents, /datum/reagents.proc/reaction, safe_thing, TOUCH), 5)
-
+						
+						balloon_alert(user, "You transfer [trans] units of the solution.")
 						to_chat(user, span_notice("You transfer [trans] units of the solution."))
 						if (src.reagents.total_volume<=0)
 							filled = 0
 							icon_state = "dropper[filled]"
 						return
-
+				
+				balloon_alert_to_viewers("[user] squirts something into [target]'s eyes!")
 				visible_message(span_danger("[user] squirts something into [target]'s eyes!"))
 				src.reagents.reaction(target, TOUCH)
 
@@ -76,6 +81,7 @@
 				log_combat(user, M, "squirted", src, "Reagents: [contained]")
 
 			trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
+			balloon_alert(user, "You transfer [trans] units of the solution.")
 			to_chat(user, span_notice("You transfer [trans] units of the solution."))
 			if (src.reagents.total_volume<=0)
 				filled = 0
@@ -93,6 +99,7 @@
 
 			var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
 
+			balloon_alert(user, "You fill the dropper with [trans] units of the solution.")
 			to_chat(user, span_notice("You fill the dropper with [trans] units of the solution."))
 
 			filled = 1

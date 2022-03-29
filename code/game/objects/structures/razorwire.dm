@@ -83,6 +83,8 @@
 	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
 		CRASH("QDELETED razorwire called razorwire_tangle()")
 	TIMER_COOLDOWN_START(entangled, COOLDOWN_ENTANGLE, duration)
+	balloon_alert_to_viewers("[entangled] gets entangled in the barbed wire!", ignored_mobs = usr)
+	balloon_alert(usr, "You got entangled in the barbed wire! Resist to untangle yourself after [duration * 0.1] seconds since you were entangled!")
 	entangled.visible_message(span_danger("[entangled] gets entangled in the barbed wire!"),
 	span_danger("You got entangled in the barbed wire! Resist to untangle yourself after [duration * 0.1] seconds since you were entangled!"), null, null, 5)
 	do_razorwire_tangle(entangled)
@@ -100,6 +102,8 @@
 /obj/structure/razorwire/resisted_against(datum/source)
 	var/mob/living/entangled = source
 	if(TIMER_COOLDOWN_CHECK(entangled, COOLDOWN_ENTANGLE))
+		balloon_alert_to_viewers("[entangled] attempts to disentangle itself from [src] but is unsuccessful!", ignored_mobs = usr)
+		balloon_alert(usr, "You fail to disentangle yourself!")
 		entangled.visible_message(span_danger("[entangled] attempts to disentangle itself from [src] but is unsuccessful!"),
 		span_warning("You fail to disentangle yourself!"))
 		return FALSE
@@ -111,6 +115,7 @@
 		return
 	entangled.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
 	do_razorwire_untangle(entangled)
+	balloon_alert_to_viewers("[entangled] disentangles from [src]!", ignored_mobs = usr)
 	visible_message(span_danger("[entangled] disentangles from [src]!"))
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE)
 	var/def_zone = ran_zone()
@@ -147,6 +152,7 @@
 	if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/metal_sheets = I
 
+		balloon_alert_to_viewers("[user] begins to repair  \the [src].")
 		visible_message(span_notice("[user] begins to repair  \the [src]."))
 
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
@@ -156,6 +162,7 @@
 			return
 
 		repair_damage(max_integrity * 0.30)
+		balloon_alert_to_viewers("[user] repairs \the [src].")
 		visible_message(span_notice("[user] repairs \the [src]."))
 		update_icon()
 		return
@@ -172,12 +179,15 @@
 	var/mob/living/M = G.grabbed_thing
 	if(user.a_intent == INTENT_HARM)
 		if(user.grab_state <= GRAB_AGGRESSIVE)
+			balloon_alert(user, "You need a better grip to do that!")
 			to_chat(user, span_warning("You need a better grip to do that!"))
 			return
 
 		var/armor_block = null
 		var/def_zone = ran_zone()
 		M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE, updating_health = TRUE)
+		balloon_alert_to_viewers("[user] spartas [M]'s into [src]!", ignored_mobs = user)
+		balloon_alert(user, "You sparta [M]'s against [src]!")
 		user.visible_message(span_danger("[user] spartas [M]'s into [src]!"),
 		span_danger("You sparta [M]'s against [src]!"))
 		log_combat(user, M, "spartaed", "", "against \the [src]")
@@ -190,6 +200,8 @@
 		span_danger("You throw [M] on [src]."))
 
 /obj/structure/razorwire/wirecutter_act(mob/living/user, obj/item/I)
+	balloon_alert_to_viewers("[user] starts disassembling [src].", ignored_mobs = user)
+	balloon_alert(user, "You start disassembling [src].")
 	user.visible_message(span_notice("[user] starts disassembling [src]."),
 	span_notice("You start disassembling [src]."))
 	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating("engineer"))
@@ -197,6 +209,8 @@
 	if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
 
+	balloon_alert_to_viewers("[user] disassembles [src].", ignored_mobs = user)
+	balloon_alert(user, "You disassemble [src].")
 	user.visible_message(span_notice("[user] disassembles [src]."),
 	span_notice("You disassemble [src]."))
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)

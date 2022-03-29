@@ -152,12 +152,15 @@
 
 		if("start_research")
 			if (!anchored)
+				balloon_alert(usr, "It needs to be fastened before researching.")
 				to_chat(usr, span_notice("It needs to be fastened before researching."))
 				return
 			if (!init_resource)
+				balloon_alert(usr, "You have no resource to begin research.")
 				to_chat(usr, span_notice("You have no resource to begin research."))
 				return
 			if (researching)
+				balloon_alert(usr, "It is already researching something.")
 				to_chat(usr, span_notice("It is already researching something."))
 				return
 

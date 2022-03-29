@@ -187,10 +187,12 @@ FLOOR SAFES
 	else if(I.w_class + space <= maxspace)
 		space += I.w_class
 		if(user.transferItemToLoc(I, src))
+			balloon_alert(user, "You put [I] in [src].")
 			to_chat(user, span_notice("You put [I] in [src]."))
 		updateUsrDialog()
 
 	else
+		balloon_alert(user, "[I] won't fit in [src].")
 		to_chat(user, span_notice("[I] won't fit in [src]."))
 
 

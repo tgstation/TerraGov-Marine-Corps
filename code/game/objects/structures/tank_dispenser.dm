@@ -52,6 +52,7 @@
 
 	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
 		if(oxygentanks >= 10)
+			balloon_alert(user, "[src] is full.")
 			to_chat(user, span_notice("[src] is full."))
 			return
 
@@ -59,12 +60,14 @@
 		I.forceMove(src)
 		oxytanks += I
 		oxygentanks++
+		balloon_alert(user, "You put [I] in [src].")
 		to_chat(user, span_notice("You put [I] in [src]."))
 		if(oxygentanks < 5)
 			update_icon()
 
 	else if(istype(I, /obj/item/tank/phoron))
 		if(phorontanks >= 10)
+			balloon_alert(user, "[src] is full.")
 			to_chat(user, span_notice("[src] is full."))
 			return
 
@@ -72,6 +75,7 @@
 		I.forceMove(src)
 		platanks += I
 		phorontanks++
+		balloon_alert(user, "You put [I] in [src].")
 		to_chat(user, span_notice("You put [I] in [src]."))
 		if(oxygentanks < 6)
 			update_icon()
@@ -91,6 +95,7 @@
 			else
 				O = new /obj/item/tank/oxygen(loc)
 			O.loc = loc
+			balloon_alert(usr, "You take [O] out of [src].")
 			to_chat(usr, span_notice("You take [O] out of [src]."))
 			oxygentanks--
 			update_icon()
@@ -103,6 +108,7 @@
 			else
 				P = new /obj/item/tank/phoron(loc)
 			P.loc = loc
+			balloon_alert(usr, "You take [P] out of [src].")
 			to_chat(usr, span_notice("You take [P] out of [src]."))
 			phorontanks--
 			update_icon()

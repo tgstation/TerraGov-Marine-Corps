@@ -1266,6 +1266,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(bipod_deployed)
 		bipod_deployed = FALSE
 		to_chat(user, span_notice("You retract [src]."))
+		balloon_alert(user, ("You retract [src]."))
 		master_gun.aim_slowdown -= 1
 		master_gun.wield_delay -= 0.4 SECONDS
 		master_gun.accuracy_mult -= deployment_accuracy_mod
@@ -1288,6 +1289,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(bipod_deployed)
 			return
 		bipod_deployed = TRUE
+		balloon_alert(user, "You deploy [src].")
 		to_chat(user, span_notice("You deploy [src]."))
 		master_user = user
 		RegisterSignal(master_user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
@@ -1315,6 +1317,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!ismob(source))
 		return
 	INVOKE_ASYNC(src, .proc/activate, source, TRUE)
+	balloon_alert(source, "Losing support, the bipod retracts!")
 	to_chat(source, span_warning("Losing support, the bipod retracts!"))
 	playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
 
@@ -1397,12 +1400,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/hydro_cannon/activate(attached_item, mob/living/user, turn_off)
 	if(is_active)
 		if(user)
+			balloon_alert(user, "You are no longer using [src].")
 			to_chat(user, span_notice("You are no longer using [src]."))
 		is_active = FALSE
 		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		. = FALSE
 	else
 		if(user)
+			balloon_alert(user, "You are now using [src].")
 			to_chat(user, span_notice("You are now using [src]."))
 		is_active = TRUE
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
@@ -1737,11 +1742,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.active_attachable = null
 		set_gun_user(null)
 		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
+		balloon_alert(user, "You stop using [src].")
 		to_chat(user, span_notice("You stop using [src]."))
 	else
 		master_gun.active_attachable = src
 		set_gun_user(master_gun.gun_user)
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
+		balloon_alert(user, "You start using [src].")
 		to_chat(user, span_notice("You start using [src]."))
 	for(var/action_to_update in master_gun.actions)
 		var/datum/action/action = action_to_update

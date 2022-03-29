@@ -37,6 +37,7 @@
 	if(.)
 		return
 	if(cell_left == null && cell_right == null)
+		balloon_alert(user, "The recycler is empty.")
 		to_chat(user, span_notice("The recycler is empty."))
 		return
 

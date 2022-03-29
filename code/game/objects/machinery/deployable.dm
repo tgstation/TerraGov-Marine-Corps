@@ -91,6 +91,7 @@
 /obj/machinery/deployable/proc/disassemble(mob/user)
 	var/obj/item/item = internal_item
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
+		balloon_alert(user, "The [src] is anchored in place and cannot be disassembled.")
 		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
 		return
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)

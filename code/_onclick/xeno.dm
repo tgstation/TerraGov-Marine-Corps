@@ -2,6 +2,7 @@
 	if(lying_angle)
 		return FALSE
 	if(isclosedturf(get_turf(src)) && !iswallturf(A))	//If we are on a closed turf (e.g. in a wall) we can't attack anything, except walls (or well, resin walls really) so we can't make ourselves be stuck.
+		balloon_alert(usr, "We cannot reach this from here!")
 		to_chat(src, span_warning("We cannot reach this from here!"))
 		return FALSE
 	if(!(isopenturf(A) || istype(A, /obj/effect/alien/weeds))) //We don't care about open turfs; they don't trigger our melee click cooldown

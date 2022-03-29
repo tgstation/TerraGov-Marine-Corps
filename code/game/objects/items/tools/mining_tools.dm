@@ -145,8 +145,10 @@
 /obj/item/tool/pickaxe/plasmacutter/proc/fizzle_message(mob/user)
 	playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
 	if(!cell)
+		balloon_alert(user, "[src]'s has no battery installed.")
 		to_chat(user, span_warning("[src]'s has no battery installed!"))
 	else if(!powered)
+		balloon_alert(user, "[src] is turned off!")
 		to_chat(user, span_warning("[src] is turned off!"))
 	else
 		to_chat(user, span_warning("The plasma cutter has inadequate charge remaining! Replace or recharge the battery. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
@@ -182,6 +184,7 @@
 	if(custom_string)
 		to_chat(user, span_notice("[custom_string]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 	else
+		balloon_alert(user, "You cut apart the [name] with [src].")
 		to_chat(user, span_notice("You cut apart the [name] with [src]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 
 /obj/item/tool/pickaxe/plasmacutter/proc/debris(location, metal = 0, rods = 0, wood = 0, wires = 0, shards = 0, plasteel = 0)
