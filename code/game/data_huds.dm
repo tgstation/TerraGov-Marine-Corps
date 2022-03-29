@@ -425,6 +425,8 @@
 			tempname += "warding"
 		if(recovery_aura)
 			tempname += "recovery"
+		if(plasma_aura)
+			tempname += "plasma"
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
 
@@ -433,6 +435,8 @@
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
 			if("recovery")
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurarecovery")
+			if("plasma")
+				holder.overlays += image('icons/mob/hud.dmi', src, "hudauraplasma")
 			if("warding")
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
 
@@ -441,6 +445,8 @@
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
 			if("recovery")
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurarecovery")
+			if("plasma")
+				holder.overlays += image('icons/mob/hud.dmi', src, "hudauraplasma")
 			if("warding")
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
 
