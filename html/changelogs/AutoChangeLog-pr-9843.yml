@@ -1,0 +1,4 @@
+author: "DeltaFire15"
+delete-after: True
+changes: 
+  - bugfix: "APHE only explodes when it hits something that stops its movement, not when passing through walls on its way there."
