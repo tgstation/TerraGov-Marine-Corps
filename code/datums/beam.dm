@@ -176,5 +176,5 @@
 		if(living.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA) //need 1 second more than the actual effect time
 			living.apply_status_effect(/datum/status_effect/noplasmaregen, 5 SECONDS/length(.))
 			living.apply_status_effect(/datum/status_effect/plasmadrain, 5 SECONDS/length(.))
-		living.adjust_stagger(0.75) //stacks for every zap
+		living.add_slowdown(2)
 		log_attack("[living] was zapped by [source]")

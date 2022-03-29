@@ -1410,18 +1410,17 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
 	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS
-	shell_speed = 0.3
-	damage = 40
+	shell_speed = 0.1
+	damage = 20
 	penetration = 20
 	bullet_color = COLOR_TESLA_BLUE
 	var/drain_multiplier = 0.3 //Drains 10% of max plasma on hit
 
 /datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
-	zap_beam(proj, 3, damage)
+	zap_beam(proj, 4, damage)
 
 
 /datum/ammo/energy/tesla/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, max_range = 10, slowdown = 3, stagger = 2)
 	var/mob/living/carbon/xenomorph/X = M
 	X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
 

@@ -121,7 +121,7 @@
 	muzzle_flash_color = COLOR_TESLA_BLUE
 
 	rounds_per_shot = 100
-	fire_delay = 3.5 SECONDS
+	fire_delay = 4 SECONDS
 	turret_flags = TURRET_INACCURATE
 	attachable_allowed = list(
 		/obj/item/attachable/flashlight,
