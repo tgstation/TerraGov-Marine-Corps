@@ -41,6 +41,6 @@
 #define SHIELD_PARENT_INTEGRITY (1<<2) //Transfers damage to parent's integrity.
 
 #define EXPLODE_NONE 0
-#define EXPLODE_LIGHT 3
-#define EXPLODE_HEAVY 2
 #define EXPLODE_DEVASTATE 1
+#define EXPLODE_HEAVY 2
+#define EXPLODE_LIGHT 3
