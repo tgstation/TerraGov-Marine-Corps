@@ -2097,12 +2097,14 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/acid/passthrough
 	name = "acid spittle"
 	damage = 20
+	
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
 	added_spit_delay = 2
 	spit_cost = 70
 	damage = 30
+
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 /datum/ammo/xeno/acid/heavy/turret
 	damage = 20
