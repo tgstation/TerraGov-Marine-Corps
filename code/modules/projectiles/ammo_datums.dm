@@ -47,11 +47,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/hitscan_effect_icon = "beam"
 	///A multiplier applied to piercing projectile, that reduces its damage/penetration/sundering on hit
 	var/on_pierce_multiplier = 1
-	///greyscale settings for the bullet items associated with the ammo
+	///greyscale config for the bullet items associated with the ammo
 	var/handful_greyscale_config = null
+	///greyscale color for the bullet items associated with the ammo
 	var/handful_greyscale_colors = null
-	///greyscale settings for the projectile associated with the ammo
+	///greyscale config for the projectile associated with the ammo
 	var/projectile_greyscale_config = null
+	///greyscale color for the projectile associated with the ammo
 	var/projectile_greyscale_colors = null
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
