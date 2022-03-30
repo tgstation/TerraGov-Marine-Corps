@@ -1213,6 +1213,9 @@ TUNNEL
 
 ///Called whenever someone uses the plant, xeno or marine
 /obj/structure/xeno/plant/proc/on_use(mob/user)
+	mature = FALSE
+	update_icon()
+	addtimer(CALLBACK(src, .proc/on_mature), maturation_time)
 	return TRUE
 
 ///Called when the plant reaches maturity
@@ -1264,11 +1267,10 @@ TUNNEL
 	var/mob/living/carbon/xenomorph/X = user
 	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
 	HEAL_XENO_DAMAGE(X,heal_amount)
-	new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(user))
 	playsound(user, "alien_drool", 25)
 	to_chat(X, span_xenowarning("We feel a sudden soothing chill as [src] tends to our wounds."))
-	qdel(src)
-	return TRUE
+
+	return ..()
 
 /obj/structure/xeno/plant/armor_fruit
 	name = "hard fruit"
@@ -1302,10 +1304,8 @@ TUNNEL
 	to_chat(user, span_xenowarning("We shed our shattered scales as new ones grow to replace them!"))
 	var/mob/living/carbon/xenomorph/X = user
 	X.adjust_sunder(-sunder_removal)
-	new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(user))
 	playsound(user, "alien_drool", 25)
-	qdel(src)
-	return TRUE
+	return ..()
 
 /obj/structure/xeno/plant/plasma_fruit
 	name = "power fruit"
@@ -1344,10 +1344,8 @@ TUNNEL
 		return FALSE
 	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
 	to_chat(X, span_xenowarning("[src] Restores our plasma reserves, our organism is on overdrive!"))
-	new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(user))
 	playsound(user, "alien_drool", 25)
-	qdel(src)
-	return TRUE
+	return ..()
 
 
 /obj/structure/xeno/plant/stealth_plant

@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - rscadd: "Freelancers in the sector have been reported wielding a wider variety of weapons"
+  - code_imp: "Support added for jobs to have multiple outfits to randomly select from"

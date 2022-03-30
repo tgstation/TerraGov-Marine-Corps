@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "All FCDR bunks now have at least a loadout vendor in all shipside maps except Sulaco"
+  - bugfix: "poster positions in Minerva and PoS"
