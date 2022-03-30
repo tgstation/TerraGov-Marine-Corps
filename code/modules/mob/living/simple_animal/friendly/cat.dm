@@ -135,7 +135,6 @@
 	desc = "Kitty!!"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cat2"
-	var/mob/living/simple_animal/cat/cat
 	flags_armor_features = ARMOR_NO_DECAP
 	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
 
