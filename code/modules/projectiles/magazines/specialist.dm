@@ -55,7 +55,14 @@
 	max_rounds = 10
 	icon_state_mini = "mag_rifle"
 
-
+/obj/item/ammo_magazine/sniper/svd_special //Different magazine with special ammo.
+	name = "\improper Special SVD magazine (7.62x54mmR)"
+	desc = "A large caliber magazine for the SVD sniper rifle. This one has Soft-Point markings."
+	caliber = CALIBER_762X54_plus
+	icon_state = "svd"
+	default_ammo = /datum/ammo/bullet/sniper/svd_special
+	max_rounds = 10
+	icon_state_mini = "mag_rifle"
 
 //tx8 magazines
 

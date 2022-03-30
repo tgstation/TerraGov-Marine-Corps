@@ -285,10 +285,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	reload_sound = 'sound/weapons/guns/interact/svd_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/svd_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/sniper/svd
-	allowed_ammo_types = list(/obj/item/ammo_magazine/sniper/svd)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/sniper/svd,
+		/obj/item/ammo_magazine/sniper/svd_special,
+	)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
 		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,

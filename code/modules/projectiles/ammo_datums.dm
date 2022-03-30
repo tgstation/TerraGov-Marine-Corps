@@ -971,6 +971,16 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 35
 	sundering = 15
 
+/datum/ammo/bullet/sniper/svd_special //Different ammo with new special tips. Mosin cannot load these.
+	name ="hollow point sniper bullet"
+	handful_icon_state = "crude sniper bullet"
+	hud_state = "minigun"
+	handful_amount = 5
+	damage = 95
+	penetration = 30
+	sundering = 0
+	damage_falloff = 0.5
+
 /datum/ammo/bullet/sniper/martini
 	name = "crude heavy sniper bullet"
 	handful_icon_state = "crude heavy sniper bullet"

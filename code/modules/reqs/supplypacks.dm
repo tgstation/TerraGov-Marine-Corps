@@ -1228,12 +1228,16 @@ Imports
 /datum/supply_packs/imports/dragunov
 	name = "SVD Dragunov Sniper"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/svd)
-	cost = 15
+	cost = 20
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/dragunov/ammo
 	name = "SVD Dragunov Sniper Ammo"
 	contains = list(/obj/item/ammo_magazine/sniper/svd)
+	cost = 2
+/datum/supply_packs/imports/dragunov/ammo_special
+	name = "SVD Dragunov Sniper Soft-Point Ammo"
+	contains = list(/obj/item/ammo_magazine/sniper/svd_special)
 	cost = 5
 	available_against_xeno_only = TRUE
 
