@@ -383,7 +383,7 @@ WEAPONS
 /datum/supply_packs/weapons/pfchollow
 	name = "TL-127 Hollow Point magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint)
-	cost = 6
+	cost = 7
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/pfcflak
@@ -507,7 +507,7 @@ WEAPONS
 /datum/supply_packs/weapons/chamberedrifle_hollowpoint_ammo_belt
 	name = "TL-127 Hollow Point Magazines Belt"
 	contains = list(/obj/item/storage/belt/marine/tl127_hollowpoint)
-	cost = 27
+	cost = 30
 	available_against_xeno_only = TRUE
 
 /*******************************************************************************
