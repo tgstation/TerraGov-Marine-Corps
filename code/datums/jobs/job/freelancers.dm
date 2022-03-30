@@ -353,7 +353,7 @@
 ///tx11
 /datum/outfit/job/freelancer/leader/one
 	belt = /obj/item/belt_harness/marine
-	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/leader/tx11
+	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/leader/two
 	suit_store = /obj/item/weapon/gun/rifle/tx11/freelancertwo
 	r_store = /obj/item/storage/pouch/grenade
 	l_store = /obj/item/storage/pouch/firstaid/full
@@ -383,7 +383,7 @@
 ///tx55
 /datum/outfit/job/freelancer/leader/two
 	belt = /obj/item/storage/belt/marine
-	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/leader/tx54
+	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/leader/three
 	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer
 	r_store = /obj/item/storage/pouch/magazine/large
 

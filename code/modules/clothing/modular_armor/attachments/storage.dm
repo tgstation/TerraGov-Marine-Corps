@@ -111,21 +111,21 @@
 	storage =  /obj/item/storage/internal/modular/ammo_mag
 	slowdown = 0.1
 
-/obj/item/armor_module/storage/ammo_mag/m16/Initialize()
+/obj/item/armor_module/storage/ammo_mag/freelancer/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 
-/obj/item/armor_module/storage/ammo_mag/tx11/Initialize()
+/obj/item/armor_module/storage/ammo_mag/freelancer_two/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 	new /obj/item/ammo_magazine/rifle/tx11(storage)
 
-/obj/item/armor_module/storage/ammo_mag/tx54/Initialize()
+/obj/item/armor_module/storage/ammo_mag/freelancer_three/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/rifle/tx54(storage)
 	new /obj/item/ammo_magazine/rifle/tx54(storage)

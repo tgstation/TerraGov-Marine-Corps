@@ -157,7 +157,7 @@
 	. = ..()
 	new /obj/item/weapon/gun/pistol/g22(storage)
 
-/obj/item/armor_module/storage/uniform/holster/vp70/Initialize()
+/obj/item/armor_module/storage/uniform/holster/vp/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/vp70(storage)
 
