@@ -8,6 +8,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	icon_state = "conveyor_map"
 	name = "conveyor belt"
 	desc = "A conveyor belt. It can be rotated with a <b>wrench</b>. It can be reversed with a <b>screwdriver</b>. The belt can be flipped with a <b>wirecutter</b>."
+	max_integrity = 50
 	layer = FIREDOOR_OPEN_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	var/operating = 0	// 1 if running forward, -1 if backwards, 0 if off
@@ -19,7 +20,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	var/list/affecting	// the list of all items that will be moved this ptick
 	var/id = ""			// the control ID	- must match controller ID
 	/// Inverts the direction the conveyor belt moves when false.
-	var/verted = FALSE		
+	var/verted = FALSE
 	/// Is the conveyor's belt flipped? Useful mostly for conveyor belt corners. It makes the belt point in the other direction, rather than just going in reverse.
 	var/flipped = FALSE
 	/// Are we currently conveying items?
