@@ -47,6 +47,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/hitscan_effect_icon = "beam"
 	///A multiplier applied to piercing projectile, that reduces its damage/penetration/sundering on hit
 	var/on_pierce_multiplier = 1
+	///greyscale vars
+	var/greyscale_config = null
+	var/greyscale_colors = null
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -1173,7 +1176,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/tx54
 	name = "20mm airburst grenade"
-	icon_state = "grenade"
+	icon_state = "20mm_flight"
 	hud_state = "grenade_airburst"
 	hud_state_empty = "grenade_empty"
 	handful_icon_state = "20mm_airburst"
@@ -1224,9 +1227,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/tx54/incendiary
 	name = "20mm incendiary grenade"
 	hud_state = "grenade_fire"
-	handful_icon_state = "20mm_incendiary"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/incendiary
-	greyscale_colors = "#b02323"
+	greyscale_colors = "#fa7923"
 
 /datum/ammo/bullet/tx54_spread
 	name = "Shrapnel"
@@ -1261,10 +1263,9 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/tx54/he
 	name = "20mm HE grenade"
 	hud_state = "grenade_he"
-	handful_icon_state = "20mm_he"
 	bonus_projectiles_type = null
 	max_range = 12
-	greyscale_colors = "#fa7923"
+	greyscale_colors = "#b02323"
 
 /datum/ammo/tx54/he/drop_nade(turf/T)
 	explosion(T, 0, 0, 2, 2)
