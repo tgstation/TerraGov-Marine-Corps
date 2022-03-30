@@ -47,9 +47,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/hitscan_effect_icon = "beam"
 	///A multiplier applied to piercing projectile, that reduces its damage/penetration/sundering on hit
 	var/on_pierce_multiplier = 1
-	///greyscale vars
-	var/greyscale_config = null
-	var/greyscale_colors = null
+	///greyscale settings for the bullet items associated with the ammo
+	var/handful_greyscale_config = null
+	var/handful_greyscale_colors = null
+	///greyscale settings for the projectile associated with the ammo
+	var/projectile_greyscale_config = null
+	var/projectile_greyscale_colors = null
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -1193,11 +1196,14 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 0
 	sundering = 0
 	shrapnel_chance = 0
-	bullet_color = LIGHT_COLOR_FIRE
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread
 	bonus_projectiles_scatter = 10
-	greyscale_config = /datum/greyscale_config/tx54
-	greyscale_colors = "#3ab0c9"
+
+	handful_greyscale_config = /datum/greyscale_config/ammo
+	handful_greyscale_colors = "#3ab0c9"
+
+	projectile_greyscale_config = /datum/greyscale_config/projectile
+	projectile_greyscale_colors = "#3ab0c9"
 
 /datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
@@ -1228,7 +1234,9 @@ datum/ammo/bullet/revolver/tp44
 	name = "20mm incendiary grenade"
 	hud_state = "grenade_fire"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/incendiary
-	greyscale_colors = "#fa7923"
+	bullet_color = LIGHT_COLOR_FIRE
+	handful_greyscale_colors = "#fa7923"
+	projectile_greyscale_colors = "#fa7923"
 
 /datum/ammo/bullet/tx54_spread
 	name = "Shrapnel"
@@ -1265,7 +1273,8 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "grenade_he"
 	bonus_projectiles_type = null
 	max_range = 12
-	greyscale_colors = "#b02323"
+	handful_greyscale_colors = "#b02323"
+	projectile_greyscale_colors = "#b02323"
 
 /datum/ammo/tx54/he/drop_nade(turf/T)
 	explosion(T, 0, 0, 2, 2)

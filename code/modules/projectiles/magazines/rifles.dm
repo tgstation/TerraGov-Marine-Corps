@@ -366,7 +366,7 @@
 	default_ammo = /datum/ammo/tx54
 	max_rounds = 8
 	icon_state_mini = "mag_sniper"
-	greyscale_config = /datum/greyscale_config/tx54
+	greyscale_config = /datum/greyscale_config/ammo
 	greyscale_colors = "#3ab0c9"
 
 /obj/item/ammo_magazine/rifle/tx54/he

@@ -148,9 +148,10 @@
 	ammo = ispath(ammo_datum) ? GLOB.ammo_list[ammo_datum] : ammo_datum
 	name 		= ammo.name
 
-	///optional greyscale
-	set_greyscale_config(ammo.greyscale_config)
-	set_greyscale_colors(ammo.greyscale_colors)
+	///sets greyscale for the projectile if it has been specified by the ammo datum
+	if (ammo.projectile_greyscale_config && ammo.projectile_greyscale_colors)
+		set_greyscale_config(ammo.projectile_greyscale_config)
+		set_greyscale_colors(ammo.projectile_greyscale_colors)
 
 	icon_state 	= ammo.icon_state
 	damage 		= ammo.damage + bonus_damage //Mainly for emitters.
