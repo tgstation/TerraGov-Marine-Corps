@@ -12148,9 +12148,6 @@
 "Mp" = (
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -12158,6 +12155,9 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "Mq" = (
@@ -12389,10 +12389,11 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/engineering/engine_core)
 "MZ" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_hallway)
+/area/mainship/hallways/hangar)
 "Na" = (
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -12577,21 +12578,16 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "NJ" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	dir = 2
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/airlock/multi_tile/mainship/engineering,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "NK" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	dir = 2
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/mono,
+/obj/machinery/light,
+/obj/structure/closet/toolcloset,
+/turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
 "NL" = (
 /obj/machinery/door/airlock/mainship/maint{
@@ -12620,7 +12616,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
 "NQ" = (
-/obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -12887,7 +12882,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "Ov" = (
-/obj/structure/closet/toolcloset,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
 "Ow" = (
@@ -12933,24 +12927,17 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
-"OE" = (
+"OF" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
 /area/mainship/engineering/engineering_workshop)
-"OF" = (
-/obj/machinery/vending/snack,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/orange{
-	dir = 1
-	},
-/area/mainship/engineering/engineering_workshop)
 "OG" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/vending/snack,
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
 "OH" = (
@@ -13261,9 +13248,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "PD" = (
-/obj/machinery/door/airlock/mainship/engineering,
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/mainship/engineering{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "PF" = (
@@ -13315,8 +13304,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/engineering/engineering_workshop)
 "PN" = (
@@ -15155,9 +15146,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/engineering_workshop)
-"Vu" = (
-/turf/open/floor/mainship/orange,
-/area/mainship/engineering/engineering_workshop)
 "Vv" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/mainship/orange,
@@ -15456,18 +15444,10 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/engineering/ce_room)
 "Wx" = (
-/obj/machinery/door/airlock/mainship/engineering/atmos{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engineering_workshop)
-"Wy" = (
-/obj/machinery/door/airlock/mainship/engineering/atmos{
-	dir = 2
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/engineering,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Wz" = (
@@ -24376,7 +24356,7 @@ VC
 pM
 VC
 dz
-iF
+MZ
 PC
 VC
 dz
@@ -24474,7 +24454,7 @@ Ot
 zU
 MX
 NH
-NH
+QZ
 PD
 QD
 QD
@@ -25158,16 +25138,16 @@ Ci
 Cl
 Ot
 zU
-Jo
-NH
-OE
+by
+QZ
+ON
 PL
 QO
 Tn
 TB
 Vs
-NH
-XF
+QZ
+XG
 XG
 ZF
 lc
@@ -25263,8 +25243,8 @@ PL
 QP
 RZ
 TB
-Vt
-NH
+NK
+Wz
 XF
 XG
 ZI
@@ -25354,15 +25334,15 @@ rV
 Ci
 Ot
 Mp
-MZ
-NK
+Jo
+NH
 OG
 PM
 QQ
 Sb
 TC
-Vu
-Wy
+Oy
+Wz
 XG
 XG
 ZJ

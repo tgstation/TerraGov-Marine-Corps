@@ -5922,12 +5922,6 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "bFv" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/machinery/door/airlock/mainship/generic/pilot/bunk{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
@@ -10136,6 +10130,15 @@
 /obj/machinery/fuelcell_recycler,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
+"foR" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic/personal{
+	name = "\improper Pilot's Bunks Airlock"
+	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/pilotbunks)
 "fpi" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -12352,7 +12355,6 @@
 	},
 /area/mainship/squads/req)
 "jnS" = (
-/obj/effect/landmark/start/job/pilotofficer,
 /obj/structure/bed/chair{
 	dir = 1
 	},
@@ -14516,7 +14518,10 @@
 	},
 /area/mainship/medical/lower_medical)
 "mVi" = (
-/obj/machinery/vending/marineFood,
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
 /turf/open/floor/mainship/white{
 	dir = 1
 	},
@@ -17670,6 +17675,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway)
 "sAc" = (
+/obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/white,
 /area/mainship/living/pilotbunks)
 "sBz" = (
@@ -20349,8 +20355,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/repair_bay)
 "xJO" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/mainship/white{
@@ -45091,7 +45096,7 @@ lOP
 bPR
 lzj
 mVi
-jnS
+tSg
 hvM
 lzj
 lzj
@@ -45346,7 +45351,7 @@ bdW
 bPh
 lOP
 lvI
-lzj
+foR
 xJO
 ble
 sAc
