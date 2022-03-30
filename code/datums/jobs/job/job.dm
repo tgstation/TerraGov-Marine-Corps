@@ -274,6 +274,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()
+
 	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	comm_title = job.comm_title
 	if(job.outfit)
@@ -284,8 +285,10 @@ GLOBAL_PROTECT(exp_specialmap)
 				stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
 			QDEL_NULL(wear_id)
 		equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
+		var/datum/outfit/variant = pick(typesof(job.outfit))
+		variant = new variant
 		job.outfit.handle_id(src)
-		job.outfit.equip(src)
+		variant.equip(src)
 
 	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)
