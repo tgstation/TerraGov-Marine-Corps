@@ -370,12 +370,6 @@
 /obj/item/pizzabox/meat,
 /turf/open/floor/wood,
 /area/mainship/squads/req)
-"abw" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic/prep{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/alpha)
 "abx" = (
 /obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
@@ -1277,7 +1271,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/bow_hallway)
 "ael" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic/range,
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
+	name = "\improper Firing Range Airlock"
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/firing_range)
 "aey" = (
@@ -2403,10 +2399,16 @@
 /area/mainship/squads/alpha)
 "aWN" = (
 /obj/machinery/marine_selector/clothes/medic,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWO" = (
 /obj/machinery/marine_selector/clothes/smartgun,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWQ" = (
@@ -2416,6 +2418,9 @@
 /area/mainship/squads/alpha)
 "aWR" = (
 /obj/machinery/marine_selector/clothes/engi,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
 "aWX" = (
@@ -2481,9 +2486,19 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "aYy" = (
-/obj/structure/sign/securearea/firingrange,
-/turf/closed/wall/mainship,
-/area/mainship/shipboard/firing_range)
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
+	},
+/area/mainship/hallways/hangar/droppod)
 "aYH" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 4
@@ -3835,6 +3850,9 @@
 "bkN" = (
 /obj/structure/closet,
 /obj/item/toy/inflatable_duck,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
 "bkO" = (
@@ -5018,6 +5036,7 @@
 "buS" = (
 /obj/structure/closet,
 /obj/item/toy/plush/snake,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
 "buZ" = (
@@ -8202,6 +8221,7 @@
 /area/mainship/squads/delta)
 "cdT" = (
 /obj/machinery/marine_selector/clothes/leader,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cdX" = (
@@ -8231,6 +8251,7 @@
 /area/mainship/squads/delta)
 "ceh" = (
 /obj/machinery/marine_selector/clothes/medic,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cei" = (
@@ -8243,6 +8264,7 @@
 /area/mainship/squads/delta)
 "cek" = (
 /obj/machinery/marine_selector/clothes/engi,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "cen" = (
@@ -8845,6 +8867,7 @@
 "cTo" = (
 /obj/structure/closet,
 /obj/item/toy/plush/moth,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "cUz" = (
@@ -9135,6 +9158,9 @@
 /obj/structure/closet,
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "dvy" = (
@@ -11451,6 +11477,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/structure/sign/securearea/firingrange,
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/firing_range)
 "hES" = (
@@ -12339,12 +12366,6 @@
 	dir = 5
 	},
 /area/mainship/hallways/aft_hallway)
-"jqk" = (
-/obj/structure/sign/poster{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/alpha)
 "jrq" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -12362,7 +12383,7 @@
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/generic/prep{
+/obj/machinery/door/airlock/multi_tile/mainship/marine/general{
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
@@ -14742,8 +14763,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_four)
 "ntI" = (
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/multi_tile/mainship/generic/prep{
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/marine/general{
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
@@ -15608,6 +15631,7 @@
 /area/mainship/engineering/lower_engineering)
 "oYB" = (
 /obj/machinery/marine_selector/clothes/smartgun,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "oYC" = (
@@ -16538,7 +16562,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "qCJ" = (
-/obj/machinery/door/firedoor/mainship,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -17964,12 +17987,6 @@
 "toW" = (
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
-"toX" = (
-/obj/structure/sign/poster{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/mainship/living/port_emb)
 "tpP" = (
 /obj/structure/prop/mainship/sensor_computer3/sd,
 /obj/machinery/camera/autoname/mainship,
@@ -18229,6 +18246,7 @@
 /obj/item/explosive/grenade/training,
 /obj/item/explosive/grenade/training,
 /obj/item/explosive/grenade/training,
+/obj/structure/sign/securearea/firingrange,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "tJz" = (
@@ -19673,12 +19691,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/basketball)
-"wvZ" = (
-/obj/structure/sign/poster{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/delta)
 "wxQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -20193,14 +20205,11 @@
 /area/mainship/hallways/bow_hallway)
 "xvC" = (
 /obj/machinery/marine_selector/clothes/leader,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
-"xwo" = (
-/obj/structure/sign/poster{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/mainship/living/starboard_emb)
 "xwJ" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/firealarm,
@@ -47873,7 +47882,7 @@ aaa
 aai
 tDH
 blt
-brY
+aYy
 brY
 brY
 brY
@@ -56606,7 +56615,7 @@ aaa
 aaa
 aai
 rbR
-aYy
+aXm
 bdl
 bdl
 bdl
@@ -59694,11 +59703,11 @@ aXM
 aXM
 ako
 aXM
-xwo
 aXM
 aXM
 aXM
-xwo
+aXM
+aXM
 aXM
 gdk
 aXM
@@ -59733,11 +59742,11 @@ bSO
 jTN
 bSO
 bSO
-toX
 bSO
 bSO
 bSO
-toX
+bSO
+bSO
 aGn
 bSO
 bSO
@@ -62519,7 +62528,7 @@ aai
 rbR
 aWH
 aWH
-jqk
+aWH
 aWH
 aWH
 bri
@@ -62565,7 +62574,7 @@ vJr
 cec
 cbn
 cbn
-wvZ
+cbn
 cbn
 cbn
 jAD
@@ -63547,7 +63556,7 @@ aai
 rbR
 aWH
 aWH
-jqk
+aWH
 aWH
 aWH
 blS
@@ -63593,7 +63602,7 @@ vJr
 xpE
 cbn
 cbn
-wvZ
+cbn
 cbn
 cbn
 fZA
@@ -64575,7 +64584,7 @@ aai
 tDH
 aWH
 aWH
-jqk
+aWH
 aWH
 aWH
 bri
@@ -64621,7 +64630,7 @@ vJr
 cec
 cbn
 cbn
-wvZ
+cbn
 cbn
 cbn
 qae
@@ -65346,12 +65355,12 @@ aai
 bQl
 aWH
 aWH
-jqk
+aWH
 aWH
 aWH
 aWH
 lEo
-abw
+ntI
 aWH
 aAY
 aAY
@@ -65392,7 +65401,7 @@ jsv
 cbn
 cbn
 cbn
-wvZ
+cbn
 cbn
 cbn
 eEW

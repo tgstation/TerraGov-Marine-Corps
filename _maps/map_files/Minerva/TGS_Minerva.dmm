@@ -5470,8 +5470,8 @@
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
 "ss" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Firing Range"
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
+	name = "\improper Firing Range Airlock"
 	},
 /turf/open/floor/mainship/black/full,
 /area/mainship/squads/general)
@@ -7962,8 +7962,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "zW" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic/prep{
+/obj/machinery/door/airlock/multi_tile/mainship/marine/general{
 	dir = 2
+	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
@@ -10698,15 +10701,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "HW" = (
-/obj/machinery/door/airlock/mainship/marine/general/engi{
-	dir = 2
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/marine/general/engi,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
 "HX" = (
-/obj/machinery/door/airlock/mainship/marine/general/corps{
-	dir = 2
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/marine/general/corps,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
 "HY" = (
@@ -10747,9 +10746,9 @@
 	},
 /area/mainship/living/bridgebunks)
 "Id" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2;
-	name = "Firing Range"
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
+	dir = 1;
+	name = "\improper Firing Range Airlock"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
@@ -26524,7 +26523,7 @@ zY
 tc
 zY
 et
-HW
+IB
 tc
 JI
 Hp
@@ -27308,7 +27307,7 @@ sn
 Fq
 vs
 ix
-HX
+IB
 tc
 JO
 KN

@@ -2997,11 +2997,11 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "jQ" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Firing Range"
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 8
 	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
+	name = "\improper Firing Range Airlock"
 	},
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -4142,7 +4142,7 @@
 /area/mainship/hallways/port_hallway)
 "nq" = (
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/marine/general{
 	dir = 2
 	},
 /turf/open/floor/mainship,
@@ -5357,12 +5357,12 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/starboard_hallway)
 "rC" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Firing Range"
-	},
 /obj/structure/cable,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 8
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
+	name = "\improper Firing Range Airlock"
 	},
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -7144,6 +7144,7 @@
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
+/obj/structure/sign/securearea/firingrange,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "wP" = (
@@ -11700,6 +11701,7 @@
 /obj/item/target,
 /obj/item/target,
 /obj/item/target,
+/obj/structure/sign/securearea/firingrange,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "Kl" = (
@@ -12051,12 +12053,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Li" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
+/turf/open/floor/plating,
 /area/mainship/shipboard/firing_range)
 "Lj" = (
 /obj/structure/cable,
@@ -14949,7 +14946,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "Us" = (
-/obj/machinery/door/airlock/mainship/marine/general,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -14959,8 +14955,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
+	dir = 1;
+	name = "\improper Firing Range Airlock"
 	},
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
@@ -50914,9 +50914,9 @@ yD
 yD
 yD
 NU
-NZ
+Li
 Us
-NZ
+NU
 NU
 PR
 Ql
@@ -51174,7 +51174,7 @@ Rs
 Uz
 RJ
 Kk
-NZ
+NU
 XH
 eI
 IX
@@ -51431,7 +51431,7 @@ qV
 qW
 XO
 SY
-NU
+NZ
 ds
 su
 Tq
@@ -51945,7 +51945,7 @@ qV
 IG
 ol
 Te
-Li
+Te
 LQ
 jl
 ot
@@ -53230,7 +53230,7 @@ qz
 qY
 Vv
 Te
-Li
+Te
 Ol
 nE
 Qj
@@ -53487,7 +53487,7 @@ NU
 XP
 PN
 ZZ
-NU
+NZ
 oy
 Xp
 es
