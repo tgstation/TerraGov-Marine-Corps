@@ -316,3 +316,14 @@
   - balance: Larval hugger stam damage from 100% marine stam to 50%
   novaepee, foster:
   - imageadd: add 5 brand new title painting!
+2022-03-30:
+  DeltaFire15:
+  - bugfix: Groundside corrupted gens should not have their point production break
+      anymore.
+  - bugfix: APHE only explodes when it hits something that stops its movement, not
+      when passing through walls on its way there.
+  RipGrayson:
+  - rscadd: Added a system to blacklist chemicals from being used in medbay.
+  - balance: Razorburn nanites are now a blacklisted chemical.
+  - balance: You can no longer use the sleeper to give monkeys dialysis.
+  - balance: Dead mobs no longer accumulate smoke or foam reagents.

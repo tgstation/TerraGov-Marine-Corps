@@ -1,7 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - rscadd: "Added a system to blacklist chemicals from being used in medbay."
-  - balance: "Razorburn nanites are now a blacklisted chemical."
-  - balance: "You can no longer use the sleeper to give monkeys dialysis."
-  - balance: "Dead mobs no longer accumulate smoke or foam reagents."
