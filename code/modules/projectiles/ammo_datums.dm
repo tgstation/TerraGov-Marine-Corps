@@ -1004,7 +1004,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0.25
 /datum/ammo/bullet/sniper/pfc/hollowpoint
 	name = "high caliber hollow point rifle bullet"
-	hud_state = "pistol_hollow"
+	hud_state = "sniper_crude"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
 	damage = 120
 	penetration = 30
@@ -1012,6 +1012,18 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range_min = 8
 	damage_falloff = 0.4
 	shrapnel_chance = 0.50
+/datum/ammo/bullet/sniper/pfc/flak
+	name = "high caliber flak rifle bullet"
+	hud_state = "sniper_supersonic"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
+	damage = 40
+	penetration = 10
+	sundering = 10
+	accurate_range_min = 2
+	damage_falloff = 0.25
+
+/datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, knockback = 4, slowdown = 1.5, stagger = 1, max_range = 17)
 /datum/ammo/bullet/sniper/auto
 	name = "high caliber rifle bullet"
 	hud_state = "minigun"

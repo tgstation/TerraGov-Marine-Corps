@@ -1113,6 +1113,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/rifle/chamberedrifle
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/rifle/chamberedrifle,
+		/obj/item/ammo_magazine/rifle/chamberedrifle/flak,
 		/obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint,
 	)
 	attachable_allowed = list(
