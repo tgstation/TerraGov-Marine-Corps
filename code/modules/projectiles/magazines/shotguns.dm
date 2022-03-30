@@ -62,6 +62,12 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	w_class = WEIGHT_CLASS_SMALL // CAN throw it in your pocket, friend.
 	icon_state_mini = "mosin"
 
+/obj/item/ammo_magazine/rifle/bolt/clip
+	name = "7.62x54mm Stripper Clip"
+	desc = "Piece of metal to get bullets in your gun"
+	icon_state = "bclip"
+	max_rounds = 5
+
 /obj/item/ammo_magazine/rifle/martini
 	name = "box of .557/440 rifle rounds"
 	desc = "A box filled with rifle bullets."
