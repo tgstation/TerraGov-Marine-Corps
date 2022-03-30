@@ -24,5 +24,8 @@
 	"[scss]": {
 		"editor.rulers": [80]
 	},
-	"tgstationTestExplorer.project.DMEName": "tgmc.dme"
+	"tgstationTestExplorer.project.DMEName": "tgmc.dme",
+	"dreammaker.byondPath": [
+		"D:\\byond"
+	]
 }
