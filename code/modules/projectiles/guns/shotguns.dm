@@ -325,7 +325,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_762X54 //codex
-	load_method = SINGLE_CASING|SPEEDLOADER //codex
+	load_method = SINGLE_CASING //codex
 	max_chamber_items = 5 //codex
 	max_rounds = 5
 	default_ammo_type = /datum/ammo/bullet/sniper/svd
