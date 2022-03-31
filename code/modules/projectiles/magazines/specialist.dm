@@ -30,9 +30,9 @@
 /obj/item/ammo_magazine/rifle/chamberedrifle/hollowpoint
 	name = "TL-127 bolt action rifle hollow point magazine"
 	desc = "A box magazine filled with 8.6x70mm rifle hollow point rounds for the TL-127."
-	icon_state = "tl127"
+	icon_state = "tl127_hollow"
 	default_ammo = /datum/ammo/bullet/sniper/pfc/hollowpoint
-	icon_state_mini = "mag_sniper"
+	icon_state_mini = "mag_sniper_red"
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/flak
 	name = "TL-127 bolt action rifle flak magazine"
