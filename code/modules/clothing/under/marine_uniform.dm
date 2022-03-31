@@ -257,9 +257,6 @@
 	has_sensor = 0
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/freelancer)
 
-/obj/item/clothing/under/marine/veteran/freelancer/veteran
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/vp)
-
 
 //Dutch
 

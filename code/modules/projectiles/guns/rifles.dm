@@ -562,9 +562,6 @@
 /obj/item/weapon/gun/rifle/m16/freelancer
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/weapon/gun/shotgun/combat/masterkey)
 
-/obj/item/weapon/gun/rifle/m16/ugl
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/weapon/gun/grenade_launcher/underslung)
-
 /obj/item/weapon/gun/rifle/m16/somleader
 	starting_attachment_types = list(/obj/item/attachable/reddot)
 
@@ -811,13 +808,7 @@
 
 	placed_overlay_iconstate = "lmg"
 
-/obj/item/weapon/gun/rifle/m412l1_hpr/freelancer
-	starting_attachment_types = list(
-		/obj/item/attachable/stock/irremoveable/rifle,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/bipod,
-	)
+
 //-------------------------------------------------------
 //USL TYPE 71 RIFLE
 
@@ -1255,12 +1246,6 @@
 /obj/item/weapon/gun/rifle/tx11/scopeless
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11)
 
-/obj/item/weapon/gun/rifle/tx11/freelancerone
-	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/attachable/lasersight)
-
-/obj/item/weapon/gun/rifle/tx11/freelancertwo
-	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/motiondetector, /obj/item/attachable/bayonet, /obj/item/attachable/lasersight)
-
 //-------------------------------------------------------
 //T-21 Assault Rifle
 
@@ -1367,12 +1352,6 @@
 	wield_delay = 0.4 SECONDS
 	damage_falloff_mult = 3
 
-/obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
-	starting_attachment_types = list(
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/bayonet,
-	)
-
 //-------------------------------------------------------
 // MKH-98
 
@@ -1473,7 +1452,6 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	flags_attach_features = NONE
 	slot = ATTACHMENT_SLOT_STOCK
-	default_ammo_type = /obj/item/ammo_magazine/rifle/tx54
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
 	actions_types = list(/datum/action/item_action/aim_mode)
@@ -1537,11 +1515,3 @@
 	scatter_unwielded = 15
 	burst_scatter_mult = 2
 	aim_slowdown = 1
-
-/obj/item/weapon/gun/rifle/tx55/freelancer
-	starting_attachment_types = list(
-		/obj/item/weapon/gun/rifle/tx54/mini,
-		/obj/item/attachable/scope/optical,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/gyro,
-	)
