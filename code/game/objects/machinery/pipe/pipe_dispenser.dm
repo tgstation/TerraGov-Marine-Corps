@@ -4,6 +4,7 @@
 	icon_state = "pipe_d"
 	density = TRUE
 	anchored = TRUE
+	coverage = 30
 	var/wait = 0
 	var/piping_layer = PIPING_LAYER_DEFAULT
 

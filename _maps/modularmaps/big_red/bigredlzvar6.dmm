@@ -16,6 +16,7 @@
 /area/bigredv2/outside/telecomm)
 "aH" = (
 /obj/item/ammo_casing,
+/obj/item/stack/barbed_wire,
 /turf/open/floor/tile/dark/green2{
 	dir = 1
 	},
@@ -77,6 +78,7 @@
 "cj" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
+/obj/structure/barricade/metal,
 /turf/open/floor/tile/dark/green2{
 	dir = 6
 	},
@@ -300,6 +302,7 @@
 /obj/structure/table,
 /obj/item/paper,
 /obj/item/tool/pen/blue,
+/obj/structure/barricade/metal,
 /turf/open/floor/tile/dark/green2,
 /area/bigredv2/outside/space_port)
 "jo" = (
@@ -558,6 +561,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"pw" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/northwest)
 "pB" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -569,6 +577,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
+"pU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/barbed_wire,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
 "qa" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/darkish,
@@ -646,6 +659,7 @@
 "rz" = (
 /obj/structure/table,
 /obj/item/radio,
+/obj/structure/barricade/metal,
 /turf/open/floor/tile/dark/green2,
 /area/bigredv2/outside/space_port)
 "rW" = (
@@ -743,9 +757,7 @@
 /area/bigredv2/outside/marshal_office)
 "tL" = (
 /obj/structure/sign/safety/hazard,
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/marking/asteroidwarning,
+/turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
 "tM" = (
 /obj/structure/filingcabinet,
@@ -898,6 +910,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/ammo/sidearm,
 /obj/effect/spawner/random/gun/sidearms,
+/obj/structure/barricade/metal,
 /turf/open/floor/tile/dark/green2{
 	dir = 10
 	},
@@ -951,6 +964,7 @@
 /area/bigredv2/outside/marshal_office)
 "yM" = (
 /obj/structure/table,
+/obj/machinery/computer/camera,
 /turf/open/floor/tile/dark/green2{
 	dir = 4
 	},
@@ -1347,6 +1361,10 @@
 	},
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
+"Ir" = (
+/obj/item/stack/barbed_wire,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
 "Iz" = (
 /obj/machinery/light{
 	dir = 4
@@ -1789,7 +1807,9 @@
 /area/bigredv2/outside/space_port)
 "Ua" = (
 /obj/structure/table,
-/obj/machinery/computer/camera,
+/obj/structure/barricade/metal,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
 /turf/open/floor/tile/dark/green2,
 /area/bigredv2/outside/space_port)
 "Uw" = (
@@ -2832,8 +2852,8 @@ IU
 IU
 fy
 gb
-IJ
-os
+oF
+CQ
 "}
 (21,1,1) = {"
 CQ
@@ -2870,10 +2890,10 @@ Ed
 IU
 IU
 IU
-tL
+HZ
 gb
-IJ
-QI
+oF
+CQ
 "}
 (22,1,1) = {"
 CQ
@@ -2912,8 +2932,8 @@ IU
 IU
 fy
 gb
-IJ
-os
+oF
+CQ
 "}
 (23,1,1) = {"
 CQ
@@ -3402,7 +3422,7 @@ CQ
 CQ
 CQ
 oF
-gb
+tL
 gb
 gb
 gb
@@ -3668,7 +3688,7 @@ EP
 gb
 FI
 hh
-St
+Ir
 bn
 xh
 gb
@@ -3868,7 +3888,7 @@ EP
 ju
 Lx
 St
-hh
+pU
 Qf
 iQ
 gb
@@ -3941,9 +3961,9 @@ gb
 gb
 gb
 gb
+tL
 gb
-gb
-gb
+tL
 gb
 gb
 gb
@@ -3982,10 +4002,10 @@ xf
 xf
 xf
 xf
-xf
-xf
 vA
+pw
 vA
+xf
 xf
 ud
 ud
@@ -4022,10 +4042,10 @@ CQ
 CQ
 CQ
 CQ
+os
+os
+os
 CQ
-os
-os
-os
 CQ
 yO
 CQ

@@ -9,6 +9,7 @@
 	icon_state = "body_scanner_0"
 	density = TRUE
 	anchored = TRUE
+	coverage = 20
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
@@ -130,7 +131,7 @@
 	if(!do_after(X, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	go_out()	
+	go_out()
 
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)

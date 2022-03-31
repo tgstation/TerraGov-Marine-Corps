@@ -55,6 +55,7 @@
 #define CALIBER_RAILGUN "rail projectile"
 
 // --- Explosives ---
+#define CALIBER_20MM "20x28mm grenade"
 #define CALIBER_40MM "40mm grenade"
 #define CALIBER_84MM "84mm rocket"
 #define CALIBER_67MM "67mm shell"

@@ -75,7 +75,7 @@ OPERATIONS
 
 /datum/supply_packs/operations/pinpointer
 	name = "pool tracker crate"
-	contains = list(/obj/item/pinpointer/pool)
+	contains = list(/obj/item/pinpointer)
 	cost = 20
 	available_against_xeno_only = TRUE
 
@@ -238,6 +238,27 @@ WEAPONS
 	name = "Tesla Shock Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/tesla)
 	cost = 60
+
+/datum/supply_packs/weapons/tx54
+	name = "TX-54 airburst grenade launcher"
+	contains = list(/obj/item/weapon/gun/rifle/tx54)
+	cost = 30
+
+/datum/supply_packs/weapons/tx54_airburst
+	name = "TX-54 airburst grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54)
+	cost = 4
+
+/datum/supply_packs/weapons/tx54_incendiary
+	name = "TX-54 incendiary grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/incendiary)
+	cost = 6
+
+/datum/supply_packs/weapons/tx54_he
+	name = "TX-54 HE grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/he)
+	cost = 10
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/recoillesskit
 	name = "T-160 Recoilless rifle kit"

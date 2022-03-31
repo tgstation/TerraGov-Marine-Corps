@@ -88,7 +88,7 @@
 //T64 BR
 
 /obj/item/ammo_magazine/rifle/standard_br
-	name = "\improper T-64 magazine (10x26mm)"
+	name = "\improper T-64 magazine (10x26.5mm)"
 	desc = "A 10mm battle rifle magazine."
 	caliber = CALIBER_10x265_CASELESS
 	icon_state = "t64"
@@ -343,3 +343,38 @@
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 30
 	icon_state_mini = "mag_rifle"
+
+//-------------------------------------------------------
+//TX-54 and TX-55
+
+/obj/item/ammo_magazine/rifle/tx55
+	name = "\improper TX-55 magazine (10x24mm)"
+	desc = "A small capacity 10mm rifle magazine. Differs from a T-18 magazine enough to bypass relevant patents."
+	caliber = CALIBER_10X24_CASELESS
+	icon_state = "tx55"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 36
+	icon_state_mini = "mag_rifle_big"
+
+/obj/item/ammo_magazine/rifle/tx54
+	name = "\improper 20mm airburst grenade magazine"
+	desc = "A 20mm magazine loaded with airburst grenades. For use with the TX-54 or TX-55."
+	caliber = CALIBER_20MM
+	icon_state = "tx54_airburst"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/tx54
+	max_rounds = 8
+	icon_state_mini = "mag_sniper"
+
+/obj/item/ammo_magazine/rifle/tx54/he
+	name = "\improper 20mm HE grenade magazine"
+	desc = "A 20mm magazine loaded with HE grenades. For use with the TX-54 or TX-55."
+	default_ammo = /datum/ammo/tx54/he
+	icon_state = "tx54_he"
+
+/obj/item/ammo_magazine/rifle/tx54/incendiary
+	name = "\improper 20mm incendiary grenade magazine"
+	desc = "A 20mm magazine loaded with incendiary grenades. For use with the TX-54 or TX-55."
+	default_ammo = /datum/ammo/tx54/incendiary
+	icon_state = "tx54_incendiary"

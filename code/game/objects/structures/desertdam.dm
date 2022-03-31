@@ -40,3 +40,4 @@
 	bound_width = 64
 	bound_height = 64
 	density = TRUE
+	coverage = 15

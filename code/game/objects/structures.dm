@@ -4,9 +4,9 @@
 	var/climb_delay = 50
 	var/flags_barrier = 0
 	var/broken = FALSE //similar to machinery's stat BROKEN
-	var/coverage = 50 //Percentage area covered by the structure. Increases bullet blockage chance.
 	obj_flags = CAN_BE_HIT
 	anchored = TRUE
+	throwpass = TRUE
 	destroy_sound = 'sound/effects/meteorimpact.ogg'
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)

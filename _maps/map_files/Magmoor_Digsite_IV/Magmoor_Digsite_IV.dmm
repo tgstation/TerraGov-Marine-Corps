@@ -658,7 +658,6 @@
 	},
 /area/magmoor/compound/northeast)
 "aFS" = (
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "aGi" = (
@@ -1690,7 +1689,6 @@
 /obj/item/storage/box/lightstick/red,
 /obj/item/storage/box/lightstick,
 /obj/item/storage/box/lightstick,
-/obj/item/tool/pickaxe/plasmacutter,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1711,7 +1709,6 @@
 /turf/closed/wall/cult,
 /area/magmoor/cave/northeast)
 "bCZ" = (
-/obj/item/tool/pickaxe/plasmacutter,
 /obj/structure/closet/crate,
 /obj/effect/decal/cleanable/cobweb{
 	dir = 4
@@ -4972,7 +4969,6 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
 "dDb" = (
