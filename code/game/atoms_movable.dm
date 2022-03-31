@@ -565,7 +565,7 @@
 		flags_atom &= ~DIRLOCK
 	if(parrier)
 		sleep(1)	//Very small sleep so it doesn't look like it just teleported back to you if you were very close due to how throw code works.
-		throw_at(thrower ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
+		throw_at((thrower && thrower != src) ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
 		return	//Do not trigger final turf impact nor throw end comsigs as it returns back to its source and should be treated as a single throw.
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
