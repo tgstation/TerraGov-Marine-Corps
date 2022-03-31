@@ -327,8 +327,10 @@
 	caliber = CALIBER_762X54 //codex
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
 	max_chamber_items = 5 //codex
+	max_rounds = 5
 	default_ammo_type = /datum/ammo/bullet/sniper/svd
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/bolt/clip)
+	type_of_casings = "cartridge"
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	cocked_message = "You work the bolt."
