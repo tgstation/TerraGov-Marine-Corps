@@ -26,8 +26,8 @@
     ))
 
 /**
- * This is triggered by an object attempting to impact into an object with the parry component and checks whether the current conditions are valid to trigger a parry success.
- * The mob has to be conscious and the parry duration must not have timed out.
+ * This is triggered by an object attempting to impact into something with the parry component attached and checks whether the current conditions are valid to trigger a parry success.
+ * The mob has to be conscious aswell as not resting and the parry duration must not have timed out.
  * * Returns TRUE on successful parry and nothing if failed, which is then handled by throwing code.
 **/
 /datum/component/throw_parry/proc/parry_check(parry_target, atom/movable/to_parry)
