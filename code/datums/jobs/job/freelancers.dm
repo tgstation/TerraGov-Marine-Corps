@@ -11,6 +11,12 @@
 	title = "Freelancer Standard"
 	paygrade = "FRE1"
 	outfit = /datum/outfit/job/freelancer/standard
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/freelancer/standard,
+		/datum/outfit/job/freelancer/standard/one,
+		/datum/outfit/job/freelancer/standard/two,
+	)
 
 
 /datum/outfit/job/freelancer/standard
@@ -184,6 +190,12 @@
 	title = "Freelancer Veteran"
 	paygrade = "FRE3"
 	outfit = /datum/outfit/job/freelancer/grenadier
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/freelancer/grenadier,
+		/datum/outfit/job/freelancer/grenadier/one,
+		/datum/outfit/job/freelancer/grenadier/two,
+	)
 
 
 /datum/outfit/job/freelancer/grenadier
@@ -309,6 +321,12 @@
 	paygrade = "FRE4"
 	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/freelancer/leader
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/freelancer/leader,
+		/datum/outfit/job/freelancer/leader/one,
+		/datum/outfit/job/freelancer/leader/two,
+	)
 
 /datum/outfit/job/freelancer/leader
 	name = "Freelancer Leader"
