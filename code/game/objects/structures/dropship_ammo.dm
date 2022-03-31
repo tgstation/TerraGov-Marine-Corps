@@ -529,6 +529,9 @@
 	icon_state = "minirocket_smoke"
 	point_cost = 25
 	cas_effect = /obj/effect/overlay/blinking_laser/smoke
+	devastating_explosion_range = 0
+	heavy_explosion_range = 0
+	light_explosion_range = 2
 
 /obj/structure/ship_ammo/minirocket/smoke/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
@@ -544,11 +547,9 @@
 	desc = "A pack of laser guided mini rockets loaded with plasma-draining Tanglefoot gas."
 	icon_state = "minirocket_tfoot"
 	point_cost = 150
-	cas_effect = /obj/effect/overlay/blinking_laser/tfoot
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
 	light_explosion_range = 2
-	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/tfoot
 
 /obj/structure/ship_ammo/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
@@ -567,6 +568,10 @@
 	icon_state = "minirocket_ilm"
 	point_cost = 25 // Not a real rocket, so its cheap
 	cas_effect = /obj/effect/overlay/blinking_laser/flare
+	devastating_explosion_range = 0
+	heavy_explosion_range = 0
+	light_explosion_range = 0
+	prediction_type = CAS_AMMO_HARMLESS
 
 /obj/structure/ship_ammo/minirocket/illumination/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
