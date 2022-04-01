@@ -380,7 +380,7 @@
 	name = "Feast"
 	action_icon_state = "feast"
 	mechanics_text = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
-	cooldown_timer = 180 SECONDS
+	cooldown_timer = 0 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_FEAST
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
@@ -392,9 +392,9 @@
 		return FALSE
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		return TRUE
-	if(owner_xeno.plasma_stored < owner_xeno.xeno_caste.feast_plasma_drain * 10)
+	if(owner_xeno.plasma_stored < owner_xeno.xeno_caste.feast_plasma_drain * 6.5)
 		if(!silent)
-			to_chat(owner_xeno, span_notice("Not enough to begin a feast. We need [owner_xeno.xeno_caste.feast_plasma_drain * 10] blood."))
+			to_chat(owner_xeno, span_notice("Not enough to begin a feast. We need [owner_xeno.xeno_caste.feast_plasma_drain * 6.5] blood."))
 		return FALSE
 
 /datum/action/xeno_action/activable/feast/use_ability(atom/A)
