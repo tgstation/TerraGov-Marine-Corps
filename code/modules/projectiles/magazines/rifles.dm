@@ -366,15 +366,19 @@
 	default_ammo = /datum/ammo/tx54
 	max_rounds = 8
 	icon_state_mini = "mag_sniper"
+	greyscale_config = /datum/greyscale_config/ammo
+	greyscale_colors = "#3ab0c9"
 
 /obj/item/ammo_magazine/rifle/tx54/he
 	name = "\improper 20mm HE grenade magazine"
 	desc = "A 20mm magazine loaded with HE grenades. For use with the TX-54 or TX-55."
 	default_ammo = /datum/ammo/tx54/he
-	icon_state = "tx54_he"
+	icon_state = "tx54_airburst"
+	greyscale_colors = "#b02323"
 
 /obj/item/ammo_magazine/rifle/tx54/incendiary
 	name = "\improper 20mm incendiary grenade magazine"
 	desc = "A 20mm magazine loaded with incendiary grenades. For use with the TX-54 or TX-55."
 	default_ammo = /datum/ammo/tx54/incendiary
-	icon_state = "tx54_incendiary"
+	icon_state = "tx54_airburst"
+	greyscale_colors = "#fa7923"

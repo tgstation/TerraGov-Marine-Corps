@@ -185,6 +185,11 @@
 	var/datum/ammo/ammo = ispath(new_ammo) ? GLOB.ammo_list[new_ammo] : new_ammo
 	var/ammo_name = ammo.name
 
+	///sets greyscale for the handful if it has been specified by the ammo datum
+	if (ammo.handful_greyscale_config && ammo.handful_greyscale_colors)
+		set_greyscale_config(ammo.handful_greyscale_config)
+		set_greyscale_colors(ammo.handful_greyscale_colors)
+
 	name = "handful of [ammo_name + " ([new_caliber])"]"
 	icon_state = ammo.handful_icon_state
 
