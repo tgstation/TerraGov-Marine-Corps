@@ -5,7 +5,6 @@
 		/datum/map_template/modular,
 		/datum/map_template/modular/lv624,
 		/datum/map_template/modular/prison,
-		///datum/map_template/modular/bigred,
 		/datum/map_template/modular/end_of_round,
 	)
 
