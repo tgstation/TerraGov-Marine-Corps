@@ -12,5 +12,7 @@
 /datum/unit_test/map_templates/Run()
 	for(var/path AS in subtypesof(/datum/map_template)-exceptions)
 		var/datum/map_template/instance = new path
+		if(path == /datum/map_template/modular/bigred)
+			CRASH("FHGHS")
 		if(!fexists(instance.mappath))
 			Fail("[path] has an invalid mappath ([instance.mappath])")
