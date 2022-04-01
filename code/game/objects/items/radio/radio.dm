@@ -269,11 +269,11 @@
 /obj/item/radio/examine(mob/user)
 	. = ..()
 	if(frequency && in_range(src, user))
-		to_chat(user, span_notice("It is set to broadcast over the [frequency / 10] frequency."))
+		. += span_notice("It is set to broadcast over the [frequency / 10] frequency.")
 	if(unscrewed)
-		to_chat(user, span_notice("It can be attached and modified."))
+		. += span_notice("It can be attached and modified.")
 	else
-		to_chat(user, span_notice("It cannot be modified or attached."))
+		. += span_notice("It cannot be modified or attached.")
 
 
 /obj/item/radio/attackby(obj/item/I, mob/user, params)

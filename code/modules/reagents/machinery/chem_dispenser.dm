@@ -80,7 +80,7 @@
 /obj/machinery/chem_dispenser/examine(mob/user)
 	. = ..()
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, "The battery compartment is open[cell ? " and there's a cell inside" : ""].")
+		. += "The battery compartment is open[cell ? " and there's a cell inside" : ""]."
 
 /obj/machinery/chem_dispenser/process()
 	if (recharge_counter >= 4)

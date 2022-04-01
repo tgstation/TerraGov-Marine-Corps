@@ -120,22 +120,22 @@
 	. = ..()
 	if(!isxeno(user))
 		return
-	to_chat(user, "A hole for a little one to hide in ambush for or for spewing acid.")
+	. += "A hole for a little one to hide in ambush for or for spewing acid."
 	switch(trap_type)
 		if(TRAP_HUGGER)
-			to_chat(user, "There's a little one inside.")
+			. += "There's a little one inside."
 		if(TRAP_SMOKE_NEURO)
-			to_chat(user, "There's pressurized neurotoxin inside.")
+			. += "There's pressurized neurotoxin inside."
 		if(TRAP_SMOKE_ACID)
-			to_chat(user, "There's pressurized acid gas inside.")
+			. += "There's pressurized acid gas inside."
 		if(TRAP_ACID_WEAK)
-			to_chat(user, "There's pressurized weak acid inside.")
+			. += "There's pressurized weak acid inside."
 		if(TRAP_ACID_NORMAL)
-			to_chat(user, "There's pressurized normal acid inside.")
+			. += "There's pressurized normal acid inside."
 		if(TRAP_ACID_STRONG)
-			to_chat(user, "There's strong pressurized acid inside.")
+			. += "There's strong pressurized acid inside."
 		else
-			to_chat(user, "It's empty.")
+			. += "It's empty."
 
 /obj/structure/xeno/trap/flamer_fire_act()
 	hugger?.kill_hugger()
@@ -316,7 +316,7 @@ TUNNEL
 	if(!isxeno(user) && !isobserver(user))
 		return
 	if(tunnel_desc)
-		to_chat(user, span_info("The Hivelord scent reads: \'[tunnel_desc]\'") )
+		. += span_info("The Hivelord scent reads: \'[tunnel_desc]\'")
 
 /obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE)
 	visible_message(span_danger("[src] suddenly collapses!") )
@@ -487,10 +487,10 @@ TUNNEL
 	return ..()
 
 /obj/structure/xeno/acidwell/examine(mob/user)
-	..()
+	. = ..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-	to_chat(user, span_xenonotice("An acid well made by [creator]. It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES] charges</b>.") )
+	. += span_xenonotice("An acid well made by [creator]. It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES] charges</b>.")
 
 /obj/structure/xeno/acidwell/deconstruct(disassembled = TRUE)
 	visible_message(span_danger("[src] suddenly collapses!") )
@@ -664,7 +664,7 @@ TUNNEL
 /obj/structure/xeno/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(isxeno(user))
-		to_chat(user, "It has [chargesleft] jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"].")
+		. += "It has [chargesleft] jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"]."
 
 /obj/structure/xeno/resin_jelly_pod/process()
 	if(nextjelly <= recharge_rate)
@@ -782,15 +782,15 @@ TUNNEL
 	var/current_integrity = (obj_integrity / max_integrity) * 100
 	switch(current_integrity)
 		if(0 to 20)
-			to_chat(user, span_warning("It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert."))
+			. += span_warning("It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert.")
 		if(20 to 40)
-			to_chat(user, span_warning("It looks severely damaged, its movements slow."))
+			. += span_warning("It looks severely damaged, its movements slow.")
 		if(40 to 60)
-			to_chat(user, span_warning("It's quite beat up, but it seems alive."))
+			. += span_warning("It's quite beat up, but it seems alive.")
 		if(60 to 80)
-			to_chat(user, span_warning("It's slightly damaged, but still seems healthy."))
+			. += span_warning("It's slightly damaged, but still seems healthy.")
 		if(80 to 100)
-			to_chat(user, span_info("It appears in good shape, pulsating healthily."))
+			. += span_info("It appears in good shape, pulsating healthily.")
 
 
 /obj/structure/xeno/silo/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)

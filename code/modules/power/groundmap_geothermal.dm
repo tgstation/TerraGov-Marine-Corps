@@ -36,9 +36,9 @@
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(corrupted)
-		to_chat(user, "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""].")
+		. += "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""]."
 	if(!isxeno(user) && !is_corruptible)
-		to_chat(user, "It is reinforced, making us not able to corrupt it.")
+		. += "It is reinforced, making us not able to corrupt it."
 
 /obj/machinery/power/geothermal/should_have_node()
 	return TRUE

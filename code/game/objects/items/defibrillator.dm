@@ -56,16 +56,14 @@
 		icon_state += "_empty"
 
 
-/obj/item/defibrillator/examine(mob/living/carbon/human/user)
+/obj/item/defibrillator/examine(mob/user)
 	. = ..()
-	maybe_message_recharge_hint(user)
+	. += maybe_message_recharge_hint()
 
 
 /**
  * Message user with a hint to recharge defibrillator
  * and how to do it if the battery is low.
- * Arguments:
- * user: user to message
 */
 /obj/item/defibrillator/proc/maybe_message_recharge_hint(mob/living/carbon/human/user)
 	if(!dcell)
@@ -79,7 +77,7 @@
 
 	if(!message)
 		return
-	to_chat(user, span_notice("[message] You can click-drag defibrillator on corpsman backpack to recharge it."))
+	return span_notice("[message] You can click-drag defibrillator on corpsman backpack to recharge it.")
 
 
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
@@ -173,7 +171,7 @@
 		return
 	if(dcell.charge <= charge_cost)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted. Cannot analyze nor administer shock."))
-		maybe_message_recharge_hint(user)
+		to_chat(user, maybe_message_recharge_hint())
 		return
 	if(H.stat != DEAD)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Vital signs detected. Aborting."))
