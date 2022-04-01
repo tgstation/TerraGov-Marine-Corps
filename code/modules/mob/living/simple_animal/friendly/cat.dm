@@ -121,7 +121,7 @@
 	if(H.l_hand && H.r_hand)
 		return
 
-	var/obj/item/cat/C = new
+	var/obj/item/clothing/head/cat/C = new
 	C.name = name
 	C.desc = desc
 	C.icon_state = initial(icon_state)
@@ -130,32 +130,32 @@
 	H.put_in_hands(C)
 
 
-/obj/item/cat
+/obj/item/clothing/head/cat
 	name = "Cat"
 	desc = "Kitty!!"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "cat2"
+	flags_armor_features = ARMOR_NO_DECAP
+	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 50, "acid" = 50)
 	var/mob/living/simple_animal/cat/cat
-	flags_equip_slot = ITEM_SLOT_HEAD
 
-
-/obj/item/cat/Destroy()
+/obj/item/clothing/head/cat/Destroy()
 	if(cat)
 		cat.forceMove(get_turf(src))
 		cat = null
 	return ..()
 
 
-/obj/item/cat/throw_at(atom/target, range, speed, thrower, spin)
+/obj/item/clothing/head/cat/throw_at(atom/target, range, speed, thrower, spin)
 	qdel(src)
 
 
-/obj/item/cat/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+/obj/item/clothing/head/cat/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	. = ..()
 	qdel(src)
 
 
-/obj/item/cat/dropped(mob/user)
+/obj/item/clothing/head/cat/dropped(mob/user)
 	. = ..()
 	if(loc == user)
 		return
