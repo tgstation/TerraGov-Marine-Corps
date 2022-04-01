@@ -1479,7 +1479,7 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 4
 	damage = 150
 	penetration = 50
-	sundering = 55
+	sundering = 60
 
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
 	explosion(T, 0, 0, 1, 0)
