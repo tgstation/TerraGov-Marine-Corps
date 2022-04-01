@@ -38,7 +38,7 @@
 
 /datum/map_template/modular/lv624/hydro_path
 	name = "Hydro road"
-	mappath = "ffath.dmm"
+	mappath = "_maps/modularmaps/lv624/hydro_path.dmm"
 	modular_id = "hydroroad"
 	template_width = 20
 	template_height = 20
