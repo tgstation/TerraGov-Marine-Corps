@@ -1317,6 +1317,8 @@
 			/obj/item/armor_module/module/hlin_explosive_armor = -1,
 			/obj/item/attachable/heatlens = -1,
 			/obj/item/storage/backpack/lightpack = -1,
+			/obj/item/clothing/suit/storage/marine/riot = -1,
+			/obj/item/clothing/head/helmet/marine/riot = -1,
 		)
 	)
 
