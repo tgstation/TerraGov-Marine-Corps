@@ -380,7 +380,7 @@
 	name = "Feast"
 	action_icon_state = "feast"
 	mechanics_text = "Enter a state of rejuvenation. During this time you use a small amount of blood and heal. You can cancel this early."
-	cooldown_timer = 0 SECONDS
+	cooldown_timer = 30 SECONDS
 	plasma_cost = 0
 	keybind_signal = COMSIG_XENOABILITY_FEAST
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
