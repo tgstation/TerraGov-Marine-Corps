@@ -6,7 +6,7 @@
 /datum/component/throw_parry
 	var/mob/living/living_parent
 	var/parry_until = 0
-    
+
 
 /datum/component/throw_parry/Initialize()
 	if(!isliving(parent))
@@ -23,7 +23,7 @@
 	UnregisterSignal(parent, list(
 		COMSIG_THROW_PARRY_CHECK,
 		COMSIG_PARRY_TRIGGER
-    ))
+	))
 
 /**
  * This is triggered by an object attempting to impact into something with the parry component attached and checks whether the current conditions are valid to trigger a parry success.
@@ -38,7 +38,7 @@
 		return
 	if(parry_until < world.time)
 		return
-    living_parent.visible_message(span_warning("[living_parent] deflects [to_parry]!"), span_notice("[isxeno(living_parent) ? "We" : "You"] bounce [to_parry] back towards its source!"))
+	living_parent.visible_message(span_warning("[living_parent] deflects [to_parry]!"), span_notice("[isxeno(living_parent) ? "We" : "You"] bounce [to_parry] back towards its source!"))
 	return TRUE
 
 /**
