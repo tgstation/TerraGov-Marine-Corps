@@ -2081,12 +2081,12 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
 	damage = 30
-	flags_ammo_behavior = AMMO_XENO
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 
 /datum/ammo/xeno/acid/auto
 	name = "light acid spatter"
 	damage = 10
-	flags_ammo_behavior = AMMO_XENO
+	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS
 	spit_cost = 25
 	added_spit_delay = 0
 
