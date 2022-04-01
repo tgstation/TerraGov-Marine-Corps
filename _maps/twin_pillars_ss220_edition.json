@@ -1,0 +1,8 @@
+{
+    "map_name": "Twin Pillars SS220 edition",
+    "map_path": "map_files/Twin_Pillars_ss220_edition",
+    "map_file": "Twin_Pillars_ss220_edition.dmm",
+    "traits": [{"Marine Main Ship": true}],
+    "environment_traits": [{"Double Marine Ship": true}],
+    "squads": 2
+}

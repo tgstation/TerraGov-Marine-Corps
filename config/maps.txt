@@ -49,6 +49,9 @@ map research_outpost
 	maxplayers 40
 endmap
 
+map barrenquilla_mining
+endmap
+
 map whiskey_outpost_v2
 endmap
 
