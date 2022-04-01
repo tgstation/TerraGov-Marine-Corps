@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - balance: "Nerf conveyor belt from 500 integrity to 50"
+  - bugfix: "Conveyor belt inherits 500 integrity; not anymore."
