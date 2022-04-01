@@ -174,7 +174,7 @@
 	///Chair that handles all the ui and click stuff
 	var/obj/structure/caspart/caschair/chair
 	///Camera eye we create when we begin a CAS mission that we fire from
-	var/mob/camera/aiEye/remote/eyeobj
+	var/mob/camera/aiEye/remote/hud/eyeobj
 	///Action to stop the eye
 	var/datum/action/innate/camera_off/cas/off_action
 	///Number for how much fuel we have left, this x15 seconds is how much time we have while flying
