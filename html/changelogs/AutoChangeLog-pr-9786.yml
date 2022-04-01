@@ -1,0 +1,12 @@
+author: "breadhunt, thank Elsa and Ciel for sprites"
+delete-after: True
+changes: 
+  - rscadd: "Marine CAS prediction matrix. A prediction for where CAS ammo will hit, before it arrives, now shows up on marine HUD."
+  - imageadd: "Various new CAS lase sprites, for:"
+  - rscadd: "CAS lase (flashing green dot) now has a sprite for each type of ammo fired (except HV GAU). Both xenos and marines see this."
+  - balance: "This means both marines *and* xenos can see what ammo's coming. Sorry, POs."
+  - balance: "Removed deviation from CAS flares"
+  - balance: "Removed explosion from CAS flares and CAS smoke. Marines are finally safe"
+  - expansion: "Complete fatty rework."
+  - balance: "Instead of a cluster explosion, fatty now destroys all walls in a 5 tile radius around impact."
+  - balance: "This is non-lethal; feel free to use it around brazilled marines. Point cost means you can't really spam it, however."
