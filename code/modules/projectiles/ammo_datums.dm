@@ -1243,7 +1243,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/bullet/tx54_spread/incendiary
 	name = "incendiary flechette"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
-	damage = 15
+	damage = 8
 	penetration = 10
 	sundering = 1.5
 
