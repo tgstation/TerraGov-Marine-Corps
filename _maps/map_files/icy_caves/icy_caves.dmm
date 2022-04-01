@@ -2059,6 +2059,10 @@
 /obj/item/reagent_containers/food/snacks/applecakeslice,
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
+"iw" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/outside/center)
 "ix" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -2340,7 +2344,7 @@
 /area/icy_caves/outpost/LZ2)
 "jS" = (
 /obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer1,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
 "jT" = (
 /obj/machinery/landinglight/ds1{
@@ -3232,6 +3236,10 @@
 "nI" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ2)
+"nJ" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/outside/center)
 "nK" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/tile/dark,
@@ -5474,6 +5482,10 @@
 	},
 /turf/open/shuttle/escapepod/plain,
 /area/space)
+"wU" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/outside/center)
 "wW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -6017,6 +6029,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
+"zs" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/ice_rock/singleT,
+/area/icy_caves/caves)
 "zu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor,
 /turf/open/floor/prison{
@@ -6090,6 +6106,11 @@
 	icon_state = "103"
 	},
 /area/icy_caves/caves/northwestmonorail)
+"zJ" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/outside/center)
 "zK" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -8253,6 +8274,10 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/research)
+"IE" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/outside/center)
 "IG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -9229,6 +9254,11 @@
 	},
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
+"MG" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/research)
 "MH" = (
 /turf/closed/ice/thin/end{
 	dir = 1
@@ -9715,10 +9745,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/LZ2)
-"OM" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/ice_rock/singleEnd,
-/area/icy_caves/caves)
 "ON" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass{
 	name = "\improper Xenbiology Airlock"
@@ -12040,6 +12066,10 @@
 	},
 /turf/open/shuttle/escapepod/plain,
 /area/icy_caves/caves/northwestmonorail)
+"YC" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall,
+/area/icy_caves/outpost/research)
 "YE" = (
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -26829,14 +26859,14 @@ yE
 my
 xm
 xE
-li
-DD
-li
-DD
-li
-li
-vh
-li
+iw
+wU
+iw
+wU
+iw
+iw
+zJ
+iw
 li
 li
 ow
@@ -26846,10 +26876,10 @@ ow
 VU
 aG
 Sq
-Sq
-Yl
-Yl
-Yl
+oF
+wD
+wD
+wD
 Ol
 bD
 Yf
@@ -26985,14 +27015,14 @@ ro
 li
 HA
 my
-li
-ow
-li
+iw
+DD
+DD
 jS
-li
-li
+IE
+DD
 ow
-ow
+nJ
 ow
 ow
 ow
@@ -27002,10 +27032,10 @@ bX
 aI
 Pv
 Pv
-Sq
+oF
 Yl
 SC
-Yl
+wD
 Ol
 Yf
 Yf
@@ -27141,13 +27171,13 @@ ro
 li
 HA
 my
+wU
 DD
-ow
-li
-ow
-ow
-ow
-ow
+DD
+DD
+DD
+DD
+Yl
 Ay
 Mr
 ss
@@ -27159,8 +27189,8 @@ DP
 DP
 oF
 oF
-wD
-wD
+Yl
+Yl
 RO
 Ol
 Yf
@@ -27297,16 +27327,16 @@ Tc
 li
 HA
 my
-li
-li
-li
-li
-ow
-ow
-ow
-Mr
-VU
-VU
+iw
+DD
+IE
+DD
+DD
+IE
+Yl
+Yl
+Yl
+SC
 aI
 pq
 eY
@@ -27453,19 +27483,19 @@ dk
 rJ
 HA
 my
-li
-li
-li
-li
+iw
+DD
+DD
+DD
 ow
 VU
 VU
-Mr
-qH
-WS
-oW
-oW
-oW
+SC
+Yl
+Yl
+Yl
+Yl
+Yl
 Pv
 Sq
 Sq
@@ -27609,20 +27639,20 @@ tH
 Mh
 kK
 IS
-Mh
-tH
-tH
-qz
-VU
-qH
+MG
+YC
+YC
+Mr
+ss
+zs
 yZ
-OM
-XH
-Vb
-Yf
-Yf
-Sq
-Sq
+Yl
+Yl
+Yl
+Yl
+SC
+Yl
+Yl
 Yl
 Yl
 Yl
@@ -27775,9 +27805,9 @@ ko
 TW
 bF
 Pv
-Yf
-Sq
-Sq
+Yl
+Yl
+Yl
 Yl
 Yl
 Yl
@@ -27931,8 +27961,8 @@ Ay
 oW
 Pv
 Pv
-Yf
-Sq
+Yl
+Yl
 Yl
 SC
 Yl
@@ -28708,8 +28738,8 @@ nI
 nI
 nI
 Gl
-Za
-Za
+Yl
+Yl
 Yl
 SC
 Yl
@@ -28864,9 +28894,9 @@ nI
 nI
 wa
 Gl
-Za
-Za
-Za
+Yl
+Yl
+Yl
 Yl
 Yl
 Yl
