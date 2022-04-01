@@ -447,7 +447,7 @@
 			var/mob/living/L = A
 			if((!L.density || L.throwpass) && !(SEND_SIGNAL(A, COMSIG_LIVING_PRE_THROW_IMPACT, src) & COMPONENT_PRE_THROW_IMPACT_HIT))
 				continue
-			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK))	//If parried, do not continue checking the turf and immediately return.
+			if(SEND_SIGNAL(A, COMSIG_THROW_PARRY_CHECK, src))	//If parried, do not continue checking the turf and immediately return.
 				playsound(A, 'sound/weapons/alien_claw_block.ogg', 40, TRUE, 7, 4)
 				return A
 			throw_impact(A, speed)
@@ -564,8 +564,7 @@
 	if(!originally_dir_locked)
 		flags_atom &= ~DIRLOCK
 	if(parrier)
-		sleep(1)	//Very small sleep so it doesn't look like it just teleported back to you if you were very close due to how throw code works.
-		throw_at((thrower && thrower != src) ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
+		INVOKE_NEXT_TICK(src, .proc/throw_at, (thrower && thrower != src) ? thrower : throw_source, range, max(1, speed/2), parrier, spin, flying)
 		return	//Do not trigger final turf impact nor throw end comsigs as it returns back to its source and should be treated as a single throw.
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)

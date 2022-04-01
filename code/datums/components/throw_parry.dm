@@ -4,7 +4,9 @@
  * A thrown item being parried will prevent the throw from ending and returns said thrown object back towards its source with half its speed.
 **/
 /datum/component/throw_parry
+	///The mob/living this component interacts with, namely reacting to attempted throw impacts on it.
 	var/mob/living/living_parent
+	///Until which world.time the parry is active. Parries can only trigger if this is larger than the current world.time.
 	var/parry_until = 0
 
 
