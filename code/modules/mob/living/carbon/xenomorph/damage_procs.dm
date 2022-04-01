@@ -9,7 +9,7 @@
 
 	if(severity == EXPLODE_HEAVY || severity == EXPLODE_DEVASTATE)
 		if(eaten_mob)
-			eaten_mob.ex_act(severity + 1)
+			eaten_mob.ex_act(severity + 1) //Old devour code? higher = weaker
 
 	var/bomb_armor = soft_armor.getRating("bomb")
 	var/bomb_armor_multiplier = 0 //Just armor level
@@ -30,14 +30,14 @@
 			bomb_armor_multiplier = 0 //Most beno are here
 
 	//Slowdown and stagger
-	var/ex_slowdown = 2 + severity - bomb_armor_multiplier
+	var/ex_slowdown = 2 + (4 - severity) - bomb_armor_multiplier
 	add_slowdown(max(0, ex_slowdown)) //Slowdown 2 for sentiel from nade
 	adjust_stagger(max(0, ex_slowdown - 2)) //Stagger 2 less than slowdown
 	if(bomb_armor_multiplier > 3)
 		return //XENO_BOMB_RESIST_4 only gets slowdown
 
 	//Sunder
-	var/sunder_loss = 50*(severity-1) - 5*bomb_armor_multiplier
+	var/sunder_loss = 50*(3 - severity) - 5*bomb_armor_multiplier
 	if(severity == EXPLODE_DEVASTATE)
 		sunder_loss = sunder_loss - 5*bomb_armor_multiplier //For big boom armor matters more
 	adjust_sunder(max(0, sunder_loss))
@@ -47,7 +47,7 @@
 	//Prae gets 80 damage at base from light ex (nade)
 	//  120 for heavy (CAS minirocket), 160 for devastating (CAS rocket epicenter)
 	//Queen gets 20 less in each case
-	var/ex_damage = max(0, 50 + 40*severity - 10*bomb_armor_multiplier)
+	var/ex_damage = max(0, 50 + 40*(4 - severity) - 10*bomb_armor_multiplier)
 	// Add up to 20 random damage
 	ex_damage = ex_damage + rand(0, 10)*2
 
