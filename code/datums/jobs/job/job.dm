@@ -290,6 +290,7 @@ GLOBAL_PROTECT(exp_specialmap)
 				stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
 			QDEL_NULL(wear_id)
 		equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
+		job.outfit.handle_id(src)
 		///if there is only one outfit, just equips it
 		if (!job.multiple_outfits)
 			job.outfit.equip(src)
@@ -297,7 +298,6 @@ GLOBAL_PROTECT(exp_specialmap)
 		if (job.multiple_outfits)
 			var/datum/outfit/variant = pick(job.outfits)
 			variant = new variant
-			job.outfit.handle_id(src)
 			variant.equip(src)
 
 	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
