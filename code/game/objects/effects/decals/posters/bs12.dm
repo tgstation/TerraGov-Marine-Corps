@@ -170,8 +170,8 @@
 
 /datum/poster/bay_35
 	icon_state="bsposter35"
-	name = "A Memory of a Space Hero"
-	desc = "The Unga weaves as the Unga wills. Even if he is using The Sword that Cannot Slay or Chase Xenomorphs, he will die Ungaing."
+	name = "TerraGov: United for Humanity"
+	desc = "A poster depicting TerraGov's logo and motto, reminding viewers of who's looking out for humankind against the Xenomorph menace."
 
 /datum/poster/bay_36
 	icon_state="bsposter36"
@@ -339,6 +339,11 @@
 	name = "Fruit Bowl"
 	desc = " Simple, yet awe-inspiring."
 
+/datum/poster/bay_70
+	icon_state="bsposter70"
+	name = "Enlist" // but I thought deathsquad was never acknowledged
+	desc = "Enlist in the Nanotrasen Deathsquadron reserves today!"
+
 /datum/poster/bay_71
 	icon_state="bsposter71"
 	name = "Moffuchi's Pizza"
@@ -365,7 +370,7 @@
 	desc = "Andromeda Bitters: good for the body, good for the soul. Made in New Trinidad, now and forever."
 
 /datum/poster/bay_76
-	icon_state="bsposter76"
+	icon_state="bsposter82"
 	name = "Miss Researcher 2558"
 	desc = "A large piece of space-resistant printed paper. This pin-up poster depicts a woman wearing a NanoTrasen labcoat, a bikini, and a sheepish grin. She's shyly posing atop some highly specialized research equipment."
 
