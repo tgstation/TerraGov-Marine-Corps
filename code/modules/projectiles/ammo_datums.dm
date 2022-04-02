@@ -1414,15 +1414,15 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	penetration = 20
 	bullet_color = COLOR_TESLA_BLUE
-	var/drain_multiplier = 0.3 //Drains 10% of max plasma on hit
 
 /datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
 	zap_beam(proj, 4, damage)
 
 
 /datum/ammo/energy/tesla/on_hit_mob(mob/M,obj/projectile/P)
-	var/mob/living/carbon/xenomorph/X = M
-	X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+	if(isxeno(M)) //need 1 second more than the actual effect time
+		var/mob/living/carbon/xenomorph/X = M
+		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
 
 
 /datum/ammo/energy/droidblast
