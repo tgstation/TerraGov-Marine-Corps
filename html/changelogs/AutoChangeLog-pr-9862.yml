@@ -1,6 +1,0 @@
-author: "goose4429"
-delete-after: True
-changes: 
-  - code_imp: "Removed ex act from crushher.dm"
-  - balance: "crusher is no longer immune to some explosions"
-  - balance: "crusher gets less damage from biggest explosions"

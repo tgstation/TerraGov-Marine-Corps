@@ -1,4 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - bugfix: "TX-11 wielding mob sprite on the right hand facing east"
