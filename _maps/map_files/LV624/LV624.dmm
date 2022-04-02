@@ -13764,6 +13764,10 @@
 /obj/item/clothing/mask/cigarette/cigar,
 /turf/open/floor/cult/clock,
 /area/lv624/lazarus/bar)
+"mvo" = (
+/obj/structure/xeno/evotower,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "mvX" = (
 /turf/open/ground/river,
 /area/lv624/ground/sand1)
@@ -19293,6 +19297,11 @@
 	dir = 2
 	},
 /area/lv624/lazarus/sleep_male)
+"tjn" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/xeno/maturitytower,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "tjS" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/ground/coast/corner{
@@ -28892,7 +28901,7 @@ abc
 abc
 abc
 abc
-abc
+mvo
 aym
 aQx
 xLJ
@@ -60532,7 +60541,7 @@ aab
 aab
 xLJ
 aah
-aal
+tjn
 aah
 aal
 xLJ

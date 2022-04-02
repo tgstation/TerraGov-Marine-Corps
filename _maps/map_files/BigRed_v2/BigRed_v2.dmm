@@ -14845,6 +14845,10 @@
 "tQg" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
+"tQW" = (
+/obj/structure/xeno/maturitytower,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "tRj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -15522,6 +15526,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"xWg" = (
+/obj/structure/xeno/evotower,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "xWh" = (
 /obj/structure/table,
 /obj/item/ashtray/bronze,
@@ -59880,7 +59888,7 @@ hqP
 hqP
 hqP
 vyZ
-vyZ
+xWg
 gav
 vyZ
 vyZ
@@ -62493,7 +62501,7 @@ vyZ
 vyZ
 vyZ
 vyZ
-vyZ
+tQW
 hqP
 hqP
 hqP

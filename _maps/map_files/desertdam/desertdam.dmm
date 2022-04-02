@@ -57225,6 +57225,13 @@
 /obj/structure/bed/chair/office/light,
 /turf/open/floor/prison,
 /area/desert_dam/exterior/landing/landing_pad_three_external)
+"mwo" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/xeno/maturitytower,
+/turf/open/floor/plating,
+/area/desert_dam/interior/lab_northeast/east_lab_containment)
 "mwS" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "port_authority2"
@@ -59030,6 +59037,10 @@
 	icon_state = "sterile_white"
 	},
 /area/desert_dam/building/medical/office1)
+"nXX" = (
+/obj/structure/xeno/evotower,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/interior/caves/east_caves)
 "nYe" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -105590,7 +105601,7 @@ acu
 acu
 afi
 ajx
-akx
+mwo
 akx
 akx
 aTI
@@ -125719,7 +125730,7 @@ dTs
 dTs
 xGe
 bcH
-bcH
+nXX
 bcH
 btE
 aqX

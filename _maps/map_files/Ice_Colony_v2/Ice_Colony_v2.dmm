@@ -1752,11 +1752,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
-"ahf" = (
-/obj/structure/table,
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering)
 "ahj" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -30289,10 +30284,6 @@
 	dir = 10
 	},
 /area/ice_colony/exterior/underground/caves/ice_se)
-"bXT" = (
-/obj/structure/table,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/underground/caves/ice_se)
 "bXU" = (
 /obj/structure/ore_box,
 /turf/open/floor/tile/vault{
@@ -33229,6 +33220,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/exterior/surface/cliff)
+"mcS" = (
+/obj/structure/xeno/evotower,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/south)
 "mcZ" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -34472,6 +34467,11 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
+"smn" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/xeno/maturitytower,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/underground/caves/open)
 "spj" = (
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/cliff)
@@ -38952,7 +38952,7 @@ aZF
 cav
 vfw
 xdc
-eGj
+smn
 vfw
 bjZ
 bSw
@@ -50410,7 +50410,7 @@ jro
 fnv
 bOk
 rvr
-bPg
+mcS
 bjZ
 bSw
 "}
@@ -65487,7 +65487,7 @@ afD
 afA
 agl
 agI
-ahf
+ahe
 ahO
 ahW
 aiz
@@ -67100,7 +67100,7 @@ nWj
 nWj
 nWj
 nWj
-bXT
+bcu
 bbL
 acm
 aZF
