@@ -113,7 +113,7 @@
 			continue
 
 		switch(initial(T.tier))
-			if(XENO_TIER_ZERO || XENO_TIER_MINION)
+			if(XENO_TIER_ZERO, XENO_TIER_MINION)
 				continue
 			if(XENO_TIER_FOUR)
 				tier4counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"

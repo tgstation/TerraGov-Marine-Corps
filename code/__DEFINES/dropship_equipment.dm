@@ -16,3 +16,8 @@
 #define CAS_MINI_ROCKET 2
 #define CAS_MISSILE 3
 #define CAS_30MM 4
+
+//Ammo impact type defines
+#define CAS_AMMO_EXPLOSIVE 1//Uses explosive ammo. Missiles/bombs, etc.
+#define CAS_AMMO_INCENDIARY 2 //Uses incendiary ammo. Napalm rocket, etc.
+#define CAS_AMMO_HARMLESS 3 //Ammo is absolutely harmless

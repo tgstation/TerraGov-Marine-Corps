@@ -121,12 +121,6 @@
 	time_to_unequip = 20
 	time_to_equip = 20
 
-/obj/item/clothing/suit/armor/riot/marine
-	name = "\improper M5 riot control armor"
-	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines. Slows you down a lot."
-	icon_state = "riot"
-	item_state = "swat"
-
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"
 	desc = "A heavily armored suit that protects against moderate damage. Used in special operations."
