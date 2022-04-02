@@ -29,6 +29,7 @@
 
 	X.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
 	X.spin(4, 1)
+	X.enable_throw_parry(0.6 SECONDS)
 	playsound(X,pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	var/sweep_range = 1
@@ -412,6 +413,7 @@
 	spin_loop_timer = null
 	var/mob/living/carbon/xenomorph/X = owner
 	X.spin(4, 1)
+	X.enable_throw_parry(0.6 SECONDS)
 	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	for(var/mob/living/carbon/human/slapped in orange(1, X))

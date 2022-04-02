@@ -710,6 +710,10 @@
 
 #define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
 
+// throw parry signals
+#define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
+#define COMSIG_PARRY_TRIGGER "parry_trigger"
+
 // remote control signals
 #define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
 #define COMSIG_REMOTECONTROL_UNLINK "remotecontrol_unlink"
