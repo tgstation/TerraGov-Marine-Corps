@@ -219,7 +219,7 @@
 	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
-	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, intiial(tgui_input_buttons_swap))
+	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
 	return TRUE
 
 
@@ -281,7 +281,7 @@
 	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
 	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
 	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
-	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, intiial(tgui_input_buttons_swap))
+	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
 
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
