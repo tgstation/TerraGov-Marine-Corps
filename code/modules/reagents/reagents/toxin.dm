@@ -532,10 +532,13 @@
 
 	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
 		if(0 to 1 && prob(10))
+			L.balloon_alert(L, "You feel your legs tense up.")
 			to_chat(L, span_warning("You feel your legs tense up.") )
 		if(2 to 3.9 && prob(20))
+			L.balloon_alert(L, "You feel your legs go numb.")
 			to_chat(L, span_warning("You feel your legs go numb.") )
 		if(4 to INFINITY && prob(30))
+			L.balloon_alert(L, "You can barely feel your legs!")
 			to_chat(L, span_danger("You can barely feel your legs!") )
 
 	L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1.5 * slowdown_multiplier)

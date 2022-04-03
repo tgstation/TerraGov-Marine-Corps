@@ -92,10 +92,13 @@
 	if(human_user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
 		human_user.unset_interaction()
 	if(issynth(human_user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		human_user.balloon_alert(human_user, "Your programming restricts operating heavy weaponry.")
 		to_chat(human_user, span_warning("Your programming restricts operating heavy weaponry."))
 		return TRUE
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	do_attack_animation(src, ATTACK_EFFECT_GRAB)
+	user.balloon_alert_to_viewers("[human_user] mans the [src]!", ignored_mobs = human_user)
+	human_user.balloon_alert(human_user, "You man the gun!")
 	visible_message("[icon2html(src, viewers(src))] [span_notice("[human_user] mans the [src]!")]",
 		span_notice("You man the gun!"))
 
@@ -159,6 +162,7 @@
 		operator.unset_interaction()
 		return FALSE
 	if(operator.get_active_held_item())
+		operator.balloon_alert(operator, "You need a free hand to shoot the [src].")
 		to_chat(operator, span_warning("You need a free hand to shoot the [src]."))
 		return FALSE
 
@@ -180,6 +184,7 @@
 		update_icon_state()
 		return TRUE
 	if(CHECK_BITFIELD(gun.flags_item, DEPLOYED_NO_ROTATE))
+		operator.balloon_alert(operator, "This one is anchored in place and cannot be rotated.")
 		to_chat(operator, "This one is anchored in place and cannot be rotated.")
 		return FALSE
 
@@ -187,12 +192,14 @@
 	var/left = leftright[1] - 1
 	var/right = leftright[2] + 1
 	if(!(left == (angle-1)) && !(right == (angle+1)))
+		operator.balloon_alert(operator, " [src] cannot be rotated so violently.")
 		to_chat(operator, span_warning(" [src] cannot be rotated so violently."))
 		return FALSE
 	var/turf/move_to = get_step(src, REVERSE_DIR(angle))
 	var/mob/living/carbon/human/user = operator
 
 	if(!operator.Move(move_to))
+		operator.balloon_alert(operator, "You cannot rotate [src] that way.")
 		to_chat(operator, "You cannot rotate [src] that way.")
 		return FALSE
 

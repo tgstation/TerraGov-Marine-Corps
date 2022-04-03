@@ -29,9 +29,12 @@
 		return TRUE
 	if(!I.use_tool(src, user, 0, volume=50, amount=1))
 		return TRUE
+	user.balloon_alert_to_viewers("[user] repairs some damage to [name].", ignored_mobs = user)
+	user.balloon_alert(user, "You repair some damage to \the [src].")	
 	user.visible_message(span_notice("[user] repairs some damage to [name]."), span_notice("You repair some damage to \the [src]."))
 	obj_integrity += min(10, max_integrity-obj_integrity)
 	if(obj_integrity == max_integrity)
+		user.balloon_alert(user, "It looks to be fully repaired now.")	
 		to_chat(user, span_notice("It looks to be fully repaired now."))
 	return TRUE
 

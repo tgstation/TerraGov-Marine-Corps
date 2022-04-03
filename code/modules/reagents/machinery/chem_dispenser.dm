@@ -288,6 +288,8 @@
 				for(var/reagent in recording_recipe)
 					var/reagent_id = GLOB.name2reagent[reagent]
 					if(!dispensable_reagents.Find(reagent_id))
+						balloon_alert_to_viewers(usr, "[src] buzzes.", ignored_mobs = usr)
+						balloon_alert(usr, "You hear a faint buzz.")
 						visible_message(span_warning("[src] buzzes."), span_hear("You hear a faint buzz."))
 						to_chat(usr, span_danger("[src] cannot find <b>[reagent]</b>!"))
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
@@ -319,6 +321,7 @@
 
 	if(isreagentcontainer(I))
 		if(beaker)
+			user.balloon_alert(user, "Something is already loaded into the machine.")
 			to_chat(user, "Something is already loaded into the machine.")
 			return
 
@@ -327,27 +330,33 @@
 				return
 
 			beaker =  I
+			user.balloon_alert(user, "You set [I] on the machine.")
 			to_chat(user, "You set [I] on the machine.")
 			updateUsrDialog()
 			return
 
 		if(istype(I, /obj/item/reagent_containers/glass))
+			user.balloon_alert(user, "You set [I] on the machine.")
 			to_chat(user, "Take the lid off [I] first.")
 			return
 
+		user.balloon_alert(user, "The machine can't dispense into that.")
 		to_chat(user, "The machine can't dispense into that.")
 		return
 
 	if(istype(I, /obj/item/cell))
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			user.balloon_alert(user, "[src]'s battery panel is closed!")
 			to_chat(user, span_notice("[src]'s battery panel is closed!"))
 			return
 		if(cell)
+			user.balloon_alert(user, "[src] already has a battery installed!")
 			to_chat(user, span_notice("[src] already has a battery installed!"))
 			return
 		if(!user.transferItemToLoc(I, src))
 			return
 		cell = I
+		user.balloon_alert(user, "You install \the [cell].")
 		to_chat(user, span_notice("You install \the [cell]."))
 		start_processing()
 		update_icon()
@@ -355,6 +364,7 @@
 
 /obj/machinery/chem_dispenser/screwdriver_act(mob/living/user, obj/item/I)
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+	user.balloon_alert(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the battery compartment.")
 	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the battery compartment."))
 	update_icon()
 	return TRUE
@@ -364,6 +374,7 @@
 		return FALSE
 	cell.forceMove(loc)
 	cell = null
+	user.balloon_alert(user, "You pry out the dispenser's battery.")
 	to_chat(user, span_notice("You pry out the dispenser's battery."))
 	stop_processing()
 	update_icon()

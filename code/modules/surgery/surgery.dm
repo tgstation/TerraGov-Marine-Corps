@@ -118,6 +118,8 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(user.do_actions) //already doing an action
 		return 1
 	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
+		user.balloon_alert_to_viewers("[user] fumbles around figuring out how to operate [M].", ignored_mobs = user)
+		user.balloon_alert(user, "You fumble around figuring out how to operate [M].")
 		user.visible_message(span_notice("[user] fumbles around figuring out how to operate [M]."),
 		span_notice("You fumble around figuring out how to operate [M]."))
 		var/fumbling_time = max(0,SKILL_TASK_FORMIDABLE - ( 8 SECONDS * user.skills.getRating("surgery") )) // 20 secs non-trained, 12 amateur, 4 trained, 0 prof
@@ -127,6 +129,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!affected)
 		return TRUE
 	if(affected.in_surgery_op) //two surgeons can't work on same limb at same time
+		user.balloon_alert(user, "You can't operate on the patient's [affected.display_name] while it's already being operated on.")
 		to_chat(user, span_warning("You can't operate on the patient's [affected.display_name] while it's already being operated on."))
 		return TRUE
 
@@ -176,14 +179,17 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 							var/mob/living/carbon/human/H = M
 							if(!(H.species.species_flags & NO_PAIN))
 								M.emote("pain")
+						user.balloon_alert(user, "[M] moved during the surgery! Use anesthetics!")
 						to_chat(user, span_danger("[M] moved during the surgery! Use anesthetics!"))
 					S.fail_step(user, M, user.zone_selected, tool, affected) //Malpractice
 				else //This failing silently was a pain.
+					user.balloon_alert(user, "You must remain close to your patient to conduct surgery.")
 					to_chat(user, span_warning("You must remain close to your patient to conduct surgery."))
 				affected.in_surgery_op = FALSE
 				return 1				   //Don't want to do weapony things after surgery
 
 	if(user.a_intent == INTENT_HELP)
+		user.balloon_alert(user, "You can't see any useful way to use \the [tool] on [M].")
 		to_chat(user, span_warning("You can't see any useful way to use \the [tool] on [M]."))
 		return 1
 	return 0

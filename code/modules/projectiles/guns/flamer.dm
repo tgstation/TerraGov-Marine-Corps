@@ -136,6 +136,7 @@
 	if(!.)
 		return
 	if(!istype(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE], /obj/item/attachable/flamer_nozzle))
+		user.balloon_alert(user, "[src] does not have a nozzle installed!")
 		to_chat(user, span_warning("[src] does not have a nozzle installed!"))
 		return FALSE
 	return TRUE

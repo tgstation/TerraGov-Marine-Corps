@@ -28,6 +28,7 @@
 			take_damage(70)
 
 /obj/structure/xeno/attack_hand(mob/living/user)
+	user.balloon_alert(user, "You scrape ineffectively at \the [src].")
 	to_chat(user, span_warning("You scrape ineffectively at \the [src]."))
 	return TRUE
 
@@ -202,12 +203,14 @@
 		if(!(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS))
 			return
 		if(!hugger)
+			X.balloon_alert(X, "[src] is empty.")
 			to_chat(X, span_warning("[src] is empty.") )
 			return
 		X.put_in_active_hand(hugger)
 		hugger.go_active(TRUE)
 		hugger = null
 		set_trap_type(null)
+		X.balloon_alert(X, "We remove the facehugger from [src].")
 		to_chat(X, span_xenonotice("We remove the facehugger from [src]."))
 		return
 	var/datum/action/xeno_action/activable/corrosive_acid/acid_action = locate(/datum/action/xeno_action/activable/corrosive_acid) in X.actions
@@ -237,10 +240,12 @@
 		return
 	var/obj/item/clothing/mask/facehugger/FH = I
 	if(trap_type)
+		user.balloon_alert(user, "[src] is already full.")
 		to_chat(user, span_warning("[src] is already full.") )
 		return
 
 	if(FH.stat == DEAD)
+		user.balloon_alert(user, "You can't put a dead facehugger in [src].")
 		to_chat(user, span_warning("You can't put a dead facehugger in [src].") )
 		return
 
@@ -248,6 +253,7 @@
 	FH.go_idle(TRUE)
 	hugger = FH
 	set_trap_type(TRAP_HUGGER)
+	user.balloon_alert(user, "You place a facehugger in [src].")
 	to_chat(user, span_xenonotice("You place a facehugger in [src].") )
 
 /*
@@ -316,6 +322,7 @@ TUNNEL
 	if(!isxeno(user) && !isobserver(user))
 		return
 	if(tunnel_desc)
+		user.balloon_alert(user, "The Hivelord scent reads: \'[tunnel_desc]\'")
 		to_chat(user, span_info("The Hivelord scent reads: \'[tunnel_desc]\'") )
 
 /obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE)
@@ -341,6 +348,7 @@ TUNNEL
 		return
 
 	if(X.a_intent == INTENT_HARM && X == creator)
+		X.balloon_alert(X, "We begin filling in our tunnel...")
 		to_chat(X, span_xenowarning("We begin filling in our tunnel...") )
 		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
@@ -539,8 +547,10 @@ TUNNEL
 
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent == INTENT_HARM && (CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_BUILDER) || X == creator) ) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
+		X.balloon_alert(X, "We begin removing \the [src]...")
 		to_chat(X, span_xenodanger("We begin removing \the [src]...") )
 		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_HOSTILE))
+			X.balloon_alert(X, "We stop removing \the [src]...")
 			to_chat(X, span_xenodanger("We stop removing \the [src]...") )
 			return
 		playsound(src, "alien_resin_break", 25)
@@ -548,13 +558,16 @@ TUNNEL
 		return
 
 	if(charges >= 5)
+		X.balloon_alert(X, "[src] is already full!")
 		to_chat(X, span_xenodanger("[src] is already full!") )
 		return
 	if(charging)
+		X.balloon_alert(X, "[src] is already being filled!")
 		to_chat(X, span_xenodanger("[src] is already being filled!") )
 		return
 
 	if(X.plasma_stored < XENO_ACID_WELL_FILL_COST) //You need to have enough plasma to attempt to fill the well
+		X.balloon_alert(X, "We don't have enough plasma to fill [src]!")
 		to_chat(X, span_xenodanger("We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!") )
 		return
 
@@ -567,6 +580,7 @@ TUNNEL
 
 	if(X.plasma_stored < XENO_ACID_WELL_FILL_COST)
 		charging = FALSE
+		X.balloon_alert(X, "We don't have enough plasma to fill [src]!")
 		to_chat(X, span_xenodanger("We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!") )
 		return
 
@@ -574,6 +588,7 @@ TUNNEL
 	charges++
 	charging = FALSE
 	update_icon()
+	X.balloon_alert(X, "We add acid to [src].")
 	to_chat(X,span_xenonotice("We add acid to [src]. It is currently has <b>[charges] / [XENO_ACID_WELL_MAX_CHARGES] charges</b>.") )
 
 /obj/structure/xeno/acidwell/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
@@ -680,14 +695,17 @@ TUNNEL
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM && isxenohivelord(X))
+		X.balloon_alert(X, "We begin tearing at the [src]...")
 		to_chat(X, span_xenowarning("We begin tearing at the [src]...") )
 		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
 
 	if(!chargesleft)
+		X.balloon_alert(X, "We reach into \the [src], but only find dregs of resin. We should wait some more.")
 		to_chat(X, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
 		return
+	X.balloon_alert(X, "We retrieve a resin jelly from \the [src].")
 	to_chat(X, span_xenonotice("We retrieve a resin jelly from \the [src].") )
 	new /obj/item/resin_jelly(loc)
 	chargesleft--
@@ -1204,6 +1222,7 @@ TUNNEL
 	if(!.)
 		return FALSE
 	if(!mature && isxeno(user))
+		user.balloon_alert(user, "[src] hasn't grown yet")
 		to_chat(user, span_xenowarning("[src] hasn't grown yet, give it some time!"))
 		return FALSE
 
@@ -1231,6 +1250,7 @@ TUNNEL
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM && isxenodrone(X))
+		X.balloon_alert_to_viewers("[X] uproots [src]!")
 		to_chat(X, span_xenowarning("We uproot [src]!"))
 		X.do_attack_animation(src)
 		deconstruct(FALSE)
@@ -1257,6 +1277,7 @@ TUNNEL
 		var/datum/effect_system/smoke_spread/xeno/acid/plant_explosion = new(get_turf(src))
 		plant_explosion.set_up(3,src)
 		plant_explosion.start()
+		src.balloon_alert_to_viewers("[src] bursts, releasing toxic gas!")
 		visible_message(span_danger("[src] bursts, releasing toxic gas!"))
 		qdel(src)
 		return TRUE
@@ -1266,6 +1287,7 @@ TUNNEL
 	HEAL_XENO_DAMAGE(X,heal_amount)
 	new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(user))
 	playsound(user, "alien_drool", 25)
+	X.balloon_alert(X, " You flick and spin [src]!")
 	to_chat(X, span_xenowarning("We feel a sudden soothing chill as [src] tends to our wounds."))
 	qdel(src)
 	return TRUE

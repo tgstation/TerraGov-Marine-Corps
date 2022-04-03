@@ -31,6 +31,7 @@
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
 		var/obj/structure/reagent_dispensers/fueltank/FT = target
 		if(FT.reagents.total_volume == 0)
+			user.balloon_alert(user, "Out of fuel!")
 			to_chat(user, span_warning("Out of fuel!"))
 			return..()
 
@@ -40,6 +41,7 @@
 		current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		caliber = CALIBER_FUEL
+		user.balloon_alert(user, "You refill [src] with [lowertext(caliber)].")
 		to_chat(user, span_notice("You refill [src] with [lowertext(caliber)]."))
 		update_icon()
 

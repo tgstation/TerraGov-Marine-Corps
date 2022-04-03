@@ -74,8 +74,10 @@
 				src.registered_name = I.registered_name
 				src.desc = "Owned by [I.registered_name]."
 		else
+			balloon_alert(user, "Access denied.")
 			to_chat(user, span_warning("Access Denied"))
 		return
+	balloon_alert(user, "Access denied.")
 	to_chat(user, span_warning("Access Denied"))
 
 

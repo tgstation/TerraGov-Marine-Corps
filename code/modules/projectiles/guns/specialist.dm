@@ -204,6 +204,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	targetmarker_primed = TRUE //We prime the target laser
 	if(user?.client)
 		user.client.click_intercept = src
+		user.balloon_alert(user, "<b>You activate your target marker and take careful aim.</b>")
 		to_chat(user, span_notice("<b>You activate your target marker and take careful aim.</b>"))
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 	return TRUE
@@ -219,6 +220,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	targetmarker_primed = FALSE
 	if(user?.client)
 		user.client.click_intercept = null
+		user.balloon_alert(user, "<b>You deactivate your target marker.</b>")
 		to_chat(user, span_notice("<b>You deactivate your target marker.</b>"))
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 	return TRUE

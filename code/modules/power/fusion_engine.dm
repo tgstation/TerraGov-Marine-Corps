@@ -146,6 +146,7 @@
 	if(fusion_cell.fuel_amount <= 10)
 		user.balloon_alert(user, "<b>[src]</b>: Fuel levels critically low.")
 		to_chat(user, "[icon2html(src, user)] [span_warning("<b>[src]</b>: Fuel levels critically low.")]")
+	src.balloon_alert_to_viewers("<b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...")
 	visible_message("[icon2html(src, viewers(src))] [span_warning("<b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...")]")
 	fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
 

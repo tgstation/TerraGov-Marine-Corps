@@ -204,6 +204,7 @@
 
 /datum/action/vehicle/sealed/headlights/action_activate()
 	. = ..()
+	owner.balloon_alert(owner, "You flip the switch for the vehicle's headlights.")
 	to_chat(owner, span_notice("You flip the switch for the vehicle's headlights."))
 	vehicle_entered_target.headlights_toggle = !vehicle_entered_target.headlights_toggle
 	vehicle_entered_target.set_light_on(vehicle_entered_target.headlights_toggle)

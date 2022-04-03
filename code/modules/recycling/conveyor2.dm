@@ -170,11 +170,13 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	conveying = FALSE
 
 /obj/machinery/conveyor/crowbar_act(mob/living/user, obj/item/I)
+	user.balloon_alert_to_viewers("[user] struggles to pry up \the [src] with \the [I].", ignored_mobs = user)
 	user.visible_message(span_notice("[user] struggles to pry up \the [src] with \the [I]."), \
 	span_notice("You struggle to pry up \the [src] with \the [I]."))
 	if(I.use_tool(src, user, 40, volume=40))
 		if(!(machine_stat & BROKEN))
 			new /obj/item/stack/conveyor(loc, 1, TRUE, id)
+		user.balloon_alert(user, "You remove [src].")
 		to_chat(user, span_notice("You remove [src]."))
 		qdel(src)
 	return TRUE
@@ -185,6 +187,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	I.play_tool_sound(src)
 	setDir(turn(dir,-45))
 	update_move_direction()
+	user.balloon_alert(user, "You rotate [src].")
 	to_chat(user, span_notice("You rotate [src]."))
 	return TRUE
 
@@ -193,6 +196,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return TRUE
 	verted = !verted
 	update_move_direction()
+	user.balloon_alert(user, "You set [src]'s direction [verted ? "backwards" : "back to default"].")
 	to_chat(user, span_notice("You set [src]'s direction [verted ? "backwards" : "back to default"]."))
 
 /obj/machinery/conveyor/wirecutter_act(mob/living/user, obj/item/I)
@@ -200,6 +204,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		return TRUE
 	flipped = !flipped
 	update_move_direction()
+	user.balloon_alert(user, "You flip [src]'s belt [flipped ? "around" : "back to normal"].")
 	to_chat(user, span_notice("You flip [src]'s belt [flipped ? "around" : "back to normal"]."))
 
 /obj/machinery/conveyor/attackby(obj/item/I, mob/living/user, def_zone)
@@ -347,6 +352,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/machinery/conveyor_switch/crowbar_act(mob/living/user, obj/item/I)
 	var/obj/item/conveyor_switch_construct/C = new/obj/item/conveyor_switch_construct(src.loc)
 	C.id = id
+	user.balloon_alert(user, "You detach the conveyor switch.")
 	to_chat(user, span_notice("You detach the conveyor switch."))
 	qdel(src)
 
@@ -376,6 +382,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/conveyor_switch_construct/attack_self(mob/user)
 	for(var/obj/item/stack/conveyor/C in view())
 		C.id = id
+	user.balloon_alert(user, "You have linked all nearby conveyor belt assemblies to this switch.")
 	to_chat(user, span_notice("You have linked all nearby conveyor belt assemblies to this switch."))
 
 /obj/item/conveyor_switch_construct/afterattack(atom/A, mob/user, proximity)
@@ -422,6 +429,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 /obj/item/stack/conveyor/attackby(obj/item/I, mob/user, params)
 	..()
 	if(istype(I, /obj/item/conveyor_switch_construct))
+		user.balloon_alert(user, "You link the switch to the conveyor belt assembly.")
 		to_chat(user, span_notice("You link the switch to the conveyor belt assembly."))
 		var/obj/item/conveyor_switch_construct/C = I
 		id = C.id

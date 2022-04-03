@@ -36,6 +36,9 @@
 	var/datum/export_report/export_report = spirited_away.supply_export(user.faction)
 	if(export_report)
 		SSpoints.export_history += export_report
+
+	user.balloon_alert_to_viewers("[user] finishes attaching [src] to [spirited_away] and activates it.", ignored_mobs = user)
+	user.balloon_alert(user, "You attach the pack to [spirited_away] and activate it.")
 	user.visible_message(span_notice("[user] finishes attaching [src] to [spirited_away] and activates it."),\
 	span_notice("You attach the pack to [spirited_away] and activate it. This looks like it will yield [export_report.points ? export_report.points : "no"] point[export_report.points == 1 ? "" : "s"]."), null, 5)
 	uses--
@@ -50,8 +53,11 @@
 	if(user.do_actions)
 		return FALSE
 	if(active)
+		user.balloon_alert(user, "The fulton device is not yet ready to extract again.")
 		to_chat(user, span_warning("The fulton device is not yet ready to extract again. Wait a moment."))
 		return FALSE
+	user.balloon_alert_to_viewers("[user] starts attaching [src] to [spirited_away].", ignored_mobs = user)
+	user.balloon_alert(user, "You start attaching the pack to [spirited_away]...")
 	user.visible_message(span_notice("[user] starts attaching [src] to [spirited_away]."),\
 	span_notice("You start attaching the pack to [spirited_away]..."), null, 5)
 	if(!do_after(user, 5 SECONDS, TRUE, spirited_away))
@@ -142,6 +148,7 @@
 /obj/structure/table/fulton_act(mob/living/user, obj/item/I)
 	if(!flipped)
 		return FALSE //Place it in.
+	user.balloon_alert(user, "Cannot extract [src].")
 	to_chat(user, span_warning("Cannot extract [src]."))
 	return TRUE
 
@@ -149,6 +156,7 @@
 /obj/structure/closet/fulton_act(mob/living/user, obj/item/I)
 	if(opened)
 		return FALSE //Place it in.
+	user.balloon_alert(user, "Cannot extract [src].")
 	to_chat(user, span_warning("Cannot extract [src]."))
 	return TRUE
 
@@ -189,15 +197,18 @@
 	if(!isturf(target.loc) || !ismovableatom(target))
 		return FALSE
 	if(active)
+		user.balloon_alert(user, "The fulton device is not yet ready to extract again. Wait a moment.")
 		to_chat(user, span_warning("The fulton device is not yet ready to extract again. Wait a moment."))
 		return FALSE
 	. = TRUE
 	if(istype(target, /obj/structure/fulton_extraction_point))
 		if(linked_extraction_point && linked_extraction_point == target)
 			linked_extraction_point = null
+			user.balloon_alert(user, "Extraction point unlinked.")
 			to_chat(user, span_notice("Extraction point unlinked."))
 		else
 			linked_extraction_point = target
+			user.balloon_alert(user, "Extraction point linked.")
 			to_chat(user, span_notice("Extraction point linked."))
 		return
 	if(length(allowed_target_tags) && !(target.tag in allowed_target_tags))
