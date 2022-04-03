@@ -36,3 +36,10 @@
   - balance: Nerf conveyor belt from 500 integrity to 50
   - bugfix: Conveyor belt inherits 500 integrity; not anymore.
   - bugfix: TX-11 wielding mob sprite on the right hand facing east
+2022-04-03:
+  DeltaFire15:
+  - rscadd: Defenders can use their tail abilities (Swipe, Centrifugal Force) to parry
+      throws, if timed right.
+  Wayland-Smithy:
+  - bugfix: Fixed xeno ex_act severity math.
+  - bugfix: Fixed Crusher Rapid Advance forcing 8 directions only.
