@@ -7,6 +7,7 @@
 	set desc = "Give some specific orders to the hive. They can see this on the status pane."
 
 	if(hivenumber == XENO_HIVE_CORRUPTED)
+		balloon_alert(src, "Access Denied!")
 		to_chat(src, span_warning("Only our masters can decide this!"))
 		return
 
@@ -92,6 +93,7 @@
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
+	owner.balloon_alert(owner, "We feel our throat muscles vibrate. We are ready to screech again.")
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
 	return ..()
 
@@ -291,6 +293,8 @@
 	var/mob/living/carbon/xenomorph/xeno = owner
 	RegisterSignal(xeno, COMSIG_MOVABLE_MOVED, .proc/on_movement)
 	if(message)
+		xeno.balloon_alert_to_viewers("[xeno] emits a broad and weak psychic aura.", ignored_mobs = xeno)
+		xeno.balloon_alert(xeno, "We start focusing our psychic energy to expand the reach of our senses.")
 		xeno.visible_message(span_notice("[xeno] emits a broad and weak psychic aura."),
 		span_notice("We start focusing our psychic energy to expand the reach of our senses."), null, 5)
 	xeno.zoom_in(0, 12)
@@ -300,6 +304,8 @@
 	var/mob/living/carbon/xenomorph/xeno = owner
 	UnregisterSignal(xeno, COMSIG_MOVABLE_MOVED)
 	if(message)
+		xeno.balloon_alert_to_viewers("[xeno] stops emitting its broad and weak psychic aura.", ignored_mobs = xeno)
+		xeno.balloon_alert(xeno, "[xeno] stops emitting its broad and weak psychic aura.")
 		xeno.visible_message(span_notice("[xeno] stops emitting its broad and weak psychic aura."),
 		span_notice("We stop the effort of expanding our senses."), null, 5)
 	xeno.zoom_out()
@@ -353,6 +359,8 @@
 /datum/action/xeno_action/set_xeno_lead/proc/unset_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(feedback)
+		xeno_ruler.balloon_alert(xeno_ruler, "We've demoted [selected_xeno] from Lead.")
+		selected_xeno.balloon_alert(selected_xeno, "[xeno_ruler] has demoted us from Hive Leader. Our leadership rights and abilities have waned.")
 		to_chat(xeno_ruler, span_xenonotice("We've demoted [selected_xeno] from Lead."))
 		to_chat(selected_xeno, span_xenoannounce("[xeno_ruler] has demoted us from Hive Leader. Our leadership rights and abilities have waned."))
 	selected_xeno.hive.remove_leader(selected_xeno)
@@ -375,7 +383,9 @@
 			to_chat(xeno_ruler, span_xenowarning("This caste is unfit to lead."))
 		return
 	if(feedback)
+		xeno_ruler.balloon_alert(xeno_ruler, "We've selected [selected_xeno] as a Hive Leader.")
 		to_chat(xeno_ruler, span_xenonotice("We've selected [selected_xeno] as a Hive Leader."))
+		selected_xeno.balloon_alert(selected_xeno, "[xeno_ruler] has selected us as a Hive Leader.")
 		to_chat(selected_xeno, span_xenoannounce("[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones."))
 
 	xeno_ruler.hive.add_leader(selected_xeno)
@@ -418,15 +428,18 @@
 		return FALSE
 	if(!(receiver.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
+			owner.balloon_alert(owner, "We can't give that caste plasma.")
 			to_chat(owner, span_warning("We can't give that caste plasma."))
 			return FALSE
 	var/mob/living/carbon/xenomorph/giver = owner
 	if(giver.z != receiver.z)
 		if(!silent)
+			giver.balloon_alert(giver, "They are too far away to do this.")
 			to_chat(giver, span_warning("They are too far away to do this."))
 		return FALSE
 	if(receiver.plasma_stored >= receiver.xeno_caste.plasma_max)
 		if(!silent)
+			giver.balloon_alert(giver, "[receiver] is at full plasma.")
 			to_chat(giver, span_warning("[receiver] is at full plasma."))
 		return FALSE
 
@@ -436,6 +449,8 @@
 	add_cooldown()
 	receiver.gain_plasma(300)
 	succeed_activate()
+	owner.balloon_alert(owner, "We transfer some plasma to [target].")
+	receiver.balloon_alert(receiver, "We feel our plasma reserves increase. Bless the Queen!")
 	to_chat(owner, span_xenonotice("We transfer some plasma to [target]."))
 	to_chat(receiver, span_xenonotice("We feel our plasma reserves increase. Bless the Queen!"))
 
@@ -532,6 +547,7 @@
 	if(T.health <= 0)
 		return
 
+	T.balloon_alert(T, "The queen is deevolving us for the following reason: [reason]")
 	to_chat(T, span_xenowarning("The queen is deevolving us for the following reason: [reason]"))
 
 	T.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)

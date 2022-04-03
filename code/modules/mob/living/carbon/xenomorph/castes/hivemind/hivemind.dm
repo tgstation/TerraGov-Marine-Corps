@@ -104,6 +104,7 @@
 
 /mob/living/carbon/xenomorph/hivemind/change_form()
 	if(status_flags & INCORPOREAL && health != maxHealth)
+		balloon_alert(src, "You do not have the strength to manifest yet!")
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
@@ -148,6 +149,7 @@
 
 /mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
 	return_to_core()
+	balloon_alert(src, "We were on top of fire, we got moved to our core!")
 	to_chat(src, "<span class='xenonotice'>We were on top of fire, we got moved to our core.")
 
 /mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T, strict_turf_check = FALSE)
@@ -167,6 +169,7 @@
 	if(check_weeds(T))
 		return TRUE
 	return_to_core()
+	balloon_alert(src, "We had no weeds nearby, we got moved to our core!")
 	to_chat(src, "<span class='xenonotice'>We had no weeds nearby, we got moved to our core.")
 	return FALSE
 
@@ -178,6 +181,7 @@
 ///Start the teleportation process to send the hivemind manifestation to the selected turf
 /mob/living/carbon/xenomorph/hivemind/proc/start_teleport(turf/T)
 	if(!isopenturf(T))
+		balloon_alert(src, "You cannot teleport into a wall!")
 		to_chat(src, span_notice("You cannot teleport into a wall"))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_HIVEMIND_MANIFESTATION, TIME_TO_TRANSFORM)
@@ -188,6 +192,7 @@
 /mob/living/carbon/xenomorph/hivemind/proc/end_teleport(turf/T)
 	flick("Hivemind_materialisation_fast", src)
 	if(!check_weeds(T, TRUE))
+		balloon_alert(src, "The weeds on our destination were destroyed!")
 		to_chat(src, span_warning("The weeds on our destination were destroyed"))
 	else
 		forceMove(T)
@@ -223,6 +228,7 @@
 		if(!istype(xeno))
 			return
 		if(!check_weeds(get_turf(xeno), TRUE))
+			balloon_alert(src, "They are not near any weeds we can jump to.")
 			to_chat(src, span_warning("They are not near any weeds we can jump to."))
 			return
 		if(!(status_flags & INCORPOREAL))
@@ -343,8 +349,11 @@
 	var/health_percent = round((max_integrity / obj_integrity) * 100)
 	switch(health_percent)
 		if(-INFINITY to 25)
+			balloon_alert(parent, "Your core is under attack, and dangerous low on health!")
 			to_chat(parent, span_xenohighdanger("Your core is under attack, and dangerous low on health!"))
 		if(26 to 75)
+			balloon_alert(parent, "Your core is under attack, and low on health!")
 			to_chat(parent, span_xenodanger("Your core is under attack, and low on health!"))
 		if(76 to INFINITY)
+			balloon_alert(parent, "Your core is under attack!")
 			to_chat(parent, span_xenodanger("Your core is under attack!"))

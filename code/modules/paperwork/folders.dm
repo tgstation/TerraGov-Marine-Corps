@@ -55,6 +55,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 
+		balloon_alert(user, "You put the [I] into \the [src].")
 		to_chat(user, span_notice("You put the [I] into \the [src]."))
 		update_icon()
 

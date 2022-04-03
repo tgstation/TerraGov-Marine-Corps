@@ -497,10 +497,12 @@
 	if(QDELETED(Q) || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
 		leader_aura_strength = 0
 		leader_current_aura = ""
+		balloon_alert(src, "Our pheromones wane. The Queen is no longer granting us her pheromones.")
 		to_chat(src, span_xenowarning("Our pheromones wane. The Queen is no longer granting us her pheromones."))
 	else
 		leader_aura_strength = Q.xeno_caste.aura_strength
 		leader_current_aura = Q.current_aura
+		balloon_alert(src, "Our pheromones have changed. The Queen has new plans for the Hive.")
 		to_chat(src, span_xenowarning("Our pheromones have changed. The Queen has new plans for the Hive."))
 
 

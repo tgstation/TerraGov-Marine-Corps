@@ -41,6 +41,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 
+		balloon_alert(user, "You put [I] in [src].")
 		to_chat(user, span_notice("You put [I] in [src]."))
 		icon_state = "[initial(icon_state)]-open"
 		sleep(5)
@@ -50,6 +51,7 @@
 	else if(iswrench(I))
 		anchored = !anchored
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		balloon_alert(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
 		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 
 	else
@@ -61,6 +63,7 @@
 	if(.)
 		return
 	if(contents.len <= 0)
+		balloon_alert(user, "\The [src] is empty.")
 		to_chat(user, span_notice("\The [src] is empty."))
 		return
 

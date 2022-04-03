@@ -21,6 +21,7 @@
 
 /datum/action/xeno_action/toggle_agility/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
+	X.balloon_alert(X, "We can [X.agility ? "raise ourselves back up" : "lower ourselves back down"] again.")
 	to_chat(X, span_notice("We can [X.agility ? "raise ourselves back up" : "lower ourselves back down"] again."))
 	return ..()
 
@@ -32,6 +33,7 @@
 	GLOB.round_statistics.warrior_agility_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_agility_toggles")
 	if(X.agility)
+		X.balloon_alert(X, "We lower ourselves to all fours and loosen our armored scales to ease our movement.")
 		to_chat(X, span_xenowarning("We lower ourselves to all fours and loosen our armored scales to ease our movement."))
 		X.add_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY , TRUE, 0, NONE, TRUE, X.xeno_caste.agility_speed_increase)
 		var/armor_change = X.xeno_caste.agility_speed_armor
@@ -39,6 +41,7 @@
 		last_agility_bonus = armor_change
 		owner.toggle_move_intent(MOVE_INTENT_RUN) //By default we swap to running when activating agility
 	else
+		X.balloon_alert(X, "We raise ourselves to stand on two feet, hard scales setting back into place.")
 		to_chat(X, span_xenowarning("We raise ourselves to stand on two feet, hard scales setting back into place."))
 		X.remove_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY)
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_agility_bonus)
@@ -64,6 +67,7 @@
 	var/atom/lunge_target
 
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
+	owner.balloon_alert(owner, "We ready ourselves to lunge again.")
 	to_chat(owner, span_xenodanger("We ready ourselves to lunge again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
@@ -75,11 +79,13 @@
 
 	if(get_dist_euclide_square(A, owner) > 36)
 		if(!silent)
+			owner.balloon_alert(owner, "You are too far!")
 			to_chat(owner, span_xenonotice("You are too far!"))
 		return FALSE
 
 	if(!isliving(A)) //We can only lunge at the living; expanded to xenos in order to allow for supportive applications; lunging > throwing to safety
 		if(!silent)
+			owner.balloon_alert(owner, "We can't [name] at that!")
 			to_chat(owner, span_xenodanger("We can't [name] at that!"))
 		return FALSE
 
@@ -101,6 +107,8 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	GLOB.round_statistics.warrior_lunges++
+	X.balloon_alert_to_viewers("\The [X] lunges towards [A]!", ignored_mobs = X)
+	X.balloon_alert(X, "We lunge at [A]!")
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_lunges")
 	X.visible_message(span_xenowarning("\The [X] lunges towards [A]!"), \
 	span_xenowarning("We lunge at [A]!"))
@@ -167,6 +175,7 @@
 	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
+	owner.balloon_alert(owner, "We gather enough strength to fling something again.")
 	to_chat(owner, span_xenodanger("We gather enough strength to fling something again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
@@ -198,6 +207,8 @@
 	GLOB.round_statistics.warrior_flings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_flings")
 
+	X.balloon_alert_to_viewers("\The [X] effortlessly flings [victim] away!", ignored_mobs = X)
+	X.balloon_alert(X, "We effortlessly fling [victim] away!")
 	X.visible_message(span_xenowarning("\The [X] effortlessly flings [victim] away!"), \
 	span_xenowarning("We effortlessly fling [victim] away!"))
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
@@ -216,6 +227,7 @@
 		if(empowered)
 			for(var/mob/living/carbon/human/human in temp)
 				human.KnockdownNoChain(2 SECONDS) //Bowling pins
+				human.balloon_alert(human, "[victim] crashes into us!")
 				to_chat(human, span_highdanger("[victim] crashes into us!"))
 		T = temp
 
@@ -266,6 +278,7 @@
 	target_flags = XABB_TURF_TARGET
 
 /datum/action/xeno_action/activable/toss/on_cooldown_finish()
+	owner.balloon_alert(owner, "We gather enough strength to toss something again.")
 	to_chat(owner, span_xenodanger("We gather enough strength to toss something again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
@@ -277,6 +290,7 @@
 
 	if(!owner.pulling) //If we're not grappling something, we should be flinging something living and adjacent
 		if(!silent)
+			owner.balloon_alert(owner, "We have nothing to toss!")
 			to_chat(owner, span_xenodanger("We have nothing to toss!"))
 		return FALSE
 
@@ -318,6 +332,8 @@
 	target.forceMove(get_turf(X)) //First force them into our space so we can toss them behind us without problems
 	X.do_attack_animation(target, ATTACK_EFFECT_DISARM2)
 	target.throw_at(get_turf(A), fling_distance, 1, X, 1)
+	X.balloon_alert_to_viewers("\The [X] throws [target] away[big_mob_message]!", ignored_mobs = X)
+	X.balloon_alert(X, "We throw [target] away[big_mob_message]!")
 	X.visible_message(span_xenowarning("\The [X] throws [target] away[big_mob_message]!"), \
 	span_xenowarning("We throw [target] away[big_mob_message]!"))
 
@@ -345,6 +361,7 @@
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
+	X.balloon_alert(X, "We gather enough strength to punch again.")
 	to_chat(X, span_xenodanger("We gather enough strength to punch again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
@@ -356,16 +373,19 @@
 
 	if(A.resistance_flags & (INDESTRUCTIBLE|CRUSHER_IMMUNE)) //no bolting down indestructible airlocks
 		if(!silent)
+			owner.balloon_alert(owner, "We cannot damage this target!")
 			to_chat(owner, span_xenodanger("We cannot damage this target!"))
 		return FALSE
 
 	if(isxeno(A))
 		if(!silent)
+			owner.balloon_alert(owner, "We can't harm our sister!")
 			to_chat(owner, span_xenodanger("We can't harm our sister!"))
 		return FALSE
 
 	if(!isliving(A) && !isstructure(A) && !ismachinery(A) && !isuav(A))
 		if(!silent)
+			owner.balloon_alert(owner, "We can't punch this target!")
 			to_chat(owner, span_xenodanger("We can't punch this target!"))
 		return FALSE
 
@@ -373,11 +393,13 @@
 		var/mob/living/L = A
 		if(L.stat == DEAD)
 			if(!silent)
+				owner.balloon_alert(owner, "We don't care about the dead!")
 				to_chat(owner, span_xenodanger("We don't care about the dead!"))
 			return FALSE
 
 	if(!line_of_sight(owner, A, range))
 		if(!silent)
+			owner.balloon_alert(owner, "Our target must be closer!")
 			to_chat(owner, span_xenodanger("Our target must be closer!"))
 		return FALSE
 
@@ -406,6 +428,8 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	if(!CHECK_BITFIELD(resistance_flags, UNACIDABLE) || resistance_flags == (UNACIDABLE|XENO_DAMAGEABLE)) //If it's acidable or we can't acid it but it has the xeno damagable flag, we can damage it
 		attack_generic(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to machines
+	balloon_alert_to_viewers("\The [X] smashes [src] with a devastating punch!", ignored_mobs = X)
+	X.balloon_alert(X, "\The [X] smashes [src] with a devastating punch!")
 	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
@@ -418,6 +442,7 @@
 		var/allcut = wires.is_all_cut()
 		if(!allcut) //Considered prohibiting this vs airlocks, but tbh, I can see clever warriors using this to keep airlocks bolted open or closed as is most advantageous
 			wires.cut_all()
+			balloon_alert_to_viewers("\The [src]'s wires snap apart in a rain of sparks!")
 			visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
 
 	update_icon()
@@ -439,6 +464,7 @@
 	sparks.start()
 
 	deactivate()
+	balloon_alert_to_viewers("\The [src]'s wires snap apart in a rain of sparks!")
 	visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!")) //Smash it
 
 /obj/machinery/power/apc/punch_act(mob/living/carbon/xenomorph/X)
@@ -456,6 +482,8 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 	attack_alien(X, damage * 4, BRUTE, "", FALSE) //Deals 4 times regular damage to structures
+	X.balloon_alert(X, "We smash [src] with a devastating punch!")
+	X.balloon_alert_to_viewers("\The [X] smashes [src] with a devastating punch!", ignored_mobs = X)
 	X.visible_message(span_xenodanger("\The [X] smashes [src] with a devastating punch!"), \
 		span_xenodanger("We smash [src] with a devastating punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
@@ -481,6 +509,7 @@
 
 		if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
 			L.remove_limb_flags(LIMB_SPLINTED)
+			balloon_alert(src, "The splint on your [L.display_name] comes apart!")
 			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
 
 		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
@@ -505,6 +534,8 @@
 		throw_at(T, 2, 1, X, 1) //Punch em away
 
 	var/target_location_feedback = get_living_limb_descriptive_name(target_zone)
+	X.balloon_alert(X, "We hit [src] in the [target_location_feedback] with a [punch_description] punch!")
+	balloon_alert_to_viewers("\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!", ignored_mobs = X)
 	X.visible_message(span_xenodanger("\The [X] hits [src] in the [target_location_feedback] with a [punch_description] punch!"), \
 		span_xenodanger("We hit [src] in the [target_location_feedback] with a [punch_description] punch!"), visible_message_flags = COMBAT_MESSAGE)
 	playsound(src, pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'), 50, 1)
@@ -557,6 +588,7 @@
 		return fail_activate()
 	if(X.empower())
 		target.overlay_fullscreen_timer(3 SECONDS, 10, "jab", /obj/screen/fullscreen/flash) //Would prefer if it was extremely distorted, but bluriness doesn't make the cut.
+		target.balloon_alert(target, "The concussion from the [X]'s blow blinds us!")
 		to_chat(target, span_highdanger("The concussion from the [X]'s blow blinds us!"))
 		target.Confused(3 SECONDS) //Does literally nothing for now, will have to re-add confusion code.
 	GLOB.round_statistics.warrior_punches++
@@ -566,6 +598,7 @@
 
 /datum/action/xeno_action/activable/punch/jab/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
+	X.balloon_alert(X, "We gather enough strength to jab again.")
 	to_chat(X, span_xenodanger("We gather enough strength to jab again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()

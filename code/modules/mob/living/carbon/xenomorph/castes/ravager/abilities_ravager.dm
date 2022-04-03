@@ -40,6 +40,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/charge/on_cooldown_finish()
+	owner.balloon_alert(owner, "Our exoskeleton quivers as we get ready to use Eviscerating Charge again.")
 	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use Eviscerating Charge again."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
@@ -93,6 +94,7 @@
 	alternate_keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
+	owner.balloon_alert(owner, "We gather enough strength to Ravage again.")
 	to_chat(owner, span_xenodanger("We gather enough strength to Ravage again."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	return ..()
@@ -101,6 +103,8 @@
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.emote("roar")
+	X.balloon_alert_to_viewers("\The [X] thrashes about in a murderous frenzy!", ignored_mobs = X)
+	X.balloon_alert(X, "We thrash about in a murderous frenzy!")
 	X.visible_message(span_danger("\The [X] thrashes about in a murderous frenzy!"), \
 	span_xenowarning("We thrash about in a murderous frenzy!"))
 
@@ -161,6 +165,7 @@
 	var/endure_warning_duration
 
 /datum/action/xeno_action/endure/on_cooldown_finish()
+	owner.balloon_alert(owner, "We feel able to imbue ourselves with plasma to Endure once again!")
 	to_chat(owner, span_xenodanger("We feel able to imbue ourselves with plasma to Endure once again!"))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
@@ -169,6 +174,7 @@
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.emote("roar")
+	X.balloon_alert_to_viewers("\The skin on the [X] begins to glow!", ignored_mobs = X)
 	X.visible_message(span_danger("\The skin on the [X] begins to glow!"), \
 	span_xenowarning("We feel the plasma coursing through our veins!"))
 
@@ -195,6 +201,7 @@
 
 ///Warns the player when Endure is about to end
 /datum/action/xeno_action/endure/proc/endure_warning()
+	owner.balloon_alert(owner, "[ability_name] will last for only [timeleft(endure_duration) * 0.1] more seconds!")
 	to_chat(owner,span_highdanger("We feel the plasma draining from our veins... [ability_name] will last for only [timeleft(endure_duration) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
@@ -221,6 +228,7 @@
 	endure_duration = initial(endure_duration)
 	endure_warning_duration = initial(endure_warning_duration)
 
+	owner.balloon_alert(owner, "The last of the plasma drains from our body... We can no longer endure beyond our normal limits!")
 	to_chat(owner,span_highdanger("The last of the plasma drains from our body... We can no longer endure beyond our normal limits!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
@@ -228,6 +236,7 @@
 /datum/action/xeno_action/endure/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
 	if(X.health < 0)
+		X.balloon_alert(X, "We can only withstand [(RAVAGER_ENDURE_HP_LIMIT-X.health) * -1] more damage before we perish!")
 		to_chat(X, "<span class='xenohighdanger' style='color: red;'>We are critically wounded! We can only withstand [(RAVAGER_ENDURE_HP_LIMIT-X.health) * -1] more damage before we perish!</span>")
 
 
@@ -266,6 +275,7 @@
 	var/rage_plasma
 
 /datum/action/xeno_action/rage/on_cooldown_finish()
+	owner.balloon_alert(owner, "We are able to enter our rage once again.")
 	to_chat(owner, span_xenodanger("We are able to enter our rage once again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
@@ -279,6 +289,7 @@
 
 	if(rager.health > rager.maxHealth * RAVAGER_RAGE_MIN_HEALTH_THRESHOLD) //Need to be at 50% of max hp or lower to rage
 		if(!silent)
+			rager.balloon_alert(rager, "Our health isn't low enough to rage!")
 			to_chat(rager, span_xenodanger("Our health isn't low enough to rage! We must take [rager.health - (rager.maxHealth * RAVAGER_RAGE_MIN_HEALTH_THRESHOLD)] more damage!"))
 		return FALSE
 
@@ -293,6 +304,8 @@
 
 	var/rage_power_radius = CEILING(rage_power * 7, 1) //Define radius of the SFX
 
+	X.balloon_alert_to_viewers("\The [X] becomes frenzied, bellowing with a shuddering roar!", ignored_mobs = X)
+	X.balloon_alert(X, "We bellow as our fury overtakes us! RIP AND TEAR!")
 	X.visible_message(span_danger("\The [X] becomes frenzied, bellowing with a shuddering roar!"), \
 	span_highdanger("We bellow as our fury overtakes us! RIP AND TEAR!"))
 	X.do_jitter_animation(1000)
@@ -366,6 +379,7 @@
 
 ///Warns the user when his rage is about to end.
 /datum/action/xeno_action/rage/proc/rage_warning(bonus_duration = 0)
+	owner.balloon_alert(owner, "[ability_name] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!")
 	to_chat(owner,span_highdanger("Our rage begins to subside... [ability_name] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
@@ -404,6 +418,8 @@
 	X.do_jitter_animation(1000)
 
 	X.remove_filter("ravager_rage_outline")
+	X.balloon_alert(X, "Our rage subsides and its power leaves our body, leaving us exhausted.")
+	X.balloon_alert_to_viewers("[X] seems to calm down.", ignored_mobs = X)
 	X.visible_message(span_warning("[X] seems to calm down."), \
 	span_highdanger("Our rage subsides and its power leaves our body, leaving us exhausted."))
 
@@ -472,6 +488,7 @@
 		RegisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/on_slash)
 	else
 		UnregisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING)
+	xeno.balloon_alert(xeno, "You will now[xeno.vampirism ? "" : " no longer"] heal from attacking")
 	to_chat(xeno, span_xenonotice("You will now[xeno.vampirism ? "" : " no longer"] heal from attacking"))
 
 ///called on regen, handles regen rate reduction

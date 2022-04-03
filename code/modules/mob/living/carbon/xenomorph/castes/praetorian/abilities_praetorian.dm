@@ -145,6 +145,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/turf/last_turf
 
 /datum/action/xeno_action/activable/acid_dash/on_cooldown_finish()
+	owner.balloon_alert(owner, "Our exoskeleton quivers as we get ready to use Acid Dash again.")
 	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use Acid Dash again."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	return ..()
@@ -183,8 +184,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	target.ParalyzeNoChain(0.5 SECONDS) //Extremely brief, we don't want them to take 289732 ticks of acid
 
+	owner.balloon_alert(owner, "We push [target] in our acid trail!")
+	owner.balloon_alert_to_viewers("\The [owner] tackles [target], swapping locations with them!", ignored_mobs = owner)
+	target.balloon_alert(target, "The [owner] tackles us, sending us behind them!")
 	to_chat(target, span_highdanger("The [owner] tackles us, sending us behind them!"))
-	owner.visible_message(span_xenodanger("\The [owner] tackles [target], swapping location with them!"), \
+	owner.visible_message(span_xenodanger("\The [owner] tackles [target], swapping locations with them!"), \
 		span_xenodanger("We push [target] in our acid trail!"), visible_message_flags = COMBAT_MESSAGE)
 
 	recast_available = TRUE
@@ -196,6 +200,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		target.hitby(owner, speed)
 		return
 
+	owner.balloon_alert_to_viewers("[owner] effortlessly jumps over the [target]!", ignored_mobs = owner)
 	owner.visible_message(span_danger("[owner] effortlessly jumps over the [target]!"), null, null, 5) //Flavour only
 
 ///Drops an acid puddle on the current owner's tile, will do 0 damage if the owner has no acid_spray_damage
@@ -213,6 +218,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/acid_steps) //We drop acid on every tile we pass through
 	RegisterSignal(owner, COMSIG_MOVABLE_POST_THROW, .proc/dash_complete)
 
+	owner.balloon_alert_to_viewers("[owner] slides towards \the [A]!", ignored_mobs = owner)
+	owner.balloon_alert(owner, "We dash towards \the [A], spraying acid down our path!")
 	owner.visible_message(span_danger("[owner] slides towards \the [A]!"), \
 	span_danger("We dash towards \the [A], spraying acid down our path!") )
 	succeed_activate()

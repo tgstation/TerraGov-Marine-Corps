@@ -199,6 +199,7 @@
 	if(robotic)
 		return
 
+	balloon_alert(user, "You take an experimental bite out of \the [src].")
 	to_chat(user, span_notice("You take an experimental bite out of \the [src]."))
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(B)

@@ -41,6 +41,7 @@
 		copy.name = "Copy - " + c.name
 		copy.fields = c.fields
 		copy.updateinfolinks()
+		balloon_alert(usr, "You tear off the carbon-copy!")
 		to_chat(usr, span_notice("You tear off the carbon-copy!"))
 		c.copied = 1
 		copy.iscopy = 1

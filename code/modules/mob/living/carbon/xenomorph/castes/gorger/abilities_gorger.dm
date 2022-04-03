@@ -20,6 +20,7 @@
 		return
 	if(!ishuman(target) || issynth(target))
 		if(!silent)
+			owner.balloon_alert(owner, "That wouldn't taste very good.")
 			to_chat(owner, span_warning("That wouldn't taste very good."))
 		return FALSE
 	var/mob/living/carbon/human/victim = target
@@ -29,23 +30,28 @@
 		return FALSE
 	if(!HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
 		if(!silent)
+			owner.balloon_alert(owner, "This creature is struggling too much for us to devour it.")
 			to_chat(owner, span_warning("This creature is struggling too much for us to devour it."))
 		return FALSE
 	if(victim.buckled)
 		if(!silent)
+			owner.balloon_alert(owner, "[victim] is buckled to something.")
 			to_chat(owner, span_warning("[victim] is buckled to something."))
 		return FALSE
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.eaten_mob)
 		if(!silent)
+			owner_xeno.balloon_alert(owner_xeno, "You have already swallowed one.")
 			to_chat(owner_xeno, span_warning("You have already swallowed one."))
 		return FALSE
 	if(owner_xeno.on_fire)
 		if(!silent)
+			owner_xeno.balloon_alert(owner_xeno, "We're too busy being on fire to do this!")
 			to_chat(owner_xeno, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
 	for(var/obj/effect/forcefield/fog in range(1, owner_xeno))
 		if(!silent)
+			owner_xeno.balloon_alert(owner_xeno, "We are too close to the fog.")
 			to_chat(owner_xeno, span_warning("We are too close to the fog."))
 		return FALSE
 
@@ -58,6 +64,7 @@
 	var/channel = SSsounds.random_available_channel()
 	playsound(owner_xeno, 'sound/vore/escape.ogg', 40, channel = channel)
 	if(!do_after(owner_xeno, GORGER_REGURGITATE_DELAY, FALSE, null, BUSY_ICON_DANGER))
+		owner.balloon_alert(owner, "We moved too soon!")
 		to_chat(owner, span_warning("We moved too soon!"))
 		owner_xeno.stop_sound_channel(channel)
 		return
@@ -67,10 +74,13 @@
 	var/mob/living/carbon/human/victim = target
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	owner_xeno.face_atom(victim)
+	owner_xeno.balloon_alert_to_viewers("[owner_xeno] starts to devour [victim]!", ignored_mobs = owner_xeno)
+	owner.balloon_alert(owner, "We start to devour [victim]!")
 	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
 	var/channel = SSsounds.random_available_channel()
 	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
 	if(!do_after(owner_xeno, GORGER_DEVOUR_DELAY, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = owner_xeno.health))))
+		owner.balloon_alert(owner, "We stop devouring \the [victim]. They probably tasted gross anyways.")
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		owner_xeno.stop_sound_channel(channel)
 		return
@@ -99,6 +109,7 @@
 	. = ..()
 	if(!ishuman(target) || issynth(target))
 		if(!silent)
+			owner.balloon_alert("We can't drain this!")
 			to_chat(owner, span_xenowarning("We can't drain this!"))
 		return FALSE
 
@@ -106,6 +117,7 @@
 	var/mob/living/carbon/human/target_human = target
 	if(!owner_xeno.Adjacent(target_human))
 		if(!silent)
+			owner.balloon_alert("We need to be next to our meal.")
 			to_chat(owner_xeno, span_notice("We need to be next to our meal."))
 		return FALSE
 
@@ -119,6 +131,7 @@
 
 	if(owner_xeno.plasma_stored >= owner_xeno.xeno_caste.plasma_max)
 		if(!silent)
+			owner.balloon_alert("No need, we feel sated for now...")
 			to_chat(owner_xeno, span_xenowarning("No need, we feel sated for now..."))
 		return FALSE
 
@@ -142,6 +155,7 @@
 			overheal_gain = owner_xeno.heal_wounds(2.2)
 			adjustOverheal(owner_xeno, overheal_gain)
 			owner_xeno.adjust_sunder(-0.5)
+		owner.balloon_alert("We feel fully restored.")
 		to_chat(owner_xeno, span_notice("We feel fully restored."))
 		return
 	owner_xeno.face_atom(target_human)
@@ -182,6 +196,7 @@
 
 	if(!isxeno(target))
 		if(!silent)
+			owner.balloon_alert("We can only restore familiar biological lifeforms.")
 			to_chat(owner, span_notice("We can only restore familiar biological lifeforms."))
 		return FALSE
 
@@ -189,10 +204,12 @@
 		return FALSE
 	if(!line_of_sight(owner, target, 2) || get_dist(owner, target) > 2)
 		if(!silent)
+			owner.balloon_alert("It is beyond our reach, we must be close and our way must be clear.")
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
 	if(isdead(target))
 		if(!silent)
+			owner.balloon_alert("We can only help living sisters.")
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
@@ -251,6 +268,7 @@
 		add_cooldown()
 		return
 	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_REJUVENATE, GORGER_REJUVENATE_DURATION, owner_xeno.maxHealth * GORGER_REJUVENATE_THRESHOLD)
+	owner_xeno.balloon_alert("We tap into our reserves for nourishment, our carapace thickening.")
 	to_chat(owner_xeno, span_notice("We tap into our reserves for nourishment, our carapace thickening."))
 	succeed_activate()
 	TIMER_COOLDOWN_START(owner_xeno, REJUVENATE_MISCLICK_CD, 1 SECONDS)
@@ -280,35 +298,43 @@
 		return FALSE
 	if(!isxeno(target))
 		if(!silent)
+			owner.balloon_alert("We can only link to familiar biological lifeforms.")
 			to_chat(owner, span_notice("We can only link to familiar biological lifeforms."))
 		return FALSE
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.health <= owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
 		if(!silent)
+			owner_xeno.balloon_alert("You are too hurt to link.")
 			to_chat(owner, span_notice("You are too hurt to link."))
 		return FALSE
 	if(!line_of_sight(owner, target, GORGER_PSYCHIC_LINK_RANGE))
 		if(!silent)
+			owner.balloon_alert("It is beyond our reach, we must be close and our way must be clear.")
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
 	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED))
 		if(!silent)
+			owner.balloon_alert("You are already linked to a xenomorph.")
 			to_chat(owner, span_notice("You are already linked to a xenomorph."))
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
 		if(!silent)
+			owner.balloon_alert("[target] is already linked to a xenomorph.")
 			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
 		return FALSE
 	if(!do_mob(owner, target, GORGER_PSYCHIC_LINK_CHANNEL, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_LOC_CHANGE, extra_checks = new/datum/callback/(src, .proc/channel_checks, target)))
 		if(!silent)
+			owner.balloon_alert("The linking was interrupted.")
 			to_chat(owner, span_warning("The linking was interrupted."))
 		return FALSE
 	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED))
 		if(!silent)
+			owner.balloon_alert("You are already linked to a xenomorph.")
 			to_chat(owner, span_notice("You are already linked to a xenomorph."))
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
 		if(!silent)
+			owner.balloon_alert("[target] is already linked to a xenomorph.")
 			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
 		return FALSE
 	return TRUE
@@ -394,6 +420,7 @@
 		return TRUE
 	if(owner_xeno.plasma_stored < owner_xeno.xeno_caste.feast_plasma_drain * 10)
 		if(!silent)
+			owner_xeno.balloon_alert(owner_xeno, "Not enough to begin a feast. We need [owner_xeno.xeno_caste.feast_plasma_drain * 10] blood.")
 			to_chat(owner_xeno, span_notice("Not enough to begin a feast. We need [owner_xeno.xeno_caste.feast_plasma_drain * 10] blood."))
 		return FALSE
 
@@ -401,11 +428,13 @@
 	. = ..()
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
+		owner_xeno.balloon_alert(owner_xeno, "We decide to end our feast early...")
 		to_chat(owner_xeno, span_notice("We decide to end our feast early..."))
 		owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
 
 	owner_xeno.emote("roar")
+	owner_xeno.balloon_alert_to_viewers("[owner_xeno] begins to overflow with vitality!", ignored_mobs = owner_xeno)
 	owner_xeno.visible_message(owner_xeno, span_notice("[owner_xeno] begins to overflow with vitality!"))
 	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_FEAST, GORGER_FEAST_DURATION, owner_xeno.xeno_caste.feast_plasma_drain)
 	TIMER_COOLDOWN_START(src, FEAST_MISCLICK_CD, 2 SECONDS)

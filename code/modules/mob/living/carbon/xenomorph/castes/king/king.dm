@@ -82,6 +82,7 @@
 
 /obj/structure/resin/king_pod/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(X != future_king)
+		X.balloon_alert(X, "You are not the future king, you cannot use the pod!")
 		to_chat(X, span_notice("You are not the future king, you cannot use the pod!"))
 		return
 	if(!do_after(X, 5 SECONDS, TRUE, src))
@@ -114,6 +115,7 @@
 /obj/structure/resin/king_pod/proc/choose_another_king()
 	SIGNAL_HANDLER
 	if(future_king?.stat != DEAD)
+		future_king.balloon_alert(future_king, "You lost your chance to become the king...")
 		to_chat(future_king, span_warning("You lost your chance to become the king..."))
 	future_king = null
 	INVOKE_ASYNC(src, .proc/choose_king)

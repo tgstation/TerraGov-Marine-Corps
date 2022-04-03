@@ -56,6 +56,7 @@
 	var/mob/living/carbon/xenomorph/walker = owner
 	speed_activated = TRUE
 	if(!silent)
+		owner.balloon_alert(owner, "We become one with the resin. We feel the urge to run!")
 		to_chat(owner, span_notice("We become one with the resin. We feel the urge to run!"))
 	if(locate(/obj/effect/alien/weeds) in walker.loc)
 		speed_bonus_active = TRUE
@@ -66,6 +67,7 @@
 /datum/action/xeno_action/toggle_speed/proc/resinwalk_off(silent = FALSE)
 	var/mob/living/carbon/xenomorph/walker = owner
 	if(!silent)
+		owner.balloon_alert(owner, "We feel less in tune with the resin.")
 		to_chat(owner, span_warning("We feel less in tune with the resin."))
 	if(speed_bonus_active)
 		walker.remove_movespeed_modifier(type)
@@ -78,6 +80,7 @@
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/walker = owner
 	if(!isturf(walker.loc) || !walker.check_plasma(10, TRUE))
+		owner.balloon_alert(owner, "We feel dizzy as the world slows down.")
 		to_chat(owner, span_warning("We feel dizzy as the world slows down."))
 		resinwalk_off(TRUE)
 		return
@@ -111,19 +114,23 @@
 	var/turf/T = get_turf(owner)
 	if(locate(/obj/structure/xeno/tunnel) in T)
 		if(!silent)
+			owner.balloon_alert(owner, "There already is a tunnel here.")
 			to_chat(owner, span_warning("There already is a tunnel here."))
 		return
 	if(!T.can_dig_xeno_tunnel())
 		if(!silent)
+			owner.balloon_alert(owner, "We scrape around, but we can't seem to dig through that kind of floor.")
 			to_chat(owner, span_warning("We scrape around, but we can't seem to dig through that kind of floor."))
 		return FALSE
 	if(owner.get_active_held_item())
 		if(!silent)
+			owner.balloon_alert(owner, "We need an empty claw for this!")
 			to_chat(owner, span_warning("We need an empty claw for this!"))
 		return FALSE
 
 /datum/action/xeno_action/build_tunnel/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
+	X.balloon_alert(X, "We are ready to dig a tunnel again.")
 	to_chat(X, span_notice("We are ready to dig a tunnel again."))
 	return ..()
 
@@ -133,6 +140,7 @@
 	owner.visible_message(span_xenonotice("[owner] begins digging out a tunnel entrance."), \
 	span_xenonotice("We begin digging out a tunnel entrance."), null, 5)
 	if(!do_after(owner, HIVELORD_TUNNEL_DIG_TIME, TRUE, T, BUSY_ICON_BUILD))
+		owner.balloon_alert(owner, "Our tunnel caves in as we stop digging it.")
 		to_chat(owner, span_warning("Our tunnel caves in as we stop digging it."))
 		return fail_activate()
 
@@ -140,6 +148,7 @@
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/hivelord/X = owner
+	X.balloon_alert_to_viewers("\The [X] digs out a tunnel entrance.", ignored_mobs = X)
 	X.visible_message(span_xenonotice("\The [X] digs out a tunnel entrance."), \
 	span_xenonotice("We dig out a tunnel, connecting it to our network."), null, 5)
 	var/obj/structure/xeno/tunnel/newt = new(T)
@@ -154,6 +163,7 @@
 
 	add_cooldown()
 
+	X.balloon_alert(X, "We now have <b>[LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT]</b> tunnels.")
 	to_chat(X, span_xenonotice("We now have <b>[LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT]</b> tunnels."))
 
 	var/msg = stripped_input(X, "Give your tunnel a descriptive name:", "Tunnel Name")
@@ -165,6 +175,7 @@
 	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
 		var/obj/structure/xeno/tunnel/old_tunnel = X.tunnels[1]
 		old_tunnel.deconstruct(FALSE)
+		X.balloon_alert(X, "Having exceeding our tunnel limit, our oldest tunnel has collapsed.")
 		to_chat(X, span_xenodanger("Having exceeding our tunnel limit, our oldest tunnel has collapsed."))
 
 	succeed_activate()
@@ -194,11 +205,13 @@
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
+			owner.balloon_alert(owner, "We can't do that here.")
 			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
 	if(!(locate(/obj/effect/alien/weeds) in T))
 		if(!silent)
+			owner.balloon_alert(owner, "We can only shape on weeds. We must find some resin before we start building!")
 			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
@@ -215,6 +228,7 @@
 
 	playsound(T, "alien_resin_build", 25)
 	var/obj/structure/xeno/resin_jelly_pod/pod = new(T)
+	owner.balloon_alert(owner, "We shape some resin into \a [pod].")
 	to_chat(owner, span_xenonotice("We shape some resin into \a [pod]."))
 	add_cooldown()
 
@@ -232,12 +246,14 @@
 		return
 	if(owner.l_hand || owner.r_hand)
 		if(!silent)
+			owner.balloon_alert(owner, "We require free hands for this!")
 			to_chat(owner, span_xenonotice("We require free hands for this!"))
 		return FALSE
 
 /datum/action/xeno_action/create_jelly/action_activate()
 	var/obj/item/resin_jelly/jelly = new(owner.loc)
 	owner.put_in_hands(jelly)
+	owner.balloon_alert(owner, "We create a globule of resin from our ovipostor.")
 	to_chat(owner, span_xenonotice("We create a globule of resin from our ovipostor."))
 	add_cooldown()
 	succeed_activate()
@@ -263,6 +279,7 @@
 
 	if(!isxeno(target))
 		if(!silent)
+			owner.balloon_alert(owner, "We can only target fellow sisters with [src]!")
 			to_chat(owner, span_warning("We can only target fellow sisters with [src]!"))
 		return FALSE
 	var/mob/living/carbon/xenomorph/patient = target
@@ -277,6 +294,7 @@
 
 	if(HAS_TRAIT(target, TRAIT_HEALING_INFUSION))
 		if(!silent)
+			owner.balloon_alert(owner, "[patient] is already benefitting from [src]!")
 			to_chat(owner, span_warning("[patient] is already benefitting from [src]!"))
 		return FALSE
 
@@ -285,10 +303,12 @@
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
 		if(!silent)
+			owner.balloon_alert(owner, "We need to be [dist - heal_range] steps closer!")
 			to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
 		return FALSE
 	else if(!line_of_sight(owner, target))
 		if(!silent)
+			owner.balloon_alert(owner, "We can't focus properly without a clear line of sight!")
 			to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE
 	return TRUE
@@ -300,6 +320,8 @@
 
 	owner.face_atom(target) //Face the target so we don't look stupid
 
+	owner.balloon_alert_to_viewers("\the [owner] infuses [target] with mysterious energy!", ignored_mobs = owner)
+	owner.balloon_alert(owner, "We empower [target] with our [src]!")
 	owner.visible_message(span_xenodanger("\the [owner] infuses [target] with mysterious energy!"), \
 	span_xenodanger("We empower [target] with our [src]!"))
 
@@ -308,6 +330,7 @@
 	owner.beam(target, "medbeam", time = 1 SECONDS, maxdistance = 10)
 	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	target.balloon_alert(target, "Our wounds begin to knit and heal rapidly as [owner]'s healing energies infuse us.")
 	to_chat(target, span_xenodanger("Our wounds begin to knit and heal rapidly as [owner]'s healing energies infuse us.")) //Let the target know.
 
 	var/mob/living/carbon/xenomorph/patient = target

@@ -329,11 +329,13 @@
 	if(beenhit >= pick(3, 4) && !CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
 		update_icon()
+		balloon_alert_to_viewers("\The [src]'s cover swings open, exposing the wires!")
 		visible_message(span_danger("\The [src]'s cover swings open, exposing the wires!"), null, null, 5)
 
 	else if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) && !allcut)
 		wires.cut_all()
 		update_icon()
+		balloon_alert_to_viewers("\The [src]'s wires snap apart in a rain of sparks!")
 		visible_message(span_danger("\The [src]'s wires snap apart in a rain of sparks!"), null, null, 5)
 	else
 		beenhit += 1
@@ -351,10 +353,12 @@
 				return
 
 		if(cell)
+			balloon_alert(user, "There is a power cell already installed.")
 			to_chat(user, span_warning("There is a power cell already installed."))
 			return
 
 		if(machine_stat & MAINT)
+			balloon_alert(user, "There is no connector for your power cell.")
 			to_chat(user, span_warning("There is no connector for your power cell."))
 			return
 
@@ -362,6 +366,8 @@
 			return
 
 		set_cell(I)
+		balloon_alert(user, "You insert [I] into [src]!")
+		balloon_alert_to_viewers("[user] inserts [I] into [src]!")
 		user.visible_message("<span class='notice'>[user] inserts [I] into [src]!",
 		"<span class='notice'>You insert [I] into [src]!")
 		chargecount = 0
@@ -369,6 +375,8 @@
 
 	else if(istype(I, /obj/item/card/id)) //Trying to unlock the interface with an ID card
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+			balloon_alert(user, "You fumble around figuring out where to swipe [I] on [src].")
+			balloon_alert_to_viewers("[user] fumbles around figuring out where to swipe [I] on [src].")
 			user.visible_message(span_notice("[user] fumbles around figuring out where to swipe [I] on [src]."),
 			span_notice("You fumble around figuring out where to swipe [I] on [src]."))
 			var/fumbling_time = 3 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
@@ -376,22 +384,28 @@
 				return
 
 		if(opened)
+			balloon_alert(user, "You must close the cover to swipe an ID card.")
 			to_chat(user, span_warning("You must close the cover to swipe an ID card."))
 			return
 
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
+			balloon_alert(user, "You must close the panel.")
 			to_chat(user, span_warning("You must close the panel."))
 			return
 
 		if(machine_stat & (BROKEN|MAINT))
+			balloon_alert(user, "Nothing happens.")
 			to_chat(user, span_warning("Nothing happens."))
 			return
 
 		if(!allowed(user))
+			balloon_alert(user, "Access denied.")
 			to_chat(user, span_warning("Access denied."))
 			return
 
 		locked = !locked
+		balloon_alert_to_viewers("[user] [locked ? "locks" : "unlocks"] [src]'s interface.", ignored_mobs = user)
+		balloon_alert(user, "You [locked ? "lock" : "unlock"] [src]'s interface.")
 		user.visible_message(span_notice("[user] [locked ? "locks" : "unlocks"] [src]'s interface."),
 		span_notice("You [locked ? "lock" : "unlock"] [src]'s interface."))
 		update_icon()
@@ -400,6 +414,8 @@
 		var/obj/item/stack/cable_coil/C = I
 
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+			balloon_alert_to_viewers("[user] fumbles around figuring out what to do with [src].", ignored_mobs = user)
+			balloon_alert(user, "You fumble around figuring out what to do with [src].")
 			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [src]."),
 			span_notice("You fumble around figuring out what to do with [src]."))
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
@@ -408,13 +424,17 @@
 
 		var/turf/T = get_turf(src)
 		if(T.intact_tile)
+			balloon_alert(user, "You must remove the floor plating in front of the APC first.")
 			to_chat(user, span_warning("You must remove the floor plating in front of the APC first."))
 			return
 
 		if(C.get_amount() < 10)
+			balloon_alert(user, "You need more wires.")
 			to_chat(user, span_warning("You need more wires."))
 			return
 
+		balloon_alert(user, "You start wiring [src]'s frame.")
+		balloon_alert_to_viewers("[user] starts wiring [src]'s frame.", ignored_mobs = user)
 		user.visible_message(span_notice("[user] starts wiring [src]'s frame."),
 		span_notice("You start wiring [src]'s frame."))
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
@@ -432,6 +452,8 @@
 		if(!C.use(10))
 			return
 
+		balloon_alert_to_viewers("[user] wires [src]'s frame.", ignored_mobs = user)
+		balloon_alert(user, "You wire [src]'s frame.")
 		user.visible_message(span_notice("[user] wires [src]'s frame."),
 		span_notice("You wire [src]'s frame."))
 		make_terminal()
@@ -439,12 +461,16 @@
 
 	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && !(machine_stat & BROKEN))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+			balloon_alert_to_viewers("[user] fumbles around figuring out what to do with [I].", ignored_mobs = user)
+			balloon_alert(user, "You fumble around figuring out what to do with [I].")
 			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
 			span_notice("You fumble around figuring out what to do with [I]."))
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
+		balloon_alert(user, "You start inserting the power control board into [src].")
+		balloon_alert_to_viewers("[user] starts inserting the power control board into [src].", ignored_mobs = user)
 		user.visible_message(span_notice("[user] starts inserting the power control board into [src]."),
 		span_notice("You start inserting the power control board into [src]."))
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
@@ -453,6 +479,8 @@
 			return
 
 		has_electronics = APC_ELECTRONICS_INSTALLED
+		balloon_alert_to_viewers("[user] inserts the power control board into [src].", ignored_mobs = user)
+		balloon_alert(user, "You insert the power control board into [src].")
 		user.visible_message(span_notice("[user] inserts the power control board into [src]."),
 		span_notice("You insert the power control board into [src]."))
 		electronics = I
@@ -460,16 +488,21 @@
 
 	else if(istype(I, /obj/item/circuitboard/apc) && opened && has_electronics == APC_ELECTRONICS_MISSING && (machine_stat & BROKEN))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+			balloon_alert(user, "You fumble around figuring out what to do with [I].")
+			balloon_alert_to_viewers("[user] fumbles around figuring out what to do with [I].", ignored_mobs = user)
 			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
 			span_notice("You fumble around figuring out what to do with [I]."))
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
+		balloon_alert(user, "You cannot put the board inside, the frame is damaged.")
 		to_chat(user, span_warning("You cannot put the board inside, the frame is damaged."))
 
 	else if(istype(I, /obj/item/frame/apc) && opened && (machine_stat & BROKEN))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+			balloon_alert(user, "You fumble around figuring out what to do with [I].")
+			balloon_alert_to_viewers("[user] fumbles around figuring out what to do with [I].", ignored_mobs = user)
 			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
 			span_notice("You fumble around figuring out what to do with [I]."))
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
@@ -477,15 +510,20 @@
 				return
 
 		if(has_electronics)
+			balloon_alert(user, "You cannot repair this APC until you remove the electronics still inside.")
 			to_chat(user, span_warning("You cannot repair this APC until you remove the electronics still inside."))
 			return
 
+		balloon_alert_to_viewers("[user] begins replacing [src]'s damaged frontal panel with a new one.", ignored_mobs = user)
+		balloon_alert(user, "You begin replacing [src]'s damaged frontal panel with a new one.")
 		user.visible_message(span_notice("[user] begins replacing [src]'s damaged frontal panel with a new one."),
 		span_notice("You begin replacing [src]'s damaged frontal panel with a new one."))
 
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 			return
 
+		balloon_alert_to_viewers("[user] replaces [src]'s damaged frontal panel with a new one.", ignored_mobs = user)
+		balloon_alert(user, "You replace [src]'s damaged frontal panel with a new one.")
 		user.visible_message(span_notice("[user] replaces [src]'s damaged frontal panel with a new one."),
 		span_notice("You replace [src]'s damaged frontal panel with a new one."))
 		qdel(I)
@@ -496,6 +534,8 @@
 
 	else if(istype(I, /obj/item/frame/apc) && opened)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+			balloon_alert_to_viewers("[user] fumbles around figuring out what to do with [I].", ignored_mobs = user)
+			balloon_alert(user, "You fumble around figuring out what to do with [I].")
 			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
 			span_notice("You fumble around figuring out what to do with [I]."))
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
@@ -504,6 +544,9 @@
 
 		if(opened == APC_COVER_REMOVED)
 			opened = APC_COVER_OPENED
+
+		balloon_alert_to_viewers("[user] replaces [src]'s damaged frontal panel with a new one.", ignored_mobs = user)
+		balloon_alert(user, "You replace [src]'s damaged frontal panel with a new one.")
 		user.visible_message(span_notice("[user] replaces [src]'s damaged frontal panel with a new one."),
 		span_notice("You replace [src]'s damaged frontal panel with a new one."))
 		qdel(I)
@@ -512,6 +555,8 @@
 	else
 		if(((machine_stat & BROKEN)) && !opened && I.force >= 5)
 			opened = APC_COVER_REMOVED
+			balloon_alert_to_viewers("[user] knocks down [src]'s cover with [I]!", ignored_mobs = user)
+			balloon_alert(user, "[user] knocks down [src]'s cover with [I]!")
 			user.visible_message(span_warning("[user] knocks down [src]'s cover with [I]!"), \
 				span_warning("You knock down [src]'s cover with [I]!"))
 			update_icon()
@@ -521,6 +566,7 @@
 
 			if(!opened && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (ismultitool(I) || iswirecutter(I)))
 				return attack_hand(user)
+			balloon_alert(user, "You hit [src] with [I]!")
 			user.visible_message(span_danger("[user] hits [src] with [I]!"), \
 			span_danger("You hit [src] with [I]!"))
 
@@ -530,15 +576,18 @@
 	if(opened)
 		if(has_electronics == APC_ELECTRONICS_INSTALLED)
 			if(terminal)
+				balloon_alert(user, "Disconnect the wires first!")
 				to_chat(user, span_warning("Disconnect the wires first!"))
 				return
 			if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+				balloon_alert(user, "You fumble around figuring out how to remove the power cell from [src].")
 				user.visible_message(span_notice("[user] fumbles around figuring out how to remove the power cell from [src]."),
 				span_notice("You fumble around figuring out how to remove the power cell from [src]."))
 				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
 			I.play_tool_sound(src)
+			balloon_alert(user, "You attempt to remove the power control board...")
 			to_chat(user, span_notice("You attempt to remove the power control board...") )
 			if(I.use_tool(src, user, 50))
 				if(has_electronics == APC_ELECTRONICS_INSTALLED)
@@ -562,9 +611,11 @@
 			return
 	else if(!(machine_stat & BROKEN))
 		if(coverlocked && !(machine_stat & MAINT)) // locked...
+			balloon_alert(user, "The cover is locked and cannot be opened!")
 			to_chat(user, span_warning("The cover is locked and cannot be opened!"))
 			return
 		else if(machine_stat & PANEL_OPEN)
+			balloon_alert(user, "Exposed wires prevents you from opening it!")
 			to_chat(user, span_warning("Exposed wires prevents you from opening it!"))
 			return
 		else
@@ -581,11 +632,15 @@
 	if(opened)
 		if(cell)
 			if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+				balloon_alert_to_viewers("[user] fumbles around figuring out what to do with [I].", ignored_mobs = user)
+				balloon_alert(user, "You fumble around figuring out what to do with [I].")
 				user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
 				span_notice("You fumble around figuring out what to do with [I]."))
 				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return
+			balloon_alert_to_viewers("[user] removes \the [cell] from [src]!")
+			balloon_alert(user, "You remove \the [cell].")
 			user.visible_message("[user] removes \the [cell] from [src]!", span_notice("You remove \the [cell]."))
 			var/turf/T = get_turf(user)
 			cell.forceMove(T)
@@ -600,18 +655,22 @@
 					has_electronics = APC_ELECTRONICS_SECURED
 					machine_stat &= ~MAINT
 					I.play_tool_sound(src)
+					balloon_alert(user, "You screw the circuit electronics into place.")
 					to_chat(user, span_notice("You screw the circuit electronics into place."))
 				if(APC_ELECTRONICS_SECURED)
 					has_electronics = APC_ELECTRONICS_INSTALLED
 					machine_stat |= MAINT
 					I.play_tool_sound(src)
+					balloon_alert(user, "You unfasten the electronics.")
 					to_chat(user, span_notice("You unfasten the electronics."))
 				else
+					balloon_alert(user, "There is nothing to secure!")
 					to_chat(user, span_warning("There is nothing to secure!"))
 					return
 			update_icon()
 	else
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+		balloon_alert(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
 		to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
 		update_icon()
 
@@ -627,6 +686,8 @@
 		return
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		balloon_alert_to_viewers("[user] fumbles around figuring out what to do with [I].", ignored_mobs = user)
+		balloon_alert(user, "You fumble around figuring out what to do with [I].")
 		user.visible_message(span_notice("[user] fumbles around figuring out what to do with [I]."),
 		span_notice("You fumble around figuring out what to do with [I]."))
 		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
@@ -635,6 +696,8 @@
 
 	if(!I.tool_start_check(user, amount = 3))
 		return
+	balloon_alert_to_viewers("[user.name] welds [src].", ignored_mobs = user)
+	balloon_alert(user, "You start welding the APC frame...")
 	user.visible_message("[user.name] welds [src].", \
 						span_notice("You start welding the APC frame..."), \
 						span_notice("You hear welding."))
@@ -643,12 +706,16 @@
 		return
 
 	if((machine_stat & BROKEN) || opened == APC_COVER_REMOVED)
+		balloon_alert_to_viewers("[user.name] has cut [src] apart with [I].", ignored_mobs = user)
+		balloon_alert(user, "You disassembled the broken APC frame.")
 		new /obj/item/stack/sheet/metal(loc)
 		user.visible_message(\
 			"[user.name] has cut [src] apart with [I].",\
 			span_notice("You disassembled the broken APC frame."))
 	else
 		new /obj/item/frame/apc(loc)
+		balloon_alert_to_viewers("[user.name] has cut [src] from the wall with [I].", ignored_mobs = user)
+		balloon_alert(user, "You cut the APC frame from the wall.")
 		user.visible_message(\
 			span_notice("[user.name] has cut [src] from the wall with [I]."),\
 			span_notice("You cut the APC frame from the wall."))
@@ -664,11 +731,16 @@
 
 	if(opened && cell && !issilicon(user))
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+			balloon_alert_to_viewers("[user] fumbles around figuring out what to do with [src].", ignored_mobs = user)
+			balloon_alert(user, "You fumble around figuring out what to do with [src].")
 			user.visible_message(span_notice("[user] fumbles around figuring out what to do with [src]."),
 			span_notice("You fumble around figuring out what to do with [src]."))
 			var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
+		
+		balloon_alert_to_viewers("[user] removes \the [cell] from [src]!", ignored_mobs = user)
+		balloon_alert(user, "You remove \the [cell].")
 		user.visible_message("[user] removes \the [cell] from [src]!", span_notice("You remove \the [cell]."))
 		user.put_in_hands(cell)
 		cell.update_icon()

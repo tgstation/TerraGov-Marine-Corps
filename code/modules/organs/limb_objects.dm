@@ -134,14 +134,20 @@
 	if(istype(I, /obj/item/tool/surgery/scalpel))
 		switch(brain_op_stage)
 			if(0)
+				user.balloon_alert_to_viewers("[brainmob] is beginning to have [brainmob.p_their()] head cut open with [I] by [user].", ignored_mobs = user)
+				balloon_alert(user, "You cut [brainmob]'s head open with [I]!")
 				user.visible_message(span_warning("[brainmob] is beginning to have [brainmob.p_their()] head cut open with [I] by [user]."), \
 									span_warning("You cut [brainmob]'s head open with [I]!"))
+				balloon_alert(brainmob, "[user] begins to cut open your head with [I]!")
 				to_chat(brainmob, span_warning("[user] begins to cut open your head with [I]!"))
 
 				brain_op_stage = 1
 			if(2)
+				user.balloon_alert_to_viewers("[brainmob] is having [brainmob.p_their()] connections to the brain delicately severed with [I] by [user].", ignored_mobs = user)
+				balloon_alert(user, "You cut [brainmob]'s head open with [I]!")
 				user.visible_message(span_warning("[brainmob] is having [brainmob.p_their()] connections to the brain delicately severed with [I] by [user]."), \
 									span_warning("You cut [brainmob]'s head open with [I]!"))
+				balloon_alert(brainmob, "[user] begins to cut open your head with [I]!")
 				to_chat(brainmob, span_warning("[user] begins to cut open your head with [I]!"))
 
 				brain_op_stage = 3.0
@@ -150,13 +156,19 @@
 	else if(istype(I, /obj/item/tool/surgery/circular_saw))
 		switch(brain_op_stage)
 			if(1)
+				user.balloon_alert_to_viewers("[brainmob] has [brainmob.p_their()] head sawed open with [I] by [user].", ignored_mobs = user)
+				balloon_alert(user, "You saw [brainmob]'s head open with [I]!")
 				user.visible_message(span_warning("[brainmob] has [brainmob.p_their()] head sawed open with [I] by [user]."), \
 							span_warning("You saw [brainmob]'s head open with [I]!"))
+				balloon_alert(brainmob, "[user] saw open your head with [I]!")
 				to_chat(brainmob, span_warning("[user] saw open your head with [I]!"))
 				brain_op_stage = 2
 			if(3)
+				user.balloon_alert_to_viewers("[brainmob] has [brainmob.p_their()] spine's connection to the brain severed with [I] by [user].", ignored_mobs = user)
+				balloon_alert(user, "You sever [brainmob]'s brain's connection to the spine with [I]!")
 				user.visible_message(span_warning("[brainmob] has [brainmob.p_their()] spine's connection to the brain severed with [I] by [user]."), \
 									span_warning("You sever [brainmob]'s brain's connection to the spine with [I]!"))
+				balloon_alert(brainmob, "[user] severs your brain's connection to the spine with [I]!")
 				to_chat(brainmob, span_warning("[user] severs your brain's connection to the spine with [I]!"))
 
 				log_combat(user, brainmob, "debrained", I, "(INTENT: [uppertext(user.a_intent)])")

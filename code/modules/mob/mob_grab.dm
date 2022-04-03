@@ -80,6 +80,7 @@
 			visible_message(span_danger("[src] grabs [victim] aggressively!"),
 				span_danger("You grab [victim] aggressively!"),
 				span_hear("You hear aggressive shuffling!"), ignored_mob = victim)
+			victim.balloon_alert(victim, "[src] grabs you aggressively!")
 			to_chat(victim, span_userdanger("[src] grabs you aggressively!"))
 			victim.drop_all_held_items()
 			if(victim.pulling)
@@ -90,6 +91,7 @@
 			visible_message(span_danger("[src] grabs [victim] by the neck!"),
 				span_danger("You grab [victim] by the neck!"),
 				span_hear("You hear aggressive shuffling!"), ignored_mob = victim)
+			victim.balloon_alert(victim, "[src] grabs you by the neck!")
 			to_chat(victim, span_userdanger("[src] grabs you by the neck!"))
 			victim.drop_all_held_items()
 			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
@@ -101,6 +103,7 @@
 			visible_message(span_danger("[src] is strangling [victim]!"),
 				span_danger("You're strangling [victim]!"),
 				span_hear("You hear aggressive shuffling!"), ignored_mob = victim)
+			victim.balloon_alert(victim, "[src] is strangling you!")
 			to_chat(victim, span_userdanger("[src] is strangling you!"))
 			victim.drop_all_held_items()
 			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)

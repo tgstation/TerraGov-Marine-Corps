@@ -63,6 +63,7 @@
 
 /mob/living/carbon/xenomorph/defender/lay_down()
 	if(fortify) // Ensure the defender isn't fortified while laid down
+		balloon_alert(src, "You can't do that right now.")
 		to_chat(src, span_warning("You can't do that right now."))
 		return
 	return ..()
