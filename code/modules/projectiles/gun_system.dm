@@ -408,7 +408,8 @@
 		return
 	gun_user = user
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
-	gun_user.hud_used.add_ammo_hud(gun_user, src)
+	if(!(master_gun?.master_gun)) //Else gunception will produce too much ammo huds
+		gun_user.hud_used.add_ammo_hud(gun_user, src)
 	if(master_gun)
 		return
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
