@@ -261,6 +261,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(activate(user)) //success
 			playsound(user, activation_sound, 15, 1)
 	else
+		user.balloon_alert(user, "[G] must be in our hands to do this.")
 		to_chat(user, span_warning("[G] must be in our hands to do this."))
 
 /obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
@@ -327,6 +328,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	sharp = IS_SHARP_ITEM_ACCURATE
 
 /obj/item/attachable/bayonet/screwdriver_act(mob/living/user, obj/item/I)
+	user.balloon_alert(user, "You modify the bayonet back into a combat knife.")
 	to_chat(user, span_notice("You modify the bayonet back into a combat knife."))
 	if(loc == user)
 		user.dropItemToGround(src)
@@ -576,6 +578,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	. = ..()
 
 	if(istype(I,/obj/item/tool/screwdriver))
+		user.balloon_alert(user, "You modify the rail flashlight back into a normal flashlight.")
 		to_chat(user, span_notice("You modify the rail flashlight back into a normal flashlight."))
 		if(loc == user)
 			user.temporarilyRemoveItemFromInventory(src)
@@ -715,6 +718,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	if(!(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		if(user)
+			user.balloon_alert(user, "You must hold [master_gun] with two hands to use [src].")
 			to_chat(user, span_warning("You must hold [master_gun] with two hands to use [src]."))
 		return FALSE
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
@@ -1350,6 +1354,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/lace/activate(mob/living/user, turn_off)
 	if(lace_deployed)
 		DISABLE_BITFIELD(master_gun.flags_item, NODROP)
+		user.balloon_alert(user, "You feel the [src] loosen around your wrist!")
 		to_chat(user, span_notice("You feel the [src] loosen around your wrist!"))
 		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
 		icon_state = "lace"
@@ -1360,8 +1365,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			return
 		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BAR))
 			return
+		user.balloon_alert(user, "You deploy the [src].")
 		to_chat(user, span_notice("You deploy the [src]."))
 		ENABLE_BITFIELD(master_gun.flags_item, NODROP)
+		user.balloon_alert(user, "You feel the [src] shut around your wrist!")
 		to_chat(user, span_warning("You feel the [src] shut around your wrist!"))
 		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
 		icon_state = "lace-on"
@@ -1615,12 +1622,15 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	switch(fire_mode)
 		if("right")
 			fire_mode = "middle"
+			user.balloon_alert(user, "[master_gun] will now fire on a 'middle click'.")
 			to_chat(user, span_notice("[master_gun] will now fire on a 'middle click'."))
 		if("middle")
 			fire_mode = "left"
+			user.balloon_alert(user, "[master_gun] will now fire on a 'left click'.")
 			to_chat(user, span_notice("[master_gun] will now fire on a 'left click'."))
 		if("left")
 			fire_mode = "right"
+			user.balloon_alert(user, "[master_gun] will now fire on a 'right click'.")
 			to_chat(user, span_notice("[master_gun] will now fire on a 'right click'."))
 
 ///Reloads the gun
