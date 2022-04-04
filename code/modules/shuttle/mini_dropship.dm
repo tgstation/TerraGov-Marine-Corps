@@ -152,7 +152,7 @@
 	. = ..()
 	if(damaged)
 		return
-	if(isxenowraith(X) && X.status_flags & INCORPOREAL)
+	if(X.status_flags & INCORPOREAL)
 		return
 	X.visible_message("[X] begins to slash delicately at the computer",
 	"We start slashing delicately at the computer. This will take a while.")

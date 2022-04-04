@@ -563,9 +563,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	///SFX indicating the banished target's position
 	var/obj/effect/temp_visual/banishment_portal/portal = null
 	///Backup coordinates to teleport the banished to, in case the portal gets destroyed (shuttles!!)
-	var/backup_x
-	var/backup_y
-	var/backup_z
+	var/list/backup_coordinates = list(0,0,0)
 	///The timer ID of any Banish currently active
 	var/banish_duration_timer_id
 	///Phantom zone reserved area
@@ -607,9 +605,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	var/banished_turf = get_turf(A) //Set the banishment turf.
 	banishment_target = A //Set the banishment target
-	backup_x = banishment_target.x //Set up backup coordinates in case banish portal gets destroyed
-	backup_y = banishment_target.y
-	backup_z = banishment_target.z
+	backup_coordinates[1] = banishment_target.x //Set up backup coordinates in case banish portal gets destroyed
+	backup_coordinates[2] = banishment_target.y
+	backup_coordinates[3] = banishment_target.z
 
 	ghost.face_atom(A) //Face the target so we don't look like an ass
 
@@ -690,7 +688,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(get_turf(portal))
 		banishment_target.forceMove(get_turf(portal))
 	else //The portal got removed. There's no way back. Ohgodohfuck.
-		banishment_target.forceMove(locate(backup_x,backup_y,backup_z))
+		banishment_target.forceMove(locate(backup_coordinates[1],backup_coordinates[2],backup_coordinates[3]))
 
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
