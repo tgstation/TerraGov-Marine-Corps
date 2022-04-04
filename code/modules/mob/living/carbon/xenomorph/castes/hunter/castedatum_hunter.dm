@@ -51,7 +51,7 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/silence,
 		/datum/action/xeno_action/activable/pounce/hunter,
-		/datum/action/xeno_action/stealth,
+		/datum/action/xeno_action/stealth/classic,
 		/datum/action/xeno_action/activable/hunter_mark,
 		/datum/action/xeno_action/psychic_trace,
 		/datum/action/xeno_action/mirage,

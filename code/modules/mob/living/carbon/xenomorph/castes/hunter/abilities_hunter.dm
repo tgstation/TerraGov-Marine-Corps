@@ -206,6 +206,8 @@
 		return
 	return COMSIG_ACCURATE_ZONE
 
+/datum/action/xeno_action/stealth/classic
+
 /datum/action/xeno_action/stealth/disguise
 	name = "Disguise"
 	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move."
