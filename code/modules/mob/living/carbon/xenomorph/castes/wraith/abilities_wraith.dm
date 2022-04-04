@@ -519,7 +519,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			if(X.issamexenohive(ghost)) //No friendly fire
 				continue
 
-		shake_camera(living_target, 2, 1)
 		living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
 		living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
 		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
