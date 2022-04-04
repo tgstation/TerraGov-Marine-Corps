@@ -710,6 +710,10 @@
 
 #define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
 
+// throw parry signals
+#define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
+#define COMSIG_PARRY_TRIGGER "parry_trigger"
+
 // remote control signals
 #define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
 #define COMSIG_REMOTECONTROL_UNLINK "remotecontrol_unlink"
@@ -729,8 +733,9 @@
 #define COMSIG_KB_GIVE "keybind_give"
 
 // human modules signals for keybindings
-#define COMSIG_KB_VALIHEAL "keybinding_valiheal"
-#define COMSIG_KB_VALICONNECT "keybiding_valiconnect"
+#define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"
+#define COMSIG_KB_VALI_HEAL "keybinding_vali_heal"
+#define COMSIG_KB_VALI_CONNECT "keybiding_vali_connect"
 #define COMSIG_KB_SUITANALYZER "keybinding_suitanalyzer"
 
 // Ability adding/removing signals

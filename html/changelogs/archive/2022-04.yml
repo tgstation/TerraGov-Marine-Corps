@@ -1,0 +1,51 @@
+2022-04-01:
+  Lumipharon:
+  - bugfix: fixed shipside roles having rebel equipment half the time.
+2022-04-02:
+  EvilMelonTheSecond:
+  - rscadd: Cat as helmets now provide decap immunity and half the protection of FC
+      beret
+  Lumipharon:
+  - bugfix: fixes a 100% intentional April fool's prank
+  - rscadd: TX-54 ammo now uses greyscaling
+  - code_imp: Add support for greyscale projectiles and bullets
+  Mrrpip:
+  - rscadd: Added the marine riot helmet, with a poorly made orange paintjob.
+  - balance: Changed the pricing of the Riot Gear Set and their armor values.
+  breadhunt, thank Elsa and Ciel for sprites:
+  - rscadd: Marine CAS prediction matrix. A prediction for where CAS ammo will hit,
+      before it arrives, now shows up on marine HUD.
+  - imageadd: 'Various new CAS lase sprites, for:'
+  - rscadd: CAS lase (flashing green dot) now has a sprite for each type of ammo fired
+      (except HV GAU). Both xenos and marines see this.
+  - balance: This means both marines *and* xenos can see what ammo's coming. Sorry,
+      POs.
+  - balance: Removed deviation from CAS flares
+  - balance: Removed explosion from CAS flares and CAS smoke. Marines are finally
+      safe
+  - expansion: Complete fatty rework.
+  - balance: Instead of a cluster explosion, fatty now destroys all walls in a 5 tile
+      radius around impact.
+  - balance: This is non-lethal; feel free to use it around brazilled marines. Point
+      cost means you can't really spam it, however.
+  goose4429:
+  - code_imp: Removed ex act from crushher.dm
+  - balance: crusher is no longer immune to some explosions
+  - balance: crusher gets less damage from biggest explosions
+  novaepee:
+  - balance: Nerf conveyor belt from 500 integrity to 50
+  - bugfix: Conveyor belt inherits 500 integrity; not anymore.
+  - bugfix: TX-11 wielding mob sprite on the right hand facing east
+2022-04-03:
+  DeltaFire15:
+  - rscadd: Defenders can use their tail abilities (Swipe, Centrifugal Force) to parry
+      throws, if timed right.
+  Wayland-Smithy:
+  - bugfix: Fixed xeno ex_act severity math.
+  - bugfix: Fixed Crusher Rapid Advance forcing 8 directions only.
+2022-04-04:
+  Wayland-Smithy:
+  - rscadd: Added xeno overheal amount to the status panel.
+  - balance: Mature+ Crusher now has bomb resist 4.
+  breadhunt:
+  - bugfix: CAS and CIC eyes are now visible to marines like AI eye

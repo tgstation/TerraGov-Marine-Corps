@@ -171,6 +171,7 @@
 	climbable = TRUE
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
 	resistance_flags = XENO_DAMAGEABLE
+	coverage = 20
 	///on what kind of base this can be installed.
 	var/equip_category
 	///the ship base the equipment is currently installed on.
@@ -628,9 +629,19 @@
 
 	if(ammo_warn_sound)
 		playsound(target_turf, ammo_warn_sound, 70, 1)
-	var/obj/effect/overlay/blinking_laser/laser = new (target_turf)
+
+	//Lase
+	var/obj/effect/overlay/blinking_laser/laserdot = new SA.cas_effect(target_turf)
+	laserdot.dir = attackdir
+	var/list/effects_to_delete = list(laserdot)
+
+	//Marine-only visuals
+	var/predicted_dangerous_turfs = SA.get_turfs_to_impact(target_turf, attackdir)
+	for(var/turf/impact in predicted_dangerous_turfs)
+		effects_to_delete += new /obj/effect/overlay/blinking_laser/marine/lines(impact)
+
 	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, target_turf, attackdir), ammo_travelling_time)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, laser), ammo_travelling_time)
+	QDEL_LIST_IN(effects_to_delete, ammo_travelling_time)
 
 /obj/structure/dropship_equipment/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"

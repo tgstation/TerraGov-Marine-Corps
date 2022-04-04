@@ -4,6 +4,7 @@
 	icon_state = "flood00"
 	anchored = TRUE
 	density = TRUE
+	coverage = 25
 	light_system = HYBRID_LIGHT
 	light_power = 5
 	///The brightness of the floodlight
@@ -199,7 +200,7 @@
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	X.visible_message(span_danger("[X] slashes \the [src]!"), \
 	span_danger("We slash \the [src]!"), null, 5)
-	playsound(loc, "alien_claw_metal", 25, 1)	
+	playsound(loc, "alien_claw_metal", 25, 1)
 	turn_light(X, FALSE, forced = TRUE)
 
 /obj/machinery/floodlightcombat/update_icon_state()

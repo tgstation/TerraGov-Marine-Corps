@@ -10,9 +10,12 @@
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
 	GLOB.xeno_structure += src
+	if(xeno_structure_flags & CRITICAL_STRUCTURE)
+		GLOB.xeno_critical_structure += src
 
 /obj/structure/xeno/Destroy()
 	GLOB.xeno_structure -= src
+	GLOB.xeno_critical_structure -= src
 	return ..()
 
 /obj/structure/xeno/ex_act(severity)
@@ -700,7 +703,7 @@ TUNNEL
 	bound_height = 96
 	max_integrity = 1000
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL|CRITICAL_STRUCTURE
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
@@ -851,6 +854,7 @@ TUNNEL
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
+	throwpass = FALSE
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
@@ -1099,6 +1103,7 @@ TUNNEL
 	bound_height = 64
 	obj_integrity = 600
 	max_integrity = 600
+	xeno_structure_flags = CRITICAL_STRUCTURE
 	///hivenumber of this tower
 	var/hivenumber
 	///boost amt to be added per tower per cycle
@@ -1132,6 +1137,7 @@ TUNNEL
 	bound_height = 64
 	obj_integrity = 400
 	max_integrity = 400
+	xeno_structure_flags = CRITICAL_STRUCTURE
 	///hivenumber of this tower
 	var/hivenumber
 	///boost amt to be added per tower per cycle
@@ -1163,7 +1169,7 @@ TUNNEL
 	bound_height = 96
 	max_integrity = 500
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
 
 /obj/structure/xeno/spawner/Initialize()
 	. = ..()
@@ -1207,6 +1213,9 @@ TUNNEL
 
 ///Called whenever someone uses the plant, xeno or marine
 /obj/structure/xeno/plant/proc/on_use(mob/user)
+	mature = FALSE
+	update_icon()
+	addtimer(CALLBACK(src, .proc/on_mature), maturation_time)
 	return TRUE
 
 ///Called when the plant reaches maturity
@@ -1258,11 +1267,10 @@ TUNNEL
 	var/mob/living/carbon/xenomorph/X = user
 	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
 	HEAL_XENO_DAMAGE(X,heal_amount)
-	new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(user))
 	playsound(user, "alien_drool", 25)
 	to_chat(X, span_xenowarning("We feel a sudden soothing chill as [src] tends to our wounds."))
-	qdel(src)
-	return TRUE
+
+	return ..()
 
 /obj/structure/xeno/plant/armor_fruit
 	name = "hard fruit"
@@ -1296,10 +1304,8 @@ TUNNEL
 	to_chat(user, span_xenowarning("We shed our shattered scales as new ones grow to replace them!"))
 	var/mob/living/carbon/xenomorph/X = user
 	X.adjust_sunder(-sunder_removal)
-	new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(user))
 	playsound(user, "alien_drool", 25)
-	qdel(src)
-	return TRUE
+	return ..()
 
 /obj/structure/xeno/plant/plasma_fruit
 	name = "power fruit"
@@ -1338,10 +1344,8 @@ TUNNEL
 		return FALSE
 	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
 	to_chat(X, span_xenowarning("[src] Restores our plasma reserves, our organism is on overdrive!"))
-	new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(user))
 	playsound(user, "alien_drool", 25)
-	qdel(src)
-	return TRUE
+	return ..()
 
 
 /obj/structure/xeno/plant/stealth_plant

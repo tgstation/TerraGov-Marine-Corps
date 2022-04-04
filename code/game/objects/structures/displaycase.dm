@@ -47,3 +47,4 @@
 	max_integrity = 0
 	occupied = FALSE
 	destroyed = TRUE
+	coverage = 0

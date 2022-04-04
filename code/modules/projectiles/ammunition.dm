@@ -170,13 +170,13 @@
 		to_chat(user, span_notice("You grab <b>[rounds]</b> round\s from [src]."))
 		update_icon() //Update the other one.
 		user?.hud_used.update_ammo_hud(user, src)
-		if(current_rounds <= 0)
+		if(current_rounds <= 0 && CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL))
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
 		return rounds //Give the number created.
 	else
 		update_icon()
-		if(current_rounds <= 0)
+		if(current_rounds <= 0 && CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL))
 			qdel(src)
 		return new_handful
 
@@ -184,6 +184,11 @@
 /obj/item/ammo_magazine/proc/generate_handful(new_ammo, new_caliber, new_rounds, maximum_rounds)
 	var/datum/ammo/ammo = ispath(new_ammo) ? GLOB.ammo_list[new_ammo] : new_ammo
 	var/ammo_name = ammo.name
+
+	///sets greyscale for the handful if it has been specified by the ammo datum
+	if (ammo.handful_greyscale_config && ammo.handful_greyscale_colors)
+		set_greyscale_config(ammo.handful_greyscale_config)
+		set_greyscale_colors(ammo.handful_greyscale_colors)
 
 	name = "handful of [ammo_name + " ([new_caliber])"]"
 	icon_state = ammo.handful_icon_state

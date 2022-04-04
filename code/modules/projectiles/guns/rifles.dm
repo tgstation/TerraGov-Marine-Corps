@@ -81,6 +81,7 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
+	extra_delay = 0.05 SECONDS
 	accuracy_mult = 1.10
 	scatter = 2
 	burst_scatter_mult = 0.25
@@ -152,6 +153,7 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
+	extra_delay = 0.05 SECONDS
 	accuracy_mult = 1.15
 	scatter = 0
 	wield_delay = 0.7 SECONDS
@@ -557,11 +559,11 @@
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
 
-/obj/item/weapon/gun/rifle/m16/freelancerleader
-	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/scope/mini, /obj/item/attachable/extended_barrel)
-
 /obj/item/weapon/gun/rifle/m16/freelancer
-	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/extended_barrel)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/weapon/gun/shotgun/combat/masterkey)
+
+/obj/item/weapon/gun/rifle/m16/ugl
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/weapon/gun/grenade_launcher/underslung)
 
 /obj/item/weapon/gun/rifle/m16/somleader
 	starting_attachment_types = list(/obj/item/attachable/reddot)
@@ -621,7 +623,7 @@
 	scatter = 3
 
 /obj/item/weapon/gun/rifle/famas/freelancermedic
-	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/suppressor)
+	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
 
 
 //-------------------------------------------------------
@@ -809,7 +811,13 @@
 
 	placed_overlay_iconstate = "lmg"
 
-
+/obj/item/weapon/gun/rifle/m412l1_hpr/freelancer
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/irremoveable/rifle,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bipod,
+	)
 //-------------------------------------------------------
 //USL TYPE 71 RIFLE
 
@@ -1247,6 +1255,12 @@
 /obj/item/weapon/gun/rifle/tx11/scopeless
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11)
 
+/obj/item/weapon/gun/rifle/tx11/freelancerone
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/rifle/tx11/freelancertwo
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/motiondetector, /obj/item/attachable/bayonet, /obj/item/attachable/lasersight)
+
 //-------------------------------------------------------
 //T-21 Assault Rifle
 
@@ -1301,6 +1315,7 @@
 	fire_delay = 0.25 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
+	extra_delay = 0.05 SECONDS
 	accuracy_mult = 1.15
 	scatter = 0
 	wield_delay = 0.6 SECONDS
@@ -1352,6 +1367,12 @@
 	wield_delay = 0.4 SECONDS
 	damage_falloff_mult = 3
 
+/obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
+	starting_attachment_types = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/bayonet,
+	)
+
 //-------------------------------------------------------
 // MKH-98
 
@@ -1392,3 +1413,135 @@
 	fire_delay = 0.2 SECONDS
 	scatter = 2
 	wield_delay = 0.5 SECONDS
+
+//-------------------------------------------------------
+// TX-54 grenade launcher
+/obj/item/weapon/gun/rifle/tx54
+	name = "TX-54 grenade launcher"
+	desc = "A magazine fed, semiautomatic grenade launcher designed to shoot airbursting smart grenades. Requires a T49 scope for precision aiming."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "tx54"
+	item_state = "tx54" ///todo
+	max_shells = 5 //codex
+	max_chamber_items = 1
+	fire_delay = 1.2 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
+	caliber = CALIBER_20MM //codex
+	attachable_allowed = list(
+		/obj/item/attachable/scope/optical,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	starting_attachment_types = list(/obj/item/attachable/scope/optical)
+	default_ammo_type = null
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/tx54,
+		/obj/item/ammo_magazine/rifle/tx54/he,
+		/obj/item/ammo_magazine/rifle/tx54/incendiary,
+	)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 20, "under_x" = 28, "under_y" = 13, "stock_x" = -1, "stock_y" = 17)
+	aim_slowdown = 0.8
+	wield_delay = 0.8 SECONDS
+	burst_amount = 1
+	accuracy_mult = 1.15
+	aim_fire_delay = 0.2 SECONDS
+	aim_speed_modifier = 2
+
+//-------------------------------------------------------
+// TX55 built in grenade launcher
+
+/obj/item/weapon/gun/rifle/tx54/mini
+	name = "TX55 20mm grenade launcher"
+	desc = "A weapon-mounted, reloadable, five-shot grenade launcher."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "tx55gl"
+	placed_overlay_iconstate = "tx55gl"
+	attachable_allowed = list()
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_attach_features = NONE
+	slot = ATTACHMENT_SLOT_STOCK
+	default_ammo_type = /obj/item/ammo_magazine/rifle/tx54
+	attach_delay = 3 SECONDS
+	detach_delay = 3 SECONDS
+	actions_types = list(/datum/action/item_action/aim_mode)
+	starting_attachment_types = list()
+
+//-------------------------------------------------------
+// TX55 rifle
+
+/obj/item/weapon/gun/rifle/tx55
+	name = "\improper TX-55 assault rifle"
+	desc = "Officially designated an Objective Individual Combat Weapon, The TX-55 features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight. Requires a T49 scope for precision aiming."
+	icon_state = "tx55"
+	item_state = "tx55"
+	fire_sound = "gun_t12"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	caliber = CALIBER_10X24_CASELESS //codex
+	max_shells = 36 //codex
+	wield_delay = 1 SECONDS
+	default_ammo_type = /obj/item/ammo_magazine/rifle/tx55
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/tx55)
+	attachable_allowed = list(
+		/obj/item/attachable/scope/optical,
+		/obj/item/weapon/gun/rifle/tx54/mini,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/rifle/tx54/mini,
+		/obj/item/attachable/scope/optical,
+	)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 22, "under_x" = 21, "under_y" = 14, "stock_x" = -1, "stock_y" = 17)
+
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 2
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.15 SECONDS
+	extra_delay = 0.05 SECONDS
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1
+	scatter = 2
+	scatter_unwielded = 15
+	burst_scatter_mult = 2
+	aim_slowdown = 1
+
+/obj/item/weapon/gun/rifle/tx55/freelancer
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/rifle/tx54/mini,
+		/obj/item/attachable/scope/optical,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/gyro,
+	)

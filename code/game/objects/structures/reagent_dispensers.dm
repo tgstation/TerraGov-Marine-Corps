@@ -7,6 +7,8 @@
 	icon_state = "watertank"
 	density = TRUE
 	anchored = FALSE
+	///high chance to block bullets, offset by being unanchored
+	coverage = 80
 	///maximum tank capacity used to set reagents in initialize
 	var/tank_volume = 1000
 	///Current amount we will transfer every time we click on this
@@ -217,6 +219,7 @@
 	anchored = TRUE
 	tank_volume = 500
 	list_reagents = list(/datum/reagent/water = 500)
+	coverage = 20
 
 
 /obj/structure/reagent_dispensers/beerkeg
@@ -225,6 +228,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
 	list_reagents = list(/datum/reagent/consumable/ethanol/beer = 1000)
+	coverage = 30
 
 
 /obj/structure/reagent_dispensers/wallmounted

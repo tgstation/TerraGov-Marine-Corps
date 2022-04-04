@@ -624,11 +624,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "acr" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -1047,11 +1047,11 @@
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
 "adz" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -1459,7 +1459,7 @@
 "anQ" = (
 /obj/structure/ship_ammo/heavygun,
 /obj/machinery/camera/autoname/mainship,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "aop" = (
 /obj/structure/toilet{
@@ -2724,7 +2724,7 @@
 /area/mainship/living/commandbunks)
 "bbP" = (
 /obj/structure/ship_ammo/rocket/banshee,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "bbQ" = (
 /obj/effect/ai_node,
@@ -2745,11 +2745,11 @@
 /area/mainship/hallways/hangar)
 "bbX" = (
 /obj/structure/ship_ammo/rocket/widowmaker,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "bbZ" = (
 /obj/structure/ship_ammo/rocket/keeper,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "bca" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -3124,10 +3124,6 @@
 /obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
-"bga" = (
-/obj/structure/ship_ammo/minirocket,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "bgb" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
@@ -5726,10 +5722,7 @@
 /area/mainship/living/cryo_cells)
 "bCK" = (
 /obj/structure/ship_ammo/minirocket,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "bCL" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -9551,7 +9544,7 @@
 /area/mainship/hallways/port_hallway)
 "dZK" = (
 /obj/structure/ship_ammo/minirocket/illumination,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "ead" = (
 /turf/open/floor/mainship/mono,
@@ -11163,7 +11156,7 @@
 /area/mainship/hallways/port_hallway)
 "hhA" = (
 /obj/structure/ship_ammo/heavygun,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "hhG" = (
 /turf/open/floor/stairs/rampbottom{
@@ -12387,6 +12380,13 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"juB" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "jvm" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
@@ -12578,6 +12578,15 @@
 "jQu" = (
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
+"jQx" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "jQK" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -13022,6 +13031,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/basketball)
+"kHG" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "kHU" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -14680,6 +14698,13 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
+"npA" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "nqG" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/machinery/light{
@@ -16022,6 +16047,13 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_hallway)
+"pNB" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "pNG" = (
 /turf/open/shuttle/escapepod{
 	icon_state = "floor11"
@@ -41676,9 +41708,9 @@ bgb
 bbP
 bbP
 bbZ
-bbZ
-bga
-bCK
+jQx
+bdW
+bdW
 bgb
 eaL
 bbR
@@ -41930,11 +41962,11 @@ aaa
 aai
 tDH
 bgb
-lvI
-lvI
-lvI
-lvI
-bga
+xQX
+xQX
+xQX
+npA
+bCK
 bCK
 bgb
 lvI
@@ -42188,11 +42220,11 @@ aai
 tDH
 bgb
 acr
-bdW
-bdW
-bdW
-bga
-bga
+bea
+bea
+juB
+bCK
+bCK
 bgb
 bLs
 bbR
@@ -43730,9 +43762,9 @@ aai
 tDH
 bgb
 adz
-bea
-bea
-bea
+bdW
+bdW
+pNB
 dZK
 dZK
 bgb
@@ -43988,8 +44020,8 @@ rbR
 bgb
 bbX
 bbX
-bbX
-bbX
+bbZ
+npA
 dZK
 dZK
 bgb
@@ -44243,12 +44275,12 @@ aaa
 aai
 aak
 bgb
-lvI
-lvI
-lvI
-lvI
-dZK
-dZK
+xQX
+xQX
+xQX
+kHG
+bea
+bea
 bgb
 eaL
 bVJ

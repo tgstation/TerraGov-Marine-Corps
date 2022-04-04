@@ -964,6 +964,7 @@
 /area/bigredv2/outside/marshal_office)
 "yM" = (
 /obj/structure/table,
+/obj/machinery/computer/camera,
 /turf/open/floor/tile/dark/green2{
 	dir = 4
 	},
@@ -1806,8 +1807,9 @@
 /area/bigredv2/outside/space_port)
 "Ua" = (
 /obj/structure/table,
-/obj/machinery/computer/camera,
 /obj/structure/barricade/metal,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
 /turf/open/floor/tile/dark/green2,
 /area/bigredv2/outside/space_port)
 "Uw" = (
