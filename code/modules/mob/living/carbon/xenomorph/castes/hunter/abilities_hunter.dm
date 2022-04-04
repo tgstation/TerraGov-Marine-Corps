@@ -222,9 +222,6 @@
 	if(!mark.marked_target)
 		to_chat(owner, span_warning("We have no target to disguise into!"))
 		return
-	if(ishuman(mark.marked_target))
-		to_chat(owner, "You cannot turn into a human!")
-		return
 	old_appearance = xenoowner.appearance
 	ADD_TRAIT(xenoowner, TRAIT_MOB_ICON_UPDATE_BLOCKED, STEALTH_TRAIT)
 	return ..()
