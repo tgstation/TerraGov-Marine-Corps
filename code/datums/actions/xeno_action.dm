@@ -46,73 +46,61 @@
 
 	if(!(flags_to_check & XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
-			X.balloon_alert(X, "We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!")
-			to_chat(owner, span_warning("We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!"))
+			X.balloon_alert(X, "We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_INCAP) && X.incapacitated())
 		if(!silent)
-			X.balloon_alert(X, "We can't do this while incapacitated!")
-			to_chat(owner, span_warning("We can't do this while incapacitated!"))
+			X.balloon_alert(X, "We can't do this while incapacitated")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_LYING) && X.lying_angle)
 		if(!silent)
-			X.balloon_alert(X, "We can't do this while lying down!")
-			to_chat(owner, span_warning("We can't do this while lying down!"))
+			X.balloon_alert(X, "We can't do this while lying down")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_BUCKLED) && X.buckled)
 		if(!silent)
-			X.balloon_alert(X, "We can't do this while buckled!")
-			to_chat(owner, span_warning("We can't do this while buckled!"))
+			X.balloon_alert(X, "We can't do this while buckled")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_STAGGERED) && X.stagger)
 		if(!silent)
-			X.balloon_alert(X, "We can't do this while staggered!")
-			to_chat(owner, span_warning("We can't do this while staggered!"))
+			X.balloon_alert(X, "We can't do this while staggered")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_FORTIFIED) && X.fortify)
 		if(!silent)
-			X.balloon_alert(X, "We can't do this while fortified!")
-			to_chat(owner, span_warning("We can't do this while fortified!"))
+			X.balloon_alert(X, "Can't do this while fortified")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
-			X.balloon_alert(X, "We can't do this while in crest defense!")
-			to_chat(owner, span_warning("We can't do this while in crest defense!"))
+			X.balloon_alert(X, "We can't do this with crest defense")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
-			X.balloon_alert(X, "We can't do this here!")
-			to_chat(owner, span_warning("We can't do this here!"))
+			X.balloon_alert(X, "We can't do this here")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_BUSY) && X.do_actions)
 		if(!silent)
-			X.balloon_alert(X, "We're busy doing something right now!")
-			to_chat(owner, span_warning("We're busy doing something right now!"))
+			X.balloon_alert(X, "We're busy doing something right now")
 		return FALSE
 
 	if(!(flags_to_check & XACT_USE_AGILITY) && X.agility)
 		if(!silent)
-			X.balloon_alert(X, "We can't do this in agility mode!")
-			to_chat(owner, span_warning("We can't do this in agility mode!"))
+			X.balloon_alert(X, "We can't do this in agility mode")
 		return FALSE
 
 	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
-			X.balloon_alert(X, "We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more.")
-			to_chat(owner, span_warning("We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more."))
+			X.balloon_alert(X, "Not enough plasma, we need [plasma_cost - X.plasma_stored] more")
 		return FALSE
 	if(!(flags_to_check & XACT_USE_CLOSEDTURF) && isclosedturf(get_turf(X)))
 		if(!silent)
-			X.balloon_alert(X, "We can't do this while in a solid object!")
-			to_chat(owner, span_warning("We can't do this while in a solid object!"))
+			X.balloon_alert(X, "We can't do this in a solid object")
 		return FALSE
 
 	if(!should_show())

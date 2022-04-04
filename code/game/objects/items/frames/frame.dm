@@ -32,31 +32,25 @@
 	var/turf/loc = get_turf(usr)
 	var/area/A = get_area(loc)
 	if (!isfloorturf(loc))
-		balloon_alert(usr, "APC cannot be placed on this spot.")
-		to_chat(usr, span_warning("APC cannot be placed on this spot."))
+		balloon_alert(usr, "APC cannot be placed on this spot")
 		return
 	if (A.requires_power == 0 || istype(A, /area/space))
-		balloon_alert(usr, "APC cannot be placed in this area.")
-		to_chat(usr, span_warning("APC cannot be placed in this area."))
+		balloon_alert(usr, "APC cannot be placed in this area")
 		return
 	if (A.get_apc())
-		balloon_alert(usr, "This area already has APC.")
-		to_chat(usr, span_warning("This area already has APC."))
+		balloon_alert(usr, "This area already has APC")
 		return //only one APC per area
 	if (A.always_unpowered)
-		balloon_alert(usr, "This area is unsuitable for an APC.")
-		to_chat(usr, span_warning("This area is unsuitable for an APC."))
+		balloon_alert(usr, "This area is unsuitable for an APC")
 		return
 	for(var/obj/machinery/power/terminal/T in loc)
 		if (T.master)
-			balloon_alert(usr, "There is another network terminal here.")
-			to_chat(usr, span_warning("There is another network terminal here."))
+			balloon_alert(usr, "There is another network terminal here")
 			return
 		else
 			var/obj/item/stack/cable_coil/C = new /obj/item/stack/cable_coil(loc)
 			C.amount = 10
-			balloon_alert(usr, "You cut the cables and disassemble the unused power terminal.")
-			to_chat(usr, "You cut the cables and disassemble the unused power terminal.")
+			balloon_alert(usr, "You cut the cables and disassemble the unused power terminal")
 			qdel(T)
 	new /obj/machinery/power/apc(loc, ndir, 1)
 	qdel(src)

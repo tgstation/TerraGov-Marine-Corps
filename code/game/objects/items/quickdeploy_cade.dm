@@ -41,26 +41,22 @@
 	var/turf/mystery_turf = user.loc
 	if(!isopenturf(mystery_turf))
 		user.balloon_alert(user, "We can't build here!")
-		to_chat(user, span_warning("We can't build here!"))
 		return FALSE
 
 	var/turf/open/placement_loc = mystery_turf
 	if(placement_loc.density || !placement_loc.allow_construction) //We shouldn't be building here.
 		user.balloon_alert(user, "We can't build here!")
-		to_chat(user, span_warning("We can't build here!"))
 		return FALSE
 
 	for(var/obj/thing in user.loc)
 		if(!thing.density) //not dense, move on
 			continue
 		if(!(thing.flags_atom & ON_BORDER)) //dense and non-directional, end
-			user.balloon_alert(user, "No space here for a barricade.")
-			to_chat(user, span_warning("No space here for a barricade."))
+			user.balloon_alert(user, "No space to build")
 			return FALSE
 		if(thing.dir != user.dir)
 			continue
-		user.balloon_alert(user, "No space here for a barricade.")
-		to_chat(user, span_warning("No space here for a barricade."))
+		user.balloon_alert(user, "No space to build")
 		return FALSE
 	to_chat(user, "<span class='notice'>You plop down the barricade in front of you.")
 	return TRUE

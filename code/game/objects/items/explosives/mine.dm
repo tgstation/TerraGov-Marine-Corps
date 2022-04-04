@@ -69,17 +69,14 @@ Stepping directly on the mine will also blow it up
 	if(armed)
 		return
 
-	user.balloon_alert_to_viewers("[user] starts deploying [src].")
-	user.visible_message(span_notice("[user] starts deploying [src]."), \
-	span_notice("You start deploying [src]."))
+	user.balloon_alert_to_viewers("[user] starts deploying [src]" ,ignored_mobs = user)
+	user.balloon_alert(user, "You start deploying [src]")
 	if(!do_after(user, 40, TRUE, src, BUSY_ICON_HOSTILE))
-		user.balloon_alert_to_viewers("[user] stops deploying [src].")
-		user.visible_message(span_notice("[user] stops deploying [src]."), \
-	span_notice("You stop deploying \the [src]."))
+		user.balloon_alert_to_viewers("[user] stops deploying [src]" ,ignored_mobs = user)
+		user.balloon_alert(user, "You stop deploying \the [src]")
 		return
-	user.balloon_alert_to_viewers("[user] finishes deploying [src].")
-	user.visible_message(span_notice("[user] finishes deploying [src]."), \
-	span_notice("You finish deploying [src]."))
+	user.balloon_alert_to_viewers("[user] finishes deploying [src]")
+	user.balloon_alert(user, "You finish deploying [src]")
 	var/obj/item/card/id/id = user.get_idcard()
 	deploy_mine(user, id?.iff_signal)
 

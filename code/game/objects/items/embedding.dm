@@ -186,8 +186,7 @@
 	var/obj/item/selection = tgui_input_list(user, "What do you want to yank out?", "Embedded objects", valid_objects)
 
 	if(user.get_active_held_item())
-		user.balloon_alert(user, "You need an empty hand for this!")
-		to_chat(user, span_warning("You need an empty hand for this!"))
+		user.balloon_alert(user, "You need an empty hand for this")
 		return FALSE
 
 	if(self)

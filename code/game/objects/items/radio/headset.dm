@@ -59,16 +59,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 					keyslot2 = null
 
 			recalculateChannels()
-			user.balloon_alert(user, "You pop out the encryption keys in the headset.")
-			to_chat(user, span_notice("You pop out the encryption keys in the headset."))
+			user.balloon_alert(user, "You pop out the encryption keys")
 
 		else
 			to_chat(user, span_warning("This headset doesn't have any unique encryption keys!  How useless..."))
 
 	else if(istype(I, /obj/item/encryptionkey))
 		if(keyslot && keyslot2)
-			user.balloon_alert(user, "The headset can't hold another key!")
-			to_chat(user, span_warning("The headset can't hold another key!"))
+			user.balloon_alert(user, "The headset can't hold another key")
 			return
 
 		if(!keyslot)

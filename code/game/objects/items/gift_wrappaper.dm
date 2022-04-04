@@ -138,7 +138,6 @@
 	var/turf/current_turf = get_turf(user)
 	if(is_mainship_level(current_turf.z))
 		user.balloon_alert(user, "You can't fire that here!")
-		to_chat(user, span_warning("You can't fire that here!"))
 		return FALSE
 	return TRUE
 

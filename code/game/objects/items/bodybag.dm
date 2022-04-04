@@ -122,7 +122,6 @@
 
 	else if(iswirecutter(I))
 		user.balloon_alert(user, "You cut the tag off the bodybag.")
-		to_chat(user, span_notice("You cut the tag off the bodybag."))
 		name = "body bag"
 		overlays.Cut()
 
@@ -217,20 +216,17 @@
 	if(!opened && bodybag_occupant)
 		bodybag_occupant.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
 		bodybag_occupant.balloon_alert(bodybag_occupant, "You cut the tag off the bodybag.")
-		to_chat(bodybag_occupant, span_danger("You jolt out of [name] upon being hit!"))
 		open()
 
 /obj/structure/closet/bodybag/flamer_fire_act()
 	if(!opened && bodybag_occupant)
-		bodybag_occupant.balloon_alert(bodybag_occupant, "The intense heat forces you out of [name]!")
-		to_chat(bodybag_occupant, span_danger("The intense heat forces you out of [name]!"))
+		bodybag_occupant.balloon_alert(bodybag_occupant, "The intense heat forces you out")
 		open()
 		bodybag_occupant.flamer_fire_act()
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)
-		bodybag_occupant.balloon_alert(bodybag_occupant, "The shockwave blows [name] open!")
-		to_chat(bodybag_occupant, span_danger("The shockwave blows [name] open!"))
+		bodybag_occupant.balloon_alert(bodybag_occupant, "The shockwave blows [name] open")
 		open()
 		bodybag_occupant.ex_act(severity)
 	switch(severity)

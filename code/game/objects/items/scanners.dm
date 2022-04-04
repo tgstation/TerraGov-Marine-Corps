@@ -74,23 +74,20 @@ REAGENT SCANNER
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user) //Integrated analyzers don't need special training to be used quickly.
 	var/dat = ""
 	if((user.getBrainLoss() >= 60) && prob(50))
-		user.balloon_alert(user, "You try to analyze the floor's vitals!")
-		to_chat(user, span_warning("You try to analyze the floor's vitals!"))
-		balloon_alert_to_viewers("[user] has analyzed the floor's vitals!")
-		visible_message(span_warning("[user] has analyzed the floor's vitals!"))
+		user.balloon_alert(user, "You try to analyze the floor")
+		balloon_alert_to_viewers("[user] analyzes the floor", ignored_mobs = user)
 		user.show_message(span_notice("Health Analyzer results for The floor:\n\t Overall Status: Healthy"), 1)
 		user.show_message(span_notice("\t Damage Specifics: [0]-[0]-[0]-[0]"), 1)
 		user.show_message(span_notice("Key: Suffocation/Toxin/Burns/Brute"), 1)
 		user.show_message(span_notice("Body Temperature: ???"), 1)
 		return
 	if(user.skills.getRating("medical") < skill_threshold)
-		to_chat(user, span_warning("You start fumbling around with [src]..."))
+		user.balloon_alert(user, "You start fumbling around with [src]")
 		var/fduration = max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating("medical")), 0)
 		if(!do_mob(user, M, fduration, BUSY_ICON_UNSKILLED))
 			return
 	if(isxeno(M))
-		balloon_alert(user, "[src] can't make sense of this creature.")
-		to_chat(user, span_warning("[src] can't make sense of this creature."))
+		balloon_alert(user, "You can't analyze this creature")
 		return
 	to_chat(user, "<span class='notice'>[user] has analyzed [M]'s vitals.")
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)

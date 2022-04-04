@@ -20,7 +20,7 @@
 		return
 
 	if(spamcheck)
-		user.balloon_alert(user, "\The [src] needs to recharge!")
+		user.balloon_alert(user, "\The [src] needs to recharge")
 		to_chat(user, span_warning("\The [src] needs to recharge!"))
 		return
 

@@ -35,13 +35,12 @@
 		return
 
 	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		user.balloon_alert(user, "Your programming prevents you from operating this device!")
-		to_chat(user, span_warning("Your programming prevents you from operating this device!"))
+		user.balloon_alert(user, "Your programming prevents you using this")
 		return
 
 	activate(user)
 
-	balloon_alert_to_viewers("[user] primes \a [name]!")
+	balloon_alert_to_viewers("[user] primes \a [name]")
 	user.visible_message(span_warning("[user] primes \a [name]!"), \
 	span_warning("You prime \a [name]!"))
 	if(initial(dangerous) && ishumanbasic(user))

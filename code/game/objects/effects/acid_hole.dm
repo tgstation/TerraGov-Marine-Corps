@@ -83,8 +83,7 @@
 
 	if(entrance_dir)
 		if(!step(user, entrance_dir))
-			user.balloon_alert(user, "You can't reach the hole's entrance.")
-			to_chat(user, span_warning("You can't reach the hole's entrance."))
+			user.balloon_alert(user, "You can't reach the entrance")
 			return
 
 	for(var/obj/O in T)
@@ -100,8 +99,7 @@
 	if(user.do_actions)
 		return
 
-	user.balloon_alert(user, "You start crawling through the hole.")
-	to_chat(user, span_notice("You start crawling through the hole."))
+	user.balloon_alert(user, "You start crawling through the hole")
 
 	if(do_after(user, 15, FALSE, src, BUSY_ICON_HOSTILE) && !T.density && !user.lying_angle && !user.buckled)
 		for(var/obj/O in T)

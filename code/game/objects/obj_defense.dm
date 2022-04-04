@@ -140,10 +140,8 @@
 
 
 /obj/attack_larva(mob/living/carbon/xenomorph/larva/L)
-	balloon_alert_to_viewers("[L] nudges its head against [src].", ignored_mobs = L)
-	L.balloon_alert(L, "We nudge our head against [src].")
-	L.visible_message(span_danger("[L] nudges its head against [src]."), \
-	span_danger("You nudge your head against [src]."))
+	balloon_alert_to_viewers("[L] nudges its head against [src]", ignored_mobs = L)
+	L.balloon_alert(L, "We nudge our head against [src]")
 
 
 ///the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.

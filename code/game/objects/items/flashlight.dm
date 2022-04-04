@@ -42,8 +42,7 @@
 		return
 	playsound(loc, "alien_claw_metal", 25, 1)
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.balloon_alert(X, "We disable the metal thing's lights.")
-	to_chat(X, span_warning("We disable the metal thing's lights."))
+	X.balloon_alert(X, "We disable the metal thing's lights")
 
 /obj/item/flashlight/update_icon()
 	. = ..()
@@ -77,8 +76,7 @@
 
 		var/obj/item/attachable/flashlight/F = new(loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
-		user.balloon_alert(user, "You modify [src]. It can now be mounted on a weapon.")
-		to_chat(user, span_notice("You modify [src]. It can now be mounted on a weapon."))
+		user.balloon_alert(user, "[src] can now be mounted on a weapon")
 		to_chat(user, span_notice("Use a screwdriver on [F] to change it back."))
 		qdel(src) //Delete da old flashlight
 

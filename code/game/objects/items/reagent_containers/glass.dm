@@ -32,13 +32,11 @@
 	set name = "Attach/Detach lid"
 	set category = "Object"
 	if(is_open_container())
-		balloon_alert(usr, "You put the lid on \the [src].")
-		to_chat(usr, span_notice("You put the lid on \the [src]."))
+		balloon_alert(usr, "You put the lid on")
 		DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 		ENABLE_BITFIELD(reagents.reagent_flags, TRANSPARENT)
 	else
-		balloon_alert(usr, "You take the lid off \the [src].")
-		to_chat(usr, span_notice("You take the lid off \the [src]."))
+		balloon_alert(usr, "You take the lid off")
 		DISABLE_BITFIELD(reagents.reagent_flags, TRANSPARENT)
 		ENABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER)
 	update_icon()
@@ -51,16 +49,13 @@
 
 	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
 		if(!is_drainable())
-			user.balloon_alert(user, "take [src]'s lid off first!")
-			to_chat(user, span_warning("take [src]'s lid off first!"))
+			user.balloon_alert(user, "take [src]'s lid off first")
 			return
 		if(!reagents.total_volume)
-			user.balloon_alert(user, "[src] is empty!")
-			to_chat(user, span_warning("[src] is empty!"))
+			user.balloon_alert(user, "[src] is empty")
 			return
 		if(target.reagents.holder_full())
-			user.balloon_alert(user, "\The [src] is full!")
-			to_chat(user, span_warning("[target] is full."))
+			user.balloon_alert(user, "\The [src] is full")
 			return
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
@@ -71,12 +66,10 @@
 			to_chat(user, span_warning("take [src]'s lid off first!"))
 			return
 		if(!target.reagents.total_volume)
-			user.balloon_alert(user, "[target] is empty and can't be refilled!")
-			to_chat(user, span_warning("[target] is empty and can't be refilled!"))
+			user.balloon_alert(user, "[target] is empty and can't be refilled")
 			return
 		if(reagents.holder_full())
-			user.balloon_alert(user, "\The [src] is full!")
-			to_chat(user, span_warning("[src] is full."))
+			user.balloon_alert(user, "\The [src] is full")
 			return
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
@@ -84,8 +77,7 @@
 
 	if(user.a_intent == INTENT_HARM)
 		if(!is_open_container()) //Can't splash stuff from a sealed container. I dare you to try.
-			user.balloon_alert(user, "An airtight seal prevents you from splashing the solution!")
-			to_chat(user, span_warning("An airtight seal prevents you from splashing the solution!"))
+			user.balloon_alert(user, "An airtight seal prevents you from splashing the solution")
 			return
 
 		if(ismob(target) && target.reagents && reagents.total_volume)
@@ -107,7 +99,6 @@
 
 		else if(reagents.total_volume)
 			user.balloon_alert(usr, "You splash the solution onto [target].")
-			to_chat(user, span_notice("You splash the solution onto [target]."))
 			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 			reagents.reaction(target, TOUCH)
 			addtimer(CALLBACK(reagents, /datum/reagents.proc/clear_reagents), 5)

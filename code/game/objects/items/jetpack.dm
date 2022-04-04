@@ -125,8 +125,7 @@
 		to_chat(human_user,span_warning("You cannot use the jetpack yet!"))
 		return
 	if(fuel_left < FUEL_USE)
-		human_user.balloon_alert(human_user, "The jetpack ran out of fuel!")
-		to_chat(human_user,span_warning("The jetpack ran out of fuel!"))
+		human_user.balloon_alert(human_user, "The jetpack ran out of fuel")
 		return
 	INVOKE_ASYNC(src, .proc/use_jetpack, A, human_user)
 
@@ -168,7 +167,6 @@
 	var/obj/structure/reagent_dispensers/fueltank/FT = target
 	if(FT.reagents.total_volume == 0)
 		user.balloon_alert(user, "Out of fuel!")
-		to_chat(user, span_warning("Out of fuel!"))
 		return
 
 	var/fuel_transfer_amount = min(FT.reagents.total_volume, (fuel_max - fuel_left))
@@ -178,8 +176,7 @@
 	change_fuel_indicator()
 	update_icon()
 	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
-	user.balloon_alert(user, "You refill [src] with [target].")
-	to_chat(user, span_notice("You refill [src] with [target]."))
+	user.balloon_alert(user, "You refill [src]")
 
 /obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -188,7 +185,6 @@
 	var/obj/item/ammo_magazine/flamer_tank/FT = I
 	if(FT.current_rounds == 0)
 		user.balloon_alert(user, "Out of fuel!")
-		to_chat(user, span_warning("Out of fuel!"))
 		return
 
 	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
