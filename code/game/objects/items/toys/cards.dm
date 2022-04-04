@@ -28,7 +28,7 @@
 
 /obj/item/toy/deck/examine(mob/user)
 	. = ..()
-	to_chat(user,"<span class='notice'>Right-click the pack to draw a card. Click-drag to someone to deal them a card. Right click a card to discard it, and place it face up. You can also use the cards in your hand to conceal or reveal them.</span>")
+	. += span_notice("Right-click the pack to draw a card. Click-drag to someone to deal them a card. Right click a card to discard it, and place it face up. You can also use the cards in your hand to conceal or reveal them")
 
 /obj/item/toy/deck/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -244,11 +244,11 @@
 /obj/item/toy/handcard/examine(mob/user)
 	. = ..()
 	if(cards.len)
-		to_chat(user, span_notice("It has [cards.len] cards. "))
+		. += span_notice("It has [cards.len] cards.")
 		if((!concealed || loc == user))
-			to_chat(user, span_notice("The cards are: "))
+			. += span_notice("The cards are: ")
 			for(var/datum/playingcard/P in cards)
-				to_chat(user, "-[P.name]")
+				. += "-[P.name]"
 
 /obj/item/toy/handcard/update_icon(direction = 0)
 	if(cards.len > 1)

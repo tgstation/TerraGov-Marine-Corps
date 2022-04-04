@@ -86,9 +86,9 @@
 /obj/item/paper_bundle/examine(mob/user)
 	. = ..()
 	if(in_range(user, src))
-		src.attack_self(user)
+		attack_self(user)
 	else
-		to_chat(user, span_notice("It is too far away to read."))
+		. += span_notice("It is too far away to read.")
 
 /obj/item/paper_bundle/attack_self(mob/user as mob)
 	if(ishuman(user))
