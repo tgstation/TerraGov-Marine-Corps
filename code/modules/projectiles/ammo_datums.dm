@@ -1477,8 +1477,8 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "shell_he"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
-	damage = 150
-	penetration = 30
+	damage = 160
+	penetration = 40
 	sundering = 65
 
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
