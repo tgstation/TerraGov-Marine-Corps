@@ -264,6 +264,17 @@
 /obj/machinery/deployable/mounted/atgun/attack_hand_alternate(mob/living/user)
 	return sponson.open(user)
 
+/obj/machinery/deployable/mounted/atgun/AltRightClick(mob/living/user)
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
+		return
+
+	if(!anchored)
+		anchored = TRUE
+		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
+	else
+		anchored = FALSE
+		to_chat(user, span_warning("You unanchored the gun from the gruond. It may be moved."))
+
 /obj/item/storage/internal/ammo_rack/handle_mousedrop(mob/user, obj/over_object)
 	if(!ishuman(user) || user.lying_angle || user.incapacitated())
 		return FALSE
