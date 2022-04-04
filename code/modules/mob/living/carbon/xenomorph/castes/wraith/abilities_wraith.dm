@@ -688,7 +688,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(get_turf(portal))
 		banishment_target.forceMove(get_turf(portal))
 	else //The portal got removed. There's no way back. Ohgodohfuck.
-		banishment_target.forceMove(locate(backup_coordinates[1],backup_coordinates[2],backup_coordinates[3]))
+		banishment_target.forceMove(locate(backup_coordinates[1], backup_coordinates[2], backup_coordinates[3]))
 
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
