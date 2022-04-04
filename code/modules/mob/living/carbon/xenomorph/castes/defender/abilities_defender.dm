@@ -200,7 +200,6 @@
 	if(X.crest_defense)
 		var/defensebonus = X.xeno_caste.crest_defense_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_3)
 		last_crest_bonus = defensebonus
 		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, X.xeno_caste.crest_defense_slowdown)
 
@@ -241,7 +240,6 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
 		var/defensebonus = X.xeno_caste.crest_defense_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_3)
 		last_crest_bonus = defensebonus
 		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, X.xeno_caste.crest_defense_slowdown)
 	else
@@ -250,7 +248,6 @@
 		GLOB.round_statistics.defender_crest_raises++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_crest_bonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
 		last_crest_bonus = 0
 		X.remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
 	X.update_icons()
@@ -273,7 +270,6 @@
 	if(X.fortify)
 		var/fortifyAB = X.xeno_caste.fortify_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_4)
 		last_fortify_bonus = fortifyAB
 
 /datum/action/xeno_action/fortify/on_cooldown_finish()
@@ -313,13 +309,11 @@
 			to_chat(X, span_xenowarning("We tuck ourselves into a defensive stance."))
 		var/fortifyAB = X.xeno_caste.fortify_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_4)
 		last_fortify_bonus = fortifyAB
 	else
 		if(!silent)
 			to_chat(X, span_xenowarning("We resume our normal stance."))
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_fortify_bonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
 		last_fortify_bonus = 0
 		REMOVE_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 	X.fortify = on
