@@ -742,7 +742,7 @@
 /datum/action/xeno_action/activable/xeno_spit/use_ability(atom/A)
 	if(!owner.GetComponent(/datum/component/ai_controller)) //If its not an ai it will register to listen for clicks instead of use this proc. We want to call start_fire from here only if the owner is an ai.
 		return
-	start_fire(object = A, can_use_ability_flags = XACT_IGNORE_SELECTED_ABILITY) 
+	start_fire(object = A, can_use_ability_flags = XACT_IGNORE_SELECTED_ABILITY)
 
 ///Starts the xeno firing.
 /datum/action/xeno_action/activable/xeno_spit/proc/start_fire(datum/source, atom/object, turf/location, control, params, can_use_ability_flags)
@@ -833,6 +833,8 @@
 		return FALSE
 	return TRUE
 
+/datum/action/xeno_action/activable/xeno_spit/should_show()
+	return !(owner.status_flags & INCORPOREAL)
 
 /datum/action/xeno_action/xenohide
 	name = "Hide"

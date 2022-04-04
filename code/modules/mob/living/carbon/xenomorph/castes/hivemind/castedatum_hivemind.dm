@@ -29,8 +29,8 @@
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = XENO_BOMB_RESIST_1, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	// *** Ranged Attack *** //
-	spit_delay = 0 SECONDS
-	spit_types = list()
+	spit_delay = 2 SECONDS
+	spit_types = list(/datum/ammo/xeno/sticky)
 
 	aura_strength = 0
 
@@ -44,6 +44,7 @@
 		/datum/action/xeno_action/activable/psychic_cure/hivemind,
 		/datum/action/xeno_action/toggle_pheromones/hivemind,
 		/datum/action/xeno_action/activable/secrete_resin/ranged/slow,
+		/datum/action/xeno_action/activable/xeno_spit,
 	)
 
 /datum/xeno_caste/hivemind/on_caste_applied(mob/xenomorph)
