@@ -43,3 +43,9 @@
   Wayland-Smithy:
   - bugfix: Fixed xeno ex_act severity math.
   - bugfix: Fixed Crusher Rapid Advance forcing 8 directions only.
+2022-04-04:
+  Wayland-Smithy:
+  - rscadd: Added xeno overheal amount to the status panel.
+  - balance: Mature+ Crusher now has bomb resist 4.
+  breadhunt:
+  - bugfix: CAS and CIC eyes are now visible to marines like AI eye

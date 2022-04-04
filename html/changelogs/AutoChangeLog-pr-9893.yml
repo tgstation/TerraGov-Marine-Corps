@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - bugfix: "CAS and CIC eyes are now visible to marines like AI eye"
