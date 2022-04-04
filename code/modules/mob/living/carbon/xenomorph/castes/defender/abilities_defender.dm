@@ -330,7 +330,7 @@
 // ***************************************
 // *********** Regenerate Skin
 // ***************************************
-/datum/action/xeno_action/activable/regenerate_skin
+/datum/action/xeno_action/regenerate_skin
 	name = "Regenerate Skin"
 	action_icon_state = "regenerate_skin"
 	mechanics_text = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
@@ -341,15 +341,15 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
 
-/datum/action/xeno_action/activable/regenerate_skin/on_cooldown_finish()
+/datum/action/xeno_action/regenerate_skin/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_notice("We feel we are ready to shred our skin and grow another."))
 	return ..()
 
-/datum/action/xeno_action/activable/regenerate_skin/action_activate()
+/datum/action/xeno_action/regenerate_skin/action_activate()
 	var/mob/living/carbon/xenomorph/defender/X = owner
 
-	if(!can_use_ability(src, TRUE))
+	if(!can_use_action(TRUE))
 		return fail_activate()
 
 	if(X.on_fire)
@@ -370,7 +370,7 @@
 // ***************************************
 // *********** Centrifugal force
 // ***************************************
-/datum/action/xeno_action/activable/centrifugal_force
+/datum/action/xeno_action/centrifugal_force
 	name = "Centrifugal force"
 	action_icon_state = "centrifugal_force"
 	mechanics_text = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
@@ -385,14 +385,16 @@
 	///timer hash for the timer we use when spinning
 	var/spin_loop_timer
 
-/datum/action/xeno_action/activable/centrifugal_force/can_use_action(silent, override_flags)
+/datum/action/xeno_action/centrifugal_force/can_use_action(silent, override_flags)
+	if(spin_loop_timer)
+		return TRUE
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
 		to_chat(X, span_xenowarning("We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!"))
 		return FALSE
 
-/datum/action/xeno_action/activable/centrifugal_force/action_activate()
+/datum/action/xeno_action/centrifugal_force/action_activate()
 	if(spin_loop_timer)
 		stop_spin()
 		return
@@ -409,7 +411,7 @@
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_spin)
 
 /// runs a spin, then starts the timer for a new spin if needed
-/datum/action/xeno_action/activable/centrifugal_force/proc/do_spin()
+/datum/action/xeno_action/centrifugal_force/proc/do_spin()
 	spin_loop_timer = null
 	var/mob/living/carbon/xenomorph/X = owner
 	X.spin(4, 1)
@@ -444,7 +446,7 @@
 	stop_spin()
 
 /// stops spin and unregisters all listeners
-/datum/action/xeno_action/activable/centrifugal_force/proc/stop_spin()
+/datum/action/xeno_action/centrifugal_force/proc/stop_spin()
 	SIGNAL_HANDLER
 	if(spin_loop_timer)
 		deltimer(spin_loop_timer)
