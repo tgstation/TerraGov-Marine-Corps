@@ -11,12 +11,15 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	draw_mode = 1
 	allow_drawing_method = TRUE
-	var/base_icon = "m37_holster" ///is used to store the 'empty' sprite name
+	///is used to store the 'empty' sprite name
+	var/base_icon = "m37_holster"
+	///the sound produced when the special item is drawn
 	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
+	///the sound produced when the special item is sheathed
 	var/sheatheSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 	///the snowflake item(s) that will update the sprite.
 	var/list/holsterable_allowed = list()
-	///is the special item currently in the holster
+	///records whether the special item currently in the holster
 	var/holstered = FALSE
 
 /obj/item/storage/holster/equipped(mob/user, slot)
@@ -78,7 +81,7 @@
 /obj/item/storage/holster/backholster
 	name = "Backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too"
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') ///robots have snowflake backpack icons
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
 	max_w_class = 3 //normal items
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS ///0 out for satchel types
@@ -90,7 +93,6 @@
 	if (use_sound)
 		playsound(loc, use_sound, 15, 1, 6)
 
-///just need the sound bit, not sure if I can . = ..() the rest due to the nested if
 /obj/item/storage/holster/backholster/equipped(mob/user, slot)
 	if(slot == SLOT_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
@@ -109,7 +111,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = 5
 	max_w_class = 4
-	access_delay = 0
+	access_delay = 0.5 SECONDS
 	holsterable_allowed = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle,)
 	bypass_w_limit = list(/obj/item/weapon/gun/launcher/rocket/recoillessrifle,)
 	///only one RR per bag
@@ -118,7 +120,7 @@
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own damn sprites, pls.
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own snowflake back sprites
 
 ///one slot holsters
 
