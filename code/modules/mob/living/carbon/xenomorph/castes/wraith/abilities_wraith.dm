@@ -343,7 +343,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 ///Checks if we're trying to re-materialise into a turf we're not supposed to be in. Return true if we can't shift into here
 /datum/action/xeno_action/phase_shift/proc/check_blocks(current_turf)
 	//So we rematerialized in a solid wall/space or invincible dense object
-	if(isspaceturf(current_turf) || turf_block_check(owner, current_turf, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE) || iswallturf(current_turf))
+	if(isspaceturf(current_turf) || turf_block_check(owner, current_turf, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE))
 		return TRUE
 
 	//We can accidentally get stuck in these
@@ -757,6 +757,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/T = get_turf(target)
 	if(isspaceturf(T) && !ignore_space)
 		return TRUE
+	if(isclosedturf(T) && !ignore_closed_turf) //If we care about closed turfs
+		return TRUE
 	for(var/atom/blocker AS in T)
 		if((blocker.flags_atom & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
 			continue
@@ -765,8 +767,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(!blocker.density) //Check if we're dense
 			continue
 		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
-			return TRUE
-		if(isclosedturf(blocker) && !ignore_closed_turf) //If we care about closed turfs
 			return TRUE
 		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
 			return TRUE
