@@ -55,7 +55,7 @@
 
 /obj/machinery/roomba/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "A panel on the top says it has cleaned [counter] items!")
+	. += "A panel on the top says it has cleaned [counter] items!"
 
 ///Turns the roomba around when it leaves an area to make sure it doesnt wander off
 /obj/machinery/roomba/proc/turn_around(datum/target)

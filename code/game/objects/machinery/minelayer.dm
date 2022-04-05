@@ -84,4 +84,4 @@
 
 /obj/machinery/deployable/minelayer/examine(mob/user)
 	. = ..()
-	to_chat(user, span_info("[src] currently has [stored_amount]/[max_amount] stored mines."))
+	. += span_info("[src] currently has [stored_amount]/[max_amount] stored mines.")

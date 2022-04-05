@@ -1,5 +1,0 @@
-author: "Notamaniac"
-delete-after: True
-changes: 
-  - bugfix: "Powerpacks don't disappear on your back when they run out of ammo anymore"
-  - imageadd: "Powerpacks have been resprited"

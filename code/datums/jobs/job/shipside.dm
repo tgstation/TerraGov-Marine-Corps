@@ -921,6 +921,25 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 		<b>Duty</b>: Manage relations between Nanotrasen and TerraGov Marine Corps. Report your findings via faxes. Reply if you’re called.
 	"}
 
+/datum/job/terragov/civilian/liaison/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) // 0 to 10 hours
+			new_human.wear_id.paygrade = "NT1"
+		if(601 to 1500) // 10 to 25 hours
+			new_human.wear_id.paygrade = "NT2"
+		if(1501 to 3000) // 25 to 50 hours
+			new_human.wear_id.paygrade = "NT3"
+		if(3001 to 6000) // 50 to 100 hours
+			new_human.wear_id.paygrade = "NT4"
+		if(6000 to INFINITY) // Above 100 hours
+			new_human.wear_id.paygrade = "NT5"
 
 /datum/job/terragov/civilian/liaison/radio_help_message(mob/M)
 	. = ..()

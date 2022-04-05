@@ -425,22 +425,42 @@
 	name = "Flight surgeron medical equipment dispenser"
 	desc = "Dedicated for the surgeron with wings, this humble box contains a lot for its size."
 	products = list(
-		/obj/item/storage/pill_bottle/russian_red = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 0,
-		/obj/item/stack/medical/heal_pack/gauze = 2,
-		/obj/item/stack/medical/heal_pack/ointment = 2,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 5,
-		/obj/item/stack/medical/heal_pack/advanced/burn_pack = 5,
-		/obj/item/healthanalyzer = 1,
-		/obj/item/stack/medical/splint = 1,
+		"Autoinjectors" = list(
+			/obj/item/reagent_containers/hypospray/autoinjector/combat = 1,
+			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 2,
+			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 1,
+			/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 1,
+			/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
+			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
+			/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 1,
+			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
+			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 1,
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 1,
+		),
+		"Reagent Bottles" = list(
+			/obj/item/reagent_containers/syringe = 10,
+			/obj/item/reagent_containers/glass/bottle/dylovene = 1,
+			/obj/item/reagent_containers/glass/bottle/bicaridine = 1,
+			/obj/item/reagent_containers/glass/bottle/inaprovaline = 1,
+			/obj/item/reagent_containers/glass/bottle/spaceacillin = 1,
+			/obj/item/reagent_containers/glass/bottle/peridaxon = 1,
+			/obj/item/reagent_containers/glass/bottle/kelotane = 1,
+			/obj/item/reagent_containers/glass/bottle/dexalin = 1,
+			/obj/item/reagent_containers/glass/bottle/tramadol = 1,
+			/obj/item/reagent_containers/glass/bottle/oxycodone = 1,
+			/obj/item/reagent_containers/glass/bottle/polyhexanide = 1,
+		),
+		"Heal Pack" = list(
+			/obj/item/stack/medical/heal_pack/gauze = 2,
+			/obj/item/stack/medical/heal_pack/ointment = 2,
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 5,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 5,
+			/obj/item/healthanalyzer = 1,
+			/obj/item/stack/medical/splint = 1,
+		),
+		"EMERGENCY USE!" = list(
+			/obj/item/storage/pill_bottle/russian_red = 1,
+		),
 	)
 
 /obj/machinery/vending/security

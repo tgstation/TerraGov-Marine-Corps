@@ -1,0 +1,83 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall,
+/area/bigredv2/outside/cargo)
+"b" = (
+/obj/structure/barricade/wooden{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"g" = (
+/obj/structure/barricade/wooden{
+	dir = 4
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"h" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/barricade/wooden{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"k" = (
+/obj/item/stack/sheet/wood,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"v" = (
+/obj/effect/landmark/weed_node,
+/obj/item/stack/sheet/wood,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"x" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/item/stack/sheet/wood,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"G" = (
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"X" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"Y" = (
+/obj/item/stack/sheet/wood,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+
+(1,1,1) = {"
+a
+b
+G
+x
+a
+"}
+(2,1,1) = {"
+a
+b
+v
+h
+a
+"}
+(3,1,1) = {"
+g
+k
+k
+X
+Y
+"}

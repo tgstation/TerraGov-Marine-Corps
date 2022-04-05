@@ -284,9 +284,9 @@
 /obj/item/storage/backpack/marine/corpsman/examine(mob/user)
 	. = ..()
 	if(cell)
-		to_chat(user, span_notice("Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		. += span_notice("Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>")
 	else
-		to_chat(user, span_warning("Its defibrillator recharge unit does not have a power cell installed!"))
+		. += span_warning("Its defibrillator recharge unit does not have a power cell installed!")
 
 /obj/item/storage/backpack/marine/corpsman/update_icon_state()
 	icon_state = icon_skin
@@ -578,7 +578,7 @@
 	if(camo_active)
 		details +=("It's currently active.</br>")
 
-	to_chat(user, span_warning("[details.Join(" ")]"))
+	. += span_warning("[details.Join(" ")]")
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
@@ -736,7 +736,7 @@
 
 /obj/item/storage/backpack/marine/engineerpack/examine(mob/user)
 	. = ..()
-	to_chat(user, "[reagents.total_volume] units of fuel left!")
+	. += "[reagents.total_volume] units of fuel left!"
 
 
 /obj/item/storage/backpack/lightpack

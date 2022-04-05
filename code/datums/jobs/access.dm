@@ -225,8 +225,16 @@
 			. = size ? "APS " : "Assets Protection Specialist"
 		if("PMCDSL")
 			. = size ? "APTL " : "Assets Protection Team Leader"
-		if("NT")
-			. = size ? (gender == FEMALE ? "Ms. " : "Mr. ") : "Junior Executive"
+		if("NT1")
+			. = size ? "INT " : "Corporate Intern"
+		if("NT2")
+			. = size ? "ASSOC " : "Corporate Associate"
+		if("NT3")
+			. = size ? "PTNR " : "Corporate Partner"
+		if("NT4")
+			. = size ? "ANLST " : "Corporate Analyst"
+		if("NT5")
+			. = size ? "SPVR " : "Corporate Supervisor"
 		if("E1")
 			. = size ? "PVT " : "Private"
 		if("E2")
@@ -322,6 +330,8 @@
 		if("FRE2")
 			. = size ? "FRE " : "Freelancer Medic"
 		if("FRE3")
+			. = size ? "FRE " : "Freelancer Veteran"
+		if("FRE4")
 			. = size ? "FRE " : "Freelancer Leader"
 		if("CLF1")
 			. = size ? "CLF " : "CLF Standard"

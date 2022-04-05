@@ -230,11 +230,11 @@
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_time = 4 SECONDS
+	aim_time = 6 SECONDS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
 	soft_armor = list("melee" = 60, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
@@ -243,7 +243,7 @@
 	fire_delay = 3 SECONDS
 	burst_amount = 1
 	undeploy_time = 2000 SECONDS
-	max_integrity = 800
+	max_integrity = 500
 	deployed_item = /obj/machinery/deployable/mounted/atgun
 
 /obj/machinery/deployable/mounted/atgun

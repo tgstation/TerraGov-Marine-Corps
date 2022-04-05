@@ -40,6 +40,9 @@
 	///Light modifier for attachment to an armor piece
 	var/light_mod = 0
 
+	///Replacement for initial icon that allows for the code to work with multiple variants
+	var/base_icon
+
 	///Assoc list that uses the parents type as a key. type = "new_icon_state". This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.
 	var/list/variants_by_parent_type = list()
 
@@ -67,8 +70,10 @@
 	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
 	if(!length(variants_by_parent_type) || !(parent.type in variants_by_parent_type))
+		base_icon = icon_state
 		return
 	icon_state = variants_by_parent_type[parent.type]
+	base_icon = variants_by_parent_type[parent.type]
 	update_icon()
 
 /// Called when the module is removed from the armor.
@@ -196,7 +201,6 @@
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
-	item_state = initial(icon_state) + "_a"
 	update_icon()
 
 /obj/item/armor_module/armor/on_attach(obj/item/attaching_to, mob/user)
@@ -306,5 +310,6 @@
 	return COMPONENT_NO_AFTERATTACK
 
 ///Relays the extra controls to the user when the parent is examined.
-/obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user)
-	to_chat(user, "Right click the [parent] with paint to color the [src]")
+/obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	examine_list += "Right click the [parent] with paint to color the [src]"

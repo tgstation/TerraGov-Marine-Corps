@@ -171,11 +171,6 @@
 	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
 	new /obj/item/storage/holster/backholster/rpg(src)
 
-
-
-
-
-
 ////////////////// new specialist systems ///////////////////////////:
 
 

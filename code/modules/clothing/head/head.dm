@@ -329,10 +329,14 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
 	flags_armor_features = ARMOR_NO_DECAP
+	attachments_by_slot = list(ATTACHMENT_SLOT_HEAD_MODULE)
+	attachments_allowed = list(/obj/item/armor_module/module/binoculars)
+	starting_attachments = list(/obj/item/armor_module/module/binoculars)
 
 /obj/item/clothing/head/frelancer/beret
 	name = "\improper armored Freelancer beret"
 	icon_state = "freelancer_beret"
+	starting_attachments = list()
 
 /obj/item/clothing/head/militia
 	name = "\improper armored militia cowl"

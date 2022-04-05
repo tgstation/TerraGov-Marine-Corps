@@ -181,6 +181,21 @@
 	loc = null
 	loc = T
 
+/obj/item/get_examine_name(mob/user)
+	. = "\a [src]"
+	var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
+	if(article)
+		. = "[article] [src]"
+		override[EXAMINE_POSITION_ARTICLE] = article
+	if(blood_color)
+		override[EXAMINE_POSITION_BEFORE] = blood_color != "#030303" ? " bloody " : " oil-stained "
+		. = "\a [blood_color != "#030303" ? "bloody" : "oil-stained"] [src]"
+	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
+		. = override.Join("")
+
+/obj/item/examine(mob/user)
+	. = ..()
+	. += "[gender == PLURAL ? "They are" : "It is"] a [weight_class_to_text(w_class)] item."
 
 /obj/item/attack_ghost(mob/dead/observer/user)
 	if(!can_interact(user))
