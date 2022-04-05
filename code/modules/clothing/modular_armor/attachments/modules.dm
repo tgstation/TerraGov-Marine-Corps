@@ -252,11 +252,12 @@
 /obj/item/armor_module/module/eshield/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_equip)
+	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, .proc/handle_unequip)
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/parent_examine)
 
 
 /obj/item/armor_module/module/eshield/on_detach(obj/item/detaching_from, mob/user)
-	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_PARENT_EXAMINE))
+	UnregisterSignal(parent, list(COMSIG_ITEM_UNEQUIPPED, COMSIG_ITEM_EQUIPPED, COMSIG_PARENT_EXAMINE))
 	return ..()
 
 ///Called to give extra info on parent examine.
@@ -270,13 +271,7 @@
 ///Handles starting the shield when the parent is equiped to the correct slot.
 /obj/item/armor_module/module/eshield/proc/handle_equip(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
-	if(!isliving(equipper))
-		return
-	if(slot != SLOT_WEAR_SUIT)
-		UnregisterSignal(equipper, COMSIG_LIVING_SHIELDCALL)
-		STOP_PROCESSING(SSobj, src)
-		equipper.remove_filter("eshield")
-		shield_health = 0
+	if(slot != SLOT_WEAR_SUIT || !isliving(equipper))
 		return
 	if(COOLDOWN_CHECK(src, shield_damaged_cooldown))
 		START_PROCESSING(SSobj, src)
@@ -285,6 +280,16 @@
 		addtimer(CALLBACK(src, .proc/begin_recharge), COOLDOWN_TIMELEFT(src, shield_damaged_cooldown))
 
 	RegisterSignal(equipper, COMSIG_LIVING_SHIELDCALL, .proc/handle_shield)
+
+///Handles removing the shield when the parent is unequipped
+/obj/item/armor_module/module/eshield/proc/handle_unequip(datum/source, mob/unequipper, slot)
+	SIGNAL_HANDLER
+	if(slot != SLOT_WEAR_SUIT || !isliving(unequipper))
+		return
+	UnregisterSignal(unequipper, COMSIG_LIVING_SHIELDCALL)
+	STOP_PROCESSING(SSobj, src)
+	unequipper.remove_filter("eshield")
+	shield_health = 0
 
 ///Adds the correct proc callback to the shield list for intercepting damage.
 /obj/item/armor_module/module/eshield/proc/handle_shield(datum/source, list/affecting_shields, dam_type)
