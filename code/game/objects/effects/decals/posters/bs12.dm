@@ -1,28 +1,8 @@
 // baystation12 posters
-/datum/poster/bay_4
-	icon_state="bsposter4"
-	name = "Keep Calm"
-	desc = "This particular one is of a famous New Earth design, although a bit modified. Someone has scribbled an O over the A on the poster."
-
-/datum/poster/bay_6
-	icon_state="bsposter6"
-	name = "Technological Singularity"
-	desc = "This particular one is of the blood-curdling symbol of a long-since defeated enemy of humanity."
-
-/datum/poster/bay_10
-	icon_state="bsposter10"
-	name = "Don't Panic"
-	desc = "This particular one depicts some sort of star in a grimace. The \"Don't Panic\" is written in big, friendly letters."
-
-/datum/poster/bay_11
-	icon_state="bsposter11"
-	name = "Underwater Laboratory"
-	desc = "This particular one is of the fabled last crew of Nanotrasen's previous project before going big on phoron research."
-
-/datum/poster/bay_16
-	icon_state="bsposter16"
-	name = "Dangerous Static"
-	desc = "This particular one depicts nothing remarkable other than a rather mesmerising pattern of monitor static. There's a tag on the sides of the poster, but it's ripped off."
+/datum/poster/bay_1
+	icon_state="bsposter1"
+	name = "Responsible medbay habits, No #3"
+	desc = "A safety poster with a female surgeon. \"Let the surgeons do their work. NEVER replace or remove a surgery tool from where the surgeon put it!\""
 
 /datum/poster/bay_30
 	icon_state="bsposter30"
@@ -43,15 +23,6 @@
 	icon_state="bsposter33"
 	name = "Tools, tools, tools"
 	desc = "You can never have enough tools, thats for sure!"
-/datum/poster/bay_34
-	icon_state="bsposter34"
-	name = "Lusty Xenomorph"
-	desc = "A heretical poster depicting the titular star of an equally heretical book."
-
-/datum/poster/bay_36
-	icon_state="bsposter36"
-	name = "Busty Backdoor Xeno Babes 6"
-	desc = "Get a load, or give, of these all natural Xenos!"
 
 /datum/poster/bay_37
 	icon_state="bsposter37"
@@ -97,7 +68,6 @@
 	icon_state="bsposter57"
 	name = "Scary Poster"
 	desc = "Don't forget, you're here forever."
-
 
 /datum/poster/bay_58
 	icon_state="bsposter58"
