@@ -42,15 +42,17 @@
 
 /obj/item/storage/holster/handle_item_insertion(obj/item/W, prevent_warning = 0)
 	. = ..()
-	if (. && (W.type in holsterable_allowed) ) //check to see if the item being inserted is the snowflake item
-		holstered = TRUE
-		update_holster_icon()
+	if (!. || !(W.type in holsterable_allowed) ) //check to see if the item being inserted is the snowflake item
+		return
+	holstered = TRUE
+	update_holster_icon()
 
 /obj/item/storage/holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
-	if (. && (W.type in holsterable_allowed) ) //check to see if the item being removed is the snowflake item
-		holstered = FALSE
-		update_holster_icon()
+	if (!. || !(W.type in holsterable_allowed) ) //check to see if the item being removed is the snowflake item
+		return
+	holstered = FALSE
+	update_holster_icon()
 
 ///only called when the snowflake item is put in or removed
 /obj/item/storage/holster/proc/update_holster_icon()
@@ -68,10 +70,11 @@
 /obj/item/storage/holster/update_icon()
 	. = ..()
 	var/mob/user = loc
-	if(istype(user))
-		user.update_inv_back()
-		user.update_inv_belt()
-		user.update_inv_s_store()
+	if (!istype(user))
+		return
+	user.update_inv_back()
+	user.update_inv_belt()
+	user.update_inv_s_store()
 
 //backpack type holster items
 /obj/item/storage/holster/backholster
@@ -86,8 +89,9 @@
 /obj/item/storage/holster/backholster/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if (use_sound)
-		playsound(loc, use_sound, 15, 1, 6)
+	if (!use_sound)
+		return
+	playsound(loc, use_sound, 15, 1, 6)
 
 /obj/item/storage/holster/backholster/equipped(mob/user, slot)
 	if(slot == SLOT_BACK)
