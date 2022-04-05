@@ -284,7 +284,7 @@
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/blade,
+		/obj/item/storage/holster/blade,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun,
 		/obj/item/storage/belt/knifepouch,
