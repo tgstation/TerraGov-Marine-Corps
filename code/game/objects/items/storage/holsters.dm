@@ -125,7 +125,11 @@
 ///one slot holsters
 
 ///swords
-/obj/item/storage/holster/machete
+/obj/item/storage/holster/blade
+	///used only for storage path purposes
+	name = "\improper default holster"
+	desc = "You shouldn't see this."
+/obj/item/storage/holster/blade/machete
 	name = "\improper H5 pattern M2132 machete scabbard"
 	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
 	icon_state = "machete_holster"
@@ -140,20 +144,20 @@
 		/obj/item/weapon/claymore/harvester
 	)
 
-/obj/item/storage/holster/machete/full/Initialize()
+/obj/item/storage/holster/blade/machete/full/Initialize()
 	. = ..()
 	icon_state = "machete_holster_full"
 	new /obj/item/weapon/claymore/mercsword/machete(src)
 
-/obj/item/storage/holster/machete/full_harvester
+/obj/item/storage/holster/blade/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
 
-/obj/item/storage/holster/machete/full_harvester/Initialize()
+/obj/item/storage/holster/blade/machete/full_harvester/Initialize()
 	. = ..()
 	icon_state = "machete_holster_full"
 	new /obj/item/weapon/claymore/harvester(src)
 
-/obj/item/storage/holster/katana
+/obj/item/storage/holster/blade/katana
 	name = "\improper katana scabbard"
 	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back, waist or armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
 	icon_state = "katana_holster"
@@ -164,12 +168,12 @@
 	holsterable_allowed = list(/obj/item/weapon/katana)
 	can_hold = list(/obj/item/weapon/katana)
 
-/obj/item/storage/holster/katana/full/Initialize()
+/obj/item/storage/holster/blade/katana/full/Initialize()
 	. = ..()
 	icon_state = "katana_holster_full"
 	new /obj/item/weapon/katana(src)
 
-/obj/item/storage/holster/officer
+/obj/item/storage/holster/blade/officer
 	name = "\improper officer sword scabbard"
 	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
 	icon_state = "officer_sheath"
@@ -178,7 +182,7 @@
 	holsterable_allowed = list(/obj/item/weapon/claymore/mercsword/officersword)
 	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)
 
-/obj/item/storage/holster/officer/full/Initialize()
+/obj/item/storage/holster/blade/officer/full/Initialize()
 	. = ..()
 	icon_state = "officer_sheath_full"
 	new /obj/item/weapon/claymore/mercsword/officersword(src)

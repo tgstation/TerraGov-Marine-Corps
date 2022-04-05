@@ -169,7 +169,7 @@
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
-	new /obj/item/storage/backpack/rpg(src)
+	new /obj/item/storage/holster/backholster/rpg(src)
 
 
 
@@ -598,7 +598,7 @@
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/explosive/plastique(src)
 	new /obj/item/explosive/plastique(src)
-	new /obj/item/storage/large_holster/blade/machete/full(src)
+	new /obj/item/storage/holster/blade/machete/full(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 
 /obj/item/storage/box/squadmarine/engineert12
@@ -766,7 +766,7 @@
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/weapon/gun/launcher/rocket/sadar(src)
-	new /obj/item/storage/large_holster/t19(src)
+	new /obj/item/storage/holster/t19/full(src)
 	new /obj/item/weapon/gun/smg/standard_smg/nonstandard(src)
 	new /obj/item/ammo_magazine/rocket/sadar(src)
 	new /obj/item/ammo_magazine/rocket/sadar/(src)
@@ -898,7 +898,7 @@
 	new /obj/item/ammo_magazine/flamer_tank/backtank(src)
 	new /obj/item/weapon/gun/flamer/big_flamer/marinestandard(src)
 	new /obj/item/attachable/magnetic_harness(src)
-	new /obj/item/storage/large_holster/t19(src)
+	new /obj/item/storage/holster/t19/full(src)
 	new /obj/item/weapon/gun/smg/standard_smg/nonstandard(src)
 	new /obj/item/storage/pouch/magazine/large/t19full(src)
 	new /obj/item/ammo_magazine/flamer_tank/large(src)
