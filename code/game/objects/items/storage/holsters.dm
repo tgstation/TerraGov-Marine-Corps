@@ -25,11 +25,11 @@
 /obj/item/storage/holster/equipped(mob/user, slot)
 	if(slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)	///add more if needed
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
-	..()
+	return ..()
 
 /obj/item/storage/holster/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)
-	..()
+	return ..()
 
 /obj/item/storage/holster/should_access_delay(obj/item/item, mob/user, taking_out) ///defaults to 0
 	if(!taking_out) // Always allow items to be tossed in instantly
@@ -98,7 +98,7 @@
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 		if(use_sound)
 			playsound(loc, use_sound, 15, 1, 6)
-	..()
+	return ..()
 
 
 ///RR bag
@@ -129,6 +129,7 @@
 	///used only for storage path purposes
 	name = "\improper default holster"
 	desc = "You shouldn't see this."
+
 /obj/item/storage/holster/blade/machete
 	name = "\improper H5 pattern M2132 machete scabbard"
 	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
