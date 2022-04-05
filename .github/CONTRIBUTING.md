@@ -843,10 +843,13 @@ Every ship should have a believable and complete pipe system (ventilation, scrub
 
 #### Xenos related items (walls, weeds, silos, etc.)
 
-Everything related to xenos must be placed on map via a landmark, and not be directly added. This allows the map to be clean in HvH modes.
-Silos must be placed around the map for crash and hunt gamemode. A reasonable amount of turrets must be placed around the map, preferrably in caves and near silos.
+Everything related to xenos must be placed on map via a landmark, and not be directly added with the exception of tunnels. This allows the map to be clean in HvH modes. Silos must be placed around the map for crash and hunt gamemode. A reasonable amount of turrets must be placed around the map, preferrably in caves and near silos.
+
+Making tunnels into a landmark will not enable contributors to name the tunnels, thereby confusing xenomorph players on what tunnel to take. There must be at a total of 7 tunnels for xenomorphs: 4 to cover the map's corners (northwest, northeast, southwest, and southeast), 2 near known buildings that marines tranverse through, and 3 for caves. While 4+2+3 does not add up to 7 total tunnels, two corner tunnels can be inside caves.
+
 A reasonnable amount of weeds must be placed, near silos and turrets. You don't have to add resin walls or doors if you don't want to, but they add to the atmostphere.
-Adding corpse spawner also add to the atmospher, but they are not mandatory.
+
+Adding corpse spawner also add to the atmosphere, but they are not mandatory.
 
 #### Fog around silos
 

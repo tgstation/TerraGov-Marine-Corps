@@ -2623,6 +2623,12 @@
 /obj/effect/spawner/random/ammo/sidearm,
 /turf/open/floor/plating,
 /area/lv624/lazarus/tablefort)
+"aPx" = (
+/obj/structure/xeno/tunnel{
+	name = "Southeast tunnel"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle1)
 "aPD" = (
 /obj/effect/decal/remains/human,
 /obj/item/ammo_casing,
@@ -4872,6 +4878,12 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
+"bNj" = (
+/obj/structure/xeno/tunnel{
+	name = "Northeast tunnel"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "bNu" = (
 /turf/open/ground/river,
 /area/lv624/ground/sand7)
@@ -7029,6 +7041,12 @@
 	dir = 2
 	},
 /area/lv624/ground/caves/east1)
+"etu" = (
+/obj/structure/xeno/tunnel{
+	name = "Northwest tunnel"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "etx" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -12941,6 +12959,12 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle10)
+"lya" = (
+/obj/structure/xeno/tunnel{
+	name = "Southwest tunnel"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/ruin)
 "lyj" = (
 /turf/closed/mineral/indestructible,
 /area/lv624/ground/caves/rock)
@@ -18294,6 +18318,13 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/lazarus/quartstorage/outdoors)
+"rYx" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/xeno/tunnel{
+	name = "Hydro tunnel"
+	},
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/jungle7)
 "rYQ" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
@@ -22685,6 +22716,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
+"wYO" = (
+/obj/structure/xeno/tunnel{
+	name = "Center tunnel"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central3)
 "wYW" = (
 /turf/open/floor/tile/red/full,
 /area/lv624/lazarus/security)
@@ -23643,6 +23680,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
+"yaz" = (
+/obj/structure/xeno/tunnel{
+	name = "Fitness tunnel"
+	},
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "yaB" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/closed/wall/r_wall,
@@ -27242,7 +27285,7 @@ rHH
 kPr
 bgf
 vXW
-tnW
+lya
 lpu
 mcU
 kPr
@@ -28521,7 +28564,7 @@ xLJ
 xLJ
 xLJ
 xLJ
-abc
+etu
 abc
 abc
 mEN
@@ -45530,7 +45573,7 @@ kFx
 kFx
 aqo
 kFx
-kFx
+wYO
 jWv
 xLJ
 aen
@@ -48296,7 +48339,7 @@ vkA
 vkA
 wsU
 iJa
-aES
+yaz
 vUs
 kSt
 fkR
@@ -48472,7 +48515,7 @@ vMu
 vjE
 mPX
 aET
-dDC
+aES
 aES
 aRP
 kRJ
@@ -49650,7 +49693,7 @@ aWM
 arW
 arW
 arW
-jeR
+rYx
 eUY
 rGl
 tgs
@@ -58923,7 +58966,7 @@ mOs
 gCL
 gCL
 kau
-obT
+aPx
 sdC
 fuT
 sgf
@@ -60889,7 +60932,7 @@ xLJ
 aah
 aaD
 aah
-aah
+bNj
 xLJ
 xLJ
 xLJ
