@@ -79,7 +79,7 @@
 
 ///backpack type holster items
 /obj/item/storage/holster/backholster
-	name = "Backpack holster"
+	name = "backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too"
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
 	max_w_class = 3 //normal items
