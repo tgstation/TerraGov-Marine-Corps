@@ -1,7 +1,7 @@
 ///Parent item for all holster type storage items
 
 /obj/item/storage/holster
-	name = "Holster"
+	name = "holster"
 	desc = "holds stuff, and sometimes goes swoosh."
 	icon_state = "backpack"
 	w_class = WEIGHT_CLASS_BULKY
