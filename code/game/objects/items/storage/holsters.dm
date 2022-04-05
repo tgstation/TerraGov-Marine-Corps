@@ -104,7 +104,7 @@
 ///RR bag
 /obj/item/storage/holster/backholster/rpg
 	name = "\improper TGMC rocket bag"
-	desc = "This backpack can hold 5 67mm shells or 80mm rockets."
+	desc = "This backpack can hold 5 67mm shells or 80mm rockets, in addition to a recoiless launcher."
 	icon_state = "marine_rocket"
 	item_state = "marine_rocket"
 	base_icon = "marine_rocket"
