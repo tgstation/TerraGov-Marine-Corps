@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - bugfix: "Req crates no longer stay anchored when a supply drop fails"

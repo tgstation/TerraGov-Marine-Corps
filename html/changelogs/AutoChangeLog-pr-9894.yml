@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - bugfix: "Zoomed vision + offset now resets properly when ghosting/on death"

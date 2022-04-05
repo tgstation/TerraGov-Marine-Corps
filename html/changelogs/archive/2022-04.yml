@@ -49,3 +49,17 @@
   - balance: Mature+ Crusher now has bomb resist 4.
   breadhunt:
   - bugfix: CAS and CIC eyes are now visible to marines like AI eye
+2022-04-05:
+  BraveMole:
+  - balance: Plasma pistol can use masterkey
+  - balance: Shotguns can no longer attach plasma pistol
+  TiviPlus:
+  - qol: When the CAS jet UI when focused can now set fire direction with arrow keys,
+      toggle engines with enter, take off with space
+  - refactor: refactored some CAS jet backend
+  - refactor: Examine has been optimized
+  breadhunt:
+  - bugfix: Zoomed vision + offset now resets properly when ghosting/on death
+  - bugfix: Req crates no longer stay anchored when a supply drop fails
+  vilereaver41:
+  - balance: fog and silo changes
