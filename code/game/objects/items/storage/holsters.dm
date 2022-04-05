@@ -137,11 +137,11 @@
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	holsterable_allowed = list(
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/claymore/harvester
+		/obj/item/weapon/claymore/harvester,
 	)
 	can_hold = list(
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/claymore/harvester
+		/obj/item/weapon/claymore/harvester,
 	)
 
 /obj/item/storage/holster/blade/machete/full/Initialize()
