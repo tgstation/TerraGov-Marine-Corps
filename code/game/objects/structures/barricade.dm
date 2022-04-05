@@ -429,7 +429,7 @@
 #define CADE_TYPE_MELEE "ballistic armor"
 #define CADE_TYPE_ACID "caustic armor"
 
-#define CADE_UPGRADE_REQUIRED_SHEETS 2
+#define CADE_UPGRADE_REQUIRED_SHEETS 1
 
 /obj/structure/barricade/metal
 	name = "metal barricade"
