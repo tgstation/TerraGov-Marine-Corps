@@ -2,7 +2,7 @@
 
 /obj/item/storage/holster
 	name = "holster"
-	desc = "holds stuff, and sometimes goes swoosh."
+	desc = "Holds stuff, and sometimes goes swoosh."
 	icon_state = "backpack"
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 4 ///normally the special item will be larger than what should fit. Child items will have lower limits and an override
