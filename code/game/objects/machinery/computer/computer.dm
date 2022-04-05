@@ -11,6 +11,8 @@
 	///How many times the computer can be smashed by a Xeno before it is disabled.
 	var/durability = 2
 	resistance_flags = UNACIDABLE
+	///they don't provide good cover
+	coverage = 15
 
 /obj/machinery/computer/Initialize()
 	. = ..()
@@ -24,16 +26,16 @@
 /obj/machinery/computer/examine(mob/user)
 	. = ..()
 	if(machine_stat & NOPOWER)
-		to_chat(user, span_warning("It is currently unpowered."))
+		. += span_warning("It is currently unpowered.")
 
 	if(durability < initial(durability))
-		to_chat(user, span_warning("It is damaged, and can be fixed with a welder."))
+		. += span_warning("It is damaged, and can be fixed with a welder.")
 
 	if(machine_stat & DISABLED)
-		to_chat(user, span_warning("It is currently disabled, and can be fixed with a welder."))
+		. += span_warning("It is currently disabled, and can be fixed with a welder.")
 
 	if(machine_stat & BROKEN)
-		to_chat(user, span_warning("It is broken and needs to be rebuilt."))
+		. += span_warning("It is broken and needs to be rebuilt.")
 
 /obj/machinery/computer/process()
 	if(machine_stat & (NOPOWER|BROKEN|DISABLED))

@@ -90,6 +90,7 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/scope/marine,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
@@ -120,11 +121,11 @@
 	return FALSE
 
 /obj/item/weapon/gun/pistol/plasma_pistol/on_attach(obj/item/attached_to, mob/user)
-	flags_gun_features |= GUN_WIELDED_STABLE_FIRING_ONLY
+	flags_gun_features |= GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	return ..()
 
 /obj/item/weapon/gun/pistol/plasma_pistol/on_detach(obj/item/attached_to, mob/user)
-	flags_gun_features &= ~GUN_WIELDED_STABLE_FIRING_ONLY
+	flags_gun_features &= ~GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
 	return ..()
 
 

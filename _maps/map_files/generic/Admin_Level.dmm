@@ -2826,6 +2826,9 @@
 	dir = 4
 	},
 /obj/item/instrument/musicalmoth,
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -5
+	},
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -4120,6 +4123,7 @@
 /obj/item/clothing/mask/gas/swat,
 /obj/item/weapon/gun/pistol/auto9,
 /obj/item/ammo_magazine/pistol/auto9,
+/obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "fsd" = (
@@ -4461,11 +4465,11 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/weapon/gun/shotgun/combat,
 /obj/structure/extinguisher_cabinet{
 	dir = 4
 	},
 /obj/item/weapon/gun/rifle/pepperball,
+/obj/effect/spawner/random/gun/shotgun,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -4484,6 +4488,15 @@
 	icon_state = "wood-broken6"
 	},
 /area/centcom/valhalla/crew_quarters/heads/hop)
+"fST" = (
+/obj/item/clothing/glasses/hud/xenohud,
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -5
+	},
+/obj/structure/rack,
+/obj/effect/spawner/random/melee,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "fTg" = (
 /obj/effect/decal/warning_stripes/thick,
 /obj/machinery/vending/medical/valhalla,
@@ -5234,10 +5247,10 @@
 /area/centcom/valhalla/crew_quarters/kitchen)
 "gZH" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/energy/taser{
+/obj/effect/spawner/random/gun/sidearms{
 	pixel_y = 3
 	},
-/obj/item/weapon/gun/energy/taser{
+/obj/effect/spawner/random/gun/sidearms{
 	pixel_y = -2
 	},
 /turf/open/floor/tile/dark/red2{
@@ -5276,10 +5289,10 @@
 /area/centcom/valhalla/primary/aft)
 "hbV" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/energy/taser,
 /obj/item/clothing/suit/armor/laserproof,
-/obj/item/weapon/gun/energy/taser,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/gun/sidearms,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -5588,18 +5601,18 @@
 /area/centcom/valhalla/primary/starboard)
 "hAG" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/energy/taser{
-	pixel_x = -3;
-	pixel_y = 3
-	},
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser{
-	pixel_x = 3;
-	pixel_y = -3
-	},
 /obj/item/radio/intercom{
 	dir = 4;
 	name = "Station Intercom"
+	},
+/obj/effect/spawner/random/gun/sidearms{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/gun/sidearms{
+	pixel_x = -3;
+	pixel_y = 3
 	},
 /turf/open/floor/tile/dark/red2{
 	dir = 8
@@ -5781,7 +5794,7 @@
 /obj/effect/decal/tile/red{
 	dir = 8
 	},
-/obj/machinery/loadout_vendor/valhalla,
+/obj/machinery/vending/valhalla_seasonal_req,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
 "hKi" = (
@@ -5852,6 +5865,16 @@
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
+"hNy" = (
+/obj/item/clothing/glasses/hud/xenohud,
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -3;
+	pixel_y = 3
+	},
+/obj/structure/rack,
+/obj/effect/spawner/random/melee,
+/turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla/security/brig/interiorcavern)
 "hNU" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -6008,13 +6031,13 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
 "hYu" = (
-/obj/machinery/vending/valhalla_req,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/machinery/vending/valhalla_seasonal_req,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "hYZ" = (
@@ -6207,6 +6230,17 @@
 /obj/item/flash,
 /obj/item/flash,
 /obj/effect/decal/tile/red,
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -5;
+	pixel_y = 7
+	},
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -1;
+	pixel_y = 4
+	},
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -5
+	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
 "ipc" = (
@@ -7828,6 +7862,9 @@
 /obj/effect/decal/tile/black{
 	dir = 4
 	},
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -5
+	},
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -8077,6 +8114,9 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 4
 	},
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -5
+	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/medical/medbay)
 "kPV" = (
@@ -8123,9 +8163,9 @@
 /area/centcom/valhalla/port)
 "kWa" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser,
 /obj/effect/decal/tile/red,
+/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/gun/sidearms,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
 "kWn" = (
@@ -8764,6 +8804,9 @@
 	},
 /obj/effect/decal/warning_stripes/box,
 /obj/structure/sign/nosmoking_1,
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -5
+	},
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/port)
 "lQk" = (
@@ -11310,6 +11353,10 @@
 /obj/effect/decal/tile/black{
 	dir = 4
 	},
+/obj/item/ammo_magazine/packet/p4570,
+/obj/item/ammo_magazine/packet/p4570,
+/obj/item/ammo_magazine/packet/p4570,
+/obj/item/ammo_magazine/packet/p4570,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -12720,8 +12767,8 @@
 /area/centcom/valhalla/crew_quarters/bar)
 "rcu" = (
 /obj/structure/table,
-/obj/item/weapon/gun/shotgun/double,
 /obj/item/ammo_magazine/shotgun/beanbag,
+/obj/effect/spawner/random/gun/shotgun,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},
@@ -13605,16 +13652,9 @@
 /obj/item/spacecash/c100,
 /obj/item/spacecash/c100,
 /obj/item/spacecash/c100,
-/obj/item/spacecash/c100,
 /obj/item/spacecash/c500,
 /obj/item/spacecash/c500,
 /obj/item/spacecash/c500,
-/obj/item/spacecash/c500,
-/obj/item/book{
-	desc = "An undeniably handy book.";
-	icon_state = "bookknock";
-	name = "A Simpleton's Guide to Safe-cracking with Stethoscopes"
-	},
 /obj/item/clothing/tie/stethoscope,
 /obj/item/stack/sheet/mineral/diamond,
 /obj/effect/decal/warning_stripes/thick{
@@ -13802,6 +13842,7 @@
 /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC,
 /obj/item/portable_vendor/marine/squadmarine/smartgunner,
 /obj/item/storage/box/m94,
+/obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "sDo" = (
@@ -14420,7 +14461,7 @@
 	dir = 1
 	},
 /obj/item/restraints/handcuffs,
-/obj/item/weapon/gun/energy/taser,
+/obj/effect/spawner/random/gun/sidearms,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
 "tuC" = (
@@ -16778,6 +16819,15 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -3;
+	pixel_y = -2
+	},
+/obj/item/clothing/glasses/hud/xenohud{
+	pixel_x = -5;
+	pixel_y = 3
+	},
+/obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "wge" = (
@@ -23936,7 +23986,7 @@ lgU
 rXh
 fmR
 hTv
-ndm
+fST
 llp
 ndm
 knm
@@ -24488,7 +24538,7 @@ vQc
 fmR
 fWu
 hTv
-ndm
+hNy
 yeN
 tzf
 knm

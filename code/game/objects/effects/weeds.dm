@@ -56,10 +56,10 @@
 	return ..()
 
 /obj/effect/alien/weeds/examine(mob/user)
-	..()
+	. = ..()
 	var/turf/T = get_turf(src)
 	if(isfloorturf(T))
-		T.ceiling_desc(user)
+		. += T.ceiling_desc()
 
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)

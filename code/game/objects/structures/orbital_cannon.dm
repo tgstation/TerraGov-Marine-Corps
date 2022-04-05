@@ -14,6 +14,7 @@
 	bound_height = 64
 	bound_y = 64
 	resistance_flags = RESIST_ALL
+	throwpass = FALSE
 	var/obj/structure/orbital_tray/tray
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
@@ -351,8 +352,8 @@
 		return TRUE
 
 /obj/structure/ob_ammo/examine(mob/user)
-	..()
-	to_chat(user, "Moving this will require some sort of lifter.")
+	. = ..()
+	. += "Moving this will require some sort of lifter."
 
 
 /obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag)

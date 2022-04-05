@@ -216,6 +216,8 @@
 	var/list/aim_fire_delay_mods = list()
 	///Determines character slowdown from aim mode. Default is 66%
 	var/aim_speed_modifier = 6
+	/// Time to enter aim mode, generally one second.
+	var/aim_time = 1 SECONDS
 
 	///How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_amount = 1
@@ -270,7 +272,8 @@
 		ATTACHMENT_SLOT_UNDER,
 		ATTACHMENT_SLOT_MAGAZINE,
 	)
-
+	///the current gun attachment, used for attachment aim mode
+	var/obj/item/weapon/gun/gunattachment = null
 /*
  * Gun as Attachment Vars
 */
@@ -294,6 +297,8 @@
 /*
  * Deployed and Sentry Vars
 */
+	///If the gun has a deployed item..
+	var/deployed_item = null
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
@@ -336,11 +341,8 @@
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
-	if(flags_item & IS_DEPLOYABLE)
-		if(flags_gun_features & GUN_IS_SENTRY)
-			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time, undeploy_time)
-		else
-			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted, deploy_time, undeploy_time)
+	if(deployed_item)
+		AddElement(/datum/element/deployable_item, deployed_item, deploy_time, undeploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
@@ -403,6 +405,8 @@
 		gun_user.hud_used.remove_ammo_hud(gun_user, src)
 		gun_user = null
 	if(!user)
+		return
+	if(master_gun?.master_gun) //Prevent gunception
 		return
 	gun_user = user
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
@@ -492,16 +496,16 @@
 		dat += gun_attachable.rounds ? "([gun_attachable.rounds + chamber]/[gun_attachable.max_rounds])" : "(Unloaded)"
 
 	if(dat)
-		to_chat(user, "[dat.Join(" ")]")
+		. += "[dat.Join(" ")]"
 
 	examine_ammo_count(user)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
-			to_chat(user, span_notice("Use Ctrl-Click to deploy."))
+			. += span_notice("Use Ctrl-Click to deploy.")
 		return
-	to_chat(user, span_notice("Click-Drag to yourself to undeploy."))
-	to_chat(user, span_notice("Alt-Click to unload."))
-	to_chat(user, span_notice("Right-Click to perform the guns unique action."))
+	. += span_notice("Click-Drag to yourself to undeploy.")
+	. += span_notice("Alt-Click to unload.")
+	. += span_notice("Right-Click to perform the guns unique action.")
 
 ///Gives the user a description of the ammunition remaining, as well as other information pertaining to reloading/ammo.
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)

@@ -47,6 +47,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/hitscan_effect_icon = "beam"
 	///A multiplier applied to piercing projectile, that reduces its damage/penetration/sundering on hit
 	var/on_pierce_multiplier = 1
+	///greyscale config for the bullet items associated with the ammo
+	var/handful_greyscale_config = null
+	///greyscale color for the bullet items associated with the ammo
+	var/handful_greyscale_colors = null
+	///greyscale config for the projectile associated with the ammo
+	var/projectile_greyscale_config = null
+	///greyscale color for the projectile associated with the ammo
+	var/projectile_greyscale_colors = null
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -188,8 +196,34 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(shooter.Adjacent(target) ? target : null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
+		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.loc, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
+/// A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
+/datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
+	var/effect_icon = ""
+	var/proj_type = /obj/projectile
+	if(istype(main_proj, /obj/projectile/hitscan))
+		proj_type = /obj/projectile/hitscan
+		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
+		effect_icon = main_proj_hitscan.effect_icon
+	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
+		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
+		if(bonus_projectiles_type)
+			new_proj.generate_bullet(bonus_projectiles_type)
+			var/obj/item/weapon/gun/g = source
+			if(source) //Check for the source so we don't runtime if we have bonus projectiles from a non-gun source like a Spitter
+				new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
+		else //If no bonus type is defined then the extra projectiles are the same as the main one.
+			new_proj.generate_bullet(src)
+
+		///Scatter here is how many degrees extra stuff deviate from the main projectile's firing angle. Fully randomised with no 45 degree cap like normal bullets
+		var/f = (i-1)
+		var/new_angle = angle + (main_proj.ammo.bonus_projectiles_scatter * ((f % 2) ? (-(f + 1) * 0.5) : (f * 0.5)))
+		if(new_angle < 0)
+			new_angle += 360
+		if(new_angle > 360)
+			new_angle -= 360
+		new_proj.fire_at(shooter.Adjacent(target) ? target : null, main_proj.loc, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 /datum/ammo/proc/drop_flame(turf/T)
 	if(!istype(T))
@@ -608,9 +642,9 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	penetration = 10
-	damage = 30
-	sundering = 1
+	penetration = 15
+	damage = 32.5
+	sundering = 1.25
 
 /datum/ammo/bullet/rifle/standard_br/incendiary
 	name = "incendiary light marksman bullet"
@@ -935,9 +969,9 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 4
 	accurate_range = 30
 	max_range = 40
-	damage = 80
-	penetration = 60
-	sundering = 15
+	damage = 90
+	penetration = 80
+	sundering = 0
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -969,6 +1003,7 @@ datum/ammo/bullet/revolver/tp44
 	handful_amount = 5
 	damage = 75
 	penetration = 35
+	sundering = 15
 
 /datum/ammo/bullet/sniper/martini
 	name = "crude heavy sniper bullet"
@@ -989,6 +1024,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accuracy = 40
 	damage = 100
+	penetration = 60
 	sundering = 50
 
 /datum/ammo/bullet/sniper/pfc
@@ -1084,9 +1120,9 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SENTRY
 	accurate_range = 10
-	damage = 50
-	penetration = 5
-	damage_falloff = 0.5
+	damage = 25
+	penetration = 20
+	damage_falloff = 0.25
 
 /datum/ammo/bullet/turret/dumb
 	icon_state = "bullet"
@@ -1097,8 +1133,8 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
-	damage = 25
-	penetration = 5
+	damage = 20
+	penetration = 20
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SENTRY
 
 
@@ -1142,6 +1178,120 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
+
+/datum/ammo/tx54
+	name = "20mm airburst grenade"
+	icon_state = "20mm_flight"
+	hud_state = "grenade_airburst"
+	hud_state_empty = "grenade_empty"
+	handful_icon_state = "20mm_airburst"
+	handful_amount = 3
+	ping = null //no bounce off.
+	sound_bounce	= "rocket_bounce"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	armor_type = "bomb"
+	damage_falloff = 0.5
+	shell_speed = 2
+	accurate_range = 12
+	max_range = 15
+	damage = 12			//impact damage from a grenade to the dome
+	penetration = 0
+	sundering = 0
+	shrapnel_chance = 0
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread
+	bonus_projectiles_scatter = 10
+
+	handful_greyscale_config = /datum/greyscale_config/ammo
+	handful_greyscale_colors = "#3ab0c9"
+
+	projectile_greyscale_config = /datum/greyscale_config/projectile
+	projectile_greyscale_colors = "#3ab0c9"
+
+/datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
+	bonus_projectiles_amount = 7
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, M) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx54/on_hit_obj(obj/O, obj/projectile/proj)
+	bonus_projectiles_amount = 7
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, O) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx54/on_hit_turf(turf/T, obj/projectile/proj)
+	bonus_projectiles_amount = 7
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, T) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx54/do_at_max_range(obj/projectile/proj)
+	bonus_projectiles_amount = 7
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 4, 3, Get_Angle(proj.firer, get_turf(proj)) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/tx54/incendiary
+	name = "20mm incendiary grenade"
+	hud_state = "grenade_fire"
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/incendiary
+	bullet_color = LIGHT_COLOR_FIRE
+	handful_greyscale_colors = "#fa7923"
+	projectile_greyscale_colors = "#fa7923"
+
+/datum/ammo/bullet/tx54_spread
+	name = "Shrapnel"
+	icon_state = "flechette"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	accuracy_var_low = 15
+	accuracy_var_high = 5
+	max_range = 4
+	damage = 20
+	penetration = 20
+	sundering = 3
+	damage_falloff = 0
+
+/datum/ammo/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 3, stagger = 0.1, slowdown = 0.1, shake = 0)
+
+/datum/ammo/bullet/tx54_spread/incendiary
+	name = "incendiary flechette"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
+	damage = 15
+	penetration = 10
+	sundering = 1.5
+
+/datum/ammo/bullet/tx54_spread/incendiary/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	T.ignite(5, 10)
+
+/datum/ammo/bullet/tx54_spread/incendiary/on_leave_turf(turf/T, atom/firer)
+	drop_flame(T)
+
+/datum/ammo/tx54/he
+	name = "20mm HE grenade"
+	hud_state = "grenade_he"
+	bonus_projectiles_type = null
+	max_range = 12
+	handful_greyscale_colors = "#b02323"
+	projectile_greyscale_colors = "#b02323"
+
+/datum/ammo/tx54/he/drop_nade(turf/T)
+	explosion(T, 0, 0, 2, 2)
+
+/datum/ammo/tx54/he/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/tx54/he/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+
+/datum/ammo/tx54/he/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T)
+
+/datum/ammo/tx54/he/do_at_max_range(obj/projectile/P)
+	drop_nade(get_turf(P))
 
 /*
 //================================================
@@ -1322,6 +1472,44 @@ datum/ammo/bullet/revolver/tp44
 	damage = 100
 	penetration = 100
 	sundering = 100
+
+/datum/ammo/rocket/atgun_shell
+	name = "high explosive ballistic cap shell"
+	icon_state = "atgun"
+	hud_state = "shell_heat"
+	hud_state_empty = "shell_empty"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF
+	shell_speed = 2
+	damage = 90
+	penetration = 30
+	sundering = 10
+	handful_amount = 1
+
+/datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 2)
+
+/datum/ammo/rocket/atgun_shell/apcr
+	name = "tungsten penetrator"
+	hud_state = "shell_he"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 4
+	damage = 150
+	penetration = 100
+	sundering = 55
+
+/datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
+	explosion(T, 0, 0, 1, 0)
+
+/datum/ammo/rocket/atgun_shell/he
+	name = "high velocity high explosive shell"
+	hud_state = "shell_he"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	damage = 50
+	penetration = 50
+	sundering = 25
+
+/datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
+	explosion(T, 0, 3, 5, 0)
 
 /*
 //================================================
@@ -2091,7 +2279,7 @@ datum/ammo/bullet/revolver/tp44
 		var/mob/living/carbon/xenomorph/X = firer
 		smoke_system.strength = X.xeno_caste.bomb_strength
 		if(fixed_spread_range == -1)
-			range = max(2, range + X.upgrade_as_number())
+			range = max(2, range + min(X.upgrade_as_number(), 3))
 		else
 			range = fixed_spread_range
 	smoke_system.set_up(range, T)

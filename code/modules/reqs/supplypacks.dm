@@ -75,7 +75,7 @@ OPERATIONS
 
 /datum/supply_packs/operations/pinpointer
 	name = "pool tracker crate"
-	contains = list(/obj/item/pinpointer/pool)
+	contains = list(/obj/item/pinpointer)
 	cost = 20
 	available_against_xeno_only = TRUE
 
@@ -202,10 +202,63 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/tl102)
 	cost = 10
 
+/datum/supply_packs/weapons/antitankgun
+	name = "TAT-36 Anti Tank Gun"
+	contains = list(/obj/item/weapon/gun/standard_atgun)
+	cost = 60
+
+/datum/supply_packs/weapons/antitankgunammo
+	name = "TAT-36 AP-HE Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun,
+		/obj/item/ammo_magazine/standard_atgun,
+		/obj/item/ammo_magazine/standard_atgun,
+	)
+	cost = 2
+
+/datum/supply_packs/weapons/antitankgunammo/apcr
+	name = "TAT-36 APCR Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/apcr,
+		/obj/item/ammo_magazine/standard_atgun/apcr,
+		/obj/item/ammo_magazine/standard_atgun/apcr,
+	)
+	cost = 2
+
+/datum/supply_packs/weapons/antitankgunammo/he
+	name = "TAT-36 HE Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/he,
+		/obj/item/ammo_magazine/standard_atgun/he,
+		/obj/item/ammo_magazine/standard_atgun,
+	)
+	cost = 2
+
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/tesla)
 	cost = 60
+
+/datum/supply_packs/weapons/tx54
+	name = "TX-54 airburst grenade launcher"
+	contains = list(/obj/item/weapon/gun/rifle/tx54)
+	cost = 30
+
+/datum/supply_packs/weapons/tx54_airburst
+	name = "TX-54 airburst grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54)
+	cost = 4
+
+/datum/supply_packs/weapons/tx54_incendiary
+	name = "TX-54 incendiary grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/incendiary)
+	cost = 6
+
+/datum/supply_packs/weapons/tx54_he
+	name = "TX-54 HE grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/he)
+	cost = 10
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/recoillesskit
 	name = "T-160 Recoilless rifle kit"
@@ -587,10 +640,11 @@ ARMOR
 /datum/supply_packs/armor/riot
 	name = "Heavy Riot Armor Set"
 	contains = list(
-		/obj/item/clothing/suit/armor/riot/marine,
-		/obj/item/clothing/head/helmet/riot,
+		/obj/item/clothing/suit/storage/marine/riot,
+		/obj/item/clothing/head/helmet/marine/riot,
 	)
-	cost = 30
+	cost = 12
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/marine_shield
 	name = "TL-172 Defensive Shield"

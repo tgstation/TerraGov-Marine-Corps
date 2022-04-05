@@ -6,7 +6,7 @@
 	anchored = FALSE
 	density = TRUE
 	drag_delay = 1
-	throwpass = TRUE
+	coverage = 20
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/storage/bag/trash/mybag
@@ -23,11 +23,11 @@
 	update_icon()
 
 /obj/structure/janitorialcart/examine(mob/user)
-	..()
+	. = ..()
 	if(mybucket)
-		to_chat(user, "Its bucket contains [mybucket.reagents.total_volume] unit\s of liquid.")
+		. += "Its bucket contains [mybucket.reagents.total_volume] unit\s of liquid."
 	else
-		to_chat(user, "It has no bucket.")
+		. += "It has no bucket."
 
 
 /obj/structure/janitorialcart/attackby(obj/item/I, mob/user, params)

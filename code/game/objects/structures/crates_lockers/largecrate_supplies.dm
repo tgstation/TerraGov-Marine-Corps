@@ -141,7 +141,15 @@
 	desc = "A supply crate containing two boxed TL-102 mounted heavy smartguns."
 	supplies = list(/obj/item/storage/box/tl102 = 2)
 
-
+/obj/structure/largecrate/supply/weapons/standard_atgun
+	name = "\improper TAT-36 anti tank gun and ammo chest (x1, x10)"
+	desc = "A supply crate containing a TAT-36 and a full set of ammo to load into the sponson."
+	supplies = list(
+		/obj/item/weapon/gun/standard_atgun = 1,
+		/obj/item/ammo_magazine/standard_atgun = 4,
+		/obj/item/ammo_magazine/standard_atgun/apcr = 3,
+		/obj/item/ammo_magazine/standard_atgun/he = 3,
+	)
 
 /obj/structure/largecrate/supply/ammo
 	name = "ammunition case"
@@ -351,9 +359,9 @@
 	var/unmovable = 1 //If set to 1, then on examine, the user will see a warning that states the contents cannot be moved after opened.
 
 /obj/structure/largecrate/machine/examine(mob/user)
-	..()
+	. = ..()
 	if(unmovable)
-		to_chat(user, "<b>!!WARNING!! CONTENTS OF CRATE UNABLE TO BE MOVED ONCE UNPACKAGED!</b>")
+		. += "<b>!!WARNING!! CONTENTS OF CRATE UNABLE TO BE MOVED ONCE UNPACKAGED!</b>"
 
 /obj/structure/largecrate/machine/attackby(obj/item/I, mob/user, params)
 	if(iscrowbar(I) && dir_needed)

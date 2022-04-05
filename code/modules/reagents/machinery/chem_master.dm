@@ -49,6 +49,10 @@
 	. = ..()
 
 	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
+		for(var/datum/reagent/X in I.reagents.reagent_list)
+			if(X.medbayblacklist)
+				to_chat(user, span_warning("The chem master's automatic safety features beep softly, they must have detected a harmful substance in the beaker."))
+				return
 		if(beaker)
 			to_chat(user, span_warning("A beaker is already loaded into the machine."))
 			return

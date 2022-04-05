@@ -3,7 +3,7 @@
 //Empty sandbags
 /obj/item/stack/sandbags_empty
 	name = "empty sandbags"
-	desc = "Some empty sandbags, best to fill them up if you want to use them."
+	desc = "Some empty sandbags, best to fill them up with an entrenching tool if you want to use them."
 	singular_name = "sandbag"
 	icon_state = "sandbag_stack"
 	w_class = WEIGHT_CLASS_NORMAL

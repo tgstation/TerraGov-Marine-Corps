@@ -14,3 +14,5 @@ We salute you.
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
+	///ROBUST coverage
+	coverage = 80

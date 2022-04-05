@@ -29,6 +29,7 @@
 
 	X.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
 	X.spin(4, 1)
+	X.enable_throw_parry(0.6 SECONDS)
 	playsound(X,pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	var/sweep_range = 1
@@ -115,9 +116,6 @@
 		X.visible_message(span_danger("[X] plows straight through [S]!"), null, null, 5)
 		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 		return // stay registered
-	if(istype(target, /obj/machinery/deployable/mounted/sentry))
-		var/obj/machinery/deployable/mounted/sentry/sentry = target
-		sentry.knock_down()
 	target.hitby(X, speed) //This resets throwing.
 	charge_complete()
 
@@ -136,7 +134,7 @@
 /datum/action/xeno_action/activable/forward_charge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!do_after(X, windup_time, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(X, windup_time, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/defender/defender = X
@@ -415,6 +413,7 @@
 	spin_loop_timer = null
 	var/mob/living/carbon/xenomorph/X = owner
 	X.spin(4, 1)
+	X.enable_throw_parry(0.6 SECONDS)
 	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	for(var/mob/living/carbon/human/slapped in orange(1, X))

@@ -48,7 +48,7 @@
 	use_plasma(10) //Base cost of the Savage
 	visible_message(span_danger("\ [src] savages [M]!"), \
 	span_xenodanger("We savage [M]!"), null, 5)
-	var/extra_dam = max(15, plasma_stored * 0.2)
+	var/extra_dam = max(15, plasma_stored * 0.15)
 	GLOB.round_statistics.runner_savage_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_savage_attacks")
 	M.attack_alien_harm(src, extra_dam, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
