@@ -217,39 +217,60 @@ export const MedScanner = (props, context) => {
                           </>
                         ) : null}
                         {limb.bandaged ? (
-                          <Box inline color={"green"}>
-                            Bandaged
-                          </Box>
+                          <>
+                            <Box inline color={"green"}>
+                              Bandaged
+                            </Box>
+                            <Box inline width={"5px"} />
+                          </>
                         ) : null}
-                        <Box inline width={"5px"} />
                         {limb.salved ? (
-                          <Box inline color={"orange"}>
-                            Salved
-                          </Box>
+                          <>
+                            <Box inline color={"orange"}>
+                              Salved
+                            </Box>
+                            <Box inline width={"5px"} />
+                          </>
                         ) : null}
-                        <Box inline width={"5px"} />
                         {limb.bleeding ? (
-                          <Box inline color={"red"} bold={1}>
-                            Bleeding
-                          </Box>
+                          <>
+                            <Box inline color={"red"} bold={1}>
+                              Bleeding
+                            </Box>
+                            <Box inline width={"5px"} />
+                          </>
                         ) : null}
-                        <Box inline width={"5px"} />
                         {limb.limb_status ? (
-                          <Box inline color={(limb.limb_status === "Splinted") ? "green" : "red"} bold={1}>
-                            {limb.limb_status}
-                          </Box>
+                          <>
+                            <Box inline color={(limb.limb_status === "Splinted") ? "green" : "red"} bold={1}>
+                              {limb.limb_status}
+                            </Box>
+                            <Box inline width={"5px"} />
+                          </>
                         ) : null}
-                        <Box inline width={"5px"} />
                         {limb.open_incision ? (
-                          <Box inline color={"red"} bold={1}>
-                            Open Surgical Incision
-                          </Box>
+                          <>
+                            <Box inline color={"red"} bold={1}>
+                              Open Surgical Incision
+                            </Box>
+                            <Box inline width={"5px"} />
+                          </>
                         ) : null}
-                        <Box inline width={"5px"} />
                         {limb.infected ? (
-                          <Box inline color={"olive"} bold={1}>
-                            Infected
-                          </Box>
+                          <>
+                            <Box inline color={"olive"} bold={1}>
+                              Infected
+                            </Box>
+                            <Box inline width={"5px"} />
+                          </>
+                        ) : null}
+                        {limb.implant ? (
+                          <>
+                            <Box inline color={"white"} bold={1}>
+                              Implant
+                            </Box>
+                            <Box inline width={"5px"} />
+                          </>
                         ) : null}
                       </>
                     )}
@@ -259,7 +280,7 @@ export const MedScanner = (props, context) => {
             </LabeledList>
           </Section>
         ) : null}
-        {(blood_amount !== 560 || internal_bleeding) ?(
+        {(blood_amount < 560 || internal_bleeding) ?(
           <Section>
             <LabeledList>
               <LabeledList.Item

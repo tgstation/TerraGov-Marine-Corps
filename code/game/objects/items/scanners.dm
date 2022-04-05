@@ -90,7 +90,7 @@ REAGENT SCANNER
 		if(!do_mob(user, M, max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating("medical")), 0), BUSY_ICON_UNSKILLED))
 			return
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
-	if(!iscarbon(M) || issynth(M))
+	if(CHECK_BITFIELD(M.species.species_flags, NO_SCAN))
 		to_chat(user, span_warning("Error: Cannot read vitals!"))
 		return
 	if(isxeno(M))
@@ -109,17 +109,16 @@ REAGENT SCANNER
 	return GLOB.not_incapacitated_state
 
 /obj/item/healthanalyzer/process()
-	if(get_dist(get_turf(current_user), get_turf(patient)) > track_distance)
+	if(get_turf(src) != get_turf(current_user) || get_dist(get_turf(current_user), get_turf(patient)) > track_distance)
 		STOP_PROCESSING(SSobj, src)
 		patient = null
 		current_user = null
 		return
 	update_static_data(current_user)
 
-/obj/item/healthanalyzer/dropped(mob/user)
+/obj/item/healthanalyzer/removed_from_inventory(mob/user)
 	. = ..()
-	var/turf/current_turf = get_turf(src)
-	if(current_user in current_turf.contents)
+	if(get_turf(src) == get_turf(user)) //If you drop it or it enters a bag on the user.
 		return
 	STOP_PROCESSING(SSobj, src)
 	patient = null
@@ -191,14 +190,15 @@ REAGENT SCANNER
 
 			if(limb.hidden)
 				unknown_implants++
-
+			var/implant = FALSE
 			if(length(limb.implants))
 				for(var/I in limb.implants)
 					if(is_type_in_list(I, GLOB.known_implants))
 						continue
 					unknown_implants++
+					implant = TRUE
 
-			if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING))
+			if(!limb.brute_dam && !limb.burn_dam && !CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED) && !CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING) && !implant)
 				continue
 			var/list/current_list = list(
 				"name" = limb.display_name,
@@ -211,6 +211,7 @@ REAGENT SCANNER
 				"bleeding" = CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING),
 				"open_incision" = limb.surgery_open_stage,
 				"infected" = infected,
+				"implant" = implant
 			)
 			var/limb_status = ""
 			if(CHECK_BITFIELD(limb.limb_status, LIMB_BROKEN) && !CHECK_BITFIELD(limb.limb_status, LIMB_STABILIZED) && !CHECK_BITFIELD(limb.limb_status, LIMB_SPLINTED))
@@ -229,22 +230,18 @@ REAGENT SCANNER
 		data["pulse"] = "[human_patient.get_pulse(GETPULSE_TOOL)] bpm"
 		data["implants"] = unknown_implants
 
-	var/brain_damage
 	if (!isrobot(patient) && (patient.getBrainLoss() >= 100 || !patient.has_brain()))
-		brain_damage = "Subject is brain dead"
+		data["brain_damage"] = "Subject is brain dead"
 	else if (patient.getBrainLoss() >= 60)
-		brain_damage = "Severe brain damage detected. Subject likely to have intellectual disabilities."
+		data["brain_damage"] = "Severe brain damage detected. Subject likely to have intellectual disabilities."
 	else if (patient.getBrainLoss() >= 10)
-		brain_damage = "Significant brain damage</b> detected. Subject may have had a concussion."
-	data["brain_damage"] = brain_damage
+		data["brain_damage"] = "Significant brain damage</b> detected. Subject may have had a concussion."
 
-	var/ssd
 	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
 		if(!patient.key)
-			ssd = "No soul detected." // they ghosted
+			data["ssd"] = "No soul detected." // they ghosted
 		else if(!patient.client)
-			ssd = "SSD detected." // SSD
-	data["ssd"] = ssd
+			data["ssd"] = "SSD detected." // SSD
 
 	return data
 
