@@ -2,7 +2,7 @@
 
 /obj/item/storage/holster
 	name = "holster"
-	desc = "holds stuff, and sometimes goes swoosh."
+	desc = "Holds stuff, and sometimes goes swoosh."
 	icon_state = "backpack"
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 4 ///normally the special item will be larger than what should fit. Child items will have lower limits and an override
@@ -79,8 +79,8 @@
 
 ///backpack type holster items
 /obj/item/storage/holster/backholster
-	name = "Backpack holster"
-	desc = "You wear this on your back and put items into it. Usually one special item too"
+	name = "backpack holster"
+	desc = "You wear this on your back and put items into it. Usually one special item too."
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
 	max_w_class = 3 //normal items
 	max_storage_space = 24
@@ -104,7 +104,7 @@
 ///RR bag
 /obj/item/storage/holster/backholster/rpg
 	name = "\improper TGMC rocket bag"
-	desc = "This backpack can hold 5 67mm shells or 80mm rockets."
+	desc = "This backpack can hold 5 67mm shells or 80mm rockets, in addition to a recoiless launcher."
 	icon_state = "marine_rocket"
 	item_state = "marine_rocket"
 	base_icon = "marine_rocket"
