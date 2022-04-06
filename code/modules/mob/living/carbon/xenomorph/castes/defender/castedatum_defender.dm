@@ -11,7 +11,7 @@
 	wound_type = "defender" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 54
 
 	// *** Speed *** //
 	speed = -0.3
@@ -90,7 +90,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 63
 
 	// *** Speed *** //
 	speed = -0.5
@@ -120,7 +120,7 @@
 	ancient_message = "We are incredibly resilient, we can control the battle through sheer force."
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 63
 
 	// *** Speed *** //
 	speed = -0.6
@@ -150,7 +150,7 @@
 	primordial_message = "We are the aegis of the hive. Let nothing pierce our guard."
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 63
 
 	// *** Speed *** //
 	speed = -0.6
