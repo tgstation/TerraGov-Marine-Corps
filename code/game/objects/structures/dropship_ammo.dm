@@ -78,7 +78,7 @@
 
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
-	to_chat(user, "It's loaded with \a [src].")
+	return "It's loaded with \a [src]."
 
 /obj/structure/ship_ammo/proc/detonate_on(turf/impact, attackdir = NORTH)
 	return
@@ -226,13 +226,12 @@
 
 /obj/structure/ship_ammo/heavygun/examine(mob/user)
 	. = ..()
-	to_chat(user, "It has [ammo_count] round\s.")
+	. += "It has [ammo_count] round\s."
 
 /obj/structure/ship_ammo/heavygun/show_loaded_desc(mob/user)
 	if(ammo_count)
-		to_chat(user, "It's loaded with \a [src] containing [ammo_count] round\s.")
-	else
-		to_chat(user, "It's loaded with an empty [name].")
+		return "It's loaded with \a [src] containing [ammo_count] round\s."
+	return "It's loaded with an empty [name]."
 
 /obj/structure/ship_ammo/heavygun/get_turfs_to_impact(turf/impact, attackdir = NORTH)
 	var/turf/beginning = impact
@@ -311,14 +310,13 @@
 
 /obj/structure/ship_ammo/laser_battery/examine(mob/user)
 	. = ..()
-	to_chat(user, "It's at [round(100*ammo_count/max_ammo_count)]% charge.")
+	. += "It's at [round(100*ammo_count/max_ammo_count)]% charge."
 
 
 /obj/structure/ship_ammo/laser_battery/show_loaded_desc(mob/user)
 	if(ammo_count)
-		to_chat(user, "It's loaded with \a [src] at [round(100*ammo_count/max_ammo_count)]% charge.")
-	else
-		to_chat(user, "It's loaded with an empty [name].")
+		return "It's loaded with \a [src] at [round(100*ammo_count/max_ammo_count)]% charge."
+	return "It's loaded with an empty [name]."
 
 /obj/structure/ship_ammo/laser_battery/get_turfs_to_impact(turf/epicenter, attackdir = NORTH)
 	var/turf/beginning = epicenter
@@ -506,7 +504,7 @@
 
 /obj/structure/ship_ammo/minirocket/examine(mob/user)
 	. = ..()
-	to_chat(user, "It has [ammo_count] minirocket\s.")
+	. += "It has [ammo_count] minirocket\s."
 
 
 /obj/structure/ship_ammo/minirocket/incendiary

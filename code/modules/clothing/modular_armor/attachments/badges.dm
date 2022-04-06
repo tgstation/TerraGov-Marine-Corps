@@ -40,7 +40,7 @@
 
 /obj/item/armor_module/armor/badge/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("Its current style is set to [current_style]"))
+	. += span_notice("Its current style is set to [current_style]")
 
 /obj/item/armor_module/armor/badge/limit_colorable_colors(faction)
 	return

@@ -94,7 +94,7 @@
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(ishuman(user))
-		to_chat(user, "It has [current_rounds] ammo left.")
+		. += "It has [current_rounds] ammo left."
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()

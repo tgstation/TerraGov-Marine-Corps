@@ -277,7 +277,7 @@
 		return
 
 	if(href_list["displayreagents"])
-		display_reagents(usr)
+		to_chat(usr, display_reagents())
 
 
 
@@ -439,25 +439,25 @@
 /obj/item/reagent_containers/hypospray/advanced/examine(mob/user as mob)
 	. = ..()
 	if(get_dist(user,src) > 2)
-		to_chat(user, "<span class = 'warning'>You're too far away to see [src]'s reagent display!</span>")
+		. += span_warning("You're too far away to see [src]'s reagent display!")
 		return
 
-	display_reagents(user)
+	. += display_reagents(user)
 
 /obj/item/reagent_containers/hypospray/advanced/proc/display_reagents(mob/user)
-	if(!isnull(reagents))
-		var/list/dat = list()
-		dat += "\n \t [span_notice("<b>Total Reagents:</b> [reagents.total_volume]/[volume]. <b>Dosage Size:</b> [min(reagents.total_volume, amount_per_transfer_from_this)]")]</br>"
-		if(reagents.reagent_list.len > 0)
-			for (var/datum/reagent/R in reagents.reagent_list)
-				var/percent = round(R.volume / max(0.01 , reagents.total_volume * 0.01),0.01)
-				var/dose = round(min(reagents.total_volume, amount_per_transfer_from_this) * percent * 0.01,0.01)
-				if(R.scannable)
-					dat += "\n \t <b>[R]:</b> [R.volume]|[percent]% <b>Amount per dose:</b> [dose]</br>"
-				else
-					dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]% <b>Amount per dose:</b> [dose]</br>"
-		if(dat)
-			to_chat(user, "<span class = 'notice'>[src]'s reagent display shows the following contents: [dat.Join(" ")]</span>")
+	if(isnull(reagents))
+		return
+	var/list/dat = list()
+	dat += "\n \t [span_notice("<b>Total Reagents:</b> [reagents.total_volume]/[volume]. <b>Dosage Size:</b> [min(reagents.total_volume, amount_per_transfer_from_this)]")]</br>"
+	if(reagents.reagent_list.len > 0)
+		for (var/datum/reagent/R in reagents.reagent_list)
+			var/percent = round(R.volume / max(0.01 , reagents.total_volume * 0.01),0.01)
+			var/dose = round(min(reagents.total_volume, amount_per_transfer_from_this) * percent * 0.01,0.01)
+			if(R.scannable)
+				dat += "\n \t <b>[R]:</b> [R.volume]|[percent]% <b>Amount per dose:</b> [dose]</br>"
+			else
+				dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]% <b>Amount per dose:</b> [dose]</br>"
+	return span_notice("[src]'s reagent display shows the following contents: [dat.Join(" ")]")
 
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "Advanced big hypospray"

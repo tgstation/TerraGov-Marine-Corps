@@ -60,8 +60,8 @@
 
 
 /turf/open/examine(mob/user)
-	..()
-	ceiling_desc(user)
+	. = ..()
+	. += ceiling_desc()
 
 /turf/open/river
 	can_bloody = FALSE

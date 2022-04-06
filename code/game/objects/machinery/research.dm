@@ -80,7 +80,7 @@
 
 /obj/machinery/researchcomp/examine(user)
 	. = ..()
-	to_chat(user, span_notice(allowed_resources_desc))
+	. += span_notice(allowed_resources_desc)
 
 ///Creates the description of usable resources for starting research
 /obj/machinery/researchcomp/proc/construct_insertable_resources_desc()
@@ -312,7 +312,7 @@
 
 /obj/item/research_product/money/examine(user)
 	. = ..()
-	to_chat(user, span_notice("Rewards export points, as the name suggests."))
+	. += span_notice("Rewards export points, as the name suggests.")
 
 /obj/item/research_product/money/basic
 	name = "credits - 5"
