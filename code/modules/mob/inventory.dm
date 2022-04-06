@@ -43,8 +43,7 @@
 	Returns TRUE on success.
 */
 /mob/proc/put_in_l_hand(obj/item/W)
-	if(isturf(W.loc))
-		W.do_pickup_animation(src)
+	W.do_pickup_animation(src)
 	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(lying_angle)
@@ -72,8 +71,7 @@
 	Returns TRUE on success.
 */
 /mob/proc/put_in_r_hand(obj/item/W)
-	if(isturf(W.loc))
-		W.do_pickup_animation(src)
+	W.do_pickup_animation(src)
 	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(lying_angle)
@@ -132,9 +130,7 @@
 	Returns TURE if it was able to put the thing into one of our hands.
 */
 /mob/proc/put_in_hands(obj/item/W, del_on_fail = FALSE)
-	log_world("Putting[W] in hands")
-	if(isturf(W.loc))
-		W.do_pickup_animation(src)
+	W.do_pickup_animation(src)
 	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
 		return FALSE
 	if(!W)

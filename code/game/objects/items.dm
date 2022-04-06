@@ -652,13 +652,11 @@
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && (flags_item_map_variant & ITEM_ICE_PROTECTION))
 		min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
-/**
-	Play small animation and jiggle when picking up an object
- */
 
+///Play small animation and jiggle when picking up an object
 /obj/item/proc/do_pickup_animation(atom/target)
 	set waitfor = FALSE
-	if(!istype(loc, /turf))
+	if(!isturf(loc))
 		return
 	var/image/pickup_animation = image(icon = src, loc = loc, layer = layer + 0.1)
 	pickup_animation.plane = GAME_PLANE
@@ -688,10 +686,8 @@
 	sleep(1)
 	animate(pickup_animation, alpha = 0, transform = matrix(), time = 1)
 
-/**
-	Play small animation and jiggle when dropping an object
- */
 
+///Play small animation and jiggle when dropping an object
 /obj/item/proc/do_drop_animation(atom/moving_from)
 	if(!istype(loc, /turf))
 		return
