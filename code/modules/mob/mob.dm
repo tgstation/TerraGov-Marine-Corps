@@ -339,6 +339,15 @@
 		B.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
+	else if (istype(I, /obj/item/clothing/under))
+		if (istype(I:attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/holster || /obj/item/armor_module/storage/uniform/knifeharness) )
+			var/obj/item/storage/S = I:attachments_by_slot[ATTACHMENT_SLOT_UNIFORM].storage
+			if(!length(S.contents))
+				return FALSE
+			var/obj/item/W = S.contents[length(S.contents)]
+			S.remove_from_storage(W, user = src)
+			put_in_hands(W)
+			return TRUE
 	else if(istype(I, /obj/item/clothing/suit/storage))
 		var/obj/item/clothing/suit/storage/S = I
 		if(!S.pockets)
