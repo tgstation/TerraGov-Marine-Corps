@@ -18,8 +18,8 @@
 			new fill_type(src)
 
 /obj/item/storage/pouch/examine(mob/user)
-	..()
-	to_chat(user, "Can be worn by attaching it to a pocket.")
+	. = ..()
+	. += "Can be worn by attaching it to a pocket."
 
 
 /obj/item/storage/pouch/equipped(mob/user, slot)

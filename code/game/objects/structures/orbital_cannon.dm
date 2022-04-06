@@ -352,8 +352,8 @@
 		return TRUE
 
 /obj/structure/ob_ammo/examine(mob/user)
-	..()
-	to_chat(user, "Moving this will require some sort of lifter.")
+	. = ..()
+	. += "Moving this will require some sort of lifter."
 
 
 /obj/structure/ob_ammo/obj_destruction(damage_amount, damage_type, damage_flag)

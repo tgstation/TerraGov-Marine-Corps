@@ -1041,9 +1041,8 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
-		/obj/item/weapon/gun/shotgun/combat/masterkey,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/attachable/motiondetector,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 

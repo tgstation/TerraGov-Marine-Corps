@@ -640,10 +640,11 @@ ARMOR
 /datum/supply_packs/armor/riot
 	name = "Heavy Riot Armor Set"
 	contains = list(
-		/obj/item/clothing/suit/armor/riot/marine,
-		/obj/item/clothing/head/helmet/riot,
+		/obj/item/clothing/suit/storage/marine/riot,
+		/obj/item/clothing/head/helmet/marine/riot,
 	)
-	cost = 30
+	cost = 12
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/marine_shield
 	name = "TL-172 Defensive Shield"

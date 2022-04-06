@@ -17,7 +17,7 @@
 	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
 	var/obj/machinery/camera/current
 
-	var/mob/camera/aiEye/eyeobj
+	var/mob/camera/aiEye/hud/eyeobj
 	var/sprint = 10
 	var/cooldown = 0
 	var/acceleration = FALSE
@@ -409,6 +409,9 @@
 		return
 	link_with_vehicle(new_vehicle)
 	ai.controlling = TRUE
+
+	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
+	eyeobj.loc = ai.loc
 
 /// Signal handler to clear vehicle and stop remote control
 /datum/action/control_vehicle/proc/clear_vehicle()

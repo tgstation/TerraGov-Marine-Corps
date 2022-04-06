@@ -275,6 +275,22 @@
 	slowdown = 0.5 //a bit less
 	light_range = 6
 
+/obj/item/clothing/suit/storage/marine/riot
+	name = "\improper M5 riot control armor"
+	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines and their guns. Slows you down a lot."
+	icon_state = "marine_riot"
+	slowdown = 1.3
+	soft_armor = list("melee" = 65, "bullet" = 110, "laser" = 110, "energy" = 10, "bomb" = 60, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 30)
+	allowed = list(
+		/obj/item/weapon/gun,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/large_holster/blade,
+		/obj/item/weapon/claymore,
+		/obj/item/storage/belt/gun,
+		/obj/item/storage/belt/knifepouch,
+		/obj/item/weapon/twohanded,
+	)
+	flags_item_map_variant = NONE
 
 //===========================SPECIALIST================================
 

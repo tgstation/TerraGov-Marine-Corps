@@ -151,9 +151,9 @@
 /obj/structure/caspart/minigun/examine(mob/user)
 	. = ..()
 	if(static_weapon.ammo_equipped)
-		static_weapon.ammo_equipped.show_loaded_desc(user)
+		. += static_weapon.ammo_equipped.show_loaded_desc(user)
 	else
-		to_chat(user, "It's empty.")
+		. += "It's empty."
 
 /obj/structure/caspart/minigun/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(!istype(port, /obj/docking_port/mobile/marine_dropship/casplane))

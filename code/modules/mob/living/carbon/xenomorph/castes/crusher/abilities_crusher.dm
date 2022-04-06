@@ -209,6 +209,7 @@
 			playsound(X, "alien_charge", 50)
 			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
 		X.Move(get_step(X, aimdir), aimdir)
+		aimdir = get_dir(X,A)
 	succeed_activate()
 	add_cooldown()
 

@@ -262,11 +262,11 @@
 		QDEL_NULL(attachment)
 		return
 
-	user.put_in_hands(attachment)
-
 	if(attachment_data[ON_DETACH])
 		var/datum/callback/attachment_on_detach = CALLBACK(attachment, attachment_data[ON_DETACH])
 		attachment_on_detach.Invoke(parent, user)
+
+	user.put_in_hands(attachment)
 
 	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_DETACHED, parent, user)
 	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_DETACHED_FROM_ITEM, attachment, user)

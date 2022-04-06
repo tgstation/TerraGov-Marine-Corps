@@ -162,7 +162,7 @@
 				faltext += "[fallen_list[i]], "
 			else
 				faltext += fallen_list[i]
-		to_chat(user, "[span_notice("To our fallen soldiers:")] <b>[faltext]</b>.")
+		. += "[span_notice("To our fallen soldiers:")] <b>[faltext]</b>."
 
 
 /obj/structure/prop/mainship/particle_cannon
@@ -405,11 +405,11 @@
 
 /obj/structure/prop/mainship/meterprop/random/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("The pressure gauge reads [kpa] kPa; [kelvin] K ([kelvin - 273.15]°C)")) //output fake kelvin and celsius on examine
+	. += span_notice("The pressure gauge reads [kpa] kPa; [kelvin] K ([kelvin - 273.15]°C)") //output fake kelvin and celsius on examine
 
 /obj/structure/prop/mainship/meterprop/empty/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("The pressure gauge reads 0 kPa; 0 K (-273.15°C)")) //output fake kelvin and celsius on examine
+	. += span_notice("The pressure gauge reads 0 kPa; 0 K (-273.15°C)") //output fake kelvin and celsius on examine
 
 /obj/structure/prop/mainship/meterprop/random/Initialize(mapload)
 	. = ..()

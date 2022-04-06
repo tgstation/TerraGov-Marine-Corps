@@ -25,7 +25,7 @@
 
 /obj/item/assembly/timer/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("The timer is [timing ? "counting down from [time]":"set for [time] seconds"]."))
+	. += span_notice("The timer is [timing ? "counting down from [time]":"set for [time] seconds"].")
 
 
 /obj/item/assembly/timer/activate()
