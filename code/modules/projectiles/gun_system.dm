@@ -492,8 +492,7 @@
 		if(!istype(attachable, /obj/item/weapon/gun))
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
-		var/chamber = in_chamber ? rounds_per_shot : 0
-		dat += gun_attachable.rounds ? "([gun_attachable.rounds + chamber]/[gun_attachable.max_rounds])" : "(Unloaded)"
+		dat += gun_attachable.rounds ? "([gun_attachable.rounds]/[gun_attachable.max_rounds])" : "(Unloaded)"
 
 	if(dat)
 		. += "[dat.Join(" ")]"
