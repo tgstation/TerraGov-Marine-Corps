@@ -67,9 +67,7 @@
 /area/orion_outpost/ground/outpostse)
 "ax" = (
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "ay" = (
 /obj/item/ammo_casing/bullet,
 /obj/structure/cable,
@@ -90,9 +88,7 @@
 	icon_state = "leftengine_1";
 	opacity = 0
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "aB" = (
 /obj/item/ammo_magazine/tank/ltb_cannon,
 /obj/structure/desertdam/decals/road/edge{
@@ -147,9 +143,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "aR" = (
 /obj/effect/forcefield/fog/passable_fog,
 /obj/effect/ai_node,
@@ -180,9 +174,7 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
 /turf/open/floor/light,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "be" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt2,
@@ -194,9 +186,7 @@
 	dir = 8;
 	icon_state = "whiteblue"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "bh" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -250,9 +240,7 @@
 "bw" = (
 /obj/machinery/computer/atmoscontrol,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "bx" = (
 /obj/machinery/floor_warn_light,
 /turf/closed/wall,
@@ -276,9 +264,7 @@
 	},
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "bE" = (
 /obj/effect/forcefield/fog/passable_fog,
 /obj/structure/flora/ausbushes/fullgrass{
@@ -304,15 +290,11 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "bO" = (
 /obj/structure/lattice,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "bQ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -330,9 +312,7 @@
 /obj/structure/table/reinforced,
 /obj/item/alienjar,
 /turf/open/floor/light,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "bW" = (
 /turf/closed/shuttle/escapepod{
 	icon_state = "wall11"
@@ -442,9 +422,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/research)
 "cG" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
@@ -457,9 +435,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/gun/rifles,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "cL" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
@@ -476,9 +452,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "cO" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostnw)
@@ -527,9 +501,7 @@
 /obj/structure/table,
 /obj/item/weapon/gun/rifle/standard_assaultrifle,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "de" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating/ground/dirt2,
@@ -545,9 +517,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "dg" = (
 /obj/machinery/bot/mulebot,
 /obj/effect/decal/warning_stripes/nscenter,
@@ -562,9 +532,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "dk" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -611,12 +579,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outposts)
-"dy" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/surface/landing_pad_external)
 "dz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -642,9 +604,7 @@
 /turf/open/floor/grass{
 	color = "#ffb682"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "dJ" = (
 /obj/machinery/computer/rdconsole,
 /obj/machinery/light{
@@ -654,9 +614,7 @@
 	dir = 8;
 	icon_state = "whiteblue"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "dL" = (
 /turf/closed/wall,
 /area/orion_outpost/surface/building/command)
@@ -667,9 +625,7 @@
 	dir = 1;
 	icon_state = "whiteblue"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "dP" = (
 /obj/structure/desertdam/decals/road/stop{
 	dir = 4
@@ -700,9 +656,7 @@
 "dY" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "eb" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
@@ -719,9 +673,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt4"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "ed" = (
 /obj/structure/flora/ausbushes/sunnybush{
 	color = "#ffb682"
@@ -780,9 +732,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt23"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "er" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/decal/cleanable/dirt,
@@ -791,9 +741,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/floor/tile/damaged/five,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "ex" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Nexus Dome Canteen"
@@ -821,9 +769,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "eG" = (
 /obj/structure/flora/tree/joshua,
 /obj/structure/jungle/vines{
@@ -945,9 +891,7 @@
 	color = "#ffb682"
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "fs" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -1027,9 +971,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "fW" = (
 /obj/structure/cable,
 /obj/effect/forcefield/fog/passable_fog,
@@ -1044,9 +986,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt9"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "gc" = (
 /obj/machinery/light{
 	dir = 1
@@ -1062,9 +1002,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "gf" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -1077,9 +1015,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "gk" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/storage/testroom)
@@ -1111,9 +1047,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "gt" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/structure/cable,
@@ -1218,15 +1152,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
-"gR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/ground/outpostnw)
+/area/orion_outpost/surface/building/armory)
 "gS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/jungle/vines{
@@ -1253,9 +1179,7 @@
 "ha" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/mainship/cargo,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "hd" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/plating/ground/dirt2,
@@ -1304,18 +1228,14 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "hs" = (
 /turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "hx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/plate/outline,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "hy" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/wall,
@@ -1392,18 +1312,14 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan22"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "hX" = (
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	dir = 2;
 	id = "tradeshipjerrycabot"
 	},
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "hY" = (
 /obj/structure/target_stake,
 /obj/item/target,
@@ -1411,9 +1327,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "ia" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -1431,9 +1345,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "ig" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/prison,
@@ -1474,9 +1386,7 @@
 /area/orion_outpost/ground/outpostnw)
 "in" = (
 /turf/open/floor/podhatch/floor,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "io" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -1489,15 +1399,11 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "iq" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/ground/concrete/lines,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "ir" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/dirt2,
@@ -1532,9 +1438,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt20"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "iA" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
@@ -1573,9 +1477,7 @@
 /area/orion_outpost/ground/outpostn)
 "iH" = (
 /turf/closed/wall,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "iJ" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
@@ -1604,17 +1506,13 @@
 /area/orion_outpost/ground/outposte)
 "iR" = (
 /turf/closed/wall,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "iS" = (
 /turf/open/ground/river,
 /area/orion_outpost/ground/outpostw)
 "iV" = (
 /turf/open/floor/mainship/plate/outline,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "iW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -1686,14 +1584,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "js" = (
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "jt" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -1710,9 +1604,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/damaged/five,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "jy" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -1817,23 +1709,17 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "jN" = (
 /obj/machinery/power/geothermal,
 /turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/engineering)
 "jQ" = (
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "jR" = (
 /turf/closed/wall/mainship,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "jS" = (
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plating,
@@ -1849,9 +1735,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "jX" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/dirt2,
@@ -1885,9 +1769,7 @@
 "kd" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/shuttle/brig,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "kf" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -1951,9 +1833,7 @@
 	dir = 1;
 	icon_state = "whiteblue"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "kv" = (
 /obj/structure/jungle/vines{
 	color = "#ffb682"
@@ -1974,9 +1854,7 @@
 "kz" = (
 /obj/structure/table/flipped,
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "kA" = (
 /obj/effect/decal/warning_stripes/nscenter,
 /obj/item/clothing/head/warning_cone,
@@ -2009,9 +1887,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "kN" = (
 /obj/structure/flora/rock/alt2,
 /obj/effect/decal/cleanable/dirt,
@@ -2024,9 +1900,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "kP" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/tile/red/whitered/corner{
@@ -2041,9 +1915,7 @@
 "kS" = (
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/engineer,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "kT" = (
 /obj/machinery/light{
 	dir = 8
@@ -2078,16 +1950,12 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt3"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "le" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/damaged/five,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "lg" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass{
@@ -2129,9 +1997,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "lq" = (
 /obj/effect/forcefield/fog/passable_fog,
 /obj/effect/ai_node,
@@ -2176,15 +2042,11 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt1"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "lH" = (
 /obj/effect/acid_hole,
 /turf/closed/wall,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "lJ" = (
 /obj/structure/flora/rock/pile/alt,
 /turf/open/floor/plating/ground/dirt2,
@@ -2282,9 +2144,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "mf" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/structure/cable,
@@ -2293,9 +2153,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "mi" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -2450,9 +2308,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "ni" = (
 /obj/structure/flora/ausbushes/grassybush{
 	color = "#ffb682"
@@ -2496,9 +2352,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt4"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "nr" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -2546,9 +2400,7 @@
 /area/orion_outpost/ground/outpostcent)
 "nG" = (
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "nI" = (
 /obj/structure/flora/stump,
 /turf/open/floor/plating/ground/dirt2,
@@ -2611,14 +2463,10 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt5"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "od" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "of" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -2661,9 +2509,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "or" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bush{
@@ -2678,9 +2524,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "ou" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -2707,9 +2551,7 @@
 "oA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "oC" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -2750,9 +2592,7 @@
 /area/orion_outpost/ground/outpostw)
 "oM" = (
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "oP" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -2764,9 +2604,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "oQ" = (
 /turf/closed/shuttle/escapepod{
 	icon_state = "wall9"
@@ -2788,9 +2626,7 @@
 /area/orion_outpost/ground/outposts)
 "oT" = (
 /turf/closed/shuttle/ert,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "oU" = (
 /turf/closed/wall,
 /area/orion_outpost/surface/building/barracks)
@@ -2876,9 +2712,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "pu" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -2929,9 +2763,7 @@
 	dir = 4
 	},
 /turf/closed/wall,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "pK" = (
 /obj/item/trash/mre,
 /obj/effect/ai_node,
@@ -2946,9 +2778,7 @@
 "pO" = (
 /obj/structure/closet/secure_closet/evidence,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "pQ" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/grass{
@@ -2958,9 +2788,7 @@
 "pR" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "pS" = (
 /obj/structure/desertdam/decals/road/stop,
 /obj/structure/cable,
@@ -3003,9 +2831,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "qi" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -3155,9 +2981,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan25"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "qW" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt2{
@@ -3181,9 +3005,7 @@
 "rd" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "rf" = (
 /turf/open/floor/plating,
 /area/orion_outpost/ground/outposte)
@@ -3214,16 +3036,12 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan8"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "rs" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan3"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "rt" = (
 /obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/plating/ground/dirt2,
@@ -3239,9 +3057,7 @@
 	color = "#ffb682"
 	},
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "rx" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -3260,13 +3076,6 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outpostcent)
-"rC" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/surface/landing_pad)
 "rD" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -3282,9 +3091,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "rH" = (
 /obj/structure/sign/safety/electronics,
 /turf/closed/wall,
@@ -3340,9 +3147,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "rW" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -3364,9 +3169,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan1"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "se" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/effect/ai_node,
@@ -3424,9 +3227,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt22"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "sw" = (
 /turf/open/ground/grass{
 	color = "#ffb682"
@@ -3454,9 +3255,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "sD" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt2,
@@ -3519,9 +3318,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "sS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -3623,9 +3420,7 @@
 /obj/item/shard,
 /obj/item/shard,
 /turf/open/floor/mainship/stripesquare,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "tA" = (
 /obj/structure/jungle/vines{
 	color = "#ffb682"
@@ -3742,9 +3537,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan20"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "uj" = (
 /obj/structure/flora/rock/alt2,
 /turf/open/floor/grass{
@@ -3766,9 +3559,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "up" = (
 /obj/structure/flora/rock/alt2,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -3827,9 +3618,7 @@
 "uI" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/shuttle/brig,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "uM" = (
 /obj/structure/flora/tree/joshua,
 /turf/open/ground/grass{
@@ -3888,9 +3677,7 @@
 /turf/open/floor{
 	icon_state = "whiteblue"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "uZ" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -3919,9 +3706,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "vh" = (
 /obj/structure/jungle/vines{
 	color = "#ffb682"
@@ -3950,9 +3735,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "vz" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/medical,
@@ -3987,9 +3770,7 @@
 "vG" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/podhatch/floor,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "vH" = (
 /turf/closed/wall/mainship/white,
 /area/orion_outpost/surface/building/medbay)
@@ -4005,9 +3786,7 @@
 "vK" = (
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "vM" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -4053,9 +3832,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/plate/outline,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "vW" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer3/laptop,
@@ -4069,9 +3846,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "wd" = (
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/ground/dirt2,
@@ -4177,9 +3952,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/damaged/five,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "wD" = (
 /obj/structure/flora/ausbushes/grassybush{
 	color = "#ffb682"
@@ -4234,9 +4007,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "wR" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/dirt2,
@@ -4263,17 +4034,13 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "wX" = (
 /obj/structure/table,
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "wY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/smes/buildable/empty{
@@ -4307,9 +4074,7 @@
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "xe" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -4329,9 +4094,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/research)
 "xk" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -4343,9 +4106,7 @@
 "xl" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/light,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "xm" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/dirt2,
@@ -4368,9 +4129,7 @@
 	icon_state = "rightengine_2";
 	opacity = 0
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "xr" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4388,9 +4147,7 @@
 /turf/open/floor/grass{
 	color = "#ffb682"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "xv" = (
 /turf/open/floor/grass{
 	color = "#ffb682"
@@ -4413,9 +4170,7 @@
 	},
 /area/orion_outpost/surface/building/engineering)
 "xz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostnw)
 "xE" = (
@@ -4454,9 +4209,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/armory)
 "xP" = (
 /obj/structure/flora/tree/joshua,
 /turf/closed/gm/dense{
@@ -4514,9 +4267,7 @@
 "xZ" = (
 /obj/structure/sink/puddle,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "yb" = (
 /obj/effect/forcefield/fog/passable_fog,
 /obj/effect/forcefield/fog/passable_fog,
@@ -4531,9 +4282,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/research)
 "yd" = (
 /turf/open/floor/plating/ground/dirt2{
 	color = "#82776d"
@@ -4657,9 +4406,7 @@
 /area/orion_outpost/ground/outpostcent)
 "yH" = (
 /turf/closed/wall,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "yI" = (
 /obj/machinery/light{
 	dir = 4
@@ -4672,9 +4419,7 @@
 	icon_state = "rightengine_3";
 	opacity = 0
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "yM" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -4688,9 +4433,7 @@
 /area/orion_outpost/ground/outpostnw)
 "yP" = (
 /turf/open/floor/plating/ground/concrete/lines,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "yT" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt2{
@@ -4719,9 +4462,7 @@
 "yY" = (
 /obj/effect/ai_node,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "yZ" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating/ground/dirt2,
@@ -4751,9 +4492,7 @@
 "zi" = (
 /obj/effect/landmark/corpsespawner/marine,
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "zn" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -4815,9 +4554,7 @@
 	dir = 6
 	},
 /turf/open/floor/marking/delivery,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "zT" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/underground/caveN)
@@ -4879,9 +4616,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Ak" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -4912,9 +4647,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan9"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Ax" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4935,9 +4668,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan5"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "AC" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostn,
@@ -4978,9 +4709,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "AN" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -4997,15 +4726,11 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "AP" = (
 /obj/structure/bed/chair/dropship/pilot,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "AR" = (
 /obj/structure/flora/rock/alt,
 /turf/open/floor/plating/ground/dirt2,
@@ -5113,15 +4838,11 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Br" = (
 /obj/effect/decal/tracks/human1/bloody,
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "Bs" = (
 /obj/machinery/chem_dispenser/soda{
 	dir = 4
@@ -5229,18 +4950,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
-"BY" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "BZ" = (
 /obj/structure/flora/rock/pile/alt,
 /turf/open/floor/plating/ground/dirt2,
@@ -5253,9 +4963,7 @@
 "Cc" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/damaged/five,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Cd" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -5316,17 +5024,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "CB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "CC" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -5350,9 +5054,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan23"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "CM" = (
 /obj/structure/flora/rock/alt,
 /turf/open/floor/plating/ground/dirt2,
@@ -5361,9 +5063,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt4"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "CP" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
@@ -5523,9 +5223,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/research)
 "DI" = (
 /obj/structure/sink/puddle,
 /turf/open/floor/plating/ground/dirt2,
@@ -5592,9 +5290,7 @@
 "Ed" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Ee" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -5617,9 +5313,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan21"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Ej" = (
 /turf/closed/wall,
 /area/orion_outpost/ground/outposte)
@@ -5630,9 +5324,7 @@
 "Em" = (
 /obj/structure/closet/crate,
 /turf/open/floor/grayscale/round,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Eo" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -5670,9 +5362,7 @@
 	icon_state = "rightengine_3";
 	opacity = 0
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "EF" = (
 /turf/open/shuttle/escapepod,
 /area/orion_outpost/ground/outpostcent)
@@ -5704,9 +5394,7 @@
 /area/orion_outpost/ground/outpostn)
 "EP" = (
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "ER" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -5727,9 +5415,7 @@
 /turf/open/floor{
 	icon_state = "whiteblue"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Fa" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -5787,9 +5473,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Fq" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom/toilet{
 	dir = 1
@@ -5839,9 +5523,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "FA" = (
 /obj/structure/window/framed/colony,
 /turf/open/space/basic,
@@ -5933,9 +5615,7 @@
 /area/orion_outpost/ground/outpostse)
 "Gh" = (
 /turf/open/floor/tile/damaged/five,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Gi" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating/ground/dirt2,
@@ -6115,9 +5795,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt9"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Hf" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -6135,9 +5813,7 @@
 	dir = 1;
 	icon_state = "whitebluecorner"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Hm" = (
 /turf/closed/shuttle/escapepod{
 	icon_state = "wall10"
@@ -6149,9 +5825,7 @@
 "Hq" = (
 /obj/structure/flora/rock/pile,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Hs" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/dirt2,
@@ -6177,9 +5851,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Hz" = (
 /turf/closed/gm/dense{
 	color = "#ffb682"
@@ -6293,9 +5965,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Id" = (
 /obj/machinery/light{
 	dir = 8
@@ -6313,8 +5983,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostcent)
 "Ih" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostnw)
@@ -6335,9 +6006,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Io" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/gm/dense{
@@ -6358,9 +6027,7 @@
 /area/orion_outpost/ground/outpostw)
 "Ir" = (
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Iu" = (
 /turf/open/ground/river,
 /area/orion_outpost/ground/outpostcent)
@@ -6452,9 +6119,7 @@
 /turf/open/floor/grass{
 	color = "#ffb682"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "IX" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -6474,9 +6139,7 @@
 "Jb" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/podhatch/floor,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Jg" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
@@ -6508,9 +6171,7 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Jt" = (
 /obj/machinery/button/door/open_only/landing_zone,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -6581,9 +6242,7 @@
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "JQ" = (
 /obj/structure/flora/ausbushes/grassybush{
 	color = "#ffb682"
@@ -6599,9 +6258,7 @@
 "JT" = (
 /obj/item/clothing/mask/facehugger/dead,
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "JX" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -6622,19 +6279,10 @@
 	color = "#82776d"
 	},
 /area/orion_outpost/ground/underground/caveE)
-"Kb" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/outpostnw)
 "Kc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Kd" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -6752,9 +6400,7 @@
 "KM" = (
 /obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "KN" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/ground/dirt2,
@@ -6771,9 +6417,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt8"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "KS" = (
 /obj/effect/forcefield/fog/passable_fog,
 /obj/effect/forcefield/fog/passable_fog,
@@ -6783,9 +6427,7 @@
 "KW" = (
 /obj/structure/xenoautopsy/tank/alien,
 /turf/open/floor/podhatch/floor,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "KY" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -6819,9 +6461,7 @@
 /area/orion_outpost/ground/outpostcent)
 "Lp" = (
 /turf/open/floor/light,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Lr" = (
 /obj/structure/jungle/vines{
 	color = "#ffb682"
@@ -6854,9 +6494,7 @@
 "LA" = (
 /obj/machinery/computer/crew,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "LF" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostnw,
@@ -6894,9 +6532,7 @@
 	dir = 8;
 	icon_state = "whiteblue"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "LO" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt2,
@@ -6909,9 +6545,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "LQ" = (
 /obj/effect/forcefield/fog/passable_fog,
 /obj/effect/forcefield/fog/passable_fog,
@@ -6958,9 +6592,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt25"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Mc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/jungle/vines{
@@ -6975,9 +6607,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Mi" = (
 /turf/closed/mineral,
 /area/orion_outpost/ground/underground/caveE)
@@ -6989,9 +6619,7 @@
 "Mk" = (
 /obj/structure/prop/brokenvendor/brokencorpsmanvendor,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Mo" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -7032,9 +6660,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Mx" = (
 /obj/machinery/cic_maptable,
 /turf/open/floor,
@@ -7135,9 +6761,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "MR" = (
 /obj/structure/flora/rock/alt3,
 /turf/open/floor/plating/ground/dirt2,
@@ -7145,9 +6769,7 @@
 /area/orion_outpost/ground/outpostnw)
 "MS" = (
 /turf/open/floor/mainship/cargo,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "MT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/forcefield/fog/passable_fog,
@@ -7166,9 +6788,7 @@
 /obj/structure/prop/brokenvendor/surplusclothes,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Na" = (
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/mainship/plate,
@@ -7178,15 +6798,11 @@
 /area/orion_outpost/ground/underground/caveW)
 "Ng" = (
 /turf/open/floor/marking/delivery,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Nh" = (
 /obj/machinery/computer/atmoscontrol,
 /turf/open/floor/light,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Nk" = (
 /obj/item/ammo_magazine/tank/towlauncher,
 /obj/structure/desertdam/decals/road/edge{
@@ -7269,15 +6885,11 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "NB" = (
 /obj/machinery/computer/atmoscontrol,
 /turf/open/floor/podhatch/floor,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "NG" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt2{
@@ -7326,9 +6938,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "NR" = (
 /obj/item/reagent_containers/food/drinks/cans/cola,
 /turf/open/floor/plating,
@@ -7337,13 +6947,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostnw)
-"NV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/surface/landing_pad_external)
 "NW" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -7356,9 +6959,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt5"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "NY" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 4
@@ -7437,28 +7038,23 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Or" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Os" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Ou" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper Nexus Dome Canteen"
 	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/surface/landing_pad_external)
+/turf/open/floor{
+	icon_state = "white"
+	},
+/area/orion_outpost/surface/building/research)
 "Ox" = (
 /obj/structure/flora/ausbushes/sunnybush{
 	color = "#ffb682"
@@ -7531,9 +7127,7 @@
 	dir = 8;
 	icon_state = "whitebluecorner"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "OU" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -7544,15 +7138,11 @@
 	dir = 8;
 	icon_state = "whiteblue"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "OW" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "OX" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/indestructible,
@@ -7711,9 +7301,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "PJ" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -7753,9 +7341,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "PQ" = (
 /obj/machinery/light{
 	dir = 4
@@ -7786,9 +7372,7 @@
 "PY" = (
 /obj/structure/prop/brokenvendor/brokenuniformvendor,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Qe" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /turf/open/shuttle/escapepod/plain,
@@ -7828,9 +7412,7 @@
 "Qv" = (
 /obj/structure/flora/rock/pile/alt,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Qx" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/ground/dirt2,
@@ -7852,9 +7434,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "QC" = (
 /obj/structure/flora/rock/alt,
 /turf/open/floor/plating/ground/dirt2,
@@ -7882,26 +7462,20 @@
 	dir = 8;
 	icon_state = "whiteblue"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "QQ" = (
 /obj/effect/landmark/corpsespawner/marine/engineer,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostsw)
 "QR" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "QU" = (
 /obj/effect/ai_node,
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "QV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7961,9 +7535,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Rl" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -7977,15 +7549,11 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt2"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Rn" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Rp" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/combatLifesaver,
@@ -8115,9 +7683,7 @@
 "Sn" = (
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "So" = (
 /obj/effect/landmark/corpsespawner/marine,
 /obj/structure/cable,
@@ -8152,9 +7718,7 @@
 /obj/structure/table/mainship,
 /obj/item/shard,
 /turf/open/floor/mainship/stripesquare,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Sv" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
@@ -8215,9 +7779,7 @@
 "SJ" = (
 /obj/machinery/door/airlock/silver,
 /turf/open/floor/grayscale/round,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "SM" = (
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
 	dir = 8
@@ -8251,9 +7813,7 @@
 /obj/item/ammo_magazine/tl102/hsg_nest,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "Tc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/structure/cable,
@@ -8263,9 +7823,7 @@
 /obj/machinery/optable,
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/shuttle/brig,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Tg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -8290,9 +7848,7 @@
 "Tm" = (
 /obj/effect/landmark/weed_node,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Tn" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -8411,9 +7967,7 @@
 "TS" = (
 /obj/structure/window/shuttle,
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "TU" = (
 /obj/structure/prop/mainship/hangar_stencil,
 /obj/machinery/floodlight/landing,
@@ -8425,17 +7979,13 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "TW" = (
 /turf/open/floor{
 	dir = 8;
 	icon_state = "whiteblue"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "TX" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -8511,9 +8061,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Up" = (
 /obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/plating/ground/dirt2{
@@ -8569,9 +8117,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "UD" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -8621,9 +8167,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan2"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "UN" = (
 /turf/closed/gm/dense{
 	color = "#ffb682"
@@ -8659,9 +8203,7 @@
 "Vc" = (
 /obj/machinery/shield_gen,
 /turf/open/shuttle/brig,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Vd" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating/ground/dirt2,
@@ -8674,9 +8216,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Vi" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -8719,9 +8259,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Vp" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
@@ -8752,9 +8290,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "nt5"
 	},
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "VD" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/cable,
@@ -8770,9 +8306,7 @@
 /obj/structure/rack,
 /obj/effect/spawner/random/gun/rifles,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "VL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8783,9 +8317,7 @@
 /obj/structure/prop/brokenvendor/brokenweaponsrack,
 /obj/structure/cable,
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "VO" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/whitegreen/full,
@@ -8802,9 +8334,7 @@
 "VT" = (
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "VU" = (
 /obj/effect/forcefield/fog/passable_fog,
 /obj/structure/lattice,
@@ -8815,9 +8345,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "VZ" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -8893,9 +8421,7 @@
 "Wz" = (
 /obj/item/ammo_casing,
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "WC" = (
 /obj/effect/landmark/corpsespawner/marine,
 /obj/structure/table/mainship,
@@ -8981,9 +8507,7 @@
 "WV" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/mainship/plate,
-/area/orion_outpost/surface/building/bunker{
-	icon_state = "dark128"
-	})
+/area/orion_outpost/surface/building/bunker)
 "WX" = (
 /obj/structure/lattice,
 /turf/open/floor/plating,
@@ -8996,9 +8520,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/marking/delivery,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "WZ" = (
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor,
@@ -9044,9 +8566,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Xh" = (
 /mob/living/simple_animal/corgi/ian,
 /turf/open/floor,
@@ -9107,9 +8627,7 @@
 "Xr" = (
 /obj/structure/flora/rock/pile/alt,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Xs" = (
 /obj/machinery/door/airlock/mainship/secure/open/free_access{
 	dir = 2
@@ -9117,9 +8635,7 @@
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Xt" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -9127,9 +8643,7 @@
 /turf/open/floor/grass{
 	color = "#ffb682"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Xv" = (
 /turf/open/floor/plating/ground/dirt2{
 	color = "#82776d"
@@ -9165,9 +8679,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/lattice,
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "XJ" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating/ground/dirt2,
@@ -9246,9 +8758,7 @@
 "Yd" = (
 /obj/machinery/flasher,
 /turf/closed/wall,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/research)
 "Ye" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/damaged/panel,
@@ -9277,9 +8787,7 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/armory{
-	icon_state = "armory"
-	})
+/area/orion_outpost/surface/building/armory)
 "Yo" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -9329,9 +8837,7 @@
 "YC" = (
 /obj/structure/bed/chair/dropship/pilot,
 /turf/open/floor/podhatch/floor,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "YE" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/surface/landing_pad)
@@ -9365,9 +8871,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan27"
 	},
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "YU" = (
 /obj/structure/jungle/vines{
 	color = "#ffb682"
@@ -9379,18 +8883,14 @@
 "YV" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "YW" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/bush{
 	color = "#ffb682"
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "YY" = (
 /turf/closed/mineral,
 /area/orion_outpost/ground/underground/caveS)
@@ -9430,9 +8930,7 @@
 /obj/structure/table/reinforced,
 /obj/item/alien_embryo,
 /turf/open/floor/light,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Zk" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -9447,9 +8945,7 @@
 /area/orion_outpost/ground/outposts)
 "Zq" = (
 /turf/open/shuttle/brig,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "Zs" = (
 /obj/structure/toilet{
 	dir = 8
@@ -9461,9 +8957,7 @@
 	color = "#ffb682"
 	},
 /turf/open/shuttle/dropship/floor,
-/area/orion_outpost/surface/building/crashednt{
-	icon_state = "blueold"
-	})
+/area/orion_outpost/surface/building/crashednt)
 "Zv" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -9501,9 +8995,7 @@
 	dir = 2
 	},
 /turf/open/floor/podhatch/floor,
-/area/orion_outpost/surface/building/research{
-	icon_state = "purple"
-	})
+/area/orion_outpost/surface/building/research)
 "ZJ" = (
 /obj/effect/landmark/corpsespawner/marine,
 /obj/structure/table,
@@ -9920,7 +9412,7 @@ ko
 ko
 cI
 va
-dy
+Im
 Im
 Im
 jX
@@ -10032,7 +9524,7 @@ Mt
 Mt
 Mt
 IF
-dy
+Im
 Im
 Im
 jX
@@ -10144,7 +9636,7 @@ aa
 aa
 aa
 YE
-dy
+Im
 Im
 Im
 jX
@@ -10256,7 +9748,7 @@ aa
 aa
 aa
 YE
-dy
+Im
 Im
 Im
 jX
@@ -10368,7 +9860,7 @@ aa
 aa
 aa
 YE
-NV
+lv
 Im
 Im
 jX
@@ -10480,7 +9972,7 @@ aa
 aa
 aa
 YE
-dy
+Im
 Im
 Im
 jX
@@ -10592,7 +10084,7 @@ aa
 aa
 aa
 YE
-dy
+Im
 Im
 Im
 jX
@@ -10704,7 +10196,7 @@ aa
 aa
 aa
 YE
-dy
+Im
 Im
 Im
 OX
@@ -10816,7 +10308,7 @@ aa
 aa
 aa
 YE
-dy
+Im
 Gs
 bR
 OX
@@ -10928,7 +10420,7 @@ aa
 aa
 aa
 YE
-dy
+Im
 bR
 bR
 OX
@@ -11040,7 +10532,7 @@ aa
 aa
 aa
 YE
-dy
+Im
 bR
 bR
 OX
@@ -11152,7 +10644,7 @@ ei
 ei
 ei
 pl
-dy
+Im
 Im
 bR
 OX
@@ -11251,7 +10743,7 @@ ko
 ko
 ko
 ko
-rC
+ko
 ko
 cI
 ko
@@ -11264,7 +10756,7 @@ ko
 ko
 cI
 TU
-NV
+lv
 Im
 bR
 OX
@@ -11363,20 +10855,20 @@ Im
 Im
 Im
 lv
-dy
-Im
-Im
-Im
-Im
-lv
-Im
 Im
 Im
 Im
 Im
 Im
 lv
-dy
+Im
+Im
+Im
+Im
+Im
+Im
+lv
+Im
 Im
 bR
 OX
@@ -11475,7 +10967,7 @@ fg
 fg
 fg
 fg
-Ou
+fg
 fg
 Im
 Im
@@ -11488,7 +10980,7 @@ Gs
 Im
 Im
 Im
-dy
+Im
 Im
 bR
 OX
@@ -11587,7 +11079,7 @@ LV
 Jt
 Im
 Im
-dy
+Im
 fg
 Im
 Im
@@ -11600,7 +11092,7 @@ Zm
 Im
 Im
 Im
-dy
+Im
 Im
 FS
 OX
@@ -11699,7 +11191,7 @@ qP
 qP
 jX
 jX
-Kb
+jX
 Tc
 jX
 jX
@@ -11712,7 +11204,7 @@ qP
 qP
 sV
 sV
-Kb
+jX
 jX
 OX
 jq
@@ -11811,7 +11303,7 @@ zD
 zD
 cO
 cO
-gR
+cO
 NS
 cO
 mN
@@ -16084,7 +15576,7 @@ iR
 iR
 iR
 iR
-BY
+yc
 rA
 gq
 ss
@@ -16196,7 +15688,7 @@ LN
 TW
 OT
 iR
-BY
+yc
 sG
 OH
 PB
@@ -16308,7 +15800,7 @@ AM
 jM
 uY
 iR
-BY
+yc
 hH
 OH
 Ef
@@ -16420,7 +15912,7 @@ VV
 if
 EX
 iR
-BY
+yc
 hH
 AS
 AS
@@ -16532,7 +16024,7 @@ AM
 AM
 BU
 iR
-BY
+yc
 mZ
 Sf
 Sf
@@ -16868,7 +16360,7 @@ sd
 EP
 qe
 Jo
-BY
+yc
 DZ
 pp
 DZ
@@ -17190,7 +16682,7 @@ Ir
 Ir
 Ir
 Ir
-js
+Ir
 iR
 gr
 EP
@@ -17204,7 +16696,7 @@ UM
 EP
 me
 hX
-BY
+yc
 iE
 RW
 Iu
@@ -17302,7 +16794,7 @@ iH
 iH
 iH
 iH
-iR
+iH
 iR
 AM
 EP
@@ -17527,19 +17019,19 @@ wb
 St
 ha
 io
-iH
-iH
-iH
-iH
-iH
-iH
-iH
-iH
-iH
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+iR
+iR
 Yd
-Fy
+Ou
 DG
-iH
+iR
 yc
 KI
 Ai
