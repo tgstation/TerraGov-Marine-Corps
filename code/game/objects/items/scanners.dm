@@ -92,8 +92,8 @@ REAGENT SCANNER
 	to_chat(user, "<span class='notice'>[user] has analyzed [M]'s vitals.")
 	playsound(src.loc, 'sound/items/healthanalyzer.ogg', 50)
 
-	// Doesn't work on non-humans and synthetics
-	if(!iscarbon(M) || issynth(M))
+	// Doesn't work on non-humanoids
+	if(!iscarbon(M))
 		user.show_message("\n[span_notice(" Health Analyzer results for ERROR:\n\t Overall Status: ERROR")]")
 		user.show_message("\tType: [span_notice("Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute")]", 1)
 		user.show_message("\tDamage: [span_notice("?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?")]")
