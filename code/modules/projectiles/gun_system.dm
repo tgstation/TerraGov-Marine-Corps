@@ -499,7 +499,7 @@
 	examine_ammo_count(user)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
-			to_chat(user, span_notice("Use Ctrl-Click to deploy."))
+			to_chat(user, span_notice("Use Ctrl-Click on a tile to deploy."))
 		return
 	to_chat(user, span_notice("Click-Drag to yourself to undeploy."))
 	to_chat(user, span_notice("Alt-Click to unload."))
