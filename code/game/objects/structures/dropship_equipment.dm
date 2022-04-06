@@ -337,7 +337,7 @@
 /obj/structure/dropship_equipment/sentry_holder/examine(mob/user)
 	. = ..()
 	if(!deployed_turret)
-		to_chat(user, "Its turret is missing.")
+		. += "Its turret is missing."
 
 /obj/structure/dropship_equipment/sentry_holder/on_launch()
 	undeploy_sentry()
@@ -441,7 +441,7 @@
 /obj/structure/dropship_equipment/mg_holder/examine(mob/user)
 	. = ..()
 	if(!deployed_mg)
-		to_chat(user, "Its machine gun is missing.")
+		. += "Its machine gun is missing."
 
 /obj/structure/dropship_equipment/mg_holder/update_equipment()
 	if(!deployed_mg)
@@ -606,9 +606,9 @@
 /obj/structure/dropship_equipment/weapon/examine(mob/user)
 	. = ..()
 	if(ammo_equipped)
-		ammo_equipped.show_loaded_desc(user)
-	else
-		to_chat(user, "It's empty.")
+		. += ammo_equipped.show_loaded_desc(user)
+		return
+	. += "It's empty."
 
 
 
@@ -784,7 +784,7 @@
 /obj/structure/dropship_equipment/operatingtable/examine(mob/user)
 	. = ..()
 	if(!deployed_table)
-		to_chat(user, "Its table is broken.")
+		. += "Its table is broken."
 
 /obj/structure/dropship_equipment/operatingtable/Destroy()
 	QDEL_NULL(deployed_table)

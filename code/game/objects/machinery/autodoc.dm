@@ -1341,14 +1341,14 @@
 	event = 1
 
 /obj/machinery/autodoc_console/examine(mob/living/user)
-	..()
+	. = ..()
 	if(locked)
-		to_chat(user, span_warning("It's currently locked down!"))
+		. += span_warning("It's currently locked down!")
 	if(release_notice)
-		to_chat(user, span_notice("Release notifications are turned on."))
+		. += span_notice("Release notifications are turned on.")
 
 /obj/machinery/autodoc/examine(mob/living/user)
-	..()
+	. = ..()
 	to_chat(user, span_notice("Its metal reservoir contains [stored_metal] of [stored_metal_max] units."))
 	if(!occupant) //Allows us to reference medical files/scan reports for cryo via examination.
 		return
@@ -1358,16 +1358,16 @@
 	if(surgery)
 		active += " Surgical procedures are in progress."
 	if(!hasHUD(user,"medical"))
-		to_chat(user, span_notice("It contains: [occupant].[active]"))
+		. += span_notice("It contains: [occupant].[active]")
 		return
 	var/mob/living/carbon/human/H = occupant
 	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(!(R.fields["last_scan_time"]))
-			to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
+			. += span_deptradio("No scan report on record")
 		else
-			to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[active]</a></span>\n")
+			. += span_deptradio("<a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[active]</a>")
 		break
 
 /obj/machinery/autodoc/Topic(href, href_list)

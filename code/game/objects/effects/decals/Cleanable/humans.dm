@@ -153,8 +153,8 @@
 		icon_state = "writing1"
 
 /obj/effect/decal/cleanable/blood/writing/examine(mob/user)
-	..()
-	to_chat(user, "It reads: <font color='[basecolor]'>\"[message]\"<font>")
+	. = ..()
+	. += "It reads: <font color='[basecolor]'>\"[message]\"<font>"
 
 /obj/effect/decal/cleanable/blood/gibs
 	name = "gibs"

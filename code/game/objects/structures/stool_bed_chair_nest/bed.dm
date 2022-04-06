@@ -491,18 +491,18 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	. = ..()
 	var/list/details = list()
 	if(linked_beacon)
-		details +=("It's linked to a beacon located at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y]).</br>")
+		details += "It's linked to a beacon located at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y]).</br>"
 
 	if(world.time < last_teleport)
-		details +=("Its bluespace engine is currently recharging. <b>The interface displays: [round(last_teleport - world.time) * 0.1] seconds until it has recharged.</b></br>")
+		details += "Its bluespace engine is currently recharging. <b>The interface displays: [round(last_teleport - world.time) * 0.1] seconds until it has recharged.</b></br>"
 
 	if(LAZYLEN(buckled_mobs))
-		details +=("It contains [buckled_mobs[1]].</br>")
+		details += "It contains [buckled_mobs[1]].</br>"
 	else if(buckled_bodybag)
 		var/mob/living/M = locate(/mob/living) in buckled_bodybag.contents
-		details +=("It contains [M].</br>")
+		details += "It contains [M].</br>"
 
-	to_chat(user, span_notice("[details.Join(" ")]"))
+	. += span_notice("[details.Join(" ")]")
 
 
 /obj/item/roller/medevac
@@ -527,12 +527,12 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	. = ..()
 	var/list/details = list()
 	if(linked_beacon)
-		details +=("It's linked to a beacon located at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y]).</br>")
+		details += "It's linked to a beacon located at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y]).</br>"
 
 	if(world.time < last_teleport)
-		details +=("[span_warning("It's bluespace engine is currently recharging. The interface estimates: [round(last_teleport - world.time) * 0.1] seconds until it has recharged.")]</br>")
+		details += "[span_warning("It's bluespace engine is currently recharging. The interface estimates: [round(last_teleport - world.time) * 0.1] seconds until i has recharged.")]</br>"
 
-	to_chat(user, span_notice("[details.Join(" ")]"))
+	. += span_notice("[details.Join(" ")]")
 
 
 /obj/item/roller/medevac/attackby(obj/item/I, mob/user, params)
@@ -576,9 +576,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	. = ..()
 	var/list/details = list()
 	if(!check_power())
-		details +=("<b>It's currently unpowered.</b></br>")
+		details += "<b>It's currently unpowered.</b></br>"
 	else
-		details +=("<b>It's currently powered.</b></br>")
+		details += "<b>It's currently powered.</b></br>"
 	var/turf/bed_location
 	var/teleport_time
 	if(linked_bed_deployed)
@@ -592,9 +592,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		if(world.time < teleport_time)
 			details += "The linked bed's bluespace engine is currently recharging. <b>The interface displays: [round(teleport_time - world.time) * 0.1] seconds until it has recharged.</b></br>"
 	else
-		details +=("It's not currently linked to a medvac bed.</br>")
+		details += "It's not currently linked to a medvac bed.</br>"
 
-	to_chat(user, span_notice("[details.Join(" ")]"))
+	. += span_notice("[details.Join(" ")]")
 
 /obj/item/medevac_beacon/proc/medvac_alert(mob/M)
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)

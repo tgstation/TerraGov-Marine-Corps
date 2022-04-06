@@ -1,5 +1,5 @@
 /mob/living/carbon/human/examine(mob/user)
-	SHOULD_CALL_PARENT(0)
+	SHOULD_CALL_PARENT(FALSE)
 	if (isxeno(user))
 		var/msg = "<span class='info'>*---------*\nThis is "
 		if(icon)
@@ -27,8 +27,7 @@
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 			msg += "Hemodile: 20% stamina damage received, when damaged, and slowed by 25% (inject neurotoxin for 50% slow)\n"
 		msg += "*---------*</span>"
-		to_chat(user, msg)
-		return
+		return list(msg)
 
 	var/skipgloves = 0
 	var/skipsuitstorage = 0
@@ -529,7 +528,7 @@
 
 	msg += "*---------*</span>"
 
-	to_chat(user, msg)
+	return list(msg)
 
 /mob/living/carbon/human/proc/take_pulse(mob/user)
 	if(QDELETED(user) || QDELETED(src) || !Adjacent(user) || user.incapacitated())

@@ -207,7 +207,7 @@
 /obj/effect/overlay/temp/laser_target/examine(user)
 	. = ..()
 	if(ishuman(user))
-		to_chat(usr, span_danger("It's a laser to designate artillery targets, get away from it!"))
+		. += span_danger("It's a laser to designate artillery targets, get away from it!")
 
 /obj/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
@@ -225,7 +225,7 @@
 /obj/effect/overlay/temp/laser_target/cas/examine(user)
 	. = ..()
 	if(ishuman(user))
-		to_chat(usr, span_danger("It's a laser to designate cas targets, get away from it!"))
+		. += span_danger("It's a laser to designate CAS targets, get away from it!")
 
 /obj/effect/overlay/temp/laser_target/OB
 	icon_state = "laser_target2"

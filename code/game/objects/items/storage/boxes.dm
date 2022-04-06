@@ -509,19 +509,19 @@
 	if (!deployed && !(loc == user)) //Closed and not in your possession
 		return
 	if(variety > max_overlays) //Too much shit inside, a literal clusterfuck of supplies
-		to_chat(user, "It's too cluttered with all of these supplies inside.")
+		. += "It's too cluttered with all of these supplies inside."
 		return
 	if(variety <= 0) //empy
-		to_chat(user, "It is empty!")
+		. += "It is empty!"
 		return
-	to_chat(user, "It contains:")
+	. += "It contains:"
 	for(var/obj/item/I AS in contents_weight)
 		if(contents_weight[I] < overlay_w_class)
-			to_chat(user, "A bit of: [initial(I.name)].")
+			. += "A bit of: [initial(I.name)]."
 		else if(contents_weight[I] < 3 * overlay_w_class)
-			to_chat(user, "Some of: [initial(I.name)].")
+			. += "Some of: [initial(I.name)]."
 		else
-			to_chat(user, "A lot of: [initial(I.name)].")
+			. += "A lot of: [initial(I.name)]."
 
 /obj/item/storage/box/visual/attack_self(mob/user)
 	deployed = TRUE
@@ -940,7 +940,7 @@
 /obj/item/storage/box/visual/magazine/compact/sectoid_rifle/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(deployed)
-		to_chat(user, "The inside is smeared with some purple glowy goo. Better not touch it.")
+		. += "The inside is smeared with some purple glowy goo. Better not touch it."
 
 /obj/item/storage/box/visual/magazine/compact/sectoid_rifle/full
 	spawn_number = 30

@@ -359,9 +359,9 @@
 	var/unmovable = 1 //If set to 1, then on examine, the user will see a warning that states the contents cannot be moved after opened.
 
 /obj/structure/largecrate/machine/examine(mob/user)
-	..()
+	. = ..()
 	if(unmovable)
-		to_chat(user, "<b>!!WARNING!! CONTENTS OF CRATE UNABLE TO BE MOVED ONCE UNPACKAGED!</b>")
+		. += "<b>!!WARNING!! CONTENTS OF CRATE UNABLE TO BE MOVED ONCE UNPACKAGED!</b>"
 
 /obj/structure/largecrate/machine/attackby(obj/item/I, mob/user, params)
 	if(iscrowbar(I) && dir_needed)

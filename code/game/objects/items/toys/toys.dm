@@ -258,8 +258,8 @@
 		return
 
 /obj/item/toy/waterflower/examine(mob/user)
-	..()
-	to_chat(user, "[reagents.total_volume] units of water left!")
+	. = ..()
+	. += "[reagents.total_volume] units of water left!"
 
 
 

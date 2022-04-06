@@ -276,6 +276,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/living/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	if(aghosting)
 		set_afk_status(MOB_AGHOSTED)
+	reset_perspective()
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return

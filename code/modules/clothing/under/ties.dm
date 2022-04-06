@@ -67,8 +67,8 @@
 	var/medal_citation
 
 /obj/item/clothing/tie/medal/examine(mob/user)
-	..()
-	to_chat(user, "Awarded to: \'[recipient_rank] [recipient_name]\'. The citation reads \'[medal_citation]\'.")
+	. = ..()
+	. += "Awarded to: \'[recipient_rank] [recipient_name]\'. The citation reads \'[medal_citation]\'."
 
 /obj/item/clothing/tie/medal/conduct
 	name = "distinguished conduct medal"
