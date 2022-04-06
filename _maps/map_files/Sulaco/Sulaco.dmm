@@ -3424,7 +3424,8 @@
 	},
 /obj/machinery/door_control/mainship/cic/armory{
 	pixel_x = 5;
-	pixel_y = 6
+	pixel_y = 6;
+	range = 12
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
