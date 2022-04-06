@@ -11,7 +11,7 @@
 	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 63
 	attack_delay = 7
 
 	// *** Speed *** //
@@ -97,7 +97,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 72
 
 	// *** Speed *** //
 	speed = -1.3
@@ -125,7 +125,7 @@
 	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 72
 
 	// *** Speed *** //
 	speed = -1.4
@@ -153,7 +153,7 @@
 	ancient_message = "We are the ultimate predator. Let the hunt begin."
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 72
 
 	// *** Speed *** //
 	speed = -1.4

@@ -11,7 +11,7 @@
 	wound_type = "carrier" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 51
 
 	// *** Speed *** //
 	speed = 0
@@ -100,7 +100,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 60
 
 	// *** Speed *** //
 	speed = -0.2
@@ -132,7 +132,7 @@
 	ancient_message = "We are the master of huggers. We shall throw them like baseballs at the marines!"
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 60
 
 	// *** Speed *** //
 	speed = -0.3
@@ -164,7 +164,7 @@
 	primordial_message = ""
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 60
 
 	// *** Speed *** //
 	speed = -0.3

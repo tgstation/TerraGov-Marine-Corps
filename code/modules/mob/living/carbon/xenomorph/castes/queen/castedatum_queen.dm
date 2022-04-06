@@ -10,7 +10,7 @@
 	wound_type = "queen" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 60
 
 	// *** Speed *** //
 	speed = 0
@@ -113,7 +113,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 69
 
 	// *** Speed *** //
 	speed = -0.2
@@ -146,7 +146,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 69
 
 	// *** Speed *** //
 	speed = -0.3
@@ -179,7 +179,7 @@
 	primordial_message = "Destiny bows to our will as the universe trembles before us."
 	upgrade = XENO_UPGRADE_FOUR
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 69
 
 	// *** Speed *** //
 	speed = -0.3

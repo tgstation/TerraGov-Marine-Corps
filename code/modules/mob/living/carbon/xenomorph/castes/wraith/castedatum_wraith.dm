@@ -9,7 +9,7 @@
 	wound_type = "wraith" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 51
 
 	// *** Speed *** //
 	speed = -1
@@ -85,7 +85,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 60
 
 	// *** Speed *** //
 	speed = -1.2
@@ -111,7 +111,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 60
 
 	// *** Speed *** //
 	speed = -1.25
@@ -136,7 +136,7 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 60
 
 	// *** Speed *** //
 	speed = -1.25

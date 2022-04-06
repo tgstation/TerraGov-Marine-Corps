@@ -860,7 +860,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(stat == DEAD)
 		return
 
-	var/damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff))
+	var/damage = max(0, proj.damage * 3 - round(proj.distance_travelled * proj.damage_falloff))
 	if(!damage)
 		return
 
