@@ -509,6 +509,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	new /obj/effect/temp_visual/wraith_warp(get_turf(teleporter))
 
+	if(owner.status_flags & INCORPOREAL) //No debuff while in phase shift
+		return
+
 	for(var/mob/living/living_target in range(1, teleporter.loc))
 
 		if(living_target.stat == DEAD)
