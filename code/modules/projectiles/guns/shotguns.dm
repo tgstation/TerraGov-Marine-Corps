@@ -94,7 +94,6 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/stock/t39stock,
 	)
@@ -255,7 +254,6 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/shotgun,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -576,7 +574,6 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 19, "under_x" = 27, "under_y" = 16, "stock_x" = 0, "stock_y" = 0)
 
@@ -612,7 +609,6 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/t35stock,
 		/obj/item/attachable/motiondetector,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)

@@ -61,9 +61,9 @@
 /obj/structure/paper_bin/examine(mob/user)
 	. = ..()
 	if(amount)
-		to_chat(user, span_notice("There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin."))
+		. += span_notice("There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.")
 	else
-		to_chat(user, span_notice("There are no papers in the bin."))
+		. += span_notice("There are no papers in the bin.")
 
 
 /obj/structure/paper_bin/update_icon()

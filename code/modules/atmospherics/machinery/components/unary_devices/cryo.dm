@@ -92,9 +92,16 @@
 	conduction_coefficient = initial(conduction_coefficient) * C
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user) //this is leaving out everything but efficiency since they follow the same idea of "better beaker, better results"
-	..()
+	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Efficiency at <b>[efficiency*100]%</b>.<span>")
+		. +=  span_notice("The status display reads: Efficiency at <b>[efficiency*100]%</b>.")
+	if(occupant)
+		if(on)
+			. += "Someone's inside [src]!"
+		else
+			. += "You can barely make out a form floating in [src]."
+	else
+		. += "[src] seems empty."
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Destroy()
 	QDEL_NULL(radio)
@@ -119,7 +126,7 @@
 	if(occupant)
 		icon_state = "cell-occupied"
 		return
-	icon_state = "cell-on"	
+	icon_state = "cell-on"
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, image/occupant_overlay)
 	if(!on || !occupant || !is_operational())
@@ -209,16 +216,6 @@
 	if (usr.stat != CONSCIOUS)
 		return
 	go_out()
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user)
-	..()
-	if(occupant)
-		if(on)
-			to_chat(user, "Someone's inside [src]!")
-		else
-			to_chat(user, "You can barely make out a form floating in [src].")
-	else
-		to_chat(user, "[src] seems empty.")
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -457,7 +454,7 @@
 	if(!do_after(X, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
-	go_out()	
+	go_out()
 
 
 #undef CRYOMOBS

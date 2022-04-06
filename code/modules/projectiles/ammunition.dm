@@ -60,7 +60,7 @@
 
 /obj/item/ammo_magazine/examine(mob/user)
 	. = ..()
-	to_chat(user, "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>.")
+	. += "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
 
 
 /obj/item/ammo_magazine/attack_hand(mob/living/user)
@@ -330,9 +330,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/examine(mob/user)
 	. = ..()
 	if(bullet_amount)
-		to_chat(user, "It contains [bullet_amount] round\s.")
+		. += "It contains [bullet_amount] round\s."
 	else
-		to_chat(user, "It's empty.")
+		. += "It's empty."
 
 /obj/item/big_ammo_box/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -439,7 +439,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/shotgunbox/examine(mob/user)
 	. = ..()
-	to_chat(user, "It contains [current_rounds] out of [max_rounds] shotgun shells.")
+	. += "It contains [current_rounds] out of [max_rounds] shotgun shells."
 
 
 /obj/item/shotgunbox/attack_hand(mob/living/user)
