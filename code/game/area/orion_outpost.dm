@@ -8,7 +8,7 @@
 	icon_state = "green"
 	always_unpowered = TRUE
 
-	/area/orion_outpost/surface
+/area/orion_outpost/surface
 	name = "Surface"
 	icon_state = "red"
 	always_unpowered = TRUE
@@ -140,19 +140,19 @@
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
 
-	/area/orion_outpost/surface/building/bunker
+/area/orion_outpost/surface/building/bunker
 	name = "Bunkers"
 	icon_state = "dark128"
 
-	/area/orion_outpost/surface/building/crashednt
+/area/orion_outpost/surface/building/crashednt
 	name = "Destroyed Nanotrasen Vessel"
 	icon_state = "blueold"
 
-	/area/orion_outpost/surface/building/research
+/area/orion_outpost/surface/building/research
 	name = "Research"
 	icon_state = "purple"
 
-	/area/orion_outpost/surface/building/armory
+/area/orion_outpost/surface/building/armory
 	name = "Armory"
 	icon_state = "armory"
 	minimap_color = MINIMAP_AREA_SEC
