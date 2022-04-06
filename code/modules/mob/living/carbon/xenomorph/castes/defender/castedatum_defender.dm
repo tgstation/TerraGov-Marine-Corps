@@ -50,7 +50,7 @@
 		/datum/action/xeno_action/fortify,
 		/datum/action/xeno_action/activable/forward_charge,
 		/datum/action/xeno_action/tail_sweep,
-		/datum/action/xeno_action/activable/regenerate_skin,
+		/datum/action/xeno_action/regenerate_skin,
 	)
 
 /datum/xeno_caste/defender/young
@@ -177,6 +177,6 @@
 		/datum/action/xeno_action/fortify,
 		/datum/action/xeno_action/activable/forward_charge,
 		/datum/action/xeno_action/tail_sweep,
-		/datum/action/xeno_action/activable/regenerate_skin,
-		/datum/action/xeno_action/activable/centrifugal_force,
+		/datum/action/xeno_action/regenerate_skin,
+		/datum/action/xeno_action/centrifugal_force,
 	)

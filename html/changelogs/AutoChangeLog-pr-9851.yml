@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - qol: "When the CAS jet UI when focused can now set fire direction with arrow keys, toggle engines with enter, take off with space"
-  - refactor: "refactored some CAS jet backend"
