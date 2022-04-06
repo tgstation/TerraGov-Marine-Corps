@@ -11,8 +11,6 @@
 /area/orion_outpost/surface
 	name = "Surface"
 	icon_state = "red"
-	always_unpowered = TRUE
-
 /area/orion_outpost/surface/building
 	name = "Orion Outpost Buildings"
 	icon_state = "clear"
