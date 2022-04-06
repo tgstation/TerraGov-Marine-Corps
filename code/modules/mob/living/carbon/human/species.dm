@@ -220,18 +220,6 @@
 				. = "Jeri"
 		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
 
-/datum/species/early_synthetic/prefs_name(datum/preferences/prefs)
-	. = prefs.synthetic_name
-	if(!. || . == "Undefined") //In case they don't have a name set.
-		switch(prefs.gender)
-			if(MALE)
-				. = "David"
-			if(FEMALE)
-				. = "Anna"
-			else
-				. = "Jeri"
-		to_chat(prefs.parent, span_warning("You forgot to set your synthetic name in your preferences. Please do so next time."))
-
 /datum/species/proc/on_species_gain(mob/living/carbon/human/H, /datum/species/old_species)
 	SHOULD_CALL_PARENT(TRUE) //remember to call base procs kids
 	for(var/slot_id in no_equip)
