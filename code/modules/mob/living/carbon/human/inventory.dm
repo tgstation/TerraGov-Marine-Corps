@@ -394,6 +394,9 @@
 		if(SLOT_IN_R_POUCH)
 			var/obj/item/storage/S = r_store
 			S.handle_item_insertion(W, FALSE, src)
+		if(SLOT_IN_ACCESSORY)
+			var/obj/item/storage/S = w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM].storage
+			S.handle_item_insertion(W, FALSE, src)
 		else
 			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
 
