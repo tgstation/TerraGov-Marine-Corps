@@ -689,7 +689,7 @@
 
 ///Play small animation and jiggle when dropping an object
 /obj/item/proc/do_drop_animation(atom/moving_from)
-	if(!istype(loc, /turf))
+	if(!isturf(loc))
 		return
 
 	var/turf/current_turf = get_turf(src)
