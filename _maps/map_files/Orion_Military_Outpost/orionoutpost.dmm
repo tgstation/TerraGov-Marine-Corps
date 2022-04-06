@@ -911,6 +911,9 @@
 "fz" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt{
 	icon_state = "tile"
 	},
@@ -1162,6 +1165,10 @@
 "gU" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostsw)
+"gX" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/surface/building/medbay)
 "gY" = (
 /obj/item/clothing/head/welding,
 /obj/structure/cable,
@@ -1375,11 +1382,8 @@
 	},
 /area/orion_outpost/ground/outposts)
 "ik" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2{
-	color = "#82776d"
-	},
-/area/orion_outpost/ground/outpostne)
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/surface/building/medbay)
 "in" = (
 /turf/open/floor/podhatch/floor,
 /area/orion_outpost/surface/building/research)
@@ -1824,11 +1828,12 @@
 	},
 /area/orion_outpost/surface/building/research)
 "kv" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/dirt2{
-	color = "#82776d"
+/obj/machinery/light{
+	light_color = "#da2f1b"
 	},
-/area/orion_outpost/ground/outpostne)
+/obj/structure/sign/redcross,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/surface/building/medbay)
 "ky" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -1887,6 +1892,9 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/surface/building/research)
@@ -2170,6 +2178,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostcent)
+"mr" = (
+/obj/machinery/floodlight/colony,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostn)
 "mu" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
@@ -3734,6 +3746,16 @@
 	},
 /turf/open/floor,
 /area/orion_outpost/surface/building/canteen)
+"vF" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/surface/building/research)
 "vG" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/podhatch/floor,
@@ -4044,9 +4066,11 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/surface/building/armory)
 "xk" = (
-/obj/machinery/floodlight/outpost,
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/outposte)
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor,
+/area/orion_outpost/surface/building/command)
 "xl" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/light,
@@ -4115,6 +4139,16 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostnw)
+"xC" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/surface/building/armory)
 "xE" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
@@ -5278,7 +5312,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outposts)
 "Ep" = (
-/obj/structure/window/framed/prison/reinforced/hull/tyson,
+/obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/barracks)
 "Ew" = (
@@ -5650,6 +5684,25 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/orion_outpost/ground/underground/caveW)
+"GG" = (
+/obj/structure/bed/chair/comfy{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor,
+/area/orion_outpost/surface/building/command)
+"GH" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/surface/building/barracks)
 "GJ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -6329,6 +6382,14 @@
 	},
 /turf/open/floor,
 /area/orion_outpost/surface/building/canteen)
+"KL" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/surface/building/barracks)
 "KM" = (
 /obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/mainship/black/full,
@@ -6380,6 +6441,11 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
 /area/orion_outpost/ground/outpostse)
+"Ll" = (
+/obj/effect/decal/cleanable/blood/gibs/xeno,
+/obj/machinery/floodlight/colony,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostne)
 "Lm" = (
 /obj/structure/flora/rock/pile/alt2,
 /turf/open/floor/plating/ground/dirt2,
@@ -6969,11 +7035,8 @@
 /area/orion_outpost/surface/building/research)
 "Ou" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt2{
-	color = "#82776d"
-	},
-/area/orion_outpost/ground/outpostne)
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/surface/building/medbay)
 "Ox" = (
 /obj/structure/flora/ausbushes/sunnybush{
 	color = "#ffb682"
@@ -7121,6 +7184,16 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/surface/building/canteen)
+"Po" = (
+/obj/structure/fence,
+/obj/structure/desertdam/decals/road/edge{
+	icon_state = "road_edge_decal1"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/surface/building/command)
 "Pp" = (
 /obj/structure/flora/tree/joshua,
 /obj/structure/flora/ausbushes/grassybush{
@@ -7715,9 +7788,12 @@
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/barracks)
 "SS" = (
-/obj/structure/sign/redcross,
-/turf/closed/wall/mainship/white,
-/area/orion_outpost/surface/building/medbay)
+/obj/structure/fence,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/surface/building/command)
 "ST" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -7920,6 +7996,12 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostw)
+"Ub" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor,
+/area/orion_outpost/surface/building/command)
 "Uc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -7961,7 +8043,7 @@
 "Ul" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/outpostne)
+/area/orion_outpost/ground/underground/caveN)
 "Um" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8016,9 +8098,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostcent)
 "Uy" = (
-/obj/structure/sign/prop1,
-/turf/closed/wall,
-/area/orion_outpost/surface/building/barracks)
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/underground/caveN)
 "Uz" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -8577,6 +8659,11 @@
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/surface/building/command)
+"XD" = (
+/obj/structure/curtain/temple,
+/obj/structure/sign/prop1,
+/turf/open/floor/wood,
+/area/orion_outpost/surface/building/barracks)
 "XF" = (
 /obj/structure/flora/ausbushes/sunnybush{
 	color = "#ffb682"
@@ -10268,7 +10355,7 @@ yr
 yr
 yr
 za
-sU
+ik
 vH
 vH
 vH
@@ -10380,7 +10467,7 @@ oU
 oU
 oU
 yr
-sU
+ik
 vH
 Cr
 jk
@@ -10492,7 +10579,7 @@ ts
 Sv
 oU
 yr
-sU
+ik
 vH
 jk
 to
@@ -10604,8 +10691,8 @@ Oj
 Oj
 oU
 yr
-sU
-SS
+kv
+vH
 is
 to
 WC
@@ -10716,7 +10803,7 @@ kU
 kU
 Us
 dl
-vM
+Ou
 Gc
 kC
 to
@@ -10827,8 +10914,8 @@ Oj
 Xc
 Oj
 oU
-za
-oi
+KL
+gX
 Dx
 uc
 eW
@@ -10940,8 +11027,8 @@ ts
 Sv
 oU
 yr
-sU
-SS
+kv
+vH
 wf
 to
 xE
@@ -10987,8 +11074,8 @@ bS
 bS
 bS
 bS
-bS
 Zm
+bS
 Im
 Im
 Im
@@ -11052,7 +11139,7 @@ oU
 oU
 oU
 yr
-sU
+ik
 vH
 nj
 to
@@ -11164,7 +11251,7 @@ Rz
 Rz
 Rz
 mk
-sU
+ik
 vH
 Gr
 to
@@ -11276,7 +11363,7 @@ oU
 oU
 oU
 Ra
-sU
+ik
 vH
 jk
 to
@@ -11388,7 +11475,7 @@ ts
 Sv
 oU
 LR
-sU
+ik
 vH
 Gr
 VO
@@ -11500,7 +11587,7 @@ Oj
 Oj
 oU
 Ra
-sU
+ik
 vH
 vH
 vH
@@ -11723,7 +11810,7 @@ Oj
 IV
 Oj
 oU
-Ra
+GH
 sU
 Rq
 cR
@@ -12617,9 +12704,9 @@ Oj
 Oj
 Oj
 Oj
-Oj
-Uy
-Ra
+XD
+oU
+GH
 sU
 Va
 Rq
@@ -14121,7 +14208,7 @@ rt
 rt
 iB
 iB
-iB
+mr
 iB
 rW
 JX
@@ -15812,7 +15899,7 @@ VV
 if
 EX
 iR
-yc
+vF
 PB
 PM
 PM
@@ -16711,7 +16798,7 @@ bC
 vv
 XW
 lh
-iE
+Ll
 XW
 nG
 Wz
@@ -17044,7 +17131,7 @@ jr
 zS
 WY
 iH
-bu
+xC
 XW
 gO
 KI
@@ -17053,11 +17140,11 @@ ll
 XW
 XW
 lk
-xk
+lk
 lk
 Bz
 iF
-iF
+Po
 Oe
 Oe
 bZ
@@ -17071,7 +17158,7 @@ eL
 eL
 eL
 eL
-eL
+SS
 eL
 yC
 fO
@@ -17295,7 +17382,7 @@ wg
 Pk
 dL
 xQ
-XZ
+GG
 Xh
 Mu
 Mx
@@ -17617,7 +17704,7 @@ lk
 Gi
 lk
 dL
-uv
+Ub
 uv
 gC
 wa
@@ -17627,7 +17714,7 @@ Zw
 nc
 lm
 uv
-uv
+xk
 nc
 Jh
 uv
@@ -18256,11 +18343,11 @@ oJ
 oJ
 Pf
 Pf
-Oo
-sP
-sP
-sP
-sP
+Pf
+oJ
+oJ
+oJ
+oJ
 sP
 sP
 sP
@@ -18368,20 +18455,20 @@ oJ
 oJ
 oJ
 Pf
-Oo
-Oo
-Oo
+Pf
+Pf
+Pf
+oJ
+oJ
 sP
 sP
 sP
-sP
-sP
-XW
-XW
-XW
-XW
-ll
-XW
+zT
+zT
+zT
+zT
+Uy
+zT
 sP
 sP
 sP
@@ -18480,30 +18567,30 @@ oJ
 oJ
 oJ
 cS
-Oo
-Oo
-Ou
+Pf
+Pf
+Uk
+oJ
+oJ
+oJ
+oJ
+zT
+zT
+zT
+zT
+zT
+zT
+oJ
 sP
 sP
 sP
 sP
 XW
-XW
-XW
-XW
-XW
-XW
-sP
-sP
-sP
-sP
-sP
-XW
-Bm
 Bm
 Bm
 Bm
 rH
+Bm
 Uj
 wh
 Bm
@@ -18593,19 +18680,19 @@ oJ
 oJ
 oJ
 oJ
-Oo
-Oo
-ik
-Oo
-sP
-sP
-sP
-XW
-XW
-XW
-XW
-sP
-sP
+Pf
+Pf
+cS
+Pf
+oJ
+oJ
+oJ
+zT
+zT
+zT
+zT
+oJ
+oJ
 sP
 sP
 sP
@@ -18705,21 +18792,21 @@ oJ
 oJ
 oJ
 oJ
-Oo
-Oo
-Oo
-Oo
-Oo
-sP
-sP
-XW
-XW
-XW
-sP
-sP
-sP
-sP
-sP
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+zT
+zT
+zT
+oJ
+oJ
+oJ
+oJ
+oJ
 sP
 XW
 XW
@@ -18818,20 +18905,20 @@ oJ
 oJ
 oJ
 oJ
-Oo
-Oo
-Oo
-Oo
-Oo
-sP
-XW
-XW
-XW
-sP
-sP
-sP
-XW
-XW
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+zT
+zT
+zT
+oJ
+oJ
+oJ
+zT
+zT
 XW
 XW
 XW
@@ -18931,19 +19018,19 @@ zn
 oJ
 oJ
 oJ
-Oo
-Oo
-Oo
-Oo
-Oo
-Oo
-Oo
-Oo
-XW
-XW
-XW
-XW
-XW
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+zT
+zT
+zT
+zT
+zT
 XW
 XW
 XW
@@ -19043,19 +19130,19 @@ zn
 oJ
 oJ
 oJ
-ik
-Oo
-Oo
-Oo
-Oo
-Oo
-kv
-Oo
-XW
+cS
+Pf
+Pf
+Pf
+Pf
+Pf
+JA
+Pf
+zT
 Ul
-XW
-XW
-XW
+zT
+zT
+zT
 ll
 XW
 XW
@@ -19155,19 +19242,19 @@ zn
 oJ
 oJ
 oJ
-Oo
-Oo
-kv
-Oo
-sP
-sP
-XW
-XW
-XW
-XW
-XW
-XW
-XW
+Pf
+Pf
+JA
+Pf
+oJ
+oJ
+zT
+zT
+zT
+zT
+zT
+zT
+zT
 XW
 XW
 XW
@@ -19267,19 +19354,19 @@ zn
 oJ
 oJ
 oJ
-Oo
-Oo
-Oo
-sP
-sP
-sP
-XW
-XW
-XW
-sP
-sP
-sP
-sP
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+zT
+zT
+zT
+oJ
+oJ
+oJ
+oJ
 sP
 XW
 XW
@@ -19378,20 +19465,20 @@ Pf
 zn
 oJ
 oJ
-Oo
-Oo
-Oo
-Oo
-sP
-sP
-sP
-XW
-XW
-sP
-sP
-sP
-sP
-sP
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+zT
+zT
+oJ
+oJ
+oJ
+oJ
+oJ
 sP
 sP
 sP
@@ -19490,20 +19577,20 @@ Pf
 zn
 oJ
 oJ
-Oo
-Oo
-Oo
-sP
-sP
-sP
-XW
-XW
-XW
-sP
-sP
-Zh
-Zh
-Zh
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+zT
+zT
+zT
+oJ
+oJ
+Pf
+Pf
+Pf
 Zh
 fd
 sP
@@ -19602,20 +19689,20 @@ Pf
 zn
 oJ
 Pf
-Zh
-Zh
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
 Zh
 fd
 fd
@@ -19714,20 +19801,20 @@ cS
 NG
 Pf
 Pf
-Zh
-fb
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-tE
-Zh
-Zh
-Zh
-Zh
+Pf
+cS
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+JA
+Pf
+Pf
+Pf
+Pf
 Zh
 Zh
 Zh
@@ -19829,17 +19916,17 @@ Pf
 Zh
 tE
 fb
-Zh
-Zh
-Zh
-Zh
-Zh
-fb
-Zh
-Zh
-Zh
-Zh
-Zh
+Pf
+Pf
+Pf
+Pf
+Pf
+cS
+Pf
+Pf
+Pf
+Pf
+Pf
 fb
 Zh
 tE
