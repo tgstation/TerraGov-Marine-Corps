@@ -8,7 +8,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 51
+	melee_damage = 17
 
 	// *** Speed *** //
 	speed = -0.3
@@ -95,7 +95,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = -0.5
@@ -125,7 +125,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = -0.6
@@ -153,7 +153,7 @@
 	primordial_message = "Our suppression is unmatched! Let nothing show its head!"
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = -0.6

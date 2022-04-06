@@ -9,7 +9,7 @@
 	wound_type = "bull" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 57
+	melee_damage = 19
 
 	// *** Speed *** //
 	speed = -0.7
@@ -77,7 +77,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 63
+	melee_damage = 21
 
 	// *** Speed *** //
 	speed = -0.7
@@ -102,7 +102,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 63
+	melee_damage = 21
 
 	// *** Speed *** //
 	speed = -0.8
@@ -127,7 +127,7 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 63
+	melee_damage = 21
 
 	// *** Speed *** //
 	speed = -0.8

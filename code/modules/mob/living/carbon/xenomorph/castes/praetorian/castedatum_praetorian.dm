@@ -9,7 +9,7 @@
 	wound_type = "praetorian" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = -0.2
@@ -99,7 +99,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 69
+	melee_damage = 23
 
 	// *** Speed *** //
 	speed = -0.4
@@ -134,7 +134,7 @@
 	ancient_message = "We are the strongest ranged fighter around. Our spit is devastating and we can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
-	melee_damage = 69
+	melee_damage = 23
 
 	// *** Speed *** //
 	speed = -0.5
@@ -169,7 +169,7 @@
 	primordial_message = "The strongest of acids flows through our veins, let's reduce them to dust."
 
 	// *** Melee Attacks *** //
-	melee_damage = 69
+	melee_damage = 23
 
 	// *** Speed *** //
 	speed = -0.5

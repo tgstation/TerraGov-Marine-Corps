@@ -11,7 +11,7 @@
 	wound_type = "boiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 51
+	melee_damage = 17
 
 	// *** Speed *** //
 	speed = 0.3
@@ -108,7 +108,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = 0.1
@@ -145,7 +145,7 @@
 	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = 0.1
@@ -182,7 +182,7 @@
 	primordial_message = "We have refined the art of bombardement to perfection. End them before they can utter a desperate plea."
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 20
 
 	// *** Speed *** //
 	speed = 0.1
