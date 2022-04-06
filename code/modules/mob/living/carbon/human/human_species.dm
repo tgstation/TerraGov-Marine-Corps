@@ -62,9 +62,6 @@
 /mob/living/carbon/human/species/synthetic
 	race = "Synthetic"
 
-/mob/living/carbon/human/species/early_synthetic
-	race = "Early Synthetic"
-
 /mob/living/carbon/human/species/moth
 	race = "Moth"
 

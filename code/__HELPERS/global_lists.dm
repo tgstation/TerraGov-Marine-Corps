@@ -1,6 +1,6 @@
 #define ALLTIPS (SSstrings.get_list_from_file("tips/marine") + SSstrings.get_list_from_file("tips/xeno") + SSstrings.get_list_from_file("tips/meme") + SSstrings.get_list_from_file("tips/meta"))
 
-#define SYNTH_TYPES list("Synthetic","Early Synthetic")
+#define SYNTH_TYPES list("Synthetic")
 
 
 // Posters
