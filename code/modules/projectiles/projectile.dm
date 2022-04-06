@@ -41,6 +41,10 @@
 	light_power = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
 
+	///greyscale support
+	greyscale_config = null
+	greyscale_colors = null
+
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
@@ -143,6 +147,12 @@
 /obj/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
 	ammo = ispath(ammo_datum) ? GLOB.ammo_list[ammo_datum] : ammo_datum
 	name 		= ammo.name
+
+	///sets greyscale for the projectile if it has been specified by the ammo datum
+	if (ammo.projectile_greyscale_config && ammo.projectile_greyscale_colors)
+		set_greyscale_config(ammo.projectile_greyscale_config)
+		set_greyscale_colors(ammo.projectile_greyscale_colors)
+
 	icon_state 	= ammo.icon_state
 	damage 		= ammo.damage + bonus_damage //Mainly for emitters.
 	penetration = ammo.penetration

@@ -406,6 +406,8 @@
 		gun_user = null
 	if(!user)
 		return
+	if(master_gun?.master_gun) //Prevent gunception
+		return
 	gun_user = user
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
 	gun_user.hud_used.add_ammo_hud(gun_user, src)
@@ -494,16 +496,16 @@
 		dat += gun_attachable.rounds ? "([gun_attachable.rounds + chamber]/[gun_attachable.max_rounds])" : "(Unloaded)"
 
 	if(dat)
-		to_chat(user, "[dat.Join(" ")]")
+		. += "[dat.Join(" ")]"
 
 	examine_ammo_count(user)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
-			to_chat(user, span_notice("Use Ctrl-Click on a tile to deploy."))
+			. += span_notice("Use Ctrl-Click on tile to deploy.")
 		return
-	to_chat(user, span_notice("Click-Drag to yourself to undeploy."))
-	to_chat(user, span_notice("Alt-Click to unload."))
-	to_chat(user, span_notice("Right-Click to perform the guns unique action."))
+	. += span_notice("Click-Drag to yourself to undeploy.")
+	. += span_notice("Alt-Click to unload.")
+	. += span_notice("Right-Click to perform the guns unique action.")
 
 ///Gives the user a description of the ammunition remaining, as well as other information pertaining to reloading/ammo.
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)

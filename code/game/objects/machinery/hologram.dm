@@ -59,7 +59,7 @@
 /obj/machinery/holopad/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Current projection range: <b>[holo_range]</b> units.<span>")
+		. += span_notice("The status display reads: Current projection range: <b>[holo_range]</b> units.")
 
 
 /obj/machinery/holopad/interact(mob/user)

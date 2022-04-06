@@ -1,6 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Fixed Crusher Primo Rapid Advance not granting full charge or applying do_crush effects."
-  - bugfix: "Fixed a rare case of Rapid Advance causing signal registration errors."
-  - spellcheck: "Fixed Rapid Advance evolution menu description."

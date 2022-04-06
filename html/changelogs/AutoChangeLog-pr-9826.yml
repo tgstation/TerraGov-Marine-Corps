@@ -1,6 +1,0 @@
-author: "goose4429"
-delete-after: True
-changes: 
-  - refactor: "Refactored xeno explosion damage procs"
-  - balance: "Slowdown from light explosions on weak benos reduced from 4 to 3 to be in line with other cases"
-  - balance: "Stagger is now always 2 less than slowdown with xeno explosions"

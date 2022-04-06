@@ -109,9 +109,9 @@
 /obj/machinery/floodlightcombat/examine(mob/user)
 	. = ..()
 	if(!cell)
-		to_chat(user, span_notice("It has no cell installed"))
+		. += span_notice("It has no cell installed")
 		return
-	to_chat(user, span_notice("[cell] has [cell.charge / cell.maxcharge]% charge left"))
+	. += span_notice("[cell] has [cell.charge / cell.maxcharge]% charge left")
 
 /// Handles the wrench act .
 /obj/machinery/floodlightcombat/wrench_act(mob/living/user, obj/item/I)

@@ -701,7 +701,7 @@
 
 /obj/machinery/vending/lasgun/examine(mob/user)
 	. = ..()
-	to_chat(user, "<b>It has [machine_current_charge] of [machine_max_charge] charge remaining.</b>")
+	. += "<b>It has [machine_current_charge] of [machine_max_charge] charge remaining.</b>"
 
 
 /obj/machinery/vending/lasgun/MouseDrop_T(atom/movable/A, mob/user)
@@ -1317,6 +1317,8 @@
 			/obj/item/armor_module/module/hlin_explosive_armor = -1,
 			/obj/item/attachable/heatlens = -1,
 			/obj/item/storage/backpack/lightpack = -1,
+			/obj/item/clothing/suit/storage/marine/riot = -1,
+			/obj/item/clothing/head/helmet/marine/riot = -1,
 		)
 	)
 

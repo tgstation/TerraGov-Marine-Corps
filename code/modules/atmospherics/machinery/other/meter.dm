@@ -50,8 +50,8 @@
 		. = "The connect error light is blinking."
 
 /obj/machinery/meter/examine(mob/user)
-	..()
-	to_chat(user, status())
+	. = ..()
+	. += status()
 
 
 /obj/machinery/meter/attackby(obj/item/I, mob/user, params)

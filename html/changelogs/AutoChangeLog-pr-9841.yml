@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - balance: "All shipsides shall spawn with the following:, 6 30mm ammo crates, 2 banshees, 2 keepers, 2 widowmakers, 4 mini rockets, 2 GAU-21 30 mm cannons, 2 rocket pods, 2 minirocket pods"
-  - code_imp: "update map contribution page to ensure that other contributors can read good practices on map PRs"

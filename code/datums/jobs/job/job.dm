@@ -47,6 +47,11 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/exp_type_department = ""
 
 	var/datum/outfit/job/outfit
+	///whether the job has multiple outfits
+	var/multiple_outfits = FALSE
+	///list of outfit variants
+	var/list/datum/outfit/job/outfits = list()
+
 	var/skills_type = /datum/skills
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
@@ -285,10 +290,15 @@ GLOBAL_PROTECT(exp_specialmap)
 				stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
 			QDEL_NULL(wear_id)
 		equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
-		var/datum/outfit/variant = pick(typesof(job.outfit))
-		variant = new variant
 		job.outfit.handle_id(src)
-		variant.equip(src)
+		///if there is only one outfit, just equips it
+		if (!job.multiple_outfits)
+			job.outfit.equip(src)
+		///chooses an outfit from the list under the job
+		if (job.multiple_outfits)
+			var/datum/outfit/variant = pick(job.outfits)
+			variant = new variant
+			variant.equip(src)
 
 	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)

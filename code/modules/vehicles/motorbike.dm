@@ -35,8 +35,8 @@
 	. = ..()
 	if(!ishuman(user))
 		return
-	to_chat(user, "To access internal storage click with an empty hand or drag the bike onto self.")
-	to_chat(user, "The fuel gauge on the bike reads \"[fuel_count/fuel_max*100]%\"")
+	. += "To access internal storage click with an empty hand or drag the bike onto self."
+	. += "The fuel gauge on the bike reads \"[fuel_count/fuel_max*100]%\""
 
 /obj/vehicle/ridden/motorbike/post_buckle_mob(mob/living/M)
 	add_overlay(motorbike_cover)

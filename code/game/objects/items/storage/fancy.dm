@@ -41,11 +41,11 @@
 	. = ..()
 	switch(length(contents))
 		if(0)
-			to_chat(user, "There are no [icon_type]s left in the box.")
+			. += "There are no [icon_type]s left in the box."
 		if(1)
-			to_chat(user, "There is one [icon_type] left in the box.")
+			. += "There is one [icon_type] left in the box."
 		if(2 to INFINITY)
-			to_chat(user, "There are [length(contents)] [icon_type]s in the box.")
+			. += "There are [length(contents)] [icon_type]s in the box."
 
 
 /*

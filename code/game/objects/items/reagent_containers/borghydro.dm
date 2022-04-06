@@ -76,4 +76,4 @@
 
 	var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
 
-	to_chat(user, span_notice("It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left."))
+	. += span_notice("It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.")

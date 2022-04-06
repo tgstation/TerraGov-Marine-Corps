@@ -83,7 +83,7 @@
 /obj/item/stack/examine(mob/user)
 	. = ..()
 	if(amount > 1)
-		to_chat(user, "There are [amount] [singular_name]\s in the [stack_name].")
+		. += "There are [amount] [singular_name]\s in the [stack_name]."
 
 /obj/item/stack/equipped(mob/user, slot)
 	. = ..()
