@@ -12,7 +12,7 @@
 	wound_type = "gorger" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 45
+	melee_damage = 15
 
 	// *** Speed *** //
 	speed = -0.6
@@ -92,7 +92,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 20
 
 	// *** Plasma *** //
 	plasma_max = 300
@@ -117,7 +117,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 20
 
 	// *** Plasma *** //
 	plasma_max = 400
@@ -142,7 +142,7 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 20
 
 	// *** Plasma *** //
 	plasma_max = 400
