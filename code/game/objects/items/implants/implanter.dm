@@ -24,7 +24,7 @@
 
 /obj/item/implanter/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "it contains [imp ? "a [imp.name]" : "no implant"]!")
+	. += "it contains [imp ? "a [imp.name]" : "no implant"]!"
 
 /obj/item/implanter/attack(mob/target, mob/user)
 	. = ..()

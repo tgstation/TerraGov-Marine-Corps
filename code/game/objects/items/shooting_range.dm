@@ -105,13 +105,13 @@
 	. = ..()
 	switch(obj_integrity)
 		if(10000 to INFINITY)
-			to_chat(user, span_info("It appears to be in good shape."))
+			. += span_info("It appears to be in good shape.")
 		if(5000 to 10000)
-			to_chat(user, span_warning("It's been damaged some, but it's still in good shape for target practice."))
+			. += span_warning("It's been damaged some, but it's still in good shape for target practice.")
 		if(2000 to 5000)
-			to_chat(user, span_warning("It's quite riddled with bullet holes and sagging slightly.."))
+			. += span_warning("It's quite riddled with bullet holes and sagging slightly..")
 		if(-INFINITY to 2000)
-			to_chat(user, span_warning("There's almost nothing left of it, it's been shredded away."))
+			. += span_warning("There's almost nothing left of it, it's been shredded away.")
 
 #undef TARGETTING_DUMMY_USE_DELAY
 #undef TARGETTING_DUMMY_WELD_DELAY

@@ -68,8 +68,8 @@
 		qdel(I)
 
 /obj/machinery/bioprinter/examine(mob/user)
-	..()
-	to_chat(user, "It has [stored_matter] matter and [stored_metal] metal left.")
+	. = ..()
+	. += "It has [stored_matter] matter and [stored_metal] metal left."
 
 /obj/machinery/bioprinter/update_icon_state()
 	if(machine_stat & NOPOWER)

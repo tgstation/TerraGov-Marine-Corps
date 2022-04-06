@@ -192,23 +192,23 @@
 	. = ..()
 
 	if(machine_stat & BROKEN)
-		to_chat(user, span_info("It appears to be completely broken. It's hard to see what else is wrong with it."))
+		. += span_info("It appears to be completely broken. It's hard to see what else is wrong with it.")
 		return
 
 	if(opened)
 		if(has_electronics && terminal)
-			to_chat(user, span_info("The cover is [opened == APC_COVER_REMOVED ? "removed":"open"] and the power cell is [cell ? "installed":"missing"]."))
+			. += span_info("The cover is [opened == APC_COVER_REMOVED ? "removed":"open"] and the power cell is [cell ? "installed":"missing"].")
 		else
-			to_chat(user, span_info("It's [ !terminal ? "not" : "" ] wired up."))
-			to_chat(user, span_info("The electronics are[!has_electronics?"n't":""] installed."))
+			. += span_info("It's [ !terminal ? "not" : "" ] wired up.")
+			. += span_info("The electronics are[!has_electronics?"n't":""] installed.")
 	else
 		if(machine_stat & MAINT)
-			to_chat(user, span_info("The cover is closed. Something is wrong with it, it doesn't work."))
+			. += span_info("The cover is closed. Something is wrong with it, it doesn't work.")
 		else
-			to_chat(user, span_info("The cover is closed."))
+			. += span_info("The cover is closed.")
 
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, span_info("The wiring is exposed."))
+		. += span_info("The wiring is exposed.")
 
 //Update the APC icon to show the three base states
 //Also add overlays for indicator lights

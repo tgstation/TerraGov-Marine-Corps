@@ -1,16 +1,72 @@
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, NoticeBox, Section } from '../components';
+import { KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_SPACE, KEY_UP, KEY_W, KEY_D, KEY_S, KEY_A } from '../../common/keycodes';
 import { Window } from '../layouts';
 
-export const MarineCasship = (props, context) => {
-  const { act, data } = useBackend(context);
+type CasData = {
+  plane_state: number
+  plane_mode: string
+  fuel_left: number
+  fuel_max: number
+  ship_status: string
+  attackdir: string
+  all_weapons: CasWeapon[]
+  active_lasers: number
+  active_weapon_tag: number
+  active_weapon_name: string | null
+  active_weapon_ammo: number | null
+  active_weapon_max_ammo: number | null
+  active_weapon_ammo_name: string | null
+}
 
+type CasWeapon = {
+  name: string
+  ammo: number
+  eqp_tag: number
+}
+
+export const MarineCasship = (props, context) => {
+  const { act, data } = useBackend<CasData>(context);
   return (
     <Window
       width={600}
       height={500}
       theme="ntos">
-      <Window.Content scrollable>
+      <Window.Content
+        scrollable
+        onKeyDown={(event) => {
+          const keyCode = window.event ? event.which : event.keyCode;
+          if (keyCode === KEY_ENTER) {
+            act('toggle_engines');
+          }
+          if (keyCode === KEY_SPACE) {
+            act('launch');
+          }
+          if (data.plane_state !== 0) {
+            let newdir = 0;
+            switch (keyCode) {
+              case KEY_UP:
+              case KEY_W:
+                newdir = 1;
+                break;
+              case KEY_RIGHT:
+              case KEY_D:
+                newdir = 2;
+                break;
+              case KEY_DOWN:
+              case KEY_S:
+                newdir = 4;
+                break;
+              case KEY_LEFT:
+              case KEY_A:
+                newdir = 8;
+                break;
+              default:
+                return;
+            }
+            act('cycle_attackdir', { newdir: newdir });
+          }
+        }}>
         {data.plane_state === 0 ? (
           <EnginesOff />
         ) : (
@@ -22,12 +78,17 @@ export const MarineCasship = (props, context) => {
 };
 
 const EnginesOff = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<CasData>(context);
+  const {
+    ship_status,
+    fuel_left,
+    fuel_max,
+  } = data;
   return (
     <>
       <Section
         title="Ship Status">
-        {data.ship_status}
+        {ship_status}
       </Section>
       <Section title="Engine Control">
         <Box
@@ -36,13 +97,13 @@ const EnginesOff = (props, context) => {
           <Button
             content="Spool Engines"
             onClick={() => act("toggle_engines")}
-            disabled={data.fuel_left <= 0} />
+            disabled={fuel_left <= 0} />
         </Box>
         <Box
           content="Fuel capacity:"
           width="100%"
           textAlign="center">
-          <NoticeBox>Fuel level {data.fuel_left/data.fuel_max *100}%</NoticeBox>
+          <NoticeBox>Fuel level {fuel_left/fuel_max *100}%</NoticeBox>
         </Box>
       </Section>
     </>
@@ -50,31 +111,46 @@ const EnginesOff = (props, context) => {
 };
 
 const NormalOperation = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<CasData>(context);
+  const {
+    plane_state,
+    plane_mode,
+    ship_status,
+    attackdir,
+    active_lasers,
+    fuel_left,
+    fuel_max,
+    all_weapons,
+    active_weapon_name,
+    active_weapon_ammo,
+    active_weapon_max_ammo,
+    active_weapon_ammo_name,
+    active_weapon_tag,
+  } = data;
   return (
     <>
       <Section title="Ship Status">
-        <NoticeBox>{data.ship_status}</NoticeBox>
-        <NoticeBox>{data.active_lasers} Active Lasers Detected</NoticeBox>
+        <NoticeBox>{ship_status}</NoticeBox>
+        <NoticeBox>{active_lasers} Active Lasers Detected</NoticeBox>
         <NoticeBox>Fuel level</NoticeBox>
         <ProgressBar
           ranges={{
             good: [0.5, Infinity],
             average: [-Infinity, 0.25],
           }}
-          value={(data.fuel_left/data.fuel_max)} />
+          value={(fuel_left/fuel_max)} />
       </Section>
       <Section title="Weapons">
-        {data.all_weapons.length > 0 ? (
-          data.all_weapons.map(equipment => (
+        {all_weapons.length > 0 ? (
+          all_weapons.map(equipment => (
             <Box
-              key={equipment.id}>
+              key={equipment.eqp_tag}>
               <Button
                 onClick={() => act(
                   'change_weapon',
                   { selection: equipment.eqp_tag }
                 )}
-                disabled={equipment.eqp_tag === data.active_weapon_tag}>
+                disabled={equipment.eqp_tag === active_weapon_tag}>
                 {equipment.name}
               </Button>
             </Box>
@@ -85,18 +161,18 @@ const NormalOperation = (props, context) => {
       </Section>
       {data.active_weapon_name ? (
         <Section
-          title={"Weapon Selected: "+data.active_weapon_name}
+          title={"Weapon Selected: "+active_weapon_name}
           buttons={
             <Button onClick={() => act('deselect')}>
               Deselect
             </Button>
           }>
-          {!data.active_weapon_ammo_name ? (
+          {active_weapon_ammo === null || active_weapon_max_ammo === null ? (
             <Box color="bad">No ammo loaded</Box>
           ) : (
             <LabeledList>
               <LabeledList.Item label="Ammo loaded">
-                {data.active_weapon_ammo_name}
+                {active_weapon_ammo_name}
               </LabeledList.Item>
               <LabeledList.Item label="Ammo count">
                 <ProgressBar
@@ -105,11 +181,11 @@ const NormalOperation = (props, context) => {
                     average: [0, 0.5],
                     bad: [-Infinity, 0],
                   }}
-                  value={data.active_weapon_ammo
-                  / data.active_weapon_max_ammo}
-                  content={data.active_weapon_ammo
+                  value={active_weapon_ammo
+                  / active_weapon_max_ammo}
+                  content={active_weapon_ammo
                   +" / "
-                  +data.active_weapon_max_ammo} />
+                  +active_weapon_max_ammo} />
               </LabeledList.Item>
             </LabeledList>
           )}
@@ -125,7 +201,7 @@ const NormalOperation = (props, context) => {
             content="Launch plane"
             onClick={() => act(
               'launch')}
-            disabled={data.plane_state === 3 || data.plane_mode !== "idle"} />
+            disabled={plane_state === 3 || plane_mode !== "idle"} />
         </Box>
         <Box
           width="100%"
@@ -134,7 +210,7 @@ const NormalOperation = (props, context) => {
             content="Land plane"
             onClick={() => act(
               'land')}
-            disabled={data.plane_state !== 3 || data.plane_mode !== "idle"} />
+            disabled={plane_state !== 3 || plane_mode !== "idle"} />
         </Box>
         <Box
           width="100%"
@@ -142,7 +218,7 @@ const NormalOperation = (props, context) => {
           <Button
             content="Disable Engines"
             onClick={() => act("toggle_engines")}
-            disabled={data.plane_state !== 2} />
+            disabled={plane_state !== 2} />
         </Box>
         <Box
           width="100%"
@@ -150,13 +226,13 @@ const NormalOperation = (props, context) => {
           <Button
             content="Begin Firemission"
             onClick={() => act("deploy")}
-            disabled={data.plane_state !== 3} />
+            disabled={plane_state !== 3} />
         </Box>
         <Box
           width="100%"
           textAlign="center">
           <Button
-            content={"Strafe Direction: "+data.attackdir}
+            content={"Strafe Direction: "+attackdir}
             onClick={() => act('cycle_attackdir')} />
         </Box>
       </Section>

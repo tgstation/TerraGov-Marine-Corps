@@ -66,7 +66,7 @@
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
-		to_chat(user, span_notice("It is too far away to read."))
+		. += span_notice("It is too far away to read.")
 
 
 /obj/item/paper/verb/rename()
