@@ -44,11 +44,11 @@
 
 
 /obj/machinery/optable/examine(mob/user)
-	..()
+	. = ..()
 	if(get_dist(user, src) > 2 && !isobserver(user))
 		return
 	if(anes_tank)
-		to_chat(user, span_information("It has an [anes_tank] connected with the gauge showing [round(anes_tank.pressure,0.1)] kPa."))
+		. += span_information("It has an [anes_tank] connected with the gauge showing [round(anes_tank.pressure,0.1)] kPa.")
 
 /obj/machinery/optable/attack_hand(mob/living/user)
 	. = ..()

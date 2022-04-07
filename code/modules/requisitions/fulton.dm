@@ -14,7 +14,7 @@
 
 /obj/item/fulton_extraction_pack/examine(mob/user)
 	. = ..()
-	to_chat(user, "It has [uses] uses remaining.")
+	. += "It has [uses] uses remaining."
 
 
 /obj/item/fulton_extraction_pack/Initialize()

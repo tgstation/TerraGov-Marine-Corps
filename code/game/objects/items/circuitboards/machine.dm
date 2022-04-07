@@ -107,8 +107,8 @@ obj/item/circuitboard/machine/rdserver
 		user.visible_message(span_notice("[user] adjusts the jumper on the [src]'s port configuration pins."), span_notice(" You adjust the jumper on the port configuration pins. Now set to [dir2text(machine_dir)]."))
 
 /obj/item/circuitboard/machine/unary_atmos/examine(mob/user)
-	..()
-	to_chat(user, "The jumper is connecting the [dir2text(machine_dir)] pins.")
+	. = ..()
+	. += "The jumper is connecting the [dir2text(machine_dir)] pins."
 
 // Telecomms circuit boards:
 

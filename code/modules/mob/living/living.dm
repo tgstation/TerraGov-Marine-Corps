@@ -634,6 +634,7 @@ below 100 is not dizzy
 		return
 
 	update_sight()
+	animate(client, pixel_x = 0, pixel_y = 0)
 	if(client.eye && client.eye != src)
 		var/atom/AT = client.eye
 		AT.get_remote_view_fullscreens(src)

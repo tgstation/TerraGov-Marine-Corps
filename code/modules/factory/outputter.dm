@@ -18,7 +18,7 @@
 
 /obj/item/factory_refill/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "It has [refill_amount] packages remaining.")
+	. += "It has [refill_amount] packages remaining."
 
 /obj/machinery/outputter
 	name = "Unboxer"
@@ -43,7 +43,7 @@
 
 /obj/machinery/outputter/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "It is currently facing [dir2text(dir)], and is outputting [initial(production_type.name)]. It has [production_amount_left] resources remaining.")
+	. += "It is currently facing [dir2text(dir)], and is outputting [initial(production_type.name)]. It has [production_amount_left] resources remaining."
 
 /obj/machinery/outputter/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored

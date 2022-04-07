@@ -416,17 +416,34 @@
 
 	if(!owner)
 		return
+	if(action == "toggle_engines")
+		if(owner.mode == SHUTTLE_IGNITING)
+			return
+		switch(owner.state)
+			if(PLANE_STATE_ACTIVATED)
+				owner.turn_on_engines()
+			if(PLANE_STATE_PREPARED)
+				owner.turn_off_engines()
+
+	if(owner.state == PLANE_STATE_ACTIVATED)
+		return
 
 	switch(action)
 		if("launch")
+			if(owner.state == PLANE_STATE_FLYING || owner.mode != SHUTTLE_IDLE)
+				return
 			if(owner.fuel_left <= LOW_FUEL_THRESHOLD)
 				to_chat(usr, "<span class='warning'>Unable to launch, low fuel.")
 				return
 			SSshuttle.moveShuttleToDock(owner.id, SSshuttle.generate_transit_dock(owner), TRUE)
 		if("land")
+			if(owner.state != PLANE_STATE_FLYING)
+				return
 			SSshuttle.moveShuttle(owner.id, SHUTTLE_CAS_DOCK, TRUE)
 			owner.end_cas_mission(usr)
 		if("deploy")
+			if(owner.state != PLANE_STATE_FLYING)
+				return
 			owner.begin_cas_mission(usr)
 		if("change_weapon")
 			var/selection = text2num(params["selection"])
@@ -434,17 +451,12 @@
 		if("deselect")
 			owner.active_weapon = null
 			. = TRUE
-		if("toggle_engines")
-			if(owner.mode == SHUTTLE_IGNITING)
-				return
-			switch(owner.state)
-				if(PLANE_STATE_ACTIVATED)
-					owner.turn_on_engines()
-				if(PLANE_STATE_PREPARED)
-					owner.turn_off_engines()
 		if("cycle_attackdir")
-			owner.attackdir = turn(owner.attackdir, 90)
-			. = TRUE
+			if(params["newdir"] == null)
+				owner.attackdir = turn(owner.attackdir, 90)
+				return TRUE
+			owner.attackdir = params["newdir"]
+			return TRUE
 
 
 

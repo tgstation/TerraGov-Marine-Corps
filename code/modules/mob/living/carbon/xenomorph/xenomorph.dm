@@ -198,30 +198,30 @@
 	return
 
 /mob/living/carbon/xenomorph/examine(mob/user)
-	..()
-	to_chat(user, xeno_caste.caste_desc)
+	. = ..()
+	. += xeno_caste.caste_desc
 
 	if(stat == DEAD)
-		to_chat(user, "It is DEAD. Kicked the bucket. Off to that great hive in the sky.")
+		. += "It is DEAD. Kicked the bucket. Off to that great hive in the sky."
 	else if(stat == UNCONSCIOUS)
-		to_chat(user, "It quivers a bit, but barely moves.")
+		. += "It quivers a bit, but barely moves."
 	else
 		var/percent = (health / maxHealth * 100)
 		switch(percent)
 			if(95 to 101)
-				to_chat(user, "It looks quite healthy.")
+				. += "It looks quite healthy."
 			if(75 to 94)
-				to_chat(user, "It looks slightly injured.")
+				. += "It looks slightly injured."
 			if(50 to 74)
-				to_chat(user, "It looks injured.")
+				. += "It looks injured."
 			if(25 to 49)
-				to_chat(user, "It bleeds with sizzling wounds.")
+				. += "It bleeds with sizzling wounds."
 			if(1 to 24)
-				to_chat(user, "It is heavily injured and limping badly.")
+				. += "It is heavily injured and limping badly."
 
 	if(hivenumber != XENO_HIVE_NORMAL)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
-		to_chat(user, "It appears to belong to the [hive.prefix]hive")
+		. += "It appears to belong to the [hive.prefix]hive"
 	return
 
 /mob/living/carbon/xenomorph/Destroy()
