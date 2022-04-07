@@ -55,7 +55,7 @@
 	icon_state = "box_t25"
 	default_ammo = /datum/ammo/bullet/smartgun
 	caliber = CALIBER_10x26_CASELESS
-	max_rounds = 400
+	max_rounds = 300
 
 // pistol packets
 
