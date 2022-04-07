@@ -7,36 +7,36 @@
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
-	if(severity == EXPLODE_HEAVY || severity == EXPLODE_DEVASTATE)
-		if(eaten_mob)
-			eaten_mob.ex_act(severity + 1) //Old devour code? higher = weaker
 
 	var/bomb_armor = soft_armor.getRating("bomb")
-	var/bomb_armor_multiplier = max(0, 1 - (bomb_armor/100)*get_sunder())
+	var/bomb_effective_armor = (bomb_armor/100)*get_sunder()
+	var/bomb_damage_multiplier = max(0, 1 - bomb_effective_armor)
+	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_effective_armor)
+	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
 
-	//raised to account for new armor values but keep old gibs
+
+	if(bomb_armor > 100)
+		return //immune
+
+	//lowered to account for new armor values but keep old gibs
 	//probs needs to be a define somewhere
-	var/gib_min_armor = 50
+	var/gib_min_armor = 10
 	if(severity == EXPLODE_DEVASTATE && bomb_armor < gib_min_armor)
 		return gib()    //Gibs unprotected benos
 
 	//Slowdown and stagger
-	var/ex_slowdown = (3 + (4 - severity)) * bomb_armor_multiplier
+	var/ex_slowdown = (2 + (4 - severity)) * bomb_slow_multiplier
 
 	add_slowdown(max(0, ex_slowdown)) //Slowdown 2 for sentiel from nade
 	adjust_stagger(max(0, ex_slowdown - 2)) //Stagger 2 less than slowdown
-	if(bomb_armor > 100)
-		return //Immune guys only get slowdown
 
 	//Sunder
-	var/sunder_loss = 50*(3 - severity)*bomb_armor_multiplier
+	var/sunder_loss = 50*(3 - severity) * bomb_sunder_multiplier
 	adjust_sunder(max(0, sunder_loss))
 
 	//Damage
-
-	var/ex_damage = 30 + 70*(4 - severity)  //changed so overall damage stays similar
-	ex_damage += rand(0, 20)
-	ex_damage *= bomb_armor_multiplier
+	var/ex_damage = 40 + rand(0, 20) + 50*(4 - severity)  //changed so overall damage stays similar
+	ex_damage *= bomb_damage_multiplier
 
 	apply_damage(ex_damage/2, BRUTE, updating_health = TRUE)
 	apply_damage(ex_damage/2, BURN, updating_health = TRUE)
