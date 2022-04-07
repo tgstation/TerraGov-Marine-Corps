@@ -65,7 +65,7 @@
 	speed = -1.1
 
 	// *** Plasma *** //
-	plasma_max = 300
+	plasma_max = 350
 	plasma_gain = 20
 
 	// *** Health *** //
@@ -91,7 +91,7 @@
 	speed = -1.2
 
 	// *** Plasma *** //
-	plasma_max = 350
+	plasma_max = 400
 	plasma_gain = 23
 
 	// *** Health *** //
@@ -114,10 +114,10 @@
 	melee_damage = 20
 
 	// *** Speed *** //
-	speed = -1.25
+	speed = -1.3
 
 	// *** Plasma *** //
-	plasma_max = 400
+	plasma_max = 450
 	plasma_gain = 25
 
 	// *** Health *** //
