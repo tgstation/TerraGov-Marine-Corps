@@ -1078,7 +1078,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 1
 
 /datum/ammo/bullet/smartmachinegun
-	name = "smartmachinegun bullet"
+	name = "smartgun bullet"
 	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
@@ -1087,12 +1087,6 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	penetration = 15
 	sundering = 2
-
-/datum/ammo/bullet/smartgun/smartrifle
-	name = "smartrifle bullet"
-	damage = 20
-	penetration = 10
-	sundering = 1.5
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
