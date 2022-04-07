@@ -70,7 +70,7 @@
 			user.balloon_alert(user, "You are already doing something!")
 			return
 		user.balloon_alert(user, "You start deploying...")
-		user.dir = get_dir(user, location) //Face towards deploy location for ease of deploy.
+		user.setDir(get_dir(user, location)) //Face towards deploy location for ease of deploy.
 		var/newdir = user.dir //Save direction before the doafter for ease of deploy
 		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
 			return
