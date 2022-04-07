@@ -600,7 +600,7 @@
 					return TRUE
 			return FALSE
 		if(SLOT_IN_S_HOLSTER)
-			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
+			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun))) //pouches?
 				var/obj/item/storage/S = H.s_store
 				if(S.can_be_inserted(src, warning))
 					return TRUE
@@ -632,6 +632,13 @@
 				return TRUE
 		if(SLOT_IN_HEAD)
 			var/obj/item/clothing/head/helmet/marine/S = H.head
+			if(!istype(S) || !S.pockets)
+				return FALSE
+			var/obj/item/storage/internal/T = S.pockets
+			if(T.can_be_inserted(src, warning))
+				return TRUE
+		if(SLOT_IN_BOOT)
+			var/obj/item/clothing/shoes/marine/S = H.shoes
 			if(!istype(S) || !S.pockets)
 				return FALSE
 			var/obj/item/storage/internal/T = S.pockets

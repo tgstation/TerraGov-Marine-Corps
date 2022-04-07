@@ -455,6 +455,8 @@
 			return l_store
 		if(SLOT_IN_R_POUCH)
 			return r_store
+		if(SLOT_IN_HEAD)
+			return head
 
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)

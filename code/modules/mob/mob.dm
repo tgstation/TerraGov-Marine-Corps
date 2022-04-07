@@ -345,9 +345,7 @@
 	if (slot == SLOT_IN_R_POUCH && ( !( istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol) ) ) )
 		return FALSE
 
-	//the actual draw code
-
-	//belt holsters - until I repath them
+	//belt holsters
 	if (istype(I, /obj/item/storage/belt/gun) )
 		var/obj/item/storage/belt/gun/B = I
 		if(!B.current_gun)
@@ -365,13 +363,6 @@
 		B.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
-	//weapons
-	if (istype(I, /obj/item/weapon))
-		if(CHECK_BITFIELD(I.flags_inventory, NOQUICKEQUIP))
-			return FALSE
-		temporarilyRemoveItemFromInventory(I)
-		put_in_hands(I)
-		return TRUE
 	//webbing holsters
 	if (istype(I, /obj/item/clothing/under))
 		var/obj/item/clothing/under/B = I
@@ -387,7 +378,7 @@
 		//general storage module
 	if (istype(I, /obj/item/clothing/suit))
 		var/obj/item/clothing/suit/B = I
-		if (!istype(B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage) ) ///up to here
+		if (!istype(B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage) )
 			return FALSE
 		var/obj/item/storage/S = B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE].storage
 		if(!length(S.contents))
@@ -418,6 +409,18 @@
 			return FALSE
 		var/obj/item/W = P.contents[length(P.contents)]
 		P.remove_from_storage(W, user = src)
+		put_in_hands(W)
+		return TRUE
+	//helmet
+	if(istype(I, /obj/item/clothing/head))
+		var/obj/item/clothing/head/B = I
+		if (!istype(B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage) )
+			return FALSE
+		var/obj/item/storage/S = B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE].storage
+		if(!length(S.contents))
+			return FALSE
+		var/obj/item/W = S.contents[length(S.contents)]
+		S.remove_from_storage(W, user = src)
 		put_in_hands(W)
 		return TRUE
 	//catch all storage items
