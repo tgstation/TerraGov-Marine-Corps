@@ -43,6 +43,10 @@
 /obj/effect/forcefield/fog/passable_fog,
 /turf/closed/mineral,
 /area/orion_outpost/ground/outpostsw)
+"al" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/prison,
+/area/orion_outpost/surface/building/engineering)
 "am" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -757,6 +761,12 @@
 "eB" = (
 /turf/open/floor/tile/damaged/panel,
 /area/orion_outpost/ground/outpostse)
+"eC" = (
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/prison,
+/area/orion_outpost/surface/building/engineering)
 "eE" = (
 /obj/structure/bed/chair/office,
 /turf/open/floor,
@@ -952,9 +962,9 @@
 	},
 /area/orion_outpost/ground/outpostn)
 "fS" = (
-/obj/effect/landmark/weed_node,
-/obj/structure/largecrate/random,
-/turf/open/floor/mainship/black/full,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/secure_closet/engineering_electrical,
+/turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "fT" = (
 /obj/structure/table,
@@ -1016,14 +1026,9 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostw)
 "gn" = (
-/obj/structure/jungle/vines{
-	color = "#ffb682"
-	},
-/obj/docking_port/stationary/crashmode,
-/turf/open/ground/grass{
-	color = "#ffb682"
-	},
-/area/orion_outpost/ground/outpostn)
+/obj/structure/closet/secure_closet/engineering_personal,
+/turf/open/floor/mainship/black/full,
+/area/orion_outpost/surface/building/engineering)
 "gp" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/structure/stairs/seamless/platform/alt,
@@ -1349,9 +1354,11 @@
 	},
 /area/orion_outpost/surface/building/research)
 "ig" = (
-/obj/effect/landmark/dropship_start_location,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/surface/landing_pad_external)
+/obj/machinery/colony_floodlight_switch{
+	pixel_y = 30
+	},
+/turf/open/floor/prison,
+/area/orion_outpost/surface/building/engineering)
 "ih" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -1900,9 +1907,9 @@
 /area/orion_outpost/surface/building/research)
 "kP" = (
 /obj/machinery/light{
-	dir = 8
+	dir = 1
 	},
-/turf/open/floor/mainship/black/full,
+/turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "kR" = (
 /obj/effect/forcefield/fog/passable_fog,
@@ -2783,8 +2790,9 @@
 /turf/open/floor/plating,
 /area/orion_outpost/ground/outposts)
 "pW" = (
-/obj/structure/largecrate/random,
-/obj/structure/largecrate/random,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/engineering)
 "pX" = (
@@ -2852,9 +2860,10 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostn)
 "qr" = (
-/obj/structure/largecrate/random/barrel,
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/underground/caveN)
+/obj/effect/landmark/weed_node,
+/obj/structure/largecrate/random,
+/turf/open/floor/mainship/black/full,
+/area/orion_outpost/surface/building/engineering)
 "qt" = (
 /turf/open/space/basic,
 /turf/open/floor/plating/ground/dirt2,
@@ -3041,8 +3050,9 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/surface/building/engineering)
 "ry" = (
-/turf/open/floor/tile/damaged/panel,
-/area/orion_outpost/ground/underground/caveN)
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostnw)
 "rA" = (
 /obj/structure/flora/tree/joshua,
 /obj/structure/flora/ausbushes/fullgrass{
@@ -3542,10 +3552,8 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostcent)
 "ur" = (
-/obj/machinery/light{
-	light_color = "#da2f1b"
-	},
-/turf/open/floor/prison,
+/obj/structure/largecrate/random,
+/turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/engineering)
 "us" = (
 /turf/closed/shuttle/escapepod{
@@ -3607,12 +3615,6 @@
 /obj/machinery/disposal,
 /turf/open/floor,
 /area/orion_outpost/surface/building/canteen)
-"uO" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/tile/damaged/five,
-/area/orion_outpost/surface/building/crashednt)
 "uP" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -3622,6 +3624,12 @@
 /obj/structure/sink/puddle,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outposts)
+"uR" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper Nexus Dome Canteen"
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/surface/building/engineering)
 "uS" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -3697,9 +3705,10 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostn)
 "vp" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/outpostnw)
+/obj/structure/largecrate/random,
+/obj/structure/largecrate/random,
+/turf/open/floor/mainship/black/full,
+/area/orion_outpost/surface/building/engineering)
 "vq" = (
 /turf/closed/shuttle/escapepod{
 	icon_state = "wall8"
@@ -4013,9 +4022,8 @@
 /turf/open/floor/plating,
 /area/orion_outpost/surface/building/research)
 "wX" = (
-/obj/structure/closet/secure_closet/engineering_personal,
-/turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/engineering)
+/turf/open/floor/tile/damaged/panel,
+/area/orion_outpost/ground/underground/caveN)
 "wY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/power/smes/buildable/empty{
@@ -4031,8 +4039,8 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostse)
 "xb" = (
-/obj/structure/largecrate/random,
-/turf/open/floor/mainship/black/full,
+/obj/structure/rack,
+/turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "xc" = (
 /obj/effect/decal/cleanable/dirt,
@@ -4576,9 +4584,9 @@
 /turf/open/floor/freezer,
 /area/orion_outpost/surface/building/showers)
 "Ah" = (
-/obj/structure/largecrate/random/barrel,
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/outpostne)
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/turf/open/floor/prison/sterilewhite,
+/area/orion_outpost/surface/building/medbay)
 "Ai" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/forcefield/fog/passable_fog,
@@ -4927,6 +4935,10 @@
 	icon_state = "white"
 	},
 /area/orion_outpost/surface/building/research)
+"BW" = (
+/obj/structure/largecrate/random/barrel,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostne)
 "BZ" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -5462,10 +5474,9 @@
 /turf/closed/mineral,
 /area/orion_outpost/ground/outpostsw)
 "Ft" = (
-/obj/structure/largecrate/random/case/double,
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/orion_outpost/ground/outposts)
+/obj/structure/largecrate/random/barrel,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/underground/caveN)
 "Fu" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -5503,9 +5514,14 @@
 	},
 /area/orion_outpost/surface/building/armory)
 "FA" = (
-/obj/structure/rack,
-/turf/open/floor/prison,
-/area/orion_outpost/surface/building/engineering)
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/ground/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/outpostn)
 "FB" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -5799,9 +5815,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostsw)
 "Hi" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor/prison/sterilewhite,
-/area/orion_outpost/surface/building/medbay)
+/obj/structure/largecrate/random/case/double,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating,
+/area/orion_outpost/ground/outposts)
 "Hk" = (
 /obj/structure/table,
 /obj/machinery/computer/atmos_alert,
@@ -6291,8 +6308,11 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/surface/building/command)
 "Ki" = (
-/obj/structure/filingcabinet,
-/turf/open/floor/prison,
+/obj/structure/largecrate/random,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/engineering)
 "Kj" = (
 /obj/structure/flora/ausbushes/fullgrass{
@@ -6433,12 +6453,6 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/surface/building/canteen)
-"KZ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/orion_outpost/surface/building/engineering)
 "Lh" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -6471,11 +6485,9 @@
 /turf/open/floor/light,
 /area/orion_outpost/surface/building/research)
 "Lr" = (
-/obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	name = "\improper Nexus Dome Canteen"
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/engineering)
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/surface/landing_pad_external)
 "Lu" = (
 /obj/effect/forcefield/fog/passable_fog,
 /obj/effect/forcefield/fog/passable_fog,
@@ -6718,12 +6730,11 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostcent)
 "MH" = (
-/obj/structure/largecrate/random,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship/black/full,
-/area/orion_outpost/surface/building/engineering)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/tile/damaged/five,
+/area/orion_outpost/surface/building/crashednt)
 "MI" = (
 /obj/structure/flora/ausbushes/grassybush{
 	color = "#ffb682"
@@ -7632,11 +7643,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostw)
-"RU" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/secure_closet/engineering_electrical,
-/turf/open/floor/prison,
-/area/orion_outpost/surface/building/engineering)
 "RW" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/ground/river,
@@ -10753,7 +10759,7 @@ Im
 cI
 Im
 Im
-ig
+Lr
 Im
 Im
 Im
@@ -11161,7 +11167,7 @@ ik
 vH
 nj
 to
-Hi
+Ah
 OR
 vH
 vH
@@ -11273,7 +11279,7 @@ ik
 vH
 Gr
 to
-Hi
+Ah
 wO
 nC
 tc
@@ -12317,7 +12323,7 @@ mN
 AR
 mN
 mN
-vp
+ry
 mN
 mN
 mN
@@ -12545,7 +12551,7 @@ lw
 pm
 mN
 mN
-vp
+ry
 cO
 Un
 Ut
@@ -13114,7 +13120,7 @@ SF
 mN
 mN
 mN
-vp
+ry
 ma
 ma
 ma
@@ -13440,7 +13446,7 @@ Zy
 zD
 zD
 mN
-vp
+ry
 SF
 Lu
 SF
@@ -14793,7 +14799,7 @@ iG
 Pc
 Pc
 CT
-gn
+FA
 Pc
 sw
 iB
@@ -15394,7 +15400,7 @@ jw
 le
 TV
 le
-uO
+MH
 rG
 oM
 Tm
@@ -16083,7 +16089,7 @@ gA
 gA
 RJ
 gA
-Ft
+Hi
 gA
 Xl
 Bw
@@ -18271,8 +18277,8 @@ Pi
 Ci
 hs
 hs
-hs
-hs
+Bm
+ig
 To
 hs
 cE
@@ -18381,9 +18387,9 @@ Bm
 Bm
 Bm
 Bm
-RU
+fS
 hs
-FA
+xb
 hs
 gY
 hs
@@ -18483,7 +18489,7 @@ sP
 sP
 zT
 zT
-qr
+Ft
 zT
 Uy
 zT
@@ -18495,7 +18501,7 @@ XW
 Ri
 hs
 hs
-Ki
+al
 hs
 Xo
 UF
@@ -18593,22 +18599,22 @@ oJ
 oJ
 oJ
 zT
-qr
+Ft
 zT
 zT
 zT
 zT
 zT
 XW
-Ah
+BW
 XW
 XW
 XW
 Bm
 bK
-ur
+eC
 rH
-KZ
+kP
 Uj
 wh
 Bm
@@ -18713,11 +18719,11 @@ oJ
 Bm
 Bm
 Bm
-Lr
+uR
 Bm
 Bm
 Bm
-wX
+gn
 yD
 yD
 yD
@@ -18819,12 +18825,12 @@ oJ
 oJ
 zT
 zT
-qr
+Ft
 oJ
 oJ
 Bm
-xb
-kP
+ur
+pW
 yD
 yD
 yD
@@ -18935,9 +18941,9 @@ zT
 oJ
 oJ
 Bm
-xb
-fS
-xb
+ur
+qr
+ur
 yD
 yD
 yD
@@ -19047,9 +19053,9 @@ Pf
 zT
 zT
 Bm
-pW
-MH
-pW
+vp
+Ki
+vp
 qd
 yD
 Bm
@@ -19272,7 +19278,7 @@ zT
 zT
 zT
 zT
-ry
+wX
 XW
 eS
 XW
