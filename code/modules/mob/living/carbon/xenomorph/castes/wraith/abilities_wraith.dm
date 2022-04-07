@@ -509,6 +509,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	new /obj/effect/temp_visual/wraith_warp(get_turf(teleporter))
 
+	if(owner.status_flags & INCORPOREAL) //No debuff while in phase shift
+		return
+
 	for(var/mob/living/living_target in range(1, teleporter.loc))
 
 		if(living_target.stat == DEAD)
@@ -519,10 +522,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			if(X.issamexenohive(ghost)) //No friendly fire
 				continue
 
-		shake_camera(living_target, 2, 1)
 		living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
 		living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
-		living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS) //minor visual distortion
 		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
 
 /datum/action/xeno_action/activable/blink/on_cooldown_finish()

@@ -224,19 +224,19 @@
 	if(!ishuman(user))
 		return
 	if(!miner_upgrade_type)
-		to_chat(user, span_info("[src]'s module sockets seem empty, an upgrade could be installed."))
+		. += span_info("[src]'s module sockets seem empty, an upgrade could be installed.")
 	else
-		to_chat(user, span_info("[src]'s module sockets are occupied by the [miner_upgrade_type]."))
+		. += span_info("[src]'s module sockets are occupied by the [miner_upgrade_type].")
 
 	switch(miner_status)
 		if(MINER_DESTROYED)
-			to_chat(user, span_info("It's heavily damaged, and you can see internal workings.</span>\n<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it."))
+			. += span_info("It's heavily damaged, and you can see internal workings.</span>\n<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.")
 		if(MINER_MEDIUM_DAMAGE)
-			to_chat(user, span_info("It's damaged, and there are broken wires hanging out.</span>\n<span class='info'>Use wirecutters, then wrench to repair it."))
+			. += span_info("It's damaged, and there are broken wires hanging out.</span>\n<span class='info'>Use wirecutters, then wrench to repair it.")
 		if(MINER_SMALL_DAMAGE)
-			to_chat(user, span_info("It's lightly damaged, and you can see some dents and loose piping.</span>\n<span class='info'>Use a wrench to repair it."))
+			. += span_info("It's lightly damaged, and you can see some dents and loose piping.</span>\n<span class='info'>Use a wrench to repair it.")
 		if(MINER_RUNNING)
-			to_chat(user, span_info("[src]'s storage module displays [stored_mineral] crates are ready to be exported."))
+			. += span_info("[src]'s storage module displays [stored_mineral] crates are ready to be exported.")
 
 /obj/machinery/miner/attack_hand(mob/living/user)
 	if(miner_status != MINER_RUNNING)

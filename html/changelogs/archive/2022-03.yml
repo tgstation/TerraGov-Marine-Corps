@@ -316,3 +316,40 @@
   - balance: Larval hugger stam damage from 100% marine stam to 50%
   novaepee, foster:
   - imageadd: add 5 brand new title painting!
+2022-03-30:
+  DeltaFire15:
+  - bugfix: Groundside corrupted gens should not have their point production break
+      anymore.
+  - bugfix: APHE only explodes when it hits something that stops its movement, not
+      when passing through walls on its way there.
+  RipGrayson:
+  - rscadd: Added a system to blacklist chemicals from being used in medbay.
+  - balance: Razorburn nanites are now a blacklisted chemical.
+  - balance: You can no longer use the sleeper to give monkeys dialysis.
+  - balance: Dead mobs no longer accumulate smoke or foam reagents.
+2022-03-31:
+  BraveMole:
+  - balance: Harversting drone primo flowers doesn't destroy them
+  Lumipharon:
+  - rscadd: Freelancers in the sector have been reported wielding a wider variety
+      of weapons
+  - code_imp: Support added for jobs to have multiple outfits to randomly select from
+  Wayland-Smithy:
+  - bugfix: Fixed Crusher Primo Rapid Advance not granting full charge or applying
+      do_crush effects.
+  - bugfix: Fixed a rare case of Rapid Advance causing signal registration errors.
+  - spellcheck: Fixed Rapid Advance evolution menu description.
+  goose4429:
+  - refactor: Refactored xeno explosion damage procs
+  - balance: Slowdown from light explosions on weak benos reduced from 4 to 3 to be
+      in line with other cases
+  - balance: Stagger is now always 2 less than slowdown with xeno explosions
+  novaepee:
+  - rscadd: All FCDR bunks now have at least a loadout vendor in all shipside maps
+      except Sulaco
+  - bugfix: poster positions in Minerva and PoS
+  - balance: All shipsides shall spawn with the following:, 6 30mm ammo crates, 2
+      banshees, 2 keepers, 2 widowmakers, 4 mini rockets, 2 GAU-21 30 mm cannons,
+      2 rocket pods, 2 minirocket pods
+  - code_imp: update map contribution page to ensure that other contributors can read
+      good practices on map PRs
