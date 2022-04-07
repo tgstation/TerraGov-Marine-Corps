@@ -49,6 +49,15 @@
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 210
 
+/obj/item/ammo_magazine/packet/p86x70mm
+	name = "box of 8.6x70mm"
+	desc = "A box containing 50 rounds of 8.6x70mm rifle rounds."
+	caliber = CALIBER_86X70
+	icon_state = "box_86x70mm"
+	default_ammo = /datum/ammo/bullet/sniper/pfc
+	current_rounds = 50
+	max_rounds = 50
+
 /obj/item/ammo_magazine/packet/t25
 	name = "box of 10x26mm (T-25)"
 	desc = "A box containing 320 rounds of 10x26mm caseless tuned for a T-25 smartrifle. It cannot be used for T-29 drums!"
