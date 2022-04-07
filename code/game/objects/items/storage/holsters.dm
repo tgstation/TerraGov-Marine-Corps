@@ -21,6 +21,8 @@
 	var/list/holsterable_allowed = list()
 	///records whether the special item currently in the holster
 	var/holstered = FALSE
+	///records the specific special item currently in the holster
+	var/holstered_item = null
 
 /obj/item/storage/holster/equipped(mob/user, slot)
 	if(slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)	//add more if needed
@@ -45,6 +47,7 @@
 	if (!. || !(W.type in holsterable_allowed) ) //check to see if the item being inserted is the snowflake item
 		return
 	holstered = TRUE
+	holstered_item = W
 	update_holster_icon()
 
 /obj/item/storage/holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
@@ -52,6 +55,7 @@
 	if (!. || !(W.type in holsterable_allowed) ) //check to see if the item being removed is the snowflake item
 		return
 	holstered = FALSE
+	holstered_item = null
 	update_holster_icon()
 
 ///only called when the snowflake item is put in or removed
@@ -147,16 +151,16 @@
 
 /obj/item/storage/holster/blade/machete/full/Initialize()
 	. = ..()
-	icon_state = "machete_holster_full"
-	new /obj/item/weapon/claymore/mercsword/machete(src)
+	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/machete(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 /obj/item/storage/holster/blade/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
 
 /obj/item/storage/holster/blade/machete/full_harvester/Initialize()
 	. = ..()
-	icon_state = "machete_holster_full"
-	new /obj/item/weapon/claymore/harvester(src)
+	var/obj/item/new_item = new /obj/item/weapon/claymore/harvester(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 /obj/item/storage/holster/blade/katana
 	name = "\improper katana scabbard"
@@ -171,8 +175,8 @@
 
 /obj/item/storage/holster/blade/katana/full/Initialize()
 	. = ..()
-	icon_state = "katana_holster_full"
-	new /obj/item/weapon/katana(src)
+	var/obj/item/new_item = new /obj/item/weapon/katana(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 /obj/item/storage/holster/blade/officer
 	name = "\improper officer sword scabbard"
@@ -185,8 +189,8 @@
 
 /obj/item/storage/holster/blade/officer/full/Initialize()
 	. = ..()
-	icon_state = "officer_sheath_full"
-	new /obj/item/weapon/claymore/mercsword/officersword(src)
+	var/obj/item/new_item = new /obj/item/weapon/claymore/mercsword/officersword(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 //guns
 
@@ -206,8 +210,8 @@
 
 /obj/item/storage/holster/m37/full/Initialize()
 	. = ..()
-	icon_state = "m37_holster_full"
-	new /obj/item/weapon/gun/shotgun/pump(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/shotgun/pump(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 /obj/item/storage/holster/t35
 	name = "\improper L44 T-35 scabbard"
@@ -221,8 +225,8 @@
 
 /obj/item/storage/holster/t35/full/Initialize()
 	. = ..()
-	icon_state = "t35_holster_full"
-	new /obj/item/weapon/gun/shotgun/pump/t35(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/shotgun/pump/t35(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 /obj/item/storage/holster/m25
 	name = "\improper M276 pattern M25 holster rig"
@@ -236,8 +240,8 @@
 
 /obj/item/storage/holster/m25/full/Initialize()
 	. = ..()
-	icon_state = "m25_holster_full"
-	new /obj/item/weapon/gun/smg/m25(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/smg/m25(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 /obj/item/storage/holster/t19
 	name = "\improper M276 pattern T-19 holster rig"
@@ -251,5 +255,5 @@
 
 /obj/item/storage/holster/t19/full/Initialize()
 	. = ..()
-	icon_state = "t19_holster_full"
-	new /obj/item/weapon/gun/smg/standard_machinepistol(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/smg/standard_machinepistol(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
