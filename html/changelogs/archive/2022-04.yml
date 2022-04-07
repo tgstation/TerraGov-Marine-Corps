@@ -63,3 +63,15 @@
   - bugfix: Req crates no longer stay anchored when a supply drop fails
   vilereaver41:
   - balance: fog and silo changes
+2022-04-07:
+  BraveMole:
+  - balance: Remove plasma pistol from T25
+  DeltaFire15:
+  - bugfix: The keybinds for Centrifugal Force and Regenerate Skin should work now.
+  - bugfix: Retriggering Centrifugal Force to abort it while spinning should now work
+      at least sometimes.
+  Pariah919:
+  - qol: You can anchor the TAT-36 as a marine.
+  - balance: APCR changes, 40 pen from 100, damage upped to 160, sunder upped to 65.
+  breadhunt:
+  - balance: Blink debuff no longer applies while the wraith is in phase shift

@@ -1,5 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes: 
-  - bugfix: "The keybinds for Centrifugal Force and Regenerate Skin should work now."
-  - bugfix: "Retriggering Centrifugal Force to abort it while spinning should now work at least sometimes."
