@@ -77,7 +77,8 @@
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 33, "bullet" = 33, "laser" = 28, "energy" = 25, "bomb" = 25, "bio" = 25, "rad" = 25, "fire" = 33, "acid" = 25)
+	soft_armor = list("melee" = 33, "bullet" = 33, "laser" = 28, "energy" = 25, "bomb" = 20
+	, "bio" = 25, "rad" = 25, "fire" = 33, "acid" = 25)
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 26
@@ -106,7 +107,7 @@
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 28, "bomb" = 30, "bio" = 28, "rad" = 28, "fire" = 35, "acid" = 28)
+	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 28, "bomb" = 20, "bio" = 28, "rad" = 28, "fire" = 35, "acid" = 28)
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
@@ -136,7 +137,7 @@
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 20, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
@@ -163,7 +164,7 @@
 	max_health = 320
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 35, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 20, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30

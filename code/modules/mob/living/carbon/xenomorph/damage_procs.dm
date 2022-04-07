@@ -15,7 +15,7 @@
 	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
 
 
-	if(bomb_armor > 100)
+	if(bomb_armor >= 100)
 		return //immune
 
 	//lowered to account for new armor values but keep old gibs

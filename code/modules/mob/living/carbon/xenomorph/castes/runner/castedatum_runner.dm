@@ -84,7 +84,7 @@
 	upgrade_threshold = TIER_ONE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 16, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 5, "bio" = 3, "rad" = 3, "fire" = 10, "acid" = 3)
+	soft_armor = list("melee" = 16, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 3, "rad" = 3, "fire" = 10, "acid" = 3)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
@@ -114,7 +114,7 @@
 	upgrade_threshold = TIER_ONE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 18, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
+	soft_armor = list("melee" = 18, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 0, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
@@ -144,7 +144,7 @@
 	upgrade_threshold = TIER_ONE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = 15, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
+	soft_armor = list("melee" = 20, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = 0, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
@@ -171,7 +171,7 @@
 	max_health = 240
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = 15, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
+	soft_armor = list("melee" = 20, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = 0, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 13 SECONDS
