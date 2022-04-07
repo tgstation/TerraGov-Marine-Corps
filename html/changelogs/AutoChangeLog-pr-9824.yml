@@ -1,0 +1,9 @@
+author: "goose4429"
+delete-after: True
+changes: 
+  - balance: "Decreased plasma drain effect time from 10 to 2"
+  - balance: "Decreased plasma regen stop time from 10 to 2"
+  - balance: "Plasma drain now drains 10% per tick (from 6%)"
+  - balance: "Removed stagger"
+  - balance: "Increased ammo per cell from 4 to 6
+added: on-hit plasma drain (30% of max)"

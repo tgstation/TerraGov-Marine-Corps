@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/chem_macros = list()
 
 	//Synthetic specific preferences
-	var/synthetic_name = "David"
+	var/synthetic_name = "Undefined"
 	var/synthetic_type = "Synthetic"
 
 	//Xenomorph specific preferences

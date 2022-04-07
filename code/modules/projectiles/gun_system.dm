@@ -501,7 +501,7 @@
 	examine_ammo_count(user)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
-			. += span_notice("Use Ctrl-Click to deploy.")
+			. += span_notice("Use Ctrl-Click on a tile to deploy.")
 		return
 	. += span_notice("Click-Drag to yourself to undeploy.")
 	. += span_notice("Alt-Click to unload.")
