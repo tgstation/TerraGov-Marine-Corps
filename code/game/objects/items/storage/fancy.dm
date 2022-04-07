@@ -41,11 +41,11 @@
 	. = ..()
 	switch(length(contents))
 		if(0)
-			to_chat(user, "There are no [icon_type]s left in the box.")
+			. += "There are no [icon_type]s left in the box."
 		if(1)
-			to_chat(user, "There is one [icon_type] left in the box.")
+			. += "There is one [icon_type] left in the box."
 		if(2 to INFINITY)
-			to_chat(user, "There are [length(contents)] [icon_type]s in the box.")
+			. += "There are [length(contents)] [icon_type]s in the box."
 
 
 /*
@@ -147,12 +147,6 @@
 
 /obj/item/storage/fancy/cigarettes/update_icon_state()
 	icon_state = "[initial(icon_state)][contents.len]"
-
-
-/obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W, atom/new_location, mob/user)
-	var/obj/item/clothing/mask/cigarette/C = W
-	if(istype(C))
-		return ..()
 
 /obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))

@@ -8,6 +8,7 @@
 	idle_power_usage = 5
 	active_power_usage = 360
 	flags_atom = HTML_USE_INITAL_ICON_1
+	obj_flags = CAN_BE_HIT
 
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 	var/hackProof = 0 // if 1, this door can't be hacked by the AI
@@ -33,10 +34,6 @@
 	var/secured_wires = 0	//for mapping use
 	var/no_panel = 0 //the airlock has no panel that can be screwdrivered open
 	var/emergency = FALSE
-
-	tiles_with = list(
-		/turf/closed/wall,
-	)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(issilicon(user))
@@ -267,15 +264,17 @@
 
 /obj/machinery/door/airlock/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	. = ..()
-	if(is_mainship_level(z)) //log shipside greytiders
+	if(. && is_mainship_level(z)) //log shipside greytiders
 		log_attack("[key_name(proj.firer)] shot [src] with [proj] at [AREACOORD(src)]")
-		msg_admin_ff("[ADMIN_TPMONTY(proj.firer)] shot [src] with [proj] in [ADMIN_VERBOSEJMP(src)].")
+		if(SSmonitor.gamestate != SHIPSIDE)
+			msg_admin_ff("[ADMIN_TPMONTY(proj.firer)] shot [src] with [proj] in [ADMIN_VERBOSEJMP(src)].")
 
 /obj/machinery/door/airlock/attacked_by(obj/item/I, mob/living/user, def_zone)
 	. = ..()
 	if(. && is_mainship_level(z))
 		log_attack("[src] has been hit with [I] at [AREACOORD(src)] by [key_name(user)]")
-		msg_admin_ff("[ADMIN_TPMONTY(user)] hit [src] with [I] in [ADMIN_VERBOSEJMP(src)].")
+		if(SSmonitor.gamestate != SHIPSIDE)
+			msg_admin_ff("[ADMIN_TPMONTY(user)] hit [src] with [I] in [ADMIN_VERBOSEJMP(src)].")
 
 /obj/machinery/door/airlock/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -388,12 +387,6 @@
 			else if(length(req_one_access))
 				AE.conf_access = req_one_access
 				AE.one_access = TRUE
-		else
-			AE = electronics
-			if(electronics.is_general_board)
-				AE.set_general()
-			AE.forceMove(loc)
-			electronics = null
 
 		if(operating == -1)
 			AE.icon_state = "door_electronics_smoked"
@@ -435,26 +428,19 @@
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 	update_icon()
 
-
-///obj/machinery/door/airlock/phoron/attackby(C as obj, mob/user as mob)
-//	if(C)
-//		ignite(is_hot(C))
-//	..()
-
 /obj/machinery/door/airlock/open(forced = FALSE)
-	if(operating || welded || locked || !loc)
+	if(!forced && (!hasPower() || wires.is_cut(WIRE_OPEN)))
 		return FALSE
-	if(!forced)
-		if(!hasPower() || wires.is_cut(WIRE_OPEN))
-			return FALSE
-	use_power(active_power_usage)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
+	. = ..()
+	if(!.)
+		return
+	use_power(active_power_usage)
 	if(istype(src, /obj/machinery/door/airlock/glass))
 		playsound(loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	else
 		playsound(loc, 'sound/machines/airlock.ogg', 25, 0)
 	if(istype(closeOther, /obj/machinery/door/airlock) && !closeOther.density)
 		closeOther.close()
-	return ..()
 
 /obj/machinery/door/airlock/close(forced = FALSE)
 	if(operating || welded || locked)
@@ -463,11 +449,9 @@
 		if(!hasPower() || wires.is_cut(WIRE_BOLTS))
 			return
 	if(safe)
-		for(var/turf/turf in locs)
+		for(var/turf/turf AS in locs)
 			if(locate(/mob/living) in turf)
-			//	playsound(src.loc, 'sound/machines/buzz-two.ogg', 25, 0)	//THE BUZZING IT NEVER STOPS	-Pete
-				spawn (60 + openspeed)
-					close()
+				addtimer(CALLBACK(src, .proc/close), 6 SECONDS)
 				return
 
 	for(var/turf/turf in locs)
@@ -496,7 +480,7 @@
 	return ..()
 
 /obj/machinery/door/airlock/proc/lock(forced = FALSE)
-	if (operating || locked)
+	if ((operating && !forced) || locked)
 		return
 
 	locked = TRUE
@@ -504,7 +488,7 @@
 	update_icon()
 
 /obj/machinery/door/airlock/proc/unlock(forced = FALSE)
-	if (operating || !locked)
+	if ((operating && !forced) || !locked)
 		return
 
 	if(forced || hasPower()) //only can raise bolts if power's on
@@ -525,9 +509,6 @@
 				src.closeOther = A
 				break
 
-	// fix smoothing
-	relativewall_neighbours()
-
 
 /obj/machinery/door/airlock/Destroy()
 	QDEL_NULL(wires)
@@ -542,7 +523,7 @@
 
 
 /obj/machinery/door/airlock/proc/update_nearby_icons()
-	relativewall_neighbours()
+	smooth_neighbors()
 
 
 /obj/machinery/door/airlock/proc/set_electrified(seconds, mob/user)

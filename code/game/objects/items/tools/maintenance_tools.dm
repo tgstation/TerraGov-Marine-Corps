@@ -134,8 +134,8 @@
 
 
 /obj/item/tool/weldingtool/examine(mob/user)
-	..()
-	to_chat(user, "It contains [get_fuel()]/[max_fuel] units of fuel!")
+	. += ..()
+	. +=  "It contains [get_fuel()]/[max_fuel] units of fuel!"
 
 
 /obj/item/tool/weldingtool/use(used = 0)
@@ -187,34 +187,7 @@
 	if(istype(I, /obj/item/tool/screwdriver))
 		flamethrower_screwdriver(src, user)
 
-/obj/item/tool/weldingtool/attack(mob/M, mob/user)
-
-	if(hasorgans(M))
-		var/mob/living/carbon/human/H = M
-		var/datum/limb/S = H.get_limb(user.zone_selected)
-
-		if (!S) return
-		if(!(S.limb_status & LIMB_ROBOT) || user.a_intent != INTENT_HELP)
-			return ..()
-
-		if(S.brute_dam && welding)
-			if(issynth(H) && M == user)
-				if(user.do_actions || !do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
-					return
-			S.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE)
-			H.UpdateDamageIcon()
-			user.visible_message(span_warning("\The [user] patches some dents on \the [H]'s [S.display_name] with \the [src]."), \
-								span_warning("You patch some dents on \the [H]'s [S.display_name] with \the [src]."))
-			remove_fuel(1,user)
-			playsound(user.loc, 'sound/items/welder2.ogg', 25, 1)
-			return
-		else
-			to_chat(user, span_warning("Nothing to fix!"))
-
-	else
-		return ..()
-
-/obj/item/tool/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/tool/weldingtool/afterattack(obj/O, mob/user, proximity)
 	if(!proximity)
 		return
 	if(!status && O.is_refillable())
@@ -424,17 +397,17 @@
 		to_chat(user, span_notice("You refill [FT] with [lowertext(FT.caliber)]."))
 		FT.update_icon()
 
-	else if(istype(I, /obj/item/attachable/attached_gun/flamer))
-		var/obj/item/attachable/attached_gun/flamer/FT = I
-		if(!reagents.total_volume)
+	else if(istype(I, /obj/item/weapon/twohanded/rocketsledge))
+		var/obj/item/weapon/twohanded/rocketsledge/RS = I
+		if(RS.reagents.get_reagent_amount(/datum/reagent/fuel) == RS.max_fuel || !reagents.total_volume)
 			return ..()
 
-		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
+		var/fuel_transfer_amount = min(reagents.total_volume, (RS.max_fuel - RS.reagents.get_reagent_amount(/datum/reagent/fuel)))
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		FT.current_rounds += fuel_transfer_amount
-		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
-		to_chat(user, span_notice("You refill [FT] with fuel."))
-		FT.update_icon()
+		RS.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, span_notice("You refill [RS] with fuel."))
+		RS.update_icon()
 
 	else
 		to_chat(user, span_notice("The tank scoffs at your insolence.  It only provides services to welders and flamethrowers."))
@@ -453,8 +426,8 @@
 		return
 
 /obj/item/tool/weldpack/examine(mob/user)
-	..()
-	to_chat(user, "[reagents.total_volume] units of welding fuel left!")
+	. = ..()
+	. += "[reagents.total_volume] units of welding fuel left!"
 
 /obj/item/tool/weldpack/marinestandard
 	name = "M-22 welding kit"
@@ -515,6 +488,9 @@
 
 	if(!istype(I, /obj/item/cell))
 		return
+	if(istype(I, /obj/item/cell/rtg/large))
+		to_chat(user, span_notice("The RTG is too large to fit in the charger!"))
+		return
 	if(!user.drop_held_item())
 		return
 
@@ -530,6 +506,16 @@
 	playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 20, 1, 5)
 	icon_state = "handheldcharger_black"
 
+/obj/item/tool/handheld_charger/attack_hand_alternate(mob/living/user)
+	if(!cell)
+		return ..()
+	cell.update_icon()
+	user.put_in_active_hand(cell)
+	cell = null
+	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
+	to_chat(user, span_notice("You remove the cell from [src]."))
+	icon_state = "handheldcharger_black_empty"
+
 /obj/item/tool/handheld_charger/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
@@ -541,7 +527,6 @@
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	to_chat(user, span_notice("You remove the cell from [src]."))
 	icon_state = "handheldcharger_black_empty"
-
 
 /obj/item/tool/handheld_charger/Destroy()
 	QDEL_NULL(cell)

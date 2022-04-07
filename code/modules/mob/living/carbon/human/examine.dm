@@ -1,5 +1,5 @@
 /mob/living/carbon/human/examine(mob/user)
-	SHOULD_CALL_PARENT(0)
+	SHOULD_CALL_PARENT(FALSE)
 	if (isxeno(user))
 		var/msg = "<span class='info'>*---------*\nThis is "
 		if(icon)
@@ -9,7 +9,7 @@
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is not organic.</span>\n"
 		if(status_flags & XENO_HOST)
-			msg += "This creature is impregnated and [reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin) > 0 ? "" : "not"] inoculated with Larval Accelerant. \n"
+			msg += "This creature is impregnated. \n"
 		else if(chestburst == 2)
 			msg += "A larva escaped from this creature.\n"
 		if (headbitten)
@@ -27,8 +27,7 @@
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 			msg += "Hemodile: 20% stamina damage received, when damaged, and slowed by 25% (inject neurotoxin for 50% slow)\n"
 		msg += "*---------*</span>"
-		to_chat(user, msg)
-		return
+		return list(msg)
 
 	var/skipgloves = 0
 	var/skipsuitstorage = 0
@@ -70,17 +69,10 @@
 
 	//uniform
 	if(w_uniform && !skipjumpsuit)
-		//Ties
-		var/tie_msg
-		if(istype(w_uniform,/obj/item/clothing/under))
-			var/obj/item/clothing/under/U = w_uniform
-			if(U.hastie)
-				tie_msg += " with [icon2html(U.hastie, user)] \a [U.hastie]"
-
 		if(w_uniform.blood_overlay)
-			msg += "[span_warning("[t_He] [t_is] wearing [icon2html(w_uniform, user)] [w_uniform.gender==PLURAL?"some":"a"] [(w_uniform.blood_color != "#030303") ? "blood" : "oil"]-stained [w_uniform.name][tie_msg]!")]\n"
+			msg += "[span_warning("[t_He] [t_is] wearing [icon2html(w_uniform, user)] [w_uniform.gender==PLURAL?"some":"a"] [(w_uniform.blood_color != "#030303") ? "blood" : "oil"]-stained [w_uniform.name]!")]\n"
 		else
-			msg += "[t_He] [t_is] wearing [icon2html(w_uniform, user)] \a [w_uniform][tie_msg].\n"
+			msg += "[t_He] [t_is] wearing [icon2html(w_uniform, user)] \a [w_uniform].\n"
 
 	//head
 	if(head)
@@ -536,7 +528,7 @@
 
 	msg += "*---------*</span>"
 
-	to_chat(user, msg)
+	return list(msg)
 
 /mob/living/carbon/human/proc/take_pulse(mob/user)
 	if(QDELETED(user) || QDELETED(src) || !Adjacent(user) || user.incapacitated())

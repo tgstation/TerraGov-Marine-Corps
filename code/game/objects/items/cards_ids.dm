@@ -163,7 +163,7 @@
 /obj/item/card/id/syndicate/attack_self(mob/user as mob)
 	if(!src.registered_name)
 		//Stop giving the players unsanitized unputs! You are giving ways for players to intentionally crash clients! -Nodrak
-		var/newname = reject_bad_name(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name))
+		var/newname = reject_bad_name(tgui_input_text(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name))
 		if(!newname) //Same as mob/new_player/prefrences.dm
 			alert("Invalid name.")
 			return
@@ -258,9 +258,9 @@
 
 
 /obj/item/card/id/dogtag/examine(mob/user)
-	..()
+	. = ..()
 	if(ishuman(user))
-		to_chat(user, span_notice("It reads \"[registered_name] - [assignment] - [blood_type]\""))
+		. += span_notice("It reads \"[registered_name] - [assignment] - [blood_type]\"")
 
 
 /obj/item/dogtag

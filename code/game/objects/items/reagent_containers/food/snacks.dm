@@ -22,7 +22,7 @@
 	reagents.my_atom = src
 	for(var/rid in init_reagents)
 		var/amount = list_reagents[rid]
-		if(type == /datum/reagent/consumable/nutriment)
+		if(rid == /datum/reagent/consumable/nutriment)
 			reagents.add_reagent(rid, amount, tastes.Copy())
 		else
 			reagents.add_reagent(rid, amount, data)
@@ -50,6 +50,11 @@
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
 	return
 
+/obj/item/reagant_containers/food/snacks/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(!CONFIG_GET(flag/fun_allowed))
+		return FALSE
+	attack_hand(X)
+
 /obj/item/reagent_containers/food/snacks/attack(mob/M, mob/user, def_zone)
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
 		to_chat(user, span_warning("None of [src] left, oh no!"))
@@ -66,7 +71,7 @@
 		var/fullness = C.nutrition + (C.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 25)
 		if(M == user)								//If you're eating it yourself
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
 			if (fullness <= 50)
@@ -82,7 +87,7 @@
 				return FALSE
 		else
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			if (fullness <= (550 * (1 + C.overeatduration / 1000)))
@@ -125,22 +130,22 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
-	..()
+	. = ..()
 	if (!(user in range(0)) && user != loc)
 		return
 	if (bitecount==0)
 		return
 	else if (bitecount==1)
-		to_chat(user, span_notice("\The [src] was bitten by someone!"))
+		. += span_notice("\The [src] was bitten by someone!")
 	else if (bitecount<=3)
-		to_chat(user, span_notice("\The [src] was bitten [bitecount] times!"))
+		. += span_notice("\The [src] was bitten [bitecount] times!")
 	else
-		to_chat(user, span_notice("\The [src] was bitten multiple times!"))
+		. += span_notice("\The [src] was bitten multiple times!")
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/tool/kitchen/utensil))
+	if(istype(I, /obj/item/tool/kitchen/utensil)) //todo early return
 		var/obj/item/tool/kitchen/utensil/U = I
 
 		if(!U.reagents)
@@ -224,7 +229,6 @@
 				N.visible_message(span_warning("[N] nibbles away at [src]."), "")
 			//N.emote("nibbles away at the [src]")
 			N.health = min(N.health + 1, N.maxHealth)
-
 
 ////////////////////////////////////////////////////////////////////////////////
 /// FOOD END
@@ -1302,7 +1306,7 @@
 /obj/item/reagent_containers/food/snacks/monkeycube/examine(mob/user)
 	. = ..()
 	if(package)
-		to_chat(user, "It is wrapped in waterproof cellophane. Maybe using it in your hand would tear it off?")
+		. += "It is wrapped in waterproof cellophane. Maybe using it in your hand would tear it off?"
 
 /obj/item/reagent_containers/food/snacks/monkeycube/afterattack(obj/O, mob/user, proximity)
 	if(!proximity)
@@ -1321,8 +1325,9 @@
 	package = FALSE
 
 /obj/item/reagent_containers/food/snacks/monkeycube/On_Consume(mob/M)
-	to_chat(M, "<span class = 'warning'>Something inside of you suddently expands!</span>")
-
+	to_chat(M, span_warning("Something inside of you suddently expands!</span>"))
+	M.visible_message(span_notice("[M] finishes eating \the [src]."))
+	usr.dropItemToGround(src)
 	if(!ishuman(M))
 		return ..()
 	//Do not try to understand.
@@ -1345,6 +1350,7 @@
 	else 		//someone is having a bad day
 		E.createwound(CUT, 30)
 		surprise.embed_into(M, E)
+	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/monkeycube/proc/Expand()
 	visible_message(span_warning("\The [src] expands!"))
@@ -2552,6 +2558,17 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1)
 	tastes = list("meat" = 1)
 
+/obj/item/reagent_containers/food/snacks/rawcutlet/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/kitchen/knife))
+		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)
+		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)
+		new /obj/item/reagent_containers/food/snacks/rawmeatball(src)
+		to_chat(user, "You cut the strips and roll them into balls.")
+		qdel(src)
+
+
 /obj/item/reagent_containers/food/snacks/cutlet
 	name = "cutlet"
 	desc = "A tasty meat slice."
@@ -2569,6 +2586,10 @@
 	icon_state = "rawmeatball"
 	bitesize = 2
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
+
+/obj/item/reagent_containers/food/snacks/rawmeatball/Initialize()
+	. = ..()
+	AddComponent(/datum/component/grillable, /obj/item/reagent_containers/food/snacks/meatball, rand(40 SECONDS, 50 SECONDS), TRUE, TRUE)
 
 /obj/item/reagent_containers/food/snacks/hotdog
 	name = "hotdog"

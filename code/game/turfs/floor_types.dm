@@ -111,6 +111,9 @@
 /turf/open/floor/mainship/ai
 	icon_state = "ai_floors"
 
+/turf/open/floor/mainship/sandtemple
+	icon_state = "sandtemplefloor"
+
 /turf/open/floor/mainship/sterile
 	icon_state = "sterile_green"
 
@@ -313,6 +316,9 @@
 /turf/open/floor/cult
 	icon_state = "cult"
 
+/turf/open/floor/dark2
+	icon_state = "darktile2"
+
 /turf/open/floor/cult/clock
 	icon_state = "clockwork"
 
@@ -354,6 +360,14 @@
 /turf/open/floor/engine/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
+
+/turf/open/floor/engine/atmos
+	name = "vacuum floor"
+	icon_state = "darkgraytile"
+
+/turf/open/floor/engine/atmosdark
+	name = "vacuum floor"
+	icon_state = "dark"
 
 /turf/open/floor/engine/mars/exterior
 	name = "floor"
@@ -671,6 +685,12 @@
 /turf/open/floor/tile/dark/purple2
 	icon_state = "darkpurple2"
 
+/turf/open/floor/tile/dark/gray
+	icon_state = "darkgraytile"
+
+/turf/open/floor/tile/cafe
+	icon_state = "cafetile"
+
 /turf/open/floor/tile/dark/purple2/corner
 	icon_state = "darkpurplecorners2"
 
@@ -890,6 +910,51 @@
 
 /turf/open/floor/prison/red/corner
 	icon_state = "redcorner"
+
+/////// grayscale floor for easy recoloring /////
+
+/turf/open/floor/grayscale
+	icon_state = "grayfloor"
+
+/turf/open/floor/grayscale/black
+	color = "#5e5e5e"
+
+/turf/open/floor/grayscale/white
+	color = "#fffdfd"
+
+/turf/open/floor/grayscale/darkred
+	color = "#41292e"
+
+/turf/open/floor/grayscale/darkgray
+	color = "#818181"
+
+/turf/open/floor/grayscale/lightgray
+	color = "#ffffff"
+
+/turf/open/floor/grayscale/darkblue
+	color = "#4f5a5e"
+
+//color values will NOT look the same between /grayscale and /grayscale/round, don't plug in a color value in one hoping to get the same result in the other
+
+/turf/open/floor/grayscale/round
+	icon_state = "grayfloorround"
+	color = "#9b9b9b"
+
+/turf/open/floor/grayscale/round/black
+	color = "#3f3f3f"
+
+/turf/open/floor/grayscale/round/lightgray
+	color = "#aaaaaa"
+
+/turf/open/floor/grayscale/round/darkgray
+	color = "#4e4e4e"
+
+/turf/open/floor/grayscale/round/darkred
+	color = "#301e21"
+
+/turf/open/floor/grayscale/edge/black
+	icon_state = "grayscale_edge"
+	color = "#363636"
 
 ////// Mechbay /////////////////:
 

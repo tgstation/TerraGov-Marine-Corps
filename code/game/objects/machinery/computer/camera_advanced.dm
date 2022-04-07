@@ -6,7 +6,7 @@
 	var/list/z_lock = list() // Lock use to these z levels
 	var/lock_override = NONE
 	var/open_prompt = TRUE
-	var/mob/camera/aiEye/remote/eyeobj
+	var/mob/camera/aiEye/remote/hud/overwatch/eyeobj
 	var/mob/living/current_user
 	var/list/networks = list("marinemainship")
 	var/datum/action/innate/camera_off/off_action
@@ -132,7 +132,7 @@
 			return
 		var/camera_location
 		var/turf/myturf = get_turf(src)
-		if(eyeobj.use_static != USE_STATIC_NONE)
+		if(eyeobj.use_static)
 			if((!length(z_lock) || (myturf.z in z_lock)) && GLOB.cameranet.checkTurfVis(myturf))
 				camera_location = myturf
 			else
@@ -240,10 +240,10 @@
 	var/turf/T = get_turf(target)
 	if(!T)
 		return
-	if(T.z != z && use_static != USE_STATIC_NONE)
+	if(T.z != z && use_static)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
-	forceMove(T)
-	if(use_static != USE_STATIC_NONE)
+	abstract_move(T)
+	if(use_static)
 		GLOB.cameranet.visibility(src, GetViewerClient(), null, use_static)
 	if(visible_icon && eye_user.client)
 		eye_user.client.images -= user_image
@@ -283,6 +283,33 @@
 		sprint = min(sprint + 0.5, max_sprint)
 	else
 		sprint = initial
+
+
+
+//Version of remote eye that's added to marine HUD. Not visible to xenos but visible to marines
+//This one's for CAS
+/mob/camera/aiEye/remote/hud
+	icon_state = "nothing"
+	var/icon_state_on = "cas_camera"
+	hud_possible = list(SQUAD_HUD_TERRAGOV)
+
+/mob/camera/aiEye/remote/hud/Initialize()
+	. = ..()
+	prepare_huds()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	squad_hud.add_to_hud(src)
+
+	var/image/holder = hud_list[SQUAD_HUD_TERRAGOV]
+	if(!holder)
+		return
+	holder.icon = icon
+	holder.icon_state = icon_state_on
+	hud_list[hud_type] = holder
+
+//This one's for overwatch/CIC
+/mob/camera/aiEye/remote/hud/overwatch
+	icon_state_on = "cic_camera"
+
 
 
 /datum/action/innate/camera_off

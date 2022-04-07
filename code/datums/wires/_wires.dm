@@ -26,7 +26,6 @@
 		if(!GLOB.wire_color_directory[holder_type])
 			randomize()
 			GLOB.wire_color_directory[holder_type] = colors
-			GLOB.wire_name_directory[holder_type] = proper_name
 		else
 			colors = GLOB.wire_color_directory[holder_type]
 

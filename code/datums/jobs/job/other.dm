@@ -88,3 +88,6 @@
 /datum/outfit/job/other/spatial_agent/xeno_suit
 	head = /obj/item/clothing/head/xenos
 	wear_suit = /obj/item/clothing/suit/xenos
+
+/datum/job/zombie
+	title = "Oh god run"

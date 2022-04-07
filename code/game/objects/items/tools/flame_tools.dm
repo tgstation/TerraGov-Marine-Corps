@@ -216,9 +216,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else if(istype(W, /obj/item/assembly/igniter))
 		light(span_notice("[user] fiddles with [W], and manages to light [user.p_their()] [name]."))
 
-	else if(istype(W, /obj/item/attachable/attached_gun/flamer))
-		light(span_notice("[user] lights [user.p_their()] [src] with the [W]."))
-
 	else if(istype(W, /obj/item/weapon/gun/flamer))
 		light(span_notice("[user] lights [user.p_their()] [src] with the pilot light of the [W]."))
 
@@ -226,13 +223,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/obj/item/weapon/gun/G = W
 		if(istype(G, /obj/item/weapon/gun/energy/lasgun))
 			var/obj/item/weapon/gun/energy/lasgun/L = G
-			if(L.cell.charge)
+			if(L.rounds)
 				light(span_notice("[user] deftly lights [user.p_their()] [src] with the [L]'s low power setting."))
 			else
 				to_chat(user, span_warning("You try to light your [src] with the [L] but your power cell has no charge!"))
-		else if(istype(LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER), /obj/item/attachable/attached_gun/flamer))
-			light(span_notice("[user] lights [user.p_their()] [src] with the underbarrel [LAZYACCESS(G.attachments, ATTACHMENT_SLOT_UNDER)]."))
-
+		else if(istype(LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_UNDER), /obj/item/weapon/gun/flamer))
+			light(span_notice("[user] lights [user.p_their()] [src] with the underbarrel [LAZYACCESS(G.attachments_by_slot, ATTACHMENT_SLOT_UNDER)]."))
 
 	else if(istype(W, /obj/item/tool/surgery/cautery))
 		light(span_notice("[user] lights [user.p_their()] [src] with the [W]."))
@@ -320,7 +316,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob //TODO WHAT BAYCODER USED A : UNIRONICALLY
 			if(ishuman(loc))
 				var/mob/living/carbon/human/H = loc
-				if(H.species.species_flags & IS_SYNTHETIC)
+				if(H.species.species_flags & ROBOTIC_LIMBS)
 					return
 			var/mob/living/carbon/C = loc
 

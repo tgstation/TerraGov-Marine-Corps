@@ -5279,7 +5279,7 @@
 /obj/structure/closet,
 /obj/item/tool/crowbar,
 /obj/item/clothing/gloves/yellow,
-/obj/item/stack/medical/bruise_pack,
+/obj/item/stack/medical/heal_pack/gauze,
 /obj/structure/window/reinforced{
 	dir = 4
 	},

@@ -14,6 +14,7 @@
 
 /obj/effect/landmark/corpsespawner
 	name = "Unknown"
+	icon_state = "skullmarker"
 	var/mobname = "Unknown"  //Unused now but it'd fuck up maps to remove it now
 	var/corpseuniform = null //Set this to an object path to have the slot filled with said object on the corpse.
 	var/corpsesuit = null
@@ -43,27 +44,22 @@
 /// Create the mob and delete the corpse spawner
 /obj/effect/landmark/corpsespawner/proc/create_mob(death_type)
 	var/mob/living/carbon/human/victim = new(loc)
+	SSmobs.stop_processing(victim)
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
 	victim.real_name = name
 	victim.death(silent = TRUE) //Kills the new mob
+	GLOB.dead_human_list -= victim
+	GLOB.dead_mob_list -= victim
+	GLOB.mob_list -= victim
 	victim.timeofdeath = -CONFIG_GET(number/revive_grace_period)
+	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
+	ADD_TRAIT(victim, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
+	victim.med_hud_set_status()
 	equip_items_to_mob(victim)
 	switch(death_type)
 		if(COCOONED_DEATH) //Just cocooned
-			ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 			new /obj/structure/cocoon/opened_cocoon(loc)
-		if(SILO_DEATH) //Headbite and siloed
-			var/datum/internal_organ/brain
-			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
-			victim.internal_organs_by_name -= "brain"
-			victim.internal_organs -= brain
-			victim.headbitten = TRUE
-			victim.chestburst = 2
-			victim.update_burst()
-			victim.update_headbite()
-			if(length(GLOB.xeno_resin_silos))
-				victim.loc = pick(GLOB.xeno_resin_silos)
 		if(HEADBITE_DEATH) //Headbite but left there
 			var/datum/internal_organ/brain
 			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
@@ -343,3 +339,40 @@
 	corpseid = 1
 	corpseidjob = "Private Security Officer"
 	corpseidaccess = "101"
+
+/////////////////Marine//////////////////////
+
+/obj/effect/landmark/corpsespawner/marine
+	name = "Marine"
+	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
+	corpseback = /obj/item/storage/backpack/satchel
+	corpsemask = /obj/item/clothing/mask/rebreather
+	corpsehelmet = /obj/item/clothing/head/modular/marine/m10x
+	corpsegloves = /obj/item/clothing/gloves/marine
+	corpseshoes = /obj/item/clothing/shoes/marine
+	corpsepocket1 = /obj/item/tool/lighter/zippo
+
+/obj/effect/landmark/corpsespawner/marine/engineer
+	name = "Marine Engineer"
+	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
+	corpseback = /obj/item/storage/backpack/marine/engineerpack
+	corpsemask = /obj/item/clothing/mask/gas/tactical
+	corpsehelmet = /obj/item/clothing/head/beret/eng
+	corpsegloves = /obj/item/clothing/gloves/marine/insulated
+	corpseshoes = /obj/item/clothing/shoes/marine
+	corpsebelt = /obj/item/storage/belt/utility/full
+	corpsepocket1 = /obj/item/flashlight
+
+/obj/effect/landmark/corpsespawner/marine/corpsman
+	name = "Marine Corpsman"
+	corpseuniform = /obj/item/clothing/under/marine/corpsman
+	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
+	corpseback = /obj/item/storage/backpack/corpsman
+	corpsemask = /obj/item/clothing/mask/gas
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/corpsman
+	corpsegloves = /obj/item/clothing/gloves/latex
+	corpseshoes = /obj/item/clothing/shoes/marine
+	corpsepocket1 = /obj/item/tweezers
+	corpsepocket2 = /obj/item/clothing/glasses/meson

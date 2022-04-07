@@ -10,12 +10,13 @@
 #define MAP_PRISON_STATION "Prison Station"
 #define MAP_RESEARCH_OUTPOST "Research Outpost"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
-#define MAP_BARRENQUILLA_MINING "Barrenquilla Mining Facility"
 #define MAP_MAGMOOR_DIGSITE "Magmoor Digsite IV"
 
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"
 #define MAP_THESEUS "Theseus"
+#define MAP_MINERVA "Minerva"
+#define MAP_TWIN_PILLARS "Twin Pillars"
 
 
 #define SEE_INVISIBLE_MINIMUM 5

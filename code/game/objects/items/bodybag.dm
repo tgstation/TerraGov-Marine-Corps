@@ -327,14 +327,13 @@
 		return
 	if(!hasHUD(user,"medical"))
 		return
-	for(var/r in GLOB.datacore.medical)
-		var/datum/data/record/medical_record = r
+	for(var/datum/data/record/medical_record AS in GLOB.datacore.medical)
 		if(medical_record.fields["name"] != bodybag_occupant.real_name)
 			continue
 		if(!(medical_record.fields["last_scan_time"]))
-			to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
+			. += "<span class = 'deptradio'>No scan report on record</span>"
 		else
-			to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>\n")
+			. += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
 		break
 
 
@@ -423,6 +422,7 @@
 		anchored = TRUE
 		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
 		animate(src, alpha = 13, time = 3 SECONDS) //Fade out gradually.
+		bodybag_occupant.alpha = 0
 
 
 /obj/structure/closet/bodybag/tarp/open()
@@ -433,6 +433,7 @@
 		animate(src) //Cancel the fade out if still ongoing.
 	if(bodybag_occupant)
 		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED))
+		bodybag_occupant.alpha = initial(bodybag_occupant.alpha)
 	return ..()
 
 

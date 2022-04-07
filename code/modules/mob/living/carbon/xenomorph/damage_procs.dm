@@ -7,90 +7,52 @@
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
-	if(severity < EXPLODE_LIGHT) //Actually means higher.
-		for(var/i in stomach_contents)
-			var/mob/living/carbon/prey = i
-			prey.ex_act(severity + 1)
-	var/bomb_armor = soft_armor.getRating("bomb")
-	var/b_loss = 0
-	var/f_loss = 0
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			switch(bomb_armor)
-				if(XENO_BOMB_RESIST_4 to INFINITY)
-					add_slowdown(2)
-					return
-				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(70, 80)
-					f_loss = rand(70, 80)
-					add_slowdown(3)
-					adjust_sunder(80)
-				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
-					b_loss = rand(75, 85)
-					f_loss = rand(75, 85)
-					adjust_stagger(4)
-					add_slowdown(4)
-					adjust_sunder(90)
-				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
-					b_loss = rand(80, 90)
-					f_loss = rand(80, 90)
-					adjust_stagger(5)
-					add_slowdown(5)
-					adjust_sunder(100)
-				else //Lower than XENO_BOMB_RESIST_1
-					return gib()
-		if(EXPLODE_HEAVY)
-			switch(bomb_armor)
-				if(XENO_BOMB_RESIST_4 to INFINITY)
-					add_slowdown(1)
-					return
-				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(50, 50)
-					f_loss = rand(50, 50)
-					add_slowdown(2)
-					adjust_sunder(35)
-				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
-					b_loss = rand(55, 55)
-					f_loss = rand(55, 55)
-					adjust_stagger(1)
-					add_slowdown(3)
-					adjust_sunder(40)
-				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
-					b_loss = rand(60, 70)
-					f_loss = rand(60, 70)
-					adjust_stagger(4)
-					add_slowdown(4)
-					adjust_sunder(45)
-				else //Lower than XENO_BOMB_RESIST_1
-					b_loss = rand(65, 75)
-					f_loss = rand(65, 75)
-					adjust_stagger(5)
-					add_slowdown(5)
-					adjust_sunder(50)
-		if(EXPLODE_LIGHT)
-			switch(bomb_armor)
-				if(XENO_BOMB_RESIST_4 to INFINITY)
-					return //Immune
-				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(30, 40)
-					f_loss = rand(30, 40)
-				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
-					b_loss = rand(35, 45)
-					f_loss = rand(35, 45)
-					add_slowdown(1)
-				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
-					b_loss = rand(40, 50)
-					f_loss = rand(40, 50)
-					adjust_stagger(2)
-					add_slowdown(2)
-				else //Lower than XENO_BOMB_RESIST_1
-					b_loss = rand(45, 55)
-					f_loss = rand(45, 55)
-					adjust_stagger(4)
-					add_slowdown(4)
+	if(severity == EXPLODE_HEAVY || severity == EXPLODE_DEVASTATE)
+		if(eaten_mob)
+			eaten_mob.ex_act(severity + 1) //Old devour code? higher = weaker
 
-	apply_damage(b_loss, BRUTE, updating_health = TRUE)
-	apply_damage(f_loss, BURN, updating_health = TRUE)
+	var/bomb_armor = soft_armor.getRating("bomb")
+	var/bomb_armor_multiplier = 0 //Just armor level
+
+	if(severity == EXPLODE_DEVASTATE && bomb_armor < XENO_BOMB_RESIST_1)
+		return gib()    //Gibs unprotected benos
+
+	switch(bomb_armor)
+		if(XENO_BOMB_RESIST_4 to INFINITY)
+			bomb_armor_multiplier = 4
+		if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
+			bomb_armor_multiplier = 3
+		if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
+			bomb_armor_multiplier = 2
+		if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
+			bomb_armor_multiplier = 1
+		else
+			bomb_armor_multiplier = 0 //Most beno are here
+
+	//Slowdown and stagger
+	var/ex_slowdown = 2 + (4 - severity) - bomb_armor_multiplier
+	add_slowdown(max(0, ex_slowdown)) //Slowdown 2 for sentiel from nade
+	adjust_stagger(max(0, ex_slowdown - 2)) //Stagger 2 less than slowdown
+	if(bomb_armor_multiplier > 3)
+		return //XENO_BOMB_RESIST_4 only gets slowdown
+
+	//Sunder
+	var/sunder_loss = 50*(3 - severity) - 5*bomb_armor_multiplier
+	if(severity == EXPLODE_DEVASTATE)
+		sunder_loss = sunder_loss - 5*bomb_armor_multiplier //For big boom armor matters more
+	adjust_sunder(max(0, sunder_loss))
+
+	//Damage
+
+	//Prae gets 80 damage at base from light ex (nade)
+	//  120 for heavy (CAS minirocket), 160 for devastating (CAS rocket epicenter)
+	//Queen gets 20 less in each case
+	var/ex_damage = max(0, 50 + 40*(4 - severity) - 10*bomb_armor_multiplier)
+	// Add up to 20 random damage
+	ex_damage = ex_damage + rand(0, 10)*2
+
+	apply_damage(ex_damage/2, BRUTE, updating_health = TRUE)
+	apply_damage(ex_damage/2, BURN, updating_health = TRUE)
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
@@ -140,7 +102,7 @@
 	if(!COOLDOWN_CHECK(src, xeno_health_alert_cooldown))
 		return
 	//If we're alive and health is less than either the alert threshold, or the alert trigger percent, whichever is greater, and we're not on alert cooldown, trigger the hive alert
-	if(stat == DEAD || (health > max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)))
+	if(stat == DEAD || (health > max(XENO_HEALTH_ALERT_TRIGGER_THRESHOLD, maxHealth * XENO_HEALTH_ALERT_TRIGGER_PERCENT)) || xeno_caste.caste_flags & CASTE_DO_NOT_ALERT_LOW_LIFE)
 		return
 
 	var/list/filter_list = list()
@@ -161,31 +123,41 @@
 
 	return damage
 
+///Handles overheal for xeno receiving damage
+#define HANDLE_OVERHEAL(amount) \
+	if(overheal && amount > 0) { \
+		var/reduction = min(amount, overheal); \
+		amount -= reduction; \
+		adjustOverheal(src, -reduction); \
+	} \
 
 /mob/living/carbon/xenomorph/adjustBruteLoss(amount, updating_health = FALSE)
-
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BRUTE_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
+
+	HANDLE_OVERHEAL(amount)
 
 	bruteloss = max(bruteloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
 
-
 /mob/living/carbon/xenomorph/adjustFireLoss(amount, updating_health = FALSE)
-
 	var/list/amount_mod = list()
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_BURN_DAMAGE, amount, amount_mod)
 	for(var/i in amount_mod)
 		amount -= i
 
+	HANDLE_OVERHEAL(amount)
+
 	fireloss = max(fireloss + amount, 0)
 
 	if(updating_health)
 		updatehealth()
+
+#undef HANDLE_OVERHEAL
 
 /mob/living/carbon/xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)

@@ -16,18 +16,20 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/update_icons()
+	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
+		return
 	if(stat == DEAD)
-		icon_state = "[xeno_caste.caste_name] Dead"
+		icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
 	else if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-			icon_state = "[xeno_caste.caste_name] Sleeping"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
 		else
-			icon_state = "[xeno_caste.caste_name] Knocked Down"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
 	else if(!handle_special_state())
 		if(m_intent == MOVE_INTENT_RUN)
-			icon_state = "[xeno_caste.caste_name] Running"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
 		else
-			icon_state = "[xeno_caste.caste_name] Walking"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
 

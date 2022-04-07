@@ -131,20 +131,19 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/xmas
-	flags_gun_features = GUN_INTERNAL_MAG
+	flags_gun_features = NONE
 
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/xmas/able_to_fire(mob/living/user)
 	var/turf/current_turf = get_turf(user)
 	if(is_mainship_level(current_turf.z))
-		click_empty(user)
 		to_chat(user, span_warning("You can't fire that here!"))
 		return FALSE
 	return TRUE
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/xmas
-	flags_gun_features = GUN_INTERNAL_MAG
+	flags_gun_features = NONE
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/xmas/able_to_fire(mob/living/user)
@@ -227,7 +226,7 @@
 
 /obj/item/wrapping_paper/examine(mob/user)
 	. = ..()
-	to_chat(user, "There is about [amount] square units of paper left!")
+	. += "There is about [amount] square units of paper left!"
 
 
 /obj/item/wrapping_paper/attack(mob/target, mob/user)

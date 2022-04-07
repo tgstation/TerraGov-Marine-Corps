@@ -6,7 +6,7 @@
 		return
 	var/total_burn	= 0
 	var/total_brute	= 0
-	for(var/datum/limb/O in limbs)	//hardcoded to streamline things a bit
+	for(var/datum/limb/O AS in limbs)	//hardcoded to streamline things a bit
 		total_brute	+= O.brute_dam
 		total_burn	+= O.burn_dam
 
@@ -158,12 +158,12 @@
 
 
 /mob/living/carbon/human/getCloneLoss()
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
 		cloneloss = 0
 	return ..()
 
 /mob/living/carbon/human/setCloneLoss(amount)
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
 		cloneloss = 0
 	else
 		..()
@@ -171,7 +171,7 @@
 /mob/living/carbon/human/adjustCloneLoss(amount)
 	..()
 
-	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN))
+	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
 		cloneloss = 0
 		return
 
@@ -205,11 +205,13 @@
 
 /mob/living/carbon/human/adjustOxyLoss(amount, forced = FALSE)
 	if(species.species_flags & NO_BREATHE && !forced)
+		oxyloss = 0
 		return
 	return ..()
 
 /mob/living/carbon/human/setOxyLoss(amount, forced = FALSE)
 	if(species.species_flags & NO_BREATHE && !forced)
+		oxyloss = 0
 		return
 	return ..()
 

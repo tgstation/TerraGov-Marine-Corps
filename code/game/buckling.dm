@@ -58,7 +58,7 @@
 	buckling_mob.setDir(dir)
 	LAZYADD(buckled_mobs, buckling_mob)
 	if(buckle_lying != -1)
-		ADD_TRAIT(buckling_mob, TRAIT_IMMOBILE, BUCKLE_TRAIT)
+		ADD_TRAIT(buckling_mob, TRAIT_FLOORED, BUCKLE_TRAIT)
 	buckling_mob.throw_alert("buckled", /obj/screen/alert/restrained/buckled)
 	post_buckle_mob(buckling_mob, silent)
 
@@ -84,7 +84,7 @@
 	buckled_mob.reset_glide_size()
 	buckled_mob.anchored = initial(buckled_mob.anchored)
 	if(buckle_lying != -1)
-		REMOVE_TRAIT(buckled_mob, TRAIT_IMMOBILE, BUCKLE_TRAIT)
+		REMOVE_TRAIT(buckled_mob, TRAIT_FLOORED, BUCKLE_TRAIT)
 	buckled_mob.clear_alert("buckled")
 	LAZYREMOVE(buckled_mobs, buckled_mob)
 
@@ -115,7 +115,12 @@
 		return FALSE
 
 	add_fingerprint(user, "buckle")
-	. = buckle_mob(buckling_mob, check_loc = check_loc)
+	var/hands_req = 0
+	if(buckle_flags & BUCKLE_NEEDS_HAND)
+		hands_req = 1
+	else if(buckle_flags & BUCKLE_NEEDS_TWO_HANDS)
+		hands_req = 2
+	. = buckle_mob(buckling_mob, check_loc = check_loc, target_hands_needed = hands_req)
 	if(!.)
 		return FALSE
 	if(!silent)

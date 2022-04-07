@@ -82,8 +82,15 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/tool/soap/Crossed(atom/movable/AM)
+/obj/item/tool/soap/Initialize()
 	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/item/tool/soap/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs) //TODO JUST USE THE SLIPPERY COMPONENT
+	SIGNAL_HANDLER
 	if (iscarbon(AM))
 		var/mob/living/carbon/C =AM
 		C.slip("soap", 3, 2)

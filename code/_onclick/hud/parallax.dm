@@ -76,6 +76,8 @@
 	return TRUE
 
 /datum/hud/proc/update_parallax_pref(mob/viewmob)
+	if(is_ground_level(viewmob.z))
+		return
 	remove_parallax(viewmob)
 	create_parallax(viewmob)
 	update_parallax(viewmob)
@@ -157,6 +159,7 @@
 		L.transform = newtransform
 
 		animate(L, transform = matrix(), time = T, loop = -1, flags = ANIMATION_END_NOW)
+		animate(transform = matrix(), time = T)
 
 /datum/hud/proc/update_parallax(mob/viewmob)
 	var/mob/screenmob = viewmob || mymob

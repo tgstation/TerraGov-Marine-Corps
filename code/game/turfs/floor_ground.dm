@@ -23,6 +23,21 @@
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
 
+/turf/open/floor/plating/ground/dirt/dug
+	icon_state = "desert_dug"
+
+/turf/open/floor/plating/ground/dirt/typezero
+	icon_state = "desert0"
+
+/turf/open/floor/plating/ground/dirt/typeone
+	icon_state = "desert1"
+
+/turf/open/floor/plating/ground/dirt/typetwo
+	icon_state = "desert2"
+
+/turf/open/floor/plating/ground/dirt/typethree
+	icon_state = "desert3"
+
 /turf/open/floor/plating/ground/dirt/Initialize()
 	. = ..()
 	if(rand(0,15) == 0)
@@ -178,6 +193,11 @@
 	icon = 'icons/turf/desertdam_map.dmi'
 	icon_state = "desert0"
 
+/turf/open/floor/plating/ground/desertdam/grate //for spanning river
+	name = "grate"
+	icon = 'icons/turf/catwalks.dmi'
+	icon_state = "catwalk-159"
+
 //desert floor
 /turf/open/floor/plating/ground/desertdam/desert
 	name = "desert"
@@ -194,10 +214,19 @@
 //asphalt road
 /turf/open/floor/plating/ground/desertdam/asphalt
 	name = "asphalt"
+	icon = 'icons/turf/asphalt.dmi'
 	icon_state = "sunbleached_asphalt"
 	shoefootstep = FOOTSTEP_CONCRETE
 	barefootstep = FOOTSTEP_CONCRETE
 	mediumxenofootstep = FOOTSTEP_CONCRETE
+
+/turf/open/floor/plating/ground/desertdam/asphalt/cement
+	name = "concrete"
+	icon_state = "cement5"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached
+	name = "concrete"
+	icon_state = "cement_sunbleached5"
 
 /turf/open/floor/plating/ground/desertdam/asphalt/corner
 	name = "asphalt"

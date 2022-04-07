@@ -29,6 +29,7 @@
 
 	X.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
 	X.spin(4, 1)
+	X.enable_throw_parry(0.6 SECONDS)
 	playsound(X,pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	var/sweep_range = 1
@@ -69,13 +70,15 @@
 /datum/action/xeno_action/tail_sweep/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/tail_sweep/ai_should_use(target)
+/datum/action/xeno_action/tail_sweep/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 // ***************************************
@@ -90,10 +93,14 @@
 	plasma_cost = 80
 	use_state_flags = XACT_USE_CRESTED|XACT_USE_FORTIFIED
 	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
+	///How far can we charge
+	var/range = 4
+	///How long is the windup before charging
+	var/windup_time = 0.5 SECONDS
 
 /datum/action/xeno_action/activable/forward_charge/proc/charge_complete()
 	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT))
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_MOVABLE_POST_THROW))
 
 /datum/action/xeno_action/activable/forward_charge/proc/mob_hit(datum/source, mob/M)
 	SIGNAL_HANDLER
@@ -109,9 +116,6 @@
 		X.visible_message(span_danger("[X] plows straight through [S]!"), null, null, 5)
 		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
 		return // stay registered
-	if(istype(target, /obj/machinery/deployable/mounted/sentry))
-		var/obj/machinery/deployable/mounted/sentry/sentry = target
-		sentry.knock_down()
 	target.hitby(X, speed) //This resets throwing.
 	charge_complete()
 
@@ -130,11 +134,7 @@
 /datum/action/xeno_action/activable/forward_charge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
-	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
-	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/charge_complete)
-
-	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
+	if(!do_after(X, windup_time, FALSE, X, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
 
 	var/mob/living/carbon/xenomorph/defender/defender = X
@@ -153,9 +153,34 @@
 	X.emote("roar")
 	succeed_activate()
 
-	X.throw_at(A, 4, 70, X)
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit,)
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
+	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/charge_complete)
+
+	X.throw_at(A, range, 70, X)
 
 	add_cooldown()
+
+/datum/action/xeno_action/activable/forward_charge/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/forward_charge/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(!line_of_sight(owner, target, range))
+		return FALSE
+	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	action_activate()
+	LAZYINCREMENT(owner.do_actions, target)
+	addtimer(CALLBACK(src, .proc/decrease_do_action, target), windup_time)
+	return TRUE
+
+///Decrease the do_actions of the owner
+/datum/action/xeno_action/activable/forward_charge/proc/decrease_do_action(atom/target)
+	LAZYDECREMENT(owner.do_actions, target)
 
 // ***************************************
 // *********** Crest defense
@@ -305,7 +330,7 @@
 // ***************************************
 // *********** Regenerate Skin
 // ***************************************
-/datum/action/xeno_action/activable/regenerate_skin
+/datum/action/xeno_action/regenerate_skin
 	name = "Regenerate Skin"
 	action_icon_state = "regenerate_skin"
 	mechanics_text = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
@@ -316,15 +341,15 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
 
-/datum/action/xeno_action/activable/regenerate_skin/on_cooldown_finish()
+/datum/action/xeno_action/regenerate_skin/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_notice("We feel we are ready to shred our skin and grow another."))
 	return ..()
 
-/datum/action/xeno_action/activable/regenerate_skin/action_activate()
+/datum/action/xeno_action/regenerate_skin/action_activate()
 	var/mob/living/carbon/xenomorph/defender/X = owner
 
-	if(!can_use_ability(src, TRUE))
+	if(!can_use_action(TRUE))
 		return fail_activate()
 
 	if(X.on_fire)
@@ -340,3 +365,90 @@
 	X.heal_overall_damage(25, 25, TRUE)
 	add_cooldown()
 	return succeed_activate()
+
+
+// ***************************************
+// *********** Centrifugal force
+// ***************************************
+/datum/action/xeno_action/centrifugal_force
+	name = "Centrifugal force"
+	action_icon_state = "centrifugal_force"
+	mechanics_text = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
+	ability_name = "centrifugal force"
+	plasma_cost = 15
+	use_state_flags = XACT_USE_CRESTED
+	cooldown_timer = 30 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_CENTRIFUGAL_FORCE
+	///bool whether we should take a random step this tick
+	var/step_tick = FALSE
+	///timer hash for the timer we use when spinning
+	var/spin_loop_timer
+
+/datum/action/xeno_action/centrifugal_force/can_use_action(silent, override_flags)
+	if(spin_loop_timer)
+		return TRUE
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
+		to_chat(X, span_xenowarning("We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!"))
+		return FALSE
+
+/datum/action/xeno_action/centrifugal_force/action_activate()
+	if(spin_loop_timer)
+		stop_spin()
+		return
+	if(!can_use_action(TRUE))
+		return fail_activate()
+	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/can_use_action, FALSE, XACT_USE_BUSY)))
+		return fail_activate()
+	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
+		span_xenowarning("We start swinging our tail in a wide circle!"))
+	do_spin() //kick it off
+
+	spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 5, TIMER_STOPPABLE)
+	add_cooldown()
+	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_spin)
+
+/// runs a spin, then starts the timer for a new spin if needed
+/datum/action/xeno_action/centrifugal_force/proc/do_spin()
+	spin_loop_timer = null
+	var/mob/living/carbon/xenomorph/X = owner
+	X.spin(4, 1)
+	X.enable_throw_parry(0.6 SECONDS)
+	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
+
+	for(var/mob/living/carbon/human/slapped in orange(1, X))
+		step_away(slapped, src, 1, 2)
+		if(slapped.stat == DEAD)
+			continue
+		var/damage = X.xeno_caste.melee_damage/2
+		var/affecting = slapped.get_limb(ran_zone(null, 0))
+		if(!affecting)
+			affecting = slapped.get_limb("chest")
+		var/armor_block = slapped.run_armor_check(affecting, "melee")
+		slapped.apply_damage(damage, BRUTE, affecting, armor_block)
+		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
+		slapped.Paralyze(3)
+		shake_camera(slapped, 2, 1)
+
+		to_chat(slapped, span_xenowarning("We are struck by \the [X]'s flying tail!"))
+		playsound(slapped, 'sound/weapons/alien_claw_block.ogg', 50, 1)
+
+	succeed_activate(X.crest_defense ? plasma_cost * 2 : plasma_cost)
+	if(step_tick)
+		step(X, pick(GLOB.alldirs))
+	step_tick = !step_tick
+
+	if(can_use_action(X, XACT_IGNORE_COOLDOWN))
+		spin_loop_timer = addtimer(CALLBACK(src, .proc/do_spin), 5, TIMER_STOPPABLE)
+		return
+	stop_spin()
+
+/// stops spin and unregisters all listeners
+/datum/action/xeno_action/centrifugal_force/proc/stop_spin()
+	SIGNAL_HANDLER
+	if(spin_loop_timer)
+		deltimer(spin_loop_timer)
+		spin_loop_timer = null
+	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)))

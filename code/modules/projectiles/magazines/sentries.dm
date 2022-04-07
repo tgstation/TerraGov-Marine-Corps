@@ -5,9 +5,8 @@
 	icon_state = "ua571c"
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = CALIBER_10X28
-	max_rounds = 75
+	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret
-	gun_type = /obj/item/weapon/gun/sentry/big_sentry
 
 /obj/item/ammo_magazine/minisentry
 	name = "\improper M30 box magazine (10x20mm Caseless)"
@@ -16,9 +15,8 @@
 	icon_state = "ua580"
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = CALIBER_10X20
-	max_rounds = 100
+	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/turret/mini
-	gun_type = /obj/item/weapon/gun/sentry/mini
 
 /obj/item/ammo_magazine/sentry_premade/dumb
 	name = "M30 box magazine (10x28mm Caseless)"
@@ -26,6 +24,8 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = CALIBER_10X28
-	max_rounds = 50
+	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret/dumb
-	gun_type = /obj/item/weapon/gun/sentry/premade/dumb
+
+/obj/item/ammo_magazine/sentry/fob_sentry
+	max_rounds = INFINITY

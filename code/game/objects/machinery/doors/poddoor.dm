@@ -10,6 +10,29 @@
 	obj_flags = NONE
 	explosion_block = 6
 
+/obj/machinery/door/poddoor/Initialize()
+	. = ..()
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom |= AI_BLOCKED
+
+/obj/machinery/door/poddoor/Destroy()
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom &= ~AI_BLOCKED
+	return ..()
+
+/obj/machinery/door/poddoor/open()
+	. = ..()
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom &= ~AI_BLOCKED
+
+/obj/machinery/door/poddoor/close()
+	. = ..()
+	var/turf/current_turf = get_turf(src)
+	if(anchored && current_turf && density)
+		current_turf.flags_atom |= AI_BLOCKED
 
 /obj/machinery/door/poddoor/Bumped(atom/AM)
 	if(!density)
@@ -35,36 +58,36 @@
 			flick("pdoorc1", src)
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
 
-/obj/machinery/door/poddoor/open
+/obj/machinery/door/poddoor/opened
 	density = FALSE
 	opacity = FALSE
 	icon_state = "pdoor0"
 
-/obj/machinery/door/poddoor/open/bridge
+/obj/machinery/door/poddoor/opened/bridge
 	name = "Bridge Blast Doors"
 	id = "bridge blast"
 
-/obj/machinery/door/poddoor/open/sb
+/obj/machinery/door/poddoor/opened/sb
 	name = "Blast Doors"
 	id = "sb blast"
 
-/obj/machinery/door/poddoor/open/port
+/obj/machinery/door/poddoor/opened/port
 	name = "Blast Doors"
 	id = "port blast"
 
-/obj/machinery/door/poddoor/open/engine
+/obj/machinery/door/poddoor/opened/engine
 	name = "Engine Room Blast Door"
 	id = "EngineBlast"
 
-/obj/machinery/door/poddoor/open/security
+/obj/machinery/door/poddoor/opened/security
 	name = "Security Blast Door"
 	id = "Secure Gate"
 
-/obj/machinery/door/poddoor/open/isolation
+/obj/machinery/door/poddoor/opened/isolation
 	name = "Isolation Cell Lockdown"
 	id = "IsoLock"
 
-/obj/machinery/door/poddoor/open/east
+/obj/machinery/door/poddoor/opened/east
 	name = "Blast Door"
 	id = "eastblast"
 
@@ -146,11 +169,6 @@
 /obj/machinery/door/poddoor/mainship
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	openspeed = 4 //shorter open animation.
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock,
-	)
 
 /obj/machinery/door/poddoor/mainship/open
 	density = FALSE
@@ -193,11 +211,6 @@
 	name = "\improper Hangar Lockdown"
 	id = "hangar_lockdown"
 
-/obj/machinery/door/poddoor/mainship/Initialize()
-	relativewall_neighbours()
-	return ..()
-
-
 /obj/machinery/door/poddoor/mainship/umbilical
 	name = "Umbilical Airlock"
 	resistance_flags = RESIST_ALL
@@ -232,6 +245,8 @@
 	resistance_flags = RESIST_ALL
 	open_layer = UNDER_TURF_LAYER //No longer needs to be interacted with.
 	closed_layer = ABOVE_WINDOW_LAYER //Higher than usual, this is only around on the start of the round.
+	smoothing_behavior = NO_SMOOTHING
+	smoothing_groups = NONE
 
 
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/Initialize(mapload)

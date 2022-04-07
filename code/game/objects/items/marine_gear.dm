@@ -9,16 +9,6 @@
 	force = 10 //This is otherwise no different from a normal flashlight minus the flavour.
 	throwforce = 12 //"combat" flashlight
 
-
-/obj/item/coin/marine
-	name = "marine premium token"
-	desc = "A special coin meant to be inserted in a marine vendor in order to access a single premium equipment or device... or just to suffice your vices."
-	icon_state = "coin_adamantine"
-	flags_token = TOKEN_MARINE|TOKEN_GENERAL //when you do prefer a premium smoke over else.
-
-/obj/item/coin/marine/attackby(obj/item/I, mob/user, params) //To remove attaching a string functionality
-	return
-
 /obj/structure/broken_apc
 	name = "\improper M577 armored personnel carrier"
 	desc = "A large, armored behemoth capable of ferrying marines around. \nThis one is sitting nonfunctional."
@@ -52,18 +42,39 @@
 	for(var/i in 1 to 7)
 		var/picked = pick(randompick)
 		new picked(src)
-
-
 /obj/item/reagent_containers/food/snacks/protein_pack
-	name = "stale TGMC protein bar"
-	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
+
+	name = "TGMC protein bar"
+	desc = "The most fake looking protein bar you have ever laid eyes on, comes in many flavors"
 	icon_state = "yummers"
 	filling_color = "#ED1169"
 	w_class = WEIGHT_CLASS_TINY
-	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	bitesize = 4
-	tastes = list("nutraloafed food" = 7, "cocoa" = 1)
+	greyscale_config = /datum/greyscale_config/protein
+	tastes = list(("flavored protein bar") = 1)
+	///list of protein bar types
+	var/static/list/randlist = list(
+		list("stale TGMC protein bar","The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute.","#f37d43",list("nutraloafed food" = 1)),
+		list("mint TGMC protein bar","A stale old protien bar, with an almost minty freshness to it, but not fresh enough","#61b36e",list("minty protein" = 1)),
+		list("grape TGMC protein bar","Not the good type of grape flavor, tastes like medicine. Fills you up just as well as any protein bar.","#9900ff",list("artifical grape" = 1)),
+		list("mystery TGMC protein bar","Some say they have tasted one of these and tasted their favorite childhood meal, especially for squad marines. Most say this tastes like crayons, though it fills like any other protein bar you've seen.","#ffffff",list("crayons" = 1)),
+		list("dark chocolate TGMC protein bar","The dark chocolate flavor helps it out a bit, but its still a cheap protein bar.","#5a3b1d",list("bitter dark chocolate" = 1)),
+		list("milk chocolate TGMC protein bar","A nice milky addition to a otherwise bland protein taste.","#efc296",list("off flavor milk chocolate"= 1)),
+		list("raspberry lime TGMC protein bar","A flavored protein bar, some might say a bit too strongly flavored for their tastes.","#ff0066",list("sour raspberry and lime" = 1)),
+		list("chicken TGMC protein bar","Protein bar covered with chicken powder one might find in ramen. Get some extra sodium with your protein.","#cccc00",list= ("powdered chicken")),
+		list("blueberry TGMC protein bar","A nice blueberry crunch into your otherwise stale and boring protein bar.","#4e39c5",list("blueberry" = 1))
+	)
 
+/obj/item/reagent_containers/food/snacks/protein_pack/Initialize()
+	. = ..()
+	//list of picked variables
+	var/list/picked = pick(randlist)
+	name = picked[1]
+	desc = picked[2]
+	set_greyscale_colors(picked[3])
+	tastes = picked[4]
+	//due the way nutriment works it has to be added like this or the flavor is cached
+	reagents.add_reagent(/datum/reagent/consumable/nutriment, 8, picked[4])
 
 /obj/item/reagent_containers/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
@@ -103,6 +114,11 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
 	tastes = list("pizza" = 3, "vegetables" = 1)
 	bitesize = 1
+
+/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req
+	desc = "This is supposedly a pizza MRE, fit for marine consumption. While it certainly looks like one, the first, active, primary, and only ingredient that went into it was a rounded metal plate. Maybe it'll taste better after it's sat in the ASRS for a while?"
+	list_reagents = list(/datum/reagent/iron = 8)
+	tastes = list("metal" = 3, "one of your teeth cracking" = 1)
 
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5
 	name = "\improper TGMC Prepared Meal (monkey)"

@@ -70,7 +70,7 @@
 
 /obj/item/spacecash/bundle/attack_self(mob/user)
 	var/oldloc = loc
-	var/amount = input(user, "How many dollars do you want to take? (0 to [src.worth])", "Take Money", 20) as num
+	var/amount = tgui_input_number(user, "How many dollars do you want to take? (0 to [src.worth])", "Take Money", 20)
 	amount = round(clamp(amount, 0, src.worth))
 	if(amount==0) return 0
 	if(gc_destroyed || loc != oldloc) return
@@ -156,4 +156,4 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 /obj/item/spacecash/ewallet/examine(mob/user)
 	. = ..()
 	if(user == loc)
-		to_chat(user, span_notice("Charge card's owner: [owner_name]. Dollars remaining: [worth]."))
+		. += span_notice("Charge card's owner: [owner_name]. Dollars remaining: [worth].")

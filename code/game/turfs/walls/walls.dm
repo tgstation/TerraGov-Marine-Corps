@@ -9,19 +9,11 @@
 	opacity = TRUE
 	explosion_block = 2
 
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed,
-		/obj/structure/window_frame,
-		/obj/structure/girder,
-		/obj/machinery/door,
-	)
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES|SMOOTH_XENO_STRUCTURES
+	walltype = "metal"
 
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-
-	var/walltype = "metal"
-	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
-
 
 	var/wall_integrity
 	var/max_integrity = 1000 //Wall will break down to girders if damage reaches this point
@@ -47,10 +39,6 @@
 	if(isnull(wall_integrity))
 		wall_integrity = max_integrity
 
-	//smooth wall stuff
-	relativewall()
-	relativewall_neighbours()
-
 	for(var/obj/item/explosive/mine/M in src)
 		if(M)
 			visible_message(span_warning("\The [M] is sealed inside the wall as it is built"))
@@ -70,11 +58,11 @@
 			T = get_step(src, i)
 
 			//update junction type of nearby walls
-			if(iswallturf(T))
-				T.relativewall()
+			if(T.smoothing_behavior)
+				T.smooth_self()
 
 			//nearby glowshrooms updated
-			for(var/obj/effect/glowshroom/shroom in T)
+			for(var/obj/structure/glowshroom/shroom in T)
 				if(!shroom.floor) //shrooms drop to the floor
 					shroom.floor = 1
 					shroom.icon_state = "glowshroomf"
@@ -115,36 +103,37 @@
 
 	if(wall_integrity == max_integrity)
 		if (acided_hole)
-			to_chat(user, span_warning("It looks fully intact, except there's a large hole that could've been caused by some sort of acid."))
+			. += span_warning("It looks fully intact, except there's a large hole that could've been caused by some sort of acid.")
 		else
-			to_chat(user, span_notice("It looks fully intact."))
+			. += span_notice("It looks fully intact.")
 	else
 		var/integ = wall_integrity / max_integrity
 		if(integ >= 0.6)
-			to_chat(user, span_warning("It looks slightly damaged."))
+			. += span_warning("It looks slightly damaged.")
 		else if(integ >= 0.3)
-			to_chat(user, span_warning("It looks moderately damaged."))
+			. += span_warning("It looks moderately damaged.")
 		else
-			to_chat(user, span_danger("It looks heavily damaged."))
+			. += span_danger("It looks heavily damaged.")
 
 		if (acided_hole)
-			to_chat(user, span_warning("There's a large hole in the wall that could've been caused by some sort of acid."))
+			. += span_warning("There's a large hole in the wall that could've been caused by some sort of acid.")
 
+	// todo why does this not use defines?
 	switch(d_state)
 		if(1)
-			to_chat(user, span_info("The outer plating has been sliced open. A screwdriver should remove the support lines."))
+			. += span_info("The outer plating has been sliced open. A screwdriver should remove the support lines.")
 		if(2)
-			to_chat(user, span_info("The support lines have been removed. A blowtorch should slice through the metal cover."))
+			. += span_info("The support lines have been removed. A blowtorch should slice through the metal cover.")
 		if(3)
-			to_chat(user, span_info("The metal cover has been sliced through. A crowbar should pry it off."))
+			. += span_info("The metal cover has been sliced through. A crowbar should pry it off.")
 		if(4)
-			to_chat(user, span_info("The metal cover has been removed. A wrench will remove the anchor bolts."))
+			. += span_info("The metal cover has been removed. A wrench will remove the anchor bolts.")
 		if(5)
-			to_chat(user, span_info("The anchor bolts have been removed. Wirecutters will take care of the hydraulic lines."))
+			. += span_info("The anchor bolts have been removed. Wirecutters will take care of the hydraulic lines.")
 		if(6)
-			to_chat(user, span_info("Hydraulic lines are gone. A crowbar will pry off the inner sheath."))
+			. += span_info("Hydraulic lines are gone. A crowbar will pry off the inner sheath.")
 		if(7)
-			to_chat(user, span_info("The inner sheath is gone. A blowtorch should finish off this wall."))
+			. += span_info("The inner sheath is gone. A blowtorch should finish off this wall.")
 
 #define BULLETHOLE_STATES 10 //How many variations of bullethole patterns there are
 #define BULLETHOLE_MAX 8 * 3 //Maximum possible bullet holes.
@@ -260,7 +249,7 @@
 		return
 	if(devastated)
 		make_girder(TRUE)
-	else if (explode)
+	else if(explode)
 		make_girder(TRUE)
 	else
 		make_girder(FALSE)
@@ -339,15 +328,7 @@
 		to_chat(user, "[span_warning("[src] is much too tough for you to do anything to it with [I]")].")
 
 	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!P.start_cut(user, name, src))
-			return
-
-		if(!do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
-			return
-
-		P.cut_apart(user, name, src)
-		dismantle_wall()
+		return
 
 	else if(wall_integrity < max_integrity && iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I

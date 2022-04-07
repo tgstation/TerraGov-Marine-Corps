@@ -7,23 +7,18 @@
 	layer = WINDOW_FRAME_LAYER
 	density = TRUE
 	throwpass = TRUE
-	resistance_flags = DROPSHIP_IMMUNE
+	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
+	max_integrity = 150
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 	var/obj/item/stack/sheet/sheet_type = /obj/item/stack/sheet/glass/reinforced
 	var/obj/structure/window/framed/mainship/window_type = /obj/structure/window/framed/mainship
 	var/basestate = "window"
 	var/junction = 0
 	var/reinforced = FALSE
-
-	tiles_with = list(
-		/turf/closed/wall,
-	)
-
-	var/tiles_special[] = list(/obj/machinery/door/airlock,
-		/obj/structure/window/framed,
-		/obj/structure/girder,
-		/obj/structure/window_frame)
+	coverage = 50
 
 /obj/structure/window_frame/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -41,17 +36,15 @@
 		for(var/obj/effect/alien/weeds/weedwall/window/W in loc)
 			weed_found = TRUE
 			break
-	relativewall()
-	relativewall_neighbours()
 	if(weed_found)
 		new /obj/effect/alien/weeds/weedwall/frame(loc) //after smoothing to get the correct junction value
 
 
 /obj/structure/window_frame/proc/update_nearby_icons()
-	relativewall_neighbours()
+	smooth_neighbors()
 
 /obj/structure/window_frame/update_icon()
-	relativewall()
+	smooth_self()
 
 /obj/structure/window_frame/Destroy()
 	density = FALSE
@@ -136,6 +129,7 @@
 	icon_state = "col_rwindow0_frame"
 	basestate = "col_rwindow"
 	reinforced = TRUE
+	max_integrity = 300
 
 /obj/structure/window_frame/chigusa
 	icon_state = "chig_window0_frame"
@@ -151,6 +145,7 @@
 
 /obj/structure/window_frame/prison/reinforced
 	reinforced = TRUE
+	max_integrity = 300
 
 /obj/structure/window_frame/prison/hull
 	climbable = FALSE

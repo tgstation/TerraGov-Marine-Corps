@@ -38,7 +38,13 @@
 				var/datum/callback/CB = foo
 				CB.Invoke()
 			log_played_names(client.ckey, name, real_name)
+		if(SSvote.vote_happening && !actions_by_path[/datum/action/innate/vote])
+			var/datum/action/innate/vote/vote = new
+			if(SSvote.question)
+				vote.name = "Vote: [SSvote.question]"
+			vote.give_action(src)
 
 	update_movespeed()
+	log_mob_tag("\[[tag]\] NEW OWNER: [key_name(src)]")
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)

@@ -61,7 +61,7 @@
 	details +="It has [metal_remaining] sheets of metal remaining.</br>"
 	details +="It has [plasteel_remaining] sheets of plasteel remaining.</br>"
 	details +="It has [sentry_remaining] sentries ready for placement.</br>"
-	to_chat(user, details.Join(" "))
+	. += details.Join(" ")
 
 /obj/machinery/computer/camera_advanced/remote_fob/give_eye_control(mob/user)
 	. = ..()
@@ -125,14 +125,6 @@
 /obj/machinery/computer/camera_advanced/remote_fob/attackby(obj/item/attackingitem, mob/user, params)
 	if(istype(attackingitem, /obj/item/stack))
 		var/obj/item/stack/attacking_stack = attackingitem
-		if(istype(attacking_stack, /obj/item/stack/voucher/sentry))
-			var/useamount = attacking_stack.amount
-			sentry_remaining += useamount
-			attacking_stack.use(useamount)
-			to_chat(user, span_notice("Sentry voucher redeemed."))
-			playsound(src, 'sound/machines/terminal_insert_disc.ogg', 25, FALSE)
-			flick("fobpc-insert", src)
-			return
 		if(istype(attacking_stack, /obj/item/stack/sheet/metal))
 			var/useamount = attacking_stack.amount
 			metal_remaining += useamount

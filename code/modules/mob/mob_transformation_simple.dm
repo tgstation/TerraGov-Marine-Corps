@@ -36,6 +36,14 @@
 	return M
 
 
+/mob/living/carbon/human/change_mob_type(new_type, turf/location, new_name, delete_old_mob, subspecies)
+	if(!ispath(new_type, /mob/living/carbon/human))
+		return ..()
+	var/mob/living/carbon/carbon_path = new_type
+	if(!subspecies)
+		subspecies = initial(carbon_path.species)
+	on_transformation(subspecies)
+
 /mob/new_player/change_mob_type(new_type, turf/location, new_name, delete_old_mob, subspecies)
 	return
 

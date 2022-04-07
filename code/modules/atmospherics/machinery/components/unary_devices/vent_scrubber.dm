@@ -13,6 +13,7 @@
 	welded = FALSE
 	level = 1
 	layer = ATMOS_DEVICE_LAYER
+	flags_atom = SHUTTLE_IMMUNE
 
 	var/id_tag = null
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing
@@ -120,9 +121,9 @@
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/examine(mob/user)
-	..()
+	. = ..()
 	if(welded)
-		to_chat(user, "It seems welded shut.")
+		. += "It seems welded shut."
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/can_crawl_through()
 	return !welded

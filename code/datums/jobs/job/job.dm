@@ -47,6 +47,11 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/exp_type_department = ""
 
 	var/datum/outfit/job/outfit
+	///whether the job has multiple outfits
+	var/multiple_outfits = FALSE
+	///list of outfit variants
+	var/list/datum/outfit/job/outfits = list()
+
 	var/skills_type = /datum/skills
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
@@ -71,7 +76,7 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
 	if(!ishuman(L))
 		return
-
+	var/mob/living/carbon/human/H = L
 	if(job_flags & JOB_FLAG_PROVIDES_BANK_ACCOUNT)
 		var/datum/money_account/bank_account = create_account(L.real_name, rand(50, 500) * 10)
 		var/list/remembered_info = list()
@@ -84,7 +89,6 @@ GLOBAL_PROTECT(exp_specialmap)
 		M.mind.store_memory(remembered_info.Join("<br>"))
 		M.mind.initial_account = bank_account
 
-		var/mob/living/carbon/human/H = L
 		var/obj/item/card/id/id = H.wear_id
 		if(istype(id))
 			id.associated_account_number = bank_account.account_number
@@ -235,6 +239,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/previous_amount = total_positions
 	total_positions += amount
 	manage_job_lists(previous_amount)
+	log_debug("[amount] positions were added to [src]. It has [total_positions] positions and [current_positions] were taken")
 	return TRUE
 
 /datum/job/proc/remove_job_positions(amount)
@@ -274,6 +279,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 /mob/living/carbon/human/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	. = ..()
+
 	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	comm_title = job.comm_title
 	if(job.outfit)
@@ -285,7 +291,14 @@ GLOBAL_PROTECT(exp_specialmap)
 			QDEL_NULL(wear_id)
 		equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
 		job.outfit.handle_id(src)
-		job.outfit.equip(src)
+		///if there is only one outfit, just equips it
+		if (!job.multiple_outfits)
+			job.outfit.equip(src)
+		///chooses an outfit from the list under the job
+		if (job.multiple_outfits)
+			var/datum/outfit/variant = pick(job.outfits)
+			variant = new variant
+			variant.equip(src)
 
 	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)

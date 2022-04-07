@@ -42,8 +42,7 @@
 	if(!emote)
 		return
 
-	for(var/i in GLOB.ai_status_displays)
-		var/obj/machinery/status_display/ai/SD = i
+	for(var/obj/machinery/status_display/ai/SD AS in GLOB.ai_status_displays)
 		SD.emotion = emote
 		SD.update()
 
@@ -283,7 +282,7 @@
 		to_chat(src, "Radio not detected.")
 		return
 
-	var/chan = input("Select a channel:") as null|anything in list("Default", "None") + radio.channels
+	var/chan = tgui_input_list(usr, "Select a channel:", "", list("Default", "None") + radio.channels )
 	if(!chan)
 		return
 

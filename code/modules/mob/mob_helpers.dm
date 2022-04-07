@@ -171,18 +171,13 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 				newletter = "oo"
 			else if(lowerletter == "c")
 				newletter = "k"
-		if(rand(1, 20) == 20)
+		if(prob(5))
 			if(newletter == " ")
 				newletter = "...huuuhhh..."
 			else if(newletter == ".")
 				newletter = " *BURP*."
-		switch(rand(1, 20))
-			if(1)
-				newletter += "'"
-			if(10)
-				newletter += "[newletter]"
-			if(20)
-				newletter += "[newletter][newletter]"
+		if(prob(15))
+			newletter += pick(list("'", "[newletter]", "[newletter][newletter]"))
 		. += "[newletter]"
 	return sanitize(.)
 
@@ -215,17 +210,18 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 			else if(newletter == "H")
 				newletter = " IT COMES... "
 
-		switch(rand(1, 15))
-			if(1)
-				newletter = "'"
-			if(2)
-				newletter += "agn"
-			if(3)
-				newletter = "fth"
-			if(4)
-				newletter = "nglu"
-			if(5)
-				newletter = "glor"
+		if(prob(33))
+			switch(rand(1, 5))
+				if(1)
+					newletter = "'"
+				if(2)
+					newletter += "agn"
+				if(3)
+					newletter = "fth"
+				if(4)
+					newletter = "nglu"
+				if(5)
+					newletter = "glor"
 		. += newletter
 	return sanitize(.)
 
@@ -288,6 +284,21 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 		else
 			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
 	animate(pixel_x=oldx, pixel_y=oldy, time=1)
+
+
+///Makes a recoil-like animation on the mob camera.
+/proc/recoil_camera(mob/M, duration, backtime_duration, strength, angle)
+	if(!M?.client)
+		return
+	strength *= world.icon_size
+	var/oldx = M.client.pixel_x
+	var/oldy = M.client.pixel_y
+
+	//get pixels to move the camera in an angle
+	var/mpx = sin(angle) * strength
+	var/mpy = cos(angle) * strength
+	animate(M.client, pixel_x = oldx+mpx, pixel_y = oldy+mpy, time = duration, flags = ANIMATION_RELATIVE)
+	animate(pixel_x = oldx, pixel_y = oldy, time = backtime_duration, easing = BACK_EASING)
 
 
 /proc/findname(msg)
@@ -500,8 +511,8 @@ mob/proc/get_standard_bodytemperature()
 		return
 
 	var/obj/item/active_item = get_active_held_item()
-	if((istype(active_item) && active_item.unique_action(src) != COMSIG_KB_NOT_ACTIVATED) || client?.prefs.unique_action_use_active_hand)
+	if((istype(active_item) && active_item.do_unique_action(src) != COMSIG_KB_NOT_ACTIVATED) || client?.prefs.unique_action_use_active_hand)
 		return
 	var/obj/item/inactive_item = get_inactive_held_item()
 	if(istype(inactive_item))
-		inactive_item.unique_action(src)
+		inactive_item.do_unique_action(src)

@@ -19,6 +19,7 @@
 /obj/structure/desertdam/decals/road
 	name = "road"
 	icon_state = "road"
+	layer = LOW_OBJ_LAYER
 
 /obj/structure/desertdam/decals/road/edge
 	icon_state = "edge"
@@ -39,3 +40,4 @@
 	bound_width = 64
 	bound_height = 64
 	density = TRUE
+	coverage = 15

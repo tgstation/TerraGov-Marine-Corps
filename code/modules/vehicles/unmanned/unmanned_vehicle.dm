@@ -12,7 +12,6 @@
 	move_delay = 2.5	//set this to limit the speed of the vehicle
 	max_integrity = 300
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
-	resistance_flags = XENO_DAMAGEABLE
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list("melee" = 25, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	/// Path of "turret" attached
@@ -95,7 +94,7 @@
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(ishuman(user))
-		to_chat(user, "It has [current_rounds] ammo left.")
+		. += "It has [current_rounds] ammo left."
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -147,7 +146,7 @@
 
 ///Try to reload the turret of our vehicule
 /obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/ammo, mob/user)
-	if(!ispath(turret_path, ammo.gun_type))
+	if(!ispath(ammo.type, initial(turret_path.ammo_type)))
 		to_chat(user, span_warning("This is not the right ammo!"))
 		return
 	user.visible_message(span_notice("[user] starts to reload [src] with [ammo]."), span_notice("You start to reload [src] with [ammo]."))
@@ -266,6 +265,34 @@
 	. = ..()
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		take_damage(20 * S.strength)
+
+/obj/vehicle/unmanned/welder_act(mob/living/user, obj/item/I)
+	if(user.do_actions)
+		balloon_alert(user, "You're already busy!")
+		return FALSE
+	if(obj_integrity >= max_integrity)
+		balloon_alert(user, "This doesn't need repairing")
+		return TRUE
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		balloon_alert_to_viewers("[user] tries to repair the [name]" , ignored_mobs = user)
+		balloon_alert(user, "You try to repair the [name]")
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(I, /obj/item/tool/weldingtool.proc/isOn)))
+			return FALSE
+	balloon_alert_to_viewers("[user] begins repairing the vehicle", ignored_mobs = user)
+	balloon_alert(user, "You begin repairing the [name]")
+	if(!do_after(user, 2 SECONDS, extra_checks = CALLBACK(I, /obj/item/tool/weldingtool.proc/isOn)))
+		balloon_alert_to_viewers("[user] stops repairing the [name]")
+		return
+	if(!I.use_tool(src, user, 0, volume=50, amount=1))
+		return TRUE
+	repair_damage(10)
+	if(obj_integrity == max_integrity)
+		balloon_alert_to_viewers("Fully repaired!")
+	else
+		balloon_alert_to_viewers("[user] repairs the [name]", ignored_mobs = user)
+		balloon_alert(user, "You finish repairing the [name]")
+	return TRUE
 
 /obj/vehicle/unmanned/medium
 	name = "medium unmanned vehicle"

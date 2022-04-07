@@ -221,7 +221,8 @@
 						/obj/item/clothing/glasses/mgoggles = "goggles",
 						/obj/item/clothing/glasses/mgoggles/prescription = "goggles",
 						/obj/item/clothing/glasses/hud/medgoggles = "goggles",
-						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles")
+						/obj/item/clothing/glasses/hud/medgoggles/prescription = "goggles",
+						/obj/item/clothing/head/hairflower = "flower_pin")
 
 /obj/item/storage/internal/marinehelmet
 	storage_slots = 2
@@ -229,6 +230,7 @@
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
 		/obj/item/reagent_containers/food/drinks/flask,
+		/obj/item/reagent_containers/food/snacks,
 	)
 	cant_hold = list(
 		/obj/item/stack,
@@ -286,11 +288,12 @@
 		M.update_inv_head()
 
 /obj/item/clothing/head/helmet/marine/apply_custom(image/standing)
+	. = ..()
 	var/image/I
 	for(var/i in helmet_overlays)
 		I = helmet_overlays[i]
 		if(I)
-			I = image('icons/mob/helmet_garb.dmi',src,I.icon_state)
+			I = image('icons/mob/modular/modular_helmet_storage.dmi',src,I.icon_state)
 			standing.overlays += I
 
 
@@ -408,6 +411,15 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NONE
 	flags_item_map_variant = (ITEM_ICE_VARIANT)
+
+/obj/item/clothing/head/helmet/marine/riot
+	name = "M8 riot helmet"
+	desc = "It's a modified version of the widely used Riot Helmets for use against angry jarheads. Boasts high ballistic protection"
+	icon_state = "marine_riot"
+	soft_armor = list("melee" = 65, "bullet" = 110, "laser" = 110, "energy" = 5, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 30)
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDETOPHAIR
+	flags_item = SYNTH_RESTRICTED
 
 /*=============================PMCS==================================
 =======================================================================*/
@@ -665,3 +677,32 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	flags_item = NODROP|DELONDROP
 	soft_armor = list("melee" = 65, "bullet" = 60, "laser" = 30, "energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 0, "fire" = 20, "acid" = 20)
 	anti_hug = 5
+
+
+/obj/item/clothing/head/helmet/marine/robot
+	name = "XN-1 upper armor plating"
+	desc = "Medium armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_helmet_medium"
+	item_state = "robot_helmet_medium"
+	species_exception = list(/datum/species/robot)
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 10, "acid" = 50)
+
+/obj/item/clothing/head/helmet/marine/robot/mob_can_equip(mob/M, slot, warning, override_nodrop)
+	. = ..()
+	if(!isrobot(M))
+		to_chat(M, span_warning("You can't equip this as it requires mounting bolts on your body!"))
+		return FALSE
+
+/obj/item/clothing/head/helmet/marine/robot/light
+	name = "XN-1-L upper armor plating"
+	desc = "Light armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_helmet_light"
+	item_state = "robot_helmet_light"
+
+/obj/item/clothing/head/helmet/marine/robot/heavy
+	name = "XN-1-H upper armor plating"
+	desc = "Heavy armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside."
+	icon_state = "robot_helmet_heavy"
+	item_state = "robot_helmet_heavy"
+

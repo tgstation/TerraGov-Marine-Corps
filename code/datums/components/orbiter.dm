@@ -83,7 +83,7 @@
 
 	orbiter.SpinAnimation(rotation_speed, -1, clockwise, rotation_segments, parallel = FALSE)
 
-	orbiter.forceMove(get_turf(parent))
+	orbiter.abstract_move(get_turf(parent))
 	var/atom/movable/movable_parent = parent
 	orbiter.glide_size = movable_parent.glide_size
 	to_chat(orbiter, span_notice("Now orbiting [parent]."))
@@ -119,7 +119,7 @@
 		var/atom/movable/thing = i
 		if(QDELETED(thing) || thing.loc == newturf)
 			continue
-		thing.forceMove(newturf)
+		thing.abstract_move(newturf)
 		if(CHECK_TICK && master.loc != curloc)
 			// We moved again during the checktick, cancel current operation
 			break

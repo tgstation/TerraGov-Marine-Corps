@@ -25,7 +25,7 @@
 	if(iscarbon(M))
 		if(M == user)
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				to_chat(M, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
 			to_chat(M,span_notice("You swallow a gulp from \the [src]."))
@@ -36,7 +36,7 @@
 			return TRUE
 		else
 			var/mob/living/carbon/H = M
-			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			M.visible_message(span_warning("[user] attempts to feed [M] \the [src]."))

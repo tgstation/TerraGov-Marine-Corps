@@ -1,10 +1,3 @@
-#define DEFILER_NEUROTOXIN "Neurotoxin"
-#define DEFILER_HEMODILE "Hemodile"
-#define DEFILER_TRANSVITOX "Transvitox"
-
-GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
-	/datum/reagent/toxin/xeno_hemodile, /datum/reagent/toxin/xeno_transvitox, /datum/reagent/toxin/xeno_neurotoxin)))
-
 // ***************************************
 // *********** Defile
 // ***************************************
@@ -161,10 +154,10 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 			gas = new /datum/effect_system/smoke_spread/xeno/neuro/medium(X)
 		if(/datum/reagent/toxin/xeno_hemodile)
 			gas = new /datum/effect_system/smoke_spread/xeno/hemodile(X)
-			smoke_range = 3
 		if(/datum/reagent/toxin/xeno_transvitox)
 			gas = new /datum/effect_system/smoke_spread/xeno/transvitox(X)
-			smoke_range = 4
+		if(/datum/reagent/toxin/xeno_ozelomelyn)
+			gas = new /datum/effect_system/smoke_spread/xeno/ozelomelyn(X)
 
 	while(count)
 		if(X.stagger) //If we got staggered, return
@@ -206,15 +199,15 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
-	if(!istype(A, /obj/effect/alien/egg))
-		return fail_activate()
-
 	if(istype(A, /obj/effect/alien/egg/gas))
 		to_chat(X, span_warning("That egg has already been filled with toxic gas.") )
 		return fail_activate()
 
+	if(!istype(A, /obj/effect/alien/egg/hugger))
+		return fail_activate()
+
 	var/obj/effect/alien/egg/alien_egg = A
-	if(alien_egg.status != EGG_GROWN)
+	if(alien_egg.maturity_stage != alien_egg.stage_ready_to_burst)
 		to_chat(X, span_warning("That egg isn't strong enough to hold our gases."))
 		return fail_activate()
 
@@ -228,16 +221,16 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	succeed_activate()
 	add_cooldown()
 
-	var/obj/effect/alien/egg/gas/newegg = new(A.loc)
+	var/obj/effect/alien/egg/gas/newegg = new(A.loc, X.hivenumber)
 	switch(X.selected_reagent)
 		if(/datum/reagent/toxin/xeno_neurotoxin)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/neuro/medium
+		if(/datum/reagent/toxin/xeno_ozelomelyn)
+			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/ozelomelyn
 		if(/datum/reagent/toxin/xeno_hemodile)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/hemodile
-			newegg.gas_size_bonus = 1
 		if(/datum/reagent/toxin/xeno_transvitox)
 			newegg.gas_type = /datum/effect_system/smoke_spread/xeno/transvitox
-			newegg.gas_size_bonus = 2
 	qdel(alien_egg)
 
 	GLOB.round_statistics.defiler_inject_egg_neurogas++
@@ -290,6 +283,7 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 			DEFILER_NEUROTOXIN = image('icons/mob/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
 			DEFILER_HEMODILE = image('icons/mob/actions.dmi', icon_state = DEFILER_HEMODILE),
 			DEFILER_TRANSVITOX = image('icons/mob/actions.dmi', icon_state = DEFILER_TRANSVITOX),
+			DEFILER_OZELOMELYN = image('icons/mob/actions.dmi', icon_state = DEFILER_OZELOMELYN),
 			)
 	var/toxin_choice = show_radial_menu(owner, owner, defiler_toxin_images_list, radius = 48)
 	if(!toxin_choice)
@@ -381,6 +375,89 @@ GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
+/datum/action/xeno_action/activable/tentacle
+	name = "Tentacle"
+	action_icon_state = "tail_attack"
+	mechanics_text = "Throw one of your tentacles forward to grab a tallhost or item."
+	ability_name = "Tentacle"
+	cooldown_timer = 20 SECONDS
+	plasma_cost = 200
+	keybind_signal = COMSIG_XENOABILITY_TENTACLE
+	///reference to beam tentacle
+	var/datum/beam/tentacle
+
+/datum/action/xeno_action/activable/tentacle/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!isitem(A) && !ishuman(A))
+		if(!silent)
+			to_chat(owner, span_warning("We cant use that on [A]!"))
+		return FALSE
+	if(isliving(A))
+		var/mob/living/livingtarget = A
+		if(livingtarget.stat == DEAD)
+			if(!silent)
+				to_chat(owner, span_warning("We cant use that on [livingtarget], they're dead!"))
+			return FALSE
+	var/atom/movable/target = A
+	if(target.anchored)
+		if(!silent)
+			to_chat(owner, span_warning("[target] is anchored and cannot be moved!"))
+		return FALSE
+
+	var/turf/current = get_turf(owner)
+	var/turf/target_turf = get_turf(target)
+	if(current == target_turf)
+		return TRUE
+	if(get_dist(current, target_turf) > TENTACLE_ABILITY_RANGE)
+		return FALSE
+	current = get_step_towards(current, target_turf)
+	while((current != target_turf))
+		if(current.density)
+			if(!silent)
+				to_chat(owner, span_warning("We can't reach [target]!"))
+			return FALSE
+		current = get_step_towards(current, target_turf)
+
+
+/datum/action/xeno_action/activable/tentacle/use_ability(atom/movable/target)
+	var/atom/movable/tentacle_end/tentacle_end = new (get_turf(owner))
+	tentacle = owner.beam(tentacle_end,"curse0",'icons/effects/beam.dmi')
+	RegisterSignal(tentacle_end, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_IMPACT), .proc/finish_grab)
+	tentacle_end.throw_at(target, TENTACLE_ABILITY_RANGE * 1.5, 3, owner, FALSE) //Too hard to hit if just TENTACLE_ABILITY_RANGE
+	succeed_activate()
+	add_cooldown()
+
+///Signal handler to grab the target when we thentacle head hit something
+/datum/action/xeno_action/activable/tentacle/proc/finish_grab(datum/source, atom/movable/target)
+	SIGNAL_HANDLER
+	QDEL_NULL(tentacle)
+	qdel(source)
+	if(!can_use_ability(target, TRUE, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA))
+		to_chat(owner, span_warning("We failed to grab anything!"))
+		return
+	tentacle = owner.beam(target, "curse0",'icons/effects/beam.dmi')
+	playsound(target, 'sound/effects/blobattack.ogg', 40, 1)
+	to_chat(owner, span_warning("We grab [target] with a tentacle!"))
+	target.balloon_alert_to_viewers("Grabbed!")
+	RegisterSignal(target, COMSIG_MOVABLE_POST_THROW, .proc/delete_beam)
+	target.throw_at(owner, TENTACLE_ABILITY_RANGE, 1, owner, FALSE)
+	if(isliving(target))
+		var/mob/living/loser = target
+		loser.apply_effects(stun = 1, weaken = 0.1)
+
+///signal handler to delete tetacle after we are done draggging owner along
+/datum/action/xeno_action/activable/tentacle/proc/delete_beam(datum/source, atom/impacted)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
+	QDEL_NULL(tentacle)
+
+/atom/movable/tentacle_end
+	name = "You can't see this"
+	invisibility = INVISIBILITY_ABSTRACT
+
 #undef DEFILER_NEUROTOXIN
 #undef DEFILER_HEMODILE
 #undef DEFILER_TRANSVITOX
+#undef DEFILER_OZELOMELYN

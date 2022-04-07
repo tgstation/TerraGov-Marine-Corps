@@ -18,11 +18,9 @@
 /mob/living/silicon/Initialize()
 	. = ..()
 	radio = new(src)
-	GLOB.silicon_mobs += src
 
 
 /mob/living/silicon/Destroy()
-	GLOB.silicon_mobs -= src
 	QDEL_NULL(radio)
 	return ..()
 

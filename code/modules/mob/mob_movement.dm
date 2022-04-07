@@ -4,7 +4,7 @@
 		return TRUE
 	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
 		return TRUE
-	return (!mover.density || !density || lying_angle)
+	return . || (!mover.density || !density || lying_angle) //Parent handles buckling - if someone's strapped to us it can pass.
 
 
 /client/verb/swap_hand()
@@ -80,7 +80,7 @@
 		return Move_object(direct)
 	if(!isliving(mob))
 		return mob.Move(n, direct)
-	if(mob.stat == DEAD)
+	if(mob.stat == DEAD && !HAS_TRAIT(mob, TRAIT_IS_RESURRECTING))
 		mob.ghostize()
 		return FALSE
 
@@ -371,6 +371,8 @@
 		return
 	return ..()
 
+/mob/living/carbon/xenomorph/hivemind/toggle_move_intent(new_intent)
+	return
 
 /mob/living/proc/update_move_intent_effects()
 	if(status_flags & INCORPOREAL)

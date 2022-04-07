@@ -1,0 +1,15 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/poddoor/two_tile_ver{
+	name = "\improper Lambda Lab Lockdown"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/caves/northeast)
+"M" = (
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/caves/northeast)
+
+(1,1,1) = {"
+M
+a
+"}

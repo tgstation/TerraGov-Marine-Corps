@@ -1,0 +1,2843 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"af" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"aC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"aF" = (
+/obj/structure/table,
+/obj/item/storage/box/gloves,
+/obj/item/healthanalyzer,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"bl" = (
+/obj/structure/table/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"bx" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"bD" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"bE" = (
+/obj/structure/closet/secure_closet/chemical,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"bF" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"cf" = (
+/obj/structure/table,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 6
+	},
+/area/bigredv2/outside/medical)
+"cr" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool{
+	pixel_x = -1;
+	pixel_y = -4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"ct" = (
+/obj/machinery/sleep_console,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"cB" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"cE" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"cU" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"cY" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"do" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"dy" = (
+/obj/machinery/light,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 6
+	},
+/area/bigredv2/outside/medical)
+"dH" = (
+/obj/item/clothing/gloves/latex,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"dJ" = (
+/obj/structure/table,
+/obj/machinery/recharger,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"dK" = (
+/obj/item/tool/surgery/hemostat,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"dP" = (
+/obj/structure/closet/secure_closet/medical1,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"dZ" = (
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/c)
+"ee" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"es" = (
+/obj/machinery/atmospherics/components/unary/tank/oxygen,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"eQ" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"fb" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"fc" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"fk" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"fw" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"fA" = (
+/obj/structure/bed/roller,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 10
+	},
+/area/bigredv2/outside/medical)
+"fU" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"fW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/corpsespawner/doctor{
+	corpseback = null;
+	corpsegloves = /obj/item/clothing/gloves/latex;
+	corpseidjob = "Doctor";
+	name = "Colonist Ted Koso"
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"gd" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"ge" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 9
+	},
+/area/bigredv2/outside/medical)
+"gq" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/medical)
+"gK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreencorner{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"gL" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
+"gS" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"gZ" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"he" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/white/warningstripe{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"hj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"hx" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper Medical Clinic Operating Theatre"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"hF" = (
+/obj/structure/table,
+/obj/item/tool/surgery/surgicaldrill,
+/obj/item/tool/surgery/FixOVein,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 5
+	},
+/area/bigredv2/outside/medical)
+"hQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"hU" = (
+/obj/structure/table,
+/obj/item/organ/kidneys/prosthetic,
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"iB" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	on = 1
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"iE" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreen,
+/area/bigredv2/outside/medical)
+"iJ" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"iS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/medical)
+"iU" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"jg" = (
+/obj/structure/table,
+/obj/item/tool/surgery/hemostat,
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"jh" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"jp" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"js" = (
+/obj/structure/bed/roller,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"jV" = (
+/obj/structure/bed/chair,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"ke" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	name = "\improper Medical Clinic Treatment"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"ku" = (
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"kD" = (
+/obj/item/healthanalyzer,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"kP" = (
+/obj/structure/table,
+/obj/item/trash/burger,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 9
+	},
+/area/bigredv2/outside/medical)
+"kY" = (
+/obj/structure/table,
+/obj/item/bodybag,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"ln" = (
+/obj/machinery/bodyscanner,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 10
+	},
+/area/bigredv2/outside/medical)
+"lF" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"lN" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"lQ" = (
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"lS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door_control{
+	dir = 1;
+	id = "Medical";
+	name = "Storm Shutters"
+	},
+/obj/machinery/iv_drip,
+/turf/open/floor/tile/green/whitegreen,
+/area/bigredv2/outside/medical)
+"lX" = (
+/obj/structure/table,
+/obj/item/healthanalyzer,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"lZ" = (
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"ma" = (
+/obj/structure/sign/safety/autodoc{
+	dir = 1
+	},
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"md" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"ms" = (
+/obj/structure/table,
+/obj/item/healthanalyzer,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"mu" = (
+/obj/effect/spawner/random/trash,
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"mz" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"mE" = (
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"mI" = (
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/medical)
+"mR" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"nc" = (
+/obj/structure/table,
+/obj/item/tool/surgery/suture,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"nl" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"no" = (
+/obj/structure/bed/roller,
+/turf/open/floor/tile/green/whitegreen,
+/area/bigredv2/outside/medical)
+"nu" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreencorner{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"nv" = (
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"nO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/mainship/medical/free_access{
+	dir = 8;
+	name = "\improper Medical Clinic Morgue"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"nY" = (
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"oc" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"oC" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"oV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"pj" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"pB" = (
+/obj/structure/bed/roller,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 6
+	},
+/area/bigredv2/outside/medical)
+"pE" = (
+/obj/structure/closet/secure_closet/medical1,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"pJ" = (
+/obj/item/reagent_containers/glass/rag,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"pN" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"pZ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"qv" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"qx" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/medical)
+"qD" = (
+/obj/structure/closet/secure_closet/medical1,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"qG" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/white/warningstripe{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"qH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/doctor,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"qM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"ra" = (
+/obj/structure/table,
+/obj/item/reagent_containers/spray/surgery,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 5
+	},
+/area/bigredv2/outside/medical)
+"rd" = (
+/obj/effect/landmark/corpsespawner/security,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"rf" = (
+/obj/structure/table/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"rr" = (
+/obj/structure/table,
+/obj/item/storage/box/masks,
+/obj/item/alien_embryo,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"rs" = (
+/obj/machinery/bodyscanner,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"rB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"rR" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/ai_node,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"rT" = (
+/obj/structure/bed,
+/obj/structure/sign/safety/medical{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"rV" = (
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"rX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"sd" = (
+/obj/structure/closet/secure_closet/medical2,
+/obj/machinery/light,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 6
+	},
+/area/bigredv2/outside/medical)
+"sk" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"ss" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"sx" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"sH" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"sN" = (
+/obj/structure/table/reinforced,
+/obj/item/trash/buritto,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"sX" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"sY" = (
+/obj/structure/table,
+/obj/item/tool/surgery/bonegel,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"tg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"tm" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"tz" = (
+/obj/structure/bed,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"tC" = (
+/obj/structure/table,
+/obj/item/bodybag,
+/obj/item/bodybag,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"ua" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"ux" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	name = "\improper Medical Clinic"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"uH" = (
+/obj/machinery/optable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"uI" = (
+/obj/structure/bed/chair,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"vl" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"vs" = (
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"vB" = (
+/obj/structure/table,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 5
+	},
+/area/bigredv2/outside/medical)
+"vC" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"vD" = (
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
+/obj/item/robot_parts/r_leg,
+/obj/machinery/light,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 10
+	},
+/area/bigredv2/outside/medical)
+"vG" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"vH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/doctor,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"vO" = (
+/obj/machinery/chem_dispenser,
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"vV" = (
+/obj/structure/table,
+/obj/item/reagent_containers/spray/surgery,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"vY" = (
+/obj/structure/bed/chair,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"vZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"wk" = (
+/obj/effect/decal/cleanable/blood,
+/obj/item/trash/chips,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"wz" = (
+/obj/machinery/optable,
+/obj/item/robot_parts/head,
+/obj/item/tank/anesthetic,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"wB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper Medical Clinic Storage"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"wC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/doctor,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"wF" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"wJ" = (
+/obj/structure/table,
+/obj/item/storage/box/masks,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"wM" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"wY" = (
+/obj/machinery/light,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"xh" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 6
+	},
+/area/bigredv2/outside/medical)
+"xv" = (
+/obj/machinery/optable,
+/obj/item/clothing/mask/breath/medical,
+/obj/item/tank/anesthetic,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"xw" = (
+/obj/structure/table,
+/obj/item/autopsy_scanner,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"xR" = (
+/obj/structure/table,
+/obj/item/storage/box/beakers,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"yf" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 5
+	},
+/area/bigredv2/outside/medical)
+"ys" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreen,
+/area/bigredv2/outside/medical)
+"yy" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"yz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/gloves/latex,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"yD" = (
+/obj/machinery/chem_master,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"yX" = (
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
+"zu" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"zx" = (
+/turf/open/floor/tile/green/whitegreen,
+/area/bigredv2/outside/medical)
+"zz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"zE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/alarm{
+	dir = 8
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"zT" = (
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"Bf" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"BG" = (
+/obj/item/healthanalyzer,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"BR" = (
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"BU" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder,
+/obj/item/storage/box/bodybags,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"BX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 1;
+	name = "\improper Medical Clinic"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"BY" = (
+/obj/structure/sign/safety/medical_supplies{
+	dir = 4
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"Cc" = (
+/obj/item/clothing/mask/breath/medical,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Cf" = (
+/obj/item/storage/box/masks,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"Co" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Cp" = (
+/obj/machinery/door/airlock/mainship/medical/free_access{
+	dir = 1;
+	name = "\improper Medical Clinic Morgue"
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"CO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"CQ" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/item/trash/kepler,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"Dl" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"DK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 1;
+	name = "\improper Medical Clinic"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"DS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"DX" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Ee" = (
+/obj/machinery/vending/snack,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"Ek" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"Eq" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/rad,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"Es" = (
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"Ew" = (
+/obj/structure/table,
+/obj/item/storage/pill_bottle/tramadol,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"Ez" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"EG" = (
+/obj/structure/bed,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"EO" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	name = "\improper Medical Clinic"
+	},
+/turf/open/floor/tile/white/warningstripe{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"EQ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"EV" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 5
+	},
+/area/bigredv2/outside/medical)
+"Fm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Fn" = (
+/obj/structure/table,
+/obj/item/tool/surgery/FixOVein,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"FP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"FS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	dir = 1;
+	name = "\improper Medical Clinic"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"FZ" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/bodybag/cryobag,
+/obj/item/storage/box/gloves,
+/obj/item/reagent_containers/spray/cleaner,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 5
+	},
+/area/bigredv2/outside/medical)
+"Gc" = (
+/obj/structure/bed/chair/office/light,
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"Gj" = (
+/obj/machinery/chem_master,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"Gq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Gu" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"GA" = (
+/turf/open/floor/tile/green/whitegreencorner{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"GI" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 9
+	},
+/area/bigredv2/outside/medical)
+"GJ" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
+"GY" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Hd" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Hh" = (
+/obj/machinery/door_control{
+	dir = 1;
+	id = "Medical";
+	name = "Storm Shutters"
+	},
+/turf/open/floor/tile/green/whitegreen,
+/area/bigredv2/outside/medical)
+"Hm" = (
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Hn" = (
+/obj/item/healthanalyzer,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"HB" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"HI" = (
+/obj/machinery/vending/medical,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Il" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"ID" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 8;
+	name = "\improper Medical Clinic Chemistry"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"IG" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"IS" = (
+/obj/machinery/door/airlock/glass_medical{
+	id_tag = "mbayexit";
+	name = "Medbay Reception"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"IT" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"IY" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bomb_supply,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 5
+	},
+/area/bigredv2/outside/medical)
+"Jo" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"Js" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper Medical Clinic Storage"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Jv" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"Jy" = (
+/obj/structure/sign/safety/breakroom{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"JD" = (
+/obj/structure/table,
+/obj/item/bodybag/cryobag,
+/obj/item/bodybag/cryobag,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"JG" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"JI" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"JW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Kq" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"Kw" = (
+/obj/item/clothing/glasses/regular/hipster,
+/obj/structure/rack,
+/obj/effect/spawner/random/cable,
+/obj/machinery/power/apc,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"KC" = (
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	dir = 2;
+	name = "\improper Medical Clinic Power Station"
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"KD" = (
+/obj/effect/landmark/corpsespawner/doctor,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"KF" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 10
+	},
+/area/bigredv2/outside/medical)
+"KG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"KQ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"Lh" = (
+/obj/structure/table,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 9
+	},
+/area/bigredv2/outside/medical)
+"Ly" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"LJ" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/toxin,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"LO" = (
+/obj/structure/table,
+/obj/item/tool/surgery/cautery,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"LQ" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 5
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"LT" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Mb" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Medical";
+	name = "\improper Medical Storm Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"Ml" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Mn" = (
+/obj/item/trash/chips,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"MM" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"MT" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"MZ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"Nc" = (
+/obj/structure/closet/secure_closet/medical2,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 10
+	},
+/area/bigredv2/outside/medical)
+"No" = (
+/obj/structure/table,
+/obj/item/bodybag/cryobag,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"Nv" = (
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 9
+	},
+/area/bigredv2/outside/medical)
+"NE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"NV" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"NW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Ok" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder,
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"Ou" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"OC" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"OI" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"Pe" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/o2,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"Po" = (
+/obj/item/reagent_containers/pill/happy,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"PB" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"PE" = (
+/obj/structure/morgue,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"PK" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"PN" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/obj/structure/table,
+/obj/item/tool/surgery/circular_saw,
+/obj/item/tool/surgery/circular_saw,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"PO" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/bomb_supply,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 9
+	},
+/area/bigredv2/outside/medical)
+"PQ" = (
+/obj/structure/bed/roller,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/door_control{
+	id = "Medical";
+	name = "Storm Shutters"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Qy" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/spray/cleaner,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"QA" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+	dir = 1;
+	name = "\improper Medical Clinic Treatment"
+	},
+/turf/open/floor/tile/white/warningstripe{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"QM" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/obj/structure/bed/roller,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"QT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/medical)
+"QW" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/tile/green/whitegreen,
+/area/bigredv2/outside/medical)
+"Rf" = (
+/obj/structure/table/reinforced,
+/obj/item/healthanalyzer,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Rg" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 9
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/medical)
+"Rn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/tool/extinguisher,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"Ru" = (
+/obj/structure/sign/safety/autodoc{
+	dir = 1
+	},
+/turf/open/floor/tile/white/warningstripe{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"Rx" = (
+/obj/effect/decal/cleanable/blood/gibs/body,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"RG" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"RH" = (
+/obj/structure/bed/chair/office/light,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"RK" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"RQ" = (
+/obj/structure/table,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"Sd" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"Sg" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/bomb_supply,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"SC" = (
+/obj/item/weapon/broken_bottle,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/doctor,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"SG" = (
+/obj/structure/table,
+/obj/item/tool/surgery/cautery,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"SO" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"SR" = (
+/turf/closed/wall,
+/area/bigredv2/outside/medical)
+"Tg" = (
+/obj/machinery/light,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Ti" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "Medical";
+	name = "\improper Medical Storm Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/medical)
+"Tk" = (
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"To" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"TH" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"TP" = (
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/medical)
+"TT" = (
+/obj/machinery/body_scanconsole,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreen,
+/area/bigredv2/outside/medical)
+"Uf" = (
+/obj/machinery/body_scanconsole,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 6
+	},
+/area/bigredv2/outside/medical)
+"Uq" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
+"Uv" = (
+/turf/open/floor/tile/green/whitegreencorner{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"Uz" = (
+/obj/structure/table,
+/obj/item/tool/wirecutters,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"UR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Vp" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"VN" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 8
+	},
+/area/bigredv2/outside/medical)
+"We" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
+"Wn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"Wq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Wz" = (
+/obj/structure/table,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/pen,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 10
+	},
+/area/bigredv2/outside/medical)
+"WN" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Xa" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Xc" = (
+/obj/effect/decal/cleanable/vomit,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Xe" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"Xl" = (
+/obj/structure/bed/roller,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Xm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/item/explosive/grenade/chem_grenade/large,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Xq" = (
+/obj/structure/table,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/bigredv2/outside/medical)
+"Xt" = (
+/obj/structure/closet/wardrobe/medic_white,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"XB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"XK" = (
+/obj/machinery/sleeper,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"XN" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"Yj" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/adv,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreencorner,
+/area/bigredv2/outside/medical)
+"Yk" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"Yt" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"Yu" = (
+/obj/machinery/chem_dispenser,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 6
+	},
+/area/bigredv2/outside/medical)
+"Yy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"YG" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whiteblue,
+/area/bigredv2/outside/medical)
+"YJ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/medical)
+"Zg" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 1;
+	name = "\improper Medical Clinic Operating Theatre"
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"ZC" = (
+/obj/effect/spawner/random/trash,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"ZO" = (
+/obj/effect/landmark/corpsespawner/doctor,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"ZP" = (
+/obj/item/tool/surgery/surgicaldrill,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"ZS" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/bigredv2/outside/medical)
+"ZU" = (
+/obj/item/reagent_containers/spray/surgery,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+"ZZ" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/medical)
+
+(1,1,1) = {"
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+Hm
+FS
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+dZ
+"}
+(2,1,1) = {"
+SR
+Lh
+SG
+vs
+Vp
+Hn
+JG
+vD
+SR
+kP
+Ew
+cY
+js
+fA
+SR
+kY
+lZ
+PE
+aC
+PE
+PE
+OC
+PE
+PE
+SR
+dZ
+"}
+(3,1,1) = {"
+SR
+vV
+hQ
+Hm
+nl
+dK
+nl
+Tk
+Zg
+bx
+nl
+hQ
+Hm
+zx
+SR
+tC
+OC
+PE
+OC
+PE
+PE
+lZ
+PE
+PE
+SR
+dZ
+"}
+(4,1,1) = {"
+SR
+nc
+nl
+iJ
+wz
+Hm
+PK
+SO
+OI
+Yk
+jh
+rB
+hQ
+ys
+Cp
+lZ
+OC
+lZ
+lZ
+lZ
+lZ
+cB
+lZ
+ua
+SR
+dZ
+"}
+(5,1,1) = {"
+SR
+RQ
+hQ
+nl
+Cc
+nl
+ZC
+SO
+bl
+PB
+nl
+hQ
+Hm
+no
+SR
+QT
+lZ
+PE
+lZ
+PE
+PE
+OC
+PE
+PE
+SR
+dZ
+"}
+(6,1,1) = {"
+SR
+hF
+wJ
+nY
+KQ
+nY
+Cf
+sd
+SR
+Xe
+Es
+fw
+fw
+pB
+SR
+xw
+lZ
+PE
+hj
+PE
+PE
+OC
+PE
+PE
+SR
+dZ
+"}
+(7,1,1) = {"
+SR
+SR
+sH
+OI
+sH
+SR
+SR
+SR
+SR
+wF
+zx
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+nO
+SR
+SR
+SR
+dZ
+"}
+(8,1,1) = {"
+SR
+rT
+Hm
+Hm
+Hm
+HI
+OI
+ge
+cY
+gK
+iE
+OI
+GI
+vC
+cY
+KF
+OI
+GI
+VN
+VN
+VN
+Dl
+MZ
+ln
+SR
+dZ
+"}
+(9,1,1) = {"
+Mb
+tz
+Hm
+nl
+CO
+pN
+OI
+pj
+Hm
+ZZ
+fU
+ke
+To
+Wq
+bD
+Gu
+BX
+To
+JI
+To
+Yt
+eQ
+zu
+TT
+SR
+dZ
+"}
+(10,1,1) = {"
+Mb
+EG
+Hm
+nl
+yz
+pN
+OI
+pj
+Hm
+af
+nl
+Hm
+nl
+Hm
+wC
+rs
+OI
+yf
+oV
+BY
+mz
+qH
+vG
+dy
+SR
+dZ
+"}
+(11,1,1) = {"
+Mb
+EG
+iJ
+KG
+Gq
+Il
+DK
+Il
+TH
+vl
+zx
+OI
+EV
+Hm
+fk
+Uf
+SR
+OI
+wB
+SR
+SR
+SR
+SR
+SR
+SR
+dZ
+"}
+(12,1,1) = {"
+EO
+Hm
+Hm
+af
+Hm
+Hm
+OI
+pj
+KD
+rX
+iE
+SR
+SR
+Ru
+FP
+SR
+SR
+Xt
+Wn
+dP
+pE
+Yj
+lF
+Sd
+SR
+dZ
+"}
+(13,1,1) = {"
+he
+pZ
+Mn
+vl
+Hm
+PK
+OI
+HB
+Hm
+rX
+iE
+OI
+nv
+LQ
+UR
+XK
+SR
+dP
+Ly
+Rn
+Es
+Es
+md
+wM
+SR
+dZ
+"}
+(14,1,1) = {"
+gq
+PQ
+Xl
+QM
+Xl
+Xl
+OI
+Kq
+Hm
+rX
+iE
+SR
+WN
+TP
+iS
+ct
+SR
+qD
+RK
+Hm
+Hm
+Po
+JW
+LJ
+SR
+dZ
+"}
+(15,1,1) = {"
+gq
+SR
+SR
+SR
+Bf
+SR
+SR
+XN
+PK
+lN
+QW
+OI
+es
+TP
+iS
+Tg
+SR
+lX
+Po
+iJ
+Rx
+Hm
+nl
+LT
+SR
+dZ
+"}
+(16,1,1) = {"
+gq
+PO
+BU
+vs
+ss
+Wz
+SR
+Kq
+Hm
+lN
+zx
+SR
+WN
+Rg
+qx
+XK
+SR
+dJ
+Es
+md
+md
+vH
+Es
+Jo
+SR
+dZ
+"}
+(17,1,1) = {"
+gq
+Sg
+Cc
+JW
+yD
+vO
+SR
+Hm
+nl
+MM
+zx
+OI
+Hm
+Hm
+UR
+ct
+SR
+aF
+sx
+dP
+dP
+cE
+Pe
+Eq
+SR
+dZ
+"}
+(18,1,1) = {"
+gq
+Sg
+Hm
+PK
+Hm
+Gc
+Bf
+pj
+Hm
+Xa
+Hh
+SR
+SR
+ma
+QA
+SR
+SR
+OI
+Js
+SR
+SR
+SR
+SR
+SR
+SR
+mI
+"}
+(19,1,1) = {"
+gq
+PN
+nl
+ZU
+nl
+Ok
+OI
+Kq
+PK
+lN
+Uv
+VN
+cY
+Hm
+fk
+cY
+vC
+cY
+cY
+SR
+Kw
+zT
+zT
+mu
+SR
+mI
+"}
+(20,1,1) = {"
+gq
+xR
+iB
+vZ
+Xm
+RH
+rf
+fb
+To
+qM
+Yy
+Hm
+Hm
+ee
+bF
+Fm
+rV
+ZO
+yy
+KC
+oC
+zT
+EQ
+ku
+gd
+mI
+"}
+(21,1,1) = {"
+gq
+IY
+bE
+nY
+Gj
+Yu
+SR
+Hm
+rd
+qv
+CO
+Hm
+Hm
+nl
+Ml
+nl
+kD
+vG
+DS
+SR
+cr
+iU
+mu
+zT
+SR
+mI
+"}
+(22,1,1) = {"
+gq
+SR
+SR
+ID
+SR
+SR
+SR
+Kq
+Hm
+lN
+Hm
+nl
+nl
+SC
+lN
+dH
+iE
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+SR
+"}
+(23,1,1) = {"
+gq
+cY
+NE
+cY
+cY
+cY
+cY
+GA
+nl
+Hd
+jp
+do
+NW
+jh
+vl
+Hm
+lS
+SR
+Ee
+Hm
+mE
+Hm
+CQ
+sX
+MT
+SR
+"}
+(24,1,1) = {"
+gq
+nl
+Hm
+JW
+Hm
+nl
+PK
+Hm
+nl
+JW
+Hm
+Hm
+nl
+nl
+DX
+Xc
+zx
+OI
+vY
+tm
+Ou
+zz
+jp
+zz
+jh
+ux
+"}
+(25,1,1) = {"
+gq
+vG
+vG
+Ez
+mz
+mz
+vG
+mz
+Ez
+Hm
+Ez
+mz
+tg
+nu
+lQ
+Hm
+zx
+OI
+uI
+nl
+fc
+nl
+NV
+nl
+tm
+Hm
+"}
+(26,1,1) = {"
+gq
+OI
+OI
+hx
+OI
+OI
+SR
+OI
+OI
+hx
+OI
+OI
+SR
+oc
+qv
+Hm
+zx
+OI
+jV
+rR
+fW
+sN
+Qy
+OI
+OI
+SR
+"}
+(27,1,1) = {"
+gq
+Nv
+vs
+gZ
+vs
+Nc
+SR
+Nv
+vs
+gZ
+vs
+Nc
+SR
+JD
+Co
+PK
+Hm
+EO
+IG
+Hm
+RG
+Rf
+cU
+Hm
+wY
+SR
+"}
+(28,1,1) = {"
+gq
+BR
+Hm
+nl
+nl
+IT
+SR
+BR
+nl
+Hm
+nl
+Tk
+SR
+No
+Hd
+XB
+GY
+qG
+rB
+wk
+vl
+SR
+PK
+mE
+Hm
+SR
+"}
+(29,1,1) = {"
+gq
+Jv
+iJ
+xv
+BG
+Tk
+SR
+ZS
+nl
+uH
+PK
+Ek
+SR
+FZ
+PK
+zE
+xh
+SR
+Jy
+Hm
+YJ
+IS
+mE
+Hm
+pJ
+SR
+"}
+(30,1,1) = {"
+gq
+sk
+PK
+nl
+Hm
+mR
+SR
+sk
+Hm
+Hm
+ZP
+YG
+SR
+SR
+gd
+gd
+gd
+SR
+Ti
+Ti
+Ti
+SR
+SR
+SR
+SR
+SR
+"}
+(31,1,1) = {"
+gq
+rr
+Hm
+gS
+Hm
+hU
+SR
+Uz
+nl
+iJ
+Hm
+jg
+SR
+yX
+Uq
+yX
+yX
+We
+yX
+yX
+gL
+yX
+yX
+yX
+yX
+yX
+"}
+(32,1,1) = {"
+gq
+vB
+LO
+Fn
+ms
+cf
+SR
+ra
+sY
+Xq
+Fn
+cf
+SR
+yX
+gL
+yX
+yX
+yX
+yX
+yX
+yX
+yX
+yX
+gL
+yX
+yX
+"}
+(33,1,1) = {"
+gq
+gq
+gq
+gq
+gq
+gq
+gq
+SR
+SR
+SR
+SR
+SR
+SR
+yX
+yX
+yX
+yX
+yX
+gL
+yX
+yX
+yX
+yX
+GJ
+yX
+yX
+"}

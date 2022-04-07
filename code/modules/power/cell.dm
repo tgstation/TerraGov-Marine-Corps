@@ -70,14 +70,14 @@
 /obj/item/cell/examine(mob/user)
 	. = ..()
 	if(maxcharge <= 2500)
-		to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%.")
+		. += "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
 	else
-		to_chat(user, "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%.")
+		. += "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
 	if(crit_fail)
-		to_chat(user, span_warning("This power cell seems to be faulty."))
+		. += span_warning("This power cell seems to be faulty.")
 	if(rigged)
 		if(get_dist(user,src) < 3) //Have to be close to make out the *DANGEROUS* details
-			to_chat(user, span_danger("This power cell looks jury rigged to explode!"))
+			. += span_danger("This power cell looks jury rigged to explode!")
 
 
 /obj/item/cell/attack_self(mob/user as mob)

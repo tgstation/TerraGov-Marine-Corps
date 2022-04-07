@@ -1,0 +1,285 @@
+#define PRIMORDIAL_TIER_ONE "Primordial tier one"
+#define PRIMORDIAL_TIER_TWO "Primordial tier two"
+#define PRIMORDIAL_TIER_THREE "Primordial tier three"
+#define PRIMORDIAL_TIER_FOUR "Primordial tier four"
+
+GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, "Primordial"))//uncomment to unlock globally
+GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
+	XENO_TIER_ONE = PRIMORDIAL_TIER_ONE,
+	XENO_TIER_TWO = PRIMORDIAL_TIER_TWO,
+	XENO_TIER_THREE = PRIMORDIAL_TIER_THREE,
+	XENO_TIER_FOUR = PRIMORDIAL_TIER_FOUR,
+))
+
+/datum/hive_upgrade
+	///name of the upgrade, string, used in ui
+	var/name = "Error upgrade"
+	///desc of the upgrade, string, used in ui
+	var/desc = "Error upgrade description"
+	///name of the category it belongs to, string, used in ui
+	var/category = "ERROR CATEGORY"
+	///Psy point cost, float
+	var/psypoint_cost = 10
+	///upgrade flag var
+	var/flags_upgrade = NONE
+	///gamemode flags to whether this upgrade is purchasable
+	var/flags_gamemode = ABILITY_ALL_GAMEMODE
+	///int of the times we bought this upgrade
+	var/times_bought = 0
+	///string for UI icon in buyable_icons.dmi for this upgrade
+	var/icon = "larvasilo"
+
+/**
+ * Buys the upgrade and applies its effects
+ * returns true on success false on fail
+ * Arguments:
+ * * buyer: Xeno trying to buy this upgrade
+ */
+/datum/hive_upgrade/proc/on_buy(mob/living/carbon/xenomorph/buyer)
+	SHOULD_CALL_PARENT(TRUE)
+	SSpoints.xeno_points_by_hive[buyer.hivenumber] -= psypoint_cost
+	times_bought++
+	return TRUE
+
+/**
+ * Whether we can buy this upgrade, used to set the menu button as grey or not
+ * returns true on can false on cannot
+ * Arguments:
+ * * buyer: Xeno trying to buy this upgrade
+ * * silent: whether to send error messages to the buyer
+ */
+/datum/hive_upgrade/proc/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	SHOULD_CALL_PARENT(TRUE)
+	if((flags_upgrade & UPGRADE_FLAG_ONETIME) && times_bought)
+		return FALSE
+	if(SSpoints.xeno_points_by_hive[buyer.hivenumber] < psypoint_cost)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You need [psypoint_cost-SSpoints.xeno_points_by_hive[buyer.hivenumber]] more points to request this blessing!"))
+		return FALSE
+	return TRUE
+
+/datum/hive_upgrade/building
+	category = "Buildings"
+	///The type of building created
+	var/building_type
+
+/datum/hive_upgrade/building/can_buy(mob/living/carbon/xenomorph/buyer, silent)
+	. = ..()
+	if(!.)
+		return
+	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	if(!buildloc)
+		return FALSE
+
+	if(buildloc.density)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+		return FALSE
+
+/datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)
+	if(!do_after(buyer, 10 SECONDS, TRUE, buyer, BUSY_ICON_BUILD))
+		return FALSE
+
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+
+	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+
+	var/atom/built = new building_type(buildloc, buyer.hivenumber)
+	to_chat(buyer, span_notice("We build \a [built] for [psypoint_cost] psy points."))
+	log_game("[buyer] has built \a [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
+	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
+	return ..()
+
+/datum/hive_upgrade/building/silo
+	name = "Larva Silo"
+	desc = "Constructs a silo that generates xeno larvas over time. Requires open space and time to place."
+	psypoint_cost = SILO_PRICE
+	icon = "larvasilo"
+	flags_upgrade = ABILITY_DISTRESS
+	building_type = /obj/structure/xeno/silo
+
+/datum/hive_upgrade/building/silo/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+
+	var/turf/buildloc = get_step(buyer, SOUTHWEST)
+	if(!buildloc)
+		return FALSE
+
+	if(buildloc.density)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+		return FALSE
+
+	for(var/obj/structure/xeno/silo/silo AS in GLOB.xeno_resin_silos)
+		if(get_dist(silo, buyer) < 15)
+			to_chat(buyer, span_xenowarning("Another silo is too close!"))
+			return FALSE
+/datum/hive_upgrade/building/evotower
+	name = "Evolution Tower"
+	desc = "Constructs a tower that increases the rate of evolution point generation by 1.25 times per tower."
+	psypoint_cost = 300
+	icon = "evotower"
+	flags_upgrade = ABILITY_DISTRESS
+	building_type = /obj/structure/xeno/evotower
+
+/datum/hive_upgrade/building/maturitytower
+	name = "Maturity Tower"
+	desc = "Constructs a tower that increases the rate of maturity point generation by 1.2 times per tower."
+	psypoint_cost = 300
+	icon = "maturitytower"
+	flags_upgrade = ABILITY_DISTRESS
+	building_type = /obj/structure/xeno/maturitytower
+
+/datum/hive_upgrade/building/spawner
+	name = "Spawner"
+	desc = "Constructs a spawner that generates ai xenos over time"
+	psypoint_cost = 600
+	icon = "spawner"
+	flags_upgrade = ABILITY_DISTRESS
+	building_type = /obj/structure/xeno/spawner
+
+/datum/hive_upgrade/defence
+	category = "Defences"
+
+/datum/hive_upgrade/defence/turret
+	name = "Acid turret"
+	desc = "Places a acid spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog and on a weeded area."
+	icon = "acidturret"
+	psypoint_cost = XENO_TURRET_PRICE
+	flags_gamemode = ABILITY_DISTRESS
+	///How long to build one turret
+	var/build_time = 10 SECONDS
+	///What type of turret is built
+	var/turret_type = /obj/structure/xeno/xeno_turret
+
+/datum/hive_upgrade/defence/turret/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+	var/turf/T = get_turf(buyer)
+	var/mob/living/carbon/xenomorph/blocker = locate() in T
+	if(blocker && blocker != buyer && blocker.stat != DEAD)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot build with [blocker] in the way!"))
+		return FALSE
+
+	if(!T.is_weedable())
+		return FALSE
+
+	var/obj/effect/alien/weeds/alien_weeds = locate() in T
+
+	if(!alien_weeds)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("No weeds here!"))
+		return FALSE
+
+	if(!T.check_alien_construction(buyer, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
+		return FALSE
+
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+		if(get_dist(turret, buyer) < 6)
+			if(!silent)
+				to_chat(buyer, span_xenowarning("Another turret is too close!"))
+			return FALSE
+
+	return TRUE
+
+/datum/hive_upgrade/defence/turret/on_buy(mob/living/carbon/xenomorph/buyer)
+	if(!do_after(buyer, build_time, TRUE, buyer, BUSY_ICON_BUILD))
+		return FALSE
+
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+
+	to_chat(buyer, span_xenowarning("We build a new acid turret, spending [psypoint_cost] psychic points in the process"))
+	new turret_type(get_turf(buyer), buyer.hivenumber)
+
+	log_game("[buyer] built a turret in [AREACOORD(buyer)], spending [psypoint_cost] psy points in the process")
+	xeno_message("[buyer] has built a new turret at [get_area(buyer)]!", "xenoannounce", 5, buyer.hivenumber)
+
+	return ..()
+
+/datum/hive_upgrade/defence/turret/sticky
+	name = "Sticky resin turret"
+	desc = "Places a sticky spit spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog and on a weeded area."
+	icon = "resinturret"
+	psypoint_cost = 50
+	turret_type = /obj/structure/xeno/xeno_turret/sticky
+
+/datum/hive_upgrade/xenos
+	category = "Xenos"
+
+/datum/hive_upgrade/xenos/king
+	name = "King"
+	desc = "Places a Psychic Echo chamber that tallhosts can detect, then after a summon time selects a random sister to take over the mind of the gravity manipulating King."
+	icon = "king"
+	flags_gamemode = ABILITY_DISTRESS
+	psypoint_cost = 1800
+
+/datum/hive_upgrade/xenos/king/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+	if(buyer.hive.king_present)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("Another king is alive already!"))
+		return FALSE
+
+/datum/hive_upgrade/xenos/king/on_buy(mob/living/carbon/xenomorph/buyer)
+	to_chat(buyer, span_xenonotice("We begin constructing a psychic echo chamber for the Queen Mother..."))
+	if(!do_after(buyer, 15 SECONDS, FALSE, buyer, BUSY_ICON_HOSTILE))
+		return FALSE
+	if(!can_buy(buyer, FALSE))
+		return FALSE
+	var/obj/structure/resin/king_pod = new /obj/structure/resin/king_pod(get_turf(buyer), buyer.hivenumber)
+	log_game("[key_name(buyer)] has created a pod in [AREACOORD(buyer)]")
+	xeno_message("<B>[buyer] has created a king pod at [get_area(buyer)]. Defend it until the Queen Mother summons a king!</B>", hivenumber = buyer.hivenumber, target = king_pod, arrow_type = /obj/screen/arrow/leader_tracker_arrow)
+	priority_announce("WARNING: Psychic anomaly detected at [get_area(buyer)]. Assault of the area reccomended.", "TGMC Intel Division")
+	return ..()
+
+/datum/hive_upgrade/xenos/smart_minions
+	name = GHOSTS_CAN_TAKE_MINIONS
+	desc = "Allow ghosts to take control of minions"
+	icon = "smartminions"
+	flags_gamemode = ABILITY_DISTRESS
+	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
+	psypoint_cost = 500
+
+/datum/hive_upgrade/primordial
+	category = "Xenos"
+	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
+
+/datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!isxenoqueen(buyer) && !isxenoshrike(buyer))
+		if(!silent)
+			to_chat(buyer, span_xenonotice("You must be a ruler to buy this!"))
+		return FALSE
+
+
+/datum/hive_upgrade/primordial/tier_four
+	name = PRIMORDIAL_TIER_FOUR
+	desc = "Unlocks the primordial for the last tier"
+	psypoint_cost = 600
+	icon = "primoqueen"
+
+/datum/hive_upgrade/primordial/tier_three
+	name = PRIMORDIAL_TIER_THREE
+	desc = "Unlocks the primordial for the third tier"
+	psypoint_cost = 600
+	icon = "primorav"
+
+/datum/hive_upgrade/primordial/tier_two
+	name = PRIMORDIAL_TIER_TWO
+	desc = "Unlocks the primordial for the second tier"
+	psypoint_cost = 600
+	icon = "primowarrior"
+
+/datum/hive_upgrade/primordial/tier_one
+	name = PRIMORDIAL_TIER_ONE
+	desc = "Unlocks the primordial for the first tier"
+	psypoint_cost = 600
+	icon = "primosent"

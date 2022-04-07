@@ -15,6 +15,7 @@
 	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING)
 	opacity = FALSE
 	density = FALSE
+	obj_flags = CAN_BE_HIT
 	layer = FIREDOOR_OPEN_LAYER
 	open_layer = FIREDOOR_OPEN_LAYER // Just below doors when open
 	closed_layer = FIREDOOR_CLOSED_LAYER // Just above doors when closed
@@ -66,15 +67,15 @@
 	return ..()
 
 
-/obj/machinery/door/firedoor/examine(mob/user)
-	..()
+/obj/machinery/door/firedoor/examine(mob/user) // todo remove the shitty o vars
+	. = ..()
 	if(get_dist(src, user) > 1 && !isAI(user))
 		return
 
 	if(pdiff >= FIREDOOR_MAX_PRESSURE_DIFF)
-		to_chat(user, span_warning("WARNING: Current pressure differential is [pdiff]kPa! Opening door may result in injury!"))
+		. += span_warning("WARNING: Current pressure differential is [pdiff]kPa! Opening door may result in injury!")
 
-	to_chat(user, "<b>Sensor readings:</b>")
+	. += "<b>Sensor readings:</b>"
 	for(var/index = 1; index <= tile_info.len; index++)
 		var/o = "&nbsp;&nbsp;"
 		switch(index)
@@ -88,7 +89,7 @@
 				o += "WEST: "
 		if(tile_info[index] == null)
 			o += span_warning("DATA UNAVAILABLE")
-			to_chat(user, o)
+			. += o
 			continue
 		var/celsius = convert_k2c(tile_info[index][1])
 		var/pressure = tile_info[index][2]
@@ -99,14 +100,14 @@
 		o += "[celsius]&deg;C</span> "
 		o += "<span style='color:blue'>"
 		o += "[pressure]kPa</span></li>"
-		to_chat(user, o)
+		. += o
 
 	if(islist(users_to_open) && users_to_open.len)
 		var/users_to_open_string = users_to_open[1]
 		if(users_to_open.len >= 2)
 			for(var/i = 2 to users_to_open.len)
 				users_to_open_string += ", [users_to_open[i]]"
-		to_chat(user, "These people have opened \the [src] during an alert: [users_to_open_string].")
+		. += "These people have opened \the [src] during an alert: [users_to_open_string]."
 
 /obj/machinery/door/firedoor/Bumped(atom/AM)
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN) || operating)
@@ -317,6 +318,21 @@
 	icon = 'icons/obj/doors/edge_Doorfire.dmi'
 	flags_atom = ON_BORDER
 
+/obj/machinery/door/firedoor/border_only/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = .proc/on_try_exit
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/machinery/door/firedoor/border_only/proc/on_try_exit(datum/source, atom/movable/leaver, direction, list/moveblockers)
+	SIGNAL_HANDLER
+	if(CHECK_BITFIELD(leaver.flags_pass, PASSGLASS))
+		return NONE
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (leaver.status_flags & INCORPOREAL))
+		return NONE
+	moveblockers += src
+	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/machinery/door/firedoor/border_only/closed
 	icon_state = "door_closed"
@@ -329,9 +345,4 @@
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
 
-
-/obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover, direction)
-	. = ..()
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
 

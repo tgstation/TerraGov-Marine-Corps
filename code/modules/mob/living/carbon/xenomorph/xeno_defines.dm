@@ -8,6 +8,8 @@
 	var/caste_type_path = null
 
 	var/ancient_message = ""
+	///primordial message that is shown when a caste becomes primordial
+	var/primordial_message = ""
 
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
@@ -149,8 +151,6 @@
 	var/huggers_max = 0
 	///delay between the throw hugger ability activation for carriers
 	var/hugger_delay = 0
-	///maximum amount of eggs a carrier can carry at one time.
-	var/eggs_max = 0
 
 	// *** Defender Abilities *** //
 	///modifying amount to the crest defense ability for defenders. Positive integers only.
@@ -165,6 +165,16 @@
 	var/stomp_damage = 0
 	///How many tiles the Crest toss ability throws the victim.
 	var/crest_toss_distance = 0
+
+	// *** Gorger Abilities *** //
+	///Maximum amount of overheal that can be gained
+	var/overheal_max = 150
+	///Amount of plasma gained from draining someone
+	var/drain_plasma_gain = 0
+	///Amount of plasma gained from clashing after activating carnage
+	var/carnage_plasma_gain = 0
+	///Amount of plasma drained each tick while feast buff is actuve
+	var/feast_plasma_drain = 0
 
 	// *** Queen Abilities *** //
 	///Amount of leaders allowed
@@ -205,6 +215,18 @@
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
+
+///Add needed component to the xeno
+/datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
+	xenomorph.AddComponent(/datum/component/bump_attack)
+	if(caste_flags & CASTE_CAN_RIDE_CRUSHER)
+		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, /mob/living/carbon/xenomorph.proc/grabbed_self_attack)
+
+/datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
+	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
+	bump_attack?.RemoveComponent()
+	if(caste_flags & CASTE_CAN_RIDE_CRUSHER)
+		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
@@ -253,7 +275,8 @@
 	var/max_grown = 200
 	var/time_of_birth
 
-	var/list/stomach_contents
+	///A mob the xeno ate
+	var/mob/living/carbon/eaten_mob
 
 	var/evolution_stored = 0 //How much evolution they have stored
 
@@ -288,9 +311,12 @@
 
 	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
-	var/selected_resin = /turf/closed/wall/resin/regenerating //which resin structure to build when we secrete resin
-	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile //which reagent to slash with using reagent slash
-
+	///which resin structure to build when we secrete resin
+	var/selected_resin = /turf/closed/wall/resin/regenerating
+	///which reagent to slash with using reagent slash
+	var/selected_reagent = /datum/reagent/toxin/xeno_hemodile
+	///which plant to place when we use sow
+	var/obj/structure/xeno/plant/selected_plant = /obj/structure/xeno/plant/heal_fruit
 	//Naming variables
 	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.
 
@@ -318,6 +344,9 @@
 	//Pounce vars
 	var/usedPounce = 0
 
+	// Gorger vars
+	var/overheal = 0
+
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours
 
@@ -336,6 +365,8 @@
 	// *** Ravager vars *** //
 	/// when true the rav will not go into crit or take crit damage.
 	var/endure = FALSE
+	///when true the rav leeches healing off of hitting marines
+	var/vampirism
 
 	// *** Carrier vars *** //
 	var/selected_hugger_type = /obj/item/clothing/mask/facehugger
@@ -348,5 +379,8 @@
 
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
 	var/atom/tracked
+
+	///Are we the roony version of this xeno
+	var/is_a_rouny = FALSE
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)

@@ -21,6 +21,7 @@
 	density = TRUE
 	icon_state = "mining_drill_active"
 	anchored = TRUE
+	coverage = 30
 	resistance_flags = INDESTRUCTIBLE | DROPSHIP_IMMUNE
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
@@ -139,6 +140,9 @@
 			if(MINER_OVERCLOCKED)
 				upgrade = new /obj/item/minerupgrade/overclock
 				required_ticks = initial(required_ticks)
+			if(MINER_AUTOMATED)
+				upgrade = new /obj/item/minerupgrade/automatic
+				stop_processing()
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
@@ -220,19 +224,19 @@
 	if(!ishuman(user))
 		return
 	if(!miner_upgrade_type)
-		to_chat(user, span_info("[src]'s module sockets seem empty, an upgrade could be installed."))
+		. += span_info("[src]'s module sockets seem empty, an upgrade could be installed.")
 	else
-		to_chat(user, span_info("[src]'s module sockets are occupied by the [miner_upgrade_type]."))
+		. += span_info("[src]'s module sockets are occupied by the [miner_upgrade_type].")
 
 	switch(miner_status)
 		if(MINER_DESTROYED)
-			to_chat(user, span_info("It's heavily damaged, and you can see internal workings.</span>\n<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it."))
+			. += span_info("It's heavily damaged, and you can see internal workings.</span>\n<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.")
 		if(MINER_MEDIUM_DAMAGE)
-			to_chat(user, span_info("It's damaged, and there are broken wires hanging out.</span>\n<span class='info'>Use wirecutters, then wrench to repair it."))
+			. += span_info("It's damaged, and there are broken wires hanging out.</span>\n<span class='info'>Use wirecutters, then wrench to repair it.")
 		if(MINER_SMALL_DAMAGE)
-			to_chat(user, span_info("It's lightly damaged, and you can see some dents and loose piping.</span>\n<span class='info'>Use a wrench to repair it."))
+			. += span_info("It's lightly damaged, and you can see some dents and loose piping.</span>\n<span class='info'>Use a wrench to repair it.")
 		if(MINER_RUNNING)
-			to_chat(user, span_info("[src]'s storage module displays [stored_mineral] crates are ready to be exported."))
+			. += span_info("[src]'s storage module displays [stored_mineral] crates are ready to be exported.")
 
 /obj/machinery/miner/attack_hand(mob/living/user)
 	if(miner_status != MINER_RUNNING)
@@ -281,6 +285,10 @@
 
 /obj/machinery/miner/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack physically.
+		return
+	if(miner_upgrade_type == MINER_RESISTANT && !(X.mob_size == MOB_SIZE_BIG || X.xeno_caste.caste_flags & CASTE_IS_STRONG))
+		X.visible_message(span_notice("[X]'s claws bounce off of [src]'s reinforced plating."),
+		span_notice("We can't slash through [src]'s reinforced plating!"))
 		return
 	while(miner_status != MINER_DESTROYED)
 		if(!do_after(X, 3 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))

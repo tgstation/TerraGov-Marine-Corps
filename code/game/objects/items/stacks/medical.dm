@@ -1,3 +1,7 @@
+#define BANDAGE (1<<0)
+#define SALVE (1<<1)
+#define DISINFECT (1<<2)
+
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
@@ -6,8 +10,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 4
 	throw_range = 20
-	var/heal_brute = 0
-	var/heal_burn = 0
+	///Medical skill level needed to not get a fumble delay
+	var/skill_level_needed = SKILL_MEDICAL_UNTRAINED
+	///Fumble delay applied without sufficient skill
+	var/unskilled_delay = SKILL_TASK_TRIVIAL
 
 /obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(!istype(M))
@@ -41,92 +47,100 @@
 		return TRUE
 
 	H.UpdateDamageIcon()
+
+	if(user.skills.getRating("medical") < skill_level_needed)
+		if(user.do_actions)
+			to_chat(user, span_warning("You're busy with something else right now!"))
+		if(!do_mob(user, M, unskilled_delay, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+			return TRUE
+
 	return affecting
 
-/obj/item/stack/medical/bruise_pack
+/obj/item/stack/medical/heal_pack
+	name = "platonic gauze"
+	///How much brute damage this pack heals when applied to a limb
+	var/heal_brute = 0
+	///How much burn damage this pack heals when applied to a limb
+	var/heal_burn = 0
+	///Set of wound flags applied by use, including BANDAGE, SALVE, and DISINFECT
+	var/heal_flags = NONE
+
+
+/obj/item/stack/medical/heal_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+	. = ..()
+	if(. == TRUE)
+		return
+
+	var/datum/limb/affecting = .
+	var/mob/living/carbon/human/patient = M //If we've got to this point, the parent proc already checked they're human
+	if(affecting.surgery_open_stage) //Checks if mob is lying down on table for surgery
+		if(patient.can_be_operated_on())
+			do_surgery(patient, user, src)
+		else
+			to_chat(user, span_notice("\The [affecting.display_name] is cut open, you'll need more than a bandage!"))
+		return
+
+	var/affected = FALSE
+	if(heal_flags & BANDAGE)
+		affected |= affecting.bandage()
+	if(heal_flags & SALVE)
+		affected |= affecting.salve()
+	if(heal_flags & DISINFECT)
+		affected |= affecting.disinfect()
+
+	generate_treatment_messages(user, patient, affecting, affected)
+	if(affected)
+		var/untrained_healing_penalty = (user.skills.getRating("medical") < skill_level_needed) ? 0.5 : 1
+		affecting.heal_limb_damage(heal_brute * untrained_healing_penalty, heal_burn * untrained_healing_penalty, updating_health = TRUE)
+		use(1)
+
+///Purely visual, generates the success/failure messages for using a health pack
+/obj/item/stack/medical/heal_pack/proc/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
+	if(!success)
+		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
+		return
+	user.visible_message(span_notice("[user] treats the wounds on [patient]'s [target_limb.display_name] with [src]."),
+	span_notice("You treat the wounds on [patient]'s [target_limb.display_name] with [src].") )
+
+/obj/item/stack/medical/heal_pack/gauze
 	name = "roll of gauze"
 	singular_name = "medical gauze"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
-	heal_brute = 1
+	heal_brute = 3
+	heal_flags = BANDAGE
 
+/obj/item/stack/medical/heal_pack/gauze/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
+	if(!success)
+		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
+		return
+	for (var/datum/wound/W AS in target_limb.wounds)
+		if (W.internal)
+			continue
+		if (W.damage_type == CUT)
+			user.visible_message(span_notice("[user] bandages [W.desc] on [patient]'s [target_limb.display_name]."),
+			span_notice("You bandage \a [W.desc] on [patient]'s [target_limb.display_name].") )
+		else if (istype(W,/datum/wound/bruise))
+			user.visible_message(span_notice("[user] places bruise patch over [W.desc] on [patient]'s [target_limb.display_name]."),
+			span_notice("You place a bruise patch over \a [W.desc] on [patient]'s [target_limb.display_name].") )
 
-/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
-	. = ..()
-	if(. == TRUE)
-		return TRUE
-
-	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-
-		if(user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED && !do_mob(user, M, 1 SECONDS, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
-			return TRUE
-
-		var/datum/limb/affecting = .
-
-		if(affecting.surgery_open_stage == 0)
-			if(!affecting.bandage())
-				to_chat(user, span_warning("The wounds on [M]'s [affecting.display_name] have already been bandaged."))
-				return TRUE
-			else
-				for (var/datum/wound/W in affecting.wounds)
-					if (W.internal)
-						continue
-					if (W.current_stage <= W.max_bleeding_stage)
-						user.visible_message(span_notice("[user] bandages [W.desc] on [M]'s [affecting.display_name]."),
-						span_notice("You bandage [W.desc] on [M]'s [affecting.display_name].") )
-					else if (istype(W,/datum/wound/bruise))
-						user.visible_message(span_notice("[user] places bruise patch over [W.desc] on [M]'s [affecting.display_name]."),
-						span_notice("You place bruise patch over [W.desc] on [M]'s [affecting.display_name].") )
-					else
-						user.visible_message(span_notice("[user] places bandaid over [W.desc] on [M]'s [affecting.display_name]."),
-						span_notice("You place bandaid over [W.desc] on [M]'s [affecting.display_name].") )
-				use(1)
-		else
-			if(H.can_be_operated_on()) //Checks if mob is lying down on table for surgery
-				if(do_surgery(H,user,src))
-					return
-			else
-				to_chat(user, span_notice("The [affecting.display_name] is cut open, you'll need more than a bandage!"))
-
-/obj/item/stack/medical/ointment
+/obj/item/stack/medical/heal_pack/ointment
 	name = "ointment"
 	desc = "Used to treat burns, infected wounds, and relieve itching in unusual places."
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 3
+	heal_flags = SALVE
 
+/obj/item/stack/medical/heal_pack/ointment/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
+	if(!success)
+		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
+		return
+	user.visible_message(span_notice("[user] salves wounds on [patient]'s [target_limb.display_name]."),
+	span_notice("You salve wounds on [patient]'s [target_limb.display_name]."))
 
-/obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
-	. = ..()
-	if(. == TRUE)
-		return TRUE
-
-	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-
-		if(user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED && !do_mob(user, M, 1 SECONDS, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
-			return TRUE
-
-		var/datum/limb/affecting = .
-
-		if(affecting.surgery_open_stage == 0)
-			if(!affecting.salve())
-				to_chat(user, span_warning("The wounds on [M]'s [affecting.display_name] have already been salved."))
-				return TRUE
-			else
-				user.visible_message(span_notice("[user] salves wounds on [M]'s [affecting.display_name]."),
-				span_notice("You salve wounds on [M]'s [affecting.display_name]."))
-				use(1)
-		else
-			if (H.can_be_operated_on())        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src))
-					return
-			else
-				to_chat(user, span_notice("The [affecting.display_name] is cut open, you'll need more than a bandage!"))
-
-/obj/item/stack/medical/bruise_pack/tajaran
+/obj/item/stack/medical/heal_pack/gauze/tajaran
 	name = "\improper S'rendarr's Hand leaf"
 	singular_name = "S'rendarr's Hand leaf"
 	desc = "A poultice made of soft leaves that is rubbed on bruises."
@@ -135,7 +149,7 @@
 	heal_brute = 7
 
 
-/obj/item/stack/medical/ointment/tajaran
+/obj/item/stack/medical/heal_pack/ointment/tajaran
 	name = "\improper Messa's Tear petals"
 	singular_name = "Messa's Tear petal"
 	desc = "A poultice made of cold, blue petals that is rubbed on burns."
@@ -144,7 +158,7 @@
 	heal_burn = 7
 
 
-/obj/item/stack/medical/bruise_pack/sectoid
+/obj/item/stack/medical/heal_pack/gauze/sectoid
 	name = "\improper healing resin pack"
 	singular_name = "healing resin pack"
 	desc = "A strange tool filled with a sticky, alien resin. It seems it is meant for covering wounds."
@@ -152,13 +166,16 @@
 	icon_state = "predator_fixovein"
 	heal_brute = 20
 	heal_burn = 20
+	heal_flags = BANDAGE | SALVE | DISINFECT
 
 
-/obj/item/stack/medical/advanced
+/obj/item/stack/medical/heal_pack/advanced
 	dir = NORTH
 	flags_atom = DIRLOCK
+	skill_level_needed = SKILL_MEDICAL_PRACTICED
+	unskilled_delay = SKILL_TASK_EASY
 
-/obj/item/stack/medical/advanced/update_icon_state()
+/obj/item/stack/medical/heal_pack/advanced/update_icon_state()
 	if(max_amount < 1 || amount > max_amount)
 		return
 	var/percentage = round(amount / max_amount) * 100
@@ -174,103 +191,45 @@
 		if(81 to INFINITY)
 			setDir(NORTH)
 
-/obj/item/stack/medical/advanced/bruise_pack
+/obj/item/stack/medical/heal_pack/advanced/bruise_pack
 	name = "advanced trauma kit"
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
 	heal_brute = 12
+	heal_flags = BANDAGE | DISINFECT
 
-
-/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/user)
-	. = ..()
-	if(. == TRUE)
-		return TRUE
-
-
-	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-
-		var/heal_amt = heal_brute
-		if(user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
-			to_chat(user, span_warning("You start fumbling with [src]."))
-			if(!do_mob(user, M, 3 SECONDS, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
-				return
-			heal_amt = heal_brute * 0.5 //non optimal application means less healing
-
-		var/datum/limb/affecting = .
-
-		if(affecting.surgery_open_stage == 0)
-			var/bandaged = affecting.bandage()
-			var/disinfected = affecting.disinfect()
-
-			if(!(bandaged || disinfected))
-				to_chat(user, span_warning("The wounds on [M]'s [affecting.display_name] have already been treated."))
-				return TRUE
-			else
-				for(var/datum/wound/W in affecting.wounds)
-					if(W.internal)
-						continue
-					if(W.current_stage <= W.max_bleeding_stage)
-						user.visible_message(span_notice("[user] cleans [W.desc] on [M]'s [affecting.display_name] and seals edges with bioglue."),
-						span_notice("You clean and seal [W.desc] on [M]'s [affecting.display_name]."))
-					else if (istype(W,/datum/wound/bruise))
-						user.visible_message(span_notice("[user] places medicine patch over [W.desc] on [M]'s [affecting.display_name]."),
-						span_notice("You place medicine patch over [W.desc] on [M]'s [affecting.display_name]."))
-					else
-						user.visible_message(span_notice("[user] smears some bioglue over [W.desc] on [M]'s [affecting.display_name]."),
-						span_notice("You smear some bioglue over [W.desc] on [M]'s [affecting.display_name]."))
-				if(bandaged)
-					affecting.heal_limb_damage(heal_amt, updating_health = TRUE)
-				use(1)
+/obj/item/stack/medical/heal_pack/advanced/bruise_pack/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
+	if(!success)
+		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
+		return
+	for(var/datum/wound/W AS in target_limb.wounds)
+		if(W.internal)
+			continue
+		if(W.current_stage <= W.max_bleeding_stage)
+			user.visible_message(span_notice("[user] cleans [W.desc] on [patient]'s [target_limb.display_name] and seals its edges with bioglue."),
+			span_notice("You clean and seal [W.desc] on [patient]'s [target_limb.display_name]."))
+		else if (istype(W,/datum/wound/bruise))
+			user.visible_message(span_notice("[user] places a medicine patch over [W.desc] on [patient]'s [target_limb.display_name]."),
+			span_notice("You place medicine patch over [W.desc] on [patient]'s [target_limb.display_name]."))
 		else
-			if(H.can_be_operated_on())        //Checks if mob is lying down on table for surgery
-				if(do_surgery(H, user, src))
-					return
-			else
-				to_chat(user, span_notice("The [affecting.display_name] is cut open, you'll need more than a bandage!"))
+			user.visible_message(span_notice("[user] smears some bioglue over [W.desc] on [patient]'s [target_limb.display_name]."),
+			span_notice("You smear some bioglue over [W.desc] on [patient]'s [target_limb.display_name]."))
 
-
-/obj/item/stack/medical/advanced/ointment
+/obj/item/stack/medical/heal_pack/advanced/burn_pack
 	name = "advanced burn kit"
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
 	heal_burn = 12
+	heal_flags = SALVE | DISINFECT
 
-
-/obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
-	. = ..()
-	if(. == TRUE)
-		return TRUE
-
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-
-		var/heal_amt = heal_burn
-		if(user.skills.getRating("medical") < SKILL_MEDICAL_PRACTICED) //untrained marines have a hard time using it
-			to_chat(user, span_warning("You start fumbling with [src]."))
-			if(!do_mob(user, M, 3 SECONDS, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
-				return
-			heal_amt = heal_burn * 0.5 //non optimal application means less healing
-
-		var/datum/limb/affecting = .
-
-		if(affecting.surgery_open_stage == 0)
-			if(!affecting.salve())
-				to_chat(user, "<span class='warning'>The wounds on [M]'s [affecting.display_name] have already been salved.")
-				return TRUE
-			else
-				user.visible_message(span_notice("[user] covers wounds on [M]'s [affecting.display_name] with regenerative membrane."),
-				span_notice("You cover wounds on [M]'s [affecting.display_name] with regenerative membrane."))
-				affecting.heal_limb_damage(burn = heal_amt, updating_health = TRUE)
-				use(1)
-		else
-			if(H.can_be_operated_on()) //Checks if mob is lying down on table for surgery
-				if(do_surgery(H,user,src))
-					return
-			else
-				to_chat(user, span_notice("The [affecting.display_name] is cut open, you'll need more than a bandage!"))
+/obj/item/stack/medical/heal_pack/advanced/burn_pack/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
+	if(!success)
+		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
+		return
+	user.visible_message(span_notice("[user] covers the wounds on [patient]'s [target_limb.display_name] with regenerative membrane."),
+	span_notice("You cover the wounds on [patient]'s [target_limb.display_name] with regenerative membrane."))
 
 /obj/item/stack/medical/splint
 	name = "medical splints"
@@ -278,6 +237,8 @@
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
+	skill_level_needed = SKILL_MEDICAL_PRACTICED
+	unskilled_delay = SKILL_TASK_TOUGH
 	///How much splint health per medical skill is applied
 	var/applied_splint_health = 15
 
@@ -318,3 +279,7 @@
 
 		if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating("medical") - 1, 0)) : applied_splint_health*user.skills.getRating("medical"), user, M)) // Referenced in external organ helpers.
 			use(1)
+
+#undef BANDAGE
+#undef SALVE
+#undef DISINFECT

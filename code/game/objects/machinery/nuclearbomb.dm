@@ -12,6 +12,7 @@
 	icon_state = "nuclearbomb0"
 	density = TRUE
 	anchored = TRUE
+	coverage = 20
 	flags_atom = CRITICAL_ATOM
 	resistance_flags = RESIST_ALL
 	layer = BELOW_MOB_LAYER
@@ -37,6 +38,7 @@
 	GLOB.nuke_list += src
 	countdown = new(src)
 	name = "[initial(name)] ([UNIQUEID])"
+	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "nuke")
 
 
 /obj/machinery/nuclearbomb/Destroy()

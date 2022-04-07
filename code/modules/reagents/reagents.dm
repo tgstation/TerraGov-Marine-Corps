@@ -59,6 +59,10 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/trait_flags = NONE
 	///Affects the strength of reagent effects
 	var/effect_str = 1
+	///Used for certain chems we don't want being extracted via dialysis or being used in cryo, makes all important medical machines (dispenser, cryo etc...) refuse to interact with the reagent
+	var/medbayblacklist = FALSE
+	///If true allow foam and smoke to transfer reagent into dead mobs
+	var/reactindeadmob = TRUE
 
 /datum/reagent/New()
 	. = ..()
@@ -75,8 +79,7 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		return FALSE
 	if(method == VAPOR && L.reagents) //foam, spray
 		var/amount = round(volume * touch_protection, 0.1)
-		if(amount >= 0.5)
-			L.reagents.add_reagent(type, amount)
+		L.reagents.add_reagent(type, amount)
 
 	return TRUE
 
@@ -113,6 +116,9 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		to_chat(L, span_notice("You feel a little nauseous..."))
 	log_combat(L, L, "has been overdosed on [name].")
 
+/// Called when an overdose stops
+/datum/reagent/proc/on_overdose_stop(mob/living/L, metabolism)
+	return
 
 /// Called when a CRITICAL overdose threshold and is trigger effects.
 /datum/reagent/proc/overdose_crit_process(mob/living/L, metabolism)

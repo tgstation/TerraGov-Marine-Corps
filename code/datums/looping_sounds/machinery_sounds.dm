@@ -5,3 +5,9 @@
 	mid_length = 4
 	end_sound = 'sound/machines/generator/generator_end.ogg'
 	volume = 40
+
+
+/datum/looping_sound/grill
+	mid_sounds = list('sound/machines/grill/grillsizzle.ogg' = 1)
+	mid_length = 18
+	volume = 50

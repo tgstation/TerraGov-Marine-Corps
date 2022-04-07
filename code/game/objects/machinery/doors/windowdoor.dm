@@ -5,6 +5,7 @@
 	icon_state = "left"
 	layer = ABOVE_WINDOW_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	obj_flags = CAN_BE_HIT
 	var/base_state = "left"
 	max_integrity = 50
 	soft_armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
@@ -29,7 +30,17 @@
 	if(length(req_access))
 		icon_state = "[icon_state]"
 		base_state = icon_state
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = .proc/on_try_exit
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
+/obj/machinery/door/window/proc/on_try_exit(datum/source, atom/movable/mover, direction, list/moveblockers)
+	SIGNAL_HANDLER
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (mover.status_flags & INCORPOREAL))
+		return NONE
+	moveblockers += src
+	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE
@@ -45,23 +56,13 @@
 
 /obj/machinery/door/window/proc/open_and_close()
 	open()
-	if(check_access(null))
-		sleep(5 SECONDS)
-	else //secure doors close faster
-		sleep(2 SECONDS)
-	close()
-
+	var/time_to_close = check_access(null) ? 5 SECONDS : 2 SECONDS
+	addtimer(CALLBACK(src, .proc/close), time_to_close)
 
 /obj/machinery/door/window/Bumped(atom/movable/bumper)
 	if(operating || !density)
 		return
-	if(!(isliving(bumper)))
-		var/obj/machinery/bot/bot = bumper
-		if(istype(bot))
-			if(density && check_access(bot.botcard))
-				open_and_close()
-			else
-				do_animate("deny")
+	if(!isliving(bumper))
 		return
 	var/mob/living/living_bumper = bumper
 	if (living_bumper.mob_size <= MOB_SIZE_SMALL || living_bumper.restrained())
@@ -84,14 +85,9 @@
 /obj/machinery/door/window/CanAllowThrough(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
 		return TRUE
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
+	if(get_dir(loc, target) & dir) //Make sure looking at appropriate border
 		return ..()
 	return TRUE
-
-/obj/machinery/door/window/CheckExit(atom/movable/mover, direction)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return TRUE
-	return ..()
 
 /obj/machinery/door/window/open(forced = DOOR_NOT_FORCED)
 	if(operating)

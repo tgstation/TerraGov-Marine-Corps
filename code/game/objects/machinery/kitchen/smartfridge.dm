@@ -7,6 +7,7 @@
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	anchored = TRUE
+	throwpass = FALSE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 100
@@ -175,7 +176,7 @@
 			if (params["amount"])
 				desired = text2num(params["amount"])
 			else
-				desired = input("How many items?", "How many items would you like to take out?", 1) as null|num
+				desired = tgui_input_number(usr, "How many items?", "How many items would you like to take out?", 1)
 
 			if(QDELETED(src) || QDELETED(usr) || !usr.Adjacent(src)) // Sanity checkin' in case stupid stuff happens while we wait for input()
 				return FALSE
@@ -303,3 +304,21 @@
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/food/drinks) || istype(O,/obj/item/reagent_containers/food/condiment))
 		return 1
+
+/obj/machinery/smartfridge/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/smartfridge/chemistry/virology/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/smartfridge/drinks/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/smartfridge/secure/medbay/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/smartfridge/chemistry/nopower
+	use_power = NO_POWER_USE
+
+/obj/machinery/smartfridge/seeds/nopower
+	use_power = NO_POWER_USE

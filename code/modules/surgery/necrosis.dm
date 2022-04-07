@@ -46,8 +46,8 @@
 /datum/surgery_step/necro/treat_necrosis
 
 	allowed_tools = list(
-		/obj/item/stack/medical/advanced/bruise_pack= 100,
-		/obj/item/stack/medical/bruise_pack = 20,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack= 100,
+		/obj/item/stack/medical/heal_pack/gauze = 20,
 	)
 
 	can_infect = 0
@@ -64,6 +64,7 @@
 	..()
 
 /datum/surgery_step/necro/treat_necrosis/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
+	affected.germ_level = 0
 	affected.remove_limb_flags(LIMB_NECROTIZED)
 	target.update_body()
 

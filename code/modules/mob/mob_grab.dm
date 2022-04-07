@@ -14,11 +14,6 @@
 	resistance_flags = RESIST_ALL
 	var/atom/movable/grabbed_thing
 
-
-/obj/item/grab/dropped(mob/user)
-	user.stop_pulling()
-	. = ..()
-
 /obj/item/grab/Destroy()
 	grabbed_thing = null
 	if(ismob(loc))
@@ -26,6 +21,25 @@
 		M.stop_pulling()
 	return ..()
 
+/obj/item/grab/dropped(mob/user)
+	user.stop_pulling()
+	return ..()
+
+
+/obj/item/grab/on_thrown(mob/living/carbon/user, atom/target)
+	if(!ismob(grabbed_thing))
+		return
+	if(user.grab_state < GRAB_NECK)
+		to_chat(user, span_warning("You need a better grip!"))
+		return
+	var/mob/living/M = grabbed_thing
+	var/turf/start_T = get_turf(user) //Get the start and target tile for the descriptors
+	var/turf/end_T = get_turf(target)
+	if(start_T && end_T)
+		var/start_T_descriptor = "tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]"
+		var/end_T_descriptor = "tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]"
+		log_combat(user, M, "thrown", addition="from [start_T_descriptor] with the target [end_T_descriptor]")
+	return M
 
 /obj/item/grab/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	if(user.pulling == user.buckled)

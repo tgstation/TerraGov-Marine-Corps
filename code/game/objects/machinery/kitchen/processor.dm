@@ -5,13 +5,15 @@
 	layer = ABOVE_TABLE_LAYER
 	density = TRUE
 	anchored = TRUE
+	coverage = 20
 	var/broken = 0
 	var/processing = 0
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 500
 
-
+/obj/machinery/processor/nopower
+	use_power = NO_POWER_USE
 
 /datum/food_processor_process
 	var/input

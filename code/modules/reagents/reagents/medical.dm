@@ -16,6 +16,22 @@
 	scannable = TRUE
 	trait_flags = TACHYCARDIC
 
+/datum/reagent/medicine/inaprovaline/on_mob_add(mob/living/L, metabolism)
+	var/mob/living/carbon/human/H = L
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
+	if(L.health < H.health_threshold_crit && volume > 14) //If you are in crit, and someone injects at least 15u into you at once, you will heal 30% of your physical damage instantly.
+		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
+		L.adjustBruteLoss(-L.getBruteLoss() * 0.30)
+		L.adjustFireLoss(-L.getFireLoss() * 0.30)
+		L.jitter(5)
+		for(var/datum/internal_organ/I AS in H.internal_organs)
+			if(I.damage)
+				if(I.damage < 29)
+					return
+				I.heal_organ_damage((I.damage-29) *effect_str)
+		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
+
 /datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
 	if(metabolism & IS_VOX)
@@ -46,7 +62,7 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
-	purge_list = list(/datum/reagent/toxin)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/zombium)
 	purge_rate = 5
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -58,7 +74,6 @@
 	return ..()
 
 /datum/reagent/medicine/ryetalyn/overdose_process(mob/living/L, metabolism)
-	L.Confused(40 SECONDS)
 	L.apply_damage(effect_str, TOX)
 
 /datum/reagent/medicine/ryetalyn/overdose_crit_process(mob/living/L, metabolism)
@@ -125,12 +140,17 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/oxycodone/on_mob_add(mob/living/L, metabolism)
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
 	L.adjustStaminaLoss(-20*effect_str)
 	to_chat(L, span_userdanger("You feel a burst of energy revitalize you all of a sudden! You can do anything!"))
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
-	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	L.apply_damage(0.2*effect_str, TOX)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.setShock_Stage(min(C.shock_stage - 1*effect_str, 150)) //you can still paincrit if under ludicrous situations, but you can't go into deep shock
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
@@ -140,7 +160,7 @@
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)
-	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
@@ -149,7 +169,7 @@
 
 /datum/reagent/medicine/oxycodone/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("The room spins slightly as you start to come down off your painkillers!"))
-	addtimer(CALLBACK(L, /mob/living.proc/Paralyze, 3), 10 SECONDS)
+	TIMER_COOLDOWN_START(L, name, 60 SECONDS)
 
 /datum/reagent/medicine/hydrocodone
 	name = "Hydrocodone"
@@ -161,7 +181,10 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/hydrocodone/on_mob_life(mob/living/L, metabolism)
-	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.setShock_Stage(min(C.shock_stage - 1*effect_str, 150)) //you can still paincrit if under ludicrous situations, but you can't go into deep shock
 	return ..()
 
 /datum/reagent/medicine/hydrocodone/overdose_process(mob/living/L, metabolism)
@@ -209,7 +232,7 @@
 	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-2.5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
 	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0, 0.5*effect_str)
@@ -310,7 +333,7 @@
 	L.adjustToxLoss(-0.4*effect_str)
 	L.heal_limb_damage(0.8*effect_str, 0.8*effect_str)
 	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	return ..()
@@ -327,7 +350,7 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/research/stimulon, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -399,6 +422,8 @@
 	purge_rate = 5
 
 /datum/reagent/medicine/synaptizine/on_mob_add(mob/living/L, metabolism)
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
 	L.adjustStaminaLoss(-30*effect_str)
 	to_chat(L, span_userdanger("You feel a burst of energy as the stimulants course through you! Time to go!"))
 
@@ -427,7 +452,7 @@
 
 /datum/reagent/medicine/synaptizine/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("The room spins as you start to come down off your stimulants!"))
-	addtimer(CALLBACK(L, /mob/living.proc/Paralyze, 15), 10 SECONDS)
+	TIMER_COOLDOWN_START(L, name, 60 SECONDS)
 
 /datum/reagent/medicine/neuraline //injected by neurostimulator implant and medic-only injector
 	name = "Neuraline"
@@ -438,8 +463,24 @@
 	overdose_crit_threshold = 6
 	scannable = FALSE
 
+/datum/reagent/medicine/neuraline/on_mob_add(mob/living/L, metabolism)
+	var/mob/living/carbon/human/H = L
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
+	if(L.health < H.health_threshold_crit && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
+		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
+		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
+		L.adjustFireLoss(-L.getFireLoss() * 0.20)
+		L.jitter(10)
+		for(var/datum/internal_organ/I AS in H.internal_organs)
+			if(I.damage)
+				if(I.damage < 29)
+					return
+				I.heal_organ_damage((I.damage-29) *effect_str)
+		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
+
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
-	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
+	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
 	L.adjustDrowsyness(-5)
 	L.dizzy(-5)
 	L.stuttering = max(L.stuttering-5, 0)
@@ -455,6 +496,9 @@
 	L.adjustStaminaLoss(-30*effect_str)
 	L.heal_limb_damage(7.5*effect_str, 7.5*effect_str)
 	L.adjustToxLoss(3.75*effect_str)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.setShock_Stage(min(C.shock_stage - volume*effect_str, 150)) //will pull a target out of deep paincrit instantly, if he's in it
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
@@ -508,14 +552,33 @@
 	description = "An emergency generic treatment with extreme side effects."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 5
-	overdose_threshold = REAGENTS_OVERDOSE/2   //so it makes the OD threshold effectively 15 so two pills  is too much but one is fine
+	overdose_threshold = REAGENTS_OVERDOSE/2   //so it makes the OD threshold effectively 15 so two pills is too much but one is fine
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2.5 //and this makes the Critical OD 20
 	scannable = TRUE
+
+/datum/reagent/medicine/russian_red/on_mob_add(mob/living/L, metabolism)
+	var/mob/living/carbon/human/H = L
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
+	if(L.health < H.health_threshold_crit && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
+		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
+		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
+		L.adjustFireLoss(-L.getFireLoss() * 0.20)
+		L.jitter(10)
+		for(var/datum/internal_organ/I AS in H.internal_organs)
+			if(I.damage)
+				if(I.damage < 29)
+					return
+				I.heal_organ_damage((I.damage-29) *effect_str)
+		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(10*effect_str, 10*effect_str)
 	L.adjustToxLoss(-2.5*effect_str)
 	L.adjustCloneLoss(effect_str)
+	if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		C.setShock_Stage(min(C.shock_stage - 5*effect_str, 150)) //removes a target from deep paincrit instantly
 	return ..()
 
 /datum/reagent/medicine/russian_red/overdose_process(mob/living/L, metabolism)
@@ -605,6 +668,14 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	scannable = TRUE
 
+/datum/reagent/medicine/peridaxon_plus/on_mob_add(mob/living/L, metabolism)
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
+	L.adjustCloneLoss(5*effect_str)
+
+/datum/reagent/medicine/peridaxon_plus/on_mob_delete(mob/living/L, metabolism)
+	TIMER_COOLDOWN_START(L, name, 30 SECONDS)
+
 /datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	L.adjustStaminaLoss(10*effect_str)
@@ -635,7 +706,7 @@
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(effect_str, 0)
 	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0.5*effect_str, 0)
@@ -714,6 +785,14 @@
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 2.5
 
+/datum/reagent/medicine/quickclotplus/on_mob_add(mob/living/L, metabolism)
+	if(TIMER_COOLDOWN_CHECK(L, name))
+		return
+	L.adjustCloneLoss(5*effect_str)
+
+/datum/reagent/medicine/quickclotplus/on_mob_delete(mob/living/L, metabolism)
+	TIMER_COOLDOWN_START(L, name, 30 SECONDS)
+
 /datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
 	for(var/datum/limb/X in H.limbs)
@@ -724,7 +803,7 @@
 				if (X.update_icon())
 					X.owner.UpdateDamageIcon(1)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
-	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL
+	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY
 	L.adjustStaminaLoss(15*effect_str)
 	return ..()
 
@@ -880,7 +959,6 @@
 		L.Stun(20)
 	if(prob(20))
 		L.hallucination += 15
-		L.AdjustConfused(60)
 
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/L, metabolism)
@@ -891,7 +969,6 @@
 		L.Stun(30)
 	if(prob(20))
 		L.hallucination += 20
-		L.AdjustConfused(10 SECONDS)
 		L.dizzy(60)
 	L.adjustToxLoss(0.1*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
@@ -905,7 +982,6 @@
 		L.do_jitter_animation(200)
 	if(prob(20))
 		L.hallucination += 30
-		L.AdjustConfused(14 SECONDS)
 		L.dizzy(80)
 	L.adjustToxLoss(0.3*effect_str)
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
@@ -1105,7 +1181,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
 	custom_metabolism = REAGENTS_METABOLISM * 5
-	purge_list = list(/datum/reagent/medicine, /datum/reagent/toxin)
+	purge_list = list(/datum/reagent/medicine, /datum/reagent/toxin, /datum/reagent/zombium)
 	purge_rate = 5
 	scannable = TRUE
 	taste_description = "punishment"
@@ -1127,7 +1203,7 @@
 	L.apply_damages(2*effect_str, 2*effect_str)
 	if(prob(50)) //violent vomiting
 		L.vomit()
-	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.
+	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 4 //Unlimited agony.
 
 
 /datum/reagent/medicine/roulettium
@@ -1138,7 +1214,7 @@
 	taste_description = "Poor life choices"
 
 /datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)
-	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
+	L.reagent_shock_modifier += PAIN_REDUCTION_VERY_HEAVY * 4
 	L.adjustToxLoss(-30*effect_str)
 	L.heal_limb_damage(30*effect_str, 30*effect_str)
 	L.adjustStaminaLoss(-30*effect_str)
@@ -1183,3 +1259,159 @@
 			continue
 		limb_to_unfix.fracture()
 		break
+
+
+/datum/reagent/medicine/research
+	name = "Research precursor" //nothing with this subtype should be added to vendors
+	taste_description = "bitterness"
+	reagent_state = LIQUID
+	taste_description = "bitterness"
+
+
+/datum/reagent/medicine/research/quietus
+	name = "Quietus"
+	description = "This is a latent poison, designed to quickly and painlessly kill you in the event that you become unable to fight. Never washes out on it's own, must be purged."
+	color = "#19C832"
+	custom_metabolism = 0
+	scannable = TRUE
+	taste_description = "Victory"
+
+/datum/reagent/medicine/research/quietus/on_mob_add(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("You feel like this shot will negatively affect your revival prospects."))
+
+/datum/reagent/medicine/research/quietus/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 59)
+			L.adjustStaminaLoss(1*effect_str)
+			if(prob(5))
+				to_chat(L, span_notice("You feel weakened by a poison."))
+		if(60)
+			to_chat(L, span_warning("You feel the poison settle into your body."))
+		if(61 to INFINITY)
+			if(L.stat == UNCONSCIOUS)
+				L.adjustOxyLoss(25*effect_str)
+				to_chat(L, span_userdanger("You fade into blackness as your lungs seize up!"))
+			if(prob(5))
+				L.adjustStaminaLoss(1*effect_str)
+	return ..()
+
+/datum/reagent/medicine/research/quietus/on_mob_delete(mob/living/L, metabolism)
+	to_chat(L, span_danger("You convulse as your body violently rejects the suicide drug!"))
+	L.adjustToxLoss(30*effect_str)
+
+
+
+/datum/reagent/medicine/research/somolent
+	name = "Somolent"
+	description = "This is a highly potent regenerative drug, designed to heal critically injured personnel. Only functions on unconscious or sleeping people."
+	color = "#19C832"
+	scannable = TRUE
+	overdose_threshold = REAGENTS_OVERDOSE
+	taste_description = "naptime"
+
+/datum/reagent/medicine/research/somolent/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 24)
+			if(L.stat == UNCONSCIOUS)
+				L.heal_limb_damage(0.4*current_cycle*effect_str, 0.4*current_cycle*effect_str)
+			if(prob(20) && L.stat != UNCONSCIOUS)
+				to_chat(L, span_notice("You feel as though you should be sleeping for the medicine to work."))
+		if(25)
+			to_chat(L, span_notice("You feel very sleepy all of a sudden."))
+		if(26 to INFINITY)
+			if(L.stat == UNCONSCIOUS)
+				L.heal_limb_damage(10*effect_str, 10*effect_str)
+				L.adjustCloneLoss(-0.2*effect_str-(0.02*(L.maxHealth - L.health)))
+				holder.remove_reagent(/datum/reagent/medicine/research/somolent, 0.6)
+			if(prob(50) && L.stat != UNCONSCIOUS)
+				L.adjustStaminaLoss((current_cycle*0.75 - 14)*effect_str)
+	return ..()
+
+/datum/reagent/medicine/research/somolent/overdose_process(mob/living/L, metabolism)
+	holder.remove_reagent(/datum/reagent/medicine/research/somolent, 1)
+
+/datum/reagent/medicine/research/medicalnanites
+	name = "Medical nanites"
+	description = "These are a batch of construction nanites altered for in-vivo replication. They can heal wounds using the iron present in the bloodstream. Medical care is recommended during injection."
+	color = "#19C832"
+	custom_metabolism = 0
+	scannable = TRUE
+	taste_description = "metal, followed by mild burning"
+	overdose_threshold = REAGENTS_OVERDOSE * 1.2 //slight buffer to keep you safe
+
+/datum/reagent/medicine/research/medicalnanites/on_mob_add(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("You feel like you should stay near medical help until this shot settles in."))
+
+/datum/reagent/medicine/research/medicalnanites/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 150)
+			L.take_limb_damage(0.015*current_cycle*effect_str, 0.015*current_cycle*effect_str)
+			L.adjustToxLoss(1*effect_str)
+			L.adjustStaminaLoss((1.5)*effect_str)
+			L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.20)
+			if(prob(5))
+				to_chat(L, span_notice("You feel intense itching!"))
+		if(151)
+			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
+		if(152 to INFINITY)
+			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
+				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
+				L.blood_volume -= 2
+
+			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
+				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
+
+			if (volume >5 && L.getBruteLoss()) //Unhealed IB wasting nanites is an INTENTIONAL feature.
+				L.heal_limb_damage(2*effect_str, 0)
+				L.adjustToxLoss(0.1*effect_str)
+				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
+				if(prob(40))
+					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
+
+			if (volume > 5 && L.getFireLoss())
+				L.heal_limb_damage(0, 2*effect_str)
+				L.adjustToxLoss(0.1*effect_str)
+				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
+				if(prob(40))
+					to_chat(L, span_notice("Your burns begin to slough off, revealing healthy tissue!"))
+	return ..()
+
+/datum/reagent/medicine/research/medicalnanites/overdose_process(mob/living/L, metabolism)
+	L.adjustToxLoss(effect_str) //softcap VS injecting massive amounts of medical nanites for the healing factor with no downsides. Still doable if you're clever about it.
+	holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.25)
+
+/datum/reagent/medicine/research/medicalnanites/on_mob_delete(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("Your nanites have been fully purged! They no longer affect you."))
+
+/datum/reagent/medicine/research/stimulon
+	name = "Stimulon"
+	description = "A chemical designed to boost running by driving your body beyond it's normal limits. Can have unpredictable side effects, caution recommended."
+	color = "#19C832"
+	custom_metabolism = 0
+	scannable = TRUE
+
+/datum/reagent/medicine/research/stimulon/on_mob_add(mob/living/L, metabolism)
+	to_chat(L, span_userdanger("You feel jittery and fast! Time to MOVE!"))
+	. = ..()
+	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
+	L.adjustCloneLoss(10*effect_str)
+
+/datum/reagent/medicine/research/stimulon/on_mob_delete(mob/living/L, metabolism)
+	L.remove_movespeed_modifier(type)
+	L.Paralyze(20)
+	to_chat(L, span_warning("You reel as the stimulant departs your bloodstream!"))
+
+/datum/reagent/medicine/research/stimulon/on_mob_life(mob/living/L, metabolism)
+	L.adjustStaminaLoss(1*effect_str)
+	L.take_limb_damage(rand(0.5*effect_str, 4*effect_str), 0)
+	L.adjustCloneLoss(rand (0, 5) * effect_str * current_cycle * 0.02)
+	if(prob(20))
+		L.emote(pick("twitch","blink_r","shiver"))
+	if(volume < 100) //THERE IS NO "MINIMUM SAFE DOSE" MUAHAHAHA!
+		L.reagents.add_reagent(/datum/reagent/medicine/research/stimulon, 0.5)
+	switch(current_cycle)
+		if(20)//avg cloneloss of 1/tick and 10 additional units made
+			to_chat(L, span_userdanger("You start to ache and cramp as your muscles wear out. You should probably remove this drug soon."))
+		if (21 to INFINITY)
+			L.jitter(5)
+	return ..()

@@ -36,9 +36,6 @@
 
 	var/overeatduration = 0		// How long this guy is overeating
 
-	var/afk_timer_id
-	var/afk_status = MOB_DISCONNECTED
-
 	// halucination vars
 	var/hal_screwyhud = SCREWYHUD_NONE
 	var/next_hallucination = 0

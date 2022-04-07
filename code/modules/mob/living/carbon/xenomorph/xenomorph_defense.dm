@@ -15,7 +15,7 @@ Contains most of the procs that are called when a xeno is attacked by something
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
 		adjustFireLoss(12 * (protection + 0.6))
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_PLASMALOSS))
-		use_plasma(200)
+		use_plasma(0.2 * xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
 		apply_status_effect(/datum/status_effect/noplasmaregen, 5 SECONDS)
 		if(prob(25))
 			to_chat(src, span_xenowarning("We feel our plasma reserves being drained as we pass through the smoke."))

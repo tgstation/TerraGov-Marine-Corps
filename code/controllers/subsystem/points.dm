@@ -175,6 +175,8 @@ SUBSYSTEM_DEF(points)
 	var/list/ckey_shopping_cart = request_shopping_cart[user.ckey]
 	if(!length(ckey_shopping_cart))
 		return
+	if(length(ckey_shopping_cart) > 20)
+		return
 	if(NON_ASCII_CHECK(reason))
 		return
 	if(length(reason) > MAX_LENGTH_REQ_REASON)

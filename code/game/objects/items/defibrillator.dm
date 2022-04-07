@@ -56,16 +56,14 @@
 		icon_state += "_empty"
 
 
-/obj/item/defibrillator/examine(mob/living/carbon/human/user)
+/obj/item/defibrillator/examine(mob/user)
 	. = ..()
-	maybe_message_recharge_hint(user)
+	. += maybe_message_recharge_hint()
 
 
 /**
  * Message user with a hint to recharge defibrillator
  * and how to do it if the battery is low.
- * Arguments:
- * user: user to message
 */
 /obj/item/defibrillator/proc/maybe_message_recharge_hint(mob/living/carbon/human/user)
 	if(!dcell)
@@ -79,7 +77,7 @@
 
 	if(!message)
 		return
-	to_chat(user, span_notice("[message] You can click-drag defibrillator on corpsman backpack to recharge it."))
+	return span_notice("[message] You can click-drag defibrillator on corpsman backpack to recharge it.")
 
 
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
@@ -173,27 +171,27 @@
 		return
 	if(dcell.charge <= charge_cost)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted. Cannot analyze nor administer shock."))
-		maybe_message_recharge_hint(user)
+		to_chat(user, maybe_message_recharge_hint())
 		return
 	if(H.stat != DEAD)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Vital signs detected. Aborting."))
 		return
 
-	if(!H.has_working_organs())
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's general condition does not allow reviving."))
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead. No remedy possible."))
+		return
+
+	if(!H.has_working_organs() && !isrobot(H))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
 	if((H.wear_suit && H.wear_suit.flags_atom & CONDUCT))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
 		return
 
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead."))
-		return
-
 	var/mob/dead/observer/G = H.get_ghost()
 	if(istype(G))
-		notify_ghost(G, "<font size=3>Someone is trying to revive your body. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/adminhelp.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = H, action = NOTIFY_JUMP)
+		notify_ghost(G, "<font size=3>Someone is trying to revive your body. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/gladosmarinerevive.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = H, action = NOTIFY_JUMP)
 	else if(!H.client)
 		//We couldn't find a suitable ghost, this means the person is not returning
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR."))
@@ -223,15 +221,15 @@
 		return
 
 	var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
-	if(!issynth(H) && heart && prob(25))
+	if(!issynth(H) && !isrobot(H) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
-	if(!H.has_working_organs())
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving."))
+	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much. No remedy possible."))
 		return
 
-	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much."))
+	if(!H.has_working_organs() && !isrobot(H))
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
 	if(H.species.species_flags & DETACHABLE_HEAD)	//But if their head's missing, they're still not coming back

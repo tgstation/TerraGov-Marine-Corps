@@ -13,17 +13,27 @@
 /obj/machinery/line_nexter/Initialize()
 	. = ..()
 	last_use = world.time
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = .proc/on_try_exit
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/machinery/line_nexter/ex_act(severity)
 	return
 
-/obj/machinery/line_nexter/CheckExit(atom/movable/O, direction)
-	. = ..()
-	if(iscarbon(O))
-		var/mob/living/carbon/C = O
-		if(C.pulledby)
-			if(!C.incapacitated() && (direction & WEST))
-				return FALSE
+/obj/machinery/line_nexter/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
+	SIGNAL_HANDLER
+	if(!iscarbon(O))
+		return NONE
+	var/mob/living/carbon/C = O
+	if(C.pulledby)
+		if(!C.incapacitated() && (direction & WEST))
+			knownblockers += C
+			return COMPONENT_ATOM_BLOCK_EXIT
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
+		return NONE
+	knownblockers += C
+	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/machinery/line_nexter/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

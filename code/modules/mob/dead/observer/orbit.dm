@@ -63,7 +63,7 @@
 
 	var/is_admin = check_other_rights(user.client, R_ADMIN, FALSE)
 	var/list/pois = getpois(skip_mindless = !is_admin, specify_dead_role = FALSE)
-	for (var/name in pois)
+	for(var/name in pois)
 		var/list/serialized = list()
 		serialized["name"] = name
 
@@ -72,23 +72,25 @@
 		serialized["ref"] = REF(poi)
 
 		var/mob/M = poi
-		if (!istype(M))
+		if(!istype(M))
 			misc += list(serialized)
 			continue
 
 		var/number_of_orbiters = length(M.get_all_orbiters())
-		if (number_of_orbiters)
+		if(number_of_orbiters)
 			serialized["orbiters"] = number_of_orbiters
 
-		if (isobserver(M))
+		if(isobserver(M))
 			ghosts += list(serialized)
-		else if (M.stat == DEAD)
+		else if(M.stat == DEAD)
 			dead += list(serialized)
-		else if (M.mind == null)
+		else if(M.mind == null)
 			npcs += list(serialized)
-		else if (isxeno(poi))
+		else if(isxeno(M))
 			xenos += list(serialized)
-		else if(ishuman(poi))
+		else if(isAI(M))
+			humans += list(serialized)
+		else if(ishuman(M))
 			var/mob/living/carbon/human/H = poi
 			if(ismarinejob(H.job))
 				marines += list(serialized)

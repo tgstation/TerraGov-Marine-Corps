@@ -93,3 +93,26 @@
 	charge = 100
 	maxcharge = 300
 	minor_fault = 1
+
+/obj/item/cell/rtg/small
+	name = "recharger cell"
+	desc = "This is a miniature radioisotope generator that can fit into plasma cutters or APC's, but not laser-based weapory. The needed shielding lowers the maximum capacity significantly."
+	icon = 'icons/obj/items/stock_parts.dmi'
+	icon_state = "capacitor"
+	item_state = "capacitor"
+	maxcharge = 2000
+	self_recharge = TRUE
+	charge_amount = 25
+	charge_delay = 2 SECONDS //One hit on a resin thingy every 8 seconds, or one actual wall every 80 seconds.
+	
+/obj/item/cell/rtg/large
+	name = "large recharger cell"
+	desc = "This is a radioisotope generator that can fit into plasma cutters or APC's, but not laser-based weapory. It is too hot to be easily stored and cannot be handcharged."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "trashmelt"
+	item_state = "trashmelt"
+	w_class = WEIGHT_CLASS_HUGE
+	maxcharge = 5000
+	self_recharge = TRUE
+	charge_amount = 50
+	charge_delay = 2 SECONDS //One hit on a resin thingy every 4 seconds, or one actual wall every 40 seconds.

@@ -33,5 +33,5 @@
 	return I
 
 /mob/living/carbon/xenomorph/hunter/gib_animation()
-	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, "Hunter Gibbed", icon)
+	new /obj/effect/overlay/temp/gib_animation/xeno(loc, 0, src, "Hunter Gibbed", icon)
 

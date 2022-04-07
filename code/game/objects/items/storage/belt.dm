@@ -63,6 +63,7 @@
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
 		/obj/item/tool/taperoll/engineering,
+		/obj/item/tool/solderingtool,
 	)
 
 
@@ -124,6 +125,9 @@
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/roller,
 	)
+	storage_type_limits = list(
+		/obj/item/ammo_magazine = 3,
+	)
 
 /obj/item/storage/belt/medical/Initialize()
 	. = ..()
@@ -133,12 +137,12 @@
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/dexalin(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/healthanalyzer(src)
 
@@ -165,22 +169,22 @@
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
@@ -209,12 +213,12 @@
 
 /obj/item/storage/belt/medicLifesaver/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
@@ -222,14 +226,55 @@
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+
+/obj/item/storage/belt/hypospraybelt
+	name = "\improper M276 pattern hypospray belt"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent_containers."
+	icon_state = "hypospraybelt"
+	item_state = "medicbag"
+	storage_slots = 18
+	max_storage_space = 42
+	max_w_class = 2
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/hypospray/advanced,
+		/obj/item/storage/bottlecase,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline,
+		/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin,
+		/obj/item/reagent_containers/hypospray/autoinjector/hypervene,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot,
+	)
+
+/obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
+	. = ..()
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/reagent_containers/hypospray/advanced/bicaridine(src)
+	new /obj/item/storage/bottlecase/bica(src)
+	new /obj/item/reagent_containers/hypospray/advanced/kelotane(src)
+	new /obj/item/storage/bottlecase/kelo(src)
+	new /obj/item/reagent_containers/hypospray/advanced/dylovene(src)
+	new /obj/item/storage/bottlecase/dylo(src)
+	new /obj/item/reagent_containers/hypospray/advanced/tramadol(src)
+	new /obj/item/storage/bottlecase/tram(src)
+	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
+	new /obj/item/storage/bottlecase/tricord(src)
+	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
 
 /obj/item/storage/belt/combatLifesaver/upp
 	name ="\improper Type 41 pattern lifesaver bag"
@@ -312,9 +357,9 @@
 	icon_state = "marinebelt"
 	item_state = "marinebelt"
 	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = 5
+	storage_slots = 6
 	max_w_class = 3
-	max_storage_space = 15
+	max_storage_space = 18
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
@@ -438,8 +483,9 @@
 
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
-
-		if(M.flags_magazine & AMMUNITION_REFILLABLE)
+		if(CHECK_BITFIELD(M.flags_magazine, MAGAZINE_HANDFUL))
+			return ..()
+		if(M.flags_magazine & MAGAZINE_REFILLABLE)
 			if(!M.current_rounds)
 				to_chat(user, span_warning("[M] is empty."))
 				return
@@ -529,29 +575,20 @@
 	icon_state="knifebelt"
 	item_state="knifebelt"
 	w_class = WEIGHT_CLASS_NORMAL
-	storage_slots = 15
+	storage_slots = 6
 	max_w_class = 1
-	max_storage_space = 15
+	max_storage_space = 6
 	draw_mode = TRUE
-	can_hold = list(/obj/item/weapon/throwing_knife)
+	can_hold = list(/obj/item/stack/throwing_knife)
 
 /obj/item/storage/belt/knifepouch/Initialize()
 	. = ..()
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
-	new /obj/item/weapon/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
+	new /obj/item/stack/throwing_knife(src)
 
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
@@ -571,10 +608,10 @@
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
 
 /obj/item/storage/belt/grenade/b17
 	name = "\improper M276 pattern M40 HEDP rig Mk II"
@@ -594,14 +631,14 @@
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
-	new /obj/item/explosive/grenade/frag(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
+	new /obj/item/explosive/grenade(src)
 
 /obj/item/storage/belt/sparepouch
 	name= "\improper G8 general utility pouch"
@@ -609,9 +646,6 @@
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
-	storage_type_limits = list(
-		/obj/item/weapon/gun = 2,
-	)
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
 
@@ -629,7 +663,6 @@
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type_limits = list(
 		/obj/item/weapon/gun = 1,
-		/obj/item/cell/lasgun/lasrifle/marine = 2,
 	)
 	storage_slots = 7
 	max_storage_space = 15
@@ -643,7 +676,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/cell/lasgun/lasrifle/marine,
+		/obj/item/cell/lasgun/lasrifle,
 	)
 
 /obj/item/storage/belt/gun/Destroy()
@@ -700,18 +733,18 @@
 		return ..()
 	var/obj/item/weapon/gun/pistol/gun = I
 	for(var/obj/item/ammo_magazine/mag in contents)
-		if(!istype(gun, mag.gun_type))
+		if(!(mag.type in gun.allowed_ammo_types))
 			continue
-		if(user.l_hand && user.r_hand || gun.current_mag)
+		if(user.l_hand && user.r_hand || length(gun.chamber_items))
 			gun.tactical_reload(mag, user)
 		else
-			gun.reload(user, mag)
+			gun.reload(mag, user)
 		orient2hud()
 		return
 
 /obj/item/storage/belt/gun/pistol/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, span_notice("To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol."))
+	. += span_notice("To perform a reload with the amunition inside, disable right click and right click on the belt with an empty pistol.")
 
 /obj/item/storage/belt/gun/pistol/m4a3
 	name = "\improper M4A3 holster rig"
@@ -720,7 +753,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/cell/lasgun/lasrifle/marine,
+		/obj/item/cell/lasgun/lasrifle,
 	)
 
 /obj/item/storage/belt/gun/pistol/m4a3/full/Initialize()
@@ -825,7 +858,7 @@
 
 /obj/item/storage/belt/gun/m44/full/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/m44(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/single_action/m44(src)
 	new /obj/item/ammo_magazine/revolver/heavy(src)
 	new /obj/item/ammo_magazine/revolver/marksman(src)
 	new /obj/item/ammo_magazine/revolver(src)
@@ -938,5 +971,5 @@
 /obj/item/storage/belt/gun/ts34/full/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
-	new /obj/item/ammo_magazine/shotgun(src)
+	new /obj/item/ammo_magazine/shotgun/buckshot(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)

@@ -10,12 +10,11 @@
 
 	if(user != src && !check_shields(COMBAT_TOUCH_ATTACK, H.melee_damage, "melee"))
 		visible_message(span_danger("[user] attempted to touch [src]!"), null, null, 5)
-		return 0
+		return FALSE
 
 	H.changeNext_move(7)
 	switch(H.a_intent)
 		if(INTENT_HELP)
-
 			if(on_fire && H != src)
 				fire_stacks = max(fire_stacks - 1, 0)
 				playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
@@ -25,14 +24,18 @@
 					H.visible_message(span_danger("[H] has successfully extinguished the fire on [src]!"), \
 						span_notice("You extinguished the fire on [src]."), null, 5)
 					ExtinguishMob()
-				return 1
+				return TRUE
 
 			if(health >= get_crit_threshold())
 				help_shake_act(H)
-				return 1
+				return TRUE
 
-			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ))
+			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 				to_chat(H, span_boldnotice("Can't help this one. Body has gone cold."))
+				return FALSE
+
+			if(species?.species_flags & ROBOTIC_LIMBS)
+				to_chat(H, span_boldnotice("You cant help this one, [p_they()] have no lungs!"))
 				return FALSE
 
 			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
@@ -60,7 +63,7 @@
 					span_boldnotice("You feel a breath of fresh air enter your lungs. It feels good."),
 					vision_distance = 3)
 				to_chat(H, span_warning("Repeat at least every 7 seconds."))
-			else if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE ) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_CPR))
+			else if(!HAS_TRAIT(src, TRAIT_UNDEFIBBABLE) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_CPR))
 				TIMER_COOLDOWN_START(src, COOLDOWN_CPR, 7 SECONDS)
 				dead_ticks -= 5
 				visible_message(span_warning(" [H] performs CPR on [src]!"), vision_distance = 3)
@@ -72,11 +75,11 @@
 
 		if(INTENT_GRAB)
 			if(H == src || anchored)
-				return 0
+				return FALSE
 
 			H.start_pulling(src)
 
-			return 1
+			return TRUE
 
 		if(INTENT_HARM)
 			// See if they can attack, and which attacks to use.

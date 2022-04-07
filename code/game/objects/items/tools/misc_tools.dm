@@ -62,7 +62,7 @@
 
 /obj/item/tool/hand_labeler/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>It has [labels_left] out of [initial(labels_left)] labels left.")
+	. += span_notice("It has [labels_left] out of [initial(labels_left)] labels left.")
 
 
 
@@ -150,7 +150,7 @@
 
 /obj/item/tool/pen/paralysis/Initialize()
 	. = ..()
-	create_reagents(50, OPENCONTAINER, list(/datum/reagent/toxin/zombiepowder = 10, /datum/reagent/cryptobiolin = 15))
+	create_reagents(50, OPENCONTAINER, list(/datum/reagent/toxin/huskpowder = 10, /datum/reagent/cryptobiolin = 15))
 
 
 

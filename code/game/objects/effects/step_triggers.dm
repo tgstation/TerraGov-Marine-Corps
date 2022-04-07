@@ -2,20 +2,27 @@
 
 /obj/effect/step_trigger
 	var/affect_ghosts = 0
-	var/stopper = 1 // stops throwers
+	var/stopper = 1 // stops throwers //todo does nothing due to connectloc
 	invisibility = INVISIBILITY_MAXIMUM // nope cant see this shit
 	anchored = TRUE
+
+/obj/effect/step_trigger/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/effect/step_trigger/proc/Trigger(atom/movable/A)
 	return 0
 
-/obj/effect/step_trigger/Crossed(atom/movable/H)
-	. = ..()
+/obj/effect/step_trigger/proc/on_cross(datum/source, atom/movable/H, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(!H)
 		return
 	if(isobserver(H) && !affect_ghosts)
 		return
-	Trigger(H)
+	INVOKE_ASYNC(src, .proc/Trigger, H)
 
 
 

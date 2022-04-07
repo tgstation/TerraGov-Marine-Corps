@@ -10,6 +10,11 @@
 /datum/proc/can_vv_get(var_name)
 	return TRUE
 
+/client/can_vv_get(var_name)
+	if(var_name != "address" && var_name != "computer_id" || check_rights(R_DEBUG))
+		return TRUE
+	return FALSE
+
 
 /datum/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
 	if(var_name == NAMEOF(src, vars))
@@ -635,7 +640,7 @@
 
 
 	else if(href_list["delete"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/datum/D = locate(href_list["delete"])
@@ -683,7 +688,7 @@
 
 
 	if(href_list["rename"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
@@ -705,7 +710,7 @@
 
 
 	else if(href_list["varnameedit"] && href_list["datumedit"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/datum/D = locate(href_list["datumedit"])
@@ -731,7 +736,7 @@
 
 
 	else if(href_list["varnamechange"] && href_list["datumchange"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/D = locate(href_list["datumchange"])
@@ -742,7 +747,7 @@
 
 
 	else if(href_list["varnamemass"] && href_list["datummass"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_VAREDIT))
 			return
 
 		var/datum/D = locate(href_list["datummass"])
@@ -1192,7 +1197,7 @@
 
 
 	else if(href_list["playerpanel"])
-		if(!check_rights(R_DEBUG))
+		if(!check_rights(R_BAN))
 			return
 
 		var/mob/M = locate(href_list["playerpanel"])

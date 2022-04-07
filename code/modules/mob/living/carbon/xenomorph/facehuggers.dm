@@ -45,6 +45,8 @@
 	var/lifetimer
 	///The timer tracking when we next jump
 	var/jumptimer
+	///The timer to go active
+	var/activetimer
 	///Time to become active after impacting on a direct thrown hit
 	var/impact_time = 1.5 SECONDS
 	///Time to become active again
@@ -70,6 +72,12 @@
 	if(input_source)
 		facehugger_register_source(input_source)
 
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+		COMSIG_ATOM_EXITED = .proc/on_exited,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 ///Registers the source of our facehugger for the purpose of anti-shuffle mechanics
 /obj/item/clothing/mask/facehugger/proc/facehugger_register_source(mob/living/carbon/xenomorph/S)
 	if(source) //If we have an existing source, unregister
@@ -85,11 +93,7 @@
 	source = null
 
 /obj/item/clothing/mask/facehugger/Destroy()
-	deltimer(jumptimer)
-	deltimer(lifetimer)
 	remove_danger_overlay() //Remove the danger overlay
-	lifetimer = null
-	jumptimer = null
 	if(source)
 		clear_hugger_source()
 	return ..()
@@ -128,7 +132,7 @@
 		var/mob/living/carbon/xenomorph/X = user
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			deltimer(jumptimer)
-			jumptimer = null
+			deltimer(activetimer)
 			remove_danger_overlay() //Remove the exclamation overlay as we pick it up
 			facehugger_register_source(X)
 			return ..() // These can pick up huggers.
@@ -173,27 +177,25 @@
 	. = ..()
 	switch(stat)
 		if(CONSCIOUS)
-			to_chat(user, span_warning("[src] seems to be active."))
+			. += span_warning("[src] seems to be active.")
 		if(UNCONSCIOUS)
-			to_chat(user, span_warning("[src] seems to be asleep."))
+			. += span_warning("[src] seems to be asleep.")
 		if(DEAD)
-			to_chat(user, span_danger("[src] is not moving."))
+			. += span_danger("[src] is not moving.")
 	if(initial(sterile))
-		to_chat(user, span_warning("It looks like the proboscis has been removed."))
+		. += span_warning("It looks like the proboscis has been removed.")
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
 	. = ..()
 	// Whena  xeno removes the hugger from storage we don't want to start the active timer until they drop or throw it
 	if(isxeno(user)) //Set the source mob
 		facehugger_register_source(user)
-	if(isxenocarrier(user))
-		go_active(TRUE)
 
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
 	if(stat == DEAD)
 		return FALSE
 	deltimer(jumptimer) //Clear jump timers
-	jumptimer = null
+	deltimer(activetimer)
 	remove_danger_overlay() //Remove the danger overlay
 	if(stat == CONSCIOUS)
 		stat = UNCONSCIOUS
@@ -201,9 +203,8 @@
 	if(hybernate) //If we're hybernating we're going into stasis; we no longer have a death timer
 		stasis = TRUE
 		deltimer(lifetimer)
-		lifetimer = null
 	else if(!attached && !(stasis || no_activate))
-		addtimer(CALLBACK(src, .proc/go_active), activate_time)
+		activetimer = addtimer(CALLBACK(src, .proc/go_active), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 ///Resets the life timer for the facehugger
@@ -213,6 +214,8 @@
 	lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/item/clothing/mask/facehugger/proc/go_active(unhybernate = FALSE, reset_life_timer = FALSE)
+	if(QDELETED(src))
+		return
 	if(unhybernate)
 		stasis = FALSE
 
@@ -228,9 +231,10 @@
 	update_icon()
 	return TRUE
 
-
 ///Called before we leap
 /obj/item/clothing/mask/facehugger/proc/pre_leap(activation_time = jump_cooldown)
+	if(QDELETED(src))
+		return
 	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), activation_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 	if(activation_time >= 2 SECONDS) //If activation timer is equal to or greater than two seconds, we trigger the danger overlay at 1 second, otherwise we do so immediately.
 		addtimer(CALLBACK(src, .proc/apply_danger_overlay), 1 SECONDS)
@@ -306,21 +310,15 @@
 		return FALSE
 
 	if(isturf(loc))
-		var/obj/effect/alien/egg/E = locate() in loc
-		if(E?.status == EGG_BURST)
-			visible_message(span_xenowarning("[src] crawls back into [E]!"))
-			forceMove(E)
-			E.hugger = src
-			E.update_status(EGG_GROWN)
-			E.deploy_egg_triggers()
-			go_idle(TRUE)
+		var/obj/effect/alien/egg/hugger/E = locate() in loc
+		if(E?.insert_new_hugger(src))
 			return FALSE
 		var/obj/structure/xeno/trap/T = locate() in loc
 		if(T && !T.hugger)
 			visible_message(span_xenowarning("[src] crawls into [T]!"))
 			forceMove(T)
 			T.hugger = src
-			T.icon_state = "trap1"
+			T.set_trap_type(TRAP_HUGGER)
 			go_idle(TRUE)
 			return FALSE
 		kill_hugger()
@@ -336,14 +334,12 @@
 			return TRUE
 	return FALSE
 
-/obj/item/clothing/mask/facehugger/Crossed(atom/target)
-	. = ..()
+/obj/item/clothing/mask/facehugger/proc/on_cross(datum/source, atom/movable/target, oldloc, oldlocs)
 	if(stat == CONSCIOUS  && !issamexenohive(target))
 		HasProximity(target)
 
-/obj/item/clothing/mask/facehugger/Uncross(atom/movable/AM, direction)
-	. = ..()
-	if(!. || stat != CONSCIOUS) //Have to be conscious
+/obj/item/clothing/mask/facehugger/proc/on_exited(datum/source, atom/movable/AM, direction)
+	if(stat != CONSCIOUS) //Have to be conscious
 		return
 	if(!source && issamexenohive(AM)) //shuffle hug prevention, if we don't have a source and a xeno from the same hive steps off go_idle()
 		go_idle()
@@ -430,6 +426,9 @@
 	if(check_death && stat == DEAD)
 		return FALSE
 
+	if(faction == FACTION_XENO)
+		return FALSE
+
 	if(F.combat_hugger) //Combat huggers will attack anything else
 		return TRUE
 
@@ -437,7 +436,7 @@
 		return FALSE
 
 	if(!provoked)
-		if(species?.species_flags & IS_SYNTHETIC)
+		if(species?.species_flags & (IS_SYNTHETIC|ROBOTIC_LIMBS))
 			return FALSE
 
 	if(on_fire)
@@ -563,7 +562,7 @@
 		playsound(loc, hugsound, 25, 0)
 	if(!sterile && !issynth(user) && !isIPC(user))
 		user.disable_lights(sparks = TRUE, silent = TRUE)
-		var/stamina_dmg = user.maxHealth * 2 + user.max_stamina_buffer
+		var/stamina_dmg = user.maxHealth + user.max_stamina_buffer
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(2 SECONDS)
 	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
@@ -584,7 +583,7 @@
 	else
 		reset_attach_status(as_planned)
 		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
-		addtimer(CALLBACK(src, .proc/go_active), activate_time)
+		activetimer = addtimer(CALLBACK(src, .proc/go_active), activate_time)
 		update_icon()
 
 	if(as_planned)
@@ -604,8 +603,7 @@
 
 	deltimer(jumptimer)
 	deltimer(lifetimer)
-	lifetimer = null
-	jumptimer = null
+	deltimer(activetimer)
 	remove_danger_overlay() //Remove the danger overlay
 
 	update_icon()

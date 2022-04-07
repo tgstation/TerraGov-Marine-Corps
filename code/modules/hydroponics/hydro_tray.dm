@@ -7,8 +7,9 @@
 	density = TRUE
 	anchored = TRUE
 	volume = 100
-	throwpass = 1
+	coverage = 20
 	layer = BELOW_OBJ_LAYER
+	resistance_flags = XENO_DAMAGEABLE
 
 	var/draw_warnings = 1 //Set to 0 to stop it from drawing the alert lights.
 

@@ -6,15 +6,13 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi')
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
 	max_w_class = 3
 	storage_slots = null
 	max_storage_space = 24
 	access_delay = 1.5 SECONDS
-	storage_type_limits = list(
-		/obj/item/weapon/gun = 2,
-	)
 
 /obj/item/storage/backpack/should_access_delay(obj/item/item, mob/user, taking_out)
 	if(!taking_out) // Always allow items to be tossed in instantly
@@ -286,9 +284,9 @@
 /obj/item/storage/backpack/marine/corpsman/examine(mob/user)
 	. = ..()
 	if(cell)
-		to_chat(user, span_notice("Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		. += span_notice("Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>")
 	else
-		to_chat(user, span_warning("Its defibrillator recharge unit does not have a power cell installed!"))
+		. += span_warning("Its defibrillator recharge unit does not have a power cell installed!")
 
 /obj/item/storage/backpack/marine/corpsman/update_icon_state()
 	icon_state = icon_skin
@@ -482,12 +480,10 @@
 	if (M.smokecloaked)
 		M.smokecloaked = FALSE
 	else
-		var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-		SA.remove_from_hud(M)
-		var/datum/atom_hud/simple/basic = GLOB.huds[DATA_HUD_BASIC]
-		basic.remove_from_hud(M)
-		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
-		XI.remove_from_hud(M)
+		GLOB.huds[DATA_HUD_SECURITY_ADVANCED].remove_from_hud(M)
+		GLOB.huds[DATA_HUD_BASIC].remove_from_hud(M)
+		GLOB.huds[DATA_HUD_XENO_INFECTION].remove_from_hud(M)
+		GLOB.huds[DATA_HUD_XENO_HEART].remove_from_hud(M)
 
 	addtimer(CALLBACK(src, .proc/on_cloak), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
@@ -534,12 +530,10 @@
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
-	var/datum/atom_hud/security/SA = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
-	SA.add_to_hud(user)
-	var/datum/atom_hud/simple/basic = GLOB.huds[DATA_HUD_BASIC]
-	basic.add_to_hud(user)
-	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
-	XI.add_to_hud(user)
+	GLOB.huds[DATA_HUD_SECURITY_ADVANCED].add_to_hud(user)
+	GLOB.huds[DATA_HUD_BASIC].add_to_hud(user)
+	GLOB.huds[DATA_HUD_XENO_INFECTION].add_to_hud(user)
+	GLOB.huds[DATA_HUD_XENO_HEART].add_to_hud(user)
 
 	addtimer(CALLBACK(src, .proc/on_decloak), 1)
 
@@ -584,7 +578,7 @@
 	if(camo_active)
 		details +=("It's currently active.</br>")
 
-	to_chat(user, span_warning("[details.Join(" ")]"))
+	. += span_warning("[details.Join(" ")]")
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
@@ -712,17 +706,17 @@
 		to_chat(user, span_notice("You refill [FT] with [lowertext(FT.caliber)]."))
 		FT.update_icon()
 
-	else if(istype(I, /obj/item/attachable/attached_gun/flamer))
-		var/obj/item/attachable/attached_gun/flamer/FT = I
-		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
+	else if(istype(I, /obj/item/weapon/twohanded/rocketsledge))
+		var/obj/item/weapon/twohanded/rocketsledge/RS = I
+		if(RS.reagents.get_reagent_amount(/datum/reagent/fuel) == RS.max_fuel || !reagents.total_volume)
 			return ..()
 
-		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
+		var/fuel_transfer_amount = min(reagents.total_volume, (RS.max_fuel - RS.reagents.get_reagent_amount(/datum/reagent/fuel)))
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		FT.current_rounds += fuel_transfer_amount
-		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
-		to_chat(user, span_notice("You refill [FT] with fuel."))
-		FT.update_icon()
+		RS.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, span_notice("You refill [RS] with fuel."))
+		RS.update_icon()
 
 	else
 		return ..()
@@ -742,7 +736,7 @@
 
 /obj/item/storage/backpack/marine/engineerpack/examine(mob/user)
 	. = ..()
-	to_chat(user, "[reagents.total_volume] units of fuel left!")
+	. += "[reagents.total_volume] units of fuel left!"
 
 
 /obj/item/storage/backpack/lightpack
@@ -756,7 +750,7 @@
 	desc = "A heavy-duty bag carried by Nanotrasen commandos."
 	icon_state = "commandopack"
 	storage_slots = null
-	max_storage_space = 30
+	max_storage_space = 40
 	access_delay = 0
 
 /obj/item/storage/backpack/captain

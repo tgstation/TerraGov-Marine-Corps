@@ -5,6 +5,7 @@
 	desc = "A stand with the empty body of a cyborg bolted to it."
 	density = TRUE
 	anchored = TRUE
+	coverage = 15
 
 /obj/structure/showcase/two
 	icon_state = "showcase_2"
@@ -19,6 +20,14 @@
 /obj/structure/showcase/five
 	icon_state = "showcase_5"
 	desc = "A stand with the empty shell of a mech bolted to it."
+
+/obj/structure/showcase/six
+	icon_state = "showcase_6"
+
+/obj/machinery/showcase/mulebot
+	name = "Mulebot"
+	desc = "A Multiple Utility Load Effector bot."
+	icon_state = "mulebot0"
 
 /obj/structure/showcase/ex_act(severity)
 	switch(severity)
@@ -55,8 +64,8 @@
 	create_reagents(100, OPENCONTAINER)
 
 /obj/structure/mopbucket/examine(mob/user)
-	..()
-	to_chat(user, "It contains [reagents.total_volume] unit\s of water!")
+	. = ..()
+	. += "It contains [reagents.total_volume] unit\s of water!"
 
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -159,8 +168,32 @@ obj/item/alienjar
 	icon = 'icons/obj/structures/structures.dmi'
 	desc = "Stairs.  You walk up and down them."
 	icon_state = "rampbottom"
+	layer = TURF_LAYER
 	density = FALSE
 	opacity = FALSE
+
+/obj/structure/stairs/seamless
+	icon_state = "stairs_seamless"
+
+/obj/structure/stairs/seamless/platform
+	icon_state = "railstairs_seamless"
+
+/obj/structure/stairs/seamless/platform/alt
+	icon_state = "railstairs_seamless_vert"
+
+
+/obj/structure/stairs/corner
+	icon_state = "staircorners"
+
+/obj/structure/stairs/cornerdark //darker version for the darkened ramp bottoms
+	icon_state = "staircornersdark"
+
+/obj/structure/stairs/cornerdark/seamless //darker version for the darkened ramp bottoms
+	icon_state = "staircorners_seamless"
+
+/obj/structure/stairs/railstairs
+	icon = 'icons/obj/structures/railstairs.dmi'
+	icon_state = "stairdownrailright"
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"
@@ -186,7 +219,7 @@ obj/item/alienjar
 
 	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying_angle && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner) && !istype(M, /mob/living/carbon/xenomorph/roony))  //If your not laying down, or a small creature, no pass. //todo kill shitcode
+		if(!M.lying_angle && !istype(M, /mob/living/simple_animal/mouse) && !istype(M, /mob/living/carbon/xenomorph/larva) && !istype(M, /mob/living/carbon/xenomorph/runner))  //If your not laying down, or a small creature, no pass. //todo kill shitcode
 			return FALSE
 
 /obj/structure/plasticflaps/ex_act(severity)

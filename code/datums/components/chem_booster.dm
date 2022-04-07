@@ -1,4 +1,3 @@
-#define CONNECT "Connect"
 #define EXTRACT "Extract"
 #define LOAD "Load up"
 #define BOOST_CONFIG "Switch Boost"
@@ -27,12 +26,13 @@
 	var/resource_storage_current = 0
 	///Amount required for operation
 	var/resource_drain_amount = 10
-	///Opens radial menu with settings
-	var/datum/action/chem_booster/configure/configure_action
-	///Turns the suit on and off. Can be used while downed
-	var/datum/action/chem_booster/power/power_action
-	///Activates the chemsuit's analyzer
-	var/datum/action/chem_booster/scan/scan_action
+	///Actions that the component provides
+	var/list/datum/action/component_actions = list(
+		/datum/action/chem_booster/configure = .proc/configure,
+		/datum/action/chem_booster/connect_weapon = .proc/connect_weapon,
+		/datum/action/chem_booster/power = .proc/on_off,
+		/datum/action/suit_autodoc/scan = .proc/scan_user
+	)
 	///Instant analyzer for the chemsuit
 	var/obj/item/healthanalyzer/integrated/analyzer
 	///Determines whether the suit is on
@@ -92,11 +92,16 @@
 	analyzer = new
 	meds_beaker = new
 	setup_reagent_info()
+	var/list/new_actions = list()
+	for(var/action_type in component_actions)
+		var/new_action = new action_type(src, FALSE)
+		new_actions += new_action
+		RegisterSignal(new_action, COMSIG_ACTION_TRIGGER, component_actions[action_type])
+	component_actions = new_actions
 
 /datum/component/chem_booster/Destroy(force, silent)
-	QDEL_NULL(configure_action)
-	QDEL_NULL(power_action)
-	QDEL_NULL(scan_action)
+	for(var/action in component_actions)
+		QDEL_NULL(action)
 	QDEL_NULL(analyzer)
 	QDEL_NULL(meds_beaker)
 	wearer = null
@@ -104,15 +109,9 @@
 
 /datum/component/chem_booster/RegisterWithParent()
 	. = ..()
-	configure_action = new(parent)
-	power_action = new(parent)
-	scan_action = new(parent)
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
 	RegisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/dropped)
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED_TO_SLOT, .proc/equipped)
-	RegisterSignal(configure_action, COMSIG_ACTION_TRIGGER, .proc/configure)
-	RegisterSignal(power_action, COMSIG_ACTION_TRIGGER, .proc/on_off)
-	RegisterSignal(scan_action, COMSIG_ACTION_TRIGGER, .proc/scan_user)
 
 /datum/component/chem_booster/UnregisterFromParent()
 	. = ..()
@@ -121,9 +120,6 @@
 		COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT,
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ITEM_EQUIPPED_TO_SLOT))
-	QDEL_NULL(configure_action)
-	QDEL_NULL(power_action)
-	QDEL_NULL(scan_action)
 
 ///Shows info on what stats each reagent boosts and how much units they require
 /datum/component/chem_booster/proc/setup_reagent_info()
@@ -145,10 +141,10 @@
 		reagent_info += "<br>"
 
 ///Adds additional text for the component when examining the item it is attached to
-/datum/component/chem_booster/proc/examine(datum/source, mob/user)
+/datum/component/chem_booster/proc/examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
-	to_chat(user, span_notice("The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount]."))
-	show_meds_beaker_contents(user)
+	examine_text += span_notice("The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount].")
+	examine_text += get_meds_beaker_contents()
 
 ///Disables active functions and cleans up actions when the suit is unequipped
 /datum/component/chem_booster/proc/dropped(datum/source, mob/user)
@@ -161,11 +157,11 @@
 
 	if(!wearer)
 		return
-	configure_action.remove_action(wearer)
-	power_action.remove_action(wearer)
-	scan_action.remove_action(wearer)
-	wearer.overlays -= resource_overlay
 
+	for(var/datum/action/current_action AS in component_actions)
+		current_action.remove_action(wearer)
+
+	wearer.overlays -= resource_overlay
 	wearer = null
 
 ///Sets up actions and vars when the suit is equipped
@@ -175,9 +171,9 @@
 		return
 	wearer = equipper
 
-	configure_action.give_action(wearer)
-	power_action.give_action(wearer)
-	scan_action.give_action(wearer)
+	for(var/datum/action/current_action AS in component_actions)
+		current_action.give_action(wearer)
+
 	wearer.overlays += resource_overlay
 	update_resource(0)
 
@@ -205,7 +201,6 @@
 ///Shows the radial menu with suit options. It is separate from configure() due to linters
 /datum/component/chem_booster/proc/show_radial()
 	var/list/radial_options = list(
-		CONNECT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_connect"),
 		BOOST_CONFIG = image(icon = 'icons/mob/radial.dmi', icon_state = "[boost_icon]"),
 		EXTRACT = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_extract"),
 		LOAD = image(icon = 'icons/mob/radial.dmi', icon_state = "cboost_load"),
@@ -214,9 +209,6 @@
 
 	var/choice = show_radial_menu(wearer, wearer, radial_options, null, 48, null, TRUE, TRUE)
 	switch(choice)
-		if(CONNECT)
-			connect_weapon()
-
 		if(BOOST_CONFIG)
 			if(boost_amount == boost_tier2)
 				update_boost(boost_tier1)
@@ -236,6 +228,7 @@
 
 ///Handles turning on/off the processing part of the component, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
+	SIGNAL_HANDLER
 	if(boost_on)
 		STOP_PROCESSING(SSobj, src)
 
@@ -253,8 +246,6 @@
 					break
 
 		UnregisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
-		power_action.action_icon_state = "cboost_off"
-		power_action.update_button_icon()
 		boost_on = FALSE
 		wearer.balloon_alert(wearer, "Halting reagent injection")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
@@ -273,12 +264,10 @@
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, .proc/on_off)
-	power_action.action_icon_state = "cboost_on"
-	power_action.update_button_icon()
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
 	to_chat(wearer, span_notice("Commensing reagent injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
 	if(automatic_meds_use)
-		show_meds_beaker_contents(wearer)
+		to_chat(wearer, get_meds_beaker_contents())
 		meds_beaker.reagents.trans_to(wearer, 30)
 	setup_bonus_effects()
 
@@ -318,6 +307,10 @@
 /datum/component/chem_booster/proc/scan_user(datum/source)
 	SIGNAL_HANDLER
 	INVOKE_ASYNC(analyzer, /obj/item/healthanalyzer/.proc/attack, wearer, wearer, TRUE)
+
+/datum/component/chem_booster/proc/vali_connect(datum/source)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/connect_weapon, wearer)
 
 ///Links the held item, if compatible, to the chem booster and registers attacking with it
 /datum/component/chem_booster/proc/connect_weapon()
@@ -364,7 +357,7 @@
 	connected_weapon = weapon_to_connect
 	ENABLE_BITFIELD(connected_weapon.flags_item, NODROP)
 	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, .proc/drain_resource)
-	RegisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/connect_weapon)
+	RegisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), .proc/vali_connect)
 	return TRUE
 
 ///Handles resource collection and is ativated when attacking with a weapon.
@@ -450,7 +443,7 @@
 			if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
 				return
 			meds_beaker.reagents.trans_to(held_beaker, 30)
-			show_meds_beaker_contents(wearer)
+			to_chat(wearer, get_meds_beaker_contents())
 		return
 
 	if(meds_beaker.reagents.total_volume >= meds_beaker.volume)
@@ -462,26 +455,27 @@
 
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)
 	wearer.balloon_alert(wearer, "Loaded [trans] units")
-	show_meds_beaker_contents(wearer)
+	to_chat(wearer, get_meds_beaker_contents())
 
 ///Shows the loaded reagents to the person examining the parent/wearer
-/datum/component/chem_booster/proc/show_meds_beaker_contents(mob/user)
+/datum/component/chem_booster/proc/get_meds_beaker_contents()
 	if(!meds_beaker.reagents.total_volume)
-		to_chat(user, span_notice("The system's reagent storage is empty."))
-		return
-	to_chat(user, span_notice("The system's reagent storage contains:"))
+		return span_notice("The system's reagent storage is empty.")
+	. = span_notice("The system's reagent storage contains:\n")
 	for(var/datum/reagent/R AS in meds_beaker.reagents.reagent_list)
-		to_chat(user, span_rose("[R.name] - [R.volume]u"))
+		. += span_rose("[R.name] - [R.volume]u\n")
 
 /datum/action/chem_booster/configure
 	name = "Configure Vali Chemical Enhancement"
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "cboost_configure"
+	keybind_signal = COMSIG_KB_VALI_CONFIGURE
 
 /datum/action/chem_booster/power
 	name = "Power Vali Chemical Enhancement"
 	action_icon = 'icons/mob/actions.dmi'
 	action_icon_state = "cboost_off"
+	keybind_signal = COMSIG_KB_VALI_HEAL
 	///Records the last time the action was used to avoid accidentally cancelling the effect when spamming the button in-combat
 	var/last_activated_time
 
@@ -490,14 +484,23 @@
 		return
 	last_activated_time = world.time
 
-	return ..()
+	. = ..()
+	if(!.)
+		return
 
-/datum/action/chem_booster/scan
-	name = "Activate Analyzer"
-	action_icon = 'icons/mob/screen_alert.dmi'
-	action_icon_state = "suit_scan"
+	var/datum/component/chem_booster/target_component = target
+	if(target_component.boost_on)
+		action_icon_state = "cboost_on"
+	else
+		action_icon_state = "cboost_off"
+	update_button_icon()
 
-#undef CONNECT
+/datum/action/chem_booster/connect_weapon
+	name = "Connect Weapon"
+	action_icon = 'icons/mob/actions.dmi'
+	action_icon_state = "vali_weapon_connect"
+	keybind_signal = COMSIG_KB_VALI_CONNECT
+
 #undef EXTRACT
 #undef LOAD
 #undef BOOST_CONFIG

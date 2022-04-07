@@ -31,7 +31,7 @@
 	if(iscarbon(M))
 		var/mob/living/carbon/H = M
 		if(M == user)
-			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				to_chat(H, span_warning("You have a monitor for a head, where do you think you're going to put that?"))
 				return
 			to_chat(H, span_notice("You swallow some of contents of the [src]."))
@@ -40,7 +40,7 @@
 			playsound(H.loc,'sound/items/drink.ogg', 15, 1)
 			return 1
 		else
-			if(ishuman(H) && (H.species.species_flags & IS_SYNTHETIC))
+			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 				return
 			M.visible_message(span_warning("[user] attempts to feed [M] [src]."))

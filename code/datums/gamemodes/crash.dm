@@ -1,10 +1,8 @@
 /datum/game_mode/infestation/crash
 	name = "Crash"
 	config_tag = "Crash"
-	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
-	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
+	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DEAD_GRAB_FORBIDDEN
 	flags_xeno_abilities = ABILITY_CRASH
-
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/squad/engineer = 8,
@@ -19,7 +17,6 @@
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
-	var/planet_nuked = CRASH_NUKE_NONE
 	var/marines_evac = CRASH_EVAC_NONE
 
 	// Shuttle details
@@ -28,8 +25,10 @@
 
 	// Round start info
 	var/starting_squad = "Alpha"
-
-	var/larva_check_interval = 0
+	///How long between two larva check
+	var/larva_check_interval = 2 MINUTES
+	///Last time larva balance was checked
+	var/last_larva_check
 	bioscan_interval = 0
 
 
@@ -81,7 +80,7 @@
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/xeno/resin/silo(i)
+		new /obj/structure/xeno/silo(i)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(HEADBITE_DEATH)
@@ -89,12 +88,19 @@
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
 
-	for(var/i in GLOB.shuttle_controls_list)
-		var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable = i
+	for(var/obj/machinery/computer/shuttle/shuttle_control/computer_to_disable AS in GLOB.shuttle_controls_list)
 		if(istype(computer_to_disable, /obj/machinery/computer/shuttle/shuttle_control/canterbury))
 			continue
 		computer_to_disable.machine_stat |= BROKEN
 		computer_to_disable.update_icon()
+
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
+	
+	if(!(flags_round_type & MODE_INFESTATION))
+		return
 
 	for(var/i in GLOB.alive_xeno_list)
 		if(isxenolarva(i)) // Larva
@@ -104,10 +110,6 @@
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
 
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
-	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(HN)
 		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
@@ -122,16 +124,13 @@
 /datum/game_mode/infestation/crash/process()
 	. = ..()
 
-	if(world.time > larva_check_interval)
+	if(world.time > last_larva_check + larva_check_interval)
 		balance_scales()
+		last_larva_check = world.time
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
 	shuttle.crashing = FALSE
-
-	// We delay this a little because the shuttle takes some time to land, and we want to the xenos to know the position of the marines.
-	bioscan_interval = world.time + 30 SECONDS
-
 
 /datum/game_mode/infestation/crash/check_finished(force_end)
 	if(round_finished)
@@ -143,10 +142,10 @@
 	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 
-	if(num_humans && planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE && !force_end)
+	if(num_humans && planet_nuked == INFESTATION_NUKE_NONE && marines_evac == CRASH_EVAC_NONE && !force_end)
 		return FALSE
 
-	if(planet_nuked == CRASH_NUKE_NONE)
+	if(planet_nuked == INFESTATION_NUKE_NONE)
 		if(!num_humans)
 			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines
 			round_finished = MODE_INFESTATION_X_MAJOR
@@ -156,7 +155,7 @@
 			round_finished = MODE_INFESTATION_X_MINOR
 			return TRUE
 
-	if(planet_nuked == CRASH_NUKE_COMPLETED)
+	if(planet_nuked == INFESTATION_NUKE_COMPLETED)
 		if(marines_evac == CRASH_EVAC_NONE)
 			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines nuked the planet but didn't evac
 			round_finished = MODE_INFESTATION_M_MINOR
@@ -167,58 +166,11 @@
 	return FALSE
 
 
-/datum/game_mode/infestation/crash/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
-	SIGNAL_HANDLER
+/datum/game_mode/infestation/crash/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
 	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	if(!num_humans) // no humans left on planet to try and restart it.
 		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
-
-	priority_announce("WARNING. WARNING. Planetary Nuke deactivated. WARNING. WARNING. Self destruct failed. WARNING. WARNING.", "Priority Alert")
-
-/datum/game_mode/infestation/crash/proc/on_nuclear_explosion(datum/source, z_level)
-	SIGNAL_HANDLER
-	planet_nuked = CRASH_NUKE_INPROGRESS
-	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
-
-/datum/game_mode/infestation/crash/proc/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
-	SIGNAL_HANDLER
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	var/area_name = get_area_name(nuke)
-	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
-	HS.set_all_xeno_trackers(nuke)
-
-/datum/game_mode/infestation/crash/proc/play_cinematic(z_level)
-	GLOB.enter_allowed = FALSE
-	priority_announce("DANGER. DANGER. Planetary Nuke Activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
-	var/sound/S = sound(pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'), channel = CHANNEL_CINEMATIC)
-	SEND_SOUND(world, S)
-
-	for(var/x in GLOB.player_list)
-		var/mob/M = x
-		if(isobserver(M) || isnewplayer(M))
-			continue
-		shake_camera(M, 110, 4)
-
-	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
-	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
-	addtimer(VARSET_CALLBACK(src, planet_nuked, CRASH_NUKE_COMPLETED), nuketime)
-	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
-
-	Cinematic(CINEMATIC_CRASH_NUKE, world)
-
-
-/datum/game_mode/infestation/crash/proc/do_nuke_z_level(z_level)
-	if(!z_level)
-		return
-	for(var/i in GLOB.alive_living_list)
-		var/mob/living/victim = i
-		var/turf/victim_turf = get_turf(victim) //Sneaky people on lockers.
-		if(QDELETED(victim_turf) || victim_turf.z != z_level)
-			continue
-		victim.adjustFireLoss(victim.maxHealth*2)
-		CHECK_TICK
-
 
 /datum/game_mode/infestation/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	SIGNAL_HANDLER
@@ -236,16 +188,13 @@
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	if(stored_larva)
+		return //No need for respawns
 	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
-	var/larvapoints = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
 	if(!num_xenos)
-		if(!length(GLOB.xeno_resin_silos))
-			check_finished(TRUE)
-			return //RIP benos.
-		if(stored_larva)
-			return //No need for respawns nor to end the game. They can use their burrowed larvas.
-		xeno_job.add_job_positions(max(1, round(larvapoints, 1))) //At least one, rounded to nearest integer if more.
+		xeno_job.add_job_positions(1)
 		return
-	if(round(larvapoints, 1) < 1)
+	var/larva_surplus = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
+	if(larva_surplus < 1)
 		return //Things are balanced, no burrowed needed
-	xeno_job.add_job_positions(round(larvapoints, 1)) //However many burrowed they can afford to buy, rounded to nearest integer.
+	xeno_job.add_job_positions(1)

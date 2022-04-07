@@ -34,6 +34,10 @@
 /obj/structure/barricade/Initialize()
 	. = ..()
 	update_icon()
+	var/static/list/connections = list(
+		COMSIG_ATOM_EXIT = .proc/on_try_exit
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/barricade/handle_barrier_chance(mob/living/M)
 	return prob(max(30,(100.0*obj_integrity)/max_integrity))
@@ -41,34 +45,37 @@
 /obj/structure/barricade/examine(mob/user)
 	. = ..()
 	if(is_wired)
-		to_chat(user, span_info("There is a length of wire strewn across the top of this barricade."))
+		. += span_info("There is a length of wire strewn across the top of this barricade.")
 	switch((obj_integrity / max_integrity) * 100)
 		if(75 to INFINITY)
-			to_chat(user, span_info("It appears to be in good shape."))
+			. += span_info("It appears to be in good shape.")
 		if(50 to 75)
-			to_chat(user, span_warning("It's slightly damaged, but still very functional."))
+			. += span_warning("It's slightly damaged, but still very functional.")
 		if(25 to 50)
-			to_chat(user, span_warning("It's quite beat up, but it's holding together."))
+			. += span_warning("It's quite beat up, but it's holding together.")
 		if(-INFINITY to 25)
-			to_chat(user, span_warning("It's crumbling apart, just a few more blows will tear it apart."))
+			. += span_warning("It's crumbling apart, just a few more blows will tear it apart.")
 
 
-/obj/structure/barricade/CheckExit(atom/movable/O, direction)
-	. = ..()
-	if(closed)
-		return TRUE
-
+/obj/structure/barricade/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
+	SIGNAL_HANDLER
 	if(CHECK_BITFIELD(O.flags_pass, PASSSMALLSTRUCT))
-		return TRUE
+		return NONE
 
 	if(O.throwing)
 		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
 			if(direction & dir)
-				return FALSE
+				knownblockers += src
+				return COMPONENT_ATOM_BLOCK_EXIT
 		if(!allow_thrown_objs && !istype(O, /obj/projectile))
 			if(direction & dir)
-				return FALSE
-		return TRUE
+				knownblockers += src
+				return COMPONENT_ATOM_BLOCK_EXIT
+		return NONE
+	if(!density || !(flags_atom & ON_BORDER) || !(direction & dir) || (O.status_flags & INCORPOREAL))
+		return NONE
+	knownblockers += src
+	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -296,7 +303,7 @@
 	barricade_type = "snow"
 	max_integrity = 75
 	stack_type = /obj/item/stack/snow
-	stack_amount = 3
+	stack_amount = 5
 	destroyed_stack_amount = 0
 	can_wire = FALSE
 
@@ -541,13 +548,13 @@
 	. = ..()
 	switch(build_state)
 		if(BARRICADE_METAL_FIRM)
-			to_chat(user, span_info("The protection panel is still tighly screwed in place."))
+			. += span_info("The protection panel is still tighly screwed in place.")
 		if(BARRICADE_METAL_ANCHORED)
-			to_chat(user, span_info("The protection panel has been removed, you can see the anchor bolts."))
+			. += span_info("The protection panel has been removed, you can see the anchor bolts.")
 		if(BARRICADE_METAL_LOOSE)
-			to_chat(user, span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart."))
+			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
-	to_chat(user, span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"]."))
+	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
 /obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
 	if(user.do_actions)
@@ -828,11 +835,11 @@
 
 	switch(build_state)
 		if(BARRICADE_PLASTEEL_FIRM)
-			to_chat(user, span_info("The protection panel is still tighly screwed in place."))
+			. += span_info("The protection panel is still tighly screwed in place.")
 		if(BARRICADE_PLASTEEL_ANCHORED)
-			to_chat(user, span_info("The protection panel has been removed, you can see the anchor bolts."))
+			. += span_info("The protection panel has been removed, you can see the anchor bolts.")
 		if(BARRICADE_PLASTEEL_LOOSE)
-			to_chat(user, span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart."))
+			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
 /obj/structure/barricade/plasteel/attackby(obj/item/I, mob/user, params)
 	. = ..()

@@ -336,13 +336,6 @@
 					newspeak.Add(possible_phrase)
 			speak = newspeak
 
-		//Search for item to steal
-		parrot_interest = search_for_item()
-		if(parrot_interest)
-			emote("me", 1, "looks in [parrot_interest]'s direction and takes flight.")
-			parrot_state = PARROT_SWOOP | PARROT_STEAL
-			icon_state = icon_living
-
 
 	else if(parrot_state == PARROT_WANDER)
 		//Stop movement, we'll set it later
@@ -482,26 +475,6 @@
 		I.forceMove(src)
 		visible_message("[src] grabs [held_item]!", span_notice("You grab [held_item]!"), span_italics("You hear the sounds of wings flapping furiously."))
 		return held_item
-
-
-/mob/living/simple_animal/parrot/proc/search_for_item()
-	var/item
-	for(var/atom/movable/AM in view(src))
-		//Skip items we already stole or are wearing or are too big
-		if(parrot_perch && AM.loc == parrot_perch.loc || AM.loc == src)
-			continue
-		if(istype(AM, /obj/item))
-			var/obj/item/I = AM
-			if(I.w_class < WEIGHT_CLASS_SMALL)
-				item = I
-		if(item)
-			if(!AStar(get_turf(src), get_turf(item), dist = /turf/proc/Distance_cardinal))
-				item = null
-				continue
-			return item
-
-	return null
-
 
 /mob/living/simple_animal/parrot/proc/search_for_perch()
 	for(var/obj/O in view(src))

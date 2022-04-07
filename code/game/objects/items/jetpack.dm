@@ -35,9 +35,9 @@
 	if(!ishuman(user))
 		return
 	if(fuel_left == 0)
-		to_chat(user, "The fuel gauge beeps out, it has no fuel left")
+		. += "The fuel gauge is beeping, it has no fuel left!"
 	else
-		to_chat(user, "The fuel gauge meter indicate it has [fuel_left/FUEL_USE] uses left")
+		. += "The fuel gauge meter indicates it has [fuel_left/FUEL_USE] uses left."
 
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
@@ -142,6 +142,7 @@
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
 
 /obj/item/jetpack_marine/apply_custom(image/standing)
+	. = ..()
 	if(lit)
 		standing.overlays += image('icons/mob/back.dmi',src,"+jetpack_lit")
 

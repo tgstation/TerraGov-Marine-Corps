@@ -6,6 +6,7 @@
 	layer = ABOVE_TABLE_LAYER
 	density = TRUE
 	anchored = TRUE
+	coverage = 10
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 500
@@ -33,7 +34,7 @@
 			available_recipes+= new type
 		acceptable_items = new
 		acceptable_reagents = new
-		for (var/datum/recipe/recipe in available_recipes)
+		for (var/datum/recipe/recipe AS in available_recipes)
 			for (var/item in recipe.items)
 				acceptable_items |= item
 			for (var/reagent in recipe.reagents)
@@ -135,6 +136,8 @@
 
 	return TRUE
 
+/obj/machinery/microwave/nopower
+	use_power = NO_POWER_USE
 
 /*******************
 *   Microwave Menu

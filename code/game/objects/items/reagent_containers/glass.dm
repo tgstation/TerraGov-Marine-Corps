@@ -23,10 +23,10 @@
 
 
 /obj/item/reagent_containers/glass/examine(mob/user)
-	..()
+	. = ..()
 	if(get_dist(user, src) > 2 && user != loc)
 		if(!is_open_container())
-			to_chat(user, span_info("An airtight lid seals it completely."))
+			. += span_info("An airtight lid seals it completely.")
 
 /obj/item/reagent_containers/glass/verb/attach_lid()
 	set name = "Attach/Detach lid"
@@ -252,14 +252,7 @@
 /obj/item/reagent_containers/glass/bucket/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(isprox(I))
-		to_chat(user, "You add [I] to [src].")
-		qdel(I)
-		user.put_in_hands(new /obj/item/frame/bucket_sensor)
-		user.dropItemToGround(src)
-		qdel(src)
-
-	else if(istype(I, /obj/item/tool/mop))
+	if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
 			to_chat(user, "[src] is out of water!</span>")
 			return

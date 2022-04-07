@@ -17,9 +17,6 @@
 	if(static_lighting_object)
 		qdel(static_lighting_object, force=TRUE) //Shitty fix for lighting objects persisting after death
 
-	if(!our_area.static_lighting && !static_light_sources)
-		return
-
 	new/datum/static_lighting_object(src)
 
 

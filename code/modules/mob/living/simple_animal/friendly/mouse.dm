@@ -31,14 +31,17 @@
 	icon_state = "mouse_[body_color]"
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 
-/mob/living/simple_animal/mouse/Crossed(atom/movable/AM)
-	. = ..()
+/mob/living/simple_animal/mouse/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(ishuman(AM) && stat == CONSCIOUS)
 		var/mob/living/carbon/human/H = AM
 		to_chat(H, span_notice("[icon2html(src, H)] Squeak!"))
-	return ..()
 
 
 /mob/living/simple_animal/mouse/handle_automated_action()

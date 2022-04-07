@@ -126,9 +126,13 @@
 		if(rider in AM.buckled_mobs)
 			AM.unbuckle_mob(rider)
 	return ..()
-/*
+
 /obj/item/riding_offhand/on_thrown(mob/living/carbon/user, atom/target)
 	if(rider == user)
 		return //Piggyback user.
 	user.unbuckle_mob(rider)
-	return rider*/
+	var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
+	var/turf/end_T = get_turf(target)
+	if(start_T && end_T)
+		log_combat(user, src, "thrown", addition = "from tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)] with the target tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]")
+	return rider

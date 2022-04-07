@@ -18,6 +18,13 @@
 	var/crumpled = 0
 	var/icon_base
 
+/obj/item/tape/Initialize()
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/on_cross,
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
 /obj/item/tool/taperoll/police
 	name = "police tape"
 	desc = "A roll of police tape used to block off crime scenes from the public."
@@ -113,8 +120,8 @@
 		icon_state = "[icon_state]_c"
 		name = "crumpled [name]"
 
-/obj/item/tape/Crossed(atom/movable/AM)
-	. = ..()
+/obj/item/tape/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+	SIGNAL_HANDLER
 	if(!lifted && ismob(AM))
 		var/mob/M = AM
 		if(!allowed(M))	//only select few learn art of not crumpling the tape

@@ -92,9 +92,16 @@
 	conduction_coefficient = initial(conduction_coefficient) * C
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user) //this is leaving out everything but efficiency since they follow the same idea of "better beaker, better results"
-	..()
+	. = ..()
 	if(in_range(user, src) || isobserver(user))
-		to_chat(user, "<span class='notice'>The status display reads: Efficiency at <b>[efficiency*100]%</b>.<span>")
+		. +=  span_notice("The status display reads: Efficiency at <b>[efficiency*100]%</b>.")
+	if(occupant)
+		if(on)
+			. += "Someone's inside [src]!"
+		else
+			. += "You can barely make out a form floating in [src]."
+	else
+		. += "[src] seems empty."
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Destroy()
 	QDEL_NULL(radio)
@@ -112,14 +119,14 @@
 		beaker = null
 		updateUsrDialog()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
-	if(on)
-		if(occupant)
-			icon_state = "cell-occupied"
-			return
-		icon_state = "cell-on"
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon_state()
+	if(!on)
+		icon_state = "cell-off"
 		return
-	icon_state = "cell-off"
+	if(occupant)
+		icon_state = "cell-occupied"
+		return
+	icon_state = "cell-on"
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, image/occupant_overlay)
 	if(!on || !occupant || !is_operational())
@@ -143,7 +150,7 @@
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 	if(occupant in contents)
-		occupant.loc = get_step(loc, SOUTH)	//this doesn't account for walls or anything, but i don't forsee that being a problem.
+		occupant.forceMove(get_step(loc, SOUTH))	//this doesn't account for walls or anything, but i don't forsee that being a problem.
 	if (occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
 		occupant.bodytemperature = 261									  // Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
 	if(auto_eject) //Turn off and announce if auto-ejected because patient is recovered or dead.
@@ -210,20 +217,16 @@
 		return
 	go_out()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/examine(mob/user)
-	..()
-	if(occupant)
-		if(on)
-			to_chat(user, "Someone's inside [src]!")
-		else
-			to_chat(user, "You can barely make out a form floating in [src].")
-	else
-		to_chat(user, "[src] seems empty.")
-
 /obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/reagent_containers/glass))
+		
+		for(var/datum/reagent/X in I.reagents.reagent_list)
+			if(X.medbayblacklist)
+				to_chat(user, span_warning("The cryo cell's automatic safety features beep softly, they must have detected a harmful substance in the beaker."))
+				return
+
 		if(beaker)
 			to_chat(user, span_warning("A beaker is already loaded into the machine."))
 			return
@@ -233,8 +236,10 @@
 			return
 
 		beaker =  I
+		
 
 		var/reagentnames = ""
+
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			reagentnames += ", [R.name]"
 
@@ -437,5 +442,19 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/can_see_pipes()
 	return 0 // you can't see the pipe network when inside a cryo cell.
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(!occupant)
+		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		return
+	if(X.status_flags & INCORPOREAL || X.do_actions)
+		return
+	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
+	if(!do_after(X, 2 SECONDS))
+		return
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	go_out()
+
 
 #undef CRYOMOBS

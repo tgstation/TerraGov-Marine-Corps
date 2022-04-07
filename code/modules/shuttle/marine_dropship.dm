@@ -8,10 +8,8 @@
 	width = 11
 	height = 21
 
-
 /obj/docking_port/stationary/marine_dropship/on_crash()
-	for(var/i in GLOB.apcs_list) //break APCs
-		var/obj/machinery/power/apc/A = i
+	for(var/obj/machinery/power/apc/A AS in GLOB.apcs_list) //break APCs
 		if(!is_mainship_level(A.z))
 			continue
 		if(prob(A.crash_break_probability))
@@ -66,11 +64,8 @@
 	for(var/turf/T in range(3, rear)+range(3, left)+range(3, right)+range(2, front))
 		T.empty(/turf/open/floor/plating)
 
-	/*
-	explosion(front, 2, 4, 7, 0)
-	explosion(rear, 3, 5, 8, 0)
-	explosion(left, 3, 5, 8, 0)
-	explosion(right, 3, 5, 8, 0)*/
+	SSmonitor.process_human_positions()
+	SSevacuation.initial_human_on_ship = SSmonitor.human_on_ship
 
 /obj/docking_port/stationary/marine_dropship/crash_target
 	name = "dropshipcrash"
@@ -143,6 +138,12 @@
 	var/list/equipments = list()
 
 	var/hijack_state = HIJACK_STATE_NORMAL
+	///If the automatic cycle system is activated
+	var/automatic_cycle_on = FALSE
+	///How long will the shuttle wait to launch again if the automatic mode is on. In seconds
+	var/time_between_cycle = 0
+	///The timer to launch the dropship in automatic mode
+	var/cycle_timer
 
 /obj/docking_port/mobile/marine_dropship/register()
 	. = ..()
@@ -215,7 +216,23 @@
 	if(crashing)
 		force = TRUE
 
+	if(automatic_cycle_on && destination == new_dock)
+		if(cycle_timer)
+			deltimer(cycle_timer)
+		cycle_timer = addtimer(CALLBACK(src, .proc/prepare_going_to_previous_destination), rechargeTime + time_between_cycle SECONDS - 20 SECONDS, TIMER_STOPPABLE)
+
 	return ..()
+
+///Announce that the dropship will departure soon
+/obj/docking_port/mobile/marine_dropship/proc/prepare_going_to_previous_destination()
+	if(hijack_state != HIJACK_STATE_NORMAL)
+		return
+	cycle_timer = addtimer(CALLBACK(src, .proc/go_to_previous_destination), 20 SECONDS, TIMER_STOPPABLE)
+	priority_announce("Dropship taking off in 20 seconds towards [previous.name]", "Dropship Automatic Departure")
+
+///Send the dropship to its previous dock
+/obj/docking_port/mobile/marine_dropship/proc/go_to_previous_destination()
+	SSshuttle.moveShuttle(id, previous.id, TRUE)
 
 /obj/docking_port/mobile/marine_dropship/one
 	name = "Alamo"
@@ -276,6 +293,7 @@
 
 /obj/docking_port/mobile/marine_dropship/proc/set_hijack_state(new_state)
 	hijack_state = new_state
+	deltimer(cycle_timer)
 
 /obj/docking_port/mobile/marine_dropship/on_prearrival()
 	. = ..()
@@ -288,7 +306,7 @@
 		return "Control integrity compromised"
 	else if(hijack_state == HIJACK_STATE_UNLOCKED)
 		return "Remote control compromised"
-	return ..()
+	return ..() + (timeleft(cycle_timer) ? (" Automatic cycle : [round(timeleft(cycle_timer) / 10 + 20, 1)] seconds before departure towards [previous.name]") : "")
 
 
 /obj/docking_port/mobile/marine_dropship/can_move_topic(mob/user)
@@ -403,6 +421,8 @@
 			var/mob/living/carbon/human/H = m
 			if(isnestedhost(H))
 				continue
+			if(H.faction == FACTION_XENO)
+				continue
 			humans_on_ground++
 	if(length(GLOB.alive_human_list) && ((humans_on_ground / length(GLOB.alive_human_list)) > ALIVE_HUMANS_FOR_CALLDOWN))
 		to_chat(user, span_warning("There's too many tallhosts still on the ground. They interfere with our psychic field. We must dispatch them before we are able to do this."))
@@ -460,7 +480,8 @@
 		M.unlock_all()
 		dat += "<A href='?src=[REF(src)];abduct=1'>Capture the [M]</A><br>"
 		if(M.hijack_state != HIJACK_STATE_CALLED_DOWN)
-			M.hijack_state = HIJACK_STATE_CALLED_DOWN
+			to_chat(X, span_xenowarning("We corrupt the bird's controls, unlocking the doors and preventing it from flight."))
+			M.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
 			M.do_start_hijack_timer()
 
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
@@ -499,6 +520,8 @@
 	.["dest_select"] = !(shuttle.mode == SHUTTLE_CALL || shuttle.mode == SHUTTLE_IDLE)
 	.["hijack_state"] = shuttle.hijack_state != HIJACK_STATE_CALLED_DOWN
 	.["ship_status"] = shuttle.getStatusText()
+	.["automatic_cycle_on"] = shuttle.automatic_cycle_on
+	.["time_between_cycle"] = shuttle.time_between_cycle
 
 	var/locked = 0
 	var/reardoor = 0
@@ -584,6 +607,12 @@
 		if("unlock")
 			M.unlock_airlocks(params["unlock"])
 			. = TRUE
+		if("automation_on")
+			M.automatic_cycle_on = params["automation_on"]
+			if(!M.automatic_cycle_on)
+				deltimer(M.cycle_timer)
+		if("cycle_time_change")
+			M.time_between_cycle = params["cycle_time_change"]
 
 /obj/machinery/computer/shuttle/marine_dropship/Topic(href, href_list)
 	var/obj/docking_port/mobile/marine_dropship/M = SSshuttle.getShuttle(shuttleId)
@@ -631,6 +660,9 @@
 			else
 				to_chat(X, span_xenowarning("We can't do that right now."))
 				return
+		var/confirm = tgui_alert(usr, "Would you like to hijack the metal bird?", "Hijack the bird?", list("Yes", "No"))
+		if(confirm != "Yes")
+			return
 		var/obj/docking_port/stationary/marine_dropship/crash_target/CT = pick(SSshuttle.crash_targets)
 		if(!CT)
 			return
@@ -1188,7 +1220,7 @@
 				visible_message(span_notice("Destination updated, recalculating route."))
 			else
 				visible_message(span_notice("Shuttle departing. Please stand away from the doors."))
-				for(var/mob/living/silicon/ai/AI in GLOB.silicon_mobs)
+				for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 					if(!AI.client)
 						continue
 					to_chat(AI, span_info("[src] was commanded remotely to take off."))

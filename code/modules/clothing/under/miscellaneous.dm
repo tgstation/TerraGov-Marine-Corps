@@ -35,7 +35,7 @@
 	desc = "<i>'Special delivery!'</i>"
 	icon_state = "mailman"
 	item_state = "b_suit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/prisoner
 	name = "prison jumpsuit"
@@ -57,21 +57,21 @@
 	desc = "It's the standard issue pretty-boy outfit, as seen on Holo-Vision."
 	icon_state = "vice"
 	item_state = "gy_suit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/centcom_officer
 	desc = "It's a jumpsuit worn by CentCom Officers."
 	name = "\improper CentCom officer's jumpsuit"
 	icon_state = "officer"
 	item_state = "g_suit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/centcom_commander
 	desc = "It's a jumpsuit worn by CentCom's highest-tier Commanders."
 	name = "\improper CentCom officer's jumpsuit"
 	icon_state = "centcom"
 	item_state = "dg_suit"
-	rollable_sleeves = FALSE
+	adjustment_variants = list()
 
 /obj/item/clothing/under/rank/centcom_commander/sa
 	desc = "It's a jumpsuit worn by Spatial Agents."
@@ -382,7 +382,6 @@
 	slowdown= -1
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	rollable_sleeves = TRUE
 
 /obj/item/clothing/under/techpriest
 	name = "Techpriest Robes"

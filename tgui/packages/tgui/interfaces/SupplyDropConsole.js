@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section, LabeledList, ProgressBar, Divider, Dropdown, NumberInput } from '../components';
+import { Button, Section, LabeledList, ProgressBar, Divider, NumberInput } from '../components';
 import { Window } from '../layouts';
 
 export const SupplyDropConsole = (_props, context) => {

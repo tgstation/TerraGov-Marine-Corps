@@ -36,8 +36,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.add_filter("wraith_hyperposition_windup_filter_1", 3, motion_blur_filter()) //Cool filter appear
 	owner.add_filter("wraith_hyperposition_windup_filter_2", 3, motion_blur_filter()) //Cool filter appear
 
-	animate(owner.get_filter("wraith_hyperposition_windup_filter_1"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-	animate(owner.get_filter("wraith_hyperposition_windup_filter_2"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(owner.get_filter("wraith_hyperposition_windup_filter_1"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1)
+	animate(owner.get_filter("wraith_hyperposition_windup_filter_2"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1)
 
 	if(!do_after(ghost, WRAITH_PLACE_WARP_BEACON_WINDUP, TRUE, ghost, BUSY_ICON_BUILD)) //Channel time/wind up
 		ghost.visible_message(span_xenowarning("The space around [ghost] abruptly stops shifting and wavering."), \
@@ -142,8 +142,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.add_filter("wraith_hyperposition_windup_filter_1", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
 	owner.add_filter("wraith_hyperposition_windup_filter_2", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
 
-	animate(owner.get_filter("wraith_hyperposition_windup_filter_1"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-	animate(owner.get_filter("wraith_hyperposition_windup_filter_2"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(owner.get_filter("wraith_hyperposition_windup_filter_1"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1)
+	animate(owner.get_filter("wraith_hyperposition_windup_filter_2"), x = 30*rand() - 15, y = 30*rand() - 15, time = 0.5 SECONDS, loop = -1)
 
 	if(!do_after(owner, hyperposition_windup, TRUE, owner, BUSY_ICON_FRIENDLY)) //Channel time/wind up
 		owner.visible_message(span_xenowarning("The space around [owner] abruptly stops shifting and wavering."), \
@@ -199,6 +199,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	plasma_cost = 25
 	cooldown_timer = WRAITH_PHASE_SHIFT_COOLDOWN
 	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
+	use_state_flags = XACT_USE_CLOSEDTURF
 	var/turf/starting_turf = null
 	var/phase_shift_active = FALSE
 	var/phase_shift_duration_timer_id
@@ -227,8 +228,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	owner.add_filter("wraith_phase_shift_windup_1", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
 	owner.add_filter("wraith_phase_shift_windup_2", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
-	animate(owner.get_filter("wraith_phase_shift_windup_1"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-	animate(owner.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(owner.get_filter("wraith_phase_shift_windup_1"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1)
+	animate(owner.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1)
 
 	if(!do_after(owner, WRAITH_PHASE_SHIFT_WINDUP, TRUE, owner, BUSY_ICON_FRIENDLY)) //Channel time/wind up
 		owner.visible_message(span_xenowarning("[owner]'s form abruptly consolidates, returning to normalcy."), \
@@ -301,8 +302,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	ghost.add_filter("wraith_phase_shift_windup_1", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
 	ghost.add_filter("wraith_phase_shift_windup_2", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
-	animate(ghost.get_filter("wraith_phase_shift_windup_1"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-	animate(ghost.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(ghost.get_filter("wraith_phase_shift_windup_1"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1)
+	animate(ghost.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1)
 	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_phase_shift_windup_1"), 0.5 SECONDS)
 	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_phase_shift_windup_2"), 0.5 SECONDS)
 
@@ -361,6 +362,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	mechanics_text = "Resynchronize with realspace, ending Phase Shift's effect and returning you to where the Phase Shift began with minimal cooldown."
 	cooldown_timer = 1 SECONDS //Token for anti-spam
 	keybind_signal = COMSIG_XENOABILITY_RESYNC
+	use_state_flags = XACT_USE_CLOSEDTURF
 
 /datum/action/xeno_action/resync/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -408,7 +410,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("We can't blink into this area!"))
 		return FALSE
 
-	if(!owner.line_of_sight(T)) //Needs to be in line of sight.
+	if(!line_of_sight(owner, T)) //Needs to be in line of sight.
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't blink without line of sight to our destination!"))
 		return FALSE
@@ -476,7 +478,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			if(ishuman(pulled_target))
 				var/mob/living/carbon/human/H = pulled_target
 				if(H.stat == UNCONSCIOUS) //Apply critdrag damage as if they were quickly pulled the same distance
-					H.adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS * get_dist(H.loc, T))
+					var/critdamage = HUMAN_CRITDRAG_OXYLOSS * get_dist(H.loc, T)
+					if(!H.adjustOxyLoss(critdamage))
+						H.adjustBruteLoss(critdamage)
 
 		to_chat(X, span_xenodanger("We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_timer * cooldown_mod * 0.1] seconds due to the strain of doing so."))
 
@@ -503,34 +507,24 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
 
-	for(var/turf/affected_tile as() in RANGE_TURFS(1,teleporter.loc))
-		affected_tile.add_filter("wraith_blink_distortion", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-		animate(affected_tile.get_filter("wraith_blink_distortion"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.5 SECONDS, loop = 2, flags=ANIMATION_PARALLEL)
-		addtimer(CALLBACK(affected_tile, /atom.proc/remove_filter, "wraith_blink_distortion"), 1 SECONDS)
+	new /obj/effect/temp_visual/wraith_warp(get_turf(teleporter))
 
-		for(var/obj/obj_target in affected_tile) //This is just about SFX, so we don't have objects not distorting while everything else does
-			obj_target.add_filter("wraith_aoe_debuff_filter", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-			animate(obj_target.get_filter("wraith_aoe_debuff_filter"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-			addtimer(CALLBACK(obj_target, /atom.proc/remove_filter, "wraith_aoe_debuff_filter"), 0.5 SECONDS)
+	if(owner.status_flags & INCORPOREAL) //No debuff while in phase shift
+		return
 
-		for(var/mob/living/living_target in affected_tile)
-			living_target.add_filter("wraith_aoe_debuff_filter", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-			animate(living_target.get_filter("wraith_aoe_debuff_filter"), x = 60*rand() - 30, y = 60*rand() - 30, time = 0.25 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-			addtimer(CALLBACK(living_target, /atom.proc/remove_filter, "wraith_aoe_debuff_filter"), 0.5 SECONDS)
+	for(var/mob/living/living_target in range(1, teleporter.loc))
 
-			if(living_target.stat == DEAD)
+		if(living_target.stat == DEAD)
+			continue
+
+		if(isxeno(living_target))
+			var/mob/living/carbon/xenomorph/X = living_target
+			if(X.issamexenohive(ghost)) //No friendly fire
 				continue
 
-			if(isxeno(living_target))
-				var/mob/living/carbon/xenomorph/X = living_target
-				if(X.issamexenohive(ghost)) //No friendly fire
-					continue
-
-			shake_camera(living_target, 2, 1)
-			living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
-			living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
-			living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS) //minor visual distortion
-			to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
+		living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
+		living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
+		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
 
 /datum/action/xeno_action/activable/blink/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to blink again."))
@@ -570,7 +564,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("We can't banish while incorporeal!"))
 		return FALSE
 
-	if(!ismovableatom(A) || iseffect(A) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
+	if(!ismovableatom(A) || iseffect(A) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE) || CHECK_BITFIELD(A.resistance_flags, BANISH_IMMUNE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
 		if(!silent)
 			to_chat(owner, span_xenowarning("We cannot banish this!"))
 		return FALSE
@@ -583,7 +577,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!"))
 		return FALSE
 
-	if(!owner.line_of_sight(A)) //Needs to be in line of sight.
+	if(!line_of_sight(owner, A)) //Needs to be in line of sight.
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't banish without line of sight to our target!"))
 		return FALSE
@@ -628,8 +622,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	portal.add_filter("banish_portal_1", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
 	portal.add_filter("banish_portal_2", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
-	animate(portal.get_filter("banish_portal_1"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
-	animate(portal.get_filter("banish_portal_2"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1, flags=ANIMATION_PARALLEL)
+	animate(portal.get_filter("banish_portal_1"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1)
+	animate(portal.get_filter("banish_portal_2"), x = 20*rand() - 10, y = 20*rand() - 10, time = 0.5 SECONDS, loop = -1)
 
 	var/cooldown_mod = 1
 	var/plasma_mod = 1
@@ -711,7 +705,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Recall"
 	action_icon_state = "Recall"
 	mechanics_text = "We recall a target we've banished back from the depths of nullspace."
-	use_state_flags = XACT_USE_NOTTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
+	use_state_flags = XACT_USE_NOTTURF|XACT_USE_CLOSEDTURF|XACT_USE_STAGGERED|XACT_USE_INCAP|XACT_USE_LYING //So we can recall ourselves from nether Brazil
 	cooldown_timer = 1 SECONDS //Token for anti-spam
 	keybind_signal = COMSIG_XENOABILITY_RECALL
 
@@ -764,3 +758,45 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			return TRUE
 
 	return FALSE
+
+/datum/action/xeno_action/timestop
+	name = "Time stop"
+	ability_name = "Time stop"
+	action_icon_state = "time_stop"
+	mechanics_text = "Freezes bullets in their course, and they will start to move again only after a certain time"
+	plasma_cost = 150
+	cooldown_timer = 1 MINUTES
+	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
+	///The range of the ability
+	var/range = 1
+	///How long is the bullet freeze staying
+	var/duration = 7 SECONDS
+
+/datum/action/xeno_action/timestop/action_activate()
+	. = ..()
+	var/list/turf/turfs_affected = list()
+	var/turf/central_turf = get_turf(owner)
+	for(var/turf/affected_turf in view(range, central_turf))
+		ADD_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(src))
+		turfs_affected += affected_turf
+		affected_turf.add_filter("wraith_magic", 2, drop_shadow_filter(color = "#04080FAA", size = -10))
+	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE)
+	succeed_activate()
+	add_cooldown()
+	new /obj/effect/overlay/temp/timestop_effect(central_turf, duration)
+	addtimer(CALLBACK(src, .proc/remove_bullet_freeze, turfs_affected, central_turf), duration)
+	addtimer(CALLBACK(src, .proc/play_sound_stop), duration - 3 SECONDS)
+
+///Remove the bullet freeze effect on affected turfs
+/datum/action/xeno_action/timestop/proc/remove_bullet_freeze(list/turf/turfs_affected, turf/central_turfA)
+	for(var/turf/affected_turf AS in turfs_affected)
+		REMOVE_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(src))
+		if(HAS_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET))
+			continue
+		SEND_SIGNAL(affected_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+		affected_turf.remove_filter("wraith_magic")
+
+///Play the end ability sound
+/datum/action/xeno_action/timestop/proc/play_sound_stop()
+	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE, frequency = -1)
+

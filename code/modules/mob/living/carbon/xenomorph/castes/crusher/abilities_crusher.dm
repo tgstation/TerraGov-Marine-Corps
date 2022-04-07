@@ -46,13 +46,15 @@
 /datum/action/xeno_action/activable/stomp/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/stomp/ai_should_use(target)
+/datum/action/xeno_action/activable/stomp/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE
 
 // ***************************************
@@ -127,14 +129,6 @@
 				break
 			T = temp //Throw target
 
-	//The target location deviates up to 1 tile in any direction //No.
-	/*var/scatter_x = rand(-1,1)
-	var/scatter_y = rand(-1,1)
-	var/turf/new_target = locate(T.x + round(scatter_x),T.y + round(scatter_y),T.z) //Locate an adjacent turf.
-	if(new_target)
-		T = new_target//Looks like we found a turf.
-	*/
-
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
 	X.visible_message(span_xenowarning("\The [X] flings [A] away with its crest[big_mob_message]!"), \
@@ -158,11 +152,75 @@
 /datum/action/xeno_action/activable/cresttoss/ai_should_start_consider()
 	return TRUE
 
-/datum/action/xeno_action/activable/cresttoss/ai_should_use(target)
+/datum/action/xeno_action/activable/cresttoss/ai_should_use(atom/target)
 	if(!iscarbon(target))
-		return ..()
+		return FALSE
 	if(get_dist(target, owner) > 1)
-		return ..()
+		return FALSE
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
+	return TRUE
+
+// ***************************************
+// *********** Advance
+// ***************************************
+/datum/action/xeno_action/activable/advance
+	name = "Rapid Advance"
+	action_icon_state = "crest_defense"
+	mechanics_text = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
+	ability_name = "rapid advance"
+	plasma_cost = 175
+	cooldown_timer = 30 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+
+/datum/action/xeno_action/activable/advance/on_cooldown_finish()
+	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))
+	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	return ..()
+
+/datum/action/xeno_action/activable/advance/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(get_dist(owner, A) > 7)
+		return FALSE
+
+
+/datum/action/xeno_action/activable/advance/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	X.face_atom(A)
+	X.set_canmove(FALSE)
+	if(!do_after(X, 10, TRUE, X, BUSY_ICON_DANGER))
+		X.set_canmove(TRUE)
+		return fail_activate()
+	X.set_canmove(TRUE)
+
+	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
+	var/aimdir = get_dir(X,A)
+	if(charge)
+		charge.do_stop_momentum(FALSE) //Reset charge so next_move_limit check_momentum() does not cuck us and 0 out steps_taken
+		charge.do_start_crushing()
+		charge.valid_steps_taken = charge.max_steps_buildup - 1
+		charge.charge_dir = aimdir //Set dir so check_momentum() does not cuck us
+	for(var/i=0 to get_dist(X, A))
+		if(i % 2)
+			playsound(X, "alien_charge", 50)
+			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
+		X.Move(get_step(X, aimdir), aimdir)
+		aimdir = get_dir(X,A)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/xeno_action/activable/advance/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/advance/ai_should_use(atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	if(target.get_xeno_hivenumber() == owner.get_xeno_hivenumber())
+		return FALSE
 	return TRUE

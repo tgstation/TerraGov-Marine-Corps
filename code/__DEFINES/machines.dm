@@ -120,6 +120,7 @@
 #define TURRET_ALERTS (1<<4)
 #define TURRET_RADIAL (1<<5)
 #define TURRET_IMMOBILE (1<<6)
+#define TURRET_INACCURATE (1<<7)
 
 #define SQUAD_LOCK (1<<0)
 #define JOB_LOCK (1<<1)

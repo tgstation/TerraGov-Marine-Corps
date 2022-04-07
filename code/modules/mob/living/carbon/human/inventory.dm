@@ -11,11 +11,11 @@
 			return
 		if(client?.prefs?.preferred_slot)
 			if(draw_from_slot_if_possible(client.prefs.preferred_slot))
-				next_move = world.time + 3
+				next_move = world.time + 1
 				return
 		for(var/slot in SLOT_DRAW_ORDER)
 			if(draw_from_slot_if_possible(slot))
-				next_move = world.time + 3
+				next_move = world.time + 1
 				return
 	else
 		if(s_active && s_active.can_be_inserted(I))
@@ -353,13 +353,6 @@
 			r_store = W
 			W.equipped(src, slot)
 			update_inv_pockets()
-		if(SLOT_ACCESSORY)
-			var/obj/item/clothing/under/U = w_uniform
-			if(U && !U.hastie)
-				var/obj/item/clothing/tie/T = W
-				T.on_attached(U, src)
-				U.hastie = T
-				update_inv_w_uniform()
 		if(SLOT_S_STORE)
 			s_store = W
 			W.equipped(src, slot)
@@ -383,12 +376,6 @@
 			var/obj/item/storage/internal/T = S.pockets
 			T.handle_item_insertion(W, FALSE, src)
 			T.close(src)
-		if(SLOT_IN_ACCESSORY)
-			var/obj/item/clothing/under/U = w_uniform
-			var/obj/item/clothing/tie/storage/T = U.hastie
-			var/obj/item/storage/internal/S = T.hold
-			S.handle_item_insertion(W, FALSE, src)
-			S.close(src)
 		if(SLOT_IN_HOLSTER)
 			var/obj/item/storage/S = belt
 			S.handle_item_insertion(W, FALSE, src)

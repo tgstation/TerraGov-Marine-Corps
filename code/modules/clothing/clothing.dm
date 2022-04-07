@@ -4,15 +4,32 @@
 	/// Resets the armor on clothing since by default /objs get 100 bio armor
 	soft_armor = list()
 
+	///Assoc list of available slots. Since this keeps track of all currently equiped attachments per object, this cannot be a string_list()
+	var/list/attachments_by_slot = list()
+	///Typepath list of allowed attachment types.
+	var/list/attachments_allowed = list()
+
+	///Pixel offsets for specific attachment slots. Is not used currently.
+	var/list/attachment_offsets = list()
+	///List of attachment types that is attached to the object on initialize.
+	var/list/starting_attachments = list()
+
 	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
 	var/flags_armor_features = NONE
-
 
 	/// used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
 	var/eye_protection = 0
 
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
+
+/obj/item/clothing/Initialize()
+	. = ..()
+	attachments_allowed = string_list(attachments_allowed)
+	starting_attachments = string_list(starting_attachments)
+	if(!length(attachments_allowed) || !length(attachments_by_slot))
+		return
+	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, attachment_offsets, starting_attachments, null, null, null)
 
 
 /obj/item/clothing/equipped(mob/user, slot)
@@ -40,19 +57,6 @@
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return
-
-/obj/item/clothing/under/apply_accessories(image/standing)
-	if(hastie)
-		var/tie_state = hastie.item_state
-		if(!tie_state)
-			tie_state = hastie.icon_state
-		standing.overlays += image(icon = 'icons/mob/ties.dmi', icon_state = "[tie_state]")
-
-/obj/item/clothing/under/get_worn_icon_state(slot_name, inhands)
-	. = ..()
-	if(rolled_sleeves && !inhands)
-		. += "_d"
-
 
 /obj/item/clothing/apply_blood(image/standing)
 	if(blood_overlay && blood_sprite_state)
@@ -99,6 +103,8 @@
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
+	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
+	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
 	var/fire_resist = T0C + 100

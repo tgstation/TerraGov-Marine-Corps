@@ -22,14 +22,14 @@
 		icon_state = "bulb-construct-stage1"
 
 /obj/machinery/light_construct/examine(mob/user)
-	..()
+	. = ..()
 	switch(stage)
 		if(1)
-			to_chat(user, "It's an empty frame.")
+			. += "It's an empty frame."
 		if(2)
-			to_chat(user, "It's wired.")
+			. += "It's wired."
 		if(3)
-			to_chat(user, "The casing is closed.")
+			. += "The casing is closed."
 
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user, params)
@@ -134,6 +134,7 @@
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	light_system = STATIC_LIGHT //do not change this, byond and potato pcs no like
+	obj_flags = CAN_BE_HIT
 	var/brightness = 8			// power usage and light range when on
 	var/bulb_power = 1			// basically the light_power of the emitted light source
 	var/bulb_colour = COLOR_WHITE
@@ -237,7 +238,8 @@
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE, toggle_on = TRUE)
-	if(status == LIGHT_OK && toggle_on)
+	var/area/A = get_area(src)
+	if(A.lightswitch && A.power_light && status == LIGHT_OK && toggle_on)
 		var/BR = brightness
 		var/PO = bulb_power
 		var/CO = bulb_colour
@@ -273,16 +275,16 @@
 
 // examine verb
 /obj/machinery/light/examine(mob/user)
-	..()
+	. = ..()
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "It is turned [light_on? "on" : "off"].")
+			. += "It is turned [light_on? "on" : "off"]."
 		if(LIGHT_EMPTY)
-			to_chat(user, "The [fitting] has been removed.")
+			. += "The [fitting] has been removed."
 		if(LIGHT_BURNED)
-			to_chat(user, "The [fitting] is burnt out.")
+			. += "The [fitting] is burnt out."
 		if(LIGHT_BROKEN)
-			to_chat(user, "The [fitting] has been smashed.")
+			. += "The [fitting] has been smashed."
 
 
 

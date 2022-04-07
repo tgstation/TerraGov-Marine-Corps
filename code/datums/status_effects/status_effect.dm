@@ -36,6 +36,7 @@
 
 /datum/status_effect/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
+	linked_alert = null
 	if(owner)
 		owner.clear_alert(id)
 		LAZYREMOVE(owner.status_effects, src)
@@ -84,6 +85,10 @@
 	name = "Curse of Mundanity"
 	desc = "You don't feel any different..."
 	var/datum/status_effect/attached_effect
+
+/obj/screen/alert/status_effect/Destroy()
+	. = ..()
+	attached_effect = null
 
 //////////////////
 // HELPER PROCS //
