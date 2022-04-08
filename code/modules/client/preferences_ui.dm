@@ -237,6 +237,11 @@
 				return
 			synthetic_name = newValue
 
+		if("synthetic_type")
+			var/choice = tgui_input_list(ui.user, "What kind of synthetic do you want to play with?", "Synthetic type choice", SYNTH_TYPES)
+			if(choice)
+				ethnicity = choice
+
 		if("xeno_name")
 			var/newValue = params["newValue"]
 			if(newValue == "")

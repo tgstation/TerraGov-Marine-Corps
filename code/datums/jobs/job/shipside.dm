@@ -1009,9 +1009,13 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	return preference_source.prefs.synthetic_name
 
 /datum/job/terragov/silicon/synthetic/return_spawn_type(datum/preferences/prefs)
+	if(prefs && prefs.synthetic_type == "Early Synthetic")
+		return /mob/living/carbon/human/species/early_synthetic
 	return /mob/living/carbon/human/species/synthetic
 
 /datum/job/terragov/silicon/synthetic/return_skills_type(datum/preferences/prefs)
+	if(prefs && prefs.synthetic_type == "Early Synthetic")
+		return /datum/skills/early_synthetic
 	return ..()
 
 /datum/job/terragov/silicon/synthetic/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
