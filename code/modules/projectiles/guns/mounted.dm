@@ -61,7 +61,7 @@
 	undeploy_time = 3 SECONDS
 	deployed_item = /obj/machinery/deployable/mounted
 
-	max_integrity = 125
+	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 ///Unmovable ship mounted version.
@@ -143,7 +143,7 @@
 	undeploy_time = 3 SECONDS
 	deployed_item = /obj/machinery/deployable/mounted
 
-	max_integrity = 150
+	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
