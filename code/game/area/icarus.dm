@@ -74,7 +74,7 @@
 	icon_state = "yellow"
 
 /area/icarus/interior/restrooms
-	name = "Restrooms
+	name = "Restrooms"
 	icon_state = "transparent"
 
 /area/icarus/interior/cargo
