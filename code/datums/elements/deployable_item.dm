@@ -55,10 +55,10 @@
 
 ///Handles the conversion of item into machine. Source is the Item to be deployed, user is who is deploying. If user is null, a direction must be set.
 /datum/element/deployable_item/proc/finish_deploy(obj/item/item_to_deploy, mob/user, turf/location, direction)
-	
+
 	var/direction_to_deploy
 	var/obj/deployed_machine
-	
+
 	if(user)
 		if(!ishuman(user) || CHECK_BITFIELD(item_to_deploy.flags_item, NODROP))
 			return
@@ -70,6 +70,8 @@
 			user.balloon_alert(user, "You are already doing something!")
 			return
 		user.balloon_alert(user, "You start deploying...")
+		user.setDir(get_dir(user, location)) //Face towards deploy location for ease of deploy.
+		var/newdir = user.dir //Save direction before the doafter for ease of deploy
 		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
 			return
 
@@ -77,7 +79,7 @@
 
 		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE,  COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
 
-		direction_to_deploy = user.dir
+		direction_to_deploy = newdir
 
 	else
 		if(!direction)

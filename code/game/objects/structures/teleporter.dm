@@ -62,7 +62,8 @@
 
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-	COOLDOWN_START(kit, teleport_cooldown, 20 SECONDS)
+	COOLDOWN_START(kit, teleport_cooldown, 2 SECONDS)
+	COOLDOWN_START(linked_kit, teleport_cooldown, 2 SECONDS)
 	if(powered())
 		use_power(TELEPORTING_COST * 200)
 	else

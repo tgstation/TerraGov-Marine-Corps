@@ -1,0 +1,9 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - balance: "Chigusa NE caverns now start mazed."
+  - balance: "Chigusa is now almost entirely preweeded."
+  - balance: "Moved Chigusa blue disk generator to the dam are after complaints of disks being too close."
+  - balance: "The docked freighter in Chigusa is now vulnerable to acid and bullets."
+  - bugfix: "Changed a few improperly rotated shutters in Chigusa."
+  - bugfix: "Fixed a couple Chigusa fire cabinets that were hanging out in midair."
