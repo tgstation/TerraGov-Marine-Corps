@@ -1,0 +1,5 @@
+author: "novaepee, Lumi"
+delete-after: True
+changes: 
+  - balance: "TX-11's burst fire delay increase by 0.5."
+  - bugfix: "T-21 having extra delay on its burst fire by removing extra delay; my bad"
