@@ -655,7 +655,7 @@
 
 ///Play small animation and jiggle when picking up an object
 /obj/item/proc/do_pickup_animation(atom/target)
-	if(!istype(loc, /turf))
+	if(!isturf(loc))
 		return
 	var/image/pickup_animation = image(icon = src, loc = loc, layer = layer + 0.1)
 	pickup_animation.plane = GAME_PLANE
