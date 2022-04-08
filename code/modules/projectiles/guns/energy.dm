@@ -133,8 +133,8 @@
 	)
 
 	mode_list = list(
-	"Standard" = /datum/lasrifle/base/tesla_mode/standard,
-	"Focused" = /datum/lasrifle/base/tesla_mode/focused,
+		"Standard" = /datum/lasrifle/base/tesla_mode/standard,
+		"Focused" = /datum/lasrifle/base/tesla_mode/focused,
 	)
 
 /datum/lasrifle/base/tesla_mode/standard
