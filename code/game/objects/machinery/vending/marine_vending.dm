@@ -91,7 +91,7 @@
 			/obj/item/weapon/gun/rifle/tx54 = 2,
 			/obj/item/ammo_magazine/rifle/tx54 = 10,
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
-			/obj/item/weapon/gun/energy/lasgun/tesla = 2,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/storage/box/recoilless_system = 2,
@@ -421,7 +421,7 @@
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = -1,
 			/obj/item/weapon/gun/rifle/tx55 = -1,
 			/obj/item/ammo_magazine/rifle/tx55 = -1,
-			/obj/item/weapon/gun/energy/lasgun/tesla = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
 			/obj/item/weapon/gun/heavymachinegun = -1,
 			/obj/item/ammo_magazine/heavymachinegun = -1,
 			/obj/item/weapon/gun/rifle/pepperball = -1,
@@ -1254,7 +1254,7 @@
 	use_power = NO_POWER_USE
 	products = list(
 		"Weapon" = list(
-			/obj/item/weapon/gun/energy/lasgun/tesla = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
 			/obj/item/weapon/gun/rifle/railgun = -1,
 			/obj/item/ammo_magazine/railgun = -1,
 			/obj/item/weapon/gun/rifle/tx8 = -1,
