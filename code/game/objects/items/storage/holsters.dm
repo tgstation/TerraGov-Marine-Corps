@@ -86,10 +86,9 @@
 //only applies on storage of all items, not withdrawal
 /obj/item/storage/holster/backholster/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
-	if (!use_sound)
-		return
-	playsound(loc, use_sound, 15, 1, 6)
+	if (use_sound)
+		playsound(loc, use_sound, 15, 1, 6)
+	
 
 /obj/item/storage/holster/backholster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK)
