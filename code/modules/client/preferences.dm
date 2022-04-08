@@ -76,6 +76,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_squad = "None"
 	var/alternate_option = RETURN_TO_LOBBY
 	var/preferred_slot = SLOT_S_STORE
+	var/preferred_slot_alt = SLOT_BACK
 	var/list/gear
 	var/list/job_preferences = list()
 
