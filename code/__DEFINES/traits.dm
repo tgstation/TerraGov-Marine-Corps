@@ -109,6 +109,7 @@
 #define TRAIT_IMMOBILE "immobile" //User is unable to move by its own volition.
 #define TRAIT_IS_RESURRECTING "resurrecting"
 #define TRAIT_PSY_LINKED "psy_linked"
+#define TRAIT_NO_PUSHING_BY_HUMAN "no_pushing_by_human" //Whether or not the user can be pushed by a human
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"

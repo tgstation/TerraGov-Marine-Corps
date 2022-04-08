@@ -382,7 +382,7 @@
 		if(!(L.status_flags & CANPUSH))
 			return
 
-		if(CHECK_BITFIELD(L.status_flags, CANTPUSHBYHUMAN) && istype(src, /mob/living/carbon/human))
+		if(HAS_TRAIT(L, TRAIT_NO_PUSHING_BY_HUMAN) && istype(src, /mob/living/carbon/human))
 			return
 
 	if(ismovableatom(A))

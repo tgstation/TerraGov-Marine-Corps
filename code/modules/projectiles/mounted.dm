@@ -120,7 +120,7 @@
 
 	gun.set_gun_user(operator)
 
-	ENABLE_BITFIELD(operator.status_flags, CANTPUSHBYHUMAN)
+	ADD_TRAIT(operator, TRAIT_NO_PUSHING_BY_HUMAN, TRAIT_GENERIC)
 
 
 ///Begins the Firing Process, does custom checks before calling the guns start_fire()
@@ -232,7 +232,7 @@
 
 	operator.client?.view_size.reset_to_default()
 
-	DISABLE_BITFIELD(operator.status_flags, CANTPUSHBYHUMAN)
+	REMOVE_TRAIT(operator, TRAIT_NO_PUSHING_BY_HUMAN, TRAIT_GENERIC)
 
 	operator = null
 	gun?.set_gun_user(null)
