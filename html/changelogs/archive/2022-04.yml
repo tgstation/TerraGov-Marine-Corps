@@ -75,3 +75,31 @@
   - balance: APCR changes, 40 pen from 100, damage upped to 160, sunder upped to 65.
   breadhunt:
   - balance: Blink debuff no longer applies while the wraith is in phase shift
+2022-04-08:
+  Arctrooper8:
+  - bugfix: Synthetics with an unset name now have one given to them based on their
+      gender
+  DeltaFire15:
+  - bugfix: Hiveminds can use the return to core ability if on a closed turf.
+  Pill-U:
+  - balance: mini pepperball magazines now fit in pistol pouches
+  QualityVan:
+  - bugfix: Removed limbs bleed properly
+  SilencedMP5A5:
+  - bugfix: banished a stupid white pixel on M1911 chamber
+  - imageadd: new SAA sprite
+  - imageadd: new 88M4 sprite
+  - imageadd: new G22 sprite
+  Wayland-Smithy, novaepee:
+  - rscadd: Added xeno crit health hud.
+  goose4429:
+  - balance: Decreased plasma drain effect time from 10 to 2
+  - balance: Decreased plasma regen stop time from 10 to 2
+  - balance: Plasma drain now drains 10% per tick (from 6%)
+  - balance: Removed stagger
+  - balance: 'Increased ammo per cell from 4 to 6 added: on-hit plasma drain (30%
+      of max)'
+  novaepee:
+  - balance: Reduce required sheet to upgrade metal barricade from 2 to 1
+  - qol: Add clarification on ctrl-click desciption to tell players to ctrl-click
+      on tile in order to deploy weapon

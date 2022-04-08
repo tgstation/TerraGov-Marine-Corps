@@ -1,4 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - bugfix: "Synthetics with an unset name now have one given to them based on their gender"
