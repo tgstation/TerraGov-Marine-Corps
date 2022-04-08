@@ -574,7 +574,7 @@
 				return FALSE
 			return TRUE
 		if(SLOT_IN_B_HOLSTER)
-			if(!H.back || !istype(H.back, /obj/item/storage/large_holster))
+			if(!H.back || !istype(H.back, /obj/item/storage/holster))
 				return FALSE
 			var/obj/item/storage/S = H.back
 			if(!S.can_be_inserted(src, warning))
@@ -588,13 +588,13 @@
 				return FALSE
 			return TRUE
 		if(SLOT_IN_HOLSTER)
-			if((H.belt && istype(H.belt,/obj/item/storage/large_holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
+			if((H.belt && istype(H.belt,/obj/item/storage/holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.belt
 				if(S.can_be_inserted(src, warning))
 					return TRUE
 			return FALSE
 		if(SLOT_IN_S_HOLSTER)
-			if((H.s_store && istype(H.s_store, /obj/item/storage/large_holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
+			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.s_store
 				if(S.can_be_inserted(src, warning))
 					return TRUE
