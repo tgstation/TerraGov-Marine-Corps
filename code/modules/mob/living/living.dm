@@ -382,6 +382,9 @@
 		if(!(L.status_flags & CANPUSH))
 			return
 
+		if(CHECK_BITFIELD(L.status_flags, CANTPUSHBYHUMAN) && istype(src, /mob/living/carbon/human))
+			return
+
 	if(ismovableatom(A))
 		if(isxeno(src) && ishuman(A))
 			var/mob/living/carbon/human/H = A

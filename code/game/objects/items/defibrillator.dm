@@ -157,9 +157,12 @@
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
+		ENABLE_BITFIELD(user.status_flags, CANTPUSHBYHUMAN)
 		var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_PRACTICED - skill ) ) // 3 seconds with medical skill, 5 without
 		if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
+			DISABLE_BITFIELD(user.status_flags, CANTPUSHBYHUMAN)
 			return
+		DISABLE_BITFIELD(user.status_flags, CANTPUSHBYHUMAN)
 	else
 		defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 

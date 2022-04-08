@@ -120,6 +120,8 @@
 
 	gun.set_gun_user(operator)
 
+	ENABLE_BITFIELD(operator.status_flags, CANTPUSHBYHUMAN)
+
 
 ///Begins the Firing Process, does custom checks before calling the guns start_fire()
 /obj/machinery/deployable/mounted/proc/start_fire(datum/source, atom/object, turf/location, control, params)
@@ -229,6 +231,8 @@
 		scope.zoom_item_turnoff(operator, operator)
 
 	operator.client?.view_size.reset_to_default()
+
+	DISABLE_BITFIELD(operator.status_flags, CANTPUSHBYHUMAN)
 
 	operator = null
 	gun?.set_gun_user(null)
