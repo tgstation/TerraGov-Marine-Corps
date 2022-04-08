@@ -38,8 +38,8 @@ GLOBAL_LIST_INIT(nuke_contents, list(/obj/machinery/computer/nuke_disk_generator
     message_admins("nuke gen item_to_spawn() called while GLOB.nuke_contents is empty!")
     return
   var/chosen_item = pick(GLOB.nuke_contents)
-  if(chosen_item != /obj/machinery/computer/intel_computer)
-    GLOB.nuke_contents -= chosen_item
+/*  if(chosen_item != /obj/machinery/computer/intel_computer)
+    GLOB.nuke_contents -= chosen_item*/
   return chosen_item
 
 /obj/effect/spawner/random/tool

@@ -42,6 +42,7 @@
 		return INITIALIZE_HINT_QDEL
 
 	GLOB.nuke_disk_generators += src
+	GLOB.nuke_contents -= disk_type
 
 
 /obj/machinery/computer/nuke_disk_generator/Destroy()
