@@ -1827,8 +1827,6 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 10
 	hitscan_effect_icon = "xray_beam"
 
-
-
 // Plasma //
 
 /datum/ammo/energy/plasma
