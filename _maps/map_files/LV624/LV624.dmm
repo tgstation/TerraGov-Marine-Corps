@@ -5022,7 +5022,7 @@
 	},
 /area/lv624/lazarus/main_hall)
 "bTH" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/sideroom)
 "bTL" = (
@@ -8748,7 +8748,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "gwA" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "gxL" = (
@@ -9764,7 +9764,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "hLs" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "hMa" = (
@@ -11440,7 +11440,7 @@
 	},
 /area/lv624/lazarus/research)
 "jIq" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -16602,7 +16602,7 @@
 	},
 /area/lv624/ground/compound/c)
 "pXE" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /obj/machinery/door_control{
 	dir = 4;
 	id = "science_blast";
@@ -16859,7 +16859,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "qvP" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -18075,7 +18075,7 @@
 /area/lv624/ground/sand8)
 "rNb" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "rNs" = (
@@ -20952,7 +20952,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "veM" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "vfg" = (
@@ -22313,7 +22313,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "wIb" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "wIK" = (

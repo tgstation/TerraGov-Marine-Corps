@@ -2417,7 +2417,7 @@
 	},
 /area/outpost/hallway/east)
 "ln" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -2429,7 +2429,7 @@
 /turf/closed/wall/r_wall,
 /area/outpost/brig/armoury)
 "lq" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
 	},
@@ -5923,7 +5923,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/northern)
 "Dh" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "Di" = (
@@ -6602,7 +6602,7 @@
 	},
 /area/outpost/hallway/south_cent)
 "Gs" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/purple2{
 	dir = 9
 	},
@@ -9229,7 +9229,7 @@
 	},
 /area/outpost/lz2)
 "SO" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /obj/structure/cable,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/medbay/security)
@@ -10018,7 +10018,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "WM" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -10424,7 +10424,7 @@
 	},
 /area/outpost/lz2)
 "YL" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -10577,7 +10577,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "Zy" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/wood,
 /area/outpost/dormitories)
 "Zz" = (

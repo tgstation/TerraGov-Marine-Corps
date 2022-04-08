@@ -229,7 +229,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "tB" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},

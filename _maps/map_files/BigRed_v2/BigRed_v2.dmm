@@ -279,7 +279,7 @@
 /turf/open/space/basic,
 /area/bigredv2/caves/northeast)
 "adK" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "adQ" = (
@@ -311,7 +311,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adV" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adW" = (
@@ -12474,7 +12474,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "eIX" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "eKb" = (
@@ -14084,7 +14084,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "pmR" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "pod" = (

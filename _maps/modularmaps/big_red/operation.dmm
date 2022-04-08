@@ -383,7 +383,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "sE" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/admin_building)
 "sT" = (

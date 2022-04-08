@@ -4096,7 +4096,7 @@
 "qQ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
 "qS" = (
@@ -5328,7 +5328,7 @@
 /turf/closed/mineral,
 /area/vapor_processing/caves/se)
 "xc" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
 "xq" = (
@@ -5388,7 +5388,7 @@
 /turf/open/ground,
 /area/space)
 "Iu" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison/yellow/full,
 /area/lv624/lazarus/engineering)
 "Ja" = (
@@ -5465,7 +5465,7 @@
 /turf/open/ground,
 /area/lv624/ground/compound/c)
 "SJ" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "Ud" = (
@@ -5481,7 +5481,7 @@
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
 "Xd" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 1
 	},

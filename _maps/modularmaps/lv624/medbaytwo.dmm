@@ -417,7 +417,7 @@
 /area/lv624/lazarus/medbay)
 "OL" = (
 /obj/structure/cable,
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},

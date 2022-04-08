@@ -8782,7 +8782,7 @@
 	dir = 8
 	},
 /obj/structure/table/mainship,
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
 "ghc" = (
@@ -10565,7 +10565,7 @@
 /area/magmoor/cave/southwest)
 "hBz" = (
 /obj/structure/table/reinforced,
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
 	},
@@ -17364,7 +17364,7 @@
 /turf/open/floor/grass,
 /area/magmoor/hydroponics)
 "mAa" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/yellow{
 	dir = 8
 	},

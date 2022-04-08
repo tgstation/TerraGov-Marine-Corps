@@ -907,7 +907,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "Pb" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},

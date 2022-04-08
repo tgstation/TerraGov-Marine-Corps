@@ -8,7 +8,7 @@
 /turf/open/space/sea,
 /area/space)
 "aac" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
@@ -1773,7 +1773,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/bioengineering)
 "ahe" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research/secret/bioengineering)
 "ahf" = (
@@ -41916,7 +41916,7 @@
 	},
 /area/prison/hallway/central)
 "eUt" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison/blue{
 	dir = 5
 	},
@@ -43296,7 +43296,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/maxsec/panopticon)
 "jdI" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison,
 /area/prison/security/head)
 "jeJ" = (
@@ -45726,7 +45726,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
 "pYg" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison/darkyellow{
 	dir = 4
 	},
@@ -47090,7 +47090,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "tHS" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
@@ -47643,7 +47643,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/cellblock/highsec/south/north)
 "vmo" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/wood,
 /area/prison/residential/south)
 "vnS" = (

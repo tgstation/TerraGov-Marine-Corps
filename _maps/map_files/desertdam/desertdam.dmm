@@ -955,7 +955,7 @@
 	},
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/wood,
 /area/desert_dam/building/bar/backroom)
 "aeE" = (
@@ -2390,7 +2390,7 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_excavation)
 "akG" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	dir = 5;
 	icon_state = "darkpurple2"
@@ -5418,7 +5418,7 @@
 	start_charge = 0
 	},
 /obj/structure/cable,
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	dir = 5;
 	icon_state = "darkpurple2"
@@ -11533,7 +11533,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "aWg" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_two/control_room)
 "aWh" = (
@@ -12586,7 +12586,7 @@
 	start_charge = 0
 	},
 /obj/structure/cable,
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor{
 	icon_state = "dark2"
 	},
@@ -13304,7 +13304,7 @@
 	},
 /area/desert_dam/building/administration/hallway)
 "bcW" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	dir = 5;
 	icon_state = "darkyellow2"
@@ -17870,7 +17870,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	dir = 1;
 	icon_state = "darkredcorners2"
@@ -18048,7 +18048,7 @@
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "bwl" = (
 /obj/structure/cable,
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	dir = 1;
 	icon_state = "darkyellow2"
@@ -18989,7 +18989,7 @@
 	},
 /area/desert_dam/interior/dam_interior/control_room)
 "bzN" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor{
 	dir = 1;
 	icon_state = "darkyellow2"
@@ -20761,7 +20761,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
@@ -22972,7 +22972,7 @@
 /turf/open/floor/plating,
 /area/desert_dam/interior/dam_interior/primary_tool_storage)
 "bPz" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor{
 	icon_state = "dark2"
 	},
@@ -31051,7 +31051,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	dir = 10;
 	icon_state = "bright_clean2"
@@ -32293,7 +32293,7 @@
 	},
 /area/desert_dam/building/medical/office2)
 "cAD" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
@@ -34905,7 +34905,7 @@
 	},
 /area/desert_dam/building/medical/treatment_room)
 "cJF" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	dir = 10;
 	icon_state = "whitegreenfull"
@@ -38944,7 +38944,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison,
 /area/desert_dam/building/hydroponics/hydroponics_storage)
 "dda" = (
@@ -40553,7 +40553,7 @@
 	},
 /area/desert_dam/building/cafeteria/loading)
 "dlE" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	icon_state = "sterile_white"
 	},
@@ -40855,7 +40855,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/wood,
 /area/desert_dam/building/water_treatment_one/hallway)
 "dpy" = (
@@ -41387,7 +41387,7 @@
 /area/desert_dam/building/administration/office)
 "duo" = (
 /obj/structure/cable,
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "carpet11-12"
@@ -54423,7 +54423,7 @@
 	},
 /area/desert_dam/interior/dam_interior/engine_west_wing)
 "jRv" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor{
 	icon_state = "wood"
 	},
@@ -56721,7 +56721,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "lUk" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	dir = 10;
 	icon_state = "whitegreenfull"
@@ -58864,7 +58864,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor{
 	icon_state = "wood"
 	},
@@ -63997,7 +63997,7 @@
 	},
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "sNT" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	dir = 1;
 	icon_state = "darkyellow2"
@@ -64953,7 +64953,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_hydro)
 "tKc" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/plating,
 /area/desert_dam/building/cafeteria/backroom)
 "tKg" = (
@@ -65558,7 +65558,7 @@
 	},
 /area/desert_dam/building/bar/bar_restroom)
 "uqm" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	dir = 1;
 	icon_state = "darkred2"
@@ -65693,7 +65693,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/interior/lab_northeast/east_lab_RND)
 "uwC" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/effect/spawner/random/nukegen,
 /obj/machinery/light,
 /turf/open/floor/mainship/blue{
 	dir = 6
@@ -65748,7 +65748,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/east_engineering)
 "uzw" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison{
 	dir = 1;
 	icon_state = "darkyellow2"
@@ -65918,7 +65918,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_mining)
 "uJj" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/wood,
 /area/desert_dam/interior/dam_interior/east_tunnel_entrance)
 "uJK" = (
@@ -66950,7 +66950,7 @@
 	},
 /area/desert_dam/building/cafeteria/cafeteria)
 "vIf" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/prison,
 /area/desert_dam/building/water_treatment_two/lobby)
 "vIx" = (
@@ -68370,7 +68370,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_medical_south)
 "wZp" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/plating,
 /area/desert_dam/interior/lab_northeast/east_lab_west_hallway)
 "wZM" = (

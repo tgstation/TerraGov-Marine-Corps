@@ -2687,7 +2687,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "akH" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -8046,7 +8046,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -17359,7 +17359,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bgF" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bgG" = (
@@ -22933,7 +22933,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/crew/canteen)
 "bzK" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
@@ -31933,7 +31933,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "ftt" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -31993,7 +31993,7 @@
 	},
 /area/ice_colony/exterior/underground/caves)
 "fPd" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -33360,7 +33360,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/ice_se)
 "mJD" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/security/armory)
 "mKW" = (
@@ -33544,7 +33544,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
 "nLw" = (
-/obj/machinery/computer/intel_computer,
+/obj/effect/spawner/random/nukegen,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},

@@ -26,6 +26,21 @@
 	var/build_path = item_to_spawn()
 	return (new build_path(src.loc))
 
+GLOBAL_LIST_INIT(nuke_contents, list(/obj/machinery/computer/nuke_disk_generator/blue, /obj/machinery/computer/nuke_disk_generator/red, /obj/machinery/computer/nuke_disk_generator/green, /obj/machinery/computer/intel_computer))
+
+/obj/effect/spawner/random/nukegen
+	name = "Nuke Generator or Intel Computer"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "oldb"
+
+/obj/effect/spawner/random/nukegen/item_to_spawn()
+  if(!GLOB.nuke_contents.len)
+    message_admins("nuke gen item_to_spawn() called while GLOB.nuke_contents is empty!")
+    return
+  var/chosen_item = pick(GLOB.nuke_contents)
+  if(chosen_item != /obj/machinery/computer/intel_computer)
+    GLOB.nuke_contents -= chosen_item
+  return chosen_item
 
 /obj/effect/spawner/random/tool
 	name = "Random Tool"
