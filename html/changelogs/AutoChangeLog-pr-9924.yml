@@ -1,0 +1,7 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - rscadd: "The rocket bag can now carry the recoilless rifle itself, and the sprite will show this"
+  - balance: "Rocket bag now has a 0.5 second draw delay"
+  - bugfix: "Fixed a few missing/janky holster sprites"
+  - refactor: "refactored how large holsters work"

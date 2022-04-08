@@ -91,7 +91,7 @@
 			/obj/item/weapon/gun/rifle/tx54 = 2,
 			/obj/item/ammo_magazine/rifle/tx54 = 10,
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
-			/obj/item/weapon/gun/energy/lasgun/tesla = 2,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
 			/obj/item/storage/box/recoilless_system = 2,
@@ -112,6 +112,7 @@
 		"Grenades" = list(
 			/obj/item/explosive/grenade = 600,
 			/obj/item/explosive/grenade/m15 = 30,
+			/obj/item/explosive/grenade/sticky = 125,
 			/obj/item/explosive/grenade/incendiary = 50,
 			/obj/item/explosive/grenade/smokebomb/cloak = 25,
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
@@ -421,7 +422,7 @@
 			/obj/item/ammo_magazine/rifle/tx54/incendiary = -1,
 			/obj/item/weapon/gun/rifle/tx55 = -1,
 			/obj/item/ammo_magazine/rifle/tx55 = -1,
-			/obj/item/weapon/gun/energy/lasgun/tesla = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
 			/obj/item/weapon/gun/heavymachinegun = -1,
 			/obj/item/ammo_magazine/heavymachinegun = -1,
 			/obj/item/weapon/gun/rifle/pepperball = -1,
@@ -444,6 +445,7 @@
 			/obj/item/explosive/grenade = -1,
 			/obj/item/explosive/grenade/m15 = -1,
 			/obj/item/explosive/grenade/impact = -1,
+			/obj/item/explosive/grenade/sticky = -1,
 			/obj/item/explosive/grenade/incendiary = -1,
 			/obj/item/explosive/grenade/smokebomb/cloak = -1,
 			/obj/item/explosive/grenade/smokebomb/drain = -1,
@@ -1158,8 +1160,8 @@
 			/obj/item/storage/belt/sparepouch = -1,
 			/obj/item/storage/belt/gun/pistol/standard_pistol = -1,
 			/obj/item/storage/belt/gun/revolver/standard_revolver = -1,
-			/obj/item/storage/large_holster/blade/machete/full = -1,
-			/obj/item/storage/large_holster/blade/machete/full_harvester = -1,
+			/obj/item/storage/holster/blade/machete/full = -1,
+			/obj/item/storage/holster/blade/machete/full_harvester = -1,
 			/obj/item/storage/belt/utility/full =-1,
 		),
 		"Pouches" = list(
@@ -1254,7 +1256,7 @@
 	use_power = NO_POWER_USE
 	products = list(
 		"Weapon" = list(
-			/obj/item/weapon/gun/energy/lasgun/tesla = -1,
+			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
 			/obj/item/weapon/gun/rifle/railgun = -1,
 			/obj/item/ammo_magazine/railgun = -1,
 			/obj/item/weapon/gun/rifle/tx8 = -1,

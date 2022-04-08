@@ -236,7 +236,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
-	contains = list(/obj/item/weapon/gun/energy/lasgun/tesla)
+	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
 	cost = 60
 
 /datum/supply_packs/weapons/tx54

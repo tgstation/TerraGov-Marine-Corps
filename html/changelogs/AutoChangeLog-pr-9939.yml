@@ -1,7 +1,0 @@
-author: "SilencedMP5A5"
-delete-after: True
-changes: 
-  - bugfix: "banished a stupid white pixel on M1911 chamber"
-  - imageadd: "new SAA sprite"
-  - imageadd: "new 88M4 sprite"
-  - imageadd: "new G22 sprite"

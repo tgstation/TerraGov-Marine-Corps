@@ -6074,12 +6074,9 @@
 /turf/closed/ice_rock/singleT,
 /area/icy_caves/caves)
 "zu" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
-	},
-/area/icy_caves/caves/northwestmonorail)
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
+/turf/open/floor/mainship/red/full,
+/area/prison/monorail/west)
 "zw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -6527,7 +6524,7 @@
 /turf/closed/ice_rock/northWall,
 /area/icy_caves/caves)
 "Bd" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
@@ -11423,7 +11420,7 @@
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/security)
 "VN" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},

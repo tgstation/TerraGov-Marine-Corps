@@ -103,7 +103,7 @@
 	var/obj/item/cell/lasgun/cell = mag
 	return cell?.reload_delay
 
-/obj/item/weapon/gun/energy/lasgun/tesla
+/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla
 	name = "\improper Terra Experimental tesla shock rifle"
 	desc = "A Terra Experimental energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Unlike the other TE Laser weapons, lasers don't come out of this weird weapon. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts. Uses standard Terra Experimental  (abbreviated as TE) power cells."
 	icon_state = "tesla"
@@ -120,6 +120,7 @@
 
 	muzzle_flash_color = COLOR_TESLA_BLUE
 
+	max_shots = 6 //codex stuff
 	rounds_per_shot = 100
 	fire_delay = 4 SECONDS
 	turret_flags = TURRET_INACCURATE
@@ -130,6 +131,30 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
+
+	mode_list = list(
+		"Standard" = /datum/lasrifle/base/tesla_mode/standard,
+		"Focused" = /datum/lasrifle/base/tesla_mode/focused,
+	)
+
+/datum/lasrifle/base/tesla_mode/standard
+	rounds_per_shot = 100
+	ammo_datum_type = /datum/ammo/energy/tesla
+	fire_delay = 4 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	message_to_user = "You set the tesla shock rifle's power mode mode to standard."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tesla"
+
+/datum/lasrifle/base/tesla_mode/focused
+	rounds_per_shot = 100
+	ammo_datum_type = /datum/ammo/energy/tesla/focused
+	fire_delay = 4 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	message_to_user = "You set the tesla shock rifle's power mode mode to focused."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tesla"
+	radial_icon_state = "laser_overcharge"
 
 /obj/item/weapon/gun/energy/lasgun/unique_action(mob/user, dont_operate = FALSE)
 	QDEL_NULL(in_chamber)

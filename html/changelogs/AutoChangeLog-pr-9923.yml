@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscdel: "Removed some posters; git will remember"
+  - imagedel: "deleted some posters; git will remember"
