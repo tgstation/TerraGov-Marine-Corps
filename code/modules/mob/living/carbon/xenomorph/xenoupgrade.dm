@@ -12,10 +12,10 @@
 	set_datum(FALSE)
 	var/selected_ability_type = selected_ability?.type
 
-	for(var/check_existing_actions in xeno_abilities) //Remove xenos actions we shouldn't have
-		var/datum/action/xeno_action/existing_action_path = check_existing_actions
-		if(!locate(existing_action_path) in xeno_caste.actions)
-			existing_action_path.remove_action(src)
+	for(var/datum/action/xeno_action/existing_action AS in xeno_abilities) //Remove xenos actions we shouldn't have
+		for(var/datum/action/xeno_action/action_existing AS in in xeno_caste.actions)
+			if(existing_action.type == action_existing.type)
+				existing_action.remove_action(src)
 
 	for(var/check_new_actions in xeno_caste.actions) //Give the xenos actions we don't currently have
 		var/datum/action/xeno_action/new_action_path = check_new_actions
