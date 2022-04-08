@@ -1566,6 +1566,16 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
 	zap_beam(proj, 4, damage)
 
+/datum/ammo/energy/tesla/focused
+	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS|AMMO_IFF
+	shell_speed = 0.1
+	damage = 10
+	penetration = 10
+	bullet_color = COLOR_TESLA_BLUE
+
+/datum/ammo/energy/tesla/focused/ammo_process(obj/projectile/proj, damage)
+	zap_beam(proj, 3, damage)
+
 
 /datum/ammo/energy/tesla/on_hit_mob(mob/M,obj/projectile/P)
 	if(isxeno(M)) //need 1 second more than the actual effect time
