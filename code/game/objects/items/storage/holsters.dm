@@ -24,7 +24,7 @@
 
 /obj/item/storage/holster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)	//add more if needed
-		mouse_opacity = 2 //so it's easier to click when properly equipped.
+		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.
 	return ..()
 
 /obj/item/storage/holster/dropped(mob/user)
