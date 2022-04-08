@@ -51,7 +51,7 @@
 
 /obj/item/ammo_magazine/packet/t25
 	name = "box of 10x26mm high-pressure"
-	desc = "A box containing 4004 rounds of 10x26mm 'HP' caseless tuned for a smartgun."
+	desc = "A box containing 300 rounds of 10x26mm 'HP' caseless tuned for a smartgun."
 	icon_state = "box_t25"
 	default_ammo = /datum/ammo/bullet/smartgun
 	caliber = CALIBER_10x26_CASELESS
