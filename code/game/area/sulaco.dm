@@ -106,7 +106,7 @@
 
 /area/sulaco/briefing
 	name = "Sulaco Briefing Room"
-	icon_state = "law"
+	icon_state = "blue-red2"
 
 /area/sulaco/cryosleep
 	name = "Sulaco Cryogenic Storage"
@@ -227,7 +227,7 @@
 
 /area/sulaco/hangar
 	name = "Sulaco Dropship Hangar"
-	icon_state = "mining"
+	icon_state = "hangar"
 
 /area/sulaco/hangar/droppod
 	name = "Sulaco Drop pod bay"
