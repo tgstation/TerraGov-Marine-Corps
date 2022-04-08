@@ -3590,7 +3590,6 @@
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/smg/m25,
 /obj/item/ammo_magazine/smg/m25,
-/obj/structure/cable,
 /obj/item/ammo_magazine/smg/m25,
 /obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/prison,
@@ -11759,6 +11758,7 @@
 	id = "Reqshutters";
 	name = "Requisitions Blast Door"
 	},
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
 "dLR" = (
@@ -12181,7 +12181,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/firedoor,
-/turf/open/space/basic,
+/turf/open/floor/prison,
 /area/sulaco/firingrange)
 "ewT" = (
 /obj/machinery/door_control/ai/interior{
@@ -12378,7 +12378,6 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "eMd" = (
-/obj/structure/cable,
 /obj/structure/closet/crate,
 /obj/item/target,
 /obj/item/target,
@@ -12750,7 +12749,6 @@
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "fqG" = (
 /obj/structure/table/mainship,
-/obj/structure/cable,
 /obj/item/weapon/gun/shotgun/pump,
 /obj/item/ammo_magazine/shotgun,
 /obj/item/ammo_magazine/shotgun/buckshot,
@@ -15923,6 +15921,10 @@
 	},
 /turf/closed/banish_space,
 /area/space)
+"kcc" = (
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/sulaco/firingrange)
 "kcP" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/prison/bright_clean,
@@ -17714,7 +17716,6 @@
 /area/sulaco/maintenance/lower_maint)
 "mQk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
@@ -20463,6 +20464,7 @@
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/machinery/light/small,
+/obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
 "qXN" = (
@@ -20824,6 +20826,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
 "rus" = (
@@ -21973,6 +21976,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
 "sWN" = (
@@ -24216,6 +24220,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
 "wht" = (
@@ -24729,7 +24734,7 @@
 "wVV" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/machinery/door/firedoor,
-/turf/open/space/basic,
+/turf/open/floor/prison,
 /area/sulaco/firingrange)
 "wWw" = (
 /obj/structure/cable,
@@ -53364,7 +53369,7 @@ aMV
 kqQ
 oBg
 slc
-xWz
+kcc
 tMH
 xWz
 uiN
