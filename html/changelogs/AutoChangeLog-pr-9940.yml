@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - balance: "Teleporter cooldown severly reduced to 2 secs (rather than 20 secs)"
