@@ -574,7 +574,7 @@
 				return FALSE
 			return TRUE
 		if(SLOT_IN_B_HOLSTER)
-			if(!H.back || !istype(H.back, /obj/item/storage/large_holster))
+			if(!H.back || !istype(H.back, /obj/item/storage/holster))
 				return FALSE
 			var/obj/item/storage/S = H.back
 			if(!S.can_be_inserted(src, warning))
@@ -588,13 +588,13 @@
 				return FALSE
 			return TRUE
 		if(SLOT_IN_HOLSTER)
-			if((H.belt && istype(H.belt,/obj/item/storage/large_holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
+			if((H.belt && istype(H.belt,/obj/item/storage/holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.belt
 				if(S.can_be_inserted(src, warning))
 					return TRUE
 			return FALSE
 		if(SLOT_IN_S_HOLSTER)
-			if((H.s_store && istype(H.s_store, /obj/item/storage/large_holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
+			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.s_store
 				if(S.can_be_inserted(src, warning))
 					return TRUE
@@ -716,8 +716,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		viewsize = zoom_viewsize
 
 	if(zoom) //If we are zoomed out, reset that parameter.
-		user.visible_message(span_notice("[user] looks up from [zoom_device]."),
-		span_notice("You look up from [zoom_device]."))
+		if(!TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
+			user.visible_message(span_notice("[user] looks up from [zoom_device]."),
+			span_notice("You look up from [zoom_device]."))
+
 		zoom = FALSE
 		UnregisterSignal(user, COMSIG_ITEM_ZOOM)
 		onunzoom(user)
@@ -733,10 +735,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			animate(user.client, 3*(tileoffset/7), pixel_x = 0, pixel_y = 0)
 		return
 
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
-		return
 	TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
-
 	if(SEND_SIGNAL(user, COMSIG_ITEM_ZOOM) &  COMSIG_ITEM_ALREADY_ZOOMED)
 		to_chat(user, span_warning("You are already looking through another zoom device.."))
 		return
@@ -745,8 +744,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.client.view_size.add(viewsize)
 		change_zoom_offset(user, zoom_offset = tileoffset)
 
-	user.visible_message(span_notice("[user] peers through \the [zoom_device]."),
-	span_notice("You peer through \the [zoom_device]."))
+	if(!TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM))
+		user.visible_message(span_notice("[user] peers through \the [zoom_device]."),
+		span_notice("You peer through \the [zoom_device]."))
 	zoom = TRUE
 	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
 	onzoom(user)

@@ -2,14 +2,23 @@ import { useBackend } from '../backend';
 import { Button, Section, LabeledList, NoticeBox, NumberInput, Box } from '../components';
 import { Window } from '../layouts';
 
+const DROPPOD_READY = 1;
+
+type DropData = {
+  occupant: string
+  target_x: number
+  target_y: number
+  drop_state: number
+}
+
 export const Droppod = (props, context) => {
-  const { data } = useBackend(context);
+  const { data } = useBackend<DropData>(context);
   return (
     <Window
       width={450}
       height={250}>
       <Window.Content scrollable>
-        {data.drop_state === 1 ? (
+        {data.drop_state === DROPPOD_READY ? (
           <PreDeploy />
         ) : (
           <NoticeBox>
@@ -23,19 +32,24 @@ export const Droppod = (props, context) => {
 };
 
 const PreDeploy = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<DropData>(context);
+  const {
+    target_x,
+    target_y,
+    occupant,
+  } = data;
   return (
-    <Section title={`Welcome, ${data.occupant}`}>
+    <Section title={`Welcome, ${occupant}`}>
       <LabeledList>
         <LabeledList.Item label="X Coordinate">
           <NumberInput
-            value={data.target_x}
+            value={target_x}
             onChange={(e, value) => act('set_x_target', { set_x: `${value}` })}
           />
         </LabeledList.Item>
         <LabeledList.Item label="Y Coordinate">
           <NumberInput
-            value={data.target_y}
+            value={target_y}
             onChange={(e, value) => act('set_y_target', { set_y: `${value}` })}
           />
         </LabeledList.Item>

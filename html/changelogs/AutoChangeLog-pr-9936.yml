@@ -1,0 +1,5 @@
+author: "hyper2snyper"
+delete-after: True
+changes: 
+  - qol: "The TL102 miniscope now rezooms in when you rotate."
+  - bugfix: "Deployables no longer check direction after deployment, but before."
