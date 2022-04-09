@@ -23,17 +23,20 @@ Contributions if not otherwise specified are licensed under [![Badge AGPL]][Li
 
 <br>
 
-What          | From                                 | License
-:------------:|:------------------------------------:|:------------------------:
-Artwork       | *after -this commit-*                | [![Badge CC-BY-NC]][License CC-BY-NC]
-Sprites       | **[#367]** ( **[#36b8db4]** )        | [![Badge CC-BY-NC]][License CC-BY-NC]
-Sprites       | **[#d407e97]**                       | [![Badge CC-BY-NC]][License CC-BY-NC]
-Sounds        | **[#5261]** **[#5861]**             | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
-Icons         | **[#6010]**                          | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
-Rouny Sprites | **[#6938]**                          | [![Badge CC-BY-SA]][License CC-BY-SA]
-Sounds        | **[#5604]** from **[FreeSound.org]** | [![Badge CC-BY]][License CC-BY]
-TGS DMAPI     |                                      | [![Badge MIT]][License MIT]
+<div align = center>
 
+What            | From                                 | License
+:--------------:|:------------------------------------:|:------------------------:
+`Artwork`       | *after -this commit-*                | [![Badge CC-BY-NC]][License CC-BY-NC]
+`Sprites`       | **[#367]** ( **[#36b8db4]** )        | [![Badge CC-BY-NC]][License CC-BY-NC]
+`Sprites`       | **[#d407e97]**                       | [![Badge CC-BY-NC]][License CC-BY-NC]
+`Sounds`        | **[#5261]** **[#5861]**             | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
+`Icons`         | **[#6010]**                          | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
+`Rouny Sprites` | **[#6938]**                          | [![Badge CC-BY-SA]][License CC-BY-SA]
+`Sounds`        | **[#5604]** from **[FreeSound.org]** | [![Badge CC-BY]][License CC-BY]
+`TGS DMAPI`     |                                      | [![Badge MIT]][License MIT]
+
+</div>
 
 <!----------------------------------{ Badges }--------------------------------->
 
