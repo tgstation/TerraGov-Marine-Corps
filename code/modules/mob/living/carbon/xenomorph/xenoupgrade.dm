@@ -9,7 +9,6 @@
 		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
 		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
-	var/datum/xeno_caste/old_xeno_caste = xeno_caste
 	set_datum(FALSE)
 	var/selected_ability_type = selected_ability?.type
 
