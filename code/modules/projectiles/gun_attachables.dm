@@ -630,6 +630,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/has_nightvision = FALSE
 	///boolean as to whether the attachment is currently giving nightvision
 	var/active_nightvision = FALSE
+	///True if the scope is supposed to reactiveate when a deployed gun is turned.
+	var/deployed_scope_rezoom = FALSE
 
 
 /obj/item/attachable/scope/marine
@@ -703,6 +705,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "sniperscope_invisible"
 	zoom_viewsize = 0
 	zoom_tile_offset = 3
+	deployed_scope_rezoom = TRUE
 
 /obj/item/attachable/scope/unremovable/tl102/nest
 	zoom_tile_offset = 6

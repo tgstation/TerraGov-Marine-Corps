@@ -2997,11 +2997,11 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "jQ" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Firing Range"
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 8
 	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
+	name = "\improper Firing Range Airlock"
 	},
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -4142,7 +4142,7 @@
 /area/mainship/hallways/port_hallway)
 "nq" = (
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
+/obj/machinery/door/airlock/multi_tile/mainship/marine/general{
 	dir = 2
 	},
 /turf/open/floor/mainship,
@@ -4269,6 +4269,9 @@
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/engineering/lower_engineering)
@@ -5357,12 +5360,12 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/starboard_hallway)
 "rC" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Firing Range"
-	},
 /obj/structure/cable,
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 8
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
+	name = "\improper Firing Range Airlock"
 	},
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -7144,6 +7147,7 @@
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
+/obj/structure/sign/securearea/firingrange,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "wP" = (
@@ -8317,11 +8321,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "Al" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/lower_engineering)
+/turf/open/floor/plating,
+/area/mainship/shipboard/firing_range)
 "Am" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/cargo,
@@ -11700,6 +11701,7 @@
 /obj/item/target,
 /obj/item/target,
 /obj/item/target,
+/obj/structure/sign/securearea/firingrange,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "Kl" = (
@@ -12051,13 +12053,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Li" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
-/area/mainship/shipboard/firing_range)
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
+/turf/open/floor/mainship/mono,
+/area/mainship/engineering/lower_engineering)
 "Lj" = (
 /obj/structure/cable,
 /obj/machinery/alarm{
@@ -12896,16 +12894,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "NN" = (
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/obj/machinery/door/airlock/mainship/engineering/workshop{
-	dir = 2
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
 "NP" = (
@@ -14949,7 +14941,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
 "Us" = (
-/obj/machinery/door/airlock/mainship/marine/general,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -14959,8 +14950,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric{
+	dir = 1;
+	name = "\improper Firing Range Airlock"
 	},
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
@@ -45823,7 +45818,7 @@ SA
 Vu
 SA
 OL
-Al
+yP
 Qp
 zj
 OL
@@ -46336,7 +46331,7 @@ Fc
 XQ
 Kx
 SA
-OL
+Li
 Mq
 Qp
 OL
@@ -50914,9 +50909,9 @@ yD
 yD
 yD
 NU
-NZ
+Al
 Us
-NZ
+NU
 NU
 PR
 Ql
@@ -51174,7 +51169,7 @@ Rs
 Uz
 RJ
 Kk
-NZ
+NU
 XH
 eI
 IX
@@ -51431,7 +51426,7 @@ qV
 qW
 XO
 SY
-NU
+NZ
 ds
 su
 Tq
@@ -51945,7 +51940,7 @@ qV
 IG
 ol
 Te
-Li
+Te
 LQ
 jl
 ot
@@ -53230,7 +53225,7 @@ qz
 qY
 Vv
 Te
-Li
+Te
 Ol
 nE
 Qj
@@ -53487,7 +53482,7 @@ NU
 XP
 PN
 ZZ
-NU
+NZ
 oy
 Xp
 es

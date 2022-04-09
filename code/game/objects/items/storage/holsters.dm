@@ -14,19 +14,17 @@
 	///is used to store the 'empty' sprite name
 	var/base_icon = "m37_holster"
 	///the sound produced when the special item is drawn
-	var/drawSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
+	var/draw_sound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 	///the sound produced when the special item is sheathed
-	var/sheatheSound = 'sound/weapons/guns/misc/rifle_draw.ogg'
+	var/sheathe_sound = 'sound/weapons/guns/misc/rifle_draw.ogg'
 	///the snowflake item(s) that will update the sprite.
 	var/list/holsterable_allowed = list()
-	///records whether the special item currently in the holster
-	var/holstered = FALSE
 	///records the specific special item currently in the holster
 	var/holstered_item = null
 
 /obj/item/storage/holster/equipped(mob/user, slot)
-	if(slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)	//add more if needed
-		mouse_opacity = 2 //so it's easier to click when properly equipped.
+	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)	//add more if needed
+		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.
 	return ..()
 
 /obj/item/storage/holster/dropped(mob/user)
@@ -34,7 +32,7 @@
 	return ..()
 
 /obj/item/storage/holster/should_access_delay(obj/item/item, mob/user, taking_out) //defaults to 0
-	if(!taking_out) // Always allow items to be tossed in instantly
+	if (!taking_out) // Always allow items to be tossed in instantly
 		return FALSE
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
@@ -46,33 +44,29 @@
 	. = ..()
 	if (!. || !(W.type in holsterable_allowed) ) //check to see if the item being inserted is the snowflake item
 		return
-	holstered = TRUE
 	holstered_item = W
-	update_holster_icon()
+	playsound(src, sheathe_sound, 15, 1)
+	update_icon()
 
 /obj/item/storage/holster/remove_from_storage(obj/item/W, atom/new_location, mob/user)
 	. = ..()
 	if (!. || !(W.type in holsterable_allowed) ) //check to see if the item being removed is the snowflake item
 		return
-	holstered = FALSE
 	holstered_item = null
-	update_holster_icon()
-
-///only called when the snowflake item is put in or removed
-/obj/item/storage/holster/proc/update_holster_icon()
-	if(holstered)
-		playsound(src,sheatheSound, 15, 1)
-		icon_state = base_icon + "_full"
-		item_state = icon_state
-	else
-		playsound(src,drawSound, 15, 1)
-		icon_state = base_icon
-		item_state = icon_state
-	//actually updates the icon
+	playsound(src, draw_sound, 15, 1)
 	update_icon()
 
+/obj/item/storage/holster/update_icon_state()
+	//sets the icon to full or empty
+	if (holstered_item)
+		icon_state = base_icon + "_full"
+	else
+		icon_state = base_icon
+	//sets the item state to match the icon state
+	item_state = icon_state
+
 /obj/item/storage/holster/update_icon()
-	. = ..()
+	. = ..() //calls update_icon_state to change the icon/item state
 	var/mob/user = loc
 	if (!istype(user))
 		return
@@ -92,14 +86,13 @@
 //only applies on storage of all items, not withdrawal
 /obj/item/storage/holster/backholster/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if (use_sound)
+		playsound(loc, use_sound, 15, 1, 6)
 
-	if (!use_sound)
-		return
-	playsound(loc, use_sound, 15, 1, 6)
 
 /obj/item/storage/holster/backholster/equipped(mob/user, slot)
-	if(slot == SLOT_BACK)
-		mouse_opacity = 2 //so it's easier to click when properly equipped.
+	if (slot == SLOT_BACK)
+		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.
 		if(use_sound)
 			playsound(loc, use_sound, 15, 1, 6)
 	return ..()
