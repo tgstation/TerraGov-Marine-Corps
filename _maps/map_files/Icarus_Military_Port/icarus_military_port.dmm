@@ -293,7 +293,7 @@
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/admin_building)
 "arB" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/effect/spawner/random/nukegen,
 /obj/structure/table/mainship,
 /turf/open/floor/plating/mainship,
 /area/bigredv2/outside/c)
@@ -11171,7 +11171,7 @@
 /turf/open/floor/plating,
 /area/arrival/start)
 "qUK" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/effect/spawner/random/nukegen,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile,
 /area/bigredv2/outside/medical)
@@ -13242,7 +13242,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "tEv" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
+/obj/effect/spawner/random/nukegen,
 /obj/structure/table,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/engineering)
