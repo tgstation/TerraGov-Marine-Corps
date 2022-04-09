@@ -421,9 +421,83 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_L_POUCH,\
 	SLOT_IN_R_POUCH,\
 	SLOT_IN_HEAD,\
-	SLOT_IN_BELT\
+	SLOT_IN_BELT,\
 )
 
 #define ITEM_NOT_EQUIPPED 0
 #define ITEM_EQUIPPED_CARRIED 1 //To hands, a storage or the likes.
 #define ITEM_EQUIPPED_WORN 2 //Actually worn on the body.
+
+#define SLOT_FLUFF_DRAW list(\
+	"Suit Storage",\
+	"Suit Inside",\
+	"Belt",\
+	"Back",\
+	"Boot",\
+	"Helmet",\
+	"Left Pocket",\
+	"Right Pocket",\
+	"Webbing",\
+	"Belt",\
+	"Belt Holster",\
+	"Suit Storage Holster",\
+	"Back Holster",\
+)
+
+/proc/slot_fluff_to_flag(slot)
+	switch(slot)
+		if("Suit Storage")
+			return SLOT_S_STORE
+		if("Suit Inside")
+			return SLOT_WEAR_SUIT
+		if("Belt")
+			return SLOT_BELT
+		if("Back")
+			return SLOT_BACK
+		if("Boot")
+			return SLOT_IN_BOOT
+		if("Helmet")
+			return SLOT_IN_HEAD
+		if("Left Pocket")
+			return SLOT_L_STORE
+		if("Right Pocket")
+			return SLOT_R_STORE
+		if("Webbing")
+			return SLOT_IN_ACCESSORY
+		if("Belt")
+			return SLOT_IN_BELT
+		if("Belt Holster")
+			return SLOT_IN_HOLSTER
+		if("Suit Storage Holster")
+			return SLOT_IN_S_HOLSTER
+		if("Back Holster")
+			return SLOT_IN_B_HOLSTER
+
+/proc/slot_flag_to_fluff(slot)
+	switch(slot)
+		if(SLOT_S_STORE)
+			return "Suit Storage"
+		if(SLOT_WEAR_SUIT)
+			return "Suit Inside"
+		if(SLOT_BELT)
+			return "Belt"
+		if(SLOT_BACK)
+			return "Back"
+		if(SLOT_IN_BOOT)
+			return "Boot"
+		if(SLOT_IN_HEAD)
+			return "Helmet"
+		if(SLOT_L_STORE)
+			return "Left Pocket"
+		if(SLOT_R_STORE)
+			return "Right Pocket"
+		if(SLOT_IN_ACCESSORY)
+			return "Webbing"
+		if(SLOT_IN_BELT)
+			return "Belt"
+		if(SLOT_IN_HOLSTER)
+			return "Belt Holster"
+		if(SLOT_IN_S_HOLSTER)
+			return "Suit Storage Holster"
+		if(SLOT_IN_B_HOLSTER)
+			return "Back Holster"

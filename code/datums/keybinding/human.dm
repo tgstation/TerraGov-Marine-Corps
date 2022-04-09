@@ -10,6 +10,13 @@
 	description = ""
 	keybind_signal = COMSIG_KB_QUICKEQUIP
 
+/datum/keybinding/human/quick_equip_alt
+	hotkey_keys = list("ShiftE")
+	name = "quick_equip_alt"
+	full_name = "Quick equip alternate"
+	description = ""
+	keybind_signal = COMSIG_KB_QUICKEQUIPALT
+
 /datum/keybinding/human/unique_action
 	hotkey_keys = list("Space")
 	name = "unique_action"
