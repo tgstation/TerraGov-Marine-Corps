@@ -107,8 +107,7 @@
 	singular_name = "medical gauze"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
-	heal_brute = 10
-	toolspeed = 1.5 SECONDS
+	heal_brute = 3
 	heal_flags = BANDAGE
 
 /obj/item/stack/medical/heal_pack/gauze/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
@@ -131,8 +130,7 @@
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
-	toolspeed = 1.5 SECONDS
-	heal_burn = 10
+	heal_burn = 3
 	heal_flags = SALVE
 
 /obj/item/stack/medical/heal_pack/ointment/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
@@ -198,7 +196,7 @@
 	singular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
-	heal_brute = 15
+	heal_brute = 12
 	heal_flags = BANDAGE | DISINFECT
 
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
@@ -223,7 +221,7 @@
 	singular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
-	heal_burn = 15
+	heal_burn = 12
 	heal_flags = SALVE | DISINFECT
 
 /obj/item/stack/medical/heal_pack/advanced/burn_pack/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)
