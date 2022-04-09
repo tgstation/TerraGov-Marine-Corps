@@ -1,0 +1,8 @@
+author: "goose4429"
+delete-after: True
+changes: 
+  - rscadd: "Soft bomb armor"
+  - rscdel: "Old bomb armor (in levels)"
+  - rscdel: "Old devour code (that functions only in CM)"
+  - balance: "Bomb armor is now affected by sunder"
+  - balance: "Changed bomb armors all over the board. Totally needs game testing."
