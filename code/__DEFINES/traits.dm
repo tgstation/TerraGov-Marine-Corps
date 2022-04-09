@@ -146,6 +146,6 @@
 // item traits
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 // turf traits
-#define TRAIT_TURF_BULLET_MANIPULATION "freeze_bullet" //Stop projectiles on this tiles
+#define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path

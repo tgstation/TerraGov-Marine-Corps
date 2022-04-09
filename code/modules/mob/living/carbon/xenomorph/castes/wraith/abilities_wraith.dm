@@ -635,24 +635,29 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	. = ..()
 	qdel(portal_one)
 	portal_one = new(get_turf(owner))
-	if(portal_two)
-		portal_two.link_portal(portal_one)
-		portal_one.link_portal(portal_two)
-		playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
 	succeed_activate()
 	add_cooldown()
+	if(portal_two)
+		link_portals()
 
 /datum/action/xeno_action/portal/alternate_action_activate()
 	if(!can_use_action())
 		return
 	qdel(portal_two)
 	portal_two = new(get_turf(owner))
-	if(portal_one)
-		portal_one.link_portal(portal_two)
-		portal_two.link_portal(portal_one)
-		playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
 	succeed_activate()
 	add_cooldown()
+	if(portal_one)
+		link_portals()
+
+/// Link the two portals if possible
+/datum/action/xeno_action/portal/proc/link_portals()
+	if(get_dist(portal_one, portal_two) > 20 || portal_one.z != portal_two.z)
+		to_chat(owner, span_xenowarning("The other portal is too far away, they cannot link!"))
+		return
+	portal_two.link_portal(portal_one)
+	portal_one.link_portal(portal_two)
+	playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
 
 /obj/effect/wraith_portal
 	icon_state = "wraith_portal"
