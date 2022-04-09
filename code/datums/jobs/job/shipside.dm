@@ -885,6 +885,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	respack.handle_item_insertion(res_an, TRUE, null)
 	var/obj/item/tool/research/excavation_tool/res_ex = new
 	respack.handle_item_insertion(res_ex, TRUE, null)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/medical/researcher/rebel
 	jobtype = /datum/job/terragov/medical/researcher/rebel
