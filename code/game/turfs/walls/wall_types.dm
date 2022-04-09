@@ -83,7 +83,6 @@
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"
 	desc = "A huge chunk of metal used to seperate space from the ship"
-	walltype = "gwall"
 	icon_state = "wwall0"
 	resistance_flags = RESIST_ALL
 
