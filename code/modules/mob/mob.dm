@@ -368,7 +368,8 @@
 		var/obj/item/clothing/under/B = I
 		if (!istype(B.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/holster || /obj/item/armor_module/storage/uniform/knifeharness) )
 			return FALSE
-		var/obj/item/storage/S = B.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM].storage
+		var/obj/item/armor_module/storage/U = B.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
+		var/obj/item/storage/S = U.storage
 		if(!length(S.contents))
 			return FALSE
 		var/obj/item/W = S.contents[length(S.contents)]
@@ -380,7 +381,8 @@
 		var/obj/item/clothing/suit/B = I
 		if (!istype(B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage) )
 			return FALSE
-		var/obj/item/storage/S = B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE].storage
+		var/obj/item/armor_module/storage/U = B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+		var/obj/item/storage/S = U.storage
 		if(!length(S.contents))
 			return FALSE
 		var/obj/item/W = S.contents[length(S.contents)]
@@ -416,7 +418,8 @@
 		var/obj/item/clothing/head/B = I
 		if (!istype(B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage) )
 			return FALSE
-		var/obj/item/storage/S = B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE].storage
+		var/obj/item/armor_module/storage/U = B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+		var/obj/item/storage/S = U.storage
 		if(!length(S.contents))
 			return FALSE
 		var/obj/item/W = S.contents[length(S.contents)]
