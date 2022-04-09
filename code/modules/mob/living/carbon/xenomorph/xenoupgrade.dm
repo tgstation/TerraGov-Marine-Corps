@@ -9,21 +9,29 @@
 		visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
 		span_xenonotice("We begin to twist and contort."))
 		do_jitter_animation(1000)
+	var/datum/xeno_caste/old_xeno_caste = xeno_caste
 	set_datum(FALSE)
 	var/selected_ability_type = selected_ability?.type
 
-	for(var/datum/action/xeno_action/existing_action AS in xeno_abilities) //Remove xenos actions we shouldn't have
-		for(var/datum/action/xeno_action/action_existing AS in in xeno_caste.actions)
-			if(existing_action.type == action_existing.type)
-				existing_action.remove_action(src)
+	var/list/datum/action/xeno_action/actions_already_added = xeno_abilities
+	xeno_abilities = list()
 
-	for(var/check_new_actions in xeno_caste.actions) //Give the xenos actions we don't currently have
-		var/datum/action/xeno_action/new_action_path = check_new_actions
-		if(!locate(new_action_path) in xeno_abilities)
-			var/datum/action/xeno_action/action = new new_action_path()
-			if(SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
-				action.give_action(src)
+	for(var/allowed_action_path in xeno_caste.actions)
+		var/found = FALSE
+		for(var/datum/action/xeno_action/action_already_added AS in actions_already_added)
+			if(action_already_added.type == allowed_action_path)
+				xeno_abilities.Add(action_already_added)
+				actions_already_added.Remove(action_already_added)
+				found = TRUE
+				break
+		if(found)
+			continue
+		var/datum/action/xeno_action/action = new allowed_action_path()
+		if(SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
+			action.give_action(src)
 
+	for(var/datum/action/xeno_action/action_already_added AS in actions_already_added)
+		action_already_added.remove_action(src)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(selected_ability_type)
