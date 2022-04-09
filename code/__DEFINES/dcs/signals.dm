@@ -706,8 +706,6 @@
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
 #define COMSIG_XENOABILITY_JAB "xenoability_jab"
 
-#define COMSIG_XENOABILITY_PLACE_WARP_BEACON "xenoability_place_warp_shadow"
-#define COMSIG_XENOABILITY_HYPERPOSITION "xenoability_hyperposition"
 #define COMSIG_XENOABILITY_PHASE_SHIFT "xenoability_phase_shift"
 #define COMSIG_XENOABILITY_RESYNC "xenoability_resync"
 #define COMSIG_XENOABILITY_BLINK "xenoability_blink"

@@ -605,17 +605,6 @@
 	full_name = "Spitter: Scatter Spit"
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
-/datum/keybinding/xeno/place_warp_shadow
-	name = "place_warp_shadow"
-	full_name = "Wraith: Place Warp Shadow"
-	description = "Create a rift in space/time that you can swap locations with using the Hyperposition ability."
-	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
-
-/datum/keybinding/xeno/hyperposition
-	name = "hyperposition"
-	full_name = "Wraith: Hyperposition"
-	description = "Swap locations with your warp shadow after a delay that scales with your distance from it."
-	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
 
 /datum/keybinding/xeno/phase_shift
 	name = "phase_shift"
