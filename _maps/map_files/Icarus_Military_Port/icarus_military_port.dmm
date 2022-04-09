@@ -200,9 +200,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/shipbaytwo)
 "alG" = (
@@ -299,10 +296,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
-/obj/structure/cable,
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/tool,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/bridge)
 "arV" = (
@@ -869,13 +865,16 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "aZu" = (
-/obj/machinery/power/smes/preset,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random/cable,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tool,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/bridge)
 "bad" = (
@@ -1671,6 +1670,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/bridge)
 "bUm" = (
@@ -1926,6 +1926,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/telecomms)
+"chc" = (
+/obj/structure/cable,
+/turf/open/floor/plating/mainship,
+/area/icarus/interior/shipbaytwo)
 "chF" = (
 /obj/machinery/computer3/server,
 /turf/open/floor/mainship/mono,
@@ -2392,8 +2396,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/dorms)
 "cSr" = (
-/obj/machinery/computer3/laptop,
-/obj/structure/table/mainship,
+/obj/machinery/power/smes/preset,
 /turf/open/shuttle/dropship/five,
 /area/icarus/interior/shipbaytwo)
 "cSS" = (
@@ -2780,8 +2783,10 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangartwo)
 "dAD" = (
-/obj/structure/window/framed/mainship/canterbury,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock/mainship/generic/ert{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/scrapyardone)
 "dAF" = (
@@ -2900,10 +2905,12 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "dGQ" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/scrapyardone)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/icarus/interior/library)
 "dHb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -2919,11 +2926,11 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
 "dHF" = (
-/obj/machinery/power/apc/drained{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock/mainship/generic/ert{
+	dir = 2
 	},
-/obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/orange,
 /area/icarus/interior/library)
 "dIs" = (
 /obj/structure/table/mainship,
@@ -3091,10 +3098,11 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "dTM" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/research)
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/icarus/interior/library)
 "dUh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4428,12 +4436,13 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/scrapyardone)
 "fup" = (
-/obj/machinery/power/apc/drained{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/mainship/stripesquare,
-/area/icarus/interior/scrapyardone)
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/icarus/interior/swcaveslz)
 "fuq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -5487,6 +5496,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lzone)
+"gUk" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/tcomms,
+/area/icarus/interior/bridge)
 "gUA" = (
 /obj/machinery/light{
 	dir = 4
@@ -5714,20 +5730,12 @@
 /area/icarus/interior/shipbayone)
 "hkz" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/icarus/interior/research)
 "hkK" = (
 /obj/machinery/door/airlock/mainship/generic/ert,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
-"hlc" = (
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/tcomms,
-/area/icarus/interior/monitoring)
 "hlW" = (
 /obj/item/radio/intercom/dropship/triumph,
 /turf/open/shuttle/dropship/floor,
@@ -6087,13 +6095,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/monitoring)
-"hJC" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/icarus/interior/medbay)
 "hKl" = (
 /turf/closed/shuttle/dropship3/transparent{
 	icon_state = "96"
@@ -6927,7 +6928,6 @@
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/monitoring)
 "iKb" = (
@@ -7873,6 +7873,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/shipbaytwo)
 "jTM" = (
@@ -7955,13 +7956,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/lzone)
-"jYf" = (
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/wood,
-/area/icarus/interior/telecomms)
 "jYj" = (
 /obj/structure/table/mainship,
 /obj/item/ashtray/plastic,
@@ -7972,14 +7966,6 @@
 	dir = 9
 	},
 /area/icarus/interior/biodome)
-"kad" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/carpet{
-	dir = 8;
-	icon_state = "carpetside"
-	},
-/area/icarus/interior/telecomms)
 "kbj" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/mainship,
@@ -8085,17 +8071,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/scrapyardone)
-"kig" = (
-/obj/structure/bed/chair/wood{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/carpet{
-	dir = 8;
-	icon_state = "carpetside"
-	},
-/area/icarus/interior/telecomms)
 "kij" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/prison/darkred{
@@ -8356,7 +8331,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"
@@ -8603,6 +8577,7 @@
 	},
 /area/icarus/interior/shipbaytwo)
 "kLx" = (
+/obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/shipbaytwo)
 "kMc" = (
@@ -8613,6 +8588,7 @@
 /area/icarus/interior/hangarone)
 "kMz" = (
 /obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable,
 /turf/open/shuttle/dropship/floor{
 	icon_state = "rasputin14"
 	},
@@ -9026,11 +9002,6 @@
 	},
 /turf/open/floor/plating,
 /area/icarus/interior/shipbayconnector)
-"loj" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/icarus/interior/shipbaytwo)
 "loy" = (
 /obj/item/paper/crumpled/bloody,
 /turf/open/floor/mainship/mono,
@@ -9079,6 +9050,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/shuttle/dropship/five,
 /area/icarus/interior/shipbaytwo)
 "lrb" = (
@@ -10483,13 +10455,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/swcaveslz)
-"noV" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/prison/darkred{
-	dir = 1
-	},
-/area/icarus/interior/security)
 "nph" = (
 /obj/effect/forcefield/fog/passable_fog,
 /turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway/edge{
@@ -10611,11 +10576,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
-"nzj" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile/purple/corner,
-/area/icarus/interior/research)
 "nzs" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10639,6 +10599,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/disposals)
+"nBp" = (
+/obj/structure/cable,
+/turf/open/shuttle/dropship/floor{
+	icon_state = "rasputin14"
+	},
+/area/icarus/interior/shipbaytwo)
 "nBq" = (
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
@@ -10776,10 +10742,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/monitoring)
-"nJu" = (
-/obj/structure/cable,
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/security)
 "nJx" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -11033,6 +10995,7 @@
 /area/icarus/interior/medbay)
 "ocS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2,
+/obj/structure/cable,
 /turf/open/shuttle/dropship/five,
 /area/icarus/interior/shipbaytwo)
 "odX" = (
@@ -11956,7 +11919,6 @@
 	dir = 2;
 	name = "Security Booth"
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/security)
 "pqv" = (
@@ -12316,7 +12278,6 @@
 /turf/open/floor/plating,
 /area/icarus/interior/research)
 "pOV" = (
-/obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/monitoring)
 "pPC" = (
@@ -12520,14 +12481,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
-"qgl" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/atmospherics)
 "qhR" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -13314,6 +13267,10 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/icarus/interior/cargoholdingtwo)
+"rdD" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/tcomms,
+/area/icarus/interior/bridge)
 "rdH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
@@ -13533,6 +13490,10 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangarone)
+"rrn" = (
+/obj/structure/cable,
+/turf/open/shuttle/dropship/five,
+/area/icarus/interior/shipbaytwo)
 "rrB" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/darkyellow,
@@ -14917,7 +14878,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/icarus/interior/research)
 "tbH" = (
@@ -15123,8 +15083,6 @@
 /turf/open/floor/wood,
 /area/icarus/interior/dorms)
 "tqZ" = (
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -15374,10 +15332,11 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/storage)
 "tIN" = (
-/obj/machinery/power/fusion_engine/preset,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/machinery/power/geothermal/bigred,
+/obj/structure/cable,
 /turf/open/shuttle/dropship/floor{
 	icon_state = "rasputin14"
 	},
@@ -15610,6 +15569,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/library)
+"tXx" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/shuttle/dropship/floor{
+	icon_state = "rasputin14"
+	},
+/area/icarus/interior/shipbaytwo)
 "tXL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -15728,7 +15696,6 @@
 /area/icarus/exterior/secaves)
 "ugO" = (
 /obj/machinery/door/airlock/mainship/maint,
-/obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/research)
 "ugP" = (
@@ -16335,13 +16302,15 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "uYC" = (
-/obj/machinery/power/smes/preset,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random/ammo,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/bridge)
 "uZC" = (
@@ -16481,9 +16450,11 @@
 /turf/open/floor/mainship/orange,
 /area/icarus/interior/library)
 "vjA" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
+/obj/machinery/door/airlock/mainship/generic/ert{
+	dir = 2
+	},
 /turf/open/floor/mainship/orange,
 /area/icarus/interior/library)
 "vjO" = (
@@ -17212,6 +17183,7 @@
 "vYA" = (
 /obj/machinery/power/fusion_engine/random,
 /obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/bridge)
 "vYO" = (
@@ -17228,7 +17200,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/monitoring)
 "vZF" = (
-/obj/machinery/power/terminal,
+/obj/machinery/power/smes/preset,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/bridge)
 "vZM" = (
@@ -17931,14 +17903,6 @@
 /obj/machinery/computer/emails,
 /turf/open/floor/mainship/orange/full,
 /area/icarus/interior/shipbayone)
-"wVB" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/power/apc/drained,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/icarus/interior/medbay)
 "wVF" = (
 /obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/plating/mainship,
@@ -18874,7 +18838,6 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/northcaves)
 "xRV" = (
-/obj/machinery/power/smes/preset,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -27671,7 +27634,7 @@ mih
 mYH
 mYH
 mih
-qgl
+qis
 mvE
 rkh
 mih
@@ -27850,7 +27813,7 @@ egX
 egX
 azO
 gXJ
-fup
+azO
 xyM
 bQs
 brW
@@ -28473,7 +28436,7 @@ hOC
 hOC
 hOC
 kFc
-jYf
+hOC
 hOC
 hOC
 kZz
@@ -28677,8 +28640,8 @@ hXk
 iQQ
 hXk
 hXk
-kad
-kig
+iQQ
+hXk
 kxR
 laQ
 hOC
@@ -30491,7 +30454,7 @@ xsc
 xsc
 azO
 twB
-dGQ
+xsc
 xsc
 dVv
 dZI
@@ -32155,10 +32118,10 @@ kFG
 fGD
 noC
 nGD
-nJu
-nJu
+gDV
+gDV
 pql
-nJu
+gDV
 lPD
 gmG
 hzM
@@ -32359,7 +32322,7 @@ meE
 fGD
 gmA
 nIw
-nJu
+gDV
 gDV
 xDV
 gDV
@@ -32561,9 +32524,9 @@ gDV
 lMf
 kFG
 fGD
-noV
-nJu
-nJu
+glg
+gDV
+gDV
 oUs
 pqw
 pIj
@@ -37070,7 +37033,7 @@ xpb
 xSu
 tDg
 qYJ
-dHF
+tDg
 rMU
 bVS
 wrg
@@ -37268,13 +37231,13 @@ smF
 smF
 tUj
 bUC
-vlk
+xSu
 ibC
 nRM
 xSu
 vtk
 tDg
-iTf
+tDg
 rMU
 lge
 pmS
@@ -37472,13 +37435,13 @@ rME
 rME
 tUp
 bYn
-vjt
+xSu
 ibC
 nRM
 xSu
 tDg
 mlp
-ovg
+dTM
 rMU
 riY
 pmS
@@ -37676,13 +37639,13 @@ ibC
 ibC
 tXh
 gcD
-pri
+dHF
 vPO
 xpo
 xSu
 xSu
 xSu
-hog
+sEO
 rMU
 riY
 pmS
@@ -39919,7 +39882,7 @@ udL
 sFw
 tfG
 udL
-pri
+dGQ
 vnm
 vbz
 ibC
@@ -40123,7 +40086,7 @@ tDg
 xkL
 tDg
 qqV
-rFC
+hyF
 vol
 vQT
 xpJ
@@ -42982,8 +42945,8 @@ wXU
 uPY
 pud
 vZF
-ccY
-ccY
+gUk
+rdD
 uYC
 pud
 fXX
@@ -43187,7 +43150,7 @@ uQj
 pud
 wcO
 ccY
-ccY
+rdD
 aZu
 pud
 gXA
@@ -44032,7 +43995,7 @@ fNP
 gst
 sHS
 gzp
-hlc
+pOV
 qpM
 wXg
 wXg
@@ -46428,7 +46391,7 @@ wMV
 wMV
 kfW
 voD
-loj
+voD
 voD
 lXw
 voD
@@ -48744,9 +48707,9 @@ aKO
 xjo
 vlc
 opX
-vlc
-vlc
-vlc
+hWh
+hWh
+hWh
 vlc
 vlc
 vlc
@@ -48950,7 +48913,7 @@ vlc
 ogT
 rrL
 rrL
-rrL
+fup
 rrL
 ouu
 vlc
@@ -49725,7 +49688,7 @@ xGv
 xGv
 xGv
 xGv
-sQq
+xGv
 eqk
 xuS
 qHZ
@@ -50101,13 +50064,13 @@ xFw
 xFw
 kMz
 lqB
-xRA
-xRA
-xRA
-xRA
-xRA
+rrn
+rrn
+rrn
+rrn
+rrn
 ocS
-wDO
+chc
 yen
 wDO
 pUd
@@ -50711,7 +50674,7 @@ vjO
 jSY
 auA
 uxM
-xFw
+nBp
 vjO
 lBo
 npE
@@ -50914,8 +50877,8 @@ vVL
 qdE
 qdE
 cSr
-xFw
-xFw
+tXx
+nBp
 iGD
 lIU
 sTz
@@ -53585,7 +53548,7 @@ rvU
 xub
 xub
 sLb
-tri
+trG
 xub
 osq
 vrI
@@ -53789,7 +53752,7 @@ rvU
 xub
 xub
 sLc
-tri
+trG
 xub
 vbU
 vrI
@@ -53993,7 +53956,7 @@ rwa
 rQt
 xub
 sLw
-tri
+trG
 xub
 xub
 xub
@@ -54822,7 +54785,7 @@ xqJ
 xub
 odX
 meO
-hJC
+tri
 wLy
 igT
 xXH
@@ -55643,7 +55606,7 @@ xeP
 pnA
 mgc
 otc
-nzj
+iET
 uWb
 iwX
 iwX
@@ -56269,7 +56232,7 @@ cAN
 oBt
 aOL
 aOL
-nLn
+jWi
 cAN
 whP
 aiT
@@ -56649,7 +56612,7 @@ meO
 meO
 meO
 meO
-wVB
+wSA
 rdY
 rdY
 rdY
@@ -56881,7 +56844,7 @@ cAN
 cAN
 cAN
 cAN
-dTM
+uSX
 cAN
 whP
 vUf
