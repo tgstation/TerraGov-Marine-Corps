@@ -628,8 +628,15 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/obj/effect/wraith_portal/portal_two
 
 /datum/action/xeno_action/portal/remove_action(mob/M)
-	qdel(portal_one)
-	qdel(portal_two)
+	clean_portals()
+
+/// Destroy the portals when the wraith is no longer supporting them
+/datum/action/xeno_action/portal/proc/clean_portals()
+	QDEL_NULL(portal_one)
+	QDEL_NULL(portal_two)
+
+/datum/action/xeno_action/portal/give_action(mob/M)
+	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/clean_portals)
 
 /datum/action/xeno_action/portal/action_activate()
 	. = ..()
