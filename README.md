@@ -12,16 +12,16 @@ This fork is based on the `July 2018` version of **[ColonialMarines]**.
 
 Contributions if not otherwise specified are licensed under [![Badge AGPL]][License AGPL]
 
-What          | From                           | License
-:------------:|:------------------------------:|:------------------------------:
-Artwork       | *after -this commit-*          | [![Badge CC-BY-NC]][License CC-BY-NC]
-Sprites       | **[#367]** / **[#36b8db4]**    | [![Badge CC-BY-NC]][License CC-BY-NC]
-Sprites       | **[#d407e97]**                 | [![Badge CC-BY-NC]][License CC-BY-NC]
-Sounds        | #5261 & #5861                  | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
-Icons         | #6010                          | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
-Rouny Sprites | #6938                          | [![Badge CC-BY-SA]][License CC-BY-SA]
-Sounds        | #5604 from **[FreeSound.org]** | [![Badge CC-BY]][License CC-BY]
-TGS DMAPI     |                                | [![Badge MIT]][License MIT]
+What          | From                                 | License
+:------------:|:------------------------------------:|:------------------------:
+Artwork       | *after -this commit-*                | [![Badge CC-BY-NC]][License CC-BY-NC]
+Sprites       | **[#367]** ( **[#36b8db4]** )        | [![Badge CC-BY-NC]][License CC-BY-NC]
+Sprites       | **[#d407e97]**                       | [![Badge CC-BY-NC]][License CC-BY-NC]
+Sounds        | **[#5261]** **[#5861]**             | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
+Icons         | **[#6010]**                          | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
+Rouny Sprites | **[#6938]**                          | [![Badge CC-BY-SA]][License CC-BY-SA]
+Sounds        | **[#5604]** from **[FreeSound.org]** | [![Badge CC-BY]][License CC-BY]
+TGS DMAPI     |                                      | [![Badge MIT]][License MIT]
 
 
 <!----------------------------------{ Badges }--------------------------------->
@@ -58,13 +58,18 @@ TGS DMAPI     |                                | [![Badge MIT]][License MIT]
 [#d407e97]: https://github.com/tgstation/TerraGov-Marine-Corps/commit/d407e97e26ee5e6bb1daf945a8eb3bd9a6b11976
 [#36b8db4]: https://github.com/tgstation/TerraGov-Marine-Corps/commit/36b8db4952be79a79b28a6738889d9e9eb23b12a
 
+[#6938]: https://github.com/tgstation/TerraGov-Marine-Corps/pull/6938
+[#6010]: https://github.com/tgstation/TerraGov-Marine-Corps/pull/6010
+[#5861]: https://github.com/tgstation/TerraGov-Marine-Corps/pull/5861
+[#5604]: https://github.com/tgstation/TerraGov-Marine-Corps/pull/5604
+[#5261]: https://github.com/tgstation/TerraGov-Marine-Corps/pull/5261
 [#367]: https://github.com/tgstation/TerraGov-Marine-Corps/pull/367
+
 
 <!-----------------------------------{ Other }--------------------------------->
 
 [Issues]: https://isitmaintained.com/project/tgstation/TerraGov-Marine-Corps 'Percentage of issues still open'
 [Time]: https://isitmaintained.com/project/tgstation/TerraGov-Marine-Corps 'Average time to resolve an issue'
-[Sprites]:
 
 [Byond]: https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a
 
