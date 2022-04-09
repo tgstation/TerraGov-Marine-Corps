@@ -900,11 +900,9 @@
 /area/icarus/interior/lztwo)
 "bam" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
-	},
-/area/icarus/interior/dorms)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
+/area/icarus/interior/lztwo)
 "bar" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2{
 	dir = 8
@@ -916,6 +914,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lztwo)
 "baM" = (
@@ -978,9 +977,7 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/lztwo)
 "bdS" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/wood,
 /area/icarus/interior/dorms)
 "bex" = (
@@ -1074,10 +1071,11 @@
 /turf/open/floor/grass,
 /area/icarus/interior/lztwo)
 "bkb" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/closed/wall/mainship,
-/area/icarus/interior/lztwo)
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/icarus/interior/scrapyardone)
 "bkC" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
@@ -1086,6 +1084,9 @@
 /area/icarus/interior/swcaveslz)
 "bkP" = (
 /obj/machinery/computer/shuttle,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/shuttle/dropship/floor,
 /area/icarus/interior/lzone)
 "bkR" = (
@@ -1127,11 +1128,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/swcaveslz)
 "bmI" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
 	},
-/turf/open/floor/plating,
-/area/icarus/interior/scrapyardone)
+/turf/open/floor/mainship/mono,
+/area/icarus/interior/lztwo)
 "bnf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -1161,10 +1162,10 @@
 /area/icarus/interior/scrapyardone)
 "boE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
+	dir = 10
 	},
-/turf/open/floor/mainship/sterile/dark,
-/area/icarus/interior/research)
+/turf/open/floor/mainship/mono,
+/area/icarus/interior/lztwo)
 "bpT" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -1874,12 +1875,10 @@
 /area/icarus/interior/unloading)
 "cfr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+	dir = 5
 	},
-/turf/closed/shuttle/dropship3{
-	icon_state = "43"
-	},
-/area/icarus/interior/lzone)
+/turf/open/floor/plating,
+/area/icarus/interior/scrapyardone)
 "cfC" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
@@ -2387,7 +2386,10 @@
 /area/icarus/interior/cargo)
 "cRv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/closed/wall/mainship,
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
 "cRZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -2541,11 +2543,14 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/interior/swcaveslz)
 "dlf" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/shuttle/dropship/floor,
-/area/icarus/interior/lzone)
+/turf/open/floor/plating/mainship,
+/area/icarus/interior/scrapyardone)
 "dlQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
@@ -2623,12 +2628,10 @@
 /area/icarus/exterior/northcaves)
 "dps" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+	dir = 10
 	},
-/turf/closed/shuttle/dropship3{
-	icon_state = "42"
-	},
-/area/icarus/interior/lzone)
+/turf/open/floor/plating/plating_catwalk,
+/area/icarus/interior/scrapyardone)
 "dpL" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -2818,6 +2821,7 @@
 /area/icarus/interior/hangartwo)
 "dCy" = (
 /obj/docking_port/mobile/crashmode/bigbury,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/dorms)
 "dDG" = (
@@ -2905,12 +2909,11 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "dGQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
 	},
-/turf/open/floor/plating,
-/area/icarus/interior/library)
+/turf/open/floor/plating/mainship,
+/area/icarus/interior/security)
 "dHb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -2926,12 +2929,11 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
 "dHF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/airlock/mainship/generic/ert{
-	dir = 2
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
-/turf/open/floor/mainship/orange,
-/area/icarus/interior/library)
+/turf/open/floor/plating/mainship,
+/area/icarus/interior/security)
 "dIs" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship_network,
@@ -3098,11 +3100,11 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "dTM" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
 	},
-/turf/open/floor/plating,
-/area/icarus/interior/library)
+/turf/open/floor/prison/darkred/full,
+/area/icarus/interior/security)
 "dUh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4436,13 +4438,11 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/scrapyardone)
 "fup" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/swcaveslz)
+/turf/open/floor/prison/darkred/full,
+/area/icarus/interior/security)
 "fuq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -4643,8 +4643,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/mainship/stripesquare,
-/area/icarus/interior/lzone)
+/turf/open/floor/prison/darkred{
+	dir = 8
+	},
+/area/icarus/interior/security)
 "fEF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -5712,11 +5714,14 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "hiQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
-/turf/open/floor/mainship/sterile,
-/area/icarus/interior/medbay)
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	welded = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/icarus/interior/shipbayone)
 "hjK" = (
 /turf/closed/shuttle/dropship3{
 	icon_state = "42"
@@ -5871,6 +5876,9 @@
 /area/icarus/interior/swcaveslz)
 "hxl" = (
 /obj/machinery/door/airlock/dropship_hatch/right,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/shuttle/dropship/floor,
 /area/icarus/interior/lzone)
 "hxp" = (
@@ -6033,6 +6041,9 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
 	},
@@ -6095,6 +6106,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/monitoring)
+"hJC" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
+/area/icarus/interior/shipbayone)
 "hKl" = (
 /turf/closed/shuttle/dropship3/transparent{
 	icon_state = "96"
@@ -6373,11 +6391,11 @@
 	},
 /area/icarus/interior/security)
 "iaB" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
 /obj/structure/table/reinforced,
 /obj/machinery/computer/secure_data,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
@@ -6653,11 +6671,16 @@
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	name = "High-Security Monitoring"
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/security)
 "isw" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/security)
 "iti" = (
@@ -7352,10 +7375,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/shipbayconnector)
 "joD" = (
-/obj/structure/window/framed/mainship/canterbury,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/open/floor/plating/mainship,
+/area/icarus/interior/security)
 "joE" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -7956,6 +7979,13 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/lzone)
+"jYf" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/prison/darkred/full,
+/area/icarus/interior/security)
 "jYj" = (
 /obj/structure/table/mainship,
 /obj/item/ashtray/plastic,
@@ -7966,6 +7996,12 @@
 	dir = 9
 	},
 /area/icarus/interior/biodome)
+"kad" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/icarus/interior/shipbayone)
 "kbj" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/mainship,
@@ -8071,6 +8107,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/icarus/interior/scrapyardone)
+"kig" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
+/area/icarus/interior/shipbayone)
 "kij" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/prison/darkred{
@@ -8085,9 +8125,11 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/icarus/interior/cargoholding)
 "kiz" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/security)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/icarus/interior/shipbayone)
 "kiF" = (
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/mainship/mono,
@@ -8445,9 +8487,12 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/hangartwo)
 "kEp" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison/darkred,
-/area/icarus/interior/security)
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/icarus/interior/shipbayone)
 "kEq" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/mono,
@@ -8841,9 +8886,11 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/security)
 "leg" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/closed/wall/r_wall/prison,
-/area/icarus/interior/security)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/plating,
+/area/icarus/interior/cargoholdingtwo)
 "lfd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -8945,10 +8992,10 @@
 /area/icarus/interior/scrapyardone)
 "lmQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+	dir = 10
 	},
-/turf/open/shuttle/dropship/three,
-/area/icarus/interior/lzone)
+/turf/open/floor/plating,
+/area/icarus/interior/cargoholdingtwo)
 "lmR" = (
 /obj/machinery/light{
 	dir = 1
@@ -9002,6 +9049,11 @@
 	},
 /turf/open/floor/plating,
 /area/icarus/interior/shipbayconnector)
+"loj" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating,
+/area/icarus/interior/cargoholdingtwo)
 "loy" = (
 /obj/item/paper/crumpled/bloody,
 /turf/open/floor/mainship/mono,
@@ -9108,11 +9160,9 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/exterior/northeastcaves)
 "lxe" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/closed/wall/mainship,
-/area/icarus/interior/cargoholdingtwo)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/mainship,
+/area/icarus/interior/disposals)
 "lxg" = (
 /obj/structure/catwalk,
 /turf/open/ground/river,
@@ -9121,10 +9171,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
 /turf/open/floor/plating,
 /area/icarus/interior/cargoholdingtwo)
 "lxP" = (
@@ -9395,19 +9445,14 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/scrapyardone)
-"lOl" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/security)
 "lPw" = (
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangarone)
 "lPy" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/security)
 "lPD" = (
@@ -9695,6 +9740,7 @@
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/cargoholdingtwo)
 "mgx" = (
@@ -9715,6 +9761,7 @@
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargoholdingtwo)
 "mhI" = (
@@ -9897,6 +9944,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/security)
 "mwy" = (
@@ -10171,7 +10219,6 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
 "mTI" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -10432,10 +10479,9 @@
 /area/icarus/interior/security)
 "nnc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison/darkred{
-	dir = 1
-	},
-/area/icarus/interior/security)
+/obj/effect/ai_node,
+/turf/open/floor/plating/mainship,
+/area/icarus/interior/disposals)
 "nom" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/prison/darkred{
@@ -10455,6 +10501,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/swcaveslz)
+"noV" = (
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/mainship,
+/area/icarus/interior/disposals)
 "nph" = (
 /obj/effect/forcefield/fog/passable_fog,
 /turf/open/ground/river/desertdam/clean/shallow_water_cave_waterway/edge{
@@ -10576,6 +10627,12 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
+"nzj" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/darkred/full,
+/area/icarus/interior/security)
 "nzs" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10596,7 +10653,9 @@
 /turf/open/floor/plating,
 /area/icarus/interior/research)
 "nAO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/disposals)
 "nBp" = (
@@ -10617,7 +10676,6 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
 "nBX" = (
-/obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/icarus/interior/lzone)
 "nCX" = (
@@ -10659,11 +10717,9 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
 "nEY" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/effect/ai_node,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/icarus/interior/research)
 "nFz" = (
@@ -10692,15 +10748,16 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/security)
 "nFZ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/plating/mainship,
+/area/icarus/interior/disposals)
+"nGv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/security)
-"nGv" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 4
 	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/security)
@@ -10742,6 +10799,11 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/tcomms,
 /area/icarus/interior/monitoring)
+"nJu" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/mainship,
+/area/icarus/interior/disposals)
 "nJx" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -11077,10 +11139,9 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/shipbaytwo)
 "ohO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/plating/mainship,
 /area/icarus/interior/disposals)
 "oic" = (
 /obj/machinery/landinglight/ds2/delaythree{
@@ -11129,16 +11190,14 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
 "okp" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/disposals)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/wood,
+/area/icarus/interior/dorms)
 "okr" = (
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/scrapyardone)
 "okt" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/disposals)
 "olf" = (
@@ -11286,9 +11345,12 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/security)
 "ozd" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/security)
+/turf/open/floor/wood,
+/area/icarus/interior/dorms)
 "ozK" = (
 /obj/machinery/light{
 	dir = 8
@@ -11726,8 +11788,11 @@
 /area/icarus/interior/disposals)
 "peG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/closed/wall/mainship,
-/area/icarus/interior/disposals)
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/icarus/interior/library)
 "peO" = (
 /obj/machinery/light{
 	dir = 8
@@ -12370,11 +12435,11 @@
 /area/icarus/interior/monitoring)
 "pXT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/conveyor{
-	dir = 8
+/obj/machinery/door/airlock/mainship/generic/ert{
+	dir = 2
 	},
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/disposals)
+/turf/open/floor/mainship/orange,
+/area/icarus/interior/library)
 "pYe" = (
 /obj/machinery/conveyor{
 	dir = 8
@@ -12481,6 +12546,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
+"qgl" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/icarus/interior/library)
 "qhR" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -12557,8 +12628,10 @@
 /turf/open/floor/prison/darkred/full,
 /area/icarus/interior/security)
 "qkW" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/prison/darkred/full,
 /area/icarus/interior/security)
 "qlz" = (
@@ -12573,10 +12646,8 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "qlR" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/prison/darkred/full,
 /area/icarus/interior/security)
 "qlU" = (
@@ -13147,6 +13218,7 @@
 	dir = 2
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/research)
 "qWf" = (
@@ -13742,9 +13814,11 @@
 /turf/open/floor/grass,
 /area/icarus/interior/security)
 "rEX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/closed/wall/mainship,
-/area/icarus/interior/scrapyardone)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/prison/darkpurple/full,
+/area/icarus/interior/research)
 "rFC" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -13818,12 +13892,12 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/storage)
 "rKQ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cargo_container/nt{
-	dir = 1
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/dorms)
+/turf/open/floor/mainship/sterile/dark,
+/area/icarus/interior/research)
 "rKX" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
@@ -14299,16 +14373,14 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/cargo)
 "sup" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/darkpurple/full,
+/area/icarus/interior/research)
+"sus" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/disposals)
-"sus" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/disposals)
@@ -14498,11 +14570,10 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/bridge)
 "sGC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/open/floor/mainship/sterile/dark,
-/area/icarus/interior/medbay)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating,
+/area/icarus/interior/research)
 "sHq" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/mainship,
@@ -14552,7 +14623,6 @@
 /turf/closed/wall/mainship,
 /area/icarus/interior/engineering)
 "sJi" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/bed/chair/sofa,
 /obj/item/book,
@@ -15069,9 +15139,12 @@
 /area/icarus/interior/library)
 "tqw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/table/woodentable,
-/turf/open/floor/carpet,
-/area/icarus/interior/dorms)
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/icarus/interior/swcaveslz)
 "tqO" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/carpet,
@@ -15682,9 +15755,11 @@
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/hangarone)
 "ueN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/carpet,
-/area/icarus/interior/dorms)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/icarus/interior/lzone)
 "ugF" = (
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/mainship/mono,
@@ -15787,7 +15862,9 @@
 /area/icarus/interior/library)
 "uqb" = (
 /obj/effect/landmark/corpsespawner/scientist,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/icarus/interior/research)
 "uqu" = (
@@ -16096,9 +16173,11 @@
 	},
 /area/icarus/interior/scrapyardone)
 "uJE" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/closed/wall/mainship,
-/area/icarus/interior/dorms)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/shuttle/dropship/three,
+/area/icarus/interior/lzone)
 "uJM" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -16287,7 +16366,6 @@
 	},
 /area/icarus/interior/research)
 "uWV" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
@@ -17258,10 +17336,6 @@
 	},
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
-"wgL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/closed/wall/mainship,
-/area/icarus/interior/cargoholdingtwo)
 "wgY" = (
 /obj/effect/forcefield/fog/passable_fog,
 /obj/effect/forcefield/fog/passable_fog,
@@ -17718,11 +17792,10 @@
 /turf/open/ground/coast,
 /area/icarus/interior/biodome)
 "wLt" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/shipbayone)
 "wLy" = (
@@ -18124,10 +18197,6 @@
 /obj/machinery/power/port_gen/pacman/super,
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/biodome)
-"xiu" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/closed/wall/mainship,
-/area/icarus/interior/lztwo)
 "xiz" = (
 /obj/machinery/light{
 	dir = 8
@@ -18395,10 +18464,6 @@
 "xxE" = (
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/unloading)
-"xxM" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/carpet,
-/area/icarus/interior/dorms)
 "xxN" = (
 /turf/open/floor/mainship,
 /area/icarus/interior/library)
@@ -18667,10 +18732,6 @@
 	dir = 4
 	},
 /area/space)
-"xJD" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/mainship,
-/area/icarus/interior/scrapyardone)
 "xJE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -21710,11 +21771,11 @@ tKD
 tKD
 tKD
 tKD
-tKD
-wgL
-mPd
-mPd
-ohO
+leg
+tyA
+mPQ
+mPQ
+mPQ
 mPQ
 mPQ
 mPQ
@@ -21914,11 +21975,11 @@ gvc
 gvc
 gvc
 aFL
-gvc
+lmQ
 mgs
-mPq
-nxv
-oja
+lxe
+nnc
+nAO
 mPq
 mPq
 pyF
@@ -22320,13 +22381,13 @@ tyA
 tyA
 tyA
 tyA
-lxe
-wgL
-wgL
-wgL
+tyA
+tyA
+tyA
+tyA
 mTI
-nAO
-okp
+mPq
+oja
 mPq
 peD
 peD
@@ -22525,21 +22586,21 @@ gvc
 gvc
 kQR
 lxu
-gvc
-aFL
+tKD
+loj
 mhH
-mPQ
-nxv
+mPd
+noV
 okt
 nAO
-peG
-peG
-pXT
-peG
-peG
-nAO
-nAO
-sup
+peD
+peD
+pXm
+peD
+peD
+mPq
+mPq
+mPq
 sOy
 wXl
 jzC
@@ -22735,7 +22796,7 @@ tyA
 mUf
 mPq
 olf
-mPq
+oja
 peO
 pzU
 pXm
@@ -22743,7 +22804,7 @@ qEo
 peO
 mPq
 mPq
-oja
+mPq
 mPQ
 wXl
 jzC
@@ -22939,7 +23000,7 @@ tyA
 mVn
 nBq
 nBq
-mPq
+oja
 pfb
 pyF
 pYe
@@ -22947,7 +23008,7 @@ qEw
 mPq
 mPq
 mPq
-oja
+mPq
 mPQ
 wXl
 jzC
@@ -23143,14 +23204,14 @@ tyA
 mVL
 nxv
 nBq
-nBq
-nBq
-nBq
-nBq
-nBq
-nBq
-nBq
-nBq
+nFZ
+nJu
+nJu
+nJu
+ohO
+ohO
+ohO
+ohO
 sus
 mPQ
 wXl
@@ -24714,15 +24775,15 @@ ntF
 ntF
 uSi
 iXp
-xnv
-xnv
+aVX
+ntN
 bar
-xnv
-xnv
-xnv
-xnv
-xnv
-xnv
+ntN
+ntN
+ntN
+ntN
+bam
+bmI
 xnv
 dgW
 bDw
@@ -24918,15 +24979,15 @@ ntF
 ntF
 uSi
 aPD
-aVX
-ntN
-xiu
-xiu
-joD
-joD
-xiu
-bkb
-ntN
+xnv
+xnv
+uSi
+uSi
+pcg
+pcg
+uSi
+uSi
+boE
 ntN
 bwB
 bDW
@@ -29821,10 +29882,10 @@ vLT
 vLT
 bgx
 egX
-wQk
-egX
-egX
-egX
+bkb
+tLU
+tLU
+cfr
 egX
 aKm
 aKm
@@ -30028,7 +30089,7 @@ egX
 ivW
 azO
 azO
-azO
+awe
 uiY
 bvc
 bPR
@@ -30232,7 +30293,7 @@ egX
 wQk
 xsc
 bvt
-tcl
+dlf
 tcl
 bNm
 tcl
@@ -30264,20 +30325,20 @@ gXJ
 okr
 fGD
 glg
-gDV
-gmG
-gmG
-gmG
-gmG
-gmG
-gmG
-gmG
-gmG
-gmG
-gmG
-gmG
-gmG
-lMf
+dGQ
+gmC
+gmC
+gmC
+fup
+gmC
+gmC
+gmC
+gmC
+gmC
+gmC
+gmC
+gmC
+joD
 kFG
 fGD
 nhr
@@ -30436,7 +30497,7 @@ tLU
 blH
 xsc
 bvt
-xsc
+sVq
 xsc
 xsc
 xsc
@@ -30468,7 +30529,7 @@ gXJ
 okr
 fGD
 gmA
-gDV
+dHF
 gmG
 xDV
 xDV
@@ -30637,10 +30698,10 @@ egX
 egX
 egX
 egX
-bmI
-xJD
-rEX
-jNJ
+wQk
+xsc
+twB
+dps
 jNJ
 jNJ
 jNJ
@@ -30672,11 +30733,11 @@ gXJ
 okr
 fIk
 glg
-gDV
+dHF
 gmG
 xDV
 gju
-gDT
+fEl
 gDT
 gDT
 gDT
@@ -30876,24 +30937,24 @@ elN
 jNJ
 fJK
 gmC
-gmC
-gmC
-hza
+dTM
+gmG
+hzM
 iaB
 isw
-gmC
-gmC
-gmC
-gmC
-kiz
-kEp
-leg
-gmC
-lOl
+gmG
+gmG
+gmG
+gmG
+fKc
+kFG
+xDV
+gmG
+lPy
 kFG
 fGD
 nlY
-nFZ
+gDV
 gDV
 gDV
 kFG
@@ -31094,14 +31155,14 @@ kEP
 xDV
 gmG
 lPy
-kEp
+kFG
 hza
-nnc
+glg
 nGv
-ozd
-ozd
-kEp
-ozd
+gDV
+gDV
+kFG
+gDV
 qkW
 gmG
 gDV
@@ -31297,15 +31358,15 @@ fKc
 kEY
 liJ
 gmG
-lPD
-gmG
+jYf
+gmC
 mvV
-gmG
-gmG
-gmG
-gmG
-gmG
-gmG
+gmC
+nzj
+gmC
+gmC
+gmC
+gmC
 qlR
 gmC
 gmC
@@ -37441,7 +37502,7 @@ nRM
 xSu
 tDg
 mlp
-dTM
+qgl
 rMU
 riY
 pmS
@@ -37621,7 +37682,7 @@ xys
 xys
 xys
 oFw
-xys
+kad
 xTb
 xss
 onA
@@ -37639,7 +37700,7 @@ ibC
 ibC
 tXh
 gcD
-dHF
+pXT
 vPO
 xpo
 xSu
@@ -37818,14 +37879,14 @@ tRl
 tRl
 tRl
 tRl
-tRl
-vGV
-tRl
-tRl
-tRl
-tRl
-xys
-xys
+hiQ
+xaK
+hJC
+hJC
+hJC
+hJC
+jiW
+kig
 xTb
 xss
 tOm
@@ -38029,7 +38090,7 @@ qtp
 xot
 wml
 xys
-xys
+kad
 xTb
 xss
 xaG
@@ -38233,7 +38294,7 @@ uUz
 xot
 wml
 xys
-xys
+kad
 vpm
 xaG
 xaG
@@ -38437,7 +38498,7 @@ wqB
 xTb
 wml
 xys
-xys
+kad
 xys
 tOm
 nqG
@@ -38641,7 +38702,7 @@ xTb
 xTb
 wml
 xys
-xys
+kad
 xys
 tOm
 nri
@@ -38845,7 +38906,7 @@ wqB
 xTb
 wml
 xys
-xys
+kad
 xys
 tOm
 wVw
@@ -39049,7 +39110,7 @@ uUz
 xot
 wml
 xys
-pTD
+jFR
 pTD
 xaG
 xaG
@@ -39253,7 +39314,7 @@ vNw
 xot
 wml
 xys
-xTb
+kiz
 xTb
 xaG
 xys
@@ -39457,7 +39518,7 @@ xIG
 xIG
 xIG
 tOm
-xys
+kad
 mge
 xaG
 xys
@@ -39661,7 +39722,7 @@ xys
 xys
 xys
 xys
-xys
+kad
 xTb
 xss
 xys
@@ -39865,7 +39926,7 @@ kiF
 xys
 xys
 xys
-xys
+kad
 xTb
 xss
 xys
@@ -39882,7 +39943,7 @@ udL
 sFw
 tfG
 udL
-dGQ
+peG
 vnm
 vbz
 ibC
@@ -40069,7 +40130,7 @@ xaK
 xaK
 xaK
 xaK
-lVp
+kEp
 xaK
 xaK
 xaK
@@ -43435,13 +43496,13 @@ ptC
 ptC
 vuw
 mrc
-oIa
+ueN
 bOu
 hjK
 hjK
 hjK
 hjK
-dps
+hjK
 hjK
 eqs
 hNK
@@ -43645,7 +43706,7 @@ oIa
 jXp
 oIa
 jXp
-fEl
+oIa
 jXp
 qMc
 hNK
@@ -43843,13 +43904,13 @@ ptC
 ptC
 wyE
 oAN
-nKU
+uJE
 nKU
 nKU
 nKU
 nKU
 huq
-lmQ
+nKU
 nKU
 jfc
 bQN
@@ -44053,7 +44114,7 @@ pOc
 pOc
 pNm
 fuM
-dlf
+pOc
 pOc
 iyc
 bQN
@@ -44251,13 +44312,13 @@ ptC
 ptC
 wyE
 eRO
-nKU
+uJE
 nKU
 nKU
 nKU
 nKU
 coK
-lmQ
+nKU
 nKU
 jfc
 bQN
@@ -44461,7 +44522,7 @@ oIa
 mIj
 oIa
 mIj
-fEl
+oIa
 mIj
 qMc
 hNK
@@ -44659,13 +44720,13 @@ ptC
 ptC
 vuw
 mrc
-oIa
+ueN
 kIq
 iva
 iva
 iva
 iva
-cfr
+iva
 iva
 jOP
 cIP
@@ -45028,7 +45089,7 @@ tws
 vlc
 vlc
 hWh
-pdq
+ugP
 dtS
 eWV
 ugP
@@ -47831,17 +47892,17 @@ wMV
 voD
 toT
 kZU
-qLc
-eLU
-rKQ
-uJE
+rPz
+wlk
+rNO
+xGv
 sJi
-tqw
-ueN
+tqO
+hXB
 uWV
-uJE
-bam
-xxM
+xGv
+wsU
+xMr
 hXB
 lHB
 xGv
@@ -48851,16 +48912,16 @@ yen
 puW
 viP
 kZU
-rPz
+qLc
 dCy
-uIC
-wlk
-yaF
-tqT
-yaF
-yaF
-wlk
-yaF
+iIb
+eLU
+okp
+ozd
+okp
+okp
+eLU
+okp
 bdS
 yaF
 yaF
@@ -48913,7 +48974,7 @@ vlc
 ogT
 rrL
 rrL
-fup
+tqw
 rrL
 ouu
 vlc
@@ -55203,7 +55264,7 @@ cpE
 igT
 igT
 igT
-igT
+lgr
 tha
 otc
 fOr
@@ -55407,7 +55468,7 @@ sNf
 igT
 igT
 igT
-igT
+lgr
 tha
 otc
 xVx
@@ -55611,7 +55672,7 @@ uWb
 iwX
 iwX
 dwX
-sNf
+rKQ
 pkO
 otc
 otc
@@ -55816,14 +55877,14 @@ geD
 otc
 iET
 hFk
-pkO
-pkO
-pkO
-pkO
+sup
+sup
+sup
+sup
 qVT
-fSP
-fSP
-fSP
+sGC
+sGC
+sGC
 nEY
 cAN
 whP
@@ -57234,8 +57295,8 @@ xEO
 xEO
 xEO
 trG
-sGC
-boE
+xub
+lgr
 xXH
 tha
 tha
@@ -57438,8 +57499,8 @@ xEO
 hsh
 rPa
 rPa
-hiQ
-tha
+rPa
+rEX
 tha
 tha
 tha
