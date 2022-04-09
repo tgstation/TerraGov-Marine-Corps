@@ -548,7 +548,7 @@
 			return FALSE
 		if(SLOT_IN_ACCESSORY)
 			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/holster)) ||(H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/knifeharness)))
-				var/obj/item/storage/S = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM].storage
+				var/obj/item/storage/S = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]:storage
 				if(S.can_be_inserted(src, warning))
 					return TRUE
 			return FALSE
