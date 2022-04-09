@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - rscadd: "Ported TG's animation effects for dropping and picking up items."
