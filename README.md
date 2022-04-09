@@ -19,11 +19,16 @@ TerraGov Marine Corps 
 
 This fork is based on the `July 2018` version of **[ColonialMarines]** .
 
-Contributions if not otherwise specified are licensed under [![Badge AGPL]][License AGPL]
-
+<br>
 <br>
 
 <div align = center>
+
+*Contributions, if not otherwise specified,* <br>
+*are licensed under the **[AGPL][License AGPL]** license.*
+
+<br>
+<br>
 
 What            | From                                 | License
 :--------------:|:------------------------------------:|:------------------------:
@@ -53,7 +58,7 @@ What            | From                                 | License
 [Badge CC-BY-SA]: https://licensebuttons.net/l/by-sa/4.0/80x15.png
 [Badge CC-BY-NC]: https://licensebuttons.net/l/by-nc/4.0/80x15.png
 [Badge CC-BY]: https://licensebuttons.net/l/by/4.0/80x15.png
-[Badge AGPL]: https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge
+[Badge AGPL]: https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=flat
 [Badge MIT]: https://img.shields.io/badge/License-MIT-yellow.svg?style=flat
 
 
