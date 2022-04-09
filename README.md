@@ -1,21 +1,32 @@
 
-# TerraGov Marine Corps
+<h1>
 
+TerraGov Marine Corps 
 [![Badge Issues]][Issues]
 [![Badge Time]][Time]
 
+</h1>
+
+<div align = center>
+
 ![Badge Resentment]![Badge Dept][![Badge Byond]][Byond]
+
+</div>
+
+<br>
 
 ## Licensing
 
-This fork is based on the `July 2018` version of **[ColonialMarines]**.
+This fork is based on the `July 2018` version of **[ColonialMarines]** .
 
-Contributions if not otherwise specified are licensed under [![Badge AGPL]][License AGPL]
+Contributions if not otherwise specified are licensed under [![Badge AGPL]][License AGPL]
+
+<br>
 
 What          | From                                 | License
 :------------:|:------------------------------------:|:------------------------:
 Artwork       | *after -this commit-*                | [![Badge CC-BY-NC]][License CC-BY-NC]
-Sprites       | **[#367]** ( **[#36b8db4]** )        | [![Badge CC-BY-NC]][License CC-BY-NC]
+Sprites       | **[#367]** ( **[#36b8db4]** )        | [![Badge CC-BY-NC]][License CC-BY-NC]
 Sprites       | **[#d407e97]**                       | [![Badge CC-BY-NC]][License CC-BY-NC]
 Sounds        | **[#5261]** **[#5861]**             | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
 Icons         | **[#6010]**                          | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
@@ -39,8 +50,8 @@ TGS DMAPI     |                                      | [![Badge MIT]][License MI
 [Badge CC-BY-SA]: https://licensebuttons.net/l/by-sa/4.0/80x15.png
 [Badge CC-BY-NC]: https://licensebuttons.net/l/by-nc/4.0/80x15.png
 [Badge CC-BY]: https://licensebuttons.net/l/by/4.0/80x15.png
-[Badge AGPL]: https://img.shields.io/badge/License-AGPL_v3-blue.svg
-[Badge MIT]: https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge
+[Badge AGPL]: https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge
+[Badge MIT]: https://img.shields.io/badge/License-MIT-yellow.svg?style=flat
 
 
 <!---------------------------------{ Licenses }-------------------------------->
