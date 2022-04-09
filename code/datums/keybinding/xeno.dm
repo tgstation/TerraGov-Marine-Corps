@@ -618,6 +618,18 @@
 	description = "Resynchronize with reality, ending Phase Shift's effect."
 	keybind_signal = COMSIG_XENOABILITY_RESYNC
 
+/datum/keybinding/xeno/portal
+	name = "portal"
+	full_name = "Wraith: Portal"
+	description = "Place the first portal on your location. You can travel from portal one to portal two and vice versa."
+	keybind_signal =COMSIG_XENOABILITY_PORTAL
+
+/datum/keybinding/xeno/portal_two
+	name = "portal_two"
+	full_name = "Wraith: Portal two"
+	description = "Place the second portal on your location. You can travel from portal one to portal two and vice versa."
+	keybind_signal =COMSIG_XENOABILITY_PORTAL_ALTERNATE
+
 /datum/keybinding/xeno/blink
 	name = "wraith_blink"
 	full_name = "Wraith: Blink"

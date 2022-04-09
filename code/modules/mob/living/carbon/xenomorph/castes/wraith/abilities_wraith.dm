@@ -590,7 +590,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/list/turf/turfs_affected = list()
 	var/turf/central_turf = get_turf(owner)
 	for(var/turf/affected_turf in view(range, central_turf))
-		ADD_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(src))
+		ADD_TRAIT(affected_turf, TRAIT_TURF_BULLET_MANIPULATION, REF(src))
 		turfs_affected += affected_turf
 		affected_turf.add_filter("wraith_magic", 2, drop_shadow_filter(color = "#04080FAA", size = -10))
 	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE)
@@ -603,8 +603,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 ///Remove the bullet freeze effect on affected turfs
 /datum/action/xeno_action/timestop/proc/remove_bullet_freeze(list/turf/turfs_affected, turf/central_turfA)
 	for(var/turf/affected_turf AS in turfs_affected)
-		REMOVE_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET, REF(src))
-		if(HAS_TRAIT(affected_turf, TRAIT_TURF_FREEZE_BULLET))
+		REMOVE_TRAIT(affected_turf, TRAIT_TURF_BULLET_MANIPULATION, REF(src))
+		if(HAS_TRAIT(affected_turf, TRAIT_TURF_BULLET_MANIPULATION))
 			continue
 		SEND_SIGNAL(affected_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
 		affected_turf.remove_filter("wraith_magic")
@@ -614,5 +614,88 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE, frequency = -1)
 
 /datum/action/xeno_action/portal
+	name = "Portal"
+	ability_name = "Portal"
+	action_icon_state = "portal"
+	mechanics_text = "Place a portal on your location. You can travel from portal to portal. Left click to create portal one, right click to create portal two"
+	plasma_cost = 100
+	cooldown_timer = 5 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_PORTAL
+	alternate_keybind_signal = COMSIG_XENOABILITY_PORTAL_ALTERNATE
+	/// The first portal
+	var/obj/effect/wraith_portal/portal_one
+	/// The second portal
+	var/obj/effect/wraith_portal/portal_two
 
+/datum/action/xeno_action/portal/remove_action(mob/M)
+	qdel(portal_one)
+	qdel(portal_two)
 
+/datum/action/xeno_action/portal/action_activate()
+	. = ..()
+	qdel(portal_one)
+	portal_one = new(get_turf(owner))
+	if(portal_two)
+		portal_two.link_portal(portal_one)
+		portal_one.link_portal(portal_two)
+		playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/xeno_action/portal/alternate_action_activate()
+	if(!can_use_action())
+		return
+	qdel(portal_two)
+	portal_two = new(get_turf(owner))
+	if(portal_one)
+		portal_one.link_portal(portal_two)
+		portal_two.link_portal(portal_one)
+		playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
+	succeed_activate()
+	add_cooldown()
+
+/obj/effect/wraith_portal
+	icon_state = "wraith_portal"
+	anchored = TRUE
+	opacity = FALSE
+	var/obj/effect/wraith_portal/linked_portal
+
+/obj/effect/wraith_portal/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = .proc/teleport_atom
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/effect/wraith_portal/Destroy()
+	linked_portal?.unlink()
+	linked_portal = null
+	return ..()
+
+/obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)
+	linked_portal = portal_to_link
+	ADD_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
+	RegisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED, .proc/teleport_bullet)
+	//Do graphical stuff here
+
+/obj/effect/wraith_portal/proc/unlink()
+	linked_portal = null
+	REMOVE_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
+	UnregisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED)
+	//Do graphical stuff here
+
+/obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
+	if(!linked_portal)
+		return
+	if(TIMER_COOLDOWN_CHECK(crosser, COOLDOWN_WRAITH_PORTAL_TELEPORTED))
+		return
+	if(istype(crosser, /obj/projectile))
+		return
+
+	TIMER_COOLDOWN_START(crosser, COOLDOWN_WRAITH_PORTAL_TELEPORTED, 5)
+	crosser.forceMove(get_turf(linked_portal))
+	playsound(loc, 'sound/effects/portal.ogg', 20)
+
+/obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
+	playsound(loc, 'sound/effects/portal.ogg', 20)
+	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
