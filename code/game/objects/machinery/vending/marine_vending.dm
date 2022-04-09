@@ -836,7 +836,7 @@
 			/obj/item/stack/medical/heal_pack/ointment = -1,
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 32,
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 32,
-			/obj/item/stack/medical/splint = 16,
+			/obj/item/stack/medical/splint = -1,
 		),
 		"Misc" = list(
 			/obj/item/healthanalyzer = 12,
