@@ -5,7 +5,7 @@
 	return g
 
 /proc/get_limb_icon_name(datum/species/S, body_type, gender, limb_name, ethnicity)
-	if(S.name == "Human")
+	if(S.name == "Human" || S.name == "Synthetic")
 		switch(limb_name)
 			if ("torso")
 				return "[ethnicity]_torso_[body_type]_[get_gender_name(gender)]"
