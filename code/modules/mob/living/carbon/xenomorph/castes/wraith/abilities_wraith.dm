@@ -691,20 +691,21 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	if(!our_destination)
 		return
-
-	add_filter("portal_alpha", 1, list("type" = "alpha", "icon" = icon('icons/effects/effects.dmi', "portal_mask")))
+	var/static/icon/portal_mask = icon('icons/effects/effects.dmi', "portal_mask")
+	add_filter("portal_alpha", 1, list("type" = "alpha", "icon" = portal_mask))
 	add_filter("portal_blur", 1, list("type" = "blur", "size" = 0.5))
 	add_filter("portal_ripple", 1, list("type" = "ripple", "size" = 2, "radius" = 1, "falloff" = 1, "y" = 7))
 
 	animate(get_filter("portal_ripple"), time = 1.3 SECONDS, loop = -1, easing = LINEAR_EASING, radius = 32)
 
-	vis_contents += block(locate(our_destination.x - 1, our_destination.y - 1, our_destination.z), locate(our_destination.x + 1, our_destination.y + 1, our_destination.z))
+	vis_contents += our_destination
 //VISUALs END
 
 /obj/effect/wraith_portal
-	icon_state = "wraith_portal"
+	icon_state = "portal_object"
 	anchored = TRUE
 	opacity = FALSE
+	vis_flags = VIS_HIDE
 	/// Visual object for handling the viscontents
 	var/obj/effect/portal_effect/portal_visuals
 	/// The linked portal
@@ -718,7 +719,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	portal_visuals = new
+	portal_visuals.layer = layer+0.01
 	vis_contents += portal_visuals
+	add_filter("border_smoother", 1, gauss_blur_filter(1))
+	add_filter("portal_outline", 2, outline_filter(2, "#33ccff"))
 
 /obj/effect/wraith_portal/Destroy()
 	linked_portal?.unlink()
