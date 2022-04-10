@@ -248,7 +248,7 @@
 	FH.go_idle(TRUE)
 	hugger = FH
 	set_trap_type(TRAP_HUGGER)
-	user.balloon_alert(user, "You place a facehugger in [src]"))
+	user.balloon_alert(user, "You place a facehugger in [src]")
 
 /*
 TUNNEL

@@ -55,7 +55,7 @@
 		return
 
 	balloon_alert_to_viewers("[forced ? "[target] starts to mount on [src]" : "[src] starts hoisting [target] onto [p_their()] back"]", ignored_mobs = src)
-	balloon_alert(src, "[forced ? "[target] starts to mount on your back" : "You start to lift [target] onto your back]")
+	balloon_alert(src, "[forced ? "[target] starts to mount on your back" : "You start to lift [target] onto your back"]")
 	if(!do_mob(forced ? target : src, forced ? src : target, 5 SECONDS, target_display = BUSY_ICON_HOSTILE))
 		balloon_alert_to_viewers("[forced ? "[target] fails to mount on [src]" : "[src] fails to carry [target]!"]", ignored_mobs = src)
 		return

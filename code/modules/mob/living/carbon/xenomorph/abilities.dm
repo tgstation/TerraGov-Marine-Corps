@@ -572,8 +572,8 @@
 	if(istype(A, /obj/vehicle/multitile/root/cm_armored))
 		var/obj/vehicle/multitile/root/cm_armored/R = A
 		R.take_damage_type( (1 * newacid.acid_strength) * 20, "acid", X)
-		X.balloon_alert_to_viewers("\The [X] vomits globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid", ignored_mobs = X)
-		X.balloon_alert(X, "We vomit globs of vile stuff at \the [R]. It sizzles under the bubbling mess of acid")
+		X.balloon_alert_to_viewers("\The [X] vomits globs of vile stuff at \the [R]", ignored_mobs = X)
+		X.balloon_alert(X, "We vomit globs of vile stuff at \the [R].")
 		playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
 		QDEL_IN(newacid, 20)
 		return TRUE
@@ -603,8 +603,6 @@
 	if(!isturf(A))
 		log_combat(X, A, "spat on", addition="with corrosive acid")
 	X.balloon_alert(X, "We vomit globs of vile stuff all over \the [A]")
-	X.visible_message(span_xenowarning("\The [X] vomits globs of vile stuff all over \the [A]"), \
-	playsound(X.loc, "sound/bullets/acid_impact1.ogg", 25)
 
 /datum/action/xeno_action/activable/corrosive_acid/proc/acid_progress_transfer(acid_type, obj/O, turf/T)
 	if(!O && !T)

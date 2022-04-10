@@ -251,7 +251,6 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.balloon_alert_to_viewers("[user] starts prying [src]'s fuel receptacle open", ignored_mobs = user)
 		user.balloon_alert(user, "You start prying [src]'s fuel receptacle open")
-		span_notice("You start prying [src]'s fuel receptacle open."))
 		if(do_after(user, 100, TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_NO_DAMAGE && !is_on && fusion_cell)
 			user.balloon_alert_to_viewers("[user] pries [src]'s fuel receptacle open and removes the cell", ignored_mobs = user)
 			user.balloon_alert(user, "You pry [src]'s fuel receptacle open and remove the cell")

@@ -257,7 +257,7 @@
 		return TRUE
 	setAnchored(!anchored)
 	wrenchy_tool.play_tool_sound(src, 75)
-	balloon_alert_to_viewers("[user] [anchored ? "anchored" : "unanchored"] \the [src], ignored_mobs = user)
+	balloon_alert_to_viewers("[user] [anchored ? "anchored" : "unanchored"] \the [src], ignored_mobs = user")
 	user.balloon_alert(user, "You [anchored ? "anchored" : "unanchored"] \the [src]")
 	return TRUE
 

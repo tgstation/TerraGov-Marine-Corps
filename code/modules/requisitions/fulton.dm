@@ -54,7 +54,7 @@
 		user.balloon_alert(user, "The fulton device is not yet ready to extract again")
 		return FALSE
 	user.balloon_alert_to_viewers("[user] starts attaching [src] to [spirited_away]", ignored_mobs = user)
-	user.balloon_alert(user, "You start attaching the pack to [spirited_away])
+	user.balloon_alert(user, "You start attaching the pack to [spirited_away]")
 	if(!do_after(user, 5 SECONDS, TRUE, spirited_away))
 		return FALSE
 	if(!isturf(spirited_away.loc))

@@ -120,7 +120,7 @@
 				if(!weld(I, user))
 					return
 
-				user.balloon_alert(user, "You unweld [src] from its place."))
+				user.balloon_alert(user, "You unweld [src] from its place.")
 				anchored = TRUE
 				state = STATE_WRENCHED
 

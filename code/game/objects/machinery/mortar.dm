@@ -97,8 +97,8 @@
 			new_name = params["name"]
 			last_three_inputs["coords_three"]["name"] = new_name
 	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
-		usr.visible_message(span_notice("[usr] adjusts [src]'s firing angle and distance"),
-		balloon_alert(usr, "You adjust [src]'s firing angle and distance to the new coordinates")
+		balloon_alert_to_viewers("[usr] adjusts [src]'s firing angle", ignored_mobs = usr)
+		balloon_alert(usr, "You adjust [src]'s firing angle")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		// allows for offsetting using the dial, I had accidentally misplaced this.
 		var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled

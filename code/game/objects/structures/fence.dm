@@ -65,8 +65,7 @@
 		update_icon()
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		balloon_alert_to_viewers("[user] repairs [src] with [R]", ignored_mobs = user)
-		user.balloon_alert(user, "[user] repairs [src] with [R]")
-		"<span class='notice'>You repair [src] with [R]")
+		user.balloon_alert(user, "You repair [src] with [R]")
 
 	else if(cut) //Cut/brokn grilles can't be messed with further than this
 		return
@@ -109,7 +108,6 @@
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		balloon_alert_to_viewers("[user] cuts through [src] with [I]", ignored_mobs = user)
 		user.balloon_alert(user, "You cut through [src] with [I]")
-		"<span class='notice'>You cut through [src] with [I]")
 		deconstruct(TRUE)
 
 

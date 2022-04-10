@@ -194,7 +194,7 @@
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	owner.balloon_alert(owner, "We can inject an egg with gas again.)
+	owner.balloon_alert(owner, "We can inject an egg with gas again.")
 	return ..()
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)

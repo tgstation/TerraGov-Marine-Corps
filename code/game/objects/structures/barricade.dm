@@ -163,13 +163,13 @@
 	if(!is_wired || user.do_actions)
 		return FALSE
 
-	user.visible_message(span_notice("[user] begin removing the barbed wire on [src]"),
+	user.balloon_alert_to_viewers("[user] begin removing barbed wire")
 
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
 
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
-	user.visible_message(span_notice("[user] removes the barbed wire on [src]."),
+	user.balloon_alert_to_viewers("[user] removes the barbed wire on [src].")
 	modify_max_integrity(max_integrity - 50)
 	can_wire = TRUE
 	is_wired = FALSE
@@ -601,7 +601,7 @@
 
 	balloon_alert_to_viewers("[user] repairs some damage on [src]", ignored_mobs = user)
 	user.balloon_alert(user, "You repair [src]")
-	span_notice("You repair [src]."))
+	span_notice("You repair [src].")
 	repair_damage(150)
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)

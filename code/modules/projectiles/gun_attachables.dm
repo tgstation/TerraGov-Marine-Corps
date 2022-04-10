@@ -1407,7 +1407,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		. = FALSE
 	else
 		if(user)
-			user.balloon_alert(user, "You are now using [src]"))
+			user.balloon_alert(user, "You are now using [src]")
 		is_active = TRUE
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		. = TRUE
