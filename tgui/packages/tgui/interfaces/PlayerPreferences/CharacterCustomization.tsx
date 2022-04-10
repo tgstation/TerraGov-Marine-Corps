@@ -29,7 +29,7 @@ export const CharacterCustomization = (props, context) => {
     };
     return '#' + convert(red) + convert(green) + convert(blue);
   };
-  const genders = ["pain", "Air", "Earth", "Fire", "Water", "Boeing AH-64 Apache"];
+  const genders = ["pain", "Air", "Earth", "Fire", "Water", "Boeing AH-64 Apache", "RS-28 Sarmat liquid-fueled, MIRV-equipped, super-heavy thermonuclear armed intercontinental ballistic missile"];
 
   return (
     <>
