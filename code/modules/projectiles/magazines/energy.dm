@@ -8,51 +8,33 @@
 	maxcharge = 600 ///Changed due to the fact some maps and ERTs spawn with the child, the lasrifle. Charges on guns changed accordingly.
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
-	var/base_ammo_icon = "m43"
+	charge_overlay = "m43"
 	var/reload_delay = 0
 	///Magazine flags.
 	var/flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER
 
-/obj/item/cell/lasgun/update_overlays()
-	if(charge < 0.01)
-		return
-	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
-	return "m43_[remaining]"
-
 /obj/item/cell/lasgun/M43
 	name = "\improper M43 lasgun battery"
 	desc = "A specialized high density battery used to power the M43 lasgun."
-	base_ammo_icon = "m43"
+	charge_overlay = "m43"
 	icon_state = "m43"
 
 /obj/item/cell/lasgun/M43/highcap// Large battery
 	name = "\improper M43 highcap lasgun battery"
 	desc = "An advanced, ultrahigh capacity battery used to power the M43 lasgun; has sixty percent more charge capacity than standard laspacks."
-	base_ammo_icon = "m43_e"
+	charge_overlay = "m43_e"
 	icon_state = "m43_e"
 	maxcharge = 1600
-
-/obj/item/cell/lasgun/M43/highcap/update_overlays()
-	if(charge < 0.01)
-		return
-	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
-	return "m43_e_[remaining]"
 
 /obj/item/cell/lasgun/pulse
 	name = "\improper M19C4 pulse battery"
 	desc = "An advanced, ultrahigh capacity battery used to power the M19C4 pulse rifle system; Uses pulse-based energy rather than laser energy, massively increasing its firepower. It can also recharge on its own."
-	base_ammo_icon = "pulse"
+	charge_overlay = "pulse"
 	icon_state = "pulse"
 	maxcharge = 2000 // 100 shots.
 	self_recharge = TRUE
 	charge_amount = 25 // 10%, 1 shot
 	charge_delay = 2 SECONDS
-
-/obj/item/cell/lasgun/pulse/update_overlays()
-	if(charge < 0.01)
-		return
-	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
-	return "pulse_[remaining]"
 
 /obj/item/cell/lasgun/M43/practice
 	name = "\improper M43-P lasgun battery"
@@ -64,19 +46,10 @@
 /obj/item/cell/lasgun/lasrifle
 	name = "\improper Terra Experimental standard battery"
 	desc = "A specialized high density battery used to power most standard marine laser guns. It is simply known as the TE power cell."
-	base_ammo_icon = "te"
+	charge_overlay = "te"
 	icon_state = "te"
 	icon_state_mini = "mag_cell_te"
 	maxcharge = 600
 
-/obj/item/cell/lasgun/lasrifle/update_overlays()
-	if(charge < 0.01)
-		return
-	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
-	return "te_[remaining]"
-
 /obj/item/cell/lasgun/fob_sentry/cell
 	maxcharge = INFINITY
-
-/obj/item/cell/lasgun/fob_sentry/cell/update_overlays()
-	return "m43_100"

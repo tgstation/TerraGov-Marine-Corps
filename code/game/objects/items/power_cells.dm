@@ -17,6 +17,8 @@
 	var/charge_amount = 25 // How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
 	var/last_use = 0 // A tracker for use in self-charging
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
+	///used to track what set of overlays to use to display charge level
+	var/charge_overlay = "cell"
 	materials = list(/datum/material/metal = 700, /datum/material/glass = 50)
 
 /obj/item/cell/suicide_act(mob/user)
@@ -104,7 +106,7 @@
 	self_recharge = TRUE
 	charge_amount = 25
 	charge_delay = 2 SECONDS //One hit on a resin thingy every 8 seconds, or one actual wall every 80 seconds.
-	
+
 /obj/item/cell/rtg/large
 	name = "large recharger cell"
 	desc = "This is a radioisotope generator that can fit into plasma cutters or APC's, but not laser-based weapory. It is too hot to be easily stored and cannot be handcharged."
