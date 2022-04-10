@@ -7,6 +7,7 @@
 	bound_height = 64
 	density = TRUE
 	max_integrity = 200
+	resistance_flags = XENO_DAMAGEABLE
 	opacity = TRUE
 	anchored = TRUE
 	throwpass = FALSE
