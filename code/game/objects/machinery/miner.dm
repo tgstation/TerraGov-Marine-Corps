@@ -284,8 +284,8 @@
 	if(X.status_flags & INCORPOREAL) //Incorporeal xenos cannot attack physically.
 		return
 	if(miner_upgrade_type == MINER_RESISTANT && !(X.mob_size == MOB_SIZE_BIG || X.xeno_caste.caste_flags & CASTE_IS_STRONG))
-		X.balloon_alert_to_viewers("[X]'s claws bounce off of the reinforced plating.", ignored_mobs = X)
-		X.balloon_alert(X, "We can't slash through the reinforced plating!")
+		X.balloon_alert_to_viewers("[X]'s claws bounce off of the reinforced plating", ignored_mobs = X)
+		X.balloon_alert(X, "We can't slash through the reinforced plating")
 		return
 	while(miner_status != MINER_DESTROYED)
 		if(!do_after(X, 3 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
