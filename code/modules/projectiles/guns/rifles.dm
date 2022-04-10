@@ -1087,8 +1087,7 @@
 		return FALSE
 	var/mob/living/carbon/human/H = user
 	if(!(H.species.species_flags & USES_ALIEN_WEAPONS))
-		user.balloon_alert(user, "There's no trigger on this gun!")
-		to_chat(user, span_warning("There's no trigger on this gun, you have no idea how to fire it!"))
+		user.balloon_alert(user, "There's no trigger on this gun")
 		return FALSE
 	return TRUE
 

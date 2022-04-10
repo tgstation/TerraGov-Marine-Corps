@@ -100,11 +100,11 @@
 			update_icon()
 			switch(power_gen_percent)
 				if(10)
-					visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> begins to whirr as it powers up.")]")
+					src.balloon_alert_to_viewers("<b>[src]</b> begins to whirr as it powers up")
 				if(50)
-					visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> begins to hum loudly as it reaches half capacity.")]")
+					src.balloon_alert_to_viewers("<b>[src]</b> begins to hum loudly as it reaches half capacity")
 				if(100)
-					visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.")]")
+					src.balloon_alert_to_viewers("<b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength")
 		add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
 
 /obj/machinery/power/geothermal/proc/check_failure()
@@ -138,22 +138,20 @@
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
 	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
+		X.balloon_alert_to_viewers("[X] starts to corrupt [src]", ignored_mobs = X)
 		X.balloon_alert(X, "You start to corrupt [src]")
-		to_chat(X, span_notice("You start to corrupt [src]"))
 		if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
 			return
 		corrupt(X.hivenumber)
+		X.balloon_alert_to_viewers("[X] has corrupted [src]", ignored_mobs = X)
 		X.balloon_alert(X, "You have corrupted [src]")
-		to_chat(X, span_notice("You have corrupted [src]"))
 		return
 	if(buildstate)
 		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	play_attack_sound(1)
-	X.balloon_alert_to_viewers("\The [X] slashes at \the [src], tearing at it's components!", ignored_mobs = X)
-	X.balloon_alert(X, "We start slashing at \the [src], tearing at it's components!")
-	X.visible_message(span_danger("\The [X] slashes at \the [src], tearing at it's components!"),
-		span_danger("We start slashing at \the [src], tearing at it's components!"))
+	X.balloon_alert_to_viewers("\The [X] slashes at \the [src], tearing at it's components", ignored_mobs = X)
+	X.balloon_alert(X, "We start tearing at [src]'s components")
 	fail_rate += 5 // 5% fail rate every attack
 
 /obj/machinery/power/geothermal/attack_hand(mob/living/carbon/user)
@@ -171,37 +169,30 @@
 	if(user.incapacitated())
 		return FALSE
 	if(!ishuman(user) && !issilicon(user))
-		user.balloon_alert(user, "You have no idea how to use that.")
-		to_chat(user, span_warning("You have no idea how to use that."))
+		user.balloon_alert(user, "You have no idea how to use that")
 		return FALSE
 	if(corrupted)
-		user.balloon_alert(user, "You have to clean that generator before it can be used!")
-		to_chat(user, span_warning("You have to clean that generator before it can be used!"))
+		user.balloon_alert(user, "You have to clean that generator first")
 		return FALSE
 
 	if(buildstate == GEOTHERMAL_HEAVY_DAMAGE)
-		user.balloon_alert(user, "Use a blowtorch, then wirecutters, then a wrench to repair it.")
-		to_chat(usr, "<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.")
+		user.balloon_alert(user, "Use a blowtorch, then wirecutters, then a wrench to repair it")
 		return FALSE
 	else if (buildstate == GEOTHERMAL_MEDIUM_DAMAGE)
-		user.balloon_alert(user, "Use a wirecutters, then wrench to repair it.")
-		to_chat(usr, "<span class='info'>Use a wirecutters, then wrench to repair it.")
+		user.balloon_alert(user, "Use a wirecutters, then wrench to repair it")
 		return FALSE
 	else if (buildstate == GEOTHERMAL_LIGHT_DAMAGE)
-		user.balloon_alert(user, "Use a wrench to repair it.")
-		to_chat(usr, "<span class='info'>Use a wrench to repair it.")
+		user.balloon_alert(user, "Use a wrench to repair it")
 		return FALSE
 	if(is_on)
-		src.balloon_alert_to_viewers("<b>[src]</b> beeps softly and the humming stops as [usr] shuts off the turbines.")
-		visible_message("[icon2html(src, viewers(src))] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the turbines.")
+		src.balloon_alert_to_viewers("<b>[src]</b> beeps softly and the humming stops as the turbines shutdown")
 		is_on = FALSE
 		power_gen_percent = 0
 		cur_tick = 0
 		icon_state = "off"
 		stop_processing()
 		return TRUE
-	src.balloon_alert_to_viewers("<b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
-	visible_message("[icon2html(src, viewers(src))] <span class='warning'><b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up.")
+	src.balloon_alert_to_viewers("<b>[src]</b> beeps loudly as [usr] turns on the turbines and the generator begins spinning up")
 	icon_state = "on10"
 	is_on = TRUE
 	cur_tick = 0
@@ -212,10 +203,8 @@
 	var/obj/item/tool/weldingtool/WT = I
 	if(corrupted)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("[user] fumbles around figuring out the resin tendrils on [src].", ignored_mobs = user)
-			user.balloon_alert(user, "You fumble around figuring out the resin tendrils on [src].")
-			user.visible_message(span_notice("[user] fumbles around figuring out the resin tendrils on [src]."),
-			span_notice("You fumble around figuring out the resin tendrils on [src]."))
+			user.balloon_alert_to_viewers("[user] fumbles around figuring out the resin tendrils on [src]", ignored_mobs = user)
+			user.balloon_alert(user, "You fumble around figuring out the resin tendrils on [src]")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				return
@@ -224,27 +213,21 @@
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return
 		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-		user.visible_message(span_notice("[user] carefully starts burning [src]'s resin off."),
-		span_notice("You carefully start burning [src]'s resin off."))
 
 		if(!do_after(user, 20 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 			return FALSE
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		user.balloon_alert_to_viewers("[user] burns [src]'s resin off.", ignored_mobs = user)
-		user.balloon_alert(user, "[user] burns [src]'s resin off.")
-		user.visible_message(span_notice("[user] burns [src]'s resin off."),
-		span_notice("You burn [src]'s resin off."))
+		user.balloon_alert_to_viewers("[user] burns [src]'s resin off", ignored_mobs = user)
+		user.balloon_alert(user, "[user] burns [src]'s resin off")
 		corrupted = 0
 		stop_processing()
 		update_icon()
 		return
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s internals.", ignored_mobs = user)
-		user.balloon_alert(user, "You fumble around figuring out [src]'s internals.")
-		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s internals."),
-		span_notice("You fumble around figuring out [src]'s internals."))
+		user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s internals", ignored_mobs = user)
+		user.balloon_alert(user, "You fumble around figuring out [src]'s internals")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 			return
@@ -253,20 +236,16 @@
 		to_chat(user, span_warning("You need more welding fuel to complete this task."))
 		return
 	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-	user.balloon_alert_to_viewers("[user] starts welding [src]'s internal damage.", ignored_mobs = user)
-	user.balloon_alert(user, "You start welding [src]'s internal damage.")
-	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
-	span_notice("You start welding [src]'s internal damage."))
+	user.balloon_alert_to_viewers("[user] starts welding [src]'s internal damage", ignored_mobs = user)
+	user.balloon_alert(user, "You start welding [src]'s internal damage")
 
 	if(!do_after(user, 20 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || buildstate != GEOTHERMAL_HEAVY_DAMAGE || is_on)
 		return FALSE
 
 	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 	buildstate = GEOTHERMAL_MEDIUM_DAMAGE
-	user.balloon_alert_to_viewers("[user] welds [src]'s internal damage.", ignored_mobs = user)
-	user.balloon_alert(user, "You weld [src]'s internal damage.")
-	user.visible_message(span_notice("[user] welds [src]'s internal damage."),
-	span_notice("You weld [src]'s internal damage."))
+	user.balloon_alert_to_viewers("[user] welds [src]'s internal damage", ignored_mobs = user)
+	user.balloon_alert(user, "You weld [src]'s internal damage")
 	update_icon()
 	return TRUE
 
@@ -274,28 +253,22 @@
 	if(buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 		return
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s wiring.", ignored_mobs = user)
-		user.balloon_alert(user, "You fumble around figuring out [src]'s wiring.")
-		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring."),
-		span_notice("You fumble around figuring out [src]'s wiring."))
+		user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s wiring", ignored_mobs = user)
+		user.balloon_alert(user, "You fumble around figuring out [src]'s wiring")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 			return
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-	user.balloon_alert_to_viewers("[user] starts securing [src]'s wiring.", ignored_mobs = user)
-	user.balloon_alert(user, "You start securing [src]'s wiring.")
-	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
-	span_notice("You start securing [src]'s wiring."))
+	user.balloon_alert_to_viewers("[user] starts securing [src]'s wiring", ignored_mobs = user)
+	user.balloon_alert(user, "You start securing [src]'s wiring")
 
 	if(!do_after(user, 12 SECONDS, TRUE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_MEDIUM_DAMAGE || is_on)
 		return FALSE
 
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 	buildstate = GEOTHERMAL_LIGHT_DAMAGE
-	user.balloon_alert_to_viewers("[user] secures [src]'s wiring.", ignored_mobs = user)
-	user.balloon_alert(user, "You secure [src]'s wiring.")
-	user.visible_message(span_notice("[user] secures [src]'s wiring."),
-	span_notice("You secure [src]'s wiring."))
+	user.balloon_alert_to_viewers("[user] secures [src]'s wiring", ignored_mobs = user)
+	user.balloon_alert(user, "You secure [src]'s wiring")
 	update_icon()
 	return TRUE
 
@@ -303,29 +276,23 @@
 	if(buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 		return
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s tubing and plating.", ignored_mobs = user)
-		user.balloon_alert(user, "You fumble around figuring out [src]'s tubing and plating.")
-		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s tubing and plating."),
-		span_notice("You fumble around figuring out [src]'s tubing and plating."))
+		user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s tubing and plating", ignored_mobs = user)
+		user.balloon_alert(user, "You fumble around figuring out [src]'s tubing and plating")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 			return
 
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	user.balloon_alert_to_viewers("[user] starts repairing [src]'s tubing and plating.", ignored_mobs = user)
-	user.balloon_alert(user, "You start repairing [src]'s tubing and plating.")
-	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
-	span_notice("You start repairing [src]'s tubing and plating."))
+	user.balloon_alert_to_viewers("[user] starts repairing [src]'s tubing and plating", ignored_mobs = user)
+	user.balloon_alert(user, "You start repairing [src]'s tubing and plating")
 
 	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD) || buildstate != GEOTHERMAL_LIGHT_DAMAGE || is_on)
 		return FALSE
 
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	buildstate = GEOTHERMAL_NO_DAMAGE
-	user.balloon_alert_to_viewers("[user] repairs [src]'s tubing and plating.", ignored_mobs = user)
-	user.balloon_alert(user, "You repair [src]'s tubing and plating.")
-	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
-	span_notice("You repair [src]'s tubing and plating."))
+	user.balloon_alert_to_viewers("[user] repairs [src]'s tubing and plating", ignored_mobs = user)
+	user.balloon_alert(user, "You repair [src]'s tubing and plating")
 	update_icon()
 	return TRUE
 

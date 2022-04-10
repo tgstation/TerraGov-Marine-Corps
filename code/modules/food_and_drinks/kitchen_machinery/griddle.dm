@@ -44,8 +44,7 @@
 
 /obj/machinery/griddle/attackby(obj/item/I, mob/user, params)
 	if(griddled_objects.len >= max_items)
-		user.balloon_alert(user, "[src] can't fit more items!")
-		to_chat(user, span_notice("[src] can't fit more items!"))
+		user.balloon_alert(user, "[src] can't fit more items")
 		return
 	var/list/modifiers = params2list(params)
 	//Center the icon where the user clicked.
@@ -55,8 +54,7 @@
 		//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
 		I.pixel_x = clamp(text2num(LAZYACCESS(modifiers, "icon-x")) - 16, -(world.icon_size/2), world.icon_size/2)
 		I.pixel_y = clamp(text2num(LAZYACCESS(modifiers, "icon-y")) - 16, -(world.icon_size/2), world.icon_size/2)
-		user.balloon_alert(user, "You place [I] on [src].")
-		to_chat(user, span_notice("You place [I] on [src]."))
+		user.balloon_alert(user, "You place [I] on [src]")
 		AddToGrill(I, user)
 		update_icon()
 		return
@@ -108,7 +106,7 @@
 	I.play_tool_sound(src, 50)
 	if(!I.use_tool(src, user, 2 SECONDS))
 		return FALSE
-	balloon_alert(user, "You [anchored ? "un" : ""]secure.")
+	balloon_alert(user, "You [anchored ? "un" : ""]secure")
 	anchored = !anchored
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	return TRUE

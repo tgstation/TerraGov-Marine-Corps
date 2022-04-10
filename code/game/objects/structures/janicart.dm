@@ -39,8 +39,7 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		user.balloon_alert(user, "You put [I] into [src].")
-		to_chat(user, span_notice("You put [I] into [src]."))
+		user.balloon_alert(user, "You put [I] into [src]")
 
 	else if(istype(I, /obj/item/tool/mop))
 		if(I.reagents.total_volume < I.reagents.maximum_volume && mybucket)	//if it's not completely soaked we assume they want to wet it, otherwise store it
@@ -58,8 +57,7 @@
 			I.forceMove(src)
 			update_icon()
 			updateUsrDialog()
-			user.balloon_alert(user, "You put [I] into [src].")
-			to_chat(user, span_notice("You put [I] into [src]."))
+			user.balloon_alert(user, "You put [I] into [src]")
 
 	else if(istype(I, /obj/item/reagent_containers/spray) && !myspray)
 		user.drop_held_item()
@@ -67,8 +65,7 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		user.balloon_alert(user, "You put [I] into [src].")
-		to_chat(user, span_notice("You put [I] into [src]."))
+		user.balloon_alert(user, "You put [I] into [src]")
 
 	else if(istype(I, /obj/item/lightreplacer) && !myreplacer)
 		user.drop_held_item()
@@ -76,8 +73,7 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		user.balloon_alert(user, "You put [I] into [src].")
-		to_chat(user, span_notice("You put [I] into [src]."))
+		user.balloon_alert(user, "You put [I] into [src]")
 
 	else if(istype(I, /obj/item/tool/wet_sign))
 		if(signs >= 4)
@@ -89,8 +85,7 @@
 		signs++
 		update_icon()
 		updateUsrDialog()
-		user.balloon_alert(user, "You put [I] into [src].")
-		to_chat(user, span_notice("You put [I] into [src]."))
+		user.balloon_alert(user, "You put [I] into [src]")
 
 	else if(istype(I, /obj/item/reagent_containers/glass/bucket/janibucket))
 		user.drop_held_item()
@@ -98,8 +93,7 @@
 		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
-		user.balloon_alert(user, "You put [I] into [src].")
-		to_chat(user, span_notice("You put [I] into [src]."))
+		user.balloon_alert(user, "You put [I] into [src]")
 		return TRUE
 
 	else if(mybag)
@@ -140,40 +134,34 @@
 	if(href_list["garbage"])
 		if(mybag)
 			user.put_in_hands(mybag)
-			user.balloon_alert(user, "You take [mybag] from [src].")
-			to_chat(user, span_notice("You take [mybag] from [src]."))
+			user.balloon_alert(user, "You take [mybag] from [src]")
 			mybag = null
 	if(href_list["mop"])
 		if(mymop)
 			user.put_in_hands(mymop)
-			user.balloon_alert(user, "You take [mybag] from [src].")
-			to_chat(user, span_notice("You take [mymop] from [src]."))
+			user.balloon_alert(user, "You take [mybag] from [src]")
 			mymop = null
 	if(href_list["spray"])
 		if(myspray)
 			user.put_in_hands(myspray)
-			user.balloon_alert(user, "You take [mybag] from [src].")
-			to_chat(user, span_notice("You take [myspray] from [src]."))
+			user.balloon_alert(user, "You take [mybag] from [src]")
 			myspray = null
 	if(href_list["replacer"])
 		if(myreplacer)
 			user.put_in_hands(myreplacer)
-			user.balloon_alert(user, "You take [mybag] from [src].")
-			to_chat(user, span_notice("You take [myreplacer] from [src]."))
+			user.balloon_alert(user, "You take [mybag] from [src]")
 			myreplacer = null
 	if(href_list["bucket"])
 		if(mybucket)
 			user.put_in_hands(mybucket)
-			user.balloon_alert(user, "You take [mybag] from [src].")
-			to_chat(user, span_notice("You take [mybucket] from [src]."))
+			user.balloon_alert(user, "You take [mybag] from [src]")
 			mybucket = null
 	if(href_list["sign"])
 		if(signs)
 			var/obj/item/tool/wet_sign/Sign = locate() in src
 			if(Sign)
 				user.put_in_hands(Sign)
-				user.balloon_alert(user, "You take [mybag] from [src].")
-				to_chat(user, span_notice("You take \a [Sign] from [src]."))
+				user.balloon_alert(user, "You take [mybag] from [src]")
 				signs--
 			else
 				warning("[src] signs ([signs]) didn't match contents")

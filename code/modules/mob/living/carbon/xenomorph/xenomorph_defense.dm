@@ -18,8 +18,7 @@ Contains most of the procs that are called when a xeno is attacked by something
 		use_plasma(0.2 * xeno_caste.plasma_max * xeno_caste.plasma_regen_limit)
 		apply_status_effect(/datum/status_effect/noplasmaregen, 5 SECONDS)
 		if(prob(25))
-			balloon_alert(src, "We feel our plasma reserves being drained as we pass through the smoke.")
-			to_chat(src, span_xenowarning("We feel our plasma reserves being drained as we pass through the smoke."))
+			balloon_alert(src, "We feel our plasma reserves being drained as we pass through the smoke")
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
 

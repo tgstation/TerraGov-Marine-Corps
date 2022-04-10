@@ -56,8 +56,7 @@
 		return
 	if(anes_tank)
 		user.put_in_active_hand(anes_tank)
-		user.balloon_alert(user, ("You remove \the [anes_tank] from \the [src]."))
-		to_chat(user, span_notice("You remove \the [anes_tank] from \the [src]."))
+		user.balloon_alert(user, ("You remove tank from the table."))
 		anes_tank = null
 
 
@@ -95,7 +94,6 @@
 		return FALSE
 	buckling_human.internal = anes_tank
 	balloon_alert_to_viewers("[span_notice("[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.")]'")
-	buckling_human.visible_message("[span_notice("[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.")]'")
 	to_chat(buckling_human, span_information("You begin to feel sleepy."))
 	buckling_human.setDir(SOUTH)
 	return ..()
@@ -107,7 +105,6 @@
 		return
 	if(!silent)
 		balloon_alert_to_viewers("[user] turns off the anesthetic and removes the mask from [buckled_mob].")
-		buckled_mob.visible_message(span_notice("[user] turns off the anesthetic and removes the mask from [buckled_mob]."))
 
 
 /obj/machinery/optable/post_unbuckle_mob(mob/living/buckled_mob)
@@ -191,7 +188,6 @@
 		user.transferItemToLoc(I, src)
 		anes_tank = I
 		balloon_alert(usr, ("You connect \the [anes_tank] to \the [src]."))
-		to_chat(user, span_notice("You connect \the [anes_tank] to \the [src]."))
 
 	if(!istype(I, /obj/item/grab))
 		return

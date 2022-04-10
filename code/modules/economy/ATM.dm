@@ -96,8 +96,7 @@ log transactions
 		T.time = worldtime2text()
 		authenticated_account.transaction_log += T
 
-		user.balloon_alert(user, "You insert [I] into [src].")
-		to_chat(user, span_info("You insert [I] into [src]."))
+		user.balloon_alert(user, "You insert [I] into [src]")
 		attack_hand(user)
 		qdel(I)
 

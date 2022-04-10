@@ -188,8 +188,7 @@
 		if(amount < 1)
 			to_chat(user, span_notice("The [src.name] is full!"))
 			return
-		user.balloon_alert(user, "You add [amount] sheets to the [src.name].")
-		to_chat(user, span_notice("You add [amount] sheets to the [src.name]."))
+		user.balloon_alert(user, "You add [amount] sheets to the [src.name]")
 		sheets += amount
 		addstack.use(amount)
 		return
@@ -198,13 +197,11 @@
 			if(!anchored)
 				anchored = TRUE
 				connect_to_network()
-				user.balloon_alert(user, "You secure the generator to the floor.")
-				to_chat(user, span_notice("You secure the generator to the floor."))
+				user.balloon_alert(user, "You secure the generator to the floor")
 			else if(anchored)
 				anchored = FALSE
 				disconnect_from_network()
-				user.balloon_alert(user, "You unsecure the generator from the floor.")
-				to_chat(user, span_notice("You unsecure the generator from the floor."))
+				user.balloon_alert(user, "You unsecure the generator from the floor")
 
 			playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 			return
@@ -212,11 +209,9 @@
 			TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 			O.play_tool_sound(src)
 			if(machine_stat & PANEL_OPEN)
-				user.balloon_alert(user, "You open the access panel.")
-				to_chat(user, span_notice("You open the access panel."))
+				user.balloon_alert(user, "You open the access panel")
 			else
-				user.balloon_alert(user, "You close the access panel.")
-				to_chat(user, span_notice("You close the access panel."))
+				user.balloon_alert(user, "You close the access panel")
 			return
 		//else if(default_deconstruction_crowbar(O))
 		//	return

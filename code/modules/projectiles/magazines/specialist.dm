@@ -102,13 +102,11 @@
 	if(current_rounds > 0)
 		to_chat(user, span_notice("Not with a missile inside!"))
 		return
-	user.balloon_alert(user, "You begin taking apart the empty tube frame...")
-	to_chat(user, span_notice("You begin taking apart the empty tube frame..."))
+	user.balloon_alert(user, "You begin taking apart the empty tube frame")
 	if(!do_after(user, 10, TRUE, src))
 		return
-	user.balloon_alert_to_viewers("[user] deconstructs the rocket tube frame.", ignored_mobs = user)
-	user.balloon_alert(user, "You take apart the empty frame.")
-	user.visible_message("[user] deconstructs the rocket tube frame.",span_notice("You take apart the empty frame."))
+	user.balloon_alert_to_viewers("[user] deconstructs the frame", ignored_mobs = user)
+	user.balloon_alert(user, "You take apart the empty frame")
 	var/obj/item/stack/sheet/metal/metal = new(get_turf(user))
 	metal.amount = 2
 	user.drop_held_item()

@@ -30,8 +30,7 @@
 /obj/machinery/atmospherics/components/unary/portables_connector/can_unwrench(mob/user)
 	. = ..()
 	if(. && connected_device)
-		user.balloon_alert(user, "You cannot unwrench [src], detach [connected_device] first!")
-		to_chat(user, span_warning("You cannot unwrench [src], detach [connected_device] first!"))
+		user.balloon_alert(user, "You cannot unwrench [src], detach [connected_device] first")
 		return FALSE
 
 /obj/machinery/atmospherics/components/unary/portables_connector/portableConnectorReturnAir()

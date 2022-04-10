@@ -478,8 +478,7 @@
 		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
 		flick("handheldcharger_black_pumping", src)
 		if(cell.charge >= cell.maxcharge)
-			user.balloon_alert(user, "\The [cell] is fully charged.")
-			to_chat(user, span_notice("\The [cell] is fully charged."))
+			user.balloon_alert(user, "\The cell is fully charged")
 			return
 	to_chat(user, span_notice("You stop using the recharger."))
 
@@ -514,8 +513,7 @@
 	user.put_in_active_hand(cell)
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
-	user.balloon_alert(user, "You remove the cell from [src].")
-	to_chat(user, span_notice("You remove the cell from [src]."))
+	user.balloon_alert(user, "You remove the cell from [src]")
 	icon_state = "handheldcharger_black_empty"
 
 /obj/item/tool/handheld_charger/attack_hand(mob/living/user)
@@ -527,8 +525,7 @@
 	user.put_in_active_hand(cell)
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
-	user.balloon_alert(user, "You remove the cell from [src].")
-	to_chat(user, span_notice("You remove the cell from [src]."))
+	user.balloon_alert(user, "You remove the cell from [src]")
 	icon_state = "handheldcharger_black_empty"
 
 /obj/item/tool/handheld_charger/Destroy()

@@ -157,38 +157,33 @@ obj/structure/door_assembly
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		if(istext(glass))
-			balloon_alert_to_viewers("[user] welds the [glass] plating off the airlock assembly.", ignored_mobs = user)
-			user.balloon_alert(user, "You start to weld the [glass] plating off the airlock assembly.")
-			user.visible_message("[user] welds the [glass] plating off the airlock assembly.", "You start to weld the [glass] plating off the airlock assembly.")
+			balloon_alert_to_viewers("[user] welds the [glass] plating off the airlock assembly", ignored_mobs = user)
+			user.balloon_alert(user, "You start to weld the [glass] plating off the airlock assembly")
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				return
 
 			if(!WT.isOn())
 				return
 			user.balloon_alert(user, "You welded the [glass] plating off!")
-			to_chat(user, span_notice("You welded the [glass] plating off!"))
 			var/M = text2path("/obj/item/stack/sheet/mineral/[glass]")
 			new M(loc, 2)
 			glass = 0
 
 		else if(glass == 1)
-			balloon_alert_to_viewers("[user] welds the glass panel out of the airlock assembly.", ignored_mobs = user)
-			user.balloon_alert(user,  "You start to weld the glass panel out of the airlock assembly.")
-			user.visible_message("[user] welds the glass panel out of the airlock assembly.", "You start to weld the glass panel out of the airlock assembly.")
+			balloon_alert_to_viewers("[user] welds the glass panel out of the airlock assembly", ignored_mobs = user)
+			user.balloon_alert(user,  "You start to weld the glass panel out of the airlock assembly")
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				return
 
 			if(!WT.isOn())
 				return
 			user.balloon_alert(user, "You welded the glass panel out!")
-			to_chat(user, span_notice("You welded the glass panel out!"))
 			new /obj/item/stack/sheet/glass/reinforced(loc)
 			glass = 0
 
 		else if(!anchored)
-			balloon_alert_to_viewers("[user] dissassembles the airlock assembly.", ignored_mobs = user)
-			user.balloon_alert(user,  "You start to dissassemble the airlock assembly.")
-			user.visible_message("[user] dissassembles the airlock assembly.", "You start to dissassemble the airlock assembly.")
+			balloon_alert_to_viewers("[user] dissassembles the airlock assembly", ignored_mobs = user)
+			user.balloon_alert(user,  "You start to dissassemble the airlock assembly")
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				return
 
@@ -196,26 +191,22 @@ obj/structure/door_assembly
 				return
 
 			user.balloon_alert(user,  "You dissasembled the airlock assembly!")
-			to_chat(user, span_notice("You dissasembled the airlock assembly!"))
 			new /obj/item/stack/sheet/metal(loc, 4)
 			qdel(src)
 
 	else if(iswrench(I) && state == 0)
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		if(anchored)
-			balloon_alert_to_viewers("[user] unsecures the airlock assembly from the floor.", ignored_mobs = user)
-			user.balloon_alert(user,  "You start to unsecure the airlock assembly from the floor.")
-			user.visible_message("[user] unsecures the airlock assembly from the floor.", "You start to unsecure the airlock assembly from the floor.")
+			balloon_alert_to_viewers("[user] unsecures the airlock assembly from the floor", ignored_mobs = user)
+			user.balloon_alert(user,  "You start to unsecure the airlock assembly from the floor")
 		else
-			balloon_alert_to_viewers("[user] secures the airlock assembly to the floor.", ignored_mobs = user)
-			user.balloon_alert(user,  "You start to secure the airlock assembly to the floor.")
-			user.visible_message("[user] secures the airlock assembly to the floor.", "You start to secure the airlock assembly to the floor.")
+			balloon_alert_to_viewers("[user] secures the airlock assembly to the floor", ignored_mobs = user)
+			user.balloon_alert(user,  "You start to secure the airlock assembly to the floor")
 
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		user.balloon_alert(user,  "You [anchored ? "un" : ""]secured the airlock assembly!")
-		to_chat(user, span_notice("You [anchored ? "un" : ""]secured the airlock assembly!"))
+		user.balloon_alert(user,  "You [anchored ? "un" : ""]secured the airlock assembly")
 		anchored = !anchored
 
 	else if(iscablecoil(I) && state == 0 && anchored)
@@ -238,23 +229,20 @@ obj/structure/door_assembly
 
 	else if(iswirecutter(I) && state == 1 )
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		balloon_alert_to_viewers("[user] cuts the wires from the airlock assembly.", ignored_mobs = user)
-		user.balloon_alert(user,  "You start to cut the wires from airlock assembly.")
-		user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
+		balloon_alert_to_viewers("[user] cuts the wires from the airlock assembly", ignored_mobs = user)
+		user.balloon_alert(user,  "You start to cut the wires from airlock assembly")
 
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		user.balloon_alert(user,  "You cut the airlock wires!")
-		to_chat(user, span_notice("You cut the airlock wires!"))
 		new /obj/item/stack/cable_coil(loc, 1)
 		state = 0
 
 	else if(istype(I, /obj/item/circuitboard/airlock) && state == 1 && I.icon_state != "door_electronics_smoked")
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-		balloon_alert_to_viewers("[user] installs the electronics into the airlock assembly.", ignored_mobs = user)
-		user.balloon_alert(user,  "You start to install electronics into the airlock assembly.")
-		user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
+		balloon_alert_to_viewers("[user] installs the electronics into the airlock assembly", ignored_mobs = user)
+		user.balloon_alert(user,  "You start to install electronics into the airlock assembly")
 
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
@@ -262,22 +250,19 @@ obj/structure/door_assembly
 		user.drop_held_item()
 		I.forceMove(src)
 		user.balloon_alert(user,  "You installed the airlock electronics!")
-		to_chat(user, span_notice("You installed the airlock electronics!"))
 		state = 2
 		name = "Near finished Airlock Assembly"
 		electronics = I
 
 	else if(iscrowbar(I) && state == 2)
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-		balloon_alert_to_viewers("[user] removes the electronics from the airlock assembly.", ignored_mobs = user)
-		user.balloon_alert(user,  "You start to remove the electronics from the airlock assembly.")
-		user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove the electronics from the airlock assembly.")
+		balloon_alert_to_viewers("[user] removes the electronics from the airlock assembly", ignored_mobs = user)
+		user.balloon_alert(user,  "You start to remove the electronics")
 
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		user.balloon_alert(user,  "You removed the airlock electronics!")
-		to_chat(user, span_notice("You removed the airlock electronics!"))
 		state = 1
 		name = "Wired Airlock Assembly"
 		var/obj/item/circuitboard/airlock/AE
@@ -296,9 +281,8 @@ obj/structure/door_assembly
 
 		if(istype(S, /obj/item/stack/sheet/glass/reinforced))
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			balloon_alert_to_viewers("[user] adds [S.name] to the airlock assembly.", ignored_mobs = user)
-			user.balloon_alert(user,  "You start to install [S.name] into the airlock assembly.")
-			user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
+			balloon_alert_to_viewers("[user] adds [S.name] to the airlock assembly", ignored_mobs = user)
+			user.balloon_alert(user,  "You start to install [S.name]")
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD) && !glass)
 				return
 
@@ -306,7 +290,6 @@ obj/structure/door_assembly
 				return
 
 			user.balloon_alert(user,  "You installed reinforced glass windows into the airlock assembly.")
-			to_chat(user, span_notice("You installed reinforced glass windows into the airlock assembly."))
 			glass = 1
 
 		else if(istype(S, /obj/item/stack/sheet/mineral) && S.sheettype)
@@ -315,17 +298,15 @@ obj/structure/door_assembly
 				return
 
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-			balloon_alert_to_viewers("[user] adds [S.name] to the airlock assembly.", ignored_mobs = user)
-			user.balloon_alert(user,  "You start to install [S.name] into the airlock assembly.")
-			user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
+			balloon_alert_to_viewers("[user] adds [S.name] to the airlock assembly", ignored_mobs = user)
+			user.balloon_alert(user,  "You start to install [S.name]")
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD) && !glass)
 				return
 
 			if(!S.use(2))
 				return
 
-			user.balloon_alert(user,  "You installed [M] plating into the airlock assembly.")
-			to_chat(user, span_notice("You installed [M] plating into the airlock assembly."))
+			user.balloon_alert(user,  "You installed [M] plating into the airlock assembly")
 			glass = "[M]"
 
 	else if(isscrewdriver(I) && state == 2 )
@@ -335,8 +316,7 @@ obj/structure/door_assembly
 		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 			return
 
-		user.balloon_alert(user,  "You finish the airlock!")
-		to_chat(user, span_notice("You finish the airlock!"))
+		user.balloon_alert(user,  "You finish the airlock")
 		var/path
 		if(istext(glass))
 			path = text2path("/obj/machinery/door/airlock/[glass]")

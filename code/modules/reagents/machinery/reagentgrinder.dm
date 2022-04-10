@@ -84,8 +84,7 @@
 		return FALSE
 
 	else if(length(holdingitems) >= limit)
-		user.balloon_alert(user, "The machine cannot hold anymore items.")
-		to_chat(user, "The machine cannot hold anymore items.")
+		user.balloon_alert(user, "The machine cannot hold anymore items")
 		return TRUE
 
 	else if(istype(I, /obj/item/storage/bag/plants))
@@ -104,8 +103,7 @@
 		return FALSE
 
 	else if(!is_type_in_list(I, blend_items) && !is_type_in_list(I, juice_items))
-		user.balloon_alert(user, "Cannot refine into a reagent.")
-		to_chat(user, "Cannot refine into a reagent.")
+		user.balloon_alert(user, "Cannot refine into a reagent")
 		return TRUE
 
 	user.transferItemToLoc(I, src)

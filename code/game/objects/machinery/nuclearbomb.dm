@@ -274,12 +274,10 @@
 			if(exploded)
 				return
 			if(safety)
-				balloon_alert(usr, ("The safety is still on."))
-				to_chat(usr, span_warning("The safety is still on."))
+				balloon_alert(usr, ("The safety is still on"))
 				return
 			if(!anchored)
-				balloon_alert(usr, ("The anchors are not set."))
-				to_chat(usr, span_warning("The anchors are not set."))
+				balloon_alert(usr, ("The anchors are not set"))
 				return
 			timer_enabled = !timer_enabled
 			if(timer_enabled)
@@ -300,15 +298,14 @@
 				visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 				return
 			if(istype(get_area(loc), /area/shuttle))
-				balloon_alert(usr, ("This doesn't look like a good spot to anchor the nuke."))
-				to_chat(usr, span_warning("This doesn't look like a good spot to anchor the nuke."))
+				balloon_alert(usr, ("This isn't a good spot to anchor the nuke"))
 				return
 
 			anchored = !anchored
 			if(anchored)
-				visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
+				balloon_alert_to_viewers("Bolts slide out and anchor to the flooring")
 			else
-				visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
+				balloon_alert_to_viewers("The anchoring bolts slide back in")
 				timer_enabled = FALSE
 				stop_processing()
 

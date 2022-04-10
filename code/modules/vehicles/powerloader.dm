@@ -48,8 +48,7 @@
 		return user_unbuckle_mob(user, user) //clicking the powerloader with its own clamp unbuckles the pilot.
 
 	else if(isscrewdriver(I))
-		user.balloon_alert(user, "You screw the panel [panel_open ? "closed" : "open"].")
-		to_chat(user, span_notice("You screw the panel [panel_open ? "closed" : "open"]."))
+		user.balloon_alert(user, "You screw the panel [panel_open ? "closed" : "open"]")
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		panel_open = !panel_open
 
@@ -108,8 +107,7 @@
 		return FALSE
 	var/mob/living/carbon/human/buckling_human = buckling_mob
 	if(buckling_human.r_hand || buckling_human.l_hand)
-		user.balloon_alert(user, "You need your two hands to use [src].")
-		to_chat(buckling_human, span_warning("You need your two hands to use [src]."))
+		user.balloon_alert(user, "You need your two hands to use [src]")
 		return FALSE
 	return ..()
 
@@ -164,10 +162,8 @@
 		loaded = victim
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		update_icon()
-		user.balloon_alert_to_viewers("[user] grabs [loaded] with [src].", ignored_mobs = user)
-		user.balloon_alert(user, "You grab [loaded] with [src].")
-		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
-			span_notice("You grab [loaded] with [src]."))
+		user.balloon_alert_to_viewers("[user] grabs [loaded] with [src]", ignored_mobs = user)
+		user.balloon_alert(user, "You grab [loaded] with [src]")
 	return ..()
 
 

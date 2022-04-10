@@ -338,8 +338,7 @@
 	if(limb_status & LIMB_SPLINTED) //If they have it splinted and no splint health, the splint won't hold.
 		if(splint_health <= 0)
 			remove_limb_flags(LIMB_SPLINTED)
-			owner.balloon_alert(owner, "The splint on your [display_name] comes apart!")
-			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
+			owner.balloon_alert(owner, "The splint on your [display_name] comes apart")
 		else
 			splint_health = max(splint_health - damage, 0)
 
@@ -1076,13 +1075,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	if(limb_status & LIMB_DESTROYED)
-		user.balloon_alert(user, "There's nothing there to splint!")
-		to_chat(user, span_warning("There's nothing there to splint!"))
+		user.balloon_alert(user, "There's nothing there to splint")
 		return FALSE
 
 	if(limb_status & LIMB_SPLINTED && applied_health <= splint_health)
-		user.balloon_alert(user, "This limb is already splinted!")
-		to_chat(user, span_warning("This limb is already splinted!"))
+		user.balloon_alert(user, "This limb is already splinted")
 		return FALSE
 
 	var/delay = SKILL_TASK_AVERAGE - (1 SECONDS + user.skills.getRating("medical") * 5)

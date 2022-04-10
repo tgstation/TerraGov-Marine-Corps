@@ -74,8 +74,7 @@
 		return
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_PUKE, 40 SECONDS) //5 seconds before the actual action plus 35 before the next one.
-	balloon_alert(src, "You feel like you are about to throw up!")
-	to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
+	balloon_alert(src, "You feel like you are about to throw up")
 	addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
 
 

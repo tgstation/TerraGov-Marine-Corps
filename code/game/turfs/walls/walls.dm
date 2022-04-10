@@ -335,15 +335,13 @@
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return
 
-		balloon_alert_to_viewers("[user] starts repairing the damage to [src].", ignored_mobs = user)
-		user.balloon_alert(user, "You start repairing the damage to [src].")
-		user.visible_message(span_notice("[user] starts repairing the damage to [src]."),
-		span_notice("You start repairing the damage to [src]."))
+		balloon_alert_to_viewers("[user] starts repairing the damage to [src]", ignored_mobs = user)
+		user.balloon_alert(user, "You start repairing the damage to [src]")
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
 			return
 
-		balloon_alert_to_viewers("[user] finishes repairing the damage to [src].", ignored_mobs = user)
+		balloon_alert_to_viewers("[user] finishes repairing the damage to [src]", ignored_mobs = user)
 		user.balloon_alert(user, "You finish repairing the damage to [src].")
 		user.visible_message(span_notice("[user] finishes repairing the damage to [src]."),
 		span_notice("You finish repairing the damage to [src]."))
@@ -356,10 +354,8 @@
 				if(iswelder(I))
 					var/obj/item/tool/weldingtool/WT = I
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
-					user.balloon_alert_to_viewers("[user] begins slicing through the outer plating.", ignored_mobs = user)
-					user.balloon_alert(user, "You begin slicing through the outer plating.")
-					user.visible_message(span_notice("[user] begins slicing through the outer plating."),
-					span_notice("You begin slicing through the outer plating."))
+					user.balloon_alert_to_viewers("[user] begins slicing through the outer plating", ignored_mobs = user)
+					user.balloon_alert(user, "You begin slicing through the outer plating")
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
 						return
@@ -368,16 +364,12 @@
 						return
 
 					d_state = 1
-					user.balloon_alert_to_viewers("[user] slices through the outer plating.", ignored_mobs = user)
-					user.balloon_alert(user, "You slice through the outer plating.")
-					user.visible_message(span_notice("[user] slices through the outer plating."),
-					span_notice("You slice through the outer plating."))
+					user.balloon_alert_to_viewers("[user] slices through the outer plating", ignored_mobs = user)
+					user.balloon_alert(user, "You slice through the outer plating")
 			if(1)
 				if(isscrewdriver(I))
-					user.balloon_alert_to_viewers("[user] begins removing the support lines.", ignored_mobs = user)
-					user.balloon_alert(user, "You begin removing the support lines.")
-					user.visible_message(span_notice("[user] begins removing the support lines."),
-					span_notice("You begin removing the support lines."))
+					user.balloon_alert_to_viewers("[user] begins removing the support lines", ignored_mobs = user)
+					user.balloon_alert(user, "You begin removing the support lines")
 					playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
@@ -387,17 +379,13 @@
 						return
 
 					d_state = 2
-					user.balloon_alert_to_viewers("[user] removes the support lines.", ignored_mobs = user)
-					user.balloon_alert(user, "You remove the support lines.")
-					user.visible_message(span_notice("[user] removes the support lines."),
-					span_notice("You remove the support lines."))
+					user.balloon_alert_to_viewers("[user] removes the support lines", ignored_mobs = user)
+					user.balloon_alert(user, "You remove the support lines")
 			if(2)
 				if(iswelder(I))
 					var/obj/item/tool/weldingtool/WT = I
-					user.balloon_alert_to_viewers("[user] begins slicing through the metal cover.", ignored_mobs = usr)
-					user.balloon_alert(user, "You begin slicing through the metal cover.")
-					user.visible_message(span_notice("[user] begins slicing through the metal cover."),
-					span_notice("You begin slicing through the metal cover."))
+					user.balloon_alert_to_viewers("[user] begins slicing through the metal cover", ignored_mobs = usr)
+					user.balloon_alert(user, "You begin slicing through the metal cover")
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
@@ -407,16 +395,12 @@
 						return
 
 					d_state = 3
-					user.balloon_alert_to_viewers("[user] presses firmly on the cover, dislodging it.", ignored_mobs = usr)
-					user.balloon_alert(user, "You press firmly on the cover, dislodging it.")
-					user.visible_message(span_notice("[user] presses firmly on the cover, dislodging it."),
-					span_notice("You press firmly on the cover, dislodging it."))
+					user.balloon_alert_to_viewers("[user] presses firmly on the cover, dislodging it", ignored_mobs = usr)
+					user.balloon_alert(user, "You press firmly on the cover, dislodging it")
 			if(3)
 				if(iscrowbar(I))
-					user.balloon_alert_to_viewers("[user] struggles to pry off the cover.", ignored_mobs = usr)
-					user.balloon_alert(user, "You struggle to pry off the cover.")
-					user.visible_message(span_notice("[user] struggles to pry off the cover."),
-					span_notice("You struggle to pry off the cover."))
+					user.balloon_alert_to_viewers("[user] struggles to pry off the cover", ignored_mobs = usr)
+					user.balloon_alert(user, "You struggle to pry off the cover")
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
@@ -426,16 +410,12 @@
 						return
 
 					d_state = 4
-					user.balloon_alert_to_viewers("[user] pries off the cover.", ignored_mobs = usr)
-					user.balloon_alert(user, "You pry off the cover.")
-					user.visible_message(span_notice("[user] pries off the cover."),
-					span_notice("You pry off the cover."))
+					user.balloon_alert_to_viewers("[user] pries off the cover", ignored_mobs = usr)
+					user.balloon_alert(user, "You pry off the cover")
 			if(4)
 				if(iswrench(I))
-					user.balloon_alert_to_viewers("[user] starts loosening the anchoring bolts securing the support rods.", ignored_mobs = usr)
-					user.balloon_alert(user, "You start loosening the anchoring bolts securing the support rods.")
-					user.visible_message(span_notice("[user] starts loosening the anchoring bolts securing the support rods."),
-					span_notice("You start loosening the anchoring bolts securing the support rods."))
+					user.balloon_alert_to_viewers("[user] starts loosening the anchoring bolts securing the support rods", ignored_mobs = usr)
+					user.balloon_alert(user, "You start loosening the anchoring bolts securing the support rods")
 					playsound(src, 'sound/items/ratchet.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
@@ -445,16 +425,12 @@
 						return
 
 					d_state = 5
-					user.balloon_alert_to_viewers("[user] removes the bolts anchoring the support rods.", ignored_mobs = usr)
-					user.balloon_alert(user, "You remove the bolts anchoring the support rods.")
-					user.visible_message(span_notice("[user] removes the bolts anchoring the support rods."),
-					span_notice("You remove the bolts anchoring the support rods."))
+					user.balloon_alert_to_viewers("[user] removes the bolts anchoring the support rods", ignored_mobs = usr)
+					user.balloon_alert(user, "You remove the bolts anchoring the support rods")
 			if(5)
 				if(iswirecutter(I))
-					user.balloon_alert_to_viewers("[user] begins uncrimping the hydraulic lines.", ignored_mobs = usr)
-					user.balloon_alert(user, "You begin uncrimping the hydraulic lines.")
-					user.visible_message(span_notice("[user] begins uncrimping the hydraulic lines."),
-					span_notice("You begin uncrimping the hydraulic lines."))
+					user.balloon_alert_to_viewers("[user] begins uncrimping the hydraulic lines", ignored_mobs = usr)
+					user.balloon_alert(user, "You begin uncrimping the hydraulic lines")
 					playsound(src, 'sound/items/wirecutter.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
@@ -464,16 +440,12 @@
 						return
 
 					d_state = 6
-					user.balloon_alert_to_viewers("[user] finishes uncrimping the hydraulic lines.", ignored_mobs = usr)
-					user.balloon_alert(user, "You finish uncrimping the hydraulic lines.")
-					user.visible_message(span_notice("[user] finishes uncrimping the hydraulic lines."),
-					span_notice("You finish uncrimping the hydraulic lines."))
+					user.balloon_alert_to_viewers("[user] finishes uncrimping the hydraulic lines", ignored_mobs = usr)
+					user.balloon_alert(user, "You finish uncrimping the hydraulic lines")
 			if(6)
 				if(iscrowbar(I))
-					user.balloon_alert_to_viewers("[user] struggles to pry off the inner sheath.", ignored_mobs = usr)
-					user.balloon_alert(user, "You struggle to pry off the inner sheath.")
-					user.visible_message(span_notice("[user] struggles to pry off the inner sheath."),
-					span_notice("You struggle to pry off the inner sheath."))
+					user.balloon_alert_to_viewers("[user] struggles to pry off the inner sheath", ignored_mobs = usr)
+					user.balloon_alert(user, "You struggle to pry off the inner sheath")
 					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
@@ -483,17 +455,13 @@
 						return
 
 					d_state = 7
-					user.balloon_alert_to_viewers("[user] pries off the inner sheath.", ignored_mobs = usr)
-					user.balloon_alert(user, "You pry off the inner sheath.")
-					user.visible_message(span_notice("[user] pries off the inner sheath."),
-					span_notice("You pry off the inner sheath."))
+					user.balloon_alert_to_viewers("[user] pries off the inner sheath", ignored_mobs = usr)
+					user.balloon_alert(user, "You pry off the inner sheath")
 			if(7)
 				if(iswelder(I))
 					var/obj/item/tool/weldingtool/WT = I
-					user.balloon_alert_to_viewers("[user] begins slicing through the final layer.", ignored_mobs = user)
-					user.balloon_alert(user, "You begin slicing through the final layer.")
-					user.visible_message(span_notice("[user] begins slicing through the final layer."),
-					span_notice("You begin slicing through the final layer."))
+					user.balloon_alert_to_viewers("[user] begins slicing through the final layer", ignored_mobs = user)
+					user.balloon_alert(user, "You begin slicing through the final layer")
 					playsound(src, 'sound/items/welder.ogg', 25, 1)
 
 					if(!do_after(user, 60, TRUE, src, BUSY_ICON_BUILD))
@@ -503,10 +471,8 @@
 						return
 
 					new /obj/item/stack/rods(src)
-					user.balloon_alert_to_viewers("The support rods drop out as [user] slices through the final layer.", ignored_mobs = user)
-					user.balloon_alert(user, "The support rods drop out as you slice through the final layer.")
-					user.visible_message(span_notice("The support rods drop out as [user] slices through the final layer."),
-					span_notice("The support rods drop out as you slice through the final layer."))
+					user.balloon_alert_to_viewers("The support rods drop out as [user] slices through the final layer", ignored_mobs = user)
+					user.balloon_alert(user, "The support rods drop out as you slice through the final layer")
 					dismantle_wall()
 
 		return attack_hand(user)

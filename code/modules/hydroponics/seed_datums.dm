@@ -549,8 +549,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	if(!got_product && !harvest_sample)
 		to_chat(user, span_warning("You fail to harvest anything useful."))
 	else
-		user.balloon_alert(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
-		to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
+		user.balloon_alert(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name]")
 
 		//This may be a new line. Update the global if it is.
 		if(name == "new line" || !(name in GLOB.seed_types))

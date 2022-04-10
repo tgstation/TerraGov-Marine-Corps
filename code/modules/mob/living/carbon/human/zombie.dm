@@ -128,18 +128,17 @@
 	if(user.do_actions)
 		return
 
-	target.balloon_alert_to_viewers("[user] starts to open [target]", "You start to pry open [target]")
+	user.balloon_alert_to_viewers("[user] starts to open [target]", ignored_mobs = user)
+	user.balloon_alert(user, "You start to pry open [target]")
 	if(!do_after(user, 4 SECONDS, FALSE, target))
 		return
 	var/obj/machinery/door/airlock/door = target
 	playsound(user.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	if(door.locked)
-		user.balloon_alert(user, "\The [target] is bolted down tight.")
-		to_chat(user, span_warning("\The [target] is bolted down tight."))
+		user.balloon_alert(user, "\The [target] is bolted down tight")
 		return FALSE
 	if(door.welded)
-		user.balloon_alert(user, "\The [target] is welded shut.")
-		to_chat(user, span_warning("\The [target] is welded shut."))
+		user.balloon_alert(user, "\The [target] is welded shut")
 		return FALSE
 	if(door.density) //Make sure it's still closed
 		door.open(TRUE)

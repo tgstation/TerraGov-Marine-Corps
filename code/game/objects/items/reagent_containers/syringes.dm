@@ -59,8 +59,7 @@
 		return
 
 	if(mode == SYRINGE_BROKEN)
-		user.balloon_alert(user, "This syringe is broken!")
-		to_chat(user, span_warning("This syringe is broken!"))
+		user.balloon_alert(user, "This syringe is broken")
 		return
 
 	if (user.a_intent == INTENT_HARM && ismob(target) && isliving(user))
@@ -83,8 +82,7 @@
 		if(SYRINGE_DRAW)
 
 			if(reagents.holder_full())
-				user.balloon_alert(user, "The syringe is full.")
-				to_chat(user, span_warning("The syringe is full."))
+				user.balloon_alert(user, "The syringe is full")
 				return
 
 			if(ismob(target))//Blood!
@@ -131,17 +129,14 @@
 
 		if(SYRINGE_INJECT)
 			if(!reagents.total_volume)
-				user.balloon_alert(user, "The syringe is empty.")
-				to_chat(user, span_warning("The syringe is empty."))
+				user.balloon_alert(user, "The syringe is empty")
 				return
 
 			if(!target.is_injectable() && !ismob(target))
-				user.balloon_alert(user, "You cannot directly fill this object.")
-				to_chat(user, span_warning("You cannot directly fill this object."))
+				user.balloon_alert(user, "You cannot directly fill this object")
 				return
 			if(target.reagents.holder_full())
-				user.balloon_alert(user, "[target] is full.")
-				to_chat(user, span_warning("[target] is full."))
+				user.balloon_alert(user, "[target] is full")
 				return
 
 			if(ismob(target))
@@ -285,8 +280,7 @@
 		if(SYRINGE_DRAW)
 
 			if(reagents.total_volume >= reagents.maximum_volume)
-				user.balloon_alert(user, "The syringe is full.")
-				to_chat(user, span_warning("The syringe is full."))
+				user.balloon_alert(user, "The syringe is full")
 				return
 
 			if(ismob(target))
@@ -295,8 +289,7 @@
 					return
 			else //if not mob
 				if(!target.reagents.total_volume)
-					user.balloon_alert(user, "The syringe is empty.")
-					to_chat(user, span_warning("[target] is empty."))
+					user.balloon_alert(user, "The syringe is empty")
 					return
 
 				if(!target.is_drawable())
@@ -312,17 +305,14 @@
 
 		if(SYRINGE_INJECT)
 			if(!reagents.total_volume)
-				user.balloon_alert(user, "The syringe is empty.")
-				to_chat(user, span_warning("[src] is empty."))
+				user.balloon_alert(user, "The syringe is empty")
 				return
 
 			if(!target.is_injectable() && !ismob(target))
-				user.balloon_alert(user, "You cannot directly fill this object.")
-				to_chat(user, span_warning("You cannot directly fill this object."))
+				user.balloon_alert(user, "You cannot directly fill this object")
 				return
 			if(target.reagents.holder_full())
-				user.balloon_alert(user, "[target] is full.")
-				to_chat(user, span_warning("[target] is full."))
+				user.balloon_alert(user, "[target] is full")
 				return
 
 			if(ismob(target) && target != user)

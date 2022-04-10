@@ -28,7 +28,6 @@
 				tiers_to_pick_from = GLOB.xeno_types_tier_one
 			else
 				balloon_alert(src, "Your tier does not allow you to regress.")
-				to_chat(src, span_warning("Your tier does not allow you to regress."))
 				return
 		if(XENO_TIER_ONE)
 			tiers_to_pick_from = list(/mob/living/carbon/xenomorph/larva)
@@ -60,17 +59,14 @@
 /mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, regression = FALSE)
 	if(is_ventcrawling)
 		balloon_alert(src, "This place is too constraining to evolve.")
-		to_chat(src, span_warning("This place is too constraining to evolve."))
 		return
 
 	if(!isturf(loc))
 		balloon_alert(src, "We can't evolve here.")
-		to_chat(src, span_warning("We can't evolve here."))
 		return
 
 	if(xeno_caste.hardcore)
 		balloon_alert(src, "Nuh-uh.")
-		to_chat(src, span_warning("Nuh-uh."))
 		return
 
 	if(is_banned_from(ckey, ROLE_XENOMORPH))
@@ -80,39 +76,32 @@
 		return
 
 	if(incapacitated(TRUE))
-		balloon_alert(src, "We can't evolve in our current state.")
-		to_chat(src, span_warning("We can't evolve in our current state."))
+		balloon_alert(src, "We can't evolve in our current state")
 		return
 
 	if(handcuffed)
-		balloon_alert(src, "The restraints are too restricting to allow us to evolve.")
-		to_chat(src, span_warning("The restraints are too restricting to allow us to evolve."))
+		balloon_alert(src, "The restraints are too restricting to allow us to evolve")
 		return
 
 	if(isxenolarva(src)) //Special case for dealing with larvae
 		if(amount_grown < max_grown)
-			balloon_alert(src, "We are not yet fully grown.")
-			to_chat(src, span_warning("We are not yet fully grown. Currently at: [amount_grown] / [max_grown]."))
+			balloon_alert(src, "We are not yet fully grown")
 			return
 
 	if(isnull(xeno_caste.evolves_to))
-		balloon_alert(src, "We are already the apex of form and function. Let's go forth and spread the hive!")
-		to_chat(src, span_warning("We are already the apex of form and function. Let's go forth and spread the hive!"))
+		balloon_alert(src, "We are already the apex of form and function. Let's go forth and spread the hive")
 		return
 
 	if(health < maxHealth)
-		balloon_alert(src, "We must be at full health to evolve.")
-		to_chat(src, span_warning("We must be at full health to evolve."))
+		balloon_alert(src, "We must be at full health to evolve")
 		return
 
 	if(plasma_stored < (xeno_caste.plasma_max * xeno_caste.plasma_regen_limit))
-		balloon_alert(src, "We must be at full plasma to evolve.")
-		to_chat(src, span_warning("We must be at full plasma to evolve."))
+		balloon_alert(src, "We must be at full plasma to evolve")
 		return
 
 	if (agility || fortify || crest_defense || status_flags & INCORPOREAL)
-		balloon_alert(src, "We cannot evolve while in this stance.")
-		to_chat(src, span_warning("We cannot evolve while in this stance."))
+		balloon_alert(src, "We cannot evolve while in this stance")
 		return
 
 	if(eaten_mob)
@@ -146,23 +135,19 @@
 		return
 
 	if(incapacitated(TRUE))
-		balloon_alert(src, "We can't evolve in our current state.")
-		to_chat(src, span_warning("We can't evolve in our current state."))
+		balloon_alert(src, "We can't evolve in our current state")
 		return
 
 	if(handcuffed)
-		balloon_alert(src, "The restraints are too restricting to allow us to evolve.")
-		to_chat(src, span_warning("The restraints are too restricting to allow us to evolve."))
+		balloon_alert(src, "The restraints are too restricting to allow us to evolve")
 		return
 
 	if(xeno_caste.hardcore)
-		balloon_alert(src, "Nuh-uhh.")
-		to_chat(src, span_warning("Nuh-uhh."))
+		balloon_alert(src, "Nuh-uhh")
 		return
 
 	if(!regression && !(new_caste_type in xeno_caste.evolves_to))
-		balloon_alert(src, "We can't evolve to that caste from our current one.")
-		to_chat(src, span_warning("We can't evolve to that caste from our current one."))
+		balloon_alert(src, "We can't evolve to that caste from our current one")
 		return
 
 	// used below
@@ -174,7 +159,7 @@
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen) //Special case for dealing with queenae
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
-			to_chat(src, span_warning("You are jobbanned from the Queen role."))
+			to_chat(src, span_warning("You are jobbanned from the Queen role"))
 			return
 
 		var/datum/job/xenojob = SSjob.GetJobType(/datum/job/xenomorph/queen)
@@ -183,13 +168,11 @@
 			return
 
 		if(hive.living_xeno_queen)
-			balloon_alert(src, "There already is a living Queen.")
-			to_chat(src, span_warning("There already is a living Queen."))
+			balloon_alert(src, "There already is a living Queen")
 			return
 
 		if(hive.can_hive_have_a_queen())
-			balloon_alert(src, "The hivemind is too weak to sustain a Queen.")
-			to_chat(src, span_warning("The hivemind is too weak to sustain a Queen. Gather more xenos. [hive.xenos_per_queen] are required."))
+			balloon_alert(src, "The hivemind is too weak to sustain a Queen")
 			return FALSE
 
 		if(hivenumber == XENO_HIVE_NORMAL && SSticker?.mode && hive.xeno_queen_timer)
@@ -197,8 +180,7 @@
 			return
 
 		if(isxenoresearcharea(get_area(src)))
-			balloon_alert(src, "Something in this place is isolating us from the Queen Mother's psychic presence, we cannot evolve.")
-			to_chat(src, span_warning("Something in this place is isolating us from Queen Mother's psychic presence. We should leave before it's too late!"))
+			balloon_alert(src, "Something in this place is isolating us, we cannot evolve")
 			return
 
 		switch(hivenumber) // because it causes issues otherwise
@@ -219,24 +201,20 @@
 			return
 
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
-			balloon_alert(src, "There already is a living Shrike.")
-			to_chat(src, span_warning("There already is a living Shrike. The hive cannot contain more than one psychic energy repository."))
+			balloon_alert(src, "There already is a living Shrike")
 			return
 
 		if(isxenoresearcharea(get_area(src)))
-			balloon_alert(src, "Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!")
-			to_chat(src, span_warning("Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!"))
+			balloon_alert(src, "Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here")
 			return
 
 	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
-			balloon_alert(src, "There cannot be two manifestations of the hivemind's will at once.")
-			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
+			balloon_alert(src, "There cannot be two manifestations of the hivemind's will at once")
 			return
 
 		if(isxenoresearcharea(get_area(src)))
-			balloon_alert(src, "Something in this place is interfering with our link to the Hivemind. We are unable to evolve to be its manifestation!")
-			to_chat(src, span_warning("Something in this place is interfering with our link to the Hivemind. We are unable to evolve to be its manifestation!"))
+			balloon_alert(src, "We are unable to evolve to be a manifestation of the hivemind's will!")
 			return
 
 		var/turf/T = get_turf(src)
@@ -257,25 +235,20 @@
 		if(regression)
 			//Nothing, go on as normal.
 		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones + tierfours, tiertwos, tierthrees))
-			balloon_alert(src, "The hive cannot support another Tier 2.")
-			to_chat(src, span_warning("The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die."))
+			balloon_alert(src, "The hive cannot support another Tier 2")
 			return
 		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos + tierfours, tierthrees))
-			balloon_alert(src, "The hive cannot support another Tier 3.")
-			to_chat(src, span_warning("The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die."))
+			balloon_alert(src, "The hive cannot support another Tier 3")
 			return
 		else if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
 			if(isxenolarva(src) && new_caste_type != /mob/living/carbon/xenomorph/drone)
-				balloon_alert(src, "The survival of the hive requires from us to be a Drone!")
-				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!"))
+				balloon_alert(src, "The survival of the hive requires from us to be a Drone")
 				return
 			else if(isxenodrone(src) && new_caste_type != /mob/living/carbon/xenomorph/shrike)
-				balloon_alert(src, "The survival of the hive requires from us to be a Shrike!")
-				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!"))
+				balloon_alert(src, "The survival of the hive requires from us to be a Shrike")
 				return
 		else if(xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
-			balloon_alert(src, "We must wait before evolving.")
-			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))
+			balloon_alert(src, "We must wait before evolving")
 			return
 		else
 			to_chat(src, span_xenonotice("It looks like the hive can support our evolution to <span style='font-weight: bold'>[castepick]!</span>"))
@@ -283,14 +256,11 @@
 	if(isnull(new_caste_type))
 		CRASH("[src] tried to evolve but their castepick was null")
 
-	balloon_alert_to_viewers("\The [src] begins to twist and contort.", ignored_mobs = src)
-	visible_message(span_xenonotice("\The [src] begins to twist and contort."), \
-	span_xenonotice("We begin to twist and contort."))
+	balloon_alert_to_viewers("\The [src] begins to twist and contort", ignored_mobs = src)
 	do_jitter_animation(1000)
 
 	if(!regression && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
-		balloon_alert(src, "We must hold still while evolving.")
-		to_chat(src, span_warning("We quiver, but nothing happens. We must hold still while evolving."))
+		balloon_alert(src, "We must hold still while evolving")
 		return
 
 	tierzeros = hive.get_total_tier_zeros()
@@ -301,27 +271,22 @@
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen)
 		if(hive.living_xeno_queen) //Do another check after the tick.
-			balloon_alert(src, "There already is a Queen.")
-			to_chat(src, span_warning("There already is a Queen."))
+			balloon_alert(src, "There already is a Queen")
 			return
 	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike)
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
-			balloon_alert(src, "There already is a Shrike.")
-			to_chat(src, span_warning("There already is a Shrike."))
+			balloon_alert(src, "There already is a Shrike")
 			return
 	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
-			balloon_alert(src, "There cannot be two manifestations of the hivemind's will at once.")
-			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
+			balloon_alert(src, "There cannot be two manifestations of the hivemind's will at once")
 			return
 	else if(!regression) // these shouldnt be checked if trying to become a queen.
 		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones + tierfours, tiertwos, tierthrees))
-			balloon_alert(src, "Another sister evolved meanwhile. The hive cannot support another Tier 2.")
-			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 2."))
+			balloon_alert(src, "Another sister evolved meanwhile. The hive cannot support another Tier 2")
 			return
 		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos + tierfours, tierthrees))
-			balloon_alert(src, "Another sister evolved meanwhile. The hive cannot support another Tier 3.")
-			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 3."))
+			balloon_alert(src, "Another sister evolved meanwhile. The hive cannot support another Tier 3")
 			return
 
 	if(!isturf(loc)) //cdel'd or moved into something
@@ -373,10 +338,8 @@
 
 	new_xeno.update_spits() //Update spits to new/better ones
 
-	balloon_alert_to_viewers("A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].", ignored_mobs = src)
-	new_xeno.balloon_alert(new_xeno, "We emerge in a greater form from the husk of our old body. For the hive!")
-	new_xeno.visible_message(span_xenodanger("A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src]."), \
-	span_xenodanger("We emerge in a greater form from the husk of our old body. For the hive!"))
+	balloon_alert_to_viewers("A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src]", ignored_mobs = src)
+	new_xeno.balloon_alert(new_xeno, "We emerge in a greater form from the husk of our old body")
 
 	SEND_SIGNAL(hive, COMSIG_XENOMORPH_POSTEVOLVING, new_xeno)
 

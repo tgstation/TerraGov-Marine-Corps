@@ -67,8 +67,7 @@
 	if(user.get_inactive_held_item() != src || !CHECK_BITFIELD(flags_magazine, MAGAZINE_REFILLABLE))
 		return ..()
 	if(current_rounds <= 0)
-		user.balloon_alert(user, "[src] is empty. There is nothing to grab.")
-		to_chat(user, span_notice("[src] is empty. There is nothing to grab."))
+		user.balloon_alert(user, "[src] is empty")
 		return
 	create_handful(user)
 
@@ -89,8 +88,7 @@
 		return
 
 	if(src != user.get_inactive_held_item() && !CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL)) //It has to be held.
-		user.balloon_alert(user, "Try holding [src] before you attempt to restock it.")
-		to_chat(user, span_notice("Try holding [src] before you attempt to restock it."))
+		user.balloon_alert(user, "Hold [src] before you attempt to restock it")
 		return
 
 	var/obj/item/ammo_magazine/mag = I
@@ -128,7 +126,6 @@
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
 	if(current_rounds >= max_rounds) //Does the mag actually need reloading?
 		user.balloon_alert(user, "[src] is already full.")
-		to_chat(user, span_notice("[src] is already full."))
 		return
 
 	if(source.caliber != caliber) //Are they the same caliber?
@@ -146,7 +143,6 @@
 			return
 
 	user.balloon_alert(user, "You refill [src] with [source].")
-	to_chat(user, span_notice("You refill [src] with [source]."))
 
 	var/amount_difference = clamp(min(transfer_amount, max_rounds - current_rounds), 0, source.current_rounds)
 	source.current_rounds -= amount_difference
@@ -350,7 +346,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				return
 			if(AM.current_rounds == AM.max_rounds)
 				user.balloon_alert(user, "[AM] is already full.")
-				to_chat(user, span_warning("[AM] is already full."))
 				return
 
 			if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
@@ -364,7 +359,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			update_icon()
 			if(AM.current_rounds == AM.max_rounds)
 				user.balloon_alert(user, "You refill [AM].")
-				to_chat(user, span_notice("You refill [AM]."))
 			else
 				to_chat(user, span_notice("You put [S] rounds in [AM]."))
 		else if(AM.flags_magazine & MAGAZINE_HANDFUL)
@@ -373,7 +367,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 				return
 			if(bullet_amount == max_bullet_amount)
 				user.balloon_alert(user, "[src] is full!")
-				to_chat(user, span_warning("[src] is full!"))
 				return
 			playsound(loc, 'sound/weapons/guns/interact/revolver_load.ogg', 25, 1)
 			var/S = min(AM.current_rounds, max_bullet_amount - bullet_amount)
@@ -454,7 +447,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 	if(current_rounds < 1)
 		user.balloon_alert(user, "The [src] is empty.")
-		to_chat(user, "<span class='warning'>The [src] is empty.")
 		return
 
 	var/obj/item/ammo_magazine/handful/H = new
@@ -486,7 +478,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 	if(current_rounds == max_rounds)
 		user.balloon_alert(user, "The [src] is already full.")
-		to_chat(user, "<span class='warning'>The [src] is already full.")
 		return
 
 	current_rounds = min(current_rounds + H.current_rounds, max_rounds)

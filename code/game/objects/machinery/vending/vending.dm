@@ -265,32 +265,25 @@
 		return FALSE
 
 	if(tipped_level)
-		X.balloon_alert(X, "There's no reason to bother with that old piece of trash.")
-		to_chat(X, span_warning("There's no reason to bother with that old piece of trash."))
+		X.balloon_alert(X, "There's no reason to bother with that old piece of trash")
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM)
 		X.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(prob(X.xeno_caste.melee_damage))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
-			balloon_alert_to_viewers("\The [X] smashes \the [src] beyond recognition!", ignored_mobs = X)
-			X.balloon_alert(X, "We enter a frenzy and smash \the [src] apart!")
-			X.visible_message(span_danger("\The [X] smashes \the [src] beyond recognition!"), \
-			span_danger("We enter a frenzy and smash \the [src] apart!"), null, 5)
+			balloon_alert_to_viewers("\The [X] smashes \the [src] beyond recognition", ignored_mobs = X)
+			X.balloon_alert(X, "We enter a frenzy and smash \the [src] apart")
 			malfunction()
 			return TRUE
 		else
-			balloon_alert_to_viewers("[X] slashes \the [src]!", ignored_mobs = X)
-			X.balloon_alert(X, "We slash \the [src]!")
-			X.visible_message(span_danger("[X] slashes \the [src]!"), \
-			span_danger("We slash \the [src]!"), null, 5)
+			balloon_alert_to_viewers("[X] slashes \the [src]", ignored_mobs = X)
+			X.balloon_alert(X, "We slash \the [src]")
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 		return TRUE
 
-	balloon_alert_to_viewers("\The [X] begins to lean against \the [src].", ignored_mobs = X)
-	X.balloon_alert(X, "You begin to lean against \the [src].")
-	X.visible_message(span_warning("\The [X] begins to lean against \the [src]."), \
-	span_warning("You begin to lean against \the [src]."), null, 5)
+	balloon_alert_to_viewers("\The [X] begins to lean against \the [src]", ignored_mobs = X)
+	X.balloon_alert(X, "You begin to lean against \the [src]")
 	tipped_level = 1
 	var/shove_time = 1 SECONDS
 	if(X.mob_size == MOB_SIZE_BIG)
@@ -298,10 +291,8 @@
 	if(istype(X,/mob/living/carbon/xenomorph/crusher))
 		shove_time = 1.5 SECONDS
 	if(do_after(X, shove_time, FALSE, src, BUSY_ICON_HOSTILE))
-		balloon_alert_to_viewers("\The [X] knocks \the [src] down!", ignored_mobs = X)
-		X.balloon_alert(X, "You knock \the [src] down!")
-		X.visible_message(span_danger("\The [X] knocks \the [src] down!"), \
-		span_danger("You knock \the [src] down!"), null, 5)
+		balloon_alert_to_viewers("\The [X] knocks \the [src] down", ignored_mobs = X)
+		X.balloon_alert(X, "You knock \the [src] down")
 		tip_over()
 	else
 		tipped_level = 0
@@ -325,12 +316,10 @@
 
 	if(tipped_level)
 		user.balloon_alert(user, "Tip it back upright first!")
-		to_chat(user, "Tip it back upright first!")
 
 	else if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-		user.balloon_alert(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
-		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
+		user.balloon_alert(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the panel")
 		overlays.Cut()
 		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 			overlays += image(icon, "[initial(icon_state)]-panel")
@@ -352,7 +341,6 @@
 
 		ewallet = I
 		user.balloon_alert(user, "You insert the [I] into the [src]")
-		to_chat(user, span_notice("You insert the [I] into the [src]"))
 
 	else if(iswrench(I))
 		if(!wrenchable)
@@ -364,16 +352,14 @@
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		anchored = !anchored
 		if(anchored)
-			balloon_alert_to_viewers("[user] tightens the bolts securing \the [src] to the floor.", ignored_mobs = usr)
-			user.balloon_alert(user, "You tighten the bolts securing \the [src] to the floor.")
-			user.visible_message("[user] tightens the bolts securing \the [src] to the floor.", "You tighten the bolts securing \the [src] to the floor.")
+			balloon_alert_to_viewers("[user] tightens the bolts securing \the [src] to the floor", ignored_mobs = usr)
+			user.balloon_alert(user, "You tighten the bolts securing \the [src] to the floor")
 			var/turf/current_turf = get_turf(src)
 			if(current_turf && density)
 				current_turf.flags_atom |= AI_BLOCKED
 		else
-			balloon_alert_to_viewers("[user] unfastens the bolts securing \the [src] to the floor.", ignored_mobs = usr)
-			user.balloon_alert(user, "You unfasten the bolts securing \the [src] to the floor.")
-			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
+			balloon_alert_to_viewers("[user] unfastens the bolts securing \the [src] to the floor", ignored_mobs = usr)
+			user.balloon_alert(user, "You unfasten the bolts securing \the [src] to the floor")
 			var/turf/current_turf = get_turf(src)
 			if(current_turf && density)
 				current_turf.flags_atom &= ~AI_BLOCKED
@@ -438,15 +424,13 @@
 		return FALSE
 
 	if(tipped_level == 2)
-		balloon_alert_to_viewers("[user] begins to heave the vending machine back into place!", ignored_mobs = user)
-		user.balloon_alert(user, "You start heaving the vending machine back into place..")
-		user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
+		balloon_alert_to_viewers("[user] begins to heave the vending machine back into place", ignored_mobs = user)
+		user.balloon_alert(user, "You start heaving the vending machine back into place")
 		if(!do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
 			return FALSE
 
-		balloon_alert_to_viewers(" [user] rights the [src]!", ignored_mobs = user)
-		user.balloon_alert(user, " You right the [src]!")
-		user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
+		balloon_alert_to_viewers(" [user] rights the [src]", ignored_mobs = user)
+		user.balloon_alert(user, " You right the [src]")
 		flip_back()
 		return TRUE
 
@@ -464,14 +448,12 @@
 		return
 	if(!iscarbon(user)) // AI can't heave remotely
 		return
-	balloon_alert_to_viewers(" [user] begins to heave the vending machine back into place!", ignored_mobs = user)
-	user.balloon_alert(user, " You start heaving the vending machine back into place..")
-	user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
+	balloon_alert_to_viewers(" [user] begins to heave the vending machine back into place", ignored_mobs = user)
+	user.balloon_alert(user, " You start heaving the vending machine back into place")
 	if(!do_after(user, 80, FALSE, src, BUSY_ICON_FRIENDLY))
 		return FALSE
-	balloon_alert_to_viewers(" [user] rights the [src]!", ignored_mobs = user)
-	user.balloon_alert(user, " You right the [src]!")
-	user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
+	balloon_alert_to_viewers(" [user] rights the [src]", ignored_mobs = user)
+	user.balloon_alert(user, " You right the [src]")
 	flip_back()
 	return TRUE
 
@@ -680,10 +662,8 @@
 
 		qdel(item_to_stock)
 		if(!recharge)
-			balloon_alert_to_viewers("[user] stocks [src] with \a [R.product_name].", ignored_mobs = usr)
-			user.balloon_alert(user, "[user] stocks [src] with \a [R.product_name].")
-			user.visible_message(span_notice("[user] stocks [src] with \a [R.product_name]."),
-			span_notice("You stock [src] with \a [R.product_name]."))
+			balloon_alert_to_viewers("[user] stocks [src] with \a [R.product_name]", ignored_mobs = usr)
+			user.balloon_alert(user, "You stock [src] with \a [R.product_name]")
 		if(R.amount >= 0) //R negative means infinite item, no need to restock
 			R.amount++
 		updateUsrDialog()

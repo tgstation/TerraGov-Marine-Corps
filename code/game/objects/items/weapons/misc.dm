@@ -76,12 +76,10 @@
 		return ..()
 	TOGGLE_BITFIELD(flags_item, NODROP)
 	if(CHECK_BITFIELD(flags_item, NODROP))
-		user.balloon_alert(user, "The [src] clamps shut around your hand!")
-		to_chat(user, span_warning("You feel the [src] clamp shut around your hand!"))
+		user.balloon_alert(user, "The [src] clamps shut around your hand")
 		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
 	else
-		user.balloon_alert(user, "You the [src] loosens around your hand!")
-		to_chat(user, span_notice("You feel the [src] loosen around your hand!"))
+		user.balloon_alert(user, "You the [src] loosens around your hand")
 		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
 
 
@@ -123,8 +121,7 @@
 		unload(user)
 	user.transferItemToLoc(I,src)
 	cell = I
-	user.balloon_alert(user, "You insert the [I] into the [src].")
-	to_chat(user, span_notice("You insert the [I] into the [src]."))
+	user.balloon_alert(user, "You insert the [I] into the [src]")
 
 /obj/item/weapon/powerfist/screwdriver_act(mob/living/user, obj/item/I)
 	if(..())

@@ -40,8 +40,7 @@
 		return FALSE
 
 /datum/action/xeno_action/activable/charge/on_cooldown_finish()
-	owner.balloon_alert(owner, "Our exoskeleton quivers as we get ready to use Eviscerating Charge again.")
-	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use Eviscerating Charge again."))
+	owner.balloon_alert(owner, "We are ready to use Eviscerating Charge again")
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 	X.usedPounce = FALSE
@@ -94,8 +93,7 @@
 	alternate_keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
 
 /datum/action/xeno_action/activable/ravage/on_cooldown_finish()
-	owner.balloon_alert(owner, "We gather enough strength to Ravage again.")
-	to_chat(owner, span_xenodanger("We gather enough strength to Ravage again."))
+	owner.balloon_alert(owner, "We gather enough strength to Ravage again")
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 	return ..()
 
@@ -103,11 +101,8 @@
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.emote("roar")
-	X.balloon_alert_to_viewers("\The [X] thrashes about in a murderous frenzy!", ignored_mobs = X)
-	X.balloon_alert(X, "We thrash about in a murderous frenzy!")
-	X.visible_message(span_danger("\The [X] thrashes about in a murderous frenzy!"), \
-	span_xenowarning("We thrash about in a murderous frenzy!"))
-
+	X.balloon_alert_to_viewers("\The [X] thrashes about in a murderous frenzy", ignored_mobs = X)
+	X.balloon_alert(X, "We thrash about in a murderous frenzy")
 	X.face_atom(A)
 	var/sweep_range = 1
 	var/list/L = orange(sweep_range, X) // Not actually the fruit
@@ -165,8 +160,7 @@
 	var/endure_warning_duration
 
 /datum/action/xeno_action/endure/on_cooldown_finish()
-	owner.balloon_alert(owner, "We feel able to imbue ourselves with plasma to Endure once again!")
-	to_chat(owner, span_xenodanger("We feel able to imbue ourselves with plasma to Endure once again!"))
+	owner.balloon_alert(owner, "We feel able to Endure once again!")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -174,9 +168,7 @@
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 
 	X.emote("roar")
-	X.balloon_alert_to_viewers("\The skin on the [X] begins to glow!", ignored_mobs = X)
-	X.visible_message(span_danger("\The skin on the [X] begins to glow!"), \
-	span_xenowarning("We feel the plasma coursing through our veins!"))
+	X.balloon_alert_to_viewers("\The skin on the [X] begins to glow", ignored_mobs = X)
 
 	X.endure = TRUE
 
@@ -201,8 +193,7 @@
 
 ///Warns the player when Endure is about to end
 /datum/action/xeno_action/endure/proc/endure_warning()
-	owner.balloon_alert(owner, "[ability_name] will last for only [timeleft(endure_duration) * 0.1] more seconds!")
-	to_chat(owner,span_highdanger("We feel the plasma draining from our veins... [ability_name] will last for only [timeleft(endure_duration) * 0.1] more seconds!"))
+	owner.balloon_alert(owner, "[ability_name] will last for only [timeleft(endure_duration) * 0.1] more seconds")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Turns off the Endure buff
@@ -228,8 +219,7 @@
 	endure_duration = initial(endure_duration)
 	endure_warning_duration = initial(endure_warning_duration)
 
-	owner.balloon_alert(owner, "The last of the plasma drains from our body... We can no longer endure beyond our normal limits!")
-	to_chat(owner,span_highdanger("The last of the plasma drains from our body... We can no longer endure beyond our normal limits!"))
+	owner.balloon_alert(owner, "We can no longer endure beyond our normal limits")
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Warns us when our health is critically low and tells us exactly how much more punishment we can take
@@ -275,8 +265,7 @@
 	var/rage_plasma
 
 /datum/action/xeno_action/rage/on_cooldown_finish()
-	owner.balloon_alert(owner, "We are able to enter our rage once again.")
-	to_chat(owner, span_xenodanger("We are able to enter our rage once again."))
+	owner.balloon_alert(owner, "We are able to enter our rage once again")
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
@@ -289,7 +278,7 @@
 
 	if(rager.health > rager.maxHealth * RAVAGER_RAGE_MIN_HEALTH_THRESHOLD) //Need to be at 50% of max hp or lower to rage
 		if(!silent)
-			rager.balloon_alert(rager, "Our health isn't low enough to rage!")
+			rager.balloon_alert(rager, "Our health isn't low enough to rage")
 			to_chat(rager, span_xenodanger("Our health isn't low enough to rage! We must take [rager.health - (rager.maxHealth * RAVAGER_RAGE_MIN_HEALTH_THRESHOLD)] more damage!"))
 		return FALSE
 
@@ -304,10 +293,8 @@
 
 	var/rage_power_radius = CEILING(rage_power * 7, 1) //Define radius of the SFX
 
-	X.balloon_alert_to_viewers("\The [X] becomes frenzied, bellowing with a shuddering roar!", ignored_mobs = X)
+	X.balloon_alert_to_viewers("\The [X] becomes frenzied, bellowing with a shuddering roar", ignored_mobs = X)
 	X.balloon_alert(X, "We bellow as our fury overtakes us! RIP AND TEAR!")
-	X.visible_message(span_danger("\The [X] becomes frenzied, bellowing with a shuddering roar!"), \
-	span_highdanger("We bellow as our fury overtakes us! RIP AND TEAR!"))
 	X.do_jitter_animation(1000)
 
 
@@ -418,10 +405,8 @@
 	X.do_jitter_animation(1000)
 
 	X.remove_filter("ravager_rage_outline")
-	X.balloon_alert(X, "Our rage subsides and its power leaves our body, leaving us exhausted.")
-	X.balloon_alert_to_viewers("[X] seems to calm down.", ignored_mobs = X)
-	X.visible_message(span_warning("[X] seems to calm down."), \
-	span_highdanger("Our rage subsides and its power leaves our body, leaving us exhausted."))
+	X.balloon_alert(X, "Our rage subsides and its power leaves our body, leaving us exhausted")
+	X.balloon_alert_to_viewers("[X] seems to calm down", ignored_mobs = X)
 
 	X.xeno_melee_damage_modifier = initial(X.xeno_melee_damage_modifier) //Reset rage melee damage bonus
 	X.remove_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE) //Reset speed
@@ -489,7 +474,6 @@
 	else
 		UnregisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING)
 	xeno.balloon_alert(xeno, "You will now[xeno.vampirism ? "" : " no longer"] heal from attacking")
-	to_chat(xeno, span_xenonotice("You will now[xeno.vampirism ? "" : " no longer"] heal from attacking"))
 
 ///called on regen, handles regen rate reduction
 /datum/action/xeno_action/vampirism/proc/on_regen(mob/living/carbon/xenomorph/dracula, list/heal_data)
@@ -498,7 +482,7 @@
 		return
 	//heals 10% extra per leeched
 	var/heal_mod = 1 + (leech_count/10)
-	
+
 	heal_data[1] = (heal_data[1] * heal_mod)
 
 ///Adds the slashed mob to tracked damage mobs

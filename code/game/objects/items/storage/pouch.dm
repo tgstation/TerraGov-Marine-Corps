@@ -560,13 +560,11 @@
 	if(istype(I, /obj/item/storage/box/m94))
 		var/obj/item/storage/box/m94/M = I
 		if(!length(M.contents))
-			user.balloon_alert(user, "[M] is empty.")
-			to_chat(user, span_warning("[M] is empty."))
+			user.balloon_alert(user, "[M] is empty")
 			return
 
 		if(length(contents) >= storage_slots)
-			user.balloon_alert(user, "[src] is full.")
-			to_chat(user, span_warning("[src] is full."))
+			user.balloon_alert(user, "[src] is full")
 			return
 
 		to_chat(user, span_notice("You start refilling [src] with [M]."))
@@ -712,13 +710,11 @@
 			return ..()
 		if(M.flags_magazine & MAGAZINE_REFILLABLE)
 			if(!M.current_rounds)
-				user.balloon_alert(user, "[M] is empty.")
-				to_chat(user, span_warning("[M] is empty."))
+				user.balloon_alert(user, "[M] is empty")
 				return
 
 			if(length(contents) >= storage_slots)
-				user.balloon_alert(user, "[src] is full.")
-				to_chat(user, span_warning("[src] is full."))
+				user.balloon_alert(user, "[src] is full")
 				return
 
 
@@ -732,9 +728,8 @@
 					break
 
 			playsound(user.loc, "rustle", 15, TRUE, 6)
-			
-			user.balloon_alert(user, "You refill [src] with [M].")
-			to_chat(user, span_notice("You refill [src] with [M]."))
+
+			user.balloon_alert(user, "You refill [src] with [M]")
 			return TRUE
 
 	return ..()

@@ -101,14 +101,12 @@
 		for(var/obj/C in src)
 			C.forceMove(loc)
 		if(machine_stat & BROKEN)
-			user.balloon_alert(user, "The broken glass falls out.")
-			to_chat(user, span_notice("The broken glass falls out."))
+			user.balloon_alert(user, "The broken glass falls out")
 			new /obj/item/shard(loc)
 			A.state = 3
 			A.icon_state = "3"
 		else
-			user.balloon_alert(user, "You disconnect the monitor.")
-			to_chat(user, span_notice("You disconnect the monitor."))
+			user.balloon_alert(user, "You disconnect the monitor")
 			A.state = 4
 			A.icon_state = "4"
 		M.deconstruct(src)

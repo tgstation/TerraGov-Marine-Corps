@@ -77,8 +77,7 @@
 	var/turf/T = get_turf(owner)
 	if(!(locate(/obj/effect/alien/weeds) in T))
 		if(!silent)
-			owner.balloon_alert(owner, "Only weeds are fertile enough for our plants!")
-			to_chat(owner, span_warning("Only weeds are fertile enough for our plants!"))
+			owner.balloon_alert(owner, "Only weeds are fertile enough for our plants")
 		return FALSE
 
 	if(!T.check_alien_construction(owner, silent))
@@ -110,8 +109,7 @@
 		if(initial(current_plant.name) == plant_choice)
 			X.selected_plant = current_plant
 			break
-	X.balloon_alert(X, "We will now sow <b>[plant_choice]</b>.")
-	to_chat(X, span_notice("We will now sow <b>[plant_choice]</b>."))
+	X.balloon_alert(X, "We will now sow <b>[plant_choice]</b>")
 	update_button_icon()
 
 /datum/action/xeno_action/sow/alternate_action_activate()

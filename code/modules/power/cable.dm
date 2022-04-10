@@ -153,9 +153,8 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
 		if (shock(user, 50))
 			return
-		balloon_alert_to_viewers("[user] cuts the cable.", ignored_mobs = user)
-		balloon_alert(user, "You cut the cable.")
-		user.visible_message(span_notice("[user] cuts the cable."), span_notice("You cut the cable."))
+		balloon_alert_to_viewers("[user] cuts the cable", ignored_mobs = user)
+		balloon_alert(user, "You cut the cable")
 		log_game("[src] was cut by [key_name(usr)] in [AREACOORD(src)]")
 		deconstruct()
 		add_fingerprint(user, "handlecable")

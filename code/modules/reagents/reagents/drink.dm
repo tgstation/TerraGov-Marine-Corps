@@ -224,7 +224,7 @@
 	L.apply_damage(0.5, TOX)
 	L.jitter(5)
 	if(prob(5) && L.stat != UNCONSCIOUS)
-		L.balloon_alert_to_viewers("[L] Spasms and passes out!", ignored_mobs = L)
+		L.balloon_alert_to_viewers("[L] Spasms and passes out", ignored_mobs = L)
 		to_chat(L, span_warning("You spasm and pass out!"))
 		L.Unconscious(10 SECONDS)
 	if(prob(30) && ishuman(L))

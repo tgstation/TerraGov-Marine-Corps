@@ -40,14 +40,12 @@
 		//FIRST UPGRADE
 		if(XENO_UPGRADE_ONE)
 			if(!silent)
-				balloon_alert(src, "We feel a bit stronger.")
-				to_chat(src, span_xenodanger("We feel a bit stronger."))
+				balloon_alert(src, "We feel a bit stronger")
 
 		//SECOND UPGRADE
 		if(XENO_UPGRADE_TWO)
 			if(!silent)
-				balloon_alert(src, "We feel a whole lot stronger.")
-				to_chat(src, span_xenodanger("We feel a whole lot stronger."))
+				balloon_alert(src, "We feel a whole lot stronger")
 			switch(tier)
 				if(XENO_TIER_TWO)
 					SSmonitor.stats.elder_T2++

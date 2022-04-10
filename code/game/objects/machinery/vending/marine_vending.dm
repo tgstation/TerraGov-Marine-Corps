@@ -749,17 +749,14 @@
 	var/recharge_cost = (A.maxcharge - A.charge)
 	if(recharge_cost > machine_current_charge)
 		user.balloon_alert(user, ("[A] cannot be recharged; [src] has inadequate charge remaining"))
-		to_chat(user, span_warning("[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge]."))
 		return FALSE
 	else
-		user.balloon_alert(user, "You insert [A] into [src] to be recharged.")
-		to_chat(user, span_warning("You insert [A] into [src] to be recharged."))
+		user.balloon_alert(user, "You insert [A] to be recharged.")
 		if(icon_vend)
 			flick(icon_vend,src)
 		playsound(loc, 'sound/machines/hydraulics_1.ogg', 25, 0, 1)
 		machine_current_charge -= min(machine_current_charge, recharge_cost)
 		user.balloon_alert(user, "This dispenser has [machine_current_charge] of [machine_max_charge] remaining.")
-		to_chat(user, span_notice("This dispenser has [machine_current_charge] of [machine_max_charge] remaining."))
 		update_icon()
 		return TRUE
 

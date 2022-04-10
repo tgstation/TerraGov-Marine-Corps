@@ -23,8 +23,7 @@
 
 	attack_self(mob/user)
 		playsound(loc, 'sound/items/zip.ogg', 25, 1)
-		user.balloon_alert(user, "You inflate [src].")
-		to_chat(user, span_notice("You inflate [src]."))
+		user.balloon_alert(user, "You inflate [src]")
 		new /obj/structure/inflatable/door(user.loc)
 		qdel(src)
 
@@ -69,8 +68,7 @@
 	. = ..()
 
 	if(can_puncture(I))
-		balloon_alert_to_viewers("[user] pierces [src] with [I]!")
-		visible_message(span_danger("[user] pierces [src] with [I]!"))
+		balloon_alert_to_viewers("[user] pierces [src] with [I]")
 		deflate(TRUE)
 
 
@@ -108,8 +106,7 @@
 	if(!deflated)
 		deflate()
 	else
-		balloon_alert(usr, "[src] is already deflated.")
-		to_chat(usr, "[src] is already deflated.")
+		balloon_alert(usr, "[src] is already deflated")
 
 
 

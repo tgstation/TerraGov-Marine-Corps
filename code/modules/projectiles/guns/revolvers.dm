@@ -64,9 +64,8 @@
 
 /obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
 	set waitfor = 0
-	user.balloon_alert_to_viewers("[user] deftly flicks [src] and tosses it into the air!", ignored_mobs = user)
-	user.balloon_alert(user, " You flick and toss [src] into the air!")
-	user.visible_message("[user] deftly flicks [src] and tosses it into the air!",span_notice(" You flick and toss [src] into the air!"))
+	user.balloon_alert_to_viewers("[user] deftly flicks [src] and tosses it into the air", ignored_mobs = user)
+	user.balloon_alert(user, " You flick and toss [src] into the air")
 	var/img_layer = MOB_LAYER+0.1
 	var/image/trick = image(icon,user,icon_state,img_layer)
 	switch(pick(1,2))
@@ -87,13 +86,11 @@
 		return
 
 	if(user.get_inactive_held_item())
-		user.balloon_alert_to_viewers("[user] deftly flicks [src] and tosses it into the air!", ignored_mobs = usr)
-		user.balloon_alert(user, " You catch [src] as it spins in to your hand!")
-		user.visible_message("[user] catches [src] with the same hand!",span_notice(" You catch [src] as it spins in to your hand!"))
+		user.balloon_alert_to_viewers("[user] deftly flicks [src] and tosses it into the air", ignored_mobs = usr)
+		user.balloon_alert(user, " You catch [src] as it spins in to your hand")
 		return
-	user.balloon_alert_to_viewers("[user] catches [src] with his other hand!", ignored_mobs = usr)
-	user.balloon_alert(user, " You snatch [src] with your other hand! Awesome!")
-	user.visible_message("[user] catches [src] with his other hand!",span_notice(" You snatch [src] with your other hand! Awesome!"))
+	user.balloon_alert_to_viewers("[user] catches [src] with his other hand", ignored_mobs = usr)
+	user.balloon_alert(user, " You snatch [src] with your other hand")
 	user.temporarilyRemoveItemFromInventory(src)
 	user.put_in_inactive_hand(src)
 	user.swap_hand()
@@ -137,11 +134,10 @@
 					revolver_throw_catch(user)
 	else
 		if(prob(10))
-			user.balloon_alert(user, "You fumble with [src] like an idiot... Uncool.")
-			to_chat(user, span_warning("You fumble with [src] like an idiot... Uncool."))
+			user.balloon_alert(user, "You fumble with [src] like an idiot")
 		else
-			user.balloon_alert_to_viewers("<b>[user]</b> fumbles with [src] like a huge idiot!", ignored_mobs = usr)
-			user.visible_message(span_info("<b>[user]</b> fumbles with [src] like a huge idiot!"))
+			user.balloon_alert_to_viewers("<b>[user]</b> fumbles with [src] like a huge idiot", ignored_mobs = usr)
+			user.visible_message(span_info("<b>[user]</b> fumbles with [src] like a huge idiot"))
 
 	recent_trick = world.time //Turn on the delay for the next trick.
 
@@ -151,14 +147,12 @@
 	set waitfor = 0
 	playsound(user, spin_sound, 25, 1)
 	if(double)
-		user.balloon_alert_to_viewers("[user] deftly flicks and spins [src] and [double]!", ignored_mobs = usr)
-		user.balloon_alert(user, " You flick and spin [src] and [double]!")
-		user.visible_message("[user] deftly flicks and spins [src] and [double]!",span_notice(" You flick and spin [src] and [double]!"))
+		user.balloon_alert_to_viewers("[user] deftly flicks and spins [src] and [double]", ignored_mobs = usr)
+		user.balloon_alert(user, " You flick and spin [src] and [double]")
 		animation_wrist_flick(double, 1)
 	else
-		user.balloon_alert_to_viewers("[user] deftly flicks and spins [src]!", ignored_mobs = usr)
-		user.balloon_alert(user, " You flick and spin [src]!")
-		user.visible_message("[user] deftly flicks and spins [src]!",span_notice(" You flick and spin [src]!"))
+		user.balloon_alert_to_viewers("[user] deftly flicks and spins [src]", ignored_mobs = usr)
+		user.balloon_alert(user, " You flick and spin [src]")
 	animation_wrist_flick(src, direction)
 	sleep(3)
 	if(loc && user) playsound(user, thud_sound, 25, 1)

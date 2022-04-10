@@ -35,9 +35,7 @@
 		return
 	anchored = !anchored
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	user.balloon_alert(user, "You [anchored?"secure":"unsecure"] [src].")
-	to_chat(user, span_notice("You [anchored?"secure":"unsecure"] [src]."))
-
+	user.balloon_alert(user, "You [anchored?"secure":"unsecure"] [src]")
 
 	var/obj/machinery/atmospherics/node1 = nodes[1]
 	var/obj/machinery/atmospherics/node2 = nodes[2]
@@ -85,8 +83,7 @@
 
 /obj/machinery/atmospherics/components/binary/circulator/multitool_act(mob/living/user, obj/item/I)
 	mode = !mode
-	user.balloon_alert(user, "You set [src] to [mode?"cold":"hot"] mode.")
-	to_chat(user, span_notice("You set [src] to [mode?"cold":"hot"] mode."))
+	user.balloon_alert(user, "You set [src] to [mode?"cold":"hot"] mode")
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/screwdriver_act(mob/user, obj/item/I)
@@ -94,8 +91,7 @@
 		return TRUE
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
 	playsound(src.loc, 'sound/items/screwdriver.ogg', 25, 1)
-	user.balloon_alert(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN)?"open":"close"] the panel on [src].")
-	to_chat(user, span_notice("You [CHECK_BITFIELD(machine_stat, PANEL_OPEN)?"open":"close"] the panel on [src]."))
+	user.balloon_alert(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN)?"open":"close"] the panel on [src]")
 	return TRUE
 
 /obj/machinery/atmospherics/components/binary/circulator/setPipingLayer(new_layer)
@@ -112,11 +108,9 @@
 		return
 
 	if(anchored)
-		balloon_alert(usr, "[src] is anchored!")
-		to_chat(usr, span_danger("[src] is anchored!"))
+		balloon_alert(usr, "[src] is anchored")
 		return
 
 	flipped = !flipped
-	balloon_alert(usr, "You flip [src].")
-	to_chat(usr, span_notice("You flip [src]."))
+	balloon_alert(usr, "You flip [src]")
 	update_icon()

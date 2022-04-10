@@ -94,8 +94,7 @@
 	new /obj/effect/decal/cleanable/crayon(target, colour, shadeColour, drawtype)
 	uses--
 	if(uses <= 0)
-		user.balloon_alert(user, "You used up your crayon!")
-		to_chat(user, span_warning("You used up your crayon!"))
+		user.balloon_alert(user, "You used up your crayon")
 		qdel(src)
 
 /obj/item/toy/crayon/attack(mob/living/M, mob/living/user)
@@ -107,7 +106,6 @@
 	uses -= 5
 	if(uses <= 0)
 		user.balloon_alert(user, "You ate the whole crayon!")
-		to_chat(user, span_warning("You ate the whole crayon!"))
 		qdel(src)
 
 	M.adjustToxLoss(1) // add a little bit of toxic damage

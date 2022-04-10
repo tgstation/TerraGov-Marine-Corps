@@ -65,8 +65,7 @@
 
 
 /obj/item/proc/place_offhand(mob/user, item_name)
-	user.balloon_alert(user, "You grab [item_name] with both hands.")
-	to_chat(user, span_notice("You grab [item_name] with both hands."))
+	user.balloon_alert(user, "You grab [item_name] with both hands")
 	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
 	offhand.name = "[item_name] - offhand"
 	offhand.desc = "Your second grip on the [item_name]."
@@ -76,8 +75,7 @@
 
 
 /obj/item/proc/remove_offhand(mob/user)
-	user.balloon_alert(user, "You are now carrying [name] with one hand.")
-	to_chat(user, span_notice("You are now carrying [name] with one hand."))
+	user.balloon_alert(user, "You carry [name] with one hand")
 	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand) && !QDELETED(offhand))
 		qdel(offhand)
@@ -418,11 +416,9 @@
 		return ..()
 	TOGGLE_BITFIELD(flags_item, NODROP)
 	if(CHECK_BITFIELD(flags_item, NODROP))
-		user.balloon_alert(user, "You tighten the grip around [src]!")
-		to_chat(user, span_warning("You tighten the grip around [src]!"))
+		user.balloon_alert(user, "You tighten the grip around [src]")
 		return
 	user.balloon_alert(user, "You loosen the grip around [src]!")
-	to_chat(user, span_notice("You loosen the grip around [src]!"))
 
 /obj/item/weapon/twohanded/rocketsledge/unique_action(mob/user)
 	. = ..()
@@ -442,8 +438,7 @@
 
 /obj/item/weapon/twohanded/rocketsledge/attack(mob/living/carbon/M, mob/living/carbon/user as mob)
 	if(!CHECK_BITFIELD(flags_item, WIELDED))
-		user.balloon_alert(user, "You need a more secure grip to use [src]!")
-		to_chat(user, span_warning("You need a more secure grip to use [src]!"))
+		user.balloon_alert(user, "You need a more secure grip")
 		return
 
 	if(M.status_flags & INCORPOREAL || user.status_flags & INCORPOREAL)
@@ -459,7 +454,7 @@
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used * 2)
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
 		user.balloon_alert(user, "\The [src] shuts off, using last bits of fuel!")
-		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
+
 		update_icon()
 	else
 		playsound(loc, 'sound/weapons/rocket_sledge.ogg', 50, TRUE)

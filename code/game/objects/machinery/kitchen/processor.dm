@@ -64,12 +64,10 @@
 
 	if(processing)
 		user.balloon_alert(user, "The processor is in the process of processing.")
-		to_chat(user, span_warning("The processor is in the process of processing."))
 		return TRUE
 
 	if(length(contents))
 		user.balloon_alert(user, "Something is already in the processing chamber.")
-		to_chat(user, span_warning("Something is already in the processing chamber."))
 		return TRUE
 
 	var/obj/O = I
@@ -82,10 +80,8 @@
 	if(!P)
 		to_chat(user, span_warning("That probably won't blend."))
 		return TRUE
-	balloon_alert_to_viewers("[user] puts [O] into [src].", ignored_mobs = user)
-	user.balloon_alert(user, "You put the [O] into [src].")
-	user.visible_message("[user] puts [O] into [src].", \
-		"You put the [O] into [src].")
+	balloon_alert_to_viewers("[user] puts [O] into [src]", ignored_mobs = user)
+	user.balloon_alert(user, "You put the [O] into [src]")
 	user.drop_held_item()
 	O.forceMove(src)
 
@@ -96,12 +92,10 @@
 	if (src.machine_stat != 0) //NOPOWER etc
 		return
 	if(src.processing)
-		user.balloon_alert(user, "The processor is in the process of processing.")
-		to_chat(user, span_warning("The processor is in the process of processing."))
+		user.balloon_alert(user, "The processor is in the process of processing")
 		return 1
 	if(src.contents.len == 0)
-		user.balloon_alert(user, "The processor is empty.")
-		to_chat(user, span_warning("The processor is empty."))
+		user.balloon_alert(user, "The processor is empty")
 		return 1
 	for(var/O in src.contents)
 		var/datum/food_processor_process/P = select_recipe(O)

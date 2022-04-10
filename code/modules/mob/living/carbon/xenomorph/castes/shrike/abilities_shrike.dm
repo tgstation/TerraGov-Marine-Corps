@@ -15,22 +15,18 @@
 /datum/action/xeno_action/call_of_the_burrowed/action_activate()
 	var/mob/living/carbon/xenomorph/shrike/caller = owner
 	if(!isnormalhive(caller.hive))
-		caller.balloon_alert(caller, "Burrowed larva? What a strange concept... It's not for our hive.")
-		to_chat(caller, span_warning("Burrowed larva? What a strange concept... It's not for our hive."))
+		caller.balloon_alert(caller, "Burrowed larva? It's not for our hive")
 		return FALSE
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	if(!stored_larva)
-		caller.balloon_alert(caller, "Our hive currently has no burrowed to call forth!")
-		to_chat(caller, span_warning("Our hive currently has no burrowed to call forth!"))
+		caller.balloon_alert(caller, "Our hive currently has no burrowed to call forth")
 		return FALSE
 
 	playsound(caller,'sound/magic/invoke_general.ogg', 75, TRUE)
 	new /obj/effect/temp_visual/telekinesis(get_turf(caller))
-	caller.balloon_alert(caller, "We call forth the larvas to rise from their slumber!")
-	caller.balloon_alert_to_viewers("A strange buzzing hum starts to emanate from \the [caller]!", ignored_mobs = caller)
-	caller.visible_message(span_xenowarning("A strange buzzing hum starts to emanate from \the [caller]!"), \
-	span_xenodanger("We call forth the larvas to rise from their slumber!"))
+	caller.balloon_alert(caller, "We call forth the larvas to rise from their slumber")
+	caller.balloon_alert_to_viewers("A strange buzzing hum starts to emanate from \the [caller]", ignored_mobs = caller)
 
 	if(stored_larva)
 		RegisterSignal(caller.hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
@@ -66,8 +62,7 @@
 
 
 /datum/action/xeno_action/activable/psychic_fling/on_cooldown_finish()
-	owner.balloon_alert(owner, "We gather enough mental strength to fling something again.")
-	to_chat(owner, span_notice("We gather enough mental strength to fling something again."))
+	owner.balloon_alert(owner, "We are ready to fling something again")
 	return ..()
 
 
@@ -82,8 +77,7 @@
 	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
 	if(!line_of_sight(owner, target, max_dist))
 		if(!silent)
-			owner.balloon_alert(owner, "We must get closer to fling, our mind cannot reach this far.")
-			to_chat(owner, span_warning("We must get closer to fling, our mind cannot reach this far."))
+			owner.balloon_alert(owner, "We must get closer to fling")
 		return FALSE
 	if(ishuman(target))
 		var/mob/living/carbon/human/victim = target
@@ -98,14 +92,10 @@
 	GLOB.round_statistics.psychic_flings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_flings")
 
-	victim.balloon_alert_to_viewers("[victim] is violently flung away by an unseen force!", ignored_mobs = victim)
-	owner.balloon_alert_to_viewers("A strange and violent psychic aura is suddenly emitted from \the [owner]!", ignored_mobs = owner)
-	owner.balloon_alert(owner, "We violently fling [victim] with the power of our mind!")
-	victim.balloon_alert(victim, "You are violently flung to the side by an unseen force!")
-	owner.visible_message(span_xenowarning("A strange and violent psychic aura is suddenly emitted from \the [owner]!"), \
-	span_xenowarning("We violently fling [victim] with the power of our mind!"))
-	victim.visible_message(span_xenowarning("[victim] is violently flung away by an unseen force!"), \
-	span_xenowarning("You are violently flung to the side by an unseen force!"))
+	victim.balloon_alert_to_viewers("[victim] is flung away by an unseen force", ignored_mobs = victim)
+	owner.balloon_alert_to_viewers("A strangepsychic aura is suddenly emitted from \the [owner]", ignored_mobs = owner)
+	owner.balloon_alert(owner, "We violently fling [victim] with the power of our mind")
+	victim.balloon_alert(victim, "You are violently flung to the side by an unseen force")
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
@@ -155,7 +145,6 @@
 
 /datum/action/xeno_action/activable/unrelenting_force/on_cooldown_finish()
 	owner.balloon_alert(owner, "Our mind is ready to unleash another blast of force.")
-	to_chat(owner, span_notice("Our mind is ready to unleash another blast of force."))
 	return ..()
 
 
@@ -201,10 +190,8 @@
 				throwlocation = get_step(throwlocation, owner.dir) //then we find where they're being thrown to, checking tile by tile.
 			affected.throw_at(throwlocation, 6, 1, owner, TRUE)
 
-	owner.balloon_alert_to_viewers("[owner] sends out a huge blast of psychic energy!", ignored_mobs = owner)
-	owner.balloon_alert(owner, "We send out a huge blast of psychic energy!")
-	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), \
-	span_xenowarning("We send out a huge blast of psychic energy!"))
+	owner.balloon_alert_to_viewers("[owner] sends out a huge blast of psychic energy", ignored_mobs = owner)
+	owner.balloon_alert(owner, "We send out a huge blast of psychic energy")
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, "alien_roar", 50)
@@ -237,8 +224,7 @@
 
 
 /datum/action/xeno_action/activable/psychic_cure/on_cooldown_finish()
-	owner.balloon_alert(owner, "We gather enough mental strength to cure sisters again.")
-	to_chat(owner, span_notice("We gather enough mental strength to cure sisters again."))
+	owner.balloon_alert(owner, "We gather enough mental strength to cure sisters again")
 	return ..()
 
 
@@ -262,12 +248,11 @@
 /datum/action/xeno_action/activable/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
-		owner.balloon_alert(owner, "Too far for our reach... We need to be [dist - heal_range] steps closer!")
+		owner.balloon_alert(owner, "We need to be [dist - heal_range] steps closer!")
 		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
 		return FALSE
 	else if(!line_of_sight(owner, target))
 		owner.balloon_alert(owner, "We can't focus properly without a clear line of sight!")
-		to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE
 	return TRUE
 
@@ -281,14 +266,10 @@
 
 	GLOB.round_statistics.psychic_cures++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_cures")
-	owner.balloon_alert_to_viewers("A strange psychic aura is suddenly emitted from \the [owner]!", ignored_mobs = owner)
-	target.balloon_alert_to_viewers("[target] suddenly shimmers in a chill light.", ignored_mobs = target)
-	owner.balloon_alert(owner, "We cure [target] with the power of our mind!")
-	target.balloon_alert(owner, "We feel a sudden soothing chill.")
-	owner.visible_message(span_xenowarning("A strange psychic aura is suddenly emitted from \the [owner]!"), \
-	span_xenowarning("We cure [target] with the power of our mind!"))
-	target.visible_message(span_xenowarning("[target] suddenly shimmers in a chill light."), \
-	span_xenowarning("We feel a sudden soothing chill."))
+	owner.balloon_alert_to_viewers("A strange psychic aura is suddenly emitted from \the [owner]", ignored_mobs = owner)
+	target.balloon_alert_to_viewers("[target] suddenly shimmers in a chill light", ignored_mobs = target)
+	owner.balloon_alert(owner, "We cure [target] with the power of our mind")
+	target.balloon_alert(owner, "We feel a sudden soothing chill")
 
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
@@ -324,14 +305,12 @@
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
-			owner.balloon_alert(owner, "We can't do that here.")
-			to_chat(owner, span_warning("We can't do that here."))
+			owner.balloon_alert(owner, "We can't do that here")
 		return FALSE
 
 	if(!(locate(/obj/effect/alien/weeds) in T))
 		if(!silent)
-			owner.balloon_alert(owner, "We can only shape on weeds. We must find some resin before we start building!")
-			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+			owner.balloon_alert(owner, "We can only shape on weeds")
 		return FALSE
 
 	if(!T.check_alien_construction(owner, silent))
@@ -347,8 +326,7 @@
 	playsound(T, "alien_resin_build", 25)
 	new /obj/structure/xeno/acidwell(T, owner)
 
-	owner.balloon_alert(owner, "We place an acid well; it can be filled with more acid.")
-	to_chat(owner, span_xenonotice("We place an acid well; it can be filled with more acid."))
+	owner.balloon_alert(owner, "We place an acid well")
 	GLOB.round_statistics.xeno_acid_wells++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_acid_wells")
 
@@ -368,10 +346,8 @@
 	nade.throw_at(A, 5, 1, owner, TRUE)
 	nade.activate(owner)
 
-	owner.balloon_alert_to_viewers("[owner] vomits up a roaring fleshy lump and throws it at [A]!", ignored_mobs = owner)
-	owner.balloon_alert(owner, "We vomit up a roaring fleshy lump and throws it at [A]!")
-	owner.visible_message(span_warning("[owner] vomits up a roaring fleshy lump and throws it at [A]!"), span_warning("We vomit up a roaring fleshy lump and throws it at [A]!"))
-
+	owner.balloon_alert_to_viewers("[owner] vomits up a roaring fleshy lump and throws it at [A]", ignored_mobs = owner)
+	owner.balloon_alert(owner, "We vomit up a roaring fleshy lump and throw it at [A]!")
 
 /obj/item/explosive/grenade/gravity
 	name = "gravity grenade"

@@ -109,9 +109,7 @@
 
 /obj/structure/reagent_dispensers/fueltank/wrench_act(mob/living/user, obj/item/I)
 	user.balloon_alert(user, "You wrench [src]'s faucet [modded ? "closed" : "open"]")
-	balloon_alert_to_viewers("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", ignored_mobs = user)
-	user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
-	"You wrench [src]'s faucet [modded ? "closed" : "open"]")
+	balloon_alert_to_viewers("[user] wrenches [src]'s faucet [modded ? "closed" : "open"]", ignored_mobs = user)
 	modded = !modded
 	log_attack("[key_name(user)] has wrenched [src] [modded ? "closed" : "open"] in [AREACOORD(user)]")
 	playsound(src, 'sound/items/ratchet.ogg', 25, 1)
@@ -123,8 +121,7 @@
 	var/obj/item/tool/weldingtool/W = I
 	if(!W.welding)
 		if(W.reagents.has_reagent(/datum/reagent/fuel, W.max_fuel))
-			user.balloon_alert(user, "Your [W.name] is already full!")
-			to_chat(user, span_warning("Your [W.name] is already full!"))
+			user.balloon_alert(user, "Your [W.name] is already full")
 			return
 		reagents.trans_to(W, W.max_fuel)
 		W.weld_tick = 0
@@ -144,8 +141,7 @@
 	if(!istype(I, /obj/item/assembly_holder))
 		return
 	if(rig)
-		user.balloon_alert(user, "There is another device in the way.")
-		to_chat(user, span_warning("There is another device in the way."))
+		user.balloon_alert(user, "There is another device in the way")
 		return
 
 	user.visible_message("[user] begins rigging [I] to \the [src].", "You begin rigging [I] to \the [src]")

@@ -145,11 +145,9 @@
 /obj/item/tool/pickaxe/plasmacutter/proc/fizzle_message(mob/user)
 	playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
 	if(!cell)
-		user.balloon_alert(user, "[src]'s has no battery installed.")
-		to_chat(user, span_warning("[src]'s has no battery installed!"))
+		user.balloon_alert(user, "[src]'s has no battery installed")
 	else if(!powered)
-		user.balloon_alert(user, "[src] is turned off!")
-		to_chat(user, span_warning("[src] is turned off!"))
+		user.balloon_alert(user, "[src] is turned off")
 	else
 		to_chat(user, span_warning("The plasma cutter has inadequate charge remaining! Replace or recharge the battery. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 

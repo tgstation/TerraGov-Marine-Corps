@@ -27,8 +27,7 @@
 	. = ..()
 
 	if(machine_stat & (NOPOWER|BROKEN))
-		user.balloon_alert(user, "This device is not powered.")
-		to_chat(user, "This device is not powered.")
+		user.balloon_alert(user, "This device is not powered")
 
 	else if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/ID = I

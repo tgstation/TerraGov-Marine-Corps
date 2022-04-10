@@ -31,8 +31,7 @@
 	if(!proximity) return
 	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
 		if(reagents.total_volume < 1)
-			user.balloon_alert(user, "Your mop is dry.")
-			to_chat(user, span_notice("Your mop is dry!"))
+			user.balloon_alert(user, "Your mop is dry")
 			return
 
 		var/turf/T = get_turf(A)
@@ -109,12 +108,10 @@
 	if(user.client && (target in user.client.screen))
 		to_chat(user, span_notice("You need to take that [target.name] off before cleaning it."))
 	else if(istype(target,/obj/effect/decal/cleanable))
-		user.balloon_alert(user, "You scrub \the [target.name] out.")
-		to_chat(user, span_notice("You scrub \the [target.name] out."))
+		user.balloon_alert(user, "You scrub \the [target.name] out")
 		qdel(target)
 	else
-		user.balloon_alert(user, "You clean \the [target.name].")
-		to_chat(user, span_notice("You clean \the [target.name]."))
+		user.balloon_alert(user, "You clean \the [target.name]")
 		target.clean_blood()
 
 /obj/item/tool/soap/attack(mob/target, mob/user)

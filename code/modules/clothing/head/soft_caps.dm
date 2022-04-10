@@ -22,12 +22,10 @@
 		src.flipped = !src.flipped
 		if(src.flipped)
 			icon_state = "[cap_color]soft_flipped"
-			balloon_alert(usr, "You flip the hat backwards.")
-			to_chat(usr, "You flip the hat backwards.")
+			balloon_alert(usr, "You flip the hat backwards")
 		else
 			icon_state = "[cap_color]soft"
-			balloon_alert(usr, "You flip the hat back in normal position.")
-			to_chat(usr, "You flip the hat back in normal position.")
+			balloon_alert(usr, "You flip the hat back in normal position")
 		update_clothing_icon()	//so our mob-overlays update
 
 /obj/item/clothing/head/soft/red

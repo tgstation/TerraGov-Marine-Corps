@@ -146,8 +146,7 @@
 		return
 
 	if(eating.flags_item & (NODROP|DELONDROP))
-		user.balloon_alert(user, "\The [eating] is stuck to you and cannot be placed into [src].")
-		to_chat(user, span_warning("\The [eating] is stuck to you and cannot be placed into [src]."))
+		user.balloon_alert(user, "\The [eating] is stuck to you")
 		return
 
 	var/filltype = 0       // Used to determine message.

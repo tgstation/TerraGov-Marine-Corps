@@ -90,28 +90,23 @@
 /obj/vehicle/sealed/attackby(obj/item/I, mob/user, params)
 	if(key_type && !is_key(inserted_key) && is_key(I))
 		if(user.transferItemToLoc(I, src))
-			user.balloon_alert(user, "You insert [I] into [src].")
-			to_chat(user, span_notice("You insert [I] into [src]."))
+			user.balloon_alert(user, "You insert [I] into [src]")
 			if(inserted_key) //just in case there's an invalid key
 				inserted_key.forceMove(drop_location())
 			inserted_key = I
 		else
-			user.balloon_alert(user, "[I] seems to be stuck to your hand!")
-			to_chat(user, span_warning("[I] seems to be stuck to your hand!"))
+			user.balloon_alert(user, "[I] seems to be stuck to your hand")
 		return
 	return ..()
 
 /obj/vehicle/sealed/proc/remove_key(mob/user)
 	if(!inserted_key)
-		user.balloon_alert(user, "There is no key in [src]!")
-		to_chat(user, span_warning("There is no key in [src]!"))
+		user.balloon_alert(user, "There is no key in [src]")
 		return
 	if(!is_occupant(user) || !(occupants[user] & VEHICLE_CONTROL_DRIVE))
-		user.balloon_alert(user, "You must be driving [src] to remove [src]'s key!")
-		to_chat(user, span_warning("You must be driving [src] to remove [src]'s key!"))
+		user.balloon_alert(user, "You must be driving [src] to remove [src]'s key")
 		return
-	user.balloon_alert(user, "You remove [inserted_key] from [src].")
-	to_chat(user, span_notice("You remove [inserted_key] from [src]."))
+	user.balloon_alert(user, "You remove [inserted_key] from [src]")
 	inserted_key.forceMove(drop_location())
 	if(!HAS_TRAIT(user, TRAIT_HANDS_BLOCKED))
 		user.put_in_hands(inserted_key)

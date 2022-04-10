@@ -45,26 +45,21 @@
 					return
 
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-				balloon_alert_to_viewers("[user] starts adding cables to [src].", ignored_mobs = user)
-				user.balloon_alert(user, "You start adding cables to [src].")
-				user.visible_message(span_notice("[user] starts adding cables to [src]."),
-				span_notice("You start adding cables to [src]."))
+				balloon_alert_to_viewers("[user] starts adding cables to [src]", ignored_mobs = user)
+				user.balloon_alert(user, "You start adding cables to [src]")
 				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD) || state != 1 || QDELETED(C))
 					return
 
 				if(!C.use(5))
 					return
 
-				balloon_alert_to_viewers("[user] adds cables to [src].", ignored_mobs = user)
-				user.balloon_alert(user, "You add cables to [src].")
-				user.visible_message(span_notice("[user] adds cables to [src]."),
-				span_notice("You add cables to [src]."))
+				balloon_alert_to_viewers("[user] adds cables to [src]", ignored_mobs = user)
+				user.balloon_alert(user, "You add cables to [src]")
 				state = 2
 				icon_state = "box_1"
 
 			if(iswrench(I))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-				to_chat(user, span_notice("You dismantle the frame"))
 				user.balloon_alert(user, "You dismantle the frame")
 				new /obj/item/stack/sheet/metal(loc, 5)
 				qdel(src)
@@ -72,8 +67,7 @@
 		if(2)
 			if(istype(I, /obj/item/circuitboard/machine))
 				playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-				to_chat(user, span_notice("You add the circuit board to the frame."))
-				user.balloon_alert(user, "You add the circuit board to the frame.")
+				user.balloon_alert(user, "You add the circuit board to the frame")
 				var/obj/item/circuitboard/machine/circuit = I
 				if(!user.transferItemToLoc(I, src))
 					return
@@ -92,8 +86,7 @@
 
 			if(iswirecutter(I))
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-				to_chat(user, span_notice("You remove the cables."))
-				user.balloon_alert(user, "You remove the cables.")
+				user.balloon_alert(user, "You remove the cables")
 				state = 1
 				icon_state = "box_0"
 				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil(loc)
@@ -106,11 +99,9 @@
 				circuit.forceMove(loc)
 				circuit = null
 				if(!length(components))
-					to_chat(user, span_notice("You remove the circuit board."))
-					user.balloon_alert(user, "You remove the circuit board.")
+					user.balloon_alert(user, "You remove the circuit board")
 				else
-					to_chat(user, span_notice("You remove the circuit board and other components."))
-					user.balloon_alert(user, "You remove the circuit board and other components.")
+					user.balloon_alert(user, "You remove the circuit board and other components")
 					for(var/obj/item/W in components)
 						W.forceMove(loc)
 

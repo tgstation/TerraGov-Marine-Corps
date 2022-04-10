@@ -39,13 +39,11 @@
 
 	var/list/xeno_rewards = xeno_tier_rewards[target_xeno.tier]
 	if(!xeno_rewards)
-		user.balloon_alert(user, "You can't research this.")
-		to_chat(user, span_notice("You can't research this."))
+		user.balloon_alert(user, "You can't research this")
 		return ..()
 
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
-		user.balloon_alert(user, "[target_xeno] has already been probed.")
-		to_chat(user, span_notice("[target_xeno] has already been probed."))
+		user.balloon_alert(user, "[target_xeno] has already been probed")
 		return ..()
 
 	if(user.skills.getRating("medical") < SKILL_MEDICAL_EXPERT)
@@ -60,8 +58,7 @@
 		return ..()
 
 	if(HAS_TRAIT(target_xeno, TRAIT_RESEARCHED))
-		user.balloon_alert(user, "[target_xeno] has already been probed.")
-		to_chat(user, span_notice("[target_xeno] has already been probed."))
+		user.balloon_alert(user, "[target_xeno] has already been probed")
 		return ..()
 
 	var/reward_typepath = pick(xeno_rewards)

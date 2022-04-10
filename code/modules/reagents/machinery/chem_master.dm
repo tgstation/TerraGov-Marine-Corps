@@ -50,13 +50,11 @@
 
 	if(istype(I,/obj/item/reagent_containers) && I.is_open_container())
 		if(beaker)
-			user.balloon_alert(user, "A beaker is already loaded into the machine.")
-			to_chat(user, span_warning("A beaker is already loaded into the machine."))
+			user.balloon_alert(user, "A beaker is already loaded into the machine")
 			return
 		user.transferItemToLoc(I, src)
 		beaker = I
-		user.balloon_alert(user, "You add the beaker to the machine!")
-		to_chat(user, span_notice("You add the beaker to the machine!"))
+		user.balloon_alert(user, "You add the beaker to the machine")
 		updateUsrDialog()
 		icon_state = "mixer1"
 
@@ -66,14 +64,12 @@
 
 	else if(istype(I, /obj/item/storage/pill_bottle))
 		if(loaded_pill_bottle)
-			user.balloon_alert(user, "A pill bottle is already loaded into the machine.")
-			to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
+			user.balloon_alert(user, "A pill bottle is already loaded into the machine")
 			return
 
 		loaded_pill_bottle = I
 		user.transferItemToLoc(I, src)
-		user.balloon_alert(user, "You add the pill bottle into the dispenser slot!")
-		to_chat(user, span_notice("You add the pill bottle into the dispenser slot!"))
+		user.balloon_alert(user, "You add the pill bottle into the dispenser slot")
 		updateUsrDialog()
 
 /obj/machinery/chem_master/proc/transfer_chemicals(obj/dest, obj/source, amount, reagent_id)
@@ -106,8 +102,7 @@
 	var/mob/living/user = usr
 
 	if(!user.skills.getRating("medical"))
-		user.balloon_alert(user, "You start fiddling with \the [src]...")
-		to_chat(user, span_notice("You start fiddling with \the [src]..."))
+		user.balloon_alert(user, "You start fiddling with \the [src]")
 		if(!do_after(user, SKILL_TASK_EASY, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -193,8 +188,7 @@
 		else if (href_list["createpillbottle"])
 			if(!condi)
 				if(loaded_pill_bottle)
-					user.balloon_alert(user, "A pill bottle is already loaded into the machine.")
-					to_chat(user, span_warning("A pill bottle is already loaded into the machine."))
+					user.balloon_alert(user, "A pill bottle is already loaded into the machine")
 					return
 				var/bottle_label = reject_bad_text(tgui_input_text(user, "Label:", "Enter desired bottle label", encode = FALSE))
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle

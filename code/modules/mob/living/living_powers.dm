@@ -12,9 +12,7 @@
 
 	if (layer != ANIMAL_HIDING_LAYER)
 		layer = ANIMAL_HIDING_LAYER
-		balloon_alert(src, "You are now hiding.")
-		to_chat(src, span_notice("You are now hiding."))
+		balloon_alert(src, "You are now hiding")
 		return
 	layer = MOB_LAYER
-	balloon_alert(src, "You have stopped hiding.")
-	to_chat(src, span_notice("You have stopped hiding."))
+	balloon_alert(src, "You have stopped hiding")

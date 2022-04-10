@@ -183,21 +183,15 @@
 
 	var/turf/T = get_turf(src)
 	if (level==1 && isturf(T) && T.intact_tile)
-		user.balloon_alert(user, "You must remove the plating first!")
-		to_chat(user, span_warning("You must remove the plating first!"))
+		user.balloon_alert(user, "You must remove the plating first")
 		return TRUE
 	user.balloon_alert(user, "You begin to unfasten \the [src]...")
-	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return TRUE
 
-	balloon_alert_to_viewers("[user] unfastens \the [src].", ignored_mobs = user)
+	balloon_alert_to_viewers("[user] unfastens \the [src]", ignored_mobs = user)
 	user.balloon_alert(user, "You unfasten \the [src].")
-	user.visible_message( \
-		"[user] unfastens \the [src].", \
-		span_notice("You unfasten \the [src]."), \
-		span_italics("You hear ratchet."))
 	deconstruct(TRUE)
 	return TRUE
 

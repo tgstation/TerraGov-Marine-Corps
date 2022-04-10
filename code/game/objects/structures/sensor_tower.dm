@@ -37,9 +37,8 @@
 	if(human_user.faction == faction)
 		to_chat(user, span_notice("Your faction already controls this."))
 		return
-	balloon_alert_to_viewers("[user] starts to capture [src]!", ignored_mobs = user)
+	balloon_alert_to_viewers("[user] starts to capture [src]", ignored_mobs = user)
 	user.balloon_alert(user, "You start to capture [src].")
-	user.visible_message(span_notice("[user] starts to capture [src]!"), span_notice("You start to capture [src]."))
 	if(!do_after(user, 5 SECONDS, TRUE, src))
 		return
 	balloon_alert_to_viewers("[user] captured [src]! For the [human_user.faction]s", ignored_mobs = user)

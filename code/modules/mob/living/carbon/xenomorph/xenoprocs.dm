@@ -286,16 +286,14 @@
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
 	if(incapacitated() || lying_angle)
-		balloon_alert(src, "We cannot do this in our current state.")
-		to_chat(src, span_warning("We cannot do this in our current state."))
+		balloon_alert(src, "We cannot do this in our current state")
 		return 0
 	return 1
 
 ///A simple handler for checking your state. Will ignore if the xeno is lying down
 /mob/living/carbon/xenomorph/proc/check_concious_state()
 	if(incapacitated())
-		balloon_alert(src, "We cannot do this in our current state.")
-		to_chat(src, span_warning("We cannot do this in our current state."))
+		balloon_alert(src, "We cannot do this in our current state")
 		return FALSE
 	return TRUE
 
@@ -303,15 +301,13 @@
 /mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
 	if(stat)
 		if(!silent)
-			balloon_alert(src, "We cannot do this in our current state.")
-			to_chat(src, span_warning("We cannot do this in our current state."))
+			balloon_alert(src, "We cannot do this in our current state")
 		return FALSE
 
 	if(value)
 		if(plasma_stored < value)
 			if(!silent)
-				balloon_alert(src, "We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored.")
-				to_chat(src, span_warning("We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored."))
+				balloon_alert(src, "We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored")
 			return FALSE
 	return TRUE
 
@@ -379,8 +375,7 @@
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
-		balloon_alert(src, "Our carapace crackles and our tendons strengthen. We are ready to evolve!")
-		to_chat(src, span_xenodanger("Our carapace crackles and our tendons strengthen. We are ready to evolve!"))
+		balloon_alert(src, "We are ready to evolve!")
 		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
 
 
@@ -497,13 +492,11 @@
 	if(QDELETED(Q) || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
 		leader_aura_strength = 0
 		leader_current_aura = ""
-		balloon_alert(src, "Our pheromones wane. The Queen is no longer granting us her pheromones.")
-		to_chat(src, span_xenowarning("Our pheromones wane. The Queen is no longer granting us her pheromones."))
+		balloon_alert(src, "The Queen is no longer granting us her pheromones.")
 	else
 		leader_aura_strength = Q.xeno_caste.aura_strength
 		leader_current_aura = Q.current_aura
-		balloon_alert(src, "Our pheromones have changed. The Queen has new plans for the Hive.")
-		to_chat(src, span_xenowarning("Our pheromones have changed. The Queen has new plans for the Hive."))
+		balloon_alert(src, "Our pheromones have changed.")
 
 
 /mob/living/carbon/xenomorph/proc/update_spits(skip_ammo_choice = FALSE)

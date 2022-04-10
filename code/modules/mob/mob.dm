@@ -457,7 +457,6 @@
 	else if(l_hand && r_hand)
 		if(!suppress_message)
 			balloon_alert(src, "Cannot grab, lacking free hands to do so!")
-			to_chat(src, span_warning("Cannot grab, lacking free hands to do so!"))
 		return FALSE
 
 	AM.add_fingerprint(src, "pull")
@@ -466,10 +465,8 @@
 
 	if(AM.pulledby)
 		if(!suppress_message)
-			balloon_alert_to_viewers("[src] has pulled [AM] from [AM.pulledby]'s grip.", ignored_mobs = src)
-			AM.visible_message(span_danger("[src] has pulled [AM] from [AM.pulledby]'s grip."),
-				span_danger("[src] has pulled you from [AM.pulledby]'s grip."), null, null, src)
-			balloon_alert(src, "You pull [AM] from [AM.pulledby]'s grip!")
+			balloon_alert_to_viewers("[src] has pulled [AM] from [AM.pulledby]'s grip", ignored_mobs = src)
+			balloon_alert(src, "You pull [AM] from [AM.pulledby]'s grip")
 			to_chat(src, span_notice("You pull [AM] from [AM.pulledby]'s grip!"))
 		log_combat(AM, AM.pulledby, "pulled from", src)
 		AM.pulledby.stop_pulling() //an object can't be pulled by two mobs at once.

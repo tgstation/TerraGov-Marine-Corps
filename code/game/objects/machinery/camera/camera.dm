@@ -111,8 +111,7 @@
 	if(.)
 		return TRUE
 	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-	user.balloon_alert(user, "You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"].")
-	to_chat(user, span_notice("You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"]."))
+	user.balloon_alert(user, "You screw the camera's panel [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "closed"]")
 	I.play_tool_sound(src)
 	update_icon()
 	return TRUE
@@ -133,8 +132,7 @@
 		return FALSE
 
 	setViewRange((view_range == initial(view_range)) ? short_range : initial(view_range))
-	user.balloon_alert(user, "You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus.")
-	to_chat(user, span_notice("You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus."))
+	user.balloon_alert(user, "You [(view_range == initial(view_range)) ? "restore" : "mess up"] the camera's focus")
 	return TRUE
 
 
@@ -145,14 +143,11 @@
 	if(!I.tool_start_check(user, amount = 0))
 		return TRUE
 
-	user.balloon_alert(user, "You start to weld [src]...")
-	to_chat(user, span_notice("You start to weld [src]..."))
+	user.balloon_alert(user, "You start to weld [src]")
 
 	if(I.use_tool(src, user, 100, volume = 50))
-		user.visible_message(span_warning("[user] unwelds [src], leaving it as just a frame bolted to the wall."),
-			span_warning("You unweld [src], leaving it as just a frame bolted to the wall"))
-		balloon_alert_to_viewers("[user] unwelds [src], leaving it as just a frame bolted to the wall.", ignored_mobs = user)
-		user.balloon_alert(user, "You unweld [src], leaving it as just a frame bolted to the wall")
+		balloon_alert_to_viewers("[user] unwelds [src]l", ignored_mobs = user)
+		user.balloon_alert(user, "You unweld [src]")
 		deconstruct(TRUE)
 
 	return TRUE
@@ -163,8 +158,7 @@
 		return FALSE
 
 	if(obj_integrity <= 0)
-		X.balloon_alert(X, "The camera is already disabled.")
-		to_chat(X, span_warning("The camera is already disabled."))
+		X.balloon_alert(X, "The camera is already disabled")
 		return
 
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)

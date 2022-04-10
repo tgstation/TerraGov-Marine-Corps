@@ -96,32 +96,26 @@
 
 /obj/machinery/deployable/mounted/sentry/on_set_interaction(mob/user)
 	. = ..()
-	user.balloon_alert(user, "You disable the [src]'s automatic to operate it manually.")
-	to_chat(user, span_notice("You disable the [src]'s automatic to operate it manually."))
+	user.balloon_alert(user, "You disable the [src]'s automatic to operate it manually")
 	set_on(FALSE)
 
 /obj/machinery/deployable/mounted/sentry/on_unset_interaction(mob/user)
 	. = ..()
 	user.balloon_alert(user, "You stop using the [src] and its automatic functions re-activate")
-	to_chat(user, span_notice("You stop using the [src] and its automatic functions re-activate"))
 	set_on(TRUE)
 
 /obj/machinery/deployable/mounted/sentry/attack_hand(mob/living/user)
 	. = ..()
 	if(!. || !CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
-	user.balloon_alert_to_viewers("[user] begins to set [src] upright.", ignored_mobs = user)
-	user.balloon_alert(user, "You begin to set [src] upright.")
-	user.visible_message(span_notice("[user] begins to set [src] upright."),
-		span_notice("You begin to set [src] upright."))
+	user.balloon_alert_to_viewers("[user] begins to set [src] upright", ignored_mobs = user)
+	user.balloon_alert(user, "You begin to set [src] upright")
 
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return
 
-	user.balloon_alert_to_viewers("[user] sets [src] upright.", ignored_mobs = user)
-	user.balloon_alert(user, "You set [src] upright.")
-	user.visible_message(span_notice("[user] sets [src] upright."),
-		span_notice("You set [src] upright."))
+	user.balloon_alert_to_viewers("[user] sets [src] upright", ignored_mobs = user)
+	user.balloon_alert(user, "You set [src] upright")
 
 	DISABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
 	density = TRUE
@@ -140,8 +134,7 @@
 		return TRUE
 
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_IMMOBILE))
-		user.balloon_alert(user, "[src]'s panel is locked.")
-		to_chat(user, span_warning("[src]'s panel is completely locked, you can't do anything."))
+		user.balloon_alert(user, "[src]'s panel is locked")
 		return TRUE
 
 	ui_interact(user)

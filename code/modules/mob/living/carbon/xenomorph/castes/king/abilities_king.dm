@@ -16,8 +16,7 @@
 	var/duration = 10 SECONDS
 
 /datum/action/xeno_action/activable/nightfall/on_cooldown_finish()
-	owner.balloon_alert(owner, "We gather enough mental strength to shut down lights again.")
-	to_chat(owner, span_notice("We gather enough mental strength to shut down lights again."))
+	owner.balloon_alert(owner, "We gather enough mental strength to shut down lights again")
 	return ..()
 
 /datum/action/xeno_action/activable/nightfall/use_ability()
@@ -49,8 +48,7 @@
 	var/list/filters_applied = list()
 
 /datum/action/xeno_action/activable/gravity_crush/on_cooldown_finish()
-	owner.balloon_alert(owner, "Our psychic aura restores itself. We are ready to gravity crush again.")
-	to_chat(owner, span_warning("Our psychic aura restores itself. We are ready to gravity crush again."))
+	owner.balloon_alert(owner, "We are ready to gravity crush again.")
 	return ..()
 
 /datum/action/xeno_action/activable/gravity_crush/can_use_ability(atom/A, silent, override_flags)
@@ -140,8 +138,7 @@
 	keybind_signal = COMSIG_XENOABILITY_HIVE_SUMMON
 
 /datum/action/xeno_action/activable/psychic_summon/on_cooldown_finish()
-	owner.balloon_alert(owner, "The hives power swells. We may summon our sisters again.")
-	to_chat(owner, span_warning("The hives power swells. We may summon our sisters again."))
+	owner.balloon_alert(owner, "We may summon our sisters again.")
 	return ..()
 
 /datum/action/xeno_action/psychic_summon/can_use_action(silent, override_flags)
@@ -149,8 +146,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(length(X.hive.get_all_xenos()) <= 1)
 		if(!silent)
-			owner.balloon_alert(owner, "We have no hive to call. We are alone on our throne of nothing.")
-			to_chat(owner, span_notice("We have no hive to call. We are alone on our throne of nothing."))
+			owner.balloon_alert(owner, "We are alone on our throne of nothing.")
 		return FALSE
 
 /datum/action/xeno_action/psychic_summon/action_activate()

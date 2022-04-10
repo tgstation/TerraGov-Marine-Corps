@@ -537,8 +537,7 @@
 	var/area/ourarea = loc
 	if(ourarea.flags_area & DISALLOW_WEEDING)
 		if(!silent)
-			builder.balloon_alert(builder, "We cannot build in this area before the talls are out!")
-			to_chat(builder, span_warning("We cannot build in this area before the talls are out!"))
+			builder.balloon_alert(builder, "We cannot build here before the talls are out")
 		return FALSE
 	return TRUE
 
@@ -557,18 +556,15 @@
 				return FALSE
 		if(istype(O, /obj/effect/alien/egg))
 			if(!silent)
-				builder.balloon_alert(builder, "There's already an egg here.")
-				to_chat(builder, span_warning("There's already an egg here."))
+				builder.balloon_alert(builder, "There's already an egg here")
 			return FALSE
 		if(istype(O, /obj/structure/xeno))
 			if(!silent)
-				builder.balloon_alert(builder, "There's already a resin structure here!")
-				to_chat(builder, span_warning("There's already a resin structure here!"))
+				builder.balloon_alert(builder, "There's already a resin structure here")
 			return FALSE
 		if(istype(O, /obj/structure/xeno/plant))
 			if(!silent)
-				builder.balloon_alert(builder, "There is a plant growing here.")
-				to_chat(builder, span_warning("There is a plant growing here, destroying it would be a waste to the hive."))
+				builder.balloon_alert(builder, "There is a plant growing here")
 			return FALSE
 		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/effect/alien/resin))
 			has_obstacle = TRUE
@@ -596,15 +592,13 @@
 
 	if(density || has_obstacle)
 		if(!silent)
-			builder.balloon_alert(builder, "There's something built here already.")
-			to_chat(builder, span_warning("There's something built here already."))
+			builder.balloon_alert(builder, "There's something built here already")
 		return FALSE
 	return TRUE
 
 /turf/closed/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	if(!silent)
-		builder.balloon_alert(builder, "There's something built here already.")
-		to_chat(builder, span_warning("There's something built here already."))
+		builder.balloon_alert(builder, "There's something built here already")
 	return FALSE
 
 /turf/proc/can_dig_xeno_tunnel()

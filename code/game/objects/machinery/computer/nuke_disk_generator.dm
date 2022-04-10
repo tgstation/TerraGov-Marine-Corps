@@ -115,7 +115,7 @@
 			printing = TRUE
 			addtimer(VARSET_CALLBACK(src, printing, FALSE), printing_time)
 
-			balloon_alert_to_viewers("[usr] started a program to regenerate a nuclear disk code.", ignored_mobs = usr)
+			balloon_alert_to_viewers("[usr] started a program to regenerate a nuclear disk code", ignored_mobs = usr)
 			balloon_alert(usr, "You started a program to generate a nuclear disk code.")
 			usr.visible_message("[usr] started a program to regenerate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
 			if(!do_after(usr, printing_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))
@@ -127,7 +127,7 @@
 		printing = TRUE
 		addtimer(VARSET_CALLBACK(src, printing, FALSE), segment_time)
 
-		balloon_alert_to_viewers("[usr] started a program to generate a nuclear disk code.", ignored_mobs = usr)
+		balloon_alert_to_viewers("[usr] started a program to generate a nuclear disk code", ignored_mobs = usr)
 		balloon_alert(usr, "You started a program to generate a nuclear disk code.")
 		usr.visible_message("[usr] started a program to generate a nuclear disk code.", "You started a program to generate a nuclear disk code.")
 		if(!do_after(usr, segment_time, TRUE, src, BUSY_ICON_GENERIC, null, null, CALLBACK(src, /datum.proc/process)))

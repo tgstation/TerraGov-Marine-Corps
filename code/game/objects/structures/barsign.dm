@@ -79,4 +79,3 @@
 		sign_type = replacetext(lowertext(sign_type), " ", "")
 		ChangeSign(sign_type)
 		user.balloon_alert(user, "You change the barsign.")
-		to_chat(user, "You change the barsign.")

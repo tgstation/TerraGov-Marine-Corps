@@ -743,23 +743,19 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	set hidden = TRUE
 
 	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
-		to_chat(src, span_warning("You are not competent enough in leadership to issue an order."))
-		balloon_alert(src, "You are not competent enough in leadership to issue an order.")
+		balloon_alert(src, "You are not competent enough to issue an order")
 		return
 
 	if(stat)
-		to_chat(src, span_warning("You cannot give an order in your current state."))
-		balloon_alert(src, "You cannot give an order in your current state.")
+		balloon_alert(src, "You cannot give an order in your current state")
 		return
 
 	if(IsMute())
-		to_chat(src, span_warning("You cannot give an order while muted."))
-		balloon_alert(src, "You cannot give an order while muted.")
+		balloon_alert(src, "You cannot give an order while muted")
 		return
 
 	if(command_aura_cooldown > 0)
-		to_chat(src, span_warning("You have recently given an order. Calm down."))
-		balloon_alert(src, "You have recently given an order. Calm down.")
+		balloon_alert(src, "You have recently given an order, wait a few seconds")
 		return
 
 	if(!which)

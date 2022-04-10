@@ -55,8 +55,7 @@
 	if((current_style == "Left Helmet" || current_style == "Right Helmet") && !(istype(attaching_to, /obj/item/clothing/head)))
 		allowed = FALSE
 	if(!allowed)
-		user.balloon_alert(user, "The currently selected style, ([current_style]), is not compatable with [attaching_to].")
-		to_chat(user, span_warning("The currently selected style, ([current_style]), is not compatable with [attaching_to]."))
+		user.balloon_alert(user, "The currently selected style, ([current_style]), is not compatable with [attaching_to]")
 	return allowed
 
 /obj/item/armor_module/armor/badge/on_attach(obj/item/attaching_to, mob/user)

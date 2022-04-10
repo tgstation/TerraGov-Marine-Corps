@@ -42,7 +42,6 @@
 	if(ishuman(AM) && stat == CONSCIOUS)
 		var/mob/living/carbon/human/H = AM
 		H.balloon_alert(H, "Squeak!")
-		to_chat(H, span_notice("[icon2html(src, H)] Squeak!"))
 
 
 /mob/living/simple_animal/mouse/handle_automated_action()

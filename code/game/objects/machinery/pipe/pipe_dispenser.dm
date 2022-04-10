@@ -66,16 +66,13 @@
 	. = ..()
 
 	if(istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
-		user.balloon_alert(user, "You put [I] back into [src].")
-		to_chat(usr, span_notice("You put [I] back into [src]."))
+		user.balloon_alert(user, "You put [I] back into [src]")
 		qdel(I)
 
 	else if(iswrench(I))
 		if(anchored)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			user.balloon_alert(user, "You begin to unfasten \the [src] from the floor...")
-			to_chat(user, span_notice("You begin to unfasten \the [src] from the floor..."))
-
+			user.balloon_alert(user, "You begin to unfasten \the [src] from the floor")
 			if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
 				return
 
@@ -89,17 +86,13 @@
 				usr << browse(null, "window=pipedispenser")
 		else
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			user.balloon_alert(user, "You begin to fasten \the [src] to the floor...")
-			to_chat(user, span_notice("You begin to fasten \the [src] to the floor..."))
+			user.balloon_alert(user, "You begin to fasten \the [src] to the floor")
 
 			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 				return
 
-			balloon_alert_to_viewers("[user] fastens \the [src].", ignored_mobs = user)
-			user.balloon_alert(user, "You have fastened \the [src]. Now it can dispense pipes.")
-			user.visible_message("[user] fastens \the [src].", \
-				span_notice("You have fastened \the [src]. Now it can dispense pipes."), \
-				"You hear ratchet.")
+			balloon_alert_to_viewers("[user] fastens \the [src]", ignored_mobs = user)
+			user.balloon_alert(user, "You have fastened \the [src]")
 			anchored = TRUE
 			machine_stat &= ~MAINT
 			power_change()

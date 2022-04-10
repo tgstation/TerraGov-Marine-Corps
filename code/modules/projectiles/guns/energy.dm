@@ -66,8 +66,7 @@
 	if (!.)
 		return
 	if(user.skills.getRating("police") < SKILL_POLICE_MP)
-		user.balloon_alert(user, "You don't seem to know how to use [src]...")
-		to_chat(user, span_warning("You don't seem to know how to use [src]..."))
+		user.balloon_alert(user, "You don't seem to know how to use [src]")
 		return FALSE
 
 //-------------------------------------------------------
@@ -151,8 +150,7 @@
 		ammo_datum_type = ammo_diff
 		fire_delay += 7 // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
-		user.balloon_alert(user, "You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
-		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		user.balloon_alert(user, "You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode")
 		overcharge = TRUE
 	else
 		playsound(user, 'sound/weapons/emitter2.ogg', 5, 0, 2)
@@ -160,8 +158,7 @@
 		ammo_datum_type = /datum/ammo/energy/lasgun/M43
 		fire_delay -= 7
 		fire_sound = 'sound/weapons/guns/fire/laser.ogg'
-		user.balloon_alert(user, "You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
-		to_chat(user, "[icon2html(src, user)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		user.balloon_alert(user, "You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode")
 		overcharge = FALSE
 
 	//load_into_chamber()

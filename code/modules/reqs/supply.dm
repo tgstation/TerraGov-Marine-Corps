@@ -652,8 +652,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		user.show_message(span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
 	if(!is_ground_level(user.z))
-		user.balloon_alert(user, "You have to be on the planet to use this or it won't transmit.")
-		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
+		user.balloon_alert(user, "You have to be on the planet to use this or it won't transmit")
 		return FALSE
 	var/turf/location = get_turf(src)
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)

@@ -117,7 +117,6 @@
 	if(!attachments_by_slot[ATTACHMENT_SLOT_RAIL])
 		return TRUE
 	attacher.balloon_alert(attacher, "You cannot attach [src] to [attaching_to] while [attachments_by_slot[ATTACHMENT_SLOT_RAIL]] occupies [src]'s rail slot.")
-	to_chat(attacher, span_warning("You cannot attach [src] to [attaching_to] while [attachments_by_slot[ATTACHMENT_SLOT_RAIL]] occupies [src]'s rail slot."))
 	return FALSE
 
 /obj/item/weapon/gun/pistol/plasma_pistol/on_attach(obj/item/attached_to, mob/user)

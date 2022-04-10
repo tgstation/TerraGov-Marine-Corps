@@ -118,8 +118,7 @@
 
 /obj/machinery/photocopier/proc/do_insertion(obj/item/O, mob/user)
 	O.forceMove(src)
-	balloon_alert(user, "You insert [O] into [src].</span>")
-	to_chat(user, "<span class ='notice'>You insert [O] into [src].</span>")
+	balloon_alert(user, "You insert [O] into [src]</span>")
 	flick("bigscanner1", src)
 	updateUsrDialog()
 
@@ -130,8 +129,7 @@
 		user.put_in_hands(O)
 	else
 		O.forceMove(drop_location())
-	balloon_alert(user, "You take [O] out of [src].")
-	to_chat(user, span_notice("You take [O] out of [src]."))
+	balloon_alert(user, "You take [O] out of [src]")
 
 
 /obj/machinery/photocopier/attackby(obj/item/I, mob/user, params)
@@ -139,8 +137,7 @@
 
 	if(istype(I, /obj/item/paper))
 		if(!copier_empty())
-			balloon_alert(user, "There is already something in [src]!")
-			to_chat(user, span_warning("There is already something in [src]!"))
+			balloon_alert(user, "There is already something in [src]")
 			return
 
 		if(!user.temporarilyRemoveItemFromInventory(I))
@@ -151,8 +148,7 @@
 
 	else if(istype(I, /obj/item/photo))
 		if(!copier_empty())
-			balloon_alert(user, "There is already something in [src]!")
-			to_chat(user, span_warning("There is already something in [src]!"))
+			balloon_alert(user, "There is already something in [src]")
 			return
 
 		if(!user.temporarilyRemoveItemFromInventory(I))
@@ -169,8 +165,7 @@
 			return
 		qdel(I)
 		toner = 40
-		balloon_alert(user, "You insert [I] into [src].")
-		to_chat(user, span_notice("You insert [I] into [src]."))
+		balloon_alert(user, "You insert [I] into [src]")
 		updateUsrDialog()
 
 

@@ -18,9 +18,9 @@
 		//Blood regeneration if there is some space
 		if(blood_volume < BLOOD_VOLUME_NORMAL)
 			blood_volume += 0.1 // regenerate blood VERY slowly
-		
+
 		heart_multi = initial(heart_multi)
-		
+
 		// Damaged heart virtually reduces the blood volume, as the blood isn't
 		// being pumped properly anymore.
 		if(species && species.has_organ["heart"])
@@ -35,7 +35,7 @@
 					blood_volume = max(blood_volume - 1.3, 0)
 				else if(heart.is_bruised())
 					heart_multi *= 0.7
-					blood_volume = max(blood_volume - 0.5, 0)	
+					blood_volume = max(blood_volume - 0.5, 0)
 				else
 					heart_multi *= 0.9
 					blood_volume = max(blood_volume - 0.1, 0) //nulls regeneration
@@ -49,7 +49,6 @@
 				if(prob(1))
 					var/word = pick("dizzy","woozy","faint")
 					balloon_alert(src, "You feel [word]")
-					to_chat(src, span_warning("You feel [word]"))
 				if(oxyloss < 20)
 					adjustOxyLoss(3)
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
@@ -65,14 +64,12 @@
 					Unconscious(rand(20,60))
 					var/word = pick("dizzy","woozy","faint")
 					balloon_alert(src, "You feel extremely [word]")
-					to_chat(src, span_warning("You feel extremely [word]"))
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				adjustOxyLoss(5)
 				adjustToxLoss(2)
 				if(prob(15))
 					var/word = pick("dizzy","woozy","faint")
 					balloon_alert(src, "You feel extremely [word]")
-					to_chat(src, span_warning("You feel extremely [word]"))
 			if(0 to BLOOD_VOLUME_SURVIVE)
 				death()
 

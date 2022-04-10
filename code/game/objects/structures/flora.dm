@@ -130,11 +130,9 @@
 		return
 
 	if(ckeys_that_took[user.ckey])
-		to_chat(user, span_warning("There are no presents with your name on."))
-		user.balloon_alert(user, "There are no presents with your name on.")
+		user.balloon_alert(user, "There are no presents with your name on")
 		return
-	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
-	user.balloon_alert(user, "After a bit of rummaging, you locate a gift with your name on it!")
+	user.balloon_alert(user, "You locate a gift with your name on it")
 	ckeys_that_took[user.ckey] = TRUE
 	var/obj/item/G = new gift_type(src)
 	user.put_in_hands(G)
@@ -458,8 +456,7 @@
 
 	var/mob/living/L = user
 
-	user.balloon_alert(user, "You cut \the [src] away with \the [I].")
-	to_chat(L, span_warning("You cut \the [src] away with \the [I]."))
+	user.balloon_alert(user, "You cut \the [src] away")
 	L.do_attack_animation(src, used_item = I)
 	playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
 	qdel(src)

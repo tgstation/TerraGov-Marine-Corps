@@ -153,8 +153,7 @@ should be alright.
 		if(active_attachable)
 			active_attachable.tactical_reload(new_magazine, user)
 			return
-		user.balloon_alert(user, "[new_magazine] cannot fit into [src]!")
-		to_chat(user, span_warning("[new_magazine] cannot fit into [src]!"))
+		user.balloon_alert(user, "[new_magazine] cannot fit into [src]")
 		return
 	if(src != user.r_hand && src != user.l_hand && master_gun != user.r_hand && master_gun != user.l_hand)
 		to_chat(user, span_warning("[src] must be in your hand to do that."))
@@ -164,8 +163,7 @@ should be alright.
 		return
 	//no tactical reload for the untrained.
 	if(!user.skills.getRating("firearms"))
-		user.balloon_alert(user, "You don't know how to do tactical reloads.")
-		to_chat(user, span_warning("You don't know how to do tactical reloads."))
+		user.balloon_alert(user, "You don't know how to do tactical reloads")
 		return
 	to_chat(user, span_notice("You start a tactical reload."))
 	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating("firearms") * 5)

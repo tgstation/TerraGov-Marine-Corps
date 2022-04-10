@@ -179,16 +179,14 @@
 		if(up && down)
 			switch(tgui_alert(usr, "Look up or down the ladder?", "Ladder", list("Up", "Down", "Cancel")))
 				if("Up")
-					balloon_alert(usr, "You look up [src]!")
-					usr.visible_message(span_notice("[usr] looks up [src]!"),
-					span_notice("You look up [src]!"))
+					balloon_alert(usr, "You look up [src]")
+					balloon_alert_to_viewers("[usr] looks up [src]", ignored_mobs = usr)
 					is_watching = 2
 					usr.set_interaction(src)
 
 				if("Down")
 					balloon_alert(usr, "You look down [src]!")
-					usr.visible_message(span_notice("[usr] looks down [src]!"),
-					span_notice("You look down [src]!"))
+					balloon_alert_to_viewers("[usr] looks down [src]", ignored_mobs = usr)
 					is_watching = 1
 					usr.set_interaction(src)
 
@@ -196,19 +194,15 @@
 					return
 
 		else if(up)
-			balloon_alert(usr, "You look up [src]!")
-			balloon_alert_to_viewers("[usr] looks up [src]!", ignored_mobs = usr)
-			usr.visible_message(span_notice("[usr] looks up [src]!"),
-			span_notice("You look up [src]!"))
+			balloon_alert(usr, "You look up [src]")
+			balloon_alert_to_viewers("[usr] looks up [src]", ignored_mobs = usr)
 			is_watching = 2
 			usr.set_interaction(src)
 
 
 		else if(down)
-			balloon_alert(usr, "You look down [src]!")
-			balloon_alert_to_viewers("[usr] looks down [src]!", ignored_mobs = usr)
-			usr.visible_message(span_notice("[usr] looks down [src]!"),
-			span_notice("You look down [src]!"))
+			balloon_alert(usr, "You look down [src]")
+			balloon_alert_to_viewers("[usr] looks down [src]", ignored_mobs = usr)
 			is_watching = 1
 			usr.set_interaction(src)
 
@@ -243,18 +237,14 @@
 		else
 			return
 
-		balloon_alert_to_viewers("[user] takes position to throw [G] [ladder_dir_name] [src].", ignored_mobs = user)
-		user.balloon_alert(user, "You take position to throw [G] [ladder_dir_name] [src].")
-		user.visible_message(span_warning("[user] takes position to throw [G] [ladder_dir_name] [src]."),
-		span_warning("You take position to throw [G] [ladder_dir_name] [src]."))
+		balloon_alert_to_viewers("[user] takes position to throw [G] [ladder_dir_name] [src]", ignored_mobs = user)
+		user.balloon_alert(user, "You take position to throw [G] [ladder_dir_name] [src]")
 
 		if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
 			return
 
-		balloon_alert_to_viewers("[user] throws [G] [ladder_dir_name] [src]!", ignored_mobs = user)
+		balloon_alert_to_viewers("[user] throws [G] [ladder_dir_name] [src]", ignored_mobs = user)
 		user.balloon_alert(user, "You throw [G] [ladder_dir_name] [src]")
-		user.visible_message(span_warning("[user] throws [G] [ladder_dir_name] [src]!"),
-		span_warning("You throw [G] [ladder_dir_name] [src]"))
 		user.drop_held_item()
 		G.forceMove(ladder_dest.loc)
 		G.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
@@ -293,10 +283,8 @@
 		if(!do_after(user, 10, TRUE, src, BUSY_ICON_HOSTILE))
 			return
 
-		balloon_alert_to_viewers("[user] throws [F] [ladder_dir_name] [src]!", ignored_mobs = user)
+		balloon_alert_to_viewers("[user] throws [F] [ladder_dir_name] [src]", ignored_mobs = user)
 		user.balloon_alert(user, "You throw [F] [ladder_dir_name] [src]")
-		user.visible_message(span_warning("[user] throws [F] [ladder_dir_name] [src]!"),
-		span_warning("You throw [F] [ladder_dir_name] [src]"))
 		user.drop_held_item()
 		F.forceMove(ladder_dest.loc)
 		F.setDir(pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))

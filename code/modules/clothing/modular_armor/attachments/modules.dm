@@ -242,8 +242,7 @@
 
 	active = !active
 	SEND_SIGNAL(parent, COMSIG_ITEM_TOGGLE_ACTION, user)
-	user.balloon_alert(user, "You toggle \the [src]. [active ? "enabling" : "disabling"] it.")
-	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
+	user.balloon_alert(user, "You toggle \the [src]. [active ? "enabling" : "disabling"] it")
 	icon_state = base_icon + "[active ? "_active" : ""]"
 	item_state = icon_state + "_a"
 	parent.update_icon()
@@ -282,8 +281,7 @@
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
 	zoom(user)
 	active = !active
-	user.balloon_alert(user, "You toggle \the [src]. [active ? "enabling" : "disabling"] it.")
-	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
+	user.balloon_alert(user, "You toggle \the [src]. [active ? "enabling" : "disabling"] it")
 	icon_state = initial(icon_state) + "[active ? "_active" : ""]"
 	item_state = icon_state + "_a"
 	parent.update_icon()
@@ -320,8 +318,7 @@
 		user.show_message(span_warning("The [src] beeps and states, \"Your last position is no longer accessible by the supply console"), EMOTE_AUDIBLE, span_notice("The [src] vibrates but you can not hear it!"))
 		return
 	if(!is_ground_level(user.z))
-		user.balloon_alert(user, "You have to be on the planet to use this or it won't transmit.")
-		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
+		user.balloon_alert(user, "You have to be on the planet to use this or it won't transmit")
 		return FALSE
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)

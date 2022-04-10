@@ -35,13 +35,13 @@
 
 /obj/item/tool/extinguisher/examine(mob/user)
 	..()
-	user.balloon_alert(user, "The safety is [safety ? "on" : "off"].")
+	user.balloon_alert(user, "The safety is [safety ? "on" : "off"]")
 	to_chat(user, "The safety is [safety ? "on" : "off"].")
 
 /obj/item/tool/extinguisher/attack_self(mob/user as mob)
 	safety = !safety
 	icon_state = "[sprite_name][!safety]"
-	user.balloon_alert(user, "The safety is [safety ? "on" : "off"].")
+	user.balloon_alert(user, "The safety is [safety ? "on" : "off"]")
 	to_chat(user, "The safety is [safety ? "on" : "off"].")
 
 /obj/item/tool/extinguisher/attack(mob/M, mob/user)
@@ -57,7 +57,6 @@
 		var/obj/o = target
 		o.reagents.trans_to(src, 50)
 		user.balloon_alert(user, "\The [src] is now refilled")
-		to_chat(user, span_notice("\The [src] is now refilled"))
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 

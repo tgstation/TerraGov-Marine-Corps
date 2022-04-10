@@ -79,16 +79,13 @@
 
 		switch(power_gen_percent) //Flavor text!
 			if(10)
-				src.balloon_alert_to_viewers("<b>[src]</b> begins to whirr as it powers up.")
-				visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> begins to whirr as it powers up.")]")
+				src.balloon_alert_to_viewers("<b>[src]</b> begins to whirr as it powers up")
 				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
 			if(50)
-				src.balloon_alert_to_viewers("<b>[src]</b> begins to hum loudly as it reaches half capacity.")
-				visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> begins to hum loudly as it reaches half capacity.")]")
+				src.balloon_alert_to_viewers("<b>[src]</b> begins to hum loudly as it reaches half capacity")
 				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.5
 			if(100)
-				src.balloon_alert_to_viewers("<b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.")
-				visible_message("[icon2html(src, viewers(src))] [span_notice("<b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength.")]")
+				src.balloon_alert_to_viewers("<b>[src]</b> rumbles loudly as the combustion and thermal chambers reach full strength")
 				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE
 
 
@@ -101,8 +98,7 @@
 	if(.)
 		return
 	if(!ishuman(user))
-		balloon_alert(user, "You have no idea how to use that.")
-		to_chat(user, span_warning("You have no idea how to use that."))
+		balloon_alert(user, "You have no idea how to use that")
 		return FALSE
 	interact_hand(user)
 
@@ -113,20 +109,16 @@
 /obj/machinery/power/fusion_engine/proc/interact_hand(mob/living/user)
 	switch(buildstate)
 		if(FUSION_ENGINE_HEAVY_DAMAGE)
-			user.balloon_alert(user, "Use a blowtorch, then wirecutters, then wrench to repair it.")
-			to_chat(user, span_info("Use a blowtorch, then wirecutters, then wrench to repair it."))
+			user.balloon_alert(user, "Use a blowtorch, then wirecutters, then wrench to repair it")
 			return FALSE
 		if(FUSION_ENGINE_MEDIUM_DAMAGE)
-			user.balloon_alert(user, "Use a wirecutters, then wrench to repair it.")
-			to_chat(user, span_notice("Use a wirecutters, then wrench to repair it."))
+			user.balloon_alert(user, "Use a wirecutters, then wrench to repair it")
 			return FALSE
 		if(FUSION_ENGINE_LIGHT_DAMAGE)
-			user.balloon_alert(user, "Use a wrench to repair it.")
-			to_chat(user, span_notice("Use a wrench to repair it."))
+			user.balloon_alert(user, "Use a wrench to repair it")
 			return FALSE
 	if(is_on)
-		balloon_alert_to_viewers("<b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator.")
-		visible_message("[icon2html(src, viewers(src))] [span_warning("<b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator.")]")
+		balloon_alert_to_viewers("<b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator")
 		is_on = FALSE
 		power_gen_percent = 0
 		cur_tick = 0
@@ -135,19 +127,16 @@
 		return TRUE
 
 	if(!fusion_cell)
-		user.balloon_alert(user, "The reactor requires a fuel cell before you can turn it on.")
-		to_chat(user, span_notice("The reactor requires a fuel cell before you can turn it on."))
+		user.balloon_alert(user, "The reactor requires a fuel cell before you can turn it on")
 		return FALSE
 	if(fusion_cell.fuel_amount == 0)
-		user.balloon_alert(user, "The reactor flashes that the fuel cell is empty.")
-		to_chat(user, span_warning("The reactor flashes that the fuel cell is empty."))
+		user.balloon_alert(user, "The reactor flashes that the fuel cell is empty")
 		return FALSE
 
 	if(fusion_cell.fuel_amount <= 10)
 		user.balloon_alert(user, "<b>[src]</b>: Fuel levels critically low.")
 		to_chat(user, "[icon2html(src, user)] [span_warning("<b>[src]</b>: Fuel levels critically low.")]")
-	src.balloon_alert_to_viewers("<b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...")
-	visible_message("[icon2html(src, viewers(src))] [span_warning("<b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...")]")
+	src.balloon_alert_to_viewers("<b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion")
 	fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
 
 	is_on = TRUE
@@ -160,18 +149,15 @@
 	. = ..()
 	if(istype(I, /obj/item/fuelCell))
 		if(is_on)
-			user.balloon_alert(user, "The [src] needs to be turned off first.")
-			to_chat(user, span_warning("The [src] needs to be turned off first."))
+			user.balloon_alert(user, "The [src] needs to be turned off first")
 			return
 		if(fusion_cell)
-			user.balloon_alert(user, "You need to remove the fuel cell from [src] first.")
-			to_chat(user, span_warning("You need to remove the fuel cell from [src] first."))
+			user.balloon_alert(user, "You need to remove the fuel cell from [src] first")
 			return
 		if(user.transferItemToLoc(I, src))
 			fusion_cell = I
 			update_icon()
-			user.balloon_alert(user, "You load the [src] with the [I].")
-			to_chat(user, span_notice("You load the [src] with the [I]."))
+			user.balloon_alert(user, "You load the [src] with the [I]")
 		return TRUE
 	else
 		return ..()
@@ -181,27 +167,21 @@
 		var/obj/item/tool/weldingtool/WT = O
 		if(WT.remove_fuel(1, user))
 			if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-				user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s internals.", ignored_mobs = user)
-				user.balloon_alert(user, "You fumble around figuring out [src]'s internals.")
-				user.visible_message(span_notice("[user] fumbles around figuring out [src]'s internals."),
-				span_notice("You fumble around figuring out [src]'s internals."))
+				user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s internals", ignored_mobs = user)
+				user.balloon_alert(user, "You fumble around figuring out [src]'s internals")
 				var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 					return FALSE
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-			user.balloon_alert_to_viewers("[user] starts welding [src]'s internal damage.", ignored_mobs = user)
-			user.balloon_alert(user, "You start welding [src]'s internal damage.")
-			user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
-			span_notice("You start welding [src]'s internal damage."))
+			user.balloon_alert_to_viewers("[user] starts welding [src]'s internal damage", ignored_mobs = user)
+			user.balloon_alert(user, "You start welding [src]'s internal damage")
 			if(do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on)
 					return FALSE
 				playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 				buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
-				user.balloon_alert_to_viewers("[user] welds [src]'s internal damage.", ignored_mobs = user)
-				user.balloon_alert(user, "You weld [src]'s internal damage.")
-				user.visible_message(span_notice("[user] welds [src]'s internal damage."),
-				span_notice("You weld [src]'s internal damage."))
+				user.balloon_alert_to_viewers("[user] welds [src]'s internal damage", ignored_mobs = user)
+				user.balloon_alert(user, "You weld [src]'s internal damage")
 				update_icon()
 				return TRUE
 		else
@@ -211,51 +191,41 @@
 /obj/machinery/power/fusion_engine/wirecutter_act(mob/living/user, obj/item/O)
 	if(buildstate == FUSION_ENGINE_MEDIUM_DAMAGE && !is_on)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s internals.", ignored_mobs = user)
-			user.balloon_alert(user, "You fumble around figuring out [src]'s internals.")
-			user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring."),
-			span_notice("You fumble around figuring out [src]'s wiring."))
+			user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s internals", ignored_mobs = user)
+			user.balloon_alert(user, "You fumble around figuring out [src]'s internals")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		user.balloon_alert_to_viewers("[user] starts securing [src]'s wiring.", ignored_mobs = user)
-		user.balloon_alert(user, "You start securing [src]'s wiring.")
-		user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
-		span_notice("You start securing [src]'s wiring."))
+		user.balloon_alert_to_viewers("[user] starts securing [src]'s wiring", ignored_mobs = user)
+		user.balloon_alert(user, "You start securing [src]'s wiring")
 		if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD) || buildstate != FUSION_ENGINE_MEDIUM_DAMAGE || is_on)
 			return FALSE
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		buildstate = FUSION_ENGINE_LIGHT_DAMAGE
-		user.balloon_alert_to_viewers("[user] secures [src]'s wiring.", ignored_mobs = user)
-		user.balloon_alert(user, "You secure [src]'s wiring.")
-		user.visible_message(span_notice("[user] secures [src]'s wiring."),
-		span_notice("You secure [src]'s wiring."))
+		user.balloon_alert_to_viewers("[user] secures [src]'s wiring", ignored_mobs = user)
+		user.balloon_alert(user, "You secure [src]'s wiring")
 		update_icon()
 		return TRUE
 
 /obj/machinery/power/fusion_engine/wrench_act(mob/living/user, obj/item/O)
 	if(buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s internals.", ignored_mobs = user)
-			user.balloon_alert(user, "You fumble around figuring out [src]'s internals.")
-			user.visible_message(span_notice("[user] fumbles around figuring out [src]'s tubing and plating."),
-			span_notice("You fumble around figuring out [src]'s tubing and plating."))
+			user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s internals", ignored_mobs = user)
+			user.balloon_alert(user, "You fumble around figuring out [src]'s internals")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		user.balloon_alert_to_viewers("[user] starts repairing [src]'s tubing and plating.", ignored_mobs = user)
+		user.balloon_alert_to_viewers("[user] starts repairing [src]'s tubing and plating", ignored_mobs = user)
 		user.balloon_alert(user, "You start repairing [src]'s tubing and plating.")
 		user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 		span_notice("You start repairing [src]'s tubing and plating."))
 		if(do_after(user, 150, TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_LIGHT_DAMAGE && !is_on)
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			buildstate = FUSION_ENGINE_NO_DAMAGE
-			user.balloon_alert_to_viewers("[user] repairs [src]'s tubing and plating.", ignored_mobs = user)
-			user.balloon_alert(user, "You repair [src]'s tubing and plating.")
-			user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
-			span_notice("You repair [src]'s tubing and plating."))
+			user.balloon_alert_to_viewers("[user] repairs [src]'s tubing and plating", ignored_mobs = user)
+			user.balloon_alert(user, "You repair [src]'s tubing and plating")
 			update_icon()
 			return TRUE
 
@@ -273,23 +243,18 @@
 		to_chat(user, span_warning("There is no cell to remove."))
 	else
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-			user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s internals.", ignored_mobs = user)
-			user.balloon_alert(user, "You fumble around figuring out [src]'s internals.")
-			user.visible_message(span_warning("[user] fumbles around figuring out [src]'s fuel receptacle."),
-			span_warning("You fumble around figuring out [src]'s fuel receptacle."))
+			user.balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s internals", ignored_mobs = user)
+			user.balloon_alert(user, "You fumble around figuring out [src]'s internals")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return FALSE
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-		user.balloon_alert_to_viewers("[user] starts prying [src]'s fuel receptacle open.", ignored_mobs = user)
-		user.balloon_alert(user, "You start prying [src]'s fuel receptacle open.")
-		user.visible_message(span_notice("[user] starts prying [src]'s fuel receptacle open."),
+		user.balloon_alert_to_viewers("[user] starts prying [src]'s fuel receptacle open", ignored_mobs = user)
+		user.balloon_alert(user, "You start prying [src]'s fuel receptacle open")
 		span_notice("You start prying [src]'s fuel receptacle open."))
 		if(do_after(user, 100, TRUE, src, BUSY_ICON_BUILD) && buildstate == FUSION_ENGINE_NO_DAMAGE && !is_on && fusion_cell)
-			user.balloon_alert_to_viewers("[user] pries [src]'s fuel receptacle open and removes the cell.", ignored_mobs = user)
-			user.balloon_alert(user, "You pry [src]'s fuel receptacle open and remove the cell..")
-			user.visible_message(span_notice("[user] pries [src]'s fuel receptacle open and removes the cell."),
-			span_notice("You pry [src]'s fuel receptacle open and remove the cell.."))
+			user.balloon_alert_to_viewers("[user] pries [src]'s fuel receptacle open and removes the cell", ignored_mobs = user)
+			user.balloon_alert(user, "You pry [src]'s fuel receptacle open and remove the cell")
 			fusion_cell.update_icon()
 			user.put_in_hands(fusion_cell)
 			fusion_cell = null

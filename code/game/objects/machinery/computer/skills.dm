@@ -28,8 +28,7 @@
 			return
 		I.forceMove(src)
 		scan = I
-		balloon_alert(usr, "You insert [I].")
-		to_chat(user, "You insert [I].")
+		balloon_alert(usr, "You insert [I]")
 
 
 /obj/machinery/computer/skills/interact(mob/user)

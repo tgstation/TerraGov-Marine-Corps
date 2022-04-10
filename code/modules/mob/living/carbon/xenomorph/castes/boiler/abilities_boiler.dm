@@ -67,7 +67,6 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		if((X.ammo.type == /datum/ammo/xeno/boiler_gas/corrosive && X.neuro_ammo==0) || (X.ammo.type == /datum/ammo/xeno/boiler_gas && X.corrosive_ammo==0))
 			if (!silent)
 				X.balloon_alert(X, "We won't be able to carry this kind of globule")
-				to_chat(X, span_warning("We won't be able to carry this kind of globule"))
 			return FALSE
 
 /datum/action/xeno_action/toggle_bomb/action_activate()
@@ -89,7 +88,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return
 	if(length(X.xeno_caste.spit_types) <= 2)	//If we only have two or less glob types, we just use default select anyways.
 		action_activate()
-		return 
+		return
 	INVOKE_ASYNC(src, .proc/select_glob_radial)
 
 /**
@@ -105,7 +104,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		if(!glob_image)
 			continue
 		available_globs[initial(glob_type.icon_key)] = glob_image
-			
+
 	var/glob_choice = show_radial_menu(owner, owner, available_globs, radius = 48)
 	if(!glob_choice)
 		return
@@ -138,25 +137,21 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
 	if(X.is_zoomed)
-		X.balloon_alert(X, "We can not prepare globules as we are now. We must stop concentrating into the distance!")
-		to_chat(X, span_notice("We can not prepare globules as we are now. We must stop concentrating into the distance!"))
+		X.balloon_alert(X, "We must stop concentrating into the distance")
 		return
 
 	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
 	if(current_ammo >= X.xeno_caste.max_ammo)
-		X.balloon_alert(X, "We can carry no more globules.")
-		to_chat(X, span_notice("We can carry no more globules."))
+		X.balloon_alert(X, "We can carry no more globules")
 		return
 
 	succeed_activate()
 	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		X.corrosive_ammo++
-		X.balloon_alert(X, "We prepare a corrosive acid globule.")
-		to_chat(X, span_notice("We prepare a corrosive acid globule."))
+		X.balloon_alert(X, "We prepare a corrosive acid globule")
 	else
 		X.neuro_ammo++
-		X.balloon_alert(X, "We prepare a neurotoxic gas globule.")
-		to_chat(X, span_notice("We prepare a neurotoxic gas globule."))
+		X.balloon_alert(X, "We prepare a neurotoxic gas globule")
 	X.update_boiler_glow()
 	update_button_icon()
 
@@ -183,8 +178,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	return X.xeno_caste.bomb_delay - ((X.neuro_ammo + X.corrosive_ammo) * X.xeno_caste.ammo_multiplier)
 
 /datum/action/xeno_action/activable/bombard/on_cooldown_finish()
-	owner.balloon_alert(owner, "We are able to bombard an area again.")
-	to_chat(owner, span_notice("We feel your toxin glands swell. We are able to bombard an area again."))
+	owner.balloon_alert(owner, "We are able to bombard an area again")
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.selected_ability == src)
 		X.set_bombard_pointer()
@@ -194,14 +188,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
 	if(current_ammo <= 0)
-		X.balloon_alert(X, "We have nothing prepared to fire.")
-		to_chat(X, span_notice("We have nothing prepared to fire."))
+		X.balloon_alert(X, "We have nothing prepared to fire")
 		return FALSE
 
-	X.balloon_alert_to_viewers("\The [X] begins digging their claws into the ground.", ignored_mobs = X)
-	X.balloon_alert(X, "We begin digging ourselves into place.")
-	X.visible_message(span_notice("\The [X] begins digging their claws into the ground."), \
-	span_notice("We begin digging ourselves into place."), null, 5)
+	X.balloon_alert_to_viewers("\The [X] begins digging their claws into the ground", ignored_mobs = X)
+	X.balloon_alert(X, "We begin digging ourselves into place")
 	if(!do_after(X, 3 SECONDS, FALSE, null, BUSY_ICON_HOSTILE))
 		on_deactivation()
 		X.selected_ability = null
@@ -209,10 +200,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		X.reset_bombard_pointer()
 		return FALSE
 
-	X.balloon_alert_to_viewers("\The [X] digs itself into the ground!", ignored_mobs = X)
-	X.balloon_alert(X, "We dig ourselves into place! If we move, we must wait again to fire.")
-	X.visible_message(span_notice("\The [X] digs itself into the ground!"), \
-		span_notice("We dig ourselves into place! If we move, we must wait again to fire."), null, 5)
+	X.balloon_alert_to_viewers("\The [X] digs itself into the ground", ignored_mobs = X)
+	X.balloon_alert(X, "We dig ourselves into place")
 	X.set_bombard_pointer()
 	RegisterSignal(X, COMSIG_MOB_ATTACK_RANGED, /datum/action/xeno_action/activable/bombard/proc.on_ranged_attack)
 
@@ -221,8 +210,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 	if(X.selected_ability == src)
 		X.reset_bombard_pointer()
-		X.balloon_alert(X, "We dig ourselves into place! If we move, we must wait again to fire.")
-		to_chat(X, span_notice("We relax our stance."))
+		X.balloon_alert(X, "We relax our stance")
 	UnregisterSignal(X, COMSIG_MOB_ATTACK_RANGED)
 
 
@@ -258,12 +246,10 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	if(!isturf(T) || T.z != S.z)
 		if(!silent)
 			owner.balloon_alert(owner, "This is not a valid target.")
-			to_chat(owner, span_warning("This is not a valid target."))
 		return FALSE
 	if(get_dist(T, S) <= 5) //Magic number
 		if(!silent)
 			owner.balloon_alert(owner, "We are too close!")
-			to_chat(owner, span_warning("We are too close! We must be at least 7 meters from the target due to the trajectory arc."))
 		return FALSE
 
 /datum/action/xeno_action/activable/bombard/use_ability(atom/A)
@@ -275,30 +261,24 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		if(X.corrosive_ammo <= 0)
-			X.balloon_alert(X, "We have no corrosive globules available.")
-			to_chat(X, span_warning("We have no corrosive globules available."))
+			X.balloon_alert(X, "We have no corrosive globules available")
 			return
 	else
 		if(X.neuro_ammo <= 0)
-			X.balloon_alert(X, "We have no neurotoxin globules available.")
-			to_chat(X, span_warning("We have no neurotoxin globules available."))
+			X.balloon_alert(X, "We have no neurotoxin globules available")
 			return
 
-	X.balloon_alert(X, "We begin building up pressure.")
-	to_chat(X, span_xenonotice("We begin building up pressure."))
+	X.balloon_alert(X, "We begin building up pressure")
 
 	if(!do_after(X, 2 SECONDS, FALSE, target, BUSY_ICON_DANGER))
-		X.balloon_alert(X, "We decide not to launch.")
-		to_chat(X, span_warning("We decide not to launch."))
+		X.balloon_alert(X, "We decide not to launch")
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE, XACT_IGNORE_PLASMA))
 		return fail_activate()
 
-	X.balloon_alert_to_viewers("\The [X] launches a huge glob of acid hurling into the distance!", ignored_mobs = X)
-	X.balloon_alert(X, "We launch a huge glob of acid hurling into the distance!")
-	X.visible_message(span_xenowarning("\The [X] launches a huge glob of acid hurling into the distance!"), \
-	span_xenowarning("We launch a huge glob of acid hurling into the distance!"), null, 5)
+	X.balloon_alert_to_viewers("\The [X] launches a huge glob of acid hurling into the distance", ignored_mobs = X)
+	X.balloon_alert(X, "We launch a huge glob of acid hurling into the distance")
 
 	var/obj/projectile/P = new /obj/projectile(X.loc)
 	P.generate_bullet(X.ammo)

@@ -261,8 +261,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(activate(user)) //success
 			playsound(user, activation_sound, 15, 1)
 	else
-		user.balloon_alert(user, "[G] must be in our hands to do this.")
-		to_chat(user, span_warning("[G] must be in our hands to do this."))
+		user.balloon_alert(user, "[G] must be in our hands to do this")
 
 /obj/item/attachable/hydro_cannon/ui_action_click(mob/living/user, datum/action/item_action/action, obj/item/weapon/gun/G)
 	if(G == user.get_active_held_item() || G == user.get_inactive_held_item() || CHECK_BITFIELD(G.flags_item, IS_DEPLOYED))
@@ -328,8 +327,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	sharp = IS_SHARP_ITEM_ACCURATE
 
 /obj/item/attachable/bayonet/screwdriver_act(mob/living/user, obj/item/I)
-	user.balloon_alert(user, "You modify the bayonet back into a combat knife.")
-	to_chat(user, span_notice("You modify the bayonet back into a combat knife."))
+	user.balloon_alert(user, "You modify the bayonet back into a combat knife")
 	if(loc == user)
 		user.dropItemToGround(src)
 	var/obj/item/weapon/combat_knife/knife = new(loc)
@@ -578,8 +576,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	. = ..()
 
 	if(istype(I,/obj/item/tool/screwdriver))
-		user.balloon_alert(user, "You modify the rail flashlight back into a normal flashlight.")
-		to_chat(user, span_notice("You modify the rail flashlight back into a normal flashlight."))
+		user.balloon_alert(user, "You modify the rail flashlight back into a normal flashlight")
 		if(loc == user)
 			user.temporarilyRemoveItemFromInventory(src)
 		var/obj/item/flashlight/F = new(user)
@@ -718,8 +715,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 
 	if(!(master_gun.flags_item & WIELDED) && !CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED))
 		if(user)
-			user.balloon_alert(user, "You must hold [master_gun] with two hands to use [src].")
-			to_chat(user, span_warning("You must hold [master_gun] with two hands to use [src]."))
+			user.balloon_alert(user, "You must hold [master_gun] with two hands to use [src]")
 		return FALSE
 	if(CHECK_BITFIELD(master_gun.flags_item, IS_DEPLOYED) && user.dir != master_gun.loc.dir)
 		user.setDir(master_gun.loc.dir)
@@ -1269,8 +1265,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/bipod/activate(mob/living/user, turn_off)
 	if(bipod_deployed)
 		bipod_deployed = FALSE
-		to_chat(user, span_notice("You retract [src]."))
-		user.balloon_alert(user, ("You retract [src]."))
+		user.balloon_alert(user, ("You retract [src]"))
 		master_gun.aim_slowdown -= 1
 		master_gun.wield_delay -= 0.4 SECONDS
 		master_gun.accuracy_mult -= deployment_accuracy_mod
@@ -1293,8 +1288,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(bipod_deployed)
 			return
 		bipod_deployed = TRUE
-		user.balloon_alert(user, "You deploy [src].")
-		to_chat(user, span_notice("You deploy [src]."))
+		user.balloon_alert(user, "You deploy [src]")
 		master_user = user
 		RegisterSignal(master_user, COMSIG_MOVABLE_MOVED, .proc/retract_bipod)
 		RegisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED), .proc/retract_bipod)
@@ -1321,8 +1315,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!ismob(source))
 		return
 	INVOKE_ASYNC(src, .proc/activate, source, TRUE)
-	balloon_alert(source, "Losing support, the bipod retracts!")
-	to_chat(source, span_warning("Losing support, the bipod retracts!"))
+	balloon_alert(source, "Losing support, the bipod retracts")
 	playsound(source, 'sound/machines/click.ogg', 15, 1, 4)
 
 
@@ -1366,10 +1359,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		if(!do_after(user, 0.5 SECONDS, TRUE, src, BUSY_ICON_BAR))
 			return
 		user.balloon_alert(user, "You deploy the [src].")
-		to_chat(user, span_notice("You deploy the [src]."))
 		ENABLE_BITFIELD(master_gun.flags_item, NODROP)
-		user.balloon_alert(user, "You feel the [src] shut around your wrist!")
-		to_chat(user, span_warning("You feel the [src] shut around your wrist!"))
+		user.balloon_alert(user, "You feel the [src] shut around your wrist")
 		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
 		icon_state = "lace-on"
 
@@ -1407,15 +1398,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/hydro_cannon/activate(attached_item, mob/living/user, turn_off)
 	if(is_active)
 		if(user)
-			user.balloon_alert(user, "You are no longer using [src].")
-			to_chat(user, span_notice("You are no longer using [src]."))
+			user.balloon_alert(user, "You are no longer using [src]")
 		is_active = FALSE
 		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		. = FALSE
 	else
 		if(user)
-			user.balloon_alert(user, "You are now using [src].")
-			to_chat(user, span_notice("You are now using [src]."))
+			user.balloon_alert(user, "You are now using [src]"))
 		is_active = TRUE
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		. = TRUE
@@ -1622,16 +1611,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	switch(fire_mode)
 		if("right")
 			fire_mode = "middle"
-			user.balloon_alert(user, "[master_gun] will now fire on a 'middle click'.")
-			to_chat(user, span_notice("[master_gun] will now fire on a 'middle click'."))
+			user.balloon_alert(user, "[master_gun] will now fire on a 'middle click'")
 		if("middle")
 			fire_mode = "left"
-			user.balloon_alert(user, "[master_gun] will now fire on a 'left click'.")
-			to_chat(user, span_notice("[master_gun] will now fire on a 'left click'."))
+			user.balloon_alert(user, "[master_gun] will now fire on a 'left click'")
 		if("left")
 			fire_mode = "right"
-			user.balloon_alert(user, "[master_gun] will now fire on a 'right click'.")
-			to_chat(user, span_notice("[master_gun] will now fire on a 'right click'."))
+			user.balloon_alert(user, "[master_gun] will now fire on a 'right click'")
 
 ///Reloads the gun
 /obj/item/attachable/shoulder_mount/proc/reload_gun(datum/source, obj/item/attacking_item, mob/living/user)
@@ -1753,13 +1739,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		set_gun_user(null)
 		overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 		user.balloon_alert(user, "You stop using [src].")
-		to_chat(user, span_notice("You stop using [src]."))
 	else
 		master_gun.active_attachable = src
 		set_gun_user(master_gun.gun_user)
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		user.balloon_alert(user, "You start using [src].")
-		to_chat(user, span_notice("You start using [src]."))
 	for(var/action_to_update in master_gun.actions)
 		var/datum/action/action = action_to_update
 		action.update_button_icon()

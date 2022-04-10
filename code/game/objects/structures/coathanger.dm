@@ -28,7 +28,6 @@
 
 	if(!(I.type in allowed) || coat)
 		user.balloon_alert(user, "You cannot hang [I] on [src]")
-		to_chat(user, span_notice("You cannot hang [I] on [src]"))
 		return
 
 	user.visible_message("[user] hangs [I] on \the [src].", "You hang [I] on the \the [src]")

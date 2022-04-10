@@ -80,8 +80,7 @@
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			reagentnames += ";[R.name]"
 
-		user.balloon_alert(user, "You attach \the [I] to \the [src].")
-		to_chat(user, "You attach \the [I] to \the [src].")
+		user.balloon_alert(user, "You attach \the [I] to \the [src]")
 		update_icon()
 
 

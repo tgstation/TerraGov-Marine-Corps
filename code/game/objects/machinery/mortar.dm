@@ -97,9 +97,8 @@
 			new_name = params["name"]
 			last_three_inputs["coords_three"]["name"] = new_name
 	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
-		usr.visible_message(span_notice("[usr] adjusts [src]'s firing angle and distance."),
-		span_notice("You adjust [src]'s firing angle and distance to match the new coordinates."))
-		balloon_alert(usr, "You adjust [src]'s firing angle and distance to match the new coordinates!")
+		usr.visible_message(span_notice("[usr] adjusts [src]'s firing angle and distance"),
+		balloon_alert(usr, "You adjust [src]'s firing angle and distance to the new coordinates")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 		// allows for offsetting using the dial, I had accidentally misplaced this.
 		var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
@@ -141,45 +140,38 @@
 		var/obj/item/mortal_shell/mortar_shell = I
 
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-			user.balloon_alert(user, "Your programming restricts operating heavy weaponry.")
-			to_chat(user, span_warning("Your programming restricts operating heavy weaponry."))
+			user.balloon_alert(user, "Your programming restricts operating weaponry")
 			return
 
 		if(busy)
-			user.balloon_alert(user, "Someone else is currently using [src].")
-			to_chat(user, span_warning("Someone else is currently using [src]."))
+			user.balloon_alert(user, "Someone else is currently using it")
 			return
 
 		if(!is_ground_level(z))
-			user.balloon_alert(user, "You cannot fire [src] here.")
-			to_chat(user, span_warning("You cannot fire [src] here."))
+			user.balloon_alert(user, "You cannot fire [src] here")
 			return
 
 		if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
-			user.balloon_alert(user, "[src] needs to be aimed first.")
-			to_chat(user, span_warning("[src] needs to be aimed first."))
+			user.balloon_alert(user, "[src] needs to be aimed first")
 			return
 
 		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
 		if(get_dist(loc, selfown) < 7)
-			user.balloon_alert(user, "You cannot target this coordinate, it is too close to your mortar.")
-			to_chat(user, span_warning("You cannot target this coordinate, it is too close to your mortar."))
+			user.balloon_alert(user, "Too close to your mortar")
 			return
 
 		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
 		if(!isturf(T))
-			user.balloon_alert(user, "You cannot fire [src] to this target.")
-			to_chat(user, span_warning("You cannot fire [src] to this target."))
+			user.balloon_alert(user, "You cannot fire at this target")
 			return
 
 		var/area/A = get_area(T)
 		if(istype(A) && A.ceiling >= CEILING_UNDERGROUND)
-			user.balloon_alert(user, "You cannot hit the target. It is probably underground.")
-			to_chat(user, span_warning("You cannot hit the target. It is probably underground."))
+			user.balloon_alert(user, "You cannot hit the target")
 			return
 
-		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
-		span_notice("You start loading \a [mortar_shell.name] into [src]."))
+		user.balloon_alert_to_viewers("[user] starts loading \a [mortar_shell.name]", ignored_mobs = user)
+		user.balloon_alert(user, "You start loading \a [mortar_shell.name]")
 		playsound(loc, 'sound/weapons/guns/interact/mortar_reload.ogg', 50, 1)
 		busy = TRUE
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_HOSTILE))
@@ -188,8 +180,8 @@
 
 		busy = FALSE
 
-		user.visible_message(span_notice("[user] loads \a [mortar_shell.name] into [src]."),
-		span_notice("You load \a [mortar_shell.name] into [src]."))
+		user.balloon_alert_to_viewers("[user] loads [src] with \a [mortar_shell.name]", ignored_mobs = user)
+		user.balloon_alert(user, "You load [src] with a mortar shell")
 		visible_message("[icon2html(src, viewers(src))] [span_danger("The [name] fires!")]")
 		user.transferItemToLoc(mortar_shell, src)
 		playsound(loc, 'sound/weapons/guns/fire/mortar_fire.ogg', 50, 1)
@@ -211,11 +203,9 @@
 	var/obj/item/binoculars/tactical/binocs = I
 	playsound(src, 'sound/effects/binoctarget.ogg', 35)
 	if(binocs.set_mortar(src))
-		user.balloon_alert(user, "You link the mortar to the [binocs] allowing for remote targeting.")
-		to_chat(user, span_notice("You link the mortar to the [binocs] allowing for remote targeting."))
+		user.balloon_alert(user, "You link the mortar to the [binocs]")
 		return
-	user.balloon_alert(user, "You disconnect the [binocs] from their linked mortar.")
-	to_chat(user, "<span class='notice'>You disconnect the [binocs] from their linked mortar.")
+	user.balloon_alert(user, "You disconnect the [binocs] from their linked mortar")
 
 ///Proc called by tactical binoculars to send targeting information.
 /obj/machinery/deployable/mortar/proc/recieve_target(turf/T, binocs, mob/user)
@@ -233,12 +223,11 @@
 /obj/machinery/deployable/mortar/wrench_act(mob/living/user, obj/item/I)
 
 	if(busy)
-		user.balloon_alert(user, "Someone else is currently using [src].")
-		to_chat(user, span_warning("Someone else is currently using [src]."))
+		user.balloon_alert(user, "Someone else is currently using [src]")
 		return
 
 	if(firing)
-		user.balloon_alert(user, "[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.")
+		user.balloon_alert(user, "[src]'s barrel is still steaming hot. Wait a few seconds.")
 		to_chat(user, span_warning("[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it."))
 		return
 
@@ -267,8 +256,7 @@
 /obj/item/mortar_kit/unique_action(mob/user)
 	var/area/current_area = get_area(src)
 	if(current_area.ceiling >= CEILING_METAL)
-		user.balloon_alert(user, "You can't deploy [src] indoors.")
-		to_chat(user, span_warning("You probably shouldn't deploy [src] indoors."))
+		user.balloon_alert(user, "You can't deploy [src] indoors")
 		return
 	return ..()
 

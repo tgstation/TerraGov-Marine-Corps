@@ -43,8 +43,7 @@
 	icon_state = initial(icon_state)
 	user.update_inv_glasses()
 	if(!silent)
-		user.balloon_alert(user, "You activate the optical matrix on [src].")
-		to_chat(user, "You activate the optical matrix on [src].")
+		user.balloon_alert(user, "You activate the optical matrix on [src]")
 		playsound(user, 'sound/items/googles_on.ogg', 15)
 
 
@@ -53,8 +52,7 @@
 	icon_state = deactive_state
 	user.update_inv_glasses()
 	if(!silent)
-		user.balloon_alert(user, "You deactivate the optical matrix on [src].")
-		to_chat(user, "You deactivate the optical matrix on [src].")
+		user.balloon_alert(user, "You deactivate the optical matrix on [src]")
 		playsound(user, 'sound/items/googles_off.ogg', 15)
 
 
@@ -76,8 +74,7 @@
 
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medpatch/P = new
-		user.balloon_alert(user, "You fasten the medical hud projector to the inside of the eyepatch.")
-		to_chat(user, span_notice("You fasten the medical hud projector to the inside of the eyepatch."))
+		user.balloon_alert(user, "You fasten the medical hud projector to the eyepatch")
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
@@ -112,8 +109,7 @@
 
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		var/obj/item/clothing/glasses/hud/medglasses/P = new
-		user.balloon_alert(user, "You fasten the medical hud projector to the inside of the glasses.")
-		to_chat(user, span_notice("You fasten the medical hud projector to the inside of the glasses."))
+		user.balloon_alert(user, "You fasten the medical hud projector to the glasses")
 		qdel(I)
 		qdel(src)
 		user.put_in_hands(P)
@@ -161,15 +157,13 @@
 	if(istype(I, /obj/item/clothing/glasses/hud/health))
 		if(prescription)
 			var/obj/item/clothing/glasses/hud/medgoggles/prescription/P = new
-			user.balloon_alert(user, "You fasten the medical hud projector to the inside of the glasses.")
-			to_chat(user, span_notice("You fasten the medical hud projector to the inside of the goggles."))
+			user.balloon_alert(user, "You fasten the medical hud projector to the glasses")
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(P)
 		else
 			var/obj/item/clothing/glasses/hud/medgoggles/S = new
-			user.balloon_alert(user, "You fasten the medical hud projector to the inside of the glasses.")
-			to_chat(user, span_notice("You fasten the medical hud projector to the inside of the goggles."))
+			user.balloon_alert(user, "You fasten the medical hud projector to the glasses")
 			qdel(I)
 			qdel(src)
 			user.put_in_hands(S)
@@ -238,8 +232,7 @@
 	else
 		flip_down()
 	if(user)
-		user.balloon_alert(user, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
-		to_chat(usr, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"].")
+		user.balloon_alert(user, "You [active ? "flip [src] down to protect your eyes" : "push [src] up out of your face"]")
 
 	update_clothing_icon()
 

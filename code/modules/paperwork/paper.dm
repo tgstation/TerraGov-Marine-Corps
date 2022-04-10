@@ -66,8 +66,7 @@
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
-		balloon_alert(user, "It is too far away to read.")
-		to_chat(user, span_notice("It is too far away to read."))
+		balloon_alert(user, "It is too far away to read")
 
 
 /obj/item/paper/verb/rename()
@@ -293,8 +292,7 @@
 			B.name = I.name
 		user.dropItemToGround(I)
 		user.dropItemToGround(src)
-		balloon_alert(user, "You clip \the [I] to [src].")
-		to_chat(user, span_notice("You clip \the [I] to [src]."))
+		balloon_alert(user, "You clip \the [I] to [src]")
 		B.attach_doc(src, user, TRUE)
 		B.attach_doc(I, user, TRUE)
 		user.put_in_hands(B)

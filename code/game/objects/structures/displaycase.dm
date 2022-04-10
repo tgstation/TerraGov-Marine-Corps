@@ -34,14 +34,12 @@
 
 	if(destroyed && occupied)
 		user.balloon_alert(user, "You deactivate the hover field built into the case.")
-		to_chat(user, span_notice("You deactivate the hover field built into the case."))
 		occupied = FALSE
 		update_icon()
 		return
 
-	balloon_alert_to_viewers("[user] kicks the display case.", ignored_mobs = user)
+	balloon_alert_to_viewers("[user] kicks the display case", ignored_mobs = user)
 	user.balloon_alert(user, "You kick the display case.")
-	visible_message(span_warning("[user] kicks the display case."), span_notice("You kick the display case."))
 	take_damage(2)
 
 //Quick destroyed case.

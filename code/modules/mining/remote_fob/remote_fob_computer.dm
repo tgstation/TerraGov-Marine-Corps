@@ -96,7 +96,6 @@
 		return
 	if(!allowed(user))
 		user.balloon_alert(user, "Access Denied!")
-		to_chat(user, span_warning("Access Denied!"))
 		return
 	if(!drone_creation_allowed)
 		to_chat(user, span_notice("Communication with the drone impossible due to fuel-residue in deployment zone atmosphere."))
@@ -107,13 +106,11 @@
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz1) in SSshuttle.stationary
 			if(!spawn_spot)
 				user.balloon_alert(user, "No valid location for drone deployment found.")
-				to_chat(user, span_warning("No valid location for drone deployment found."))
 				return
 		if("LZ2")
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz2) in SSshuttle.stationary
 			if(!spawn_spot)
 				user.balloon_alert(user, "No valid location for drone deployment found.")
-				to_chat(user, span_warning("No valid location for drone deployment found."))
 				return
 		else
 			return

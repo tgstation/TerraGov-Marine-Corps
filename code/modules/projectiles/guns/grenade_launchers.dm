@@ -57,8 +57,7 @@ The Grenade Launchers
 	if(!.)
 		return FALSE
 	if(get_dist(target, gun_user) <= 2)
-		gun_user.balloon_alert(gun_user, "[src] beeps a warning noise. You are too close!")
-		to_chat(gun_user, span_warning("[src] beeps a warning noise. You are too close!"))
+		gun_user.balloon_alert(gun_user, "You are too close")
 		return FALSE
 
 

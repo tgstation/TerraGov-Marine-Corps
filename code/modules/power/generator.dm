@@ -78,8 +78,7 @@
 
 	if(iswrench(I))
 		anchored = !anchored
-		balloon_alert(user, "You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.")
-		to_chat(user, span_notice("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
+		balloon_alert(user, "You [anchored ? "secure" : "unsecure"] the bolts")
 		use_power = anchored
 		reconnect()
 

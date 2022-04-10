@@ -152,12 +152,9 @@
 		return ..()
 	if(!M.can_be_facehugged(src, provoked = TRUE))
 		balloon_alert(src, "The facehugger refuses to attach.")
-		to_chat(user, span_warning("The facehugger refuses to attach."))
 		return ..()
-	balloon_alert_to_viewers("\ [user] attempts to plant [src] on [M]'s face!", ignored_mobs = user)
-	user.balloon_alert(user, "We attempt to plant [src] on [M]'s face!")
-	user.visible_message(span_warning("\ [user] attempts to plant [src] on [M]'s face!"), \
-	span_warning("We attempt to plant [src] on [M]'s face!"))
+	balloon_alert_to_viewers("\ [user] attempts to plant [src] on [M]'s face", ignored_mobs = user)
+	user.balloon_alert(user, "We attempt to plant [src] on [M]'s face")
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
 		if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_DANGER))
 			return
@@ -172,10 +169,7 @@
 	if(ishuman(user))
 		if(stat == DEAD)
 			return
-		balloon_alert_to_viewers("[user] crushes \the [src] in [user.p_their()] hand!", ignored_mobs = user)
-		user.balloon_alert(user, "You crush \the [src] in your hand!")
-		user.visible_message("<span class ='warning'>[user] crushes \the [src] in [user.p_their()] hand!", \
-		"<span class ='warning'>You crush \the [src] in your hand!")
+		balloon_alert_to_viewers("[user] crushes \the [src] in [user.p_their()] hand", ignored_mobs = user)
 		kill_hugger()
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)

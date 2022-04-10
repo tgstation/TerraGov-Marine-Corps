@@ -211,14 +211,10 @@
 			if(on_fire)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 				ExtinguishMob()
-				X.balloon_alert_to_viewers("[X] effortlessly extinguishes the fire on [src]!", ignored_mobs = X)
+				X.balloon_alert_to_viewers("[X] effortlessly extinguishes the fire on [src]", ignored_mobs = X)
 				X.balloon_alert(X, "We extinguished the fire on [src].")
-				X.visible_message(span_danger("[X] effortlessly extinguishes the fire on [src]!"),
-					span_notice("We extinguished the fire on [src]."), null, 5)
 				return TRUE
-			X.balloon_alert_to_viewers("\The [X] caresses [src] with its scythe-like arm.", ignored_mobs = X)
-			X.visible_message(span_notice("\The [X] caresses [src] with its scythe-like arm."), \
-			span_notice("We caress [src] with our scythe-like arm."), null, 5)
+			X.balloon_alert_to_viewers("\The [X] caresses [src] with its scythe-like arm", ignored_mobs = X)
 			return FALSE
 
 		if(INTENT_GRAB)
@@ -229,7 +225,5 @@
 	return FALSE
 
 /mob/living/attack_larva(mob/living/carbon/xenomorph/larva/M)
-	balloon_alert_to_viewers("[M] nudges its head against [src].", ignored_mobs = M)
-	M.balloon_alert(M, "We nudge our head against [src].")
-	M.visible_message(span_danger("[M] nudges its head against [src]."), \
-	span_danger("We nudge our head against [src]."), null, 5)
+	balloon_alert_to_viewers("[M] nudges its head against [src]", ignored_mobs = M)
+	M.balloon_alert(M, "We nudge our head against [src]")

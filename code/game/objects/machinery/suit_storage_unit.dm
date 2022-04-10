@@ -243,8 +243,7 @@
 		if(!user.transferItemToLoc(S, src))
 			return
 
-		user.balloon_alert(user, "You load the [S.name] into the storage compartment.")
-		to_chat(user, span_notice("You load the [S.name] into the storage compartment."))
+		user.balloon_alert(user, "You load the [S.name] into the storage compartment")
 		inserted_suit = S
 
 	else if(istype(I,/obj/item/clothing/head/helmet))
@@ -256,8 +255,7 @@
 		if(!user.transferItemToLoc(H, src))
 			return
 
-		user.balloon_alert(user, "You load the [H.name] into the storage compartment.")
-		to_chat(user, span_notice("You load the [H.name] into the storage compartment."))
+		user.balloon_alert(user, "You load the [H.name] into the storage compartment")
 		inserted_helmet = H
 
 	else if(istype(I, /obj/item/clothing/mask))
@@ -269,8 +267,7 @@
 		if(!user.transferItemToLoc(M, src))
 			return
 
-		user.balloon_alert(user, "You load the [M.name] into the storage compartment.")
-		to_chat(user, span_notice("You load the [M.name] into the storage compartment."))
+		user.balloon_alert(user, "You load the [M.name] into the storage compartment")
 		inserted_mask = M
 
 	else if(istype(I, /obj/item/tank))
@@ -282,8 +279,7 @@
 		if(!user.transferItemToLoc(T, src))
 			return
 
-		user.balloon_alert(user, "You load the [T.name] into the storage compartment.")
-		to_chat(user, span_notice("You load the [T.name] into the storage compartment."))
+		user.balloon_alert(user, "You load the [T.name] into the storage compartment")
 		inserted_tank = T
 
 	update_icon()

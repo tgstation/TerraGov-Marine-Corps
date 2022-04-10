@@ -40,10 +40,8 @@
 		to_chat(H, span_warning("You have to be outside the dropship to use this or it won't transmit."))
 		return FALSE
 	var/delay = max(1.5 SECONDS, activation_time - 2 SECONDS * H.skills.getRating("leadership"))
-	balloon_alert_to_viewers("[H] starts setting up [src] on the ground.", ignored_mobs = H)
-	balloon_alert(usr, "You start setting up [src] on the ground and inputting all the data it needs.")
-	H.visible_message(span_notice("[H] starts setting up [src] on the ground."),
-	span_notice("You start setting up [src] on the ground and inputting all the data it needs."))
+	balloon_alert_to_viewers("[H] starts setting up [src] on the ground", ignored_mobs = H)
+	balloon_alert(usr, "You start setting up [src] on the ground")
 	if(!do_after(H, delay, TRUE, src, BUSY_ICON_GENERIC))
 		return FALSE
 	var/obj/machinery/camera/beacon_cam/BC = new(src, "[H.get_paygrade()] [H.name] [src]")
@@ -57,10 +55,8 @@
 	layer = ABOVE_FLY_LAYER
 	set_light(2)
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-	balloon_alert_to_viewers("[H] activates [src].", ignored_mobs = H)
-	balloon_alert(usr, "You activate [src].")
-	H.visible_message("[H] activates [src].",
-	"You activate [src].")
+	balloon_alert_to_viewers("[H] activates [src]", ignored_mobs = H)
+	balloon_alert(usr, "You activate [src]")
 	update_icon()
 	return TRUE
 

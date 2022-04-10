@@ -94,8 +94,7 @@
 		if(!do_after(user,50, TRUE, src, BUSY_ICON_HOSTILE))
 			return
 
-		user.balloon_alert(user, "You cut the hair from this [singular_name]")
-		to_chat(user, span_notice("You cut the hair from this [singular_name]"))
+		user.balloon_alert(user, "You cut the hair away")
 		for(var/obj/item/stack/sheet/hairlesshide/HS in user.loc)
 			if(HS.amount < 50)
 				HS.amount++
