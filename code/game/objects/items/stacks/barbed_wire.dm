@@ -90,7 +90,6 @@
 		return
 
 	balloon_alert_to_viewers("[user] starts assembling [src]", ignored_mobs = user)
-	span_notice("You start assembling [src]."))
 	user.balloon_alert(user, "You start assembling [src]")
 	var/delay_assembly = SKILL_TASK_EASY
 	if(user.skills.getRating("engineer")) //Higher skill lowers the delay.
