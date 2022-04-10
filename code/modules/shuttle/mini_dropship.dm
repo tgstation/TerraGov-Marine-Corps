@@ -152,6 +152,8 @@
 	. = ..()
 	if(damaged)
 		return
+	if(X.status_flags & INCORPOREAL)
+		return
 	X.visible_message("[X] begins to slash delicately at the computer",
 	"We start slashing delicately at the computer. This will take a while.")
 	if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
