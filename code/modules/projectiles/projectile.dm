@@ -486,7 +486,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(HAS_TRAIT_FROM(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
 					return
 				RegisterSignal(turf_crossed_by, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
-				permutated?.Cut()
+				permutated.Cut()
 				return PROJECTILE_FROZEN
 			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 				last_processed_turf = turf_crossed_by
