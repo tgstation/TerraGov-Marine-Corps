@@ -547,9 +547,9 @@
 	collection_mode = !collection_mode
 	switch (collection_mode)
 		if(1)
-			balloon_alert(usr, "[src] now picks up all items in a tile at once.)
+			balloon_alert(usr, "[src] now picks up all items in a tile at once")
 		if(0)
-			balloon_alert(usr, "[src] now picks up one item at a time.)
+			balloon_alert(usr, "[src] now picks up one item at a time")
 
 
 
