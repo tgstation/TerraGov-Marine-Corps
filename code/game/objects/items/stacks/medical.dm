@@ -235,6 +235,7 @@
 	name = "medical splints"
 	singular_name = "medical splint"
 	icon_state = "splint"
+	desc = "For holding broken bones in place, or as a tourniquet to treat missing limbs."
 	amount = 5
 	max_amount = 5
 	skill_level_needed = SKILL_MEDICAL_PRACTICED
