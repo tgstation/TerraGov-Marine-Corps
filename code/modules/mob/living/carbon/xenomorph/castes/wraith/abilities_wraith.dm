@@ -636,6 +636,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	QDEL_NULL(portal_two)
 
 /datum/action/xeno_action/portal/give_action(mob/M)
+	. = ..()
 	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/clean_portals)
 
 /datum/action/xeno_action/portal/action_activate()
@@ -644,6 +645,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	portal_one = new(get_turf(owner))
 	succeed_activate()
 	add_cooldown()
+	playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
 	if(portal_two)
 		link_portals()
 
@@ -654,6 +656,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	portal_two = new(get_turf(owner))
 	succeed_activate()
 	add_cooldown()
+	playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
 	if(portal_one)
 		link_portals()
 
@@ -664,7 +667,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 	portal_two.link_portal(portal_one)
 	portal_one.link_portal(portal_two)
-	playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
 
 /obj/effect/wraith_portal
 	icon_state = "wraith_portal"
@@ -682,6 +684,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /obj/effect/wraith_portal/Destroy()
 	linked_portal?.unlink()
 	linked_portal = null
+	REMOVE_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
 	return ..()
 
 /obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)
@@ -706,6 +709,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	TIMER_COOLDOWN_START(crosser, COOLDOWN_WRAITH_PORTAL_TELEPORTED, 5)
 	crosser.forceMove(get_turf(linked_portal))
+	crosser.gra
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
 /obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
