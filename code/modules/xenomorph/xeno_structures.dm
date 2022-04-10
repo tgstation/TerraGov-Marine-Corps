@@ -1271,7 +1271,6 @@ TUNNEL
 	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
 	HEAL_XENO_DAMAGE(X,heal_amount)
 	playsound(user, "alien_drool", 25)
-  
 	X.balloon_alert(X, "We feel a sudden soothing chill as [src] tends to our wounds.")
 	qdel(src)
 	return ..()
