@@ -707,7 +707,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	opacity = FALSE
 	/// Visual object for handling the viscontents
 	var/obj/effect/portal_effect/portal_visuals
+	/// The linked portal
 	var/obj/effect/wraith_portal/linked_portal
+	COOLDOWN_DECLARE(portal_cooldown)
 
 /obj/effect/wraith_portal/Initialize(mapload)
 	. = ..()
@@ -741,16 +743,15 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	if(!linked_portal)
 		return
-	if(TIMER_COOLDOWN_CHECK(crosser, COOLDOWN_WRAITH_PORTAL_TELEPORTED))
+	if(!COOLDOWN_CHECK(src, portal_cooldown))
 		return
 	if(istype(crosser, /obj/projectile))
 		return
-
-	TIMER_COOLDOWN_START(crosser, COOLDOWN_WRAITH_PORTAL_TELEPORTED, 5)
-	crosser.forceMove(get_turf(linked_portal))
-	crosser.gra
+	COOLDOWN_START(linked_portal, portal_cooldown, 1)
+	crosser.Move(get_turf(linked_portal))
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
 /obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
+	bullet.permutated.Cut()
 	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
