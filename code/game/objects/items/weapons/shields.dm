@@ -117,7 +117,6 @@
 		return TRUE
 
 	balloon_alert_to_viewers("[user] repairs some damage on [src]")
-	span_notice("You repair [src]."))
 	repair_damage(40)
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
