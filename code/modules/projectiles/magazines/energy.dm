@@ -13,6 +13,12 @@
 	///Magazine flags.
 	var/flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER
 
+/obj/item/cell/lasgun/update_overlays()
+	if(charge < 0.01)
+		return
+	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
+	return "m43_[remaining]"
+
 /obj/item/cell/lasgun/M43
 	name = "\improper M43 lasgun battery"
 	desc = "A specialized high density battery used to power the M43 lasgun."
@@ -26,13 +32,11 @@
 	icon_state = "m43_e"
 	maxcharge = 1600
 
-/obj/item/cell/lasgun/M43/Initialize()
-	. = ..()
-	update_icon()
-
-/obj/item/cell/lasgun/M43/update_icon()
+/obj/item/cell/lasgun/M43/highcap/update_overlays()
+	if(charge < 0.01)
+		return
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
-	icon_state = "[base_ammo_icon]_[remaining]"
+	return "m43_e_[remaining]"
 
 /obj/item/cell/lasgun/pulse
 	name = "\improper M19C4 pulse battery"
@@ -44,13 +48,11 @@
 	charge_amount = 25 // 10%, 1 shot
 	charge_delay = 2 SECONDS
 
-/obj/item/cell/lasgun/pulse/Initialize()
-	. = ..()
-	update_icon()
-
-/obj/item/cell/lasgun/pulse/update_icon()
+/obj/item/cell/lasgun/pulse/update_overlays()
+	if(charge < 0.01)
+		return
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
-	icon_state = "[base_ammo_icon]_[remaining]"
+	return "pulse_[remaining]"
 
 /obj/item/cell/lasgun/M43/practice
 	name = "\improper M43-P lasgun battery"
@@ -58,9 +60,6 @@
 	self_recharge = TRUE
 	charge_amount = 25 // 10%, 2 shots
 	charge_delay = 2 SECONDS
-
-/obj/item/cell/lasgun/update_icon()
-	return FALSE
 
 /obj/item/cell/lasgun/lasrifle
 	name = "\improper Terra Experimental standard battery"
@@ -70,28 +69,14 @@
 	icon_state_mini = "mag_cell_te"
 	maxcharge = 600
 
-/obj/item/cell/lasgun/lasrifle/Initialize()
-	. = ..()
-	update_icon()
-
-/obj/item/cell/lasgun/lasrifle/update_icon()
-	var/signalOut = SEND_SIGNAL(src, COMSIG_ATOM_UPDATE_ICON)
-
-	if(!(signalOut & COMSIG_ATOM_NO_UPDATE_ICON_STATE))
-		update_icon_state()
-
-	if(!(signalOut & COMSIG_ATOM_NO_UPDATE_OVERLAYS))
-		var/list/new_overlays = update_overlays()
-		if(managed_overlays)
-			cut_overlay(managed_overlays)
-			managed_overlays = null
-		if(length(new_overlays))
-			managed_overlays = new_overlays
-			add_overlay(new_overlays)
-
-/obj/item/cell/lasgun/lasrifle/update_icon_state()
+/obj/item/cell/lasgun/lasrifle/update_overlays()
+	if(charge < 0.01)
+		return
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
-	icon_state = "[base_ammo_icon]_[remaining]"
+	return "te_[remaining]"
 
 /obj/item/cell/lasgun/fob_sentry/cell
 	maxcharge = INFINITY
+
+/obj/item/cell/lasgun/fob_sentry/cell/update_overlays()
+	return "m43_100"

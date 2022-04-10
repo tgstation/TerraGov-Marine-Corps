@@ -22,14 +22,13 @@
 	else
 		return PROCESS_KILL
 
-/obj/item/cell/update_icon()
-	cut_overlays()
+/obj/item/cell/update_overlays()
 	if(charge < 0.01)
 		return
 	else if(charge / maxcharge >= 0.995)
-		add_overlay("cell-o2")
+		return "cell-o2"
 	else
-		add_overlay("cell-o1")
+		return "cell-o1"
 
 /obj/item/cell/proc/percent()		// return % charge of cell
 	return 100 * (charge / maxcharge)
