@@ -149,3 +149,45 @@
   - imageadd: change brig door to reflect change, not that anyone cares about brig
   vilereaver41:
   - rscadd: new map
+2022-04-10:
+  Arctrooper8:
+  - expansion: All TGMC assigned synthetics have been updated to ease uncanny valley
+      complaints from marines.
+  BraveMole:
+  - balance: You only need to wait 1 minute before taking another minions/ssd mob
+  Lumipharon:
+  - balance: MG and TL-102 have 200 integrity like the T27
+  - bugfix: Changing firemode with a loaded energy weapon no longer tweaks the cell
+      charge
+  Pariah919:
+  - balance: bandages and ointment heal 10 brute/burn, and ATKs heal 3 more damage
+      up to 15. Use time increased by .5 seconds.
+  - balance: Adds twezeers to researcher
+  - qol: RSR has tweezers
+  RipGrayson:
+  - bugfix: Corrected Icarus' powernet being broken due misplaced cables.
+  - bugfix: Fixed most of Icarus' wire cables being hidden underneath walls.
+  - bugfix: Fixed multiple areas that were not set as indestructible and could be
+      mined out of into space on Icarus.
+  - bugfix: Patched a number of pipes on Icarus that led to nowhere.
+  - bugfix: Removed a number of resin walls and doors hidden inside cave walls on
+      Icarus.
+  - bugfix: Fixed a large number of areas having 4-5 extraneous APCs on Icarus.
+  - bugfix: Corrected broken AI nodes on Icarus that would lead to minions getting
+      stuck in a particular area.
+  - bugfix: Changed Icarus engineering so it's connected to the grid on roundstart.
+  - bugfix: Fixed a number of areas on Icarus that were unable to be CAS'ed despite
+      being above ground.
+  - bugfix: Patched a number of incorrectly rotated security doors on Icarus.
+  - bugfix: Removed most pipes/vents that go underneath walls on Icarus.
+  - code_imp: Icarus now uses its own unique areas instead of borrowing other maps.
+  TiviPlus:
+  - bugfix: fixed a batch of modular mapping bugs
+  goose4429:
+  - rscadd: Soft bomb armor
+  - rscdel: Old bomb armor (in levels)
+  - rscdel: Old devour code (that functions only in CM)
+  - balance: Bomb armor is now affected by sunder
+  - balance: Changed bomb armors all over the board. Totally needs game testing.
+  novaepee:
+  - qol: update AT gun desc on how to anchor
