@@ -2,6 +2,7 @@
 	name = "Return to Core"
 	action_icon_state = "lay_hivemind"
 	mechanics_text = "Teleport back to your core."
+	use_state_flags = XACT_USE_CLOSEDTURF
 
 /datum/action/xeno_action/return_to_core/action_activate()
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)

@@ -27,7 +27,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 25, "energy" = 20, "bomb" = XENO_BOMB_RESIST_2, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 25, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_LARGE

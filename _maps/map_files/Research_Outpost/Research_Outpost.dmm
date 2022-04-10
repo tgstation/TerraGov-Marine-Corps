@@ -5916,7 +5916,7 @@
 	},
 /area/outpost/hallway/northern)
 "Df" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals/security)
 "Dg" = (
