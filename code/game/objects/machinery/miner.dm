@@ -158,7 +158,6 @@
 			return FALSE
 	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 	balloon_alert_to_viewers("[user] starts welding [src]'s internal damage", ignored_mobs = user)
-	span_notice("You start welding [src]'s internal damage"))
 	if(!do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(weldingtool, /obj/item/tool/weldingtool/proc/isOn)))
 		return FALSE
 	if(miner_status != MINER_DESTROYED )

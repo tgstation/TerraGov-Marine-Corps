@@ -407,7 +407,7 @@
 		return
 	if(broken)
 		if(!silent)
-			user.balloon_alert(user, "\The [src] is broken!")
+			user.balloon_alert(user, "\The [src] is broken")
 		return FALSE
 
 	if(!allowed(user))
