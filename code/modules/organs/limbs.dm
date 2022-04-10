@@ -764,7 +764,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(body_part == CHEST)
 		return FALSE
 
-	set_limb_flags(LIMB_DESTROYED)
+	if(amputation)
+		set_limb_flags(LIMB_DESTROYED | LIMB_AMPUTATED)
+	else
+		set_limb_flags(LIMB_DESTROYED)
 
 	for(var/i in implants)
 		var/obj/item/embedded_thing = i
