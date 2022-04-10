@@ -179,7 +179,7 @@
 
 	X.stagger = 0 //Remove stagger
 	X.set_slowdown(0) //Remove slowdown
-	X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_3) //Improved explosion resistance
+	X.soft_armor = X.soft_armor.modifyRating(bomb = 20) //Improved explosion resistance
 	ADD_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT) //Can now endure impacts/damages that would make lesser xenos flinch
 	ADD_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT) //Can now endure slowdown
 
@@ -212,7 +212,7 @@
 		X.setBruteLoss((X.xeno_caste.max_health - X.get_crit_threshold()-1) * brute_percentile_damage)
 		X.setFireLoss((X.xeno_caste.max_health - X.get_crit_threshold()-1) * burn_percentile_damage)
 
-	X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_1) //Remove resistances/immunities
+	X.soft_armor = X.soft_armor.modifyRating(bomb = -20) //Remove resistances/immunities
 	REMOVE_TRAIT(X, TRAIT_STAGGERIMMUNE, ENDURE_TRAIT)
 	REMOVE_TRAIT(X, TRAIT_SLOWDOWNIMMUNE, ENDURE_TRAIT)
 	endure_threshold = initial(endure_threshold) //Reset the endure vars to their initial states

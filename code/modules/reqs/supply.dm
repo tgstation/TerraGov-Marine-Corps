@@ -635,8 +635,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("Right-Click with empty hand to open requisitions interface."))
-	to_chat(user, span_notice("Activate in hand to create a supply beacon signal."))
+	. += span_notice("Right-Click with empty hand to open requisitions interface.")
+	. += span_notice("Activate in hand to create a supply beacon signal.")
 
 /obj/item/storage/backpack/marine/radiopack/attack_hand_alternate(mob/living/user)
 	if(!allowed(user))

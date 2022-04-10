@@ -274,7 +274,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(0,17)]"
+		icon_state = "title_painting[rand(0,22)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"

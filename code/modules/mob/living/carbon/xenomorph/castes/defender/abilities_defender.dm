@@ -30,6 +30,7 @@
 
 	X.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
 	X.spin(4, 1)
+	X.enable_throw_parry(0.6 SECONDS)
 	playsound(X,pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	var/sweep_range = 1
@@ -200,7 +201,7 @@
 	if(X.crest_defense)
 		var/defensebonus = X.xeno_caste.crest_defense_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_3)
+		X.soft_armor = X.soft_armor.setRating(bomb = 30)
 		last_crest_bonus = defensebonus
 		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, X.xeno_caste.crest_defense_slowdown)
 
@@ -241,7 +242,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
 		var/defensebonus = X.xeno_caste.crest_defense_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_3)
+		X.soft_armor = X.soft_armor.setRating(bomb = 30)
 		last_crest_bonus = defensebonus
 		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, X.xeno_caste.crest_defense_slowdown)
 	else
@@ -250,7 +251,7 @@
 		GLOB.round_statistics.defender_crest_raises++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_crest_bonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
+		X.soft_armor = X.soft_armor.setRating(bomb = 20)
 		last_crest_bonus = 0
 		X.remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
 	X.update_icons()
@@ -273,7 +274,7 @@
 	if(X.fortify)
 		var/fortifyAB = X.xeno_caste.fortify_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_4)
+		X.soft_armor = X.soft_armor.setRating(bomb = 100)
 		last_fortify_bonus = fortifyAB
 
 /datum/action/xeno_action/fortify/on_cooldown_finish()
@@ -313,13 +314,13 @@
 			X.balloon_alert(X, "We tuck ourselves into a defensive stance")
 		var/fortifyAB = X.xeno_caste.fortify_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_4)
+		X.soft_armor = X.soft_armor.setRating(bomb = 100)
 		last_fortify_bonus = fortifyAB
 	else
 		if(!silent)
 			X.balloon_alert(X, "We resume our normal stance")
 		X.soft_armor = X.soft_armor.modifyAllRatings(-last_fortify_bonus)
-		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
+		X.soft_armor = X.soft_armor.setRating(bomb = 20)
 		last_fortify_bonus = 0
 		REMOVE_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 	X.fortify = on
@@ -330,7 +331,7 @@
 // ***************************************
 // *********** Regenerate Skin
 // ***************************************
-/datum/action/xeno_action/activable/regenerate_skin
+/datum/action/xeno_action/regenerate_skin
 	name = "Regenerate Skin"
 	action_icon_state = "regenerate_skin"
 	mechanics_text = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
@@ -341,15 +342,15 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
 
-/datum/action/xeno_action/activable/regenerate_skin/on_cooldown_finish()
+/datum/action/xeno_action/regenerate_skin/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	X.balloon_alert(X, "We feel we are ready to shred our skin and grow another")
 	return ..()
 
-/datum/action/xeno_action/activable/regenerate_skin/action_activate()
+/datum/action/xeno_action/regenerate_skin/action_activate()
 	var/mob/living/carbon/xenomorph/defender/X = owner
 
-	if(!can_use_ability(src, TRUE))
+	if(!can_use_action(TRUE))
 		return fail_activate()
 
 	if(X.on_fire)
@@ -370,7 +371,7 @@
 // ***************************************
 // *********** Centrifugal force
 // ***************************************
-/datum/action/xeno_action/activable/centrifugal_force
+/datum/action/xeno_action/centrifugal_force
 	name = "Centrifugal force"
 	action_icon_state = "centrifugal_force"
 	mechanics_text = "Rapidly spin and hit all adjacent humans around you, knocking them away and down. Uses double plasma when crest is active."
@@ -385,7 +386,9 @@
 	///timer hash for the timer we use when spinning
 	var/spin_loop_timer
 
-/datum/action/xeno_action/activable/centrifugal_force/can_use_action(silent, override_flags)
+/datum/action/xeno_action/centrifugal_force/can_use_action(silent, override_flags)
+	if(spin_loop_timer)
+		return TRUE
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
@@ -393,7 +396,7 @@
 		to_chat(X, span_xenowarning("We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!"))
 		return FALSE
 
-/datum/action/xeno_action/activable/centrifugal_force/action_activate()
+/datum/action/xeno_action/centrifugal_force/action_activate()
 	if(spin_loop_timer)
 		stop_spin()
 		return
@@ -410,10 +413,11 @@
 	RegisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_FLOORED), SIGNAL_ADDTRAIT(TRAIT_INCAPACITATED), SIGNAL_ADDTRAIT(TRAIT_IMMOBILE)), .proc/stop_spin)
 
 /// runs a spin, then starts the timer for a new spin if needed
-/datum/action/xeno_action/activable/centrifugal_force/proc/do_spin()
+/datum/action/xeno_action/centrifugal_force/proc/do_spin()
 	spin_loop_timer = null
 	var/mob/living/carbon/xenomorph/X = owner
 	X.spin(4, 1)
+	X.enable_throw_parry(0.6 SECONDS)
 	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	for(var/mob/living/carbon/human/slapped in orange(1, X))
@@ -444,7 +448,7 @@
 	stop_spin()
 
 /// stops spin and unregisters all listeners
-/datum/action/xeno_action/activable/centrifugal_force/proc/stop_spin()
+/datum/action/xeno_action/centrifugal_force/proc/stop_spin()
 	SIGNAL_HANDLER
 	if(spin_loop_timer)
 		deltimer(spin_loop_timer)

@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "T-25/29 share the same bullet, caliber and damage/sunder. The T-25 has a bit less wield delay and +20 rounds. As it does less sunder and damage overall from this change.
+spriteadd: t25 box changed to say SG instead of T-25."

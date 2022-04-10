@@ -23,10 +23,10 @@
 
 
 /obj/item/reagent_containers/glass/examine(mob/user)
-	..()
+	. = ..()
 	if(get_dist(user, src) > 2 && user != loc)
 		if(!is_open_container())
-			to_chat(user, span_info("An airtight lid seals it completely."))
+			. += span_info("An airtight lid seals it completely.")
 
 /obj/item/reagent_containers/glass/verb/attach_lid()
 	set name = "Attach/Detach lid"

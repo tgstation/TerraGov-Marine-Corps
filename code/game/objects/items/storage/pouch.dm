@@ -18,8 +18,8 @@
 			new fill_type(src)
 
 /obj/item/storage/pouch/examine(mob/user)
-	..()
-	to_chat(user, "Can be worn by attaching it to a pocket.")
+	. = ..()
+	. += "Can be worn by attaching it to a pocket."
 
 
 /obj/item/storage/pouch/equipped(mob/user, slot)
@@ -251,6 +251,7 @@
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/smg/standard_machinepistol,
+		/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini,
 	)
 
 /obj/item/storage/pouch/magazine/pistol/large

@@ -43,6 +43,7 @@
 #include "connect_loc.dm"
 #include "initialize_sanity.dm"
 #include "keybinding_init.dm"
+#include "map_templates.dm"
 #include "spawn_guns.dm"
 #include "spawn_humans.dm"
 #include "spawn_xenos.dm"

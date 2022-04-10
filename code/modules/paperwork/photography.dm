@@ -116,7 +116,7 @@
 	if(in_range(src, user) || isobserver(user))
 		show(user)
 	else
-		to_chat(user, span_warning("You need to get closer to get a good look at this photo!"))
+		. += span_warning("You need to get closer to get a good look at this photo!")
 
 
 /obj/item/photo/proc/set_picture(datum/picture/P, setname, setdesc, name_override = FALSE)
@@ -223,7 +223,7 @@
 
 /obj/item/camera/examine(mob/user)
 	. = ..()
-	to_chat(user, "It has [pictures_left] photos left.")
+	. += "It has [pictures_left] photos left."
 
 
 /obj/item/camera/proc/can_target(atom/target, mob/user, prox_flag)

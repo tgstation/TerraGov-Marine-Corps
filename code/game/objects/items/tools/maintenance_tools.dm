@@ -134,8 +134,8 @@
 
 
 /obj/item/tool/weldingtool/examine(mob/user)
-	..()
-	to_chat(user, "It contains [get_fuel()]/[max_fuel] units of fuel!")
+	. += ..()
+	. +=  "It contains [get_fuel()]/[max_fuel] units of fuel!"
 
 
 /obj/item/tool/weldingtool/use(used = 0)
@@ -426,8 +426,8 @@
 		return
 
 /obj/item/tool/weldpack/examine(mob/user)
-	..()
-	to_chat(user, "[reagents.total_volume] units of welding fuel left!")
+	. = ..()
+	. += "[reagents.total_volume] units of welding fuel left!"
 
 /obj/item/tool/weldpack/marinestandard
 	name = "M-22 welding kit"

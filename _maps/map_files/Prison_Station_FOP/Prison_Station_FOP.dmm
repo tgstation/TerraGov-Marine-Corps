@@ -29226,7 +29226,7 @@
 /area/prison/intake)
 "bMo" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	name = "Security Department"
 	},
 /turf/open/floor/prison/darkred/full,
@@ -33097,7 +33097,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	name = "Intake Processing"
 	},
 /turf/open/floor/prison/darkred/full,
@@ -34589,7 +34589,7 @@
 /turf/open/floor/prison,
 /area/prison/security)
 "cdC" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	dir = 2;
 	name = "Security Department"
 	},
@@ -35576,7 +35576,7 @@
 "cgO" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	name = "Briefing"
 	},
 /obj/structure/cable,
@@ -35587,7 +35587,7 @@
 /turf/open/floor/plating,
 /area/prison/security/briefing)
 "cgR" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor{
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	name = "Briefing"
 	},
 /turf/open/floor/prison/darkred/full,

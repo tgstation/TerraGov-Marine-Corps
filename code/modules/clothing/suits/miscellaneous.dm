@@ -335,7 +335,7 @@
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/large_holster/blade
+		/obj/item/storage/holster/blade
 	)
 
 /obj/item/clothing/suit/replica

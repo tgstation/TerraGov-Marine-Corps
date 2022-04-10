@@ -113,7 +113,7 @@
 			continue
 
 		switch(initial(T.tier))
-			if(XENO_TIER_ZERO || XENO_TIER_MINION)
+			if(XENO_TIER_ZERO, XENO_TIER_MINION)
 				continue
 			if(XENO_TIER_FOUR)
 				tier4counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
@@ -220,7 +220,7 @@
 	else //Upgrade process finished or impossible
 		stat("Upgrade Progress:", "(FINISHED)")
 
-	stat("Health:", "[health]/[xeno_caste.max_health]")
+	stat("Health:", "[overheal ? "[overheal] + ": ""][health]/[xeno_caste.max_health]")
 
 	if(xeno_caste.plasma_max > 0)
 		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")

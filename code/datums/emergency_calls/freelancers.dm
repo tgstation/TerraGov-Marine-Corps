@@ -2,6 +2,10 @@
 	name = "Freelancer Mercenary Group"
 	base_probability = 26
 	alignement_factor = -1
+	///Number of current Grenadiers in this squad.
+	var/grenadiers
+	///Max amount of Grenadiers allowed in this squad.
+	var/max_grenadiers = 2
 
 
 /datum/emergency_call/freelancers/print_backstory(mob/living/carbon/human/H)
@@ -40,6 +44,13 @@
 		H.apply_assigned_role_to_spawn(J)
 		medics++
 		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a Freelancer mercenary medic assigned to this group to respond to the TGMC distress signal sent nearby. Do not let your teammates fall in battle!</notice></p>")
+		return
+
+	if(grenadiers < max_grenadiers)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/grenadier)
+		H.apply_assigned_role_to_spawn(J)
+		to_chat(H, span_notice("You are a Grenadier of the local resistance group, the Colonial Liberation Front."))
+		grenadiers++
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/standard)

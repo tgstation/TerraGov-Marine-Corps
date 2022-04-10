@@ -7,89 +7,39 @@
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
-	if(severity < EXPLODE_LIGHT) //Actually means higher.
-		if(eaten_mob)
-			eaten_mob.ex_act(severity + 1)
-	var/bomb_armor = soft_armor.getRating("bomb")
-	var/b_loss = 0
-	var/f_loss = 0
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			switch(bomb_armor)
-				if(XENO_BOMB_RESIST_4 to INFINITY)
-					add_slowdown(2)
-					return
-				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(70, 80)
-					f_loss = rand(70, 80)
-					add_slowdown(3)
-					adjust_sunder(80)
-				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
-					b_loss = rand(75, 85)
-					f_loss = rand(75, 85)
-					adjust_stagger(4)
-					add_slowdown(4)
-					adjust_sunder(90)
-				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
-					b_loss = rand(80, 90)
-					f_loss = rand(80, 90)
-					adjust_stagger(5)
-					add_slowdown(5)
-					adjust_sunder(100)
-				else //Lower than XENO_BOMB_RESIST_1
-					return gib()
-		if(EXPLODE_HEAVY)
-			switch(bomb_armor)
-				if(XENO_BOMB_RESIST_4 to INFINITY)
-					add_slowdown(1)
-					return
-				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(50, 50)
-					f_loss = rand(50, 50)
-					add_slowdown(2)
-					adjust_sunder(35)
-				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
-					b_loss = rand(55, 55)
-					f_loss = rand(55, 55)
-					adjust_stagger(1)
-					add_slowdown(3)
-					adjust_sunder(40)
-				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
-					b_loss = rand(60, 70)
-					f_loss = rand(60, 70)
-					adjust_stagger(4)
-					add_slowdown(4)
-					adjust_sunder(45)
-				else //Lower than XENO_BOMB_RESIST_1
-					b_loss = rand(65, 75)
-					f_loss = rand(65, 75)
-					adjust_stagger(5)
-					add_slowdown(5)
-					adjust_sunder(50)
-		if(EXPLODE_LIGHT)
-			switch(bomb_armor)
-				if(XENO_BOMB_RESIST_4 to INFINITY)
-					return //Immune
-				if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-					b_loss = rand(30, 40)
-					f_loss = rand(30, 40)
-				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
-					b_loss = rand(35, 45)
-					f_loss = rand(35, 45)
-					add_slowdown(1)
-				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
-					b_loss = rand(40, 50)
-					f_loss = rand(40, 50)
-					adjust_stagger(2)
-					add_slowdown(2)
-				else //Lower than XENO_BOMB_RESIST_1
-					b_loss = rand(45, 55)
-					f_loss = rand(45, 55)
-					adjust_stagger(4)
-					add_slowdown(4)
 
-	apply_damage(b_loss, BRUTE, updating_health = TRUE)
-	apply_damage(f_loss, BURN, updating_health = TRUE)
+	var/bomb_armor = soft_armor.getRating("bomb")
+	var/bomb_effective_armor = (bomb_armor/100)*get_sunder()
+	var/bomb_damage_multiplier = max(0, 1 - bomb_effective_armor)
+	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_effective_armor)
+	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
+
+
+	if(bomb_armor >= 100)
+		return //immune
+
+	//lowered to account for new armor values but keep old gibs
+	//probs needs to be a define somewhere
+	var/gib_min_armor = 10
+	if(severity == EXPLODE_DEVASTATE && bomb_armor < gib_min_armor)
+		return gib()    //Gibs unprotected benos
+
+	//Slowdown and stagger
+	var/ex_slowdown = (2 + (4 - severity)) * bomb_slow_multiplier
+
+	add_slowdown(max(0, ex_slowdown)) //Slowdown 2 for sentiel from nade
+	adjust_stagger(max(0, ex_slowdown - 2)) //Stagger 2 less than slowdown
+
+	//Sunder
+	var/sunder_loss = 50*(3 - severity) * bomb_sunder_multiplier
+	adjust_sunder(max(0, sunder_loss))
+
+	//Damage
+	var/ex_damage = 40 + rand(0, 20) + 50*(4 - severity)  //changed so overall damage stays similar
+	ex_damage *= bomb_damage_multiplier
+
+	apply_damage(ex_damage/2, BRUTE, updating_health = TRUE)
+	apply_damage(ex_damage/2, BURN, updating_health = TRUE)
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)

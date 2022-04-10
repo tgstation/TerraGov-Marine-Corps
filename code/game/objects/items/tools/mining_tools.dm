@@ -108,11 +108,11 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/examine(mob/user)
-	..()
+	. = ..()
 	if(cell)
-		to_chat(user, "It has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>")
+		. += "It has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"
 	else
-		to_chat(user, span_warning("It does not have a power source installed!"))
+		. += span_warning("It does not have a power source installed!")
 
 /obj/item/tool/pickaxe/plasmacutter/attack_self(mob/user)
 	toggle(user)
