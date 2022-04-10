@@ -88,7 +88,7 @@
 	. = ..()
 	if (use_sound)
 		playsound(loc, use_sound, 15, 1, 6)
-	
+
 
 /obj/item/storage/holster/backholster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK)
@@ -118,6 +118,15 @@
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own snowflake back sprites
+
+/obj/item/storage/holster/backholster/rpg/full/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 //one slot holsters
 
