@@ -48,7 +48,7 @@
 	return TRUE
 
 /obj/item/binoculars/tactical/examine(mob/user)
-	..()
+	. = ..()
 	switch(mode)
 		if(MODE_CAS)
 			user.balloon_alert(user, "They are set to CAS marking mode")
@@ -60,9 +60,9 @@
 			user.balloon_alert(user, "They are set to orbital bombardment mode")
 	to_chat(user, span_notice("Use on a mortar to link it for remote targeting."))
 	if(linked_mortar)
-		to_chat(user, span_notice("They are currently linked to a mortar."))
+		. += span_notice("They are currently linked to a mortar.")
 		return
-	to_chat(user, span_notice("They are not linked to a mortar."))
+	. += span_notice("They are not linked to a mortar.")
 
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)

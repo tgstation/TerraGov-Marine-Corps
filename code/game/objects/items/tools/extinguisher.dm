@@ -34,7 +34,7 @@
 	sprite_name = "miniFE"
 
 /obj/item/tool/extinguisher/examine(mob/user)
-	..()
+	. = ..()
 	user.balloon_alert(user, "The safety is [safety ? "on" : "off"]")
 	to_chat(user, "The safety is [safety ? "on" : "off"].")
 

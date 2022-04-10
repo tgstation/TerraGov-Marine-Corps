@@ -18,13 +18,6 @@
 	old_x = -16
 	old_y = -3
 
-/mob/living/carbon/xenomorph/crusher/ex_act(severity)
-
-	flash_act()
-
-	if(severity == EXPLODE_DEVASTATE)
-		adjustBruteLoss(rand(200, 300), updating_health = TRUE)
-
 
 /mob/living/carbon/xenomorph/crusher/handle_special_state()
 	if(is_charging >= CHARGE_ON)

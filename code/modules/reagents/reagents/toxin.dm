@@ -441,6 +441,8 @@
 	reagent_state = LIQUID
 	color = "#535E66" // rgb: 83, 94, 102
 	custom_metabolism = REAGENTS_METABOLISM * 5
+	medbayblacklist = TRUE
+	reactindeadmob = FALSE
 
 /datum/reagent/toxin/nanites/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("Your body begins to twist and deform! Get out of the razorburn!"))

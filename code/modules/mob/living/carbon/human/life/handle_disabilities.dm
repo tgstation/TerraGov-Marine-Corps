@@ -20,6 +20,8 @@
 			if(!lying_angle && getBrainLoss())
 				balloon_alert(usr, "Your legs won't respond properly, you fall down")
 				set_resting(TRUE)
+		else
+			return
 
 
 /mob/living/carbon/human/handle_impaired_vision()

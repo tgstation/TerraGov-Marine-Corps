@@ -66,13 +66,13 @@
 	. = ..()
 
 	if(!status)
-		to_chat(user, span_info("It's currently deactivated."))
+		. += span_info("It's currently deactivated.")
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN) && powered())
-			to_chat(user, span_notice("You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on."))
+			. += span_notice("You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.")
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, span_info("Its maintenance panel is currently open."))
+		. += span_info("Its maintenance panel is currently open.")
 		if(!status && powered())
-			to_chat(user, span_info("It can reactivated with a <b>screwdriver</b>."))
+			. += span_info("It can reactivated with a <b>screwdriver</b>.")
 
 
 /obj/machinery/camera/proc/setViewRange(num = 7)

@@ -12,6 +12,10 @@
 
 /obj/effect/spawner/modularmap/Initialize(mapload)
 	. = ..()
+	SSmodularmapping.markers += src
+
+///Actually loads the modularmap: called by SSmodularmapping
+/obj/effect/spawner/modularmap/proc/load_modularmap()
 	var/datum/map_template/modular/template
 	template = pick(SSmapping.modular_templates[mapid])
 	var/errored = FALSE
@@ -29,9 +33,11 @@
 	if(!template)
 		stack_trace("Mapping error: room loaded with no template")
 		message_admins("Warning, modular mapping error, please report this to coders and get it fixed ASAP")
-		return INITIALIZE_HINT_QDEL
-	INVOKE_ASYNC(template, /datum/map_template.proc/load, get_turf(src), template.keepcentered)
-	return INITIALIZE_HINT_QDEL
+		qdel(src)
+		return
+	var/turf/loadloc = get_turf(src)
+	qdel(src)
+	template.load(loadloc, template.keepcentered)
 
 /*********Types********/
 
@@ -147,7 +153,7 @@
 /obj/effect/spawner/modularmap/bigred/southeta
 	mapid = "brsoutheta"
 	spawner_width = 23
-	spawner_height = 10	
+	spawner_height = 10
 
 /obj/effect/spawner/modularmap/bigred/checkpointsouth
 	mapid = "brcheckpointsouth"

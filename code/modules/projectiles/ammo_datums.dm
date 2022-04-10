@@ -47,6 +47,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/hitscan_effect_icon = "beam"
 	///A multiplier applied to piercing projectile, that reduces its damage/penetration/sundering on hit
 	var/on_pierce_multiplier = 1
+	///greyscale config for the bullet items associated with the ammo
+	var/handful_greyscale_config = null
+	///greyscale color for the bullet items associated with the ammo
+	var/handful_greyscale_colors = null
+	///greyscale config for the projectile associated with the ammo
+	var/projectile_greyscale_config = null
+	///greyscale color for the projectile associated with the ammo
+	var/projectile_greyscale_colors = null
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -1070,7 +1078,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 1
 
 /datum/ammo/bullet/smartmachinegun
-	name = "smartmachinegun bullet"
+	name = "smartgun bullet"
 	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
@@ -1079,12 +1087,6 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	penetration = 15
 	sundering = 2
-
-/datum/ammo/bullet/smartgun/smartrifle
-	name = "smartrifle bullet"
-	damage = 20
-	penetration = 10
-	sundering = 1.5
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
@@ -1173,7 +1175,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/tx54
 	name = "20mm airburst grenade"
-	icon_state = "grenade"
+	icon_state = "20mm_flight"
 	hud_state = "grenade_airburst"
 	hud_state_empty = "grenade_empty"
 	handful_icon_state = "20mm_airburst"
@@ -1190,9 +1192,14 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 0
 	sundering = 0
 	shrapnel_chance = 0
-	bullet_color = LIGHT_COLOR_FIRE
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread
 	bonus_projectiles_scatter = 10
+
+	handful_greyscale_config = /datum/greyscale_config/ammo
+	handful_greyscale_colors = "#3ab0c9"
+
+	projectile_greyscale_config = /datum/greyscale_config/projectile
+	projectile_greyscale_colors = "#3ab0c9"
 
 /datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
 	staggerstun(M, proj, stagger = 0, slowdown = 0.5, knockback = 1, shake = 0)
@@ -1222,8 +1229,10 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/tx54/incendiary
 	name = "20mm incendiary grenade"
 	hud_state = "grenade_fire"
-	handful_icon_state = "20mm_incendiary"
 	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/incendiary
+	bullet_color = LIGHT_COLOR_FIRE
+	handful_greyscale_colors = "#fa7923"
+	projectile_greyscale_colors = "#fa7923"
 
 /datum/ammo/bullet/tx54_spread
 	name = "Shrapnel"
@@ -1258,9 +1267,10 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/tx54/he
 	name = "20mm HE grenade"
 	hud_state = "grenade_he"
-	handful_icon_state = "20mm_he"
 	bonus_projectiles_type = null
 	max_range = 12
+	handful_greyscale_colors = "#b02323"
+	projectile_greyscale_colors = "#b02323"
 
 /datum/ammo/tx54/he/drop_nade(turf/T)
 	explosion(T, 0, 0, 2, 2)
@@ -1477,9 +1487,9 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "shell_he"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
-	damage = 150
-	penetration = 100
-	sundering = 55
+	damage = 160
+	penetration = 40
+	sundering = 65
 
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
 	explosion(T, 0, 0, 1, 0)
@@ -1549,6 +1559,23 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
 	zap_beam(proj, 4, damage)
+
+/datum/ammo/energy/tesla/focused
+	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS|AMMO_IFF
+	shell_speed = 0.1
+	damage = 10
+	penetration = 10
+	bullet_color = COLOR_TESLA_BLUE
+
+/datum/ammo/energy/tesla/focused/ammo_process(obj/projectile/proj, damage)
+	zap_beam(proj, 3, damage)
+
+
+/datum/ammo/energy/tesla/on_hit_mob(mob/M,obj/projectile/P)
+	if(isxeno(M)) //need 1 second more than the actual effect time
+		var/mob/living/carbon/xenomorph/X = M
+		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
+
 
 /datum/ammo/energy/droidblast
 	name = "energetic plasma bolt"

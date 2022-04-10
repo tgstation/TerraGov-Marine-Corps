@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/list/chem_macros = list()
 
 	//Synthetic specific preferences
-	var/synthetic_name = "David"
+	var/synthetic_name = "Undefined"
 	var/synthetic_type = "Synthetic"
 
 	//Xenomorph specific preferences
@@ -76,6 +76,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/preferred_squad = "None"
 	var/alternate_option = RETURN_TO_LOBBY
 	var/preferred_slot = SLOT_S_STORE
+	var/preferred_slot_alt = SLOT_BACK
 	var/list/gear
 	var/list/job_preferences = list()
 

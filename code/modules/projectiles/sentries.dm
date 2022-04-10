@@ -454,13 +454,6 @@
 	default_icon_state = "build_a_sentry"
 	update_icon()
 
-/obj/machinery/deployable/mounted/sentry/buildasentry/examine(mob/user)
-	. = ..()
-	if(!istype(internal_item, /obj/item/weapon/gun/revolver))
-		return
-	to_chat(user, span_notice("It is as if he were still with us.")) //I miss ye already Ocelot.
-
-
 /obj/machinery/deployable/mounted/sentry/buildasentry/update_overlays()
 	. = ..()
 	var/obj/item/weapon/gun/internal_gun = internal_item

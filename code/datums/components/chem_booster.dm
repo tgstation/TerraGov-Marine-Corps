@@ -141,10 +141,10 @@
 		reagent_info += "<br>"
 
 ///Adds additional text for the component when examining the item it is attached to
-/datum/component/chem_booster/proc/examine(datum/source, mob/user)
+/datum/component/chem_booster/proc/examine(datum/source, mob/user, list/examine_text)
 	SIGNAL_HANDLER
-	to_chat(user, span_notice("The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount]."))
-	show_meds_beaker_contents(user)
+	examine_text += span_notice("The chemical system currently holds [resource_storage_current]u of green blood. Its' enhancement level is set to [boost_amount].")
+	examine_text += get_meds_beaker_contents()
 
 ///Disables active functions and cleans up actions when the suit is unequipped
 /datum/component/chem_booster/proc/dropped(datum/source, mob/user)
@@ -267,7 +267,7 @@
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
 	to_chat(wearer, span_notice("Commensing reagent injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
 	if(automatic_meds_use)
-		show_meds_beaker_contents(wearer)
+		to_chat(wearer, get_meds_beaker_contents())
 		meds_beaker.reagents.trans_to(wearer, 30)
 	setup_bonus_effects()
 
@@ -443,7 +443,7 @@
 			if(!do_after(wearer, 0.5 SECONDS, TRUE, held_item, BUSY_ICON_FRIENDLY, null, PROGRESS_BRASS, ignore_turf_checks = TRUE))
 				return
 			meds_beaker.reagents.trans_to(held_beaker, 30)
-			show_meds_beaker_contents(wearer)
+			to_chat(wearer, get_meds_beaker_contents())
 		return
 
 	if(meds_beaker.reagents.total_volume >= meds_beaker.volume)
@@ -455,16 +455,15 @@
 
 	var/trans = held_beaker.reagents.trans_to(meds_beaker, held_beaker.amount_per_transfer_from_this)
 	wearer.balloon_alert(wearer, "Loaded [trans] units")
-	show_meds_beaker_contents(wearer)
+	to_chat(wearer, get_meds_beaker_contents())
 
 ///Shows the loaded reagents to the person examining the parent/wearer
-/datum/component/chem_booster/proc/show_meds_beaker_contents(mob/user)
+/datum/component/chem_booster/proc/get_meds_beaker_contents()
 	if(!meds_beaker.reagents.total_volume)
-		to_chat(user, span_notice("The system's reagent storage is empty."))
-		return
-	to_chat(user, span_notice("The system's reagent storage contains:"))
+		return span_notice("The system's reagent storage is empty.")
+	. = span_notice("The system's reagent storage contains:\n")
 	for(var/datum/reagent/R AS in meds_beaker.reagents.reagent_list)
-		to_chat(user, span_rose("[R.name] - [R.volume]u"))
+		. += span_rose("[R.name] - [R.volume]u\n")
 
 /datum/action/chem_booster/configure
 	name = "Configure Vali Chemical Enhancement"

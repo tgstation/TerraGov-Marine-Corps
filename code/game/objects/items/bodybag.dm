@@ -327,14 +327,13 @@
 		return
 	if(!hasHUD(user,"medical"))
 		return
-	for(var/r in GLOB.datacore.medical)
-		var/datum/data/record/medical_record = r
+	for(var/datum/data/record/medical_record AS in GLOB.datacore.medical)
 		if(medical_record.fields["name"] != bodybag_occupant.real_name)
 			continue
 		if(!(medical_record.fields["last_scan_time"]))
-			to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
+			. += "<span class = 'deptradio'>No scan report on record</span>"
 		else
-			to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>\n")
+			. += "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>Scan from [medical_record.fields["last_scan_time"]]</a></span>"
 		break
 
 

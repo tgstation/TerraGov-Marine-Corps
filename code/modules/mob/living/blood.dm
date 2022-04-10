@@ -86,10 +86,10 @@
 		var/blood_max = 0
 		for(var/l in limbs)
 			var/datum/limb/temp = l
-			if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
-				continue
 			if(temp.limb_status & LIMB_DESTROYED && !(temp.limb_status & LIMB_AMPUTATED))
 				blood_max += 5 //Yer missing a fucking limb.
+				continue
+			if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
 				continue
 			for(var/w in temp.wounds)
 				var/datum/wound/W = w

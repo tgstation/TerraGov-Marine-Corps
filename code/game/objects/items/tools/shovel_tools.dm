@@ -39,7 +39,7 @@
 	. = ..()
 	if(dirt_amt)
 		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"
-		to_chat(user, "It holds [dirt_amt] layer\s of [dirt_name].")
+		. += "It holds [dirt_amt] layer\s of [dirt_name]."
 
 /obj/item/tool/shovel/attack_self(mob/user)
 
@@ -186,4 +186,4 @@
 /obj/item/tool/shovel/etool/examine(mob/user)
 	. = ..()
 	if(sharp)
-		to_chat(user, span_notice(" This one has been sharpened and can no longer be folded."))
+		. += span_notice("This one has been sharpened and can no longer be folded.")

@@ -36,7 +36,6 @@
 	. = ..()
 	if(anchored && victim && ishuman(user))
 		user.balloon_alert(user, "There seems to be someone inside it.")
-
 /obj/structure/cocoon/process()
 	var/psych_points_output = COCOON_PSY_POINTS_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (COCOON_PSY_POINTS_REWARD_MAX - COCOON_PSY_POINTS_REWARD_MIN))
 	psych_points_output = clamp(psych_points_output, COCOON_PSY_POINTS_REWARD_MIN, COCOON_PSY_POINTS_REWARD_MAX)

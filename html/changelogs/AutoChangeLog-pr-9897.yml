@@ -1,0 +1,12 @@
+author: "breadhunt"
+delete-after: True
+changes: 
+  - bugfix: "Wraiths can no longer banish tunnels, deleting any xenos climbing inside"
+  - bugfix: "Prison Station hull windows can no longer be banished, allowing access to space"
+  - bugfix: "Wraiths can no longer use phase shift in no-phase areas (e.g LZs, dropships, spess)"
+  - bugfix: "Wraiths can no longer end phase shift, or have phase shift ended, in no-phase areas or dense objects (walls)"
+  - bugfix: "This means your buddy wraith won't get stuck in a phase shutter in a wall by accident again"
+  - bugfix: "Wraith can no longer slash tadpole console while in phase shift"
+  - bugfix: "Wraiths can banish opaque objects (shutters, doors) again"
+  - bugfix: "Wraith can no longer regress in phase shift (caused issues because of how health updates work with phase shift, sorry)"
+  - bugfix: "Banish portal being deleted (by a shuttle, etc), or otherwise made impossible to move to, no longer keeps the marine in banish indefinitely. Instead they are teleported to the coordinates the portal was originally at"
