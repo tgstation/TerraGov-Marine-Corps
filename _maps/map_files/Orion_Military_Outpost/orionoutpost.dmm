@@ -13,9 +13,11 @@
 /turf/open/floor/plating,
 /area/orion_outpost/ground/outposts)
 "ae" = (
-/obj/machinery/sleep_console,
-/turf/open/floor/prison/whitegreen/full,
-/area/orion_outpost/surface/building/medbay)
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "ag" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -53,6 +55,17 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostnw)
+"ap" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "ar" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/effect/ai_node,
@@ -65,6 +78,7 @@
 /area/orion_outpost/ground/outpostw)
 "aw" = (
 /obj/effect/ai_node,
+/obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/marking/loadingarea{
 	dir = 8
 	},
@@ -271,6 +285,20 @@
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plating,
 /area/orion_outpost/surface/building/research)
+"bD" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "bE" = (
 /obj/effect/forcefield/fog/passable_fog,
 /obj/structure/flora/ausbushes/fullgrass{
@@ -339,6 +367,13 @@
 "ci" = (
 /turf/open/floor/tile/damaged/panel,
 /area/orion_outpost/ground/outposts)
+"cj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bush{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outposte)
 "ck" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -417,10 +452,19 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostnw)
+"cD" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/structure/bush{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outposte)
 "cE" = (
 /obj/structure/window/framed/colony,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "cF" = (
 /obj/structure/cable,
@@ -588,6 +632,12 @@
 	},
 /turf/open/floor/wood,
 /area/orion_outpost/ground/outpostse)
+"dC" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "dD" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -633,11 +683,23 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostsw)
+"dQ" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/bush{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outposte)
 "dR" = (
 /obj/structure/flora/rock/pile/alt,
 /obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostse)
+"dS" = (
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/surface/building/medbay)
 "dV" = (
 /obj/structure/jungle/vines{
 	color = "#ffb682"
@@ -711,9 +773,10 @@
 	},
 /area/orion_outpost/surface/landing_pad)
 "ej" = (
-/obj/structure/flora/rock/alt,
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/outpostse)
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "em" = (
 /obj/structure/flora/ausbushes/grassybush{
 	color = "#ffb682"
@@ -734,6 +797,14 @@
 	icon_state = "nt23"
 	},
 /area/orion_outpost/surface/building/crashednt)
+"eq" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "er" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/decal/cleanable/dirt,
@@ -765,6 +836,7 @@
 /obj/machinery/light{
 	light_color = "#da2f1b"
 	},
+/obj/structure/sign/safety/electronics,
 /turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "eE" = (
@@ -876,9 +948,10 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/surface/building/armory)
 "fj" = (
-/obj/structure/flora/rock/alt,
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/outposts)
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "fl" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -907,6 +980,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostse)
+"fu" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/surface/building/medbay)
 "fv" = (
 /obj/item/ammo_magazine/tl102/hsg_nest,
 /turf/open/floor/mainship/plate,
@@ -928,15 +1007,35 @@
 	icon_state = "tile"
 	},
 /area/orion_outpost/surface/building/canteen)
+"fC" = (
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "fG" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostcent)
+"fI" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/outpostn)
 "fJ" = (
 /turf/open/floor/plating/ground/dirt2{
 	color = "#82776d"
 	},
 /area/orion_outpost/ground/outpostse)
+"fK" = (
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "fL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -1066,6 +1165,11 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outpostcent)
+"gw" = (
+/obj/structure/flora/rock/alt2,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostn)
 "gx" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/dirt2,
@@ -1159,6 +1263,17 @@
 	dir = 4
 	},
 /area/orion_outpost/surface/building/armory)
+"gR" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "gS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/jungle/vines{
@@ -1171,6 +1286,17 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outposte)
+"gT" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "gU" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostsw)
@@ -1207,6 +1333,9 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outposts)
+"hn" = (
+/turf/open/ground/river,
+/area/orion_outpost/ground/outpostcent)
 "ho" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -1303,6 +1432,15 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/orion_outpost/surface/building/canteen)
+"hP" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "hQ" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 4
@@ -1357,6 +1495,7 @@
 /obj/machinery/colony_floodlight_switch{
 	pixel_y = 30
 	},
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "ih" = (
@@ -1600,6 +1739,15 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outposte)
+"ju" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "jv" = (
 /obj/structure/table,
 /turf/open/floor,
@@ -1634,6 +1782,10 @@
 /obj/effect/acid_hole,
 /turf/closed/wall,
 /area/orion_outpost/surface/building/showers)
+"jB" = (
+/obj/structure/largecrate/supply,
+/turf/open/floor/plating,
+/area/orion_outpost/ground/outpostsw)
 "jC" = (
 /obj/structure/barricade/sandbags,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -1759,6 +1911,14 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outpostcent)
+"jZ" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "kb" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor,
@@ -1914,7 +2074,9 @@
 "kR" = (
 /obj/effect/forcefield/fog/passable_fog,
 /obj/structure/prop/brokenvendor/surplusclothes,
-/turf/open/floor,
+/turf/closed/wall/indestructible/fakeglass{
+	name = "col"
+	},
 /area/orion_outpost/surface/building/showers)
 "kS" = (
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/engineer,
@@ -2135,6 +2297,17 @@
 /turf/open/space/basic,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostnw)
+"mb" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "mc" = (
 /turf/open/floor/wood,
 /area/orion_outpost/ground/outpostse)
@@ -2159,6 +2332,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/surface/building/research)
+"mg" = (
+/obj/structure/flora/rock/pile/alt,
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/outpostcent)
 "mi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -2174,6 +2356,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/surface/building/barracks)
+"mm" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral,
+/area/orion_outpost/ground/underground/caveE)
 "mp" = (
 /turf/closed/shuttle/escapepod{
 	icon_state = "wall4"
@@ -2190,6 +2376,10 @@
 "mr" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostn)
+"ms" = (
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river,
 /area/orion_outpost/ground/outpostn)
 "mu" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
@@ -2228,6 +2418,7 @@
 /area/orion_outpost/ground/outpostw)
 "mE" = (
 /obj/structure/cable,
+/obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/marking/loadingarea{
 	dir = 8
 	},
@@ -2412,6 +2603,10 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostcent)
+"nN" = (
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor,
+/area/orion_outpost/ground/outpostsw)
 "nO" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -2514,6 +2709,15 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outpostcent)
+"os" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/bush{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostse)
 "ot" = (
 /obj/machinery/light{
 	dir = 8
@@ -2588,6 +2792,13 @@
 "oM" = (
 /turf/open/shuttle/dropship/floor,
 /area/orion_outpost/surface/building/crashednt)
+"oN" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "oP" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -2689,6 +2900,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostcent)
+"pq" = (
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/ground/river,
+/area/orion_outpost/ground/outpostsw)
 "pt" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -2734,10 +2949,26 @@
 	},
 /turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/engineering)
+"pB" = (
+/obj/structure/flora/rock/alt,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostn)
 "pD" = (
 /obj/structure/flora/rock/alt2,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostw)
+"pE" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "pG" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -2811,6 +3042,14 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostcent)
+"qc" = (
+/obj/structure/flora/ausbushes/sunnybush{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/outposts)
 "qd" = (
 /turf/open/floor/tile/damaged/panel,
 /area/orion_outpost/surface/building/engineering)
@@ -2821,6 +3060,11 @@
 	},
 /turf/open/floor/plating,
 /area/orion_outpost/surface/building/research)
+"qh" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostn)
 "qi" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -2859,6 +3103,14 @@
 /obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostn)
+"qq" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/forcefield/fog/passable_fog,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "qr" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/largecrate/random,
@@ -2908,6 +3160,14 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostnw)
+"qE" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "qG" = (
 /obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/grass{
@@ -3062,6 +3322,20 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outpostn)
+"rB" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "rD" = (
 /obj/structure/jungle/vines{
 	color = "#ffb682"
@@ -3083,9 +3357,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/orion_outpost/surface/building/crashednt)
 "rH" = (
-/obj/structure/sign/safety/electronics,
-/turf/closed/wall,
-/area/orion_outpost/surface/building/engineering)
+/turf/closed/mineral/indestructible,
+/area/orion_outpost/ground/underground/caveN)
 "rI" = (
 /turf/closed/mineral,
 /area/orion_outpost/ground/outpostse)
@@ -3195,7 +3468,9 @@
 /area/orion_outpost/ground/outposts)
 "sn" = (
 /obj/structure/prop/brokenvendor/surplusclothes,
-/turf/open/floor,
+/turf/closed/wall/indestructible/fakeglass{
+	name = "col"
+	},
 /area/orion_outpost/surface/building/showers)
 "sq" = (
 /obj/structure/girder/displaced,
@@ -3272,7 +3547,7 @@
 /turf/open/floor/plating/ground/dirt2{
 	color = "#82776d"
 	},
-/area/orion_outpost/ground/underground/caveS)
+/area/orion_outpost/surface/building/medbay)
 "sI" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3386,6 +3661,10 @@
 "to" = (
 /turf/open/floor/prison/sterilewhite,
 /area/orion_outpost/surface/building/medbay)
+"tq" = (
+/obj/effect/forcefield/fog/passable_fog,
+/turf/closed/mineral,
+/area/orion_outpost/ground/underground/caveN)
 "tr" = (
 /turf/closed/shuttle/escapepod{
 	icon_state = "wall2"
@@ -3432,6 +3711,12 @@
 	icon_state = "floor10"
 	},
 /area/orion_outpost/ground/outpostsw)
+"tH" = (
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/surface/building/barracks)
 "tI" = (
 /obj/structure/table,
 /obj/item/tool/kitchen/utensil/pfork,
@@ -3512,6 +3797,11 @@
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostnw)
+"ua" = (
+/turf/closed/gm/dense{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "ub" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outposte)
@@ -3619,7 +3909,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
-/area/orion_outpost/ground/underground/caveW)
+/area/orion_outpost/ground/underground/caveE)
 "uQ" = (
 /obj/structure/sink/puddle,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -3682,6 +3972,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostnw)
+"ve" = (
+/obj/structure/largecrate/supply,
+/turf/open/floor/plating,
+/area/orion_outpost/ground/outposts)
 "vf" = (
 /obj/structure/barricade/wooden{
 	dir = 1
@@ -3802,6 +4096,17 @@
 	},
 /turf/open/floor,
 /area/orion_outpost/surface/building/canteen)
+"vQ" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "vR" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -3942,6 +4247,17 @@
 /obj/structure/flora/rock/alt,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostw)
+"wz" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/bush{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/outpostse)
 "wB" = (
 /obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/plating/ground/dirt2,
@@ -4076,6 +4392,10 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/surface/building/armory)
+"xi" = (
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/surface/building/research)
 "xk" = (
 /obj/machinery/light{
 	dir = 4
@@ -4088,7 +4408,9 @@
 /area/orion_outpost/surface/building/research)
 "xm" = (
 /obj/structure/lattice,
-/turf/open/floor/plating/ground/dirt2,
+/turf/closed/gm/dense{
+	color = "#ffb682"
+	},
 /area/orion_outpost/ground/outpostcent)
 "xn" = (
 /obj/structure/cable,
@@ -4150,6 +4472,20 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostnw)
+"xB" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "xC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4158,6 +4494,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/surface/building/armory)
 "xE" = (
@@ -4175,7 +4512,7 @@
 /turf/open/floor/plating/ground/dirt2{
 	color = "#82776d"
 	},
-/area/orion_outpost/ground/underground/caveW)
+/area/orion_outpost/ground/underground/caveE)
 "xH" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/weapon/gun/shotgun/pump/t35,
@@ -4215,20 +4552,13 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostcent)
 "xS" = (
-/obj/structure/flora/ausbushes/grassybush{
-	color = "#ffb682"
-	},
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
 	},
-/obj/structure/flora/ausbushes/fullgrass{
+/turf/open/floor/grass{
 	color = "#ffb682"
 	},
-/obj/structure/flora/ausbushes/fullgrass{
-	color = "#ffb682"
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/outpostcent)
+/area/orion_outpost/ground/underground/caveE)
 "xU" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -4391,6 +4721,12 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostcent)
+"yG" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "yH" = (
 /turf/closed/wall,
 /area/orion_outpost/surface/building/bunker)
@@ -4407,6 +4743,10 @@
 	opacity = 0
 	},
 /area/orion_outpost/surface/building/crashednt)
+"yL" = (
+/obj/effect/forcefield/fog/passable_fog,
+/turf/closed/wall,
+/area/orion_outpost/ground/outpostsw)
 "yM" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -4421,6 +4761,17 @@
 "yP" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/surface/building/armory)
+"yQ" = (
+/obj/structure/flora/ausbushes/grassybush{
+	color = "#ffb682"
+	},
+/obj/structure/bush{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/outposte)
 "yT" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt2{
@@ -4496,6 +4847,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostcent)
+"zr" = (
+/obj/effect/forcefield/fog/passable_fog,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostse)
 "zw" = (
 /obj/structure/fence,
 /obj/effect/decal/cleanable/dirt,
@@ -4566,6 +4922,7 @@
 /area/orion_outpost/ground/outpostnw)
 "Ae" = (
 /obj/machinery/door/airlock/mainship/security,
+/obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor,
 /area/orion_outpost/ground/outpostsw)
 "Af" = (
@@ -4624,6 +4981,12 @@
 "Ap" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostn)
+"Av" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "Aw" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan9"
@@ -4981,6 +5344,13 @@
 /obj/effect/acid_hole,
 /turf/closed/wall/mainship/white,
 /area/orion_outpost/surface/building/medbay)
+"Cl" = (
+/obj/effect/forcefield/fog/passable_fog,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "Co" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt2,
@@ -4992,9 +5362,10 @@
 	},
 /area/orion_outpost/surface/building/engineering)
 "Cr" = (
-/obj/machinery/computer/nuke_disk_generator/red,
-/turf/open/floor/prison/whitegreen/full,
-/area/orion_outpost/surface/building/medbay)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostsw)
 "Ct" = (
 /obj/structure/sensor_tower,
 /turf/open/floor/plating/ground/dirt2,
@@ -5092,6 +5463,20 @@
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /turf/open/floor,
 /area/orion_outpost/surface/building/canteen)
+"Dc" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "Df" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -5346,10 +5731,8 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostnw)
 "EB" = (
-/obj/structure/flora/rock/alt,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/outpostn)
+/turf/closed/mineral,
+/area/orion_outpost/ground/underground/caveE)
 "ED" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/shuttle/ert{
@@ -5381,6 +5764,20 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outposte)
+"EL" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "EN" = (
 /turf/open/floor/grass{
 	color = "#ffb682"
@@ -5394,6 +5791,7 @@
 /turf/open/floor/plating,
 /area/orion_outpost/ground/outposts)
 "EU" = (
+/obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/marking/loadingarea{
 	dir = 8
 	},
@@ -5693,6 +6091,12 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outpostn)
+"GC" = (
+/obj/machinery/atmospherics/pipe/simple/general/visible{
+	dir = 4
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/orion_outpost/surface/building/medbay)
 "GE" = (
 /obj/structure/flora/ausbushes/sunnybush{
 	color = "#ffb682"
@@ -5705,7 +6109,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
-/area/orion_outpost/ground/underground/caveW)
+/area/orion_outpost/ground/underground/caveE)
 "GG" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -5910,6 +6314,16 @@
 	icon_state = "tile"
 	},
 /area/orion_outpost/surface/building/canteen)
+"HH" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "HJ" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -5923,6 +6337,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostn)
+"HL" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "HM" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -6029,7 +6451,7 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
-/area/orion_outpost/ground/underground/caveW)
+/area/orion_outpost/ground/underground/caveE)
 "Iq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -6191,7 +6613,9 @@
 /area/orion_outpost/ground/outpostcent)
 "Jx" = (
 /obj/structure/flora/tree/joshua,
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
 /area/orion_outpost/ground/outposts)
 "Jy" = (
 /obj/structure/flora/tree/joshua,
@@ -6368,6 +6792,11 @@
 /obj/structure/largecrate/supply/ammo,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outposte)
+"Ky" = (
+/obj/structure/fence,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostsw)
 "Kz" = (
 /turf/closed/mineral,
 /area/orion_outpost/ground/outpostn)
@@ -6415,13 +6844,17 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/surface/building/barracks)
 "KM" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/armory)
 "KN" = (
-/obj/machinery/floodlight/outpost,
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/outpostcent)
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "KO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6453,6 +6886,11 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/surface/building/canteen)
+"Lc" = (
+/obj/effect/forcefield/fog/passable_fog,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/underground/caveN)
 "Lh" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -6513,6 +6951,16 @@
 /obj/machinery/computer/crew,
 /turf/open/shuttle/dropship/floor,
 /area/orion_outpost/surface/building/crashednt)
+"LE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bush{
+	color = "#ffb682"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/outposte)
 "LF" = (
 /obj/structure/girder,
 /obj/structure/girder,
@@ -6537,6 +6985,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostnw)
+"LL" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "LM" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/grass{
@@ -6606,6 +7062,14 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outpostn)
+"Ma" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "Mb" = (
 /turf/closed/shuttle/ert{
 	icon_state = "nt25"
@@ -6696,7 +7160,7 @@
 /turf/open/floor/plating/ground/dirt2{
 	color = "#82776d"
 	},
-/area/orion_outpost/ground/underground/caveW)
+/area/orion_outpost/ground/underground/caveE)
 "MC" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Nexus Dome Canteen"
@@ -6754,6 +7218,17 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outpostn)
+"MK" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "ML" = (
 /turf/open/floor,
 /area/orion_outpost/ground/outpostcent)
@@ -6782,6 +7257,7 @@
 /area/orion_outpost/surface/building/armory)
 "MR" = (
 /obj/structure/sink/puddle,
+/obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostsw)
 "MS" = (
@@ -6869,9 +7345,6 @@
 /obj/structure/hoop{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /turf/open/floor/wood,
 /area/orion_outpost/ground/outpostse)
 "Nu" = (
@@ -6909,6 +7382,15 @@
 /obj/machinery/computer/atmoscontrol,
 /turf/open/floor/podhatch/floor,
 /area/orion_outpost/surface/building/research)
+"NF" = (
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "NG" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt2{
@@ -7013,6 +7495,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/surface/building/command)
+"Oi" = (
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/ground/outpostn)
 "Oj" = (
 /obj/structure/curtain/temple,
 /turf/open/floor/wood,
@@ -7157,6 +7643,10 @@
 /obj/structure/girder/displaced,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostne)
+"Pa" = (
+/obj/structure/rack,
+/turf/open/floor/prison/sterilewhite,
+/area/orion_outpost/surface/building/medbay)
 "Pb" = (
 /obj/machinery/access_button,
 /obj/structure/table,
@@ -7179,6 +7669,10 @@
 	color = "#82776d"
 	},
 /area/orion_outpost/ground/underground/caveN)
+"Pg" = (
+/obj/machinery/sleep_console,
+/turf/open/floor/prison/sterilewhite,
+/area/orion_outpost/surface/building/medbay)
 "Ph" = (
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/mech_bay_recharge_floor,
@@ -7263,14 +7757,11 @@
 /turf/closed/mineral/indestructible,
 /area/orion_outpost/ground/underground/caveW)
 "Pz" = (
-/obj/effect/forcefield/fog/passable_fog,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/orion_outpost/ground/outpostnw)
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "PB" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -7391,6 +7882,17 @@
 	name = "col"
 	},
 /area/orion_outpost/surface/building/armory)
+"PZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/orion_outpost/ground/outposte)
+"Qb" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "Qe" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /turf/open/shuttle/escapepod/plain,
@@ -7430,6 +7932,17 @@
 /obj/structure/flora/rock/pile/alt,
 /turf/open/shuttle/dropship/floor,
 /area/orion_outpost/surface/building/crashednt)
+"Qw" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "Qx" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/ground/dirt2,
@@ -7511,7 +8024,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/window/framed/colony,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/dirt2,
+/turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "QZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -7583,6 +8096,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/orion_outpost/ground/outpostcent)
+"Rs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/jungle/vines{
+	color = "#ffb682"
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outposte)
 "Rw" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
@@ -7599,6 +8120,12 @@
 /obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostsw)
+"RD" = (
+/obj/structure/bush{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostse)
 "RE" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -7643,6 +8170,15 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostw)
+"RS" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "RW" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/ground/river,
@@ -7786,7 +8322,7 @@
 "SG" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/mineral,
-/area/orion_outpost/ground/underground/caveW)
+/area/orion_outpost/ground/underground/caveE)
 "SH" = (
 /obj/structure/largecrate/random,
 /obj/structure/largecrate/random,
@@ -7899,6 +8435,11 @@
 	},
 /turf/open/floor/wood,
 /area/orion_outpost/ground/outpostse)
+"Tw" = (
+/obj/structure/cable,
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/ground/outpostsw)
 "Tx" = (
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
@@ -8043,6 +8584,7 @@
 "Uf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sink/puddle,
+/obj/effect/forcefield/fog/passable_fog,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostsw)
 "Uh" = (
@@ -8179,10 +8721,9 @@
 /turf/open/floor,
 /area/orion_outpost/surface/building/canteen)
 "UL" = (
-/obj/structure/table,
-/obj/machinery/computer/general_air_control/fuel_injection,
-/turf/open/floor,
-/area/orion_outpost/surface/building/command)
+/obj/effect/forcefield/fog/passable_fog,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/underground/caveN)
 "UM" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan2"
@@ -8202,6 +8743,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostcent)
+"UV" = (
+/obj/effect/ai_node,
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2{
+	color = "#82776d"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "UW" = (
 /obj/structure/flora/rock/alt2,
 /obj/effect/decal/cleanable/dirt,
@@ -8329,6 +8879,13 @@
 /obj/effect/spawner/random/gun/rifles,
 /turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/armory)
+"VH" = (
+/obj/effect/forcefield/fog/passable_fog,
+/obj/structure/bush{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outposte)
 "VL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8370,6 +8927,11 @@
 	icon_state = "white"
 	},
 /area/orion_outpost/surface/building/research)
+"VX" = (
+/obj/structure/flora/rock/alt2,
+/turf/open/space/basic,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostnw)
 "VZ" = (
 /obj/structure/bush{
 	color = "#ffb682"
@@ -8439,8 +9001,7 @@
 /turf/open/floor/mainship/plate,
 /area/orion_outpost/surface/building/bunker)
 "WC" = (
-/obj/effect/landmark/corpsespawner/marine,
-/obj/structure/table/mainship,
+/obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/prison/sterilewhite,
 /area/orion_outpost/surface/building/medbay)
 "WD" = (
@@ -8570,9 +9131,6 @@
 /obj/structure/hoop{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /turf/open/floor/wood,
 /area/orion_outpost/ground/outpostse)
 "Xg" = (
@@ -8694,6 +9252,9 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostcent)
+"XG" = (
+/turf/open/ground/river,
+/area/orion_outpost/ground/outpostsw)
 "XI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -8840,7 +9401,6 @@
 /area/orion_outpost/surface/building/canteen)
 "Yw" = (
 /obj/effect/landmark/xeno_silo_spawn,
-/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt2{
 	color = "#82776d"
 	},
@@ -8959,6 +9519,15 @@
 /obj/structure/sign/prop1,
 /turf/closed/mineral,
 /area/orion_outpost/surface/landing_pad_external)
+"Zn" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/bush{
+	color = "#ffb682"
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outposte)
 "Zp" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -9043,6 +9612,9 @@
 /obj/structure/flora/ausbushes/fullgrass{
 	color = "#ffb682"
 	},
+/obj/structure/bush{
+	color = "#ffb682"
+	},
 /turf/open/floor/grass{
 	color = "#ffb682"
 	},
@@ -9054,9 +9626,9 @@
 /area/orion_outpost/ground/outpostw)
 
 (1,1,1) = {"
-IL
-IL
-IL
+gk
+gk
+gk
 IL
 IL
 IL
@@ -9166,9 +9738,9 @@ IL
 IL
 "}
 (2,1,1) = {"
-IL
-IL
-IL
+gk
+mu
+gk
 IL
 IL
 IL
@@ -9278,9 +9850,9 @@ Xv
 IL
 "}
 (3,1,1) = {"
-IL
-IL
-IL
+gk
+gk
+gk
 IL
 IL
 IL
@@ -9480,7 +10052,7 @@ fd
 fd
 fd
 Ne
-YY
+Xv
 YY
 YY
 Sw
@@ -9592,7 +10164,7 @@ rI
 rI
 rI
 Rq
-YY
+Xv
 YY
 YY
 aj
@@ -9722,7 +10294,7 @@ YY
 YY
 Xv
 Xv
-Xv
+YY
 IL
 "}
 (7,1,1) = {"
@@ -9801,8 +10373,8 @@ Ne
 fd
 Rq
 Rq
-Rq
-hG
+RD
+wz
 Hz
 Ak
 Rq
@@ -9834,7 +10406,7 @@ YY
 YY
 Xv
 Xv
-Xv
+YY
 IL
 "}
 (8,1,1) = {"
@@ -9914,12 +10486,12 @@ eB
 Rq
 eB
 Rq
-Rq
-pu
+RD
+os
 Hz
 Hz
 hG
-Rq
+LO
 Rq
 rI
 rI
@@ -10032,7 +10604,7 @@ pu
 Hz
 Hz
 Rq
-Rq
+LO
 rI
 rI
 Rq
@@ -10057,8 +10629,8 @@ YY
 Xv
 Xv
 Xv
-Xv
-Xv
+YY
+YY
 IL
 "}
 (10,1,1) = {"
@@ -10141,7 +10713,7 @@ Rq
 Rq
 Rq
 pu
-hG
+wz
 ZS
 hG
 Rq
@@ -10169,8 +10741,8 @@ YY
 Xv
 Xv
 Xv
-Xv
-Xv
+YY
+YY
 IL
 "}
 (11,1,1) = {"
@@ -10336,8 +10908,8 @@ eM
 eM
 wo
 wo
-wo
-wo
+iS
+iS
 Qq
 Qq
 Dg
@@ -10389,7 +10961,7 @@ vH
 vH
 vH
 vH
-fN
+fu
 Xv
 Xv
 Xv
@@ -10493,15 +11065,15 @@ oU
 yr
 ik
 vH
-Cr
+jk
 jk
 PV
 jk
 FU
-jk
+Rg
 oh
 vH
-Xv
+dS
 Xv
 Xv
 YY
@@ -10610,10 +11182,10 @@ to
 xM
 to
 um
-to
+Pg
 TN
 vH
-Xv
+dS
 Xv
 YY
 YY
@@ -10723,9 +11295,9 @@ WC
 vz
 Fo
 OJ
-Rg
+jk
 vH
-Xv
+dS
 Xv
 YY
 YY
@@ -10834,8 +11406,8 @@ to
 qx
 vW
 to
-to
-ae
+vH
+vH
 vH
 sH
 Xv
@@ -10924,7 +11496,7 @@ mc
 mc
 mc
 iA
-Rz
+tH
 oU
 Oj
 Oj
@@ -10949,7 +11521,7 @@ jk
 to
 jk
 Gc
-Xv
+dS
 Xv
 Xv
 YY
@@ -11061,7 +11633,7 @@ kr
 VS
 VO
 jk
-fN
+fu
 Xv
 Xv
 YY
@@ -11279,13 +11851,13 @@ ik
 vH
 Gr
 to
-Ah
-wO
+Pa
+GC
 nC
 tc
 HX
 vH
-fN
+fu
 Xv
 Xv
 Xv
@@ -11397,7 +11969,7 @@ vH
 ZJ
 jk
 vH
-Xv
+dS
 Xv
 Gx
 Xv
@@ -11509,12 +12081,12 @@ vH
 Wf
 Di
 vH
-Xv
+dS
 YY
 YY
 Xv
 Xv
-Xv
+YY
 IL
 "}
 (23,1,1) = {"
@@ -11621,12 +12193,12 @@ vH
 vH
 vH
 vH
-Xv
+dS
 YY
 YY
 Xv
 Xv
-Xv
+YY
 IL
 "}
 (24,1,1) = {"
@@ -11738,7 +12310,7 @@ YY
 YY
 Xv
 Xv
-Xv
+YY
 IL
 "}
 (25,1,1) = {"
@@ -11820,7 +12392,7 @@ mc
 mc
 mc
 iA
-Rz
+tH
 oU
 Oj
 Oj
@@ -12184,7 +12756,7 @@ YY
 Xv
 Xv
 Xv
-Xv
+YY
 YY
 YY
 IL
@@ -12295,7 +12867,7 @@ YY
 YY
 Xv
 Xv
-Xv
+YY
 YY
 YY
 YY
@@ -12711,12 +13283,12 @@ wI
 Rq
 Rq
 rI
-Rq
+hM
 xa
 Rq
-xa
+zr
 rp
-Rz
+tH
 oU
 Oj
 Oj
@@ -12737,7 +13309,7 @@ Rq
 Rq
 YY
 YY
-Xv
+YY
 Xv
 Xv
 Xv
@@ -12760,7 +13332,7 @@ IL
 IL
 IL
 IL
-IL
+oJ
 Pf
 mN
 mN
@@ -12849,11 +13421,11 @@ jo
 Rq
 YY
 YY
+YY
 Xv
 Xv
-Xv
-Xv
-Xv
+YY
+YY
 YY
 YY
 YY
@@ -12872,7 +13444,7 @@ IL
 IL
 IL
 IL
-IL
+oJ
 Pf
 zT
 Pf
@@ -12961,10 +13533,10 @@ Rq
 rI
 YY
 YY
+YY
 Xv
 Xv
-Xv
-Xv
+YY
 YY
 YY
 YY
@@ -12984,7 +13556,7 @@ IL
 IL
 IL
 IL
-IL
+Pf
 Pf
 Pf
 zD
@@ -13011,7 +13583,7 @@ mN
 dF
 ma
 ma
-ma
+VX
 ma
 ma
 ma
@@ -13073,7 +13645,7 @@ Rq
 rI
 YY
 YY
-Xv
+YY
 Xv
 Gx
 Xv
@@ -13096,7 +13668,7 @@ IL
 IL
 IL
 IL
-IL
+Pf
 Pf
 Pf
 Pf
@@ -13208,7 +13780,7 @@ IL
 IL
 IL
 IL
-IL
+Pf
 Pf
 Pf
 Pf
@@ -13226,7 +13798,7 @@ mN
 mN
 mN
 SF
-Pz
+GR
 SF
 mN
 gu
@@ -13234,7 +13806,7 @@ gu
 gu
 uZ
 Ss
-ma
+VX
 ma
 ma
 ma
@@ -13320,7 +13892,7 @@ IL
 IL
 IL
 IL
-IL
+oJ
 Pf
 Pf
 Pf
@@ -13382,11 +13954,11 @@ pn
 Xk
 ir
 Rq
-Rq
+hM
 Rq
 LO
 nk
-xa
+zr
 Rq
 xa
 Rq
@@ -13432,7 +14004,7 @@ IL
 IL
 IL
 IL
-IL
+oJ
 JA
 Pf
 zD
@@ -13535,16 +14107,16 @@ IL
 "}
 (41,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+rH
+rH
+rH
+rH
+rH
+rH
+rH
+oJ
 Pf
 Pf
 oJ
@@ -13609,8 +14181,8 @@ zF
 ir
 RN
 AC
-ej
-Ly
+Rq
+Rq
 YG
 dR
 xa
@@ -13647,19 +14219,19 @@ IL
 "}
 (42,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
 Pf
 Pf
 Pf
+Pf
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+oJ
 oJ
 yd
 iB
@@ -13722,7 +14294,7 @@ ef
 gF
 GU
 Iv
-fj
+wP
 sO
 Dl
 po
@@ -13759,19 +14331,19 @@ IL
 "}
 (43,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+Pf
+KN
+KN
+Ma
+oJ
 Pf
 Pf
 Pf
+Pf
+oJ
 oJ
 zn
 iB
@@ -13838,7 +14410,7 @@ kp
 Vq
 wq
 po
-XX
+wP
 wP
 wP
 wP
@@ -13871,16 +14443,16 @@ IL
 "}
 (44,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+Pf
+Pf
+ju
+KN
+gT
+HL
+gT
+Pf
+Pf
 Pf
 cS
 oJ
@@ -13983,16 +14555,16 @@ IL
 "}
 (45,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+Pf
+Pf
+Pf
+Pf
+Pf
+ej
+HL
+Pf
+Pf
+Pf
 Pf
 Pf
 Pf
@@ -14095,16 +14667,16 @@ IL
 "}
 (46,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+Pf
+Pf
+Pf
+Pf
+vQ
+ej
+Pf
+oJ
+oJ
+Pf
 oJ
 Pf
 Pf
@@ -14112,7 +14684,7 @@ oJ
 yd
 ux
 ux
-EB
+ux
 ux
 NH
 rt
@@ -14207,16 +14779,16 @@ IL
 "}
 (47,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+Pf
+Pf
+Pf
+Pf
+xB
+eq
+oJ
+oJ
+oJ
+oJ
 oJ
 Pf
 Pf
@@ -14244,7 +14816,7 @@ IH
 IH
 LZ
 UN
-UN
+iB
 ed
 Kz
 Kz
@@ -14319,16 +14891,16 @@ IL
 "}
 (48,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+Pf
+Pf
+Pf
+mb
+eq
+oJ
+oJ
+oJ
+oJ
 oJ
 Pf
 Pf
@@ -14341,7 +14913,7 @@ qp
 JX
 Sh
 JX
-iB
+rt
 rt
 aG
 iB
@@ -14356,7 +14928,7 @@ UN
 iG
 LZ
 Gy
-UN
+iB
 Kz
 Kz
 Kz
@@ -14431,16 +15003,16 @@ IL
 "}
 (49,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
 JA
 Pf
 Pf
@@ -14454,7 +15026,7 @@ Go
 IH
 pw
 iB
-iB
+rt
 iB
 iB
 Ap
@@ -14468,7 +15040,7 @@ UN
 UN
 Pc
 Gy
-Kz
+iB
 Kz
 Kz
 Kz
@@ -14489,8 +15061,8 @@ gq
 MO
 nr
 sG
-DZ
-DZ
+hn
+hn
 bB
 jG
 Dq
@@ -14543,16 +15115,16 @@ IL
 "}
 (50,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
 Pf
 Pf
 Pf
@@ -14566,8 +15138,8 @@ iG
 Pc
 IH
 pw
-iB
-OS
+qp
+qh
 iB
 Ap
 ag
@@ -14580,7 +15152,7 @@ LZ
 Gy
 Pc
 LZ
-Kz
+iB
 Kz
 Kz
 Kz
@@ -14655,16 +15227,16 @@ IL
 "}
 (51,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+Pf
 Pf
 Pf
 Pf
@@ -14678,8 +15250,8 @@ sw
 Pc
 pw
 no
-iB
-iB
+rt
+rt
 iB
 Ap
 uS
@@ -14692,7 +15264,7 @@ LZ
 Pc
 Pp
 LZ
-Kz
+iB
 Oc
 fP
 iw
@@ -14704,7 +15276,7 @@ CM
 hK
 RH
 VZ
-DZ
+ss
 mZ
 UI
 yF
@@ -14767,16 +15339,16 @@ IL
 "}
 (52,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
 Pf
 Uk
 oJ
@@ -14791,7 +15363,7 @@ Gy
 iG
 YZ
 iB
-iB
+qp
 iB
 Ap
 uS
@@ -14803,8 +15375,8 @@ FA
 Pc
 sw
 iB
-Kz
-Kz
+iB
+iB
 JC
 EF
 EF
@@ -14812,7 +15384,7 @@ EF
 db
 JC
 DC
-KN
+yF
 hK
 bB
 ky
@@ -14879,16 +15451,16 @@ IL
 "}
 (53,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
 Pf
 Pf
 oJ
@@ -14903,8 +15475,8 @@ UN
 UN
 YZ
 iB
-iB
-id
+qp
+pB
 Ap
 ag
 iG
@@ -14914,9 +15486,9 @@ sw
 sK
 UN
 EN
-Kz
-Kz
-Kz
+iB
+iB
+iB
 JC
 xH
 Qe
@@ -14928,7 +15500,7 @@ DZ
 XF
 bB
 ky
-mZ
+gq
 Cu
 sG
 hK
@@ -14991,16 +15563,16 @@ IL
 "}
 (54,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+KN
+Pf
+Pf
+oJ
+Pf
+Pf
+Pf
 Pf
 Pf
 Pf
@@ -15015,8 +15587,8 @@ UN
 UN
 iB
 iB
-lS
-iB
+gw
+rt
 Ap
 ag
 Xd
@@ -15026,7 +15598,7 @@ Gy
 iG
 Hu
 no
-Kz
+iB
 Kz
 Kz
 lx
@@ -15040,7 +15612,7 @@ DZ
 bB
 DZ
 ky
-DZ
+ss
 mZ
 sG
 NK
@@ -15103,16 +15675,16 @@ IL
 "}
 (55,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+ju
+KN
+Pf
+Pf
+Pf
+Pf
+Pf
 oJ
 Pf
 Pf
@@ -15127,8 +15699,8 @@ UN
 UN
 iB
 iB
-aG
-iB
+ms
+rt
 Ap
 ag
 iB
@@ -15215,16 +15787,16 @@ IL
 "}
 (56,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+eq
+Pf
+KN
+Pf
+Pf
+Pf
+Pf
+oJ
 oJ
 Pf
 Pf
@@ -15239,8 +15811,8 @@ UN
 iB
 Ec
 iB
-iB
-iB
+qp
+qp
 Ap
 ag
 iB
@@ -15276,7 +15848,7 @@ up
 TI
 sG
 NK
-xS
+PC
 sG
 DZ
 iz
@@ -15327,16 +15899,16 @@ IL
 "}
 (57,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+eq
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
 oJ
 JA
 Pf
@@ -15351,9 +15923,9 @@ iB
 YZ
 Ec
 OS
-iB
-iB
-Ap
+rt
+qp
+Oi
 ag
 iB
 OS
@@ -15390,7 +15962,7 @@ KB
 NK
 sG
 HB
-DZ
+hn
 TS
 bw
 AP
@@ -15439,16 +16011,16 @@ IL
 "}
 (58,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+ej
+KN
+KN
+oJ
+oJ
+oJ
+oJ
+oJ
 oJ
 Pf
 Pf
@@ -15459,12 +16031,12 @@ Gy
 YZ
 em
 JX
-LZ
+Gj
 LZ
 js
 QR
 QR
-QR
+xi
 Ed
 kO
 oq
@@ -15551,16 +16123,16 @@ IL
 "}
 (59,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+KN
+mb
+Pf
+oJ
+oJ
+oJ
+oJ
+Pf
 oJ
 Pf
 Pf
@@ -15570,7 +16142,7 @@ Kz
 iB
 iB
 JX
-JX
+eQ
 UN
 Gy
 xt
@@ -15600,8 +16172,8 @@ mZ
 rQ
 td
 DZ
-DZ
-DZ
+hn
+hn
 DZ
 DZ
 DZ
@@ -15663,16 +16235,16 @@ IL
 "}
 (60,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+mb
+vQ
+oJ
+oJ
+oJ
+oJ
+Pf
 Pf
 Pf
 Pf
@@ -15681,7 +16253,7 @@ oJ
 Kz
 Kz
 iB
-iG
+fI
 LZ
 UN
 UN
@@ -15713,7 +16285,7 @@ CM
 zO
 td
 DZ
-DZ
+hn
 KJ
 DZ
 DZ
@@ -15774,17 +16346,17 @@ wP
 IL
 "}
 (61,1,1) = {"
-gk
-gk
-gk
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+KN
+HL
+oJ
+oJ
+oJ
+oJ
+Pf
 Pf
 cS
 Pf
@@ -15873,7 +16445,7 @@ QV
 IQ
 gA
 gA
-gA
+ve
 gA
 gA
 XN
@@ -15886,17 +16458,17 @@ wP
 IL
 "}
 (62,1,1) = {"
-gk
-mu
-gk
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
 Pf
 Pf
 Pf
@@ -15917,7 +16489,7 @@ Bo
 AM
 ln
 wQ
-AM
+iR
 cN
 VV
 if
@@ -15988,7 +16560,7 @@ gA
 gA
 gA
 gA
-gA
+ve
 XN
 Xp
 wP
@@ -15998,17 +16570,17 @@ fx
 IL
 "}
 (63,1,1) = {"
-gk
-gk
-gk
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
 Pf
 Pf
 Pf
@@ -16029,7 +16601,7 @@ Uo
 AM
 ln
 Mv
-AM
+iR
 fT
 AM
 AM
@@ -16067,8 +16639,8 @@ Wa
 eL
 DZ
 DZ
-DZ
-DZ
+gv
+ss
 wP
 wP
 wP
@@ -16111,20 +16683,20 @@ IL
 "}
 (64,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-Pf
-Pf
-Pf
+rH
+rH
 oJ
+cS
+Pf
+Pf
+Pf
+cS
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
 Pf
 iB
 rt
@@ -16178,10 +16750,10 @@ Wa
 Wa
 eL
 DZ
-DZ
-KJ
+gv
+mg
 xm
-wP
+zo
 wP
 be
 AF
@@ -16223,25 +16795,25 @@ IL
 "}
 (65,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+cS
 Pf
 Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+cS
 Pf
 Pf
 Pf
 iB
 rt
 qp
-iB
+tO
 LZ
 gM
 SD
@@ -16290,10 +16862,10 @@ Wa
 Wa
 eL
 lk
-lk
-lk
-lJ
-wP
+GE
+Tn
+lK
+qc
 wP
 wP
 UJ
@@ -16335,20 +16907,20 @@ IL
 "}
 (66,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+Pf
 Pf
 Pf
 oJ
 oJ
+oJ
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+Pf
 oJ
 oJ
 KI
@@ -16403,10 +16975,10 @@ Wa
 Ii
 lk
 lk
-lk
-lk
+XM
+Tn
 Jx
-wP
+HE
 wP
 wP
 AF
@@ -16447,18 +17019,18 @@ IL
 "}
 (67,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
 Pf
 Pf
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
 oJ
 oJ
 oJ
@@ -16517,8 +17089,8 @@ lk
 lk
 lJ
 lk
-wP
-wP
+xv
+HE
 wP
 wP
 oI
@@ -16559,19 +17131,19 @@ IL
 "}
 (68,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
 Pf
-JA
 Pf
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
 oJ
 oJ
 oJ
@@ -16629,7 +17201,7 @@ ub
 ub
 lk
 lk
-lk
+XM
 yH
 yH
 yH
@@ -16671,18 +17243,18 @@ IL
 "}
 (69,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
 Pf
 Pf
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
 oJ
 oJ
 oJ
@@ -16773,7 +17345,7 @@ TD
 TD
 TD
 TD
-TD
+jB
 Co
 FQ
 UO
@@ -16783,18 +17355,18 @@ IL
 "}
 (70,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
 Pf
 Pf
+oJ
+oJ
+oJ
+oJ
+cS
+Pf
+Pf
+oJ
+oJ
 oJ
 iH
 iH
@@ -16884,7 +17456,7 @@ TD
 nP
 TD
 TD
-TD
+jB
 TD
 Co
 FQ
@@ -16895,18 +17467,18 @@ IL
 "}
 (71,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
 Pf
 Pf
+oJ
+oJ
+oJ
+oJ
+cS
+Pf
+Pf
+cS
 oJ
 iH
 od
@@ -17007,16 +17579,16 @@ IL
 "}
 (72,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
 Pf
 Pf
 Pf
@@ -17106,7 +17678,7 @@ TD
 TD
 vr
 TD
-TD
+jB
 TD
 vr
 TD
@@ -17119,18 +17691,18 @@ IL
 "}
 (73,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
 Pf
-cS
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
 Pf
 Ir
 Mf
@@ -17163,7 +17735,7 @@ KI
 ll
 XW
 XW
-lk
+iQ
 lk
 lk
 Bz
@@ -17183,7 +17755,7 @@ eL
 eL
 eL
 SS
-eL
+Wa
 yC
 fO
 lk
@@ -17220,7 +17792,7 @@ TD
 TD
 TD
 TD
-TD
+jB
 TD
 Co
 UO
@@ -17231,16 +17803,16 @@ IL
 "}
 (74,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
 Pf
 Pf
 Pf
@@ -17295,7 +17867,7 @@ DF
 dL
 dL
 dL
-dL
+uv
 dL
 dL
 dL
@@ -17343,16 +17915,16 @@ IL
 "}
 (75,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
 Pf
 Pf
 Pf
@@ -17426,14 +17998,14 @@ lk
 wE
 FQ
 FQ
-FQ
-FQ
-Co
+XG
+jn
+Ky
 TD
 TD
 TD
 TD
-TD
+jB
 TD
 TD
 PO
@@ -17455,16 +18027,16 @@ IL
 "}
 (76,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
 Pf
 Pf
 Pf
@@ -17510,9 +18082,9 @@ gC
 iX
 tP
 tL
+dL
 qw
 JK
-dL
 dL
 dL
 dL
@@ -17537,11 +18109,11 @@ ce
 lk
 mW
 mW
+XG
+pq
 FQ
-FQ
-FQ
-Co
-Co
+Ky
+Ky
 Co
 Co
 Co
@@ -17554,7 +18126,7 @@ EU
 mE
 EU
 aw
-Co
+Ky
 Co
 Co
 Co
@@ -17567,16 +18139,16 @@ IL
 "}
 (77,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+cS
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
 Pf
 Pf
 JA
@@ -17649,25 +18221,25 @@ lk
 bH
 mW
 FQ
-FQ
-FQ
-FQ
-ai
-ai
-FQ
+jn
+jn
+jn
+Cr
+Cr
+jn
 FQ
 FQ
 FQ
 QX
-QX
-QX
-QX
-QX
-Nw
-gU
-gU
-FQ
-FQ
+yL
+yL
+yL
+yL
+Tw
+RB
+RB
+jn
+jn
 FQ
 FQ
 FQ
@@ -17679,17 +18251,17 @@ IL
 "}
 (78,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
 Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
 cS
 Pf
 Pf
@@ -17744,7 +18316,7 @@ Jh
 uv
 uv
 aO
-UL
+WZ
 uv
 Gv
 lk
@@ -17760,28 +18332,28 @@ Mi
 Mi
 bH
 jn
-ai
-ai
-ai
-ai
-ai
+Cr
+Cr
+Cr
+Cr
+Cr
 Uf
-FQ
-FQ
-FQ
-FQ
+jn
+jn
+jn
+jn
 Ae
-km
+nN
 Sd
 Pb
 QX
 Nw
 gU
-gU
-FQ
+RB
+jn
 JJ
-FQ
-FQ
+jn
+jn
 FQ
 UO
 UO
@@ -17791,17 +18363,17 @@ IL
 "}
 (79,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
 Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
 Pf
 Pf
 Pf
@@ -17835,12 +18407,12 @@ VU
 Ai
 MT
 BK
-LT
+iW
 Gi
 Gi
 lk
 dL
-WZ
+uv
 uv
 uv
 uv
@@ -17872,16 +18444,16 @@ Mi
 Mi
 bH
 jn
-jn
+XP
 MR
-ai
+Cr
 FQ
-FQ
-FQ
-ai
-ai
-UO
-UO
+jn
+jn
+Cr
+Cr
+Fr
+Fr
 QX
 WJ
 km
@@ -17890,11 +18462,11 @@ Pu
 Nw
 gU
 gU
-FQ
-FQ
-FQ
-UO
-UO
+jn
+jn
+jn
+Fr
+Fr
 UO
 UO
 UO
@@ -17903,17 +18475,17 @@ IL
 "}
 (80,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
 Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
 Pf
 Pf
 Pf
@@ -17985,9 +18557,9 @@ Mi
 bH
 FQ
 jn
-UO
-UO
-UO
+Fr
+Fr
+Fr
 UO
 UO
 UO
@@ -18006,8 +18578,8 @@ FQ
 FQ
 UO
 UO
-UO
-UO
+Fr
+Fr
 UO
 UO
 FQ
@@ -18015,17 +18587,17 @@ IL
 "}
 (81,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
 Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+oJ
 Pf
 Pf
 Pf
@@ -18060,10 +18632,10 @@ hk
 Bm
 SP
 LT
-lk
-lk
-lk
-Fl
+pX
+pX
+pX
+cD
 FZ
 lk
 lk
@@ -18127,17 +18699,17 @@ IL
 "}
 (82,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
 Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+KN
+KN
 Pf
 oJ
 oJ
@@ -18172,10 +18744,10 @@ wY
 QY
 SP
 jt
-ni
+yQ
 Tn
 Tn
-Tn
+dv
 Gi
 FZ
 lk
@@ -18239,17 +18811,17 @@ IL
 "}
 (83,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
 Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+eq
+Qw
 Pf
 oJ
 oJ
@@ -18283,7 +18855,7 @@ To
 hs
 cE
 XW
-jt
+Zn
 Tn
 XM
 YM
@@ -18297,14 +18869,14 @@ lk
 Ej
 tW
 Fh
-rf
+PZ
 Fh
 tW
 lk
 lk
 lk
 ZM
-ZM
+LE
 YM
 YM
 Mi
@@ -18351,18 +18923,18 @@ IL
 "}
 (84,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
 Pf
 Pf
+Pf
+oJ
+oJ
+oJ
+ej
+HL
+HL
+eq
 oJ
 oJ
 Pf
@@ -18395,14 +18967,14 @@ gY
 hs
 cE
 KI
-bH
-jt
+VH
+Zn
 Tn
 XM
 YM
 Ha
-lk
-FZ
+pX
+dQ
 lk
 AE
 lk
@@ -18463,17 +19035,17 @@ IL
 "}
 (85,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
 Pf
+Pf
+Pf
+Pf
+Pf
+KN
+KN
+bD
+ej
 Pf
 oJ
 oJ
@@ -18508,13 +19080,13 @@ UF
 Bm
 XW
 FZ
-lk
+pX
 jt
 Tn
 XM
 Ha
 jt
-lk
+pX
 lk
 lk
 lk
@@ -18575,18 +19147,18 @@ IL
 "}
 (86,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+cS
 Pf
 Pf
+Pf
+Pf
+KN
+Pf
+KN
+Ma
+HL
 oJ
 oJ
 oJ
@@ -18613,7 +19185,7 @@ XW
 Bm
 bK
 eC
-rH
+Bm
 kP
 Uj
 wh
@@ -18621,7 +19193,7 @@ Bm
 XW
 lk
 lk
-lk
+pX
 gG
 Tn
 ni
@@ -18643,11 +19215,11 @@ Mi
 Mi
 Mi
 Mi
-fd
-fd
-Zh
-Zh
-Zh
+EB
+EB
+fj
+fj
+fj
 Mi
 Mi
 Mi
@@ -18687,18 +19259,18 @@ IL
 "}
 (87,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+oJ
+cS
 Pf
 Pf
+oJ
+oJ
+oJ
+KN
+KN
+eq
 oJ
 oJ
 oJ
@@ -18751,22 +19323,22 @@ nZ
 Ha
 Dk
 XM
-fd
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-fd
-fd
-fd
-fd
+EB
+EB
+EB
+EB
+EB
+fj
+Av
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
 SG
 UO
 FQ
@@ -18799,17 +19371,17 @@ IL
 "}
 (88,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+oJ
+oJ
+cS
+oJ
+oJ
+oJ
+oJ
 Pf
+KN
 cS
 Pf
 oJ
@@ -18822,8 +19394,8 @@ Pf
 Pf
 Pf
 oJ
-oJ
-zT
+tq
+UL
 zT
 Ft
 oJ
@@ -18843,45 +19415,45 @@ cG
 rx
 Bm
 XW
-lk
+iQ
 lk
 lk
 lk
 XM
 XM
 lk
-lk
+iQ
 ni
 zH
 lk
 lk
-lk
-LT
-nZ
+pX
+cj
+Rs
 gN
 lk
 lk
 Mi
 Mi
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-tE
-Zh
-Zh
-fd
-fd
-fd
-fd
-fd
-fd
+EB
+EB
+EB
+EB
+fj
+fK
+xS
+HH
+qE
+fj
+EB
+EB
+EB
+EB
+EB
+EB
 SG
-fd
-fd
+EB
+EB
 Fr
 aR
 Fj
@@ -18911,16 +19483,16 @@ IL
 "}
 (89,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
+rH
+rH
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
 Pf
 Pf
 Pf
@@ -18935,8 +19507,8 @@ Pf
 Pf
 Pf
 oJ
-zT
-zT
+UL
+UL
 zT
 oJ
 oJ
@@ -18968,32 +19540,32 @@ Yb
 Ha
 Tn
 HN
+pX
+cD
 lk
-Fl
-lk
 Mi
 Mi
 Mi
 Mi
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-fd
-fd
+EB
+EB
+EB
+EB
+fj
+xS
+fj
+Av
+xS
+xS
+fj
+fj
+EB
+EB
+EB
+EB
 SG
-fd
-fd
+EB
+EB
 UO
 oD
 TD
@@ -19023,16 +19595,16 @@ IL
 "}
 (90,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-nA
+rH
+rH
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+NG
 NG
 ZQ
 NG
@@ -19047,9 +19619,9 @@ Pf
 Pf
 Pf
 Pf
-Pf
-Pf
-Pf
+Cl
+Cl
+fC
 zT
 zT
 Bm
@@ -19087,22 +19659,22 @@ Mi
 Mi
 Mi
 Mi
-fd
-fd
-fd
-Zh
-Zh
-Zh
-fb
-Zh
-fb
-Zh
-Zh
-Zh
-fb
-Zh
-fd
-fd
+EB
+EB
+EB
+fj
+qE
+xS
+Pz
+fj
+Pz
+fK
+gR
+xS
+UV
+fj
+EB
+EB
 SG
 UO
 UO
@@ -19135,21 +19707,21 @@ IL
 "}
 (91,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-nA
+rH
+rH
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+NG
 Pf
 Pf
 Pf
 Pf
-Pf
+oJ
 zn
 oJ
 oJ
@@ -19159,9 +19731,9 @@ Pf
 Pf
 Pf
 Pf
-Pf
-JA
-Pf
+fC
+qq
+fC
 zT
 Ul
 Bm
@@ -19199,22 +19771,22 @@ Mi
 Mi
 Mi
 Mi
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-fb
-Zh
-Zh
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+xS
+Pz
+fj
+fj
 xG
 BC
 Up
@@ -19247,21 +19819,21 @@ IL
 "}
 (92,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-nA
+rH
+rH
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+NG
 Pf
 Pf
 Pf
 Pf
-Pf
+oJ
 zn
 oJ
 oJ
@@ -19272,9 +19844,9 @@ JA
 Pf
 oJ
 oJ
-zT
-zT
-zT
+Lc
+Lc
+UL
 zT
 zT
 zT
@@ -19300,33 +19872,33 @@ Mi
 Mi
 Mi
 Mi
-fd
-fd
-fd
-Na
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
+EB
+EB
+EB
+ua
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
 xG
 BC
 Up
@@ -19359,16 +19931,16 @@ IL
 "}
 (93,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-nA
+rH
+rH
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+NG
 Pf
 Pf
 Pf
@@ -19385,10 +19957,10 @@ oJ
 oJ
 oJ
 zT
-zT
-zT
-zT
-zT
+UL
+UL
+UL
+UL
 zT
 zT
 XW
@@ -19404,41 +19976,41 @@ XW
 XW
 XW
 Mi
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-Zh
-Zh
-fd
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-fd
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+fj
+fj
+fj
+fj
+EB
+EB
+EB
 xG
 Up
 Up
@@ -19471,16 +20043,16 @@ IL
 "}
 (94,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-nA
+rH
+rH
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+NG
 Pf
 cS
 Pf
@@ -19498,9 +20070,9 @@ oJ
 oJ
 zT
 zT
-zT
-zT
-zT
+Lc
+UL
+UL
 zT
 zT
 sP
@@ -19516,41 +20088,41 @@ sP
 sP
 sP
 Mi
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-fd
-fd
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
 MB
-DX
-DX
-DX
+ae
+ae
+ae
 MB
-dD
-dD
+mm
+mm
 Ip
 UO
 BC
@@ -19583,16 +20155,16 @@ IL
 "}
 (95,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-nA
+rH
+rH
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+NG
 Pf
 Pf
 Yw
@@ -19610,59 +20182,59 @@ oJ
 zT
 zT
 zT
-zT
-zT
+UL
+UL
 oJ
 oJ
 oJ
-fd
-fd
+EB
+EB
 sP
 sP
 XW
 sP
 sP
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-Zh
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-fd
-Zh
-tE
-Zh
-Zh
-fd
-DX
-Zh
-Zh
-fb
-Zh
-Zh
-fd
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+fj
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+fj
+dC
+fj
+fj
+EB
+ae
+fj
+fj
+Pz
+fj
+fj
+EB
 GF
 UO
 UO
@@ -19695,20 +20267,20 @@ IL
 "}
 (96,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-nA
+rH
+rH
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+NG
 Pf
 Pf
 Pf
-cS
+Pf
 Pf
 zn
 oJ
@@ -19727,62 +20299,62 @@ oJ
 oJ
 oJ
 oJ
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-Zh
-Zh
-fb
-Zh
-fd
-DX
-Zh
-Zh
-Zh
-qW
-Zh
-Zh
-dD
-fd
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+fj
+fj
+Pz
+fj
+EB
+ae
+fj
+fj
+fj
+yG
+fj
+fj
+mm
+EB
 UO
 UO
 gU
 TD
 TD
-TD
+sq
 TD
 TD
 TD
@@ -19807,18 +20379,18 @@ IL
 "}
 (97,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-nA
+rH
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+cS
 Pf
+NG
 Pf
+cS
 Pf
 Pf
 cS
@@ -19839,62 +20411,62 @@ Pf
 Pf
 Pf
 Pf
-Zh
-Zh
-Zh
-fd
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-fb
-Zh
-Zh
-Zh
-tE
-Zh
-Zh
-fb
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-fb
-Zh
-fd
-fd
-DX
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-dD
-fd
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+Pz
+fj
+fj
+fj
+dC
+fj
+fj
+Pz
+fj
+fj
+qE
+hP
+jZ
+fj
+fj
+Pz
+fj
+EB
+EB
+ae
+fj
+fj
+fj
+fj
+fj
+fj
+mm
+EB
 UO
 gU
 GJ
 gU
 gU
-gU
+GJ
 gU
 gU
 GJ
@@ -19919,16 +20491,16 @@ IL
 "}
 (98,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-nA
+rH
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+NG
 Pf
 Pf
 Pf
@@ -19937,12 +20509,12 @@ Pf
 NG
 Pf
 Pf
-Zh
-tE
-fb
 Pf
-Pf
-Pf
+JA
+oJ
+oJ
+oJ
+cS
 Pf
 Pf
 cS
@@ -19951,56 +20523,56 @@ Pf
 Pf
 Pf
 Pf
-fb
-Zh
-tE
-Zh
-Zh
-Zh
-Zh
-fb
-Zh
-Zh
-Zh
-Zh
-Zh
-fb
-Zh
-Zh
-fd
-Zh
-Zh
-tE
-Zh
-fb
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-fd
-DX
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-dD
-fd
+Pz
+fj
+dC
+fj
+fj
+LL
+xS
+Pz
+EB
+EB
+EB
+fj
+fj
+Pz
+fj
+EB
+EB
+EB
+EB
+dC
+fj
+Pz
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+fj
+fj
+jZ
+rB
+gR
+fj
+fj
+EB
+EB
+EB
+ae
+fj
+fj
+fj
+fj
+fj
+fj
+mm
+EB
 UO
 gU
 gU
@@ -20031,86 +20603,86 @@ IL
 "}
 (99,1,1) = {"
 IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-IL
-nA
-Pf
+rH
+oJ
+oJ
+oJ
+oJ
 Pf
 Pf
 Pf
 Pf
 NG
 Pf
+oJ
+oJ
 Pf
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-tE
-Zh
-Zh
-Zh
-Zh
-fb
-Zh
-Zh
-Zh
-Zh
-Zh
-fb
-Zh
-fd
-Zh
-Zh
-Zh
-Zh
-fd
-fd
-fd
-fd
-fd
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-Zh
-fd
-fd
+Pf
+NG
+Pf
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+EB
+EB
+fj
+fj
+fj
+qE
+xS
+xS
+fj
+dC
+fj
+qE
+fj
+fj
+Pz
+EB
+EB
+EB
+EB
+fj
+Pz
+fj
+EB
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+xS
+rB
+xS
+fj
+fj
+fj
+fj
+EB
+EB
 MB
-DX
-DX
-DX
-DX
-DX
-DX
+ae
+ae
+ae
+ae
+ae
+ae
 uP
 UO
 UO
@@ -20143,22 +20715,2262 @@ IL
 "}
 (100,1,1) = {"
 IL
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+oN
+zn
+zn
+zn
+zn
+zn
+NG
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+xS
+pE
+jZ
+jZ
+qE
+qE
+fj
+fj
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fK
+qE
+fj
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
 IL
+"}
+(101,1,1) = {"
 IL
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+xS
+xS
+xS
+jZ
+jZ
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EL
+fj
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
 IL
+"}
+(102,1,1) = {"
 IL
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+xS
+jZ
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+fj
+Pz
+fj
+fj
+fj
+LL
+NF
+fj
+fj
+Pz
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+Pz
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
 IL
+"}
+(103,1,1) = {"
 IL
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+cS
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+cS
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+fj
+EB
+EB
+EB
+EB
+fj
+xS
+xS
+fK
+EB
+EB
+EB
+EB
+EB
+Pz
+fj
+fj
+fj
+fj
+fj
+Pz
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+fj
+qE
+qE
+ap
+LL
+fj
+LL
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+Pz
+fj
+fj
+fj
+Pz
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
 IL
+"}
+(104,1,1) = {"
 IL
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+cS
+Pf
+Pf
+Pf
+cS
+Pf
+Pf
+Pf
+cS
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pz
+fj
+EB
+EB
+fj
+qE
+xS
+pE
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+fj
+pE
+qE
+qE
+fj
+EB
+EB
+fj
+fj
+EB
+EB
+fj
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
 IL
+"}
+(105,1,1) = {"
+IL
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+Pf
+Pf
+fj
+fj
+EB
+EB
+fj
+xS
+fK
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+Pz
+fj
+fj
+Pz
+fj
+EB
+EB
+EB
+EB
+fj
+jZ
+fj
+rB
+qE
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+IL
+"}
+(106,1,1) = {"
+IL
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+Pf
+Pf
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+pE
+qE
+fj
+fj
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+IL
+"}
+(107,1,1) = {"
+nA
+zn
+zn
+zn
+zn
+zn
+zn
+zn
+zn
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+Pz
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+fj
+LL
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+qE
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+IL
+"}
+(108,1,1) = {"
+nA
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+zn
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pz
+fj
+fj
+fj
+Pz
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+qE
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+Pz
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+IL
+"}
+(109,1,1) = {"
+nA
+oJ
+oJ
+oJ
+Pf
+oJ
+oJ
+oJ
+zn
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+qE
+jZ
+jZ
+EB
+EB
+EB
+Pz
+fj
+fj
+Pz
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+IL
+"}
+(110,1,1) = {"
+nA
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+oJ
+zn
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+fj
+jZ
+jZ
+xS
+jZ
+EB
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+Pz
+fj
+fj
+Pz
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+Pz
+fj
+fj
+fj
+fj
+fj
+Pz
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+IL
+"}
+(111,1,1) = {"
+nA
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+zn
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+cS
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+cS
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+LL
+qE
+qE
+qE
+LL
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+IL
+"}
+(112,1,1) = {"
+nA
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+NG
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+Pf
+Pf
+Pf
+cS
+Pf
+Pf
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pz
+fj
+fj
+fj
+Pz
+EB
+EB
+EB
+qE
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+qE
+Pz
+fj
+fj
+fj
+fj
+Pz
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+mm
+mm
+mm
+mm
+mm
+mm
+mm
+uP
+IL
+"}
+(113,1,1) = {"
+nA
+Pf
+Pf
+Pf
+Pf
+cS
+Pf
+Pf
+NG
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+cS
+Pf
+Pf
+Pf
+Pf
+Pf
+cS
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+Pf
+Pf
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+Dc
+pE
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+mm
+EB
+EB
+EB
+EB
+EB
+EB
+mm
+IL
+"}
+(114,1,1) = {"
+nA
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+zn
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+pE
+qE
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+fj
+fj
+fj
+fj
+fj
+Pz
+fj
+fj
+EB
+EB
+EB
+EB
+qE
+fj
+fj
+EB
+Pz
+fj
+fj
+fj
+Pz
+EB
+fj
+fj
+fj
+Pz
+fj
+fj
+Pz
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+ae
+EB
+EB
+EB
+fj
+fj
+EB
+mm
+IL
+"}
+(115,1,1) = {"
+nA
+Pf
+Pf
+Yw
+Pf
+Pf
+Pf
+Pf
+zn
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+EB
+EB
+EB
+EB
+Pz
+fj
+fj
+gR
+xS
+qE
+fj
+fj
+fj
+fj
+Pz
+fj
+fj
+fj
+fj
+fj
+fj
+Pz
+fj
+fj
+fj
+fj
+ae
+ae
+ae
+Qb
+ae
+ae
+ae
+mm
+mm
+fj
+jZ
+qE
+LL
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+Pz
+fj
+fj
+Pz
+fj
+EB
+EB
+EB
+Pz
+fj
+fj
+fj
+fj
+fj
+Pz
+fj
+fj
+fj
+fj
+fj
+Pz
+fj
+ae
+fj
+fj
+fj
+fj
+fj
+fj
+ae
+IL
+"}
+(116,1,1) = {"
+nA
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+zn
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+EB
+EB
+EB
+EB
+EB
+fj
+xS
+MK
+fj
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+ae
+fj
+fj
+fj
+fj
+fj
+yG
+fj
+ae
+qE
+rB
+pE
+EB
+EB
+fj
+fj
+fj
+EB
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+fj
+ae
+fj
+fj
+fj
+fj
+yG
+fj
+ae
+IL
+"}
+(117,1,1) = {"
+nA
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+zn
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+EB
+EB
+mm
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+RS
+qE
+qE
+pE
+xS
+fj
+fj
+Pz
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+ae
+fj
+fj
+fj
+fj
+fj
+fj
+ae
+IL
+"}
+(118,1,1) = {"
+nA
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+zn
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+mm
+EB
+fj
+fj
+Pz
+fj
+fj
+fj
+ae
+qE
+LL
+LL
+pE
+fj
+Pz
+fj
+fj
+fj
+EB
+EB
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+ae
+fj
+fj
+fj
+fj
+fj
+fj
+ae
+IL
+"}
+(119,1,1) = {"
 aV
-nA
-nA
-nA
-nA
-nA
-nA
+NG
+NG
+NG
+zn
+zn
+zn
+zn
+yd
+oJ
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+oJ
+oJ
+oJ
+oJ
+oJ
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+Pf
+oJ
+oJ
+oJ
+oJ
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+ae
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+fj
+fj
+fj
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+EB
+EB
+EB
+EB
+EB
+fj
+fj
+MB
+ae
+ae
+ae
+ae
+ae
+ae
+MB
+IL
+"}
+(120,1,1) = {"
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
+IL
 IL
 IL
 IL
