@@ -639,6 +639,13 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	. = ..()
 	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/clean_portals)
 
+/datum/action/xeno_action/portal/can_use_action(silent, override_flags)
+	if(locate(/obj/effect/wraith_portal) in get_turf(owner))
+		if(!silent)
+			to_chat(owner, span_xenowarning("There is already a portal here!"))
+		return FALSE
+	return ..()
+
 /datum/action/xeno_action/portal/action_activate()
 	. = ..()
 	qdel(portal_one)
@@ -667,39 +674,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 	portal_two.link_portal(portal_one)
 	portal_one.link_portal(portal_two)
-
-// VISUALs
-/obj/effect/portal_effect
-	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	vis_flags = VIS_INHERIT_ID
-	layer = DOOR_OPEN_LAYER
-	///turf destination to display
-	var/turf/our_destination
-
-/obj/effect/portal_effect/proc/setup_visuals(atom/target)
-	our_destination = get_turf(target)
-	update_portal_filters()
-
-/obj/effect/portal_effect/proc/reset_visuals()
-	our_destination = null
-	update_portal_filters()
-
-/obj/effect/portal_effect/proc/update_portal_filters()
-	clear_filters()
-	vis_contents = null
-
-	if(!our_destination)
-		return
-	var/static/icon/portal_mask = icon('icons/effects/effects.dmi', "portal_mask")
-	add_filter("portal_alpha", 1, list("type" = "alpha", "icon" = portal_mask))
-	add_filter("portal_blur", 1, list("type" = "blur", "size" = 0.5))
-	add_filter("portal_ripple", 1, list("type" = "ripple", "size" = 2, "radius" = 1, "falloff" = 1, "y" = 7))
-
-	animate(get_filter("portal_ripple"), time = 1.3 SECONDS, loop = -1, easing = LINEAR_EASING, radius = 32)
-
-	vis_contents += our_destination
-//VISUALs END
 
 /obj/effect/wraith_portal
 	icon_state = "portal_object"
@@ -752,10 +726,41 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(istype(crosser, /obj/projectile))
 		return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
-	crosser.Move(get_turf(linked_portal))
+	crosser.Move(get_turf(linked_portal), crosser.dir)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
 /obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	bullet.permutated.Cut()
 	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
+
+/obj/effect/portal_effect
+	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_flags = VIS_INHERIT_ID
+	layer = DOOR_OPEN_LAYER
+	///turf destination to display
+	var/turf/our_destination
+
+/obj/effect/portal_effect/proc/setup_visuals(atom/target)
+	our_destination = get_turf(target)
+	update_portal_filters()
+
+/obj/effect/portal_effect/proc/reset_visuals()
+	our_destination = null
+	update_portal_filters()
+
+/obj/effect/portal_effect/proc/update_portal_filters()
+	clear_filters()
+	vis_contents = null
+
+	if(!our_destination)
+		return
+	var/static/icon/portal_mask = icon('icons/effects/effects.dmi', "portal_mask")
+	add_filter("portal_alpha", 1, list("type" = "alpha", "icon" = portal_mask))
+	add_filter("portal_blur", 1, list("type" = "blur", "size" = 0.5))
+	add_filter("portal_ripple", 1, list("type" = "ripple", "size" = 2, "radius" = 1, "falloff" = 1, "y" = 7))
+
+	animate(get_filter("portal_ripple"), time = 1.3 SECONDS, loop = -1, easing = LINEAR_EASING, radius = 32)
+
+	vis_contents += our_destination
