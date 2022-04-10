@@ -203,7 +203,7 @@
 	if(!CC.use(5))
 		to_chat(user, span_notice("You don't have enough cable for that."))
 		return
-	user.balloon_alert(user, "It can now be attached to a gun".)
+	user.balloon_alert(user, "It can now be attached to a gun")
 	if(loc == user)
 		user.temporarilyRemoveItemFromInventory(src)
 	var/obj/item/attachable/bayonet/F = new(src.loc)
