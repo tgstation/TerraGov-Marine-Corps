@@ -89,7 +89,6 @@
 	if (use_sound)
 		playsound(loc, use_sound, 15, 1, 6)
 
-
 /obj/item/storage/holster/backholster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK)
 		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.
