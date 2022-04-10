@@ -668,10 +668,45 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	portal_two.link_portal(portal_one)
 	portal_one.link_portal(portal_two)
 
+// VISUALs
+/obj/effect/portal_effect
+	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_flags = VIS_INHERIT_ID
+	layer = DOOR_OPEN_LAYER
+	///turf destination to display
+	var/turf/our_destination
+
+/obj/effect/portal_effect/proc/setup_visuals(atom/target)
+	our_destination = get_turf(target)
+	update_portal_filters()
+
+/obj/effect/portal_effect/proc/reset_visuals()
+	our_destination = null
+	update_portal_filters()
+
+/obj/effect/portal_effect/proc/update_portal_filters()
+	clear_filters()
+	vis_contents = null
+
+	if(!our_destination)
+		return
+
+	add_filter("portal_alpha", 1, list("type" = "alpha", "icon" = icon('icons/effects/effects.dmi', "portal_mask")))
+	add_filter("portal_blur", 1, list("type" = "blur", "size" = 0.5))
+	add_filter("portal_ripple", 1, list("type" = "ripple", "size" = 2, "radius" = 1, "falloff" = 1, "y" = 7))
+
+	animate(get_filter("portal_ripple"), time = 1.3 SECONDS, loop = -1, easing = LINEAR_EASING, radius = 32)
+
+	vis_contents += block(locate(our_destination.x - 1, our_destination.y - 1, our_destination.z), locate(our_destination.x + 1, our_destination.y + 1, our_destination.z))
+//VISUALs END
+
 /obj/effect/wraith_portal
 	icon_state = "wraith_portal"
 	anchored = TRUE
 	opacity = FALSE
+	/// Visual object for handling the viscontents
+	var/obj/effect/portal_effect/portal_visuals
 	var/obj/effect/wraith_portal/linked_portal
 
 /obj/effect/wraith_portal/Initialize(mapload)
@@ -680,24 +715,28 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		COMSIG_ATOM_ENTERED = .proc/teleport_atom
 	)
 	AddElement(/datum/element/connect_loc, connections)
+	portal_visuals = new
+	vis_contents += portal_visuals
 
 /obj/effect/wraith_portal/Destroy()
 	linked_portal?.unlink()
 	linked_portal = null
 	REMOVE_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
+	vis_contents -= portal_visuals
+	QDEL_NULL(portal_visuals)
 	return ..()
 
 /obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)
 	linked_portal = portal_to_link
 	ADD_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
 	RegisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED, .proc/teleport_bullet)
-	//Do graphical stuff here
+	portal_visuals.setup_visuals(portal_to_link)
 
 /obj/effect/wraith_portal/proc/unlink()
 	linked_portal = null
 	REMOVE_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
 	UnregisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED)
-	//Do graphical stuff here
+	portal_visuals.reset_visuals()
 
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	if(!linked_portal)
