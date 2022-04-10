@@ -97,7 +97,6 @@
 			playsound(loc, use_sound, 15, 1, 6)
 	return ..()
 
-
 ///RR bag
 /obj/item/storage/holster/backholster/rpg
 	name = "\improper TGMC rocket bag"
