@@ -174,7 +174,6 @@
 		return
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		balloon_alert_to_viewers("[user] fumbles around figuring out [src]'s wiring", ignored_mobs = user)
-		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring"),
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating("engineer")
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
