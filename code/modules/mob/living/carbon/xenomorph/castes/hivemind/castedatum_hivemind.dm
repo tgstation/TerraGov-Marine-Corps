@@ -42,6 +42,7 @@
 		/datum/action/xeno_action/activable/command_minions,
 		/datum/action/xeno_action/activable/plant_weeds/ranged,
 		/datum/action/xeno_action/activable/psychic_cure/hivemind,
+		/datum/action/xeno_action/activable/transfer_plasma/hivemind,
 		/datum/action/xeno_action/toggle_pheromones/hivemind,
 		/datum/action/xeno_action/activable/secrete_resin/ranged/slow,
 	)
