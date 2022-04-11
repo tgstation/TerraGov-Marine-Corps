@@ -237,6 +237,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/mob/dead/observer/ghost = new(src)
 	var/turf/T = get_turf(src)
 
+	animate(client, pixel_x = 0, pixel_y = 0)
+
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		ghost.icon = H.stand_icon
@@ -276,7 +278,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/living/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	if(aghosting)
 		set_afk_status(MOB_AGHOSTED)
-	reset_perspective()
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
