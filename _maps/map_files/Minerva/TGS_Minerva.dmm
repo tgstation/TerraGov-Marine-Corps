@@ -5545,8 +5545,8 @@
 /area/mainship/squads/req)
 "sO" = (
 /obj/structure/table/mainship,
-/obj/item/lightreplacer,
 /obj/item/stack/cable_coil/twentyfive,
+/obj/item/lightreplacer,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "sP" = (
@@ -24442,7 +24442,7 @@ jH
 Ir
 Bk
 gY
-gY
+sO
 nz
 oI
 SA
@@ -25616,7 +25616,7 @@ hc
 hU
 iO
 gY
-sO
+gY
 lv
 my
 qw
