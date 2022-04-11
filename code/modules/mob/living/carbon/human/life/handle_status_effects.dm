@@ -22,7 +22,17 @@
 
 		if(stat == CONSCIOUS) //Must be conscious
 			command_aura_strength = skills.getRating("leadership") - 1
-			var/command_aura_range = round(4 + command_aura_strength * 1)
+			var/command_aura_range = round(4 + command_aura_strength * 1) //Range unaffected by balance.
+			if(SSmonitor?.can_fire) //If the monitor system isn't even running for some reason, then the calculations would be inaccurate.
+				switch(SSmonitor.current_state) //Give less or more points based on whether or not marines are winning.
+					if(XENOS_DELAYING) //Xenos have practically lost and are just delaying the round. Morale is high.
+						command_aura_strength *= 2
+					if(XENOS_LOSING) //Xenos are currently loosing. Nothing bad so far, Morale is good.
+						command_aura_strength *= 1.25
+					if(MARINES_LOSING) //Marines are currently loosing. Nothing bad so far, but morale is damaged.
+						command_aura_strength *= 0.75
+					if(MARINES_DELAYING) //Marines have practically lost and are just delaying the round. Morale is low.
+						command_aura_strength *= 0.5
 			for(var/mob/living/carbon/human/H in range(command_aura_range, src))
 				if(command_aura == "move" && command_aura_strength > H.mobility_new)
 					H.mobility_new = command_aura_strength

@@ -12,6 +12,7 @@ SUBSYSTEM_DEF(points)
 	var/dropship_points = 0
 	///Assoc list of supply points
 	var/supply_points = list()
+	var/last_passive_supply_points_given = list()
 	///Assoc list of xeno points: xeno_points_by_hive["hivenum"]
 	var/list/xeno_points_by_hive = list()
 
@@ -74,9 +75,20 @@ SUBSYSTEM_DEF(points)
 
 /datum/controller/subsystem/points/fire(resumed = FALSE)
 	dropship_points += DROPSHIP_POINT_RATE / (1 MINUTES / wait)
-
 	for(var/key in supply_points)
-		supply_points[key] += SUPPLY_POINT_RATE / (1 MINUTES / wait)
+		var/supply_points_to_give = SUPPLY_POINT_RATE
+		if(SSmonitor?.can_fire) //If the monitor system isn't even running for some reason, then the calculations would be inaccurate.
+			switch(SSmonitor.current_state) //Give less or more points based on whether or not marines are winning.
+				if(XENOS_DELAYING) //Xenos have practically lost and are just delaying the round.
+					supply_points_to_give *= 2
+				if(XENOS_LOSING) //Xenos are currently loosing. Nothing bad so far, but corporate is happy.
+					supply_points_to_give *= 1.25
+				if(MARINES_LOSING) //Marines are currently loosing. Nothing bad so far, but corporate is pissed.
+					supply_points_to_give *= 0.5
+				if(MARINES_DELAYING) //Marines have practically lost and are just delaying the round.
+					supply_points_to_give = 0
+		last_passive_supply_points_given[key] = supply_points_to_give
+		supply_points[key] += supply_points_to_give / (1 MINUTES / wait)
 
 ///Add amount of psy points to the selected hive only if the gamemode support psypoints
 /datum/controller/subsystem/points/proc/add_psy_points(hivenumber, amount)

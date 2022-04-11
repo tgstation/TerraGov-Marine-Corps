@@ -131,6 +131,7 @@ const Menu = (props, context) => {
   const {
     requests,
     currentpoints,
+    currentpointgain,
     categories,
     shopping_list_cost,
     shopping_list_items,
@@ -148,6 +149,7 @@ const Menu = (props, context) => {
   return (
     <Section height="100%" p="5px">
       Points: <AnimatedNumber value={currentpoints} />
+      (Rate: <AnimatedNumber value={currentpointgain} />)
       { !readOnly && (
         <>
           <Divider />

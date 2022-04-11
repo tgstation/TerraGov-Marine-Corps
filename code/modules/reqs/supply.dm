@@ -352,6 +352,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		return
 	. = list()
 	.["currentpoints"] = round(SSpoints.supply_points[user.faction])
+	.["currentpointgain"] = SSpoints.last_passive_supply_points_given[user.faction] ? round(SSpoints.last_passive_supply_points_given[user.faction],0.1) : 0
 	.["requests"] = list()
 	for(var/key in SSpoints.requestlist)
 		var/datum/supply_order/SO = SSpoints.requestlist[key]
