@@ -1386,12 +1386,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/scrapyardone)
-"bBs" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
 "bBM" = (
 /turf/open/ground/river,
 /area/icarus/interior/biodome)
@@ -1406,10 +1400,6 @@
 	dir = 4
 	},
 /area/icarus/interior/medbay)
-"bDw" = (
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
 "bDy" = (
 /turf/closed/wall/mainship/outer,
 /area/icarus/interior/research)
@@ -1430,11 +1420,6 @@
 	dir = 1
 	},
 /area/icarus/interior/research)
-"bDW" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
 "bEq" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1449,12 +1434,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/hangarone)
-"bGp" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
 "bGC" = (
 /obj/structure/closet/crate/construction,
 /turf/open/floor/plating/mainship,
@@ -1500,12 +1479,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/shipbaytwo)
-"bJh" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
 "bJx" = (
 /turf/closed/wall/mainship/outer,
 /area/icarus/interior/biodome)
@@ -1534,10 +1507,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/lzone)
-"bLS" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/stripesquare,
-/area/icarus/interior/lztwo)
 "bNm" = (
 /obj/effect/ai_node,
 /obj/structure/barricade/guardrail{
@@ -1560,11 +1529,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/icarus/interior/storage)
-"bOg" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/attach_point/crew_weapon/dropship1,
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
 "bOq" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -1734,12 +1698,6 @@
 /obj/structure/largecrate/cow,
 /turf/open/floor/mainship/cargo,
 /area/icarus/interior/cargo)
-"bWo" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
 "bWp" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil,
@@ -1748,18 +1706,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
-"bWC" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
-"bWK" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
 "bXj" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
@@ -12552,12 +12498,6 @@
 	},
 /turf/open/floor/plating,
 /area/icarus/interior/library)
-"qhR" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
 "qhZ" = (
 /turf/open/floor/mainship_hull/dir,
 /area/icarus/interior/biodome)
@@ -16075,13 +16015,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/icarus/interior/dorms)
-"uFF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/icarus/interior/lztwo)
 "uFM" = (
 /obj/machinery/mining/brace/active{
 	dir = 8
@@ -24582,11 +24515,11 @@ dgW
 dgW
 dgW
 aXv
-bBs
-bJh
-bJh
-bJh
-bWo
+xnv
+xnv
+xnv
+xnv
+xnv
 xnv
 xnv
 aVX
@@ -24786,11 +24719,11 @@ bam
 bmI
 xnv
 dgW
-bDw
-wRu
-wRu
-wRu
-bWC
+xnv
+xnv
+xnv
+xnv
+xnv
 xnv
 xnv
 xnv
@@ -24990,11 +24923,11 @@ uSi
 boE
 ntN
 bwB
-bDW
-bLS
-bOg
-bLS
-uFF
+ntN
+ntN
+ntN
+ntN
+ntN
 ntN
 ntN
 ntN
@@ -25194,11 +25127,11 @@ uSi
 xnv
 xnv
 dgW
-bDw
-wRu
-wRu
-wRu
-bWC
+xnv
+xnv
+xnv
+xnv
+xnv
 xnv
 xnv
 xnv
@@ -25398,11 +25331,11 @@ pcg
 xnv
 xnv
 dgW
-bGp
-qhR
-qhR
-qhR
-bWK
+xnv
+xnv
+xnv
+xnv
+xnv
 xnv
 xnv
 xnv
