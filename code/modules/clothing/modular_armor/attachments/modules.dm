@@ -329,3 +329,17 @@
 	SIGNAL_HANDLER
 	beacon_datum = null
 
+
+/obj/item/armor_module/module/cat
+	name = "'CAT' helmet module"
+	desc = "Designed for mounting on a modular Helmet. This model, the CAT model, has statistically driven up recruitment rates, and grants you CONFIDENTIAL access to a HIDDEN LANGUAGE. On the back it reads- 'Mental changes may occur once activated if in the users hand or head, cannot be reverted once done. You void all your suing rights upon use..'"
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "antenna_cat"
+	item_state = "antenna_cat_a"
+
+
+/obj/item/armor_module/module/cat/activate(mob/living/user)
+	. = ..()
+	to_chat(user, span_warning("YOU FEEL LIKE YOUR BRAIN IS MELTING.... AND THE ONLY THING YOU CAN DO IS MEOW AND K I L L."))
+	user.remove_all_languages() // delete their languages
+	user.grant_language(/datum/language/felinid) // add the language, the person is now a cat, god help you
