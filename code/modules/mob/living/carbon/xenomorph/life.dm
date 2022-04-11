@@ -60,19 +60,16 @@
 	if(!istype(T))
 		return
 
-	var/healing_multiplier = 0.5
+	var/ruler_healing_penalty = 0.5
 	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN || (SSticker?.mode.flags_round_type & MODE_XENO_RULER)) //if the living queen's z-level is the same as ours.
-		healing_multiplier = 1
-
-	if(SSmonitor?.can_fire && SSmonitor.current_state == XENOS_DELAYING) //Its almost over for xenos.
-		healing_multiplier *= 0.5
+		ruler_healing_penalty = 1
 
 	var/obj/effect/alien/weeds/weed = locate() in T
 	if(weed || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
-			heal_wounds(XENO_RESTING_HEAL * healing_multiplier * weed ? weed.resting_buff : 1, TRUE)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * weed ? weed.resting_buff : 1, TRUE)
 		else
-			heal_wounds(XENO_STANDING_HEAL * healing_multiplier, TRUE) //Major healing nerf if standing.
+			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
 	updatehealth()
 
 ///Handles sunder modification/recovery during life.dm for xenos
