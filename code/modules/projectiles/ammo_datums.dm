@@ -173,7 +173,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		victim.apply_damage(proj.damage * proj.airburst_multiplier, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
 
 /datum/ammo/proc/deflagrate(atom/target, obj/projectile/proj)
-	return
+	if(!target || !proj)
+		CRASH("airburst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	if(!istype(target, /mob/living))
+		return
+	var/mob/living/victim = target
+	var/armor_block = victim.run_armor_check(null, "fire") //checks fire armour across the victim's whole body
+	var/deflagrate_chance = (proj.damage * (100 - armor_block) / 100)
+	if(prob(deflagrate_chance))
+		fire_burst(target, proj)
 
 ///the actual fireblast triggered by deflagrate
 /datum/ammo/proc/fire_burst(atom/target, obj/projectile/proj)
@@ -537,7 +545,7 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 5
 
 /datum/ammo/bullet/smg/on_hit_mob(mob/M,obj/projectile/P)
-	fire_burst(M, P)
+	deflagrate(M, P)
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
