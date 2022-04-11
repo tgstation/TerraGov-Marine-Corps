@@ -235,7 +235,6 @@
 	name = "medical splints"
 	singular_name = "medical splint"
 	icon_state = "splint"
-	desc = "For holding broken bones in place, or as a tourniquet to treat missing limbs."
 	amount = 5
 	max_amount = 5
 	skill_level_needed = SKILL_MEDICAL_PRACTICED
@@ -261,20 +260,7 @@
 			return
 
 		if(affecting.limb_status & LIMB_DESTROYED)
-			if(affecting.limb_status & LIMB_AMPUTATED)
-				to_chat(user, span_warning("[user == M ? "Your" : "[M]'s"] missing [limb] is already sealed up!"))
-				return
-			to_chat(user, span_notice("You start to apply a makeshift tourniquet to the missing [limb]'s stump..."))
-			if(!do_mob(user, M, SKILL_TASK_TOUGH * (user == M ? 2 : 1), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-				return
-			to_chat(user, span_notice("You cut off the bloodflow to the severed [limb]."))
-			affecting.add_limb_flags(LIMB_AMPUTATED) //Below this is so treating a severed arm or hand also catches the other
-			if(affecting.parent && affecting.parent.limb_status & LIMB_DESTROYED)
-				affecting.parent.add_limb_flags(LIMB_AMPUTATED) //It's only one stump, after all
-			for(var/datum/limb/child AS in affecting.children)
-				if(child.limb_status & LIMB_DESTROYED)
-					child.add_limb_flags(LIMB_AMPUTATED)
-			use(1)
+			to_chat(user, span_warning("[user == M ? "You don't" : "[M] doesn't"] have \a [limb]!"))
 			return
 
 		if(affecting.limb_status & LIMB_SPLINTED)
