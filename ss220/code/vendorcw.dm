@@ -68,7 +68,7 @@
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 4,
-			/obj/item/storage/box/recoilless_system = 2,
+			/obj/item/storage/holster/backholster/rpg/full = 2,
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
