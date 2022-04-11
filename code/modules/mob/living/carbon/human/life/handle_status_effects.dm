@@ -27,7 +27,7 @@
 				switch(SSmonitor.current_state) //Give less or more points based on whether or not marines are winning.
 					if(XENOS_DELAYING) //Xenos have practically lost and are just delaying the round. Morale is high.
 						command_aura_strength *= 2
-					if(XENOS_LOSING) //Xenos are currently loosing. Nothing bad so far, Morale is good.
+					if(XENOS_LOSING) //Xenos are currently loosing. Nothing bad so far. Morale is good.
 						command_aura_strength *= 1.25
 					if(MARINES_LOSING) //Marines are currently loosing. Nothing bad so far, but morale is damaged.
 						command_aura_strength *= 0.75
