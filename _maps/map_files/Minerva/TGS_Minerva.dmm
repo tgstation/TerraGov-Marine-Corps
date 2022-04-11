@@ -1529,7 +1529,6 @@
 "eU" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/autodoc,
-/obj/structure/sign/evac,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "eV" = (
