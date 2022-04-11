@@ -172,6 +172,26 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
 		victim.apply_damage(proj.damage * proj.airburst_multiplier, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
 
+/datum/ammo/proc/deflagrate(atom/target, obj/projectile/proj)
+	return
+
+///the actual fireblast triggered by deflagrate
+/datum/ammo/proc/fire_burst(atom/target, obj/projectile/proj)
+	if(!target || !proj)
+		CRASH("airburst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	for(var/mob/living/carbon/victim in range(1, target))
+		victim.visible_message(span_danger("[victim] is deflagrated from \a [proj.name]!"),
+			isxeno(victim) ? span_xenodanger("We are deflagrated from \a </b>[proj.name]</b>!") : span_highdanger("You are deflagrated from \a </b>[proj.name]</b>!"))
+		//burn damage
+		var/armor_block = victim.run_armor_check(null, "fire") //checks fire armour across the victim's whole body
+		victim.apply_damage(20, BURN, null, armor_block, updating_health = TRUE) //Placeholder damage, will be a ammo var
+		//ignite mobs
+		var/living_hard_armor = victim.hard_armor.getRating("fire")
+		if(living_hard_armor < 100) //won't ignite fully fireproof mobs
+			victim.adjust_fire_stacks(CEILING(10 - (living_hard_armor * 0.1), 1))
+			victim.IgniteMob()
+
+
 /datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
 	var/effect_icon = ""
 	var/proj_type = /obj/projectile
@@ -515,6 +535,9 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 1
 	sundering = 0.5
 	penetration = 5
+
+/datum/ammo/bullet/smg/on_hit_mob(mob/M,obj/projectile/P)
+	fire_burst(M, P)
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
