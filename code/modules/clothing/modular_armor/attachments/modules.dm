@@ -329,3 +329,10 @@
 	SIGNAL_HANDLER
 	beacon_datum = null
 
+
+/obj/item/armor_module/module/antenna/cat
+	name = "Antenna helmet module"
+	desc = "Designed for mounting on a modular Helmet. This module is able to provide a readout of the user's coordinates and connect to the shipside supply console. This model, the CAT model, has statistically driven up recruitment rates."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "antenna_cat"
+	item_state = "antenna_cat_a"

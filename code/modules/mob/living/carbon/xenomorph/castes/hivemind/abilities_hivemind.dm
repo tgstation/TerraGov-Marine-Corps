@@ -46,6 +46,12 @@
 /datum/action/xeno_action/activable/psychic_cure/hivemind/should_show()
 	return !(owner.status_flags & INCORPOREAL)
 
+/datum/action/xeno_action/activable/transfer_plasma/hivemind
+	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
+
+/datum/action/xeno_action/activable/transfer_plasma/hivemind/should_show()
+	return !(owner.status_flags & INCORPOREAL)
+
 /datum/action/xeno_action/toggle_pheromones/hivemind/should_show()
 	return !(owner.status_flags & INCORPOREAL)
-	
+

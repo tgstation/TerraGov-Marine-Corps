@@ -389,6 +389,7 @@
 	fire_delay = initial(choice.fire_delay)
 	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
+	rounds_per_shot = initial(choice.rounds_per_shot)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
@@ -396,11 +397,8 @@
 	base_gun_icon = initial(choice.icon_state)
 	update_icon()
 	to_chat(user, initial(choice.message_to_user))
-	var/old_drain_amount = rounds_per_shot
-	rounds_per_shot = initial(choice.rounds_per_shot)
-	if(length(chamber_items))
-		adjust_current_rounds(chamber_items[current_chamber_position], old_drain_amount - rounds_per_shot)
 	user?.hud_used.update_ammo_hud(user, src)
+
 	if(!in_chamber || !length(chamber_items))
 		return
 	QDEL_NULL(in_chamber)
