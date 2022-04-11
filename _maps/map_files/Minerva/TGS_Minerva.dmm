@@ -8692,10 +8692,6 @@
 	dir = 4
 	},
 /area/mainship/medical/lower_medical)
-"Ce" = (
-/obj/structure/sign/safety/medical,
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/lower_medical)
 "Cf" = (
 /turf/open/floor/plating{
 	icon_state = "warnplatecorner"
@@ -22596,7 +22592,7 @@ kt
 kt
 zO
 AS
-Ce
+kt
 kt
 kt
 Fg
