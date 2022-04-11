@@ -334,6 +334,9 @@
 	name = "'CAT' helmet module"
 	desc = "Designed for mounting on a modular Helmet. This model, the CAT model, has statistically driven up recruitment rates, and grants you CONFIDENTIAL access to a HIDDEN LANGUAGE. On the back it reads- 'Mental changes may occur once activated if in the users hand or head, cannot be reverted once done. You void all your suing rights upon use..'"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	prefered_slot = SLOT_HEAD
 	icon_state = "antenna_cat"
 	item_state = "antenna_cat_a"
 
