@@ -486,7 +486,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(HAS_TRAIT_FROM(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
 					return
 				RegisterSignal(turf_crossed_by, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
-				permutated?.Cut()
+				permutated.Cut()
 				return PROJECTILE_FROZEN
 			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 				last_processed_turf = turf_crossed_by
@@ -550,7 +550,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(HAS_TRAIT_FROM(next_turf, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
 				return
 			RegisterSignal(next_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
-			permutated?.Cut()
+			permutated.Cut()
 			return PROJECTILE_FROZEN
 		if(next_turf == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 			ammo.on_hit_turf(next_turf, src)
@@ -625,8 +625,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 ///Signal handler to tell the projectile to move again
 /obj/projectile/proc/resume_move(datum/source)
 	SIGNAL_HANDLER
-	if(source)
-		UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
+	UnregisterSignal(source, COMSIG_TURF_RESUME_PROJECTILE_MOVE)
 	START_PROCESSING(SSprojectiles, src)
 
 
