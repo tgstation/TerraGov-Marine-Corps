@@ -2237,10 +2237,14 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "hc" = (
+/obj/structure/table/mainship,
+/obj/machinery/cell_charger,
+/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/powercell,
 /obj/machinery/alarm{
 	dir = 8
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "hd" = (
 /obj/machinery/vending/tool,
@@ -2460,6 +2464,11 @@
 	id = "reqaccess";
 	name = "Requisitions Access"
 	},
+/obj/item/stack/sheet/cardboard,
+/obj/item/stack/sheet/glass/reinforced{
+	amount = 30
+	},
+/obj/item/stack/sheet/wood/large_stack,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "hV" = (
@@ -2488,10 +2497,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/starboard_hull)
 "hZ" = (
-/obj/vehicle/ridden/motorbike{
-	dir = 4
-	},
-/turf/open/floor/mainship/cargo,
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "ia" = (
 /obj/machinery/cryopod/right,
@@ -2730,15 +2737,15 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "iK" = (
-/obj/structure/closet/crate/ammo,
+/obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "iL" = (
-/obj/machinery/cic_maptable,
+/obj/structure/supply_drop,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "iM" = (
-/obj/machinery/vending/armor_supply,
+/obj/machinery/vending/cargo_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "iN" = (
@@ -2897,7 +2904,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "jx" = (
-/obj/machinery/holopad,
+/obj/machinery/cic_maptable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "jy" = (
@@ -2942,15 +2949,14 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "jC" = (
-/obj/structure/table/mainship,
-/obj/machinery/cell_charger,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
-/turf/open/floor/plating/plating_catwalk,
+/obj/machinery/holopad,
+/turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "jD" = (
-/obj/machinery/vending/cargo_supply,
-/turf/open/floor/mainship/mono,
+/obj/vehicle/ridden/motorbike{
+	dir = 4
+	},
+/turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "jF" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -3241,7 +3247,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
 "kC" = (
-/obj/machinery/vending/uniform_supply,
+/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "kE" = (
@@ -3403,20 +3409,16 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "lo" = (
-/obj/structure/table/mainship,
-/obj/item/stack/sheet/wood/large_stack,
-/obj/item/stack/sheet/glass/reinforced{
-	amount = 30
-	},
-/obj/item/stack/sheet/cardboard,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
-"lp" = (
-/obj/structure/closet/crate/weapon,
+/obj/structure/closet/crate/ammo,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
-"lq" = (
+"lp" = (
 /obj/machinery/computer/camera_advanced/overwatch/req,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
+"lq" = (
+/obj/machinery/computer/supplydrop_console,
+/obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "lr" = (
@@ -3723,7 +3725,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/starboard_missiles)
 "mr" = (
-/obj/structure/supply_drop,
+/obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "ms" = (
@@ -3734,20 +3736,11 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
-"mu" = (
-/obj/machinery/computer/supplydrop_console,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "my" = (
 /obj/machinery/computer/supplycomp,
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
-"mz" = (
-/obj/machinery/vending/weapon,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "mA" = (
@@ -24729,8 +24722,8 @@ ea
 gt
 gY
 gY
-jC
-lo
+gY
+gY
 sT
 SA
 jF
@@ -24826,9 +24819,9 @@ ea
 ea
 gt
 gY
-gY
+lo
 iK
-lp
+gY
 sT
 yB
 qu
@@ -24926,7 +24919,7 @@ gt
 gY
 hZ
 iM
-jD
+gY
 sT
 vV
 Ip
@@ -25021,10 +25014,10 @@ ea
 ea
 ea
 gt
-gY
+jC
 jx
 iL
-mr
+gY
 oM
 vV
 qu
@@ -25119,10 +25112,10 @@ ea
 ea
 ea
 gt
-gY
-gY
+jD
+lp
 lq
-mu
+gY
 sT
 vV
 Ip
@@ -25218,9 +25211,9 @@ fk
 fB
 gt
 gY
-gY
+mr
 kC
-mz
+gY
 sT
 yB
 qu
