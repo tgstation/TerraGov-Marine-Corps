@@ -100,6 +100,10 @@
 	name = "Northern Caves"
 	icon_state = "cave"
 
+/area/orion_outpost/ground/underground/caveNW
+	name = "Northwestern Caves"
+	icon_state = "cave"
+
 /area/orion_outpost/ground/underground/caveE
 	name = "Eastern Caves"
 	icon_state = "cave"
