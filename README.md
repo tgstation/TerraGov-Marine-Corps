@@ -30,16 +30,16 @@ This fork is based on the `July 2018` version of **[ColonialMarines]** .
 <br>
 <br>
 
-What            | From                                 | License
-:--------------:|:------------------------------------:|:------------------------:
-`Artwork`       | *after -this commit-*                | [![Badge CC-BY-NC]][License CC-BY-NC]
-`Sprites`       | **[#367]** ( **[#36b8db4]** )        | [![Badge CC-BY-NC]][License CC-BY-NC]
-`Sprites`       | **[#d407e97]**                       | [![Badge CC-BY-NC]][License CC-BY-NC]
-`Sounds`        | **[#5261]** **[#5861]**             | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
-`Icons`         | **[#6010]**                          | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
-`Rouny Sprites` | **[#6938]**                          | [![Badge CC-BY-SA]][License CC-BY-SA]
-`Sounds`        | **[#5604]** from **[FreeSound.org]** | [![Badge CC-BY]][License CC-BY]
-`TGS DMAPI`     |                                      | [![Badge MIT]][License MIT]
+Asset Type      | Source                                 | License
+:--------------:|:--------------------------------------:|:------------------------:
+`Artwork`       | *Everything After* **[#92ee94d]**      | [![Badge CC-BY-NC]][License CC-BY-NC]
+`Sprites`       | **[#367]** ( **[#36b8db4]** )          | [![Badge CC-BY-NC]][License CC-BY-NC]
+`Sprites`       | **[#d407e97]**                         | [![Badge CC-BY-NC]][License CC-BY-NC]
+`Sounds`        | **[#5261]** **[#5861]**               | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
+`Icons`         | **[#6010]**                            | [![Badge CC-BY-NC-SA]][License CC-BY-NC-SA]
+`Rouny Sprites` | **[#6938]**                            | [![Badge CC-BY-SA]][License CC-BY-SA]
+`Sounds`        | **[#5604]** *from* **[FreeSound.org]** | [![Badge CC-BY]][License CC-BY]
+`TGS DMAPI`     |                                        | [![Badge MIT]][License MIT]
 
 </div>
 
@@ -76,6 +76,7 @@ What            | From                                 | License
 
 [#d407e97]: https://github.com/tgstation/TerraGov-Marine-Corps/commit/d407e97e26ee5e6bb1daf945a8eb3bd9a6b11976
 [#36b8db4]: https://github.com/tgstation/TerraGov-Marine-Corps/commit/36b8db4952be79a79b28a6738889d9e9eb23b12a
+[#92ee94d]: https://github.com/tgstation/TerraGov-Marine-Corps/commit/92ee94da6e144d4420c1ec4f83a4ee785d61dc9b
 
 [#6938]: https://github.com/tgstation/TerraGov-Marine-Corps/pull/6938
 [#6010]: https://github.com/tgstation/TerraGov-Marine-Corps/pull/6010
