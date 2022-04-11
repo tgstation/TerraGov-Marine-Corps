@@ -27,7 +27,8 @@
 	if(charge < 0.01)
 		return
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
-	return "[charge_overlay]_[remaining]"
+	. += "[charge_overlay]_[remaining]"
+	return
 
 /obj/item/cell/proc/percent()		// return % charge of cell
 	return 100 * (charge / maxcharge)
