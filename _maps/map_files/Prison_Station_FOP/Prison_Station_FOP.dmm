@@ -7297,18 +7297,11 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/cellblock/maxsec/south)
 "axf" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+/obj/structure/sink{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/security/glass/free_access{
-	name = "Cell Access"
-	},
-/turf/open/floor/prison/darkred/full,
-/area/prison/cellblock/maxsec/south)
+/turf/open/floor/prison/plate,
+/area/prison/hallway/central)
 "axg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -9548,11 +9541,9 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/central)
 "aDH" = (
-/obj/machinery/door/airlock/mainship/security/glass/free_access{
-	name = "Cell Access"
-	},
-/turf/open/floor/prison/darkred/full,
-/area/prison/cellblock/maxsec/south)
+/obj/structure/bed,
+/turf/open/floor/plating,
+/area/prison/cellblock/highsec/north/south)
 "aDI" = (
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean/two,
@@ -11868,6 +11859,10 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/north/south)
 "aKx" = (
+/obj/structure/sink,
+/obj/structure/toilet{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/north/south)
 "aKy" = (
@@ -20705,7 +20700,7 @@
 /obj/machinery/door/airlock/mainship/secure/open/free_access{
 	name = "Solitary Confinement"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/prison/bright_clean/two,
 /area/prison/hallway/central)
 "bkQ" = (
 /obj/structure/table/reinforced,
@@ -24501,7 +24496,11 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/entrance)
 "bxk" = (
-/turf/open/floor/plating,
+/obj/structure/sink,
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/north)
 "bxl" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -34583,7 +34582,13 @@
 	},
 /area/prison/cellblock/mediumsec/north)
 "cdY" = (
-/turf/open/floor/prison/plate,
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/structure/sink,
+/turf/open/floor/prison/cellstripe{
+	dir = 8
+	},
 /area/prison/hallway/central)
 "cdZ" = (
 /obj/machinery/power/apc/drained{
@@ -46618,6 +46623,12 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/north)
+"sra" = (
+/obj/structure/bed,
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/prison/cellblock/highsec/south/north)
 "ssR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -67655,7 +67666,7 @@ aCl
 aEP
 aGb
 aCl
-aKx
+aDH
 aCl
 ibS
 fUv
@@ -67678,7 +67689,7 @@ vNd
 buI
 bvv
 bvA
-bxk
+sra
 bvA
 byx
 bwA
@@ -84588,7 +84599,7 @@ pMe
 pMe
 akK
 vJh
-axj
+haz
 aCW
 aCW
 aEi
@@ -84844,8 +84855,8 @@ akK
 xhO
 xhO
 akK
-axf
-aDH
+axe
+avq
 akK
 iFC
 iFC
@@ -93606,9 +93617,9 @@ aPL
 aSr
 aOl
 aKa
-aVS
 vSz
 nPq
+aVS
 aVS
 vSz
 nPq
@@ -93863,7 +93874,7 @@ aPL
 aSr
 aOl
 aKa
-gyb
+bVw
 bVw
 bVw
 aVS
@@ -93886,7 +93897,7 @@ bsY
 vSz
 vSz
 aVS
-cPV
+cdY
 bsY
 btZ
 buX
@@ -94121,8 +94132,8 @@ aRg
 aOm
 aKa
 hEC
+axf
 uLs
-cdY
 aVS
 hEC
 uLs
@@ -94143,7 +94154,7 @@ bqA
 vSz
 vSz
 aVS
-cPV
+uLs
 bsY
 bua
 bua
