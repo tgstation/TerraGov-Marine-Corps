@@ -1013,10 +1013,10 @@
 	icon_state = "t25"
 	item_state = "t25"
 	caliber = CALIBER_10x26_CASELESS //codex
-	max_shells = 80 //codex
+	max_shells = 100 //codex
 	force = 35
 	aim_slowdown = 0.7
-	wield_delay = 0.9 SECONDS
+	wield_delay = 0.75 SECONDS
 	fire_sound = "gun_smartgun"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
@@ -1041,7 +1041,6 @@
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/scope/marine,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/attachable/motiondetector,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
@@ -1050,7 +1049,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.25 SECONDS
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
@@ -1245,6 +1244,7 @@
 	fire_delay = 0.25 SECONDS
 	burst_amount = 3
 	burst_delay = 0.05 SECONDS
+	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.2
 	scatter = 0
@@ -1315,7 +1315,6 @@
 	fire_delay = 0.25 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
-	extra_delay = 0.05 SECONDS
 	accuracy_mult = 1.15
 	scatter = 0
 	wield_delay = 0.6 SECONDS

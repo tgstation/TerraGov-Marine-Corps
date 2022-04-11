@@ -378,6 +378,12 @@
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
 
+//Wraith can't regress/evo in phase shift
+/mob/living/carbon/xenomorph/wraith/do_evolve(caste_type, forced_caste_name, regression = FALSE)
+	if(status_flags & INCORPOREAL)
+		return
+	return ..()
+
 
 #undef TO_XENO_TIER_2_FORMULA
 #undef TO_XENO_TIER_3_FORMULA

@@ -11,10 +11,11 @@
 	var/spawner_width = 0
 
 /obj/effect/spawner/modularmap/Initialize(mapload)
-	..()
-	return INITIALIZE_HINT_LATELOAD
+	. = ..()
+	SSmodularmapping.markers += src
 
-/obj/effect/spawner/modularmap/LateInitialize(mapload)
+///Actually loads the modularmap: called by SSmodularmapping
+/obj/effect/spawner/modularmap/proc/load_modularmap()
 	var/datum/map_template/modular/template
 	template = pick(SSmapping.modular_templates[mapid])
 	var/errored = FALSE
@@ -34,8 +35,9 @@
 		message_admins("Warning, modular mapping error, please report this to coders and get it fixed ASAP")
 		qdel(src)
 		return
-	INVOKE_ASYNC(template, /datum/map_template.proc/load, get_turf(src), template.keepcentered)
+	var/turf/loadloc = get_turf(src)
 	qdel(src)
+	template.load(loadloc, template.keepcentered)
 
 /*********Types********/
 
@@ -151,7 +153,7 @@
 /obj/effect/spawner/modularmap/bigred/southeta
 	mapid = "brsoutheta"
 	spawner_width = 23
-	spawner_height = 10	
+	spawner_height = 10
 
 /obj/effect/spawner/modularmap/bigred/checkpointsouth
 	mapid = "brcheckpointsouth"
