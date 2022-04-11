@@ -3397,6 +3397,9 @@
 /obj/machinery/door/airlock/multi_tile/mainship/marine/requisitions{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "lo" = (
@@ -6532,6 +6535,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/marine/requisitions{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -12667,7 +12673,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/vehicle/ridden/motorbike,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "Om" = (
