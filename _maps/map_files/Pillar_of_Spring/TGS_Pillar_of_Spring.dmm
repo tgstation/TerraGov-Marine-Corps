@@ -387,6 +387,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bv" = (
@@ -2327,7 +2328,6 @@
 	},
 /area/mainship/squads/general)
 "hG" = (
-/obj/effect/ai_node,
 /obj/machinery/sleeper,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -2386,7 +2386,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_two)
 "hT" = (
-/obj/effect/ai_node,
 /obj/machinery/autodoc,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -6480,7 +6479,6 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "vR" = (
@@ -10674,6 +10672,7 @@
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
 /obj/machinery/door/firedoor/mainship,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "Ii" = (
@@ -12135,6 +12134,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"Mt" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "Mu" = (
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/mainship/tcomms,
@@ -14613,7 +14616,6 @@
 "Ug" = (
 /obj/structure/cable,
 /obj/structure/cable,
-/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "Uj" = (
@@ -14755,6 +14757,10 @@
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"UG" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile,
+/area/mainship/medical/lower_medical)
 "UH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -15433,6 +15439,13 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
+"WM" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "WN" = (
 /obj/machinery/power/fusion_engine/preset,
 /obj/structure/cable,
@@ -40251,7 +40264,7 @@ Tg
 Tg
 Tg
 Tg
-ql
+Tg
 Kw
 Zv
 Zv
@@ -41549,7 +41562,7 @@ jm
 nn
 nD
 iz
-iL
+hB
 iL
 iL
 iL
@@ -41786,7 +41799,7 @@ fq
 pr
 Mb
 ap
-aH
+ap
 fv
 pt
 wa
@@ -43858,7 +43871,7 @@ hG
 aY
 gG
 Ug
-Hu
+WM
 aY
 hK
 iL
@@ -44099,7 +44112,7 @@ bh
 Yk
 sP
 kH
-qE
+fB
 hU
 nj
 dy
@@ -44107,14 +44120,14 @@ cz
 cz
 cz
 US
-BO
+gZ
 cz
 NS
-hH
+UG
 Wd
 Ro
 AI
-BO
+gZ
 Hu
 XU
 nD
@@ -44356,7 +44369,7 @@ bh
 ZA
 bh
 kI
-fB
+qE
 ap
 hH
 aI
@@ -44364,7 +44377,7 @@ aY
 hH
 gw
 kc
-gZ
+BO
 wx
 hH
 wx
@@ -44372,7 +44385,7 @@ hT
 aY
 gG
 BO
-Hu
+WM
 aY
 Pb
 hB
@@ -45152,7 +45165,7 @@ aY
 TK
 bd
 FE
-pa
+wj
 FG
 PE
 WP
@@ -45403,7 +45416,7 @@ Ro
 Zf
 bd
 ay
-aY
+Mt
 aY
 wx
 XU
