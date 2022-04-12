@@ -1,7 +1,0 @@
-author: "goose4429"
-delete-after: True
-changes: 
-  - rscadd: "Tesla \"focused\" mode. Decreases range from 4 to 3, adds IFF."
-  - code_imp: "Made tesla inherit from las rifle."
-  - code_imp: "Added shooting modes to tesla"
-  - code_imp: "Added second projectile type to tesla"

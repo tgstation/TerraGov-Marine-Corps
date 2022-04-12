@@ -155,6 +155,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/atom/movable/banishment_target = null
 	///SFX indicating the banished target's position
 	var/obj/effect/temp_visual/banishment_portal/portal = null
+	///Backup coordinates to teleport the banished to, in case the portal gets destroyed (shuttles!!)
+	var/list/backup_coordinates = list(0,0,0)
 	///The timer ID of any Banish currently active
 	var/banish_duration_timer_id
 	///Phantom zone reserved area
@@ -180,7 +182,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!"))
 		return FALSE
 
-	if(!line_of_sight(owner, A)) //Needs to be in line of sight.
+	if(!line_of_sight(owner, A, ignore_target_opacity = TRUE)) //Needs to be in line of sight.
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't banish without line of sight to our target!"))
 		return FALSE
@@ -191,6 +193,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	var/banished_turf = get_turf(A) //Set the banishment turf.
 	banishment_target = A //Set the banishment target
+	backup_coordinates[1] = banishment_target.x //Set up backup coordinates in case banish portal gets destroyed
+	backup_coordinates[2] = banishment_target.y
+	backup_coordinates[3] = banishment_target.z
 
 	ghost.face_atom(A) //Face the target so we don't look like an ass
 
@@ -268,8 +273,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	SIGNAL_HANDLER
 	if(!banishment_target)
 		return
+	if(get_turf(portal))
+		banishment_target.forceMove(get_turf(portal))
+	else //The portal got removed. There's no way back. Ohgodohfuck.
+		banishment_target.forceMove(locate(backup_coordinates[1], backup_coordinates[2], backup_coordinates[3]))
 
-	banishment_target.forceMove(get_turf(portal))
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
 	teleport_debuff_aoe(banishment_target) //Debuff/distortion when we reappear
@@ -337,6 +345,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/T = get_turf(target)
 	if(isspaceturf(T) && !ignore_space)
 		return TRUE
+	if(isclosedturf(T) && !ignore_closed_turf) //If we care about closed turfs
+		return TRUE
 	for(var/atom/blocker AS in T)
 		if((blocker.flags_atom & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
 			continue
@@ -345,8 +355,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(!blocker.density) //Check if we're dense
 			continue
 		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
-			return TRUE
-		if(isclosedturf(blocker) && !ignore_closed_turf) //If we care about closed turfs
 			return TRUE
 		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
 			return TRUE

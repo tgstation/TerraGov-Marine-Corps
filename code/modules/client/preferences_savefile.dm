@@ -163,6 +163,13 @@
 	READ_FILE(S["see_chat_non_mob"], see_chat_non_mob)
 	READ_FILE(S["see_rc_emotes"], see_rc_emotes)
 
+	// Tgui options
+	READ_FILE(S["tgui_fancy"], tgui_fancy)
+	READ_FILE(S["tgui_lock"], tgui_lock)
+	READ_FILE(S["tgui_input"], tgui_input)
+	READ_FILE(S["tgui_input_big_buttons"], tgui_input_big_buttons)
+	READ_FILE(S["tgui_input_buttons_swap"], tgui_input_buttons_swap)
+
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
 		update_preferences(needs_update, S)		//needs_update = savefile_version if we need an update (positive integer)
@@ -208,6 +215,11 @@
 	see_chat_non_mob	= sanitize_integer(see_chat_non_mob, FALSE, TRUE, initial(see_chat_non_mob))
 	see_rc_emotes	= sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
 
+	tgui_fancy = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
+	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
+	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
+	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
+	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
 	return TRUE
 
 
@@ -265,6 +277,12 @@
 	see_chat_non_mob	= sanitize_integer(see_chat_non_mob, FALSE, TRUE, initial(see_chat_non_mob))
 	see_rc_emotes	= sanitize_integer(see_rc_emotes, FALSE, TRUE, initial(see_rc_emotes))
 
+	tgui_fancy = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_fancy))
+	tgui_lock = sanitize_integer(tgui_fancy, FALSE, TRUE, initial(tgui_lock))
+	tgui_input = sanitize_integer(tgui_input, FALSE, TRUE, initial(tgui_input))
+	tgui_input_big_buttons = sanitize_integer(tgui_input_big_buttons, FALSE, TRUE, initial(tgui_input_big_buttons))
+	tgui_input_buttons_swap = sanitize_integer(tgui_input_buttons_swap, FALSE, TRUE, initial(tgui_input_buttons_swap))
+
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["ooccolor"], ooccolor)
@@ -303,6 +321,13 @@
 	WRITE_FILE(S["max_chat_length"], max_chat_length)
 	WRITE_FILE(S["see_chat_non_mob"], see_chat_non_mob)
 	WRITE_FILE(S["see_rc_emotes"], see_rc_emotes)
+
+	// Tgui options
+	WRITE_FILE(S["tgui_fancy"], tgui_fancy)
+	WRITE_FILE(S["tgui_lock"], tgui_lock)
+	WRITE_FILE(S["tgui_input"], tgui_input)
+	WRITE_FILE(S["tgui_input_big_buttons"], tgui_input_big_buttons)
+	WRITE_FILE(S["tgui_input_buttons_swap"], tgui_input_buttons_swap)
 
 	return TRUE
 
