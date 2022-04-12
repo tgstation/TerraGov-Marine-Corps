@@ -11691,6 +11691,7 @@
 /area/sulaco/medbay/storage)
 "dDU" = (
 /obj/structure/window/framed/mainship/gray/toughened,
+/obj/machinery/door/firedoor,
 /turf/open/floor/plating/platebotc,
 /area/mainship/shipboard/weapon_room)
 "dEd" = (
@@ -15071,6 +15072,9 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "iNc" = (
@@ -16734,6 +16738,9 @@
 	id = "qm_warehouse";
 	name = "Requisition Warehouse Shutters"
 	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
 /turf/open/floor/prison/marked,
 /area/sulaco/cargo)
 "lgl" = (
@@ -16991,6 +16998,15 @@
 	},
 /turf/closed/wall/mainship/gray/outer,
 /area/mainship/command/self_destruct)
+"lAc" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/landinglight/ds2/delayone{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/cas)
 "lBU" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -18191,6 +18207,12 @@
 	},
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/medbay/hangar)
+"nxJ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/sulaco/cargo)
 "nxR" = (
 /obj/machinery/camera/autoname{
 	dir = 8
@@ -18221,6 +18243,9 @@
 /area/space)
 "nzm" = (
 /obj/structure/closet/crate,
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "nzT" = (
@@ -20641,6 +20666,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "raA" = (
@@ -21007,6 +21035,12 @@
 /obj/machinery/light,
 /turf/open/floor/prison,
 /area/sulaco/marine)
+"rvC" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/sulaco/cargo)
 "rvS" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -21968,6 +22002,9 @@
 	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
 	},
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
@@ -23520,6 +23557,9 @@
 	id = "qm_warehouse";
 	name = "Requisition Warehouse Shutters"
 	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
 /turf/open/floor/prison/marked,
 /area/sulaco/cargo)
 "uPy" = (
@@ -23938,6 +23978,18 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
+"vvG" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/sulaco/cargo)
 "vwd" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -25404,6 +25456,9 @@
 /area/mainship/living/basketball)
 "xBd" = (
 /obj/effect/ai_node,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "xBh" = (
@@ -49509,7 +49564,7 @@ nSU
 wsa
 wsa
 vca
-mCx
+wsa
 wsa
 mCx
 lss
@@ -49763,9 +49818,9 @@ ahS
 iYq
 xGY
 lfS
-wsa
+rvC
 xBd
-vca
+vvG
 qZW
 nPU
 wsa
@@ -50277,8 +50332,8 @@ hUb
 bPM
 bPM
 uOu
-bPM
-bPM
+nxJ
+nxJ
 iNa
 sIy
 ufQ
@@ -55425,7 +55480,7 @@ scr
 mAV
 gmJ
 eON
-tCl
+lAc
 mAV
 gmJ
 kSG
