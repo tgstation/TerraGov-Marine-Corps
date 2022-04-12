@@ -18,6 +18,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 	icon_state = "l2-1-2-4-8-node"
 	color = "yellow"
 	layer = WIRE_LAYER //Above hidden pipes, GAS_PIPE_HIDDEN_LAYER
+	resistance_flags = UNACIDABLE //This is pre-placed in maps, cable/placed is player-made and the acidable one.
 	anchored = TRUE
 	obj_flags = CAN_BE_HIT
 	plane = FLOOR_PLANE
@@ -398,7 +399,7 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	singular_name = "cable piece"
 	usesound = 'sound/items/deconstruct.ogg'
 	var/cable_color = "yellow"
-	var/obj/structure/cable/target_type = /obj/structure/cable
+	var/obj/structure/cable/target_type = /obj/structure/cable/placed
 	var/target_layer = CABLE_LAYER_2
 
 /obj/item/stack/cable_coil/Initialize(mapload, new_amount = null)
@@ -448,7 +449,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 			name = "cable coil"
 			icon_state = "coil"
 			color = "yellow"
-			target_type = /obj/structure/cable
+			target_type = /obj/structure/cable/placed
 			target_layer = CABLE_LAYER_2
 		if("Layer 3")
 			name = "cable coil"
@@ -470,6 +471,9 @@ GLOBAL_LIST(cable_radial_layer_list)
 			target_layer = CABLE_LAYER_2
 	update_icon()
 
+//Player-placed cable. Not acid resistant like mapped cables!
+/obj/structure/cable/placed
+	resistance_flags = null
 
 ///////////////////////////////////
 // General procedures
