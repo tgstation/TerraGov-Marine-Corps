@@ -179,8 +179,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	var/mob/living/victim = target
 	var/armor_block = victim.run_armor_check(null, "fire") //checks fire armour across the victim's whole body
-	var/deflagrate_chance = (proj.damage * (100 - armor_block) / 100)
+	var/deflagrate_chance = (proj.damage * (100 + min(0, proj.penetration - armor_block)) / 100)
 	if(prob(deflagrate_chance))
+		playsound(target, 'sound/effects/incendiary_explode.ogg', 30, falloff = 5)
 		fire_burst(target, proj)
 
 ///the actual fireblast triggered by deflagrate
@@ -543,9 +544,6 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 1
 	sundering = 0.5
 	penetration = 5
-
-/datum/ammo/bullet/smg/on_hit_mob(mob/M,obj/projectile/P)
-	deflagrate(M, P)
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
@@ -1908,6 +1906,37 @@ datum/ammo/bullet/revolver/tp44
 	if(!T)
 		T = get_turf(proj)
 	T.ignite(heat, burn_damage, fire_color)
+
+//volkite
+
+/datum/ammo/energy/volkite
+	name = "thermal energy bolt"
+	icon_state = "overchargedlaser" //placeholder
+	hud_state = "electrothermal"	//placeholder
+	hud_state_empty = "electrothermal_empty"	//placeholder
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+	bullet_color = COLOR_TAN_ORANGE
+	armor_type = "energy" //inherited, but may be OP due to lower armour
+	accuracy = 10
+	max_range = 14
+	accurate_range = 10 //for charger
+	shell_speed = 4
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+
+	damage = 20
+	penetration = 15
+	sundering = 3
+
+	//inherited, could use some changes
+	ping = "ping_s"
+	sound_hit 	 	= "energy_hit"
+	sound_miss		= "energy_miss"
+	sound_bounce	= "energy_bounce"
+
+/datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
+	deflagrate(M, P)
+
 
 /*
 //================================================
