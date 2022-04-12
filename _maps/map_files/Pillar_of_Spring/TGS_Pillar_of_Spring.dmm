@@ -4626,7 +4626,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/self_destruct)
 "pR" = (
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "pS" = (
 /obj/machinery/light{
@@ -8142,7 +8142,7 @@
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "AQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
