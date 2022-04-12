@@ -3736,7 +3736,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "mD" = (
-/obj/machinery/light,
+/obj/machinery/holopad,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "mE" = (
@@ -4274,6 +4274,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"ox" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/floor,
+/area/mainship/living/pilotbunks)
 "oy" = (
 /obj/machinery/light{
 	dir = 1
@@ -5781,6 +5785,12 @@
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"tK" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/living/pilotbunks)
 "tL" = (
 /obj/structure/mirror,
 /obj/structure/sink,
@@ -8912,9 +8922,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "CW" = (
-/obj/structure/table/mainship,
-/obj/item/weapon/combat_knife,
-/obj/item/storage/toolbox/mechanical,
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
+	},
 /turf/open/floor/mainship/white{
 	dir = 1
 	},
@@ -9582,12 +9592,16 @@
 	dir = 1
 	},
 /area/mainship/medical/surgery_hallway)
-"EJ" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
+"EI" = (
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/floor,
+/area/mainship/living/pilotbunks)
+"EJ" = (
+/obj/machinery/microwave,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/white{
+	dir = 5
+	},
 /area/mainship/living/pilotbunks)
 "EK" = (
 /obj/structure/table/mainship,
@@ -10131,10 +10145,16 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "GJ" = (
-/obj/machinery/microwave,
 /obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/item/paper,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/box/donkpockets,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/white{
-	dir = 5
+	dir = 1
 	},
 /area/mainship/living/pilotbunks)
 "GK" = (
@@ -14129,6 +14149,9 @@
 /area/mainship/hull/lower_hull)
 "Sy" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/bed/chair/office{
+	dir = 8
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "Sz" = (
@@ -14505,9 +14528,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/stern_hallway)
 "TQ" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 8
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "TT" = (
@@ -14765,16 +14786,9 @@
 /area/mainship/squads/general)
 "UO" = (
 /obj/structure/table/mainship,
-/obj/item/clipboard,
-/obj/item/paper,
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/box/donkpockets,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/white{
-	dir = 1
-	},
+/obj/item/weapon/combat_knife,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "UQ" = (
 /turf/open/floor/plating/mainship,
@@ -15181,6 +15195,13 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/medical/surgery_hallway)
+"Wc" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/living/pilotbunks)
 "Wd" = (
 /obj/machinery/sleep_console,
 /turf/open/floor/mainship/sterile/dark,
@@ -48411,7 +48432,7 @@ kM
 Cq
 Vd
 iN
-os
+kM
 kM
 Vn
 Yy
@@ -50475,7 +50496,7 @@ AV
 AV
 AV
 AV
-NU
+AV
 NU
 NU
 yD
@@ -50732,7 +50753,7 @@ CW
 UO
 GJ
 EJ
-fj
+Wc
 fj
 Qf
 SE
@@ -50989,7 +51010,7 @@ nA
 Sy
 Sy
 TQ
-fj
+tK
 fj
 XL
 qA
@@ -51245,8 +51266,8 @@ XY
 DT
 ME
 GK
-mD
-fj
+pX
+ox
 fj
 CK
 Pv
@@ -51500,10 +51521,10 @@ AV
 vS
 Ws
 nG
+mD
 Ws
 AV
 vS
-fj
 fj
 CK
 CK
@@ -51757,10 +51778,10 @@ Ra
 Br
 Ws
 DW
+ox
 Ws
 Ra
 Br
-fj
 fj
 Mg
 CK
@@ -52014,10 +52035,10 @@ Hn
 uN
 Ws
 nG
+pX
 Ws
 Hn
 uN
-fj
 fj
 qP
 CK
@@ -52271,10 +52292,10 @@ Ws
 Ws
 Ws
 Ej
+EI
 Ws
 Ws
 Ws
-fj
 fj
 My
 na
