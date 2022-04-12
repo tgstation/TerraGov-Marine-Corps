@@ -725,6 +725,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 	if(istype(crosser, /obj/projectile))
 		return
+	if(ishuman(crosser))
+		var/mob/living/carbon/human/human_crosser = crosser
+		if(human_crosser.stat >= UNCONSCIOUS)
+			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
 	crosser.Move(get_turf(linked_portal), crosser.dir)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
