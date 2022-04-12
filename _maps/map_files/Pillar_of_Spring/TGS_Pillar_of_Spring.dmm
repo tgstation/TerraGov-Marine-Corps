@@ -3355,11 +3355,10 @@
 /area/mainship/engineering/ce_room)
 "lo" = (
 /obj/structure/cable,
-/obj/machinery/door/airlock/mainship/maint,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "lp" = (
 /obj/structure/table/mainship,
