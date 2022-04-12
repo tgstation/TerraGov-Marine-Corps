@@ -94,7 +94,7 @@
 		return
 
 	target.adjustStaminaLoss(damage)
-	if(target.getStaminaLoss() > 0 && !(target.stat == UNCONSCIOUS)) //Knockout!
+	if(target.getStaminaLoss() > 10 && !(target.stat == UNCONSCIOUS)) //Knockout!
 		playsound(loc, 'sound/effects/knockout.ogg', 25, FALSE)
 		target.balloon_alert_to_viewers("[target] collapses to the ground in exhaustion! K.O!", "You give up and collapse! K.O!")
 		target.Sleeping(10 SECONDS)
