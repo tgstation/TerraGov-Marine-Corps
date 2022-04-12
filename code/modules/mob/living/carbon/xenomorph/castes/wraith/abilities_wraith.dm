@@ -21,8 +21,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("We cannot blink here!"))
 		return FALSE
 
-	var/area/target_area = get_area(T) //We are forced to set this; will not work otherwise
-
 	if(!line_of_sight(owner, T)) //Needs to be in line of sight.
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't blink without line of sight to our destination!"))
