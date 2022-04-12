@@ -3674,9 +3674,7 @@
 /area/mainship/medical/medical_science)
 "mk" = (
 /obj/effect/ai_node,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
+/turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "ml" = (
 /obj/structure/bed/stool{
@@ -4472,6 +4470,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "oS" = (
@@ -5961,9 +5960,19 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "us" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/effect/ai_node,
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/general)
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/port_hallway)
 "ut" = (
 /obj/machinery/door/airlock/mainship/marine/general/smart,
 /turf/open/floor/mainship/mono,
@@ -8368,14 +8377,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"Bl" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/disposalpipe/segment,
-/obj/effect/ai_node,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
-/area/mainship/squads/general)
 "Bm" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -11588,12 +11589,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
-"KY" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
-/area/mainship/squads/general)
 "KZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -21215,14 +21210,14 @@ eS
 Ek
 Ek
 eS
-Ek
-Ek
 Zw
+Ek
+Ek
 eS
 Ek
 fx
 hz
-iw
+us
 jk
 Wg
 Rw
@@ -21623,7 +21618,7 @@ UO
 UU
 Xp
 Ym
-Zq
+UU
 xo
 Zq
 UU
@@ -26295,14 +26290,14 @@ pX
 mE
 sr
 nP
-us
+tc
 AC
 sr
 nP
 tc
 yJ
 Pl
-KY
+Pl
 Pe
 Dt
 FN
@@ -26393,7 +26388,7 @@ pZ
 mE
 sr
 sZ
-tc
+mk
 sZ
 sr
 wU
@@ -26792,7 +26787,7 @@ st
 st
 yM
 Af
-Bl
+Cr
 Cr
 DA
 Ex
@@ -27079,7 +27074,7 @@ mE
 mE
 sr
 te
-tc
+mk
 te
 sr
 wU
@@ -27177,14 +27172,14 @@ mE
 mE
 sr
 EQ
-us
+tc
 tc
 sr
 wV
 tc
 yJ
 dI
-mk
+dI
 dI
 DD
 sn
