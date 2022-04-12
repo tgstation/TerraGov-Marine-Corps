@@ -2,202 +2,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	/obj/structure/barricade)))
 
 // ***************************************
-// *********** Phase Shift
-// ***************************************
-/datum/action/xeno_action/phase_shift
-	name = "Phase Shift"
-	ability_name = "Phase Shift"
-	action_icon_state = "phase_shift"
-	mechanics_text = "We force ourselves temporarily out of sync with reality, allowing us to become incorporeal and move through any physical obstacles for a short duration."
-	plasma_cost = 25
-	cooldown_timer = WRAITH_PHASE_SHIFT_COOLDOWN
-	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
-	use_state_flags = XACT_USE_CLOSEDTURF
-	var/turf/starting_turf = null
-	var/phase_shift_active = FALSE
-	var/phase_shift_duration_timer_id
-	///Timer for the phase shift duration alerts
-	var/phase_shift_duration_alert_id
-
-/datum/action/xeno_action/phase_shift/can_use_action(silent = FALSE, override_flags)
-	. = ..()
-	var/turf/T = get_turf(owner)
-	for(var/shutter_check in GLOB.wraith_no_incorporeal_pass_shutters)
-		if(locate(shutter_check) in T)
-			if(!silent)
-				to_chat(owner, span_xenowarning("We can't Phase Shift while in the space of warp protected shutters!"))
-			return FALSE
-
-
-/datum/action/xeno_action/phase_shift/action_activate()
-	. = ..()
-
-	if(phase_shift_active) //Toggle off if phase shift is active
-		phase_shift_deactivate()
-		return
-
-	owner.visible_message(span_warning("[owner.name] is becoming faint and translucent!"), \
-	span_xenodanger("We begin to move out of phase with reality....")) //Fluff
-
-	owner.add_filter("wraith_phase_shift_windup_1", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
-	owner.add_filter("wraith_phase_shift_windup_2", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
-	animate(owner.get_filter("wraith_phase_shift_windup_1"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1)
-	animate(owner.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1)
-
-	if(!do_after(owner, WRAITH_PHASE_SHIFT_WINDUP, TRUE, owner, BUSY_ICON_FRIENDLY)) //Channel time/wind up
-		owner.visible_message(span_xenowarning("[owner]'s form abruptly consolidates, returning to normalcy."), \
-		span_xenodanger("We abort our desynchronization."))
-		owner.remove_filter("wraith_phase_shift_windup_1")
-		owner.remove_filter("wraith_phase_shift_windup_2")
-		return fail_activate()
-
-	owner.remove_filter("wraith_phase_shift_windup_1")
-	owner.remove_filter("wraith_phase_shift_windup_2")
-
-	playsound(owner, "sound/effects/ghost.ogg", 25, 0, 1)
-
-	phase_shift_duration_alert_id = addtimer(CALLBACK(src, .proc/phase_shift_warning), WRAITH_PHASE_SHIFT_DURATION * WRAITH_PHASE_SHIFT_DURATION_WARNING, TIMER_STOPPABLE) //Warn them when Phase Shift is about to end
-	phase_shift_duration_timer_id = addtimer(CALLBACK(src, .proc/phase_shift_deactivate), WRAITH_PHASE_SHIFT_DURATION, TIMER_STOPPABLE)
-	owner.add_filter("wraith_phase_shift", 4, list("type" = "blur", 5)) //Cool filter appear
-	owner.stop_pulling() //We can't pull things while incorporeal
-
-	owner.generic_canpass = FALSE //So incorporeality is actually checked for collision
-	owner.status_flags = GODMODE | INCORPOREAL //Become temporarily invulnerable and incorporeal
-	owner.resistance_flags = RESIST_ALL
-	owner.density = FALSE
-	owner.throwpass = TRUE
-	owner.alpha = WRAITH_PHASE_SHIFT_ALPHA //Become translucent
-	owner.move_resist = INFINITY //Become immovable
-
-	starting_turf = get_turf(owner) //Get our starting turf so we can calculate the stun duration later.
-
-	GLOB.round_statistics.wraith_phase_shifts++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "wraith_phase_shifts") //Statistics
-
-	phase_shift_active = TRUE //Flag phase shift as being active
-	update_button_icon("phase_shift_off") //Set to resync icon while active
-	plasma_cost = 0 //Toggling is free
-	return succeed_activate()
-
-///Warns the user when Phase Shift is about to end.
-/datum/action/xeno_action/phase_shift/proc/phase_shift_warning()
-
-	if(!phase_shift_active) //If phase shift isn't active, cancel out
-		return
-
-	owner.alpha = WRAITH_PHASE_SHIFT_ALPHA * 1.5 //Become less translucent
-
-	to_chat(owner,span_highdanger("We begin to move back into phase with reality... We can only remain out of phase for [WRAITH_PHASE_SHIFT_DURATION * (1-WRAITH_PHASE_SHIFT_DURATION_WARNING) * 0.1] more seconds!"))
-	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
-
-///Deactivates and turns off the Phase Shift ability/effects
-/datum/action/xeno_action/phase_shift/proc/phase_shift_deactivate(resync = FALSE)
-	if(!phase_shift_active) //If phase shift isn't active, don't deactivate again; generally here for the timed proc.
-		return
-
-	deltimer(phase_shift_duration_timer_id) //Delete any existing timers
-	deltimer(phase_shift_duration_alert_id)
-	phase_shift_active = FALSE //Flag phase shift as being off
-	update_button_icon("phase_shift") //Revert the icon to phase shift
-
-	var/mob/living/carbon/xenomorph/wraith/ghost = owner
-
-	ghost.generic_canpass = initial(ghost.generic_canpass)
-	ghost.status_flags = initial(ghost.status_flags) //Become merely mortal again
-	ghost.resistance_flags = initial(ghost.resistance_flags)
-	ghost.density = initial(ghost.density)
-	ghost.throwpass = initial(ghost.throwpass)
-	ghost.alpha = initial(ghost.alpha) //Become opaque
-	ghost.remove_filter("wraith_phase_shift") //Cool filter begone
-	ghost.move_resist = initial(ghost.move_resist)
-
-	playsound(owner, "sound/effects/phasein.ogg", 25, 0, 1)
-
-	ghost.add_filter("wraith_phase_shift_windup_1", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
-	ghost.add_filter("wraith_phase_shift_windup_2", 3, list("type" = "wave", 0, 0, size=rand()*2.5+0.5, offset=rand())) //Cool filter appear
-	animate(ghost.get_filter("wraith_phase_shift_windup_1"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1)
-	animate(ghost.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1)
-	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_phase_shift_windup_1"), 0.5 SECONDS)
-	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_phase_shift_windup_2"), 0.5 SECONDS)
-
-	var/current_turf = get_turf(ghost)
-	var/block_check //Are we trying to rematerialize in a solid object? Check.
-
-	if(isspaceturf(current_turf) || turf_block_check(owner, current_turf, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE)) //So we rematerialized in a solid wall/space or invincible dense object
-		block_check = TRUE
-
-	if(block_check) //We tried to rematerialize in a solid object/wall of some kind; return to sender
-		to_chat(ghost, span_highdanger("As we rematerialize in a solid object, we revert to where we slipped out of reality."))
-		resync = TRUE
-		ghost.forceMove(starting_turf)
-		teleport_debuff_aoe(ghost) //Debuff when we reappear
-
-	var/distance = get_dist(current_turf, starting_turf)
-	var/phase_shift_plasma_cost = clamp(distance * 4, 0, 100) //We lose 4 additional plasma per tile travelled, up to a maximum of 100
-	var/plasma_deficit = ghost.plasma_stored - phase_shift_plasma_cost
-	var/cooldown_override
-
-	if(resync) //If we were shunted back willingly or otherwise this is true
-		cooldown_override = 3 SECONDS //Partial cooldown if we cancelled out of Phase Shift with Resync
-	else
-		ghost.use_plasma(phase_shift_plasma_cost) //Pay the extra cost if we didn't resync
-		ghost.visible_message(span_warning("[ghost] form wavers and becomes opaque."), \
-		span_xenodanger("We phase back into reality[phase_shift_plasma_cost > 0 ? " expending [phase_shift_plasma_cost] additional plasma for [distance] tiles travelled." : "."]"))
-		if(plasma_deficit < 0) //If we don't have enough plasma, we pay in blood and sunder instead.
-			plasma_deficit *= -1 //Normalize to a positive value
-			to_chat(owner, span_highdanger("We haven't enough plasma to safely move back into phase, suffering [plasma_deficit] damage and sunder as our body is torn apart!"))
-			ghost.apply_damages(plasma_deficit)
-			ghost.adjust_sunder(plasma_deficit)
-
-	starting_turf = null
-	plasma_cost = initial(plasma_cost) //Revert the plasma cost to its initial amount
-	add_cooldown(cooldown_override)
-
-/datum/action/xeno_action/phase_shift/on_cooldown_finish()
-	to_chat(owner, span_xenodanger("We are able to fade from reality again."))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
-	return ..()
-
-/datum/action/xeno_action/phase_shift/update_button_icon(input) //So we display the proper icon
-	if(!input) //If we're not overriding, proceed as normal
-		return ..()
-	button.overlays.Cut()
-	button.overlays += image('icons/mob/actions.dmi', button, input)
-	return ..()
-
-// ***************************************
-// *********** Resync
-// ***************************************
-/datum/action/xeno_action/resync
-	name = "Resync"
-	ability_name = "Resync"
-	action_icon_state = "resync"
-	mechanics_text = "Resynchronize with realspace, ending Phase Shift's effect and returning you to where the Phase Shift began with minimal cooldown."
-	cooldown_timer = 1 SECONDS //Token for anti-spam
-	keybind_signal = COMSIG_XENOABILITY_RESYNC
-	use_state_flags = XACT_USE_CLOSEDTURF
-
-/datum/action/xeno_action/resync/can_use_action(silent = FALSE, override_flags)
-	. = ..()
-
-	if(!(owner.status_flags & INCORPOREAL))
-		if(!silent)
-			to_chat(owner,span_xenodanger("We are already synchronized with realspace!"))
-		return FALSE
-
-/datum/action/xeno_action/resync/action_activate()
-	. = ..()
-
-	var/datum/action/xeno_action/phase_shift/disable_shift = owner.actions_by_path[/datum/action/xeno_action/phase_shift]
-	owner.forceMove(disable_shift.starting_turf) //Return to our initial position, then cancel the shift
-	disable_shift.phase_shift_deactivate(TRUE) //Resync is true; cooldown is sharply reduced
-	teleport_debuff_aoe(owner) //Debuff when we reappear
-
-	succeed_activate()
-	add_cooldown()
-
-
-// ***************************************
 // *********** Blink
 // ***************************************
 /datum/action/xeno_action/activable/blink
@@ -218,10 +22,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return FALSE
 
 	var/area/target_area = get_area(T) //We are forced to set this; will not work otherwise
-	if(is_type_in_typecache(target_area, GLOB.wraith_strictly_forbidden_areas)) //We can't enter these period.
-		if(!silent)
-			to_chat(owner, span_xenowarning("We can't blink into this area!"))
-		return FALSE
 
 	if(!line_of_sight(owner, T)) //Needs to be in line of sight.
 		if(!silent)
@@ -322,9 +122,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	new /obj/effect/temp_visual/wraith_warp(get_turf(teleporter))
 
-	if(owner.status_flags & INCORPOREAL) //No debuff while in phase shift
-		return
-
 	for(var/mob/living/living_target in range(1, teleporter.loc))
 
 		if(living_target.stat == DEAD)
@@ -371,11 +168,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/xeno_action/activable/banish/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
-
-	if(owner.status_flags & INCORPOREAL) //We can't use this while phased out.
-		if(!silent)
-			to_chat(owner, span_xenowarning("We can't banish while incorporeal!"))
-		return FALSE
 
 	if(!ismovableatom(A) || iseffect(A) || CHECK_BITFIELD(A.resistance_flags, INDESTRUCTIBLE) || CHECK_BITFIELD(A.resistance_flags, BANISH_IMMUNE)) //Cannot banish non-movables/things that are supposed to be invul; also we ignore effects
 		if(!silent)
@@ -643,6 +435,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(locate(/obj/effect/wraith_portal) in get_turf(owner))
 		if(!silent)
 			to_chat(owner, span_xenowarning("There is already a portal here!"))
+		return FALSE
+	var/area/area = get_area(owner)
+	if(area.flags_area & MARINE_BASE)
+		if(!silent)
+			to_chat(owner, span_xenowarning("You cannot portal here!"))
 		return FALSE
 	return ..()
 

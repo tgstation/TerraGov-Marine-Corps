@@ -707,8 +707,6 @@
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
 #define COMSIG_XENOABILITY_JAB "xenoability_jab"
 
-#define COMSIG_XENOABILITY_PHASE_SHIFT "xenoability_phase_shift"
-#define COMSIG_XENOABILITY_RESYNC "xenoability_resync"
 #define COMSIG_XENOABILITY_PORTAL "xenoablity_portal"
 #define COMSIG_XENOABILITY_PORTAL_ALTERNATE "xenoability_portal_alternate"
 #define COMSIG_XENOABILITY_BLINK "xenoability_blink"

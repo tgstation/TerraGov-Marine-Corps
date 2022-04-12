@@ -14524,14 +14524,6 @@
 	icon_state = "cement_sunbleached18"
 	},
 /area/desert_dam/exterior/landing/landing_pad_one_external)
-"bhg" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached{
-	icon_state = "cement_sunbleached18"
-	},
-/area/desert_dam/exterior/valley/valley_northwest)
 "bhi" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/north_valley_dam)
@@ -52788,7 +52780,7 @@
 "gSJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_northwest)
+/area/desert_dam/exterior/landing/landing_pad_one_external)
 "gST" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison{
@@ -66578,7 +66570,7 @@
 "qCW" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/mars/dirttosand,
-/area/desert_dam/exterior/valley/valley_northwest)
+/area/desert_dam/exterior/landing/landing_pad_one_external)
 "qDa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -85226,9 +85218,9 @@ gox
 kxH
 kxH
 dTs
-aiZ
-aiZ
-bhg
+iDQ
+iDQ
+bhe
 wwd
 blw
 bjx
@@ -85460,9 +85452,9 @@ gox
 dTs
 dTs
 dTs
-aja
-aiZ
-bhg
+iAq
+iDQ
+bhe
 cck
 bhP
 bhP
@@ -85696,7 +85688,7 @@ ubV
 ubV
 qCW
 gSJ
-bhg
+bhe
 ams
 bhP
 bhP
@@ -127284,7 +127276,7 @@ dTs
 dTs
 dTs
 dTs
-xLK
+iDQ
 xLK
 xLK
 xLK
@@ -127518,7 +127510,7 @@ wsw
 dTs
 dTs
 wnV
-xLK
+iDQ
 ygP
 hXU
 hXU
@@ -127752,7 +127744,7 @@ lZG
 wsw
 iBL
 fEE
-xLK
+iDQ
 hHK
 kCb
 uxL
@@ -127986,7 +127978,7 @@ lUB
 fEE
 xLK
 xLK
-xLK
+iDQ
 hHK
 sdX
 ksP
@@ -128220,7 +128212,7 @@ xLK
 xLK
 xLK
 xLK
-xLK
+iDQ
 hHK
 sys
 eTc
@@ -128454,7 +128446,7 @@ hXU
 fJE
 hXU
 hXU
-hXU
+myr
 bEb
 xmb
 bEb

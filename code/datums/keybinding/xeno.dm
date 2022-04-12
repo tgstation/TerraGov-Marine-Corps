@@ -606,18 +606,6 @@
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
 
-/datum/keybinding/xeno/phase_shift
-	name = "phase_shift"
-	full_name = "Wraith: Phase Shift"
-	description = "Move out of phase with reality for a short duration after a short delay, gaining invulnerability and the ability to move through almost all physical obstacles. Can't move into space."
-	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
-
-/datum/keybinding/xeno/resync
-	name = "resync"
-	full_name = "Wraith: Resync"
-	description = "Resynchronize with reality, ending Phase Shift's effect."
-	keybind_signal = COMSIG_XENOABILITY_RESYNC
-
 /datum/keybinding/xeno/portal
 	name = "portal"
 	full_name = "Wraith: Portal"
