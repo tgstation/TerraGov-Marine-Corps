@@ -90,7 +90,7 @@
 	var/mob/living/carbon/human/user = loc
 	var/mob/living/carbon/human/target = A
 
-	if(!(user.a_intent == INTENT_HARM))
+	if(!(user.a_intent == INTENT_HARM) || !ishuman(target))
 		return
 
 	target.adjustStaminaLoss(damage)
