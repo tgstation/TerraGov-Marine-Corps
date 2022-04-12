@@ -62,9 +62,6 @@
 			.["species"] = species || "Human"
 			.["body_type"] = body_type
 			.["good_eyesight"] = good_eyesight
-			.["citizenship"] = citizenship
-			.["religion"] = religion
-			.["nanotrasen_relation"] = nanotrasen_relation
 			.["h_style"] = h_style
 			.["grad_style"] = grad_style
 			.["f_style"] = f_style
@@ -467,21 +464,6 @@
 			r_eyes = hex2num(copytext(eyecolor, 2, 4))
 			g_eyes = hex2num(copytext(eyecolor, 4, 6))
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
-
-		if("citizenship")
-			var/choice = tgui_input_list(ui.user, "What nationality should you have?", "Nationality choice", CITIZENSHIP_CHOICES)
-			if(choice)
-				citizenship = choice
-
-		if("religion")
-			var/choice = tgui_input_list(ui.user, "What gods do you worship to?", "Religion choice", RELIGION_CHOICES)
-			if(choice)
-				religion = choice
-
-		if("corporation")
-			var/choice = tgui_input_list(ui.user, "How loyal are you to the corporation?", "Corporation choice", CORP_RELATIONS)
-			if(choice)
-				nanotrasen_relation = choice
 
 		if("squad")
 			var/new_squad = params["newValue"]

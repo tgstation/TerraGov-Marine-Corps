@@ -196,21 +196,6 @@ export const CharacterCustomization = (props, context) => {
                 value={'ethnicity'}
                 action={'ethnicity'}
               />
-              <SelectFieldPreference
-                label={'Citizenship'}
-                value={'citizenship'}
-                action={'citizenship'}
-              />
-              <SelectFieldPreference
-                label={'Religion'}
-                value={'religion'}
-                action={'religion'}
-              />
-              <SelectFieldPreference
-                label={'Corporate Relations'}
-                value={'nanotrasen_relation'}
-                action={'nanotrasen_relation'}
-              />
             </LabeledList>
           </Flex.Item>
         </Flex>

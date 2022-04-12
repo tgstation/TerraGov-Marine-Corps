@@ -381,10 +381,6 @@
 
 	READ_FILE(S["moth_wings"], moth_wings)
 
-	READ_FILE(S["citizenship"], citizenship)
-	READ_FILE(S["religion"], religion)
-	READ_FILE(S["nanotrasen_relation"], nanotrasen_relation)
-
 	READ_FILE(S["med_record"], med_record)
 	READ_FILE(S["sec_record"], sec_record)
 	READ_FILE(S["gen_record"], gen_record)
@@ -439,10 +435,6 @@
 	b_eyes			= sanitize_integer(b_eyes, 0, 255, initial(b_eyes))
 
 	moth_wings		= sanitize_inlist(moth_wings, GLOB.moth_wings_list, initial(moth_wings))
-
-	citizenship		= sanitize_inlist(citizenship, CITIZENSHIP_CHOICES, initial(citizenship))
-	religion		= sanitize_inlist(religion, RELIGION_CHOICES, initial(religion))
-	nanotrasen_relation = sanitize_inlist(nanotrasen_relation, CORP_RELATIONS, initial(nanotrasen_relation))
 
 	med_record		= sanitize_text(med_record, initial(med_record))
 	sec_record		= sanitize_text(sec_record, initial(sec_record))
@@ -524,10 +516,6 @@
 
 	moth_wings		= sanitize_inlist(moth_wings, GLOB.moth_wings_list, initial(moth_wings))
 
-	citizenship		= sanitize_inlist(citizenship, CITIZENSHIP_CHOICES, initial(citizenship))
-	religion		= sanitize_inlist(religion, RELIGION_CHOICES, initial(religion))
-	nanotrasen_relation = sanitize_inlist(nanotrasen_relation, CORP_RELATIONS, initial(nanotrasen_relation))
-
 	med_record		= sanitize_text(med_record, initial(med_record))
 	sec_record		= sanitize_text(sec_record, initial(sec_record))
 	gen_record		= sanitize_text(gen_record, initial(gen_record))
@@ -579,10 +567,6 @@
 	WRITE_FILE(S["b_eyes"], b_eyes)
 
 	WRITE_FILE(S["moth_wings"], moth_wings)
-
-	WRITE_FILE(S["citizenship"], citizenship)
-	WRITE_FILE(S["religion"], religion)
-	WRITE_FILE(S["nanotrasen_relation"], nanotrasen_relation)
 
 	WRITE_FILE(S["med_record"], med_record)
 	WRITE_FILE(S["sec_record"], sec_record)
