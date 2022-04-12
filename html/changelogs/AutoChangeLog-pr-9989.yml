@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - rscadd: "Use splints on missing limbs to apply a tourniquet, stopping the bleeding and pain"
-  - balance: "Missing limbs bleed half as much"
