@@ -731,6 +731,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
+	var/new_range = bullet.proj_max_range - bullet.distance_travelled
+	if(new_range <= 0)
+		bullet.loc = get_turf(linked_portal)
+		bullet.ammo.do_at_max_range(bullet)
+		qdel(bullet)
+		return
 	bullet.permutated.Cut()
 	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
 
