@@ -60,7 +60,7 @@
 
 /obj/item/ammo_magazine/examine(mob/user)
 	. = ..()
-	to_chat(user, "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>.")
+	. += "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
 
 
 /obj/item/ammo_magazine/attack_hand(mob/living/user)
@@ -170,15 +170,25 @@
 		to_chat(user, span_notice("You grab <b>[rounds]</b> round\s from [src]."))
 		update_icon() //Update the other one.
 		user?.hud_used.update_ammo_hud(user, src)
+		if(current_rounds <= 0 && CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL))
+			user.temporarilyRemoveItemFromInventory(src)
+			qdel(src)
 		return rounds //Give the number created.
 	else
 		update_icon()
+		if(current_rounds <= 0 && CHECK_BITFIELD(flags_magazine, MAGAZINE_HANDFUL))
+			qdel(src)
 		return new_handful
 
 ///Called on a /ammo_magazine that wishes to be a handful. It generates all the data required for the handful.
 /obj/item/ammo_magazine/proc/generate_handful(new_ammo, new_caliber, new_rounds, maximum_rounds)
 	var/datum/ammo/ammo = ispath(new_ammo) ? GLOB.ammo_list[new_ammo] : new_ammo
 	var/ammo_name = ammo.name
+
+	///sets greyscale for the handful if it has been specified by the ammo datum
+	if (ammo.handful_greyscale_config && ammo.handful_greyscale_colors)
+		set_greyscale_config(ammo.handful_greyscale_config)
+		set_greyscale_colors(ammo.handful_greyscale_colors)
 
 	name = "handful of [ammo_name + " ([new_caliber])"]"
 	icon_state = ammo.handful_icon_state
@@ -320,9 +330,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/examine(mob/user)
 	. = ..()
 	if(bullet_amount)
-		to_chat(user, "It contains [bullet_amount] round\s.")
+		. += "It contains [bullet_amount] round\s."
 	else
-		to_chat(user, "It's empty.")
+		. += "It's empty."
 
 /obj/item/big_ammo_box/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -429,7 +439,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/shotgunbox/examine(mob/user)
 	. = ..()
-	to_chat(user, "It contains [current_rounds] out of [max_rounds] shotgun shells.")
+	. += "It contains [current_rounds] out of [max_rounds] shotgun shells."
 
 
 /obj/item/shotgunbox/attack_hand(mob/living/user)

@@ -36,11 +36,11 @@
 		COMSIG_PARENT_ATTACKBY))
 
 ///Adds additional text for the component when examining the item
-/datum/component/harvester/proc/examine(datum/source, mob/user)
+/datum/component/harvester/proc/examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	to_chat(user, span_rose("[length(beaker.reagents.reagent_list) ? "It currently holds [beaker.reagents.total_volume]u of [beaker.reagents.reagent_list[1].name]" : "The internal storage is empty"].\n<b>Compatible chemicals:</b>"))
+	examine_list += span_rose("[length(beaker.reagents.reagent_list) ? "It currently holds [beaker.reagents.total_volume]u of [beaker.reagents.reagent_list[1].name]" : "The internal storage is empty"].\n<b>Compatible chemicals:</b>")
 	for(var/atom/reagent AS in loadable_reagents)
-		to_chat(user, "[initial(reagent.name)]")
+		examine_list += "[initial(reagent.name)]"
 
 ///Handles behavior for when item is clicked on
 /datum/component/harvester/proc/attackby_async(datum/source, obj/item/cont, mob/user)

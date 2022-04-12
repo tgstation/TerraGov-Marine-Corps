@@ -177,13 +177,13 @@
 	. = ..()
 	switch(stat)
 		if(CONSCIOUS)
-			to_chat(user, span_warning("[src] seems to be active."))
+			. += span_warning("[src] seems to be active.")
 		if(UNCONSCIOUS)
-			to_chat(user, span_warning("[src] seems to be asleep."))
+			. += span_warning("[src] seems to be asleep.")
 		if(DEAD)
-			to_chat(user, span_danger("[src] is not moving."))
+			. += span_danger("[src] is not moving.")
 	if(initial(sterile))
-		to_chat(user, span_warning("It looks like the proboscis has been removed."))
+		. += span_warning("It looks like the proboscis has been removed.")
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
 	. = ..()
@@ -562,7 +562,7 @@
 		playsound(loc, hugsound, 25, 0)
 	if(!sterile && !issynth(user) && !isIPC(user))
 		user.disable_lights(sparks = TRUE, silent = TRUE)
-		var/stamina_dmg = user.maxHealth * 2 + user.max_stamina_buffer
+		var/stamina_dmg = user.maxHealth + user.max_stamina_buffer
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(2 SECONDS)
 	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time

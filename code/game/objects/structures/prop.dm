@@ -15,6 +15,7 @@
 /obj/machinery/prop/mainship
 	name = "GENERIC SHIP PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P01' IF SEEN IN ROUND WITH LOCATION"
+	coverage = 15
 
 /obj/machinery/prop/mainship/hangar/dropship_part_fabricator
 
@@ -70,6 +71,7 @@
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P02' IF SEEN IN ROUND WITH LOCATION"
 	density = TRUE
 	anchored = TRUE
+	coverage = 15
 
 /obj/structure/prop/mainship/minigun_crate
 	name = "30mm ammo crate"
@@ -135,6 +137,7 @@
 	bound_width = 64
 	bound_height = 32
 	resistance_flags = UNACIDABLE
+	throwpass = FALSE
 	var/list/fallen_list
 
 /obj/structure/prop/mainship/ship_memorial/attackby(obj/item/I, mob/user)
@@ -159,7 +162,7 @@
 				faltext += "[fallen_list[i]], "
 			else
 				faltext += fallen_list[i]
-		to_chat(user, "[span_notice("To our fallen soldiers:")] <b>[faltext]</b>.")
+		. += "[span_notice("To our fallen soldiers:")] <b>[faltext]</b>."
 
 
 /obj/structure/prop/mainship/particle_cannon
@@ -263,7 +266,7 @@
 	name = "\improper Barred Airlock"
 	icon = 'icons/Marine/mainship_props.dmi'
 	resistance_flags = RESIST_ALL
-	desc = "It opens and closes." 
+	desc = "It opens and closes."
 
 /obj/structure/prop/mainship/doorblocker/maint
 	name = "\improper Maintenance Hatch"
@@ -335,7 +338,7 @@
 
 /obj/structure/prop/mainship/propcarp/Initialize(mapload) //slightly randomize carp to simulate life
 	. = ..()
-	var/pickedrotate = pick(0,1,2,4,8,10) 
+	var/pickedrotate = pick(0,1,2,4,8,10)
 	switch(pickedrotate) //prop carp can randomly move two tiles in any direction
 		if(0) //1/6th chance of not moving in a random direction
 			return
@@ -402,16 +405,16 @@
 
 /obj/structure/prop/mainship/meterprop/random/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("The pressure gauge reads [kpa] kPa; [kelvin] K ([kelvin - 273.15]°C)")) //output fake kelvin and celsius on examine
+	. += span_notice("The pressure gauge reads [kpa] kPa; [kelvin] K ([kelvin - 273.15]°C)") //output fake kelvin and celsius on examine
 
 /obj/structure/prop/mainship/meterprop/empty/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("The pressure gauge reads 0 kPa; 0 K (-273.15°C)")) //output fake kelvin and celsius on examine
+	. += span_notice("The pressure gauge reads 0 kPa; 0 K (-273.15°C)") //output fake kelvin and celsius on examine
 
 /obj/structure/prop/mainship/meterprop/random/Initialize(mapload)
 	. = ..()
 	kpa = rand(9.3, 21.4)
-	kelvin = rand(10.3, 28.4) 
+	kelvin = rand(10.3, 28.4)
 
 /obj/structure/prop/mainship/pipeprop //does not init and so doesn't generate lag at all
 	name = "pipe"
@@ -480,4 +483,57 @@
 				"'H.O.G.A.N.' Core AI Module",
 	)
 
+///BROKEN MARINE VENDOR PROPS
 
+/obj/structure/prop/brokenvendor
+	name = "\improper Broken vendor"
+	icon = 'icons/Marine/mainship_props.dmi'
+	desc = "The insides of this vendor are visible and rusted through, you get the feeling there's no fixing this machine."
+
+/obj/structure/prop/brokenvendor/brokenweaponsrack
+	icon_state = "marinearmory-broken"
+
+/obj/structure/prop/brokenvendor/brokenuniformvendor
+	name = "\improper Broken automated uniform closet"
+	icon_state = "marineuniform-broken"
+
+/obj/structure/prop/brokenvendor/brokenuniformvendor/specialist
+	name = "\improper Broken specialist equipment rack"
+	icon_state = "specialist-broken"
+	desc = "You study the rusted hulk in vain trying to determine what this vendor was before realizing that it's hopeless."
+
+/obj/structure/prop/brokenvendor/brokenspecialistvendor/sg
+	name = "\improper Broken automated smart gunner closet"
+	icon_state = "marineuniform-broken"
+
+/obj/structure/prop/brokenvendor/brokenspecialistvendor/leader
+	name = "\improper Broken automated leader closet"
+	icon_state = "marineuniform-broken"
+
+/obj/structure/prop/brokenvendor/brokenspecialistvendor/corpsman
+	name = "\improper Broken automated corpsman closet"
+	icon_state = "marineuniform-broken"
+
+/obj/structure/prop/brokenvendor/brokenspecialistvendor/engineer
+	name = "\improper Broken automated engineer closet"
+	icon_state = "marineuniform-broken"
+
+/obj/structure/prop/brokenvendor/brokenmarinemedvendor
+	icon_state = "marinemed-broken"
+
+/obj/structure/prop/brokenvendor/brokennanomedvendor
+	icon_state = "med-broken"
+
+/obj/structure/prop/brokenvendor/brokencorpsmanvendor
+	icon_state = "corpsmanvendor-broken"
+
+/obj/structure/prop/brokenvendor/engivend
+	icon_state = "engivend-broken"
+
+/obj/structure/prop/brokenvendor/surplusclothes
+	name = "\improper Broken surplus clothes vendor"
+	icon_state = "surplus_clothes-broken"
+
+/obj/structure/prop/brokenvendor/surplusarmor
+	name = "\improper Broken armor clothes vendor"
+	icon_state = "surplus_armor-broken"

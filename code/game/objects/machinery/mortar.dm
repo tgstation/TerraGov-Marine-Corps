@@ -5,6 +5,7 @@
 
 	anchored = TRUE
 	density = TRUE
+	coverage = 20
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	/// list of the target x and y, and the dialing we can do to them
 	var/list/coords = list("name"= "", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
@@ -339,8 +340,9 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
+	light_color = COLOR_VERY_SOFT_YELLOW
 	light_system = HYBRID_LIGHT
-	light_mask_type = /atom/movable/lighting_mask/flicker
+	light_power = 8
 	light_range = 9 //Way brighter than most lights
 
 /obj/effect/mortar_flare/Initialize()

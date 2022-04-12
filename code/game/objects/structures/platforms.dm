@@ -9,7 +9,7 @@
 	climbable = TRUE
 	anchored = TRUE
 	density = TRUE
-	throwpass = TRUE //You can throw objects over this, despite its density.
+	coverage = 10
 	layer = OBJ_LAYER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	flags_atom = ON_BORDER
@@ -54,7 +54,7 @@
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return TRUE
 
-	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) == dir))
+	if(!(flags_atom & ON_BORDER) || !(get_dir(loc, target) & dir))
 		return TRUE
 
 obj/structure/platform_decoration

@@ -30,7 +30,13 @@
 		/obj/item/armor_module/storage/uniform/holster,
 		/obj/item/armor_module/storage/uniform/holster/armpit,
 		/obj/item/armor_module/storage/uniform/holster/waist,
+		/obj/item/armor_module/storage/uniform/holster/freelancer,
+		/obj/item/armor_module/storage/uniform/holster/vp,
 		/obj/item/armor_module/armor/badge,
+		/obj/item/armor_module/armor/cape,
+		/obj/item/armor_module/armor/cape/half,
+		/obj/item/armor_module/armor/cape/short,
+		/obj/item/armor_module/armor/cape/scarf,
 		/obj/item/clothing/tie,
 		/obj/item/clothing/tie/blue,
 		/obj/item/clothing/tie/red,
@@ -63,6 +69,7 @@
 		ATTACHMENT_SLOT_UNIFORM,
 		ATTACHMENT_SLOT_UNIFORM_TIE,
 		ATTACHMENT_SLOT_BADGE,
+		ATTACHMENT_SLOT_CAPE,
 	)
 	///Typepath list of uniform variants.
 	var/list/adjustment_variants = list(
@@ -123,15 +130,15 @@
 	. = ..()
 	if(!has_sensor)
 		return
-	switch(sensor_mode)
+	switch(sensor_mode) // todo this should use defines
 		if(0)
-			to_chat(user, "Its sensors appear to be disabled.")
+			. += "Its sensors appear to be disabled."
 		if(1)
-			to_chat(user, "Its binary life sensors appear to be enabled.")
+			. += "Its binary life sensors appear to be enabled."
 		if(2)
-			to_chat(user, "Its vital tracker appears to be enabled.")
+			. += "Its vital tracker appears to be enabled."
 		if(3)
-			to_chat(user, "Its vital tracker and tracking beacon appear to be enabled.")
+			. += "Its vital tracker and tracking beacon appear to be enabled."
 
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)
 	if (!istype(user))

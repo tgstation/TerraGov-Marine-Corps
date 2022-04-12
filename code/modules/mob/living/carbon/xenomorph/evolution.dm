@@ -56,7 +56,7 @@
 
 	do_evolve(castetype, castepick, TRUE)
 
-/mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, forced = FALSE)
+/mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, regression = FALSE)
 	if(is_ventcrawling)
 		to_chat(src, span_warning("This place is too constraining to evolve."))
 		return
@@ -146,7 +146,7 @@
 		to_chat(src, span_warning("Nuh-uhh."))
 		return
 
-	if(!forced && !(new_caste_type in xeno_caste.evolves_to))
+	if(!regression && !(new_caste_type in xeno_caste.evolves_to))
 		to_chat(src, span_warning("We can't evolve to that caste from our current one."))
 		return
 
@@ -232,7 +232,7 @@
 		tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
 		tierfours = length(hive.xenos_by_tier[XENO_TIER_FOUR])
 
-		if(forced)
+		if(regression)
 			//Nothing, go on as normal.
 		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones + tierfours, tiertwos, tierthrees))
 			to_chat(src, span_warning("The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die."))
@@ -260,7 +260,7 @@
 	span_xenonotice("We begin to twist and contort."))
 	do_jitter_animation(1000)
 
-	if(!forced && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
+	if(!regression && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
 		to_chat(src, span_warning("We quiver, but nothing happens. We must hold still while evolving."))
 		return
 
@@ -282,7 +282,7 @@
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
 			to_chat(src, span_warning("There cannot be two manifestations of the hivemind's will at once."))
 			return
-	else if(!forced) // these shouldnt be checked if trying to become a queen.
+	else if(!regression) // these shouldnt be checked if trying to become a queen.
 		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones + tierfours, tiertwos, tierthrees))
 			to_chat(src, span_warning("Another sister evolved meanwhile. The hive cannot support another Tier 2."))
 			return
@@ -303,11 +303,10 @@
 		if(new_xeno)
 			qdel(new_xeno)
 		return
-
-	new_xeno.upgrade_stored = upgrade_stored
-	//We upgrade the new xeno until it reaches ancient or doesn't have enough upgrade points stored to mature
-	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
-		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
+	if(tier != XENO_TIER_ONE || !regression )
+		new_xeno.upgrade_xeno(upgrade, TRUE)
+	if(!regression && upgrade != XENO_UPGRADE_INVALID)
+		new_xeno.upgrade_xeno(new_xeno.upgrade_prev(), TRUE)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
 
@@ -378,6 +377,12 @@
 	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, /mob/living.proc/do_jitter_animation, 1000)
+
+//Wraith can't regress/evo in phase shift
+/mob/living/carbon/xenomorph/wraith/do_evolve(caste_type, forced_caste_name, regression = FALSE)
+	if(status_flags & INCORPOREAL)
+		return
+	return ..()
 
 
 #undef TO_XENO_TIER_2_FORMULA

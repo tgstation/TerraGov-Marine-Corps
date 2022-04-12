@@ -13,6 +13,7 @@
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
 #define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
 #define COMSIG_GLOB_TADPOLE_LAUNCHED "!tadpole_launched"
+#define COMSIG_GLOB_EVACUATION_STARTED "!evacuation_started"
 
 #define COMSIG_GLOB_REMOVE_VOTE_BUTTON "!remove_vote_button"
 #define COMSIG_GLOB_NUKE_START "!nuke_start"
@@ -149,6 +150,13 @@
 #define COMSIG_ATOM_ATTACK_GHOST "atom_attack_ghost"			//from base of atom/attack_ghost(): (mob/dead/observer/ghost)
 	#define COMPONENT_NO_ATTACK_HAND (1<<0)						//works on all attack_hands.
 #define COMSIG_PARENT_EXAMINE "atom_examine"					//from base of atom/examine(): (/mob)
+///from base of atom/get_examine_name(): (/mob, list/overrides)
+#define COMSIG_ATOM_GET_EXAMINE_NAME "atom_examine_name"
+	//Positions for overrides list
+	#define EXAMINE_POSITION_ARTICLE (1<<0)
+	#define EXAMINE_POSITION_BEFORE (1<<1)
+	//End positions
+	#define COMPONENT_EXNAME_CHANGED (1<<0)
 #define COMSIG_ATOM_UPDATE_ICON "atom_update_icon"				//from base of atom/update_icon(): ()
 	#define COMSIG_ATOM_NO_UPDATE_ICON_STATE (1<<0)
 	#define COMSIG_ATOM_NO_UPDATE_OVERLAYS (1<<1)
@@ -157,6 +165,8 @@
 #define COMSIG_ATOM_SET_LIGHT "atom_set_light"					//from base of atom/set_light(): (l_range, l_power, l_color)
 #define COMSIG_ATOM_BULLET_ACT "atom_bullet_act"				//from base of atom/bullet_act(): (/obj/projectile)
 #define COMSIG_ATOM_INITIALIZED_ON "atom_initialized_on"		//called from atom/Initialize() of target: (atom/target)
+//from SSatoms InitAtom - Only if the  atom was not deleted or failed initialization
+#define COMSIG_ATOM_AFTER_SUCCESSFUL_INITIALIZE "atom_init_success"
 #define COMSIG_ATOM_ORBIT_BEGIN "atom_orbit_begin"				//called when an atom starts orbiting another atom: (atom)
 #define COMSIG_ATOM_ORBIT_STOP "atom_orbit_stop"				//called when an atom stops orbiting another atom: (atom)
 #define COMSIG_ATOM_ACIDSPRAY_ACT "atom_acidspray_act"			//called when acid spray acts on an entity; associated with /acidspray_act(): (obj/effect/xenomorph/spray/acid_puddle)
@@ -347,6 +357,8 @@
 	#define COMSIG_MOB_CLICK_HANDLED (1<<1)
 #define COMSIG_MOB_ATTACK_RANGED "mob_attack_ranged"			//from base of mob/RangedAttack(): (atom/A, params)
 #define COMSIG_MOB_THROW "mob_throw"							//from base of /mob/throw_item(): (atom/target)
+///from base of /mob/verb/examinate(): (atom/target)
+#define COMSIG_MOB_EXAMINATE "mob_examinate"
 #define COMSIG_MOB_UPDATE_SIGHT "mob_update_sight"				//from base of /mob/update_sight(): ()
 #define COMSIG_MOB_HUD_CREATED "mob_hud_created"				//from base of mob/create_mob_hud(): ()
 
@@ -709,6 +721,10 @@
 
 #define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
 
+// throw parry signals
+#define COMSIG_THROW_PARRY_CHECK "throw_parry_check"
+#define COMSIG_PARRY_TRIGGER "parry_trigger"
+
 // remote control signals
 #define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
 #define COMSIG_REMOTECONTROL_UNLINK "remotecontrol_unlink"
@@ -718,6 +734,7 @@
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
+#define COMSIG_KB_QUICKEQUIPALT "keybinding_quickequipalt"
 #define COMSIG_KB_GUN_SAFETY "keybinding_gun_safety"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
 #define COMSIG_KB_RAILATTACHMENT "keybinding_railattachment"
@@ -728,8 +745,9 @@
 #define COMSIG_KB_GIVE "keybind_give"
 
 // human modules signals for keybindings
-#define COMSIG_KB_VALIHEAL "keybinding_valiheal"
-#define COMSIG_KB_VALICONNECT "keybiding_valiconnect"
+#define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"
+#define COMSIG_KB_VALI_HEAL "keybinding_vali_heal"
+#define COMSIG_KB_VALI_CONNECT "keybiding_vali_connect"
 #define COMSIG_KB_SUITANALYZER "keybinding_suitanalyzer"
 
 // Ability adding/removing signals

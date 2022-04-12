@@ -337,7 +337,7 @@
 						to_chat(src, span_warning("[L] is restraining [P], you cannot push past."))
 					return
 
-		if(!L.buckled && !L.anchored)
+		if(!L.buckled && !L.anchored && !moving_diagonally)
 			var/mob_swap = FALSE
 			//the puller can always swap with its victim if on grab intent
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
@@ -634,6 +634,7 @@ below 100 is not dizzy
 		return
 
 	update_sight()
+	animate(client, pixel_x = 0, pixel_y = 0)
 	if(client.eye && client.eye != src)
 		var/atom/AT = client.eye
 		AT.get_remote_view_fullscreens(src)

@@ -11,9 +11,6 @@
 	///primordial message that is shown when a caste becomes primordial
 	var/primordial_message = ""
 
-	///name of primordial upgrade this caste looks for, keep this as define
-	var/primordial_upgrade_name = ""
-
 	var/tier = XENO_TIER_ZERO
 	var/upgrade = XENO_UPGRADE_ZERO
 	///used to match appropriate wound overlays
@@ -154,8 +151,6 @@
 	var/huggers_max = 0
 	///delay between the throw hugger ability activation for carriers
 	var/hugger_delay = 0
-	///maximum amount of eggs a carrier can carry at one time.
-	var/eggs_max = 0
 
 	// *** Defender Abilities *** //
 	///modifying amount to the crest defense ability for defenders. Positive integers only.

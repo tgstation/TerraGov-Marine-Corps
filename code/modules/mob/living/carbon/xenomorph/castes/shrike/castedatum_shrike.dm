@@ -3,7 +3,6 @@
 	display_name = "Shrike"
 	upgrade_name = ""
 	caste_desc = "A psychically unstable xeno. The Shrike controls the hive when there's no Queen and acts as its successor when there is."
-	primordial_upgrade_name = PRIMORDIAL_SHRIKE
 	job_type = /datum/job/xenomorph/queen
 	caste_type_path = /mob/living/carbon/xenomorph/shrike
 
@@ -26,7 +25,7 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 120
+	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
 	evolves_to = list(/mob/living/carbon/xenomorph/queen)
 	deevolves_to = /mob/living/carbon/xenomorph/drone
@@ -37,7 +36,7 @@
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2 //The Shrike's aura is decent.
@@ -90,10 +89,10 @@
 	max_health = 350
 
 	// *** Evolution *** //
-	upgrade_threshold = 360
+	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_2, "bio" = 15, "rad" = 15, "fire" = 35, "acid" = 15)
+	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = 20, "bio" = 15, "rad" = 15, "fire" = 35, "acid" = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5
@@ -118,10 +117,10 @@
 	max_health = 375
 
 	// *** Evolution *** //
-	upgrade_threshold = 840
+	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 18, "rad" = 18, "fire" = 40, "acid" = 18)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 20, "bio" = 18, "rad" = 18, "fire" = 40, "acid" = 18)
 
 	// *** Pheromones *** //
 	aura_strength = 2.8
@@ -146,10 +145,10 @@
 	max_health = 400
 
 	// *** Evolution *** //
-	upgrade_threshold = 1320
+	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_2, "bio" = 23, "rad" = 23, "fire" = 45, "acid" = 20)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = 20, "bio" = 23, "rad" = 23, "fire" = 45, "acid" = 20)
 
 	// *** Pheromones *** //
 	aura_strength = 3
@@ -172,12 +171,8 @@
 
 	// *** Health *** //
 	max_health = 400
-
-	// *** Evolution *** //
-	upgrade_threshold = 1420
-
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_2, "bio" = 23, "rad" = 23, "fire" = 45, "acid" = 20)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = 20, "bio" = 23, "rad" = 23, "fire" = 45, "acid" = 20)
 
 	// *** Pheromones *** //
 	aura_strength = 3
@@ -188,7 +183,7 @@
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
 		/datum/action/xeno_action/lay_egg,
-		/datum/action/xeno_action/activable/neurotox_sting,
+		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/secrete_resin,
 		/datum/action/xeno_action/place_acidwell,

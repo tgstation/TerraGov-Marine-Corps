@@ -216,6 +216,8 @@
 	var/list/aim_fire_delay_mods = list()
 	///Determines character slowdown from aim mode. Default is 66%
 	var/aim_speed_modifier = 6
+	/// Time to enter aim mode, generally one second.
+	var/aim_time = 1 SECONDS
 
 	///How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_amount = 1
@@ -223,6 +225,8 @@
 	var/burst_delay = 0.1 SECONDS
 	///When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
 	var/extra_delay	= 0
+	///when autobursting, this is the amount of extra (extra) time before the weapon fires again. If no amount is specified, defaults to x2 fire_delay
+	var/autoburst_delay = 0
 
 	///Slowdown for wielding
 	var/aim_slowdown = 0
@@ -268,7 +272,8 @@
 		ATTACHMENT_SLOT_UNDER,
 		ATTACHMENT_SLOT_MAGAZINE,
 	)
-
+	///the current gun attachment, used for attachment aim mode
+	var/obj/item/weapon/gun/gunattachment = null
 /*
  * Gun as Attachment Vars
 */
@@ -292,6 +297,8 @@
 /*
  * Deployed and Sentry Vars
 */
+	///If the gun has a deployed item..
+	var/deployed_item = null
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
@@ -327,18 +334,15 @@
 	update_force_list() //This gives the gun some unique verbs for attacking.
 
 	setup_firemodes()
-	AddComponent(/datum/component/automatedfire/autofire, fire_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
+	AddComponent(/datum/component/automatedfire/autofire, fire_delay, autoburst_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, .proc/set_bursting), CALLBACK(src, .proc/reset_fire), CALLBACK(src, .proc/Fire)) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, CALLBACK(src, .proc/on_attachment_attach), CALLBACK(src, .proc/on_attachment_detach), attachment_overlays)
 	if(CHECK_BITFIELD(flags_gun_features, GUN_IS_ATTACHMENT))
 		AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, "firearms", SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
-	if(flags_item & IS_DEPLOYABLE)
-		if(flags_gun_features & GUN_IS_SENTRY)
-			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted/sentry, deploy_time, undeploy_time)
-		else
-			AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mounted, deploy_time, undeploy_time)
+	if(deployed_item)
+		AddElement(/datum/element/deployable_item, deployed_item, deploy_time, undeploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
@@ -401,6 +405,8 @@
 		gun_user.hud_used.remove_ammo_hud(gun_user, src)
 		gun_user = null
 	if(!user)
+		return
+	if(master_gun?.master_gun) //Prevent gunception
 		return
 	gun_user = user
 	SEND_SIGNAL(gun_user, COMSIG_GUN_USER_SET, src)
@@ -486,20 +492,19 @@
 		if(!istype(attachable, /obj/item/weapon/gun))
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
-		var/chamber = in_chamber ? rounds_per_shot : 0
-		dat += gun_attachable.rounds ? "([gun_attachable.rounds + chamber]/[gun_attachable.max_rounds])" : "(Unloaded)"
+		dat += gun_attachable.rounds ? "([gun_attachable.rounds]/[gun_attachable.max_rounds])" : "(Unloaded)"
 
 	if(dat)
-		to_chat(user, "[dat.Join(" ")]")
+		. += "[dat.Join(" ")]"
 
 	examine_ammo_count(user)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
-			to_chat(user, span_notice("Use Ctrl-Click to deploy."))
+			. += span_notice("Use Ctrl-Click on a tile to deploy.")
 		return
-	to_chat(user, span_notice("Click-Drag to yourself to undeploy."))
-	to_chat(user, span_notice("Alt-Click to unload."))
-	to_chat(user, span_notice("Right-Click to perform the guns unique action."))
+	. += span_notice("Click-Drag to yourself to undeploy.")
+	. += span_notice("Alt-Click to unload.")
+	. += span_notice("Right-Click to perform the guns unique action.")
 
 ///Gives the user a description of the ammunition remaining, as well as other information pertaining to reloading/ammo.
 /obj/item/weapon/gun/proc/examine_ammo_count(mob/user)
@@ -580,10 +585,6 @@
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"])
 		return
-	if(modifiers["ctrl"] && !modifiers["right"] && gun_user.get_active_held_item() == src && isturf(object) && get_turf(gun_user) != object && gun_user.Adjacent(object)) //This is so we can simulate it like we are deploying to a tile.
-		gun_user.setDir(get_cardinal_dir(gun_user, object))
-		CtrlClick(gun_user)
-		return
 
 	if(modifiers["right"] || modifiers["middle"])
 		modifiers -= "right"
@@ -600,6 +601,7 @@
 			return
 		if(gun_user.hand && isgun(gun_user.r_hand) || !gun_user.hand && isgun(gun_user.l_hand)) // If we have a gun in our inactive hand too, both guns get innacuracy maluses
 			dual_wield = TRUE
+			modify_fire_delay(fire_delay * akimbo_additional_delay) // Adds the additional delay to auto_fire
 			if(gun_user.get_inactive_held_item() == src && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
 				return
 		if(gun_user.in_throw_mode)
@@ -650,7 +652,9 @@
 	shots_fired = 0//Let's clean everything
 	set_target(null)
 	windup_checked = WEAPON_WINDUP_NOT_CHECKED
-	dual_wield = FALSE
+	if(dual_wield)
+		modify_fire_delay(-fire_delay + fire_delay/(1 + akimbo_additional_delay)) // Removes the additional delay from auto_fire
+		dual_wield = FALSE
 	gun_user?.client?.mouse_pointer_icon = initial(gun_user.client.mouse_pointer_icon)
 
 ///Inform the gun if he is currently bursting, to prevent reloading

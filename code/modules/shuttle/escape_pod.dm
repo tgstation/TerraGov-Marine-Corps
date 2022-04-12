@@ -5,12 +5,11 @@
 	width = 5
 	height = 4
 	launch_status = UNLAUNCHED
-	ignitionTime = 8 SECONDS
+	ignitionTime = 10 SECONDS
 	var/can_launch = FALSE
 
 	var/list/doors = list()
 	var/list/cryopods = list()
-	var/max_capacity // set this to override determining capacity by number of cryopods
 
 /obj/docking_port/mobile/escape_pod/escape_shuttle
 	name = "escape shuttle"
@@ -28,27 +27,15 @@
 		SSshuttle.escape_pods -= src
 	. = ..()
 
-/obj/docking_port/mobile/escape_pod/proc/check_capacity()
-	var/mobs = 0
-	var/capacity = 0
-	for(var/t in return_turfs())
-		var/turf/T = t
-		for(var/mob/living/M in T.GetAllContents())
-			mobs++
-		for(var/obj/machinery/cryopod/evacuation/E in T.GetAllContents())
-			capacity++
-	if(max_capacity)
-		capacity = max_capacity
-	return mobs <= capacity
+/obj/docking_port/mobile/escape_pod/proc/count_escaped_humans()
+	for(var/turf/T AS in return_turfs())
+		for(var/mob/living/carbon/human/marine in T.GetAllContents())
+			if(marine.stat == DEAD)
+				continue
+			SSevacuation.human_escaped++
 
 /obj/docking_port/mobile/escape_pod/proc/launch(manual = FALSE)
 	if(!can_launch || launch_status == NOLAUNCH)
-		return
-	close_all_doors()
-	if(!check_capacity())
-		playsound(return_center_turf(),'sound/effects/alert.ogg', 25, 1)
-		addtimer(CALLBACK(src, .proc/explode), 4 SECONDS, TIMER_UNIQUE)
-		can_launch = FALSE
 		return
 	playsound(return_center_turf(),'sound/effects/escape_pod_warmup.ogg', 25, 1)
 	if(manual)
@@ -56,14 +43,6 @@
 	else
 		launch_status = ENDGAME_LAUNCHED
 	addtimer(CALLBACK(src, .proc/do_launch), ignitionTime, TIMER_UNIQUE)
-
-/obj/docking_port/mobile/escape_pod/proc/explode()
-	var/turf/T = return_center_turf()
-	var/average_dimension = (width+height)*0.25
-	explosion(T, 0, 0, average_dimension, average_dimension)
-	launch_status = NOLAUNCH
-	open_all_doors()
-	SSshuttle.escape_pods -= src // no longer a valid pod
 
 /obj/docking_port/mobile/escape_pod/proc/prep_for_launch()
 	open_all_doors()
@@ -86,7 +65,8 @@
 	if(!can_launch)
 		return
 	playsound(return_center_turf(),'sound/effects/escape_pod_launch.ogg', 25, 1)
-	intoTheSunset()
+	count_escaped_humans()
+	SSshuttle.moveShuttleToTransit(id, TRUE)
 
 /obj/docking_port/stationary/escape_pod
 	name = "escape pod"
@@ -193,16 +173,16 @@
 /obj/machinery/door/airlock/evacuation/proc/force_open()
 	if(!density)
 		return
-	unlock()
+	unlock(TRUE)
 	open()
-	lock()
+	lock(TRUE)
 
 /obj/machinery/door/airlock/evacuation/proc/force_close()
 	if(density)
 		return
-	unlock()
+	unlock(TRUE)
 	close()
-	lock()
+	lock(TRUE)
 
 /obj/machinery/door/airlock/evacuation/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(linked_to_shuttle)

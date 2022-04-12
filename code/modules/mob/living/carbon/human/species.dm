@@ -240,6 +240,13 @@
 			H.dropItemToGround(thing)
 	for(var/newtrait in inherent_traits)
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
+	var/datum/reagents/R
+	if(species_flags & NO_CHEM_METABOLIZATION)
+		R = new /datum/reagents(0)
+	else
+		R = new /datum/reagents(1000)
+	H.reagents = R
+	R.my_atom = H
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -802,7 +809,7 @@
 
 /datum/species/synthetic
 	name = "Synthetic"
-	name_plural = "synthetics"
+	name_plural = "Synthetics"
 
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
@@ -823,7 +830,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
 

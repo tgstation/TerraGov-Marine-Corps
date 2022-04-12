@@ -635,8 +635,8 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("Right-Click with empty hand to open requisitions interface."))
-	to_chat(user, span_notice("Activate in hand to create a supply beacon signal."))
+	. += span_notice("Right-Click with empty hand to open requisitions interface.")
+	. += span_notice("Activate in hand to create a supply beacon signal.")
 
 /obj/item/storage/backpack/marine/radiopack/attack_hand_alternate(mob/living/user)
 	if(!allowed(user))
@@ -654,10 +654,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!is_ground_level(user.z))
 		to_chat(user, span_warning("You have to be on the planet to use this or it won't transmit."))
 		return FALSE
-	var/area/A = get_area(user)
-	if(A?.ceiling >= CEILING_METAL)
-		to_chat(user, span_warning("You have to be outside or under a glass ceiling to activate this."))
-		return
 	var/turf/location = get_turf(src)
 	beacon_datum = new /datum/supply_beacon(user.name, user.loc, user.faction, 4 MINUTES)
 	RegisterSignal(beacon_datum, COMSIG_PARENT_QDELETING, .proc/clean_beacon_datum)

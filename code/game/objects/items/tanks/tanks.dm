@@ -26,25 +26,26 @@
 						//If they have and we haven't scanned it with the PDA or gas analyzer then we might just breath whatever they put in it.
 
 /obj/item/tank/examine(mob/user)
-	..()
-	if (in_range(src, user))
-		var/celsius_temperature = temperature-T0C
-		var/descriptive
-		switch(celsius_temperature)
-			if (-280 to 20)
-				descriptive = "cold"
-			if(20 to 40)
-				descriptive = "room temperature"
-			if(40 to 80)
-				descriptive = "lukewarm"
-			if(80 to 100)
-				descriptive = "warm"
-			if(100 to 300)
-				descriptive = "hot"
-			else
-				descriptive = "furiously hot"
+	. = ..()
+	if(!in_range(src, user))
+		return
+	var/celsius_temperature = temperature-T0C
+	var/descriptive
+	switch(celsius_temperature)
+		if (-280 to 20)
+			descriptive = "cold"
+		if(20 to 40)
+			descriptive = "room temperature"
+		if(40 to 80)
+			descriptive = "lukewarm"
+		if(80 to 100)
+			descriptive = "warm"
+		if(100 to 300)
+			descriptive = "hot"
+		else
+			descriptive = "furiously hot"
 
-		to_chat(user, span_notice("\The [icon2html(src, user)][src] feels [descriptive], the gauge reads [return_pressure()] kPa."))
+	. += span_notice("\The [icon2html(src, user)][src] feels [descriptive], the gauge reads [return_pressure()] kPa.")
 
 
 /obj/item/tank/attackby(obj/item/I, mob/user, params)

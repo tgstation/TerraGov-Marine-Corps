@@ -6,6 +6,7 @@
 	bound_width = 64
 	bound_height = 64
 	density = TRUE
+	coverage = 15
 
 /obj/structure/solaris_sign
 	name = "Solaris Ridge Sign"
@@ -38,6 +39,7 @@
 	icon_state = "dam_sign"
 	bound_width = 64
 	density = TRUE
+	coverage = 15
 
 /obj/structure/dam_sign/damaged
 	desc = "A large sign that reads 'Chigusa mining col-', with the rest being obscured by what looks to be tried blood, and damage."

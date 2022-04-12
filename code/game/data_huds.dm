@@ -115,9 +115,9 @@
 		holder.icon_state = "xenohealth0"
 		return
 
-	var/amount = round(health * 100 / maxHealth, 10)
-	if(!amount)
-		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+	var/amount = health > 0 ? round(health * 100 / maxHealth, 10) : CEILING(health, 10)
+	if(!amount && health < 0)
+		amount = -1 //don't want the 'zero health' icon when we are crit
 	holder.icon_state = "xenohealth[amount]"
 
 
@@ -275,6 +275,9 @@
 				var/mob/dead/observer/ghost = get_ghost()
 				if(!ghost?.can_reenter_corpse)
 					status_hud.icon_state = "huddead"
+					if(istype(wear_ear, /obj/item/radio/headset/mainship))
+						var/obj/item/radio/headset/mainship/headset = wear_ear
+						headset.set_undefibbable_on_minimap()
 					return TRUE
 			var/stage
 			switch(dead_ticks)

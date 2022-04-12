@@ -54,6 +54,7 @@
 	icon_state = "generic"
 	anchored = TRUE
 	density = TRUE
+	coverage = 70
 	layer = BELOW_OBJ_LAYER
 
 	use_power = IDLE_POWER_USE

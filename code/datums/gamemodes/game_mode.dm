@@ -41,6 +41,8 @@
 	var/datum/emergency_call/picked_call = null //Which distress call is currently active
 	var/on_distress_cooldown = FALSE
 	var/waiting_for_candidates = FALSE
+	/// Ponderation rate of silos output. 1 is normal, 2 is twice 
+	var/silo_scaling = 1
 
 
 /datum/game_mode/New()
@@ -377,6 +379,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "No grenades exploded."
 	if(GLOB.round_statistics.total_human_deaths)
 		dat += "[GLOB.round_statistics.total_human_deaths] people were killed, among which [GLOB.round_statistics.total_human_revives] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% respawn rate."
+	if(SSevacuation.human_escaped)
+		dat += "[SSevacuation.human_escaped] marines manage to evacuate, among [SSevacuation.initial_human_on_ship] that were on ship when xenomorphs arrived."
 	if(GLOB.round_statistics.now_pregnant)
 		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(GLOB.round_statistics.queen_screech)

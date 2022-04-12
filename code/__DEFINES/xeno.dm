@@ -1,6 +1,7 @@
 //Xeno structure flags
 #define IGNORE_WEED_REMOVAL (1<<0)
 #define HAS_OVERLAY (1<<1)
+#define CRITICAL_STRUCTURE (1<<2)
 
 //Weeds defines
 #define WEED "weed sac"
@@ -86,27 +87,6 @@ GLOBAL_LIST_INIT(plant_images_list, list(
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
 #define UPGRADE_FLAG_ONETIME (1<<0)
-
-
-//xeno primordial defines
-#define PRIMORDIAL_QUEEN "Primordial Queen"
-#define PRIMORDIAL_SHRIKE "Primordial Shrike"
-#define PRIMORDIAL_DEFILER "Primordial Defiler"
-#define PRIMORDIAL_SENTINEL "Primordial Sentinel"
-#define PRIMORDIAL_SPITTER "Primordial Spitter"
-#define PRIMORDIAL_RAVAGER "Primordial Ravager"
-#define PRIMORDIAL_CRUSHER "Primordial Crusher"
-#define PRIMORDIAL_GORGER "Primordial Gorger"
-#define PRIMORDIAL_HUNTER "Primordial Hunter"
-#define PRIMORDIAL_DEFENDER "Primordial Defender"
-#define PRIMORDIAL_RUNNER "Primordial Runner"
-#define PRIMORDIAL_WRAITH "Primordial Wraith"
-#define PRIMORDIAL_HIVELORD "Primordial Hivelord"
-#define PRIMORDIAL_WARRIOR "Primordial Warrior"
-#define PRIMORDIAL_BULL "Primordial Bull"
-#define PRIMORDIAL_BOILER "Primordial Boiler"
-#define PRIMORDIAL_PRAETORIAN "Primordial Praetorian"
-#define PRIMORDIAL_DRONE "Primordial Drone"
 
 #define GHOSTS_CAN_TAKE_MINIONS "Smart Minions"
 

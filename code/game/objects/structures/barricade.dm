@@ -45,16 +45,16 @@
 /obj/structure/barricade/examine(mob/user)
 	. = ..()
 	if(is_wired)
-		to_chat(user, span_info("There is a length of wire strewn across the top of this barricade."))
+		. += span_info("There is a length of wire strewn across the top of this barricade.")
 	switch((obj_integrity / max_integrity) * 100)
 		if(75 to INFINITY)
-			to_chat(user, span_info("It appears to be in good shape."))
+			. += span_info("It appears to be in good shape.")
 		if(50 to 75)
-			to_chat(user, span_warning("It's slightly damaged, but still very functional."))
+			. += span_warning("It's slightly damaged, but still very functional.")
 		if(25 to 50)
-			to_chat(user, span_warning("It's quite beat up, but it's holding together."))
+			. += span_warning("It's quite beat up, but it's holding together.")
 		if(-INFINITY to 25)
-			to_chat(user, span_warning("It's crumbling apart, just a few more blows will tear it apart."))
+			. += span_warning("It's crumbling apart, just a few more blows will tear it apart.")
 
 
 /obj/structure/barricade/proc/on_try_exit(datum/source, atom/movable/O, direction, list/knownblockers)
@@ -303,7 +303,7 @@
 	barricade_type = "snow"
 	max_integrity = 75
 	stack_type = /obj/item/stack/snow
-	stack_amount = 3
+	stack_amount = 5
 	destroyed_stack_amount = 0
 	can_wire = FALSE
 
@@ -429,7 +429,7 @@
 #define CADE_TYPE_MELEE "ballistic armor"
 #define CADE_TYPE_ACID "caustic armor"
 
-#define CADE_UPGRADE_REQUIRED_SHEETS 2
+#define CADE_UPGRADE_REQUIRED_SHEETS 1
 
 /obj/structure/barricade/metal
 	name = "metal barricade"
@@ -548,13 +548,13 @@
 	. = ..()
 	switch(build_state)
 		if(BARRICADE_METAL_FIRM)
-			to_chat(user, span_info("The protection panel is still tighly screwed in place."))
+			. += span_info("The protection panel is still tighly screwed in place.")
 		if(BARRICADE_METAL_ANCHORED)
-			to_chat(user, span_info("The protection panel has been removed, you can see the anchor bolts."))
+			. += span_info("The protection panel has been removed, you can see the anchor bolts.")
 		if(BARRICADE_METAL_LOOSE)
-			to_chat(user, span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart."))
+			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
-	to_chat(user, span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"]."))
+	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
 /obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
 	if(user.do_actions)
@@ -835,11 +835,11 @@
 
 	switch(build_state)
 		if(BARRICADE_PLASTEEL_FIRM)
-			to_chat(user, span_info("The protection panel is still tighly screwed in place."))
+			. += span_info("The protection panel is still tighly screwed in place.")
 		if(BARRICADE_PLASTEEL_ANCHORED)
-			to_chat(user, span_info("The protection panel has been removed, you can see the anchor bolts."))
+			. += span_info("The protection panel has been removed, you can see the anchor bolts.")
 		if(BARRICADE_PLASTEEL_LOOSE)
-			to_chat(user, span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart."))
+			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
 /obj/structure/barricade/plasteel/attackby(obj/item/I, mob/user, params)
 	. = ..()

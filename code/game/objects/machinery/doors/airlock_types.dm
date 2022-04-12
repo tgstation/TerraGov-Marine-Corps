@@ -366,6 +366,17 @@
 /obj/machinery/door/airlock/mainship/secure/evac
 	name = "\improper Evacuation Airlock"
 
+/obj/machinery/door/airlock/mainship/secure/evac/Initialize()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_EVACUATION_STARTED, .proc/force_open)
+
+///Force open that door
+/obj/machinery/door/airlock/mainship/secure/proc/force_open()
+	SIGNAL_HANDLER
+	unlock(TRUE)
+	INVOKE_ASYNC(src, .proc/open, TRUE)
+	lock(TRUE)
+
 /obj/machinery/door/airlock/mainship/secure/rebel/evac
 	name = "\improper Evacuation Airlock"
 
@@ -413,6 +424,10 @@
 	opacity = FALSE
 	glass = TRUE
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
+
+/obj/machinery/door/airlock/mainship/engineering/glass
+	name = "\improper Engineering Glass Airlock"
+	icon = 'icons/obj/doors/mainship/engidoor_glass.dmi'
 
 /obj/machinery/door/airlock/mainship/engineering/rebel
 	req_one_access = list(ACCESS_MARINE_LOGISTICS_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
@@ -656,6 +671,10 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
 	interaction_flags = INTERACT_MACHINE_NOSILICON //go away naughty AI
+
+/obj/machinery/door/airlock/mainship/generic/glass
+	name = "\improper Glass Airlock"
+	icon = 'icons/obj/doors/mainship/personaldoor_glass.dmi'
 
 /obj/machinery/door/airlock/mainship/marine
 	name = "\improper Airlock"

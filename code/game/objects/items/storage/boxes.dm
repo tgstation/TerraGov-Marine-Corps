@@ -509,19 +509,19 @@
 	if (!deployed && !(loc == user)) //Closed and not in your possession
 		return
 	if(variety > max_overlays) //Too much shit inside, a literal clusterfuck of supplies
-		to_chat(user, "It's too cluttered with all of these supplies inside.")
+		. += "It's too cluttered with all of these supplies inside."
 		return
 	if(variety <= 0) //empy
-		to_chat(user, "It is empty!")
+		. += "It is empty!"
 		return
-	to_chat(user, "It contains:")
+	. += "It contains:"
 	for(var/obj/item/I AS in contents_weight)
 		if(contents_weight[I] < overlay_w_class)
-			to_chat(user, "A bit of: [initial(I.name)].")
+			. += "A bit of: [initial(I.name)]."
 		else if(contents_weight[I] < 3 * overlay_w_class)
-			to_chat(user, "Some of: [initial(I.name)].")
+			. += "Some of: [initial(I.name)]."
 		else
-			to_chat(user, "A lot of: [initial(I.name)].")
+			. += "A lot of: [initial(I.name)]."
 
 /obj/item/storage/box/visual/attack_self(mob/user)
 	deployed = TRUE
@@ -648,6 +648,7 @@
 		/obj/item/ammo_magazine/tl102,
 		/obj/item/ammo_magazine/standard_lmg,
 		/obj/item/ammo_magazine/standard_mmg,
+		/obj/item/ammo_magazine/heavymachinegun,
 		/obj/item/ammo_magazine/standard_smartmachinegun,
 		/obj/item/cell/lasgun,
 	)
@@ -939,7 +940,7 @@
 /obj/item/storage/box/visual/magazine/compact/sectoid_rifle/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(deployed)
-		to_chat(user, "The inside is smeared with some purple glowy goo. Better not touch it.")
+		. += "The inside is smeared with some purple glowy goo. Better not touch it."
 
 /obj/item/storage/box/visual/magazine/compact/sectoid_rifle/full
 	spawn_number = 30
@@ -966,12 +967,12 @@
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_te"
 	can_hold = list(
-		/obj/item/cell/lasgun/lasrifle/marine,
+		/obj/item/cell/lasgun/lasrifle,
 	)
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/marine/full
 	spawn_number = 30
-	spawn_type = /obj/item/cell/lasgun/lasrifle/marine
+	spawn_type = /obj/item/cell/lasgun/lasrifle
 
 // -Marksmen-
 
@@ -1068,6 +1069,20 @@
 	spawn_number = 30
 	spawn_type = /obj/item/ammo_magazine/standard_mmg
 
+
+/obj/item/storage/box/visual/magazine/compact/heavymachinegun
+	name = "MG-08/495 drum box"
+	desc = "A box specifically designed to hold a large amount ofMG-08/495 drum."
+	storage_slots = 30
+	closed_overlay = "mag_box_small_overlay_mg08"
+	can_hold = list(
+		/obj/item/ammo_magazine/heavymachinegun,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/heavymachinegun/full
+	spawn_number = 10
+	spawn_type = /obj/item/ammo_magazine/heavymachinegun
+
 /obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun
 	name = "T-29 drum box"
 	desc = "A box specifically designed to hold a large amount of T-29 drum magazines."
@@ -1089,7 +1104,6 @@
 	max_w_class = 3
 	storage_slots = 25
 	max_storage_space = 50
-	flags_atom = PREVENT_CONTENTS_EXPLOSION //These ones should be safe, since they're supposed to be put in FOB
 	can_hold = list(
 		/obj/item/explosive/grenade,
 	)

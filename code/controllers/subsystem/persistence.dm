@@ -31,6 +31,7 @@ SUBSYSTEM_DEF(persistence)
 		/datum/season_datum/weapons/guns/pistol_seasonal_two,
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
 		/datum/season_datum/weapons/guns/pistol_seasonal_three,
+		/datum/season_datum/weapons/guns/rifle_seasonal_three,
 		/datum/season_datum/weapons/guns/pistol_seasonal_four,
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
 		/datum/season_datum/weapons/guns/smg_seasonal,

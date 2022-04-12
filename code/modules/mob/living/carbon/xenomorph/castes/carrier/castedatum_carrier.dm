@@ -25,7 +25,7 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 120
+	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
@@ -36,7 +36,7 @@
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 0, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
@@ -45,7 +45,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 4
 	hugger_delay = 2.5 SECONDS
-	eggs_max = 3
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -82,10 +81,10 @@
 	max_health = 275
 
 	// *** Evolution *** //
-	upgrade_threshold = 360
+	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 20, "acid" = 5)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 5, "rad" = 5, "fire" = 20, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 2
@@ -93,7 +92,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 5
 	hugger_delay = 2.5 SECONDS
-	eggs_max = 4
 
 /datum/xeno_caste/carrier/elder
 	upgrade_name = "Elder"
@@ -115,10 +113,10 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 840
+	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 25, "acid" = 7)
+	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 0, "bio" = 7, "rad" = 7, "fire" = 25, "acid" = 7)
 
 	// *** Pheromones *** //
 	aura_strength = 2.3
@@ -126,7 +124,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 6
 	hugger_delay = 2 SECONDS
-	eggs_max = 5
 
 /datum/xeno_caste/carrier/ancient
 	upgrade_name = "Ancient"
@@ -148,10 +145,10 @@
 	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 1320
+	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 0, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5
@@ -159,7 +156,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 7
 	hugger_delay = 1.5 SECONDS
-	eggs_max = 6
 
 /datum/xeno_caste/carrier/primodial
 	upgrade_name = "Primordial"
@@ -180,11 +176,8 @@
 	// *** Health *** //
 	max_health = 325
 
-	// *** Evolution *** //
-	upgrade_threshold = 1320
-
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 0, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5
@@ -192,7 +185,6 @@
 	// *** Carrier Abilities *** //
 	huggers_max = 7
 	hugger_delay = 1.5 SECONDS
-	eggs_max = 6
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

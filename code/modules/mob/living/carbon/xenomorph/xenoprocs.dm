@@ -113,7 +113,7 @@
 			continue
 
 		switch(initial(T.tier))
-			if(XENO_TIER_ZERO || XENO_TIER_MINION)
+			if(XENO_TIER_ZERO, XENO_TIER_MINION)
 				continue
 			if(XENO_TIER_FOUR)
 				tier4counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
@@ -197,9 +197,7 @@
 ///returns TRUE if we are permitted to evo to the next case FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	if(upgrade == XENO_UPGRADE_THREE)
-		if(!xeno_caste.primordial_upgrade_name)
-			return FALSE
-		return hive.upgrades_by_name[xeno_caste.primordial_upgrade_name].times_bought
+		return hive.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
@@ -222,7 +220,7 @@
 	else //Upgrade process finished or impossible
 		stat("Upgrade Progress:", "(FINISHED)")
 
-	stat("Health:", "[health]/[xeno_caste.max_health]")
+	stat("Health:", "[overheal ? "[overheal] + ": ""][health]/[xeno_caste.max_health]")
 
 	if(xeno_caste.plasma_max > 0)
 		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
@@ -350,18 +348,17 @@
 
 
 /mob/living/carbon/xenomorph/proc/update_progression()
-	if(upgrade_possible()) //upgrade possible
-		if(client && ckey) // pause for ssd/ghosted
-			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
-				if(upgrade_stored >= xeno_caste.upgrade_threshold)
-					if(health == maxHealth && !incapacitated() && !handcuffed)
-						upgrade_xeno(upgrade_next())
-				else
-					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
-					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-					var/upgrade_points = 1 + (stored_larva/6) + hive.get_upgrade_boost()
-					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
+	if(!upgrade_possible()) //upgrade possible
+		return
+	if(upgrade_stored >= xeno_caste.upgrade_threshold)
+		if(!incapacitated())
+			upgrade_xeno(upgrade_next())
+		return
+	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	var/upgrade_points = 1 + (stored_larva/6) + hive.get_upgrade_boost()
+	upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
 	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos

@@ -171,6 +171,7 @@
 	climbable = TRUE
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
 	resistance_flags = XENO_DAMAGEABLE
+	coverage = 20
 	///on what kind of base this can be installed.
 	var/equip_category
 	///the ship base the equipment is currently installed on.
@@ -336,7 +337,7 @@
 /obj/structure/dropship_equipment/sentry_holder/examine(mob/user)
 	. = ..()
 	if(!deployed_turret)
-		to_chat(user, "Its turret is missing.")
+		. += "Its turret is missing."
 
 /obj/structure/dropship_equipment/sentry_holder/on_launch()
 	undeploy_sentry()
@@ -440,7 +441,7 @@
 /obj/structure/dropship_equipment/mg_holder/examine(mob/user)
 	. = ..()
 	if(!deployed_mg)
-		to_chat(user, "Its machine gun is missing.")
+		. += "Its machine gun is missing."
 
 /obj/structure/dropship_equipment/mg_holder/update_equipment()
 	if(!deployed_mg)
@@ -605,9 +606,9 @@
 /obj/structure/dropship_equipment/weapon/examine(mob/user)
 	. = ..()
 	if(ammo_equipped)
-		ammo_equipped.show_loaded_desc(user)
-	else
-		to_chat(user, "It's empty.")
+		. += ammo_equipped.show_loaded_desc(user)
+		return
+	. += "It's empty."
 
 
 
@@ -628,9 +629,19 @@
 
 	if(ammo_warn_sound)
 		playsound(target_turf, ammo_warn_sound, 70, 1)
-	var/obj/effect/overlay/blinking_laser/laser = new (target_turf)
+
+	//Lase
+	var/obj/effect/overlay/blinking_laser/laserdot = new SA.cas_effect(target_turf)
+	laserdot.dir = attackdir
+	var/list/effects_to_delete = list(laserdot)
+
+	//Marine-only visuals
+	var/predicted_dangerous_turfs = SA.get_turfs_to_impact(target_turf, attackdir)
+	for(var/turf/impact in predicted_dangerous_turfs)
+		effects_to_delete += new /obj/effect/overlay/blinking_laser/marine/lines(impact)
+
 	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, target_turf, attackdir), ammo_travelling_time)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, laser), ammo_travelling_time)
+	QDEL_LIST_IN(effects_to_delete, ammo_travelling_time)
 
 /obj/structure/dropship_equipment/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
@@ -773,7 +784,7 @@
 /obj/structure/dropship_equipment/operatingtable/examine(mob/user)
 	. = ..()
 	if(!deployed_table)
-		to_chat(user, "Its table is broken.")
+		. += "Its table is broken."
 
 /obj/structure/dropship_equipment/operatingtable/Destroy()
 	QDEL_NULL(deployed_table)

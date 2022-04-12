@@ -169,14 +169,14 @@
 /datum/action/xeno_action/activable/advance
 	name = "Rapid Advance"
 	action_icon_state = "crest_defense"
-	mechanics_text = "Fling an adjacent target over and behind you. Also works over barricades."
+	mechanics_text = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
 	ability_name = "rapid advance"
 	plasma_cost = 175
 	cooldown_timer = 30 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_ADVANCE
 
 /datum/action/xeno_action/activable/advance/on_cooldown_finish()
-	to_chat(owner, span_xenowarning("<b>We can now rapidly cgareg forward again.</b>"))
+	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))
 	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	return ..()
 
@@ -198,15 +198,18 @@
 	X.set_canmove(TRUE)
 
 	var/datum/action/xeno_action/ready_charge/charge = X.actions_by_path[/datum/action/xeno_action/ready_charge]
+	var/aimdir = get_dir(X,A)
 	if(charge)
+		charge.do_stop_momentum(FALSE) //Reset charge so next_move_limit check_momentum() does not cuck us and 0 out steps_taken
 		charge.do_start_crushing()
 		charge.valid_steps_taken = charge.max_steps_buildup - 1
+		charge.charge_dir = aimdir //Set dir so check_momentum() does not cuck us
 	for(var/i=0 to get_dist(X, A))
-		var/aimdir = get_dir(X,A)
 		if(i % 2)
 			playsound(X, "alien_charge", 50)
 			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
 		X.Move(get_step(X, aimdir), aimdir)
+		aimdir = get_dir(X,A)
 	succeed_activate()
 	add_cooldown()
 

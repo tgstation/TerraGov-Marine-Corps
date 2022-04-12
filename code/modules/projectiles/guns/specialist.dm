@@ -36,7 +36,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/sniper
-	allowed_ammo_types = list(/obj/item/ammo_magazine/sniper)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/sniper/incendiary,
+		/obj/item/ammo_magazine/sniper/flak,
+	)
 	force = 12
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
@@ -403,7 +407,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 0.15 SECONDS
 	windup_delay = 0.4 SECONDS
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
-	scatter = 10
+	scatter = 5
 	recoil = 2
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5

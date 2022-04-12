@@ -2,6 +2,7 @@
 //Uniform Storage.
 /obj/item/armor_module/storage/uniform
 	slot = ATTACHMENT_SLOT_UNIFORM
+	w_class = WEIGHT_CLASS_BULKY
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB|ATTACH_SEPERATE_MOB_OVERLAY|ATTACH_NO_HANDS
 	icon = 'icons/obj/clothing/ties.dmi'
 	attach_icon = 'icons/obj/clothing/ties_overlay.dmi'
@@ -150,6 +151,16 @@
 	icon_state = "holster"
 	storage = /obj/item/storage/internal/holster
 
+/obj/item/armor_module/storage/uniform/holster/freelancer
+
+/obj/item/armor_module/storage/uniform/holster/freelancer/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/g22(storage)
+
+/obj/item/armor_module/storage/uniform/holster/vp/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/vp70(storage)
+
 /obj/item/storage/internal/holster
 	storage_slots = 1
 	max_w_class = WEIGHT_CLASS_BULKY
@@ -157,6 +168,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
 		/obj/item/weapon/gun/smg/standard_machinepistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 	)
 
 /obj/item/armor_module/storage/uniform/holster/armpit

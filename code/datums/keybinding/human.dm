@@ -10,6 +10,13 @@
 	description = ""
 	keybind_signal = COMSIG_KB_QUICKEQUIP
 
+/datum/keybinding/human/quick_equip_alt
+	hotkey_keys = list("ShiftE")
+	name = "quick_equip_alt"
+	full_name = "Quick equip alternate"
+	description = ""
+	keybind_signal = COMSIG_KB_QUICKEQUIPALT
+
 /datum/keybinding/human/unique_action
 	hotkey_keys = list("Space")
 	name = "unique_action"
@@ -61,17 +68,23 @@
 	description = "Give the held item to the nearby marine"
 	keybind_signal = COMSIG_KB_GIVE
 
+/datum/keybinding/human/vali_configure
+	name = "vali_configure"
+	full_name = "Configure Vali Chemical Enhancement"
+	description = "Vali settings menu"
+	keybind_signal = COMSIG_KB_VALI_CONFIGURE
+
 /datum/keybinding/human/vali_heal
 	name = "vali_heal"
 	full_name = "Activate Vali healing"
 	description = ""
-	keybind_signal = COMSIG_KB_VALIHEAL
+	keybind_signal = COMSIG_KB_VALI_HEAL
 
 /datum/keybinding/human/vali_connect
 	name = "vali_connect"
 	full_name = "Connect Vali"
 	description = "Connect Vali system to your weapon"
-	keybind_signal = COMSIG_KB_VALICONNECT
+	keybind_signal = COMSIG_KB_VALI_CONNECT
 
 /datum/keybinding/human/suit_analyzer
 	name = "suit_analyzer"

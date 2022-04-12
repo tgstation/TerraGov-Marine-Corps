@@ -20,6 +20,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	hud_type = /datum/hud/ghost
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	dextrous = TRUE
+	status_flags = GODMODE | INCORPOREAL
 
 	initial_language_holder = /datum/language_holder/universal
 	var/atom/movable/following = null
@@ -276,6 +277,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/living/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	if(aghosting)
 		set_afk_status(MOB_AGHOSTED)
+	reset_perspective()
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return
@@ -341,7 +343,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			else
 				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
 			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
-				stat("Xeno respawn timer:", "<b>READY</b>") // There is no longer a timer for xeno respawn. It is always READY.
 				if(larva_position)
 					stat("Position in larva candidate queue: ", "[larva_position]")
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)

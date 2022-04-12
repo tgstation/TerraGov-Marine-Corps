@@ -1,0 +1,242 @@
+2022-04-01:
+  Lumipharon:
+  - bugfix: fixed shipside roles having rebel equipment half the time.
+2022-04-02:
+  EvilMelonTheSecond:
+  - rscadd: Cat as helmets now provide decap immunity and half the protection of FC
+      beret
+  Lumipharon:
+  - bugfix: fixes a 100% intentional April fool's prank
+  - rscadd: TX-54 ammo now uses greyscaling
+  - code_imp: Add support for greyscale projectiles and bullets
+  Mrrpip:
+  - rscadd: Added the marine riot helmet, with a poorly made orange paintjob.
+  - balance: Changed the pricing of the Riot Gear Set and their armor values.
+  breadhunt, thank Elsa and Ciel for sprites:
+  - rscadd: Marine CAS prediction matrix. A prediction for where CAS ammo will hit,
+      before it arrives, now shows up on marine HUD.
+  - imageadd: 'Various new CAS lase sprites, for:'
+  - rscadd: CAS lase (flashing green dot) now has a sprite for each type of ammo fired
+      (except HV GAU). Both xenos and marines see this.
+  - balance: This means both marines *and* xenos can see what ammo's coming. Sorry,
+      POs.
+  - balance: Removed deviation from CAS flares
+  - balance: Removed explosion from CAS flares and CAS smoke. Marines are finally
+      safe
+  - expansion: Complete fatty rework.
+  - balance: Instead of a cluster explosion, fatty now destroys all walls in a 5 tile
+      radius around impact.
+  - balance: This is non-lethal; feel free to use it around brazilled marines. Point
+      cost means you can't really spam it, however.
+  goose4429:
+  - code_imp: Removed ex act from crushher.dm
+  - balance: crusher is no longer immune to some explosions
+  - balance: crusher gets less damage from biggest explosions
+  novaepee:
+  - balance: Nerf conveyor belt from 500 integrity to 50
+  - bugfix: Conveyor belt inherits 500 integrity; not anymore.
+  - bugfix: TX-11 wielding mob sprite on the right hand facing east
+2022-04-03:
+  DeltaFire15:
+  - rscadd: Defenders can use their tail abilities (Swipe, Centrifugal Force) to parry
+      throws, if timed right.
+  Wayland-Smithy:
+  - bugfix: Fixed xeno ex_act severity math.
+  - bugfix: Fixed Crusher Rapid Advance forcing 8 directions only.
+2022-04-04:
+  Wayland-Smithy:
+  - rscadd: Added xeno overheal amount to the status panel.
+  - balance: Mature+ Crusher now has bomb resist 4.
+  breadhunt:
+  - bugfix: CAS and CIC eyes are now visible to marines like AI eye
+2022-04-05:
+  BraveMole:
+  - balance: Plasma pistol can use masterkey
+  - balance: Shotguns can no longer attach plasma pistol
+  TiviPlus:
+  - qol: When the CAS jet UI when focused can now set fire direction with arrow keys,
+      toggle engines with enter, take off with space
+  - refactor: refactored some CAS jet backend
+  - refactor: Examine has been optimized
+  breadhunt:
+  - bugfix: Zoomed vision + offset now resets properly when ghosting/on death
+  - bugfix: Req crates no longer stay anchored when a supply drop fails
+  vilereaver41:
+  - balance: fog and silo changes
+2022-04-07:
+  BraveMole:
+  - balance: Remove plasma pistol from T25
+  DeltaFire15:
+  - bugfix: The keybinds for Centrifugal Force and Regenerate Skin should work now.
+  - bugfix: Retriggering Centrifugal Force to abort it while spinning should now work
+      at least sometimes.
+  Pariah919:
+  - qol: You can anchor the TAT-36 as a marine.
+  - balance: APCR changes, 40 pen from 100, damage upped to 160, sunder upped to 65.
+  breadhunt:
+  - balance: Blink debuff no longer applies while the wraith is in phase shift
+2022-04-08:
+  Arctrooper8:
+  - bugfix: Synthetics with an unset name now have one given to them based on their
+      gender
+  DeltaFire15:
+  - bugfix: Hiveminds can use the return to core ability if on a closed turf.
+  Pill-U:
+  - balance: mini pepperball magazines now fit in pistol pouches
+  QualityVan:
+  - bugfix: Removed limbs bleed properly
+  SilencedMP5A5:
+  - bugfix: banished a stupid white pixel on M1911 chamber
+  - imageadd: new SAA sprite
+  - imageadd: new 88M4 sprite
+  - imageadd: new G22 sprite
+  Wayland-Smithy, novaepee:
+  - rscadd: Added xeno crit health hud.
+  goose4429:
+  - balance: Decreased plasma drain effect time from 10 to 2
+  - balance: Decreased plasma regen stop time from 10 to 2
+  - balance: Plasma drain now drains 10% per tick (from 6%)
+  - balance: Removed stagger
+  - balance: 'Increased ammo per cell from 4 to 6 added: on-hit plasma drain (30%
+      of max)'
+  novaepee:
+  - balance: Reduce required sheet to upgrade metal barricade from 2 to 1
+  - qol: Add clarification on ctrl-click desciption to tell players to ctrl-click
+      on tile in order to deploy weapon
+2022-04-09:
+  BraveMole:
+  - bugfix: Fix quick draw being inversed with alternate
+  - balance: Teleporter cooldown severly reduced to 2 secs (rather than 20 secs)
+  Lumipharon:
+  - rscadd: The rocket bag can now carry the recoilless rifle itself, and the sprite
+      will show this
+  - balance: Rocket bag now has a 0.5 second draw delay
+  - bugfix: Fixed a few missing/janky holster sprites
+  - refactor: refactored how large holsters work
+  RipGrayson:
+  - balance: Chigusa NE caverns now start mazed.
+  - balance: Chigusa is now almost entirely preweeded.
+  - balance: Moved Chigusa blue disk generator to the dam are after complaints of
+      disks being too close.
+  - balance: The docked freighter in Chigusa is now vulnerable to acid and bullets.
+  - bugfix: Changed a few improperly rotated shutters in Chigusa.
+  - bugfix: Fixed a couple Chigusa fire cabinets that were hanging out in midair.
+  - rscadd: Ported TG's animation effects for dropping and picking up items.
+  TiviPlus:
+  - qol: You can now add a new quick equip hotkey, as well as set where you quick
+      draw from in the preferences menu
+  goose4429:
+  - rscadd: Tesla "focused" mode. Decreases range from 4 to 3, adds IFF.
+  - code_imp: Made tesla inherit from las rifle.
+  - code_imp: Added shooting modes to tesla
+  - code_imp: Added second projectile type to tesla
+  hyper2snyper:
+  - qol: The TL102 miniscope now rezooms in when you rotate.
+  - bugfix: Deployables no longer check direction after deployment, but before.
+  - rscadd: Adds the M40 Adhesive grenade. A sticky grenade to stick to ~~friendlies~~
+      xenos. Has the same power of an impact grenade and a 5 second fuse.
+  novaepee:
+  - rscdel: Removed some posters; git will remember
+  - imagedel: deleted some posters; git will remember
+  novaepee, Lumi:
+  - balance: TX-11's burst fire delay increase by 0.5.
+  - bugfix: T-21 having extra delay on its burst fire by removing extra delay; my
+      bad
+  novaepee, RipGrayson:
+  - rscadd: port doors into Minerva, Theseus, and Pillar of Spring
+  - rscdel: some bad posters again
+  - imageadd: more door sprites from CM!
+  - imageadd: change brig door to reflect change, not that anyone cares about brig
+  vilereaver41:
+  - rscadd: new map
+2022-04-10:
+  Arctrooper8:
+  - expansion: All TGMC assigned synthetics have been updated to ease uncanny valley
+      complaints from marines.
+  BraveMole:
+  - balance: You only need to wait 1 minute before taking another minions/ssd mob
+  Lumipharon:
+  - balance: MG and TL-102 have 200 integrity like the T27
+  - bugfix: Changing firemode with a loaded energy weapon no longer tweaks the cell
+      charge
+  Pariah919:
+  - balance: bandages and ointment heal 10 brute/burn, and ATKs heal 3 more damage
+      up to 15. Use time increased by .5 seconds.
+  - balance: Adds twezeers to researcher
+  - qol: RSR has tweezers
+  RipGrayson:
+  - bugfix: Corrected Icarus' powernet being broken due misplaced cables.
+  - bugfix: Fixed most of Icarus' wire cables being hidden underneath walls.
+  - bugfix: Fixed multiple areas that were not set as indestructible and could be
+      mined out of into space on Icarus.
+  - bugfix: Patched a number of pipes on Icarus that led to nowhere.
+  - bugfix: Removed a number of resin walls and doors hidden inside cave walls on
+      Icarus.
+  - bugfix: Fixed a large number of areas having 4-5 extraneous APCs on Icarus.
+  - bugfix: Corrected broken AI nodes on Icarus that would lead to minions getting
+      stuck in a particular area.
+  - bugfix: Changed Icarus engineering so it's connected to the grid on roundstart.
+  - bugfix: Fixed a number of areas on Icarus that were unable to be CAS'ed despite
+      being above ground.
+  - bugfix: Patched a number of incorrectly rotated security doors on Icarus.
+  - bugfix: Removed most pipes/vents that go underneath walls on Icarus.
+  - code_imp: Icarus now uses its own unique areas instead of borrowing other maps.
+  TiviPlus:
+  - bugfix: fixed a batch of modular mapping bugs
+  goose4429:
+  - rscadd: Soft bomb armor
+  - rscdel: Old bomb armor (in levels)
+  - rscdel: Old devour code (that functions only in CM)
+  - balance: Bomb armor is now affected by sunder
+  - balance: Changed bomb armors all over the board. Totally needs game testing.
+  novaepee:
+  - qol: update AT gun desc on how to anchor
+2022-04-11:
+  Mrrpip:
+  - bugfix: Swapped out the Marine Meds on a certain LV variant for the usual NT+.
+  Pariah919:
+  - balance: 'T-25/29 share the same bullet, caliber and damage/sunder. The T-25 has
+      a bit less wield delay and +20 rounds. As it does less sunder and damage overall
+      from this change. spriteadd: t25 box changed to say SG instead of T-25.'
+  SplinterGP:
+  - bugfix: TGUI preferences now save properly
+  breadhunt:
+  - bugfix: Wraiths can no longer banish tunnels, deleting any xenos climbing inside
+  - bugfix: Prison Station hull windows can no longer be banished, allowing access
+      to space
+  - bugfix: Wraiths can no longer use phase shift in no-phase areas (e.g LZs, dropships,
+      spess)
+  - bugfix: Wraiths can no longer end phase shift, or have phase shift ended, in no-phase
+      areas or dense objects (walls)
+  - bugfix: This means your buddy wraith won't get stuck in a phase shutter in a wall
+      by accident again
+  - bugfix: Wraith can no longer slash tadpole console while in phase shift
+  - bugfix: Wraiths can banish opaque objects (shutters, doors) again
+  - bugfix: Wraith can no longer regress in phase shift (caused issues because of
+      how health updates work with phase shift, sorry)
+  - bugfix: Banish portal being deleted (by a shuttle, etc), or otherwise made impossible
+      to move to, no longer keeps the marine in banish indefinitely. Instead they
+      are teleported to the coordinates the portal was originally at
+  novaepee:
+  - rscadd: Give Hivemind Transfer Plasma
+  - balance: Provide Hivemind plasma transfer so it can support xenos; it is the same
+      as drone
+2022-04-12:
+  Arctrooper8:
+  - qol: RR no longer comes in a crate. It also now saves on loadouts thanks to this.
+  DeltaFire15:
+  - bugfix: Tactical Binoculars can no longer be used to cheese vision of deployable
+      weaponry.
+  Pariah919:
+  - rscadd: New antenna alt module, just a reskin.
+  QualityVan:
+  - rscadd: Use splints on missing limbs to apply a tourniquet, stopping the bleeding
+      and pain
+  - balance: Missing limbs bleed half as much
+  TiviPlus:
+  - qol: Changed the Ui gender options to be more clear
+  Wayland-Smithy:
+  - qol: Ghosts can now be heard as well as seen after the round ends unless you are
+      alive in EORD or Valhalla.
+  novaepee:
+  - rscadd: update teleporter desc to tell the player how to deploy and undeploy teleporter
