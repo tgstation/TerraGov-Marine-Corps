@@ -1,4 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscadd: "update teleporter desc to tell the player how to deploy and undeploy teleporter"
