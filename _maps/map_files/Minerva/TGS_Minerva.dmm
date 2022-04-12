@@ -7856,10 +7856,6 @@
 	},
 /turf/open/floor/mainship/purple/full,
 /area/mainship/hallways/starboard_hallway)
-"zS" = (
-/obj/structure/window/framed/mainship/requisitions,
-/turf/open/space/basic,
-/area/mainship/squads/req)
 "zU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -24628,7 +24624,7 @@ gY
 gY
 jA
 SA
-zS
+ug
 ug
 SA
 SA
@@ -25412,7 +25408,7 @@ iN
 mA
 vf
 SA
-zS
+ug
 ug
 SA
 SA
