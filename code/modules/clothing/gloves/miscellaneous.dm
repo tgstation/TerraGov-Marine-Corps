@@ -76,11 +76,28 @@
 	desc = "Because you really needed another excuse to punch your crewmates."
 	icon_state = "boxing"
 	item_state = "boxing"
+	/// How much damage this set of boxing gloves does
+	var/damage = 10
 
 /obj/item/clothing/gloves/boxing/attackby(obj/item/I, mob/user, params)
 	if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
 		to_chat(user, span_notice("That won't work."))
 		return
+	return ..()
+
+//Gloves deal stamina damage and KO
+/obj/item/clothing/gloves/boxing/Touch(atom/A, proximity)
+	var/mob/living/carbon/human/user = loc
+	var/mob/living/carbon/human/target = A
+
+	if(!(user.a_intent == INTENT_HARM))
+		return
+
+	target.adjustStaminaLoss(damage)
+	if(target.getStaminaLoss() > 0 && !(target.stat == UNCONSCIOUS)) //Knockout!
+		playsound(loc, 'sound/effects/knockout.ogg', 25, FALSE)
+		target.balloon_alert_to_viewers("[target] collapses to the ground in exhaustion! K.O!", "You give up and collapse! K.O!")
+		target.Sleeping(10 SECONDS)
 	return ..()
 
 /obj/item/clothing/gloves/boxing/green
