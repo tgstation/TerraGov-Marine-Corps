@@ -227,6 +227,7 @@
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
 "aP" = (
+/obj/effect/ai_node,
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
@@ -26001,7 +26002,7 @@ YB
 XE
 XE
 Hr
-ID
+bh
 gB
 aP
 cN
