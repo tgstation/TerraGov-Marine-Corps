@@ -321,7 +321,7 @@
 
 	return FALSE
 
-
+///Checks an inventory slot for an item that can be drawn that is directly stored, or inside another storage item, and draws it if possible
 /mob/proc/draw_from_slot_if_possible(slot)
 	if(!slot)
 		return FALSE
@@ -331,18 +331,18 @@
 	if(!I)
 		return FALSE
 
-	//the slot define specific early returns
-	if (slot == SLOT_IN_HOLSTER && ( !( istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun) ) ) )
+	//because the slot defines only return an inventory slot, not a particular set of items, this code weeds out items that aren't actually associated with the specified define
+	if(slot == SLOT_IN_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun))))
 		return FALSE
-	if (slot == SLOT_IN_S_HOLSTER && ( !( istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun) || istype(I, /obj/item/storage/belt/knifepouch) ) ) )
+	if(slot == SLOT_IN_S_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun) || istype(I, /obj/item/storage/belt/knifepouch))))
 		return FALSE
-	if (slot == SLOT_IN_B_HOLSTER && ( !( istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) ) ) )
+	if(slot == SLOT_IN_B_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon))))
 		return FALSE
-	if (slot == SLOT_IN_ACCESSORY && (!istype(I, /obj/item/clothing/under ) ) ) //note to self, draw code has a further istype for the attachment, does this also need an early return if there is no attachment, or it's fine? probs fine
+	if(slot == SLOT_IN_ACCESSORY && (!istype(I, /obj/item/clothing/under))) //checks below for what's actually attached to the uniform
 		return FALSE
-	if (slot == SLOT_IN_L_POUCH && ( !( istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol) ) ) ) //if pistol pouches get merged into holsters, this will need to be updated
+	if(slot == SLOT_IN_L_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
 		return FALSE
-	if (slot == SLOT_IN_R_POUCH && ( !( istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol) ) ) )
+	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
 		return FALSE
 
 	//belt holsters
