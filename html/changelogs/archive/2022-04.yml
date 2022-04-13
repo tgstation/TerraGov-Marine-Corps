@@ -240,3 +240,8 @@
       alive in EORD or Valhalla.
   novaepee:
   - rscadd: update teleporter desc to tell the player how to deploy and undeploy teleporter
+2022-04-13:
+  Lumipharon:
+  - bugfix: Night vision scopes work properly when activated.
+  novaepee:
+  - bugfix: Fix t-25 ammo packet not working
