@@ -78,6 +78,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/droppod)
+"au" = (
+/obj/structure/sign/poster,
+/turf/open/floor/wood,
+/area/mainship/living/pilotbunks)
 "av" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -3412,6 +3416,18 @@
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"ls" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/sign/poster,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/starboard_hull)
 "lu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7162,6 +7178,12 @@
 	},
 /turf/open/floor/mainship/red/full,
 /area/mainship/hallways/starboard_hallway)
+"xU" = (
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/engineering/port_atmos)
 "xW" = (
 /obj/structure/flora/pottedplant/twentyone{
 	icon_state = "plant-12"
@@ -13302,6 +13324,12 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
+"Qj" = (
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/mainship/living/pilotbunks)
 "Qk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -16299,6 +16327,7 @@
 /area/mainship/living/port_garden)
 "ZS" = (
 /obj/structure/closet/radiation,
+/obj/structure/sign/poster,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "ZT" = (
@@ -25242,7 +25271,7 @@ Sb
 TC
 Oy
 Wz
-XG
+xU
 XG
 ZJ
 EU
@@ -26273,13 +26302,13 @@ cs
 dn
 Hn
 ei
-eJ
+au
 wM
 fW
 oa
 he
 wM
-eJ
+Qj
 ei
 lw
 lz
@@ -26293,7 +26322,7 @@ nP
 tc
 AC
 sr
-nP
+tc
 tc
 yJ
 Pl
@@ -26489,7 +26518,7 @@ sr
 ut
 qm
 sr
-nP
+tc
 tc
 yG
 zZ
@@ -26770,7 +26799,7 @@ gH
 WD
 hW
 hW
-jI
+ls
 lO
 lE
 mK
