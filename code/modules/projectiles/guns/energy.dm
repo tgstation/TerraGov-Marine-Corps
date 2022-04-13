@@ -822,7 +822,10 @@
 	desc = "An extremely powerful Martian energy weapon, infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. Sometimes referred to as 'Martian deathrays', these weapons are thankfully quite uncommon due to their difficulty in manufacture and maintenance."
 	icon_state = "charger" //wip
 	item_state = "charger" //wip
-	fire_sound = 'sound/weapons/guns/fire/plasma_precision_3.ogg'
+	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
+	dry_fire_sound = 'sound/weapons/guns/misc/error.ogg'
+	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/volkite_reload.ogg'
 	max_shots = 40
 	ammo_datum_type = /datum/ammo/energy/volkite
 	ammo_diff = null
