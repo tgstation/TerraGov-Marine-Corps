@@ -1888,6 +1888,7 @@
 /area/orion_outpost/surface/building/research)
 "jN" = (
 /obj/machinery/power/geothermal,
+/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/orion_outpost/surface/building/engineering)
 "jQ" = (
@@ -11768,7 +11769,7 @@ Im
 Im
 Im
 Im
-Im
+Gs
 Im
 bS
 bS

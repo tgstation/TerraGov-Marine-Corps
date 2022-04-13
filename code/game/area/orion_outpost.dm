@@ -31,10 +31,12 @@
 	name = "Landing Pad 1"
 	icon_state = "landing_pad"
 	flags_area = NO_DROPPOD
+	ceiling = CEILING_METAL
 
 /area/orion_outpost/surface/landing_pad_external
 	name = "Aerodrome Landing Valley"
 	icon_state = "landing_pad_ext"
+	ceiling = CEILING_METAL
 
 //OutpostGround
 /area/orion_outpost/ground/outpostse
