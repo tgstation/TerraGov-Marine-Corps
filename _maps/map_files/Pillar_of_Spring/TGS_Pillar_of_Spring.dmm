@@ -6398,6 +6398,10 @@
 "vA" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_umbilical)
+"vB" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/cargo/arrow,
+/area/mainship/hallways/hangar)
 "vC" = (
 /obj/machinery/vending/engineering,
 /turf/open/floor/mainship/orange/full,
@@ -14812,10 +14816,6 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
-"UP" = (
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
 "UQ" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/hull/lower_hull)
@@ -49711,11 +49711,11 @@ Pa
 at
 at
 at
-aA
+vB
 bH
 VG
 ci
-UP
+fw
 ci
 ap
 fV
