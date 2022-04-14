@@ -259,7 +259,7 @@
 	return result
 
 
-/datum/limb/proc/heal_limb_damage(brute, burn, internal = FALSE, robo_repair = FALSE, updating_health = FALSE)
+/datum/limb/proc/heal_limb_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
 	if(limb_status & LIMB_ROBOT && !robo_repair)
 		return
 
