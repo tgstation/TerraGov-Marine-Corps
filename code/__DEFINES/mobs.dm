@@ -188,6 +188,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_REPAIRED (1<<8) //we just repaired the bone, stops the gelling after setting
 #define LIMB_STABILIZED (1<<9) //certain suits will support a broken limb while worn such as the b18
 
+//limb_wound_status
+#define LIMB_WOUND_BANDAGED (1<<0)
+#define LIMB_WOUND_SALVED (1<<1)
+#define LIMB_WOUND_DISINFECTED (1<<2)
+#define LIMB_WOUND_CLAMPED (1<<3)
+
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK 0
 #define MOVE_INTENT_RUN 1
