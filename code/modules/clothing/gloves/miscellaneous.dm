@@ -97,6 +97,9 @@
 
 /// Creates the held items for user and puts it in their hand
 /obj/item/clothing/gloves/heldgloves/proc/create_gloves(mob/user)
+	if(user.l_hand != null || user.r_hand != null)
+		return
+
 	var/obj/item/weapon/heldglove/boxing/rightglove = new right_glove
 	user.put_in_r_hand(rightglove, TRUE)
 
