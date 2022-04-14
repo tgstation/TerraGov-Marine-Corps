@@ -196,7 +196,7 @@
 //Punching bag. Both punches and attacking with weapons causes it to
 /obj/structure/punching_bag
 	name = "punching bag"
-	desc = "A Nanotransen punching bag. A common sight this far from Sol."
+	desc = "A Nanotrasen punching bag. A common sight this far from Sol."
 	max_integrity = 750 //This is going to get hit, a lot
 	icon = 'icons/obj/clothing/gloves.dmi'
 	icon_state = "punchingbag"
