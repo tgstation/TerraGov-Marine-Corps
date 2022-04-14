@@ -221,3 +221,27 @@
   - rscadd: Give Hivemind Transfer Plasma
   - balance: Provide Hivemind plasma transfer so it can support xenos; it is the same
       as drone
+2022-04-12:
+  Arctrooper8:
+  - qol: RR no longer comes in a crate. It also now saves on loadouts thanks to this.
+  DeltaFire15:
+  - bugfix: Tactical Binoculars can no longer be used to cheese vision of deployable
+      weaponry.
+  Pariah919:
+  - rscadd: New antenna alt module, just a reskin.
+  QualityVan:
+  - rscadd: Use splints on missing limbs to apply a tourniquet, stopping the bleeding
+      and pain
+  - balance: Missing limbs bleed half as much
+  TiviPlus:
+  - qol: Changed the Ui gender options to be more clear
+  Wayland-Smithy:
+  - qol: Ghosts can now be heard as well as seen after the round ends unless you are
+      alive in EORD or Valhalla.
+  novaepee:
+  - rscadd: update teleporter desc to tell the player how to deploy and undeploy teleporter
+2022-04-13:
+  Lumipharon:
+  - bugfix: Night vision scopes work properly when activated.
+  novaepee:
+  - bugfix: Fix t-25 ammo packet not working

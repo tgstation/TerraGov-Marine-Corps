@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - refactor: "Energy weapons now use overlays to display their charge level."
+  - bugfix: "TE power cell sprites will no longer visually appear to always be at full power."
+  - bugfix: "Pulse rifles now use actual pulse rifle cells"
