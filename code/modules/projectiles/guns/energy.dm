@@ -900,3 +900,27 @@
 	wield_delay	= 0.7 SECONDS
 	fire_delay = 0.25 SECONDS
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin
+	name = "\improper Volkite culverin"
+	desc = "An extremely powerful Martian energy weapon, infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. Sometimes referred to as 'Martian deathrays', these weapons are thankfully quite uncommon due to their difficulty in manufacture and maintenance. The volkite culverin is the largest man portable example of  volkite weaponry, and can lay down a staggering torrent of fire due to it's linked back-mounted powerpack."
+	icon_state = "caliver" //placeholder
+	item_state = "caliver" //placeholder
+	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
+	max_shots = 60
+	ammo_datum_type = /datum/ammo/energy/volkite/heavy
+	rounds_per_shot = 30
+	default_ammo_type = /obj/item/cell/lasgun/volkite/highcap
+	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/powerpack)
+	attachable_allowed = list(
+	)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE //autoeject removed, needs testing
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	accuracy_mult = 1.1
+	aim_slowdown = 1
+	wield_delay	= 1.2 SECONDS
+	fire_delay = 0.15 SECONDS
+	scatter = 4
+	accuracy_mult_unwielded = 0.4
+	scatter_unwielded = 35
+	recoil_unwielded = 5
