@@ -5074,7 +5074,29 @@
 "Az" = (
 /obj/vehicle/multitile/root/cm_armored/tank{
 	anchored = 1;
-	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked"
+	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
+	light_power = 0.1;
+	light_range = 2
+	},
+/obj/vehicle/multitile/root/cm_armored/tank{
+	anchored = 1;
+	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
+	icon_state = "turret_cobra"
+	},
+/obj/vehicle/multitile/root/cm_armored/tank{
+	anchored = 1;
+	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
+	icon_state = "ltb_cannon_1"
+	},
+/obj/vehicle/multitile/root/cm_armored/tank{
+	anchored = 1;
+	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
+	icon_state = "concussive_armor"
+	},
+/obj/vehicle/multitile/root/cm_armored/tank{
+	anchored = 1;
+	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
+	icon_state = "damaged_hardpt_frame"
 	},
 /turf/closed/wall/indestructible/fakeglass{
 	name = "col"
@@ -5879,6 +5901,16 @@
 "EP" = (
 /turf/open/floor/plating,
 /area/orion_outpost/surface/building/research)
+"EQ" = (
+/obj/vehicle/multitile/root/cm_armored/tank{
+	anchored = 1;
+	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
+	icon_state = "artillerymod_1"
+	},
+/turf/closed/wall/indestructible/fakeglass{
+	name = "col"
+	},
+/area/orion_outpost/surface/building/command)
 "ER" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -9181,6 +9213,37 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outpostw)
+"Wi" = (
+/obj/vehicle/multitile/root/cm_armored/tank{
+	anchored = 1;
+	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
+	light_power = 0.1;
+	light_range = 2
+	},
+/obj/vehicle/multitile/root/cm_armored/tank{
+	anchored = 1;
+	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
+	icon_state = "turret_viper"
+	},
+/obj/vehicle/multitile/root/cm_armored/tank{
+	anchored = 1;
+	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
+	icon_state = "ltaaap_minigun_1"
+	},
+/obj/vehicle/multitile/root/cm_armored/tank{
+	anchored = 1;
+	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
+	icon_state = "ballistic_armor"
+	},
+/obj/vehicle/multitile/root/cm_armored/tank{
+	anchored = 1;
+	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
+	icon_state = "damaged_hardpt_frame"
+	},
+/turf/closed/wall/indestructible/fakeglass{
+	name = "col"
+	},
+/area/orion_outpost/surface/building/command)
 "Wj" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
@@ -17297,7 +17360,7 @@ nG
 yH
 Vv
 lk
-xY
+EQ
 xY
 Az
 xY
@@ -17747,7 +17810,7 @@ lk
 lk
 xY
 xY
-Az
+Wi
 xY
 pS
 li

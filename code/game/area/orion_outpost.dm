@@ -32,6 +32,7 @@
 	icon_state = "landing_pad"
 	flags_area = NO_DROPPOD
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/orion_outpost/surface/landing_pad_external
 	name = "Aerodrome Landing Valley"
