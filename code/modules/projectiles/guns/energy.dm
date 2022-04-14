@@ -878,7 +878,7 @@
 	damage_falloff_mult = 0.5
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
-	name = "volkite gun"
+	name = "\improper Volkite caliver"
 	desc = "An extremely powerful Martian energy weapon, infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. Sometimes referred to as 'Martian deathrays', these weapons are thankfully quite uncommon due to their difficulty in manufacture and maintenance. The volkite caliver is the primary rifle of the volkite family, and effective at most ranges and situations."
 	icon_state = "caliver"
 	item_state = "caliver"

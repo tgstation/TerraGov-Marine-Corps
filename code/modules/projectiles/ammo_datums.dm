@@ -181,7 +181,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/armor_block = victim.run_armor_check(null, "fire") //checks fire armour across the victim's whole body
 	var/deflagrate_chance = (proj.damage * (100 + min(0, proj.penetration - armor_block)) / 100)
 	if(prob(deflagrate_chance))
-		playsound(target, 'sound/effects/incendiary_explode.ogg', 30, falloff = 5)
+		playsound(target, 'sound/effects/incendiary_explode.ogg', 45, falloff = 5)
 		fire_burst(target, proj)
 
 ///the actual fireblast triggered by deflagrate
@@ -189,8 +189,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	if(!target || !proj)
 		CRASH("airburst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
 	for(var/mob/living/carbon/victim in range(1, target))
-		victim.visible_message(span_danger("[victim] is deflagrated from \a [proj.name]!"),
-			isxeno(victim) ? span_xenodanger("We are deflagrated from \a </b>[proj.name]</b>!") : span_highdanger("You are deflagrated from \a </b>[proj.name]</b>!"))
+		if(victim == target)
+			victim.visible_message(span_danger("[victim] bursts into flames as they are deflagrated by \a [proj.name]!"))
+		else
+			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
+				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
 		//burn damage
 		var/armor_block = victim.run_armor_check(null, "fire") //checks fire armour across the victim's whole body
 		victim.apply_damage(20, BURN, null, armor_block, updating_health = TRUE) //Placeholder damage, will be a ammo var
