@@ -245,3 +245,9 @@
   - bugfix: Night vision scopes work properly when activated.
   novaepee:
   - bugfix: Fix t-25 ammo packet not working
+2022-04-14:
+  Lumipharon:
+  - refactor: Energy weapons now use overlays to display their charge level.
+  - bugfix: TE power cell sprites will no longer visually appear to always be at full
+      power.
+  - bugfix: Pulse rifles now use actual pulse rifle cells
