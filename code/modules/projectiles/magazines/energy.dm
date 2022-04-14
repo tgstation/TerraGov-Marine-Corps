@@ -53,3 +53,39 @@
 
 /obj/item/cell/lasgun/fob_sentry/cell
 	maxcharge = INFINITY
+
+//volkite
+
+/obj/item/cell/lasgun/volkite
+	name = "\improper volkite energy cell"
+	desc = "A specialized high density battery used to power volkite weaponry."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "m43"
+	maxcharge = 1200
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state_mini = "mag_cell"
+	charge_overlay = "m43"
+	reload_delay = 0
+
+/obj/item/cell/lasgun/volkite/highcap
+	name = "\improper high capacity volkite energy cell"
+	desc = "An advanced, ultrahigh capacity battery used to power volkite weaponry."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "m43"
+	maxcharge = 1800
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state_mini = "mag_cell"
+	charge_overlay = "m43"
+	reload_delay = 0
+
+/obj/item/cell/lasgun/volkite/powerpack
+	name = "\improper M-70 powerpack"
+	desc = "A heavy reinforced backpack with an array of ultradensity energy cells. Used to power the largest man portable volkite weaponry"
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "powerpack"
+	flags_atom = CONDUCT
+	flags_equip_slot = ITEM_SLOT_BACK
+	var/flags_magazine = MAGAZINE_WORN
+	w_class = WEIGHT_CLASS_HUGE
+	maxcharge = 3600
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)

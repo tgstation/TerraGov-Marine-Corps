@@ -1919,11 +1919,11 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "energy" //inherited, but may be OP due to lower armour
 	accuracy = 10
 	max_range = 14
-	accurate_range = 10 //for charger
+	accurate_range = 8 //for charger
 	shell_speed = 4
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-
+	point_blank_range = 2
 	damage = 20
 	penetration = 15
 	sundering = 3
@@ -1937,6 +1937,17 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
 	deflagrate(M, P)
 
+/datum/ammo/energy/volkite/medium
+	max_range = 25
+	accurate_range = 15
+	damage = 30
+
+/datum/ammo/energy/volkite/heavy
+	max_range = 35
+	accurate_range = 20
+	damage = 25
+	accuracy_var_low = 5
+	accuracy_var_high = 5
 
 /*
 //================================================

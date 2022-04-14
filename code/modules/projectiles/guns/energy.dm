@@ -820,18 +820,19 @@
 
 //Martian death rays
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite
-	name = "\improper Volkite charger"
-	desc = "An extremely powerful Martian energy weapon, infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. Sometimes referred to as 'Martian deathrays', these weapons are thankfully quite uncommon due to their difficulty in manufacture and maintenance."
+	name = "volkite gun"
+	desc = "you shouldn't see this gun."
 	icon_state = "charger" //wip
 	item_state = "charger" //wip
 	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	dry_fire_sound = 'sound/weapons/guns/misc/error.ogg'
 	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/volkite_reload.ogg'
-	max_shots = 40
+	max_shots = 50
 	ammo_datum_type = /datum/ammo/energy/volkite
-	ammo_diff = null
-	rounds_per_shot = 12 //placeholder
+	rounds_per_shot = 24 //placeholder
+	default_ammo_type = /obj/item/cell/lasgun/volkite
+	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite)
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
@@ -840,11 +841,11 @@
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult = 1
-	scatter = 4
+	scatter = 0
 	recoil = 0
-	accuracy_mult_unwielded = 0.6 //for charger
-	scatter_unwielded = 25 //for charger
-	recoil_unwielded = 1
+	accuracy_mult_unwielded = 0.5
+	scatter_unwielded = 25
+	recoil_unwielded = 3
 
 	aim_slowdown = 0.25
 	wield_delay	= 0.4 SECONDS
@@ -852,7 +853,50 @@
 
 	damage_falloff_mult = 0.25
 	fire_delay = 0.2 SECONDS
-	default_ammo_type = /obj/item/cell/lasgun/lasrifle
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	mode_list = list(
 	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
+	name = "\improper Volkite charger"
+	desc = "An extremely powerful Martian energy weapon, infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. Sometimes referred to as 'Martian deathrays', these weapons are thankfully quite uncommon due to their difficulty in manufacture and maintenance. The volkite charger is designed for close range combat due to its smaller size and weight."
+	icon_state = "charger" //wip
+	item_state = "charger" //wip
+	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
+	dry_fire_sound = 'sound/weapons/guns/misc/error.ogg'
+	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/volkite_reload.ogg'
+	max_shots = 50
+	rounds_per_shot = 24
+	attachable_allowed = list(
+	)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	scatter = 4
+	accuracy_mult_unwielded = 0.7
+	scatter_unwielded = 15
+	recoil_unwielded = 1
+	damage_falloff_mult = 0.5
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
+	name = "volkite gun"
+	desc = "An extremely powerful Martian energy weapon, infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. Sometimes referred to as 'Martian deathrays', these weapons are thankfully quite uncommon due to their difficulty in manufacture and maintenance. The volkite caliver is the primary rifle of the volkite family, and effective at most ranges and situations."
+	icon_state = "caliver"
+	item_state = "caliver"
+	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
+	max_shots = 60
+	ammo_datum_type = /datum/ammo/energy/volkite/medium
+	rounds_per_shot = 30
+	default_ammo_type = /obj/item/cell/lasgun/volkite/highcap
+	allowed_ammo_types = list(
+		/obj/item/cell/lasgun/volkite/highcap,
+		/obj/item/cell/lasgun/volkite/powerpack,
+	)
+	attachable_allowed = list(
+	)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	accuracy_mult = 1.1
+	aim_slowdown = 0.4
+	wield_delay	= 0.7 SECONDS
+	fire_delay = 0.25 SECONDS
+
