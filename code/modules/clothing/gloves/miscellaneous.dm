@@ -152,8 +152,11 @@
 	hitsound = "punch"
 
 /obj/item/weapon/heldglove/boxing/hook
+	icon_state = "boxing_p"
 	attack_verb = list("punched")
+
 /obj/item/weapon/heldglove/boxing/jab
+	icon_state = "boxing_j"
 	attack_verb = list("jabbed")
 
 
@@ -189,6 +192,18 @@
 	icon_state = "boxingyellow"
 /obj/item/weapon/heldglove/boxing/jab/yellow
 	icon_state = "boxingyellow"
+
+//Punching bag. Both punches and attacking with weapons causes it to
+/obj/structure/punching_bag
+	name = "punching bag"
+	desc = "A Nanotransen punching bag. A common sight this far from Sol."
+	max_integrity = 750 //This is going to get hit, a lot
+	icon = 'icons/obj/clothing/gloves.dmi'
+	icon_state = "punchingbag"
+
+/obj/structure/punching_bag/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	flick("[icon_state]-punch", src)
 
 /obj/item/clothing/gloves/white
 	name = "white gloves"
