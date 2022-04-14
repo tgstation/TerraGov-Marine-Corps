@@ -111,7 +111,7 @@
 		if(istype(user.r_hand, /obj/item/weapon/heldglove))
 			qdel(user.r_hand)
 			return FALSE
-	if(istype(user.r_hand,/obj/item/clothing/gloves/heldgloves))
+	if(istype(user.r_hand,/obj/item/weapon/heldglove))
 		qdel(user.r_hand)
 		return FALSE
 	return TRUE
