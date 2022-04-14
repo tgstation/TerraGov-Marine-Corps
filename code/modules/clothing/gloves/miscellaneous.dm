@@ -105,7 +105,7 @@
 
 	var/obj/item/weapon/heldglove/boxing/leftglove = new left_glove
 	user.put_in_l_hand(leftglove, TRUE)
-	return //See heldgloves/boxing for an example of how to use this
+	return
 
 /// Removes gloves. Returns false if gloves are not currently worn
 /obj/item/clothing/gloves/heldgloves/proc/remove_gloves(mob/user)
