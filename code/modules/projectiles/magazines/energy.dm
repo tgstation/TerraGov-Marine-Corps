@@ -85,7 +85,10 @@
 	icon_state = "powerpack"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BACK
-	var/flags_magazine = MAGAZINE_WORN
+	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
 	maxcharge = 3600
+	self_recharge = TRUE
+	charge_amount = 25
+	charge_delay = 2 SECONDS
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
