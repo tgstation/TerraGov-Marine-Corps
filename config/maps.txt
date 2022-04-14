@@ -51,3 +51,7 @@ endmap
 map magmoor_digsite_iv
 	minplayers 20
 endmap
+
+map som_base
+	minplayers 20
+endmap
