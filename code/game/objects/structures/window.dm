@@ -21,6 +21,7 @@
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
 	var/damageable = TRUE
 	var/deconstructable = TRUE
+	throwpass = FALSE
 
 //I hate this as much as you do
 /obj/structure/window/full
