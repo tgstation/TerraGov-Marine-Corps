@@ -61,7 +61,7 @@
 	undeploy_time = 3 SECONDS
 	deployed_item = /obj/machinery/deployable/mounted
 
-	max_integrity = 125
+	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 ///Unmovable ship mounted version.
@@ -143,7 +143,7 @@
 	undeploy_time = 3 SECONDS
 	deployed_item = /obj/machinery/deployable/mounted
 
-	max_integrity = 150
+	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
@@ -210,7 +210,7 @@
 
 /obj/item/weapon/gun/standard_atgun
 	name = "\improper TAT-36 anti tank gun"
-	desc = "The TAT-36 is a light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has a ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes."
+	desc = "The TAT-36 is a light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has an ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes. Alt-right click on it to anchor it so that it cannot be moved by anyone, then alt-right click again to move it."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-atgun.dmi'
 	icon_state = "tat36"

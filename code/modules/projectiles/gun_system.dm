@@ -492,8 +492,7 @@
 		if(!istype(attachable, /obj/item/weapon/gun))
 			continue
 		var/obj/item/weapon/gun/gun_attachable = attachable
-		var/chamber = in_chamber ? rounds_per_shot : 0
-		dat += gun_attachable.rounds ? "([gun_attachable.rounds + chamber]/[gun_attachable.max_rounds])" : "(Unloaded)"
+		dat += gun_attachable.rounds ? "([gun_attachable.rounds]/[gun_attachable.max_rounds])" : "(Unloaded)"
 
 	if(dat)
 		. += "[dat.Join(" ")]"
@@ -501,7 +500,7 @@
 	examine_ammo_count(user)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		if(CHECK_BITFIELD(flags_item, IS_DEPLOYABLE))
-			. += span_notice("Use Ctrl-Click to deploy.")
+			. += span_notice("Use Ctrl-Click on a tile to deploy.")
 		return
 	. += span_notice("Click-Drag to yourself to undeploy.")
 	. += span_notice("Alt-Click to unload.")

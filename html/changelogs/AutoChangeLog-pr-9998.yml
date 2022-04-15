@@ -1,4 +1,4 @@
 author: "BraveMole"
 delete-after: True
 changes: 
-  - balance: "Remove plasma pistol from T25"
+  - rscdel: "Remove bleeding from missing limbs"

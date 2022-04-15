@@ -1,0 +1,6 @@
+author: "breadhunt"
+delete-after: True
+changes: 
+  - rscadd: "Adds 2x1 maint doors"
+  - balance: "Prison station now has a LOT more 2 tile wide doors on it"
+  - balance: "This should make it less pain to navigate and easier to flank"
