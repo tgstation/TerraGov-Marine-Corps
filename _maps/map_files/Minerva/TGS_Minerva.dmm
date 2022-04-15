@@ -555,6 +555,15 @@
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/closed/wall/mainship/outer,
 /area/mainship/command/self_destruct)
+"bI" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/port_hull)
 "bJ" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/cans/aspen{
@@ -4563,6 +4572,9 @@
 /obj/structure/ship_ammo/heavygun,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"ph" = (
+/turf/open/floor/mainship/mono,
+/area/mainship/living/evacuation)
 "pj" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
 	dir = 10
@@ -6948,9 +6960,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/living/cafeteria_starboard)
 "xi" = (
-/obj/machinery/door/airlock/mainship/generic/ert{
-	dir = 2
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/generic/noglass,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
 "xk" = (
@@ -7243,13 +7253,7 @@
 	},
 /area/mainship/living/cafeteria_starboard)
 "yh" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -7601,9 +7605,6 @@
 "zb" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
-	},
-/obj/machinery/light{
-	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
@@ -8479,9 +8480,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
 "BE" = (
-/obj/machinery/door/airlock/mainship/generic/ert{
-	name = "Shuttle Airlock"
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -8489,6 +8487,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
 "BF" = (
@@ -10545,8 +10546,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
 "HL" = (
-/obj/machinery/door/airlock/mainship/generic/ert{
-	name = "Shuttle Airlock"
+/obj/machinery/door/airlock/multi_tile/mainship/generic/noglass{
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
@@ -11755,8 +11756,8 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/hull/port_hull)
 "Lt" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 8
+/obj/machinery/door/airlock/multi_tile/mainship/maint{
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/mainship/living/evacuation)
@@ -18486,8 +18487,8 @@ ht
 ht
 gN
 oc
+bI
 bD
-bs
 bD
 bD
 bD
@@ -18584,19 +18585,19 @@ ht
 ht
 gN
 yh
+Lt
 gN
 gP
 gP
 gN
 gN
 gN
-gN
 gP
 gP
 gP
 gP
 gN
-gN
+ht
 Lt
 LW
 MK
@@ -18683,7 +18684,7 @@ ht
 gN
 yi
 zb
-At
+FH
 At
 At
 At
@@ -18693,8 +18694,8 @@ At
 At
 At
 At
-At
 FH
+At
 Lv
 LW
 ML
@@ -19464,7 +19465,7 @@ tj
 uC
 vr
 hw
-gN
+ph
 yo
 zk
 Au
@@ -19565,13 +19566,13 @@ gN
 gN
 gN
 gN
-gN
+ph
 BE
 gN
 gN
 gN
 gN
-gN
+ph
 HL
 gN
 gN
@@ -19663,13 +19664,13 @@ tl
 kl
 kl
 kl
-kl
+vw
 BF
 kl
 kl
 tl
 kl
-kl
+vw
 vw
 kl
 tl
