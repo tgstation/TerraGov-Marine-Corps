@@ -52,7 +52,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 			return
 		ai_behavior = null
 
-///Start the ai behaviour 
+///Start the ai behaviour
 /datum/component/ai_controller/proc/start_ai()
 	SIGNAL_HANDLER
 	if(!ai_behavior || QDELETED(parent))
@@ -65,7 +65,7 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 		ai_behavior.current_node = node
 		break
 	//Iniatialise the behavior of the ai
-	ai_behavior.late_initialize()
+	ai_behavior.start_ai()
 	RegisterSignal(parent, COMSIG_MOB_DEATH, .proc/RemoveComponent)
 	RegisterSignal(parent, COMSIG_MOB_LOGIN, .proc/clean_up)
 	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)

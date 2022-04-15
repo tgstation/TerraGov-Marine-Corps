@@ -103,7 +103,7 @@
 	var/obj/item/cell/lasgun/cell = mag
 	return cell?.reload_delay
 
-/obj/item/weapon/gun/energy/lasgun/tesla
+/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla
 	name = "\improper Terra Experimental tesla shock rifle"
 	desc = "A Terra Experimental energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Unlike the other TE Laser weapons, lasers don't come out of this weird weapon. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts. Uses standard Terra Experimental  (abbreviated as TE) power cells."
 	icon_state = "tesla"
@@ -117,9 +117,11 @@
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
 	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+
 	muzzle_flash_color = COLOR_TESLA_BLUE
 
-	rounds_per_shot = 150
+	max_shots = 6 //codex stuff
+	rounds_per_shot = 100
 	fire_delay = 4 SECONDS
 	turret_flags = TURRET_INACCURATE
 	attachable_allowed = list(
@@ -129,6 +131,30 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
+
+	mode_list = list(
+		"Standard" = /datum/lasrifle/base/tesla_mode/standard,
+		"Focused" = /datum/lasrifle/base/tesla_mode/focused,
+	)
+
+/datum/lasrifle/base/tesla_mode/standard
+	rounds_per_shot = 100
+	ammo_datum_type = /datum/ammo/energy/tesla
+	fire_delay = 4 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	message_to_user = "You set the tesla shock rifle's power mode mode to standard."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tesla"
+
+/datum/lasrifle/base/tesla_mode/focused
+	rounds_per_shot = 100
+	ammo_datum_type = /datum/ammo/energy/tesla/focused
+	fire_delay = 4 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	message_to_user = "You set the tesla shock rifle's power mode mode to focused."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tesla"
+	radial_icon_state = "laser_overcharge"
 
 /obj/item/weapon/gun/energy/lasgun/unique_action(mob/user, dont_operate = FALSE)
 	QDEL_NULL(in_chamber)
@@ -252,6 +278,8 @@
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 	rounds_per_shot = ENERGY_STANDARD_AMMO_COST
 	muzzle_flash_color = COLOR_PULSE_BLUE
+	default_ammo_type = /obj/item/cell/lasgun/pulse
+	allowed_ammo_types = list(/obj/item/cell/lasgun/pulse)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
@@ -363,6 +391,7 @@
 	fire_delay = initial(choice.fire_delay)
 	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
+	rounds_per_shot = initial(choice.rounds_per_shot)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
@@ -370,11 +399,8 @@
 	base_gun_icon = initial(choice.icon_state)
 	update_icon()
 	to_chat(user, initial(choice.message_to_user))
-	var/old_drain_amount = rounds_per_shot
-	rounds_per_shot = initial(choice.rounds_per_shot)
-	if(length(chamber_items))
-		adjust_current_rounds(chamber_items[current_chamber_position], old_drain_amount - rounds_per_shot)
 	user?.hud_used.update_ammo_hud(user, src)
+
 	if(!in_chamber || !length(chamber_items))
 		return
 	QDEL_NULL(in_chamber)

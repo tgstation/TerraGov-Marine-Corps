@@ -236,7 +236,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
-	contains = list(/obj/item/weapon/gun/energy/lasgun/tesla)
+	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
 	cost = 60
 
 /datum/supply_packs/weapons/tx54
@@ -262,7 +262,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/recoillesskit
 	name = "T-160 Recoilless rifle kit"
-	contains = list(/obj/item/storage/box/recoilless_system)
+	contains = list(/obj/item/storage/holster/backholster/rpg/full)
 	cost = 40
 	available_against_xeno_only = TRUE
 
