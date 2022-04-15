@@ -13086,7 +13086,7 @@
 /turf/open/floor/wood,
 /area/icarus/interior/library)
 "qNM" = (
-/mob/living/simple_animal/hostile/mimic/crate,
+/obj/structure/closet/crate,
 /turf/open/floor/plating,
 /area/icarus/interior/research)
 "qNQ" = (
