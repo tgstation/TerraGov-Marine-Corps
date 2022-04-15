@@ -191,3 +191,63 @@
   - balance: Changed bomb armors all over the board. Totally needs game testing.
   novaepee:
   - qol: update AT gun desc on how to anchor
+2022-04-11:
+  Mrrpip:
+  - bugfix: Swapped out the Marine Meds on a certain LV variant for the usual NT+.
+  Pariah919:
+  - balance: 'T-25/29 share the same bullet, caliber and damage/sunder. The T-25 has
+      a bit less wield delay and +20 rounds. As it does less sunder and damage overall
+      from this change. spriteadd: t25 box changed to say SG instead of T-25.'
+  SplinterGP:
+  - bugfix: TGUI preferences now save properly
+  breadhunt:
+  - bugfix: Wraiths can no longer banish tunnels, deleting any xenos climbing inside
+  - bugfix: Prison Station hull windows can no longer be banished, allowing access
+      to space
+  - bugfix: Wraiths can no longer use phase shift in no-phase areas (e.g LZs, dropships,
+      spess)
+  - bugfix: Wraiths can no longer end phase shift, or have phase shift ended, in no-phase
+      areas or dense objects (walls)
+  - bugfix: This means your buddy wraith won't get stuck in a phase shutter in a wall
+      by accident again
+  - bugfix: Wraith can no longer slash tadpole console while in phase shift
+  - bugfix: Wraiths can banish opaque objects (shutters, doors) again
+  - bugfix: Wraith can no longer regress in phase shift (caused issues because of
+      how health updates work with phase shift, sorry)
+  - bugfix: Banish portal being deleted (by a shuttle, etc), or otherwise made impossible
+      to move to, no longer keeps the marine in banish indefinitely. Instead they
+      are teleported to the coordinates the portal was originally at
+  novaepee:
+  - rscadd: Give Hivemind Transfer Plasma
+  - balance: Provide Hivemind plasma transfer so it can support xenos; it is the same
+      as drone
+2022-04-12:
+  Arctrooper8:
+  - qol: RR no longer comes in a crate. It also now saves on loadouts thanks to this.
+  DeltaFire15:
+  - bugfix: Tactical Binoculars can no longer be used to cheese vision of deployable
+      weaponry.
+  Pariah919:
+  - rscadd: New antenna alt module, just a reskin.
+  QualityVan:
+  - rscadd: Use splints on missing limbs to apply a tourniquet, stopping the bleeding
+      and pain
+  - balance: Missing limbs bleed half as much
+  TiviPlus:
+  - qol: Changed the Ui gender options to be more clear
+  Wayland-Smithy:
+  - qol: Ghosts can now be heard as well as seen after the round ends unless you are
+      alive in EORD or Valhalla.
+  novaepee:
+  - rscadd: update teleporter desc to tell the player how to deploy and undeploy teleporter
+2022-04-13:
+  Lumipharon:
+  - bugfix: Night vision scopes work properly when activated.
+  novaepee:
+  - bugfix: Fix t-25 ammo packet not working
+2022-04-14:
+  Lumipharon:
+  - refactor: Energy weapons now use overlays to display their charge level.
+  - bugfix: TE power cell sprites will no longer visually appear to always be at full
+      power.
+  - bugfix: Pulse rifles now use actual pulse rifle cells
