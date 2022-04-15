@@ -58,8 +58,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	mob_parent = null
 	atom_to_walk_to = null
 
-///Initiate our base behavior
-/datum/ai_behavior/proc/late_initialize()
+///Register ai behaviours
+/datum/ai_behavior/proc/start_ai()
 	if(escorted_atom)
 		set_escorted_atom(null, escorted_atom)
 	else
@@ -67,6 +67,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
 	goal_node = GLOB.goal_nodes[identifier]
 	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
+	late_initialize()
+
+///Set behaviour to base behavior
+/datum/ai_behavior/proc/late_initialize()
 	switch(base_action)
 		if(MOVING_TO_NODE)
 			look_for_next_node()

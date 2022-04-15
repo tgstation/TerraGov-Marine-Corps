@@ -901,6 +901,8 @@
 		return FALSE
 	if(buckled && buckle_flags & BUCKLE_PREVENTS_PULL)
 		return FALSE
+	if(status_flags & INCORPOREAL) //Incorporeal things can't be grabbed.
+		return FALSE
 	return TRUE
 
 
