@@ -80,3 +80,10 @@ obj/structure/platform_decoration
 			layer = ABOVE_MOB_LAYER
 		if (SOUTHWEST)
 			layer = ABOVE_MOB_LAYER
+
+/obj/structure/platform/rockcliff
+	icon = 'icons/obj/structures/platforms.dmi'
+	icon_state = "rockcliff"
+	name = "rock cliff"
+	desc = "A collection of stones and rocks that form a steep cliff,it looks climbable."
+	layer = BELOW_MOB_LAYER

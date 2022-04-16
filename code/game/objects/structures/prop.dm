@@ -537,3 +537,15 @@
 /obj/structure/prop/brokenvendor/surplusarmor
 	name = "\improper Broken armor clothes vendor"
 	icon_state = "surplus_armor-broken"
+
+/obj/structure/prop/vehicle
+	name = "van"
+	desc = "An old van, seems to be broken down."
+	icon = 'icons/obj/structures/vehicles.dmi'
+	icon_state = "van"
+	density = TRUE
+	coverage = 70
+	bound_height = 32
+	bound_width = 64
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER

@@ -33,10 +33,6 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/space)
 "ap" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 8;
-	icon_state = "stop_decal5"
-	},
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/ground/concrete,
 /area/space)
@@ -407,6 +403,13 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/space)
+"cY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/red/full,
+/area/space)
 "cZ" = (
 /obj/structure/flora/tree/pine,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -706,6 +709,11 @@
 "eQ" = (
 /obj/machinery/gibber,
 /turf/open/floor/grayscale,
+/area/space)
+"eR" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/plating,
 /area/space)
 "eW" = (
 /turf/open/floor/plating,
@@ -1075,6 +1083,11 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/space)
+"hv" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship,
+/area/space)
 "hy" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/floor/podhatch/floor,
@@ -1345,6 +1358,12 @@
 /obj/item/reagent_containers/food/snacks/mre_pack/meal4,
 /turf/open/floor/mainship/red/full,
 /area/space)
+"je" = (
+/obj/structure/platform/rockcliff{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/space)
 "jf" = (
 /obj/item/mecha_parts/part/durand_torso,
 /turf/open/floor/plating/ground/concrete,
@@ -1374,9 +1393,23 @@
 /obj/machinery/power/apc/drained,
 /turf/open/floor/mainship/red/full,
 /area/space)
+"jm" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/space)
 "jn" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
+/area/space)
+"jo" = (
+/obj/effect/decal/siding,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/som/s,
 /area/space)
 "jr" = (
 /obj/structure/cargo_container/gorg,
@@ -1528,6 +1561,12 @@
 	dir = 1
 	},
 /turf/open/floor/tile/red/whitered/full,
+/area/space)
+"kq" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic/personal,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship,
 /area/space)
 "kr" = (
 /obj/structure/cable,
@@ -1706,6 +1745,13 @@
 /obj/effect/landmark/corpsespawner/bridgeofficer,
 /turf/open/floor/mainship,
 /area/space)
+"lw" = (
+/obj/machinery/power/apc/drained{
+	crash_break_probability = 100
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/space)
 "lx" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/structure/cable,
@@ -1792,6 +1838,10 @@
 	icon_state = "21"
 	},
 /area/space)
+"ma" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/red/full,
+/area/space)
 "mb" = (
 /obj/machinery/autodoc_console,
 /obj/effect/landmark/weed_node,
@@ -1847,6 +1897,9 @@
 "mp" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/red/full,
 /area/space)
 "mq" = (
@@ -1858,14 +1911,8 @@
 /turf/open/floor/grass,
 /area/space)
 "mt" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 8;
-	icon_state = "stop_decal5"
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/concrete,
+/obj/structure/platform/rockcliff,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/space)
 "mu" = (
 /obj/structure/orbital_tray,
@@ -2248,6 +2295,13 @@
 /obj/structure/prop/brokenvendor/surplusarmor,
 /turf/open/floor/mainship,
 /area/space)
+"oO" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/mainship,
+/area/space)
 "oR" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -2329,6 +2383,9 @@
 "pw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/personal{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
 /turf/open/floor/mainship/red/full,
 /area/space)
@@ -2516,6 +2573,11 @@
 /turf/open/floor/plating/ground/snow/layer3,
 /turf/open/floor/plating,
 /area/space)
+"qU" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship,
+/area/space)
 "qV" = (
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -2674,6 +2736,11 @@
 	},
 /turf/closed/wall/mainship,
 /turf/open/floor/plating,
+/area/space)
+"rL" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/platform/rockcliff,
+/turf/open/floor/plating/ground/snow/layer3,
 /area/space)
 "rM" = (
 /obj/structure/girder/displaced,
@@ -2973,6 +3040,9 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship,
 /area/space)
 "tn" = (
@@ -3039,6 +3109,12 @@
 /obj/effect/landmark/corpsespawner/marine,
 /turf/open/floor/plating/plating_catwalk,
 /area/space)
+"tM" = (
+/obj/structure/prop/vehicle{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/space)
 "tN" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/item/ammo_casing,
@@ -3099,6 +3175,12 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
+/area/space)
+"un" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/space)
 "up" = (
 /obj/structure/closet/crate/trashcart,
@@ -3179,11 +3261,23 @@
 /obj/item/stack/sheet/plasteel,
 /turf/open/floor/plating/dmg1,
 /area/space)
+"uI" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/red/full,
+/area/space)
 "uJ" = (
 /obj/structure/monorail,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer3,
 /turf/open/floor/plating,
+/area/space)
+"uL" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/space)
 "uM" = (
 /obj/machinery/light{
@@ -3372,6 +3466,12 @@
 	color = "#c2e4ff"
 	},
 /area/space)
+"vJ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/space)
 "vM" = (
 /obj/effect/decal/tracks/wheels/bloody{
 	dir = 4
@@ -3443,6 +3543,12 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
+/area/space)
+"wh" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/turf/open/floor/plating,
 /area/space)
 "wi" = (
 /obj/machinery/miner/damaged,
@@ -3562,6 +3668,10 @@
 	},
 /turf/open/floor/mainship/red/full,
 /area/space)
+"xa" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship,
+/area/space)
 "xc" = (
 /obj/structure/desertdam/decals/road/stop{
 	dir = 1;
@@ -3575,6 +3685,16 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/orange/full,
+/area/space)
+"xh" = (
+/obj/effect/decal/siding,
+/obj/effect/decal/siding{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/som/sw,
 /area/space)
 "xj" = (
 /obj/effect/decal/cleanable/blood/xeno,
@@ -3673,6 +3793,12 @@
 	},
 /obj/item/shard,
 /turf/open/floor/plating/plating_catwalk,
+/area/space)
+"xM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
 /area/space)
 "xO" = (
 /obj/structure/cable,
@@ -3773,6 +3899,12 @@
 "yr" = (
 /turf/open/floor/mainship,
 /area/space)
+"ys" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/space)
 "yt" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -3842,6 +3974,14 @@
 /turf/closed/shuttle/cas{
 	icon_state = "63"
 	},
+/area/space)
+"yQ" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/mainship/red/full,
 /area/space)
 "yR" = (
 /obj/structure/prop/mainship/sensor_computer3,
@@ -4291,8 +4431,11 @@
 	},
 /area/space)
 "BF" = (
-/obj/structure/closet,
-/turf/open/floor/mainship/orange/full,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship,
 /area/space)
 "BJ" = (
 /obj/machinery/smartfridge,
@@ -4336,7 +4479,9 @@
 /area/space)
 "Cc" = (
 /obj/structure/flora/ausbushes/sparsegrass,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
 /turf/open/floor/plating/ground/snow/layer2,
 /area/space)
 "Ce" = (
@@ -4701,6 +4846,12 @@
 /obj/effect/spawner/random/ammo,
 /turf/open/floor/mainship/red,
 /area/space)
+"EE" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/space)
 "EF" = (
 /obj/effect/attach_point/electronics/dropship1,
 /turf/open/floor/plating,
@@ -4952,6 +5103,16 @@
 	},
 /turf/open/floor/mainship/orange/full,
 /area/space)
+"Ga" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/item/toy/plush/rouny{
+	desc = "A plushie depicting a rouny, it's a collectors edition and has a 9000 dollar pricetag you probably could sell this if you smuggle it out"
+	},
+/turf/open/floor/plating,
+/area/space)
 "Gc" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
@@ -5102,6 +5263,12 @@
 /obj/structure/closet/crate,
 /turf/open/floor/mainship,
 /area/space)
+"GM" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/space)
 "GN" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/grayscale,
@@ -5151,13 +5318,20 @@
 "He" = (
 /obj/structure/bush,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+	dir = 6
 	},
 /turf/open/floor/grass,
 /area/space)
 "Hi" = (
 /obj/structure/flora/tree/dead,
 /turf/open/floor/plating/ground/desertdam/asphalt,
+/area/space)
+"Hj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/mainship,
 /area/space)
 "Hk" = (
 /obj/structure/bed/chair/office/dark,
@@ -5273,6 +5447,12 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/grass,
 /area/space)
+"HO" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/space)
 "HP" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -5384,6 +5564,10 @@
 /turf/closed/mineral{
 	color = "#c2e4ff"
 	},
+/area/space)
+"ID" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/ground/desertdam/asphalt,
 /area/space)
 "IF" = (
 /obj/structure/toilet/alternate{
@@ -5533,6 +5717,9 @@
 "JK" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship,
 /area/space)
 "JM" = (
@@ -5609,6 +5796,14 @@
 "Kh" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/plating,
+/area/space)
+"Kj" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/space)
 "Kk" = (
 /obj/structure/caspart{
@@ -5970,6 +6165,11 @@
 /turf/open/floor/mainship/mono,
 /turf/open/floor/mainship/mono,
 /area/space)
+"Mn" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/space)
 "Mo" = (
 /obj/structure/bed/chair/sofa/corsat/left,
 /obj/effect/landmark/corpsespawner/colonist,
@@ -6021,6 +6221,13 @@
 	},
 /turf/open/floor/grayscale,
 /area/space)
+"MK" = (
+/obj/structure/platform/rockcliff,
+/obj/structure/platform/rockcliff{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/space)
 "MN" = (
 /obj/item/big_ammo_box,
 /turf/open/floor/mainship/orange/full,
@@ -6064,6 +6271,13 @@
 /turf/open/floor/mainship/mono,
 /turf/open/floor/mainship/mono,
 /turf/open/floor/mainship/mono,
+/area/space)
+"MY" = (
+/obj/structure/platform/rockcliff,
+/obj/structure/platform/rockcliff{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer3,
 /area/space)
 "MZ" = (
 /turf/closed/wall/indestructible/fakeglass{
@@ -6131,6 +6345,9 @@
 "Nx" = (
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
 /turf/open/floor/mainship/red/full,
 /area/space)
 "Ny" = (
@@ -6192,6 +6409,16 @@
 	icon_state = "12"
 	},
 /turf/open/floor/plating,
+/area/space)
+"NT" = (
+/obj/effect/decal/siding,
+/obj/effect/decal/siding{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/som/se,
 /area/space)
 "NV" = (
 /obj/structure/ore_box,
@@ -6434,6 +6661,14 @@
 "PG" = (
 /turf/open/floor/mainship/red,
 /area/space)
+"PH" = (
+/obj/structure/cable,
+/obj/effect/landmark/corpsespawner/colonist,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/space)
 "PI" = (
 /obj/structure/barricade/metal{
 	dir = 4
@@ -6565,6 +6800,10 @@
 	icon_state = "stan_rightengine"
 	},
 /area/space)
+"QB" = (
+/obj/structure/prop/vehicle,
+/turf/open/floor/plating/ground/concrete,
+/area/space)
 "QE" = (
 /obj/structure/cable,
 /obj/effect/decal/tracks/wheels/bloody{
@@ -6631,6 +6870,12 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"QZ" = (
+/obj/item/toy/plush/rouny,
+/turf/open/floor/plating/ground/snow{
+	color = "#f7b468"
+	},
+/area/space)
 "Ra" = (
 /obj/machinery/processor,
 /turf/open/floor/grayscale,
@@ -6653,6 +6898,13 @@
 "Rg" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
+/area/space)
+"Rh" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/space)
 "Ri" = (
 /obj/structure/closet/crate,
@@ -6734,6 +6986,9 @@
 	desc = "It's a corgi,its been trained to sniff out contraband."
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/red/full,
 /area/space)
 "RJ" = (
@@ -6815,6 +7070,10 @@
 /obj/effect/spawner/random/gun,
 /turf/open/floor/mainship/mono,
 /area/space)
+"Sp" = (
+/obj/effect/decal/mecha_wreckage/ripley,
+/turf/open/floor/mainship/orange/full,
+/area/space)
 "Ss" = (
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor/plating/ground/snow/layer3,
@@ -6831,6 +7090,12 @@
 "Su" = (
 /obj/effect/spawner/random/gun,
 /turf/open/floor/mainship/mono,
+/area/space)
+"Sv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/mainship,
 /area/space)
 "Sw" = (
 /obj/item/shard,
@@ -6972,10 +7237,11 @@
 /turf/open/floor/mainship,
 /area/space)
 "TA" = (
-/obj/structure/cargo_container{
-	dir = 4
+/obj/machinery/door/airlock/multi_tile/mainship/personalglass{
+	dir = 8
 	},
-/turf/open/floor/wood,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/red/full,
 /area/space)
 "TC" = (
 /obj/structure/mirror,
@@ -7094,6 +7360,10 @@
 	dir = 4
 	},
 /area/space)
+"Uk" = (
+/obj/machinery/door/poddoor/mainship/open,
+/turf/open/floor/mainship/orange/full,
+/area/space)
 "Um" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/smg/ppsh,
@@ -7172,6 +7442,10 @@
 "UH" = (
 /obj/structure/bush,
 /turf/open/floor/grass,
+/area/space)
+"UJ" = (
+/obj/effect/decal/mecha_wreckage/ripley,
+/turf/open/floor/plating/ground/concrete,
 /area/space)
 "UL" = (
 /obj/structure/cargo_container,
@@ -7492,6 +7766,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"WG" = (
+/obj/machinery/door/airlock/multi_tile/mainship/personalglass{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/space)
 "WH" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/tracks/wheels/bloody{
@@ -7616,6 +7897,13 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan_leftengine"
 	},
+/area/space)
+"XL" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/space)
 "XM" = (
 /obj/machinery/factory/former,
@@ -7841,6 +8129,9 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship,
 /area/space)
 "Zd" = (
@@ -7859,6 +8150,13 @@
 /turf/closed/mineral{
 	color = "#c2e4ff"
 	},
+/area/space)
+"Zg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
 /area/space)
 "Zi" = (
 /obj/structure/bed/chair/dropship,
@@ -7934,10 +8232,6 @@
 /turf/open/floor/mainship/orange/full,
 /area/space)
 "Zz" = (
-/obj/structure/desertdam/decals/road/stop{
-	dir = 8;
-	icon_state = "stop_decal5"
-	},
 /obj/machinery/light,
 /turf/open/floor/tile/damaged/panel,
 /area/space)
@@ -7950,6 +8244,13 @@
 /obj/effect/spawner/random/gun,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/sterile,
+/area/space)
+"ZG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
 /area/space)
 "ZH" = (
 /obj/machinery/light{
@@ -7994,6 +8295,14 @@
 	dir = 2
 	},
 /turf/open/floor/mainship,
+/area/space)
+"ZV" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/platform/rockcliff{
+	dir = 8
+	},
+/obj/structure/platform/rockcliff,
+/turf/open/floor/grass,
 /area/space)
 "ZW" = (
 /obj/machinery/light,
@@ -9658,9 +9967,9 @@ rZ
 xz
 Zw
 PV
-PV
-Ta
-PV
+Uk
+Uk
+Uk
 PV
 UX
 LG
@@ -9830,7 +10139,7 @@ yr
 yr
 Zw
 PV
-uM
+vN
 aJ
 aJ
 PV
@@ -10003,8 +10312,8 @@ yr
 Zw
 PV
 lX
-vN
-BF
+aJ
+aJ
 PV
 UX
 OO
@@ -10012,7 +10321,7 @@ EW
 KC
 OO
 Iq
-lz
+Ga
 OO
 EW
 KC
@@ -10174,9 +10483,9 @@ yr
 St
 PV
 PV
-PV
-PV
-PV
+Uk
+Uk
+Uk
 PV
 UX
 eW
@@ -11209,7 +11518,7 @@ tS
 eK
 YZ
 YZ
-YZ
+UJ
 AF
 YD
 YD
@@ -11455,7 +11764,7 @@ Qs
 Qs
 Qs
 Qs
-nq
+QZ
 nq
 nq
 nq
@@ -11889,7 +12198,7 @@ ve
 GH
 YD
 PV
-aJ
+Sp
 pQ
 pQ
 aJ
@@ -12258,13 +12567,13 @@ to
 UX
 HT
 PV
-mt
-nH
+gy
+YZ
 MZ
 MZ
 MZ
 MZ
-wD
+Tb
 ap
 Zz
 PV
@@ -12574,7 +12883,7 @@ PV
 ku
 PV
 td
-hF
+Rh
 hF
 hF
 hF
@@ -12584,7 +12893,7 @@ hF
 hF
 CR
 SO
-hF
+uL
 hF
 hF
 hF
@@ -12602,7 +12911,7 @@ hF
 hF
 hF
 OM
-hF
+uL
 YD
 MZ
 MZ
@@ -12774,12 +13083,12 @@ YD
 YD
 YD
 kn
+iA
 hF
 hF
 hF
 hF
-hF
-CR
+Kj
 hF
 KJ
 hF
@@ -13294,7 +13603,7 @@ eG
 Lk
 DE
 Lk
-Nx
+yQ
 Nx
 Lk
 eG
@@ -13638,7 +13947,7 @@ pV
 Lk
 NM
 Lk
-cs
+cY
 NM
 IM
 IX
@@ -13810,7 +14119,7 @@ cs
 sv
 sv
 sv
-sv
+BF
 sv
 yr
 Lk
@@ -13982,7 +14291,7 @@ qo
 Gw
 Gw
 yr
-yr
+GM
 oG
 IM
 sI
@@ -14154,7 +14463,7 @@ cs
 Hk
 pL
 IR
-do
+NT
 sv
 yr
 Lk
@@ -14223,7 +14532,7 @@ Qs
 Qs
 nq
 nq
-ve
+td
 hF
 hF
 hF
@@ -14239,7 +14548,7 @@ hF
 hF
 hF
 hF
-hF
+Rh
 hF
 hF
 hF
@@ -14258,7 +14567,7 @@ hF
 hF
 hF
 hF
-ve
+uL
 Wz
 Wz
 Wz
@@ -14326,7 +14635,7 @@ cs
 Hk
 sC
 ia
-Zk
+jo
 Bo
 yr
 Lk
@@ -14395,7 +14704,7 @@ Qs
 Qs
 Qs
 nq
-ve
+TZ
 YD
 YD
 PV
@@ -14498,7 +14807,7 @@ cs
 Hk
 pL
 xn
-Us
+xh
 sv
 yr
 Lk
@@ -14563,11 +14872,11 @@ nq
 eB
 nq
 Qs
-Qs
-Qs
-Qs
-Qs
-ve
+PV
+PV
+PV
+PV
+TZ
 YD
 YD
 PV
@@ -14670,7 +14979,7 @@ qo
 Gw
 jY
 TL
-yr
+GM
 sv
 IM
 RN
@@ -14735,11 +15044,11 @@ uQ
 nq
 nq
 Qs
-Qs
-Qs
-Qs
-Qs
-ve
+PV
+lw
+Sb
+WG
+TZ
 YD
 YD
 PV
@@ -14842,8 +15151,8 @@ cs
 yr
 yr
 yr
-yr
-sv
+Sv
+oO
 yr
 Lk
 PM
@@ -14907,11 +15216,11 @@ nq
 nq
 nq
 Qs
-Qs
-Qs
-Qs
-Qs
-ve
+PV
+eW
+eW
+eW
+TZ
 YD
 YD
 PV
@@ -15015,7 +15324,7 @@ Lk
 DE
 nv
 Rt
-sv
+BF
 IM
 IX
 PV
@@ -15079,11 +15388,11 @@ nq
 nq
 nq
 Qs
-Qs
-Qs
-Qs
-Qs
-ve
+PV
+eW
+eW
+PV
+TZ
 YD
 YD
 PV
@@ -15254,8 +15563,8 @@ PV
 PV
 PV
 PV
-Qs
-ve
+PV
+TZ
 YD
 YD
 PV
@@ -15323,7 +15632,7 @@ HT
 HT
 ah
 ah
-Hc
+Aw
 UH
 UH
 PV
@@ -15359,7 +15668,7 @@ Hc
 oT
 PV
 nC
-sv
+BF
 gz
 PV
 zD
@@ -15427,7 +15736,7 @@ eb
 eb
 PV
 Qs
-ve
+TZ
 YD
 YD
 PV
@@ -15495,7 +15804,7 @@ ah
 ah
 ah
 ah
-Hc
+ar
 UH
 OV
 PV
@@ -15531,7 +15840,7 @@ Hc
 oT
 PM
 CJ
-sv
+BF
 Bn
 PM
 mJ
@@ -15599,7 +15908,7 @@ aJ
 Wv
 PV
 PV
-ro
+Qq
 YD
 YD
 PV
@@ -15667,7 +15976,7 @@ ah
 ah
 ah
 ah
-Hc
+Dy
 OV
 OV
 PV
@@ -15703,7 +16012,7 @@ ah
 da
 PM
 Ns
-oG
+PH
 Lk
 PM
 mJ
@@ -15771,7 +16080,7 @@ yr
 yr
 lN
 PV
-ve
+TZ
 YD
 YD
 PV
@@ -15838,8 +16147,8 @@ ah
 ah
 ah
 ah
-Hc
-Hc
+ar
+Aw
 OV
 OV
 PV
@@ -15875,7 +16184,7 @@ ah
 da
 PM
 Lv
-sv
+BF
 Yv
 PM
 mJ
@@ -15943,7 +16252,7 @@ yr
 yr
 oE
 eh
-ve
+TZ
 YD
 YD
 PV
@@ -16009,8 +16318,8 @@ ah
 ah
 ah
 ah
-Hc
-Hc
+ar
+Aw
 HT
 HT
 HT
@@ -16047,7 +16356,7 @@ ah
 da
 PV
 Lk
-sv
+BF
 Lk
 PV
 zD
@@ -16115,7 +16424,7 @@ yr
 yr
 CQ
 eh
-ve
+TZ
 YD
 YD
 PV
@@ -16181,19 +16490,19 @@ ah
 ah
 ah
 ah
-Hc
-Hc
+Aw
+Dy
 HT
 HT
 HT
-Hc
-Hc
+Aw
+Aw
 HT
 HT
 HT
 HT
-Hc
-Hc
+Aw
+Aw
 YD
 YD
 TZ
@@ -16219,7 +16528,7 @@ ah
 oT
 PV
 nC
-sv
+BF
 gz
 PV
 zD
@@ -16287,7 +16596,7 @@ aJ
 aJ
 XM
 PV
-ve
+TZ
 YD
 YD
 PV
@@ -16354,13 +16663,13 @@ ah
 ah
 ah
 ah
-Hc
+Aw
 UH
 HT
 HT
-Hc
-Hc
-Hc
+Aw
+Dy
+Aw
 UH
 Hc
 HT
@@ -16459,7 +16768,7 @@ aJ
 Zp
 PV
 PV
-ve
+TZ
 YD
 YD
 eh
@@ -16526,7 +16835,7 @@ ah
 ah
 ah
 ah
-Hc
+Aw
 UH
 OV
 HT
@@ -16563,7 +16872,7 @@ dp
 UN
 wf
 ck
-sv
+BF
 Lk
 PV
 QO
@@ -16631,7 +16940,7 @@ KD
 cv
 xO
 PV
-ve
+TZ
 YD
 YD
 eh
@@ -16735,7 +17044,7 @@ Vt
 zt
 cs
 cs
-sv
+BF
 Lk
 PV
 QO
@@ -16803,7 +17112,7 @@ FS
 Op
 cv
 PV
-ro
+Qq
 YD
 YD
 PV
@@ -16974,8 +17283,8 @@ dh
 Co
 FS
 cv
-CW
-ve
+kq
+XL
 YD
 YD
 PV
@@ -17079,7 +17388,7 @@ Lk
 Lk
 Lk
 cx
-sv
+BF
 cx
 Lk
 Lk
@@ -17251,17 +17560,17 @@ Lk
 yr
 yr
 yr
-sv
-yr
-rZ
-yr
-yr
-yr
-yr
-rZ
-Lk
-dF
-dp
+Hj
+HO
+hv
+xa
+xa
+xa
+xa
+hv
+ma
+TA
+vJ
 dp
 HT
 HT
@@ -17433,7 +17742,7 @@ sv
 cs
 cs
 cs
-Vt
+tt
 dp
 VD
 DQ
@@ -19086,7 +19395,7 @@ mJ
 ah
 ah
 PV
-Sb
+eR
 Sb
 Sb
 ve
@@ -19100,7 +19409,7 @@ Wm
 Nt
 PV
 uz
-TA
+uz
 UL
 uz
 uz
@@ -19570,12 +19879,12 @@ HT
 jH
 jH
 jH
-HT
+mt
 VD
 HT
 HT
 VD
-HT
+mt
 ah
 ah
 ah
@@ -19616,7 +19925,7 @@ iu
 Hc
 vv
 PV
-qp
+uz
 qp
 uz
 qu
@@ -19738,16 +20047,16 @@ nq
 HT
 HT
 HT
-HT
+mt
 jH
 jH
 jH
-HT
+mt
 VD
 UH
 Dy
 HT
-HT
+mt
 ah
 ah
 ah
@@ -19842,7 +20151,7 @@ Lk
 Yv
 PM
 tt
-dp
+tM
 YZ
 YZ
 YZ
@@ -19910,7 +20219,7 @@ nq
 nq
 HT
 HT
-HT
+mt
 jH
 jH
 jH
@@ -19919,7 +20228,7 @@ Hc
 Aw
 HT
 HT
-HT
+mt
 ah
 ah
 ah
@@ -20016,7 +20325,7 @@ PV
 tt
 dp
 YZ
-YZ
+QB
 YZ
 Ai
 Aa
@@ -20091,7 +20400,7 @@ Dy
 Dy
 VD
 HT
-HT
+MK
 ah
 ah
 ah
@@ -20262,7 +20571,7 @@ VD
 Aw
 UH
 HT
-VD
+rL
 ah
 ah
 ah
@@ -20304,7 +20613,7 @@ ur
 Hc
 yb
 wJ
-TA
+uz
 UL
 uz
 uz
@@ -20430,12 +20739,12 @@ Qs
 HT
 HT
 VW
-HT
+mt
 UH
 Aw
 Aw
 HT
-Aw
+ZV
 ah
 ah
 ah
@@ -20600,14 +20909,14 @@ Qs
 Qs
 Qs
 HT
-HT
-HT
-HT
-HT
-VD
+je
+MY
+mt
 HT
 VD
 HT
+VD
+mt
 ah
 ah
 ah
@@ -20773,13 +21082,13 @@ Qs
 Qs
 HT
 HT
+mt
 HT
+je
+je
+MY
 HT
-HT
-HT
-HT
-HT
-HT
+mt
 ah
 ah
 ah
@@ -20820,7 +21129,7 @@ Hc
 Hc
 XP
 PV
-qp
+uz
 qp
 uz
 qu
@@ -20876,7 +21185,7 @@ PV
 tt
 dp
 YZ
-YZ
+QB
 YZ
 Ai
 qf
@@ -20947,11 +21256,11 @@ Qs
 Qs
 HT
 Oq
+mt
 HT
+mt
 HT
-HT
-HT
-HT
+mt
 ah
 ah
 ah
@@ -21119,11 +21428,11 @@ Qs
 Qs
 Qs
 HT
-HT
+mt
 VD
 VW
 UH
-HT
+mt
 ah
 ah
 ah
@@ -21217,7 +21526,7 @@ Fq
 Fq
 Fq
 Fq
-tt
+Mn
 ca
 YZ
 YZ
@@ -21390,7 +21699,7 @@ Ve
 Ve
 Ve
 tt
-dp
+tM
 YZ
 YZ
 YZ
@@ -27314,10 +27623,8 @@ co
 PV
 YD
 qI
-Xm
-hF
-Xm
-Xm
+YD
+uL
 Xm
 Xm
 Xm
@@ -27327,6 +27634,8 @@ Xm
 Xm
 Xm
 Xm
+Xm
+un
 Xm
 Xm
 Xm
@@ -28914,10 +29223,10 @@ LT
 lL
 PG
 YD
-GH
+Fb
 Xm
 hF
-Xm
+Xi
 YD
 YD
 YD
@@ -29645,7 +29954,7 @@ yB
 yB
 Vx
 Vx
-tt
+ZG
 ca
 HT
 HT
@@ -29706,7 +30015,7 @@ Qs
 PV
 eI
 yr
-sv
+BF
 sv
 sv
 yr
@@ -29878,7 +30187,7 @@ Qs
 PV
 eI
 Lk
-cs
+cY
 nX
 gD
 gD
@@ -30222,7 +30531,7 @@ Qs
 dp
 dp
 dp
-EQ
+Zg
 EQ
 EQ
 EQ
@@ -30239,7 +30548,7 @@ EQ
 EQ
 EQ
 Ds
-tt
+Mn
 VD
 Qs
 Qs
@@ -30955,7 +31264,7 @@ Fv
 HQ
 HQ
 IU
-rK
+wh
 Kv
 LX
 Pr
@@ -31122,13 +31431,13 @@ PV
 Fv
 Fv
 Fv
-YJ
-YJ
-YJ
-YJ
-YJ
-YJ
-II
+Kv
+Kv
+Kv
+Kv
+Kv
+Kv
+Kv
 LX
 Pr
 Kv
@@ -31266,12 +31575,12 @@ Ct
 sv
 sv
 sv
-sv
-cs
-cs
-cs
-Vt
-Vt
+qU
+uI
+uI
+uI
+EQ
+Mn
 OV
 Hc
 Aw
@@ -31443,7 +31752,7 @@ Ag
 PV
 PV
 dp
-dp
+xM
 OV
 Qs
 Qs
@@ -31528,7 +31837,7 @@ Xm
 DZ
 Xm
 Xm
-GH
+EE
 YD
 YD
 YD
@@ -31615,7 +31924,7 @@ Sn
 PV
 HT
 dp
-dp
+xM
 Qs
 Qs
 Qs
@@ -31787,7 +32096,7 @@ PV
 PV
 HT
 dp
-dp
+xM
 Qs
 Qs
 Qs
@@ -31810,13 +32119,13 @@ PV
 Fv
 Fv
 Fv
-YJ
-YJ
-YJ
-YJ
-YJ
-YJ
-II
+Kv
+Kv
+Kv
+Kv
+Kv
+Kv
+Kv
 LX
 Pr
 Kv
@@ -31959,7 +32268,7 @@ dp
 dp
 dp
 dp
-ca
+jm
 Qs
 Qs
 Qs
@@ -32131,7 +32440,7 @@ ca
 dp
 dp
 dp
-dp
+xM
 Qs
 Qs
 Qs
@@ -32303,7 +32612,7 @@ PV
 PV
 HT
 dp
-dp
+xM
 Qs
 Qs
 Qs
@@ -32475,7 +32784,7 @@ pY
 PV
 HT
 dp
-dp
+xM
 Qs
 Qs
 Qs
@@ -32647,7 +32956,7 @@ Ag
 PV
 PV
 dp
-dp
+xM
 Qs
 Qs
 Qs
@@ -32819,7 +33128,7 @@ Lk
 Lk
 zO
 dp
-dp
+xM
 Qs
 Qs
 HT
@@ -32986,12 +33295,12 @@ yr
 yr
 rZ
 yr
-yr
-Lk
-Lk
-Lk
-dp
-dp
+xa
+ma
+ma
+ma
+ID
+ys
 Qs
 Qs
 HT
