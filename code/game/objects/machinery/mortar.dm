@@ -290,9 +290,9 @@
 /obj/machinery/deployable/mortar/howitzer
 	anchored = FALSE // You can move this.
 	offset_per_turfs = 25 // Howizters are significantly more accurate.
-	travel_time = 60 //Good luck lugging this.
+	travel_time = 60
 	fire_sound = 'sound/weapons/guns/fire/howitzer_fire.ogg'
-	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg' // Our reload sound.
+	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	fall_sound = 'sound/weapons/guns/misc/howitzer_whistle.ogg'
 	allowed_shells = list(
 		/obj/item/mortal_shell/howitzer,
@@ -509,7 +509,6 @@
 	desc = "A crate containing a basic set of a mortar and some shells, to get an engineer started."
 
 /obj/structure/closet/crate/mortar_ammo/mortar_kit/PopulateContents()
-
 	new /obj/item/mortar_kit(src)
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)

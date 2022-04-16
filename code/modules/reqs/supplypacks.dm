@@ -642,7 +642,7 @@ EXPLOSIVES
 	cost = 2
 
 /datum/supply_packs/explosives/mortar_ammo_plasmaloss
-	name = "T-50S howitzer tanglefoot shell"
+	name = "T-100Y howitzer tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/howitzer/plasmaloss)
 	cost = 2
 	available_against_xeno_only = TRUE
