@@ -251,3 +251,29 @@
   - bugfix: TE power cell sprites will no longer visually appear to always be at full
       power.
   - bugfix: Pulse rifles now use actual pulse rifle cells
+2022-04-16:
+  BraveMole:
+  - rscdel: Remove bleeding from missing limbs
+  - bugfix: Fix abilities being doubled on hunter and hivelord primo
+  Lumipharon:
+  - bugfix: Flamers will no longer go through windows
+  - bugfix: Flamers can go through vehicles and deployables again
+  RipGrayson:
+  - balance: Removed crate mimics from Icarus.
+  breadhunt:
+  - rscadd: Adds 2x1 maint doors
+  - balance: Prison station now has a LOT more 2 tile wide doors on it
+  - balance: This should make it less pain to navigate and easier to flank
+  novaepee:
+  - rscadd: PoS's req has been expanded to fit in reqtorio.
+  - rscadd: PoS's hanger has been changed in light of this
+  - rscadd: PoS's PO bunks have been changed to let req expand.
+  - rscdel: Remove PoS's gun props.
+  - rscadd: PoS's medbay has been changed to make room for a BAR.
+  - rscadd: Add in bar in PoS.
+  - rscadd: PoS's memorial
+  - rscdel: Remove rear attachment port in Icarus LZ2
+  - rscadd: Minerva's req has been change to make req conveyor belt symmetrical in
+      respect to req
+  - rscadd: briefing area in Minerva
+  - rscadd: Minerva's CAS armament area is now prettier
