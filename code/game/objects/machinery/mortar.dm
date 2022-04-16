@@ -472,7 +472,7 @@
 /obj/item/mortal_shell/howitzer/white_phos/detonate(turf/T)
 	explosion(T, 0, 0, 1, 0, throw_range = 0)
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(6, loc, 7)
+	smoke.set_up(6, T, 7)
 	smoke.start()
 	flame_radius(4, T)
 	flame_radius(1, T, burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)
