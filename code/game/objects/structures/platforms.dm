@@ -86,4 +86,4 @@ obj/structure/platform_decoration
 	icon_state = "rockcliff"
 	name = "rock cliff"
 	desc = "A collection of stones and rocks that form a steep cliff,it looks climbable."
-	layer = BELOW_MOB_LAYER
+	layer = 4
