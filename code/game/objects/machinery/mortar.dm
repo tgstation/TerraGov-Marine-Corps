@@ -1,4 +1,4 @@
-//The Marine mortar, the M402 Mortar
+//The Marine mortar, the T-50S Mortar
 //Works like a contemporary crew weapon mortar
 
 /obj/machinery/deployable/mortar
@@ -253,7 +253,7 @@
 
 //The portable mortar item
 /obj/item/mortar_kit
-	name = "\improper M402 mortar"
+	name = "\improper TA-85S mortar"
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Use Ctrl-Click to deploy."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar"
@@ -282,7 +282,7 @@
 // The big boy, the Howtizer.
 
 /obj/item/mortar_kit/howitzer
-	name = "\improper TU-100Y howitzer"
+	name = "\improper TA-100Y howitzer"
 	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes. Right click to anchor to the ground."
 	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer"
@@ -300,6 +300,11 @@
 	fall_sound = 'sound/weapons/guns/misc/howitzer_whistle.ogg'
 	allowed_shells = list(
 		/obj/item/mortal_shell/howitzer,
+		/obj/item/mortal_shell/howitzer/white_phos,
+		/obj/item/mortal_shell/howitzer/he,
+		/obj/item/mortal_shell/howitzer/incendiary,
+		/obj/item/mortal_shell/howitzer/plasmaloss,
+		/obj/item/mortal_shell/flare,
 	)
 
 /obj/machinery/deployable/mortar/howitzer/attack_hand_alternate(mob/living/user)
@@ -323,7 +328,7 @@
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_ammo_cas"
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	flags_atom = CONDUCT
 
 /obj/item/mortal_shell/proc/detonate(turf/T)
@@ -335,7 +340,7 @@
 	icon_state = "mortar_ammo_he"
 
 /obj/item/mortal_shell/he/detonate(turf/T)
-	explosion(T, 1, 4, 7, 8)
+	explosion(T, 1, 2, 5, 3)
 
 /obj/item/mortal_shell/incendiary
 	name = "\improper 80mm incendiary mortar shell"
@@ -343,14 +348,15 @@
 	icon_state = "mortar_ammo_inc"
 
 /obj/item/mortal_shell/incendiary/detonate(turf/T)
-	explosion(T, 0, 2, 5, 7, throw_range = 0, small_animation = TRUE)
-	flame_radius(3, T)
+	explosion(T, 0, 2, 3, 7, throw_range = 0, small_animation = TRUE)
+	flame_radius(4, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /obj/item/mortal_shell/smoke
 	name = "\improper 80mm smoke mortar shell"
-	desc = "An 80mm mortar shell, loaded with smoke dispersal agents. Can be fired at marines more-or-less safely."
+	desc = "An 80mm mortar shell, loaded with smoke dispersal agents. Can be fired at marines more-or-less safely. Way slimmer than your typical 80mm."
 	icon_state = "mortar_ammo_smk"
+	w_class = WEIGHT_CLASS_SMALL
 	var/datum/effect_system/smoke_spread/tactical/smoke
 
 /obj/item/mortal_shell/smoke/Initialize()
@@ -381,15 +387,16 @@
 	explosion(T, 0, 0, 1, 3, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	forceMove(T)
-	smoke.set_up(10, T, 11)
+	smoke.set_up(10, T, 7)
 	smoke.start()
 	smoke = null
 	qdel(src)
 
 /obj/item/mortal_shell/flare
 	name = "\improper 80mm flare mortar shell"
-	desc = "An 80mm mortar shell, loaded with an illumination flare."
+	desc = "An 80mm mortar shell, loaded with an illumination flare, far slimmer than your typical 80mm shell. Can be fired out of larger cannons."
 	icon_state = "mortar_ammo_flr"
+	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/mortal_shell/flare/detonate(turf/T)
 	new /obj/effect/mortar_flare(T)
@@ -403,7 +410,7 @@
 	light_color = COLOR_VERY_SOFT_YELLOW
 	light_system = HYBRID_LIGHT
 	light_power = 8
-	light_range = 9 //Way brighter than most lights
+	light_range = 12 //Way brighter than most lights
 
 /obj/effect/mortar_flare/Initialize()
 	. = ..()
@@ -418,13 +425,14 @@
 	desc = "An unlabeled 150mm shell, probably a casing."
 	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer_ammo"
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/mortal_shell/howitzer/he
 	name = "\improper 150mm high explosive artillery shell"
 	desc = "An 150mm artillery shell, loaded with a high explosive charge, whatever is hit by this will have, A really, REALLY bad day."
 
 /obj/item/mortal_shell/howitzer/he/detonate(turf/T)
-	explosion(T, 0, 6, 7, 12)
+	explosion(T, 1, 6, 7, 12)
 
 /obj/item/mortal_shell/howitzer/plasmaloss
 	name = "\improper 150mm 'Tanglefoot' artillery shell"
@@ -436,7 +444,7 @@
 	. = ..()
 	smoke = new(src)
 
-/obj/item/mortal_shell/plasmaloss/detonate(turf/T)
+/obj/item/mortal_shell/howitzer/plasmaloss/detonate(turf/T)
 	explosion(T, 0, 0, 5, 0, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	forceMove(T)
@@ -455,10 +463,27 @@
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
+/obj/item/mortal_shell/howitzer/white_phos
+	name = "\improper 150mm white phosporous 'spotting' artillery shell"
+	desc = "An 150mm artillery shell, loaded with a 'spotting' gas that sets anything it hits aflame, whatever is hit by this will have their day, skin and future ruined, with a demand for a warcrime tribunal."
+	icon_state = "howitzer_ammo_wp"
+	var/datum/effect_system/smoke_spread/phosphorus/smoke
 
+/obj/item/mortal_shell/howitzer/white_phos/Initialize()
+	. = ..()
+	smoke = new(src)
+
+/obj/item/mortal_shell/howitzer/white_phos/detonate(turf/T)
+	explosion(T, 0, 0, 1, 0, throw_range = 0)
+	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(6, loc, 7)
+	smoke.start()
+	flame_radius(4, get_turf(src))
+	flame_radius(1, get_turf(src), burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)
+	qdel(src)
 
 /obj/structure/closet/crate/mortar_ammo
-	name = "\improper M402 mortar ammo crate"
+	name = "\improper T-50S mortar ammo crate"
 	desc = "A crate containing live mortar shells with various payloads. DO NOT DROP. KEEP AWAY FROM FIRE SOURCES."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "closed_mortar_crate"
@@ -484,10 +509,11 @@
 	new /obj/item/mortal_shell/plasmaloss(src)
 
 /obj/structure/closet/crate/mortar_ammo/mortar_kit
-	name = "\improper M402 mortar kit"
+	name = "\improper TA-85S mortar kit"
 	desc = "A crate containing a basic set of a mortar and some shells, to get an engineer started."
 
 /obj/structure/closet/crate/mortar_ammo/mortar_kit/PopulateContents()
+
 	new /obj/item/mortar_kit(src)
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)
@@ -518,6 +544,49 @@
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/binoculars/tactical/range(src)
+	new /obj/item/binoculars/tactical/range(src)
 	new /obj/item/encryptionkey/cas(src)
+	new /obj/item/encryptionkey/cas(src)
+
+/obj/structure/closet/crate/mortar_ammo/howitzer_kit
+	name = "\improper TA-100Y howitzer kit"
+	desc = "A crate containing a basic, somehow compressed kit consisting of an entire howitzer and some shells, to get a artilleryman started."
+
+/obj/structure/closet/crate/mortar_ammo/howitzer_kit/PopulateContents()
+	new /obj/item/mortar_kit/howitzer(src)
+	new /obj/item/mortal_shell/howitzer/incendiary(src)
+	new /obj/item/mortal_shell/howitzer/incendiary(src)
+	new /obj/item/mortal_shell/howitzer/incendiary(src)
+	new /obj/item/mortal_shell/howitzer/incendiary(src)
+	new /obj/item/mortal_shell/howitzer/incendiary(src)
+	new /obj/item/mortal_shell/howitzer/incendiary(src)
+	new /obj/item/mortal_shell/howitzer/incendiary(src)
+	new /obj/item/mortal_shell/howitzer/incendiary(src)
+	new /obj/item/mortal_shell/howitzer/he(src)
+	new /obj/item/mortal_shell/howitzer/he(src)
+	new /obj/item/mortal_shell/howitzer/he(src)
+	new /obj/item/mortal_shell/howitzer/he(src)
+	new /obj/item/mortal_shell/howitzer/he(src)
+	new /obj/item/mortal_shell/howitzer/he(src)
+	new /obj/item/mortal_shell/howitzer/he(src)
+	new /obj/item/mortal_shell/howitzer/he(src)
+	new /obj/item/mortal_shell/howitzer/he(src)
+	new /obj/item/mortal_shell/howitzer/he(src)
+	new /obj/item/mortal_shell/howitzer/white_phos(src)
+	new /obj/item/mortal_shell/howitzer/white_phos(src)
+	new /obj/item/mortal_shell/howitzer/white_phos(src)
+	new /obj/item/mortal_shell/howitzer/white_phos(src)
+	new	/obj/item/mortal_shell/howitzer/plasmaloss(src)
+	new	/obj/item/mortal_shell/howitzer/plasmaloss(src)
+	new	/obj/item/mortal_shell/howitzer/plasmaloss(src)
+	new	/obj/item/mortal_shell/howitzer/plasmaloss(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/encryptionkey/engi(src)
+	new /obj/item/encryptionkey/engi(src)
+	new /obj/item/binoculars/tactical/range(src)
+	new /obj/item/binoculars/tactical/range(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)

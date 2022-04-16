@@ -972,6 +972,7 @@
 
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+		/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
 		/obj/item/storage/box/sentry = 3,
 		/obj/item/storage/box/tl102 = 1,
 	)
