@@ -154,8 +154,12 @@
 			to_chat(user, span_warning("Your programming restricts operating heavy weaponry."))
 			return
 
-		if(!allowed_shells)
+		if(!(I.type in allowed_shells))
 			to_chat(user, span_warning("This shell doesn't fit in here!"))
+			return
+
+		if(busy)
+			to_chat(user, span_warning("Someone else is currently using [src]."))
 			return
 
 		if(busy)
@@ -256,13 +260,14 @@
 
 	max_integrity = 200
 	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
+	var/deployed_item = /obj/machinery/deployable/mortar // What item are we gonna deploy?
 
 	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/mortar, 5 SECONDS)
+	AddElement(/datum/element/deployable_item, deployed_item, 5 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
 	do_unique_action(user)
@@ -279,19 +284,12 @@
 /obj/item/mortar_kit/howitzer
 	name = "\improper TU-100Y howitzer"
 	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes. Right click to anchor to the ground."
-	icon = 'icons/Marine/howizter.dmi'
+	icon = 'icons/Marine/howitzer.dmi'
 	icon_state = "howitzer"
 	max_integrity = 400
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	w_class = WEIGHT_CLASS_HUGE
-
-	allowed_shells = list(
-		/obj/item/mortal_shell/howitzer,
-	)
-
-/obj/item/mortar_kit/howitzer/Initialize()
-	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/howitzer, 5 SECONDS)
+	deployed_item = /obj/machinery/deployable/mortar/howitzer
 
 /obj/machinery/deployable/mortar/howitzer
 	anchored = FALSE // You can move this.
@@ -300,6 +298,9 @@
 	fire_sound = 'sound/weapons/guns/fire/howitzer_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg' // Our reload sound.
 	fall_sound = 'sound/weapons/guns/misc/howitzer_whistle.ogg'
+	allowed_shells = list(
+		/obj/item/mortal_shell/howitzer,
+	)
 
 /obj/machinery/deployable/mortar/howitzer/attack_hand_alternate(mob/living/user)
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
@@ -443,17 +444,6 @@
 	smoke.start()
 	smoke = null
 	qdel(src)
-
-/obj/item/mortal_shell/howitzer/shaker
-	name = "\improper 150mm 'Groundshaker' artillery shell"
-	desc = "An 150mm artillery shell, loaded with a groundshaking shell that will break the support of nearby lightly organic structures without much other impact, will brighten your day."
-	icon_state = "howitzer_ammo_shaker"
-
-/obj/item/mortal_shell/howitzer/he/detonate(turf/T)
-	var/list/to_check = filled_turfs(impact, 4, "square")
-
-	for(var/turf/closed/wall/resin/wall in to_check)
-		wall.take_damage(2000)
 
 /obj/item/mortal_shell/howitzer/incendiary
 	name = "\improper 150mm incendiary artillery shell"
