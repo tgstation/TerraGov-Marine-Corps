@@ -162,10 +162,6 @@
 			to_chat(user, span_warning("Someone else is currently using [src]."))
 			return
 
-		if(busy)
-			to_chat(user, span_warning("Someone else is currently using [src]."))
-			return
-
 		if(!is_ground_level(z))
 			to_chat(user, span_warning("You cannot fire [src] here."))
 			return
