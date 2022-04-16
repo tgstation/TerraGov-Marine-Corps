@@ -21,6 +21,18 @@
 	var/travel_time = 45 //Constant, assuming perfect parabolic trajectory. ONLY THE DELAY BEFORE INCOMING WARNING WHICH ADDS 45 TICKS
 	var/busy = 0
 	var/firing = 0 //Used for deconstruction and aiming sanity
+	var/fire_sound = 'sound/weapons/guns/fire/mortar_fire.ogg'//Our fire sound.
+	var/reload_sound = 'sound/weapons/guns/interact/mortar_reload.ogg' // Our reload sound.
+	var/fall_sound = 'sound/weapons/guns/misc/mortar_travel.ogg' //The sound the shell makes when falling.
+
+ // What shells can we use?
+	var/list/allowed_shells = list(
+		/obj/item/mortal_shell/he,
+		/obj/item/mortal_shell/incendiary,
+		/obj/item/mortal_shell/smoke,
+		/obj/item/mortal_shell/plasmaloss,
+	)
+
 
 	use_power = NO_POWER_USE
 
@@ -142,6 +154,10 @@
 			to_chat(user, span_warning("Your programming restricts operating heavy weaponry."))
 			return
 
+		if(!allowed_shells)
+			to_chat(user, span_warning("This shell doesn't fit in here!"))
+			return
+
 		if(busy)
 			to_chat(user, span_warning("Someone else is currently using [src]."))
 			return
@@ -171,7 +187,7 @@
 
 		user.visible_message(span_notice("[user] starts loading \a [mortar_shell.name] into [src]."),
 		span_notice("You start loading \a [mortar_shell.name] into [src]."))
-		playsound(loc, 'sound/weapons/guns/interact/mortar_reload.ogg', 50, 1)
+		playsound(loc, reload_sound, 50, 1)
 		busy = TRUE
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_HOSTILE))
 			busy = FALSE
@@ -183,7 +199,7 @@
 		span_notice("You load \a [mortar_shell.name] into [src]."))
 		visible_message("[icon2html(src, viewers(src))] [span_danger("The [name] fires!")]")
 		user.transferItemToLoc(mortar_shell, src)
-		playsound(loc, 'sound/weapons/guns/fire/mortar_fire.ogg', 50, 1)
+		playsound(loc, fire_sound, 50, 1)
 		firing = TRUE
 		flick(icon_state + "_fire", src)
 		mortar_shell.forceMove(src)
@@ -194,7 +210,7 @@
 		for(var/mob/M in range(7))
 			shake_camera(M, 3, 1)
 		log_game("[key_name(user)] has fired the [src] at [AREACOORD(T)], impact in [travel_time+45] ticks")
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, 'sound/weapons/guns/misc/mortar_travel.ogg', 50, 1), travel_time)
+		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, T, fall_sound, 50, 1), travel_time)
 		addtimer(CALLBACK(src, .proc/detonate_shell, T, mortar_shell), travel_time + 45)//This should always be 45 ticks!
 
 	if(!istype(I, /obj/item/binoculars/tactical))
@@ -257,6 +273,49 @@
 		to_chat(user, span_warning("You probably shouldn't deploy [src] indoors."))
 		return
 	return ..()
+
+// The big boy, the Howtizer.
+
+/obj/item/mortar_kit/howitzer
+	name = "\improper TU-100Y howitzer"
+	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes. Right click to anchor to the ground."
+	icon = 'icons/Marine/howizter.dmi'
+	icon_state = "howitzer"
+	max_integrity = 400
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	w_class = WEIGHT_CLASS_HUGE
+
+	allowed_shells = list(
+		/obj/item/mortal_shell/howitzer,
+	)
+
+/obj/item/mortar_kit/howitzer/Initialize()
+	. = ..()
+	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/howitzer, 5 SECONDS)
+
+/obj/machinery/deployable/mortar/howitzer
+	anchored = FALSE // You can move this.
+	offset_per_turfs = 25 // Howizters are significantly more accurate.
+	travel_time = 60 //Good luck lugging this.
+	fire_sound = 'sound/weapons/guns/fire/howitzer_fire.ogg'
+	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg' // Our reload sound.
+	fall_sound = 'sound/weapons/guns/misc/howitzer_whistle.ogg'
+
+/obj/machinery/deployable/mortar/howitzer/attack_hand_alternate(mob/living/user)
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
+		return
+
+	if(!anchored)
+		anchored = TRUE
+		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
+	else
+		anchored = FALSE
+		to_chat(user, span_warning("You unanchored the gun from the gruond. It may be moved."))
+
+
+
+
+// Shells themselves //
 
 /obj/item/mortal_shell
 	name = "\improper 80mm mortar shell"
@@ -352,6 +411,60 @@
 	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
 	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.
+
+/obj/item/mortal_shell/howitzer
+	name = "\improper 150mm artillery shell"
+	desc = "An unlabeled 150mm shell, probably a casing."
+	icon = 'icons/Marine/howitzer.dmi'
+	icon_state = "howitzer_ammo"
+
+/obj/item/mortal_shell/howitzer/he
+	name = "\improper 150mm high explosive artillery shell"
+	desc = "An 150mm artillery shell, loaded with a high explosive charge, whatever is hit by this will have, A really, REALLY bad day."
+
+/obj/item/mortal_shell/howitzer/he/detonate(turf/T)
+	explosion(T, 0, 6, 7, 12)
+
+/obj/item/mortal_shell/howitzer/plasmaloss
+	name = "\improper 150mm 'Tanglefoot' artillery shell"
+	desc = "An 150mm artillery shell, loaded with a toxic intoxicating gas, whatever is hit by this will have their abilities sapped slowly. Acommpanied by a small moderate explosion."
+	icon_state = "howitzer_ammo_purp"
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke
+
+/obj/item/mortal_shell/howitzer/plasmaloss/Initialize()
+	. = ..()
+	smoke = new(src)
+
+/obj/item/mortal_shell/plasmaloss/detonate(turf/T)
+	explosion(T, 0, 0, 5, 0, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	forceMove(T)
+	smoke.set_up(10, T, 11)
+	smoke.start()
+	smoke = null
+	qdel(src)
+
+/obj/item/mortal_shell/howitzer/shaker
+	name = "\improper 150mm 'Groundshaker' artillery shell"
+	desc = "An 150mm artillery shell, loaded with a groundshaking shell that will break the support of nearby lightly organic structures without much other impact, will brighten your day."
+	icon_state = "howitzer_ammo_shaker"
+
+/obj/item/mortal_shell/howitzer/he/detonate(turf/T)
+	var/list/to_check = filled_turfs(impact, 4, "square")
+
+	for(var/turf/closed/wall/resin/wall in to_check)
+		wall.take_damage(2000)
+
+/obj/item/mortal_shell/howitzer/incendiary
+	name = "\improper 150mm incendiary artillery shell"
+	desc = "An 150mm artillery shell, loaded with explosives to punch through light structures then burn out whatever is on the other side. Will ruin their day and skin."
+	icon_state = "howitzer_ammo_incend"
+
+/obj/item/mortal_shell/incendiary/detonate(turf/T)
+	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
+	flame_radius(5, T)
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
+
 
 
 /obj/structure/closet/crate/mortar_ammo
