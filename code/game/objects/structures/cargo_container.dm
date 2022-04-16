@@ -55,7 +55,6 @@
 /obj/structure/cargo_container/gorg
 	icon_state = "gorg"
 	bound_height = 32
-	layer = ABOVE_MOB_LAYER
 
 /obj/structure/cargo_container/horizontal
 	name = "Cargo Container"
