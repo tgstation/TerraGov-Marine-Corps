@@ -3109,12 +3109,6 @@
 /obj/effect/landmark/corpsespawner/marine,
 /turf/open/floor/plating/plating_catwalk,
 /area/space)
-"tM" = (
-/obj/structure/prop/vehicle{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/space)
 "tN" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/item/ammo_casing,
@@ -6800,10 +6794,6 @@
 	icon_state = "stan_rightengine"
 	},
 /area/space)
-"QB" = (
-/obj/structure/prop/vehicle,
-/turf/open/floor/plating/ground/concrete,
-/area/space)
 "QE" = (
 /obj/structure/cable,
 /obj/effect/decal/tracks/wheels/bloody{
@@ -7808,6 +7798,10 @@
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
+/area/space)
+"WU" = (
+/obj/structure/prop/vehicle,
+/turf/open/floor/plating/ground/concrete,
 /area/space)
 "WZ" = (
 /obj/structure/prop/mainship/sensor_computer1,
@@ -20151,7 +20145,7 @@ Lk
 Yv
 PM
 tt
-tM
+dp
 YZ
 YZ
 YZ
@@ -20325,7 +20319,7 @@ PV
 tt
 dp
 YZ
-QB
+YZ
 YZ
 Ai
 Aa
@@ -21185,7 +21179,7 @@ PV
 tt
 dp
 YZ
-QB
+YZ
 YZ
 Ai
 qf
@@ -21699,7 +21693,7 @@ Ve
 Ve
 Ve
 tt
-tM
+dp
 YZ
 YZ
 YZ
@@ -26517,19 +26511,19 @@ Qs
 tt
 dp
 eK
-YZ
+WU
 kM
 eK
-YZ
+WU
 kM
 eK
-YZ
+WU
 kM
 eK
-YZ
+WU
 kM
 eK
-YZ
+WU
 kM
 HT
 HT
@@ -27032,21 +27026,21 @@ HT
 HT
 tt
 dp
-eK
-YZ
-kM
-eK
-YZ
-kM
-eK
-YZ
-kM
-eK
-YZ
-kM
-eK
-YZ
-kM
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
 HT
 HT
 HT
@@ -27204,21 +27198,21 @@ HT
 HT
 tt
 dp
-nH
-nH
-nH
-nH
-nH
-nH
-nH
-nH
-nH
-nH
-nH
-nH
-nH
-nH
-nH
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
+YZ
 HT
 VD
 HT

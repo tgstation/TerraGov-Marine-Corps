@@ -1,6 +1,6 @@
 {
-    "map_name": "Rocicante Colony",
-    "map_path": "map_files/Rocicante_Colony",
+    "map_name": "Rocinante Polar Colony",
+    "map_path": "map_files/Rocinante_Colony",
     "map_file": "sombase.dmm",
     "environment_traits": {
         "COLD": true
