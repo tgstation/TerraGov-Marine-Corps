@@ -25,7 +25,7 @@
 	var/reload_sound = 'sound/weapons/guns/interact/mortar_reload.ogg' // Our reload sound.
 	var/fall_sound = 'sound/weapons/guns/misc/mortar_travel.ogg' //The sound the shell makes when falling.
 
- // What shells can we use?
+	// What shells can we use?
 	var/list/allowed_shells = list(
 		/obj/item/mortal_shell/he,
 		/obj/item/mortal_shell/incendiary,
@@ -454,7 +454,7 @@
 	desc = "An 150mm artillery shell, loaded with explosives to punch through light structures then burn out whatever is on the other side. Will ruin their day and skin."
 	icon_state = "howitzer_ammo_incend"
 
-/obj/item/mortal_shell/incendiary/detonate(turf/T)
+/obj/item/mortal_shell/howitzer/incendiary/detonate(turf/T)
 	explosion(T, 0, 3, 0, 3, throw_range = 0, small_animation = TRUE)
 	flame_radius(5, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
@@ -474,8 +474,8 @@
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
 	smoke.set_up(6, loc, 7)
 	smoke.start()
-	flame_radius(4, get_turf(src))
-	flame_radius(1, get_turf(src), burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)
+	flame_radius(4, T)
+	flame_radius(1, T, burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)
 	qdel(src)
 
 /obj/structure/closet/crate/mortar_ammo
