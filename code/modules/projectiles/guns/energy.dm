@@ -137,41 +137,21 @@
 
 	return TRUE
 
-////WIP proc shit////
-//obj/item/weapon/gun/update_icon(mob/user)
-
-//parent SHOULD work
-//obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
-
-
-//obj/item/weapon/gun/update_icon_state()
-
 /obj/item/weapon/gun/energy/lasgun/update_icon_state() //eguns use [gun]_0 instead of [gun]_e
 	. = ..()
 	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
 	icon_state = "[base_gun_icon]_[cell_charge]"
 
-//base gun overlay proc
-//obj/item/weapon/gun/update_overlays()
-
-
-//lasgun version
 /obj/item/weapon/gun/energy/lasgun/update_item_state(mob/user)
 	. = item_state
 	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
 	item_state = "[initial(icon_state)]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
-	if(. != item_state && ishuman(gun_user)) // what is this. //now that it actually CHECKS THE FUCKING USER, this actually refreshes the item_state. guns actually used in game don't seem to use this though, but could...
+	if(. != item_state && ishuman(gun_user))
 		var/mob/living/carbon/human/human_user = gun_user
 		if(src == human_user.l_hand)
 			human_user.update_inv_l_hand()
 		else if (src == human_user.r_hand)
 			human_user.update_inv_r_hand()
-//fucking agony, lasrifle overrides all this shit, so the tesla HAS SPRITES but doesn't use them
-
-///lasrifle specific///
-//currently doesn't have charge item_states, but clearly should, from the sprites.
-///obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
-	//item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
 
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1

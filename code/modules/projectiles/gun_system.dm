@@ -459,7 +459,7 @@
 	else
 		icon_state = base_gun_icon
 
-//actual overlay proc
+//manages the overlays for the gun, only special magazine overlays at this level
 /obj/item/weapon/gun/update_overlays()
 	. = ..()
 
