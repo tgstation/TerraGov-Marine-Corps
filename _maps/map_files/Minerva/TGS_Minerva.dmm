@@ -6588,6 +6588,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"wa" = (
+/obj/structure/broken_tank{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/starboard_hallway)
 "wb" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/floor,
@@ -24954,7 +24960,7 @@ yA
 Hw
 XD
 sk
-yA
+wa
 Ot
 BG
 NB

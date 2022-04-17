@@ -2976,9 +2976,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar)
 "kg" = (
-/obj/structure/target_stake,
-/obj/item/target,
-/obj/item/clothing/suit/replica,
+/obj/structure/broken_tank,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "kh" = (
@@ -3865,17 +3863,6 @@
 /obj/machinery/computer/telecomms/monitor,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
-"na" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/target_stake,
-/obj/item/target,
-/obj/item/clothing/suit/storage/militia,
-/turf/open/floor/plating/mainship/striped{
-	dir = 4
-	},
-/area/mainship/shipboard/firing_range)
 "nb" = (
 /obj/effect/ai_node,
 /turf/open/floor/carpet{
@@ -4886,10 +4873,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
-"qP" = (
-/obj/machinery/camera/autoname/mainship,
-/turf/open/floor/plating/mainship,
-/area/mainship/shipboard/firing_range)
 "qQ" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/firedoor/mainship{
@@ -12048,15 +12031,6 @@
 /obj/structure/sign/poster,
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar/droppod)
-"Mg" = (
-/obj/structure/target_stake,
-/obj/item/target,
-/obj/item/clothing/suit/storage/militia,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/mainship/shipboard/firing_range)
 "Mh" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -51808,10 +51782,10 @@ Ws
 Ra
 Br
 fj
-Mg
 CK
 CK
 CK
+kg
 qV
 IG
 hW
@@ -52065,9 +52039,9 @@ Ws
 Hn
 uN
 fj
-qP
 CK
-kg
+CK
+CK
 CK
 qV
 IG
@@ -52323,7 +52297,7 @@ Ws
 Ws
 fj
 My
-na
+CK
 My
 My
 qV

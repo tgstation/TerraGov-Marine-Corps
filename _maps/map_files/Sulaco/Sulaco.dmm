@@ -586,7 +586,6 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/engineering/lower_engineering)
 "ace" = (
-/obj/structure/target_stake,
 /turf/open/floor/prison/red{
 	dir = 9
 	},
@@ -2276,10 +2275,7 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "alm" = (
-/obj/structure/target_stake,
-/turf/open/floor/prison/red{
-	dir = 5
-	},
+/turf/open/space/basic,
 /area/sulaco/hangar/one)
 "aln" = (
 /obj/structure/cable,
@@ -15397,6 +15393,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/broken_tank,
 /turf/open/floor/prison/red{
 	dir = 8
 	},
@@ -15682,14 +15679,6 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
-"lvm" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/prison/red{
-	dir = 4
-	},
-/area/sulaco/hangar/one)
 "lwx" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/door/firedoor,
@@ -50811,8 +50800,8 @@ aaa
 nzi
 mDu
 aPn
-vnZ
-sCO
+jOl
+alm
 miH
 bhA
 bhA
@@ -51068,7 +51057,7 @@ aaa
 nzi
 mDu
 aPn
-ajc
+bhA
 bhA
 bhA
 lcd
@@ -51582,10 +51571,10 @@ aaa
 nzi
 mDu
 aPn
-alm
-lfO
+ajc
+sCO
 mlv
-lvm
+bhA
 lfO
 lfO
 pwD
