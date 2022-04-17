@@ -249,7 +249,7 @@
 
 //The portable mortar item
 /obj/item/mortar_kit
-	name = "\improper TA-85S mortar"
+	name = "\improper TA-50S mortar"
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Use Ctrl-Click to deploy."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar"
@@ -505,7 +505,7 @@
 	new /obj/item/mortal_shell/plasmaloss(src)
 
 /obj/structure/closet/crate/mortar_ammo/mortar_kit
-	name = "\improper TA-85S mortar kit"
+	name = "\improper TA-50S mortar kit"
 	desc = "A crate containing a basic set of a mortar and some shells, to get an engineer started."
 
 /obj/structure/closet/crate/mortar_ammo/mortar_kit/PopulateContents()
