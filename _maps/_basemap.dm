@@ -20,7 +20,7 @@
 		#include "map_files\Magmoor_Digsite_IV\Magmoor_Digsite_IV.dmm"
 		#include "map_files\Twin_Pillars\Twin_Pillars.dmm"
 		#include "map_files\Minerva\TGS_Minerva.dmm"
-		#include "map_files\Rocicante_Colony\sombase.dmm"
+		#include "map_files\Rocinante_Colony\sombase.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif
