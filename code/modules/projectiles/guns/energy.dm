@@ -32,13 +32,14 @@
 /obj/item/weapon/gun/energy/get_flags_magazine_features(obj/item/mag)
 	var/obj/item/cell/lasgun/cell = mag
 	return cell ? cell.flags_magazine_features : NONE
-
+//based off of basegun proc, should work.
 /obj/item/weapon/gun/energy/get_magazine_overlay(obj/item/mag)
-	return null
-
+	var/obj/item/cell/lasgun/cell = mag
+	return cell?.bonus_overlay
+//based off of basegun proc, should work.
 /obj/item/weapon/gun/energy/get_magazine_reload_delay(obj/item/mag)
-	return null
-
+	var/obj/item/cell/lasgun/cell = mag
+	return cell?.reload_delay
 
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
@@ -99,10 +100,6 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
-/obj/item/weapon/gun/energy/lasgun/get_magazine_reload_delay(obj/item/mag)
-	var/obj/item/cell/lasgun/cell = mag
-	return cell?.reload_delay
-
 /obj/item/weapon/gun/energy/lasgun/unique_action(mob/user, dont_operate = FALSE)
 	QDEL_NULL(in_chamber)
 	if(ammo_diff == null)
@@ -140,12 +137,25 @@
 
 	return TRUE
 
-/obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
+////WIP proc shit////
+//obj/item/weapon/gun/update_icon(mob/user)
+
+//parent SHOULD work
+//obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
+
+
+//obj/item/weapon/gun/update_icon_state()
+
+/obj/item/weapon/gun/energy/lasgun/update_icon_state() //eguns use [gun]_0 instead of [gun]_e
+	. = ..()
 	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
 	icon_state = "[base_gun_icon]_[cell_charge]"
-	update_mag_overlay()
-	update_item_state()
 
+//base gun overlay proc
+//obj/item/weapon/gun/update_overlays()
+
+
+//lasgun version
 /obj/item/weapon/gun/energy/lasgun/update_item_state(mob/user)
 	. = item_state
 	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
@@ -157,6 +167,12 @@
 		else if (src == human_user.r_hand)
 			human_user.update_inv_r_hand()
 //fucking agony, lasrifle overrides all this shit, so the tesla HAS SPRITES but doesn't use them
+
+///lasrifle specific///
+//currently doesn't have charge item_states, but clearly should, from the sprites.
+/obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
+	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
 
@@ -353,9 +369,6 @@
 	QDEL_NULL(in_chamber)
 
 	in_chamber = get_ammo_object(chamber_items[current_chamber_position])
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
-	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
 
 //Tesla gun
 /obj/item/weapon/gun/energy/lasgun/lasrifle/tesla
