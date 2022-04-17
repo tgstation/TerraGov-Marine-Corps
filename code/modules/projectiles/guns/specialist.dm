@@ -427,6 +427,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	desc = "A four barreled Light Support Weapon Systems or a four-barreled 'Microgun' to those who prefer slang over technicality, this is a IFF-Capable light support weapon with a massive amount of firepower and thought put behind the construction.. Mind the windup, however. Uses 10x26 caseless"
 	icon_state = "microgun"
 	item_state = "minigun"
+	max_shells = 1000 //codex
 	caliber = CALIBER_10x26_CASELESS //codex
 	fire_sound = 'sound/weapons/guns/fire/microgun.ogg'
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)

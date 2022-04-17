@@ -289,5 +289,7 @@
 	name = "\improper T-85 powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-85 Smart Light Support Weapon System, or a 'Microgun' for people who prefer slang.\nClick the icon in the top left to reload your gun."
 	icon_state = "powerpack"
+	current_rounds = 100
+	max_rounds = 1000
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/smartmachinegun
