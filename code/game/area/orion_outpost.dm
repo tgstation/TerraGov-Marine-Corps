@@ -35,9 +35,16 @@
 	outside = FALSE
 
 /area/orion_outpost/surface/landing_pad_external
-	name = "Aerodrome Landing Valley"
+	name = "Landing Zone 1"
 	icon_state = "landing_pad_ext"
 	ceiling = CEILING_METAL
+	outside = FALSE
+
+/area/orion_outpost/surface/landing_pad2
+	name = "Landing Zone 2"
+	icon_state = "landing_pad_ext"
+	ceiling = CEILING_METAL
+	outside = FALSE
 
 //OutpostGround
 /area/orion_outpost/ground/outpostse
