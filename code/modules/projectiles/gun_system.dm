@@ -246,7 +246,8 @@
 	var/overcharge = 0
 	///what ammo to use for overcharge
 	var/ammo_diff = null
-
+	///does the gun have ammo level overlays, mainly for eguns
+	var/ammo_level_overlays = FALSE
 /*
  *
  *   ATTACHMENT VARS
@@ -475,7 +476,18 @@
 	. += overlay
 
 /obj/item/weapon/gun/update_item_state()
-	item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
+	if(ammo_level_overlays == FALSE)
+		item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
+	else
+		. = item_state
+		var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
+		item_state = "[initial(icon_state)]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
+		if(. != item_state && ishuman(gun_user))
+			var/mob/living/carbon/human/human_user = gun_user
+			if(src == human_user.l_hand)
+				human_user.update_inv_l_hand()
+			else if (src == human_user.r_hand)
+				human_user.update_inv_r_hand()
 
 
 /obj/item/weapon/gun/examine(mob/user)

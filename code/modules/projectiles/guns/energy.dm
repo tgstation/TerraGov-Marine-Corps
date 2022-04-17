@@ -91,6 +91,7 @@
 	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
 	muzzle_flash_color = COLOR_LASER_RED
+	ammo_level_overlays = TRUE
 
 	fire_delay = 3
 	accuracy_mult = 1.5
@@ -141,17 +142,6 @@
 	. = ..()
 	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
 	icon_state = "[base_gun_icon]_[cell_charge]"
-
-/obj/item/weapon/gun/energy/lasgun/update_item_state(mob/user)
-	. = item_state
-	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	item_state = "[initial(icon_state)]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
-	if(. != item_state && ishuman(gun_user))
-		var/mob/living/carbon/human/human_user = gun_user
-		if(src == human_user.l_hand)
-			human_user.update_inv_l_hand()
-		else if (src == human_user.r_hand)
-			human_user.update_inv_r_hand()
 
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
@@ -280,6 +270,7 @@
 		/obj/item/attachable/scope/mini,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	ammo_level_overlays = FALSE
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
@@ -365,7 +356,7 @@
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
 	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
-
+	ammo_level_overlays = TRUE
 	muzzle_flash_color = COLOR_TESLA_BLUE
 
 	max_shots = 6 //codex stuff
