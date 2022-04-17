@@ -553,19 +553,19 @@
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/truck
-name = "truck"
-desc = "An old truck, seems to be broken down."
-icon = 'icons/obj/structures/vehicles.dmi'
-icon_state = "truck"
-density = TRUE
-coverage = 70
-bound_height = 32
-bound_width = 64
-resistance_flags = RESIST_ALL
-layer = ABOVE_MOB_LAYER
+	name = "truck"
+	desc = "An old truck, seems to be broken down."
+	icon = 'icons/obj/structures/vehicles.dmi'
+	icon_state = "truck"
+	density = TRUE
+	coverage = 70
+	bound_height = 32
+	bound_width = 64
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/truck/truckcargo
-icon_state = "truck_cargo"
+	icon_state = "truck_cargo"
 
 /obj/structure/prop/vehicle/crane
 	name = "crane"
