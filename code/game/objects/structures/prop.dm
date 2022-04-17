@@ -573,7 +573,7 @@
 	icon_state = "crane"
 	density = TRUE
 	coverage = 70
-	bound_height = 32
+	bound_height = 64
 	bound_width = 64
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
