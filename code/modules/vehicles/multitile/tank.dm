@@ -304,3 +304,9 @@
 
 	HP.active_effect(A)
 	return TRUE
+
+/obj/vehicle/multitile/root/cm_armored/tank/broken
+	name = "\improper 'Panther-III' Light Tank"
+	desc = "A giant piece of armor named after a big cat, outdated and has been in 'repair' for about a year after the final drive and transmission broke down. You doubt this thing will ever see another battle ever again."
+	icon_state = "static"
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
