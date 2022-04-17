@@ -284,3 +284,10 @@
 
 /obj/item/ammo_magazine/minigun_powerpack/merc
 	icon_state = "powerpackp"
+
+/obj/item/ammo_magazine/minigun_powerpack/smartgun
+	name = "\improper T-85 powerpack"
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-85 Smart Light Support Weapon System, or a 'Microgun' for people who prefer slang.\nClick the icon in the top left to reload your gun."
+	icon_state = "powerpack"
+	caliber = CALIBER_10x26_CASELESS
+	default_ammo = /datum/ammo/bullet/smartmachinegun

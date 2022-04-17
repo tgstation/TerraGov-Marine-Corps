@@ -420,6 +420,32 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	SSmonitor.stats.miniguns_in_use -= src
 	return ..()
 
+// SG minigun
+
+/obj/item/weapon/gun/minigun/smart_microgun
+	name = "\improper T-85 LSWS 'Microgun'"
+	desc = "A four barreled Light Support Weapon Systems or a four-barreled 'Microgun' to those who prefer slang over technicality, this is a IFF-Capable light support weapon with a massive amount of firepower and thought put behind the construction.. Mind the windup, however. Uses 10x26 caseless"
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "microgun"
+	item_state = "minigun"
+	fire_animation = "microgun_fire"
+	max_shells = 500 //codex
+	caliber = CALIBER_10x26_CASELESS //codex
+	fire_sound = 'sound/weapons/guns/fire/microgun.ogg'
+	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
+	wield_delay = 1.5 SECONDS
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_skill_category = GUN_SKILL_SMARTGUN
+	aim_slowdown = 1.5
+	actions_types = list()
+
+	fire_delay = 0.2 SECONDS
+	windup_delay = 0.8 SECONDS
+	scatter = 7
+	recoil = 2
+	recoil_unwielded = 4
+	damage_falloff_mult = 0.5
+
 
 // PEPPERBALL GUN
 

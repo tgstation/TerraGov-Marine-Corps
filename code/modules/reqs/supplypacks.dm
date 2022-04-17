@@ -436,19 +436,19 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 5
 
-/datum/supply_packs/weapons/smartrifle
-	name = "T-25 Smart Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
+/datum/supply_packs/weapons/smart_microgun
+	name = "T-85 Microgun"
+	contains = list(/obj/item/weapon/gun/minigun/smart_microgun)
 	cost = 40
 
 /datum/supply_packs/weapons/smartrifle_ammo
-	name = "T-25 smartrifle magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
-	cost = 2
+	name = "T-85 powerpack"
+	contains = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
+	cost = 10
 
 /datum/supply_packs/weapons/smartrifle_pack
-	name = "T-25 smartrifle ammo box"
-	notes = "Contains a box with 200 rounds for a T-25 (MAGAZINES SOLD SEPERATELY)"
+	name = "Smartgun ammo box"
+	notes = "Contains a box with 300 rounds for a Smartgun"
 	contains = list(/obj/item/ammo_magazine/packet/t25)
 	cost = 4
 
