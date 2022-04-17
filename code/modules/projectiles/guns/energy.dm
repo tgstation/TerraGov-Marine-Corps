@@ -170,8 +170,8 @@
 
 ///lasrifle specific///
 //currently doesn't have charge item_states, but clearly should, from the sprites.
-/obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
-	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+///obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
+	//item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
 
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1

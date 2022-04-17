@@ -445,7 +445,6 @@
 			action.update_button_icon()
 
 	update_item_state()
-	//update_mag_overlay() ///TO BE DELETED
 
 /obj/item/weapon/gun/update_icon_state()
 	. = ..()
@@ -475,22 +474,6 @@
 	attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
 	. += overlay
 
-////TO BE DELETED - currently used by an egun proc
-///Updates the magazine overlay, this uses the Attachment overlays and is primarily used for extended magazines.
-/obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
-	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
-	overlays -= overlay
-	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || !length(chamber_items))
-		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
-		return
-	if(!get_magazine_overlay(chamber_items[current_chamber_position]))
-		return
-	var/obj/item/current_mag = chamber_items[current_chamber_position]
-	overlay = image(current_mag.icon, src, get_magazine_overlay(current_mag))
-	attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
-	overlays += overlay
-
-//investigate this shit, same as parent but doesn't call, and just does the same thing slightly differently
 /obj/item/weapon/gun/update_item_state()
 	item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
 
