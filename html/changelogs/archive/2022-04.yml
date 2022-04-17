@@ -277,3 +277,8 @@
       respect to req
   - rscadd: briefing area in Minerva
   - rscadd: Minerva's CAS armament area is now prettier
+2022-04-17:
+  MrHorizons:
+  - balance: The NanoTrasenMed Plus and MarineMed now have unlimited splints.
+  tyeagg:
+  - bugfix: 2x1 cargo container collision height
