@@ -433,17 +433,6 @@
 	set_gun_user(null)
 
 /obj/item/weapon/gun/update_icon(mob/user)
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
-		icon_state = base_gun_icon + "_o"
-	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber && length(chamber_items))
-		icon_state = base_gun_icon + "_u"
-	else if((!length(chamber_items) && max_chamber_items) || !rounds)
-		icon_state = base_gun_icon + "_e"
-	else if(current_chamber_position <= length(chamber_items) && chamber_items[current_chamber_position] && chamber_items[current_chamber_position].loc != src)
-		icon_state = base_gun_icon + "_l"
-	else
-		icon_state = base_gun_icon
-
 	. = ..()
 
 	for(var/action_to_update in actions)
@@ -456,8 +445,37 @@
 			action.update_button_icon()
 
 	update_item_state()
-	update_mag_overlay()
+	//update_mag_overlay() ///TO BE DELETED
 
+/obj/item/weapon/gun/update_icon_state()
+	. = ..()
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CLOSED))
+		icon_state = base_gun_icon + "_o"
+	else if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !in_chamber && length(chamber_items))
+		icon_state = base_gun_icon + "_u"
+	else if((!length(chamber_items) && max_chamber_items) || !rounds)
+		icon_state = base_gun_icon + "_e"
+	else if(current_chamber_position <= length(chamber_items) && chamber_items[current_chamber_position] && chamber_items[current_chamber_position].loc != src)
+		icon_state = base_gun_icon + "_l"
+	else
+		icon_state = base_gun_icon
+
+//actual overlay proc
+/obj/item/weapon/gun/update_overlays()
+	. = ..()
+
+	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
+	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || !length(chamber_items))
+		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
+		return
+	if(!get_magazine_overlay(chamber_items[current_chamber_position]))
+		return
+	var/obj/item/current_mag = chamber_items[current_chamber_position]
+	overlay = get_magazine_overlay(current_mag)
+	attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
+	. += overlay
+
+////TO BE DELETED - currently used by an egun proc
 ///Updates the magazine overlay, this uses the Attachment overlays and is primarily used for extended magazines.
 /obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
 	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
@@ -472,6 +490,7 @@
 	attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
 	overlays += overlay
 
+//investigate this shit, same as parent but doesn't call, and just does the same thing slightly differently
 /obj/item/weapon/gun/update_item_state()
 	item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
 
