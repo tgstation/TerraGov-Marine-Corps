@@ -101,7 +101,7 @@
 		if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 			P = W
 			if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			if(is_resin)
+				if(is_resin)
 					multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
 				else
 					multiplier += PLASMACUTTER_RESIN_MULTIPLIER * 0.5 //Plasma cutters are particularly good at destroying resin structures.
