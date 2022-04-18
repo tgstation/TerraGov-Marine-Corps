@@ -138,10 +138,10 @@
 
 	return TRUE
 
-/obj/item/weapon/gun/energy/lasgun/update_icon_state() //eguns use [gun]_0 instead of [gun]_e
-	. = ..()
-	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	icon_state = "[base_gun_icon]_[cell_charge]"
+//obj/item/weapon/gun/energy/lasgun/update_icon_state() //eguns use [gun]_0 instead of [gun]_e
+	//. = ..()
+	//var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
+	//icon_state = "[base_gun_icon]_[cell_charge]"
 
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
@@ -413,6 +413,7 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	turret_flags = TURRET_INACCURATE
+	charge_overlay = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -555,7 +556,7 @@
 	rounds_per_shot = 15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-
+	charge_overlay = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -633,6 +634,10 @@
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
+	charge_overlay = "te"
+	icon_overlay_x_offset = -1
+	icon_overlay_y_offset = -3
+
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -695,6 +700,7 @@
 	rounds_per_shot = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	charge_overlay = "te"
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,

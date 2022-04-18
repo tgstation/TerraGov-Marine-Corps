@@ -246,8 +246,20 @@
 	var/overcharge = 0
 	///what ammo to use for overcharge
 	var/ammo_diff = null
-	///does the gun have ammo level overlays, mainly for eguns
+
+/*
+ *  STAT VARS
+*/
+
+	///Whether the gun has ammo level overlays, mainly for eguns - CURRENTLY FOR ITEM_STATE ONLY
 	var/ammo_level_overlays = FALSE
+	///Whether the gun has ammo level overlays, mainly for eguns - CURRENTLY FOR ICON_STATE ONLY
+	var/charge_overlay = null
+	///Whether the icon_state overlay is offset in the x axis
+	var/icon_overlay_x_offset = null
+	///Whether the icon_state overlay is offset in the Y axis
+	var/icon_overlay_y_offset = null
+
 /*
  *
  *   ATTACHMENT VARS
@@ -463,7 +475,18 @@
 //manages the overlays for the gun, only special magazine overlays at this level
 /obj/item/weapon/gun/update_overlays()
 	. = ..()
+	//lasgun icon statecode for ref
+	//var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
+	//icon_state = "[base_gun_icon]_[cell_charge]"
 
+	//ammo level overlays
+	if(charge_overlay && length(chamber_items) && rounds > 0)
+		var/remaining = CEILING((rounds /(max_rounds)) * 100, 25)
+	//. += "[charge_overlay]_[remaining]"
+		var/image/ammo_overlay = image(icon, icon_state = "[charge_overlay]_[remaining]", pixel_x = icon_overlay_x_offset, pixel_y = icon_overlay_y_offset)
+		. += ammo_overlay
+
+	//magazines overlays
 	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || !length(chamber_items))
 		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
