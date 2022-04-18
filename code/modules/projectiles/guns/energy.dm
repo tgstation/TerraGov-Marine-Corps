@@ -91,7 +91,7 @@
 	wield_delay = 1 SECONDS
 	gun_skill_category = GUN_SKILL_RIFLES
 	muzzle_flash_color = COLOR_LASER_RED
-	ammo_level_overlays = TRUE
+	ammo_level_item = TRUE
 
 	fire_delay = 3
 	accuracy_mult = 1.5
@@ -176,7 +176,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
-	charge_overlay = "m43"
+	ammo_level_icon = "m43"
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
@@ -211,7 +211,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
-	charge_overlay = "m19c4"
+	ammo_level_icon = "m19c4"
 	fire_delay = 8
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
@@ -265,9 +265,9 @@
 		/obj/item/attachable/scope/mini,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
-	ammo_level_overlays = FALSE
+	ammo_level_item = FALSE
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
-	charge_overlay = "tx73"
+	ammo_level_icon = "tx73"
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
@@ -351,9 +351,9 @@
 	default_ammo_type = /obj/item/cell/lasgun/lasrifle
 	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
-	ammo_level_overlays = TRUE
+	ammo_level_item = TRUE
 	muzzle_flash_color = COLOR_TESLA_BLUE
-	charge_overlay = "tesla"
+	ammo_level_icon = "tesla"
 	max_shots = 6 //codex stuff
 	rounds_per_shot = 100
 	fire_delay = 4 SECONDS
@@ -408,7 +408,7 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	turret_flags = TURRET_INACCURATE
-	charge_overlay = "te"
+	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -551,7 +551,7 @@
 	rounds_per_shot = 15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	charge_overlay = "te"
+	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -629,7 +629,7 @@
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
-	charge_overlay = "te"
+	ammo_level_icon = "te"
 	icon_overlay_x_offset = -1
 	icon_overlay_y_offset = -3
 
@@ -695,7 +695,7 @@
 	rounds_per_shot = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	charge_overlay = "te"
+	ammo_level_icon = "te"
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -771,7 +771,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 20, "rail_y" = 21, "under_x" = 30, "under_y" = 13, "stock_x" = 22, "stock_y" = 14)
-	charge_overlay = "tex"
+	ammo_level_icon = "tex"
 	aim_slowdown = 0.4
 	wield_delay = 0.5 SECONDS
 	scatter = 0

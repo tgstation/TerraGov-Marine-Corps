@@ -248,13 +248,13 @@
 	var/ammo_diff = null
 
 /*
- *  STAT VARS
+ *  extra icon and item states or overlays
 */
 
-	///Whether the gun has ammo level overlays, mainly for eguns - CURRENTLY FOR ITEM_STATE ONLY
-	var/ammo_level_overlays = FALSE
-	///Whether the gun has ammo level overlays, mainly for eguns - CURRENTLY FOR ICON_STATE ONLY
-	var/charge_overlay = null
+	///Whether the gun has item_state sprites that show ammo level remaining
+	var/ammo_level_item = FALSE
+	///Whether the gun has ammo level overlays for its icon, mainly for eguns
+	var/ammo_level_icon = null
 	///Whether the icon_state overlay is offset in the x axis
 	var/icon_overlay_x_offset = null
 	///Whether the icon_state overlay is offset in the Y axis
@@ -476,9 +476,9 @@
 /obj/item/weapon/gun/update_overlays()
 	. = ..()
 	//ammo level overlays
-	if(charge_overlay && length(chamber_items) && rounds > 0)
+	if(ammo_level_icon && length(chamber_items) && rounds > 0)
 		var/remaining = CEILING((rounds /(max_rounds)) * 100, 25)
-		var/image/ammo_overlay = image(icon, icon_state = "[charge_overlay]_[remaining]", pixel_x = icon_overlay_x_offset, pixel_y = icon_overlay_y_offset)
+		var/image/ammo_overlay = image(icon, icon_state = "[ammo_level_icon]_[remaining]", pixel_x = icon_overlay_x_offset, pixel_y = icon_overlay_y_offset)
 		. += ammo_overlay
 
 	//magazines overlays
@@ -494,7 +494,7 @@
 	. += overlay
 
 /obj/item/weapon/gun/update_item_state()
-	if(ammo_level_overlays == FALSE)
+	if(ammo_level_item == FALSE)
 		item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
 	else
 		. = item_state
