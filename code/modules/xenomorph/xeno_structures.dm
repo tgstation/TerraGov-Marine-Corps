@@ -972,7 +972,6 @@ TUNNEL
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 
 	damage *= max(0, multiplier)
