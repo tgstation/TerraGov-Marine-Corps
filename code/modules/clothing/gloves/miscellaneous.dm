@@ -72,9 +72,13 @@
 //Special type of gloves. Alt click and you get some special nodrop gloves
 /obj/item/clothing/gloves/heldgloves
 	name = "gloves"
+	/// What type of glove we use for the right hand
 	var/rightglove_path
+	/// What type of glove we use for the left hand
 	var/leftglove_path
+	/// The glove we're currently using in the right hand
 	var/obj/item/weapon/heldglove/rightglove
+	/// The glove we're currently using in the left hand
 	var/obj/item/weapon/heldglove/leftglove
 
 /obj/item/clothing/gloves/heldgloves/Destroy()
@@ -108,12 +112,10 @@
 		return
 
 	rightglove = new rightglove_path()
-	TOGGLE_BITFIELD(rightglove.flags_item, NODROP)
-	user.put_in_r_hand(rightglove, TRUE)
-
 	leftglove = new leftglove_path()
-	TOGGLE_BITFIELD(leftglove.flags_item, NODROP)
-	user.put_in_l_hand(leftglove, TRUE)
+
+	if(user.put_in_r_hand(rightglove, TRUE) || user.put_in_l_hand(leftglove, TRUE))
+		TOGGLE_BITFIELD(flags_item, NODROP) //Make sure the gloves aren't able to be taken off
 
 /// Removes gloves. Returns false if gloves are not currently worn
 /obj/item/clothing/gloves/heldgloves/proc/remove_gloves(mob/user)
@@ -124,11 +126,13 @@
 	if(rightglove)
 		QDEL_NULL(rightglove)
 		removed = TRUE
+	if(removed)
+		TOGGLE_BITFIELD(flags_item, NODROP)
 	return removed
 
 /obj/item/weapon/heldglove
 	name = "glove"
-
+	flags_item = NODROP
 
 //Boxing gloves
 /obj/item/clothing/gloves/heldgloves/boxing
