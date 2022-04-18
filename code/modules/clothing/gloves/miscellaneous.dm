@@ -77,6 +77,11 @@
 	var/obj/item/weapon/heldglove/rightglove
 	var/obj/item/weapon/heldglove/leftglove
 
+/obj/item/clothing/gloves/heldgloves/Destroy()
+	QDEL_NULL(rightglove)
+	QDEL_NULL(leftglove)
+	return ..()
+
 /obj/item/clothing/gloves/heldgloves/examine(mob/user)
 	. = ..()
 	to_chat(user, "<span class='notice'>Alt-click the gloves when worn to strap them into your hands.")
