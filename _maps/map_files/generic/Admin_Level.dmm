@@ -12205,7 +12205,6 @@
 /obj/item/stack/cable_coil,
 /obj/item/circuitboard/airlock,
 /obj/item/circuitboard/airlock,
-/obj/item/tool/handheld_charger,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/engine/engineering)
 "qqX" = (
@@ -17464,7 +17463,6 @@
 /obj/item/storage/toolbox/mechanical,
 /obj/item/flashlight,
 /obj/effect/decal/warning_stripes/thick,
-/obj/item/tool/handheld_charger,
 /turf/open/floor/engine,
 /area/centcom/valhalla/engine/engineering)
 "wEg" = (
@@ -17551,7 +17549,6 @@
 /obj/item/clothing/head/radiation,
 /obj/effect/decal/warning_stripes/thick,
 /obj/item/clothing/glasses/meson,
-/obj/item/tool/handheld_charger,
 /turf/open/floor/engine,
 /area/centcom/valhalla/engine/engineering)
 "wIE" = (

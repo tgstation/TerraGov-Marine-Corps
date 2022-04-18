@@ -177,7 +177,6 @@
 		/obj/item/tool/wirecutters,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
-		/obj/item/tool/handheld_charger,
 		/obj/item/multitool,
 		/obj/item/binoculars/tactical/range,
 		/obj/item/explosive/plastique,

@@ -6685,7 +6685,6 @@
 /area/whiskey_outpost)
 "UN" = (
 /obj/structure/table/mainship,
-/obj/item/tool/handheld_charger,
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "US" = (
