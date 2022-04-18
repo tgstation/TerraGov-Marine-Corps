@@ -390,3 +390,15 @@
 
 /obj/machinery/camera/autoname/lz_camera/update_icon()
 	return
+
+//Thunderdome cameras
+/obj/machinery/camera/autoname/thunderdome
+	name = "thunderdome camera"
+	network = list("thunder")
+	resistance_flags = RESIST_ALL
+
+//Special invisible cameras, to get even better angles without looking ugly
+/obj/machinery/camera/autoname/thunderdome/hidden
+
+/obj/machinery/camera/autoname/thunderdome/hidden/update_icon()
+	icon_state = "nothing"
