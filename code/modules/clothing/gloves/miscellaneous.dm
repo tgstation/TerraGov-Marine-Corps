@@ -89,7 +89,7 @@
 	if(wearer.gloves != src) //We have to be wearing the gloves first
 		return
 
-	if(!remove_gloves(user))
+	if(remove_gloves(user))
 		return
 
 	user.drop_all_held_items() //Gloves require free hands
@@ -105,19 +105,17 @@
 
 	var/obj/item/weapon/heldglove/boxing/leftglove = new left_glove
 	user.put_in_l_hand(leftglove, TRUE)
-	return
 
 /// Removes gloves. Returns false if gloves are not currently worn
 /obj/item/clothing/gloves/heldgloves/proc/remove_gloves(mob/user)
+	var/removed = FALSE
 	if(istype(user.l_hand, /obj/item/weapon/heldglove))
-		qdel(user.l_hand)
-		if(istype(user.r_hand, /obj/item/weapon/heldglove))
-			qdel(user.r_hand)
-			return FALSE
+		QDEL_NULL(user.l_hand)
+		removed = TRUE
 	if(istype(user.r_hand,/obj/item/weapon/heldglove))
-		qdel(user.r_hand)
-		return FALSE
-	return TRUE
+		QDEL_NULL(user.r_hand)
+		removed = TRUE
+	return removed
 
 /obj/item/weapon/heldglove
 	name = "glove"
