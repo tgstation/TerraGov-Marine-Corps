@@ -138,11 +138,6 @@
 
 	return TRUE
 
-//obj/item/weapon/gun/energy/lasgun/update_icon_state() //eguns use [gun]_0 instead of [gun]_e
-	//. = ..()
-	//var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	//icon_state = "[base_gun_icon]_[cell_charge]"
-
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
 

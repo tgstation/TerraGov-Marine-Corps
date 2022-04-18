@@ -472,17 +472,12 @@
 	else
 		icon_state = base_gun_icon
 
-//manages the overlays for the gun, only special magazine overlays at this level
+//manages the overlays for the gun - separate from attachment overlays
 /obj/item/weapon/gun/update_overlays()
 	. = ..()
-	//lasgun icon statecode for ref
-	//var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	//icon_state = "[base_gun_icon]_[cell_charge]"
-
 	//ammo level overlays
 	if(charge_overlay && length(chamber_items) && rounds > 0)
 		var/remaining = CEILING((rounds /(max_rounds)) * 100, 25)
-	//. += "[charge_overlay]_[remaining]"
 		var/image/ammo_overlay = image(icon, icon_state = "[charge_overlay]_[remaining]", pixel_x = icon_overlay_x_offset, pixel_y = icon_overlay_y_offset)
 		. += ammo_overlay
 
