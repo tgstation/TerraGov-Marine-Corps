@@ -491,9 +491,6 @@
 	name = "NEXUS Automated Equipment Rack"
 	desc = "An automated equipment rack hooked up to a colossal storage unit."
 	icon_state = "marinearmory"
-	use_points = TRUE
-	listed_products = list(
-	)
 
 /obj/machinery/marine_selector/gear/medic
 	name = "NEXUS Automated Medical Equipment Rack"
