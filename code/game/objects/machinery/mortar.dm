@@ -15,17 +15,22 @@
 		"coords_two" = list("name"="Target 2", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
 		"coords_three" = list("name"="Target 3", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
 		)
-	var/offset_x = 0 //Automatic offset from target
+	/// Automatic offset from target
+	var/offset_x = 0
 	var/offset_y = 0
-	var/offset_per_turfs = 10 //Number of turfs to offset from target by 1
-	var/travel_time = 45 //Constant, assuming perfect parabolic trajectory. ONLY THE DELAY BEFORE INCOMING WARNING WHICH ADDS 45 TICKS
+	/// Number of turfs to offset from target by 1
+	var/offset_per_turfs = 10
+	/// Constant, assuming perfect parabolic trajectory. ONLY THE DELAY BEFORE INCOMING WARNING WHICH ADDS 45 TICKS
+	var/travel_time = 45
 	var/busy = 0
-	var/firing = 0 //Used for deconstruction and aiming sanity
-	var/fire_sound = 'sound/weapons/guns/fire/mortar_fire.ogg'//Our fire sound.
+	/// Used for deconstruction and aiming sanity
+	var/firing = 0
+	/// The fire sound of the mortar or artillery piece.
+	var/fire_sound = 'sound/weapons/guns/fire/mortar_fire.ogg'
 	var/reload_sound = 'sound/weapons/guns/interact/mortar_reload.ogg' // Our reload sound.
 	var/fall_sound = 'sound/weapons/guns/misc/mortar_travel.ogg' //The sound the shell makes when falling.
 
-	// What shells can we use?
+	/// What type of shells can we use?
 	var/list/allowed_shells = list(
 		/obj/item/mortal_shell/he,
 		/obj/item/mortal_shell/incendiary,
@@ -256,7 +261,8 @@
 
 	max_integrity = 200
 	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
-	var/deployed_item = /obj/machinery/deployable/mortar // What item are we gonna deploy?
+	/// What item is this going to deploy when we put down the mortar?
+	var/deployed_item = /obj/machinery/deployable/mortar
 
 	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
@@ -307,12 +313,8 @@
 	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
 		return
 
-	if(!anchored)
-		anchored = TRUE
-		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
-	else
-		anchored = FALSE
-		to_chat(user, span_warning("You unanchored the gun from the gruond. It may be moved."))
+	anchored = !anchored
+	to_chat(usr, span_warning("You have [anchored ? "<b>anchored</b>" : "<b>unanchored</b>"] the gun."))
 
 
 
@@ -539,7 +541,7 @@
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/binoculars/tactical/range(src)
-	new /obj/item/binoculars/tactical/range(src)
+	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 
@@ -582,6 +584,6 @@
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/binoculars/tactical/range(src)
-	new /obj/item/binoculars/tactical/range(src)
+	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
 	new /obj/item/encryptionkey/cas(src)
