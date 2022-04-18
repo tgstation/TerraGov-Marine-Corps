@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 15, "fire" = 15, "acid" = 10)
+	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 5, "energy" = 5, "bomb" = 0, "bio" = 10, "rad" = 15, "fire" = 15, "acid" = 10)
 
 
 	// *** Abilities *** //
@@ -75,7 +75,7 @@
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 20, "fire" = 20, "acid" = 15)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 15, "rad" = 20, "fire" = 20, "acid" = 15)
 
 
 /datum/xeno_caste/wraith/elder
@@ -101,7 +101,7 @@
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 25, "fire" = 25, "acid" = 18)
+	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 15, "energy" = 15, "bomb" = 0, "bio" = 18, "rad" = 25, "fire" = 25, "acid" = 18)
 
 
 /datum/xeno_caste/wraith/ancient
@@ -127,7 +127,7 @@
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 25, "fire" = 30, "acid" = 18)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 18, "rad" = 25, "fire" = 30, "acid" = 18)
 
 /datum/xeno_caste/wraith/primordial
 	upgrade_name = "Primordial"
@@ -149,7 +149,7 @@
 	max_health = 260
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 25, "fire" = 30, "acid" = 18)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 18, "rad" = 25, "fire" = 30, "acid" = 18)
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

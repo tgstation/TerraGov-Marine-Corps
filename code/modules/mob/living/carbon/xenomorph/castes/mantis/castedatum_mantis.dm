@@ -27,7 +27,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 14, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 0)
+	soft_armor = list("melee" = 14, "bullet" = 5, "laser" = 5, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 5, "acid" = 0)
 
 	minimap_icon = "xenominion"
 

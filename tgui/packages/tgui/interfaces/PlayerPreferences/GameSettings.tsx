@@ -233,7 +233,22 @@ export const GameSettings = (props, context) => {
             </LabeledList>
           </Section>
         </Grid.Column>
-        <Grid.Column />
+        <Grid.Column>
+          <Section title="Keybinding Settings">
+            <LabeledList>
+              <SelectFieldPreference
+                label={'Quick equip slot'}
+                value={'preferred_slot'}
+                action={'preferred_slot_select'}
+              />
+              <SelectFieldPreference
+                label={'Alternate quick equip slot'}
+                value={'preferred_slot_alt'}
+                action={'preferred_slot_alt_select'}
+              />
+            </LabeledList>
+          </Section>
+        </Grid.Column>
       </Grid>
     </Section>
   );
