@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscadd: "Give Hivemind Transfer Plasma"
-  - balance: "Provide Hivemind plasma transfer so it can support xenos; it is the same as drone"

@@ -280,6 +280,15 @@
 	glass = TRUE
 	req_access = list(ACCESS_MARINE_RESEARCH)
 
+//MAINTENANCE
+/obj/machinery/door/airlock/multi_tile/mainship/maint
+	name = "Maintenance Hatch"
+	icon = 'icons/obj/doors/mainship/2x1maintdoor.dmi'
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
+
+/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access
+	req_one_access = null
+
 //ENGINEERING
 
 /obj/machinery/door/airlock/multi_tile/mainship/engineering
