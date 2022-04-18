@@ -272,7 +272,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	ammo_level_overlays = FALSE
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
-
+	charge_overlay = "tx73"
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
@@ -358,7 +358,7 @@
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	ammo_level_overlays = TRUE
 	muzzle_flash_color = COLOR_TESLA_BLUE
-
+	charge_overlay = "tesla"
 	max_shots = 6 //codex stuff
 	rounds_per_shot = 100
 	fire_delay = 4 SECONDS
@@ -776,7 +776,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 20, "rail_y" = 21, "under_x" = 30, "under_y" = 13, "stock_x" = 22, "stock_y" = 14)
-
+	charge_overlay = "tex"
 	aim_slowdown = 0.4
 	wield_delay = 0.5 SECONDS
 	scatter = 0
