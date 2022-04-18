@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Flamers will no longer go through windows"
-  - bugfix: "Flamers can go through vehicles and deployables again"
