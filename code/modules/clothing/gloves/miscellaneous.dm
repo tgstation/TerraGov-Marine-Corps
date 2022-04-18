@@ -72,8 +72,10 @@
 //Special type of gloves. Alt click and you get some special nodrop gloves
 /obj/item/clothing/gloves/heldgloves
 	name = "gloves"
-	var/obj/item/weapon/heldglove/right_glove
-	var/obj/item/weapon/heldglove/left_glove
+	var/rightglove_path
+	var/leftglove_path
+	var/obj/item/weapon/heldglove/rightglove
+	var/obj/item/weapon/heldglove/leftglove
 
 /obj/item/clothing/gloves/heldgloves/examine(mob/user)
 	. = ..()
@@ -100,20 +102,22 @@
 	if(user.l_hand || user.r_hand)
 		return
 
-	var/obj/item/weapon/heldglove/boxing/rightglove = new right_glove
+	rightglove = new rightglove_path()
+	TOGGLE_BITFIELD(rightglove.flags_item, NODROP)
 	user.put_in_r_hand(rightglove, TRUE)
 
-	var/obj/item/weapon/heldglove/boxing/leftglove = new left_glove
+	leftglove = new leftglove_path()
+	TOGGLE_BITFIELD(leftglove.flags_item, NODROP)
 	user.put_in_l_hand(leftglove, TRUE)
 
 /// Removes gloves. Returns false if gloves are not currently worn
 /obj/item/clothing/gloves/heldgloves/proc/remove_gloves(mob/user)
 	var/removed = FALSE
-	if(istype(user.l_hand, /obj/item/weapon/heldglove))
-		QDEL_NULL(user.l_hand)
+	if(leftglove)
+		QDEL_NULL(leftglove)
 		removed = TRUE
-	if(istype(user.r_hand,/obj/item/weapon/heldglove))
-		QDEL_NULL(user.r_hand)
+	if(rightglove)
+		QDEL_NULL(rightglove)
 		removed = TRUE
 	return removed
 
@@ -127,6 +131,8 @@
 	desc = "Because you really needed another excuse to punch your crewmates."
 	icon_state = "boxing"
 	item_state = "boxing"
+	rightglove_path = /obj/item/weapon/heldglove/boxing/hook
+	leftglove_path = /obj/item/weapon/heldglove/boxing/jab
 
 /obj/item/clothing/gloves/heldgloves/boxing/attackby(obj/item/I, mob/user, params)
 	if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
@@ -143,7 +149,6 @@
 	item_state = "boxing"
 	damtype = STAMINA
 	force = 10
-	flags_item = NODROP //So we can't lose the gloves
 	w_class = WEIGHT_CLASS_BULKY
 	hitsound = "punch"
 
@@ -159,6 +164,8 @@
 /obj/item/clothing/gloves/heldgloves/boxing/green
 	icon_state = "boxinggreen"
 	item_state = "boxinggreen"
+	rightglove_path = /obj/item/weapon/heldglove/boxing/hook/green
+	leftglove_path = /obj/item/weapon/heldglove/boxing/jab/green
 
 /obj/item/weapon/heldglove/boxing/hook/green
 	icon_state = "boxinggreen"
@@ -168,6 +175,8 @@
 /obj/item/clothing/gloves/heldgloves/boxing/blue
 	icon_state = "boxingblue"
 	item_state = "boxingblue"
+	rightglove_path = /obj/item/weapon/heldglove/boxing/hook/blue
+	leftglove_path = /obj/item/weapon/heldglove/boxing/jab/blue
 
 /obj/item/weapon/heldglove/boxing/hook/blue
 	icon_state = "boxingblue"
@@ -177,6 +186,8 @@
 /obj/item/clothing/gloves/heldgloves/boxing/yellow
 	icon_state = "boxingyellow"
 	item_state = "boxingyellow"
+	rightglove_path = /obj/item/weapon/heldglove/boxing/hook/yellow
+	leftglove_path = /obj/item/weapon/heldglove/boxing/jab/yellow
 
 /obj/item/weapon/heldglove/boxing/hook/yellow
 	icon_state = "boxingyellow"
@@ -186,7 +197,7 @@
 //Punching bag. Both punches and attacking with weapons causes it to
 /obj/structure/punching_bag
 	name = "punching bag"
-	desc = "A Nanotrasen punching bag. A common sight this far from Sol."
+	desc = "A Nanotrasen punching bag. A common sight this far from Sol.\nCheap and flimsy, might break if hit by something too heavy."
 	max_integrity = 750 //This is going to get hit, a lot
 	icon = 'icons/obj/clothing/gloves.dmi'
 	icon_state = "punchingbag"
