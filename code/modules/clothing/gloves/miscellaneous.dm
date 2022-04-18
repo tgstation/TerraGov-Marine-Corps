@@ -72,8 +72,8 @@
 //Special type of gloves. Alt click and you get some special nodrop gloves
 /obj/item/clothing/gloves/heldgloves
 	name = "gloves"
-	var/obj/item/weapon/heldglove/right_glove = /obj/item/weapon/heldglove
-	var/obj/item/weapon/heldglove/left_glove = /obj/item/weapon/heldglove
+	var/obj/item/weapon/heldglove/right_glove
+	var/obj/item/weapon/heldglove/left_glove
 
 /obj/item/clothing/gloves/heldgloves/examine(mob/user)
 	. = ..()
@@ -97,7 +97,7 @@
 
 /// Creates the held items for user and puts it in their hand
 /obj/item/clothing/gloves/heldgloves/proc/create_gloves(mob/user)
-	if(user.l_hand != null || user.r_hand != null)
+	if(user.l_hand || user.r_hand)
 		return
 
 	var/obj/item/weapon/heldglove/boxing/rightglove = new right_glove
@@ -129,8 +129,6 @@
 	desc = "Because you really needed another excuse to punch your crewmates."
 	icon_state = "boxing"
 	item_state = "boxing"
-	left_glove = /obj/item/weapon/heldglove/boxing/hook
-	right_glove = /obj/item/weapon/heldglove/boxing/jab
 
 /obj/item/clothing/gloves/heldgloves/boxing/attackby(obj/item/I, mob/user, params)
 	if(iswirecutter(I) || istype(I, /obj/item/tool/surgery/scalpel))
@@ -163,8 +161,6 @@
 /obj/item/clothing/gloves/heldgloves/boxing/green
 	icon_state = "boxinggreen"
 	item_state = "boxinggreen"
-	left_glove = /obj/item/weapon/heldglove/boxing/hook/green
-	right_glove = /obj/item/weapon/heldglove/boxing/jab/green
 
 /obj/item/weapon/heldglove/boxing/hook/green
 	icon_state = "boxinggreen"
@@ -174,8 +170,6 @@
 /obj/item/clothing/gloves/heldgloves/boxing/blue
 	icon_state = "boxingblue"
 	item_state = "boxingblue"
-	left_glove = /obj/item/weapon/heldglove/boxing/hook/blue
-	right_glove = /obj/item/weapon/heldglove/boxing/jab/blue
 
 /obj/item/weapon/heldglove/boxing/hook/blue
 	icon_state = "boxingblue"
@@ -185,8 +179,6 @@
 /obj/item/clothing/gloves/heldgloves/boxing/yellow
 	icon_state = "boxingyellow"
 	item_state = "boxingyellow"
-	left_glove = /obj/item/weapon/heldglove/boxing/hook/yellow
-	right_glove = /obj/item/weapon/heldglove/boxing/jab/yellow
 
 /obj/item/weapon/heldglove/boxing/hook/yellow
 	icon_state = "boxingyellow"
