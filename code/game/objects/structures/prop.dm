@@ -537,3 +537,74 @@
 /obj/structure/prop/brokenvendor/surplusarmor
 	name = "\improper Broken armor clothes vendor"
 	icon_state = "surplus_armor-broken"
+
+///BROKEN VEHICLE PROPS
+
+/obj/structure/prop/vehicle/van
+	name = "van"
+	desc = "An old van, seems to be broken down."
+	icon = 'icons/obj/structures/vehicles.dmi'
+	icon_state = "van"
+	density = TRUE
+	coverage = 70
+	bound_height = 32
+	bound_width = 64
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/truck
+	name = "truck"
+	desc = "An old truck, seems to be broken down."
+	icon = 'icons/obj/structures/vehicles.dmi'
+	icon_state = "truck"
+	density = TRUE
+	coverage = 70
+	bound_height = 32
+	bound_width = 64
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/truck/truckcargo
+	icon_state = "truck_cargo"
+
+/obj/structure/prop/vehicle/crane
+	name = "crane"
+	desc = "An old crane, seems to be broken down."
+	icon = 'icons/obj/structures/vehicles.dmi'
+	icon_state = "crane"
+	density = TRUE
+	coverage = 70
+	bound_height = 64
+	bound_width = 64
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/crane/cranecargo
+	icon_state = "crane_cargo"
+
+/obj/structure/prop/vehicle/crawler
+	name = "crawler"
+	desc = "An old crawler, seems to be broken down."
+	icon = 'icons/obj/structures/vehicles.dmi'
+	icon_state = "crawler"
+	density = TRUE
+	coverage = 70
+	bound_height = 32
+	bound_width = 64
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/crawler/crawler_blue
+	icon_state = "crawler_crate_b"
+
+/obj/structure/prop/vehicle/crawler/crawler_red
+	icon_state = "crawler_crate_r"
+
+/obj/structure/prop/vehicle/crawler/crawler_green
+	icon_state = "crawler_crate_g"
+
+/obj/structure/prop/vehicle/crawler/crawler_fuel
+	icon_state = "crawler_fuel"
+
+/obj/structure/prop/vehicle/crawler/crawler_cargo
+	icon_state = "crawler_cargo"
