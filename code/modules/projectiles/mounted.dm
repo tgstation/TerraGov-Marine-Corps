@@ -69,6 +69,16 @@
 
 ///Reloads the internal_item
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
+	if(HAS_TRAIT(src, TRAIT_GUN_RELOADING))
+		to_chat(user, span_warning("The weapon is already being reloaded!"))
+		return
+
+	if(user.do_actions)
+		to_chat(user, span_warning("You are busy doing something else!"))
+		return
+
+	ADD_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
+
 	var/obj/item/weapon/gun/gun = internal_item
 	if(length(gun.chamber_items))
 		gun.unload(user)
@@ -80,6 +90,8 @@
 	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		return
 	gun.do_unique_action(gun, user)
+
+	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
 
 
 ///This is called when a user tries to operate the gun
