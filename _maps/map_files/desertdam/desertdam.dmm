@@ -61627,10 +61627,6 @@
 	dir = 1
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
-"mWK" = (
-/obj/structure/desertdam/decals/road,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/desert_dam/exterior/landing/landing_pad_three_external)
 "mXh" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -79339,7 +79335,7 @@ hQr
 dTs
 jPc
 cBS
-mWK
+wAC
 dTs
 dTs
 dTs
