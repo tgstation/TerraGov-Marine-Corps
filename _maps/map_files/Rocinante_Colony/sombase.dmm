@@ -927,6 +927,12 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/administrationsom)
+"ea" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	on = 1
+	},
+/turf/open/floor/mainship,
+/area/rocinante_colony/surface/building/barracks)
 "eb" = (
 /obj/structure/rack,
 /turf/open/floor/mainship/orange/full,
@@ -1581,6 +1587,13 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/ground/colonyn)
+"gV" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/ground/colonye)
 "gW" = (
 /obj/structure/table/mainship,
 /obj/machinery/door/window{
@@ -2434,6 +2447,14 @@
 	},
 /turf/open/floor/mainship,
 /area/rocinante_colony/surface/building/glass_ash)
+"ky" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	desc = "pipe going under solid rock was a cm thing, I had nothing to do with it";
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/ground/colonyw)
 "kz" = (
 /obj/machinery/light{
 	dir = 4
@@ -2772,6 +2793,11 @@
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/plating,
 /area/rocinante_colony/ground/colonysw)
+"lR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/surface/building/residential)
 "lS" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/surface/building/ammo_factory)
@@ -3155,6 +3181,11 @@
 /obj/item/bodybag,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/rocinante_colony/ground/colonycent)
+"nx" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/grass,
+/area/rocinante_colony/ground/colonys)
 "ny" = (
 /obj/structure/prop/mainship/missile_tube,
 /turf/open/floor/plating/ground/concrete,
@@ -3554,6 +3585,13 @@
 	},
 /turf/open/floor/plating,
 /area/rocinante_colony/ground/colonynw)
+"ph" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	desc = "pipe going under solid rock was a cm thing, I had nothing to do with it";
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/surface/building/commercial_n)
 "pi" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship,
@@ -3772,6 +3810,16 @@
 /obj/structure/flora/rock/pile/alt,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonys)
+"qh" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/mainship/red/full,
+/area/rocinante_colony/surface/building/administrationoffices)
 "qi" = (
 /obj/structure/bush,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -3931,6 +3979,13 @@
 	},
 /turf/open/floor/plating,
 /area/rocinante_colony/ground/colonyw)
+"qP" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/rocinante_colony/surface/building/residential/res2)
 "qQ" = (
 /obj/structure/prop/mainship/turretprop,
 /turf/open/floor/mainship_hull,
@@ -4426,6 +4481,13 @@
 	},
 /turf/open/floor/grayscale,
 /area/rocinante_colony/surface/building/commercial_n)
+"sP" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/ground/colonyse)
 "sQ" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
@@ -5665,6 +5727,10 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/rocinante_colony/ground/colonyne)
+"xN" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/ground/colonyw)
 "xO" = (
 /obj/structure/cable,
 /obj/machinery/light,
@@ -5840,10 +5906,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
 /area/rocinante_colony/surface/building/space_hangar)
-"yy" = (
-/obj/structure/prop/vehicle/crane,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/rocinante_colony/ground/colonyw)
 "yz" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/snow/layer3,
@@ -5955,6 +6017,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonyw)
+"yY" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/rocinante_colony/ground/colonyse)
 "za" = (
 /obj/structure/flora/rock,
 /turf/open/floor/grass,
@@ -6117,6 +6185,13 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/colonyn)
+"zJ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/surface/building/administrationsom)
 "zK" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -6371,10 +6446,6 @@
 	},
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/residential)
-"AQ" = (
-/obj/structure/prop/vehicle/crane,
-/turf/open/floor/plating/ground/concrete,
-/area/rocinante_colony/ground/colonye)
 "AU" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer3,
@@ -6523,6 +6594,14 @@
 	},
 /turf/open/floor/wood,
 /area/rocinante_colony/ground/colonys)
+"By" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	desc = "pipe going under solid rock was a cm thing, I had nothing to do with it";
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/surface/building/commercial_n)
 "Bz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6857,6 +6936,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/rocinante_colony/surface/building/administrationsom)
+"CX" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/rocinante_colony/ground/colonysw)
 "CY" = (
 /turf/closed/mineral{
 	color = "#c2e4ff"
@@ -6889,6 +6975,10 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship,
 /area/rocinante_colony/surface/building/canteen)
+"Df" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/ground/colonyne)
 "Dg" = (
 /turf/open/floor/freezer,
 /area/rocinante_colony/surface/building/showers)
@@ -6934,6 +7024,14 @@
 	icon_state = "floor8"
 	},
 /area/rocinante_colony/surface/building/dropship_hangar)
+"Dq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	desc = "pipe going under solid rock was a cm thing, I had nothing to do with it";
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/ground/colonycent)
 "Dr" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -7201,10 +7299,24 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/dmg1,
 /area/rocinante_colony/ground/colonycent)
+"Ex" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	on = 1
+	},
+/turf/open/floor/mainship,
+/area/rocinante_colony/surface/building/barracks)
 "EA" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/orange/full,
 /area/rocinante_colony/surface/building/glass_ash)
+"EB" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/rocinante_colony/ground/colonyse)
 "EC" = (
 /obj/machinery/door/window/right{
 	dir = 1
@@ -7216,9 +7328,7 @@
 /turf/open/floor/mainship/red,
 /area/rocinante_colony/ground/colonycent)
 "EE" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonyse)
 "EF" = (
@@ -7414,6 +7524,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/rocinante_colony/ground/colonycent)
+"Fp" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/ground/colonysw)
 "Fq" = (
 /obj/structure/platform{
 	dir = 8
@@ -8429,6 +8546,13 @@
 "Jv" = (
 /turf/open/floor/mainship/orange/full,
 /area/rocinante_colony/surface/building/engineering)
+"Jw" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	on = 1
+	},
+/turf/open/floor/mainship/orange/full,
+/area/rocinante_colony/surface/building/ammo_factory)
 "Jy" = (
 /obj/structure/platform{
 	dir = 1
@@ -8902,6 +9026,14 @@
 "Lo" = (
 /turf/closed/wall/mainship/gray,
 /area/rocinante_colony/surface/building/vehicle_garage)
+"Lp" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/ground/colonynw)
 "Lq" = (
 /obj/effect/landmark/corpsespawner/som,
 /obj/item/ammo_casing,
@@ -9107,6 +9239,12 @@
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_colony/ground/colonycent)
+"Ml" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/ground/colonye)
 "Mm" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/ground/snow/layer3,
@@ -10459,6 +10597,13 @@
 	color = "#c2e4ff"
 	},
 /area/rocinante_colony/ground/underground/caveE)
+"RS" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/surface/building/commercial_n)
 "RT" = (
 /obj/machinery/cic_maptable,
 /turf/open/floor/plating/ground/concrete,
@@ -10651,12 +10796,26 @@
 /obj/structure/table/mainship,
 /turf/open/floor/grayscale,
 /area/rocinante_colony/surface/building/convenience_store)
+"SI" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	on = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/ground/colonyn)
 "SJ" = (
 /obj/machinery/conveyor{
 	dir = 6
 	},
 /turf/open/floor/mainship/orange/full,
 /area/rocinante_colony/surface/building/refinery)
+"SK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/rocinante_colony/ground/colonys)
 "SL" = (
 /turf/open/floor/mainship/red/full,
 /area/rocinante_colony/surface/building/canteen)
@@ -11392,6 +11551,14 @@
 	color = "#c2e4ff"
 	},
 /area/rocinante_colony/ground/colonys)
+"VR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/surface/building/commercial_s)
 "VT" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating,
@@ -11679,6 +11846,13 @@
 /obj/item/weapon/gun/rifle/mpi_km,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonycent)
+"Xe" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/mainship,
+/area/rocinante_colony/surface/building/armory)
 "Xf" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/rocinante_colony/ground/colonye)
@@ -11975,6 +12149,10 @@
 "Yn" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	desc = "pipe going under solid rock was a cm thing, I had nothing to do with it";
+	dir = 4
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonycent)
 "Yo" = (
@@ -13064,7 +13242,7 @@ RB
 RB
 RB
 RB
-RB
+CX
 ww
 iT
 SB
@@ -14771,7 +14949,7 @@ Sa
 Sa
 Sa
 cy
-yy
+cy
 cy
 Pg
 wY
@@ -15100,8 +15278,8 @@ Rd
 Rd
 Rd
 kf
-ft
-CG
+lR
+xN
 cy
 iI
 aJ
@@ -17022,7 +17200,7 @@ hF
 hF
 OM
 uL
-YT
+zJ
 MZ
 MZ
 MZ
@@ -17220,7 +17398,7 @@ hF
 hF
 hF
 Xm
-sJ
+Fp
 sJ
 sJ
 sJ
@@ -18486,7 +18664,7 @@ dQ
 dQ
 cR
 dQ
-DF
+Lp
 dQ
 dQ
 HU
@@ -18694,7 +18872,7 @@ yl
 yl
 yl
 yl
-yl
+Sq
 yl
 yl
 yl
@@ -18866,7 +19044,7 @@ tk
 tk
 cy
 cy
-yX
+ky
 hz
 hz
 hz
@@ -19038,7 +19216,7 @@ Je
 tk
 cy
 cy
-yX
+ky
 hz
 dN
 dN
@@ -19210,7 +19388,7 @@ ne
 Je
 cy
 cy
-yX
+ky
 hz
 og
 WB
@@ -19382,7 +19560,7 @@ cq
 ne
 cy
 cy
-yX
+ky
 hz
 FO
 so
@@ -19554,7 +19732,7 @@ hz
 cq
 cy
 cy
-yX
+ky
 hz
 GJ
 GJ
@@ -19726,7 +19904,7 @@ oS
 hz
 cy
 cy
-yX
+ky
 hz
 GJ
 GJ
@@ -19898,7 +20076,7 @@ hz
 hz
 cy
 cy
-yX
+ky
 hz
 dN
 dN
@@ -20070,7 +20248,7 @@ hz
 cq
 cy
 fH
-yX
+ky
 hz
 hz
 hz
@@ -20242,7 +20420,7 @@ Je
 tk
 cy
 qI
-yX
+ky
 hz
 hz
 oS
@@ -20414,7 +20592,7 @@ ne
 tk
 cy
 cy
-yX
+ky
 hz
 hz
 oS
@@ -20586,7 +20764,7 @@ cq
 BV
 cy
 cy
-yX
+ky
 hz
 hz
 oS
@@ -20758,7 +20936,7 @@ hz
 cq
 cy
 cy
-yX
+ky
 hz
 cq
 hz
@@ -20930,7 +21108,7 @@ hz
 BV
 cy
 cy
-yX
+ky
 ne
 ne
 hz
@@ -21102,7 +21280,7 @@ tk
 ne
 cy
 cy
-yX
+ky
 Je
 ne
 cq
@@ -21274,7 +21452,7 @@ me
 el
 Yd
 Yd
-pH
+Dq
 yT
 dV
 oS
@@ -21392,7 +21570,7 @@ bm
 WT
 Dw
 FS
-dw
+Jw
 kq
 XL
 Qz
@@ -21446,7 +21624,7 @@ by
 VJ
 Yd
 Yd
-pH
+Dq
 by
 yT
 oS
@@ -21499,7 +21677,7 @@ Lk
 Lk
 cx
 fS
-cx
+qh
 Lk
 Lk
 Lk
@@ -21618,7 +21796,7 @@ el
 el
 Yd
 Yd
-pH
+Dq
 me
 dV
 dV
@@ -21790,7 +21968,7 @@ dV
 Qx
 Yd
 Yd
-pH
+Dq
 yT
 dV
 dV
@@ -21819,7 +21997,7 @@ no
 Pi
 wx
 UI
-Pq
+VR
 UI
 gr
 QJ
@@ -21962,7 +22140,7 @@ yT
 el
 Yd
 Ht
-pH
+Dq
 dV
 dV
 dV
@@ -22134,7 +22312,7 @@ dV
 dV
 lm
 Yd
-pH
+Dq
 jX
 xw
 xw
@@ -22306,7 +22484,7 @@ dV
 dV
 Yd
 Yd
-pH
+Dq
 jX
 xw
 sN
@@ -22632,7 +22810,7 @@ YM
 Ob
 Ob
 iR
-Iu
+SI
 mQ
 NP
 si
@@ -22650,7 +22828,7 @@ Mc
 Qx
 Yd
 Yd
-pH
+Dq
 mI
 xw
 oC
@@ -22822,7 +23000,7 @@ xw
 xw
 qT
 Ht
-pH
+Dq
 jX
 xw
 oC
@@ -22994,7 +23172,7 @@ VB
 xw
 qT
 Yd
-pH
+Dq
 jX
 xw
 oC
@@ -23166,7 +23344,7 @@ VB
 xw
 uH
 uH
-Vz
+By
 PO
 FG
 FG
@@ -23338,7 +23516,7 @@ VT
 lo
 uH
 uH
-Vz
+By
 FG
 mn
 CZ
@@ -23510,7 +23688,7 @@ lC
 lC
 Vz
 pH
-Vz
+By
 jX
 xw
 bL
@@ -23682,7 +23860,7 @@ xw
 xw
 kF
 uS
-uH
+ph
 jX
 xw
 OF
@@ -23854,7 +24032,7 @@ ym
 xw
 Cp
 GL
-uH
+RS
 xw
 xw
 XJ
@@ -25616,7 +25794,7 @@ bs
 bs
 by
 Aw
-Aw
+nx
 YF
 YF
 hG
@@ -28388,8 +28566,8 @@ ah
 ah
 ah
 Aw
-tt
-ie
+SK
+qP
 NY
 NY
 NY
@@ -31733,7 +31911,7 @@ fd
 jL
 sG
 em
-sG
+Df
 nt
 wE
 wE
@@ -31770,7 +31948,7 @@ uX
 uX
 uX
 pm
-uX
+Ml
 uX
 Zx
 uX
@@ -31942,7 +32120,7 @@ Zl
 Zl
 Zl
 Zl
-Zl
+gV
 Zl
 Dc
 Dc
@@ -33891,7 +34069,7 @@ fa
 fa
 mg
 mg
-fa
+EB
 JL
 IW
 fa
@@ -33953,7 +34131,7 @@ RR
 ju
 nf
 qS
-qS
+Xe
 qS
 wn
 Uz
@@ -34063,7 +34241,7 @@ yB
 yB
 yB
 Vx
-Vx
+yY
 ZG
 Zc
 fa
@@ -35405,7 +35583,7 @@ rH
 rH
 ZD
 rH
-AQ
+rH
 rH
 Lo
 GY
@@ -35684,7 +35862,7 @@ GZ
 Ct
 yU
 yU
-yU
+Ex
 qU
 uI
 uI
@@ -35925,7 +36103,7 @@ uX
 uX
 uX
 uX
-uX
+Ml
 uX
 uX
 uX
@@ -36097,7 +36275,7 @@ Zl
 Zl
 Zl
 Zl
-Zl
+gV
 Zl
 Zl
 Zl
@@ -36119,7 +36297,7 @@ SG
 kU
 SG
 SG
-SG
+sP
 SG
 SG
 SG
@@ -37404,7 +37582,7 @@ Fc
 Fc
 Fc
 CA
-Fc
+ea
 dJ
 vL
 vL
