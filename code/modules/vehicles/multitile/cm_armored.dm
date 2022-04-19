@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/root/cm_armored/Initialize()
 	. = ..()
 	GLOB.tank_list += src
-	set_light(15)
+	set_light(0.01)
 
 
 /obj/vehicle/multitile/root/cm_armored/Destroy()

@@ -347,6 +347,10 @@
 	icon_state = "wall11"
 	},
 /area/orion_outpost/surface/landing_pad2)
+"bY" = (
+/obj/structure/prop/vehicle/crane,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/ground/outposts)
 "bZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -428,7 +432,6 @@
 	},
 /area/orion_outpost/ground/outpostw)
 "cy" = (
-/obj/effect/forcefield/fog/passable_fog,
 /obj/structure/lattice,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -937,7 +940,6 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/surface/landing_pad_external)
 "fi" = (
-/obj/effect/forcefield/fog/passable_fog,
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1350,15 +1352,6 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostse)
-"hq" = (
-/obj/effect/decal/cleanable/blood/gibs/xeno,
-/obj/structure/cable,
-/obj/effect/forcefield/fog/passable_fog,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/surface/building/research)
 "hs" = (
 /turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
@@ -1556,12 +1549,6 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/prison/whitegreen/full,
 /area/orion_outpost/surface/building/medbay)
-"iv" = (
-/obj/structure/broken_apc{
-	color = "#3d3d3d"
-	},
-/turf/open/floor/plating/ground/dirt2,
-/area/orion_outpost/ground/outpostse)
 "iw" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/tile/damaged/panel,
@@ -2153,6 +2140,7 @@
 "lj" = (
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/structure/prop/vehicle/truck,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outposts)
 "lk" = (
@@ -2385,10 +2373,6 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostn)
-"ms" = (
-/obj/effect/forcefield/fog/passable_fog,
-/turf/open/ground/river,
-/area/orion_outpost/ground/outpostn)
 "mu" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
@@ -2464,6 +2448,10 @@
 "mN" = (
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostnw)
+"mO" = (
+/obj/structure/prop/vehicle/crawler,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outposts)
 "mR" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -3430,6 +3418,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostn)
 "rZ" = (
@@ -3466,6 +3455,12 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/underground/caveW)
+"sh" = (
+/obj/structure/prop/vehicle/crawler/crawler_fuel{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/ground/outpostsw)
 "sj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/ausbushes/fullgrass{
@@ -3730,6 +3725,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostn)
+"tD" = (
+/obj/structure/prop/vehicle/crawler/crawler_fuel{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/surface/landing_pad_external)
 "tE" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt2{
@@ -3884,6 +3885,10 @@
 "uv" = (
 /turf/open/floor,
 /area/orion_outpost/surface/building/command)
+"uw" = (
+/obj/structure/prop/vehicle/crawler/crawler_cargo,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostn)
 "ux" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt2,
@@ -5060,22 +5065,23 @@
 /obj/vehicle/multitile/root/cm_armored/tank{
 	anchored = 1;
 	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
-	icon_state = "turret_cobra"
+	icon_state = "turret_cobra";
+	light_power = 0.1;
+	light_range = 2
 	},
 /obj/vehicle/multitile/root/cm_armored/tank{
 	anchored = 1;
 	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
-	icon_state = "ltb_cannon_1"
+	icon_state = "ltb_cannon_1";
+	light_power = 0.1;
+	light_range = 2
 	},
 /obj/vehicle/multitile/root/cm_armored/tank{
 	anchored = 1;
 	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
-	icon_state = "concussive_armor"
-	},
-/obj/vehicle/multitile/root/cm_armored/tank{
-	anchored = 1;
-	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
-	icon_state = "damaged_hardpt_frame"
+	icon_state = "damaged_hardpt_frame";
+	light_power = 0.1;
+	light_range = 2
 	},
 /turf/closed/wall/indestructible/fakeglass{
 	name = "col"
@@ -5787,6 +5793,13 @@
 "Ej" = (
 /turf/closed/wall,
 /area/orion_outpost/ground/outposte)
+"Ek" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostn)
 "El" = (
 /obj/effect/landmark/corpsespawner/marine,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -5805,6 +5818,7 @@
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/barracks)
 "Ew" = (
+/obj/structure/prop/vehicle/crane,
 /turf/open/floor/tile/damaged/panel,
 /area/orion_outpost/surface/building/command)
 "Ey" = (
@@ -5877,7 +5891,9 @@
 /obj/vehicle/multitile/root/cm_armored/tank{
 	anchored = 1;
 	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
-	icon_state = "artillerymod_1"
+	icon_state = "artillerymod_1";
+	light_power = 0.1;
+	light_range = 2
 	},
 /turf/closed/wall/indestructible/fakeglass{
 	name = "col"
@@ -6094,6 +6110,12 @@
 /obj/machinery/floor_warn_light,
 /turf/closed/mineral/indestructible,
 /area/orion_outpost/surface/landing_pad_external)
+"FT" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/orion_outpost/ground/outpostnw)
 "FU" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/prison/whitegreen/full,
@@ -6662,6 +6684,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostse)
+"IO" = (
+/obj/structure/prop/vehicle/truck,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outposte)
 "IP" = (
 /turf/open/floor/grass{
 	color = "#ffb682"
@@ -7721,6 +7747,11 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outpostw)
+"OB" = (
+/obj/structure/flora/rock/pile/alt,
+/obj/structure/prop/vehicle/crawler/crawler_blue,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostnw)
 "OC" = (
 /turf/closed/shuttle/escapepod{
 	icon_state = "wall6"
@@ -7954,6 +7985,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
+/obj/structure/prop/vehicle/truck/truckcargo,
 /turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostw)
 "PF" = (
@@ -8404,15 +8436,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/surface/building/showers)
-"Sf" = (
-/obj/structure/flora/ausbushes/fullgrass{
-	color = "#ffb682"
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/gm/dense{
-	color = "#ffb682"
-	},
-/area/orion_outpost/ground/outpostn)
 "Sg" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -8563,6 +8586,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostw)
+"SV" = (
+/obj/structure/prop/vehicle/crawler/crawler_blue,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostw)
 "SX" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -8572,6 +8599,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/plate,
 /area/orion_outpost/surface/building/bunker)
+"Tb" = (
+/obj/structure/flora/ausbushes/fullgrass{
+	color = "#ffb682"
+	},
+/obj/structure/prop/vehicle/crawler/crawler_red,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outpostcent)
 "Tc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/structure/cable,
@@ -8988,7 +9022,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostn)
 "Va" = (
-/turf/closed/mineral/indestructible,
+/obj/structure/prop/vehicle/truck{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt2,
 /area/orion_outpost/ground/outpostse)
 "Vc" = (
 /obj/machinery/shield_gen,
@@ -9211,22 +9248,23 @@
 /obj/vehicle/multitile/root/cm_armored/tank{
 	anchored = 1;
 	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
-	icon_state = "turret_viper"
+	icon_state = "turret_viper";
+	light_power = 0.1;
+	light_range = 2
 	},
 /obj/vehicle/multitile/root/cm_armored/tank{
 	anchored = 1;
 	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
-	icon_state = "ltaaap_minigun_1"
+	icon_state = "ltaaap_minigun_1";
+	light_power = 0.1;
+	light_range = 2
 	},
 /obj/vehicle/multitile/root/cm_armored/tank{
 	anchored = 1;
 	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
-	icon_state = "ballistic_armor"
-	},
-/obj/vehicle/multitile/root/cm_armored/tank{
-	anchored = 1;
-	desc = "A broken down M34A2 Longstreet Light Tank, you wish it worked";
-	icon_state = "damaged_hardpt_frame"
+	icon_state = "damaged_hardpt_frame";
+	light_power = 0.1;
+	light_range = 2
 	},
 /turf/closed/wall/indestructible/fakeglass{
 	name = "col"
@@ -9271,6 +9309,10 @@
 /obj/item/ammo_casing,
 /turf/open/floor/mainship/plate,
 /area/orion_outpost/surface/building/bunker)
+"WA" = (
+/obj/structure/prop/vehicle/crawler/crawler_fuel,
+/turf/open/floor/plating/ground/dirt2,
+/area/orion_outpost/ground/outposte)
 "WC" = (
 /obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/prison/sterilewhite,
@@ -11368,7 +11410,7 @@ ja
 ja
 vl
 sL
-Im
+tD
 Im
 Al
 aa
@@ -12079,7 +12121,7 @@ mN
 DI
 Dp
 Dp
-wo
+SV
 wo
 wo
 LQ
@@ -12942,8 +12984,8 @@ zD
 mN
 mN
 wd
-AR
-Km
+mN
+mN
 mN
 mN
 md
@@ -12952,7 +12994,7 @@ mN
 fw
 AR
 mN
-cO
+FT
 bQ
 md
 mN
@@ -13244,7 +13286,7 @@ Sv
 oU
 Ra
 sU
-iv
+Rq
 Rq
 Rq
 YY
@@ -13468,7 +13510,7 @@ GM
 IB
 So
 sU
-Va
+Rq
 Bv
 dX
 YY
@@ -13521,7 +13563,7 @@ zD
 mN
 mN
 mN
-DT
+OB
 vc
 zD
 eM
@@ -13580,7 +13622,7 @@ XD
 oU
 GH
 sU
-Va
+Rq
 Rq
 Rq
 YY
@@ -15414,7 +15456,7 @@ iG
 Pc
 IH
 pw
-qp
+rt
 qh
 iB
 Ap
@@ -15702,7 +15744,7 @@ po
 wP
 wP
 wP
-wP
+mO
 ME
 jl
 ci
@@ -15750,7 +15792,7 @@ Pc
 UN
 UN
 YZ
-iB
+uw
 qp
 pB
 Ap
@@ -15975,8 +16017,8 @@ UN
 UN
 iB
 iB
-ms
-rt
+aG
+iB
 Ap
 ag
 iB
@@ -16012,7 +16054,7 @@ XK
 kX
 xw
 Rl
-sG
+Tb
 DZ
 pG
 wZ
@@ -16087,8 +16129,8 @@ UN
 iB
 Ec
 iB
-qp
-qp
+iB
+iB
 Ap
 ag
 iB
@@ -16159,7 +16201,7 @@ ER
 gA
 GW
 ef
-ef
+bY
 vf
 wP
 wP
@@ -16199,7 +16241,7 @@ iB
 YZ
 Ec
 OS
-rt
+iB
 qp
 Oi
 ag
@@ -16884,9 +16926,9 @@ AM
 BU
 iR
 yc
+Ek
 HK
-Sf
-Sf
+HK
 UN
 PB
 HK
@@ -17688,7 +17730,7 @@ RY
 Wa
 Kh
 Kh
-Kh
+Wa
 Ew
 yk
 Wa
@@ -17779,7 +17821,7 @@ wU
 EP
 qe
 bC
-hq
+vv
 ww
 vD
 XW
@@ -18148,7 +18190,7 @@ dL
 dL
 dL
 lk
-lk
+IO
 lk
 yH
 yH
@@ -18737,7 +18779,7 @@ eE
 Pu
 Nw
 gU
-gU
+sh
 Up
 FQ
 FQ
@@ -19693,7 +19735,7 @@ Bm
 XW
 iQ
 lk
-lk
+WA
 lk
 XM
 XM
