@@ -93,6 +93,7 @@
 /obj/item/clothing/gloves/heldgloves/unequipped(mob/unequipper, slot)
 	. = ..()
 	remove_gloves(unequipper)
+	DISABLE_BITFIELD(flags_item, NODROP)
 
 //We use alt-click to activate/deactive the gloves in-hand
 /obj/item/clothing/gloves/heldgloves/AltClick(mob/user)
@@ -101,21 +102,23 @@
 		return
 
 	if(remove_gloves(user))
+		DISABLE_BITFIELD(flags_item, NODROP)
 		return
 
 	user.drop_all_held_items() //Gloves require free hands
-	create_gloves(user)
+	if(create_gloves(user))
+		ENABLE_BITFIELD(flags_item, NODROP) //Make sure the gloves aren't able to be taken off
 
 /// Creates the held items for user and puts it in their hand
 /obj/item/clothing/gloves/heldgloves/proc/create_gloves(mob/user)
 	if(user.l_hand || user.r_hand)
-		return
+		return FALSE
 
 	rightglove = new rightglove_path()
 	leftglove = new leftglove_path()
 
 	if(user.put_in_r_hand(rightglove, TRUE) || user.put_in_l_hand(leftglove, TRUE))
-		TOGGLE_BITFIELD(flags_item, NODROP) //Make sure the gloves aren't able to be taken off
+		return TRUE
 
 /// Removes gloves. Returns false if gloves are not currently worn
 /obj/item/clothing/gloves/heldgloves/proc/remove_gloves(mob/user)
@@ -126,8 +129,6 @@
 	if(rightglove)
 		QDEL_NULL(rightglove)
 		removed = TRUE
-	if(removed)
-		TOGGLE_BITFIELD(flags_item, NODROP)
 	return removed
 
 /obj/item/weapon/heldglove
