@@ -209,12 +209,17 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/phase_shift/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(owner)
-	for(var/shutter_check in GLOB.wraith_no_incorporeal_pass_shutters)
-		if(locate(shutter_check) in T)
-			if(!silent)
+	if(!silent)
+		//Checking warp shutters
+		for(var/shutter_check in GLOB.wraith_no_incorporeal_pass_shutters)
+			if(locate(shutter_check) in T)
 				to_chat(owner, span_xenowarning("We can't Phase Shift while in the space of warp protected shutters!"))
+				return FALSE
+		//Checking area
+		var/area/current_area = get_area(T)
+		if(is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas) || is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas_dropship))
+			to_chat(owner, span_xenowarning("We can't Phase Shift in this area!"))
 			return FALSE
-
 
 /datum/action/xeno_action/phase_shift/action_activate()
 	. = ..()
@@ -306,14 +311,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(ghost.get_filter("wraith_phase_shift_windup_2"), x = 60*rand() - 30, y = 60*rand() - 30, size=rand()*2.5+0.5, offset=rand(), time = 0.25 SECONDS, loop = -1)
 	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_phase_shift_windup_1"), 0.5 SECONDS)
 	addtimer(CALLBACK(ghost, /atom.proc/remove_filter, "wraith_phase_shift_windup_2"), 0.5 SECONDS)
-
 	var/current_turf = get_turf(ghost)
-	var/block_check //Are we trying to rematerialize in a solid object? Check.
 
-	if(isspaceturf(current_turf) || turf_block_check(owner, current_turf, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE)) //So we rematerialized in a solid wall/space or invincible dense object
-		block_check = TRUE
-
-	if(block_check) //We tried to rematerialize in a solid object/wall of some kind; return to sender
+	if(check_blocks(current_turf)) //We tried to rematerialize in a solid object/wall of some kind; return to sender
 		to_chat(ghost, span_highdanger("As we rematerialize in a solid object, we revert to where we slipped out of reality."))
 		resync = TRUE
 		ghost.forceMove(starting_turf)
@@ -339,6 +339,22 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	starting_turf = null
 	plasma_cost = initial(plasma_cost) //Revert the plasma cost to its initial amount
 	add_cooldown(cooldown_override)
+
+///Checks if we're trying to re-materialise into a turf we're not supposed to be in. Return true if we can't shift into here
+/datum/action/xeno_action/phase_shift/proc/check_blocks(current_turf)
+	//So we rematerialized in a solid wall/space or invincible dense object
+	if(isspaceturf(current_turf) || turf_block_check(owner, current_turf, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE))
+		return TRUE
+
+	//We can accidentally get stuck in these
+	for(var/shutter_check in GLOB.wraith_no_incorporeal_pass_shutters)
+		if(locate(shutter_check) in current_turf)
+			return TRUE
+
+	//We're re-materialising in a no-no area somehow
+	var/area/current_area = get_area(current_turf)
+	if(is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas) || is_type_in_typecache(current_area, GLOB.wraith_no_incorporeal_pass_areas_dropship))
+		return TRUE
 
 /datum/action/xeno_action/phase_shift/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to fade from reality again."))
@@ -509,6 +525,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	new /obj/effect/temp_visual/wraith_warp(get_turf(teleporter))
 
+	if(owner.status_flags & INCORPOREAL) //No debuff while in phase shift
+		return
+
 	for(var/mob/living/living_target in range(1, teleporter.loc))
 
 		if(living_target.stat == DEAD)
@@ -519,10 +538,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			if(X.issamexenohive(ghost)) //No friendly fire
 				continue
 
-		shake_camera(living_target, 2, 1)
 		living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
 		living_target.add_slowdown(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS)
-		living_target.adjust_blurriness(WRAITH_TELEPORT_DEBUFF_SLOWDOWN_STACKS) //minor visual distortion
 		to_chat(living_target, span_warning("You feel nauseous as reality warps around you!"))
 
 /datum/action/xeno_action/activable/blink/on_cooldown_finish()
@@ -546,6 +563,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/atom/movable/banishment_target = null
 	///SFX indicating the banished target's position
 	var/obj/effect/temp_visual/banishment_portal/portal = null
+	///Backup coordinates to teleport the banished to, in case the portal gets destroyed (shuttles!!)
+	var/list/backup_coordinates = list(0,0,0)
 	///The timer ID of any Banish currently active
 	var/banish_duration_timer_id
 	///Phantom zone reserved area
@@ -576,7 +595,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!"))
 		return FALSE
 
-	if(!line_of_sight(owner, A)) //Needs to be in line of sight.
+	if(!line_of_sight(owner, A, ignore_target_opacity = TRUE)) //Needs to be in line of sight.
 		if(!silent)
 			to_chat(owner, span_xenowarning("We can't banish without line of sight to our target!"))
 		return FALSE
@@ -587,6 +606,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	var/banished_turf = get_turf(A) //Set the banishment turf.
 	banishment_target = A //Set the banishment target
+	backup_coordinates[1] = banishment_target.x //Set up backup coordinates in case banish portal gets destroyed
+	backup_coordinates[2] = banishment_target.y
+	backup_coordinates[3] = banishment_target.z
 
 	ghost.face_atom(A) //Face the target so we don't look like an ass
 
@@ -664,8 +686,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	SIGNAL_HANDLER
 	if(!banishment_target)
 		return
+	if(get_turf(portal))
+		banishment_target.forceMove(get_turf(portal))
+	else //The portal got removed. There's no way back. Ohgodohfuck.
+		banishment_target.forceMove(locate(backup_coordinates[1], backup_coordinates[2], backup_coordinates[3]))
 
-	banishment_target.forceMove(get_turf(portal))
 	banishment_target.resistance_flags = initial(banishment_target.resistance_flags)
 	banishment_target.status_flags = initial(banishment_target.status_flags) //Remove stasis and temp invulerability
 	teleport_debuff_aoe(banishment_target) //Debuff/distortion when we reappear
@@ -733,6 +758,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/T = get_turf(target)
 	if(isspaceturf(T) && !ignore_space)
 		return TRUE
+	if(isclosedturf(T) && !ignore_closed_turf) //If we care about closed turfs
+		return TRUE
 	for(var/atom/blocker AS in T)
 		if((blocker.flags_atom & ON_BORDER) || blocker == subject) //If they're a border entity or our subject, we don't care
 			continue
@@ -741,8 +768,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(!blocker.density) //Check if we're dense
 			continue
 		if(!ignore_density) //If we care about all dense atoms or only certain types of dense atoms
-			return TRUE
-		if(isclosedturf(blocker) && !ignore_closed_turf) //If we care about closed turfs
 			return TRUE
 		if((blocker.resistance_flags & INDESTRUCTIBLE) && !ignore_invulnerable) //If we care about dense invulnerable objects
 			return TRUE

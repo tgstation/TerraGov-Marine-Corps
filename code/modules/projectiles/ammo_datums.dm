@@ -1078,7 +1078,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 1
 
 /datum/ammo/bullet/smartmachinegun
-	name = "smartmachinegun bullet"
+	name = "smartgun bullet"
 	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
@@ -1087,12 +1087,6 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	penetration = 15
 	sundering = 2
-
-/datum/ammo/bullet/smartgun/smartrifle
-	name = "smartrifle bullet"
-	damage = 20
-	penetration = 10
-	sundering = 1.5
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
@@ -1565,6 +1559,23 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/tesla/ammo_process(obj/projectile/proj, damage)
 	zap_beam(proj, 4, damage)
+
+/datum/ammo/energy/tesla/focused
+	flags_ammo_behavior = AMMO_ENERGY|SPECIAL_PROCESS|AMMO_IFF
+	shell_speed = 0.1
+	damage = 10
+	penetration = 10
+	bullet_color = COLOR_TESLA_BLUE
+
+/datum/ammo/energy/tesla/focused/ammo_process(obj/projectile/proj, damage)
+	zap_beam(proj, 3, damage)
+
+
+/datum/ammo/energy/tesla/on_hit_mob(mob/M,obj/projectile/P)
+	if(isxeno(M)) //need 1 second more than the actual effect time
+		var/mob/living/carbon/xenomorph/X = M
+		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
+
 
 /datum/ammo/energy/droidblast
 	name = "energetic plasma bolt"

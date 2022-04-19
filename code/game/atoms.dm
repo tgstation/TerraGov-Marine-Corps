@@ -718,12 +718,12 @@ Proc for attack log creation, because really why not
 	return INITIALIZE_HINT_NORMAL
 
 
-//called if Initialize returns INITIALIZE_HINT_LATELOAD
+///called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize(mapload)
-	return
+	set waitfor = FALSE
 
 
-//called when the turf the atom resides on is ChangeTurfed
+///called when the turf the atom resides on is ChangeTurfed
 /atom/proc/HandleTurfChange(turf/T)
 	for(var/a in src)
 		var/atom/A = a

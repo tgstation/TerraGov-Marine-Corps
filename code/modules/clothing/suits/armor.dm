@@ -42,7 +42,7 @@
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/large_holster/blade
+		/obj/item/storage/holster/blade
 	)
 
 
@@ -100,7 +100,7 @@
 	allowed = list(
 		/obj/item/weapon/gun/,
 		/obj/item/flashlight,
-		/obj/item/storage/large_holster/blade,
+		/obj/item/storage/holster/blade,
 		/obj/item/storage/belt/gun/pistol/m4a3,
 		/obj/item/storage/belt/gun/m44,
 	)

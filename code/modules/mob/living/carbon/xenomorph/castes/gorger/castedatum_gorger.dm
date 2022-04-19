@@ -36,7 +36,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER|CASTE_INNATE_PLASMA_REGEN|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = XENO_BOMB_RESIST_1, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Gorger Abilities *** //
 	overheal_max = 200
@@ -78,7 +78,7 @@
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_1, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 	// *** Gorger Abilities *** //
 	overheal_max = 225
@@ -104,7 +104,7 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_1, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	// *** Gorger Abilities *** //
 	overheal_max = 250
@@ -129,7 +129,7 @@
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_1, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	// *** Gorger Abilities *** //
 	overheal_max = 275
@@ -151,7 +151,7 @@
 	max_health = 600
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_1, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	// *** Gorger Abilities *** //
 	overheal_max = 275
