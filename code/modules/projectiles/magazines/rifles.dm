@@ -20,6 +20,7 @@
 	icon_state = "m412_ext"
 	max_rounds = 60
 	icon_state_mini = "mag_rifle_big_yellow"
+	bonus_overlay = "m412_ex"
 
 /obj/item/ammo_magazine/rifle/incendiary
 	name = "\improper M412 incendiary magazine (10x24mm)"
@@ -27,6 +28,7 @@
 	icon_state = "m412_incendiary"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
 	icon_state_mini = "mag_rifle_big_red"
+	bonus_overlay = "m412_incend"
 
 /obj/item/ammo_magazine/rifle/ap
 	name = "\improper M412 AP magazine (10x24mm)"
@@ -34,6 +36,7 @@
 	icon_state = "m412_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
 	icon_state_mini = "mag_rifle_big_green"
+	bonus_overlay = "m412_ap"
 
 //-------------------------------------------------------
 //T18 Carbine

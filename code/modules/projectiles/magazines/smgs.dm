@@ -21,12 +21,14 @@
 	icon_state = "m25_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
 	icon_state_mini = "mag_smg_green"
+	bonus_overlay = "m25_ap"
 
 /obj/item/ammo_magazine/smg/m25/extended
 	name = "\improper MR-25 extended magazine (10x20mm)"
 	icon_state = "m25_ext"
 	max_rounds = 90
 	icon_state_mini = "mag_smg_yellow"
+	bonus_overlay = "m25_ex"
 
 //-------------------------------------------------------
 //T-19 Machinepistol ammo
