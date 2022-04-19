@@ -87,11 +87,12 @@
 	gun.reload(ammo_magazine, user)
 	update_icon_state()
 
+	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
+
 	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		return
 	gun.do_unique_action(gun, user)
 
-	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
 
 
 ///This is called when a user tries to operate the gun
