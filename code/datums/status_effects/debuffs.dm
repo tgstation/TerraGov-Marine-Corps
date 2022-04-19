@@ -202,7 +202,7 @@
 /datum/status_effect/plasmadrain/tick()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	if(xenoowner.plasma_stored >= 0)
-		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 17
+		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 10
 		xenoowner.plasma_stored -= remove_plasma_amount
 		if(xenoowner.plasma_stored <= 0)
 			xenoowner.plasma_stored = 0

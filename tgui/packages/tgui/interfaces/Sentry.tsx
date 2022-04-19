@@ -2,8 +2,20 @@ import { useBackend } from '../backend';
 import { Button, LabeledList, Section, ProgressBar } from '../components';
 import { Window } from '../layouts';
 
+type SentryData = {
+  name: string
+  rounds: number
+  rounds_max: number
+  fire_mode: string
+  health: number
+  health_max: number
+  safety_toggle: boolean
+  manual_override: string
+  alerts_on: boolean
+  radial_mode: boolean
+}
 export const Sentry = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<SentryData>(context);
   const {
     name,
     rounds,

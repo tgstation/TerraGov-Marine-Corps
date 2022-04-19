@@ -174,14 +174,6 @@
 #define RESTRAINED_RAZORWIRE (1<<3)
 #define RESTRAINED_PSYCHICGRAB (1<<4)
 
-
-//Explosion resistance
-#define XENO_BOMB_RESIST_4 100
-#define XENO_BOMB_RESIST_3 80
-#define XENO_BOMB_RESIST_2 60
-#define XENO_BOMB_RESIST_1 40
-#define XENO_BOMB_RESIST_0 0
-
 #define SINGLE_CASING (1 << 0)
 #define SPEEDLOADER (1 << 1)
 #define MAGAZINE (1 << 2)

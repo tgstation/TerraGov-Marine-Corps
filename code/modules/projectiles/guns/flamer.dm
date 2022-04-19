@@ -222,7 +222,7 @@
 			turfs_to_burn -= turf_to_check
 			continue
 		for(var/obj/object in turf_to_check)
-			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno))
+			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno) || istype(object, /obj/machinery/deployable) || istype(object, /obj/vehicle))
 				continue
 			turfs_to_burn -= turf_to_check
 

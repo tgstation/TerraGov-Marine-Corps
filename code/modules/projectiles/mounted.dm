@@ -47,6 +47,13 @@
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.do_unique_action(internal_gun, user)
 
+/obj/machinery/deployable/mounted/attackby_alternate(obj/item/I, mob/user, params)
+	. = ..()
+	if(!ishuman(user))
+		return
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.attackby_alternate(I, user, params)
+
 /obj/machinery/deployable/mounted/attackby(obj/item/I, mob/user, params) //This handles reloading the gun, if its in acid cant touch it.
 	. = ..()
 
@@ -192,6 +199,17 @@
 	var/turf/move_to = get_step(src, REVERSE_DIR(angle))
 	var/mob/living/carbon/human/user = operator
 
+	var/obj/item/attachable/scope/current_scope
+	for(var/key in gun.attachments_by_slot)
+		var/obj/item/attachable = gun.attachments_by_slot[key]
+		if(!attachable || !istype(attachable, /obj/item/attachable/scope))
+			continue
+		var/obj/item/attachable/scope/scope = attachable
+		if(!scope.zoom)
+			continue
+		scope.zoom_item_turnoff(operator, operator)
+		current_scope = scope
+
 	if(!operator.Move(move_to))
 		to_chat(operator, "You cannot rotate [src] that way.")
 		return FALSE
@@ -200,6 +218,10 @@
 	user.set_interaction(src)
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
+
+	if(current_scope && current_scope.deployed_scope_rezoom)
+		INVOKE_ASYNC(current_scope, /obj/item/attachable/scope.proc/activate, operator)
+
 	return FALSE
 
 
@@ -219,9 +241,7 @@
 
 	for(var/key in gun.attachments_by_slot)
 		var/obj/item/attachable = gun.attachments_by_slot[key]
-		if(!attachable)
-			continue
-		if(!istype(attachable, /obj/item/attachable/scope))
+		if(!attachable || !istype(attachable, /obj/item/attachable/scope))
 			continue
 		var/obj/item/attachable/scope/scope = attachable
 		if(!scope.zoom)

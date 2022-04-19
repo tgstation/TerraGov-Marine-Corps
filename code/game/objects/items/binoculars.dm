@@ -15,6 +15,9 @@
 
 
 /obj/item/binoculars/attack_self(mob/user)
+	if(user.interactee && istype(user.interactee, /obj/machinery/deployable))
+		to_chat(user, span_warning("You can't use this right now!"))
+		return
 	zoom(user)
 
 #define MODE_CAS 0
