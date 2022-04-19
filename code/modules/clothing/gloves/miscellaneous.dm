@@ -117,7 +117,7 @@
 	rightglove = new rightglove_path()
 	leftglove = new leftglove_path()
 
-	if(user.put_in_r_hand(rightglove, TRUE) || user.put_in_l_hand(leftglove, TRUE))
+	if(user.put_in_r_hand(rightglove, TRUE) && user.put_in_l_hand(leftglove, TRUE))
 		return TRUE
 
 /// Removes gloves. Returns false if gloves are not currently worn
