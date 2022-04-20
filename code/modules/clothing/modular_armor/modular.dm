@@ -789,3 +789,108 @@
 	name = "\improper M11X pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+
+//SOM modular armour
+
+/obj/item/clothing/suit/modular/som
+	name = "\improper Martian medium battle armor"
+	desc = "Standard combat armor worn by Martian and later SOM infantry. Provides ample protection without significantly impairing the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 45, "bullet" = 70, "laser" = 60, "energy" = 60, "bomb" = 55, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
+	icon_state = "som_medium"
+	item_state = "som_medium"
+	slowdown = 0.5
+
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+	icon_state_variants = list(
+		"black",
+	)
+	current_variant = "black"
+
+	allowed_uniform_type = /obj/item/clothing/under
+
+/obj/item/clothing/suit/modular/som/light
+	name = "\improper Martian scout armor"
+	desc = "A lightweight suit of Martian armor that provided reasonable protection with minimal impairment to the users mobility. Often seen on scouts or second line units. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 40, "bullet" = 65, "laser" = 55, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
+	icon_state = "som_light"
+	item_state = "som_light"
+	slowdown = 0.3
+
+/obj/item/clothing/suit/modular/som/heavy
+	name = "\improper Martian heavy battle armor"
+	desc = "Standard heavy duty combat armor worn by Martian marines, this armor is now typically seen on elite SOM shock troops. Provides excellent protection without significantly compromising on mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 60, "bio" = 50, "rad" = 65, "fire" = 70, "acid" = 50)
+	icon_state = "som_heavy"
+	item_state = "som_heavy"
+	slowdown = 0.7
+
+	siemens_coefficient = 0.4
+	permeability_coefficient = 0.5
+	gas_transfer_coefficient = 0.5
+
+/obj/item/clothing/suit/modular/som/heavy/leader
+	name = "\improper Martian tartaros combat armor"
+	desc = "A bulky suit of heavy combat armor, among the best armor Martian forges ever produced. Typically seen on Martian leaders or their most elite combat units due to the significant construction and maintenance requirements. Provides outstanding protection without significantly compromising on mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 60, "bullet" = 80, "laser" = 70, "energy" = 70, "bomb" = 70, "bio" = 55, "rad" = 70, "fire" = 80, "acid" = 50)
+	icon_state = "som_leader"
+	item_state = "som_leader"
+
+//helmet
+
+/obj/item/clothing/head/modular/som
+	name = "Martian infantry Helmet"
+	desc = "The standard combat helmet worn by Martian and later SOM combat troops. Provides effective protection without compromising visibility."
+	icon = 'icons/mob/modular/m10.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+	icon_state = "som_helmet"
+	item_state = "som_helmet"
+	soft_armor = list("melee" = 45, "bullet" = 70, "laser" = 60, "energy" = 60, "bomb" = 55, "bio" = 50, "rad" = 60, "fire" = 70, "acid" = 50)
+	accuracy_mod = 0
+	greyscale_config = null
+	greyscale_colors = null
+
+	flags_armor_protection = HEAD|FACE|EYES
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/armor/visor/marine,
+		/obj/item/armor_module/armor/badge,
+	)
+
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+
+	visorless_offset_x = 0
+	visorless_offset_y = 0
+	icon_state_variants = list(
+		"black",
+	)
+	current_variant = "black"
+	colorable_colors = list()
