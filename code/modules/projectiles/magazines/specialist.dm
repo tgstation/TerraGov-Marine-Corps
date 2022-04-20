@@ -33,6 +33,7 @@
 	icon_state = "tl127_flak"
 	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
 	icon_state_mini = "mag_sniper_blue"
+	bonus_overlay = "tl127_flak"
 
 //M42C magazine
 
@@ -75,6 +76,7 @@
 	icon_state = "tx8_incend"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/incendiary
 	icon_state_mini = "mag_rifle_big_red"
+	bonus_overlay = "tx8_incend"
 
 /obj/item/ammo_magazine/rifle/tx8/impact
 	name = "\improper high velocity impact magazine (10x28mm)"
@@ -82,6 +84,7 @@
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
 	icon_state_mini = "mag_rifle_big_blue"
+	bonus_overlay = "tx8_impact"
 
 
 //-------------------------------------------------------

@@ -227,6 +227,7 @@
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
 	max_rounds = 12
 	icon_state_mini = "mag_tx15_flechette"
+	bonus_overlay = "tx15_flech"
 
 /obj/item/ammo_magazine/rifle/tx15_slug
 	name = "\improper TX-15 slug magazine (16 gauge)"
@@ -236,6 +237,7 @@
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
 	max_rounds = 12
 	icon_state_mini = "mag_tx15_slug"
+	bonus_overlay = "tx15_slug"
 
 //-------------------------------------------------------
 //SMARTMACHINEGUN AMMUNITION
