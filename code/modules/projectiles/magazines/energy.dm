@@ -91,4 +91,3 @@
 	self_recharge = TRUE
 	charge_amount = 30
 	charge_delay = 2 SECONDS
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
