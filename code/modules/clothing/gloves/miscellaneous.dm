@@ -139,6 +139,7 @@
 /obj/item/clothing/gloves/heldgloves/boxing
 	name = "boxing gloves"
 	desc = "Because you really needed another excuse to punch your crewmates."
+	icon = 'icons/obj/clothing/boxing.dmi'
 	icon_state = "boxing"
 	item_state = "boxing"
 	rightglove_path = /obj/item/weapon/heldglove/boxing/hook
@@ -154,7 +155,7 @@
 /obj/item/weapon/heldglove/boxing
 	name = "boxing glove"
 	desc = "Because you really needed another excuse to punch your crewmates."
-	icon = 'icons/obj/clothing/gloves.dmi'
+	icon = 'icons/obj/clothing/boxing.dmi'
 	icon_state = "boxing"
 	item_state = "boxing"
 	damtype = STAMINA
@@ -187,9 +188,9 @@
 	leftglove_path = /obj/item/weapon/heldglove/boxing/jab/green
 
 /obj/item/weapon/heldglove/boxing/hook/green
-	icon_state = "boxinggreen"
+	icon_state = "boxing_p_g"
 /obj/item/weapon/heldglove/boxing/jab/green
-	icon_state = "boxinggreen"
+	icon_state = "boxing_j_g"
 
 /obj/item/clothing/gloves/heldgloves/boxing/blue
 	icon_state = "boxingblue"
@@ -198,9 +199,9 @@
 	leftglove_path = /obj/item/weapon/heldglove/boxing/jab/blue
 
 /obj/item/weapon/heldglove/boxing/hook/blue
-	icon_state = "boxingblue"
+	icon_state = "boxing_p_b"
 /obj/item/weapon/heldglove/boxing/jab/blue
-	icon_state = "boxingblue"
+	icon_state = "boxing_j_b"
 
 /obj/item/clothing/gloves/heldgloves/boxing/yellow
 	icon_state = "boxingyellow"
@@ -209,16 +210,16 @@
 	leftglove_path = /obj/item/weapon/heldglove/boxing/jab/yellow
 
 /obj/item/weapon/heldglove/boxing/hook/yellow
-	icon_state = "boxingyellow"
+	icon_state = "boxing_p_y"
 /obj/item/weapon/heldglove/boxing/jab/yellow
-	icon_state = "boxingyellow"
+	icon_state = "boxing_j_y"
 
 //Punching bag. Both punches and attacking with weapons causes it to
 /obj/structure/punching_bag
 	name = "punching bag"
 	desc = "A Nanotrasen punching bag. A common sight this far from Sol.\nCheap and flimsy, might break if hit by something too heavy."
 	max_integrity = 750 //This is going to get hit, a lot
-	icon = 'icons/obj/clothing/gloves.dmi'
+	icon = 'icons/obj/clothing/boxing.dmi'
 	icon_state = "punchingbag"
 
 /obj/structure/punching_bag/attackby(obj/item/I, mob/user, params)
