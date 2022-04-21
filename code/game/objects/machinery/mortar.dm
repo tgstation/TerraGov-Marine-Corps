@@ -35,6 +35,7 @@
 		/obj/item/mortal_shell/he,
 		/obj/item/mortal_shell/incendiary,
 		/obj/item/mortal_shell/smoke,
+		/obj/item/mortal_shell/flare,
 		/obj/item/mortal_shell/plasmaloss,
 	)
 
@@ -326,7 +327,7 @@
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_ammo_cas"
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	flags_atom = CONDUCT
 
 /obj/item/mortal_shell/proc/detonate(turf/T)
@@ -354,7 +355,6 @@
 	name = "\improper 80mm smoke mortar shell"
 	desc = "An 80mm mortar shell, loaded with smoke dispersal agents. Can be fired at marines more-or-less safely. Way slimmer than your typical 80mm."
 	icon_state = "mortar_ammo_smk"
-	w_class = WEIGHT_CLASS_SMALL
 	var/datum/effect_system/smoke_spread/tactical/smoke
 
 /obj/item/mortal_shell/smoke/Initialize()
@@ -394,7 +394,6 @@
 	name = "\improper 80mm flare mortar shell"
 	desc = "An 80mm mortar shell, loaded with an illumination flare, far slimmer than your typical 80mm shell. Can be fired out of larger cannons."
 	icon_state = "mortar_ammo_flr"
-	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/mortal_shell/flare/detonate(turf/T)
 	new /obj/effect/mortar_flare(T)
