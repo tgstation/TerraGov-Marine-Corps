@@ -761,11 +761,10 @@
 	var/mob/living/carbon/human/H = L
 	for(var/datum/limb/X in H.limbs)
 		for(var/datum/wound/W in X.wounds)
-			if(W.internal)
-				W.damage = max(0, W.damage - (effect_str))
-				X.update_damages()
-				if (X.update_icon())
-					X.owner.UpdateDamageIcon(1)
+			W.damage = max(0, W.damage - (effect_str))
+			X.update_damages()
+			if (X.update_icon())
+				X.owner.UpdateDamageIcon(1)
 	return ..()
 
 
@@ -797,11 +796,10 @@
 	var/mob/living/carbon/human/H = L
 	for(var/datum/limb/X in H.limbs)
 		for(var/datum/wound/W in X.wounds)
-			if(W.internal)
-				W.damage = max(0, W.damage - (2.5*effect_str))
-				X.update_damages()
-				if (X.update_icon())
-					X.owner.UpdateDamageIcon(1)
+			W.damage = max(0, W.damage - (2.5*effect_str))
+			X.update_damages()
+			if (X.update_icon())
+				X.owner.UpdateDamageIcon(1)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY
 	L.adjustStaminaLoss(15*effect_str)

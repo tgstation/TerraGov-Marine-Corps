@@ -420,10 +420,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	if(brute_dam >= 20)
-		if(prob((brute_dam - (limb_wound_status & LIMB_WOUND_BANDAGED ? 50 : 0)) * 2))
+		if(prob((brute_dam - (limb_wound_status & LIMB_WOUND_BANDAGED ? 50 : 0)) * 4))
 			germ_level++
 	if(burn_dam >= 20)
-		if(prob(burn_dam - (limb_wound_status & LIMB_WOUND_SALVED ? 50 : 0)))
+		if(prob(burn_dam - (limb_wound_status & LIMB_WOUND_SALVED ? 50 : 0) * 2))
 			germ_level++
 
 
@@ -518,7 +518,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	for(var/datum/wound/W in wounds)
 		// Internal wounds get worse over time. Low temperatures (cryo) stop them.
-		if(W.internal && owner.bodytemperature >= 170 && !HAS_TRAIT(owner, TRAIT_STASIS))
+		if(owner.bodytemperature >= 170 && !HAS_TRAIT(owner, TRAIT_STASIS))
 			var/bicardose = owner.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine)
 			var/inaprovaline = owner.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)
 			var/old_qc = owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclotplus)

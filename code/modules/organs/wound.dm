@@ -20,8 +20,6 @@
 
 	///stages such as "cut", "deep cut", etc.
 	var/list/stages
-	///internal wounds can only be fixed through surgery
-	var/internal = FALSE
 	// maximum stage at which bleeding should still happen, counted from the right rather than the left of the list
 	// 1 means all stages except the last should bleed
 	var/max_bleeding_stage = 1
@@ -74,9 +72,6 @@
  */
 /datum/wound/proc/heal_wound_damage(heal_amount, heals_internal = FALSE)
 	// If the wound is internal, and we don't heal internal wounds just pass through.
-	if(internal && !heals_internal)
-		// heal nothing
-		return heal_amount
 
 	// either, the entire wound, or the heal_amount
 	var/healed_damage = min(damage, heal_amount)
@@ -221,7 +216,6 @@ datum/wound/cut/massive
 
 /** INTERNAL BLEEDING **/
 /datum/wound/internal_bleeding
-	internal = 1
 	stages = list("severed artery" = 30, "cut artery" = 20, "damaged artery" = 10, "bruised artery" = 5)
 	autoheal_cutoff = 5
 	max_bleeding_stage = 0	//all stages bleed. It's called internal bleeding after all.

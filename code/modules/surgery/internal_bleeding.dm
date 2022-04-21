@@ -17,9 +17,8 @@
 
 /datum/surgery_step/fix_vein/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(affected.surgery_open_stage >= 2)
-		for(var/datum/wound/W in affected.wounds)
-			if(W.internal)
-				return 1
+		if(affected.wounds.len)
+			return 1
 
 /datum/surgery_step/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] starts patching the damaged vein in [target]'s [affected.display_name] with \the [tool].") , \
@@ -31,10 +30,9 @@
 	user.visible_message(span_notice("[user] has patched the damaged vein in [target]'s [affected.display_name] with \the [tool]."), \
 		span_notice("You have patched the damaged vein in [target]'s [affected.display_name] with \the [tool]."))
 
-	for(var/datum/wound/W in affected.wounds)
-		if(W.internal)
-			affected.wounds -= W
-			affected.update_damages()
+	for(var/datum/wound/W AS in affected.wounds)
+		affected.wounds -= W
+		affected.update_damages()
 	if(ishuman(user) && prob(40))
 		user:bloody_hands(target, 0)
 
