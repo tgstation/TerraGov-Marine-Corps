@@ -193,6 +193,7 @@
 
 /obj/item/weapon/heldglove/boxing/hook/green
 	icon_state = "boxing_p_g"
+
 /obj/item/weapon/heldglove/boxing/jab/green
 	icon_state = "boxing_j_g"
 
@@ -204,6 +205,7 @@
 
 /obj/item/weapon/heldglove/boxing/hook/blue
 	icon_state = "boxing_p_b"
+
 /obj/item/weapon/heldglove/boxing/jab/blue
 	icon_state = "boxing_j_b"
 
@@ -215,6 +217,7 @@
 
 /obj/item/weapon/heldglove/boxing/hook/yellow
 	icon_state = "boxing_p_y"
+
 /obj/item/weapon/heldglove/boxing/jab/yellow
 	icon_state = "boxing_j_y"
 
