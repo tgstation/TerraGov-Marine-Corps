@@ -165,12 +165,16 @@
 
 /obj/item/weapon/heldglove/boxing/attack(mob/living/M, mob/living/user)
 	. = ..()
-	if(ishuman(M))
-		var/mob/living/carbon/human/target = M
-		if(target.getStaminaLoss() > 10 && (target.stat != UNCONSCIOUS))
-			playsound(loc, 'sound/effects/knockout.ogg', 25, FALSE)
-			target.balloon_alert_to_viewers("[target] collapses to the ground in exhaustion! K.O!", "You give up and collapse! K.O!")
-			target.Sleeping(10 SECONDS)
+	if(!ishuman(M))
+		return
+
+	var/mob/living/carbon/human/target = M
+	if(!(target.getStaminaLoss() > 10 && (target.stat != UNCONSCIOUS)))
+		return
+
+	playsound(loc, 'sound/effects/knockout.ogg', 25, FALSE)
+	target.balloon_alert_to_viewers("[target] collapses to the ground in exhaustion! K.O!", "You give up and collapse! K.O!")
+	target.Sleeping(10 SECONDS)
 
 /obj/item/weapon/heldglove/boxing/hook
 	icon_state = "boxing_p"
