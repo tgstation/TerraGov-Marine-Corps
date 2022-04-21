@@ -859,8 +859,8 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
 	name = "\improper Volkite charger"
 	desc = "An extremely powerful Martian energy weapon, infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. Sometimes referred to as 'Martian deathrays', these weapons are thankfully quite uncommon due to their difficulty in manufacture and maintenance. The volkite charger is designed for close range combat due to its smaller size and weight."
-	icon_state = "charger" //wip
-	item_state = "charger" //wip
+	icon_state = "charger"
+	item_state = "charger"
 	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	dry_fire_sound = 'sound/weapons/guns/misc/error.ogg'
 	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
@@ -903,8 +903,8 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin
 	name = "\improper Volkite culverin"
 	desc = "An extremely powerful Martian energy weapon, infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. Sometimes referred to as 'Martian deathrays', these weapons are thankfully quite uncommon due to their difficulty in manufacture and maintenance. The volkite culverin is the largest man portable example of  volkite weaponry, and can lay down a staggering torrent of fire due to it's linked back-mounted powerpack."
-	icon_state = "culverin" //placeholder
-	item_state = "culverin" //placeholder
+	icon_state = "culverin"
+	item_state = "culverin"
 	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	max_shots = 120
 	ammo_datum_type = /datum/ammo/energy/volkite/heavy
