@@ -1,0 +1,4 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - rscdel: "Removes an old system from the dark ages when you had to get attachments from req."
