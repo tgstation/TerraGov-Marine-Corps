@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - bugfix: "Windows should no longer go invisible when surrounded by 3 or more walls."
+  - imageadd: "Created a number of windows directional variants to fix bug causing invisible windows."
