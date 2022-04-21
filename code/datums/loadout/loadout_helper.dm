@@ -143,12 +143,6 @@
 		else
 			seller.buying_bitfield &= ~MARINE_CAN_BUY_L_POUCH
 		return TRUE
-	if(selling_bitfield == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
-		if(seller.buying_bitfield & MARINE_CAN_BUY_ATTACHMENT)
-			seller.buying_bitfield &= ~MARINE_CAN_BUY_ATTACHMENT
-		else
-			seller.buying_bitfield &= ~MARINE_CAN_BUY_ATTACHMENT2
-		return TRUE
 	seller.buying_bitfield &= ~selling_bitfield
 	return TRUE
 
