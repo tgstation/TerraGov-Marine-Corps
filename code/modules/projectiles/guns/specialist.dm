@@ -424,7 +424,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/minigun/smart_microgun
 	name = "\improper T-85 LSWS 'Microgun'"
-	desc = "A multi-barreled Light Support Weapon System or 'Microgun' to those who prefer slang over technicality. This is a IFF-capable light support weapon with a massive amount of firepower and thought put behind the construction... Mind the windup, however. It is chambered in 10x26 caseless."
+	desc = "A multi-barreled Light Support Weapon System or 'Microgun' to those who prefer slang over technicality. This is an IFF-capable light support weapon with a massive amount of firepower and thought put behind its construction... Mind the windup, however. It is chambered in 10x26 caseless."
 	icon_state = "microgun"
 	max_shells = 1000 //codex
 	caliber = CALIBER_10x26_CASELESS //codex
