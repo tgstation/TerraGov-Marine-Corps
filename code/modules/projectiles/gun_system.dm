@@ -254,9 +254,9 @@
 	///Whether the gun has ammo level overlays for its icon, mainly for eguns
 	var/ammo_level_icon
 	///Whether the icon_state overlay is offset in the x axis
-	var/icon_overlay_x_offset = null
+	var/icon_overlay_x_offset = 0
 	///Whether the icon_state overlay is offset in the Y axis
-	var/icon_overlay_y_offset = null
+	var/icon_overlay_y_offset = 0
 
 /*
  *
