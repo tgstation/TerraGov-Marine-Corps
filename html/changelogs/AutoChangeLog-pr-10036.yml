@@ -1,4 +1,0 @@
-author: "goose4429"
-delete-after: True
-changes: 
-  - bugfix: "fixed deployables being able to take several reloads at once"

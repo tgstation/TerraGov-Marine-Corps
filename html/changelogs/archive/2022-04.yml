@@ -292,3 +292,44 @@
   tyeagg:
   - imageadd: reworked cm vehicle sprites
   - rscadd: vehicle props into chigusa
+2022-04-22:
+  Arctrooper8:
+  - rscdel: Removes an old system from the dark ages when you had to get attachments
+      from req.
+  - balance: The TGMC have stopped using recycled soda cans to create their robotic
+      personnel
+  DeltaFire15:
+  - bugfix: Gear vendors use points again.
+  Derrick2Electricboogaloo:
+  - bugfix: SMESs in engineering updated with new SMESs no more cheeky aciding.
+  - bugfix: Tcomms devices in CIC actually function and serve a purpose now.
+  - bugfix: adjusted placement of two dropship crash locations. (Req and marine prep)
+  - bugfix: fixed all the button sprite positions, and sprite icons
+  - bugfix: added more engine room blast door buttons so it is harder to get locked
+      in
+  - qol: CIC overhaul, SD updated.
+  - qol: CIC armory added (can only be access during hijack)
+  - qol: Sulaco Area File Cleaned up.
+  - qol: Moved PO bunks to Hangar
+  - qol: Added more lights to req
+  - qol: Overhauled Req area to help with flow
+  - qol: A few more AI displays around ship
+  - qol: Re-added a disposal system to Sulaco.
+  - qol: Corrected the disturbing lack of cigars.
+  - qol: Adjust CAS area to fix with Elsa's standardization
+  - qol: Adjusted and fixed drop pod area
+  - qol: Added more lighting all over the ship, it is not so dark anymore.
+  - qol: Adjusted medbay a bit so it looks better
+  - qol: Moved garden to medbay.
+  - qol: Replaced all double 1x1 doors with newer 2x1 doors
+  RipGrayson:
+  - bugfix: Windows should no longer go invisible when surrounded by 3 or more walls.
+  - imageadd: Created a number of windows directional variants to fix bug causing
+      invisible windows.
+  goose4429:
+  - bugfix: Shovel can't be sharpened more than once
+  - bugfix: fixed deployables being able to take several reloads at once
+  novaepee:
+  - rscadd: Add Minerva's starboard ERT shuttle landing zone
+  - balance: Add Minerva's starboard ERT shuttle landing zone
+  - balance: change Tramadol reagent bottle from 20u to 60u
