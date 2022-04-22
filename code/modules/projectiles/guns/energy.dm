@@ -822,15 +822,15 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite
 	name = "volkite gun"
 	desc = "you shouldn't see this gun."
-	icon_state = "charger" //wip
-	item_state = "charger" //wip
+	icon_state = "charger"
+	item_state = "charger"
 	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	dry_fire_sound = 'sound/weapons/guns/misc/error.ogg'
 	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/volkite_reload.ogg'
 	max_shots = 50
 	ammo_datum_type = /datum/ammo/energy/volkite
-	rounds_per_shot = 24 //placeholder
+	rounds_per_shot = 24
 	default_ammo_type = /obj/item/cell/lasgun/volkite
 	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite)
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
@@ -868,9 +868,17 @@
 	max_shots = 50
 	rounds_per_shot = 24
 	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
-	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 26, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 	scatter = 4
 	accuracy_mult_unwielded = 0.7
 	scatter_unwielded = 15
@@ -892,11 +900,21 @@
 		/obj/item/cell/lasgun/volkite/powerpack,
 	)
 	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
-	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 33, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 	accuracy_mult = 1.1
-	aim_slowdown = 0.4
+	aim_slowdown = 0.45
 	wield_delay	= 0.7 SECONDS
 	fire_delay = 0.25 SECONDS
 
@@ -912,10 +930,11 @@
 	default_ammo_type = null
 	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/powerpack)
 	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
-	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE //autoeject removed, needs testing
-	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 17, "rail_y" = 22, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 	accuracy_mult = 1.1
 	aim_slowdown = 1
 	wield_delay	= 1.2 SECONDS
