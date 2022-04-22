@@ -5,6 +5,7 @@
 	desc = "A specialized high density battery used to power lasguns."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "m43"
+	item_state = null
 	maxcharge = 600 ///Changed due to the fact some maps and ERTs spawn with the child, the lasrifle. Charges on guns changed accordingly.
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
