@@ -10170,14 +10170,6 @@
 	},
 /turf/open/floor/tile/red/whitered/full,
 /area/rocinante_colony/surface/building/commercial_s)
-"nJv" = (
-/obj/structure/cable{
-	layer = 1.99
-	},
-/obj/structure/table/mainship,
-/obj/item/storage/toolbox/mechanical,
-/turf/open/floor/mainship,
-/area/rocinante_colony/surface/building/engineering)
 "nKh" = (
 /obj/structure/table/mainship,
 /obj/structure/window{
@@ -12992,11 +12984,6 @@
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/colonyw)
-"rQj" = (
-/obj/structure/table/mainship,
-/obj/item/cell/high,
-/turf/open/floor/mainship/orange/full,
-/area/rocinante_colony/surface/building/engineering)
 "rRb" = (
 /obj/structure/cable{
 	layer = 1.99
@@ -13821,6 +13808,13 @@
 	},
 /turf/open/floor/mainship,
 /area/rocinante_colony/surface/building/administrationoffices)
+"sWi" = (
+/obj/machinery/power/smes/buildable/empty/dist,
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/orange/full,
+/area/rocinante_colony/surface/building/engineering)
 "sWF" = (
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 4
@@ -15326,6 +15320,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/rocinante_colony/ground/colonys)
+"vwj" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship,
+/area/rocinante_colony/surface/building/engineering)
 "vwN" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/ground/snow/layer3,
@@ -34719,14 +34722,14 @@ jbI
 bpV
 aUh
 aUh
-leE
+mnY
 mhd
 qNZ
 xiX
 mek
-rQj
-xiX
-ktx
+sWi
+sWi
+sWi
 mnY
 mnY
 mnY
@@ -34916,9 +34919,9 @@ ohl
 qNZ
 qNZ
 oLX
-nJv
-qNZ
-uGq
+vwj
+vwj
+vwj
 ozR
 xiX
 akD
