@@ -1,10 +1,6 @@
 /proc/random_ethnicity()
 	return pick(GLOB.ethnicities_list)
 
-
-/proc/random_body_type()
-	return pick(GLOB.body_types_list)
-
 /proc/random_hair_style(gender, species = "Human")
 	var/list/valid_hairstyles = list()
 	for(var/hairstyle in GLOB.hair_styles_list)

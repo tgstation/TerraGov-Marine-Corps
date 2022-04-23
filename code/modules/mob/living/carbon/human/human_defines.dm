@@ -36,7 +36,6 @@
 	var/b_eyes = 0
 
 	var/ethnicity = "Western"	// Ethnicity
-	var/body_type = "Mesomorphic (Average)" // Body Type
 
 	//Skin colour
 	var/r_skin = 0
