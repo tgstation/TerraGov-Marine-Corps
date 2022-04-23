@@ -177,6 +177,10 @@
 	name = "Vehicle Garage"
 	icon_state = "dark128"
 
+/area/rocinante_colony/surface/building/tadpole_hangar
+	name = "Tadpole Hangar"
+	icon_state = "dark128"
+
 /area/rocinante_colony/surface/building/storage_depot
 	name = "Storage Depot"
 	icon_state = "dark128"
@@ -243,3 +247,39 @@
 /area/rocinante_colony/surface/building/refinery
 	name = "Mining Refinery"
 	icon_state = "dk_yellow"
+
+/area/rocinante_colony/surface/building/secpostn
+	name = "Security Post North"
+	icon_state = "red"
+	minimap_color = MINIMAP_AREA_SEC
+
+/area/rocinante_colony/surface/building/secposts
+	name = "Security Post South"
+	icon_state = "red"
+	minimap_color = MINIMAP_AREA_SEC
+
+/area/rocinante_colony/surface/building/commanddorms
+	name = "Command Dorms"
+	icon_state = "crew_quarters"
+
+/area/rocinante_colony/surface/building/industryrest
+	name = "Industry Rest Area"
+	icon_state = "dk_yellow"
+
+/area/rocinante_colony/surface/building/canterbury
+	name = "Canterbury"
+	icon_state = "dark128"
+
+/area/rocinante_colony/surface/building/bunker
+	name = "Bunker"
+	icon_state = "dark128"
+	always_unpowered = TRUE
+
+/area/rocinante_colony/surface/building/medbay
+	name = "Medbay"
+	icon_state = "medbay"
+	minimap_color = MINIMAP_AREA_MEDBAY
+
+/area/rocinante_colony/surface/building/office
+	name = "Office South"
+	icon_state = "dark128"

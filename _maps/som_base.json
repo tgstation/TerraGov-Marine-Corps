@@ -6,7 +6,7 @@
         "COLD": true
     },
     "armor": "ice",
-	"announce_text": "A garbled, unintelligible communications message was broadcasted over a general frequency, and picked up by our comms relay. The message appears to have come from a mining outpost, located on an ice cold planet. The ###SHIPNAME### is moving into the sector with thrusters at max throttle. TGMC, get briefed and then move out!",
+	"announce_text": "After a failed TGMC operation to retake the Rocinante Polar Colony from the SOM.SF were sent in to destroy the nuclear device on the canterbury and any valuable material,contact was lost with the SF team with the last message being 'Runner, 200 meters, front!'",
 	"traits":[{
 		"weather_snowstorm": true
 	}]
