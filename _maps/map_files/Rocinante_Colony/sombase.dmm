@@ -330,9 +330,6 @@
 	},
 /turf/open/floor/plating,
 /area/rocinante_colony/surface/building/space_hangar)
-"azF" = (
-/turf/closed/wall/mainship/gray,
-/area/rocinante_colony/ground/colonynw)
 "aAd" = (
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/river)
@@ -1218,10 +1215,6 @@
 	},
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/colonys)
-"bKJ" = (
-/obj/structure/flora/pottedplant/twentyone,
-/turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
 "bLm" = (
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonynw)
@@ -1958,10 +1951,6 @@
 	},
 /turf/open/shuttle/dropship/floor,
 /area/rocinante_colony/surface/building/dropship_hangar)
-"cNN" = (
-/obj/structure/bed/chair/wood/normal,
-/turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
 "cOB" = (
 /obj/structure/desertdam/decals/road/edge{
 	icon_state = "road_edge_decal9"
@@ -2138,6 +2127,13 @@
 	},
 /turf/open/floor/mainship/red/full,
 /area/rocinante_colony/surface/building/secposts)
+"dao" = (
+/obj/structure/bed/chair/wood/normal,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/grayscale,
+/area/rocinante_colony/surface/building/industryrest)
 "dar" = (
 /obj/structure/bush,
 /obj/effect/ai_node,
@@ -2861,7 +2857,7 @@
 "dYV" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
+/area/rocinante_colony/surface/building/industryrest)
 "dZd" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -3514,10 +3510,6 @@
 /obj/machinery/vending/hydroseeds,
 /turf/open/floor/grass,
 /area/rocinante_colony/surface/building/commercial_n)
-"eUr" = (
-/obj/effect/ai_node,
-/turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
 "eWh" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship,
@@ -4017,7 +4009,7 @@
 "fDt" = (
 /obj/machinery/processor,
 /turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
+/area/rocinante_colony/surface/building/industryrest)
 "fDE" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
@@ -6229,7 +6221,7 @@
 /obj/effect/landmark/corpsespawner/chef,
 /obj/effect/ai_node,
 /turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
+/area/rocinante_colony/surface/building/industryrest)
 "iFa" = (
 /obj/structure/prop/vehicle/van,
 /turf/open/floor/plating/ground/concrete,
@@ -6446,10 +6438,6 @@
 /obj/structure/platform/rockcliff,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonyne)
-"iUN" = (
-/obj/effect/landmark/corpsespawner/miner,
-/turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
 "iVh" = (
 /obj/structure/noticeboard{
 	desc = "Healthcare is free here"
@@ -7612,11 +7600,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/cargo_office)
-"kAG" = (
-/obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/mre_pack/meal2,
-/turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
 "kAZ" = (
 /obj/structure/monorail,
 /obj/structure/prop/vehicle/truck/truckcargo{
@@ -7806,6 +7789,10 @@
 /obj/item/weapon/gun/shotgun/double/sawn,
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/commercial_n)
+"kLU" = (
+/obj/structure/prop/mainship/turretprop,
+/turf/closed/wall/mainship/gray,
+/area/rocinante_colony/surface/building/secpostn)
 "kML" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -8039,6 +8026,15 @@
 	dir = 8
 	},
 /area/rocinante_colony/surface/building/space_hangar)
+"ldP" = (
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/red/full,
+/area/rocinante_colony/surface/building/secpostn)
 "ldR" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/snow{
@@ -13920,9 +13916,6 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonyse)
-"tgA" = (
-/turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
 "tht" = (
 /obj/structure/cable{
 	layer = 1.99
@@ -14083,7 +14076,7 @@
 /obj/item/reagent_containers/food/snacks/marinebread,
 /obj/item/reagent_containers/food/snacks/marinebread,
 /turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
+/area/rocinante_colony/surface/building/industryrest)
 "ttZ" = (
 /obj/structure/sink/bathroom,
 /turf/open/floor/mainship/sterile/white,
@@ -14384,6 +14377,12 @@
 /obj/item/stack/sheet/wood,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonycent)
+"tXT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/grayscale,
+/area/rocinante_colony/surface/building/industryrest)
 "tXZ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -15203,7 +15202,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/microwave,
 /turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
+/area/rocinante_colony/surface/building/industryrest)
 "vlz" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -16696,7 +16695,7 @@
 "xmx" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/grayscale,
-/area/rocinante_colony/ground/colonynw)
+/area/rocinante_colony/surface/building/industryrest)
 "xmO" = (
 /obj/item/weapon/gun/shotgun/combat,
 /obj/effect/ai_node,
@@ -16746,6 +16745,12 @@
 /obj/structure/curtain/shower,
 /turf/open/floor/mainship/sterile/white,
 /area/rocinante_colony/surface/building/residential)
+"xql" = (
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/grayscale,
+/area/rocinante_colony/surface/building/industryrest)
 "xqr" = (
 /turf/closed/wall/mainship/gray,
 /area/rocinante_colony/ground/colonycent)
@@ -18582,8 +18587,8 @@ qyc
 nhu
 nhu
 qyc
-azF
-azF
+qyc
+qyc
 fOb
 fOb
 bLm
@@ -18774,8 +18779,8 @@ qyc
 vAP
 vAP
 dmt
-tgA
-azF
+dvR
+qyc
 fOb
 fOb
 bLm
@@ -18966,8 +18971,8 @@ qyc
 xwf
 hdp
 vHI
-cNN
-azF
+nDI
+qyc
 fOb
 fOb
 fOb
@@ -19158,8 +19163,8 @@ qyc
 xwf
 vJb
 cAy
-iUN
-azF
+vJb
+qyc
 fOb
 fOb
 fOb
@@ -19350,8 +19355,8 @@ vHI
 bxI
 xwf
 dmt
-tgA
-azF
+xwf
+qyc
 fOb
 fOb
 fOb
@@ -19726,16 +19731,16 @@ bLm
 wYY
 wYY
 wYY
-azF
+qyc
 fDt
-eUr
-kAG
+lRu
+xBs
 xBs
 xwf
 xwf
 cAy
 xwf
-nDI
+dao
 vHI
 nDI
 xwf
@@ -19918,9 +19923,9 @@ kDZ
 kDZ
 bLm
 bLm
-azF
+qyc
 fDt
-tgA
+xwf
 iEZ
 mZE
 xwf
@@ -20110,10 +20115,10 @@ kDZ
 kDZ
 kDZ
 bLm
-azF
+qyc
 xmx
 dYV
-tgA
+xwf
 mZE
 nDI
 lRu
@@ -20302,10 +20307,10 @@ kDZ
 kDZ
 kDZ
 wYY
-azF
+qyc
 vlx
 vlx
-tgA
+xwf
 xBs
 xwf
 dEg
@@ -20494,10 +20499,10 @@ kDZ
 kDZ
 kDZ
 wYY
-azF
+qyc
 vlx
 vlx
-tgA
+xwf
 xBs
 xwf
 xwf
@@ -20686,10 +20691,10 @@ kDZ
 kDZ
 kDZ
 wYY
-azF
-azF
-azF
-eUr
+qyc
+qyc
+qyc
+lRu
 xwf
 xwf
 hdp
@@ -20878,15 +20883,15 @@ kDZ
 kDZ
 kDZ
 kDZ
-azF
+qyc
 ttP
 ttP
-tgA
+xwf
 kXo
 xwf
 qQu
 cAy
-xwf
+xql
 qyc
 fOb
 fOb
@@ -21070,12 +21075,12 @@ tiw
 kDZ
 kDZ
 kDZ
-azF
-tgA
-tgA
-eUr
 qyc
+tXT
 xwf
+lRu
+qyc
+tXT
 qQu
 xwf
 xwf
@@ -21262,10 +21267,10 @@ jDj
 kDZ
 kDZ
 kDZ
-azF
-bKJ
-eUr
-tgA
+qyc
+iKl
+lRu
+xwf
 qyc
 xwf
 lRu
@@ -25109,10 +25114,10 @@ kDZ
 kDZ
 pxz
 mWz
-iwK
+kLU
+ldP
 fEg
-fEg
-iwK
+kLU
 qsw
 qsw
 dsY
