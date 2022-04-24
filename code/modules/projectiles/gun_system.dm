@@ -492,7 +492,7 @@
 	. += overlay
 
 /obj/item/weapon/gun/update_item_state()
-	if(!CHECK_BITFIELD(flags_gun_features, ITEM_SHOWS_AMMO_REMAINING))
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_SHOWS_AMMO_REMAINING))
 		item_state = "[base_gun_icon][flags_item & WIELDED ? "_w" : ""]"
 		return
 
