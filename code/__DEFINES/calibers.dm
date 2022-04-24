@@ -9,7 +9,7 @@
 #define CALIBER_45L ".45 Long"
 #define CALIBER_22LR ".22 LR"
 #define CALIBER_380ACP ".380 ACP"
-#define CALIBER_PLASMA "Ionized Plasma Bolt" //TX-7 Plasma Pistol
+#define CALIBER_PLASMA "Ionized Plasma Bolt" //PP-7 Plasma Pistol
 #define CALIBER_50AE ".50 AE"
 #define CALIBER_41RIM ".41 Rimfire" //Derringer
 #define CALIBER_70MANKEY ".70 Mankey" //Don't ask
@@ -68,7 +68,7 @@
 // --- Special ---
 #define CALIBER_FUEL "Fuel"
 #define CALIBER_FUEL_THICK "UT-Napthal Fuel"
-#define CALIBER_10X28 "10x28mm" //Sentry, OG Smartgun and T-26 Sniper?
+#define CALIBER_10X28 "10x28mm" //Sentry, OG Smartgun and SR-26 Sniper?
 #define CALIBER_86 "86mm" //MBT Main Cannon
 #define CALIBER_PEPPERBALL "SAN Ball " //Pepperball gun
 

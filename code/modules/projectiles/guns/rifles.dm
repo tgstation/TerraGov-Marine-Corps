@@ -24,11 +24,11 @@
 	lower_akimbo_accuracy = 3
 
 //-------------------------------------------------------
-//T-18 Carbine
+//AR-18 Carbine
 
 /obj/item/weapon/gun/rifle/standard_carbine
-	name = "\improper T-18 carbine"
-	desc = "The T-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
+	name = "\improper AR-18 carbine"
+	desc = "The AR-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
 	icon_state = "t18"
 	item_state = "t18"
 	fire_sound = "gun_t12"
@@ -96,11 +96,11 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/t18barrel, /obj/item/attachable/angledgrip)
 
 //-------------------------------------------------------
-//T-12 Assault Rifle
+//AR-12 Assault Rifle
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle
-	name = "\improper T-12 assault rifle"
-	desc = "The T-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
+	name = "\improper AR-12 assault rifle"
+	desc = "The AR-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
 	icon_state = "t12"
 	item_state = "t12"
 	fire_sound = "gun_t12"
@@ -170,11 +170,11 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/t12barrel, /obj/item/attachable/angledgrip)
 
 //-------------------------------------------------------
-//T-37 DMR
+//DMR-37 DMR
 
 /obj/item/weapon/gun/rifle/standard_dmr
-	name = "\improper T-37 designated marksman rifle"
-	desc = "The T-37 DMR is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
+	name = "\improper DMR-37 designated marksman rifle"
+	desc = "The DMR-37  is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t37"
 	item_state = "t37"
@@ -238,11 +238,11 @@
 
 
 //-------------------------------------------------------
-//T-64 BR
+//BR-64 BR
 
 /obj/item/weapon/gun/rifle/standard_br
-	name = "\improper T-64 battle rifle"
-	desc = "The T-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
+	name = "\improper BR-64 battle rifle"
+	desc = "The BR-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
 	icon_state = "t64"
 	item_state = "t64"
 	icon = 'icons/Marine/gun64.dmi'
@@ -302,16 +302,16 @@
 	scatter = 0
 
 //-------------------------------------------------------
-//M412 Pulse Rifle
+//PR-412 Pulse Rifle
 
 /obj/item/weapon/gun/rifle/m412
-	name = "\improper M412 pulse rifle"
-	desc = "The M412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition."
+	name = "\improper PR-412 pulse rifle"
+	desc = "The PR-412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m412"
 	item_state = "m412"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/M412.ogg"
+	fire_sound = "sound/weapons/guns/fire/PR-412.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -368,11 +368,11 @@
 
 
 //-------------------------------------------------------
-//M412 PMC VARIANT
+//PR-412 PMC VARIANT
 
 /obj/item/weapon/gun/rifle/m412/elite
-	name = "\improper M412E battle rifle"
-	desc = "An \"Elite\" modification of the M412 pulse rifle series, given to special operation units. It has been given a stock and a longer barrel with an integrated barrel charger, with a red skull stenciled on the body for some reason."
+	name = "\improper PR-412E battle rifle"
+	desc = "An \"Elite\" modification of the PR-412 pulse rifle series, given to special operation units. It has been given a stock and a longer barrel with an integrated barrel charger, with a red skull stenciled on the body for some reason."
 	icon_state = "m412e"
 	item_state = "m412e"
 	default_ammo_type = /obj/item/ammo_magazine/rifle/ap
@@ -412,10 +412,10 @@
 
 
 //-------------------------------------------------------
-//HK-11
+//PR-11
 
 /obj/item/weapon/gun/rifle/m41a
-	name = "\improper HK-11 pulse rifle"
+	name = "\improper PR-11 pulse rifle"
 	desc = "A strange failed electronically fired rifle, a rather unknown weapon of its time. It caused a surge in the use of electronic firing in the modern era though. Uses 10x24mm caseless ammunition. Has a irremoveable grenade launcher."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m41a"
@@ -754,8 +754,8 @@
 //M41AE2 Heavy Pulse Rifle
 
 /obj/item/weapon/gun/rifle/m412l1_hpr
-	name = "\improper M412L1 heavy pulse rifle"
-	desc = "A large weapon capable of laying down supressing fire, based on the M412 pulse rifle platform. Uses 10x24mm caseless ammunition."
+	name = "\improper PR-412L1 heavy pulse rifle"
+	desc = "A large weapon capable of laying down supressing fire, based on the PR-412 pulse rifle platform. Uses 10x24mm caseless ammunition."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m412l1"
 	item_state = "m412l1"
@@ -1160,11 +1160,11 @@
 
 
 //-------------------------------------------------------
-//T-81 Auto-Sniper
+//GL-81 Auto-Sniper
 
 /obj/item/weapon/gun/rifle/standard_autosniper
-	name = "\improper T-81 automatic sniper rifle"
-	desc = "The T-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It's users use it for it's high rate of fire for it's class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
+	name = "\improper GL-81 automatic sniper rifle"
+	desc = "The GL-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It's users use it for it's high rate of fire for it's class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
 	icon_state = "t81"
 	item_state = "t81"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
@@ -1215,7 +1215,7 @@
 	caliber = CALIBER_492X34_CASELESS //codex
 	max_shells = 70 //codex
 	wield_delay = 0.65 SECONDS
-	fire_sound = "sound/weapons/guns/fire/M412.ogg"
+	fire_sound = "sound/weapons/guns/fire/PR-412.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -1326,7 +1326,7 @@
 
 /obj/item/weapon/gun/rifle/alf_machinecarbine
 	name = "\improper ALF-51B machinecarbine"
-	desc = "The ALF-51B is an unoffical modification of a ALF-4, or better known as the T-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
+	desc = "The ALF-51B is an unoffical modification of a ALF-4, or better known as the AR-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
 	icon_state = "alf51b"
 	item_state = "alf51b"
 	fire_animation = "alf51b_fire"
@@ -1414,9 +1414,9 @@
 	wield_delay = 0.5 SECONDS
 
 //-------------------------------------------------------
-// TX-54 grenade launcher
+// GL-54 grenade launcher
 /obj/item/weapon/gun/rifle/tx54
-	name = "TX-54 grenade launcher"
+	name = "GL-54 grenade launcher"
 	desc = "A magazine fed, semiautomatic grenade launcher designed to shoot airbursting smart grenades. Requires a T49 scope for precision aiming."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx54"
@@ -1460,10 +1460,10 @@
 	aim_speed_modifier = 2
 
 //-------------------------------------------------------
-// TX55 built in grenade launcher
+// AR-55 built in grenade launcher
 
 /obj/item/weapon/gun/rifle/tx54/mini
-	name = "TX55 20mm grenade launcher"
+	name = "GL-55 20mm grenade launcher"
 	desc = "A weapon-mounted, reloadable, five-shot grenade launcher."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "tx55gl"
@@ -1479,11 +1479,11 @@
 	starting_attachment_types = list()
 
 //-------------------------------------------------------
-// TX55 rifle
+// AR-55 rifle
 
 /obj/item/weapon/gun/rifle/tx55
-	name = "\improper TX-55 assault rifle"
-	desc = "Officially designated an Objective Individual Combat Weapon, The TX-55 features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight. Requires a T49 scope for precision aiming."
+	name = "\improper AR-55 assault rifle"
+	desc = "Officially designated an Objective Individual Combat Weapon, The AR-55 features an upper bullpup 20mm grenade launcher designed to fire a variety of specialised rounds, and an underslung assault rifle using 10x24mm caseless ammunition. Somewhat cumbersome to use due to its size and weight. Requires a T49 scope for precision aiming."
 	icon_state = "tx55"
 	item_state = "tx55"
 	fire_sound = "gun_t12"

@@ -1,7 +1,7 @@
 ///box for storage of ammo and gun
 /obj/item/storage/box/tl102
-	name = "\improper TL-102 crate"
-	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a TL-102 heavy smartgun\". There are many other warning labels atop that are too faded to read."
+	name = "\improper HSG-102 crate"
+	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a HSG-102 heavy smartgun\". There are many other warning labels atop that are too faded to read."
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "crate"
 	w_class = WEIGHT_CLASS_HUGE
@@ -16,10 +16,10 @@
 	new /obj/item/weapon/gun/tl102(src) //gun itself
 	new /obj/item/ammo_magazine/tl102(src) //ammo for the gun
 
-///TL-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
+///HSG-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
 /obj/item/weapon/gun/tl102
-	name = "\improper TL-102 mounted heavy smartgun"
-	desc = "The TL-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
+	name = "\improper HSG-102 mounted heavy smartgun"
+	desc = "The HSG-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -66,8 +66,8 @@
 
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/tl102/hsg_nest
-	name = "\improper TL-102 heavy smartgun nest"
-	desc = "A TL-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
+	name = "\improper HSG-102 heavy smartgun nest"
+	desc = "A HSG-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "entrenched"
 
@@ -84,10 +84,10 @@
 	)
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
-///This is my meme version, the first version of the TL-102 to have auto-fire, revel in its presence.
+///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
 	name = "\improper \"Death incarnate\" heavy machine gun"
-	desc = "It looks like a regular TL-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
+	desc = "It looks like a regular HSG-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
 	icon = 'icons/Marine/marine-hmg.dmi'
 
 	aim_slowdown = 3
@@ -106,7 +106,7 @@
 // This is a deployed IFF-less MACHINEGUN, has 500 rounds, drums do not fit anywhere but your belt slot and your back slot. But it has 500 rounds. That's nice.
 
 /obj/item/weapon/gun/heavymachinegun
-	name = "\improper MG-08/495 heavy machinegun"
+	name = "\improper HMG-08 heavy machinegun"
 	desc = "An absolute monster of a weapon, this is a watercooled heavy machinegun modernized by some crazy armorer. The pinnacle at holding a chokepoint. Holds 500 rounds of 10x28mm caseless in a box case. IS NOT IFF CAPABLE. Aiming carefully recommended. Can be repaired with a blowtorch once deployed."
 
 	w_class = WEIGHT_CLASS_HUGE
@@ -149,11 +149,11 @@
 
 
 //-------------------------------------------------------
-//T-27 Medium Machine Gun
+//MG-27 Medium Machine Gun
 
 /obj/item/weapon/gun/standard_mmg
-	name = "\improper T-27 medium machinegun"
-	desc = "The T-27 is the T-29s aging IFF-less cousin, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod for actual combat. It uses 10x27mm boxes."
+	name = "\improper MG-27 medium machinegun"
+	desc = "The MG-27 is the T-29s aging IFF-less cousin, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod for actual combat. It uses 10x27mm boxes."
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-mmg.dmi'
@@ -206,11 +206,11 @@
 	max_integrity = 200
 
 //-------------------------------------------------------
-//TAT-36 Anti Tank Gun
+//AT-36 Anti Tank Gun
 
 /obj/item/weapon/gun/standard_atgun
-	name = "\improper TAT-36 anti tank gun"
-	desc = "The TAT-36 is a light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has an ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes. Alt-right click on it to anchor it so that it cannot be moved by anyone, then alt-right click again to move it."
+	name = "\improper AT-36 anti tank gun"
+	desc = "The AT-36 is a light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has an ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes. Alt-right click on it to anchor it so that it cannot be moved by anyone, then alt-right click again to move it."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-atgun.dmi'
 	icon_state = "tat36"
