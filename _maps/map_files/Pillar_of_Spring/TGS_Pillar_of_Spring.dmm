@@ -513,6 +513,7 @@
 /area/mainship/hallways/hangar)
 "bW" = (
 /obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/lower_hull)
 "bX" = (
@@ -744,12 +745,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
-"cH" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
 "cI" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -1672,7 +1667,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/maint{
 	dir = 1
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/lower_hull)
 "fQ" = (
@@ -2151,6 +2145,20 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
+"hD" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/mainship/medical/lower_medical)
+"hE" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/grunt_rnr)
 "hF" = (
 /obj/machinery/vending/cigarette,
 /obj/item/coin/iron,
@@ -2368,18 +2376,6 @@
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"in" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile/purple/side{
-	dir = 1
-	},
-/area/mainship/medical/medical_science)
 "io" = (
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
@@ -2636,6 +2632,14 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
+"ji" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
+	},
+/area/mainship/medical/lower_medical)
 "jj" = (
 /obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship,
@@ -3155,6 +3159,14 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
+"kW" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "kX" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -8465,14 +8477,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"BA" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 4
-	},
-/area/mainship/medical/lower_medical)
 "BD" = (
 /obj/machinery/door/poddoor/shutters/mainship/cell,
 /obj/machinery/door/airlock/mainship/research/glass/cell,
@@ -12702,14 +12706,6 @@
 	dir = 1
 	},
 /area/mainship/squads/general)
-"Ns" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 8
-	},
-/area/mainship/medical/lower_medical)
 "Nt" = (
 /turf/closed/wall/mainship/research/containment/wall/west,
 /area/mainship/medical/medical_science)
@@ -15342,6 +15338,18 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"Vq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/purple/side{
+	dir = 1
+	},
+/area/mainship/medical/medical_science)
 "Vr" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -16399,14 +16407,6 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
-"Yq" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/lower_medical)
 "Yr" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
@@ -39717,7 +39717,7 @@ LR
 ng
 Io
 GS
-cH
+hE
 Fu
 Mb
 CM
@@ -40734,7 +40734,7 @@ ZX
 ZX
 Ul
 ZX
-in
+Vq
 RI
 ZX
 ZX
@@ -41749,7 +41749,7 @@ rc
 ad
 cu
 Mb
-ao
+fL
 fL
 YT
 qo
@@ -41757,7 +41757,7 @@ Qw
 Of
 YT
 kc
-Ns
+ji
 ei
 mg
 VJ
@@ -42539,7 +42539,7 @@ ND
 Ct
 bd
 XU
-cH
+hE
 pd
 BK
 QM
@@ -43048,7 +43048,7 @@ BO
 JK
 XI
 eC
-BA
+hD
 Tc
 Uh
 bd
@@ -43819,7 +43819,7 @@ MP
 Fb
 VQ
 bd
-Yq
+kW
 aY
 JH
 bd
@@ -44839,7 +44839,7 @@ pZ
 hH
 eH
 hH
-BA
+hD
 gw
 aY
 Zs
