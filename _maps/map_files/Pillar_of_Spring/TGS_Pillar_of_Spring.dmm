@@ -400,9 +400,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
-	dir = 1
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "bt" = (
@@ -3031,17 +3028,13 @@
 /area/mainship/shipboard/firing_range)
 "jR" = (
 /obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/mainship,
-/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
-	dir = 1
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/engineering/engineering_workshop)
@@ -8425,9 +8418,13 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Aw" = (
-/obj/structure/closet/firecloset,
-/obj/item/clothing/mask/gas,
-/turf/open/floor/mainship/cargo,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
 /area/mainship/engineering/engineering_workshop)
 "Ax" = (
 /obj/structure/closet/crate,
@@ -14852,14 +14849,13 @@
 /area/mainship/squads/req)
 "Sw" = (
 /obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
+	dir = 5
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/engineering/engineering_workshop)
@@ -50379,7 +50375,7 @@ yx
 AX
 qB
 jv
-Aw
+yx
 OQ
 fL
 ad
@@ -50633,10 +50629,10 @@ OM
 OM
 Uy
 OM
-OQ
+Aw
 Sw
 jR
-OQ
+Aw
 OQ
 cu
 ad
