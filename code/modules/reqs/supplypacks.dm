@@ -386,7 +386,7 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial_ammo
 	name = "T-26 AMR magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
-	cost = 3
+	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial_incend_ammo
