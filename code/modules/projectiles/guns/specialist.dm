@@ -61,7 +61,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
 
-	fire_delay = 2.5 SECONDS
+	fire_delay = 2.35 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.50
 	recoil = 2
