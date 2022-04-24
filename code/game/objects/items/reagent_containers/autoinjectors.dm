@@ -68,9 +68,9 @@
 	name = "quick-clot autoinjector"
 	desc = "An autoinjector loaded with three doses of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
 	icon_state = "autoinjector-7"
-	amount_per_transfer_from_this = 10
-	volume = 30
-	list_reagents = list(/datum/reagent/medicine/quickclot = 30)
+	amount_per_transfer_from_this = 5
+	volume = 15
+	list_reagents = list(/datum/reagent/medicine/quickclot = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus
 	name = "quick-clot plus autoinjector"
@@ -235,7 +235,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 15
 	list_reagents = list(
-		/datum/reagent/medicine/peridaxon = 3,
+		/datum/reagent/medicine/peridaxon = 15,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
