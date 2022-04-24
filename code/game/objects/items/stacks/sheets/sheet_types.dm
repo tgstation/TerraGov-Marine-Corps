@@ -208,7 +208,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 	new/datum/stack_recipe_list("marksmen rifle boxes",list( \
 		new/datum/stack_recipe("DMR-37 mag box", /obj/item/storage/box/visual/magazine/compact/standard_dmr), \
 		new/datum/stack_recipe("BR-64 mag box", /obj/item/storage/box/visual/magazine/compact/standard_br), \
-		new/datum/stack_recipe("TL-127 mag box", /obj/item/storage/box/visual/magazine/compact/chamberedrifle), \
+		new/datum/stack_recipe("SR-127 mag box", /obj/item/storage/box/visual/magazine/compact/chamberedrifle), \
 		new/datum/stack_recipe("Mosin packet box", /obj/item/storage/box/visual/magazine/compact/mosin), \
 		)), \
 	new/datum/stack_recipe_list("machinegun boxes",list( \

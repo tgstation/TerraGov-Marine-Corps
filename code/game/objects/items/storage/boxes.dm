@@ -1003,8 +1003,8 @@
 	spawn_type = /obj/item/ammo_magazine/rifle/standard_br
 
 /obj/item/storage/box/visual/magazine/compact/chamberedrifle
-	name = "TL-127 magazine box"
-	desc = "A box specifically designed to hold a large amount of TL-127 magazines."
+	name = "SR-127 magazine box"
+	desc = "A box specifically designed to hold a large amount of SR-127 magazines."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_tl127"
 	can_hold = list(

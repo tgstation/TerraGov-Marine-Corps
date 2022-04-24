@@ -1053,8 +1053,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/tl127stock
-	name = "\improper TL-127 stock"
-	desc = "A irremovable TL-127 sniper rifle stock."
+	name = "\improper SR-127 stock"
+	desc = "A irremovable SR-127 sniper rifle stock."
 	icon_state = "tl127stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32

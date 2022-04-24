@@ -276,10 +276,10 @@
 	icon_state_mini = "mag_rifle_purple"
 
 //-------------------------------------------------------
-//Marine magazine sniper, or the TL-127.
+//Marine magazine sniper, or the SR-127.
 /obj/item/ammo_magazine/rifle/chamberedrifle
-	name = "TL-127 bolt action rifle magazine"
-	desc = "A box magazine filled with 8.6x70mm rifle rounds for the TL-127."
+	name = "SR-127 bolt action rifle magazine"
+	desc = "A box magazine filled with 8.6x70mm rifle rounds for the SR-127."
 	caliber = CALIBER_86X70
 	icon_state = "tl127"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
