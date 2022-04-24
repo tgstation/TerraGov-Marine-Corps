@@ -16,7 +16,7 @@
 	var/obj/item/cell/cell
 	var/powerefficiency = 0.1
 	var/amount = 30
-	var/recharge_amount = 30
+	var/recharge_amount = 60
 	var/recharge_counter = 0
 
 	///Reagent amounts that are dispenced
