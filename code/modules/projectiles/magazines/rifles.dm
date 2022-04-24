@@ -163,11 +163,11 @@
 	max_rounds = 24
 
 //-------------------------------------------------------
-//T-42 Light Machine Gun
+//MG-42 Light Machine Gun
 
 /obj/item/ammo_magazine/standard_lmg
-	name = "\improper T-42 drum magazine (10x24mm)"
-	desc = "A drum magazine for the T-42 light machine gun."
+	name = "\improper MG-42 drum magazine (10x24mm)"
+	desc = "A drum magazine for the MG-42 light machine gun."
 	icon_state = "t42"
 	caliber = CALIBER_10X24_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle
@@ -176,11 +176,11 @@
 	icon_state_mini = "mag_t42"
 
 //-------------------------------------------------------
-//T-60 General Purpose Machine Gun
+//MG-60 General Purpose Machine Gun
 
 /obj/item/ammo_magazine/standard_gpmg
-	name = "\improper T-60 GPMG box magazine (10x26mm)"
-	desc = "A drum magazine for the T-60 general purpose machinegun."
+	name = "\improper MG-60 GPMG box magazine (10x26mm)"
+	desc = "A drum magazine for the MG-60 general purpose machinegun."
 	icon_state = "t60"
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
@@ -217,8 +217,8 @@
 //TX-16 AUTOMATIC SHOTGUN
 
 /obj/item/ammo_magazine/rifle/tx15_flechette
-	name = "\improper TX-15 flechette magazine (16 gauge)"
-	desc = "A magazine of 16 gauge flechette rounds, for the TX-15."
+	name = "\improper SH-15 flechette magazine (16 gauge)"
+	desc = "A magazine of 16 gauge flechette rounds, for the SH-15."
 	caliber = CALIBER_16G
 	icon_state = "tx15_flechette"
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_flechette
@@ -226,8 +226,8 @@
 	icon_state_mini = "mag_tx15_flechette"
 
 /obj/item/ammo_magazine/rifle/tx15_slug
-	name = "\improper TX-15 slug magazine (16 gauge)"
-	desc = "A magazine of 16 gauge slugs, for the TX-15."
+	name = "\improper SH-15 slug magazine (16 gauge)"
+	desc = "A magazine of 16 gauge slugs, for the SH-15."
 	caliber = CALIBER_16G
 	icon_state = "tx15_slug"
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
@@ -298,10 +298,10 @@
 	icon_state_mini = "mag_sniper"
 
 //-------------------------------------------------------
-//G-11, TX-11
+//G-11, AR-11
 /obj/item/ammo_magazine/rifle/tx11
-	name = "\improper TX-11 combat rifle magazine"
-	desc = "A magazine filled with 4.92×34mm rifle rounds for the TX-11."
+	name = "\improper AR-11 combat rifle magazine"
+	desc = "A magazine filled with 4.92×34mm rifle rounds for the AR-11."
 	caliber = CALIBER_492X34_CASELESS
 	icon_state = "tx11"
 	default_ammo = /datum/ammo/bullet/rifle/hv
@@ -309,10 +309,10 @@
 	icon_state_mini = "mag_tx11"
 
 //-------------------------------------------------------
-//T-21
+//AR-21
 /obj/item/ammo_magazine/rifle/standard_skirmishrifle
-	name = "\improper T-21 skirmish rifle magazine"
-	desc = "A magazine filled with 10x25mm rifle rounds for the T-21."
+	name = "\improper AR-21 skirmish rifle magazine"
+	desc = "A magazine filled with 10x25mm rifle rounds for the AR-21."
 	caliber = CALIBER_10X25_CASELESS
 	icon_state = "t21"
 	default_ammo = /datum/ammo/bullet/rifle/heavy

@@ -512,7 +512,7 @@
 
 /obj/item/storage/box/squadmarine/autorifleman
 	name = "\improper Automatic Rifleman equipment crate"
-	desc = "A large case containing the T-42 light machine gun, P-14 pistol, heavy armor and helmet as well as equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	desc = "A large case containing the MG-42 light machine gun, P-14 pistol, heavy armor and helmet as well as equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	storage_slots = 12
 
 /obj/item/storage/box/squadmarine/autorifleman/Initialize(mapload, ...)

@@ -275,10 +275,10 @@
 	Rifle (non-marine designation RRL-51) also began to suffer under prolonged combat due to overheating and low ammo count.<br><br>\
 	The ALF-8 itself is based off the ALF-4’s design. The only major differences are a heavier and longer barrel created to have a \
 	large amount of rounds go threw it in short periods of time and different mag wells to accept bigger magazines than it’s little brother. \
-	It was eventually adopted and designated the T-42.<br><br>\
+	It was eventually adopted and designated the MG-42.<br><br>\
 	However these days it's been mostly replaced by the M56 smartgun system due to the M56s ability to use IFF and also self-load due to it’s \
 	autoloading systems. Removing the need of an assistant to carry the bulky ammo.<br><br>\
-	However, the T-42 is still used since it's much easier to use than the special training required for the smartgun system. These days it's \
+	However, the MG-42 is still used since it's much easier to use than the special training required for the smartgun system. These days it's \
 	usually used when IFF isn't needed such as high visibility environments and defensive positions."
 
 /datum/codex_entry/standard_smg

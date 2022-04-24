@@ -627,11 +627,11 @@
 
 
 //-------------------------------------------------------
-//T-42 Light Machine Gun
+//MG-42 Light Machine Gun
 
 /obj/item/weapon/gun/rifle/standard_lmg
-	name = "\improper T-42 light machine gun"
-	desc = "The T-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
+	name = "\improper MG-42 light machine gun"
+	desc = "The MG-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 	icon_state = "t42"
 	item_state = "t42"
 	caliber = CALIBER_10X24_CASELESS //codex
@@ -688,11 +688,11 @@
 	scatter_unwielded = 80
 
 //-------------------------------------------------------
-//T-60 General Purpose Machine Gun
+//MG-60 General Purpose Machine Gun
 
 /obj/item/weapon/gun/rifle/standard_gpmg
-	name = "\improper T-60 general purpose machine gun"
-	desc = "The T-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
+	name = "\improper MG-60 general purpose machine gun"
+	desc = "The MG-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t60"
 	item_state = "t60"
@@ -908,8 +908,8 @@
 //TX-16 AUTOMATIC SHOTGUN
 
 /obj/item/weapon/gun/rifle/standard_autoshotgun
-	name = "\improper TX-15 automatic shotgun"
-	desc = "The TX-15 Automatic Assault Shotgun, produced by Terran Armories. Another iteration of the ZX series of firearms, taking over the SX as the semi-automatic shotgun provided to the TGMC. Compared to the SX, this Shotgun is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
+	name = "\improper SH-15 automatic shotgun"
+	desc = "The SH-15 Automatic Assault Shotgun, produced by Terran Armories. Another iteration of the ZX series of firearms, taking over the SX as the semi-automatic shotgun provided to the TGMC. Compared to the SX, this Shotgun is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
 	icon_state = "tx15"
 	item_state = "tx15"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
@@ -1205,11 +1205,11 @@
 	wield_delay = 1.3 SECONDS
 
 //-------------------------------------------------------
-//TX-11 Rifle, based on the gamer-11
+//AR-11 Rifle, based on the gamer-11
 
 /obj/item/weapon/gun/rifle/tx11
-	name = "\improper TX-11 combat rifle"
-	desc = "The TX-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
+	name = "\improper AR-11 combat rifle"
+	desc = "The AR-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
 	icon_state = "tx11"
 	item_state = "tx11"
 	caliber = CALIBER_492X34_CASELESS //codex
@@ -1262,11 +1262,11 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11, /obj/item/attachable/motiondetector, /obj/item/attachable/bayonet, /obj/item/attachable/lasersight)
 
 //-------------------------------------------------------
-//T-21 Assault Rifle
+//AR-21 Assault Rifle
 
 /obj/item/weapon/gun/rifle/standard_skirmishrifle
-	name = "\improper T-21 skirmish rifle"
-	desc = "The T-21 is a versatile rifle is developed to bridge a gap between higher caliber weaponry and a normal rifle. It fires a strong 10x25 round, which has decent stopping power. It however suffers in magazine size and movement capablity compared to smaller peers. It uses 10x25mm caseless ammunition."
+	name = "\improper AR-21 skirmish rifle"
+	desc = "The AR-21 is a versatile rifle is developed to bridge a gap between higher caliber weaponry and a normal rifle. It fires a strong 10x25 round, which has decent stopping power. It however suffers in magazine size and movement capablity compared to smaller peers. It uses 10x25mm caseless ammunition."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t21"
 	item_state = "t21"

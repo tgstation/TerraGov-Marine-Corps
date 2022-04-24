@@ -127,8 +127,8 @@
 	supplies = list(/obj/item/weapon/gun/flamer/big_flamer = 4)
 
 /obj/structure/largecrate/supply/weapons/hpr
-	name = "\improper T-42 LMG weapons chest (x2)"
-	desc = "A weapons chest containing two T-42 LMG."
+	name = "\improper MG-42 LMG weapons chest (x2)"
+	desc = "A weapons chest containing two MG-42 LMG."
 	supplies = list(/obj/item/weapon/gun/rifle/standard_lmg = 2)
 
 /obj/structure/largecrate/supply/weapons/sentries

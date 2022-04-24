@@ -478,8 +478,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
 /obj/item/attachable/t42barrel
-	name = "T-42 barrel"
-	desc = "The standard barrel on the T-42. CANNOT BE REMOVED."
+	name = "MG-42 barrel"
+	desc = "The standard barrel on the MG-42. CANNOT BE REMOVED."
 	slot = ATTACHMENT_SLOT_MUZZLE
 	icon_state = "t42barrel"
 	flags_attach_features = NONE
@@ -797,7 +797,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_viewsize = 0
 
 /obj/item/attachable/scope/mini/tx11
-	name = "TX-11 mini rail scope"
+	name = "AR-11 mini rail scope"
 	icon_state = "tx11scope"
 
 /obj/item/attachable/scope/antimaterial
@@ -958,8 +958,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/tx15
-	name = "\improper TX-15 stock"
-	desc = "The standard stock for the TX-15. Cannot be removed."
+	name = "\improper SH-15 stock"
+	desc = "The standard stock for the SH-15. Cannot be removed."
 	icon_state = "tx15stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -1081,8 +1081,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t42stock
-	name = "\improper T-42 stock"
-	desc = "A specialized stock for the T-42."
+	name = "\improper MG-42 stock"
+	desc = "A specialized stock for the MG-42."
 	icon_state = "t42stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -1134,8 +1134,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t60stock
-	name = "T-60 stock"
-	desc = "A irremovable T-60 general purpose machinegun stock."
+	name = "MG-60 stock"
+	desc = "A irremovable MG-60 general purpose machinegun stock."
 	icon_state = "t60stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -1180,7 +1180,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "m41a"
 
 /obj/item/attachable/stock/irremoveable/tx11
-	name = "TX-11 stock"
+	name = "AR-11 stock"
 	icon_state = "tx11stock"
 
 
