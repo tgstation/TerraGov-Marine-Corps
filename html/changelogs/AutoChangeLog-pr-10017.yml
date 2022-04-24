@@ -1,6 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added new howitzer, the T-100Y"
-  - code_imp: "Mortar code is more malleable instead of snowflakey."
-  - balance: "Mortar rebalanced. It costs 1 for 2 shells, the shells are generally less dangerous, it is generally more portable, shells are small sized instead of bulky. It is now significantly easier to run it on the move, compared to its bigger cousin the howitzer. It has been slashed in price to cost less, 25 points per mortar."
