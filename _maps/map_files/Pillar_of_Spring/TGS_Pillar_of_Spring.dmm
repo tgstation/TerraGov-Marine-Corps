@@ -397,10 +397,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "bC" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "bD" = (
@@ -801,18 +797,6 @@
 	},
 /turf/open/space,
 /area/space)
-"cM" = (
-/obj/structure/window/framed/mainship/white,
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	id = "or1privacyshutter";
-	name = "\improper Privacy Shutters"
-	},
-/obj/machinery/door/firedoor/mainship,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 4
-	},
-/area/mainship/medical/lower_medical)
 "cN" = (
 /obj/structure/closet/toolcloset,
 /obj/machinery/light,
@@ -1032,7 +1016,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
-/area/mainship/medical/lower_medical)
+/area/mainship/medical/operating_room_one)
 "du" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -1441,6 +1425,7 @@
 	name = "modifed holopad"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "eP" = (
@@ -1975,12 +1960,12 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "gH" = (
-/obj/machinery/chem_master,
-/obj/item/reagent_containers/glass/beaker/bluespace,
-/turf/open/floor/mainship/sterile/side{
-	dir = 4
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 1
 	},
-/area/mainship/medical/operating_room_one)
+/turf/open/floor/mainship/sterile/side,
+/area/mainship/medical/lower_medical)
 "gI" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship,
@@ -2082,6 +2067,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/maint{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/mainship/hull/lower_hull)
 "gY" = (
@@ -2151,7 +2137,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "hi" = (
@@ -2443,6 +2428,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "ii" = (
@@ -4044,7 +4030,6 @@
 	},
 /area/mainship/medical/medical_science)
 "np" = (
-/obj/structure/cable,
 /obj/structure/table/mainship,
 /obj/machinery/reagentgrinder,
 /obj/item/stack/sheet/mineral/phoron,
@@ -4177,10 +4162,8 @@
 	name = "\improper Privacy Shutters"
 	},
 /obj/machinery/door/firedoor/mainship,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
-/area/mainship/medical/lower_medical)
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/operating_room_one)
 "nJ" = (
 /obj/machinery/power/smes/preset,
 /obj/structure/cable,
@@ -4310,7 +4293,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical)
+/area/mainship/medical/operating_room_one)
 "oe" = (
 /obj/machinery/firealarm,
 /obj/structure/reagent_dispensers/fueltank,
@@ -8731,10 +8714,6 @@
 /obj/item/reagent_containers/glass/rag,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr)
-"BE" = (
-/obj/machinery/chem_dispenser,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/operating_room_one)
 "BF" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -9928,13 +9907,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
-"Fd" = (
-/obj/machinery/power/apc/mainship,
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/operating_room_one)
 "Ff" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/bed/stool{
@@ -11756,7 +11728,7 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
-/area/mainship/medical/lower_medical)
+/area/mainship/medical/operating_room_one)
 "Kn" = (
 /obj/machinery/body_scanconsole,
 /turf/open/floor/mainship/sterile/corner{
@@ -12700,7 +12672,7 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical)
+/area/mainship/medical/operating_room_one)
 "MT" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -14155,7 +14127,7 @@
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "Re" = (
 /turf/open/floor/mainship/sterile/corner{
@@ -14244,18 +14216,6 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/firing_range)
-"Rt" = (
-/obj/structure/window/framed/mainship/white,
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 1;
-	id = "or2privacyshutter";
-	name = "\improper Privacy Shutters"
-	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
-/area/mainship/medical/operating_room_two)
 "Ru" = (
 /obj/item/trash/cigbutt,
 /turf/open/floor/mainship/black,
@@ -14791,10 +14751,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
-/area/mainship/medical/operating_room_one)
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "Te" = (
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -14876,12 +14834,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"Tt" = (
-/obj/structure/window/framed/mainship/white,
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/poddoor/shutters/opened/medbay,
-/turf/open/floor/plating/platebotc,
-/area/mainship/medical/operating_room_one)
 "Tu" = (
 /obj/structure/orbital_cannon,
 /obj/machinery/light/small{
@@ -15150,6 +15102,7 @@
 /area/mainship/medical/lower_medical)
 "Uj" = (
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "Uk" = (
@@ -15973,9 +15926,7 @@
 	id = "or2privacyshutter";
 	name = "\improper Privacy Shutters"
 	},
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 4
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_two)
 "WK" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -16650,7 +16601,7 @@
 	},
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/operating_room_one)
+/area/mainship/medical/lower_medical)
 "YF" = (
 /obj/structure/closet/crate/weapon,
 /obj/structure/cable,
@@ -16719,14 +16670,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
-"YO" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/operating_room_one)
 "YP" = (
 /obj/item/radio/intercom/general,
 /turf/closed/wall/mainship,
@@ -16838,10 +16781,13 @@
 	},
 /area/mainship/medical/surgery_hallway)
 "Zf" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
-/area/mainship/medical/operating_room_one)
+/area/mainship/medical/lower_medical)
 "Zg" = (
 /turf/open/floor/mainship/terragov{
 	dir = 4
@@ -16856,12 +16802,13 @@
 "Zi" = (
 /obj/effect/ai_node,
 /obj/structure/disposalpipe/segment/corner,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/operating_room_one)
+/area/mainship/medical/lower_medical)
 "Zj" = (
 /obj/structure/closet/secure_closet/chemical,
 /turf/open/floor/mainship/sterile/corner,
-/area/mainship/medical/operating_room_one)
+/area/mainship/medical/lower_medical)
 "Zk" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -42157,7 +42104,7 @@ ad
 ad
 cu
 Mb
-qg
+jx
 hh
 Bm
 NY
@@ -45253,8 +45200,8 @@ SD
 BO
 DG
 VJ
-bd
-bd
+SJ
+SJ
 SJ
 SJ
 NQ
@@ -45510,13 +45457,13 @@ xK
 fs
 DG
 zr
-cM
+nI
 dt
 iC
 SR
 UV
-Fd
-bC
+lY
+gG
 np
 ef
 lF
@@ -45772,13 +45719,13 @@ od
 OC
 Tb
 UV
-YO
+lY
 Zi
 Uj
 eO
 Uj
 ih
-TK
+gH
 bd
 gL
 wj
@@ -46024,18 +45971,18 @@ aY
 Ww
 DG
 JM
-cM
-aY
+nI
+bC
 mC
 TE
 RL
 Zf
-BE
+zM
 aY
 Mt
 aY
 zM
-zr
+TK
 bd
 gL
 pa
@@ -46275,7 +46222,7 @@ TW
 gn
 RU
 qR
-Rt
+WJ
 TR
 Tc
 Ww
@@ -46287,7 +46234,7 @@ Ty
 Og
 UV
 Zj
-gH
+BJ
 PB
 vn
 PB
@@ -46538,13 +46485,13 @@ lN
 Ii
 Ui
 lN
-bd
-bd
+SJ
+SJ
 SJ
 UV
 UV
-SJ
-Tt
+bd
+gI
 xS
 Sq
 gI
