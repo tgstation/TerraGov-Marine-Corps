@@ -8356,7 +8356,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "Al" = (
-/turf/open/floor/plating,
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
+	},
 /area/mainship/shipboard/firing_range)
 "Am" = (
 /obj/machinery/computer/crew,
