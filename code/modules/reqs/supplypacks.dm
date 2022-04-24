@@ -165,22 +165,22 @@ WEAPONS
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/weapons/sentry
-	name = "SG-571 Base Defense Sentry"
+	name = "ST-571 Base Defense Sentry"
 	contains = list(/obj/item/storage/box/sentry)
 	cost = 40
 
 /datum/supply_packs/weapons/sentry_ammo
-	name = "SG-571 sentry ammunition"
+	name = "ST-571 sentry ammunition"
 	contains = list(/obj/item/ammo_magazine/sentry)
 	cost = 10
 
 /datum/supply_packs/weapons/minisentry
-	name = "SG-580 Portable Sentry"
+	name = "ST-580 Portable Sentry"
 	contains = list(/obj/item/storage/box/minisentry)
 	cost = 40
 
 /datum/supply_packs/weapons/minisentry_ammo
-	name = "SG-580 point defense sentry ammo"
+	name = "ST-580 point defense sentry ammo"
 	contains = list(/obj/item/ammo_magazine/minisentry)
 	cost = 10
 

@@ -132,8 +132,8 @@
 	supplies = list(/obj/item/weapon/gun/rifle/standard_lmg = 2)
 
 /obj/structure/largecrate/supply/weapons/sentries
-	name = "\improper SG-571 sentry chest (x2)"
-	desc = "A supply crate containing two boxed SG-571 sentries."
+	name = "\improper ST-571 sentry chest (x2)"
+	desc = "A supply crate containing two boxed ST-571 sentries."
 	supplies = list(/obj/item/storage/box/sentry = 2)
 
 /obj/structure/largecrate/supply/weapons/standard_hmg
@@ -181,8 +181,8 @@
 	supplies = list(/obj/item/ammo_magazine/revolver/standard_revolver = 16, /obj/item/ammo_magazine/pistol/standard_pistol = 24)
 
 /obj/structure/largecrate/supply/ammo/sentry
-	name = "\improper SG-571 ammunition drum case (x6)"
-	desc = "An ammunition case containing six SG-571 sentry ammunition drums."
+	name = "\improper ST-571 ammunition drum case (x6)"
+	desc = "An ammunition case containing six ST-571 sentry ammunition drums."
 	supplies = list(/obj/item/ammo_magazine/sentry = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_hmg
