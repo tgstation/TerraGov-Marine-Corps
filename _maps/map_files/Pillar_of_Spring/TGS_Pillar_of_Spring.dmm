@@ -744,6 +744,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"cH" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/living/grunt_rnr)
 "cI" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -1843,14 +1849,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "gz" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "gA" = (
 /obj/machinery/light{
@@ -2365,6 +2368,18 @@
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"in" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/purple/side{
+	dir = 1
+	},
+/area/mainship/medical/medical_science)
 "io" = (
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
@@ -2594,12 +2609,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "je" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 5
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "jf" = (
@@ -3775,12 +3789,6 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/living/cafeteria_starboard)
 "mS" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -4224,15 +4232,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "op" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/medical_science)
 "oq" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -8460,6 +8465,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"BA" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/mainship/medical/lower_medical)
 "BD" = (
 /obj/machinery/door/poddoor/shutters/mainship/cell,
 /obj/machinery/door/airlock/mainship/research/glass/cell,
@@ -12689,6 +12702,14 @@
 	dir = 1
 	},
 /area/mainship/squads/general)
+"Ns" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
+	},
+/area/mainship/medical/lower_medical)
 "Nt" = (
 /turf/closed/wall/mainship/research/containment/wall/west,
 /area/mainship/medical/medical_science)
@@ -13588,10 +13609,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 1
-	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "PY" = (
@@ -16378,6 +16399,14 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
+"Yq" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/lower_medical)
 "Yr" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
@@ -39688,7 +39717,7 @@ LR
 ng
 Io
 GS
-nH
+cH
 Fu
 Mb
 CM
@@ -40705,7 +40734,7 @@ ZX
 ZX
 Ul
 ZX
-Wb
+in
 RI
 ZX
 ZX
@@ -41211,7 +41240,7 @@ ch
 ZX
 Ne
 MF
-MF
+op
 MF
 MF
 hV
@@ -41728,7 +41757,7 @@ Qw
 Of
 YT
 kc
-mg
+Ns
 ei
 mg
 VJ
@@ -41977,7 +42006,7 @@ ad
 ad
 cu
 Mb
-ap
+qg
 ap
 YT
 NY
@@ -42234,7 +42263,7 @@ fq
 cu
 pr
 Mb
-op
+qg
 ap
 YT
 pt
@@ -42491,7 +42520,7 @@ az
 az
 az
 az
-gz
+qg
 ap
 YT
 Rv
@@ -42510,7 +42539,7 @@ ND
 Ct
 bd
 XU
-nH
+cH
 pd
 BK
 QM
@@ -42747,7 +42776,7 @@ US
 VT
 bw
 Yk
-ap
+ml
 mS
 ap
 YT
@@ -43004,8 +43033,8 @@ ap
 jM
 ap
 io
-ml
-Yf
+ap
+CB
 ap
 YT
 pM
@@ -43019,7 +43048,7 @@ BO
 JK
 XI
 eC
-Tc
+BA
 Tc
 Uh
 bd
@@ -43519,7 +43548,7 @@ sP
 ZA
 Zd
 KQ
-Yf
+gz
 ap
 bd
 dK
@@ -43790,7 +43819,7 @@ MP
 Fb
 VQ
 bd
-LM
+Yq
 aY
 JH
 bd
@@ -44810,7 +44839,7 @@ pZ
 hH
 eH
 hH
-Tc
+BA
 gw
 aY
 Zs
