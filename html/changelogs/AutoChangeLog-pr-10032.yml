@@ -1,0 +1,4 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - balance: "PC cell can no longer be removed but is now self recharging."
