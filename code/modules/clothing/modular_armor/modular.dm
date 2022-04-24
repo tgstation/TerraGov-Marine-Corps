@@ -848,16 +848,22 @@
 	gas_transfer_coefficient = 0.5
 
 /obj/item/clothing/suit/modular/som/heavy/leader
-	name = "\improper Martian tartaros combat armor"
+	name = "\improper Martian Gorgon combat armor"
 	desc = "A bulky suit of heavy combat armor, among the best armor Martian forges ever produced. Typically seen on Martian leaders or their most elite combat units due to the significant construction and maintenance requirements. Provides outstanding protection without significantly compromising on mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list("melee" = 60, "bullet" = 80, "laser" = 70, "energy" = 70, "bomb" = 70, "bio" = 55, "rad" = 70, "fire" = 80, "acid" = 50)
 	icon_state = "som_leader"
 	item_state = "som_leader"
 
+/obj/item/clothing/suit/modular/som/heavy/leader/valk
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/medical/basic,
+	)
+
 //helmet
 
 /obj/item/clothing/head/modular/som
-	name = "Martian infantry Helmet"
+	name = "\improper Martian infantry Helmet"
 	desc = "The standard combat helmet worn by Martian and later SOM combat troops. Provides effective protection without compromising visibility."
 	icon = 'icons/mob/modular/m10.dmi'
 	item_icons = list(

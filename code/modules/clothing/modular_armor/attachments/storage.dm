@@ -210,6 +210,14 @@
 	new /obj/item/storage/pill_bottle/dermaline(storage)
 	new /obj/item/storage/pill_bottle/tramadol(storage)
 
+/obj/item/armor_module/storage/medical/basic/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
+	new /obj/item/storage/pill_bottle/packet/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+
 /obj/item/storage/internal/modular/medical
 	max_storage_space = 30
 	storage_slots = 5

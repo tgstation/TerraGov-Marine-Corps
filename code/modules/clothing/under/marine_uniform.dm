@@ -402,6 +402,12 @@
 	icon_state = "som_uniform_leader"
 	item_state = "som_uniform_leader"
 
+/obj/item/clothing/under/som/leader/vp
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/vp)
+
+/obj/item/clothing/under/som/leader/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/vp)
+
 /obj/item/clothing/under/sectoid
 	name = "psionic field"
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."

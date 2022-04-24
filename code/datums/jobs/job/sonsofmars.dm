@@ -17,40 +17,50 @@
 	title = "SOM Standard"
 	paygrade = "SOM1"
 	outfit = /datum/outfit/job/som/standard
-
-/datum/job/som/standard/hvh
-	outfit = /datum/outfit/job/som/standard/hvh
-
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/som/standard,
+		/datum/outfit/job/som/standard/one,
+		/datum/outfit/job/som/standard/two,
+	)
 
 /datum/outfit/job/som/standard
 	name = "SOM Standard"
 	jobtype = /datum/job/som/standard
 
-	id = /obj/item/card/id/dogtag/som
-	belt = /obj/item/storage/belt/marine/som
-	ears = /obj/item/radio/headset/distress/som
-	w_uniform = /obj/item/clothing/under/som
-	shoes = /obj/item/clothing/shoes/marine/som
-	wear_suit = /obj/item/clothing/suit/storage/marine/som
-	gloves = /obj/item/clothing/gloves/marine/som
-	head = /obj/item/clothing/head/helmet/marine/som
-	suit_store = /obj/item/weapon/gun/rifle/mpi_km
-	r_store = /obj/item/storage/pouch/general/som
-	l_store = /obj/item/storage/pouch/pistol
-	back = /obj/item/storage/backpack/lightpack/som
+	id = /obj/item/card/id/dogtag/som						//OK
+	belt = /obj/item/storage/belt/marine/som				//OK
+	ears = /obj/item/radio/headset/distress/som				//OK
+	w_uniform = /obj/item/clothing/under/som				//OK
+	shoes = /obj/item/clothing/shoes/marine/som				//OK
+	wear_suit = /obj/item/clothing/suit/modular/som			//OK - maybe add attachments?
+	gloves = /obj/item/clothing/gloves/marine/som			//OK
+	mask = /obj/item/clothing/mask/gas						//OK
+	head = /obj/item/clothing/head/modular/som				//OK
+	suit_store = /obj/item/weapon/gun/rifle/mpi_km			//OK
+	r_store = /obj/item/storage/pouch/general/som			//
+	l_store = /obj/item/storage/pouch/pistol				//
+	back = /obj/item/storage/backpack/lightpack/som			//OK
 
-/datum/outfit/job/som/standard/hvh
-	name = "SOM Standard (HvH)"
+///leader for comparison
+	id = /obj/item/card/id/dogtag/som							//OK
+	belt = /obj/item/storage/belt/marine/som					//OK
+	ears = /obj/item/radio/headset/distress/som					//OK
+	w_uniform = /obj/item/clothing/under/som/leader/vp			//OK
+	shoes = /obj/item/clothing/shoes/marine/som					//Maybe OK - no knife sprite though
+	wear_suit = /obj/item/clothing/suit/modular/som/heavy/leader/valk	//OK
+	gloves = /obj/item/clothing/gloves/marine/som/veteran 		//OK
+	mask = /obj/item/clothing/mask/gas							//OK
+	head = /obj/item/clothing/head/modular/som 					//OK
+	glasses = /obj/item/clothing/glasses/hud/health 			//OK - maybe add special ones?
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet //OK
+	r_store = /obj/item/storage/pouch/grenade 					//OK
+	l_store = /obj/item/storage/pouch/magazine/large 			//OK
+	back = /obj/item/storage/backpack/lightpack/som 			//OK
+///
 
-	wear_suit = /obj/item/clothing/suit/storage/marine/som/hvh
-	r_store = /obj/item/storage/pouch/firstaid/som/full
-
-
-/datum/outfit/job/som/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/som/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE) //wip
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_SUIT)
-
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/upp, SLOT_IN_BACKPACK)
@@ -84,10 +94,12 @@
 	paygrade = "SOM2"
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/som/medic
-
-/datum/job/som/medic/hvh
-	outfit = /datum/outfit/job/som/medic/hvh
-
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/som/medic,
+		/datum/outfit/job/som/medic/one,
+		/datum/outfit/job/som/medic/two,
+	)
 
 /datum/outfit/job/som/medic
 	name = "SOM Medic"
@@ -106,12 +118,6 @@
 	r_store = /obj/item/storage/pouch/firstaid/som/full
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack/som
-
-/datum/outfit/job/som/medic/hvh
-	name = "SOM Medic (HvH)"
-
-	wear_suit = /obj/item/clothing/suit/storage/marine/som/hvh
-
 
 /datum/outfit/job/som/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -141,10 +147,12 @@
 	title = "SOM Veteran"
 	paygrade = "SOM3"
 	outfit = /datum/outfit/job/som/veteran
-
-/datum/job/som/veteran/hvh
-	outfit = /datum/outfit/job/som/veteran/hvh
-
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/som/veteran,
+		/datum/outfit/job/som/veteran/one,
+		/datum/outfit/job/som/veteran/two,
+	)
 
 /datum/outfit/job/som/veteran
 	name = "SOM Veteran"
@@ -163,12 +171,6 @@
 	r_store = /obj/item/storage/pouch/general/large
 	l_store = /obj/item/storage/pouch/firstaid/som/full
 	back = /obj/item/storage/backpack/lightpack/som
-
-/datum/outfit/job/som/veteran/hvh
-	name = "SOM Veteran (HvH)"
-
-	wear_suit = /obj/item/clothing/suit/storage/marine/som/veteran/hvh
-
 
 /datum/outfit/job/som/veteran/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -208,60 +210,132 @@
 	title = "SOM Leader"
 	paygrade = "SOM3"
 	outfit = /datum/outfit/job/som/leader
+	multiple_outfits = TRUE
+	outfits = list(
+		/datum/outfit/job/som/leader,
+		/datum/outfit/job/som/leader/one,
+		/datum/outfit/job/som/leader/two,
+	)
 
-/datum/job/som/leader/hvh
-	outfit = /datum/outfit/job/som/leader/hvh
-
-
+//Charger
 /datum/outfit/job/som/leader
 	name = "SOM Leader"
 	jobtype = /datum/job/som/leader
 
-	id = /obj/item/card/id/dogtag/som
-	belt = /obj/item/storage/belt/marine/som
-	ears = /obj/item/radio/headset/distress/som
-	w_uniform = /obj/item/clothing/under/som/leader
-	shoes = /obj/item/clothing/shoes/marine/som
-	wear_suit = /obj/item/clothing/suit/storage/marine/som/leader
-	gloves = /obj/item/clothing/gloves/marine/som/veteran
-	head = /obj/item/clothing/head/helmet/marine/som/leader
-	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/rifle/m16
-	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/firstaid/som/full
-	back = /obj/item/storage/backpack/lightpack/som
-
-/datum/outfit/job/som/leader/hvh
-	name = "SOM Leader (HvH)"
-
-	wear_suit = /obj/item/clothing/suit/storage/marine/som/leader/hvh
+	id = /obj/item/card/id/dogtag/som							//OK
+	belt = /obj/item/storage/belt/marine/som					//OK
+	ears = /obj/item/radio/headset/distress/som					//OK
+	w_uniform = /obj/item/clothing/under/som/leader/vp			//OK
+	shoes = /obj/item/clothing/shoes/marine/som					//Maybe OK - no knife sprite though
+	wear_suit = /obj/item/clothing/suit/modular/som/heavy/leader/valk	//OK
+	gloves = /obj/item/clothing/gloves/marine/som/veteran 		//OK
+	mask = /obj/item/clothing/mask/gas							//OK
+	head = /obj/item/clothing/head/modular/som 					//OK
+	glasses = /obj/item/clothing/glasses/hud/health 			//OK - maybe add special ones?
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet //OK
+	r_store = /obj/item/storage/pouch/grenade 					//OK
+	l_store = /obj/item/storage/pouch/magazine/large 			//OK
+	back = /obj/item/storage/backpack/lightpack/som 			//OK
 
 
 /datum/outfit/job/som/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/highpower, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/attachable/motiondetector, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/m16, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
 
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/highpower, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_L_POUCH)
+
+//caliver
+/datum/outfit/job/som/leader/one
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/somvet
+
+
+/datum/outfit/job/som/leader/one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/attachable/motiondetector, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_L_POUCH)
+
+//caliver and powerpack
+/datum/outfit/job/som/leader/two
+	w_uniform = /obj/item/clothing/under/som/leader/webbing
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
+	belt = /obj/item/belt_harness
+	back = /obj/item/cell/lasgun/volkite/powerpack
+	l_store = /obj/item/storage/pouch/general/large
+
+/datum/outfit/job/som/leader/two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pocketpistol, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pocketpistol, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pocketpistol, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_L_POUCH)

@@ -885,6 +885,12 @@
 	recoil_unwielded = 1
 	damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/gyro)
+
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
 	name = "\improper Volkite caliver"
 	desc = "An extremely powerful Martian energy weapon, infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. Sometimes referred to as 'Martian deathrays', these weapons are thankfully quite uncommon due to their difficulty in manufacture and maintenance. The volkite caliver is the primary rifle of the volkite family, and effective at most ranges and situations."
@@ -918,6 +924,15 @@
 	wield_delay	= 0.7 SECONDS
 	fire_delay = 0.25 SECONDS
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/magharness
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/somvet
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
+
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin
 	name = "\improper Volkite culverin"
 	desc = "An extremely powerful Martian energy weapon, infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. Sometimes referred to as 'Martian deathrays', these weapons are thankfully quite uncommon due to their difficulty in manufacture and maintenance. The volkite culverin is the largest man portable example of  volkite weaponry, and can lay down a staggering torrent of fire due to it's linked back-mounted powerpack."
@@ -943,3 +958,6 @@
 	accuracy_mult_unwielded = 0.4
 	scatter_unwielded = 35
 	recoil_unwielded = 5
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)

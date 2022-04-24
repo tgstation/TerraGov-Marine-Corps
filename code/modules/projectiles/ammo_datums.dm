@@ -200,7 +200,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		//ignite mobs
 		var/living_hard_armor = victim.hard_armor.getRating("fire")
 		if(living_hard_armor < 100) //won't ignite fully fireproof mobs
-			victim.adjust_fire_stacks(CEILING(10 - (living_hard_armor * 0.1), 1))
+			victim.adjust_fire_stacks(CEILING(5 - (living_hard_armor * 0.1), 1))
 			victim.IgniteMob()
 
 
