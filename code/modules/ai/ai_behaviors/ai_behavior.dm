@@ -155,7 +155,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		if(current_node)
 			change_action(MOVING_TO_NODE, current_node)
 		return
-	if(goal_node && goal_node != current_node)
+	if(goal_node && goal_node != current_node && SStime_track.time_dilation_avg > 10)
 		if(!length(goal_nodes))
 			SSadvanced_pathfinding.node_pathfinding_to_do += src
 			return
@@ -276,7 +276,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	switch(action_type)
 		if(MOVING_TO_NODE)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/finished_node_move)
-			if(CONFIG_GET(flag/no_advanced_pathfinding))
+			if(CONFIG_GET(flag/no_advanced_pathfinding) || SStime_track.time_dilation_avg > 15)
 				anti_stuck_timer = addtimer(CALLBACK(src, .proc/look_for_next_node, TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
 				return
 			anti_stuck_timer = addtimer(CALLBACK(src, .proc/ask_for_pathfinding, TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
