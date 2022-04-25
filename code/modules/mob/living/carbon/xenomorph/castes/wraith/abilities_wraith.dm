@@ -519,6 +519,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	UnregisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED)
 
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
+	SIGNAL_HANDLER
 	if(istype(crosser, /obj/projectile))
 		damage_portal(crosser)
 		linked_portal?.damage_portal(crosser)
@@ -534,11 +535,18 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(human_crosser.stat >= UNCONSCIOUS)
 			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
-	// Invoke async to make charge work
-	UNLINT(INVOKE_ASYNC(crosser, /atom/movable/Move, get_turf(linked_portal), crosser.dir))
+	crosser.flags_pass &= ~PASSMOB
+	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, .proc/do_teleport_atom)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
+/obj/effect/wraith_portal/proc/do_teleport_atom(atom/movable/crosser)
+	SIGNAL_HANDLER
+	crosser.Move(get_turf(linked_portal), crosser.dir)
+	UnregisterSignal(crosser, COMSIG_MOVABLE_MOVED)
+
+/// Signal handler
 /obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
+	SIGNAL_HANDLER
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/new_range = bullet.proj_max_range - bullet.distance_travelled
 	if(new_range <= 0)
@@ -549,6 +557,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	bullet.permutated.Cut()
 	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
 
+/// Damage the portal when a bullet is crossing
 /obj/effect/wraith_portal/proc/damage_portal(obj/projectile/bullet_crossing)
 	health_points -= bullet_crossing.ammo.damage
 	if(health_points <= 0)
