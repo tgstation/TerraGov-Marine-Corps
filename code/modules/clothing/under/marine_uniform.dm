@@ -388,6 +388,8 @@
 	icon_state = "som_uniform_medic"
 	item_state = "som_uniform_medic"
 
+/obj/item/clothing/under/som/medic/vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest/medic/som)
 
 /obj/item/clothing/under/som/veteran
 	name = "\improper SoM veteran uniform"
@@ -395,6 +397,11 @@
 	icon_state = "som_uniform_veteran"
 	item_state = "som_uniform_veteran"
 
+/obj/item/clothing/under/som/veteran/highpower
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/highpower)
+
+/obj/item/clothing/under/som/veteran/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/som)
 
 /obj/item/clothing/under/som/leader
 	name = "\improper SoM leader uniform"
@@ -402,11 +409,11 @@
 	icon_state = "som_uniform_leader"
 	item_state = "som_uniform_leader"
 
-/obj/item/clothing/under/som/leader/vp
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/vp)
+/obj/item/clothing/under/som/leader/highpower
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/highpower)
 
 /obj/item/clothing/under/som/leader/webbing
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/vp)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/som)
 
 /obj/item/clothing/under/sectoid
 	name = "psionic field"
