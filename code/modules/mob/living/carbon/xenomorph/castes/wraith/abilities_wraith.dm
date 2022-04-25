@@ -518,6 +518,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	REMOVE_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
 	UnregisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED)
 
+/// Signal handler teleporting crossing atoms
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
 	if(istype(crosser, /obj/projectile))
@@ -539,12 +540,13 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, .proc/do_teleport_atom)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
+/// Signal handler to teleport the crossing atom when its move is done
 /obj/effect/wraith_portal/proc/do_teleport_atom(atom/movable/crosser)
 	SIGNAL_HANDLER
 	crosser.Move(get_turf(linked_portal), crosser.dir)
 	UnregisterSignal(crosser, COMSIG_MOVABLE_MOVED)
 
-/// Signal handler
+/// Signal handler for teleporting a crossing bullet
 /obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
 	SIGNAL_HANDLER
 	playsound(loc, 'sound/effects/portal.ogg', 20)
