@@ -465,7 +465,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!can_use_action())
 		return
 	qdel(portal_two)
-	portal_two = new(get_turf(owner))
+	portal_two = new(get_turf(owner), TRUE)
 	succeed_activate()
 	add_cooldown()
 	playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
@@ -493,14 +493,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/obj/effect/wraith_portal/linked_portal
 	COOLDOWN_DECLARE(portal_cooldown)
 
-/obj/effect/wraith_portal/Initialize(mapload)
+/obj/effect/wraith_portal/Initialize(mapload, portal_is_yellow = FALSE)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/teleport_atom
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	add_filter("border_smoother", 1, gauss_blur_filter(1))
-	add_filter("portal_outline", 2, outline_filter(2, "#33ccff"))
+	add_filter("portal_outline", 2, outline_filter(2, portal_is_yellow ? "#EE7D13" : "#0364E9"))
 
 /obj/effect/wraith_portal/Destroy()
 	linked_portal?.unlink()
@@ -531,7 +531,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
 	// Invoke async to make charge work
-	INVOKE_ASYNC(crosser, /atom/movable/Move, get_turf(linked_portal), crosser.dir)
+	UNLINT(INVOKE_ASYNC(crosser, /atom/movable/proc/Move, get_turf(linked_portal), crosser.dir))
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
 /obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
