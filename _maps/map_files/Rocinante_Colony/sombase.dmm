@@ -498,6 +498,9 @@
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass{
 	dir = 8
 	},
+/obj/structure/cable{
+	layer = 1.99
+	},
 /turf/open/floor/mainship/orange/full,
 /area/rocinante_colony/surface/building/refinery)
 "aLu" = (
@@ -967,6 +970,21 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonyn)
+"bpX" = (
+/obj/effect/ai_node,
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/orange/full,
+/area/rocinante_colony/surface/building/refinery)
+"bqf" = (
+/obj/effect/ai_node,
+/obj/machinery/power/apc/drained,
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/grayscale,
+/area/rocinante_colony/surface/building/industryrest)
 "bqn" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/grayscale,
@@ -1452,6 +1470,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/vehicle_garage)
+"ccc" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship,
+/area/rocinante_colony/surface/building/refinery)
 "ccu" = (
 /obj/structure/table/mainship,
 /obj/item/clipboard,
@@ -3203,6 +3227,15 @@
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/mainship/red/full,
 /area/rocinante_colony/surface/building/administrationsom)
+"exX" = (
+/obj/structure/desertdam/decals/road/edge{
+	icon_state = "road_edge_decal1"
+	},
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_colony/ground/colonyn)
 "eyo" = (
 /obj/structure/table/mainship,
 /obj/item/tool/screwdriver,
@@ -6807,6 +6840,13 @@
 /obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
 /turf/open/floor/mainship/red/full,
 /area/rocinante_colony/surface/building/canterbury)
+"jyn" = (
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/rocinante_colony/surface/building/medbay)
 "jyx" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -9603,6 +9643,15 @@
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/administrationsom)
+"mTr" = (
+/obj/structure/desertdam/decals/road/edge{
+	icon_state = "road_edge_decal7"
+	},
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_colony/ground/colonyn)
 "mTw" = (
 /obj/structure/prop/vehicle/crawler/crawler_red,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
@@ -10603,6 +10652,15 @@
 "oth" = (
 /turf/open/floor/mainship/silver,
 /area/rocinante_colony/surface/building/convenience_store)
+"otv" = (
+/obj/structure/desertdam/decals/road/edge{
+	icon_state = "road_edge_decal4"
+	},
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_colony/surface/building/medbay)
 "otO" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -10807,6 +10865,14 @@
 /obj/effect/landmark/corpsespawner/som,
 /turf/open/floor/mainship/red/full,
 /area/rocinante_colony/surface/building/administrationsom)
+"oIL" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/sterile/corner{
+	dir = 8
+	},
+/area/rocinante_colony/surface/building/medbay)
 "oIN" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer3,
@@ -10828,6 +10894,10 @@
 "oJU" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
+/obj/structure/cable{
+	layer = 1.99
+	},
+/obj/machinery/power/apc/drained,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -11154,6 +11224,14 @@
 	dir = 8
 	},
 /area/rocinante_colony/surface/building/space_hangar)
+"pfS" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/rocinante_colony/surface/building/medbay)
 "pgi" = (
 /turf/closed/wall/mainship/gray,
 /area/rocinante_colony/surface/building/command)
@@ -11646,6 +11724,12 @@
 /obj/structure/desertdam/decals/road,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/engineering)
+"pOe" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/sterile/side,
+/area/rocinante_colony/surface/building/medbay)
 "pOE" = (
 /obj/structure/toilet/alternate,
 /obj/machinery/light{
@@ -12831,6 +12915,13 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/rocinante_colony/surface/building/canterbury)
+"ryA" = (
+/obj/effect/ai_node,
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/rocinante_colony/surface/building/medbay)
 "ryY" = (
 /obj/structure/bush,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -15478,6 +15569,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/rocinante_colony/ground/colonycent)
+"vFj" = (
+/obj/structure/desertdam/decals/road/edge{
+	icon_state = "road_edge_decal9"
+	},
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_colony/surface/building/medbay)
 "vFk" = (
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/surface/building/canterbury)
@@ -15804,6 +15904,12 @@
 "wiA" = (
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonyse)
+"wiX" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/grayscale,
+/area/rocinante_colony/surface/building/industryrest)
 "wjm" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
@@ -16172,6 +16278,12 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonyn)
+"wLs" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/orange/full,
+/area/rocinante_colony/surface/building/refinery)
 "wLE" = (
 /obj/effect/decal/mecha_wreckage/ripley,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -16349,6 +16461,12 @@
 	icon_state = "47"
 	},
 /area/rocinante_colony/surface/building/cas_hangar)
+"wTA" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/rocinante_colony/surface/building/medbay)
 "wTG" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/plating/ground/concrete,
@@ -16894,6 +17012,13 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/colonye)
+"xAH" = (
+/obj/effect/ai_node,
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship,
+/area/rocinante_colony/surface/building/refinery)
 "xAQ" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/grass,
@@ -17095,6 +17220,15 @@
 /obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/commercial_s)
+"xQm" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/grayscale,
+/area/rocinante_colony/surface/building/industryrest)
 "xQQ" = (
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/plating/ground/concrete,
@@ -20697,9 +20831,9 @@ wYY
 qyc
 qyc
 qyc
-lRu
-xwf
-xwf
+bqf
+wiX
+wiX
 hdp
 vHI
 nDI
@@ -20891,7 +21025,7 @@ ttP
 ttP
 xwf
 kXo
-xwf
+wiX
 qQu
 cAy
 xql
@@ -21083,7 +21217,7 @@ tXT
 xwf
 lRu
 qyc
-tXT
+xQm
 qQu
 xwf
 xwf
@@ -21275,7 +21409,7 @@ iKl
 lRu
 xwf
 qyc
-xwf
+wiX
 lRu
 xwf
 iKl
@@ -21467,7 +21601,7 @@ lyg
 tiw
 cSE
 qyc
-xwf
+wiX
 mye
 qyc
 qyc
@@ -21659,7 +21793,7 @@ nLc
 tiw
 iKl
 xwf
-xwf
+wiX
 xwf
 qyc
 bLm
@@ -21845,13 +21979,13 @@ aXp
 mua
 tiw
 efe
-mua
-ekn
-jDj
+ccc
+xAH
+wLs
 aJY
-xwf
-xwf
-xwf
+wiX
+wiX
+wiX
 xwf
 qyc
 jkf
@@ -22037,7 +22171,7 @@ hhw
 eaE
 tiw
 lwU
-mua
+ccc
 jlE
 xWs
 jDj
@@ -22228,8 +22362,8 @@ tiw
 lyg
 ftI
 tiw
-xWs
-mua
+bpX
+ccc
 qyh
 jDj
 tiw
@@ -22417,10 +22551,10 @@ mua
 sUh
 ebh
 vJP
-mua
-jDj
-jDj
-jDj
+ccc
+wLs
+wLs
+wLs
 alY
 alY
 dLc
@@ -35477,7 +35611,7 @@ mMg
 iEG
 iEG
 dKt
-iEG
+wTA
 gyP
 qpo
 wDd
@@ -35669,8 +35803,8 @@ bew
 goS
 pfa
 iEG
-goS
-iEG
+pfS
+wTA
 xxf
 xVP
 pSP
@@ -35862,7 +35996,7 @@ xVP
 xVP
 xVP
 xVP
-iEG
+wTA
 sFK
 xVP
 xVP
@@ -36054,9 +36188,9 @@ pyO
 pSP
 xVP
 eGd
-iEG
-gdD
-dnd
+wTA
+ryA
+oIL
 xVP
 sXH
 mXw
@@ -36248,7 +36382,7 @@ wDd
 sBn
 iEG
 jpO
-qpo
+pOe
 xVP
 sXH
 siX
@@ -36440,7 +36574,7 @@ wDd
 mHr
 cYg
 jpO
-qpo
+pOe
 xVP
 mMc
 irm
@@ -36632,13 +36766,13 @@ xVP
 mMg
 xBo
 did
-qpo
+pOe
 iVh
-aMI
-iyG
-iyG
-iyG
-rzh
+vFj
+exX
+exX
+exX
+mTr
 bpV
 aUh
 aUh
@@ -36824,9 +36958,9 @@ dKt
 iEG
 dnd
 qiI
-iEG
-dKt
-sXH
+wTA
+jyn
+otv
 jdn
 siX
 siX
