@@ -155,7 +155,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		if(current_node)
 			change_action(MOVING_TO_NODE, current_node)
 		return
-	if(goal_node && goal_node != current_node && SStime_track.time_dilation_avg > 10)
+	if(goal_node && goal_node != current_node && SStime_track.time_dilation_avg < 10)
 		if(!length(goal_nodes))
 			SSadvanced_pathfinding.node_pathfinding_to_do += src
 			return
