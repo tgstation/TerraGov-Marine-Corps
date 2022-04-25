@@ -146,11 +146,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/surface/building/command)
-"aO" = (
-/obj/structure/table,
-/obj/machinery/computer/communications,
-/turf/open/floor,
-/area/orion_outpost/surface/building/command)
 "aQ" = (
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -18255,7 +18250,7 @@ nc
 Jh
 uv
 uv
-aO
+rN
 WZ
 uv
 dL

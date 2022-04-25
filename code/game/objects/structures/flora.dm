@@ -428,7 +428,6 @@
 	name = "jungle foliage"
 	desc = "Pretty thick scrub, it'll take something sharp and a lot of determination to clear away."
 	icon_state = "grass4"
-	max_integrity = 35
 
 /obj/structure/jungle/plantbot1
 	name = "strange tree"

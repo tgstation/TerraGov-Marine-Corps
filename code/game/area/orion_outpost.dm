@@ -155,6 +155,7 @@
 
 /area/orion_outpost/surface/building/bunker
 	name = "Bunkers"
+	always_unpowered = TRUE
 	icon_state = "dark128"
 
 /area/orion_outpost/surface/building/crashednt
