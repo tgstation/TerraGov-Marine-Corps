@@ -25,6 +25,9 @@ SUBSYSTEM_DEF(advanced_pathfinding)
 		if (MC_TICK_CHECK)
 			return
 
+/datum/controller/subsystem/advanced_pathfinding/stat_entry()
+	..("Node pathfinding : [length(node_pathfinding_to_do)] || Tile pathfinding : [length(tile_pathfinding_to_do)]")
+
 #define NODE_PATHING "node_pathing" //Looking through the network of nodes the best node path
 #define TILE_PATHING "tile_pathing" //Looking the best tile path
 GLOBAL_LIST_EMPTY(goal_nodes)
