@@ -552,4 +552,4 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /obj/effect/wraith_portal/proc/damage_portal(obj/projectile/bullet_crossing)
 	health_points -= bullet_crossing.ammo.damage
 	if(health_points <= 0)
-		QDEL_IN(src, 1)
+		qdel(src)
