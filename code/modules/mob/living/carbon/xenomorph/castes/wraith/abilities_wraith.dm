@@ -420,6 +420,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PORTAL
 	alternate_keybind_signal = COMSIG_XENOABILITY_PORTAL_ALTERNATE
+	/// How far can you link two portals
+	var/range = 10
 	/// The first portal
 	var/obj/effect/wraith_portal/portal_one
 	/// The second portal
@@ -472,7 +474,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /// Link the two portals if possible
 /datum/action/xeno_action/portal/proc/link_portals()
-	if(get_dist(portal_one, portal_two) > 20 || portal_one.z != portal_two.z)
+	if(get_dist(portal_one, portal_two) > range || portal_one.z != portal_two.z)
 		to_chat(owner, span_xenowarning("The other portal is too far away, they cannot link!"))
 		return
 	portal_two.link_portal(portal_one)
@@ -483,6 +485,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	anchored = TRUE
 	opacity = FALSE
 	vis_flags = VIS_HIDE
+	/// "Health points" for the portal, aka how many bullets * proj damage can still cross it without destroying it
+	var/health_points = 150
 	/// Visual object for handling the viscontents
 	var/obj/effect/portal_effect/portal_visuals
 	/// The linked portal
@@ -519,7 +523,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 	if(!COOLDOWN_CHECK(src, portal_cooldown))
 		return
-	if(istype(crosser, /obj/projectile))
+	if(istype(crosser, /obj/projectile) || istype(crosser, /obj/structure))
 		return
 	if(ishuman(crosser))
 		var/mob/living/carbon/human/human_crosser = crosser
@@ -530,6 +534,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
 /obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
+	health_points -= bullet.ammo.damage
+	if(health_points <= 0)
+		qdel(src)
+		return
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/new_range = bullet.proj_max_range - bullet.distance_travelled
 	if(new_range <= 0)
