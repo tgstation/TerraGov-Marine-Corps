@@ -531,7 +531,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
 	// Invoke async to make charge work
-	UNLINT(INVOKE_ASYNC(crosser, /atom/movable/proc/Move, get_turf(linked_portal), crosser.dir))
+	UNLINT(INVOKE_ASYNC(crosser, /atom/movable/Move, get_turf(linked_portal), crosser.dir))
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
 /obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
