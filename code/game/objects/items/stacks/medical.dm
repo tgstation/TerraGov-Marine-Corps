@@ -42,8 +42,8 @@
 			to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
 			return TRUE
 
-	if(affecting.limb_status & LIMB_ROBOT)
-		to_chat(user, span_warning("This isn't useful at all on a robotic limb."))
+	if(!can_affect_limb(affecting))
+		to_chat(user, span_warning("This isn't useful at all on [affecting.limb_status & LIMB_ROBOT ? "a robotic": "an organic"] limb."))
 		return TRUE
 
 	H.UpdateDamageIcon()
@@ -54,6 +54,12 @@
 			return TRUE
 
 	return affecting
+
+///Checks for whether the limb is appropriately organic/robotic
+/obj/item/stack/medical/proc/can_affect_limb(datum/limb/affecting)
+	if(affecting.limb_status & LIMB_ROBOT)
+		return FALSE
+	return TRUE
 
 /obj/item/stack/medical/heal_pack
 	name = "platonic gauze"
@@ -89,10 +95,12 @@
 
 	//After patching the first limb, start looping through the rest with a delay on each.
 	for(affecting AS in patient.limbs)
-		if(affected) //Always true on the first try, otherwise only delay if you patched the last one.
-			if(user.do_actions || !do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-				to_chat(user, span_notice("You stop tending to [patient]'s wounds."))
-				return
+		if(!can_affect_limb(affecting))
+			continue
+		 //Always delay on the first try, otherwise only delay if you patched the last iterated limb.
+		if(affected && (user.do_actions || !do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)))
+			to_chat(user, span_notice("You stop tending to [patient]'s wounds."))
+			return
 		affected = heal_limb(affecting, unskilled_penalty)
 		if(affected) //Limbs you don't treat just pass by silently
 			generate_treatment_messages(user, patient, affecting, affected)
