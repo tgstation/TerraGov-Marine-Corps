@@ -508,11 +508,13 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	REMOVE_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
 	return ..()
 
+/// Link two portals
 /obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)
 	linked_portal = portal_to_link
 	ADD_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
 	RegisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED, .proc/teleport_bullet)
 
+/// Unlink the portal
 /obj/effect/wraith_portal/proc/unlink()
 	linked_portal = null
 	REMOVE_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
