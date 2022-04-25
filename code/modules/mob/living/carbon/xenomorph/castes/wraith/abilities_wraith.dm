@@ -519,11 +519,15 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	UnregisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED)
 
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
+	if(istype(crosser, /obj/projectile))
+		damage_portal(crosser)
+		linked_portal?.damage_portal(crosser)
+		return
 	if(!linked_portal)
 		return
 	if(!COOLDOWN_CHECK(src, portal_cooldown))
 		return
-	if(istype(crosser, /obj/projectile) || istype(crosser, /obj/structure))
+	if(istype(crosser, /obj/structure))
 		return
 	if(ishuman(crosser))
 		var/mob/living/carbon/human/human_crosser = crosser
@@ -535,7 +539,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
 /obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
-	health_points -= bullet.ammo.damage
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/new_range = bullet.proj_max_range - bullet.distance_travelled
 	if(new_range <= 0)
@@ -545,6 +548,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 	bullet.permutated.Cut()
 	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
+
+/obj/effect/wraith_portal/proc/damage_portal(obj/projectile/bullet_crossing)
+	health_points -= bullet_crossing.ammo.damage
 	if(health_points <= 0)
-		qdel(src)
-		return
+		QDEL_IN(src, 1)
