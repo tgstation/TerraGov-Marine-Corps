@@ -525,13 +525,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	SIGNAL_HANDLER
 	if(istype(crosser, /obj/projectile))
 		damage_portal(crosser)
-		linked_portal?.damage_portal(crosser)
 		return
 	if(!linked_portal)
 		return
 	if(!COOLDOWN_CHECK(src, portal_cooldown))
 		return
-	if(istype(crosser, /obj/structure))
+	if(crosser.anchored)
 		return
 	if(ishuman(crosser))
 		var/mob/living/carbon/human/human_crosser = crosser
@@ -557,6 +556,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		bullet.loc = get_turf(linked_portal)
 		bullet.ammo.do_at_max_range(bullet)
 		qdel(bullet)
+		return
+	if(!linked_portal) // A lot of racing conditions here
 		return
 	bullet.permutated.Cut()
 	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
