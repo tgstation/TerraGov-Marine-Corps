@@ -20,9 +20,6 @@
 
 	///stages such as "cut", "deep cut", etc.
 	var/list/stages
-	// maximum stage at which bleeding should still happen, counted from the right rather than the left of the list
-	// 1 means all stages except the last should bleed
-	var/max_bleeding_stage = 1
 	///one of CUT, BRUISE, BURN
 	var/damage_type = CUT
 	// whether this wound needs a bandage/salve to heal at all
@@ -42,8 +39,6 @@
 		damage_list += stages[V]
 
 	damage = initial_damage
-
-	max_bleeding_stage = desc_list.len - max_bleeding_stage
 
 	// initialize with the appropriate stage
 	current_stage = stages.len
@@ -116,115 +111,12 @@
 
 /** WOUND DEFINITIONS **/
 
-//Note that the MINIMUM damage before a wound can be applied should correspond to
-//the damage amount for the stage with the same name as the wound.
-//e.g. /datum/wound/cut/deep should only be applied for 15 damage and up,
-//because in it's stages list, "deep cut" = 15.
+//Mostly dead. Kill entirely or leave to generate a suitable internal?.
 /proc/get_wound_type(type = CUT, damage)
-	switch(type)
-		if(CUT)
-			switch(damage)
-				if(70 to INFINITY)
-					return /datum/wound/cut/massive
-				if(60 to 70)
-					return /datum/wound/cut/gaping_big
-				if(50 to 60)
-					return /datum/wound/cut/gaping
-				if(25 to 50)
-					return /datum/wound/cut/flesh
-				if(15 to 25)
-					return /datum/wound/cut/deep
-				if(0 to 15)
-					return /datum/wound/cut/small
-		if(BRUISE)
-			return /datum/wound/bruise
-		if(BURN)
-			switch(damage)
-				if(50 to INFINITY)
-					return /datum/wound/burn/carbonised
-				if(40 to 50)
-					return /datum/wound/burn/deep
-				if(30 to 40)
-					return /datum/wound/burn/severe
-				if(15 to 30)
-					return /datum/wound/burn/large
-				if(0 to 15)
-					return /datum/wound/burn/moderate
 	return null //no wound
 
-/** CUTS **/
-// link wound descriptions to amounts of damage
-
-/datum/wound/cut/small
-	max_bleeding_stage = 2
-	stages = list("ugly ripped cut" = 20, "ripped cut" = 10, "cut" = 5, "healing cut" = 2, "small scab" = 0)
-	damage_type = CUT
-
-/datum/wound/cut/deep
-	max_bleeding_stage = 3
-	stages = list("ugly deep ripped cut" = 25, "deep ripped cut" = 20, "deep cut" = 15, "clotted cut" = 8, "scab" = 2, "fresh skin" = 0)
-	damage_type = CUT
-
-/datum/wound/cut/flesh
-	max_bleeding_stage = 4
-	stages = list("ugly ripped flesh wound" = 35, "ugly flesh wound" = 30, "flesh wound" = 25, "blood soaked clot" = 15, "large scab" = 5, "fresh skin" = 0)
-	damage_type = CUT
-
-/datum/wound/cut/gaping
-	max_bleeding_stage = 2
-	stages = list("gaping wound" = 50, "large blood soaked clot" = 25, "large clot" = 15, "small angry scar" = 5, "small straight scar" = 0)
-	damage_type = CUT
-
-/datum/wound/cut/gaping_big
-	max_bleeding_stage = 2
-	stages = list("big gaping wound" = 60, "healing gaping wound" = 40, "large angry scar" = 10, "large straight scar" = 0)
-	damage_type = CUT
-
-datum/wound/cut/massive
-	max_bleeding_stage = 2
-	stages = list("massive wound" = 70, "massive healing wound" = 50, "massive angry scar" = 10,  "massive jagged scar" = 0)
-	damage_type = CUT
-
-/** BRUISES **/
-/datum/wound/bruise
-	stages = list("monumental bruise" = 80, "huge bruise" = 50, "large bruise" = 30,\
-				"moderate bruise" = 20, "small bruise" = 10, "tiny bruise" = 5)
-	max_bleeding_stage = 3
-	autoheal_cutoff = 30
-	damage_type = BRUISE
-
-/** BURNS **/
-/datum/wound/burn/moderate
-	stages = list("ripped burn" = 10, "moderate burn" = 5, "healing moderate burn" = 2, "fresh skin" = 0)
-	damage_type = BURN
-
-/datum/wound/burn/large
-	stages = list("ripped large burn" = 20, "large burn" = 15, "healing large burn" = 5, "fresh skin" = 0)
-	damage_type = BURN
-
-/datum/wound/burn/severe
-	stages = list("ripped severe burn" = 35, "severe burn" = 30, "healing severe burn" = 10, "burn scar" = 0)
-	damage_type = BURN
-
-/datum/wound/burn/deep
-	stages = list("ripped deep burn" = 45, "deep burn" = 40, "healing deep burn" = 15,  "large burn scar" = 0)
-	damage_type = BURN
-
-/datum/wound/burn/carbonised
-	stages = list("carbonised area" = 50, "healing carbonised area" = 20, "massive burn scar" = 0)
-	damage_type = BURN
 
 /** INTERNAL BLEEDING **/
 /datum/wound/internal_bleeding
 	stages = list("severed artery" = 30, "cut artery" = 20, "damaged artery" = 10, "bruised artery" = 5)
 	autoheal_cutoff = 5
-	max_bleeding_stage = 0	//all stages bleed. It's called internal bleeding after all.
-
-/** EXTERNAL ORGAN LOSS **/
-/datum/wound/lost_limb
-	damage_type = CUT
-	stages = list("ripped stump" = 65, "bloody stump" = 50, "clotted stump" = 25, "scarred stump" = 0)
-	max_bleeding_stage = 3
-
-/datum/wound/lost_limb/small
-	stages = list("ripped stump" = 40, "bloody stump" = 30, "clotted stump" = 15, "scarred stump" = 0)
