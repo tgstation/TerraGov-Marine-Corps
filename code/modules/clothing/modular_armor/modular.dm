@@ -337,9 +337,6 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
-		/obj/item/armor_module/storage/helmet/som_leader,
-		/obj/item/armor_module/storage/helmet/som_vet,
-		/obj/item/armor_module/storage/helmet/som,
 		/obj/item/armor_module/armor/badge,
 	)
 
@@ -892,6 +889,9 @@
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/storage/helmet/som_leader,
+		/obj/item/armor_module/storage/helmet/som_vet,
+		/obj/item/armor_module/storage/helmet/som,
 		/obj/item/armor_module/armor/visor/marine,
 		/obj/item/armor_module/armor/badge,
 	)

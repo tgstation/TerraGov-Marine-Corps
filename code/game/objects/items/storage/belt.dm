@@ -819,7 +819,6 @@
 
 //No overlays, sprite not positioned to allow for it
 /obj/item/storage/belt/gun/pistol/m4a3/som/update_gun_icon()
-	var/mob/user = loc
 	if(current_gun)
 		playsound(src,drawSound, 15, 1)
 	else

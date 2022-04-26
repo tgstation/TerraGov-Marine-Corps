@@ -268,7 +268,7 @@
 
 //Culverin - bringing the big guns
 /datum/outfit/job/som/veteran/three
-	w_uniform = /obj/item/clothing/under/som/veteran/webbing
+	w_uniform = /obj/item/clothing/under/som/veteran/webbing_vet
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	belt = /obj/item/weapon/gun/shotgun/double/sawn
 	back = /obj/item/cell/lasgun/volkite/powerpack
