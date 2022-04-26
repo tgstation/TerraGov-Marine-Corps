@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - qol: "The hotkey \"Say\" input can now be Canceled like \"Me\""

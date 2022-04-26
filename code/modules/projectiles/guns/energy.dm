@@ -32,13 +32,14 @@
 /obj/item/weapon/gun/energy/get_flags_magazine_features(obj/item/mag)
 	var/obj/item/cell/lasgun/cell = mag
 	return cell ? cell.flags_magazine_features : NONE
-
+//based off of basegun proc, should work.
 /obj/item/weapon/gun/energy/get_magazine_overlay(obj/item/mag)
-	return null
-
+	var/obj/item/cell/lasgun/cell = mag
+	return cell?.bonus_overlay
+//based off of basegun proc, should work.
 /obj/item/weapon/gun/energy/get_magazine_reload_delay(obj/item/mag)
-	return null
-
+	var/obj/item/cell/lasgun/cell = mag
+	return cell?.reload_delay
 
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
@@ -84,7 +85,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	overcharge = FALSE
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
@@ -98,63 +99,6 @@
 	damage_falloff_mult = 0.5
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
-
-/obj/item/weapon/gun/energy/lasgun/get_magazine_reload_delay(obj/item/mag)
-	var/obj/item/cell/lasgun/cell = mag
-	return cell?.reload_delay
-
-/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla
-	name = "\improper Terra Experimental tesla shock rifle"
-	desc = "A Terra Experimental energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Unlike the other TE Laser weapons, lasers don't come out of this weird weapon. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts. Uses standard Terra Experimental  (abbreviated as TE) power cells."
-	icon_state = "tesla"
-	item_state = "tesla"
-	icon = 'icons/Marine/gun64.dmi'
-	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
-	ammo_datum_type  = /datum/ammo/energy/tesla
-	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = WEIGHT_CLASS_BULKY
-	default_ammo_type = /obj/item/cell/lasgun/lasrifle
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
-
-	muzzle_flash_color = COLOR_TESLA_BLUE
-
-	max_shots = 6 //codex stuff
-	rounds_per_shot = 100
-	fire_delay = 4 SECONDS
-	turret_flags = TURRET_INACCURATE
-	attachable_allowed = list(
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
-	)
-
-	mode_list = list(
-		"Standard" = /datum/lasrifle/base/tesla_mode/standard,
-		"Focused" = /datum/lasrifle/base/tesla_mode/focused,
-	)
-
-/datum/lasrifle/base/tesla_mode/standard
-	rounds_per_shot = 100
-	ammo_datum_type = /datum/ammo/energy/tesla
-	fire_delay = 4 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
-	message_to_user = "You set the tesla shock rifle's power mode mode to standard."
-	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = "tesla"
-
-/datum/lasrifle/base/tesla_mode/focused
-	rounds_per_shot = 100
-	ammo_datum_type = /datum/ammo/energy/tesla/focused
-	fire_delay = 4 SECONDS
-	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
-	message_to_user = "You set the tesla shock rifle's power mode mode to focused."
-	fire_mode = GUN_FIREMODE_SEMIAUTO
-	icon_state = "tesla"
-	radial_icon_state = "laser_overcharge"
 
 /obj/item/weapon/gun/energy/lasgun/unique_action(mob/user, dont_operate = FALSE)
 	QDEL_NULL(in_chamber)
@@ -193,23 +137,6 @@
 
 	return TRUE
 
-/obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
-	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	icon_state = "[base_gun_icon]_[cell_charge]"
-	update_mag_overlay()
-	update_item_state()
-
-/obj/item/weapon/gun/energy/lasgun/update_item_state(mob/user)
-	. = item_state
-	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	item_state = "[initial(icon_state)]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
-	if(. != item_state && ishuman(user)) // what is this.
-		var/mob/living/carbon/human/human_user = user
-		if(src == human_user.l_hand)
-			human_user.update_inv_l_hand()
-		else if (src == human_user.r_hand)
-			human_user.update_inv_r_hand()
-
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
 
@@ -245,10 +172,10 @@
 		/obj/item/attachable/stock/lasgun,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
-
+	ammo_level_icon = "m43"
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
@@ -283,7 +210,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
-
+	ammo_level_icon = "m19c4"
 	fire_delay = 8
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
@@ -338,7 +265,7 @@
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
-
+	ammo_level_icon = "tx73"
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
@@ -407,9 +334,58 @@
 
 	in_chamber = get_ammo_object(chamber_items[current_chamber_position])
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
-	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+//Tesla gun
+/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla
+	name = "\improper Terra Experimental tesla shock rifle"
+	desc = "A Terra Experimental energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts. Uses standard Terra Experimental (TE) power cells."
+	icon_state = "tesla"
+	item_state = "tesla"
+	icon = 'icons/Marine/gun64.dmi'
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	ammo_datum_type  = /datum/ammo/energy/tesla
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	default_ammo_type = /obj/item/cell/lasgun/lasrifle
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
+	muzzle_flash_color = COLOR_TESLA_BLUE
+	ammo_level_icon = "tesla"
+	max_shots = 6 //codex stuff
+	rounds_per_shot = 100
+	fire_delay = 4 SECONDS
+	turret_flags = TURRET_INACCURATE
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
 
+	mode_list = list(
+		"Standard" = /datum/lasrifle/base/tesla_mode/standard,
+		"Focused" = /datum/lasrifle/base/tesla_mode/focused,
+	)
+
+/datum/lasrifle/base/tesla_mode/standard
+	rounds_per_shot = 100
+	ammo_datum_type = /datum/ammo/energy/tesla
+	fire_delay = 4 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	message_to_user = "You set the tesla shock rifle's power mode mode to standard."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tesla"
+
+/datum/lasrifle/base/tesla_mode/focused
+	rounds_per_shot = 100
+	ammo_datum_type = /datum/ammo/energy/tesla/focused
+	fire_delay = 4 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	message_to_user = "You set the tesla shock rifle's power mode mode to focused."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tesla"
+	radial_icon_state = "laser_overcharge"
 
 //TE Tier 1 Series//
 
@@ -429,6 +405,7 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	turret_flags = TURRET_INACCURATE
+	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -571,7 +548,7 @@
 	rounds_per_shot = 15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-
+	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -649,6 +626,10 @@
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
+	ammo_level_icon = "te"
+	icon_overlay_x_offset = -1
+	icon_overlay_y_offset = -3
+
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -711,6 +692,7 @@
 	rounds_per_shot = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	ammo_level_icon = "te"
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -786,7 +768,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 20, "rail_y" = 21, "under_x" = 30, "under_y" = 13, "stock_x" = 22, "stock_y" = 14)
-
+	ammo_level_icon = "tex"
 	aim_slowdown = 0.4
 	wield_delay = 0.5 SECONDS
 	scatter = 0

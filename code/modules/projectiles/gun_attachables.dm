@@ -806,6 +806,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "antimat"
 	scoped_accuracy_mod = SCOPE_RAIL_SNIPER
 	has_nightvision = TRUE
+	zoom_allow_movement = FALSE
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_REMOVABLE
 	pixel_shift_x = 0
 	pixel_shift_y = 17

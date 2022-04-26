@@ -161,6 +161,7 @@
 			/obj/item/ammo_magazine/packet/p10x265mm = -1,
 			/obj/item/ammo_magazine/packet/p10x27mm = -1,
 			/obj/item/ammo_magazine/packet/p492x34mm = -1,
+			/obj/item/ammo_magazine/packet/p86x70mm = -1,
 			/obj/item/ammo_magazine/packet/p4570 = -1,
 			/obj/item/storage/box/visual/magazine = -1,
 			/obj/item/storage/box/visual/grenade = -1,
@@ -835,7 +836,7 @@
 			/obj/item/stack/medical/heal_pack/ointment = -1,
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 32,
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 32,
-			/obj/item/stack/medical/splint = 16,
+			/obj/item/stack/medical/splint = -1,
 		),
 		"Misc" = list(
 			/obj/item/healthanalyzer = 12,
@@ -972,6 +973,7 @@
 
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+		/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
 		/obj/item/storage/box/sentry = 3,
 		/obj/item/storage/box/tl102 = 1,
 	)

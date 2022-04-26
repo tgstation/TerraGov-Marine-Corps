@@ -21,6 +21,7 @@
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
 	var/damageable = TRUE
 	var/deconstructable = TRUE
+	throwpass = FALSE
 
 //I hate this as much as you do
 /obj/structure/window/full
@@ -453,6 +454,15 @@
 	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = RESIST_ALL
+
+/obj/structure/window/framed/mainship/white/toughened/hull
+	name = "hull window"
+	icon_state = "white_rwindow0"
+	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	damageable = FALSE
+	deconstructable = FALSE
+	resistance_flags = RESIST_ALL
+
 /obj/structure/window/framed/colony
 	name = "window"
 	icon_state = "col_window0"

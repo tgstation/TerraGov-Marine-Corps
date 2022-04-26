@@ -29,6 +29,7 @@
 		/obj/item/storage/belt/gun,
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
+		/obj/item/tool/pickaxe/plasmacutter,
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY

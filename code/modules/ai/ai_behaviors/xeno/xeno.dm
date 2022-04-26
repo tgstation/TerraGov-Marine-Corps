@@ -15,11 +15,11 @@
 	mob_parent.a_intent = INTENT_HARM //Killing time
 	src.can_heal = can_heal
 
-/datum/ai_behavior/xeno/late_initialize()
-	. = ..()
+/datum/ai_behavior/xeno/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, /datum/ai_behavior.proc/deal_with_obstacle)
 	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), .proc/refresh_abilities)
 	RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/check_for_critical_health)
+	return ..()
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/xeno/proc/refresh_abilities()

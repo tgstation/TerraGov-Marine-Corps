@@ -85,6 +85,7 @@
 	caliber = CALIBER_762X25
 	icon_state = "ppsh"
 	max_rounds = 42
+	bonus_overlay = "ppsh_standard"
 
 
 /obj/item/ammo_magazine/smg/ppsh/extended
@@ -92,6 +93,7 @@
 	icon_state = "ppsh_ext"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 78
+	bonus_overlay = "ppsh_ex"
 	scatter_mod = 5
 	scatter_unwielded_mod = 10
 	wield_delay_mod = 0.2 SECONDS

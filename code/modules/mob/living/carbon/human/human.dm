@@ -1131,7 +1131,6 @@
 			b_eyes = 0
 
 	ethnicity = random_ethnicity()
-	body_type = random_body_type()
 
 	age = rand(17, 55)
 
