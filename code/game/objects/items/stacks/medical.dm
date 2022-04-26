@@ -93,12 +93,16 @@
 		return
 	use(1)
 
+	//For fast use. If you're already treating and apply to another part, don't try to start cycling again
+	if(user.do_actions)
+		return
+
 	//After patching the first limb, start looping through the rest with a delay on each.
 	for(affecting AS in patient.limbs)
 		if(!can_affect_limb(affecting))
 			continue
 		//Always delay on the first try, otherwise only delay if you patched the last iterated limb.
-		if(affected && (user.do_actions || !do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)))
+		if(affected && !do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			to_chat(user, span_notice("You stop tending to [patient]'s wounds."))
 			return
 		affected = heal_limb(affecting, unskilled_penalty)
