@@ -970,7 +970,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 30
 	max_range = 40
 	damage = 90
-	penetration = 80
+	penetration = 30
 	sundering = 0
 
 /datum/ammo/bullet/sniper/incendiary
