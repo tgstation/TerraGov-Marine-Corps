@@ -1482,6 +1482,9 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 2)
 
+/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 10
+
 /datum/ammo/rocket/atgun_shell/apcr
 	name = "tungsten penetrator"
 	hud_state = "shell_he"
@@ -1492,7 +1495,18 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 65
 
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
-	explosion(T, 0, 0, 1, 0)
+	explosion(T, 0, 0, 0, 1)
+
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+	P.proj_max_range -= 5
+	staggerstun(M, P, max_range = 20, stagger = 0.5, slowdown = 0.5, knockback = 2, shake = 1,  hard_size_threshold = 3)
+
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/O, obj/projectile/P)
+	P.proj_max_range -= 5
+
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 5
 
 /datum/ammo/rocket/atgun_shell/he
 	name = "high velocity high explosive shell"
@@ -1505,6 +1519,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
 	explosion(T, 0, 3, 5, 0)
 
+/datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T)
 /*
 //================================================
 					Energy Ammo
