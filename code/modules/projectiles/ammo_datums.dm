@@ -98,8 +98,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		step_away(victim, proj)
 
 /datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, shake = 1, soft_size_threshold = 3, hard_size_threshold = 2)
-	if(!victim || victim == proj.firer)
-		CRASH("staggerstun called [victim ? "without a mob target" : "while the mob target was the firer"]")
+	if(!victim)
+		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
 		return
 	if(shake && (proj.distance_travelled > max_range || victim.lying_angle))
