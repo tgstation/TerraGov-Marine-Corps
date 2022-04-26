@@ -27,19 +27,19 @@
 	name = "SOM Standard"
 	jobtype = /datum/job/som/standard
 
-	id = /obj/item/card/id/dogtag/som						//OK
-	belt = /obj/item/storage/belt/marine/som				//OK
-	ears = /obj/item/radio/headset/distress/som				//OK
-	w_uniform = /obj/item/clothing/under/som				//OK
-	shoes = /obj/item/clothing/shoes/marine/som/knife		//OK
-	wear_suit = /obj/item/clothing/suit/modular/som			//OK - maybe add attachments?
-	gloves = /obj/item/clothing/gloves/marine/som			//OK
-	mask = /obj/item/clothing/mask/gas						//OK
-	head = /obj/item/clothing/head/modular/som				//OK
-	suit_store = /obj/item/weapon/gun/rifle/mpi_km/som		//OK
-	r_store = /obj/item/storage/pouch/firstaid/som/full		//OK
-	l_store = /obj/item/storage/pouch/pistol				//OK
-	back = /obj/item/storage/backpack/lightpack/som			//OK
+	id = /obj/item/card/id/dogtag/som
+	belt = /obj/item/storage/belt/marine/som
+	ears = /obj/item/radio/headset/distress/som
+	w_uniform = /obj/item/clothing/under/som
+	shoes = /obj/item/clothing/shoes/marine/som/knife
+	wear_suit = /obj/item/clothing/suit/modular/som
+	gloves = /obj/item/clothing/gloves/marine/som
+	mask = /obj/item/clothing/mask/gas
+	head = /obj/item/clothing/head/modular/som/standard
+	suit_store = /obj/item/weapon/gun/rifle/mpi_km/som
+	r_store = /obj/item/storage/pouch/firstaid/som/full
+	l_store = /obj/item/storage/pouch/pistol
+	back = /obj/item/storage/backpack/lightpack/som
 
 //AK
 /datum/outfit/job/som/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -55,9 +55,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BELT)
@@ -84,9 +81,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver/upp, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/stick, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
@@ -115,16 +109,16 @@
 	jobtype = /datum/job/som/medic
 
 	id = /obj/item/card/id/dogtag/som
-	belt = /obj/item/storage/belt/combatLifesaver/som	//ok
+	belt = /obj/item/storage/belt/combatLifesaver/som
 	ears = /obj/item/radio/headset/distress/som
-	w_uniform = /obj/item/clothing/under/som/medic/vest	//ok
+	w_uniform = /obj/item/clothing/under/som/medic/vest
 	shoes = /obj/item/clothing/shoes/marine/som/knife
-	wear_suit = /obj/item/clothing/suit/modular/som		//attach?
+	wear_suit = /obj/item/clothing/suit/modular/som
 	gloves = /obj/item/clothing/gloves/marine/som
 	mask = /obj/item/clothing/mask/gas
-	head = /obj/item/clothing/head/modular/som
+	head = /obj/item/clothing/head/modular/som/medic
 	glasses = /obj/item/clothing/glasses/hud/health
-	suit_store = /obj/item/weapon/gun/rifle/mpi_km/som	//OK
+	suit_store = /obj/item/weapon/gun/rifle/mpi_km/som
 	r_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	l_store = /obj/item/storage/pouch/magazine/large
 	back = /obj/item/storage/backpack/lightpack/som
@@ -141,9 +135,6 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/meraderm, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/upp, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mpi_km, SLOT_IN_L_POUCH)
@@ -163,9 +154,6 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/meraderm, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/upp, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_L_POUCH)
@@ -197,7 +185,7 @@
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy
 	gloves = /obj/item/clothing/gloves/marine/som/veteran
 	mask = /obj/item/clothing/mask/gas
-	head = /obj/item/clothing/head/modular/som
+	head = /obj/item/clothing/head/modular/som/veteran/vet
 	glasses = /obj/item/clothing/glasses/meson
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
 	r_store = /obj/item/storage/pouch/grenade
@@ -210,14 +198,12 @@
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK) //out of space
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
@@ -226,9 +212,6 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
@@ -246,7 +229,6 @@
 	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
@@ -254,7 +236,6 @@
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
@@ -262,9 +243,6 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
@@ -275,16 +253,12 @@
 
 //Caliver and powerpack
 /datum/outfit/job/som/veteran/two
-	w_uniform = /obj/item/clothing/under/som/veteran/webbing
-	//need belt stuff
+	w_uniform = /obj/item/clothing/under/som/veteran/webbing_vet
+	belt = /obj/item/weapon/gun/shotgun/double/sawn
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/somvet
 	back = /obj/item/cell/lasgun/volkite/powerpack
 
 /datum/outfit/job/som/veteran/two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pocketpistol, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_R_POUCH)
@@ -292,18 +266,14 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_R_POUCH)
 
-//Culverin - bringing the big guns //forgot belt, still ammo belt...
+//Culverin - bringing the big guns
 /datum/outfit/job/som/veteran/three
 	w_uniform = /obj/item/clothing/under/som/veteran/webbing
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
-	belt = /obj/item/storage/belt/gun/pistol/m4a3/som
+	belt = /obj/item/weapon/gun/shotgun/double/sawn
 	back = /obj/item/cell/lasgun/volkite/powerpack
 
 /datum/outfit/job/som/veteran/three/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pocketpistol, SLOT_IN_HEAD) //empty
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_R_POUCH)
@@ -330,20 +300,20 @@
 	name = "SOM Leader"
 	jobtype = /datum/job/som/leader
 
-	id = /obj/item/card/id/dogtag/som							//OK
-	belt = /obj/item/storage/belt/marine/som					//OK
-	ears = /obj/item/radio/headset/distress/som					//OK
-	w_uniform = /obj/item/clothing/under/som/leader/highpower	//OK //webbing not spawning?
-	shoes = /obj/item/clothing/shoes/marine/som/knife			//Maybe OK - no knife sprite though
-	wear_suit = /obj/item/clothing/suit/modular/som/heavy/leader/valk	//OK
-	gloves = /obj/item/clothing/gloves/marine/som/veteran 		//OK
-	mask = /obj/item/clothing/mask/gas							//OK
-	head = /obj/item/clothing/head/modular/som 					//OK
-	glasses = /obj/item/clothing/glasses/hud/health 			//OK - maybe add special ones?
-	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet //OK
-	r_store = /obj/item/storage/pouch/grenade 					//OK
-	l_store = /obj/item/storage/pouch/magazine/large 			//OK
-	back = /obj/item/storage/backpack/lightpack/som 			//OK
+	id = /obj/item/card/id/dogtag/som
+	belt = /obj/item/storage/belt/marine/som
+	ears = /obj/item/radio/headset/distress/som
+	w_uniform = /obj/item/clothing/under/som/leader/highpower
+	shoes = /obj/item/clothing/shoes/marine/som/knife
+	wear_suit = /obj/item/clothing/suit/modular/som/heavy/leader/valk
+	gloves = /obj/item/clothing/gloves/marine/som/veteran
+	mask = /obj/item/clothing/mask/gas
+	head = /obj/item/clothing/head/modular/som/veteran/leader
+	glasses = /obj/item/clothing/glasses/hud/health
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
+	r_store = /obj/item/storage/pouch/grenade
+	l_store = /obj/item/storage/pouch/magazine/large
+	back = /obj/item/storage/backpack/lightpack/som
 
 
 /datum/outfit/job/som/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -367,9 +337,6 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
@@ -408,9 +375,6 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/highcap, SLOT_IN_BELT)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_R_POUCH)
@@ -424,16 +388,13 @@
 
 //Caliver and powerpack
 /datum/outfit/job/som/leader/two
-	w_uniform = /obj/item/clothing/under/som/leader/webbing //webbing not appearing - is it not listed as an available option?
+	w_uniform = /obj/item/clothing/under/som/leader/webbing
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	belt = /obj/item/belt_harness
 	back = /obj/item/cell/lasgun/volkite/powerpack
 	l_store = /obj/item/storage/pouch/general/large
 
 /datum/outfit/job/som/leader/two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced , SLOT_IN_HEAD)
-
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_R_POUCH)

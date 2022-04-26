@@ -26,6 +26,7 @@
 		/obj/item/armor_module/storage/uniform/brown_vest,
 		/obj/item/armor_module/storage/uniform/white_vest,
 		/obj/item/armor_module/storage/uniform/white_vest/medic/som,
+		/obj/item/armor_module/storage/uniform/black_vest/som_vet,
 		/obj/item/armor_module/storage/uniform/white_vest/surgery,
 		/obj/item/armor_module/storage/uniform/white_vest/medic,
 		/obj/item/armor_module/storage/uniform/knifeharness,

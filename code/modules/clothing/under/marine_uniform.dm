@@ -403,6 +403,9 @@
 /obj/item/clothing/under/som/veteran/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/som)
 
+/obj/item/clothing/under/som/veteran/webbing_vet
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/som_vet)
+
 /obj/item/clothing/under/som/leader
 	name = "\improper SoM leader uniform"
 	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."

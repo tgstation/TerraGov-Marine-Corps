@@ -45,6 +45,14 @@
 	new /obj/item/tool/extinguisher/mini(storage)
 	new /obj/item/weapon/gun/pistol/standard_pocketpistol(storage)
 
+/obj/item/armor_module/storage/uniform/black_vest/som_vet/Initialize()
+	. = ..()
+	new /obj/item/tool/crowbar/red(storage)
+	new /obj/item/radio(storage)
+	new /obj/item/tool/extinguisher/mini(storage)
+	new /obj/item/ammo_magazine/handful/buckshot(storage)
+	new /obj/item/ammo_magazine/handful/buckshot(storage)
+
 /obj/item/storage/internal/vest
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL
