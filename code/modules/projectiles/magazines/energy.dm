@@ -88,7 +88,7 @@
 	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
 	slowdown = 0.3
-	maxcharge = 3600
+	maxcharge = 4800
 	self_recharge = TRUE
 	charge_amount = 30
 	charge_delay = 2 SECONDS

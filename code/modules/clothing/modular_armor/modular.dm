@@ -94,6 +94,7 @@
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/medical/basic,
 		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/armor/badge,
 	)
@@ -816,6 +817,7 @@
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/medical/basic,
 		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/armor/badge,
 	)

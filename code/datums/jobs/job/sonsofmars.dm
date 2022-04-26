@@ -31,7 +31,7 @@
 	belt = /obj/item/storage/belt/marine/som				//OK
 	ears = /obj/item/radio/headset/distress/som				//OK
 	w_uniform = /obj/item/clothing/under/som				//OK
-	shoes = /obj/item/clothing/shoes/marine/som				//OK
+	shoes = /obj/item/clothing/shoes/marine/som/knife		//OK
 	wear_suit = /obj/item/clothing/suit/modular/som			//OK - maybe add attachments?
 	gloves = /obj/item/clothing/gloves/marine/som			//OK
 	mask = /obj/item/clothing/mask/gas						//OK
@@ -109,6 +109,7 @@
 		/datum/outfit/job/som/medic/one,
 	)
 
+//AK
 /datum/outfit/job/som/medic
 	name = "SOM Medic"
 	jobtype = /datum/job/som/medic
@@ -117,7 +118,7 @@
 	belt = /obj/item/storage/belt/combatLifesaver/som	//ok
 	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/som/medic/vest	//ok
-	shoes = /obj/item/clothing/shoes/marine/som
+	shoes = /obj/item/clothing/shoes/marine/som/knife
 	wear_suit = /obj/item/clothing/suit/modular/som		//attach?
 	gloves = /obj/item/clothing/gloves/marine/som
 	mask = /obj/item/clothing/mask/gas
@@ -192,7 +193,7 @@
 	belt = /obj/item/storage/belt/marine/som
 	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/som/veteran/highpower
-	shoes = /obj/item/clothing/shoes/marine/som
+	shoes = /obj/item/clothing/shoes/marine/som/knife
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy
 	gloves = /obj/item/clothing/gloves/marine/som/veteran
 	mask = /obj/item/clothing/mask/gas
@@ -216,7 +217,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK) //out of space
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
@@ -275,6 +276,7 @@
 //Caliver and powerpack
 /datum/outfit/job/som/veteran/two
 	w_uniform = /obj/item/clothing/under/som/veteran/webbing
+	//need belt stuff
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/somvet
 	back = /obj/item/cell/lasgun/volkite/powerpack
 
@@ -290,15 +292,16 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_R_POUCH)
 
-//Culverin - bringing the big guns
+//Culverin - bringing the big guns //forgot belt, still ammo belt...
 /datum/outfit/job/som/veteran/three
 	w_uniform = /obj/item/clothing/under/som/veteran/webbing
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
+	belt = /obj/item/storage/belt/gun/pistol/m4a3/som
 	back = /obj/item/cell/lasgun/volkite/powerpack
 
 /datum/outfit/job/som/veteran/three/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pocketpistol, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pocketpistol, SLOT_IN_HEAD) //empty
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
 
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
@@ -330,8 +333,8 @@
 	id = /obj/item/card/id/dogtag/som							//OK
 	belt = /obj/item/storage/belt/marine/som					//OK
 	ears = /obj/item/radio/headset/distress/som					//OK
-	w_uniform = /obj/item/clothing/under/som/leader/highpower	//OK
-	shoes = /obj/item/clothing/shoes/marine/som					//Maybe OK - no knife sprite though
+	w_uniform = /obj/item/clothing/under/som/leader/highpower	//OK //webbing not spawning?
+	shoes = /obj/item/clothing/shoes/marine/som/knife			//Maybe OK - no knife sprite though
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/leader/valk	//OK
 	gloves = /obj/item/clothing/gloves/marine/som/veteran 		//OK
 	mask = /obj/item/clothing/mask/gas							//OK
@@ -421,7 +424,7 @@
 
 //Caliver and powerpack
 /datum/outfit/job/som/leader/two
-	w_uniform = /obj/item/clothing/under/som/leader/webbing
+	w_uniform = /obj/item/clothing/under/som/leader/webbing //webbing not appearing - is it not listed as an available option?
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	belt = /obj/item/belt_harness
 	back = /obj/item/cell/lasgun/volkite/powerpack
