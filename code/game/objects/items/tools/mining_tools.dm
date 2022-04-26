@@ -86,7 +86,7 @@
 	item_state = "plasmacutter"
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
-	force = 40.0
+	force = 100.0
 	damtype = BURN
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
@@ -238,17 +238,16 @@
 	else
 		icon_state = "plasma_cutter_on"
 		powered = TRUE
-		force = 40
+		force = 100
 		damtype = BURN
 		heat = 3800
 		set_light_on(TRUE)
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack(atom/M, mob/user)
-	if(!powered || (cell.charge < PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+	if(!powered)
 		fizzle_message(user)
 	else
-		use_charge(user, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 		playsound(M, cutting_sound, 25, 1)
 		eyecheck(user)
 		update_plasmacutter()
@@ -257,6 +256,7 @@
 		spark_system.set_up(5, 0, M)
 		spark_system.attach(M)
 		spark_system.start(M)
+		cell.charge + 200
 	return ..()
 
 
