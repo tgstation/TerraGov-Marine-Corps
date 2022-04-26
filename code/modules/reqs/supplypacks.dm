@@ -590,33 +590,60 @@ EXPLOSIVES
 	cost = 15
 
 /datum/supply_packs/explosives/mortar
-	name = "M402 mortar crate"
+	name = "T-50S mortar crate"
 	contains = list(/obj/item/mortar_kit)
-	cost = 40
+	cost = 25
 
 /datum/supply_packs/explosives/mortar_ammo_he
-	name = "M402 mortar HE shell"
-	contains = list(/obj/item/mortal_shell/he)
-	cost = 2
+	name = "T-50S mortar HE shell (x2)"
+	contains = list(/obj/item/mortal_shell/he,/obj/item/mortal_shell/he)
+	cost = 1
 
 /datum/supply_packs/explosives/mortar_ammo_incend
-	name = "M402 mortar incendiary shell"
-	contains = list(/obj/item/mortal_shell/incendiary)
-	cost = 2
+	name = "T-50S mortar incendiary shell (x2)"
+	contains = list(/obj/item/mortal_shell/incendiary, /obj/item/mortal_shell/incendiary)
+	cost = 1
 
 /datum/supply_packs/explosives/mortar_ammo_flare
-	name = "M402 mortar flare shell"
-	contains = list(/obj/item/mortal_shell/flare)
+	name = "T-50S mortar flare shell (x2)"
+	notes = "Can be fired out of the T-100Y howitzer, as well."
+	contains = list(/obj/item/mortal_shell/flare,/obj/item/mortal_shell/flare)
 	cost = 1
 
 /datum/supply_packs/explosives/mortar_ammo_smoke
-	name = "M402 mortar smoke shell"
-	contains = list(/obj/item/mortal_shell/smoke)
+	name = "T-50S mortar smoke shell (x2)"
+	contains = list(/obj/item/mortal_shell/smoke, /obj/item/mortal_shell/smoke)
 	cost = 1
 
 /datum/supply_packs/explosives/mortar_ammo_plasmaloss
-	name = "M402 mortar tanglefoot shell"
+	name = "T-50S mortar tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/plasmaloss)
+	cost = 1
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/explosives/howitzer
+	name = "T-100Y howitzer"
+	contains = list(/obj/item/mortar_kit/howitzer)
+	cost = 60
+
+/datum/supply_packs/explosives/howitzer_ammo_he
+	name = "T-100Y howitzer HE shell (x2)"
+	contains = list(/obj/item/mortal_shell/howitzer/he, /obj/item/mortal_shell/howitzer/he)
+	cost = 3
+
+/datum/supply_packs/explosives/howitzer_ammo_incend
+	name = "T-100Y howitzer incendiary shell (x2)"
+	contains = list(/obj/item/mortal_shell/howitzer/incendiary, /obj/item/mortal_shell/howitzer/incendiary)
+	cost = 3
+
+/datum/supply_packs/explosives/mortar_ammo_wp
+	name = "T-100Y howitzer white phosporous smoke shell"
+	contains = list(/obj/item/mortal_shell/howitzer/white_phos)
+	cost = 2
+
+/datum/supply_packs/explosives/mortar_ammo_plasmaloss
+	name = "T-100Y howitzer tanglefoot shell"
+	contains = list(/obj/item/mortal_shell/howitzer/plasmaloss)
 	cost = 2
 	available_against_xeno_only = TRUE
 

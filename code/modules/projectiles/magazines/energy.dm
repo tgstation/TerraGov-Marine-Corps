@@ -12,6 +12,8 @@
 	var/reload_delay = 0
 	///Magazine flags.
 	var/flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER
+	///if the magazine has a special overlay associated with it, i.e. extended mags etc
+	var/bonus_overlay = null
 
 /obj/item/cell/lasgun/M43
 	name = "\improper M43 lasgun battery"
