@@ -794,8 +794,8 @@
 //SOM modular armour
 
 /obj/item/clothing/suit/modular/som
-	name = "\improper Martian medium battle armor"
-	desc = "Standard combat armor worn by Martian and later SOM infantry. Provides ample protection without significantly impairing the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	name = "\improper SOM light battle armor"
+	desc = "The M-21 battle armor is typically used by SOM light infantry, or other specialists that require more mobility at the cost of some protection. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list("melee" = 45, "bullet" = 70, "laser" = 60, "energy" = 60, "bomb" = 55, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
 	icon_state = "som_medium"
 	item_state = "som_medium"
@@ -830,16 +830,16 @@
 	allowed_uniform_type = /obj/item/clothing/under
 
 /obj/item/clothing/suit/modular/som/light
-	name = "\improper Martian scout armor"
-	desc = "A lightweight suit of Martian armor that provided reasonable protection with minimal impairment to the users mobility. Often seen on scouts or second line units. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	name = "\improper SOM scout armor"
+	desc = "The M-11 scout armor is A lightweight suit that that allows for minimal encumberance while still providing reason protection. Often seen on scouts or other specialist units that aren't normally getting shot at. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list("melee" = 40, "bullet" = 65, "laser" = 55, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
 	icon_state = "som_light"
 	item_state = "som_light"
 	slowdown = 0.3
 
 /obj/item/clothing/suit/modular/som/heavy
-	name = "\improper Martian heavy battle armor"
-	desc = "Standard heavy duty combat armor worn by Martian marines, this armor is now typically seen on elite SOM shock troops. Provides excellent protection without significantly compromising on mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	name = "\improper SOM heavy battle armor"
+	desc = "A Standard suit of M-31 heavy duty combat armor worn by SOM shock troops. Provides excellent protection however it does reduce mobility somewhat. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 60, "bio" = 50, "rad" = 65, "fire" = 70, "acid" = 50)
 	icon_state = "som_heavy"
 	item_state = "som_heavy"
@@ -850,8 +850,8 @@
 	gas_transfer_coefficient = 0.5
 
 /obj/item/clothing/suit/modular/som/heavy/leader
-	name = "\improper Martian Gorgon combat armor"
-	desc = "A bulky suit of heavy combat armor, among the best armor Martian forges ever produced. Typically seen on Martian leaders or their most elite combat units due to the significant construction and maintenance requirements. Provides outstanding protection without significantly compromising on mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	name = "\improper SOM Gorgon pattern assault armor"
+	desc = "A bulky suit of heavy combat armor, the M-35 'Gorgon' armour provides the user with superior protection without severely impacting mobility. Typically seen on SOM leaders or their most elite combat units due to the significant construction and maintenance requirements. You'll need serious firepower to punch through this. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list("melee" = 60, "bullet" = 80, "laser" = 70, "energy" = 70, "bomb" = 70, "bio" = 55, "rad" = 70, "fire" = 80, "acid" = 50)
 	icon_state = "som_leader"
 	item_state = "som_leader"
@@ -865,8 +865,8 @@
 //helmet
 
 /obj/item/clothing/head/modular/som
-	name = "\improper Martian infantry Helmet"
-	desc = "The standard combat helmet worn by Martian and later SOM combat troops. Provides effective protection without compromising visibility."
+	name = "\improper SOM infantry helmet"
+	desc = "The standard combat helmet worn by SOM combat troops. Made using advanced polymers to provide very effective protection without compromising visibility."
 	icon = 'icons/mob/modular/m10.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/modular/m10.dmi',
@@ -913,8 +913,8 @@
 	starting_attachments = list(/obj/item/armor_module/storage/helmet/som)
 
 /obj/item/clothing/head/modular/som/veteran
-	name = "\improper Martian veteran Helmet"
-	desc = "The standard combat helmet worn by Martian and later SOM combat troops. Enhanced polymers provides more protection for more valuable brains."
+	name = "\improper SOM veteran helmet"
+	desc = "The standard combat helmet worn by SOM combat troops. State of the art materials provides more protection for more valuable brains."
 	icon = 'icons/mob/modular/m10.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/modular/m10.dmi',
