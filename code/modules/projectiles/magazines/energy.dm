@@ -90,5 +90,34 @@
 	slowdown = 0.3
 	maxcharge = 4800
 	self_recharge = TRUE
-	charge_amount = 30
+	charge_amount = 32
 	charge_delay = 2 SECONDS
+
+/obj/item/cell/lasgun/volkite/powerpack/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
+	var/warning = ""
+	if(amount > charge)
+		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
+		if(charge)
+			warning = "<span class='warning'>[src]'s powerpack recharge unit buzzes a warning, its battery only having enough power to partially recharge the cell for [charge] amount. "
+		else
+			warning = "<span class='warning'>[src]'s powerpack recharge unit buzzes a warning, as its battery is completely depleted of charge. "
+	else
+		playsound(src, 'sound/machines/ping.ogg', 25, 1)
+		warning = "<span class='notice'>[src]'s powerpack recharge unit cheerfully pings as it successfully recharges the cell. "
+	. = min(charge, amount)
+	charge -= .
+	if(mention_charge)
+		to_chat(user, span_notice("[warning]<b>Charge Remaining: [charge]/[maxcharge]</b>"))
+	update_icon()
+
+/obj/item/cell/lasgun/volkite/powerpack/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the power cell onto the backpack will trigger its special functionality.
+	if(istype(W, /obj/item/cell))
+		var/obj/item/cell/D = W
+		var/charge_difference = D.maxcharge - D.charge
+		if(charge_difference) //If the cell has less than max charge, recharge it.
+			var/charge_used = use_charge(user, charge_difference) //consume an appropriate amount of charge
+			D.charge += charge_used //Recharge the cell battery with the lower of the difference between its present and max cap, or the remaining charge
+		D.update_icon()
+		else
+			to_chat(user, span_warning("This cell is already at maximum charge!"))
+	return ..()
