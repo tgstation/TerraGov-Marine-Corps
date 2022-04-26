@@ -354,3 +354,8 @@
   - bugfix: Add two research consoles in Sulaco
   tyeagg:
   - rscadd: comms to tadpole
+2022-04-26:
+  MrHorizons:
+  - rscadd: Added an 8.6x70mm ammo box.
+  - bugfix: Fixed the 10x26.5mm ammo box sprite.
+  - code_imp: Fixed some inconsistencies with ammo boxes.
