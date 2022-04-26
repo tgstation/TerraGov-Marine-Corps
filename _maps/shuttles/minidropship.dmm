@@ -96,6 +96,10 @@
 "B" = (
 /turf/closed/wall/mainship/outer/reinforced,
 /area/shuttle/minidropship)
+"C" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
+/turf/closed/wall/mainship/outer/reinforced,
+/area/shuttle/minidropship)
 "E" = (
 /turf/template_noop,
 /area/space)
@@ -262,7 +266,7 @@ E
 b
 T
 y
-B
+C
 U
 E
 "}
