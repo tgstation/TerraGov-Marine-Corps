@@ -19,12 +19,14 @@
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
 	icon_state = "t26_inc"
 	icon_state_mini = "mag_sniper_red"
+	bonus_overlay = "t26_incend"
 
 /obj/item/ammo_magazine/sniper/flak
 	name = "\improper T-26 flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
 	icon_state = "t26_flak"
 	icon_state_mini = "mag_sniper_blue"
+	bonus_overlay = "t26_flak"
 
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/flak
