@@ -55,6 +55,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/projectile_greyscale_config = null
 	///greyscale color for the projectile associated with the ammo
 	var/projectile_greyscale_colors = null
+	///Multiplier for deflagrate chance
+	var/deflagrate_multiplier = 1
+	///Flat damage caused if fire_burst is triggered by deflagrate
+	var/fire_burst_damage = 10
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -179,7 +183,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	var/mob/living/victim = target
 	var/armor_block = victim.run_armor_check(null, "fire") //checks fire armour across the victim's whole body
-	var/deflagrate_chance = (proj.damage * (100 + min(0, proj.penetration - armor_block)) / 100)
+	var/deflagrate_chance = (proj.damage * deflagrate_multiplier * (100 + min(0, proj.penetration - armor_block)) / 100)
 	if(prob(deflagrate_chance))
 		playsound(target, 'sound/effects/incendiary_explode.ogg', 45, falloff = 5)
 		fire_burst(target, proj)
@@ -194,10 +198,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		else
 			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
 				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
-		//burn damage
+		//Damages the victims, inflicts brief stagger+slow, and ignites
 		var/armor_block = victim.run_armor_check(null, "fire") //checks fire armour across the victim's whole body
-		victim.apply_damage(20, BURN, null, armor_block, updating_health = TRUE) //Placeholder damage, will be a ammo var
-		//ignite mobs
+		victim.apply_damage(fire_burst_damage, BURN, null, armor_block, updating_health = TRUE) //Placeholder damage, will be a ammo var
+
+		staggerstun(victim, proj, stagger = 0.5, slowdown = 0.5)
+
 		var/living_hard_armor = victim.hard_armor.getRating("fire")
 		if(living_hard_armor < 100) //won't ignite fully fireproof mobs
 			victim.adjust_fire_stacks(CEILING(5 - (living_hard_armor * 0.1), 1))
@@ -1914,9 +1920,9 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/volkite
 	name = "thermal energy bolt"
-	icon_state = "overchargedlaser" //placeholder
-	hud_state = "electrothermal"	//placeholder
-	hud_state_empty = "electrothermal_empty"	//placeholder
+	icon_state = "overchargedlaser"
+	hud_state = "laser_heat"
+	hud_state_empty = "battery_empty_flash"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
 	bullet_color = COLOR_TAN_ORANGE
 	armor_type = "energy"
@@ -1930,6 +1936,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	penetration = 15
 	sundering = 3
+	fire_burst_damage = 20
 
 	//inherited, could use some changes
 	ping = "ping_s"
@@ -1946,11 +1953,13 @@ datum/ammo/bullet/revolver/tp44
 	damage = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
+	fire_burst_damage = 25
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
 	accurate_range = 20
-	damage = 20
+	damage = 25
+	fire_burst_damage = 25
 
 /*
 //================================================

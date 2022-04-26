@@ -117,7 +117,7 @@
 		if(charge_difference) //If the cell has less than max charge, recharge it.
 			var/charge_used = use_charge(user, charge_difference) //consume an appropriate amount of charge
 			D.charge += charge_used //Recharge the cell battery with the lower of the difference between its present and max cap, or the remaining charge
-		D.update_icon()
+			D.update_icon()
 		else
 			to_chat(user, span_warning("This cell is already at maximum charge!"))
 	return ..()
