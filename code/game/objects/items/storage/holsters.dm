@@ -214,8 +214,8 @@
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 /obj/item/storage/holster/t35
-	name = "\improper L44 T-35 scabbard"
-	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
+	name = "\improper L44 SH-35 scabbard"
+	desc = "A large leather holster allowing the storage of an SH-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "t35_holster"
 	base_icon = "t35_holster"
 	holsterable_allowed = list(/obj/item/weapon/gun/shotgun/pump/t35)
@@ -244,8 +244,8 @@
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 /obj/item/storage/holster/t19
-	name = "\improper M276 pattern T-19 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the T-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	name = "\improper M276 pattern MP-19 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the MP-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "t19_holster"
 	icon = 'icons/obj/clothing/belts.dmi'
 	base_icon = "t19_holster"

@@ -954,8 +954,8 @@
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
 
 /obj/item/storage/belt/gun/ts34
-	name = "\improper M276 pattern TS-34 shotgun holster rig"
-	desc = "A purpose built belt-holster assembly that holds a TS-34 shotgun and one shell box or 2 handfuls."
+	name = "\improper M276 pattern SH-34 shotgun holster rig"
+	desc = "A purpose built belt-holster assembly that holds a SH-34 shotgun and one shell box or 2 handfuls."
 	icon_state = "ts34_holster"
 	item_state = "ts34_holster"
 	max_w_class = 4 //So it can hold the shotgun.

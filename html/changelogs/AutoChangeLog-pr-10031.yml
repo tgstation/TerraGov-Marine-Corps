@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Whole bunch of minor sprite fixed for eguns"
-  - imageadd: "PPSh now has a separate mob sprites for its drum and sickle magazines"
-  - refactor: "Refactor gun icon and item sprite code"
