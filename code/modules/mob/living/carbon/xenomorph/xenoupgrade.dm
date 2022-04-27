@@ -429,7 +429,7 @@
 
 //----SHRIKE END----//
 //============//
-
+//----WRAITH START----//
 /mob/living/carbon/xenomorph/wraith/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -441,3 +441,22 @@
 
 /mob/living/carbon/xenomorph/wraith/primordial
 	upgrade = XENO_UPGRADE_FOUR
+
+//----WRAITH END----//
+//============//
+//----WIDOW START----//
+
+/mob/living/carbon/xenomorph/widow/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/widow/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/widow/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/widow/primordial
+	upgrade = XENO_UPGRADE_FOUR
+
+//----WIDOW END----//
+//============//
