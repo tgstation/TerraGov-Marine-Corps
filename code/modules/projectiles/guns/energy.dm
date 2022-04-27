@@ -817,8 +817,7 @@
 	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite)
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	attachable_allowed = list(
-	)
+	attachable_allowed = list()
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
@@ -835,8 +834,7 @@
 
 	damage_falloff_mult = 0.25
 	fire_delay = 0.2 SECONDS
-	mode_list = list(
-	)
+	mode_list = list()
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
 	name = "\improper Volkite charger"
