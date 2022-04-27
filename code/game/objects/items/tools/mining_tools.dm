@@ -87,7 +87,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 100.0
-	damtype = BURN
+	damtype = CLONE
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
@@ -244,7 +244,7 @@
 		set_light_on(TRUE)
 
 
-/obj/item/tool/pickaxe/plasmacutter/attack(atom/M, mob/user)
+/obj/item/tool/pickaxe/plasmacutter/attack(mob/living/M, mob/living/user)
 	if(!powered)
 		fizzle_message(user)
 	else
@@ -256,7 +256,7 @@
 		spark_system.set_up(5, 0, M)
 		spark_system.attach(M)
 		spark_system.start(M)
-		cell.charge + 200
+		cell.charge += 200
 	return ..()
 
 
