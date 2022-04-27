@@ -54,7 +54,7 @@
 		/datum/action/xeno_action/activable/hunter_mark,
 		/datum/action/xeno_action/psychic_trace,
 		/datum/action/xeno_action/mirage,
-		/datum/action/xeno_action/swap
+		/datum/action/xeno_action/swap,
 	)
 
 	// *** Vent Crawl Parameters *** //
@@ -178,5 +178,5 @@
 		/datum/action/xeno_action/activable/hunter_mark,
 		/datum/action/xeno_action/psychic_trace,
 		/datum/action/xeno_action/mirage,
-		/datum/action/xeno_action/swap
+		/datum/action/xeno_action/swap,
 	)
