@@ -85,6 +85,7 @@
 	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry"
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "volkite_powerpack"
+	charge_overlay = "volkite_back"
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BACK
 	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN

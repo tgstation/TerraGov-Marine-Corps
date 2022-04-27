@@ -843,6 +843,7 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
 	icon_state = "charger"
 	item_state = "charger"
+	ammo_level_icon = "charger"
 	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	dry_fire_sound = 'sound/weapons/guns/misc/error.ogg'
 	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
@@ -878,6 +879,7 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The caliver is the primary rifle of the volkite family, and effective at most ranges and situations."
 	icon_state = "caliver"
 	item_state = "caliver"
+	ammo_level_icon = "caliver"
 	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	max_shots = 60
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
@@ -920,6 +922,7 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The culverin is the largest man portable example of volkite weaponry, and can lay down a staggering torrent of fire due to its linked back-mounted powerpack."
 	icon_state = "culverin"
 	item_state = "culverin"
+	ammo_level_icon = null
 	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	max_shots = 120
 	ammo_datum_type = /datum/ammo/energy/volkite/heavy
