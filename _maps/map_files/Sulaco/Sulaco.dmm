@@ -2592,7 +2592,6 @@
 	dir = 1
 	},
 /obj/item/storage/briefcase/inflatable,
-/obj/item/tool/handheld_charger,
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor/prison,
 /area/sulaco/engineering)
