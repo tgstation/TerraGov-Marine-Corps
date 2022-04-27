@@ -2514,15 +2514,19 @@ datum/ammo/bullet/revolver/tp44
 	shrapnel_chance = 0
 	///percentage of xenos total plasma to drain when hit by a pepperball
 	var/drain_multiplier = 0.05
+	/// Flat plasma to drain, unaffected by caste plasma amount.
+	var/plasma_drain = 25
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	if(isxeno(victim))
 		var/mob/living/carbon/xenomorph/X = victim
 		X.use_plasma(drain_multiplier * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit)
+		X.use_plasma(plasma_drain)
 
 /datum/ammo/bullet/pepperball/pepperball_mini
 	damage = 40
 	drain_multiplier = 0.03
+	plasma_drain = 15
 
 /datum/ammo/alloy_spike
 	name = "alloy spike"
