@@ -189,6 +189,7 @@
 /obj/item/armor_module/storage/uniform/holster/highpower/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/highpower(storage)
+
 /obj/item/storage/internal/holster
 	storage_slots = 1
 	max_w_class = WEIGHT_CLASS_BULKY
