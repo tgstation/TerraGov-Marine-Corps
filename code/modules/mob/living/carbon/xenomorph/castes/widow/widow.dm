@@ -3,7 +3,7 @@
 	name = "Widow"
 	desc = "Nothing here for now, skitter away"
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
-	icon_state = "widowtemp"
+	icon_state = "Widow Walking"
 	health = 200
 	maxHealth = 200
 	plasma_stored = 150
