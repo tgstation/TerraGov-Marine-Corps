@@ -832,7 +832,7 @@
 
 /obj/item/clothing/suit/modular/som/light
 	name = "\improper SOM scout armor"
-	desc = "The M-11 scout armor is A lightweight suit that that allows for minimal encumberance while still providing reason protection. Often seen on scouts or other specialist units that aren't normally getting shot at. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	desc = "The M-11 scout armor is a lightweight suit that that allows for minimal encumberance while still providing reasonable protection. Often seen on scouts or other specialist units that aren't normally getting shot at. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list("melee" = 40, "bullet" = 65, "laser" = 55, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
 	icon_state = "som_light"
 	item_state = "som_light"
@@ -840,7 +840,7 @@
 
 /obj/item/clothing/suit/modular/som/heavy
 	name = "\improper SOM heavy battle armor"
-	desc = "A Standard suit of M-31 heavy duty combat armor worn by SOM shock troops. Provides excellent protection however it does reduce mobility somewhat. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	desc = "A standard suit of M-31 heavy duty combat armor worn by SOM shock troops. Provides excellent protection however it does reduce mobility somewhat. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 60, "bio" = 50, "rad" = 65, "fire" = 70, "acid" = 50)
 	icon_state = "som_heavy"
 	item_state = "som_heavy"
@@ -915,7 +915,7 @@
 
 /obj/item/clothing/head/modular/som/veteran
 	name = "\improper SOM veteran helmet"
-	desc = "The standard combat helmet worn by SOM combat troops. State of the art materials provides more protection for more valuable brains."
+	desc = "The standard combat helmet worn by SOM combat specialists. State of the art materials provides more protection for more valuable brains."
 	icon = 'icons/mob/modular/m10.dmi'
 	item_icons = list(
 		slot_head_str = 'icons/mob/modular/m10.dmi',

@@ -837,7 +837,7 @@
 	mode_list = list()
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
-	name = "\improper Volkite charger"
+	name = "\improper volkite charger"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
 	icon_state = "charger"
 	item_state = "charger"
@@ -858,7 +858,7 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 26, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 	scatter = 4
 	accuracy_mult_unwielded = 0.7
-	scatter_unwielded = 15
+	scatter_unwielded = 10
 	recoil_unwielded = 1
 	damage_falloff_mult = 0.5
 
@@ -869,7 +869,7 @@
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/gyro)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
-	name = "\improper Volkite caliver"
+	name = "\improper volkite caliver"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The caliver is the primary rifle of the volkite family, and effective at most ranges and situations."
 	icon_state = "caliver"
 	item_state = "caliver"
@@ -912,7 +912,7 @@
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin
-	name = "\improper Volkite culverin"
+	name = "\improper volkite culverin"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The culverin is the largest man portable example of volkite weaponry, and can lay down a staggering torrent of fire due to its linked back-mounted powerpack."
 	icon_state = "culverin"
 	item_state = "culverin"

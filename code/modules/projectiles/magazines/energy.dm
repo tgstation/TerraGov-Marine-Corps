@@ -82,7 +82,7 @@
 
 /obj/item/cell/lasgun/volkite/powerpack
 	name = "\improper M-70 powerpack"
-	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry"
+	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "volkite_powerpack"
 	charge_overlay = "volkite_back"
@@ -101,12 +101,12 @@
 	if(amount > charge)
 		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
 		if(charge)
-			warning = "<span class='warning'>[src]'s powerpack recharge unit buzzes a warning, its battery only having enough power to partially recharge the cell for [charge] amount. "
+			warning = "<span class='warning'>[src]'s powerpack recharge unit buzzes a warning, its battery only having enough power to partially recharge the cell for [charge] amount."
 		else
-			warning = "<span class='warning'>[src]'s powerpack recharge unit buzzes a warning, as its battery is completely depleted of charge. "
+			warning = "<span class='warning'>[src]'s powerpack recharge unit buzzes a warning, as its battery is completely depleted of charge."
 	else
 		playsound(src, 'sound/machines/ping.ogg', 25, 1)
-		warning = "<span class='notice'>[src]'s powerpack recharge unit cheerfully pings as it successfully recharges the cell. "
+		warning = "<span class='notice'>[src]'s powerpack recharge unit cheerfully pings as it successfully recharges the cell."
 	. = min(charge, amount)
 	charge -= .
 	if(mention_charge)
