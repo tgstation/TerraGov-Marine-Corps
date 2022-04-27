@@ -153,11 +153,6 @@
 							I.marine_buy_flags &= ~MARINE_CAN_BUY_R_POUCH
 						else
 							I.marine_buy_flags &= ~MARINE_CAN_BUY_L_POUCH
-					else if(bitf == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
-						if(I.marine_buy_flags & MARINE_CAN_BUY_ATTACHMENT)
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT
-						else
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
 					else
 						I.marine_buy_flags &= ~bitf
 				else
@@ -209,7 +204,6 @@
 		CAT_WEB = list(MARINE_CAN_BUY_WEBBING),
 		CAT_BEL = list(MARINE_CAN_BUY_BELT),
 		CAT_POU = list(MARINE_CAN_BUY_R_POUCH,MARINE_CAN_BUY_L_POUCH),
-		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
 		CAT_MOD = list(MARINE_CAN_BUY_MODULE),
 		CAT_ARMMOD = list(MARINE_CAN_BUY_ARMORMOD),
 		CAT_MAS = list(MARINE_CAN_BUY_MASK),
@@ -498,12 +492,6 @@
 	desc = "An automated equipment rack hooked up to a colossal storage unit."
 	icon_state = "marinearmory"
 	use_points = TRUE
-	listed_products = list(
-		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical Grip", 0, "black"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red-dot sight", 0, "black"),
-		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil Compensator", 0, "black"),
-		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser Sight", 0, "black")
-	)
 
 /obj/machinery/marine_selector/gear/medic
 	name = "NEXUS Automated Medical Equipment Rack"

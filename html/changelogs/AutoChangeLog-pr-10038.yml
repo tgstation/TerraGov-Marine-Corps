@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - code_imp: "Back and suitslot items render over head layers - guns will no longer grow into the back of your skull when stored."

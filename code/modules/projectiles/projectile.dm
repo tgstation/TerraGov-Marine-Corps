@@ -1189,7 +1189,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/human/embed_projectile_shrapnel(obj/projectile/proj)
 	var/datum/limb/affected_limb = get_limb(check_zone(proj.def_zone))
-	if(affected_limb.limb_status & LIMB_DESTROYED)
+	if(affected_limb.limb_status & (LIMB_DESTROYED|LIMB_ROBOT))
 		return
 	return ..()
 

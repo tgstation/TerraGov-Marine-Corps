@@ -177,11 +177,6 @@ export const CharacterCustomization = (props, context) => {
                   </>
                 }
               />
-              <SelectFieldPreference
-                label={'Body type'}
-                value={'body_type'}
-                action={'body_type'}
-              />
             </LabeledList>
           </Flex.Item>
           <Flex.Item>

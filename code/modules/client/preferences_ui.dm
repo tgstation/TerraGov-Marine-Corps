@@ -60,7 +60,6 @@
 			.["gender"] = gender
 			.["ethnicity"] = ethnicity
 			.["species"] = species || "Human"
-			.["body_type"] = body_type
 			.["good_eyesight"] = good_eyesight
 			.["citizenship"] = citizenship
 			.["religion"] = religion
@@ -293,11 +292,6 @@
 			species = choice
 			var/datum/species/S = GLOB.all_species[species]
 			real_name = S.random_name(gender)
-
-		if("body_type")
-			var/choice = tgui_input_list(ui.user, "What body type do you want?", "Body type choice", GLOB.body_types_list)
-			if(choice)
-				body_type = choice
 
 		if("toggle_eyesight")
 			good_eyesight = !good_eyesight

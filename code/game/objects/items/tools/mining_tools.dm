@@ -99,12 +99,12 @@
 	var/cutting_sound = 'sound/items/welder2.ogg'
 	var/powered = FALSE
 	var/dirt_amt_per_dig = 5
-	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
+	var/obj/item/cell/rtg/plasma_cutter/cell //The plasma cutter cell is unremovable and recharges over time
 	tool_behaviour = TOOL_WELD_CUTTER
 
 /obj/item/tool/pickaxe/plasmacutter/Initialize()
 	. = ..()
-	cell = new /obj/item/cell/high()
+	cell = new /obj/item/cell/rtg/plasma_cutter()
 
 
 /obj/item/tool/pickaxe/plasmacutter/examine(mob/user)
@@ -244,41 +244,7 @@
 		set_light_on(TRUE)
 
 
-/obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/cell))
-		if(!user.drop_held_item())
-			return
-
-		I.forceMove(src)
-		var/replace_install = "You replace the cell in [src]"
-		if(!cell)
-			replace_install = "You install a cell in [src]"
-		else
-			cell.update_icon()
-			user.put_in_hands(cell)
-		cell = I
-		to_chat(user, span_notice("[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
-		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, 1, 5)
-		update_plasmacutter()
-
-
-/obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/living/user)
-	if(user.get_inactive_held_item() != src)
-		return ..()
-	if(!cell)
-		return ..()
-	cell.update_icon()
-	user.put_in_active_hand(cell)
-	cell = null
-	playsound(user, 'sound/machines/click.ogg', 25, 1, 5)
-	to_chat(user, span_notice("You remove the cell from [src]."))
-	update_plasmacutter()
-
-
 /obj/item/tool/pickaxe/plasmacutter/attack(atom/M, mob/user)
-
 	if(!powered || (cell.charge < PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 		fizzle_message(user)
 	else
