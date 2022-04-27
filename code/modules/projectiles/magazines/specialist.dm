@@ -19,12 +19,14 @@
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
 	icon_state = "t26_inc"
 	icon_state_mini = "mag_sniper_red"
+	bonus_overlay = "t26_incend"
 
 /obj/item/ammo_magazine/sniper/flak
 	name = "\improper T-26 flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
 	icon_state = "t26_flak"
 	icon_state_mini = "mag_sniper_blue"
+	bonus_overlay = "t26_flak"
 
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/flak
@@ -33,6 +35,7 @@
 	icon_state = "tl127_flak"
 	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
 	icon_state_mini = "mag_sniper_blue"
+	bonus_overlay = "tl127_flak"
 
 //M42C magazine
 
@@ -75,6 +78,7 @@
 	icon_state = "tx8_incend"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/incendiary
 	icon_state_mini = "mag_rifle_big_red"
+	bonus_overlay = "tx8_incend"
 
 /obj/item/ammo_magazine/rifle/tx8/impact
 	name = "\improper high velocity impact magazine (10x28mm)"
@@ -82,6 +86,7 @@
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
 	icon_state_mini = "mag_rifle_big_blue"
+	bonus_overlay = "tx8_impact"
 
 
 //-------------------------------------------------------

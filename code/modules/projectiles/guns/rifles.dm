@@ -354,7 +354,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung)
-	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 17, "rail_y" = 20, "under_x" = 27, "under_y" = 14, "stock_x" = 9, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 19,"rail_x" = 15, "rail_y" = 21, "under_x" = 25, "under_y" = 16, "stock_x" = 18, "stock_y" = 15)
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
@@ -401,8 +401,8 @@
 		/obj/item/attachable/shoulder_mount,
 	)
 
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
-	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/rifle, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/grenade_launcher/underslung)
+	attachable_offset = list("muzzle_x" = 44, "muzzle_y" = 19,"rail_x" = 15, "rail_y" = 21, "under_x" = 25, "under_y" = 16, "stock_x" = 18, "stock_y" = 15)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/grenade_launcher/underslung)
 
 
 	burst_delay = 0.2 SECONDS
