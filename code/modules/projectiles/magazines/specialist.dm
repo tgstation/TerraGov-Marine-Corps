@@ -3,7 +3,7 @@
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
 /obj/item/ammo_magazine/sniper
-	name = "\improper T-26 magazine (10x28mm)"
+	name = "\improper SR-26 magazine (10x28mm)"
 	desc = "A magazine of antimaterial rifle ammo."
 	caliber = CALIBER_10X28
 	icon_state = "t26"
@@ -15,14 +15,14 @@
 
 
 /obj/item/ammo_magazine/sniper/incendiary
-	name = "\improper T-26 incendiary magazine (10x28mm)"
+	name = "\improper SR-26 incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
 	icon_state = "t26_inc"
 	icon_state_mini = "mag_sniper_red"
 	bonus_overlay = "t26_incend"
 
 /obj/item/ammo_magazine/sniper/flak
-	name = "\improper T-26 flak magazine (10x28mm)"
+	name = "\improper SR-26 flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
 	icon_state = "t26_flak"
 	icon_state_mini = "mag_sniper_blue"
@@ -30,17 +30,17 @@
 
 
 /obj/item/ammo_magazine/rifle/chamberedrifle/flak
-	name = "TL-127 bolt action rifle flak magazine"
-	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the TL-127."
+	name = "SR-127 bolt action rifle flak magazine"
+	desc = "A box magazine filled with 8.6x70mm rifle flak rounds for the SR-127."
 	icon_state = "tl127_flak"
 	default_ammo = /datum/ammo/bullet/sniper/pfc/flak
 	icon_state_mini = "mag_sniper_blue"
 	bonus_overlay = "tl127_flak"
 
-//M42C magazine
+//SR-42 magazine
 
 /obj/item/ammo_magazine/sniper/elite
-	name = "\improper M42C marksman magazine (10x99mm)"
+	name = "\improper SR-42 marksman magazine (10x99mm)"
 	default_ammo = /datum/ammo/bullet/sniper/elite
 	caliber = CALIBER_10X99
 	icon_state = "m42c"
@@ -64,7 +64,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8
 	name = "\improper high velocity magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity rounds for use in the TX-8 battle rifle. The TX-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressuered high velocity rounds for use in the SR-8 battle rifle. The SR-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8"
 	caliber = CALIBER_10X28_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/tx8
@@ -73,7 +73,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8/incendiary
 	name = "\improper high velocity incendiary magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity incendiary rounds for use in the TX-8 battle rifle. The TX-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressuered high velocity incendiary rounds for use in the SR-8 battle rifle. The SR-8 battle rifle is the only gun that can chamber these rounds."
 	caliber = CALIBER_10X28_CASELESS
 	icon_state = "tx8_incend"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/incendiary
@@ -82,7 +82,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8/impact
 	name = "\improper high velocity impact magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity impact rounds for use in the TX-8 battle rifle. The TX-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressuered high velocity impact rounds for use in the SR-8 battle rifle. The SR-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
 	icon_state_mini = "mag_rifle_big_blue"
@@ -125,11 +125,11 @@
 	icon_state = istype(src, /obj/item/ammo_magazine/rocket/m57a4) ? "quad_rocket_e" : "rocket_e"
 
 //-------------------------------------------------------
-//T-152
+//RL-152
 
 /obj/item/ammo_magazine/rocket/sadar
 	name = "\improper 84mm high-explosive rocket"
-	desc = "A rocket tube for the T-152 rocket launcher."
+	desc = "A rocket tube for the RL-152 rocket launcher."
 	caliber = CALIBER_84MM
 	icon_state = "rocket"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -150,11 +150,11 @@
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
 
 //-------------------------------------------------------
-//T-160 recoilless rifle
+//RL-160 recoilless rifle
 
 /obj/item/ammo_magazine/rocket/recoilless
 	name = "\improper 67mm high-explosive shell"
-	desc = "A high explosive shell for the T-160 recoilless rifle. Causes a heavy explosion over a small area. Requires specialized storage to carry."
+	desc = "A high explosive shell for the RL-160 recoilless rifle. Causes a heavy explosion over a small area. Requires specialized storage to carry."
 	caliber = CALIBER_67MM
 	icon_state = "shell"
 	w_class = WEIGHT_CLASS_BULKY
@@ -164,7 +164,7 @@
 
 /obj/item/ammo_magazine/rocket/recoilless/light
 	name = "\improper 67mm light-explosive shell"
-	desc = "A light explosive shell for the T-160 recoilless rifle. Causes a light explosion over a large area. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
+	desc = "A light explosive shell for the RL-160 recoilless rifle. Causes a light explosion over a large area. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
 	caliber = CALIBER_67MM
 	icon_state = "shell_le"
 	w_class = WEIGHT_CLASS_BULKY
@@ -174,7 +174,7 @@
 
 /obj/item/ammo_magazine/rocket/recoilless/heat
 	name = "\improper 67mm HEAT shell"
-	desc = "A high explosive-anti tank shell for the T-160 recoilless rifle. Causes a medium explosion over a small area after impacting. Requires specialized storage to carry."
+	desc = "A high explosive-anti tank shell for the RL-160 recoilless rifle. Causes a medium explosion over a small area after impacting. Requires specialized storage to carry."
 	caliber = CALIBER_67MM
 	icon_state = "shell_heat"
 	w_class = WEIGHT_CLASS_BULKY
@@ -210,7 +210,7 @@
 
 /obj/item/ammo_magazine/rocket/m57a4
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for a T-57 quad launcher. Activate in hand to receive some metal when it's used up. The Rockets don't do much damage on a direct hit, but the fire effect is strong.."
+	desc = "A thermobaric rocket tube for a RL-57 quad launcher. Activate in hand to receive some metal when it's used up. The Rockets don't do much damage on a direct hit, but the fire effect is strong.."
 	caliber = CALIBER_ROCKETARRAY
 	icon_state = "quad_rocket"
 	max_rounds = 4
@@ -219,14 +219,14 @@
 
 /obj/item/ammo_magazine/rocket/m57a4/ds
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for a M57A4 quad launcher. Activate in hand to receive some metal when it's used up. Has huge red markings..."
+	desc = "A thermobaric rocket tube for a RL-57 quad launcher. Activate in hand to receive some metal when it's used up. Has huge red markings..."
 	caliber = CALIBER_ROCKETARRAY
 	icon_state = "quad_rocket"
 	max_rounds = 4
 	default_ammo = /datum/ammo/rocket/wp/quad/ds
 
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
-	desc = "The internal tube of an M57A4 thermobaric launcher."
+	desc = "The internal tube of an RL-57 thermobaric launcher."
 	caliber = CALIBER_ROCKETARRAY
 	default_ammo = /datum/ammo/rocket/wp/quad
 	max_rounds = 4
@@ -268,8 +268,8 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_magazine/minigun_powerpack
-	name = "\improper T-100 powerpack"
-	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the T-100 Minigun System.\nClick the icon in the top left to reload your M56."
+	name = "\improper MG-100 powerpack"
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System.\nClick the icon in the top left to reload your M56."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"
 	flags_atom = CONDUCT
