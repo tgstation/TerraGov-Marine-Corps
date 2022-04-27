@@ -844,10 +844,6 @@
 	icon_state = "charger"
 	item_state = "charger"
 	ammo_level_icon = "charger"
-	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
-	dry_fire_sound = 'sound/weapons/guns/misc/error.ogg'
-	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/volkite_reload.ogg'
 	max_shots = 50
 	rounds_per_shot = 24
 	attachable_allowed = list(
@@ -880,7 +876,7 @@
 	icon_state = "caliver"
 	item_state = "caliver"
 	ammo_level_icon = "caliver"
-	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
+	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
 	max_shots = 60
 	ammo_datum_type = /datum/ammo/energy/volkite/medium
 	rounds_per_shot = 36
@@ -923,7 +919,6 @@
 	icon_state = "culverin"
 	item_state = "culverin"
 	ammo_level_icon = null
-	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
 	max_shots = 120
 	ammo_datum_type = /datum/ammo/energy/volkite/heavy
 	rounds_per_shot = 30
