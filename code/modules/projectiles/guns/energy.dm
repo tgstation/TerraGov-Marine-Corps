@@ -829,7 +829,7 @@
 	recoil_unwielded = 3
 
 	aim_slowdown = 0.25
-	wield_delay	= 0.4 SECONDS
+	wield_delay = 0.4 SECONDS
 	wield_penalty = 0.2 SECONDS
 
 	damage_falloff_mult = 0.25
