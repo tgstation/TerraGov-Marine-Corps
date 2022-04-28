@@ -350,6 +350,3 @@ obj/structure/door_assembly
 		if(2)
 			name = "Near Finished "
 	name += "[glass == 1 ? "Window " : ""][istext(glass) ? "[glass] Airlock" : base_name] Assembly"
-
-/obj/structure/door_assembly/attack_animal(mob/user)
-	return attack_alien(user)
