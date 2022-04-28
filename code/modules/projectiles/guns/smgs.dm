@@ -27,11 +27,11 @@
 	akimbo_additional_delay = 0.2
 
 //-------------------------------------------------------
-// T-19 Machinepistol. It fits here more.
+// MP-19 Machinepistol. It fits here more.
 
 /obj/item/weapon/gun/smg/standard_machinepistol
-	name = "\improper T-19 machinepistol"
-	desc = "The T-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
+	name = "\improper MP-19 machinepistol"
+	desc = "The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	item_state = "t19"
 	caliber = CALIBER_10X20_CASELESS //codex
@@ -76,8 +76,8 @@
 // War is hell. Not glorious.
 
 /obj/item/weapon/gun/smg/standard_smg
-	name = "\improper T-90 submachinegun"
-	desc = "The T-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
+	name = "\improper SMG-90 submachinegun"
+	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
 	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
 	icon_state = "t90"
 	item_state = "t90"
@@ -131,8 +131,8 @@
 //M-25 SMG
 
 /obj/item/weapon/gun/smg/m25
-	name = "\improper MR-25 submachinegun"
-	desc = "The RivArms MR-25 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
+	name = "\improper SMG-25 submachinegun"
+	desc = "The RivArms SMG-25 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m25"
 	item_state = "m25"
@@ -176,8 +176,8 @@
 
 
 /obj/item/weapon/gun/smg/m25/elite
-	name = "\improper MR-25B2 submachinegun"
-	desc = "The RivArms MR-25 submachinegun, B2 variant. Has an integrated barrel charger. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
+	name = "\improper SMG-25B2 submachinegun"
+	desc = "The RivArms SMG-25 submachinegun, B2 variant. Has an integrated barrel charger. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m25b2"
 	item_state = "m25b2"
 	fire_sound = 'sound/weapons/guns/fire/smg_heavy.ogg'
@@ -213,11 +213,11 @@
 	starting_attachment_types = list(/obj/item/attachable/suppressor) //Tacticool
 
 //-------------------------------------------------------
-//MP27, based on the grease gun
+//SMG-27, based on the grease gun
 
 /obj/item/weapon/gun/smg/mp7
-	name = "\improper MP27 submachinegun"
-	desc = "An archaic design going back hundreds of years, the MP27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms, though it somehow got into the hands of colonial rebels."
+	name = "\improper SMG-27 submachinegun"
+	desc = "An archaic design going back hundreds of years, the SMG-27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms, though it somehow got into the hands of colonial rebels."
 	icon_state = "mp7"
 	item_state = "mp7"
 	caliber = CALIBER_46X30 //codex
@@ -331,7 +331,7 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/weapon/gun/smg/uzi
-	name = "\improper MP-2 submachinegun"
+	name = "\improper SMG-2 submachinegun"
 	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire selector to full auto for maximum firepower. Use two if you really want to go ham."
 	icon_state = "uzi"
 	item_state = "uzi"

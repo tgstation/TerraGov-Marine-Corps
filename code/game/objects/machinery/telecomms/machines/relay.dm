@@ -57,7 +57,6 @@
 	if(length(autolinkers)) //We want lateloaded presets to autolink (lateloaded aways/ruins/shuttles)
 		return INITIALIZE_HINT_LATELOAD
 
-
 /obj/machinery/telecomms/relay/preset/station
 	id = "Station Relay"
 	autolinkers = list("s_relay")
@@ -67,6 +66,11 @@
 	id = "Telecomms Relay"
 	autolinkers = list("relay")
 
+//proper cicbackup relay
+/obj/machinery/telecomms/relay/preset/telecomms/cicbackup
+	on = 0
+	id = "Backup Telecomms Relay"
+	autolinkers = list("relay")
 
 /obj/machinery/telecomms/relay/preset/telecomms/onboard
 	icon_state = ""

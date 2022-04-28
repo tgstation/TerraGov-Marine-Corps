@@ -19,6 +19,7 @@
 	if(self_recharge)
 		if(world.time >= last_use + charge_delay)
 			give(charge_amount)
+			update_icon()
 	else
 		return PROCESS_KILL
 
