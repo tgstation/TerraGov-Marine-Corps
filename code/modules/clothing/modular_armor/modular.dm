@@ -258,34 +258,6 @@
 
 	allowed_uniform_type = /obj/item/clothing/under
 
-// Thank Jeff for providing sprites to color flak jacket
-/obj/item/clothing/suit/modular/xenonauten/pilot
-	name = "\improper TerraGov standard flak jacket"
-	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
-	icon_state = "pilot"
-	item_state = "pilot"
-	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
-	flags_item = NONE
-	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 25, "acid" = 30)
-	slowdown = 0.25
-	allowed = list(
-		/obj/item/weapon/gun,
-		/obj/item/tank/emergency_oxygen,
-		/obj/item/flashlight,
-		/obj/item/ammo_magazine,
-		/obj/item/storage/fancy/cigarettes,
-		/obj/item/tool/lighter,
-		/obj/item/weapon/baton,
-		/obj/item/restraints/handcuffs,
-		/obj/item/explosive/grenade,
-		/obj/item/binoculars,
-		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/holster/blade,
-		/obj/item/storage/belt/gun,
-	)
-
 /obj/item/clothing/suit/modular/xenonauten/light
 	name = "\improper Xenonauten-L pattern armored vest"
 	desc = "A XN-L vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a light variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -293,6 +265,13 @@
 	icon_state = "light"
 	item_state = "light"
 	slowdown = 0.3
+
+/obj/item/clothing/suit/modular/xenonauten/light/pilot
+	name = "\improper TerraGov standard flak jacket"
+	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
+	icon_state = "pilot"
+	item_state = "pilot"
+	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
 
 /obj/item/clothing/suit/modular/xenonauten/heavy
 	name = "\improper Xenonauten-H pattern armored vest"
