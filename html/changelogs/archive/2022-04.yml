@@ -368,3 +368,14 @@
       grow into the back of your skull when stored.
   Wayland-Smithy:
   - qol: The hotkey "Say" input can now be Canceled like "Me"
+2022-04-28:
+  BraveMole:
+  - qol: Guns' name letter now follow a nomenclature.
+  Lumipharon:
+  - imageadd: added overlays for most alternative magazine types, and updated their
+      icons.
+  Pariah919:
+  - balance: Pepperball can mount magharness, does 25 flat plasma drain, and has aim
+      mode.
+  goose4429:
+  - balance: T-26, Removed on-hit slowdown
