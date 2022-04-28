@@ -285,8 +285,8 @@
 	Eventually, they ended up becoming standard issue and a formal contract was signed, the Rifle was christened the 'AR-21'.\
 	Most would say it earned its term of a 'Skirmish' rifle due to use in constant skirmishes by frontline troops, due to a low magazine size, but good overall mobility combined with firepower. Watch your magazine count and put the hurt downrange."
 
-/datum/codex_entry/standard_assaultrifle
-	associated_paths = list(/obj/item/weapon/gun/rifle/standard_assaultrifle)
+/datum/codex_entry/standard_tx11
+	associated_paths = list(/obj/item/weapon/gun/rifle/tx11)
 	lore_text = "The Keckler and Hoch 'T-11' was created out of a infamous bid called the 'Rifle of the future' project, created out of a need to replace aging weapon stocks in the TerraGov arsenal. \
 	The T-11 was created to be the ultimate weapon, being able to lay down fire like an MG with a high capacity, amazing burst fire capability, specialized scope for long range damage, it was tested and destroyed the competition.\
 	It did amazing in field tests, and was effectively the best rifle overall. Most concerns were ergonomical, however it was pushed aside for a need of a new rifle, and money was already spent in making the entire thing, so getting a new competition would be too bothersome.\
@@ -294,6 +294,32 @@
 	Eventually pushback got so large that a new bid was quickly placed within less than a decade, and the T-11, by now christened the 'AR-11', was considered a failure and mothballed.\
 	However, some have been pulled out of long term storage, and recent spottings have shown modernizations such as removal of the side magazines, an overall more ergonomic shape with less brick-like features, and a larger magazine.\
 	Most would say that the unusually large magazine capacity, amazing burst fire capability allows for an interesting use of a support weapon. But its bulky and unusual shape leading a low amount of attachments can hamper it in combat."
+
+/datum/codex_entry/standard_autosniper
+	associated_paths = list(/obj/item/weapon/gun/rifle/standard_autosniper)
+	lore_text = "The Kauser ALF series of firearms was born out of a desire to create a modular weapon design that could ergonomically use a similar manual of arms to appeal to simplify familiarity and attract large scale buyers.\
+	The Sniper variant, known as the 'ALF-1' focused on creating a long range marksman rifle, focused on combining both mobility and rate of fire with good overall firepower.\
+	This particular version of the rifle is modernized with a KTLD gun comptuer and vision scope to allow for quick IFF in hectic engagements, and corrections for the user to stop FF, unlike older variants, it requires no specialized training to use.\
+	The ALF-1 is basically a rifle with a heavier and longer barrel and a irremoveable scope, which sacrifices many of the traditional sniper elements for the normal familiarity of a normal everyday rifle, it is far less common than its peers in its family.\
+	The entire ALF-series ended up being panic bought in mass by specialized troops in the Marine Corps, generally Peacekeeper sections or Air Assault sections, it eventually spread by osmosis in popularity.\
+	Eventually, they ended up becoming standard issue and a formal contract was signed, the Sniper was christened the 'GL-81'.\
+	Most would say that this rifle blends a feature of a normal rifle and sniper rifle, and has the ups and downs of both. Watch out in close quarters, and use the IFF and NVG features of the scope to your advantage.."
+
+/datum/codex_entry/standard_smartmachinegun
+	associated_paths = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
+	lore_text = "The Raummetall 'T-29' was made out of the heavy and unruly corpse of the 'T-28', an attempt to modernize and integrate a KTLD into the T-27 model machinegun. It ended in failure due to the overcomplexity of the system, and cost eventually made the project die..\
+	The 'T-29' is effectively a continuation in spirit of the previous project, focusing on simplifying the IFF Computer systems. It only bears a outer resemblance to the T-27, outside of having the same basic systems.\
+	It has specialized systems to self-stabilize, and is made to be shoulder mounted and fired, as well as fired from lower positions, and uses its integral KTLD computer to self correct user errors, it however requires specialized training to use.\
+	The 'T-29 is effectively a incredibly accurate machinegun, it ended up being offered to the Marine Corps after the previous attempt to just modernize the older machineguns failed. It ended up being christened the 'MG-28' and entered service.\
+	Most would say that this machinegun makes you a walking turret, you'll be slow and unwieldy with no match when it comes to fire suppression on the mov."
+
+/datum/codex_entry/standard_smartmmg
+	associated_paths = list(/obj/item/weapon/gun/rifle/standard_gpmg)
+	lore_text = "The Raummetall 'T-60' was designed out of a bid for a cheap and available machinegun that could move to several roles, be it fire support, vehicle mounted or sentry duties.\
+	It is basically a General Purpose Machinegun, meant to be used in about every scenario, usually not as well as a specialized gun, however it ended up being well known for its lightweightedness and mobility within its class.\
+	Eventually, it won the bid due to its light weight, and low cost. Despite argugably being worse than most of the competition everywhere else outside of firerate. It was christened the 'MG-28' and entered service.\
+	Most would say that this machinegun makes you a walking dispenser of lead, you'll be slow and unwieldy with no match when it come to emptying a rain of lead on foe... Or friend."
+
 
 /datum/codex_entry/standard_smg
 	associated_paths = list(/obj/item/weapon/gun/smg/standard_smg)
