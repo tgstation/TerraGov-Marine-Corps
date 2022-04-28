@@ -1,0 +1,4 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - bugfix: "remove some seemingly excess pixels that poked out from undergarments."
