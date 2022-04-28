@@ -71,8 +71,6 @@
 	///What % of the body does this limb cover. Make sure that the sum is always 100.
 	var/cover_index = 0
 
-	var/mob/living/carbon/human/H
-
 
 
 /datum/limb/New(datum/limb/P, mob/mob_owner)
