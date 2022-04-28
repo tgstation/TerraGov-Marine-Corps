@@ -16,6 +16,9 @@
 /area/rocinante_colony/surface/building/space_hangar)
 "aaI" = (
 /obj/structure/prop/vehicle/van,
+/obj/structure/desertdam/decals/road/edge{
+	icon_state = "road_edge_decal1"
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/ground/colonynw)
 "aaT" = (
@@ -3360,6 +3363,12 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/cargo_office)
+"eGs" = (
+/obj/structure/desertdam/decals/road/edge{
+	icon_state = "road_edge_decal4"
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_colony/surface/building/industryrest)
 "eGM" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship,
@@ -4648,6 +4657,9 @@
 /area/rocinante_colony/surface/building/showers)
 "goM" = (
 /obj/effect/ai_node,
+/obj/structure/desertdam/decals/road/edge{
+	icon_state = "road_edge_decal4"
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/industryrest)
 "goS" = (
@@ -9595,8 +9607,8 @@
 /obj/structure/desertdam/decals/road/edge{
 	icon_state = "road_edge_decal4"
 	},
-/obj/item/weapon/gun/rifle/mpi_km,
 /obj/item/ammo_casing,
+/obj/item/weapon/gun/rifle/mpi_km,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/administrationsom)
 "mQU" = (
@@ -12203,6 +12215,7 @@
 /area/rocinante_colony/ground/colonys)
 "qsK" = (
 /obj/structure/barricade/metal,
+/obj/item/weapon/gun/rifle/mpi_km,
 /turf/open/floor/mainship/red/full,
 /area/rocinante_colony/surface/building/secposts)
 "qtb" = (
@@ -12887,6 +12900,9 @@
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/colonys)
 "rwl" = (
+/obj/structure/desertdam/decals/road/edge{
+	icon_state = "road_edge_decal9"
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/industryrest)
 "rwH" = (
@@ -19693,9 +19709,9 @@ qyc
 qyc
 qyc
 rwl
+nHR
 aaI
-aaI
-aPs
+nHR
 woG
 woG
 qlL
@@ -19884,10 +19900,10 @@ xwf
 dvR
 xwf
 qyc
-rwl
+eGs
 aPs
 aPs
-aPs
+dUw
 woG
 woG
 qlL
@@ -20076,10 +20092,10 @@ qQu
 xwf
 xwf
 owV
-rwl
+eGs
 aPs
 aPs
-aPs
+dUw
 woG
 woG
 fRM
@@ -20268,10 +20284,10 @@ qQu
 xwf
 xwf
 svW
-rwl
+eGs
 aPs
 aPs
-aPs
+dUw
 woG
 woG
 kYu
@@ -20463,7 +20479,7 @@ qyc
 goM
 aPs
 aPs
-aPs
+dUw
 woG
 woG
 ldl
@@ -20652,10 +20668,10 @@ fOb
 fOb
 fMf
 bLm
+eag
 aPs
 aPs
-aPs
-aPs
+dUw
 woG
 woG
 qlL
@@ -20844,10 +20860,10 @@ fOb
 fOb
 fMf
 bLm
-aPs
+eag
 aPs
 vbv
-aPs
+dUw
 woG
 woG
 fRM
@@ -21036,10 +21052,10 @@ fOb
 fOb
 fMf
 bLm
+eag
 aPs
-vbv
 aPs
-aPs
+dUw
 woG
 woG
 kYu
@@ -21228,10 +21244,10 @@ fOb
 fOb
 fMf
 bLm
+eag
 aPs
 aPs
-aPs
-aPs
+dUw
 woG
 rAj
 qlL
@@ -21420,10 +21436,10 @@ fOb
 fOb
 hmq
 bLm
-aPs
-aPs
-aPs
-aPs
+uWs
+toB
+toB
+toB
 woG
 woG
 qlL
@@ -41357,8 +41373,8 @@ frS
 frS
 wzN
 ovu
-hVm
 fqX
+hVm
 gVy
 wvl
 sZm
@@ -41550,7 +41566,7 @@ wek
 cyV
 fqX
 ovu
-hVm
+fqX
 eJU
 uFv
 sZm

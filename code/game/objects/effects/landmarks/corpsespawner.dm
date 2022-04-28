@@ -382,10 +382,10 @@
 /obj/effect/landmark/corpsespawner/som
 	name = "SOM Grunt"
 	corpseuniform = /obj/item/clothing/under/som
-	corpsesuit = /obj/item/clothing/suit/storage/marine/som
+	corpsesuit = /obj/item/clothing/suit/modular/som
 	corpseback = /obj/item/storage/backpack/lightpack/som
 	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/som
+	corpsehelmet = /obj/item/clothing/head/modular/som/standard
 	corpsegloves = /obj/item/clothing/gloves/marine/som
 	corpseshoes = /obj/item/clothing/shoes/marine/som
 	corpsebelt = /obj/item/storage/belt/marine/som
@@ -394,10 +394,10 @@
 /obj/effect/landmark/corpsespawner/som/corpsman
 	name = "SOM Corpsman"
 	corpseuniform = /obj/item/clothing/under/som/medic
-	corpsesuit = /obj/item/clothing/suit/storage/marine/som
+	corpsesuit = /obj/item/clothing/suit/modular/som
 	corpseback = /obj/item/storage/backpack/lightpack/som
 	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/som
+	corpsehelmet = /obj/item/clothing/head/modular/som/medic
 	corpsegloves = /obj/item/clothing/gloves/marine/som
 	corpseshoes = /obj/item/clothing/shoes/marine/som
 	corpsebelt = /obj/item/storage/belt/combatLifesaver/som
@@ -406,10 +406,10 @@
 /obj/effect/landmark/corpsespawner/som/leader
 	name = "SOM Leader"
 	corpseuniform = /obj/item/clothing/under/som/leader
-	corpsesuit = /obj/item/clothing/suit/storage/marine/som/leader
+	corpsesuit = /obj/item/clothing/suit/modular/som/heavy/leader
 	corpseback = /obj/item/storage/backpack/lightpack/som
 	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
-	corpsehelmet = /obj/item/clothing/head/helmet/marine/som/leader
+	corpsehelmet = /obj/item/clothing/head/modular/som/standard
 	corpsegloves = /obj/item/clothing/gloves/marine/som
 	corpseshoes = /obj/item/clothing/shoes/marine/som
 	corpsebelt = /obj/item/storage/belt/marine/som
