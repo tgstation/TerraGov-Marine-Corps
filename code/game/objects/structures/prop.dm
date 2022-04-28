@@ -582,6 +582,18 @@
 /obj/structure/prop/vehicle/crane/cranecargo
 	icon_state = "crane_cargo"
 
+/obj/structure/prop/vehicle/crawler
+	name = "crawler"
+	desc = "An old crawler, seems to be broken down."
+	icon = 'icons/obj/structures/vehicles.dmi'
+	icon_state = "crawler"
+	density = TRUE
+	coverage = 70
+	bound_height = 32
+	bound_width = 64
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER
+
 /obj/structure/prop/vehicle/crawler/crawler_blue
 	icon_state = "crawler_crate_b"
 
