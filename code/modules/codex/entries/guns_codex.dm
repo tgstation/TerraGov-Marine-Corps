@@ -253,47 +253,47 @@
 /datum/codex_entry/standard_assaultrifle
 	associated_paths = list(/obj/item/weapon/gun/rifle/standard_assaultrifle)
 	lore_text = "The Keckler and Hoch T-12 was created out of an order for a robust rifle using a caseless round, after the ergonomic and costly disaster of the 'Rifle of the future' Project. \
-	Ironically, the T-12 submitted by the very group that made the national disaster that the AR-11 (Oringally termed T-11.) ended up winning out all the tests. \
-	It was designed to be simple to use, dissasamble and basically survive every condition, however due to reports of barrel melting from the high use of polymers. It ended up being heavier than its ilk to compensate.\
-	After wining all the tests, it was accepted and chirstened the 'AR-12' in service. Aside from issues with barrel overheating, which later models fixed. It is known for reliablity across the Marine Corps and the wider galaxy.\
+	Ironically, the T-12 submitted by the very group that made the national disaster that the AR-11 (originally designated the T-11) ended up winning out all the tests. \
+	It was designed to be simple to use, disassemble and basically survive every condition, however due to reports of barrel melting from the high use of polymers. It ended up being heavier than its ilk to compensate.\
+	After wining all the tests, it was accepted and christened the 'AR-12' in service. Aside from issues with barrel overheating, which later models fixed. It is known for reliability across the Marine Corps and the wider galaxy.\
 	Most would say the simple blend of a good magazine size, ergonomics and adaptablitty elevate this weapon above the rest."
 
 /datum/codex_entry/standard_carbine
 	associated_paths = list(/obj/item/weapon/gun/rifle/standard_carbine)
-	lore_text = "The Kauser ALF series of firearms was born out of a desire to create a modular weapon design that could ergonomically use a simmilar manual of arms to appeal to simplify famaliarity and attract large scale buyers.\
+	lore_text = "The Kauser ALF series of firearms was born out of a desire to create a modular weapon design that could ergonomically use a similar manual of arms to appeal to simplify familiarity and attract large scale buyers.\
 	The Carbine variant, known as the 'ALF-51' focused on creating a small, compact package that could fire a rifle-sized round while still retaining good accuracy and shot placement.\
-	Orginally, it was meant to fire in burst-fire only, future production variants turned to feature full-auto after it showed that in testing, it would improve troop morale and confidence in the versatility in the rifle.\
-	The entire ALF-series ended up being panick bought in mass by specialized troops in the Marine Corps, generally Peacekeeper sections or Air Assault sections, it eventually spread by osmosis in popularity.\
+	Originally, it was meant to fire in burst-fire only, future production variants turned to feature full-auto after it showed that in testing, it would improve troop morale and confidence in the versatility in the rifle.\
+	The entire ALF-series ended up being panic bought in mass by specialized troops in the Marine Corps, generally Peacekeeper sections or Air Assault sections, it eventually spread by osmosis in popularity.\
 	Eventually, they ended up becoming standard issue and a formal contract was signed, the Carbine was christened the 'AR-18'.\
 	Most would say its particularly compact appreance and performance, combined with good burst-fire capablity are its edge in combat. Watch your ammo, though."
 
 /datum/codex_entry/standard_lmg
 	associated_paths = list(/obj/item/weapon/gun/rifle/standard_lmg)
-	lore_text = "The Kauser ALF series of firearms was born out of a desire to create a modular weapon design that could ergonomically use a simmilar manual of arms to appeal to simplify famaliarity and attract large scale buyers.\
-	The Machinegun variant, known as the 'ALF-22' focused on creating a versatile package consisting of a light squad support weapon, with a focus on mobility and accuarate fire over pure magazine size.\
-	It ended up with a drum magazine, elongated heavy barrel for sustained firing, its overall shape being of a common rifle generally assists it in being easy to pickup and use, and can mount more underbarreled attachments compared to its peers in its class.\
-	The entire ALF-series ended up being panick bought in mass by specialized troops in the Marine Corps, generally Peacekeeper sections or Air Assault sections, it eventually spread by osmosis in popularity.\
+	lore_text = "The Kauser ALF series of firearms was born out of a desire to create a modular weapon design that could ergonomically use a similar manual of arms to appeal to simplify familiarity and attract large scale buyers.\
+	The Machinegun variant, known as the 'ALF-22' focused on creating a versatile package consisting of a light squad support weapon, with a focus on mobility and accurate fire over pure magazine size.\
+	It ended up with a drum magazine, elongated heavy barrel for sustained firing, its overall shape being of a common rifle generally assists it in being easy to pickup and use, and can mount more underbarrel attachments compared to its peers in its class.\
+	The entire ALF-series ended up being panic bought in mass by specialized troops in the Marine Corps, generally Peacekeeper sections or Air Assault sections, it eventually spread by osmosis in popularity.\
 	Eventually, they ended up becoming standard issue and a formal contract was signed, the Machinegun was christened the 'MG-42'.\
-	Most would say the large magazine capacity combined with ease of use and ability to lay down fire with good frontline potiential is the main advantage of this weapon. You will still be one the slower people in your group, however."
+	Most would say the large magazine capacity combined with ease of use and ability to lay down fire with good frontline potential is the main advantage of this weapon. You will still be one the slower people in your group, however."
 
 /datum/codex_entry/standard_skirmishrifle
 	associated_paths = list(/obj/item/weapon/gun/rifle/standard_skirmishrifle)
-	lore_text = "The Kauser ALF series of firearms was born out of a desire to create a modular weapon design that could ergonomically use a simmilar manual of arms to appeal to simplify famaliarity and attract large scale buyers.\
+	lore_text = "The Kauser ALF series of firearms was born out of a desire to create a modular weapon design that could ergonomically use a similar manual of arms to appeal to simplify familiarity and attract large scale buyers.\
 	The 'Skirmish' Rifle variant, known as the 'ALF-6' focused on creating a fullpower rifle, light and with a good blend of mobility, firerate and firepower.\
 	The rifle ended up being the rifle to truly kick off the ALF series, becoming famous for being a great blend of firepower, mobility and ease of use, however the system was known for tearing rounds like it was nothing.\
-	The entire ALF-series ended up being panick bought in mass by specialized troops in the Marine Corps, generally Peacekeeper sections or Air Assault sections, it eventually spread by osmosis in popularity.\
+	The entire ALF-series ended up being panic bought in mass by specialized troops in the Marine Corps, generally Peacekeeper sections or Air Assault sections, it eventually spread by osmosis in popularity.\
 	Eventually, they ended up becoming standard issue and a formal contract was signed, the Rifle was christened the 'AR-21'.\
-	Most would say it earned its term of a 'Skirmish' rifle due to use in constant Skrimishes, due to a low magazine size, but good overall mobility combined with firepower. Watch your magazine count and put the hurt downrange."
+	Most would say it earned its term of a 'Skirmish' rifle due to use in constant skirmishes by frontline troops, due to a low magazine size, but good overall mobility combined with firepower. Watch your magazine count and put the hurt downrange."
 
 /datum/codex_entry/standard_assaultrifle
 	associated_paths = list(/obj/item/weapon/gun/rifle/standard_assaultrifle)
-	lore_text = "The Keckler and Hoch 'T-11' was created out of a infamous bid called the 'Advanced Rifle of the Future' project, created out of a need to replace aging weapon stocks in the TerraGov Arsenal. \
-	The T-11 was created to be the ultimate weapon, being able to lay down fire like an MG with a high capacity, amazing burst fire capablity, specialized scope for long range damage, it was tested and destroyed the competition.\
+	lore_text = "The Keckler and Hoch 'T-11' was created out of a infamous bid called the 'Rifle of the future' project, created out of a need to replace aging weapon stocks in the TerraGov arsenal. \
+	The T-11 was created to be the ultimate weapon, being able to lay down fire like an MG with a high capacity, amazing burst fire capability, specialized scope for long range damage, it was tested and destroyed the competition.\
 	It did amazing in field tests, and was effectively the best rifle overall. Most concerns were ergonomical, however it was pushed aside for a need of a new rifle, and money was already spent in making the entire thing, so getting a new competition would be too bothersome.\
 	Eventually however, these ergonomic failures lead to constant troop complaints due to the unergonomic nature of the rifle, troops who swore by it loved it, troops who hated it called it a useless brick.\
-	Eventually pushback got so large that a new bid was quickly placed within less than a decade, and the T-11, by now christened the 'AR-11'. Was considered a failure and mothballed.\
-	However, some have been pulled out of longterm storage, and recent spottings have shown modernizations such as removal of the side magazines, an overall more ergomic shape with less brick-like features, and a larger magazine.\
-	Most would say that the unusually large magazine capacity, amazing burst fire capablity allows for an interesting use of a support weapon. But its bulky and unusual shape leading a low amount of attachments can hamper it in combat."
+	Eventually pushback got so large that a new bid was quickly placed within less than a decade, and the T-11, by now christened the 'AR-11', was considered a failure and mothballed.\
+	However, some have been pulled out of long term storage, and recent spottings have shown modernizations such as removal of the side magazines, an overall more ergonomic shape with less brick-like features, and a larger magazine.\
+	Most would say that the unusually large magazine capacity, amazing burst fire capability allows for an interesting use of a support weapon. But its bulky and unusual shape leading a low amount of attachments can hamper it in combat."
 
 /datum/codex_entry/standard_smg
 	associated_paths = list(/obj/item/weapon/gun/smg/standard_smg)
