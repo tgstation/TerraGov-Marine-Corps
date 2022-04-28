@@ -1,0 +1,5 @@
+author: "breadhunt"
+delete-after: True
+changes: 
+  - soundadd: "Steals CM's boxing KO sound. Thanks CM!"
+  - rscadd: "Boxing gloves now deal stamina damage. Hit someone enough and that will KO them. Still deals brute damage like normal punches, so be careful."
