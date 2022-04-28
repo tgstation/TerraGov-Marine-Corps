@@ -5916,7 +5916,7 @@
 	},
 /area/outpost/hallway/northern)
 "Df" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass,
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals/security)
 "Dg" = (
@@ -6705,7 +6705,6 @@
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/toolbox,
 /obj/item/radio,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "GT" = (
@@ -7318,7 +7317,6 @@
 /obj/effect/spawner/random/powercell,
 /obj/effect/spawner/random/powercell,
 /obj/effect/spawner/random/powercell,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -9769,8 +9767,6 @@
 /area/outpost/lz2)
 "Vx" = (
 /obj/structure/table,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/item/tool/pickaxe/plasmacutter,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},

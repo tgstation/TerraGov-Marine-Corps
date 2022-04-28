@@ -258,3 +258,100 @@
   RipGrayson:
   - soundadd: Vox sounds now take less space.
   - soundadd: Added more vox lines.
+2022-02-18:
+  DeltaFire15:
+  - balance: 'Xenomorphs cannot use abilities nor attack while on a solid turf (e.g.
+      a wall). This excludes attacking walls so you can still break your resin wall
+      if you got yourself stuck aswell as the "toggle resting" ability and Hivemind''s
+      change form & Wraith''s phase-shift / resync. tweak: Resin doors start open
+      if built on your own tile.'
+  - bugfix: Added XACT_DO_AFTER_ATTACK to bitfields.dm as it was missing (aka it gets
+      "translated" into readable language during varediting of that var)
+  Lumipharon:
+  - balance: teleporters are no longer invulnerable to xenos
+  Notamaniac:
+  - bugfix: Cryotube should now update it's icon properly
+  TiviPlus:
+  - bugfix: fixed wraith effects cutting each other
+  novaepee:
+  - balance: tadpole gets dedicated wall dispenser that can refill specific autoinjectors
+2022-02-20:
+  Loyavas:
+  - expansion: Added ACCESS_MARINE_LOGISTICS access to the Liaison ID card
+  Lumipharon:
+  - rscadd: Add T-26 incendiary and flak ammo to req
+  - balance: Decreased the cost of basic T-26 ammo to be in line with T-81 ammo
+  - balance: Increased the AOE damage of flak ammo slightly
+  Notamaniac:
+  - bugfix: The dropship sentry and dropship MG should work now.
+  Three333Digit:
+  - balance: miner upgrades in engineer point vendor for 4 points (does not include
+      autominer)
+  novaepee:
+  - rscadd: MG-08/495 gets ammo box
+  - balance: more dakka for the mg; add 6 more drums to round-start, totaling up to
+      10 MG-08/495 drums
+  - bugfix: move MG-08/495 to machinegun tab
+2022-02-22:
+  2kajowsmol:
+  - balance: Headbands are no longer able to be decapitated
+  2whatever2:
+  - balance: Plasma pistol can no longer shoot onehanded while attached to a gun.
+      Note that this doesn't prevent from plasma pistol shooting one-handed while
+      unattached.
+  Notamaniac:
+  - qol: Left click takes cells out of handheld chargers again
+  - bugfix: Marines can no longer create 0 handfuls and shoot phantom ammo.
+  Pariah919:
+  - bugfix: laser pistol fits in shoulder holster
+  - balance: pistol belts can hold 6 lasgun magazines
+  Passe2142:
+  - balance: Build time from 15s to 10s.
+  breadhunt:
+  - balance: Announcements (including command ones) can now be heard while deaf, in
+      crit, or dead.
+  novaepee:
+  - bugfix: TGMC Hollywood signs
+  novaepee, RipGrayson:
+  - expansion: Acid rain is now colored; don't go outside if it starts raining green
+  - code_imp: Normal rain uses rain_high, the previous acid rain sprite, for nice
+      effect
+  vilereaver41:
+  - balance: Acidwell now 400 down from 500
+  - balance: Filling an acidwell is now 150 down from 200
+2022-02-23:
+  Canohaaaaaaa:
+  - imageadd: Big explosions now release cosmetic shockwaves.
+  breadhunt:
+  - bugfix: Fixes card deck sprites on draw, and playing card sprites on discard
+  - bugfix: Standard decks now update properly when they are full
+  - qol: Fixed a couple Kotahi card names
+  - qol: Right-click on decks and cards now draws and discards respectively
+  - qol: Improved descriptions on decks and on playing cards
+  - bugfix: Detpacks now delete properly when destroyed
+  - bugfix: Detpacks no longer break when picked up and placed again
+  - bugfix: Detpacks are now immune to explosions, meaning they aren't instantly deleted
+      by other detpacks placed too close
+2022-02-25:
+  SpaceLoveSs13:
+  - rscadd: Added blue energy sword
+  - rscadd: Added e-shields[expandable and retractable one] and e-swords to DS. More
+      variety and content
+  - balance: Buff DS armor values and resistance. Remove slowdown
+  - admin: DS is actually OP now, use them with caution admins.
+2022-02-26:
+  2whatever2:
+  - bugfix: Plasma pistol actually only works when fully wielded while attached to
+      a gun.
+  Lumipharon:
+  - config: Made the ALF and type 71 seasonal actually be in rotation
+  RipGrayson:
+  - soundadd: Replaced the old TTS vox voice with a more modern version.
+  - sounddel: Removed all old TTS vox in favor of a new version.
+  vilereaver41:
+  - bugfix: bad regions and messed up apc's are now fixed
+2022-02-28:
+  Lumipharon:
+  - bugfix: Bouncy revolver bullets now actually bounce from what they hit
+  novaepee:
+  - soundadd: bull charge action icon; that's it

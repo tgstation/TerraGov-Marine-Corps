@@ -10,9 +10,12 @@
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
 	GLOB.xeno_structure += src
+	if(xeno_structure_flags & CRITICAL_STRUCTURE)
+		GLOB.xeno_critical_structure += src
 
 /obj/structure/xeno/Destroy()
 	GLOB.xeno_structure -= src
+	GLOB.xeno_critical_structure -= src
 	return ..()
 
 /obj/structure/xeno/ex_act(severity)
@@ -117,22 +120,22 @@
 	. = ..()
 	if(!isxeno(user))
 		return
-	to_chat(user, "A hole for a little one to hide in ambush for or for spewing acid.")
+	. += "A hole for a little one to hide in ambush for or for spewing acid."
 	switch(trap_type)
 		if(TRAP_HUGGER)
-			to_chat(user, "There's a little one inside.")
+			. += "There's a little one inside."
 		if(TRAP_SMOKE_NEURO)
-			to_chat(user, "There's pressurized neurotoxin inside.")
+			. += "There's pressurized neurotoxin inside."
 		if(TRAP_SMOKE_ACID)
-			to_chat(user, "There's pressurized acid gas inside.")
+			. += "There's pressurized acid gas inside."
 		if(TRAP_ACID_WEAK)
-			to_chat(user, "There's pressurized weak acid inside.")
+			. += "There's pressurized weak acid inside."
 		if(TRAP_ACID_NORMAL)
-			to_chat(user, "There's pressurized normal acid inside.")
+			. += "There's pressurized normal acid inside."
 		if(TRAP_ACID_STRONG)
-			to_chat(user, "There's strong pressurized acid inside.")
+			. += "There's strong pressurized acid inside."
 		else
-			to_chat(user, "It's empty.")
+			. += "It's empty."
 
 /obj/structure/xeno/trap/flamer_fire_act()
 	hugger?.kill_hugger()
@@ -259,7 +262,7 @@ TUNNEL
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|BANISH_IMMUNE
 	layer = RESIN_STRUCTURE_LAYER
 
 	max_integrity = 140
@@ -313,7 +316,7 @@ TUNNEL
 	if(!isxeno(user) && !isobserver(user))
 		return
 	if(tunnel_desc)
-		to_chat(user, span_info("The Hivelord scent reads: \'[tunnel_desc]\'") )
+		. += span_info("The Hivelord scent reads: \'[tunnel_desc]\'")
 
 /obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE)
 	visible_message(span_danger("[src] suddenly collapses!") )
@@ -484,10 +487,10 @@ TUNNEL
 	return ..()
 
 /obj/structure/xeno/acidwell/examine(mob/user)
-	..()
+	. = ..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-	to_chat(user, span_xenonotice("An acid well made by [creator]. It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES] charges</b>.") )
+	. += span_xenonotice("An acid well made by [creator]. It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES] charges</b>.")
 
 /obj/structure/xeno/acidwell/deconstruct(disassembled = TRUE)
 	visible_message(span_danger("[src] suddenly collapses!") )
@@ -661,7 +664,7 @@ TUNNEL
 /obj/structure/xeno/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(isxeno(user))
-		to_chat(user, "It has [chargesleft] jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"].")
+		. += "It has [chargesleft] jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"]."
 
 /obj/structure/xeno/resin_jelly_pod/process()
 	if(nextjelly <= recharge_rate)
@@ -700,7 +703,7 @@ TUNNEL
 	bound_height = 96
 	max_integrity = 1000
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL|CRITICAL_STRUCTURE
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
@@ -779,15 +782,15 @@ TUNNEL
 	var/current_integrity = (obj_integrity / max_integrity) * 100
 	switch(current_integrity)
 		if(0 to 20)
-			to_chat(user, span_warning("It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert."))
+			. += span_warning("It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert.")
 		if(20 to 40)
-			to_chat(user, span_warning("It looks severely damaged, its movements slow."))
+			. += span_warning("It looks severely damaged, its movements slow.")
 		if(40 to 60)
-			to_chat(user, span_warning("It's quite beat up, but it seems alive."))
+			. += span_warning("It's quite beat up, but it seems alive.")
 		if(60 to 80)
-			to_chat(user, span_warning("It's slightly damaged, but still seems healthy."))
+			. += span_warning("It's slightly damaged, but still seems healthy.")
 		if(80 to 100)
-			to_chat(user, span_info("It appears in good shape, pulsating healthily."))
+			. += span_info("It appears in good shape, pulsating healthily.")
 
 
 /obj/structure/xeno/silo/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
@@ -851,6 +854,7 @@ TUNNEL
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
+	throwpass = FALSE
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
@@ -1099,6 +1103,7 @@ TUNNEL
 	bound_height = 64
 	obj_integrity = 600
 	max_integrity = 600
+	xeno_structure_flags = CRITICAL_STRUCTURE
 	///hivenumber of this tower
 	var/hivenumber
 	///boost amt to be added per tower per cycle
@@ -1132,6 +1137,7 @@ TUNNEL
 	bound_height = 64
 	obj_integrity = 400
 	max_integrity = 400
+	xeno_structure_flags = CRITICAL_STRUCTURE
 	///hivenumber of this tower
 	var/hivenumber
 	///boost amt to be added per tower per cycle
@@ -1163,7 +1169,7 @@ TUNNEL
 	bound_height = 96
 	max_integrity = 500
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
 
 /obj/structure/xeno/spawner/Initialize()
 	. = ..()
@@ -1207,6 +1213,9 @@ TUNNEL
 
 ///Called whenever someone uses the plant, xeno or marine
 /obj/structure/xeno/plant/proc/on_use(mob/user)
+	mature = FALSE
+	update_icon()
+	addtimer(CALLBACK(src, .proc/on_mature), maturation_time)
 	return TRUE
 
 ///Called when the plant reaches maturity
@@ -1258,11 +1267,10 @@ TUNNEL
 	var/mob/living/carbon/xenomorph/X = user
 	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
 	HEAL_XENO_DAMAGE(X,heal_amount)
-	new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(user))
 	playsound(user, "alien_drool", 25)
 	to_chat(X, span_xenowarning("We feel a sudden soothing chill as [src] tends to our wounds."))
-	qdel(src)
-	return TRUE
+
+	return ..()
 
 /obj/structure/xeno/plant/armor_fruit
 	name = "hard fruit"
@@ -1296,10 +1304,8 @@ TUNNEL
 	to_chat(user, span_xenowarning("We shed our shattered scales as new ones grow to replace them!"))
 	var/mob/living/carbon/xenomorph/X = user
 	X.adjust_sunder(-sunder_removal)
-	new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(user))
 	playsound(user, "alien_drool", 25)
-	qdel(src)
-	return TRUE
+	return ..()
 
 /obj/structure/xeno/plant/plasma_fruit
 	name = "power fruit"
@@ -1338,10 +1344,8 @@ TUNNEL
 		return FALSE
 	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
 	to_chat(X, span_xenowarning("[src] Restores our plasma reserves, our organism is on overdrive!"))
-	new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(user))
 	playsound(user, "alien_drool", 25)
-	qdel(src)
-	return TRUE
+	return ..()
 
 
 /obj/structure/xeno/plant/stealth_plant

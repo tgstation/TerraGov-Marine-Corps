@@ -59,6 +59,7 @@
 #define AMMO_LEAVE_TURF (1<<18) //If the projectile does something with on_leave_turf()
 #define AMMO_PASS_THROUGH_TURF (1<<19) //If the projectile passes through walls causing damage to them
 #define AMMO_PASS_THROUGH_MOVABLE (1<<20) //If the projectile passes through mobs and objects causing damage to them
+#define AMMO_PASS_THROUGH_MOB (1<<21) //If the projectile passes through mobs only causing damage to them
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -72,11 +73,11 @@
 #define GUN_DEPLOYED_FIRE_ONLY (1<<7)
 #define GUN_IS_ATTACHMENT (1<<8)
 #define GUN_ATTACHMENT_FIRE_ONLY (1<<9)
-#define GUN_IS_SENTRY (1<<10)
-#define GUN_ENERGY (1<<11)
-#define GUN_AMMO_COUNT_BY_PERCENTAGE (1<<12)
-#define GUN_AMMO_COUNT_BY_SHOTS_REMAINING (1<<13)
-#define GUN_NO_PITCH_SHIFT_NEAR_EMPTY (1<<14)
+#define GUN_ENERGY (1<<10)
+#define GUN_AMMO_COUNT_BY_PERCENTAGE (1<<11)
+#define GUN_AMMO_COUNT_BY_SHOTS_REMAINING (1<<12)
+#define GUN_NO_PITCH_SHIFT_NEAR_EMPTY (1<<13)
+#define GUN_SHOWS_AMMO_REMAINING (1<<14)
 
 //reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
 #define AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION (1<<0)
@@ -128,9 +129,8 @@
 
 //Define sniper laser multipliers
 
-#define SNIPER_LASER_DAMAGE_MULTIPLIER 1.5 //+50% damage vs the aimed target
-#define SNIPER_LASER_ARMOR_MULTIPLIER 1.5 //+50% penetration vs the aimed target
-#define SNIPER_LASER_SLOWDOWN_STACKS 3
+#define SNIPER_LASER_DAMAGE_MULTIPLIER 1.7 //+70% damage vs the aimed target
+#define SNIPER_LASER_ARMOR_MULTIPLIER 1.7 //+70% penetration vs the aimed target
 
 //Define lasrifle
 #define ENERGY_STANDARD_AMMO_COST 20
@@ -173,14 +173,6 @@
 #define RESTRAINED_STRAIGHTJACKET (1<<2)
 #define RESTRAINED_RAZORWIRE (1<<3)
 #define RESTRAINED_PSYCHICGRAB (1<<4)
-
-
-//Explosion resistance
-#define XENO_BOMB_RESIST_4 100
-#define XENO_BOMB_RESIST_3 80
-#define XENO_BOMB_RESIST_2 60
-#define XENO_BOMB_RESIST_1 40
-#define XENO_BOMB_RESIST_0 0
 
 #define SINGLE_CASING (1 << 0)
 #define SPEEDLOADER (1 << 1)

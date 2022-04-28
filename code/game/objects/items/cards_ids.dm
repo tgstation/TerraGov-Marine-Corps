@@ -258,9 +258,9 @@
 
 
 /obj/item/card/id/dogtag/examine(mob/user)
-	..()
+	. = ..()
 	if(ishuman(user))
-		to_chat(user, span_notice("It reads \"[registered_name] - [assignment] - [blood_type]\""))
+		. += span_notice("It reads \"[registered_name] - [assignment] - [blood_type]\"")
 
 
 /obj/item/dogtag

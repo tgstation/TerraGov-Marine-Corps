@@ -1,6 +1,6 @@
 /obj/item/detpack
 	name = "detonation pack"
-	desc = "Programmable remotely triggered 'smart' explosive used for demolitions and impromptu booby traps. Can be set to breach or demolition detonation patterns."
+	desc = "Programmable remotely triggered 'smart' explosive controlled via a signaler, used for demolitions and impromptu booby traps. Can be set to breach or demolition detonation patterns."
 	gender = PLURAL
 	icon = 'icons/obj/det.dmi'
 	icon_state = "detpack_off"
@@ -29,18 +29,17 @@
 
 /obj/item/detpack/examine(mob/user)
 	. = ..()
-	var/list/details = list()
 	if(on)
-		details +=("It's turned on.")
+		. += "It's turned on."
 	if(timer)
-		details +=("Its timer has [timer] seconds left.")
+		. += "Its timer has [timer] seconds left."
 	if(det_mode)
-		details +=("It appears set to demolition mode.")
+		. += "It appears set to demolition mode."
 	else
-		details +=("It appears set to breaching mode.")
+		. += "It appears set to breaching mode."
+
 	if(armed)
-		details +=("<b>It is armed!</b>")
-	to_chat(user, span_warning("[details.Join(" ")]"))
+		. += "<b>It is armed!</b>"
 
 
 /obj/item/detpack/Destroy()
@@ -55,8 +54,10 @@
 		nullvars()
 	else
 		nullvars()
-		return ..()
+	return ..()
 
+/obj/item/detpack/ex_act()
+	return
 
 /obj/item/detpack/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
@@ -280,6 +281,8 @@
 			if(T.drag_delay < 3) //Anything with a fast drag delay we need to modify to avoid kamikazi tactics
 				target_drag_delay = T.drag_delay
 				T.drag_delay = 3
+		if(radio_connection == null)
+			set_frequency(frequency)
 		update_icon()
 
 /obj/item/detpack/proc/change_to_loud_sound()

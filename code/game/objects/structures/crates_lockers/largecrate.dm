@@ -20,7 +20,7 @@
 
 /obj/structure/largecrate/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("You need a crowbar to pry this open!"))
+	. += span_notice("You need a crowbar to pry this open!")
 
 
 /obj/structure/largecrate/attackby(obj/item/I, mob/user, params)
@@ -163,7 +163,7 @@
 
 /obj/structure/largecrate/random/barrel/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("You need a blowtorch to weld this open!"))
+	. += span_notice("You need a blowtorch to weld this open!")
 
 
 /obj/structure/largecrate/random/barrel
@@ -225,7 +225,7 @@
 
 /obj/structure/largecrate/random/barrel/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("You need something sharp to cut off the straps."))
+	. += span_notice("You need something sharp to cut off the straps.")
 
 /obj/structure/largecrate/guns
 	name = "\improper TGMC firearms crate (x3)"

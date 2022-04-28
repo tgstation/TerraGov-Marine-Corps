@@ -66,13 +66,13 @@
 	. = ..()
 
 	if(!status)
-		to_chat(user, span_info("It's currently deactivated."))
+		. += span_info("It's currently deactivated.")
 		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN) && powered())
-			to_chat(user, span_notice("You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on."))
+			. += span_notice("You'll need to open its maintenance panel with a <b>screwdriver</b> to turn it back on.")
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, span_info("Its maintenance panel is currently open."))
+		. += span_info("Its maintenance panel is currently open.")
 		if(!status && powered())
-			to_chat(user, span_info("It can reactivated with a <b>screwdriver</b>."))
+			. += span_info("It can reactivated with a <b>screwdriver</b>.")
 
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
@@ -372,10 +372,13 @@
 //Should place them near each corner of your LZs.
 /obj/machinery/camera/autoname/lz_camera
 	name = "landing zone camera"
-	icon_state = ""
+	icon_state = "editor_icon"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	network = list("landing zones")
 
+/obj/machinery/camera/autoname/lz_camera/Initialize(mapload)
+	. = ..()
+	icon_state = "" //remove visibility on map load
 
 /obj/machinery/camera/autoname/lz_camera/emp_act(severity)
 	return
@@ -387,3 +390,15 @@
 
 /obj/machinery/camera/autoname/lz_camera/update_icon()
 	return
+
+//Thunderdome cameras
+/obj/machinery/camera/autoname/thunderdome
+	name = "thunderdome camera"
+	network = list("thunder")
+	resistance_flags = RESIST_ALL
+
+//Special invisible cameras, to get even better angles without looking ugly
+/obj/machinery/camera/autoname/thunderdome/hidden
+
+/obj/machinery/camera/autoname/thunderdome/hidden/update_icon()
+	icon_state = "nothing"

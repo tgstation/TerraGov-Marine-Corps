@@ -45,7 +45,7 @@
 /obj/vehicle/unmanned/droid/scout/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(ishuman(user))
-		to_chat(user, "Use <b>right click</b> when piloting the droid to activate its cloaking systems.")
+		. += "Use <b>right click</b> when piloting the droid to activate its cloaking systems."
 
 /obj/vehicle/unmanned/droid/scout/on_remote_toggle(datum/source, is_on, mob/user)
 	. = ..()

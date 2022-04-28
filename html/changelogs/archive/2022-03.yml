@@ -1,0 +1,355 @@
+2022-03-02:
+  Canohaaaaaaa:
+  - balance: 'Warrior : punch no longer knocks down sentries'
+  - balance: 'Defender : forward charge no longer knocks down sentries'
+  David-Stormwell:
+  - balance: rebalanced the T-26 sniper rifle to have an additional 10 damage per
+      bullet, with the addition of the lase now being 1.7 instead of a 1.5 damage
+      multiplier in a nutshell.
+  Lefunny:
+  - rscadd: Synths and AI can speak in xenocommon now
+2022-03-04:
+  2whatever2:
+  - bugfix: Plasma pistol actually doesn't shoot onehanded or while wielding while
+      attached to a gun
+  Arctrooper8:
+  - bugfix: Entrenching tools now start folded and as such will now save in loadouts.
+  - bugfix: Folded Entrenching tools can no longer pick up snow piles.
+  DeltaFire15:
+  - bugfix: Wraiths are once again able to recall themselves due to brazil-space being
+      a closed turf.
+  RipGrayson:
+  - balance: Marines can no longer spy on xenomorph activity in Big Red's underground
+      complex.
+  vilereaver41:
+  - bugfix: 95% of lava is now gone
+  - balance: lz's are a bit bigger and harder to penetrate into
+  - balance: south of map is more xeno oriented for a better hive structure
+  - rscadd: new acid smoke enviormental effect made from acid splash remains on the
+      turfs around xeno area with a strength of 3
+  - rscadd: zones and regions are now properly done north, northeast/etc meaning Tadpol
+      and drop pods now work
+  - bugfix: removed some useless outer map features that were meant for cosmetic but
+      were really ugly
+2022-03-07:
+  Pariah919:
+  - balance: Sentry rebalance, 571s have much higher capacity and fire much faster,
+      aswell as deploy faster. 580s have a bit less damage, higher pen and higher
+      fire delay, and more capacity.
+  RipGrayson:
+  - bugfix: You can now make footsteps again as a marine.
+  Vondiech:
+  - rscadd: Shutters now has an alarm sound played to the entire z-level when the
+      button is pushed, shutters open at the end of this 18.5ish seconds sound effect.
+2022-03-08:
+  Arctrooper8:
+  - balance: replaces SL essentials kit radio with a compass
+  - balance: shovels and signalers are now free, infinite, and found in the utility
+      tab.
+  - qol: Extinguishers have been moved to utility, jetpacks moved to specialized,
+      and Squad Engineer point vendor alongside utility tab slightly sorted.
+  - bugfix: Squad Leader helmets now use the proper Xenonauten sprites.
+  - balance: Digging up snow now gives a 5 stack of snow like all other dig tiles,
+      snow cades now also need five to be built.
+  Pariah919:
+  - rscadd: TAT-36 AT gun, a deployed anti tank gun, with several shell types.
+  - code_imp: adds a scope time zoom stat, only the TAT-36 uses it, which takes 3
+      seconds to enter scoped status. Also adds an aim time speed for time that it
+      takes to enter aim mode.
+  RipGrayson:
+  - rscadd: Added a number of random weapon spawners for use in mapping.
+  - rscadd: Added a number of random weapon ammunition spawners for use in mapping.
+  - expansion: LV624 cave lake now has over a dozen variations.
+  - expansion: LV624 medbay now has over a variation.
+  - bugfix: Fixed a number of LV624 pipes that went nowhere.
+  - bugfix: Fixed some wrong LV624 cables that caused powering the colony to be much
+      harder than it should have been.
+  - bugfix: Miners now properly show up when editing maps.
+  - bugfix: Gibs now properly show up when editing maps.
+  - bugfix: Vines now properly show up when editing maps.
+  - bugfix: Bullet casings now properly show up when editing maps.
+  - imageadd: Created icons for new weapon and ammunition spawners.
+  - imageadd: Created a new icon for corpse spawners.
+  - imageadd: Created some new stair icons for better use with stair corners.
+  - imageadd: Ported a CM camera icon so LZ cameras will properly show up when editing
+      maps.
+  novaepee:
+  - rscdel: Remove choice to get smoke grenade from SL vendor
+  - rscdel: Remove choice to get M40 HEDP grenade from SL vendor
+  - rscdel: Remove choice to get CAS flare box from SL vendor
+  - rscdel: Remove Station bounded radio and ziptie box since SL never use this
+  - rscadd: Change placement of certain stuff like whistle, fulton, deployable overwatch
+      camera, signaler, and tarp to make sense of SL vendor
+  - balance: Update flamethrower on SL; I might just remove this since this is an
+      old and forgotten relic
+2022-03-10:
+  Notamaniac:
+  - bugfix: Powerpacks don't disappear on your back when they run out of ammo anymore
+  - imageadd: Powerpacks have been resprited
+  novaepee:
+  - rscadd: New posters! Soon to add in shipside maps.
+2022-03-11:
+  Arctrooper8:
+  - rscadd: standardizes, modernizes, and improves all the module descriptions.
+  - balance: FF armor module now has laser armor, and a cool new name!
+  Loyavas:
+  - rscadd: Added 5 paygrades for Liaison
+  novaepee:
+  - rscdel: acid gas landmark in Barrenquilla
+  - rscdel: free plasma cutters in Barrenquilla
+  - qol: All shipside maps have two chem dispensers and chem masters next to each
+      other for marines to use and a dedicated chem lab for researcher.
+  - qol: Move bluespace beaker to spawn on top of chem master.
+  - balance: All shipside maps have three bluespace beakers.
+2022-03-12:
+  Arctrooper8:
+  - bugfix: makes the essentials kit edits actually work now, oops.
+  Lumipharon:
+  - bugfix: M42C and SVD have their correct pen and sunder values again
+  Redstonize:
+  - balance: Light marksman bullet gets 5 AP, 2.5 damage and 0.25 sunder.
+  - balance: The T-64 Battle rifle gets slightly better stats in autoburst and burst,
+      can no longer use UBF, plasma pistol and masterkey.
+  RipGrayson:
+  - rscadd: Added about 110 new modular mapping inserts to Big Red.
+  - expansion: Big Red is optimized to use modular mapping almost everywhere.
+  - bugfix: Fixed a bugged icon state when editing certain areas on Big Red.
+  novaepee:
+  - rscadd: Public access to ASRS conveyor belt BUT private access to the rest of
+      req
+  - rscdel: Walls that surround ASRS conveyor so that marines can enter ASRS conveyor
+      without the need of a door / shutters
+  - rscadd: more dedicated shutters for req people to control traffic into req
+  - qol: add crates next to operational vendor so that req people can CLICK FAST and
+      move stuff from operational vendor to Alamo or tadpole op
+  - qol: make supply drop closer to ARSR conveyor belt
+  - expansion: PoS and Sulaco for more room to build Reqtorio
+2022-03-13:
+  Lumipharon:
+  - bugfix: The ALF machinecarbine no longer shoots abnormally fast on autoburst.
+  novaepee:
+  - rscdel: Remove all free plasma cutters in all planetsides
+2022-03-14:
+  KrabSpider:
+  - balance: Forward charge now uses BUSY_ICON_DANGER instead of BUSY_ICON_GENERIC.
+  novaepee:
+  - rscadd: Barrenquilla has fire extinguishers around lava
+2022-03-15:
+  RipGrayson:
+  - balance: One variation of Big Red medbay has been reworked and no longer has razor
+      wire.
+  - balance: Tweaked a single LZ variation so that it could be easily caded without
+      knocking down walls.
+  - balance: Adjusted signage on Big Red LZs to better point out when a wall is breachable
+      by xenos.
+  - balance: Adjusted some APCs to be more visible.
+  - bugfix: Fixed a variation of southeast Big Red that was always lit without a proper
+      apc.
+  - bugfix: Fixed some vendors improperly working groundside on Big Red.
+  - bugfix: Fixed some Big Red atmos variations starting without weeds.
+  - bugfix: Removed some space tiles in one variation of Big Red southeast caves.
+  - bugfix: Removed multiple miners from Big Red container area
+  - bugfix: Fixed some spotty fog coverage near Big Red Lambda labs.
+  - bugfix: Removed a floating light at Big Red ETA labs.
+  - bugfix: Fixed a atmos variation lacking a proper APC in Big Red.
+  - bugfix: Fixed a variation of Big Red atmos checkpoint that always had it's APC
+      unwired.
+  - bugfix: Patched a variation of Big Red EVA that had its APC hidden inside a door.
+  - bugfix: Fixed a mapping insert of LZ1 that had the north caves start unweeded.
+  - balance: Removed the empty space around Ice Colony.
+  chesse20:
+  - rscadd: New dome on lv624 with posters in it
+  novaepee:
+  - rscadd: Add posters in PoS, Theseus, and Minerva. For Sulaco, I will wait for
+      Derrick to do his thing.
+  - imageadd: Add more posters
+  - imagedel: Delete redundant poster
+  - code_imp: directional poster!
+  - imageadd: New Field Commander Minimap Icon so it doesn't look like bravo SG 2.0
+2022-03-17:
+  Pariah919:
+  - balance: APHE on AT Gun now flies slower, and now passes through turfs/walls and
+      not mobs.
+2022-03-18:
+  Arctrooper8:
+  - qol: Leader armor essential sets have have their own description now.
+  - rscdel: The enclosed helmet no longer comes with the Xenonauten essentials kit
+      (check your surplus vendor to find it)
+  - bugfix: SLs can now save their leader helmets in their loadouts
+  - rscadd: FC now has a specific essentials kit for jaeger
+  - rscdel: SL and FC no longer start with an extra motion detector
+  - code_imp: renamed jaeger essentials kits pathtype to better convey what they are
+      to coders
+  - qol: Removed the extra coif that is given with essentials on cold maps.
+  - qol: FC is not given an extra pair of gloves and a worse radio anymore.
+  novaepee:
+  - rscadd: restock the Flight surgeron medical equipment dispenser, that funny medical
+      box in tadpole, to an inventory similar to the NanotrasenMed Plus so that medbus
+      can rise again. Yes, you can refill.
+  - balance: restock the Flight surgeron medical equipment dispenser, that funny medical
+      box in tadpole, to an inventory similar to the NanotrasenMed Plus so that medbus
+      can rise again
+  - rscadd: Give a button outside of Tadpole when someone lockdowns tadpole from inside
+      so that you can open tadpole's shutters from the outside.
+  - soundadd: decrease volume on all combat robot's voices
+  novaepee, MJP:
+  - balance: Aim mode on AT gun takes 6 seconds to do.
+  - balance: Reduce AT gun's health to 500, originally 800.
+  - balance: Scope on AT gun now takes 2 seconds to use.
+  - balance: Scope on AT gun now 7 tiles instead of 11 tiles that it inherits.
+  - bugfix: Remove AT gun having IFF.
+2022-03-19:
+  BraveMole:
+  - balance: Nuke can no longer be teleported
+2022-03-20:
+  Arctrooper8:
+  - rscadd: Xenonauten welding helmet module now has a new sprite.
+  - rscadd: Helmet modules now come in miniature crates similar to their suit module
+      counterparts.
+  - balance: gives squad engineers access to superior welding protection.
+  - code_imp: added var/base_icon in the attachments file, an alternative for initial_icon.
+  - balance: Surt light debuff has been reverted
+  BraveMole:
+  - rscadd: New gamemode, nuclear war (or discrash or crashtess).
+  - balance: No more crash pinpointer, but pool pinpointer can target all critical
+      xeno struture (silos, spawner, towers)
+  Loyavas:
+  - bugfix: Adjusted CL rank abbreviations
+  RipGrayson:
+  - qol: Made it so marines can now spawn xenos of any maturity in Valhalla
+  - qol: Valhalla now has xeno HUDs scattered around the firing ranges.
+  - qol: Valhalla now has a special vendor for testing seasonal weapons.
+  - qol: Updated Valhalla vendors to have Harvester spear and rocket sledge.
+  - bugfix: Fixed marines being unable to spawn queens, kings, and gorgers in Valhalla.
+  - bugfix: Fixed ammo for some weapon types not being in Valhalla vendors
+  - rscdel: Removed Barrenquilla from the game.
+  hyper2snyper:
+  - code_imp: Allows the armor type /storage to have pockets set to null.
+  - bugfix: Fixes a runtime with valk when unequipping it.
+  - balance: Freelancers are modernized!
+  - balance: Freelancer Leader now has a magazine storage module and valk. He will
+      carry a grenade belt. His gun now has a mag harness, bayonet and masterkey.
+  - balance: Freelancer Medic now has Baldur, Binocs and a Medical storage module.
+      He now carries tweezers and MeraDerm. His Famas now has a bayonet and a magnetic
+      harness.
+  - balance: Freelancer now has baldur and Binocs. His m16 will now have a magnetic
+      harness, a masterkey and a bayonet. His stick grenades have been replaced with
+      m15s He now has a shoulder holster for his sidearm. He now carries 30 plasteel.
+  - balance: freelancers no longer carry MREs or radios.
+  novaepee and Lumipharon:
+  - balance: Engineer's teleporter has health of 250, half of what it used to have
+2022-03-22:
+  RipGrayson:
+  - balance: Removed all barricades from Big Red crashed variation of Canterbury.
+  - balance: Changed a variation of Big Red LZ1 to be easier to barricade.
+  - balance: Removed most barricades in a variation of Big Red medbay.
+  - balance: Increased weed coverage of Big Red ETA and virology.
+  - bugfix: Big Red Virology is no longer unbuildable before shutter drop depending
+      on LZ2 variation.
+  - bugfix: Removed a duplicate shutter lockdown button from a variation of Big Red
+      LZ2.
+  - bugfix: Sanitized a bad variable in a variation of Big Red Eva that could cause
+      a runtime.
+  - bugfix: Fixed an oversight where you could spawn infinite monkeys from a nulled
+      monkey cube.
+  - bugfix: Fixed Chigusa's green nuke disc generator being unable to be powered.
+2022-03-23:
+  Pariah919:
+  - balance: Savage mulitpliters 1/4th'ed, less max damage. But it will use less plasma
+      because of this.
+  RipGrayson:
+  - bugfix: Fixed a confusing varedit of grass on LV-624.
+  - bugfix: Fixed balloon alerts being invisible.
+  Walarks:
+  - code_imp: keybinds are easily assignable to all actions now
+  - qol: adds keybind to vali configure action, moves connecting a weapon from the
+      configure menu to its own action
+2022-03-26:
+  Lumipharon:
+  - refactor: Coverage now works - window frames and other obstacles can actually
+      block bullets, certain objects no longer always block bullets
+  - balance: Snipers, rockets and IFF weapons no longer completely ignore cover
+  - balance: Slightly buffed window frame HP, in particular reinforced window frames
+  - balance: Flipped tables now actually block bullets better than non flipped tables
+  - bugfix: Jaeger storage modules are bulky, and no longer fit in other jaeger storage
+      modules.
+  RipGrayson:
+  - bugfix: You can now use a plasmacutter to remove target stakes.
+  - rscadd: New marine corpse spawners for use by mappers.
+  - balance: The crashed Canterbury variation in Big Red no longer has indestructible
+      walls.
+  - bugfix: Fixed an incorrect area in Big Red causing weather to look weird.
+  novaepee:
+  - rscadd: Add fire extinguishers in Alamo
+2022-03-27:
+  Arctrooper8/RipGrayson:
+  - soundadd: 'New marine defib sound: AI voice telling you to revive followed by
+      defib warble.'
+  Lumipharon:
+  - bugfix: Boiler gas cloud no longer scales in size past Ancient
+  - rscadd: 'Adds the GL-54, a magazine fed grenade launcher utilising 20mm airbursting
+      grenades remove: Impact grenades are no longer available roundstart'
+  - bugfix: grenades fired from weapons no longer always point north mid flight
+  RipGrayson:
+  - qol: Icy Caves power cables are no longer concealed under walls.
+  - balance: The ship in Icy Caves NW complex is now slightly more open.
+  - balance: Adjusted fog in Icy Caves monorail area to better match the room it's
+      in.
+  - balance: The weapon vault area in Icy Caves now starts locked.
+  - balance: Removed a large amount of groundside explosive crates in Icy Caves.
+  - bugfix: NE monorail complex on Icy Caves no longer has weather.
+  - bugfix: Fixed an unpowered APC in Icy Caves monorail complex.
+  - bugfix: Fixed a misplaced APC in Icy Caves LZ1.
+  - bugfix: Altered spawn protection fog in north Icy Caves so that it can no longer
+      be bypassed with a plasma cutter.
+  - bugfix: Replaced a spawner in Icy Caves that could spawn admin weapons like Auto-9s.
+  - imageadd: Ported a set of 2x1 CM doors to be used in Icy Caves.
+  hyper2snyper:
+  - bugfix: Fixes magazines deleting themselves when emptied by hand.
+  novaepee:
+  - balance: T18, T12, and Tx11 burst firerates have all been nerfed with burst fire
+      delay of 0.05 seconds. Don't worry, slap on BFA, and you're good. MJP will balance
+      BFA to make sure you have your funny brr
+2022-03-29:
+  Lefunny:
+  - balance: Larval Hugger burst time from 13 minutes to 7/8
+  - balance: Larval hugger stam damage from 100% marine stam to 50%
+  novaepee, foster:
+  - imageadd: add 5 brand new title painting!
+2022-03-30:
+  DeltaFire15:
+  - bugfix: Groundside corrupted gens should not have their point production break
+      anymore.
+  - bugfix: APHE only explodes when it hits something that stops its movement, not
+      when passing through walls on its way there.
+  RipGrayson:
+  - rscadd: Added a system to blacklist chemicals from being used in medbay.
+  - balance: Razorburn nanites are now a blacklisted chemical.
+  - balance: You can no longer use the sleeper to give monkeys dialysis.
+  - balance: Dead mobs no longer accumulate smoke or foam reagents.
+2022-03-31:
+  BraveMole:
+  - balance: Harversting drone primo flowers doesn't destroy them
+  Lumipharon:
+  - rscadd: Freelancers in the sector have been reported wielding a wider variety
+      of weapons
+  - code_imp: Support added for jobs to have multiple outfits to randomly select from
+  Wayland-Smithy:
+  - bugfix: Fixed Crusher Primo Rapid Advance not granting full charge or applying
+      do_crush effects.
+  - bugfix: Fixed a rare case of Rapid Advance causing signal registration errors.
+  - spellcheck: Fixed Rapid Advance evolution menu description.
+  goose4429:
+  - refactor: Refactored xeno explosion damage procs
+  - balance: Slowdown from light explosions on weak benos reduced from 4 to 3 to be
+      in line with other cases
+  - balance: Stagger is now always 2 less than slowdown with xeno explosions
+  novaepee:
+  - rscadd: All FCDR bunks now have at least a loadout vendor in all shipside maps
+      except Sulaco
+  - bugfix: poster positions in Minerva and PoS
+  - balance: All shipsides shall spawn with the following:, 6 30mm ammo crates, 2
+      banshees, 2 keepers, 2 widowmakers, 4 mini rockets, 2 GAU-21 30 mm cannons,
+      2 rocket pods, 2 minirocket pods
+  - code_imp: update map contribution page to ensure that other contributors can read
+      good practices on map PRs

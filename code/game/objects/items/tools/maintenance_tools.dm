@@ -134,8 +134,8 @@
 
 
 /obj/item/tool/weldingtool/examine(mob/user)
-	..()
-	to_chat(user, "It contains [get_fuel()]/[max_fuel] units of fuel!")
+	. += ..()
+	. +=  "It contains [get_fuel()]/[max_fuel] units of fuel!"
 
 
 /obj/item/tool/weldingtool/use(used = 0)
@@ -426,8 +426,8 @@
 		return
 
 /obj/item/tool/weldpack/examine(mob/user)
-	..()
-	to_chat(user, "[reagents.total_volume] units of welding fuel left!")
+	. = ..()
+	. += "[reagents.total_volume] units of welding fuel left!"
 
 /obj/item/tool/weldpack/marinestandard
 	name = "M-22 welding kit"
@@ -516,6 +516,17 @@
 	to_chat(user, span_notice("You remove the cell from [src]."))
 	icon_state = "handheldcharger_black_empty"
 
+/obj/item/tool/handheld_charger/attack_hand(mob/living/user)
+	if(user.get_inactive_held_item() != src)
+		return ..()
+	if(!cell)
+		return ..()
+	cell.update_icon()
+	user.put_in_active_hand(cell)
+	cell = null
+	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
+	to_chat(user, span_notice("You remove the cell from [src]."))
+	icon_state = "handheldcharger_black_empty"
 
 /obj/item/tool/handheld_charger/Destroy()
 	QDEL_NULL(cell)

@@ -151,7 +151,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	psypoint_cost = XENO_TURRET_PRICE
 	flags_gamemode = ABILITY_DISTRESS
 	///How long to build one turret
-	var/build_time = 15 SECONDS
+	var/build_time = 10 SECONDS
 	///What type of turret is built
 	var/turret_type = /obj/structure/xeno/xeno_turret
 

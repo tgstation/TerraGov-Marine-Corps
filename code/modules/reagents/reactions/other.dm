@@ -300,5 +300,5 @@
 	var/radius = round(sqrt(created_volume* 0.25), 1) // should be a max of 2 tiles
 	if(radius > 2)
 		radius = 2 //enforced by a hardcap. Sorry!
-		explosion(get_turf(holder.my_atom), heavy_impact_range = radius, small_animation = TRUE)
+	explosion(get_turf(holder.my_atom), heavy_impact_range = radius, small_animation = TRUE)
 

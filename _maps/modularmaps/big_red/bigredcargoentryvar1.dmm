@@ -1,0 +1,71 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall,
+/area/bigredv2/outside/cargo)
+"o" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"z" = (
+/obj/structure/barricade/wooden{
+	dir = 4
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"D" = (
+/obj/structure/barricade/wooden{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"E" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/barricade/wooden{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"L" = (
+/obj/structure/barricade/wooden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"Q" = (
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
+"T" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+
+(1,1,1) = {"
+a
+Q
+D
+E
+a
+"}
+(2,1,1) = {"
+a
+D
+L
+E
+a
+"}
+(3,1,1) = {"
+z
+z
+z
+T
+o
+"}

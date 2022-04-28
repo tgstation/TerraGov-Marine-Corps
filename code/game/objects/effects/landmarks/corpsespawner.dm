@@ -14,6 +14,7 @@
 
 /obj/effect/landmark/corpsespawner
 	name = "Unknown"
+	icon_state = "skullmarker"
 	var/mobname = "Unknown"  //Unused now but it'd fuck up maps to remove it now
 	var/corpseuniform = null //Set this to an object path to have the slot filled with said object on the corpse.
 	var/corpsesuit = null
@@ -338,3 +339,40 @@
 	corpseid = 1
 	corpseidjob = "Private Security Officer"
 	corpseidaccess = "101"
+
+/////////////////Marine//////////////////////
+
+/obj/effect/landmark/corpsespawner/marine
+	name = "Marine"
+	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
+	corpseback = /obj/item/storage/backpack/satchel
+	corpsemask = /obj/item/clothing/mask/rebreather
+	corpsehelmet = /obj/item/clothing/head/modular/marine/m10x
+	corpsegloves = /obj/item/clothing/gloves/marine
+	corpseshoes = /obj/item/clothing/shoes/marine
+	corpsepocket1 = /obj/item/tool/lighter/zippo
+
+/obj/effect/landmark/corpsespawner/marine/engineer
+	name = "Marine Engineer"
+	corpseuniform = /obj/item/clothing/under/marine/standard
+	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
+	corpseback = /obj/item/storage/backpack/marine/engineerpack
+	corpsemask = /obj/item/clothing/mask/gas/tactical
+	corpsehelmet = /obj/item/clothing/head/beret/eng
+	corpsegloves = /obj/item/clothing/gloves/marine/insulated
+	corpseshoes = /obj/item/clothing/shoes/marine
+	corpsebelt = /obj/item/storage/belt/utility/full
+	corpsepocket1 = /obj/item/flashlight
+
+/obj/effect/landmark/corpsespawner/marine/corpsman
+	name = "Marine Corpsman"
+	corpseuniform = /obj/item/clothing/under/marine/corpsman
+	corpsesuit = /obj/item/clothing/suit/modular/xenonauten/light
+	corpseback = /obj/item/storage/backpack/corpsman
+	corpsemask = /obj/item/clothing/mask/gas
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/corpsman
+	corpsegloves = /obj/item/clothing/gloves/latex
+	corpseshoes = /obj/item/clothing/shoes/marine
+	corpsepocket1 = /obj/item/tweezers
+	corpsepocket2 = /obj/item/clothing/glasses/meson

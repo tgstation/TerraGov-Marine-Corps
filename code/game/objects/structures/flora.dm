@@ -1,6 +1,7 @@
 /obj/structure/flora
 	anchored = TRUE
 	max_integrity = 25
+	coverage = 30
 	var/on_fire = FALSE
 
 /obj/structure/flora/ex_act(severity)
@@ -223,10 +224,19 @@
 /obj/structure/flora/pottedplant
 	name = "potted plant"
 	icon = 'icons/obj/flora/plants.dmi'
-	icon_state = "plant-26"
+	icon_state = "plant-05"
+
+/obj/structure/flora/pottedplant/one
+	icon_state = "plant-01"
+
+/obj/structure/flora/pottedplant/two
+	icon_state = "plant-02"
 
 /obj/structure/flora/pottedplant/ten
 	icon_state = "plant-10"
+
+/obj/structure/flora/pottedplant/eighteen
+	icon_state = "plant-18"
 
 /obj/structure/flora/pottedplant/twentyone
 	icon_state = "plant-21"
@@ -436,6 +446,7 @@
 	name = "vines"
 	desc = "A mass of twisted vines."
 	icon = 'icons/effects/spacevines.dmi'
+	icon_state = "Light2"
 
 /obj/structure/jungle/vines/attackby(obj/item/I, mob/user, params)
 	. = ..()

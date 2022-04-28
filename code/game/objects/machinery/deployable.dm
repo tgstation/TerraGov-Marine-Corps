@@ -2,6 +2,7 @@
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	obj_flags = CAN_BE_HIT
+	throwpass = FALSE
 
 	///Item that is deployed to create src.
 	var/obj/item/internal_item
@@ -102,7 +103,7 @@
 
 /obj/machinery/deployable/examine(mob/user)
 	. = ..()
-	internal_item.examine(user)
+	. += internal_item.examine(user)
 
 /obj/machinery/deployable/MouseDrop(over_object, src_location, over_location)
 	if(!ishuman(usr))

@@ -46,11 +46,11 @@
 		icon_state = "[initial(name)]"
 
 /obj/item/weapon/baton/examine(mob/user)
-	..()
+	. = ..()
 	if(bcell)
-		to_chat(user, span_notice("The baton is [round(bcell.percent())]% charged."))
+		. += span_notice("The baton is [round(bcell.percent())]% charged.")
 	else
-		to_chat(user, span_warning("The baton does not have a power source installed."))
+		. += span_warning("The baton does not have a power source installed.")
 
 /obj/item/weapon/baton/attack_hand(mob/living/user)
 	. = ..()
@@ -291,4 +291,4 @@
 
 /obj/item/weapon/stunprod/improved/examine(mob/user)
 	. = ..()
-	to_chat(user, span_notice("It has [charges] charges left."))
+	. += span_notice("It has [charges] charges left.")

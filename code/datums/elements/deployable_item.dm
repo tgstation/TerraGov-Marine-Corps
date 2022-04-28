@@ -53,27 +53,42 @@
 	INVOKE_ASYNC(src, .proc/finish_deploy, item_in_active_hand, user, location)
 	return COMSIG_KB_ACTIVATED
 
-///Handles the conversion of item into machine. Source is the Item to be deployed, user is who is deploying.
-/datum/element/deployable_item/proc/finish_deploy(obj/item/item_to_deploy, mob/user, turf/location)
-	if(!ishuman(user) || CHECK_BITFIELD(item_to_deploy.flags_item, NODROP))
-		return
+///Handles the conversion of item into machine. Source is the Item to be deployed, user is who is deploying. If user is null, a direction must be set.
+/datum/element/deployable_item/proc/finish_deploy(obj/item/item_to_deploy, mob/user, turf/location, direction)
 
-	if(item_to_deploy.check_blocked_turf(location))
-		user.balloon_alert(user, "There is insufficient room to deploy [item_to_deploy]!")
-		return
-	if(user.do_actions)
-		user.balloon_alert(user, "You are already doing something!")
-		return
-	user.balloon_alert(user, "You start deploying...")
-	if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
-		return
+	var/direction_to_deploy
+	var/obj/deployed_machine
 
-	user.temporarilyRemoveItemFromInventory(item_to_deploy)
+	if(user)
+		if(!ishuman(user) || CHECK_BITFIELD(item_to_deploy.flags_item, NODROP))
+			return
 
-	item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE,  COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
+		if(item_to_deploy.check_blocked_turf(location))
+			user.balloon_alert(user, "There is insufficient room to deploy [item_to_deploy]!")
+			return
+		if(user.do_actions)
+			user.balloon_alert(user, "You are already doing something!")
+			return
+		user.balloon_alert(user, "You start deploying...")
+		user.setDir(get_dir(user, location)) //Face towards deploy location for ease of deploy.
+		var/newdir = user.dir //Save direction before the doafter for ease of deploy
+		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
+			return
 
-	var/obj/deployed_machine = new deploy_type(location, item_to_deploy, user) //Creates new structure or machine at 'deploy' location and passes on 'item_to_deploy'
-	deployed_machine.setDir(user.dir)
+		user.temporarilyRemoveItemFromInventory(item_to_deploy)
+
+		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE,  COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
+
+		direction_to_deploy = newdir
+
+	else
+		if(!direction)
+			CRASH("[item_to_deploy] attempted to deploy itself as a null user without the arg direction")
+		direction_to_deploy = direction
+
+	deployed_machine = new deploy_type(location,item_to_deploy, user)//Creates new structure or machine at 'deploy' location and passes on 'item_to_deploy'
+	deployed_machine.setDir(direction_to_deploy)
+
 
 	deployed_machine.max_integrity = item_to_deploy.max_integrity //Syncs new machine or structure integrity with that of the item.
 	deployed_machine.obj_integrity = item_to_deploy.obj_integrity

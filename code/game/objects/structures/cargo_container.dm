@@ -9,6 +9,7 @@
 	max_integrity = 200
 	opacity = TRUE
 	anchored = TRUE
+	throwpass = FALSE
 
 /obj/structure/cargo_container/attack_hand(mob/living/user)
 	. = ..()
@@ -53,6 +54,7 @@
 
 /obj/structure/cargo_container/gorg
 	icon_state = "gorg"
+	bound_height = 32
 
 /obj/structure/cargo_container/horizontal
 	name = "Cargo Container"

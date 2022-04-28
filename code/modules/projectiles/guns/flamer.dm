@@ -222,7 +222,7 @@
 			turfs_to_burn -= turf_to_check
 			continue
 		for(var/obj/object in turf_to_check)
-			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno))
+			if(!object.density || object.throwpass || istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno) || istype(object, /obj/machinery/deployable) || istype(object, /obj/vehicle))
 				continue
 			turfs_to_burn -= turf_to_check
 
@@ -292,8 +292,8 @@
 		to_chat(mob_caught, isxeno(mob_caught) ? span_xenodanger(burn_message) : span_highdanger(burn_message))
 
 /obj/item/weapon/gun/flamer/big_flamer
-	name = "\improper M240A1 incinerator unit"
-	desc = "The M240A1 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	name = "\improper FL-240 incinerator unit"
+	desc = "The FL-240 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	icon_state = "m240"
 	item_state = "m240"
 
@@ -332,8 +332,8 @@
 
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard
-	name = "\improper TL-84 flamethrower"
-	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
+	name = "\improper FL-84 flamethrower"
+	desc = "The FL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	item_state = "tl84"

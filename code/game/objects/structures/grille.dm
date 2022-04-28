@@ -6,6 +6,7 @@
 	hit_sound = 'sound/effects/grillehit.ogg'
 	density = TRUE
 	anchored = TRUE
+	coverage = 10
 	flags_atom = CONDUCT
 	layer = OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE

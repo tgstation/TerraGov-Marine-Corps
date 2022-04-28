@@ -1,0 +1,402 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 10
+	},
+/area/bigredv2/outside/c)
+"b" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/c)
+"e" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/c)
+"g" = (
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"h" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 9
+	},
+/area/bigredv2/outside/c)
+"i" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 5
+	},
+/area/bigredv2/outside/c)
+"l" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes,
+/obj/structure/hoop{
+	dir = 4;
+	id = "basketball";
+	side = "left"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"m" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"n" = (
+/obj/effect/decal/warning_stripes/nscenter,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"o" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
+"p" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/nscenter,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"q" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"r" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"s" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"u" = (
+/obj/effect/decal/warning_stripes/nscenter,
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"w" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 6
+	},
+/area/bigredv2/outside/c)
+"z" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"A" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"C" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"F" = (
+/obj/effect/decal/warning_stripes,
+/obj/item/toy/beach_ball/basketball,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"G" = (
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"H" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/nscenter,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"I" = (
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"J" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"L" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes,
+/obj/structure/hoop{
+	dir = 8;
+	id = "basketball";
+	side = "right"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"M" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"O" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/c)
+"P" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"Q" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"R" = (
+/obj/structure/mopbucket,
+/obj/item/tool/mop,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/c)
+"S" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
+"T" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+"Y" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"Z" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
+
+(1,1,1) = {"
+h
+S
+S
+S
+S
+Z
+r
+o
+a
+"}
+(2,1,1) = {"
+e
+P
+T
+T
+l
+T
+T
+A
+O
+"}
+(3,1,1) = {"
+e
+m
+I
+I
+I
+I
+I
+g
+O
+"}
+(4,1,1) = {"
+R
+m
+I
+I
+I
+I
+I
+g
+O
+"}
+(5,1,1) = {"
+e
+m
+I
+I
+I
+I
+I
+g
+O
+"}
+(6,1,1) = {"
+e
+m
+I
+I
+I
+I
+I
+g
+O
+"}
+(7,1,1) = {"
+e
+m
+I
+I
+I
+I
+I
+g
+Q
+"}
+(8,1,1) = {"
+e
+p
+u
+n
+F
+u
+n
+H
+G
+"}
+(9,1,1) = {"
+b
+m
+I
+I
+I
+I
+I
+g
+O
+"}
+(10,1,1) = {"
+e
+m
+I
+I
+I
+I
+I
+g
+O
+"}
+(11,1,1) = {"
+e
+m
+I
+I
+I
+I
+I
+g
+O
+"}
+(12,1,1) = {"
+e
+m
+I
+I
+I
+I
+I
+g
+O
+"}
+(13,1,1) = {"
+b
+m
+I
+I
+I
+I
+I
+g
+O
+"}
+(14,1,1) = {"
+e
+m
+I
+I
+I
+I
+I
+g
+O
+"}
+(15,1,1) = {"
+e
+C
+z
+z
+L
+s
+z
+M
+O
+"}
+(16,1,1) = {"
+i
+Y
+Y
+Y
+J
+r
+q
+q
+w
+"}

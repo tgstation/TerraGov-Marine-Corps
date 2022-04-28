@@ -181,6 +181,21 @@
 	loc = null
 	loc = T
 
+/obj/item/get_examine_name(mob/user)
+	. = "\a [src]"
+	var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
+	if(article)
+		. = "[article] [src]"
+		override[EXAMINE_POSITION_ARTICLE] = article
+	if(blood_color)
+		override[EXAMINE_POSITION_BEFORE] = blood_color != "#030303" ? " bloody " : " oil-stained "
+		. = "\a [blood_color != "#030303" ? "bloody" : "oil-stained"] [src]"
+	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
+		. = override.Join("")
+
+/obj/item/examine(mob/user)
+	. = ..()
+	. += "[gender == PLURAL ? "They are" : "It is"] a [weight_class_to_text(w_class)] item."
 
 /obj/item/attack_ghost(mob/dead/observer/user)
 	if(!can_interact(user))
@@ -559,7 +574,7 @@
 				return FALSE
 			return TRUE
 		if(SLOT_IN_B_HOLSTER)
-			if(!H.back || !istype(H.back, /obj/item/storage/large_holster))
+			if(!H.back || !istype(H.back, /obj/item/storage/holster))
 				return FALSE
 			var/obj/item/storage/S = H.back
 			if(!S.can_be_inserted(src, warning))
@@ -573,13 +588,13 @@
 				return FALSE
 			return TRUE
 		if(SLOT_IN_HOLSTER)
-			if((H.belt && istype(H.belt,/obj/item/storage/large_holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
+			if((H.belt && istype(H.belt,/obj/item/storage/holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.belt
 				if(S.can_be_inserted(src, warning))
 					return TRUE
 			return FALSE
 		if(SLOT_IN_S_HOLSTER)
-			if((H.s_store && istype(H.s_store, /obj/item/storage/large_holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
+			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.s_store
 				if(S.can_be_inserted(src, warning))
 					return TRUE
@@ -637,6 +652,79 @@
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && (flags_item_map_variant & ITEM_ICE_PROTECTION))
 		min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
+
+///Play small animation and jiggle when picking up an object
+/obj/item/proc/do_pickup_animation(atom/target)
+	if(!isturf(loc))
+		return
+	var/image/pickup_animation = image(icon = src, loc = loc, layer = layer + 0.1)
+	pickup_animation.plane = GAME_PLANE
+	pickup_animation.transform.Scale(0.75)
+	pickup_animation.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+
+	var/turf/current_turf = get_turf(src)
+	var/direction = get_dir(current_turf, target)
+	var/to_x = target.pixel_x
+	var/to_y = target.pixel_y
+
+	if(direction & NORTH)
+		to_y += 32
+	else if(direction & SOUTH)
+		to_y -= 32
+	if(direction & EAST)
+		to_x += 32
+	else if(direction & WEST)
+		to_x -= 32
+	if(!direction)
+		to_y += 10
+		pickup_animation.pixel_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
+
+	flick_overlay(pickup_animation, GLOB.clients, 4)
+	var/matrix/animation_matrix = new(pickup_animation.transform)
+	animation_matrix.Turn(pick(-30, 30))
+	animation_matrix.Scale(0.65)
+
+	animate(pickup_animation, alpha = 175, pixel_x = to_x, pixel_y = to_y, time = 3, transform = animation_matrix, easing = CUBIC_EASING)
+	animate(alpha = 0, transform = matrix().Scale(0.7), time = 1)
+
+///Play small animation and jiggle when dropping an object
+/obj/item/proc/do_drop_animation(atom/moving_from)
+	if(!isturf(loc))
+		return
+
+	var/turf/current_turf = get_turf(src)
+	var/direction = get_dir(moving_from, current_turf)
+	var/from_x = moving_from.pixel_x
+	var/from_y = moving_from.pixel_y
+
+	if(direction & NORTH)
+		from_y -= 32
+	else if(direction & SOUTH)
+		from_y += 32
+	if(direction & EAST)
+		from_x -= 32
+	else if(direction & WEST)
+		from_x += 32
+	if(!direction)
+		from_y += 10
+		from_x += 6 * (prob(50) ? 1 : -1) //6 to the right or left, helps break up the straight upward move
+
+	//We're moving from these chords to our current ones
+	var/old_x = pixel_x
+	var/old_y = pixel_y
+	var/old_alpha = alpha
+	var/matrix/old_transform = transform
+	var/matrix/animation_matrix = new(old_transform)
+	animation_matrix.Turn(pick(-30, 30))
+	animation_matrix.Scale(0.7) // Shrink to start, end up normal sized
+
+	pixel_x = from_x
+	pixel_y = from_y
+	alpha = 0
+	transform = animation_matrix
+
+	// This is instant on byond's end, but to our clients this looks like a quick drop
+	animate(src, alpha = old_alpha, pixel_x = old_x, pixel_y = old_y, transform = old_transform, time = 3, easing = CUBIC_EASING)
 
 /obj/item/verb/verb_pickup()
 	set src in oview(1)
@@ -701,8 +789,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		viewsize = zoom_viewsize
 
 	if(zoom) //If we are zoomed out, reset that parameter.
-		user.visible_message(span_notice("[user] looks up from [zoom_device]."),
-		span_notice("You look up from [zoom_device]."))
+		if(!TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
+			user.visible_message(span_notice("[user] looks up from [zoom_device]."),
+			span_notice("You look up from [zoom_device]."))
+
 		zoom = FALSE
 		UnregisterSignal(user, COMSIG_ITEM_ZOOM)
 		onunzoom(user)
@@ -718,10 +808,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			animate(user.client, 3*(tileoffset/7), pixel_x = 0, pixel_y = 0)
 		return
 
-	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
-		return
 	TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
-
 	if(SEND_SIGNAL(user, COMSIG_ITEM_ZOOM) &  COMSIG_ITEM_ALREADY_ZOOMED)
 		to_chat(user, span_warning("You are already looking through another zoom device.."))
 		return
@@ -730,8 +817,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.client.view_size.add(viewsize)
 		change_zoom_offset(user, zoom_offset = tileoffset)
 
-	user.visible_message(span_notice("[user] peers through \the [zoom_device]."),
-	span_notice("You peer through \the [zoom_device]."))
+	if(!TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM))
+		user.visible_message(span_notice("[user] peers through \the [zoom_device]."),
+		span_notice("You peer through \the [zoom_device]."))
 	zoom = TRUE
 	RegisterSignal(user, COMSIG_ITEM_ZOOM, .proc/zoom_check_return)
 	onzoom(user)
@@ -994,7 +1082,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/use(used)
 	return !used
 
-
 // Plays item's usesound, if any.
 /obj/item/proc/play_tool_sound(atom/target, volume)
 	if(!target || !usesound || !volume)
@@ -1037,9 +1124,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)
 
 ///Generates worn icon for sprites on-mob.
-/obj/item/proc/make_worn_icon(body_type, slot_name, inhands, default_icon, default_layer)
+/obj/item/proc/make_worn_icon(slot_name, inhands, default_icon, default_layer)
 	//Get the required information about the base icon
-	var/icon/icon2use = get_worn_icon_file(body_type = body_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
+	var/icon/icon2use = get_worn_icon_file(slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
 	var/layer2use = !inhands && worn_layer ? -worn_layer : -default_layer
 
@@ -1068,14 +1155,13 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return standing
 
 ///gets what icon dmi file shall be used for the on-mob sprite
-/obj/item/proc/get_worn_icon_file(body_type,slot_name,default_icon,inhands)
+/obj/item/proc/get_worn_icon_file(slot_name,default_icon,inhands)
 
 	//1: icon_override var
 	if(icon_override)
 		return icon_override
 
 	//2: species-specific sprite sheets.
-	. = LAZYACCESS(sprite_sheets, body_type)
 	if(. && !inhands)
 		return
 

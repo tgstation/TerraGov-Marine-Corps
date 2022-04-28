@@ -1,0 +1,439 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall,
+/area/bigredv2/outside/chapel)
+"b" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/bigredv2/outside/chapel)
+"c" = (
+/obj/machinery/alarm{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"d" = (
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/bigredv2/outside/chapel)
+"e" = (
+/obj/structure/cable,
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/bigredv2/outside/chapel)
+"g" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Chapel";
+	name = "\improper Chapel Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/chapel)
+"h" = (
+/obj/structure/closet/wardrobe/chaplain_black,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"i" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"j" = (
+/turf/open/floor/tile/chapel,
+/area/bigredv2/outside/chapel)
+"k" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/tile/chapel{
+	dir = 4
+	},
+/area/bigredv2/outside/chapel)
+"l" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/stairs/rampbottom,
+/area/bigredv2/outside/chapel)
+"m" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"n" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"o" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"q" = (
+/obj/machinery/door_control{
+	dir = 4;
+	id = "Chapel";
+	name = "Storm Shutters"
+	},
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"s" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"t" = (
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"w" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"x" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"y" = (
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/bigredv2/outside/chapel)
+"z" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"A" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/bigredv2/outside/chapel)
+"B" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/bigredv2/outside/chapel)
+"C" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"D" = (
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/bigredv2/outside/chapel)
+"F" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/tile/chapel{
+	dir = 4
+	},
+/area/bigredv2/outside/chapel)
+"H" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "Chapel";
+	name = "\improper Chapel Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/chapel)
+"K" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"L" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/table/woodentable,
+/obj/item/storage/bible,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+"M" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Chapel"
+	},
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"N" = (
+/obj/structure/cable,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"O" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"P" = (
+/obj/structure/table/woodentable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"R" = (
+/obj/structure/cable,
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/bigredv2/outside/chapel)
+"S" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/tile/chapel{
+	dir = 8
+	},
+/area/bigredv2/outside/chapel)
+"U" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"V" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/tile/chapel,
+/area/bigredv2/outside/chapel)
+"W" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"X" = (
+/turf/open/floor/tile/chapel{
+	dir = 4
+	},
+/area/bigredv2/outside/chapel)
+"Y" = (
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/chapel)
+"Z" = (
+/obj/structure/table/woodentable,
+/obj/item/radio/headset/survivor,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/engine/cult,
+/area/bigredv2/outside/chapel)
+
+(1,1,1) = {"
+a
+a
+H
+H
+H
+H
+H
+a
+a
+"}
+(2,1,1) = {"
+a
+h
+m
+t
+t
+t
+t
+q
+a
+"}
+(3,1,1) = {"
+g
+Y
+d
+t
+K
+t
+l
+Y
+a
+"}
+(4,1,1) = {"
+g
+Y
+Z
+w
+L
+w
+w
+Y
+a
+"}
+(5,1,1) = {"
+a
+n
+y
+D
+s
+y
+D
+Y
+a
+"}
+(6,1,1) = {"
+g
+Y
+k
+V
+o
+k
+V
+Y
+a
+"}
+(7,1,1) = {"
+g
+C
+B
+S
+o
+B
+S
+C
+a
+"}
+(8,1,1) = {"
+a
+n
+k
+V
+o
+F
+V
+Y
+a
+"}
+(9,1,1) = {"
+g
+Y
+B
+S
+s
+B
+S
+Y
+a
+"}
+(10,1,1) = {"
+g
+Y
+k
+V
+o
+k
+V
+i
+a
+"}
+(11,1,1) = {"
+a
+n
+B
+S
+o
+B
+S
+N
+a
+"}
+(12,1,1) = {"
+g
+C
+k
+V
+o
+k
+V
+O
+a
+"}
+(13,1,1) = {"
+g
+Y
+B
+S
+s
+B
+S
+N
+a
+"}
+(14,1,1) = {"
+a
+n
+k
+V
+o
+k
+V
+N
+a
+"}
+(15,1,1) = {"
+M
+W
+b
+A
+x
+e
+R
+N
+a
+"}
+(16,1,1) = {"
+Y
+Y
+X
+j
+U
+X
+j
+Y
+a
+"}
+(17,1,1) = {"
+a
+Y
+P
+z
+C
+z
+z
+c
+a
+"}
+(18,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

@@ -41,6 +41,10 @@
 	light_power = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
 
+	///greyscale support
+	greyscale_config = null
+	greyscale_colors = null
+
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
@@ -127,7 +131,7 @@
 		return
 	if(AM.projectile_hit(src))
 		AM.do_projectile_hit(src)
-		if(!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE))
+		if( (!(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)) || (!(ismob(AM) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB))) )
 			qdel(src)
 			return
 	permutated[AM] = TRUE //Don't want to hit them again.
@@ -143,6 +147,12 @@
 /obj/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
 	ammo = ispath(ammo_datum) ? GLOB.ammo_list[ammo_datum] : ammo_datum
 	name 		= ammo.name
+
+	///sets greyscale for the projectile if it has been specified by the ammo datum
+	if (ammo.projectile_greyscale_config && ammo.projectile_greyscale_colors)
+		set_greyscale_config(ammo.projectile_greyscale_config)
+		set_greyscale_colors(ammo.projectile_greyscale_colors)
+
 	icon_state 	= ammo.icon_state
 	damage 		= ammo.damage + bonus_damage //Mainly for emitters.
 	penetration = ammo.penetration
@@ -442,7 +452,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(border_escaped_through), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = i
 				break
@@ -489,7 +499,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = i
 				break
@@ -512,7 +522,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue //We act as if we were entering the tile through the opposite direction, to check for barricade blockage.
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = i
 				break
@@ -592,7 +602,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			continue
 
 		thing_to_hit.do_projectile_hit(src)
-		return !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+
+		if(ismob(thing_to_hit) && (CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)))
+			return !(CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB))
+
+		return !(CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOVABLE))
 
 	return FALSE
 
@@ -620,28 +634,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /obj/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(!density)
-		return FALSE
-	if(layer >= OBJ_LAYER || src == proj.original_target)
-		return TRUE
-	return FALSE
-
-/obj/do_projectile_hit(obj/projectile/proj)
-	proj.ammo.on_hit_obj(src, proj)
-	if(QDELETED(src)) //on_hit_obj could delete the object
-		return
-	bullet_act(proj)
-
-
-/obj/structure/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(!density && !(obj_flags & PROJ_IGNORE_DENSITY)) //structure is passable
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
 	if(!throwpass)
 		return TRUE
-	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.iff_signal || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds bypass cover
-		return FALSE
 	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
 		return FALSE
 	. = coverage //Hitchance.
@@ -650,13 +648,24 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(!uncrossing)
 				proj.uncross_scheduled += src
 			return FALSE //No effect now, but we save the reference to check on exiting the tile.
-		. *= uncrossing ? 0.5 : 1.5 //Higher hitchance when shooting in the barricade's direction.
-	//Bypass chance calculation. Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
-	. -= (proj.accuracy - (proj.accuracy * ( (proj.distance_travelled/proj.ammo.accurate_range)*(proj.distance_travelled/proj.ammo.accurate_range) ) ))
+		if (uncrossing)
+			return FALSE //you don't hit the cade from behind.
+	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.iff_signal || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds are better at getting past cover
+		. *= 0.8
 	if(!anchored)
 		. *= 0.5 //Half the protection from unaffixed structures.
+	///50% better protection when shooting from outside accurate range.
+	if(proj.distance_travelled > proj.ammo.accurate_range)
+		. *= 1.5
+///Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
+	. = min(. , . + 100 - proj.accuracy)
 	return prob(.)
 
+/obj/do_projectile_hit(obj/projectile/proj)
+	proj.ammo.on_hit_obj(src, proj)
+	if(QDELETED(src)) //on_hit_obj could delete the object
+		return
+	bullet_act(proj)
 
 /obj/structure/window/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
@@ -874,7 +883,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 				proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
-				add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 			if(living_hard_armor)
 				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * proj.penetration * 0.01)) //AP reduces a % of hard armor.
 			if(living_soft_armor)
@@ -1060,7 +1068,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(border_escaped_through), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = TRUE
 				break
@@ -1084,7 +1092,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = TRUE
 				break
@@ -1100,7 +1108,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				if(!thing_to_uncross.projectile_hit(src, REVERSE_DIR(movement_dir), TRUE))
 					continue //We act as if we were entering the tile through the opposite direction, to check for barricade blockage.
 				thing_to_uncross.do_projectile_hit(src)
-				if(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE)
+				if( (ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_MOVABLE) || (ismob(thing_to_uncross) && CHECK_BITFIELD(ammo.flags_ammo_behavior, AMMO_PASS_THROUGH_MOB)) )
 					continue
 				end_of_movement = TRUE
 				break
@@ -1179,7 +1187,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/human/embed_projectile_shrapnel(obj/projectile/proj)
 	var/datum/limb/affected_limb = get_limb(check_zone(proj.def_zone))
-	if(affected_limb.limb_status & LIMB_DESTROYED)
+	if(affected_limb.limb_status & (LIMB_DESTROYED|LIMB_ROBOT))
 		return
 	return ..()
 

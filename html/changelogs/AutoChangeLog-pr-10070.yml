@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - bugfix: "ANFO now actually works when under it's radius limit"

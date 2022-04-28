@@ -296,7 +296,7 @@
 	name = "Place acid well"
 	action_icon_state = "place_trap"
 	mechanics_text = "Place an acid well that can put out fires."
-	plasma_cost = 500
+	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 
 /datum/action/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)

@@ -140,9 +140,8 @@
 /**
 	Hook into the examine of the parent to show additional information about the suit_autodoc
 */
-/datum/component/suit_autodoc/proc/examine(datum/source, mob/user)
+/datum/component/suit_autodoc/proc/examine(datum/source, mob/user, list/details)
 	SIGNAL_HANDLER
-	var/details
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
 		details += "Its burn treatment injector is currently refilling.</br>"
 
@@ -158,9 +157,6 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_PAIN))
 		details += "Its painkiller injector is currently refilling.</br>"
 
-	if(details)
-		to_chat(user, span_danger("[details]"))
-
 
 /**
 	Disables the autodoc and removes actions when dropped
@@ -169,7 +165,6 @@
 	SIGNAL_HANDLER
 	if(!iscarbon(user))
 		return
-	UnregisterSignal(wearer, COMSIG_KB_SUITANALYZER)
 	remove_actions()
 	disable()
 	wearer = null
@@ -185,7 +180,6 @@
 	wearer = equipper
 	enable()
 	give_actions()
-	RegisterSignal(wearer, COMSIG_KB_SUITANALYZER, .proc/scan_user)
 
 /**
 	Disables to stop processing and calls to the signals from the user.
@@ -444,8 +438,9 @@
 	action_icon_state = "suit_toggle"
 
 /datum/action/suit_autodoc/scan
-	name = "Suit Automedic User Scan"
+	name = "User Medical Scan"
 	action_icon_state = "suit_scan"
+	keybind_signal = COMSIG_KB_SUITANALYZER
 
 /datum/action/suit_autodoc/configure
 	name = "Configure Suit Automedic"
