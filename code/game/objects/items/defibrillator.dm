@@ -232,12 +232,6 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
-	if(H.species.species_flags & DETACHABLE_HEAD)	//But if their head's missing, they're still not coming back
-		var/datum/limb/head/braincase = H.get_limb("head")
-		if(braincase.limb_status & LIMB_DESTROYED)
-			user.visible_message("[icon2html(src, viewers(user))] \The [src] buzzes: Positronic brain missing, cannot reboot.")
-			return
-
 	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: No soul detected, Attempting to revive..."))
 

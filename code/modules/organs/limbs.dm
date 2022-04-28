@@ -71,6 +71,9 @@
 	///What % of the body does this limb cover. Make sure that the sum is always 100.
 	var/cover_index = 0
 
+	var/mob/living/carbon/human/H
+
+
 
 /datum/limb/New(datum/limb/P, mob/mob_owner)
 	if(P)
@@ -238,7 +241,7 @@
 
 	//If limb took enough damage, try to cut or tear it off
 
-	if(body_part == CHEST || body_part == GROIN)
+	if(body_part == CHEST || body_part == GROIN || ((owner.species.species_flags & UNDETACHABLE_HEAD) && body_part == HEAD))
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()
@@ -1306,5 +1309,5 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = ..()
 	if(!.)
 		return
-	if(!(owner.species.species_flags & DETACHABLE_HEAD) && vital)
+	if(!(owner.species.species_flags & UNDETACHABLE_HEAD) && vital)
 		owner.set_undefibbable()
