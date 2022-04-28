@@ -88,7 +88,7 @@
 
 /obj/item/clothing/gloves/heldgloves/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>Alt-click the gloves when worn to strap them into your hands.")
+	. += "Alt-click the gloves when worn to strap them into your hands."
 
 /obj/item/clothing/gloves/heldgloves/unequipped(mob/unequipper, slot)
 	. = ..()
