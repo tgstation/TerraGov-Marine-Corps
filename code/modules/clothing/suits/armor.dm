@@ -1,5 +1,6 @@
 
 /obj/item/clothing/suit/armor
+	flags_item = SYNTH_RESTRICTED
 	flags_inventory = BLOCKSHARPOBJ
 	flags_armor_protection = CHEST|GROIN
 	flags_cold_protection = CHEST|GROIN
@@ -115,7 +116,6 @@
 	soft_armor = list("melee" = 65, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
-	flags_item = SYNTH_RESTRICTED
 	siemens_coefficient = 0.5
 	permeability_coefficient = 0.7
 	time_to_unequip = 20
@@ -133,7 +133,6 @@
 	slowdown = 1
 	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	flags_inventory = BLOCKSHARPOBJ|NOPRESSUREDMAGE
-	flags_item = SYNTH_RESTRICTED
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
@@ -158,7 +157,6 @@
 	item_state = "detective-armor"
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST|GROIN
-	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 50, "bullet" = 15, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
 
@@ -187,7 +185,6 @@
 	item_state = "swatarmor"
 	var/obj/item/weapon/gun/holstered = null
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	flags_item = SYNTH_RESTRICTED
 	slowdown = 0
 	soft_armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 40, "rad" = 0, "fire" = 50, "acid" = 50)
 	siemens_coefficient = 0.7
@@ -198,7 +195,7 @@
 	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
-	flags_item = NODROP|DELONDROP
+	flags_item = NODROP|DELONDROP|SYNTH_RESTRICTED
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 35, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
 	allowed = list()//how would you put a gun onto a field of energy?
@@ -267,7 +264,6 @@
 	item_state = "swatarmor"
 	var/obj/item/weapon/gun/holstered = null
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	flags_item = SYNTH_RESTRICTED
 	slowdown = 1
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 40, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
 	siemens_coefficient = 0.7
@@ -312,7 +308,6 @@
 	desc = "A set of armor worn by members of the NanoTrasen Emergency Response Team."
 	icon_state = "ertarmor_cmd"
 	item_state = "ertarmor_cmd"
-	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 40, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
 
 //Captain
@@ -348,7 +343,6 @@
 	icon_state = "hos"
 	item_state = "hos"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
-	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 65, "bullet" = 30, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_inventory = NONE
 	flags_inv_hide = HIDEJUMPSUIT
