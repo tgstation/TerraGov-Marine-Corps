@@ -345,6 +345,18 @@
 	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
 		return FALSE
 
+
+
+	////new attempt
+	if (istype(I, /obj/item/storage/holster) )
+		var/obj/item/storage/holster/B = I
+		if(!B.holstered_item)
+			return FALSE
+		var/obj/item/W = B.holstered_item
+		return W
+	I.attachments_by_slot[ATTACHMENT_SLOT_STORAGE] ? var/obj/item/armor_module/storage/U = I.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+
+
 	//belt holsters
 	if (istype(I, /obj/item/storage/belt/gun) )
 		var/obj/item/storage/belt/gun/B = I
