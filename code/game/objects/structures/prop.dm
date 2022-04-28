@@ -610,7 +610,7 @@
 	icon_state = "crawler_cargo"
 
 /obj/structure/prop/vehicle/tank
-	name = "Tank"
+	name = "Decommissioned TAV - Rhino"
 	desc = "A decomissioned tank, all methods of propulsion have been disabled and the entrances sealed."
 	icon = 'icons/Marine/tank_propns.dmi'
 	icon_state = "tank_complete"
@@ -626,7 +626,7 @@
 	icon_state = "tank_complete"
 
 /obj/structure/prop/vehicle/tank/north/base
-	name = "Tank"
+	name = "Decommissioned TAV - Rhino"
 	desc = "The base of a decomissioned tank."
 	icon_state = "tank_base"
 
@@ -638,7 +638,7 @@
 	icon_state = "tank_complete"
 
 /obj/structure/prop/vehicle/tank/east/base
-	name = "Tank"
+	name = "Decommissioned TAV - Rhino"
 	desc = "The base of a decomissioned tank."
 	icon_state = "tank_base"
 
@@ -901,7 +901,7 @@
 	icon_state = "snowplow_1"
 
 /obj/structure/prop/vehicle/apc
-	name = "APC"
+	name = "Decommissioned TAV - Athena"
 	desc = "A decomissioned APC, all methods of propulsion have been disabled and the entrances sealed."
 	icon = 'icons/Marine/apc_prop.dmi'
 	icon_state = "apc_base"
