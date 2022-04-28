@@ -55,6 +55,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/projectile_greyscale_config = null
 	///greyscale color for the projectile associated with the ammo
 	var/projectile_greyscale_colors = null
+	///Multiplier for deflagrate chance
+	var/deflagrate_multiplier = 1
+	///Flat damage caused if fire_burst is triggered by deflagrate
+	var/fire_burst_damage = 10
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -94,8 +98,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		step_away(victim, proj)
 
 /datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, shake = 1, soft_size_threshold = 3, hard_size_threshold = 2)
-	if(!victim || victim == proj.firer)
-		CRASH("staggerstun called [victim ? "without a mob target" : "while the mob target was the firer"]")
+	if(!victim)
+		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
 		return
 	if(shake && (proj.distance_travelled > max_range || victim.lying_angle))
@@ -171,6 +175,41 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
 		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
 		victim.apply_damage(proj.damage * proj.airburst_multiplier, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
+
+///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
+/datum/ammo/proc/deflagrate(atom/target, obj/projectile/proj)
+	if(!target || !proj)
+		CRASH("deflagrate() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	if(!istype(target, /mob/living))
+		return
+	var/mob/living/victim = target
+	var/armor_block = victim.run_armor_check(null, "fire") //checks fire armour across the victim's whole body
+	var/deflagrate_chance = (proj.damage * deflagrate_multiplier * (100 + min(0, proj.penetration - armor_block)) / 100)
+	if(prob(deflagrate_chance))
+		playsound(target, 'sound/effects/incendiary_explode.ogg', 45, falloff = 5)
+		fire_burst(target, proj)
+
+///the actual fireblast triggered by deflagrate
+/datum/ammo/proc/fire_burst(atom/target, obj/projectile/proj)
+	if(!target || !proj)
+		CRASH("fire_burst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	for(var/mob/living/carbon/victim in range(1, target))
+		if(victim == target)
+			victim.visible_message(span_danger("[victim] bursts into flames as they are deflagrated by \a [proj.name]!"))
+		else
+			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
+				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
+		//Damages the victims, inflicts brief stagger+slow, and ignites
+		var/armor_block = victim.run_armor_check(null, "fire") //checks fire armour across the victim's whole body
+		victim.apply_damage(fire_burst_damage, BURN, null, armor_block, updating_health = TRUE) //Placeholder damage, will be a ammo var
+
+		staggerstun(victim, proj, stagger = 0.5, slowdown = 0.5)
+
+		var/living_hard_armor = victim.hard_armor.getRating("fire")
+		if(living_hard_armor < 100) //won't ignite fully fireproof mobs
+			victim.adjust_fire_stacks(CEILING(5 - (living_hard_armor * 0.1), 1))
+			victim.IgniteMob()
+
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
 	var/effect_icon = ""
@@ -1893,6 +1932,51 @@ datum/ammo/bullet/revolver/tp44
 	if(!T)
 		T = get_turf(proj)
 	T.ignite(heat, burn_damage, fire_color)
+
+//volkite
+
+/datum/ammo/energy/volkite
+	name = "thermal energy bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_heat"
+	hud_state_empty = "battery_empty_flash"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+	bullet_color = COLOR_TAN_ORANGE
+	armor_type = "energy"
+	accuracy = 10
+	max_range = 14
+	accurate_range = 8 //for charger
+	shell_speed = 4
+	accuracy_var_low = 5
+	accuracy_var_high = 5
+	point_blank_range = 2
+	damage = 20
+	penetration = 15
+	sundering = 3
+	fire_burst_damage = 20
+
+	//inherited, could use some changes
+	ping = "ping_s"
+	sound_hit 	 	= "energy_hit"
+	sound_miss		= "energy_miss"
+	sound_bounce	= "energy_bounce"
+
+/datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
+	deflagrate(M, P)
+
+/datum/ammo/energy/volkite/medium
+	max_range = 25
+	accurate_range = 15
+	damage = 30
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	fire_burst_damage = 25
+
+/datum/ammo/energy/volkite/heavy
+	max_range = 35
+	accurate_range = 20
+	damage = 25
+	fire_burst_damage = 25
 
 /*
 //================================================

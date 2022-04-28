@@ -158,29 +158,17 @@
 
 /obj/item/storage/pouch/firstaid/som
 	name = "mining first aid pouch"
-	desc = "A basic first aid pouch used by miners due to dangerous working conditions on the mining colonies."
+	desc = "A basic first aid pouch originally used by miners due to dangerous working conditions on the mining colonies. This one is marked as belonging to the SOM."
 	icon_state = "firstaid_som"
-	storage_slots = 5
-	can_hold = list(
-		/obj/item/stack/medical/heal_pack/ointment,
-		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/stack/medical/heal_pack/gauze,
-		/obj/item/storage/pill_bottle/packet/tricordrazine,
-		/obj/item/stack/medical/splint,
-	)
-
-
-/obj/item/storage/pouch/firstaid/som/full
-	desc = "A basic first aid pouch used by miners due to dangerous working conditions on the mining colonies. Contains the necessary items already."
-
 
 /obj/item/storage/pouch/firstaid/som/full/Initialize()
 	. = ..()
-	new /obj/item/stack/medical/heal_pack/ointment(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
-	new /obj/item/stack/medical/heal_pack/gauze(src)
+	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
+	new /obj/item/storage/pill_bottle/packet/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
 	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
 
 /obj/item/storage/pouch/pistol
