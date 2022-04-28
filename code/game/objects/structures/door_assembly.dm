@@ -5,6 +5,9 @@ obj/structure/door_assembly
 	icon_state = "door_as_0"
 	anchored = FALSE
 	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+	throwpass = FALSE
+	max_integrity = 25
 	var/state = 0
 	var/base_icon_state = ""
 	var/base_name = "Airlock"
@@ -347,3 +350,13 @@ obj/structure/door_assembly
 		if(2)
 			name = "Near Finished "
 	name += "[glass == 1 ? "Window " : ""][istext(glass) ? "[glass] Airlock" : base_name] Assembly"
+
+/obj/structure/door_assembly/attack_animal(mob/user)
+	return attack_alien(user)
+
+/obj/structure/door_assembly/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return FALSE
+
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_BARRICADE)
+	return ..()
