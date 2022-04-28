@@ -275,8 +275,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "xP" = (
-/obj/machinery/computer/atmos_alert,
-/obj/structure/table,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "yy" = (

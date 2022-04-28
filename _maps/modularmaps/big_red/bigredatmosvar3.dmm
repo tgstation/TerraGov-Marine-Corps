@@ -175,10 +175,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "kj" = (
-/obj/structure/table,
-/obj/machinery/computer/atmos_alert{
-	dir = 4
-	},
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "kO" = (
