@@ -92,6 +92,7 @@
 //Way to waste perfectly good damagetype names (BRUTE) on this... If you were really worried about case sensitivity, you could have just used lowertext(damagetype) in the proc...
 #define BRUTE "brute"
 #define BURN "fire"
+#define ENERGY "energy"
 #define TOX "tox"
 #define OXY "oxy"
 #define CLONE "clone"
