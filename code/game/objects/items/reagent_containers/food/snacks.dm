@@ -1365,33 +1365,6 @@
 	icon_state = "monkeycubewrap"
 	package = TRUE
 
-
-/obj/item/reagent_containers/food/snacks/monkeycube/farwacube
-	name = "farwa cube"
-	monkey_type = /mob/living/carbon/human/species/monkey/farwa
-
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/farwacube
-	name = "farwa cube"
-	monkey_type = /mob/living/carbon/human/species/monkey/farwa
-
-
-/obj/item/reagent_containers/food/snacks/monkeycube/stokcube
-	name = "stok cube"
-	monkey_type = /mob/living/carbon/human/species/monkey/stok
-
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
-	name = "stok cube"
-	monkey_type = /mob/living/carbon/human/species/monkey/stok
-
-
-/obj/item/reagent_containers/food/snacks/monkeycube/neaeracube
-	name = "neaera cube"
-	monkey_type = /mob/living/carbon/human/species/monkey/naera
-/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube
-	name = "neaera cube"
-	monkey_type = /mob/living/carbon/human/species/monkey/naera
-
-
 /obj/item/reagent_containers/food/snacks/spellburger
 	name = "Spell Burger"
 	desc = "This is absolutely Ei Nath."

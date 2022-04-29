@@ -83,14 +83,7 @@
 	var/reach = 1
 
 
-	/* Species-specific sprites, concept stolen from Paradise//vg/.
-	ex:
-	sprite_sheets = list(
-		"Tajara" = 'icons/cat/are/bad'
-		)
-	If index term exists and icon_override is not set, this sprite sheet will be used.
-	*/
-
+	/// Species-specific sprites, concept stolen from Paradise//vg/.
 	var/list/sprite_sheets = null
 
 	//** These specify item/icon overrides for _slots_

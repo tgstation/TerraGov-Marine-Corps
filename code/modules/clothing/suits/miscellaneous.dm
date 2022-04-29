@@ -178,7 +178,7 @@
 	icon_state = "straight_jacket"
 	item_state = "straight_jacket"
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/straight_jacket/equipped(mob/living/carbon/user, slot)

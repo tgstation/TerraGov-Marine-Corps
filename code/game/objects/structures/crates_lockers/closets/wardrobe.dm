@@ -99,8 +99,6 @@
 	icon_closed = "green"
 
 /obj/structure/closet/wardrobe/xenos/PopulateContents()
-	new /obj/item/clothing/suit/unathi/mantle(src)
-	new /obj/item/clothing/suit/unathi/robe(src)
 	new /obj/item/clothing/shoes/sandal(src)
 	new /obj/item/clothing/shoes/sandal(src)
 	new /obj/item/clothing/shoes/sandal(src)

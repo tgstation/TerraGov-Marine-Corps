@@ -10,8 +10,6 @@
 
 	///Normal icon file
 	var/icobase = 'icons/mob/human_races/r_human.dmi'
-	///Icon file when mutated
-	var/deform = 'icons/mob/human_races/r_def_human.dmi'
 	///icon state for calculating brute damage icons
 	var/brute_damage_icon_state = "human_brute"
 	///icon state for calculating brute damage icons
@@ -23,8 +21,6 @@
 	///icon for eyes
 	var/eyes = "eyes_s"
 
-	///Name of tail image in species effects icon file.
-	var/tail
 	var/datum/unarmed_attack/unarmed           // For empty hand harm-intent attack
 	var/datum/unarmed_attack/secondary_unarmed // For empty hand harm-intent attack if the first fails.
 	var/datum/hud_data/hud
@@ -349,7 +345,6 @@
 	name = "Vatborn"
 	name_plural = "Vatborns"
 	icobase = 'icons/mob/human_races/r_vatborn.dmi'
-	deform = 'icons/mob/human_races/r_vatborn.dmi'
 	namepool = /datum/namepool/vatborn
 
 /datum/species/human/vatborn/prefs_name(datum/preferences/prefs)
@@ -359,7 +354,6 @@
 	name = "Vat-Grown Human"
 	name_plural = "Vat-Grown Humans"
 	icobase = 'icons/mob/human_races/r_vatgrown.dmi'
-	deform = 'icons/mob/human_races/r_vatgrown.dmi'
 	brute_mod = 1.05
 	burn_mod = 1.05
 	slowdown = 1.05
@@ -407,11 +401,9 @@
 	name = "Monkey"
 	name_plural = "Monkeys"
 	icobase = 'icons/mob/human_races/r_monkey.dmi'
-	deform = 'icons/mob/human_races/r_monkey.dmi'
 	species_flags = HAS_NO_HAIR|NO_STAMINA|CAN_VENTCRAWL|DETACHABLE_HEAD
 	reagent_tag = IS_MONKEY
 	eyes = "blank_eyes"
-	tail = "monkeytail" //todo
 	speech_verb_override = "chimpers"
 	unarmed_type = /datum/unarmed_attack/bite/strong
 	secondary_unarmed_type = /datum/unarmed_attack/punch/strong
@@ -453,145 +445,10 @@
 /datum/species/monkey/random_name(gender,unique,lastname)
 	return "[lowertext(name)] ([rand(1,999)])"
 
-/datum/species/monkey/tajara
-	name = "Farwa"
-	icobase = 'icons/mob/human_races/r_farwa.dmi'
-	deform = 'icons/mob/human_races/r_farwa.dmi'
-	speech_verb_override = "mews"
-	tail = null
-
-/datum/species/monkey/skrell
-	name = "Naera"
-	icobase = 'icons/mob/human_races/r_naera.dmi'
-	deform = 'icons/mob/human_races/r_naera.dmi'
-	speech_verb_override = "squiks"
-	tail = null
-
-/datum/species/monkey/unathi
-	name = "Stok"
-	icobase = 'icons/mob/human_races/r_stok.dmi'
-	deform = 'icons/mob/human_races/r_stok.dmi'
-	speech_verb_override = "hisses"
-	tail = null
-
-/datum/species/monkey/yiren
-	name = "Yiren"
-	icobase = 'icons/mob/human_races/r_yiren.dmi'
-	deform = 'icons/mob/human_races/r_yiren.dmi'
-	speech_verb_override = "grumbles"
-	tail = null
-	cold_level_1 = ICE_COLONY_TEMPERATURE - 20
-	cold_level_2 = ICE_COLONY_TEMPERATURE - 40
-	cold_level_3 = ICE_COLONY_TEMPERATURE - 80
-
-
-
-//Various horrors that spawn in and haunt the living.
-/datum/species/human/spook
-	name = "Horror"
-	name_plural = "Horrors"
-	icobase = 'icons/mob/human_races/r_spooker.dmi'
-	deform = 'icons/mob/human_races/r_spooker.dmi'
-	brute_mod = 0.15
-	burn_mod = 1.50
-	reagent_tag = IS_HORROR
-	species_flags = HAS_SKIN_COLOR|NO_BREATHE|NO_POISON|HAS_LIPS|NO_PAIN|NO_SCAN|NO_POISON|NO_BLOOD|NO_CHEM_METABOLIZATION|NO_STAMINA|IS_INSULATED
-	unarmed_type = /datum/unarmed_attack/punch/strong
-	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
-	death_message = "doubles over, unleashes a horrible, ear-shattering scream, then falls motionless and still..."
-	death_sound = 'sound/voice/scream_horror1.ogg'
-
-	slowdown = 0.3
-	has_fine_manipulation = FALSE
-
-	heat_level_1 = 1000
-	heat_level_2 = 1500
-	heat_level_3 = 2000
-
-	cold_level_1 = 100
-	cold_level_2 = 50
-	cold_level_3 = 20
-	joinable_roundstart = FALSE
-
-//To show them we mean business.
-/datum/species/human/spook/handle_unique_behavior(mob/living/carbon/human/H)
-	if(prob(25))
-		animation_horror_flick(H)
-
-	//Organ damage will likely still take them down eventually.
-	H.adjustBruteLoss(-3)
-	H.adjustFireLoss(-3)
-	H.adjustOxyLoss(-15)
-	H.adjustToxLoss(-15)
-
-/datum/species/unathi
-	name = "Unathi"
-	name_plural = "Unathi"
-	icobase = 'icons/mob/human_races/r_lizard.dmi'
-	deform = 'icons/mob/human_races/r_def_lizard.dmi'
-	default_language_holder = /datum/language_holder/unathi
-	tail = "sogtail"
-	unarmed_type = /datum/unarmed_attack/claws
-	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
-	taste_sensitivity = TASTE_SENSITIVE
-	gluttonous = 1
-
-	cold_level_1 = 280 //Default 260 - Lower is better
-	cold_level_2 = 220 //Default 200
-	cold_level_3 = 130 //Default 120
-
-	heat_level_1 = 420 //Default 360 - Higher is better
-	heat_level_2 = 480 //Default 400
-	heat_level_3 = 1100 //Default 1000
-
-	species_flags = HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
-
-	flesh_color = "#34AF10"
-
-	reagent_tag = IS_UNATHI
-	base_color = "#066000"
-
-/datum/species/tajaran
-	name = "Tajara"
-	name_plural = "Tajaran"
-	icobase = 'icons/mob/human_races/r_tajaran.dmi'
-	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
-	default_language_holder = /datum/language_holder/tajaran
-	tail = "tajtail"
-	unarmed_type = /datum/unarmed_attack/claws
-
-	cold_level_1 = 200 //Default 260
-	cold_level_2 = 140 //Default 200
-	cold_level_3 = 80 //Default 120
-
-	heat_level_1 = 330 //Default 360
-	heat_level_2 = 380 //Default 400
-	heat_level_3 = 800 //Default 1000
-
-	species_flags = HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
-
-	flesh_color = "#AFA59E"
-	base_color = "#333333"
-
-/datum/species/skrell
-	name = "Skrell"
-	name_plural = "Skrell"
-	icobase = 'icons/mob/human_races/r_skrell.dmi'
-	deform = 'icons/mob/human_races/r_def_skrell.dmi'
-	default_language_holder = /datum/language_holder/skrell
-	unarmed_type = /datum/unarmed_attack/punch
-
-	species_flags = HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
-
-	flesh_color = "#8CD7A3"
-
-	reagent_tag = IS_SKRELL
-
 /datum/species/moth
 	name = "Moth"
 	name_plural = "Moth"
 	icobase = 'icons/mob/human_races/r_moth.dmi'
-	deform = 'icons/mob/human_races/r_moth.dmi'
 	default_language_holder = /datum/language_holder/moth
 	eyes = "blank_eyes"
 	speech_verb_override = "flutters"
@@ -651,7 +508,6 @@
 	name = "Sectoid"
 	name_plural = "Sectoids"
 	icobase = 'icons/mob/human_races/r_sectoid.dmi'
-	deform = 'icons/mob/human_races/r_sectoid.dmi'
 	default_language_holder = /datum/language_holder/sectoid
 	eyes = "blank_eyes"
 	speech_verb_override = "transmits"
@@ -670,128 +526,10 @@
 	namepool = /datum/namepool/sectoid
 	special_death_message = "You have perished."
 
-/datum/species/vox
-	name = "Vox"
-	name_plural = "Vox"
-	icobase = 'icons/mob/human_races/r_vox.dmi'
-	deform = 'icons/mob/human_races/r_def_vox.dmi'
-	default_language_holder = /datum/language_holder/vox
-	taste_sensitivity = TASTE_DULL
-	unarmed_type = /datum/unarmed_attack/claws/strong
-	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
-	rarity_value = 2
-
-	speech_sounds = list('sound/voice/shriek1.ogg')
-	speech_chance = 20
-
-	warning_low_pressure = 50
-	hazard_low_pressure = 0
-
-	cold_level_1 = 80
-	cold_level_2 = 50
-	cold_level_3 = 0
-
-	eyes = "vox_eyes_s"
-
-	breath_type = "oxygen"//"nitrogen"
-	poison_type = "phoron"//"oxygen"
-
-	species_flags = NO_SCAN|IS_INSULATED
-
-	blood_color = "#2299FC"
-	flesh_color = "#808D11"
-
-	reagent_tag = IS_VOX
-
-	has_organ = list(
-		"heart" =    /datum/internal_organ/heart,
-		"lungs" =    /datum/internal_organ/lungs,
-		"liver" =    /datum/internal_organ/liver,
-		"kidneys" =  /datum/internal_organ/kidneys,
-		"brain" =    /datum/internal_organ/brain,
-		"eyes" =     /datum/internal_organ/eyes,
-		"stack" =    /datum/internal_organ/stack/vox
-		)
-
-/datum/species/vox/armalis
-	name = "Vox Armalis"
-	name_plural = "Vox"
-	icobase = 'icons/mob/human_races/r_armalis.dmi'
-	deform = 'icons/mob/human_races/r_armalis.dmi'
-	rarity_value = 10
-
-	warning_low_pressure = 50
-	hazard_low_pressure = 0
-
-	cold_level_1 = 80
-	cold_level_2 = 50
-	cold_level_3 = 0
-
-	heat_level_1 = 2000
-	heat_level_2 = 3000
-	heat_level_3 = 4000
-
-	brute_mod = 0.2
-	burn_mod = 0.2
-
-	eyes = "blank_eyes"
-	breath_type = "nitrogen"
-	poison_type = "oxygen"
-
-	species_flags = NO_SCAN|NO_BLOOD|NO_PAIN|NO_STAMINA|GREYSCALE_BLOOD
-
-	blood_color = "#2299FC"
-	flesh_color = "#808D11"
-
-	tail = "armalis_tail"
-	icon_template = 'icons/mob/human_races/r_armalis.dmi'
-
-	reagent_tag = IS_VOX
-
-
-/datum/species/machine
-	name = "Machine"
-	name_plural = "machines"
-
-	icobase = 'icons/mob/human_races/r_machine.dmi'
-	deform = 'icons/mob/human_races/r_machine.dmi'
-	default_language_holder = /datum/language_holder/machine
-	unarmed_type = /datum/unarmed_attack/punch
-	rarity_value = 2
-
-	eyes = "blank_eyes"
-	brute_mod = 0.25
-	burn_mod = 1.1
-
-	warning_low_pressure = 0
-	hazard_low_pressure = 0
-
-	cold_level_1 = -1
-	cold_level_2 = -1
-	cold_level_3 = -1
-
-	heat_level_1 = 500
-	heat_level_2 = 1000
-	heat_level_3 = 2000
-
-	body_temperature = 350
-
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|ROBOTIC_LIMBS|GREYSCALE_BLOOD
-
-	blood_color = "#EEEEEE"
-	flesh_color = "#272757"
-
-	has_organ = list(
-		"heart" =    /datum/internal_organ/heart,
-		"brain" =    /datum/internal_organ/brain,
-		)
-	special_death_message = "You have shut down."
-
 /datum/species/skeleton
 	name = "Skeleton"
 	name_plural = "skeletons"
 	icobase = 'icons/mob/human_races/r_skeleton.dmi'
-	deform = 'icons/mob/human_races/r_skeleton.dmi'
 	unarmed_type = /datum/unarmed_attack/punch
 	speech_verb_override = "rattles"
 	count_human = TRUE
@@ -868,7 +606,6 @@
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
-	deform = 'icons/mob/human_races/r_synthetic.dmi'
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
@@ -929,7 +666,6 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	name = "Combat Robot"
 	name_plural = "Combat Robots"
 	icobase = 'icons/mob/human_races/r_robot.dmi'
-	deform = 'icons/mob/human_races/r_robot.dmi'
 	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
 	brute_damage_icon_state = "robot_brute"
 	burn_damage_icon_state = "robot_burn"
