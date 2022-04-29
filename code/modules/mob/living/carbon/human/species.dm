@@ -395,155 +395,64 @@
 	H.set_species("Vat-Grown Human")
 
 
-//todo: wound overlays are strange for monkeys and should likely use icon adding instead
-//im not about to cram in that refactor with a carbon -> species refactor though
-/datum/species/monkey
-	name = "Monkey"
-	name_plural = "Monkeys"
-	icobase = 'icons/mob/human_races/r_monkey.dmi'
-	species_flags = HAS_NO_HAIR|NO_STAMINA|CAN_VENTCRAWL|DETACHABLE_HEAD
-	reagent_tag = IS_MONKEY
+GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
+
+/datum/species/robot
+	name = "Combat Robot"
+	name_plural = "Combat Robots"
+	icobase = 'icons/mob/human_races/r_robot.dmi'
+	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
+	brute_damage_icon_state = "robot_brute"
+	burn_damage_icon_state = "robot_burn"
 	eyes = "blank_eyes"
-	speech_verb_override = "chimpers"
-	unarmed_type = /datum/unarmed_attack/bite/strong
-	secondary_unarmed_type = /datum/unarmed_attack/punch/strong
-	joinable_roundstart = FALSE
-	has_fine_manipulation = TRUE //monki gun
-	death_message = "lets out a faint chimper as it collapses and stops moving..."
-	dusted_anim = "dust-m"
-	gibbed_anim = "gibbed-m"
-	is_sentient = FALSE
+	namepool = /datum/namepool/robotic
 
-/datum/species/monkey/handle_unique_behavior(mob/living/carbon/human/H)
-	if(!H.client && H.stat == CONSCIOUS)
-		if(prob(33) && H.canmove && !H.buckled && isturf(H.loc) && !H.pulledby) //won't move if being pulled
-			step(H, pick(GLOB.cardinals))
+	unarmed_type = /datum/unarmed_attack/punch/strong
+	total_health = 100
+	slowdown = SHOES_SLOWDOWN //because they don't wear boots.
 
-		if(prob(1))
-			H.emote(pick("scratch","jump","roll","tail"))
+	cold_level_1 = -1
+	cold_level_2 = -1
+	cold_level_3 = -1
 
-/datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	heat_level_1 = 500
+	heat_level_2 = 1000
+	heat_level_3 = 2000
+
+	body_temperature = 350
+
+	inherent_traits = list(TRAIT_NON_FLAMMABLE)
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
+
+	no_equip = list(
+		SLOT_W_UNIFORM,
+		SLOT_HEAD,
+		SLOT_WEAR_MASK,
+		SLOT_WEAR_SUIT,
+		SLOT_SHOES,
+		SLOT_GLOVES,
+		SLOT_GLASSES,
+	)
+	blood_color = "#2d2055" //"oil" color
+	hair_color = "#00000000"
+	has_organ = list()
+
+
+	screams = list(MALE = "robot_scream", FEMALE = "robot_scream")
+	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain")
+	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream")
+	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry")
+	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
+	joinable_roundstart = TRUE
+
+/datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.flags_pass |= PASSTABLE
+	H.speech_span = SPAN_ROBOT
 
-/datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
-	if(!iscarbon(target))
-		return FALSE
-	var/mob/living/carbon/victim = target
-	if(prob(25))
-		victim.visible_message(span_danger("[user]'s bite misses [victim]!"),
-			span_danger("You avoid [user]'s bite!"), span_hear("You hear jaws snapping shut!"))
-		to_chat(user, span_danger("Your bite misses [victim]!"))
-		return TRUE
-	victim.take_overall_damage(rand(10, 20), updating_health = TRUE)
-	victim.visible_message(span_danger("[name] bites [victim]!"),
-		span_userdanger("[name] bites you!"), span_hear("You hear a chomp!"))
-	to_chat(user, span_danger("You bite [victim]!"))
-	target.attack_hand(user)
-	return TRUE
-
-/datum/species/monkey/random_name(gender,unique,lastname)
-	return "[lowertext(name)] ([rand(1,999)])"
-
-/datum/species/moth
-	name = "Moth"
-	name_plural = "Moth"
-	icobase = 'icons/mob/human_races/r_moth.dmi'
-	default_language_holder = /datum/language_holder/moth
-	eyes = "blank_eyes"
-	speech_verb_override = "flutters"
-	count_human = TRUE
-
-	species_flags = HAS_LIPS|HAS_NO_HAIR
-	preferences = list("moth_wings" = "Wings")
-
-	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
-	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
-	goredcries = list("neuter" = 'sound/voice/moth_scream.ogg')
-	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
-	warcries = list("neuter" = 'sound/voice/moth_scream.ogg')
-
-	flesh_color = "#E5CD99"
-
-	reagent_tag = IS_MOTH
-
-	namepool = /datum/namepool/moth
-
-/datum/species/moth/handle_fire(mob/living/carbon/human/H)
-	if(H.moth_wings != "Burnt Off" && H.bodytemperature >= 400 && H.fire_stacks > 0)
-		to_chat(H, span_danger("Your precious wings burn to a crisp!"))
-		H.moth_wings = "Burnt Off"
-		H.update_body()
-
-/datum/species/moth/proc/update_moth_wings(mob/living/carbon/human/H)
-	H.remove_overlay(MOTH_WINGS_LAYER)
-	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
-
-	var/datum/sprite_accessory/moth_wings/wings = GLOB.moth_wings_list[H.moth_wings]
-
-	if(wings)
-		H.overlays_standing[MOTH_WINGS_LAYER] = image(wings.icon, icon_state = "m_moth_wings_[wings.icon_state]_FRONT")
-		H.underlays_standing[MOTH_WINGS_BEHIND_LAYER] = image(wings.icon, icon_state = "m_moth_wings_[wings.icon_state]_BEHIND")
-		H.apply_overlay(MOTH_WINGS_LAYER)
-		H.apply_underlay(MOTH_WINGS_BEHIND_LAYER)
-
-/datum/species/moth/update_body(mob/living/carbon/human/H)
-	update_moth_wings(H)
-
-/datum/species/moth/update_inv_head(mob/living/carbon/human/H)
-	update_moth_wings(H)
-
-/datum/species/moth/update_inv_w_uniform(mob/living/carbon/human/H)
-	update_moth_wings(H)
-
-/datum/species/moth/update_inv_wear_suit(mob/living/carbon/human/H)
-	update_moth_wings(H)
-
-/datum/species/moth/post_species_loss(mob/living/carbon/human/H)
+/datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
-	H.remove_overlay(MOTH_WINGS_LAYER)
-	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
+	H.speech_span = initial(H.speech_span)
 
-/datum/species/sectoid
-	name = "Sectoid"
-	name_plural = "Sectoids"
-	icobase = 'icons/mob/human_races/r_sectoid.dmi'
-	default_language_holder = /datum/language_holder/sectoid
-	eyes = "blank_eyes"
-	speech_verb_override = "transmits"
-	count_human = TRUE
-
-	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
-
-	paincries = list("neuter" = 'sound/voice/sectoid_death.ogg')
-	death_sound = 'sound/voice/sectoid_death.ogg'
-
-	blood_color = "#00FF00"
-	flesh_color = "#C0C0C0"
-
-	reagent_tag = IS_SECTOID
-
-	namepool = /datum/namepool/sectoid
-	special_death_message = "You have perished."
-
-/datum/species/skeleton
-	name = "Skeleton"
-	name_plural = "skeletons"
-	icobase = 'icons/mob/human_races/r_skeleton.dmi'
-	unarmed_type = /datum/unarmed_attack/punch
-	speech_verb_override = "rattles"
-	count_human = TRUE
-
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
-
-	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
-	paincries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
-	goredcries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
-	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
-	death_message = "collapses in a pile of bones, with a final rattle..."
-	death_sound = list("neuter" = 'sound/voice/skeleton_scream.ogg')
-	warcries = list("neuter" = 'sound/voice/skeleton_warcry.ogg') // AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-	namepool = /datum/namepool/skeleton
 
 /datum/species/synthetic
 	name = "Synthetic"
@@ -660,63 +569,159 @@
 /mob/living/carbon/human/proc/reset_jitteriness() //todo kill this
 	jitteriness = 0
 
-GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
-
-/datum/species/robot
-	name = "Combat Robot"
-	name_plural = "Combat Robots"
-	icobase = 'icons/mob/human_races/r_robot.dmi'
-	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
-	brute_damage_icon_state = "robot_brute"
-	burn_damage_icon_state = "robot_burn"
+//todo: wound overlays are strange for monkeys and should likely use icon adding instead
+//im not about to cram in that refactor with a carbon -> species refactor though
+/datum/species/monkey
+	name = "Monkey"
+	name_plural = "Monkeys"
+	icobase = 'icons/mob/human_races/r_monkey.dmi'
+	species_flags = HAS_NO_HAIR|NO_STAMINA|CAN_VENTCRAWL|DETACHABLE_HEAD
+	reagent_tag = IS_MONKEY
 	eyes = "blank_eyes"
-	namepool = /datum/namepool/robotic
+	speech_verb_override = "chimpers"
+	unarmed_type = /datum/unarmed_attack/bite/strong
+	secondary_unarmed_type = /datum/unarmed_attack/punch/strong
+	joinable_roundstart = FALSE
+	has_fine_manipulation = TRUE //monki gun
+	death_message = "lets out a faint chimper as it collapses and stops moving..."
+	dusted_anim = "dust-m"
+	gibbed_anim = "gibbed-m"
+	is_sentient = FALSE
 
-	unarmed_type = /datum/unarmed_attack/punch/strong
-	total_health = 100
-	slowdown = SHOES_SLOWDOWN //because they don't wear boots.
+/datum/species/monkey/handle_unique_behavior(mob/living/carbon/human/H)
+	if(!H.client && H.stat == CONSCIOUS)
+		if(prob(33) && H.canmove && !H.buckled && isturf(H.loc) && !H.pulledby) //won't move if being pulled
+			step(H, pick(GLOB.cardinals))
 
-	cold_level_1 = -1
-	cold_level_2 = -1
-	cold_level_3 = -1
+		if(prob(1))
+			H.emote(pick("scratch","jump","roll","tail"))
 
-	heat_level_1 = 500
-	heat_level_2 = 1000
-	heat_level_3 = 2000
-
-	body_temperature = 350
-
-	inherent_traits = list(TRAIT_NON_FLAMMABLE)
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
-
-	no_equip = list(
-		SLOT_W_UNIFORM,
-		SLOT_HEAD,
-		SLOT_WEAR_MASK,
-		SLOT_WEAR_SUIT,
-		SLOT_SHOES,
-		SLOT_GLOVES,
-		SLOT_GLASSES,
-	)
-	blood_color = "#2d2055" //"oil" color
-	hair_color = "#00000000"
-	has_organ = list()
-
-
-	screams = list(MALE = "robot_scream", FEMALE = "robot_scream")
-	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain")
-	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream")
-	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry")
-	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
-	joinable_roundstart = TRUE
-
-/datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+/datum/species/monkey/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
-	H.speech_span = SPAN_ROBOT
+	H.flags_pass |= PASSTABLE
 
-/datum/species/robot/post_species_loss(mob/living/carbon/human/H)
+/datum/species/monkey/spec_unarmedattack(mob/living/carbon/human/user, atom/target)
+	if(!iscarbon(target))
+		return FALSE
+	var/mob/living/carbon/victim = target
+	if(prob(25))
+		victim.visible_message(span_danger("[user]'s bite misses [victim]!"),
+			span_danger("You avoid [user]'s bite!"), span_hear("You hear jaws snapping shut!"))
+		to_chat(user, span_danger("Your bite misses [victim]!"))
+		return TRUE
+	victim.take_overall_damage(rand(10, 20), updating_health = TRUE)
+	victim.visible_message(span_danger("[name] bites [victim]!"),
+		span_userdanger("[name] bites you!"), span_hear("You hear a chomp!"))
+	to_chat(user, span_danger("You bite [victim]!"))
+	target.attack_hand(user)
+	return TRUE
+
+/datum/species/monkey/random_name(gender,unique,lastname)
+	return "[lowertext(name)] ([rand(1,999)])"
+
+
+/datum/species/sectoid
+	name = "Sectoid"
+	name_plural = "Sectoids"
+	icobase = 'icons/mob/human_races/r_sectoid.dmi'
+	default_language_holder = /datum/language_holder/sectoid
+	eyes = "blank_eyes"
+	speech_verb_override = "transmits"
+	count_human = TRUE
+
+	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
+
+	paincries = list("neuter" = 'sound/voice/sectoid_death.ogg')
+	death_sound = 'sound/voice/sectoid_death.ogg'
+
+	blood_color = "#00FF00"
+	flesh_color = "#C0C0C0"
+
+	reagent_tag = IS_SECTOID
+
+	namepool = /datum/namepool/sectoid
+	special_death_message = "You have perished."
+
+
+/datum/species/moth
+	name = "Moth"
+	name_plural = "Moth"
+	icobase = 'icons/mob/human_races/r_moth.dmi'
+	default_language_holder = /datum/language_holder/moth
+	eyes = "blank_eyes"
+	speech_verb_override = "flutters"
+	count_human = TRUE
+
+	species_flags = HAS_LIPS|HAS_NO_HAIR
+	preferences = list("moth_wings" = "Wings")
+
+	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
+	goredcries = list("neuter" = 'sound/voice/moth_scream.ogg')
+	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	warcries = list("neuter" = 'sound/voice/moth_scream.ogg')
+
+	flesh_color = "#E5CD99"
+
+	reagent_tag = IS_MOTH
+
+	namepool = /datum/namepool/moth
+
+/datum/species/moth/handle_fire(mob/living/carbon/human/H)
+	if(H.moth_wings != "Burnt Off" && H.bodytemperature >= 400 && H.fire_stacks > 0)
+		to_chat(H, span_danger("Your precious wings burn to a crisp!"))
+		H.moth_wings = "Burnt Off"
+		H.update_body()
+
+/datum/species/moth/proc/update_moth_wings(mob/living/carbon/human/H)
+	H.remove_overlay(MOTH_WINGS_LAYER)
+	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
+
+	var/datum/sprite_accessory/moth_wings/wings = GLOB.moth_wings_list[H.moth_wings]
+
+	if(wings)
+		H.overlays_standing[MOTH_WINGS_LAYER] = image(wings.icon, icon_state = "m_moth_wings_[wings.icon_state]_FRONT")
+		H.underlays_standing[MOTH_WINGS_BEHIND_LAYER] = image(wings.icon, icon_state = "m_moth_wings_[wings.icon_state]_BEHIND")
+		H.apply_overlay(MOTH_WINGS_LAYER)
+		H.apply_underlay(MOTH_WINGS_BEHIND_LAYER)
+
+/datum/species/moth/update_body(mob/living/carbon/human/H)
+	update_moth_wings(H)
+
+/datum/species/moth/update_inv_head(mob/living/carbon/human/H)
+	update_moth_wings(H)
+
+/datum/species/moth/update_inv_w_uniform(mob/living/carbon/human/H)
+	update_moth_wings(H)
+
+/datum/species/moth/update_inv_wear_suit(mob/living/carbon/human/H)
+	update_moth_wings(H)
+
+/datum/species/moth/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
-	H.speech_span = initial(H.speech_span)
+	H.remove_overlay(MOTH_WINGS_LAYER)
+	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
+
+
+/datum/species/skeleton
+	name = "Skeleton"
+	name_plural = "skeletons"
+	icobase = 'icons/mob/human_races/r_skeleton.dmi'
+	unarmed_type = /datum/unarmed_attack/punch
+	speech_verb_override = "rattles"
+	count_human = TRUE
+
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
+
+	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
+	paincries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	goredcries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	death_message = "collapses in a pile of bones, with a final rattle..."
+	death_sound = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	warcries = list("neuter" = 'sound/voice/skeleton_warcry.ogg') // AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+	namepool = /datum/namepool/skeleton
+
 
 ///Called when using the shredding behavior.
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
