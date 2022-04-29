@@ -34,7 +34,7 @@
 	///Whether automatic weeding is active
 	var/auto_weeding = FALSE
 	///The turf that was last weeded
-	var/turf/last_weeded_turf = null
+	var/turf/last_weeded_turf
 
 /datum/action/xeno_action/activable/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
 	plasma_cost = initial(plasma_cost) * initial(weed_type.plasma_cost_mult)
