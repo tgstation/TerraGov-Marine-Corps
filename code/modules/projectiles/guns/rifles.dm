@@ -758,7 +758,7 @@
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/t42barrel, /obj/item/attachable/reddot)
 
 //-------------------------------------------------------
-//M41AE2 Heavy Pulse Rifle
+//PR41AE2 Heavy Pulse Rifle
 
 /obj/item/weapon/gun/rifle/m412l1_hpr
 	name = "\improper PR-412L1 heavy pulse rifle"
@@ -912,7 +912,7 @@
 	desc = "The primary rifle of many space pirates and militias, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in three round bursts to conserve ammunition."
 
 //-------------------------------------------------------
-//TX-16 AUTOMATIC SHOTGUN
+//SH-15 AUTOMATIC SHOTGUN
 
 /obj/item/weapon/gun/rifle/standard_autoshotgun
 	name = "\improper SH-15 automatic shotgun"
@@ -1167,11 +1167,11 @@
 
 
 //-------------------------------------------------------
-//GL-81 Auto-Sniper
+//SR-81 Auto-Sniper
 
 /obj/item/weapon/gun/rifle/standard_autosniper
-	name = "\improper GL-81 automatic sniper rifle"
-	desc = "The GL-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It's users use it for it's high rate of fire for it's class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
+	name = "\improper SR-81 automatic sniper rifle"
+	desc = "The SR-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It's users use it for it's high rate of fire for it's class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
 	icon_state = "t81"
 	item_state = "t81"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'

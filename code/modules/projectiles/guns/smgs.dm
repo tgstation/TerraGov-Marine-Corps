@@ -213,11 +213,11 @@
 	starting_attachment_types = list(/obj/item/attachable/suppressor) //Tacticool
 
 //-------------------------------------------------------
-//SMG-27, based on the grease gun
+//MP-27, based on the grease gun
 
 /obj/item/weapon/gun/smg/mp7
-	name = "\improper SMG-27 submachinegun"
-	desc = "An archaic design going back hundreds of years, the SMG-27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms, though it somehow got into the hands of colonial rebels."
+	name = "\improper MP-27 submachinegun"
+	desc = "An archaic design going back hundreds of years, the MP-27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms, though it somehow got into the hands of colonial rebels."
 	icon_state = "mp7"
 	item_state = "mp7"
 	caliber = CALIBER_46X30 //codex
@@ -331,7 +331,7 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/weapon/gun/smg/uzi
-	name = "\improper SMG-2 submachinegun"
+	name = "\improper MP-2 submachinegun"
 	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire selector to full auto for maximum firepower. Use two if you really want to go ham."
 	icon_state = "uzi"
 	item_state = "uzi"

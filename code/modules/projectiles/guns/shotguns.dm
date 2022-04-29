@@ -274,7 +274,7 @@
 //-------------------------------------------------------
 //A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
-	name = "\improper SH-12 Paladin pump shotgun"
+	name = "\improper Paladin-12 pump shotgun"
 	desc = "A nine-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pal12"

@@ -638,11 +638,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 
 //-------------------------------------------------------
-//RL-160 Recoilless Rifle. Its effectively an RPG codewise.
+//RR-160 Recoilless Rifle. Its effectively an RPG codewise.
 
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle
-	name = "\improper RL-160 recoilless rifle"
-	desc = "The RL-160 recoilless rifle is a long range explosive ordanance device used by the TGMC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
+	name = "\improper RR-160 recoilless rifle"
+	desc = "The RR-160 recoilless rifle is a long range explosive ordanance device used by the TGMC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t160"
 	item_state = "t160"

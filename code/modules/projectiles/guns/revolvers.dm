@@ -394,10 +394,10 @@
 
 
 //-------------------------------------------------------
-//R-44, based off the SAA.
+//M-44, based off the SAA.
 
 /obj/item/weapon/gun/revolver/single_action/m44
-	name = "\improper R-44 SAA revolver"
+	name = "\improper M-44 SAA revolver"
 	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Has to be manully primed with each shot. Uses .44 Magnum rounds."
 	icon_state = "m44"
 	item_state = "m44"

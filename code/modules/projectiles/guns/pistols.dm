@@ -202,11 +202,11 @@
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
 
 //-------------------------------------------------------
-//P-1911
+//M-1911
 
 /obj/item/weapon/gun/pistol/m1911
-	name = "\improper P-1911 service pistol"
-	desc = "A P-1911 chambered in .45 ACP. An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come."
+	name = "\improper M-1911 service pistol"
+	desc = "An M-1911 chambered in .45 ACP. An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come."
 	icon_state = "m1911"
 	item_state = "m1911"
 	caliber = CALIBER_45ACP //codex
@@ -227,7 +227,7 @@
 	recoil_unwielded = -1
 
 /obj/item/weapon/gun/pistol/m1911/custom
-	name = "\improper P-1911A1 custom pistol"
+	name = "\improper M-1911A1 custom pistol"
 	desc = "A handgun that has received several modifications. It seems to have been lovingly taken care of and passed down for generations. Lacks an auto magazine eject feature."
 	icon_state = "m1911c"
 	attachable_allowed = list(
@@ -244,10 +244,10 @@
 	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
-//P-22. Blocc
+//G-22. Blocc
 
 /obj/item/weapon/gun/pistol/g22
-	name = "\improper P-22 pistol"
+	name = "\improper G-22 pistol"
 	desc = "A popular police firearm in the modern day. Chambered in 9x19mm."
 	icon_state = "g22"
 	item_state = "g22"
@@ -268,7 +268,7 @@
 	fire_delay = 0.2 SECONDS
 
 /obj/item/weapon/gun/pistol/g22/tranq
-	name = "\improper P-22 custom pistol"
+	name = "\improper G-22 custom pistol"
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
 	icon_state = "g22"
 	item_state = "g22"
