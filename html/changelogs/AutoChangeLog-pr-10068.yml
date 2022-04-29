@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - balance: "APCR TAT rounds no longer trigger light explosions, this reduces it's damage from around 260 to 160."
-  - rscadd: "APCR and APHE TAT are now slowed by anything they pierce, reducing the total distance they can travel."
-  - bugfix: "Fix a bug where APCR TAT rounds can explode multiple times."
