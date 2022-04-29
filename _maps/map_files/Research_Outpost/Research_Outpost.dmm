@@ -6626,6 +6626,10 @@
 "EG" = (
 /turf/closed/wall/r_wall,
 /area/outpost/science/hydponics)
+"EH" = (
+/obj/structure/prop/vehicle/crane,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo)
 "EI" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -10204,6 +10208,12 @@
 	dir = 5
 	},
 /area/outpost/yard/central)
+"UD" = (
+/obj/structure/prop/vehicle/crane{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south)
 "UE" = (
 /obj/structure/table,
 /obj/machinery/power/apc/drained,
@@ -18310,7 +18320,7 @@ oI
 oI
 di
 di
-ai
+di
 di
 di
 qn
@@ -18441,8 +18451,8 @@ kF
 fK
 oI
 di
-ai
-ai
+di
+di
 ai
 ij
 ij
@@ -19122,7 +19132,7 @@ IG
 DS
 Ul
 Jc
-Jc
+EH
 Jc
 pw
 Xj
@@ -26798,7 +26808,7 @@ hK
 hK
 hK
 hK
-hK
+UD
 hK
 uv
 nP
