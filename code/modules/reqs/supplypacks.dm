@@ -366,13 +366,13 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper
-	name = "GL-81 IFF Auto Sniper kit"
+	name = "SR-81 IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
 	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper_regular
-	name = "GL-81 IFF sniper magazine"
+	name = "SR-81 IFF sniper magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
 	cost = 3
 	available_against_xeno_only = TRUE
@@ -1574,7 +1574,7 @@ FACTORY
 	cost = 50
 
 /datum/supply_packs/factory/autosniper_magazine_refill
-	name = "GL-81 IFF Auto Sniper magazine assembly refill"
+	name = "SR-81 IFF Auto Sniper magazine assembly refill"
 	contains = list(/obj/item/factory_refill/auto_sniper_magazine_refill)
 	cost = 40
 
