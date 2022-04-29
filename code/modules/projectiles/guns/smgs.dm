@@ -128,7 +128,7 @@
 	starting_attachment_types = list(/obj/item/attachable/reddot)
 
 //-------------------------------------------------------
-//M-25 SMG
+//SMG-25 SMG
 
 /obj/item/weapon/gun/smg/m25
 	name = "\improper SMG-25 submachinegun"
