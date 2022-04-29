@@ -54,11 +54,11 @@
 	icon_state_mini = "mag_t90"
 
 //-------------------------------------------------------
-//SMG-27, based on the SMG-27, based on the M7.
+//SMG-27, based on the MP-27, based on the M7.
 
 /obj/item/ammo_magazine/smg/mp7
-	name = "\improper SMG-27 magazine (4.6x30mm)"
-	desc = "A 4.6mm magazine for the SMG-27."
+	name = "\improper MP-27 magazine (4.6x30mm)"
+	desc = "A 4.6mm magazine for the MP-27."
 	default_ammo = /datum/ammo/bullet/smg/ap
 	caliber = CALIBER_46X30
 	icon_state = "mp7"
@@ -105,8 +105,8 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/ammo_magazine/smg/uzi
-	name = "\improper SMG-2 magazine (9mm)"
-	desc = "A magazine for the SMG-2."
+	name = "\improper MP-2 magazine (9mm)"
+	desc = "A magazine for the MP-2."
 	caliber = CALIBER_9X21
 	icon_state = "uzi"
 	max_rounds = 32

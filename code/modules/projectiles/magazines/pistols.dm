@@ -62,10 +62,10 @@
 	icon_state_mini = "mag_pistol_yellow"
 
 //-------------------------------------------------------
-//P-1911
+//M-1911
 
 /obj/item/ammo_magazine/pistol/m1911
-	name = "\improper P-1911 magazine (.45)"
+	name = "\improper M-1911 magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = CALIBER_45ACP
 	icon_state = "1911"
@@ -88,14 +88,14 @@
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
 
 /obj/item/ammo_magazine/pistol/g22
-	name = "\improper P-22 magazine (9mm)"
+	name = "\improper G-22 magazine (9mm)"
 	caliber = CALIBER_9X19
 	icon_state = "g22"
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/pistol
 
 /obj/item/ammo_magazine/pistol/g22tranq
-	name = "\improper G22 tranq magazine (9mm)"
+	name = "\improper G-22 tranq magazine (9mm)"
 	caliber = CALIBER_9X19_TRANQUILIZER
 	icon_state = "g22"
 	max_rounds = 12
