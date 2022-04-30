@@ -35,10 +35,10 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_x = -32
 	pixel_y = -32
-	light_system = HYBRID_LIGHT
+	light_system = STATIC_LIGHT
 	light_range = 10
 	light_power = 8
-	light_color = COLOR_BRIGHT_ORANGE
+	light_color = COLOR_LIGHT_ORANGE
 
 /obj/effect/explosion/Initialize()
 	. = ..()
