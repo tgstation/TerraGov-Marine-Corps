@@ -1,4 +1,4 @@
-GLOBAL_LIST_INIT(known_implants, list(/obj/item/implant/neurostim))
+GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 /*
 CONTAINS:
