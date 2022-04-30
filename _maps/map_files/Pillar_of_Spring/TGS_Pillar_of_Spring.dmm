@@ -831,6 +831,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"cH" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway)
 "cI" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -1916,6 +1927,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
+"gg" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/closed/wall/mainship/white,
+/area/mainship/medical/medical_science)
 "gh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/poddoor/mainship/droppod{
@@ -2189,6 +2206,12 @@
 	},
 /obj/machinery/holopad,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "hk" = (
@@ -2672,6 +2695,12 @@
 	id = "supply_elevator_gear"
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "iM" = (
@@ -3393,16 +3422,12 @@
 	},
 /area/mainship/squads/general)
 "kR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "kS" = (
@@ -3794,6 +3819,12 @@
 	id = "supply_elevator_railing"
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "mb" = (
@@ -4517,6 +4548,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"og" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/aft_hallway)
 "oh" = (
 /obj/machinery/camera/autoname/mainship,
 /obj/machinery/chem_dispenser,
@@ -4819,6 +4860,12 @@
 	id = "supply_elevator_gear"
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "pd" = (
@@ -6662,6 +6709,12 @@
 "uS" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "uT" = (
@@ -7851,14 +7904,14 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
-	},
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "yq" = (
@@ -9490,6 +9543,16 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
+"Dl" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway)
 "Dm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11501,6 +11564,12 @@
 	id = "supply_elevator_railing"
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/squads/req)
 "IN" = (
@@ -15671,6 +15740,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "Uv" = (
@@ -15890,6 +15965,12 @@
 	},
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "UX" = (
@@ -16184,6 +16265,12 @@
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "VO" = (
@@ -16390,6 +16477,12 @@
 /obj/structure/cable,
 /obj/machinery/light{
 	light_color = "#da2f1b"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -17362,6 +17455,12 @@
 /obj/structure/cable,
 /obj/machinery/light{
 	light_color = "#da2f1b"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -42274,7 +42373,7 @@ ZX
 yl
 ZX
 ZX
-ZX
+gg
 Hd
 qs
 ZX
@@ -47665,7 +47764,7 @@ Kg
 Kg
 Kg
 Kg
-Kg
+Dl
 OY
 po
 UC
@@ -47916,13 +48015,13 @@ ap
 ap
 ap
 ap
-qg
+ap
 rF
 rF
 rF
 rF
 rF
-IT
+og
 wb
 FB
 Cx
@@ -51006,7 +51105,7 @@ rF
 PV
 QA
 Vl
-IT
+og
 wb
 rF
 rF
@@ -51263,7 +51362,7 @@ JL
 MO
 Yc
 xm
-Yc
+cH
 rL
 JL
 Yc
