@@ -110,7 +110,7 @@
 /obj/item/tool/pickaxe/plasmacutter/examine(mob/user)
 	. = ..()
 	if(cell)
-		. += "It has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"
+		. += "The internal battery's readout counter is active. <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"
 	else
 		. += span_warning("It does not have a power source installed!")
 
@@ -126,7 +126,7 @@
 		powered = FALSE
 		if(!silent && user)
 			user.visible_message(span_notice("[user] turns [src] off."),
-		span_notice("You switch [src] off. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		span_notice("You switch [src] off. <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 		update_plasmacutter()
 		return
 
@@ -137,7 +137,7 @@
 	powered = TRUE
 	if(!silent && user)
 		user.visible_message(span_notice("[user] turns [src] on."),
-		span_notice("You switch [src] on. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		span_notice("You switch [src] on. <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 
 	update_plasmacutter()
 
@@ -149,7 +149,7 @@
 	else if(!powered)
 		to_chat(user, span_warning("[src] is turned off!"))
 	else
-		to_chat(user, span_warning("The plasma cutter has inadequate charge remaining! Replace or recharge the battery. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		to_chat(user, span_warning("The plasma cutter has inadequate charge! Replace or recharge the battery. <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 
 /obj/item/tool/pickaxe/plasmacutter/proc/start_cut(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string, no_string, SFX = TRUE)
 	if(!(cell.charge >= charge_amount) || !powered) //Check power
@@ -165,9 +165,9 @@
 		spark_system.start(source)
 	if(!no_string)
 		if(custom_string)
-			to_chat(user, span_notice("[custom_string] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+			to_chat(user, span_notice("[custom_string] <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 		else
-			to_chat(user, span_notice("You start cutting apart the [name] with [src]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+			to_chat(user, span_notice("You start cutting apart the [name] with [src]. <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 	return TRUE
 
 /obj/item/tool/pickaxe/plasmacutter/proc/cut_apart(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string)
@@ -180,9 +180,9 @@
 	spark_system.start(source)
 	use_charge(user, charge_amount, FALSE)
 	if(custom_string)
-		to_chat(user, span_notice("[custom_string]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		to_chat(user, span_notice("[custom_string]<b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 	else
-		to_chat(user, span_notice("You cut apart the [name] with [src]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		to_chat(user, span_notice("You cut apart the [name] with [src]. <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 
 /obj/item/tool/pickaxe/plasmacutter/proc/debris(location, metal = 0, rods = 0, wood = 0, wires = 0, shards = 0, plasteel = 0)
 	if(metal)
@@ -203,7 +203,7 @@
 /obj/item/tool/pickaxe/plasmacutter/proc/use_charge(mob/user, amount = PLASMACUTTER_BASE_COST, mention_charge = TRUE)
 	cell.charge -= min(cell.charge, amount)
 	if(mention_charge)
-		to_chat(user, span_notice("<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		to_chat(user, span_notice("<b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 	update_plasmacutter()
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
@@ -214,12 +214,6 @@
 		span_notice("You fumble around figuring out how to use [src]."))
 		return . *= max(1, 4 - skill) //Takes twice to four times as long depending on your skill.
 	. -= min(PLASMACUTTER_CUT_DELAY, (skill - 3) * 5) //We have proper skills; delay lowered by 0.5 per skill point in excess of a field engineer's.
-
-
-/obj/item/tool/pickaxe/plasmacutter/emp_act(severity)
-	cell.use(round(cell.maxcharge / severity))
-	update_plasmacutter()
-	..()
 
 /obj/item/tool/pickaxe/plasmacutter/proc/update_plasmacutter(mob/user, silent=FALSE) //Updates the icon and power on/off status of the plasma cutter
 	if(!user && ismob(loc) )
@@ -257,6 +251,8 @@
 		spark_system.attach(M)
 		spark_system.start(M)
 		cell.charge += 200
+		to_chat(world, span_warning("[src] violently vaporizes chunks of the Xenomorph upon contact!"))
+		to_chat(user, span_notice("The vaporized matter causes a temporary feedback loop in the battery! <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 	return ..()
 
 
