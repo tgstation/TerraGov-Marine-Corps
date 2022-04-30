@@ -274,18 +274,17 @@
 	name = "high-velocity 30mm ammo crate"
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns."
-	travelling_time = 5 SECONDS
-	point_cost = 150
+	travelling_time = 3 SECONDS
+	point_cost = 125
 
-/obj/structure/ship_ammo/heavygun/railgun
+/obj/structure/ship_ammo/minirocket/railgun
 	name = "Railgun Ammo"
 	desc = "This is not meant to exist"
-	ammo_count = 400
-	max_ammo_count = 400
-	ammo_used_per_firing = 40
-	bullet_spread_range = 5
+	ammo_count = 20
+	max_ammo_count = 20
+	ammo_used_per_firing = 1
 	point_cost = 0
-
+	travelling_time = 0 SECONDS
 
 //laser battery
 
