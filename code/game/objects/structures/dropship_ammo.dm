@@ -275,7 +275,7 @@
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns."
 	travelling_time = 3 SECONDS
-	point_cost = 125
+	point_cost = 150
 
 /obj/structure/ship_ammo/minirocket/railgun
 	name = "Railgun Ammo"
@@ -301,7 +301,7 @@
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 10
 	warning_sound = 'sound/effects/nightvision.ogg'
-	point_cost = 150
+	point_cost = 85
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
 	var/laze_radius = 4
 	ammo_type = CAS_LASER_BATTERY

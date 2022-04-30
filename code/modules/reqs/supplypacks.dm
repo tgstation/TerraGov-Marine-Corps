@@ -145,7 +145,7 @@ OPERATIONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/cas_voucher
-	name = "100 dropship fabricator points"
+	name = "150 dropship fabricator points"
 	contains = list(/obj/item/dropship_points_voucher)
 	cost = 40
 	containertype = null
