@@ -70,7 +70,7 @@
 	name = "\improper TL-182 deployable shield"
 	desc = "A heavy shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade. Alt click to tighten the strap."
 	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "marine_shield"
+	icon_state = "folding_shield"
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_integrity = 200
 	integrity_failure = 50

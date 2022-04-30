@@ -210,7 +210,7 @@
 	. = ..()
 	update_icon()
 
-/obj/structure/barricade/update_icon()
+/obj/structure/barricade/update_icon_state()
 	. = ..()
 	var/damage_state
 	var/percentage = (obj_integrity / max_integrity) * 100
@@ -1148,9 +1148,41 @@
 		update_icon()
 
 /obj/structure/barricade/deployable
-	icon_state = "metal_0"
+	icon_state = "folding_0"
 	max_integrity = 200
-	barricade_type = "metal"
+	barricade_type = "folding"
 	///Whether this barricade has damaged states ///gotta make this part work, then can remove
 	can_change_dmg_state = TRUE
 	var/flags_item = IS_DEPLOYABLE
+	var/obj/item/internal_item
+
+/obj/structure/barricade/deployable/Initialize(mapload, _internal_item, deployer)
+	. = ..()
+	internal_item = _internal_item
+
+	name = internal_item.name
+	desc = internal_item.desc
+
+///Dissassembles the device
+/obj/structure/barricade/deployable/proc/disassemble(mob/user)
+	var/obj/item/item = internal_item
+	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
+		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
+		return
+	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
+
+/obj/structure/barricade/deployable/Destroy()
+	if(internal_item)
+		QDEL_NULL(internal_item)
+	return ..()
+
+/obj/structure/barricade/deployable/MouseDrop(over_object, src_location, over_location)
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/user = usr
+	if(over_object != user || !in_range(src, user))
+		return
+	if(CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
+		to_chat(user, "<span class = 'notice'>You cannot disassemble [src] without a wrench.</span>")
+		return
+	disassemble(user)
