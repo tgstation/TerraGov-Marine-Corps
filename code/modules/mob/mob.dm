@@ -345,113 +345,13 @@
 	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
 		return FALSE
 
-
-
-	////new attempt
-	if (istype(I, /obj/item/storage/holster) )
-		var/obj/item/storage/holster/B = I
-		if(!B.holstered_item)
-			return FALSE
-		var/obj/item/W = B.holstered_item
-		return W
-	I.attachments_by_slot[ATTACHMENT_SLOT_STORAGE] ? var/obj/item/armor_module/storage/U = I.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-
-
-	//belt holsters
-	if (istype(I, /obj/item/storage/belt/gun) )
-		var/obj/item/storage/belt/gun/B = I
-		if(!B.current_gun)
-			return FALSE
-		var/obj/item/W = B.current_gun
-		B.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
-	//holster items
-	if (istype(I, /obj/item/storage/holster) )
-		var/obj/item/storage/holster/B = I
-		if(!B.holstered_item)
-			return FALSE
-		var/obj/item/W = B.holstered_item
-		B.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
-	//webbing holsters
-	if (istype(I, /obj/item/clothing/under))
-		var/obj/item/clothing/under/B = I
-		if (!istype(B.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/holster || /obj/item/armor_module/storage/uniform/knifeharness) )
-			return FALSE
-		var/obj/item/armor_module/storage/U = B.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
-		var/obj/item/storage/S = U.storage
-		if(!length(S.contents))
-			return FALSE
-		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
-		//general storage module
-	if (istype(I, /obj/item/clothing/suit))
-		var/obj/item/clothing/suit/B = I
-		if (!istype(B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage) )
-			return FALSE
-		var/obj/item/armor_module/storage/U = B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-		var/obj/item/storage/S = U.storage
-		if(!length(S.contents))
-			return FALSE
-		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
-	//suit internal storage
-	if(istype(I, /obj/item/clothing/suit/storage))
-		var/obj/item/clothing/suit/storage/S = I
-		if(!S.pockets)
-			return FALSE
-		var/obj/item/storage/internal/P = S.pockets
-		if(!length(P.contents))
-			return FALSE
-		var/obj/item/W = P.contents[length(P.contents)]
-		P.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
-	//boots
-	if(istype(I, /obj/item/clothing/shoes/marine))
-		var/obj/item/clothing/shoes/marine/S = I
-		if(!S.pockets)
-			return FALSE
-		var/obj/item/storage/internal/P = S.pockets
-		if(!length(P.contents))
-			return FALSE
-		var/obj/item/W = P.contents[length(P.contents)]
-		P.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
-	//helmet
-	if(istype(I, /obj/item/clothing/head))
-		var/obj/item/clothing/head/B = I
-		if (!istype(B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage) )
-			return FALSE
-		var/obj/item/armor_module/storage/U = B.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
-		var/obj/item/storage/S = U.storage
-		if(!length(S.contents))
-			return FALSE
-		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
-	//catch all storage items
-	if(istype(I, /obj/item/storage))
-		var/obj/item/storage/S = I
-		if(!length(S.contents))
-			return FALSE
-		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
-	//just pulls the actually equipped item if all else fails
-	if(CHECK_BITFIELD(I.flags_inventory, NOQUICKEQUIP))
+	var/obj/item/found = I.do_quick_equip()
+	if(!found)
 		return FALSE
-	temporarilyRemoveItemFromInventory(I)
-	put_in_hands(I)
+	if(CHECK_BITFIELD(found.flags_inventory, NOQUICKEQUIP))
+		return FALSE
+	temporarilyRemoveItemFromInventory(found)
+	put_in_hands(found)
 	return TRUE
 
 /mob/proc/show_inv(mob/user)

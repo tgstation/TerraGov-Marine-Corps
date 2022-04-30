@@ -317,6 +317,15 @@
 		current_acid = null
 	return
 
+///Called to return an item to equip using the quick equip hotkey. Overridden by types that have storage or with storage attachments, but natively returns itself to equip.
+/obj/item/proc/do_quick_equip()
+	var/obj/item/found = locate(/obj/item/storage) in contents
+	if(!found)
+		found = locate(/obj/item/armor_module/storage) in contents
+	if(found)
+		return found.do_quick_equip()
+	else
+		return src
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
