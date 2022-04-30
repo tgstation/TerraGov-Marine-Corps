@@ -616,14 +616,14 @@
 	icon_state = "tank_complete"
 	density = TRUE
 	coverage = 80
-	bound_height = 64
-	bound_width = 64
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/prop/vehicle/tank/north
 	icon = 'icons/Marine/tank_propns.dmi'
 	icon_state = "tank_complete"
+	bound_height = 128
+	bound_width = 96
 
 /obj/structure/prop/vehicle/tank/north/base
 	name = "Decommissioned TAV - Rhino"
@@ -636,6 +636,8 @@
 /obj/structure/prop/vehicle/tank/east
 	icon = 'icons/Marine/tank_propew.dmi'
 	icon_state = "tank_complete"
+	bound_height = 96
+	bound_width = 128
 
 /obj/structure/prop/vehicle/tank/east/base
 	name = "Decommissioned TAV - Rhino"
@@ -907,8 +909,8 @@
 	icon_state = "apc_base"
 	density = TRUE
 	coverage = 70
-	bound_height = 64
-	bound_width = 64
+	bound_height = 128
+	bound_width = 128
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
