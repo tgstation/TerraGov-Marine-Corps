@@ -292,10 +292,10 @@
 	icon_state_mini = "mag_sniper"
 
 //-------------------------------------------------------
-//Marine magazine automatic sniper, or the GL-81.
+//Marine magazine automatic sniper, or the SR-81.
 /obj/item/ammo_magazine/rifle/autosniper
-	name = "\improper GL-81 automatic sniper rifle magazine"
-	desc = "A box magazine filled with low pressure 8.6x70mm rifle rounds for the GL-81."
+	name = "\improper SR-81 automatic sniper rifle magazine"
+	desc = "A box magazine filled with low pressure 8.6x70mm rifle rounds for the SR-81."
 	caliber = CALIBER_86X70
 	icon_state = "t81"
 	default_ammo = /datum/ammo/bullet/sniper/auto

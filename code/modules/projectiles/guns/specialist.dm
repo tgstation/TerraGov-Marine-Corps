@@ -312,11 +312,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 
 
-//Based off the XM-8. SR-8 rifle
+//Based off the XM-8. BR-8 rifle
 
 /obj/item/weapon/gun/rifle/tx8
-	name = "\improper SR-8 scout rifle"
-	desc ="The SR-8 is a light specialized scout rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges by being very adaptable to different situations due to the ability to use different ammo types. Has IFF.  Takes specialized overpressured 10x28mm rounds."
+	name = "\improper BR-8 scout rifle"
+	desc ="The BR-8 is a light specialized scout rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges by being very adaptable to different situations due to the ability to use different ammo types. Has IFF.  Takes specialized overpressured 10x28mm rounds."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx8"
 	item_state = "tx8"
