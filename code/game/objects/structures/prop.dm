@@ -616,6 +616,8 @@
 	icon_state = "tank_complete"
 	density = TRUE
 	coverage = 80
+	bound_height = 128
+	bound_width = 128
 	resistance_flags = RESIST_ALL
 	layer = ABOVE_MOB_LAYER
 
