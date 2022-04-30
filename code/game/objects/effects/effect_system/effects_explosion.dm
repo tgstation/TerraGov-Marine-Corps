@@ -35,7 +35,6 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	pixel_x = -32
 	pixel_y = -32
-	set_light(light_power)
 	light_system = HYBRID_LIGHT
 	light_range = 10
 	light_power = 8
