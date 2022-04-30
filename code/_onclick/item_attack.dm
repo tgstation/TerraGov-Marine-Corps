@@ -285,7 +285,7 @@
 				attack_message_local = "[attack_message_local] It burns!"
 		if(ENERGY)
 			apply_damage(power, BURN, user.zone_selected, get_soft_armor("energy", user.zone_selected))
-    	if(STAMINA)
+		if(STAMINA)
 			apply_damage(power, STAMINA, user.zone_selected)
 
 	visible_message(span_danger("[attack_message]"),
