@@ -579,8 +579,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /obj/projectile/proc/scan_a_turf(turf/turf_to_scan, cardinal_move)
 	if(turf_to_scan.density) //Handle wall hit.
-		if((ammo.flags_ammo_behavior & (AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF)) != (AMMO_EXPLOSIVE|AMMO_PASS_THROUGH_TURF))
-			ammo.on_hit_turf(turf_to_scan, src)
+		ammo.on_hit_turf(turf_to_scan, src)
 		turf_to_scan.bullet_act(src)
 		return !(ammo.flags_ammo_behavior & AMMO_PASS_THROUGH_TURF)
 
@@ -884,7 +883,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 				proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
-				add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 			if(living_hard_armor)
 				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * proj.penetration * 0.01)) //AP reduces a % of hard armor.
 			if(living_soft_armor)
