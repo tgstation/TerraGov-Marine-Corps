@@ -140,7 +140,7 @@
 		if(3)
 			. += "Its vital tracker and tracking beacon appear to be enabled."
 
-//we only want to quick_equip from actual 'holster' type webbings
+//we only want to quick equip from actual 'holster' type webbings
 /obj/item/clothing/under/do_quick_equip()
 	var/obj/item/found = locate(/obj/item/armor_module/storage/uniform/holster) in contents
 	if(!found)

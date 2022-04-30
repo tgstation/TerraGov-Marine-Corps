@@ -331,20 +331,21 @@
 	if(!I)
 		return FALSE
 
-	//because the slot defines only return an inventory slot, not a particular set of items, this code weeds out items that aren't actually associated with the specified define
+	//Each inventory slot can have more than one define associated with it. This refines the slot down to the item types actually associated with the define.
 	if(slot == SLOT_IN_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun))))
 		return FALSE
 	if(slot == SLOT_IN_S_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun) || istype(I, /obj/item/storage/belt/knifepouch))))
 		return FALSE
 	if(slot == SLOT_IN_B_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon))))
 		return FALSE
-	if(slot == SLOT_IN_ACCESSORY && (!istype(I, /obj/item/clothing/under))) //checks below for what's actually attached to the uniform
+	if(slot == SLOT_IN_ACCESSORY && (!istype(I, /obj/item/clothing/under)))
 		return FALSE
 	if(slot == SLOT_IN_L_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
 		return FALSE
 	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
 		return FALSE
 
+	//calls on the item to return a suitable item to be equipped
 	var/obj/item/found = I.do_quick_equip()
 	if(!found)
 		return FALSE

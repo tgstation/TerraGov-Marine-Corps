@@ -695,6 +695,7 @@
 	else
 		return ..()
 
+//Will only draw the specific holstered item, not ammo etc.
 /obj/item/storage/belt/gun/do_quick_equip()
 	if(!current_gun)
 		return FALSE

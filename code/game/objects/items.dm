@@ -317,7 +317,7 @@
 		current_acid = null
 	return
 
-///Called to return an item to equip using the quick equip hotkey. Overridden by types that have storage or with storage attachments, but natively returns itself to equip.
+///Called to return an item to equip using the quick equip hotkey. Will try return a stored item, otherwise returns itself to equip.
 /obj/item/proc/do_quick_equip()
 	var/obj/item/found = locate(/obj/item/storage) in contents
 	if(!found)
