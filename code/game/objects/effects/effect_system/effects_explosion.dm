@@ -36,7 +36,7 @@
 	pixel_x = -32
 	pixel_y = -32
 	set_light(light_power)
-	light_system = STATIC_LIGHT
+	light_system = HYBRID_LIGHT
 	light_range = 10
 	light_power = 8
 	light_color = COLOR_BRIGHT_ORANGE

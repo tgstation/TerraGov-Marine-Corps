@@ -10,7 +10,7 @@
 	duration = 0.8 SECONDS
 	pixel_x = -16
 	set_light(light_power)
-	light_system = STATIC_LIGHT
+	light_system = HYBRID_LIGHT
 	light_range = 5
 	light_power = 8
 	light_color = COLOR_BRIGHT_ORANGE
