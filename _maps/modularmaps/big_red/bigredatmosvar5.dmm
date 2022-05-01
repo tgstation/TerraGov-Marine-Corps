@@ -20,10 +20,8 @@
 /area/bigredv2/outside/filtration_plant)
 "aP" = (
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bc" = (
 /obj/effect/decal/cleanable/dirt,
@@ -45,10 +43,8 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "bF" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "bW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
@@ -63,12 +59,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "cS" = (
-/obj/machinery/door_control{
+/obj/structure/table,
+/obj/machinery/door_control/old{
 	id = "FiltrationShutters";
 	name = "Airlock Shutters";
-	pixel_x = -32
+	pixel_y = 2
 	},
-/obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "dC" = (
@@ -95,8 +91,7 @@
 "eo" = (
 /obj/machinery/door_control{
 	id = "FiltrationShutters";
-	name = "Airlock Shutters";
-	pixel_y = 25
+	name = "Airlock Shutters"
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -139,10 +134,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "hK" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "hN" = (
 /obj/structure/table,
@@ -427,10 +420,8 @@
 /obj/structure/cargo_container/ch_red{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "wk" = (
 /obj/item/ammo_casing/bullet,
@@ -443,10 +434,8 @@
 /area/bigredv2/outside/filtration_plant)
 "wH" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "xd" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -485,18 +474,14 @@
 /area/bigredv2/outside/s)
 "xY" = (
 /obj/structure/cargo_container/ch_red,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "yJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "yZ" = (
 /obj/item/tank/air,
@@ -547,10 +532,8 @@
 /area/bigredv2/outside/filtration_plant)
 "Cb" = (
 /obj/structure/dispenser/oxygen,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Ci" = (
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -594,10 +577,8 @@
 /area/bigredv2/outside/filtration_plant)
 "Eb" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Er" = (
 /obj/machinery/computer/atmos_alert{
@@ -669,20 +650,16 @@
 /area/bigredv2/outside/filtration_plant)
 "HH" = (
 /obj/structure/reagent_dispensers/watertank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "HR" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "Ih" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1032,10 +1009,8 @@
 /area/bigredv2/outside/s)
 "Zc" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "ZA" = (
 /obj/structure/cable,
@@ -1159,7 +1134,7 @@ Sk
 Dn
 tn
 Rt
-hR
+cS
 ex
 eo
 xf
@@ -1186,7 +1161,7 @@ YH
 Dn
 Dn
 ET
-cS
+us
 ex
 Fs
 Iv
