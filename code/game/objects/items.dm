@@ -83,7 +83,7 @@
 	var/reach = 1
 
 
-	/// Species-specific sprites, concept stolen from Paradise//vg/.
+	/// Species-specific sprites, concept stolen from Paradise//vg/. Ex: sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') If index term exists and icon_override is not set, this sprite sheet will be used.
 	var/list/sprite_sheets = null
 
 	//** These specify item/icon overrides for _slots_

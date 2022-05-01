@@ -373,6 +373,7 @@
 #include "code\datums\emergency_calls\pizza.dm"
 #include "code\datums\emergency_calls\pmc.dm"
 #include "code\datums\emergency_calls\sectoid.dm"
+#include "code\datums\emergency_calls\skeleton.dm"
 #include "code\datums\emergency_calls\sonsofmars.dm"
 #include "code\datums\emergency_calls\supplies.dm"
 #include "code\datums\emergency_calls\upp.dm"
