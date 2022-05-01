@@ -455,6 +455,30 @@
 		new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
 		new /obj/item/clothing/mask/rebreather/scarf(src)
 
+//SURPLUS CYBORG LIMBS CLOSET
+/obj/structure/closet/secure_closet/surplus_limbs
+	name = "surplus cyborg limbs locker"
+	req_access = list(ACCESS_MARINE_MEDBAY)
+	icon_state = "secure_locked_medical"
+	icon_closed = "secure_unlocked_medical"
+	icon_locked = "secure_locked_medical"
+	icon_opened = "secure_open_medical"
+	icon_broken = "secure_broken_medical"
+	icon_off = "secure_closed_medical"
+
+/obj/structure/closet/secure_closet/surplus_limbs/PopulateContents()
+	new /obj/item/robot_parts/l_arm(src)
+	new /obj/item/robot_parts/l_arm(src)
+	new /obj/item/robot_parts/l_arm(src)
+	new /obj/item/robot_parts/r_arm(src)
+	new /obj/item/robot_parts/r_arm(src)
+	new /obj/item/robot_parts/r_arm(src)
+	new /obj/item/robot_parts/l_leg(src)
+	new /obj/item/robot_parts/l_leg(src)
+	new /obj/item/robot_parts/l_leg(src)
+	new /obj/item/robot_parts/r_leg(src)
+	new /obj/item/robot_parts/r_leg(src)
+	new /obj/item/robot_parts/r_leg(src)
 
 //ALAMAYER CARGO CLOSET
 /obj/structure/closet/secure_closet/req_officer

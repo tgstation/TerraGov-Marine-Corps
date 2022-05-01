@@ -10975,8 +10975,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "gPy" = (
-/obj/structure/closet/secure_closet/medical_doctor,
 /obj/machinery/alarm,
+/obj/structure/closet/secure_closet/surplus_limbs,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/surgery_hallway)
 "gPB" = (
@@ -16651,6 +16651,10 @@
 /area/mainship/living/starboard_emb)
 "qJa" = (
 /obj/machinery/bioprinter/stocked,
+/obj/item/robot_parts/l_arm,
+/obj/item/robot_parts/l_leg,
+/obj/item/robot_parts/r_arm,
+/obj/item/robot_parts/r_leg,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/operating_room_one)
 "qJm" = (
@@ -18687,6 +18691,10 @@
 /area/mainship/shipboard/firing_range)
 "uEg" = (
 /obj/machinery/bioprinter/stocked,
+/obj/item/robot_parts/l_arm,
+/obj/item/robot_parts/l_leg,
+/obj/item/robot_parts/r_arm,
+/obj/item/robot_parts/r_leg,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},

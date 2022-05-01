@@ -6274,6 +6274,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "ve" = (
@@ -6499,12 +6501,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "vR" = (
-/obj/structure/table/mainship,
-/obj/item/clothing/glasses/hud/health,
-/obj/item/clothing/glasses/hud/health,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
+/obj/structure/closet/secure_closet/surplus_limbs,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "vS" = (
@@ -8882,6 +8882,10 @@
 /area/mainship/medical/operating_room_one)
 "CP" = (
 /obj/machinery/bioprinter/stocked,
+/obj/item/robot_parts/l_arm,
+/obj/item/robot_parts/l_leg,
+/obj/item/robot_parts/r_arm,
+/obj/item/robot_parts/r_leg,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
 "CS" = (
@@ -10275,6 +10279,10 @@
 /area/mainship/medical/operating_room_two)
 "GT" = (
 /obj/machinery/bioprinter/stocked,
+/obj/item/robot_parts/l_arm,
+/obj/item/robot_parts/l_leg,
+/obj/item/robot_parts/r_arm,
+/obj/item/robot_parts/r_leg,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_two)
 "GU" = (
