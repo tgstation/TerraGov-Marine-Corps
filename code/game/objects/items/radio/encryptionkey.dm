@@ -22,7 +22,7 @@
 /obj/item/encryptionkey/med
 	name = "Medical Radio Encryption Key"
 	icon_state = "med_cypherkey"
-	channels = list(RADIO_CHANNEL_MEDICAL = TRUE)
+	channels = list(RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
 
 /obj/item/encryptionkey/cas
 	name = "\improper fire support specialist radio encryption key"

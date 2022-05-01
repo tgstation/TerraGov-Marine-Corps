@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "MG08 is now moveable."
+  - refactor: "Genercized Moveable Mounted gun code."

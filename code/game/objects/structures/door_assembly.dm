@@ -5,6 +5,9 @@ obj/structure/door_assembly
 	icon_state = "door_as_0"
 	anchored = FALSE
 	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+	throwpass = FALSE
+	max_integrity = 50
 	var/state = 0
 	var/base_icon_state = ""
 	var/base_name = "Airlock"
