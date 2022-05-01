@@ -84,7 +84,9 @@
 
 ///Chose which weed will be planted by the xeno owner or toggle automatic weeding
 /datum/action/xeno_action/activable/plant_weeds/proc/choose_weed()
-	var/weed_choice = show_radial_menu(owner, owner, GLOB.weed_images_list, radius = 48)
+	var/list/choices = GLOB.weed_images_list.Copy()
+	choices[AUTOMATIC_WEEDING] = image('icons/mob/actions.dmi', icon_state = "repeating")
+	var/weed_choice = show_radial_menu(owner, owner, choices, radius = 48)
 	if(!weed_choice)
 		return
 	if(weed_choice == AUTOMATIC_WEEDING)
@@ -94,7 +96,7 @@
 			if(initial(weed_type_possible.name) == weed_choice)
 				weed_type = weed_type_possible
 				break
-		to_chat(owner, "<span class='notice'>We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability.</span>")
+		to_chat(owner, span_notice("We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability."))
 	update_button_icon()
 
 ///Toggles automatic weeding
@@ -104,12 +106,12 @@
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 		UnregisterSignal(owner, COMSIG_MOB_DEATH)
 		auto_weeding = FALSE
-		to_chat(owner, "<span class='notice'>We will no longer automatically plant weeds.</span>")
+		to_chat(owner, span_notice("We will no longer automatically plant weeds."))
 		return
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/weed_on_move)
 	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/toggle_auto_weeding)
 	auto_weeding = TRUE
-	to_chat(owner, "<span class='notice'>We will now automatically plant weeds.</span>")
+	to_chat(owner, span_notice("We will now automatically plant weeds."))
 
 ///Used for performing automatic weeding
 /datum/action/xeno_action/activable/plant_weeds/proc/weed_on_move(datum/source)
@@ -122,7 +124,7 @@
 /datum/action/xeno_action/activable/plant_weeds/update_button_icon()
 	button.overlays.Cut()
 	if(auto_weeding)
-		button.overlays += image('icons/mob/actions.dmi', icon_state = "repeating_on")
+		button.overlays += image('icons/mob/actions.dmi', icon_state = "repeating")
 	button.overlays += image('icons/mob/actions.dmi', button, initial(weed_type.name))
 	return ..()
 
