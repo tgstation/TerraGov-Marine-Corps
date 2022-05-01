@@ -96,7 +96,7 @@
 			if(initial(weed_type_possible.name) == weed_choice)
 				weed_type = weed_type_possible
 				break
-		to_chat(owner, span_notice("We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability."))
+		to_chat(owner, span_xenonotice("We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability."))
 	update_button_icon()
 
 ///Toggles automatic weeding
@@ -106,12 +106,12 @@
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 		UnregisterSignal(owner, COMSIG_MOB_DEATH)
 		auto_weeding = FALSE
-		to_chat(owner, span_notice("We will no longer automatically plant weeds."))
+		to_chat(owner, span_xenonotice("We will no longer automatically plant weeds."))
 		return
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/weed_on_move)
 	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/toggle_auto_weeding)
 	auto_weeding = TRUE
-	to_chat(owner, span_notice("We will now automatically plant weeds."))
+	to_chat(owner, span_xenonotice("We will now automatically plant weeds."))
 
 ///Used for performing automatic weeding
 /datum/action/xeno_action/activable/plant_weeds/proc/weed_on_move(datum/source)
