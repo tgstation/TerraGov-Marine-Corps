@@ -4369,9 +4369,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aBG" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-S"
-	},
+/obj/effect/decal/warning_stripes/box/threeside,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "aBH" = (
@@ -4518,8 +4516,8 @@
 	anchored = 1;
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-N"
+/obj/effect/decal/warning_stripes/box/threeside{
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)

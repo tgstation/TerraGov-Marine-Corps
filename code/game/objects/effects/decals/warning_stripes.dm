@@ -34,6 +34,9 @@
 /obj/effect/decal/warning_stripes/box
 	icon_state = "warningbox"
 
+/obj/effect/decal/warning_stripes/box/threeside
+	icon_state = "stripe_box_threeside"
+
 /obj/effect/decal/warning_stripes/box/empty
 	icon_state = "warningboxempty"
 
