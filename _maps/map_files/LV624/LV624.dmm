@@ -3619,7 +3619,6 @@
 "bfS" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
-/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "bfU" = (
@@ -13215,6 +13214,7 @@
 "lOD" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
+/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
