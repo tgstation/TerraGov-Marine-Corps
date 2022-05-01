@@ -8548,9 +8548,6 @@
 	name = "Corporate Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/corporate_affairs)
 "ghC" = (
@@ -9167,6 +9164,11 @@
 /obj/structure/jungle/vines/heavy,
 /turf/closed/wall,
 /area/lv624/ground/jungle4)
+"gSD" = (
+/obj/structure/jungle/vines,
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/lv624/ground/jungle9)
 "gSY" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/airlock/sandstone{
@@ -11555,12 +11557,13 @@
 	},
 /area/lv624/lazarus/research)
 "jQr" = (
-/obj/structure/window/framed/colony,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
 /area/lv624/lazarus/fitness)
 "jQy" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
@@ -15903,8 +15906,8 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "pdN" = (
-/obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 1;
 	name = "\improper Leisure Dome"
 	},
 /turf/open/floor/tile/purple/whitepurple{
@@ -41023,7 +41026,7 @@ xTG
 cIl
 cIl
 cIl
-osS
+uGM
 sHv
 ghS
 ghS
@@ -41377,7 +41380,7 @@ eYL
 cIl
 cIl
 cIl
-osS
+uGM
 jhE
 gKi
 xRq
@@ -48832,7 +48835,7 @@ vUs
 xjn
 vcl
 vcl
-vUs
+wgH
 xPn
 the
 wgH
@@ -49008,8 +49011,8 @@ aES
 xMs
 aES
 aES
-aET
 rpf
+gSD
 jQr
 pdN
 vcl
