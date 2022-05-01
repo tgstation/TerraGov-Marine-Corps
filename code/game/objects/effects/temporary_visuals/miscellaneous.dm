@@ -9,10 +9,6 @@
 	icon_state = "grenade"
 	duration = 0.8 SECONDS
 	pixel_x = -16
-	light_system = STATIC_LIGHT
-	light_range = 5
-	light_power = 8
-	light_color = COLOR_LIGHT_ORANGE
 
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter
@@ -201,3 +197,12 @@
 	timerid = QDEL_IN(src, 0.5 * radius)
 	transform = matrix().Scale(32 / 1024, 32 / 1024)
 	animate(src, time = 1/2 * radius, transform=matrix().Scale((32 / 1024) * radius * 1.5, (32 / 1024) * radius * 1.5))
+
+/obj/effect/temp_visual/explosionlight
+	icon_state = ""
+	invisibility = INVISIBILITY_MAXIMUM
+	resistance_flags = RESIST_ALL
+	light_color = COLOR_LIGHT_ORANGE
+	light_system = STATIC_LIGHT
+	light_power = 7
+	light_range = 12

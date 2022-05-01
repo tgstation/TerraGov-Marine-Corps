@@ -86,10 +86,10 @@ SUBSYSTEM_DEF(explosions)
 // 5 explosion power is a (0, 1, 3) explosion.
 // 1 explosion power is a (0, 0, 1) explosion.
 
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, small_animation = FALSE)
-	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation)
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, light_range, light_power, light_color, small_animation = FALSE)
+	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, light_range, light_power, light_color, small_animation)
 
-/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, small_animation)
+/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, light_range, light_power, light_color, small_animation)
 	epicenter = get_turf(epicenter)
 	if(!epicenter)
 		return
@@ -114,6 +114,11 @@ SUBSYSTEM_DEF(explosions)
 
 	if(max_range >= 6 || heavy_impact_range)
 		new /obj/effect/temp_visual/shockwave(epicenter, max_range)
+
+	var/obj/effect/temp_visual/explosionlight/explosion_obj
+	explosion_obj = new /obj/effect/temp_visual/explosionlight(epicenter, max_range)
+	explosion_obj.light_range = max_range
+
 	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 	// Stereo users will also hear the direction of the explosion!
 
