@@ -3017,10 +3017,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"jw" = (
-/obj/machinery/gibber,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
 "jx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -39268,7 +39264,7 @@ ej
 ej
 dt
 ad
-jw
+bZ
 EW
 yB
 ad
