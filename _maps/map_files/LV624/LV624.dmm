@@ -7491,7 +7491,7 @@
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/lazarus/spaceport)
 "eYL" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,

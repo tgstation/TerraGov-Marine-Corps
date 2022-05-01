@@ -654,19 +654,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Wraith defines
 
-#define WRAITH_PLACE_WARP_BEACON_WINDUP 3 SECONDS
-#define WRAITH_PLACE_WARP_BEACON_FAIL_COOLDOWN_OVERRIDE 1 SECONDS //When we abort or fail to place a warp beacon, it goes on cooldown for awhile to prevent spam
-
-#define WRAITH_HYPERPOSITION_MIN_WINDUP 0.5 SECONDS
-#define WRAITH_HYPERPOSITION_MAX_WINDUP 5 SECONDS
-#define WRAITH_HYPERPOSITION_COOLDOWN_OVERRIDE 1 SECONDS //When we abort or fail to use hyperposition, it goes on cooldown to prevent spam
-
-#define WRAITH_PHASE_SHIFT_WINDUP 2 SECONDS
-#define WRAITH_PHASE_SHIFT_DURATION 10 SECONDS
-#define WRAITH_PHASE_SHIFT_COOLDOWN 20 SECONDS
-#define WRAITH_PHASE_SHIFT_DURATION_WARNING 0.7
-#define WRAITH_PHASE_SHIFT_ALPHA 128 //50% transparency
-
 #define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER 20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target
 #define WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER 4 //The amount we multiply the cooldown by when we teleport while dragging a friendly target
 #define WRAITH_BLINK_RANGE 3

@@ -227,6 +227,7 @@
 #define COMSIG_TURF_WEED_REMOVED "turf_weed_removed"
 #define COMSIG_TURF_THROW_ENDED_HERE "turf_throw_ended_here"						//From atom/movable/throw_at, sent right after a throw ends
 #define COMSIG_TURF_RESUME_PROJECTILE_MOVE "resume_projetile"
+#define COMSIG_TURF_PROJECTILE_MANIPULATED "projectile_manipulated"
 
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
@@ -706,10 +707,8 @@
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
 #define COMSIG_XENOABILITY_JAB "xenoability_jab"
 
-#define COMSIG_XENOABILITY_PLACE_WARP_BEACON "xenoability_place_warp_shadow"
-#define COMSIG_XENOABILITY_HYPERPOSITION "xenoability_hyperposition"
-#define COMSIG_XENOABILITY_PHASE_SHIFT "xenoability_phase_shift"
-#define COMSIG_XENOABILITY_RESYNC "xenoability_resync"
+#define COMSIG_XENOABILITY_PORTAL "xenoablity_portal"
+#define COMSIG_XENOABILITY_PORTAL_ALTERNATE "xenoability_portal_alternate"
 #define COMSIG_XENOABILITY_BLINK "xenoability_blink"
 #define COMSIG_XENOABILITY_BANISH "xenoability_banish"
 #define COMSIG_XENOABILITY_RECALL "xenoability_recall"
