@@ -246,7 +246,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "pX" = (
-/obj/machinery/computer/general_air_control,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "qd" = (
