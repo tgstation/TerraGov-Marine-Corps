@@ -7804,8 +7804,7 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/icarus/interior/engineering)
 "jRZ" = (
@@ -18646,8 +18645,7 @@
 /area/icarus/interior/swcaveslz)
 "xIW" = (
 /obj/structure/cryofeed,
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/icarus/interior/engineering)
 "xJg" = (

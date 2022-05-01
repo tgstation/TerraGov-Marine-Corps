@@ -296,8 +296,7 @@
 	id = "FiltrationShutters";
 	name = "\improper Airlock Shutters"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
+/turf/open/floor/marking/delivery{
 	},
 /area/bigredv2/outside/filtration_plant)
 "tA" = (
@@ -627,8 +626,7 @@
 /area/bigredv2/outside/se)
 "JO" = (
 /obj/structure/cryofeed,
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/bigredv2/outside/filtration_plant)
 "JS" = (
@@ -750,8 +748,7 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/bigredv2/outside/filtration_plant)
 "OG" = (

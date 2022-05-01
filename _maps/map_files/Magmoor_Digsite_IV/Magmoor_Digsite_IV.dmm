@@ -15798,15 +15798,13 @@
 	name = "\improper coolant feed"
 	},
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "lmj" = (
 /obj/structure/cryofeed,
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "lmk" = (
@@ -16205,8 +16203,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
 	dir = 4
 	},
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "lCa" = (
@@ -18600,8 +18597,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction{
 	dir = 1
 	},
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "nmI" = (
@@ -18609,8 +18605,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction{
 	dir = 1
 	},
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "nnm" = (
@@ -34362,8 +34357,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
 	dir = 8
 	},
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "xde" = (

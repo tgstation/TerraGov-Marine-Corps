@@ -242,6 +242,9 @@
 /turf/open/shuttle/dropship/thirteen
 	icon_state = "rasputin13"
 
+/turf/open/shuttle/dropship/fourteen
+	icon_state = "floor6"
+
 /turf/open/shuttle/dropship/grating
 	icon = 'icons/turf/elevator.dmi'
 	icon_state = "floor_grating"

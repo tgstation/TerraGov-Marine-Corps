@@ -5652,8 +5652,7 @@
 	},
 /obj/item/reagent_containers/food/drinks/flask/vacuumflask,
 /obj/item/storage/box/cups,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "cIu" = (
@@ -7230,8 +7229,7 @@
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
-/turf/open/shuttle{
-	icon_state = "floor6"
+/turf/open/shuttle/dropship/fourteen{
 	},
 /area/lv624/lazarus/sandtemple)
 "eKd" = (
@@ -7506,8 +7504,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "eYX" = (
-/turf/open/shuttle{
-	icon_state = "floor6"
+/turf/open/shuttle/dropship/fourteen{
 	},
 /area/lv624/lazarus/sandtemple)
 "eZr" = (
@@ -11341,8 +11338,7 @@
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
-/turf/open/shuttle{
-	icon_state = "floor6"
+/turf/open/shuttle/dropship/fourteen{
 	},
 /area/lv624/lazarus/sandtemple)
 "jDK" = (
@@ -11774,8 +11770,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport2)
 "keK" = (
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "keT" = (
@@ -13660,8 +13655,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "mng" = (
@@ -13858,8 +13852,7 @@
 "mzN" = (
 /obj/machinery/vending/boozeomat,
 /obj/effect/decal/cleanable/cobweb2,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "mzV" = (
@@ -14126,8 +14119,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "mOs" = (
@@ -14335,8 +14327,7 @@
 /area/lv624/lazarus/main_hall)
 "nbt" = (
 /obj/machinery/vending/boozeomat,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "nbA" = (
@@ -15239,8 +15230,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "oqe" = (
@@ -15268,8 +15258,7 @@
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
-/turf/open/shuttle{
-	icon_state = "floor6"
+/turf/open/shuttle/dropship/fourteen{
 	},
 /area/lv624/lazarus/sandtemple)
 "org" = (
@@ -15425,8 +15414,7 @@
 	pixel_y = 32
 	},
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "oyI" = (
@@ -15800,8 +15788,7 @@
 	},
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "oYe" = (
@@ -17087,8 +17074,7 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_y = 4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "qJM" = (
@@ -18180,8 +18166,7 @@
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /obj/item/weapon/broken_bottle,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "rRL" = (
@@ -20411,8 +20396,7 @@
 "utE" = (
 /obj/structure/bed/stool,
 /obj/item/trash/cigbutt/cigarbutt,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "utH" = (
@@ -21329,8 +21313,7 @@
 "vDM" = (
 /obj/structure/bed/stool,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "vEv" = (
@@ -21589,8 +21572,7 @@
 /area/lv624/ground/jungle10)
 "vSk" = (
 /obj/structure/curtain/temple,
-/turf/open/shuttle{
-	icon_state = "floor6"
+/turf/open/shuttle/dropship/fourteen{
 	},
 /area/lv624/lazarus/sandtemple)
 "vSx" = (
@@ -21908,8 +21890,7 @@
 /area/lv624/lazarus/overgrown)
 "wiw" = (
 /obj/effect/ai_node,
-/turf/open/shuttle{
-	icon_state = "floor6"
+/turf/open/shuttle/dropship/fourteen{
 	},
 /area/lv624/lazarus/sandtemple)
 "wiQ" = (
@@ -21977,8 +21958,7 @@
 /area/lv624/lazarus/sleep_male)
 "wmg" = (
 /obj/effect/landmark/weed_node,
-/turf/open/shuttle{
-	icon_state = "floor6"
+/turf/open/shuttle/dropship/fourteen{
 	},
 /area/lv624/lazarus/sandtemple)
 "wmt" = (
@@ -22823,8 +22803,7 @@
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "xgM" = (
@@ -22983,8 +22962,7 @@
 "xop" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/lv624/lazarus/bar)
 "xoE" = (

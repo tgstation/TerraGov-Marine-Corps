@@ -361,8 +361,7 @@
 /area/bigredv2/outside/filtration_plant)
 "wk" = (
 /obj/structure/cryofeed,
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/bigredv2/outside/filtration_plant)
 "wY" = (
@@ -390,8 +389,7 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/bigredv2/outside/filtration_plant)
 "yj" = (
@@ -776,8 +774,7 @@
 	id = "FiltrationShutters";
 	name = "\improper Airlock Shutters"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
+/turf/open/floor/marking/delivery{
 	},
 /area/bigredv2/outside/filtration_plant)
 "SB" = (
