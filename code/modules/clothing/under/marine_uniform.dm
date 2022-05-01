@@ -167,7 +167,7 @@
 
 /obj/item/clothing/under/marine/officer/researcher
 	name = "researcher clothes"
-	desc = "A simple set of kevlar-weaved, hazmat-tested, EMF-augmented clothing worn by marine researchers. You suspect it's not as robust-proof as advertised."
+	desc = "A set of formal, yet comfy, clothing worn by scholars and researchers alike."
 	icon_state = "research_jumpsuit"
 
 /obj/item/clothing/under/whites
@@ -367,13 +367,6 @@
 	icon_state = "rdalt"
 	adjustment_variants = list()
 
-/obj/item/clothing/under/rank/marine_cmo
-	name = "marine chief medical officer jumpsuit"
-	desc = "It's made of a special fiber that provides minor protection against biohazards."
-	icon_state = "marine_cmo"
-	adjustment_variants = list(
-		"Half" = "_h",
-	)
 /obj/item/clothing/under/som
 	name = "\improper SoM uniform"
 	desc = "A heavily modified mining uniform based off the ones used by mining colonies."
