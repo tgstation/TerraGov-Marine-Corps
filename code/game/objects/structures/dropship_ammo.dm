@@ -428,7 +428,7 @@
 	desc = "The SM-17 'Fatty', an experimental missile utilising a supercooled tanglefoot payload. Harmless to marines, but destroys resin walls around the impact site."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 200
+	point_cost = 150
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
