@@ -1153,8 +1153,10 @@
 	barricade_type = "folding"
 	///Whether this barricade has damaged states ///gotta make this part work, then can remove
 	can_change_dmg_state = TRUE
+	can_wire = TRUE
+	is_wired = FALSE
 	var/flags_item = IS_DEPLOYABLE
-	var/obj/item/internal_item
+	var/obj/item/weapon/shield/riot/marine/deployable/internal_item
 
 /obj/structure/barricade/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
@@ -1162,6 +1164,10 @@
 
 	name = internal_item.name
 	desc = internal_item.desc
+	//if the shield is wired, it deploys wired
+	if (internal_item.is_wired)
+		can_wire = FALSE
+		is_wired = TRUE
 
 ///Dissassembles the device
 /obj/structure/barricade/deployable/proc/disassemble(mob/user)
@@ -1186,3 +1192,82 @@
 		to_chat(user, "<span class = 'notice'>You cannot disassemble [src] without a wrench.</span>")
 		return
 	disassemble(user)
+
+obj/structure/barricade/deployable/wire()
+	. = ..()
+	//makes the shield item wired as well
+	internal_item.is_wired = TRUE
+	internal_item.modify_max_integrity(max_integrity + 50)
+
+//repairable but not upgradable
+/obj/structure/barricade/deployable/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/metal_sheets = I
+
+		if(metal_sheets.get_amount() < 2)
+			to_chat(user, span_warning("You need two metal sheets to repair the base of [src]."))
+			return FALSE
+
+		visible_message(span_notice("[user] begins to repair the base of [src]."))
+
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+			return FALSE
+
+		if(!metal_sheets.use(2))
+			return FALSE
+
+		repair_damage(max_integrity * 0.3)
+		visible_message(span_notice("[user] repairs the base of [src]."))
+
+//repair when not severely damaged
+/obj/structure/barricade/deployable/welder_act(mob/living/user, obj/item/I)
+	if(user.do_actions)
+		return FALSE
+
+	var/obj/item/tool/weldingtool/WT = I
+
+	if(!WT.isOn())
+		return FALSE
+
+	for(var/obj/effect/xenomorph/acid/A in loc)
+		if(A.acid_t == src)
+			to_chat(user, "You can't get near that, it's melting!")
+			return TRUE
+
+	if(obj_integrity <= max_integrity * 0.3)
+		to_chat(user, span_warning("[src] has sustained too much structural damage and needs more metal plates to be repaired."))
+		return TRUE
+
+	if(obj_integrity == max_integrity)
+		to_chat(user, span_warning("[src] doesn't need repairs."))
+		return TRUE
+
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
+		span_notice("You fumble around figuring out how to repair [src]."))
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
+			return TRUE
+
+	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
+	span_notice("You begin repairing the damage to [src]."))
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+		return TRUE
+
+	if(obj_integrity <= max_integrity * 0.3 || obj_integrity == max_integrity)
+		return TRUE
+
+	if(!WT.remove_fuel(2, user))
+		to_chat(user, span_warning("Not enough fuel to finish the task."))
+		return TRUE
+
+	user.visible_message(span_notice("[user] repairs some damage on [src]."),
+	span_notice("You repair [src]."))
+	repair_damage(150)
+	update_icon()
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	return TRUE

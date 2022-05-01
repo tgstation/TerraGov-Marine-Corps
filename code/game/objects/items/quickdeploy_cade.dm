@@ -75,8 +75,9 @@
 	max_integrity = 200
 	integrity_failure = 50
 	var/deployed_item = /obj/structure/barricade/deployable
-	var/deploy_time = 0
-	var/undeploy_time = 0
+	var/deploy_time = 1 SECONDS
+	var/undeploy_time = 1 SECONDS
+	var/is_wired = FALSE
 	flags_item = IS_DEPLOYABLE
 
 
