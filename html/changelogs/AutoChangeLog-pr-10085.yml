@@ -1,0 +1,6 @@
+author: "Vondiech"
+delete-after: True
+changes: 
+  - balance: "Marines can no longer shoot through door assemblies."
+  - balance: "Xenos can now slash door assemblies."
+  - balance: "Door assemblies now extremely fragile in combat."
