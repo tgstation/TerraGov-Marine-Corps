@@ -3619,6 +3619,7 @@
 "bfS" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
+/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "bfU" = (
@@ -9164,11 +9165,6 @@
 /obj/structure/jungle/vines/heavy,
 /turf/closed/wall,
 /area/lv624/ground/jungle4)
-"gSD" = (
-/obj/structure/jungle/vines,
-/obj/structure/window/framed/colony,
-/turf/open/floor/plating,
-/area/lv624/ground/jungle9)
 "gSY" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/airlock/sandstone{
@@ -9765,9 +9761,10 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "hLs" = (
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/tile/dark,
-/area/lv624/ground/sand6)
+/obj/structure/jungle/vines,
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/lv624/ground/jungle9)
 "hMa" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
@@ -49012,7 +49009,7 @@ xMs
 aES
 aES
 rpf
-gSD
+hLs
 jQr
 pdN
 vcl
@@ -53486,7 +53483,7 @@ aeV
 afv
 aog
 agB
-hLs
+agB
 agB
 agB
 aiD
