@@ -324,8 +324,7 @@
 		found = locate(/obj/item/armor_module/storage) in contents
 	if(found)
 		return found.do_quick_equip()
-	else
-		return src
+	return src
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)

@@ -147,8 +147,7 @@
 		found = locate(/obj/item/armor_module/storage/uniform/knifeharness) in contents
 	if(found)
 		return found.do_quick_equip()
-	else
-		return src
+	return src
 
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)
 	if (!istype(user))
