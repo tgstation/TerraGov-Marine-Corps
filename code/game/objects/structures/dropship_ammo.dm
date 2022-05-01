@@ -280,9 +280,9 @@
 /obj/structure/ship_ammo/minirocket/railgun
 	name = "Railgun Ammo"
 	desc = "This is not meant to exist"
-	ammo_count = 20
-	max_ammo_count = 20
-	ammo_used_per_firing = 1
+	ammo_count = 400
+	max_ammo_count = 400
+	ammo_used_per_firing = 10
 	point_cost = 0
 	travelling_time = 0 SECONDS
 

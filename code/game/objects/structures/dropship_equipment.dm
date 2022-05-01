@@ -482,11 +482,12 @@
 /obj/structure/dropship_equipment/electronics/spotlights
 	name = "spotlight"
 	icon_state = "spotlights"
-	desc = "A set of highpowered spotlights to illuminate large areas. Fits on electronics attach points of dropships. Moving this will require a powerloader."
+	desc = "A set of highpowered spotlights to illuminate large areas. Fits on weapon attach points of dropships. Moving this will require a powerloader."
 	dropship_equipment_flags = IS_INTERACTABLE
 	point_cost = 300
 	var/spotlights_cooldown
-	var/brightness = 11
+	var/brightness = 5
+	light_range = 10
 
 /obj/structure/dropship_equipment/electronics/spotlights/equipment_interact(mob/user)
 	if(spotlights_cooldown > world.time)
@@ -505,11 +506,13 @@
 /obj/structure/dropship_equipment/electronics/spotlights/update_equipment()
 	. = ..()
 	if(ship_base)
+		setDir(ship_base.dir)
 		if(luminosity != brightness)
 			icon_state = "spotlights_off"
 		else
 			icon_state = "spotlights_on"
 	else
+		setDir(initial(dir))
 		icon_state = "spotlights"
 		if(luminosity)
 			set_light(0)
@@ -693,7 +696,7 @@
 	icon = 'icons/Marine/mainship_props64.dmi'
 	firing_sound = 'sound/weapons/gunship_laser.ogg'
 	firing_delay = 50 //5 seconds
-	point_cost = 500
+	point_cost = 600
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_LASER_BATTERY
 
