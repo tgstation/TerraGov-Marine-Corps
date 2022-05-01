@@ -330,11 +330,11 @@
 "ahH" = (
 /obj/structure/morgue/sarcophagus,
 /obj/item/weapon/combat_knife{
-	desc = "A curved blade made of a strange material. It looks both old and very sharp.";
-	force = 30;
-	icon_state = "unathiknife";
+	desc = "Woah! Holy shit! A glowing alien sword! How fucking cool is that, and it's super sharp!";
+	force = 85;
+	icon_state = "blade";
 	name = "\improper alien blade";
-	throwforce = 26
+	throwforce = 45
 	},
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
