@@ -18,6 +18,7 @@
 		if(!usr.canmove || usr.stat || usr.restrained())
 			return 0
 
+		//Why???
 		switch(icon_state)
 			if("labcoat_open")
 				src.icon_state = "labcoat"
