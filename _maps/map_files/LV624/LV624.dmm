@@ -4806,8 +4806,7 @@
 	name = "\improper Blast Door"
 	},
 /obj/structure/jungle/vines,
-/turf/open/floor{
-	icon_state = "freezerfloor"
+/turf/open/floor/freezer{
 	},
 /area/lv624/lazarus/overgrown)
 "bIS" = (
@@ -11047,8 +11046,7 @@
 	dir = 8;
 	name = "\improper Leisure Dome"
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
+/turf/open/floor/freezer{
 	},
 /area/lv624/lazarus/overgrown)
 "jnU" = (
@@ -21165,8 +21163,7 @@
 	dir = 1;
 	name = "\improper Leisure Dome"
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
+/turf/open/floor/freezer{
 	},
 /area/lv624/lazarus/overgrown)
 "vsi" = (

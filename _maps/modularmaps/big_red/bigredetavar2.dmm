@@ -401,8 +401,7 @@
 "pR" = (
 /obj/machinery/washing_machine,
 /obj/item/clothing/under/darkred,
-/turf/open/floor{
-	icon_state = "freezerfloor"
+/turf/open/floor/freezer{
 	},
 /area/bigredv2/outside/general_offices)
 "pW" = (
@@ -649,8 +648,7 @@
 /area/bigredv2/outside/general_offices)
 "Al" = (
 /obj/effect/ai_node,
-/turf/open/floor{
-	icon_state = "freezerfloor"
+/turf/open/floor/freezer{
 	},
 /area/bigredv2/outside/general_offices)
 "Ap" = (
@@ -677,8 +675,7 @@
 	dir = 4;
 	name = "\improper Dormitories Lavatory"
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
+/turf/open/floor/freezer{
 	},
 /area/bigredv2/outside/general_offices)
 "AW" = (
@@ -715,8 +712,7 @@
 "Ct" = (
 /obj/machinery/washing_machine,
 /obj/item/clothing/under/brown,
-/turf/open/floor{
-	icon_state = "freezerfloor"
+/turf/open/floor/freezer{
 	},
 /area/bigredv2/outside/general_offices)
 "CJ" = (
@@ -990,8 +986,7 @@
 /area/bigredv2/outside/hydroponics)
 "Mw" = (
 /obj/machinery/washing_machine,
-/turf/open/floor{
-	icon_state = "freezerfloor"
+/turf/open/floor/freezer{
 	},
 /area/bigredv2/outside/general_offices)
 "ML" = (
@@ -1085,8 +1080,7 @@
 	dir = 1;
 	name = "\improper Dormitories Bedroom"
 	},
-/turf/open/floor{
-	icon_state = "wood"
+/turf/open/floor/wood{
 	},
 /area/bigredv2/outside/general_offices)
 "QB" = (
@@ -1125,8 +1119,7 @@
 "So" = (
 /obj/machinery/washing_machine,
 /obj/item/clothing/under/lightbrown,
-/turf/open/floor{
-	icon_state = "freezerfloor"
+/turf/open/floor/freezer{
 	},
 /area/bigredv2/outside/general_offices)
 "Su" = (
@@ -1139,8 +1132,7 @@
 /area/bigredv2/outside/general_offices)
 "Sw" = (
 /obj/item/clothing/under/darkred,
-/turf/open/floor{
-	icon_state = "freezerfloor"
+/turf/open/floor/freezer{
 	},
 /area/bigredv2/outside/general_offices)
 "Th" = (
@@ -1288,8 +1280,7 @@
 	},
 /area/bigredv2/outside/general_offices)
 "XT" = (
-/turf/open/floor{
-	icon_state = "freezerfloor"
+/turf/open/floor/freezer{
 	},
 /area/bigredv2/outside/general_offices)
 "Yq" = (
