@@ -57,10 +57,9 @@
 /area/bigredv2/outside/filtration_plant)
 "eE" = (
 /obj/structure/reagent_dispensers/watertank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "fl" = (
 /obj/effect/decal/cleanable/dirt,
@@ -128,10 +127,9 @@
 	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "jH" = (
 /turf/closed/wall,
@@ -151,10 +149,9 @@
 /area/bigredv2/outside/se)
 "lf" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "lv" = (
 /obj/machinery/light{
@@ -194,8 +191,7 @@
 "nw" = (
 /obj/machinery/door_control{
 	id = "FiltrationShutters";
-	name = "Airlock Shutters";
-	pixel_y = 25
+	name = "Airlock Shutters"
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -237,12 +233,12 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "pM" = (
-/obj/machinery/door_control{
+/obj/structure/table,
+/obj/machinery/door_control/old{
 	id = "FiltrationShutters";
 	name = "Airlock Shutters";
-	pixel_x = -32
+	pixel_y = 2
 	},
-/obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "pX" = (
@@ -329,10 +325,9 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "uE" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "uK" = (
 /obj/machinery/door/airlock/mainship/engineering{
@@ -355,10 +350,9 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "vB" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "wb" = (
 /obj/effect/landmark/weed_node,
@@ -397,10 +391,9 @@
 /area/bigredv2/outside/filtration_plant)
 "xF" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "xP" = (
 /obj/structure/table,
@@ -464,10 +457,9 @@
 /area/bigredv2/outside/filtration_plant)
 "BB" = (
 /obj/structure/cargo_container/ch_red,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "BK" = (
 /obj/effect/landmark/weed_node,
@@ -519,10 +511,9 @@
 /area/bigredv2/outside/filtration_plant)
 "Ez" = (
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "EI" = (
 /obj/structure/dispenser/oxygen,
@@ -695,27 +686,24 @@
 /obj/structure/cargo_container/ch_red{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "Nu" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Nw" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "Nz" = (
 /obj/structure/dispenser/oxygen,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "NR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -907,10 +895,9 @@
 "Zj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "ZA" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1019,7 +1006,7 @@ NR
 Rz
 Uk
 CZ
-YQ
+pM
 Kl
 nw
 Lx
@@ -1046,7 +1033,7 @@ kN
 Rz
 Rz
 BK
-pM
+eB
 Kl
 Ab
 Dx
