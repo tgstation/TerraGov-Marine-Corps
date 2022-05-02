@@ -84,3 +84,13 @@
 	name = "back fuel tank (X)"
 	desc = "A specialized fuel tank of ultra thick napthal type X for use with the FL-84 flamethrower and FL-240 incinerator unit."
 	default_ammo = /datum/ammo/flamethrower/blue
+
+
+/obj/item/ammo_magazine/flamer_tank/internal	// for engie pyro bag
+	name = "internal fuel tank"
+	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, you shouldn't see this though."
+	icon_state = ""
+	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
+	max_rounds = 260
+	current_rounds = 260
+	reload_delay = 2 SECONDS

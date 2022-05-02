@@ -115,7 +115,6 @@
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own snowflake back sprites
 
 /obj/item/storage/holster/backholster/rpg/full/Initialize()
 	. = ..()
@@ -124,6 +123,70 @@
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+
+/obj/item/storage/holster/backholster/mortar
+	name = "\improper TGMC mortar bag"
+	desc = "This backpack can hold 11 80mm mortar shells, in addition to the mortar itself."
+	icon_state = "marine_rocket"
+	item_state = "marine_rocket"
+	base_icon = "marine_rocket"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = null
+	max_storage_space = 26
+	access_delay = 0
+	holsterable_allowed = list(/obj/item/mortar_kit,)
+	bypass_w_limit = list(/obj/item/mortar_kit,)
+	storage_type_limits = list(/obj/item/mortar_kit = 1,)
+	can_hold = list(
+		/obj/item/mortal_shell/he,
+		/obj/item/mortal_shell/incendiary,
+		/obj/item/mortal_shell/smoke,
+		/obj/item/mortal_shell/flare,
+		/obj/item/mortal_shell/plasmaloss,
+		/obj/item/mortar_kit,
+	)
+
+/obj/item/storage/holster/backholster/mortar/full/Initialize()
+	. = ..()
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/plasmaloss(src)
+	var/obj/item/new_item = new /obj/item/mortar_kit(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
+
+/obj/item/storage/holster/backholster/flamer
+	name = "\improper TGMC flamethrower bag"
+	desc = "This backpack has a built in large capacity fuel tank, and can carry its accompanying flamethrower as well as a modest general storage capacity."
+	icon_state = "marine_rocket"
+	item_state = "marine_rocket"
+	base_icon = "marine_rocket"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = null
+	max_storage_space = 18
+	max_w_class = 4
+	access_delay = 0
+	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/engineer,)
+	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/engineer,)
+	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/engineer = 1,)
+	var/obj/item/ammo_magazine/flamer_tank/internal/tank = null
+
+/obj/item/storage/holster/backholster/flamer/Initialize()
+	. = ..()
+	tank = new
+	update_icon() //only needed if there/s some fuel level sprite, which would be cool
+
+/obj/item/storage/holster/backholster/flamer/full/Initialize()
+	. = ..()
+	var/obj/item/new_item = new /obj/item/weapon/gun/flamer/big_flamer/engineer(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 //one slot holsters

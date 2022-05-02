@@ -297,6 +297,32 @@
 	icon_state = "m240"
 	item_state = "m240"
 
+//dedicated engineer pyro kit flamer
+/obj/item/weapon/gun/flamer/big_flamer/engineer
+	name = "\improper FL-242 incinerator unit"
+	desc = "The FL-242 placeholder blah"
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank,
+		/obj/item/ammo_magazine/flamer_tank/large,
+		/obj/item/ammo_magazine/flamer_tank/large/X,
+		/obj/item/ammo_magazine/flamer_tank/backtank,
+		/obj/item/ammo_magazine/flamer_tank/backtank/X,
+		/obj/item/ammo_magazine/flamer_tank/internal,
+	)
+
+/////wip/////
+/obj/item/weapon/gun/flamer/big_flamer/engineer/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the backpack to the gun will load the gun with the internal mag.
+	. = ..()
+	if(!istype(W, /obj/item/storage/holster/backholster/flamer))
+		return
+
+	var/obj/item/storage/holster/backholster/flamer/D = W
+	var/obj/item/ammo_magazine/flamer_tank/internal/tank = D.tank
+	if(tank.current_rounds <= 0)
+		to_chat(user, span_warning("The internal fuel tank is empty!"))
+		return
+	reload(tank, usr)
+
 /obj/item/weapon/gun/flamer/mini_flamer
 	name = "mini flamethrower"
 	desc = "A weapon-mounted refillable flamethrower attachment.\nIt is designed for short bursts."

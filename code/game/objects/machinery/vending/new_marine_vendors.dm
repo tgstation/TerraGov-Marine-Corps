@@ -805,6 +805,44 @@
 		/obj/item/clothing/suit/modular/xenonauten/heavy,
 	)
 
+//Gear kits
+/obj/effect/essentials_set/minelayer
+	desc = "For when you REALLY need to keep someone out. Contains a M21 APRDS Minelayer and 20 claymores."
+	spawned_gear_list = list(
+		/obj/item/minelayer,
+		/obj/item/storage/box/explosive_mines/large,
+		/obj/item/storage/box/explosive_mines/large,
+	)
+
+/obj/effect/essentials_set/builder
+	desc = "A bulky set of construction materials, for dedicated fortification building. Contains 150 metal and 50 plasteel"
+	spawned_gear_list = list(
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/plasteel/large_stack,
+	)
+
+/obj/effect/essentials_set/mortar
+	desc = "Rain death down on the heads of your enemies (or friends) with the mobile fire support of the mortar kit. Contains a mortar bag loaded with a mortar, rangefinder and a variety of shells."
+	spawned_gear_list = list(
+		/obj/item/binoculars/tactical/range,
+		/obj/item/storage/holster/backholster/mortar/full,
+	)
+
+/obj/effect/essentials_set/plasma_cutter
+	desc = "Tear walls apart whether they're steel or resin, and make your enemy's builders seethe with the mighty plasma cutter. Contains one plasma cutter and a set of superior welding goggles."
+	spawned_gear_list = list(
+		/obj/item/tool/pickaxe/plasmacutter,
+		/obj/item/clothing/glasses/welding/superior,
+	)
+
+/obj/effect/essentials_set/pyro
+	desc = "For the engineer with a love of fire in all its forms. Contains a flamethrower bag with a FLAMERNAME and an assortment of incendiary grenades. Fire extinguisher sold separately."
+	spawned_gear_list = list(
+		/obj/item/storage/holster/backholster/flamer/full,
+	)
+
 /obj/effect/modular_set
 	///List of all gear to spawn
 	var/list/spawned_gear_list = list()
