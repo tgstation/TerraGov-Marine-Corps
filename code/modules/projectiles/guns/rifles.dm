@@ -158,7 +158,7 @@
 	scatter = 0
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
-	aim_slowdown = 0.4
+	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
 
 	placed_overlay_iconstate = "t12"
