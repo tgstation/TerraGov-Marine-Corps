@@ -101,7 +101,8 @@
 /datum/action/xeno_action/activable/plant_weeds/ai_should_use(target)
 	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
-	if(locate(/obj/effect/alien/weeds) in owner.loc)
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(owner_xeno.loc_weeds_type)
 		return ..()
 	return TRUE
 
@@ -971,7 +972,7 @@
 	if(!current_turf.check_alien_construction(owner))
 		return fail_activate()
 
-	if(!(locate(/obj/effect/alien/weeds) in current_turf))
+	if(!xeno.loc_weeds_type)
 		to_chat(user, span_xenowarning("Our eggs wouldn't grow well enough here. Lay them on resin."))
 		return fail_activate()
 
@@ -981,7 +982,7 @@
 	if(!do_after(owner, 2.5 SECONDS, TRUE, current_turf, BUSY_ICON_BUILD, extra_checks = CALLBACK(current_turf, /turf/proc/check_alien_construction, owner)))
 		return fail_activate()
 
-	if(!locate(/obj/effect/alien/weeds) in current_turf)
+	if(!xeno.loc_weeds_type)
 		return fail_activate()
 
 	new /obj/effect/alien/egg/hugger(current_turf, xeno.hivenumber)

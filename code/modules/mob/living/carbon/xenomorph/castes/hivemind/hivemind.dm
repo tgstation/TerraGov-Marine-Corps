@@ -69,7 +69,7 @@
 	var/turf/T = loc
 	if(!istype(T))
 		return
-	if(status_flags & INCORPOREAL || locate(/obj/effect/alien/weeds) in T)
+	if(status_flags & INCORPOREAL || loc_weeds_type)
 		if(health < minimum_health + maxHealth)
 			setBruteLoss(0)
 			setFireLoss(-minimum_health)

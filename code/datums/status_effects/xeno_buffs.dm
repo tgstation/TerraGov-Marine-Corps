@@ -433,7 +433,7 @@
 		qdel(src)
 		return
 
-	if(!locate(/obj/effect/alien/weeds) in patient.loc) //Doesn't work if we're not on weeds
+	if(!patient.loc_weeds_type) //Doesn't work if we're not on weeds
 		return
 
 	sunder_ticks_remaining-- //Decrement sunder ticks
