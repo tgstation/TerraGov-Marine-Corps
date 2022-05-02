@@ -169,11 +169,11 @@
 		..()
 
 /mob/living/carbon/human/adjustCloneLoss(amount)
+	..()
+
 	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
 		cloneloss = 0
 		return
-	else
-		..()
 
 
 /mob/living/carbon/human/adjustOxyLoss(amount, forced = FALSE)
