@@ -65,8 +65,8 @@
 		replace_by_ai()
 	if(z) //Larva are initiated in null space
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
-	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/update_weeds_adjacent_removed)
-	RegisterSignal(src, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, .proc/update_weeds_movement)
+	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/handle_weeds_adjacent_removed)
+	RegisterSignal(src, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, .proc/handle_weeds_on_movement)
 
 ///Change the caste of the xeno. If restore health is true, then health is set to the new max health
 /mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
@@ -368,7 +368,7 @@
 /mob/living/carbon/xenomorph/Moved(atom/old_loc, movement_dir)
 	if(is_zoomed)
 		zoom_out()
-	update_weeds_movement()
+	handle_weeds_on_movement()
 	return ..()
 
 /mob/living/carbon/xenomorph/set_stat(new_stat)
@@ -390,14 +390,16 @@
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 	a_intent = INTENT_HARM
 
-/mob/living/carbon/xenomorph/proc/update_weeds_adjacent_removed(datum/source)
+/// Handles logic for weeds nearby the xeno getting removed
+/mob/living/carbon/xenomorph/proc/handle_weeds_adjacent_removed(datum/source)
 	SIGNAL_HANDLER
 	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
 	if(!QDELING(found_weed))
 		return
 	loc_weeds_type = null
 
-/mob/living/carbon/xenomorph/proc/update_weeds_movement(datum/source)
+/// Handles logic for the xeno moving to a new weeds tile
+/mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
 	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
 	loc_weeds_type = found_weed?.type
