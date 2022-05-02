@@ -288,6 +288,15 @@
 	name = "\improper Command Airlock"
 	icon_state = "command_locked"
 
+/obj/structure/prop/mainship/telecomms
+	name = "\improper Command Airlock"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "broadcaster_send"
+
+/obj/structure/prop/mainship/telecomms/bus
+	name = "\improper Command Airlock"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "bus"
 
 /obj/structure/prop/mainship/suit_storage_prop
 	name = "Suit Storage Unit"
@@ -335,6 +344,12 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "carpprop"
 	density = TRUE
+
+/obj/structure/prop/templedoor
+	name = "Strange Temple"
+	icon = 'icons/obj/doors/Doorsand.dmi'
+	icon_state = "door_open"
+	density = FALSE
 
 /obj/structure/prop/mainship/propcarp/Initialize(mapload) //slightly randomize carp to simulate life
 	. = ..()

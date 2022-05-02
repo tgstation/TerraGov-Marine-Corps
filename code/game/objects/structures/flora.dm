@@ -488,10 +488,82 @@
 	icon_tag = "cactus"
 	variations = 12
 
+/obj/structure/flora/desert/cactus/one
+	icon_state = "cactus_1"
+
+/obj/structure/flora/desert/cactus/two
+	icon_state = "cactus_2"
+
+/obj/structure/flora/desert/cactus/three
+	icon_state = "cactus_3"
+
+/obj/structure/flora/desert/cactus/four
+	icon_state = "cactus_4"
+
+/obj/structure/flora/desert/cactus/five
+	icon_state = "cactus_5"
+
+/obj/structure/flora/desert/cactus/six
+	icon_state = "cactus_6"
+
+/obj/structure/flora/desert/cactus/seven
+	icon_state = "cactus_7"
+
+/obj/structure/flora/desert/cactus/eight
+	icon_state = "cactus_8"
+
+/obj/structure/flora/desert/cactus/nine
+	icon_state = "cactus_9"
+
+/obj/structure/flora/desert/cactus/ten
+	icon_state = "cactus_10"
+
+/obj/structure/flora/desert/cactus/eleven
+	icon_state = "cactus_11"
+
+/obj/structure/flora/desert/cactus/twelve
+	icon_state = "cactus_12"
+
 /obj/structure/flora/desert/cactus/multiple
 	name = "cacti"
 	icon_state = "cactus_1"
 	icon_tag = "cacti"
+
+/obj/structure/flora/desert/cactus/multiple/one
+	icon_state = "cacti_1"
+
+/obj/structure/flora/desert/cactus/multiple/two
+	icon_state = "cacti_2"
+
+/obj/structure/flora/desert/cactus/multiple/three
+	icon_state = "cacti_3"
+
+/obj/structure/flora/desert/cactus/multiple/four
+	icon_state = "cacti_4"
+
+/obj/structure/flora/desert/cactus/multiple/five
+	icon_state = "cacti_5"
+
+/obj/structure/flora/desert/cactus/multiple/six
+	icon_state = "cacti_6"
+
+/obj/structure/flora/desert/cactus/multiple/seven
+	icon_state = "cacti_7"
+
+/obj/structure/flora/desert/cactus/multiple/eight
+	icon_state = "cacti_8"
+
+/obj/structure/flora/desert/cactus/multiple/nine
+	icon_state = "cacti_9"
+
+/obj/structure/flora/desert/cactus/multiple/ten
+	icon_state = "cacti_10"
+
+/obj/structure/flora/desert/cactus/multiple/eleven
+	icon_state = "cacti_11"
+
+/obj/structure/flora/desert/cactus/multiple/twelve
+	icon_state = "cacti_12"
 
 
 //Jungle (Whiskey Outpost)
