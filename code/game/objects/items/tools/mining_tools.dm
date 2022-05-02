@@ -87,7 +87,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 100.0
-	damtype = ENERGY
+	damtype = BRUTE //Note to self, change into burn in the future after making all fire armor zero
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
@@ -233,7 +233,7 @@
 		icon_state = "plasma_cutter_on"
 		powered = TRUE
 		force = 100
-		damtype = ENERGY
+		damtype = BRUTE
 		heat = 3800
 		set_light_on(TRUE)
 
