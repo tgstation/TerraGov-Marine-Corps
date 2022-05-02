@@ -219,7 +219,6 @@
 	if(.)
 		I.pixel_x = initial(I.pixel_x) + rand(-6,6)
 		I.pixel_y = initial(I.pixel_y) + rand(-6,6)
-	I.do_drop_animation(src)
 
 /**
  * For when the item will be immediately placed in a loc other than the ground.

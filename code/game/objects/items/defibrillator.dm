@@ -181,7 +181,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead. No remedy possible."))
 		return
 
-	if(!H.has_working_organs() && !isrobot(H))
+	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
@@ -192,10 +192,10 @@
 	var/mob/dead/observer/G = H.get_ghost()
 	if(istype(G))
 		notify_ghost(G, "<font size=3>Someone is trying to revive your body. Return to it if you want to be resurrected!</font>", ghost_sound = 'sound/effects/gladosmarinerevive.ogg', enter_text = "Enter", enter_link = "reentercorpse=1", source = H, action = NOTIFY_JUMP)
-	else if(!H.client)
+	//else if(!H.client)
 		//We couldn't find a suitable ghost, this means the person is not returning
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR."))
-		return
+		//user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient has a DNR."))
+		//return
 
 	user.visible_message(span_notice("[user] starts setting up the paddles on [H]'s chest."),
 	span_notice("You start setting up the paddles on [H]'s chest."))
@@ -228,7 +228,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much. No remedy possible."))
 		return
 
-	if(!H.has_working_organs() && !isrobot(H))
+	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
@@ -237,7 +237,7 @@
 		if(braincase.limb_status & LIMB_DESTROYED)
 			user.visible_message("[icon2html(src, viewers(user))] \The [src] buzzes: Positronic brain missing, cannot reboot.")
 			return
-
+/*
 	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: No soul detected, Attempting to revive..."))
 
@@ -253,7 +253,7 @@
 	if(!H.client) //Freak case, no client at all. This is a braindead mob (like a colonist)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. No soul detected."))
 		return
-
+*/
 	//At this point, the defibrillator is ready to work
 	if(!issynth(H))
 		H.adjustBruteLoss(-defib_heal_amt)
