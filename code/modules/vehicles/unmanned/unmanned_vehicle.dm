@@ -1,6 +1,6 @@
 
 /obj/vehicle/unmanned
-	name = "unmanned vehicle"
+	name = "UV-L Iguana"
 	desc = "A small remote-controllable vehicle, usually owned by the TGMC and other major armies."
 	icon = 'icons/obj/unmanned_vehicles.dmi'
 	icon_state = "light_uv"
@@ -10,7 +10,7 @@
 	light_power = 3
 	light_system = MOVABLE_LIGHT
 	move_delay = 2.5	//set this to limit the speed of the vehicle
-	max_integrity = 300
+	max_integrity = 150
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list("melee" = 25, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
@@ -286,7 +286,7 @@
 		return
 	if(!I.use_tool(src, user, 0, volume=50, amount=1))
 		return TRUE
-	repair_damage(10)
+	repair_damage(50)
 	if(obj_integrity == max_integrity)
 		balloon_alert_to_viewers("Fully repaired!")
 	else
@@ -295,15 +295,15 @@
 	return TRUE
 
 /obj/vehicle/unmanned/medium
-	name = "medium unmanned vehicle"
+	name = "UV-M Gecko "
 	icon_state = "medium_uv"
 	move_delay = 3
 	max_rounds = 200
-	max_integrity = 400
+	max_integrity = 200
 
 /obj/vehicle/unmanned/heavy
-	name = "heavy unmanned vehicle"
+	name = "UV-H Komodo"
 	icon_state = "heavy_uv"
-	move_delay = 3.5
+	move_delay = 5
 	max_rounds = 200
-	max_integrity = 600
+	max_integrity = 300

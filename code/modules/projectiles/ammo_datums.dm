@@ -1631,17 +1631,6 @@ datum/ammo/bullet/revolver/tp44
 		var/mob/living/carbon/xenomorph/X = M
 		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
 
-
-/datum/ammo/energy/droidblast
-	name = "energetic plasma bolt"
-	icon_state = "pulse2"
-	hud_state = "pulse"
-	damage = 45
-	max_range = 40
-	penetration = 50
-	sundering = 20
-	bullet_color = COLOR_PULSE_BLUE
-
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
 	icon_state = "laser"
