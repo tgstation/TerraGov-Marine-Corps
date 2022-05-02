@@ -5030,7 +5030,6 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport)
 "bUp" = (
-/obj/effect/landmark/nuke_spawn,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
@@ -8549,9 +8548,6 @@
 	name = "Corporate Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/corporate_affairs)
 "ghC" = (
@@ -9764,9 +9760,10 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "hLs" = (
-/obj/machinery/computer/nuke_disk_generator/red,
-/turf/open/floor/wood,
-/area/lv624/lazarus/corporate_affairs)
+/obj/structure/jungle/vines,
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/lv624/ground/jungle9)
 "hMa" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
@@ -11556,12 +11553,13 @@
 	},
 /area/lv624/lazarus/research)
 "jQr" = (
-/obj/structure/window/framed/colony,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
 /area/lv624/lazarus/fitness)
 "jQy" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
@@ -13216,6 +13214,7 @@
 "lOD" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
+/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -15544,6 +15543,7 @@
 /area/lv624/ground/jungle8)
 "oHK" = (
 /obj/item/frame/table/wood,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "oHO" = (
@@ -15903,8 +15903,8 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "pdN" = (
-/obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 1;
 	name = "\improper Leisure Dome"
 	},
 /turf/open/floor/tile/purple/whitepurple{
@@ -17865,10 +17865,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "rDc" = (
-/obj/structure/table,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -18075,7 +18075,7 @@
 /area/lv624/ground/sand8)
 "rNb" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/armory)
 "rNs" = (
@@ -40679,7 +40679,7 @@ haS
 oUs
 dUQ
 vqz
-hLs
+pJt
 pJt
 oGQ
 uGM
@@ -41023,7 +41023,7 @@ xTG
 cIl
 cIl
 cIl
-osS
+uGM
 sHv
 ghS
 ghS
@@ -41377,7 +41377,7 @@ eYL
 cIl
 cIl
 cIl
-osS
+uGM
 jhE
 gKi
 xRq
@@ -48832,7 +48832,7 @@ vUs
 xjn
 vcl
 vcl
-vUs
+wgH
 xPn
 the
 wgH
@@ -49008,8 +49008,8 @@ aES
 xMs
 aES
 aES
-aET
 rpf
+hLs
 jQr
 pdN
 vcl
