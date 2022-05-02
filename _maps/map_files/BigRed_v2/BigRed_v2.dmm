@@ -450,9 +450,8 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "aeV" = (
@@ -3201,9 +3200,8 @@
 /area/bigredv2/caves/lambda_lab)
 "asq" = (
 /obj/structure/table/woodentable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "asr" = (
@@ -3828,17 +3826,15 @@
 "awA" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/pen,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/bigredv2/caves/lambda_lab)
 "awB" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/coffee,
 /obj/item/phone,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "awC" = (
@@ -4675,15 +4671,13 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDv" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDw" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDy" = (
@@ -4697,9 +4691,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "aDA" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDQ" = (
@@ -4800,9 +4793,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "aEl" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "aEo" = (
@@ -5323,9 +5315,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "aHJ" = (
@@ -5548,9 +5539,8 @@
 /area/bigredv2/outside/c)
 "aIq" = (
 /obj/structure/musician/piano,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "aIr" = (
@@ -12415,9 +12405,8 @@
 	},
 /area/bigredv2/outside/e)
 "eyt" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "eyz" = (
@@ -12439,9 +12428,8 @@
 	},
 /area/bigredv2/caves/southwest)
 "eIG" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "eIN" = (
@@ -12540,9 +12528,8 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "fhY" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "fjI" = (
@@ -12583,9 +12570,8 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "fpO" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "fra" = (
@@ -12623,8 +12609,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "fDJ" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/bigredv2/outside/bar)
 "fES" = (
@@ -12662,9 +12647,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "fLz" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "fMu" = (
@@ -13485,9 +13469,8 @@
 /area/bigredv2/caves/lambda_lab)
 "ltt" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "lvn" = (
@@ -15018,8 +15001,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "vjn" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/bigredv2/outside/bar)
 "vmk" = (

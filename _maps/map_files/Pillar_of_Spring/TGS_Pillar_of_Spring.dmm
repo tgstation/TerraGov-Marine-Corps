@@ -2715,9 +2715,8 @@
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
 /obj/item/armor_module/storage/uniform/holster,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "iT" = (
@@ -2759,9 +2758,8 @@
 /obj/effect/landmark/start/job/corporateliaison,
 /obj/structure/bed/fancy,
 /obj/item/toy/plush/farwa,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "iZ" = (
@@ -2917,9 +2915,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "jB" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "jC" = (
@@ -2933,8 +2930,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "jE" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/command/corporateliaison)
 "jF" = (
@@ -3478,16 +3474,14 @@
 	},
 /obj/item/camera,
 /obj/item/camera_film,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "ll" = (
 /obj/structure/closet/secure_closet/captain,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "lm" = (
@@ -3499,9 +3493,8 @@
 /obj/effect/landmark/start/job/captain,
 /obj/machinery/vending/nanomed,
 /mob/living/simple_animal/cat/Jones,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "ln" = (
@@ -4038,9 +4031,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "mV" = (
@@ -4091,8 +4083,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/living/commandbunks)
 "nc" = (
@@ -4890,9 +4881,8 @@
 /area/mainship/living/pilotbunks)
 "pS" = (
 /obj/effect/ai_node,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "pT" = (
@@ -5614,9 +5604,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "sl" = (
@@ -6548,9 +6537,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "uV" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "uW" = (
@@ -6622,15 +6610,13 @@
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
 /obj/effect/landmark/start/job/fieldcommander,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "vi" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "vj" = (
@@ -13028,9 +13014,8 @@
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "Nd" = (
@@ -17507,9 +17492,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "ZQ" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "ZR" = (
