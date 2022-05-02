@@ -383,10 +383,94 @@
 	icon_tag = "lightgrass"
 	variations = 12
 
+/obj/structure/flora/desert/grass/one
+	icon_state = "lightgrass_1"
+
+/obj/structure/flora/desert/grass/two
+	icon_state = "lightgrass_2"
+
+/obj/structure/flora/desert/grass/three
+	icon_state = "lightgrass_3"
+
+/obj/structure/flora/desert/grass/four
+	icon_state = "lightgrass_4"
+
+/obj/structure/flora/desert/grass/five
+	icon_state = "lightgrass_5"
+
+/obj/structure/flora/desert/grass/six
+	icon_state = "lightgrass_6"
+
+/obj/structure/flora/desert/grass/seven
+	icon_state = "lightgrass_7"
+
+/obj/structure/flora/desert/grass/eight
+	icon_state = "lightgrass_8"
+
+/obj/structure/flora/desert/grass/nine
+	icon_state = "lightgrass_9"
+
+/obj/structure/flora/desert/grass/ten
+	icon_state = "lightgrass_10"
+
+/obj/structure/flora/desert/grass/eleven
+	icon_state = "lightgrass_11"
+
+/obj/structure/flora/desert/grass/twelve
+	icon_state = "lightgrass_12"
+
 /obj/structure/flora/desert/grass/heavy
 	icon_state = "heavygrass_1"
 	icon_tag = "heavygrass"
 	variations = 16
+
+/obj/structure/flora/desert/grass/heavy/one
+	icon_state = "heavygrass_1"
+
+/obj/structure/flora/desert/grass/heavy/two
+	icon_state = "heavygrass_2"
+
+/obj/structure/flora/desert/grass/heavy/three
+	icon_state = "heavygrass_3"
+
+/obj/structure/flora/desert/grass/heavy/four
+	icon_state = "heavygrass_4"
+
+/obj/structure/flora/desert/grass/heavy/five
+	icon_state = "heavygrass_5"
+
+/obj/structure/flora/desert/grass/heavy/six
+	icon_state = "heavygrass_6"
+
+/obj/structure/flora/desert/grass/heavy/seven
+	icon_state = "heavygrass_7"
+
+/obj/structure/flora/desert/grass/heavy/eight
+	icon_state = "heavygrass_8"
+
+/obj/structure/flora/desert/grass/heavy/nine
+	icon_state = "heavygrass_9"
+
+/obj/structure/flora/desert/grass/heavy/ten
+	icon_state = "heavygrass_10"
+
+/obj/structure/flora/desert/grass/heavy/eleven
+	icon_state = "heavygrass_11"
+
+/obj/structure/flora/desert/grass/heavy/twelve
+	icon_state = "heavygrass_12"
+
+/obj/structure/flora/desert/grass/heavy/thirteen
+	icon_state = "heavygrass_13"
+
+/obj/structure/flora/desert/grass/heavy/fourteen
+	icon_state = "heavygrass_14"
+
+/obj/structure/flora/desert/grass/heavy/fifteen
+	icon_state = "heavygrass_15"
+
+/obj/structure/flora/desert/grass/heavy/sixteen
+	icon_state = "heavygrass_16"
 
 //BUSHES
 /obj/structure/flora/desert/bush

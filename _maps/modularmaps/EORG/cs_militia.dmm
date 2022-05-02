@@ -4,8 +4,7 @@
 /area/deathmatch)
 "bl" = (
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/obj/structure/flora/desert/grass{
-	icon_state = "lightgrass_3"
+/obj/structure/flora/desert/grass/three{
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
@@ -50,8 +49,7 @@
 /turf/open/floor/wood,
 /area/deathmatch)
 "jg" = (
-/obj/structure/flora/desert/grass{
-	icon_state = "lightgrass_7"
+/obj/structure/flora/desert/grass/seven{
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
@@ -185,14 +183,12 @@
 	},
 /area/deathmatch)
 "xg" = (
-/obj/structure/flora/desert/grass{
-	icon_state = "lightgrass_3"
+/obj/structure/flora/desert/grass/three{
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
 "xp" = (
-/obj/structure/flora/desert/grass{
-	icon_state = "lightgrass_7"
+/obj/structure/flora/desert/grass/seven{
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/deathmatch)
@@ -421,8 +417,7 @@
 /area/deathmatch)
 "Vo" = (
 /obj/effect/landmark/deathmatch,
-/obj/structure/flora/desert/grass{
-	icon_state = "lightgrass_3"
+/obj/structure/flora/desert/grass/three{
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/deathmatch)
