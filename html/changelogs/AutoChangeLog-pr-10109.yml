@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - balance: "Shuffled the locations of nuke disk generators on LV624 to be less biased."
+  - bugfix: "Removed some duplicate LZ shutters from corporate dome"
