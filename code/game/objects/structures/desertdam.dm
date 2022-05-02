@@ -27,7 +27,6 @@
 /obj/structure/desertdam/decals/road/edge/long
 	icon_state = "road_edge_long"
 
-
 /obj/structure/desertdam/decals/road/stop
 	icon_state = "stop_decal"
 

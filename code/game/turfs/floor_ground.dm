@@ -198,6 +198,9 @@
 	icon = 'icons/turf/catwalks.dmi'
 	icon_state = "catwalk-159"
 
+/turf/open/floor/plating/ground/desertdam/grate/alternate
+	icon_state = "catwalk-255"
+
 //desert floor
 /turf/open/floor/plating/ground/desertdam/desert
 	name = "desert"
@@ -247,6 +250,18 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile
 	name = "asphalt"
 	icon_state = "tile"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/edge/regular
+	name = "asphalt"
+	icon_state = "cement_edge"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside/regular
+	name = "asphalt"
+	icon_state = "cement_twoside"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular
+	name = "asphalt"
+	icon_state = "cement_threeside"
 
 
 //CAVE
