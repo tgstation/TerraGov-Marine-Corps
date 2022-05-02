@@ -1,0 +1,7 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - rscadd: "Added a prop version of the tank for mappers."
+  - rscadd: "Created a handful of new modular maps for Big Red."
+  - rscadd: "Added a prop version of CM's APC for mappers."
+  - imageadd: "Ported CM APC icons for mapper use."
