@@ -277,14 +277,14 @@
 	travelling_time = 3 SECONDS
 	point_cost = 150
 
-/obj/structure/ship_ammo/minirocket/railgun
+/obj/structure/ship_ammo/heavygun/railgun
 	name = "Railgun Ammo"
 	desc = "This is not meant to exist"
 	ammo_count = 400
 	max_ammo_count = 400
-	ammo_used_per_firing = 10
+	ammo_used_per_firing = 40
+	bullet_spread_range = 5
 	point_cost = 0
-	travelling_time = 0 SECONDS
 
 //laser battery
 
