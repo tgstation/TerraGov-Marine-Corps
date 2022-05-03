@@ -2,6 +2,8 @@
 	return health_threshold_dead
 
 /mob/living/proc/get_crit_threshold()
+	if(HAS_TRAIT(src, TRAIT_NO_CRIT))
+		health_threshold_crit = -100
 	return health_threshold_crit
 
 /mob/living/proc/has_brain()

@@ -796,6 +796,7 @@
 	speech_verb_override = "rattles"
 	count_human = TRUE
 
+	inherent_traits = list(TRAIT_NO_CRIT)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
 
 	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
@@ -830,6 +831,7 @@
 
 	body_temperature = 350
 
+	inherent_traits = list(TRAIT_NO_CRIT)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
@@ -869,10 +871,13 @@
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
 	deform = 'icons/mob/human_races/r_synthetic.dmi'
+
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
+
 	total_health = 125
+
 	brute_mod = 0.70
 	burn_mod = 0.70
 
@@ -886,6 +891,7 @@
 
 	body_temperature = 350
 
+	inherent_traits = list(TRAIT_NO_CRIT)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
@@ -950,7 +956,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 	body_temperature = 350
 
-	inherent_traits = list(TRAIT_NON_FLAMMABLE)
+	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_NO_CRIT)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
@@ -971,6 +977,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain")
 	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream")
 	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry")
+	death_message = "shudders violently whilst spitting out error text before collapsing, their visual sensor darkening..."
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 
