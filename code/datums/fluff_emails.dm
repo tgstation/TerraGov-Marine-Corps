@@ -99,6 +99,7 @@
 					Even better is the fact that we completely removed an emergency shutdown programmed to activate upon certain damage levels,
 					this means they fight harder and for longer until they're fully disabled.
 					<br>
+					<br>
 					I do have some concerns though, the combat robots have begun to develop... quirks? I think that their processors are
 					especially strained by the new software, I swear I even heard one of them cuss when I was running through its combat logs.
 					I've even heard rumors of the robots forming a secret religion praising a "Machine God", probably just bored squad marines though.
