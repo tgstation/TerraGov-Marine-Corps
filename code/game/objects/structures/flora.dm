@@ -214,12 +214,12 @@
 /obj/structure/flora/grass/tallgrass
 	name = "tall grass"
 	icon = 'icons/obj/flora/tallgrass.dmi'
+	icon_state = "tallgrass"
 	opacity = TRUE
-	icon_state = tallgrass
 
 /obj/structure/flora/grass/tallgrass/tallgrasscorner
 	name = "tall grass"
-	icon_state = tallgrass_corner
+	icon_state = "tallgrass_corner"
 
 //bushes
 /obj/structure/flora/bush
