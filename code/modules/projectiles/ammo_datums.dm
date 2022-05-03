@@ -1004,13 +1004,16 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "sniper_empty"
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SUNDERING
-	accurate_range_min = 5
+	accurate_range_min = 7
 	shell_speed = 4
 	accurate_range = 30
 	max_range = 40
 	damage = 90
 	penetration = 80
 	sundering = 0
+
+/datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, knockback = 2)
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"

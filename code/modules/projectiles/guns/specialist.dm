@@ -63,7 +63,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 2.5 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.50
+	accuracy_mult = 1.10
 	recoil = 2
 	scatter = 0
 

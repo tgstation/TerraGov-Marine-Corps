@@ -736,8 +736,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			BULLET_DEBUG("Point blank range (+25)")
 			. += 25
 		else if((proj.ammo.flags_ammo_behavior & AMMO_SNIPER) && proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range before point blank
-			BULLET_DEBUG("Sniper ammo, too close (-[(proj.ammo.accurate_range_min - proj.distance_travelled) * 5])")
-			. -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 5
+			BULLET_DEBUG("Sniper ammo, too close (-[(proj.ammo.accurate_range_min - proj.distance_travelled) * 15])")
+			. -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 15
 	else
 		BULLET_DEBUG("Too far (+[(proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5)])")
 		. -= (proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5) //Snipers have a smaller falloff constant due to longer max range
