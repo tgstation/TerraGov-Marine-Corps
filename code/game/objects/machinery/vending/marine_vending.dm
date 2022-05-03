@@ -802,19 +802,12 @@
 	isshared = TRUE
 	products = list(
 		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/tricordrazine = 12,
 			/obj/item/storage/pill_bottle/bicaridine = 12,
 			/obj/item/storage/pill_bottle/kelotane = 12,
 			/obj/item/storage/pill_bottle/tramadol = 12,
-			/obj/item/storage/pill_bottle/tricordrazine = 12,
-			/obj/item/storage/pill_bottle/inaprovaline = 12,
-			/obj/item/storage/pill_bottle/dexalin = 12,
 			/obj/item/storage/pill_bottle/dylovene = 12,
-			/obj/item/storage/pill_bottle/spaceacillin = 12,
-			/obj/item/storage/pill_bottle/alkysine = 12,
-			/obj/item/storage/pill_bottle/imidazoline = 12,
-			/obj/item/storage/pill_bottle/peridaxon = 8,
-			/obj/item/storage/pill_bottle/quickclot = 8,
-			/obj/item/storage/pill_bottle/hypervene = 8,
+			/obj/item/storage/pill_bottle/inaprovaline = 12
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1,

@@ -177,7 +177,13 @@
 			/obj/item/reagent_containers/glass/bottle/medicalnanites = 2,
 		),
 		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/peridaxon = 2,
+			/obj/item/storage/pill_bottle/dexalin = 12,
+			/obj/item/storage/pill_bottle/spaceacillin = 12,
+			/obj/item/storage/pill_bottle/alkysine = 12,
+			/obj/item/storage/pill_bottle/imidazoline = 12,
+			/obj/item/storage/pill_bottle/peridaxon = 8,
+			/obj/item/storage/pill_bottle/quickclot = 8,
+			/obj/item/storage/pill_bottle/hypervene = 8,
 			/obj/item/storage/pill_bottle/russian_red = 2,
 		),
 		"Heal Pack" = list(
@@ -233,7 +239,13 @@
 			/obj/item/reagent_containers/glass/bottle/medicalnanites = 12,
 		),
 		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/peridaxon = 6,
+			/obj/item/storage/pill_bottle/dexalin = 12,
+			/obj/item/storage/pill_bottle/spaceacillin = 12,
+			/obj/item/storage/pill_bottle/alkysine = 12,
+			/obj/item/storage/pill_bottle/imidazoline = 12,
+			/obj/item/storage/pill_bottle/peridaxon = 8,
+			/obj/item/storage/pill_bottle/quickclot = 8,
+			/obj/item/storage/pill_bottle/hypervene = 8,
 			/obj/item/storage/pill_bottle/russian_red = 4,
 		),
 		"Heal Pack" = list(
