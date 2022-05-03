@@ -69,6 +69,16 @@
 
 ///Reloads the internal_item
 /obj/machinery/deployable/mounted/proc/reload(mob/user, ammo_magazine)
+	if(HAS_TRAIT(src, TRAIT_GUN_RELOADING))
+		to_chat(user, span_warning("The weapon is already being reloaded!"))
+		return
+
+	if(user.do_actions)
+		to_chat(user, span_warning("You are busy doing something else!"))
+		return
+
+	ADD_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
+
 	var/obj/item/weapon/gun/gun = internal_item
 	if(length(gun.chamber_items))
 		gun.unload(user)
@@ -77,9 +87,12 @@
 	gun.reload(ammo_magazine, user)
 	update_icon_state()
 
+	REMOVE_TRAIT(src, TRAIT_GUN_RELOADING, GUN_TRAIT)
+
 	if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		return
 	gun.do_unique_action(gun, user)
+
 
 
 ///This is called when a user tries to operate the gun
@@ -257,3 +270,19 @@
 /obj/machinery/deployable/mounted/check_eye(mob/user)
 	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || !user.client)
 		user.unset_interaction()
+
+//Deployable guns that can be moved.
+/obj/machinery/deployable/mounted/moveable
+	anchored = FALSE
+
+/// Can be anchored and unanchored from the ground by Alt Right Click.
+/obj/machinery/deployable/mounted/moveable/AltRightClick(mob/living/user)
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
+		return
+
+	if(!anchored)
+		anchored = TRUE
+		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
+	else
+		anchored = FALSE
+		to_chat(user, span_warning("You unanchored the gun from the gruond. It may be moved."))

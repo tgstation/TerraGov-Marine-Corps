@@ -2148,7 +2148,7 @@
 	dir = 4
 	},
 /obj/item/weapon/gun/rifle/m412{
-	desc = "The M412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition. There is a worn inscription of a moth on it."
+	desc = "The PR-412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition. There is a worn inscription of a moth on it."
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range/rebel)
@@ -12194,7 +12194,7 @@
 	dir = 4
 	},
 /obj/item/weapon/gun/rifle/m412{
-	desc = "The M412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition. There is a worn inscription of a moth on it."
+	desc = "The PR-412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition. There is a worn inscription of a moth on it."
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)

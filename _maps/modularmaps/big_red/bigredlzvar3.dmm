@@ -1545,7 +1545,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "NR" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/rack,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

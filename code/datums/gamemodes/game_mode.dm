@@ -41,7 +41,7 @@
 	var/datum/emergency_call/picked_call = null //Which distress call is currently active
 	var/on_distress_cooldown = FALSE
 	var/waiting_for_candidates = FALSE
-	/// Ponderation rate of silos output. 1 is normal, 2 is twice 
+	/// Ponderation rate of silos output. 1 is normal, 2 is twice
 	var/silo_scaling = 1
 
 
@@ -329,7 +329,21 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		else if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(!H.w_uniform)
-				var/job = pick(/datum/job/clf/leader, /datum/job/freelancer/leader, /datum/job/upp/leader, /datum/job/som/leader, /datum/job/pmc/leader, /datum/job/freelancer/standard, /datum/job/som/standard, /datum/job/clf/standard)
+				var/job = pick(
+					/datum/job/clf/leader,
+					/datum/job/clf/standard,
+					/datum/job/freelancer/leader,
+					/datum/job/freelancer/grenadier,
+					/datum/job/freelancer/standard,
+					/datum/job/upp/leader,
+					/datum/job/upp/heavy,
+					/datum/job/upp/standard,
+					/datum/job/som/leader,
+					/datum/job/som/veteran,
+					/datum/job/som/standard,
+					/datum/job/pmc/leader,
+					/datum/job/pmc/standard,
+				)
 				var/datum/job/J = SSjob.GetJobType(job)
 				H.apply_assigned_role_to_spawn(J)
 				H.regenerate_icons()
