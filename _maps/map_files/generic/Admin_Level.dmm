@@ -4690,7 +4690,6 @@
 /obj/machinery/firealarm{
 	dir = 1
 	},
-/obj/vehicle/unmanned/medium,
 /turf/open/floor/tile/brown,
 /area/centcom/valhalla/quartermaster/storage)
 "gbI" = (
@@ -10017,7 +10016,6 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/engine/engineering)
 "nsc" = (
-/obj/vehicle/unmanned/heavy,
 /turf/open/floor/tile/brown,
 /area/centcom/valhalla/quartermaster/storage)
 "nsr" = (

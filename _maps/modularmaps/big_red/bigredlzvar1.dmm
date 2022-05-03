@@ -130,7 +130,7 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "cS" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/rack,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
