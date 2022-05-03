@@ -171,7 +171,7 @@
 	base_icon = "pyro_bag"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = null
-	max_storage_space = 18
+	max_storage_space = 16
 	max_w_class = 4
 	access_delay = 0
 	holsterable_allowed = list(/obj/item/weapon/gun/flamer/big_flamer/engineer,)

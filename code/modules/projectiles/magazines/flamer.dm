@@ -91,6 +91,6 @@
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, you shouldn't see this though."
 	icon_state = ""
 	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
-	max_rounds = 260
-	current_rounds = 260
+	max_rounds = 280
+	current_rounds = 280
 	reload_delay = 1 SECONDS
