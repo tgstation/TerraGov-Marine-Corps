@@ -178,7 +178,7 @@
 	Returns TURE if it was successful.
 */
 /mob/proc/drop_r_hand()
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(status_flags & INCORPOREAL) //  things don't have hands
 		return FALSE
 	if(r_hand)
 		return dropItemToGround(r_hand)
