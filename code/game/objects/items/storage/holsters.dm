@@ -166,9 +166,9 @@
 /obj/item/storage/holster/backholster/flamer
 	name = "\improper TGMC flamethrower bag"
 	desc = "This backpack has a built in large capacity fuel tank, and can carry its accompanying flamethrower as well as a modest general storage capacity."
-	icon_state = "marine_rocket"
-	item_state = "marine_rocket"
-	base_icon = "marine_rocket"
+	icon_state = "pyro_bag"
+	item_state = "pyro_bag"
+	base_icon = "pyro_bag"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = null
 	max_storage_space = 18
