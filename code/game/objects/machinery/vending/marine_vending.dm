@@ -831,6 +831,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/alkysine = 16,
 			/obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 16,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 16,
+			/obj/item/reagent_containers/hypospray/autoinjector/peridaxon = 16,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		),
