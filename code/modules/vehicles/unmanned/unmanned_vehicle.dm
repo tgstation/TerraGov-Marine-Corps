@@ -13,7 +13,9 @@
 	max_integrity = 150
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
-	soft_armor = list("melee" = 25, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
+	soft_armor = list("melee" = 25, "bullet" = 85, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
+	///allows it to be put in crate
+	density = FALSE
 	/// Path of "turret" attached
 	var/obj/item/uav_turret/turret_path
 	/// Type of the turret attached
@@ -43,6 +45,8 @@
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
 	COOLDOWN_DECLARE(fire_cooldown)
+	/// when next sound played
+	var/next_sound_play = 0
 
 /obj/vehicle/unmanned/Initialize()
 	. = ..()
@@ -118,6 +122,10 @@
 	if(world.time < last_move_time + move_delay)
 		return
 
+	if(next_sound_play < world.time)
+		playsound(src, 'sound/ambience/tank_driving.ogg', vol = 50, sound_range = 30)
+		next_sound_play = world.time + 21
+
 	return Move(get_step(src, direction))
 
 ///Try to desequip the turret
@@ -146,7 +154,7 @@
 
 ///Try to reload the turret of our vehicule
 /obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/ammo, mob/user)
-	if(!ispath(ammo.type, initial(turret_path.ammo_type)))
+	if(!ispath(ammo.type, initial(turret_path.magazine_type)))
 		to_chat(user, span_warning("This is not the right ammo!"))
 		return
 	user.visible_message(span_notice("[user] starts to reload [src] with [ammo]."), span_notice("You start to reload [src] with [ammo]."))
@@ -189,7 +197,7 @@
 	qdel(I)
 
 /**
- * Called when the drone is unlinked from a remote control
+ * Called when the drone is linked from a remote control
  */
 /obj/vehicle/unmanned/proc/on_link(atom/remote_controller)
 	SHOULD_CALL_PARENT(TRUE)
@@ -197,7 +205,7 @@
 	controlled = TRUE
 
 /**
- * Called when the drone is linked to a remote control
+ * Called when the drone is unlinked to a remote control
  */
 /obj/vehicle/unmanned/proc/on_unlink(atom/remote_controller)
 	SHOULD_CALL_PARENT(TRUE)
@@ -235,7 +243,7 @@
 		in_chamber.original_target = target
 		in_chamber.def_zone = pick("chest","chest","chest","head")
 		//Shoot at the thing
-		playsound(loc, gunnoise, 75, 1)
+		playsound(loc, gunnoise, 65, 1)
 		in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 		in_chamber = null
 		COOLDOWN_START(src, fire_cooldown, fire_delay)
@@ -286,7 +294,7 @@
 		return
 	if(!I.use_tool(src, user, 0, volume=50, amount=1))
 		return TRUE
-	repair_damage(50)
+	repair_damage(35)
 	if(obj_integrity == max_integrity)
 		balloon_alert_to_viewers("Fully repaired!")
 	else
@@ -304,6 +312,23 @@
 /obj/vehicle/unmanned/heavy
 	name = "UV-H Komodo"
 	icon_state = "heavy_uv"
-	move_delay = 5
+	move_delay = 4
 	max_rounds = 200
-	max_integrity = 300
+	max_integrity = 250
+
+/obj/structure/closet/crate/uav_crate
+	name = "\improper UV-L Iguana Crate"
+	desc = "A crate containing an unmanned vehicle with a controller and some spare ammo."
+	icon = 'icons/obj/structures/crates.dmi'
+	icon_state = "closed_weapons"
+	icon_opened = "open_weapons"
+	icon_closed = "closed_weapons"
+
+/obj/structure/closet/crate/uav_crate/PopulateContents()
+	new /obj/vehicle/unmanned(src)
+	new /obj/item/uav_turret(src)
+	new /obj/item/ammo_magazine/box11x35mm(src)
+	new /obj/item/ammo_magazine/box11x35mm(src)
+	new /obj/item/ammo_magazine/box11x35mm(src)
+	new /obj/item/unmanned_vehicle_remote(src)
+
