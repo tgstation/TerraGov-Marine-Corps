@@ -32,6 +32,11 @@
 				to_chat(H, span_warning("You can't eat pills."))
 				return
 
+		// Swallowing now takes time
+		var/ingestion_time = max(0.1 SECONDS, 0.7 SECONDS - 0.3 SECONDS * user.skills.getRating("medical"))
+
+		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			return
 		to_chat(M, span_notice("You swallow [src]."))
 		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
