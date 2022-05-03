@@ -24,9 +24,9 @@
 	icon_state = "heavy_cannon_obj"
 	turret_type = TURRET_TYPE_HEAVY
 	ammo_type = /datum/ammo/bullet/machinegun
-	fire_delay = 1.8
-	current_rounds = 75
-	max_rounds = 75
+	fire_delay = 2
+	current_rounds = 50
+	max_rounds = 50
 	magazine_type = /obj/item/ammo_magazine/box12x40mm //I think this is the correct one?
 
 /obj/item/uav_turret/droid
