@@ -216,14 +216,14 @@
 	center_of_mass = list("x"=17, "y"=10)
 
 /obj/item/reagent_containers/food/drinks/flask
-	name = "metal flask"
+	name = "Metal flask"
 	desc = "A metal flask with a decent liquid capacity."
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=8)
 
-/obj/item/reagent_containers/food/drinks/water
-	name = "metal flask"
+/obj/item/reagent_containers/food/drinks/flask/water
+	name = "Water flask"
 	desc = "A metal flask filled with water to a brim. Stay hydrated!"
 	list_reagents = list(/datum/reagent/water = 60)
 
