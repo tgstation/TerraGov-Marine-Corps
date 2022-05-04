@@ -13114,7 +13114,6 @@
 "lOD" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
-/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -13267,6 +13266,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
+"lYu" = (
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/tile/dark,
+/area/lv624/ground/sand6)
 "lYB" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -53296,7 +53299,7 @@ aeZ
 aeV
 afv
 aog
-agB
+lYu
 agB
 agB
 agB
