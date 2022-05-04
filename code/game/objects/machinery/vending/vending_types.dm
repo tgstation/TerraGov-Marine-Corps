@@ -246,7 +246,7 @@
 			/obj/item/storage/pill_bottle/peridaxon = 8,
 			/obj/item/storage/pill_bottle/quickclot = 8,
 			/obj/item/storage/pill_bottle/hypervene = 8,
-			/obj/item/storage/pill_bottle/russian_red = 4,
+			/obj/item/storage/pill_bottle/russian_red = 6,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 15,
