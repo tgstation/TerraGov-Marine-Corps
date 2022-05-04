@@ -368,9 +368,11 @@
 	storage_slots = null
 	use_sound = 'sound/items/pillbottle.ogg'
 	max_storage_space = 16
+	access_delay = 0.5 SECONDS
 	greyscale_config = /datum/greyscale_config/pillbottle
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
+	var/check_access_delay = FALSE
 
 
 /obj/item/storage/pill_bottle/Initialize(mapload, ...)
@@ -379,6 +381,29 @@
 		for(var/i in 1 to max_storage_space)
 			new pill_type_to_fill(src)
 	update_icon()
+	check_access_delay = TRUE
+
+/obj/item/storage/pill_bottle/should_access_delay(obj/item/accessed, mob/user, taking_out)
+	return check_access_delay
+
+/obj/item/storage/pill_bottle/handle_access_delay(obj/item/accessed, mob/user, taking_out = TRUE, alert_user = FALSE)
+	if(!user)
+		return TRUE
+
+	if(!access_delay || !should_access_delay(accessed, user, taking_out))
+		return TRUE
+
+	if(LAZYLEN(user.do_actions))
+		to_chat(user, span_warning("You are busy doing something else!"))
+		return FALSE
+
+	var/take_time = max(0.1 SECONDS, access_delay - 0.2 SECONDS * user.skills.getRating("medical"))
+	if(alert_user)
+		to_chat(user, "<span class='notice'>You begin to [taking_out ? "take" : "put"] [accessed] [taking_out ? "out of" : "into"] [src]")
+	if(!do_after(user, take_time, TRUE, src, ignore_turf_checks=TRUE))
+		to_chat(user, span_warning("You fumble [accessed]!"))
+		return FALSE
+	return TRUE
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(user.get_inactive_held_item())
