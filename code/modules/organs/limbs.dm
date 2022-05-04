@@ -183,6 +183,20 @@
 		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
 			owner.emote("scream") //Getting hit on broken hand hurts
 
+	//Possibly trigger an internal wound, too.
+	var/local_damage = brute_dam + burn_dam + brute
+	if(brute > 15 && local_damage > 30 && prob(brute*0.5) && !(limb_status & LIMB_ROBOT) && !(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS))
+		var/datum/wound/internal_bleeding/I = new (min(brute - 15, 15))
+		wounds += I
+		owner.custom_pain("You feel something rip in your [display_name]!", 1)
+
+	if(limb_status & LIMB_SPLINTED) //If they have it splinted and no splint health, the splint won't hold.
+		if(splint_health <= 0)
+			remove_limb_flags(LIMB_SPLINTED)
+			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
+		else
+			splint_health = max(splint_health - (brute + burn), 0)
+
 	var/can_cut = (prob(brute*2) || sharp) && !(limb_status & LIMB_ROBOT)
 	// If the limbs can break, make sure we don't exceed the maximum damage a limb can take before breaking
 	if((brute_dam + burn_dam + brute + burn) < max_damage || !CONFIG_GET(flag/limbs_can_break))
@@ -314,24 +328,10 @@
 	if(owner)
 		owner.name = owner.get_visible_name()
 
-
+///Actually applies the damage to the limb. Use this directly to bypass 'hitting' the limb with regard to splints, internal wounds, and dismemberment.
 /datum/limb/proc/createwound(type = CUT, damage)
-	if(!damage)
+	if(damage <= 0)
 		return
-
-	//Possibly trigger an internal wound, too.
-	var/local_damage = brute_dam + burn_dam + damage
-	if(damage > 15 && type != BURN && local_damage > 30 && prob(damage*0.5) && !(limb_status & LIMB_ROBOT) && !(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS))
-		var/datum/wound/internal_bleeding/I = new (min(damage - 15, 15))
-		wounds += I
-		owner.custom_pain("You feel something rip in your [display_name]!", 1)
-
-	if(limb_status & LIMB_SPLINTED) //If they have it splinted and no splint health, the splint won't hold.
-		if(splint_health <= 0)
-			remove_limb_flags(LIMB_SPLINTED)
-			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
-		else
-			splint_health = max(splint_health - damage, 0)
 
 	//Apply damage, remove relevant treatment flags
 	if(type == BURN)
@@ -699,7 +699,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	//Replace all wounds on that arm with one wound on parent organ.
 	wounds.Cut()
 	if(parent && !amputation)
-		parent.take_damage_limb(max_damage * 0.25)
+		parent.createwound(CUT, max_damage * 0.25)
 	brute_dam = 0
 	burn_dam = 0
 	limb_wound_status = NONE
