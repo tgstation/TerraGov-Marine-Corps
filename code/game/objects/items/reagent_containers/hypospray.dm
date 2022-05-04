@@ -152,6 +152,11 @@
 		to_chat(user, "[span_notice("You inject [M] with [src]")].")
 		to_chat(M, span_warning("You feel a tiny prick!"))
 
+	// /mob/living/carbon/human/attack_hand causes
+	// changeNext_move(7) which creates a delay
+	// This line overrides the delay, and will absolutely break everything
+	user.changeNext_move(3) // please don't break the game
+
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 	reagents.reaction(A, INJECT)
 	var/trans = reagents.trans_to(A, amount_per_transfer_from_this)
