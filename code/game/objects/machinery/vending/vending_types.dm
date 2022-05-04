@@ -156,68 +156,6 @@
 	products = list(
 		"Hypospray" = list (
 			/obj/item/defibrillator = 2,
-			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 5,
-			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 3,
-			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 5,
-			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 5,
-			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 2,
-		),
-		"Reagent Bottle" = list(
-			/obj/item/reagent_containers/glass/bottle/dylovene = 4,
-			/obj/item/reagent_containers/glass/bottle/bicaridine = 4,
-			/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
-			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
-			/obj/item/reagent_containers/glass/bottle/spaceacillin = 4,
-			/obj/item/reagent_containers/glass/bottle/peridaxon = 2,
-			/obj/item/reagent_containers/glass/bottle/kelotane = 4,
-			/obj/item/reagent_containers/glass/bottle/dexalin = 4,
-			/obj/item/reagent_containers/glass/bottle/tramadol = 4,
-			/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
-			/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
-			/obj/item/reagent_containers/glass/bottle/medicalnanites = 2,
-		),
-		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/dexalin = 12,
-			/obj/item/storage/pill_bottle/spaceacillin = 12,
-			/obj/item/storage/pill_bottle/alkysine = 12,
-			/obj/item/storage/pill_bottle/imidazoline = 12,
-			/obj/item/storage/pill_bottle/peridaxon = 8,
-			/obj/item/storage/pill_bottle/quickclot = 8,
-			/obj/item/storage/pill_bottle/hypervene = 8,
-			/obj/item/storage/pill_bottle/russian_red = 2,
-		),
-		"Heal Pack" = list(
-			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 5,
-			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 5,
-			/obj/item/stack/medical/heal_pack/ointment = 10,
-			/obj/item/stack/medical/heal_pack/gauze = 10,
-			/obj/item/stack/medical/splint = 5,
-		),
-		"Misc" = list(
-			/obj/item/healthanalyzer = 5,
-			/obj/item/clothing/glasses/hud/health = 2,
-			/obj/item/storage/belt/medical = 2,
-			/obj/item/reagent_containers/syringe = 20,
-			/obj/item/tool/research/xeno_analyzer = 5,
-			/obj/item/tool/research/excavation_tool = 5,
-		),
-		"Training Toxins" = list(
-			/obj/item/reagent_containers/glass/bottle/toxin = 1,
-			/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
-			/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
-		)
-	)
-	idle_power_usage = 211
-
-/obj/machinery/vending/medical/shipside
-	isshared = TRUE
-	wrenchable = FALSE
-	products = list(
-		"Hypospray" = list (
-			/obj/item/defibrillator = 2,
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 15,
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 9,
 			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 15,
@@ -239,13 +177,13 @@
 			/obj/item/reagent_containers/glass/bottle/medicalnanites = 12,
 		),
 		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/dexalin = 12,
-			/obj/item/storage/pill_bottle/spaceacillin = 12,
-			/obj/item/storage/pill_bottle/alkysine = 12,
-			/obj/item/storage/pill_bottle/imidazoline = 12,
-			/obj/item/storage/pill_bottle/peridaxon = 8,
-			/obj/item/storage/pill_bottle/quickclot = 8,
-			/obj/item/storage/pill_bottle/hypervene = 8,
+			/obj/item/storage/pill_bottle/dexalin = 16,
+			/obj/item/storage/pill_bottle/spaceacillin = 16,
+			/obj/item/storage/pill_bottle/alkysine = 16,
+			/obj/item/storage/pill_bottle/imidazoline = 16,
+			/obj/item/storage/pill_bottle/peridaxon = 12,
+			/obj/item/storage/pill_bottle/quickclot = 12,
+			/obj/item/storage/pill_bottle/hypervene = 16,
 			/obj/item/storage/pill_bottle/russian_red = 6,
 		),
 		"Heal Pack" = list(
@@ -272,68 +210,18 @@
 			/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
 		)
 	)
+	idle_power_usage = 211
+
+/obj/machinery/vending/medical/shipside
+	isshared = TRUE
+	wrenchable = FALSE
+
 
 /obj/machinery/vending/medical/rebel
 	req_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
 	isshared = TRUE
 	wrenchable = FALSE
-	products = list(
-		"Hypospray" = list (
-			/obj/item/defibrillator = 2,
-			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 15,
-			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 9,
-			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 15,
-			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 15,
-			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 6,
-		),
-		"Reagent Bottle" = list(
-			/obj/item/reagent_containers/glass/bottle/dylovene = 12,
-			/obj/item/reagent_containers/glass/bottle/bicaridine = 12,
-			/obj/item/reagent_containers/glass/bottle/inaprovaline = 12,
-			/obj/item/reagent_containers/glass/bottle/sleeptoxin = 2,
-			/obj/item/reagent_containers/glass/bottle/spaceacillin = 12,
-			/obj/item/reagent_containers/glass/bottle/peridaxon = 6,
-			/obj/item/reagent_containers/glass/bottle/kelotane = 12,
-			/obj/item/reagent_containers/glass/bottle/dexalin = 12,
-			/obj/item/reagent_containers/glass/bottle/tramadol = 12,
-			/obj/item/reagent_containers/glass/bottle/oxycodone = 12,
-			/obj/item/reagent_containers/glass/bottle/polyhexanide = 12,
-			/obj/item/reagent_containers/glass/bottle/medicalnanites = 12,
-		),
-		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/dexalin = 12,
-			/obj/item/storage/pill_bottle/spaceacillin = 12,
-			/obj/item/storage/pill_bottle/alkysine = 12,
-			/obj/item/storage/pill_bottle/imidazoline = 12,
-			/obj/item/storage/pill_bottle/peridaxon = 8,
-			/obj/item/storage/pill_bottle/quickclot = 8,
-			/obj/item/storage/pill_bottle/hypervene = 8,
-			/obj/item/storage/pill_bottle/russian_red = 4,
-		),
-		"Heal Pack" = list(
-			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 15,
-			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 15,
-			/obj/item/stack/medical/heal_pack/ointment = -1,
-			/obj/item/stack/medical/heal_pack/gauze = -1,
-			/obj/item/stack/medical/splint = -1,
-		),
-		"Misc" = list(
-			/obj/item/healthanalyzer = 15,
-			/obj/item/clothing/glasses/hud/health = 6,
-			/obj/item/storage/belt/medical = 6,
-			/obj/item/reagent_containers/syringe = 20,
-			/obj/item/tool/research/xeno_analyzer = 5,
-			/obj/item/tool/research/excavation_tool = 5,
-		),
-		"Training Toxins" = list(
-			/obj/item/reagent_containers/glass/bottle/toxin = 1,
-			/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
-			/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
-		)
-	)
+
 
 /obj/machinery/vending/medical/valhalla
 	use_power = NO_POWER_USE
