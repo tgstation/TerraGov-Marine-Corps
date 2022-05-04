@@ -8,9 +8,9 @@
 	///Ammo typepath we use when attached
 	var/ammo_type = /datum/ammo/bullet/smg
 	/// Amount of projectiles in this turret
-	var/current_rounds = 100
+	var/current_rounds = 150
 	/// The max amount of projectiles in this turret
-	var/max_rounds = 100
+	var/max_rounds = 150
 	///This var must match the unmanned vehicles turret_pattern then be added
 	var/turret_pattern = PATTERN_TRACKED
 	/// The fire rate of this turret in byond tick

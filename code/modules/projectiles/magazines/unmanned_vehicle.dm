@@ -16,6 +16,6 @@
 	icon_state = "ltbcannon_4"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smg
-	current_rounds = 100
-	max_rounds = 100
+	current_rounds = 150
+	max_rounds = 150
 	icon_state_mini = "ammo_packet"
