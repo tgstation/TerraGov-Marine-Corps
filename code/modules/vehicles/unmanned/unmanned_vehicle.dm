@@ -245,18 +245,17 @@
 		in_chamber.original_target = target
 		in_chamber.def_zone = pick("chest","chest","chest","head")
 		//Shoot at the thing
-		var/angle = Get_Angle(flash, target)
 		var/atom/movable/TU = src
-		flash = new /atom/movable/vis_obj/effect/muzzle_flash(TU)
 		playsound(loc, gunnoise, 65, 1)
 		in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 		in_chamber = null
 		COOLDOWN_START(src, fire_cooldown, fire_delay)
 		current_rounds--
+		flash = new /atom/movable/vis_obj/effect/muzzle_flash(TU)
+		var/angle = Get_Angle(flash, target)
 		flash.transform = null
 		flash.transform = turn(flash.transform, angle)
 		TU.vis_contents += flash
-		flash.applied = TRUE
 		addtimer(CALLBACK(src, .proc/delete_muzzle_flash, TU, flash), 0.2 SECONDS)
 		hud_set_uav_ammo()
 	return TRUE
@@ -264,7 +263,6 @@
 /obj/vehicle/unmanned/proc/delete_muzzle_flash(atom/movable/TU, atom/movable/vis_obj/effect/muzzle_flash/flash)
 	if(!QDELETED(TU))
 		TU.vis_contents -= flash
-	flash.applied = FALSE
 
 /obj/vehicle/unmanned/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	take_damage(charger.xeno_caste.melee_damage * charger.xeno_melee_damage_modifier, BRUTE, "melee")
