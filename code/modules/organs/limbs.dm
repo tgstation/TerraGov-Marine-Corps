@@ -523,7 +523,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/inaprovaline = owner.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)
 			var/old_qc = owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclotplus)
 			if(!(W.can_autoheal() || (bicardose && inaprovaline) || owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclot)))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
-				W.open_wound(0.1 * wound_update_accuracy)
+				createwound(CUT, 0.1)
 			if(bicardose >= 30)	//overdose of bicaridine begins healing IB
 				W.damage = max(0, W.damage - 0.2)
 			if(old_qc >= 5)	//overdose of QC+ heals IB extremely fast.

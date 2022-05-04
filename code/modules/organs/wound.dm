@@ -9,10 +9,8 @@
 	///description of the wound
 	var/desc = "wound"
 
-	///amount of damage this wound causes
+	///amount of damage this wound has
 	var/damage = 0
-	///ticks of bleeding left.
-	var/bleed_timer = 0
 	// amount of damage the current wound type requires(less means we need to apply the next healing stage)
 	var/min_damage = 0
 
@@ -49,15 +47,8 @@
 	min_damage = damage_list[current_stage]
 	desc = desc_list[current_stage]
 
-	bleed_timer += damage*2.5
-
-///the amount of damage per wound
-//CLEAR OUT LATER
-/datum/wound/proc/wound_damage()
-	return damage
-
 /datum/wound/proc/can_autoheal()
-	if(wound_damage() <= autoheal_cutoff)
+	if(damage <= autoheal_cutoff)
 		return TRUE
 
 /**
@@ -65,16 +56,14 @@
  *than what needed to be healed, return how much heal was left
  *set @heals_internal to also heal internal organ damage
  */
-/datum/wound/proc/heal_wound_damage(heal_amount, heals_internal = FALSE)
-	// If the wound is internal, and we don't heal internal wounds just pass through.
-
+/datum/wound/proc/heal_wound_damage(heal_amount)
 	// either, the entire wound, or the heal_amount
 	var/healed_damage = min(damage, heal_amount)
 	heal_amount -= healed_damage // If the heal was large, we may have only removed the small exisitng damage
 	damage -= healed_damage // Heal the wound
 
 	// Update the stages
-	while(wound_damage() < damage_list[current_stage] && current_stage < desc_list.len)
+	while(damage < damage_list[current_stage] && current_stage < desc_list.len)
 		current_stage++
 	desc = desc_list[current_stage]
 	min_damage = damage_list[current_stage]
@@ -85,7 +74,6 @@
 ///Reopens the wound again
 /datum/wound/proc/open_wound(initial_damage)
 	damage += initial_damage
-	bleed_timer += damage
 
 	var/damage_per_wound = damage
 	while(current_stage > 1 && damage_list[current_stage - 1] <= damage_per_wound)
@@ -93,28 +81,6 @@
 
 	desc = desc_list[current_stage]
 	min_damage = damage_list[current_stage]
-
-	// returns whether this wound can absorb the given amount of damage.
-	// this will prevent large amounts of damage being trapped in less severe wound types
-/datum/wound/proc/can_worsen(incoming_dmg_type, incoming_dmg)
-	if (damage_type != incoming_dmg_type)
-		return FALSE //incompatible damage types
-
-	//with 1.5*, a shallow cut will be able to carry at most 30 damage,
-	//37.5 for a deep cut
-	//52.5 for a flesh wound, etc.
-	var/max_wound_damage = 1.5 * src.damage_list[1]
-	if (damage + incoming_dmg > max_wound_damage)
-		return FALSE
-
-	return TRUE
-
-/** WOUND DEFINITIONS **/
-
-//Mostly dead. Kill entirely or leave to generate a suitable internal?.
-/proc/get_wound_type(type = CUT, damage)
-	return null //no wound
-
 
 /** INTERNAL BLEEDING **/
 /datum/wound/internal_bleeding
