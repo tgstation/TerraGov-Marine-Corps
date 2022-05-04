@@ -152,7 +152,7 @@
 	list_reagents = list(/datum/reagent/medicine/alkysine = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/imidazoline
-	name = "amidazoline autoinjector"
+	name = "imidazoline autoinjector"
 	desc = "An auto-injector loaded with 3 doses of imidazoline, medicine for fixing eyesight."
 	icon_state = "autoinjector-1"
 	list_reagents = list(/datum/reagent/medicine/alkysine = 30)
