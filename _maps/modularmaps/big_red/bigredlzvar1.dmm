@@ -1007,8 +1007,8 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "Ad" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)

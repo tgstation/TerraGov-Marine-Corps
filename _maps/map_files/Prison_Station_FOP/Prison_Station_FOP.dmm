@@ -41220,9 +41220,7 @@
 	},
 /area/prison/hangar/main)
 "dtT" = (
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/prison/holding/holding1)
 "duu" = (

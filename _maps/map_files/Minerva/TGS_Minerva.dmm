@@ -574,24 +574,21 @@
 	},
 /obj/item/camera,
 /obj/item/camera_film,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "bK" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "bL" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "bM" = (
@@ -797,9 +794,8 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "cw" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "cy" = (
@@ -819,9 +815,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "cB" = (
@@ -957,9 +952,8 @@
 /obj/item/radio,
 /obj/item/storage/briefcase,
 /obj/item/portable_vendor/corporate,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "cW" = (
@@ -988,22 +982,19 @@
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
 /obj/item/armor_module/storage/uniform/holster,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/command/corporateliaison)
 "cZ" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/command/corporateliaison)
 "da" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "db" = (
@@ -3603,9 +3594,8 @@
 	},
 /area/mainship/command/cic)
 "lK" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/bridgebunks)
 "lM" = (
@@ -4870,9 +4860,8 @@
 /area/mainship/squads/req)
 "qv" = (
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/bridgebunks)
 "qw" = (
@@ -9872,9 +9861,8 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "FQ" = (
@@ -10199,9 +10187,8 @@
 /area/mainship/living/bridgebunks)
 "GH" = (
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "GI" = (
@@ -10630,9 +10617,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/bridgebunks)
 "Id" = (
@@ -10643,9 +10629,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "Ie" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/bridgebunks)
 "If" = (
@@ -10663,9 +10648,8 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/bridgebunks)
 "Ii" = (
@@ -10853,9 +10837,8 @@
 /area/mainship/living/grunt_rnr)
 "IN" = (
 /obj/machinery/vending/boozeomat,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "IO" = (
@@ -10937,9 +10920,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/bridgebunks)
 "IZ" = (
@@ -10997,9 +10979,8 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/staffofficer,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/bridgebunks)
 "Jm" = (
@@ -11280,9 +11261,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/bridgebunks)
 "Kb" = (
@@ -11293,8 +11273,7 @@
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/living/bridgebunks)
 "Kc" = (
@@ -11305,8 +11284,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/living/bridgebunks)
 "Kd" = (
@@ -11344,9 +11322,8 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/bridgebunks)
 "Ki" = (
@@ -11416,9 +11393,8 @@
 /area/mainship/medical/chemistry)
 "Kv" = (
 /obj/structure/closet/secure_closet/captain,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "Kw" = (
@@ -13919,9 +13895,8 @@
 	},
 /area/mainship/engineering/engineering_workshop)
 "Sl" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "Sm" = (

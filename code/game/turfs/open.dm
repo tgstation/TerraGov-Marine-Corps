@@ -210,11 +210,13 @@
 
 /turf/open/shuttle/dropship/two
 	icon_state = "rasputin2"
+
 /turf/open/shuttle/dropship/three
 	icon_state = "rasputin3"
 
 /turf/open/shuttle/dropship/four
 	icon_state = "rasputin4"
+
 /turf/open/shuttle/dropship/five
 	icon_state = "rasputin5"
 
@@ -241,6 +243,9 @@
 
 /turf/open/shuttle/dropship/thirteen
 	icon_state = "rasputin13"
+
+/turf/open/shuttle/dropship/fourteen
+	icon_state = "floor6"
 
 /turf/open/shuttle/dropship/grating
 	icon = 'icons/turf/elevator.dmi'
@@ -277,6 +282,24 @@
 
 /turf/open/shuttle/escapepod/six
 	icon_state = "floor6"
+
+/turf/open/shuttle/escapepod/seven
+	icon_state = "floor7"
+
+/turf/open/shuttle/escapepod/eight
+	icon_state = "floor8"
+
+/turf/open/shuttle/escapepod/nine
+	icon_state = "floor9"
+
+/turf/open/shuttle/escapepod/ten
+	icon_state = "floor10"
+
+/turf/open/shuttle/escapepod/eleven
+	icon_state = "floor11"
+
+/turf/open/shuttle/escapepod/twelve
+	icon_state = "floor12"
 
 // Elevator floors
 /turf/open/shuttle/elevator

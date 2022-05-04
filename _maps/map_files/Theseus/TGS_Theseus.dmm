@@ -418,17 +418,15 @@
 /obj/item/book/codebook,
 /obj/item/weapon/chainofcommand,
 /obj/item/cane,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "abI" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/secure_data,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "abJ" = (
@@ -509,9 +507,8 @@
 "abV" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/marine_card,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "abX" = (
@@ -523,9 +520,8 @@
 "abY" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship_network,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "abZ" = (
@@ -1361,9 +1357,8 @@
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
 /obj/item/toy/plush/farwa,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "ajD" = (
@@ -1376,9 +1371,8 @@
 	},
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "ake" = (
@@ -1387,9 +1381,8 @@
 /obj/machinery/keycard_auth{
 	pixel_y = 25
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "ako" = (
@@ -1989,9 +1982,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "aDh" = (
@@ -2094,9 +2086,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "aHJ" = (
@@ -2508,9 +2499,8 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "aZe" = (
@@ -2638,9 +2628,8 @@
 /obj/structure/table/mainship,
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "baN" = (
@@ -2843,9 +2832,8 @@
 /obj/item/ashtray/glass,
 /obj/item/storage/fancy/cigar,
 /obj/item/tool/lighter/zippo,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "bdc" = (
@@ -3067,16 +3055,14 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/living/commandbunks)
 "beX" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "bfq" = (
@@ -3105,9 +3091,8 @@
 	},
 /area/mainship/living/starboard_emb)
 "bfD" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "bfF" = (
@@ -3177,9 +3162,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "bgB" = (
@@ -7424,18 +7408,16 @@
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
 	pixel_x = 8
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/officer_study)
 "bUh" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/officer_study)
 "bUi" = (
@@ -7555,9 +7537,8 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/officer_study)
 "bVG" = (
@@ -7569,9 +7550,8 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/officer_study)
 "bVJ" = (
@@ -7659,17 +7639,15 @@
 /area/mainship/living/grunt_rnr)
 "bWJ" = (
 /obj/structure/table/woodentable,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/living/officer_study)
 "bWK" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/officer_study)
 "bWL" = (
@@ -9012,9 +8990,8 @@
 	},
 /obj/item/storage/briefcase,
 /obj/structure/table/woodentable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "dcT" = (
@@ -9304,9 +9281,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "dGC" = (
@@ -9472,15 +9448,13 @@
 /area/mainship/command/bridge)
 "dQi" = (
 /obj/effect/landmark/start/job/corporateliaison,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/command/corporateliaison)
 "dQN" = (
 /obj/structure/bed/chair/sofa/right,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/hull/port_hull)
 "dRR" = (
@@ -9946,9 +9920,8 @@
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/medical_science)
 "eRE" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "eTz" = (
@@ -10058,9 +10031,8 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/officer_study)
 "fgF" = (
@@ -10311,9 +10283,8 @@
 /obj/machinery/door_control/mainship/corporate{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "fAI" = (
@@ -10955,9 +10926,8 @@
 /obj/machinery/keycard_auth{
 	pixel_y = 25
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "gNl" = (
@@ -11125,9 +11095,8 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/hull/port_hull)
 "hdP" = (
@@ -12797,9 +12766,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/engine_core)
 "knx" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "knI" = (
@@ -13088,8 +13056,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
 "kLp" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/living/numbertwobunks)
 "kLr" = (
@@ -13505,9 +13472,8 @@
 /area/mainship/medical/surgery_hallway)
 "lrU" = (
 /obj/structure/bed/chair/sofa/corner,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/hull/port_hull)
 "lrX" = (
@@ -15882,8 +15848,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
 "prM" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/living/commandbunks)
 "ptS" = (
@@ -16554,9 +16519,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "qAW" = (
@@ -16952,9 +16916,8 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/officer_study)
 "rkB" = (
@@ -18599,9 +18562,8 @@
 /obj/item/portable_vendor/corporate,
 /obj/item/spacecash/c500,
 /obj/item/spacecash/c500,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "uwr" = (
@@ -18779,9 +18741,8 @@
 /area/mainship/hallways/hangar)
 "uIz" = (
 /obj/effect/ai_node,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "uJx" = (
@@ -19424,9 +19385,8 @@
 "vXj" = (
 /obj/structure/table/woodentable,
 /obj/item/pizzabox/meat,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/hull/port_hull)
 "vXp" = (
@@ -20181,9 +20141,8 @@
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/reagent_containers/food/drinks/bottle/davenport,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "xsH" = (
@@ -20375,8 +20334,7 @@
 /area/mainship/living/cafeteria_starboard)
 "xKj" = (
 /obj/effect/landmark/start/job/fieldcommander,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/living/numbertwobunks)
 "xKX" = (
