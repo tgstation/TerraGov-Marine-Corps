@@ -9,21 +9,21 @@
 	icon_state = "t26"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 15
-	default_ammo = /datum/ammo/bullet/sniper
+	default_ammo = /datum/ammo/bullet/sniper/amr
 	reload_delay = 3
 	icon_state_mini = "mag_sniper"
 
 
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper SR-26 incendiary magazine (10x28mm)"
-	default_ammo = /datum/ammo/bullet/sniper/incendiary
+	default_ammo = /datum/ammo/bullet/sniper/amr/incendiary
 	icon_state = "t26_inc"
 	icon_state_mini = "mag_sniper_red"
 	bonus_overlay = "t26_incend"
 
 /obj/item/ammo_magazine/sniper/flak
 	name = "\improper SR-26 flak magazine (10x28mm)"
-	default_ammo = /datum/ammo/bullet/sniper/flak
+	default_ammo = /datum/ammo/bullet/sniper/amr/flak
 	icon_state = "t26_flak"
 	icon_state_mini = "mag_sniper_blue"
 	bonus_overlay = "t26_flak"
