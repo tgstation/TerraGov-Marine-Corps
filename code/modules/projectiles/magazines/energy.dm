@@ -82,7 +82,7 @@
 
 /obj/item/cell/lasgun/volkite/powerpack
 	name = "\improper M-70 powerpack"
-	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry."
+	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry. Click drag cells to the powerpack to recharge."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "volkite_powerpack"
 	charge_overlay = "volkite_back"

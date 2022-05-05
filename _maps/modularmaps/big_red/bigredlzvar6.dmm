@@ -1017,7 +1017,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "zH" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/rack,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

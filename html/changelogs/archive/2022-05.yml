@@ -1,0 +1,38 @@
+2022-05-02:
+  Arctrooper8:
+  - bugfix: Fixed the pixels on vat humans too.
+  BraveMole:
+  - rscadd: 'Add wraith portals delete: Remove hyperposition delete: Remove wraith
+      phasing'
+  Lumipharon:
+  - rscadd: Added a few more jobs to EORD, such as SOM veterans and freelancer.
+  - bugfix: Added some missing description info to some SOM equipment, and added missing
+      SL skills to the SOM leader.
+  - bugfix: Fixed AR11 and PR412 fire sound
+  Pariah919:
+  - balance: MG08 is now moveable.
+  - refactor: Genercized Moveable Mounted gun code.
+  RipGrayson:
+  - balance: Shuffled Big Red nuclear generator computers.
+  - balance: Moved a single platinum miner.
+  Vondiech:
+  - balance: Marines can no longer shoot through door assemblies.
+  - balance: Xenos can now slash door assemblies.
+  - balance: Door assemblies now extremely fragile in combat.
+  novaepee:
+  - rscadd: Give researcher, MD, and CMO req radio access
+2022-05-03:
+  Arctrooper8:
+  - balance: The bioprinter has been overclocked with an NVIDIA TITAN V, and now prints
+      limbs at SUPER SPEED in HIGH FIDELITY!
+  - imageadd: People have realized that wearing your mask over your nose is more effective.
+  - qol: Removed the unmanned vehicles from Valhalla.
+  RipGrayson:
+  - balance: Shuffled the locations of nuke disk generators on LV624 to be less biased.
+  - bugfix: Removed some duplicate LZ shutters from corporate dome
+  - rscadd: Added a prop version of the tank for mappers.
+  - rscadd: Created a handful of new modular maps for Big Red.
+  - rscadd: Added a prop version of CM's APC for mappers.
+  - imageadd: Ported CM APC icons for mapper use.
+  novaepee:
+  - qol: Update Autodoc UI to make it easier on eyes to cllick on the correct procedure

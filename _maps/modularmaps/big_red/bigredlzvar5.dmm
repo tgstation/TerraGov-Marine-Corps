@@ -385,7 +385,7 @@
 /turf/open/floor/plating/dmg3,
 /area/bigredv2/outside/space_port)
 "jb" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/rack,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

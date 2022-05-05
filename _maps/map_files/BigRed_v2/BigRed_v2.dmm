@@ -279,7 +279,7 @@
 /turf/open/space/basic,
 /area/bigredv2/caves/northeast)
 "adK" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/machinery/computer/rdconsole,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "adQ" = (
@@ -13798,6 +13798,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
+"nzC" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground/jungle/clear,
+/area/bigredv2/outside/nanotrasen_lab/inside)
 "nEP" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning,
@@ -14093,10 +14097,6 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"poJ" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/s)
 "ppc" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
@@ -37675,7 +37675,7 @@ bzA
 bxN
 bxg
 bxA
-eIX
+bxg
 bxN
 aaa
 aaa
@@ -38101,7 +38101,7 @@ bxH
 bwT
 bwT
 byl
-bxg
+eIX
 bBr
 bwJ
 bzp
@@ -39175,7 +39175,7 @@ hLG
 blq
 jNI
 jNI
-poJ
+jNI
 jNI
 jNI
 bwF
@@ -42453,7 +42453,7 @@ bAW
 bwF
 bBp
 bBp
-bBp
+nzC
 bBp
 bBp
 bwF
@@ -47356,7 +47356,7 @@ aqV
 rHu
 aTn
 kGT
-vtp
+gga
 gga
 gga
 gga

@@ -175,10 +175,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "kj" = (
-/obj/structure/table,
-/obj/machinery/computer/atmos_alert{
-	dir = 4
-	},
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "kO" = (
@@ -384,8 +381,7 @@
 "xW" = (
 /obj/machinery/door_control{
 	id = "FiltrationShutters";
-	name = "Airlock Shutters";
-	pixel_y = 25
+	name = "Airlock Shutters"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/s)
@@ -665,13 +661,12 @@
 	},
 /area/bigredv2/outside/filtration_plant)
 "Mj" = (
-/obj/machinery/door_control{
+/obj/structure/table,
+/obj/machinery/door_control/old{
 	id = "FiltrationShutters";
 	name = "Airlock Shutters";
-	pixel_x = -32
+	pixel_y = 2
 	},
-/obj/machinery/light,
-/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Mx" = (
@@ -998,7 +993,7 @@ JU
 HM
 Uz
 kj
-ze
+Mj
 tm
 xW
 mH
@@ -1025,7 +1020,7 @@ GW
 HM
 HM
 Jy
-Mj
+Xe
 tm
 gl
 hn

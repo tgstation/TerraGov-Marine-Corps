@@ -4687,7 +4687,16 @@
 /area/icarus/interior/swcaveslz)
 "fMP" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/structure/grille,
+/obj/structure/prop/vehicle/tank/north/base{
+	dir = 1
+	},
+/obj/structure/prop/vehicle/tank/north/decoration/damagedhardpointthree{
+	dir = 1
+	},
+/obj/structure/prop/vehicle/tank/north/decoration/damagedhardpointframe{
+	dir = 1
+	},
+/obj/structure/prop/vehicle/tank/north/decoration/damagedtreads,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "fMW" = (
@@ -12657,10 +12666,6 @@
 /turf/closed/wall/mainship/outer,
 /area/icarus/interior/monitoring)
 "qpR" = (
-/obj/vehicle/multitile/root/cm_armored/tank{
-	dir = 1;
-	layer = 1
-	},
 /obj/structure/grille/broken,
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
@@ -37458,7 +37463,7 @@ hyF
 huQ
 huQ
 huQ
-xmN
+fMP
 eHG
 uCl
 huQ
@@ -37662,7 +37667,7 @@ hyF
 huQ
 huQ
 qpR
-fMP
+xmN
 eHG
 dbG
 fhD
