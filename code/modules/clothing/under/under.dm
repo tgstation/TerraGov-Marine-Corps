@@ -145,8 +145,6 @@
 //we only want to quick equip from actual 'holster' type webbings
 /obj/item/clothing/under/do_quick_equip()
 	var/obj/item/found = locate(/obj/item/armor_module/storage/uniform/holster) in contents
-	if(!found)
-		found = locate(/obj/item/armor_module/storage/uniform/knifeharness) in contents
 	if(found)
 		return found.do_quick_equip()
 	return src
