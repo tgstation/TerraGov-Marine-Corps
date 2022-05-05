@@ -14,8 +14,7 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list("melee" = 25, "bullet" = 85, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
-	///allows it to be put in crate
-	density = FALSE
+	density = TRUE
 	/// Path of "turret" attached
 	var/obj/item/uav_turret/turret_path
 	/// Type of the turret attached
@@ -46,7 +45,7 @@
 	var/iff_signal = TGMC_LOYALIST_IFF
 	COOLDOWN_DECLARE(fire_cooldown)
 	/// when next sound played
-	var/next_sound_play = 0
+	COOLDOWN_DECLARE(next_sound_play)
 	/// muzzleflash stuff
 	var/atom/movable/vis_obj/effect/muzzle_flash/flash
 
@@ -55,6 +54,7 @@
 	ammo = GLOB.ammo_list[ammo]
 	name += " " + num2text(serial)
 	serial++
+	flash = new /atom/movable/vis_obj/effect/muzzle_flash/
 	GLOB.unmanned_vehicles += src
 	prepare_huds()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
@@ -245,24 +245,23 @@
 		in_chamber.original_target = target
 		in_chamber.def_zone = pick("chest","chest","chest","head")
 		//Shoot at the thing
-		var/atom/movable/TU = src
+		var/angle = Get_Angle(src, target)
 		playsound(loc, gunnoise, 65, 1)
 		in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 		in_chamber = null
 		COOLDOWN_START(src, fire_cooldown, fire_delay)
 		current_rounds--
-		flash = new /atom/movable/vis_obj/effect/muzzle_flash(TU)
-		var/angle = Get_Angle(flash, target)
 		flash.transform = null
 		flash.transform = turn(flash.transform, angle)
-		TU.vis_contents += flash
-		addtimer(CALLBACK(src, .proc/delete_muzzle_flash, TU, flash), 0.2 SECONDS)
+		src.vis_contents += flash
+		//Removes muzzle flash
+		addtimer(CALLBACK(src, .proc/delete_muzzle_flash, src, flash), 0.3 SECONDS)
 		hud_set_uav_ammo()
 	return TRUE
 
-/obj/vehicle/unmanned/proc/delete_muzzle_flash(atom/movable/TU, atom/movable/vis_obj/effect/muzzle_flash/flash)
-	if(!QDELETED(TU))
-		TU.vis_contents -= flash
+/obj/vehicle/unmanned/proc/delete_muzzle_flash(atom/movable/src,atom/movable/vis_obj/effect/muzzle_flash/flash)
+	src.vis_contents -= flash
+	flash = null
 
 /obj/vehicle/unmanned/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	take_damage(charger.xeno_caste.melee_damage * charger.xeno_melee_damage_modifier, BRUTE, "melee")
@@ -316,7 +315,7 @@
 	return TRUE
 
 /obj/vehicle/unmanned/medium
-	name = "UV-M Gecko "
+	name = "UV-M Gecko"
 	icon_state = "medium_uv"
 	move_delay = 3
 	max_rounds = 200
