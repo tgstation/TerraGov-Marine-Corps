@@ -329,6 +329,7 @@
 /area/lv624/ground/sand6)
 "ahH" = (
 /obj/structure/morgue/sarcophagus,
+/obj/item/toy/beach_ball/basketball,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "ahN" = (
