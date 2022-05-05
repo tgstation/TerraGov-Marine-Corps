@@ -284,9 +284,19 @@ WEAPONS
 	cost = 40
 
 /datum/supply_packs/weapons/railgun_ammo
-	name = "Railgun round"
+	name = "Railgun armor piercing discarding sabot round"
 	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 3
+	cost = 2
+
+/datum/supply_packs/weapons/railgun_ammo/hvap
+	name = "Railgun high velocity armor piercing round"
+	contains = list(/obj/item/ammo_magazine/railgun/hvap)
+	cost = 2
+
+/datum/supply_packs/weapons/railgun_ammo/smart
+	name = "Railgun smart armor piercing round"
+	contains = list(/obj/item/ammo_magazine/railgun/smart)
+	cost = 2
 
 /datum/supply_packs/weapons/tx8
 	name = "SR-8 Scout Rifle"
