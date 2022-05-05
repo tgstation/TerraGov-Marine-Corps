@@ -880,7 +880,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/has_infected_wound()
 	return FALSE
 
-///Returns the first non-internal wound at non-zero damage if any exist
+///True if the limb has any damage on it
 /datum/limb/proc/has_external_wound()
 	return brute_dam || burn_dam
 
