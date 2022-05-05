@@ -115,6 +115,9 @@
 
 ///Used for performing automatic weeding
 /datum/action/xeno_action/activable/plant_weeds/proc/weed_on_move(datum/source)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(xeno_owner.loc_weeds_type)
+		return
 	if(get_dist(owner, last_weeded_turf) < AUTO_WEEDING_MIN_DIST)
 		return
 	if(!can_use_action(silent = TRUE))
