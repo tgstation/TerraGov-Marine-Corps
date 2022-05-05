@@ -525,8 +525,7 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/icy_caves/caves/northwestmonorail)
 "bX" = (
 /turf/closed/ice_rock/singlePart,
@@ -644,8 +643,7 @@
 "ct" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "cu" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -1458,8 +1456,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "fE" = (
 /obj/effect/ai_node,
@@ -1696,8 +1693,7 @@
 	},
 /obj/effect/decal/cleanable/blood/xtracks,
 /obj/structure/cable,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "gQ" = (
 /obj/structure/dropship_piece/one/corner/middleright,
@@ -2572,8 +2568,7 @@
 /area/icy_caves/caves/west)
 "kR" = (
 /obj/effect/ai_node,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "kS" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -2787,8 +2782,7 @@
 "lO" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "lP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2955,8 +2949,7 @@
 /area/icy_caves/outpost/outside/center)
 "mu" = (
 /obj/machinery/vending/security,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "mv" = (
 /turf/closed/ice_rock/corners,
@@ -3220,8 +3213,7 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "nG" = (
 /obj/structure/cable,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "nH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3473,15 +3465,13 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "oR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "oS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -3612,8 +3602,7 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/office/dark,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "pw" = (
 /obj/machinery/light{
@@ -4868,12 +4857,23 @@
 	},
 /area/icy_caves/caves/cavesbrig)
 "us" = (
-/obj/structure/shuttle/engine/router{
+/obj/structure/prop/vehicle/tank/north/base{
 	dir = 1
 	},
-/obj/structure/dropship_equipment/weapon/heavygun,
-/obj/structure/dropship_equipment/weapon/rocket_pod,
-/turf/open/shuttle/dropship/floor,
+/obj/structure/prop/vehicle/tank/north/turret{
+	dir = 1
+	},
+/obj/structure/prop/vehicle/tank/north/decoration/cupolaone{
+	dir = 1
+	},
+/obj/structure/prop/vehicle/tank/north/armor/snowplow{
+	dir = 1
+	},
+/obj/structure/prop/vehicle/tank/north/barrel/minigunbroken{
+	dir = 1
+	},
+/obj/structure/prop/vehicle/tank/north/decoration/damagedhardpointframe,
+/turf/open/shuttle/dropship/seven,
 /area/space)
 "ut" = (
 /obj/machinery/door/window/secure{
@@ -5288,8 +5288,7 @@
 /area/icy_caves/caves/northern)
 "wf" = (
 /obj/structure/table/mainship,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "wg" = (
 /obj/effect/landmark/start/job/survivor,
@@ -5343,8 +5342,7 @@
 /area/icy_caves/caves/alienstuff)
 "wq" = (
 /obj/machinery/light,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "wr" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -5415,8 +5413,7 @@
 "wG" = (
 /obj/effect/spawner/gibspawner/human,
 /obj/structure/cable,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "wH" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -5707,8 +5704,7 @@
 /area/icy_caves/caves)
 "yb" = (
 /obj/structure/filingcabinet,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "yd" = (
 /obj/structure/monorail,
@@ -5737,8 +5733,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "yi" = (
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "yj" = (
 /obj/structure/closet/crate/secure/weapon,
@@ -6215,16 +6210,6 @@
 "Ae" = (
 /turf/closed/ice_rock/eastWall,
 /area/icy_caves/caves/northern)
-"Af" = (
-/obj/vehicle/multitile/root/cm_armored/tank{
-	dir = 1;
-	layer = 1
-	},
-/obj/structure/dropship_equipment/weapon/laser_beam_gun,
-/obj/effect/turf_overlay/shuttle/heater,
-/obj/structure/dropship_equipment/weapon/rocket_pod,
-/turf/open/shuttle/dropship/floor,
-/area/space)
 "Ah" = (
 /obj/effect/landmark/corpsespawner/security{
 	corpsebelt = /obj/item/weapon/gun/revolver/cmb;
@@ -6574,8 +6559,7 @@
 /area/icy_caves/caves/west)
 "BB" = (
 /obj/structure/cryofeed,
-/turf/open/floor/engine{
-	},
+/turf/open/floor/engine,
 /area/icy_caves/caves/northwestmonorail)
 "BE" = (
 /obj/structure/cable,
@@ -6952,8 +6936,7 @@
 /area/icy_caves/outpost/dorms)
 "Dm" = (
 /obj/structure/largecrate/random/secure,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "Dn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -6966,8 +6949,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "Dp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -7188,8 +7170,7 @@
 "Ek" = (
 /obj/structure/table/mainship,
 /obj/effect/decal/cleanable/blood/xtracks,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "El" = (
 /obj/structure/table/reinforced,
@@ -7347,8 +7328,7 @@
 	dir = 4
 	},
 /obj/structure/table/mainship,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "EX" = (
 /obj/structure/largecrate/supply/floodlights,
@@ -7830,8 +7810,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "GR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7925,8 +7904,7 @@
 "Hj" = (
 /obj/structure/table/mainship,
 /obj/machinery/recharger,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "Hk" = (
 /turf/open/floor/wood/broken,
@@ -10501,8 +10479,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
 "Sg" = (
 /turf/closed/ice/end{
@@ -15347,7 +15324,7 @@ Fk
 NW
 XD
 NW
-NW
+us
 fs
 UZ
 qI
@@ -15502,8 +15479,8 @@ Wy
 Wy
 Wy
 ch
-Af
-us
+Wy
+Wy
 Wy
 kU
 qI

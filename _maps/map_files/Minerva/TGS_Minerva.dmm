@@ -3893,8 +3893,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "mU" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC2"
+/obj/structure/prop/mainship/name_stencil/G{
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
@@ -3934,9 +3933,7 @@
 /area/mainship/squads/general)
 "nf" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
 	},
 /area/space)
 "ng" = (
@@ -4846,8 +4843,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "qq" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC3"
+/obj/structure/prop/mainship/name_stencil/M{
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
@@ -5574,8 +5570,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "tg" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC4"
+/obj/structure/prop/mainship/name_stencil/C{
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
@@ -7874,9 +7869,7 @@
 /area/mainship/squads/general)
 "zX" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
 	},
 /area/space)
 "zY" = (
@@ -8657,8 +8650,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "Cf" = (
-/turf/open/floor/plating{
-	icon_state = "warnplatecorner"
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	},
 /area/mainship/hallways/hangar)
 "Cg" = (
@@ -11249,9 +11241,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "JZ" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1;
 	},
 /area/space)
 "Ka" = (
@@ -13559,9 +13550,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Rb" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1;
 	},
 /area/space)
 "Rc" = (
@@ -13798,9 +13788,8 @@
 	},
 /area/mainship/living/evacuation)
 "RQ" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 4;
-	icon_state = "warnplatecorner"
 	},
 /area/mainship/hallways/hangar)
 "RR" = (
@@ -13814,9 +13803,8 @@
 	},
 /area/mainship/hallways/hangar)
 "RU" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 8;
-	icon_state = "warnplatecorner"
 	},
 /area/mainship/hallways/hangar)
 "RV" = (

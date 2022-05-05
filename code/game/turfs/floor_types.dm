@@ -306,6 +306,31 @@
 	icon_state = "wood-broken1"
 	burnt = TRUE
 
+/turf/open/floor/wood/broken/two
+	icon_state = "wood-broken2"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/three
+	icon_state = "wood-broken3"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/four
+	icon_state = "wood-broken4"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/five
+	icon_state = "wood-broken5"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/six
+	icon_state = "wood-broken6"
+	burnt = TRUE
+
+/turf/open/floor/wood/broken/seven
+	icon_state = "wood-broken7"
+	burnt = TRUE
+
+
 /turf/open/floor/vault
 	icon_state = "rockvault"
 

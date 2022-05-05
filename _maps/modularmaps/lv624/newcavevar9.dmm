@@ -10,8 +10,7 @@
 	pixel_x = -7;
 	pixel_y = 11
 	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken1"
+/turf/open/floor/wood/broken{
 	},
 /area/lv624/ground/caves/central2)
 "aT" = (
@@ -52,8 +51,7 @@
 	pixel_y = 6
 	},
 /obj/effect/spawner/random/ammo/machinegun,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
+/turf/open/floor/wood/broken/four{
 	},
 /area/lv624/ground/caves/central2)
 "fl" = (
@@ -99,8 +97,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "iX" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken3"
+/turf/open/floor/wood/broken/three{
 	},
 /area/lv624/ground/caves/central2)
 "jp" = (
@@ -208,20 +205,17 @@
 /obj/structure/barricade/sandbags{
 	dir = 1
 	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
+/turf/open/floor/wood/broken/six{
 	},
 /area/lv624/ground/caves/central2)
 "uk" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
+/turf/open/floor/wood/broken/six{
 	},
 /area/lv624/ground/caves/central2)
 "vd" = (
 /obj/effect/ai_node,
-/turf/open/floor/wood{
-	icon_state = "wood-broken1"
+/turf/open/floor/wood/broken{
 	},
 /area/lv624/ground/caves/central2)
 "vD" = (
@@ -290,8 +284,7 @@
 /area/lv624/ground/caves/rock)
 "AW" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
+/turf/open/floor/wood/broken/four{
 	},
 /area/lv624/ground/caves/central2)
 "Bf" = (
@@ -369,8 +362,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Jh" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
+/turf/open/floor/wood/broken/seven{
 	},
 /area/lv624/ground/caves/central2)
 "Kb" = (
@@ -392,8 +384,7 @@
 /area/lv624/ground/caves/central2)
 "Nl" = (
 /obj/item/paper/crumpled/bloody,
-/turf/open/floor/wood{
-	icon_state = "wood-broken7"
+/turf/open/floor/wood/broken/seven{
 	},
 /area/lv624/ground/caves/central2)
 "Np" = (
@@ -494,8 +485,7 @@
 /area/lv624/ground/caves/central2)
 "WG" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
+/turf/open/floor/wood/broken/six{
 	},
 /area/lv624/ground/caves/central2)
 "Xd" = (
@@ -511,8 +501,7 @@
 "Xn" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/spawner/random/gun/sidearms,
-/turf/open/floor/wood{
-	icon_state = "wood-broken1"
+/turf/open/floor/wood/broken{
 	},
 /area/lv624/ground/caves/central2)
 "XG" = (
@@ -536,8 +525,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "Za" = (
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
+/turf/open/floor/wood/broken/six{
 	},
 /area/lv624/ground/caves/central2)
 "ZL" = (

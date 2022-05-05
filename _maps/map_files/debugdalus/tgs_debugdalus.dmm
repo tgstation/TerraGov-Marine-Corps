@@ -101,8 +101,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "aay" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
+/turf/open/shuttle/escapepod/eleven{
 	},
 /area/mainship/command/self_destruct)
 "aaz" = (
@@ -377,8 +376,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "abC" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
+/turf/open/shuttle/escapepod/eight{
 	},
 /area/mainship/command/self_destruct)
 "abD" = (

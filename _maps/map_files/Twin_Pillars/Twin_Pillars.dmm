@@ -5273,9 +5273,7 @@
 /area/mainship/command/cic/rebel)
 "eTJ" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
 	},
 /area/space)
 "eTK" = (
@@ -6404,8 +6402,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "fNt" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC2"
+/obj/structure/prop/mainship/name_stencil/G{
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
@@ -7195,8 +7192,7 @@
 /area/mainship/hull/lower_hull)
 "gAr" = (
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
+/turf/open/shuttle/escapepod/eight{
 	},
 /area/mainship/command/self_destruct/rebel)
 "gAB" = (
@@ -9686,9 +9682,8 @@
 	},
 /area/mainship/medical/medical_science/rebel)
 "iOM" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/left{
+	dir = 1;
 	},
 /area/space)
 "iON" = (
@@ -10549,8 +10544,7 @@
 	},
 /area/mainship/hull/lower_hull/rebel)
 "jHd" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC4"
+/obj/structure/prop/mainship/name_stencil/C{
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
@@ -10936,8 +10930,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
+/turf/open/shuttle/escapepod/eleven{
 	},
 /area/mainship/command/self_destruct/rebel)
 "jVD" = (
@@ -18887,9 +18880,7 @@
 /area/mainship/living/bridgebunks)
 "qKD" = (
 /obj/structure/lattice,
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
 	},
 /area/space)
 "qKN" = (
@@ -20205,9 +20196,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science/rebel)
 "rWC" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
+/turf/closed/shuttle/ert/engines/right{
+	dir = 1;
 	},
 /area/space)
 "rWF" = (
@@ -23135,8 +23125,7 @@
 /area/mainship/medical/lower_medical/rebel)
 "usq" = (
 /obj/effect/decal/warning_stripes/thin,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
+/turf/open/shuttle/escapepod/eight{
 	},
 /area/mainship/command/self_destruct)
 "usG" = (
@@ -25035,8 +25024,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
+/turf/open/shuttle/escapepod/eleven{
 	},
 /area/mainship/command/self_destruct)
 "wia" = (
@@ -25927,8 +25915,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general/rebel)
 "wOB" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC3"
+/obj/structure/prop/mainship/name_stencil/M{
 	},
 /turf/open/floor/mainship_hull,
 /area/space)

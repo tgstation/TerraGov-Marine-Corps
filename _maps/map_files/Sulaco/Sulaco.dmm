@@ -13415,8 +13415,7 @@
 	},
 /area/sulaco/hangar)
 "gfj" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor8"
+/turf/open/shuttle/escapepod/eight{
 	},
 /area/mainship/command/self_destruct)
 "gfl" = (
@@ -15832,9 +15831,8 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "jBs" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 4;
-	icon_state = "warnplatecorner"
 	},
 /area/sulaco/hangar)
 "jBX" = (
@@ -17765,8 +17763,7 @@
 	},
 /area/sulaco/marine)
 "mno" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC3"
+/obj/structure/prop/mainship/name_stencil/M{
 	},
 /turf/open/floor/mainship_hull/gray,
 /area/space)
@@ -18008,8 +18005,7 @@
 /turf/closed/wall/mainship/gray,
 /area/mainship/living/basketball)
 "mFc" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor11"
+/turf/open/shuttle/escapepod/eleven{
 	},
 /area/mainship/command/self_destruct)
 "mGX" = (
@@ -18811,8 +18807,7 @@
 /turf/open/floor/prison,
 /area/sulaco/cargo)
 "nTc" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC2"
+/obj/structure/prop/mainship/name_stencil/G{
 	},
 /turf/open/floor/mainship_hull/gray,
 /area/space)
@@ -19182,8 +19177,7 @@
 	},
 /area/sulaco/hangar/droppod)
 "orU" = (
-/obj/structure/prop/mainship/name_stencil{
-	icon_state = "TGMC4"
+/obj/structure/prop/mainship/name_stencil/C{
 	},
 /turf/open/floor/mainship_hull/gray,
 /area/space)
@@ -23603,8 +23597,7 @@
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
 "uiW" = (
-/turf/open/floor/plating{
-	icon_state = "warnplatecorner"
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	},
 /area/sulaco/hangar)
 "ujq" = (
@@ -25271,9 +25264,8 @@
 /turf/open/floor/prison/kitchen,
 /area/sulaco/cafeteria)
 "wKu" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 8;
-	icon_state = "warnplatecorner"
 	},
 /area/sulaco/hangar)
 "wKB" = (

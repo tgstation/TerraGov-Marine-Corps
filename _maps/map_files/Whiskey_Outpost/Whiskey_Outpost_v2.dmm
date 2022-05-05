@@ -2081,8 +2081,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "iL" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "96"
+/turf/closed/shuttle/dropship1/window{
 	},
 /area/whiskey_outpost/outside/east)
 "iM" = (
@@ -2882,13 +2881,11 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "np" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "34"
-	},
+/turf/closed/shuttle/dropship1/enginefour,
 /area/whiskey_outpost/outside/south)
 "nq" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "35"
+/turf/closed/shuttle/dropship1/enginefour{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/south)
 "nr" = (
@@ -2976,13 +2973,11 @@
 	},
 /area/whiskey_outpost/outside/south)
 "nL" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "28"
-	},
+/turf/closed/shuttle/dropship1/enginethree,
 /area/whiskey_outpost/outside/south)
 "nM" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "29"
+/turf/closed/shuttle/dropship1/enginethree{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/south)
 "nN" = (
@@ -3016,8 +3011,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "nT" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "23"
+/turf/closed/shuttle/dropship1/enginetwo{
+	dir = 1
 	},
 /area/whiskey_outpost/outside/south)
 "nU" = (
@@ -3031,9 +3026,7 @@
 	},
 /area/whiskey_outpost/outside/south)
 "nW" = (
-/turf/closed/shuttle/dropship1/transparent{
-	icon_state = "22"
-	},
+/turf/closed/shuttle/dropship1/enginetwo,
 /area/whiskey_outpost/outside/south)
 "nX" = (
 /turf/closed/shuttle/dropship1/transparent{

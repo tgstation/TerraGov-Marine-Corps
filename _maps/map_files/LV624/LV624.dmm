@@ -7358,8 +7358,7 @@
 "eTC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/ai_node,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
+/turf/open/floor/wood/broken/six{
 	},
 /area/lv624/lazarus/bar)
 "eUu" = (
@@ -9410,8 +9409,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/wood{
-	icon_state = "wood-broken6"
+/turf/open/floor/wood/broken/six{
 	},
 /area/lv624/lazarus/hop)
 "hlt" = (
@@ -13627,8 +13625,7 @@
 /area/lv624/lazarus/corporate_affairs)
 "msV" = (
 /obj/item/trash/cheesie,
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
+/turf/open/floor/wood/broken/four{
 	},
 /area/lv624/lazarus/hop)
 "msZ" = (
@@ -20117,8 +20114,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/wood{
-	icon_state = "wood-broken4"
+/turf/open/floor/wood/broken/four{
 	},
 /area/lv624/lazarus/hop)
 "ulX" = (
