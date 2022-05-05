@@ -815,8 +815,6 @@
 /mob/proc/update_sight()
 	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
 	sync_lighting_plane_alpha()
-	if(SSticker.current_state == GAME_STATE_FINISHED && !is_centcom_level(z)) //Reveal ghosts to remaining survivors
-		see_invisible = SEE_INVISIBLE_OBSERVER
 
 /mob/proc/sync_lighting_plane_alpha()
 	if(!hud_used)
