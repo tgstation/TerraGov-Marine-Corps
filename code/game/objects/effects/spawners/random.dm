@@ -568,7 +568,7 @@
 					/obj/item/ammo_magazine/pistol/standard_pocketpistol)
 
 
-////new test
+//Random spawners for multiple grouped items such as a gun and it's associated ammo
 
 /obj/effect/spawner/random_set
 	name = "Random Object"
@@ -579,23 +579,24 @@
 	var/spawn_nothing_percentage = 0
 	///the list of what actually gets spawned
 	var/list/spawned_gear_list
-	///the list of lists, providing the options that can be spawned
+	///this is formatted as a list, which itself contains any number of lists. Each set of items that should be spawned together must be added as a list in option_list. One of those lists will be randomly chosen to spawn.
 	var/list/option_list
 
-// creates a new object and deletes itself
+// creates a new set of objects and deletes itself
 /obj/effect/spawner/random_set/Initialize()
 	. = ..()
 	if(!prob(spawn_nothing_percentage))
-		var/choice = rand(1, length(option_list)) //chooses an item on the list
+		var/choice = rand(1, length(option_list)) //chooses an item on the option_list
 		spawned_gear_list = option_list[choice] //sets it as the thing(s) to spawn
 		for(var/typepath in spawned_gear_list)
 			if(spawned_gear_list[typepath])
 				new typepath(loc, spawned_gear_list[typepath])
 			else
 				new typepath(loc)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
-/obj/effect/spawner/random_set/gun //restricted to ballistic weapons available on the ship, no auto-9s here
+//restricted to ballistic weapons available on the ship, no auto-9s here
+/obj/effect/spawner/random_set/gun
 	name = "Random ballistic weapon set spawner"
 	icon_state = "random_rifle"
 
@@ -638,8 +639,7 @@ obj/effect/spawner/random_set/rifle
 		list(/obj/item/weapon/gun/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11, /obj/item/ammo_magazine/rifle/tx11,),
 	)
 
-
-///random shotguns
+//random shotguns
 /obj/effect/spawner/random_set/shotgun
 	name = "Random shotgun set spawner"
 	icon_state = "random_shotgun"
@@ -653,7 +653,7 @@ obj/effect/spawner/random_set/rifle
 		list(/obj/item/weapon/gun/shotgun/pump/cmb, /obj/item/ammo_magazine/shotgun, /obj/item/ammo_magazine/shotgun, /obj/item/ammo_magazine/shotgun,),
 	)
 
-///random machineguns
+//random machineguns
 /obj/effect/spawner/random_set/machineguns
 	name = "Random machinegun set spawner"
 	icon_state = "random_machinegun"
@@ -663,7 +663,7 @@ obj/effect/spawner/random_set/rifle
 		list(/obj/item/weapon/gun/standard_mmg, /obj/item/ammo_magazine/standard_mmg, /obj/item/ammo_magazine/standard_mmg, /obj/item/ammo_magazine/standard_mmg,),
 	)
 
-///random sidearms
+//random sidearms
 /obj/effect/spawner/random_set/sidearms
 	name = "Random sidearm set spawner"
 	icon_state = "random_sidearm"
