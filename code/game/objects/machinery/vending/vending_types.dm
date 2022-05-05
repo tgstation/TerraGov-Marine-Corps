@@ -182,7 +182,7 @@
 			/obj/item/storage/pill_bottle/kelotane = 4,
 			/obj/item/storage/pill_bottle/tramadol = 4,
 			/obj/item/storage/pill_bottle/dylovene = 4,
-			/obj/item/storage/pill_bottle/inaprovaline = 16
+			/obj/item/storage/pill_bottle/inaprovaline = 16,
 			/obj/item/storage/pill_bottle/dexalin = 16,
 			/obj/item/storage/pill_bottle/spaceacillin = 16,
 			/obj/item/storage/pill_bottle/alkysine = 16,
