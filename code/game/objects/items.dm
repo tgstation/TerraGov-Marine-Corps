@@ -317,6 +317,14 @@
 		current_acid = null
 	return
 
+///Called to return an item to equip using the quick equip hotkey. Will try return a stored item, otherwise returns itself to equip.
+/obj/item/proc/do_quick_equip()
+	var/obj/item/found = locate(/obj/item/storage) in contents
+	if(!found)
+		found = locate(/obj/item/armor_module/storage) in contents
+	if(found)
+		return found.do_quick_equip()
+	return src
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
@@ -546,6 +554,13 @@
 			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 				return TRUE
 			return FALSE
+		if(SLOT_IN_ACCESSORY)
+			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/holster)) ||(H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/knifeharness)))
+				var/obj/item/armor_module/storage/U = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			return FALSE
 		if(SLOT_S_STORE)
 			if(H.s_store)
 				return FALSE
@@ -626,6 +641,13 @@
 				return TRUE
 		if(SLOT_IN_HEAD)
 			var/obj/item/clothing/head/helmet/marine/S = H.head
+			if(!istype(S) || !S.pockets)
+				return FALSE
+			var/obj/item/storage/internal/T = S.pockets
+			if(T.can_be_inserted(src, warning))
+				return TRUE
+		if(SLOT_IN_BOOT)
+			var/obj/item/clothing/shoes/marine/S = H.shoes
 			if(!istype(S) || !S.pockets)
 				return FALSE
 			var/obj/item/storage/internal/T = S.pockets
