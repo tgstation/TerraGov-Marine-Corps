@@ -45,6 +45,9 @@
 	// *** Stealth ***
 	stealth_break_threshold = 15
 
+	// *** Minimap Icon *** //
+	minimap_icon = "hunter"
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
