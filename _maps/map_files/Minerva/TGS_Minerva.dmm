@@ -2553,6 +2553,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/starboard_hull)
+"ii" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "ij" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -25198,7 +25202,7 @@ gt
 hS
 gY
 gY
-iK
+ii
 sT
 yB
 qu
