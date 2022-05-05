@@ -1,7 +1,11 @@
 /obj/effect/decal/warning_stripes
 	icon = 'icons/effects/warning_stripes.dmi'
+	icon_state = "stripe_box_thick"
 	layer = BELOW_ATMOS_PIPE_LAYER
 	mouse_opacity = 0
+
+/obj/effect/decal/warning_stripes/linethick
+	icon_state = "stripe_line_thick"
 
 /obj/effect/decal/warning_stripes/engineer
 	icon_state = "engineer"
@@ -18,9 +22,8 @@
 /obj/effect/decal/warning_stripes/firingrange
 	icon_state = "firingrange"
 
-
 /obj/effect/decal/warning_stripes/nscenter
-	icon_state = "NS-center"
+	icon_state = "stripe_thick_center"
 
 /obj/effect/decal/warning_stripes/smallstripe
 	icon_state = "smallstripe"
@@ -30,6 +33,9 @@
 
 /obj/effect/decal/warning_stripes/box
 	icon_state = "warningbox"
+
+/obj/effect/decal/warning_stripes/box/threeside
+	icon_state = "stripe_box_threeside"
 
 /obj/effect/decal/warning_stripes/box/empty
 	icon_state = "warningboxempty"

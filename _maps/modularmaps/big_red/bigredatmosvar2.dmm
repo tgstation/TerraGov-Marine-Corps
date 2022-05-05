@@ -40,8 +40,8 @@
 /area/bigredv2/outside/se)
 "bv" = (
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-N"
+/obj/effect/decal/warning_stripes/box/threeside{
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -169,9 +169,7 @@
 /area/bigredv2/outside/s)
 "me" = (
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-S"
-	},
+/obj/effect/decal/warning_stripes/box/threeside,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "mQ" = (
@@ -292,9 +290,7 @@
 	id = "FiltrationShutters";
 	name = "\improper Airlock Shutters"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/outside/filtration_plant)
 "tA" = (
 /obj/effect/decal/cleanable/dirt,
@@ -618,9 +614,7 @@
 /area/bigredv2/outside/se)
 "JO" = (
 /obj/structure/cryofeed,
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/outside/filtration_plant)
 "JS" = (
 /obj/structure/table,
@@ -738,20 +732,11 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/outside/filtration_plant)
 "OG" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/landmark/weed_node,
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
-"Pb" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-N"
-	},
-/obj/machinery/computer3/server/rack,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Qa" = (
@@ -766,9 +751,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Qp" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-S"
-	},
+/obj/effect/decal/warning_stripes/box/threeside,
 /obj/machinery/computer3/server/rack,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -1106,7 +1089,7 @@ rD
 tF
 Ih
 Qp
-Pb
+bv
 fl
 tF
 rl

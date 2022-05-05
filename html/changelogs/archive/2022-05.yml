@@ -36,3 +36,15 @@
   - imageadd: Ported CM APC icons for mapper use.
   novaepee:
   - qol: Update Autodoc UI to make it easier on eyes to cllick on the correct procedure
+2022-05-05:
+  Arctrooper8:
+  - balance: Lab coats now have the same storage as a medical storage module.
+  - imageadd: New sprites for all lab coats
+  - imageadd: New researcher uniform and improved scrubs sprite.
+  RipGrayson:
+  - bugfix: The nuke generator on LV is no longer inside silo fog
+  - code_imp: Purged a large amount of icon varedits from most maps
+  Walarks:
+  - qol: add to the weeds menu an option to automatically use the ability when moving
+  goose4429:
+  - balance: OD and COD start when _over_ threshold
