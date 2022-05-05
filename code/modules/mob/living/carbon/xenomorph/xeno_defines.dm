@@ -203,7 +203,7 @@
 	var/list/actions
 
 	///The iconstate for the xeno on the minimap
-	var/minimap_icon = "xeno"
+	var/minimap_icon = "xenominion"
 	///The iconstate for leadered xenos on the minimap
 	var/minimap_leadered_icon = "xenoleader"
 	///The iconstate of the plasma bar, format used is "[plasma_icon_state][amount]"
