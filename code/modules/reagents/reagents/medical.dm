@@ -715,6 +715,12 @@
 
 /datum/reagent/medicine/bicaridine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(effect_str, BURN)
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/H = L
+	for(var/datum/limb/X in H.limbs)
+		for(var/datum/wound/internal_bleeding/W in X.wounds)
+			W.damage = max(0, W.damage - (0.2*effect_str))
 
 /datum/reagent/medicine/bicaridine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, 3*effect_str, 2*effect_str)
@@ -803,6 +809,12 @@
 /datum/reagent/medicine/quickclotplus/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1.5*effect_str, TOX)
 	L.blood_volume -= 4
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/H = L
+	for(var/datum/limb/X in H.limbs)
+		for(var/datum/wound/internal_bleeding/W in X.wounds)
+			W.damage = max(0, W.damage - (5*effect_str))
 
 /datum/reagent/medicine/quickclotplus/overdose_crit_process(mob/living/L, metabolism)
 	L.blood_volume -= 20
