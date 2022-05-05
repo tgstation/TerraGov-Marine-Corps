@@ -187,8 +187,7 @@
 	//Possibly trigger an internal wound, too.
 	var/local_damage = brute_dam + burn_dam + brute
 	if(brute > 15 && local_damage > 30 && prob(brute*0.5) && !(limb_status & LIMB_ROBOT) && !(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS))
-		var/datum/wound/internal_bleeding/I = new (min(brute - 15, 15), src)
-		wounds += I
+		new /datum/wound/internal_bleeding(min(brute - 15, 15), src)
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
 	//If they have it splinted and no splint health, the splint won't hold.
@@ -344,7 +343,9 @@
 		brute_dam += damage
 		limb_wound_status &= !(LIMB_WOUND_BANDAGED | LIMB_WOUND_DISINFECTED)
 
-
+//For testing purposes
+/datum/limb/proc/add_internal_bleeding()
+	new /datum/wound/internal_bleeding(15, src)
 
 /****************************************************
 			PROCESSING & UPDATING
@@ -365,6 +366,8 @@
 	else
 		last_dam = brute_dam + burn_dam
 	if(germ_level)
+		return 1
+	if(wounds.len)
 		return 1
 	return 0
 
@@ -518,12 +521,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(burn_dam && limb_wound_status & LIMB_WOUND_SALVED && prob(75))
 		burn_dam = max(0, burn_dam - 0.5)
 
-
 	if(owner.bodytemperature >= 170 && !HAS_TRAIT(owner, TRAIT_STASIS))
 		for(var/datum/wound/W in wounds)
 			W.process()
 
-	// sync the organ's damage with its wounds
+	// sync the organ's bleeding-ness and icon
 	update_damages()
 	if (update_icon())
 		owner.UpdateDamageIcon(1)

@@ -22,12 +22,11 @@
 /datum/wound/New(initial_damage, datum/limb/plimb)
 	parent_limb = plimb
 	damage = initial_damage
+	parent_limb.wounds += src
 	return ..()
 
 //Called by the parent limb every life tick by default
 /datum/wound/process()
-	if(can_autoheal())
-		damage -= 0.1
 	if(damage <= 0)
 		qdel(src)
 
@@ -71,9 +70,10 @@
 
 	if(!(can_autoheal() || (bicardose && inaprovaline) || quickclot))	//bicaridine and inaprovaline stop internal wounds from harming the parent limb over time, unless it is so small that it is already healing
 		parent_limb.createwound(CUT, 0.1)
+		damage += 0.1
 
 	if(!quickclot) //Quickclot stops bleeding, magic!
-		parent_limb.owner.blood_volume = max(0, parent_limb.owner.blood_volume - damage/30)
+		parent_limb.owner.blood_volume = max(0, parent_limb.owner.blood_volume - damage/40)
 		if(prob(1))
 			parent_limb.owner.custom_pain("You feel a stabbing pain in your [parent_limb.display_name]!", 1)
 
