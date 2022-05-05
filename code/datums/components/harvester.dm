@@ -193,7 +193,7 @@
 	if(!loaded_reagents[selected_reagent])
 		return
 
-	var/button_overlay = reagent_select_action.selected_reagent_overlay
+	var/image/button_overlay = reagent_select_action.selected_reagent_overlay
 
 	button_overlay.color = initial(selected_reagent.color)
 	reagent_select_action.button.overlays -= button_overlay
