@@ -87,7 +87,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 100.0
-	damtype = BRUTE //Note to self, change into burn in the future after making all fire armor zero
+	damtype = BURN //Note to self, BURN uses fire armor and the Queen has 100 which means PC does no damage to her.
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
@@ -251,7 +251,7 @@
 		spark_system.attach(M)
 		spark_system.start(M)
 		cell.charge += 200
-		to_chat(world, span_warning("[src] violently vaporizes chunks of the Xenomorph upon contact!"))
+		to_chat(M, span_warning("[src] violently vaporizes chunks of the Xenomorph upon contact!"))
 		to_chat(user, span_notice("The vaporized matter causes a temporary feedback loop in the battery! <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 	return ..()
 
