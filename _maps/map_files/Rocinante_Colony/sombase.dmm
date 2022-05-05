@@ -13451,17 +13451,6 @@
 /obj/machinery/mineral/unloading_machine/corner,
 /turf/open/floor/mainship/orange/full,
 /area/rocinante_colony/surface/building/ammo_factory)
-"sdK" = (
-/obj/structure/cable{
-	layer = 1.99
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	desc = "pipe going under solid rock was a cm thing, I had nothing to do with it";
-	dir = 4
-	},
-/obj/structure/prop/vehicle/apc/damagedhptone,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/rocinante_colony/ground/colonyw)
 "sdP" = (
 /turf/closed/mineral{
 	color = "#c2e4ff"
@@ -25779,7 +25768,7 @@ qsm
 eRd
 woG
 woG
-sdK
+vqM
 qsm
 xUA
 xUA
