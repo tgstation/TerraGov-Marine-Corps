@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SUTURE_MIN_DURATION 80
 #define SUTURE_MAX_DURATION 90
 
-#define LIMB_PRINTING_TIME 550
+#define LIMB_PRINTING_TIME 30
 #define LIMB_METAL_AMOUNT 125
 
 //How long it takes for a human to become undefibbable
@@ -619,6 +619,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1
+#define AUTO_WEEDING_MIN_DIST 4 // How far the xeno must be from the last spot to auto weed
 
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE 0

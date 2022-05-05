@@ -31,6 +31,10 @@
 	var/max_range = 0
 	///The seleted type of weeds
 	var/obj/effect/alien/weeds/node/weed_type = /obj/effect/alien/weeds/node
+	///Whether automatic weeding is active
+	var/auto_weeding = FALSE
+	///The turf that was last weeded
+	var/turf/last_weeded_turf
 
 /datum/action/xeno_action/activable/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
 	plasma_cost = initial(plasma_cost) * initial(weed_type.plasma_cost_mult)
@@ -67,6 +71,7 @@
 	owner.visible_message(span_xenonotice("\The [owner] regurgitates a pulsating node and plants it on the ground!"), \
 		span_xenonotice("We regurgitate a pulsating node and plant it on the ground!"), null, 5)
 	new weed_type(T)
+	last_weeded_turf = T
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.weeds_planted++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_planted")
@@ -77,20 +82,49 @@
 	INVOKE_ASYNC(src, .proc/choose_weed)
 	return COMSIG_KB_ACTIVATED
 
-///Chose which weed will be planted by the xeno owner
+///Chose which weed will be planted by the xeno owner or toggle automatic weeding
 /datum/action/xeno_action/activable/plant_weeds/proc/choose_weed()
-	var/weed_choice = show_radial_menu(owner, owner, GLOB.weed_images_list, radius = 48)
+	var/list/choices = GLOB.weed_images_list.Copy()
+	choices[AUTOMATIC_WEEDING] = image('icons/mob/actions.dmi', icon_state = "repeating")
+	var/weed_choice = show_radial_menu(owner, owner, choices, radius = 48)
 	if(!weed_choice)
 		return
-	for(var/obj/effect/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
-		if(initial(weed_type_possible.name) == weed_choice)
-			weed_type = weed_type_possible
-			break
-	to_chat(owner, "<span class='notice'>We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability.</span>")
+	if(weed_choice == AUTOMATIC_WEEDING)
+		toggle_auto_weeding()
+	else
+		for(var/obj/effect/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
+			if(initial(weed_type_possible.name) == weed_choice)
+				weed_type = weed_type_possible
+				break
+		to_chat(owner, span_xenonotice("We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability."))
 	update_button_icon()
+
+///Toggles automatic weeding
+/datum/action/xeno_action/activable/plant_weeds/proc/toggle_auto_weeding()
+	SIGNAL_HANDLER
+	if(auto_weeding)
+		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(owner, COMSIG_MOB_DEATH)
+		auto_weeding = FALSE
+		to_chat(owner, span_xenonotice("We will no longer automatically plant weeds."))
+		return
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/weed_on_move)
+	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/toggle_auto_weeding)
+	auto_weeding = TRUE
+	to_chat(owner, span_xenonotice("We will now automatically plant weeds."))
+
+///Used for performing automatic weeding
+/datum/action/xeno_action/activable/plant_weeds/proc/weed_on_move(datum/source)
+	if(get_dist(owner, last_weeded_turf) < AUTO_WEEDING_MIN_DIST)
+		return
+	if(!can_use_action(silent = TRUE))
+		return
+	plant_weeds(owner)
 
 /datum/action/xeno_action/activable/plant_weeds/update_button_icon()
 	button.overlays.Cut()
+	if(auto_weeding)
+		button.overlays += image('icons/mob/actions.dmi', icon_state = "repeating")
 	button.overlays += image('icons/mob/actions.dmi', button, initial(weed_type.name))
 	return ..()
 

@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - rscadd: "Added a few more jobs to EORD, such as SOM veterans and freelancer."
-  - bugfix: "Added some missing description info to some SOM equipment, and added missing SL skills to the SOM leader."
