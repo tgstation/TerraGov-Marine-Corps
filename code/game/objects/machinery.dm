@@ -347,8 +347,9 @@
 
 		dat += "<tr>"
 
-		if(e.wounds.len)
+		for(var/datum/wound/internal_bleeding/IB in e.wounds)
 			internal_bleeding = "Internal bleeding<br>"
+			break
 		if(istype(e, /datum/limb/chest) && occ["lung_ruptured"])
 			lung_ruptured = "Lung ruptured:<br>"
 		if(e.limb_status & LIMB_SPLINTED)
