@@ -1,4 +1,0 @@
-author: "goose4429"
-delete-after: True
-changes: 
-  - balance: "OD and COD start when _over_ threshold"

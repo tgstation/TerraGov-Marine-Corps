@@ -1,6 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - balance: "Lab coats now have the same storage as a medical storage module."
-  - imageadd: "New sprites for all lab coats"
-  - imageadd: "New researcher uniform and improved scrubs sprite."

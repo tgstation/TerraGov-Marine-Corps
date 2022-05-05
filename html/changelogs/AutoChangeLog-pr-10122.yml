@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - bugfix: "The nuke generator on LV is no longer inside silo fog"
