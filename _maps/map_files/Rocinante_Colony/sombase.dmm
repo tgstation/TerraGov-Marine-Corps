@@ -6775,10 +6775,6 @@
 	},
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/commercial_n)
-"jdn" = (
-/obj/structure/prop/vehicle/crawler/crawler_blue,
-/turf/open/floor/plating/ground/concrete,
-/area/rocinante_colony/ground/colonyn)
 "jdr" = (
 /obj/structure/cable{
 	layer = 1.99
@@ -37291,7 +37287,7 @@ qiI
 wTA
 jyn
 otv
-jdn
+siX
 siX
 siX
 jbI
