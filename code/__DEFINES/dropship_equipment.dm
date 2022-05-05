@@ -9,13 +9,14 @@
 ///This equipment can only be used in firemissions
 #define FIRE_MISSION_ONLY (1<<3)
 ///Whether we can interact with this equipment
-#define IS_INTERACTABLE (1<<4)
+#define IS_INTERACTABLE (1<<5)
 
 ///Ammo type defines
 #define CAS_LASER_BATTERY 1
 #define CAS_MINI_ROCKET 2
 #define CAS_MISSILE 3
 #define CAS_30MM 4
+#define RAILGUN_AMMO 5
 
 //Ammo impact type defines
 #define CAS_AMMO_EXPLOSIVE 1//Uses explosive ammo. Missiles/bombs, etc.
