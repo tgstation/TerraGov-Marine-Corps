@@ -443,7 +443,7 @@
 							if(!surgery)
 								break
 							sleep(FIXVEIN_MAX_DURATION*surgery_mod)
-							S.limb_ref.wounds -= W
+							qdel(W)
 						if(!surgery)
 							break
 						close_incision(occupant, S.limb_ref)
