@@ -1,4 +1,5 @@
 #define MAX_LOADABLE_REAGENT_AMOUNT 60
+#define NO_REAGENT_COLOR "#FFFFFF"
 
 /datum/component/harvester
 	///reagent selected for actions
@@ -20,12 +21,7 @@
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	if(!istype(chem_component, /datum/component/chem_booster))
-		return COMPONENT_INCOMPATIBLE
-
 	reagent_select_action = new
-	reagent_select_action.selected_reagent_overlay = image('icons/mob/actions.dmi', null, "selected_reagent")
-	reagent_select_action.button.overlays += reagent_select_action.selected_reagent_overlay
 
 	var/obj/item/item_parent = parent
 	item_parent.actions += reagent_select_action
@@ -108,6 +104,8 @@
 	container.reagents.remove_reagent(reagent_to_load, added_amount)
 	loaded_reagents[reagent_to_load] += added_amount
 	to_chat(user, span_rose("You load [added_amount]u. It now holds [loaded_reagents[reagent_to_load]]u."))
+	if(length(loaded_reagents) == 1)
+		update_selected_reagent(reagent_to_load)
 
 ///Handles behavior when activating the weapon
 /datum/component/harvester/proc/activate_blade_async(datum/source, mob/user)
@@ -135,6 +133,8 @@
 
 	loaded_reagent = selected_reagent
 	loaded_reagents[selected_reagent] -= use_amount
+	if(!loaded_reagents[selected_reagent])
+		loaded_reagents -= selected_reagent
 
 ///Handles behavior when attacking a mob
 /datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
@@ -145,7 +145,6 @@
 	else
 		target.adjustStaminaLoss(-30)
 		target.heal_overall_damage(6, 0, TRUE)
-	loaded_reagent = null
 
 ///Signal handler calling when user is filling the harvester
 /datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)
@@ -160,6 +159,7 @@
 ///Signal handler calling when user attacks
 /datum/component/harvester/proc/attack(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
 	SIGNAL_HANDLER
+	. = FALSE
 	weapon = user.get_active_held_item()
 	if(!loaded_reagent)
 		return
@@ -173,7 +173,7 @@
 			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
-			var/list/cone_turfs = generate_cone(get_turf(target), 10, 90, Get_Angle(user, target.loc))
+			var/list/cone_turfs = generate_cone(get_turf(target), 2, 1, 90, Get_Angle(user, target.loc))
 			for(var/row_turfs in cone_turfs)
 				for(var/turf/checked_turf AS in row_turfs)
 					checked_turf.ignite()
@@ -182,25 +182,52 @@
 			if(isxeno(target))
 				return
 			INVOKE_ASYNC(src, .proc/attack_async, source, target, user, weapon)
-			return COMPONENT_ITEM_NO_ATTACK
+			. = COMPONENT_ITEM_NO_ATTACK
 
+	if(!loaded_reagents[loaded_reagent])
+		update_selected_reagent(null)
+		to_chat(user, span_rose("You have ran out of [initial(loaded_reagent.name)]."))
 	loaded_reagent = null
 
 #undef MAX_LOADABLE_REAGENT_AMOUNT
 
 /datum/component/harvester/proc/select_reagent(datum/source)
-	var/datum/reagent/selected_reagent = tgui_input_list(reagent_select_action.owner, "Selection", "Available reagents", loaded_reagents)
-	if(!loaded_reagents[selected_reagent])
+	var/list/options = list()
+	for(var/datum/reagent/reagent_entry AS in loaded_reagents)
+		options += initial(reagent_entry.name)
+
+	var/selected_option = tgui_input_list(reagent_select_action.owner, "Selection", "Available reagents", options)
+
+	if(!selected_option)
 		return
 
+	var/datum/reagent/selected_reagent = null
+	for(var/datum/reagent/reagent_entry AS in loaded_reagents)
+		if(initial(reagent_entry.name) == selected_option)
+			selected_reagent = reagent_entry
+
+	update_selected_reagent(selected_reagent)
+
+
+/datum/component/harvester/proc/update_selected_reagent(datum/reagent/new_reagent)
+	src.selected_reagent = new_reagent
+
 	var/image/button_overlay = reagent_select_action.selected_reagent_overlay
-
-	button_overlay.color = initial(selected_reagent.color)
-	reagent_select_action.button.overlays -= button_overlay
-	reagent_select_action.button.overlays += button_overlay
-
-	src.selected_reagent = selected_reagent
+	button_overlay.color = new_reagent ? initial(new_reagent.color) : NO_REAGENT_COLOR
+	reagent_select_action.update_button_icon()
 
 /datum/action/harvester/reagent_select
 	name = "Select Reagent"
 	var/image/selected_reagent_overlay
+
+/datum/action/harvester/reagent_select/New(Target)
+	. = ..()
+	selected_reagent_overlay = image('icons/mob/actions.dmi', null, "selected_reagent")
+	update_button_icon()
+
+/datum/action/harvester/reagent_select/update_button_icon()
+	. = ..()
+	button.overlays -= selected_reagent_overlay
+	button.overlays += selected_reagent_overlay
+
+#undef NO_REAGENT_COLOR
