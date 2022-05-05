@@ -129,7 +129,6 @@
 	icon_state = "void_puppy"
 	icon_living = "void_puppy"
 	icon_dead = "void_puppy_dead"
-	health = 9999
 
 
 /mob/living/simple_animal/corgi/lisa
