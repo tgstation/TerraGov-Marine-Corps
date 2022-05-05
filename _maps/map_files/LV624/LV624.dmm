@@ -329,13 +329,7 @@
 /area/lv624/ground/sand6)
 "ahH" = (
 /obj/structure/morgue/sarcophagus,
-/obj/item/weapon/katana{
-	desc = "Woah! Holy shit! A glowing alien sword! How fucking cool is that, and it's super sharp!";
-	force = 85;
-	icon_state = "blade";
-	name = "\improper alien blade";
-	throwforce = 45
-	},
+/mob/living/simple_animal/corgi/puppy/void,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "ahN" = (
