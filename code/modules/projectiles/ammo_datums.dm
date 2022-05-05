@@ -1210,7 +1210,7 @@ datum/ammo/bullet/revolver/tp44
 	on_pierce_multiplier = 0.85
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
+	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 2, shake = 0)
 
 /datum/ammo/bullet/railgun/hvap
 	name = "high velocity rail"
