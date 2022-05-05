@@ -177,6 +177,12 @@
 			/obj/item/reagent_containers/glass/bottle/medicalnanites = 12,
 		),
 		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/tricordrazine = 4,
+			/obj/item/storage/pill_bottle/bicaridine = 4,
+			/obj/item/storage/pill_bottle/kelotane = 4,
+			/obj/item/storage/pill_bottle/tramadol = 4,
+			/obj/item/storage/pill_bottle/dylovene = 4,
+			/obj/item/storage/pill_bottle/inaprovaline = 16
 			/obj/item/storage/pill_bottle/dexalin = 16,
 			/obj/item/storage/pill_bottle/spaceacillin = 16,
 			/obj/item/storage/pill_bottle/alkysine = 16,
