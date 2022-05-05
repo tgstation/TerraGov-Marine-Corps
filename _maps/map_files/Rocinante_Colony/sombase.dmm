@@ -2021,6 +2021,10 @@
 /obj/machinery/computer3/laptop,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/tadpole_hangar)
+"cVi" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/rocinante_colony/surface/building/commercial_s)
 "cVx" = (
 /turf/open/floor/mainship,
 /area/rocinante_colony/surface/building/cargo_office)
@@ -3167,6 +3171,10 @@
 	},
 /turf/open/floor/plating,
 /area/rocinante_colony/surface/building/cas_hangar)
+"exw" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grass,
+/area/rocinante_colony/surface/building/commercial_s)
 "exI" = (
 /obj/structure/cable{
 	layer = 1.99
@@ -5841,6 +5849,10 @@
 /obj/structure/monorail,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/space_hangar)
+"ida" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/rocinante_colony/surface/building/commercial_s)
 "idG" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/mainship/red/full,
@@ -11587,6 +11599,13 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/colonysw)
+"pPU" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/rocinante_colony/ground/colonycent)
 "pPX" = (
 /obj/structure/flora/pottedplant/twentyone,
 /obj/effect/ai_node,
@@ -12638,6 +12657,10 @@
 "rsQ" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonyse)
+"rtf" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/rocinante_colony/ground/river)
 "rtr" = (
 /obj/structure/caspart{
 	icon_state = "25"
@@ -13552,11 +13575,6 @@
 	},
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/commanddorms)
-"sRg" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/grass,
-/area/rocinante_colony/ground/colonycent)
 "sRi" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete,
@@ -16666,6 +16684,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/dropship_hangar)
+"xxz" = (
+/obj/machinery/door/airlock/mainship/security/glass/free_access,
+/turf/open/floor/plating,
+/area/rocinante_colony/surface/building/commercial_s)
 "xxI" = (
 /obj/item/weapon/gun/rifle/mpi_km,
 /turf/open/floor/plating/ground/snow/layer3,
@@ -26347,7 +26369,7 @@ kLm
 woG
 xlo
 xlo
-uVf
+xxz
 xlo
 xlo
 xlo
@@ -26721,7 +26743,7 @@ rfM
 wQh
 rfM
 rfM
-rfM
+ida
 rfM
 xlo
 xlo
@@ -26909,10 +26931,10 @@ vfb
 rxl
 rxl
 qsm
-ulx
+cVi
 wQh
 rfM
-rfM
+ida
 rfM
 xlo
 xlo
@@ -27102,9 +27124,9 @@ vfb
 vfb
 vfb
 ulx
-ulx
+cVi
 rfM
-rfM
+exw
 rfM
 juu
 sLh
@@ -27296,7 +27318,7 @@ vfb
 ulx
 ulx
 rfM
-rfM
+ida
 rfM
 juu
 sLh
@@ -27304,8 +27326,8 @@ sLh
 oOi
 sLh
 xyq
-xlo
-fBL
+oOi
+sLh
 sLh
 pdD
 sLh
@@ -27871,7 +27893,7 @@ vfb
 vfb
 aAd
 aAd
-rfM
+ida
 rfM
 rfM
 juu
@@ -28061,11 +28083,11 @@ jaf
 vfb
 vfb
 vfb
-ulx
+cVi
 rfM
 rfM
 rfM
-rfM
+ida
 xlo
 xlo
 sLh
@@ -28257,7 +28279,7 @@ lLO
 rfM
 rfM
 rfM
-rfM
+ida
 rfM
 xlo
 xlo
@@ -28447,10 +28469,10 @@ vfb
 vfb
 lLO
 lLO
+ida
 rfM
 rfM
-rfM
-rfM
+exw
 rfM
 rfM
 xlo
@@ -28833,7 +28855,7 @@ vfb
 vfb
 ieC
 ieC
-ieC
+rtf
 ieC
 fRo
 mvD
@@ -29407,7 +29429,7 @@ pjV
 iaE
 tbE
 tbE
-tbE
+vSX
 pjV
 fRo
 fRo
@@ -29606,7 +29628,7 @@ ieC
 ieC
 ieC
 puA
-sRg
+mvD
 puA
 pjV
 pjV
@@ -29614,8 +29636,8 @@ xlo
 xlo
 xlo
 xlo
-sLh
-sLh
+fBL
+fBL
 sLh
 xlo
 cMT
@@ -29787,7 +29809,7 @@ vux
 fRo
 pjV
 pjV
-pjV
+xVJ
 pjV
 fRo
 brT
@@ -29998,8 +30020,8 @@ rfM
 rfM
 rfM
 xlo
-sLh
-sLh
+fBL
+fBL
 sLh
 xlo
 ulx
@@ -30170,7 +30192,7 @@ jdj
 fPX
 gdE
 pjV
-tbE
+vSX
 pjV
 puA
 brT
@@ -30188,7 +30210,7 @@ fRo
 xVJ
 rfM
 rfM
-rfM
+exw
 xlo
 sLh
 sLh
@@ -30746,7 +30768,7 @@ vux
 bzY
 fBI
 fBI
-pjV
+xVJ
 fRo
 fRo
 brT
@@ -31321,7 +31343,7 @@ hxa
 rDe
 bzY
 fBI
-pjV
+xVJ
 tbE
 tbE
 fRo
@@ -31519,7 +31541,7 @@ nZq
 fRo
 mcx
 fRo
-tbE
+vSX
 pjV
 nZq
 vfb
@@ -31712,7 +31734,7 @@ wos
 pjV
 wos
 pjV
-pjV
+xVJ
 pjV
 vfb
 vfb
@@ -31900,7 +31922,7 @@ fBI
 fBI
 fRo
 uMA
-bTS
+pPU
 bTS
 pjV
 lEL
