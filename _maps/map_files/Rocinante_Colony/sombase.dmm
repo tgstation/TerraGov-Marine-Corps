@@ -3917,10 +3917,6 @@
 	dir = 4
 	},
 /area/rocinante_colony/surface/building/medbay)
-"foC" = (
-/turf/closed/wall/mainship,
-/turf/open/floor/plating,
-/area/rocinante_colony/surface/building/space_hangar)
 "fpq" = (
 /obj/structure/bed/chair/sofa/corsat/right,
 /turf/open/floor/mainship,
@@ -5207,12 +5203,6 @@
 /obj/effect/landmark/corpsespawner/marine,
 /turf/open/floor/plating/plating_catwalk,
 /area/rocinante_colony/surface/building/canterbury)
-"gQq" = (
-/obj/machinery/vending/nanomed{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/rocinante_colony/surface/building/space_hangar)
 "gQr" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/surface/building/administrationsom)
@@ -7443,12 +7433,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonyne)
-"kgy" = (
-/obj/machinery/vending/nanomed{
-	dir = 4
-	},
-/turf/closed/wall/mainship,
-/area/rocinante_colony/surface/building/space_hangar)
 "kgJ" = (
 /obj/effect/landmark/corpsespawner/marine,
 /obj/effect/decal/cleanable/blood,
@@ -7470,14 +7454,6 @@
 /turf/open/floor/mainship/mono,
 /turf/open/floor/mainship/mono,
 /area/rocinante_colony/surface/building/space_hangar)
-"khH" = (
-/obj/machinery/button/door/open_only/landing_zone/lz2{
-	dir = 8
-	},
-/turf/closed/mineral{
-	color = "#c2e4ff"
-	},
-/area/rocinante_colony/surface/landing/landing_pad_one_external)
 "khN" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grass,
@@ -7485,6 +7461,15 @@
 "khO" = (
 /turf/closed/wall/mainship,
 /area/rocinante_colony/surface/building/canterbury)
+"kiH" = (
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/turf/open/floor/plating,
+/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/mono,
+/area/rocinante_colony/surface/building/space_hangar)
 "kiL" = (
 /obj/item/stack/sheet/plasteel,
 /obj/effect/spawner/random/gun,
@@ -8049,6 +8034,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonyw)
+"kSB" = (
+/obj/effect/ai_node,
+/obj/machinery/button/door/open_only/landing_zone/lz2{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/surface/landing/landing_pad_two_external)
 "kTj" = (
 /obj/structure/cargo_container/red,
 /turf/open/floor/plating,
@@ -8242,14 +8234,6 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/orange/full,
 /area/rocinante_colony/surface/building/engineering)
-"leI" = (
-/obj/structure/closet/walllocker/hydrant{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/snow/layer3,
-/turf/open/floor/plating,
-/turf/open/floor/mainship/mono,
-/area/rocinante_colony/surface/building/space_hangar)
 "lfU" = (
 /obj/machinery/cryopod,
 /turf/open/floor/mainship/mono,
@@ -8942,6 +8926,9 @@
 /area/rocinante_colony/ground/colonycent)
 "lUb" = (
 /obj/structure/largecrate/random,
+/obj/machinery/vending/nanomed{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/snow/layer3,
 /turf/open/floor/plating,
 /turf/open/floor/mainship/mono,
@@ -11120,14 +11107,6 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/colonysw)
-"oMC" = (
-/obj/machinery/button/door/open_only/landing_zone/lz2{
-	dir = 4
-	},
-/turf/closed/mineral{
-	color = "#c2e4ff"
-	},
-/area/rocinante_colony/surface/landing/landing_pad_two_external)
 "oMI" = (
 /obj/machinery/light{
 	light_color = "#da2f1b"
@@ -13429,6 +13408,16 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/cargo_office)
+"rZI" = (
+/obj/item/weapon/gun/rifle/mpi_km,
+/obj/structure/closet/walllocker/hydrant{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/turf/open/floor/plating,
+/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/mono,
+/area/rocinante_colony/surface/building/space_hangar)
 "rZN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric,
 /turf/open/floor/mainship/white/full,
@@ -13454,6 +13443,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonynw)
+"sbI" = (
+/obj/structure/prop/mainship/turretprop,
+/turf/closed/wall/mainship,
+/area/rocinante_colony/surface/building/space_hangar)
 "scG" = (
 /obj/machinery/mineral/unloading_machine/corner,
 /turf/open/floor/mainship/orange/full,
@@ -13666,6 +13659,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/river/river_north)
+"svo" = (
+/obj/machinery/button/door/open_only/landing_zone/lz2{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer3,
+/area/rocinante_colony/surface/landing/landing_pad_one_external)
 "svA" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -14546,7 +14545,6 @@
 "tFy" = (
 /obj/structure/closet/walllocker/emerglocker,
 /turf/closed/wall/mainship,
-/turf/open/floor/plating,
 /area/rocinante_colony/surface/building/space_hangar)
 "tFQ" = (
 /obj/structure/desertdam/decals/road/edge{
@@ -15156,6 +15154,9 @@
 /area/rocinante_colony/ground/colonycent)
 "uCt" = (
 /obj/structure/largecrate/random/case/double,
+/obj/structure/closet/walllocker/hydrant{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/snow/layer3,
 /turf/open/floor/plating,
 /turf/open/floor/mainship/mono,
@@ -16184,15 +16185,6 @@
 	},
 /turf/open/floor/plating,
 /area/rocinante_colony/surface/building/tadpole_hangar)
-"wgg" = (
-/obj/structure/closet/walllocker/hydrant{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/snow/layer3,
-/turf/open/floor/plating,
-/turf/open/floor/mainship/mono,
-/turf/open/floor/mainship/mono,
-/area/rocinante_colony/surface/building/space_hangar)
 "wiA" = (
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonyse)
@@ -16711,11 +16703,6 @@
 	},
 /turf/open/floor/plating,
 /area/rocinante_colony/surface/building/cas_hangar)
-"wQx" = (
-/obj/machinery/status_display,
-/turf/closed/wall/mainship,
-/turf/open/floor/plating,
-/area/rocinante_colony/surface/building/space_hangar)
 "wQC" = (
 /obj/structure/desertdam/decals/road/edge{
 	icon_state = "road_edge_decal2"
@@ -21446,7 +21433,7 @@ bkf
 bkf
 bkf
 bkf
-bkf
+svo
 qme
 cpt
 gzs
@@ -21638,7 +21625,7 @@ bkf
 dMn
 eBd
 eBd
-khH
+eBd
 eBd
 cpt
 gzs
@@ -42695,8 +42682,8 @@ tHI
 tHI
 wBr
 nLz
-clT
-foC
+sbI
+dcQ
 tFy
 hfD
 tjQ
@@ -42887,7 +42874,7 @@ mGh
 mGh
 xMN
 jJt
-foC
+dcQ
 qfW
 fvU
 rFS
@@ -43079,7 +43066,7 @@ mGh
 gWD
 clT
 qGv
-wQx
+uUl
 fLt
 lte
 eiw
@@ -43145,7 +43132,7 @@ usm
 usm
 wHv
 wHv
-oMC
+wHv
 wHv
 wHv
 usm
@@ -43269,9 +43256,9 @@ dcQ
 dcQ
 mGh
 tyJ
-foC
 dcQ
-foC
+dcQ
+dcQ
 dcQ
 lQn
 qsq
@@ -43337,7 +43324,7 @@ qhx
 qhx
 cbf
 usm
-orI
+kSB
 usm
 usm
 usm
@@ -43465,8 +43452,8 @@ dAh
 eev
 meq
 dcQ
-kgy
-leI
+dcQ
+eiw
 jXx
 dcQ
 dcQ
@@ -44424,8 +44411,8 @@ vpW
 xzc
 xzc
 btJ
-sKz
-qQG
+kiH
+rZI
 khn
 sKz
 dcQ
@@ -44617,8 +44604,8 @@ dAh
 dAh
 meq
 dcQ
-gQq
-wgg
+dcQ
+sKz
 xAq
 dcQ
 dcQ
@@ -45383,7 +45370,7 @@ wQM
 wSZ
 xMN
 nLz
-clT
+sbI
 dcQ
 tFy
 hfD
