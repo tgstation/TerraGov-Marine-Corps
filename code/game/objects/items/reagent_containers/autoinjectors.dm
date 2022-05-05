@@ -42,7 +42,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat
 	name = "combat autoinjector"
-	desc = "An autoinjector loaded with two doses of healing and painkilling chemicals. Intended for use in active combat."
+	desc = "An autoinjector loaded with 2 doses of healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-4"
 	amount_per_transfer_from_this = 15
 	volume = 30
@@ -55,7 +55,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
 	name = "Advanced combat autoinjector"
-	desc = "An autoinjector loaded with two doses of advanced healing and painkilling chemicals. Intended for use in active combat."
+	desc = "An autoinjector loaded with 2 doses of advanced healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-7"
 	amount_per_transfer_from_this = 15
 	volume = 30
@@ -132,15 +132,24 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline
 	name = "inaprovaline autoinjector"
-	desc = "An auto-injector loaded with 15 units of inaprovaline, an emergency stabilization medicine for patients in critical condition."
+	desc = "An auto-injector loaded with 2 doses of inaprovaline, an emergency stabilization medicine for patients in critical condition."
 	icon_state = "autoinjector-9"
 	amount_per_transfer_from_this = 15
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 30)
+
+/obj/item/reagent_containers/hypospray/autoinjector/dexalin
+	name = "inaprovaline autoinjector"
+	desc = "An auto-injector loaded with 3 doses of inaprovaline, an emergency stabilization medicine for patients in critical condition."
+	icon_state = "autoinjector-9"
+	volume = 15
+	amount_per_transfer_from_this = 5
+	list_reagents = list(/datum/reagent/medicine/dexalin = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin
 	name = "spaceacillin autoinjector"
 	desc = "An auto-injector loaded with 3 doses of spaceacillin, an emergency medicine that help combat against infection before necrosis appears."
 	icon_state = "autoinjector-1"
+	volume = 15
 	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
 
@@ -148,6 +157,7 @@
 	name = "alkysine autoinjector"
 	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain damage."
 	icon_state = "autoinjector-1"
+	volume = 15
 	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/alkysine = 15)
 
@@ -155,7 +165,7 @@
 	name = "imidazoline autoinjector"
 	desc = "An auto-injector loaded with 3 doses of imidazoline, medicine for fixing eyesight."
 	icon_state = "autoinjector-1"
-	list_reagents = list(/datum/reagent/medicine/alkysine = 30)
+	list_reagents = list(/datum/reagent/medicine/imidazoline = 30)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
@@ -180,6 +190,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired
 	name = "expired hyperzine autoinjector"
 	desc = "An auto-injector said to be loaded with a safe-to-use hyperzine mix, 3 months past it's expiration date."
+	amount_per_transfer_from_this = 30
 	list_reagents = list(
 		/datum/reagent/medicine/hyperzine = 4,
 		/datum/reagent/medicine/dexalin = 8,
