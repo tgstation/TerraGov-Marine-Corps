@@ -405,6 +405,10 @@
 		if(SLOT_IN_R_POUCH)
 			var/obj/item/storage/S = r_store
 			S.handle_item_insertion(W, FALSE, src)
+		if(SLOT_IN_ACCESSORY)
+			var/obj/item/armor_module/storage/U = w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
+			var/obj/item/storage/S = U.storage
+			S.handle_item_insertion(W, FALSE, src)
 		else
 			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
 
@@ -459,6 +463,12 @@
 			return s_store
 		if(SLOT_IN_ACCESSORY)
 			return w_uniform
+		if(SLOT_IN_L_POUCH)
+			return l_store
+		if(SLOT_IN_R_POUCH)
+			return r_store
+		if(SLOT_IN_HEAD)
+			return head
 
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)
