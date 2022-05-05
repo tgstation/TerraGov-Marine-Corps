@@ -233,7 +233,7 @@
 		icon_state = "plasma_cutter_on"
 		powered = TRUE
 		force = 100
-		damtype = BRUTE
+		damtype = BURN
 		heat = 3800
 		set_light_on(TRUE)
 
