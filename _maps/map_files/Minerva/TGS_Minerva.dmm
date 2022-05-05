@@ -2227,6 +2227,7 @@
 /obj/machinery/power/apc/mainship{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "gY" = (
