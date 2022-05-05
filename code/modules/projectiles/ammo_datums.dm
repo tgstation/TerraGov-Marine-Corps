@@ -1038,7 +1038,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 25
 	airburst_multiplier	= 0.2
 
-/datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
+/datum/ammo/bullet/sniper/amr/flak/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
 
 /datum/ammo/bullet/sniper/svd
