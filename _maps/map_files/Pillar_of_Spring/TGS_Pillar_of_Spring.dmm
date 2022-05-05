@@ -2824,10 +2824,9 @@
 	},
 /area/mainship/hallways/hangar)
 "iS" = (
-<<<<<<< HEAD
 /obj/machinery/light{
 	dir = 1
-=======
+	},
 /obj/item/weapon/gun/pistol/vp70,
 /obj/item/ammo_magazine/pistol/vp70,
 /obj/structure/closet/cabinet,
@@ -2842,23 +2841,7 @@
 /obj/item/attachable/suppressor,
 /obj/item/armor_module/storage/uniform/holster,
 /turf/open/floor/carpet/side{
-	dir = 9;
-	},
-/area/mainship/command/corporateliaison)
-"iT" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
->>>>>>> 56def9f3968edcf6670a8f04b816cb32d6f18061
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	dir = 1
 	},
 /area/mainship/command/corporateliaison)
 "iT" = (
@@ -3069,7 +3052,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "jB" = (
-<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -3084,11 +3066,8 @@
 	},
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
-=======
-/turf/open/floor/carpet/side{
-	dir = 10;
->>>>>>> 56def9f3968edcf6670a8f04b816cb32d6f18061
 	},
+/turf/open/space/basic,
 /area/mainship/command/corporateliaison)
 "jC" = (
 /turf/open/floor/mainship/red{
@@ -3101,14 +3080,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "jE" = (
-<<<<<<< HEAD
 /turf/open/floor/carpet{
 	dir = 6;
 	icon_state = "carpetside"
-=======
-/turf/open/floor/carpet/side{
->>>>>>> 56def9f3968edcf6670a8f04b816cb32d6f18061
 	},
+/turf/open/space/basic,
 /area/mainship/command/corporateliaison)
 "jF" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -3706,25 +3682,23 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-<<<<<<< HEAD
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
-=======
+	},
 /obj/item/camera,
 /obj/item/camera_film,
-/turf/open/floor/carpet/side{
-	dir = 5;
->>>>>>> 56def9f3968edcf6670a8f04b816cb32d6f18061
-	},
 /obj/machinery/light{
 	dir = 1
+	},
+/turf/open/floor/carpet/side{
+	dir = 5
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "ll" = (
 /obj/structure/closet/secure_closet/captain,
 /turf/open/floor/carpet/side{
-	dir = 9;
+	dir = 9
 	},
 /area/mainship/living/commandbunks)
 "lm" = (
@@ -3737,7 +3711,7 @@
 /obj/machinery/vending/nanomed,
 /mob/living/simple_animal/cat/Jones,
 /turf/open/floor/carpet/side{
-	dir = 1;
+	dir = 1
 	},
 /area/mainship/living/commandbunks)
 "ln" = (
@@ -4292,7 +4266,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 10;
+	dir = 10
 	},
 /area/mainship/living/commandbunks)
 "mV" = (
@@ -4335,8 +4309,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/turf/open/floor/carpet/side{
-	},
+/turf/open/floor/carpet/side,
 /area/mainship/living/commandbunks)
 "nc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -5228,14 +5201,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "pS" = (
-<<<<<<< HEAD
+/obj/effect/ai_node,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
-=======
-/obj/effect/ai_node,
+	},
 /turf/open/floor/carpet/side{
-	dir = 6;
->>>>>>> 56def9f3968edcf6670a8f04b816cb32d6f18061
+	dir = 6
 	},
 /area/mainship/squads/req)
 "pT" = (
@@ -5948,7 +5919,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 6;
+	dir = 6
 	},
 /area/mainship/living/commandbunks)
 "sl" = (
@@ -6882,7 +6853,7 @@
 /area/mainship/squads/req)
 "uV" = (
 /turf/open/floor/carpet/side{
-	dir = 5;
+	dir = 5
 	},
 /area/mainship/living/numbertwobunks)
 "uW" = (
@@ -6959,12 +6930,12 @@
 /obj/item/bedsheet/blue,
 /obj/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/carpet/side{
-	dir = 10;
+	dir = 10
 	},
 /area/mainship/living/numbertwobunks)
 "vi" = (
 /turf/open/floor/carpet/side{
-	dir = 6;
+	dir = 6
 	},
 /area/mainship/living/numbertwobunks)
 "vj" = (
@@ -13449,7 +13420,7 @@
 /obj/item/storage/bible,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /turf/open/floor/carpet/side{
-	dir = 5;
+	dir = 5
 	},
 /area/mainship/living/commandbunks)
 "Nd" = (
@@ -18048,7 +18019,7 @@
 /area/mainship/shipboard/weapon_room)
 "ZQ" = (
 /turf/open/floor/carpet/side{
-	dir = 9;
+	dir = 9
 	},
 /area/mainship/living/numbertwobunks)
 "ZR" = (
