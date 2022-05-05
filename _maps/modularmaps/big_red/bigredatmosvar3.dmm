@@ -72,8 +72,8 @@
 /area/bigredv2/outside/filtration_plant)
 "et" = (
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-N"
+/obj/effect/decal/warning_stripes/box/threeside{
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -175,10 +175,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/filtration_plant)
 "kj" = (
-/obj/structure/table,
-/obj/machinery/computer/atmos_alert{
-	dir = 4
-	},
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "kO" = (
@@ -279,13 +276,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"rO" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-N"
-	},
-/obj/machinery/computer3/server/rack,
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
 "rP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -364,9 +354,7 @@
 /area/bigredv2/outside/filtration_plant)
 "wk" = (
 /obj/structure/cryofeed,
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/outside/filtration_plant)
 "wY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -384,8 +372,7 @@
 "xW" = (
 /obj/machinery/door_control{
 	id = "FiltrationShutters";
-	name = "Airlock Shutters";
-	pixel_y = 25
+	name = "Airlock Shutters"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/s)
@@ -393,9 +380,7 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/outside/filtration_plant)
 "yj" = (
 /obj/structure/window/framed/colony,
@@ -437,9 +422,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Ax" = (
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-S"
-	},
+/obj/effect/decal/warning_stripes/box/threeside,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "AC" = (
@@ -665,13 +648,12 @@
 	},
 /area/bigredv2/outside/filtration_plant)
 "Mj" = (
-/obj/machinery/door_control{
+/obj/structure/table,
+/obj/machinery/door_control/old{
 	id = "FiltrationShutters";
 	name = "Airlock Shutters";
-	pixel_x = -32
+	pixel_y = 2
 	},
-/obj/machinery/light,
-/obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Mx" = (
@@ -739,9 +721,7 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "PH" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-S"
-	},
+/obj/effect/decal/warning_stripes/box/threeside,
 /obj/machinery/computer3/server/rack,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -779,9 +759,7 @@
 	id = "FiltrationShutters";
 	name = "\improper Airlock Shutters"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/outside/filtration_plant)
 "SB" = (
 /obj/structure/table,
@@ -998,7 +976,7 @@ JU
 HM
 Uz
 kj
-ze
+Mj
 tm
 xW
 mH
@@ -1025,7 +1003,7 @@ GW
 HM
 HM
 Jy
-Mj
+Xe
 tm
 gl
 hn
@@ -1098,7 +1076,7 @@ dZ
 jl
 IM
 PH
-rO
+et
 AC
 jl
 AC

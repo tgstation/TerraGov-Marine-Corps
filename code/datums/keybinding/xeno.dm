@@ -605,29 +605,18 @@
 	full_name = "Spitter: Scatter Spit"
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
-/datum/keybinding/xeno/place_warp_shadow
-	name = "place_warp_shadow"
-	full_name = "Wraith: Place Warp Shadow"
-	description = "Create a rift in space/time that you can swap locations with using the Hyperposition ability."
-	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
 
-/datum/keybinding/xeno/hyperposition
-	name = "hyperposition"
-	full_name = "Wraith: Hyperposition"
-	description = "Swap locations with your warp shadow after a delay that scales with your distance from it."
-	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
+/datum/keybinding/xeno/portal
+	name = "portal"
+	full_name = "Wraith: Portal"
+	description = "Place the first portal on your location. You can travel from portal one to portal two and vice versa."
+	keybind_signal =COMSIG_XENOABILITY_PORTAL
 
-/datum/keybinding/xeno/phase_shift
-	name = "phase_shift"
-	full_name = "Wraith: Phase Shift"
-	description = "Move out of phase with reality for a short duration after a short delay, gaining invulnerability and the ability to move through almost all physical obstacles. Can't move into space."
-	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
-
-/datum/keybinding/xeno/resync
-	name = "resync"
-	full_name = "Wraith: Resync"
-	description = "Resynchronize with reality, ending Phase Shift's effect."
-	keybind_signal = COMSIG_XENOABILITY_RESYNC
+/datum/keybinding/xeno/portal_two
+	name = "portal_two"
+	full_name = "Wraith: Portal two"
+	description = "Place the second portal on your location. You can travel from portal one to portal two and vice versa."
+	keybind_signal =COMSIG_XENOABILITY_PORTAL_ALTERNATE
 
 /datum/keybinding/xeno/blink
 	name = "wraith_blink"

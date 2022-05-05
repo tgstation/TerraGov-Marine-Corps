@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - qol: "add to the weeds menu an option to automatically use the ability when moving"

@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Mobs with 0 medical skill will no longer know how to operate defibs better than those with basic medical training."
