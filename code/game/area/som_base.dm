@@ -197,9 +197,10 @@
 	name = "Commercial Area North"
 	icon_state = "green"
 
-/area/rocinante_colony/surface/building/commercial_s
-	name = "Commercial Area South"
-	icon_state = "green"
+/area/rocinante_colony/surface/building/monitorion_s
+	name = "Security Monitoring South"
+	icon_state = "red"
+	minimap_color = MINIMAP_AREA_SEC
 
 /area/rocinante_colony/surface/building/convenience_store
 	name = "Convenience Store"
