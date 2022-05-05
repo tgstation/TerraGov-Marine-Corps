@@ -834,10 +834,7 @@
 
 	blood_color = "#EEEEEE"
 
-	has_organ = list(
-		"heart" =    /datum/internal_organ/heart/prosthetic,
-		"brain" =    /datum/internal_organ/brain/prosthetic,
-		)
+	has_organ = list()
 
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
@@ -890,10 +887,7 @@
 
 	blood_color = "#EEEEEE"
 	hair_color = "#000000"
-	has_organ = list(
-		"heart" =    /datum/internal_organ/heart/prosthetic,
-		"brain" =    /datum/internal_organ/brain/prosthetic,
-		)
+	has_organ = list()
 
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
