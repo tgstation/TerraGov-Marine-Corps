@@ -1197,7 +1197,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 2.5
 
 /datum/ammo/bullet/railgun
-	name = "armor piercing rail"
+	name = "armor piercing railgun slug"
 	hud_state = "alloy_spike"
 	icon_state 	= "blue_bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
@@ -1213,7 +1213,7 @@ datum/ammo/bullet/revolver/tp44
 	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 2, shake = 0)
 
 /datum/ammo/bullet/railgun/hvap
-	name = "high velocity rail"
+	name = "high velocity railgun slug"
 	shell_speed = 5
 	max_range = 21
 	damage = 100
@@ -1224,7 +1224,7 @@ datum/ammo/bullet/revolver/tp44
 	staggerstun(M, P, stagger = 2, knockback = 3, shake = 0)
 
 /datum/ammo/bullet/railgun/smart
-	name = "smart armor piercing rail"
+	name = "smart armor piercing railgun slug"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
 	damage = 75
 	penetration = 20
