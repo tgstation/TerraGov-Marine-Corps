@@ -78,10 +78,6 @@
 	icon_state = "SL"
 	job = /datum/job/terragov/squad/leader
 
-/obj/effect/landmark/start/job/squadleader
-	icon_state = "SL"
-	job = /datum/job/terragov/squad/leader
-
 /obj/effect/landmark/start/job/ai
 	icon_state = "AI"
 	job = /datum/job/terragov/silicon/ai
@@ -134,9 +130,6 @@
 /obj/effect/landmark/start/job/squadleader/rebel
 	job = /datum/job/terragov/squad/leader/rebel
 
-/obj/effect/landmark/start/job/squadleader/rebel
-	job = /datum/job/terragov/squad/leader/rebel
-
 /obj/effect/landmark/start/job/ai/rebel
 	job = /datum/job/terragov/silicon/ai/rebel
 
@@ -150,3 +143,20 @@
 /obj/effect/landmark/start/job/xenomorph
 	icon_state = "xeno_spawn"
 	job = /datum/job/xenomorph
+
+//SOM - WIP
+/obj/effect/landmark/start/job/som/squadstandard
+	icon_state = "PFC"
+	job = /datum/job/som/standard
+
+/obj/effect/landmark/start/job/squadengineer
+	icon_state = "Eng"
+	job = /datum/job/som/veteran
+
+/obj/effect/landmark/start/job/som/squadcorpsman
+	icon_state = "HM"
+	job = /datum/job/som/medic
+
+/obj/effect/landmark/start/job/som/squadleader
+	icon_state = "SL"
+	job = /datum/job/som/leader

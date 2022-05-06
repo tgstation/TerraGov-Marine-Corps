@@ -39,16 +39,17 @@
 
 /datum/game_mode/combat_patrol/announce()
 	to_chat(world, "<b>The current game mode is - Combat Patrol!</b>")
-	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, it's kill or be killed!</b>")
+	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
 
-//unfuck this. ALso need to setup tgui to actually support SOM jobs (and prefs I guess, fuck)
+//sets TGMC and SOM squads
 /datum/game_mode/combat_patrol/set_valid_squads()
 	SSjob.active_squads[FACTION_TERRAGOV] = list()
 	SSjob.active_squads[FACTION_SOM] = list()
 	for(var/key in SSjob.squads)
 		var/datum/squad/squad = SSjob.squads[key]
-		SSjob.active_squads[squad.faction] += squad
+		if(squad.faction == FACTION_TERRAGOV || squad.faction == FACTION_SOM) //We only want Marine and SOM squads, future proofs if more faction squads are added
+			SSjob.active_squads[squad.faction] += squad
 	return TRUE
 
 /datum/game_mode/combat_patrol/get_joinable_factions(should_look_balance)
@@ -80,13 +81,13 @@
 /datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
 	//todo: replace main_ship and reserved (marine ship and transit) with home base shit
 
-	///number of TGMC alive for game end purposes
+	///number of TGMC alive
 	var/num_marines = 0
-	///number of SOM alive for game end purposes
+	///number of SOM alive
 	var/num_som = 0
-	///number of TGMC killed for game end purposes
+	///number of TGMC killed - excludes gibbed if that functionality somehow gets added
 	var/num_dead_marines = 0
-	///number of SOM killed for game end purposes
+	///number of SOM killed - excludes gibbed if that functionality somehow gets added
 	var/num_dead_som = 0
 
 	for(var/z in z_levels)
@@ -123,9 +124,7 @@
 
 	return list(num_marines, num_som, num_dead_marines, num_dead_som)
 
-
-
-///end game? - still need to configure points for kills, trash sensor tower shit.
+//End game checks
 /datum/game_mode/combat_patrol/check_finished()
 	if(round_finished)
 		return TRUE
@@ -165,7 +164,7 @@
 		round_finished = MODE_SOM_MARINE_MINOR
 		return TRUE
 
-	message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //equal number of kills, or some other bizarre scenario
+	message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //equal number of kills, or any other edge cases
 	round_finished = MODE_COMBAT_PATROL_DRAW
 	return TRUE
 
@@ -173,7 +172,7 @@
 /datum/game_mode/combat_patrol/declare_completion()
 	. = ..()
 	to_chat(world, span_round_header("|[round_finished]|"))
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
+	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the TGMC and SOM, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]."))
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
