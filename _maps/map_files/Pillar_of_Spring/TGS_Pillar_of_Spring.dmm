@@ -2842,8 +2842,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/carpet/side{
-	dir = 1
+/turf/open/floor/carpet{
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "iT" = (
@@ -5183,13 +5184,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "pS" = (
-/obj/effect/ai_node,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/turf/open/floor/carpet/side{
-	dir = 6
-	},
+/turf/open/space/basic,
 /area/mainship/squads/req)
 "pT" = (
 /obj/structure/filingcabinet,
