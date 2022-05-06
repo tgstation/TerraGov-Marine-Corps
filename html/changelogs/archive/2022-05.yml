@@ -48,3 +48,22 @@
   - qol: add to the weeds menu an option to automatically use the ability when moving
   goose4429:
   - balance: OD and COD start when _over_ threshold
+2022-05-06:
+  Arctrooper8:
+  - bugfix: Synths no longer have organs that they cannot fix
+  - bugfix: Combat robots can now have their heads reattached.
+  - bugfix: You can now actually see synthetic/robotic heads on the ground for retrieval.
+  - bugfix: Head reattachment surgery no longer makes you bald.
+  Lumipharon:
+  - bugfix: Species specific death messages actually work.
+  - refactor: quick equip now actually draws from or stores into everything you'd
+      expect it to, and does so in a more sane order
+  Wayland-Smithy:
+  - bugfix: Fixed and improved end of round ghost reveal code.
+  novaepee:
+  - bugfix: Supply Drop Hatching Being Invisible
+  - rscadd: Add more lights around PoS medbay.
+  - rscdel: Remove rogue cameras in PoS
+  - rscadd: briefing in PoS. lel
+  - bugfix: 'PoS'' chem not being able to be accessible to corpsman. expansion: polish
+      up PoS'' morgue.'
