@@ -251,6 +251,7 @@
 #define ishuntgamemode(O) (istype(O, /datum/game_mode/infestation/hunt))
 #define iscrashgamemode(O) (istype(O, /datum/game_mode/infestation/crash))
 #define isinfestationgamemode(O) (istype(O, /datum/game_mode/infestation))
+#define iscombatpatrolgamemode(O) (istype(O, /datum/game_mode/combat_patrol))
 
 #define isxenoresearcharea(A) (istype(A, /area/mainship/medical/medical_science))
 
