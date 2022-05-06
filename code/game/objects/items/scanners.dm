@@ -306,7 +306,6 @@ REAGENT SCANNER
 		if(H.has_working_organs())
 			//Chems that conflict with others:
 			var/synaptizine_amount = reagents_in_body[/datum/reagent/medicine/synaptizine]
-			var/hyperzine_amount = reagents_in_body[/datum/reagent/medicine/hyperzine]
 			var/paracetamol_amount = reagents_in_body[/datum/reagent/medicine/paracetamol]
 			var/neurotoxin_amount = reagents_in_body[/datum/reagent/toxin/xeno_neurotoxin]
 			//Recurring chems:
@@ -362,15 +361,11 @@ REAGENT SCANNER
 					tricordrazine = "tricordrazine"
 				if(H.getToxLoss() > 50) //Serious toxin damage that is likely to threaten liver damage or be caused by it
 					peridaxon = "Administer one dose of peridaxon and: "
-					if(hyperzine_amount) //Need to make sure no conflicting chems are present; if so, warn the operator
-						peridaxon = "Purge hyperzine in patient or wait for it to metabolize, then administer one dose of peridaxon and:"
 					advice += "[span_scanner("<b>Extreme Toxin Damage/Probable or Imminent Liver Damage:</b> [peridaxon] [dylovene] | [tricordrazine]. [dylo_recommend]")]\n"
 				else
 					advice += "[span_scanner("<b>Toxin Damage:</b> Administer one dose of: [tricordrazine] | [dylovene].")]\n"
 			if(((H.getOxyLoss() > 50 && blood_volume > 400) || H.getBrainLoss() >= 10) && reagents_in_body[/datum/reagent/medicine/peridaxon] < 5)
 				peridaxon = "Administer one dose of peridaxon plus or peridaxon."
-				if(hyperzine_amount) //Need to make sure no conflicting chems are present; if so, warn the operator
-					peridaxon = "Purge hyperzine in patient or wait for it to metabolize, then administer one dose of peridaxon."
 				advice += "[span_scanner("<b>Brain Damage/Probable Organ Damage:</b> [peridaxon]")]\n"
 			if(infection_present && reagents_in_body[/datum/reagent/medicine/spaceacillin] < infection_present)
 				advice += "[span_scanner("<b>Infection:</b> Administer one dose of spaceacillin.")]\n"

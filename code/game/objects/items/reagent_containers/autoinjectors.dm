@@ -4,9 +4,7 @@
 	desc = "An autoinjector containing... table salt? <i>\"For any client assistance, please contact the coderbus\" is written on the back.</i>"
 	icon_state = "autoinjector"
 	item_state = "hypo"
-	amount_per_transfer_from_this = 10
 	w_class = WEIGHT_CLASS_TINY
-	volume = 30
 	skilllock = 0
 	init_reagent_flags = DRAWABLE
 	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 30)
@@ -31,7 +29,6 @@
 /obj/item/reagent_containers/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
 	amount_per_transfer_from_this = 30
-	volume = 30
 	list_reagents = null
 
 /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine
@@ -45,7 +42,6 @@
 	desc = "An autoinjector loaded with 2 doses of healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-4"
 	amount_per_transfer_from_this = 15
-	volume = 30
 	list_reagents = list(
 		/datum/reagent/medicine/bicaridine = 10,
 		/datum/reagent/medicine/kelotane = 10,
@@ -58,7 +54,6 @@
 	desc = "An autoinjector loaded with 2 doses of advanced healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-7"
 	amount_per_transfer_from_this = 15
-	volume = 30
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 10,
 		/datum/reagent/medicine/dermaline = 10,
@@ -138,8 +133,8 @@
 	list_reagents = list(/datum/reagent/medicine/inaprovaline = 30)
 
 /obj/item/reagent_containers/hypospray/autoinjector/dexalin
-	name = "inaprovaline autoinjector"
-	desc = "An auto-injector loaded with 3 doses of inaprovaline, an emergency stabilization medicine for patients in critical condition."
+	name = "dexalin autoinjector"
+	desc = "An auto-injector loaded with 3 doses of dexalin, an emergency stabilization medicine for patients in critical condition."
 	icon_state = "autoinjector-9"
 	volume = 15
 	amount_per_transfer_from_this = 5
@@ -174,29 +169,6 @@
 	amount_per_transfer_from_this = 3
 	volume = 9
 	list_reagents = list(/datum/reagent/hypervene = 9)
-
-/obj/item/reagent_containers/hypospray/autoinjector/hyperzine
-	name = "hyperzine autoinjector"
-	desc = "An auto-injector freshly loaded with a safe-to-use hyperzine mix."
-	icon_state = "autoinjector-8"
-	amount_per_transfer_from_this = 25
-	volume = 25
-	list_reagents = list(
-		/datum/reagent/medicine/hyperzine = 5,
-		/datum/reagent/medicine/dexalin = 10,
-		/datum/reagent/medicine/inaprovaline = 10,
-	)
-
-/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired
-	name = "expired hyperzine autoinjector"
-	desc = "An auto-injector said to be loaded with a safe-to-use hyperzine mix, 3 months past it's expiration date."
-	amount_per_transfer_from_this = 30
-	list_reagents = list(
-		/datum/reagent/medicine/hyperzine = 4,
-		/datum/reagent/medicine/dexalin = 8,
-		/datum/reagent/medicine/inaprovaline = 8,
-		/datum/reagent/toxin = 5,
-	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/virilyth //not accessible during normal play, only for valhalla
 	name = "virilyth autoinjector"

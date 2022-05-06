@@ -240,7 +240,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
 			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = -1,

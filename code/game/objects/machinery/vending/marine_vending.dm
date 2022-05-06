@@ -874,7 +874,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
