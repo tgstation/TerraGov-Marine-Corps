@@ -8010,10 +8010,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
 "Av" = (
-/obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/seed_extractor,
 /turf/open/floor/mainship/green{
 	dir = 5
 	},

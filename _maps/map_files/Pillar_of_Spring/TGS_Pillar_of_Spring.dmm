@@ -16498,6 +16498,7 @@
 /obj/structure/sign/poster{
 	dir = 1
 	},
+/obj/machinery/seed_extractor,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "VM" = (
