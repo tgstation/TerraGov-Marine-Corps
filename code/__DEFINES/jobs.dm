@@ -83,6 +83,12 @@
 #define REBEL_SQUAD_VATGROWN "Rebel Squad VatGrown"
 #define REBEL_SILICON_AI "Rebel AI"
 
+//SOM - very placeholder for now
+#define SOM_SQUAD_LEADER "SOM Squad Leader"
+#define SOM_SQUAD_CORPSMAN "SOM Squad Corpsman"
+#define SOM_SQUAD_VETERAN "SOM Squad Veteran"
+#define SOM_SQUAD_MARINE "SOM Squad Marine"
+
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"
 #define JOB_CAT_REQUISITIONS "Requisitions"

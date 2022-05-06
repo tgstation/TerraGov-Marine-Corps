@@ -129,6 +129,79 @@
 		REBEL_SQUAD_LEADER = 1,
 )
 
+//SOM squads - WIP
+/datum/squad/zulu
+	name = "Zulu"
+	id = ZULU_SQUAD
+	color = "#e61919" // rgb(230,25,25)
+	access = list(ACCESS_MARINE_ALPHA) //todo: access for SOM squads
+	radio_freq = FREQ_SOM
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/yankee
+	name = "Yankee"
+	id = YANKEE_SQUAD
+	color = "#ffc32d" // rgb(255,195,45)
+	access = list(ACCESS_MARINE_BRAVO)
+	radio_freq = FREQ_SOM
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/xray
+	name = "X-ray"
+	id = XRAY_SQUAD
+	color = "#c864c8" // rgb(200,100,200)
+	access = list(ACCESS_MARINE_CHARLIE)
+	radio_freq = FREQ_SOM
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/whiskey
+	name = "Whiskey"
+	id = WHISKEY_SQUAD
+	color = "#4148c8" // rgb(65,72,200)
+	access = list(ACCESS_MARINE_DELTA)
+	radio_freq = FREQ_SOM
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
+
 GLOBAL_LIST_EMPTY(glovemarkings)
 GLOBAL_LIST_EMPTY(armormarkings)
 GLOBAL_LIST_EMPTY(armormarkings_sl)
