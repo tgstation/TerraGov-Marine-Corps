@@ -206,6 +206,7 @@
 			/obj/item/reagent_containers/syringe = 20,
 			/obj/item/tool/research/xeno_analyzer = 5,
 			/obj/item/tool/research/excavation_tool = 5,
+			/obj/item/storage/syringe_case/injector = 8,
 		),
 		"Training Toxins" = list(
 			/obj/item/reagent_containers/glass/bottle/toxin = 1,
@@ -287,6 +288,7 @@
 			/obj/item/tool/research/xeno_analyzer = -1,
 			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/reagent_containers/glass/beaker/bluespace = -1,
+			/obj/item/storage/syringe_case/injector = -1,
 		),
 	)
 
