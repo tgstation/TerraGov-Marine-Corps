@@ -24,6 +24,9 @@
 /obj/structure/showcase/six
 	icon_state = "showcase_6"
 
+/obj/structure/showcase/coinpress
+	icon_state = "coinpress0"
+
 /obj/machinery/showcase/mulebot
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."

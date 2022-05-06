@@ -172,11 +172,6 @@
 "aK" = (
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
-"aL" = (
-/turf/open/shuttle/dropship{
-	icon_state = "floor8"
-	},
-/area/shuttle/dropship/alamo)
 "aM" = (
 /obj/item/radio/intercom/dropship,
 /turf/open/shuttle/dropship/seven,
@@ -696,7 +691,7 @@ ag
 Ki
 at
 aC
-aL
+aK
 aT
 bn
 aZ
