@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - rscadd: "Add some spawners for mapper use for random guns to spawn with ammo they actually use."
