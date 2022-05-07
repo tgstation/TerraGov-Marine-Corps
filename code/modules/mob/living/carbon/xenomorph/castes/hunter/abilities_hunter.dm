@@ -418,6 +418,10 @@
 	/// List of illusions
 	var/list/mob/illusion/illusions = list()
 
+/datum/action/xeno_action/mirage/remove_action()
+	clean_illusions()
+	return ..()
+
 /datum/action/xeno_action/mirage/action_activate()
 	succeed_activate()
 	add_cooldown()
