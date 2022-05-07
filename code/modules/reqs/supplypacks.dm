@@ -315,13 +315,13 @@ WEAPONS
 /datum/supply_packs/weapons/thermobaric
 	name = "RL-57 Thermobaric Launcher"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4/t57)
-	cost = 50
+	cost = 35
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/thermobaric_wp
 	name = "RL-57 Thermobaric WP rocket array"
 	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
-	cost = 5
+	cost = 3
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specdemo
