@@ -656,7 +656,7 @@
 	accuracy_mult_unwielded = 0.5
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
-		"Heat" = /datum/lasrifle/base/energy_sniper_mode/heat,
+		"Focused" = /datum/lasrifle/base/energy_sniper_mode/heat,
 	)
 
 /datum/lasrifle/base/energy_sniper_mode/standard

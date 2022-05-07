@@ -1818,13 +1818,13 @@ datum/ammo/bullet/revolver/tp44
 	hitscan_effect_icon = "beam_heavy"
 
 /datum/ammo/energy/lasgun/marine/sniper_heat
-	name = "sniper heat bolt"
+	name = "sniper IFF bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
 	shell_speed = 2.5
 	damage = 40
 	penetration = 0
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_IFF
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
 
