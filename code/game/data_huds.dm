@@ -378,7 +378,7 @@
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
-	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
+	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_FIRE_HUD)
 
 /datum/atom_hud/xeno_heart
 	hud_icons = list(HEART_STATUS_HUD)
@@ -397,6 +397,12 @@
 
 	var/amount = min(round(sunder * 100 / xeno_caste.sunder_max, 10), 100)
 	holder.icon_state = "sundering[amount]"
+
+/mob/living/proc/xenomorph/hud_set_firestacks()
+	return
+
+/mob/living/carbon/xenomorph/hud_set_firestacks()
+
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
 	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
