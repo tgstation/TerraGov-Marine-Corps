@@ -131,6 +131,7 @@
 
 #define SNIPER_LASER_DAMAGE_MULTIPLIER 1.5 //+55% damage vs the aimed target
 #define SNIPER_LASER_ARMOR_MULTIPLIER 1.5 //+50% penetration vs the aimed target
+#define SNIPER_LASER_SLOWDOWN_STACKS 3
 
 //Define lasrifle
 #define ENERGY_STANDARD_AMMO_COST 20
