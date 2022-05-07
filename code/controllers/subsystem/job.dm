@@ -344,6 +344,9 @@ SUBSYSTEM_DEF(job)
 	if(assigned_role.faction == FACTION_TERRAGOV_REBEL && length(GLOB.latejoinrebel))
 		SendToAtom(M, pick(GLOB.latejoinrebel))
 		return
+	if(assigned_role.faction == FACTION_SOM && length(GLOB.latejoinsom))
+		SendToAtom(M, pick(GLOB.latejoinsom))
+		return
 	if(length(GLOB.latejoin))
 		SendToAtom(M, pick(GLOB.latejoin))
 		return

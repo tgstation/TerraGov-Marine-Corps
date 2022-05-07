@@ -8,6 +8,7 @@ GLOBAL_LIST_INIT(diagonal_smoothing_conversion, list(\
 //Spawnpoints.
 GLOBAL_LIST_EMPTY(latejoin)
 GLOBAL_LIST_EMPTY(latejoinrebel)
+GLOBAL_LIST_EMPTY(latejoinsom)
 GLOBAL_LIST_EMPTY(latejoin_gateway)
 GLOBAL_LIST_EMPTY(latejoin_cryo)
 
