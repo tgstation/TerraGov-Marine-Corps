@@ -210,9 +210,8 @@ SUBSYSTEM_DEF(minimaps)
 
 	var/image/blip = image(icon, iconstate, pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x) + minimaps_by_z["[zlevel]"].x_offset, pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y) + minimaps_by_z["[zlevel]"].y_offset)
 
-	if (overlay_iconstates)
-		for(var/i in overlay_iconstates)
-			blip.overlays += image(icon, i)
+	for(var/i in overlay_iconstates)
+		blip.overlays += image(icon, i)
 
 	images_by_source[target] = blip
 	for(var/flag in bitfield2list(hud_flags))
