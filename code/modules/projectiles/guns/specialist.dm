@@ -421,6 +421,32 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	return ..()
 
 
+// SG minigun
+
+/obj/item/weapon/gun/minigun/smart_minigun
+	name = "\improper SG-85 smart handheld gatling gun"
+	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's newest IFF-capable weapon. Excelling "
+	icon_state = "minigun_sg"
+	item_state = "minigun_sg"
+	fire_animation = "minigun_sg_fire"
+	max_shells = 1000 //codex
+	caliber = CALIBER_10x26_CASELESS //codex
+	fire_sound = 'sound/weapons/guns/fire/minigun_sg.ogg'
+	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
+	wield_delay = 1.5 SECONDS
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_skill_category = GUN_SKILL_SMARTGUN
+	aim_slowdown = 1.5
+	actions_types = list()
+
+	fire_delay = 0.1 SECONDS
+	windup_delay = 0.75 SECONDS
+	damage_mult = 0.8
+	scatter = -5
+	recoil = 0
+	recoil_unwielded = 4
+	damage_falloff_mult = 0.5
+
 // PEPPERBALL GUN
 
 //-------------------------------------------------------
