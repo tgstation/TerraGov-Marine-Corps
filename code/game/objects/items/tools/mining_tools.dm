@@ -250,9 +250,12 @@
 		spark_system.set_up(5, 0, M)
 		spark_system.attach(M)
 		spark_system.start(M)
-		cell.charge += 200
-		to_chat(M, span_warning("[src] violently vaporizes chunks of the Xenomorph upon contact!"))
-		to_chat(user, span_notice("The vaporized matter causes a temporary feedback loop in the battery! <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
+		//to_chat(world, span_warning("[src] violently vaporizes chunks of the [M] upon contact!"))
+		M.visible_message(span_danger("[src] violently vaporizes chunks of the [M] upon contact!"), visible_message_flags = COMBAT_MESSAGE)
+		if(M.stat == DEAD)
+		else
+			cell.charge += 200
+			to_chat(user, span_notice("The vaporized matter causes a temporary feedback loop in the battery! <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 	return ..()
 
 
