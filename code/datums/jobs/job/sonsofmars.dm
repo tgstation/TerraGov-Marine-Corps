@@ -16,6 +16,10 @@
 /datum/job/som/standard
 	title = "SOM Standard"
 	paygrade = "SOM1"
+	comm_title = "Mar"
+	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
+	total_positions = -1
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfit = /datum/outfit/job/som/standard
 	multiple_outfits = TRUE
 	outfits = list(
@@ -95,6 +99,7 @@
 /datum/job/som/medic
 	title = "SOM Medic"
 	paygrade = "SOM2"
+	comm_title = "Med"
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/som/medic
 	multiple_outfits = TRUE
@@ -163,6 +168,7 @@
 /datum/job/som/veteran
 	title = "SOM Veteran"
 	paygrade = "SOM3"
+	comm_title = "SGnr"
 	outfit = /datum/outfit/job/som/veteran
 	multiple_outfits = TRUE
 	outfits = list(
@@ -287,6 +293,7 @@
 	job_category = JOB_CAT_COMMAND
 	title = "SOM Leader"
 	paygrade = "SOM3"
+	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
 	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/som/leader
 	multiple_outfits = TRUE

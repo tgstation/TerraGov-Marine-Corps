@@ -9,6 +9,7 @@
 	time_between_round = 0 HOURS
 	/// Timer used to calculate how long till round ends
 	var/game_timer
+	//todo: add more som roles
 	valid_job_types = list(
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/squad/engineer = 6,
@@ -41,6 +42,8 @@
 	to_chat(world, "<b>The current game mode is - Combat Patrol!</b>")
 	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
+
+
 
 //sets TGMC and SOM squads
 /datum/game_mode/combat_patrol/set_valid_squads()
