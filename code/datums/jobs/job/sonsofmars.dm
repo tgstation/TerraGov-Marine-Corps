@@ -11,10 +11,30 @@
 	H.undershirt = 6
 	H.regenerate_icons()
 
+///wip stuff, need to move main SOM and ert chads to separate child branches of SOM...
+
+/datum/job/som/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+	. = ..()
+	C.hud_set_job(faction)
+	if(!ishuman(C))
+		return
+	var/mob/living/carbon/human/human_spawn = C
+	if(!(human_spawn.species.species_flags & ROBOTIC_LIMBS))
+		human_spawn.set_nutrition(rand(60, 250))
+	if(!human_spawn.assigned_squad)
+		CRASH("after_spawn called for a marine without an assigned_squad")
+	to_chat(M, {"\nYou have been assigned to: <b><font size=3 color=[human_spawn.assigned_squad.color]>[lowertext(human_spawn.assigned_squad.name)] squad</font></b>.
+Make your way to the cafeteria for some post-cryosleep chow, and then get equipped in your squad's prep room."})
+
+/datum/job/som/equip_spawning_squad(mob/living/carbon/human/new_character, datum/squad/assigned_squad, client/player)
+	if(!assigned_squad)
+		SSjob.JobDebug("Failed to put marine role in squad. Player: [player.key] Job: [title]")
+		return
+	assigned_squad.insert_into_squad(new_character)
 
 //SOM Standard
 /datum/job/som/standard
-	title = "SOM Standard"
+	title = SOM_SQUAD_MARINE //can change when ert split out if desired
 	paygrade = "SOM1"
 	comm_title = "Mar"
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
@@ -97,7 +117,7 @@
 
 //SOM Medic
 /datum/job/som/medic
-	title = "SOM Medic"
+	title = SOM_SQUAD_CORPSMAN
 	paygrade = "SOM2"
 	comm_title = "Med"
 	skills_type = /datum/skills/combat_medic/crafty
@@ -166,7 +186,7 @@
 
 //SOM Veteran
 /datum/job/som/veteran
-	title = "SOM Veteran"
+	title = SOM_SQUAD_VETERAN
 	paygrade = "SOM3"
 	comm_title = "SGnr"
 	outfit = /datum/outfit/job/som/veteran
@@ -291,7 +311,7 @@
 //SOM Leader
 /datum/job/som/leader
 	job_category = JOB_CAT_COMMAND
-	title = "SOM Leader"
+	title = SOM_SQUAD_LEADER
 	paygrade = "SOM3"
 	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
 	skills_type = /datum/skills/sl

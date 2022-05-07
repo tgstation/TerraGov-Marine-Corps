@@ -73,6 +73,7 @@
 #define ismedicaljob(J) (istype(J, /datum/job/terragov/medical))
 #define isengineeringjob(J) (istype(J, /datum/job/terragov/engineering))
 #define ismarinejob(J) (istype(J, /datum/job/terragov/squad))
+#define issommarinejob(J) (istype(J, /datum/job/som)) //to be updated when ert separated out
 #define ismarinespecjob(J) (istype(J, /datum/job/terragov/squad/specialist))
 #define ismarineleaderjob(J) (istype(J, /datum/job/terragov/squad/leader))
 #define ismarinecommandjob(J) (istype(J, /datum/job/terragov/command))

@@ -84,10 +84,10 @@
 #define REBEL_SILICON_AI "Rebel AI"
 
 //SOM - very placeholder for now
-#define SOM_SQUAD_LEADER "SOM Squad Leader"
-#define SOM_SQUAD_CORPSMAN "SOM Squad Corpsman"
-#define SOM_SQUAD_VETERAN "SOM Squad Veteran"
-#define SOM_SQUAD_MARINE "SOM Squad Marine"
+#define SOM_SQUAD_LEADER "SOM squad Leader"
+#define SOM_SQUAD_CORPSMAN "SOM medic"
+#define SOM_SQUAD_VETERAN "SOM Veteran"
+#define SOM_SQUAD_MARINE "SOM standard"
 
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"
