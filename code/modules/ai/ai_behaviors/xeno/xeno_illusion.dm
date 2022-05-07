@@ -26,8 +26,8 @@
 	layer = BELOW_MOB_LAYER
 	///The parent mob the illusion is a copy of
 	var/mob/original_mob
-	///Last time it was hit by a projectile
-	var/last_hit_time = 0
+	/// Timer to remove the hit effect
+	var/timer_effect
 
 /mob/illusion/Initialize(mapload, mob/original_mob, atom/escorted_atom, life_time)
 	. = ..()
@@ -36,29 +36,22 @@
 	desc = original_mob.desc
 	name = original_mob.name
 	RegisterSignal(original_mob, list(COMSIG_PARENT_QDELETING, COMSIG_MOB_DEATH), .proc/destroy_illusion)
-	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, life_time)
 
-/mob/illusion/Destroy()
-	original_mob = null
-	STOP_PROCESSING(SSprocessing, src)
-	return ..()
-
-///Delete this illusion when the original xeno is dead
+///Delete this illusion when the original xeno is ded
 /mob/illusion/proc/destroy_illusion()
 	SIGNAL_HANDLER
 	qdel(src)
 
-/mob/illusion/process()
-	appearance = original_mob.appearance
-	if(last_hit_time >= world.time + 1 SECONDS)
-		remove_filter("illusion_hit")
-		last_hit_time = 0
+/// Remove the filter effect added when it was hit
+/mob/illusion/proc/remove_hit_filter()
+	remove_filter("illusion_hit")
 
 /mob/illusion/projectile_hit()
 	remove_filter("illusion_hit")
-	add_filter("illusion_hit", 2, wave_filter(10, 10, 10, 8))
-	last_hit_time = world.time
+	deltimer(timer_effect)
+	add_filter("illusion_hit", 2, ripple_filter(10, 5))
+	timer_effect = addtimer(CALLBACK(src, .proc/remove_hit_filter), 0.5 SECONDS)
 	return FALSE
 
 /mob/illusion/xeno/Initialize(mapload, mob/living/carbon/xenomorph/original_mob, atom/escorted_atom, life_time)
