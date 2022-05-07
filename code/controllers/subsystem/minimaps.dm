@@ -201,7 +201,7 @@ SUBSYSTEM_DEF(minimaps)
  * * iconstate: iconstate for the blip we want to be used for this tracked atom
  * * icon: icon file we want to use for this blip, 'icons/UI_icons/map_blips.dmi' by efault
  */
-/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, zlevel, hud_flags = NONE, iconstate, icon = 'icons/UI_icons/map_blips.dmi', overlay_iconstates = null)
+/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, zlevel, hud_flags = NONE, iconstate, icon = 'icons/UI_icons/map_blips.dmi', list/overlay_iconstates)
 	if(!isatom(target) || !zlevel || !hud_flags || !iconstate || !icon)
 		CRASH("Invalid marker added to subsystem")
 	if(!initialized)
