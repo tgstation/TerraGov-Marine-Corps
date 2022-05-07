@@ -67,3 +67,9 @@
   - rscadd: briefing in PoS. lel
   - bugfix: 'PoS'' chem not being able to be accessible to corpsman. expansion: polish
       up PoS'' morgue.'
+2022-05-07:
+  Lumipharon:
+  - rscadd: Add some spawners for mapper use for random guns to spawn with ammo they
+      actually use.
+  novaepee:
+  - bugfix: Fix APC wiring and symmetry in Minerva's req
