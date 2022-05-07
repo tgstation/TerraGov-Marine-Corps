@@ -17,7 +17,7 @@
 
 /datum/surgery_step/fix_vein/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(affected.surgery_open_stage >= 2)
-		if(affected.wounds.len)
+		for(var/datum/wound/internal_bleeding/W in affected.wounds)
 			return TRUE
 
 /datum/surgery_step/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
