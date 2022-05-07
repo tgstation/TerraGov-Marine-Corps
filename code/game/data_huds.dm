@@ -398,7 +398,7 @@
 	var/amount = min(round(sunder * 100 / xeno_caste.sunder_max, 10), 100)
 	holder.icon_state = "sundering[amount]"
 
-/mob/living/proc/xenomorph/hud_set_firestacks()
+/mob/living/proc/hud_set_firestacks()
 	return
 
 /mob/living/carbon/xenomorph/hud_set_firestacks()
@@ -406,15 +406,17 @@
 	if(!holder)
 		return
 
-	switch(round(fire_stacks, 1))
+	switch(fire_stacks)
 		if(-INFINITY to 0)
 			holder.icon_state = "firestack0"
 		if(1 to 5)
 			holder.icon_state = "firestack1"
 		if(6 to 10)
 			holder.icon_state = "firestack2"
-		if(11 to INFINITY)
+		if(11 to 15)
 			holder.icon_state = "firestack3"
+		if(16 to INFINITY)
+			holder.icon_state = "firestack4"
 
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
