@@ -1008,9 +1008,9 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 4
 	accurate_range = 30
 	max_range = 40
-	damage = 90
-	penetration = 40
-	sundering = 5
+	damage = 80
+	penetration = 60
+	sundering = 15
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
