@@ -63,7 +63,7 @@
 		if(!ishuman(user) || CHECK_BITFIELD(item_to_deploy.flags_item, NODROP))
 			return
 
-		if(item_to_deploy.check_blocked_turf(location))
+		if(item_to_deploy.check_blocked_turf(location, dense_only = FALSE))
 			user.balloon_alert(user, "There is insufficient room to deploy [item_to_deploy]!")
 			return
 		if(user.do_actions)
@@ -74,7 +74,9 @@
 		var/newdir = user.dir //Save direction before the doafter for ease of deploy
 		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
 			return
-
+		if(item_to_deploy.check_blocked_turf(location, dense_only = FALSE)) //Never trust conditions remaining the same when using do_after.
+			user.balloon_alert(user, "There is insufficient room to deploy [item_to_deploy]!")
+			return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)
 
 		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE,  COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
