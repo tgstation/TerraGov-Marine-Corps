@@ -1008,8 +1008,8 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 4
 	accurate_range = 30
 	max_range = 40
-	damage = 80
-	penetration = 60
+	damage = 90
+	penetration = 50
 	sundering = 15
 
 /datum/ammo/bullet/sniper/incendiary
