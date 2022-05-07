@@ -1,0 +1,5 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - rscadd: "New hunter ability, swap"
+  - rscdel: "Kill silence ability"
