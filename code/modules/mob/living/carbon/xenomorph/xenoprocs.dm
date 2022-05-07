@@ -227,6 +227,9 @@
 
 	stat("Sunder:", "[100-sunder]% armor left")
 
+	if(fire_stacks > 0)
+		stat("Fire Stacks", "[fire_stacks]")
+
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
 	if(frenzy_aura)
