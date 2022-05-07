@@ -9,17 +9,17 @@
 /mob/living/carbon/xenomorph/supply_export(faction_selling)
 	switch(tier)
 		if(XENO_TIER_MINION)
-			. = 5
+			. = 7
 		if(XENO_TIER_ZERO)
 			. = 15
 		if(XENO_TIER_ONE)
-			. = 30
+			. = 45
 		if(XENO_TIER_TWO)
-			. = 40
+			. = 60
 		if(XENO_TIER_THREE)
-			. = 50
+			. = 75
 		if(XENO_TIER_FOUR)
-			. = 100
+			. = 150
 	SSpoints.supply_points[faction_selling] += .
 	return new /datum/export_report(., name, faction_selling)
 
