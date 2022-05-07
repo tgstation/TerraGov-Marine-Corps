@@ -343,7 +343,7 @@
 		brute_dam += damage
 		limb_wound_status &= !(LIMB_WOUND_BANDAGED | LIMB_WOUND_DISINFECTED)
 
-//For testing purposes
+///For testing convenience. Adds one internal_bleeding wound to the limb.
 /datum/limb/proc/add_internal_bleeding()
 	new /datum/wound/internal_bleeding(15, src)
 

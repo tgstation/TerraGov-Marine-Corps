@@ -25,7 +25,7 @@
 	parent_limb.wounds += src
 	return ..()
 
-//Called by the parent limb every life tick by default
+///Called by the parent limb every life tick by default
 /datum/wound/process()
 	if(damage <= 0)
 		qdel(src)
