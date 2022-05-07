@@ -10,8 +10,8 @@
 #define MINER_RESISTANT "reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
-#define PHORON_CRATE_SELL_AMOUNT 15
-#define PLATINUM_CRATE_SELL_AMOUNT 30
+#define PHORON_CRATE_SELL_AMOUNT 23
+#define PLATINUM_CRATE_SELL_AMOUNT 45
 
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
