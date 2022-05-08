@@ -173,10 +173,13 @@
 			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
 
 		if(/datum/reagent/medicine/kelotane)
-			var/list/cone_turfs = generate_cone(get_turf(target), 2, 1, 90, Get_Angle(user, target.loc))
-			for(var/row_turfs in cone_turfs)
-				for(var/turf/checked_turf AS in row_turfs)
-					checked_turf.ignite()
+			target.flamer_fire_act(10)
+			target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, target.get_soft_armor("fire", user.zone_selected))
+			var/list/cone_turfs = generate_cone(target, 1, 0, 181, Get_Angle(user, target.loc))
+			for(var/turf/checked_turf AS in cone_turfs)
+				for(var/mob/living/victim in checked_turf)
+					victim.flamer_fire_act(10)
+					victim.apply_damage(max(0, 20 - 20*victim.hard_armor.getRating("fire")), BURN, user.zone_selected, victim.get_soft_armor("fire", user.zone_selected))
 
 		if(/datum/reagent/medicine/bicaridine)
 			if(isxeno(target))
