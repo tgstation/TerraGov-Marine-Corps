@@ -135,7 +135,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/dexalin
 	name = "dexalin autoinjector"
 	desc = "An auto-injector loaded with 3 doses of dexalin, an emergency stabilization medicine for patients in critical condition."
-	icon_state = "autoinjector-9"
+	icon_state = "autoinjector-2"
 	volume = 15
 	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/dexalin = 15)
@@ -151,7 +151,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/alkysine
 	name = "alkysine autoinjector"
 	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain damage."
-	icon_state = "autoinjector-1"
+	icon_state = "autoinjector-12"
 	volume = 15
 	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/alkysine = 15)
@@ -159,7 +159,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/imidazoline
 	name = "imidazoline autoinjector"
 	desc = "An auto-injector loaded with 3 doses of imidazoline, medicine for fixing eyesight."
-	icon_state = "autoinjector-1"
+	icon_state = "autoinjector-5"
 	list_reagents = list(/datum/reagent/medicine/imidazoline = 30)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
@@ -223,7 +223,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon
 	name = "peridaxon autoinjector"
 	desc = "An auto-injector loaded with 3 doses of Peridaxon, a chemical that suppresses organ damage."
-	icon_state = "autoinjector-8"
+	icon_state = "autoinjector-6"
 	list_reagents = list(
 		/datum/reagent/medicine/peridaxon = 30,
 	)
