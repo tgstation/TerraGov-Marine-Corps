@@ -110,9 +110,8 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/upp, SLOT_IN_L_POUCH)
 
 //SOM Engineer
-/Squad Engineer
-/datum/outfit/job/som/squad/engineer
-	title = SQUAD_ENGINEER
+/datum/job/som/squad/engineer
+	title = SOM_SQUAD_ENGINEER
 	paygrade = "SOM2"
 	comm_title = "Eng"
 	total_positions = 12 //where is this used, there is another value under gamemode...
@@ -133,7 +132,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	"}
 	minimap_icon = "engi"
 
-/datum/outfit/job/som/squad/engineer/radio_help_message(mob/M)
+/datum/job/som/squad/engineer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
 Your squaddies will look to you when it comes to construction in the field of battle."})

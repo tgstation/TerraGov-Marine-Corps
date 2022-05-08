@@ -147,16 +147,20 @@
 //SOM - WIP
 /obj/effect/landmark/start/job/som/squadstandard
 	icon_state = "PFC"
-	job = /datum/job/som/standard
+	job = /datum/job/som/squad/standard
 
-/obj/effect/landmark/start/job/squadengineer
+/obj/effect/landmark/start/job/som/squadveteran
+	icon_state = "SGnr"
+	job = /datum/job/som/squad/veteran
+
+/obj/effect/landmark/start/job/som/squadengineer
 	icon_state = "Eng"
-	job = /datum/job/som/veteran
+	job = /datum/job/som/squad/engineer
 
 /obj/effect/landmark/start/job/som/squadcorpsman
 	icon_state = "HM"
-	job = /datum/job/som/medic
+	job = /datum/job/som/squad/medic
 
 /obj/effect/landmark/start/job/som/squadleader
 	icon_state = "SL"
-	job = /datum/job/som/leader
+	job = /datum/job/som/squad/leader
