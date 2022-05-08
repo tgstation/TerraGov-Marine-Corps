@@ -37,6 +37,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	title = SOM_SQUAD_MARINE //can change when ert split out if desired
 	paygrade = "SOM1"
 	comm_title = "Mar"
+	minimap_icon = "private"
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
@@ -120,6 +121,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	title = SOM_SQUAD_CORPSMAN
 	paygrade = "SOM2"
 	comm_title = "Med"
+	minimap_icon = "medic"
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/som/medic
 	multiple_outfits = TRUE
@@ -189,6 +191,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	title = SOM_SQUAD_VETERAN
 	paygrade = "SOM3"
 	comm_title = "SGnr"
+	minimap_icon = "smartgunner"
 	outfit = /datum/outfit/job/som/veteran
 	multiple_outfits = TRUE
 	outfits = list(
@@ -314,6 +317,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	title = SOM_SQUAD_LEADER
 	paygrade = "SOM3"
 	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
+	minimap_icon = "leader"
 	skills_type = /datum/skills/sl
 	outfit = /datum/outfit/job/som/leader
 	multiple_outfits = TRUE
