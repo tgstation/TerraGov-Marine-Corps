@@ -317,6 +317,14 @@
 		current_acid = null
 	return
 
+///Called to return an item to equip using the quick equip hotkey. Will try return a stored item, otherwise returns itself to equip.
+/obj/item/proc/do_quick_equip()
+	var/obj/item/found = locate(/obj/item/storage) in contents
+	if(!found)
+		found = locate(/obj/item/armor_module/storage) in contents
+	if(found)
+		return found.do_quick_equip()
+	return src
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
@@ -546,6 +554,13 @@
 			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 				return TRUE
 			return FALSE
+		if(SLOT_IN_ACCESSORY)
+			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/holster)) ||(H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/knifeharness)))
+				var/obj/item/armor_module/storage/U = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			return FALSE
 		if(SLOT_S_STORE)
 			if(H.s_store)
 				return FALSE
@@ -626,6 +641,13 @@
 				return TRUE
 		if(SLOT_IN_HEAD)
 			var/obj/item/clothing/head/helmet/marine/S = H.head
+			if(!istype(S) || !S.pockets)
+				return FALSE
+			var/obj/item/storage/internal/T = S.pockets
+			if(T.can_be_inserted(src, warning))
+				return TRUE
+		if(SLOT_IN_BOOT)
+			var/obj/item/clothing/shoes/marine/S = H.shoes
 			if(!istype(S) || !S.pockets)
 				return FALSE
 			var/obj/item/storage/internal/T = S.pockets
@@ -1124,9 +1146,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)
 
 ///Generates worn icon for sprites on-mob.
-/obj/item/proc/make_worn_icon(slot_name, inhands, default_icon, default_layer)
+/obj/item/proc/make_worn_icon(species_type, slot_name, inhands, default_icon, default_layer)
 	//Get the required information about the base icon
-	var/icon/icon2use = get_worn_icon_file(slot_name = slot_name, default_icon = default_icon, inhands = inhands)
+	var/icon/icon2use = get_worn_icon_file(species_type = species_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
 	var/layer2use = !inhands && worn_layer ? -worn_layer : -default_layer
 
@@ -1155,13 +1177,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return standing
 
 ///gets what icon dmi file shall be used for the on-mob sprite
-/obj/item/proc/get_worn_icon_file(slot_name,default_icon,inhands)
+/obj/item/proc/get_worn_icon_file(species_type,slot_name,default_icon,inhands)
 
 	//1: icon_override var
 	if(icon_override)
 		return icon_override
 
 	//2: species-specific sprite sheets.
+	. = LAZYACCESS(sprite_sheets, species_type)
 	if(. && !inhands)
 		return
 

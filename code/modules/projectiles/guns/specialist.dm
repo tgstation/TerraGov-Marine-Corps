@@ -709,8 +709,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 //SR-220 Railgun
 
 /obj/item/weapon/gun/rifle/railgun
-	name = "\improper SR-220 railgun"
-	desc = "The SR-220 is a specialized heavy duty railgun made to shred through hard armor to allow for follow up attacks. Uses specialized canisters to reload."
+	name = "\improper RG-220 railgun"
+	desc = "The RG-220 is a specialized heavy duty railgun made to shred through hard armor to allow for follow up attacks. Uses specialized canisters to reload."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "railgun"
 	item_state = "railgun"
@@ -722,9 +722,13 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	unload_sound = 'sound/weapons/guns/interact/sniper_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sniper_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/railgun
-	allowed_ammo_types = list(/obj/item/ammo_magazine/railgun)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/railgun,
+		/obj/item/ammo_magazine/railgun/smart,
+		/obj/item/ammo_magazine/railgun/hvap,
+	)
 	force = 40
-	wield_delay = 1.75 SECONDS //You're not quick drawing this.
+	wield_delay = 1 SECONDS //You're not quick drawing this.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
@@ -737,3 +741,4 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 0
+	scatter = 0

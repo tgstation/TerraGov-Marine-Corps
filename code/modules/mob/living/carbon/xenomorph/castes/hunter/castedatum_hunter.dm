@@ -49,12 +49,12 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/silence,
 		/datum/action/xeno_action/activable/pounce/hunter,
 		/datum/action/xeno_action/stealth,
 		/datum/action/xeno_action/activable/hunter_mark,
 		/datum/action/xeno_action/psychic_trace,
 		/datum/action/xeno_action/mirage,
+		/datum/action/xeno_action/swap,
 	)
 
 	// *** Vent Crawl Parameters *** //
@@ -173,10 +173,10 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
-		/datum/action/xeno_action/activable/silence,
 		/datum/action/xeno_action/activable/pounce/hunter,
 		/datum/action/xeno_action/stealth/disguise,
 		/datum/action/xeno_action/activable/hunter_mark,
 		/datum/action/xeno_action/psychic_trace,
 		/datum/action/xeno_action/mirage,
+		/datum/action/xeno_action/swap,
 	)

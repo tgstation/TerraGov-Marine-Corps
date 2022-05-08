@@ -42,19 +42,24 @@
 			to_chat(user, span_warning("You can't apply [src] through [H.wear_suit]!"))
 			return TRUE
 
-	if(affecting.limb_status & LIMB_ROBOT)
-		to_chat(user, span_warning("This isn't useful at all on a robotic limb."))
+	if(!can_affect_limb(affecting))
+		to_chat(user, span_warning("This isn't useful at all on [affecting.limb_status & LIMB_ROBOT ? "a robotic": "an organic"] limb."))
 		return TRUE
 
 	H.UpdateDamageIcon()
 
 	if(user.skills.getRating("medical") < skill_level_needed)
-		if(user.do_actions)
+		if(user.do_actions || !do_mob(user, M, unskilled_delay, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 			to_chat(user, span_warning("You're busy with something else right now!"))
-		if(!do_mob(user, M, unskilled_delay, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 			return TRUE
 
 	return affecting
+
+///Checks for whether the limb is appropriately organic/robotic
+/obj/item/stack/medical/proc/can_affect_limb(datum/limb/affecting)
+	if(affecting.limb_status & LIMB_ROBOT)
+		return FALSE
+	return TRUE
 
 /obj/item/stack/medical/heal_pack
 	name = "platonic gauze"
@@ -80,6 +85,33 @@
 			to_chat(user, span_notice("\The [affecting.display_name] is cut open, you'll need more than a bandage!"))
 		return
 
+	var/unskilled_penalty = (user.skills.getRating("medical") < skill_level_needed) ? 0.5 : 1
+	var/affected = heal_limb(affecting, unskilled_penalty)
+
+	generate_treatment_messages(user, patient, affecting, affected)
+	if(!affected)
+		return
+	use(1)
+
+	//For fast use. If you're already treating and apply to another part, don't try to start cycling again
+	if(user.do_actions)
+		return
+
+	//After patching the first limb, start looping through the rest with a delay on each.
+	for(affecting AS in patient.limbs)
+		if(!can_affect_limb(affecting))
+			continue
+		//Always delay on the first try, otherwise only delay if you patched the last iterated limb.
+		if(affected && !do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			to_chat(user, span_notice("You stop tending to [patient]'s wounds."))
+			return
+		affected = heal_limb(affecting, unskilled_penalty)
+		if(affected) //Limbs you don't treat just pass by silently
+			generate_treatment_messages(user, patient, affecting, affected)
+	to_chat(user, span_notice("You finish tending to [patient]'s wounds."))
+
+///Applies the heal_pack to a specified limb. Unskilled penalty is a multiplier between 0 and 1 on brute/burn healing effectiveness
+/obj/item/stack/medical/heal_pack/proc/heal_limb(datum/limb/affecting, unskilled_penalty)
 	var/affected = FALSE
 	if(heal_flags & BANDAGE)
 		affected |= affecting.bandage()
@@ -88,11 +120,10 @@
 	if(heal_flags & DISINFECT)
 		affected |= affecting.disinfect()
 
-	generate_treatment_messages(user, patient, affecting, affected)
 	if(affected)
-		var/untrained_healing_penalty = (user.skills.getRating("medical") < skill_level_needed) ? 0.5 : 1
-		affecting.heal_limb_damage(heal_brute * untrained_healing_penalty, heal_burn * untrained_healing_penalty, updating_health = TRUE)
-		use(1)
+		affecting.heal_limb_damage(heal_brute * unskilled_penalty, heal_burn * unskilled_penalty, updating_health = TRUE)
+
+	return affected
 
 ///Purely visual, generates the success/failure messages for using a health pack
 /obj/item/stack/medical/heal_pack/proc/generate_treatment_messages(mob/user, mob/patient, datum/limb/target_limb, success)

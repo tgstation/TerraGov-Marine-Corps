@@ -1,0 +1,4 @@
+author: "2whatever2"
+delete-after: True
+changes: 
+  - balance: "Moved TAT & non-IFF HMG from weapons vendor to Engineering vendor (The ones with mortar and howitzer.)"

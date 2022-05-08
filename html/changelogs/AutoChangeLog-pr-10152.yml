@@ -1,0 +1,5 @@
+author: "DeltaFire15"
+delete-after: True
+changes: 
+  - balance: "Any machinery / structure on a tile now blocks deployable deployment, as opposed to only dense ones."
+  - code_imp: "Deployables checking for blocking objects are now less prone to being bypassed during their do_after."

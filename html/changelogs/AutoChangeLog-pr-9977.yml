@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - rscadd: "After applying a health kit to one limb, you'll start applying it to all other damaged ones without using additional stacks."

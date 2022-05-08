@@ -284,9 +284,19 @@ WEAPONS
 	cost = 40
 
 /datum/supply_packs/weapons/railgun_ammo
-	name = "Railgun round"
+	name = "Railgun armor piercing discarding sabot round"
 	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 3
+	cost = 2
+
+/datum/supply_packs/weapons/railgun_ammo/hvap
+	name = "Railgun high velocity armor piercing round"
+	contains = list(/obj/item/ammo_magazine/railgun/hvap)
+	cost = 2
+
+/datum/supply_packs/weapons/railgun_ammo/smart
+	name = "Railgun smart armor piercing round"
+	contains = list(/obj/item/ammo_magazine/railgun/smart)
+	cost = 2
 
 /datum/supply_packs/weapons/tx8
 	name = "SR-8 Scout Rifle"
@@ -937,7 +947,7 @@ MEDICAL
 	name = "lemoline"
 	notes = "Contains 1 bottle of lemoline with 10 units."
 	contains = list(/obj/item/reagent_containers/glass/bottle/lemoline)
-	cost = 25
+	cost = 5
 
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
@@ -1470,19 +1480,19 @@ VEHICLES
 /datum/supply_packs/vehicles/uv_light_ammo
 	name = "Light UV ammo"
 	contains = list(/obj/item/ammo_magazine/box11x35mm)
-	cost = 10
+	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/uv_heavy_ammo
 	name = "Heavy UV ammo"
 	contains = list(/obj/item/ammo_magazine/box12x40mm)
-	cost = 10
+	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/vehicle_remote
 	name = "Vehicle remote"
 	contains = list(/obj/item/unmanned_vehicle_remote)
-	cost = 10
+	cost = 1
 	containertype = /obj/structure/closet/crate
 
 /*******************************************************************************

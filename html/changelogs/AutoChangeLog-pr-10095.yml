@@ -1,0 +1,9 @@
+author: "tyeagg"
+delete-after: True
+changes: 
+  - balance: "expanded caves slightly"
+  - balance: "made lz2 more open"
+  - balance: "adds another flank to both lz's"
+  - balance: "moved fog locations"
+  - balance: "more gens"
+  - bugfix: "tadpole being able to land in northern caves"
