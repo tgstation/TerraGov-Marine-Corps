@@ -14,6 +14,11 @@
 	var/can_sneak_attack = FALSE
 	var/stealth_alpha_multiplier = 1
 
+/datum/action/xeno_action/stealth/remove_action(mob/living/L)
+	if(stealth)
+		cancel_stealth()
+	return ..()
+
 /datum/action/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
