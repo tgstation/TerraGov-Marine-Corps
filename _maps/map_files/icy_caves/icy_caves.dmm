@@ -525,8 +525,7 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "bX" = (
@@ -645,9 +644,7 @@
 "ct" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "cu" = (
@@ -1461,9 +1458,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "fE" = (
@@ -1701,9 +1696,7 @@
 	},
 /obj/effect/decal/cleanable/blood/xtracks,
 /obj/structure/cable,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "gQ" = (
@@ -2579,9 +2572,7 @@
 /area/icy_caves/caves/west)
 "kR" = (
 /obj/effect/ai_node,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "kS" = (
@@ -2796,9 +2787,7 @@
 "lO" = (
 /obj/effect/decal/cleanable/blood/xtracks,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "lP" = (
@@ -2966,9 +2955,7 @@
 /area/icy_caves/outpost/outside/center)
 "mu" = (
 /obj/machinery/vending/security,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "mv" = (
@@ -3233,9 +3220,7 @@
 /area/icy_caves/caves/northwestmonorail/hallway)
 "nG" = (
 /obj/structure/cable,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "nH" = (
@@ -3488,18 +3473,14 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "oR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "oS" = (
@@ -3631,9 +3612,7 @@
 	dir = 4
 	},
 /obj/structure/bed/chair/office/dark,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "pw" = (
@@ -5309,9 +5288,7 @@
 /area/icy_caves/caves/northern)
 "wf" = (
 /obj/structure/table/mainship,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "wg" = (
@@ -5366,9 +5343,7 @@
 /area/icy_caves/caves/alienstuff)
 "wq" = (
 /obj/machinery/light,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "wr" = (
@@ -5440,9 +5415,7 @@
 "wG" = (
 /obj/effect/spawner/gibspawner/human,
 /obj/structure/cable,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "wH" = (
@@ -5734,9 +5707,7 @@
 /area/icy_caves/caves)
 "yb" = (
 /obj/structure/filingcabinet,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "yd" = (
@@ -5766,9 +5737,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
 "yi" = (
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "yj" = (
@@ -6605,8 +6574,7 @@
 /area/icy_caves/caves/west)
 "BB" = (
 /obj/structure/cryofeed,
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "BE" = (
@@ -6984,9 +6952,7 @@
 /area/icy_caves/outpost/dorms)
 "Dm" = (
 /obj/structure/largecrate/random/secure,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "Dn" = (
@@ -7000,9 +6966,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "Dp" = (
@@ -7224,9 +7188,7 @@
 "Ek" = (
 /obj/structure/table/mainship,
 /obj/effect/decal/cleanable/blood/xtracks,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "El" = (
@@ -7385,9 +7347,7 @@
 	dir = 4
 	},
 /obj/structure/table/mainship,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "EX" = (
@@ -7870,9 +7830,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "GR" = (
@@ -7967,9 +7925,7 @@
 "Hj" = (
 /obj/structure/table/mainship,
 /obj/machinery/recharger,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "Hk" = (
@@ -10545,9 +10501,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
+/turf/open/floor/prison/bright_clean/two{
 	},
 /area/icy_caves/caves/northwestmonorail)
 "Sg" = (

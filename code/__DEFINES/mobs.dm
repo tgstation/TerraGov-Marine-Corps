@@ -619,6 +619,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1
+#define AUTO_WEEDING_MIN_DIST 4 // How far the xeno must be from the last spot to auto weed
 
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE 0

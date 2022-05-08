@@ -9629,9 +9629,8 @@
 /area/magmoor/hydroponics)
 "gLf" = (
 /obj/machinery/computer/rdconsole,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
 "gLl" = (
@@ -10048,9 +10047,8 @@
 /obj/structure/table/reinforced,
 /obj/item/toy/prize/marauder,
 /obj/machinery/alarm,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
 "hfG" = (
@@ -10058,9 +10056,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
 "hgs" = (
@@ -10311,9 +10308,8 @@
 	pixel_y = 7
 	},
 /obj/item/tool/pen,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
 "hpJ" = (
@@ -10401,9 +10397,8 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
 "htk" = (
@@ -10511,9 +10506,8 @@
 "hxh" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/black_random,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
 "hxE" = (
@@ -10606,8 +10600,7 @@
 "hBz" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/nuke_disk_generator/green,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/magmoor/research/researchdirector)
 "hBR" = (
@@ -10645,8 +10638,7 @@
 	pixel_y = 3
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/magmoor/research/researchdirector)
 "hCX" = (
@@ -10691,8 +10683,7 @@
 /area/magmoor/cave/north)
 "hEi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/magmoor/research/researchdirector)
 "hEq" = (
@@ -10716,9 +10707,8 @@
 /area/magmoor/medical/lobby)
 "hEU" = (
 /obj/structure/filingcabinet/chestdrawer,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
 "hEW" = (
@@ -13301,9 +13291,8 @@
 /area/magmoor/compound/northeast)
 "jwb" = (
 /obj/structure/closet/secure_closet/RD,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
 "jws" = (
@@ -15798,15 +15787,13 @@
 	name = "\improper coolant feed"
 	},
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "lmj" = (
 /obj/structure/cryofeed,
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "lmk" = (
@@ -16205,8 +16192,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
 	dir = 4
 	},
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "lCa" = (
@@ -18300,8 +18286,7 @@
 	},
 /obj/structure/cable,
 /obj/item/ammo_magazine/rifle/m16,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/magmoor/command/conference)
 "ncy" = (
@@ -18600,8 +18585,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction{
 	dir = 1
 	},
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "nmI" = (
@@ -18609,8 +18593,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction{
 	dir = 1
 	},
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "nnm" = (
@@ -19615,9 +19598,8 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "nXF" = (
@@ -24366,9 +24348,8 @@
 /area/magmoor/cargo/processing/south)
 "raw" = (
 /obj/machinery/computer/rdservercontrol,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
 "raz" = (
@@ -24651,9 +24632,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "rnE" = (
@@ -25145,9 +25125,8 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "rAB" = (
@@ -26406,9 +26385,8 @@
 /obj/effect/decal/siding{
 	dir = 9
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/magmoor/civilian/chapel)
 "slQ" = (
@@ -26429,9 +26407,8 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/magmoor/civilian/chapel)
 "snj" = (
@@ -26637,9 +26614,8 @@
 /obj/effect/decal/siding{
 	dir = 8
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/magmoor/civilian/chapel)
 "suu" = (
@@ -26648,9 +26624,8 @@
 "suz" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/magmoor/civilian/chapel)
 "suP" = (
@@ -26975,8 +26950,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/magmoor/command/conference)
 "sEN" = (
@@ -26995,9 +26969,8 @@
 /obj/effect/decal/siding{
 	dir = 8
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/magmoor/civilian/chapel)
 "sFf" = (
@@ -27017,9 +26990,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/magmoor/civilian/chapel)
 "sFl" = (
@@ -27293,9 +27265,8 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/chapel)
 "sPb" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/magmoor/civilian/chapel)
 "sPc" = (
@@ -27557,9 +27528,8 @@
 	dir = 10
 	},
 /obj/item/weapon/nullrod,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/magmoor/civilian/chapel)
 "sWj" = (
@@ -29663,9 +29633,8 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/office/main)
 "usY" = (
@@ -29678,9 +29647,8 @@
 "uts" = (
 /obj/machinery/computer/med_data/laptop,
 /obj/structure/table/mainship,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/office/main)
 "utw" = (
@@ -29714,9 +29682,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/office/main)
 "utY" = (
@@ -29991,9 +29958,8 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/office/main)
 "uCj" = (
@@ -30006,9 +29972,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/office/main)
 "uCM" = (
@@ -30184,9 +30149,8 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/office/main)
 "uId" = (
@@ -30271,8 +30235,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/magmoor/command/office/main)
 "uKx" = (
@@ -30321,9 +30284,8 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/office/main)
 "uLV" = (
@@ -30334,9 +30296,8 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "uMX" = (
@@ -31747,9 +31708,8 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "vDG" = (
@@ -31787,18 +31747,16 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "vFj" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "vFv" = (
@@ -32121,9 +32079,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "vRB" = (
@@ -32442,9 +32399,8 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "wby" = (
@@ -32455,9 +32411,8 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "wbA" = (
@@ -32807,9 +32762,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "wlJ" = (
@@ -32875,9 +32829,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "wmQ" = (
@@ -33345,9 +33298,8 @@
 	},
 /obj/structure/cable,
 /obj/item/ammo_magazine/rifle/m16,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "wyF" = (
@@ -33479,9 +33431,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "wBv" = (
@@ -33657,9 +33608,8 @@
 	},
 /obj/structure/cable,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "wHx" = (
@@ -33671,8 +33621,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/splatter,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/magmoor/command/conference)
 "wHE" = (
@@ -33740,8 +33689,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/magmoor/command/conference)
 "wKu" = (
@@ -33761,8 +33709,7 @@
 	},
 /obj/structure/cable,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/magmoor/command/conference)
 "wKJ" = (
@@ -33809,9 +33756,8 @@
 	},
 /obj/structure/cable,
 /obj/item/ammo_casing/bullet,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/magmoor/command/conference)
 "wMh" = (
@@ -34362,8 +34308,7 @@
 /obj/machinery/atmospherics/pipe/heat_exchanging/manifold{
 	dir = 8
 	},
-/turf/open/floor/bcircuit{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/magmoor/engi/atmos)
 "xde" = (

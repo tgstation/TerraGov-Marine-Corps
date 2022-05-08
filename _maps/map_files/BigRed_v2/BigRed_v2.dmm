@@ -450,9 +450,8 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "aeV" = (
@@ -493,9 +492,7 @@
 "afd" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
 "afg" = (
 /obj/machinery/power/apc,
@@ -527,8 +524,8 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "afw" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /obj/structure/bed/chair{
 	dir = 8
@@ -750,8 +747,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "agN" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /obj/item/shard,
 /obj/effect/landmark/weed_node,
@@ -3203,9 +3200,8 @@
 /area/bigredv2/caves/lambda_lab)
 "asq" = (
 /obj/structure/table/woodentable,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "asr" = (
@@ -3830,17 +3826,15 @@
 "awA" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/pen,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/bigredv2/caves/lambda_lab)
 "awB" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/coffee,
 /obj/item/phone,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "awC" = (
@@ -4187,11 +4181,14 @@
 /turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
 "aAO" = (
-/turf/open/floor/engine,
-/area/bigredv2/caves/lambda_lab)
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/e)
 "aAP" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 8
@@ -4203,11 +4200,10 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aAR" = (
-/obj/structure/barricade/metal{
-	dir = 4;
-	icon_state = "barricade"
-	},
 /obj/machinery/vending/assist,
+/obj/structure/barricade/metal{
+	dir = 4
+	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -4330,8 +4326,8 @@
 /turf/closed/wall,
 /area/bigredv2/outside/hydroponics)
 "aBA" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurple{
@@ -4369,9 +4365,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aBG" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-S"
-	},
+/obj/effect/decal/warning_stripes/box/threeside,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "aBH" = (
@@ -4470,8 +4464,8 @@
 /turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
 "aCs" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /obj/item/clipboard,
 /obj/structure/cable,
@@ -4484,11 +4478,10 @@
 /turf/open/floor/plating/dmg3,
 /area/bigredv2/caves/lambda_lab)
 "aCu" = (
-/obj/structure/barricade/metal{
-	dir = 4;
-	icon_state = "barricade"
-	},
 /obj/structure/ore_box,
+/obj/structure/barricade/metal{
+	dir = 4
+	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 4
 	},
@@ -4519,8 +4512,8 @@
 	anchored = 1;
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-N"
+/obj/effect/decal/warning_stripes/box/threeside{
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
@@ -4604,8 +4597,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aDm" = (
 /obj/structure/barricade/metal{
-	dir = 4;
-	icon_state = "barricade"
+	dir = 4
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 6
@@ -4679,15 +4671,13 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDv" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDw" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDy" = (
@@ -4701,9 +4691,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "aDA" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDQ" = (
@@ -4804,9 +4793,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "aEl" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "aEo" = (
@@ -5236,45 +5224,45 @@
 /turf/open/floor/tile/purple/taupepurple,
 /area/bigredv2/caves/lambda_lab)
 "aHa" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 6
-	},
 /obj/structure/cable,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "aHb" = (
 /obj/structure/window/reinforced/toughened{
-	dir = 1;
-	icon_state = "fwindow"
-	},
-/obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
 /obj/structure/table/reinforced,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
 "aHc" = (
 /obj/structure/window/reinforced/toughened{
-	dir = 1;
-	icon_state = "fwindow"
-	},
-/obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
 /obj/structure/table/reinforced,
 /obj/machinery/computer/med_data/laptop,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
 "aHd" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 10
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 4
 	},
@@ -5327,9 +5315,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "aHJ" = (
@@ -5392,9 +5379,10 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aHT" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 6
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
 	},
@@ -5403,11 +5391,10 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/structure/window/reinforced/toughened{
-	dir = 1;
-	icon_state = "fwindow"
-	},
 /obj/structure/cable,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
 	},
@@ -5429,11 +5416,10 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/structure/window/reinforced/toughened{
-	dir = 1;
-	icon_state = "fwindow"
-	},
 /obj/machinery/disease2/diseaseanalyser,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
@@ -5553,9 +5539,8 @@
 /area/bigredv2/outside/c)
 "aIq" = (
 /obj/structure/musician/piano,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "aIr" = (
@@ -5720,12 +5705,11 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aJa" = (
-/obj/structure/window/reinforced/toughened{
-	dir = 1;
-	icon_state = "fwindow"
-	},
 /obj/machinery/door/window{
 	dir = 8
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 1
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 9
@@ -5744,11 +5728,10 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aJe" = (
-/obj/structure/window/reinforced/toughened{
-	dir = 1;
-	icon_state = "fwindow"
-	},
 /obj/machinery/door/window,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
@@ -6224,10 +6207,13 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aKV" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "SW-in"
-	},
 /obj/effect/ai_node,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 8
 	},
@@ -6272,8 +6258,11 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLa" = (
-/obj/effect/decal/warning_stripes/thick{
-	dir = 9
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
 	},
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/caves/lambda_lab)
@@ -6405,14 +6394,10 @@
 /area/bigredv2/outside/hydroponics)
 "aLI" = (
 /obj/structure/cable,
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
 "aLJ" = (
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
 "aLL" = (
 /obj/structure/closet/l3closet/virology,
@@ -6451,36 +6436,35 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLP" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "SW-in"
-	},
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLQ" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "fwindow"
-	},
-/obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/window/reinforced/toughened,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLR" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "fwindow"
-	},
-/obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
 /obj/machinery/computer/pandemic,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/window/reinforced/toughened,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
@@ -6712,9 +6696,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aMW" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
 "aMX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -8801,8 +8783,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "bjQ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -8950,15 +8932,11 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/outside/filtration_plant)
 "bkJ" = (
 /obj/structure/cryofeed,
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/outside/filtration_plant)
 "bkK" = (
 /obj/structure/closet/toolcloset,
@@ -9327,9 +9305,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/outside/filtration_plant)
 "bnf" = (
 /obj/machinery/computer3/server/rack,
@@ -9778,10 +9754,10 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bqw" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "E-corner"
-	},
 /obj/structure/cable,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bqH" = (
@@ -12429,9 +12405,8 @@
 	},
 /area/bigredv2/outside/e)
 "eyt" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "eyz" = (
@@ -12453,9 +12428,8 @@
 	},
 /area/bigredv2/caves/southwest)
 "eIG" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "eIN" = (
@@ -12554,9 +12528,8 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "fhY" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "fjI" = (
@@ -12597,9 +12570,8 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "fpO" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "fra" = (
@@ -12637,8 +12609,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "fDJ" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/bigredv2/outside/bar)
 "fES" = (
@@ -12676,9 +12647,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "fLz" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/bar)
 "fMu" = (
@@ -13499,9 +13469,8 @@
 /area/bigredv2/caves/lambda_lab)
 "ltt" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/caves/lambda_lab)
 "lvn" = (
@@ -15032,8 +15001,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "vjn" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/bigredv2/outside/bar)
 "vmk" = (
@@ -47357,7 +47325,7 @@ rHu
 aTn
 kGT
 gga
-gga
+aAO
 gga
 gga
 gga
@@ -53194,8 +53162,8 @@ adZ
 adZ
 aAM
 onL
-aAO
-aAO
+aLJ
+aLJ
 adZ
 hqP
 hqP
@@ -53626,10 +53594,10 @@ auY
 ayB
 adZ
 adZ
-aAO
-aAO
-aAO
-aAO
+aLJ
+aLJ
+aLJ
+aLJ
 adZ
 adZ
 hqP
@@ -53844,7 +53812,7 @@ adZ
 adZ
 adZ
 afv
-aAO
+aLJ
 aCr
 afv
 adZ

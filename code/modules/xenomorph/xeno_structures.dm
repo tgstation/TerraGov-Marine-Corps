@@ -608,6 +608,7 @@ TUNNEL
 	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
 	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_L_FOOT, "acid") * 0.66) //33% armor pen
 	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_R_FOOT, "acid") * 0.66) //33% armor pen
+	stepper.ExtinguishMob()
 	stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
 	span_danger("We are immersed in [src]'s acid!") , null, 5)
 	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
