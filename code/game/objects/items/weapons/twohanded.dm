@@ -475,7 +475,7 @@
 		else
 			stun = 1
 
-	if(!M.IsStun() && !M.IsParalyzed() && M.mob_size != MOB_SIZE_BIG) //Prevent chain stunning. Big mobs are protected.
+	if(!M.IsStun() && !M.IsParalyzed() && !isxenoqueen(M)) //Prevent chain stunning. Queen is protected.
 		M.apply_effects(stun,weaken)
 
 	return ..()
