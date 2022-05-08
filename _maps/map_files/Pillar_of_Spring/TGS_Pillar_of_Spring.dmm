@@ -2933,10 +2933,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
-	},
+/turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "iT" = (
 /obj/item/storage/box/matches,
@@ -2966,18 +2963,6 @@
 /obj/vehicle/unmanned/droid,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/airoom)
-"iY" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/carpet{
-	dir = 5;
-	icon_state = "carpetside"
-	},
-/area/mainship/command/corporateliaison)
 "iZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -3146,9 +3131,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "jB" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
-	},
+/turf/open/floor/mainship/mono,
 /turf/open/space/basic,
 /area/mainship/command/corporateliaison)
 "jC" = (
@@ -3168,10 +3151,7 @@
 /obj/effect/landmark/start/job/corporateliaison,
 /obj/item/bedsheet/blue,
 /obj/item/toy/plush/farwa,
-/turf/open/floor/carpet{
-	dir = 6;
-	icon_state = "carpetside"
-	},
+/turf/open/floor/mainship/mono,
 /turf/open/space/basic,
 /area/mainship/command/corporateliaison)
 "jF" = (
@@ -3531,12 +3511,6 @@
 "kC" = (
 /turf/open/floor/mainship_hull,
 /area/mainship/hull/lower_hull)
-"kD" = (
-/turf/open/floor/carpet{
-	dir = 10;
-	icon_state = "carpetside"
-	},
-/area/mainship/command/corporateliaison)
 "kE" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/wall/mainship,
@@ -17349,10 +17323,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/carpet{
-	dir = 9;
-	icon_state = "carpetside"
-	},
+/turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "Yx" = (
 /obj/structure/cable,
@@ -41922,7 +41893,7 @@ pA
 lj
 uM
 Yw
-kD
+jA
 pv
 ks
 dZ
@@ -42435,7 +42406,7 @@ pD
 pd
 lj
 uM
-iY
+Yw
 jE
 jA
 jA
