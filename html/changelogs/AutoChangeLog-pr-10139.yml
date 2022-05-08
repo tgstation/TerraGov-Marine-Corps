@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "Added two railgun rounds, HVAP and SAP, HVAP has medium damage/poor pen, but shreds all armor. Normal Railgun rounds reach out to 14 tiles now, HVAP to 21. APDS (Previously, just generic ammo) has 20 sunder from 90, but pens ALL armor."
+  - spellcheck: "Railgun rounds reflavored, Normal ammo is now called APDS, it only has 2 knockback now."
