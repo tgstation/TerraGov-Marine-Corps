@@ -845,7 +845,7 @@
 	)
 
 /obj/effect/essentials_set/pyro
-	desc = "For the engineer with a love of fire in all its forms. Contains a flamethrower bag with a FLAMERNAME and an assortment of incendiary grenades. Fire extinguisher sold separately."
+	desc = "For the engineer with a love of fire in all its forms. Contains a flamethrower bag with a incinerator unit and an assortment of incendiary and explosive devices. Fire extinguisher sold separately."
 	spawned_gear_list = list(
 		/obj/item/storage/holster/backholster/flamer/full,
 	)
