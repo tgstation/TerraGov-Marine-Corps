@@ -133,8 +133,6 @@
 #define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive
 ///Prevent mob from being ignited due to IgniteMob()
 #define TRAIT_NON_FLAMMABLE "non-flammable"
-///Prevents mob from falling into crit, they will operate until death
-#define TRAIT_NO_CRIT "no_crit"
 /// Prevents mob from riding mobs when buckled onto something
 #define TRAIT_CANT_RIDE "cant_ride"
 //All the traits for guns

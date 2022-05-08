@@ -796,7 +796,6 @@
 	speech_verb_override = "rattles"
 	count_human = TRUE
 
-	inherent_traits = list(TRAIT_NO_CRIT)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
 
 	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
@@ -807,6 +806,18 @@
 	death_sound = list("neuter" = 'sound/voice/skeleton_scream.ogg')
 	warcries = list("neuter" = 'sound/voice/skeleton_warcry.ogg') // AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	namepool = /datum/namepool/skeleton
+
+/datum/species/skeleton/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
+	. = ..()
+	//findH.speech_span =
+	//TODO: find skeleton special text that TG uses
+	H.health_threshold_crit = -100
+
+/datum/species/skeleton/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	//H.speech_span = initial(H.speech_span)
+	H.health_threshold_crit = -50
+
 
 /datum/species/synthetic
 	name = "Synthetic"
@@ -831,7 +842,6 @@
 
 	body_temperature = 350
 
-	inherent_traits = list(TRAIT_NO_CRIT)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
@@ -847,20 +857,21 @@
 	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
-
-/datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
+/datum/species/synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
-
-/mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
-	return TRUE
+	H.health_threshold_crit = -100
 
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.remove_hud_from(H)
-	return ..()
+	H.health_threshold_crit = -50
+
+/mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
+	return TRUE
 
 
 /datum/species/early_synthetic
@@ -872,12 +883,12 @@
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
-  
+
 	slowdown = 1.15 //Slower than Late Synths.
 	total_health = 200 //Tough boys, very tough boys.
 	brute_mod = 0.6
 	burn_mod = 0.6
-  
+
 	cold_level_1 = -1
 	cold_level_2 = -1
 	cold_level_3 = -1
@@ -888,7 +899,6 @@
 
 	body_temperature = 350
 
-	inherent_traits = list(TRAIT_NO_CRIT)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
 
 	blood_color = "#EEEEEE"
@@ -905,16 +915,18 @@
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
-/datum/species/early_synthetic/handle_post_spawn(mob/living/carbon/human/H)
+/datum/species/early_synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
+	H.health_threshold_crit = -100
 
 
 /datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.remove_hud_from(H)
-	return ..()
+	H.health_threshold_crit = -50
 
 /mob/living/carbon/human/species/early_synthetic/binarycheck(mob/H)
 	return TRUE
@@ -950,7 +962,7 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 	body_temperature = 350
 
-	inherent_traits = list(TRAIT_NON_FLAMMABLE, TRAIT_NO_CRIT)
+	inherent_traits = list(TRAIT_NON_FLAMMABLE)
 	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
@@ -978,10 +990,12 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 /datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
+	H.health_threshold_crit = -100
 
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
+	H.health_threshold_crit = -50
 
 ///Called when using the shredding behavior.
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
