@@ -380,6 +380,7 @@
 	greyscale_config = /datum/greyscale_config/pillbottle
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
+	///Flag to avoid delay check on Initialize() and sequential errors. Not sure if it's needed though.
 	var/check_access_delay = FALSE
 
 
