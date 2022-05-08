@@ -107,8 +107,7 @@
 /obj/machinery/researchcomp/ui_static_data(mob/user)
 	. = ..()
 
-	var/points = GLOB.round_statistics.points_from_research
-	.["acquired_points"] = points
+	.["acquired_points"] = GLOB.round_statistics.points_from_research
 	.["anchored"] = anchored
 	.["researching"] = researching
 	if(!init_resource)
