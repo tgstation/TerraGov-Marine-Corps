@@ -73,3 +73,16 @@
       actually use.
   novaepee:
   - bugfix: Fix APC wiring and symmetry in Minerva's req
+2022-05-08:
+  Arctrooper8:
+  - bugfix: Robot visors work again, children of the machine god rejoice!
+  BraveMole:
+  - server: Less lag from minions
+  - rscadd: New hunter ability, swap
+  - rscdel: Kill silence ability
+  Pariah919:
+  - balance: acid wells now extingush fire on any mob that steps on them.
+  - balance: Lemoline is considerably cheaper, and doctors get a 30 unit bottle in
+      their bag.
+  novaepee:
+  - bugfix: Fix PoS CL Office
