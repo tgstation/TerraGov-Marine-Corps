@@ -18,7 +18,7 @@
 
 	body.dark {
 		background-color: #131313;
-		color: #b2c4dd;
+		color: #f7f7f7;
 		scrollbar-base-color: #1c1c1c;
 		scrollbar-face-color: #3b3b3b;
 		scrollbar-3dlight-color: #252525;
@@ -49,7 +49,7 @@
 	}
 
 	.dark a {
-		color: #b2c4dd;
+		color: #f7f7f7;
 	}
 
 	a:hover, .dark a:hover {
@@ -749,13 +749,9 @@ function draw_status() {
 function draw_game() {
 	statcontentdiv[textContentKey] = '';
 	for(var i = 0; i < game_tab_parts.length; i++) {
-		if(game_tab_parts[i].trim() == "") {
-			document.getElementById("statcontent").appendChild(document.createElement("br"));
-		} else {
-			var div = document.createElement("div");
-			div.innerHTML = game_tab_parts[i];
-			document.getElementById("statcontent").appendChild(div);
-		}
+		var div = document.createElement("div");
+		div.innerHTML = game_tab_parts[i];
+		document.getElementById("statcontent").appendChild(div);
 	}
 }
 

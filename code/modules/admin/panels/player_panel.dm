@@ -72,7 +72,7 @@
 					body += "</td><td align='center'>";
 
 					body += "<a href='?_src_=holder;[HrefToken()];playerpanel="+ref+"'>PP</a> - "
-					body += "<a href='?_src_=vars;[HrefToken()];vars="+ref+"'>VV</a> - "
+					body += "<a href='?_src_=vars;[HrefToken()];Vars="+ref+"'>VV</a> - "
 					body += "<a href='?priv_msg="+ckey+"'>PM</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];subtlemessage="+ref+"'>SM</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];observejump="+ref+"'>JMP</a> - "
@@ -383,7 +383,7 @@
 		<br><br>
 		<a href='?priv_msg=[M.ckey]'>PM</a> -
 		<a href='?src=[ref];subtlemessage=[REF(M)]'>SM</a> -
-		<a href='?_src_=vars;[HrefToken()];vars=[REF(M)]'>VV</a> -
+		<a href='?_src_=vars;[HrefToken()];Vars=[REF(M)]'>VV</a> -
 		<a href='?src=[ref];spawncookie=[REF(M)]'>SC</a> -
 		<a href='?src=[ref];spawnfortunecookie=[REF(M)]'>SFC</a> -
 		<a href='?src=[ref];observejump=[REF(M)]'>JMP</a> -
