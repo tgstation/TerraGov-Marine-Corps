@@ -36,7 +36,7 @@
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/xenomorph/larva/get_status_tab_items()
+/mob/living/carbon/xenomorph/larva/get_game_tab_items()
 	. = ..()
 
 	. += "Progress: [amount_grown]/[max_grown]"

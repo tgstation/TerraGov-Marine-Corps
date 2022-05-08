@@ -39,7 +39,7 @@
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/xenomorph/carrier/get_status_tab_items()
+/mob/living/carbon/xenomorph/carrier/get_game_tab_items()
 	. = ..()
 
 	. += "Stored Huggers: [huggers] / [xeno_caste.huggers_max]"

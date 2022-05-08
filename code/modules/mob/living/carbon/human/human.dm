@@ -90,7 +90,7 @@
 	GLOB.dead_human_list -= src
 	return ..()
 
-/mob/living/carbon/human/get_status_tab_items()
+/mob/living/carbon/human/get_game_tab_items()
 	. = ..()
 
 	var/eta_status = SSevacuation?.get_status_panel_eta()

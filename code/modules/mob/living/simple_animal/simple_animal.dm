@@ -234,7 +234,7 @@
 	return TRUE
 
 
-/mob/living/simple_animal/get_status_tab_items()
+/mob/living/simple_animal/get_game_tab_items()
 	. = ..()
 	. += ""
 	. += "Health: [round((health / maxHealth) * 100)]%"

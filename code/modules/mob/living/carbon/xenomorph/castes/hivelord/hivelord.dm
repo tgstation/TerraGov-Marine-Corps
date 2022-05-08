@@ -23,7 +23,7 @@
 	update_spits()
 
 
-/mob/living/carbon/xenomorph/hivelord/get_status_tab_items()
+/mob/living/carbon/xenomorph/hivelord/get_game_tab_items()
 	. = ..()
 
 	. += "Active Tunnel Sets: [LAZYLEN(tunnels)] / [HIVELORD_TUNNEL_SET_LIMIT]"

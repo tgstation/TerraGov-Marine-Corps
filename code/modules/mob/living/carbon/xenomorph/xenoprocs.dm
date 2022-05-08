@@ -202,7 +202,7 @@
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
-/mob/living/carbon/xenomorph/get_status_tab_items()
+/mob/living/carbon/xenomorph/get_game_tab_items()
 	. = ..()
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))

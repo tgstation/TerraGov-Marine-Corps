@@ -25,7 +25,6 @@ SUBSYSTEM_DEF(statpanels)
 			"Current Ship: [length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."]",
 			"Game Mode: [GLOB.master_mode]",
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)",
-			"<br><hr><br>"
 		)
 
 		encoded_global_data = url_encode(json_encode(global_data))
@@ -55,6 +54,9 @@ SUBSYSTEM_DEF(statpanels)
 			if(target.stat_tab == "Tickets" && num_fires % default_wait == 0)
 				set_tickets_tab(target)
 
+			if(target.stat_tab == "Game" && num_fires % default_wait == 0)
+				set_game_tab(target)
+
 			if(!length(GLOB.sdql2_queries) && ("SDQL2" in target.panel_tabs))
 				target << output("", "statbrowser:remove_sdql2")
 
@@ -79,9 +81,13 @@ SUBSYSTEM_DEF(statpanels)
 	if(!encoded_global_data)//statbrowser hasnt fired yet and we were called from immediate_send_stat_data()
 		return
 
-	var/ping_str = url_encode("Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)")
 	var/other_str = url_encode(json_encode(target.mob?.get_status_tab_items()))
-	target << output("[encoded_global_data];[ping_str];[other_str]", "statbrowser:update")
+	target << output("[encoded_global_data];[other_str];", "statbrowser:update")
+
+/datum/controller/subsystem/statpanels/proc/set_game_tab(client/target)
+	var/ping_str = url_encode("Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)")
+	var/other_str = url_encode(json_encode(target.mob?.get_game_tab_items()))
+	target << output("[ping_str];[other_str];", "statbrowser:update_game")
 
 /datum/controller/subsystem/statpanels/proc/set_MC_tab(client/target)
 	var/turf/eye_turf = get_turf(target.eye)
@@ -184,6 +190,10 @@ SUBSYSTEM_DEF(statpanels)
 
 	if(target.stat_tab == "MC")
 		set_MC_tab(target)
+		return TRUE
+
+	if(target.stat_tab == "Game")
+		set_game_tab(target)
 		return TRUE
 
 	if(target.stat_tab == "Tickets")

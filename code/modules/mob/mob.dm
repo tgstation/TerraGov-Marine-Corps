@@ -44,6 +44,9 @@
 /mob/proc/get_status_tab_items()
 	. = list()
 
+/mob/proc/get_game_tab_items()
+	. = list()
+
 /mob/Stat()
 	. = ..()
 

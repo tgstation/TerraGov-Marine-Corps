@@ -76,6 +76,7 @@
 		return
 
 	if(SSticker.current_state == GAME_STATE_PREGAME)
+		. += "<br>"
 		. += "Time To Start: [SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]"
 		. += "Players: [length(GLOB.player_list)]"
 		. += "Players Ready: [length(GLOB.ready_players)]"

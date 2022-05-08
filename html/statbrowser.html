@@ -303,6 +303,7 @@ if (!String.prototype.trim) {
 var status_tab_parts = ["Loading..."];
 var current_tab = null;
 var mc_tab_parts = [["Loading...", ""]];
+var game_tab_parts = [["Loading ...", ""]]
 var href_token = null;
 var spells = [];
 var spell_tabs = [];
@@ -377,10 +378,13 @@ function createStatusTab(name) {
 	B.id = name;
 	B[textContentKey] = name;
 	B.className = "button";
-	//ORDERING ALPHABETICALLY
+	//ORDERING
 	B.style.order = name.charCodeAt(0);
-	if(name == "Status" || name == "MC")
-		B.style.order = name == "Status" ? 1 : 2;
+	switch(name) {
+		case "Status" : B.style.order = 1;
+		case "Game" : B.style.order = 2;
+		case "MC" : B.style.order = 3;
+	}
 	//END ORDERING
 	menu.appendChild(B);
 	SendTabToByond(name);
@@ -583,8 +587,8 @@ function TakeTabFromByond(tab) {
 	send_byond_command("Remove-Tabs " + tab);
 }
 
-function update(global_data, ping_entry, other_entries) {
-	status_tab_parts = [ping_entry];
+function update(global_data, other_entries) {
+	status_tab_parts = [];
 	var parsed = JSON.parse(global_data);
 	for(var i = 0; i < parsed.length; i++) if(parsed[i] != null) status_tab_parts.push(parsed[i]);
 	parsed = JSON.parse(other_entries);
@@ -605,61 +609,19 @@ function update_mc(global_mc_data, coords_entry) {
 		draw_mc();
 }
 
+function update_game(ping_entry, other_entries) {
+	game_tab_parts = [ping_entry];
+	var parsed = JSON.parse(other_entries)
+	for(var i = 0; i < parsed.length; i++) if(parsed[i] != null) game_tab_parts.push(parsed[i]);
+	createStatusTab("Game");
+	if(current_tab == "Game")
+		draw_game();
+}
+
 function remove_mc() {
 	removeStatusTab("MC");
 	if(current_tab == "MC")
 		tab_change("Status");
-}
-function remove_spells() {
-	for(var s = 0; s < spell_tabs.length; s++){
-		removeStatusTab(spell_tabs[s]);
-	}
-}
-
-function init_spells() {
-	var cat = "";
-	for(var i = 0; i < spell_tabs.length; i++) {
-		cat = spell_tabs[i];
-		if(cat.length > 0) {
-			verb_tabs.push(cat);
-			createStatusTab(cat);
-		}
-	}
-}
-
-function check_spells() {
-	for(var v = 0; v < spell_tabs.length; v++)
-		spell_cat_check(spell_tabs[v]);
-}
-function spell_cat_check(cat) {
-	var spells_in_cat = 0;
-	var spellcat = "";
-	for(var s = 0; s < spells.length; s++){
-		var spell = spells[s];
-		spellcat = spell[0];
-		if(spellcat == cat){
-			spells_in_cat++;
-		}
-	}
-	if(spells_in_cat < 1) {
-		removeStatusTab(cat);
-	}
-}
-function update_spells(t, s) {
-	spell_tabs = JSON.parse(t);
-	var do_update = false;
-	if(spell_tabs.includes(current_tab)) {
-		do_update = true;
-	}
-	init_spells();
-	if(s) {
-		spells = JSON.parse(s);
-		if(do_update) {
-			draw_spells(current_tab);
-		}
-	} else {
-		remove_spells();
-	}
 }
 
 function tab_change(tab) {
@@ -676,6 +638,8 @@ function tab_change(tab) {
 		draw_status();
 	} else if(tab == "MC") {
 		draw_mc();
+	} else if(tab == "Game") {
+		draw_game();
 	} else if(spell_tabs_thingy) {
 		draw_spells(tab);
 	} else if(verb_tabs_thingy){
@@ -779,6 +743,19 @@ function draw_status() {
 	if(verb_tabs.length == 0 || !verbs)
 	{
 		send_byond_command("Fix-Stat-Panel");
+	}
+}
+
+function draw_game() {
+	statcontentdiv[textContentKey] = '';
+	for(var i = 0; i < game_tab_parts.length; i++) {
+		if(game_tab_parts[i].trim() == "") {
+			document.getElementById("statcontent").appendChild(document.createElement("br"));
+		} else {
+			var div = document.createElement("div");
+			div.innerHTML = game_tab_parts[i];
+			document.getElementById("statcontent").appendChild(div);
+		}
 	}
 }
 
@@ -1184,6 +1161,7 @@ document[addEventListenerKey]("keyup", restoreFocus);
 
 if(!current_tab) {
 	addPermanentTab("Status");
+	addPermanentTab("Game")
 	tab_change("Status");
 }
 

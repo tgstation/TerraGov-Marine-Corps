@@ -326,7 +326,7 @@
 	lighting_alpha = initial(lighting_alpha) // yes you really have to change both the eye and the ai vars
 
 
-/mob/living/silicon/ai/get_status_tab_items()
+/mob/living/silicon/ai/get_game_tab_items()
 	. = ..()
 
 	if(stat != CONSCIOUS)

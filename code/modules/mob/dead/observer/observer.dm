@@ -329,6 +329,10 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			else if(isobserver(i))
 				var/mob/dead/observer/O = i
 				. += "&nbsp;&nbsp;&nbsp;&nbsp;[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]: Observing"
+
+/mob/dead/observer/get_game_tab_items()
+	. = ..()
+
 	var/status_value = SSevacuation?.get_status_panel_eta()
 	if(status_value)
 		. += "Evacuation in: [status_value]"

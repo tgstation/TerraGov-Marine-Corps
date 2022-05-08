@@ -90,7 +90,7 @@
 	return ..()
 
 
-/mob/living/simple_animal/parrot/get_status_tab_items()
+/mob/living/simple_animal/parrot/get_game_tab_items()
 	. = ..()
 	. += ""
 	. += "Held Item: [held_item]"
