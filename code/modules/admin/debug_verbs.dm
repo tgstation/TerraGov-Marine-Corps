@@ -336,28 +336,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	log_admin("[key_name(usr)] spawned [amount] x [chosen] at [AREACOORD(usr)]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Spawn Atom") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/datum/admins/proc/delete_atom(atom/A as obj|mob|turf in world)
-	set category = null
-	set name = "Delete"
-
-	if(!check_rights(R_DEBUG))
-		return
-
-	if(alert(src, "Are you sure you want to delete: [A]?", "Delete", "Yes", "No") != "Yes")
-		return
-
-	if(QDELETED(A))
-		return
-
-	var/turf/T = get_turf(A)
-
-	log_admin("[key_name(usr)] deleted [A]([A.type]) at [AREACOORD(T)].")
-	message_admins("[ADMIN_TPMONTY(usr)] deleted [A]([A.type]) at [ADMIN_VERBOSEJMP(T)].")
-
-	qdel(A)
-
-
 /datum/admins/proc/restart_controller(controller in list("Master", "Failsafe"))
 	set category = "Debug"
 	set name = "Restart Controller"
@@ -678,3 +656,12 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	dellog += "</ol>"
 
 	usr << browse(dellog.Join(), "window=dellog")
+
+/client/proc/cmd_admin_delete(atom/A as obj|mob|turf in world)
+	set category = "Debug"
+	set name = "Delete"
+
+	if(!check_rights(R_SPAWN|R_DEBUG))
+		return
+
+	admin_delete(A)

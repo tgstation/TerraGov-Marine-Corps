@@ -95,6 +95,8 @@ SUBSYSTEM_DEF(shuttle)
 				break
 
 /datum/controller/subsystem/shuttle/proc/getShuttle(id)
+	if(isnull(id) || id == "")
+		return
 	for(var/obj/docking_port/mobile/M in mobile)
 		if(M.id == id)
 			return M

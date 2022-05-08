@@ -345,13 +345,13 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/delete_all,
 	/datum/admins/proc/generate_powernets,
 	/datum/admins/proc/debug_mob_lists,
-	/datum/admins/proc/delete_atom,
 	/datum/admins/proc/SDQL2_query,
 	/datum/admins/proc/restart_controller,
 	/datum/admins/proc/check_contents,
 	/datum/admins/proc/reestablish_db_connection,
 	/datum/admins/proc/view_runtimes,
-	/client/proc/toggle_cdn
+	/client/proc/toggle_cdn,
+	/client/proc/cmd_admin_delete
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)

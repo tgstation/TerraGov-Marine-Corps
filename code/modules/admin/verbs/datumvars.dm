@@ -646,7 +646,7 @@
 		var/datum/D = locate(href_list["delete"])
 		if(!istype(D))
 			to_chat(usr, span_warning("Unable to locate item."))
-		usr.client.holder.delete_atom(D)
+		usr.client.admin_delete(D)
 		if(isturf(D))  // show the turf that took its place
 			debug_variables(D)
 
