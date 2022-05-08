@@ -1428,13 +1428,11 @@ VEHICLES
 	name = "Combat droid with weapon equipped"
 	contains = list(/obj/vehicle/unmanned/droid)
 	cost = 40
-	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/droid_scout
 	name = "Scout droid"
 	contains = list(/obj/vehicle/unmanned/droid/scout)
 	cost = 30
-	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/droid_weapon
 	name = "Droid weapon"
@@ -1446,19 +1444,16 @@ VEHICLES
 	name = "Light unmanned vehicle"
 	contains = list(/obj/vehicle/unmanned)
 	cost = 30
-	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/medium_uv
 	name = "Medium unmanned vehicle"
 	contains = list(/obj/vehicle/unmanned/medium)
 	cost = 50
-	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/heavy_uv
 	name = "Heavy unmanned vehicle"
 	contains = list(/obj/vehicle/unmanned/heavy)
 	cost = 70
-	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/uv_light_weapon
 	name = "Light UV weapon"

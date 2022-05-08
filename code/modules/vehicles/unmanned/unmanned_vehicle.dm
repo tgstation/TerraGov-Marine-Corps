@@ -14,7 +14,6 @@
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
 	soft_armor = list("melee" = 25, "bullet" = 85, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
-	density = TRUE
 	/// Path of "turret" attached
 	var/obj/item/uav_turret/turret_path
 	/// Type of the turret attached
@@ -54,7 +53,7 @@
 	ammo = GLOB.ammo_list[ammo]
 	name += " " + num2text(serial)
 	serial++
-	flash = new /atom/movable/vis_obj/effect/muzzle_flash/
+	flash = new /atom/movable/vis_obj/effect/muzzle_flash(src)
 	GLOB.unmanned_vehicles += src
 	prepare_huds()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
@@ -74,6 +73,7 @@
 /obj/vehicle/unmanned/Destroy()
 	. = ..()
 	GLOB.unmanned_vehicles -= src
+	QDEL_NULL(flash)
 
 /obj/vehicle/unmanned/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
@@ -124,9 +124,9 @@
 	if(world.time < last_move_time + move_delay)
 		return
 
-	if(next_sound_play < world.time)
-		playsound(src, 'sound/ambience/tank_driving.ogg', vol = 50, sound_range = 30)
-		next_sound_play = world.time + 21
+	if(COOLDOWN_CHECK(src, next_sound_play))
+		COOLDOWN_START(src, next_sound_play, 20)
+		playsound(get_turf(src), 'sound/ambience/tank_driving.ogg', 50, TRUE)
 
 	return Move(get_step(src, direction))
 
@@ -253,15 +253,14 @@
 		current_rounds--
 		flash.transform = null
 		flash.transform = turn(flash.transform, angle)
-		src.vis_contents += flash
-		//Removes muzzle flash
-		addtimer(CALLBACK(src, .proc/delete_muzzle_flash, src, flash), 0.3 SECONDS)
+		vis_contents += flash
+		addtimer(CALLBACK(src, .proc/delete_muzzle_flash), 0.2 SECONDS)
 		hud_set_uav_ammo()
 	return TRUE
 
-/obj/vehicle/unmanned/proc/delete_muzzle_flash(atom/movable/src,atom/movable/vis_obj/effect/muzzle_flash/flash)
-	src.vis_contents -= flash
-	flash = null
+///Removes muzzle flash from unmanned vehicles
+/obj/vehicle/unmanned/proc/delete_muzzle_flash()
+	vis_contents -= flash
 
 /obj/vehicle/unmanned/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	take_damage(charger.xeno_caste.melee_damage * charger.xeno_melee_damage_modifier, BRUTE, "melee")
