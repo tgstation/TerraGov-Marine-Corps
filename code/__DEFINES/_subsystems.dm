@@ -55,6 +55,7 @@
 // The numbers just define the ordering, they are meaningless otherwise.
 
 #define INIT_ORDER_GARBAGE 27
+#define INIT_ORDER_STATPANELS 26
 #define INIT_ORDER_DBCORE 25
 #define INIT_ORDER_SERVER_MAINT 23
 #define INIT_ORDER_INPUT 21

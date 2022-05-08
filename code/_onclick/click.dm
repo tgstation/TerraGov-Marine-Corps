@@ -471,7 +471,7 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 	var/turf/examined_turf = get_turf(src)
 	if(examined_turf && user.TurfAdjacent(examined_turf))
 		user.listed_turf = examined_turf
-		user.client.statpanel = examined_turf.name
+		user.client << output("[url_encode(json_encode(examined_turf.name))];", "statbrowser:create_listedturf")
 	return TRUE
 
 

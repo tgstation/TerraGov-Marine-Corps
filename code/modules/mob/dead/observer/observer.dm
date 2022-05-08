@@ -264,6 +264,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.mind = mind
 	mind = null
 	ghost.key = key
+	ghost.client?.init_verbs()
 	ghost.mind?.current = ghost
 	ghost.faction = faction
 
@@ -314,48 +315,48 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	return FALSE
 
 
-/mob/dead/observer/Stat()
+/mob/dead/observer/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Status"))
-		if(SSticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [length(GLOB.player_list)]", "Players Ready: [length(GLOB.ready_players)]")
-			for(var/i in GLOB.player_list)
-				if(isnewplayer(i))
-					var/mob/new_player/N = i
-					stat("[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key]", N.ready ? "Playing" : "")
-				else if(isobserver(i))
-					var/mob/dead/observer/O = i
-					stat("[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]", "Observing")
-		var/status_value = SSevacuation?.get_status_panel_eta()
-		if(status_value)
-			stat("Evacuation in:", status_value)
-		if(SSticker.mode)
-			var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
-			if(rulerless_countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", rulerless_countdown)
-			var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
-			if(siloless_countdown)
-				stat("<b>Silo less hive collapse timer:</b>", siloless_countdown)
-		if(GLOB.respawn_allowed)
-			status_value = (GLOB.key_to_time_of_role_death[key] + SSticker.mode?.respawn_time - world.time) * 0.1
-			if(status_value <= 0)
-				stat("Respawn timer:", "<b>READY</b>")
-			else
-				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
-			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
-				if(larva_position)
-					stat("Position in larva candidate queue: ", "[larva_position]")
-				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-				if(stored_larva)
-					stat("Burrowed larva:", stored_larva)
-		var/datum/game_mode/mode = SSticker.mode
-		if(mode?.flags_round_type & MODE_WIN_POINTS)
-			stat("Points needed to win:", mode.win_points_needed)
-			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
-			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
+	if(SSticker.current_state == GAME_STATE_PREGAME)
+		. += "Time To Start: [SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]"
+		. += "Players: [length(GLOB.player_list)]"
+		. += "Players Ready: [length(GLOB.ready_players)]"
+		for(var/i in GLOB.player_list)
+			if(isnewplayer(i))
+				var/mob/new_player/N = i
+				. += "&nbsp;&nbsp;&nbsp;&nbsp;[N.client?.holder?.fakekey ? N.client.holder.fakekey : N.key]: [N.ready ? "Playing" : ""]"
+			else if(isobserver(i))
+				var/mob/dead/observer/O = i
+				. += "&nbsp;&nbsp;&nbsp;&nbsp;[O.client?.holder?.fakekey ? O.client.holder.fakekey : O.key]: Observing"
+	var/status_value = SSevacuation?.get_status_panel_eta()
+	if(status_value)
+		. += "Evacuation in: [status_value]"
+	if(SSticker.mode)
+		var/rulerless_countdown = SSticker.mode.get_hivemind_collapse_countdown()
+		if(rulerless_countdown)
+			. += "<b>Orphan hivemind collapse timer:</b> [rulerless_countdown]"
+		var/siloless_countdown = SSticker.mode.get_siloless_collapse_countdown()
+		if(siloless_countdown)
+			. += "<b>Silo less hive collapse timer:</b> [siloless_countdown]"
+	if(GLOB.respawn_allowed)
+		status_value = (GLOB.key_to_time_of_role_death[key] + SSticker.mode?.respawn_time - world.time) * 0.1
+		if(status_value <= 0)
+			. += "Respawn timer: <b>READY</b>"
+		else
+			. += "Respawn timer: [(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]"
+		if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
+			if(larva_position)
+				. += "Position in larva candidate queue: [larva_position]"
+			var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+			var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+			if(stored_larva)
+				. += "Burrowed larva: [stored_larva]"
+	var/datum/game_mode/mode = SSticker.mode
+	if(mode?.flags_round_type & MODE_WIN_POINTS)
+		. += "Points needed to win: [mode.win_points_needed]"
+		. += "Loyalists team points: [LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0]"
+		. += "Rebels team points: [LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0]"
 
 
 /mob/dead/observer/verb/reenter_corpse()

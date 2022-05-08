@@ -44,6 +44,8 @@
 				vote.name = "Vote: [SSvote.question]"
 			vote.give_action(src)
 
+	client.init_verbs()
+
 	update_movespeed()
 	log_mob_tag("\[[tag]\] NEW OWNER: [key_name(src)]")
 	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)

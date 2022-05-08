@@ -210,6 +210,9 @@
 		set_macros()
 		update_movement_keys()
 
+	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	addtimer(CALLBACK(src, .proc/check_panel_loaded), 30 SECONDS)
+
 	// Initialize tgui panel
 	tgui_panel.initialize()
 
@@ -339,8 +342,6 @@
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
 	Master.UpdateTickRate()
-
-
 
 //////////////////
 //  DISCONNECT  //
@@ -915,3 +916,30 @@ GLOBAL_VAR_INIT(automute_on, null)
 		SSambience.ambience_listening_clients[src] = world.time + 10 SECONDS //Just wait 10 seconds before the next one aight mate? cheers.
 	else
 		SSambience.ambience_listening_clients -= src
+
+/// compiles a full list of verbs and sends it to the browser
+/client/proc/init_verbs()
+	if(IsAdminAdvancedProcCall())
+		return
+	var/list/verblist = list()
+	var/list/verbstoprocess = verbs.Copy()
+	if(mob)
+		verbstoprocess += mob.verbs
+		for(var/atom/movable/thing as anything in mob.contents)
+			verbstoprocess += thing.verbs
+	panel_tabs.Cut() // panel_tabs get reset in init_verbs on JS side anyway
+	for(var/procpath/verb_to_init as anything in verbstoprocess)
+		if(!verb_to_init)
+			continue
+		if(verb_to_init.hidden)
+			continue
+		if(!istext(verb_to_init.category))
+			continue
+		panel_tabs |= verb_to_init.category
+		verblist[++verblist.len] = list(verb_to_init.category, verb_to_init.name)
+	src << output("[url_encode(json_encode(panel_tabs))];[url_encode(json_encode(verblist))]", "statbrowser:init_verbs")
+
+/client/proc/check_panel_loaded()
+	if(statbrowser_ready)
+		return
+	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))

@@ -20,6 +20,8 @@
 	var/ghost_interact = FALSE
 	///Whether this admin is invisiminning
 	var/invisimined = FALSE
+	///Whether this admin is using the legacy MC
+	var/legacy_mc = FALSE
 
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)
@@ -104,6 +106,7 @@
 	owner.holder = src
 	owner.add_admin_verbs()
 	owner.verbs -= /client/proc/readmin
+	owner.init_verbs()
 	GLOB.admins |= C
 
 
@@ -115,6 +118,7 @@
 	if(owner)
 		GLOB.admins -= owner
 		owner.remove_admin_verbs()
+		owner.init_verbs()
 		owner.holder = null
 		owner = null
 

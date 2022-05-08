@@ -90,36 +90,35 @@
 	GLOB.dead_human_list -= src
 	return ..()
 
-/mob/living/carbon/human/Stat()
+/mob/living/carbon/human/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Game"))
-		var/eta_status = SSevacuation?.get_status_panel_eta()
-		if(eta_status)
-			stat("Evacuation in:", eta_status)
+	var/eta_status = SSevacuation?.get_status_panel_eta()
+	if(eta_status)
+		. += "Evacuation in: [eta_status]"
 
-		if(internal)
-			stat("Internal Atmosphere Info", internal.name)
-			stat("Tank Pressure", internal.pressure)
-			stat("Distribution Pressure", internal.distribute_pressure)
+	if(internal)
+		. += "Internal Atmosphere Info: [internal.name]"
+		. += "Tank Pressure: [internal.pressure]"
+		. += "Distribution Pressure: [internal.distribute_pressure]"
 
-		if(assigned_squad)
-			if(assigned_squad.primary_objective)
-				stat("Primary Objective: ", assigned_squad.primary_objective)
-			if(assigned_squad.secondary_objective)
-				stat("Secondary Objective: ", assigned_squad.secondary_objective)
+	if(assigned_squad)
+		if(assigned_squad.primary_objective)
+			. += "Primary Objective: [assigned_squad.primary_objective]"
+		if(assigned_squad.secondary_objective)
+			. += "Secondary Objective: [assigned_squad.secondary_objective]"
 
-		if(mobility_aura)
-			stat(null, "You are affected by a MOVE order.")
-		if(protection_aura)
-			stat(null, "You are affected by a HOLD order.")
-		if(marksman_aura)
-			stat(null, "You are affected by a FOCUS order.")
-		var/datum/game_mode/mode = SSticker.mode
-		if(mode.flags_round_type & MODE_WIN_POINTS)
-			stat("Points needed to win:", mode.win_points_needed)
-			stat("Loyalists team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0)
-			stat("Rebels team points:", LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0)
+	if(mobility_aura)
+		. += "You are affected by a MOVE order."
+	if(protection_aura)
+		. += "You are affected by a HOLD order."
+	if(marksman_aura)
+		. += "You are affected by a FOCUS order."
+	var/datum/game_mode/mode = SSticker.mode
+	if(mode.flags_round_type && (mode.flags_round_type & MODE_WIN_POINTS))
+		. += "Points needed to win: [mode.win_points_needed]"
+		. += "Loyalists team points: [LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV) : 0]"
+		. += "Rebels team points: [LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) ? LAZYACCESS(mode.points_per_faction, FACTION_TERRAGOV_REBEL) : 0]"
 
 /mob/living/carbon/human/ex_act(severity)
 	if(status_flags & GODMODE)

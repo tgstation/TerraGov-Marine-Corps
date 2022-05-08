@@ -65,6 +65,9 @@
 	if(new_character.mind)								//disassociate any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
+	if(new_character.client)
+		new_character.client.init_verbs()
+
 	current = new_character								//associate ourself with our new body
 	new_character.mind = src							//and associate our new body with ourself
 

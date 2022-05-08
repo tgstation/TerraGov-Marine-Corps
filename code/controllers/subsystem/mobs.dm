@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(mobs)
 	var/crate = 1
 
 /datum/controller/subsystem/mobs/stat_entry()
-	..("P:[length(processing)]")
+	return ..("P:[length(processing)]")
 
 /datum/controller/subsystem/mobs/proc/stop_processing(mob/living/L)
 	if(!CHECK_BITFIELD(L.datum_flags, DF_ISPROCESSING))

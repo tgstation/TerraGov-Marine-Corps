@@ -51,6 +51,15 @@
 	/// datum wrapper for client view
 	var/datum/view_data/view_size
 
+	/// whether our browser is ready or not yet
+	var/statbrowser_ready = FALSE
+
+	/// our current tab
+	var/stat_tab
+
+	/// list of all tabs
+	var/list/panel_tabs = list()
+
 	//Database related
 	var/player_age = -1	//Used to determine how old the account is - in days.
 	var/player_join_date = null //Date that this account was first seen in the server

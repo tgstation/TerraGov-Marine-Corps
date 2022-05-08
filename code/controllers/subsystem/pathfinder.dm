@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(pathfinder)
 			mob_to_process.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_to_process.cached_multiplicative_slowdown
 
 /datum/controller/subsystem/pathfinder/stat_entry()
-	..("Mob with pathfinder : [length(pathfinding_datums_list)]")
+	return ..("Mob with pathfinder : [length(pathfinding_datums_list)]")
 
 ///Add a target mob to the pathfinding system
 /datum/controller/subsystem/pathfinder/proc/add_to_pathfinding(mob/target, atom/atom_to_walk_to, distance_to_maintain = 0, stutter_step = 0)

@@ -202,30 +202,27 @@
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
 //Those are dealt with in their caste files.
-/mob/living/carbon/xenomorph/Stat()
+/mob/living/carbon/xenomorph/get_status_tab_items()
 	. = ..()
 
-	if(!statpanel("Game"))
-		return
-
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
-		stat("Evolve Progress:", "(FINISHED)")
+		. += "Evolve Progress: (FINISHED)"
 	else if(!hive.check_ruler())
-		stat("Evolve Progress:", "(HALTED - NO RULER)")
+		. += "Evolve Progress: (HALTED - NO RULER)"
 	else
-		stat("Evolve Progress:", "[evolution_stored]/[xeno_caste.evolution_threshold]")
+		. += "Evolve Progress: [evolution_stored]/[xeno_caste.evolution_threshold]"
 
 	if(upgrade_possible())
-		stat("Upgrade Progress:", "[upgrade_stored]/[xeno_caste.upgrade_threshold]")
+		. += "Upgrade Progress: [upgrade_stored]/[xeno_caste.upgrade_threshold]"
 	else //Upgrade process finished or impossible
-		stat("Upgrade Progress:", "(FINISHED)")
+		. += "Upgrade Progress: (FINISHED)"
 
-	stat("Health:", "[overheal ? "[overheal] + ": ""][health]/[xeno_caste.max_health]")
+	. += "Health: [overheal ? "[overheal] + ": ""][health]/[xeno_caste.max_health]"
 
 	if(xeno_caste.plasma_max > 0)
-		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
+		. += "Plasma: [plasma_stored]/[xeno_caste.plasma_max]"
 
-	stat("Sunder:", "[100-sunder]% armor left")
+	. += "Sunder: [100-sunder]% armor left"
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
 	var/msg_holder = ""
@@ -241,7 +238,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("Frenzy pheromone strength:", msg_holder)
+		. += "Frenzy pheromone strength: [msg_holder]"
 	if(warding_aura)
 		switch(warding_aura)
 			if(-INFINITY to 1.0)
@@ -254,7 +251,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("Warding pheromone strength:", msg_holder)
+		. += "Warding pheromone strength: [msg_holder]"
 	if(recovery_aura)
 		switch(recovery_aura)
 			if(-INFINITY to 1.0)
@@ -267,21 +264,21 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("Recovery pheromone strength:", msg_holder)
+		. += "Recovery pheromone strength: [msg_holder]"
 
 	switch(hivenumber)
 		if(XENO_HIVE_NORMAL)
 			if(hive.hive_orders && hive.hive_orders != "")
-				stat("Hive Orders:", hive.hive_orders)
+				. += "Hive Orders: [hive.hive_orders]"
 			var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 			if(hivemind_countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
+				. += "<b>Orphan hivemind collapse timer:</b> [hivemind_countdown]"
 			var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 			if(siloless_countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
+				. += "<b>Orphan hivemind collapse timer:</b> [siloless_countdown]"
 
 		if(XENO_HIVE_CORRUPTED)
-			stat("Hive Orders:","Follow the instructions of our masters")
+			. += "Hive Orders: Follow the instructions of our masters"
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()

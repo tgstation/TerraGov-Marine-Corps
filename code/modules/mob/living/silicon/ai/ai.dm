@@ -326,27 +326,27 @@
 	lighting_alpha = initial(lighting_alpha) // yes you really have to change both the eye and the ai vars
 
 
-/mob/living/silicon/ai/Stat()
+/mob/living/silicon/ai/get_status_tab_items()
 	. = ..()
 
-	if(statpanel("Game"))
+	if(stat != CONSCIOUS)
+		stat("System status:", "Nonfunctional")
+		return
 
-		if(stat != CONSCIOUS)
-			stat("System status:", "Nonfunctional")
-			return
+	. += "System integrity: [(health + 100) / 2]%"
+	. += ""
+	. += "Operation information"
+	. += ""
+	. += "Current orbit: [GLOB.current_orbit]"
 
-		stat("System integrity:", "[(health + 100) / 2]%")
-		stat("<BR>- Operation information - <BR>")
-		stat("Current orbit:", "[GLOB.current_orbit]")
+	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+		. += "<b>Orbital bombardment status:</b> <font color='red'>No ammo chambered in the cannon.</font><br>"
+	else
+		. += "Orbital bombardment warhead: [GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>"
 
-		if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
-			stat("<b>Orbital bombardment status:</b>", "<font color='red'>No ammo chambered in the cannon.</font><br>")
-		else
-			stat("Orbital bombardment warhead:", "[GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected<BR>")
+	. += "Current supply points: [round(SSpoints.supply_points[FACTION_TERRAGOV])]"
 
-		stat("Current supply points:", "[round(SSpoints.supply_points[FACTION_TERRAGOV])]")
-
-		stat("Current alert level:", "[GLOB.marine_main_ship.get_security_level()]")
+	. += "Current alert level: [GLOB.marine_main_ship.get_security_level()]"
 
 
 

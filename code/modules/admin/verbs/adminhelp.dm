@@ -115,6 +115,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/num_admins_closed = 0
 	var/num_mentors_resolved = 0
 	var/num_admins_resolved = 0
+	var/list/data = list()
 
 	for(var/I in active_tickets)
 		var/datum/admin_help/AH = I
@@ -138,33 +139,34 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			num_admins_resolved++
 
 	if(check_rights(R_ADMINTICKET, FALSE))
-		stat("Active Tickets:", astatclick.update("[num_mentors_active + num_admins_active]"))
+		data[++data.len] = list("Active Tickets:", astatclick.update("[num_mentors_active + num_admins_active]"))
 	else if(check_rights(R_MENTOR, FALSE))
-		stat("Active Tickets:", astatclick.update("[num_mentors_active]"))
+		data[++data.len] = list("Active Tickets:", astatclick.update("[num_mentors_active]"))
 
 	for(var/I in active_tickets)
 		var/datum/admin_help/AH = I
 		if(AH.tier == TICKET_MENTOR && check_rights(R_ADMINTICKET|R_MENTOR, FALSE))
 			if(AH.initiator)
-				stat("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Mentor. [AH.initiator_key_name]:", AH.statclick.update())
+				data[++data.len] = list("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Mentor. [AH.initiator_key_name]:", AH.statclick.update())
 			else
-				stat("\[D\] #[AH.id]. Mentor. [AH.initiator_key_name]:", AH.statclick.update())
+				data[++data.len] = list("\[D\] #[AH.id]. Mentor. [AH.initiator_key_name]:", AH.statclick.update())
 		else if(AH.tier == TICKET_ADMIN && check_rights(R_ADMINTICKET, FALSE))
 			if(AH.initiator)
-				stat("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Admin. [AH.initiator_key_name]:", AH.statclick.update())
+				data[++data.len] = list("\[[AH.marked ? "X" : "  "]\] #[AH.id]. Admin. [AH.initiator_key_name]:", AH.statclick.update())
 			else
-				stat("\[D\] #[AH.id]. Admin. [AH.initiator_key_name]:", AH.statclick.update())
+				data[++data.len] = list("\[D\] #[AH.id]. Admin. [AH.initiator_key_name]:", AH.statclick.update())
 
 	if(check_rights(R_ADMINTICKET, FALSE))
-		stat("Closed Tickets:", cstatclick.update("[num_mentors_closed + num_admins_closed]"))
+		data[++data.len] = list("Closed Tickets:", cstatclick.update("[num_mentors_closed + num_admins_closed]"))
 	else if(check_rights(R_MENTOR, FALSE))
-		stat("Closed Tickets:", cstatclick.update("[num_mentors_closed]"))
+		data[++data.len] = list("Closed Tickets:", cstatclick.update("[num_mentors_closed]"))
 
 	if(check_rights(R_ADMINTICKET, FALSE))
-		stat("Resolved Tickets:", rstatclick.update("[num_mentors_resolved + num_admins_resolved]"))
+		data[++data.len] = list("Resolved Tickets:", rstatclick.update("[num_mentors_resolved + num_admins_resolved]"))
 	else if(check_rights(R_MENTOR, FALSE))
-		stat("Resolved Tickets:", rstatclick.update("[num_mentors_resolved]"))
+		data[++data.len] = list("Resolved Tickets:", rstatclick.update("[num_mentors_resolved]"))
 
+	return data
 
 //Reassociate still open ticket if one exists
 /datum/admin_help_tickets/proc/ClientLogin(client/C)

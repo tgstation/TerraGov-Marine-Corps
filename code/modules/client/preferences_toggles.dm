@@ -280,7 +280,7 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 /client/verb/toggle_deadchat_arrivalrattle()
 	set category = "Preferences"
-	set name = "Toggle Deadchat arrivalrattles"
+	set name = "Toggle Deadchat Arrivalrattles"
 	set desc = "Announces when a player spawns for the first time."
 
 	TOGGLE_BITFIELD(prefs.toggles_deadchat, DISABLE_ARRIVALRATTLE)
@@ -289,7 +289,7 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 /client/verb/toggle_deadchat_deathrattle()
 	set category = "Preferences"
-	set name = "Toggle Deadchat deathrattles"
+	set name = "Toggle Deadchat Deathrattles"
 	set desc = "Announces when a player dies."
 
 	TOGGLE_BITFIELD(prefs.toggles_deadchat, DISABLE_DEATHRATTLE)
@@ -316,7 +316,7 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 /client/verb/toggle_gas_mask_sound()
 	set category = "Preferences"
-	set name = "Toggle Gas Mask sounds."
+	set name = "Toggle Gas Mask Sounds"
 
 	usr.client.prefs.toggles_sound ^= SOUND_GAS_MASK
 	usr.client.prefs.save_preferences()
@@ -326,7 +326,7 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 
 /client/verb/toggle_round_end_sounds()
 	set category = "Preferences"
-	set name = "Toggle round end sounds."
+	set name = "Toggle Round End Sounds"
 
 	usr.client.prefs.toggles_sound ^= SOUND_NOENDOFROUND
 	usr.client.prefs.save_preferences()

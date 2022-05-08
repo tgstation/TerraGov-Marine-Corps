@@ -22,3 +22,5 @@
 	var/category
 	/// Only clients/mobs with `see_invisibility` higher can use the verb.
 	var/invisibility
+	/// Whether or not the verb appears in statpanel and commandbar when you press space
+	var/hidden as num

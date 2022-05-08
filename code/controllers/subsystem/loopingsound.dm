@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(loopingsounds)
 	var/list/datum/looping_sound/looping_sound_queue = list()
 
 /datum/controller/subsystem/loopingsounds/stat_entry(msg)
-	..("Quelen:[length(looping_sound_queue)]")
+	return ..("Quelen:[length(looping_sound_queue)]")
 
 
 /datum/controller/subsystem/loopingsounds/fire(resumed = FALSE)

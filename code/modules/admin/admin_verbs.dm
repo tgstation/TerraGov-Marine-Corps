@@ -1338,6 +1338,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
 
 	tomob.ckey = frommob.ckey
+	tomob.client?.init_verbs()
 	qdel(frommob)
 
 	return TRUE
@@ -1400,3 +1401,13 @@
 	message_admins(msg)
 	admin_ticket_log(whom, msg)
 	log_admin("[key_name(src)] punished [key_name(whom)] with [punishment].")
+
+/client/proc/toggle_legacy_mc_tab()
+	set name = "Toggle Legacy MC Tab"
+	set category = "Debug"
+	set desc = "For if the normal one breaks"
+
+	if(!holder)
+		return
+
+	holder.legacy_mc = !holder.legacy_mc
