@@ -396,7 +396,7 @@
 	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
 	if(!QDESTROYING(found_weed))
 		return
- 	loc_weeds_type = null
+	loc_weeds_type = null
 
 /// Handles logic for the xeno moving to a new weeds tile
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
