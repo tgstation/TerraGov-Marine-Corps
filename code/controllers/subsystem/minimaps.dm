@@ -199,7 +199,8 @@ SUBSYSTEM_DEF(minimaps)
  * * zlevel: zlevel we want this atom to be tracked for
  * * hud_flags: tracked HUDs we want this atom to be displayed on
  * * iconstate: iconstate for the blip we want to be used for this tracked atom
- * * icon: icon file we want to use for this blip, 'icons/UI_icons/map_blips.dmi' by efault
+ * * icon: icon file we want to use for this blip, 'icons/UI_icons/map_blips.dmi' by default
+ * * overlay_iconstates: list of iconstates to use as overlay. Used for xeno leader icons.
  */
 /datum/controller/subsystem/minimaps/proc/add_marker(atom/target, zlevel, hud_flags = NONE, iconstate, icon = 'icons/UI_icons/map_blips.dmi', list/overlay_iconstates)
 	if(!isatom(target) || !zlevel || !hud_flags || !iconstate || !icon)
