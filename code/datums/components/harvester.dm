@@ -213,7 +213,7 @@
 
 
 /datum/component/harvester/proc/update_selected_reagent(datum/reagent/new_reagent)
-	src.selected_reagent = new_reagent
+	selected_reagent = new_reagent
 
 	var/image/button_overlay = reagent_select_action.selected_reagent_overlay
 	button_overlay.color = new_reagent ? initial(new_reagent.color) : NO_REAGENT_COLOR
