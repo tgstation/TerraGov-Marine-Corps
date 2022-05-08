@@ -1470,19 +1470,19 @@ VEHICLES
 /datum/supply_packs/vehicles/uv_light_ammo
 	name = "Light UV ammo"
 	contains = list(/obj/item/ammo_magazine/box11x35mm)
-	cost = 10
+	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/uv_heavy_ammo
 	name = "Heavy UV ammo"
 	contains = list(/obj/item/ammo_magazine/box12x40mm)
-	cost = 10
+	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/vehicle_remote
 	name = "Vehicle remote"
 	contains = list(/obj/item/unmanned_vehicle_remote)
-	cost = 10
+	cost = 1
 	containertype = /obj/structure/closet/crate
 
 /*******************************************************************************
