@@ -30,8 +30,7 @@
 	user.visible_message(span_notice("[user] has patched the damaged vein in [target]'s [affected.display_name] with \the [tool]."), \
 		span_notice("You have patched the damaged vein in [target]'s [affected.display_name] with \the [tool]."))
 
-	for(var/datum/wound/internal_bleeding/W in affected.wounds)
-		qdel(W)
+	QDEL_LIST(affected.wounds)
 	if(ishuman(user) && prob(40))
 		user:bloody_hands(target, 0)
 

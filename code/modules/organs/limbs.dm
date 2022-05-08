@@ -299,7 +299,7 @@
 	brute_dam = 0
 	burn_dam = 0
 	germ_level = 0
-	wounds.Cut()
+	QDEL_LIST(wounds)
 	number_wounds = 0
 	limb_wound_status = NONE
 
@@ -683,8 +683,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/datum/limb/appendage = c
 		appendage.droplimb(amputation, delete_limb)
 
-	//Replace all wounds on that arm with one wound on parent organ.
-	wounds.Cut()
+	//Clear out any internal and external wounds, damage the parent limb
+	QDEL_LIST(wounds)
 	if(parent && !amputation)
 		parent.createwound(CUT, max_damage * 0.25)
 	brute_dam = 0
