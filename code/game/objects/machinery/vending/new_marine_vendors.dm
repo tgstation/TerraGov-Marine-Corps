@@ -815,11 +815,15 @@
 	)
 
 /obj/effect/essentials_set/builder
-	desc = "A bulky set of construction materials, for dedicated fortification building. Contains 150 metal and 50 plasteel"
+	desc = "A bulky set of construction materials, for dedicated fortification building. Contains 300 metal and 100 plasteel"
 	spawned_gear_list = list(
 		/obj/item/stack/sheet/metal/large_stack,
 		/obj/item/stack/sheet/metal/large_stack,
 		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/stack/sheet/plasteel/large_stack,
 		/obj/item/stack/sheet/plasteel/large_stack,
 	)
 

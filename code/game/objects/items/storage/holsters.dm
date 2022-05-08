@@ -133,7 +133,7 @@
 	base_icon = "marinepackt"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = null
-	max_storage_space = 26
+	max_storage_space = 30
 	access_delay = 0
 	holsterable_allowed = list(/obj/item/mortar_kit,)
 	bypass_w_limit = list(/obj/item/mortar_kit,)
@@ -156,8 +156,10 @@
 	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/plasmaloss(src)
 	var/obj/item/new_item = new /obj/item/mortar_kit(src)

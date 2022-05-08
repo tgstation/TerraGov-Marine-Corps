@@ -70,7 +70,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/effect/essentials_set/engi = list(CAT_ESS, "Essential Engineer Set", 0, "white"),
 		/obj/effect/essentials_set/builder = list(CAT_KIT, "Building kit", 75, "black"),
 		/obj/effect/teleporter_linker = list(CAT_KIT, "Teleporter kit", 30, "black"),
-		/obj/effect/essentials_set/minelayer = list(CAT_KIT, "Minelaying kit", 50, "black"),
+		/obj/effect/essentials_set/minelayer = list(CAT_KIT, "Minelaying kit", 45, "black"),
 		/obj/effect/essentials_set/mortar = list(CAT_KIT, "Mortar kit", 30, "black"),
 		/obj/effect/essentials_set/plasma_cutter = list(CAT_KIT, "Plasma cutter kit", 20, "black"),
 		/obj/effect/essentials_set/pyro = list(CAT_KIT, "flamethrower kit", 30, "black"),
