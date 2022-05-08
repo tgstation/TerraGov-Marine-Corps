@@ -66,8 +66,6 @@
 			/obj/item/ammo_magazine/standard_gpmg = -1,
 			/obj/item/weapon/gun/standard_mmg = 5,
 			/obj/item/ammo_magazine/standard_mmg = -1,
-			/obj/item/weapon/gun/heavymachinegun = 1,
-			/obj/item/ammo_magazine/heavymachinegun = 10,
 		),
 		"Sidearm" = list(
 			/obj/item/weapon/gun/pistol/standard_pistol = -1,
@@ -99,7 +97,6 @@
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
-			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
 			/obj/item/tool/extinguisher = -1,
 			/obj/item/tool/extinguisher/mini = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
@@ -980,6 +977,9 @@
 		/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
 		/obj/item/storage/box/sentry = 3,
 		/obj/item/storage/box/tl102 = 1,
+		/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
+		/obj/item/weapon/gun/heavymachinegun = 1,
+		/obj/item/ammo_magazine/heavymachinegun = 10,
 	)
 
 	prices = list()
