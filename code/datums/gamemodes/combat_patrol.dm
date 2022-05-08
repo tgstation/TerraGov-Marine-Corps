@@ -17,10 +17,11 @@
 		/datum/job/terragov/squad/smartgunner = 2,
 		/datum/job/terragov/squad/leader = 2,
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/som/leader = 2,
-		/datum/job/som/veteran = 6,
-		/datum/job/som/medic = 6,
-		/datum/job/som/standard = -1,
+		/datum/job/som/squad/leader = 2,
+		/datum/job/som/squad/veteran = 6,
+		/datum/job/som/squad/engineer = 6,
+		/datum/job/som/squad/medic = 6,
+		/datum/job/som/squad/standard = -1,
 	)
 
 /datum/game_mode/combat_patrol/post_setup()
