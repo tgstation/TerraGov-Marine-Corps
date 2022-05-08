@@ -76,6 +76,7 @@
 #define issommarinejob(J) (istype(J, /datum/job/som)) //to be updated when ert separated out
 #define ismarinespecjob(J) (istype(J, /datum/job/terragov/squad/specialist))
 #define ismarineleaderjob(J) (istype(J, /datum/job/terragov/squad/leader))
+#define issommarineleaderjob(J) (istype(J, /datum/job/som/leader)) //to be updated when ert separated out
 #define ismarinecommandjob(J) (istype(J, /datum/job/terragov/command))
 #define ismarinecaptainjob(J) (istype(J, /datum/job/terragov/command/captain))
 #define iscorporateliaisonjob(J) (istype(J, /datum/job/terragov/civilian/liaison))

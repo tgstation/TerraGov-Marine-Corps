@@ -85,9 +85,10 @@
 
 //SOM - very placeholder for now
 #define SOM_SQUAD_LEADER "SOM squad Leader"
-#define SOM_SQUAD_CORPSMAN "SOM medic"
+#define SOM_SQUAD_CORPSMAN "SOM Medic"
+#define SOM_SQUAD_ENGINEER "SOM Engineer"
 #define SOM_SQUAD_VETERAN "SOM Veteran"
-#define SOM_SQUAD_MARINE "SOM standard"
+#define SOM_SQUAD_MARINE "SOM Standard"
 
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"

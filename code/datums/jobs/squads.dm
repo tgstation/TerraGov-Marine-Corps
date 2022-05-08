@@ -250,7 +250,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	current_positions[new_squaddie.job.title]++
 
-	if(ismarineleaderjob(new_squaddie.job) && !squad_leader)
+	if((ismarineleaderjob(new_squaddie.job) || issommarineleaderjob(new_squaddie.job)) && !squad_leader)
 		squad_leader = new_squaddie
 		SSdirection.set_leader(tracking_id, new_squaddie)
 		SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, new_squaddie)
@@ -345,7 +345,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, squad_leader)
 
 	//Handle aSL skill level and radio
-	if(!ismarineleaderjob(squad_leader.job))
+	if(!ismarineleaderjob(squad_leader.job) || !issommarineleaderjob(squad_leader.job))
 		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_NOVICE)
 		if(squad_leader.mind)
 			var/datum/job/J = squad_leader.job
@@ -376,7 +376,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, H)
 
 	//Handle aSL skill level and radio
-	if(!ismarineleaderjob(squad_leader.job))
+	if(!ismarineleaderjob(squad_leader.job) || !issommarineleaderjob(squad_leader.job))
 		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_EXPERT)
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
