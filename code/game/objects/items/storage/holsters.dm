@@ -128,9 +128,9 @@
 /obj/item/storage/holster/backholster/mortar
 	name = "\improper TGMC mortar bag"
 	desc = "This backpack can hold 11 80mm mortar shells, in addition to the mortar itself."
-	icon_state = "marine_rocket"
-	item_state = "marine_rocket"
-	base_icon = "marine_rocket"
+	icon_state = "marinepackt"
+	item_state = "marinepackt"
+	base_icon = "marinepackt"
 	w_class = WEIGHT_CLASS_HUGE
 	storage_slots = null
 	max_storage_space = 26
@@ -183,7 +183,7 @@
 /obj/item/storage/holster/backholster/flamer/Initialize()
 	. = ..()
 	tank = new
-	update_icon() //only needed if there/s some fuel level sprite, which would be cool
+	update_icon()
 
 /obj/item/storage/holster/backholster/flamer/afterattack(obj/O as obj, mob/user as mob, proximity)
 	. = ..()
@@ -199,6 +199,11 @@
 
 /obj/item/storage/holster/backholster/flamer/full/Initialize()
 	. = ..()
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/plastique(src)
+	new /obj/item/explosive/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/phosphorus(src)
 	var/obj/item/new_item = new /obj/item/weapon/gun/flamer/big_flamer/engineer(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 

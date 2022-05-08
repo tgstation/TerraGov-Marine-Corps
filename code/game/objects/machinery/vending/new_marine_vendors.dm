@@ -827,6 +827,9 @@
 	desc = "Rain death down on the heads of your enemies (or friends) with the mobile fire support of the mortar kit. Contains a mortar bag loaded with a mortar, rangefinder and a variety of shells."
 	spawned_gear_list = list(
 		/obj/item/binoculars/tactical/range,
+		/obj/item/encryptionkey/cas,
+		/obj/item/encryptionkey/cas,
+		/obj/item/encryptionkey/cas,
 		/obj/item/storage/holster/backholster/mortar/full,
 	)
 

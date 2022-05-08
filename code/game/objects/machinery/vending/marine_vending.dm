@@ -972,7 +972,6 @@
 	wrenchable = FALSE
 
 	products = list(
-		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
 		/obj/item/storage/box/sentry = 3,
 		/obj/item/storage/box/tl102 = 1,
@@ -983,14 +982,12 @@
 /obj/machinery/vending/shared_vending/marine_engi/rebel
 	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
 	products = list(
-		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 5,
 		/obj/item/storage/box/tl102 = 1,
 	)
 
 /obj/machinery/vending/shared_vending/marine_engi/loyalist
 	products = list(
-		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 5,
 		/obj/item/storage/box/tl102 = 1,
 	)

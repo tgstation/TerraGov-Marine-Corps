@@ -300,17 +300,18 @@
 //dedicated engineer pyro kit flamer
 /obj/item/weapon/gun/flamer/big_flamer/engineer
 	name = "\improper FL-242 incinerator unit"
-	desc = "The FL-242 placeholder blah"
+	desc = "The FL-242 is a more light weight incinerator unit designed specifically to fit into its accompanying engineers bag. Can only be used with back mounted fuel tanks however."
+	default_ammo_type = null
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/flamer_tank,
-		/obj/item/ammo_magazine/flamer_tank/large,
-		/obj/item/ammo_magazine/flamer_tank/large/X,
 		/obj/item/ammo_magazine/flamer_tank/backtank,
 		/obj/item/ammo_magazine/flamer_tank/backtank/X,
 		/obj/item/ammo_magazine/flamer_tank/internal,
 	)
 
-/////wip/////
+obj/item/weapon/gun/flamer/big_flamer/engineer/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/weapon/gun/flamer/big_flamer/engineer/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the backpack to the gun will load the gun with the internal mag.
 	. = ..()
 	if(!istype(W, /obj/item/storage/holster/backholster/flamer))
