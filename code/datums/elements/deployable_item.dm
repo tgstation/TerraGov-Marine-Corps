@@ -69,10 +69,10 @@
 		if(user.do_actions)
 			user.balloon_alert(user, "You are already doing something!")
 			return
+		var/turf/this_turf = get_turf(location)
 		if(deploy_type in typesof(/obj/machinery/deployable/mounted/sentry))
 			for(var/obj/machinery/deployable/mounted/sentry/sentry AS in GLOB.marine_turrets)
 				var/turf/sentry_turf = get_turf(sentry)
-				var/turf/this_turf = get_turf(location)
 				if(!sentry_turf) //Sentry has some issue that got it nullspaced, ignore.
 					continue
 				if(!this_turf)
@@ -93,7 +93,6 @@
 		if(deploy_type in typesof(/obj/machinery/deployable/mounted/sentry))
 			for(var/obj/machinery/deployable/mounted/sentry/sentry AS in GLOB.marine_turrets)
 				var/turf/sentry_turf = get_turf(sentry)
-				var/turf/this_turf = get_turf(location)
 				if(!sentry_turf) //Sentry has some issue that got it nullspaced, ignore.
 					continue
 				if(!this_turf)
