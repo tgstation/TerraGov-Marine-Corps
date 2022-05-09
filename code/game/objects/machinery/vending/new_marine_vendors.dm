@@ -838,10 +838,10 @@
 	)
 
 /obj/effect/essentials_set/plasma_cutter
-	desc = "Tear walls apart whether they're steel or resin, and make your enemy's builders seethe with the mighty plasma cutter. Contains one plasma cutter and a set of superior welding goggles."
+	desc = "Tear walls apart whether they're steel or resin, and make your enemy's builders seethe with the mighty plasma cutter. Contains one plasma cutter and a superior welding helmet module."
 	spawned_gear_list = list(
 		/obj/item/tool/pickaxe/plasmacutter,
-		/obj/item/clothing/glasses/welding/superior,
+		/obj/item/armor_module/module/welding/superior,
 	)
 
 /obj/effect/essentials_set/pyro
