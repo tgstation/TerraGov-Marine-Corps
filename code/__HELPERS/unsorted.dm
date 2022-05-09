@@ -513,11 +513,22 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(istype(A, type))
 			. += A
 
-
-/proc/is_blocked_turf(turf/T)
+/**
+ * Detects whether a turf is blocked by something
+ * Returns TRUE if yes, null if not.
+ * * Args:
+ * * T: Turf that is being checked
+ * * source: optional, if supplied this atom is ignored from being considered in the blocking check. Intended to avoid detecting oneself if used with other objects.
+ * * ignore_mobs: Optional, if TRUE ignores mobs.
+**/
+/proc/is_blocked_turf(turf/T, atom/source, ignore_mobs)
 	if(T.density)
 		return TRUE
 	for(var/atom/A in T)
+		if(A == source)
+			continue
+		if(ignore_mobs && ismob(A))
+			continue
 		if(A.density)
 			return TRUE
 

@@ -112,7 +112,7 @@
 	return TRUE
 
 
-/obj/machinery/door/window/close(forced = DOOR_NOT_FORCED)
+/obj/machinery/door/window/close(forced = FALSE, autoclosing = FALSE)
 	if(operating)
 		return FALSE
 	switch(forced)

@@ -78,7 +78,7 @@
 	if(current_turf)
 		current_turf.flags_atom &= ~AI_BLOCKED
 
-/obj/machinery/door/poddoor/railing/close()
+/obj/machinery/door/poddoor/railing/close(forced = FALSE, autoclosing = FALSE)
 	if (!SSticker || operating || density)
 		return FALSE
 

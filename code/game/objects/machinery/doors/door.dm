@@ -204,10 +204,14 @@
 	if(autoclose)
 		addtimer(CALLBACK(src, .proc/autoclose), normalspeed ? 150 + openspeed : 5)
 
-/obj/machinery/door/proc/close()
+/obj/machinery/door/proc/close(forced = FALSE, autoclosing = FALSE)
 	if(density)
 		return TRUE
 	if(operating)
+		return FALSE
+	if(is_blocked_turf(get_turf(src), src))
+		if(autoclose && autoclosing)
+			addtimer(CALLBACK(src, .proc/autoclose), normalspeed ? 150 + openspeed : 5)
 		return FALSE
 	operating = TRUE
 
@@ -235,7 +239,7 @@
 
 /obj/machinery/door/proc/autoclose()
 	if(!density && !operating && !locked && !welded && autoclose)
-		close()
+		close(autoclosing = TRUE)
 
 /obj/machinery/door/morgue
 	icon = 'icons/obj/doors/doormorgue.dmi'

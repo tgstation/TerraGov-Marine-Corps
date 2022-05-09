@@ -259,7 +259,7 @@
 			nextstate = null
 			close()
 
-/obj/machinery/door/firedoor/close()
+/obj/machinery/door/firedoor/close(forced = FALSE, autoclosing = FALSE)
 	latetoggle()
 	return ..()
 

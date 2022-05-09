@@ -28,7 +28,7 @@
 	if(anchored && current_turf && density)
 		current_turf.flags_atom &= ~AI_BLOCKED
 
-/obj/machinery/door/poddoor/close()
+/obj/machinery/door/poddoor/close(forced = FALSE, autoclosing = FALSE)
 	. = ..()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)

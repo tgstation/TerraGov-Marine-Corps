@@ -37,7 +37,7 @@
 	if(autoclose)
 		addtimer(CALLBACK(src, .proc/autoclose), 150)
 
-/obj/machinery/door/poddoor/shutters/close()
+/obj/machinery/door/poddoor/shutters/close(forced = FALSE, autoclosing = FALSE)
 	if(operating)
 		return
 	operating = TRUE

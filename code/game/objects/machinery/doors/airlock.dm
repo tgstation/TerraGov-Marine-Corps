@@ -442,16 +442,21 @@
 	if(istype(closeOther, /obj/machinery/door/airlock) && !closeOther.density)
 		closeOther.close()
 
-/obj/machinery/door/airlock/close(forced = FALSE)
+/obj/machinery/door/airlock/close(forced = FALSE, autoclosing = FALSE)
 	if(operating || welded || locked)
 		return
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_BOLTS))
 			return
+	if(is_blocked_turf(get_turf(src), src, TRUE))
+		if(autoclose && autoclosing)
+			addtimer(CALLBACK(src, .proc/autoclose), normalspeed ? 150 + openspeed : 5)
+		return
 	if(safe)
 		for(var/turf/turf AS in locs)
 			if(locate(/mob/living) in turf)
-				addtimer(CALLBACK(src, .proc/close), 6 SECONDS)
+				if(autoclosing)
+					addtimer(CALLBACK(src, .proc/close), 6 SECONDS)
 				return
 
 	for(var/turf/turf in locs)

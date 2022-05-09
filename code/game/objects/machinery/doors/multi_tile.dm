@@ -2,10 +2,14 @@
 /obj/machinery/door/airlock/multi_tile
 	width = 2
 
-/obj/machinery/door/airlock/multi_tile/close() //Nasty as hell O(n^2) code but unfortunately necessary
+/obj/machinery/door/airlock/multi_tile/close(forced = FALSE, autoclosing = FALSE) //Nasty as hell O(n^2) code but unfortunately necessary
 	for(var/turf/T in locs)
 		for(var/obj/vehicle/multitile/M in T)
 			if(M) return FALSE
+		if(is_blocked_turf(T, src))
+			if(autoclose && autoclosing)
+				addtimer(CALLBACK(src, .proc/autoclose), normalspeed ? 150 + openspeed : 5)
+			return FALSE
 
 	return ..()
 
@@ -375,7 +379,7 @@
 	. = ..()
 	update_filler_turfs()
 
-/obj/machinery/door/airlock/multi_tile/mainship/close()
+/obj/machinery/door/airlock/multi_tile/mainship/close(forced = FALSE, autoclosing = FALSE)
 	. = ..()
 	update_filler_turfs()
 
@@ -399,7 +403,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ex_act(severity)
 	return
 
-/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/close(forced=0)
+/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/close(forced = FALSE, autoclosing = FALSE)
 	if(forced)
 		for(var/turf/T in get_filler_turfs())
 			for(var/mob/living/L in T)
