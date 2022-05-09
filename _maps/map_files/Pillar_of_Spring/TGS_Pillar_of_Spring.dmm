@@ -3131,8 +3131,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "jB" = (
-/turf/open/floor/mainship/mono,
 /turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "jC" = (
 /turf/open/floor/mainship/red{
@@ -3151,8 +3151,8 @@
 /obj/effect/landmark/start/job/corporateliaison,
 /obj/item/bedsheet/blue,
 /obj/item/toy/plush/farwa,
-/turf/open/floor/mainship/mono,
 /turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "jF" = (
 /obj/effect/decal/warning_stripes/thin{
