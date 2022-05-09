@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "vision will no longer be bugged when a deployable item is undeployed while being used"
