@@ -1069,19 +1069,6 @@
 	spawn_number = 10
 	spawn_type = /obj/item/ammo_magazine/heavymachinegun
 
-/obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun
-	name = "SG-29 drum box"
-	desc = "A box specifically designed to hold a large amount of SG-29 drum magazines."
-	storage_slots = 30
-	closed_overlay = "mag_box_small_overlay_t29"
-	can_hold = list(
-		/obj/item/ammo_magazine/standard_smartmachinegun,
-	)
-
-/obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun/full
-	spawn_number = 30
-	spawn_type = /obj/item/ammo_magazine/standard_smartmachinegun
-
 // --GRENADE BOXES--
 /obj/item/storage/box/visual/grenade
 	name = "grenade box"

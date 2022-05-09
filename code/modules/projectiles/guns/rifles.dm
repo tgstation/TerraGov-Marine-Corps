@@ -965,8 +965,8 @@
 /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	name = "\improper SG-29 smart machine gun"
 	desc = "The SG-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
-	icon_state = "t29"
-	item_state = "t29"
+	icon_state = "sg29"
+	item_state = "sg29"
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30

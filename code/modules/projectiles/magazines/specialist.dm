@@ -283,9 +283,15 @@
 
 /obj/item/ammo_magazine/minigun_powerpack/snow
 	icon_state = "s_powerpack"
+	flags_item_map_variant = null
+
+/obj/item/ammo_magazine/minigun_powerpack/fancy
+	icon_state = "powerpackw"
+	flags_item_map_variant = null
 
 /obj/item/ammo_magazine/minigun_powerpack/merc
 	icon_state = "powerpackp"
+	flags_item_map_variant = null
 
 /obj/item/ammo_magazine/minigun_powerpack/smartgun
 	name = "\improper SG-85 powerpack"

@@ -246,12 +246,12 @@
 	name = "\improper SG-29 drum magazine (10x26mm HP)"
 	desc = "A 10mm drum magazine."
 	caliber = CALIBER_10x26_CASELESS
-	icon_state = "t29"
+	icon_state = "sg29"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartmachinegun
 	max_rounds = 200
 	reload_delay = 2.5 SECONDS
-	icon_state_mini = "mag_t29"
+	icon_state_mini = "mag_sg29"
 
 //-------------------------------------------------------
 //Sectoid Rifle
