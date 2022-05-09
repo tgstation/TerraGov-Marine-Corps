@@ -221,7 +221,6 @@
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=8)
-	"A metal flask filled with water to a brim. Stay hydrated!"
 
 /obj/item/reagent_containers/food/drinks/flask/marine
 	name = "\improper TGMC flask"
