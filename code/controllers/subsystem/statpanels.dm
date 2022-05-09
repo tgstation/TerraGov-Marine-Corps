@@ -3,16 +3,21 @@ SUBSYSTEM_DEF(statpanels)
 	wait = 4
 	init_order = INIT_ORDER_STATPANELS
 	runlevels = RUNLEVELS_DEFAULT | RUNLEVEL_LOBBY
+	/// Holds a table copy of GLOB.clients for update in fire(), similar to how other subsytems achieve this.
 	var/list/currentrun = list()
+
+	/// Data displayed on the upper portion of the stat panel: round ID, operation time. Never disappears.
 	var/encoded_global_data
+	/// MC data, contains data about and references to subsystem datums for use in the panel.
 	var/mc_data_encoded
+	/// Cached images for use when you alt-click a tile to view the turf contents.
 	var/list/cached_images = list()
 
-	///how many subsystem fires between most tab updates
+	/// How many subsystem fires between most tab updates
 	var/default_wait = 10
-	///how many subsystem fires between updates of the MC tab
+	/// How many subsystem fires between updates of the MC tab
 	var/mc_wait = 5
-	///how many full runs this subsystem has completed. used for variable rate refreshes.
+	/// How many full runs this subsystem has completed. used for variable rate refreshes.
 	var/num_fires = 0
 
 /datum/controller/subsystem/statpanels/fire(resumed = FALSE)
