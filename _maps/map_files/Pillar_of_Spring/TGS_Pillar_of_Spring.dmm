@@ -3131,7 +3131,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "jB" = (
-/turf/open/space/basic,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "jC" = (
@@ -3151,7 +3150,6 @@
 /obj/effect/landmark/start/job/corporateliaison,
 /obj/item/bedsheet/blue,
 /obj/item/toy/plush/farwa,
-/turf/open/space/basic,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "jF" = (
@@ -5274,7 +5272,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "pS" = (
-/turf/open/space/basic,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
