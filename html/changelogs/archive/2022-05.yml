@@ -86,3 +86,65 @@
       their bag.
   novaepee:
   - bugfix: Fix PoS CL Office
+2022-05-09:
+  2whatever2:
+  - balance: Moved TAT & non-IFF HMG from weapons vendor to Engineering vendor (The
+      ones with mortar and howitzer.)
+  DeltaFire15:
+  - balance: Any machinery / structure on a tile now blocks deployable deployment,
+      as opposed to only dense ones.
+  - code_imp: Deployables checking for blocking objects are now less prone to being
+      bypassed during their do_after.
+  Pariah919:
+  - balance: Added two railgun rounds, HVAP and SAP, HVAP has medium damage/poor pen,
+      but shreds all armor. Normal Railgun rounds reach out to 14 tiles now, HVAP
+      to 21. APDS (Previously, just generic ammo) has 20 sunder from 90, but pens
+      ALL armor.
+  - spellcheck: Railgun rounds reflavored, Normal ammo is now called APDS, it only
+      has 2 knockback now.
+  - balance: Essential PC removed, early synth now builds faster but is worse at medical
+      than late synth.
+  - balance: AMR mostly reverted to pre david touch state, has 90 damage and 135 when
+      lased, pen down to 50, it slows down on hit again. Lase reverted to 1.5x. Sunder
+      returned.
+  QualityVan:
+  - rscadd: After applying a health kit to one limb, you'll start applying it to all
+      other damaged ones without using additional stacks.
+  RipGrayson:
+  - rscadd: Added seed extractors to PoS, Theseus, and Minerva.
+  Walarks:
+  - qol: adds a stat for produced req points through research to researcher console
+      and round-end, updates console UI
+  goose4429:
+  - rscadd: alkysine, imidazoline injectors
+  - balance: imi, alky, peri and acillin injectors in MarineMed
+  tyeagg:
+  - balance: expanded caves slightly
+  - balance: made lz2 more open
+  - balance: adds another flank to both lz's
+  - balance: moved fog locations
+  - balance: more gens
+  - bugfix: tadpole being able to land in northern caves
+  - rscadd: light uav to engi vendor for 50 points
+  - rscadd: muzzle flash when firing
+  - rscadd: allows unmanned vehicles to be dropped by supply pad
+  - balance: reduced light uav integrity to 150
+  - balance: reduced medium uav integrity to 200
+  - balance: reduced heavy uav integrity to 250
+  - balance: reduced battle droid integrity to 150
+  - balance: reduced light turret firerate delay to 1 ticks
+  - balance: reduced heavy turret firerate delay to 2 ticks
+  - balance: reduced battle droid firerate delay to 1.5 ticks
+  - balance: changed battle droid ammo type to overcharge laser
+  - balance: reduced light turret ammo cap to 150
+  - balance: reduced heavy turret ammo cap to 50
+  - balance: increased bullet armor to 85
+  - balance: reduced remote price to 1
+  - balance: reduced light turret ammo price to 3
+  - balance: reduced heavy turret ammo price to 3
+  - code_imp: fixed swapped comments
+  - bugfix: not being able to reload uav turret
+  - soundadd: engine sound for unmanned vehicle
+  - qol: changed light uav name to UV-L Iguana
+  - qol: changed medium uav name to UV-M Gecko
+  - qol: changed heavy uav name to UV-H Komodo

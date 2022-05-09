@@ -1,5 +1,0 @@
-author: "goose4429"
-delete-after: True
-changes: 
-  - rscadd: "alkysine, imidazoline injectors"
-  - balance: "imi, alky, peri and acillin injectors in MarineMed"

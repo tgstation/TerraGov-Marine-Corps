@@ -1,4 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - qol: "adds a stat for produced req points through research to researcher console and round-end, updates console UI"
