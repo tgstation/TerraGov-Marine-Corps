@@ -1,0 +1,9 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "Expand PoS' briefing and make TGMC letters go underneath chair"
+  - rscadd: "another grinder for chem users to use in PoS"
+  - rscadd: "Move FC's office to give him more space and be next to CO."
+  - rscadd: "Replace old FC's office into chapel."
+  - bugfix: "space tiles in PoS' req attempt 2"
+  - bugfix: "rogue piping"
