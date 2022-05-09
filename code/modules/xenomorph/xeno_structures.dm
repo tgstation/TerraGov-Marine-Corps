@@ -1403,7 +1403,6 @@ TUNNEL
 		to_chat(user, span_notice("You caress [src]'s petals, nothing happens."))
 		return FALSE
 	if(on_cooldown)
-		balloon_alert(user, "[src] shimmers")
 		to_chat(user, span_xenowarning("[src] soft light shimmers, we should give it more time to recover!"))
 		return FALSE
 
