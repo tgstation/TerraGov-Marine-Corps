@@ -594,20 +594,17 @@
 /atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
 	. = return_air()
 
-/**
- * Checks if a turf is blocked by other objects or by being a dense turf.
- * By default, only dense objects are taken into account, however if dense_only is FALSE, any machinery or structure being present will cause the turf to count as blocked.
- **/
-/atom/movable/proc/check_blocked_turf(turf/target, dense_only = TRUE)
+
+/atom/movable/proc/check_blocked_turf(turf/target)
 	if(target.density)
 		return TRUE //Blocked; we can't proceed further.
 
 	for(var/obj/machinery/MA in target)
-		if(!dense_only || MA.density)
+		if(MA.density)
 			return TRUE //Blocked; we can't proceed further.
 
 	for(var/obj/structure/S in target)
-		if(!dense_only || S.density)
+		if(S.density)
 			return TRUE //Blocked; we can't proceed further.
 
 	return FALSE
