@@ -210,7 +210,7 @@
 	name = "Disguise"
 	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move."
 	///the regular appearance of the hunter
-	var/old_appearance
+	var/mob/old_appearance
 
 /datum/action/xeno_action/stealth/disguise/action_activate()
 	if(stealth)
@@ -238,6 +238,8 @@
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	var/datum/action/xeno_action/activable/hunter_mark/mark = xenoowner.actions_by_path[/datum/action/xeno_action/activable/hunter_mark]
 	xenoowner.appearance = mark.marked_target.appearance
+	//Retaining old rendering layer to prevent rendering under objects.
+	xenoowner.layer = old_appearance.layer
 	xenoowner.underlays.Cut()
 	xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
