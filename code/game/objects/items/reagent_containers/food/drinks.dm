@@ -217,15 +217,11 @@
 
 /obj/item/reagent_containers/food/drinks/flask
 	name = "Metal flask"
-	desc = "A metal flask with a decent liquid capacity."
+	desc = "A metal flask filled with water to a brim. Stay hydrated!"
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=8)
-
-/obj/item/reagent_containers/food/drinks/flask/water
-	name = "Water flask"
-	desc = "A metal flask filled with water to a brim. Stay hydrated!"
-	list_reagents = list(/datum/reagent/water = 60)
+	"A metal flask filled with water to a brim. Stay hydrated!"
 
 /obj/item/reagent_containers/food/drinks/flask/marine
 	name = "\improper TGMC flask"
