@@ -69,6 +69,19 @@
 		if(user.do_actions)
 			user.balloon_alert(user, "You are already doing something!")
 			return
+		if(deploy_type in typesof(/obj/machinery/deployable/mounted/sentry))
+			for(var/obj/machinery/deployable/mounted/sentry/sentry AS in GLOB.marine_turrets)
+				var/turf/sentry_turf = get_turf(sentry)
+				var/turf/this_turf = get_turf(location)
+				if(!sentry_turf) //Sentry has some issue that got it nullspaced, ignore.
+					continue
+				if(!this_turf)
+					return
+				if(this_turf.z != sentry_turf.z)	//get_dist works across zs and could scuff things if it checked shipside turrets too.
+					continue
+				if(get_dist(this_turf, sentry_turf) < MARINE_MIN_TURRET_DISTANCE)
+					user.balloon_alert(user, "Too close to other sentries, minimum distance is [MARINE_MIN_TURRET_DISTANCE].")
+					return
 		user.balloon_alert(user, "You start deploying...")
 		user.setDir(get_dir(user, location)) //Face towards deploy location for ease of deploy.
 		var/newdir = user.dir //Save direction before the doafter for ease of deploy
@@ -77,6 +90,19 @@
 		if(item_to_deploy.check_blocked_turf(location)) //Never trust conditions remaining the same when using do_after.
 			user.balloon_alert(user, "There is insufficient room to deploy [item_to_deploy]!")
 			return
+		if(deploy_type in typesof(/obj/machinery/deployable/mounted/sentry))
+			for(var/obj/machinery/deployable/mounted/sentry/sentry AS in GLOB.marine_turrets)
+				var/turf/sentry_turf = get_turf(sentry)
+				var/turf/this_turf = get_turf(location)
+				if(!sentry_turf) //Sentry has some issue that got it nullspaced, ignore.
+					continue
+				if(!this_turf)
+					return
+				if(this_turf.z != sentry_turf.z)	//get_dist works across zs and could scuff things if it checked shipside turrets too.
+					continue
+				if(get_dist(this_turf, sentry_turf) < MARINE_MIN_TURRET_DISTANCE)
+					user.balloon_alert(user, "Too close to other sentries, minimum distance is [MARINE_MIN_TURRET_DISTANCE].")
+					return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)
 
 		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE,  COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety

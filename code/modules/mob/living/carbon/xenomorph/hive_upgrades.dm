@@ -178,7 +178,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
-		if(get_dist(turret, buyer) < 6)
+		if(get_dist(turret, buyer) < XENO_MIN_TURRET_DISTANCE)
 			if(!silent)
 				to_chat(buyer, span_xenowarning("Another turret is too close!"))
 			return FALSE

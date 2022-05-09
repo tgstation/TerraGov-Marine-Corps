@@ -36,6 +36,10 @@
 #define INTENT_NUMBER_GRAB 2
 #define INTENT_NUMBER_HARM 3
 
+//turret minimum construction distance defines
+#define XENO_MIN_TURRET_DISTANCE 6
+#define MARINE_MIN_TURRET_DISTANCE 4
+
 //Ammo defines for gun/projectile related things.
 //flags_ammo_behavior
 #define AMMO_EXPLOSIVE (1<<0)

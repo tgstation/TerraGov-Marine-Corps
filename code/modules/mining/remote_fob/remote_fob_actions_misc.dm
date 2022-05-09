@@ -152,8 +152,30 @@
 			else
 				to_chat(owner, span_warning("No space here for a sentry."))
 				return
+	for(var/obj/machinery/deployable/mounted/sentry/sentry AS in GLOB.marine_turrets)
+		var/turf/sentry_turf = get_turf(sentry)
+		if(!sentry_turf) //Sentry has some issue that got it nullspaced, ignore.
+			continue
+		if(!buildplace)
+			return
+		if(buildplace.z != sentry_turf.z)	//get_dist works across zs and could scuff things if it checked shipside turrets too.
+			continue
+		if(get_dist(buildplace, sentry_turf) < MARINE_MIN_TURRET_DISTANCE)
+			to_chat(owner, span_warning("Too close to other sentries, minimum distance is [MARINE_MIN_TURRET_DISTANCE]."))
+			return
 	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
+	for(var/obj/machinery/deployable/mounted/sentry/sentry AS in GLOB.marine_turrets)
+		var/turf/sentry_turf = get_turf(sentry)
+		if(!sentry_turf) //Sentry has some issue that got it nullspaced, ignore.
+			continue
+		if(!buildplace)
+			return
+		if(buildplace.z != sentry_turf.z)	//get_dist works across zs and could scuff things if it checked shipside turrets too.
+			continue
+		if(get_dist(buildplace, sentry_turf) < MARINE_MIN_TURRET_DISTANCE)
+			to_chat(owner, span_warning("Too close to other sentries, minimum distance is [MARINE_MIN_TURRET_DISTANCE]."))
+			return
 	console.sentry_remaining -= 1
 	var/obj/item/weapon/gun/sentry/big_sentry/premade/new_gun = new(buildplace)
 	new_gun.loc.setDir(fobdrone.dir)
