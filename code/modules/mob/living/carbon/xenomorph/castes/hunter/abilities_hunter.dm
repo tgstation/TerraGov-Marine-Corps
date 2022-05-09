@@ -210,7 +210,7 @@
 	name = "Disguise"
 	mechanics_text = "Disguise yourself as the enemy. Uses plasma to move."
 	///the regular appearance of the hunter
-	var/atom/old_appearance
+	var/mutable_appearance/old_appearance
 
 /datum/action/xeno_action/stealth/disguise/action_activate()
 	if(stealth)
