@@ -250,7 +250,6 @@
 		spark_system.set_up(5, 0, M)
 		spark_system.attach(M)
 		spark_system.start(M)
-		//to_chat(world, span_warning("[src] violently vaporizes chunks of the [M] upon contact!"))
 		M.visible_message(span_danger("[src] violently vaporizes chunks of the [M] upon contact!"), visible_message_flags = COMBAT_MESSAGE)
 		if(M.stat == DEAD)
 		else
