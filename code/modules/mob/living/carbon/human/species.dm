@@ -861,14 +861,12 @@
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
-	H.health_threshold_crit = -100
 
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.remove_hud_from(H)
-	H.health_threshold_crit = -50
 
 /mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
 	return TRUE
@@ -919,14 +917,12 @@
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
-	H.health_threshold_crit = -100
 
 
 /datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.remove_hud_from(H)
-	H.health_threshold_crit = -50
 
 /mob/living/carbon/human/species/early_synthetic/binarycheck(mob/H)
 	return TRUE
