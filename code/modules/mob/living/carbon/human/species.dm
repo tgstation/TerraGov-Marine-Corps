@@ -807,17 +807,6 @@
 	warcries = list("neuter" = 'sound/voice/skeleton_warcry.ogg') // AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	namepool = /datum/namepool/skeleton
 
-/datum/species/skeleton/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	//findH.speech_span =
-	//TODO: find skeleton special text that TG uses
-	H.health_threshold_crit = -100
-
-/datum/species/skeleton/post_species_loss(mob/living/carbon/human/H)
-	. = ..()
-	//H.speech_span = initial(H.speech_span)
-	H.health_threshold_crit = -50
-
 
 /datum/species/synthetic
 	name = "Synthetic"
