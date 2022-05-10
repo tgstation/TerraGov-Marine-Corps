@@ -148,3 +148,17 @@
   - qol: changed light uav name to UV-L Iguana
   - qol: changed medium uav name to UV-M Gecko
   - qol: changed heavy uav name to UV-H Komodo
+2022-05-10:
+  TiviPlus:
+  - bugfix: vision will no longer be bugged when a deployable item is undeployed while
+      being used
+  Walarks:
+  - qol: xeno auto-weeding no longer places weeds when standing on weeds
+  - refactor: changes how a xeno being on weeds is determined, shouldn't affect gameplay
+  novaepee:
+  - rscadd: Expand PoS' briefing and make TGMC letters go underneath chair
+  - rscadd: another grinder for chem users to use in PoS
+  - rscadd: Move FC's office to give him more space and be next to CO.
+  - rscadd: Replace old FC's office into chapel.
+  - bugfix: space tiles in PoS' req attempt 2
+  - bugfix: rogue piping

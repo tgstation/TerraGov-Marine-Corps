@@ -1,5 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - qol: "xeno auto-weeding no longer places weeds when standing on weeds"
-  - refactor: "changes how a xeno being on weeds is determined, shouldn't affect gameplay"
