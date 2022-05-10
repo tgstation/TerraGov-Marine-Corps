@@ -1,0 +1,4 @@
+author: "magatsuchi"
+delete-after: True
+changes: 
+  - bugfix: "fixes not being able to suck-start a shotgun (suicide)"
