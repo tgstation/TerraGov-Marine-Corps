@@ -34,7 +34,7 @@
 	var/obj/parent_object = parent
 	if(length(starting_attachments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachments)
-			attach_without_user(attachment = new starting_attachment_type())
+			attach_without_user(attachment = new starting_attachment_type(parent_object))
 
 	update_parent_overlay()
 
