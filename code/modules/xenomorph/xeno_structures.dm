@@ -28,7 +28,7 @@
 			take_damage(70)
 
 /obj/structure/xeno/attack_hand(mob/living/user)
-	balloon_alert(user, "Scrape ineffectively at it")
+	balloon_alert(user, "You only scrape at it")
 	return TRUE
 
 /obj/structure/xeno/flamer_fire_act()
@@ -341,7 +341,7 @@ TUNNEL
 		return
 
 	if(X.a_intent == INTENT_HARM && X == creator)
-		balloon_alert(X, "Filling in tunnel")
+		balloon_alert(X, "Filling in tunnel...")
 		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
@@ -408,7 +408,7 @@ TUNNEL
 		balloon_alert(M, "Crawling interrupted")
 		return
 	if(!targettunnel || !isturf(targettunnel.loc)) //Make sure the end tunnel is still there
-		to_chat(M, span_warning("\The [src] ended unexpectedly, so we return back up.") )
+		balloon_alert(M, "Tunnel ended unexpectedly")
 		return
 	M.forceMove(targettunnel)
 	var/double_check = tgui_alert(M, "Emerge here?", "Tunnel: [targettunnel]", list("Yes","Pick another tunnel"))
@@ -539,9 +539,9 @@ TUNNEL
 
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent == INTENT_HARM && (CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_BUILDER) || X == creator) ) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
-		balloon_alert(X, "Removing \the [src]")
+		balloon_alert(X, "Removing...")
 		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_HOSTILE))
-			balloon_alert(X, "Stop removing \the [src]")
+			balloon_alert(X, "Stopped removing")
 			return
 		playsound(src, "alien_resin_break", 25)
 		deconstruct(TRUE, X)
@@ -560,10 +560,10 @@ TUNNEL
 
 	charging = TRUE
 
-	balloon_alert(X, "Begin refilling")
+	balloon_alert(X, "Refilling...")
 	if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_BUILD))
 		charging = FALSE
-		balloon_alert(X, "Abort refilling")
+		balloon_alert(X, "Aborted refilling")
 		return
 
 	if(X.plasma_stored < XENO_ACID_WELL_FILL_COST)
@@ -683,7 +683,7 @@ TUNNEL
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM && isxenohivelord(X))
-		balloon_alert(X, "Tearing \the [src]")
+		balloon_alert(X, "Destroying...")
 		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
@@ -1238,7 +1238,7 @@ TUNNEL
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM && isxenodrone(X))
-		balloon_alert(X, "Uprooted [src]")
+		balloon_alert(X, "Uprooted the plant")
 		X.do_attack_animation(src)
 		deconstruct(FALSE)
 		return FALSE
@@ -1257,7 +1257,7 @@ TUNNEL
 	var/healing_amount_max_health_scaling = 0.5
 
 /obj/structure/xeno/plant/heal_fruit/on_use(mob/user)
-	balloon_alert(user, "Consuming [src]")
+	balloon_alert(user, "Consuming...")
 	if(!do_after(user, 2 SECONDS, FALSE, src))
 		return FALSE
 	if(!isxeno(user))
@@ -1272,6 +1272,7 @@ TUNNEL
 	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
 	HEAL_XENO_DAMAGE(X,heal_amount)
 	playsound(user, "alien_drool", 25)
+	balloon_alert(X, "Health restored")
 	to_chat(X, span_xenowarning("We feel a sudden soothing chill as [src] tends to our wounds."))
 
 	return ..()
@@ -1285,7 +1286,7 @@ TUNNEL
 	var/sunder_removal = 30
 
 /obj/structure/xeno/plant/armor_fruit/on_use(mob/user)
-	balloon_alert(user, "Consuming [src]")
+	balloon_alert(user, "Consuming...")
 	if(!do_after(user, 2 SECONDS, FALSE, src))
 		return FALSE
 	if(!isxeno(user))
@@ -1305,6 +1306,7 @@ TUNNEL
 		qdel(src)
 		return TRUE
 
+	balloon_alert(user, "Armor restored")
 	to_chat(user, span_xenowarning("We shed our shattered scales as new ones grow to replace them!"))
 	var/mob/living/carbon/xenomorph/X = user
 	X.adjust_sunder(-sunder_removal)
@@ -1333,7 +1335,7 @@ TUNNEL
 		return FALSE
 
 /obj/structure/xeno/plant/plasma_fruit/on_use(mob/user)
-	balloon_alert(user, "Consuming [src]")
+	balloon_alert(user, "Consuming...")
 	if(!do_after(user, 2 SECONDS, FALSE, src))
 		return FALSE
 	if(!isxeno(user))
@@ -1347,6 +1349,7 @@ TUNNEL
 		to_chat(X, span_xenowarning("But our body rejects the fruit, our fury does not build up with a healthy diet!"))
 		return FALSE
 	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
+	balloon_alert(X, "Plasma restored")
 	to_chat(X, span_xenowarning("[src] Restores our plasma reserves, our organism is on overdrive!"))
 	playsound(user, "alien_drool", 25)
 	return ..()
@@ -1400,14 +1403,16 @@ TUNNEL
 	if(!.)
 		return FALSE
 	if(ishuman(user))
+		balloon_alert(user, "Nothing happens")
 		to_chat(user, span_notice("You caress [src]'s petals, nothing happens."))
 		return FALSE
 	if(on_cooldown)
+		balloon_alert(user, "Not ready yet")
 		to_chat(user, span_xenowarning("[src] soft light shimmers, we should give it more time to recover!"))
 		return FALSE
 
 /obj/structure/xeno/plant/stealth_plant/on_use(mob/user)
-	balloon_alert(user, "Shaking [src]")
+	balloon_alert(user, "Shaking...")
 	if(!do_after(user, 2 SECONDS, FALSE, src))
 		return FALSE
 	visible_message(span_danger("[src] releases a burst of glowing pollen!"))
