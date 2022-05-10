@@ -8159,8 +8159,6 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/squads/delta)
 "cdi" = (
-/obj/item/storage/box/sentry,
-/obj/structure/rack,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/repair_bay)
@@ -19675,13 +19673,6 @@
 	},
 /area/mainship/medical/lower_medical)
 "wAa" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/stack/sheet/plasteel/medium_stack,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
