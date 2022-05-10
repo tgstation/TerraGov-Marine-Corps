@@ -115,6 +115,7 @@
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own snowflake back sprites
 
 /obj/item/storage/holster/backholster/rpg/full/Initialize()
 	. = ..()
