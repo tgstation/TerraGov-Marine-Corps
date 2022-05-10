@@ -181,7 +181,7 @@
 	bypass_w_limit = list(/obj/item/weapon/gun/flamer/big_flamer/engineer,)
 	storage_type_limits = list(/obj/item/weapon/gun/flamer/big_flamer/engineer = 1,)
 	///The internal fuel tank
-	var/obj/item/ammo_magazine/flamer_tank/internal/tank = null
+	var/obj/item/ammo_magazine/flamer_tank/internal/tank
 
 /obj/item/storage/holster/backholster/flamer/Initialize()
 	. = ..()
