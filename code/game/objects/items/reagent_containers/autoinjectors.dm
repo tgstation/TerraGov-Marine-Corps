@@ -148,6 +148,20 @@
 	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
 
+/obj/item/reagent_containers/hypospray/autoinjector/alkysine
+	name = "alkysine autoinjector"
+	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain damage."
+	icon_state = "autoinjector-1"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(/datum/reagent/medicine/alkysine = 15)
+
+/obj/item/reagent_containers/hypospray/autoinjector/imidazoline
+	name = "amidazoline autoinjector"
+	desc = "An auto-injector loaded with 3 doses of imidazoline, medicine for fixing eyesight."
+	icon_state = "autoinjector-1"
+	amount_per_transfer_from_this = 10
+	list_reagents = list(/datum/reagent/medicine/alkysine = 30)
+
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
 	desc = "An auto-injector loaded with 3 uses of hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomiting."

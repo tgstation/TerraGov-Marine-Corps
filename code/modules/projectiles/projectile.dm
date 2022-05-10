@@ -894,6 +894,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 				proj.penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
+				add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
 			if(living_hard_armor)
 				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * proj.penetration * 0.01)) //AP reduces a % of hard armor.
 			if(living_soft_armor)

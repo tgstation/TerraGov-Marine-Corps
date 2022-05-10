@@ -44,6 +44,8 @@
 	AddElement(/datum/element/accelerate_on_crossed)
 	if(!swapped)
 		update_neighbours()
+	for(var/mob/living/living_mob in loc.contents)
+		SEND_SIGNAL(living_mob, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, src)
 
 /obj/effect/alien/weeds/Destroy()
 	parent_node = null

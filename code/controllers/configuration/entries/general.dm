@@ -407,8 +407,6 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 /datum/config_entry/flag/is_automatic_balance_on
 	config_entry_value = TRUE
 
-/datum/config_entry/flag/no_advanced_pathfinding
-
 /datum/config_entry/number/hard_deletes_overrun_threshold
 	integer = FALSE
 	min_val = 0
@@ -416,4 +414,12 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/number/hard_deletes_overrun_limit
 	config_entry_value = 0
+	min_val = 0
+
+/datum/config_entry/number/ai_anti_stuck_lag_time_dilation_threshold
+	config_entry_value = 20
+	min_val = 0
+
+/datum/config_entry/number/ai_advanced_pathfinding_lag_time_dilation_threshold
+	config_entry_value = 10
 	min_val = 0

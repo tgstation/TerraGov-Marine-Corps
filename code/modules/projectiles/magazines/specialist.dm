@@ -237,8 +237,8 @@
 // railgun
 
 /obj/item/ammo_magazine/railgun
-	name = "railgun canister (rail projectile)"
-	desc = "A canister holding a projectile to be used inside a railgun."
+	name = "railgun canister (Armor Piercing Discarding Sabot)"
+	desc = "A canister holding a tungsten projectile to be used inside a railgun. APDS is written across the canister, this round will penetrate through most armor, but will not leave much of a hole."
 	caliber = CALIBER_RAILGUN
 	icon_state = "railgun"
 	default_ammo = /datum/ammo/bullet/railgun
@@ -246,6 +246,18 @@
 	reload_delay = 20 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_railgun"
+
+/obj/item/ammo_magazine/railgun/hvap
+	name = "railgun canister (High Velocity Armor Piericing)"
+	desc = "A canister holding a tungsten projectile to be used inside a railgun. HVAP is written across the canister. This round has less punching power than other railgun canister types, but will leave a sizeable hole in the targets armor."
+	icon_state = "railgun_hvap"
+	default_ammo = /datum/ammo/bullet/railgun/hvap
+
+/obj/item/ammo_magazine/railgun/smart
+	name = "railgun canister (Smart Armor Piericing)"
+	desc = "A canister holding a tungsten projectile to be used inside a railgun. SAP is written across the canister. This round has poor punching power due to low velocity for the smart ammunition, but will leave a target significantly staggered and stunned due to the impact."
+	icon_state = "railgun_smart"
+	default_ammo = /datum/ammo/bullet/railgun/smart
 
 // pepperball
 
