@@ -477,17 +477,16 @@
 ///////////////////////////////////// ELECTRONICS /////////////////////////////////////////
 
 /obj/structure/dropship_equipment/electronics
-	equip_category = DROPSHIP_WEAPON
+	equip_category = DROPSHIP_ELECTRONICS
 
 /obj/structure/dropship_equipment/electronics/spotlights
 	name = "spotlight"
 	icon_state = "spotlights"
-	desc = "A set of highpowered spotlights to illuminate large areas. Fits on weapon attach points of dropships. Moving this will require a powerloader."
+	desc = "A set of highpowered spotlights to illuminate large areas. Fits on electronics attach points of dropships. Moving this will require a powerloader."
 	dropship_equipment_flags = IS_INTERACTABLE
 	point_cost = 300
 	var/spotlights_cooldown
-	var/brightness = 5
-	light_range = 10
+	var/brightness = 11
 
 /obj/structure/dropship_equipment/electronics/spotlights/equipment_interact(mob/user)
 	if(spotlights_cooldown > world.time)
@@ -506,13 +505,11 @@
 /obj/structure/dropship_equipment/electronics/spotlights/update_equipment()
 	. = ..()
 	if(ship_base)
-		setDir(ship_base.dir)
 		if(luminosity != brightness)
 			icon_state = "spotlights_off"
 		else
 			icon_state = "spotlights_on"
 	else
-		setDir(initial(dir))
 		icon_state = "spotlights"
 		if(luminosity)
 			set_light(0)
