@@ -1305,13 +1305,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		rotate.Turn(angle)
 		I.transform = rotate
 		add_overlay(I)
-		update_icon()
-		addtimer(CALLBACK(src, .proc/remove_bullet_ping, I), 3, TIMER_CLIENT_TIME)
+		addtimer(CALLBACK(src, .proc/cut_overlay, I), 3, TIMER_CLIENT_TIME)
 
-//removes the bullet ping without mass crashing everyone on screen
-/atom/proc/remove_bullet_ping(image/I)
-	cut_overlay(I)
-	update_icon()
 
 
 #define BULLET_MESSAGE_NO_SHOOTER 0
