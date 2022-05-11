@@ -802,7 +802,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return limb_wound_status & LIMB_WOUND_BANDAGED
 
 /datum/limb/proc/disinfect()
-	if(limb_wound_status & LIMB_WOUND_DISINFECTED || (burn_dam < 20 && brute_dam < 20 && !germ_level))
+	if(limb_wound_status & LIMB_WOUND_DISINFECTED || (burn_dam < 20 && brute_dam < 20))
 		return 0
 	limb_wound_status ^= LIMB_WOUND_DISINFECTED
 	return 1
