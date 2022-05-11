@@ -661,7 +661,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	set category = "Debug"
 	set name = "Delete"
 
-	if(!check_rights(R_SPAWN|R_DEBUG))
+	if(!check_rights(R_DEBUG))
 		return
 
 	admin_delete(A)
