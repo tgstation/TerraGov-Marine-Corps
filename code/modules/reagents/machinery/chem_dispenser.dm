@@ -80,7 +80,7 @@
 /obj/machinery/chem_dispenser/examine(mob/user)
 	. = ..()
 	if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-		to_chat(user, "The battery compartment is open[cell ? " and there's a cell inside" : ""].")
+		. += "The battery compartment is open[cell ? " and there's a cell inside" : ""]."
 
 /obj/machinery/chem_dispenser/process()
 	if (recharge_counter >= 4)
@@ -321,6 +321,11 @@
 		if(beaker)
 			to_chat(user, "Something is already loaded into the machine.")
 			return
+
+		for(var/datum/reagent/X in I.reagents.reagent_list)
+			if(X.medbayblacklist)
+				to_chat(user, span_warning("The chemical dispenser's automatic safety features beep softly, they must have detected a harmful substance in the beaker."))
+				return
 
 		if(I.is_open_container())
 			if(!user.transferItemToLoc(I, src))

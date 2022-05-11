@@ -140,9 +140,8 @@
 /**
 	Hook into the examine of the parent to show additional information about the suit_autodoc
 */
-/datum/component/suit_autodoc/proc/examine(datum/source, mob/user)
+/datum/component/suit_autodoc/proc/examine(datum/source, mob/user, list/details)
 	SIGNAL_HANDLER
-	var/details
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
 		details += "Its burn treatment injector is currently refilling.</br>"
 
@@ -157,9 +156,6 @@
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_PAIN))
 		details += "Its painkiller injector is currently refilling.</br>"
-
-	if(details)
-		to_chat(user, span_danger("[details]"))
 
 
 /**

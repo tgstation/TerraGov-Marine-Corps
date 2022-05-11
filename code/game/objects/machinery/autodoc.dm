@@ -1129,34 +1129,44 @@
 			dat += "<hr>Manual Surgery Interface Unavaliable, Automatic Mode Engaged."
 		else
 			dat += "<hr>Manual Surgery Interface<hr>"
+			dat += "<b>Trauma Surgeries</b>"
+			dat += "<br>"
 			if(isnull(surgeryqueue["brute"]))
 				dat += "<a href='?src=\ref[src];brute=1'>Surgical Brute Damage Treatment</a><br>"
 			if(isnull(surgeryqueue["burn"]))
 				dat += "<a href='?src=\ref[src];burn=1'>Surgical Burn Damage Treatment</a><br>"
+			dat += "<b>Orthopedic Surgeries</b>"
+			dat += "<br>"
+			if(isnull(surgeryqueue["broken"]))
+				dat += "<a href='?src=\ref[src];broken=1'>Broken Bone Surgery</a><br>"
+			if(isnull(surgeryqueue["internal"]))
+				dat += "<a href='?src=\ref[src];internal=1'>Internal Bleeding Surgery</a><br>"
+			if(isnull(surgeryqueue["shrapnel"]))
+				dat += "<a href='?src=\ref[src];shrapnel=1'>Foreign Body Removal Surgery</a><br>"
+			if(isnull(surgeryqueue["missing"]))
+				dat += "<a href='?src=\ref[src];missing=1'>Limb Replacement Surgery</a><br>"
+			dat += "<b>Organ Surgeries</b>"
+			dat += "<br>"
+			if(isnull(surgeryqueue["organdamage"]))
+				dat += "<a href='?src=\ref[src];organdamage=1'>Surgical Organ Damage Treatment</a><br>"
+			if(isnull(surgeryqueue["organgerms"]))
+				dat += "<a href='?src=\ref[src];organgerms=1'>Organ Infection Treatment</a><br>"
+			if(isnull(surgeryqueue["eyes"]))
+				dat += "<a href='?src=\ref[src];eyes=1'>Corrective Eye Surgery</a><br>"
+			dat += "<b>Hematology Treatments</b>"
+			dat += "<br>"
+			if(isnull(surgeryqueue["blood"]))
+				dat += "<a href='?src=\ref[src];blood=1'>Blood Transfer</a><br>"
 			if(isnull(surgeryqueue["toxin"]))
 				dat += "<a href='?src=\ref[src];toxin=1'>Toxin Damage Chelation</a><br>"
 			if(isnull(surgeryqueue["dialysis"]))
 				dat += "<a href='?src=\ref[src];dialysis=1'>Dialysis</a><br>"
-			if(isnull(surgeryqueue["blood"]))
-				dat += "<a href='?src=\ref[src];blood=1'>Blood Transfer</a><br>"
-			if(isnull(surgeryqueue["organgerms"]))
-				dat += "<a href='?src=\ref[src];organgerms=1'>Organ Infection Treatment</a><br>"
-			if(isnull(surgeryqueue["organdamage"]))
-				dat += "<a href='?src=\ref[src];organdamage=1'>Surgical Organ Damage Treatment</a><br>"
-			if(isnull(surgeryqueue["eyes"]))
-				dat += "<a href='?src=\ref[src];eyes=1'>Corrective Eye Surgery</a><br>"
-			if(isnull(surgeryqueue["internal"]))
-				dat += "<a href='?src=\ref[src];internal=1'>Internal Bleeding Surgery</a><br>"
-			if(isnull(surgeryqueue["broken"]))
-				dat += "<a href='?src=\ref[src];broken=1'>Broken Bone Surgery</a><br>"
-			if(isnull(surgeryqueue["missing"]))
-				dat += "<a href='?src=\ref[src];missing=1'>Limb Replacement Surgery</a><br>"
 			if(isnull(surgeryqueue["necro"]))
 				dat += "<a href='?src=\ref[src];necro=1'>Necrosis Removal Surgery</a><br>"
-			if(isnull(surgeryqueue["shrapnel"]))
-				dat += "<a href='?src=\ref[src];shrapnel=1'>Foreign Body Removal Surgery</a><br>"
 			if(isnull(surgeryqueue["limbgerm"]))
 				dat += "<a href='?src=\ref[src];limbgerm=1'>Limb Disinfection Procedure</a><br>"
+			dat += "<b>Special Surgeries</b>"
+			dat += "<br>"
 			if(isnull(surgeryqueue["facial"]))
 				dat += "<a href='?src=\ref[src];facial=1'>Facial Reconstruction Surgery</a><br>"
 			if(isnull(surgeryqueue["open"]))
@@ -1341,14 +1351,14 @@
 	event = 1
 
 /obj/machinery/autodoc_console/examine(mob/living/user)
-	..()
+	. = ..()
 	if(locked)
-		to_chat(user, span_warning("It's currently locked down!"))
+		. += span_warning("It's currently locked down!")
 	if(release_notice)
-		to_chat(user, span_notice("Release notifications are turned on."))
+		. += span_notice("Release notifications are turned on.")
 
 /obj/machinery/autodoc/examine(mob/living/user)
-	..()
+	. = ..()
 	to_chat(user, span_notice("Its metal reservoir contains [stored_metal] of [stored_metal_max] units."))
 	if(!occupant) //Allows us to reference medical files/scan reports for cryo via examination.
 		return
@@ -1358,16 +1368,16 @@
 	if(surgery)
 		active += " Surgical procedures are in progress."
 	if(!hasHUD(user,"medical"))
-		to_chat(user, span_notice("It contains: [occupant].[active]"))
+		. += span_notice("It contains: [occupant].[active]")
 		return
 	var/mob/living/carbon/human/H = occupant
 	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if (!R.fields["name"] == H.real_name)
 			continue
 		if(!(R.fields["last_scan_time"]))
-			to_chat(user, "<span class = 'deptradio'>No scan report on record</span>\n")
+			. += span_deptradio("No scan report on record")
 		else
-			to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[active]</a></span>\n")
+			. += span_deptradio("<a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].[active]</a>")
 		break
 
 /obj/machinery/autodoc/Topic(href, href_list)

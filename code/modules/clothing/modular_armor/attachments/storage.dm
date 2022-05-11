@@ -118,6 +118,21 @@
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 	new /obj/item/ammo_magazine/rifle/m16(storage)
 
+/obj/item/armor_module/storage/ammo_mag/freelancer_two/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/tx11(storage)
+	new /obj/item/ammo_magazine/rifle/tx11(storage)
+	new /obj/item/ammo_magazine/rifle/tx11(storage)
+	new /obj/item/ammo_magazine/rifle/tx11(storage)
+
+/obj/item/armor_module/storage/ammo_mag/freelancer_three/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/tx54(storage)
+	new /obj/item/ammo_magazine/rifle/tx54(storage)
+	new /obj/item/ammo_magazine/rifle/tx54/incendiary(storage)
+	new /obj/item/ammo_magazine/rifle/tx54/incendiary(storage)
+
+
 /obj/item/storage/internal/modular/ammo_mag
 	max_storage_space = 15
 	storage_slots = 4
@@ -195,6 +210,14 @@
 	new /obj/item/storage/pill_bottle/dermaline(storage)
 	new /obj/item/storage/pill_bottle/tramadol(storage)
 
+/obj/item/armor_module/storage/medical/basic/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/packet/bicaridine(storage)
+	new /obj/item/storage/pill_bottle/packet/kelotane(storage)
+	new /obj/item/storage/pill_bottle/packet/tramadol(storage)
+	new /obj/item/stack/medical/splint(storage)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(storage)
+
 /obj/item/storage/internal/modular/medical
 	max_storage_space = 30
 	storage_slots = 5
@@ -234,3 +257,18 @@
 	slowdown = 0
 	show_storage = TRUE
 	flags_attach_features = NONE
+
+/obj/item/armor_module/storage/helmet/som_leader/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
+
+/obj/item/armor_module/storage/helmet/som_vet/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
+	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red(storage)
+
+/obj/item/armor_module/storage/helmet/som/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(storage)

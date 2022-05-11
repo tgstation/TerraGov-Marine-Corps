@@ -39,7 +39,7 @@
 	. = ..()
 	if(dirt_amt)
 		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"
-		to_chat(user, "It holds [dirt_amt] layer\s of [dirt_name].")
+		. += "It holds [dirt_amt] layer\s of [dirt_name]."
 
 /obj/item/tool/shovel/attack_self(mob/user)
 
@@ -173,6 +173,9 @@
 	if(folded)
 		to_chat(user, span_notice("You cannot sharpen the entrenching tool while it is folded."))
 		return
+	if(user.do_actions)
+		to_chat(user, span_notice("You're busy doing something else right now!"))
+		return
 	user.visible_message(span_notice("[user] begins to sharpen the [src] with the [I]."),
 	span_notice("You begin to sharpen the [src] with the [I]."))
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
@@ -186,4 +189,4 @@
 /obj/item/tool/shovel/etool/examine(mob/user)
 	. = ..()
 	if(sharp)
-		to_chat(user, span_notice(" This one has been sharpened and can no longer be folded."))
+		. += span_notice("This one has been sharpened and can no longer be folded.")

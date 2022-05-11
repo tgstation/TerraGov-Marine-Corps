@@ -330,6 +330,8 @@
 		if("FRE2")
 			. = size ? "FRE " : "Freelancer Medic"
 		if("FRE3")
+			. = size ? "FRE " : "Freelancer Veteran"
+		if("FRE4")
 			. = size ? "FRE " : "Freelancer Leader"
 		if("CLF1")
 			. = size ? "CLF " : "CLF Standard"

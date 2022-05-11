@@ -282,21 +282,21 @@
 		if(L.reagent_check(R) != TRUE)
 			if(can_overdose)
 				if(R.overdose_threshold)
-					if(R.volume >= R.overdose_threshold && !R.overdosed)
+					if(R.volume > R.overdose_threshold && !R.overdosed)
 						R.overdosed = TRUE
 						need_mob_update += R.on_overdose_start(L, quirks)
 				if(R.overdose_crit_threshold)
-					if(R.volume >= R.overdose_crit_threshold && !R.overdosed_crit)
+					if(R.volume > R.overdose_crit_threshold && !R.overdosed_crit)
 						R.overdosed_crit = TRUE
 						need_mob_update += R.on_overdose_crit_start(L, quirks)
 				if(R.addiction_threshold)
-					if(R.volume >= R.addiction_threshold && !is_type_in_list(R, cached_addictions))
+					if(R.volume > R.addiction_threshold && !is_type_in_list(R, cached_addictions))
 						var/datum/reagent/new_reagent = new R.type()
 						cached_addictions.Add(new_reagent)
-				if(R.volume < R.overdose_threshold && R.overdosed && R.overdose_threshold)
+				if(R.volume <= R.overdose_threshold && R.overdosed && R.overdose_threshold)
 					R.overdosed = FALSE
 					need_mob_update += R.on_overdose_stop(L, quirks)
-				if(R.volume < R.overdose_crit_threshold && R.overdosed_crit && R.overdose_crit_threshold)
+				if(R.volume <= R.overdose_crit_threshold && R.overdosed_crit && R.overdose_crit_threshold)
 					R.overdosed_crit = FALSE
 				if(R.overdosed)
 					need_mob_update += R.overdose_process(L, quirks) //Small OD
@@ -519,9 +519,11 @@
 		var/datum/reagent/R = reagent
 		switch(react_type)
 			if("LIVING")
+				var/mob/living/L = A
+				if(!R.reactindeadmob && L.stat == DEAD)
+					return
 				var/touch_protection = 0
 				if(method == VAPOR)
-					var/mob/living/L = A
 					touch_protection = CLAMP01(1 -  L.get_permeability_protection())
 				R.reaction_mob(A, method, R.volume * volume_modifier, show_message, touch_protection)
 			if("TURF")

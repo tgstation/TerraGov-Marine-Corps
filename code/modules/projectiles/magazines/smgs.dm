@@ -9,7 +9,7 @@
 //M25 SMG ammo
 
 /obj/item/ammo_magazine/smg/m25
-	name = "\improper MR-25 magazine (10x20mm)"
+	name = "\improper SMG-25 magazine (10x20mm)"
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "m25"
@@ -17,22 +17,24 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_magazine/smg/m25/ap
-	name = "\improper MR-25 AP magazine (10x20mm)"
+	name = "\improper SMG-25 AP magazine (10x20mm)"
 	icon_state = "m25_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
 	icon_state_mini = "mag_smg_green"
+	bonus_overlay = "m25_ap"
 
 /obj/item/ammo_magazine/smg/m25/extended
-	name = "\improper MR-25 extended magazine (10x20mm)"
+	name = "\improper SMG-25 extended magazine (10x20mm)"
 	icon_state = "m25_ext"
 	max_rounds = 90
 	icon_state_mini = "mag_smg_yellow"
+	bonus_overlay = "m25_ex"
 
 //-------------------------------------------------------
-//T-19 Machinepistol ammo
+//MP-19 Machinepistol ammo
 
 /obj/item/ammo_magazine/smg/standard_machinepistol
-	name = "\improper T-19 machinepistol magazine (10x20mm)"
+	name = "\improper MP-19 machinepistol magazine (10x20mm)"
 	desc = "A 10x20mm caseless machine pistol magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t19"
@@ -40,10 +42,10 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 //-------------------------------------------------------
-//T-90 SMG ammo
+//SMG-90 SMG ammo
 
 /obj/item/ammo_magazine/smg/standard_smg
-	name = "\improper T-90 submachine gun magazine (10x20mm)"
+	name = "\improper SMG-90 submachine gun magazine (10x20mm)"
 	desc = "A 10x20mm caseless submachine gun magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t90"
@@ -52,11 +54,11 @@
 	icon_state_mini = "mag_t90"
 
 //-------------------------------------------------------
-//MP27, based on the MP27, based on the M7.
+//SMG-27, based on the SMG-27, based on the M7.
 
 /obj/item/ammo_magazine/smg/mp7
-	name = "\improper MP27 magazine (4.6x30mm)"
-	desc = "A 4.6mm magazine for the MP27."
+	name = "\improper SMG-27 magazine (4.6x30mm)"
+	desc = "A 4.6mm magazine for the SMG-27."
 	default_ammo = /datum/ammo/bullet/smg/ap
 	caliber = CALIBER_46X30
 	icon_state = "mp7"
@@ -85,6 +87,7 @@
 	caliber = CALIBER_762X25
 	icon_state = "ppsh"
 	max_rounds = 42
+	bonus_overlay = "ppsh_standard"
 
 
 /obj/item/ammo_magazine/smg/ppsh/extended
@@ -92,6 +95,7 @@
 	icon_state = "ppsh_ext"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 78
+	bonus_overlay = "ppsh_ex"
 	scatter_mod = 5
 	scatter_unwielded_mod = 10
 	wield_delay_mod = 0.2 SECONDS
@@ -101,8 +105,8 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/ammo_magazine/smg/uzi
-	name = "\improper MP-2 magazine (9mm)"
-	desc = "A magazine for the MP-2."
+	name = "\improper SMG-2 magazine (9mm)"
+	desc = "A magazine for the SMG-2."
 	caliber = CALIBER_9X21
 	icon_state = "uzi"
 	max_rounds = 32

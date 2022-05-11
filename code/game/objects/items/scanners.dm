@@ -1,9 +1,4 @@
-GLOBAL_LIST_INIT(known_implants, list(
-	/obj/item/implant/neurostim,
-	/obj/item/implant/chem,
-	/obj/item/implant/cloak,
-	/obj/item/weapon/mantisblade,
-))
+GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 /*
 CONTAINS:

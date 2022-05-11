@@ -172,8 +172,8 @@
 	name = "\improper Tramadol bottle"
 	desc = "A small bottle. Contains Tramadol - Used as a basic painkiller."
 	icon_state = "bottle1"
-	volume = 20
-	list_reagents = list(/datum/reagent/medicine/tramadol = 20)
+	volume = 60
+	list_reagents = list(/datum/reagent/medicine/tramadol = 60)
 
 /obj/item/reagent_containers/glass/bottle/oxycodone
 	name = "\improper Oxycodone bottle"
@@ -278,6 +278,9 @@
 	desc = "A small bottle. Contains 10 units of lemoline, a reagent used in the creation of advanced medicine."
 	icon_state = "bottle-5"
 	list_reagents = list(/datum/reagent/medicine/lemoline = 10)
+
+/obj/item/reagent_containers/glass/bottle/lemoline/doctor
+	list_reagents = list(/datum/reagent/medicine/lemoline = 30)
 
 /obj/item/reagent_containers/glass/bottle/doctor_delight
 	name = "\improper Doctor's Delight bottle"

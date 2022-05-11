@@ -37,6 +37,22 @@
 	icon_state = "vest_black"
 	storage = /obj/item/storage/internal/vest
 
+/obj/item/armor_module/storage/uniform/black_vest/som/Initialize()
+	. = ..()
+	new /obj/item/binoculars(storage)
+	new /obj/item/tool/crowbar/red(storage)
+	new /obj/item/radio(storage)
+	new /obj/item/tool/extinguisher/mini(storage)
+	new /obj/item/weapon/gun/pistol/standard_pocketpistol(storage)
+
+/obj/item/armor_module/storage/uniform/black_vest/som_vet/Initialize()
+	. = ..()
+	new /obj/item/tool/crowbar/red(storage)
+	new /obj/item/radio(storage)
+	new /obj/item/tool/extinguisher/mini(storage)
+	new /obj/item/ammo_magazine/handful/buckshot(storage)
+	new /obj/item/ammo_magazine/handful/buckshot(storage)
+
 /obj/item/storage/internal/vest
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL
@@ -105,6 +121,15 @@
 	desc = "A clean white Nylon vest with large pockets specially designed for holding common medical supplies."
 	storage = /obj/item/storage/internal/white_vest/medic
 
+/obj/item/armor_module/storage/uniform/white_vest/medic/som/Initialize()
+	. = ..()
+	new /obj/item/roller(storage)
+	new /obj/item/bodybag/cryobag(storage)
+	new /obj/item/tweezers (storage)
+	new /obj/item/storage/pill_bottle/spaceacillin(storage)
+	new /obj/item/storage/pill_bottle/alkysine(storage)
+	new /obj/item/storage/pill_bottle/imidazoline(storage)
+
 /obj/item/storage/internal/white_vest/medic
 	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
 	can_hold = list(
@@ -156,6 +181,14 @@
 /obj/item/armor_module/storage/uniform/holster/freelancer/Initialize()
 	. = ..()
 	new /obj/item/weapon/gun/pistol/g22(storage)
+
+/obj/item/armor_module/storage/uniform/holster/vp/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/vp70(storage)
+
+/obj/item/armor_module/storage/uniform/holster/highpower/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/highpower(storage)
 
 /obj/item/storage/internal/holster
 	storage_slots = 1

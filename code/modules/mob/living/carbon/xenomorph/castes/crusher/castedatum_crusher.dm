@@ -32,7 +32,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 70, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 80, "rad" = 80, "fire" = 60, "acid" = 80)
+	soft_armor = list("melee" = 70, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 100, "bio" = 80, "rad" = 80, "fire" = 60, "acid" = 80)
 
 	// *** Crusher Abilities *** //
 	stomp_damage = 45
@@ -81,7 +81,7 @@
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = XENO_BOMB_RESIST_3, "bio" = 90, "rad" = 90, "fire" = 65, "acid" = 90)
+	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = 100, "bio" = 90, "rad" = 90, "fire" = 65, "acid" = 90)
 
 	// *** Abilities *** //
 	stomp_damage = 50
@@ -110,7 +110,7 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 80, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = XENO_BOMB_RESIST_3, "bio" = 95, "rad" = 95, "fire" = 70, "acid" = 95)
+	soft_armor = list("melee" = 80, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 100, "bio" = 95, "rad" = 95, "fire" = 70, "acid" = 95)
 
 	// *** Abilities *** //
 	stomp_damage = 55
@@ -139,7 +139,7 @@
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)
+	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)
 	// *** Abilities *** //
 	stomp_damage = 60
 	crest_toss_distance = 6
@@ -165,7 +165,7 @@
 	max_health = 400
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = XENO_BOMB_RESIST_3, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)
+	soft_armor = list("melee" = 90, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 75, "acid" = 100)
 	// *** Abilities *** //
 	stomp_damage = 60
 	crest_toss_distance = 6

@@ -1,16 +1,27 @@
-/mob/living/carbon/human/proc/do_quick_equip()
-	SIGNAL_HANDLER_DOES_SLEEP
+///async signal wrapper for do_quick_equip
+/mob/living/carbon/human/proc/async_do_quick_equip()
+	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	INVOKE_ASYNC(src, .proc/do_quick_equip)
 
-	if(incapacitated() || lying_angle || istype(loc, /obj/vehicle/multitile/root/cm_armored))
+///async signal wrapper for do_quick_equip
+/mob/living/carbon/human/proc/async_do_quick_equip_alt()
+	SIGNAL_HANDLER
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	INVOKE_ASYNC(src, .proc/do_quick_equip, TRUE)
+
+/// runs equip, if passed use_alternate = TRUE will try to use the alternate preference slot
+/mob/living/carbon/human/proc/do_quick_equip(use_alternate = FALSE)
+	if(incapacitated() || lying_angle)
 		return
 
+	var/slot_requested = use_alternate ?  client?.prefs?.preferred_slot_alt : client?.prefs?.preferred_slot
 	var/obj/item/I = get_active_held_item()
 	if(!I)
 		if(next_move > world.time)
 			return
-		if(client?.prefs?.preferred_slot)
-			if(draw_from_slot_if_possible(client.prefs.preferred_slot))
+		if(slot_requested)
+			if(draw_from_slot_if_possible(slot_requested))
 				next_move = world.time + 1
 				return
 		for(var/slot in SLOT_DRAW_ORDER)
@@ -21,8 +32,8 @@
 		if(s_active && s_active.can_be_inserted(I))
 			s_active.handle_item_insertion(I, FALSE, src)
 			return
-		if(client?.prefs?.preferred_slot)
-			if(equip_to_slot_if_possible(I, client.prefs.preferred_slot, FALSE, FALSE, FALSE))
+		if(slot_requested)
+			if(equip_to_slot_if_possible(I, slot_requested, FALSE, FALSE, FALSE))
 				return
 		if(!equip_to_appropriate_slot(I, FALSE))
 			return
@@ -394,6 +405,10 @@
 		if(SLOT_IN_R_POUCH)
 			var/obj/item/storage/S = r_store
 			S.handle_item_insertion(W, FALSE, src)
+		if(SLOT_IN_ACCESSORY)
+			var/obj/item/armor_module/storage/U = w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
+			var/obj/item/storage/S = U.storage
+			S.handle_item_insertion(W, FALSE, src)
 		else
 			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
 
@@ -448,6 +463,12 @@
 			return s_store
 		if(SLOT_IN_ACCESSORY)
 			return w_uniform
+		if(SLOT_IN_L_POUCH)
+			return l_store
+		if(SLOT_IN_R_POUCH)
+			return r_store
+		if(SLOT_IN_HEAD)
+			return head
 
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/I, mob/M, slot_to_process)

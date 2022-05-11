@@ -20,6 +20,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	hud_type = /datum/hud/ghost
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	dextrous = TRUE
+	status_flags = GODMODE | INCORPOREAL
 
 	initial_language_holder = /datum/language_holder/universal
 	var/atom/movable/following = null
@@ -237,6 +238,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/mob/dead/observer/ghost = new(src)
 	var/turf/T = get_turf(src)
 
+	animate(client, pixel_x = 0, pixel_y = 0)
+
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		ghost.icon = H.stand_icon
@@ -276,6 +279,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 /mob/living/ghostize(can_reenter_corpse = TRUE, aghosting = FALSE)
 	if(aghosting)
 		set_afk_status(MOB_AGHOSTED)
+	reset_perspective()
 	. = ..()
 	if(!. || can_reenter_corpse)
 		return

@@ -85,12 +85,11 @@
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	. = ..()
 	if(user != loc)
-
 		return
 	if(modded)
-		to_chat(user, span_warning(" Fuel faucet is wrenched open, leaking the fuel!"))
+		. += span_warning(" Fuel faucet is wrenched open, leaking the fuel!")
 	if(rig)
-		to_chat(user, span_notice("There is some kind of device rigged to the tank."))
+		. += span_notice("There is some kind of device rigged to the tank.")
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand(mob/living/user)
 	. = ..()

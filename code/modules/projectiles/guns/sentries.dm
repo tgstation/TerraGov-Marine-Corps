@@ -32,7 +32,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
 
 /obj/item/storage/box/sentry
-	name = "\improper UA 571-C sentry crate"
+	name = "\improper ST-571 sentry crate"
 	desc = "A large case containing all you need to set up an automated sentry."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
@@ -55,7 +55,7 @@
 	new /obj/item/ammo_magazine/sentry(src)
 
 /obj/item/weapon/gun/sentry/big_sentry
-	name = "\improper UA 571-C sentry gun"
+	name = "\improper ST-571 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a M30 autocannon and a 500-round drum magazine."
 	icon_state = "sentry"
 
@@ -106,8 +106,8 @@
 	sentry_iff_signal = TGMC_REBEL_IFF
 
 /obj/item/storage/box/minisentry
-	name = "\improper UA-580 point defense sentry crate"
-	desc = "A large case containing all you need to set up an UA-580 point defense sentry."
+	name = "\improper ST-580 point defense sentry crate"
+	desc = "A large case containing all you need to set up an ST-580 point defense sentry."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
 	w_class = WEIGHT_CLASS_HUGE
@@ -124,7 +124,7 @@
 	new /obj/item/ammo_magazine/minisentry(src)
 
 /obj/item/weapon/gun/sentry/mini
-	name = "\improper UA-580 point defense sentry"
+	name = "\improper ST-580 point defense sentry"
 	desc = "A deployable, automated turret with AI targeting capabilities. This is a lightweight portable model meant for rapid deployment and point defense. Armed with an light, high velocity machine gun and a 100-round drum magazine."
 	icon_state = "minisentry"
 
@@ -145,7 +145,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
 /obj/item/weapon/gun/sentry/premade
-	name = "UA-577 Gauss Turret"
+	name = "SG-577 Gauss Turret"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
 	icon_state = "sentry"
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
@@ -159,7 +159,7 @@
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
 /obj/item/weapon/gun/sentry/premade/dumb
-	name = "\improper Modified UA 571-C sentry gun"
+	name = "\improper Modified ST-571 sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	ammo_datum_type = /datum/ammo/bullet/turret/dumb
@@ -169,13 +169,13 @@
 	turret_flags = TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
 
 /obj/item/weapon/gun/sentry/premade/dumb/hostile
-	name = "malfunctioning UA 571-C sentry gun"
+	name = "malfunctioning ST-571 sentry gun"
 	desc = "Oh god oh fuck."
 	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_IMMOBILE|TURRET_RADIAL
 	sentry_iff_signal = NONE
 
 /obj/item/weapon/gun/sentry/premade/canterbury
-	name = "UA-577 Gauss Dropship Turret"
+	name = "SG-577 Gauss Dropship Turret"
 	ammo_datum_type = /datum/ammo/bullet/turret
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 

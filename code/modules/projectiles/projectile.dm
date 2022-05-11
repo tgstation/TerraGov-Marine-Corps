@@ -41,6 +41,10 @@
 	light_power = 2
 	light_color = COLOR_VERY_SOFT_YELLOW
 
+	///greyscale support
+	greyscale_config = null
+	greyscale_colors = null
+
 	var/hitsound = null
 	var/datum/ammo/ammo //The ammo data which holds most of the actual info.
 
@@ -143,6 +147,12 @@
 /obj/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
 	ammo = ispath(ammo_datum) ? GLOB.ammo_list[ammo_datum] : ammo_datum
 	name 		= ammo.name
+
+	///sets greyscale for the projectile if it has been specified by the ammo datum
+	if (ammo.projectile_greyscale_config && ammo.projectile_greyscale_colors)
+		set_greyscale_config(ammo.projectile_greyscale_config)
+		set_greyscale_colors(ammo.projectile_greyscale_colors)
+
 	icon_state 	= ammo.icon_state
 	damage 		= ammo.damage + bonus_damage //Mainly for emitters.
 	penetration = ammo.penetration
@@ -279,7 +289,7 @@
 	GLOB.round_statistics.total_projectiles_fired++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_projectiles_fired")
 
-	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+	if(ammo.flags_ammo_behavior & AMMO_BALLISTIC && !recursivity)
 		GLOB.round_statistics.total_bullets_fired++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullets_fired")
 		if(ammo.bonus_projectiles_amount)
@@ -291,7 +301,7 @@
 	if(ammo.bonus_projectiles_amount && !recursivity) //Recursivity check in case the bonus projectiles have bonus projectiles of their own. Let's not loop infinitely.
 		ammo.fire_bonus_projectiles(src, shooter, source, range, speed, dir_angle, target)
 
-	if(shooter.Adjacent(target) && target.projectile_hit(src))
+	if(shooter.Adjacent(target) && target?.projectile_hit(src))
 		target.do_projectile_hit(src)
 		qdel(src)
 		return
@@ -318,6 +328,9 @@
 		if(PROJECTILE_FROZEN)
 			return
 
+	if(QDELETED(src))
+		return
+
 	if(!suppress_light && ammo.bullet_color)
 		set_light_color(ammo.bullet_color)
 		set_light_on(TRUE)
@@ -339,6 +352,9 @@
 			return PROCESS_KILL
 		if(PROJECTILE_FROZEN)
 			return PROCESS_KILL
+
+	if(QDELETED(src))
+		return PROCESS_KILL
 
 	if(ammo.flags_ammo_behavior & SPECIAL_PROCESS)
 		ammo.ammo_process(src, damage)
@@ -465,10 +481,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					y_pixel_dist_travelled += pixel_moves_until_crossing_y_border * y_offset
 				end_of_movement = i
 				break
-			if(HAS_TRAIT(turf_crossed_by, TRAIT_TURF_FREEZE_BULLET))
+			if(HAS_TRAIT(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION))
+				SEND_SIGNAL(turf_crossed_by, COMSIG_TURF_PROJECTILE_MANIPULATED, src)
+				if(HAS_TRAIT_FROM(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
+					return
 				RegisterSignal(turf_crossed_by, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
 				permutated.Cut()
-				STOP_PROCESSING(SSprojectiles, src)
 				return PROJECTILE_FROZEN
 			if(turf_crossed_by == original_target_turf && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE)
 				last_processed_turf = turf_crossed_by
@@ -527,7 +545,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(scan_a_turf(next_turf, movement_dir))
 			end_of_movement = i
 			break
-		if(HAS_TRAIT(next_turf, TRAIT_TURF_FREEZE_BULLET))
+		if(HAS_TRAIT(next_turf, TRAIT_TURF_BULLET_MANIPULATION))
+			SEND_SIGNAL(next_turf, COMSIG_TURF_PROJECTILE_MANIPULATED, src)
+			if(HAS_TRAIT_FROM(next_turf, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
+				return
 			RegisterSignal(next_turf, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
 			permutated.Cut()
 			return PROJECTILE_FROZEN
@@ -974,7 +995,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	x_offset = round(sin(dir_angle), 0.01)
 	y_offset = round(cos(dir_angle), 0.01)
-	if(projectile_batch_move() == PROJECTILE_FROZEN)
+	if(projectile_batch_move(!recursivity) == PROJECTILE_FROZEN)
 		permutated.Cut()
 		var/atom/movable/hitscan_projectile_effect/laser_effect = new /atom/movable/hitscan_projectile_effect(PROJ_ABS_PIXEL_TO_TURF(apx, apy, z), dir_angle, apx % 32 - 16, apy % 32 - 16, 1.01, effect_icon)
 		RegisterSignal(loc, COMSIG_TURF_RESUME_PROJECTILE_MOVE, .proc/resume_move)
@@ -1073,8 +1094,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				ammo.on_hit_turf(turf_crossed_by, src)
 				end_of_movement = TRUE
 				break
-			if(HAS_TRAIT(turf_crossed_by, TRAIT_TURF_FREEZE_BULLET))
+			if(HAS_TRAIT(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION))
+				SEND_SIGNAL(turf_crossed_by, COMSIG_TURF_PROJECTILE_MANIPULATED, src)
 				QDEL_LIST_IN(laser_effects, 1)
+				if(HAS_TRAIT_FROM(turf_crossed_by, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
+					return
 				forceMove(turf_crossed_by)
 				return PROJECTILE_FROZEN
 			for(var/atom/movable/thing_to_uncross AS in uncross_scheduled) //We are leaving turf_crossed_by now.
@@ -1120,8 +1144,11 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			ammo.do_at_max_range(src)
 			end_of_movement = TRUE
 			break
-		if(HAS_TRAIT(next_turf, TRAIT_TURF_FREEZE_BULLET))
+		if(HAS_TRAIT(next_turf, TRAIT_TURF_BULLET_MANIPULATION))
+			SEND_SIGNAL(next_turf, COMSIG_TURF_PROJECTILE_MANIPULATED, src)
 			QDEL_LIST_IN(laser_effects, 1)
+			if(HAS_TRAIT_FROM(next_turf, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT))
+				return
 			forceMove(next_turf)
 			return PROJECTILE_FROZEN
 		if(first_projectile)
@@ -1178,7 +1205,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/human/embed_projectile_shrapnel(obj/projectile/proj)
 	var/datum/limb/affected_limb = get_limb(check_zone(proj.def_zone))
-	if(affected_limb.limb_status & LIMB_DESTROYED)
+	if(affected_limb.limb_status & (LIMB_DESTROYED|LIMB_ROBOT))
 		return
 	return ..()
 

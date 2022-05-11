@@ -56,16 +56,14 @@
 		icon_state += "_empty"
 
 
-/obj/item/defibrillator/examine(mob/living/carbon/human/user)
+/obj/item/defibrillator/examine(mob/user)
 	. = ..()
-	maybe_message_recharge_hint(user)
+	. += maybe_message_recharge_hint()
 
 
 /**
  * Message user with a hint to recharge defibrillator
  * and how to do it if the battery is low.
- * Arguments:
- * user: user to message
 */
 /obj/item/defibrillator/proc/maybe_message_recharge_hint(mob/living/carbon/human/user)
 	if(!dcell)
@@ -79,7 +77,7 @@
 
 	if(!message)
 		return
-	to_chat(user, span_notice("[message] You can click-drag defibrillator on corpsman backpack to recharge it."))
+	return span_notice("[message] You can click-drag defibrillator on corpsman backpack to recharge it.")
 
 
 /obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
@@ -159,7 +157,7 @@
 	if(skill < SKILL_MEDICAL_PRACTICED)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
-		var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_MEDICAL_PRACTICED - skill ) ) // 3 seconds with medical skill, 5 without
+		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill) // 3 seconds with medical skill, 5 without
 		if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
 			return
 	else
@@ -173,7 +171,7 @@
 		return
 	if(dcell.charge <= charge_cost)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted. Cannot analyze nor administer shock."))
-		maybe_message_recharge_hint(user)
+		to_chat(user, maybe_message_recharge_hint())
 		return
 	if(H.stat != DEAD)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Vital signs detected. Aborting."))
@@ -183,7 +181,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead. No remedy possible."))
 		return
 
-	if(!H.has_working_organs() && !isrobot(H))
+	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
@@ -230,7 +228,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much. No remedy possible."))
 		return
 
-	if(!H.has_working_organs() && !isrobot(H))
+	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 

@@ -22,6 +22,7 @@
 
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
+	flags_inventory = NOQUICKEQUIP
 
 /obj/item/clothing/Initialize()
 	. = ..()

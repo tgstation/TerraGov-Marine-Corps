@@ -19,6 +19,7 @@
 	name = "box of 10x26.5mm"
 	desc = "A box containing 100 rounds of 10x26.5mm caseless."
 	caliber = CALIBER_10x265_CASELESS
+	icon_state = "box_10x265mm"
 	default_ammo = /datum/ammo/bullet/rifle/standard_br
 	current_rounds = 100
 	max_rounds = 100
@@ -43,19 +44,30 @@
 
 /obj/item/ammo_magazine/packet/p492x34mm
 	name = "box of 4.92x34mm"
-	desc = "A box containing 210 rounds of 4.92x34mm caseless.."
+	desc = "A box containing 210 rounds of 4.92x34mm caseless."
 	caliber = CALIBER_492X34_CASELESS
 	icon_state = "box_492x34mm"
 	default_ammo = /datum/ammo/bullet/rifle/hv
+	current_rounds = 210
 	max_rounds = 210
 
+/obj/item/ammo_magazine/packet/p86x70mm
+	name = "box of 8.6x70mm"
+	desc = "A box containing 50 rounds of 8.6x70mm caseless."
+	caliber = CALIBER_86X70
+	icon_state = "box_86x70mm"
+	default_ammo = /datum/ammo/bullet/sniper/pfc
+	current_rounds = 50
+	max_rounds = 50
+
 /obj/item/ammo_magazine/packet/t25
-	name = "box of 10x26mm (T-25)"
-	desc = "A box containing 320 rounds of 10x26mm caseless tuned for a T-25 smartrifle. It cannot be used for T-29 drums!"
+	name = "box of 10x26mm high-pressure"
+	desc = "A box containing 300 rounds of 10x26mm 'HP' caseless tuned for a smartgun."
 	icon_state = "box_t25"
-	default_ammo = /datum/ammo/bullet/smartgun/smartrifle
+	default_ammo = /datum/ammo/bullet/smartmachinegun
 	caliber = CALIBER_10x26_CASELESS
-	max_rounds = 320
+	current_rounds = 300
+	max_rounds = 300
 
 // pistol packets
 

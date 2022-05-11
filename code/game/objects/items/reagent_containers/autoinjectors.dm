@@ -22,11 +22,11 @@
 		ENABLE_BITFIELD(reagents.reagent_flags, DRAWABLE)
 
 /obj/item/reagent_containers/hypospray/autoinjector/examine(mob/user)
-	..()
+	. = ..()
 	if(reagents && reagents.reagent_list.len)
-		to_chat(user, span_notice("It is currently loaded."))
+		. += span_notice("It is currently loaded.")
 	else
-		to_chat(user, span_notice("It is spent."))
+		. += span_notice("It is spent.")
 
 /obj/item/reagent_containers/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
@@ -147,6 +147,20 @@
 	icon_state = "autoinjector-1"
 	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/spaceacillin = 15)
+
+/obj/item/reagent_containers/hypospray/autoinjector/alkysine
+	name = "alkysine autoinjector"
+	desc = "An auto-injector loaded with 3 doses of alkysine, long-living medicine for fixing brain damage."
+	icon_state = "autoinjector-1"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(/datum/reagent/medicine/alkysine = 15)
+
+/obj/item/reagent_containers/hypospray/autoinjector/imidazoline
+	name = "amidazoline autoinjector"
+	desc = "An auto-injector loaded with 3 doses of imidazoline, medicine for fixing eyesight."
+	icon_state = "autoinjector-1"
+	amount_per_transfer_from_this = 10
+	list_reagents = list(/datum/reagent/medicine/alkysine = 30)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
