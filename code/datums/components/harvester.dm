@@ -21,8 +21,9 @@
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	reagent_select_action = new
 	var/obj/item/item_parent = parent
+
+	reagent_select_action = new
 	item_parent.actions += reagent_select_action
 
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
