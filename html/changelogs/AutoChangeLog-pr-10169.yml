@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - bugfix: "Disguised Hunter now appears above objects (e.g. weeds) regardless of what it is disguised as."
