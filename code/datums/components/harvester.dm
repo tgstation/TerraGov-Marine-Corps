@@ -108,11 +108,9 @@
 
 ///Handles behavior when activating the weapon
 /datum/component/harvester/proc/activate_blade_async(datum/source, mob/user)
-	var/obj/item/item_parent = parent
-	var/reagent_name = initial(selected_reagent.name)
 
 	if(loaded_reagent)
-		user.balloon_alert(user, "powered with [initial(loaded_reagent.name)]")
+		user.balloon_alert(user, "Loaded: [initial(loaded_reagent.name)]")
 		return
 
 	if(!selected_reagent)
@@ -120,6 +118,7 @@
 		return
 
 	var/use_amount = loadable_reagents[selected_reagent]
+	var/reagent_name = initial(selected_reagent.name)
 
 	if(loaded_reagents[selected_reagent] < use_amount)
 		user.balloon_alert(user, "[reagent_name]: not enough")
@@ -137,7 +136,7 @@
 	loaded_reagents[selected_reagent] -= use_amount
 	if(!loaded_reagents[selected_reagent])
 		loaded_reagents -= selected_reagent
-	user.balloon_alert(user, "powered with [reagent_name]")
+	user.balloon_alert(user, "Loaded: [reagent_name]")
 
 ///Handles behavior when attacking a mob
 /datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
