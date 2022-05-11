@@ -173,6 +173,9 @@
 	if(folded)
 		to_chat(user, span_notice("You cannot sharpen the entrenching tool while it is folded."))
 		return
+	if(user.do_actions)
+		to_chat(user, span_notice("You're busy doing something else right now!"))
+		return
 	user.visible_message(span_notice("[user] begins to sharpen the [src] with the [I]."),
 	span_notice("You begin to sharpen the [src] with the [I]."))
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))

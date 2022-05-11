@@ -7,49 +7,36 @@
 	if(status_flags & (INCORPOREAL|GODMODE))
 		return
 
-	if(severity == EXPLODE_HEAVY || severity == EXPLODE_DEVASTATE)
-		if(eaten_mob)
-			eaten_mob.ex_act(severity + 1) //Old devour code? higher = weaker
 
 	var/bomb_armor = soft_armor.getRating("bomb")
-	var/bomb_armor_multiplier = 0 //Just armor level
+	var/bomb_effective_armor = (bomb_armor/100)*get_sunder()
+	var/bomb_damage_multiplier = max(0, 1 - bomb_effective_armor)
+	var/bomb_slow_multiplier = max(0, 1 - 3.5*bomb_effective_armor)
+	var/bomb_sunder_multiplier = max(0, 1 - bomb_effective_armor)
 
-	if(severity == EXPLODE_DEVASTATE && bomb_armor < XENO_BOMB_RESIST_1)
+
+	if(bomb_armor >= 100)
+		return //immune
+
+	//lowered to account for new armor values but keep old gibs
+	//probs needs to be a define somewhere
+	var/gib_min_armor = 10
+	if(severity == EXPLODE_DEVASTATE && bomb_armor < gib_min_armor)
 		return gib()    //Gibs unprotected benos
 
-	switch(bomb_armor)
-		if(XENO_BOMB_RESIST_4 to INFINITY)
-			bomb_armor_multiplier = 4
-		if(XENO_BOMB_RESIST_3 to XENO_BOMB_RESIST_4)
-			bomb_armor_multiplier = 3
-		if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
-			bomb_armor_multiplier = 2
-		if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
-			bomb_armor_multiplier = 1
-		else
-			bomb_armor_multiplier = 0 //Most beno are here
-
 	//Slowdown and stagger
-	var/ex_slowdown = 2 + (4 - severity) - bomb_armor_multiplier
+	var/ex_slowdown = (2 + (4 - severity)) * bomb_slow_multiplier
+
 	add_slowdown(max(0, ex_slowdown)) //Slowdown 2 for sentiel from nade
 	adjust_stagger(max(0, ex_slowdown - 2)) //Stagger 2 less than slowdown
-	if(bomb_armor_multiplier > 3)
-		return //XENO_BOMB_RESIST_4 only gets slowdown
 
 	//Sunder
-	var/sunder_loss = 50*(3 - severity) - 5*bomb_armor_multiplier
-	if(severity == EXPLODE_DEVASTATE)
-		sunder_loss = sunder_loss - 5*bomb_armor_multiplier //For big boom armor matters more
+	var/sunder_loss = 50*(3 - severity) * bomb_sunder_multiplier
 	adjust_sunder(max(0, sunder_loss))
 
 	//Damage
-
-	//Prae gets 80 damage at base from light ex (nade)
-	//  120 for heavy (CAS minirocket), 160 for devastating (CAS rocket epicenter)
-	//Queen gets 20 less in each case
-	var/ex_damage = max(0, 50 + 40*(4 - severity) - 10*bomb_armor_multiplier)
-	// Add up to 20 random damage
-	ex_damage = ex_damage + rand(0, 10)*2
+	var/ex_damage = 40 + rand(0, 20) + 50*(4 - severity)  //changed so overall damage stays similar
+	ex_damage *= bomb_damage_multiplier
 
 	apply_damage(ex_damage/2, BRUTE, updating_health = TRUE)
 	apply_damage(ex_damage/2, BURN, updating_health = TRUE)

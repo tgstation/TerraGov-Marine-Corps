@@ -634,7 +634,8 @@ below 100 is not dizzy
 		return
 
 	update_sight()
-	animate(client, pixel_x = 0, pixel_y = 0)
+	if (stat == DEAD)
+		animate(client, pixel_x = 0, pixel_y = 0)
 	if(client.eye && client.eye != src)
 		var/atom/AT = client.eye
 		AT.get_remote_view_fullscreens(src)
@@ -642,6 +643,10 @@ below 100 is not dizzy
 		clear_fullscreen("remote_view", 0)
 	update_pipe_vision()
 
+/mob/living/update_sight()
+	if(SSticker.current_state == GAME_STATE_FINISHED && !is_centcom_level(z)) //Reveal ghosts to remaining survivors
+		see_invisible = SEE_INVISIBLE_OBSERVER
+	return ..()
 
 /mob/living/proc/can_track(mob/living/user)
 	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.

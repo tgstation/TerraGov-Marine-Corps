@@ -797,11 +797,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 	reset_limb_surgeries()
 
 	var/obj/organ	//Dropped limb object
+	var/mob/living/carbon/human/H
 	switch(body_part)
 		if(HEAD)
-			if(owner.species.species_flags & IS_SYNTHETIC) //special head for synth to allow brainmob to talk without an MMI
+			if(issynth(H)) //special head for synth to allow brainmob to talk without an MMI
 				organ = new /obj/item/limb/head/synth(owner.loc, owner)
-			else if(owner.species.species_flags & ROBOTIC_LIMBS)
+			else if(isrobot(H))
 				organ = new /obj/item/limb/head/robotic(owner.loc, owner)
 			else
 				organ = new /obj/item/limb/head(owner.loc, owner)
@@ -1020,22 +1021,15 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return icon(deform_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
 	var/datum/ethnicity/E = GLOB.ethnicities_list[owner.ethnicity]
-	var/datum/body_type/B = GLOB.body_types_list[owner.body_type]
 
 	var/e_icon
-	var/b_icon
 
 	if (!E)
 		e_icon = "western"
 	else
 		e_icon = E.icon_name
 
-	if (!B)
-		b_icon = "mesomorphic"
-	else
-		b_icon = B.icon_name
-
-	return icon(race_icon, "[get_limb_icon_name(owner.species, b_icon, owner.gender, icon_name, e_icon)]")
+	return icon(race_icon, "[get_limb_icon_name(owner.species, owner.gender, icon_name, e_icon)]")
 
 
 /datum/limb/proc/is_usable()

@@ -62,7 +62,8 @@
 
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-	COOLDOWN_START(kit, teleport_cooldown, 20 SECONDS)
+	COOLDOWN_START(kit, teleport_cooldown, 2 SECONDS)
+	COOLDOWN_START(linked_kit, teleport_cooldown, 2 SECONDS)
 	if(powered())
 		use_power(TELEPORTING_COST * 200)
 	else
@@ -122,7 +123,7 @@
 
 /obj/item/teleporter_kit
 	name = "\improper ASRS Bluespace teleporter"
-	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter. Ctrl+Click to deploy."
+	desc = "A bluespace telepad for moving personnel and equipment across small distances to another prelinked teleporter. Ctrl+Click on a tile to deploy, use a wrench to undeploy."
 	icon = 'icons/Marine/teleporter.dmi'
 	icon_state = "teleporter"
 

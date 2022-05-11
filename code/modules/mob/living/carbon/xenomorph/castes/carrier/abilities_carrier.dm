@@ -121,7 +121,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
-	if(!(locate(/obj/effect/alien/weeds) in T))
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(!owner_xeno.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
@@ -247,9 +248,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	if(!T.is_weedable())
 		return FALSE
 
-	var/obj/effect/alien/weeds/alien_weeds = locate() in T
-
-	if(!alien_weeds)
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(!owner_xeno.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_xenowarning("No weeds here!"))
 		return FALSE
@@ -269,7 +269,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	if(!can_use_action())
 		return FALSE
-	
+
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 	var/obj/structure/xeno/xeno_turret/hugger_turret/turret = new (get_turf(owner), X.hivenumber)
 	turret.ammo = GLOB.ammo_list[GLOB.hugger_to_ammo[X.selected_hugger_type]]

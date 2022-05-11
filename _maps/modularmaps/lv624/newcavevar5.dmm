@@ -41,9 +41,8 @@
 "cQ" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/ammo/shotgun,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/lv624/ground/caves/central2)
 "dg" = (
@@ -245,8 +244,7 @@
 	pixel_x = 5;
 	pixel_y = 2
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/lv624/ground/caves/central2)
 "qI" = (
@@ -405,9 +403,8 @@
 "zC" = (
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/ammo/shotgun,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/lv624/ground/caves/central2)
 "zK" = (
@@ -429,9 +426,8 @@
 "BP" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lantern,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/lv624/ground/caves/central2)
 "Cg" = (
@@ -482,9 +478,8 @@
 /obj/item/stack/sheet/metal{
 	pixel_x = 3
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/lv624/ground/caves/central2)
 "GW" = (
@@ -732,9 +727,8 @@
 "Xu" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/candle,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/lv624/ground/caves/central2)
 "Xy" = (

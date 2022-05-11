@@ -22,8 +22,11 @@
 	attachments_allowed = list(
 		/obj/item/armor_module/storage/uniform/webbing,
 		/obj/item/armor_module/storage/uniform/black_vest,
+		/obj/item/armor_module/storage/uniform/black_vest/som,
 		/obj/item/armor_module/storage/uniform/brown_vest,
 		/obj/item/armor_module/storage/uniform/white_vest,
+		/obj/item/armor_module/storage/uniform/white_vest/medic/som,
+		/obj/item/armor_module/storage/uniform/black_vest/som_vet,
 		/obj/item/armor_module/storage/uniform/white_vest/surgery,
 		/obj/item/armor_module/storage/uniform/white_vest/medic,
 		/obj/item/armor_module/storage/uniform/knifeharness,
@@ -32,6 +35,7 @@
 		/obj/item/armor_module/storage/uniform/holster/waist,
 		/obj/item/armor_module/storage/uniform/holster/freelancer,
 		/obj/item/armor_module/storage/uniform/holster/vp,
+		/obj/item/armor_module/storage/uniform/holster/highpower,
 		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/armor/cape,
 		/obj/item/armor_module/armor/cape/half,
@@ -139,6 +143,15 @@
 			. += "Its vital tracker appears to be enabled."
 		if(3)
 			. += "Its vital tracker and tracking beacon appear to be enabled."
+
+//we only want to quick equip from actual 'holster' type webbings
+/obj/item/clothing/under/do_quick_equip()
+	var/obj/item/found = locate(/obj/item/armor_module/storage/uniform/holster) in contents
+	if(!found)
+		found = locate(/obj/item/armor_module/storage/uniform/knifeharness) in contents
+	if(found)
+		return found.do_quick_equip()
+	return src
 
 /obj/item/clothing/under/proc/set_sensors(mob/living/user)
 	if (!istype(user))

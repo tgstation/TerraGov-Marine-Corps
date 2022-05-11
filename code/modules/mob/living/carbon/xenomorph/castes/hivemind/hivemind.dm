@@ -40,7 +40,6 @@
 	. = ..()
 	core = new(loc)
 	core.parent = src
-	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/check_weeds_and_move)
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
 	RegisterSignal(src, COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM, .proc/change_form)
 	update_action_buttons()
@@ -69,7 +68,7 @@
 	var/turf/T = loc
 	if(!istype(T))
 		return
-	if(status_flags & INCORPOREAL || locate(/obj/effect/alien/weeds) in T)
+	if(status_flags & INCORPOREAL || loc_weeds_type)
 		if(health < minimum_health + maxHealth)
 			setBruteLoss(0)
 			setFireLoss(-minimum_health)
@@ -163,12 +162,12 @@
 		return
 	return FALSE
 
-/mob/living/carbon/xenomorph/hivemind/proc/check_weeds_and_move(turf/T)
-	if(check_weeds(T))
-		return TRUE
+/mob/living/carbon/xenomorph/hivemind/handle_weeds_adjacent_removed()
+	if(loc_weeds_type || check_weeds(get_turf(src)))
+		return
 	return_to_core()
 	to_chat(src, "<span class='xenonotice'>We had no weeds nearby, we got moved to our core.")
-	return FALSE
+	return
 
 /mob/living/carbon/xenomorph/hivemind/proc/return_to_core()
 	if(!(status_flags & INCORPOREAL) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))

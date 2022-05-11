@@ -58,8 +58,8 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	mob_parent = null
 	atom_to_walk_to = null
 
-///Initiate our base behavior
-/datum/ai_behavior/proc/late_initialize()
+///Register ai behaviours
+/datum/ai_behavior/proc/start_ai()
 	if(escorted_atom)
 		set_escorted_atom(null, escorted_atom)
 	else
@@ -67,6 +67,10 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, .proc/set_goal_node)
 	goal_node = GLOB.goal_nodes[identifier]
 	RegisterSignal(goal_node, COMSIG_PARENT_QDELETING, .proc/clean_goal_node)
+	late_initialize()
+
+///Set behaviour to base behavior
+/datum/ai_behavior/proc/late_initialize()
 	switch(base_action)
 		if(MOVING_TO_NODE)
 			look_for_next_node()
@@ -151,7 +155,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		if(current_node)
 			change_action(MOVING_TO_NODE, current_node)
 		return
-	if(goal_node && goal_node != current_node)
+	if(goal_node && goal_node != current_node && SStime_track.time_dilation_avg < CONFIG_GET(number/ai_advanced_pathfinding_lag_time_dilation_threshold))
 		if(!length(goal_nodes))
 			SSadvanced_pathfinding.node_pathfinding_to_do += src
 			return
@@ -217,8 +221,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	SIGNAL_HANDLER
 	if(src.identifier != identifier)
 		return
-	if(CONFIG_GET(flag/no_advanced_pathfinding))
-		return
 	if(goal_node)
 		UnregisterSignal(goal_node, COMSIG_PARENT_QDELETING)
 	goal_node = new_goal_node
@@ -272,7 +274,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	switch(action_type)
 		if(MOVING_TO_NODE)
 			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/finished_node_move)
-			if(CONFIG_GET(flag/no_advanced_pathfinding))
+			if(SStime_track.time_dilation_avg > CONFIG_GET(number/ai_anti_stuck_lag_time_dilation_threshold))
 				anti_stuck_timer = addtimer(CALLBACK(src, .proc/look_for_next_node, TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)
 				return
 			anti_stuck_timer = addtimer(CALLBACK(src, .proc/ask_for_pathfinding, TRUE, TRUE), 10 SECONDS, TIMER_STOPPABLE)

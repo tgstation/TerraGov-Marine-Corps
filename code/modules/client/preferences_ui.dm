@@ -60,7 +60,6 @@
 			.["gender"] = gender
 			.["ethnicity"] = ethnicity
 			.["species"] = species || "Human"
-			.["body_type"] = body_type
 			.["good_eyesight"] = good_eyesight
 			.["citizenship"] = citizenship
 			.["religion"] = religion
@@ -120,6 +119,8 @@
 			.["pixel_size"] = pixel_size
 			.["parallax"] = parallax
 			.["fullscreen_mode"] = fullscreen_mode
+			.["preferred_slot"] = slot_flag_to_fluff(preferred_slot)
+			.["preferred_slot_alt"] = slot_flag_to_fluff(preferred_slot_alt)
 		if(KEYBIND_SETTINGS)
 			.["is_admin"] = user.client?.holder ? TRUE : FALSE
 			.["key_bindings"] = list()
@@ -291,11 +292,6 @@
 			species = choice
 			var/datum/species/S = GLOB.all_species[species]
 			real_name = S.random_name(gender)
-
-		if("body_type")
-			var/choice = tgui_input_list(ui.user, "What body type do you want?", "Body type choice", GLOB.body_types_list)
-			if(choice)
-				body_type = choice
 
 		if("toggle_eyesight")
 			good_eyesight = !good_eyesight
@@ -570,6 +566,16 @@
 
 		if("mute_others_combat_messages")
 			mute_others_combat_messages = !mute_others_combat_messages
+
+		if("preferred_slot_select")
+			var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Preferred Slot", SLOT_FLUFF_DRAW)
+			preferred_slot = slot_fluff_to_flag(slot)
+			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
+
+		if("preferred_slot_alt_select")
+			var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Alternate preferred Slot", SLOT_FLUFF_DRAW)
+			preferred_slot_alt = slot_fluff_to_flag(slot)
+			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
 
 		if("show_typing")
 			show_typing = !show_typing

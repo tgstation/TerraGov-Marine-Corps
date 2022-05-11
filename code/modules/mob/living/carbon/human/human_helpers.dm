@@ -4,14 +4,14 @@
 		g = "f"
 	return g
 
-/proc/get_limb_icon_name(datum/species/S, body_type, gender, limb_name, ethnicity)
-	if(S.name == "Human")
+/proc/get_limb_icon_name(datum/species/S, gender, limb_name, ethnicity)
+	if(S.name == "Human" || S.name == "Synthetic")
 		switch(limb_name)
 			if ("torso")
-				return "[ethnicity]_torso_[body_type]_[get_gender_name(gender)]"
+				return "[ethnicity]_torso_[get_gender_name(gender)]"
 
 			if ("chest")
-				return "[ethnicity]_torso_[body_type]_[get_gender_name(gender)]"
+				return "[ethnicity]_torso_[get_gender_name(gender)]"
 
 			if ("head")
 				return "[ethnicity]_[limb_name]_[get_gender_name(gender)]"
@@ -138,23 +138,16 @@
 
 /mob/living/carbon/human/proc/set_limb_icons()
 	var/datum/ethnicity/E = GLOB.ethnicities_list[ethnicity]
-	var/datum/body_type/B = GLOB.body_types_list[body_type]
 
 	var/e_icon
-	var/b_icon
 
 	if (!E)
 		e_icon = "western"
 	else
 		e_icon = E.icon_name
 
-	if (!B)
-		b_icon = "mesomorphic"
-	else
-		b_icon = B.icon_name
-
 	for(var/datum/limb/L in limbs)
-		L.icon_name = get_limb_icon_name(species, b_icon, gender, L.display_name, e_icon)
+		L.icon_name = get_limb_icon_name(species, gender, L.display_name, e_icon)
 
 /mob/living/carbon/human/get_reagent_tags()
 	. = ..()
