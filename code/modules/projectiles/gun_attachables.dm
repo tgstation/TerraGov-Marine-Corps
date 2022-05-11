@@ -1202,6 +1202,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	burst_scatter_mod = -1
 	accuracy_unwielded_mod = -0.05
 	scatter_unwielded_mod = 3
+	aim_speed_mod	= -0.1
 	aim_mode_movement_mult = -0.2
 
 
