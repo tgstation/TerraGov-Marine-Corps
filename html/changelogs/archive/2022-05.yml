@@ -162,3 +162,8 @@
   - rscadd: Replace old FC's office into chapel.
   - bugfix: space tiles in PoS' req attempt 2
   - bugfix: rogue piping
+2022-05-11:
+  Wayland-Smithy:
+  - bugfix: Fixed hardhats not turning off on xeno slash like flashlights.
+  magatsuchi:
+  - bugfix: fixes not being able to suck-start a shotgun (suicide)
