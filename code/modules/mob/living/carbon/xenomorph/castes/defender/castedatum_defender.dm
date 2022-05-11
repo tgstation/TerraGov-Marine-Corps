@@ -38,6 +38,9 @@
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_LARGE
 
+	// *** Minimap Icon *** //
+	minimap_icon = "defender"
+
 	// *** Defender Abilities *** //
 	crest_defense_armor = 22
 	crest_defense_slowdown = 0.8
