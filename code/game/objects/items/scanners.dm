@@ -214,10 +214,9 @@ REAGENT SCANNER
 			var/datum/limb/e = X
 			var/limb = e.display_name
 			var/can_amputate = ""
-			for(var/datum/wound/W in e.wounds)
-				if(W.internal)
-					internal_bleed_detected = TRUE
-					break
+			for(var/datum/wound/internal_bleeding/IB in e.wounds)
+				internal_bleed_detected = TRUE
+				break
 			if(e.body_part != CHEST && e.body_part != GROIN && e.body_part != HEAD)
 				can_amputate = "or amputation"
 				if((e.limb_status & LIMB_BROKEN) && !(e.limb_status & LIMB_SPLINTED) && !(e.limb_status & LIMB_STABILIZED))
