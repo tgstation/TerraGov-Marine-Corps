@@ -351,7 +351,7 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/reestablish_db_connection,
 	/datum/admins/proc/view_runtimes,
 	/client/proc/toggle_cdn,
-	/client/proc/cmd_admin_delete
+	/client/proc/cmd_admin_delete,
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
