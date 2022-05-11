@@ -317,7 +317,7 @@
 		return -shield_left
 	STOP_PROCESSING(SSobj, src)
 	if(COOLDOWN_CHECK(src, shield_damaged_cooldown))
-		addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown)
+		addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown + 1) //Gives it a little extra time for the cooldown.
 	COOLDOWN_START(src, shield_damaged_cooldown, damaged_shield_cooldown)
 	return 0
 
