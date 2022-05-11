@@ -272,7 +272,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	title = PILOT_OFFICER
 	paygrade = "WO"
 	comm_title = "PO"
-	total_positions = 2
+	total_positions = 1
 	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
 	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/pilot
@@ -290,7 +290,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
-		<b>Duty</b>: Listen and coordinate your crew for the sole dropship you will use. Provide transport and close air support for the marines during the mission. Ensure no threats come aboard your dropship and by extension, the vessel which houses the crew.
+		<b>Duty</b>: Ensure the Alamo is ferrying marines to groundside smoothly. Choose between the Condor: a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
 	"}
 	minimap_icon = "pilot"
 
@@ -326,9 +326,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to fly, protect, and maintain the ship's dropship.
-While you are a warrant officer, your authority is limited to the dropship, where you have authority over the enlisted personnel.
-If you are not piloting, there is an autopilot fallback for command, but don't leave the dropship without reason."})
+	to_chat(M, {"Your job is to ensure the Alamo is transporting marines groundside without issue, then choose either the Condor or Tadpole to assist marines.
+While you are a warrant officer, your authority is limited to the dropship and your chosen aerial craft, where you have authority over the enlisted personnel.
+"})
 
 
 /datum/outfit/job/command/pilot
