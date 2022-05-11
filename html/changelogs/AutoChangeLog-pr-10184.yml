@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - soundadd: "Decrease MG-27's firing sound by 9 db"
