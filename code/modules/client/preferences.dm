@@ -110,7 +110,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/moth_wings = "Plain"
 
 	//Lore
-	var/citizenship = "TerraGov"
 	var/religion = "None"
 	var/nanotrasen_relation = "Neutral"
 	var/flavor_text = ""

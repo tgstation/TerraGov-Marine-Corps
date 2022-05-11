@@ -103,13 +103,6 @@
 #define GAME_SETTINGS 5
 #define KEYBIND_SETTINGS 6
 
-#define CITIZENSHIP_CHOICES list(\
-	"TerraGov",\
-	"Limited Service (Colony)",\
-	"Green Card (Foreign)"\
-	)
-
-
 #define CORP_RELATIONS list(\
 	"Loyal",\
 	"Supportive",\
@@ -123,7 +116,7 @@
 	"Christianity (Protestant)",\
 	"Christianity (Catholic)",\
 	"Christianity (Orthodox)",\
-	"Christianity (Mormonism)",\
+	"Christianity (Anglican)",\
 	"Christianity (Other)",\
 	"Judaism",\
 	"Islam (Shia)",\
@@ -133,11 +126,10 @@
 	"Sikhism",\
 	"Shintoism",\
 	"Wiccanism",\
-	"Paganism (Wicca)",\
-	"Minor Religion",\
+	"Adherent of the Machine God",\
+	"Other Religion",\
 	"Atheism",\
-	"None",\
-	"Other"\
+	"None"\
 	)
 
 

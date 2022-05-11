@@ -8,7 +8,6 @@
 	f_style = random_facial_hair_style(gender, species)
 	grad_style = pick(GLOB.hair_gradients_list)
 	good_eyesight = pick(list(FALSE, TRUE))
-	citizenship = pick(CITIZENSHIP_CHOICES)
 	religion = pick(RELIGION_CHOICES)
 	nanotrasen_relation = pick(CORP_RELATIONS)
 	randomize_hair_color("hair")
@@ -204,7 +203,6 @@
 	character.grad_style= grad_style
 	character.f_style = f_style
 
-	character.citizenship = citizenship
 	character.religion = religion
 
 	character.moth_wings = moth_wings

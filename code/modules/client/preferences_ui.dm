@@ -61,7 +61,6 @@
 			.["ethnicity"] = ethnicity
 			.["species"] = species || "Human"
 			.["good_eyesight"] = good_eyesight
-			.["citizenship"] = citizenship
 			.["religion"] = religion
 			.["nanotrasen_relation"] = nanotrasen_relation
 			.["h_style"] = h_style
@@ -462,13 +461,8 @@
 			g_eyes = hex2num(copytext(eyecolor, 4, 6))
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
 
-		if("citizenship")
-			var/choice = tgui_input_list(ui.user, "What nationality should you have?", "Nationality choice", CITIZENSHIP_CHOICES)
-			if(choice)
-				citizenship = choice
-
 		if("religion")
-			var/choice = tgui_input_list(ui.user, "What gods do you worship to?", "Religion choice", RELIGION_CHOICES)
+			var/choice = tgui_input_list(ui.user, "What do you belive in?", "Religion choice", RELIGION_CHOICES)
 			if(choice)
 				religion = choice
 

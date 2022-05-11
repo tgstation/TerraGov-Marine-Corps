@@ -197,11 +197,6 @@ export const CharacterCustomization = (props, context) => {
                 action={'ethnicity'}
               />
               <SelectFieldPreference
-                label={'Citizenship'}
-                value={'citizenship'}
-                action={'citizenship'}
-              />
-              <SelectFieldPreference
                 label={'Religion'}
                 value={'religion'}
                 action={'religion'}
