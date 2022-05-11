@@ -1,0 +1,8 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "additional sentry kit in the TerraGovTech Engineer System Vendor; now engineers can acquire all four sentry kits in the vendor"
+  - rscdel: "sentry kit near FOB drone"
+  - rscadd: "green facepaint in PoS' prep"
+  - rscdel: "Theseus' metal and plasteel surplus near FOB drone"
+  - rscdel: "extra crowbars and screwdrivers in all prep if needed since we don't need it to dissemable Jaegar"
