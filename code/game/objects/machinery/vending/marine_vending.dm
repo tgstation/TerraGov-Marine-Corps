@@ -1080,6 +1080,7 @@
 			/obj/item/armor_module/module/ballistic_armor = -1,
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,
 			/obj/item/armor_module/module/chemsystem = -1,
+			/obj/item/armor_module/module/eshield = -1,
 		),
 	)
 
