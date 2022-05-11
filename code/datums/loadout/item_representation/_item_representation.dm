@@ -25,8 +25,8 @@
  * Return the instantatiated item if it was successfully sold, and return null otherwise
  */
 /datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
-	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, user))
-		return
+	//if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, user))
+		//return
 	if(!text2path("[item_type]"))
 		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
 		return
@@ -115,8 +115,8 @@
 	amount = stack_to_copy.amount
 
 /datum/item_representation/stack/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
-	if(seller && !bypass_vendor_check && !buy_stack(item_type, seller, user, amount) && !buy_item_in_vendor(item_type, seller, user))
-		return
+	//if(seller && !bypass_vendor_check && !buy_stack(item_type, seller, user, amount) && !buy_item_in_vendor(item_type, seller, user))
+		//return
 	var/obj/item/stack/stack = new item_type(master)
 	stack.amount = amount
 	stack.update_weight()
