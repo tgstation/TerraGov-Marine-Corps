@@ -1142,7 +1142,7 @@ TUNNEL
 	///hivenumber of this tower
 	var/hivenumber
 	///boost amt to be added per tower per cycle
-	var/boost_amount = 0.125
+	var/boost_amount = 0.15
 
 /obj/structure/xeno/maturitytower/Initialize(mapload, hivenum)
 	. = ..()
