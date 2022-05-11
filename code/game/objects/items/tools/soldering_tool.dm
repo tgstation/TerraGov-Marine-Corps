@@ -13,7 +13,7 @@
 	if(!affecting)
 		return TRUE
 
-	if(affecting.limb_status != LIMB_ROBOT)
+	if(!CHECK_BITFIELD(affecting.limb_status, LIMB_ROBOT))
 		balloon_alert(user, "Limb not robotic")
 		return TRUE
 

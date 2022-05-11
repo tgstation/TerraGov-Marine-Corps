@@ -532,15 +532,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 //Updates BLEEDING status.
 /datum/limb/proc/update_damages()
+	if(limb_status & LIMB_ROBOT || owner.species.species_flags & NO_BLOOD)
+		return
 	var/is_bleeding = FALSE
-	var/mob/living/carbon/human/H
-	if(istype(owner,/mob/living/carbon/human))
-		H = owner
 
 	if(brute_dam > 5 && !(limb_wound_status & LIMB_WOUND_BANDAGED))
 		is_bleeding = TRUE
 
-	if(surgery_open_stage && !(limb_wound_status & LIMB_WOUND_CLAMPED) && (H && !(H.species.species_flags & NO_BLOOD)))	//things tend to bleed if they are CUT OPEN
+	if(surgery_open_stage && !(limb_wound_status & LIMB_WOUND_CLAMPED))	//things tend to bleed if they are CUT OPEN
 		is_bleeding = TRUE
 
 	if(is_bleeding)
