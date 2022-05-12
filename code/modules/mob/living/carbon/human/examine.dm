@@ -327,7 +327,7 @@
 					if(brute_desc && burn_desc)
 						overall_desc += " and "
 					overall_desc += burn_desc
-				overall_desc = span_warning(overall_desc + " ")
+				overall_desc = span_warning(overall_desc + ".")
 			wound_flavor_text["[temp.display_name]"] = overall_desc + "\n"
 
 	//Handles the text strings being added to the actual description.
