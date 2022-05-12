@@ -168,7 +168,7 @@ REAGENT SCANNER
 		for(var/datum/limb/limb AS in human_patient.limbs)
 			if(!internal_bleeding)
 				for(var/datum/wound/wound in limb.wounds)
-					if(!wound.internal)
+					if(!istype(wound, /datum/wound/internal_bleeding))
 						continue
 					internal_bleeding = TRUE
 					break
