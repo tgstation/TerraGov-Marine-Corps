@@ -333,7 +333,7 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT)
 	deployed_turret = null
-	dropship_equipment_flags -= IS_NOT_REMOVABLE
+	dropship_equipment_flags &= ~IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/examine(mob/user)
 	. = ..()
@@ -409,7 +409,7 @@
 	deployed_turret.update_icon()
 	deployed_turret.loc = get_step(src, dir)
 	icon_state = "sentry_system_deployed"
-	dropship_equipment_flags += IS_NOT_REMOVABLE
+	dropship_equipment_flags |= IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/proc/undeploy_sentry()
 	if(!deployed_turret)
@@ -420,7 +420,7 @@
 	deployed_turret.set_on(FALSE)
 	deployed_turret.update_icon()
 	icon_state = "sentry_system_installed"
-	dropship_equipment_flags -= IS_NOT_REMOVABLE
+	dropship_equipment_flags &= ~IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/rebel
 	sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
@@ -455,6 +455,11 @@
 	else
 		deployed_mg.loc = src
 		icon_state = "mg_system"
+
+/obj/structure/dropship_equipment/mg_holder/Destroy()
+	if(deployed_mg)
+		QDEL_NULL(deployed_mg)
+	return ..()
 
 
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
