@@ -313,12 +313,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/early_synthetic
 	name = "Early Synthetic"
-	engineer = SKILL_ENGINEER_MASTER
-	construction = SKILL_CONSTRUCTION_MASTER
+	engineer = SKILL_ENGINEER_INHUMAN
+	construction = SKILL_CONSTRUCTION_INHUMAN
 	firearms = SKILL_FIREARMS_UNTRAINED
-	medical = SKILL_MEDICAL_EXPERT
+	medical = SKILL_SURGERY_PROFESSIONAL
 	cqc = SKILL_CQC_MASTER
-	surgery = SKILL_SURGERY_EXPERT
+	surgery = SKILL_SURGERY_PROFESSIONAL
 	pilot = SKILL_PILOT_TRAINED
 	melee_weapons = SKILL_MELEE_DEFAULT
 	pistols = SKILL_PISTOLS_TRAINED

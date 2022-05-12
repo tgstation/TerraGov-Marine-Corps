@@ -867,8 +867,7 @@
 /obj/structure/table,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/item/autopsy_scanner,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/medical)
 "tE" = (
@@ -998,8 +997,7 @@
 /area/bigredv2/outside/medical)
 "xi" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/medical)
 "xk" = (
@@ -1349,8 +1347,7 @@
 /area/bigredv2/outside/medical)
 "CD" = (
 /obj/structure/morgue,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/medical)
 "CZ" = (
@@ -2123,8 +2120,7 @@
 	dir = 8;
 	icon_state = "morgue1";
 	},
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/medical)
 "Ue" = (
@@ -2184,8 +2180,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Vo" = (
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/medical)
 "VY" = (
@@ -2358,8 +2353,7 @@
 "ZD" = (
 /obj/machinery/optable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/medical)
 "ZE" = (

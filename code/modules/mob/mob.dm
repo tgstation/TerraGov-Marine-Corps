@@ -321,7 +321,7 @@
 
 	return FALSE
 
-
+///Checks an inventory slot for an item that can be drawn that is directly stored, or inside another storage item, and draws it if possible
 /mob/proc/draw_from_slot_if_possible(slot)
 	if(!slot)
 		return FALSE
@@ -331,40 +331,29 @@
 	if(!I)
 		return FALSE
 
-	if(istype(I, /obj/item/storage/belt/gun))
-		var/obj/item/storage/belt/gun/B = I
-		if(!B.current_gun)
-			return FALSE
-		var/obj/item/W = B.current_gun
-		B.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
-	else if(istype(I, /obj/item/clothing/suit/storage))
-		var/obj/item/clothing/suit/storage/S = I
-		if(!S.pockets)
-			return FALSE
-		var/obj/item/storage/internal/P = S.pockets
-		if(!length(P.contents))
-			return FALSE
-		var/obj/item/W = P.contents[length(P.contents)]
-		P.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
-	else if(istype(I, /obj/item/storage))
-		var/obj/item/storage/S = I
-		if(!length(S.contents))
-			return FALSE
-		var/obj/item/W = S.contents[length(S.contents)]
-		S.remove_from_storage(W, user = src)
-		put_in_hands(W)
-		return TRUE
-	else
-		if(CHECK_BITFIELD(I.flags_inventory, NOQUICKEQUIP))
-			return FALSE
-		temporarilyRemoveItemFromInventory(I)
-		put_in_hands(I)
-		return TRUE
+	//Each inventory slot can have more than one define associated with it. This refines the slot down to the item types actually associated with the define.
+	if(slot == SLOT_IN_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun))))
+		return FALSE
+	if(slot == SLOT_IN_S_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/gun) || istype(I, /obj/item/storage/belt/knifepouch))))
+		return FALSE
+	if(slot == SLOT_IN_B_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon))))
+		return FALSE
+	if(slot == SLOT_IN_ACCESSORY && (!istype(I, /obj/item/clothing/under)))
+		return FALSE
+	if(slot == SLOT_IN_L_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
+		return FALSE
+	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
+		return FALSE
 
+	//calls on the item to return a suitable item to be equipped
+	var/obj/item/found = I.do_quick_equip()
+	if(!found)
+		return FALSE
+	if(CHECK_BITFIELD(found.flags_inventory, NOQUICKEQUIP))
+		return FALSE
+	temporarilyRemoveItemFromInventory(found)
+	put_in_hands(found)
+	return TRUE
 
 /mob/proc/show_inv(mob/user)
 	user.set_interaction(src)
@@ -815,8 +804,6 @@
 /mob/proc/update_sight()
 	SEND_SIGNAL(src, COMSIG_MOB_UPDATE_SIGHT)
 	sync_lighting_plane_alpha()
-	if(SSticker.current_state == GAME_STATE_FINISHED && !is_centcom_level(z)) //Reveal ghosts to remaining survivors
-		see_invisible = SEE_INVISIBLE_OBSERVER
 
 /mob/proc/sync_lighting_plane_alpha()
 	if(!hud_used)

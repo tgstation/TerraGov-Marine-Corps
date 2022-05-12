@@ -1,0 +1,206 @@
+2022-05-02:
+  Arctrooper8:
+  - bugfix: Fixed the pixels on vat humans too.
+  BraveMole:
+  - rscadd: 'Add wraith portals delete: Remove hyperposition delete: Remove wraith
+      phasing'
+  Lumipharon:
+  - rscadd: Added a few more jobs to EORD, such as SOM veterans and freelancer.
+  - bugfix: Added some missing description info to some SOM equipment, and added missing
+      SL skills to the SOM leader.
+  - bugfix: Fixed AR11 and PR412 fire sound
+  Pariah919:
+  - balance: MG08 is now moveable.
+  - refactor: Genercized Moveable Mounted gun code.
+  RipGrayson:
+  - balance: Shuffled Big Red nuclear generator computers.
+  - balance: Moved a single platinum miner.
+  Vondiech:
+  - balance: Marines can no longer shoot through door assemblies.
+  - balance: Xenos can now slash door assemblies.
+  - balance: Door assemblies now extremely fragile in combat.
+  novaepee:
+  - rscadd: Give researcher, MD, and CMO req radio access
+2022-05-03:
+  Arctrooper8:
+  - balance: The bioprinter has been overclocked with an NVIDIA TITAN V, and now prints
+      limbs at SUPER SPEED in HIGH FIDELITY!
+  - imageadd: People have realized that wearing your mask over your nose is more effective.
+  - qol: Removed the unmanned vehicles from Valhalla.
+  RipGrayson:
+  - balance: Shuffled the locations of nuke disk generators on LV624 to be less biased.
+  - bugfix: Removed some duplicate LZ shutters from corporate dome
+  - rscadd: Added a prop version of the tank for mappers.
+  - rscadd: Created a handful of new modular maps for Big Red.
+  - rscadd: Added a prop version of CM's APC for mappers.
+  - imageadd: Ported CM APC icons for mapper use.
+  novaepee:
+  - qol: Update Autodoc UI to make it easier on eyes to cllick on the correct procedure
+2022-05-05:
+  Arctrooper8:
+  - balance: Lab coats now have the same storage as a medical storage module.
+  - imageadd: New sprites for all lab coats
+  - imageadd: New researcher uniform and improved scrubs sprite.
+  RipGrayson:
+  - bugfix: The nuke generator on LV is no longer inside silo fog
+  - code_imp: Purged a large amount of icon varedits from most maps
+  Walarks:
+  - qol: add to the weeds menu an option to automatically use the ability when moving
+  goose4429:
+  - balance: OD and COD start when _over_ threshold
+2022-05-06:
+  Arctrooper8:
+  - bugfix: Synths no longer have organs that they cannot fix
+  - bugfix: Combat robots can now have their heads reattached.
+  - bugfix: You can now actually see synthetic/robotic heads on the ground for retrieval.
+  - bugfix: Head reattachment surgery no longer makes you bald.
+  Lumipharon:
+  - bugfix: Species specific death messages actually work.
+  - refactor: quick equip now actually draws from or stores into everything you'd
+      expect it to, and does so in a more sane order
+  Wayland-Smithy:
+  - bugfix: Fixed and improved end of round ghost reveal code.
+  novaepee:
+  - bugfix: Supply Drop Hatching Being Invisible
+  - rscadd: Add more lights around PoS medbay.
+  - rscdel: Remove rogue cameras in PoS
+  - rscadd: briefing in PoS. lel
+  - bugfix: 'PoS'' chem not being able to be accessible to corpsman. expansion: polish
+      up PoS'' morgue.'
+2022-05-07:
+  Lumipharon:
+  - rscadd: Add some spawners for mapper use for random guns to spawn with ammo they
+      actually use.
+  novaepee:
+  - bugfix: Fix APC wiring and symmetry in Minerva's req
+2022-05-08:
+  Arctrooper8:
+  - bugfix: Robot visors work again, children of the machine god rejoice!
+  BraveMole:
+  - server: Less lag from minions
+  - rscadd: New hunter ability, swap
+  - rscdel: Kill silence ability
+  Pariah919:
+  - balance: acid wells now extingush fire on any mob that steps on them.
+  - balance: Lemoline is considerably cheaper, and doctors get a 30 unit bottle in
+      their bag.
+  novaepee:
+  - bugfix: Fix PoS CL Office
+2022-05-09:
+  2whatever2:
+  - balance: Moved TAT & non-IFF HMG from weapons vendor to Engineering vendor (The
+      ones with mortar and howitzer.)
+  DeltaFire15:
+  - balance: Any machinery / structure on a tile now blocks deployable deployment,
+      as opposed to only dense ones.
+  - code_imp: Deployables checking for blocking objects are now less prone to being
+      bypassed during their do_after.
+  Pariah919:
+  - balance: Added two railgun rounds, HVAP and SAP, HVAP has medium damage/poor pen,
+      but shreds all armor. Normal Railgun rounds reach out to 14 tiles now, HVAP
+      to 21. APDS (Previously, just generic ammo) has 20 sunder from 90, but pens
+      ALL armor.
+  - spellcheck: Railgun rounds reflavored, Normal ammo is now called APDS, it only
+      has 2 knockback now.
+  - balance: Essential PC removed, early synth now builds faster but is worse at medical
+      than late synth.
+  - balance: AMR mostly reverted to pre david touch state, has 90 damage and 135 when
+      lased, pen down to 50, it slows down on hit again. Lase reverted to 1.5x. Sunder
+      returned.
+  QualityVan:
+  - rscadd: After applying a health kit to one limb, you'll start applying it to all
+      other damaged ones without using additional stacks.
+  RipGrayson:
+  - rscadd: Added seed extractors to PoS, Theseus, and Minerva.
+  Walarks:
+  - qol: adds a stat for produced req points through research to researcher console
+      and round-end, updates console UI
+  goose4429:
+  - rscadd: alkysine, imidazoline injectors
+  - balance: imi, alky, peri and acillin injectors in MarineMed
+  tyeagg:
+  - balance: expanded caves slightly
+  - balance: made lz2 more open
+  - balance: adds another flank to both lz's
+  - balance: moved fog locations
+  - balance: more gens
+  - bugfix: tadpole being able to land in northern caves
+  - rscadd: light uav to engi vendor for 50 points
+  - rscadd: muzzle flash when firing
+  - rscadd: allows unmanned vehicles to be dropped by supply pad
+  - balance: reduced light uav integrity to 150
+  - balance: reduced medium uav integrity to 200
+  - balance: reduced heavy uav integrity to 250
+  - balance: reduced battle droid integrity to 150
+  - balance: reduced light turret firerate delay to 1 ticks
+  - balance: reduced heavy turret firerate delay to 2 ticks
+  - balance: reduced battle droid firerate delay to 1.5 ticks
+  - balance: changed battle droid ammo type to overcharge laser
+  - balance: reduced light turret ammo cap to 150
+  - balance: reduced heavy turret ammo cap to 50
+  - balance: increased bullet armor to 85
+  - balance: reduced remote price to 1
+  - balance: reduced light turret ammo price to 3
+  - balance: reduced heavy turret ammo price to 3
+  - code_imp: fixed swapped comments
+  - bugfix: not being able to reload uav turret
+  - soundadd: engine sound for unmanned vehicle
+  - qol: changed light uav name to UV-L Iguana
+  - qol: changed medium uav name to UV-M Gecko
+  - qol: changed heavy uav name to UV-H Komodo
+2022-05-10:
+  TiviPlus:
+  - bugfix: vision will no longer be bugged when a deployable item is undeployed while
+      being used
+  Walarks:
+  - qol: xeno auto-weeding no longer places weeds when standing on weeds
+  - refactor: changes how a xeno being on weeds is determined, shouldn't affect gameplay
+  novaepee:
+  - rscadd: Expand PoS' briefing and make TGMC letters go underneath chair
+  - rscadd: another grinder for chem users to use in PoS
+  - rscadd: Move FC's office to give him more space and be next to CO.
+  - rscadd: Replace old FC's office into chapel.
+  - bugfix: space tiles in PoS' req attempt 2
+  - bugfix: rogue piping
+2022-05-11:
+  Wayland-Smithy:
+  - bugfix: Fixed hardhats not turning off on xeno slash like flashlights.
+  magatsuchi:
+  - bugfix: fixes not being able to suck-start a shotgun (suicide)
+2022-05-12:
+  KornFlaks:
+  - bugfix: Disguised Hunter now appears above objects (e.g. weeds) regardless of
+      what it is disguised as.
+  - qol: Added balloon alerts for xeno action checks.
+  - qol: Added balloon alerts for fulton interactions
+  - qol: Added balloon alerts for xeno structure interactions.
+  Lumipharon:
+  - bugfix: Turrets can no longer be removed from dropship turret modules
+  MrHorizons:
+  - spellcheck: The "SR-8" scout rifle is now the BR-8, as its description says.
+  - spellcheck: The SR-81 automatic sniper rifle has been designated as such, after
+  Pariah919:
+  - balance: vertical grips reduce your wield slowdown.
+  QualityVan:
+  - bugfix: Default attachments which have their own attachments (miniflamer's the
+      most common you'd notice) now spawn those attachments correctly
+  - bugfix: Broken lungs are worse than bruised lungs now.
+  - refactor: Limbs have damage themselves instead of separating it into wounds
+  - refactor: Internal bleeding doesn't count directly as damage on a limb.
+  crayonLover09:
+  - qol: Xeno firestacks displayed in game panel
+  goose4429:
+  - rscadd: New xeno minimap icons
+  - rscadd: Animated silo icon
+  hyper2snyper:
+  - rscadd: 'New Armor Module: The Arrowhead Energy Shield'
+  novaepee:
+  - soundadd: Decrease MG-27's firing sound by 9 db
+  - imageadd: dir sprites for ghost cat
+  - rscadd: additional sentry kit in the TerraGovTech Engineer System Vendor; now
+      engineers can acquire all four sentry kits in the vendor
+  - rscdel: sentry kit near FOB drone
+  - rscadd: green facepaint in PoS' prep
+  - rscdel: Theseus' metal and plasteel surplus near FOB drone
+  - rscdel: extra crowbars and screwdrivers in all prep if needed since we don't need
+      it to dissemable Jaegar

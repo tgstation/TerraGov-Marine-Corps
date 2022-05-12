@@ -279,6 +279,9 @@
 	icon_state = "bottle-5"
 	list_reagents = list(/datum/reagent/medicine/lemoline = 10)
 
+/obj/item/reagent_containers/glass/bottle/lemoline/doctor
+	list_reagents = list(/datum/reagent/medicine/lemoline = 30)
+
 /obj/item/reagent_containers/glass/bottle/doctor_delight
 	name = "\improper Doctor's Delight bottle"
 	desc = "A small bottle. Contains Doctor's Delight."

@@ -695,6 +695,13 @@
 	else
 		return ..()
 
+//Will only draw the specific holstered item, not ammo etc.
+/obj/item/storage/belt/gun/do_quick_equip()
+	if(!current_gun)
+		return FALSE
+	var/obj/item/W = current_gun
+	remove_from_storage(W, user = src)
+	return W
 
 /obj/item/storage/belt/gun/proc/update_gun_icon() //We do not want to use regular update_icon as it's called for every item inserted. Not worth the icon math.
 	var/mob/user = loc
@@ -816,6 +823,13 @@
 	desc = "A belt with origins to old colony security holster rigs."
 	icon_state = "som_belt_pistol"
 	item_state = "som_belt_pistol"
+
+//No overlays, sprite not positioned to allow for it
+/obj/item/storage/belt/gun/pistol/m4a3/som/update_gun_icon()
+	if(current_gun)
+		playsound(src,drawSound, 15, 1)
+	else
+		playsound(src,sheatheSound, 15, 1)
 
 /obj/item/storage/belt/gun/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"

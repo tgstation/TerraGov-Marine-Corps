@@ -37,6 +37,8 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 5, "energy" = 5, "bomb" = 0, "bio" = 10, "rad" = 15, "fire" = 15, "acid" = 10)
 
+	// *** Minimap Icon *** //
+	minimap_icon = "wraith"
 
 	// *** Abilities *** //
 	actions = list(
@@ -45,10 +47,7 @@
 		/datum/action/xeno_action/activable/blink,
 		/datum/action/xeno_action/activable/banish,
 		/datum/action/xeno_action/recall,
-		/datum/action/xeno_action/place_warp_shadow,
-		/datum/action/xeno_action/hyperposition,
-		/datum/action/xeno_action/phase_shift,
-		/datum/action/xeno_action/resync,
+		/datum/action/xeno_action/portal,
 	)
 
 /datum/xeno_caste/wraith/young
@@ -157,10 +156,7 @@
 		/datum/action/xeno_action/activable/blink,
 		/datum/action/xeno_action/activable/banish,
 		/datum/action/xeno_action/recall,
-		/datum/action/xeno_action/place_warp_shadow,
-		/datum/action/xeno_action/hyperposition,
-		/datum/action/xeno_action/phase_shift,
-		/datum/action/xeno_action/resync,
+		/datum/action/xeno_action/portal,
 		/datum/action/xeno_action/timestop,
 	)
 

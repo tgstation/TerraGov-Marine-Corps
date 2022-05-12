@@ -834,10 +834,7 @@
 
 	blood_color = "#EEEEEE"
 
-	has_organ = list(
-		"heart" =    /datum/internal_organ/heart/prosthetic,
-		"brain" =    /datum/internal_organ/brain/prosthetic,
-		)
+	has_organ = list()
 
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8
@@ -864,7 +861,7 @@
 	return ..()
 
 
-/datum/species/early_synthetic //cosmetic differences only
+/datum/species/early_synthetic
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
@@ -872,9 +869,10 @@
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
-	total_health = 125
-	brute_mod = 0.70
-	burn_mod = 0.70
+	slowdown = 1.15 //Slower than Late Synths.
+	total_health = 200 //Tough boys, very tough boys.
+	brute_mod = 0.6
+	burn_mod = 0.6
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -890,10 +888,7 @@
 
 	blood_color = "#EEEEEE"
 	hair_color = "#000000"
-	has_organ = list(
-		"heart" =    /datum/internal_organ/heart/prosthetic,
-		"brain" =    /datum/internal_organ/brain/prosthetic,
-		)
+	has_organ = list()
 
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	see_in_dark = 8

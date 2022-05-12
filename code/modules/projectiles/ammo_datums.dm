@@ -55,6 +55,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/projectile_greyscale_config = null
 	///greyscale color for the projectile associated with the ammo
 	var/projectile_greyscale_colors = null
+	///Multiplier for deflagrate chance
+	var/deflagrate_multiplier = 1
+	///Flat damage caused if fire_burst is triggered by deflagrate
+	var/fire_burst_damage = 10
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -94,8 +98,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		step_away(victim, proj)
 
 /datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, shake = 1, soft_size_threshold = 3, hard_size_threshold = 2)
-	if(!victim || victim == proj.firer)
-		CRASH("staggerstun called [victim ? "without a mob target" : "while the mob target was the firer"]")
+	if(!victim)
+		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
 		return
 	if(shake && (proj.distance_travelled > max_range || victim.lying_angle))
@@ -171,6 +175,41 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
 		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
 		victim.apply_damage(proj.damage * proj.airburst_multiplier, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
+
+///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
+/datum/ammo/proc/deflagrate(atom/target, obj/projectile/proj)
+	if(!target || !proj)
+		CRASH("deflagrate() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	if(!istype(target, /mob/living))
+		return
+	var/mob/living/victim = target
+	var/armor_block = victim.run_armor_check(null, "fire") //checks fire armour across the victim's whole body
+	var/deflagrate_chance = (proj.damage * deflagrate_multiplier * (100 + min(0, proj.penetration - armor_block)) / 100)
+	if(prob(deflagrate_chance))
+		playsound(target, 'sound/effects/incendiary_explode.ogg', 45, falloff = 5)
+		fire_burst(target, proj)
+
+///the actual fireblast triggered by deflagrate
+/datum/ammo/proc/fire_burst(atom/target, obj/projectile/proj)
+	if(!target || !proj)
+		CRASH("fire_burst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	for(var/mob/living/carbon/victim in range(1, target))
+		if(victim == target)
+			victim.visible_message(span_danger("[victim] bursts into flames as they are deflagrated by \a [proj.name]!"))
+		else
+			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
+				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
+		//Damages the victims, inflicts brief stagger+slow, and ignites
+		var/armor_block = victim.run_armor_check(null, "fire") //checks fire armour across the victim's whole body
+		victim.apply_damage(fire_burst_damage, BURN, null, armor_block, updating_health = TRUE) //Placeholder damage, will be a ammo var
+
+		staggerstun(victim, proj, stagger = 0.5, slowdown = 0.5)
+
+		var/living_hard_armor = victim.hard_armor.getRating("fire")
+		if(living_hard_armor < 100) //won't ignite fully fireproof mobs
+			victim.adjust_fire_stacks(CEILING(5 - (living_hard_armor * 0.1), 1))
+			victim.IgniteMob()
+
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
 	var/effect_icon = ""
@@ -970,8 +1009,8 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 30
 	max_range = 40
 	damage = 90
-	penetration = 80
-	sundering = 0
+	penetration = 50
+	sundering = 15
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -1158,20 +1197,42 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 2.5
 
 /datum/ammo/bullet/railgun
-	name = "railgun round"
+	name = "armor piercing railgun slug"
 	hud_state = "alloy_spike"
 	icon_state 	= "blue_bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
-	max_range = 9
+	max_range = 14
 	damage = 150
-	penetration = 70
-	sundering = 90
+	penetration = 100
+	sundering = 20
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
+	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 2, shake = 0)
+
+/datum/ammo/bullet/railgun/hvap
+	name = "high velocity railgun slug"
+	shell_speed = 5
+	max_range = 21
+	damage = 100
+	penetration = 30
+	sundering = 100
+
+/datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, stagger = 2, knockback = 3, shake = 0)
+
+/datum/ammo/bullet/railgun/smart
+	name = "smart armor piercing railgun slug"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
+	damage = 75
+	penetration = 20
+	sundering = 50
+
+/datum/ammo/bullet/railgun/smart/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, stagger = 3, slowdown = 3, shake = 0)
+
 
 /datum/ammo/tx54
 	name = "20mm airburst grenade"
@@ -1482,17 +1543,31 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 2)
 
+/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 10
+
 /datum/ammo/rocket/atgun_shell/apcr
 	name = "tungsten penetrator"
 	hud_state = "shell_he"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
-	damage = 160
+	damage = 200
 	penetration = 40
 	sundering = 65
 
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
-	explosion(T, 0, 0, 1, 0)
+	explosion(T, 0, 0, 0, 1)
+
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+	P.proj_max_range -= 5
+	staggerstun(M, P, max_range = 20, stagger = 0.5, slowdown = 0.5, knockback = 2, shake = 1,  hard_size_threshold = 3)
+
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/O, obj/projectile/P)
+	P.proj_max_range -= 5
+
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 5
 
 /datum/ammo/rocket/atgun_shell/he
 	name = "high velocity high explosive shell"
@@ -1505,6 +1580,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
 	explosion(T, 0, 3, 5, 0)
 
+/datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T)
 /*
 //================================================
 					Energy Ammo
@@ -1575,17 +1652,6 @@ datum/ammo/bullet/revolver/tp44
 	if(isxeno(M)) //need 1 second more than the actual effect time
 		var/mob/living/carbon/xenomorph/X = M
 		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
-
-
-/datum/ammo/energy/droidblast
-	name = "energetic plasma bolt"
-	icon_state = "pulse2"
-	hud_state = "pulse"
-	damage = 45
-	max_range = 40
-	penetration = 50
-	sundering = 20
-	bullet_color = COLOR_PULSE_BLUE
 
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
@@ -1877,6 +1943,51 @@ datum/ammo/bullet/revolver/tp44
 	if(!T)
 		T = get_turf(proj)
 	T.ignite(heat, burn_damage, fire_color)
+
+//volkite
+
+/datum/ammo/energy/volkite
+	name = "thermal energy bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_heat"
+	hud_state_empty = "battery_empty_flash"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+	bullet_color = COLOR_TAN_ORANGE
+	armor_type = "energy"
+	accuracy = 10
+	max_range = 14
+	accurate_range = 8 //for charger
+	shell_speed = 4
+	accuracy_var_low = 5
+	accuracy_var_high = 5
+	point_blank_range = 2
+	damage = 20
+	penetration = 15
+	sundering = 3
+	fire_burst_damage = 20
+
+	//inherited, could use some changes
+	ping = "ping_s"
+	sound_hit 	 	= "energy_hit"
+	sound_miss		= "energy_miss"
+	sound_bounce	= "energy_bounce"
+
+/datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
+	deflagrate(M, P)
+
+/datum/ammo/energy/volkite/medium
+	max_range = 25
+	accurate_range = 15
+	damage = 30
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	fire_burst_damage = 25
+
+/datum/ammo/energy/volkite/heavy
+	max_range = 35
+	accurate_range = 20
+	damage = 25
+	fire_burst_damage = 25
 
 /*
 //================================================

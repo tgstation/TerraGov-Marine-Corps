@@ -88,10 +88,7 @@
 			var/datum/limb/temp = l
 			if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
 				continue
-			for(var/w in temp.wounds)
-				var/datum/wound/W = w
-				if(W.bleeding())
-					blood_max += (W.damage / 60)
+			blood_max += temp.brute_dam / 60
 			if (temp.surgery_open_stage)
 				blood_max += 0.6  //Yer stomach is cut open
 

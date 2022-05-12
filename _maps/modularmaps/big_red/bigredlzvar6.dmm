@@ -9,8 +9,8 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "aD" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
@@ -1017,7 +1017,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "zH" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/rack,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

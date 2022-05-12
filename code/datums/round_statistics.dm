@@ -16,6 +16,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/total_projectiles_fired = 0
 	var/total_bullets_fired = 0
 	var/human_bump_attacks = 0
+	var/points_from_research = 0
 	var/total_xeno_deaths = 0
 	var/total_human_deaths = 0
 	var/total_human_revives = 0
@@ -65,7 +66,6 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/hivelord_healing_infusions = 0
 	var/spitter_acid_sprays = 0
 	var/spitter_scatter_spits = 0
-	var/wraith_hyperpositions = 0
 	var/wraith_phase_shifts = 0
 	var/wraith_blinks = 0
 	var/wraith_banishes = 0

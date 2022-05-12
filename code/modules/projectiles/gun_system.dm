@@ -474,7 +474,7 @@
 /obj/item/weapon/gun/update_overlays()
 	. = ..()
 	//ammo level overlays
-	if(ammo_level_icon && length(chamber_items) && rounds > 0)
+	if(ammo_level_icon && length(chamber_items) && rounds > 0 && chamber_items[current_chamber_position].loc == src)
 		var/remaining = CEILING((rounds /(max_rounds)) * 100, 25)
 		var/image/ammo_overlay = image(icon, icon_state = "[ammo_level_icon]_[remaining]", pixel_x = icon_overlay_x_offset, pixel_y = icon_overlay_y_offset)
 		. += ammo_overlay
@@ -919,6 +919,8 @@
 		playsound(src, dry_fire_sound, 25, 1, 5)
 		ENABLE_BITFIELD(flags_gun_features, GUN_CAN_POINTBLANK)
 		return
+
+	projectile_to_fire = get_ammo_object()
 
 	user.visible_message("<span class = 'warning'>[user] pulls the trigger!</span>")
 	var/actual_sound = (active_attachable?.fire_sound) ? active_attachable.fire_sound : fire_sound
