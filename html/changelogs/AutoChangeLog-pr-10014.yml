@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - refactor: "Limbs have damage themselves instead of separating it into wounds"
-  - refactor: "Internal bleeding doesn't count directly as damage on a limb."

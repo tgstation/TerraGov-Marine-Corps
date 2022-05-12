@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Default attachments which have their own attachments (miniflamer's the most common you'd notice) now spawn those attachments correctly"

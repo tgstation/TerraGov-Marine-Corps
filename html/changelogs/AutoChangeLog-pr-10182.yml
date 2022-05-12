@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Turrets can no longer be removed from dropship turret modules"
