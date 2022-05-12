@@ -104,7 +104,7 @@ REAGENT SCANNER
 	return GLOB.not_incapacitated_state
 
 /obj/item/healthanalyzer/process()
-	if(get_turf(src) != get_turf(current_user) || get_dist(get_turf(current_user), get_turf(patient)) > track_distance)
+	if(get_turf(src) != get_turf(current_user) || get_dist(get_turf(current_user), get_turf(patient)) > track_distance || patient == current_user)
 		STOP_PROCESSING(SSobj, src)
 		patient = null
 		current_user = null
