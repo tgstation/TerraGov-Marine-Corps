@@ -290,7 +290,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
-		<b>Duty</b>: Ensure the Alamo is ferrying marines to groundside smoothly. Choose between the Condor: a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
+		<b>Duty</b>: Choose between the Condor: a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
 	"}
 	minimap_icon = "pilot"
 
@@ -326,8 +326,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to ensure the Alamo is transporting marines groundside without issue, then choose either the Condor or Tadpole to assist marines.
-While you are a warrant officer, your authority is limited to the dropship and your chosen aerial craft, where you have authority over the enlisted personnel.
+	to_chat(M, {"Your job is to support marines with either close air support via the Condor, or mobile dropship support with the Tadpole.
+While you are in charge of all aerial crafts the Alamo does not supervision outside of turning automatic mode on or off at crucial times, and you are expected to choose between the Condor and Tadpole.
+Though you are a warrant officer, your authority is limited to the dropship and your chosen aerial craft, where you have authority over the enlisted personnel.
 "})
 
 
