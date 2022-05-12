@@ -199,15 +199,21 @@ SUBSYSTEM_DEF(minimaps)
  * * zlevel: zlevel we want this atom to be tracked for
  * * hud_flags: tracked HUDs we want this atom to be displayed on
  * * iconstate: iconstate for the blip we want to be used for this tracked atom
- * * icon: icon file we want to use for this blip, 'icons/UI_icons/map_blips.dmi' by efault
+ * * icon: icon file we want to use for this blip, 'icons/UI_icons/map_blips.dmi' by default
+ * * overlay_iconstates: list of iconstates to use as overlay. Used for xeno leader icons.
  */
-/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, zlevel, hud_flags = NONE, iconstate, icon = 'icons/UI_icons/map_blips.dmi')
+/datum/controller/subsystem/minimaps/proc/add_marker(atom/target, zlevel, hud_flags = NONE, iconstate, icon = 'icons/UI_icons/map_blips.dmi', list/overlay_iconstates)
 	if(!isatom(target) || !zlevel || !hud_flags || !iconstate || !icon)
 		CRASH("Invalid marker added to subsystem")
 	if(!initialized)
 		earlyadds += CALLBACK(src, .proc/add_marker, target, zlevel, hud_flags, iconstate, icon)
 		return
+
 	var/image/blip = image(icon, iconstate, pixel_x = MINIMAP_PIXEL_FROM_WORLD(target.x) + minimaps_by_z["[zlevel]"].x_offset, pixel_y = MINIMAP_PIXEL_FROM_WORLD(target.y) + minimaps_by_z["[zlevel]"].y_offset)
+
+	for(var/i in overlay_iconstates)
+		blip.overlays += image(icon, i)
+
 	images_by_source[target] = blip
 	for(var/flag in bitfield2list(hud_flags))
 		minimaps_by_z["[zlevel]"].images_assoc["[flag]"][target] = blip
@@ -218,6 +224,8 @@ SUBSYSTEM_DEF(minimaps)
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/on_move)
 	removal_cbs[target] = CALLBACK(src, .proc/removeimage, blip, target)
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/remove_marker)
+
+
 
 /**
  * removes an image from raw tracked lists, invoked by callback

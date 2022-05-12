@@ -34,6 +34,9 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 20, "bio" = 36, "rad" = 36, "fire" = 40, "acid" = 36)
 
+	// *** Minimap Icon *** //
+	minimap_icon = "warrior"
+
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
 	agility_speed_armor = -30

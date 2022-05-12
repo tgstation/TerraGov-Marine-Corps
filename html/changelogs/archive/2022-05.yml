@@ -162,3 +162,45 @@
   - rscadd: Replace old FC's office into chapel.
   - bugfix: space tiles in PoS' req attempt 2
   - bugfix: rogue piping
+2022-05-11:
+  Wayland-Smithy:
+  - bugfix: Fixed hardhats not turning off on xeno slash like flashlights.
+  magatsuchi:
+  - bugfix: fixes not being able to suck-start a shotgun (suicide)
+2022-05-12:
+  KornFlaks:
+  - bugfix: Disguised Hunter now appears above objects (e.g. weeds) regardless of
+      what it is disguised as.
+  - qol: Added balloon alerts for xeno action checks.
+  - qol: Added balloon alerts for fulton interactions
+  - qol: Added balloon alerts for xeno structure interactions.
+  Lumipharon:
+  - bugfix: Turrets can no longer be removed from dropship turret modules
+  MrHorizons:
+  - spellcheck: The "SR-8" scout rifle is now the BR-8, as its description says.
+  - spellcheck: The SR-81 automatic sniper rifle has been designated as such, after
+  Pariah919:
+  - balance: vertical grips reduce your wield slowdown.
+  QualityVan:
+  - bugfix: Default attachments which have their own attachments (miniflamer's the
+      most common you'd notice) now spawn those attachments correctly
+  - bugfix: Broken lungs are worse than bruised lungs now.
+  - refactor: Limbs have damage themselves instead of separating it into wounds
+  - refactor: Internal bleeding doesn't count directly as damage on a limb.
+  crayonLover09:
+  - qol: Xeno firestacks displayed in game panel
+  goose4429:
+  - rscadd: New xeno minimap icons
+  - rscadd: Animated silo icon
+  hyper2snyper:
+  - rscadd: 'New Armor Module: The Arrowhead Energy Shield'
+  novaepee:
+  - soundadd: Decrease MG-27's firing sound by 9 db
+  - imageadd: dir sprites for ghost cat
+  - rscadd: additional sentry kit in the TerraGovTech Engineer System Vendor; now
+      engineers can acquire all four sentry kits in the vendor
+  - rscdel: sentry kit near FOB drone
+  - rscadd: green facepaint in PoS' prep
+  - rscdel: Theseus' metal and plasteel surplus near FOB drone
+  - rscdel: extra crowbars and screwdrivers in all prep if needed since we don't need
+      it to dissemable Jaegar

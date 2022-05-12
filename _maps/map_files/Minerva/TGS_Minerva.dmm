@@ -10308,13 +10308,6 @@
 	dir = 4
 	},
 /area/mainship/medical/lower_medical)
-"He" = (
-/obj/structure/rack,
-/obj/item/storage/box/sentry,
-/turf/open/floor/mainship/red{
-	dir = 8
-	},
-/area/mainship/living/briefing)
 "Hf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -24328,7 +24321,7 @@ Dn
 Cg
 Np
 Gn
-He
+Gn
 HU
 tt
 Jx
