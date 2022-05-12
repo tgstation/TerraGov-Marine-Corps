@@ -287,11 +287,11 @@
 
 /datum/codex_entry/standard_tx11
 	associated_paths = list(/obj/item/weapon/gun/rifle/tx11)
-	lore_text = "The Keckler and Hoch 'T-11' was created out of a infamous bid called the 'Rifle of the future' project, created out of a need to replace aging weapon stocks in the TerraGov arsenal. \
-	The T-11 was created to be the ultimate weapon, being able to lay down fire like an MG with a high capacity, amazing burst fire capability, specialized scope for long range damage, it was tested and destroyed the competition.\
+	lore_text = "The Keckler and Hoch 'M-11' was created out of a infamous bid called the 'Rifle of the future' project, created out of a need to replace aging weapon stocks in the TerraGov arsenal. \
+	The M-11 was created to be the ultimate weapon, being able to lay down fire like an MG with a high capacity, amazing burst fire capability, specialized scope for long range damage, it was tested and destroyed the competition.\
 	It did amazing in field tests, and was effectively the best rifle overall. Most concerns were ergonomical, however it was pushed aside for a need of a new rifle, and money was already spent in making the entire thing, so getting a new competition would be too bothersome.\
 	Eventually however, these ergonomic failures lead to constant troop complaints due to the unergonomic nature of the rifle, troops who swore by it loved it, troops who hated it called it a useless brick.\
-	Eventually pushback got so large that a new bid was quickly placed within less than a decade, and the T-11, by now christened the 'AR-11', was considered a failure and mothballed.\
+	Eventually pushback got so large that a new bid was quickly placed within less than a decade, and the M-11, by now christened the 'AR-11', was considered a failure and mothballed.\
 	However, some have been pulled out of long term storage, and recent spottings have shown modernizations such as removal of the side magazines, an overall more ergonomic shape with less brick-like features, and a larger magazine.\
 	Most would say that the unusually large magazine capacity, amazing burst fire capability allows for an interesting use of a support weapon. But its bulky and unusual shape leading a low amount of attachments can hamper it in combat."
 
@@ -307,7 +307,7 @@
 
 /datum/codex_entry/standard_smartmachinegun
 	associated_paths = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
-	lore_text = "The Raummetall 'M-29' was made out of the heavy and unruly corpse of the 'T-28', an attempt to modernize and integrate a KTLD into the M-27 model machinegun. It ended in failure due to the overcomplexity of the system, and cost eventually made the project die.\
+	lore_text = "The Raummetall 'M-29' was made out of the heavy and unruly corpse of the 'M-28', an attempt to modernize and integrate a KTLD into the M-27 model machinegun. It ended in failure due to the overcomplexity of the system, and cost eventually made the project die.\
 	The 'M-29' is effectively a continuation in spirit of the previous project, focusing on simplifying the IFF computer systems. It only bears a outer resemblance to the M-27, outside of having the same basic systems.\
 	It has specialized systems to self-stabilize, and is made to be shoulder mounted and fired, as well as fired from lower positions, and uses its integral KTLD computer to self correct user errors, it however requires specialized training to use.\
 	The 'M-29' is effectively a incredibly accurate machinegun, it ended up being offered to the Marine Corps after the previous attempt to just modernize the older machineguns failed. It ended up being christened the 'MG-28' and entered service.\
