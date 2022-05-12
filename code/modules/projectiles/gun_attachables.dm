@@ -498,7 +498,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "t12barrel"
 	flags_attach_features = NONE
 
-/obj/item/attachable/sg29barrel
+/obj/item/attachable/sgbarrel
 	name = "SG-29 barrel"
 	icon_state = "sg29barrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
@@ -972,7 +972,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
-/obj/item/attachable/stock/sg29stock
+/obj/item/attachable/stock/sgstock
 	name = "SG-29 stock"
 	desc = "A standard machinegun stock."
 	icon_state = "sg29stock"
