@@ -252,8 +252,8 @@
 
 /datum/codex_entry/standard_assaultrifle
 	associated_paths = list(/obj/item/weapon/gun/rifle/standard_assaultrifle)
-	lore_text = "The Keckler and Hoch T-12 was created out of an order for a robust rifle using a caseless round, after the ergonomic and costly disaster of the 'Rifle of the future' Project. \
-	Ironically, the T-12 submitted by the very group that made the national disaster that the AR-11 (originally designated the T-11) ended up winning out all the tests. \
+	lore_text = "The Keckler and Hoch M-12 was created out of an order for a robust rifle using a caseless round, after the ergonomic and costly disaster of the 'Rifle of the future' Project. \
+	Ironically, the M-12 submitted by the very group that made the national disaster that the AR-11 (originally designated the M-11) ended up winning out all the tests. \
 	It was designed to be simple to use, disassemble and basically survive every condition, however due to reports of barrel melting from the high use of polymers. It ended up being heavier than its ilk to compensate.\
 	After wining all the tests, it was accepted and christened the 'AR-12' in service. Aside from issues with barrel overheating, which later models fixed. It is known for reliability across the Marine Corps and the wider galaxy.\
 	Most would say the simple blend of a good magazine size, ergonomics and adaptablitty elevate this weapon above the rest."
@@ -307,15 +307,15 @@
 
 /datum/codex_entry/standard_smartmachinegun
 	associated_paths = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
-	lore_text = "The Raummetall 'T-29' was made out of the heavy and unruly corpse of the 'T-28', an attempt to modernize and integrate a KTLD into the T-27 model machinegun. It ended in failure due to the overcomplexity of the system, and cost eventually made the project die.\
-	The 'T-29' is effectively a continuation in spirit of the previous project, focusing on simplifying the IFF computer systems. It only bears a outer resemblance to the T-27, outside of having the same basic systems.\
+	lore_text = "The Raummetall 'M-29' was made out of the heavy and unruly corpse of the 'T-28', an attempt to modernize and integrate a KTLD into the M-27 model machinegun. It ended in failure due to the overcomplexity of the system, and cost eventually made the project die.\
+	The 'M-29' is effectively a continuation in spirit of the previous project, focusing on simplifying the IFF computer systems. It only bears a outer resemblance to the M-27, outside of having the same basic systems.\
 	It has specialized systems to self-stabilize, and is made to be shoulder mounted and fired, as well as fired from lower positions, and uses its integral KTLD computer to self correct user errors, it however requires specialized training to use.\
-	The 'T-29' is effectively a incredibly accurate machinegun, it ended up being offered to the Marine Corps after the previous attempt to just modernize the older machineguns failed. It ended up being christened the 'MG-28' and entered service.\
+	The 'M-29' is effectively a incredibly accurate machinegun, it ended up being offered to the Marine Corps after the previous attempt to just modernize the older machineguns failed. It ended up being christened the 'MG-28' and entered service.\
 	Most would say that this machinegun makes you a walking turret, you'll be slow and unwieldy with no match when it comes to fire suppression on the move."
 
 /datum/codex_entry/standard_smartmmg
 	associated_paths = list(/obj/item/weapon/gun/rifle/standard_gpmg)
-	lore_text = "The Raummetall 'T-60' was designed out of a bid for a cheap and available machinegun that could move to several roles, be it fire support, vehicle mounted or sentry duties.\
+	lore_text = "The Raummetall 'M-60' was designed out of a bid for a cheap and available machinegun that could move to several roles, be it fire support, vehicle mounted or sentry duties.\
 	It is basically a General Purpose Machinegun (GPMG), meant to be used in about every scenario, usually not as well as a specialized gun, however it ended up being well known for its lightness and mobility within its class.\
 	Eventually, it won the bid due to its light weight, and low cost for mass production. Despite arguably being worse than most of the competition everywhere else outside of firerate. It was christened the 'MG-28' and entered service.\
 	Most would say that this machinegun makes you a walking dispenser of lead, you'll be slow and unwieldy with no match when it come to emptying a rain of lead on foe... or friend."
