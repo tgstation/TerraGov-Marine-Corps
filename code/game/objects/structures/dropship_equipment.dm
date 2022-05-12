@@ -408,6 +408,7 @@
 	deployed_turret.update_icon()
 	deployed_turret.loc = get_step(src, dir)
 	icon_state = "sentry_system_deployed"
+	dropship_equipment_flags += IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/proc/undeploy_sentry()
 	if(!deployed_turret)
@@ -418,6 +419,7 @@
 	deployed_turret.set_on(FALSE)
 	deployed_turret.update_icon()
 	icon_state = "sentry_system_installed"
+	dropship_equipment_flags -= IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/rebel
 	sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
