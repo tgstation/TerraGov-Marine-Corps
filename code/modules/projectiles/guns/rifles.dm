@@ -941,7 +941,7 @@
 		/obj/item/attachable/stock/tx15,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/heavy_barrel,efnnleanlfae
 		/obj/item/attachable/motiondetector,
 	)
 
