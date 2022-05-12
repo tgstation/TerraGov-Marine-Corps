@@ -333,6 +333,7 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT)
 	deployed_turret = null
+	dropship_equipment_flags -= IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/examine(mob/user)
 	. = ..()
