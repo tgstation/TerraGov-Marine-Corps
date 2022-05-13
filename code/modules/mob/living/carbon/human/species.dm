@@ -613,6 +613,24 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 /datum/species/monkey/random_name(gender,unique,lastname)
 	return "[lowertext(name)] ([rand(1,999)])"
 
+/datum/species/monkey/tajara
+	name = "Farwa"
+	speech_verb_override = "mews"
+
+/datum/species/monkey/skrell
+	name = "Naera"
+	speech_verb_override = "squiks"
+
+/datum/species/monkey/unathi
+	name = "Stok"
+	speech_verb_override = "hisses"
+
+/datum/species/monkey/yiren
+	name = "Yiren"
+	speech_verb_override = "grumbles"
+	cold_level_1 = ICE_COLONY_TEMPERATURE - 20
+	cold_level_2 = ICE_COLONY_TEMPERATURE - 40
+	cold_level_3 = ICE_COLONY_TEMPERATURE - 80
 
 /datum/species/sectoid
 	name = "Sectoid"

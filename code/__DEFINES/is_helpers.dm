@@ -52,8 +52,12 @@
 #define ishumanbasic(H) (is_species(H, /datum/species/human))
 #define iszombie(H) (is_species(H, /datum/species/zombie))
 
-//Monkey
+//Monkey species and subtypes
 #define ismonkey(H) (is_species(H, /datum/species/monkey))
+#define isfarwa(H) (is_species(H, /datum/species/monkey/farwa))
+#define isstok(H) (is_species(H, /datum/species/monkey/stok))
+#define isnaera(H) (is_species(H, /datum/species/monkey/naera))
+#define isyiren(H) (is_species(H, /datum/species/monkey/yiren))
 
 //Job/role helpers
 #define ismarinefaction(H) (H.faction == "TerraGov")

@@ -5,6 +5,18 @@
 /mob/living/carbon/human/species/monkey
 	race = "Monkey"
 
+/mob/living/carbon/human/species/monkey/farwa
+	race = "Farwa"
+
+/mob/living/carbon/human/species/monkey/naera
+	race = "Naera"
+
+/mob/living/carbon/human/species/monkey/stok
+	race = "Stok"
+
+/mob/living/carbon/human/species/monkey/yiren
+	race = "Yiren"
+
 /mob/living/carbon/human/species/synthetic
 	race = "Synthetic"
 
