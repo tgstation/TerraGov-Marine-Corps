@@ -38,6 +38,9 @@
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_LARGE
 
+	// *** Minimap Icon *** //
+	minimap_icon = "ravager"
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

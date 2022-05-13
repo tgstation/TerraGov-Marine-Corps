@@ -949,8 +949,8 @@
 // -Energy-
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle
-	name = "PP-73 cell box"
-	desc = "A box specifically designed to hold a large amount of PP-73 cells."
+	name = "LR-73 cell box"
+	desc = "A box specifically designed to hold a large amount of TX-73 cells."
 	storage_slots = 30
 	closed_overlay = "mag_box_small_overlay_tx73"
 	can_hold = list(

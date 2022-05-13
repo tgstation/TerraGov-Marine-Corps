@@ -36,6 +36,7 @@
 	var/b_eyes = 0
 
 	var/ethnicity = "Western"	// Ethnicity
+	var/species_type = ""
 
 	//Skin colour
 	var/r_skin = 0

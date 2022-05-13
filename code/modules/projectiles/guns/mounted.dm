@@ -172,6 +172,8 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_mmg)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
@@ -197,7 +199,7 @@
 
 	scatter = 30 // you're not firing this standing.
 	deployed_scatter_change = -70 // innumerable amount of reduced scatter when deployed,
-	recoil = 3
+	recoil = 2
 	scatter_unwielded = 45
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1

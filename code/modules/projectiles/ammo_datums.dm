@@ -1009,8 +1009,8 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 30
 	max_range = 40
 	damage = 90
-	penetration = 80
-	sundering = 0
+	penetration = 50
+	sundering = 15
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -1197,20 +1197,42 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 2.5
 
 /datum/ammo/bullet/railgun
-	name = "railgun round"
+	name = "armor piercing railgun slug"
 	hud_state = "alloy_spike"
 	icon_state 	= "blue_bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
-	max_range = 9
+	max_range = 14
 	damage = 150
-	penetration = 70
-	sundering = 90
+	penetration = 100
+	sundering = 20
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
+	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 2, shake = 0)
+
+/datum/ammo/bullet/railgun/hvap
+	name = "high velocity railgun slug"
+	shell_speed = 5
+	max_range = 21
+	damage = 100
+	penetration = 30
+	sundering = 100
+
+/datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, stagger = 2, knockback = 3, shake = 0)
+
+/datum/ammo/bullet/railgun/smart
+	name = "smart armor piercing railgun slug"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
+	damage = 75
+	penetration = 20
+	sundering = 50
+
+/datum/ammo/bullet/railgun/smart/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, stagger = 3, slowdown = 3, shake = 0)
+
 
 /datum/ammo/tx54
 	name = "20mm airburst grenade"
@@ -1630,17 +1652,6 @@ datum/ammo/bullet/revolver/tp44
 	if(isxeno(M)) //need 1 second more than the actual effect time
 		var/mob/living/carbon/xenomorph/X = M
 		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
-
-
-/datum/ammo/energy/droidblast
-	name = "energetic plasma bolt"
-	icon_state = "pulse2"
-	hud_state = "pulse"
-	damage = 45
-	max_range = 40
-	penetration = 50
-	sundering = 20
-	bullet_color = COLOR_PULSE_BLUE
 
 /datum/ammo/energy/lasgun
 	name = "laser bolt"

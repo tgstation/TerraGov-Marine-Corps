@@ -734,7 +734,6 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	warcries = list("neuter" = 'sound/voice/skeleton_warcry.ogg') // AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	namepool = /datum/namepool/skeleton
 
-
 ///Called when using the shredding behavior.
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
 	if(H.a_intent != INTENT_HARM)
