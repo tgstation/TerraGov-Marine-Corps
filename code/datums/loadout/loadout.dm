@@ -145,6 +145,9 @@
 				ui.user.balloon_alert(ui.user, "The vendor is still reloading")
 				return
 			var/obj/item/card/id/I = usr.get_idcard()
+			if(job != I.rank)
+				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
+				return
 			if(I.marine_buy_flags & MARINE_CAN_BUY_LOADOUT)
 				var/datum/loadout_seller/seller = new (loadout_vendor.faction)
 				I.marine_buy_flags &= ~MARINE_CAN_BUY_LOADOUT
