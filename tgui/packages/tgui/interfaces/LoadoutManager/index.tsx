@@ -106,53 +106,7 @@ export const LoadoutManager = (props, context) => {
           <LoadoutList
             loadout_list={loadout_list.filter(loadout => loadout.job === job)}
           />
-          <Flex>
-            <Flex.Item grow={1}><div> </div></Flex.Item>
-            <Flex.Item>
-              <Button
-                onClick={() => setSaveNewLoadout(true)}>
-                Save your equipped loadout
-              </Button>
-            </Flex.Item>
-            <Flex.Item grow={1}><div> </div></Flex.Item>
-            <Flex.Item>
-              <Button
-                onClick={() => setImportNewLoadout(true)}>
-                Import Loadout
-              </Button>
-            </Flex.Item>
-            <Flex.Item grow={1}><div> </div></Flex.Item>
-          </Flex>
         </Stack>
-        {
-          saveNewLoadout
-          && <NameInputModal
-            label="Name of the new Loadout"
-            button_text="Save"
-            onBack={() => setSaveNewLoadout(false)}
-            onSubmit={name => {
-              act("saveLoadout", {
-                loadout_name: name,
-                loadout_job: job,
-              });
-              setSaveNewLoadout(false);
-            }}
-          />
-        }
-        {
-          importNewLoadout
-          && <NameInputModal
-            label="Format requested : ckey//job//name_of_loadout "
-            button_text="Import the loadout"
-            onBack={() => setImportNewLoadout(false)}
-            onSubmit={id => {
-              act("importLoadout", {
-                loadout_id: id,
-              });
-              setImportNewLoadout(false);
-            }}
-          />
-        }
       </Window.Content>
     </Window>
   );
