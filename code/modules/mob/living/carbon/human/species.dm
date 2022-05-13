@@ -615,18 +615,22 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 /datum/species/monkey/tajara
 	name = "Farwa"
+	icobase = 'icons/mob/human_races/r_farwa.dmi'
 	speech_verb_override = "mews"
 
 /datum/species/monkey/skrell
 	name = "Naera"
+	icobase = 'icons/mob/human_races/r_naera.dmi'
 	speech_verb_override = "squiks"
 
 /datum/species/monkey/unathi
 	name = "Stok"
+	icobase = 'icons/mob/human_races/r_stok.dmi'
 	speech_verb_override = "hisses"
 
 /datum/species/monkey/yiren
 	name = "Yiren"
+	icobase = 'icons/mob/human_races/r_yiren.dmi'
 	speech_verb_override = "grumbles"
 	cold_level_1 = ICE_COLONY_TEMPERATURE - 20
 	cold_level_2 = ICE_COLONY_TEMPERATURE - 40
