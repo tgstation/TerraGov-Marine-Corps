@@ -85,8 +85,8 @@
 /datum/component/attachment_handler/proc/finish_handle_attachment(obj/item/attachment, list/attachment_data, mob/attacker)
 	var/slot = attachment_data[SLOT]
 
-	if(slots[slot]) //Checks for an attachment in the current slot.
-		var/obj/item/old_attachment = slots[slot]
+	var/obj/item/old_attachment = slots[slot]
+	if(old_attachment) //Checks for an attachment in the current slot.
 		finish_detach(old_attachment, attachment_data_by_slot[slot], attacker) //Removes the current attachment.
 
 	attachment.forceMove(parent)
