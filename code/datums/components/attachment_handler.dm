@@ -74,20 +74,26 @@
 		QDEL_NULL(attachment)
 		return
 
+	var/obj/item/old_attachment = slots[slot]
+
 	finish_handle_attachment(attachment, attachment_data, attacher)
 
 	if(!attacher)
 		return
 	attacher.temporarilyRemoveItemFromInventory(attachment)
 
+	//Re-try putting old attachment into hands, now that we've cleared them
+	if(old_attachment)
+	attacher.put_in_hands(old_attachment)
+
 
 ///Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.
 /datum/component/attachment_handler/proc/finish_handle_attachment(obj/item/attachment, list/attachment_data, mob/attacker)
 	var/slot = attachment_data[SLOT]
 
-	var/obj/item/old_attachment = slots[slot]
-	if(old_attachment) //Checks for an attachment in the current slot.
-		finish_detach(old_attachment, attachment_data_by_slot[slot], attacker) //Removes the current attachment.
+	if(slots[slot]) //Checks for an attachment in the current slot.
+		var/obj/item/current_attachment = slots[slot]
+		finish_detach(current_attachment, attachment_data_by_slot[slot], attacker) //Removes the current attachment.
 
 	attachment.forceMove(parent)
 	slots[slot] = attachment
@@ -110,9 +116,6 @@
 	update_parent_overlay()
 	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 		return
-
-	//Re-try putting old attachment into hands, now that we've cleared them
-	attacker.put_in_hands(old_attachment)
 
 	if(!ismob(parent_obj.loc))
 		return
