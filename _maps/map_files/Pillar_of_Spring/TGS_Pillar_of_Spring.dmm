@@ -11160,6 +11160,9 @@
 /area/mainship/hull/lower_hull)
 "Ht" = (
 /obj/machinery/power/port_gen/pacman/mobile_power,
+/obj/structure/sign/poster{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Hu" = (
@@ -11610,12 +11613,6 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/cafeteria_starboard)
-"Iz" = (
-/obj/structure/sign/poster{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/mainship/engineering/engineering_workshop)
 "IA" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -52197,7 +52194,7 @@ OQ
 OQ
 OQ
 OQ
-Iz
+OQ
 OQ
 OQ
 OQ
