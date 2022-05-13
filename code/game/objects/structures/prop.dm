@@ -180,6 +180,7 @@
 	icon_state = "TGMC1"
 	density = FALSE
 	resistance_flags = UNACIDABLE
+	layer = ABOVE_TURF_LAYER
 
 /obj/structure/prop/mainship/name_stencil/Initialize()
 	. = ..()

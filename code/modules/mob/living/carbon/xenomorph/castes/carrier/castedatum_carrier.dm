@@ -42,6 +42,9 @@
 	aura_strength = 1.5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+	// *** Minimap Icon *** //
+	minimap_icon = "carrier"
+
 	// *** Carrier Abilities *** //
 	huggers_max = 4
 	hugger_delay = 2.5 SECONDS

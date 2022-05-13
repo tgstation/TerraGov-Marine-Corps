@@ -119,11 +119,6 @@
 		if(organic_only && bodypart.limb_status & LIMB_ROBOT)
 			continue
 		var/external_dam = bodypart.brute_dam
-		for(var/j in bodypart.wounds)
-			var/datum/wound/wound = j
-			if(!wound.internal)
-				continue
-			external_dam -= wound.damage
 		. += external_dam
 
 

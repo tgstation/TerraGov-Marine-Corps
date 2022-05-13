@@ -124,7 +124,7 @@
 	if(!supply_beacon)
 		return
 	for(var/obj/C in supply_pad.loc)
-		if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send vendors, crates and large crates
+		if(is_type_in_typecache(C, GLOB.supply_drops) && !C.anchored) //Can only send vendors, crates, unmanned vehicles and large crates
 			supplies.Add(C)
 		if(supplies.len > MAX_SUPPLY_DROPS)
 			break

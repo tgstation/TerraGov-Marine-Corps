@@ -417,6 +417,7 @@
 	#define COMPONENT_NO_MUTE (1<<0)
 
 #define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
+#define COMSIG_LIVING_WEEDS_AT_LOC_CREATED "living_weeds_at_loc_created"	///from obj/effect/alien/weeds/Initialize()
 #define COMSIG_LIVING_WEEDS_ADJACENT_REMOVED "living_weeds_adjacent_removed"	///from obj/effect/alien/weeds/Destroy()
 
 //mob/living/carbon signals
@@ -454,6 +455,7 @@
 #define COMSIG_WARRIOR_USED_GRAPPLE_TOSS "warrior_used_grapple_toss"
 
 #define COMSIG_XENOABILITY_HUNTER_MARK "xenoability_hunter_mark"
+#define COMSIG_XENOABILITY_SWAP "xenoability_swap"
 #define COMSIG_XENOABILITY_PSYCHIC_TRACE "xenoability_psychic_trace"
 
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
@@ -695,8 +697,6 @@
 #define COMSIG_XENOABILITY_SNATCH "xenoability_snatch"
 
 #define COMSIG_XENOABILITY_NEUROGAS_GRENADE "xenoability_neurogas_nade"
-
-#define COMSIG_XENOABILITY_HAUNT "xenoability_haunt"
 
 #define COMSIG_XENOABILITY_VENTCRAWL "xenoability_vent_crawl"
 

@@ -8893,10 +8893,13 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/hangar/storage)
 "aTt" = (
-/obj/structure/rack,
-/obj/item/storage/box/sentry,
+/obj/effect/decal/warning_stripes/engineer,
+/obj/effect/decal/warning_stripes/box/small{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/small,
 /turf/open/floor/prison,
-/area/sulaco/hangar/storage)
+/area/sulaco/hallway/lower_main_hall)
 "aTw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -56679,7 +56682,7 @@ jtC
 aGy
 aWG
 xKR
-aWG
+aTt
 pIP
 fVo
 xzB
@@ -65667,7 +65670,7 @@ aPF
 aPF
 aPF
 kOr
-aTt
+pWS
 pWS
 sFd
 pWS
