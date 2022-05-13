@@ -3127,9 +3127,6 @@
 	dir = 8
 	},
 /area/mainship/squads/req)
-"jA" = (
-/turf/open/floor/mainship/mono,
-/area/mainship/command/corporateliaison)
 "jB" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -11154,6 +11151,9 @@
 /area/mainship/hull/lower_hull)
 "Ht" = (
 /obj/machinery/power/port_gen/pacman/mobile_power,
+/obj/structure/sign/poster{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "Hu" = (
@@ -11604,12 +11604,6 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/cafeteria_starboard)
-"Iz" = (
-/obj/structure/sign/poster{
-	dir = 8
-	},
-/turf/closed/wall/mainship,
-/area/mainship/engineering/engineering_workshop)
 "IA" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -41891,7 +41885,7 @@ pA
 lj
 uM
 Yw
-jA
+jB
 pv
 ks
 dZ
@@ -42153,8 +42147,8 @@ Jg
 mn
 mY
 uM
-jA
-jA
+jB
+jB
 Kb
 Kb
 Kb
@@ -42406,8 +42400,8 @@ lj
 uM
 Yw
 jE
-jA
-jA
+jB
+jB
 mL
 uM
 lQ
@@ -42662,8 +42656,8 @@ pd
 lj
 uM
 lk
-jA
-jA
+jB
+jB
 tE
 pT
 oN
@@ -52213,7 +52207,7 @@ OQ
 OQ
 OQ
 OQ
-Iz
+OQ
 OQ
 OQ
 OQ

@@ -71,6 +71,10 @@
 	name ="Western Caves"
 	icon_state = "cave"
 
+/area/icy_caves/caves/rock
+	name ="Enclosed Area"
+	icon_state = "transparent"
+
 /area/icy_caves/outpost/
 	name ="Outpost"
 	icon_state = "Sleep"
