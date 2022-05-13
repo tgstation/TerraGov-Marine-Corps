@@ -86,8 +86,8 @@
 	var/slot = attachment_data[SLOT]
 
 	if(slots[slot]) //Checks for an attachment in the current slot.
-		var/obj/item/current_attachment = slots[slot]
-		finish_detach(current_attachment, attachment_data_by_slot[slot], attacker) //Removes the current attachment.
+		var/obj/item/old_attachment = slots[slot]
+		finish_detach(old_attachment, attachment_data_by_slot[slot], attacker) //Removes the current attachment.
 
 	attachment.forceMove(parent)
 	slots[slot] = attachment
@@ -110,6 +110,9 @@
 	update_parent_overlay()
 	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 		return
+
+	//Re-try putting old attachment into hands, now that we've cleared them
+	user.put_in_hands(old_attachment)
 
 	if(!ismob(parent_obj.loc))
 		return
