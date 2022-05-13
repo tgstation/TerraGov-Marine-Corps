@@ -112,7 +112,7 @@
 		return
 
 	//Re-try putting old attachment into hands, now that we've cleared them
-	user.put_in_hands(old_attachment)
+	attacker.put_in_hands(old_attachment)
 
 	if(!ismob(parent_obj.loc))
 		return
