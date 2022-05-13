@@ -215,6 +215,7 @@
 	name = "tall grass"
 	icon = 'icons/obj/flora/tallgrass.dmi'
 	icon_state = "tallgrass"
+	layer = TALL_GRASS_LAYER
 	opacity = TRUE
 
 /obj/structure/flora/grass/tallgrass/tallgrasscorner

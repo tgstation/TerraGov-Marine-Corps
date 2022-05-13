@@ -40,11 +40,31 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 
-/area/orion_outpost/surface/landing_pad2
+/area/orion_outpost/surface/landing_pad_2
+	name = "Landing Pad 2"
+	icon_state = "landing_pad"
+	flags_area = NO_DROPPOD
+	ceiling = CEILING_METAL
+	outside = FALSE
+
+/area/orion_outpost/surface/landing_pad2_external
 	name = "Landing Zone 2"
 	icon_state = "landing_pad_ext"
 	ceiling = CEILING_METAL
 	outside = FALSE
+
+//River
+/area/orion_outpost/ground/river/riverside_north
+	name = "Northern Riverbed"
+	icon_state = "bluenew"
+
+/area/orion_outpost/ground/river/riverside_central
+	name = "Central Riverbed"
+	icon_state = "bluenew"
+
+/area/orion_outpost/ground/river/riverside_south
+	name = "Southern Riverbed"
+	icon_state = "bluenew"
 
 //OutpostGround
 /area/orion_outpost/ground/outpostse
@@ -135,9 +155,9 @@
 	name = "Barracks"
 	icon_state = "crew_quarters"
 
-/area/orion_outpost/surface/building/showers
-	name = "Showers"
-	icon_state = "restrooms"
+/area/orion_outpost/surface/building/prep
+	name = "Preperations"
+	icon_state = "green"
 
 /area/orion_outpost/surface/building/command
 	name = "Command"
@@ -148,25 +168,67 @@
 	icon_state = "substation"
 	minimap_color = MINIMAP_AREA_ENGI
 
+/area/orion_outpost/surface/building/cargo
+	name = "Cargo Storage"
+	icon_state = "dark160"
+
+/area/orion_outpost/surface/building/nebuilding
+	name = "Northeast Building"
+	icon_state = "dark160"
+
 /area/orion_outpost/surface/building/medbay
 	name = "Medbay"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
+
+/area/orion_outpost/surface/building/dorms
+	name = "Dormitory"
+	icon_state = "crew_quarters"
 
 /area/orion_outpost/surface/building/bunker
 	name = "Bunkers"
 	always_unpowered = TRUE
 	icon_state = "dark128"
 
-/area/orion_outpost/surface/building/crashednt
-	name = "Destroyed Nanotrasen Vessel"
+/area/orion_outpost/surface/building/crashedufo
+	name = "Crashed UFO"
 	icon_state = "blueold"
 
-/area/orion_outpost/surface/building/research
-	name = "Research"
+/area/orion_outpost/surface/building/tadpolepad
+	name = "Tadpole Landing Pad"
 	icon_state = "purple"
 
 /area/orion_outpost/surface/building/armory
 	name = "Armory"
 	icon_state = "armory"
 	minimap_color = MINIMAP_AREA_SEC
+
+/area/orion_outpost/surface/building/brig
+	name = "Brig"
+	icon_state = "red"
+	minimap_color = MINIMAP_AREA_SEC
+
+/area/orion_outpost/surface/building/monitor
+	name = "Monitoring Station"
+	icon_state = "red"
+	minimap_color = MINIMAP_AREA_SEC
+
+/area/orion_outpost/surface/building/administration
+	name = "Administration"
+	icon_state = "bluenew"
+
+/area/orion_outpost/surface/building/atc
+	name = "Traffic Control"
+	icon_state = "bluenew"
+
+/area/orion_outpost/surface/building/ammodepot
+	name = "Ammo Depot"
+	icon_state = "dark"
+
+/area/orion_outpost/surface/building/vehicledepot
+	name = "Vehicle Depot"
+	icon_state = "dark160"
+
+/area/orion_outpost/surface/building/breakroom
+	name = "Breakroom Building"
+	icon_state = "dark160"
