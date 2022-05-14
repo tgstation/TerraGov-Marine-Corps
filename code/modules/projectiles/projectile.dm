@@ -1322,7 +1322,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		var/matrix/rotate = matrix()
 		rotate.Turn(angle)
 		I.transform = rotate
-		flick_overlay_view(I, src, 3)
+		add_overlay(I)
+		addtimer(CALLBACK(src, .proc/cut_overlay, I), 3, TIMER_CLIENT_TIME)
+
 
 
 #define BULLET_MESSAGE_NO_SHOOTER 0
