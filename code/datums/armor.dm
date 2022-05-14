@@ -70,14 +70,4 @@
 	. = ..()
 	tag = ARMORID // update tag in case armor values were edited
 
-//Used for imaginary friend clothing
-/obj/item/clothing/suit/dummy/Xenonauten
-	name = "\improper Xenonauten-M pattern armored vest"
-	desc = "A XN-M vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a medium variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 65, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 55)
-	item_icons = list(slot_wear_suit_str = 'icons/mob/modular/modular_armor.dmi')
-	icon_state = "medium"
-	item_state = "medium"
-	slowdown = 0.5
-
 #undef ARMORID
