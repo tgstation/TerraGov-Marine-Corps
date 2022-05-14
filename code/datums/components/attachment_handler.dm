@@ -84,7 +84,7 @@
 
 	//Re-try putting old attachment into hands, now that we've cleared them
 	if(old_attachment)
-	attacher.put_in_hands(old_attachment)
+		attacher.put_in_hands(old_attachment)
 
 
 ///Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.
