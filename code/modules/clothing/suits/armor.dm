@@ -24,6 +24,7 @@
 		to_chat(H, span_warning("You need to be wearing somethng under this to be able to equip it."))
 		return FALSE
 
+
 //Used for imaginary friend clothing
 /obj/item/clothing/suit/dummy/Xenonauten
 	name = "\improper Xenonauten-M pattern armored vest"
