@@ -251,7 +251,7 @@
 
 
 	//Sync the organ's damage with its wounds
-	update_damages()
+	update_bleeding()
 
 	//If limb took enough damage, try to cut or tear it off
 
@@ -283,7 +283,7 @@
 	burn_dam = max(0, burn_dam - burn)
 
 	//Sync the organ's damage with its wounds
-	update_damages()
+	update_bleeding()
 	if(updating_health)
 		owner.updatehealth()
 
@@ -526,21 +526,20 @@ Note that amputating the affected organ does in fact remove the infection from t
 			W.process()
 
 	// sync the organ's bleeding-ness and icon
-	update_damages()
+	update_bleeding()
 	if (update_icon())
 		owner.UpdateDamageIcon(1)
 
 //Updates BLEEDING status.
-/datum/limb/proc/update_damages()
+/datum/limb/proc/update_bleeding()
+	if(limb_status & LIMB_ROBOT || owner.species.species_flags & NO_BLOOD)
+		return
 	var/is_bleeding = FALSE
-	var/mob/living/carbon/human/H
-	if(istype(owner,/mob/living/carbon/human))
-		H = owner
 
 	if(brute_dam > 5 && !(limb_wound_status & LIMB_WOUND_BANDAGED))
 		is_bleeding = TRUE
 
-	if(surgery_open_stage && !(limb_wound_status & LIMB_WOUND_CLAMPED) && (H && !(H.species.species_flags & NO_BLOOD)))	//things tend to bleed if they are CUT OPEN
+	if(surgery_open_stage && !(limb_wound_status & LIMB_WOUND_CLAMPED))	//things tend to bleed if they are CUT OPEN
 		is_bleeding = TRUE
 
 	if(is_bleeding)
@@ -690,7 +689,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	brute_dam = 0
 	burn_dam = 0
 	limb_wound_status = NONE
-	update_damages()
+	update_bleeding()
 
 	//we reset the surgery related variables
 	reset_limb_surgeries()

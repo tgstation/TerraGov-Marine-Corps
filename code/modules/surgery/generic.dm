@@ -248,6 +248,7 @@
 	affected.surgery_open_stage = 0
 	affected.germ_level = 0
 	affected.remove_limb_flags(LIMB_BLEEDING)
+	DISABLE_BITFIELD(affected.limb_wound_status, LIMB_WOUND_CLAMPED) //Once the incision is closed, any clamping we did doesn't matter
 
 /datum/surgery_step/generic/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!"), \
