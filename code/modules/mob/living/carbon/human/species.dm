@@ -975,12 +975,12 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 /datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
-	H.health_threshold_crit -= 50
+	H.health_threshold_crit = -100
 
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
-	H.health_threshold_crit += 50
+	H.health_threshold_crit = -50
 
 ///Called when using the shredding behavior.
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
