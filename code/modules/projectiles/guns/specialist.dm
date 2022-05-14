@@ -716,12 +716,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 			w_class = WEIGHT_CLASS_NORMAL
 			flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
 			icon_state = initial(icon_state)
-			item_state = initial(item_state)
 		else
 			w_class = WEIGHT_CLASS_BULKY
 			flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 			icon_state = "[icon_state]_extended"
-			item_state = "[item_state]_extended"
 
 
 
