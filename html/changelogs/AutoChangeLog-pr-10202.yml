@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - bugfix: "Queen now retains the ability to command minions after maturing to Primo status."
