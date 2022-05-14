@@ -1038,9 +1038,9 @@
 					var/obj/item/ammo_magazine/handful_to_fill = chamber_items[1]
 					var/list/obj/item/objects_to_eject = list(handful_to_fill)
 					for(var/obj/item/ammo_magazine/handful_to_eject in chamber_items)
-						if(handful_to_eject == handful_to_fill)
+						if(handful_to_eject == handful_to_fill || !handful_to_eject)
 							continue
-						if(handful_to_eject.default_ammo != handful_to_fill.default_ammo)
+						if(!handful_to_fill || handful_to_eject.default_ammo != handful_to_fill.default_ammo)
 							handful_to_fill = handful_to_eject
 							objects_to_eject += handful_to_fill
 							continue
