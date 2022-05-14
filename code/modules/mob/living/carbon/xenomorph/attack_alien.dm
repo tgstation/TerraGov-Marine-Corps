@@ -208,12 +208,6 @@
 
 	switch(X.a_intent)
 		if(INTENT_HELP)
-			if(on_fire)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
-				ExtinguishMob()
-				X.visible_message(span_danger("[X] effortlessly extinguishes the fire on [src]!"),
-					span_notice("We extinguished the fire on [src]."), null, 5)
-				return TRUE
 			X.visible_message(span_notice("\The [X] caresses [src] with its scythe-like arm."), \
 			span_notice("We caress [src] with our scythe-like arm."), null, 5)
 			return FALSE
