@@ -309,8 +309,8 @@
 	name = "\improper SG-85 powerpack"
 	desc = "A reinforced backpack heavy with the IFF altered ammunition, onboard micro generator, and extensive cooling system which enables the SG-85 gatling gun to operate. \nUse the SG-85 on the backpack itself to connect them."
 	icon_state = "powerpacksg"
-	current_rounds = 1000
-	max_rounds = 1000
+	current_rounds = 2000
+	max_rounds = 2000
 	caliber = CALIBER_10x26_CASELESS
 	default_ammo = /datum/ammo/bullet/smartminigun
 	flags_item_map_variant = null
