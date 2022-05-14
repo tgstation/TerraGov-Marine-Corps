@@ -1,0 +1,4 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - qol: "robot repair automatically starts repairing the next damaged limb"
