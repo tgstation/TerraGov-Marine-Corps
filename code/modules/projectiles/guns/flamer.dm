@@ -589,6 +589,9 @@
 /mob/living/flamer_fire_act(burnlevel, firelevel)
 	if(!burnlevel)
 		return
+	var/fire_mod = get_fire_resist()
+	if(fire_mod <= 0)
+		return
 	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return
 	if(hard_armor.getRating("fire") >= 100)
@@ -596,9 +599,9 @@
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
-	burnlevel *= get_fire_resist()	//Fire stack adjustment is handled in the stacks themselves so this is modified afterwards.
+	burnlevel *= fire_mod //Fire stack adjustment is handled in the stacks themselves so this is modified afterwards.
 	IgniteMob()
-	adjustFireLoss(rand(10 , burnlevel)) //Including the fire should be way stronger.
+	adjustFireLoss(min(burnlevel, rand(10 , burnlevel))) //Including the fire should be way stronger.
 	to_chat(src, span_warning("You are burned!"))
 
 
