@@ -346,6 +346,14 @@
 	icon_state = "carpprop"
 	density = TRUE
 
+/obj/structure/prop/mainship/engiborg
+	name = "Engineering Cyborg"
+	desc = "A powered down cyborg equipped for engineering duties, this one is busted beyond repair."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "engiborg"
+	density = TRUE
+
+
 /obj/structure/prop/templedoor
 	name = "Strange Temple"
 	icon = 'icons/obj/doors/Doorsand.dmi'
