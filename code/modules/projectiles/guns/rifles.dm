@@ -27,8 +27,8 @@
 //AR-18 Carbine
 
 /obj/item/weapon/gun/rifle/standard_carbine
-	name = "\improper AR-18 carbine"
-	desc = "The AR-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
+	name = "\improper AR-18 Kauser carbine"
+	desc = "The Kauser and Hoch AR-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
 	icon_state = "t18"
 	item_state = "t18"
 	fire_sound = "gun_t12"
@@ -99,8 +99,8 @@
 //AR-12 Assault Rifle
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle
-	name = "\improper AR-12 assault rifle"
-	desc = "The AR-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
+	name = "\improper AR-12 K&H assault rifle"
+	desc = "The Keckler and Hoch AR-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
 	icon_state = "t12"
 	item_state = "t12"
 	fire_sound = "gun_t12"
@@ -173,8 +173,8 @@
 //DMR-37 DMR
 
 /obj/item/weapon/gun/rifle/standard_dmr
-	name = "\improper DMR-37 designated marksman rifle"
-	desc = "The DMR-37  is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
+	name = "\improper DMR-37 SCA designated marksman rifle"
+	desc = "The San Cristo Arms DMR-37  is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t37"
 	item_state = "t37"
@@ -241,8 +241,8 @@
 //BR-64 BR
 
 /obj/item/weapon/gun/rifle/standard_br
-	name = "\improper BR-64 battle rifle"
-	desc = "The BR-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
+	name = "\improper BR-64 SCA battle rifle"
+	desc = "The San Cristo Arms BR-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
 	icon_state = "t64"
 	item_state = "t64"
 	icon = 'icons/Marine/gun64.dmi'
@@ -637,8 +637,8 @@
 //MG-42 Light Machine Gun
 
 /obj/item/weapon/gun/rifle/standard_lmg
-	name = "\improper MG-42 light machine gun"
-	desc = "The MG-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
+	name = "\improper MG-42 Kauser light machine gun"
+	desc = "The Kauser MG-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 	icon_state = "t42"
 	item_state = "t42"
 	caliber = CALIBER_10X24_CASELESS //codex
@@ -698,8 +698,8 @@
 //MG-60 General Purpose Machine Gun
 
 /obj/item/weapon/gun/rifle/standard_gpmg
-	name = "\improper MG-60 general purpose machine gun"
-	desc = "The MG-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
+	name = "\improper MG-60 Raummetall general purpose machine gun"
+	desc = "The Raummetall MG-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t60"
 	item_state = "t60"
@@ -915,8 +915,8 @@
 //TX-16 AUTOMATIC SHOTGUN
 
 /obj/item/weapon/gun/rifle/standard_autoshotgun
-	name = "\improper SH-15 automatic shotgun"
-	desc = "The SH-15 Automatic Assault Shotgun, produced by Terran Armories. Another iteration of the ZX series of firearms, taking over the SX as the semi-automatic shotgun provided to the TGMC. Compared to the SX, this Shotgun is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
+	name = "\improper Zauer SH-15 automatic shotgun"
+	desc = "The Zauer SH-15 Automatic Assault Shotgun, produced by Terran Armories. Another iteration of the ZX series of firearms, taking over the SX as the semi-automatic shotgun provided to the TGMC. Compared to the SX, this Shotgun is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
 	icon_state = "tx15"
 	item_state = "tx15"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
@@ -963,8 +963,8 @@
 //SG-29 Smart Machine Gun (It's more of a rifle than the SG.)
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun
-	name = "\improper SG-29 smart machine gun"
-	desc = "The SG-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	name = "\improper SG-29 Raummetall-KT smart machine gun"
+	desc = "The Raummetall-KT SG-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "sg29"
 	item_state = "sg29"
 	caliber = CALIBER_10x26_CASELESS //codex
@@ -1059,8 +1059,8 @@
 //SR-127 bolt action sniper rifle
 
 /obj/item/weapon/gun/rifle/chambered
-	name = "\improper SR-127 bolt action rifle"
-	desc = "The SR-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF. It has an irremoveable scope. Uses 8.6×70mm box magazines."
+	name = "\improper SR-127 Bauer bolt action rifle"
+	desc = "The Bauer SR-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF. It has an irremoveable scope. Uses 8.6×70mm box magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tl127"
 	item_state = "tl127"
@@ -1118,8 +1118,8 @@
 //SR-81 Auto-Sniper
 
 /obj/item/weapon/gun/rifle/standard_autosniper
-	name = "\improper SR-81 automatic sniper rifle"
-	desc = "The SR-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It's users use it for it's high rate of fire for it's class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
+	name = "\improper SR-81 Kauser-KT automatic sniper rifle"
+	desc = "The Kauser-KT SR-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It's users use it for it's high rate of fire for it's class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
 	icon_state = "t81"
 	item_state = "t81"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
@@ -1163,8 +1163,8 @@
 //AR-11 Rifle, based on the gamer-11
 
 /obj/item/weapon/gun/rifle/tx11
-	name = "\improper AR-11 combat rifle"
-	desc = "The AR-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
+	name = "\improper AR-11 K&H combat rifle"
+	desc = "The Keckler and Hoch AR-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
 	icon_state = "tx11"
 	item_state = "tx11"
 	caliber = CALIBER_492X34_CASELESS //codex
@@ -1220,8 +1220,8 @@
 //AR-21 Assault Rifle
 
 /obj/item/weapon/gun/rifle/standard_skirmishrifle
-	name = "\improper AR-21 skirmish rifle"
-	desc = "The AR-21 is a versatile rifle is developed to bridge a gap between higher caliber weaponry and a normal rifle. It fires a strong 10x25 round, which has decent stopping power. It however suffers in magazine size and movement capablity compared to smaller peers. It uses 10x25mm caseless ammunition."
+	name = "\improper AR-21 Kauser skirmish rifle"
+	desc = "The Kauser AR-21 is a versatile rifle is developed to bridge a gap between higher caliber weaponry and a normal rifle. It fires a strong 10x25 round, which has decent stopping power. It however suffers in magazine size and movement capablity compared to smaller peers. It uses 10x25mm caseless ammunition."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t21"
 	item_state = "t21"
@@ -1280,8 +1280,8 @@
 //AF-51B MACHINEcarbine
 
 /obj/item/weapon/gun/rifle/alf_machinecarbine
-	name = "\improper ALF-51B machinecarbine"
-	desc = "The ALF-51B is an unoffical modification of a ALF-4, or better known as the AR-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
+	name = "\improper ALF-51B Kauser machinecarbine"
+	desc = "The Kauser ALF-51B is an unoffical modification of a ALF-51, or better known as the AR-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
 	icon_state = "alf51b"
 	item_state = "alf51b"
 	fire_animation = "alf51b_fire"
