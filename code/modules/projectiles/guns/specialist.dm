@@ -443,7 +443,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 0.01 SECONDS
 	windup_delay = 0.75 SECONDS
-	damage_mult = 0.08
+	damage_mult = 0
 	scatter = -5
 	recoil = 0
 	recoil_unwielded = 4
