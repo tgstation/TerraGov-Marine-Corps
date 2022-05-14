@@ -134,6 +134,8 @@
 		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
+	if(get_fire_resist() <= 0 || get_hard_armor("fire", BODY_ZONE_CHEST) >= 100)	//having high fire resist makes you immune
+		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
 		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
@@ -148,8 +150,6 @@
 			emote("scream")
 
 /mob/living/carbon/xenomorph/IgniteMob()
-	if(fire_resist_modifier <= -1)	//having high fire resist makes you immune
-		return
 	. = ..()
 	if(!.)
 		return
@@ -194,6 +194,8 @@
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
 	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
 		return
+	if(add_fire_stacks)	//Fire stack increases are affected by armor, end result rounded up.
+		add_fire_stacks = CEILING(fire_stacks * get_fire_resist(), 1)
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
@@ -279,3 +281,6 @@
 		. = shield_check.Invoke(attack_type, ., damage_type, silent)
 		if(!.)
 			break
+
+/mob/living/proc/get_fire_resist()
+	return clamp((100 - get_soft_armor("burn", BODY_ZONE_CHEST)) * 0.01, 0, 1)

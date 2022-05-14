@@ -89,9 +89,6 @@
 	var/list/soft_armor
 	var/list/hard_armor
 
-	///How effective fire is against this caste. From 0 to 1 as it is a multiplier.
-	var/fire_resist = 1
-
 	// *** Sunder *** //
 	///How much sunder is recovered per tick
 	var/sunder_recover = 0.5

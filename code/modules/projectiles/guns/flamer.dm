@@ -507,7 +507,8 @@
 	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
 		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		IgniteMob()
-	take_overall_damage_armored(round(burnlevel*0.5)* fire_mod, BURN, "fire", updating_health = TRUE)
+	fire_mod *= get_fire_resist()
+	take_overall_damage(0, round(burnlevel*0.5)* fire_mod, updating_health = TRUE)
 	to_chat(src, span_danger("You are burned!"))
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -532,7 +533,6 @@
 /mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	fire_mod = get_fire_resist()
 	return ..()
 
 
@@ -596,6 +596,7 @@
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
+	burnlevel *= get_fire_resist()	//Fire stack adjustment is handled in the stacks themselves so this is modified afterwards.
 	IgniteMob()
 	adjustFireLoss(rand(10 , burnlevel)) //Including the fire should be way stronger.
 	to_chat(src, span_warning("You are burned!"))
@@ -604,7 +605,6 @@
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	burnlevel *= get_fire_resist()
 	. = ..()
 	updatehealth()
 
