@@ -773,6 +773,13 @@
 	dir = 5
 	},
 /area/orion_outpost/surface/building/prep)
+"dW" = (
+/obj/structure/table/mainship,
+/obj/effect/landmark/dropship_console_spawn_lz1,
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#948a7c"
+	},
+/area/orion_outpost/surface/landing_pad_external)
 "dZ" = (
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
@@ -1860,6 +1867,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
+/obj/effect/landmark/nuke_spawn,
 /turf/open/floor/mainship/blue{
 	dir = 4
 	},
@@ -5653,6 +5661,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/tadpolepad)
+"BT" = (
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#82796c"
+	},
+/area/orion_outpost/ground/underground/caveE)
 "BU" = (
 /obj/structure/stairs/seamless/platform/alt{
 	dir = 8
@@ -8382,6 +8396,13 @@
 	color = "#948a7c"
 	},
 /area/orion_outpost/ground/outpostse)
+"PG" = (
+/obj/structure/table/mainship,
+/obj/effect/landmark/dropship_console_spawn_lz2,
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#948a7c"
+	},
+/area/orion_outpost/surface/landing_pad2_external)
 "PJ" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -14028,7 +14049,7 @@ tC
 Ra
 Ra
 Ra
-tC
+PG
 tC
 tC
 tC
@@ -15020,7 +15041,7 @@ Rp
 ah
 Lf
 Lf
-ZG
+dW
 BD
 od
 NN
@@ -31108,11 +31129,11 @@ fX
 tP
 tP
 tP
-tP
-tP
-tP
-tP
-tP
+BT
+BT
+BT
+BT
+BT
 tP
 tP
 cG
@@ -31240,11 +31261,11 @@ tP
 tP
 tP
 tP
-tP
-tP
-tP
-tP
-tP
+BT
+BT
+BT
+BT
+BT
 tP
 tP
 cG
@@ -31372,11 +31393,11 @@ tP
 tP
 tP
 tP
-tP
-tP
-tP
-tP
-tP
+BT
+BT
+BT
+BT
+BT
 tP
 tP
 cG
@@ -31504,11 +31525,11 @@ tP
 tP
 tP
 tP
-tP
-tP
-tP
-tP
-tP
+BT
+BT
+BT
+BT
+BT
 tP
 tP
 cG
