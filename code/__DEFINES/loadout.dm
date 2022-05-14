@@ -143,11 +143,10 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 
 GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/clothing/glasses/night/m56_goggles = list(CAT_ESS, "M26 head mounted sight", 0, "white"),
-	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_LEDSUP, "T-29 Smartmachinegun", 29 , "white"), //If a smartgunner buys T-29, then they will have 16 points to purchase 4 T-29 drums
-	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_LEDSUP, "T-29 Smartmachinegun ammo", 4 , "black"),
-	/obj/item/weapon/gun/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle", 30 , "white"),
-	/obj/item/ammo_magazine/rifle/standard_smartrifle = list(CAT_LEDSUP, "T-25 smartrifle magazine", 2 , "black"),
-	/obj/item/ammo_magazine/packet/t25 = list(CAT_LEDSUP, "T-25 smartrifle ammo box", 6 , "black"),
+	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_LEDSUP, "SG-29 Smartmachinegun", 29 , "white"), //If a smartgunner buys SG-29, then they will have 16 points to purchase 4 SG-29 drums
+	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_LEDSUP, "SG-29 Smartmachinegun ammo", 4 , "black"),
+	/obj/item/weapon/gun/minigun/smart_minigun = list(CAT_LEDSUP, "SG-85 Microgun", 25 , "white"), //A smartgunner can buy one minigun and two backpacks
+	/obj/item/ammo_magazine/minigun_powerpack/smartgun = list(CAT_LEDSUP, "SG-85 powerpack", 10, "black"),
 	))
 
 

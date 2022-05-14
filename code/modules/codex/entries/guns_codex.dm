@@ -195,7 +195,7 @@
 	associated_paths = list(/obj/item/weapon/gun/rifle/tx8)
 	lore_text = "The M45A was born from a commission order from the TGMC to the company which made the M42A and M56 smartgun systems. <br><br>\
 	The reason for this commission order resulted from complaints from light infantry and scout units about the poor accuracy of the new SR-26 \
-	carbine at longer ranges and the large size of the T-29 making close combat uncomfortable eventually reached the higher ups, who kept getting \
+	carbine at longer ranges and the large size of the SG-29 making close combat uncomfortable eventually reached the higher ups, who kept getting \
 	the same complaints over and over. So they eventually reached out to a trusted company to do it.<br><br>\
 	The commission order requested a versatile rifle that can do combat at all ranges but can be compact. <br><br>\
 	Eventually, the designers decided to use the same 10x28 round the M42A used with different pressure specifications \

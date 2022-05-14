@@ -396,6 +396,12 @@
 	icon_state = "tablefort"
 	always_unpowered = TRUE
 
+/area/lv624/lazarus/crashed_ship
+	name = "\improper Crashed Ship"
+	icon_state = "shuttlered"
+	ceiling = CEILING_UNDERGROUND_METAL
+	always_unpowered = TRUE
+
 /area/lv624/lazarus/relay
 	name = "\improper Secret Relay Room"
 	icon_state = "tcomsatcham"

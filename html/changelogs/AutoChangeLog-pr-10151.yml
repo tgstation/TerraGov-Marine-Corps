@@ -1,0 +1,6 @@
+author: "Arctrooper8 Code: MJP Sprites: Kuro"
+delete-after: True
+changes: 
+  - rscadd: "SG-85 handheld gatling gun, an SG minigun with an absurd firerate at the cost of low damage per bullet."
+  - rscdel: "T-25 has truly been sent to the shadow realm this time (They will not survive the Brazilians)."
+  - balance: "SG-29 now has a firerate of .2 instead of .25"
