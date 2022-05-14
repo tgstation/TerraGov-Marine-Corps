@@ -431,7 +431,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_animation = "minigun_sg_fire"
 	max_shells = 1000 //codex
 	caliber = CALIBER_10x26_CASELESS //codex
-	fire_sound = 'sound/weapons/guns/fire/minigun_sg.ogg'
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
 	wield_delay = 1.5 SECONDS
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
