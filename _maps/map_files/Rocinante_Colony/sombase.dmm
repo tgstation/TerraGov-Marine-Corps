@@ -1451,6 +1451,13 @@
 	},
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/river)
+"bVW" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/ground/snow{
+	color = "#f7b468"
+	},
+/area/rocinante_colony/ground/underground/caveN)
 "bWO" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/damaged/panel,
@@ -1719,6 +1726,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/ground/colonynw)
+"cru" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/wood,
+/area/rocinante_colony/surface/building/residential/res2)
 "csu" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
@@ -2732,6 +2743,13 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/commercial_n)
+"dNL" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/ground/snow{
+	color = "#f7b468"
+	},
+/area/rocinante_colony/ground/underground/caveN)
 "dNM" = (
 /obj/structure/prop/vehicle/crawler/crawler_blue,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -3809,7 +3827,9 @@
 	},
 /area/rocinante_colony/surface/landing/landing_pad_one)
 "fga" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/residential/res2)
 "fgv" = (
@@ -5786,7 +5806,7 @@
 /turf/open/floor/mainship,
 /area/rocinante_colony/surface/building/naval_dorm)
 "hGU" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/residential)
 "hGX" = (
@@ -6404,11 +6424,13 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/surface/building/commercial_n)
 "iAF" = (
-/obj/structure/mineral_door/wood,
 /obj/structure/cable{
 	layer = 1.99
 	},
 /obj/effect/ai_node,
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/residential)
 "iAG" = (
@@ -8395,7 +8417,9 @@
 /turf/open/floor/plating,
 /area/rocinante_colony/surface/building/engineering)
 "loZ" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/white,
 /area/rocinante_colony/surface/building/residential/res2)
 "lpD" = (
@@ -8938,6 +8962,11 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/command)
+"lUn" = (
+/obj/effect/landmark/dropship_console_spawn_lz1,
+/obj/structure/table/mainship,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/rocinante_colony/surface/landing/landing_pad_one_external)
 "lUs" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -10052,7 +10081,9 @@
 	},
 /area/rocinante_colony/surface/building/naval_dorm)
 "nnb" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
 /turf/open/floor/grayscale,
 /area/rocinante_colony/surface/building/commercial_n)
 "nnh" = (
@@ -10191,6 +10222,10 @@
 /obj/item/clipboard,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/ground/colonyn)
+"nuv" = (
+/obj/structure/prop/mainship/hangar_stencil/two,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/surface/landing/landing_pad_two_external)
 "nuB" = (
 /turf/open/shuttle/dropship/floor,
 /area/rocinante_colony/surface/building/dropship_hangar)
@@ -10231,6 +10266,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/rocinante_colony/ground/colonysw)
+"nAm" = (
+/obj/structure/prop/mainship/hangar_stencil,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/surface/landing/landing_pad_one_external)
 "nAw" = (
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonyn)
@@ -11629,6 +11668,12 @@
 	dir = 1
 	},
 /area/rocinante_colony/surface/building/naval_dorm)
+"pwd" = (
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/ground/snow{
+	color = "#f7b468"
+	},
+/area/rocinante_colony/ground/underground/caveN)
 "pwf" = (
 /obj/structure/desertdam/decals/road/edge{
 	icon_state = "road_edge_decal9"
@@ -12904,6 +12949,11 @@
 "riJ" = (
 /turf/open/floor/mainship/red/full,
 /area/rocinante_colony/surface/building/barracks)
+"riV" = (
+/obj/effect/landmark/dropship_console_spawn_lz2,
+/obj/structure/table/mainship,
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/surface/landing/landing_pad_two_external)
 "rjB" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/grass,
@@ -13225,6 +13275,12 @@
 	dir = 1
 	},
 /area/rocinante_colony/surface/building/refinery)
+"rLt" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/rocinante_colony/surface/building/residential)
 "rLz" = (
 /obj/structure/rack,
 /obj/item/storage/box/donkpockets,
@@ -13307,8 +13363,10 @@
 /turf/open/floor/mainship/red/full,
 /area/rocinante_colony/surface/building/administrationsom)
 "rSj" = (
-/obj/structure/mineral_door/wood,
 /obj/effect/ai_node,
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/residential/res2)
 "rSq" = (
@@ -15188,9 +15246,11 @@
 	},
 /area/rocinante_colony/surface/building/dropship_hangar)
 "uFs" = (
-/obj/structure/mineral_door/wood,
 /obj/structure/cable{
 	layer = 1.99
+	},
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/residential)
@@ -15570,9 +15630,11 @@
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/colonyse)
 "vlr" = (
-/obj/structure/mineral_door/wood,
 /obj/structure/cable{
 	layer = 1.99
+	},
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/rocinante_colony/surface/building/residential/res2)
@@ -17773,6 +17835,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/colonycent)
+"ylJ" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/ground/snow{
+	color = "#f7b468"
+	},
+/area/rocinante_colony/ground/underground/caveN)
 "ylT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -20012,12 +20081,12 @@ ntE
 pTc
 xLs
 pOE
-jfh
+rLt
 lVd
 sPT
 jqu
 pOE
-jfh
+rLt
 lVd
 sPT
 jqu
@@ -20398,12 +20467,12 @@ jqu
 jqu
 jqu
 jqu
-hGU
+lpH
 jqu
 jqu
 jqu
 jqu
-hGU
+lpH
 jqu
 wDz
 qLJ
@@ -20856,7 +20925,7 @@ gzs
 gzs
 gzs
 gzs
-gzs
+nAm
 gzs
 gzs
 fPE
@@ -21166,12 +21235,12 @@ jqu
 jqu
 jqu
 jqu
-hGU
+lpH
 jqu
 jqu
 jqu
 jqu
-hGU
+lpH
 jqu
 ggE
 bsT
@@ -21421,7 +21490,7 @@ bkf
 bkf
 bkf
 bkf
-bkf
+lUn
 svo
 qme
 cpt
@@ -21548,12 +21617,12 @@ ntE
 pTc
 xLs
 qmH
-jfh
+rLt
 baW
 sPT
 jqu
 qmH
-jfh
+rLt
 baW
 sPT
 jqu
@@ -21932,12 +22001,12 @@ jjj
 wQV
 xLs
 pOE
-jfh
+rLt
 lVd
 sPT
 jqu
 pOE
-jfh
+rLt
 lVd
 sPT
 jqu
@@ -23468,7 +23537,7 @@ deA
 wQV
 xLs
 qmH
-jfh
+rLt
 baW
 sPT
 jqu
@@ -30088,10 +30157,10 @@ bmz
 bmz
 bmz
 eId
-tiL
-gmd
-tiL
-jxk
+pwd
+ylJ
+pwd
+bVW
 lFh
 tiL
 tiL
@@ -30280,10 +30349,10 @@ bmz
 bmz
 bmz
 eId
-tiL
-tiL
-tiL
-mlj
+pwd
+pwd
+pwd
+dNL
 lFh
 tiL
 tiL
@@ -30472,10 +30541,10 @@ bmz
 bmz
 bmz
 lFh
-tiL
-tiL
-tiL
-tiL
+pwd
+pwd
+pwd
+pwd
 lFh
 tiL
 tiL
@@ -30664,10 +30733,10 @@ bmz
 bmz
 bmz
 lFh
-tiL
-tiL
-tiL
-tiL
+pwd
+pwd
+pwd
+pwd
 lFh
 tiL
 tiL
@@ -30856,10 +30925,10 @@ bmz
 bmz
 bmz
 lFh
-tiL
-tiL
-tiL
-tiL
+pwd
+pwd
+pwd
+pwd
 lFh
 jxk
 tiL
@@ -33900,17 +33969,17 @@ brC
 brC
 brC
 brC
-fga
+cru
 brC
 brC
 brC
 brC
-fga
+cru
 brC
 brC
 brC
 brC
-fga
+cru
 brC
 glh
 jDP
@@ -34668,17 +34737,17 @@ brC
 brC
 brC
 brC
-fga
+cru
 brC
 brC
 brC
 brC
-fga
+cru
 brC
 brC
 brC
 brC
-fga
+cru
 brC
 glh
 sii
@@ -36396,17 +36465,17 @@ brC
 brC
 brC
 brC
-fga
+cru
 brC
 brC
 brC
 brC
-fga
+cru
 brC
 brC
 brC
 brC
-fga
+cru
 brC
 glh
 sii
@@ -37164,17 +37233,17 @@ brC
 brC
 brC
 brC
-fga
+cru
 brC
 brC
 brC
 brC
-fga
+cru
 brC
 brC
 brC
 brC
-fga
+cru
 brC
 glh
 sii
@@ -43122,7 +43191,7 @@ usm
 wHv
 wHv
 wHv
-wHv
+riV
 wHv
 usm
 usm
@@ -43322,7 +43391,7 @@ usm
 usm
 orI
 usm
-usm
+nuv
 usm
 orI
 usm
