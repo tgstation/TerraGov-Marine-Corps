@@ -13707,7 +13707,7 @@
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/river/river_north)
 "svo" = (
-/obj/machinery/button/door/open_only/landing_zone/lz2{
+/obj/machinery/button/door/open_only/landing_zone{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer3,
