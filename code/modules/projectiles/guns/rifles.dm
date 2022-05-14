@@ -1120,7 +1120,6 @@
 /obj/item/weapon/gun/rifle/standard_autosniper
 	name = "\improper SR-81 Kauser-KT automatic sniper rifle"
 	desc = "The Kauser-KT SR-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It's users use it for it's high rate of fire for it's class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
-
 	icon_state = "t81"
 	item_state = "t81"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
