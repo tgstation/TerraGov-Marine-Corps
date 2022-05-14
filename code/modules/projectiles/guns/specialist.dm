@@ -442,7 +442,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	actions_types = list()
 
 	fire_delay = 0.15 SECONDS
-	windup_delay = 0.75 SECONDS
+	windup_delay = 0.4 SECONDS
 	scatter = -5
 	recoil = 0
 	recoil_unwielded = 4
