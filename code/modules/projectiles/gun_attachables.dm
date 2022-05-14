@@ -498,9 +498,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "t12barrel"
 	flags_attach_features = NONE
 
-/obj/item/attachable/t29barrel
-	name = "T-29 barrel"
-	icon_state = "t29barrel"
+/obj/item/attachable/sgbarrel
+	name = "SG-29 barrel"
+	icon_state = "sg29barrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
 	slot = ATTACHMENT_SLOT_MUZZLE
 	flags_attach_features = NONE
@@ -972,10 +972,10 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
-/obj/item/attachable/stock/t29stock
-	name = "T-29 stock"
+/obj/item/attachable/stock/sgstock
+	name = "SG-29 stock"
 	desc = "A standard machinegun stock."
-	icon_state = "t29stock"
+	icon_state = "sg29stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13

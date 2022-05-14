@@ -200,7 +200,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new/datum/stack_recipe("AR-18 mag box", /obj/item/storage/box/visual/magazine/compact/standard_carbine), \
 		new/datum/stack_recipe("AR-21 mag box", /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle), \
 		new/datum/stack_recipe("AR-11 mag box", /obj/item/storage/box/visual/magazine/compact/tx11), \
-		new/datum/stack_recipe("T-25 mag box", /obj/item/storage/box/visual/magazine/compact/standard_smartrifle), \
 		new/datum/stack_recipe("Martini Henry packet box", /obj/item/storage/box/visual/magazine/compact/martini), \
 		new/datum/stack_recipe("TE cell box", /obj/item/storage/box/visual/magazine/compact/lasrifle/marine), \
 		new/datum/stack_recipe("SH-15 mag box", /obj/item/storage/box/visual/magazine/compact/tx15), \
@@ -216,7 +215,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new/datum/stack_recipe("MG-60 mag box", /obj/item/storage/box/visual/magazine/compact/standard_gpmg), \
 		new/datum/stack_recipe("MG-27 mag box", /obj/item/storage/box/visual/magazine/compact/standard_mmg), \
 		new/datum/stack_recipe("HMG-08 drum box", /obj/item/storage/box/visual/magazine/compact/heavymachinegun), \
-		new/datum/stack_recipe("T-29 drum box", /obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun), \
 		)) \
 	))
 

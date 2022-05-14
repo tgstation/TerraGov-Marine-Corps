@@ -437,30 +437,24 @@ WEAPONS
 	cost = 7
 
 /datum/supply_packs/weapons/smartgun
-	name = "T-29 Smart Machinegun"
+	name = "SG-29 Smart Machinegun"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 40
 
 /datum/supply_packs/weapons/smartgun_ammo
-	name = "T-29 smartmachinegun ammo"
+	name = "SG-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 5
 
-/datum/supply_packs/weapons/smartrifle
-	name = "T-25 Smart Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
+/datum/supply_packs/weapons/smart_minigun
+	name = "SG-85 Microgun"
+	contains = list(/obj/item/weapon/gun/minigun/smart_minigun)
 	cost = 40
 
-/datum/supply_packs/weapons/smartrifle_ammo
-	name = "T-25 smartrifle magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
-	cost = 2
-
-/datum/supply_packs/weapons/smartrifle_pack
-	name = "T-25 smartrifle ammo box"
-	notes = "Contains a box with 200 rounds for a T-25 (MAGAZINES SOLD SEPERATELY)"
-	contains = list(/obj/item/ammo_magazine/packet/t25)
-	cost = 4
+/datum/supply_packs/weapons/smart_minigun_ammo
+	name = "SG-85 powerpack"
+	contains = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
+	cost = 10
 
 /datum/supply_packs/weapons/flamethrower
 	name = "FL-84 Flamethrower"
