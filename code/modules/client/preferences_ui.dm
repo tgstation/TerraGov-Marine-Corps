@@ -63,7 +63,6 @@
 			.["good_eyesight"] = good_eyesight
 			.["citizenship"] = citizenship
 			.["religion"] = religion
-			.["nanotrasen_relation"] = nanotrasen_relation
 			.["h_style"] = h_style
 			.["grad_style"] = grad_style
 			.["f_style"] = f_style
@@ -241,7 +240,7 @@
 		if("synthetic_type")
 			var/choice = tgui_input_list(ui.user, "What kind of synthetic do you want to play with?", "Synthetic type choice", SYNTH_TYPES)
 			if(choice)
-				ethnicity = choice
+				synthetic_type = choice
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -468,14 +467,9 @@
 				citizenship = choice
 
 		if("religion")
-			var/choice = tgui_input_list(ui.user, "What religion do you belive in?", "Religion choice", RELIGION_CHOICES)
+			var/choice = tgui_input_list(ui.user, "What religion do you belive in?", "Belief", RELIGION_CHOICES)
 			if(choice)
 				religion = choice
-
-		if("corporation")
-			var/choice = tgui_input_list(ui.user, "How loyal are you to the corporation?", "Corporation choice", CORP_RELATIONS)
-			if(choice)
-				nanotrasen_relation = choice
 
 		if("squad")
 			var/new_squad = params["newValue"]

@@ -110,15 +110,6 @@
 	)
 
 
-#define CORP_RELATIONS list(\
-	"Loyal",\
-	"Supportive",\
-	"Neutral",\
-	"Skeptical",\
-	"Opposed"\
-	)
-
-
 #define RELIGION_CHOICES list(\
 	"Christianity (Catholic)",\
 	"Christianity (Protestant, Anglicanism)",\

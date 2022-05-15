@@ -112,7 +112,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//Lore
 	var/citizenship = "Earth Born"
 	var/religion = "None"
-	var/nanotrasen_relation = "Neutral"
 	var/flavor_text = ""
 	var/med_record = ""
 	var/sec_record = ""
