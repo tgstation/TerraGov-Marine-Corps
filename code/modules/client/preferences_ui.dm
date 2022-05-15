@@ -463,12 +463,12 @@
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
 
 		if("citizenship")
-			var/choice = tgui_input_list(ui.user, "Where do you hail from?", "Nationality choice", CITIZENSHIP_CHOICES)
+			var/choice = tgui_input_list(ui.user, "Where do you hail from?", "Place of Origin", CITIZENSHIP_CHOICES)
 			if(choice)
 				citizenship = choice
 
 		if("religion")
-			var/choice = tgui_input_list(ui.user, "What do you belive in?", "Religion choice", RELIGION_CHOICES)
+			var/choice = tgui_input_list(ui.user, "What religion do you belive in?", "Religion choice", RELIGION_CHOICES)
 			if(choice)
 				religion = choice
 
