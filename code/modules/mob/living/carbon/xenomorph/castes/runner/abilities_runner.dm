@@ -461,7 +461,7 @@
 			if(stolen_item)
 				break
 	if(!stolen_item)
-		victim.balloon_alert(owner, "Snatch failed, too poor")
+		victim.balloon_alert(owner, "Snatch failed, no item")
 		return fail_activate()
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30)
 	victim.balloon_alert(owner, "Snatch succeeded")
