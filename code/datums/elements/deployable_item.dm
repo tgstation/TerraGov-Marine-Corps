@@ -64,7 +64,7 @@
 			return
 
 		if(item_to_deploy.check_blocked_turf(location))
-			user.balloon_alert(user, "There is insufficient room to deploy [item_to_deploy]!")
+			location.balloon_alert(user, "No room to deploy")
 			return
 		if(user.do_actions)
 			user.balloon_alert(user, "You are already doing something!")
@@ -75,7 +75,7 @@
 		if(!do_after(user, deploy_time, TRUE, item_to_deploy, BUSY_ICON_BUILD))
 			return
 		if(item_to_deploy.check_blocked_turf(location))
-			user.balloon_alert(user, "There is insufficient room to deploy [item_to_deploy]!")
+			location.balloon_alert(user, "No room to deploy")
 			return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)
 
