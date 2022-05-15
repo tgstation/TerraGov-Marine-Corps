@@ -442,16 +442,19 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain")
 	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream")
 	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry")
+	death_message = "shudders violently whilst spitting out error text before collapsing, their visual sensor darkening..."
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 
 /datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
+	H.health_threshold_crit = -100
 
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
+	H.health_threshold_crit = -50
 
 
 /datum/species/synthetic
@@ -493,19 +496,19 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
-/datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
+/datum/species/synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
 
-/mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
-	return TRUE
-
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.remove_hud_from(H)
-	return ..()
+
+/mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
+	return TRUE
 
 
 /datum/species/early_synthetic //cosmetic differences only
@@ -545,16 +548,16 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
-/datum/species/early_synthetic/handle_post_spawn(mob/living/carbon/human/H)
+/datum/species/early_synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
 
 
 /datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.remove_hud_from(H)
-	return ..()
 
 /mob/living/carbon/human/species/early_synthetic/binarycheck(mob/H)
 	return TRUE
@@ -737,181 +740,6 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	death_sound = list("neuter" = 'sound/voice/skeleton_scream.ogg')
 	warcries = list("neuter" = 'sound/voice/skeleton_warcry.ogg') // AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	namepool = /datum/namepool/skeleton
-
-
-/datum/species/synthetic
-	name = "Synthetic"
-	name_plural = "Synthetics"
-
-	default_language_holder = /datum/language_holder/synthetic
-	unarmed_type = /datum/unarmed_attack/punch
-	rarity_value = 2
-
-	total_health = 125 //more health than regular humans
-
-	brute_mod = 0.70
-	burn_mod = 0.70 //Synthetics should not be instantly melted by acid compared to humans - This is a test to hopefully fix very glaring issues involving synthetics taking 2.6 trillion damage when so much as touching acid
-
-	cold_level_1 = -1
-	cold_level_2 = -1
-	cold_level_3 = -1
-
-	heat_level_1 = 500
-	heat_level_2 = 1000
-	heat_level_3 = 2000
-
-	body_temperature = 350
-
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
-
-	blood_color = "#EEEEEE"
-
-	has_organ = list()
-
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	see_in_dark = 8
-
-	screams = list(MALE = "male_scream", FEMALE = "female_scream")
-	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
-	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
-	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
-	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
-
-/datum/species/synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
-	AH.add_hud_to(H)
-
-
-/datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
-	. = ..()
-	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
-	AH.remove_hud_from(H)
-
-/mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
-	return TRUE
-
-
-/datum/species/early_synthetic
-	name = "Early Synthetic"
-	name_plural = "Early Synthetics"
-	icobase = 'icons/mob/human_races/r_synthetic.dmi'
-	deform = 'icons/mob/human_races/r_synthetic.dmi'
-
-	default_language_holder = /datum/language_holder/synthetic
-	unarmed_type = /datum/unarmed_attack/punch
-	rarity_value = 1.5
-
-	slowdown = 1.15 //Slower than Late Synths.
-	total_health = 200 //Tough boys, very tough boys.
-	brute_mod = 0.6
-	burn_mod = 0.6
-
-	cold_level_1 = -1
-	cold_level_2 = -1
-	cold_level_3 = -1
-
-	heat_level_1 = 500
-	heat_level_2 = 1000
-	heat_level_3 = 2000
-
-	body_temperature = 350
-
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR|ROBOTIC_LIMBS|GREYSCALE_BLOOD
-
-	blood_color = "#EEEEEE"
-	hair_color = "#000000"
-	has_organ = list()
-
-	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	see_in_dark = 8
-
-	screams = list(MALE = "male_scream", FEMALE = "female_scream")
-	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
-	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
-	warcries = list(MALE = "male_warcry", FEMALE = "female_warcry")
-	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
-
-
-/datum/species/early_synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
-	AH.add_hud_to(H)
-
-
-/datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
-	. = ..()
-	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
-	AH.remove_hud_from(H)
-
-/mob/living/carbon/human/species/early_synthetic/binarycheck(mob/H)
-	return TRUE
-
-
-/mob/living/carbon/human/proc/reset_jitteriness() //todo kill this
-	jitteriness = 0
-
-GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
-
-/datum/species/robot
-	name = "Combat Robot"
-	name_plural = "Combat Robots"
-	icobase = 'icons/mob/human_races/r_robot.dmi'
-	deform = 'icons/mob/human_races/r_robot.dmi'
-	damage_mask_icon = 'icons/mob/dam_mask_robot.dmi'
-	brute_damage_icon_state = "robot_brute"
-	burn_damage_icon_state = "robot_burn"
-	eyes = "blank_eyes"
-	namepool = /datum/namepool/robotic
-
-	unarmed_type = /datum/unarmed_attack/punch/strong
-	total_health = 100
-	slowdown = SHOES_SLOWDOWN //because they don't wear boots.
-
-	cold_level_1 = -1
-	cold_level_2 = -1
-	cold_level_3 = -1
-
-	heat_level_1 = 500
-	heat_level_2 = 1000
-	heat_level_3 = 2000
-
-	body_temperature = 350
-
-	inherent_traits = list(TRAIT_NON_FLAMMABLE)
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
-
-	no_equip = list(
-		SLOT_W_UNIFORM,
-		SLOT_HEAD,
-		SLOT_WEAR_MASK,
-		SLOT_WEAR_SUIT,
-		SLOT_SHOES,
-		SLOT_GLOVES,
-		SLOT_GLASSES,
-	)
-	blood_color = "#2d2055" //"oil" color
-	hair_color = "#00000000"
-	has_organ = list()
-
-
-	screams = list(MALE = "robot_scream", FEMALE = "robot_scream")
-	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain")
-	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream")
-	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry")
-	death_message = "shudders violently whilst spitting out error text before collapsing, their visual sensor darkening..."
-	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
-	joinable_roundstart = TRUE
-
-/datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
-	. = ..()
-	H.speech_span = SPAN_ROBOT
-	H.health_threshold_crit = -100
-
-/datum/species/robot/post_species_loss(mob/living/carbon/human/H)
-	. = ..()
-	H.speech_span = initial(H.speech_span)
-	H.health_threshold_crit = -50
 
 ///Called when using the shredding behavior.
 /datum/species/proc/can_shred(mob/living/carbon/human/H)
