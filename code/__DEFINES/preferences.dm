@@ -103,6 +103,13 @@
 #define GAME_SETTINGS 5
 #define KEYBIND_SETTINGS 6
 
+#define CITIZENSHIP_CHOICES list(\
+	"Earth Born",\
+	"Sol Born",\
+	"Colony Born"\
+	)
+
+
 #define CORP_RELATIONS list(\
 	"Loyal",\
 	"Supportive",\
@@ -113,10 +120,20 @@
 
 
 #define RELIGION_CHOICES list(\
-	"Christianity (Protestant)",\
 	"Christianity (Catholic)",\
-	"Christianity (Orthodox)",\
-	"Christianity (Anglican)",\
+	"Christianity (Protestant, Anglicanism)",\
+	"Christianity (Protestant, Baptist)",\
+	"Christianity (Protestant, Lutheranism)",\
+	"Christianity (Protestant, Calvinism)",\
+	"Christianity (Protestant, Methodism)",\
+	"Christianity (Protestant, Adventism)",\
+	"Christianity (Protestant, Pentecostalism)",\
+	"Christianity (Protestant, Other)",\
+	"Christianity (Eastern Orthodoxy)",\
+	"Christianity (Oriental Orthodoxy)",\
+	"Christianity (Non-trinitarian Restorationism, Mormonism)",\
+	"Christianity (Non-trinitarian Restorationism, Jehovah's Witnesses)",\
+	"Christianity (Non-trinitarian Restorationism, Oneness Pentecostalism)",\
 	"Christianity (Other)",\
 	"Judaism",\
 	"Islam (Shia)",\
@@ -125,8 +142,8 @@
 	"Hinduism",\
 	"Sikhism",\
 	"Shintoism",\
-	"Wiccanism",\
-	"Adherent of the Machine God",\
+	"Adherents of the Machine God",\
+	"Paganism",\
 	"Other Religion",\
 	"Atheism",\
 	"None"\
