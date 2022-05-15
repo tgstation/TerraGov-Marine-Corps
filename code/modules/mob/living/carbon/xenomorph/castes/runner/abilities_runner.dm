@@ -450,7 +450,6 @@
 
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	succeed_activate()
-	var/mob/living/carbon/xenomorph/X = A
 	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, /mob.proc/break_do_after_checks, list("health" = X.health))))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
@@ -462,9 +461,10 @@
 			if(stolen_item)
 				break
 	if(!stolen_item)
-		victim.balloon_alert(X, "Snatch failed, too poor")
+		victim.balloon_alert(owner, "Snatch failed, too poor")
 		return fail_activate()
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30)
+	victim.balloon_alert(owner, "Snatch succeeded")
 	victim.dropItemToGround(stolen_item, TRUE)
 	stolen_item.forceMove(owner)
 	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
