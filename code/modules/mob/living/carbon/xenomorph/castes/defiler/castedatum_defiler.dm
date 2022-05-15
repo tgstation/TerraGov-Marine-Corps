@@ -30,10 +30,13 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BECOME_KING
-
 	can_hold_eggs = CAN_HOLD_ONE_HAND
+
 	// *** Defense *** //
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 0, "bio" = 30, "rad" = 30, "fire" = 25, "acid" = 30)
+
+	// *** Minimap Icon *** //
+	minimap_icon = "defiler"
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

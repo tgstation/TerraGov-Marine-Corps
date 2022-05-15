@@ -145,15 +145,8 @@
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
-	for (var/datum/wound/W AS in target_limb.wounds)
-		if (W.internal)
-			continue
-		if (W.damage_type == CUT)
-			user.visible_message(span_notice("[user] bandages [W.desc] on [patient]'s [target_limb.display_name]."),
-			span_notice("You bandage \a [W.desc] on [patient]'s [target_limb.display_name].") )
-		else if (istype(W,/datum/wound/bruise))
-			user.visible_message(span_notice("[user] places bruise patch over [W.desc] on [patient]'s [target_limb.display_name]."),
-			span_notice("You place a bruise patch over \a [W.desc] on [patient]'s [target_limb.display_name].") )
+	user.visible_message(span_notice("[user] bandages [patient]'s [target_limb.display_name]."),
+		span_notice("You bandage [patient]'s [target_limb.display_name].") )
 
 /obj/item/stack/medical/heal_pack/ointment
 	name = "ointment"
@@ -170,24 +163,6 @@
 		return
 	user.visible_message(span_notice("[user] salves wounds on [patient]'s [target_limb.display_name]."),
 	span_notice("You salve wounds on [patient]'s [target_limb.display_name]."))
-
-/obj/item/stack/medical/heal_pack/gauze/tajaran
-	name = "\improper S'rendarr's Hand leaf"
-	singular_name = "S'rendarr's Hand leaf"
-	desc = "A poultice made of soft leaves that is rubbed on bruises."
-	icon = 'icons/obj/items/harvest.dmi'
-	icon_state = "shandp"
-	heal_brute = 7
-
-
-/obj/item/stack/medical/heal_pack/ointment/tajaran
-	name = "\improper Messa's Tear petals"
-	singular_name = "Messa's Tear petal"
-	desc = "A poultice made of cold, blue petals that is rubbed on burns."
-	icon = 'icons/obj/items/harvest.dmi'
-	icon_state = "mtearp"
-	heal_burn = 7
-
 
 /obj/item/stack/medical/heal_pack/gauze/sectoid
 	name = "\improper healing resin pack"
@@ -234,18 +209,8 @@
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
-	for(var/datum/wound/W AS in target_limb.wounds)
-		if(W.internal)
-			continue
-		if(W.current_stage <= W.max_bleeding_stage)
-			user.visible_message(span_notice("[user] cleans [W.desc] on [patient]'s [target_limb.display_name] and seals its edges with bioglue."),
-			span_notice("You clean and seal [W.desc] on [patient]'s [target_limb.display_name]."))
-		else if (istype(W,/datum/wound/bruise))
-			user.visible_message(span_notice("[user] places a medicine patch over [W.desc] on [patient]'s [target_limb.display_name]."),
-			span_notice("You place medicine patch over [W.desc] on [patient]'s [target_limb.display_name]."))
-		else
-			user.visible_message(span_notice("[user] smears some bioglue over [W.desc] on [patient]'s [target_limb.display_name]."),
-			span_notice("You smear some bioglue over [W.desc] on [patient]'s [target_limb.display_name]."))
+	user.visible_message(span_notice("[user] cleans [patient]'s [target_limb.display_name] and seals its wounds with bioglue."),
+		span_notice("You clean and seal all the wounds on [patient]'s [target_limb.display_name]."))
 
 /obj/item/stack/medical/heal_pack/advanced/burn_pack
 	name = "advanced burn kit"

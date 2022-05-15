@@ -10,7 +10,6 @@
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	w_class = WEIGHT_CLASS_BULKY
 	blood_sprite_state = "uniformblood"
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 3
 		/*
@@ -29,7 +28,6 @@
 		/obj/item/armor_module/storage/uniform/black_vest/som_vet,
 		/obj/item/armor_module/storage/uniform/white_vest/surgery,
 		/obj/item/armor_module/storage/uniform/white_vest/medic,
-		/obj/item/armor_module/storage/uniform/knifeharness,
 		/obj/item/armor_module/storage/uniform/holster,
 		/obj/item/armor_module/storage/uniform/holster/armpit,
 		/obj/item/armor_module/storage/uniform/holster/waist,
@@ -147,8 +145,6 @@
 //we only want to quick equip from actual 'holster' type webbings
 /obj/item/clothing/under/do_quick_equip()
 	var/obj/item/found = locate(/obj/item/armor_module/storage/uniform/holster) in contents
-	if(!found)
-		found = locate(/obj/item/armor_module/storage/uniform/knifeharness) in contents
 	if(found)
 		return found.do_quick_equip()
 	return src

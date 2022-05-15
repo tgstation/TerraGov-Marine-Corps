@@ -356,12 +356,7 @@
 		if(hive.living_xeno_queen)
 			new_xeno.handle_xeno_leader_pheromones(hive.living_xeno_queen)
 
-		// Retaining blue crowned leadership on minimap past evolution.
-		var/datum/xeno_caste/original = /datum/xeno_caste
-		// Xenos with specialized icons (Queen, King, Shrike) do not need to have their icon returned to normal
-		if(new_xeno.xeno_caste.minimap_icon == initial(original.minimap_icon))
-			SSminimaps.remove_marker(new_xeno)
-			SSminimaps.add_marker(new_xeno, new_xeno.z, MINIMAP_FLAG_XENO, new_xeno.xeno_caste.minimap_leadered_icon)
+		new_xeno.update_leader_icon(TRUE)
 
 	if(upgrade == XENO_UPGRADE_THREE || upgrade == XENO_UPGRADE_FOUR)
 		switch(tier)

@@ -99,7 +99,7 @@
 	var/cutting_sound = 'sound/items/welder2.ogg'
 	var/powered = FALSE
 	var/dirt_amt_per_dig = 5
-	var/obj/item/cell/rtg/plasma_cutter/cell //The plasma cutter cell is unremovable and recharges over time
+	var/obj/item/cell/rtg/large/cell //The plasma cutter cell is unremovable and recharges over time
 	tool_behaviour = TOOL_WELD_CUTTER
 
 /obj/item/tool/pickaxe/plasmacutter/Initialize()
