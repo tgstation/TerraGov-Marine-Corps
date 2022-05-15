@@ -385,20 +385,20 @@
 	var/mob/living/carbon/xenomorph/receiver = target
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && receiver.stat == DEAD)
 		if(!silent)
-			reciever.balloon_alert(owner, "Cannot give plasma, dead")
+			receiver.balloon_alert(owner, "Cannot give plasma, dead")
 		return FALSE
 	if(!(receiver.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
-			reciever.balloon_alert(owner, "Cannot give plasma")
+			receiver.balloon_alert(owner, "Cannot give plasma")
 			return FALSE
 	var/mob/living/carbon/xenomorph/giver = owner
 	if(giver.z != receiver.z)
 		if(!silent)
-			reciever.balloon_alert(owner, "Cannot give plasma, too far")
+			receiver.balloon_alert(owner, "Cannot give plasma, too far")
 		return FALSE
 	if(receiver.plasma_stored >= receiver.xeno_caste.plasma_max)
 		if(!silent)
-			reciever.balloon_alert(owner, "Cannot give plasma, full")
+			receiver.balloon_alert(owner, "Cannot give plasma, full")
 		return FALSE
 
 
@@ -407,7 +407,7 @@
 	add_cooldown()
 	receiver.gain_plasma(300)
 	succeed_activate()
-	reciever.balloon_alert_to_viewers("Plasma given from Queen")
+	receiver.balloon_alert_to_viewers("Plasma given from Queen")
 
 
 // ***************************************

@@ -132,6 +132,7 @@
 
 /datum/action/xeno_action/build_tunnel/action_activate()
 	var/turf/T = get_turf(owner)
+	var/mob/living/carbon/xenomorph/hivelord/X = owner
 
 	X.balloon_alert(X, "Digging...")
 	owner.visible_message(span_xenonotice("[owner] begins digging out a tunnel entrance."), \
@@ -144,7 +145,6 @@
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
-	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	T.balloon_alert(X, "Dug tunnel")
 	X.visible_message(span_xenonotice("\The [X] digs out a tunnel entrance."), \
 	span_xenonotice("We dig out a tunnel, connecting it to our network."), null, 5)
