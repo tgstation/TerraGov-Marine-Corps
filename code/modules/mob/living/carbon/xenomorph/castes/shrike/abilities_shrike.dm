@@ -320,6 +320,10 @@
 		return FALSE
 
 /datum/action/xeno_action/place_acidwell/action_activate()
+	if(!do_after(owner, 3 SECONDS, FALSE, owner, BUSY_ICON_DANGER))
+		to_chat(owner, span_warning("We need to stay still to make this!"))
+		return FALSE
+
 	var/turf/T = get_turf(owner)
 	succeed_activate()
 
