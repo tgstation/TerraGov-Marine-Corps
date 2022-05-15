@@ -483,9 +483,9 @@
 			L.remove_limb_flags(LIMB_SPLINTED)
 			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
 
-		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
+		L.take_damage_limb(damage, 0, FALSE, FALSE, get_soft_armor(target_zone))
 	else
-		apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
+		apply_damage(damage, BRUTE, target_zone, get_soft_armor(target_zone))
 
 	if(push)
 		var/facing = get_dir(X, src)
