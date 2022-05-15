@@ -165,11 +165,6 @@
 
 	custom_metabolism = REAGENTS_METABOLISM * 0.05
 
-/datum/reagent/oxygen/on_mob_life(mob/living/L, metabolism)
-	if(metabolism & IS_VOX)
-		L.adjustToxLoss(REAGENTS_METABOLISM)
-	return ..()
-
 /datum/reagent/copper
 	name = "Copper"
 	description = "A highly ductile metal."
@@ -186,11 +181,6 @@
 	taste_multi = 0
 
 	custom_metabolism = REAGENTS_METABOLISM * 0.05
-
-/datum/reagent/nitrogen/on_mob_life(mob/living/L, metabolism)
-	if(metabolism & IS_VOX)
-		L.adjustOxyLoss(-effect_str)
-	return ..()
 
 /datum/reagent/hydrogen
 	name = "Hydrogen"

@@ -36,6 +36,9 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 10, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 10)
 
+	// *** Minimap Icon *** //
+	minimap_icon = "spitter"
+
 	// *** Ranged Attack *** //
 	spit_delay = 0.8 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
@@ -44,7 +47,6 @@
 	acid_spray_damage_on_hit = 35
 	acid_spray_damage = 16
 	acid_spray_structure_damage = 45
-
 
 	// *** Abilities *** //
 	actions = list(

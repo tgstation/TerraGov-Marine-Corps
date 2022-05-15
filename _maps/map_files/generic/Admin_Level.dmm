@@ -779,7 +779,6 @@
 /obj/item/seeds/lemonseed,
 /obj/item/seeds/libertymycelium,
 /obj/item/seeds/limeseed,
-/obj/item/seeds/mtearseed,
 /obj/item/seeds/nettleseed,
 /obj/item/seeds/orangeseed,
 /obj/item/seeds/peanutseed,
@@ -792,7 +791,6 @@
 /obj/item/seeds/pumpkinseed,
 /obj/item/seeds/reishimycelium,
 /obj/item/seeds/riceseed,
-/obj/item/seeds/shandseed,
 /obj/item/seeds/soyaseed,
 /obj/item/seeds/sugarcaneseed,
 /obj/item/seeds/sunflowerseed,
@@ -2069,7 +2067,6 @@
 /area/tdome/tdomeadmin)
 "cGi" = (
 /obj/effect/decal/cleanable/cobweb2,
-/obj/structure/closet/wardrobe/xenos,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "cGo" = (
@@ -8971,9 +8968,6 @@
 /obj/item/folder/white,
 /obj/item/storage/box/monkeycubes,
 /obj/item/storage/box/monkeycubes,
-/obj/item/storage/box/monkeycubes/farwacubes,
-/obj/item/storage/box/monkeycubes/neaeracubes,
-/obj/item/storage/box/monkeycubes/stokcubes,
 /obj/item/tweezers,
 /obj/item/tweezers,
 /turf/open/floor/mainship/sterile/side,

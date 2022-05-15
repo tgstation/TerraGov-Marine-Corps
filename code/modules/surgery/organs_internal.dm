@@ -63,7 +63,6 @@
 	allowed_tools = list(
 		/obj/item/stack/medical/heal_pack/advanced/bruise_pack= 100,
 		/obj/item/stack/medical/heal_pack/gauze = 20,
-		/obj/item/stack/medical/heal_pack/gauze/tajaran = 70,
 	)
 
 	min_duration = FIX_ORGAN_MIN_DURATION

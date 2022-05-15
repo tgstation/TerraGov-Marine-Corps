@@ -1,0 +1,4 @@
+author: "DeltaFire15"
+delete-after: True
+changes: 
+  - bugfix: "Deployables should be less likely to have issues with turf blocking conditions changing during deployment."

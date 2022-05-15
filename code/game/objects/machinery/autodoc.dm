@@ -216,10 +216,8 @@
 	var/surgery_list = list()
 	for(var/datum/limb/L in M.limbs)
 		if(L)
-			for(var/datum/wound/W in L.wounds)
-				if(W.internal)
-					surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
-					break
+			if(L.wounds.len)
+				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 
 			var/organdamagesurgery = 0
 			for(var/datum/internal_organ/I in L.internal_organs)
@@ -444,9 +442,8 @@
 						for(var/datum/wound/W in S.limb_ref.wounds)
 							if(!surgery)
 								break
-							if(W.internal)
-								sleep(FIXVEIN_MAX_DURATION*surgery_mod)
-								S.limb_ref.wounds -= W
+							sleep(FIXVEIN_MAX_DURATION*surgery_mod)
+							qdel(W)
 						if(!surgery)
 							break
 						close_incision(occupant, S.limb_ref)
@@ -1234,13 +1231,9 @@
 		if(href_list["internal"])
 			for(var/i in connected.occupant.limbs)
 				var/datum/limb/L = i
-				for(var/x in L.wounds)
-					var/datum/wound/W = x
-					if(!W.internal)
-						continue
+				if(L.wounds.len)
 					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 					needed++
-					break
 			if(!needed)
 				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_INTERNAL,1)
 

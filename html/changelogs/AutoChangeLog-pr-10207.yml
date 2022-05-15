@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - balance: "Flares only deal extra burn damage to things not already on fire. Normal throw impact damage and fire stacks are unchanged."
