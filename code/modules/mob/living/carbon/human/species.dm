@@ -456,6 +456,20 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	H.speech_span = initial(H.speech_span)
 	H.health_threshold_crit = -50
 
+/mob/living/carbon/human/species/robot/handle_regular_hud_updates()
+	. = ..()
+	clear_fullscreen("crit")
+	clear_fullscreen("oxy")
+	clear_fullscreen("brute")
+	if(health <= 0 && health > -50)
+		overlay_fullscreen("test", /obj/screen/fullscreen/bloodlust)
+	else if(health <= -50)
+		clear_fullscreen("test")
+		overlay_fullscreen("test2", /obj/screen/fullscreen/machine)
+	else
+		clear_fullscreen("test")
+		clear_fullscreen("test2")
+
 
 /datum/species/synthetic
 	name = "Synthetic"
