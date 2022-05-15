@@ -195,7 +195,7 @@
 	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
 		return
 	if(add_fire_stacks)	//Fire stack increases are affected by armor, end result rounded up.
-		add_fire_stacks = CEILING(fire_stacks * get_fire_resist(), 1)
+		add_fire_stacks = CEILING(add_fire_stacks * get_fire_resist(), 1)
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
@@ -283,4 +283,4 @@
 			break
 
 /mob/living/proc/get_fire_resist()
-	return clamp((100 - get_soft_armor("burn", BODY_ZONE_CHEST)) * 0.01, 0, 1)
+	return clamp((100 - get_soft_armor("fire", BODY_ZONE_CHEST)) * 0.01, 0, 1)
