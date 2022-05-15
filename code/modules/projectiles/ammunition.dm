@@ -79,9 +79,7 @@
 		var/obj/item/weapon/gun/gun = I
 		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
 			return ..()
-		if(!gun.reload(src, user))
-			return
-		gun.RegisterSignal(src, COMSIG_ITEM_REMOVED_INVENTORY, /obj/item/weapon/gun.proc/drop_connected_mag)
+		gun.reload(src, user)
 		return
 
 	if(!CHECK_BITFIELD(flags_magazine, MAGAZINE_REFILLABLE)) //and a refillable magazine
