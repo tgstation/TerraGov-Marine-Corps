@@ -1,0 +1,6 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - bugfix: "SG vendor now displays the proper name for the SG minigun"
+  - soundadd: "SG minigun now uses default minigun sound, ears of the world rejoice!"
+  - sounddel: "Removed minigun_sg since it is now unused and hurts everyone's ears"
