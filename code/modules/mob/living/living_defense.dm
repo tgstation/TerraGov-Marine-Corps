@@ -194,7 +194,7 @@
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
 	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
 		return
-	if(add_fire_stacks)	//Fire stack increases are affected by armor, end result rounded up.
+	if(add_fire_stacks > 0)	//Fire stack increases are affected by armor, end result rounded up.
 		add_fire_stacks = CEILING(add_fire_stacks * get_fire_resist(), 1)
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)

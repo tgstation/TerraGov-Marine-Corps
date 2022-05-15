@@ -44,8 +44,8 @@
 /mob/living/carbon/xenomorph/handle_fire()
 	. = ..()
 	if(.)
-		if(fire_stacks > 0)
-			fire_stacks--	//Passively lose firestacks when not on fire while carrying firestacks around.
+		if(resting && fire_stacks > 0)
+			adjust_fire_stacks(-1)	//Passively lose firestacks when not on fire while resting and having firestacks built up.
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
