@@ -31,6 +31,7 @@
 		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent)
 			A.balloon_alert(X, "Cannot reach")
+			to_chat(X, span_warning("We can't reach this target! We need to be adjacent!"))
 		return FALSE
 
 
