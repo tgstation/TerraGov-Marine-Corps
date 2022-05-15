@@ -69,7 +69,7 @@
 	var/penetration = 0
 	///ammo sundering value
 	var/sundering = 0
-	var/accuracy = 85 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
+	var/accuracy = 80 //Base projectile accuracy. Can maybe be later taken from the mob if desired.
 
 	///how many damage points the projectile loses per tiles travelled
 	var/damage_falloff = 0
@@ -729,62 +729,83 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
-	. += proj.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
-	BULLET_DEBUG("Base accuracy is <b>[.]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
-	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range + random variance.
+
+	//We want a temporary variable so accuracy doesn't change every time the bullet misses.
+	var/hit_chance
+	hit_chance += proj.accuracy
+	BULLET_DEBUG("Base accuracy is <b>[hit_chance]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
+	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range.
 		if(proj.distance_travelled <= proj.ammo.point_blank_range) //If bullet within point blank range, big accuracy buff.
 			BULLET_DEBUG("Point blank range (+25)")
-			. += 25
-		else if((proj.ammo.flags_ammo_behavior & AMMO_SNIPER) && proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range before point blank
-			BULLET_DEBUG("Sniper ammo, too close (-[(proj.ammo.accurate_range_min - proj.distance_travelled) * 5])")
-			. -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 5
+			hit_chance += 25
+		else if((proj.ammo.flags_ammo_behavior & AMMO_SNIPER) && proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range UNLESS in point blank range
+			BULLET_DEBUG("Sniper ammo, too close (-[min(100, hit_chance) - (proj.ammo.accurate_range_min - proj.distance_travelled) * 10])")
+			hit_chance = min(100, hit_chance) //excess accuracy doesn't help within minimum accurate range
+			hit_chance -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 10 //The further inside minimum accurate range, the greater the penalty //INCREASE MIN RANGE ON SNIPERS
 	else
-		BULLET_DEBUG("Too far (+[(proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5)])")
-		. -= (proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5) //Snipers have a smaller falloff constant due to longer max range
+		BULLET_DEBUG("Too far (+[((proj.distance_travelled - proj.ammo.accurate_range )* 5)])")
+		hit_chance -= ((proj.distance_travelled - proj.ammo.accurate_range )* 5) //Every tile travelled past accurate_range reduces accuracy
 
-	. = max(5, .) //default hit chance is at least 5%.
-	if(lying_angle && stat != CONSCIOUS)
-		. += 15 //Bonus hit against unconscious people.
+	hit_chance = max(5, hit_chance) //default hit chance after range factors is at least 5%.
 
-	var/obj/item/shot_source = proj.shot_from
+	hit_chance += (mob_size - 1) * 10 //You're easy to hit when you're swoll, hard to hit when you're a manlet
+
+	if(last_move_intent > world.time - 2 SECONDS) //You're harder to hit if you're moving
+		///accumulated movement related evasion bonus
+		var/evasion_bonus
+		if(ishuman(src))
+			var/mob/living/carbon/human/target_human = src
+			if(target_human.mobility_aura)
+				evasion_bonus += max(5, (target_human.mobility_aura * 5)) //you get a bonus if you've got an active mobility order effecting you
+		evasion_bonus += (30 - (min(30, cached_multiplicative_slowdown * 5))) //The lower your slowdown, the better your chance to dodge, but it won't make you easier to hit if you have huge slowdown
+		evasion_bonus = (100 - evasion_bonus) / 100 //turn it into a multiplier
+		BULLET_DEBUG("Moving (*[evasion_bonus]).")
+		hit_chance = round(hit_chance * evasion_bonus)
+
+	///Is the shooter a living mob. Defined before the check as used later as well
+	var/mob/living/shooter_living
 	if(isliving(proj.firer))
-		var/mob/living/shooter_living = proj.firer
-		if(!line_of_sight(shooter_living, src, WORLD_VIEW_NUM) && (!istype(shot_source) || !shot_source.zoom))
-			BULLET_DEBUG("Can't see target (-15).")
-			. -= 15 //Can't see the target (Opaque thing between shooter and target)
-		if(shooter_living.last_move_intent < world.time - 2 SECONDS) //We get a nice accuracy bonus for standing still.
-			BULLET_DEBUG("Stationary (+15).")
-			. += 15
-		else if(shooter_living.m_intent == MOVE_INTENT_WALK) //We get a decent accuracy bonus for walking
-			BULLET_DEBUG("walk intent bonus (+10).")
-			. += 10
+		shooter_living = proj.firer
+		if(shooter_living.faction == faction)
+			hit_chance = round(hit_chance*0.85) //You (presumably) aren't trying to shoot your friends
+		var/obj/item/shot_source = proj.shot_from
+		if(!line_of_sight(shooter_living, src, WORLD_VIEW_NUM) && (!istype(shot_source) || !shot_source.zoom)) //if you can't draw LOS, AND (shot didn't come from a item or it didn't come from something actively using zoom)... not sure why
+			BULLET_DEBUG("Can't see target ([round(hit_chance*0.85)]).")
+			hit_chance = round(hit_chance*0.8) //Can't see the target (Opaque thing between shooter and target), or out of view range
 		if(ishuman(proj.firer))
-			var/mob/living/carbon/human/shooter_human = shooter_living
-			BULLET_DEBUG("Traumatic shock (-[round(min(30, shooter_human.traumatic_shock * 0.2))]).")
-			. -= round(min(30, shooter_human.traumatic_shock * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
-			if(shooter_human.marksman_aura) //Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
-				BULLET_DEBUG("marksman_aura (+[shooter_human.marksman_aura * 3] + [proj.distance_travelled * shooter_human.marksman_aura * 0.35]).")
-				. += shooter_human.marksman_aura * 3
-				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
+			var/mob/living/carbon/human/shooter_human = proj.firer
+			BULLET_DEBUG("Traumatic shock (-[round(min(30, shooter_human.traumatic_shock * 0.3))]).")
+			hit_chance -= round(min(30, shooter_human.traumatic_shock * 0.3)) //Chance to hit declines with pain, being reduced by 0.3% per point of pain.
+			if(shooter_human.marksman_aura)
+				BULLET_DEBUG("marksman_aura (+[5 + max(5, shooter_human.marksman_aura * 5)]).")
+				hit_chance += 5 + max(5, shooter_human.marksman_aura * 5) //Accuracy bonus from active focus order
 
 	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
-	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
+	hit_chance -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
 
-	BULLET_DEBUG("Final accuracy is <b>[.]</b>")
+	BULLET_DEBUG("Final accuracy is <b>[hit_chance]</b>")
 
-	if(. <= 0) //If by now the sum is zero or negative, we won't be hitting at all.
+	if(hit_chance <= 0) //If by now the sum is zero or negative, we won't be hitting at all.
 		return FALSE
 
 	var/hit_roll = rand(0, 99) //Our randomly generated roll
 
-	if(. > hit_roll) //Hit
+	if(hit_chance > hit_roll) //Hit
+		//friendly fire reduces the damage of the projectile, so only applies the multiplier if a hit is confirmed
+		if(shooter_living)
+			if(shooter_living.faction == faction)
+				proj.damage *= proj.friendly_fire_multiplier
 		return TRUE
 
-	if((hit_roll - .) < 25) //Small difference, one more chance on a random bodypart, with penalties.
+	if(prob(25)) //If you missed, you get the chance to hit another body part at a reduced probability
 		var/new_def_zone = pick(GLOB.base_miss_chance)
-		. -= GLOB.base_miss_chance[new_def_zone]
-		if(prob(.))
+		hit_chance = hit_chance - (GLOB.base_miss_chance[new_def_zone] * 2) //notably lower hit chance
+		if(prob(hit_chance))
 			proj.def_zone = new_def_zone
+			//friendly fire reduces the damage of the projectile, so only applies the multiplier if a hit is confirmed
+			if(shooter_living)
+				if(shooter_living.faction == faction)
+					proj.damage *= proj.friendly_fire_multiplier
 			return TRUE
 
 	if(!lying_angle) //Narrow miss!
@@ -819,28 +840,14 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(wear_id?.iff_signal & proj.iff_signal)
 		proj.damage += proj.damage*proj.damage_marine_falloff
 		return FALSE
-	if(mobility_aura)
-		. -= mobility_aura * 5
-	if(ishuman(proj.firer))
-		var/mob/living/carbon/human/shooter_human = proj.firer
-		if(shooter_human.faction == faction || m_intent == MOVE_INTENT_WALK)
-			. -= 15
-		//Friendly fire does less damage
-		if(shooter_human.faction == faction)
-			proj.damage *= proj.friendly_fire_multiplier
 	return ..()
 
 
 /mob/living/carbon/xenomorph/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(SEND_SIGNAL(src, COMSIG_XENO_PROJECTILE_HIT, proj, cardinal_move, uncrossing) & COMPONENT_PROJECTILE_DODGE)
 		return FALSE
-
 	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_ALIENS)
 		return FALSE
-	if(mob_size == MOB_SIZE_BIG)
-		. += 10
-	else
-		. -= 10
 	return ..()
 
 
