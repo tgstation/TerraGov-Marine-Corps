@@ -237,7 +237,7 @@ WEAPONS
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
-	cost = 60
+	cost = 50
 
 /datum/supply_packs/weapons/tx54
 	name = "GL-54 airburst grenade launcher"
@@ -301,7 +301,7 @@ WEAPONS
 /datum/supply_packs/weapons/tx8
 	name = "BR-8 Scout Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx8)
-	cost = 50
+	cost = 70
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_regular
@@ -325,7 +325,7 @@ WEAPONS
 /datum/supply_packs/weapons/thermobaric
 	name = "RL-57 Thermobaric Launcher"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4/t57)
-	cost = 50
+	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/thermobaric_wp
@@ -390,7 +390,7 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial
 	name = "SR-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 65
+	cost = 85
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial_ammo
@@ -523,12 +523,12 @@ WEAPONS
 /datum/supply_packs/weapons/xray_gun
 	name = "TE-X Laser Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/xray)
-	cost = 40
+	cost = 25
 
 /datum/supply_packs/weapons/rocketsledge
 	name = "Rocket Sledge"
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
-	cost = 60
+	cost = 40
 
 /*******************************************************************************
 EXPLOSIVES
@@ -634,7 +634,7 @@ EXPLOSIVES
 /datum/supply_packs/explosives/howitzer
 	name = "MG-100Y howitzer"
 	contains = list(/obj/item/mortar_kit/howitzer)
-	cost = 60
+	cost = 75
 
 /datum/supply_packs/explosives/howitzer_ammo_he
 	name = "MG-100Y howitzer HE shell (x2)"
