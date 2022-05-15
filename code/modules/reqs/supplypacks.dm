@@ -1002,12 +1002,12 @@ ENGINEERING
 /datum/supply_packs/engineering/metal50
 	name = "50 metal sheets"
 	contains = list(/obj/item/stack/sheet/metal/large_stack)
-	cost = 20
+	cost = 25
 
 /datum/supply_packs/engineering/plas50
 	name = "50 plasteel sheets"
 	contains = list(/obj/item/stack/sheet/plasteel/large_stack)
-	cost = 40
+	cost = 50
 
 /datum/supply_packs/engineering/glass50
 	name = "50 glass sheets"
@@ -1022,7 +1022,7 @@ ENGINEERING
 /datum/supply_packs/engineering/plasmacutter
 	name = "plasma cutter"
 	contains = list(/obj/item/tool/pickaxe/plasmacutter/)
-	cost = 30
+	cost = 40
 
 /datum/supply_packs/engineering/quikdeploycade
 	name = "quikdeploy barricade"
