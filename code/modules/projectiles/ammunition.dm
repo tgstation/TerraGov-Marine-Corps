@@ -267,12 +267,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/max_casings = 16
 	var/current_icon = 0
 	var/number_of_states = 10 //How many variations of this item there are.
+	var/initial_icon_state = "cartridge_" //holder for icon_state so we can do random variations without effecting mapper visibility
 
 /obj/item/ammo_casing/Initialize()
 	. = ..()
 	pixel_x = rand(-2, 2) //Want to move them just a tad.
 	pixel_y = rand(-2, 2)
-	icon_state += "[rand(1, number_of_states)]" //Set the icon to it.
+	icon_state = initial_icon_state += "[rand(1, number_of_states)]" //Set the icon to it.
 
 //This does most of the heavy lifting. It updates the icon and name if needed, then changes .dir to simulate new casings.
 /obj/item/ammo_casing/update_icon()
@@ -296,11 +297,12 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/ammo_casing/cartridge
 	name = "spent cartridge"
-	icon_state = "cartridge_"
+	icon_state = "cartridge"
 
 /obj/item/ammo_casing/shell
 	name = "spent shell"
-	icon_state = "shell_"
+	initial_icon_state = "shell_"
+	icon_state = "shell"
 
 
 

@@ -653,6 +653,10 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
+"bV" = (
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
 "bW" = (
 /obj/machinery/light{
 	dir = 1
@@ -662,26 +666,26 @@
 	},
 /area/mainship/hallways/hangar)
 "bX" = (
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "bY" = (
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
-	},
 /obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "bZ" = (
 /obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
+	dir = 1
 	},
 /turf/open/floor/mainship/terragov/north{
 	dir = 9
@@ -689,7 +693,7 @@
 /area/mainship/hallways/hangar)
 "cb" = (
 /obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
+	dir = 1
 	},
 /turf/open/floor/mainship/terragov/north{
 	dir = 1
@@ -697,7 +701,7 @@
 /area/mainship/hallways/hangar)
 "cc" = (
 /obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
+	dir = 1
 	},
 /turf/open/floor/mainship/terragov/north{
 	dir = 5
@@ -744,6 +748,14 @@
 	dir = 1
 	},
 /area/mainship/hallways/starboard_hallway)
+"cm" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/command/self_destruct)
 "cn" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/black{
@@ -3623,6 +3635,9 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/self_destruct)
 "lV" = (
@@ -3743,6 +3758,18 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
+"mv" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
+"mw" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/self_destruct)
 "my" = (
 /obj/machinery/computer/supplycomp,
 /obj/machinery/light{
@@ -4024,6 +4051,9 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/self_destruct)
 "nw" = (
@@ -5711,6 +5741,12 @@
 "ty" = (
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/lounge)
+"tz" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/command/self_destruct)
 "tA" = (
 /obj/structure/table/mainship,
 /obj/machinery/chem_dispenser/soda,
@@ -7147,6 +7183,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"xR" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
 "xS" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -8207,7 +8249,7 @@
 "AR" = (
 /obj/effect/decal/warning_stripes/firingrange,
 /obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -8303,6 +8345,9 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/self_destruct)
 "Bf" = (
@@ -8392,6 +8437,10 @@
 /obj/structure/cable,
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
+"Bt" = (
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/self_destruct)
 "Bu" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -8862,6 +8911,12 @@
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_one)
+"CQ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/command/self_destruct)
 "CS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -8919,6 +8974,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/black,
 /area/mainship/living/briefing)
+"Dg" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
 "Dh" = (
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -8951,6 +9012,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general)
+"Dr" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/self_destruct)
 "Ds" = (
 /obj/structure/window/framed/mainship/hull,
 /obj/machinery/atmospherics/pipe/simple/general/visible,
@@ -9106,10 +9173,6 @@
 	},
 /turf/open/floor/freezer,
 /area/mainship/living/cafeteria_starboard)
-"DN" = (
-/obj/machinery/self_destruct/rod,
-/turf/open/floor/mainship/floor,
-/area/mainship/command/self_destruct)
 "DO" = (
 /obj/structure/table/mainship,
 /obj/item/pizzabox,
@@ -10397,6 +10460,13 @@
 	dir = 4
 	},
 /area/mainship/squads/general)
+"Ht" = (
+/obj/structure/cable,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
 "Hu" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/blue{
@@ -11027,7 +11097,7 @@
 /area/mainship/medical/chemistry)
 "Jw" = (
 /obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
+	dir = 1
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
@@ -11567,6 +11637,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
+"Lc" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/self_destruct)
 "Ld" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/floor,
@@ -12263,10 +12339,10 @@
 "Nm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
-	},
 /obj/effect/ai_node,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/starboard_hull)
 "No" = (
@@ -12438,9 +12514,6 @@
 	dir = 4
 	},
 /obj/effect/decal/warning_stripes/thick,
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
 "NS" = (
@@ -12672,6 +12745,12 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"Os" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
 "Ot" = (
 /turf/open/floor/mainship/black{
 	dir = 1
@@ -13568,10 +13647,10 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "N-corner"
-	},
 /obj/effect/ai_node,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
 "Ri" = (
@@ -13930,6 +14009,13 @@
 	},
 /turf/open/floor/light,
 /area/mainship/command/airoom)
+"Su" = (
+/obj/structure/cable,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
 "Sv" = (
 /obj/machinery/door/airlock/mainship/secure{
 	dir = 2
@@ -14250,10 +14336,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"Tq" = (
-/obj/machinery/self_destruct/rod,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/command/self_destruct)
 "Tr" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -14689,7 +14771,7 @@
 /area/mainship/hallways/port_hallway)
 "UF" = (
 /obj/machinery/self_destruct/rod,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "UH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15695,6 +15777,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
+"XR" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/mainship/tcomms,
+/area/mainship/command/self_destruct)
 "XS" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -15997,6 +16085,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/engine_core)
+"YO" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/command/self_destruct)
 "YP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -22974,13 +23068,13 @@ Sr
 ye
 JC
 YH
-YH
-Sr
+Ht
+cm
+XR
 gs
-gs
-gs
+Dr
 lQ
-ZB
+xR
 uK
 Wm
 Wm
@@ -23072,13 +23166,13 @@ CK
 Zx
 tn
 Ap
-ZB
+bV
 UF
+Lc
 gs
-gs
-gs
-DN
-ZB
+Bt
+UF
+Dg
 aU
 lY
 XE
@@ -23170,13 +23264,13 @@ Yr
 If
 If
 TK
-ZB
-AW
+Os
+CQ
 gs
 gs
-gs
-AW
-ZB
+mw
+CQ
+mv
 aU
 aU
 aU
@@ -23366,13 +23460,13 @@ Yr
 Wb
 ZB
 ZB
-ZB
-AW
+YO
+tz
+XR
 gs
-gs
-gs
-AW
-ZB
+Dr
+tz
+xR
 pP
 gs
 gs
@@ -23464,13 +23558,13 @@ Yr
 Wb
 ZB
 ZB
-ZB
-Tq
-gs
+bV
+UF
+Lc
 ur
-gs
-Tq
-ZB
+Bt
+UF
+Dg
 pP
 gs
 ZW
@@ -23562,13 +23656,13 @@ Yr
 Wb
 ZB
 ZB
-ZB
-AW
+Os
+CQ
 gs
 gs
-gs
-AW
-ZB
+mw
+CQ
+mv
 pP
 gs
 gs
@@ -23758,13 +23852,13 @@ Yr
 If
 If
 TK
-ZB
-AW
+YO
+tz
+XR
 gs
-gs
-gs
-AW
-ZB
+Dr
+tz
+xR
 aU
 aU
 aU
@@ -23856,13 +23950,13 @@ JT
 Zx
 tn
 Ap
-ZB
+bV
 UF
+Lc
 gs
-gs
-gs
-DN
-ZB
+Bt
+UF
+Dg
 aU
 lY
 XE
@@ -23954,13 +24048,13 @@ ye
 ye
 JC
 YH
-YH
+Su
 nu
 gs
 gs
-gs
+mw
 Be
-ZB
+mv
 uK
 Zl
 Zl
