@@ -329,13 +329,7 @@
 /area/lv624/lazarus/crashed_ship)
 "ahH" = (
 /obj/structure/morgue/sarcophagus,
-/obj/item/weapon/combat_knife{
-	desc = "A curved blade made of a strange material. It looks both old and very sharp.";
-	force = 30;
-	icon_state = "unathiknife";
-	name = "\improper alien blade";
-	throwforce = 26
-	},
+/obj/item/toy/beach_ball/basketball,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "ahN" = (

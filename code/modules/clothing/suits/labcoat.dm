@@ -8,7 +8,6 @@
 	pockets = /obj/item/storage/internal/modular/medical
 	permeability_coefficient = 0.6
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 0)
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 	verb/toggle()
 		set name = "Toggle Labcoat Buttons"

@@ -183,10 +183,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_ROBOT (1<<3)
 #define LIMB_SPLINTED (1<<4)
 #define LIMB_NECROTIZED (1<<5) //necrotizing limb, nerves are dead.
-#define LIMB_MUTATED (1<<6) //limb is deformed by mutations
-#define LIMB_AMPUTATED (1<<7) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
-#define LIMB_REPAIRED (1<<8) //we just repaired the bone, stops the gelling after setting
-#define LIMB_STABILIZED (1<<9) //certain suits will support a broken limb while worn such as the b18
+#define LIMB_AMPUTATED (1<<6) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
+#define LIMB_REPAIRED (1<<7) //we just repaired the bone, stops the gelling after setting
+#define LIMB_STABILIZED (1<<8) //certain suits will support a broken limb while worn such as the b18
 
 //limb_wound_status
 #define LIMB_WOUND_BANDAGED (1<<0)
@@ -343,13 +342,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Some on_mob_life() procs check for alien races.
 #define IS_HUMAN (1<<0)
 #define IS_XENO (1<<1)
-#define IS_VOX (1<<2)
-#define IS_SKRELL (1<<3)
-#define IS_UNATHI (1<<4)
-#define IS_HORROR (1<<5)
-#define IS_MOTH (1<<6)
-#define IS_SECTOID (1<<7)
-#define IS_MONKEY (1<<8)
+#define IS_MOTH (1<<3)
+#define IS_SECTOID (1<<4)
+#define IS_MONKEY (1<<5)
 //=================================================
 
 //AFK status
