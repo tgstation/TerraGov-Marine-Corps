@@ -20,12 +20,20 @@
 // DATUM
 /datum/world_topic
 	var/keyword
-	var/log = FALSE
+	var/log = TRUE
+	var/key_valid
+	var/require_comms_key = FALSE
 
 
 /datum/world_topic/proc/TryRun(list/input)
+	key_valid = config && (CONFIG_GET(string/comms_key) == input["key"])
 	input -= "key"
-	. = Run(input)
+	if(require_comms_key && !key_valid)
+		. = "Bad Key"
+		if (input["format"] == "json")
+			. = list("error" = .)
+	else
+		. = Run(input)
 	if (input["format"] == "json")
 		. = json_encode(.)
 	else if(islist(.))
@@ -94,3 +102,36 @@
 	.["mapname"] = length(SSmapping.configs) ? "[SSmapping.configs[GROUND_MAP].map_name] ([SSmapping.configs[SHIP_MAP].map_name])" : "Loading..."
 	.["security_level"] = GLOB.marine_main_ship?.get_security_level()
 	.["round_duration"] = SSticker ? round((world.time - SSticker.round_start_time) / 10) : 0
+
+/datum/world_topic/playerlist_ext
+	keyword = "playerlist_ext"
+	require_comms_key = TRUE
+
+/datum/world_topic/playerlist_ext/Run(list/input)
+	. = list()
+	var/list/players = list()
+	var/list/disconnected_observers = list()
+
+	for(var/mob/M in GLOB.dead_mob_list)
+		if(!M.ckey)
+			continue
+		if (M.client)
+			continue
+		var/ckey = ckey(M.ckey)
+		disconnected_observers[ckey] = ckey
+
+	for(var/client/C as anything in GLOB.clients)
+		var/ckey = C.ckey
+		players[ckey] = ckey
+		. += ckey
+
+	for(var/mob/M in GLOB.alive_living_list)
+		if(!M.ckey)
+			continue
+		var/ckey = ckey(M.ckey)
+		if(players[ckey])
+			continue
+		if(disconnected_observers[ckey])
+			continue
+		players[ckey] = ckey
+		. += ckey
