@@ -119,8 +119,7 @@
 	span_notice("You put \the [tool] inside [target]'s [get_cavity(affected)] cavity."))
 	if(tool.w_class > get_max_wclass(affected)/2 && prob(50))
 		to_chat(user, span_warning("You tear some blood vessels trying to fit such a big object in this cavity."))
-		var/datum/wound/internal_bleeding/I = new (10)
-		affected.wounds += I
+		new /datum/wound/internal_bleeding(10, affected)
 		affected.owner.custom_pain("You feel something rip in your [affected.display_name]!", 1)
 	user.transferItemToLoc(tool, target)
 	affected.hidden = tool

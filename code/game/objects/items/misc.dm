@@ -150,7 +150,7 @@
 	icon = 'icons/obj/items/card.dmi'
 	icon_state = "centcom"
 	///This is the number of points this thing has to give.
-	var/extra_points = 100
+	var/extra_points = 150
 
 /obj/item/dropship_points_voucher/examine(mob/user)
 	. = ..()

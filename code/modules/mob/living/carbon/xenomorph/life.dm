@@ -63,10 +63,9 @@
 	var/ruler_healing_penalty = 0.5
 	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WITHOUT_QUEEN || (SSticker?.mode.flags_round_type & MODE_XENO_RULER)) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
-	var/obj/effect/alien/weeds/weed = locate() in T
-	if(weed || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
+	if(loc_weeds_type || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
-			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * weed ? weed.resting_buff : 1, TRUE)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * loc_weeds_type ? initial(loc_weeds_type.resting_buff) : 1, TRUE)
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
 	updatehealth()
@@ -82,7 +81,7 @@
 	if(resting) //Resting doubles sunder recovery
 		sunder_recov *= 2
 
-	if(locate(/obj/effect/alien/weeds/resting) in loc) //Resting weeds double sunder recovery
+	if(ispath(loc_weeds_type, /obj/effect/alien/weeds/resting)) //Resting weeds double sunder recovery
 		sunder_recov *= 2
 
 	if(recovery_aura)
@@ -93,8 +92,7 @@
 	adjust_sunder(sunder_recov)
 
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates()
-	var/turf/T = loc
-	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
+	if(loc_weeds_type)
 		heal_wounds(XENO_RESTING_HEAL)
 	else if(!endure) //If we're not Enduring we bleed out
 		adjustBruteLoss(XENO_CRIT_DAMAGE)
@@ -138,9 +136,7 @@
 		hud_set_plasma()
 		return
 
-	var/obj/effect/alien/weeds/weeds = locate() in T
-
-	if(!weeds && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
+	if(!loc_weeds_type && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
 		hud_set_plasma() // since we used some plasma via the aura
 		return
 
@@ -149,7 +145,7 @@
 	if(lying_angle || resting)
 		plasma_gain *= 2  // Doubled for resting
 
-	plasma_gain *= weeds ? weeds.resting_buff : 1
+	plasma_gain *= loc_weeds_type ? initial(loc_weeds_type.resting_buff) : 1
 
 	var/list/plasma_mod = list(plasma_gain)
 

@@ -55,6 +55,7 @@
 	. = ..()
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
 	start_processing()
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_on_hijack)
 
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
@@ -257,7 +258,7 @@
 	start_processing()
 
 /obj/machinery/miner/process()
-	if(miner_status != MINER_RUNNING)
+	if(miner_status != MINER_RUNNING || mineral_value == 0)
 		stop_processing()
 		SSminimaps.remove_marker(src)
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
@@ -318,3 +319,9 @@
 			SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_on")
 			miner_status = MINER_RUNNING
 	update_icon()
+
+///Called via global signal to prevent perpetual mining
+/obj/machinery/miner/proc/disable_on_hijack()
+	mineral_value = 0
+	miner_integrity = 0
+	set_miner_status()

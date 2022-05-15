@@ -47,6 +47,9 @@
 	charge_type = CHARGE_TYPE_SMALL
 	pounce_delay = 13 SECONDS
 
+	// *** Minimap Icon *** //
+	minimap_icon = "runner"
+
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
