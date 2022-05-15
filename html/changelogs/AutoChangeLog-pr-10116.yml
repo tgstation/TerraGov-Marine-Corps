@@ -1,9 +1,0 @@
-author: "tyeagg"
-delete-after: True
-changes: 
-  - balance: "reduced hv 30mm ammo travel time to 3 seconds
-delete: removed landing zone detector"
-  - balance: "increased dropship points received from voucher to 150"
-  - balance: "laser beam gun price increased to 600"
-  - balance: "laser battery price reduced to 85"
-  - balance: "fatty rocket price decreased to 150"
