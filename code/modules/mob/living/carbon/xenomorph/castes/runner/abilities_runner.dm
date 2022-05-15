@@ -17,11 +17,11 @@
 	if(X.savage)
 		X.savage = FALSE
 		X.balloon_alert(X, "No longer savaging")
-		to_chat(X, span_xenowarning("We untense our muscles, and relax. We will no longer savage when pouncing."))
+		to_chat(X, span_xenowarning("We untense our muscles, and relax."))
 	else
 		X.savage = TRUE
-		X.balloon_alert(X, "Now savage on pounce")
-		to_chat(X, "We ready ourselves for a killing stroke. We will savage when pouncing.[X.savage_used ? " However, we're not quite yet able to savage again." : ""]")
+		X.balloon_alert(X, "Will savage on pounce")
+		to_chat(X, "We ready ourselves for a killing stroke.[X.savage_used ? " However, we're not quite yet able to savage again." : ""]")
 	update_button_icon()
 
 /datum/action/xeno_action/toggle_savage/update_button_icon()
@@ -40,12 +40,10 @@
 
 	if(savage_used)
 		src.balloon_alert(src, "Cannot savage, cooldown")
-		to_chat(src, span_xenowarning("We're too tired to savage right now."))
 		return
 
 	if(stagger)
 		src.balloon_alert(src, "Cannot savage, staggered")
-		to_chat(src, span_xenodanger("We're too disoriented from the shock to savage!"))
 		return
 
 	playsound(src, "alien_roar[rand(1,6)]", 50)
@@ -130,10 +128,9 @@
 				INVOKE_ASYNC(X, /mob/living/carbon/xenomorph/.proc/Savage, M)
 			else
 				X.balloon_alert(X, "Cannot savage, no plasma")
-				to_chat(X, span_xenodanger("We attempt to savage our victim, but we need [10-X.plasma_stored] more plasma."))
+				to_chat(X, span_xenodanger("We attempt to savage our victim but we need at least [10-X.plasma_stored] more plasma."))
 		else
 			X.balloon_alert(X, "Cannot savage, not ready")
-			to_chat(X, span_xenodanger("We attempt to savage our victim, but we aren't yet ready."))
 
 	playsound(X.loc, 'sound/voice/alien_pounce.ogg', 25, TRUE)
 
@@ -440,8 +437,7 @@
 		return
 	if(!owner.Adjacent(A))
 		if(!silent)
-			owner.balloon_alert(owner, "Cannot snatch, too far")
-			to_chat(owner, span_xenodanger("Our snatch target must be adjacent!"))
+			owner.balloon_alert(owner, "Cannot snatch, not adjacent")
 		return FALSE
 	if(!ishuman(A))
 		if(!silent)
