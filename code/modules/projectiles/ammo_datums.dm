@@ -562,6 +562,12 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 30
 	sundering = 3
 
+/datum/ammo/bullet/smg/acp
+	name = "ACP submachinegun bullet"
+	damage = 25
+	penetration = 0
+	sundering = 1.5
+
 /*
 //================================================
 					Rifle Ammo

@@ -360,26 +360,27 @@
 /obj/item/weapon/gun/smg/vector
 	name = "\improper SMG-45 submachinegun"
 	desc = "The SMG-45 is the TerraGov Marine Corps depelopment to increase mobility of marines. It features delayed blowback system, heavily reducing recoil even with its high ROF. Uses extended .45 ACP magazines"
-	//fire_sound = 'sound/weapons/guns/fire/t90.ogg'
 	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = ""
+	icon_state = "v45"
 	item_state = "v45"
 	caliber = CALIBER_45ACP //codex
 	max_shells = 25 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
-	wield_delay = 0.3 SECONDS
 	force = 20
 	type_of_casings = null
 	//default_ammo_type = /obj/item/ammo_magazine/pistol/standard_heavypistol
 	//allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_heavypistol)
-	default_ammo_type = /obj/item/ammo_magazine/smg/standard_smg
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/standard_smg)
+	default_ammo_type = /obj/item/ammo_magazine/smg/vector
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/vector)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
@@ -391,33 +392,34 @@
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, , GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 
 	fire_delay = 0.15 SECONDS
 	damage_mult = 1
-	damage_falloff = 2
-	recoil = 0
-	recoil_unwielded = 0
+	damage_falloff_mult = 1.5 //shorter effective range
+	recoil = -5
+	recoil_unwielded = -2
+	wield_delay = 0.3 SECONDS
 
-	akimbo_additional_delay = 0.66
+	akimbo_additional_delay = 0.33
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.9
 	aim_slowdown = 1 //Can aim without slowdown
 
 	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.7
+	accuracy_mult_unwielded = 0.7 //moving and akimbo yield low acc
 	scatter = 2
 	scatter_unwielded = 6
 
 	burst_amount = 2
 	burst_scatter_mult = 0.5
-	burst_delay = 0.05
-	extra_delay = 0.05
+	burst_delay = 0.05 SECONDS
+	extra_delay = 0.05 SECONDS
 
-	movement_acc_penalty_mult = 0
-	upper_akimbo_accuracy = 2
-	lower_akimbo_accuracy = 1
+	movement_acc_penalty_mult = 0.1
+	upper_akimbo_accuracy = 2.5
+	lower_akimbo_accuracy = 1.5
 
-	placed_overlay_iconstate = "t90"
+	//placed_overlay_iconstate = "t90"

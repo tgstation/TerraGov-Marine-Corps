@@ -117,3 +117,13 @@
 	max_rounds = 50
 	bonus_overlay = "uzi_ex"
 	icon_state_mini = "mag_smg_yellow"
+
+//-------------------------------------------------------
+//Vector, based on KRISS vector 45ACP.
+/obj/item/ammo_magazine/smg/vector
+	name = "\improper SMG-45 magazine (.45ACP)"
+	desc = "A .45ACP caliber magazine for the SMG-45."
+	default_ammo = /datum/ammo/bullet/smg/acp
+	caliber = CALIBER_45ACP
+	icon_state = "uzi_ext"
+	max_rounds = 25 // MagEx 25+ mag
