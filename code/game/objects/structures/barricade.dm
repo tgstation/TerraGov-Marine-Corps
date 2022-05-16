@@ -1086,6 +1086,7 @@
 	max_integrity = 300
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
 	coverage = 128
+	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
 	stack_type = /obj/item/stack/sandbags
 	hit_sound = "sound/weapons/genhit.ogg"
 	barricade_type = "sandbag"
