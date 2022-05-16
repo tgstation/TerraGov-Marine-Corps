@@ -84,11 +84,16 @@
 	var/obj/item/storage/storage = .
 	var/list/obj/item/starting_items = list()
 	for(var/obj/item/I AS in storage.contents)
-		starting_items[I.type] = starting_items[I.type] + 1
+		starting_items[I.type] = starting_items[I.type] + get_item_stack_number(I)
 	storage.delete_contents()
 	for(var/datum/item_representation/item_representation AS in contents)
 		if(!item_representation.bypass_vendor_check && starting_items[item_representation.item_type] > 0)
-			starting_items[item_representation.type] = starting_items[item_representation.item_type] - 1
+			var/amount_to_remove = get_item_stack_representation_amount(item_representation)
+			if(starting_items[item_representation.item_type] < amount_to_remove)
+				amount_to_remove = starting_items[item_representation.item_type]
+				var/datum/item_representation/stack/stack_representation = item_representation
+				stack_representation.amount = amount_to_remove
+			starting_items[item_representation.item_type] = starting_items[item_representation.item_type] - amount_to_remove
 			item_representation.bypass_vendor_check = TRUE
 		var/obj/item/item_to_insert = item_representation.instantiate_object(seller, null, user)
 		if(!item_to_insert)
