@@ -98,7 +98,6 @@
 	belt = /obj/item/storage/belt/gun/pistol/m4a3/officer
 	back = null
 	shoes = /obj/item/clothing/shoes/marine/full
-	wear_suit = /obj/item/clothing/suit/dummy/Xenonauten
 
 /datum/job/zombie
 	title = "Oh god run"
