@@ -305,7 +305,7 @@
 	P.set_up(4, 0, impact)
 	P.start()
 	if(!ammo_count)
-		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
+		QDEL_IN(src, travelling_time) //deleted after last railgun has fired and impacted the ground.
 
 /obj/structure/ship_ammo/railgun/show_loaded_desc(mob/user)
 	if(ammo_count)
