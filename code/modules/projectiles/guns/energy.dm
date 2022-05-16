@@ -577,6 +577,7 @@
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.65
 	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
 	mode_list = list(
 		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
 		"Automatic standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic,
@@ -654,6 +655,7 @@
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.5
+	movement_acc_penalty_mult = 6
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_sniper_mode/heat,
@@ -861,6 +863,7 @@
 	scatter_unwielded = 10
 	recoil_unwielded = 1
 	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -935,6 +938,7 @@
 	accuracy_mult_unwielded = 0.4
 	scatter_unwielded = 35
 	recoil_unwielded = 5
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)

@@ -8,7 +8,6 @@
 	load_method = MAGAZINE //codex
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY
-	movement_acc_penalty_mult = 3
 	wield_delay = 0.4 SECONDS
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -25,6 +24,7 @@
 	burst_amount = 3
 	recoil_unwielded = 0.5
 	akimbo_additional_delay = 0.2
+	movement_acc_penalty_mult = 3
 
 //-------------------------------------------------------
 // MP-19 Machinepistol. It fits here more.

@@ -66,6 +66,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 1.50
 	recoil = 2
 	scatter = 0
+	movement_acc_penalty_mult = 7
 
 	placed_overlay_iconstate = "antimat"
 
@@ -258,6 +259,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = 3
 	recoil = 5
 	burst_amount = 1
+	movement_acc_penalty_mult = 7
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
@@ -309,6 +311,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -5
 	recoil = -1
 	wield_delay = 1.8 SECONDS
+	movement_acc_penalty_mult = 6
 
 
 
@@ -411,6 +414,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 2
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/minigun/Initialize()
 	. = ..()
@@ -770,3 +774,4 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 2
 	recoil = 0
 	scatter = 0
+	movement_acc_penalty_mult = 6

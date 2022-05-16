@@ -88,6 +88,7 @@
 	burst_amount = 4
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/rifle/standard_carbine/pointman
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/lasersight, /obj/item/attachable/flashlight, /obj/item/attachable/t18barrel)
@@ -231,6 +232,7 @@
 	accuracy_mult = 1.25
 	scatter = -3
 	burst_amount = 1
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/standard_dmr/marksman
 	starting_attachment_types = list(/obj/item/attachable/scope, /obj/item/attachable/angledgrip, /obj/item/attachable/extended_barrel)
@@ -628,6 +630,7 @@
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
 	scatter = 3
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/rifle/famas/freelancermedic
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
@@ -751,6 +754,7 @@
 	accuracy_mult = 1
 	scatter = 10
 	scatter_unwielded = 45
+	movement_acc_penalty_mult = 6
 
 	placed_overlay_iconstate = "lmg"
 
@@ -958,6 +962,7 @@
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.15
 	burst_amount = 1
+	movement_acc_penalty_mult = 3
 
 //-------------------------------------------------------
 //SG-29 Smart Machine Gun (It's more of a rifle than the SG.)
@@ -1005,6 +1010,7 @@
 	accuracy_mult = 1.2
 	scatter = -5
 	scatter_unwielded = 40
+	movement_acc_penalty_mult = 4
 
 	placed_overlay_iconstate = "smartgun"
 
@@ -1040,6 +1046,7 @@
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
+	movement_acc_penalty_mult = 3
 
 //only sectoids can fire it
 /obj/item/weapon/gun/rifle/sectoid_rifle/able_to_fire(mob/user)
@@ -1112,6 +1119,7 @@
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
 	cock_delay = 0.7 SECONDS
+	movement_acc_penalty_mult = 6
 
 
 //-------------------------------------------------------
@@ -1158,6 +1166,7 @@
 	recoil_unwielded = 4
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
+	movement_acc_penalty_mult = 6
 
 //-------------------------------------------------------
 //AR-11 Rifle, based on the gamer-11
@@ -1206,6 +1215,7 @@
 	scatter_unwielded = 15
 	burst_scatter_mult = 0.33
 	aim_slowdown = 0.45
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/tx11/scopeless
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11)
@@ -1320,6 +1330,7 @@
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
 	damage_falloff_mult = 3
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
 	starting_attachment_types = list(
@@ -1367,6 +1378,7 @@
 	fire_delay = 0.2 SECONDS
 	scatter = 2
 	wield_delay = 0.5 SECONDS
+	movement_acc_penalty_mult = 4
 
 //-------------------------------------------------------
 // GL-54 grenade launcher
@@ -1491,6 +1503,7 @@
 	scatter_unwielded = 15
 	burst_scatter_mult = 2
 	aim_slowdown = 1
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/tx55/freelancer
 	starting_attachment_types = list(

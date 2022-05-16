@@ -27,6 +27,7 @@
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
+	movement_acc_penalty_mult = 3
 
 	placed_overlay_iconstate = "shotgun"
 
@@ -365,6 +366,7 @@
 	cock_delay = 12
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
+	movement_acc_penalty_mult = 5
 
 	placed_overlay_iconstate = "wood"
 
@@ -417,6 +419,7 @@
 
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
+	movement_acc_penalty_mult = 5
 
 	placed_overlay_iconstate = "wood"
 
@@ -539,6 +542,7 @@
 	recoil_unwielded = 2
 	cock_delay = 2
 	aim_slowdown = 0.6
+	movement_acc_penalty_mult = 5
 
 //------------------------------------------------------
 //MBX900 Lever Action Shotgun
