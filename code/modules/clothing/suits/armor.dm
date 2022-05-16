@@ -25,6 +25,7 @@
 		return FALSE
 
 
+
 //armored vest
 
 /obj/item/clothing/suit/armor/vest
@@ -43,7 +44,6 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/holster/blade
 	)
-
 
 
 /obj/item/clothing/suit/armor/vest/dutch
