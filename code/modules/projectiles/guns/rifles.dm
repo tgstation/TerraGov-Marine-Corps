@@ -155,7 +155,7 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
 	extra_delay = 0.05 SECONDS
-	accuracy_mult = 1.15
+	accuracy_mult = 1.1
 	scatter = 0
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
@@ -229,7 +229,7 @@
 	aim_speed_modifier = 2
 
 	fire_delay = 0.65 SECONDS
-	accuracy_mult = 1.25
+	accuracy_mult = 1.15
 	scatter = -3
 	burst_amount = 1
 	movement_acc_penalty_mult = 6
@@ -300,7 +300,7 @@
 	burst_amount = 3
 	burst_delay = 0.10 SECONDS
 	extra_delay = 0.25 SECONDS
-	accuracy_mult = 0.75
+	accuracy_mult = 0.85
 	scatter = 0
 
 //-------------------------------------------------------
@@ -360,7 +360,7 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.15
+	accuracy_mult = 1.1
 	scatter = 0
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
@@ -456,7 +456,6 @@
 
 	burst_amount = 4
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.10
 	scatter = 0
 	fire_delay = 0.2 SECONDS
 
@@ -493,7 +492,6 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 1, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km)
 
-	accuracy_mult = 1
 	burst_amount = 1
 	fire_delay = 0.25 SECONDS
 	scatter = 5
@@ -564,7 +562,7 @@
 	scatter = 3
 	extra_delay = -0.05 SECONDS
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.3
+	accuracy_mult = 1.1
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
 
@@ -626,7 +624,7 @@
 
 	fire_delay = 0.15 SECONDS
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.25
+	accuracy_mult = 1.15
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
 	scatter = 3
@@ -693,7 +691,6 @@
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1
 	scatter = 4
 	scatter_unwielded = 80
 
@@ -751,7 +748,6 @@
 	damage_falloff_mult = 0.5
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
-	accuracy_mult = 1
 	scatter = 10
 	scatter_unwielded = 45
 	movement_acc_penalty_mult = 6
@@ -908,7 +904,7 @@
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 2
-	accuracy_mult = 2
+	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 0.8
 	damage_mult = 1.3
 
@@ -960,7 +956,7 @@
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 	fire_delay = 1 SECONDS
-	accuracy_mult = 1.15
+	accuracy_mult = 1.1
 	burst_amount = 1
 	movement_acc_penalty_mult = 3
 
@@ -1007,7 +1003,7 @@
 	fire_delay = 0.2 SECONDS
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1.2
+	accuracy_mult = 1.1
 	scatter = -5
 	scatter_unwielded = 40
 	movement_acc_penalty_mult = 4
@@ -1110,7 +1106,7 @@
 
 	burst_amount = 0
 	fire_delay = 1.35 SECONDS
-	accuracy_mult = 1.35
+	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.7
 	scatter = -5
 	scatter_unwielded = 20
@@ -1158,7 +1154,7 @@
 
 	burst_amount = 0
 	fire_delay = 0.55 SECONDS
-	accuracy_mult = 1.35
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.7
 	scatter = -5
 	scatter_unwielded = 20
@@ -1210,7 +1206,7 @@
 	burst_delay = 0.05 SECONDS
 	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1.2
+	accuracy_mult = 1.1
 	scatter = 0
 	scatter_unwielded = 15
 	burst_scatter_mult = 0.33
@@ -1324,7 +1320,6 @@
 	extra_delay = 0.5 SECONDS
 	///Same delay as normal burst mode
 	autoburst_delay = 0.7 SECONDS
-	accuracy_mult = 1
 	scatter = 7
 	burst_amount = 4
 	aim_slowdown = 0.3
@@ -1498,7 +1493,6 @@
 	burst_delay = 0.15 SECONDS
 	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1
 	scatter = 2
 	scatter_unwielded = 15
 	burst_scatter_mult = 2

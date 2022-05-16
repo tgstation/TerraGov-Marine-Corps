@@ -328,6 +328,8 @@
 	recoil_unwielded = 2
 	scatter = 4
 	scatter_unwielded = 7
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.7
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	name = "\improper Desert Eagle custom pistol"
@@ -368,8 +370,7 @@
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible)
 
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 1.65
-	accuracy_mult_unwielded = 1.5
+	accuracy_mult = 1.3
 	scatter = 0
 	scatter_unwielded = 2
 	damage_mult = 1.3
@@ -439,8 +440,6 @@
 	fire_delay = 0.15 SECONDS
 	recoil = -2
 	recoil_unwielded = -2
-	accuracy_mult = 1.1
-	accuracy_mult_unwielded = 1
 	scatter = -2
 	scatter_unwielded = 0
 	aim_speed_modifier = 0
@@ -472,7 +471,7 @@
 	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
-	accuracy_mult = 1.5
+	accuracy_mult_unwielded =  = 0.7
 	scatter = 3
 	scatter_unwielded = 6
 

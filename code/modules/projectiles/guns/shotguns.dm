@@ -10,7 +10,6 @@
 	hand_reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_reload.ogg'
 	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
-	accuracy_mult = 1.15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	reciever_flags = AMMO_RECIEVER_HANDFULS
 	type_of_casings = "shell"
@@ -22,7 +21,7 @@
 
 	fire_delay = 6
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
+	accuracy_mult_unwielded = 0.75
 	scatter = 5
 	scatter_unwielded = 10
 	recoil = 2
@@ -59,7 +58,6 @@
 	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/invisible)
 
 	fire_delay = 15 //one shot every 1.5 seconds.
-	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
 	scatter = 5
 	scatter_unwielded = 10
@@ -160,8 +158,6 @@
 
 	fire_delay = 2
 	burst_delay = 2
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
 	scatter = 5
 	scatter_unwielded = 8
 	recoil = 2
@@ -179,8 +175,7 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
 	fire_delay = 2
-	accuracy_mult = 0.85
-	accuracy_mult_unwielded = 0.85
+	accuracy_mult = 0.9
 	scatter = 5
 	scatter_unwielded = 10
 	recoil = 3
@@ -218,8 +213,6 @@
 
 	fire_delay = 5
 	burst_amount = 1
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
 	scatter = 4
 	scatter_unwielded = 10
 	recoil = 2
@@ -264,8 +257,6 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
 	fire_delay = 20
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
 	scatter = 5
 	scatter_unwielded = 10
 	recoil = 2
@@ -357,7 +348,7 @@
 	aim_speed_modifier = 0.8
 
 	fire_delay = 1.75 SECONDS
-	accuracy_mult = 1.45
+	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.7
 	scatter = -25
 	scatter_unwielded = 12
@@ -409,7 +400,6 @@
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 
 	fire_delay = 1 SECONDS
-	accuracy_mult = 1.45
 
 	scatter = -25
 	scatter_unwielded = 20
@@ -489,7 +479,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 	fire_delay = 8
-	accuracy_mult = 1.30
+	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.7
 	scatter = 3
 	scatter_unwielded = 7
@@ -533,7 +523,7 @@
 	aim_speed_modifier = 2
 
 	fire_delay = 10
-	accuracy_mult = 1.20
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.8
 	damage_falloff_mult = 0.5
 	scatter = -5
@@ -584,7 +574,7 @@
 	flags_item_map_variant = NONE
 
 	fire_delay = 0.6 SECONDS
-	accuracy_mult = 1.4
+	accuracy_mult = 1.2
 	cock_delay = 0.2 SECONDS
 
 //------------------------------------------------------
@@ -622,8 +612,6 @@
 	flags_item_map_variant = NONE
 
 	fire_delay = 20
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
 	scatter = 5
 	scatter_unwielded = 10
 	recoil = 2

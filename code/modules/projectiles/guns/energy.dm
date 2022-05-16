@@ -93,7 +93,7 @@
 	muzzle_flash_color = COLOR_LASER_RED
 
 	fire_delay = 3
-	accuracy_mult = 1.5
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 80 //Heavy and unwieldy
 	damage_falloff_mult = 0.5
@@ -430,7 +430,6 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.2
 	mode_list = list(
@@ -494,7 +493,7 @@
 	scatter = 3
 	scatter_unwielded = 4
 	fire_delay = 0.15 SECONDS
-	accuracy_mult = 1.1
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
 	damage_falloff_mult = 0.2
 	mode_list = list(
@@ -574,7 +573,7 @@
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.1
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.65
 	damage_falloff_mult = 0.5
 	movement_acc_penalty_mult = 4
@@ -653,7 +652,7 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 1 SECONDS
-	accuracy_mult = 1.35
+	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.5
 	movement_acc_penalty_mult = 6
 	mode_list = list(
@@ -718,7 +717,7 @@
 	wield_delay = 1.5 SECONDS
 	scatter = 1
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 0.95
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
 	damage_falloff_mult = 0.3
@@ -776,7 +775,6 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 0.5 SECONDS
-	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.3
 	mode_list = list(

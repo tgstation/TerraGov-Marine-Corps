@@ -60,8 +60,8 @@
 
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
 
-	accuracy_mult = 1.2
-	accuracy_mult_unwielded = 0.95
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.9
 	recoil_unwielded = 0
 	scatter = 0
 	fire_delay = 0.15 SECONDS
@@ -111,8 +111,7 @@
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55
 
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.9
+	accuracy_mult_unwielded = 0.85
 	scatter = 2
 	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 8
@@ -166,11 +165,10 @@
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 14, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 16)
 
-	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
-	scatter = 7
+	scatter = 5
 	fire_delay = 0.2 SECONDS
-	scatter_unwielded = 15
+	scatter_unwielded = 10
 	aim_slowdown = 0.15
 	burst_amount = 3
 
@@ -201,8 +199,8 @@
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.95
 	damage_mult = 1.2
-	aim_slowdown = 0.4
-	scatter = 4
+	aim_slowdown = 0.2
+	scatter = 3
 
 /obj/item/weapon/gun/smg/m25/elite/pmc
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -238,10 +236,9 @@
 	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 4
-	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 1.25
-	scatter = 12
-	scatter_unwielded = 24
+	accuracy_mult_unwielded = 0.9
+	scatter = 5
+	scatter_unwielded = 10
 	damage_mult = 1.2
 
 //-------------------------------------------------------
@@ -263,9 +260,9 @@
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
 	burst_delay = 0.2 SECONDS
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.75
-	scatter_unwielded = 20
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.8
+	scatter_unwielded = 8
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.3
 
@@ -348,7 +345,6 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 4
 	accuracy_mult_unwielded = 0.9
-	accuracy_mult = 1
 	scatter = 0
 	scatter_unwielded = 4
 	aim_slowdown = 0.15
