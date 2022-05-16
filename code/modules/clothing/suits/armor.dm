@@ -45,6 +45,7 @@
 	)
 
 
+
 /obj/item/clothing/suit/armor/vest/dutch
 	name = "armored jacket"
 	desc = "It's hot in the jungle. Sometimes it's hot and heavy, and sometimes it's hell on earth."
