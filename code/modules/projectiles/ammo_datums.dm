@@ -669,8 +669,8 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0.5
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range_min = 0
 	accurate_range = 30
+	accurate_range_min = 6
 	max_range = 40
 	damage = 65
 	penetration = 15
@@ -1004,7 +1004,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "sniper_empty"
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SUNDERING
-	accurate_range_min = 5
+	accurate_range_min = 7
 	shell_speed = 4
 	accurate_range = 30
 	max_range = 40
@@ -1073,7 +1073,6 @@ datum/ammo/bullet/revolver/tp44
 	damage = 80
 	penetration = 30
 	sundering = 7.5
-	accurate_range_min = 2
 	damage_falloff = 0.25
 
 /datum/ammo/bullet/sniper/pfc/flak
@@ -1083,7 +1082,6 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	penetration = 10
 	sundering = 10
-	accurate_range_min = 2
 	damage_falloff = 0.25
 
 /datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)

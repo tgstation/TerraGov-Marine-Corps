@@ -66,7 +66,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 1.50
 	recoil = 2
 	scatter = 0
-	movement_acc_penalty_mult = 7
+	movement_acc_penalty_mult = 8
 
 	placed_overlay_iconstate = "antimat"
 

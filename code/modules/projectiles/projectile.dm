@@ -738,7 +738,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(proj.distance_travelled <= proj.ammo.point_blank_range) //If bullet within point blank range, big accuracy buff.
 			BULLET_DEBUG("Point blank range (+25)")
 			hit_chance += 25
-		else if((proj.ammo.flags_ammo_behavior & AMMO_SNIPER) && proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range UNLESS in point blank range
+		else if(proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range UNLESS in point blank range
 			BULLET_DEBUG("Sniper ammo, too close (-[min(100, hit_chance) - (proj.ammo.accurate_range_min - proj.distance_travelled) * 10])")
 			hit_chance = min(100, hit_chance) //excess accuracy doesn't help within minimum accurate range
 			hit_chance -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 10 //The further inside minimum accurate range, the greater the penalty
