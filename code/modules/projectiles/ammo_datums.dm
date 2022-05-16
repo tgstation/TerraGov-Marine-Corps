@@ -1823,11 +1823,14 @@ datum/ammo/bullet/revolver/tp44
 	name = "machine laser bolt"
 	damage = 15
 	penetration = 15
+	sundering = 1.5
 
 /datum/ammo/energy/lasgun/marine/autolaser/efficiency
 	name = "efficient machine laser bolt"
-	damage = 8.5
+	damage = 5
+	penetration = 20
 	hitscan_effect_icon = "beam_particle"
+	sundering = 3.5
 
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
