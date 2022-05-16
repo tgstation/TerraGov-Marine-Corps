@@ -28,7 +28,6 @@
 									/datum/job/spatial_agent/galaxy_red,
 									/datum/job/spatial_agent/galaxy_blue,
 									/datum/job/spatial_agent/xeno_suit,
-									/datum/job/spatial_agent/marine,
 									/datum/job/spatial_agent/marine_officer,
 									)
 

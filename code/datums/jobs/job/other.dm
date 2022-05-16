@@ -89,16 +89,6 @@
 	head = /obj/item/clothing/head/xenos
 	wear_suit = /obj/item/clothing/suit/xenos
 
-/datum/job/spatial_agent/marine
-	outfit = /datum/outfit/job/other/spatial_agent/marine
-
-/datum/outfit/job/other/spatial_agent/marine
-	w_uniform = /obj/item/clothing/under/marine/standard
-	head = /obj/item/clothing/head/modular/marine/m10x
-	belt = /obj/item/storage/belt/marine
-	back = /obj/item/storage/backpack/marine/standard
-	shoes = /obj/item/clothing/shoes/marine/full
-
 /datum/job/spatial_agent/marine_officer
 	outfit = /datum/outfit/job/other/spatial_agent/marine_officer
 
