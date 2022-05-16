@@ -23,7 +23,7 @@
 	max_chamber_items = 7
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
 
-	movement_acc_penalty_mult = 2
+	movement_acc_penalty_mult = 3
 	fire_delay = 2
 	accuracy_mult_unwielded = 0.85
 	scatter_unwielded = 25

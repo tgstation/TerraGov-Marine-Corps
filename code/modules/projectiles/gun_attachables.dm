@@ -845,7 +845,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/shotgun
 	name = "\improper shotgun stock"
@@ -970,7 +969,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/sgstock
 	name = "SG-29 stock"
@@ -984,7 +982,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
@@ -1037,7 +1034,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t18stock
 	name = "\improper AR-18 stock"
@@ -1051,7 +1047,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/tl127stock
 	name = "\improper SR-127 stock"
@@ -1065,7 +1060,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t12stock
 	name = "\improper AR-12 stock"
@@ -1079,7 +1073,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t42stock
 	name = "\improper MG-42 stock"
@@ -1093,7 +1086,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t19stock
 	name = "\improper MP-19 machinepistol stock"
@@ -1132,7 +1124,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t60stock
 	name = "MG-60 stock"
@@ -1146,7 +1137,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t70stock
 	name = "\improper GL-70 stock"
@@ -1160,7 +1150,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t84stock
 	name = "\improper FL-84 stock"
@@ -1174,7 +1163,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	recoil_mod = 0
 	melee_mod = 0
 	scatter_mod = 0
-	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/irremoveable/m41a
 	name = "PR-11 stock"
@@ -1228,7 +1216,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	slot = ATTACHMENT_SLOT_UNDER
 	scatter_mod = -1
 	recoil_mod = -2
-	movement_acc_penalty_mod = -0.5
+	movement_acc_penalty_mod = -2
+	accuracy_unwielded_mod = 0.1
 	scatter_unwielded_mod = -2
 	recoil_unwielded_mod = -1
 	aim_mode_movement_mult = -0.5

@@ -12,7 +12,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	movement_acc_penalty_mult = 0
+	movement_acc_penalty_mult = 2
 	wield_delay = 0.2 SECONDS //If you modify your pistol to be two-handed, it will still be fast to aim
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
