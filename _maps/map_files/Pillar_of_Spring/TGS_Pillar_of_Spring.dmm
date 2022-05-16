@@ -61,14 +61,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "al" = (
-/obj/structure/table/mainship,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/dropper,
-/obj/machinery/reagentgrinder,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/mainship/sterile/purple/corner{
 	dir = 8
 	},
@@ -630,10 +622,10 @@
 	},
 /area/mainship/hallways/hangar/droppod)
 "cc" = (
-/obj/structure/dropship_equipment/mg_holder,
-/turf/open/floor/mainship/orange{
-	dir = 8
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
 	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "cd" = (
 /obj/structure/bed/chair/wood/wings,
@@ -681,18 +673,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "cj" = (
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
-/obj/structure/table/mainship,
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
+/obj/machinery/camera/autoname{
+	dir = 8
 	},
-/obj/item/weapon/gun/rifle/m412{
-	desc = "The PR-412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition. There is a worn inscription of a moth on it."
-	},
-/turf/open/floor/plating/mainship,
-/area/mainship/shipboard/firing_range)
+/turf/open/floor/wood,
+/area/mainship/medical/lower_medical)
 "cm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -832,6 +817,9 @@
 	dir = 8
 	},
 /obj/machinery/door_control/mainship/droppod{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -1399,10 +1387,7 @@
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/operating_room_two)
 "ef" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 8
 	},
@@ -1970,11 +1955,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/medical/morgue)
 "fY" = (
-/obj/machinery/alarm{
-	dir = 4
-	},
+/obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/mainship/maint,
 /turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
+/area/mainship/hull/lower_hull)
 "fZ" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/captain,
@@ -1983,6 +1967,10 @@
 	dir = 9
 	},
 /area/mainship/living/numbertwobunks)
+"gb" = (
+/obj/machinery/holopad,
+/turf/open/floor/wood,
+/area/mainship/living/chapel)
 "gc" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship{
@@ -2467,17 +2455,15 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
 "hD" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
+/obj/machinery/camera/autoname{
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
 /area/mainship/medical/lower_medical)
 "hE" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
+/obj/machinery/camera/autoname,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "hF" = (
@@ -2675,6 +2661,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
+"if" = (
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/open/floor/mainship/black{
+	dir = 9
+	},
+/area/mainship/squads/general)
 "ii" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship/black,
@@ -2691,6 +2685,7 @@
 	},
 /obj/machinery/light,
 /obj/item/storage/box/donkpockets,
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "il" = (
@@ -3175,6 +3170,9 @@
 /area/mainship/hallways/hangar)
 "jI" = (
 /obj/machinery/vending/hydroseeds,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "jJ" = (
@@ -3261,6 +3259,7 @@
 /area/mainship/squads/general)
 "jV" = (
 /obj/structure/cable,
+/obj/machinery/camera/autoname,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -3499,7 +3498,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "kC" = (
-/turf/open/floor/mainship_hull,
+/obj/structure/cable,
+/turf/closed/wall/mainship/outer,
 /area/mainship/hull/lower_hull)
 "kE" = (
 /obj/structure/disposalpipe/segment,
@@ -3637,9 +3637,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/hangar)
 "kW" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
+/obj/machinery/camera/autoname,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -3741,10 +3739,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/turf/open/floor/mainship/mono,
 /turf/open/floor/carpet/side{
 	dir = 5
 	},
-/turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "ll" = (
 /obj/structure/closet/secure_closet/captain,
@@ -3873,9 +3871,18 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "lF" = (
-/obj/structure/closet/firecloset,
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/holopad{
+	active_power_usage = 60;
+	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
+	holo_range = 3;
+	idle_power_usage = 3;
+	name = "modifed holopad"
+	},
+/obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment/corner{
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 8
@@ -4790,7 +4797,7 @@
 "op" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
-	dir = 4
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
@@ -5263,12 +5270,12 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/command/self_destruct)
 "pQ" = (
-/obj/structure/noticeboard,
-/obj/structure/sign/ROsign{
-	dir = 1
+/obj/machinery/light{
+	dir = 4
 	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/req)
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "pR" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
@@ -5881,6 +5888,10 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/command/telecomms)
+"rT" = (
+/obj/structure/noticeboard,
+/turf/closed/wall/mainship,
+/area/mainship/squads/req)
 "rU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
@@ -8890,8 +8901,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "AT" = (
-/obj/effect/decal/warning_stripes/thin,
-/turf/closed/wall/mainship/outer,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "AU" = (
 /obj/machinery/door/airlock/mainship/maint,
@@ -9207,6 +9220,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
+"BT" = (
+/obj/structure/sign/ROsign{
+	dir = 1
+	},
+/turf/closed/wall/mainship,
+/area/mainship/squads/req)
 "BU" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -10182,9 +10201,6 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "EE" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
 /obj/structure/bed/chair/comfy{
 	dir = 8
 	},
@@ -10202,7 +10218,7 @@
 "EG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/dropship_equipment/sentry_holder,
+/obj/structure/dropship_equipment/mg_holder,
 /turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "EH" = (
@@ -10784,8 +10800,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
 "Gv" = (
-/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable,
+/obj/machinery/door/airlock/multi_tile/mainship/maint{
+	dir = 1
+	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -10804,6 +10822,12 @@
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"Gz" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/mainship/living/chapel)
 "GA" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
@@ -10952,9 +10976,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
 "GU" = (
-/obj/structure/cable,
-/turf/closed/wall/mainship/outer,
-/area/mainship/hull/lower_hull)
+/obj/machinery/alarm{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "GV" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -11089,6 +11115,7 @@
 /area/mainship/hallways/port_hallway)
 "Hi" = (
 /obj/structure/disposalpipe/segment/corner,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "Hj" = (
@@ -11389,11 +11416,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "HW" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
+/obj/structure/morgue{
+	dir = 2
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/starboard_hallway)
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/cult,
+/area/medical/morgue)
 "HX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -12040,6 +12068,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"JG" = (
+/obj/structure/cable,
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/mainship/living/chapel)
 "JH" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/fire{
@@ -12880,12 +12915,9 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "LI" = (
-/obj/machinery/holopad{
-	active_power_usage = 60;
-	desc = "It's a floor-mounted device for projecting holographic images. This one appears to have a smaller lense";
-	holo_range = 3;
-	idle_power_usage = 3;
-	name = "modifed holopad"
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
@@ -13754,9 +13786,6 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
 /obj/machinery/firealarm{
 	dir = 4
 	},
@@ -14047,9 +14076,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "OW" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "OX" = (
@@ -15014,7 +15041,7 @@
 /area/mainship/hallways/hangar)
 "RO" = (
 /obj/machinery/camera/autoname/mainship{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
@@ -15086,9 +15113,18 @@
 /turf/open/floor/cult,
 /area/medical/morgue)
 "RZ" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/structure/table/mainship,
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/obj/item/weapon/gun/rifle/m412{
+	desc = "The PR-412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition. There is a worn inscription of a moth on it."
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/shipboard/firing_range)
 "Sa" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/atmospherics/pipe/simple/general/visible/layer1,
@@ -15142,9 +15178,18 @@
 	},
 /area/mainship/medical/lower_medical)
 "Sj" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/closed/wall/mainship,
-/area/mainship/living/commandbunks)
+/turf/open/floor/mainship/mono,
+/area/mainship/shipboard/firing_range)
 "Sk" = (
 /turf/open/floor/mainship/black{
 	dir = 10
@@ -15623,6 +15668,13 @@
 /obj/machinery/light{
 	light_color = "#da2f1b"
 	},
+/obj/structure/table/mainship,
+/obj/machinery/reagentgrinder,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/reagent_containers/dropper,
 /turf/open/floor/mainship/sterile/purple/side,
 /area/mainship/medical/chemistry)
 "TL" = (
@@ -15741,7 +15793,9 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/camera/autoname/mainship,
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
@@ -15788,7 +15842,14 @@
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "Uj" = (
-/obj/effect/ai_node,
+/obj/structure/table/mainship,
+/obj/machinery/reagentgrinder,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/stack/sheet/mineral/phoron,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "Uk" = (
@@ -15944,6 +16005,10 @@
 	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
+"UG" = (
+/obj/effect/decal/warning_stripes/thin,
+/turf/closed/wall/mainship/outer,
+/area/mainship/hull/lower_hull)
 "UH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -16193,9 +16258,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 1
 	},
@@ -16262,16 +16325,17 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/port_hallway)
 "Vy" = (
-/turf/closed/wall/mainship,
-/area/space)
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/machinery/light/small,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "Vz" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "VA" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 4
-	},
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/storage/surgical_tray,
 /turf/open/floor/mainship/sterile/side{
@@ -16372,6 +16436,9 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
 "VP" = (
@@ -16570,6 +16637,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -17475,6 +17545,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "YY" = (
@@ -17545,6 +17618,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 1
 	},
@@ -17599,12 +17673,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "Zq" = (
-/obj/structure/table/mainship,
-/obj/machinery/reagentgrinder,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/stack/sheet/mineral/phoron,
-/obj/item/stack/sheet/mineral/phoron,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 8
 	},
@@ -39280,7 +39352,7 @@ fI
 fI
 Tm
 Zg
-IO
+HW
 Zb
 RC
 XX
@@ -39529,8 +39601,8 @@ aa
 aa
 aa
 aa
-aa
 tG
+Lw
 Lw
 Lw
 Lw
@@ -39786,8 +39858,8 @@ aa
 aa
 aa
 aa
-aa
 Tm
+ad
 ad
 ad
 ad
@@ -40043,9 +40115,9 @@ fI
 fI
 fI
 fI
-fI
 Tm
 ad
+LS
 cQ
 iu
 lR
@@ -40300,9 +40372,9 @@ fI
 fI
 fI
 fI
-fI
 Tm
 ad
+LS
 hM
 ZX
 ZX
@@ -40557,9 +40629,9 @@ fI
 fI
 fI
 fI
-fI
 Tm
 ad
+LS
 hM
 ZX
 jr
@@ -40812,11 +40884,11 @@ aa
 aa
 fI
 fI
-tG
-Lw
-Lw
-rc
+fI
+fI
+Tm
 ad
+LS
 hM
 ZX
 ou
@@ -40870,7 +40942,7 @@ Mb
 LC
 nn
 TB
-nn
+JG
 wa
 ZQ
 Uk
@@ -41069,11 +41141,11 @@ aa
 aa
 aa
 aa
+fI
+fI
 Tm
-rc
-rc
-rc
 ad
+LS
 Bq
 ZX
 ou
@@ -41326,11 +41398,11 @@ aa
 aa
 aa
 aa
+fI
+fI
 Tm
-rc
-rc
-rc
 Mb
+LS
 hM
 ZX
 ou
@@ -41583,11 +41655,11 @@ aa
 aa
 aa
 aa
+fI
+fI
 Tm
-rc
-rc
-rc
 Mb
+LS
 hS
 ZX
 cy
@@ -41643,7 +41715,7 @@ pL
 pL
 SP
 nw
-ZQ
+gb
 ZQ
 CE
 Sh
@@ -41840,11 +41912,11 @@ aa
 aa
 aa
 aa
+fI
+fI
 Tm
-rc
-rc
-rc
 Mb
+LS
 hS
 ZX
 ow
@@ -42097,11 +42169,11 @@ Lw
 Lw
 Lw
 Lw
-rc
-rc
-rc
+Lw
+Lw
 rc
 Mb
+LS
 ch
 ZX
 Ne
@@ -42333,32 +42405,32 @@ ad
 ad
 ad
 ad
-kC
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
 Mb
+Mb
+Mb
+LS
 fP
 ZX
 ZX
@@ -42412,7 +42484,7 @@ sV
 Qm
 ZQ
 zU
-ZQ
+Gz
 ZQ
 ZQ
 zU
@@ -42589,33 +42661,33 @@ cu
 cu
 cu
 aq
-ad
-ad
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Um
-Vy
-Vy
-Mb
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+UP
+bZ
+bZ
+UP
+AT
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
 hM
 bd
 qo
@@ -42853,12 +42925,12 @@ bt
 cu
 cu
 cu
-cu
 bt
-JF
+fL
+fL
 ao
-JF
-ey
+fL
+cu
 cu
 cu
 cu
@@ -43112,7 +43184,7 @@ Mb
 Mb
 Mb
 Mb
-Mb
+bZ
 Gv
 Mb
 Mb
@@ -43171,7 +43243,7 @@ Kb
 Kb
 Kb
 Kb
-Sj
+Kb
 Kb
 Kb
 Mo
@@ -43369,13 +43441,13 @@ YU
 ap
 ap
 ap
-fY
+ap
 qg
 lC
 oE
 wr
 zq
-ap
+GU
 DZ
 ap
 ap
@@ -43391,7 +43463,7 @@ av
 bd
 Rv
 Yo
-Qw
+cj
 hK
 aY
 aY
@@ -44415,7 +44487,7 @@ ZA
 ZA
 KQ
 gz
-ap
+cc
 bd
 dK
 BO
@@ -46471,7 +46543,7 @@ ZA
 ZA
 KQ
 Yf
-ap
+cc
 TW
 QE
 eu
@@ -47482,7 +47554,7 @@ Ga
 Gc
 io
 cZ
-cc
+fm
 fm
 jM
 ap
@@ -48776,7 +48848,7 @@ bh
 bh
 iR
 Hu
-ap
+ml
 ap
 ap
 uL
@@ -49319,8 +49391,8 @@ Kp
 kM
 Lv
 Ld
-pQ
 qG
+BT
 lI
 jy
 Uu
@@ -50104,7 +50176,7 @@ jy
 jy
 jy
 iI
-HW
+jy
 jy
 Fx
 AR
@@ -50575,7 +50647,7 @@ bh
 bh
 ZA
 Hu
-ap
+NL
 ap
 ap
 TH
@@ -50861,7 +50933,7 @@ XD
 XD
 XD
 XD
-qG
+rT
 Ry
 kM
 jy
@@ -51110,8 +51182,8 @@ IT
 rF
 rF
 FC
-RO
 rF
+RO
 rF
 rF
 jy
@@ -52107,11 +52179,11 @@ Ub
 ap
 ap
 ap
+ap
+qg
+pQ
 DX
-ap
-Ub
-ap
-ap
+NL
 ap
 fS
 an
@@ -52144,7 +52216,7 @@ Uz
 RJ
 Kk
 NU
-BY
+if
 eI
 IX
 pb
@@ -52364,7 +52436,7 @@ Mb
 Mb
 Mb
 Mb
-Mb
+bZ
 Gv
 Mb
 Mb
@@ -52376,8 +52448,8 @@ Mb
 Mb
 Mb
 Mb
-bZ
-bX
+Mb
+Mb
 Mb
 Mb
 Mb
@@ -52620,10 +52692,10 @@ ey
 cu
 cu
 cu
-cu
-JF
+fY
+fL
 GQ
-JF
+fY
 ey
 cu
 cu
@@ -52869,32 +52941,32 @@ cu
 cu
 cu
 aq
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-GU
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
-ad
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+bZ
+bZ
+bZ
+bZ
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
 cu
 AV
 AV
@@ -52912,7 +52984,7 @@ Pv
 CK
 qV
 IG
-hW
+Sj
 Te
 Te
 LQ
@@ -53127,31 +53199,31 @@ ad
 ad
 ad
 ad
-kC
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
 ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+kC
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+LS
 cu
 Ws
 Ra
@@ -53173,7 +53245,7 @@ hW
 Tx
 NZ
 Nr
-RZ
+jl
 MC
 uO
 jl
@@ -53405,10 +53477,10 @@ jO
 jO
 jO
 jO
-rc
-rc
+jO
 rc
 ad
+LS
 cu
 Ws
 Hn
@@ -53662,11 +53734,11 @@ aa
 aa
 aa
 aa
+fI
 Tm
-rc
-rc
 ad
-gp
+LS
+Vy
 Ws
 Ws
 Ws
@@ -53919,10 +53991,10 @@ aa
 aa
 aa
 aa
+fI
 Tm
-rc
-rc
 ad
+LS
 eQ
 cu
 cu
@@ -54176,22 +54248,22 @@ aa
 aa
 aa
 aa
+fI
 Tm
-rc
-rc
 ad
-ad
-ad
-ad
-ad
-AT
-ad
-ad
-ad
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
+LS
 sN
 NU
+RZ
 CK
-cj
 hi
 CK
 iQ
@@ -54433,17 +54505,17 @@ aa
 aa
 aa
 aa
-Ti
-jO
-jO
-rc
-rc
-rc
-rc
-rc
-rc
-rc
-rc
+fI
+Tm
+ad
+ad
+ad
+ad
+ad
+ad
+UG
+ad
+ad
 ad
 Ki
 NU
@@ -54691,9 +54763,9 @@ aa
 aa
 aa
 fI
-fI
-fI
 Tm
+rc
+rc
 rc
 rc
 rc
@@ -54948,9 +55020,9 @@ aa
 aa
 aa
 fI
-fI
-fI
 Tm
+rc
+rc
 rc
 rc
 rc
@@ -55205,9 +55277,9 @@ aa
 aa
 aa
 aa
-fI
-fI
 Tm
+rc
+rc
 rc
 rc
 rc
@@ -55462,9 +55534,9 @@ aa
 aa
 aa
 aa
-fI
-fI
 Tm
+rc
+rc
 rc
 rc
 rc
@@ -55719,9 +55791,9 @@ fI
 fI
 fI
 fI
-fI
-fI
 Tm
+rc
+rc
 rc
 rc
 rc
@@ -55976,9 +56048,9 @@ fI
 fI
 fI
 fI
-fI
-fI
 Tm
+rc
+rc
 rc
 rc
 rc
@@ -56233,9 +56305,9 @@ fI
 fI
 fI
 fI
-fI
-fI
 Ti
+jO
+jO
 jO
 jO
 jO
