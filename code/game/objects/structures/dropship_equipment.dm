@@ -520,37 +520,6 @@
 /obj/structure/dropship_equipment/electronics/spotlights/on_arrival()
 	set_light(brightness)
 
-
-/obj/structure/dropship_equipment/electronics/landing_zone_detector
-	name = "\improper LZ detector"
-	desc = "An electronic device linked to the dropship's camera system that lets you observe your landing zone mid-flight."
-	icon_state = "lz_detector"
-	point_cost = 400
-	var/obj/machinery/computer/security/dropship/linked_cam_console
-
-/obj/structure/dropship_equipment/electronics/landing_zone_detector/update_equipment()
-	if(ship_base)
-		if(!linked_cam_console)
-			for(var/obj/machinery/computer/security/dropship/D in range(5, loc))
-				linked_cam_console = D
-				break
-		icon_state = "[initial(icon_state)]_installed"
-	else
-		linked_cam_console = null
-		icon_state = initial(icon_state)
-
-
-/obj/structure/dropship_equipment/electronics/landing_zone_detector/Destroy()
-	linked_cam_console = null
-	return ..()
-
-/obj/structure/dropship_equipment/electronics/landing_zone_detector/on_launch()
-	linked_cam_console.network.Add("landing zones") //only accessible while in the air.
-
-/obj/structure/dropship_equipment/electronics/landing_zone_detector/on_arrival()
-	linked_cam_console.network.Remove("landing zones")
-
-
 /////////////////////////////////// COMPUTERS //////////////////////////////////////
 
 //unfinished and unused
@@ -724,7 +693,7 @@
 	icon = 'icons/Marine/mainship_props64.dmi'
 	firing_sound = 'sound/weapons/gunship_laser.ogg'
 	firing_delay = 50 //5 seconds
-	point_cost = 500
+	point_cost = 600
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_LASER_BATTERY
 

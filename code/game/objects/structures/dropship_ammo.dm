@@ -274,7 +274,7 @@
 	name = "high-velocity 30mm ammo crate"
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns."
-	travelling_time = 5 SECONDS
+	travelling_time = 3 SECONDS
 	point_cost = 150
 
 /obj/structure/ship_ammo/heavygun/railgun
@@ -285,7 +285,6 @@
 	ammo_used_per_firing = 40
 	bullet_spread_range = 5
 	point_cost = 0
-
 
 //laser battery
 
@@ -302,7 +301,7 @@
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 10
 	warning_sound = 'sound/effects/nightvision.ogg'
-	point_cost = 150
+	point_cost = 85
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
 	var/laze_radius = 4
 	ammo_type = CAS_LASER_BATTERY
@@ -429,7 +428,7 @@
 	desc = "The SM-17 'Fatty', an experimental missile utilising a supercooled tanglefoot payload. Harmless to marines, but destroys resin walls around the impact site."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 200
+	point_cost = 150
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)

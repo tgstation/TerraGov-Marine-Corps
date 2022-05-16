@@ -975,7 +975,7 @@
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
-		/obj/item/storage/box/sentry = 3,
+		/obj/item/storage/box/sentry = 4,
 		/obj/item/storage/box/tl102 = 1,
 		/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
 		/obj/item/weapon/gun/heavymachinegun = 1,
@@ -1080,6 +1080,7 @@
 			/obj/item/armor_module/module/ballistic_armor = -1,
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,
 			/obj/item/armor_module/module/chemsystem = -1,
+			/obj/item/armor_module/module/eshield = -1,
 		),
 	)
 
@@ -1288,9 +1289,8 @@
 			/obj/item/ammo_magazine/standard_mmg = -1,
 			/obj/item/weapon/gun/rifle/standard_smartmachinegun = -1,
 			/obj/item/ammo_magazine/standard_smartmachinegun = -1,
-			/obj/item/weapon/gun/rifle/standard_smartrifle = -1,
-			/obj/item/ammo_magazine/rifle/standard_smartrifle = -1,
-			/obj/item/ammo_magazine/packet/t25 = -1,
+			/obj/item/weapon/gun/minigun/smart_minigun = -1,
+			/obj/item/ammo_magazine/minigun_powerpack/smartgun = -1,
 			/obj/item/weapon/gun/launcher/rocket/oneuse = -1,
 			/obj/item/ammo_magazine/rocket/oneuse = -1,
 			/obj/item/storage/belt/gun/mateba/full = -1,

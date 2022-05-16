@@ -23,7 +23,7 @@
 	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/tool/extinguisher)
 	slowdown = 1.0
 	flags_inventory = NOPRESSUREDMAGE
-	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
@@ -66,7 +66,7 @@
 	permeability_coefficient = 0.01
 	slowdown = 2
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
+	flags_inv_hide = HIDEJUMPSUIT
 	flags_heat_protection = CHEST|GROIN
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
@@ -108,4 +108,4 @@
 	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/clothing/head/radiation,/obj/item/clothing/mask/gas)
 	slowdown = 1.5
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 60, "rad" = 100, "fire" = 0, "acid" = 0)
-	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
+	flags_inv_hide = HIDEJUMPSUIT

@@ -3,7 +3,6 @@
 	name = "glasses"
 	icon = 'icons/obj/clothing/glasses.dmi'
 	w_class = WEIGHT_CLASS_SMALL
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/eyes.dmi')
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	active = TRUE

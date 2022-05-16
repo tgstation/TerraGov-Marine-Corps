@@ -12,6 +12,8 @@
 	new /obj/effect/spawner/gibspawner/robot(get_turf(location))
 
 /obj/effect/spawner/gibspawner
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "gibsmarker"
 	var/sparks = 0 //whether sparks spread on Gib()
 	var/list/gibtypes = list()
 	var/list/gibamounts = list()
