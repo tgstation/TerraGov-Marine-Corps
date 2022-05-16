@@ -398,7 +398,6 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/stock/irremoveable/rifle,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
@@ -411,6 +410,7 @@
 	accuracy_mult = 1.15
 	damage_mult = 1.5
 	scatter = 0
+	force = 20
 
 
 //-------------------------------------------------------
@@ -491,11 +491,12 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 1, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km)
+	force = 20
 
 	burst_amount = 1
 	fire_delay = 0.25 SECONDS
 	scatter = 5
-	wield_delay = 0.7 SECONDS
+	wield_delay = 0.8 SECONDS
 
 	placed_overlay_iconstate = "ak47"
 
@@ -815,6 +816,7 @@
 	scatter = 7
 	scatter_unwielded = 25
 	recoil_unwielded = 5
+	force = 20
 
 	placed_overlay_iconstate = "lmg"
 

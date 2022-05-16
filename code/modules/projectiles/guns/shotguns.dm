@@ -344,20 +344,21 @@
 		/obj/item/attachable/stock/mosin,
 	)
 	actions_types = list(/datum/action/item_action/aim_mode)
+	force = 20
 	aim_fire_delay = 0.75 SECONDS
 	aim_speed_modifier = 0.8
 
 	fire_delay = 1.75 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.7
-	scatter = -25
+	scatter = 0
 	scatter_unwielded = 12
-	recoil = 0
+	recoil = -3
 	recoil_unwielded = 4
 	cock_delay = 12
 	aim_slowdown = 1
-	wield_delay = 1 SECONDS
-	movement_acc_penalty_mult = 5
+	wield_delay = 1.2 SECONDS
+	movement_acc_penalty_mult = 4.5
 
 	placed_overlay_iconstate = "wood"
 
