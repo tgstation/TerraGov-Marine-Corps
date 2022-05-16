@@ -240,3 +240,42 @@
   - balance: laser beam gun price increased to 600
   - balance: laser battery price reduced to 85
   - balance: fatty rocket price decreased to 150
+2022-05-16:
+  Arctrooper8:
+  - rscdel: Unused baystation races and their codes it gone.
+  - rscdel: Unused deformed limb code is gone.
+  - qol: PO duty and spawn message have been updated
+  - bugfix: SG vendor now displays the proper name for the SG minigun
+  - soundadd: SG minigun now uses default minigun sound, ears of the world rejoice!
+  - sounddel: Removed minigun_sg since it is now unused and hurts everyone's ears
+  DeltaFire15:
+  - bugfix: Deployables should be less likely to have issues with turf blocking conditions
+      changing during deployment.
+  KornFlaks:
+  - balance: Xenos on help intent no longer extinguish their sworn enemies and instead
+      watches them burn.
+  QualityVan:
+  - bugfix: Restocking a back-mounted ammo (power packs, fuel tanks) will now properly
+      disconnect them from any loaded weapons.
+  - bugfix: Flamers won't stay connected to fuel tanks across time and space after
+      you do a tactical reload.
+  - bugfix: Revolvers won't sometimes jam after firing the first few bullets and opening
+      the chamber.
+  RipGrayson:
+  - qol: Mapper icons for cameras now have an indicator for which direction they move.
+  - bugfix: Fixed quite a few icons that were invisible due to improper icon_states.
+  - imageadd: Created a new icon for poster spawners.
+  - imageadd: Created a new icon for the death step_triggers outside of ships.
+  - imageadd: Created a new sprite for mapping gib spawners.
+  - imageadd: Ported the TG silo icon for use as a map prop.
+  Wayland-Smithy:
+  - balance: Flares only deal extra burn damage to things not already on fire. Normal
+      throw impact damage and fire stacks are unchanged.
+  - bugfix: Fixed phoron miners continuing to function after hijack.
+  breadhunt:
+  - qol: When swapping an attachment, the old attachment now goes into your hand instead
+      of on the floor
+  hyper2snyper:
+  - qol: Med Scanner is now TGUI.
+  - balance: Med Scanner now auto updates for Corpmen and has a remote distance of
+      3

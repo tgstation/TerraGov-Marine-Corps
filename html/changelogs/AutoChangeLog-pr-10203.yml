@@ -1,9 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - qol: "Mapper icons for cameras now have an indicator for which direction they move."
-  - bugfix: "Fixed quite a few icons that were invisible due to improper icon_states."
-  - imageadd: "Created a new icon for poster spawners."
-  - imageadd: "Created a new icon for the death step_triggers outside of ships."
-  - imageadd: "Created a new sprite for mapping gib spawners."
-  - imageadd: "Ported the TG silo icon for use as a map prop."

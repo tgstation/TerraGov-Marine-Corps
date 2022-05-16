@@ -1,6 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "Restocking a back-mounted ammo (power packs, fuel tanks) will now properly disconnect them from any loaded weapons."
-  - bugfix: "Flamers won't stay connected to fuel tanks across time and space after you do a tactical reload."
-  - bugfix: "Revolvers won't sometimes jam after firing the first few bullets and opening the chamber."
