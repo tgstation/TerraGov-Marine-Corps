@@ -9,7 +9,7 @@
 ///This equipment can only be used in firemissions
 #define FIRE_MISSION_ONLY (1<<3)
 ///Whether we can interact with this equipment
-#define IS_INTERACTABLE (1<<5)
+#define IS_INTERACTABLE (1<<4)
 
 ///Ammo type defines
 #define CAS_LASER_BATTERY 1
