@@ -741,7 +741,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		else if((proj.ammo.flags_ammo_behavior & AMMO_SNIPER) && proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range UNLESS in point blank range
 			BULLET_DEBUG("Sniper ammo, too close (-[min(100, hit_chance) - (proj.ammo.accurate_range_min - proj.distance_travelled) * 10])")
 			hit_chance = min(100, hit_chance) //excess accuracy doesn't help within minimum accurate range
-			hit_chance -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 10 //The further inside minimum accurate range, the greater the penalty //INCREASE MIN RANGE ON SNIPERS
+			hit_chance -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 10 //The further inside minimum accurate range, the greater the penalty
 	else
 		BULLET_DEBUG("Too far (+[((proj.distance_travelled - proj.ammo.accurate_range )* 5)])")
 		hit_chance -= ((proj.distance_travelled - proj.ammo.accurate_range )* 5) //Every tile travelled past accurate_range reduces accuracy
@@ -749,6 +749,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	hit_chance = max(5, hit_chance) //default hit chance after range factors is at least 5%.
 
 	hit_chance += (mob_size - 1) * 10 //You're easy to hit when you're swoll, hard to hit when you're a manlet
+
+	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
+	hit_chance -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on body part targeted.
 
 	if(last_move_intent > world.time - 2 SECONDS) //You're harder to hit if you're moving
 		///accumulated movement related evasion bonus
@@ -770,7 +773,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			hit_chance = round(hit_chance*0.85) //You (presumably) aren't trying to shoot your friends
 		var/obj/item/shot_source = proj.shot_from
 		if(!line_of_sight(shooter_living, src, WORLD_VIEW_NUM) && (!istype(shot_source) || !shot_source.zoom)) //if you can't draw LOS, AND (shot didn't come from a item or it didn't come from something actively using zoom)... not sure why
-			BULLET_DEBUG("Can't see target ([round(hit_chance*0.85)]).")
+			BULLET_DEBUG("Can't see target ([round(hit_chance*0.8)]).")
 			hit_chance = round(hit_chance*0.8) //Can't see the target (Opaque thing between shooter and target), or out of view range
 		if(ishuman(proj.firer))
 			var/mob/living/carbon/human/shooter_human = proj.firer
@@ -779,9 +782,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			if(shooter_human.marksman_aura)
 				BULLET_DEBUG("marksman_aura (+[5 + max(5, shooter_human.marksman_aura * 5)]).")
 				hit_chance += 5 + max(5, shooter_human.marksman_aura * 5) //Accuracy bonus from active focus order
-
-	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
-	hit_chance -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
 
 	BULLET_DEBUG("Final accuracy is <b>[hit_chance]</b>")
 
@@ -795,18 +795,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(shooter_living)
 			if(shooter_living.faction == faction)
 				proj.damage *= proj.friendly_fire_multiplier
+		if(hit_roll > (hit_chance-25)) //if you hit by a small margin, you hit a random bodypart instead of what you were aiming for
+			proj.def_zone = pick(GLOB.base_miss_chance)
 		return TRUE
-
-	if(prob(25)) //If you missed, you get the chance to hit another body part at a reduced probability
-		var/new_def_zone = pick(GLOB.base_miss_chance)
-		hit_chance = hit_chance - (GLOB.base_miss_chance[new_def_zone] * 2) //notably lower hit chance
-		if(prob(hit_chance))
-			proj.def_zone = new_def_zone
-			//friendly fire reduces the damage of the projectile, so only applies the multiplier if a hit is confirmed
-			if(shooter_living)
-				if(shooter_living.faction == faction)
-					proj.damage *= proj.friendly_fire_multiplier
-			return TRUE
 
 	if(!lying_angle) //Narrow miss!
 		animatation_displace_reset(src)
