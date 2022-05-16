@@ -652,7 +652,7 @@
 	wield_delay = 0.7 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
-	fire_delay = 1 SECONDS
+	fire_delay = 2 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.5
 	mode_list = list(
@@ -662,7 +662,7 @@
 
 /datum/lasrifle/base/energy_sniper_mode/standard
 	rounds_per_shot = 50
-	fire_delay = 1 SECONDS
+	fire_delay = 2 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	message_to_user = "You set the sniper rifle's charge mode to standard fire."
