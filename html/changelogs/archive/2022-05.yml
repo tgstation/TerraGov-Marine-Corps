@@ -279,3 +279,8 @@
   - qol: Med Scanner is now TGUI.
   - balance: Med Scanner now auto updates for Corpmen and has a remote distance of
       3
+2022-05-17:
+  BraveMole:
+  - bugfix: Fix sandbag loadout exploit
+  KornFlaks:
+  - qol: Added balloon alerts for plasma cutter interactions.
