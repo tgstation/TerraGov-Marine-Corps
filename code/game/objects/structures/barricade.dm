@@ -534,6 +534,7 @@
 			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30)
 		if(CADE_TYPE_ACID)
 			soft_armor = soft_armor.modifyRating(bio = 0, acid = 20)
+			resistance_flags = XENO_DAMAGEABLE|UNACIDABLE
 
 	barricade_upgrade_type = choice
 
