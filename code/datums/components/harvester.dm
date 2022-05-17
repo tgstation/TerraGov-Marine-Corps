@@ -69,31 +69,30 @@
 		return
 
 	if(!isreagentcontainer(cont) || istype(cont, /obj/item/reagent_containers/pill))
-		user.balloon_alert(user, "[cont]: not compatible with [source].")
+		user.balloon_alert(user, "incompatible")
 		return
 
 	var/obj/item/reagent_containers/container = cont
 
 	if(!container.reagents.total_volume)
-		user.balloon_alert(user, "[cont.name]: empty...")
+		user.balloon_alert(user, "empty")
 		return
 
 	if(length(container.reagents.reagent_list) > 1)
-		user.balloon_alert(user, "Solution can contain only a single reagent.")
+		user.balloon_alert(user, "homogeneous mixture required")
 		return
 
 	var/datum/reagent/reagent_to_load = container.reagents.reagent_list[1].type
-	var/reagent_name = initial(reagent_to_load.name)
 
 	if(!loadable_reagents[reagent_to_load])
-		user.balloon_alert(user, "[reagent_name]: incompatible reagent. Check weapon description.")
+		user.balloon_alert(user, "incompatible reagent, check description")
 		return
 
 	if(loaded_reagents[reagent_to_load] > MAX_LOADABLE_REAGENT_AMOUNT)
-		user.balloon_alert(user, "[reagent_name]: full")
+		user.balloon_alert(user, "full")
 		return
 
-	user.balloon_alert(user, "[reagent_name]: filling up...")
+	user.balloon_alert(user, "filling up...")
 	if(!do_after(user, 1 SECONDS, TRUE, source, BUSY_ICON_BAR, null, PROGRESS_BRASS))
 		return
 
@@ -103,7 +102,7 @@
 	var/added_amount = min(container.reagents.total_volume, MAX_LOADABLE_REAGENT_AMOUNT - loaded_reagents[reagent_to_load])
 	container.reagents.remove_reagent(reagent_to_load, added_amount)
 	loaded_reagents[reagent_to_load] += added_amount
-	user.balloon_alert(user, "[reagent_name]: [loaded_reagents[reagent_to_load]]u.")
+	user.balloon_alert(user, "[loaded_reagents[reagent_to_load]]u")
 	if(length(loaded_reagents) == 1)
 		update_selected_reagent(reagent_to_load)
 
@@ -111,18 +110,17 @@
 /datum/component/harvester/proc/activate_blade_async(datum/source, mob/user)
 
 	if(loaded_reagent)
-		user.balloon_alert(user, "Loaded: [initial(loaded_reagent.name)]")
+		user.balloon_alert(user, "[initial(loaded_reagent.name)]")
 		return
 
 	if(!selected_reagent)
-		user.balloon_alert(user, "Select a reagent.")
+		user.balloon_alert(user, "no reagent")
 		return
 
 	var/use_amount = loadable_reagents[selected_reagent]
-	var/reagent_name = initial(selected_reagent.name)
 
 	if(loaded_reagents[selected_reagent] < use_amount)
-		user.balloon_alert(user, "[reagent_name]: not enough")
+		user.balloon_alert(user, "insufficient liquid")
 		return
 
 	if(user.do_actions)
@@ -137,7 +135,7 @@
 	loaded_reagents[selected_reagent] -= use_amount
 	if(!loaded_reagents[selected_reagent])
 		loaded_reagents -= selected_reagent
-	user.balloon_alert(user, "Loaded: [reagent_name]")
+	user.balloon_alert(user, "loaded")
 
 ///Handles behavior when attacking a mob
 /datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
