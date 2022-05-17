@@ -16,7 +16,7 @@
 	addtimer(CALLBACK(target, /mob/living.proc/Paralyze, BREAD_PARALYZE_TIME), BREADIFY_TIME) //necessary to keep the trapped mob from doing actions while inside the bread
 
 /proc/breadify(atom/movable/target)
-	var/obj/item/reagent_containers/food/snacks/marinebread/bread = new(get_turf(target))
+	var/obj/item/reagent_containers/food/snacks/sandwiches/marinebread/bread = new(get_turf(target))
 	target.forceMove(bread)
 
 #undef BREADIFY_TIME

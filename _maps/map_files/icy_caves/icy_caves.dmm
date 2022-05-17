@@ -4262,7 +4262,7 @@
 /area/icy_caves/caves/alienstuff)
 "uv" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/grilledcheese,
+/obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "uw" = (

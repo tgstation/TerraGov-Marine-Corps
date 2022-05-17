@@ -9706,7 +9706,7 @@
 	dir = 4
 	},
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/cheeseburger,
+/obj/item/reagent_containers/food/snacks/sandwiches/cheese,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "hNl" = (
@@ -12196,7 +12196,7 @@
 	},
 /obj/structure/table/mainship,
 /obj/structure/jungle/vines,
-/obj/item/reagent_containers/food/snacks/xemeatpie,
+/obj/item/reagent_containers/food/snacks/pastries/xemeatpie,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "kLN" = (
@@ -16704,7 +16704,7 @@
 /area/lv624/lazarus/main_hall)
 "qwI" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/grilledcheese,
+/obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "qwK" = (
@@ -18344,7 +18344,7 @@
 /obj/item/tool/kitchen/utensil/spoon,
 /obj/structure/table/mainship,
 /obj/structure/jungle/vines,
-/obj/item/reagent_containers/food/snacks/stew,
+/obj/item/reagent_containers/food/snacks/soup/stew,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
 "srR" = (

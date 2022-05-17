@@ -704,7 +704,7 @@
 		/obj/item/reagent_containers/food/snacks/breadslice,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
-	result = /obj/item/reagent_containers/food/snacks/grilledcheese
+	result = /obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich
 
 /datum/recipe/tomatosoup
 	reagents = list(/datum/reagent/water = 10)

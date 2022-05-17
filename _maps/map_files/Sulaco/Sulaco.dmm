@@ -25133,7 +25133,7 @@
 /area/sulaco/engineering/ce)
 "wyw" = (
 /obj/structure/table/mainship,
-/obj/item/reagent_containers/food/snacks/grilledcheese{
+/obj/item/reagent_containers/food/snacks/sandwiches/grilled_cheese_sandwich{
 	desc = "'The best grilled cheese this side of Uranus!' (tm)";
 	name = "Sandwich Joe's Grilled Cheese";
 	volume = 65
