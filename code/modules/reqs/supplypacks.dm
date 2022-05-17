@@ -237,7 +237,7 @@ WEAPONS
 /datum/supply_packs/weapons/tesla
 	name = "Tesla Shock Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
-	cost = 50
+	cost = 65
 
 /datum/supply_packs/weapons/tx54
 	name = "GL-54 airburst grenade launcher"
@@ -325,7 +325,7 @@ WEAPONS
 /datum/supply_packs/weapons/thermobaric
 	name = "RL-57 Thermobaric Launcher"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4/t57)
-	cost = 40
+	cost = 55
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/thermobaric_wp
@@ -523,12 +523,12 @@ WEAPONS
 /datum/supply_packs/weapons/xray_gun
 	name = "TE-X Laser Rifle"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/xray)
-	cost = 25
+	cost = 55
 
 /datum/supply_packs/weapons/rocketsledge
 	name = "Rocket Sledge"
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
-	cost = 40
+	cost = 80
 
 /*******************************************************************************
 EXPLOSIVES
