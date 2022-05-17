@@ -724,7 +724,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	reciever_flags = AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_MAGAZINES
 	flags_equip_slot = ITEM_SLOT_BELT
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
-	var/extended = 0
+	var/extended = FALSE
 
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -743,13 +743,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 			w_class = WEIGHT_CLASS_NORMAL
 			flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
 			icon_state = initial(icon_state)
-		else
-			w_class = WEIGHT_CLASS_BULKY
-			flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-			icon_state = "[icon_state]_extended"
-
-
-
+			return
+		w_class = WEIGHT_CLASS_BULKY
+		flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+		icon_state = "[icon_state]_extended"
 
 //-------------------------------------------------------
 //SR-220 Railgun
