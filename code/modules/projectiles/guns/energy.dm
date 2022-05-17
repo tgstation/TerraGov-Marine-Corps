@@ -644,7 +644,7 @@
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
 
-	iff_marine_damage_falloff = -0.15
+	iff_marine_damage_falloff = -0.10
 	aim_slowdown = 0.7
 	wield_delay = 0.7 SECONDS
 	scatter = 0
@@ -658,7 +658,7 @@
 	)
 
 /datum/lasrifle/base/energy_sniper_mode/standard
-	rounds_per_shot = 100
+	rounds_per_shot = 50
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
