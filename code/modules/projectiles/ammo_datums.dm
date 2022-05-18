@@ -325,7 +325,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_light"
 	damage = 15
 	penetration = 5
-	accurate_range = 5
 	sundering = 0.5
 
 /datum/ammo/bullet/pistol/tiny/ap
@@ -333,7 +332,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_lightap"
 	damage = 22.5
 	penetration = 15 //So it can actually hurt something.
-	accurate_range = 5
 	sundering = 0.5
 	damage_falloff = 1.5
 
@@ -546,7 +544,7 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	damage = 20
-	accurate_range = 5
+	accurate_range = 4
 	damage_falloff = 1
 	sundering = 0.5
 	penetration = 5
@@ -569,7 +567,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range = 15
+	accurate_range = 12
 	damage = 25
 	penetration = 5
 	sundering = 0.5
@@ -626,6 +624,7 @@ datum/ammo/bullet/revolver/tp44
 	shrapnel_chance = 0
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	accurate_range = 15
 	accurate_range_min = 6
 	damage = 40
 	penetration = 20
@@ -665,7 +664,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0.5
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range = 30
+	accurate_range = 25
 	accurate_range_min = 6
 	max_range = 40
 	damage = 65
@@ -1107,7 +1106,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range = 15
+	accurate_range = 12
 	damage = 20
 	penetration = 20
 	sundering = 1
@@ -1118,7 +1117,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range = 15
+	accurate_range = 12
 	damage = 20
 	penetration = 15
 	sundering = 2
@@ -1129,7 +1128,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range = 15
+	accurate_range = 12
 	damage = 10
 	penetration = 15
 	sundering = 2
@@ -1184,7 +1183,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	hud_state   = "smartgun"
 	hud_state_empty = "smartgun_empty"
-	accurate_range = 15
+	accurate_range = 12
 	damage = 40 //Reduced damage due to vastly increased mobility
 	penetration = 40 //Reduced penetration due to vastly increased mobility
 	accuracy = 5
@@ -1958,7 +1957,7 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = COLOR_TAN_ORANGE
 	armor_type = "energy"
 	max_range = 14
-	accurate_range = 8 //for charger
+	accurate_range = 5 //for charger
 	shell_speed = 4
 	accuracy_var_low = 5
 	accuracy_var_high = 5
@@ -1987,7 +1986,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
-	accurate_range = 20
+	accurate_range = 18
 	damage = 25
 	fire_burst_damage = 25
 

@@ -26,7 +26,7 @@
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
-	movement_acc_penalty_mult = 3
+	movement_acc_penalty_mult = 2
 
 	placed_overlay_iconstate = "shotgun"
 

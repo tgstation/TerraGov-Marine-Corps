@@ -65,7 +65,7 @@
 	recoil_unwielded = 0
 	scatter = 0
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 4 //Made to be better used one handed.
+	scatter_unwielded = 4
 	aim_slowdown = 0.15
 	burst_amount = 5
 	movement_acc_penalty_mult = 2
@@ -110,12 +110,12 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55
-
-	accuracy_mult_unwielded = 0.85
+	accuracy_mult = 1.05
+	accuracy_mult_unwielded = 0.9
 	scatter = 2
 	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 8
-	aim_slowdown = 0.25
+	aim_slowdown = 0.2
 	burst_amount = 0
 
 	placed_overlay_iconstate = "t90"
@@ -165,7 +165,8 @@
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 14, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 16)
 
-	accuracy_mult_unwielded = 0.9
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.95
 	scatter = 5
 	fire_delay = 0.2 SECONDS
 	scatter_unwielded = 10
@@ -196,8 +197,8 @@
 	flags_item_map_variant = NONE
 
 	burst_amount = 4
-	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 0.95
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 1
 	damage_mult = 1.2
 	aim_slowdown = 0.2
 	scatter = 3
@@ -317,7 +318,7 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 6
 	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 0.75
+	accuracy_mult_unwielded = 0.8
 	scatter = 5
 	scatter_unwielded = 15
 	aim_slowdown = 0.3

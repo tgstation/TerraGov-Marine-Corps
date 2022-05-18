@@ -198,8 +198,6 @@
 	var/burst_scatter_mult = 1
 	///Multiplier. Defaults to 1 (no penalty). Multiplies accuracy modifier by this amount while burst firing; usually a fraction (penalty) when set.
 	var/burst_accuracy_mult	= 1
-	///accuracy modifier, used by most attachments.
-	var/accuracy_mod = 0.05
 	///same vars as above but for unwielded firing.
 	var/accuracy_mult_unwielded = 1
 	///Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.

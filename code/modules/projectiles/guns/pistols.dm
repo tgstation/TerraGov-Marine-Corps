@@ -471,7 +471,7 @@
 	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
-	accuracy_mult_unwielded =  = 0.7
+	accuracy_mult_unwielded = 0.7
 	scatter = 3
 	scatter_unwielded = 6
 
