@@ -224,14 +224,12 @@
 /turf/open/floor/podhatch/floor,
 /area/rocinante_colony/surface/building/canterbury)
 "arN" = (
-/obj/structure/desertdam/decals/road/stop{
-	icon_state = "stop_decal2"
-	},
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/structure/cable{
 	layer = 1.99
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/desertdam/decals/road/stop,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonysw)
 "asa" = (
@@ -5456,10 +5454,6 @@
 /obj/effect/landmark/corpsespawner/som,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_colony/surface/building/administrationsom)
-"hia" = (
-/obj/effect/forcefield/fog,
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/rocinante_colony/ground/colonysw)
 "hip" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -8853,10 +8847,6 @@
 "lNq" = (
 /turf/closed/wall/mainship/gray,
 /area/rocinante_colony/surface/building/cas_hangar)
-"lNF" = (
-/obj/effect/forcefield/fog,
-/turf/open/floor/plating/ground/snow/layer3,
-/area/rocinante_colony/ground/colonysw)
 "lNL" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering,
 /turf/open/floor/mainship/orange/full,
@@ -13060,10 +13050,8 @@
 /turf/open/floor/mainship/mono,
 /area/rocinante_colony/surface/building/tadpole_hangar)
 "rqF" = (
-/obj/structure/desertdam/decals/road/stop{
-	icon_state = "stop_decal2"
-	},
 /obj/effect/ai_node,
+/obj/structure/desertdam/decals/road/stop,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonysw)
 "rre" = (
@@ -13117,11 +13105,6 @@
 /obj/structure/flora/tree/dead,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonycent)
-"rvJ" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/forcefield/fog,
-/turf/open/floor/plating/ground/snow/layer3,
-/area/rocinante_colony/ground/colonysw)
 "rvM" = (
 /obj/structure/bush,
 /turf/open/floor/grass,
@@ -13950,10 +13933,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/colonyn)
-"sHT" = (
-/obj/effect/forcefield/fog,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/rocinante_colony/ground/colonysw)
 "sIj" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -14000,9 +13979,7 @@
 /turf/open/floor/mainship/mono,
 /area/rocinante_colony/surface/building/space_hangar)
 "sKM" = (
-/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2{
-	icon_state = "door_closing"
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2,
 /turf/open/floor/mainship/mono,
 /area/rocinante_colony/surface/building/space_hangar)
 "sKN" = (
@@ -17534,9 +17511,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/colonyn)
 "xND" = (
-/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2{
-	icon_state = "door_closing"
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2,
 /turf/open/floor/plating/ground/snow/layer3,
 /turf/open/floor/plating,
 /turf/open/floor/mainship/mono,
@@ -20568,7 +20543,7 @@ iGY
 iGY
 iGY
 iGY
-tAr
+iGY
 iGY
 iGY
 iGY
@@ -20802,7 +20777,7 @@ iGY
 iGY
 iGY
 iGY
-tAr
+iGY
 iGY
 tAr
 tAr
@@ -21763,7 +21738,7 @@ tAr
 tAr
 tAr
 tAr
-tAr
+iGY
 tiw
 jLm
 jDj
@@ -22316,7 +22291,7 @@ tAr
 tAr
 tAr
 iGY
-tKJ
+iGY
 iGY
 iGY
 iGY
@@ -22467,7 +22442,7 @@ omm
 eIz
 omm
 hQT
-lNF
+hQT
 gHr
 "}
 (25,1,1) = {"
@@ -22659,7 +22634,7 @@ eIz
 ksd
 fNN
 fNN
-rvJ
+nkH
 gHr
 "}
 (26,1,1) = {"
@@ -22694,7 +22669,7 @@ tAr
 tAr
 iGY
 iGY
-tAr
+iGY
 iGY
 iGY
 iGY
@@ -22851,7 +22826,7 @@ uTD
 vVw
 uTD
 uTD
-hia
+uTD
 gHr
 "}
 (27,1,1) = {"
@@ -22882,8 +22857,8 @@ tAr
 tAr
 tAr
 iGY
-tAr
-tAr
+iGY
+iGY
 iGY
 iGY
 iGY
@@ -23043,7 +23018,7 @@ uTD
 uTD
 uTD
 uTD
-hia
+uTD
 gHr
 "}
 (28,1,1) = {"
@@ -23235,7 +23210,7 @@ uTD
 uTD
 uTD
 uTD
-hia
+uTD
 gHr
 "}
 (29,1,1) = {"
@@ -23427,7 +23402,7 @@ esl
 esl
 omm
 fNN
-lNF
+hQT
 gHr
 "}
 (30,1,1) = {"
@@ -23619,7 +23594,7 @@ hQT
 hQT
 omm
 omm
-sHT
+esl
 gHr
 "}
 (31,1,1) = {"
@@ -24036,7 +24011,7 @@ tAr
 tAr
 iGY
 iGY
-tKJ
+iGY
 iGY
 iGY
 iGY
@@ -24054,7 +24029,7 @@ tAr
 tAr
 tAr
 iGY
-tAr
+iGY
 iGY
 iGY
 iGY
@@ -24800,7 +24775,7 @@ tAr
 tAr
 tAr
 iGY
-tAr
+iGY
 iGY
 tAr
 tAr
@@ -25168,8 +25143,8 @@ iGY
 iGY
 tAr
 tAr
-tAr
-tAr
+iGY
+iGY
 iGY
 iGY
 iGY
@@ -26136,7 +26111,7 @@ iGY
 iGY
 iGY
 iGY
-tAr
+iGY
 tAr
 tAr
 tAr
@@ -29438,7 +29413,7 @@ mQU
 mTw
 bmz
 bmz
-tiL
+bmz
 tiL
 tiL
 tiL
@@ -30189,7 +30164,7 @@ bmz
 bmz
 bmz
 bmz
-tiL
+bmz
 bmz
 bmz
 tiL
@@ -32109,7 +32084,7 @@ bmz
 bmz
 bmz
 eId
-tiL
+bmz
 tiL
 tiL
 tiL
@@ -33088,7 +33063,7 @@ jxk
 tiL
 mlj
 tiL
-tiL
+bmz
 bmz
 bmz
 bmz
@@ -33261,7 +33236,7 @@ bmz
 bmz
 bmz
 bmz
-tiL
+bmz
 tiL
 tiL
 tiL
@@ -34968,8 +34943,8 @@ bmz
 bmz
 bmz
 bmz
-tiL
-tiL
+bmz
+bmz
 tiL
 tiL
 tiL
@@ -35937,12 +35912,12 @@ bmz
 bmz
 bmz
 bmz
+bmz
 tiL
 tiL
 tiL
-tiL
-tiL
-tiL
+bmz
+bmz
 bmz
 bmz
 bmz
@@ -36724,8 +36699,8 @@ bmz
 bmz
 bmz
 bmz
-tiL
-tiL
+bmz
+bmz
 bmz
 tLF
 aEB
@@ -39213,7 +39188,7 @@ mlj
 qUW
 bmz
 bmz
-tiL
+bmz
 bmz
 tiL
 tiL
@@ -40373,7 +40348,7 @@ tWl
 tWl
 tWl
 tWl
-jTq
+tWl
 tWl
 tWl
 tWl
@@ -40752,18 +40727,18 @@ tWl
 tWl
 tWl
 tWl
+tWl
+tWl
+tWl
+tWl
+tWl
+tWl
+tWl
+tWl
+tWl
+tWl
+tWl
 jTq
-tWl
-tWl
-tWl
-tWl
-tWl
-tWl
-tWl
-tWl
-tWl
-tWl
-tWl
 jTq
 fEW
 mPP
@@ -40956,7 +40931,7 @@ tWl
 tWl
 tWl
 tWl
-jTq
+tWl
 uFv
 uFv
 uFv
@@ -41148,7 +41123,7 @@ tWl
 tWl
 tWl
 tWl
-jTq
+tWl
 uFv
 kDi
 frS
@@ -41293,7 +41268,7 @@ tWl
 tWl
 tWl
 tWl
-jTq
+tWl
 tWl
 tWl
 tWl
@@ -41714,7 +41689,7 @@ tWl
 tWl
 tWl
 tWl
-jTq
+tWl
 tWl
 tWl
 tWl
@@ -43792,7 +43767,7 @@ jTq
 jTq
 jTq
 jTq
-jTq
+tWl
 tWl
 tWl
 rVX
@@ -44970,7 +44945,7 @@ fTK
 jTq
 jTq
 jTq
-jTq
+tWl
 tWl
 tWl
 rVX
@@ -45172,7 +45147,7 @@ tWl
 tWl
 tWl
 tWl
-jTq
+tWl
 tWl
 tWl
 jTq
@@ -45751,7 +45726,7 @@ tWl
 tWl
 tWl
 tWl
-jTq
+tWl
 jTq
 pUX
 pUX
