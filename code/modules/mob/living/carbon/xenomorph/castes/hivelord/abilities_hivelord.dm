@@ -124,7 +124,6 @@
 
 /datum/action/xeno_action/build_tunnel/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.balloon_alert(X, "Dig tunnel ready")
 	return ..()
 
 /datum/action/xeno_action/build_tunnel/action_activate()
