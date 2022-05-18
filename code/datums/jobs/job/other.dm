@@ -89,5 +89,15 @@
 	head = /obj/item/clothing/head/xenos
 	wear_suit = /obj/item/clothing/suit/xenos
 
+/datum/job/spatial_agent/marine_officer
+	outfit = /datum/outfit/job/other/spatial_agent/marine_officer
+
+/datum/outfit/job/other/spatial_agent/marine_officer
+	w_uniform = /obj/item/clothing/under/marine/officer/bridge
+	head = /obj/item/clothing/head/beret/marine
+	belt = /obj/item/storage/belt/gun/pistol/m4a3/officer
+	back = null
+	shoes = /obj/item/clothing/shoes/marine/full
+
 /datum/job/zombie
 	title = "Oh god run"
