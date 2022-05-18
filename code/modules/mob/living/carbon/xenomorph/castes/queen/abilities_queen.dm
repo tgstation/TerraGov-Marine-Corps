@@ -70,7 +70,6 @@
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
 
 /datum/action/xeno_action/activable/screech/on_cooldown_finish()
-	owner.balloon_alert(owner, "Screech ready")
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
 	return ..()
 
@@ -324,7 +323,6 @@
 	if(xeno_ruler.xeno_caste.queen_leader_limit <= length(xeno_ruler.hive.xeno_leader_list))
 		if(feedback)
 			xeno_ruler.balloon_alert(xeno_ruler, "No more leadership slots")
-			to_chat(xeno_ruler, span_xenowarning("We currently have the maximum of [length(xeno_ruler.hive.xeno_leader_list)] promoted leaders. We may not maintain additional leaders until our power grows."))
 		return
 
 	set_xeno_leader(selected_xeno, feedback)
@@ -334,9 +332,7 @@
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(feedback)
 		xeno_ruler.balloon_alert(xeno_ruler, "Xeno demoted")
-		to_chat(xeno_ruler, span_xenonotice("We've demoted [selected_xeno] from Lead."))
 		selected_xeno.balloon_alert(selected_xeno, "Leadership removed")
-		to_chat(selected_xeno, span_xenoannounce("[xeno_ruler] has demoted us from Hive Leader. Our leadership rights and abilities have waned."))
 	selected_xeno.hive.remove_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
@@ -351,7 +347,6 @@
 		return
 	if(feedback)
 		xeno_ruler.balloon_alert(xeno_ruler, "Xeno promoted")
-		to_chat(xeno_ruler, span_xenonotice("We've selected [selected_xeno] as a Hive Leader."))
 		selected_xeno.balloon_alert(selected_xeno, "Promoted to leader")
 		to_chat(selected_xeno, span_xenoannounce("[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones."))
 

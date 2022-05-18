@@ -57,7 +57,6 @@
 	speed_activated = TRUE
 	if(!silent)
 		owner.balloon_alert(owner, "Resin walk active")
-		to_chat(owner, span_notice("We become one with the resin. We feel the urge to run!"))
 	if(walker.loc_weeds_type)
 		speed_bonus_active = TRUE
 		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
@@ -68,7 +67,6 @@
 	var/mob/living/carbon/xenomorph/walker = owner
 	if(!silent)
 		owner.balloon_alert(owner, "Resin walk ended")
-		to_chat(owner, span_warning("We feel less in tune with the resin."))
 	if(speed_bonus_active)
 		walker.remove_movespeed_modifier(type)
 		speed_bonus_active = FALSE
@@ -81,7 +79,6 @@
 	var/mob/living/carbon/xenomorph/walker = owner
 	if(!isturf(walker.loc) || !walker.check_plasma(10, TRUE))
 		owner.balloon_alert(owner, "Resin walk ended, no plasma")
-		to_chat(owner, span_warning("We feel dizzy as the world slows down."))
 		resinwalk_off(TRUE)
 		return
 	if(walker.loc_weeds_type)
@@ -135,17 +132,16 @@
 	var/mob/living/carbon/xenomorph/hivelord/X = owner
 
 	X.balloon_alert(X, "Digging...")
-	owner.visible_message(span_xenonotice("[owner] begins digging out a tunnel entrance."), \
+	X.visible_message(span_xenonotice("[X] begins digging out a tunnel entrance."), \
 	span_xenonotice("We begin digging out a tunnel entrance."), null, 5)
-	if(!do_after(owner, HIVELORD_TUNNEL_DIG_TIME, TRUE, T, BUSY_ICON_BUILD))
+	if(!do_after(X, HIVELORD_TUNNEL_DIG_TIME, TRUE, T, BUSY_ICON_BUILD))
 		X.balloon_alert(X, "Digging aborted")
-		to_chat(owner, span_warning("Our tunnel caves in as we stop digging it."))
 		return fail_activate()
 
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
-	T.balloon_alert(X, "Dug tunnel")
+	T.balloon_alert(X, "Tunnel dug")
 	X.visible_message(span_xenonotice("\The [X] digs out a tunnel entrance."), \
 	span_xenonotice("We dig out a tunnel, connecting it to our network."), null, 5)
 	var/obj/structure/xeno/tunnel/newt = new(T)
@@ -222,7 +218,6 @@
 
 	playsound(T, "alien_resin_build", 25)
 	var/obj/structure/xeno/resin_jelly_pod/pod = new(T)
-	pod.balloon_alert("Pod successfully placed")
 	add_cooldown()
 
 /datum/action/xeno_action/create_jelly
@@ -293,7 +288,7 @@
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
 		if(!silent)
-			target.balloon_alert(owner, "Cannot heal, too far")
+			target.balloon_alert(owner, "Cannot reach")
 			to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
 		return FALSE
 	else if(!line_of_sight(owner, target))
@@ -309,7 +304,6 @@
 
 	owner.face_atom(target) //Face the target so we don't look stupid
 
-	target.balloon_alert(owner, "Infusion succeeded")
 	owner.visible_message(span_xenodanger("\the [owner] infuses [target] with mysterious energy!"), \
 	span_xenodanger("We empower [target] with our [src]!"))
 
