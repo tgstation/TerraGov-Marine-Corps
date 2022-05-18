@@ -22,7 +22,6 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/holster/blade
 	)
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 
 /obj/item/clothing/suit/surgical
@@ -49,7 +48,6 @@
 		/obj/item/tweezers,
 	)
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 
 //Captain
@@ -60,7 +58,6 @@
 	item_state = "bio_suit"
 	flags_armor_protection = CHEST|ARMS
 	flags_inv_hide = HIDEJUMPSUIT
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 /obj/item/clothing/suit/captunic/capjacket
 	name = "captain's uniform jacket"
@@ -77,7 +74,6 @@
 	icon_state = "chaplain_hoodie"
 	item_state = "chaplain_hoodie"
 	flags_armor_protection = CHEST|ARMS
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 /obj/item/clothing/suit/nun
 	name = "nun robe"
@@ -86,7 +82,6 @@
 	item_state = "nun"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDESHOES|HIDEJUMPSUIT
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 //Chef
 /obj/item/clothing/suit/chef
@@ -99,7 +94,6 @@
 	flags_armor_protection = CHEST|GROIN|ARMS
 	allowed = list (/obj/item/tool/kitchen/knife,
 	/obj/item/tool/kitchen/knife/butcher)
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 /obj/item/clothing/suit/chef/classic
 	name = "A classic chef's apron."
@@ -156,7 +150,6 @@
 		/obj/item/storage/holster/blade,
 	)
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 /obj/item/clothing/suit/storage/det_suit/black
 	icon_state = "detective2"
@@ -214,8 +207,6 @@
 		/obj/item/tool/taperoll/engineering,
 	)
 	flags_armor_protection = CHEST
-
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 /obj/item/clothing/suit/storage/hazardvest/lime
 	name = "lime reflective safety vest"

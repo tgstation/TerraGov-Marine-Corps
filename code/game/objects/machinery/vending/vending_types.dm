@@ -545,11 +545,9 @@
 		/obj/item/seeds/amanitamycelium = 2,
 		/obj/item/seeds/glowshroom = 2,
 		/obj/item/seeds/libertymycelium = 2,
-		/obj/item/seeds/mtearseed = 2,
 		/obj/item/seeds/nettleseed = 2,
 		/obj/item/seeds/reishimycelium = 2,
 		/obj/item/seeds/reishimycelium = 2,
-		/obj/item/seeds/shandseed = 2,
 		/obj/item/toy/waterflower = 1,
 	)
 

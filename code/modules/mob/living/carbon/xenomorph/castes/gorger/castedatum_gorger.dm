@@ -38,6 +38,9 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
+	// *** Minimap Icon *** //
+	minimap_icon = "gorger"
+
 	// *** Gorger Abilities *** //
 	overheal_max = 200
 	drain_plasma_gain = 20

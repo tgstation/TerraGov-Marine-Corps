@@ -180,6 +180,7 @@
 	icon_state = "TGMC1"
 	density = FALSE
 	resistance_flags = UNACIDABLE
+	layer = ABOVE_TURF_LAYER
 
 /obj/structure/prop/mainship/name_stencil/Initialize()
 	. = ..()
@@ -350,6 +351,13 @@
 	icon = 'icons/obj/doors/Doorsand.dmi'
 	icon_state = "door_open"
 	density = FALSE
+
+/obj/structure/prop/oresilo
+	name = "ore silo"
+	desc = "An all-in-one bluespace storage and transmission system for the colony's mineral distribution needs. This one appears to be deactivated."
+	icon = 'icons/obj/machines/mining_machines.dmi'
+	icon_state = "silo"
+	density = TRUE
 
 /obj/structure/prop/mainship/propcarp/Initialize(mapload) //slightly randomize carp to simulate life
 	. = ..()

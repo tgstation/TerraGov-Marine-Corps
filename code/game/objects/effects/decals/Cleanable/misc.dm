@@ -103,6 +103,7 @@
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
+	icon_state = "tomato_floor2"
 	random_icon_states = list("tomato_floor1", "tomato_floor2", "tomato_floor3")
 
 /obj/effect/decal/cleanable/egg_smudge
@@ -112,6 +113,7 @@
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
+	icon_state = "smashed_egg1"
 	random_icon_states = list("smashed_egg1", "smashed_egg2", "smashed_egg3")
 
 /obj/effect/decal/cleanable/pie_smudge //honk
@@ -121,4 +123,4 @@
 	anchored = TRUE
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
-	random_icon_states = list("smashed_pie")
+	icon_state = "smashed_pie"

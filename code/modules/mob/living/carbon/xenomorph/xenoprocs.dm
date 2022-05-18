@@ -688,3 +688,15 @@
 ///Handles empowered abilities, should return TRUE if the ability should be empowered. Empowerable should be FALSE if the ability cannot itself be empowered but has interactions with empowerable abilities
 /mob/living/carbon/xenomorph/proc/empower(empowerable = TRUE)
 	return FALSE
+
+///Handles icon updates when leadered/unleadered. Evolution.dm also uses this
+/mob/living/carbon/xenomorph/proc/update_leader_icon(makeleader = TRUE)
+	// Xenos with specialized icons (Queen, King, Shrike) do not get their icon changed
+	if(istype(xeno_caste, /datum/xeno_caste/queen) || istype(xeno_caste, /datum/xeno_caste/shrike) || istype(xeno_caste, /datum/xeno_caste/king))
+		return
+
+	SSminimaps.remove_marker(src)
+	if(makeleader)
+		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon, overlay_iconstates=list(xeno_caste.minimap_leadered_overlay))
+	else
+		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon)

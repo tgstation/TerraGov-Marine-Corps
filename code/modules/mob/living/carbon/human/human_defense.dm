@@ -459,17 +459,16 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(user.a_intent != INTENT_HELP)
 		return ..()
 
-	var/datum/limb/hurtlimb = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(src, user) : get_limb(user.zone_selected)
+	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(src, user) : get_limb(user.zone_selected)
 
-	if(!hurtlimb)
+	if(!affecting)
 		return TRUE
 
-	if(!(hurtlimb.limb_status & LIMB_ROBOT))
+	if(!(affecting.limb_status & LIMB_ROBOT))
 		balloon_alert(user, "Limb not robotic")
 		return TRUE
 
-
-	if(!hurtlimb.brute_dam)
+	if(!affecting.brute_dam)
 		balloon_alert(user, "Nothing to fix!")
 		return TRUE
 
@@ -477,19 +476,34 @@ Contains most of the procs that are called when a mob is attacked by something
 		balloon_alert(user, "Already busy!")
 		return TRUE
 
-	var/repair_time = 1 SECONDS
-	if(src == user)
-		repair_time *= 3
 	if(!I.tool_use_check(user, 2))
 		return TRUE
 
-	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [hurtlimb.display_name]."),\
-		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [hurtlimb.display_name]."))
-	while(hurtlimb.brute_dam && do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(volume = 50, amount = 2))
-		hurtlimb.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE)
-		UpdateDamageIcon()
-		user.visible_message(span_warning("\The [user] patches some dents on \the [src]'s [hurtlimb.display_name]."), \
-			span_warning("You patch some dents on \the [src]'s [hurtlimb.display_name]."))
+	var/repair_time = 1 SECONDS
+	if(src == user)
+		repair_time *= 3
+
+
+	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.display_name]."),\
+		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.display_name]."))
+
+	while(do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(volume = 50, amount = 2))
+		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
+			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
+		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))
+			UpdateDamageIcon()
 		if(!I.tool_use_check(user, 2))
-			return TRUE
+			break
+		if(!affecting.brute_dam)
+			var/previous_limb = affecting
+			for(var/datum/limb/checked_limb AS in limbs)
+				if(!(checked_limb.limb_status & LIMB_ROBOT))
+					continue
+				if(!checked_limb.brute_dam)
+					continue
+				affecting = checked_limb
+				break
+			if(previous_limb == affecting)
+				balloon_alert(user, "Dents fully repaired.")
+				break
 	return TRUE

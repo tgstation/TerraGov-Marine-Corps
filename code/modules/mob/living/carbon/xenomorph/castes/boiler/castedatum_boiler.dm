@@ -41,6 +41,9 @@
 	spit_delay = 4 SECONDS
 	spit_types = list(/datum/ammo/xeno/boiler_gas, /datum/ammo/xeno/boiler_gas/corrosive)
 
+	// *** Minimap Icon *** //
+	minimap_icon = "boiler"
+
 	// *** Boiler Abilities *** //
 	max_ammo = 4
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.

@@ -192,12 +192,11 @@
 
 ///Will try finding and resting on weeds
 /datum/ai_behavior/xeno/proc/try_to_heal()
-	var/mob/living/living_mob = mob_parent
-	if(!locate(/obj/effect/alien/weeds) in get_turf(mob_parent))
+	var/mob/living/carbon/xenomorph/living_mob = mob_parent
+	if(!living_mob.loc_weeds_type)
 		if(living_mob.resting)//We are resting on no weeds
 			SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
 			UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
-			return FALSE
 		return FALSE
 	if(living_mob.resting)//Already resting
 		if(living_mob.on_fire)
