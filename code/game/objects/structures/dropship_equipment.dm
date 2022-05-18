@@ -453,7 +453,65 @@
 		deployed_mg.loc = src
 		icon_state = "mg_system"
 
+/obj/structure/dropship_equipment/gl_holder
+	name = "grenade launcher deployment system"
+	desc = "A box that deploys a modified AGL-15 crewserved grenade launcher. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	equip_category = DROPSHIP_CREW_WEAPON
+	icon_state = "gl_system"
+	point_cost = 300
+	var/obj/machinery/deployable/mounted/deployed_gl
 
+/obj/structure/dropship_equipment/gl_holder/Initialize()
+	. = ..()
+	if(deployed_gl)
+		return
+	var/obj/item/weapon/gun/aglnest/new_gun = new(src) //Creates the internal gun of the deployed_mg first.
+	deployed_gl = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_mg. Therefore new_gun.loc = deployed_mg.
+
+/obj/structure/dropship_equipment/gl_holder/examine(mob/user)
+	. = ..()
+	if(!deployed_gl)
+		. += "Its grenade launcher is missing."
+
+/obj/structure/dropship_equipment/gl_holder/update_equipment()
+	if(!deployed_gl)
+		return
+	if(ship_base)
+		deployed_gl.loc = loc
+		icon_state = "mg_system_deployed"
+	else
+		deployed_gl.loc = src
+		icon_state = "gl_system"
+
+/obj/structure/dropship_equipment/dualcannon_holder
+	name = "dualcannon deployment system"
+	desc = "A box that deploys a modified ATR-22 crewserved dualcannon. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	equip_category = DROPSHIP_CREW_WEAPON
+	icon_state = "ac_system"
+	point_cost = 300
+	var/obj/machinery/deployable/mounted/deployed_dualcannon
+
+/obj/structure/dropship_equipment/dualcannon_holder/Initialize()
+	. = ..()
+	if(deployed_dualcannon)
+		return
+	var/obj/item/weapon/gun/dualcannon/new_gun = new(src) //Creates the internal gun of the deployed_mg first.
+	deployed_dualcannon = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_mg. Therefore new_gun.loc = deployed_mg.
+
+/obj/structure/dropship_equipment/dualcannon_holder/examine(mob/user)
+	. = ..()
+	if(!deployed_dualcannon)
+		. += "Its dualcannon is missing."
+
+/obj/structure/dropship_equipment/dualcannon_holder/update_equipment()
+	if(!deployed_dualcannon)
+		return
+	if(ship_base)
+		deployed_dualcannon.loc = loc
+		icon_state = "mg_system_deployed"
+	else
+		deployed_dualcannon.loc = src
+		icon_state = "ac_system"
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
 
 /obj/structure/dropship_equipment/fuel
@@ -480,6 +538,7 @@
 	equip_category = DROPSHIP_ELECTRONICS
 
 /obj/structure/dropship_equipment/electronics/spotlights
+	equip_category = DROPSHIP_WEAPON
 	name = "spotlight"
 	icon_state = "spotlights"
 	desc = "A set of highpowered spotlights to illuminate large areas. Fits on electronics attach points of dropships. Moving this will require a powerloader."

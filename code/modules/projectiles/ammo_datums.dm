@@ -1207,6 +1207,17 @@ datum/ammo/bullet/revolver/tp44
 	shrapnel_chance = 25
 	sundering = 2.5
 
+/datum/ammo/bullet/dualcannon
+	name = "dualcannon bullet"
+	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	accurate_range = 5
+	damage = 25
+	penetration = 100
+	sundering = 15
+
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
 	hud_state = "alloy_spike"
@@ -1422,6 +1433,25 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 7)
+
+/datum/ammo/rocket/ags
+	name = "high explosive grenade"
+	icon_state = "grenade_projectile"
+	hud_state = "grenade_he"
+	hud_state_empty = "grenade_empty"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_EXPLOSIVE
+	armor_type = "bomb"
+	damage_falloff = 0
+	shell_speed = 2
+	accuracy = 40
+	accurate_range = 20
+	max_range = 30
+	damage = 25
+	penetration = 10
+	sundering = 10
+
+/datum/ammo/rocket/ags/drop_nade(turf/T)
+	explosion(T, 0, 0, 2, 4, small_animation = TRUE)
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"

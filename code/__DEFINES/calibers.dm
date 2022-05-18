@@ -76,6 +76,7 @@
 #define CALIBER_12X40 "12x40mm Gauss" //Gauss Sentries
 #define CALIBER_10X20 "10x20mm" //Minisentry
 #define CALIBER_10X30 "10x30mm caseless"
+#define CALIBER_20 "20mm" //Dualcannon
 
 ///Unmanned vehicles
 #define CALIBER_11X35 "11x35mm"

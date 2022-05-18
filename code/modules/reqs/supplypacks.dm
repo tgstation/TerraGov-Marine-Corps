@@ -1489,6 +1489,23 @@ VEHICLES
 	cost = 1
 	containertype = /obj/structure/closet/crate
 
+/datum/supply_packs/vehicles/hsg_ammo
+	name = "Mounted HSG ammo"
+	contains = list(/obj/item/ammo_magazine/tl102/hsg_nest)
+	cost = 3
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/agl_ammo
+	name = "Mounted AGL ammo"
+	contains = list(/obj/item/ammo_magazine/marine_agsls)
+	cost = 5
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/dc_ammo
+	name = "Mounted dualcannon ammo"
+	contains = list(/obj/item/ammo_magazine/dualcannon)
+	cost = 3
+	containertype = /obj/structure/closet/crate/ammo
 /*******************************************************************************
 FACTORY
 *******************************************************************************/

@@ -67,7 +67,7 @@
 ///Unmovable ship mounted version.
 /obj/item/weapon/gun/tl102/hsg_nest
 	name = "\improper HSG-102 heavy smartgun nest"
-	desc = "A HSG-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
+	desc = "A HSG-102 heavy smartgun with an enhanced scope mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "entrenched"
 
@@ -83,6 +83,89 @@
 		/obj/item/ammo_magazine/tl102/hsg_nest,
 	)
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+
+/obj/item/weapon/gun/aglnest
+	name = "\improper AGL-15 mounted automatic grenade launcher"
+	desc = "The AGL-15 mounted automatic grenade launcher, mounted upon a small reinforced post with sandbags to provide a small grenade launcher nest for all your defense purpose needs."
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "gl"
+	caliber = CALIBER_40MM
+
+	fire_sound = 'sound/weapons/guns/fire/ags.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+
+	default_ammo_type = /obj/item/ammo_magazine/marine_agsls
+
+	scatter = 10
+	deployed_scatter_change = -10
+	fire_delay = 1 SECONDS
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/tl102/nest,
+	)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102/nest,
+	)
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/marine_agsls,
+	)
+
+	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
+	deployed_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 200
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+
+/obj/item/weapon/gun/dualcannon
+	name = "\improper ATR-22 mounted heavy dualcannon"
+	desc = "The ATR-22 mounted heavy dualcannon, mounted upon a small reinforced post with sandbags to provide a small dualcannon nest for all your defense purpose needs."
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "autocannon"
+
+	fire_sound = 'sound/weapons/guns/fire/autocannon_fire.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+
+	default_ammo_type = /obj/item/ammo_magazine/autocannon
+
+	scatter = 10
+	deployed_scatter_change = -10
+	fire_delay = 0.4 SECONDS
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/tl102/nest,
+	)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102/nest,
+	)
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/dualcannon
+	)
+
+	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
+	deployed_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 200
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death

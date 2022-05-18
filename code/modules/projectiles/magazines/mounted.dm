@@ -12,9 +12,9 @@
 	reload_delay = 5 SECONDS
 	icon_state_mini = "mag_tl102"
 
-///This is the one that comes in the mapbound version of the HSG-102, it has a stupid amount of ammo. Even more than the ammo counter can display.
+///This is the one that comes in the mapbound and dropship mounted version of the HSG-102.
 /obj/item/ammo_magazine/tl102/hsg_nest
-	max_rounds = 1500
+	max_rounds = 500
 
 /obj/item/ammo_magazine/heavymachinegun
 	name = "HMG-08 drum magazine (10x30mm Caseless)"
@@ -71,3 +71,28 @@
 	icon_state = "tat36_shell_he"
 	item_state = "tat36_he"
 	default_ammo = /datum/ammo/rocket/atgun_shell/he
+
+/obj/item/ammo_magazine/marine_agsls
+	name = "AGL-15 box magazine (40mm Grenade)"
+	desc = "A box of 30 40mm Smart Grenades, cannot be used as normal grenades."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "ags_mag"
+	flags_magazine = NONE
+	caliber = CALIBER_40MM
+	max_rounds = 15
+	default_ammo = /datum/ammo/rocket/ags
+	reload_delay = 5 SECONDS
+
+/obj/item/ammo_magazine/dualcannon
+	name = "Dualcannon IFF Magazine"
+	desc = "A box of 150, 20mm rounds for the ATR-22 mounted dualcannon."
+	w_class = WEIGHT_CLASS_NORMAL
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "mag"
+	flags_magazine = NONE
+	caliber = CALIBER_20
+	max_rounds = 150
+	default_ammo = /datum/ammo/bullet/dualcannon
+	reload_delay = 5 SECONDS
+	icon_state_mini = "mag_tl102"

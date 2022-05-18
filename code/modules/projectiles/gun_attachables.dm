@@ -708,7 +708,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	deployed_scope_rezoom = TRUE
 
 /obj/item/attachable/scope/unremovable/tl102/nest
-	zoom_tile_offset = 6
+	zoom_tile_offset = 7
+	zoom_viewsize = 2
 
 /obj/item/attachable/scope/activate(mob/living/carbon/user, turn_off)
 	if(turn_off)
