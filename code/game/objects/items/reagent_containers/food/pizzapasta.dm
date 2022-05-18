@@ -120,7 +120,6 @@
 	icon_state = "sassysagepizza"
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/protein = 15, /datum/reagent/consumable/tomatojuice = 6, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("crust" = 1, "tomato" = 1, "cheese" = 1, "meat" = 1)
-	foodtypes = GRAIN | VEGETABLES | DAIRY | MEAT
 	slice_path = /obj/item/reagent_containers/food/snacks/sassysage
 
 /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/sassysage/raw
@@ -168,7 +167,7 @@
 
 	var/open = 0 // Is the box open?
 	var/ismessy = 0 // Fancy mess on the lid
-	var/obj/item/reagent_containers/food/snacks/sliceable/pizza/pizza // Content pizza
+	var/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/pizza // Content pizza
 	var/list/boxes = list() // If the boxes are stacked, they come here
 	var/boxtag = ""
 
@@ -314,55 +313,55 @@
 
 /obj/item/pizzabox/margherita/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita(src)
 	boxtag = "Margherita Deluxe"
 
 
 /obj/item/pizzabox/vegetable/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/vegetablepizza(src)
 	boxtag = "Gourmet Vegatable"
 
 
 /obj/item/pizzabox/mushroom/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/mushroompizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/mushroompizza(src)
 	boxtag = "Mushroom Special"
 
 
 /obj/item/pizzabox/meat/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
 	boxtag = "Meatlover's Supreme"
 
 /obj/item/pizzabox/donkpocket/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
 	boxtag = "Bangin' Donk"
 
 /obj/item/pizzabox/ants/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
 	boxtag = "Anthill Deluxe"
 
 /obj/item/pizzabox/dank/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
 	boxtag = "Fresh Herbs"
 
 /obj/item/pizzabox/vegetable/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
 	boxtag = "Gourmet Vegetable"
 
 /obj/item/pizzabox/sassysage/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
 	boxtag = "Sausage Lovers"
 
 /obj/item/pizzabox/pineapple/Initialize()
 	. = ..()
-	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza(src)
+	pizza = new /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/meatpizza(src)
 	boxtag = "Honolulu Chew"
 
 ///spaghetti prototype used by all subtypes

@@ -47,7 +47,7 @@
 	name = "Carrot Cake"
 	desc = "A favorite desert of a certain wascally wabbit. Not a lie."
 	icon_state = "carrotcake"
-	slice_path = /obj/item/reagent_containers/food/snacks/carrotcakeslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/carrotcakeslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/consumable/drink/carrotjuice = 10)
 	filling_color = "#FFD675"
 	tastes = list("cake" = 5, "sweetness" = 2, "carrot" = 1)
@@ -65,7 +65,7 @@
 	name = "Brain Cake"
 	desc = "A squishy cake-thing."
 	icon_state = "braincake"
-	slice_path = /obj/item/reagent_containers/food/snacks/braincakeslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/braincakeslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25, /datum/reagent/medicine/alkysine = 10)
 	filling_color = "#E6AEDB"
 	tastes = list("cake" = 5, "sweetness" = 2, "brains" = 1)
@@ -83,7 +83,7 @@
 	name = "Cheese Cake"
 	desc = "DANGEROUSLY cheesy."
 	icon_state = "cheesecake"
-	slice_path = /obj/item/reagent_containers/food/snacks/cheesecakeslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/cheesecakeslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 25)
 	filling_color = "#FAF7AF"
 	tastes = list("cake" = 4, "cream cheese" = 3)
@@ -101,7 +101,7 @@
 	name = "Vanilla Cake"
 	desc = "A plain cake, not a lie."
 	icon_state = "plaincake"
-	slice_path = /obj/item/reagent_containers/food/snacks/plaincakeslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/plaincakeslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20)
 	filling_color = "#F7EDD5"
 	tastes = list("vanilla" = 1, "sweetness" = 2,"cake" = 5)
@@ -119,7 +119,7 @@
 	name = "Orange Cake"
 	desc = "A cake with added orange."
 	icon_state = "orangecake"
-	slice_path = /obj/item/reagent_containers/food/snacks/orangecakeslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/orangecakeslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20)
 	filling_color = "#FADA8E"
 	tastes = list("cake" = 5, "sweetness" = 2, "oranges" = 2)
@@ -137,7 +137,7 @@
 	name = "Lime Cake"
 	desc = "A cake with added lime."
 	icon_state = "limecake"
-	slice_path = /obj/item/reagent_containers/food/snacks/limecakeslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/limecakeslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20)
 	filling_color = "#CBFA8E"
 	tastes = list("cake" = 5, "sweetness" = 2, "unbearable sourness" = 2)
@@ -155,7 +155,7 @@
 	name = "Lemon Cake"
 	desc = "A cake with added lemon."
 	icon_state = "lemoncake"
-	slice_path = /obj/item/reagent_containers/food/snacks/lemoncakeslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/lemoncakeslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20)
 	filling_color = "#FAFA8E"
 	tastes = list("cake" = 5, "sweetness" = 2, "sourness" = 2)
@@ -173,7 +173,7 @@
 	name = "Chocolate Cake"
 	desc = "A cake with added chocolate"
 	icon_state = "chocolatecake"
-	slice_path = /obj/item/reagent_containers/food/snacks/chocolatecakeslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/chocolatecakeslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20)
 	filling_color = "#805930"
 	tastes = list("cake" = 5, "sweetness" = 1, "chocolate" = 4)
@@ -352,7 +352,7 @@
 	name = "clown cake"
 	desc = "A funny cake with a clown face on it."
 	icon_state = "clowncake"
-	slice_path = /obj/item/reagent_containers/cakesliceclown_slice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/cakesliceclown_slice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/sugar = 15)
 	tastes = list("cake" = 1, "sugar" = 1, "joy" = 10)
 
@@ -367,22 +367,22 @@
 	name = "spaceman's cake"
 	desc = "A spaceman's trumpet frosted cake."
 	icon_state = "trumpetcake"
-	slice_path = /obj/item/reagent_containers/cakeslicetrumpet
-	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/cream = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/berryjuice = 5)
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/cakeslicetrumpet
+	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/drink/milk = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/drink/berryjuice = 5)
 	tastes = list("cake" = 4, "violets" = 2, "jam" = 2)
 
 /obj/item/reagent_containers/food/snacks/pastries/cakeslicetrumpet
 	name = "spaceman's cake"
 	desc = "A spaceman's trumpet frosted cake."
 	icon_state = "trumpetcakeslice"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/cream = 1, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/berryjuice = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/drink/milk = 1, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/drink/berryjuice = 1)
 	tastes = list("cake" = 4, "violets" = 2, "jam" = 2)
 
 /obj/item/reagent_containers/food/snacks/sliceable/pastries/brioche
 	name = "brioche cake"
 	desc = "A ring of sweet, glazed buns."
 	icon_state = "briochecake"
-	slice_path = /obj/item/reagent_containers/cakeslicebrioche
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/cakeslicebrioche
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("cake" = 4, "butter" = 2, "cream" = 1)
 
@@ -397,7 +397,7 @@
 	name = "pavlova"
 	desc = "A sweet berry pavlova. Invented in New Zealand, but named after a Russian ballerina... And scientifically proven to be the best at dinner parties!"
 	icon_state = "pavlova"
-	slice_path = /obj/item/reagent_containers/cakeslicepavlova
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/cakeslicepavlova
 	list_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("meringue" = 5, "creaminess" = 1, "berries" = 1)
 
@@ -411,7 +411,7 @@
 	name = "english fruitcake"
 	desc = "A proper good cake, innit?"
 	icon_state = "fruitcake"
-	slice_path = /obj/item/reagent_containers/cakeslicefruit
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/cakeslicefruit
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/sugar = 10, /datum/reagent/consumable/cherryjelly = 5, )
 	tastes = list("dried fruit" = 5, "treacle" = 2, "christmas" = 2)
 
@@ -419,7 +419,7 @@
 	name = "english fruitcake"
 	desc = "A proper good cake, innit?"
 	icon_state = "fruitcake"
-	slice_path = /obj/item/reagent_containers/cakeslicefruit
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/cakeslicefruit
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/sugar = 10, /datum/reagent/consumable/cherryjelly = 5, )
 	tastes = list("dried fruit" = 5, "treacle" = 2, "christmas" = 2)
 
@@ -438,7 +438,7 @@
 	name = "dulce de batata slice"
 	desc = "A slice of sweet dulce de batata jelly."
 	icon_state = "dulcedebatataslice"
-	slice_path = /obj/item/reagent_containers/dulcedebatataslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/dulcedebatataslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("jelly" = 1, "sweet potato" = 1)
 
@@ -453,7 +453,7 @@
 	name = "baklava"
 	desc = "A delightful healthy snack made of nut layers with thin bread."
 	icon_state = "baklava"
-	slice_path = /obj/item/reagent_containers/baklavaslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/baklavaslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("nuts" = 1, "pie" = 1)
 
@@ -468,7 +468,7 @@
 	name = "french silk pie"
 	desc = "A decadent pie made of a creamy chocolate mousse filling topped with a layer of whipped cream and chocolate shavings. Sliceable."
 	icon_state = "frenchsilkpie"
-	slice_path = /obj/item/reagent_containers/frenchsilkpieslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/frenchsilkpieslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("pie" = 1, "smooth chocolate" = 1, "whipped cream" = 1)
 
@@ -531,7 +531,7 @@
 	icon_state = "mimetart"
 	filling_color = "#e8e1e9"
 	trash = /obj/item/trash/plate
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/nothing = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/consumable/drink/nothing = 10)
 	tastes = list("nothing" = 3)
 
 /obj/item/reagent_containers/food/snacks/pastries/berrytart
@@ -614,7 +614,7 @@
 	name = "Apple Cake"
 	desc = "A cake centred with Apple"
 	icon_state = "applecake"
-	slice_path = /obj/item/reagent_containers/food/snacks/applecakeslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/applecakeslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
 	filling_color = "#EBF5B8"
 	tastes = list ("cake" = 5, "sweetness" = 1, "apple" = 1)
@@ -632,7 +632,7 @@
 	name = "Pumpkin Pie"
 	desc = "A delicious treat for the autumn months."
 	icon_state = "pumpkinpie"
-	slice_path = /obj/item/reagent_containers/food/snacks/pumpkinpieslice
+	slice_path = /obj/item/reagent_containers/food/snacks/pastries/pumpkinpieslice
 	list_reagents = list(/datum/reagent/consumable/nutriment = 15)
 	filling_color = "#F5B951"
 	tastes = list("pie" = 1, "pumpkin" = 1)

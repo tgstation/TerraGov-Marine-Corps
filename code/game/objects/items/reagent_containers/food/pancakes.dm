@@ -1,6 +1,6 @@
 #define PANCAKE_MAX_STACK 10
 
-/obj/item/food/pancakes
+/obj/item/reagent_containers/food/snacks/pancakes
 	name = "pancake"
 	desc = "A fluffy pancake. The softer, superior relative of the waffle."
 	icon_state = "pancakes_1"
@@ -12,7 +12,7 @@
 	burns_on_grill = TRUE
 	venue_value = FOOD_PRICE_CHEAP
 
-/obj/item/food/pancakes/raw
+/obj/item/reagent_containers/food/snacks/pancakes/raw
 	name = "goopy pancake"
 	desc = "A barely cooked mess that some may mistake for a pancake. It longs for the griddle."
 	icon_state = "rawpancakes_1"
@@ -21,22 +21,22 @@
 	tastes = list("milky batter" = 1)
 	burns_on_grill = FALSE
 
-/obj/item/food/pancakes/raw/MakeGrillable()
+/obj/item/reagent_containers/food/snacks/pancakes/raw/MakeGrillable()
 	AddComponent(/datum/component/grillable,\
-				cook_result = /obj/item/food/pancakes,\
+				cook_result = /obj/item/reagent_containers/food/snacks/pancakes,\
 				required_cook_time = rand(30 SECONDS, 40 SECONDS),\
 				positive_result = TRUE,\
 				use_large_steam_sprite = TRUE)
 
-/obj/item/food/pancakes/raw/attackby(obj/item/garnish, mob/living/user, params)
+/obj/item/reagent_containers/food/snacks/pancakes/raw/attackby(obj/item/garnish, mob/living/user, params)
 	var/newresult
-	if(istype(garnish, /obj/item/food/grown/berries))
-		newresult = /obj/item/food/pancakes/blueberry
+	if(istype(garnish, /obj/item/reagent_containers/food/snacks/grown/berries))
+		newresult = /obj/item/reagent_containers/food/snacks/pancakes/blueberry
 		name = "raw blueberry pancake"
 		icon_state = "rawbbpancakes_1"
 		inhand_icon_state = "rawbbpancakes"
-	else if(istype(garnish, /obj/item/food/chocolatebar))
-		newresult = /obj/item/food/pancakes/chocolatechip
+	else if(istype(garnish, /obj/item/reagent_containers/food/snacks/chocolatebar))
+		newresult = /obj/item/reagent_containers/food/snacks/pancakes/chocolatechip
 		name = "raw chocolate chip pancake"
 		icon_state = "rawccpancakes_1"
 		inhand_icon_state = "rawccpancakes"
@@ -47,12 +47,12 @@
 		to_chat(user, span_notice("You add [garnish] to [src]."))
 		AddComponent(/datum/component/grillable, cook_result = newresult)
 
-/obj/item/food/pancakes/raw/examine(mob/user)
+/obj/item/reagent_containers/food/snacks/pancakes/raw/examine(mob/user)
 	. = ..()
 	if(name == initial(name))
 		. += "<span class='notice'>You can modify the pancake by adding <b>blueberries</b> or <b>chocolate</b> before finishing the griddle."
 
-/obj/item/food/pancakes/blueberry
+/obj/item/reagent_containers/food/snacks/pancakes/blueberry
 	name = "blueberry pancake"
 	desc = "A fluffy and delicious blueberry pancake."
 	icon_state = "bbpancakes_1"
@@ -60,7 +60,7 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("pancakes" = 1, "blueberries" = 1)
 
-/obj/item/food/pancakes/chocolatechip
+/obj/item/reagent_containers/food/snacks/pancakes/chocolatechip
 	name = "chocolate chip pancake"
 	desc = "A fluffy and delicious chocolate chip pancake."
 	icon_state = "ccpancakes_1"
@@ -68,15 +68,15 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 5)
 	tastes = list("pancakes" = 1, "chocolate" = 1)
 
-/obj/item/food/pancakes/Initialize(mapload)
+/obj/item/reagent_containers/food/snacks/pancakes/Initialize(mapload)
 	. = ..()
 	update_appearance()
 
-/obj/item/food/pancakes/update_name()
+/obj/item/reagent_containers/food/snacks/pancakes/update_name()
 	name = contents.len ? "stack of pancakes" : initial(name)
 	return ..()
 
-/obj/item/food/pancakes/update_icon(updates = ALL)
+/obj/item/reagent_containers/food/snacks/pancakes/update_icon(updates = ALL)
 	if(!(updates & UPDATE_OVERLAYS))
 		return ..()
 
@@ -87,7 +87,7 @@
 		overlays -= overlays[overlays.len]
 	. |= UPDATE_OVERLAYS
 
-/obj/item/food/pancakes/examine(mob/user)
+/obj/item/reagent_containers/food/snacks/pancakes/examine(mob/user)
 	var/ingredients_listed = ""
 	var/pancakeCount = contents.len
 	switch(pancakeCount)
@@ -103,13 +103,13 @@
 			desc = "A massive towering spire of fluffy, delicious pancakes. It looks like it could tumble over!"
 	. = ..()
 	if (pancakeCount)
-		for(var/obj/item/food/pancakes/ING in contents)
+		for(var/obj/item/reagent_containers/food/snacks/pancakes/ING in contents)
 			ingredients_listed += "[ING.name], "
 		. += "It contains [contents.len?"[ingredients_listed]":"no ingredient, "]on top of a [initial(name)]."
 
-/obj/item/food/pancakes/attackby(obj/item/item, mob/living/user, params)
-	if(istype(item, /obj/item/food/pancakes))
-		var/obj/item/food/pancakes/pancake = item
+/obj/item/reagent_containers/food/snacks/pancakes/attackby(obj/item/item, mob/living/user, params)
+	if(istype(item, /obj/item/reagent_containers/food/snacks/pancakes))
+		var/obj/item/reagent_containers/food/snacks/pancakes/pancake = item
 		if((contents.len >= PANCAKE_MAX_STACK) || ((pancake.contents.len + contents.len) > PANCAKE_MAX_STACK))
 			to_chat(user, span_warning("You can't add that many pancakes to [src]!"))
 		else
@@ -133,14 +133,14 @@
 		return O.attackby(item, user, params)
 	..()
 
-/obj/item/food/pancakes/proc/update_snack_overlays(obj/item/pancake)
+/obj/item/reagent_containers/food/snacks/pancakes/proc/update_snack_overlays(obj/item/pancake)
 	var/mutable_appearance/pancake_visual = mutable_appearance(icon, "[pancake.inhand_icon_state]_[rand(1, 3)]")
 	pancake_visual.pixel_x = rand(-1, 1)
 	pancake_visual.pixel_y = 3 * contents.len - 1
 	add_overlay(pancake_visual)
 	update_appearance()
 
-/obj/item/food/pancakes/attack(mob/target, mob/living/user, params, stacked = TRUE)
+/obj/item/reagent_containers/food/snacks/pancakes/attack(mob/target, mob/living/user, params, stacked = TRUE)
 	if(user.combat_mode || !contents.len || !stacked)
 		return ..()
 	var/obj/item/item = contents[contents.len]

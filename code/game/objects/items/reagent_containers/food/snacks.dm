@@ -1724,7 +1724,7 @@
 
 ///Override for fast-burning food
 /obj/item/reagent_containers/food/snacks/warm/MakeBakeable()
-	AddComponent(/datum/component/bakeable, /obj/item/food/badrecipe, rand(10 SECONDS, 15 SECONDS), FALSE)
+	AddComponent(/datum/component/bakeable, /obj/item/reagent_containers/food/snacks/badrecipe, rand(10 SECONDS, 15 SECONDS), FALSE)
 
 //donkpockets
 
@@ -1799,7 +1799,7 @@
 	name = "\improper Berry-pocket"
 	desc = "A relentlessly sweet donk-pocket first created for use in Operation Dessert Storm."
 	icon_state = "donkpocketberry"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/berryjuice = 3)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/drink/berryjuice = 3)
 	microwaved_type = /obj/item/reagent_containers/food/snacks/donkpocket/warm/berry
 	tastes = list("dough" = 2, "jam" = 2)
 
@@ -1807,7 +1807,7 @@
 	name = "warm Berry-pocket"
 	desc = "A relentlessly sweet donk-pocket, now warm and delicious."
 	icon_state = "donkpocketberry"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 2, /datum/reagent/consumable/berryjuice = 3)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/medicine/omnizine = 2, /datum/reagent/consumable/drink/berryjuice = 3)
 	tastes = list("dough" = 2, "warm jam" = 2)
 
 /obj/item/reagent_containers/food/snacks/donkpocket/gondola

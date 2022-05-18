@@ -1,4 +1,4 @@
-/obj/item/food/tortilla
+/obj/item/reagent_containers/food/snacks/tortilla
 	name = "tortilla"
 	desc = "The base for all your burritos."
 	icon = 'icons/obj/food/food_ingredients.dmi'
@@ -8,7 +8,7 @@
 	foodtypes = GRAIN
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/food/burrito
+/obj/item/reagent_containers/food/snacks/burrito
 	name = "burrito"
 	desc = "Tortilla wrapped goodness."
 	icon_state = "burrito"
@@ -18,7 +18,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_NORMAL
 
-/obj/item/food/cheesyburrito
+/obj/item/reagent_containers/food/snacks/cheesyburrito
 	name = "cheesy burrito"
 	desc = "It's a burrito filled with cheese."
 	icon_state = "cheesyburrito"
@@ -28,7 +28,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_EXOTIC
 
-/obj/item/food/carneburrito
+/obj/item/reagent_containers/food/snacks/carneburrito
 	name = "carne asada burrito"
 	desc = "The best burrito for meat lovers."
 	icon_state = "carneburrito"
@@ -38,7 +38,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_EXOTIC
 
-/obj/item/food/fuegoburrito
+/obj/item/reagent_containers/food/snacks/fuegoburrito
 	name = "fuego plasma burrito"
 	desc = "A super spicy burrito."
 	icon_state = "fuegoburrito"
@@ -48,7 +48,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_LEGENDARY
 
-/obj/item/food/nachos
+/obj/item/reagent_containers/food/snacks/nachos
 	name = "nachos"
 	desc = "Chips from Space Mexico."
 	icon_state = "nachos"
@@ -58,7 +58,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_CHEAP
 
-/obj/item/food/cheesynachos
+/obj/item/reagent_containers/food/snacks/cheesynachos
 	name = "cheesy nachos"
 	desc = "The delicious combination of nachos and melting cheese."
 	icon_state = "cheesynachos"
@@ -68,7 +68,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_EXOTIC
 
-/obj/item/food/cubannachos
+/obj/item/reagent_containers/food/snacks/cubannachos
 	name = "Cuban nachos"
 	desc = "That's some dangerously spicy nachos."
 	icon_state = "cubannachos"
@@ -77,7 +77,7 @@
 	foodtypes = VEGETABLES | FRIED | DAIRY
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/taco
+/obj/item/reagent_containers/food/snacks/taco
 	name = "classic taco"
 	desc = "A traditional taco with meat, cheese, and lettuce."
 	icon_state = "taco"
@@ -87,7 +87,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	venue_value = FOOD_PRICE_NORMAL
 
-/obj/item/food/taco/plain
+/obj/item/reagent_containers/food/snacks/taco/plain
 	name = "plain taco"
 	desc = "A traditional taco with meat and cheese, minus the rabbit food."
 	icon_state = "taco_plain"
@@ -96,7 +96,7 @@
 	foodtypes = MEAT | DAIRY | GRAIN
 	venue_value = FOOD_PRICE_CHEAP
 
-/obj/item/food/enchiladas
+/obj/item/reagent_containers/food/snacks/enchiladas
 	name = "enchiladas"
 	desc = "Viva La Mexico!"
 	icon_state = "enchiladas"
@@ -106,7 +106,7 @@
 	foodtypes = MEAT | GRAIN
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/stuffedlegion
+/obj/item/reagent_containers/food/snacks/stuffedlegion
 	name = "stuffed legion"
 	desc = "The former skull of a damned human, filled with goliath meat. It has a decorative lava pool made of ketchup and hotsauce."
 	icon_state = "stuffed_legion"

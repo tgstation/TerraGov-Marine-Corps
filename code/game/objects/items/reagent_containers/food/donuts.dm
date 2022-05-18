@@ -108,7 +108,7 @@
 	name = "pink donut"
 	desc = "Goes great with a soy latte."
 	icon_state = "donut_pink"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/berryjuice = 3, /datum/reagent/consumable/sprinkles = 1) //Extra sprinkles to reward frosting
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/drink/berryjuice = 3, /datum/reagent/consumable/sprinkles = 1) //Extra sprinkles to reward frosting
 
 /obj/item/reagent_containers/food/snacks/donut/trumpet
 	name = "spaceman's donut"
@@ -165,7 +165,7 @@
 	name = "matcha donut"
 	desc = "Goes great with a cup of tea."
 	icon_state = "donut_olive"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/toxin/teapowder = 3, /datum/reagent/consumable/sprinkles = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/drink/poisonberryjuice = 3, /datum/reagent/consumable/sprinkles = 1)
 	tastes = list("donut" = 3, "matcha" = 1)
 
 /obj/item/reagent_containers/food/snacks/donut/laugh
@@ -220,7 +220,7 @@
 	name = "matcha jelly donut"
 	desc = "Goes great with a cup of tea."
 	icon_state = "jelly_olive"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/toxin/teapowder = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/drink/poisonberryjuice = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("jelly" = 1, "donut" = 3, "matcha" = 1)
 
 /obj/item/reagent_containers/food/snacks/donut/jelly/laugh
@@ -242,7 +242,7 @@
 	name = "pink jelly donut"
 	desc = "Goes great with a soy latte."
 	icon_state = "jelly_pink"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/berryjuice = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1) //Extra sprinkles to reward frosting
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/drink/berryjuice = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1) //Extra sprinkles to reward frosting
 
 /obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/trumpet
 	name = "spaceman's jelly donut"
@@ -290,7 +290,7 @@
 	name = "matcha jelly donut"
 	desc = "Goes great with a cup of tea."
 	icon_state = "jelly_olive"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/toxin/teapowder = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/drink/poisonberryjuice = 3, /datum/reagent/consumable/sprinkles = 1, /datum/reagent/consumable/nutriment/vitamin = 1)
 	tastes = list("jelly" = 1, "donut" = 3, "matcha" = 1)
 
 /obj/item/reagent_containers/food/snacks/donut/jelly/slimejelly/laugh

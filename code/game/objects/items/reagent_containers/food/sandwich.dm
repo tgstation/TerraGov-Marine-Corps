@@ -191,7 +191,7 @@
 	bitesize = 2
 	tastes = list("toast" = 1)
 
-/obj/item/food/burger
+/obj/item/reagent_containers/food/snacks/burger
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "hburger"
 	bite_consumption = 3
@@ -281,7 +281,7 @@
 	name = "mime burger"
 	desc = "Its taste defies language."
 	icon_state = "mimeburger"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/protein = 9, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/nothing = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/protein = 9, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/drink/nothing = 6)
 
 /obj/item/reagent_containers/food/snacks/sandwiches/brain
 	name = "brainburger"
@@ -692,7 +692,7 @@
 	filling_color = "#EDE5AD"
 	tastes = list("bread" = 10) // bananjuice will also flavour
 
-/obj/item/reagent_containers/food/snacks/sandwiches/sandwiches/bananabreadslice
+/obj/item/reagent_containers/food/snacks/sandwiches/bananabreadslice
 	name = "Banana-nut bread slice"
 	desc = "A slice of delicious banana bread."
 	icon = 'icons/obj/items/burgerbread.dmi'

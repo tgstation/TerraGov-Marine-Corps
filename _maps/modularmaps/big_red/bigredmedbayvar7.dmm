@@ -1315,7 +1315,7 @@
 /area/bigredv2/outside/medical)
 "Ca" = (
 /obj/structure/table,
-/obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita,
+/obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "whitebluefull";
