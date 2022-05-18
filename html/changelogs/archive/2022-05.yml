@@ -284,3 +284,8 @@
   - bugfix: Fix sandbag loadout exploit
   KornFlaks:
   - qol: Added balloon alerts for plasma cutter interactions.
+2022-05-18:
+  novaepee:
+  - bugfix: camera position in PoS
+  - rscadd: two tile wide maint halls around PoS
+  - rscadd: better hijack position when xenomorphs crash Alamo into PoS

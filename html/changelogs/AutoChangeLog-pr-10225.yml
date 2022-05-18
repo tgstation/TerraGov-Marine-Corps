@@ -1,6 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - bugfix: "camera position in PoS"
-  - rscadd: "two tile wide maint halls around PoS"
-  - rscadd: "better hijack position when xenomorphs crash Alamo into PoS"
