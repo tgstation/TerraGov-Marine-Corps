@@ -1,0 +1,5 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - balance: "SG minigun fires slower and does more damage"
+  - bugfix: "SG minigun is now consumer safe and no longer bullies low end devices"
