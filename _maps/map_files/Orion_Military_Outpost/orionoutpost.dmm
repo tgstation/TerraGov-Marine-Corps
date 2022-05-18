@@ -70,13 +70,6 @@
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostcent)
-"as" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/grass{
-	color = "#ffb682"
-	},
-/area/orion_outpost/ground/outposte)
 "at" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 1
@@ -3137,11 +3130,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
-"pK" = (
-/obj/structure/window/framed/mainship/gray,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/mainship/mono,
-/area/orion_outpost/surface/building/command)
 "pM" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/red{
@@ -3784,16 +3772,6 @@
 	dir = 1
 	},
 /area/orion_outpost/surface/building/administration)
-"sH" = (
-/obj/structure/flora/grass/tallgrass/tallgrasscorner{
-	color = "#7a8c54";
-	dir = 6
-	},
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/grass{
-	color = "#ffb682"
-	},
-/area/orion_outpost/ground/outposte)
 "sI" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/blue{
@@ -4148,12 +4126,6 @@
 	color = "#948a7c"
 	},
 /area/orion_outpost/ground/outposts)
-"ut" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/grass{
-	color = "#ffb682"
-	},
-/area/orion_outpost/ground/outposte)
 "uv" = (
 /obj/structure/prop/mainship/mission_planning_system,
 /turf/open/floor/mainship/mono,
@@ -4230,12 +4202,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/prep)
-"uR" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave{
-	color = "#948a7c"
-	},
-/area/orion_outpost/ground/outposte)
 "uT" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -4709,7 +4675,6 @@
 /area/orion_outpost/surface/building/vehicledepot)
 "xr" = (
 /obj/structure/flora/tree/joshua,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/ai_node,
 /turf/open/floor/grass{
 	color = "#ffb682"
@@ -4977,10 +4942,6 @@
 "yF" = (
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/monitor)
-"yG" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
-/area/orion_outpost/ground/outposte)
 "yH" = (
 /turf/open/floor/mainship/floor,
 /area/orion_outpost/ground/outpostse)
@@ -6854,6 +6815,12 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outposte)
+"HN" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#948a7c"
+	},
+/area/orion_outpost/ground/outpostse)
 "HO" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/concrete,
@@ -7667,12 +7634,6 @@
 	color = "#948a7c"
 	},
 /area/orion_outpost/ground/outpostn)
-"LZ" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/grass{
-	color = "#ffb682"
-	},
-/area/orion_outpost/ground/outposte)
 "Ma" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -8091,10 +8052,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/orange,
 /area/orion_outpost/surface/building/engineering)
-"Oa" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/mainship/gray,
-/area/orion_outpost/surface/building/command)
 "Ob" = (
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/mono,
@@ -8392,6 +8349,7 @@
 	color = "#7a8c54";
 	dir = 9
 	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave{
 	color = "#948a7c"
 	},
@@ -8429,6 +8387,19 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
+"PQ" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/outpostse)
+"PR" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/outpostse)
 "PU" = (
 /turf/open/floor/grass{
 	color = "#ffb682"
@@ -9247,6 +9218,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/ground/outposte)
+"TL" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#948a7c"
+	},
+/area/orion_outpost/ground/outpostse)
 "TM" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave{
@@ -9669,6 +9646,16 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/surface/building/barracks)
+"VC" = (
+/obj/structure/flora/grass/tallgrass/tallgrasscorner{
+	color = "#7a8c54";
+	dir = 10
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/grass{
+	color = "#ffb682"
+	},
+/area/orion_outpost/ground/outpostse)
 "VD" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -9755,6 +9742,10 @@
 "Wc" = (
 /turf/open/floor/mainship/orange/full,
 /area/orion_outpost/surface/building/cargo)
+"Wd" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral,
+/area/orion_outpost/ground/outpostse)
 "Wg" = (
 /obj/structure/rack,
 /turf/open/floor/mainship/orange{
@@ -11554,9 +11545,9 @@ tC
 tC
 tC
 tC
-tC
-cE
-ZT
+Ra
+hL
+qN
 SY
 SY
 SY
@@ -11686,7 +11677,7 @@ tC
 eW
 eW
 rr
-tC
+Ra
 hL
 qN
 qN
@@ -12818,9 +12809,9 @@ so
 so
 so
 so
-so
-so
-so
+Rp
+Rp
+Rp
 Rp
 Rp
 Rp
@@ -12950,9 +12941,9 @@ zD
 zD
 zD
 zD
-zD
-zD
-zD
+Xr
+Xr
+Xr
 Xr
 Xr
 Xr
@@ -13082,9 +13073,9 @@ ZG
 ZG
 ZG
 ZG
-ZG
-ZG
-ZG
+Lf
+Lf
+Lf
 Lf
 Lf
 Lf
@@ -13404,7 +13395,7 @@ eW
 eW
 Ra
 hL
-ZT
+qN
 ZT
 ZT
 ZT
@@ -13452,10 +13443,10 @@ so
 so
 so
 so
-so
-so
-VU
-ZG
+Rp
+Rp
+ah
+Lf
 ZG
 ZG
 NN
@@ -14439,8 +14430,8 @@ tC
 tC
 tC
 tC
-tC
-tC
+Ra
+Ra
 Ra
 Ra
 Ra
@@ -14540,9 +14531,9 @@ OK
 NN
 NN
 ZG
-ZG
-VU
-so
+Lf
+ah
+Rp
 so
 so
 so
@@ -14569,8 +14560,8 @@ tC
 tC
 tC
 tC
-tC
-tC
+Ra
+Ra
 Ra
 Ra
 Ra
@@ -14672,10 +14663,10 @@ OK
 NN
 NN
 ZG
-ZG
-VU
-so
-so
+Lf
+ah
+Rp
+Rp
 rW
 jD
 kM
@@ -14701,8 +14692,8 @@ Cy
 Cy
 Cy
 Cy
-Cy
-Cy
+ak
+ak
 ak
 ak
 ak
@@ -14804,9 +14795,9 @@ OK
 NN
 NN
 ZG
-ZG
-VU
-so
+Lf
+ah
+Rp
 Rp
 Rp
 Rp
@@ -14833,8 +14824,8 @@ ZT
 Pm
 ZT
 ZT
-ZT
-ZT
+qN
+qN
 qN
 qN
 qN
@@ -19766,7 +19757,7 @@ Su
 Su
 Su
 ok
-CH
+ry
 Sc
 KL
 lY
@@ -20558,7 +20549,7 @@ gv
 Su
 Su
 ok
-ry
+CH
 kp
 AO
 Tk
@@ -21755,14 +21746,14 @@ qU
 Ox
 bj
 Ox
-ut
-as
-ut
-ut
+Ox
+bj
+Ox
+Ox
 xr
-uR
-uR
-uR
+ra
+ra
+ra
 WC
 WC
 cI
@@ -21887,14 +21878,14 @@ Ox
 ra
 Ox
 wV
-sH
+uN
 qz
 Ox
 Ox
 bj
 qU
 DR
-uR
+ra
 WC
 Ko
 WC
@@ -22019,14 +22010,14 @@ Nm
 Nm
 lj
 Nm
-Oa
+Nm
 hy
 qz
 Ox
 Ox
-LZ
+Ox
 ra
-yG
+ds
 tu
 tu
 Ko
@@ -22151,14 +22142,14 @@ Nm
 RV
 ss
 sI
-Oa
+Nm
 uE
 Wy
 ra
 uN
 sU
 WD
-yG
+ds
 tu
 tu
 tu
@@ -22283,14 +22274,14 @@ Nm
 UH
 XQ
 JE
-Oa
+Nm
 Wy
 ra
 ra
 tO
 uE
 ds
-yG
+ds
 tu
 tu
 tu
@@ -22361,7 +22352,7 @@ ds
 ds
 ds
 ds
-ra
+ds
 ra
 ra
 ra
@@ -22415,14 +22406,14 @@ Nm
 UH
 XQ
 JE
-Oa
-pK
-pK
-Oa
-yG
-yG
-yG
-yG
+Nm
+lj
+lj
+Nm
+ds
+ds
+ds
+ds
 tu
 tu
 tu
@@ -22493,9 +22484,9 @@ ds
 ds
 ds
 ds
-ra
-ra
-ra
+ds
+ds
+ds
 ra
 ra
 ra
@@ -24409,13 +24400,13 @@ WC
 WC
 WC
 Ko
-WC
-GR
-wu
-gt
+TL
+PQ
+PR
+VC
 PF
-WC
-WC
+TL
+TL
 WC
 WC
 WC
@@ -24541,13 +24532,13 @@ WC
 WC
 WC
 WC
-WC
+TL
 aP
 WC
 WC
+HN
 WC
-WC
-WC
+TL
 WC
 WC
 WC
@@ -24673,13 +24664,13 @@ tu
 tu
 tu
 Ko
-WC
-WC
+TL
+Jj
 WC
 WC
 WC
 Jj
-WC
+TL
 WC
 WC
 WC
@@ -24805,13 +24796,13 @@ tu
 tu
 tu
 WC
+TL
 WC
 WC
 WC
 WC
 WC
-WC
-tu
+Wd
 tu
 tu
 tu
@@ -24937,13 +24928,13 @@ tu
 tu
 tu
 tu
+Wd
 tu
-tu
 WC
 WC
 WC
 WC
-tu
+Wd
 tu
 tu
 tu
@@ -25069,13 +25060,13 @@ tu
 tu
 tu
 tu
-tu
-tu
-tu
-tu
-tu
-tu
-tu
+Wd
+Wd
+Wd
+Wd
+Wd
+Wd
+Wd
 tu
 tu
 tu
