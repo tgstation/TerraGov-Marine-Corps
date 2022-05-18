@@ -189,12 +189,8 @@
 				break // All xenos of same type share same caste flags. Skip entire typepath if can not be leader.
 			if (is_centcom_level(X.z))
 				continue
-			var/prefix = ""
-			var/suffix = ""
-			if (X.queen_chosen_lead)
-				prefix = "(L) "
-			if (!X.client)
-				suffix = " (SSD)"
+			var/prefix = X.queen_chosen_lead ? "(L) " : ""
+			var/suffix = !X.client ? " (SSD)" : ""
 			xenos += "[prefix][X.name][suffix]"
 	return xenos
 
