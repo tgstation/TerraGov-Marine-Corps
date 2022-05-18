@@ -497,7 +497,6 @@
 	if(T.health <= 0)
 		return
 
-	T.balloon_alert(X, "Deevolve succeeded")
 	T.balloon_alert(T, "Queen deevolution")
 	to_chat(T, span_xenowarning("The Queen deevolved us for the following reason: [reason]"))
 
