@@ -153,7 +153,7 @@
 
 /obj/item/weapon/gun/standard_mmg
 	name = "\improper MG-27 medium machinegun"
-	desc = "The MG-27 is the T-29s aging IFF-less cousin, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod for actual combat. It uses 10x27mm boxes."
+	desc = "The MG-27 is the SG-29s aging IFF-less cousin, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod for actual combat. It uses 10x27mm boxes."
 	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-mmg.dmi'
@@ -172,6 +172,8 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/standard_mmg)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
@@ -197,7 +199,7 @@
 
 	scatter = 30 // you're not firing this standing.
 	deployed_scatter_change = -70 // innumerable amount of reduced scatter when deployed,
-	recoil = 3
+	recoil = 2
 	scatter_unwielded = 45
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1

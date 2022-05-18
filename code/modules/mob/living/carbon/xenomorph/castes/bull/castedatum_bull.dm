@@ -34,6 +34,9 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 25, "energy" = 25, "bomb" = 0, "bio" = 25, "rad" = 25, "fire" = 35, "acid" = 25)
 
+	// *** Minimap Icon *** //
+	minimap_icon = "bull"
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,

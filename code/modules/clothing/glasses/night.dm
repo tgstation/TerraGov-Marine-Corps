@@ -5,7 +5,7 @@
 	name = "night vision goggles"
 	desc = "You can totally see in the dark now!"
 	species_exception = list(/datum/species/robot)
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi', "Vox" = 'icons/mob/species/vox/eyes.dmi')
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
 	icon_state = "night"
 	item_state = "glasses"
 	darkness_view = 7
@@ -13,8 +13,8 @@
 
 
 /obj/item/clothing/glasses/night/tx8
-	name = "\improper SR-8 battle sight"
-	desc = "A headset and night vision goggles system for the SR-8 Battle Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
+	name = "\improper BR-8 battle sight"
+	desc = "A headset and night vision goggles system for the BR-8 Battle Rifle. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"

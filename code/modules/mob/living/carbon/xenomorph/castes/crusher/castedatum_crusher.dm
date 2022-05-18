@@ -34,6 +34,9 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 70, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 100, "bio" = 80, "rad" = 80, "fire" = 60, "acid" = 80)
 
+	// *** Minimap Icon *** //
+	minimap_icon = "crusher"
+
 	// *** Crusher Abilities *** //
 	stomp_damage = 45
 	crest_toss_distance = 3

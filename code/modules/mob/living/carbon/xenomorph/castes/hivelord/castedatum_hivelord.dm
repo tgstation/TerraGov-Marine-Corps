@@ -47,6 +47,9 @@
 	aura_strength = 2 //Hivelord's aura is not extremely strong, but better than Drones.
 	aura_allowed = list("frenzy", "warding", "recovery")
 
+	// *** Minimap Icon *** //
+	minimap_icon = "hivelord"
+
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

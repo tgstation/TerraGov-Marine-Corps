@@ -1,0 +1,6 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - balance: "fixes harvester storing 60 instead of 30 of each reagent"
+  - qol: "updates harvester messages to runechat instead of chat"
+  - bugfix: "select reagent button icon no longer disappears sometimes when re-equipping the weapon"

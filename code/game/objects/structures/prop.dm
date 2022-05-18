@@ -180,6 +180,7 @@
 	icon_state = "TGMC1"
 	density = FALSE
 	resistance_flags = UNACIDABLE
+	layer = ABOVE_TURF_LAYER
 
 /obj/structure/prop/mainship/name_stencil/Initialize()
 	. = ..()
@@ -288,6 +289,15 @@
 	name = "\improper Command Airlock"
 	icon_state = "command_locked"
 
+/obj/structure/prop/mainship/telecomms
+	name = "\improper Command Airlock"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "broadcaster_send"
+
+/obj/structure/prop/mainship/telecomms/bus
+	name = "\improper Command Airlock"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "bus"
 
 /obj/structure/prop/mainship/suit_storage_prop
 	name = "Suit Storage Unit"
@@ -334,6 +344,19 @@
 	desc = "A ferocious, fang-bearing creature that resembles a fish."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "carpprop"
+	density = TRUE
+
+/obj/structure/prop/templedoor
+	name = "Strange Temple"
+	icon = 'icons/obj/doors/Doorsand.dmi'
+	icon_state = "door_open"
+	density = FALSE
+
+/obj/structure/prop/oresilo
+	name = "ore silo"
+	desc = "An all-in-one bluespace storage and transmission system for the colony's mineral distribution needs. This one appears to be deactivated."
+	icon = 'icons/obj/machines/mining_machines.dmi'
+	icon_state = "silo"
 	density = TRUE
 
 /obj/structure/prop/mainship/propcarp/Initialize(mapload) //slightly randomize carp to simulate life

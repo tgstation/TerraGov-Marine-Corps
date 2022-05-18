@@ -28,6 +28,9 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
+	// *** Minimap Icon *** //
+	minimap_icon = "hivemind"
+
 	// *** Ranged Attack *** //
 	spit_delay = 0 SECONDS
 	spit_types = list()
