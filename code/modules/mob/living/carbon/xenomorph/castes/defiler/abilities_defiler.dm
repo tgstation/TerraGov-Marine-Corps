@@ -13,7 +13,6 @@
 
 /datum/action/xeno_action/activable/defile/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	owner.balloon_alert(owner, "Defile ready")
 	to_chat(owner, span_xenodanger("You feel your toxin accelerant glands refill. You can use Defile again."))
 	return ..()
 
@@ -24,13 +23,13 @@
 
 	if(!A.can_sting())
 		if(!silent)
-			A.balloon_alert(owner, "No effect")
+			A.balloon_alert(owner, "Cannot effect")
 		return FALSE
 
 	if(!owner.Adjacent(A))
 		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent)
-			A.balloon_alert(X, "Cannot reach, not adjacent")
+			A.balloon_alert(X, "Cannot reach")
 		return FALSE
 
 
@@ -48,7 +47,6 @@
 	X.do_attack_animation(living_target)
 	playsound(living_target, 'sound/effects/spray3.ogg', 15, TRUE)
 	playsound(living_target, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-	living_target.balloon_alert(X, "Defile succeeded")
 	to_chat(X, span_xenodanger("Our stinger successfully discharges accelerant into our victim."))
 	to_chat(living_target, span_danger("You feel horrible pain as something sharp forcibly pierces your thorax."))
 	living_target.apply_damage(50, STAMINA)
@@ -109,7 +107,6 @@
 
 /datum/action/xeno_action/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	owner.balloon_alert(owner, "Noxious Gas ready")
 	to_chat(owner, span_xenodanger("We feel our dorsal vents bristle with heated gas. We can emit Noxious Gas again."))
 	return ..()
 
@@ -127,7 +124,6 @@
 
 	if(!do_after(X, DEFILER_GAS_CHANNEL_TIME, TRUE, null, BUSY_ICON_HOSTILE))
 		if(!QDELETED(src))
-			X.balloon_alert(X, "Emit gas aborted")
 			to_chat(X, span_xenodanger("We abort emitting fumes, our expended plasma resulting in nothing."))
 			X.emitting_gas = FALSE
 			X.icon_state = "Defiler Running"
@@ -138,13 +134,12 @@
 	add_cooldown()
 
 	if(X.stagger) //If we got staggered, return
-		X.balloon_alert(X, "Emit gas aborted, staggered")
+		to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
 		return fail_activate()
 
 	GLOB.round_statistics.defiler_neurogas_uses++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_neurogas_uses")
 
-	X.balloon_alert(X, "Emitting gas")
 	X.visible_message(span_xenodanger("[X] emits a noxious gas!"), \
 	span_xenodanger("We emit noxious gas!"))
 	dispense_gas()
@@ -167,10 +162,10 @@
 
 	while(count)
 		if(X.stagger) //If we got staggered, return
-			X.balloon_alert(X, "Emit gas aborted, staggered")
+			to_chat(X, span_xenowarning("We try to emit toxins but are staggered!"))
 			return
 		if(X.IsStun() || X.IsParalyzed())
-			X.balloon_alert(X, "Emit gas aborted, disabled")
+			to_chat(X, span_xenowarning("We try to emit toxins but are disabled!"))
 			return
 		var/turf/T = get_turf(X)
 		playsound(T, 'sound/effects/smoke.ogg', 25)
@@ -199,7 +194,6 @@
 
 /datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	owner.balloon_alert(owner, "Inject egg ready")
 	to_chat(owner, span_xenodanger("We feel our stinger fill with toxins. We can inject an egg with gas again."))
 	return ..()
 
@@ -218,11 +212,11 @@
 		alien_egg.balloon_alert(X, "Egg not mature")
 		return fail_activate()
 
-	alien_egg.balloon_alert(X, "Injecting...")
+	alien_egg.balloon_alert_to_viewers("Injecting...")
 	X.visible_message(span_danger("[X] starts injecting the egg with neurogas, killing the little one inside!"), \
 		span_xenodanger("We extend our stinger into the egg, filling it with gas, killing the little one inside!"))
 	if(!do_after(X, 2 SECONDS, TRUE, alien_egg, BUSY_ICON_HOSTILE))
-		alien_egg.balloon_alert(X, "Canceled injection")
+		alien_egg.balloon_alert_to_viewers("Canceled injection")
 		X.visible_message(span_danger("The stinger retracts from [X], leaving the egg and little one alive."), \
 			span_xenodanger("Our stinger retracts, leaving the egg and little one alive."))
 		return fail_activate()
@@ -278,7 +272,7 @@
 		X.selected_reagent = GLOB.defiler_toxin_type_list[i+1]
 
 	var/atom/A = X.selected_reagent
-	X.balloon_alert(X, "Loaded [initial(A.name)]")
+	X.balloon_alert(X, "[initial(A.name)]")
 	update_button_icon()
 	return succeed_activate()
 
@@ -303,7 +297,7 @@
 		if(R.name == toxin_choice)
 			X.selected_reagent = R.type
 			break
-	X.balloon_alert(X, "Loaded [toxin_choice]")
+	X.balloon_alert(X, "[toxin_choice]")
 	update_button_icon()
 	return succeed_activate()
 
@@ -337,8 +331,7 @@
 	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_deactivate, X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
 	reagent_slash_reagent = X.selected_reagent
 
-	X.balloon_alert(X, "Reagent slash active")
-	to_chat(X, span_xenodanger("Our spines fill with virulent toxins!")) //Let the user know
+	X.balloon_alert(X, "Reagent slash active") //Let the user know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
 
 	succeed_activate()
@@ -353,8 +346,7 @@
 	reagent_slash_duration_timer_id = null
 	reagent_slash_reagent = null
 
-	X.balloon_alert(X, "Reagent slash over")
-	to_chat(X, span_xenodanger("We are no longer benefitting from [src].")) //Let the user know
+	X.balloon_alert(X, "Reagent slash over") //Let the user know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
 
 
@@ -382,7 +374,6 @@
 
 
 /datum/action/xeno_action/reagent_slash/on_cooldown_finish()
-	owner.balloon_alert(owner, "Reagent slash ready")
 	to_chat(owner, span_xenodanger("We are able to infuse our spines with toxins again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
