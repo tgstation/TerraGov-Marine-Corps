@@ -295,7 +295,7 @@
  */
 /datum/limb/proc/rejuvenate(updating_health = FALSE, updating_icon = FALSE)
 	damage_state = "00"
-	remove_limb_flags(LIMB_BROKEN | LIMB_BLEEDING | LIMB_SPLINTED | LIMB_STABILIZED | LIMB_AMPUTATED | LIMB_DESTROYED | LIMB_NECROTIZED | LIMB_MUTATED | LIMB_REPAIRED)
+	remove_limb_flags(LIMB_BROKEN | LIMB_BLEEDING | LIMB_SPLINTED | LIMB_STABILIZED | LIMB_AMPUTATED | LIMB_DESTROYED | LIMB_NECROTIZED | LIMB_REPAIRED)
 	brute_dam = 0
 	burn_dam = 0
 	germ_level = 0
@@ -864,15 +864,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/datum/limb/child_limb = c
 		child_limb.robotize()
 
-
-/datum/limb/proc/mutate()
-	add_limb_flags(LIMB_MUTATED)
-	owner.update_body()
-
-/datum/limb/proc/unmutate()
-	remove_limb_flags(LIMB_MUTATED)
-	owner.update_body()
-
 /datum/limb/proc/get_damage()	//returns total damage
 	return brute_dam + burn_dam	//could use health?
 
@@ -884,12 +875,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/has_external_wound()
 	return brute_dam || burn_dam
 
-/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon, gender="")
+/datum/limb/proc/get_icon(icon/race_icon, gender="")
 	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & LIMB_ROBOT)) //if race set the flag then we just let the race handle this
 		return icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
-
-	if (limb_status & LIMB_MUTATED)
-		return icon(deform_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
 	var/datum/ethnicity/E = GLOB.ethnicities_list[owner.ethnicity]
 
@@ -1133,18 +1121,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	encased = "skull"
 	var/disfigured = 0 //whether the head is disfigured.
 	var/face_surgery_stage = 0
-
-/*
-/datum/limb/head/get_icon(icon/race_icon, icon/deform_icon)
-	if (!owner)
-		return ..()
-	var/g = "m"
-	if(owner.gender == FEMALE)	g = "f"
-	if (limb_status & LIMB_MUTATED)
-		. = new /icon(deform_icon, "[icon_name]_[g]")
-	else
-		. = new /icon(race_icon, "[icon_name]_[g]")
-*/
 
 /datum/limb/head/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
 	. = ..()

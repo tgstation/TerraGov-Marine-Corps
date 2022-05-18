@@ -5,7 +5,7 @@
 	name = "night vision goggles"
 	desc = "You can totally see in the dark now!"
 	species_exception = list(/datum/species/robot)
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi', "Vox" = 'icons/mob/species/vox/eyes.dmi')
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
 	icon_state = "night"
 	item_state = "glasses"
 	darkness_view = 7

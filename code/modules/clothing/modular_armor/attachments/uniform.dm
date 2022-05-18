@@ -148,28 +148,6 @@
 		/obj/item/tweezers,
 	)
 
-/obj/item/armor_module/storage/uniform/knifeharness
-	name = "decorated harness"
-	desc = "A heavily decorated harness of sinew and leather with two knife-loops."
-	icon_state = "unathiharness2"
-	storage = /obj/item/storage/internal/knifeharness
-
-/obj/item/storage/internal/knifeharness
-	storage_slots = 2
-	max_storage_space = 4
-	can_hold = list(
-		/obj/item/weapon/unathiknife,
-		/obj/item/tool/kitchen/utensil/knife,
-		/obj/item/tool/kitchen/utensil/pknife,
-		/obj/item/tool/kitchen/knife,
-		/obj/item/tool/kitchen/knife/ritual,
-	)
-
-/obj/item/armor_module/storage/uniform/knifeharness/Initialize()
-	. = ..()
-	new /obj/item/weapon/unathiknife(storage)
-	new /obj/item/weapon/unathiknife(storage)
-
 /obj/item/armor_module/storage/uniform/holster
 	name = "shoulder holster"
 	desc = "A handgun holster"

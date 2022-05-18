@@ -34,9 +34,7 @@
 
 /datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
-	if(metabolism & IS_VOX)
-		L.adjustToxLoss(REAGENTS_METABOLISM)
-	else if(iscarbon(L))
+	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.losebreath > 10)
 			C.set_Losebreath(10)
@@ -281,10 +279,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/dexalin/on_mob_life(mob/living/L,metabolism)
-	if(metabolism & IS_VOX)
-		L.adjustToxLoss(3*effect_str)
-	else
-		L.adjustOxyLoss(-3*effect_str)
+	L.adjustOxyLoss(-3*effect_str)
 	holder.remove_reagent("lexorin", effect_str)
 	return ..()
 
@@ -303,10 +298,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/dexalinplus/on_mob_life(mob/living/L,metabolism)
-	if(metabolism & IS_VOX)
-		L.adjustToxLoss(1.5*effect_str)
-	else
-		L.adjustOxyLoss(-L.getOxyLoss())
+	L.adjustOxyLoss(-L.getOxyLoss())
 	holder.remove_reagent("lexorin", effect_str)
 	return ..()
 

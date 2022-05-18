@@ -74,11 +74,17 @@
 		QDEL_NULL(attachment)
 		return
 
+	var/obj/item/old_attachment = slots[slot]
+
 	finish_handle_attachment(attachment, attachment_data, attacher)
 
 	if(!attacher)
 		return
 	attacher.temporarilyRemoveItemFromInventory(attachment)
+
+	//Re-try putting old attachment into hands, now that we've cleared them
+	if(old_attachment)
+		attacher.put_in_hands(old_attachment)
 
 
 ///Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.

@@ -86,8 +86,7 @@
 #define HIDELOWHAIR (1<<7)		// temporarily removes the user's facial hair overlay.
 #define HIDETOPHAIR (1<<8)		// temporarily removes the user's hair overlay. Leaves facial hair.
 #define HIDEALLHAIR (1<<9)		// temporarily removes the user's hair, facial and otherwise.
-#define HIDETAIL (1<<10)
-#define HIDEFACE (1<<11)	//Dictates whether we appear as unknown.
+#define HIDEFACE (1<<10)	//Dictates whether we appear as unknown.
 
 
 //==========================================================================================

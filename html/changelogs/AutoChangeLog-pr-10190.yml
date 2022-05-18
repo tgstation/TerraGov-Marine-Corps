@@ -1,4 +1,0 @@
-author: "Walarks"
-delete-after: True
-changes: 
-  - bugfix: "fixes xeno not having weeds when spawned/evo on weeds and not move"

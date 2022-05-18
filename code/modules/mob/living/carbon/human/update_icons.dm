@@ -205,12 +205,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 		// Why don't we just make skeletons/shadows/golems a species? ~Z
 		var/race_icon =   species.icobase
-		var/deform_icon = species.icobase
 
 		//Robotic limbs are handled in get_icon() so all we worry about are missing or dead limbs.
 		//No icon stored, so we need to start with a basic one.
 		var/datum/limb/chest = get_limb("chest")
-		base_icon = chest.get_icon(race_icon,deform_icon,g)
+		base_icon = chest.get_icon(race_icon,g)
 
 		if(chest.limb_status & LIMB_NECROTIZED)
 			base_icon.ColorTone(necrosis_color_mod)
@@ -227,9 +226,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 				continue
 
 			if (istype(part, /datum/limb/groin) || istype(part, /datum/limb/head))
-				temp = part.get_icon(race_icon,deform_icon,g)
+				temp = part.get_icon(race_icon,g)
 			else
-				temp = part.get_icon(race_icon,deform_icon)
+				temp = part.get_icon(race_icon)
 
 			if(part.limb_status & LIMB_NECROTIZED)
 				temp.ColorTone(necrosis_color_mod)
@@ -304,7 +303,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	icon = stand_icon
 
 	species?.update_body(src)
-	update_tail_showing()
 
 //HAIR OVERLAY
 /mob/living/carbon/human/proc/update_hair()
@@ -551,7 +549,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/update_inv_wear_suit()
 	remove_overlay(SUIT_LAYER)
-	update_tail_showing()
 	species?.update_inv_wear_suit(src)
 	if(!wear_suit)
 		return
@@ -637,18 +634,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	overlays_standing[L_HAND_LAYER] = l_hand.make_worn_icon(species_type = species.name, inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/items_lefthand_0.dmi', default_layer = L_HAND_LAYER)
 	apply_overlay(L_HAND_LAYER)
-
-
-/mob/living/carbon/human/proc/update_tail_showing()
-	remove_overlay(TAIL_LAYER)
-	if(!species.tail)
-		return
-	if(istype(wear_suit, /obj/item/clothing/suit/space) || (wear_suit.flags_inv_hide & HIDETAIL))
-		return
-	var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
-	tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
-	overlays_standing[TAIL_LAYER]	= image(tail_s, layer = -TAIL_LAYER)
-	apply_overlay(TAIL_LAYER)
 
 
 // Used mostly for creating head items
