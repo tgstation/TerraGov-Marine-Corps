@@ -271,13 +271,10 @@
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_LINK
-	var/datum/callback/apply_psychic_link
+	///Timer for activating the link
 	var/apply_psychic_link_timer
+	///Overlay applied on the target xeno while linking
 	var/datum/progressicon/target_overlay
-
-/datum/action/xeno_action/activable/psychic_link/New(atom/target)
-	. = ..()
-	apply_psychic_link = CALLBACK(src, .proc/apply_psychic_link)
 
 /datum/action/xeno_action/activable/psychic_link/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
@@ -285,7 +282,7 @@
 		return
 	if(apply_psychic_link_timer)
 		if(!silent)
-			owner.balloon_alert(owner, "Linking cancelled.")
+			owner.balloon_alert(owner, "cancelled")
 		link_cleanup()
 		return FALSE
 	if(owner.do_actions)
@@ -314,10 +311,9 @@
 	return TRUE
 
 /datum/action/xeno_action/activable/psychic_link/use_ability(atom/target)
-	apply_psychic_link.arguments = list(target)
-	apply_psychic_link_timer = addtimer(apply_psychic_link, GORGER_PSYCHIC_LINK_CHANNEL, TIMER_UNIQUE|TIMER_STOPPABLE)
+	apply_psychic_link_timer = addtimer(CALLBACK(src, .proc/apply_psychic_link, target), GORGER_PSYCHIC_LINK_CHANNEL, TIMER_UNIQUE|TIMER_STOPPABLE)
 	target_overlay = new (target, BUSY_ICON_MEDICAL)
-	owner.balloon_alert(owner, "Linking started...")
+	owner.balloon_alert(owner, "linking...")
 
 ///Activates the link
 /datum/action/xeno_action/activable/psychic_link/proc/apply_psychic_link(atom/target)
@@ -328,8 +324,8 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/psychic_link = owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH, TRUE)
 	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, .proc/status_removed)
-	target.balloon_alert(owner_xeno, "Link successul.")
-	owner_xeno.balloon_alert(target, "[owner_xeno] has linked to you.")
+	target.balloon_alert(owner_xeno, "link successul")
+	owner_xeno.balloon_alert(target, "linked to [owner_xeno]")
 	if(!owner_xeno.resting)
 		owner_xeno.set_resting(TRUE, TRUE)
 	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, .proc/cancel_psychic_link)
@@ -350,7 +346,6 @@
 
 ///Clears up things used for the linking
 /datum/action/xeno_action/activable/psychic_link/proc/link_cleanup()
-	apply_psychic_link.arguments.Cut()
 	QDEL_NULL(target_overlay)
 	deltimer(apply_psychic_link_timer)
 	apply_psychic_link_timer = null
