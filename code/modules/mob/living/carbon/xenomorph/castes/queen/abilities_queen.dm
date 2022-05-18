@@ -332,10 +332,29 @@
 /datum/action/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
 	var/mob/living/carbon/xenomorph/queen/xeno_ruler = owner
 	if(QDELETED(selected_xeno))
-		var/list/possible_xenos = xeno_ruler.hive.get_leaderable_xenos()
+		var/list/possible_xeno_names = xeno_ruler.hive.get_leaderable_xenos()
 
-		selected_xeno = tgui_input_list(xeno_ruler, "Target", "Watch which xenomorph?", possible_xenos)
-		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
+		var/selected_name = tgui_input_list(xeno_ruler, "Target", "Select which xenomorph?", possible_xeno_names)
+
+		//Cleaning name of prefix and suffix. Actual xeno name will be in group[1].
+		var/regex/name_finder = regex(@"(?:\(L\) |^)(.*?)(?:(?<=\)) \(SSD\)|$)")
+		name_finder.Find(selected_name)
+		var/selected_xeno_name = name_finder.group[1]
+
+		for(var/typepath in xeno_ruler.hive.xenos_by_typepath)
+			for(var/i in xeno_ruler.hive.xenos_by_typepath[typepath])
+				var/mob/living/carbon/xenomorph/X = i
+				if (!(X.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
+					break // All xenos of same type share same caste flags. Skip entire typepath if can not be leader.
+				if (is_centcom_level(X.z))
+					continue
+				if (X.name == selected_xeno_name)
+					selected_xeno = X
+					break
+			if (selected_xeno)
+				break
+
+		if(QDELETED(selected_xeno) || selected_xeno.stat == DEAD)
 			return
 
 	if(selected_xeno.queen_chosen_lead)
