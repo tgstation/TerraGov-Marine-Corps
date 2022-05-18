@@ -17,11 +17,9 @@
 	if(X.savage)
 		X.savage = FALSE
 		X.balloon_alert(X, "No longer savaging")
-		to_chat(X, span_xenowarning("We untense our muscles, and relax."))
 	else
 		X.savage = TRUE
 		X.balloon_alert(X, "Will savage on pounce")
-		to_chat(X, "We ready ourselves for a killing stroke.[X.savage_used ? " However, we're not quite yet able to savage again." : ""]")
 	update_button_icon()
 
 /datum/action/xeno_action/toggle_savage/update_button_icon()
@@ -39,16 +37,15 @@
 		return
 
 	if(savage_used)
-		src.balloon_alert(src, "Cannot savage, cooldown")
+		to_chat(src, span_xenowarning("We're too tired to savage right now."))
 		return
 
 	if(stagger)
-		src.balloon_alert(src, "Cannot savage, staggered")
+		to_chat(src, span_xenodanger("We're too disoriented from the shock to savage!"))
 		return
 
 	playsound(src, "alien_roar[rand(1,6)]", 50)
 	use_plasma(10) //Base cost of the Savage
-	src.balloon_alert(src, "Savage succeeded")
 	visible_message(span_danger("\ [src] savages [M]!"), \
 	span_xenodanger("We savage [M]!"), null, 5)
 	var/extra_dam = max(15, plasma_stored * 0.15)
@@ -65,7 +62,6 @@
 	if(!savage_used)//sanity check/safeguard
 		return
 	savage_used = FALSE
-	src.balloon_alert(src, "Savage ready")
 	to_chat(src, span_xenowarning("<b>We can now savage our victims again.</b>"))
 	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 	update_action_buttons()
@@ -155,7 +151,6 @@
 	return X.xeno_caste.pounce_delay
 
 /datum/action/xeno_action/activable/pounce/on_cooldown_finish()
-	owner.balloon_alert(owner, "Pounce ready")
 	to_chat(owner, span_xenodanger("We're ready to pounce again."))
 	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -318,13 +313,10 @@
 
 	evasion_stacks = 0
 	owner.balloon_alert(owner, "Evasion ended")
-	owner.visible_message(span_warning("[owner] stops moving erratically."), \
-	span_highdanger("We stop moving erratically; projectiles will hit us normally again!"))
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 50)
 
 
 /datum/action/xeno_action/evasion/on_cooldown_finish()
-	owner.balloon_alert(owner, "Evasion ready")
 	to_chat(owner, span_xenodanger("We are able to take evasive action again."))
 	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 
@@ -393,7 +385,6 @@
 
 	if(evasion_stacks >= evasion_stack_target && cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
 		X.balloon_alert(X, "Evasion refreshed")
-		to_chat(X, span_highdanger("Our success spurs us to continue our evasive maneuvers!"))
 		clear_streaks = FALSE //We just scored a streak so we're not clearing our streaks on cooldown finish
 		evasion_streak++ //Increment our streak count
 		clear_cooldown() //Clear our cooldown
@@ -437,7 +428,7 @@
 		return
 	if(!owner.Adjacent(A))
 		if(!silent)
-			owner.balloon_alert(owner, "Cannot snatch, not adjacent")
+			owner.balloon_alert(owner, "Cannot reach")
 		return FALSE
 	if(!ishuman(A))
 		if(!silent)
@@ -461,7 +452,6 @@
 		victim.balloon_alert(owner, "Snatch failed, no item")
 		return fail_activate()
 	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30)
-	victim.balloon_alert(owner, "Snatch succeeded")
 	victim.dropItemToGround(stolen_item, TRUE)
 	stolen_item.forceMove(owner)
 	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
