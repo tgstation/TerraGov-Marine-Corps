@@ -407,7 +407,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16, "rail_x" = 22, "rail_y" = 21, "under_x" = 25, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 
-	fire_delay = 0.05 SECONDS
+	fire_delay = 0.15 SECONDS
 	damage_mult = 1
 	damage_falloff_mult = 1.5 //shorter effective range
 	recoil = -5
