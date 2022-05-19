@@ -163,7 +163,7 @@
 // Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
 	name = "Secrete Resin"
-	action_icon_state = "resin wall"
+	action_icon_state = RESIN_WALL
 	mechanics_text = "Builds whatever resin you selected"
 	ability_name = "secrete resin"
 	plasma_cost = 75
@@ -172,11 +172,11 @@
 	var/base_wait = 1 SECONDS
 	///Multiplicator factor to add to the building time, depends on the health of the structure built
 	var/scaling_wait = 1 SECONDS
-	///List of buildable structures
+	///List of buildable structures. Order corresponds with resin_images_list.
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
 		/obj/effect/alien/resin/sticky,
-		/obj/structure/mineral_door/resin,
+		/obj/structure/mineral_door/resin
 		)
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
@@ -187,18 +187,15 @@
 	return ..()
 
 /datum/action/xeno_action/activable/secrete_resin/action_activate()
-
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
 		return ..()
 	. = ..()
-	var/i = buildable_structures.Find(X.selected_resin)
-	if(length(buildable_structures) == i)
-		X.selected_resin = buildable_structures[1]
-	else
-		X.selected_resin = buildable_structures[i+1]
+	var/resin_choice = show_radial_menu(owner, owner, GLOB.resin_images_list, radius = 35)
+	var/i = GLOB.resin_images_list.Find(resin_choice)
+	X.selected_resin = buildable_structures[i]
 	var/atom/A = X.selected_resin
-	to_chat(X, span_notice("We will now build <b>[initial(A.name)]\s</b> when secreting resin."))
+	X.balloon_alert(X, initial(A.name))
 	update_button_icon()
 
 

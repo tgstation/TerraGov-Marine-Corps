@@ -19,6 +19,11 @@
 #define STEALTH_PLANT "night shade"
 #define STEALTH_PLANT_PASSIVE_CAMOUFLAGE_ALPHA 64
 
+//Resin defines
+#define RESIN_WALL "resin wall"
+#define STICKY_RESIN "sticky resin"
+#define RESIN_DOOR "resin door"
+
 //Xeno reagents defines
 #define DEFILER_NEUROTOXIN "Neurotoxin"
 #define DEFILER_HEMODILE "Hemodile"
@@ -84,6 +89,14 @@ GLOBAL_LIST_INIT(plant_images_list, list(
 		PLASMA_PLANT = image('icons/Xeno/plants.dmi', icon_state = "plasma_fruit"),
 		STEALTH_PLANT = image('icons/Xeno/plants.dmi', icon_state = "stealth_plant")
 		))
+
+//List of resin structure images
+GLOBAL_LIST_INIT(resin_images_list, list(
+		RESIN_WALL = image('icons/mob/actions.dmi', icon_state = RESIN_WALL),
+		STICKY_RESIN = image('icons/mob/actions.dmi', icon_state = STICKY_RESIN),
+		RESIN_DOOR = image('icons/mob/actions.dmi', icon_state = RESIN_DOOR)
+		))
+
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
