@@ -139,6 +139,6 @@
 	reload_delay = 1 //longer time for reload
 	fill_delay = 1
 	scatter_mod = -1
-	scatter_unwielded_mod = 2
-	aim_speed_mod = -0.1
+	scatter_unwielded_mod = 2 //Harder to hold w 1 hand
+	aim_speed_mod = -0.1 //heavy
 	wield_delay_mod = 0.2
