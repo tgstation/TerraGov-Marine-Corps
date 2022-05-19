@@ -372,7 +372,8 @@
 	//default_ammo_type = /obj/item/ammo_magazine/pistol/standard_heavypistol
 	//allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_heavypistol)
 	default_ammo_type = /obj/item/ammo_magazine/smg/vector
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/vector)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/vector,
+		/obj/item/ammo_magazine/smg/vector/drum)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,

@@ -36,6 +36,7 @@
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
 			/obj/item/weapon/gun/smg/vector = -1,
 			/obj/item/ammo_magazine/smg/vector = -1,
+			/obj/item/ammo_magazine/smg/vector/drum = 4,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
@@ -364,6 +365,7 @@
 			/obj/item/ammo_magazine/smg/standard_machinepistol = -1,
 			/obj/item/weapon/gun/smg/vector = -1,
 			/obj/item/ammo_magazine/smg/vector = -1,
+			/obj/item/ammo_magazine/smg/vector/drum = -1,
 		),
 		"Marksman" = list(
 			/obj/item/weapon/gun/rifle/standard_dmr = -1,
