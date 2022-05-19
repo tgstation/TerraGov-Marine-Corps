@@ -421,16 +421,15 @@
 
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.7 //moving and akimbo yield low acc
-	scatter = 2
+	scatter = 0
 	scatter_unwielded = 6
 
 	burst_amount = 2
 	burst_scatter_mult = 0.5
 	burst_delay = 0.05 SECONDS
-	extra_delay = 0.05 SECONDS
 
 	movement_acc_penalty_mult = 0.1
 	upper_akimbo_accuracy = 2.5
-	lower_akimbo_accuracy = 1.5
+	lower_akimbo_accuracy = 2
 
 	//placed_overlay_iconstate = "t90"
