@@ -11,7 +11,7 @@
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
 		/obj/effect/alien/resin/sticky,
-		/obj/structure/mineral_door/resin/thick
+		/obj/structure/mineral_door/resin/thick,
 	)
 	///the maximum range of the ability
 	var/max_range = 1
