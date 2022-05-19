@@ -187,6 +187,7 @@
 	return ..()
 
 /datum/action/xeno_action/activable/secrete_resin/action_activate()
+	//Left click on the secrete resin button opens up radial menu (new type of changing structures).
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
 		return ..()
@@ -198,6 +199,19 @@
 	X.balloon_alert(X, initial(A.name))
 	update_button_icon()
 
+/datum/action/xeno_action/activable/secrete_resin/alternate_action_activate()
+	//Right click on secrete resin button cycles through to the next construction type (old method of changing structures).
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability != src)
+		return ..()
+	var/i = buildable_structures.Find(X.selected_resin)
+	if(length(buildable_structures) == i)
+		X.selected_resin = buildable_structures[1]
+	else
+		X.selected_resin = buildable_structures[i+1]
+	var/atom/A = X.selected_resin
+	X.balloon_alert(X, initial(A.name))
+	update_button_icon()
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	build_resin(get_turf(owner))
