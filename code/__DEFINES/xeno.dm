@@ -52,7 +52,7 @@ GLOBAL_LIST_INIT(weed_prob_list, list(
 		))
 
 //List of weed images
-GLOBAL_LIST_INIT(weed_images_list, list(
+GLOBAL_LIST_INIT(weed_images_list,  list(
 		WEED = image('icons/mob/actions.dmi', icon_state = WEED),
 		STICKY_WEED = image('icons/mob/actions.dmi', icon_state = STICKY_WEED),
 		RESTING_WEED = image('icons/mob/actions.dmi', icon_state = RESTING_WEED),
