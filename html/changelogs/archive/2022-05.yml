@@ -289,3 +289,16 @@
   - bugfix: camera position in PoS
   - rscadd: two tile wide maint halls around PoS
   - rscadd: better hijack position when xenomorphs crash Alamo into PoS
+2022-05-19:
+  Arctrooper8:
+  - balance: SG minigun fires slower and does more damage
+  - bugfix: SG minigun is now consumer safe and no longer bullies low end devices
+  Lumipharon:
+  - bugfix: Fixed a couple of bugs that could let you stack turrets or MG's
+  Mechanelize:
+  - rscadd: Added a new marine outfit for Imaginary Friends
+  Walarks:
+  - balance: fixes harvester storing 60 instead of 30 of each reagent
+  - qol: updates harvester messages to runechat instead of chat
+  - bugfix: select reagent button icon no longer disappears sometimes when re-equipping
+      the weapon
