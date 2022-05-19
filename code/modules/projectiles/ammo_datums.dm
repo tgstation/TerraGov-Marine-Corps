@@ -1125,7 +1125,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 15
 	damage = 15
 	penetration = 15
-	sundering = 2
+	sundering = 2.5
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
