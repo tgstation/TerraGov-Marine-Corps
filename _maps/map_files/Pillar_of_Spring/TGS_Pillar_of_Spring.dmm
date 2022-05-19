@@ -2364,10 +2364,6 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/droppod)
-"hq" = (
-/obj/machinery/power/fusion_engine/preset,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/engine_core)
 "hr" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint,
@@ -45841,7 +45837,7 @@ UI
 zf
 OL
 HC
-hq
+zV
 Ab
 zV
 zC
