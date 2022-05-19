@@ -330,7 +330,7 @@
 	mechanics_text = "Opens your pheromone options."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
 
-/datum/action/xeno_action/pheromones/proc/apply_pheros(var/phero_choice)
+/datum/action/xeno_action/pheromones/proc/apply_pheros(phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
 
 	if(X.current_aura == phero_choice)
@@ -357,6 +357,8 @@
 	apply_pheros(phero_choice)
 
 /datum/action/xeno_action/pheromones/emit_recovery
+	name = "Toggle Recovery Pheromones"
+	mechanics_text = "Increases healing for yourself and nearby teammates."
 	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
 
 /datum/action/xeno_action/pheromones/emit_recovery/action_activate()
@@ -366,6 +368,8 @@
 	return FALSE
 
 /datum/action/xeno_action/pheromones/emit_warding
+	name = "Toggle Warding Pheromones"
+	mechanics_text = "Increases armor for yourself and nearby teammates."
 	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
 
 /datum/action/xeno_action/pheromones/emit_warding/action_activate()
@@ -375,6 +379,8 @@
 	return FALSE
 
 /datum/action/xeno_action/pheromones/emit_frenzy
+	name = "Toggle Frenzy Pheromones"
+	mechanics_text = "Increases damage for yourself and nearby teammates."
 	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
 
 /datum/action/xeno_action/pheromones/emit_frenzy/action_activate()
