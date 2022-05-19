@@ -3,53 +3,34 @@ GLOBAL_PROTECT(exp_to_update)
 
 
 /datum/job/proc/required_playtime_remaining(client/C)
+	// Checks for nulls and config
 	if(!C)
 		return FALSE
 	if(!CONFIG_GET(flag/use_exp_tracking))
+		return FALSE
+	if(!CONFIG_GET(flag/use_exp_restrictions))
 		return FALSE
 	if(!SSdbcore.Connect())
 		return FALSE
 	if(!exp_requirements || !exp_type)
 		return FALSE
-	if(!job_is_xp_locked(src))
-		return FALSE
 	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(C, R_ADMIN, FALSE))
 		return FALSE
-	var/my_exp = C.calc_exp_type(get_exp_req_type())
-	var/job_requirement = get_exp_req_amount()
+
+	// Calc client exp and how much do we need
+	var/my_exp = C.calc_exp_type(exp_type)
+	var/job_requirement = exp_requirements
 	if(my_exp >= job_requirement)
 		return FALSE
 	else
 		return (job_requirement - my_exp)
 
 
-/datum/job/proc/get_exp_req_amount()
-	if(job_flags & JOB_FLAG_ISCOMMAND)
-		var/uerhh = CONFIG_GET(number/use_exp_restrictions_command_hours)
-		if(uerhh)
-			return uerhh * 60
-	return exp_requirements
-
-
-/datum/job/proc/get_exp_req_type()
-	if(job_flags & JOB_FLAG_ISCOMMAND)
-		if(CONFIG_GET(flag/use_exp_restrictions_command_department) && exp_type_department)
-			return exp_type_department
-	return exp_type
-
-
-/proc/job_is_xp_locked(datum/job/job)
-	if(!CONFIG_GET(flag/use_exp_restrictions_command) && job.job_flags & JOB_FLAG_ISCOMMAND)
-		return FALSE
-	if(!CONFIG_GET(flag/use_exp_restrictions_other) && !(job.job_flags & JOB_FLAG_ISCOMMAND))
-		return FALSE
-	return TRUE
-
-
+/// Calculates client exp for exptype. Note - exptype for unlock might not be same as one which you get for role
 /client/proc/calc_exp_type(exptype)
-	var/list/explist = prefs.exp.Copy()
+	var/list/explist = prefs.exp.Copy() // Client EXP
 	var/amount = 0
-	var/list/typelist = GLOB.exp_jobsmap[exptype]
+	var/list/typelist = GLOB.exp_jobsmap[exptype] // Get names of roles with relevant EXP
 	if(!typelist)
 		return 0
 	for(var/job in typelist["titles"])
@@ -110,13 +91,11 @@ GLOBAL_PROTECT(exp_to_update)
 	for(var/j in SSjob.joinable_occupations)
 		var/datum/job/job = j
 		if(job.exp_requirements && job.exp_type)
-			if(!job_is_xp_locked(job))
-				continue
-			else if(!job.required_playtime_remaining(mob.client))
+			if(!job.required_playtime_remaining(mob.client))
 				jobs_unlocked += job.title
 			else
-				var/xp_req = job.get_exp_req_amount()
-				jobs_locked += "[job.title] [get_exp_format(text2num(calc_exp_type(job.get_exp_req_type())))] / [get_exp_format(xp_req)] as [job.get_exp_req_type()])"
+				var/xp_req = job.exp_requirements
+				jobs_locked += "[job.title] [get_exp_format(text2num(calc_exp_type(job.exp_type)))] / [get_exp_format(xp_req)] as [job.exp_type])"
 	if(length(jobs_unlocked))
 		return_text += "<BR><BR>Jobs Unlocked:<UL><LI>"
 		return_text += jobs_unlocked.Join("</LI><LI>")

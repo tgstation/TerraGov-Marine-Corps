@@ -121,6 +121,10 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	paygrade = "E3"
 	comm_title = "Eng"
 	total_positions = 12
+
+	exp_requirements = XP_REQ_UNSEASONED
+	exp_type = EXP_TYPE_MARINES
+
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
 	skills_type = /datum/skills/combat_engineer
@@ -211,6 +215,10 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	paygrade = "E3"
 	comm_title = "Med"
 	total_positions = 16
+
+	exp_requirements = XP_REQ_NOVICE
+	exp_type = EXP_TYPE_MEDICAL
+
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/combat_medic
@@ -308,6 +316,10 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	paygrade = "E3"
 	comm_title = "SGnr"
 	total_positions = 4
+
+	exp_requirements = XP_REQ_UNSEASONED
+	exp_type = EXP_TYPE_MARINES
+
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/smartgunner
@@ -403,12 +415,14 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	comm_title = "Spec"
 	total_positions = 0
 	max_positions = 0
+
+	exp_requirements = 0
+	exp_type = EXP_TYPE_MARINES
+
 	access = list(ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/specialist
 	outfit = /datum/outfit/job/marine/specialist
-	exp_requirements = XP_REQ_UNSEASONED
-	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_STRONG)
 	job_points_needed  = 10 //Redefined via config.
@@ -435,14 +449,16 @@ You can serve a variety of roles, so choose carefully."})
 	paygrade = "E5"
 	comm_title = JOB_COMM_TITLE_SQUAD_LEADER
 	total_positions = 4
+
+	exp_requirements = XP_REQ_INTERMEDIATE
+	exp_type = EXP_TYPE_MARINES
+
 	supervisors = "the acting field commander"
 	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/sl
 	display_order = JOB_DISPLAY_ORDER_SQUAD_LEADER
 	outfit = /datum/outfit/job/marine/leader
-	exp_requirements = XP_REQ_INTERMEDIATE
-	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	jobworth = list(
 		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
