@@ -750,7 +750,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	total_positions = 6
 
 	exp_requirements = XP_REQ_UNSEASONED
-	exp_type = EXP_TYPE_ENGINEERING
+	exp_type = EXP_TYPE_MARINES
 
 	supervisors = "the chief medical officer"
 	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
