@@ -381,14 +381,24 @@
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/gyro,
+		/obj/item/attachable/bipod,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
@@ -405,7 +415,7 @@
 
 	akimbo_additional_delay = 0.33
 	aim_fire_delay = 0.1 SECONDS
-	aim_speed_modifier = 0.9
+	aim_speed_modifier = 1
 	aim_slowdown = 1 //Can aim without slowdown
 
 	accuracy_mult = 1

@@ -127,3 +127,18 @@
 	caliber = CALIBER_45ACP
 	icon_state = "uzi_ext"
 	max_rounds = 25 // MagEx 25+ mag
+
+/obj/item/ammo_magazine/smg/vector/drum
+	name = "\improper SMG-45 drum magazine (.45ACP)"
+	desc = "A .45ACP caliber drum magazine for the SMG-45, with even more dakka."
+	default_ammo = /datum/ammo/bullet/smg/acp
+	caliber = CALIBER_45ACP
+	icon_state = "ppsh_ext"
+
+	max_rounds = 50 // Drum  mag
+	reload_delay = 1 //longer time for reload
+	fill_delay = 1
+	scatter_mod = -1
+	scatter_unwielded_mod = 2
+	aim_speed_mod = -0.1
+	wield_delay_mod = 0.2
