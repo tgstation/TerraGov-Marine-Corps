@@ -327,6 +327,7 @@
 /datum/action/xeno_action/pheromones
 	name = "Emit Pheromones"
 	action_icon_state = "emit_pheromones"
+	plasma_cost = 30
 	mechanics_text = "Opens your pheromone options."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
 
@@ -339,7 +340,7 @@
 		if(isxenoqueen(X))
 			X.hive?.update_leader_pheromones()
 		X.hud_set_pheromone()
-		return
+		return fail_activate()
 
 	X.current_aura = phero_choice
 	X.balloon_alert(X, "[X.current_aura]")
@@ -348,12 +349,12 @@
 	if(isxenoqueen(X))
 		X.hive?.update_leader_pheromones()
 	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
-	return
+	succeed_activate()
 
 /datum/action/xeno_action/pheromones/action_activate()
 	var/phero_choice = show_radial_menu(owner, owner, GLOB.pheromone_images_list, radius = 35)
 	if(!phero_choice)
-		return
+		return fail_activate()
 	apply_pheros(phero_choice)
 
 /datum/action/xeno_action/pheromones/emit_recovery

@@ -290,7 +290,8 @@
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 
-	var/current_aura = null //"Frenzy", "Warding", "Recovery"
+	var/current_aura = null //"Frenzy", "Warding", "Recovery". Defined in __DEFINES/xeno.dm
+	var/pheromone_cost = 5 //Passive plasma cost per tick for enabled personal (not leadership) pheromones.
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
 	var/recovery_aura = 0

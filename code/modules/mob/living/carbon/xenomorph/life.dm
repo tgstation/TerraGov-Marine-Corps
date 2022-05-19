@@ -125,12 +125,12 @@
 		return
 
 	if(current_aura)
-		if(plasma_stored < 5)
+		if(plasma_stored < pheromone_cost)
 			use_plasma(plasma_stored)
 			current_aura = null
-			to_chat(src, span_warning("We have run out of plasma and stopped emitting pheromones."))
+			src.balloon_alert(src, "Stop emitting, no plasma")
 		else
-			use_plasma(5)
+			use_plasma(pheromone_cost)
 
 	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN))
 		hud_set_plasma()
