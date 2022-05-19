@@ -176,7 +176,7 @@
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
 		/obj/effect/alien/resin/sticky,
-		/obj/structure/mineral_door/resin
+		/obj/structure/mineral_door/resin,
 		)
 
 /datum/action/xeno_action/activable/secrete_resin/update_button_icon()
