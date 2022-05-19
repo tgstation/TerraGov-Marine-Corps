@@ -40,12 +40,6 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
-/datum/keybinding/xeno/secrete_resin_silo
-	name = "secrete_resin_silo"
-	full_name = "Secrete Resin Silo"
-	description = "Builds a resin silo."
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
-
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
 	full_name = "Emit Recovery Pheromones"
