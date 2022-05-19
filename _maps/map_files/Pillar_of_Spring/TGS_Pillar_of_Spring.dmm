@@ -6594,7 +6594,12 @@
 /area/mainship/hallways/starboard_umbilical)
 "uc" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/door_control/mainship/checkpoint/south,
+/obj/machinery/door_control/old{
+	id = "southcheckpoint";
+	name = "Checkpoint Shutters";
+	pixel_y = 3;
+	req_one_access = list(2,3,12,40)
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
 "ud" = (
