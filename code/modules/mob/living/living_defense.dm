@@ -150,6 +150,8 @@
 			emote("scream")
 
 /mob/living/carbon/xenomorph/IgniteMob()
+	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+		return
 	. = ..()
 	if(!.)
 		return
