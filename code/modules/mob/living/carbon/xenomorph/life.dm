@@ -167,32 +167,31 @@
 
 	var/self_range = round(6 + xeno_caste.aura_strength * 2) //Range of pheros emitted by self selected pheromones
 	var/lead_range = round(6 + leader_aura_strength * 2) //Range of pheros granted by queen leadership
-	for(var/xenos in hive.get_all_xenos())
-		var/mob/living/carbon/xenomorph/Z = xenos
-		if(z != Z.z || Z.on_fire)
+	for(var/mob/living/carbon/xenomorph/xeno AS in hive.get_all_xenos())
+		if(z != xeno.z || xeno.on_fire)
 			continue
-		if(current_aura && get_dist(src, Z) <= self_range)
+		if(current_aura && get_dist(src, xeno) <= self_range)
 			switch(current_aura)
 				if(FRENZY)
-					if(xeno_caste.aura_strength > Z.frenzy_new)
-						Z.frenzy_new = xeno_caste.aura_strength
+					if(xeno_caste.aura_strength > xeno.frenzy_new)
+						xeno.frenzy_new = xeno_caste.aura_strength
 				if(WARDING)
-					if(xeno_caste.aura_strength > Z.warding_new)
-						Z.warding_new = xeno_caste.aura_strength
+					if(xeno_caste.aura_strength > xeno.warding_new)
+						xeno.warding_new = xeno_caste.aura_strength
 				if(RECOVERY)
-					if(xeno_caste.aura_strength > Z.recovery_new)
-						Z.recovery_new = xeno_caste.aura_strength
-		if(leader_current_aura && get_dist(src, Z) <= lead_range)
+					if(xeno_caste.aura_strength > xeno.recovery_new)
+						xeno.recovery_new = xeno_caste.aura_strength
+		if(leader_current_aura && get_dist(src, xeno) <= lead_range)
 			switch(leader_current_aura)
 				if(FRENZY)
-					if(leader_aura_strength > Z.frenzy_new)
-						Z.frenzy_new = leader_aura_strength
+					if(leader_aura_strength > xeno.frenzy_new)
+						xeno.frenzy_new = leader_aura_strength
 				if(WARDING)
-					if(leader_aura_strength > Z.warding_new)
-						Z.warding_new = leader_aura_strength
+					if(leader_aura_strength > xeno.warding_new)
+						xeno.warding_new = leader_aura_strength
 				if(RECOVERY)
-					if(leader_aura_strength > Z.recovery_new)
-						Z.recovery_new = leader_aura_strength
+					if(leader_aura_strength > xeno.recovery_new)
+						xeno.recovery_new = leader_aura_strength
 
 /mob/living/carbon/xenomorph/proc/handle_aura_receiver()
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
