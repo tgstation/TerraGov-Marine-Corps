@@ -1,33 +1,4 @@
 // ***************************************
-// *********** Hive orders
-// ***************************************
-/mob/living/carbon/xenomorph/queen/proc/set_orders()
-	set category = "Alien"
-	set name = "Set Hive Orders (50)"
-	set desc = "Give some specific orders to the hive. They can see this on the status pane."
-
-	if(hivenumber == XENO_HIVE_CORRUPTED)
-		to_chat(src, span_warning("Only our masters can decide this!"))
-		return
-
-	if(!check_state())
-		return
-	if(!check_plasma(50))
-		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORDER))
-		return
-	plasma_stored -= 50
-	var/txt = stripped_input(src, "Set the hive's orders to what? Leave blank to clear it.", "Hive Orders")
-
-	if(txt)
-		xeno_message("<B>The Queen has given a new order. Check Game panel for details.</B>", "xenoannounce", 6,hivenumber)
-		hive.hive_orders = txt
-	else
-		hive.hive_orders = ""
-
-	TIMER_COOLDOWN_START(src, COOLDOWN_ORDER, 15 SECONDS)
-
-// ***************************************
 // *********** Hive message
 // ***************************************
 /datum/action/xeno_action/hive_message
@@ -39,10 +10,7 @@
 	use_state_flags = XACT_USE_LYING
 
 /datum/action/xeno_action/hive_message/action_activate()
-	var/mob/living/carbon/xenomorph/queen/xeno = owner
-	if(!xeno.check_concious_state())
-		to_chat(xeno, span_warning("We can't do that while unconcious."))
-		return
+	var/mob/living/carbon/xenomorph/queen/Q = owner
 
 	var/input = stripped_multiline_input(xeno, "This message will be broadcast throughout the hive.", "Hive Message", "")
 	if(!input)
