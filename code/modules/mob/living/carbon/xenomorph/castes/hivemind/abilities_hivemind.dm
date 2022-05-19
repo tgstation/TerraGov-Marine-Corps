@@ -11,8 +11,10 @@
 	base_wait = 1 SECONDS
 	max_range = 4
 
-/datum/action/xeno_action/activable/secrete_resin/ranged/slow/should_show()
-	return !(owner.status_flags & INCORPOREAL)
+/datum/action/xeno_action/activable/secrete_resin/ranged/slow/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
 
 /datum/action/xeno_action/change_form
 	name = "Change form"
@@ -43,15 +45,21 @@
 	succeed_activate()
 	add_cooldown()
 
-/datum/action/xeno_action/activable/psychic_cure/hivemind/should_show()
-	return !(owner.status_flags & INCORPOREAL)
+/datum/action/xeno_action/activable/psychic_cure/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
 
 /datum/action/xeno_action/activable/transfer_plasma/hivemind
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 2
 
-/datum/action/xeno_action/activable/transfer_plasma/hivemind/should_show()
-	return !(owner.status_flags & INCORPOREAL)
+/datum/action/xeno_action/activable/transfer_plasma/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
 
-/datum/action/xeno_action/pheromones/hivemind/should_show()
-	return !(owner.status_flags & INCORPOREAL)
+/datum/action/xeno_action/pheromones/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
 

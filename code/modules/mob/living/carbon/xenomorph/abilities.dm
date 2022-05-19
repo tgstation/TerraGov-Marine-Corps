@@ -155,8 +155,10 @@
 		return FALSE
 	return ..()
 
-/datum/action/xeno_action/activable/plant_weeds/ranged/should_show()
-	return !(owner.status_flags & INCORPOREAL)
+/datum/action/xeno_action/activable/plant_weeds/ranged/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
 
 // Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
