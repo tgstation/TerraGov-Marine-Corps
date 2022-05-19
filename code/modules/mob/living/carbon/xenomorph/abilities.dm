@@ -324,100 +324,38 @@
 
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
 
-/datum/action/xeno_action/toggle_pheromones
-	name = "Open/Collapse Pheromone Options"
+/datum/action/xeno_action/pheromones
+	name = "Emit Pheromones"
 	action_icon_state = "emit_pheromones"
 	mechanics_text = "Opens your pheromone options."
-	plasma_cost = 0
-	var/PheromonesOpen = FALSE //If the  pheromone choices buttons are already displayed or not
-
-/datum/action/xeno_action/toggle_pheromones/ai_should_start_consider()
-	return TRUE
-
-/datum/action/xeno_action/toggle_pheromones/ai_should_use(target)
-	if(PheromonesOpen)
-		return ..()
-	return TRUE
-
-/datum/action/xeno_action/toggle_pheromones/can_use_action()
-	return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices at any time
-
-/datum/action/xeno_action/toggle_pheromones/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(PheromonesOpen)
-		PheromonesOpen = FALSE
-		for(var/datum/action/path in owner.actions)
-			if(istype(path, /datum/action/xeno_action/pheromones))
-				path.remove_action(X)
-	else
-		PheromonesOpen = TRUE
-		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
-		for(var/path in subtypeactions)
-			var/datum/action/xeno_action/pheromones/A = new path()
-			A.give_action(X)
-
-/datum/action/xeno_action/pheromones
-	name = "SHOULD NOT EXIST"
-	plasma_cost = 30 //Base plasma cost for begin to emit pheromones
-	var/aura_type = null //String for aura to emit
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
 
-/datum/action/xeno_action/pheromones/ai_should_start_consider()
-	return TRUE
+/datum/action/xeno_action/pheromones/proc/choose_phero()
+	var/phero_choice = show_radial_menu(owner, owner, GLOB.pheromone_images_list, radius = 35)
+	if(!phero_choice)
+		return
 
-/datum/action/xeno_action/pheromones/ai_should_use(target)
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.current_aura)
-		return ..()
-	if(prob(33)) //Since the pheromones go from recovery => warding => frenzy, this enables AI to somewhat randomly pick one of the three pheros to emit
-		return ..()
-	return TRUE
 
-/datum/action/xeno_action/pheromones/action_activate() //Must pass the basic plasma cost; reduces copy pasta
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!aura_type)
-		return FALSE
-
-	if(X.current_aura == aura_type)
-		X.visible_message(span_xenowarning("\The [X] stops emitting strange pheromones."), \
-		span_xenowarning("We stop emitting [X.current_aura] pheromones."), null, 5)
+	if(X.current_aura == phero_choice)
+		X.balloon_alert(X, "Stop emitting")
 		X.current_aura = null
 		if(isxenoqueen(X))
 			X.hive?.update_leader_pheromones()
 		X.hud_set_pheromone()
-		return fail_activate() // dont use plasma
+		return
 
-	X.current_aura = aura_type
-	X.visible_message(span_xenowarning("\The [X] begins to emit strange-smelling pheromones."), \
-	span_xenowarning("We begin to emit '[X.current_aura]' pheromones."), null, 5)
+	X.current_aura = phero_choice
+	X.balloon_alert(X, "[X.current_aura]")
 	playsound(X.loc, "alien_drool", 25)
 
 	if(isxenoqueen(X))
 		X.hive?.update_leader_pheromones()
 	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
-	return succeed_activate()
 
-/datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
-	name = "Emit Recovery Pheromones"
-	action_icon_state = "emit_recovery"
-	mechanics_text = "Increases healing for yourself and nearby teammates."
-	aura_type = "recovery"
-	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
-
-/datum/action/xeno_action/pheromones/emit_warding
-	name = "Emit Warding Pheromones"
-	action_icon_state = "emit_warding"
-	mechanics_text = "Increases armor for yourself and nearby teammates."
-	aura_type = "warding"
-	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
-
-/datum/action/xeno_action/pheromones/emit_frenzy
-	name = "Emit Frenzy Pheromones"
-	action_icon_state = "emit_frenzy"
-	mechanics_text = "Increases damage for yourself and nearby teammates."
-	aura_type = "frenzy"
-	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
-
+/datum/action/xeno_action/pheromones/action_activate()
+	INVOKE_ASYNC(src, .proc/choose_phero)
+	return COMSIG_KB_ACTIVATED
 
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"

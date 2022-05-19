@@ -45,7 +45,6 @@
 
 	// *** Pheromones *** //
 	aura_strength = 2 //Hivelord's aura is not extremely strong, but better than Drones.
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Minimap Icon *** //
 	minimap_icon = "hivelord"
@@ -64,7 +63,7 @@
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/create_jelly,
 		/datum/action/xeno_action/place_jelly_pod,
@@ -210,7 +209,7 @@
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/create_jelly,
 		/datum/action/xeno_action/place_jelly_pod,

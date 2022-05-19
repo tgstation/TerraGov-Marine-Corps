@@ -49,7 +49,7 @@
 		/datum/action/xeno_action/emit_neurogas,
 		/datum/action/xeno_action/select_reagent,
 		/datum/action/xeno_action/reagent_slash,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
 	)
 
 	available_reagents_define = list(
@@ -61,7 +61,6 @@
 
 	// *** Pheromones *** //
 	aura_strength = 1.7 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 /datum/xeno_caste/defiler/young
 	upgrade_name = "Young"
@@ -186,6 +185,6 @@
 		/datum/action/xeno_action/emit_neurogas,
 		/datum/action/xeno_action/select_reagent,
 		/datum/action/xeno_action/reagent_slash,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/activable/tentacle,
 	)

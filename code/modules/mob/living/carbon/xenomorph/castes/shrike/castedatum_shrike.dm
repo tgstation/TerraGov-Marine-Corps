@@ -40,7 +40,6 @@
 
 	// *** Pheromones *** //
 	aura_strength = 2 //The Shrike's aura is decent.
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Minimap Icon *** //
 	minimap_icon = "xenoshrike"
@@ -61,7 +60,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_fling,
 		/datum/action/xeno_action/activable/unrelenting_force,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/set_agressivity,
@@ -193,7 +192,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_fling,
 		/datum/action/xeno_action/activable/unrelenting_force,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/set_agressivity,

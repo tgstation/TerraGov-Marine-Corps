@@ -44,7 +44,7 @@
 		/datum/action/xeno_action/activable/nightfall,
 		/datum/action/xeno_action/activable/gravity_crush,
 		/datum/action/xeno_action/psychic_summon,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/set_agressivity,
