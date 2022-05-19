@@ -58,6 +58,9 @@
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
 		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/choose_hugger_type,
 	)
 
@@ -198,6 +201,9 @@
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
 		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/choose_hugger_type,
 		/datum/action/xeno_action/build_hugger_turret,
 	)

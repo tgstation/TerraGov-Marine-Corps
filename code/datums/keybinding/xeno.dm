@@ -46,6 +46,24 @@
 	description = "Builds a resin silo."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
 
+/datum/keybinding/xeno/emit_recovery
+	name = "emit_recovery"
+	full_name = "Emit Recovery Pheromones"
+	description = "Increases healing for yourself and nearby teammates."
+	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
+
+/datum/keybinding/xeno/emit_warding
+	name = "emit_warding"
+	full_name = "Emit Warding Pheromones"
+	description = "Increases armor for yourself and nearby teammates."
+	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
+
+/datum/keybinding/xeno/emit_frenzy
+	name = "emit_frenzy"
+	full_name = "Emit Frenzy Pheromones"
+	description = "Increases damage for yourself and nearby teammates."
+	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
+
 /datum/keybinding/xeno/corrosive_acid
 	name = "corrosive_acid"
 	full_name = "Corrosive Acid"

@@ -330,11 +330,7 @@
 	mechanics_text = "Opens your pheromone options."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
 
-/datum/action/xeno_action/pheromones/proc/choose_phero()
-	var/phero_choice = show_radial_menu(owner, owner, GLOB.pheromone_images_list, radius = 35)
-	if(!phero_choice)
-		return
-
+/datum/action/xeno_action/pheromones/proc/apply_pheros(var/phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
 
 	if(X.current_aura == phero_choice)
@@ -352,10 +348,41 @@
 	if(isxenoqueen(X))
 		X.hive?.update_leader_pheromones()
 	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
+	return
 
 /datum/action/xeno_action/pheromones/action_activate()
-	INVOKE_ASYNC(src, .proc/choose_phero)
-	return COMSIG_KB_ACTIVATED
+	var/phero_choice = show_radial_menu(owner, owner, GLOB.pheromone_images_list, radius = 35)
+	if(!phero_choice)
+		return
+	apply_pheros(phero_choice)
+
+/datum/action/xeno_action/pheromones/emit_recovery
+	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
+
+/datum/action/xeno_action/pheromones/emit_recovery/action_activate()
+	apply_pheros(RECOVERY)
+
+/datum/action/xeno_action/pheromones/emit_recovery/should_show()
+	return FALSE
+
+/datum/action/xeno_action/pheromones/emit_warding
+	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
+
+/datum/action/xeno_action/pheromones/emit_warding/action_activate()
+	apply_pheros(WARDING)
+
+/datum/action/xeno_action/pheromones/emit_warding/should_show()
+	return FALSE
+
+/datum/action/xeno_action/pheromones/emit_frenzy
+	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
+
+/datum/action/xeno_action/pheromones/emit_frenzy/action_activate()
+	apply_pheros(FRENZY)
+
+/datum/action/xeno_action/pheromones/emit_frenzy/should_show()
+	return FALSE
+
 
 /datum/action/xeno_action/activable/transfer_plasma
 	name = "Transfer Plasma"

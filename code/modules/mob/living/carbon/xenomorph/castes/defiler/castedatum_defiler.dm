@@ -50,6 +50,9 @@
 		/datum/action/xeno_action/select_reagent,
 		/datum/action/xeno_action/reagent_slash,
 		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 	)
 
 	available_reagents_define = list(
@@ -186,5 +189,8 @@
 		/datum/action/xeno_action/select_reagent,
 		/datum/action/xeno_action/reagent_slash,
 		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/activable/tentacle,
 	)
