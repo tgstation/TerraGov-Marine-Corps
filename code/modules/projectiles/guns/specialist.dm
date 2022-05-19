@@ -445,7 +445,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	scatter = -5
 	recoil = 0
 	recoil_unwielded = 4
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.7
 
 // PEPPERBALL GUN
 
