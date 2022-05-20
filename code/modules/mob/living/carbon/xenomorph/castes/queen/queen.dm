@@ -54,7 +54,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/xenomorph/queen/reset_perspective(atom/A)
+/mob/living/carbon/xenomorph/reset_perspective(atom/A)
 	if (!client)
 		return
 
@@ -120,25 +120,3 @@
 // ***************************************
 /datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen
 	heal_range = HIVELORD_HEAL_RANGE
-
-// ***************************************
-// *********** Overwatch (from hivemind chat)
-// ***************************************
-/mob/living/carbon/xenomorph/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	if(href_list["watch_xeno_name"])
-		if(!check_state())
-			return
-		var/xeno_name = href_list["watch_xeno_name"]
-		for(var/mob/living/carbon/xenomorph/X AS in hive.get_watchable_xenos())
-			if(isnum(X.nicknumber))
-				if(num2text(X.nicknumber) != xeno_name)
-					continue
-			else
-				if(X.nicknumber != xeno_name)
-					continue
-			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, X)
-			break

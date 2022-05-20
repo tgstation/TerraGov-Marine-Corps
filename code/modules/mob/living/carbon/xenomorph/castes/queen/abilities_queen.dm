@@ -179,12 +179,12 @@
 	return isxenoqueen(owner) //Only the queen should have the button for overwatch. All else uses chat (F).
 
 /datum/action/xeno_action/watch_xeno/proc/select_xeno(mob/living/carbon/xenomorph/selected_xeno)
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.hive)
-		return
+	var/mob/living/carbon/xenomorph/X = owner
 
 	if(QDELETED(selected_xeno))
-		var/list/possible_xenos = X.hive.get_watchable_xenos()
+		if(!isxenoqueen(X))
+			return
+		var/list/possible_xenos = X.hive.get_watchable_xenos(X)
 		selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos)
 		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
 			if(!X.observed_xeno)
