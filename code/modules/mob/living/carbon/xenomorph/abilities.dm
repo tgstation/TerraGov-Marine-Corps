@@ -84,9 +84,7 @@
 
 ///Chose which weed will be planted by the xeno owner or toggle automatic weeding
 /datum/action/xeno_action/activable/plant_weeds/proc/choose_weed()
-	var/list/choices = GLOB.weed_images_list.Copy()
-	choices[AUTOMATIC_WEEDING] = image('icons/mob/actions.dmi', icon_state = "repeating")
-	var/weed_choice = show_radial_menu(owner, owner, choices, radius = 48)
+	var/weed_choice = show_radial_menu(owner, owner, GLOB.weed_images_list, radius = 35)
 	if(!weed_choice)
 		return
 	if(weed_choice == AUTOMATIC_WEEDING)
