@@ -1,0 +1,8 @@
+author: "tyeagg"
+delete-after: True
+changes: 
+  - rscadd: "Orion Military Outpost"
+  - imageadd: "bunkbeds"
+  - bugfix: "broken vendor props not having density"
+  - imageadd: "tallgrass
+delete: slowdown from bushes"
