@@ -502,7 +502,6 @@
 		QDEL_NULL(deployed_mg)
 	return ..()
 
-
 /obj/structure/dropship_equipment/gl_holder
 	name = "grenade launcher deployment system"
 	desc = "A box that deploys a modified AGL-15 crewserved grenade launcher. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
