@@ -1,33 +1,4 @@
 // ***************************************
-// *********** Hive orders
-// ***************************************
-/mob/living/carbon/xenomorph/queen/proc/set_orders()
-	set category = "Alien"
-	set name = "Set Hive Orders (50)"
-	set desc = "Give some specific orders to the hive. They can see this on the status pane."
-
-	if(hivenumber == XENO_HIVE_CORRUPTED)
-		to_chat(src, span_warning("Only our masters can decide this!"))
-		return
-
-	if(!check_state())
-		return
-	if(!check_plasma(50))
-		return
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORDER))
-		return
-	plasma_stored -= 50
-	var/txt = stripped_input(src, "Set the hive's orders to what? Leave blank to clear it.", "Hive Orders")
-
-	if(txt)
-		xeno_message("<B>The Queen has given a new order. Check Game panel for details.</B>", "xenoannounce", 6,hivenumber)
-		hive.hive_orders = txt
-	else
-		hive.hive_orders = ""
-
-	TIMER_COOLDOWN_START(src, COOLDOWN_ORDER, 15 SECONDS)
-
-// ***************************************
 // *********** Hive message
 // ***************************************
 /datum/action/xeno_action/hive_message
@@ -35,47 +6,54 @@
 	action_icon_state = "queen_order"
 	mechanics_text = "Announces a message to the hive."
 	plasma_cost = 50
+	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HIVE_MESSAGE
 	use_state_flags = XACT_USE_LYING
 
-/datum/action/xeno_action/hive_message/action_activate()
-	var/mob/living/carbon/xenomorph/queen/xeno = owner
-	if(!xeno.check_concious_state())
-		to_chat(xeno, span_warning("We can't do that while unconcious."))
-		return
+//Parameters used when displaying hive message to all xenos
+/obj/screen/text/screen_text/queen_order
+	maptext_height = 128 //Default 64 doubled in height
+	maptext_width = 456 //Default 480 shifted right by 12
+	maptext_x = 12 //Half of 24
+	maptext_y = -64 //Shifting expanded map text downwards to display below buttons.
+	screen_loc = "LEFT,TOP-3"
 
-	var/input = stripped_multiline_input(xeno, "This message will be broadcast throughout the hive.", "Hive Message", "")
+	letters_per_update = 2
+	fade_out_delay = 5 SECONDS
+	style_open = "<span class='maptext' style=font-size:16pt;text-align:center valign='top'>"
+	style_close = "</span>"
+
+/datum/action/xeno_action/hive_message/action_activate()
+	var/mob/living/carbon/xenomorph/queen/Q = owner
+
+	//Preferring the use of multiline input as the message box is larger and easier to quickly proofread before sending to hive.
+	var/input = stripped_multiline_input(Q, "Maximum message length: [MAX_BROADCAST_LEN]", "Hive Message", "", MAX_BROADCAST_LEN, TRUE)
+	//Newlines are of course stripped and replaced with a space.
+	input = capitalize(trim(replacetext(input, "\n", " ")))
 	if(!input)
 		return
-
 	if(CHAT_FILTER_CHECK(input))
-		to_chat(xeno, span_warning("That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span>"))
+		to_chat(Q, span_warning("That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		return FALSE
 	if(NON_ASCII_CHECK(input))
-		to_chat(usr, span_warning("That announcement contained characters prohibited in IC chat! Consider reviewing the server rules."))
+		to_chat(Q, span_warning("That announcement contained characters prohibited in IC chat! Consider reviewing the server rules."))
 		return FALSE
 
-	var/queensWord = "<br><h2 class='alert'>The words of the queen reverberate in your head...</h2>"
-	queensWord += "<br>[span_alert("[input]")]<br><br>"
+	log_game("[key_name(Q)] has messaged the hive with: \"[input]\"")
+	deadchat_broadcast(" has messaged the hive: \"[input]\"", Q, Q)
+	var/queens_word = "<span class='maptext' style=font-size:18pt;text-align:center valign='top'><u>HIVE MESSAGE:</u><br></span>" + input
 
-	INVOKE_ASYNC(xeno, /mob/living/carbon/xenomorph/queen/proc/do_hive_message, queensWord)
-
-/mob/living/carbon/xenomorph/queen/proc/do_hive_message(queensWord)
 	var/sound/queen_sound = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS)
-	if(SSticker?.mode)
-		hive.xeno_message("[queensWord]")
-		for(var/i in hive.get_watchable_xenos())
-			var/mob/living/carbon/xenomorph/X = i
-			SEND_SOUND(X, queen_sound)
+	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
+		SEND_SOUND(X, queen_sound)
+		//Display the queen's hive message at the top of the game screen.
+		X.play_screen_text(queens_word, /obj/screen/text/screen_text/queen_order)
+		//In case in combat, couldn't read fast enough, or needs to copy paste into a translator. Here's the old hive message.
+		to_chat(X, span_xenoannounce("<h2 class='alert'>The words of the queen reverberate in your head...</h2><br>[span_alert(input)]<br><br>"))
 
-	for(var/i in GLOB.observer_list)
-		var/mob/dead/observer/G = i
-		SEND_SOUND(G, queen_sound)
-		to_chat(G, "[queensWord]")
-
-	log_game("[key_name(src)] has created a Hive Message: [queensWord]")
-	message_admins("[ADMIN_TPMONTY(src)] has created a Hive Message.")
+	succeed_activate()
+	add_cooldown()
 
 
 // ***************************************
