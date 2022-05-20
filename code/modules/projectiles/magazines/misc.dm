@@ -90,13 +90,24 @@
 	max_rounds = 42
 
 /obj/item/ammo_magazine/packet/acp
-	name = "packet of .45 ACP"
+	name = "packet of .45 ACP HV"
+	desc = "A packet containing high-velocity ACP rounds."
 	icon_state = "box_45acp"
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_45ACP
 	current_rounds = 50
 	max_rounds = 50
+
+/obj/item/ammo_magazine/packet/acp_smg
+	name = "box of .45 ACP"
+	desc = "A box containing common .45 ACP rounds."
+	icon_state = "box_45acp"
+	default_ammo = /datum/ammo/bullet/smg/acp
+	w_class = WEIGHT_CLASS_SMALL
+	caliber = CALIBER_45ACP
+	current_rounds = 150
+	max_rounds = 150
 
 /obj/item/ammo_magazine/packet/p10x26mm
 	name = "packet of 10x26mm"
