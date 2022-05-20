@@ -21,7 +21,6 @@
 	upgrade = XENO_UPGRADE_ZERO
 
 	var/breathing_counter = 0
-	var/mob/living/carbon/xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/queen/proc/set_orders,
 		/mob/living/carbon/xenomorph/proc/hijack,
@@ -125,7 +124,7 @@
 // ***************************************
 // *********** Overwatch (from hivemind chat)
 // ***************************************
-/mob/living/carbon/xenomorph/queen/Topic(href, href_list)
+/mob/living/carbon/xenomorph/Topic(href, href_list)
 	. = ..()
 	if(.)
 		return
@@ -134,8 +133,7 @@
 		if(!check_state())
 			return
 		var/xeno_name = href_list["watch_xeno_name"]
-		for(var/Y in hive.get_watchable_xenos())
-			var/mob/living/carbon/xenomorph/X = Y
+		for(var/mob/living/carbon/xenomorph/X AS in hive.get_watchable_xenos())
 			if(isnum(X.nicknumber))
 				if(num2text(X.nicknumber) != xeno_name)
 					continue

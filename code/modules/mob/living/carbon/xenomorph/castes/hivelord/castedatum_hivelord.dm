@@ -53,6 +53,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
@@ -198,6 +199,7 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,

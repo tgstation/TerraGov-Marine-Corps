@@ -335,6 +335,9 @@
 	var/warding_new = 0
 	var/recovery_new = 0
 
+	///The xenomorph player is currently overwatching
+	var/mob/living/carbon/xenomorph/observed_xeno
+
 	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
 	var/xeno_melee_damage_modifier = 1
 
