@@ -74,8 +74,8 @@
 
 /obj/item/ammo_magazine/marine_agsls
 	name = "AGL-15 box magazine (40mm Grenade)"
-	desc = "A box of 30 40mm Smart Grenades, cannot be used as normal grenades."
-	w_class = WEIGHT_CLASS_NORMAL
+	desc = "A box of 30 40mm Smart Grenades for the AGL-15 mounted grenade launcher, cannot be used as normal grenades."
+	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "ags_mag"
 	flags_magazine = NONE
@@ -87,12 +87,39 @@
 /obj/item/ammo_magazine/dualcannon
 	name = "Dualcannon IFF Magazine"
 	desc = "A box of 150, 20mm rounds for the ATR-22 mounted dualcannon."
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "mag"
+	icon_state = "ac_mag"
 	flags_magazine = NONE
 	caliber = CALIBER_20
 	max_rounds = 150
 	default_ammo = /datum/ammo/bullet/dualcannon
 	reload_delay = 5 SECONDS
-	icon_state_mini = "mag_tl102"
+
+/obj/item/ammo_magazine/heavylaser
+	name = "Heavy Laser Cell"
+	desc = "A cell with enough charge to contain 15 heavy laser shots for the TE-9001 non-rechargable."
+	w_class = WEIGHT_CLASS_BULKY
+	flags_magazine = NONE
+	max_rounds = 15
+	default_ammo = /datum/ammo/energy/lasgun/marine/heavylaser
+	reload_delay = 5 SECONDS
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "hl_mag"
+
+/obj/item/ammo_magazine/heavyrr
+	name = "RR-15 HE shell (75mm Shell)"
+	desc = "A 75mm HE shell for the RR-15 mounted heavy recoilless rifle."
+	w_class = WEIGHT_CLASS_BULKY
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "75shell"
+	item_state = "75shell"
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items_lefthand_0.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_0.dmi',
+		)
+	flags_magazine = MAGAZINE_REFUND_IN_CHAMBER
+	caliber = CALIBER_75MM
+	max_rounds = 1
+	default_ammo = /datum/ammo/rocket/heavyrr
+	reload_delay = 10 SECONDS

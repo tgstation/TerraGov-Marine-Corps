@@ -306,6 +306,50 @@
 		linked_console.selected_equipment = src
 		to_chat(user, span_notice("You select [src]."))
 
+//////////////////////////////////// flare launcher //////////////////////////////////////
+/obj/structure/dropship_equipment/flare_launcher
+	equip_category = DROPSHIP_WEAPON
+	name = "flare launcher system"
+	desc = "A system that deploys flares. Fits on the weapon attach points of dropships. You need a powerloader to lift it."
+	icon_state = "flare_system"
+	dropship_equipment_flags = IS_INTERACTABLE
+	point_cost = 150
+	var/deployment_cooldown
+	var/turf/target
+	var/stored_amount = 4
+	var/max_amount = 4
+
+/obj/structure/dropship_equipment/flare_launcher/equipment_interact(mob/user)
+	if(deployment_cooldown < world.time && stored_amount > 0) //check for cooldown and inserted flares
+		deploy_flare()
+		to_chat(user, span_notice("You deploy [src], remaining flares [stored_amount]."))
+	else
+		to_chat(user, span_warning("[src] is busy, [stored_amount] flares remaining."))
+		return //prevents spamming deployment
+
+/obj/structure/dropship_equipment/flare_launcher/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/explosive/grenade/flare) && stored_amount < max_amount)
+		stored_amount++
+		to_chat(user, span_notice("You insert a flare, remaining flares [stored_amount]."))
+		qdel(I)
+		return
+
+/obj/structure/dropship_equipment/flare_launcher/update_equipment()
+	if(ship_base)
+		setDir(ship_base.dir)
+		icon_state = "flare_system_installed"
+	else
+		setDir(initial(dir))
+
+/obj/structure/dropship_equipment/flare_launcher/proc/deploy_flare()
+	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 40, 1)
+	deployment_cooldown = world.time + 100
+	target = get_ranged_target_turf(src, ship_base.dir, 10)
+	var/obj/item/explosive/grenade/flare/flare_to_launch = new /obj/item/explosive/grenade/flare(loc)
+	flare_to_launch.turn_on()
+	flare_to_launch.throw_at(target, 10, 5)
+	stored_amount--
 
 
 //////////////////////////////////// turret holders //////////////////////////////////////
@@ -458,15 +502,15 @@
 	desc = "A box that deploys a modified AGL-15 crewserved grenade launcher. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "gl_system"
-	point_cost = 300
+	point_cost = 600
 	var/obj/machinery/deployable/mounted/deployed_gl
 
 /obj/structure/dropship_equipment/gl_holder/Initialize()
 	. = ..()
 	if(deployed_gl)
 		return
-	var/obj/item/weapon/gun/aglnest/new_gun = new(src) //Creates the internal gun of the deployed_mg first.
-	deployed_gl = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_mg. Therefore new_gun.loc = deployed_mg.
+	var/obj/item/weapon/gun/aglnest/new_gun = new(src) //Creates the internal gun of the deployed_gl first.
+	deployed_gl = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_gl. Therefore new_gun.loc = deployed_gl.
 
 /obj/structure/dropship_equipment/gl_holder/examine(mob/user)
 	. = ..()
@@ -488,15 +532,15 @@
 	desc = "A box that deploys a modified ATR-22 crewserved dualcannon. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "ac_system"
-	point_cost = 300
+	point_cost = 500
 	var/obj/machinery/deployable/mounted/deployed_dualcannon
 
 /obj/structure/dropship_equipment/dualcannon_holder/Initialize()
 	. = ..()
 	if(deployed_dualcannon)
 		return
-	var/obj/item/weapon/gun/dualcannon/new_gun = new(src) //Creates the internal gun of the deployed_mg first.
-	deployed_dualcannon = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_mg. Therefore new_gun.loc = deployed_mg.
+	var/obj/item/weapon/gun/dualcannon/new_gun = new(src) //Creates the internal gun of the deployed_dualcannon first.
+	deployed_dualcannon = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_dualcannon. Therefore new_gun.loc = deployed_dualcannon.
 
 /obj/structure/dropship_equipment/dualcannon_holder/examine(mob/user)
 	. = ..()
@@ -512,6 +556,66 @@
 	else
 		deployed_dualcannon.loc = src
 		icon_state = "ac_system"
+
+/obj/structure/dropship_equipment/heavylaser_holder
+	name = "heavy laser deployment system"
+	desc = "A box that deploys a modified TE-9001 crewserved heavylaser. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	equip_category = DROPSHIP_CREW_WEAPON
+	icon_state = "hl_system"
+	point_cost = 500
+	var/obj/machinery/deployable/mounted/deployed_heavylaser
+
+/obj/structure/dropship_equipment/heavylaser_holder/Initialize()
+	. = ..()
+	if(deployed_heavylaser)
+		return
+	var/obj/item/weapon/gun/heavylaser/new_gun = new(src) //Creates the internal gun of the deployed_hl first.
+	deployed_heavylaser = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_hl. Therefore new_gun.loc = deployed_hl.
+
+/obj/structure/dropship_equipment/heavylaser_holder/examine(mob/user)
+	. = ..()
+	if(!deployed_heavylaser)
+		. += "Its heavy laser is missing."
+
+/obj/structure/dropship_equipment/heavylaser_holder/update_equipment()
+	if(!deployed_heavylaser)
+		return
+	if(ship_base)
+		deployed_heavylaser.loc = loc
+		icon_state = "mg_system_deployed"
+	else
+		deployed_heavylaser.loc = src
+		icon_state = "hl_system"
+
+/obj/structure/dropship_equipment/heavyrr_holder
+	name = "heavy recoilless rifle deployment system"
+	desc = "A box that deploys a modified RR-15 crewserved recoilless rifle. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	equip_category = DROPSHIP_CREW_WEAPON
+	icon_state = "rr_system"
+	point_cost = 1000
+	var/obj/machinery/deployable/mounted/deployed_heavyrr
+
+/obj/structure/dropship_equipment/heavyrr_holder/Initialize()
+	. = ..()
+	if(deployed_heavyrr)
+		return
+	var/obj/item/weapon/gun/heavyrr/new_gun = new(src) //Creates the internal gun of the deployed_heavurr first.
+	deployed_heavyrr = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavyrr. Therefore new_gun.loc = deployed_heavyrr.
+
+/obj/structure/dropship_equipment/heavyrr_holder/examine(mob/user)
+	. = ..()
+	if(!deployed_heavyrr)
+		. += "Its recoilless rifle is missing."
+
+/obj/structure/dropship_equipment/heavyrr_holder/update_equipment()
+	if(!deployed_heavyrr)
+		return
+	if(ship_base)
+		deployed_heavyrr.loc = loc
+		icon_state = "mg_system_deployed"
+	else
+		deployed_heavyrr.loc = src
+		icon_state = "rr_system"
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
 
 /obj/structure/dropship_equipment/fuel
@@ -538,7 +642,7 @@
 	equip_category = DROPSHIP_ELECTRONICS
 
 /obj/structure/dropship_equipment/electronics/spotlights
-	equip_category = DROPSHIP_WEAPON
+	equip_category = DROPSHIP_ELECTRONICS
 	name = "spotlight"
 	icon_state = "spotlights"
 	desc = "A set of highpowered spotlights to illuminate large areas. Fits on electronics attach points of dropships. Moving this will require a powerloader."

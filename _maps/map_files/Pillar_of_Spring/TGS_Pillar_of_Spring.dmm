@@ -219,6 +219,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"aI" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "aJ" = (
 /obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/mainship/mono,
@@ -6659,6 +6665,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"um" = (
+/obj/structure/dropship_equipment/flare_launcher,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "un" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/weapon_room)
@@ -10804,6 +10816,12 @@
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"Gz" = (
+/obj/structure/dropship_equipment/flare_launcher,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "GA" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
@@ -13392,6 +13410,9 @@
 	dir = 5
 	},
 /obj/item/clothing/head/warning_cone,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "Nj" = (
@@ -14633,6 +14654,16 @@
 	dir = 1
 	},
 /area/mainship/medical/operating_room_two)
+"QF" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/obj/item/clothing/head/warning_cone,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "QG" = (
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship/cargo,
@@ -47228,7 +47259,7 @@ an
 an
 mj
 Ni
-ar
+aI
 ap
 ap
 ap
@@ -47484,8 +47515,8 @@ io
 cZ
 cc
 fm
+um
 jM
-ap
 ap
 ap
 ap
@@ -47741,8 +47772,8 @@ Ac
 kf
 EG
 gU
+gU
 Gl
-or
 or
 or
 or
@@ -47998,8 +48029,8 @@ io
 kU
 Fp
 Fp
+Gz
 jM
-ap
 ap
 ca
 bw
@@ -48255,8 +48286,8 @@ Cv
 bw
 bw
 bw
-pV
-ap
+QF
+kp
 ap
 jM
 ap

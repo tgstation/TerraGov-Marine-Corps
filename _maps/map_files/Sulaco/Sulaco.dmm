@@ -11935,6 +11935,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/dropship_equipment/flare_launcher,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "dLZ" = (
@@ -13787,6 +13788,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
+"gDd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/dropship_equipment/flare_launcher,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "gEE" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
@@ -66698,7 +66704,7 @@ bFa
 bFa
 kOr
 kOr
-jYO
+gDd
 dLR
 aUL
 tpA

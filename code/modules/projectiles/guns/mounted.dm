@@ -84,9 +84,12 @@
 	)
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
+//-------------------------------------------------------
+//AGL-15 mounted automatic grenade launcher
+
 /obj/item/weapon/gun/aglnest
 	name = "\improper AGL-15 mounted automatic grenade launcher"
-	desc = "The AGL-15 mounted automatic grenade launcher, mounted upon a small reinforced post with sandbags to provide a small grenade launcher nest for all your defense purpose needs."
+	desc = "The AGL-15 mounted automatic grenade launcher is a grenade launcher that fires 40mm grenades that will rip through xeno hordes, it has a rather low ammo count though."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -126,10 +129,12 @@
 	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
+//-------------------------------------------------------
+//ATR-22 mounted heavy dualcannon
+
 /obj/item/weapon/gun/dualcannon
 	name = "\improper ATR-22 mounted heavy dualcannon"
-	desc = "The ATR-22 mounted heavy dualcannon, mounted upon a small reinforced post with sandbags to provide a small dualcannon nest for all your defense purpose needs."
-
+	desc = "The ATR-22 mounted heavy dualcannon is a double barrel 20mm autocannon usually seen fitted in a TAV it shreds through armor and walls causing heavy sunder but is rather lacking in damage against xenomorph targets."
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
@@ -138,7 +143,7 @@
 	fire_sound = 'sound/weapons/guns/fire/autocannon_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/autocannon
+	default_ammo_type = /obj/item/ammo_magazine/dualcannon
 
 	scatter = 10
 	deployed_scatter_change = -10
@@ -166,6 +171,102 @@
 
 	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+
+//-------------------------------------------------------
+//TE-9001 mounted heavy laser
+
+/obj/item/weapon/gun/heavylaser
+	name = "\improper TE-9001 mounted heavy laser"
+	desc = "The TE-9001 mounted heavy laser is a non-IFF heavy laser that is powerful enough to start a sizeable fire on its impact, this weapon is exceptional at area denial."
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "heavylaser"
+
+	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+
+	default_ammo_type = /obj/item/ammo_magazine/heavylaser
+
+	scatter = 10
+	deployed_scatter_change = -10
+	fire_delay = 0.7 SECONDS
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_time = 3 SECONDS
+
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/tl102/nest,
+	)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102/nest,
+	)
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/heavylaser
+	)
+
+	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
+	deployed_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 200
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+
+//-------------------------------------------------------
+//RR-15 mounted heavy recoilless rifle
+
+/obj/item/weapon/gun/heavyrr
+	name = "\improper RR-15 mounted heavy recoilless rifle"
+	desc = "The RR-15 mounted recoilless rifle is a non-IFF, modernized version of the L6 Wombat using 75mm instead reintroduced due to the rather close quarter nature of combat against xenomorphs, this thing will kill mostly anything on its way"
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "heavyrr"
+
+	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
+	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+
+	default_ammo_type = /obj/item/ammo_magazine/heavyrr
+	max_shells = 1 //codex
+	caliber = CALIBER_75MM // codex
+
+	scatter = 10
+	deployed_scatter_change = -10
+	windup_delay = 1 SECONDS
+	fire_delay = 3 SECONDS
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_time = 3 SECONDS
+
+	attachable_allowed = list(
+		/obj/item/attachable/scope/unremovable/tl102/nest,
+	)
+
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl102/nest,
+	)
+
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/heavyrr
+	)
+
+	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
+	deployed_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 200
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death

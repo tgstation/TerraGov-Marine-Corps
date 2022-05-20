@@ -13559,6 +13559,10 @@
 	dir = 1
 	},
 /area/mainship/engineering/engineering_workshop)
+"QR" = (
+/obj/structure/dropship_equipment/flare_launcher,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "QS" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
@@ -22932,8 +22936,8 @@ Hq
 VC
 aW
 VC
-VC
-VC
+QR
+QR
 VC
 aW
 VC
