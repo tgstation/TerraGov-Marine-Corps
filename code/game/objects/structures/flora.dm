@@ -210,6 +210,18 @@
 	. = ..()
 	icon_state = "snowgrassall[rand(1, 3)]"
 
+//grayscale tall grass
+/obj/structure/flora/grass/tallgrass
+	name = "tall grass"
+	icon = 'icons/obj/flora/tallgrass.dmi'
+	icon_state = "tallgrass"
+	layer = TALL_GRASS_LAYER
+	opacity = TRUE
+
+/obj/structure/flora/grass/tallgrass/tallgrasscorner
+	name = "tall grass"
+	icon_state = "tallgrass_corner"
+
 //bushes
 /obj/structure/flora/bush
 	name = "bush"

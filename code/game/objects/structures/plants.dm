@@ -4,7 +4,7 @@
 
 /obj/structure/bush
 	name = "dense vegetation"
-	desc = "Pretty thick scrub, it'll take something sharp and a lot of determination to clear away."
+	desc = "Pretty thick scrub, doesn't look like it will slow you down."
 	icon = 'icons/obj/structures/jungle.dmi'
 	icon_state = "bush1"
 	density = FALSE
@@ -58,26 +58,6 @@
 	if(prob(bush_sound_prob))
 		var/sound = pick('sound/effects/vegetation_walk_0.ogg','sound/effects/vegetation_walk_1.ogg','sound/effects/vegetation_walk_2.ogg')
 		playsound(src.loc, sound, 25, 1)
-
-	if(!ishuman(L))
-		return
-	var/mob/living/carbon/human/H = L
-	var/stuck = rand(0,10)
-	switch(stuck)
-		if(0 to 4)
-			H.next_move_slowdown += rand(2,3)
-			if(prob(2))
-				to_chat(H, span_warning("Moving through [src] slows you down."))
-		if(5 to 7)
-			H.next_move_slowdown += rand(4,7)
-			if(prob(10))
-				to_chat(H, span_warning("It is very hard to move trough this [src]..."))
-		if(8 to 9)
-			H.next_move_slowdown += rand(8,11)
-			to_chat(H, span_warning("You got tangeled in [src]!"))
-		if(10)
-			H.next_move_slowdown += rand(12,20)
-			to_chat(H, span_warning("You got completely tangeled in [src]! Oh boy..."))
 
 /obj/structure/bush/attackby(obj/item/I, mob/user, params)
 	. = ..()

@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - bugfix: "delete a folder in TerraGov-Marine-Corps that contains a folder named TerraGov-Marine-Corps"

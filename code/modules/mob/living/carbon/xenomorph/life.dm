@@ -125,12 +125,12 @@
 		return
 
 	if(current_aura)
-		if(plasma_stored < 5)
+		if(plasma_stored < pheromone_cost)
 			use_plasma(plasma_stored)
 			current_aura = null
-			to_chat(src, span_warning("We have run out of plasma and stopped emitting pheromones."))
+			src.balloon_alert(src, "Stop emitting, no plasma")
 		else
-			use_plasma(5)
+			use_plasma(pheromone_cost)
 
 	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN))
 		hud_set_plasma()
@@ -165,55 +165,33 @@
 	if(on_fire) //Can't output pheromones if on fire
 		return
 
-	if(current_aura) //Plasma costs are already checked beforehand
-		var/phero_range = round(6 + xeno_caste.aura_strength * 2) //Don't need to do the distance math over and over for each xeno
-		if(isxenoqueen(src) && anchored) //stationary queen's pheromone apply around the observed xeno.
-			var/mob/living/carbon/xenomorph/queen/Q = src
-			if(Q.observed_xeno)
-				//The reason why we don't check the hive of observed_xeno is just in case the watched xeno isn't of the same hive for whatever reason
-				for(var/xenos in Q.hive.get_all_xenos())
-					var/mob/living/carbon/xenomorph/Z = xenos
-					if(get_dist(Q.observed_xeno, Z) <= phero_range && (Q.observed_xeno.z == Z.z) && !Z.on_fire) //We don't need to check to see if it's dead or if it's the same hive as the list we're pulling from only contain alive xenos of the same hive
-						switch(current_aura)
-							if("frenzy")
-								if(xeno_caste.aura_strength > Z.frenzy_new)
-									Z.frenzy_new = xeno_caste.aura_strength
-							if("warding")
-								if(xeno_caste.aura_strength > Z.warding_new)
-									Z.warding_new = xeno_caste.aura_strength
-							if("recovery")
-								if(xeno_caste.aura_strength > Z.recovery_new)
-									Z.recovery_new = xeno_caste.aura_strength
-
-		else
-			for(var/xenos in hive.get_all_xenos())
-				var/mob/living/carbon/xenomorph/Z = xenos
-				if(get_dist(src, Z) <= phero_range && (z == Z.z) && !Z.on_fire)
-					switch(current_aura)
-						if("frenzy")
-							if(xeno_caste.aura_strength > Z.frenzy_new)
-								Z.frenzy_new = xeno_caste.aura_strength
-						if("warding")
-							if(xeno_caste.aura_strength > Z.warding_new)
-								Z.warding_new = xeno_caste.aura_strength
-						if("recovery")
-							if(xeno_caste.aura_strength > Z.recovery_new)
-								Z.recovery_new = xeno_caste.aura_strength
-	if(leader_current_aura)
-		var/phero_range = round(6 + leader_aura_strength * 2)
-		for(var/xenos in hive.get_all_xenos())
-			var/mob/living/carbon/xenomorph/Z = xenos
-			if(get_dist(src, Z) <= phero_range && (z == Z.z) && !Z.on_fire)
-				switch(leader_current_aura)
-					if("frenzy")
-						if(leader_aura_strength > Z.frenzy_new)
-							Z.frenzy_new = leader_aura_strength
-					if("warding")
-						if(leader_aura_strength > Z.warding_new)
-							Z.warding_new = leader_aura_strength
-					if("recovery")
-						if(leader_aura_strength > Z.recovery_new)
-							Z.recovery_new = leader_aura_strength
+	var/self_range = round(6 + xeno_caste.aura_strength * 2) //Range of pheros emitted by self selected pheromones
+	var/lead_range = round(6 + leader_aura_strength * 2) //Range of pheros granted by queen leadership
+	for(var/mob/living/carbon/xenomorph/xeno AS in hive.get_all_xenos())
+		if(z != xeno.z || xeno.on_fire)
+			continue
+		if(current_aura && get_dist(src, xeno) <= self_range)
+			switch(current_aura)
+				if(FRENZY)
+					if(xeno_caste.aura_strength > xeno.frenzy_new)
+						xeno.frenzy_new = xeno_caste.aura_strength
+				if(WARDING)
+					if(xeno_caste.aura_strength > xeno.warding_new)
+						xeno.warding_new = xeno_caste.aura_strength
+				if(RECOVERY)
+					if(xeno_caste.aura_strength > xeno.recovery_new)
+						xeno.recovery_new = xeno_caste.aura_strength
+		if(leader_current_aura && get_dist(src, xeno) <= lead_range)
+			switch(leader_current_aura)
+				if(FRENZY)
+					if(leader_aura_strength > xeno.frenzy_new)
+						xeno.frenzy_new = leader_aura_strength
+				if(WARDING)
+					if(leader_aura_strength > xeno.warding_new)
+						xeno.warding_new = leader_aura_strength
+				if(RECOVERY)
+					if(leader_aura_strength > xeno.recovery_new)
+						xeno.recovery_new = leader_aura_strength
 
 /mob/living/carbon/xenomorph/proc/handle_aura_receiver()
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
