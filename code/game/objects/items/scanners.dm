@@ -230,7 +230,7 @@ REAGENT SCANNER
 	else if (patient.getBrainLoss() >= 60)
 		data["brain_damage"] = "Severe brain damage detected. Subject likely to have intellectual disabilities."
 	else if (patient.getBrainLoss() >= 10)
-		data["brain_damage"] = "Significant brain damage</b> detected. Subject may have had a concussion."
+		data["brain_damage"] = "<b>Significant brain damage</b> detected. Subject may have had a concussion."
 
 	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
 		if(!patient.key)
