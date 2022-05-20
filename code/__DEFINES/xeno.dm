@@ -9,6 +9,11 @@
 #define RESTING_WEED "resting weed sac"
 #define AUTOMATIC_WEEDING "toggle automatic weeding"
 
+//Pheromone defines
+#define RECOVERY "Recovery"
+#define WARDING "Warding"
+#define FRENZY "Frenzy"
+
 #define XENO_TURRET_ACID_ICONSTATE "acid_turret"
 #define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
 
@@ -56,6 +61,13 @@ GLOBAL_LIST_INIT(weed_images_list,  list(
 		WEED = image('icons/mob/actions.dmi', icon_state = WEED),
 		STICKY_WEED = image('icons/mob/actions.dmi', icon_state = STICKY_WEED),
 		RESTING_WEED = image('icons/mob/actions.dmi', icon_state = RESTING_WEED),
+		))
+
+//List of pheromone images
+GLOBAL_LIST_INIT(pheromone_images_list, list(
+		RECOVERY = image('icons/mob/actions.dmi', icon_state = RECOVERY),
+		WARDING = image('icons/mob/actions.dmi', icon_state = WARDING),
+		FRENZY = image('icons/mob/actions.dmi', icon_state = FRENZY),
 		))
 
 //List of Defiler toxin types
