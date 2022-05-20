@@ -12792,6 +12792,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/researchcomp,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -21136,6 +21137,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/security)
+"rgO" = (
+/obj/vehicle/unmanned/droid,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "rgW" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable,
@@ -21832,6 +21837,11 @@
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
+"sbM" = (
+/obj/structure/largecrate/random,
+/obj/item/uav_turret/droid,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "sbP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -23880,6 +23890,10 @@
 	},
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
+"uGx" = (
+/obj/vehicle/unmanned/droid/scout,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "uHR" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
@@ -23899,6 +23913,7 @@
 /area/sulaco/hangar/droppod)
 "uIX" = (
 /obj/structure/cable,
+/obj/machinery/researchcomp,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -68755,7 +68770,7 @@ hSa
 lEr
 bYM
 aXf
-aWh
+jaQ
 aWh
 aWh
 aVG
@@ -69529,7 +69544,7 @@ kxY
 aWh
 aWh
 mPZ
-jaQ
+sbM
 qTV
 aXO
 kjw
@@ -69786,7 +69801,7 @@ aVG
 aWh
 aWh
 aWh
-jaQ
+uGx
 qTV
 dSG
 gHY
@@ -70043,7 +70058,7 @@ bYM
 aXY
 aWh
 aWh
-aWh
+rgO
 qTV
 nir
 eLA
