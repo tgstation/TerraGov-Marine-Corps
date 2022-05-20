@@ -422,7 +422,7 @@
 	aim_slowdown = 1 //Can aim without slowdown
 
 	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.7 //moving and akimbo yield low acc
+	accuracy_mult_unwielded = 0.85 //moving and akimbo yield lower acc
 	scatter = 0
 	scatter_unwielded = 6
 
