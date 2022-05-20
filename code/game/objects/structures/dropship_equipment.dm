@@ -668,7 +668,6 @@
 	equip_category = DROPSHIP_ELECTRONICS
 
 /obj/structure/dropship_equipment/electronics/spotlights
-	equip_category = DROPSHIP_ELECTRONICS
 	name = "spotlight"
 	icon_state = "spotlights"
 	desc = "A set of highpowered spotlights to illuminate large areas. Fits on electronics attach points of dropships. Moving this will require a powerloader."
