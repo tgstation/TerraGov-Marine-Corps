@@ -497,6 +497,12 @@
 		deployed_mg.loc = src
 		icon_state = "mg_system"
 
+/obj/structure/dropship_equipment/mg_holder/Destroy()
+	if(deployed_mg)
+		QDEL_NULL(deployed_mg)
+	return ..()
+
+
 /obj/structure/dropship_equipment/gl_holder
 	name = "grenade launcher deployment system"
 	desc = "A box that deploys a modified AGL-15 crewserved grenade launcher. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
@@ -526,6 +532,11 @@
 	else
 		deployed_gl.loc = src
 		icon_state = "gl_system"
+
+/obj/structure/dropship_equipment/gl_holder/Destroy()
+	if(deployed_gl)
+		QDEL_NULL(deployed_gl)
+	return ..()
 
 /obj/structure/dropship_equipment/dualcannon_holder
 	name = "dualcannon deployment system"
@@ -557,6 +568,11 @@
 		deployed_dualcannon.loc = src
 		icon_state = "ac_system"
 
+/obj/structure/dropship_equipment/dualcannon_holder/Destroy()
+	if(deployed_dualcannon)
+		QDEL_NULL(deployed_dualcannon)
+	return ..()
+
 /obj/structure/dropship_equipment/heavylaser_holder
 	name = "heavy laser deployment system"
 	desc = "A box that deploys a modified TE-9001 crewserved heavylaser. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
@@ -569,8 +585,8 @@
 	. = ..()
 	if(deployed_heavylaser)
 		return
-	var/obj/item/weapon/gun/heavylaser/new_gun = new(src) //Creates the internal gun of the deployed_hl first.
-	deployed_heavylaser = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_hl. Therefore new_gun.loc = deployed_hl.
+	var/obj/item/weapon/gun/heavylaser/new_gun = new(src) //Creates the internal gun of the deployed_heavylaser first.
+	deployed_heavylaser = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavylaser. Therefore new_gun.loc = deployed_heavylaser.
 
 /obj/structure/dropship_equipment/heavylaser_holder/examine(mob/user)
 	. = ..()
@@ -586,6 +602,11 @@
 	else
 		deployed_heavylaser.loc = src
 		icon_state = "hl_system"
+
+/obj/structure/dropship_equipment/heavylaser_holder/Destroy()
+	if(deployed_heavylaser)
+		QDEL_NULL(deployed_heavylaser)
+	return ..()
 
 /obj/structure/dropship_equipment/heavyrr_holder
 	name = "heavy recoilless rifle deployment system"
@@ -616,6 +637,12 @@
 	else
 		deployed_heavyrr.loc = src
 		icon_state = "rr_system"
+
+/obj/structure/dropship_equipment/heavyrr_holder/Destroy()
+	if(deployed_heavyrr)
+		QDEL_NULL(deployed_heavyrr)
+	return ..()
+
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
 
 /obj/structure/dropship_equipment/fuel
