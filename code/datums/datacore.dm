@@ -193,9 +193,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	G.fields["m_stat"]		= "Stable"
 	G.fields["sex"]			= H.gender
 	G.fields["species"]		= H.get_species()
-	G.fields["home_system"]	= H.home_system
 	G.fields["citizenship"]	= H.citizenship
-	G.fields["faction"]		= H.personal_faction
 	G.fields["religion"]	= H.religion
 	G.fields["photo_front"]	= photo_front
 	G.fields["photo_side"]	= photo_side
@@ -268,9 +266,7 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	G.fields["p_stat"] = "Active"
 	G.fields["m_stat"] = "Stable"
 	G.fields["species"] = "Human"
-	G.fields["home_system"]	= "Unknown"
 	G.fields["citizenship"]	= "Unknown"
-	G.fields["faction"]		= "Unknown"
 	G.fields["religion"]	= "Unknown"
 	G.fields["photo_front"] = null
 	G.fields["photo_side"] = null
