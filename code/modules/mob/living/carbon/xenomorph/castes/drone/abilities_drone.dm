@@ -74,12 +74,13 @@
 
 /datum/action/xeno_action/sow/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	var/turf/T = get_turf(owner)
-	if(!(locate(/obj/effect/alien/weeds) in T))
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(!owner_xeno.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_warning("Only weeds are fertile enough for our plants!"))
 		return FALSE
 
+	var/turf/T = get_turf(owner)
 	if(!T.check_alien_construction(owner, silent))
 		return FALSE
 

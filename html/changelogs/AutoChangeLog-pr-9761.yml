@@ -1,7 +1,0 @@
-author: "novaepee, RipGrayson"
-delete-after: True
-changes: 
-  - rscadd: "port doors into Minerva, Theseus, and Pillar of Spring"
-  - rscdel: "some bad posters again"
-  - imageadd: "more door sprites from CM!"
-  - imageadd: "change brig door to reflect change, not that anyone cares about brig"

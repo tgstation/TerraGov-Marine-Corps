@@ -153,11 +153,6 @@
 							I.marine_buy_flags &= ~MARINE_CAN_BUY_R_POUCH
 						else
 							I.marine_buy_flags &= ~MARINE_CAN_BUY_L_POUCH
-					else if(bitf == (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2))
-						if(I.marine_buy_flags & MARINE_CAN_BUY_ATTACHMENT)
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT
-						else
-							I.marine_buy_flags &= ~MARINE_CAN_BUY_ATTACHMENT2
 					else
 						I.marine_buy_flags &= ~bitf
 				else
@@ -209,7 +204,6 @@
 		CAT_WEB = list(MARINE_CAN_BUY_WEBBING),
 		CAT_BEL = list(MARINE_CAN_BUY_BELT),
 		CAT_POU = list(MARINE_CAN_BUY_R_POUCH,MARINE_CAN_BUY_L_POUCH),
-		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
 		CAT_MOD = list(MARINE_CAN_BUY_MODULE),
 		CAT_ARMMOD = list(MARINE_CAN_BUY_ARMORMOD),
 		CAT_MAS = list(MARINE_CAN_BUY_MASK),
@@ -461,6 +455,7 @@
 		/obj/effect/essentials_set/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 		/obj/effect/essentials_set/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
+		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Arrowhead Energy Shield System", 0 , "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
@@ -498,12 +493,6 @@
 	desc = "An automated equipment rack hooked up to a colossal storage unit."
 	icon_state = "marinearmory"
 	use_points = TRUE
-	listed_products = list(
-		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical Grip", 0, "black"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red-dot sight", 0, "black"),
-		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil Compensator", 0, "black"),
-		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser Sight", 0, "black")
-	)
 
 /obj/machinery/marine_selector/gear/medic
 	name = "NEXUS Automated Medical Equipment Rack"
@@ -750,7 +739,6 @@
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
 		/obj/item/tool/solderingtool,
-		/obj/item/tool/pickaxe/plasmacutter,
 	)
 
 /obj/effect/essentials_set/white_dress

@@ -144,8 +144,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 		list("seed-greengrapes",        "greengrape"),
 		list("seed-peanut",             "peanut"),
 		list("seed-cabbage",            "cabbage"),
-		list("seed-shand",              "shand"),
-		list("seed-mtear",              "mtear"),
 		list("seed-banana",             "banana"),
 		list("seed-corn",               "corn"),
 		list("seed-potato",             "potato"),
@@ -1213,38 +1211,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	yield = 4
 	potency = 10
 	growth_stages = 1
-
-/datum/seed/shand
-	name = "shand"
-	seed_name = "S'randar's hand"
-	display_name = "S'randar's hand leaves"
-	packet_icon = "seed-shand"
-	products = list(/obj/item/stack/medical/heal_pack/gauze/tajaran)
-	plant_icon = "shand"
-	chems = list(/datum/reagent/medicine/bicaridine = list(0,10))
-
-	lifespan = 50
-	maturation = 3
-	production = 5
-	yield = 4
-	potency = 10
-	growth_stages = 3
-
-/datum/seed/mtear
-	name = "mtear"
-	seed_name = "Messa's tear"
-	display_name = "Messa's tear leaves"
-	packet_icon = "seed-mtear"
-	products = list(/obj/item/stack/medical/heal_pack/ointment/tajaran)
-	plant_icon = "mtear"
-	chems = list(/datum/reagent/consumable/honey = list(1,10), /datum/reagent/medicine/kelotane = list(3,5))
-
-	lifespan = 50
-	maturation = 3
-	production = 5
-	yield = 4
-	potency = 10
-	growth_stages = 3
 
 /datum/seed/banana
 	name = "banana"

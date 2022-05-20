@@ -45,6 +45,7 @@
 #define COOLDOWN_GAS_BREATH "cooldown_gas_breath"
 #define COOLDOWN_SIGNALLER_SEND "cooldown_signaller_send"
 #define COOLDOWN_BIKE_FUEL_MESSAGE "cooldown_bikee_fuel_message"
+#define COOLDOWN_WRAITH_PORTAL_TELEPORTED "cooldown_wraith_portal_teleported"
 
 //// COOLDOWN SYSTEMS
 /*

@@ -74,6 +74,14 @@
 	user.update_inv_belt()
 	user.update_inv_s_store()
 
+//Will only draw the specific holstered item, not ammo etc.
+/obj/item/storage/holster/do_quick_equip()
+	if(!holstered_item)
+		return FALSE
+	var/obj/item/W = holstered_item
+	remove_from_storage(W, user = src)
+	return W
+
 //backpack type holster items
 /obj/item/storage/holster/backholster
 	name = "backpack holster"
@@ -88,7 +96,6 @@
 	. = ..()
 	if (use_sound)
 		playsound(loc, use_sound, 15, 1, 6)
-	
 
 /obj/item/storage/holster/backholster/equipped(mob/user, slot)
 	if (slot == SLOT_BACK)
@@ -96,7 +103,6 @@
 		if(use_sound)
 			playsound(loc, use_sound, 15, 1, 6)
 	return ..()
-
 
 ///RR bag
 /obj/item/storage/holster/backholster/rpg
@@ -118,6 +124,15 @@
 		/obj/item/weapon/gun/launcher/rocket/recoillessrifle,
 	)
 	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') //robots have their own snowflake back sprites
+
+/obj/item/storage/holster/backholster/rpg/full/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless(src)
+	var/obj/item/new_item = new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 //one slot holsters
 
@@ -207,8 +222,8 @@
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 /obj/item/storage/holster/t35
-	name = "\improper L44 T-35 scabbard"
-	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
+	name = "\improper L44 SH-35 scabbard"
+	desc = "A large leather holster allowing the storage of an SH-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
 	icon_state = "t35_holster"
 	base_icon = "t35_holster"
 	holsterable_allowed = list(/obj/item/weapon/gun/shotgun/pump/t35)
@@ -237,8 +252,8 @@
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_item)
 
 /obj/item/storage/holster/t19
-	name = "\improper M276 pattern T-19 holster rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the T-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
+	name = "\improper M276 pattern MP-19 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the MP-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "t19_holster"
 	icon = 'icons/obj/clothing/belts.dmi'
 	base_icon = "t19_holster"

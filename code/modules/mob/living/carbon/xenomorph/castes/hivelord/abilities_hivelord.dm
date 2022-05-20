@@ -57,7 +57,7 @@
 	speed_activated = TRUE
 	if(!silent)
 		to_chat(owner, span_notice("We become one with the resin. We feel the urge to run!"))
-	if(locate(/obj/effect/alien/weeds) in walker.loc)
+	if(walker.loc_weeds_type)
 		speed_bonus_active = TRUE
 		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/resinwalk_on_moved)
@@ -81,7 +81,7 @@
 		to_chat(owner, span_warning("We feel dizzy as the world slows down."))
 		resinwalk_off(TRUE)
 		return
-	if(locate(/obj/effect/alien/weeds) in walker.loc)
+	if(walker.loc_weeds_type)
 		if(!speed_bonus_active)
 			speed_bonus_active = TRUE
 			walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
@@ -197,7 +197,8 @@
 			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
-	if(!(locate(/obj/effect/alien/weeds) in T))
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(!owner_xeno.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE

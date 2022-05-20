@@ -241,7 +241,7 @@
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 15,
 			/obj/item/stack/medical/heal_pack/ointment = -1,
 			/obj/item/stack/medical/heal_pack/gauze = -1,
-			/obj/item/stack/medical/splint = 15,
+			/obj/item/stack/medical/splint = -1,
 		),
 		"Misc" = list(
 			/obj/item/healthanalyzer = 15,
@@ -297,7 +297,7 @@
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 15,
 			/obj/item/stack/medical/heal_pack/ointment = -1,
 			/obj/item/stack/medical/heal_pack/gauze = -1,
-			/obj/item/stack/medical/splint = 15,
+			/obj/item/stack/medical/splint = -1,
 		),
 		"Misc" = list(
 			/obj/item/healthanalyzer = 15,
@@ -545,11 +545,9 @@
 		/obj/item/seeds/amanitamycelium = 2,
 		/obj/item/seeds/glowshroom = 2,
 		/obj/item/seeds/libertymycelium = 2,
-		/obj/item/seeds/mtearseed = 2,
 		/obj/item/seeds/nettleseed = 2,
 		/obj/item/seeds/reishimycelium = 2,
 		/obj/item/seeds/reishimycelium = 2,
-		/obj/item/seeds/shandseed = 2,
 		/obj/item/toy/waterflower = 1,
 	)
 

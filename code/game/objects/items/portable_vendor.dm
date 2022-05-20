@@ -221,15 +221,15 @@
 	req_role = /datum/job/terragov/squad/standard
 	listed_products = list(
 		list("MARINE KITS", 0, null, null, null),
-		list("Rifleman Kit (T-12 assault rifle, medium armor)", 1, /obj/item/storage/box/squadmarine/rifleman, "white", "Rifleman kit containing a T-12 assault rifle and magazines, two HE grenades, a flare pouch and medium armor. \n\
+		list("Rifleman Kit (AR-12 assault rifle, medium armor)", 1, /obj/item/storage/box/squadmarine/rifleman, "white", "Rifleman kit containing a AR-12 assault rifle and magazines, two HE grenades, a flare pouch and medium armor. \n\
 An all-round kit that does not specialize in anything, but shooting enemy combatants at any range. Has two grenades for flushing cover. Comes with a webbing for additional ammo."),
-		list("Pointman Kit (T-18 carbine, T-35 shotgun, light armor)", 1, /obj/item/storage/box/squadmarine/pointman, "white", "Pointman kit containing a T-18 carbine and magazines, a T-35 shotgun with buckshot shells as a backup, two HE grenades, a shotgun shell pouch and light armor. \n\
+		list("Pointman Kit (AR-18 carbine, SH-35 shotgun, light armor)", 1, /obj/item/storage/box/squadmarine/pointman, "white", "Pointman kit containing a AR-18 carbine and magazines, a SH-35 shotgun with buckshot shells as a backup, two HE grenades, a shotgun shell pouch and light armor. \n\
 A kit meant for rushing into the frontlines, using the carbine for swift target aquisition at medium ranges and a shotgun which is devastating a short ranges. Comes with a webbing for additional ammo."),
-		list("Automatic Rifleman Kit (T-42 light machinegun, heavy armor)", 1, /obj/item/storage/box/squadmarine/autorifleman, "white", "Rifleman kit containing a T-42 light machinegun, its attachments and magazines, a M4A3 sidearm with magazines, an explosive pouch and heavy armor and helmet. \n\
+		list("Automatic Rifleman Kit (MG-42 light machinegun, heavy armor)", 1, /obj/item/storage/box/squadmarine/autorifleman, "white", "Rifleman kit containing a MG-42 light machinegun, its attachments and magazines, a M4A3 sidearm with magazines, an explosive pouch and heavy armor and helmet. \n\
 A heavy kit containing a light machinegun, usful in surpressing fire against enemy combatants. Remove the pistol and magazines inside the satchel to compliment LMG magazines and full holster."),
-		list("Designated Marksman Kit (T-64 DMR, M43 lasgun, IS armor)", 1, /obj/item/storage/box/squadmarine/marksman, "white", "Marksman kit containing a T-64 DMR, its attachments and magazines, a M43 lasgun as a backup, a flare pouch and integrated storage armor. \n\
+		list("Designated Marksman Kit (BR-64 DMR, M43 lasgun, IS armor)", 1, /obj/item/storage/box/squadmarine/marksman, "white", "Marksman kit containing a BR-64 DMR, its attachments and magazines, a M43 lasgun as a backup, a flare pouch and integrated storage armor. \n\
 A marksman kit containing two rifles for area denial and overwatch. It also contains a lasgun for fierce engagements."),
-		list("Breacher Kit (T-90 submachinegun, light armor, heavy helmet)", 1, /obj/item/storage/box/squadmarine/breacher, "white", "Breacher kit containing a T-90 SMG, its attachment and magazines, a machete as a backup, an explosive pouch, heavy helmet and light armor. \n\
+		list("Breacher Kit (SMG-90 submachinegun, light armor, heavy helmet)", 1, /obj/item/storage/box/squadmarine/breacher, "white", "Breacher kit containing a SMG-90 SMG, its attachment and magazines, a machete as a backup, an explosive pouch, heavy helmet and light armor. \n\
 A breacher kit with the least firepower, has a high capacity SMG and a machete for self-defense. But can get through walls no problem.")
 	)
 
@@ -239,10 +239,10 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 	req_role = /datum/job/terragov/squad/engineer
 	listed_products = list(
 		list("MARINE WEAPONS", 0, null, null, null),
-		list("T-12 Assault Rifle", 1, /obj/item/storage/box/squadmarine/engineert12, "white", "A kit containing a T-12 assault rifle. Comes with a magnetic harness and a angled grip."),
-		list("T-18 Carbine", 1, /obj/item/storage/box/squadmarine/engineert18, "white", "A kit containing a T-18 carbine. Comes with a magnetic harness and a angled grip."),
-		list("T-90 Submachinegun", 1, /obj/item/storage/box/squadmarine/engineert90, "white", "A kit containing a T-90 SMG. Comes with a red dot sight. Contains a heavy helmet."),
-		list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/engineert35, "white", "A kit containing a T-35 shotgun. Comes with a magnetic harness, its respective stock and an angled grip. Contains a heavy helmet.")
+		list("AR-12 Assault Rifle", 1, /obj/item/storage/box/squadmarine/engineert12, "white", "A kit containing a AR-12 assault rifle. Comes with a magnetic harness and a angled grip."),
+		list("AR-18 Carbine", 1, /obj/item/storage/box/squadmarine/engineert18, "white", "A kit containing a AR-18 carbine. Comes with a magnetic harness and a angled grip."),
+		list("SMG-90 Submachinegun", 1, /obj/item/storage/box/squadmarine/engineert90, "white", "A kit containing a SMG-90 SMG. Comes with a red dot sight. Contains a heavy helmet."),
+		list("SH-35 Shotgun", 1, /obj/item/storage/box/squadmarine/engineert35, "white", "A kit containing a SH-35 shotgun. Comes with a magnetic harness, its respective stock and an angled grip. Contains a heavy helmet.")
 	)
 
 /obj/item/portable_vendor/marine/squadmarine/corpsman
@@ -251,8 +251,8 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 	req_role = /datum/job/terragov/squad/corpsman
 	listed_products = list(
 		list("MARINE WEAPONS", 0, null, null, null),
-		list("T-90 Submachinegun", 1, /obj/item/storage/box/squadmarine/corpsmant90, "white", "A kit containing a T-90 SMG. Comes with a red dot sight."),
-		list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/corpsmant35, "white", "A kit containing a T-35 shotgun. Comes with a magnetic harness, its respective stock and an angled grip.")
+		list("SMG-90 Submachinegun", 1, /obj/item/storage/box/squadmarine/corpsmant90, "white", "A kit containing a SMG-90 SMG. Comes with a red dot sight."),
+		list("SH-35 Shotgun", 1, /obj/item/storage/box/squadmarine/corpsmant35, "white", "A kit containing a SH-35 shotgun. Comes with a magnetic harness, its respective stock and an angled grip.")
 	)
 
 /obj/item/portable_vendor/marine/squadmarine/smartgunner
@@ -261,7 +261,7 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 	req_role = /datum/job/terragov/squad/smartgunner
 	listed_products = list(
 		list("MARINE WEAPONS", 0, null, null, null),
-		list("T-19 Machine Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnert19, "white", "A kit containing a T-19 machine pistol and ammo."),
+		list("MP-19 Machine Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnert19, "white", "A kit containing a MP-19 machine pistol and ammo."),
 		list("M4A3 Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnerm4a3, "white", "A kit containing a M4A3 pistol and ammo.")
 	)
 

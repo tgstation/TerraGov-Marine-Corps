@@ -2,7 +2,7 @@
 	name = "security camera"
 	desc = "It's used to monitor rooms."
 	icon = 'icons/obj/machines/monitors.dmi'
-	icon_state = "camera"
+	icon_state = "camera_icon"
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 10
@@ -23,6 +23,7 @@
 
 /obj/machinery/camera/Initialize(mapload, newDir)
 	. = ..()
+	icon_state = "camera"
 
 	if(newDir)
 		setDir(newDir)
@@ -390,3 +391,15 @@
 
 /obj/machinery/camera/autoname/lz_camera/update_icon()
 	return
+
+//Thunderdome cameras
+/obj/machinery/camera/autoname/thunderdome
+	name = "thunderdome camera"
+	network = list("thunder")
+	resistance_flags = RESIST_ALL
+
+//Special invisible cameras, to get even better angles without looking ugly
+/obj/machinery/camera/autoname/thunderdome/hidden
+
+/obj/machinery/camera/autoname/thunderdome/hidden/update_icon()
+	icon_state = "nothing"

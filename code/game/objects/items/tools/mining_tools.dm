@@ -99,12 +99,12 @@
 	var/cutting_sound = 'sound/items/welder2.ogg'
 	var/powered = FALSE
 	var/dirt_amt_per_dig = 5
-	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
+	var/obj/item/cell/rtg/large/cell //The plasma cutter cell is unremovable and recharges over time
 	tool_behaviour = TOOL_WELD_CUTTER
 
 /obj/item/tool/pickaxe/plasmacutter/Initialize()
 	. = ..()
-	cell = new /obj/item/cell/high()
+	cell = new /obj/item/cell/rtg/plasma_cutter()
 
 
 /obj/item/tool/pickaxe/plasmacutter/examine(mob/user)
@@ -145,10 +145,11 @@
 /obj/item/tool/pickaxe/plasmacutter/proc/fizzle_message(mob/user)
 	playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
 	if(!cell)
-		to_chat(user, span_warning("[src]'s has no battery installed!"))
+		balloon_alert(user, "No battery installed")
 	else if(!powered)
-		to_chat(user, span_warning("[src] is turned off!"))
+		balloon_alert(user, "Turned off")
 	else
+		balloon_alert(user, "Insufficient charge")
 		to_chat(user, span_warning("The plasma cutter has inadequate charge remaining! Replace or recharge the battery. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
 
 /obj/item/tool/pickaxe/plasmacutter/proc/start_cut(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string, no_string, SFX = TRUE)
@@ -164,10 +165,11 @@
 		spark_system.attach(source)
 		spark_system.start(source)
 	if(!no_string)
+		balloon_alert(user, "Cutting...")
 		if(custom_string)
-			to_chat(user, span_notice("[custom_string] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+			to_chat(user, span_notice(custom_string))
 		else
-			to_chat(user, span_notice("You start cutting apart the [name] with [src]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+			to_chat(user, span_notice("You start cutting apart the [name] with [src]."))
 	return TRUE
 
 /obj/item/tool/pickaxe/plasmacutter/proc/cut_apart(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string)
@@ -179,10 +181,11 @@
 	spark_system.attach(source)
 	spark_system.start(source)
 	use_charge(user, charge_amount, FALSE)
+	balloon_alert(user, "Charge Remaining: [cell.charge]/[cell.maxcharge]")
 	if(custom_string)
-		to_chat(user, span_notice("[custom_string]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		to_chat(user, span_notice(custom_string))
 	else
-		to_chat(user, span_notice("You cut apart the [name] with [src]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		to_chat(user, span_notice("You cut apart the [name] with [src]."))
 
 /obj/item/tool/pickaxe/plasmacutter/proc/debris(location, metal = 0, rods = 0, wood = 0, wires = 0, shards = 0, plasteel = 0)
 	if(metal)
@@ -203,7 +206,7 @@
 /obj/item/tool/pickaxe/plasmacutter/proc/use_charge(mob/user, amount = PLASMACUTTER_BASE_COST, mention_charge = TRUE)
 	cell.charge -= min(cell.charge, amount)
 	if(mention_charge)
-		to_chat(user, span_notice("<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
+		balloon_alert(user, "Charge Remaining: [cell.charge]/[cell.maxcharge]")
 	update_plasmacutter()
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
@@ -230,6 +233,7 @@
 			powered = FALSE
 			if(!silent)
 				playsound(loc, 'sound/weapons/saberoff.ogg', 25)
+				balloon_alert(user, "Insufficient charge")
 				to_chat(user, span_warning("The plasma cutter abruptly shuts down due to a lack of power!"))
 		force = 5
 		damtype = BRUTE
@@ -244,41 +248,7 @@
 		set_light_on(TRUE)
 
 
-/obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/cell))
-		if(!user.drop_held_item())
-			return
-
-		I.forceMove(src)
-		var/replace_install = "You replace the cell in [src]"
-		if(!cell)
-			replace_install = "You install a cell in [src]"
-		else
-			cell.update_icon()
-			user.put_in_hands(cell)
-		cell = I
-		to_chat(user, span_notice("[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b>"))
-		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 25, 1, 5)
-		update_plasmacutter()
-
-
-/obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/living/user)
-	if(user.get_inactive_held_item() != src)
-		return ..()
-	if(!cell)
-		return ..()
-	cell.update_icon()
-	user.put_in_active_hand(cell)
-	cell = null
-	playsound(user, 'sound/machines/click.ogg', 25, 1, 5)
-	to_chat(user, span_notice("You remove the cell from [src]."))
-	update_plasmacutter()
-
-
 /obj/item/tool/pickaxe/plasmacutter/attack(atom/M, mob/user)
-
 	if(!powered || (cell.charge < PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 		fizzle_message(user)
 	else
