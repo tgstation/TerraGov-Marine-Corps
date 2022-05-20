@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - qol: "Xeno construction selection can now be done through radial menu. Left click now opens radial selection (new). Right click cycles through constructions (old)."
