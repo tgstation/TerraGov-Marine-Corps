@@ -431,5 +431,3 @@
 	movement_acc_penalty_mult = 0.1
 	upper_akimbo_accuracy = 2.5
 	lower_akimbo_accuracy = 2
-
-	//placed_overlay_iconstate = "t90"
