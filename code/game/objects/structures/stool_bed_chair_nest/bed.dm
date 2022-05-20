@@ -32,7 +32,7 @@
 
 /obj/structure/bed/nometal
 	dropmetal = FALSE
-  
+	
 /obj/structure/bed/bunkbed
 	name = "bunk bed"
 	icon_state = "bunkbed"
