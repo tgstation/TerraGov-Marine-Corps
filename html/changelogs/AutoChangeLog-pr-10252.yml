@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - rscadd: "Queen hive message now displays on game map."
