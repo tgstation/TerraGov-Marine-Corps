@@ -101,7 +101,7 @@
 	///Minimum health threshold before the effect is deactivated
 	var/minimum_health
 	///If the target xeno was within range
-	var/was_within_range
+	var/was_within_range = FALSE
 
 /datum/status_effect/xeno_psychic_link/on_creation(mob/living/new_owner, set_duration, mob/living/carbon/target_mob, link_range, redirect_mod, minimum_health, scaling = FALSE)
 	owner = new_owner
