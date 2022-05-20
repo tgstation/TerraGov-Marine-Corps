@@ -80,7 +80,7 @@
 
 
 /obj/effect/alien/resin/sticky
-	name = "sticky resin"
+	name = STICKY_RESIN
 	desc = "A layer of disgusting sticky slime."
 	icon_state = "sticky"
 	density = FALSE
@@ -145,7 +145,7 @@
 
 //Resin Doors
 /obj/structure/mineral_door/resin
-	name = "resin door"
+	name = RESIN_DOOR
 	mineralType = "resin"
 	icon = 'icons/Xeno/Effects.dmi'
 	hardness = 1.5
@@ -154,8 +154,6 @@
 	smoothing_behavior = CARDINAL_SMOOTHING
 	smoothing_groups = SMOOTH_XENO_STRUCTURES
 	var/close_delay = 10 SECONDS
-	
-
 
 /obj/structure/mineral_door/resin/Initialize()
 	. = ..()
@@ -276,7 +274,6 @@
 		qdel(src)
 
 /obj/structure/mineral_door/resin/thick
-	name = "thick resin door"
 	max_integrity = 160
 	hardness = 2.0
 
