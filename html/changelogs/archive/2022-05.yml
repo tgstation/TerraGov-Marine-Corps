@@ -302,3 +302,6 @@
   - qol: updates harvester messages to runechat instead of chat
   - bugfix: select reagent button icon no longer disappears sometimes when re-equipping
       the weapon
+2022-05-20:
+  KornFlaks:
+  - qol: Defiler actions now have balloon alerts.

@@ -1,0 +1,9 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - rscadd: "Added a lot more Christian Denominations"
+  - rscadd: "Adherents of the Machine God added 01010000 01110010 01100001 01101001 01110011 01100101 00100000 01001111 01101101 01101110 01101001 01110011 01110011 01101001 01100001 01101000"
+  - rscadd: "Paganism"
+  - rscdel: "removed Wiccanism and Pagan(Wicca)"
+  - rscdel: "Removed unused lore preference variables alongside broken Corporates relations"
+  - bugfix: "Synthetic type button now actually works instead of making you Western"

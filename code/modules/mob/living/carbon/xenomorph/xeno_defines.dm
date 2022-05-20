@@ -122,10 +122,8 @@
 	var/acid_spray_structure_damage = 0
 
 	// *** Pheromones *** //
-	///The strength of our aura. Zero means we can't emit one
+	///The strength of our aura. Zero means we can't emit any.
 	var/aura_strength = 0
-	///The 'types' of pheremones a xenomorph caste can emit.
-	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
 
 	// *** Defiler Abilities *** //
 	var/list/available_reagents_define = list() //reagents available for select reagent
@@ -292,7 +290,10 @@
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 
-	var/current_aura = null //"frenzy", "warding", "recovery"
+	///"Frenzy", "Warding", "Recovery". Defined in __DEFINES/xeno.dm
+	var/current_aura = null
+	///Passive plasma cost per tick for enabled personal (not leadership) pheromones.
+	var/pheromone_cost = 5
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
 	var/recovery_aura = 0

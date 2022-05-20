@@ -29,8 +29,13 @@
 	var/accepts_bodybag = FALSE //Whether you can buckle bodybags to this bed
 	var/base_bed_icon //Used by beds that change sprite when something is buckled to them
 
+
 /obj/structure/bed/nometal
 	dropmetal = FALSE
+  
+/obj/structure/bed/bunkbed
+	name = "bunk bed"
+	icon_state = "bunkbed"
 
 /obj/structure/bed/update_icon_state()
 	if(!base_bed_icon)

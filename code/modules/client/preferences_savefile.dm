@@ -407,7 +407,6 @@
 
 	READ_FILE(S["citizenship"], citizenship)
 	READ_FILE(S["religion"], religion)
-	READ_FILE(S["nanotrasen_relation"], nanotrasen_relation)
 
 	READ_FILE(S["med_record"], med_record)
 	READ_FILE(S["sec_record"], sec_record)
@@ -465,7 +464,6 @@
 
 	citizenship		= sanitize_inlist(citizenship, CITIZENSHIP_CHOICES, initial(citizenship))
 	religion		= sanitize_inlist(religion, RELIGION_CHOICES, initial(religion))
-	nanotrasen_relation = sanitize_inlist(nanotrasen_relation, CORP_RELATIONS, initial(nanotrasen_relation))
 
 	med_record		= sanitize_text(med_record, initial(med_record))
 	sec_record		= sanitize_text(sec_record, initial(sec_record))
@@ -548,7 +546,6 @@
 
 	citizenship		= sanitize_inlist(citizenship, CITIZENSHIP_CHOICES, initial(citizenship))
 	religion		= sanitize_inlist(religion, RELIGION_CHOICES, initial(religion))
-	nanotrasen_relation = sanitize_inlist(nanotrasen_relation, CORP_RELATIONS, initial(nanotrasen_relation))
 
 	med_record		= sanitize_text(med_record, initial(med_record))
 	sec_record		= sanitize_text(sec_record, initial(sec_record))
@@ -603,7 +600,6 @@
 
 	WRITE_FILE(S["citizenship"], citizenship)
 	WRITE_FILE(S["religion"], religion)
-	WRITE_FILE(S["nanotrasen_relation"], nanotrasen_relation)
 
 	WRITE_FILE(S["med_record"], med_record)
 	WRITE_FILE(S["sec_record"], sec_record)
