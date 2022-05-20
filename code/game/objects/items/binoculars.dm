@@ -234,7 +234,7 @@
 			return
 		if(MODE_RAILGUN)
 			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))
-			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)
+			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 300 SECONDS) > world.time)
 				to_chat(user, "[icon2html(src, user)] [span_warning("The Rail Gun hasn't cooled down yet!")]")
 			else if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
@@ -248,7 +248,7 @@
 				to_chat(user, span_notice("TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE."))
 				while(laser)
 					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,user)
-					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+					if(!do_after(user, 3 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
 						QDEL_NULL(laser)
 						break
 		if(MODE_ORBITAL)
