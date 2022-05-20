@@ -359,11 +359,11 @@
 //Vector, based on KRISS vector 45ACP.
 /obj/item/weapon/gun/smg/vector
 	name = "\improper SMG-45 submachinegun"
-	desc = "The SMG-45 is the TerraGov Marine Corps depelopment to increase mobility of marines. It features delayed blowback system, heavily reducing recoil even with its high ROF. Uses extended .45 ACP magazines"
+	desc = "The SMG-45 is the TerraGov Marine Corps depelopment to increase mobility of marines. It features delayed blowback system, heavily reducing recoil even with its high ROF. A highly-customizable platform, it is reliable and versatile. Uses extended .45 ACP magazines"
 	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "v45"
-	item_state = "v45"
+	icon_state = "v46"
+	item_state = "v46"
 	caliber = CALIBER_45ACP //codex
 	max_shells = 25 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
