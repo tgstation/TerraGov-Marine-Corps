@@ -1445,7 +1445,7 @@ datum/ammo/bullet/revolver/tp44
 	explosion(T, 0, 4, 6, 7)
 
 /datum/ammo/rocket/heavyrr
-	name = "120mm round"
+	name = "75mm round"
 	icon_state = "heavyrr"
 	hud_state = "shell_he"
 	hud_state_empty = "shell_empty"
