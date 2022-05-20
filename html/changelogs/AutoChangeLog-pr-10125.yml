@@ -1,0 +1,8 @@
+author: "tyeagg"
+delete-after: True
+changes: 
+  - code_imp: "railgun targeting changed from pick to rand"
+  - balance: "increased railgun spread"
+  - balance: "changed railgun to be explosive"
+  - balance: "increased railgun cooldown to 5 minutes"
+  - balance: "reduced time it takes to fire and land railgun"
