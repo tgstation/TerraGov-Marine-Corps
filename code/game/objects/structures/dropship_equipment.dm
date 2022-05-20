@@ -642,7 +642,6 @@
 	if(deployed_heavyrr)
 		QDEL_NULL(deployed_heavyrr)
 	return ..()
-
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
 
 /obj/structure/dropship_equipment/fuel
