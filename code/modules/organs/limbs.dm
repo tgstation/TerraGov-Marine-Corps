@@ -798,7 +798,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/is_bandaged()
 	if(!(surgery_open_stage == 0))
 		return 1
-	return limb_wound_status & LIMB_WOUND_BANDAGED
+	return limb_wound_status & LIMB_WOUND_BANDAGED || !brute_dam
 
 /datum/limb/proc/disinfect()
 	if(limb_wound_status & LIMB_WOUND_DISINFECTED || (burn_dam < 20 && brute_dam < 20))
@@ -827,7 +827,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/is_salved()
 	if(!(surgery_open_stage == 0))
 		return 1
-	return limb_wound_status & LIMB_WOUND_SALVED
+	return limb_wound_status & LIMB_WOUND_SALVED || !burn_dam
 
 /datum/limb/proc/fracture()
 
