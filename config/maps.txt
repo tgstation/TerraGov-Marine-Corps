@@ -58,7 +58,6 @@ endmap
 
 map orion_outpost
 	maxplayers 40
->>>>>>> master
 endmap
 
 map som_base
