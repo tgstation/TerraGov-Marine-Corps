@@ -81,6 +81,9 @@
 			continue
 		. += length(xenos_by_tier[t])
 
+#define COUNT "count"
+#define UNIQUE "unique"
+
 ///Finds number of xenos per tier starting from larva (tier 0). Not including minions.
 /datum/hive_status/proc/get_xeno_number_per_tier()
 	. = new /list(xenos_by_tier.len - 1) // Removing minion tier.
@@ -93,7 +96,7 @@
 		if(t == XENO_TIER_MINION)
 			continue
 		//Find total number of xenos per tier.
-		LAZYADDASSOCSIMPLE(., text2num(t), list("total" = length(xenos_by_tier[t])))
+		LAZYADDASSOCSIMPLE(., text2num(t), list("Total" = length(xenos_by_tier[t])))
 
 /datum/hive_status/proc/get_remaining_slots()
 	LAZYSET(., XENO_TIER_TWO, tier2_xeno_limit - length(xenos_by_tier[XENO_TIER_TWO]))

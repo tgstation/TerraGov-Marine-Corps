@@ -17,31 +17,39 @@ const CasteCounts = (props, context) => {
   } = data;
 
   return (
-    <Flex
-      direction="column-reverse"
-      align="center"
-    >
-      {xeno_counts.map((counts, tier) => {
+    <Flex direction="column-reverse">
+      {xeno_counts.map((xeno, tier) => {
         const tier_str = (tier + 1).toString(); // Byond lists start at 1.
         return (
-          <Flex.Item
-            key={tier}
-            margin-bottom={tier !== 0 ? 2 : 0}
-          >
-            <Flex
-              direction="column"
-            >
-              <center>
-                <Flex.Item>
+          <Flex.Item mb={tier !== 0 ? 2 : 0}>
+            <Flex direction="column">
+              <Flex.Item mb={2}>
+                <center>
                   <h1 className="whiteTitle">Tier {tier}</h1>
-                </Flex.Item>
-                <i>
-                  {(tier == 2 || tier == 3) && (
-                    <div>{tier_slots[tier_str]} remaining slot{tier_slots[tier_str] !== 1 && "s"}</div>
-                  )}
-                  <div>{counts["total"]} sister{counts["total"] !== 1 && "s"}</div>
-                </i>
-              </center>
+                  <i>
+                    {(tier === 2 || tier === 3) && (
+                      <div>{tier_slots[tier_str]} remaining slot{tier_slots[tier_str] !== 1 && "s"}</div>
+                    )}
+                    <div>{xeno["Total"]} sister{xeno["Total"] !== 1 && "s"}</div>
+                  </i>
+                </center>
+              </Flex.Item>
+              <Flex.Item>
+                <center>
+                  <Table collapsing>
+                    <Table.Row header>
+                      {Object.keys(xeno).map((name) => (
+                        name !== "Total" && (<Table.Cell width={6} textAlign="center">{name}</Table.Cell>)
+                      ))}
+                    </Table.Row>
+                    <Table.Row>
+                      {Object.keys(xeno).map((name) => (
+                        name !== "Total" && (<Table.Cell width={6} textAlign="center">{xeno[name]}</Table.Cell>)
+                      ))}
+                    </Table.Row>
+                  </Table>
+                </center>
+              </Flex.Item>
             </Flex>
           </Flex.Item>
         );
@@ -58,8 +66,8 @@ export const HiveStatus = (props, context) => {
     <Window
       title={hive_name + " Hive Status"}
       resizable
-      width={400}
-      height={750}
+      width={700}
+      height={800}
     >
       <Window.Content scrollable>
         <Collapsible
