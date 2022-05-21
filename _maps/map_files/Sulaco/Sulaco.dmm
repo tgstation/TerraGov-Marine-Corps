@@ -11935,6 +11935,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/dropship_equipment/flare_launcher,
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "dLZ" = (
@@ -17627,6 +17629,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
+"mcm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/dropship_equipment/flare_launcher,
+/obj/effect/decal/warning_stripes,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "mcW" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
@@ -25895,6 +25903,7 @@
 /area/sulaco/engineering/atmos)
 "xCr" = (
 /obj/structure/dropship_equipment/sentry_holder,
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "xCs" = (
@@ -26229,6 +26238,7 @@
 "yfI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/dropship_equipment/sentry_holder,
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "yfM" = (
@@ -65417,7 +65427,7 @@ pWS
 ykL
 gwt
 pWS
-uJg
+pWS
 oLM
 ujq
 aZw
@@ -65670,7 +65680,7 @@ aPF
 aPF
 aPF
 kOr
-pWS
+uJg
 pWS
 sFd
 pWS
@@ -66698,7 +66708,7 @@ bFa
 bFa
 kOr
 kOr
-jYO
+mcm
 dLR
 aUL
 tpA

@@ -1760,6 +1760,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"fv" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
+	},
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "fw" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -8450,6 +8456,12 @@
 /obj/structure/closet/radiation,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/lower_engineering)
+"zA" = (
+/obj/structure/dropship_equipment/flare_launcher,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "zB" = (
 /obj/docking_port/stationary/marine_dropship/hangar/one,
 /obj/docking_port/stationary/marine_dropship/crash_target,
@@ -10112,6 +10124,13 @@
 	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/grunt_rnr)
+"Eo" = (
+/obj/item/clothing/head/warning_cone,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "Ep" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -13420,10 +13439,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
 "Ni" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
 /obj/item/clothing/head/warning_cone,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "Nj" = (
@@ -15564,6 +15583,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"Tt" = (
+/obj/structure/dropship_equipment/flare_launcher,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "Tu" = (
 /obj/structure/orbital_cannon,
 /obj/machinery/light/small{
@@ -47300,7 +47325,7 @@ an
 an
 mj
 Ni
-ar
+fv
 ap
 ap
 ap
@@ -47556,8 +47581,8 @@ io
 cZ
 fm
 fm
+Tt
 jM
-ap
 ap
 ap
 ap
@@ -47813,8 +47838,8 @@ Ac
 kf
 EG
 gU
+gU
 Gl
-or
 or
 or
 or
@@ -48070,8 +48095,8 @@ io
 kU
 Fp
 Fp
+zA
 jM
-ap
 ap
 ca
 bw
@@ -48327,8 +48352,8 @@ Cv
 bw
 bw
 bw
-pV
-ap
+Eo
+kp
 ap
 jM
 ap
