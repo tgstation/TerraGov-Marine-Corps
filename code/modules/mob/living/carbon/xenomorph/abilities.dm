@@ -1272,17 +1272,20 @@
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
 
-/////////////////////////////////
-// blessing Menu
-/////////////////////////////////
+// ***************************************
+// Hive Store / Blessing Menu
+// ***************************************
 /datum/action/xeno_action/blessing_menu
 	name = "Mothers Blessings"
 	action_icon_state = "hivestore"
 	mechanics_text = "Ask the Queen Mother for blessings for your hive in exchange for psychic energy."
 	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
-	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY
+	use_state_flags = XACT_USE_LYING
+	cooldown_timer = 10 SECONDS
 
 /datum/action/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.hive.interact(X)
+	//X.hive.upgrades.interact(X)
+	//var/output = X.hive.upgrades == null ? "True" : "False"
+	log_admin("HELLO WORLD")
 	return succeed_activate()

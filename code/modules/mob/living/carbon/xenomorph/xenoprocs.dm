@@ -197,7 +197,7 @@
 ///returns TRUE if we are permitted to evo to the next case FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	if(upgrade == XENO_UPGRADE_THREE)
-		return hive.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
+		return hive.upgrades.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
