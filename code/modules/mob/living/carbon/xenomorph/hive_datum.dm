@@ -28,7 +28,7 @@
 	var/king_present = 0
 
 	///Reference to upgrades available and purchased by this hive.
-	var/datum/hive_defcon/upgrades = new /datum/hive_defcon()
+	var/datum/hive_defcon/upgrades = new
 
 // ***************************************
 // *********** Init

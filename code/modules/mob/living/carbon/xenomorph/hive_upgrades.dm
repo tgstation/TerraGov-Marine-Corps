@@ -12,6 +12,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 ))
 
 /datum/hive_defcon //Defcon is back baby. What do you mean this is the wrong game.
+	interaction_flags = INTERACT_UI_INTERACT
 	///Flat list of upgrades we can buy
 	var/list/buyable_upgrades = list()
 	///Assocative list name = upgraderef

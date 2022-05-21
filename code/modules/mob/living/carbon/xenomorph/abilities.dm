@@ -1285,7 +1285,5 @@
 
 /datum/action/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	//X.hive.upgrades.interact(X)
-	//var/output = X.hive.upgrades == null ? "True" : "False"
-	log_admin("HELLO WORLD")
+	X.hive.upgrades.interact(X)
 	return succeed_activate()
