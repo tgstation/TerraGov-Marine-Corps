@@ -2578,22 +2578,26 @@ datum/ammo/bullet/revolver/tp44
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME
 	armor_type = "fire"
-	max_range = 6
-	damage = 50
+	max_range = 7
+	damage = 0
 	bullet_color = LIGHT_COLOR_FIRE
 	var/fire_color = "red"
 	var/burnlevel = 24
 	var/burntime = 17
-	var/fire_delay = 20
+
+/datum/ammo/flamethrower/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	T.ignite(burntime, burnlevel, fire_color, burnlevel)
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M,obj/projectile/P)
-	drop_flame(get_turf(P))
+	drop_flame(get_turf(M))
 
 /datum/ammo/flamethrower/on_hit_obj(obj/O,obj/projectile/P)
-	drop_flame(get_turf(P))
+	drop_flame(get_turf(O))
 
 /datum/ammo/flamethrower/on_hit_turf(turf/T,obj/projectile/P)
-	drop_flame(get_turf(P))
+	drop_flame(get_turf(T))
 
 /datum/ammo/flamethrower/do_at_max_range(obj/projectile/P)
 	drop_flame(get_turf(P))
@@ -2606,11 +2610,10 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
 	hud_state = "flame_blue"
-	max_range = 6
+	max_range = 7
 	fire_color = "blue"
 	burnlevel = 36
 	burntime = 40
-	fire_delay = 20
 	bullet_color = COLOR_NAVY
 
 /datum/ammo/water

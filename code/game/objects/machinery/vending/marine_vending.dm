@@ -139,6 +139,7 @@
 			/obj/item/attachable/stock/t35stock = -1,
 			/obj/item/attachable/flamer_nozzle = -1,
 			/obj/item/attachable/flamer_nozzle/wide = -1,
+			/obj/item/attachable/flamer_nozzle/long = -1,
 			/obj/item/weapon/gun/shotgun/combat/masterkey = -1,
 			/obj/item/weapon/gun/flamer/mini_flamer = -1,
 			/obj/item/ammo_magazine/flamer_tank/mini = -1,
