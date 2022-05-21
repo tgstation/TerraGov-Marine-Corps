@@ -458,17 +458,15 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 
 /mob/living/carbon/human/species/robot/handle_regular_hud_updates()
 	. = ..()
-	clear_fullscreen("crit")
-	clear_fullscreen("oxy")
-	clear_fullscreen("brute")
 	if(health <= 0 && health > -50)
-		overlay_fullscreen("test", /obj/screen/fullscreen/bloodlust)
+		clear_fullscreen("robotlow")
+		overlay_fullscreen("robothalf", /obj/screen/fullscreen/robothalf)
 	else if(health <= -50)
-		clear_fullscreen("test")
-		overlay_fullscreen("test2", /obj/screen/fullscreen/machine)
+		clear_fullscreen("robothalf")
+		overlay_fullscreen("robotlow", /obj/screen/fullscreen/robotlow)
 	else
-		clear_fullscreen("test")
-		clear_fullscreen("test2")
+		clear_fullscreen("robothalf")
+		clear_fullscreen("robotlow")
 
 
 /datum/species/synthetic
