@@ -1,20 +1,18 @@
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { classes } from 'common/react';
-import { Input, Button, Flex, Divider, Collapsible, Icon, NumberInput, Table, ProgressBar } from '../components';
+import { Button, Flex, Divider, Collapsible, Icon, Table, ProgressBar } from '../components';
 
 /**
  * General: Psy points - number of xenos, pooled larva, number of minions
  *    Progress bars: Next larva generated. Queen death timer. Hivemind death timer. Silo collapse timer.
  * TODO: Generate hive tier pyramid dynamically from caste type list.
  */
-const CasteCounts = (props, context) => {
+const CasteCounts = (_props, context) => {
   const { data } = useBackend(context);
   const {
     xeno_counts,
     is_unique,
-    tier_slots,
-    user_nicks
+    tier_slots
   } = data;
 
   return (
@@ -31,7 +29,7 @@ const CasteCounts = (props, context) => {
                     {(tier === 2 || tier === 3) && (
                       <div>{tier_slots[tier_str]} remaining slot{tier_slots[tier_str] !== 1 && "s"}</div>
                     )}
-                    <div>{xeno["Total"]} sister{xeno["Total"] !== 1 && "s"}</div>
+                    <div>{xeno.total} sister{xeno.total !== 1 && "s"}</div>
                   </i>
                 </center>
               </Flex.Item>
@@ -40,12 +38,12 @@ const CasteCounts = (props, context) => {
                   <Table collapsing>
                     <Table.Row header>
                       {Object.keys(xeno).map((name) => (
-                        name !== "Total" && (<Table.Cell width={6} textAlign="center">{name}</Table.Cell>)
+                        name !== "total" && (<Table.Cell width={6} textAlign="center">{name}</Table.Cell>)
                       ))}
                     </Table.Row>
                     <Table.Row>
                       {Object.keys(xeno).map((name) => (
-                          name !== "Total" && (<Table.Cell width={6} textAlign="center">{
+                          name !== "total" && (<Table.Cell width={6} textAlign="center">{
                             !!is_unique[tier][name]
                               ? xeno[name] >= 1
                                 ? "Alive"
@@ -65,6 +63,63 @@ const CasteCounts = (props, context) => {
   );
 }
 
+const critical = {
+  color: "red"
+}
+
+const damaged = {
+  color: "orange"
+}
+
+const healthy = {
+  color: "green"
+}
+
+const XenoList = (props, context) => {
+  const { data } = useBackend(context);
+  const {
+    xeno_info
+  } = data;
+
+  return (
+    <Flex direction="column">
+    <Table>
+      <Table.Row header>
+        <Table.Cell width="50px" />
+        <Table.Cell width="30%" textAlign="center">Name</Table.Cell>
+        <Table.Cell textAlign="center">Location</Table.Cell>
+        <Table.Cell width="75px">Health</Table.Cell>
+        <Table.Cell width="75px">Plasma</Table.Cell>
+        <Table.Cell width="10%" />
+      </Table.Row>
+      {xeno_info.map((entry) => (
+        <Table.Row>
+          <Table.Cell />
+          <Table.Cell>{entry.name}</Table.Cell>
+          <Table.Cell>{entry.location}</Table.Cell>
+          <Table.Cell>{
+            entry.health <= 10 //Health actually ranges from -30 to 100.
+              ? <b style={critical}>{entry.health}%</b>
+              : entry.health <= 80
+                ? <span style={damaged}>{entry.health}%</span>
+                : <span style={healthy}>{entry.health}%</span>
+            }
+          </Table.Cell>
+          <Table.Cell>{
+            entry.plasma <= 33
+              ? <b style={critical}>{entry.plasma}%</b>
+              : entry.plasma <= 66
+                ? <span style={damaged}>{entry.plasma}%</span>
+                : <span style={healthy}>{entry.plasma}%</span>
+            }</Table.Cell>
+          <Table.Cell />
+        </Table.Row>
+      ))}
+    </Table>
+    </Flex>
+  );
+}
+
 export const HiveStatus = (props, context) => {
   const { data } = useBackend(context);
   const { hive_name } = data;
@@ -77,12 +132,14 @@ export const HiveStatus = (props, context) => {
       height={800}
     >
       <Window.Content scrollable>
-        <Collapsible
-          title = "Caste Population Pyramid"
-          open
-        >
+        <Collapsible title = "Caste Population Pyramid" open>
           <CasteCounts />
         </Collapsible>
+        <Divider />
+        <Collapsible title = "Xenomorph List" open>
+          <XenoList />
+        </Collapsible>
+        <Divider />
       </Window.Content>
     </Window>
   );

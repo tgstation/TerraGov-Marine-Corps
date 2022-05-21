@@ -66,24 +66,14 @@
 
 	.["xeno_counts"] = get_xeno_number_per_tier()
 	.["tier_slots"] = get_remaining_slots()
+	.["xeno_info"] = get_xeno_info()
+	//message_admins("TEST")
 
 /datum/hive_status/ui_static_data(mob/user)
 	. = ..()
 
 	.["hive_name"] = name
 	.["is_unique"] = get_unique_xenos()
-
-// ***************************************
-// *********** Helpers
-// ***************************************
-
-///Returns total number of xenos in the entire hive not counting minions.
-/datum/hive_status/proc/get_total_xeno_number() // unsafe for use by gamemode code
-	. = 0
-	for(var/t in xenos_by_tier)
-		if(t == XENO_TIER_MINION)
-			continue
-		. += length(xenos_by_tier[t])
 
 ///Finds number of xenos per tier starting from larva (tier 0). Not including minions.
 /datum/hive_status/proc/get_xeno_number_per_tier()
@@ -97,7 +87,7 @@
 		if(t == XENO_TIER_MINION)
 			continue
 		//Find total number of xenos per tier.
-		LAZYADDASSOCSIMPLE(., text2num(t), list("Total" = length(xenos_by_tier[t])))
+		LAZYADDASSOCSIMPLE(., text2num(t), list("total" = length(xenos_by_tier[t])))
 
 ///Returns boolean if the xeno caste intends to only have one xeno active. For now, only tier 4s are unique.
 /datum/hive_status/proc/get_unique_xenos()
@@ -107,9 +97,56 @@
 			continue
 		LAZYADDASSOCSIMPLE(., text2num(initial(T.tier)), list(initial(T.name) = initial(T.tier) == XENO_TIER_FOUR))
 
+/datum/hive_status/proc/get_xeno_info()
+	var/list/raw_xeno_info[get_total_xeno_number()]
+	var/counter = 1
+	for(var/mob/living/carbon/xenomorph/T AS in xenos_by_typepath)
+		if(initial(T.tier) == XENO_TIER_MINION)
+			continue
+		for(var/mob/living/carbon/xenomorph/X AS in xenos_by_typepath[T])
+			raw_xeno_info[counter++] += list(
+				"ref" = REF(X),
+				"name" = X.name,
+				"location" = get_xeno_location(X),
+				"health" = round((X.health / X.maxHealth) * 100, 1),
+				"plasma" = round((X.plasma_stored / X.xeno_caste.plasma_max) * 100, 1),
+				"tier" = X.tier
+			)
+
+	//Sorting by tier.
+	. = new /list(raw_xeno_info.len)
+	counter = 1
+	for(var/i = xenos_by_tier.len, i > 0, i--)
+		for(var/j = 1, j <= raw_xeno_info.len, j++)
+			var/X = raw_xeno_info[j]
+			if (i == text2num(X["tier"]))
+				X -= "tier" // Removing sorting variable.
+				.[counter++] = X
+
+/datum/hive_status/proc/get_xeno_location(mob/living/carbon/xenomorph/xeno)
+	. = "Unknown"
+	if(is_centcom_level(xeno.z))
+		return
+
+	var/area/A = get_area(xeno)
+	if(A)
+		. = A.name
+
 /datum/hive_status/proc/get_remaining_slots()
 	LAZYSET(., XENO_TIER_TWO, tier2_xeno_limit - length(xenos_by_tier[XENO_TIER_TWO]))
 	LAZYSET(., XENO_TIER_THREE, tier3_xeno_limit - length(xenos_by_tier[XENO_TIER_THREE]))
+
+// ***************************************
+// *********** Helpers
+// ***************************************
+
+///Returns total number of xenos in the entire hive not counting minions.
+/datum/hive_status/proc/get_total_xeno_number() // unsafe for use by gamemode code
+	. = 0
+	for(var/t in xenos_by_tier)
+		if(t == XENO_TIER_MINION)
+			continue
+		. += length(xenos_by_tier[t])
 
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
