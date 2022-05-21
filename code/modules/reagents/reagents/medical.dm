@@ -34,9 +34,7 @@
 
 /datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
-	if(metabolism & IS_VOX)
-		L.adjustToxLoss(REAGENTS_METABOLISM)
-	else if(iscarbon(L))
+	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.losebreath > 10)
 			C.set_Losebreath(10)
@@ -281,10 +279,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/dexalin/on_mob_life(mob/living/L,metabolism)
-	if(metabolism & IS_VOX)
-		L.adjustToxLoss(3*effect_str)
-	else
-		L.adjustOxyLoss(-3*effect_str)
+	L.adjustOxyLoss(-3*effect_str)
 	holder.remove_reagent("lexorin", effect_str)
 	return ..()
 
@@ -303,10 +298,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/dexalinplus/on_mob_life(mob/living/L,metabolism)
-	if(metabolism & IS_VOX)
-		L.adjustToxLoss(1.5*effect_str)
-	else
-		L.adjustOxyLoss(-L.getOxyLoss())
+	L.adjustOxyLoss(-L.getOxyLoss())
 	holder.remove_reagent("lexorin", effect_str)
 	return ..()
 
@@ -715,6 +707,12 @@
 
 /datum/reagent/medicine/bicaridine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(effect_str, BURN)
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/H = L
+	for(var/datum/limb/X in H.limbs)
+		for(var/datum/wound/internal_bleeding/W in X.wounds)
+			W.damage = max(0, W.damage - (0.2*effect_str))
 
 /datum/reagent/medicine/bicaridine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, 3*effect_str, 2*effect_str)
@@ -760,12 +758,8 @@
 		return ..()
 	var/mob/living/carbon/human/H = L
 	for(var/datum/limb/X in H.limbs)
-		for(var/datum/wound/W in X.wounds)
-			if(W.internal)
-				W.damage = max(0, W.damage - (effect_str))
-				X.update_damages()
-				if (X.update_icon())
-					X.owner.UpdateDamageIcon(1)
+		for(var/datum/wound/internal_bleeding/W in X.wounds)
+			W.damage = max(0, W.damage - (effect_str))
 	return ..()
 
 
@@ -796,12 +790,8 @@
 /datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
 	for(var/datum/limb/X in H.limbs)
-		for(var/datum/wound/W in X.wounds)
-			if(W.internal)
-				W.damage = max(0, W.damage - (2.5*effect_str))
-				X.update_damages()
-				if (X.update_icon())
-					X.owner.UpdateDamageIcon(1)
+		for(var/datum/wound/internal_bleeding/W in X.wounds)
+			W.damage = max(0, W.damage - (2.5*effect_str))
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY
 	L.adjustStaminaLoss(15*effect_str)
@@ -811,6 +801,12 @@
 /datum/reagent/medicine/quickclotplus/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1.5*effect_str, TOX)
 	L.blood_volume -= 4
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/H = L
+	for(var/datum/limb/X in H.limbs)
+		for(var/datum/wound/internal_bleeding/W in X.wounds)
+			W.damage = max(0, W.damage - (5*effect_str))
 
 /datum/reagent/medicine/quickclotplus/overdose_crit_process(mob/living/L, metabolism)
 	L.blood_volume -= 20

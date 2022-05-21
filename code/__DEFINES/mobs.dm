@@ -183,10 +183,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_ROBOT (1<<3)
 #define LIMB_SPLINTED (1<<4)
 #define LIMB_NECROTIZED (1<<5) //necrotizing limb, nerves are dead.
-#define LIMB_MUTATED (1<<6) //limb is deformed by mutations
-#define LIMB_AMPUTATED (1<<7) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
-#define LIMB_REPAIRED (1<<8) //we just repaired the bone, stops the gelling after setting
-#define LIMB_STABILIZED (1<<9) //certain suits will support a broken limb while worn such as the b18
+#define LIMB_AMPUTATED (1<<6) //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
+#define LIMB_REPAIRED (1<<7) //we just repaired the bone, stops the gelling after setting
+#define LIMB_STABILIZED (1<<8) //certain suits will support a broken limb while worn such as the b18
+
+//limb_wound_status
+#define LIMB_WOUND_BANDAGED (1<<0)
+#define LIMB_WOUND_SALVED (1<<1)
+#define LIMB_WOUND_DISINFECTED (1<<2)
+#define LIMB_WOUND_CLAMPED (1<<3)
 
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK 0
@@ -299,7 +304,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SUTURE_MIN_DURATION 80
 #define SUTURE_MAX_DURATION 90
 
-#define LIMB_PRINTING_TIME 550
+#define LIMB_PRINTING_TIME 30
 #define LIMB_METAL_AMOUNT 125
 
 //How long it takes for a human to become undefibbable
@@ -337,13 +342,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Some on_mob_life() procs check for alien races.
 #define IS_HUMAN (1<<0)
 #define IS_XENO (1<<1)
-#define IS_VOX (1<<2)
-#define IS_SKRELL (1<<3)
-#define IS_UNATHI (1<<4)
-#define IS_HORROR (1<<5)
-#define IS_MOTH (1<<6)
-#define IS_SECTOID (1<<7)
-#define IS_MONKEY (1<<8)
+#define IS_MOTH (1<<3)
+#define IS_SECTOID (1<<4)
+#define IS_MONKEY (1<<5)
 //=================================================
 
 //AFK status
@@ -463,9 +464,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SPIT_UPGRADE_BONUS(Xenomorph) (( max(0,Xenomorph.upgrade_as_number()) * 0.15 )) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speed.
 
 #define PLASMA_TRANSFER_AMOUNT 100
-
-#define XENO_LARVAL_AMOUNT_RECURRING 5
-#define XENO_LARVAL_CHANNEL_TIME 0.25 SECONDS
 
 #define XENO_NEURO_AMOUNT_RECURRING 5
 #define XENO_NEURO_CHANNEL_TIME 0.25 SECONDS
@@ -591,7 +589,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define GORGER_REJUVENATE_HEAL 0.05 //in %
 #define GORGER_REJUVENATE_THRESHOLD 0.10 //in %
 #define GORGER_PSYCHIC_LINK_CHANNEL 10 SECONDS
-#define GORGER_PSYCHIC_LINK_RANGE 10
+#define GORGER_PSYCHIC_LINK_RANGE 15
 #define GORGER_PSYCHIC_LINK_REDIRECT 0.5 //in %
 #define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.2 //in %
 #define GORGER_CARNAGE_HEAL 0.2
@@ -619,6 +617,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1
+#define AUTO_WEEDING_MIN_DIST 4 // How far the xeno must be from the last spot to auto weed
 
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE 0
@@ -653,19 +652,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD 120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
 
 //Wraith defines
-
-#define WRAITH_PLACE_WARP_BEACON_WINDUP 3 SECONDS
-#define WRAITH_PLACE_WARP_BEACON_FAIL_COOLDOWN_OVERRIDE 1 SECONDS //When we abort or fail to place a warp beacon, it goes on cooldown for awhile to prevent spam
-
-#define WRAITH_HYPERPOSITION_MIN_WINDUP 0.5 SECONDS
-#define WRAITH_HYPERPOSITION_MAX_WINDUP 5 SECONDS
-#define WRAITH_HYPERPOSITION_COOLDOWN_OVERRIDE 1 SECONDS //When we abort or fail to use hyperposition, it goes on cooldown to prevent spam
-
-#define WRAITH_PHASE_SHIFT_WINDUP 2 SECONDS
-#define WRAITH_PHASE_SHIFT_DURATION 10 SECONDS
-#define WRAITH_PHASE_SHIFT_COOLDOWN 20 SECONDS
-#define WRAITH_PHASE_SHIFT_DURATION_WARNING 0.7
-#define WRAITH_PHASE_SHIFT_ALPHA 128 //50% transparency
 
 #define WRAITH_BLINK_DRAG_NONFRIENDLY_MULTIPLIER 20 //The amount we multiply the cooldown by when we teleport while dragging a non-friendly target
 #define WRAITH_BLINK_DRAG_FRIENDLY_MULTIPLIER 4 //The amount we multiply the cooldown by when we teleport while dragging a friendly target

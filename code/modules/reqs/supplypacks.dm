@@ -145,7 +145,7 @@ OPERATIONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/cas_voucher
-	name = "100 dropship fabricator points"
+	name = "150 dropship fabricator points"
 	contains = list(/obj/item/dropship_points_voucher)
 	cost = 40
 	containertype = null
@@ -284,30 +284,40 @@ WEAPONS
 	cost = 40
 
 /datum/supply_packs/weapons/railgun_ammo
-	name = "Railgun round"
+	name = "Railgun armor piercing discarding sabot round"
 	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 3
+	cost = 2
+
+/datum/supply_packs/weapons/railgun_ammo/hvap
+	name = "Railgun high velocity armor piercing round"
+	contains = list(/obj/item/ammo_magazine/railgun/hvap)
+	cost = 2
+
+/datum/supply_packs/weapons/railgun_ammo/smart
+	name = "Railgun smart armor piercing round"
+	contains = list(/obj/item/ammo_magazine/railgun/smart)
+	cost = 2
 
 /datum/supply_packs/weapons/tx8
-	name = "SR-8 Scout Rifle"
+	name = "BR-8 Scout Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx8)
 	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_regular
-	name = "SR-8 scout magazine"
+	name = "BR-8 scout magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8)
 	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_impact
-	name = "SR-8 scout impact magazine"
+	name = "BR-8 scout impact magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/impact)
 	cost = 7
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_incendiary
-	name = "SR-8 scout incendiary magazine"
+	name = "Br-8 scout incendiary magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/incendiary)
 	cost = 7
 	available_against_xeno_only = TRUE
@@ -366,13 +376,13 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper
-	name = "GL-81 IFF Auto Sniper kit"
+	name = "SR-81 IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
 	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper_regular
-	name = "GL-81 IFF sniper magazine"
+	name = "SR-81 IFF sniper magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
 	cost = 3
 	available_against_xeno_only = TRUE
@@ -427,30 +437,24 @@ WEAPONS
 	cost = 7
 
 /datum/supply_packs/weapons/smartgun
-	name = "T-29 Smart Machinegun"
+	name = "SG-29 Smart Machinegun"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 40
 
 /datum/supply_packs/weapons/smartgun_ammo
-	name = "T-29 smartmachinegun ammo"
+	name = "SG-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 5
 
-/datum/supply_packs/weapons/smartrifle
-	name = "T-25 Smart Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
+/datum/supply_packs/weapons/smart_minigun
+	name = "SG-85 Microgun"
+	contains = list(/obj/item/weapon/gun/minigun/smart_minigun)
 	cost = 40
 
-/datum/supply_packs/weapons/smartrifle_ammo
-	name = "T-25 smartrifle magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
-	cost = 2
-
-/datum/supply_packs/weapons/smartrifle_pack
-	name = "T-25 smartrifle ammo box"
-	notes = "Contains a box with 200 rounds for a T-25 (MAGAZINES SOLD SEPERATELY)"
-	contains = list(/obj/item/ammo_magazine/packet/t25)
-	cost = 4
+/datum/supply_packs/weapons/smart_minigun_ammo
+	name = "SG-85 powerpack"
+	contains = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
+	cost = 10
 
 /datum/supply_packs/weapons/flamethrower
 	name = "FL-84 Flamethrower"
@@ -937,7 +941,7 @@ MEDICAL
 	name = "lemoline"
 	notes = "Contains 1 bottle of lemoline with 10 units."
 	contains = list(/obj/item/reagent_containers/glass/bottle/lemoline)
-	cost = 25
+	cost = 5
 
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
@@ -1470,19 +1474,19 @@ VEHICLES
 /datum/supply_packs/vehicles/uv_light_ammo
 	name = "Light UV ammo"
 	contains = list(/obj/item/ammo_magazine/box11x35mm)
-	cost = 10
+	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/uv_heavy_ammo
 	name = "Heavy UV ammo"
 	contains = list(/obj/item/ammo_magazine/box12x40mm)
-	cost = 10
+	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/vehicle_remote
 	name = "Vehicle remote"
 	contains = list(/obj/item/unmanned_vehicle_remote)
-	cost = 10
+	cost = 1
 	containertype = /obj/structure/closet/crate
 
 /*******************************************************************************
@@ -1574,12 +1578,12 @@ FACTORY
 	cost = 50
 
 /datum/supply_packs/factory/autosniper_magazine_refill
-	name = "GL-81 IFF Auto Sniper magazine assembly refill"
+	name = "SR-81 IFF Auto Sniper magazine assembly refill"
 	contains = list(/obj/item/factory_refill/auto_sniper_magazine_refill)
 	cost = 40
 
 /datum/supply_packs/factory/scout_rifle_magazine_refill
-	name = "SR-8 scout rifle magazine assembly refill"
+	name = "BR-8 scout rifle magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
 	cost = 50
 

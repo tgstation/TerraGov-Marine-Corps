@@ -241,7 +241,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("Frenzy pheromone strength:", msg_holder)
+		stat("[FRENZY] pheromone strength:", msg_holder)
 	if(warding_aura)
 		switch(warding_aura)
 			if(-INFINITY to 1.0)
@@ -254,7 +254,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("Warding pheromone strength:", msg_holder)
+		stat("[WARDING] pheromone strength:", msg_holder)
 	if(recovery_aura)
 		switch(recovery_aura)
 			if(-INFINITY to 1.0)
@@ -267,12 +267,10 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("Recovery pheromone strength:", msg_holder)
+		stat("[RECOVERY] pheromone strength:", msg_holder)
 
 	switch(hivenumber)
 		if(XENO_HIVE_NORMAL)
-			if(hive.hive_orders && hive.hive_orders != "")
-				stat("Hive Orders:", hive.hive_orders)
 			var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 			if(hivemind_countdown)
 				stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
@@ -688,3 +686,15 @@
 ///Handles empowered abilities, should return TRUE if the ability should be empowered. Empowerable should be FALSE if the ability cannot itself be empowered but has interactions with empowerable abilities
 /mob/living/carbon/xenomorph/proc/empower(empowerable = TRUE)
 	return FALSE
+
+///Handles icon updates when leadered/unleadered. Evolution.dm also uses this
+/mob/living/carbon/xenomorph/proc/update_leader_icon(makeleader = TRUE)
+	// Xenos with specialized icons (Queen, King, Shrike) do not get their icon changed
+	if(istype(xeno_caste, /datum/xeno_caste/queen) || istype(xeno_caste, /datum/xeno_caste/shrike) || istype(xeno_caste, /datum/xeno_caste/king))
+		return
+
+	SSminimaps.remove_marker(src)
+	if(makeleader)
+		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon, overlay_iconstates=list(xeno_caste.minimap_leadered_overlay))
+	else
+		SSminimaps.add_marker(src, z, MINIMAP_FLAG_XENO, xeno_caste.minimap_icon)

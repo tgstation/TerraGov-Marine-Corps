@@ -779,7 +779,6 @@
 /obj/item/seeds/lemonseed,
 /obj/item/seeds/libertymycelium,
 /obj/item/seeds/limeseed,
-/obj/item/seeds/mtearseed,
 /obj/item/seeds/nettleseed,
 /obj/item/seeds/orangeseed,
 /obj/item/seeds/peanutseed,
@@ -792,7 +791,6 @@
 /obj/item/seeds/pumpkinseed,
 /obj/item/seeds/reishimycelium,
 /obj/item/seeds/riceseed,
-/obj/item/seeds/shandseed,
 /obj/item/seeds/soyaseed,
 /obj/item/seeds/sugarcaneseed,
 /obj/item/seeds/sunflowerseed,
@@ -1089,8 +1087,7 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/tdome/tdomeobserve)
 "bme" = (
@@ -1847,9 +1844,8 @@
 /turf/open/floor/grimy,
 /area/centcom/valhalla/bridge)
 "ctH" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/bridge)
 "ctQ" = (
@@ -1869,9 +1865,8 @@
 /turf/open/floor/freezer,
 /area/centcom/valhalla/crew_quarters/toilet)
 "cuM" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/bridge)
 "cwe" = (
@@ -1987,9 +1982,8 @@
 	},
 /area/centcom/valhalla/bridge)
 "cBF" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/primary/aft)
 "cCa" = (
@@ -2073,7 +2067,6 @@
 /area/tdome/tdomeadmin)
 "cGi" = (
 /obj/effect/decal/cleanable/cobweb2,
-/obj/structure/closet/wardrobe/xenos,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "cGo" = (
@@ -2298,8 +2291,7 @@
 	},
 /obj/item/clothing/mask/cigarette/cigar,
 /obj/effect/ai_node,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/centcom/valhalla/bridge)
 "cYO" = (
@@ -2307,9 +2299,8 @@
 	dir = 8
 	},
 /obj/structure/sign/electricshock,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/bridge)
 "cYQ" = (
@@ -2493,8 +2484,7 @@
 /turf/open/floor/mainship/sterile/white,
 /area/centcom/valhalla/security/detectives_office)
 "dnY" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/centcom/valhalla/primary/aft)
 "dot" = (
@@ -2582,9 +2572,8 @@
 "drK" = (
 /obj/item/bedsheet/yellow,
 /obj/structure/bed,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/tdome/tdomeobserve)
 "drS" = (
@@ -3295,9 +3284,8 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/fore)
 "ean" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/tdome/tdomeobserve)
 "eap" = (
@@ -3789,9 +3777,8 @@
 	name = "Emergency NanoMed";
 	use_power = 0
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/captain)
 "eQd" = (
@@ -3805,18 +3792,16 @@
 /turf/open/floor/tile/lightred,
 /area/centcom/valhalla/port)
 "eQI" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/captain)
 "eRd" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp/green,
 /obj/item/toy/beach_ball/basketball,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/captain)
 "eRr" = (
@@ -4250,9 +4235,8 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/captain)
 "fyz" = (
@@ -4272,9 +4256,8 @@
 /obj/item/folder/blue,
 /obj/item/weapon/chainofcommand,
 /obj/item/tool/stamp/captain,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/captain)
 "fCn" = (
@@ -4690,7 +4673,6 @@
 /obj/machinery/firealarm{
 	dir = 1
 	},
-/obj/vehicle/unmanned/medium,
 /turf/open/floor/tile/brown,
 /area/centcom/valhalla/quartermaster/storage)
 "gbI" = (
@@ -4837,9 +4819,8 @@
 	},
 /obj/structure/table,
 /obj/machinery/computer/guestpass,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/captain)
 "gmH" = (
@@ -4864,25 +4845,22 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "god" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/bridge)
 "gox" = (
 /obj/machinery/status_display/ai{
 	pixel_y = -32
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/centcom/valhalla/crew_quarters/captain)
 "goF" = (
 /obj/machinery/computer/security/wooden_tv,
 /obj/structure/table,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/captain)
 "gpt" = (
@@ -5354,9 +5332,8 @@
 /turf/open/floor/wood,
 /area/centcom/valhalla/crew_quarters/heads/hop)
 "hbF" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/primary/aft)
 "hbV" = (
@@ -6093,9 +6070,8 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = 32
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/tdome/tdomeobserve)
 "hZF" = (
@@ -6187,9 +6163,8 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "ieI" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/primary/aft)
 "ieT" = (
@@ -8993,9 +8968,6 @@
 /obj/item/folder/white,
 /obj/item/storage/box/monkeycubes,
 /obj/item/storage/box/monkeycubes,
-/obj/item/storage/box/monkeycubes/farwacubes,
-/obj/item/storage/box/monkeycubes/neaeracubes,
-/obj/item/storage/box/monkeycubes/stokcubes,
 /obj/item/tweezers,
 /obj/item/tweezers,
 /turf/open/floor/mainship/sterile/side,
@@ -9489,9 +9461,8 @@
 	pixel_x = -9
 	},
 /obj/item/tool/pen,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/tdome/tdomeobserve)
 "mKz" = (
@@ -9535,9 +9506,8 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/hydroponics)
 "mMr" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/tdome/tdomeobserve)
 "mMK" = (
@@ -10017,7 +9987,6 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/engine/engineering)
 "nsc" = (
-/obj/vehicle/unmanned/heavy,
 /turf/open/floor/tile/brown,
 /area/centcom/valhalla/quartermaster/storage)
 "nsr" = (
@@ -10146,9 +10115,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "nyl" = (
@@ -10197,9 +10165,8 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "nBt" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "nCA" = (
@@ -10775,9 +10742,8 @@
 /obj/item/clothing/head/fedora{
 	icon_state = "detective"
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters)
 "orB" = (
@@ -11701,9 +11667,8 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/secondary/entry)
 "pCQ" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/primary/aft)
 "pDW" = (
@@ -12173,9 +12138,8 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/chapel/main)
 "qpn" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/primary/aft)
 "qpJ" = (
@@ -12510,9 +12474,8 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "qHx" = (
@@ -13675,9 +13638,8 @@
 /turf/open/floor/tile/lightred/full,
 /area/centcom/valhalla/crew_quarters/kitchen)
 "shy" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "sis" = (
@@ -13699,9 +13661,8 @@
 /area/tdome)
 "sjq" = (
 /obj/structure/bed/chair,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "sjH" = (
@@ -14107,9 +14068,8 @@
 /area/centcom/valhalla/crew_quarters/theatre)
 "sGw" = (
 /obj/effect/ai_node,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "sHO" = (
@@ -14866,18 +14826,16 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = 32
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters)
 "tCf" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "tCS" = (
@@ -15253,9 +15211,8 @@
 /area/centcom/valhalla/chapel/main)
 "uaG" = (
 /obj/effect/ai_node,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters)
 "uaI" = (
@@ -15318,9 +15275,8 @@
 "uby" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters)
 "ucT" = (
@@ -15446,9 +15402,8 @@
 	},
 /area/centcom/valhalla/medical/medbay)
 "ulL" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/crew_quarters/theatre)
 "ulN" = (
@@ -15743,9 +15698,8 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/quartermaster/storage)
 "uHm" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/primary/aft)
 "uHB" = (
@@ -16217,9 +16171,8 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla/starboard)
 "vsS" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/primary/aft)
 "vsV" = (
@@ -17726,9 +17679,8 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/centcom/valhalla/bridge)
 "wRz" = (

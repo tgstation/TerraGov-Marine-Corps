@@ -76,6 +76,8 @@
 
 #define CONVEYOR_LAYER 2.56 //conveyor belt
 
+#define TALL_GRASS_LAYER 2.5 //tall grass
+
 #define RESIN_STRUCTURE_LAYER 2.6
 
 #define LADDER_LAYER 2.7
@@ -125,6 +127,12 @@
 #define RIVER_OVERLAY_LAYER 4.01
 
 #define ABOVE_MOB_LAYER 4.1
+
+#define TANK_BARREL_LAYER 4.2
+
+#define TANK_TURRET_LAYER 4.27
+
+#define TANK_DECORATION_LAYER 4.3
 
 #define FACEHUGGER_LAYER 4.45
 

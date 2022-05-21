@@ -70,7 +70,7 @@
 		else
 			tag_position = findtext(text_to_play, html_locate_regex, tag_position)
 			reading_tag = TRUE
-	for(var/letter = 2 to length(text_to_play) + 1 step letters_per_update)
+	for(var/letter = 2 to length(text_to_play) + letters_per_update step letters_per_update)
 		if(letter in lines_to_skip)
 			continue
 		maptext = "[style_open][copytext_char(text_to_play, 1, letter)][style_close]"
@@ -85,7 +85,7 @@
 	animate(src, alpha = 0, time = fade_out_time)
 	addtimer(CALLBACK(src, .proc/end_play, player), fade_out_time)
 
-///ends the play then deletes this screen object and plalys the next one in queue if it exists
+///ends the play then deletes this screen object and plays the next one in queue if it exists
 /obj/screen/text/screen_text/proc/end_play(client/player)
 	player.screen -= src
 	LAZYREMOVE(player.screen_texts, src)

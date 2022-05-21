@@ -40,7 +40,9 @@
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
-	aura_allowed = list("frenzy", "warding", "recovery")
+
+	// *** Minimap Icon *** //
+	minimap_icon = "carrier"
 
 	// *** Carrier Abilities *** //
 	huggers_max = 4
@@ -55,7 +57,10 @@
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/choose_hugger_type,
 	)
 
@@ -195,7 +200,10 @@
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/choose_hugger_type,
 		/datum/action/xeno_action/build_hugger_turret,
 	)
