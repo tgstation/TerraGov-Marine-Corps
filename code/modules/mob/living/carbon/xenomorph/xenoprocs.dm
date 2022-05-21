@@ -188,11 +188,9 @@
 			return
 		var/follow_name = href_list["watch_xeno_name"]
 		for(var/mob/living/carbon/xenomorph/X AS in hive.get_watchable_xenos(usr))
-			if(isnum(X.nicknumber))
-				if(num2text(X.nicknumber) != follow_name)
+			if(isnum(X.nicknumber) && num2text(X.nicknumber) != follow_name)
 					continue
-			else
-				if(X.nicknumber != follow_name)
+			else if(X.nicknumber != follow_name)
 					continue
 			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, X)
 			break
