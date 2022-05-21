@@ -6,7 +6,6 @@
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
 	var/xeno_queen_timer
 	var/xenos_per_queen = 8 //Minimum number of xenos to support a queen.
-	var/hive_orders = "" //What orders should the hive have
 	var/color = null
 	var/prefix = ""
 	var/hive_flags = NONE
