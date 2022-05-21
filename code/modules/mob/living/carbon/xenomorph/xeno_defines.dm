@@ -122,10 +122,8 @@
 	var/acid_spray_structure_damage = 0
 
 	// *** Pheromones *** //
-	///The strength of our aura. Zero means we can't emit one
+	///The strength of our aura. Zero means we can't emit any.
 	var/aura_strength = 0
-	///The 'types' of pheremones a xenomorph caste can emit.
-	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
 
 	// *** Defiler Abilities *** //
 	var/list/available_reagents_define = list() //reagents available for select reagent
@@ -203,9 +201,9 @@
 	var/list/actions
 
 	///The iconstate for the xeno on the minimap
-	var/minimap_icon = "xeno"
-	///The iconstate for leadered xenos on the minimap
-	var/minimap_leadered_icon = "xenoleader"
+	var/minimap_icon = "xenominion"
+	///The iconstate for leadered xenos on the minimap, added as overlay
+	var/minimap_leadered_overlay = "xenoleader"
 	///The iconstate of the plasma bar, format used is "[plasma_icon_state][amount]"
 	var/plasma_icon_state = "plasma"
 
@@ -250,7 +248,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD)
 	buckle_flags = NONE
 	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
@@ -292,7 +290,10 @@
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 
-	var/current_aura = null //"frenzy", "warding", "recovery"
+	///"Frenzy", "Warding", "Recovery". Defined in __DEFINES/xeno.dm
+	var/current_aura = null
+	///Passive plasma cost per tick for enabled personal (not leadership) pheromones.
+	var/pheromone_cost = 5
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
 	var/recovery_aura = 0
@@ -304,6 +305,10 @@
 
 	var/is_zoomed = 0
 	var/zoom_turf = null
+
+	///Type of weeds the xeno is standing on, null when not on weeds
+	var/obj/effect/alien/weeds/loc_weeds_type
+
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/tier = XENO_TIER_ONE //This will track their "tier" to restrict/limit evolutions
 

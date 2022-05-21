@@ -40,8 +40,8 @@
 /area/bigredv2/outside/se)
 "bv" = (
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-N"
+/obj/effect/decal/warning_stripes/box/threeside{
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -57,10 +57,9 @@
 /area/bigredv2/outside/filtration_plant)
 "eE" = (
 /obj/structure/reagent_dispensers/watertank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "fl" = (
 /obj/effect/decal/cleanable/dirt,
@@ -128,10 +127,9 @@
 	dir = 1
 	},
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "jH" = (
 /turf/closed/wall,
@@ -151,10 +149,9 @@
 /area/bigredv2/outside/se)
 "lf" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "lv" = (
 /obj/machinery/light{
@@ -172,9 +169,7 @@
 /area/bigredv2/outside/s)
 "me" = (
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-S"
-	},
+/obj/effect/decal/warning_stripes/box/threeside,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "mQ" = (
@@ -194,8 +189,7 @@
 "nw" = (
 /obj/machinery/door_control{
 	id = "FiltrationShutters";
-	name = "Airlock Shutters";
-	pixel_y = 25
+	name = "Airlock Shutters"
 	},
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
@@ -237,16 +231,16 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "pM" = (
-/obj/machinery/door_control{
+/obj/structure/table,
+/obj/machinery/door_control/old{
 	id = "FiltrationShutters";
 	name = "Airlock Shutters";
-	pixel_x = -32
+	pixel_y = 2
 	},
-/obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "pX" = (
-/obj/machinery/computer/general_air_control,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "qd" = (
@@ -296,9 +290,7 @@
 	id = "FiltrationShutters";
 	name = "\improper Airlock Shutters"
 	},
-/turf/open/floor{
-	icon_state = "delivery"
-	},
+/turf/open/floor/marking/delivery,
 /area/bigredv2/outside/filtration_plant)
 "tA" = (
 /obj/effect/decal/cleanable/dirt,
@@ -329,10 +321,9 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "uE" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "uK" = (
 /obj/machinery/door/airlock/mainship/engineering{
@@ -355,10 +346,9 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "vB" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "wb" = (
 /obj/effect/landmark/weed_node,
@@ -397,10 +387,9 @@
 /area/bigredv2/outside/filtration_plant)
 "xF" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "xP" = (
 /obj/structure/table,
@@ -464,10 +453,9 @@
 /area/bigredv2/outside/filtration_plant)
 "BB" = (
 /obj/structure/cargo_container/ch_red,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "BK" = (
 /obj/effect/landmark/weed_node,
@@ -519,10 +507,9 @@
 /area/bigredv2/outside/filtration_plant)
 "Ez" = (
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "EI" = (
 /obj/structure/dispenser/oxygen,
@@ -627,9 +614,7 @@
 /area/bigredv2/outside/se)
 "JO" = (
 /obj/structure/cryofeed,
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/outside/filtration_plant)
 "JS" = (
 /obj/structure/table,
@@ -695,27 +680,24 @@
 /obj/structure/cargo_container/ch_red{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "Nu" = (
 /obj/structure/largecrate/random,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Nw" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "Nz" = (
 /obj/structure/dispenser/oxygen,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "NR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -750,20 +732,11 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/bcircuit/anim{
-	icon_state = "bcircuitoff"
-	},
+/turf/open/floor/engine,
 /area/bigredv2/outside/filtration_plant)
 "OG" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/effect/landmark/weed_node,
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
-"Pb" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-N"
-	},
-/obj/machinery/computer3/server/rack,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Qa" = (
@@ -778,9 +751,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "Qp" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-S"
-	},
+/obj/effect/decal/warning_stripes/box/threeside,
 /obj/machinery/computer3/server/rack,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -907,10 +878,9 @@
 "Zj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "bot"
-	},
+/obj/effect/decal/warning_stripes/box/empty,
+/obj/effect/decal/warning_stripes/box/empty,
+/turf/open/floor,
 /area/bigredv2/outside/s)
 "ZA" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1019,7 +989,7 @@ NR
 Rz
 Uk
 CZ
-YQ
+pM
 Kl
 nw
 Lx
@@ -1046,7 +1016,7 @@ kN
 Rz
 Rz
 BK
-pM
+eB
 Kl
 Ab
 Dx
@@ -1119,7 +1089,7 @@ rD
 tF
 Ih
 Qp
-Pb
+bv
 fl
 tF
 rl

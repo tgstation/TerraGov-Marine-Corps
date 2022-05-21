@@ -332,9 +332,8 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "An" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/warning{
 	dir = 1;
-	icon_state = "warnplate"
 	},
 /area/bigredv2/outside/nw)
 "Av" = (
@@ -347,9 +346,8 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "AY" = (
-/turf/open/floor/plating{
+/turf/open/floor/plating/warning{
 	dir = 8;
-	icon_state = "warnplate"
 	},
 /area/bigredv2/outside/nw)
 "Bh" = (
@@ -360,9 +358,8 @@
 "By" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/turf/open/floor/plating{
+/turf/open/floor/plating/warning{
 	dir = 1;
-	icon_state = "warnplate"
 	},
 /area/bigredv2/outside/nw)
 "Dx" = (
@@ -601,9 +598,8 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/plating{
+/turf/open/floor/plating/warning{
 	dir = 8;
-	icon_state = "warnplate"
 	},
 /area/bigredv2/outside/nw)
 "XJ" = (

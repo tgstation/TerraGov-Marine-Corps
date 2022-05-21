@@ -270,3 +270,19 @@
 /obj/machinery/deployable/mounted/check_eye(mob/user)
 	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || !user.client)
 		user.unset_interaction()
+
+//Deployable guns that can be moved.
+/obj/machinery/deployable/mounted/moveable
+	anchored = FALSE
+
+/// Can be anchored and unanchored from the ground by Alt Right Click.
+/obj/machinery/deployable/mounted/moveable/AltRightClick(mob/living/user)
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
+		return
+
+	if(!anchored)
+		anchored = TRUE
+		to_chat(user, span_warning("You have anchored the gun to the ground. It may not be moved."))
+	else
+		anchored = FALSE
+		to_chat(user, span_warning("You unanchored the gun from the gruond. It may be moved."))

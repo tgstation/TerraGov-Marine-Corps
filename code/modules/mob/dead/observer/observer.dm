@@ -200,6 +200,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			return
 		var/mob/dead/observer/ghost = usr
 
+		var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+		if(LAZYFIND(HS.candidate, ghost))
+			to_chat(ghost, span_warning("You are already in the queue to become a Xenomorph."))
+			return
+
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
 				SSticker.mode.attempt_to_join_as_larva(ghost)

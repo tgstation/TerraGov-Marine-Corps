@@ -210,14 +210,14 @@
 			owner.drip(10)
 		if(prob(15))
 			owner.emote("me", 1, "gasps for air!")
-			owner.Losebreath(10)
+			owner.Losebreath(4)
 	else if(is_broken())
 		if(prob(30))
 			owner.emote("me", 1, "coughs up blood!")
 			owner.drip(10)
 		if(prob(50))
 			owner.emote("me", 1, "gasps for air!")
-			owner.Losebreath(4)
+			owner.Losebreath(10)
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT

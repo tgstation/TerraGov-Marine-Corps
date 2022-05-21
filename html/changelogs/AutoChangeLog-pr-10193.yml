@@ -1,0 +1,5 @@
+author: "Walarks"
+delete-after: True
+changes: 
+  - qol: "psychic link's activation can be manually cancelled by activating the skill again"
+  - balance: "psychic link has 15 instead of 10 range"

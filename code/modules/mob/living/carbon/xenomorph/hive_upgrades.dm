@@ -169,9 +169,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!T.is_weedable())
 		return FALSE
 
-	var/obj/effect/alien/weeds/alien_weeds = locate() in T
-
-	if(!alien_weeds)
+	if(!buyer.loc_weeds_type)
 		if(!silent)
 			to_chat(buyer, span_xenowarning("No weeds here!"))
 		return FALSE

@@ -1,5 +1,6 @@
 export type ResearchData =
 {
+  acquired_points: number,
   anchored: boolean,
   researching: boolean,
   init_resource: ResearchResource,

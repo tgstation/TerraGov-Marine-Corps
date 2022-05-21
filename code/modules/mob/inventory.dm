@@ -178,7 +178,7 @@
 	Returns TURE if it was successful.
 */
 /mob/proc/drop_r_hand()
-	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+	if(status_flags & INCORPOREAL) //  things don't have hands
 		return FALSE
 	if(r_hand)
 		return dropItemToGround(r_hand)
@@ -219,7 +219,6 @@
 	if(.)
 		I.pixel_x = initial(I.pixel_x) + rand(-6,6)
 		I.pixel_y = initial(I.pixel_y) + rand(-6,6)
-	I.do_drop_animation(src)
 
 /**
  * For when the item will be immediately placed in a loc other than the ground.
