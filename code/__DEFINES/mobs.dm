@@ -145,13 +145,15 @@
 
 // =============================
 // xeno tiers
+// Corresponds to hardcode in hive status tgui
+// Use tier_as_number() to get 0, 1, 2...
 
 #define XENO_TIER_MINION "ai"
-#define XENO_TIER_ZERO "zero" // god forgive me because i wont forgive myself
-#define XENO_TIER_ONE "one"
-#define XENO_TIER_TWO "two"
-#define XENO_TIER_THREE "three"
-#define XENO_TIER_FOUR "four"
+#define XENO_TIER_ZERO "1" // Lists in byond start at 1.
+#define XENO_TIER_ONE "2"
+#define XENO_TIER_TWO "3"
+#define XENO_TIER_THREE "4"
+#define XENO_TIER_FOUR "5"
 
 GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_MINION, XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
 

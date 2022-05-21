@@ -66,6 +66,8 @@
 
 	.["hive_name"] = name
 	.["total_xenos"] = get_total_xeno_number()
+	.["xeno_counts"] = get_xeno_number_per_tier()
+	.["tier_slots"] = get_remaining_slots()
 
 // ***************************************
 // *********** Helpers
@@ -76,6 +78,19 @@
 		if(t == XENO_TIER_MINION)
 			continue
 		. += length(xenos_by_tier[t])
+
+///Finds number of xenos per tier starting from larva (tier 0). Not including minions.
+/datum/hive_status/proc/get_xeno_number_per_tier()
+	. = new /list(xenos_by_tier.len)
+	for(var/mob/living/carbon/xenomorph/T AS in xenos_by_typepath)
+		if(initial(T.tier) == XENO_TIER_MINION)
+			continue
+		LAZYADDASSOCSIMPLE(., text2num(initial(T.tier)), list(initial(T.name) = length(xenos_by_typepath[T])))
+
+/datum/hive_status/proc/get_remaining_slots()
+	LAZYSET(., XENO_TIER_TWO, tier2_xeno_limit - length(xenos_by_tier[XENO_TIER_TWO]))
+	LAZYSET(., XENO_TIER_THREE, tier3_xeno_limit - length(xenos_by_tier[XENO_TIER_THREE]))
+	message_admins("TEST")
 
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color

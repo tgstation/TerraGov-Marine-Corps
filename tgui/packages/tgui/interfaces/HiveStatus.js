@@ -22,10 +22,25 @@ const CasteCounts = (props, context) => {
       align="center"
     >
       {xeno_counts.map((counts, tier) => {
-        let tier_str = tier.toString();
+        const tier_str = (tier + 1).toString(); // Byond lists start at 1.
         return (
-          <Flex.Item>
-            <h1 className="whiteTitle">Tier {tier}</h1>
+          <Flex.Item
+            key={tier}
+            margin-bottom={tier !== 0 ? 2 : 0}
+          >
+            <Flex
+              direction="column"
+              align="center"
+            >
+              <Flex.Item>
+                <h1 className="whiteTitle">Tier {tier_str}</h1>
+              </Flex.Item>
+                {(tier == 2 || tier == 3) && (
+                  <div>
+                    {tier_slots[tier_str]} remaining slot{tier_slots[tier_str] !== 1 && "s"}
+                  </div>
+                )}
+            </Flex>
           </Flex.Item>
         );
       })}

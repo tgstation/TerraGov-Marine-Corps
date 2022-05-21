@@ -124,6 +124,9 @@
 	if(mind)
 		mind.name = name
 
+/// Not to be mistaken with text2num.
+/// This returns the de facto numerical value of the tier.
+/// Tier constants however are incremented by one for use in list.
 /mob/living/carbon/xenomorph/proc/tier_as_number()
 	switch(tier)
 		if(XENO_TIER_ZERO)
