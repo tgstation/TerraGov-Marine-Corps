@@ -357,9 +357,9 @@
 
 //-------------------------------------------------------
 //Vector, based on KRISS vector 45ACP.
-/obj/item/weapon/gun/smg/vector
-	name = "\improper SMG-45 submachinegun"
-	desc = "The SMG-45 is the TerraGov Marine Corps depelopment to increase mobility of marines. It features delayed blowback system, heavily reducing recoil even with its high ROF. A highly-customizable platform, it is reliable and versatile. Uses extended .45 ACP magazines"
+/obj/item/weapon/gun/smg/standard_stormsmg
+	name = "\improper SMG-45 storm submachinegun"
+	desc = "The SMG-45 is the TerraGov Marine Corps depelopment to increase assault capability of marines. Lightweight and simple to use. It features delayed blowback system, heavily reducing recoil even with its high ROF. A highly-customizable platform, it is reliable and versatile. Ideal weapon for quick assaults. Uses extended .45 ACP magazines"
 	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "v45"
@@ -411,25 +411,24 @@
 
 	fire_delay = 0.15 SECONDS
 	damage_mult = 1
-	damage_falloff_mult = 1.5 //shorter effective range
-	recoil = -5
+	recoil = -5  // Recoil blowback system
 	recoil_unwielded = -2
 	wield_delay = 0.3 SECONDS
 
 	akimbo_additional_delay = 0.33
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 1
-	aim_slowdown = 1 //Can aim without slowdown
+	aim_slowdown = 0
 
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.85 //moving and akimbo yield lower acc
 	scatter = 0
-	scatter_unwielded = 6
+	scatter_unwielded = 5 // Not exactly small weapon, and recoil compensation is only for vertical movement
 
 	burst_amount = 2
 	burst_scatter_mult = 0.5
 	burst_delay = 0.05 SECONDS
 
 	movement_acc_penalty_mult = 0.1
-	upper_akimbo_accuracy = 4
-	lower_akimbo_accuracy = 2
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3

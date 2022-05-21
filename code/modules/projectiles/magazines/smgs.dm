@@ -135,10 +135,10 @@
 	caliber = CALIBER_45ACP
 	icon_state = "ppsh_ext"
 
-	max_rounds = 50 // Drum  mag
+	max_rounds = 40 // HI-Point .45 ACP Drum mag
 	reload_delay = 1 SECONDS//longer time for reload
 	fill_delay = 1 SECONDS
 	scatter_mod = -1
-	scatter_unwielded_mod = 4 //Harder to hold w 1 hand
+	scatter_unwielded_mod = 4 //Harder to control w 1 hand
 	aim_speed_mod = -0.1 //heavy
-	wield_delay_mod = 0.2
+	wield_delay_mod = 0.1

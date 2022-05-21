@@ -567,6 +567,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 25
 	penetration = 0
 	sundering = 1
+	damage_falloff = 1.5 //shorter effective range
 
 /*
 //================================================
