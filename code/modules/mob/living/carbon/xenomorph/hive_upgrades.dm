@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		ui.open()
 
 /datum/hive_defcon/ui_state(mob/user)
-	return GLOB.conscious_state
+	return GLOB.xeno_evo_state // Same state checks as the evolution screen.
 
 /datum/hive_defcon/ui_assets(mob/user)
 	. = ..()
@@ -50,13 +50,12 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	. = ..()
 
 	var/mob/living/carbon/xenomorph/X = user
-	var/datum/hive_status/hive = X.hive
 
 	.["upgrades"] = list()
 	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
 		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
 		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "iconstate" = upgrade.icon))
-	.["psypoints"] = SSpoints.xeno_points_by_hive[hive.hivenumber]
+	.["psypoints"] = SSpoints.xeno_points_by_hive[X.hive.hivenumber]
 
 /datum/hive_defcon/ui_static_data(mob/user)
 	. = ..()
@@ -69,12 +68,11 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			var/buying = params["buyname"]
 			var/datum/hive_upgrade/upgrade = upgrades_by_name[buying]
 			var/mob/living/carbon/xenomorph/user = usr
-			var/datum/hive_status/hive = user.hive
 			if(!upgrade.can_buy(user, FALSE))
 				return
 			if(!upgrade.on_buy(user))
 				return
-			log_game("[key_name(user)] has purchased \a [upgrade] Blessing for [upgrade.psypoint_cost] psypoints for the [hive.hivenumber] hive")
+			log_game("[key_name(user)] has purchased \a [upgrade] Blessing for [upgrade.psypoint_cost] psypoints for the [user.hive.hivenumber] hive")
 			if(upgrade.flags_upgrade & UPGRADE_FLAG_MESSAGE_HIVE)
 				xeno_message("[user] has purchased \a [upgrade] Blessing", "xenoannounce", 5, user.hivenumber)
 

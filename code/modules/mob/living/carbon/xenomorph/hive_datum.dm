@@ -50,6 +50,24 @@
 	SSdirection.set_leader(hivenumber, null)
 
 // ***************************************
+// *********** TGUI hive status
+// ***************************************
+/datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "HiveStatus")
+		ui.open()
+
+/datum/hive_status/ui_state(mob/user)
+	return GLOB.xeno_hive_state
+
+/datum/hive_status/ui_data(mob/user)
+	. = ..()
+
+	.["hive_name"] = name
+	.["total_xenos"] = get_total_xeno_number()
+
+// ***************************************
 // *********** Helpers
 // ***************************************
 /datum/hive_status/proc/get_total_xeno_number() // unsafe for use by gamemode code

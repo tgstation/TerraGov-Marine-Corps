@@ -15,7 +15,7 @@
 
 /// Checks for xeno access and prevents unconscious / dead xenos from interacting.
 /datum/evolution_panel/ui_state(mob/user)
-	return GLOB.xeno_state
+	return GLOB.xeno_evo_state
 
 /// Static data provided once when the ui is opened
 /datum/evolution_panel/ui_static_data(mob/living/carbon/xenomorph/xeno)
@@ -52,7 +52,7 @@
 /datum/evolution_panel/ui_data(mob/living/carbon/xenomorph/xeno)
 	. = list()
 
-	.["can_evolve"] = !xeno.is_ventcrawling && !xeno.incapacitated(TRUE) && xeno.health >= xeno.maxHealth && xeno.plasma_stored >= (xeno.xeno_caste.plasma_max * xeno.xeno_caste.plasma_regen_limit) 
+	.["can_evolve"] = !xeno.is_ventcrawling && !xeno.incapacitated(TRUE) && xeno.health >= xeno.maxHealth && xeno.plasma_stored >= (xeno.xeno_caste.plasma_max * xeno.xeno_caste.plasma_regen_limit)
 
 	if(isxenolarva(xeno))
 		.["evolution"] = list(
