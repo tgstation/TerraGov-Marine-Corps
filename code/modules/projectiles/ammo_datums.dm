@@ -2576,7 +2576,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME|AMMO_EXPLOSIVE
 	armor_type = "fire"
 	max_range = 7
 	damage = 0

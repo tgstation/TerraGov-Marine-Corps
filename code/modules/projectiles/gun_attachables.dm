@@ -1705,7 +1705,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "flame_long"
 	desc = "Rather than spreading the supplied fuel over an area, this nozzle launches a single fireball to ignite a target at range. Reduced volume per shot also means the next is ready quicker."
 	stream_type = FLAMER_STREAM_RANGED
-	delay_mod = -5
+	delay_mod = -10
 
 /obj/item/attachable/flamer_nozzle/long/on_attach(attaching_item, mob/user)
 	. = ..()
