@@ -1281,7 +1281,6 @@
 	mechanics_text = "Ask the Queen Mother for blessings for your hive in exchange for psychic energy."
 	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
 	use_state_flags = XACT_USE_LYING
-	cooldown_timer = 10 SECONDS
 
 /datum/action/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
