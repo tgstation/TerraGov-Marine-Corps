@@ -1,5 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - qol: "Xeno pheromones selection are now done in a radial menu."
-  - bugfix: "Xeno phermones keybindings now function at all times, even if the phero selection is not active."

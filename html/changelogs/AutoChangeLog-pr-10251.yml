@@ -1,4 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - bugfix: "issue of anyone w/o ACCESS_MARINE_PREP can't get through 2x1 door"

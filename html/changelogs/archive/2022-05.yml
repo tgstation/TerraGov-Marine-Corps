@@ -305,3 +305,41 @@
 2022-05-20:
   KornFlaks:
   - qol: Defiler actions now have balloon alerts.
+2022-05-21:
+  Arctrooper8:
+  - rscadd: Added a lot more Christian Denominations
+  - rscadd: Adherents of the Machine God added 01010000 01110010 01100001 01101001
+      01110011 01100101 00100000 01001111 01101101 01101110 01101001 01110011 01110011
+      01101001 01100001 01101000
+  - rscadd: Paganism
+  - rscdel: removed Wiccanism and Pagan(Wicca)
+  - rscdel: Removed unused lore preference variables alongside broken Corporates relations
+  - bugfix: Synthetic type button now actually works instead of making you Western
+  KornFlaks:
+  - qol: Xeno pheromones selection are now done in a radial menu.
+  - bugfix: Xeno phermones keybindings now function at all times, even if the phero
+      selection is not active.
+  - qol: Xeno construction selection can now be done through radial menu. Left click
+      now opens radial selection (new). Right click cycles through constructions (old).
+  - bugfix: Throwing knives (and all other things thrown) now do damage!
+  - qol: Xeno weed type radial menu made smaller.
+  - rscadd: Queen hive message now displays on game map.
+  Lumipharon:
+  - rscadd: Added new lobby art
+  QualityVan:
+  - bugfix: New health scanners properly show whether a limb is kitted or not.
+  novaepee:
+  - bugfix: issue of anyone w/o ACCESS_MARINE_PREP can't get through 2x1 door
+  - bugfix: bolding on medical scanner for brain damage
+  - bugfix: delete a folder in TerraGov-Marine-Corps that contains a folder named
+      TerraGov-Marine-Corps
+  tyeagg:
+  - code_imp: railgun targeting changed from pick to rand
+  - balance: increased railgun spread
+  - balance: changed railgun to be explosive
+  - balance: increased railgun cooldown to 5 minutes
+  - balance: reduced time it takes to fire and land railgun
+  - rscadd: Orion Military Outpost
+  - imageadd: bunkbeds
+  - bugfix: broken vendor props not having density
+  - imageadd: 'tallgrass delete: slowdown from bushes'
