@@ -91,6 +91,7 @@
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
+	attack_verb = list("violently vaporizes chunks of")
 	heat = 3800
 	light_system = MOVABLE_LIGHT
 	light_range = 2
@@ -250,11 +251,8 @@
 		spark_system.set_up(5, 0, M)
 		spark_system.attach(M)
 		spark_system.start(M)
-		M.visible_message(span_danger("[src] violently vaporizes chunks of the [M] upon contact!"), visible_message_flags = COMBAT_MESSAGE)
-		if(M.stat == DEAD)
-		else
+		if(M.stat != DEAD)
 			cell.charge += 200
-			to_chat(user, span_notice("The vaporized matter causes a temporary feedback loop in the battery! <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 	return ..()
 
 
