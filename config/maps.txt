@@ -49,6 +49,10 @@ map research_outpost
 	maxplayers 40
 endmap
 
+map som_base
+	minplayers 20
+endmap
+
 map whiskey_outpost_v2
 endmap
 
@@ -58,8 +62,4 @@ endmap
 
 map orion_outpost
 	maxplayers 40
-endmap
-
-map som_base
-	minplayers 20
 endmap
