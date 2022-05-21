@@ -152,6 +152,9 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/sticky,
 	)
 
+	aim_speed_mod	= 0.1
+	wield_delay_mod	= 0.1 SECONDS
+
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
 	flags_attach_features = NONE
 

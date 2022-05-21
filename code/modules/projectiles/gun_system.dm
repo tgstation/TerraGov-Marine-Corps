@@ -303,6 +303,10 @@
 	var/attach_delay = 0 SECONDS
 	///Time it takes to detach src to a master gun.
 	var/detach_delay = 0 SECONDS
+	///Changes the slowdown amount when wielding a weapon by this value.
+	var/aim_speed_mod	= 0
+	///How long ADS takes (time before firing)
+	var/wield_delay_mod	= 0
 
 
 /*

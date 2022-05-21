@@ -327,6 +327,9 @@
 	mob_flame_damage_mod = 1
 	flame_max_range = 4
 
+	aim_speed_mod	= 0.1
+	wield_delay_mod	= 0.1 SECONDS
+
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
 	flags_attach_features = NONE
 
