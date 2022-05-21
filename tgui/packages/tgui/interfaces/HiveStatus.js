@@ -11,9 +11,10 @@ import { Input, Button, Flex, Divider, Collapsible, Icon, NumberInput, Table, Pr
 const CasteCounts = (props, context) => {
   const { data } = useBackend(context);
   const {
-    total_xenos,
     xeno_counts,
-    tier_slots
+    is_unique,
+    tier_slots,
+    user_nicks
   } = data;
 
   return (
@@ -23,7 +24,7 @@ const CasteCounts = (props, context) => {
         return (
           <Flex.Item mb={tier !== 0 ? 2 : 0}>
             <Flex direction="column">
-              <Flex.Item mb={2}>
+              <Flex.Item mb={1}>
                 <center>
                   <h1 className="whiteTitle">Tier {tier}</h1>
                   <i>
@@ -44,7 +45,13 @@ const CasteCounts = (props, context) => {
                     </Table.Row>
                     <Table.Row>
                       {Object.keys(xeno).map((name) => (
-                        name !== "Total" && (<Table.Cell width={6} textAlign="center">{xeno[name]}</Table.Cell>)
+                          name !== "Total" && (<Table.Cell width={6} textAlign="center">{
+                            !!is_unique[tier][name]
+                              ? xeno[name] >= 1
+                                ? "Alive"
+                                : "N/A"
+                              : xeno[name]
+                          }</Table.Cell>)
                       ))}
                     </Table.Row>
                   </Table>

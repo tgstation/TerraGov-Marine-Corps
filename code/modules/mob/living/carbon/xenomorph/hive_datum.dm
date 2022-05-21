@@ -64,10 +64,14 @@
 /datum/hive_status/ui_data(mob/user)
 	. = ..()
 
-	.["hive_name"] = name
-	.["total_xenos"] = get_total_xeno_number()
 	.["xeno_counts"] = get_xeno_number_per_tier()
 	.["tier_slots"] = get_remaining_slots()
+
+/datum/hive_status/ui_static_data(mob/user)
+	. = ..()
+
+	.["hive_name"] = name
+	.["is_unique"] = get_unique_xenos()
 
 // ***************************************
 // *********** Helpers
@@ -80,9 +84,6 @@
 		if(t == XENO_TIER_MINION)
 			continue
 		. += length(xenos_by_tier[t])
-
-#define COUNT "count"
-#define UNIQUE "unique"
 
 ///Finds number of xenos per tier starting from larva (tier 0). Not including minions.
 /datum/hive_status/proc/get_xeno_number_per_tier()
@@ -97,6 +98,14 @@
 			continue
 		//Find total number of xenos per tier.
 		LAZYADDASSOCSIMPLE(., text2num(t), list("Total" = length(xenos_by_tier[t])))
+
+///Returns boolean if the xeno caste intends to only have one xeno active. For now, only tier 4s are unique.
+/datum/hive_status/proc/get_unique_xenos()
+	. = new /list(xenos_by_tier.len - 1) // Removing minion tier.
+	for(var/mob/living/carbon/xenomorph/T AS in xenos_by_typepath)
+		if(initial(T.tier) == XENO_TIER_MINION)
+			continue
+		LAZYADDASSOCSIMPLE(., text2num(initial(T.tier)), list(initial(T.name) = initial(T.tier) == XENO_TIER_FOUR))
 
 /datum/hive_status/proc/get_remaining_slots()
 	LAZYSET(., XENO_TIER_TWO, tier2_xeno_limit - length(xenos_by_tier[XENO_TIER_TWO]))
