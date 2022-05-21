@@ -30,16 +30,18 @@ const CasteCounts = (props, context) => {
           >
             <Flex
               direction="column"
-              align="center"
             >
-              <Flex.Item>
-                <h1 className="whiteTitle">Tier {tier_str}</h1>
-              </Flex.Item>
-                {(tier == 2 || tier == 3) && (
-                  <div>
-                    {tier_slots[tier_str]} remaining slot{tier_slots[tier_str] !== 1 && "s"}
-                  </div>
-                )}
+              <center>
+                <Flex.Item>
+                  <h1 className="whiteTitle">Tier {tier}</h1>
+                </Flex.Item>
+                <i>
+                  {(tier == 2 || tier == 3) && (
+                    <div>{tier_slots[tier_str]} remaining slot{tier_slots[tier_str] !== 1 && "s"}</div>
+                  )}
+                  <div>{counts["total"]} sister{counts["total"] !== 1 && "s"}</div>
+                </i>
+              </center>
             </Flex>
           </Flex.Item>
         );

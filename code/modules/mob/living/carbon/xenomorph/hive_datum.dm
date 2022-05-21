@@ -72,6 +72,8 @@
 // ***************************************
 // *********** Helpers
 // ***************************************
+
+///Returns total number of xenos in the entire hive not counting minions.
 /datum/hive_status/proc/get_total_xeno_number() // unsafe for use by gamemode code
 	. = 0
 	for(var/t in xenos_by_tier)
@@ -81,16 +83,21 @@
 
 ///Finds number of xenos per tier starting from larva (tier 0). Not including minions.
 /datum/hive_status/proc/get_xeno_number_per_tier()
-	. = new /list(xenos_by_tier.len)
+	. = new /list(xenos_by_tier.len - 1) // Removing minion tier.
 	for(var/mob/living/carbon/xenomorph/T AS in xenos_by_typepath)
 		if(initial(T.tier) == XENO_TIER_MINION)
 			continue
+		//Collect number of xenos per caste per tier.
 		LAZYADDASSOCSIMPLE(., text2num(initial(T.tier)), list(initial(T.name) = length(xenos_by_typepath[T])))
+	for(var/t in xenos_by_tier)
+		if(t == XENO_TIER_MINION)
+			continue
+		//Find total number of xenos per tier.
+		LAZYADDASSOCSIMPLE(., text2num(t), list("total" = length(xenos_by_tier[t])))
 
 /datum/hive_status/proc/get_remaining_slots()
 	LAZYSET(., XENO_TIER_TWO, tier2_xeno_limit - length(xenos_by_tier[XENO_TIER_TWO]))
 	LAZYSET(., XENO_TIER_THREE, tier3_xeno_limit - length(xenos_by_tier[XENO_TIER_THREE]))
-	message_admins("TEST")
 
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
