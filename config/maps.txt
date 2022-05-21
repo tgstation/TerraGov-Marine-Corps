@@ -56,6 +56,11 @@ map magmoor_digsite_iv
 	minplayers 20
 endmap
 
+map orion_outpost
+	maxplayers 40
+>>>>>>> master
+endmap
+
 map som_base
 	minplayers 20
 endmap
