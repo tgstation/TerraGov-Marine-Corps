@@ -508,10 +508,10 @@ WEAPONS
 	containertype = null
 	cost = 20
 
-/datum/supply_packs/weapons/vector_drum
+/datum/supply_packs/weapons/standard_stormsmg_drum
 	name = "SMG-45 drum mag"
 	notes = "Contains single drum mag for SMG-45."
-	contains = list(/obj/item/ammo_magazine/smg/vector/drum)
+	contains = list(/obj/item/ammo_magazine/smg/standard_stormsmg/drum)
 	containertype = null
 	cost = 2
 

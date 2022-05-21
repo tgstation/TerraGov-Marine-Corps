@@ -120,7 +120,7 @@
 
 //-------------------------------------------------------
 //Vector, based on KRISS vector 45ACP.
-/obj/item/ammo_magazine/smg/vector
+/obj/item/ammo_magazine/smg/standard_stormsmg
 	name = "\improper SMG-45 magazine (.45ACP)"
 	desc = "A .45ACP caliber magazine for the SMG-45."
 	default_ammo = /datum/ammo/bullet/smg/acp
@@ -128,7 +128,7 @@
 	icon_state = "uzi_ext"
 	max_rounds = 25 // MagEx 25+ mag
 
-/obj/item/ammo_magazine/smg/vector/drum
+/obj/item/ammo_magazine/smg/standard_stormsmg/drum
 	name = "\improper SMG-45 drum magazine (.45ACP)"
 	desc = "A .45ACP caliber drum magazine for the SMG-45, with even more dakka."
 	default_ammo = /datum/ammo/bullet/smg/acp

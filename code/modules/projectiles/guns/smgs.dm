@@ -371,10 +371,10 @@
 	type_of_casings = null
 	//default_ammo_type = /obj/item/ammo_magazine/pistol/standard_heavypistol
 	//allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_heavypistol)
-	default_ammo_type = /obj/item/ammo_magazine/smg/vector
+	default_ammo_type = /obj/item/ammo_magazine/smg/standard_stormsmg
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/smg/vector,
-		/obj/item/ammo_magazine/smg/vector/drum,
+		/obj/item/ammo_magazine/smg/standard_stormsmg,
+		/obj/item/ammo_magazine/smg/standard_stormsmg/drum,
 	)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -422,8 +422,8 @@
 
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.85 //moving and akimbo yield lower acc
-	scatter = 0
-	scatter_unwielded = 5 // Not exactly small weapon, and recoil compensation is only for vertical movement
+	scatter = -2
+	scatter_unwielded = 5 // Not exactly small weapon, and recoil blowback is only for vertical recoil
 
 	burst_amount = 2
 	burst_scatter_mult = 0.5
