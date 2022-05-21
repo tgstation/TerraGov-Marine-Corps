@@ -166,7 +166,7 @@
 	)
 
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/dualcannon
+		/obj/item/ammo_magazine/dualcannon,
 	)
 
 	deploy_time = 5 SECONDS
@@ -191,7 +191,7 @@
 	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/heavylaser
+	default_ammo_type = /obj/item/ammo_magazine/heavylaser,
 
 	scatter = 10
 	deployed_scatter_change = -10
@@ -258,7 +258,7 @@
 	)
 
 	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/heavyrr
+		/obj/item/ammo_magazine/heavyrr,
 	)
 
 	deploy_time = 5 SECONDS
