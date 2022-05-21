@@ -251,8 +251,7 @@
 		spark_system.attach(M)
 		spark_system.start(M)
 		M.visible_message(span_danger("[src] violently vaporizes chunks of the [M] upon contact!"), visible_message_flags = COMBAT_MESSAGE)
-		if(M.stat == DEAD)
-		else
+		if(M.stat != DEAD)
 			cell.charge += 200
 			to_chat(user, span_notice("The vaporized matter causes a temporary feedback loop in the battery! <b>Charge Amount: [cell.charge]/[cell.maxcharge]</b>"))
 	return ..()
