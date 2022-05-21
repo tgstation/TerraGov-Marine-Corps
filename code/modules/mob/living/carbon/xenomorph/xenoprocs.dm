@@ -271,8 +271,6 @@
 
 	switch(hivenumber)
 		if(XENO_HIVE_NORMAL)
-			if(hive.hive_orders && hive.hive_orders != "")
-				stat("Hive Orders:", hive.hive_orders)
 			var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 			if(hivemind_countdown)
 				stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
