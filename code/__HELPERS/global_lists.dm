@@ -86,11 +86,11 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/tier = initial(caste.tier)
 
 		GLOB.hive_ui_static_data += list(list(
-			"name" = initial(caste.caste_name)
+			"name" = initial(caste.caste_name),
 			"is_queen" = type_path == /mob/living/carbon/xenomorph/queen,
 			"minimap" = icon2base64(xeno_minimap),
 			"sort_mod" = per_tier_counter[tier]++,
-			"tier" = tier,
+			"tier" = GLOB.tier_as_number[tier],
 		))
 
 	for(var/L in subtypesof(/datum/language))

@@ -3,9 +3,11 @@ import { Window } from '../layouts';
 import { Button, Flex, Divider, Collapsible, Icon, Box, ProgressBar } from '../components';
 
 type InputPack = {
-  hive_name: string
+  hive_name: string,
   xeno_info: XenoData[],
   static_info: StaticData[],
+  user_ref: string,
+  user_queen: boolean,
 }
 
 type XenoData = {
@@ -14,14 +16,14 @@ type XenoData = {
   location: string,
   health: number,
   plasma: number,
-  is_leader: boolean,
+  is_leader: number, // boolean but is used in bitwise ops.
   is_ssd: boolean,
   index: number, // Corresponding to static data index.
 }
 
 type StaticData = {
   name: string,
-  is_queen: boolean,
+  is_queen: number, // boolean but is used in bitwise ops.
   minimap: string, // Full minimap icon as string. Not icon_state!
   sort_mod: number,
   tier: number,
@@ -55,35 +57,39 @@ const XenoList = (props, context) => {
   const { data } = useBackend<InputPack>(context);
   const {
     xeno_info,
-    static_info
+    static_info,
+    user_ref,
+    user_queen,
   } = data;
 
-  // Order magic numbers:
-  // 30,000 - Header
-  // 20,000 - Queen
-  // 10,000 - Leaders
-  //    X00 - Tier (max 99)
-  //      X - Sort_Mod (max 99)
+  // First two bits are taken up by queen and leader flags.
+  // Remaining bits 28 split 14 tiers, 14 sort mods.
+  // For a total of 16,384 tiers and 16,384 castes per tier.
+  // I think that's plenty for everyone.
+  const queen = 30;
+  const leader = 29;
+  const tier = 14;
 
   return (
     <Flex direction="column-reverse">
-      <Flex.Item order={30000} mb={1}>{/*Header*/}
-        <Flex bold width="100%" height="16px">
+      <Flex.Item order={Number.MAX_SAFE_INTEGER} mb={1}>{/*Header*/}
+        <Flex bold height="16px">
           <Flex.Item width="16px" mr="2px"/>{/*SSD*/}
           <Flex.Item width="16px" mr="2px"/>{/*Leadership*/}
           <Flex.Item width="14px" mr="6px"/>{/*Minimap*/}
           <Flex.Item width="30%" textAlign="center">Caste (Name)</Flex.Item>
-          <Flex.Item textAlign="center" grow={1}>Location</Flex.Item>
-          <Flex.Item width="75px">Health</Flex.Item>
-          <Flex.Item width="75px">Plasma</Flex.Item>
-          <Flex.Item width="10%" />
+          <Flex.Item textAlign="center" grow={true}>Location</Flex.Item>
+          <Flex.Item width="60px">Health</Flex.Item>
+          <Flex.Item width="60px">Plasma</Flex.Item>
+          <Flex.Item width="75px" />{/*Action Buttons*/}
         </Flex>
       </Flex.Item>
       {xeno_info.map((entry) => {
-        let static_entry = static_info[entry.index]
+        const static_entry = static_info[entry.index];
+        const order = static_entry.sort_mod | static_entry.tier << tier | entry.is_leader << leader | static_entry.is_queen << queen;
         return (
-          <Flex.Item mb={1} order={0}>
-            <Flex width="100%" height="16px">
+          <Flex.Item order={order} mb={1}>
+            <Flex height="16px">
               <Flex.Item width="16px" mr="2px">{!!entry.is_ssd && (<Box className={'hivestatus16x16 ssdIcon'} />)}</Flex.Item>
               <Flex.Item width="16px" mr="2px">{
                 (!!entry.is_leader || !!static_entry.is_queen) && (<Box className={'hivestatus16x16 leaderIcon'}><Icon name="star" ml={0.2} /></Box>)
@@ -97,25 +103,78 @@ const XenoList = (props, context) => {
                 }} />
               </Flex.Item>
               <Flex.Item width="30%">{entry.name}</Flex.Item>
-              <Flex.Item grow={1}>{entry.location}</Flex.Item>
-              <Flex.Item width="75px">{
+              <Flex.Item grow={true}>{entry.location}</Flex.Item>
+              <Flex.Item width="60px">{
                 entry.health <= 10 //Health actually ranges from -30 to 100.
                   ? <Box bold textColor="red">{entry.health}%</Box>
                   : entry.health <= 80
                     ? <Box textColor="orange">{entry.health}%</Box>
                     : <Box textColor="green">{entry.health}%</Box>
               }</Flex.Item>
-              <Flex.Item width="75px">{
+              <Flex.Item width="60px">{
                 entry.plasma <= 33
                   ?<Box bold textColor="red">{entry.plasma}%</Box>
                   : entry.plasma <= 75 //Queen give plasma plz.
                     ? <Box textColor="orange">{entry.plasma}%</Box>
                     : <Box textColor="green">{entry.plasma}%</Box>
               }</Flex.Item>
-              <Flex.Item width="10%" />
+              <Flex.Item width="75px">{user_ref !== entry.ref && <ActionButtons target_ref={entry.ref} is_queen={user_queen} />}</Flex.Item>
             </Flex>
           </Flex.Item>
         );})}
     </Flex>
   );
+}
+
+type ActionButtonProps = {
+  target_ref: string,
+  is_queen: boolean
+}
+
+const ActionButtons = (props: ActionButtonProps, context) => {
+  const { act } = useBackend<InputPack>(context);
+  const {
+    target_ref,
+    is_queen
+  } = props;
+
+  if(is_queen)
+    return (
+      <Flex direction="row" justify="space-evenly">
+          <Flex.Item width="22px" mr="2px">
+            <Button
+              fluid={true}
+              tooltip="Overwatch"
+              icon="eye"
+              onClick={() => act('Follow', { xeno: target_ref })} />
+          </Flex.Item>
+          <Flex.Item width="22px" mr="2px">
+            <Button
+              fluid={true}
+              tooltip="Toggle leadership"
+              icon="star"
+              onClick={() => act('Follow', { xeno: target_ref })} />
+          </Flex.Item>
+          <Flex.Item width="22px">
+            <Button
+              fluid={true}
+              tooltip="Transfer plasma"
+              icon="arrow-down"
+              onClick={() => act('Follow', { xeno: target_ref })} />
+          </Flex.Item>
+      </Flex>
+    )
+
+  return (
+    <Flex direction="row" justify="space-evenly">
+        <Flex.Item grow={true}>
+          <Button
+            fluid={true}
+            align="center"
+            onClick={() => act('Follow', { xeno: target_ref })}>
+            Follow
+          </Button>
+        </Flex.Item>
+    </Flex>
+  )
 }

@@ -54,7 +54,7 @@
 /datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "HiveStatus", "TEST")
+		ui = new(user, src, "HiveStatus")
 		ui.open()
 
 /datum/hive_status/ui_state(mob/user)
@@ -89,7 +89,18 @@
 	. = ..()
 
 	.["static_info"] = GLOB.hive_ui_static_data
+
+	.["user_ref"] = REF(user)
+	.["user_queen"] = isxenoqueen(user)
 	//message_admins("T2")
+
+/datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	switch(action)
+		if("Follow")
+			var/xeno_ref = params["xeno"]
+			var/mob/living/carbon/xenomorph/xeno = locate(xeno_ref)
+			message_admins(xeno.name)
 
 /datum/hive_status/proc/get_xeno_location(mob/living/carbon/xenomorph/xeno)
 	. = "Unknown"
