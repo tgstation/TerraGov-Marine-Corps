@@ -10,6 +10,8 @@
 	max_integrity = 20
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
+/obj/structure/bed/chair/nometal
+	dropmetal = FALSE
 
 /obj/structure/bed/chair/proc/handle_rotation(direction) //Making this into a seperate proc so office chairs can call it on Move()
 	handle_layer()
@@ -93,7 +95,7 @@
 			return
 		user.visible_message(span_notice("[user] welds down \the [src]."),
 		span_notice("You weld down \the [src]."))
-		if(buildstacktype)
+		if(buildstacktype && dropmetal)
 			new buildstacktype(loc, buildstackamount)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		qdel(src)
