@@ -22947,7 +22947,9 @@
 /area/lv624/lazarus/spaceport)
 "xCh" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/machinery/showcase/mulebot,
+/obj/machinery/showcase/mulebot{
+	pixel_x = -2
+	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "xCo" = (

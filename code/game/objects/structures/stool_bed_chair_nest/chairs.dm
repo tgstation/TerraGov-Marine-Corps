@@ -10,6 +10,8 @@
 	max_integrity = 20
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
+/obj/structure/bed/chair/alt
+	icon_state = "chair_alt"
 
 /obj/structure/bed/chair/proc/handle_rotation(direction) //Making this into a seperate proc so office chairs can call it on Move()
 	handle_layer()
