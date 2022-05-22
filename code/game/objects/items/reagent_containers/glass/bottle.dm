@@ -161,40 +161,6 @@
 	icon_state = "bottle17"
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 60)
 
-/obj/item/reagent_containers/glass/bottle/peridaxon
-	name = "\improper Peridaxon bottle"
-	desc = "A small bottle. Contains Peridaxon - Used to treat internal organ damage."
-	icon_state = "bottle4"
-	volume = 20
-	list_reagents = list(/datum/reagent/medicine/peridaxon = 20)
-
-/obj/item/reagent_containers/glass/bottle/tramadol
-	name = "\improper Tramadol bottle"
-	desc = "A small bottle. Contains Tramadol - Used as a basic painkiller."
-	icon_state = "bottle1"
-	volume = 60
-	list_reagents = list(/datum/reagent/medicine/tramadol = 60)
-
-/obj/item/reagent_containers/glass/bottle/oxycodone
-	name = "\improper Oxycodone bottle"
-	desc = "A very small bottle. Contains Oxycodone - Used as an Extreme Painkiller."
-	icon_state = "bottle2"
-	volume = 10
-	list_reagents = list(/datum/reagent/medicine/oxycodone = 10)
-
-/obj/item/reagent_containers/glass/bottle/hypervene
-	name = "\improper Hypervene bottle"
-	desc = "A very small bottle. Contains Hypervene - A purge chem for flushing toxins. Causes pain and vomiting."
-	icon_state = "bottle3"
-	volume = 10
-	list_reagents = list(/datum/reagent/hypervene = 10)
-
-/obj/item/reagent_containers/glass/bottle/tricordrazine
-	name = "\improper Tricordrazine bottle"
-	desc = "A small bottle. Contains tricordrazine - used as a generic treatment for injuries."
-	icon_state = "bottle18"
-	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
-
 /obj/item/reagent_containers/glass/bottle/meralyne
 	name = "\improper Meralyne bottle"
 	desc = "A small bottle. Contains meralyne - used as a potent treatment against brute damage."

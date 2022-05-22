@@ -193,34 +193,18 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	if(additional_chems)
 		var/list/possible_chems = list(
 			/datum/reagent/medicine/bicaridine,
-			/datum/reagent/medicine/hyperzine,
-			/datum/reagent/medicine/cryoxadone,
 			/datum/reagent/blood,
 			/datum/reagent/water,
 			/datum/reagent/potassium,
-			/datum/reagent/toxin/plasticide,
 			/datum/reagent/medicine/inaprovaline,
 			/datum/reagent/space_drugs,
 			/datum/reagent/mercury,
 			/datum/reagent/consumable/sugar,
 			/datum/reagent/radium,
-			/datum/reagent/medicine/ryetalyn,
-			/datum/reagent/medicine/alkysine,
-			/datum/reagent/medicine/tramadol,
 			/datum/reagent/cryptobiolin,
 			/datum/reagent/medicine/dermaline,
-			/datum/reagent/medicine/dexalin,
-			/datum/reagent/toxin/phoron,
-			/datum/reagent/medicine/synaptizine,
 			/datum/reagent/impedrezene,
-			/datum/reagent/medicine/hyronalin,
-			/datum/reagent/medicine/peridaxon,
 			/datum/reagent/toxin,
-			/datum/reagent/medicine/rezadone,
-			/datum/reagent/medicine/ethylredoxrazine,
-			/datum/reagent/toxin/cyanide,
-			/datum/reagent/toxin/mindbreaker,
-			/datum/reagent/toxin/sleeptoxin
 			)
 
 		for(var/x=1;x<=additional_chems;x++)

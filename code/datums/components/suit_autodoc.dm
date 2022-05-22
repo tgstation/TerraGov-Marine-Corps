@@ -1,10 +1,8 @@
 #define SUIT_AUTODOC_DAM_MIN 50
 #define SUIT_AUTODOC_DAM_MAX 150
 #define COOLDOWN_CHEM_BURN "chem_burn"
-#define COOLDOWN_CHEM_OXY "oxy_chems"
 #define COOLDOWN_CHEM_BRUTE "brute_chems"
 #define COOLDOWN_CHEM_TOX "tox_chems"
-#define COOLDOWN_CHEM_PAIN "pain_chems"
 
 /**
 	Autodoc component
@@ -14,10 +12,8 @@
 	Parameters
 	* chem_cooldown {time} default time between injections of chemicals
 	* list/burn_chems {list/datum/reagent/medicine} chemicals available to be injected to treat burn injuries
-	* list/oxy_chems {list/datum/reagent/medicine} chemicals available to be injected to treat oxygen injuries
 	* list/brute_chems {list/datum/reagent/medicine} chemicals available to be injected to treat brute injuries
 	* list/tox_chems {list/datum/reagent/medicine} chemicals available to be injected to treat toxin injuries
-	* list/pain_chems {list/datum/reagent/medicine} chemicals available to be injected to treat pain injuries
 	* overdose_threshold_mod {float} how close to overdosing will drugs inject to
 
 */
@@ -29,32 +25,15 @@
 	var/enabled = FALSE
 
 	var/damage_threshold = 50
-	var/pain_threshold = 70
 
 	var/list/burn_chems
 	var/list/oxy_chems
 	var/list/brute_chems
 	var/list/tox_chems
-	var/list/pain_chems
 
-	var/static/list/default_burn_chems = list(
-		/datum/reagent/medicine/kelotane,
-		/datum/reagent/medicine/tricordrazine)
-	var/static/list/default_oxy_chems = list(
-		/datum/reagent/medicine/dexalinplus,
-		/datum/reagent/medicine/inaprovaline,
-		/datum/reagent/medicine/tricordrazine)
-	var/static/list/default_brute_chems = list(
-		/datum/reagent/medicine/bicaridine,
-		/datum/reagent/medicine/quickclot,
-		/datum/reagent/medicine/tricordrazine)
-	var/static/list/default_tox_chems = list(
-		/datum/reagent/medicine/dylovene,
-		/datum/reagent/medicine/spaceacillin,
-		/datum/reagent/medicine/tricordrazine)
-	var/static/list/default_pain_chems = list(
-		/datum/reagent/medicine/hydrocodone,
-		/datum/reagent/medicine/tramadol)
+	var/static/list/default_burn_chems = list(/datum/reagent/medicine/kelotane)
+	var/static/list/default_brute_chems = list(/datum/reagent/medicine/bicaridine)
+	var/static/list/default_tox_chems = list(/datum/reagent/medicine/dylovene)
 
 	var/datum/action/suit_autodoc/toggle/toggle_action
 	var/datum/action/suit_autodoc/scan/scan_action
@@ -67,7 +46,7 @@
 /**
 	Setup the default cooldown, chemicals and supported limbs
 */
-/datum/component/suit_autodoc/Initialize(chem_cooldown, list/burn_chems, list/oxy_chems, list/brute_chems, list/tox_chems, list/pain_chems, overdose_threshold_mod)
+/datum/component/suit_autodoc/Initialize(chem_cooldown, list/burn_chems, list/brute_chems, list/tox_chems, overdose_threshold_mod)
 	if(!istype(parent, /obj/item))
 		return COMPONENT_INCOMPATIBLE
 
@@ -76,10 +55,8 @@
 		src.chem_cooldown = chem_cooldown
 
 	src.burn_chems = burn_chems || default_burn_chems
-	src.oxy_chems = oxy_chems || default_oxy_chems
 	src.brute_chems = brute_chems || default_brute_chems
 	src.tox_chems = tox_chems || default_tox_chems
-	src.pain_chems = pain_chems || default_pain_chems
 
 	if(!isnull(overdose_threshold_mod))
 		src.overdose_threshold_mod = overdose_threshold_mod
@@ -148,14 +125,8 @@
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BRUTE))
 		details += "Its trauma treatment injector is currently refilling.</br>"
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_OXY))
-		details += "Its oxygenating injector is currently refilling.</br>"
-
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_TOX))
 		details += "Its anti-toxin injector is currently refilling.</br>"
-
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_PAIN))
-		details += "Its painkiller injector is currently refilling.</br>"
 
 
 /**
@@ -266,13 +237,11 @@
 
 	var/burns = inject_chems(burn_chems, wearer, COOLDOWN_CHEM_BURN, wearer.getFireLoss(), damage_threshold, "Burn treatment", "Significant tissue burns detected. Restorative injection")
 	var/brute = inject_chems(brute_chems, wearer, COOLDOWN_CHEM_BRUTE, wearer.getBruteLoss(), damage_threshold, "Trauma treatment", "Significant tissue burns detected. Restorative injection")
-	var/oxy = inject_chems(oxy_chems, wearer, COOLDOWN_CHEM_OXY, wearer.getOxyLoss(), damage_threshold, "Oxygenation treatment", "Low blood oxygen detected. Reoxygenating preparation")
 	var/tox = inject_chems(tox_chems, wearer, COOLDOWN_CHEM_TOX, wearer.getToxLoss(), damage_threshold, "Toxicity treatment", "Significant blood toxicity detected. Chelating agents and curatives")
-	var/pain = inject_chems(pain_chems, wearer, COOLDOWN_CHEM_PAIN, wearer.traumatic_shock, pain_threshold, "Painkiller", "User pain at performance impeding levels. Painkillers")
 
-	if(burns || brute || oxy || tox || pain)
+	if(burns || brute || tox )
 		playsound(parent,'sound/items/hypospray.ogg', 25, 0, 1)
-		to_chat(wearer, span_notice("[icon2html(parent, wearer)] beeps:</br>[burns][brute][oxy][tox][pain]Estimated [chem_cooldown/600] minute replenishment time for each dosage."))
+		to_chat(wearer, span_notice("[icon2html(parent, wearer)] beeps:</br>[burns][brute][tox][chem_cooldown/600] minute replenishment time for each dosage."))
 
 /**
 	Plays a sound and message to the user informing the user chemicals are ready again
@@ -366,16 +335,7 @@
 	<A href='byond://?src=[REF(src)];automed_damage=5'>+5</A>
 	<A href='byond://?src=[REF(src)];automed_damage=10'>+10</A>
 	<A href='byond://?src=[REF(src)];automed_damage=50'>+50</A><BR>
-	<BR>
-	<B>Pain Trigger Threshold (Max [SUIT_AUTODOC_DAM_MAX], Min [SUIT_AUTODOC_DAM_MIN]):</B><BR>
-	<A href='byond://?src=[REF(src)];automed_pain=-50'>-50</A>
-	<A href='byond://?src=[REF(src)];automed_pain=-10'>-10</A>
-	<A href='byond://?src=[REF(src)];automed_pain=-5'>-5</A>
-	<A href='byond://?src=[REF(src)];automed_pain=-1'>-1</A> [pain_threshold]
-	<A href='byond://?src=[REF(src)];automed_pain=1'>+1</A>
-	<A href='byond://?src=[REF(src)];automed_pain=5'>+5</A>
-	<A href='byond://?src=[REF(src)];automed_pain=10'>+10</A>
-	<A href='byond://?src=[REF(src)];automed_pain=50'>+50</A><BR>"}
+	"}
 
 	var/datum/browser/popup = new(user, "Suit Automedic")
 	popup.set_content(dat)
@@ -417,10 +377,6 @@
 		damage_threshold += text2num(href_list["automed_damage"])
 		damage_threshold = round(damage_threshold)
 		damage_threshold = clamp(damage_threshold,SUIT_AUTODOC_DAM_MIN,SUIT_AUTODOC_DAM_MAX)
-	else if(href_list["automed_pain"])
-		pain_threshold += text2num(href_list["automed_pain"])
-		pain_threshold = round(pain_threshold)
-		pain_threshold = clamp(pain_threshold,SUIT_AUTODOC_DAM_MIN,SUIT_AUTODOC_DAM_MAX)
 
 	interact(wearer)
 
@@ -449,7 +405,5 @@
 #undef SUIT_AUTODOC_DAM_MAX
 #undef SUIT_AUTODOC_DAM_MIN
 #undef COOLDOWN_CHEM_BURN
-#undef COOLDOWN_CHEM_OXY
 #undef COOLDOWN_CHEM_BRUTE
 #undef COOLDOWN_CHEM_TOX
-#undef COOLDOWN_CHEM_PAIN

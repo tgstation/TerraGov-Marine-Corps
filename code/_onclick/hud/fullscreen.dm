@@ -142,10 +142,6 @@
 	layer = FULLSCREEN_DRUGGY_LAYER
 
 
-/obj/screen/fullscreen/pain
-	icon_state = "painoverlay"
-	layer = FULLSCREEN_PAIN_LAYER
-
 /obj/screen/fullscreen/bloodlust
 	icon_state = "bloodlust"
 	layer = FULLSCREEN_NERVES_LAYER

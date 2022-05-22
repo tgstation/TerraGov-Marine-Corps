@@ -2779,7 +2779,7 @@
 	desc = "A bar of chocolate, it smells like the medical bay. <i>\"Chocolate always helps the pain go away.\"</i>"
 	icon_state = "barcardine"
 	wrapper = /obj/item/trash/barcardine
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/coco = 2, /datum/reagent/medicine/tramadol = 1, /datum/reagent/medicine/tramadol = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/coco = 2)
 	tastes = list("cough syrup" = 1)
 
 //MREs

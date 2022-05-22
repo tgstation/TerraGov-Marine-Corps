@@ -177,9 +177,7 @@
 
 /datum/internal_organ/heart/process()
 	. = ..()
-	
-	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		return
+
 	if(is_bruised() && prob(5))
 		owner.emote("me", 1, "grabs at [owner.p_their()] chest!")
 	else if(is_broken() && prob(20))

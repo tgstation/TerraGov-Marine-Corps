@@ -9,3 +9,7 @@ Dermaline
 Removed chemistry from the game
 
 Removed pain
+
+removed oxy
+
+removed germs

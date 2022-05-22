@@ -33,7 +33,6 @@
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/L, metabolism)
-	L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
 	if(metabolism & IS_VOX)
 		L.adjustToxLoss(REAGENTS_METABOLISM)
 	else if(iscarbon(L))
@@ -60,7 +59,6 @@
 	description = "Kelotane is a drug used to treat burns."
 	color = "#D8C58C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/medicine/ryetalyn)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -70,10 +68,7 @@
 	L.heal_limb_damage(0, effect_str)
 	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-2.5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
-	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0, 0.5*effect_str)
 	return ..()
 
@@ -90,7 +85,6 @@
 	overdose_threshold = REAGENTS_OVERDOSE*0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
-	purge_list = list(/datum/reagent/medicine/oxycodone)
 	purge_rate = 0.2
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
@@ -98,10 +92,7 @@
 	L.heal_limb_damage(0, 2*effect_str)
 	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-5*TEMPERATURE_DAMAGE_COEFFICIENT*effect_str, target_temp)
-	if(volume > 5)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0, 1.5*effect_str)
 	return ..()
 
@@ -116,7 +107,6 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/research/stimulon, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -157,10 +147,7 @@
 
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(effect_str, 0)
-	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
 	if(volume > 20)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0.5*effect_str, 0)
 	return ..()
 
@@ -182,10 +169,7 @@
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(2*effect_str, 0)
-	if(volume > 5)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(1.5*effect_str, 0)
 	return ..()
 
@@ -210,7 +194,6 @@
 	taste_multi = 8
 
 /datum/reagent/hypervene/on_mob_life(mob/living/L, metabolism)
-	L.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
 	if(prob(5)) //causes vomiting
 		L.vomit()
 	return ..()
@@ -219,10 +202,8 @@
 	L.apply_damages(effect_str, effect_str)
 	if(prob(10)) //heavy vomiting
 		L.vomit()
-	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.25//Massive pain.
 
 /datum/reagent/hypervene/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2*effect_str, 2*effect_str)
 	if(prob(50)) //violent vomiting
 		L.vomit()
-	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 4 //Unlimited agony.

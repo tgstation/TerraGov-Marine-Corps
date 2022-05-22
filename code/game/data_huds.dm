@@ -324,7 +324,6 @@
 				return TRUE
 
 #define HEALTH_RATIO_PAIN_HUD 1
-#define PAIN_RATIO_PAIN_HUD 0.25
 #define STAMINA_RATIO_PAIN_HUD 0.25
 
 
@@ -342,8 +341,6 @@
 		return TRUE
 
 	var/perceived_health = health
-	if(!(species.species_flags & NO_PAIN))
-		perceived_health -= PAIN_RATIO_PAIN_HUD * traumatic_shock
 	if(!(species.species_flags & NO_STAMINA) && staminaloss > 0)
 		perceived_health -= STAMINA_RATIO_PAIN_HUD * staminaloss
 

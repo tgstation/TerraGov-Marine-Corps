@@ -116,27 +116,6 @@
 	list_reagents = list(/datum/reagent/medicine/dylovene = 15)
 	pill_id = 1
 
-/obj/item/reagent_containers/pill/tox
-	pill_desc = "A toxins pill. It's highly toxic."
-	list_reagents = list(/datum/reagent/toxin = 50)
-	pill_id = 2
-
-/obj/item/reagent_containers/pill/cyanide
-	desc = "A cyanide pill. Don't swallow this!"
-	pill_desc = null//so even non medics can see what this pill is.
-	list_reagents = list(/datum/reagent/toxin/cyanide = 50)
-	pill_id = 2
-
-/obj/item/reagent_containers/pill/adminordrazine
-	pill_desc = "An adminordrazine pill. It's magic. We don't have to explain it."
-	list_reagents = list(/datum/reagent/medicine/adminordrazine = 50)
-	pill_id = 3
-
-/obj/item/reagent_containers/pill/sleeptoxin
-	pill_desc = "A sleeping pill commonly used to treat insomnia."
-	list_reagents = list(/datum/reagent/toxin/sleeptoxin = 15)
-	pill_id = 4
-
 /obj/item/reagent_containers/pill/kelotane
 	pill_desc = "A kelotane pill. Used to treat burns."
 	list_reagents = list(/datum/reagent/medicine/kelotane = 15)
@@ -146,16 +125,6 @@
 	pill_desc = "A dermaline pill. Heals burn damage at a higher rate than kelotane."
 	list_reagents = list(/datum/reagent/medicine/dermaline = 7.5)
 	pill_id = 5
-
-/obj/item/reagent_containers/pill/paracetamol
-	pill_desc = "A paracetamol pill. Painkiller for the ages."
-	list_reagents = list(/datum/reagent/medicine/paracetamol = 15)
-	pill_id = 6
-
-/obj/item/reagent_containers/pill/tramadol
-	pill_desc = "A tramadol pill. A simple painkiller."
-	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
-	pill_id = 7
 
 /obj/item/reagent_containers/pill/inaprovaline
 	pill_desc = "An inaprovaline pill. Used to stabilize patients."

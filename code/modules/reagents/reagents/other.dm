@@ -654,7 +654,6 @@
 			to_chat(L, span_warning("Your open wounds feel like they're on fire!"))
 		L.emote(pick("scream","pain","moan"))
 		L.flash_pain()
-		L.reagent_shock_modifier -= PAIN_REDUCTION_MEDIUM
 
 /datum/reagent/sterilizine/reaction_obj(obj/O, volume)
 	O.germ_level -= min(volume*20, O.germ_level)

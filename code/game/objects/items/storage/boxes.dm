@@ -328,14 +328,6 @@
 	icon_state = "lolipop_box_tricord"
 	spawn_type = /obj/item/reagent_containers/food/snacks/lollipop/tricord
 
-/obj/item/storage/box/combat_lolipop/tramadol
-	name = "box of Tram-pops"
-	desc = "A small box of lolipops, they have tramadol laced in to help kill the pain, Recommended to be sucked on, rather than eaten."
-	icon_state = "lolipop_box_tramadol"
-	spawn_type = /obj/item/reagent_containers/food/snacks/lollipop/tramadol/combat
-
-
-
 ////////// MARINES BOXES //////////////////////////
 
 

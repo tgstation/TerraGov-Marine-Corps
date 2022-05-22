@@ -207,7 +207,6 @@
 #define FULLSCREEN_DAMAGE_LAYER 22.1 //red circles when hurt
 #define FULLSCREEN_NERVES_LAYER 22.11 //red nerve-like lines
 #define FULLSCREEN_BLIND_LAYER 22.15 //unconscious
-#define FULLSCREEN_PAIN_LAYER	22.2 //pain flashes
 #define FULLSCREEN_CRIT_LAYER 22.25 //in critical
 #define FULLSCREEN_MACHINE_LAYER 22.3
 #define FULLSCREEN_INTRO_LAYER 22.4 //black screen when you spawn

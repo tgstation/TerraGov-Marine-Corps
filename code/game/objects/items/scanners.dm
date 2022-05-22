@@ -341,47 +341,10 @@ REAGENT SCANNER
 				advice += "[span_scanner("<b>Overdose:</b> Administer one dose of hypervene or perform dialysis on patient via sleeper.")]\n"
 			if(unknown_body)
 				advice += "[span_scanner("<b>Shrapnel/Embedded Object(s):</b> Seek surgical remedy to remove embedded object(s).")]\n"
-			//if(infected)
-			//	advice += "[span_scanner("<b>Larval Infection:</b> !!URGENT: Place patient in cryobag and seek surgical remedy immediately!!")]\n"
 			if(fracture_detected)
 				advice += "[span_scanner("<b>Unsecured Fracture:</b> Administer splints to specified areas.")]\n"
-			if(internal_bleed_detected)
-				var/internal_bleed_advice = "Administer one dose of quick-clot plus, or one dose of quick-clot then seek surgical remedy."
-				if(reagents_in_body[/datum/reagent/medicine/quickclot] > 4)
-					internal_bleed_advice = "Quick-Clot has been administered to patient. Seek surgical remedy."
-				advice += "[span_scanner("<b>Internal Bleeding:</b> [internal_bleed_advice]")]\n"
 			if(H.getToxLoss() > 10)
-				var/dylovene = ""
-				var/dylo_recommend = ""
-				if(reagents_in_body[/datum/reagent/medicine/dylovene] < 5)
-					if(synaptizine_amount)
-						dylo_recommend = "Addendum: Dylovene recommended, but conflicting synaptizine present."
-					else
-						dylovene = "dylovene"
-				if(reagents_in_body[/datum/reagent/medicine/tricordrazine] < 5)
-					tricordrazine = "tricordrazine"
-				if(H.getToxLoss() > 50) //Serious toxin damage that is likely to threaten liver damage or be caused by it
-					peridaxon = "Administer one dose of peridaxon and: "
-					if(hyperzine_amount) //Need to make sure no conflicting chems are present; if so, warn the operator
-						peridaxon = "Purge hyperzine in patient or wait for it to metabolize, then administer one dose of peridaxon and:"
-					advice += "[span_scanner("<b>Extreme Toxin Damage/Probable or Imminent Liver Damage:</b> [peridaxon] [dylovene] | [tricordrazine]. [dylo_recommend]")]\n"
-				else
-					advice += "[span_scanner("<b>Toxin Damage:</b> Administer one dose of: [tricordrazine] | [dylovene].")]\n"
-			if(((H.getOxyLoss() > 50 && blood_volume > 400) || H.getBrainLoss() >= 10) && reagents_in_body[/datum/reagent/medicine/peridaxon] < 5)
-				peridaxon = "Administer one dose of peridaxon plus or peridaxon."
-				if(hyperzine_amount) //Need to make sure no conflicting chems are present; if so, warn the operator
-					peridaxon = "Purge hyperzine in patient or wait for it to metabolize, then administer one dose of peridaxon."
-				advice += "[span_scanner("<b>Brain Damage/Probable Organ Damage:</b> [peridaxon]")]\n"
-			if(infection_present && reagents_in_body[/datum/reagent/medicine/spaceacillin] < infection_present)
-				advice += "[span_scanner("<b>Infection:</b> Administer one dose of spaceacillin.")]\n"
-			if(H.getOxyLoss() > 10)
-				var/dexalin = ""
-				var/dexplus = ""
-				if(reagents_in_body[/datum/reagent/medicine/dexalin] < 5)
-					dexalin = "dexalin"
-				if(reagents_in_body[/datum/reagent/medicine/dexalinplus] < 1)
-					dexplus = "dexalin plus"
-				advice += "[span_scanner("<b>Oxygen Deprivation:</b> Administer one dose of: [dexalin] | [dexplus].")]\n"
+				advice += "[span_scanner("<b>Toxin Damage:</b> Administer one dose of: dylovene.")]\n"
 			if(H.getFireLoss(1)  > 10)
 				var/kelotane = ""
 				var/dermaline = ""
@@ -401,25 +364,6 @@ REAGENT SCANNER
 				advice += "[span_scanner("<b>Physical Trauma:</b> Administer trauma kit to affected areas and one dose of: [bicaridine] | [tricordrazine].")]\n"
 			if(H.health < 0 && reagents_in_body[/datum/reagent/medicine/inaprovaline] < 5)
 				advice += "[span_scanner("<b>Patient Critical:</b> Administer one dose of inaprovaline.")]\n"
-			var/shock_number = H.traumatic_shock
-			if(shock_number > 30)
-				var/painlevel = "Significant"
-				var/tramadol = ""
-				var/oxycodone = ""
-				var/oxy_recommend = "N/A"
-				var/trama_recommend = "N/A"
-				if (reagents_in_body[/datum/reagent/medicine/tramadol] < 3)
-					if(paracetamol_amount)
-						trama_recommend = "Tramadol recommended, but conflicting paracetamol present."
-					else
-						tramadol = "tramadol"
-				if (reagents_in_body[/datum/reagent/medicine/oxycodone] < 3)
-					oxycodone = "oxycodone"
-				if(shock_number > 120)
-					painlevel = "Extreme"
-					if(oxycodone)
-						oxy_recommend = "Oxycodone recommended."
-				advice += "[span_scanner("<b>[painlevel] Pain:</b> Administer one dose of: [tramadol] | [oxycodone]. Addendum: [oxy_recommend] | [trama_recommend].")]\n"
 			if(advice != "")
 				dat += "\t[span_scanner(" <b>Medication Advice:</b>")]\n"
 				dat += advice

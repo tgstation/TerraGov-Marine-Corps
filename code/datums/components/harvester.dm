@@ -9,7 +9,7 @@
 	///List of loadable reagents
 	var/static/list/loadable_reagents = list(
 		/datum/reagent/medicine/bicaridine = 5,
-		/datum/reagent/medicine/tramadol = 5,
+		/datum/reagent/medicine/dylovene = 5,
 		/datum/reagent/medicine/kelotane = 5,
 	)
 	///Amount of reagents loaded into the blade
@@ -168,10 +168,6 @@
 		return
 
 	switch(loaded_reagent)
-		if(/datum/reagent/medicine/tramadol)
-			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
-			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
-
 		if(/datum/reagent/medicine/kelotane)
 			target.flamer_fire_act(10)
 			target.apply_damage(max(0, 20 - 20*target.hard_armor.getRating("fire")), BURN, user.zone_selected, target.get_soft_armor("fire", user.zone_selected))

@@ -1,3 +1,18 @@
+/datum/reagent/toxin
+	name = "Toxin"
+	description = "A toxic chemical."
+	reagent_state = LIQUID
+	color = "#CF3600" // rgb: 207, 54, 0
+	var/toxpwr = 0.7 // Toxins are really weak, but without being treated, last very long.
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	taste_description = "bitterness"
+	taste_multi = 1.2
+
+/datum/reagent/toxin/on_mob_life(mob/living/L, metabolism)
+	if(toxpwr)
+		L.adjustToxLoss(toxpwr*0.5*effect_str)
+	return ..()
+
 /datum/reagent/toxin/xeno_neurotoxin
 	name = "Neurotoxin"
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
@@ -18,7 +33,6 @@
 			L.jitter(4) //Shows that things are bad
 		if(46 to INFINITY)
 			power = (15*effect_str)
-			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
 
 	//Apply stamina damage, then apply any 'excess' stamina damage beyond our maximum as tox and oxy damage

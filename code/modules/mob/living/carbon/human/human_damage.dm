@@ -10,7 +10,6 @@
 		total_brute	+= O.brute_dam
 		total_burn	+= O.burn_dam
 
-	var/oxy_l = getOxyLoss()
 	var/tox_l = ((species.species_flags & NO_POISON) ? 0 : getToxLoss())
 	var/clone_l = getCloneLoss()
 

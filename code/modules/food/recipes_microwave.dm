@@ -134,7 +134,6 @@
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 	proc/warm_up(var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
 		being_cooked.warm = 1
-		being_cooked.reagents.add_reagent(/datum/reagent/medicine/tricordrazine, 5)
 		being_cooked.bitesize = 6
 		being_cooked.name = "Warm " + being_cooked.name
 		being_cooked.cooltime()
@@ -534,7 +533,6 @@
 	result = /obj/item/reagent_containers/food/snacks/amanitajelly
 	make_food(var/obj/container as obj)
 		var/obj/item/reagent_containers/food/snacks/amanitajelly/being_cooked = ..(container)
-		being_cooked.reagents.del_reagent(/datum/reagent/toxin/amatoxin)
 		return being_cooked
 
 /datum/recipe/meatballsoup
