@@ -343,3 +343,11 @@
   - imageadd: bunkbeds
   - bugfix: broken vendor props not having density
   - imageadd: 'tallgrass delete: slowdown from bushes'
+2022-05-22:
+  KornFlaks:
+  - qol: The actions that hiveminds can use while manifested no longer disappear but
+      instead are disabled.
+  Walarks:
+  - qol: psychic link's activation can be manually cancelled by activating the skill
+      again
+  - balance: psychic link has 15 instead of 10 range
