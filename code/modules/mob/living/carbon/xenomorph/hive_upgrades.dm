@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		ui.open()
 
 /datum/hive_purchases/ui_state(mob/user)
-	return GLOB.xeno_evo_state // Same state checks as the evolution screen.
+	. = ..()
 
 /datum/hive_purchases/ui_assets(mob/user)
 	. = ..()

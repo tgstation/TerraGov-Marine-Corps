@@ -60,14 +60,22 @@
 /datum/hive_status/ui_state(mob/user)
 	. = ..()
 	if(isobserver(user))
-		. = UI_UPDATE
-
-/datum/hive_status/ui_data(mob/user)
-	. = ..()
+		. = UI_INTERACTIVE
 
 /datum/hive_status/ui_assets(mob/user)
 	. = ..()
 	. += get_asset_datum(/datum/asset/spritesheet/hive_status)
+
+/datum/hive_status/ui_data(mob/user)
+	. = ..()
+	.["hive_info"] = get_hive_info()
+
+/datum/hive_status/proc/get_hive_info()
+	. = list()
+	. += list(list("name" = name))
+
+/datum/hive_status/proc/get_xeno_info()
+
 
 // ***************************************
 // *********** Helpers
