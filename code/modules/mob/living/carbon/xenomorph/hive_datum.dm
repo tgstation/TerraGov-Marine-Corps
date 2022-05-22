@@ -101,6 +101,18 @@
 			var/xeno_ref = params["xeno"]
 			var/mob/living/carbon/xenomorph/xeno = locate(xeno_ref)
 			message_admins(xeno.name)
+		if("Leader")
+			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
+				return
+			var/xeno_ref = params["xeno"]
+			var/mob/living/carbon/xenomorph/xeno = locate(xeno_ref)
+			message_admins(xeno.name)
+		if("Plasma")
+			if(!isxenoqueen(usr)) // Queen only.
+				return
+			var/xeno_ref = params["xeno"]
+			var/mob/living/carbon/xenomorph/xeno = locate(xeno_ref)
+			message_admins(xeno.name)
 
 /datum/hive_status/proc/get_xeno_location(mob/living/carbon/xenomorph/xeno)
 	. = "Unknown"

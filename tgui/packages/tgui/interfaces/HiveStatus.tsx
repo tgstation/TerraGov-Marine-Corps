@@ -74,14 +74,14 @@ const XenoList = (props, context) => {
     <Flex direction="column-reverse">
       <Flex.Item order={Number.MAX_SAFE_INTEGER} mb={1}>{/*Header*/}
         <Flex bold height="16px">
+          <Flex.Item width="75px" />{/*Action Buttons*/}
           <Flex.Item width="16px" mr="2px"/>{/*SSD*/}
           <Flex.Item width="16px" mr="2px"/>{/*Leadership*/}
           <Flex.Item width="14px" mr="6px"/>{/*Minimap*/}
           <Flex.Item width="30%" textAlign="center">Caste (Name)</Flex.Item>
-          <Flex.Item textAlign="center" grow={true}>Location</Flex.Item>
+          <Flex.Item textAlign="center" grow>Location</Flex.Item>
           <Flex.Item width="60px">Health</Flex.Item>
           <Flex.Item width="60px">Plasma</Flex.Item>
-          <Flex.Item width="75px" />{/*Action Buttons*/}
         </Flex>
       </Flex.Item>
       {xeno_info.map((entry) => {
@@ -90,6 +90,11 @@ const XenoList = (props, context) => {
         return (
           <Flex.Item order={order} mb={1}>
             <Flex height="16px">
+              <Flex.Item width="75px">{user_ref !== entry.ref && <ActionButtons
+                target_ref={entry.ref}
+                is_queen={user_queen}
+                is_leader={entry.is_leader}
+              />}</Flex.Item>
               <Flex.Item width="16px" mr="2px">{!!entry.is_ssd && (<Box className={'hivestatus16x16 ssdIcon'} />)}</Flex.Item>
               <Flex.Item width="16px" mr="2px">{
                 (!!entry.is_leader || !!static_entry.is_queen) && (<Box className={'hivestatus16x16 leaderIcon'}><Icon name="star" ml={0.2} /></Box>)
@@ -102,8 +107,8 @@ const XenoList = (props, context) => {
                   "-ms-interpolation-mode": "nearest-neighbor",
                 }} />
               </Flex.Item>
-              <Flex.Item width="30%">{entry.name}</Flex.Item>
-              <Flex.Item grow={true}>{entry.location}</Flex.Item>
+              <Flex.Item width="30%" nowrap style={{'overflow': 'hidden','text-overflow': 'ellipsis'}}>{entry.name}</Flex.Item>
+              <Flex.Item grow nowrap style={{'overflow': 'hidden','text-overflow': 'ellipsis'}}>{entry.location}</Flex.Item>
               <Flex.Item width="60px">{
                 entry.health <= 10 //Health actually ranges from -30 to 100.
                   ? <Box bold textColor="red">{entry.health}%</Box>
@@ -112,13 +117,12 @@ const XenoList = (props, context) => {
                     : <Box textColor="green">{entry.health}%</Box>
               }</Flex.Item>
               <Flex.Item width="60px">{
-                entry.plasma <= 33
+                entry.plasma <= 33 //Queen SSD?
                   ?<Box bold textColor="red">{entry.plasma}%</Box>
                   : entry.plasma <= 75 //Queen give plasma plz.
                     ? <Box textColor="orange">{entry.plasma}%</Box>
                     : <Box textColor="green">{entry.plasma}%</Box>
               }</Flex.Item>
-              <Flex.Item width="75px">{user_ref !== entry.ref && <ActionButtons target_ref={entry.ref} is_queen={user_queen} />}</Flex.Item>
             </Flex>
           </Flex.Item>
         );})}
@@ -128,14 +132,16 @@ const XenoList = (props, context) => {
 
 type ActionButtonProps = {
   target_ref: string,
-  is_queen: boolean
+  is_queen: boolean,
+  is_leader: number,
 }
 
 const ActionButtons = (props: ActionButtonProps, context) => {
   const { act } = useBackend<InputPack>(context);
   const {
     target_ref,
-    is_queen
+    is_queen,
+    is_leader
   } = props;
 
   if(is_queen)
@@ -143,33 +149,34 @@ const ActionButtons = (props: ActionButtonProps, context) => {
       <Flex direction="row" justify="space-evenly">
           <Flex.Item width="22px" mr="2px">
             <Button
-              fluid={true}
+              fluid
               tooltip="Overwatch"
               icon="eye"
               onClick={() => act('Follow', { xeno: target_ref })} />
           </Flex.Item>
           <Flex.Item width="22px" mr="2px">
             <Button
-              fluid={true}
+              fluid
               tooltip="Toggle leadership"
               icon="star"
-              onClick={() => act('Follow', { xeno: target_ref })} />
+              selected={is_leader}
+              onClick={() => act('Leader', { xeno: target_ref })} />
           </Flex.Item>
           <Flex.Item width="22px">
             <Button
-              fluid={true}
+              fluid
               tooltip="Transfer plasma"
               icon="arrow-down"
-              onClick={() => act('Follow', { xeno: target_ref })} />
+              onClick={() => act('Plasma', { xeno: target_ref })} />
           </Flex.Item>
       </Flex>
     )
 
   return (
     <Flex direction="row" justify="space-evenly">
-        <Flex.Item grow={true}>
+        <Flex.Item grow>
           <Button
-            fluid={true}
+            fluid
             align="center"
             onClick={() => act('Follow', { xeno: target_ref })}>
             Follow
