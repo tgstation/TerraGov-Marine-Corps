@@ -1,21 +1,3 @@
-
-/*
-	run_armor_check(a,b)
-	args
-	a:def_zone - What part is getting hit, if null will check entire body
-	b:attack_flag - What type of attack, bullet, laser, energy, melee
-
-	Returns
-	The armour percentage which is deducted om the damage.
-*/
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee")
-	return getarmor(def_zone, attack_flag)
-
-
-//if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
-/mob/living/proc/getarmor(def_zone, type)
-	return 0
-
 //Handles the effects of "stun" weapons
 /**
 	stun_effect_act(stun_amount, agony_amount, def_zone)
@@ -72,7 +54,7 @@
 			return
 
 		src.visible_message(span_warning(" [src] has been hit by [O]."), null, null, 5)
-		var/armor = run_armor_check(null, "melee")
+		var/armor = get_soft_armor("melee")
 
 		apply_damage(throw_damage, dtype, BODY_ZONE_CHEST, armor, is_sharp(O), has_edge(O), TRUE)
 

@@ -103,11 +103,11 @@
 
 	next_move_slowdown += slow_amt
 	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
-	var/armor_block = run_armor_check(affecting, "acid")
+	var/armor_block = get_soft_armor("acid", affecting)
 	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block)
 
 	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
-	armor_block = run_armor_check(affecting, "acid")
+	armor_block = get_soft_armor("acid", affecting)
 	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block, TRUE)
 
 
