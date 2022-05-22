@@ -1112,12 +1112,12 @@ TUNNEL
 
 /obj/structure/xeno/evotower/Initialize(mapload, hivenum)
 	. = ..()
-	GLOB.hive_datums[hivenum].evotowers += src
+	GLOB.hive_datums[hivenum].evolution_boost += boost_amount
 	hivenumber = hivenum
 	set_light(2, 2, LIGHT_COLOR_GREEN)
 
 /obj/structure/xeno/evotower/Destroy()
-	GLOB.hive_datums[hivenumber].evotowers -= src
+	GLOB.hive_datums[hivenumber].evolution_boost -= boost_amount
 	return ..()
 
 /obj/structure/xeno/evotower/ex_act(severity)
@@ -1146,12 +1146,12 @@ TUNNEL
 
 /obj/structure/xeno/maturitytower/Initialize(mapload, hivenum)
 	. = ..()
-	GLOB.hive_datums[hivenum].maturitytowers += src
+	GLOB.hive_datums[hivenum].upgrade_boost += boost_amount
 	hivenumber = hivenum
 	set_light(2, 2, LIGHT_COLOR_GREEN)
 
 /obj/structure/xeno/maturitytower/Destroy()
-	GLOB.hive_datums[hivenumber].maturitytowers -= src
+	GLOB.hive_datums[hivenumber].upgrade_boost -= boost_amount
 	return ..()
 
 /obj/structure/xeno/maturitytower/ex_act(severity)
