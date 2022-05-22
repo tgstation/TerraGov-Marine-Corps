@@ -54,28 +54,51 @@
 /datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "HiveStatus")
+		ui = new(user, src, "HiveStatus", "TEST")
 		ui.open()
 
 /datum/hive_status/ui_state(mob/user)
-	. = ..()
-	if(isobserver(user))
-		. = UI_INTERACTIVE
+	return GLOB.hive_ui_state
 
 /datum/hive_status/ui_assets(mob/user)
 	. = ..()
-	. += get_asset_datum(/datum/asset/spritesheet/hive_status)
+	. += get_asset_datum(/datum/asset/spritesheet/hivestatus)
 
 /datum/hive_status/ui_data(mob/user)
 	. = ..()
-	.["hive_info"] = get_hive_info()
+	.["hive_name"] = name
 
-/datum/hive_status/proc/get_hive_info()
-	. = list()
-	. += list(list("name" = name))
+	.["xeno_info"] = list()
+	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
+		if(initial(xeno.tier) == XENO_TIER_MINION)
+			continue // Skipping minions
+		var/datum/xeno_caste/caste = xeno.xeno_caste
+		.["xeno_info"] += list(list(
+			"ref" = REF(xeno),
+			"name" = xeno.name,
+			"location" = get_xeno_location(xeno),
+			"health" = round((xeno.health / xeno.maxHealth) * 100, 1),
+			"plasma" = round((xeno.plasma_stored / caste.plasma_max) * 100, 1),
+			"is_leader" = xeno.queen_chosen_lead,
+			"is_ssd" = !xeno.client,
+			"index" = GLOB.hive_ui_caste_index[caste.caste_type_path],
+		))
+	//message_admins("T1")
 
-/datum/hive_status/proc/get_xeno_info()
+/datum/hive_status/ui_static_data(mob/user)
+	. = ..()
 
+	.["static_info"] = GLOB.hive_ui_static_data
+	//message_admins("T2")
+
+/datum/hive_status/proc/get_xeno_location(mob/living/carbon/xenomorph/xeno)
+	. = "Unknown"
+	if(is_centcom_level(xeno.z))
+		return
+
+	var/area/A = get_area(xeno)
+	if(A)
+		. = A.name
 
 // ***************************************
 // *********** Helpers

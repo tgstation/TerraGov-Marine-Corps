@@ -1,5 +1,5 @@
 /datum/xeno_caste/larva
-	caste_name = "Bloody Larva"
+	caste_name = "Larva"
 	display_name = "Bloody Larva"
 	upgrade_name = ""
 	caste_desc = "D'awwwww, so cute!"

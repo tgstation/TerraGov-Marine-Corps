@@ -344,7 +344,7 @@
 
 	var/xeno_mobhud = FALSE //whether the xeno mobhud is activated or not.
 
-	var/queen_chosen_lead //whether the xeno has been selected by the queen as a leader.
+	var/queen_chosen_lead = FALSE //whether the xeno has been selected by the queen as a leader.
 
 	//Charge vars
 	var/is_charging = CHARGE_OFF //Will the mob charge when moving ? You need the charge verb to change this
