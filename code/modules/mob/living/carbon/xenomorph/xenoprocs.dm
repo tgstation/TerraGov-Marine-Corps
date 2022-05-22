@@ -183,6 +183,16 @@
 				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
 				break
 
+	if(href_list["watch_xeno_name"])
+		if(!check_state())
+			return
+		var/follow_name = href_list["watch_xeno_name"]
+		for(var/mob/living/carbon/xenomorph/X AS in hive.get_watchable_xenos(usr))
+			if((isnum(X.nicknumber) && num2text(X.nicknumber) != follow_name) || X.nicknumber != follow_name)
+				continue
+			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, X)
+			break
+
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
 /proc/xeno_message(message = null, span_class = "xenoannounce", size = 5, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type, arrow_color, report_distance = FALSE)
 	if(!message)

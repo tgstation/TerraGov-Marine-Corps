@@ -426,12 +426,6 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
 
-/datum/keybinding/xeno/watch_xeno
-	name = "watch_xeno"
-	full_name = "Queen: Watch Xeno"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
-
 /datum/keybinding/xeno/toggle_queen_zoom
 	name = "toggle_queen_zoom"
 	full_name = "Queen: Toggle Zoom"

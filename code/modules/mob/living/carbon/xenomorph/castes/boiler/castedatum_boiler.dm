@@ -57,6 +57,7 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
@@ -215,6 +216,7 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,

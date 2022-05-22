@@ -165,15 +165,12 @@
 		xenos += xenos_by_typepath[typepath]
 	return xenos
 
-// doing this by type means we get a pseudo sorted list
-/datum/hive_status/proc/get_watchable_xenos()
+///Returning all xenos including queen that are not at centcom and not self.
+/datum/hive_status/proc/get_watchable_xenos(mob/living/carbon/xenomorph/self)
 	var/list/xenos = list()
 	for(var/typepath in xenos_by_typepath)
-		if(typepath == /mob/living/carbon/xenomorph/queen) // hardcoded check for now
-			continue
-		for(var/i in xenos_by_typepath[typepath])
-			var/mob/living/carbon/xenomorph/X = i
-			if(is_centcom_level(X.z))
+		for(var/mob/living/carbon/xenomorph/X AS in xenos_by_typepath[typepath])
+			if(X == self || is_centcom_level(X.z))
 				continue
 			xenos += X
 	return xenos

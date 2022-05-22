@@ -129,79 +129,76 @@
 	action_icon_state = "watch_xeno"
 	mechanics_text = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	plasma_cost = 0
-	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
-	var/overwatch_active = FALSE
 	use_state_flags = XACT_USE_LYING
-
+	var/overwatch_active = FALSE
 
 /datum/action/xeno_action/watch_xeno/give_action(mob/living/L)
 	. = ..()
 	RegisterSignal(L, COMSIG_MOB_DEATH, .proc/on_owner_death)
 	RegisterSignal(L, COMSIG_XENOMORPH_WATCHXENO, .proc/on_list_xeno_selection)
-	RegisterSignal(L, COMSIG_CLICK_CTRL_MIDDLE, .proc/on_ctrl_middle_click)
-
+	if(isxenoqueen(owner))
+		RegisterSignal(L, COMSIG_CLICK_CTRL_MIDDLE, .proc/on_ctrl_middle_click)
 
 /datum/action/xeno_action/watch_xeno/remove_action(mob/living/L)
 	if(overwatch_active)
 		stop_overwatch()
-	UnregisterSignal(L, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_WATCHXENO, COMSIG_CLICK_CTRL_MIDDLE))
+	UnregisterSignal(L, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_WATCHXENO))
+	if(isxenoqueen(owner))
+		UnregisterSignal(L, COMSIG_CLICK_CTRL_MIDDLE)
 	return ..()
-
 
 /datum/action/xeno_action/watch_xeno/action_activate()
 	if(overwatch_active)
 		stop_overwatch()
-		remove_selected_frame()
 		return
-	add_selected_frame()
 	select_xeno()
 
+/datum/action/xeno_action/watch_xeno/should_show()
+	return isxenoqueen(owner) //Only the queen should have the button for overwatch. All else uses chat (F).
 
 /datum/action/xeno_action/watch_xeno/proc/select_xeno(mob/living/carbon/xenomorph/selected_xeno)
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.hive)
-		return
+	var/mob/living/carbon/xenomorph/X = owner
 
 	if(QDELETED(selected_xeno))
-		var/list/possible_xenos = X.hive.get_watchable_xenos()
-
+		if(!isxenoqueen(X))
+			return
+		var/list/possible_xenos = X.hive.get_watchable_xenos(X)
 		selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos)
 		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
 			if(!X.observed_xeno)
 				return
 			stop_overwatch()
 			return
-
 	start_overwatch(selected_xeno)
 
-
 /datum/action/xeno_action/watch_xeno/proc/start_overwatch(mob/living/carbon/xenomorph/target)
-	var/mob/living/carbon/xenomorph/queen/watcher = owner
+	var/mob/living/carbon/xenomorph/watcher = owner
 	var/mob/living/carbon/xenomorph/old_xeno = watcher.observed_xeno
 	if(old_xeno)
 		stop_overwatch(FALSE)
 	watcher.observed_xeno = target
-	target.hud_set_queen_overwatch()
+	if(isxenoqueen(watcher)) // Only queen needs the eye shown.
+		target.hud_set_queen_overwatch()
 	watcher.reset_perspective()
 	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, .proc/on_xeno_death)
 	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
 	overwatch_active = TRUE
-	to_chat(owner, span_notice("Click again on overwatch ability button to stop overwatching"))
-
+	add_selected_frame()
 
 /datum/action/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
-	var/mob/living/carbon/xenomorph/queen/watcher = owner
+	var/mob/living/carbon/xenomorph/watcher = owner
 	var/mob/living/carbon/xenomorph/observed = watcher.observed_xeno
 	watcher.observed_xeno = null
 	if(!QDELETED(observed))
 		UnregisterSignal(observed, list(COMSIG_HIVE_XENO_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
-		observed.hud_set_queen_overwatch()
+		if(isxenoqueen(watcher)) // Only queen has to reset the eye overlay.
+			observed.hud_set_queen_overwatch()
 	if(do_reset_perspective)
 		watcher.reset_perspective()
 	UnregisterSignal(watcher, COMSIG_MOVABLE_MOVED)
 	overwatch_active = FALSE
-
+	remove_selected_frame()
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
 	SIGNAL_HANDLER
