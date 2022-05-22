@@ -73,7 +73,7 @@
 	default_ammo = /datum/ammo/rocket/atgun_shell/he
 
 /obj/item/ammo_magazine/heavyminigun
-	name = "MG-2005 box magazine"
+	name = "MG-2005 box magazine (7.62x51mm)"
 	desc = "A box of 1000 rounds for the MG-2005 mounted minigun."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/obj/items/ammo.dmi'
@@ -85,8 +85,8 @@
 	reload_delay = 10 SECONDS
 
 /obj/item/ammo_magazine/dualcannon
-	name = "Dualcannon IFF Magazine"
-	desc = "A box of 150, 20mm rounds for the ATR-22 mounted dualcannon."
+	name = "dualcannon IFF Magazine(20mm)"
+	desc = "A box of 150 20mm rounds for the ATR-22 mounted dualcannon."
 	w_class = WEIGHT_CLASS_BULKY
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "ac_mag"
@@ -97,8 +97,8 @@
 	reload_delay = 5 SECONDS
 
 /obj/item/ammo_magazine/heavylaser
-	name = "Heavy Laser Cell"
-	desc = "A cell with enough charge to contain 15 heavy laser shots for the TE-9001 non-rechargable."
+	name = "heavy-duty weapon laser cell"
+	desc = "A cell with enough charge to contain 15 heavy laser shots for the TE-9001. This cannot be recharged."
 	w_class = WEIGHT_CLASS_BULKY
 	flags_magazine = NONE
 	max_rounds = 15

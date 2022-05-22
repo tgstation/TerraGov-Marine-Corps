@@ -89,7 +89,7 @@
 
 /obj/item/weapon/gun/minigunnest
 	name = "\improper MG-2005 mounted minigun"
-	desc = "The MG-2005 mounted minigun is a gun simple in principle it will shoot allot of bullets really fast and will rip through xeno hordes."
+	desc = "The MG-2005 mounted minigun is a gun simple in principle, it will shoot a lot of bullets really fast and will rip through xeno hordes."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -138,7 +138,7 @@
 
 /obj/item/weapon/gun/dualcannon
 	name = "\improper ATR-22 mounted heavy dualcannon"
-	desc = "The ATR-22 mounted heavy dualcannon is a double barrel 20mm autocannon usually seen fitted in a TAV it shreds through armor and walls causing heavy sunder but is rather lacking in damage against xenomorph targets."
+	desc = "The ATR-22 mounted heavy dualcannon is a double barrel 20mm autocannon, usually seen fitted in terran armored vehicles. It shreds through armor and walls causing heavy sunder but is rather lacking in damage against xenomorph targets."
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
@@ -225,7 +225,7 @@
 
 /obj/item/weapon/gun/heavyrr
 	name = "\improper RR-15 mounted heavy recoilless rifle"
-	desc = "The RR-15 mounted recoilless rifle is a non-IFF, modernized version of the L6 Wombat using 75mm instead reintroduced due to the rather close quarter nature of combat against xenomorphs, this thing will kill mostly anything on its way"
+	desc = "The RR-15 mounted recoilless rifle is a non-IFF, modernized version of the L6 Wombat using 75mm. Reintroduced due to the rather close quarter nature of combat against xenomorphs, this thing will kill mostly anything on its way."
 
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
