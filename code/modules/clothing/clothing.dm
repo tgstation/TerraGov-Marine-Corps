@@ -160,7 +160,6 @@
 	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/gloves.dmi')
 
 
 /obj/item/clothing/gloves/update_clothing_icon()
@@ -207,7 +206,6 @@
 	icon = 'icons/obj/clothing/masks.dmi'
 	flags_equip_slot = ITEM_SLOT_MASK
 	flags_armor_protection = FACE|EYES
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
 	blood_sprite_state = "maskblood"
 	var/anti_hug = 0
 	var/toggleable = FALSE
@@ -241,7 +239,6 @@
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	blood_sprite_state = "shoeblood"
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/shoes.dmi')
 
 
 /obj/item/clothing/shoes/update_clothing_icon()

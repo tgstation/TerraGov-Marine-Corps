@@ -7602,12 +7602,9 @@
 /turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "aBt" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/structure/disposalpipe/segment,
+/obj/vehicle/train/cargo/engine,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/garage/two)
+/area/ice_colony/surface/garage/one)
 "aBu" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -7759,34 +7756,26 @@
 	dir = 8
 	},
 /area/ice_colony/surface/garage/one)
-"aBQ" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "N-corner"
-	},
-/turf/open/floor/tile/dark/brown2{
+"aBR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/warning_stripes/thick{
 	dir = 1
 	},
-/area/ice_colony/surface/garage/one)
-"aBR" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "N-corner"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
 /area/ice_colony/surface/garage/one)
 "aBS" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "N-corner"
-	},
 /obj/structure/cable,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
 /area/ice_colony/surface/garage/one)
 "aBT" = (
-/obj/effect/decal/warning_stripes/thin{
+/obj/effect/decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
@@ -7801,8 +7790,8 @@
 	},
 /area/ice_colony/surface/garage/one)
 "aBV" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "N-corner"
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -7820,10 +7809,10 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/two)
 "aBY" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "N-corner"
-	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -8107,19 +8096,19 @@
 	},
 /area/ice_colony/surface/garage/two)
 "aCT" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "N-corner"
-	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
 /area/ice_colony/surface/garage/two)
 "aCU" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "N-corner"
-	},
 /obj/structure/cable,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -8228,11 +8217,11 @@
 	},
 /area/ice_colony/surface/command/control/office)
 "aDr" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -12712,8 +12701,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aRz" = (
 /obj/machinery/light,
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
 "aRA" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -12756,8 +12744,7 @@
 "aRH" = (
 /obj/machinery/light,
 /obj/item/weapon/gun/pistol/holdout,
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "aRI" = (
 /obj/structure/table,
@@ -12934,8 +12921,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aSi" = (
 /obj/machinery/door/airlock/unpowered/shuttle,
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
 "aSj" = (
 /turf/closed/shuttle{
@@ -12978,8 +12964,7 @@
 /area/ice_colony/surface/hangar/alpha)
 "aSr" = (
 /obj/machinery/door/airlock/unpowered/shuttle,
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "aSs" = (
 /turf/closed/shuttle{
@@ -13000,8 +12985,7 @@
 /area/ice_colony/surface/hangar/beta)
 "aSv" = (
 /obj/structure/computerframe,
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
 "aSw" = (
 /obj/structure/cable,
@@ -13028,8 +13012,7 @@
 /area/ice_colony/surface/hangar/beta)
 "aSz" = (
 /obj/structure/computerframe,
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "aSA" = (
 /obj/effect/turf_underlay/icefloor,
@@ -13174,8 +13157,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southeast)
 "aSV" = (
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
 "aSX" = (
 /obj/machinery/space_heater,
@@ -13193,8 +13175,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "aSZ" = (
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "aTa" = (
 /obj/structure/table,
@@ -13296,8 +13277,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
 "aTt" = (
 /obj/structure/cable,
@@ -13318,16 +13298,14 @@
 /area/ice_colony/surface/hangar/beta)
 "aTv" = (
 /obj/machinery/light,
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "aTw" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "aTx" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -14356,8 +14334,7 @@
 	pixel_x = 6;
 	pixel_y = -4
 	},
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "aWF" = (
 /obj/effect/turf_underlay/icefloor,
@@ -18887,8 +18864,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
 "bmJ" = (
 /obj/machinery/light{
@@ -18897,8 +18873,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
 "bmK" = (
 /obj/machinery/disposal,
@@ -19100,8 +19075,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "bns" = (
 /turf/closed/ice/straight,
@@ -19128,15 +19102,13 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "bny" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
 "bnz" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -19160,22 +19132,19 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/alpha)
 "bnD" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "bnE" = (
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/open/shuttle/dropship/fourteen{
-	},
+/turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "bnG" = (
 /obj/effect/turf_underlay/icefloor,
@@ -62507,10 +62476,10 @@ azD
 fPd
 aAR
 aBn
-aBQ
+aBT
 aAR
 aDL
-aBQ
+aBT
 aDP
 aAR
 aAR
@@ -62722,7 +62691,7 @@ aCp
 aBR
 aAS
 aDM
-aBQ
+aBT
 aDP
 aAR
 aAR
@@ -63143,10 +63112,10 @@ azD
 azU
 aAR
 aBn
-aBQ
+aBT
 aAR
 aBn
-aBQ
+aBT
 aJZ
 aAR
 aAR
@@ -63355,10 +63324,10 @@ azD
 azX
 aAR
 aBn
-aBQ
+aBT
 aAR
 aBn
-aBQ
+aBT
 aKr
 aAR
 aAR
@@ -63567,10 +63536,10 @@ azD
 azU
 aAR
 aBn
-aBQ
+aBT
 aAR
 aBn
-aBQ
+aBT
 aYT
 aAR
 aAR
@@ -63779,10 +63748,10 @@ azD
 azY
 aAR
 aBn
-aBQ
+aBT
 aCr
 aBn
-aBQ
+aBT
 aDT
 aKU
 aGb
@@ -63990,7 +63959,7 @@ mqj
 azD
 aHS
 aAR
-aBr
+aBt
 aBT
 aAR
 aBr
@@ -66746,10 +66715,10 @@ mqj
 azE
 aAj
 aAZ
-aBt
+aCu
 aBY
 aCu
-aBt
+aCu
 aBY
 aEc
 aAW

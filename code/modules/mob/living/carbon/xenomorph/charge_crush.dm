@@ -278,7 +278,8 @@
 
 		if(precrush > 0)
 			log_combat(charger, crushed_living, "xeno charged")
-			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, crushed_living.run_armor_check(BODY_ZONE_CHEST, "melee"), updating_health = TRUE) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
+			//There is a chance to do enough damage here to gib certain mobs. Better update immediately.
+			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, crushed_living.get_soft_armor("melee", BODY_ZONE_CHEST), updating_health = TRUE)
 			if(QDELETED(crushed_living))
 				charger.visible_message(span_danger("[charger] anihilates [preserved_name]!"),
 				span_xenodanger("We anihilate [preserved_name]!"))

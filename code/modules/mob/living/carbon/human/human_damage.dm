@@ -170,33 +170,6 @@
 		cloneloss = 0
 		return
 
-	var/heal_prob = max(0, 80 - getCloneLoss())
-	var/mut_prob = min(80, getCloneLoss()+10)
-	if (amount > 0)
-		if (prob(mut_prob))
-			var/list/datum/limb/candidates = list()
-			for (var/datum/limb/O in limbs)
-				if(O.limb_status & (LIMB_ROBOT|LIMB_DESTROYED|LIMB_MUTATED)) continue
-				candidates |= O
-			if (candidates.len)
-				var/datum/limb/O = pick(candidates)
-				O.mutate()
-				to_chat(src, "<span class = 'notice'>Something is not right with your [O.display_name]...</span>")
-				return
-	else
-		if (prob(heal_prob))
-			for (var/datum/limb/O in limbs)
-				if (O.limb_status & LIMB_MUTATED)
-					O.unmutate()
-					to_chat(src, "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>")
-					return
-
-	if (getCloneLoss() < 1)
-		for (var/datum/limb/O in limbs)
-			if (O.limb_status & LIMB_MUTATED)
-				O.unmutate()
-				to_chat(src, "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>")
-
 
 /mob/living/carbon/human/adjustOxyLoss(amount, forced = FALSE)
 	if(species.species_flags & NO_BREATHE && !forced)
@@ -372,7 +345,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	damage = damage / partcount //damage all limbs equally.
 	while(parts.len)
 		var/datum/limb/picked = pick_n_take(parts)
-		apply_damage(damage, damagetype, picked, run_armor_check(picked, armortype), sharp, edge, updating_health)
+		apply_damage(damage, damagetype, picked, get_soft_armor(armortype, picked), sharp, edge, updating_health)
 
 ////////////////////////////////////////////
 

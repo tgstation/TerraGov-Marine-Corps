@@ -1,0 +1,4 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - balance: "Most shipside chairs and tables no longer drop metal on deconstruct"

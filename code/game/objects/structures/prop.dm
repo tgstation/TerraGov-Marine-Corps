@@ -352,6 +352,13 @@
 	icon_state = "door_open"
 	density = FALSE
 
+/obj/structure/prop/oresilo
+	name = "ore silo"
+	desc = "An all-in-one bluespace storage and transmission system for the colony's mineral distribution needs. This one appears to be deactivated."
+	icon = 'icons/obj/machines/mining_machines.dmi'
+	icon_state = "silo"
+	density = TRUE
+
 /obj/structure/prop/mainship/propcarp/Initialize(mapload) //slightly randomize carp to simulate life
 	. = ..()
 	var/pickedrotate = pick(0,1,2,4,8,10)
@@ -505,6 +512,7 @@
 	name = "\improper Broken vendor"
 	icon = 'icons/Marine/mainship_props.dmi'
 	desc = "The insides of this vendor are visible and rusted through, you get the feeling there's no fixing this machine."
+	density = TRUE
 
 /obj/structure/prop/brokenvendor/brokenweaponsrack
 	icon_state = "marinearmory-broken"

@@ -251,7 +251,7 @@
 
 
 	//Sync the organ's damage with its wounds
-	update_damages()
+	update_bleeding()
 
 	//If limb took enough damage, try to cut or tear it off
 
@@ -283,7 +283,7 @@
 	burn_dam = max(0, burn_dam - burn)
 
 	//Sync the organ's damage with its wounds
-	update_damages()
+	update_bleeding()
 	if(updating_health)
 		owner.updatehealth()
 
@@ -295,7 +295,7 @@
  */
 /datum/limb/proc/rejuvenate(updating_health = FALSE, updating_icon = FALSE)
 	damage_state = "00"
-	remove_limb_flags(LIMB_BROKEN | LIMB_BLEEDING | LIMB_SPLINTED | LIMB_STABILIZED | LIMB_AMPUTATED | LIMB_DESTROYED | LIMB_NECROTIZED | LIMB_MUTATED | LIMB_REPAIRED)
+	remove_limb_flags(LIMB_BROKEN | LIMB_BLEEDING | LIMB_SPLINTED | LIMB_STABILIZED | LIMB_AMPUTATED | LIMB_DESTROYED | LIMB_NECROTIZED | LIMB_REPAIRED)
 	brute_dam = 0
 	burn_dam = 0
 	germ_level = 0
@@ -526,21 +526,20 @@ Note that amputating the affected organ does in fact remove the infection from t
 			W.process()
 
 	// sync the organ's bleeding-ness and icon
-	update_damages()
+	update_bleeding()
 	if (update_icon())
 		owner.UpdateDamageIcon(1)
 
 //Updates BLEEDING status.
-/datum/limb/proc/update_damages()
+/datum/limb/proc/update_bleeding()
+	if(limb_status & LIMB_ROBOT || owner.species.species_flags & NO_BLOOD)
+		return
 	var/is_bleeding = FALSE
-	var/mob/living/carbon/human/H
-	if(istype(owner,/mob/living/carbon/human))
-		H = owner
 
 	if(brute_dam > 5 && !(limb_wound_status & LIMB_WOUND_BANDAGED))
 		is_bleeding = TRUE
 
-	if(surgery_open_stage && !(limb_wound_status & LIMB_WOUND_CLAMPED) && (H && !(H.species.species_flags & NO_BLOOD)))	//things tend to bleed if they are CUT OPEN
+	if(surgery_open_stage && !(limb_wound_status & LIMB_WOUND_CLAMPED))	//things tend to bleed if they are CUT OPEN
 		is_bleeding = TRUE
 
 	if(is_bleeding)
@@ -690,7 +689,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	brute_dam = 0
 	burn_dam = 0
 	limb_wound_status = NONE
-	update_damages()
+	update_bleeding()
 
 	//we reset the surgery related variables
 	reset_limb_surgeries()
@@ -791,7 +790,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 
 /datum/limb/proc/bandage()
-	if(limb_wound_status & LIMB_WOUND_BANDAGED)
+	if(limb_wound_status & LIMB_WOUND_BANDAGED || !brute_dam)
 		return 0
 	limb_wound_status ^= LIMB_WOUND_BANDAGED
 	return 1
@@ -799,10 +798,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/is_bandaged()
 	if(!(surgery_open_stage == 0))
 		return 1
-	return limb_wound_status & LIMB_WOUND_BANDAGED
+	return limb_wound_status & LIMB_WOUND_BANDAGED || !brute_dam
 
 /datum/limb/proc/disinfect()
-	if(limb_wound_status & LIMB_WOUND_DISINFECTED)
+	if(limb_wound_status & LIMB_WOUND_DISINFECTED || (burn_dam < 20 && brute_dam < 20))
 		return 0
 	limb_wound_status ^= LIMB_WOUND_DISINFECTED
 	return 1
@@ -820,7 +819,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return 1
 
 /datum/limb/proc/salve()
-	if(limb_wound_status & LIMB_WOUND_SALVED)
+	if(limb_wound_status & LIMB_WOUND_SALVED || !burn_dam)
 		return 0
 	limb_wound_status ^= LIMB_WOUND_SALVED
 	return 1
@@ -828,7 +827,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/is_salved()
 	if(!(surgery_open_stage == 0))
 		return 1
-	return limb_wound_status & LIMB_WOUND_SALVED
+	return limb_wound_status & LIMB_WOUND_SALVED || !burn_dam
 
 /datum/limb/proc/fracture()
 
@@ -865,15 +864,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		var/datum/limb/child_limb = c
 		child_limb.robotize()
 
-
-/datum/limb/proc/mutate()
-	add_limb_flags(LIMB_MUTATED)
-	owner.update_body()
-
-/datum/limb/proc/unmutate()
-	remove_limb_flags(LIMB_MUTATED)
-	owner.update_body()
-
 /datum/limb/proc/get_damage()	//returns total damage
 	return brute_dam + burn_dam	//could use health?
 
@@ -885,12 +875,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/has_external_wound()
 	return brute_dam || burn_dam
 
-/datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon, gender="")
+/datum/limb/proc/get_icon(icon/race_icon, gender="")
 	if(limb_status & LIMB_ROBOT && !(owner.species.species_flags & LIMB_ROBOT)) //if race set the flag then we just let the race handle this
 		return icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
-
-	if (limb_status & LIMB_MUTATED)
-		return icon(deform_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
 	var/datum/ethnicity/E = GLOB.ethnicities_list[owner.ethnicity]
 
@@ -1134,18 +1121,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	encased = "skull"
 	var/disfigured = 0 //whether the head is disfigured.
 	var/face_surgery_stage = 0
-
-/*
-/datum/limb/head/get_icon(icon/race_icon, icon/deform_icon)
-	if (!owner)
-		return ..()
-	var/g = "m"
-	if(owner.gender == FEMALE)	g = "f"
-	if (limb_status & LIMB_MUTATED)
-		. = new /icon(deform_icon, "[icon_name]_[g]")
-	else
-		. = new /icon(race_icon, "[icon_name]_[g]")
-*/
 
 /datum/limb/head/take_damage_limb(brute, burn, sharp, edge, blocked = 0, updating_health = FALSE, list/forbidden_limbs = list())
 	. = ..()

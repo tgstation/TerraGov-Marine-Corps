@@ -204,3 +204,150 @@
   - rscdel: Theseus' metal and plasteel surplus near FOB drone
   - rscdel: extra crowbars and screwdrivers in all prep if needed since we don't need
       it to dissemable Jaegar
+2022-05-15:
+  'Arctrooper8 Code: MJP Sprites: Kuro':
+  - rscadd: SG-85 handheld gatling gun, an SG minigun with an absurd firerate at the
+      cost of low damage per bullet.
+  - rscdel: T-25 has truly been sent to the shadow realm this time (They will not
+      survive the Brazilians).
+  - balance: SG-29 now has a firerate of .2 instead of .25
+  KornFlaks:
+  - bugfix: Queen now retains the ability to command minions after maturing to Primo
+      status.
+  Lumipharon:
+  - bugfix: Fixed an old bug that would cause screen wide client crashes due to large
+      amounts of shooting
+  Pariah919:
+  - rscadd: Added new gun lore. Check the codex for cool reading.
+  - rscadd: New gun names, more nomenclature.
+  QualityVan:
+  - bugfix: You can see bleeding on human examine again.
+  - bugfix: You can't kit undamaged limbs
+  - bugfix: Robotic limbs are firmly incapable of bleeding.
+  RipGrayson:
+  - balance: The crashed ship area in LV is now weatherproof and underground
+  TiviPlus:
+  - code_imp: updated tgui
+  Walarks:
+  - qol: robot repair automatically starts repairing the next damaged limb
+  - bugfix: fixes xeno not having weeds when spawned/evo on weeds and not move
+  Wayland-Smithy:
+  - bugfix: Fixed call of the burrowed unintentional larva queue leaves.
+  tyeagg:
+  - balance: 'reduced hv 30mm ammo travel time to 3 seconds delete: removed landing
+      zone detector'
+  - balance: increased dropship points received from voucher to 150
+  - balance: laser beam gun price increased to 600
+  - balance: laser battery price reduced to 85
+  - balance: fatty rocket price decreased to 150
+2022-05-16:
+  Arctrooper8:
+  - rscdel: Unused baystation races and their codes it gone.
+  - rscdel: Unused deformed limb code is gone.
+  - qol: PO duty and spawn message have been updated
+  - bugfix: SG vendor now displays the proper name for the SG minigun
+  - soundadd: SG minigun now uses default minigun sound, ears of the world rejoice!
+  - sounddel: Removed minigun_sg since it is now unused and hurts everyone's ears
+  DeltaFire15:
+  - bugfix: Deployables should be less likely to have issues with turf blocking conditions
+      changing during deployment.
+  KornFlaks:
+  - balance: Xenos on help intent no longer extinguish their sworn enemies and instead
+      watches them burn.
+  QualityVan:
+  - bugfix: Restocking a back-mounted ammo (power packs, fuel tanks) will now properly
+      disconnect them from any loaded weapons.
+  - bugfix: Flamers won't stay connected to fuel tanks across time and space after
+      you do a tactical reload.
+  - bugfix: Revolvers won't sometimes jam after firing the first few bullets and opening
+      the chamber.
+  RipGrayson:
+  - qol: Mapper icons for cameras now have an indicator for which direction they move.
+  - bugfix: Fixed quite a few icons that were invisible due to improper icon_states.
+  - imageadd: Created a new icon for poster spawners.
+  - imageadd: Created a new icon for the death step_triggers outside of ships.
+  - imageadd: Created a new sprite for mapping gib spawners.
+  - imageadd: Ported the TG silo icon for use as a map prop.
+  Wayland-Smithy:
+  - balance: Flares only deal extra burn damage to things not already on fire. Normal
+      throw impact damage and fire stacks are unchanged.
+  - bugfix: Fixed phoron miners continuing to function after hijack.
+  breadhunt:
+  - qol: When swapping an attachment, the old attachment now goes into your hand instead
+      of on the floor
+  hyper2snyper:
+  - qol: Med Scanner is now TGUI.
+  - balance: Med Scanner now auto updates for Corpmen and has a remote distance of
+      3
+2022-05-17:
+  BraveMole:
+  - bugfix: Fix sandbag loadout exploit
+  KornFlaks:
+  - qol: Added balloon alerts for plasma cutter interactions.
+2022-05-18:
+  novaepee:
+  - bugfix: camera position in PoS
+  - rscadd: two tile wide maint halls around PoS
+  - rscadd: better hijack position when xenomorphs crash Alamo into PoS
+2022-05-19:
+  Arctrooper8:
+  - balance: SG minigun fires slower and does more damage
+  - bugfix: SG minigun is now consumer safe and no longer bullies low end devices
+  Lumipharon:
+  - bugfix: Fixed a couple of bugs that could let you stack turrets or MG's
+  Mechanelize:
+  - rscadd: Added a new marine outfit for Imaginary Friends
+  Walarks:
+  - balance: fixes harvester storing 60 instead of 30 of each reagent
+  - qol: updates harvester messages to runechat instead of chat
+  - bugfix: select reagent button icon no longer disappears sometimes when re-equipping
+      the weapon
+2022-05-20:
+  KornFlaks:
+  - qol: Defiler actions now have balloon alerts.
+2022-05-21:
+  Arctrooper8:
+  - rscadd: Added a lot more Christian Denominations
+  - rscadd: Adherents of the Machine God added 01010000 01110010 01100001 01101001
+      01110011 01100101 00100000 01001111 01101101 01101110 01101001 01110011 01110011
+      01101001 01100001 01101000
+  - rscadd: Paganism
+  - rscdel: removed Wiccanism and Pagan(Wicca)
+  - rscdel: Removed unused lore preference variables alongside broken Corporates relations
+  - bugfix: Synthetic type button now actually works instead of making you Western
+  KornFlaks:
+  - qol: Xeno pheromones selection are now done in a radial menu.
+  - bugfix: Xeno phermones keybindings now function at all times, even if the phero
+      selection is not active.
+  - qol: Xeno construction selection can now be done through radial menu. Left click
+      now opens radial selection (new). Right click cycles through constructions (old).
+  - bugfix: Throwing knives (and all other things thrown) now do damage!
+  - qol: Xeno weed type radial menu made smaller.
+  - rscadd: Queen hive message now displays on game map.
+  Lumipharon:
+  - rscadd: Added new lobby art
+  QualityVan:
+  - bugfix: New health scanners properly show whether a limb is kitted or not.
+  novaepee:
+  - bugfix: issue of anyone w/o ACCESS_MARINE_PREP can't get through 2x1 door
+  - bugfix: bolding on medical scanner for brain damage
+  - bugfix: delete a folder in TerraGov-Marine-Corps that contains a folder named
+      TerraGov-Marine-Corps
+  tyeagg:
+  - code_imp: railgun targeting changed from pick to rand
+  - balance: increased railgun spread
+  - balance: changed railgun to be explosive
+  - balance: increased railgun cooldown to 5 minutes
+  - balance: reduced time it takes to fire and land railgun
+  - rscadd: Orion Military Outpost
+  - imageadd: bunkbeds
+  - bugfix: broken vendor props not having density
+  - imageadd: 'tallgrass delete: slowdown from bushes'
+2022-05-22:
+  KornFlaks:
+  - qol: The actions that hiveminds can use while manifested no longer disappear but
+      instead are disabled.
+  Walarks:
+  - qol: psychic link's activation can be manually cancelled by activating the skill
+      again
+  - balance: psychic link has 15 instead of 10 range

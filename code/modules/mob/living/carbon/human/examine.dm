@@ -277,6 +277,8 @@
 			if(wound_flavor_text["[temp.display_name]"])
 				wound_flavor_text["[temp.display_name]"] += "!</span>\n"
 		else
+			if(temp.limb_status & LIMB_BLEEDING)
+				is_bleeding["[temp.display_name]"] = 1
 			var/healthy = TRUE
 			var/brute_desc = ""
 			switch(temp.brute_dam)
@@ -317,7 +319,7 @@
 
 			var/overall_desc = ""
 			if(healthy)
-				overall_desc = "[t_He] has a healthy [temp.display_name]."
+				overall_desc = span_notice("[t_He] has a healthy [temp.display_name].")
 			else
 				overall_desc = "[t_He] has a [germ_desc][temp.display_name]"
 				if(brute_desc || burn_desc)
@@ -325,8 +327,8 @@
 					if(brute_desc && burn_desc)
 						overall_desc += " and "
 					overall_desc += burn_desc
-				overall_desc += "."
-			wound_flavor_text["[temp.display_name]"] = span_warning(overall_desc + "\n")
+				overall_desc = span_warning(overall_desc + ".")
+			wound_flavor_text["[temp.display_name]"] = overall_desc + "\n"
 
 	//Handles the text strings being added to the actual description.
 	//If they have something that covers the limb, and it is not missing, put flavortext.  If it is covered but bleeding, add other flavortext.

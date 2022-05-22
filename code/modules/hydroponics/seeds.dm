@@ -48,12 +48,6 @@
 /obj/item/seeds/cabbageseed
 	seed_type = "cabbage"
 
-/obj/item/seeds/shandseed
-	seed_type = "shand"
-
-/obj/item/seeds/mtearseed
-	seed_type = "mtear"
-
 /obj/item/seeds/berryseed
 	seed_type = "berries"
 

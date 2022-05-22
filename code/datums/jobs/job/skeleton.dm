@@ -17,7 +17,6 @@
 
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/gladiator
-	wear_suit = /obj/item/clothing/suit/unathi/mantle
 	shoes = /obj/item/clothing/shoes/sandal
 	head = /obj/item/clothing/head/helmet/gladiator
 	belt = /obj/item/weapon/claymore
@@ -42,7 +41,6 @@
 
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/gladiator
-	wear_suit = /obj/item/clothing/suit/unathi/mantle
 	shoes = /obj/item/clothing/shoes/sandal
 	head = /obj/item/clothing/head/helmet/gladiator
 	belt = /obj/item/weapon/claymore

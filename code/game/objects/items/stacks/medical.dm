@@ -164,24 +164,6 @@
 	user.visible_message(span_notice("[user] salves wounds on [patient]'s [target_limb.display_name]."),
 	span_notice("You salve wounds on [patient]'s [target_limb.display_name]."))
 
-/obj/item/stack/medical/heal_pack/gauze/tajaran
-	name = "\improper S'rendarr's Hand leaf"
-	singular_name = "S'rendarr's Hand leaf"
-	desc = "A poultice made of soft leaves that is rubbed on bruises."
-	icon = 'icons/obj/items/harvest.dmi'
-	icon_state = "shandp"
-	heal_brute = 7
-
-
-/obj/item/stack/medical/heal_pack/ointment/tajaran
-	name = "\improper Messa's Tear petals"
-	singular_name = "Messa's Tear petal"
-	desc = "A poultice made of cold, blue petals that is rubbed on burns."
-	icon = 'icons/obj/items/harvest.dmi'
-	icon_state = "mtearp"
-	heal_burn = 7
-
-
 /obj/item/stack/medical/heal_pack/gauze/sectoid
 	name = "\improper healing resin pack"
 	singular_name = "healing resin pack"

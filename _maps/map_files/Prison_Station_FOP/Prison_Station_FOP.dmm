@@ -7733,11 +7733,6 @@
 /obj/structure/closet,
 /turf/open/floor/wood,
 /area/prison/chapel)
-"ayA" = (
-/obj/structure/closet,
-/obj/item/storage/bible/koran,
-/turf/open/floor/wood,
-/area/prison/chapel)
 "ayB" = (
 /obj/structure/closet,
 /obj/item/storage/bible,
@@ -23549,9 +23544,6 @@
 /area/prison/kitchen)
 "btZ" = (
 /obj/structure/bed,
-/turf/open/floor/prison/bright_clean/two,
-/area/prison/holding/holding1)
-"bua" = (
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/holding/holding1)
 "bub" = (
@@ -41220,8 +41212,7 @@
 	},
 /area/prison/hangar/main)
 "dtT" = (
-/turf/open/floor/prison/bright_clean/two{
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/prison/holding/holding1)
 "duu" = (
 /obj/machinery/light{
@@ -76541,7 +76532,7 @@ akK
 lXO
 akV
 axM
-ayA
+ayz
 ayD
 ayD
 ayD
@@ -93811,7 +93802,7 @@ buX
 bvV
 btZ
 buX
-bua
+dtT
 btZ
 btZ
 bue
@@ -94063,13 +94054,13 @@ vSz
 aVS
 uLs
 bsY
-bua
-bua
-bua
-bua
-bua
-bua
-bua
+dtT
+dtT
+dtT
+dtT
+dtT
+dtT
+dtT
 bAf
 bue
 bCI
@@ -94321,12 +94312,12 @@ aTF
 aTF
 aTF
 bub
-bua
-bua
+dtT
+dtT
 bwQ
 bwQ
 dtT
-bua
+dtT
 bAg
 bue
 bCH
@@ -94578,12 +94569,12 @@ iFG
 iFG
 aTF
 bub
-bua
-bua
+dtT
+dtT
 bwQ
 bwQ
-bua
-bua
+dtT
+dtT
 bAg
 bue
 bBC
@@ -94835,12 +94826,12 @@ aYu
 iFG
 aTF
 bub
-bua
-bua
+dtT
+dtT
 bwS
 bxu
-bua
-bua
+dtT
+dtT
 bAg
 bue
 bCH
@@ -95092,13 +95083,13 @@ aYu
 qFw
 aTF
 bjU
-bua
+dtT
 kpA
 bwT
 bwh
-bua
-bua
-bua
+dtT
+dtT
+dtT
 bue
 oAY
 bEA
@@ -95351,7 +95342,7 @@ aTF
 bNT
 bue
 bue
-bua
+dtT
 jRG
 bue
 bue
@@ -95865,7 +95856,7 @@ aTF
 bue
 bue
 bue
-bua
+dtT
 bxw
 bue
 bue
@@ -96120,12 +96111,12 @@ aYu
 iFG
 bts
 dCg
-bua
-bua
-bua
+dtT
+dtT
+dtT
 jRG
-bua
-bua
+dtT
+dtT
 bAi
 bBw
 oAY
