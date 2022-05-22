@@ -130,3 +130,11 @@
 /datum/asset/spritesheet/blessingmenu/register()
 	InsertAll("", 'icons/UI_Icons/buyable_icons.dmi')
 	..()
+
+/datum/asset/spritesheet/hive_status
+	name = "hivestatus"
+
+/datum/asset/spritesheet/hive_status/register()
+	InsertAll("", 'icons/UI_Icons/hive_status_icons.dmi')
+	InsertAll("", 'icons/UI_Icons/map_blips.dmi')
+	..()

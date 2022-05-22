@@ -51,8 +51,23 @@
 // ***************************************
 // *********** UI for Hive Status
 // ***************************************
+/datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "HiveStatus")
+		ui.open()
 
+/datum/hive_status/ui_state(mob/user)
+	. = ..()
+	if(isobserver(user))
+		. = UI_UPDATE
 
+/datum/hive_status/ui_data(mob/user)
+	. = ..()
+
+/datum/hive_status/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/spritesheet/hive_status)
 
 // ***************************************
 // *********** Helpers
