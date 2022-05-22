@@ -57,7 +57,7 @@
 			continue
 		if(isxeno(ssd_mob))
 			var/mob/living/carbon/xenomorph/potential_minion = ssd_mob
-			if((potential_minion.xeno_caste.caste_flags & CASTE_IS_A_MINION) && !potential_minion.hive.upgrades_by_name[GHOSTS_CAN_TAKE_MINIONS].times_bought)
+			if((potential_minion.xeno_caste.caste_flags & CASTE_IS_A_MINION) && !potential_minion.hive.purchases.upgrades_by_name[GHOSTS_CAN_TAKE_MINIONS].times_bought)
 				continue
 		free_ssd_mobs += ssd_mob
 

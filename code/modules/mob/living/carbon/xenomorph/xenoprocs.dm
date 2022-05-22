@@ -80,7 +80,7 @@
 /proc/check_hive_status(mob/user)
 	if(!SSticker)
 		return
-	var/dat = "<br>"
+//var/dat = "<br>"
 
 	var/datum/hive_status/hive
 	if(isxeno(user))
@@ -90,71 +90,72 @@
 	else
 		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 
-	if(!hive)
-		CRASH("couldnt find a hive in check_hive_status")
+	hive.interact(user)
 
-	var/xenoinfo = ""
+	return
 
-	var/tier4counts = ""
-	var/tier3counts = ""
-	var/tier2counts = ""
-	var/tier1counts = ""
+	// var/xenoinfo = ""
 
-	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/queen], TRUE, user)
+	// var/tier4counts = ""
+	// var/tier3counts = ""
+	// var/tier2counts = ""
+	// var/tier1counts = ""
 
-	xenoinfo += xeno_status_output(hive.xeno_leader_list, FALSE, user)
+	// xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/queen], TRUE, user)
 
-	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind], TRUE, user)
+	// xenoinfo += xeno_status_output(hive.xeno_leader_list, FALSE, user)
 
-	for(var/typepath in hive.xenos_by_typepath)
-		var/mob/living/carbon/xenomorph/T = typepath
-		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[typepath][XENO_UPGRADE_BASETYPE]
-		if(XC.caste_flags & CASTE_HIDE_IN_STATUS)
-			continue
+	// xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind], TRUE, user)
 
-		switch(initial(T.tier))
-			if(XENO_TIER_ZERO, XENO_TIER_MINION)
-				continue
-			if(XENO_TIER_FOUR)
-				tier4counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
-			if(XENO_TIER_THREE)
-				tier3counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
-			if(XENO_TIER_TWO)
-				tier2counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
-			if(XENO_TIER_ONE)
-				tier1counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
+	// for(var/typepath in hive.xenos_by_typepath)
+	// 	var/mob/living/carbon/xenomorph/T = typepath
+	// 	var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[typepath][XENO_UPGRADE_BASETYPE]
+	// 	if(XC.caste_flags & CASTE_HIDE_IN_STATUS)
+	// 		continue
 
-		if(XC.caste_name == "Queen") //QM forgive me
-			continue
-		xenoinfo += xeno_status_output(hive.xenos_by_typepath[typepath], TRUE, user)
+	// 	switch(initial(T.tier))
+	// 		if(XENO_TIER_ZERO, XENO_TIER_MINION)
+	// 			continue
+	// 		if(XENO_TIER_FOUR)
+	// 			tier4counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
+	// 		if(XENO_TIER_THREE)
+	// 			tier3counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
+	// 		if(XENO_TIER_TWO)
+	// 			tier2counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
+	// 		if(XENO_TIER_ONE)
+	// 			tier1counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
 
-	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], TRUE, user)
+	// 	if(XC.caste_name == "Queen") //QM forgive me
+	// 		continue
+	// 	xenoinfo += xeno_status_output(hive.xenos_by_typepath[typepath], TRUE, user)
 
-	var/hivemind_text = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]) > 0 ? "Active" : "Inactive"
+	// xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], TRUE, user)
 
-	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
-	dat += "<b>Tier 4: [length(hive.xenos_by_tier[XENO_TIER_FOUR])] Sisters</b>[tier4counts]<BR>"
-	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[hive.tier3_xeno_limit]) Sisters</b>[tier3counts]<BR>"
-	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
-	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
-	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
-	dat += "<b>Minions: [length(hive.xenos_by_tier[XENO_TIER_MINION])] Sisters<BR>"
-	dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
-	dat += "<b>Hivemind: [hivemind_text]<BR>"
-	if(hive.hivenumber == XENO_HIVE_NORMAL)
-		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-		dat += "<b>Burrowed Larva: [xeno_job.total_positions - xeno_job.current_positions] Sisters<BR>"
-	dat += "<table cellspacing=4>"
-	dat += xenoinfo
-	dat += "</table>"
-	dat += "<b>Larva points generated in one minute: [SSsilo.current_larva_spawn_rate]<BR>"
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	dat += "<b>Points needed for next larva: [xeno_job.job_points_needed - xeno_job.job_points]"
-	dat += resin_silo_status_output(user, hive)
+	// var/hivemind_text = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]) > 0 ? "Active" : "Inactive"
 
-	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
-	popup.set_content(dat)
-	popup.open(FALSE)
+	// dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
+	// dat += "<b>Tier 4: [length(hive.xenos_by_tier[XENO_TIER_FOUR])] Sisters</b>[tier4counts]<BR>"
+	// dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[hive.tier3_xeno_limit]) Sisters</b>[tier3counts]<BR>"
+	// dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
+	// dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
+	// dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
+	// dat += "<b>Minions: [length(hive.xenos_by_tier[XENO_TIER_MINION])] Sisters<BR>"
+	// dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
+	// dat += "<b>Hivemind: [hivemind_text]<BR>"
+	// if(hive.hivenumber == XENO_HIVE_NORMAL)
+	// 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	// 	dat += "<b>Burrowed Larva: [xeno_job.total_positions - xeno_job.current_positions] Sisters<BR>"
+	// dat += "<table cellspacing=4>"
+	// dat += xenoinfo
+	// dat += "</table>"
+	// dat += "<b>Larva points generated in one minute: [SSsilo.current_larva_spawn_rate]<BR>"
+	// var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	// dat += "<b>Points needed for next larva: [xeno_job.job_points_needed - xeno_job.job_points]"
+	// dat += resin_silo_status_output(user, hive)
+
+	// var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
+	// popup.set_content(dat)
+	// popup.open(FALSE)
 
 /mob/living/carbon/xenomorph/Topic(href, href_list)
 	. = ..()
@@ -207,7 +208,7 @@
 ///returns TRUE if we are permitted to evo to the next case FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	if(upgrade == XENO_UPGRADE_THREE)
-		return hive.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
+		return hive.purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
