@@ -322,7 +322,7 @@
 
 	if(xeno_ruler.xeno_caste.queen_leader_limit <= length(xeno_ruler.hive.xeno_leader_list))
 		if(feedback)
-			to_chat(xeno_ruler, span_xenowarning("We currently have [length(xeno_ruler.hive.xeno_leader_list)] promoted leaders. We may not maintain additional leaders until our power grows."))
+			xeno_ruler.balloon_alert(xeno_ruler, "No more leadership slots")
 		return
 
 	set_xeno_leader(selected_xeno, feedback)
@@ -331,8 +331,8 @@
 /datum/action/xeno_action/set_xeno_lead/proc/unset_xeno_leader(mob/living/carbon/xenomorph/selected_xeno, feedback = TRUE)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(feedback)
-		to_chat(xeno_ruler, span_xenonotice("We've demoted [selected_xeno] from Lead."))
-		to_chat(selected_xeno, span_xenoannounce("[xeno_ruler] has demoted us from Hive Leader. Our leadership rights and abilities have waned."))
+		xeno_ruler.balloon_alert(xeno_ruler, "Xeno demoted")
+		selected_xeno.balloon_alert(selected_xeno, "Leadership removed")
 	selected_xeno.hive.remove_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
@@ -343,10 +343,11 @@
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(!(selected_xeno.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
 		if(feedback)
-			to_chat(xeno_ruler, span_xenowarning("This caste is unfit to lead."))
+			xeno_ruler.balloon_alert(xeno_ruler, "Xeno cannot lead")
 		return
 	if(feedback)
-		to_chat(xeno_ruler, span_xenonotice("We've selected [selected_xeno] as a Hive Leader."))
+		xeno_ruler.balloon_alert(xeno_ruler, "Xeno promoted")
+		selected_xeno.balloon_alert(selected_xeno, "Promoted to leader")
 		to_chat(selected_xeno, span_xenoannounce("[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones."))
 
 	xeno_ruler.hive.add_leader(selected_xeno)
@@ -379,20 +380,20 @@
 	var/mob/living/carbon/xenomorph/receiver = target
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && receiver.stat == DEAD)
 		if(!silent)
-			to_chat(owner, span_warning("It's too late, this one has already kicked the bucket."))
+			receiver.balloon_alert(owner, "Cannot give plasma, dead")
 		return FALSE
 	if(!(receiver.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
-			to_chat(owner, span_warning("We can't give that caste plasma."))
+			receiver.balloon_alert(owner, "Cannot give plasma")
 			return FALSE
 	var/mob/living/carbon/xenomorph/giver = owner
 	if(giver.z != receiver.z)
 		if(!silent)
-			to_chat(giver, span_warning("They are too far away to do this."))
+			receiver.balloon_alert(owner, "Cannot give plasma, too far")
 		return FALSE
 	if(receiver.plasma_stored >= receiver.xeno_caste.plasma_max)
 		if(!silent)
-			to_chat(giver, span_warning("[receiver] is at full plasma."))
+			receiver.balloon_alert(owner, "Cannot give plasma, full")
 		return FALSE
 
 
@@ -401,8 +402,7 @@
 	add_cooldown()
 	receiver.gain_plasma(300)
 	succeed_activate()
-	to_chat(owner, span_xenonotice("We transfer some plasma to [target]."))
-	to_chat(receiver, span_xenonotice("We feel our plasma reserves increase. Bless the Queen!"))
+	receiver.balloon_alert_to_viewers("Plasma given from Queen")
 
 
 // ***************************************
@@ -451,7 +451,7 @@
 /datum/action/xeno_action/deevolve/action_activate()
 	var/mob/living/carbon/xenomorph/queen/X = owner
 	if(!X.observed_xeno)
-		to_chat(X, span_warning("We must overwatch the xeno we want to de-evolve."))
+		X.balloon_alert(X, "Must overwatch to deevolve")
 		return
 
 	var/mob/living/carbon/xenomorph/T = X.observed_xeno
@@ -459,19 +459,19 @@
 		return
 
 	if(T.is_ventcrawling)
-		to_chat(X, span_warning("[T] can't be deevolved here."))
+		T.balloon_alert(X, "Cannot deevolve, ventcrawling")
 		return
 
 	if(!isturf(T.loc))
-		to_chat(X, span_warning("[T] can't be deevolved here."))
+		T.balloon_alert(X, "Cannot deevolve here")
 		return
 
 	if(T.health <= 0)
-		to_chat(X, span_warning("[T] is too weak to be deevolved."))
+		T.balloon_alert(X, "Cannot deevolve, too weak")
 		return
 
 	if(!T.xeno_caste.deevolves_to)
-		to_chat(X, span_xenowarning("[T] can't be deevolved."))
+		T.balloon_alert(X, "Cannot deevolve")
 		return
 
 	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][XENO_UPGRADE_ZERO]
@@ -482,7 +482,7 @@
 
 	var/reason = stripped_input(X, "Provide a reason for deevolving this xenomorph, [T]")
 	if(isnull(reason))
-		to_chat(X, span_xenowarning("You must provide a reason for deevolving [T]."))
+		T.balloon_alert(X, "De-evolution reason required")
 		return
 
 	if(!X.check_concious_state() || !X.check_plasma(600) || X.observed_xeno != T)
@@ -497,7 +497,8 @@
 	if(T.health <= 0)
 		return
 
-	to_chat(T, span_xenowarning("The queen is deevolving us for the following reason: [reason]"))
+	T.balloon_alert(T, "Queen deevolution")
+	to_chat(T, span_xenowarning("The Queen deevolved us for the following reason: [reason]"))
 
 	T.do_evolve(new_caste.caste_type_path, new_caste.caste_name, TRUE)
 
@@ -507,4 +508,4 @@
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(T)
-	X.use_plasma(600)
+	succeed_activate()
