@@ -85,7 +85,7 @@
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 
 //-------------------------------------------------------
-//MG-2006 mounted minigun
+//MG-2005 mounted minigun
 
 /obj/item/weapon/gun/minigunnest
 	name = "\improper MG-2005 mounted minigun"

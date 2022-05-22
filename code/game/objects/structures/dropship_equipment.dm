@@ -505,8 +505,8 @@
 	return ..()
 
 /obj/structure/dropship_equipment/minigun_holder
-	name = "grenade launcher deployment system"
-	desc = "A box that deploys a modified AGL-15 crewserved grenade launcher. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	name = "minigun deployment system"
+	desc = "A box that deploys a modified MG-2005 crewserved minigun. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "minigun_system"
 	point_cost = 0 //this removes it from the fabricator
