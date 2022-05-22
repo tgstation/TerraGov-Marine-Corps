@@ -263,13 +263,13 @@
 		if(mob_caught.stat == DEAD)
 			continue
 
-		fire_mod = 1
+		fire_mod = mob_caught.get_fire_resist()
 
 		if(isxeno(mob_caught))
 			var/mob/living/carbon/xenomorph/xeno_caught = mob_caught
 			if(CHECK_BITFIELD(xeno_caught.xeno_caste.caste_flags, CASTE_FIRE_IMMUNE))
 				continue
-			fire_mod = xeno_caught.get_fire_resist()
+		
 		else if(ishuman(mob_caught))
 			var/mob/living/carbon/human/human_caught = mob_caught
 			if(user)
@@ -284,7 +284,7 @@
 			if(human_caught.hard_armor.getRating("fire") >= 100)
 				continue
 
-		mob_caught.take_overall_damage_armored(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, "fire", updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(0, rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
