@@ -216,18 +216,18 @@ export const MedScanner = (props, context) => {
                             <Box inline width={"5px"} />
                           </>
                         ) : null}
-                        {limb.bandaged ? (
+                        {!limb.bandaged ? (
                           <>
                             <Box inline color={"green"}>
-                              Bandaged
+                              Unbandaged
                             </Box>
                             <Box inline width={"5px"} />
                           </>
                         ) : null}
-                        {limb.salved ? (
+                        {!limb.salved ? (
                           <>
                             <Box inline color={"orange"}>
-                              Salved
+                              Unsalved
                             </Box>
                             <Box inline width={"5px"} />
                           </>
