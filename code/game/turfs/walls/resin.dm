@@ -4,7 +4,7 @@
  * Used mostly be xenomorphs
  */
 /turf/closed/wall/resin
-	name = "resin wall"
+	name = RESIN_WALL
 	desc = "Weird slime solidified into a wall."
 	icon = 'icons/Xeno/structures.dmi'
 	icon_state = "resin0"

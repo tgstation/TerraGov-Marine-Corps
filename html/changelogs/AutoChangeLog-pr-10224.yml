@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - refactor: "Armor checks now correctly request target armor."

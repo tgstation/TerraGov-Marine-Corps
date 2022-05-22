@@ -45,7 +45,6 @@
 
 	// *** Pheromones *** //
 	aura_strength = 2 //Hivelord's aura is not extremely strong, but better than Drones.
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Minimap Icon *** //
 	minimap_icon = "hivelord"
@@ -53,6 +52,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
@@ -64,7 +64,10 @@
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/create_jelly,
 		/datum/action/xeno_action/place_jelly_pod,
@@ -198,6 +201,7 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
@@ -210,7 +214,10 @@
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/create_jelly,
 		/datum/action/xeno_action/place_jelly_pod,

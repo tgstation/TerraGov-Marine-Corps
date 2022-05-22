@@ -544,13 +544,13 @@
 	resistance_flags = RESIST_ALL
 	var/cannon_busy = FALSE
 	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
-	var/obj/structure/ship_ammo/heavygun/railgun/rail_gun_ammo
+	var/obj/structure/ship_ammo/railgun/rail_gun_ammo
 
 /obj/structure/ship_rail_gun/Initialize()
 	. = ..()
 	if(!GLOB.marine_main_ship.rail_gun)
 		GLOB.marine_main_ship.rail_gun = src
-	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/railgun(src)
+	rail_gun_ammo = new /obj/structure/ship_ammo/railgun(src)
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
 
@@ -565,11 +565,11 @@
 	last_firing = world.time
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)
-	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
+	var/turf/target = locate(T.x + rand(-4, 4), T.y + rand(-4, 4), T.z)
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_notice("NOTICE - \The [src] has fired."))
 	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
-	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 2 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))
+	addtimer(CALLBACK(src, /obj/structure/ship_rail_gun/proc/impact_rail_gun, target), 1 SECONDS + (RG_FLY_TIME * (GLOB.current_orbit/3)))
 
 /obj/structure/ship_rail_gun/proc/impact_rail_gun(turf/T)
 	rail_gun_ammo.detonate_on(T)
