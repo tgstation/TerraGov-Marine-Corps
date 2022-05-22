@@ -75,6 +75,10 @@
 	.["hive_name"] = name
 	.["is_unique"] = get_unique_xenos()
 
+/datum/hive_status/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/spritesheet/hivestatus)
+
 ///Finds number of xenos per tier starting from larva (tier 0). Not including minions.
 /datum/hive_status/proc/get_xeno_number_per_tier()
 	. = new /list(xenos_by_tier.len - 1) // Removing minion tier.
@@ -98,30 +102,45 @@
 		LAZYADDASSOCSIMPLE(., text2num(initial(T.tier)), list(initial(T.name) = initial(T.tier) == XENO_TIER_FOUR))
 
 /datum/hive_status/proc/get_xeno_info()
-	var/list/raw_xeno_info[get_total_xeno_number()]
+	. = new /list(get_total_xeno_number())
 	var/counter = 1
 	for(var/mob/living/carbon/xenomorph/T AS in xenos_by_typepath)
 		if(initial(T.tier) == XENO_TIER_MINION)
 			continue
 		for(var/mob/living/carbon/xenomorph/X AS in xenos_by_typepath[T])
-			raw_xeno_info[counter++] += list(
+			.[counter++] += list(
 				"ref" = REF(X),
 				"name" = X.name,
 				"location" = get_xeno_location(X),
 				"health" = round((X.health / X.maxHealth) * 100, 1),
 				"plasma" = round((X.plasma_stored / X.xeno_caste.plasma_max) * 100, 1),
-				"tier" = X.tier
+				"is_leader" = X.queen_chosen_lead,
+				"is_queen" = isxenoqueen(X),
+				"is_ssd" = !X.client,
+				"tier" = X.tier,
 			)
 
-	//Sorting by tier.
-	. = new /list(raw_xeno_info.len)
-	counter = 1
-	for(var/i = xenos_by_tier.len, i > 0, i--)
-		for(var/j = 1, j <= raw_xeno_info.len, j++)
-			var/X = raw_xeno_info[j]
-			if (i == text2num(X["tier"]))
-				X -= "tier" // Removing sorting variable.
-				.[counter++] = X
+	// //Sorting by tier.
+	// var/list/tier_sorted = new /list(raw_xeno_info.len)
+	// counter = 1
+	// for(var/i = xenos_by_tier.len, i > 0, i--) // Reverse the order so T4s go first.
+	// 	for(var/j = 1, j <= raw_xeno_info.len, j++)
+	// 		var/X = raw_xeno_info[j]
+	// 		if(i == text2num(X["tier"]))
+	// 			X -= "tier" // Removing sorting variable.
+	// 			tier_sorted[counter++] = X
+
+	// //Sorting by leadership
+	// . = new /list(raw_xeno_info.len)
+	// counter = 1
+	// for(var/i = 1, i <= raw_xeno_info.len, i++)
+	// 	var/X = tier_sorted[i]
+	// 	if(X["is_queen"] || X["is_leader"]) // Leaders to the top.
+	// 		.[counter++] += X
+	// for(var/i = 1, i <= raw_xeno_info.len, i++)
+	// 	var/X = tier_sorted[i]
+	// 	if(!(X["is_queen"] && X["is_leader"])) // Rest now files below.
+	// 		.[counter++] += X
 
 /datum/hive_status/proc/get_xeno_location(mob/living/carbon/xenomorph/xeno)
 	. = "Unknown"
