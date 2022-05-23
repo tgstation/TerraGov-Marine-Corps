@@ -497,6 +497,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_IS_STRONG (1<<9)//can tear open acided walls without being big
 #define CASTE_IS_BUILDER (1<<10) //whether we are classified as a builder caste
 #define CASTE_IS_A_MINION (1<<11) //That's a dumb ai
+#define CASTE_PLASMADRAIN_IMMUNE (1<<12) //Used for Ravager
 
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
 #define CASTE_CAN_VENT_CRAWL (1<<1)
