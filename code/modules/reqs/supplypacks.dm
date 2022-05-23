@@ -1507,7 +1507,7 @@ VEHICLES
 /datum/supply_packs/vehicles/mounted_minigun
 	name = "Mounted Automatic Minigun"
 	contains = list(/obj/structure/dropship_equipment/minigun_holder)
-	cost = 80
+	cost = 75
 
 /datum/supply_packs/vehicles/mounted_rr
 	name = "Mounted Heavy Recoilless Rifle"
@@ -1529,7 +1529,7 @@ VEHICLES
 /datum/supply_packs/vehicles/minigun_ammo
 	name = "Mounted Minigun ammo"
 	contains = list(/obj/item/ammo_magazine/heavyminigun)
-	cost = 5
+	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/hl_ammo

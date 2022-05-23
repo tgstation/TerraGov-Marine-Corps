@@ -1209,13 +1209,13 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 30
 
 /datum/ammo/bullet/dualcannon/on_hit_turf(turf/T, obj/projectile/P)
-	P.proj_max_range -= 10
+	P.proj_max_range -= 20
 
 /datum/ammo/bullet/dualcannon/on_hit_mob(mob/M, obj/projectile/P)
-	P.proj_max_range -= 10
+	P.proj_max_range -= 15
 
 /datum/ammo/bullet/dualcannon/on_hit_obj(obj/O, obj/projectile/P)
-	P.proj_max_range -= 5
+	P.proj_max_range -= 10
 
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"

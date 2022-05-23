@@ -109,10 +109,8 @@
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	actions_types = list(/datum/action/item_action/aim_mode)
-	aim_time = 3 SECONDS
 
 	attachable_allowed = list(
 		/obj/item/attachable/scope/unremovable/tl102/nest,
