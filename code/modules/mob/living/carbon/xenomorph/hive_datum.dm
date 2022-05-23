@@ -185,7 +185,7 @@
 			var/mob/living/carbon/xenomorph/X = i
 			if(is_centcom_level(X.z))
 				continue
-			if(!(X.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
+			if(!(X.xeno_caste.can_flags & CASTE_CAN_BE_LEADER))
 				continue
 			xenos += X
 	return xenos

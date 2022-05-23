@@ -199,7 +199,7 @@
 	if(X.a_intent == INTENT_HARM)
 		return ..()
 	if(trap_type == TRAP_HUGGER)
-		if(!(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS))
+		if(!(X.xeno_caste.can_flags & CASTE_CAN_HOLD_FACEHUGGERS))
 			return
 		if(!hugger)
 			balloon_alert(X, "It is empty")
