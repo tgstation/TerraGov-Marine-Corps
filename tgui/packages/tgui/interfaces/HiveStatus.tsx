@@ -79,7 +79,7 @@ const XenoList = (props, context) => {
           <Flex.Item width="16px" mr="4px" />{/*SSD*/}
           <Flex.Item width="40px" textAlign="center" mr="4px" />{/*Action Buttons*/}
           <Flex.Item width="16px" mr="6px" />{/*Leadership*/}
-          <Flex.Item width="14px" mr="6px" />{/*Minimap*/}
+          <Flex.Item width="14px" mr="6px" />{/*Minimap Icon*/}
           <Flex.Item width="30%">Caste (Name)</Flex.Item>
           <Flex.Item width="60px">Health</Flex.Item>
           <Flex.Item width="60px">Plasma</Flex.Item>
@@ -157,20 +157,23 @@ const ActionButtons = (props: ActionButtonProps, context) => {
     watched_xeno,
   } = props;
 
+  const observing = target_ref == watched_xeno;
+  const overwatch_button = (<Button
+    fluid
+    height="16px"
+    fontSize={0.75}
+    tooltip={observing ? "Cancel" : "Overwatch"}
+    align="center"
+    verticalAlignContent="middle"
+    icon="eye"
+    selected={observing}
+    onClick={() => act('Follow', { xeno: target_ref })} />)
+
   if(is_queen)
     return (
       <Flex direction="row" justify="space-evenly">
           <Flex.Item grow mr="4px">
-            <Button
-              fluid
-              height="16px"
-              fontSize={0.75}
-              tooltip="Overwatch"
-              align="center"
-              verticalAlignContent="middle"
-              icon="eye"
-              selected={target_ref == watched_xeno}
-              onClick={() => act('Follow', { xeno: target_ref })} />
+            {overwatch_button}
           </Flex.Item>
           <Flex.Item grow>
             <Button
@@ -187,17 +190,9 @@ const ActionButtons = (props: ActionButtonProps, context) => {
     )
 
   return (
-    <Flex direction="row" justify="space-evenly">
+    <Flex direction="row">
         <Flex.Item grow>
-          <Button
-            fluid
-            height="16px"
-            fontSize={0.8}
-            align="center"
-            verticalAlignContent="middle"
-            icon="eye"
-            selected={target_ref == watched_xeno}
-            onClick={() => act('Follow', { xeno: target_ref })} />
+            {overwatch_button}
         </Flex.Item>
     </Flex>
   )

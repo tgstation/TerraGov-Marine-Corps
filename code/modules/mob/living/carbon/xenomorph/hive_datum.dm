@@ -87,7 +87,6 @@
 	var/mob/watched = ""
 	if(isobserver(user)) //Ghost follow is fucked. Apparently invalidates UI update so this isnt updated until they move again.
 		var/mob/dead/observer/ghost_user = user
-		message_admins(ghost_user.orbit_target.name)
 		watched = !QDELETED(ghost_user.orbit_target) ? REF(ghost_user.orbit_target) : ""
 	else if(isxeno(user)) //This works perfectly fine though.
 		var/mob/living/carbon/xenomorph/xeno_user = user
@@ -111,7 +110,6 @@
 			if(isobserver(usr))
 				var/mob/dead/observer/ghost = usr
 				ghost.ManualFollow(xeno_target)
-				ghost.reset_perspective(null)
 			else if(!isxeno(usr))
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOMORPH_WATCHXENO, xeno_target)
