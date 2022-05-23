@@ -112,7 +112,7 @@
 	aim_speed_modifier = 0.55
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.9
-	scatter = 2
+	scatter = 1
 	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 8
 	aim_slowdown = 0.2
@@ -167,7 +167,7 @@
 
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.95
-	scatter = 5
+	scatter = 4
 	fire_delay = 0.2 SECONDS
 	scatter_unwielded = 10
 	aim_slowdown = 0.15

@@ -1588,7 +1588,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_ENERGY
 	armor_type = "energy"
-	accuracy = 10 //lasers fly fairly straight
+	accuracy = 15 //lasers fly fairly straight
 	bullet_color = COLOR_LASER_RED
 
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm

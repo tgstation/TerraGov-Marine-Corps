@@ -83,7 +83,7 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.05 SECONDS
 	accuracy_mult = 1.05
-	scatter = 2
+	scatter = 0
 	burst_scatter_mult = 0.25
 	burst_amount = 4
 	aim_slowdown = 0.30
@@ -156,7 +156,7 @@
 	burst_delay = 0.15 SECONDS
 	extra_delay = 0.05 SECONDS
 	accuracy_mult = 1.1
-	scatter = 0
+	scatter = -2
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
 	aim_slowdown = 0.4
@@ -230,7 +230,7 @@
 
 	fire_delay = 0.65 SECONDS
 	accuracy_mult = 1.15
-	scatter = -3
+	scatter = -4
 	burst_amount = 1
 	movement_acc_penalty_mult = 6
 
@@ -360,7 +360,7 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
-	scatter = 0
+	scatter = -1
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
 	aim_slowdown = 0.4
@@ -408,7 +408,7 @@
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	damage_mult = 1.5
-	scatter = 0
+	scatter = -2
 	force = 20
 
 
@@ -494,7 +494,7 @@
 
 	burst_amount = 1
 	fire_delay = 0.25 SECONDS
-	scatter = 5
+	scatter = 2
 	wield_delay = 0.8 SECONDS
 
 	placed_overlay_iconstate = "ak47"
@@ -559,7 +559,7 @@
 	aim_speed_modifier = 2.5
 
 	fire_delay = 0.2 SECONDS
-	scatter = 3
+	scatter = 2
 	extra_delay = -0.05 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
@@ -627,7 +627,7 @@
 	accuracy_mult = 1.15
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
-	scatter = 3
+	scatter = 1
 	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/rifle/famas/freelancermedic
@@ -692,7 +692,7 @@
 	burst_amount = 1
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.5
-	scatter = 4
+	scatter = 2
 	scatter_unwielded = 80
 
 //-------------------------------------------------------
@@ -749,7 +749,7 @@
 	damage_falloff_mult = 0.5
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
-	scatter = 10
+	scatter = 7
 	scatter_unwielded = 45
 	movement_acc_penalty_mult = 6
 
@@ -813,7 +813,7 @@
 	burst_delay = 0.1 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.05
-	scatter = 7
+	scatter = 5
 	scatter_unwielded = 25
 	recoil_unwielded = 5
 	force = 20
@@ -887,6 +887,7 @@
 	burst_amount = 3
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.8
+	scatter = -1
 
 
 /obj/item/weapon/gun/rifle/type71/flamer
@@ -958,8 +959,9 @@
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 	fire_delay = 1 SECONDS
-	accuracy_mult = 1.1
+	accuracy_mult = 1.15
 	burst_amount = 1
+	scatter = -2
 	movement_acc_penalty_mult = 3
 
 //-------------------------------------------------------
@@ -1209,7 +1211,7 @@
 	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.15
-	scatter = 0
+	scatter = -1
 	scatter_unwielded = 15
 	burst_scatter_mult = 0.33
 	aim_slowdown = 0.45
@@ -1279,7 +1281,7 @@
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.2
-	scatter = 0
+	scatter = -2
 	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
@@ -1322,7 +1324,7 @@
 	extra_delay = 0.5 SECONDS
 	///Same delay as normal burst mode
 	autoburst_delay = 0.7 SECONDS
-	scatter = 6
+	scatter = 4
 	burst_amount = 4
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
@@ -1373,7 +1375,7 @@
 	accuracy_mult = 1.1
 	burst_amount = 1
 	fire_delay = 0.2 SECONDS
-	scatter = 2
+	scatter = 1
 	wield_delay = 0.5 SECONDS
 	movement_acc_penalty_mult = 4
 
@@ -1420,6 +1422,7 @@
 	wield_delay = 0.8 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.15
+	scatter = -2
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
 
@@ -1495,7 +1498,7 @@
 	burst_delay = 0.15 SECONDS
 	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
-	scatter = 2
+	scatter = 1
 	scatter_unwielded = 15
 	burst_scatter_mult = 2
 	aim_slowdown = 1

@@ -22,7 +22,7 @@
 	fire_delay = 6
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.75
-	scatter = 5
+	scatter = 4
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -59,7 +59,6 @@
 
 	fire_delay = 15 //one shot every 1.5 seconds.
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
-	scatter = 5
 	scatter_unwielded = 10
 	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than T-32.
 	recoil = 2
@@ -103,7 +102,7 @@
 	fire_delay = 14 //one shot every 1.4 seconds.
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 0.65
-	scatter = 4
+	scatter = 3
 	scatter_unwielded = 12
 	damage_mult = 0.7  //30% less damage. Faster firerate.
 	recoil = 0 //It has a stock on the sprite.
@@ -158,7 +157,7 @@
 
 	fire_delay = 2
 	burst_delay = 2
-	scatter = 5
+	scatter = 4
 	scatter_unwielded = 8
 	recoil = 2
 	recoil_unwielded = 4
@@ -176,7 +175,7 @@
 
 	fire_delay = 2
 	accuracy_mult = 0.9
-	scatter = 5
+	scatter = 4
 	scatter_unwielded = 10
 	recoil = 3
 	recoil_unwielded = 5
@@ -213,7 +212,7 @@
 
 	fire_delay = 5
 	burst_amount = 1
-	scatter = 4
+	scatter = 3
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -257,7 +256,6 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
 	fire_delay = 20
-	scatter = 5
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -295,7 +293,6 @@
 	damage_mult = 0.75
 	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 1
-	scatter = 5
 	scatter_unwielded = 10
 	recoil = 0 // It has a stock. It's on the sprite.
 	recoil_unwielded = 0
@@ -351,7 +348,7 @@
 	fire_delay = 1.75 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.7
-	scatter = 0
+	scatter = -1
 	scatter_unwielded = 12
 	recoil = -3
 	recoil_unwielded = 4
@@ -437,7 +434,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 	fire_delay = 0.5 SECONDS
-	scatter = 3
+	scatter = 2
 	recoil = 1
 	recoil_unwielded = 1
 	aim_slowdown = 0
@@ -482,7 +479,7 @@
 	fire_delay = 8
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.7
-	scatter = 3
+	scatter = 2
 	scatter_unwielded = 7
 	recoil = 2
 	recoil_unwielded = 4
@@ -613,7 +610,6 @@
 	flags_item_map_variant = NONE
 
 	fire_delay = 20
-	scatter = 5
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -667,6 +663,6 @@
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
 	extra_delay = 0.5 SECONDS
-	scatter = 2
+	scatter = 1
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1

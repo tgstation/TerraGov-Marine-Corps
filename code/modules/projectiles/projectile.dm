@@ -736,8 +736,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	BULLET_DEBUG("Base accuracy is <b>[hit_chance]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range.
 		if(proj.distance_travelled <= proj.ammo.point_blank_range) //If bullet within point blank range, big accuracy buff.
-			BULLET_DEBUG("Point blank range (+25)")
-			hit_chance += 30
+			BULLET_DEBUG("Point blank range (+50)")
+			hit_chance += 50
 		else if(proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range UNLESS in point blank range
 			BULLET_DEBUG("Sniper ammo, too close (-[min(100, hit_chance) - (proj.ammo.accurate_range_min - proj.distance_travelled) * 10])")
 			hit_chance = min(100, hit_chance) //excess accuracy doesn't help within minimum accurate range
@@ -748,7 +748,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	hit_chance = max(5, hit_chance) //default hit chance after range factors is at least 5%.
 
-	hit_chance += (mob_size - 1) * 15 //You're easy to hit when you're swoll, hard to hit when you're a manlet
+	hit_chance += (mob_size - 1) * 25 //You're easy to hit when you're swoll, hard to hit when you're a manlet
 
 	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
 	hit_chance -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on body part targeted.
@@ -760,7 +760,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			var/mob/living/carbon/human/target_human = src
 			if(target_human.mobility_aura)
 				evasion_bonus += max(5, (target_human.mobility_aura * 5)) //you get a bonus if you've got an active mobility order effecting you
-		evasion_bonus += (30 - (min(30, cached_multiplicative_slowdown * 5))) //The lower your slowdown, the better your chance to dodge, but it won't make you easier to hit if you have huge slowdown
+		evasion_bonus += (25 - (min(25, cached_multiplicative_slowdown * 5))) //The lower your slowdown, the better your chance to dodge, but it won't make you easier to hit if you have huge slowdown
 		evasion_bonus = (100 - evasion_bonus) / 100 //turn it into a multiplier
 		BULLET_DEBUG("Moving (*[evasion_bonus]).")
 		hit_chance = round(hit_chance * evasion_bonus)
@@ -777,8 +777,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			hit_chance = round(hit_chance*0.8) //Can't see the target (Opaque thing between shooter and target), or out of view range
 		if(ishuman(proj.firer))
 			var/mob/living/carbon/human/shooter_human = proj.firer
-			BULLET_DEBUG("Traumatic shock (-[round(min(50, shooter_human.traumatic_shock * 0.3))]).")
-			hit_chance -= round(min(50, shooter_human.traumatic_shock * 0.3)) //Chance to hit declines with pain, being reduced by 0.3% per point of pain.
+			BULLET_DEBUG("Traumatic shock (-[round(min(20, shooter_human.traumatic_shock * 0.2))]).")
+			hit_chance -= round(min(20, shooter_human.traumatic_shock * 0.2)) //Chance to hit declines with pain, being reduced by 0.3% per point of pain.
 			if(shooter_human.marksman_aura)
 				BULLET_DEBUG("marksman_aura (+[10 + max(5, shooter_human.marksman_aura * 5)]).")
 				hit_chance += 10 + max(5, shooter_human.marksman_aura * 5) //Accuracy bonus from active focus order

@@ -490,7 +490,7 @@
 
 	akimbo_additional_delay = 0.9
 	wield_delay = 0.6 SECONDS
-	scatter = 3
+	scatter = 2
 	scatter_unwielded = 4
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1
@@ -568,7 +568,7 @@
 
 	aim_slowdown = 0.2
 	wield_delay = 0.3 SECONDS
-	scatter = 2
+	scatter = 1
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
@@ -822,7 +822,7 @@
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult = 1
-	scatter = 0
+	scatter = -2
 	recoil = 0
 	accuracy_mult_unwielded = 0.5
 	scatter_unwielded = 25
@@ -856,7 +856,7 @@
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 26, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
-	scatter = 4
+	scatter = 3
 	accuracy_mult_unwielded = 0.9
 	scatter_unwielded = 10
 	recoil_unwielded = 1
@@ -932,7 +932,7 @@
 	aim_slowdown = 1
 	wield_delay	= 1.2 SECONDS
 	fire_delay = 0.15 SECONDS
-	scatter = 4
+	scatter = 3
 	accuracy_mult_unwielded = 0.4
 	scatter_unwielded = 35
 	recoil_unwielded = 5
