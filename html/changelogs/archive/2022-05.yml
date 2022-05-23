@@ -351,3 +351,20 @@
   - qol: psychic link's activation can be manually cancelled by activating the skill
       again
   - balance: psychic link has 15 instead of 10 range
+2022-05-23:
+  KornFlaks:
+  - refactor: Armor checks now correctly request target armor.
+  - qol: Runner actions now have balloon alerts.
+  - qol: Drones, Hivelords, and Queens now have balloon alerts for their abilities.
+  - rscadd: All xenos now have the ability to overwatch other xenos through the chat
+      (F) button.
+  Naaanii:
+  - balance: CSE now starts with one stack of metal, plasteel, sandbags and barbed
+      wire
+  - balance: CSE now starts with a welderpack instead of a satchel
+  RipGrayson:
+  - balance: Most shipside chairs and tables no longer drop metal on deconstruct
+  Sirsnek15:
+  - imageadd: Hello soldering tool!
+  Wayland-Smithy:
+  - bugfix: Fixed xeno hud perma fire stacks on dead.
