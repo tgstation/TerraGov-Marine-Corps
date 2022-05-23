@@ -173,8 +173,7 @@
 			observed.hud_set_queen_overwatch()
 	if(do_reset_perspective)
 		watcher.reset_perspective()
-	UnregisterSignal(watcher, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(watcher, COMSIG_XENOMORPH_TAKING_DAMAGE)
+	UnregisterSignal(watcher, list(COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_TAKING_DAMAGE))
 	overwatch_active = FALSE
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
