@@ -799,11 +799,11 @@
 	isshared = TRUE
 	products = list(
 		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/tricordrazine = 8,
-			/obj/item/storage/pill_bottle/bicaridine = 8,
-			/obj/item/storage/pill_bottle/kelotane = 8,
-			/obj/item/storage/pill_bottle/tramadol = 8,
-			/obj/item/storage/pill_bottle/dylovene = 8
+			/obj/item/storage/pill_bottle/tricordrazine = 12,
+			/obj/item/storage/pill_bottle/bicaridine = 12,
+			/obj/item/storage/pill_bottle/kelotane = 12,
+			/obj/item/storage/pill_bottle/tramadol = 12,
+			/obj/item/storage/pill_bottle/dylovene = 12
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1,
@@ -820,7 +820,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 30,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/peridaxon = 10,
-			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 50,
+			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		),
 		"Heal Pack" = list(
