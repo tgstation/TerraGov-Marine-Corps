@@ -124,7 +124,7 @@
 	to_chat(owner, span_xenodanger("We're ready to use Sneak Attack while stealthed."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
 
-/datum/action/xeno_action/stealth/proc/process()
+/datum/action/xeno_action/stealth/process()
 	if(!stealth)
 		return PROCESS_KILL
 	handle_stealth()
