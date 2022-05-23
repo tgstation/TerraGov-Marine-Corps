@@ -78,7 +78,7 @@
 			"name" = xeno.name,
 			"location" = get_xeno_location(xeno),
 			"health" = round((xeno.health / xeno.maxHealth) * 100, 1),
-			"plasma" = round((xeno.plasma_stored / caste.plasma_max) * 100, 1),
+			"plasma" = round((xeno.plasma_stored / (caste.plasma_max * caste.plasma_regen_limit)) * 100, 1),
 			"is_leader" = xeno.queen_chosen_lead,
 			"is_ssd" = !xeno.client,
 			"index" = GLOB.hive_ui_caste_index[caste.caste_type_path],
@@ -99,8 +99,14 @@
 	switch(action)
 		if("Follow")
 			var/xeno_ref = params["xeno"]
-			var/mob/living/carbon/xenomorph/xeno = locate(xeno_ref)
-			message_admins(xeno.name)
+			var/mob/living/carbon/xenomorph/xeno_target = locate(xeno_ref)
+			if(isobserver(usr))
+				var/mob/dead/observer/ghost = usr
+				ghost.ManualFollow(xeno_target)
+			else if(!isxeno(usr))
+				return
+			var/mob/living/carbon/xenomorph/xeno_user = usr
+			
 		if("Leader")
 			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
 				return
