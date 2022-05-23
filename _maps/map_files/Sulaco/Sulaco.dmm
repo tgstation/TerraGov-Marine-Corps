@@ -1485,10 +1485,6 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
 "aeN" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/squad_changer{
-	density = 0
-	},
 /obj/machinery/door_control/mainship/medbay{
 	dir = 4;
 	id = "Medbay";
