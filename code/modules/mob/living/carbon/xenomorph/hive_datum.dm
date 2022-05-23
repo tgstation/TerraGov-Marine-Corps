@@ -83,7 +83,16 @@
 			"is_ssd" = !xeno.client,
 			"index" = GLOB.hive_ui_caste_index[caste.caste_type_path],
 		))
-	//message_admins("T1")
+
+	var/mob/watched = ""
+	if(isobserver(user)) //Ghost follow is fucked. Apparently invalidates UI update so this isnt updated until they move again.
+		var/mob/dead/observer/ghost_user = user
+		message_admins(ghost_user.orbit_target.name)
+		watched = !QDELETED(ghost_user.orbit_target) ? REF(ghost_user.orbit_target) : ""
+	else if(isxeno(user)) //This works perfectly fine though.
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		watched = !QDELETED(xeno_user.observed_xeno) ? REF(xeno_user.observed_xeno) : ""
+	.["user_watched_xeno"] = watched
 
 /datum/hive_status/ui_static_data(mob/user)
 	. = ..()
@@ -92,7 +101,6 @@
 
 	.["user_ref"] = REF(user)
 	.["user_queen"] = isxenoqueen(user)
-	//message_admins("T2")
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -103,22 +111,23 @@
 			if(isobserver(usr))
 				var/mob/dead/observer/ghost = usr
 				ghost.ManualFollow(xeno_target)
+				ghost.reset_perspective(null)
 			else if(!isxeno(usr))
 				return
-			var/mob/living/carbon/xenomorph/xeno_user = usr
-			
+			SEND_SIGNAL(usr, COMSIG_XENOMORPH_WATCHXENO, xeno_target)
 		if("Leader")
 			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
 				return
 			var/xeno_ref = params["xeno"]
-			var/mob/living/carbon/xenomorph/xeno = locate(xeno_ref)
-			message_admins(xeno.name)
+			var/mob/living/carbon/xenomorph/xeno_target = locate(xeno_ref)
+			SEND_SIGNAL(usr, COMSIG_XENOMORPH_LEADERSHIP, xeno_target)
 		if("Plasma")
 			if(!isxenoqueen(usr)) // Queen only.
 				return
 			var/xeno_ref = params["xeno"]
-			var/mob/living/carbon/xenomorph/xeno = locate(xeno_ref)
-			message_admins(xeno.name)
+			var/mob/living/carbon/xenomorph/xeno_target = locate(xeno_ref)
+			SEND_SIGNAL(usr, COMSIG_XENOMORPH_QUEEN_PLASMA, xeno_target)
+
 
 /datum/hive_status/proc/get_xeno_location(mob/living/carbon/xenomorph/xeno)
 	. = "Unknown"

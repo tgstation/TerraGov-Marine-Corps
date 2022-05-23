@@ -8,6 +8,7 @@ type InputPack = {
   static_info: StaticData[],
   user_ref: string,
   user_queen: boolean,
+  user_watched_xeno: string,
 }
 
 type XenoData = {
@@ -60,6 +61,7 @@ const XenoList = (props, context) => {
     static_info,
     user_ref,
     user_queen,
+    user_watched_xeno,
   } = data;
 
   // First two bits are taken up by queen and leader flags.
@@ -95,6 +97,7 @@ const XenoList = (props, context) => {
               <Flex.Item width="40px" mr="4px">{user_ref !== entry.ref && <ActionButtons
                 target_ref={entry.ref}
                 is_queen={user_queen}
+                watched_xeno={user_watched_xeno}
               />}</Flex.Item>
               <Flex.Item width="16px" mr="6px">
                 <Button
@@ -143,6 +146,7 @@ const XenoList = (props, context) => {
 type ActionButtonProps = {
   target_ref: string,
   is_queen: boolean,
+  watched_xeno: string,
 }
 
 const ActionButtons = (props: ActionButtonProps, context) => {
@@ -150,6 +154,7 @@ const ActionButtons = (props: ActionButtonProps, context) => {
   const {
     target_ref,
     is_queen,
+    watched_xeno,
   } = props;
 
   if(is_queen)
@@ -164,6 +169,7 @@ const ActionButtons = (props: ActionButtonProps, context) => {
               align="center"
               verticalAlignContent="middle"
               icon="eye"
+              selected={target_ref == watched_xeno}
               onClick={() => act('Follow', { xeno: target_ref })} />
           </Flex.Item>
           <Flex.Item grow>
@@ -190,6 +196,7 @@ const ActionButtons = (props: ActionButtonProps, context) => {
             align="center"
             verticalAlignContent="middle"
             icon="eye"
+            selected={target_ref == watched_xeno}
             onClick={() => act('Follow', { xeno: target_ref })} />
         </Flex.Item>
     </Flex>

@@ -509,6 +509,9 @@
 #define COMSIG_XENOMORPH_DEEVOLVED "xenomorph_deevolved"
 #define COMSIG_XENOMORPH_WATCHXENO "xenomorph_watchxeno"
 
+#define COMSIG_XENOMORPH_LEADERSHIP "xenomorph_leadership"
+#define COMSIG_XENOMORPH_QUEEN_PLASMA "xenomorph_queen_plasma"
+
 #define COMSIG_XENOMORPH_CORE_RETURN "xenomorph_core_return"
 #define COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM "xenomorph_hivemind_change_form"
 
