@@ -331,9 +331,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		if(!silent)
 			to_chat(buyer, span_xenonotice("You must be a ruler to buy this!"))
 		return FALSE
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
-		to_chat(buyer, span_xenonotice("You can't buy this while shutters are closed!"))
-		return FALSE
 
 /datum/hive_upgrade/primordial/tier_four
 	name = PRIMORDIAL_TIER_FOUR
