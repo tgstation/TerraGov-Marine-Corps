@@ -376,7 +376,6 @@
 	storage_slots = null
 	use_sound = 'sound/items/pillbottle.ogg'
 	max_storage_space = 16
-	access_delay = 0.5 SECONDS
 	greyscale_config = /datum/greyscale_config/pillbottle
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
@@ -388,7 +387,6 @@
 		for(var/i in 1 to max_storage_space)
 			new pill_type_to_fill(src)
 	update_icon()
-
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(user.get_inactive_held_item())

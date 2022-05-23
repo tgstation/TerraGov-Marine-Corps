@@ -7,6 +7,8 @@
 	w_class = WEIGHT_CLASS_TINY
 	skilllock = 0
 	init_reagent_flags = DRAWABLE
+	amount_per_transfer_from_this = 10
+	volume = 30
 	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 30)
 
 /obj/item/reagent_containers/hypospray/autoinjector/update_icon()
