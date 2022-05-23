@@ -55,20 +55,20 @@ const JobTabs = (props: LoadoutTabData) => {
         <Flex.Item grow={1}><div> </div></Flex.Item>
         <Flex.Item>
           <Tabs>
-            <Tabs.Tab selected={job === "SOM Standard"} onClick={() => setJob("SOM Standard")}>
-              SOM Standard
+            <Tabs.Tab selected={job === "Squad Marine"} onClick={() => setJob("Squad Marine")}>
+              Squad Marine
             </Tabs.Tab>
-            <Tabs.Tab selected={job === "SOM Engineer"} onClick={() => setJob("SOM Engineer")}>
-              SOM Engineer
+            <Tabs.Tab selected={job === "Squad Engineer"} onClick={() => setJob("Squad Engineer")}>
+              Squad Engineer
             </Tabs.Tab>
-            <Tabs.Tab selected={job === "SOM Medic"} onClick={() => setJob("SOM Medic")}>
-              SOM Medic
+            <Tabs.Tab selected={job === "Squad Corpsman"} onClick={() => setJob("Squad Corpsman")}>
+              Squad Corpsman
             </Tabs.Tab>
-            <Tabs.Tab selected={job === "SOM Veteran"} onClick={() => setJob("SOM Veteran")}>
-              SOM Veteran
+            <Tabs.Tab selected={job === "Squad Smartgunner"} onClick={() => setJob("Squad Smartgunner")}>
+              Squad Smartgunner
             </Tabs.Tab>
-            <Tabs.Tab selected={job === "SOM Leader"} onClick={() => setJob("SOM Leader")}>
-              SOM Leader
+            <Tabs.Tab selected={job === "Squad Leader"} onClick={() => setJob("Squad Leader")}>
+              Squad Leader
             </Tabs.Tab>
           </Tabs>
         </Flex.Item>
@@ -78,14 +78,14 @@ const JobTabs = (props: LoadoutTabData) => {
   );
 };
 
-export const Quickload = (props, context) => {
+export const Quickload_TGMC = (props, context) => {
   const { act, data } = useBackend<LoadoutManagerData>(context);
   const { loadout_list } = data;
 
   const [
     job,
     setJob,
-  ] = useLocalState(context, 'job', "SOM Standard");
+  ] = useLocalState(context, 'job', "Squad Marine");
   const [
     saveNewLoadout,
     setSaveNewLoadout,

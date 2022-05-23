@@ -146,6 +146,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	///The loadout manager
 	var/datum/loadout_manager/loadout_manager
+	///The quick loadout manager
+	var/datum/quickload_manager/quick_loadout
 	///Should we be in the widescreen mode set by the config?
 	var/widescreenpref = TRUE
 	///What size should pixels be displayed as? 0 is strech to fit
@@ -187,6 +189,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		load_path(C.ckey)
 		loadout_manager = new
 		loadout_manager.loadouts_data = load_loadout_list()
+		quick_loadout = new
+		quick_loadout.loadouts_data = load_loadout_list()
 		if(load_preferences() && load_character())
 			C.set_fullscreen(fullscreen_mode)
 			return
@@ -202,6 +206,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		custom_emotes += emote
 	C.update_movement_keys(src)
 	loadout_manager = new
+	quick_loadout = new
 
 
 /datum/preferences/can_interact(mob/user)

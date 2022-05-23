@@ -29,12 +29,7 @@
 /datum/loadout_manager/ui_interact(mob/living/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		//gives the SOM loadouts if it's a SOM vendor. WIP/MVP concept
-		var/obj/machinery/loadout_vendor/L = loadout_vendor
-		if(L.faction == FACTION_SOM)
-			ui = new(user, src, "Quickload")
-		else
-			ui = new(user, src, "LoadoutManager")
+		ui = new(user, src, "LoadoutManager")
 		ui.open()
 
 /datum/loadout_manager/ui_state(mob/user)
