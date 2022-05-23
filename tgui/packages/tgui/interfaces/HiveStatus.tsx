@@ -116,7 +116,7 @@ const XenoList = (props, context) => {
                 as="img"
                 src={`data:image/jpeg;base64,${static_entry.minimap}`}
                 style={{
-                  transform: "scale(2) translateX(2px)",
+                  transform: "scale(2) translateX(2px)", // Upscaled from 7x7 to 14x14.
                   "-ms-interpolation-mode": "nearest-neighbor",
                 }} />
               </Flex.Item>
