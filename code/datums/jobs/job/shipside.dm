@@ -105,7 +105,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	comm_title = "FCDR"
 	total_positions = 1
 
-	exp_requirements = XP_REQ_EXPERT
+	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_COMMAND
 
 	skills_type = /datum/skills/fo
