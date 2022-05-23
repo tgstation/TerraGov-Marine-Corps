@@ -277,14 +277,43 @@
 	travelling_time = 3 SECONDS
 	point_cost = 150
 
-/obj/structure/ship_ammo/heavygun/railgun
+
+//railgun
+/obj/structure/ship_ammo/railgun
 	name = "Railgun Ammo"
-	desc = "This is not meant to exist"
+	desc = "This is not meant to exist."
+	icon_state = "30mm_crate_hv"
+	icon = 'icons/Marine/mainship_props.dmi'
+	equipment_type = /obj/structure/dropship_equipment/weapon/minirocket_pod
 	ammo_count = 400
 	max_ammo_count = 400
-	ammo_used_per_firing = 40
-	bullet_spread_range = 5
+	ammo_name = "railgun"
+	ammo_used_per_firing = 10
+	travelling_time = 0 SECONDS
+	transferable_ammo = TRUE
 	point_cost = 0
+	ammo_type = RAILGUN_AMMO
+	devastating_explosion_range = 0
+	heavy_explosion_range = 2
+	light_explosion_range = 4
+	prediction_type = CAS_AMMO_EXPLOSIVE
+
+/obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(2)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
+	var/datum/effect_system/expl_particles/P = new
+	P.set_up(4, 0, impact)
+	P.start()
+	if(!ammo_count)
+		QDEL_IN(src, travelling_time) //deleted after last railgun has fired and impacted the ground.
+
+/obj/structure/ship_ammo/railgun/show_loaded_desc(mob/user)
+	if(ammo_count)
+		to_chat(user, "It's loaded with \a [src] containing [ammo_count] slug\s.")
+
+/obj/structure/ship_ammo/railgun/examine(mob/user)
+	. = ..()
+	. += "It has [ammo_count] slug\s."
 
 //laser battery
 

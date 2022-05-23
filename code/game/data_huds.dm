@@ -407,6 +407,9 @@
 	if(!holder)
 		return
 
+	if(stat == DEAD)
+		holder.icon_state = "firestack0"
+		return
 	switch(fire_stacks)
 		if(-INFINITY to 0)
 			holder.icon_state = "firestack0"
@@ -442,29 +445,18 @@
 	if(stat != DEAD)
 		var/tempname = ""
 		if(frenzy_aura)
-			tempname += "frenzy"
+			tempname += FRENZY
 		if(warding_aura)
-			tempname += "warding"
+			tempname += WARDING
 		if(recovery_aura)
-			tempname += "recovery"
+			tempname += RECOVERY
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
 
-		switch(current_aura)
-			if("frenzy")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
-			if("recovery")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurarecovery")
-			if("warding")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
-
-		switch(leader_current_aura)
-			if("frenzy")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
-			if("recovery")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurarecovery")
-			if("warding")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
+		if(current_aura)
+			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[current_aura]")
+		if(leader_current_aura)
+			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[leader_current_aura]")
 
 	hud_list[PHEROMONE_HUD] = holder
 

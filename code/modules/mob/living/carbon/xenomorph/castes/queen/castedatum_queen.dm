@@ -39,7 +39,6 @@
 
 	// *** Pheromones *** //
 	aura_strength = 3.5 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2 //Amount of leaders allowed
@@ -60,7 +59,10 @@
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
 		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/set_xeno_lead,
@@ -217,7 +219,10 @@
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
 		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/set_xeno_lead,

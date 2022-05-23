@@ -20,6 +20,7 @@
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
+	var/dropmetal = TRUE
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 1
 	var/foldabletype //To fold into an item (e.g. roller bed item)
@@ -27,6 +28,14 @@
 	var/obj/structure/closet/bodybag/buckled_bodybag
 	var/accepts_bodybag = FALSE //Whether you can buckle bodybags to this bed
 	var/base_bed_icon //Used by beds that change sprite when something is buckled to them
+
+
+/obj/structure/bed/nometal
+	dropmetal = FALSE
+	
+/obj/structure/bed/bunkbed
+	name = "bunk bed"
+	icon_state = "bunkbed"
 
 /obj/structure/bed/update_icon_state()
 	if(!base_bed_icon)
@@ -152,12 +161,12 @@ obj/structure/bed/Destroy()
 			qdel(src)
 		if(EXPLODE_HEAVY)
 			if(prob(50))
-				if(buildstacktype)
+				if(buildstacktype && dropmetal)
 					new buildstacktype (loc, buildstackamount)
 				qdel(src)
 		if(EXPLODE_LIGHT)
 			if(prob(5))
-				if(buildstacktype)
+				if(buildstacktype && dropmetal)
 					new buildstacktype (loc, buildstackamount)
 				qdel(src)
 
@@ -173,7 +182,8 @@ obj/structure/bed/Destroy()
 			return
 
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		new buildstacktype(loc, buildstackamount)
+		if(dropmetal)
+			new buildstacktype(loc, buildstackamount)
 		qdel(src)
 
 	else if(istype(I, /obj/item/grab) && !LAZYLEN(buckled_mobs) && !buckled_bodybag)
