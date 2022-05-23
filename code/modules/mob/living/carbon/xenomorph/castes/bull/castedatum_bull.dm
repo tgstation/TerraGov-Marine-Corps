@@ -29,7 +29,7 @@
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //
-	caste_flags = ASTE_EVOLUTION_ALLOWED
+	caste_flags = CASTE_EVOLUTION_ALLOWED
 	xeno_can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
