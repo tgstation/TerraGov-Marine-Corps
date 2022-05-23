@@ -49,7 +49,7 @@
 
 		user.visible_message(span_warning("[user] attempts to force [M] to swallow [src]."))
 
-		var/ingestion_time = max(0.5 SECONDS, 2.5 SECONDS - 1 SECONDS * user.skills.getRating("medical"))
+		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating("medical"))
 
 		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			return
