@@ -193,8 +193,8 @@
 
 /datum/status_effect/plasmadrain/on_creation(mob/living/new_owner, set_duration)
 	if(isxeno(new_owner))
-			if(CHECK_BITFIELD(xeno_caste.xeno_can_flags, CASTE_PLASMADRAIN_IMMUNE))
-				return
+		if(CHECK_BITFIELD(xeno_caste.xeno_can_flags, CASTE_PLASMADRAIN_IMMUNE))
+			return
 		owner = new_owner
 		duration = set_duration
 		return ..()
