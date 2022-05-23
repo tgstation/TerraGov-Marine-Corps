@@ -73,9 +73,6 @@
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
 		return
-	if(modifiers["ctrl"] && modifiers["middle"])
-		CtrlMiddleClickOn(A)
-		return
 	if(modifiers["middle"] && MiddleClickOn(A))
 		return
 	if(modifiers["shift"] && modifiers["right"])
@@ -497,13 +494,6 @@ if(selected_ability.target_flags & flagname && !istype(A, typepath)){\
 
 /atom/proc/CtrlShiftClick(mob/user)
 	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_SHIFT)
-
-
-/*
-	Ctrl+Middle click
-*/
-/atom/proc/CtrlMiddleClickOn(atom/A)
-	SEND_SIGNAL(src, COMSIG_CLICK_CTRL_MIDDLE, A)
 
 
 /obj/screen/proc/scale_to(x1,y1)

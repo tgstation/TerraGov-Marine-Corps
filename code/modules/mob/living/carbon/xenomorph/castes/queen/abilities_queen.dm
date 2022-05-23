@@ -136,15 +136,11 @@
 	. = ..()
 	RegisterSignal(L, COMSIG_MOB_DEATH, .proc/on_owner_death)
 	RegisterSignal(L, COMSIG_XENOMORPH_WATCHXENO, .proc/on_list_xeno_selection)
-	if(isxenoqueen(owner))
-		RegisterSignal(L, COMSIG_CLICK_CTRL_MIDDLE, .proc/on_ctrl_middle_click)
 
 /datum/action/xeno_action/watch_xeno/remove_action(mob/living/L)
 	if(overwatch_active)
 		stop_overwatch()
 	UnregisterSignal(L, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_WATCHXENO))
-	if(isxenoqueen(owner))
-		UnregisterSignal(L, COMSIG_CLICK_CTRL_MIDDLE)
 	return ..()
 
 /datum/action/xeno_action/watch_xeno/action_activate()
@@ -183,6 +179,7 @@
 	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, .proc/on_xeno_death)
 	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
+	RegisterSignal(watcher, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/on_damage_taken)
 	overwatch_active = TRUE
 	add_selected_frame()
 
@@ -197,6 +194,7 @@
 	if(do_reset_perspective)
 		watcher.reset_perspective()
 	UnregisterSignal(watcher, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(watcher, COMSIG_XENOMORPH_TAKING_DAMAGE)
 	overwatch_active = FALSE
 	remove_selected_frame()
 
@@ -223,20 +221,10 @@
 	if(overwatch_active)
 		stop_overwatch()
 
-/datum/action/xeno_action/watch_xeno/proc/on_ctrl_middle_click(datum/source, atom/A)
+/datum/action/xeno_action/watch_xeno/proc/on_damage_taken(datum/source, damage)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/queen/watcher = owner
-	if(!watcher.check_state())
-		return
-	if(!isxeno(A))
-		return
-	var/mob/living/carbon/xenomorph/observation_candidate = A
-	if(observation_candidate.stat == DEAD)
-		return
-	if(observation_candidate == watcher.observed_xeno)
+	if(overwatch_active)
 		stop_overwatch()
-		return
-	start_overwatch(observation_candidate)
 
 
 // ***************************************
