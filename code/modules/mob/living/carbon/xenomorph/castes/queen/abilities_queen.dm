@@ -147,6 +147,9 @@
 	return FALSE //Use hive status UI to select xeno.
 
 /datum/action/xeno_action/watch_xeno/proc/start_overwatch(mob/living/carbon/xenomorph/target)
+	if(!can_use_action()) // Check for action now done here as action_activate pipeline has been bypassed with signal activation.
+		return
+
 	var/mob/living/carbon/xenomorph/watcher = owner
 	var/mob/living/carbon/xenomorph/old_xeno = watcher.observed_xeno
 	if(!QDELETED(old_xeno))
