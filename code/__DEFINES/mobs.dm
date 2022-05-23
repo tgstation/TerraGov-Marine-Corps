@@ -617,7 +617,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 //Drone defines
 #define DRONE_HEAL_RANGE 1
-#define AUTO_WEEDING_MIN_DIST 4 // How far the xeno must be from the last spot to auto weed
+#define AUTO_WEEDING_MIN_DIST 4 //How far the xeno must be from the last spot to auto weed
+#define RESIN_SELF_TIME 2 SECONDS //Time it takes to apply resin jelly on themselves
+#define RESIN_OTHER_TIME 1 SECONDS //Time it takes to apply resin jelly to other xenos
 
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE 0
@@ -627,7 +629,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR LIGHT_COLOR_GREEN
 
 //Hivelord defines
-
 #define HIVELORD_TUNNEL_DISMANTLE_TIME 3 SECONDS
 #define HIVELORD_TUNNEL_MIN_TRAVEL_TIME 2 SECONDS
 #define HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME 4 SECONDS
