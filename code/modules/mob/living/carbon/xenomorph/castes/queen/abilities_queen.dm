@@ -226,8 +226,6 @@
 /datum/action/xeno_action/watch_xeno/proc/on_ctrl_middle_click(datum/source, atom/A)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/queen/watcher = owner
-	if(!watcher.check_state())
-		return
 	if(!isxeno(A))
 		return
 	var/mob/living/carbon/xenomorph/observation_candidate = A
