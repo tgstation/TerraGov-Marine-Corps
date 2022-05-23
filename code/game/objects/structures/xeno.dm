@@ -289,7 +289,7 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(X.xeno_caste.can_flags & CASTE_CAN_HOLD_JELLY)
+	if(X.xeno_caste.xeno_can_flags & CASTE_CAN_HOLD_JELLY)
 		return attack_hand(X)
 	if(X.do_actions)
 		return
