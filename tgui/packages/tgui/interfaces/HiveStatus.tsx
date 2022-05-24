@@ -31,7 +31,6 @@ type StaticData = {
   sort_mod: number,
   tier: number,
   is_unique: boolean,
-  calculated_count: number, // Not set from Byond but instead calculated here.
 };
 
 export const HiveStatus = (_props, context) => {
@@ -101,7 +100,7 @@ const PopulationPyramid = (props, context) => {
 
   return (
     <Section title={`Total Living Sisters: ${hive_total}`}>
-      <Flex direction="column-reverse">
+      <Flex direction="column-reverse" align="center">
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
           const max_slots = tier === 2
@@ -112,9 +111,40 @@ const PopulationPyramid = (props, context) => {
           const slot_text = tier === 2 || tier === 3
             ? `(${tier_info.total}/${max_slots})`
             : tier_info.total;
+          const row_width = tier === 3 // Praetorian name way too long. Clips into Rav.
+            ? 8 : 7;
           return (
-            <Section title={`Tier ${tier}: ${slot_text} Sisters`} key={tier}>
-              HELLO WORLD
+            // Setting key to index here is fine as nothing will be changing in this section.
+            <Section title={`Tier ${tier}: ${slot_text} Sisters`} key={tier} align="center">
+              <Flex mb={1}>
+                {tier_info.index.map((value) => {
+                  const static_entry = static_info[value];
+                  return (
+                    <Flex.Item width={row_width} bold key={static_entry.name}>
+                      <Box as="img"
+                      src={`data:image/jpeg;base64,${static_entry.minimap}`}
+                      style={{
+                        transform: "scale(3) translateX(-3.5px)", // Upscaled from 7x7 to 14x14.
+                        "-ms-interpolation-mode": "nearest-neighbor",
+                      }} />
+                    {static_entry.name}
+                    </Flex.Item>
+                  )
+                })}
+              </Flex>
+              <Flex>
+                {tier_info.caste.map((count, idx) => {
+                  const static_entry = static_info[tier_info.index[idx]];
+                  return (
+                    <Flex.Item width={row_width} key={static_entry.name}>
+                      {static_entry.is_unique
+                        ? count >= 1
+                          ? "Active" : "N/A"
+                        : count}
+                    </Flex.Item>
+                  )
+                })}
+              </Flex>
             </Section>
           );
         })}
@@ -159,14 +189,14 @@ const XenoList = (_props, context) => {
         <Flex.Item order={1 << queen | 1 << leader | 1 << (leader - 1)}>
           <Divider />
         </Flex.Item>
-        {xeno_info.map((entry, index) => {
+        {xeno_info.map((entry) => {
           const static_entry = static_info[entry.index];
           const order = static_entry.sort_mod
             | static_entry.tier << tier
             | entry.is_leader << leader
             | static_entry.is_queen << queen;
           return (
-            <Flex.Item order={order} mb={1} key={index}>
+            <Flex.Item order={order} mb={1} key={entry.ref}>
               <Flex height="16px">
                 <Flex.Item width="16px" mr="4px">
                   {!!entry.is_ssd
@@ -190,9 +220,7 @@ const XenoList = (_props, context) => {
                     disabled={static_entry.is_queen}
                     selected={entry.is_leader}
                     opacity={entry.is_leader || user_queen
-                      || static_entry.is_queen
-                      ? 1
-                      : 0.5}
+                      || static_entry.is_queen ? 1 : 0.5}
                     onClick={() => act('Leader', { xeno: entry.ref })} />
                 </Flex.Item>
                 <Flex.Item width="14px" mr="6px">

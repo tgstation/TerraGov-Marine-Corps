@@ -84,6 +84,8 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 		var/icon/xeno_minimap = icon('icons/UI_icons/map_blips.dmi', initial(caste.minimap_icon))
 		var/tier = initial(caste.tier)
+		if(tier == XENO_TIER_MINION)
+			continue
 		if (isnull(per_tier_counter[tier]))
 			per_tier_counter[tier] = 0
 
