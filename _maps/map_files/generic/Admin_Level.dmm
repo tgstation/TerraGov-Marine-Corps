@@ -16542,12 +16542,6 @@
 	dir = 6
 	},
 /obj/structure/closet/secure_closet/medical3,
-/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
-/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
-/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
-/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
-/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
-/obj/item/reagent_containers/hypospray/autoinjector/hyperzine,
 /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus,
 /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus,
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
