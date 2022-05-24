@@ -11,7 +11,7 @@ type InputPack = {
   user_ref: string,
   user_queen: boolean,
   user_watched_xeno: string,
-}
+};
 
 type XenoData = {
   ref: string,
@@ -22,7 +22,7 @@ type XenoData = {
   is_leader: number, // boolean but is used in bitwise ops.
   is_ssd: boolean,
   index: number, // Corresponding to static data index.
-}
+};
 
 type StaticData = {
   name: string,
@@ -32,7 +32,7 @@ type StaticData = {
   tier: number,
   is_unique: boolean,
   calculated_count: number, // Not set from Byond but instead calculated here.
-}
+};
 
 export const HiveStatus = (_props, context) => {
   const { data } = useBackend<InputPack>(context);
@@ -58,7 +58,7 @@ type PyramidCalc = { // Index is tier.
   caste: number[], // Index is sort_mod.
   index: number[], // Corresponds with static_info index.
   total: number, // Total xeno count for this tier.
-}
+};
 
 const PopulationPyramid = (props, context) => {
   const { data } = useBackend<InputPack>(context);
@@ -89,7 +89,7 @@ const PopulationPyramid = (props, context) => {
     }
     pyramid_data[static_entry.tier].caste[static_entry.sort_mod] = 0;
     pyramid_data[static_entry.tier].index[static_entry.sort_mod] = index;
-  })
+  });
 
   xeno_info.map((entry) => {
     // Accumulating counts.
@@ -100,21 +100,28 @@ const PopulationPyramid = (props, context) => {
   });
 
   return (
-    <Section title = {`Total Living Sisters: ${hive_total}`}>
+    <Section title={`Total Living Sisters: ${hive_total}`}>
       <Flex direction="column-reverse">
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
-          const max_slots = tier === 2 ? hive_max_tier_two : 0 + tier === 3 ? hive_max_tier_three : 0;
-          const slot_text = tier === 2 || tier === 3 ? `(${tier_info.total}/${max_slots})` : tier_info.total;
+          const max_slots = tier === 2
+            ? hive_max_tier_two
+              : 0 + tier === 3
+              ? hive_max_tier_three
+            : 0;
+          const slot_text = tier === 2 || tier === 3
+            ? `(${tier_info.total}/${max_slots})`
+            : tier_info.total;
           return (
-            <Section title={`Tier ${tier}: ${slot_text} Sisters`}>
+            <Section title={`Tier ${tier}: ${slot_text} Sisters`} key={tier}>
               HELLO WORLD
             </Section>
-        )})}
+          );
+        })}
       </Flex>
     </Section>
-  )
-}
+  );
+};
 
 const XenoList = (_props, context) => {
   const { act, data } = useBackend<InputPack>(context);
@@ -135,7 +142,7 @@ const XenoList = (_props, context) => {
   const tier = 14;
 
   return (
-    <Section title = "Xenomorph List">
+    <Section title="Xenomorph List">
       <Flex direction="column-reverse">
         <Flex.Item order={Number.MAX_SAFE_INTEGER}>{/* Header */}
           <Flex bold height="16px">
@@ -149,19 +156,29 @@ const XenoList = (_props, context) => {
             <Flex.Item grow>Location</Flex.Item>
           </Flex>
         </Flex.Item>
-        <Flex.Item order={1 << queen | 1 << leader | 1 << (leader - 1)}><Divider /></Flex.Item>
+        <Flex.Item order={1 << queen | 1 << leader | 1 << (leader - 1)}>
+          <Divider />
+        </Flex.Item>
         {xeno_info.map((entry, index) => {
           const static_entry = static_info[entry.index];
-          const order = static_entry.sort_mod | static_entry.tier << tier | entry.is_leader << leader | static_entry.is_queen << queen;
+          const order = static_entry.sort_mod
+            | static_entry.tier << tier
+            | entry.is_leader << leader
+            | static_entry.is_queen << queen;
           return (
-            <Flex.Item order={order} mb={1}>
+            <Flex.Item order={order} mb={1} key={index}>
               <Flex height="16px">
-                <Flex.Item width="16px" mr="4px">{!!entry.is_ssd && (<Box className='hivestatus16x16 ssdIcon' />)}</Flex.Item>
-                <Flex.Item width="40px" mr="4px">{user_ref !== entry.ref && <ActionButtons
-                  target_ref={entry.ref}
-                  is_queen={user_queen}
-                  watched_xeno={user_watched_xeno}
-                />}</Flex.Item>
+                <Flex.Item width="16px" mr="4px">
+                  {!!entry.is_ssd
+                    && (<Box className="hivestatus16x16 ssdIcon" />)}
+                  </Flex.Item>
+                <Flex.Item width="40px" mr="4px">
+                  {user_ref !== entry.ref &&
+                  <ActionButtons
+                    target_ref={entry.ref}
+                    is_queen={user_queen}
+                    watched_xeno={user_watched_xeno}/>}
+                </Flex.Item>
                 <Flex.Item width="16px" mr="6px">
                   <Button
                     fluid
@@ -172,46 +189,64 @@ const XenoList = (_props, context) => {
                     icon="star"
                     disabled={static_entry.is_queen}
                     selected={entry.is_leader}
-                    opacity={entry.is_leader || user_queen || static_entry.is_queen ? 1 : 0.5}
+                    opacity=
+                      {entry.is_leader || user_queen || static_entry.is_queen
+                        ? 1
+                        : 0.5}
                     onClick={() => act('Leader', { xeno: entry.ref })} />
                 </Flex.Item>
-                <Flex.Item width="14px" mr="6px"><Box
-                  as="img"
-                  src={`data:image/jpeg;base64,${static_entry.minimap}`}
-                  style={{
-                    transform: "scale(2) translateX(2px)", // Upscaled from 7x7 to 14x14.
-                    "-ms-interpolation-mode": "nearest-neighbor",
-                  }} />
+                <Flex.Item width="14px" mr="6px">
+                  <Box as="img"
+                    src={`data:image/jpeg;base64,${static_entry.minimap}`}
+                    style={{
+                      transform: "scale(2) translateX(2px)", // Upscaled from 7x7 to 14x14.
+                      "-ms-interpolation-mode": "nearest-neighbor",
+                    }} />
                 </Flex.Item>
-                <Flex.Item width="30%" nowrap style={{'overflow': 'hidden','text-overflow': 'ellipsis'}}>{entry.name}</Flex.Item>
-                <Flex.Item width="60px">{
-                  entry.health <= 10 // Health actually ranges from -30 to 100.
+                <Flex.Item width="30%"
+                  nowrap
+                  style={{
+                    'overflow': 'hidden',
+                    'text-overflow': 'ellipsis'
+                  }}>
+                  {entry.name}
+                </Flex.Item>
+                <Flex.Item width="60px">
+                  {entry.health <= 10 // Health actually ranges from -30 to 100.
                     ? <Box bold textColor="bad">{entry.health}%</Box>
                     : entry.health <= 80
                       ? <Box textColor="average">{entry.health}%</Box>
-                      : <Box textColor="good">{entry.health}%</Box>
-                }</Flex.Item>
-                <Flex.Item width="60px">{
-                  entry.plasma <= 33 // Queen SSD?
+                      : <Box textColor="good">{entry.health}%</Box>}
+                </Flex.Item>
+                <Flex.Item width="60px">
+                  {entry.plasma <= 33 // Queen SSD?
                     ?<Box bold textColor="bad">{entry.plasma}%</Box>
                     : entry.plasma <= 75 // Queen give plasma plz.
                       ? <Box textColor="average">{entry.plasma}%</Box>
-                      : <Box textColor="good">{entry.plasma}%</Box>
-                }</Flex.Item>
-                <Flex.Item grow nowrap style={{'overflow': 'hidden','text-overflow': 'ellipsis'}}>{entry.location}</Flex.Item>
+                      : <Box textColor="good">{entry.plasma}%</Box>}
+                </Flex.Item>
+                <Flex.Item grow
+                  nowrap
+                  style={{
+                    'overflow': 'hidden',
+                    'text-overflow': 'ellipsis'
+                    }}>
+                  {entry.location}
+                </Flex.Item>
               </Flex>
             </Flex.Item>
-          );})}
+          );
+        })}
       </Flex>
     </Section>
   );
-}
+};
 
 type ActionButtonProps = {
   target_ref: string,
   is_queen: boolean,
   watched_xeno: string,
-}
+};
 
 const ActionButtons = (props: ActionButtonProps, context) => {
   const { act } = useBackend<InputPack>(context);
@@ -233,7 +268,7 @@ const ActionButtons = (props: ActionButtonProps, context) => {
     selected={observing}
     onClick={() => act('Follow', { xeno: target_ref })} />)
 
-  if(is_queen)
+  if (is_queen) {
     return (
       <Flex direction="row" justify="space-evenly">
           <Flex.Item grow mr="4px">
@@ -251,7 +286,8 @@ const ActionButtons = (props: ActionButtonProps, context) => {
               onClick={() => act('Plasma', { xeno: target_ref })} />
           </Flex.Item>
       </Flex>
-    )
+    );
+  }
 
   return (
     <Flex direction="row">
@@ -259,5 +295,5 @@ const ActionButtons = (props: ActionButtonProps, context) => {
             {overwatch_button}
         </Flex.Item>
     </Flex>
-  )
-}
+  );
+};
