@@ -79,9 +79,9 @@
 	var/unconscious_see_in_dark = 5
 
 	// *** Flags *** //
-	///Bitwise flags denoting things a caste is or is not. uses defines.
+	///Bitwise flags denoting things a caste is or is not. Uses defines.
 	var/caste_flags = CASTE_EVOLUTION_ALLOWED
-	///Bitwise flags denoting things a caste can and cannot do. uses defines.
+	///Bitwise flags denoting things a caste can and cannot do. Uses defines.
 	var/can_flags = CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
 
 	///whether or not a caste can hold eggs, and either 1 or 2 eggs at a time.
