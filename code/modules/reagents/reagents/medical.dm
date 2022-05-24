@@ -774,8 +774,6 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2.5
 	///The IB wound this dose of QCP will cure, if it lasts long enough
 	var/datum/wound/internal_bleeding/target_IB
-	///The limb the IB we're curing is on. For message purposes.
-	var/datum/limb/target_limb
 
 /datum/reagent/medicine/quickclotplus/on_mob_add(mob/living/L, metabolism)
 	if(!ishuman(L))
@@ -783,32 +781,29 @@
 	var/mob/living/carbon/human/body = L
 	for(var/datum/limb/possible_limb in body.limbs)
 		for(var/datum/wound/internal_bleeding/possible_IB in possible_limb.wounds)
-			target_limb = possible_limb
 			target_IB = possible_IB
 			RegisterSignal(target_IB, COMSIG_PARENT_QDELETING, .proc/clear_wound)
 			break
 		if(target_IB)
 			break
 	if(target_IB)
-		to_chat(body, span_highdanger("The deep ache in your [target_limb.display_name] erupts into searing pain!"))
+		to_chat(body, span_highdanger("The deep ache in your [target_IB.parent_limb.display_name] erupts into searing pain!"))
 
 /datum/reagent/medicine/quickclotplus/on_mob_delete(mob/living/L, metabolism)
 	if(target_IB)
-		to_chat(L, span_warning("The searing pain in your [target_limb.display_name] returns to a dull ache..."))
+		to_chat(L, span_warning("The searing pain in your [target_IB.parent_limb.display_name] returns to a dull ache..."))
 		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
 		target_IB = null
-		target_limb = null
 
 /datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY
 	L.adjustStaminaLoss(15*effect_str)
 	if(current_cycle == 9 && target_IB) //Minimum 5u per dose, and make sure nothing else has cleared it up in the meantime.
-		to_chat(L, span_alert("The searing pain in your [target_limb.display_name] peaks, then slowly fades away entirely."))
-		target_limb.createwound(CUT, target_IB.damage / 2)
+		to_chat(L, span_alert("The searing pain in your [target_IB.parent_limb.display_name] peaks, then slowly fades away entirely."))
+		target_IB.parent_limb.createwound(CUT, target_IB.damage / 2)
 		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
 		QDEL_NULL(target_IB)
-		target_limb = null
 		L.adjustCloneLoss(5*effect_str)
 	return ..()
 
@@ -818,7 +813,6 @@
 	if(target_IB)
 		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
 		target_IB = null
-		target_limb = null
 
 
 /datum/reagent/medicine/quickclotplus/overdose_process(mob/living/L, metabolism)
