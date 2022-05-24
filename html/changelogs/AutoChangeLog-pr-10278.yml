@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "fixed a bug that caused the hunter invisibility ability not get to standing still invisibility level due to it only attempting to do so when plasma was regenerated."
