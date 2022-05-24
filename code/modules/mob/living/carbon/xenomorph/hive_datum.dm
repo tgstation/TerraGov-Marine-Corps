@@ -87,18 +87,19 @@
 			"index" = GLOB.hive_ui_caste_index[caste.caste_type_path],
 		))
 
+	var/mob/living/carbon/xenomorph/xeno_user
+	if(isxeno(user))
+		xeno_user = user
+
 	var/mob/watched = ""
 	if(isobserver(user) && !QDELETED(user.orbiting))
 		watched = !QDELETED(user.orbiting.parent) ? REF(user.orbiting.parent) : ""
 	else if(isxeno(user))
-		var/mob/living/carbon/xenomorph/xeno_user = user
 		watched = !QDELETED(xeno_user.observed_xeno) ? REF(xeno_user.observed_xeno) : ""
 	.["user_watched_xeno"] = watched
 
-	if(isxenolarva(user))
-		.["user_evolution_current"] = xeno.amount_grown
-	else if(isxeno(user))
-		.["user_evolution_max"] = 
+	if(isxeno(user))
+		.["user_evolution"] = xeno_user.evolution_stored
 
 /datum/hive_status/ui_static_data(mob/user)
 	. = ..()
@@ -106,14 +107,22 @@
 	.["static_info"] = GLOB.hive_ui_static_data
 
 	.["user_ref"] = REF(user)
+	.["user_xeno"] = isxeno(user)
 	.["user_queen"] = isxenoqueen(user)
+
+	.["user_index"] = 0
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		.["user_index"] = GLOB.hive_ui_caste_index[xeno_user.xeno_caste.caste_type_path]
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
+	var/xeno_ref = params["xeno"]
+	var/mob/living/carbon/xenomorph/xeno_target = locate(xeno_ref)
+	if(QDELETED(xeno_target))
+		return
 	switch(action)
 		if("Follow")
-			var/xeno_ref = params["xeno"]
-			var/mob/living/carbon/xenomorph/xeno_target = locate(xeno_ref)
 			if(isobserver(usr))
 				var/mob/dead/observer/ghost = usr
 				ghost.ManualFollow(xeno_target)
@@ -123,14 +132,10 @@
 		if("Leader")
 			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
 				return
-			var/xeno_ref = params["xeno"]
-			var/mob/living/carbon/xenomorph/xeno_target = locate(xeno_ref)
 			SEND_SIGNAL(usr, COMSIG_XENOMORPH_LEADERSHIP, xeno_target)
 		if("Plasma")
 			if(!isxenoqueen(usr)) // Queen only.
 				return
-			var/xeno_ref = params["xeno"]
-			var/mob/living/carbon/xenomorph/xeno_target = locate(xeno_ref)
 			SEND_SIGNAL(usr, COMSIG_XENOMORPH_QUEEN_PLASMA, xeno_target)
 
 
