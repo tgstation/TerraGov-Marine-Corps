@@ -1,7 +1,6 @@
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Button, Flex, Divider, Box, ProgressBar, Section } from '../components';
-import { KEY_RIGHT_BRACKET } from 'common/keycodes';
+import { Button, Flex, Divider, Box, Section } from '../components';
 
 type InputPack = {
   hive_name: string,
@@ -64,6 +63,8 @@ type PyramidCalc = { // Index is tier.
 const PopulationPyramid = (props, context) => {
   const { data } = useBackend<InputPack>(context);
   const {
+    hive_max_tier_two,
+    hive_max_tier_three,
     xeno_info,
     static_info,
   } = data;
@@ -101,11 +102,15 @@ const PopulationPyramid = (props, context) => {
   return (
     <Section title = {`Total Living Sisters: ${hive_total}`}>
       <Flex direction="column-reverse">
-        {pyramid_data.map((tier_info, tier) => (
-          <Section title={`Tier ${tier}: ${tier_info.total} Sisters`}>
-            HELLO WORLD
-          </Section>
-        ))}
+        {pyramid_data.map((tier_info, tier) => {
+          // Hardcoded tier check for limited slots.
+          const max_slots = tier === 2 ? hive_max_tier_two : 0 + tier === 3 ? hive_max_tier_three : 0;
+          const slot_text = tier === 2 || tier === 3 ? `(${tier_info.total}/${max_slots})` : tier_info.total;
+          return (
+            <Section title={`Tier ${tier}: ${slot_text} Sisters`}>
+              HELLO WORLD
+            </Section>
+        )})}
       </Flex>
     </Section>
   )
