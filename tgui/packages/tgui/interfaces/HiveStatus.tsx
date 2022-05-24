@@ -173,11 +173,11 @@ const XenoList = (_props, context) => {
                     && (<Box className="hivestatus16x16 ssdIcon" />)}
                 </Flex.Item>
                 <Flex.Item width="40px" mr="4px">
-                  {user_ref !== entry.ref &&
-                  (<ActionButtons
+                  {user_ref !== entry.ref
+                  && <ActionButtons
                     target_ref={entry.ref}
                     is_queen={user_queen}
-                    watched_xeno={user_watched_xeno} />)}
+                    watched_xeno={user_watched_xeno} />}
                 </Flex.Item>
                 <Flex.Item width="16px" mr="6px">
                   <Button
@@ -191,8 +191,8 @@ const XenoList = (_props, context) => {
                     selected={entry.is_leader}
                     opacity={entry.is_leader || user_queen
                       || static_entry.is_queen
-                        ? 1
-                        : 0.5}
+                      ? 1
+                      : 0.5}
                     onClick={() => act('Leader', { xeno: entry.ref })} />
                 </Flex.Item>
                 <Flex.Item width="14px" mr="6px">
@@ -257,7 +257,7 @@ const ActionButtons = (props: ActionButtonProps, context) => {
   } = props;
 
   const observing = target_ref === watched_xeno;
-  const overwatch_button = <Button
+  const overwatch_button = (<Button
     fluid
     height="16px"
     fontSize={0.75}
@@ -266,7 +266,7 @@ const ActionButtons = (props: ActionButtonProps, context) => {
     verticalAlignContent="middle"
     icon="eye"
     selected={observing}
-    onClick={() => act('Follow', { xeno: target_ref })} />;
+    onClick={() => act('Follow', { xeno: target_ref })} />);
 
   if (is_queen) {
     return (
@@ -292,7 +292,7 @@ const ActionButtons = (props: ActionButtonProps, context) => {
   return (
     <Flex direction="row">
       <Flex.Item grow>
-          {overwatch_button}
+        {overwatch_button}
       </Flex.Item>
     </Flex>
   );
