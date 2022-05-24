@@ -1,6 +1,6 @@
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
-import { Button, Flex, Divider, Box, Section } from '../components';
+import { Button, Flex, Divider, Box, Section, Collapsible } from '../components';
 
 type InputPack = {
   hive_name: string,
@@ -31,6 +31,7 @@ type StaticData = {
   sort_mod: number,
   tier: number,
   is_unique: boolean,
+  can_transfer_plasma: boolean,
 };
 
 export const HiveStatus = (_props, context) => {
@@ -44,9 +45,13 @@ export const HiveStatus = (_props, context) => {
       width={700}
       height={800}>
       <Window.Content scrollable>
-        <PopulationPyramid />
+        <Collapsible title="Hive Population" open>
+          <PopulationPyramid />
+        </Collapsible>
         <Divider />
-        <XenoList />
+        <Collapsible title="Xenomorph List" open>
+          <XenoList />
+        </Collapsible>
         <Divider />
       </Window.Content>
     </Window>
@@ -99,57 +104,57 @@ const PopulationPyramid = (props, context) => {
   });
 
   return (
-    <Section title={`Total Living Sisters: ${hive_total}`}>
-      <Flex direction="column-reverse" align="center">
-        {pyramid_data.map((tier_info, tier) => {
-          // Hardcoded tier check for limited slots.
-          const max_slots = tier === 2
-            ? hive_max_tier_two
-            : 0 + tier === 3
-              ? hive_max_tier_three
-              : 0;
-          const slot_text = tier === 2 || tier === 3
-            ? `(${tier_info.total}/${max_slots})`
-            : tier_info.total;
-          const row_width = tier === 3 // Praetorian name way too long. Clips into Rav.
-            ? 8 : 7;
-          return (
-            // Setting key to index here is fine as nothing will be changing in this section.
-            <Section title={`Tier ${tier}: ${slot_text} Sisters`} key={tier} align="center">
-              <Flex mb={1}>
-                {tier_info.index.map((value) => {
-                  const static_entry = static_info[value];
-                  return (
-                    <Flex.Item width={row_width} bold key={static_entry.name}>
-                      <Box as="img"
-                      src={`data:image/jpeg;base64,${static_entry.minimap}`}
-                      style={{
-                        transform: "scale(3) translateX(-3.5px)", // Upscaled from 7x7 to 14x14.
-                        "-ms-interpolation-mode": "nearest-neighbor",
-                      }} />
-                    {static_entry.name}
-                    </Flex.Item>
-                  )
-                })}
-              </Flex>
-              <Flex>
-                {tier_info.caste.map((count, idx) => {
-                  const static_entry = static_info[tier_info.index[idx]];
-                  return (
-                    <Flex.Item width={row_width} key={static_entry.name}>
-                      {static_entry.is_unique
-                        ? count >= 1
-                          ? "Active" : "N/A"
-                        : count}
-                    </Flex.Item>
-                  )
-                })}
-              </Flex>
-            </Section>
-          );
-        })}
-      </Flex>
-    </Section>
+      <Section title={`Total Living Sisters: ${hive_total}`} align="center">
+        <Flex direction="column-reverse" align="center">
+          {pyramid_data.map((tier_info, tier) => {
+            // Hardcoded tier check for limited slots.
+            const max_slots = tier === 2
+              ? hive_max_tier_two
+              : 0 + tier === 3
+                ? hive_max_tier_three
+                : 0;
+            const slot_text = tier === 2 || tier === 3
+              ? `(${tier_info.total}/${max_slots})`
+              : tier_info.total;
+            const row_width = tier === 3 // Praetorian name way too long. Clips into Rav.
+              ? 8 : 7;
+            return (
+              // Setting key to index here is fine as nothing will be changing in this section.
+              <Section title={`Tier ${tier}: ${slot_text} Sisters`} key={tier} align="center" mb={0.5}>
+                <Flex mb={1}>
+                  {tier_info.index.map((value) => {
+                    const static_entry = static_info[value];
+                    return (
+                      <Flex.Item width={row_width} bold key={static_entry.name}>
+                        <Box as="img"
+                        src={`data:image/jpeg;base64,${static_entry.minimap}`}
+                        style={{
+                          transform: "scale(3) translateX(-3.5px)", // Upscaled from 7x7 to 14x14.
+                          "-ms-interpolation-mode": "nearest-neighbor",
+                        }} />
+                      {static_entry.name}
+                      </Flex.Item>
+                    );
+                  })}
+                </Flex>
+                <Flex>
+                  {tier_info.caste.map((count, idx) => {
+                    const static_entry = static_info[tier_info.index[idx]];
+                    return (
+                      <Flex.Item width={row_width} key={static_entry.name}>
+                        {static_entry.is_unique
+                          ? count >= 1
+                            ? "Active" : "N/A"
+                          : count}
+                      </Flex.Item>
+                    );
+                  })}
+                </Flex>
+              </Section>
+            );
+          })}
+        </Flex>
+      </Section>
   );
 };
 
@@ -172,7 +177,7 @@ const XenoList = (_props, context) => {
   const tier = 14;
 
   return (
-    <Section title="Xenomorph List">
+    <Section>
       <Flex direction="column-reverse">
         <Flex.Item order={Number.MAX_SAFE_INTEGER}>{/* Header */}
           <Flex bold height="16px">
@@ -207,14 +212,15 @@ const XenoList = (_props, context) => {
                   && <ActionButtons
                     target_ref={entry.ref}
                     is_queen={user_queen}
-                    watched_xeno={user_watched_xeno} />}
+                    watched_xeno={user_watched_xeno}
+                    can_transfer_plasma={static_entry.can_transfer_plasma} />}
                 </Flex.Item>
                 <Flex.Item width="16px" mr="6px">
                   <Button
                     fluid
                     height="16px"
                     fontSize={0.75}
-                    tooltip={user_queen ? "Toggle leadership" : ""}
+                    tooltip={user_queen && !static_entry.is_queen ? "Toggle leadership" : ""}
                     verticalAlignContent="middle"
                     icon="star"
                     disabled={static_entry.is_queen}
@@ -274,6 +280,7 @@ type ActionButtonProps = {
   target_ref: string,
   is_queen: boolean,
   watched_xeno: string,
+  can_transfer_plasma: boolean,
 };
 
 const ActionButtons = (props: ActionButtonProps, context) => {
@@ -282,6 +289,7 @@ const ActionButtons = (props: ActionButtonProps, context) => {
     target_ref,
     is_queen,
     watched_xeno,
+    can_transfer_plasma,
   } = props;
 
   const observing = target_ref === watched_xeno;
@@ -307,10 +315,11 @@ const ActionButtons = (props: ActionButtonProps, context) => {
             fluid
             height="16px"
             fontSize={0.75}
-            tooltip="Transfer plasma"
+            tooltip={can_transfer_plasma ? "Give plasma" : ""}
             align="center"
             verticalAlignContent="middle"
             icon="arrow-down"
+            disabled={!can_transfer_plasma}
             onClick={() => act('Plasma', { xeno: target_ref })} />
         </Flex.Item>
       </Flex>
