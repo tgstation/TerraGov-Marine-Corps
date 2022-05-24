@@ -784,9 +784,11 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "adp" = (
-/obj/effect/landmark/nuke_spawn,
-/turf/open/shuttle/dropship/three,
-/area/ice_colony/underground/responsehangar)
+/obj/structure/cable,
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/ice_colony/surface/mining)
 "adq" = (
 /obj/effect/turf_overlay/icerock,
 /obj/effect/turf_overlay/icerock{
@@ -2683,7 +2685,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "akH" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -3401,7 +3403,7 @@
 /obj/item/reagent_containers/blood/OMinus,
 /obj/item/reagent_containers/blood/OMinus,
 /obj/item/reagent_containers/blood/OMinus,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -3637,7 +3639,7 @@
 	dir = 1
 	},
 /obj/machinery/vending/nanomed,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -3645,7 +3647,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -3653,13 +3655,13 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
 "aoB" = (
 /obj/machinery/body_scanconsole,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -3683,8 +3685,8 @@
 	},
 /area/ice_colony/surface/substation)
 "aoE" = (
-/obj/machinery/iv_drip,
-/turf/open/floor/tile/red/whitered{
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -3698,19 +3700,23 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoL" = (
-/turf/open/floor/tile/red/whitered{
+/obj/machinery/power/apc/drained,
+/obj/machinery/atmospherics/pipe/manifold/general/visible{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
 "aoM" = (
-/obj/structure/closet/secure_closet/personal/patient,
-/turf/open/floor/tile/red/whitered{
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/treatment)
 "aoN" = (
 /obj/machinery/computer/crew,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -3814,7 +3820,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "apd" = (
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -3859,7 +3865,8 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "apk" = (
-/turf/open/floor/tile/red/whitered,
+/obj/machinery/atmospherics/pipe/manifold/general/visible,
+/turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "apm" = (
 /obj/structure/toilet{
@@ -3896,7 +3903,7 @@
 /area/ice_colony/surface/clinic/treatment)
 "apq" = (
 /obj/machinery/space_heater,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -3907,7 +3914,7 @@
 	pixel_x = 9;
 	pixel_y = 6
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -3928,7 +3935,7 @@
 	dir = 4
 	},
 /obj/item/reagent_containers/blood/empty,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -3938,19 +3945,22 @@
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "apw" = (
-/turf/open/floor/tile/red/whitered{
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
+	dir = 4
+	},
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/treatment)
 "apx" = (
-/obj/structure/table,
-/turf/open/floor/tile/red/whitered{
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/treatment)
 "apz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -3966,7 +3976,7 @@
 	pixel_x = 12;
 	pixel_y = 2
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4011,7 +4021,7 @@
 "apI" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
-/turf/open/floor/tile/red/whitered,
+/turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "apK" = (
 /obj/structure/rack,
@@ -4034,7 +4044,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4049,11 +4059,11 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/tile/red/whitered,
+/turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "apO" = (
 /obj/machinery/iv_drip,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4078,13 +4088,13 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/treatment)
 "apU" = (
 /obj/structure/curtain/medical,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4099,7 +4109,7 @@
 /area/ice_colony/surface/hydroponics/north)
 "apW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/red/whitered/corner{
+/turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4146,13 +4156,13 @@
 /area/ice_colony/surface/clinic/storage)
 "aqf" = (
 /obj/machinery/vending/medical,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/storage)
 "aqg" = (
 /obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -4161,7 +4171,7 @@
 /obj/structure/cable,
 /obj/item/storage/toolbox/emergency,
 /obj/structure/table,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4172,7 +4182,7 @@
 	pixel_x = 6;
 	pixel_y = 10
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -4180,7 +4190,7 @@
 /obj/structure/table,
 /obj/item/bodybag/cryobag,
 /obj/item/storage/box/syringes,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -4261,7 +4271,7 @@
 /area/ice_colony/surface/dorms)
 "aqu" = (
 /obj/structure/curtain/medical,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4290,7 +4300,7 @@
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/personal/patient,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4303,7 +4313,7 @@
 	},
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -4363,7 +4373,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -4426,7 +4436,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4531,7 +4541,7 @@
 /area/ice_colony/surface/clinic/storage)
 "ard" = (
 /obj/structure/closet/secure_closet/personal/patient,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4540,7 +4550,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -4675,13 +4685,13 @@
 /area/ice_colony/surface/clinic/storage)
 "arA" = (
 /obj/structure/closet/secure_closet/medical3/colony,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/storage)
 "arB" = (
 /obj/machinery/iv_drip,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -4779,7 +4789,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4801,7 +4811,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -4836,22 +4846,22 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/treatment)
 "asj" = (
 /obj/structure/curtain/medical,
-/turf/open/floor/tile/red/whitered,
+/turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "ask" = (
 /obj/structure/bed/chair/wheelchair,
 /obj/machinery/light,
-/turf/open/floor/tile/red/whitered,
+/turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
 "asl" = (
 /obj/effect/ai_node,
-/turf/open/floor/tile/red/whitered/corner{
+/turf/open/floor/tile/green/whitegreencorner{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4864,26 +4874,26 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/red/whitered/corner,
+/turf/open/floor/tile/green/whitegreencorner,
 /area/ice_colony/surface/clinic/treatment)
 "asp" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/treatment)
 "asq" = (
 /obj/structure/closet/secure_closet/chemical/colony,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/storage)
 "asr" = (
 /obj/structure/bed/chair/wheelchair,
-/turf/open/floor/tile/red/whitered,
+/turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/storage)
 "ast" = (
 /obj/structure/bed,
@@ -4922,7 +4932,7 @@
 /area/ice_colony/surface/clinic/lobby)
 "asB" = (
 /obj/structure/bed/roller,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -4934,7 +4944,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Aurora Medical Clinic Treatment"
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4942,7 +4952,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -4973,7 +4983,7 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -5005,7 +5015,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "asQ" = (
 /obj/machinery/vending/cola,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5016,7 +5026,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "asS" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5047,12 +5057,12 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/lobby)
 "asX" = (
-/turf/open/floor/tile/red/whitered/corner{
+/turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5062,7 +5072,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/red/whitered/corner{
+/turf/open/floor/tile/green/whitegreencorner{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5071,7 +5081,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5095,7 +5105,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5128,7 +5138,7 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "atj" = (
 /obj/machinery/space_heater,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5212,7 +5222,7 @@
 /obj/machinery/vending/nanomed{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5238,7 +5248,7 @@
 /area/ice_colony/surface/clinic/lobby)
 "atD" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5252,7 +5262,7 @@
 	dir = 4
 	},
 /obj/structure/filingcabinet,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5270,7 +5280,8 @@
 /area/ice_colony/exterior/surface/cliff)
 "atI" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/tile/red/whitered{
+/obj/machinery/computer/nuke_disk_generator/green,
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5379,7 +5390,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whitered/corner{
+/turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5394,7 +5405,7 @@
 "aud" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5403,7 +5414,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5419,13 +5430,13 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/lobby)
 "auh" = (
 /obj/structure/filingcabinet,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5435,7 +5446,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whitered/corner{
+/turf/open/floor/tile/green/whitegreencorner{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5446,7 +5457,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5460,7 +5471,7 @@
 	},
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/tile/red/whitered/corner{
+/turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5500,7 +5511,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/tile/red/whitered,
+/turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/lobby)
 "aus" = (
 /obj/structure/fence,
@@ -5545,7 +5556,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whitered/corner{
+/turf/open/floor/tile/green/whitegreencorner{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5633,7 +5644,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 5
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5668,7 +5679,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5682,13 +5693,13 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered/corner,
+/turf/open/floor/tile/green/whitegreencorner,
 /area/ice_colony/surface/clinic/lobby)
 "auV" = (
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/structure/table/reinforced,
-/turf/open/floor/tile/red/whitered,
+/turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/lobby)
 "auW" = (
 /obj/effect/turf_underlay/icefloor,
@@ -5696,7 +5707,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "auX" = (
 /obj/item/shard,
-/turf/open/floor/tile/red/whitered,
+/turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/lobby)
 "auY" = (
 /obj/machinery/light{
@@ -5888,7 +5899,7 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5925,7 +5936,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -5942,7 +5953,7 @@
 /area/ice_colony/surface/hydroponics/north)
 "avL" = (
 /obj/structure/table,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -6008,7 +6019,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/ice_colony/surface/clinic/lobby)
@@ -6906,7 +6917,7 @@
 	dir = 1
 	},
 /obj/machinery/bodyscanner,
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 9
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -7049,12 +7060,10 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southeast)
 "azw" = (
-/obj/structure/bed,
-/obj/item/bedsheet/medical,
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered{
+/turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
 /area/ice_colony/surface/clinic/treatment)
@@ -7900,7 +7909,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor/tile/red/whitered,
+/turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/lobby)
 "aCl" = (
 /obj/structure/table,
@@ -7914,7 +7923,7 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/turf/open/floor/tile/red/whitered,
+/turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/lobby)
 "aCn" = (
 /obj/structure/disposalpipe/segment,
@@ -22856,7 +22865,6 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/crew/canteen)
 "bzK" = (
-/obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
@@ -33083,6 +33091,10 @@
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
+"lII" = (
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/central/construction)
 "lJL" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/northWall,
@@ -34381,6 +34393,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
+"sjL" = (
+/obj/machinery/atmospherics/pipe/simple,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/clinic/treatment)
 "skL" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -50280,7 +50296,7 @@ buu
 bqn
 bsQ
 bws
-uAd
+lII
 bwr
 bxn
 seh
@@ -65625,7 +65641,7 @@ amO
 nsF
 aob
 aoL
-gvW
+sjL
 apk
 aou
 apU
@@ -75584,7 +75600,7 @@ abc
 aeB
 alF
 amk
-amk
+adp
 amk
 anT
 aor
@@ -75796,7 +75812,7 @@ acQ
 adj
 alz
 alz
-amk
+amK
 amk
 anU
 aos
@@ -75852,7 +75868,7 @@ blx
 blx
 blx
 bIY
-adp
+tlK
 tlK
 tlK
 bQT
@@ -76008,7 +76024,7 @@ acR
 adj
 alz
 alz
-amk
+amK
 amk
 amk
 amk
@@ -76220,7 +76236,7 @@ adj
 adj
 alz
 alE
-amk
+amK
 kGZ
 amk
 amk
