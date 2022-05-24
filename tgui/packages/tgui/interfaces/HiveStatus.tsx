@@ -106,9 +106,9 @@ const PopulationPyramid = (props, context) => {
           // Hardcoded tier check for limited slots.
           const max_slots = tier === 2
             ? hive_max_tier_two
-              : 0 + tier === 3
+            : 0 + tier === 3
               ? hive_max_tier_three
-            : 0;
+              : 0;
           const slot_text = tier === 2 || tier === 3
             ? `(${tier_info.total}/${max_slots})`
             : tier_info.total;
@@ -171,13 +171,13 @@ const XenoList = (_props, context) => {
                 <Flex.Item width="16px" mr="4px">
                   {!!entry.is_ssd
                     && (<Box className="hivestatus16x16 ssdIcon" />)}
-                  </Flex.Item>
+                </Flex.Item>
                 <Flex.Item width="40px" mr="4px">
                   {user_ref !== entry.ref &&
-                  <ActionButtons
+                  (<ActionButtons
                     target_ref={entry.ref}
                     is_queen={user_queen}
-                    watched_xeno={user_watched_xeno}/>}
+                    watched_xeno={user_watched_xeno} />)}
                 </Flex.Item>
                 <Flex.Item width="16px" mr="6px">
                   <Button
@@ -189,8 +189,8 @@ const XenoList = (_props, context) => {
                     icon="star"
                     disabled={static_entry.is_queen}
                     selected={entry.is_leader}
-                    opacity=
-                      {entry.is_leader || user_queen || static_entry.is_queen
+                    opacity={entry.is_leader || user_queen
+                      || static_entry.is_queen
                         ? 1
                         : 0.5}
                     onClick={() => act('Leader', { xeno: entry.ref })} />
@@ -207,7 +207,7 @@ const XenoList = (_props, context) => {
                   nowrap
                   style={{
                     'overflow': 'hidden',
-                    'text-overflow': 'ellipsis'
+                    'text-overflow': 'ellipsis',
                   }}>
                   {entry.name}
                 </Flex.Item>
@@ -229,8 +229,8 @@ const XenoList = (_props, context) => {
                   nowrap
                   style={{
                     'overflow': 'hidden',
-                    'text-overflow': 'ellipsis'
-                    }}>
+                    'text-overflow': 'ellipsis',
+                  }}>
                   {entry.location}
                 </Flex.Item>
               </Flex>
@@ -257,7 +257,7 @@ const ActionButtons = (props: ActionButtonProps, context) => {
   } = props;
 
   const observing = target_ref === watched_xeno;
-  const overwatch_button = (<Button
+  const overwatch_button = <Button
     fluid
     height="16px"
     fontSize={0.75}
@@ -266,34 +266,34 @@ const ActionButtons = (props: ActionButtonProps, context) => {
     verticalAlignContent="middle"
     icon="eye"
     selected={observing}
-    onClick={() => act('Follow', { xeno: target_ref })} />)
+    onClick={() => act('Follow', { xeno: target_ref })} />;
 
   if (is_queen) {
     return (
       <Flex direction="row" justify="space-evenly">
-          <Flex.Item grow mr="4px">
-            {overwatch_button}
-          </Flex.Item>
-          <Flex.Item grow>
-            <Button
-              fluid
-              height="16px"
-              fontSize={0.75}
-              tooltip="Transfer plasma"
-              align="center"
-              verticalAlignContent="middle"
-              icon="arrow-down"
-              onClick={() => act('Plasma', { xeno: target_ref })} />
-          </Flex.Item>
+        <Flex.Item grow mr="4px">
+          {overwatch_button}
+        </Flex.Item>
+        <Flex.Item grow>
+          <Button
+            fluid
+            height="16px"
+            fontSize={0.75}
+            tooltip="Transfer plasma"
+            align="center"
+            verticalAlignContent="middle"
+            icon="arrow-down"
+            onClick={() => act('Plasma', { xeno: target_ref })} />
+        </Flex.Item>
       </Flex>
     );
   }
 
   return (
     <Flex direction="row">
-        <Flex.Item grow>
-            {overwatch_button}
-        </Flex.Item>
+      <Flex.Item grow>
+          {overwatch_button}
+      </Flex.Item>
     </Flex>
   );
 };
