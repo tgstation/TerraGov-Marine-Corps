@@ -46,7 +46,10 @@
 		/datum/action/xeno_action/activable/plant_weeds/ranged,
 		/datum/action/xeno_action/activable/psychic_cure/hivemind,
 		/datum/action/xeno_action/activable/transfer_plasma/hivemind,
-		/datum/action/xeno_action/toggle_pheromones/hivemind,
+		/datum/action/xeno_action/pheromones/hivemind,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/activable/secrete_resin/ranged/slow,
 	)
 

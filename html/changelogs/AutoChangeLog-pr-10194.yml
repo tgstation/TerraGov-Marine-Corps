@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Fixed a couple of bugs that could let you stack turrets or MG's"

@@ -199,8 +199,8 @@ REAGENT SCANNER
 				"name" = limb.display_name,
 				"brute" = round(limb.brute_dam),
 				"burn" = round(limb.burn_dam),
-				"bandaged" = !limb.is_bandaged(),
-				"salved" = !limb.is_salved(),
+				"bandaged" = limb.is_bandaged(),
+				"salved" = limb.is_salved(),
 				"missing" = CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED),
 				"limb_status" = null,
 				"bleeding" = CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING),
@@ -230,7 +230,7 @@ REAGENT SCANNER
 	else if (patient.getBrainLoss() >= 60)
 		data["brain_damage"] = "Severe brain damage detected. Subject likely to have intellectual disabilities."
 	else if (patient.getBrainLoss() >= 10)
-		data["brain_damage"] = "Significant brain damage</b> detected. Subject may have had a concussion."
+		data["brain_damage"] = "<b>Significant brain damage</b> detected. Subject may have had a concussion."
 
 	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
 		if(!patient.key)
