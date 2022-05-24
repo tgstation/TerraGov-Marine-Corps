@@ -84,6 +84,8 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 
 		var/icon/xeno_minimap = icon('icons/UI_icons/map_blips.dmi', initial(caste.minimap_icon))
 		var/tier = initial(caste.tier)
+		if (isnull(per_tier_counter[tier]))
+			per_tier_counter[tier] = 0
 
 		GLOB.hive_ui_static_data += list(list(
 			"name" = initial(caste.caste_name),
@@ -91,6 +93,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			"minimap" = icon2base64(xeno_minimap),
 			"sort_mod" = per_tier_counter[tier]++,
 			"tier" = GLOB.tier_as_number[tier],
+			"is_unique" = tier == XENO_TIER_FOUR, //TODO: Make this check a flag after caste flag refactoring is merged.
 		))
 
 	for(var/L in subtypesof(/datum/language))

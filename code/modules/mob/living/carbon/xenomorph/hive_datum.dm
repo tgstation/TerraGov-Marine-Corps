@@ -67,6 +67,8 @@
 /datum/hive_status/ui_data(mob/user)
 	. = ..()
 	.["hive_name"] = name
+	.["hive_max_tier_two"] = tier2_xeno_limit
+	.["hive_max_tier_three"] = tier3_xeno_limit
 
 	.["xeno_info"] = list()
 	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
