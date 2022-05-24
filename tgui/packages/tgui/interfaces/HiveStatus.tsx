@@ -104,57 +104,67 @@ const PopulationPyramid = (props, context) => {
   });
 
   return (
-      <Section title={`Total Living Sisters: ${hive_total}`} align="center">
-        <Flex direction="column-reverse" align="center">
-          {pyramid_data.map((tier_info, tier) => {
-            // Hardcoded tier check for limited slots.
-            const max_slots = tier === 2
-              ? hive_max_tier_two
-              : 0 + tier === 3
-                ? hive_max_tier_three
-                : 0;
-            const slot_text = tier === 2 || tier === 3
-              ? `(${tier_info.total}/${max_slots})`
-              : tier_info.total;
-            const row_width = tier === 3 // Praetorian name way too long. Clips into Rav.
-              ? 8 : 7;
-            return (
-              // Setting key to index here is fine as nothing will be changing in this section.
-              <Section title={`Tier ${tier}: ${slot_text} Sisters`} key={tier} align="center" mb={0.5}>
-                <Flex mb={1}>
-                  {tier_info.index.map((value) => {
-                    const static_entry = static_info[value];
-                    return (
-                      <Flex.Item width={row_width} bold key={static_entry.name}>
-                        <Box as="img"
-                        src={`data:image/jpeg;base64,${static_entry.minimap}`}
-                        style={{
-                          transform: "scale(3) translateX(-3.5px)", // Upscaled from 7x7 to 14x14.
-                          "-ms-interpolation-mode": "nearest-neighbor",
-                        }} />
-                      {static_entry.name}
-                      </Flex.Item>
-                    );
-                  })}
-                </Flex>
-                <Flex>
-                  {tier_info.caste.map((count, idx) => {
-                    const static_entry = static_info[tier_info.index[idx]];
-                    return (
-                      <Flex.Item width={row_width} key={static_entry.name}>
-                        {static_entry.is_unique
-                          ? count >= 1
-                            ? "Active" : "N/A"
-                          : count}
-                      </Flex.Item>
-                    );
-                  })}
-                </Flex>
-              </Section>
-            );
-          })}
-        </Flex>
-      </Section>
+    <Section title={`Total Living Sisters: ${hive_total}`} align="center">
+      <Flex direction="column-reverse" align="center">
+        {pyramid_data.map((tier_info, tier) => {
+          // Hardcoded tier check for limited slots.
+          const max_slots = tier === 2
+            ? hive_max_tier_two
+            : 0 + tier === 3
+              ? hive_max_tier_three
+              : 0;
+
+          const slot_text = tier === 2 || tier === 3
+            ? `(${tier_info.total}/${max_slots})`
+            : tier_info.total;
+
+          // Praetorian name way too long. Clips into Rav.
+          const row_width = tier === 3
+            ? 8 : 7;
+
+          return (
+            // Setting key to index here is fine as nothing will be changing in this section.
+            <Section
+              title={`Tier ${tier}: ${slot_text} Sisters`}
+              key={tier}
+              align="center"
+              mb={0.5}>
+              <Flex mb={1}>
+                {tier_info.index.map((value) => {
+                  const static_entry = static_info[value];
+                  return (
+                    <Flex.Item width={row_width} bold key={static_entry.name}>
+                      <Box as="img"
+                      src={`data:image/jpeg;base64,${static_entry.minimap}`}
+                      style={{
+                        transform: "scale(3) translateX(-3.5px)", // Upscaled from 7x7 to 14x14.
+                        "-ms-interpolation-mode": "nearest-neighbor",
+                      }} />
+                    {static_entry.name}
+                    </Flex.Item>
+                  );
+                })}
+              </Flex>
+              <Flex>
+                {tier_info.caste.map((count, idx) => {
+                  const static_entry = static_info[tier_info.index[idx]];
+                  return (
+                    <Flex.Item width={row_width}
+                      key={static_entry.name}
+                      fontSize={static_entry.is_unique ? 1 : 1.25}>
+                      {static_entry.is_unique
+                        ? count >= 1
+                          ? "Active" : "N/A"
+                        : count}
+                    </Flex.Item>
+                  );
+                })}
+              </Flex>
+            </Section>
+          );
+        })}
+      </Flex>
+    </Section>
   );
 };
 
