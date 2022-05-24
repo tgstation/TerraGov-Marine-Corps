@@ -31706,6 +31706,10 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
+"evp" = (
+/obj/effect/turf_underlay/icefloor,
+/turf/open/space/basic,
+/area/ice_colony/exterior/surface/clearing/south)
 "ewL" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
@@ -33091,10 +33095,6 @@
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
-"lII" = (
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/central/construction)
 "lJL" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/northWall,
@@ -34393,10 +34393,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
-"sjL" = (
-/obj/machinery/atmospherics/pipe/simple,
-/turf/open/floor/tile/white,
-/area/ice_colony/surface/clinic/treatment)
 "skL" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -35054,6 +35050,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"vUq" = (
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/central/construction)
 "vUG" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -35286,6 +35286,10 @@
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"xjq" = (
+/obj/machinery/atmospherics/pipe/simple,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/clinic/treatment)
 "xjB" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/end{
@@ -50296,7 +50300,7 @@ buu
 bqn
 bsQ
 bws
-lII
+vUq
 bwr
 bxn
 seh
@@ -65276,7 +65280,7 @@ aac
 aac
 aaf
 aar
-aMy
+evp
 aKs
 beS
 aOf
@@ -65641,7 +65645,7 @@ amO
 nsF
 aob
 aoL
-sjL
+xjq
 apk
 aou
 apU
