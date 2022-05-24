@@ -1,0 +1,16 @@
+author: "goose4429"
+delete-after: True
+changes: 
+  - rscdel: "Hyperzine removed from everywhere"
+  - code_imp: "Injector code refactor"
+  - code_imp: "Imi, Alky injectors fix"
+  - code_imp: "med vendor code refactor"
+  - rscadd: "Dexaline injector"
+  - rscadd: "Case to med vendor, can hold 3 injectors (and nothing else)"
+  - balance: "Injectors have default 30u volume and 10u inject"
+  - balance: "Moved some pill bottles to med vendor"
+  - balance: "These pill bottles removed from MarineMed"
+  - balance: "Basic injectors are unlimited in MarineMed"
+  - balance: "Other injectors have greater number in MarineMed"
+  - balance: "Injectors and hyposprays have less delay on use"
+  - balance: "Added Imi and Alky to med belt"
