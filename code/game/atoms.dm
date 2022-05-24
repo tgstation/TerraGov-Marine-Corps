@@ -91,8 +91,6 @@
 	var/chat_color_darkened
 	///HUD images that this mob can provide.
 	var/list/hud_possible
-	///Reference to atom being orbited
-	var/atom/orbit_target
 
 	///Whether this atom smooths with things around it, and what type of smoothing if any.
 	var/smoothing_behavior = NO_SMOOTHING

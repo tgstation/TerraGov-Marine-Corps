@@ -85,10 +85,9 @@
 		))
 
 	var/mob/watched = ""
-	if(isobserver(user)) //Ghost follow is fucked. Apparently invalidates UI update so this isnt updated until they move again.
-		var/mob/dead/observer/ghost_user = user
-		watched = !QDELETED(ghost_user.orbit_target) ? REF(ghost_user.orbit_target) : ""
-	else if(isxeno(user)) //This works perfectly fine though.
+	if(isobserver(user) && !QDELETED(user.orbiting))
+		watched = !QDELETED(user.orbiting.parent) ? REF(user.orbiting.parent) : ""
+	else if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno_user = user
 		watched = !QDELETED(xeno_user.observed_xeno) ? REF(xeno_user.observed_xeno) : ""
 	.["user_watched_xeno"] = watched
