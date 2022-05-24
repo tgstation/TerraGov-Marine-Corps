@@ -1512,7 +1512,7 @@ VEHICLES
 /datum/supply_packs/vehicles/mounted_rr
 	name = "Mounted Heavy Recoilless Rifle"
 	contains = list(/obj/structure/dropship_equipment/heavyrr_holder)
-	cost = 250
+	cost = 180
 
 /datum/supply_packs/vehicles/hsg_ammo
 	name = "Mounted HSG ammo"
@@ -1539,8 +1539,8 @@ VEHICLES
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/rr_ammo
-	name = "Mounted Recoilless Rifle shell"
-	contains = list(/obj/item/ammo_magazine/heavyrr)
+	name = "Mounted Recoilless Rifle shell (x2)"
+	contains = list(/obj/item/ammo_magazine/heavyrr, /obj/item/ammo_magazine/heavyrr)
 	cost = 7
 	containertype = /obj/structure/closet/crate/ammo
 

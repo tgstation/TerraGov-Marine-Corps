@@ -1442,13 +1442,14 @@ datum/ammo/bullet/revolver/tp44
 	accuracy = 40
 	accurate_range = 15
 	max_range = 40
+	shell_speed = 3
 	penetration = 200
 	damage = 200
 	sundering = 30
 	handful_amount = 1
 
 /datum/ammo/rocket/heavyrr/drop_nade(turf/T)
-	explosion(T, 0, 4, 6, 5)
+	explosion(T, 0, 2, 3, 4)
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"

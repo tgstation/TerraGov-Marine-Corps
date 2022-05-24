@@ -230,8 +230,8 @@
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "heavyrr"
 
-	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
-	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tank_cannon1.ogg'
+	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 
 	default_ammo_type = /obj/item/ammo_magazine/heavyrr
@@ -265,6 +265,26 @@
 
 	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+
+	///the smoke effect after firing
+	var/datum/effect_system/smoke_spread/smoke
+
+/obj/item/weapon/gun/heavyrr/Initialize(mapload, spawn_empty)
+	. = ..()
+	smoke = new(src, FALSE)
+
+/obj/item/weapon/gun/heavyrr/Destroy()
+	QDEL_NULL(smoke)
+	return ..()
+
+//Adding in the backblast. This is visual only and doesn't do any damage because the nest operator is right behind it.
+/obj/item/weapon/gun/heavyrr/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
+	. = ..()
+	var/turf/blast_source = get_turf(src)
+	var/thrown_dir = REVERSE_DIR(get_dir(blast_source, target))
+	var/turf/backblast_loc = get_step(blast_source, thrown_dir)
+	smoke.set_up(0, backblast_loc)
+	smoke.start()
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
