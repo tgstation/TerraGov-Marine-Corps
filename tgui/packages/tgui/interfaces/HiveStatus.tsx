@@ -123,7 +123,6 @@ const PopulationPyramid = (props, context) => {
             ? 8 : 7;
 
           return (
-            // Setting key to index here is fine as nothing will be changing in this section.
             <Section
               title={`Tier ${tier}: ${slot_text} Sisters`}
               key={tier}
@@ -135,12 +134,12 @@ const PopulationPyramid = (props, context) => {
                   return (
                     <Flex.Item width={row_width} bold key={static_entry.name}>
                       <Box as="img"
-                      src={`data:image/jpeg;base64,${static_entry.minimap}`}
-                      style={{
-                        transform: "scale(3) translateX(-3.5px)", // Upscaled from 7x7 to 14x14.
-                        "-ms-interpolation-mode": "nearest-neighbor",
-                      }} />
-                    {static_entry.name}
+                        src={`data:image/jpeg;base64,${static_entry.minimap}`}
+                        style={{
+                          transform: "scale(3) translateX(-3.5px)",
+                          "-ms-interpolation-mode": "nearest-neighbor",
+                        }} />
+                      {static_entry.name}
                     </Flex.Item>
                   );
                 })}
