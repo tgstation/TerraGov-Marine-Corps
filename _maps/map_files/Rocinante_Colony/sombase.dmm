@@ -395,13 +395,6 @@
 "aEW" = (
 /turf/open/floor/plating/dmg1,
 /area/rocinante_colony/ground/colonye)
-"aEX" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "wheat-grow4"
-	},
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "aFB" = (
 /obj/structure/window{
 	dir = 8
@@ -734,13 +727,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grass,
 /area/rocinante_colony/surface/landing/landing_pad_one_external)
-"baa" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "potato-grow4"
-	},
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "baf" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -2151,16 +2137,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/orange/full,
 /area/rocinante_colony/surface/building/ammo_factory)
-"cWY" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "towercap-grow1"
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "cXk" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/red/full,
@@ -3692,9 +3668,7 @@
 /turf/open/floor/plating,
 /area/rocinante_colony/surface/building/space_hangar)
 "eXF" = (
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "traitscanner"
-	},
+/obj/machinery/biogenerator,
 /turf/open/floor/grass,
 /area/rocinante_colony/surface/building/commercial_n)
 "eXT" = (
@@ -4490,13 +4464,6 @@
 /obj/structure/prop/vehicle/truck,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
 /area/rocinante_colony/ground/underground/caveNW)
-"fUC" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "towercap-grow1"
-	},
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "fVU" = (
 /obj/structure/flora/tree/pine,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -4547,9 +4514,6 @@
 /area/rocinante_colony/surface/building/bunker)
 "gas" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "towercap-harvest"
-	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4592,16 +4556,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonyne)
-"gcF" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "corn-harvest"
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "gcG" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/rocinante_colony/surface/building/space_hangar)
@@ -4782,24 +4736,6 @@
 	color = "#f7b468"
 	},
 /area/rocinante_colony/ground/underground/caveN)
-"gmH" = (
-/obj/structure/prop/vehicle/apc{
-	dir = 4
-	},
-/obj/structure/prop/vehicle/apc/dualcannonone{
-	dir = 4
-	},
-/obj/structure/prop/vehicle/apc/damagedframe{
-	dir = 4
-	},
-/obj/structure/prop/vehicle/apc/decoration/frontturretone{
-	dir = 4
-	},
-/obj/structure/prop/vehicle/apc/wheelsone{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/cement,
-/area/rocinante_colony/ground/colonyw)
 "gmI" = (
 /obj/structure/shuttle/engine/propulsion/burst/left,
 /turf/open/floor/podhatch/floor,
@@ -5788,13 +5724,6 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/ground/colonyn)
-"hFS" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "corn-harvest"
-	},
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "hGw" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship,
@@ -7607,13 +7536,6 @@
 	},
 /turf/open/floor/mainship/orange/full,
 /area/rocinante_colony/surface/building/cargo_office)
-"koB" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "towercap-harvest"
-	},
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "koT" = (
 /obj/structure/prop/vehicle/crawler/crawler_cargo,
 /turf/open/floor/plating/ground/snow/layer3,
@@ -7757,6 +7679,27 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/rocinante_colony/surface/building/bunker)
+"kAq" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/obj/structure/prop/vehicle/apc{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/damagedframe{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/dualcannonone{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/wheelsone{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/decoration/frontturretone{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement,
+/area/rocinante_colony/ground/colonyw)
 "kAy" = (
 /obj/structure/desertdam/decals/road/edge{
 	icon_state = "road_edge_decal9"
@@ -8254,12 +8197,6 @@
 /obj/machinery/cryopod,
 /turf/open/floor/mainship/mono,
 /area/rocinante_colony/surface/building/canterbury)
-"lfZ" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/snow{
-	color = "#f7b468"
-	},
-/area/rocinante_colony/surface/building/dropship_hangar)
 "lgd" = (
 /obj/structure/platform/rockcliff{
 	dir = 8
@@ -8570,14 +8507,6 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
 /area/rocinante_colony/surface/building/monitorion_s)
-"lzz" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "corn-harvest"
-	},
-/obj/machinery/light,
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "lzK" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/tree/pine,
@@ -9016,22 +8945,8 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/rocinante_colony/surface/building/administrationsom)
-"lXE" = (
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "potato-grow1"
-	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "potato-grow4"
-	},
-/obj/machinery/light,
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "lYt" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "potato-harvest"
-	},
 /obj/machinery/light,
 /turf/open/floor/grass,
 /area/rocinante_colony/surface/building/commercial_n)
@@ -9075,12 +8990,6 @@
 	},
 /turf/open/floor/plating,
 /area/rocinante_colony/ground/colonyw)
-"mcv" = (
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "traitcopier"
-	},
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "mcx" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/ai_node,
@@ -12336,9 +12245,6 @@
 /area/rocinante_colony/ground/colonysw)
 "qoq" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "potato-harvest"
-	},
 /turf/open/floor/grass,
 /area/rocinante_colony/surface/building/commercial_n)
 "qpf" = (
@@ -14807,10 +14713,6 @@
 	},
 /turf/open/floor/mainship/orange/full,
 /area/rocinante_colony/surface/building/cargo_office)
-"ucy" = (
-/obj/structure/flora/rock/alt,
-/turf/open/floor/plating/ground/snow/layer3,
-/area/rocinante_colony/ground/colonys)
 "ude" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/rocinante_colony/ground/colonyse)
@@ -14911,6 +14813,10 @@
 "uhf" = (
 /turf/closed/wall/mainship/gray,
 /area/rocinante_colony/surface/building/glass_ash)
+"uho" = (
+/obj/machinery/botany/editor,
+/turf/open/floor/grass,
+/area/rocinante_colony/surface/building/commercial_n)
 "uhR" = (
 /obj/structure/cable{
 	layer = 1.99
@@ -15071,13 +14977,6 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/red/full,
 /area/rocinante_colony/surface/building/secpostn)
-"uvy" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "towercap-grow2"
-	},
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "uvB" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -15456,13 +15355,6 @@
 /obj/effect/landmark/corpsespawner/marine/corpsman,
 /turf/open/floor/grass,
 /area/rocinante_colony/ground/colonycent)
-"uYD" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/portable_atmospherics/hydroponics{
-	icon_state = "wheat-harvest"
-	},
-/turf/open/floor/grass,
-/area/rocinante_colony/surface/building/commercial_n)
 "uYE" = (
 /obj/machinery/light,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement,
@@ -24659,7 +24551,7 @@ woG
 woG
 woG
 woG
-cCL
+kAq
 woG
 woG
 woG
@@ -24697,7 +24589,7 @@ qsm
 qsm
 qsm
 eRd
-qsm
+giU
 qsm
 eRd
 cwp
@@ -25124,7 +25016,7 @@ dgM
 dgM
 dgM
 iDi
-ieH
+iDi
 iDi
 tLA
 tLA
@@ -25619,7 +25511,7 @@ qsm
 eRd
 isp
 woG
-gmH
+woG
 vqM
 qsm
 wTG
@@ -26848,7 +26740,7 @@ rfv
 iDi
 iDi
 ttJ
-mNe
+iDi
 iDi
 iDi
 iDi
@@ -27040,7 +26932,7 @@ iSw
 iSw
 iSw
 nCW
-nvg
+iDi
 deC
 pEz
 iDi
@@ -29729,8 +29621,8 @@ iDi
 iDi
 iDi
 iDi
-ieH
-mNe
+iDi
+iDi
 iDi
 tLA
 tLA
@@ -29924,7 +29816,7 @@ iDi
 gOz
 pEz
 puQ
-ucy
+iDi
 deC
 kQM
 kQM
@@ -30308,7 +30200,7 @@ dgM
 dgM
 iDi
 iDi
-nvg
+iDi
 iDi
 iDi
 iDi
@@ -30423,7 +30315,7 @@ peU
 lAT
 gMj
 gUa
-mcv
+boG
 boG
 boG
 llK
@@ -30998,7 +30890,7 @@ rMl
 uBb
 eZB
 cFH
-koB
+qoq
 boG
 boG
 boG
@@ -31190,10 +31082,10 @@ rMl
 jGo
 hRn
 cFH
-fUC
+qoq
 boG
-uYD
-aEX
+qoq
+qoq
 boG
 qoq
 cFH
@@ -31382,12 +31274,12 @@ ylX
 izF
 ohV
 cFH
-uvy
+qoq
 boG
+uho
+uho
 boG
-boG
-boG
-baa
+qoq
 cFH
 vux
 vux
@@ -31574,12 +31466,12 @@ iKw
 cjQ
 cKY
 cFH
-uvy
+qoq
 boG
-uYD
-aEX
+qoq
+qoq
 boG
-baa
+qoq
 cFH
 vux
 vux
@@ -31766,12 +31658,12 @@ psk
 tvA
 rMl
 cFH
-koB
+qoq
 boG
 eXF
 usg
 boG
-baa
+qoq
 cFH
 vux
 vux
@@ -31963,7 +31855,7 @@ boG
 boG
 boG
 boG
-lXE
+lYt
 gUa
 vux
 vux
@@ -32150,12 +32042,12 @@ psk
 psk
 psk
 gUa
-hFS
+qoq
 ybJ
 boG
 boG
 boG
-hFS
+qoq
 gUa
 vux
 vux
@@ -32342,12 +32234,12 @@ gvK
 jHB
 psk
 gUa
-hFS
+qoq
 kDD
 ybJ
 boG
 boG
-hFS
+qoq
 gUa
 vux
 vux
@@ -32726,7 +32618,7 @@ gvK
 gvK
 psk
 gUa
-mcv
+boG
 eUi
 boG
 boG
@@ -32918,12 +32810,12 @@ gvK
 gvK
 kIf
 gUa
-koB
+qoq
 boG
 ybJ
 boG
 boG
-hFS
+qoq
 gUa
 xVJ
 xVJ
@@ -33110,12 +33002,12 @@ mym
 rqa
 psk
 gUa
-koB
+qoq
 ybJ
 boG
 boG
 boG
-hFS
+qoq
 gUa
 pjV
 fRo
@@ -33302,12 +33194,12 @@ psk
 psk
 izF
 gUa
-cWY
+gas
 boG
 boG
 boG
 boG
-lzz
+lYt
 gUa
 hRq
 lcd
@@ -33494,12 +33386,12 @@ xmO
 cjQ
 ohV
 cFH
-uvy
+qoq
 boG
-uYD
-aEX
+qoq
+qoq
 boG
-hFS
+qoq
 cFH
 pjV
 sPa
@@ -33686,12 +33578,12 @@ nuT
 mYY
 ohV
 cFH
-uvy
+qoq
 boG
+uho
+uho
 boG
-boG
-boG
-hFS
+qoq
 cFH
 xVJ
 lcd
@@ -33878,12 +33770,12 @@ psk
 dYm
 izF
 cFH
-koB
+qoq
 boG
-uYD
-aEX
+qoq
+qoq
 boG
-hFS
+qoq
 cFH
 pjV
 pjV
@@ -34070,12 +33962,12 @@ dCJ
 htf
 hpd
 cFH
-koB
+qoq
 boG
 eXF
 usg
 boG
-hFS
+qoq
 cFH
 pjV
 kdG
@@ -34262,12 +34154,12 @@ izF
 dCJ
 dCJ
 cFH
-hFS
+qoq
 ybJ
 boG
 boG
 boG
-hFS
+qoq
 cFH
 pjV
 pjV
@@ -34454,12 +34346,12 @@ tXS
 qID
 kWP
 gUa
-gcF
+gas
 boG
 ybJ
 aNd
 aNd
-lzz
+lYt
 gUa
 pjV
 pjV
@@ -36318,8 +36210,8 @@ mlj
 tiL
 tiL
 tiL
-lfZ
-lCl
+kaW
+far
 lCl
 lCl
 lCl
