@@ -779,7 +779,7 @@
 	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/body = L
-	for(var/datum/limb/possible_limb in body.limbs)
+	for(var/datum/limb/possible_limb AS in body.limbs)
 		for(var/datum/wound/internal_bleeding/possible_IB in possible_limb.wounds)
 			target_IB = possible_IB
 			RegisterSignal(target_IB, COMSIG_PARENT_QDELETING, .proc/clear_wound)
