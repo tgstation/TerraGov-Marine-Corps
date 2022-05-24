@@ -1205,7 +1205,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 5
 	damage = 25
 	penetration = 100
-	sundering = 15
+	sundering = 7
 	max_range = 30
 
 /datum/ammo/bullet/dualcannon/on_hit_turf(turf/T, obj/projectile/P)
@@ -1445,7 +1445,7 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 3
 	penetration = 200
 	damage = 200
-	sundering = 30
+	sundering = 50
 	handful_amount = 1
 
 /datum/ammo/rocket/heavyrr/drop_nade(turf/T)
