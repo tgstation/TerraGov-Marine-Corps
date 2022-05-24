@@ -8,7 +8,9 @@ type InputPack = {
   hive_name: string,
   hive_max_tier_two: number,
   hive_max_tier_three: number,
-  // ------- Data info --------
+  hive_larva_current: number,
+  hive_larva_threshold: number,
+  // ----- Per xeno info ------
   xeno_info: XenoData[],
   static_info: StaticData[],
   // ------- User info --------
@@ -72,10 +74,7 @@ export const HiveStatus = (_props, context) => {
 const GeneralInfo = (props, context) => {
   const { data } = useBackend<InputPack>(context);
   const {
-    user_ref,
-    user_xeno,
     user_index,
-    user_evolution,
     static_info,
   } = data;
 
@@ -85,30 +84,48 @@ const GeneralInfo = (props, context) => {
     <Section align="center" title="Psy Points: 2400 | Burrowed: 15">
       <Flex>
         <Flex.Item grow>
-          <EvolutionBar
-            user_ref={user_ref}
-            is_xeno={user_xeno}
-            evolution={user_evolution}
-            max={static_entry.evolution_max} />
+          <EvolutionBar max={static_entry.evolution_max} />
         </Flex.Item>
       </Flex>
     </Section>
   );
 };
 
+const LarvaBar = (_props, context) => {
+  const { data } = useBackend<InputPack>(context);
+  const {
+    hive_larva_current,
+    hive_larva_threshold,
+  } = data;
 
-
-type EvolutionProps = {
-  user_ref: string,
-  is_xeno: boolean,
-  evolution: number,
-  max: number,
+  return (
+    <Flex>
+      <Flex.Item ml={1} mr={2} align="center">
+          Larva Generation:
+      </Flex.Item>
+      <Flex.Item grow>
+        <ProgressBar
+          ranges={{
+            good: [0.75, Infinity],
+            average: [-Infinity, 0.75],
+          }}
+          value={hive_larva_current / hive_larva_threshold}>
+          () {round(hive_larva_current / hive_larva_threshold * 100, 0)}%
+        </ProgressBar>
+      </Flex.Item>
+    </Flex>
+  );
 };
 
-const EvolutionBar = (props : EvolutionProps, context) => {
-  const { act } = useBackend(context);
+const EvolutionBar = (props: { max: number; }, context) => {
+  const { act, data } = useBackend<InputPack>(context);
+  const {
+    user_ref,
+    user_xeno,
+    user_evolution,
+  } = data;
 
-  if (!props.is_xeno || props.max == 0)
+  if (!user_xeno || user_evolution == 0)
     return (
       <Box /> // Empty.
     );
@@ -118,7 +135,7 @@ const EvolutionBar = (props : EvolutionProps, context) => {
       <Flex.Item mr={1} align="center">
         <Button
           tooltip="Open Panel"
-          onClick={() => act('Evolve', { xeno: props.user_ref })}>
+          onClick={() => act('Evolve', { xeno: user_ref })}>
           Evolution Progress:
         </Button>
       </Flex.Item>
@@ -128,13 +145,13 @@ const EvolutionBar = (props : EvolutionProps, context) => {
             good: [0.75, Infinity],
             average: [-Infinity, 0.75],
           }}
-          value={props.evolution / props.max}>
-          {round(props.evolution / props.max * 100, 0)}%
+          value={user_evolution / props.max}>
+          {round(user_evolution / props.max * 100, 0)}%
         </ProgressBar>
       </Flex.Item>
     </Flex>
   );
-}
+};
 
 type PyramidCalc = { // Index is tier.
   caste: number[], // Index is sort_mod.
@@ -142,7 +159,7 @@ type PyramidCalc = { // Index is tier.
   total: number, // Total xeno count for this tier.
 };
 
-const PopulationPyramid = (props, context) => {
+const PopulationPyramid = (_props, context) => {
   const { data } = useBackend<InputPack>(context);
   const {
     hive_max_tier_two,

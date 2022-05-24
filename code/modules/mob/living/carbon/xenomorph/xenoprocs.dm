@@ -27,27 +27,6 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
-
-///Relays health and location data about resin silos belonging to the same hive as the input user
-/proc/resin_silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
-	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
-	for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
-		if(resin_silo.associated_hive == hive)
-
-			var/hp_color = "green"
-			switch(resin_silo.obj_integrity/resin_silo.max_integrity)
-				if(0.33 to 0.66)
-					hp_color = "orange"
-				if(0 to 0.33)
-					hp_color = "red"
-
-			var/distance = get_dist(user, resin_silo)
-			. += "<b><a href='byond://?src=\ref[user];track_silo_number=[resin_silo.number_silo]'>[resin_silo.name]</a> <font color=[hp_color]>Health: ([resin_silo.obj_integrity]/[resin_silo.max_integrity])</font></b> located at: <b><font color=green>[AREACOORD_NO_Z(resin_silo)]</font>  Distance : [distance]</b><BR>"
-
-	. += "</table>"
-
-
-
 /proc/check_hive_status(mob/user)
 	if(!SSticker)
 		return
@@ -211,20 +190,6 @@
 	if(incapacitated())
 		to_chat(src, span_warning("We cannot do this in our current state."))
 		return FALSE
-	return TRUE
-
-//Checks your plasma levels and gives a handy message.
-/mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
-	if(stat)
-		if(!silent)
-			to_chat(src, span_warning("We cannot do this in our current state."))
-		return FALSE
-
-	if(value)
-		if(plasma_stored < value)
-			if(!silent)
-				to_chat(src, span_warning("We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored."))
-			return FALSE
 	return TRUE
 
 /mob/living/carbon/xenomorph/proc/use_plasma(value)

@@ -66,9 +66,11 @@
 
 /datum/hive_status/ui_data(mob/user)
 	. = ..()
-	.["hive_name"] = name
 	.["hive_max_tier_two"] = tier2_xeno_limit
 	.["hive_max_tier_three"] = tier3_xeno_limit
+
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	.["hive_larva_current"] = xeno_job.job_points
 
 	.["xeno_info"] = list()
 	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
@@ -105,6 +107,11 @@
 	. = ..()
 
 	.["static_info"] = GLOB.hive_ui_static_data
+
+	.["hive_name"] = name
+
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	.["hive_larva_threshold"] = xeno_job.job_points_needed
 
 	.["user_ref"] = REF(user)
 	.["user_xeno"] = isxeno(user)

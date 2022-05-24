@@ -380,39 +380,6 @@
 	succeed_activate()
 	receiver.balloon_alert_to_viewers("Plasma given from Queen", ignored_mobs = GLOB.alive_human_list)
 
-
-// ***************************************
-// *********** Queen order
-// ***************************************
-/datum/action/xeno_action/queen_order
-	name = "Give Order"
-	action_icon_state = "queen_order"
-	plasma_cost = 100
-	use_state_flags = XACT_USE_LYING
-
-/datum/action/xeno_action/queen_order/action_activate()
-	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(!X.check_concious_state())
-		return
-	if(X.observed_xeno)
-		var/mob/living/carbon/xenomorph/target = X.observed_xeno
-		if(target.stat != DEAD && target.client)
-			if(X.check_plasma(100))
-				var/input = stripped_input(X, "This message will be sent to the overwatched xeno.", "Queen Order", "")
-				if(!input)
-					return
-				var/queen_order = span_xenoannounce("<b>[X]</b> reaches you:\"[input]\"")
-				if(!X.check_state() || !X.check_plasma(100) || X.observed_xeno != target || target.stat == DEAD)
-					return
-				if(target.client)
-					X.use_plasma(100)
-					to_chat(target, "[queen_order]")
-					log_game("[key_name(X)] has given the following Queen order to [key_name(target)]: [input]")
-					message_admins("[ADMIN_TPMONTY(X)] has given the following Queen order to [ADMIN_TPMONTY(target)]: [input]")
-
-	else
-		to_chat(X, span_warning("We must overwatch the Xenomorph we want to give orders to."))
-
 // ***************************************
 // *********** Queen deevolve
 // ***************************************
@@ -431,8 +398,6 @@
 		return
 
 	var/mob/living/carbon/xenomorph/T = X.observed_xeno
-	if(!X.check_plasma(600)) // check plasma gives an error message itself
-		return
 
 	if(T.is_ventcrawling)
 		T.balloon_alert(X, "Cannot deevolve, ventcrawling")
@@ -461,7 +426,7 @@
 		T.balloon_alert(X, "De-evolution reason required")
 		return
 
-	if(!X.check_concious_state() || !X.check_plasma(600) || X.observed_xeno != T)
+	if(!X.check_concious_state() || X.observed_xeno != T)
 		return
 
 	if(T.is_ventcrawling)
