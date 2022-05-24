@@ -86,7 +86,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/tier = initial(caste.tier)
 		if(tier == XENO_TIER_MINION)
 			continue
-		if (isnull(per_tier_counter[tier]))
+		if(isnull(per_tier_counter[tier]))
 			per_tier_counter[tier] = 0
 
 		GLOB.hive_ui_static_data += list(list(
@@ -96,7 +96,8 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			"sort_mod" = per_tier_counter[tier]++,
 			"tier" = GLOB.tier_as_number[tier],
 			"is_unique" = tier == XENO_TIER_FOUR, //TODO: Make this check a flag after caste flag refactoring is merged.
-			"can_transfer_plasma" = CHECK_BITFIELD(initial(caste.caste_flags), CASTE_CAN_BE_GIVEN_PLASMA)
+			"can_transfer_plasma" = CHECK_BITFIELD(initial(caste.caste_flags), CASTE_CAN_BE_GIVEN_PLASMA),
+			"evolution_max" = initial(caste.evolution_threshold)
 		))
 
 	for(var/L in subtypesof(/datum/language))

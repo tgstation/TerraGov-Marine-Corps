@@ -95,6 +95,11 @@
 		watched = !QDELETED(xeno_user.observed_xeno) ? REF(xeno_user.observed_xeno) : ""
 	.["user_watched_xeno"] = watched
 
+	if(isxenolarva(user))
+		.["user_evolution_current"] = xeno.amount_grown
+	else if(isxeno(user))
+		.["user_evolution_max"] = 
+
 /datum/hive_status/ui_static_data(mob/user)
 	. = ..()
 

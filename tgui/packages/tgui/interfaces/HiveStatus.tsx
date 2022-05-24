@@ -11,6 +11,7 @@ type InputPack = {
   user_ref: string,
   user_queen: boolean,
   user_watched_xeno: string,
+  user_evolution_current: number,
 };
 
 type XenoData = {
@@ -32,6 +33,7 @@ type StaticData = {
   tier: number,
   is_unique: boolean,
   can_transfer_plasma: boolean,
+  evolution_max: number,
 };
 
 export const HiveStatus = (_props, context) => {
