@@ -429,7 +429,7 @@ const default_sort: sort_by = {
 
 const min = (left: number, right: number) => {
   return left > right ? right : left;
-}
+};
 
 const power = (base: number, risen: number) => {
   let value = 1, i: number;
