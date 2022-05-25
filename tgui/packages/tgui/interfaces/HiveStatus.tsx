@@ -200,8 +200,8 @@ const LarvaBar = (_props, context) => {
           <ProgressBar
             color="green"
             value={hive_larva_current / hive_larva_threshold}>
-            {`${hive_larva_rate} per minute ` + // Linters eating my white space.
-            `(${hive_larva_current}/${hive_larva_threshold})`}
+            {`${hive_larva_rate} per minute ` // Linters eating my white space.
+            + `(${hive_larva_current}/${hive_larva_threshold})`}
           </ProgressBar>
         </Flex.Item>
       </Flex>
@@ -273,7 +273,7 @@ const PopulationPyramid = (_props, context) => {
     tooltip="Display castes with no members"
     onClick={() => toggleEmpty(!showEmpty)}>
     Show Empty
-  </Button.Checkbox>);
+    </Button.Checkbox>);
 
   const pyramid_data: PyramidCalc[] = [];
   let hive_total: number = 0;
@@ -319,10 +319,10 @@ const PopulationPyramid = (_props, context) => {
               : 0;
           const slot_text = tier === 2 || tier === 3
             ? (<Box as="span"
-              textColor={tier_info.total === max_slots
+                textColor={tier_info.total === max_slots
                 ? "bad" : "good"}>
               ({tier_info.total}/{max_slots})
-            </Box>)
+              </Box>)
             : tier_info.total;
           // Praetorian name way too long. Clips into Rav.
           const row_width = tier === 3
