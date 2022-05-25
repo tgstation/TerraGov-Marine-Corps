@@ -42,11 +42,11 @@ export const BlessingMenu = (props, context) => {
   return (
     <Window
       theme="xeno"
-      title={"Queen Mothers blessings"}
+      title={"Queen Mothers Blessings"}
       width={500}
       height={600}>
       <Window.Content scrollable>
-        <Section title={"Psychic points: " + (psypoints ? psypoints : 0) + ". What does your hive need, daughter?"}>
+        <Section title={"Psychic points: " + (psypoints ? psypoints : 0)}>
           {(categories.length > 0 && (
             <Section
               lineHeight={1.75}
@@ -99,7 +99,7 @@ const Upgrades = (props, context) => {
     <Section>
       <LabeledList>
         {upgrades.length === 0 ? (
-          <Box color="red">No upgrades available!</Box>
+          <Box color="bad">No upgrades available!</Box>
         ) : (
           upgrades
             .filter(record => record.category === selectedCategory)
@@ -140,9 +140,11 @@ const UpgradeEntry = (props: UpgradeEntryProps, context) => {
 
   return (
     <Collapsible
-      title={`${upgrade_name} (click for details)`}
+      ml={1}
+      title={upgrade_name}
       buttons={(
         <Button
+          mr={1}
           tooltip={upgrade_cost + " points"}
           onClick={() => act('buy', { buyname: upgrade_name })}>
           Claim Blessing
@@ -168,6 +170,11 @@ type UpgradeViewEntryProps = {
 }
 
 const UpgradeView = (props: UpgradeViewEntryProps, context) => {
+  const { data } = useBackend<BlessingData>(context);
+  const {
+    psypoints,
+  } = data;
+
   const {
     name,
     desc,
@@ -178,22 +185,24 @@ const UpgradeView = (props: UpgradeViewEntryProps, context) => {
 
   return (
     <Flex align="center">
-      <Flex.Item grow={1} basis={0}>
-        <Box bold fontSize={1.25}>
-          {name}
+      <Flex.Item grow={1} basis={0} ml={1}>
+        <Box className="Section__title">
+          <Box as="span" className="Section__titleText">
+            {name}
+          </Box>
         </Box>
         <Box
           className={classes(['blessingmenu32x32', iconstate])}
           ml={3}
-          mt={2}
+          mt={3}
           style={{
             'transform': 'scale(2) translate(0px, 10%)',
           }}
         />
-        <Box bold mt={3}>
+        <Box bold mt={5} color={psypoints > cost ? "good" : "bad"}>
           {"Cost: " + cost}
         </Box>
-        <Box bold>
+        <Box bold my={0.5} color={timesbought >= 1 ? "good" : ""}>
           {timesbought + " Bought"}
         </Box>
       </Flex.Item>
