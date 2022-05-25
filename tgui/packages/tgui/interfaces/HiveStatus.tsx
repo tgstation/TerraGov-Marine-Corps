@@ -427,11 +427,6 @@ const default_sort: sort_by = {
   down: true,
 };
 
-const min = (left: number, right: number) => {
-  // Why the fuck is this not already implemented?
-  return left > right ? right : left;
-};
-
 const HashString = (input: string) => {
   // Taken from Stack Overflow.
   let hash = 0, i: number, chr: number;
