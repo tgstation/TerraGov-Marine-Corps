@@ -307,15 +307,21 @@ const PopulationPyramid = (_props, context) => {
     hive_total++;
   });
 
-  return (
-    <Section title={`Total Living Sisters: ${hive_total}`}
-      align="center"
-      buttons={<Button.Checkbox
+  const ShowBox = (_props, _context) => {
+    return (
+      <Button.Checkbox
         checked={showEmpty}
         tooltip="Display castes with no members"
         onClick={() => toggleEmpty(!showEmpty)}>
         Show Empty
-      </Button.Checkbox>}>
+      </Button.Checkbox>
+    );
+  };
+
+  return (
+    <Section title={`Total Living Sisters: ${hive_total}`}
+      align="center"
+      buttons={<ShowBox />}>
       <Flex direction="column-reverse" align="center">
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
@@ -328,7 +334,7 @@ const PopulationPyramid = (_props, context) => {
             return (
               <Box as="span"
                 textColor={tier_info.total === max_slots
-                ? "bad" : "good"}>
+                  ? "bad" : "good"}>
                 ({tier_info.total}/{max_slots})
               </Box>
             );
@@ -414,7 +420,7 @@ const location = "Location";
 type sort_by = {
   category: string,
   down: boolean, // Reverse sort. Down is normal.
-}
+};
 
 const default_sort: sort_by = {
   category: caste,
@@ -424,7 +430,7 @@ const default_sort: sort_by = {
 const min = (left: number, right: number) => {
   // Why the fuck is this not already implemented?
   return left > right ? right : left;
-}
+};
 
 const HashString = (input: string) => {
   // ------ Alphabetical but might mix. -------
@@ -503,12 +509,18 @@ const XenoList = (_props, context) => {
     ? Number.MAX_SAFE_INTEGER
     : Number.MIN_SAFE_INTEGER;
 
+  const HeaderDivider = (props: {order: number}, _context) => {
+    return (
+      <Flex.Item order={props.order}>
+        <Divider />{/* Located after the header. */}
+      </Flex.Item>
+    );
+  };
+
   return (
     <Section>
       <Flex direction={sorting_direction}>
-        {sortingBy.down && (<Flex.Item order={Number.MAX_SAFE_INTEGER}>
-          <Divider />{/* Located after the header on reverse order. */}
-        </Flex.Item>)}
+        {sortingBy.down && (<HeaderDivider order={Number.MAX_SAFE_INTEGER}/>)}
         <Flex.Item order={header_order}>{/* Header */}
           <Flex bold height={row_height} align="center">
             <Flex.Item width={ssd_width} mr={ssd_mr} />{/* SSD */}
@@ -516,22 +528,20 @@ const XenoList = (_props, context) => {
             <Flex.Item width={leader_width} mr={leader_mr} />{/* Leadership */}
             <Flex.Item width={minimap_width} mr={minimap_mr} />{/* Minimaps */}
             <Flex.Item width={name_width}>
-              <SortingButton text={caste}/>
+              <SortingButton text={caste} />
             </Flex.Item>
             <Flex.Item width={status_width}>
-              <SortingButton text={health} tip="Health"/>
+              <SortingButton text={health} tip="Health" />
             </Flex.Item>
             <Flex.Item width={status_width}>
-              <SortingButton text={plasma} tip="Plasma"/>
+              <SortingButton text={plasma} tip="Plasma" />
             </Flex.Item>
             <Flex.Item grow>
-              <SortingButton text={location}/>
+              <SortingButton text={location} />
             </Flex.Item>
           </Flex>
         </Flex.Item>
-        {!sortingBy.down && (<Flex.Item order={Number.MIN_SAFE_INTEGER}>
-          <Divider />{/* Place after header since sort order is iffy */}
-        </Flex.Item>)}
+        {!sortingBy.down && (<HeaderDivider order={Number.MIN_SAFE_INTEGER}/>)}
         {xeno_info.map((entry) => {
           const static_entry = static_info[entry.index];
           let order: number;
