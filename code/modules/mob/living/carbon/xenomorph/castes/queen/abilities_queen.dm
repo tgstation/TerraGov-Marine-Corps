@@ -127,7 +127,7 @@
 /datum/action/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
-	mechanics_text = "See from the target Xenomorphs vision. Click again the same target to stop observing."
+	mechanics_text = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	plasma_cost = 0
 	use_state_flags = XACT_USE_LYING
 	var/overwatch_active = FALSE
@@ -136,35 +136,55 @@
 	. = ..()
 	RegisterSignal(L, COMSIG_MOB_DEATH, .proc/on_owner_death)
 	RegisterSignal(L, COMSIG_XENOMORPH_WATCHXENO, .proc/on_list_xeno_selection)
+	if(isxenoqueen(owner))
+		RegisterSignal(L, COMSIG_CLICK_CTRL_MIDDLE, .proc/on_ctrl_middle_click)
 
 /datum/action/xeno_action/watch_xeno/remove_action(mob/living/L)
 	if(overwatch_active)
 		stop_overwatch()
 	UnregisterSignal(L, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_WATCHXENO))
+	if(isxenoqueen(owner))
+		UnregisterSignal(L, COMSIG_CLICK_CTRL_MIDDLE)
 	return ..()
 
+/datum/action/xeno_action/watch_xeno/action_activate()
+	if(overwatch_active)
+		stop_overwatch()
+		return
+	select_xeno()
+
 /datum/action/xeno_action/watch_xeno/should_show()
-	return FALSE //Use hive status UI to select xeno.
+	return isxenoqueen(owner) //Only the queen should have the button for overwatch. All else uses chat (F).
+
+/datum/action/xeno_action/watch_xeno/proc/select_xeno(mob/living/carbon/xenomorph/selected_xeno)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	if(QDELETED(selected_xeno))
+		if(!isxenoqueen(X))
+			return
+		var/list/possible_xenos = X.hive.get_watchable_xenos(X)
+		selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos)
+		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
+			if(!X.observed_xeno)
+				return
+			stop_overwatch()
+			return
+	start_overwatch(selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/start_overwatch(mob/living/carbon/xenomorph/target)
-	if(!can_use_action()) // Check for action now done here as action_activate pipeline has been bypassed with signal activation.
-		return
-
 	var/mob/living/carbon/xenomorph/watcher = owner
 	var/mob/living/carbon/xenomorph/old_xeno = watcher.observed_xeno
-	if(!QDELETED(old_xeno))
-		stop_overwatch(old_xeno == target) // Reset view if target is same as old.
-	if(old_xeno == target) // Cancel overwatch if same target selected twice.
-		return
-	watcher.observed_xeno = target // Switch overwatch if different target.
+	if(old_xeno)
+		stop_overwatch(FALSE)
+	watcher.observed_xeno = target
 	if(isxenoqueen(watcher)) // Only queen needs the eye shown.
 		target.hud_set_queen_overwatch()
 	watcher.reset_perspective()
 	RegisterSignal(target, COMSIG_HIVE_XENO_DEATH, .proc/on_xeno_death)
 	RegisterSignal(target, list(COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), .proc/on_xeno_evolution)
 	RegisterSignal(watcher, COMSIG_MOVABLE_MOVED, .proc/on_movement)
-	RegisterSignal(watcher, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/on_damage_taken)
 	overwatch_active = TRUE
+	add_selected_frame()
 
 /datum/action/xeno_action/watch_xeno/proc/stop_overwatch(do_reset_perspective = TRUE)
 	var/mob/living/carbon/xenomorph/watcher = owner
@@ -176,12 +196,13 @@
 			observed.hud_set_queen_overwatch()
 	if(do_reset_perspective)
 		watcher.reset_perspective()
-	UnregisterSignal(watcher, list(COMSIG_MOVABLE_MOVED, COMSIG_XENOMORPH_TAKING_DAMAGE))
+	UnregisterSignal(watcher, COMSIG_MOVABLE_MOVED)
 	overwatch_active = FALSE
+	remove_selected_frame()
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/start_overwatch, selected_xeno)
+	INVOKE_ASYNC(src, .proc/select_xeno, selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	SIGNAL_HANDLER
@@ -202,10 +223,20 @@
 	if(overwatch_active)
 		stop_overwatch()
 
-/datum/action/xeno_action/watch_xeno/proc/on_damage_taken(datum/source, damage)
+/datum/action/xeno_action/watch_xeno/proc/on_ctrl_middle_click(datum/source, atom/A)
 	SIGNAL_HANDLER
-	if(overwatch_active)
+	var/mob/living/carbon/xenomorph/queen/watcher = owner
+	if(!watcher.check_state())
+		return
+	if(!isxeno(A))
+		return
+	var/mob/living/carbon/xenomorph/observation_candidate = A
+	if(observation_candidate.stat == DEAD)
+		return
+	if(observation_candidate == watcher.observed_xeno)
 		stop_overwatch()
+		return
+	start_overwatch(observation_candidate)
 
 
 // ***************************************
