@@ -17,6 +17,7 @@ type InputPack = {
   hive_orphan_collapse: number,
   hive_silo_max: number,
   hive_orphan_max: number,
+  hive_primos: PrimoUpgrades[],
   // ----- Per xeno info ------
   xeno_info: XenoData[],
   static_info: StaticData[],
@@ -51,6 +52,11 @@ type StaticData = {
   evolution_max: number,
 };
 
+type PrimoUpgrades = {
+  tier: number,
+  purchased: boolean,
+}
+
 export const HiveStatus = (_props, context) => {
   const { data } = useBackend<InputPack>(context);
   const { hive_name } = data;
@@ -78,8 +84,6 @@ export const HiveStatus = (_props, context) => {
   );
 };
 
-const bar_text_width = 10.25;
-
 const GeneralInfo = (_props, context) => {
   const { data } = useBackend<InputPack>(context);
   let {
@@ -90,9 +94,6 @@ const GeneralInfo = (_props, context) => {
     hive_silo_max,
     hive_orphan_max,
   } = data;
-
-  hive_silo_collapse = 100;
-  hive_orphan_collapse = 90;
 
   return (
     // Manually creating section because I need stuff in title.
@@ -135,6 +136,8 @@ const GeneralInfo = (_props, context) => {
     </Box>
   );
 };
+
+const bar_text_width = 10.25;
 
 const OrphanHiveBar = (props: { time: number, max: number, }, _context) => {
   if (props.time === 0) {
@@ -259,6 +262,7 @@ const PopulationPyramid = (_props, context) => {
   const {
     hive_max_tier_two,
     hive_max_tier_three,
+    hive_primos,
     xeno_info,
     static_info,
   } = data;
@@ -268,13 +272,15 @@ const PopulationPyramid = (_props, context) => {
     toggleEmpty,
   ] = useLocalState(context, "showEmpty", true);
 
-  const toggleButton = (<Button.Checkbox
+  const toggleButton =
+  (<Button.Checkbox
     checked={showEmpty}
     tooltip="Display castes with no members"
     onClick={() => toggleEmpty(!showEmpty)}>
     Show Empty
-    </Button.Checkbox>);
+  </Button.Checkbox>);
 
+  const primos: boolean[] = []; // Index is tier.
   const pyramid_data: PyramidCalc[] = [];
   let hive_total: number = 0;
 
@@ -283,6 +289,10 @@ const PopulationPyramid = (_props, context) => {
   // From there, we record the lengths of those lists
   // to find number of counts per caste.
   // But all these keys are numbers. And this is a lot simplier.
+
+  hive_primos.map((entry) => {
+    primos[entry.tier - 1] = entry.purchased;
+  })
 
   static_info.map((static_entry, index) => {
     // Inititalizing arrays.
@@ -317,16 +327,19 @@ const PopulationPyramid = (_props, context) => {
             : 0 + tier === 3
               ? hive_max_tier_three
               : 0;
-          const slot_text = tier === 2 || tier === 3
-            ? (<Box as="span"
-                textColor={tier_info.total === max_slots
-                ? "bad" : "good"}>
+          const slot_text = tier === 2 || tier === 3 ?
+            (<Box as="span"
+              textColor={tier_info.total === max_slots
+              ? "bad" : "good"}>
               ({tier_info.total}/{max_slots})
-              </Box>)
+            </Box>)
             : tier_info.total;
           // Praetorian name way too long. Clips into Rav.
           const row_width = tier === 3
             ? 8 : 7;
+          const primordial = primos[tier]
+            ? (<Box as="span" textColor="good">[Primordial]</Box>)
+            : "";
           return (
             <Box
               key={tier}
@@ -334,7 +347,7 @@ const PopulationPyramid = (_props, context) => {
               {/* Manually creating section because I need stuff in title. */}
               <Box className="Section__title">
                 <Box as="span" className="Section__titleText" fontSize={1.1}>
-                  Tier {tier}: {slot_text} Sisters
+                  Tier {tier}: {slot_text} Sisters {primordial}
                 </Box>
               </Box>
               <Flex className="Section__content">

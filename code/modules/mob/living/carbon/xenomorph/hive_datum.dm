@@ -82,6 +82,13 @@
 	var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
 
+	.["hive_primos"] = list()
+	for(var/tier in GLOB.tier_to_primo_upgrade)
+		.["hive_primos"] += list(list(
+			"tier" = GLOB.tier_as_number[tier],
+			"purchased" = purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[tier]].times_bought
+		))
+
 	.["xeno_info"] = list()
 	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
 		if(initial(xeno.tier) == XENO_TIER_MINION)
