@@ -1568,7 +1568,7 @@ FACTORY
 	cost = 29 //allows a one point profit if all pizzas are processed and sold back to ASRS
 
 /datum/supply_packs/factory/smartgun_minigun_box_refill
-	name = "Smart minigun bullet parts refill"
+	name = "Smart minigun bullet bin parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_minigun_box_refill)
 	cost = 25
 
