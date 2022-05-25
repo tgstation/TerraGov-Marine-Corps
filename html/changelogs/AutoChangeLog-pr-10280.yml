@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - bugfix: "Wraith banish no longer inserts invisible wall if banished object is destroyed."
