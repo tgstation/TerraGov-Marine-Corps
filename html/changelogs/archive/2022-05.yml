@@ -368,3 +368,30 @@
   - imageadd: Hello soldering tool!
   Wayland-Smithy:
   - bugfix: Fixed xeno hud perma fire stacks on dead.
+2022-05-25:
+  KornFlaks:
+  - qol: Resin jelly now has balloon alerts for application.
+  - bugfix: Resin jelly can no longer be used by multiple xenos at once.
+  - bugfix: Resin jelly is no longer applied twice as fast to self while in hand.
+  - bugfix: Resin jelly can no longer be applied to fireproof xenos.
+  - bugfix: Fixed an error appearing when a drone evolves to hivemind.
+  SplinterGP:
+  - bugfix: fixed a bug that caused the hunter invisibility ability not get to standing
+      still invisibility level due to it only attempting to do so when plasma was
+      regenerated.
+  Wayland-Smithy:
+  - qol: Xeno hivemind chat follow links are easier to click.
+  goose4429:
+  - rscdel: Hyperzine removed from everywhere
+  - code_imp: Injector code refactor
+  - code_imp: Imi, Alky injectors fix
+  - code_imp: med vendor code refactor
+  - rscadd: Dexaline injector
+  - rscadd: Case to med vendor, can hold 3 injectors (and nothing else)
+  - balance: Injectors have default 30u volume and 10u inject
+  - balance: Moved some pill bottles to med vendor
+  - balance: These pill bottles removed from MarineMed
+  - balance: Basic injectors are unlimited in MarineMed
+  - balance: Other injectors have greater number in MarineMed
+  - balance: Injectors and hyposprays have less delay on use
+  - balance: Added Imi and Alky to med belt

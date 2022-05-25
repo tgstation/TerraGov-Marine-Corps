@@ -1,7 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - qol: "Resin jelly now has balloon alerts for application."
-  - bugfix: "Resin jelly can no longer be used by multiple xenos at once."
-  - bugfix: "Resin jelly is no longer applied twice as fast to self while in hand."
-  - bugfix: "Resin jelly can no longer be applied to fireproof xenos."

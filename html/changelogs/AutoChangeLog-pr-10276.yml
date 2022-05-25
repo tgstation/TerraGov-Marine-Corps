@@ -1,4 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - bugfix: "Fixed an error appearing when a drone evolves to hivemind."
