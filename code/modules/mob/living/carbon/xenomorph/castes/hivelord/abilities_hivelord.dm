@@ -266,7 +266,7 @@
 		return
 
 	if(!isxeno(target))
-		if(!silent && !isturf(target))
+		if(!silent)
 			target.balloon_alert(owner, "Cannot heal, only xenos")
 		return FALSE
 	var/mob/living/carbon/xenomorph/patient = target

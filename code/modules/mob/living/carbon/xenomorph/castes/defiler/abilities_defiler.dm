@@ -394,7 +394,7 @@
 	if(!.)
 		return
 	if(!isitem(A) && !ishuman(A))
-		if(!silent && !isturf(A)) // Turfs cause balloon alert to spam.
+		if(!silent)
 			A.balloon_alert(owner, "Cannot grab")
 		return FALSE
 	if(isliving(A))
