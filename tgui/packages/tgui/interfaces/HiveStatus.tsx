@@ -425,18 +425,11 @@ const min = (left: number, right: number) => {
 }
 
 const HashString = (input: string) =>{
-  // ------ No mixing but not alphabetical. -------
-  // let hash = 0, i: number, chr: number;
-  // if (input.length === 0) return hash;
-  // for (i = 0; i < input.length; i++) {
-  //   chr   = input.charCodeAt(i);
-  //   hash  = ((hash << 5) - hash) + chr;
-  //   hash |= 0; // Convert to 32bit integer
-  // }
-  // return hash;
   // ------ Alphabetical but might mix. -------
   let hash = 0, i: number, chr: number;
   // 32 bit max. 6 letters = 30 bits used.
+  // That means guaranteed no collision up to 6 letters
+  // But if two areas share the same first 6 letters then it'll start mixing.
   for (i = 0; i < min(6, input.length); i++) {
     // Subtracting from 26 in order to reverse the order.
     chr = 26 - input.charCodeAt(i) - 97;

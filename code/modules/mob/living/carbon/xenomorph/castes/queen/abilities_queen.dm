@@ -378,7 +378,10 @@
 	add_cooldown()
 	receiver.gain_plasma(300)
 	succeed_activate()
-	receiver.balloon_alert_to_viewers("Plasma given from Queen", ignored_mobs = GLOB.alive_human_list)
+	receiver.balloon_alert_to_viewers("Queen plasma", ignored_mobs = GLOB.alive_human_list)
+	if (get_dist(owner, receiver) > 7)
+		// Out of screen transfer.
+		owner.balloon_alert(owner, "Transferred plasma")
 
 // ***************************************
 // *********** Queen deevolve
