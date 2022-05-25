@@ -86,6 +86,7 @@ const Upgrades = (props, context) => {
   const { data } = useBackend<BlessingData>(context);
 
   const {
+    psypoints,
     upgrades,
     categories,
   } = data;
@@ -105,6 +106,7 @@ const Upgrades = (props, context) => {
             .filter(record => record.category === selectedCategory)
             .map(upgrade => (
               <UpgradeEntry
+                psy_points={psypoints}
                 upgrade_name={upgrade.name}
                 key={upgrade.name}
                 upgrade_desc={upgrade.desc}
@@ -120,6 +122,7 @@ const Upgrades = (props, context) => {
 
 
 type UpgradeEntryProps = {
+  psy_points: number,
   upgrade_name: string,
   upgrade_desc: string,
   upgrade_cost: number,
@@ -131,6 +134,7 @@ const UpgradeEntry = (props: UpgradeEntryProps, context) => {
   const { act } = useBackend<UpgradeData>(context);
 
   const {
+    psy_points,
     upgrade_name,
     upgrade_desc,
     upgrade_cost,
@@ -146,6 +150,7 @@ const UpgradeEntry = (props: UpgradeEntryProps, context) => {
         <Button
           mr={1}
           tooltip={upgrade_cost + " points"}
+          disabled={upgrade_cost > psy_points}
           onClick={() => act('buy', { buyname: upgrade_name })}>
           Claim Blessing
         </Button>
