@@ -737,16 +737,17 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /// Do a short windup, swap the extension status of the rocket if successful, then swap the flags.
 /obj/item/weapon/gun/launcher/rocket/oneuse/unique_action(mob/living/user)
 	playsound(user, 'sound/weapons/guns/misc/oneuse_deploy.ogg', 25, 1)
-	if(do_after(user, 20, TRUE, src, BUSY_ICON_DANGER))
-		extended = !extended
-		if(!extended)
-			w_class = WEIGHT_CLASS_NORMAL
-			flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
-			icon_state = initial(icon_state)
-			return
-		w_class = WEIGHT_CLASS_BULKY
-		flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-		icon_state = "[icon_state]_extended"
+	if(!do_after(user, 20, TRUE, src, BUSY_ICON_DANGER))
+		return
+	extended = !extended
+	if(!extended)
+		w_class = WEIGHT_CLASS_NORMAL
+		flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
+		icon_state = initial(icon_state)
+		return
+	w_class = WEIGHT_CLASS_BULKY
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	icon_state = "[icon_state]_extended"
 
 //-------------------------------------------------------
 //SR-220 Railgun
