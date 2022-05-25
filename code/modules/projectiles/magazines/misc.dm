@@ -61,8 +61,8 @@
 	max_rounds = 50
 
 /obj/item/ammo_magazine/packet/smart_minigun
-	name = "SG-85 ammo  "
-	desc = "A hefty box stuffed to the absolute brim with 1000 rounds for the SG-85 powerpack."
+	name = "SG-85 ammo bin"
+	desc = "A hefty container stuffed to the absolute brim with 1000 rounds for the SG-85 powerpack."
 	icon_state = "box_smartminigun"
 	default_ammo = /datum/ammo/bullet/smart_minigun
 	caliber = CALIBER_10x26_CASELESS

@@ -452,7 +452,7 @@ WEAPONS
 	cost = 40
 
 /datum/supply_packs/weapons/smart_minigun_ammo
-	name = "SG-85"
+	name = "SG-85 ammo bin"
 	contains = list(/obj/item/ammo_magazine/packet/smart_minigun)
 	cost = 5
 
