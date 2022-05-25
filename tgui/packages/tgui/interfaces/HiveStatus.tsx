@@ -480,6 +480,14 @@ const XenoList = (_props, context) => {
     );
   };
 
+  const HeaderDivider = (props: {order: number}, _context) => {
+    return (
+      <Flex.Item order={props.order}>
+        <Divider />{/* Located after the header. */}
+      </Flex.Item>
+    );
+  };
+
   // First two bits are taken up by queen and leader flags.
   // Remaining bits 28 split 14 tiers, 14 sort mods.
   // For a total of 16,384 tiers and 16,384 castes per tier.
@@ -509,18 +517,10 @@ const XenoList = (_props, context) => {
     ? Number.MAX_SAFE_INTEGER
     : Number.MIN_SAFE_INTEGER;
 
-  const HeaderDivider = (props: {order: number}, _context) => {
-    return (
-      <Flex.Item order={props.order}>
-        <Divider />{/* Located after the header. */}
-      </Flex.Item>
-    );
-  };
-
   return (
     <Section>
       <Flex direction={sorting_direction}>
-        {sortingBy.down && (<HeaderDivider order={Number.MAX_SAFE_INTEGER}/>)}
+        {sortingBy.down && (<HeaderDivider order={Number.MAX_SAFE_INTEGER} />)}
         <Flex.Item order={header_order}>{/* Header */}
           <Flex bold height={row_height} align="center">
             <Flex.Item width={ssd_width} mr={ssd_mr} />{/* SSD */}
@@ -541,7 +541,7 @@ const XenoList = (_props, context) => {
             </Flex.Item>
           </Flex>
         </Flex.Item>
-        {!sortingBy.down && (<HeaderDivider order={Number.MIN_SAFE_INTEGER}/>)}
+        {!sortingBy.down && (<HeaderDivider order={Number.MIN_SAFE_INTEGER} />)}
         {xeno_info.map((entry) => {
           const static_entry = static_info[entry.index];
           let order: number;
