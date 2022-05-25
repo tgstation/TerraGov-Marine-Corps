@@ -444,7 +444,7 @@ const first_letter = "a".charCodeAt(0);
 const HashString = (input: string) => {
   // Taken from Stack Overflow.
   let hash = 0, i: number, chr: number;
-  input = input.replace(" ", "").toLowerCase();
+  input = input.toLowerCase().replace(/[^a-z]/g, "");
   const length = min(5, input.length);
   for (i = 0; i <= length; i++) {
     // Number of letters in alpha - numerical value of char starting from A
