@@ -1,0 +1,5 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - balance: "Laser sniper rifle now has an IFF mode that decreases in damage logarithmically for every marine it passes through (try to get a clear shot!)"
+  - bugfix: "You can no longer force a mag harness unto the laser sniper rifle and bug out the scope sprite"
