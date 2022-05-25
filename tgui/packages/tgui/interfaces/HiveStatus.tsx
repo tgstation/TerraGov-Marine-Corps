@@ -403,6 +403,48 @@ const PopulationPyramid = (_props, context) => {
   );
 };
 
+// Header text.
+const caste = "Caste (Name)";
+const health = "HP";
+const plasma = "PL";
+const location = "Location";
+
+type sort_by = {
+  category: string,
+  down: boolean, // Reverse sort. Down is normal.
+}
+
+const default_sort: sort_by = {
+  category: caste,
+  down: true,
+};
+
+const min = (left: number, right: number) => {
+  // Why the fuck is this not already implemented?
+  return left > right ? right : left;
+}
+
+const HashString = (input: string) =>{
+  // ------ No mixing but not alphabetical. -------
+  // let hash = 0, i: number, chr: number;
+  // if (input.length === 0) return hash;
+  // for (i = 0; i < input.length; i++) {
+  //   chr   = input.charCodeAt(i);
+  //   hash  = ((hash << 5) - hash) + chr;
+  //   hash |= 0; // Convert to 32bit integer
+  // }
+  // return hash;
+  // ------ Alphabetical but might mix. -------
+  let hash = 0, i: number, chr: number;
+  // 32 bit max. 6 letters = 30 bits used.
+  for (i = 0; i < min(6, input.length); i++) {
+    // Subtracting from 26 in order to reverse the order.
+    chr = 26 - input.charCodeAt(i) - 97;
+    hash |= chr << (i * 5);
+  }
+  return hash;
+}
+
 const XenoList = (_props, context) => {
   const { act, data } = useBackend<InputPack>(context);
   const {
@@ -412,6 +454,30 @@ const XenoList = (_props, context) => {
     user_queen,
     user_watched_xeno,
   } = data;
+
+  const [
+    sortingBy,
+    setSortBy,
+  ] = useLocalState(context, "sortingBy", default_sort);
+
+  const SortingButton = (props: {text: string, tip?: string}, _context) => {
+    return (
+      <Button ml={-1}
+        backgroundColor="transparent"
+        tooltip={props.tip}
+        icon={sortingBy.category !== props.text
+          ? "chevron-right"
+          : sortingBy.down
+            ? "chevron-down"
+            : "chevron-up"}
+        onClick={() => setSortBy({
+          category: props.text,
+          down: sortingBy.category === props.text ? !sortingBy.down : true
+        })}>
+        {props.text}
+      </Button>
+    );
+  };
 
   // First two bits are taken up by queen and leader flags.
   // Remaining bits 28 split 14 tiers, 14 sort mods.
@@ -434,37 +500,75 @@ const XenoList = (_props, context) => {
   const name_width = "30%";
   const status_width = "60px";
 
+  const sorting_direction = sortingBy.down
+    ? "column-reverse"
+    : "column";
+
+  const header_order = sortingBy.down
+    ? Number.MAX_SAFE_INTEGER
+    : Number.MIN_SAFE_INTEGER;
+
   return (
     <Section>
-      <Flex direction="column-reverse">
-        <Flex.Item order={Number.MAX_SAFE_INTEGER}>
-          <Divider />{/* This is actually located after the header. */}
-        </Flex.Item>
-        <Flex.Item order={Number.MAX_SAFE_INTEGER}>{/* Header */}
-          <Flex bold height={row_height}>
+      <Flex direction={sorting_direction}>
+        {sortingBy.down && (<Flex.Item order={Number.MAX_SAFE_INTEGER}>
+          <Divider />{/* Located after the header on reverse order. */}
+        </Flex.Item>)}
+        <Flex.Item order={header_order}>{/* Header */}
+          <Flex bold height={row_height} align="center">
             <Flex.Item width={ssd_width} mr={ssd_mr} />{/* SSD */}
             <Flex.Item width={action_width} mr={action_mr} />{/* Actions */}
             <Flex.Item width={leader_width} mr={leader_mr} />{/* Leadership */}
             <Flex.Item width={minimap_width} mr={minimap_mr} />{/* Minimaps */}
-            <Flex.Item width={name_width}>Caste (Name)</Flex.Item>
-            <Flex.Item width={status_width}>Health</Flex.Item>
-            <Flex.Item width={status_width}>Plasma</Flex.Item>
-            <Flex.Item grow>Location</Flex.Item>
+            <Flex.Item width={name_width}>
+              <SortingButton text={caste}/>
+            </Flex.Item>
+            <Flex.Item width={status_width}>
+              <SortingButton text={health} tip="Health"/>
+            </Flex.Item>
+            <Flex.Item width={status_width}>
+              <SortingButton text={plasma} tip="Plasma"/>
+            </Flex.Item>
+            <Flex.Item grow>
+              <SortingButton text={location}/>
+            </Flex.Item>
           </Flex>
         </Flex.Item>
+        {!sortingBy.down && (<Flex.Item order={Number.MIN_SAFE_INTEGER}>
+          <Divider />{/* Place after header since sort order is iffy */}
+        </Flex.Item>)}
         {xeno_info.map((entry) => {
           const static_entry = static_info[entry.index];
-          const order = static_entry.sort_mod
-            | static_entry.tier << tier
-            | entry.is_leader << leader
-            | static_entry.is_queen << queen;
+          let order: number;
+          switch (sortingBy.category) {
+            case caste:
+              order = static_entry.sort_mod
+                | static_entry.tier << tier
+                | entry.is_leader << leader
+                | static_entry.is_queen << queen;
+              break;
+            case health:
+              order = entry.health;
+              break;
+            case plasma:
+              order = entry.plasma;
+              break;
+            case location:
+              order = HashString(entry.location);
+              break;
+            default:
+              order = 0;
+              break;
+          }
           return (
             <Flex.Item order={order} mb={1} key={entry.ref}>
               <Flex height={row_height}>
+                {/* SSD */}
                 <Flex.Item width={ssd_width} mr={ssd_mr}>
                   {!!entry.is_ssd
                     && (<Box className="hivestatus16x16 ssdIcon" />)}
                 </Flex.Item>
+                {/* Action buttons */}
                 <Flex.Item width={action_width} mr={action_mr}>
                   {user_ref !== entry.ref
                   && <ActionButtons
@@ -473,6 +577,7 @@ const XenoList = (_props, context) => {
                     watched_xeno={user_watched_xeno}
                     can_transfer_plasma={static_entry.can_transfer_plasma} />}
                 </Flex.Item>
+                {/* Leadership */}
                 <Flex.Item width={leader_width} mr={leader_mr}>
                   <Button
                     fluid
@@ -487,6 +592,7 @@ const XenoList = (_props, context) => {
                       || static_entry.is_queen ? 1 : 0.5}
                     onClick={() => act('Leader', { xeno: entry.ref })} />
                 </Flex.Item>
+                {/* Minimap icons */}
                 <Flex.Item width={minimap_width} mr={minimap_mr}>
                   <Box as="img"
                     src={`data:image/jpeg;base64,${static_entry.minimap}`}
@@ -495,6 +601,7 @@ const XenoList = (_props, context) => {
                       "-ms-interpolation-mode": "nearest-neighbor",
                     }} />
                 </Flex.Item>
+                {/* Caste type and nickname */}
                 <Flex.Item width={name_width}
                   nowrap
                   style={{
@@ -503,6 +610,7 @@ const XenoList = (_props, context) => {
                   }}>
                   {entry.name}
                 </Flex.Item>
+                {/* Health percentage */}
                 <Flex.Item width={status_width}>
                   {entry.health <= 10 // Health actually ranges from -30 to 100.
                     ? <Box bold textColor="bad">{entry.health}%</Box>
@@ -510,6 +618,7 @@ const XenoList = (_props, context) => {
                       ? <Box textColor="average">{entry.health}%</Box>
                       : <Box textColor="good">{entry.health}%</Box>}
                 </Flex.Item>
+                {/* Plasma percentage */}
                 <Flex.Item width={status_width}>
                   {entry.plasma <= 33 // Queen SSD?
                     ?<Box bold textColor="bad">{entry.plasma}%</Box>
@@ -517,6 +626,7 @@ const XenoList = (_props, context) => {
                       ? <Box textColor="average">{entry.plasma}%</Box>
                       : <Box textColor="good">{entry.plasma}%</Box>}
                 </Flex.Item>
+                {/* Area name */}
                 <Flex.Item grow
                   nowrap
                   style={{
@@ -558,9 +668,11 @@ const ActionButtons = (props: ActionButtonProps, context) => {
   if (props.is_queen) {
     return (
       <Flex direction="row" justify="space-evenly">
+        {/* Overwatch */}
         <Flex.Item grow mr="4px">
           {overwatch_button}
         </Flex.Item>
+        {/* Transfer plasma */}
         <Flex.Item grow>
           <Button
             fluid
