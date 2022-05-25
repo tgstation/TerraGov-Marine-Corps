@@ -138,14 +138,14 @@ const GeneralInfo = (_props, context) => {
 
 const OrphanHiveBar = (props: { time: number, max: number, }, _context) => {
   if (props.time === 0) {
-    return (<Box />)
+    return (<Box />);
   }
 
   return (
     <Tooltip content="Hive must evolve a ruler!">
       <Flex mb={1}>
         <Flex.Item bold ml={1} mr={1} width={bar_text_width} align="center">
-            Orphan Hivemind:
+          Orphan Hivemind:
         </Flex.Item>
         <Flex.Item grow>
           <ProgressBar
@@ -161,14 +161,14 @@ const OrphanHiveBar = (props: { time: number, max: number, }, _context) => {
 
 const SiloCollapseBar = (props: { time: number, max: number, }, _context) => {
   if (props.time === 0) {
-    return (<Box />)
+    return (<Box />);
   }
 
   return (
     <Tooltip content="Hive must construct a silo!">
       <Flex mb={1}>
         <Flex.Item bold ml={1} mr={1} width={bar_text_width} align="center">
-            Silo Collapse:
+          Silo Collapse:
         </Flex.Item>
         <Flex.Item grow>
           <ProgressBar
@@ -194,13 +194,14 @@ const LarvaBar = (_props, context) => {
     <Tooltip content="Progress to next burrowed larva">
       <Flex mb={1}>
         <Flex.Item ml={1} mr={1} width={bar_text_width} align="center">
-            Larva Generation:
+          Larva Generation:
         </Flex.Item>
         <Flex.Item grow>
           <ProgressBar
             color="green"
             value={hive_larva_current / hive_larva_threshold}>
-            {hive_larva_rate} per minute ({hive_larva_current} / {hive_larva_threshold})
+            {`${hive_larva_rate} per minute ` + // Linters eating my white space.
+            `(${hive_larva_current}/${hive_larva_threshold})`}
           </ProgressBar>
         </Flex.Item>
       </Flex>
@@ -220,10 +221,9 @@ const EvolutionBar = (_props, context) => {
 
   const max = static_info[user_index].evolution_max;
 
-  if (!user_xeno || max === 0)
-    return (
-      <Box /> // Empty.
-    );
+  if (!user_xeno || max === 0) {
+    return (<Box />); // Empty.
+  }
 
   return (
     <Flex>
@@ -272,8 +272,8 @@ const PopulationPyramid = (_props, context) => {
     checked={showEmpty}
     tooltip="Display castes with no members"
     onClick={() => toggleEmpty(!showEmpty)}>
-      Show Empty
-    </Button.Checkbox>)
+    Show Empty
+  </Button.Checkbox>);
 
   const pyramid_data: PyramidCalc[] = [];
   let hive_total: number = 0;
@@ -318,10 +318,11 @@ const PopulationPyramid = (_props, context) => {
               ? hive_max_tier_three
               : 0;
           const slot_text = tier === 2 || tier === 3
-            ? <Box as="span"
-              textColor={tier_info.total == max_slots ? "bad" : "good"}>
-                ({tier_info.total}/{max_slots})
-              </Box>
+            ? (<Box as="span"
+              textColor={tier_info.total === max_slots
+                ? "bad" : "good"}>
+              ({tier_info.total}/{max_slots})
+            </Box>)
             : tier_info.total;
           // Praetorian name way too long. Clips into Rav.
           const row_width = tier === 3
@@ -339,8 +340,8 @@ const PopulationPyramid = (_props, context) => {
               <Flex className="Section__content">
                 {tier_info.index.map((value, idx) => {
                   const count = tier_info.caste[idx];
-                  if (!showEmpty && count == 0) {
-                    return (<Box />)
+                  if (!showEmpty && count === 0) {
+                    return (<Box />);
                   }
                   const static_entry = static_info[value];
                   return (
@@ -361,8 +362,8 @@ const PopulationPyramid = (_props, context) => {
               </Flex>
               <Flex>
                 {tier_info.caste.map((count, idx) => {
-                  if (!showEmpty && count == 0) {
-                    return (<Box />)
+                  if (!showEmpty && count === 0) {
+                    return (<Box />);
                   }
                   const static_entry = static_info[tier_info.index[idx]];
                   return (
@@ -429,9 +430,9 @@ const XenoList = (_props, context) => {
         <Flex.Item order={Number.MAX_SAFE_INTEGER}>{/* Header */}
           <Flex bold height={row_height}>
             <Flex.Item width={ssd_width} mr={ssd_mr} />{/* SSD */}
-            <Flex.Item width={action_width} mr={action_mr} />{/* Action Buttons */}
+            <Flex.Item width={action_width} mr={action_mr} />{/* Actions */}
             <Flex.Item width={leader_width} mr={leader_mr} />{/* Leadership */}
-            <Flex.Item width={minimap_width} mr={minimap_mr} />{/* Minimap Icon */}
+            <Flex.Item width={minimap_width} mr={minimap_mr} />{/* Minimaps */}
             <Flex.Item width={name_width}>Caste (Name)</Flex.Item>
             <Flex.Item width={status_width}>Health</Flex.Item>
             <Flex.Item width={status_width}>Plasma</Flex.Item>
