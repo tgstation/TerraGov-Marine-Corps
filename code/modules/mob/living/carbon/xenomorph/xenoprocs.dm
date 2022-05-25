@@ -166,18 +166,6 @@
 				msg_holder = "Very strong"
 		stat("[RECOVERY] pheromone strength:", msg_holder)
 
-	switch(hivenumber)
-		if(XENO_HIVE_NORMAL)
-			var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
-			if(hivemind_countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
-			var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
-			if(siloless_countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
-
-		if(XENO_HIVE_CORRUPTED)
-			stat("Hive Orders:","Follow the instructions of our masters")
-
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
 	if(incapacitated() || lying_angle)

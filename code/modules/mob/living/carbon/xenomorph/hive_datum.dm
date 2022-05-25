@@ -71,6 +71,16 @@
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	.["hive_larva_current"] = xeno_job.job_points
+	.["hive_larva_rate"] = SSsilo.current_larva_spawn_rate
+	.["hive_larva_burrowed"] = xeno_job.total_positions - xeno_job.current_positions
+
+	var/psy_points = SSpoints.xeno_points_by_hive[hivenumber]
+	.["hive_psy_points"] = !isnull(psy_points) ? psy_points : 0
+
+	var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
+	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0
+	var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
+	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
 
 	.["xeno_info"] = list()
 	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
@@ -109,6 +119,8 @@
 	.["static_info"] = GLOB.hive_ui_static_data
 
 	.["hive_name"] = name
+	.["hive_silo_max"] = DISTRESS_SILO_COLLAPSE MILLISECONDS //Timers are defined in miliseconds.
+	.["hive_orphan_max"] = DISTRESS_ORPHAN_HIVEMIND MILLISECONDS
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	.["hive_larva_threshold"] = xeno_job.job_points_needed
@@ -129,6 +141,10 @@
 	if(QDELETED(xeno_target))
 		return
 	switch(action)
+		if("Evolve")
+			if(!isxeno(usr))
+				return
+			GLOB.evo_panel.ui_interact(usr)
 		if("Follow")
 			if(isobserver(usr))
 				var/mob/dead/observer/ghost = usr
@@ -667,7 +683,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 
 
-	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), 5 MINUTES, TIMER_STOPPABLE)
+	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), DISTRESS_ORPHAN_HIVEMIND, TIMER_STOPPABLE)
 
 
 /datum/hive_status/normal/burrow_larva(mob/living/carbon/xenomorph/larva/L)
@@ -860,7 +876,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 
 	xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
-	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 5 MINUTES, TIMER_STOPPABLE)
+	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), DISTRESS_SILO_COLLAPSE, TIMER_STOPPABLE)
 
 /**
  * Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots
