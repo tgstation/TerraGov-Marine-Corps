@@ -272,14 +272,6 @@ const PopulationPyramid = (_props, context) => {
     toggleEmpty,
   ] = useLocalState(context, "showEmpty", true);
 
-  const toggleButton =
-  (<Button.Checkbox
-    checked={showEmpty}
-    tooltip="Display castes with no members"
-    onClick={() => toggleEmpty(!showEmpty)}>
-    Show Empty
-  </Button.Checkbox>);
-
   const primos: boolean[] = []; // Index is tier.
   const pyramid_data: PyramidCalc[] = [];
   let hive_total: number = 0;
@@ -292,7 +284,7 @@ const PopulationPyramid = (_props, context) => {
 
   hive_primos.map((entry) => {
     primos[entry.tier - 1] = entry.purchased;
-  })
+  });
 
   static_info.map((static_entry, index) => {
     // Inititalizing arrays.
@@ -318,7 +310,12 @@ const PopulationPyramid = (_props, context) => {
   return (
     <Section title={`Total Living Sisters: ${hive_total}`}
       align="center"
-      buttons={toggleButton}>
+      buttons={<Button.Checkbox
+        checked={showEmpty}
+        tooltip="Display castes with no members"
+        onClick={() => toggleEmpty(!showEmpty)}>
+        Show Empty
+      </Button.Checkbox>}>
       <Flex direction="column-reverse" align="center">
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
@@ -327,12 +324,17 @@ const PopulationPyramid = (_props, context) => {
             : 0 + tier === 3
               ? hive_max_tier_three
               : 0;
-          const slot_text = tier === 2 || tier === 3 ?
-            (<Box as="span"
-              textColor={tier_info.total === max_slots
-              ? "bad" : "good"}>
-              ({tier_info.total}/{max_slots})
-            </Box>)
+          const TierSlots = (_props, _context) => {
+            return (
+              <Box as="span"
+                textColor={tier_info.total === max_slots
+                ? "bad" : "good"}>
+                ({tier_info.total}/{max_slots})
+              </Box>
+            );
+          };
+          const slot_text = tier === 2 || tier === 3
+            ? <TierSlots />
             : tier_info.total;
           // Praetorian name way too long. Clips into Rav.
           const row_width = tier === 3
@@ -424,7 +426,7 @@ const min = (left: number, right: number) => {
   return left > right ? right : left;
 }
 
-const HashString = (input: string) =>{
+const HashString = (input: string) => {
   // ------ Alphabetical but might mix. -------
   let hash = 0, i: number, chr: number;
   // 32 bit max. 6 letters = 30 bits used.
@@ -436,7 +438,7 @@ const HashString = (input: string) =>{
     hash |= chr << (i * 5);
   }
   return hash;
-}
+};
 
 const XenoList = (_props, context) => {
   const { act, data } = useBackend<InputPack>(context);
@@ -465,7 +467,7 @@ const XenoList = (_props, context) => {
             : "chevron-up"}
         onClick={() => setSortBy({
           category: props.text,
-          down: sortingBy.category === props.text ? !sortingBy.down : true
+          down: sortingBy.category === props.text ? !sortingBy.down : true,
         })}>
         {props.text}
       </Button>
