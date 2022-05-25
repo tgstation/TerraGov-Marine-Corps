@@ -427,16 +427,30 @@ const default_sort: sort_by = {
   down: true,
 };
 
+const min = (left: number, right: number) => {
+  return left > right ? right : left;
+}
+
+const power = (base: number, risen: number) => {
+  let value = 1, i: number;
+  for (i = 0; i < risen; i++) {
+    value *= base;
+  }
+  return value;
+};
+
+const first_letter = "a".charCodeAt(0);
+
 const HashString = (input: string) => {
   // Taken from Stack Overflow.
   let hash = 0, i: number, chr: number;
-  if (input.length === 0) {
-    return hash;
-  }
-  for (i = 0; i < input.length; i++) {
-    chr = input.charCodeAt(i);
-    hash = ((hash << 5) - hash) + chr;
-    hash |= 0;
+  input = input.replace(" ", "").toLowerCase();
+  const length = min(5, input.length);
+  for (i = 0; i <= length; i++) {
+    // Number of letters in alpha - numerical value of char starting from A
+    chr = 26 - (input.charCodeAt(i) - first_letter);
+    // Generating hash from order of letters, base 26
+    hash += chr * power(26, length - i);
   }
   return hash;
 };
