@@ -141,6 +141,12 @@
 		var/mob/living/carbon/xenomorph/xeno_user = user
 		.["user_index"] = GLOB.hive_ui_caste_index[xeno_user.xeno_caste.caste_type_path]
 
+	.["user_purchase_perms"] = FALSE
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		var/datum/xeno_caste/caste = xeno_user.xeno_caste
+		.["user_purchase_perms"] = (/datum/action/xeno_action/blessing_menu in caste.actions)
+
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	var/xeno_ref = params["xeno"]
@@ -167,6 +173,10 @@
 			if(!isxenoqueen(usr)) // Queen only.
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOMORPH_QUEEN_PLASMA, xeno_target)
+		if("Blessings")
+			if(!isxeno(usr))
+				return
+			SEND_SIGNAL(usr, COMSIG_XENOABILITY_BLESSINGSMENU)
 
 
 /datum/hive_status/proc/get_xeno_location(mob/living/carbon/xenomorph/xeno)

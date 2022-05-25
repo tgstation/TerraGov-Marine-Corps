@@ -28,6 +28,7 @@ type InputPack = {
   user_queen: boolean,
   user_watched_xeno: string,
   user_evolution: number,
+  user_purchase_perms: boolean,
 };
 
 type XenoData = {
@@ -84,9 +85,30 @@ export const HiveStatus = (_props, context) => {
   );
 };
 
+const BlessingsButton = (_props, context) => {
+  const { act, data } = useBackend<InputPack>(context);
+  const {
+    user_purchase_perms,
+    user_ref,
+  } = data;
+
+  if (!user_purchase_perms) {
+    return (<Box />);
+  }
+
+  return (
+    <Box className="Section__buttons">
+      <Button
+        onClick={() => act('Blessings', { xeno: user_ref })}>
+        Blessings
+      </Button>
+    </Box>
+  );
+};
+
 const GeneralInfo = (_props, context) => {
   const { data } = useBackend<InputPack>(context);
-  let {
+  const {
     hive_larva_burrowed,
     hive_psy_points,
     hive_silo_collapse,
@@ -117,6 +139,7 @@ const GeneralInfo = (_props, context) => {
             {" " + hive_larva_burrowed}
           </Box>
         </Box>
+        <BlessingsButton />
       </Box>
       <Flex direction="column" className="Section__content">
         <Flex.Item>
