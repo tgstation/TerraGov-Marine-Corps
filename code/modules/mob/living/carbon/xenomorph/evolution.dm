@@ -378,6 +378,6 @@
 #undef TO_XENO_TIER_2_FORMULA
 #undef TO_XENO_TIER_3_FORMULA
 
-///Handles special conditions that influence a caste's evolution point gain, such as larva gaining them twice as fast if on weed.
+///Handles special conditions that influence a caste's evolution point gain, such as larva gaining a bonus if on weed.
 /mob/living/carbon/xenomorph/proc/spec_evolution_boost()
 	return 0
