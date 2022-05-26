@@ -166,7 +166,7 @@
 				msg_holder = "Very strong"
 		stat("[RECOVERY] pheromone strength:", msg_holder)
 
-	if(XENO_HIVE_NORMAL)
+	if(hivenumber == XENO_HIVE_NORMAL)
 		var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 		if(hivemind_countdown)
 			stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
