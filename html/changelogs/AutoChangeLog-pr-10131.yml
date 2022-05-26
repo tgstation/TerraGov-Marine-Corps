@@ -1,0 +1,4 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - balance: "Due to disabled safety checks, Combat robots will no longer experience crit."
