@@ -184,8 +184,6 @@
 				break
 
 	if(href_list["watch_xeno_name"])
-		if(!check_state())
-			return
 		var/target = locate(href_list["watch_xeno_name"])
 		if(isxeno(target))
 			// Checks for can use done in overwatch action.
