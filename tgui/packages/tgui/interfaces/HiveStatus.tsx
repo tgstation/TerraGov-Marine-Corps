@@ -148,10 +148,10 @@ const GeneralInfo = (_props, context) => {
           <LarvaBar />
         </Flex.Item>
         <Flex.Item>
-          <EvolutionBar />
+          <MaturityBar />
         </Flex.Item>
         <Flex.Item>
-          <MaturityBar />
+          <EvolutionBar />
         </Flex.Item>
         {(hive_silo_collapse > 0 || hive_orphan_collapse > 0) && <Divider />}
         <Flex.Item>
@@ -256,7 +256,7 @@ const MaturityBar = (_props, context) => {
     <Tooltip content="Your next maturity upgrade">
       <Flex mb={1}>
         <Flex.Item ml={1} mr={1} width={bar_text_width} align="center">
-          Larva Generation:
+          Upgrade Progress:
         </Flex.Item>
         <Flex.Item grow>
           <ProgressBar
