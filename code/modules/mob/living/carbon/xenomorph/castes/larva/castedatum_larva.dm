@@ -25,6 +25,7 @@
 	crit_health = -25
 
 	// *** Evolution *** //
+	evolution_threshold = 50
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/drone,
 		/mob/living/carbon/xenomorph/runner,

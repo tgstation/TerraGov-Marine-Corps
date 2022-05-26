@@ -271,7 +271,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 ///Ends the effect of the Banish ability
 /datum/action/xeno_action/activable/banish/proc/banish_deactivate()
 	SIGNAL_HANDLER
-	if(!banishment_target)
+	if(QDELETED(banishment_target))
 		return
 	if(get_turf(portal))
 		banishment_target.forceMove(get_turf(portal))

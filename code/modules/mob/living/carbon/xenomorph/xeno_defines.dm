@@ -89,9 +89,6 @@
 	var/list/soft_armor
 	var/list/hard_armor
 
-	///How effective fire is against this caste. From 0 to 1 as it is a multiplier.
-	var/fire_resist = 1
-
 	// *** Sunder *** //
 	///How much sunder is recovered per tick
 	var/sunder_recover = 0.5
@@ -269,8 +266,6 @@
 	var/obj/item/r_store = null
 	var/obj/item/l_store = null
 	var/plasma_stored = 0
-	var/amount_grown = 0
-	var/max_grown = 200
 	var/time_of_birth
 
 	///A mob the xeno ate
@@ -287,7 +282,6 @@
 	var/obj/structure/xeno/tunnel/start_dig = null
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 
-	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 
 	///"Frenzy", "Warding", "Recovery". Defined in __DEFINES/xeno.dm

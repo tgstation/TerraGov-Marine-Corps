@@ -1,0 +1,9 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - rscadd: "Projectile accuracy is impacted by the shooter moving or standing still (even when wielding)"
+  - rscadd: "Projectile accuracy is impacted by how fast the target is moving, and how large they are"
+  - balance: "Projectiles no longer have two chances to hit a target instead of one. Low accuracy shots will now actually miss more in line with what you would expect"
+  - balance: "A balance pass has been made of guns and some attachments relating to their accuracy"
+  - bugfix: "Fixed a variety of accuracy related bugs"
+  - bugfix: "Removed stat modifiers from non removable weapon stocks and added them to their base gun stats"

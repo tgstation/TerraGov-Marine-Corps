@@ -1,0 +1,6 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - qol: "Xeno Evolution UI now has the same theme as Hive Blessings."
+  - qol: "Minor improvements to spacing and color in the Hive Blessings UI."
+  - qol: "Hive upgrade button is now disabled if the hive has insufficient number of points to purchase it."

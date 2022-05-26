@@ -7,7 +7,6 @@
 	foldabletype = /obj/item/stool
 
 
-
 /obj/item/stool
 	name = "stool"
 	desc = "Uh-hoh, bar is heating up."
@@ -17,6 +16,9 @@
 	throwforce = 12
 	w_class = WEIGHT_CLASS_HUGE
 	var/obj/structure/bed/stool/origin = null
+
+/obj/item/stool/alt
+	icon_state = "stool_alt"
 
 /obj/item/stool/proc/deploy(mob/user)
 

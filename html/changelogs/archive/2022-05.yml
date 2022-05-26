@@ -351,3 +351,55 @@
   - qol: psychic link's activation can be manually cancelled by activating the skill
       again
   - balance: psychic link has 15 instead of 10 range
+2022-05-23:
+  KornFlaks:
+  - refactor: Armor checks now correctly request target armor.
+  - qol: Runner actions now have balloon alerts.
+  - qol: Drones, Hivelords, and Queens now have balloon alerts for their abilities.
+  - rscadd: All xenos now have the ability to overwatch other xenos through the chat
+      (F) button.
+  Naaanii:
+  - balance: CSE now starts with one stack of metal, plasteel, sandbags and barbed
+      wire
+  - balance: CSE now starts with a welderpack instead of a satchel
+  RipGrayson:
+  - balance: Most shipside chairs and tables no longer drop metal on deconstruct
+  Sirsnek15:
+  - imageadd: Hello soldering tool!
+  Wayland-Smithy:
+  - bugfix: Fixed xeno hud perma fire stacks on dead.
+2022-05-25:
+  KornFlaks:
+  - qol: Resin jelly now has balloon alerts for application.
+  - bugfix: Resin jelly can no longer be used by multiple xenos at once.
+  - bugfix: Resin jelly is no longer applied twice as fast to self while in hand.
+  - bugfix: Resin jelly can no longer be applied to fireproof xenos.
+  - bugfix: Fixed an error appearing when a drone evolves to hivemind.
+  SplinterGP:
+  - bugfix: fixed a bug that caused the hunter invisibility ability not get to standing
+      still invisibility level due to it only attempting to do so when plasma was
+      regenerated.
+  Wayland-Smithy:
+  - qol: Xeno hivemind chat follow links are easier to click.
+  goose4429:
+  - rscdel: Hyperzine removed from everywhere
+  - code_imp: Injector code refactor
+  - code_imp: Imi, Alky injectors fix
+  - code_imp: med vendor code refactor
+  - rscadd: Dexaline injector
+  - rscadd: Case to med vendor, can hold 3 injectors (and nothing else)
+  - balance: Injectors have default 30u volume and 10u inject
+  - balance: Moved some pill bottles to med vendor
+  - balance: These pill bottles removed from MarineMed
+  - balance: Basic injectors are unlimited in MarineMed
+  - balance: Other injectors have greater number in MarineMed
+  - balance: Injectors and hyposprays have less delay on use
+  - balance: Added Imi and Alky to med belt
+2022-05-26:
+  Arctrooper8:
+  - balance: Laser sniper rifle now has an IFF mode that decreases in damage logarithmically
+      for every marine it passes through (try to get a clear shot!)
+  - bugfix: You can no longer force a mag harness unto the laser sniper rifle and
+      bug out the scope sprite
+  KornFlaks:
+  - bugfix: Wraith banish no longer inserts invisible wall if banished object is destroyed.
