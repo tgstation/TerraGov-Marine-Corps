@@ -373,7 +373,7 @@
 		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
-	if(!hive.check_ruler())	//I'd prefer a flag for points without ruler, however until the flag rework is merged the flag count is capped.
+	if(!hive.check_ruler())
 		return
 
 	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
