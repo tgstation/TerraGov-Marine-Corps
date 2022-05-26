@@ -117,8 +117,14 @@
 		watched = !QDELETED(xeno_user.observed_xeno) ? REF(xeno_user.observed_xeno) : ""
 	.["user_watched_xeno"] = watched
 
-	if(isxeno(user))
-		.["user_evolution"] = xeno_user.evolution_stored
+	.["user_evolution"] = isxeno(user) ? xeno_user.evolution_stored : 0
+
+	.["user_maturity"] = isxeno(user) ? xeno_user.upgrade_stored : 0
+	.["user_next_mat_level"] = isxeno(user)
+		? xeno_user.upgrade_possible()
+			? xeno_user.xeno_caste.upgrade_threshold
+			: 0
+		: 0
 
 /datum/hive_status/ui_static_data(mob/user)
 	. = ..()
