@@ -1,0 +1,7 @@
+author: "DeltaFire15"
+delete-after: True
+changes: 
+  - code_imp: "Refactored a bunch of fire-related things (DoT, fire stack additions, some weapon special effects, Ignition) to care about percentile fire armor (aka soft armor) instead of it not mattering in many cases."
+  - balance: "Xenomorphs, when NOT on fire lose one fire stack per life tick, counteracting the prospect of non-igniting events adding firestacks having too much of an impact on subsequent ignitions, provided sufficient time inbetween."
+  - bugfix: "Throwing resin jello as hivelord should be less likely to not have an impact now, due to a previous possible race condition."
+  - balance: "Flamethrower fire intensity has been increased by 30% to counteract armor being taken into account. Other weaponry making use of incendiary effects unaffected."
