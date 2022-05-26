@@ -89,9 +89,6 @@
 	var/list/soft_armor
 	var/list/hard_armor
 
-	///How effective fire is against this caste. From 0 to 1 as it is a multiplier.
-	var/fire_resist = 1
-
 	// *** Sunder *** //
 	///How much sunder is recovered per tick
 	var/sunder_recover = 0.5
@@ -122,10 +119,8 @@
 	var/acid_spray_structure_damage = 0
 
 	// *** Pheromones *** //
-	///The strength of our aura. Zero means we can't emit one
+	///The strength of our aura. Zero means we can't emit any.
 	var/aura_strength = 0
-	///The 'types' of pheremones a xenomorph caste can emit.
-	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
 
 	// *** Defiler Abilities *** //
 	var/list/available_reagents_define = list() //reagents available for select reagent
@@ -271,8 +266,6 @@
 	var/obj/item/r_store = null
 	var/obj/item/l_store = null
 	var/plasma_stored = 0
-	var/amount_grown = 0
-	var/max_grown = 200
 	var/time_of_birth
 
 	///A mob the xeno ate
@@ -289,10 +282,12 @@
 	var/obj/structure/xeno/tunnel/start_dig = null
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 
-	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 
-	var/current_aura = null //"frenzy", "warding", "recovery"
+	///"Frenzy", "Warding", "Recovery". Defined in __DEFINES/xeno.dm
+	var/current_aura = null
+	///Passive plasma cost per tick for enabled personal (not leadership) pheromones.
+	var/pheromone_cost = 5
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
 	var/recovery_aura = 0
@@ -334,6 +329,9 @@
 	var/frenzy_new = 0
 	var/warding_new = 0
 	var/recovery_new = 0
+
+	///The xenomorph that this source is currently overwatching
+	var/mob/living/carbon/xenomorph/observed_xeno
 
 	///Multiplicative melee damage modifier; referenced by attack_alien.dm, most notably attack_alien_harm
 	var/xeno_melee_damage_modifier = 1

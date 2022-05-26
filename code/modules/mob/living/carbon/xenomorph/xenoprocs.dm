@@ -183,6 +183,14 @@
 				to_chat(usr,span_notice(" You will now track [resin_silo.name]"))
 				break
 
+	if(href_list["watch_xeno_name"])
+		if(!check_state())
+			return
+		var/target = locate(href_list["watch_xeno_name"])
+		if(isxeno(target))
+			// Checks for can use done in overwatch action.
+			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, target)
+
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
 /proc/xeno_message(message = null, span_class = "xenoannounce", size = 5, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type, arrow_color, report_distance = FALSE)
 	if(!message)
@@ -241,7 +249,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("Frenzy pheromone strength:", msg_holder)
+		stat("[FRENZY] pheromone strength:", msg_holder)
 	if(warding_aura)
 		switch(warding_aura)
 			if(-INFINITY to 1.0)
@@ -254,7 +262,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("Warding pheromone strength:", msg_holder)
+		stat("[WARDING] pheromone strength:", msg_holder)
 	if(recovery_aura)
 		switch(recovery_aura)
 			if(-INFINITY to 1.0)
@@ -267,12 +275,10 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("Recovery pheromone strength:", msg_holder)
+		stat("[RECOVERY] pheromone strength:", msg_holder)
 
 	switch(hivenumber)
 		if(XENO_HIVE_NORMAL)
-			if(hive.hive_orders && hive.hive_orders != "")
-				stat("Hive Orders:", hive.hive_orders)
 			var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 			if(hivemind_countdown)
 				stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
@@ -550,7 +556,7 @@
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
-	var/armor_block = run_armor_check(BODY_ZONE_CHEST, "acid")
+	var/armor_block = get_soft_armor("acid", BODY_ZONE_CHEST)
 	var/damage = X.xeno_caste.acid_spray_damage_on_hit
 	INVOKE_ASYNC(src, .proc/apply_acid_spray_damage, damage, armor_block)
 	to_chat(src, span_xenodanger("\The [X] showers you in corrosive acid!"))

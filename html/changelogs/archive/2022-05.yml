@@ -302,3 +302,104 @@
   - qol: updates harvester messages to runechat instead of chat
   - bugfix: select reagent button icon no longer disappears sometimes when re-equipping
       the weapon
+2022-05-20:
+  KornFlaks:
+  - qol: Defiler actions now have balloon alerts.
+2022-05-21:
+  Arctrooper8:
+  - rscadd: Added a lot more Christian Denominations
+  - rscadd: Adherents of the Machine God added 01010000 01110010 01100001 01101001
+      01110011 01100101 00100000 01001111 01101101 01101110 01101001 01110011 01110011
+      01101001 01100001 01101000
+  - rscadd: Paganism
+  - rscdel: removed Wiccanism and Pagan(Wicca)
+  - rscdel: Removed unused lore preference variables alongside broken Corporates relations
+  - bugfix: Synthetic type button now actually works instead of making you Western
+  KornFlaks:
+  - qol: Xeno pheromones selection are now done in a radial menu.
+  - bugfix: Xeno phermones keybindings now function at all times, even if the phero
+      selection is not active.
+  - qol: Xeno construction selection can now be done through radial menu. Left click
+      now opens radial selection (new). Right click cycles through constructions (old).
+  - bugfix: Throwing knives (and all other things thrown) now do damage!
+  - qol: Xeno weed type radial menu made smaller.
+  - rscadd: Queen hive message now displays on game map.
+  Lumipharon:
+  - rscadd: Added new lobby art
+  QualityVan:
+  - bugfix: New health scanners properly show whether a limb is kitted or not.
+  novaepee:
+  - bugfix: issue of anyone w/o ACCESS_MARINE_PREP can't get through 2x1 door
+  - bugfix: bolding on medical scanner for brain damage
+  - bugfix: delete a folder in TerraGov-Marine-Corps that contains a folder named
+      TerraGov-Marine-Corps
+  tyeagg:
+  - code_imp: railgun targeting changed from pick to rand
+  - balance: increased railgun spread
+  - balance: changed railgun to be explosive
+  - balance: increased railgun cooldown to 5 minutes
+  - balance: reduced time it takes to fire and land railgun
+  - rscadd: Orion Military Outpost
+  - imageadd: bunkbeds
+  - bugfix: broken vendor props not having density
+  - imageadd: 'tallgrass delete: slowdown from bushes'
+2022-05-22:
+  KornFlaks:
+  - qol: The actions that hiveminds can use while manifested no longer disappear but
+      instead are disabled.
+  Walarks:
+  - qol: psychic link's activation can be manually cancelled by activating the skill
+      again
+  - balance: psychic link has 15 instead of 10 range
+2022-05-23:
+  KornFlaks:
+  - refactor: Armor checks now correctly request target armor.
+  - qol: Runner actions now have balloon alerts.
+  - qol: Drones, Hivelords, and Queens now have balloon alerts for their abilities.
+  - rscadd: All xenos now have the ability to overwatch other xenos through the chat
+      (F) button.
+  Naaanii:
+  - balance: CSE now starts with one stack of metal, plasteel, sandbags and barbed
+      wire
+  - balance: CSE now starts with a welderpack instead of a satchel
+  RipGrayson:
+  - balance: Most shipside chairs and tables no longer drop metal on deconstruct
+  Sirsnek15:
+  - imageadd: Hello soldering tool!
+  Wayland-Smithy:
+  - bugfix: Fixed xeno hud perma fire stacks on dead.
+2022-05-25:
+  KornFlaks:
+  - qol: Resin jelly now has balloon alerts for application.
+  - bugfix: Resin jelly can no longer be used by multiple xenos at once.
+  - bugfix: Resin jelly is no longer applied twice as fast to self while in hand.
+  - bugfix: Resin jelly can no longer be applied to fireproof xenos.
+  - bugfix: Fixed an error appearing when a drone evolves to hivemind.
+  SplinterGP:
+  - bugfix: fixed a bug that caused the hunter invisibility ability not get to standing
+      still invisibility level due to it only attempting to do so when plasma was
+      regenerated.
+  Wayland-Smithy:
+  - qol: Xeno hivemind chat follow links are easier to click.
+  goose4429:
+  - rscdel: Hyperzine removed from everywhere
+  - code_imp: Injector code refactor
+  - code_imp: Imi, Alky injectors fix
+  - code_imp: med vendor code refactor
+  - rscadd: Dexaline injector
+  - rscadd: Case to med vendor, can hold 3 injectors (and nothing else)
+  - balance: Injectors have default 30u volume and 10u inject
+  - balance: Moved some pill bottles to med vendor
+  - balance: These pill bottles removed from MarineMed
+  - balance: Basic injectors are unlimited in MarineMed
+  - balance: Other injectors have greater number in MarineMed
+  - balance: Injectors and hyposprays have less delay on use
+  - balance: Added Imi and Alky to med belt
+2022-05-26:
+  Arctrooper8:
+  - balance: Laser sniper rifle now has an IFF mode that decreases in damage logarithmically
+      for every marine it passes through (try to get a clear shot!)
+  - bugfix: You can no longer force a mag harness unto the laser sniper rifle and
+      bug out the scope sprite
+  KornFlaks:
+  - bugfix: Wraith banish no longer inserts invisible wall if banished object is destroyed.

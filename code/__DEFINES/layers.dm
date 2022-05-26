@@ -76,6 +76,8 @@
 
 #define CONVEYOR_LAYER 2.56 //conveyor belt
 
+#define TALL_GRASS_LAYER 2.5 //tall grass
+
 #define RESIN_STRUCTURE_LAYER 2.6
 
 #define LADDER_LAYER 2.7
