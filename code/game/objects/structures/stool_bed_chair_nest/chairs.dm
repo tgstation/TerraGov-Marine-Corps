@@ -10,6 +10,10 @@
 	max_integrity = 20
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
+/obj/structure/bed/chair/alt
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "chair_alt"
+
 /obj/structure/bed/chair/nometal
 	dropmetal = FALSE
 
