@@ -333,7 +333,8 @@
 
 /obj/item/armor_module/module/eshield/process()
 	shield_health = min(shield_health + recharge_rate, max_shield_health)
-	if(shield_health == max_shield_health)
+	if(shield_health == max_shield_health) //Once health is full, we don't need to process until the next time we take damage.
+		STOP_PROCESSING(SSobj, src)
 		return
 	var/new_color
 	switch(shield_health/max_shield_health)
