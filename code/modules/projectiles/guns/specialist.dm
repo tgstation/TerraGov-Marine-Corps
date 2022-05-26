@@ -710,18 +710,21 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/launcher/rocket/oneuse
 	name = "\improper RL-72 disposable rocket launcher"
-	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm explosive rocket."
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm explosive rocket. Spacebar to shorten or extend it to make it storeable or fireable, respectively."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t72"
 	item_state = "t72"
 	max_shells = 1 //codex
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
+	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo_type = /obj/item/ammo_magazine/rocket/oneuse
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/oneuse)
 	reciever_flags = AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_MAGAZINES
 	flags_equip_slot = ITEM_SLOT_BELT
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
+	/// Indicates extension state of the launcher. True: Fireable and unable to fit in storage. False: Able to fit in storage but must be extended to fire.
+	var/extended = FALSE
 
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -730,6 +733,21 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 1 SECONDS
 	recoil = 3
 	scatter = -100
+
+// Do a short windup, swap the extension status of the rocket if successful, then swap the flags.
+/obj/item/weapon/gun/launcher/rocket/oneuse/unique_action(mob/living/user)
+	playsound(user, 'sound/weapons/guns/misc/oneuse_deploy.ogg', 25, 1)
+	if(!do_after(user, 20, TRUE, src, BUSY_ICON_DANGER))
+		return
+	extended = !extended
+	if(!extended)
+		w_class = WEIGHT_CLASS_NORMAL
+		flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
+		icon_state = initial(icon_state)
+		return
+	w_class = WEIGHT_CLASS_BULKY
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	icon_state = "[icon_state]_extended"
 
 //-------------------------------------------------------
 //SR-220 Railgun
