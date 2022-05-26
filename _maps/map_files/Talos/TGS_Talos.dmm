@@ -1883,9 +1883,7 @@
 /turf/open/floor/plating,
 /area/mainship/hull/upper_hull)
 "bxo" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/structure/flora/pottedplant,
 /obj/effect/decal/woodsiding,
 /obj/structure/sign/prop1,
 /obj/machinery/light,
@@ -9896,7 +9894,6 @@
 /turf/closed/wall/mainship/gray,
 /area/mainship/shipboard/firing_range)
 "hEV" = (
-/obj/structure/window/framed/mainship/white,
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/chemistry)
@@ -10254,14 +10251,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"hUl" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window{
-	dir = 8
-	},
-/obj/machinery/door/window/secure,
-/turf/open/floor/mainship/sterile,
-/area/mainship/medical/chemistry)
 "hUJ" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/silver,
@@ -11779,16 +11768,6 @@
 /obj/structure/ship_ammo/rocket/banshee,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
-"jhy" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/secure{
-	dir = 2
-	},
-/obj/machinery/door/window/secure{
-	dir = 1
-	},
-/turf/open/floor/prison/whitegreen/full,
-/area/mainship/medical/lounge)
 "jhB" = (
 /obj/structure/table/mainship,
 /obj/item/storage/box/pillbottles,
@@ -19719,10 +19698,6 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/bow_hallway)
-"oXn" = (
-/obj/machinery/smartfridge/chemistry,
-/turf/open/floor/prison/whitegreen/full,
-/area/mainship/medical/lounge)
 "oXC" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/prison/whitegreen/corner{
@@ -20150,9 +20125,7 @@
 /obj/machinery/landinglight/ds1{
 	dir = 8
 	},
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-05"
-	},
+/obj/structure/flora/pottedplant,
 /obj/effect/ai_node,
 /turf/open/floor/carpet,
 /area/mainship/command/corporateliaison)
@@ -54469,8 +54442,8 @@ gme
 gme
 hgK
 hEV
-hUl
-hmO
+gme
+gme
 uFv
 uFv
 uFv
@@ -55499,7 +55472,7 @@ hHk
 jOU
 ryI
 ikc
-oXn
+eUJ
 eUJ
 ney
 eUJ
@@ -55756,7 +55729,7 @@ ksk
 ksk
 tQf
 bTy
-jhy
+eUJ
 eUJ
 ney
 eUJ
