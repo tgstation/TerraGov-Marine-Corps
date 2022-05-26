@@ -341,9 +341,9 @@
 	qdel(src)
 
 /obj/item/resin_jelly/throw_at(atom/target, range, speed, thrower, spin, flying)
-	. = ..()
 	if(isxenohivelord(thrower))
 		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, .proc/jelly_throw_hit)
+	. = ..()
 
 /obj/item/resin_jelly/proc/jelly_throw_hit(datum/source, atom/hit_atom)
 	SIGNAL_HANDLER

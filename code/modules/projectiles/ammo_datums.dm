@@ -206,7 +206,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		staggerstun(victim, proj, stagger = 0.5, slowdown = 0.5)
 
 		var/living_hard_armor = victim.hard_armor.getRating("fire")
-		if(living_hard_armor < 100) //won't ignite fully fireproof mobs
+		if(victim.get_fire_resist() > 0 && living_hard_armor < 100) //won't ignite fully fireproof mobs
 			victim.adjust_fire_stacks(CEILING(5 - (living_hard_armor * 0.1), 1))
 			victim.IgniteMob()
 
@@ -2580,7 +2580,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 50
 	bullet_color = LIGHT_COLOR_FIRE
 	var/fire_color = "red"
-	var/burnlevel = 24
+	var/burnlevel = 31
 	var/burntime = 17
 	var/fire_delay = 20
 
@@ -2606,7 +2606,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "flame_blue"
 	max_range = 6
 	fire_color = "blue"
-	burnlevel = 36
+	burnlevel = 46
 	burntime = 40
 	fire_delay = 20
 	bullet_color = COLOR_NAVY
