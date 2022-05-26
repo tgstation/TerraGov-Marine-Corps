@@ -187,7 +187,7 @@
 		if(!check_state())
 			return
 		var/target = locate(href_list["watch_xeno_name"])
-		if(target && isxeno(target))
+		if(isxeno(target))
 			// Checks for can use done in overwatch action.
 			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, target)
 
