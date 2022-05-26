@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/sound_miss //When it misses someone.
 	var/sound_bounce //When it bounces off something.
 
-	var/accuracy 					= 5 		// This is added to the bullet's base accuracy
+	var/accuracy 					= 0 		// This is added to the bullet's base accuracy
 	var/accuracy_var_low			= 1 		// How much the accuracy varies when fired
 	var/accuracy_var_high			= 1
 	var/accurate_range 				= 5 		// For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though
@@ -325,7 +325,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_light"
 	damage = 15
 	penetration = 5
-	accurate_range = 5
 	sundering = 0.5
 
 /datum/ammo/bullet/pistol/tiny/ap
@@ -333,7 +332,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_lightap"
 	damage = 22.5
 	penetration = 15 //So it can actually hurt something.
-	accurate_range = 5
 	sundering = 0.5
 	damage_falloff = 1.5
 
@@ -352,7 +350,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
 	hud_state = "pistol_hollow"
-	accuracy = -15
+	accuracy = -10
 	shrapnel_chance = 45
 	sundering = 2
 
@@ -363,7 +361,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "armor-piercing pistol bullet"
 	hud_state = "pistol_ap"
 	damage = 20
-	accuracy = 10
 	penetration = 12.5
 	shrapnel_chance = 25
 	sundering = 2
@@ -396,13 +393,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
-	accuracy = 15
 	damage = 20
 
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
 	hud_state = "pistol_special"
-	accuracy = 15
+	accuracy = 5
 	damage = 32
 	penetration = 10
 	shrapnel_chance = 25
@@ -476,20 +472,18 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "revolver_heavy"
 	damage = 50
 	penetration = 5
-	accuracy = -15
+	accuracy = -10
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
 	hud_state = "revolver_impact"
 	handful_amount = 6
-	accuracy_var_high = 10
 	damage = 50
 	penetration = 20
 	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 1, slowdown = 1, knockback = 1, shake = 0.5)
-
 
 /datum/ammo/bullet/revolver/ricochet
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/small
@@ -550,7 +544,7 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	damage = 20
-	accurate_range = 5
+	accurate_range = 4
 	damage_falloff = 1
 	sundering = 0.5
 	penetration = 5
@@ -573,7 +567,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range = 15
+	accurate_range = 12
 	damage = 25
 	penetration = 5
 	sundering = 0.5
@@ -630,6 +624,7 @@ datum/ammo/bullet/revolver/tp44
 	shrapnel_chance = 0
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	accurate_range = 15
 	accurate_range_min = 6
 	damage = 40
 	penetration = 20
@@ -640,7 +635,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "hivelo_fire"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
 	damage = 25
-	accuracy = 10
+	accuracy = -10
 	penetration = 20
 	sundering = 2.5
 
@@ -669,8 +664,8 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0.5
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range_min = 0
-	accurate_range = 30
+	accurate_range = 25
+	accurate_range_min = 6
 	max_range = 40
 	damage = 65
 	penetration = 15
@@ -692,6 +687,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 25
 	sundering = 0
+	accuracy = -10
 
 /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	name = "incendiary marksman bullet"
@@ -700,6 +696,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 35
 	sundering = 0 // incen doens't have sundering
+	accuracy = -10
 
 
 /*
@@ -737,7 +734,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC
 	max_range = 15
 	shrapnel_chance = 0
-	accuracy = 15
+	accuracy = 5
 
 /datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/M, obj/projectile/P)
 	if(!M || M == P.firer)
@@ -1004,7 +1001,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "sniper_empty"
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SUNDERING
-	accurate_range_min = 5
+	accurate_range_min = 7
 	shell_speed = 4
 	accurate_range = 30
 	max_range = 40
@@ -1061,7 +1058,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "supersonic sniper bullet"
 	hud_state = "sniper_supersonic"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accuracy = 40
+	accuracy = 20
 	damage = 100
 	penetration = 60
 	sundering = 50
@@ -1073,7 +1070,6 @@ datum/ammo/bullet/revolver/tp44
 	damage = 80
 	penetration = 30
 	sundering = 7.5
-	accurate_range_min = 2
 	damage_falloff = 0.25
 
 /datum/ammo/bullet/sniper/pfc/flak
@@ -1083,7 +1079,6 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	penetration = 10
 	sundering = 10
-	accurate_range_min = 2
 	damage_falloff = 0.25
 
 /datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
@@ -1111,7 +1106,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range = 15
+	accurate_range = 12
 	damage = 20
 	penetration = 15
 	sundering = 2
@@ -1122,7 +1117,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range = 15
+	accurate_range = 12
 	damage = 15
 	penetration = 15
 	sundering = 2
@@ -1177,10 +1172,10 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	hud_state   = "smartgun"
 	hud_state_empty = "smartgun_empty"
-	accurate_range = 15
+	accurate_range = 12
 	damage = 40 //Reduced damage due to vastly increased mobility
 	penetration = 40 //Reduced penetration due to vastly increased mobility
-	accuracy = 15
+	accuracy = 5
 	barricade_clear_distance = 2
 	sundering = 5
 
@@ -1403,7 +1398,6 @@ datum/ammo/bullet/revolver/tp44
 	name = "cannon round"
 	icon_state = "ltb"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
-	accuracy = 40
 	accurate_range = 15
 	max_range = 40
 	penetration = 200
@@ -1474,7 +1468,6 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "bomb"
 	damage_falloff = 0
 	shell_speed = 2
-	accuracy = 40
 	accurate_range = 20
 	max_range = 30
 	damage = 100
@@ -1493,7 +1486,6 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "bomb"
 	damage_falloff = 0
 	shell_speed = 2
-	accuracy = 40
 	accurate_range = 20
 	max_range = 30
 	damage = 175
@@ -1512,7 +1504,6 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "bomb"
 	damage_falloff = 0
 	shell_speed = 3
-	accuracy = 40
 	accurate_range = 15
 	max_range = 20
 	damage = 75
@@ -1597,7 +1588,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_ENERGY
 	armor_type = "energy"
-	accuracy = 20
+	accuracy = 15 //lasers fly fairly straight
 	bullet_color = COLOR_LASER_RED
 
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm
@@ -1952,9 +1943,8 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
 	bullet_color = COLOR_TAN_ORANGE
 	armor_type = "energy"
-	accuracy = 10
 	max_range = 14
-	accurate_range = 8 //for charger
+	accurate_range = 5 //for charger
 	shell_speed = 4
 	accuracy_var_low = 5
 	accuracy_var_high = 5
@@ -1983,7 +1973,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
-	accurate_range = 20
+	accurate_range = 18
 	damage = 25
 	fire_burst_damage = 25
 
@@ -2561,7 +2551,7 @@ datum/ammo/bullet/revolver/tp44
 	sound_armor	 	= "alloy_armor"
 	sound_bounce	= "alloy_bounce"
 	armor_type = "bullet"
-	accuracy = 40
+	accuracy = 20
 	accurate_range = 15
 	max_range = 15
 	damage = 40
