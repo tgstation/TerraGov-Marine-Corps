@@ -407,6 +407,9 @@
 	if(!holder)
 		return
 
+	if(stat == DEAD)
+		holder.icon_state = "firestack0"
+		return
 	switch(fire_stacks)
 		if(-INFINITY to 0)
 			holder.icon_state = "firestack0"

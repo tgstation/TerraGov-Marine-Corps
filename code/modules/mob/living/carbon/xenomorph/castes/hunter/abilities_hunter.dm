@@ -78,6 +78,7 @@
 
 	handle_stealth()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
+	START_PROCESSING(SSprocessing, src)
 
 /datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
@@ -123,9 +124,13 @@
 	to_chat(owner, span_xenodanger("We're ready to use Sneak Attack while stealthed."))
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
 
+/datum/action/xeno_action/stealth/process()
+	if(!stealth)
+		return PROCESS_KILL
+	handle_stealth()
+
 /datum/action/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
-
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
@@ -198,8 +203,6 @@
 
 /datum/action/xeno_action/stealth/proc/plasma_regen(datum/source, list/plasma_mod)
 	SIGNAL_HANDLER
-	handle_stealth()
-
 	if(owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
 		plasma_mod[1] *= 0.5
 	else

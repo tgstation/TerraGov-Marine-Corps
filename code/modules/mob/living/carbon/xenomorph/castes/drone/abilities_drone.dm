@@ -77,7 +77,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(!owner_xeno.loc_weeds_type)
 		if(!silent)
-			to_chat(owner, span_warning("Only weeds are fertile enough for our plants!"))
+			owner.balloon_alert(owner, "Cannot sow, no weeds")
 		return FALSE
 
 	var/turf/T = get_turf(owner)
@@ -110,7 +110,7 @@
 		if(initial(current_plant.name) == plant_choice)
 			X.selected_plant = current_plant
 			break
-	to_chat(X, span_notice("We will now sow <b>[plant_choice]</b>."))
+	X.balloon_alert(X, "[plant_choice]")
 	update_button_icon()
 
 /datum/action/xeno_action/sow/alternate_action_activate()
