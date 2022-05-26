@@ -395,3 +395,11 @@
   - balance: Other injectors have greater number in MarineMed
   - balance: Injectors and hyposprays have less delay on use
   - balance: Added Imi and Alky to med belt
+2022-05-26:
+  Arctrooper8:
+  - balance: Laser sniper rifle now has an IFF mode that decreases in damage logarithmically
+      for every marine it passes through (try to get a clear shot!)
+  - bugfix: You can no longer force a mag harness unto the laser sniper rifle and
+      bug out the scope sprite
+  KornFlaks:
+  - bugfix: Wraith banish no longer inserts invisible wall if banished object is destroyed.
