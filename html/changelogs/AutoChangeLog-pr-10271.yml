@@ -1,0 +1,8 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - imageadd: "Resprited pinpointers"
+  - imageadd: "Resprited Booze-O-Mat"
+  - imageadd: "Ported a fair number of fluff related icons from CM"
+  - imageadd: "Ported a single icon from Baystation"
+  - imagedel: "Removed old pinpointer sprites and icons that were replaced by CM versions"
