@@ -323,33 +323,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
-"aZ" = (
-/obj/machinery/door/poddoor/mainship/ammo{
-	dir = 2;
-	id = "ammo1";
-	name = "\improper Heavy Ordinance Storage"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
-"ba" = (
-/obj/machinery/door/poddoor/mainship/ammo{
-	dir = 2;
-	id = "ammo1";
-	name = "\improper Heavy Ordinance Storage"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
-"bb" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/door/poddoor/mainship/ammo{
-	dir = 2;
-	id = "ammo1";
-	name = "\improper Heavy Ordinance Storage"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
 "bc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -1127,6 +1100,14 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"dy" = (
+/obj/machinery/light/mainship{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/purple/side{
+	dir = 1
+	},
+/area/mainship/medical/chemistry)
 "dz" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -1382,6 +1363,11 @@
 /obj/structure/janitorialcart,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
+"eo" = (
+/turf/open/floor/mainship/sterile/purple/corner{
+	dir = 4
+	},
+/area/mainship/medical/chemistry)
 "ep" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating/plating_catwalk,
@@ -2262,6 +2248,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"ha" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/sterile/purple/side{
+	dir = 6
+	},
+/area/mainship/medical/chemistry)
 "hc" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/cell_charger,
@@ -4913,6 +4905,14 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/space)
+"qr" = (
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "ammo1";
+	name = "\improper Heavy Ordinance Storage"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "qu" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 2;
@@ -5150,12 +5150,6 @@
 	dir = 8
 	},
 /area/mainship/living/cryo_cells)
-"rv" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/sterile/purple/side{
-	dir = 4
-	},
-/area/mainship/medical/chemistry)
 "rw" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -7958,6 +7952,9 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/grunt_rnr)
+"Ad" = (
+/turf/open/floor/mainship/sterile/purple/corner,
+/area/mainship/medical/chemistry)
 "Ae" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced{
@@ -8480,6 +8477,13 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
+"Bx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/chemistry)
 "By" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/decal/cleanable/blood/oil,
@@ -10627,17 +10631,6 @@
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
-"HS" = (
-/obj/machinery/door/airlock/mainship/medical/free_access{
-	dir = 2;
-	name = "Chemistry"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/chemistry)
 "HU" = (
 /obj/machinery/computer/camera_advanced/remote_fob,
 /turf/open/floor/mainship/red{
@@ -10842,12 +10835,6 @@
 	dir = 1
 	},
 /area/mainship/medical/chemistry)
-"IA" = (
-/obj/machinery/light/mainship{
-	dir = 1
-	},
-/turf/open/floor/mainship/sterile/purple/corner,
-/area/mainship/medical/chemistry)
 "IB" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
@@ -11029,6 +11016,14 @@
 /obj/item/tool/lighter/zippo,
 /turf/open/floor/carpet,
 /area/mainship/living/bridgebunks)
+"Jf" = (
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "ammo1";
+	name = "\improper Heavy Ordinance Storage"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "Ji" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 8
@@ -11465,14 +11460,6 @@
 	dir = 9
 	},
 /area/mainship/living/commandbunks)
-"Kw" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
-	dir = 1;
-	name = "Chemistry";
-	req_one_access = list(2,8,40)
-	},
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/chemistry)
 "Kx" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -15465,6 +15452,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
+"WJ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "ammo1";
+	name = "\improper Heavy Ordinance Storage"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "WK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -21669,7 +21667,7 @@ az
 dP
 cW
 aW
-aZ
+qr
 VC
 VC
 VC
@@ -21767,7 +21765,7 @@ dV
 dV
 dx
 aA
-aZ
+qr
 VC
 VC
 VC
@@ -21865,7 +21863,7 @@ mR
 aj
 eC
 aW
-ba
+Jf
 NA
 NA
 NA
@@ -21963,7 +21961,7 @@ mR
 aj
 eC
 aC
-bb
+WJ
 bw
 bw
 bw
@@ -22061,7 +22059,7 @@ dP
 dP
 dT
 aD
-aZ
+qr
 VC
 VC
 VC
@@ -22159,7 +22157,7 @@ dV
 dV
 VC
 aW
-aZ
+qr
 VC
 VC
 VC
@@ -22491,7 +22489,7 @@ Cc
 Fe
 Gk
 Hc
-HS
+Bx
 Iz
 Ju
 Ku
@@ -22590,9 +22588,9 @@ Ff
 Gl
 Hd
 HQ
-IA
-Jv
-rv
+dy
+Jt
+ha
 Jv
 Jv
 Mm
@@ -22688,9 +22686,9 @@ Fg
 Gm
 kt
 HQ
-HR
-Jt
-Kw
+Ad
+Jv
+eo
 HQ
 Is
 Is
