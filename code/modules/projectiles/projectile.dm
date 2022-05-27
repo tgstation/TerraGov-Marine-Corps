@@ -874,7 +874,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	damage = check_shields(COMBAT_PROJ_ATTACK, damage, proj.ammo.armor_type)
 	if(!damage)
 		proj.ammo.on_shield_block(src, proj)
-		bullet_ping(proj)
+		SSbullet_ping.generate(src, proj)
 		return
 
 	if(!damage)
@@ -1183,7 +1183,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/xenomorph/bullet_act(obj/projectile/proj)
 	if(issamexenohive(proj.firer)) //Aliens won't be harming allied aliens.
-		bullet_ping(proj)
+		SSbullet_ping.generate(proj)
 		return
 
 	. = ..()
@@ -1255,7 +1255,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
-	bullet_ping(proj)
+	SSbullet_ping.generate(proj)
 
 
 /mob/living/carbon/human/bullet_soak_effect(obj/projectile/proj)
@@ -1275,7 +1275,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 //Turf handling.
 /turf/bullet_act(obj/projectile/proj)
 	. = ..()
-	bullet_ping(proj)
+	SSbullet_ping.generate(proj)
 
 	var/list/mob_list = list() //Let's built a list of mobs on the bullet turf and grab one.
 	for(var/mob/possible_target in src)
@@ -1326,28 +1326,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 					//					\\
 					//					\\
 //----------------------------------------------------------
-
-
-//This is where the bullet bounces off.
-/atom/proc/bullet_ping(obj/projectile/P)
-	if(!P.ammo.ping)
-		return
-	if(prob(65))
-		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
-		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
-		var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
-		if(prob(60))
-			angle += rand(-angle, 360 - angle)
-		I.pixel_x += rand(-6,6)
-		I.pixel_y += rand(-6,6)
-
-		var/matrix/rotate = matrix()
-		rotate.Turn(angle)
-		I.transform = rotate
-		add_overlay(I)
-		addtimer(CALLBACK(src, .proc/cut_overlay, I), 3, TIMER_CLIENT_TIME)
-
-
 
 #define BULLET_MESSAGE_NO_SHOOTER 0
 #define BULLET_MESSAGE_HUMAN_SHOOTER 1
