@@ -1,4 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - refactor: "Larva evolution handing is now processed along the same functions as all other xeno castes."
