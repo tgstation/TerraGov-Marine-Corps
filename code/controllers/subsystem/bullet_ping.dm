@@ -44,17 +44,18 @@ SUBSYSTEM_DEF(bullet_ping)
 /datum/controller/subsystem/bullet_ping/fire()
 	// Updating current index.
 	current_index = world.time % BULLET_PING_DURATION + 1
+	if(overlays[current_index].len == 0)
+		return
 	// Clear current list of overlays.
 	for(var/datum/bullet_ping/overlay AS in overlays[current_index])
 		overlay.parent.cut_overlay(overlay.ping)
-		if(MC_TICK_CHECK)
-			return
+	overlays[current_index].Cut()
 
 ///Calculates probability of bullet ping appearing and generates a ping overlay for it.
-/datum/controller/subsystem/bullet_ping/proc/generate(atom/source, obj/projectile/P)
+/datum/controller/subsystem/bullet_ping/proc/generate(atom/source, obj/projectile/P, ping_probability = BULLET_PING_PROBABILITY)
 	if(!P.ammo.ping)
 		return
-	if(!prob(BULLET_PING_PROBABILITY))
+	if(!prob(ping_probability))
 		return
 	if(P.ammo.sound_bounce)
 		playsound(src, P.ammo.sound_bounce, 50, 1)
@@ -68,7 +69,9 @@ SUBSYSTEM_DEF(bullet_ping)
 	var/matrix/rotate = matrix()
 	rotate.Turn(angle)
 	I.transform = rotate
+
 	source.add_overlay(I)
+
 	var/datum/bullet_ping/overlay = new
 	overlay.parent = source
 	overlay.ping = I

@@ -1183,7 +1183,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/xenomorph/bullet_act(obj/projectile/proj)
 	if(issamexenohive(proj.firer)) //Aliens won't be harming allied aliens.
-		SSbullet_ping.generate(proj)
+		SSbullet_ping.generate(src, proj)
 		return
 
 	. = ..()
@@ -1255,7 +1255,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
-	SSbullet_ping.generate(proj)
+	SSbullet_ping.generate(src, proj)
 
 
 /mob/living/carbon/human/bullet_soak_effect(obj/projectile/proj)
@@ -1275,7 +1275,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 //Turf handling.
 /turf/bullet_act(obj/projectile/proj)
 	. = ..()
-	SSbullet_ping.generate(proj)
+	SSbullet_ping.generate(src, proj)
 
 	var/list/mob_list = list() //Let's built a list of mobs on the bullet turf and grab one.
 	for(var/mob/possible_target in src)
