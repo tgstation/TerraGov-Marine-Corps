@@ -6,9 +6,9 @@
 	density = TRUE
 	coverage = 25
 	light_system = HYBRID_LIGHT
-	light_power = 5
+	light_power = SQRTWO
 	///The brightness of the floodlight
-	var/brightness_on = 7
+	var/brightness_on = 8
 
 /obj/machinery/floodlight/Initialize()
 	. = ..()
@@ -44,7 +44,7 @@
 	desc = "A powerful light stationed near landing zones to provide better visibility."
 	icon_state = "flood01"
 	use_power = 0
-	brightness_on = 5
+	brightness_on = 6
 
 /obj/machinery/floodlight/landing/Initialize()
 	. = ..()
@@ -86,7 +86,7 @@
 	icon_state = "floodlightcombat_off"
 	anchored = FALSE
 	density = TRUE
-	light_power = 5
+	light_power = SQRTWO
 	light_system = STATIC_LIGHT
 	///the cell powering this floodlight
 	var/obj/item/cell/cell
