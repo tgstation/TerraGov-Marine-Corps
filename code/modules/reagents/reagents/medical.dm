@@ -794,7 +794,7 @@
 	L.adjustStaminaLoss(15*effect_str)
 	if(!target_IB)
 		select_wound(L)
-		ticks_left-- //Keep it at the total ticks_to_cure, including the tick used to select a wound
+		ticks_left-- //Keep treatment time at the total ticks_to_cure if we select here, including the tick used to select a wound
 		return ..()
 	ticks_left--
 	if(!ticks_left)
