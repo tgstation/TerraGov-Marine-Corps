@@ -60,6 +60,7 @@ export const HiveEvolveScreen = (props, context) => {
 
   return (
     <Window
+      theme="xeno"
       title="Xenomorph Evolution"
       width={400}
       height={750}>

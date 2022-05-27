@@ -276,7 +276,7 @@
 		visible_message(span_warning("[src] looks unharmed."))
 		return FALSE
 	else
-		apply_damage(damage, damagetype, null, getarmor(null, armorcheck))
+		apply_damage(damage, damagetype, blocked = get_soft_armor(armorcheck))
 		UPDATEHEALTH(src)
 		return TRUE
 

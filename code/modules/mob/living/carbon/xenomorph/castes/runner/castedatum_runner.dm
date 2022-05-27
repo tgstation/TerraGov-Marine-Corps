@@ -53,6 +53,7 @@
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce,
@@ -182,6 +183,7 @@
 	// *** Abilities *** ///
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce,
