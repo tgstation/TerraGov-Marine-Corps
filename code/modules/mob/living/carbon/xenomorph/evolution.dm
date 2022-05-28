@@ -83,11 +83,6 @@
 		to_chat(src, span_warning("The restraints are too restricting to allow us to evolve."))
 		return
 
-	if(isxenolarva(src)) //Special case for dealing with larvae
-		if(amount_grown < max_grown)
-			to_chat(src, span_warning("We are not yet fully grown. Currently at: [amount_grown] / [max_grown]."))
-			return
-
 	if(isnull(xeno_caste.evolves_to))
 		to_chat(src, span_warning("We are already the apex of form and function. Let's go forth and spread the hive!"))
 		return

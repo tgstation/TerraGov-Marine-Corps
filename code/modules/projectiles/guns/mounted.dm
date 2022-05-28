@@ -38,8 +38,9 @@
 	burst_amount = 3
 	burst_delay = 0.1 SECONDS
 	extra_delay = 1 SECONDS
+	accuracy_mult = 1.2 //it's got a bipod
 	burst_accuracy_mult = 2
-	burst_scatter_mult = -2
+	burst_scatter_mult = 0
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
@@ -124,6 +125,7 @@
 	scatter = 10
 	deployed_scatter_change = -8
 	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.1 //it's mounted
 
 	burst_amount = 1
 
@@ -201,6 +203,7 @@
 	deployed_scatter_change = -70 // innumerable amount of reduced scatter when deployed,
 	recoil = 2
 	scatter_unwielded = 45
+	accuracy_mult = 1.1 //it's got a bipod
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	deploy_time = 1 SECONDS

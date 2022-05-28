@@ -263,13 +263,13 @@
 		if(mob_caught.stat == DEAD)
 			continue
 
-		fire_mod = 1
+		fire_mod = mob_caught.get_fire_resist()
 
 		if(isxeno(mob_caught))
 			var/mob/living/carbon/xenomorph/xeno_caught = mob_caught
 			if(CHECK_BITFIELD(xeno_caught.xeno_caste.caste_flags, CASTE_FIRE_IMMUNE))
 				continue
-			fire_mod = xeno_caught.get_fire_resist()
+		
 		else if(ishuman(mob_caught))
 			var/mob/living/carbon/human/human_caught = mob_caught
 			if(user)
@@ -284,7 +284,7 @@
 			if(human_caught.hard_armor.getRating("fire") >= 100)
 				continue
 
-		mob_caught.take_overall_damage_armored(rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, BURN, "fire", updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
+		mob_caught.take_overall_damage(0, rand(burn_level, (burn_level * mob_flame_damage_mod)) * fire_mod, updating_health = TRUE) // Make it so its the amount of heat or twice it for the initial blast.
 		mob_caught.adjust_fire_stacks(rand(5, (burn_level * mob_flame_damage_mod)))
 		mob_caught.IgniteMob()
 
@@ -507,7 +507,8 @@
 	if(!CHECK_BITFIELD(flags_pass, PASSFIRE)) //Pass fire allow to cross fire without being ignited
 		adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		IgniteMob()
-	take_overall_damage_armored(round(burnlevel*0.5)* fire_mod, BURN, "fire", updating_health = TRUE)
+	fire_mod *= get_fire_resist()
+	take_overall_damage(0, round(burnlevel*0.5)* fire_mod, updating_health = TRUE)
 	to_chat(src, span_danger("You are burned!"))
 
 /obj/flamer_fire/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -532,7 +533,6 @@
 /mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	fire_mod = get_fire_resist()
 	return ..()
 
 
@@ -589,6 +589,9 @@
 /mob/living/flamer_fire_act(burnlevel, firelevel)
 	if(!burnlevel)
 		return
+	var/fire_mod = get_fire_resist()
+	if(fire_mod <= 0)
+		return
 	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return
 	if(hard_armor.getRating("fire") >= 100)
@@ -596,15 +599,15 @@
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
+	burnlevel *= fire_mod //Fire stack adjustment is handled in the stacks themselves so this is modified afterwards.
 	IgniteMob()
-	adjustFireLoss(rand(10 , burnlevel)) //Including the fire should be way stronger.
+	adjustFireLoss(min(burnlevel, rand(10 , burnlevel))) //Including the fire should be way stronger.
 	to_chat(src, span_warning("You are burned!"))
 
 
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	burnlevel *= get_fire_resist()
 	. = ..()
 	updatehealth()
 

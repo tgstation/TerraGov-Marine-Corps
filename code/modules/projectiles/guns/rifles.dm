@@ -82,12 +82,13 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.05 SECONDS
-	accuracy_mult = 1.10
-	scatter = 2
+	accuracy_mult = 1.05
+	scatter = 0
 	burst_scatter_mult = 0.25
 	burst_amount = 4
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/rifle/standard_carbine/pointman
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/lasersight, /obj/item/attachable/flashlight, /obj/item/attachable/t18barrel)
@@ -154,8 +155,8 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
 	extra_delay = 0.05 SECONDS
-	accuracy_mult = 1.15
-	scatter = 0
+	accuracy_mult = 1.1
+	scatter = -2
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
 	aim_slowdown = 0.4
@@ -228,9 +229,10 @@
 	aim_speed_modifier = 2
 
 	fire_delay = 0.65 SECONDS
-	accuracy_mult = 1.25
-	scatter = -3
+	accuracy_mult = 1.15
+	scatter = -4
 	burst_amount = 1
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/standard_dmr/marksman
 	starting_attachment_types = list(/obj/item/attachable/scope, /obj/item/attachable/angledgrip, /obj/item/attachable/extended_barrel)
@@ -271,7 +273,6 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/gyro,
-		/obj/item/attachable/stock/br,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
@@ -298,7 +299,7 @@
 	burst_amount = 3
 	burst_delay = 0.10 SECONDS
 	extra_delay = 0.25 SECONDS
-	accuracy_mult = 0.75
+	accuracy_mult = 0.9
 	scatter = 0
 
 //-------------------------------------------------------
@@ -358,8 +359,8 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.15
-	scatter = 0
+	accuracy_mult = 1.1
+	scatter = -1
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
 	aim_slowdown = 0.4
@@ -396,7 +397,6 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/stock/irremoveable/rifle,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
@@ -408,7 +408,8 @@
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	damage_mult = 1.5
-	scatter = 0
+	scatter = -2
+	force = 20
 
 
 //-------------------------------------------------------
@@ -454,7 +455,6 @@
 
 	burst_amount = 4
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.10
 	scatter = 0
 	fire_delay = 0.2 SECONDS
 
@@ -490,12 +490,12 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 1, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km)
+	force = 20
 
-	accuracy_mult = 1
 	burst_amount = 1
 	fire_delay = 0.25 SECONDS
-	scatter = 5
-	wield_delay = 0.7 SECONDS
+	scatter = 2
+	wield_delay = 0.8 SECONDS
 
 	placed_overlay_iconstate = "ak47"
 
@@ -559,10 +559,10 @@
 	aim_speed_modifier = 2.5
 
 	fire_delay = 0.2 SECONDS
-	scatter = 3
+	scatter = 2
 	extra_delay = -0.05 SECONDS
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.3
+	accuracy_mult = 1.1
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
 
@@ -624,10 +624,11 @@
 
 	fire_delay = 0.15 SECONDS
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.25
+	accuracy_mult = 1.15
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
-	scatter = 3
+	scatter = 1
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/rifle/famas/freelancermedic
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
@@ -689,9 +690,9 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1
-	scatter = 4
+	scatter = 2
 	scatter_unwielded = 80
 
 //-------------------------------------------------------
@@ -748,9 +749,9 @@
 	damage_falloff_mult = 0.5
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
-	accuracy_mult = 1
-	scatter = 10
+	scatter = 7
 	scatter_unwielded = 45
+	movement_acc_penalty_mult = 6
 
 	placed_overlay_iconstate = "lmg"
 
@@ -812,9 +813,10 @@
 	burst_delay = 0.1 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.05
-	scatter = 7
+	scatter = 5
 	scatter_unwielded = 25
 	recoil_unwielded = 5
+	force = 20
 
 	placed_overlay_iconstate = "lmg"
 
@@ -885,6 +887,7 @@
 	burst_amount = 3
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.8
+	scatter = -1
 
 
 /obj/item/weapon/gun/rifle/type71/flamer
@@ -904,7 +907,7 @@
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 2
-	accuracy_mult = 2
+	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 0.8
 	damage_mult = 1.3
 
@@ -958,6 +961,8 @@
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.15
 	burst_amount = 1
+	scatter = -2
+	movement_acc_penalty_mult = 3
 
 //-------------------------------------------------------
 //SG-29 Smart Machine Gun (It's more of a rifle than the SG.)
@@ -1002,9 +1007,10 @@
 	fire_delay = 0.2 SECONDS
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1.2
+	accuracy_mult = 1.1
 	scatter = -5
 	scatter_unwielded = 40
+	movement_acc_penalty_mult = 4
 
 	placed_overlay_iconstate = "smartgun"
 
@@ -1040,6 +1046,7 @@
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
+	movement_acc_penalty_mult = 3
 
 //only sectoids can fire it
 /obj/item/weapon/gun/rifle/sectoid_rifle/able_to_fire(mob/user)
@@ -1103,7 +1110,7 @@
 
 	burst_amount = 0
 	fire_delay = 1.35 SECONDS
-	accuracy_mult = 1.35
+	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.7
 	scatter = -5
 	scatter_unwielded = 20
@@ -1112,6 +1119,7 @@
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
 	cock_delay = 0.7 SECONDS
+	movement_acc_penalty_mult = 6
 
 
 //-------------------------------------------------------
@@ -1150,7 +1158,7 @@
 
 	burst_amount = 0
 	fire_delay = 0.55 SECONDS
-	accuracy_mult = 1.35
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.7
 	scatter = -5
 	scatter_unwielded = 20
@@ -1158,6 +1166,7 @@
 	recoil_unwielded = 4
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
+	movement_acc_penalty_mult = 6
 
 //-------------------------------------------------------
 //AR-11 Rifle, based on the gamer-11
@@ -1201,11 +1210,12 @@
 	burst_delay = 0.05 SECONDS
 	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1.2
-	scatter = 0
+	accuracy_mult = 1.15
+	scatter = -1
 	scatter_unwielded = 15
 	burst_scatter_mult = 0.33
 	aim_slowdown = 0.45
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/tx11/scopeless
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11)
@@ -1270,8 +1280,8 @@
 	fire_delay = 0.25 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.15
-	scatter = 0
+	accuracy_mult = 1.2
+	scatter = -2
 	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
@@ -1314,12 +1324,12 @@
 	extra_delay = 0.5 SECONDS
 	///Same delay as normal burst mode
 	autoburst_delay = 0.7 SECONDS
-	accuracy_mult = 1
-	scatter = 7
+	scatter = 4
 	burst_amount = 4
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
 	damage_falloff_mult = 3
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
 	starting_attachment_types = list(
@@ -1365,8 +1375,9 @@
 	accuracy_mult = 1.1
 	burst_amount = 1
 	fire_delay = 0.2 SECONDS
-	scatter = 2
+	scatter = 1
 	wield_delay = 0.5 SECONDS
+	movement_acc_penalty_mult = 4
 
 //-------------------------------------------------------
 // GL-54 grenade launcher
@@ -1411,6 +1422,7 @@
 	wield_delay = 0.8 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.15
+	scatter = -2
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
 
@@ -1486,11 +1498,11 @@
 	burst_delay = 0.15 SECONDS
 	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1
-	scatter = 2
+	scatter = 1
 	scatter_unwielded = 15
 	burst_scatter_mult = 2
 	aim_slowdown = 1
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/tx55/freelancer
 	starting_attachment_types = list(

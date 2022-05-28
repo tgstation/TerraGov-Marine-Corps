@@ -171,6 +171,14 @@
 	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 
+/obj/item/storage/syringe_case/injector
+	name = "Autoinjector case"
+	desc = "A case for storing autoinjectors."
+	icon_state = "syringe_case"
+	storage_slots = 3
+	w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
+
 /obj/item/storage/syringe_case/burn
 	name = "burn syringe case"
 	desc = "It's a medical case for storing syringes and bottles. This one contains meds designed to treat burns."

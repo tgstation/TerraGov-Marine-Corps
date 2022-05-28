@@ -47,6 +47,10 @@
 /mob/living/carbon/xenomorph/hivemind/upgrade_possible()
 	return FALSE
 
+/mob/living/carbon/xenomorph/hivemind/upgrade_xeno(newlevel, silent = FALSE)
+	newlevel = XENO_UPGRADE_BASETYPE
+	return ..()
+
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
 	if(on_fire)
 		ExtinguishMob()
@@ -85,12 +89,10 @@
 		QDEL_NULL(core)
 	else
 		core = null
-	upgrade = XENO_UPGRADE_BASETYPE
 	return ..()
 
 
 /mob/living/carbon/xenomorph/hivemind/on_death()
-	upgrade = XENO_UPGRADE_BASETYPE
 	if(!QDELETED(core))
 		QDEL_NULL(core)
 	return ..()
