@@ -96,11 +96,12 @@
 			continue // Skipping minions
 		var/datum/xeno_caste/caste = xeno.xeno_caste
 		var/plasma_multi = caste.plasma_regen_limit == 0 ? 1 : caste.plasma_regen_limit // Division by 0 bad.
+		var/health = xeno.health > 0 ? xeno.health / xeno.maxHealth : -xeno.health / xeno.get_death_threshold()
 		.["xeno_info"] += list(list(
 			"ref" = REF(xeno),
 			"name" = xeno.name,
 			"location" = get_xeno_location(xeno),
-			"health" = round((xeno.health / xeno.maxHealth) * 100, 1),
+			"health" = round(health * 100, 1),
 			"plasma" = round((xeno.plasma_stored / (caste.plasma_max * plasma_multi)) * 100, 1),
 			"is_leader" = xeno.queen_chosen_lead,
 			"is_ssd" = !xeno.client,
