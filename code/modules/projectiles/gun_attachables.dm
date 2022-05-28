@@ -1547,6 +1547,30 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	icon_state = "flame_wide_red"
 	range_modifier = 0
 
+///Flamer ammo is a normal ammo datum, which means we can shoot it if we want
+/obj/item/attachable/flamer_nozzle/long
+	name = "extended flamer nozzle"
+	icon_state = "flame_long"
+	desc = "Rather than spreading the supplied fuel over an area, this nozzle launches a single fireball to ignite a target at range. Reduced volume per shot also means the next is ready quicker."
+	stream_type = FLAMER_STREAM_RANGED
+	delay_mod = -10
+
+/obj/item/attachable/flamer_nozzle/long/on_attach(attaching_item, mob/user)
+	. = ..()
+	if(!istype(attaching_item, /obj/item/weapon/gun/flamer))
+		return
+	var/obj/item/weapon/gun/flamer/flamer = attaching_item
+	//Since we're firing more like a normal gun, we do need to use up rounds after firing
+	flamer.reciever_flags &= ~AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
+
+/obj/item/attachable/flamer_nozzle/long/on_detach(attaching_item, mob/user)
+	. = ..()
+	if(!istype(attaching_item, /obj/item/weapon/gun/flamer))
+		return
+	var/obj/item/weapon/gun/flamer/flamer = attaching_item
+	if(initial(flamer.reciever_flags) & AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE)
+		flamer.reciever_flags |= AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
+
 ///This is called when an attachment gun (src) attaches to a gun.
 /obj/item/weapon/gun/proc/on_attach(obj/item/attached_to, mob/user)
 	if(!istype(attached_to, /obj/item/weapon/gun))
