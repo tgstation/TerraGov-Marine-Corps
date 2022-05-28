@@ -1,5 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - rscdel: "Removed PC emp act"
-  - balance: "PC cell size from 8500 to 7500"
