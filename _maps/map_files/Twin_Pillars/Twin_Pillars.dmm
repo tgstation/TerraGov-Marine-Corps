@@ -3410,8 +3410,6 @@
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/pouch/medical,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "diy" = (
@@ -8481,7 +8479,6 @@
 /obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
 /obj/item/storage/pouch/medkit/full,
-/obj/item/storage/pouch/medical/full,
 /obj/item/tool/taperoll/engineering,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -18209,8 +18206,6 @@
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/pouch/medical,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic/rebel)
 "qlY" = (
@@ -18578,8 +18573,6 @@
 /obj/item/clothing/suit/storage/hazardvest/lime,
 /obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/full,
-/obj/item/storage/pouch/medical/full,
 /obj/item/tool/taperoll/engineering,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,

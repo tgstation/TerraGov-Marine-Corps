@@ -22284,7 +22284,6 @@
 /area/sulaco/maintenance/lower_maint2)
 "sBO" = (
 /obj/structure/rack,
-/obj/item/storage/pouch/medical,
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/prison/red{

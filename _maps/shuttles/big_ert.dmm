@@ -197,8 +197,6 @@
 /obj/structure/table/mainship,
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medkit,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/pouch/medical,
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/reagent_containers/spray/surgery,

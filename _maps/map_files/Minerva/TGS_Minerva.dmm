@@ -10722,8 +10722,6 @@
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/pouch/medical,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -13024,7 +13022,6 @@
 /obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
 /obj/item/storage/pouch/medkit/full,
-/obj/item/storage/pouch/medical/full,
 /obj/item/tool/taperoll/engineering,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)

@@ -463,7 +463,6 @@
 	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
-	greyscale_colors = "#f8f4f8#ffffff"
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
@@ -538,11 +537,11 @@
 
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
-	desc = "Contains pills commonly used by untrained Squad Marines to avoid seeing their Squad Medic."
+	desc = "Contains pills capable of minorly healing all main types of damages."
 	icon_state = "pill_canistertall"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
-	greyscale_colors = "#387d4b#ffffff"
+	greyscale_colors = "#f8f4f8#ffffff"
 
 /obj/item/storage/pill_bottle/happy
 	name = "happy pill bottle"
@@ -557,59 +556,6 @@
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 	greyscale_colors = "#ef3ad4#ffffff"
-
-//Pill bottles with identification locks.
-
-/obj/item/storage/pill_bottle/restricted
-	var/req_id_role
-	var/scan_name = FALSE
-	var/req_role
-
-/obj/item/storage/pill_bottle/restricted/proc/scan(mob/living/L)
-
-	if(L.status_flags & GODMODE) //Let it be
-		return TRUE
-
-	if(!allowed(L))
-		to_chat(L, span_notice("It seems to have some kind of ID lock..."))
-		return FALSE
-
-	if(req_id_role || scan_name)
-		var/obj/item/card/id/I = L.get_idcard()
-		if(!I)
-			to_chat(L, span_notice("It seems to have some kind of ID lock..."))
-			return FALSE
-
-		if(scan_name && (I.registered_name != L.real_name))
-			to_chat(L, span_warning("it seems to have some kind of ID lock..."))
-			return FALSE
-
-		if(req_id_role && (I.rank != req_id_role))
-			to_chat(L, span_notice("It must have some kind of ID lock..."))
-			return FALSE
-
-	if(req_role && (!L.job || L.job.title != req_role))
-		to_chat(L, span_notice("It must have some kind of special lock..."))
-		return FALSE
-
-	return TRUE
-
-/obj/item/storage/pill_bottle/restricted/attack_self(mob/living/user)
-	if(scan(user))
-		return ..()
-
-/obj/item/storage/pill_bottle/restricted/open(mob/user)
-	if(scan(user))
-		return ..()
-
-/obj/item/storage/pill_bottle/restricted/ultrazine
-	icon_state = "pill_canister1"
-	max_storage_space = 5
-	pill_type_to_fill = /obj/item/reagent_containers/pill/ultrazine
-	greyscale_colors = "#6CFEA9#ffffff"
-	req_access = list(ACCESS_NT_CORPORATE)
-	req_id_role = CORPORATE_LIAISON
-	scan_name = TRUE
 
 /obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
 	. = ..()

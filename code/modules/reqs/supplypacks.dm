@@ -834,10 +834,10 @@ MEDICAL
 /datum/supply_packs/medical/advanced_medical
 	name = "Emergency medical supplies"
 	contains = list(
-		/obj/item/storage/pouch/autoinjector/advanced/full,
-		/obj/item/storage/pouch/autoinjector/advanced/full,
-		/obj/item/storage/pouch/autoinjector/advanced/full,
-		/obj/item/storage/pouch/autoinjector/advanced/full,
+		/obj/item/storage/pouch/medical_injectors/medic,
+		/obj/item/storage/pouch/medical_injectors/medic,
+		/obj/item/storage/pouch/medical_injectors/medic,
+		/obj/item/storage/pouch/medical_injectors/medic,
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
