@@ -451,3 +451,12 @@
   - imageadd: Ported a fair number of fluff related icons from CM
   - imageadd: Ported a single icon from Baystation
   - imagedel: Removed old pinpointer sprites and icons that were replaced by CM versions
+2022-05-28:
+  Arctrooper8:
+  - rscdel: Removed PC emp act
+  - balance: PC cell size from 8500 to 7500
+  KornFlaks:
+  - bugfix: Larva now no longer need a hive ruler to evolve.
+  - bugfix: Xenos can now use chat overwatch while resting.
+  breadhunt:
+  - rscadd: Activated intel computers now show on minimap
