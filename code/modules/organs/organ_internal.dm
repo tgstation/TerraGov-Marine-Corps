@@ -125,11 +125,13 @@
 	if(damage > min_broken_damage)
 		if(organ_status != ORGAN_BROKEN)
 			organ_status = ORGAN_BROKEN
-		return TRUE
+			return TRUE
+		return FALSE
 	if(damage > min_bruised_damage)
 		if(organ_status != ORGAN_BRUISED)
 			organ_status = ORGAN_BRUISED
-		return TRUE
+			return TRUE
+		return FALSE
 	if(organ_status != ORGAN_HEALTHY)
 		organ_status = ORGAN_HEALTHY
 		return TRUE
