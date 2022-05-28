@@ -379,7 +379,7 @@ const PopulationPyramid = (_props, context) => {
       <Button.Checkbox
         checked={user_show_empty}
         tooltip="Display castes with no members"
-        onClick={() => act("toggle_empty", { xeno: user_ref, new_show_value: user_show_empty ? 0 : 1 })}>
+        onClick={() => act("ToggleEmpty", { xeno: user_ref, new_show_value: user_show_empty ? 0 : 1 })}>
         Show Empty
       </Button.Checkbox>
     );

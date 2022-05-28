@@ -183,7 +183,7 @@
 			if(!isxeno(usr))
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOABILITY_BLESSINGSMENU)
-		if("toggle_empty")
+		if("ToggleEmpty")
 			if(!isxeno(usr))
 				return
 			xeno_target.show_empty_castes = params["new_show_value"]
