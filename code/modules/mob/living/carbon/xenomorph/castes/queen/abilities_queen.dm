@@ -158,22 +158,14 @@
 
 /datum/action/xeno_action/watch_xeno/proc/select_xeno(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/X = owner
-
-	if(QDELETED(selected_xeno))
-		if(!isxenoqueen(X))
-			return
-		var/list/possible_xenos = X.hive.get_watchable_xenos(X)
-		selected_xeno = tgui_input_list(X, "Target", "Watch which xenomorph?", possible_xenos)
-		if(QDELETED(selected_xeno) || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || is_centcom_level(selected_xeno.z))
-			if(!X.observed_xeno)
-				return
-			stop_overwatch()
-			return
 	start_overwatch(selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/start_overwatch(mob/living/carbon/xenomorph/target)
 	var/mob/living/carbon/xenomorph/watcher = owner
 	var/mob/living/carbon/xenomorph/old_xeno = watcher.observed_xeno
+	if(old_xeno == target)
+		stop_overwatch(TRUE)
+		return
 	if(old_xeno)
 		stop_overwatch(FALSE)
 	watcher.observed_xeno = target

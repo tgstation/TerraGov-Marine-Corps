@@ -258,6 +258,8 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 
 	var/datum/hive_status/hive
+	///Cached state for showing empty in the hive status UI.
+	var/show_empty_castes = TRUE
 
 	var/list/overlays_standing[X_TOTAL_LAYERS]
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
@@ -287,7 +289,6 @@
 	var/obj/structure/xeno/tunnel/start_dig = null
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.
 
-	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 
 	///"Frenzy", "Warding", "Recovery". Defined in __DEFINES/xeno.dm

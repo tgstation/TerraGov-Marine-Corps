@@ -121,6 +121,7 @@
 
 	.["user_maturity"] = isxeno(user) ? xeno_user.upgrade_stored : 0
 	.["user_next_mat_level"] = isxeno(user) ? (xeno_user.upgrade_possible() ? xeno_user.xeno_caste.upgrade_threshold : 0) : 0
+	.["user_show_empty"] = isxeno(user) ? xeno_user.show_empty_castes : 0
 
 /datum/hive_status/ui_static_data(mob/user)
 	. = ..()
@@ -179,6 +180,10 @@
 			if(!isxeno(usr))
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOABILITY_BLESSINGSMENU)
+		if("toggle_empty")
+			if(!isxeno(usr))
+				return
+			xeno_target.show_empty_castes = params["new_show_value"]
 
 
 /datum/hive_status/proc/get_xeno_location(mob/living/carbon/xenomorph/xeno)

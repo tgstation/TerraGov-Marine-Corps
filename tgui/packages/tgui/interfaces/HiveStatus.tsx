@@ -31,6 +31,7 @@ type InputPack = {
   user_purchase_perms: boolean,
   user_maturity: number,
   user_next_mat_level: number,
+  user_show_empty: boolean,
 };
 
 type XenoData = {
@@ -319,13 +320,16 @@ type PyramidCalc = { // Index is tier.
 };
 
 const PopulationPyramid = (_props, context) => {
-  const { data } = useBackend<InputPack>(context);
+  const { act, data } = useBackend<InputPack>(context);
   const {
     hive_max_tier_two,
     hive_max_tier_three,
     hive_primos,
     xeno_info,
     static_info,
+    user_ref,
+    user_xeno,
+    user_show_empty,
   } = data;
 
   const [
@@ -344,7 +348,7 @@ const PopulationPyramid = (_props, context) => {
   // But all these keys are numbers. And this is a lot simplier.
 
   hive_primos.map((entry) => {
-    primos[entry.tier - 1] = entry.purchased;
+    primos[entry.tier] = entry.purchased;
   });
 
   static_info.map((static_entry, index) => {
@@ -369,11 +373,23 @@ const PopulationPyramid = (_props, context) => {
   });
 
   const ShowBox = (_props, _context) => {
+    if (!user_xeno) {
+      // Observers will not be able to cache empty toggle.
+      return (
+        <Button.Checkbox
+          checked={showEmpty}
+          tooltip="Display castes with no members"
+          onClick={() => toggleEmpty(!showEmpty)}>
+          Show Empty
+        </Button.Checkbox>
+      );
+    }
+
     return (
       <Button.Checkbox
-        checked={showEmpty}
+        checked={user_show_empty}
         tooltip="Display castes with no members"
-        onClick={() => toggleEmpty(!showEmpty)}>
+        onClick={() => act("toggle_empty", { xeno: user_ref, new_show_value: user_show_empty ? 0 : 1 })}>
         Show Empty
       </Button.Checkbox>
     );
@@ -409,6 +425,7 @@ const PopulationPyramid = (_props, context) => {
           const primordial = primos[tier]
             ? (<Box as="span" textColor="good">[Primordial]</Box>)
             : "";
+          const empty_disp = user_xeno ? user_show_empty : showEmpty;
           return (
             <Box
               key={tier}
@@ -422,7 +439,7 @@ const PopulationPyramid = (_props, context) => {
               <Flex className="Section__content">
                 {tier_info.index.map((value, idx) => {
                   const count = tier_info.caste[idx];
-                  if (!showEmpty && count === 0) {
+                  if (!empty_disp && count === 0) {
                     return (<Box />);
                   }
                   const static_entry = static_info[value];
@@ -444,7 +461,7 @@ const PopulationPyramid = (_props, context) => {
               </Flex>
               <Flex>
                 {tier_info.caste.map((count, idx) => {
-                  if (!showEmpty && count === 0) {
+                  if (!empty_disp && count === 0) {
                     return (<Box />);
                   }
                   const static_entry = static_info[tier_info.index[idx]];
