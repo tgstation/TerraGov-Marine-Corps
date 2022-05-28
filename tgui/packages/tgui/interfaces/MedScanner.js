@@ -16,6 +16,7 @@ export const MedScanner = (props, context) => {
 
     revivable,
     has_chemicals,
+    has_unknown_chemicals,
     chemicals_lists,
 
     limb_data_lists,
@@ -144,6 +145,11 @@ export const MedScanner = (props, context) => {
         </Section>
         {has_chemicals ? (
           <Section title="Chemical Contents">
+            {has_unknown_chemicals ? (
+              <NoticeBox warning>
+                Unknown reagents detected.
+              </NoticeBox>
+            ) : null}
             <LabeledList>
               {
                 chemicals.map(chemical => (

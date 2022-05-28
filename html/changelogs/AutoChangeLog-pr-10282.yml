@@ -1,6 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - rscadd: "Overwatch is now canceled if the watcher is damaged."
-  - refactor: "Overwatch from chat now uses target reference instead of trying to match nicknames. This should mean it should no longer fail to work if xeno names are identical."
-  - rscdel: "Queen can no longer select xenos to overwatch using control middle click."

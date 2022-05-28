@@ -38,7 +38,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23, "flamer_nozzle_x" = 33, "flamer_nozzle_y" = 20)
-	fire_delay = 4
+	fire_delay = 2 SECONDS
 
 	placed_overlay_iconstate = "flamer"
 
@@ -92,9 +92,6 @@
 	. = ..()
 	if(!.)
 		return
-	var/obj/item/ammo_magazine/magazine = new_mag
-	var/datum/ammo/flamethrower/flamer_ammo = magazine.default_ammo
-	fire_delay = initial(flamer_ammo.fire_delay)
 	if(attachments_by_slot[ATTACHMENT_SLOT_FLAMER_NOZZLE])
 		light_pilot(TRUE)
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
@@ -103,7 +100,6 @@
 	. = ..()
 	if(!.)
 		return
-	fire_delay = initial(fire_delay)
 	light_pilot(FALSE)
 	gun_user?.hud_used.update_ammo_hud(gun_user, src)
 
@@ -158,6 +154,8 @@
 			if(ISDIAGONALDIR(dir_to_target))
 				range /= 2
 			recursive_flame_cone(1, old_turfs, dir_to_target, range, current_target)
+		if(FLAMER_STREAM_RANGED)
+			return ..()
 	return TRUE
 
 #define RECURSIVE_CHECK(old_turfs, range, current_target, iteration) (!length(old_turfs) || iteration > range || !current_target || (current_target in old_turfs))
@@ -348,6 +346,7 @@
 		/obj/item/attachable/hydro_cannon,
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
+		/obj/item/attachable/flamer_nozzle/long,
 	)
 	starting_attachment_types = list(/obj/item/attachable/flamer_nozzle, /obj/item/attachable/stock/t84stock, /obj/item/attachable/hydro_cannon)
 	var/last_use
