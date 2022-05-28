@@ -81,7 +81,7 @@
 	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0
 	var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
-	.["hive_queen_remaining"] = !isnull(xeno_queen_timer) ? xeno_queen_timer MILLISECONDS : 0
+	.["hive_queen_remaining"] = !isnull(xeno_queen_timer) ? timeleft(xeno_queen_timer) MILLISECONDS : 0
 
 	.["hive_primos"] = list()
 	for(var/tier in GLOB.tier_to_primo_upgrade)
