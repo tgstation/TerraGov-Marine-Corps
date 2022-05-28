@@ -226,7 +226,7 @@
 
 	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
 		return
-	if((organ_status == ORGAN_BRUISED && prob(15)) || (organ_status == ORGAN_BROKEN && prob(50)))
+	if((organ_status == ORGAN_BRUISED && prob(5)) || (organ_status == ORGAN_BROKEN && prob(20)))
 		owner.emote("me", 1, "gasps for air!")
 
 /datum/internal_organ/lungs/set_organ_status()
