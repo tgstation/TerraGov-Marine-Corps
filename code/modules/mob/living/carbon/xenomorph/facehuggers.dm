@@ -562,7 +562,7 @@
 		playsound(loc, hugsound, 25, 0)
 	if(!sterile && !issynth(user))
 		user.disable_lights(sparks = TRUE, silent = TRUE)
-		var/stamina_dmg = user.maxHealth + user.max_stamina_buffer
+		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(2 SECONDS)
 	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time

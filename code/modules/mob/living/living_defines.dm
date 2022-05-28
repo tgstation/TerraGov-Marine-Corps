@@ -39,7 +39,12 @@
 	var/drowsyness = 0
 
 	var/last_staminaloss_dmg = 0
+	/// Maximum amount of stamina a mob can have. Different from the stamina buffer because stamina has a positive and negative part
+	var/max_stamina = 0
+	/// How much stamina can you regen
 	var/max_stamina_buffer = 0
+	/// How fast does a mob regen its stamina
+	var/stamina_regen_multiplier = 1
 	var/is_dizzy = FALSE
 	var/druggy = 0
 

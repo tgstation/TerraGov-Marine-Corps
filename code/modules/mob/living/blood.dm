@@ -30,10 +30,10 @@
 				heart_multi *= 0.5 //you'd die in seconds but you can't remove internal organs even with varediting.
 
 			if(heart && reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) < 0.05 && heart.damage > 1)
-				if(heart.is_broken())
+				if(heart.organ_status == ORGAN_BROKEN)
 					heart_multi *= 0.5
 					blood_volume = max(blood_volume - 1.3, 0)
-				else if(heart.is_bruised())
+				else if(heart.organ_status == ORGAN_BRUISED)
 					heart_multi *= 0.7
 					blood_volume = max(blood_volume - 0.5, 0)
 				else
