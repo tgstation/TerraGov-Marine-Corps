@@ -13,7 +13,7 @@
 #define AUTHORIZED_PLUS 2
 
 //so we can use the current orbit in other files
-GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
+GLOBAL_VAR_INIT(current_orbit,CLOSE_ORBIT)
 
 /obj/machinery/computer/navigation
 	name = "\improper Helms computer"
