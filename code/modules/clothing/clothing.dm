@@ -108,7 +108,6 @@
 	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
-	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
 
 	// Strength of the armor light used by [proc/set_light()]

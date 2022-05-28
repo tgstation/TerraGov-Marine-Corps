@@ -54,12 +54,6 @@
 
 	.["can_evolve"] = !xeno.is_ventcrawling && !xeno.incapacitated(TRUE) && xeno.health >= xeno.maxHealth && xeno.plasma_stored >= (xeno.xeno_caste.plasma_max * xeno.xeno_caste.plasma_regen_limit)
 
-	if(isxenolarva(xeno))
-		.["evolution"] = list(
-			"current" = xeno.amount_grown,
-			"max" = xeno.max_grown
-		)
-		return
 	.["evolution"] = list(
 		"current" = xeno.evolution_stored,
 		"max" = xeno.xeno_caste.evolution_threshold

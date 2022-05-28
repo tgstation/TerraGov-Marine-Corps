@@ -144,9 +144,11 @@ REAGENT SCANNER
 
 		"hugged" = (locate(/obj/item/alien_embryo) in patient)
 	)
+	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
 	for(var/datum/reagent/reagent AS in patient.reagents.reagent_list)
 		if(!reagent.scannable)
+			data["has_unknown_chemicals"] = TRUE
 			continue
 		chemicals_lists["[reagent.name]"] = list(
 			"name" = reagent.name,
@@ -154,7 +156,7 @@ REAGENT SCANNER
 			"od" = reagent.overdosed,
 			"dangerous" = reagent.overdosed || istype(reagent, /datum/reagent/toxin)
 		)
-	data["has_chemicals"] = length(chemicals_lists)
+	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
 
 	var/list/limb_data_lists = list()

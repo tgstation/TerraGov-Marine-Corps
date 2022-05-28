@@ -44,10 +44,12 @@
 /mob/living/carbon/xenomorph/handle_fire()
 	. = ..()
 	if(.)
+		if(resting && fire_stacks > 0)
+			adjust_fire_stacks(-1)	//Passively lose firestacks when not on fire while resting and having firestacks built up.
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
-		adjustFireLoss((fire_stacks + 3) * get_fire_resist() )
+		adjustFireLoss((fire_stacks + 3) * get_fire_resist())
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
@@ -245,7 +247,7 @@
 	var/env_temperature = loc.return_temperature()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
-			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)) //Might be too high, check in testing.
+			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * get_fire_resist()) //Might be too high, check in testing.
 			updatehealth() //unused while atmos is off
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"

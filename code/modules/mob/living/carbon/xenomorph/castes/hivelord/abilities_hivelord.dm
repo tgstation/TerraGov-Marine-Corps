@@ -241,7 +241,6 @@
 /datum/action/xeno_action/create_jelly/action_activate()
 	var/obj/item/resin_jelly/jelly = new(owner.loc)
 	owner.put_in_hands(jelly)
-	owner.balloon_alert(owner, "Resin jelly created")
 	to_chat(owner, span_xenonotice("We create a globule of resin from our ovipostor.")) // Ewww...
 	add_cooldown()
 	succeed_activate()

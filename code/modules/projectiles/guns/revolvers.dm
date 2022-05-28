@@ -23,7 +23,7 @@
 	max_chamber_items = 7
 	allowed_ammo_types = list(/obj/item/ammo_magazine/revolver)
 
-	movement_acc_penalty_mult = 2
+	movement_acc_penalty_mult = 3
 	fire_delay = 2
 	accuracy_mult_unwielded = 0.85
 	scatter_unwielded = 25
@@ -183,7 +183,7 @@
 	accuracy_mult_unwielded = 0.85
 	accuracy_mult = 1
 	scatter_unwielded = 15
-	scatter = 0
+	scatter = -1
 	recoil = 0
 	recoil_unwielded = 0.75
 
@@ -292,7 +292,7 @@
 	aim_fire_delay = 0.3 SECONDS
 	recoil = 0
 	accuracy_mult = 1.1
-	scatter = 6
+	scatter = 5
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 20
 
@@ -373,7 +373,7 @@
 
 	fire_delay = 0.35 SECONDS
 	recoil = 0
-	scatter = 9 // Only affects buckshot considering marksman has -15 scatter.
+	scatter = 8 // Only affects buckshot considering marksman has -15 scatter.
 	damage_falloff_mult = 1.2
 
 
