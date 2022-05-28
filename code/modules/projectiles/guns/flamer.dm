@@ -323,6 +323,7 @@
 	pixel_shift_y = 18
 
 	mob_flame_damage_mod = 1
+	burn_level_mod = 0.6
 	flame_max_range = 4
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
