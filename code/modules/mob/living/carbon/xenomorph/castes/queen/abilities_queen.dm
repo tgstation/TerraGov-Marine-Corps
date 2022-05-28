@@ -144,7 +144,7 @@
 	return ..()
 
 /datum/action/xeno_action/watch_xeno/should_show()
-	return isxenoqueen(owner) //Only the queen should have the button for overwatch. All else uses chat (F).
+	return FALSE // Overwatching now done through hive status UI!
 
 /datum/action/xeno_action/watch_xeno/proc/start_overwatch(mob/living/carbon/xenomorph/target)
 	if(!can_use_action()) // Check for action now done here as action_activate pipeline has been bypassed with signal activation.
