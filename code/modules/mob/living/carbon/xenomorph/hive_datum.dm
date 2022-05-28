@@ -81,6 +81,7 @@
 	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0
 	var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
 	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
+	.["hive_queen_remaining"] = !isnull(xeno_queen_timer) ? xeno_queen_timer MILLISECONDS : 0
 
 	.["hive_primos"] = list()
 	for(var/tier in GLOB.tier_to_primo_upgrade)
@@ -131,6 +132,7 @@
 	.["hive_name"] = name
 	.["hive_silo_max"] = DISTRESS_SILO_COLLAPSE MILLISECONDS //Timers are defined in miliseconds.
 	.["hive_orphan_max"] = DISTRESS_ORPHAN_HIVEMIND MILLISECONDS
+	.["hive_queen_max"] = QUEEN_DEATH_TIMER MILLISECONDS
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	.["hive_larva_threshold"] = xeno_job.job_points_needed

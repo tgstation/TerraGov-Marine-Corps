@@ -18,6 +18,8 @@ type InputPack = {
   hive_silo_max: number,
   hive_orphan_max: number,
   hive_primos: PrimoUpgrades[],
+  hive_queen_remaining: number,
+  hive_queen_max: number,
   // ----- Per xeno info ------
   xeno_info: XenoData[],
   static_info: StaticData[],
@@ -116,8 +118,10 @@ const GeneralInfo = (_props, context) => {
     hive_psy_points,
     hive_silo_collapse,
     hive_orphan_collapse,
+    hive_queen_remaining,
     hive_silo_max,
     hive_orphan_max,
+    hive_queen_max,
   } = data;
 
   return (
@@ -154,12 +158,19 @@ const GeneralInfo = (_props, context) => {
         <Flex.Item>
           <EvolutionBar />
         </Flex.Item>
-        {(hive_silo_collapse > 0 || hive_orphan_collapse > 0) && <Divider />}
+        {(hive_silo_collapse > 0 || hive_orphan_collapse > 0
+          || hive_queen_remaining > 0) && <Divider />}
         <Flex.Item>
-          <SiloCollapseBar time={hive_silo_collapse} max={hive_silo_max} />
+          <XenoCountdownBar time={hive_queen_remaining} max={hive_queen_max}
+            tooltip="When new queen can evolve." left_side="Next Queen:" />
         </Flex.Item>
         <Flex.Item>
-          <OrphanHiveBar time={hive_orphan_collapse} max={hive_orphan_max} />
+          <XenoCountdownBar time={hive_silo_collapse} max={hive_silo_max}
+            tooltip="Hive must construct a silo!" left_side="Silo Collapse:" />
+        </Flex.Item>
+        <Flex.Item>
+          <XenoCountdownBar time={hive_orphan_collapse} max={hive_orphan_max}
+            tooltip="Hive must evolve a ruler!" left_side="Orphan Hivemind:" />
         </Flex.Item>
       </Flex>
     </Box>
@@ -168,39 +179,17 @@ const GeneralInfo = (_props, context) => {
 
 const bar_text_width = 10.25;
 
-const OrphanHiveBar = (props: { time: number, max: number, }, _context) => {
+const XenoCountdownBar = (props: { time: number, max: number,
+  tooltip: string, left_side: string }, _context) => {
   if (props.time === 0) {
     return (<Box />);
   }
 
   return (
-    <Tooltip content="Hive must evolve a ruler!">
+    <Tooltip content={props.tooltip}>
       <Flex mb={1}>
         <Flex.Item bold ml={1} mr={1} width={bar_text_width} align="center">
-          Orphan Hivemind:
-        </Flex.Item>
-        <Flex.Item grow>
-          <ProgressBar
-            color="red"
-            value={1 - props.time / props.max}>
-            {props.time} seconds
-          </ProgressBar>
-        </Flex.Item>
-      </Flex>
-    </Tooltip>
-  );
-};
-
-const SiloCollapseBar = (props: { time: number, max: number, }, _context) => {
-  if (props.time === 0) {
-    return (<Box />);
-  }
-
-  return (
-    <Tooltip content="Hive must construct a silo!">
-      <Flex mb={1}>
-        <Flex.Item bold ml={1} mr={1} width={bar_text_width} align="center">
-          Silo Collapse:
+          {props.left_side}
         </Flex.Item>
         <Flex.Item grow>
           <ProgressBar
