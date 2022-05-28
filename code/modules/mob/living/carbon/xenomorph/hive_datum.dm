@@ -893,8 +893,14 @@ to_chat will check for valid clients itself already so no need to double check f
 
 ///updates and sets the t2 and t3 xeno limits
 /datum/hive_status/proc/update_tier_limits()
-	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO])+length(xenos_by_tier[XENO_TIER_FOUR]))/3+1,1))
-	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE]) + length(xenos_by_tier[XENO_TIER_FOUR])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
+	var/zeros = get_total_tier_zeros()
+	var/ones = length(xenos_by_tier[XENO_TIER_ONE])
+	var/twos = length(xenos_by_tier[XENO_TIER_TWO])
+	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
+	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
+
+	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + 1, 1))
+	tier2_xeno_limit = max(twos, zeros + ones + fours + 1 - threes)
 
 // ***************************************
 // *********** Corrupted Xenos
