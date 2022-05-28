@@ -155,8 +155,7 @@
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
-	var/xeno_ref = params["xeno"]
-	var/mob/living/carbon/xenomorph/xeno_target = locate(xeno_ref)
+	var/mob/living/carbon/xenomorph/xeno_target = locate(params["xeno"])
 	if(QDELETED(xeno_target))
 		return
 	switch(action)
