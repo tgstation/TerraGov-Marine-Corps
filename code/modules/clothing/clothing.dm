@@ -216,16 +216,6 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
 
-
-//some gas masks modify the air that you breathe in.
-/obj/item/clothing/mask/proc/filter_air(list/air_info)
-	if(flags_inventory & ALLOWREBREATH)
-		air_info[2] = T20C //heats/cools air to be breathable
-
-	return air_info
-
-
-
 ////////////////////////////////////////////////////////////////////////
 //Shoes
 /obj/item/clothing/shoes
