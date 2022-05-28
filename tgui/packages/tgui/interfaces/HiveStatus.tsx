@@ -69,6 +69,7 @@ export const HiveStatus = (_props, context) => {
 
   return (
     <Window
+      theme="xeno"
       title={hive_name + " Hive Status"}
       resizable
       width={700}
