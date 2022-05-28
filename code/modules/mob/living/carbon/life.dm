@@ -5,10 +5,11 @@
 
 	if(notransform || stat == DEAD) //If we're dead or set to notransform don't bother processing life
 		return
-
-	else if(isobj(loc))//Still give containing object the chance to interact
-		var/obj/location_as_object = loc
-		location_as_object.handle_internal_lifeform(src)
+	if(!HAS_TRAIT(src, TRAIT_STASIS))
+		if(health < get_crit_threshold() && !reagents.has_reagent(/datum/reagent/medicine/inaprovaline))
+			adjustOxyLoss(CARBON_CRIT_MAX_OXYLOSS, TRUE)
+		else
+			adjustOxyLoss(CARBON_RECOVERY_OXYLOSS, TRUE)
 
 	. = ..()
 
