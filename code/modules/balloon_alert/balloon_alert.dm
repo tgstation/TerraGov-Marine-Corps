@@ -33,10 +33,6 @@
 // I would've made the maptext_height update on its own, but I don't know
 // if this would look bad on laggy clients.
 /atom/proc/balloon_alert_perform(mob/viewer, text)
-	if(isturf(src))
-		// Balloon alerts occuring on turf objects result in mass spam of alerts.
-		return
-
 	var/client/viewer_client = viewer.client
 	if (isnull(viewer_client))
 		return
