@@ -14267,6 +14267,7 @@
 /area/lv624/lazarus/main_hall)
 "ngP" = (
 /obj/effect/decal/remains/xeno,
+/obj/structure/jungle/planttop1,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
