@@ -265,7 +265,7 @@
 	min_duration = SUTURE_MIN_DURATION
 	max_duration = SUTURE_MAX_DURATION
 	///Healing applied on step success, split between burn and brute
-	var/base_healing = 10
+	var/base_healing = 30
 
 /datum/surgery_step/generic/repair/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(!..())
@@ -284,8 +284,9 @@
 /datum/surgery_step/generic/repair/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] sews some of the wounds on [target]'s [affected.display_name] shut.") , \
 	span_notice("You finish suturing some of the wounds on [target]'s [affected.display_name].") )
-	var/burn_heal = min(base_healing, affected.burn_dam)
-	var/brute_heal = max(base_healing - burn_heal, 0)
+	var/skilled_healing = base_healing * max(user.skills.getPercent("surgery", SKILL_SURGERY_EXPERT), 0.1)
+	var/burn_heal = min(skilled_healing, affected.burn_dam)
+	var/brute_heal = max(skilled_healing - burn_heal, 0)
 	target.HealDamage(target_zone, brute_heal, burn_heal)
 
 /datum/surgery_step/generic/repair/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
