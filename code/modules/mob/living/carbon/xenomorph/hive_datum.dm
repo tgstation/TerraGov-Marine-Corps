@@ -91,24 +91,21 @@
 		))
 
 	.["hive_structures"] = list()
-	// Silos first.
+	// Silos
 	for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
-		.["hive_structures"] += list(list(
-			"ref" = REF(resin_silo),
-			"name" = resin_silo.name,
-			"integrity" = resin_silo.obj_integrity,
-			"max_integrity" = resin_silo.max_integrity,
-			"location" = get_xeno_location(resin_silo),
-		))
-	// Then turrets.
+		.["hive_structures"] += list(get_structure_packet(resin_silo))
+	// Acid, sticky, and hugger turrets.
 	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
-		.["hive_structures"] += list(list(
-			"ref" = REF(turret),
-			"name" = turret.name,
-			"integrity" = turret.obj_integrity,
-			"max_integrity" = turret.max_integrity,
-			"location" = get_xeno_location(turret),
-		))
+		.["hive_structures"] += list(get_structure_packet(turret))
+	// Maturity towers
+	for(var/obj/structure/xeno/maturitytower/tower AS in GLOB.hive_datums[hivenumber].maturitytowers)
+		.["hive_structures"] += list(get_structure_packet(tower))
+	// Evolution towers (if they're ever built)
+	for(var/obj/structure/xeno/evotower/tower AS in GLOB.hive_datums[hivenumber].evotowers)
+		.["hive_structures"] += list(get_structure_packet(tower))
+	// Spawners
+	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawner)
+		.["hive_structures"] += list(get_structure_packet(spawner))
 
 	.["xeno_info"] = list()
 	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
@@ -145,6 +142,15 @@
 	.["user_next_mat_level"] = isxeno(user) && xeno_user.upgrade_possible() ? xeno_user.xeno_caste.upgrade_threshold : 0
 	.["user_show_empty"] = isxeno(user) ? xeno_user.show_empty_castes : 0
 	.["user_tracked"] = isxeno(user) && !isnull(xeno_user.tracked) ? REF(xeno_user.tracked) : ""
+
+/datum/hive_status/proc/get_structure_packet(obj/structure/xeno/struct)
+	return list(
+		"ref" = REF(struct),
+		"name" = struct.name,
+		"integrity" = struct.obj_integrity,
+		"max_integrity" = struct.max_integrity,
+		"location" = get_xeno_location(struct),
+	)
 
 /datum/hive_status/ui_static_data(mob/user)
 	. = ..()

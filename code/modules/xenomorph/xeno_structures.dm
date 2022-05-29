@@ -1133,7 +1133,7 @@ TUNNEL
 			take_damage(300)
 
 /obj/structure/xeno/maturitytower
-	name = "maturity tower"
+	name = "Maturity tower"
 	desc = "A sickly outcrop from the ground. It seems to ooze a strange chemical that makes the vegetation around it grow faster."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "maturitytower"
