@@ -711,7 +711,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
 	r_store = /obj/item/storage/pouch/medkit/medic
-	l_store = /obj/item/storage/pouch/medical_injectors/synth
+	l_store = /obj/item/storage/pouch/surgery
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/professor/rebel
@@ -797,7 +797,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
 	r_store = /obj/item/storage/pouch/medkit/medic
-	l_store = /obj/item/storage/pouch/medical_injectors/synth
+	l_store = /obj/item/storage/pouch/surgery
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/medicalofficer/rebel
@@ -885,7 +885,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	r_store = /obj/item/storage/pouch/medkit/medic
-	l_store = /obj/item/storage/pouch/medical_injectors/synth
+	l_store = /obj/item/storage/pouch/surgery
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

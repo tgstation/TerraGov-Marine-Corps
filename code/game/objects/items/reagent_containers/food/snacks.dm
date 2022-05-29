@@ -2905,7 +2905,7 @@
 
 /obj/item/reagent_containers/food/snacks/lollipop/combat
 	name = "Commed-pop"
-	desc = "A lolipop devised to heal wounds overtime, with a slower amount of reagent use. Can be eaten or put in the mask slot"
+	desc = "A lolipop devised to heal wounds overtime by mixing sugar with bicard and kelotane, with a slower amount of reagent use. Can be eaten or put in the mask slot"
 	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/bicaridine = 5, /datum/reagent/medicine/kelotane = 5)
 
 /obj/item/reagent_containers/food/snacks/lollipop/tricord

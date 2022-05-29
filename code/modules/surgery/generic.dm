@@ -255,7 +255,7 @@
 	span_warning("Your hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!"))
 	target.apply_damage(3, BURN, affected, updating_health = TRUE)
 
-///Sewing people closed. Not fast, but works on corpses.
+///Sewing people closed. Better than defib spam but needs a roller bed, intended for high damage dead people.
 /datum/surgery_step/generic/repair
 	allowed_tools = list(
 		/obj/item/tool/surgery/suture = 100,
@@ -265,7 +265,7 @@
 	min_duration = SUTURE_MIN_DURATION
 	max_duration = SUTURE_MAX_DURATION
 	///Healing applied on step success, split between burn and brute
-	var/base_healing = 10
+	var/base_healing = 20
 
 /datum/surgery_step/generic/repair/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(!..())

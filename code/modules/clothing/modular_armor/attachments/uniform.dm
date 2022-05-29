@@ -67,54 +67,7 @@
 	name = "brown webbing vest"
 	desc = "Worn brownish synthcotton vest with lots of pockets to unload your hands."
 	icon_state = "vest_brown"
-	storage = /obj/item/storage/internal/vest
-
-/obj/item/armor_module/storage/uniform/white_vest
-	name = "white webbing vest"
-	desc = "A clean white Nylon vest with large pockets specially designed for medical supplies"
-	icon_state = "vest_white"
-	storage = /obj/item/storage/internal/white_vest
-
-/obj/item/storage/internal/white_vest
-	storage_slots = 12
-	max_storage_space = 24
-	max_w_class = WEIGHT_CLASS_BULKY
-
-	can_hold = list(
-		/obj/item/stack/medical,
-		/obj/item/stack/nanopaste,
-	)
-
-/obj/item/armor_module/storage/uniform/white_vest/surgery
-	name = "surgical vest"
-	desc = "A clean white Nylon vest with large pockets specially designed for holding surgical supplies."
-	icon_state = "vest_white"
-	storage = /obj/item/storage/internal/white_vest/surgery
-
-/obj/item/storage/internal/white_vest/surgery
-	can_hold = list(
-		/obj/item/tool/surgery,
-		/obj/item/stack/nanopaste,
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-		/obj/item/tweezers,
-	)
-
-
-/obj/item/storage/internal/white_vest/surgery/Initialize()
-	. = ..()
-	new /obj/item/tool/surgery/scalpel/manager(src)
-	new /obj/item/tool/surgery/scalpel(src)
-	new /obj/item/tool/surgery/hemostat(src)
-	new /obj/item/tool/surgery/retractor(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/tool/surgery/cautery(src)
-	new /obj/item/tool/surgery/circular_saw(src)
-	new /obj/item/tool/surgery/suture(src)
-	new /obj/item/tool/surgery/bonegel(src)
-	new /obj/item/tool/surgery/bonesetter(src)
-	new /obj/item/tool/surgery/FixOVein(src)
-	new /obj/item/stack/nanopaste(src)
-
+	storage = /obj/item/storage/internal/vest // Same as black vest, just a visual difference
 
 /obj/item/armor_module/storage/uniform/white_vest/medic
 	name = "corpsman webbing"
@@ -132,6 +85,7 @@
 
 /obj/item/storage/internal/white_vest/medic
 	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
+	max_storage_space = 24
 	can_hold = list(
 		/obj/item/stack/medical,
 		/obj/item/healthanalyzer,

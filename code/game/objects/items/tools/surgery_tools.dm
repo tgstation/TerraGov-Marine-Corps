@@ -130,14 +130,14 @@
 	name = "bone gel"
 	icon_state = "bone-gel"
 	force = 0
+	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 1.0
 
 /obj/item/tool/surgery/FixOVein
 	name = "FixOVein"
 	icon_state = "fixovein"
 	force = 0
-	throwforce = 1.0
+	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	var/usage_amount = 10
 
@@ -158,3 +158,10 @@
 	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("needled", "sewed", "stabbed")
+
+/obj/item/tool/surgery/organ_kit
+	name = "organ restoration kit"
+	icon_state = "organkit"
+	force = 0
+	throwforce = 0
+	w_class = WEIGHT_CLASS_SMALL

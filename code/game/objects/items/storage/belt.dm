@@ -131,9 +131,6 @@
 
 /obj/item/storage/belt/medical/Initialize()
 	. = ..()
-	new /obj/item/defibrillator(src)
-	new /obj/item/bodybag/cryobag(src)
-	new /obj/item/roller(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
@@ -144,6 +141,9 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/defibrillator(src)
+	new /obj/item/bodybag/cryobag(src)
+	new /obj/item/roller(src)
 	new /obj/item/healthanalyzer(src)
 
 
@@ -191,83 +191,29 @@
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/healthanalyzer(src)
 
-/obj/item/storage/belt/medicLifesaver
-	name = "\improper M276 pattern lifesaver medic bag"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
-	icon_state = "medicalbag"
-	item_state = "medicbag"
-	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
-	max_storage_space = 42
-	max_w_class = 2
-	can_hold = list(
-		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/storage/pill_bottle,
-		/obj/item/storage/syringe_case,
-		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/storage/pill_bottle/packet,
-		/obj/item/stack/medical,
-	)
-
-/obj/item/storage/belt/medicLifesaver/Initialize()  //The belt, with all it's magic inside!
-	. = ..()
-	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/tramadol(src)
-	new /obj/item/storage/pill_bottle/tricordrazine(src)
-	new /obj/item/storage/pill_bottle/dylovene(src)
-	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/storage/pill_bottle/alkysine(src)
-	new /obj/item/storage/pill_bottle/imidazoline(src)
-	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/storage/pill_bottle/quickclot(src)
-	new /obj/item/storage/pill_bottle/hypervene(src)
-	new /obj/item/storage/pill_bottle/russian_red(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/healthanalyzer(src)
-
 /obj/item/storage/belt/hypospraybelt
 	name = "\improper M276 pattern hypospray belt"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent_containers."
 	icon_state = "hypospraybelt"
 	item_state = "medicbag"
-	storage_slots = 18
+	storage_slots = 21
 	max_storage_space = 42
 	max_w_class = 2
 	can_hold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/hypospray/advanced,
-		/obj/item/storage/bottlecase,
-		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline,
-		/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin,
-		/obj/item/reagent_containers/hypospray/autoinjector/hypervene,
-		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclot,
+		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
 /obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/reagent_containers/hypospray/advanced/bicaridine(src)
-	new /obj/item/storage/bottlecase/bica(src)
-	new /obj/item/reagent_containers/hypospray/advanced/kelotane(src)
-	new /obj/item/storage/bottlecase/kelo(src)
-	new /obj/item/reagent_containers/hypospray/advanced/dylovene(src)
-	new /obj/item/storage/bottlecase/dylo(src)
-	new /obj/item/reagent_containers/hypospray/advanced/tramadol(src)
-	new /obj/item/storage/bottlecase/tram(src)
-	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
-	new /obj/item/storage/bottlecase/tricord(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/dylovene(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
 	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
@@ -276,14 +222,14 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
 
-/obj/item/storage/belt/combatLifesaver/upp
+/obj/item/storage/belt/lifesaver/upp
 	name ="\improper Type 41 pattern lifesaver bag"
 	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
 	icon_state = "medicalbag_u"
 	item_state = "medicbag_u"
 
 
-/obj/item/storage/belt/combatLifesaver/som
+/obj/item/storage/belt/lifesaver/som
 	name = "\improper S17 lifesaver bag"
 	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
 	icon_state = "medicbag_som"
@@ -332,24 +278,6 @@
 	storage_slots = 9
 	max_w_class = 3
 	max_storage_space = 21
-
-
-/obj/item/storage/belt/security/MP
-	name = "\improper M276 pattern military police rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is filled with an array of small pouches, meant to carry non-lethal equipment and restraints."
-	storage_slots = 6
-	max_w_class = 3
-	max_storage_space = 30
-
-
-/obj/item/storage/belt/security/MP/full/Initialize()
-	. = ..()
-	new /obj/item/weapon/gun/energy/taser(src)
-	new /obj/item/flash(src)
-	new /obj/item/weapon/baton(src)
-	new /obj/item/restraints/handcuffs(src)
-
-
 
 /obj/item/storage/belt/marine
 	name = "\improper M276 pattern ammo load rig"

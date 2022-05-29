@@ -109,7 +109,7 @@
 	jobtype = /datum/job/som/medic
 
 	id = /obj/item/card/id/dogtag/som
-	belt = /obj/item/storage/belt/combatLifesaver/som
+	belt = /obj/item/storage/belt/lifesaver/som
 	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/som/medic/vest
 	shoes = /obj/item/clothing/shoes/marine/som/knife
