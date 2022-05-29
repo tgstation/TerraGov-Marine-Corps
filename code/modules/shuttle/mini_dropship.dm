@@ -45,7 +45,7 @@
 	/// If this computer was damaged by a xeno
 	var/damaged = FALSE
 	/// How long before you can launch tadpole after a landing
-	var/launching_delay = 30 SECONDS
+	var/launching_delay = 10 SECONDS
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
