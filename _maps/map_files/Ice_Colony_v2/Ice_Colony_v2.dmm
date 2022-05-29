@@ -5456,6 +5456,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/bed/chair{
+	dir = 4
+	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -8240,6 +8243,7 @@
 /area/ice_colony/surface/garage/one)
 "aFa" = (
 /obj/structure/flora/pottedplant,
+/obj/structure/sign/nosmoking_2,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
@@ -30874,6 +30878,14 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"dpO" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/ice_colony/surface/command)
 "dqR" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
@@ -30994,9 +31006,14 @@
 	},
 /area/ice_colony/underground/requesition/sec_storage)
 "dRj" = (
+/obj/machinery/vending/snack,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},
+/area/ice_colony/surface/command)
+"dRm" = (
+/obj/machinery/vending/cigarette/colony,
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command)
 "dRI" = (
 /obj/machinery/landinglight/ds1/delaythree{
@@ -33130,6 +33147,10 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/wood,
 /area/space)
+"mId" = (
+/obj/structure/sign/poster,
+/turf/open/floor/tile/dark/blue2,
+/area/ice_colony/surface/command)
 "mJD" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2,
@@ -33484,6 +33505,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
+"odY" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/ice_colony/surface/command)
 "oeA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -33936,6 +33965,17 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
+"pDQ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/ice_colony/surface/command)
 "pEz" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -34048,6 +34088,14 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
+"qia" = (
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/ice_colony/surface/command)
 "qkY" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/corners{
@@ -34168,6 +34216,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
+"qKJ" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/tile/dark/blue2,
+/area/ice_colony/surface/command)
 "qLA" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -34519,6 +34571,9 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "scU" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
@@ -34535,6 +34590,17 @@
 "sdv" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
+"sdW" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/ice_colony/surface/command)
 "seh" = (
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/central)
@@ -34936,6 +35002,18 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
+"tUr" = (
+/obj/structure/sign/nosmoking_2,
+/turf/closed/wall,
+/area/ice_colony/surface/clinic/storage)
+"tVq" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/ice_colony/surface/command)
 "tWU" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/tile/green/whitegreen{
@@ -35078,6 +35156,14 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/underground/caves/ice_w)
+"uBX" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/flora/pottedplant,
+/turf/open/floor/tile/dark/blue2,
+/area/ice_colony/surface/command)
 "uCK" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -35305,6 +35391,10 @@
 "vxF" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/south)
+"vAN" = (
+/obj/structure/sign/nosmoking_2,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/clinic/treatment)
 "vCc" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
@@ -35369,6 +35459,12 @@
 "vPZ" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
+"vQv" = (
+/obj/structure/flora/pottedplant,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/ice_colony/surface/command)
 "vQx" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/landmark/weed_node,
@@ -35441,6 +35537,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/maintenance/south)
+"wgm" = (
+/obj/structure/sign/nosmoking_2,
+/turf/open/floor/tile/green/whitegreen,
+/area/ice_colony/surface/clinic/treatment)
 "whf" = (
 /turf/closed/wall,
 /area/space)
@@ -54087,7 +54187,7 @@ aBw
 aDR
 aDR
 aDR
-aDR
+vAN
 aou
 gvW
 gvW
@@ -54935,7 +55035,7 @@ aqe
 aqe
 aqe
 aqe
-aqe
+tUr
 aqe
 aER
 gvW
@@ -57909,7 +58009,7 @@ aHr
 gvW
 vRq
 gvW
-aHO
+wgm
 aou
 aoy
 aJh
@@ -65936,11 +66036,11 @@ dRj
 auX
 scU
 avA
-uLL
+tVq
 xmN
 uLL
 avA
-dRj
+dpO
 atV
 wkf
 wkf
@@ -66144,9 +66244,9 @@ aJD
 aqC
 haC
 bJA
-apL
+qKJ
 auX
-aqC
+sdW
 acf
 haC
 dKp
@@ -66356,9 +66456,9 @@ aJE
 aqC
 haC
 aci
-apL
+dRm
 auX
-aqC
+odY
 ylt
 nsI
 jqw
@@ -66568,11 +66668,11 @@ aJF
 haC
 arY
 cXX
-apL
+mId
 auX
-aqC
+odY
 dKp
-apL
+mId
 auX
 auS
 gFW
@@ -66782,7 +66882,7 @@ haC
 acB
 asd
 auX
-ayX
+pDQ
 dKp
 apL
 auk
@@ -66992,9 +67092,9 @@ aqz
 aqC
 haC
 cXX
-apL
+mId
 auX
-aqC
+qia
 dKp
 apL
 uyq
@@ -67631,7 +67731,7 @@ dKp
 mlA
 uLL
 kWN
-wsW
+uBX
 auX
 auc
 aur
@@ -68267,7 +68367,7 @@ asa
 asa
 aGH
 asa
-nQo
+vQv
 auX
 auh
 auh
