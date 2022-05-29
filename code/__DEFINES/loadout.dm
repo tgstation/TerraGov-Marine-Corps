@@ -191,7 +191,6 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/armor_supply,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed,
-		/obj/machinery/vending/medical/shipside,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
 	),
@@ -201,7 +200,6 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/armor_supply/loyalist,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed,
-		/obj/machinery/vending/medical/shipside,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
 	),
@@ -222,6 +220,9 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed/valhalla,
 		/obj/machinery/vending/cigarette,
+	),
+	SQUAD_CORPSMAN = list(
+		/obj/machinery/vending/medical/shipside,
 	)
 ))
 
