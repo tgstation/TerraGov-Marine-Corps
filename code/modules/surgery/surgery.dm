@@ -120,7 +120,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to operate [M]."),
 		span_notice("You fumble around figuring out how to operate [M]."))
-		target.balloon_alert_to_viewers("Fumbling...")
+		M.balloon_alert_to_viewers("Fumbling...")
 		var/fumbling_time = max(0,SKILL_TASK_FORMIDABLE - ( 8 SECONDS * user.skills.getRating("surgery") )) // 20 secs non-trained, 12 amateur, 4 trained, 0 prof
 		if(fumbling_time && !do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
 			return
