@@ -669,10 +669,13 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	SQUAD_CORPSMAN = list(
 		/obj/item/bodybag/cryobag = 1,
 		/obj/item/defibrillator = 1,
+		/obj/item/healthanalyzer = 1,
 		/obj/item/roller/medevac = 1,
 		/obj/item/medevac_beacon = 1,
 		/obj/item/roller = 1,
 		/obj/item/tweezers = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/storage/firstaid/adv = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
 		/obj/item/clothing/under/marine/corpsman = 1,
 	),

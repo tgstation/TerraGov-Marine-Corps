@@ -672,6 +672,8 @@
 		/obj/item/roller,
 		/obj/item/bodybag/cryobag,
 		/obj/item/tweezers,
+		/obj/item/healthanalyzer = 1,
+		/obj/item/reagent_containers/hypospray/advanced/big/oxycodone = 1,
 		/obj/item/clothing/glasses/hud/health,
 	)
 
@@ -733,6 +735,7 @@
 		/obj/item/medevac_beacon,
 		/obj/item/roller/medevac,
 		/obj/item/bodybag/cryobag,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
 		/obj/item/tool/solderingtool,
 	)
