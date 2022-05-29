@@ -191,7 +191,7 @@
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
-	if(isdead(target))
+	if(target.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
