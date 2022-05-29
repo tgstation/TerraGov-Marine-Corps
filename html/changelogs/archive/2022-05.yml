@@ -460,3 +460,35 @@
   - bugfix: Xenos can now use chat overwatch while resting.
   breadhunt:
   - rscadd: Activated intel computers now show on minimap
+2022-05-29:
+  KornFlaks:
+  - balance: LZ, Colony, and Armored Floodlights have had their lighting power (inverse
+      dropoff) reduced. This means less lighting around the edges of floodlights but
+      will now appear more circular in lit area.
+  - balance: LZ and Colony Floodlights have had their lighting range improved to compensate
+      for increased dropoff in light.
+  - bugfix: Xenos in vents can now see the pipe network overlay.
+  - qol: Xeno theme reduced to Standard with Xeno watermark.
+  - rscdel: Removed images and CSS relating to previous xeno theme.
+  - refactor: Xeno evolution slots displayed in the hive status page now are the actual
+      number of slots.
+  Pariah919:
+  - balance: silo scaling is 2 from 2.5
+  QualityVan:
+  - bugfix: Arrowhead starts recharging again after taking damage
+  - balance: IB won't naturally get worse over time.
+  - balance: Quickclot won't stop IB from slowly increasing bruteloss on the limb
+      it's on. Bic+ina still will.
+  - balance: Bic OD won't slowly cure IB.
+  - bugfix: QCP will always remove internal bleeding so long as you have at least
+      5u injected and no purgatives. Every 5u injection will handle one instance of
+      IB.
+  - rscadd: New health scanner shows an alert if the patient has unscannable reagents
+      in them.
+  - rscadd: Extended nozzle for the standard flamer in the weapon vendor. Shoot fireballs
+      to ignite things from a distance! Up front damage is pretty lacking though.
+  - rscadd: Metal cades upgraded with caustic armor can't have xeno acid applied.
+  Sirsnek15:
+  - qol: Adds suit outer storage back to labcoats
+  goose4429:
+  - bugfix: Added missing equipment to Valhalla vendors

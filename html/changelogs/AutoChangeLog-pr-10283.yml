@@ -1,4 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - refactor: "Xeno evolution slots displayed in the hive status page now are the actual number of slots."

@@ -1,7 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - balance: "IB won't naturally get worse over time."
-  - balance: "Quickclot won't stop IB from slowly increasing bruteloss on the limb it's on. Bic+ina still will."
-  - balance: "Bic OD won't slowly cure IB."
-  - bugfix: "QCP will always remove internal bleeding so long as you have at least 5u injected and no purgatives. Every 5u injection will handle one instance of IB."
