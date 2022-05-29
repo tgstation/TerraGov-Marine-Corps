@@ -152,7 +152,7 @@
 	if(!ishuman(H))
 		to_chat(user, span_warning("You can't defibrilate [H]. You don't even know where to put the paddles!"))
 		return
-	if(dcell.charge <= super_charge ? charge_cost * SUPER_CHARGE_MULTIPLIER_COST : charge_cost)
+	if(dcell.charge <= (super_charge ? charge_cost * SUPER_CHARGE_MULTIPLIER_COST : charge_cost))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery too low. Cannot analyze nor administer shock."))
 		to_chat(user, maybe_message_recharge_hint())
 		return
