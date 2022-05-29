@@ -226,13 +226,17 @@ REAGENT SCANNER
 		data["body_temperature"] = "[round(human_patient.bodytemperature*1.8-459.67, 0.1)] degrees F ([round(human_patient.bodytemperature-T0C, 0.1)] degrees C)"
 		data["pulse"] = "[human_patient.get_pulse(GETPULSE_TOOL)] bpm"
 		data["implants"] = unknown_implants
-
-	if (!isrobot(patient) && (patient.getBrainLoss() >= 100 || !patient.has_brain()))
-		data["brain_damage"] = "Subject is brain dead"
-	else if (patient.getBrainLoss() >= 60)
-		data["brain_damage"] = "Severe brain damage detected. Subject likely to have intellectual disabilities."
-	else if (patient.getBrainLoss() >= 10)
-		data["brain_damage"] = "<b>Significant brain damage</b> detected. Subject may have had a concussion."
+		var/damaged_organs = list()
+		for(var/datum/internal_organ/organ AS in human_patient.internal_organs)
+			if(organ.organ_status == ORGAN_HEALTHY)
+				continue
+			var/current_organ = list(
+				"name" = organ.name,
+				"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
+				"damage" = organ.damage
+			)
+			damaged_organs += list(current_organ)
+		data["damaged_organs"] = damaged_organs
 
 	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
 		if(!patient.key)

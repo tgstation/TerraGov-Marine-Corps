@@ -22,7 +22,7 @@ export const MedScanner = (props, context) => {
     limb_data_lists,
     limbs_damaged,
 
-    brain_damage,
+    damaged_organs,
     ssd,
 
     blood_type,
@@ -45,11 +45,6 @@ export const MedScanner = (props, context) => {
           {hugged ? (
             <NoticeBox danger>
               Patient has been implanted with an alien embryo!
-            </NoticeBox>
-          ) : null}
-          {brain_damage ? (
-            <NoticeBox warning>
-              {brain_damage}
             </NoticeBox>
           ) : null}
           {ssd ? (
@@ -286,6 +281,25 @@ export const MedScanner = (props, context) => {
             </LabeledList>
           </Section>
         ) : null}
+        {damaged_organs.length ? (
+          <Section title="Organ Damaged">
+            <LabeledList>
+              {
+                damaged_organs.map(organ => (
+                  <LabeledList.Item
+                    key={organ.name}
+                    label={organ.name[0].toUpperCase() + organ.name.slice(1)}>
+                    <Box inline
+                      color={organ.status === "Bruised" ? "orange" : "red"}
+                      bold={1}>
+                      {organ.status + " with " + organ.damage + " damage"}
+                    </Box>
+                  </LabeledList.Item>
+                ))
+              }
+            </LabeledList>
+          </Section>
+        ) : null }
         {(blood_amount < 560 || internal_bleeding) ?(
           <Section>
             <LabeledList>
