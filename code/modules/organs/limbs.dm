@@ -510,7 +510,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			to_chat(owner, span_notice("You have a high fever!"))
 
 
-//Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
+///Updating wounds. Handles natural damage healing from limb treatments and processes internal wounds
 /datum/limb/proc/update_wounds()
 
 	if((limb_status & LIMB_ROBOT)) //Robotic limbs don't heal or get worse.
@@ -530,7 +530,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (update_icon())
 		owner.UpdateDamageIcon(1)
 
-//Updates BLEEDING status.
+///Updates LIMB_BLEEDING limb flag
 /datum/limb/proc/update_bleeding()
 	if(limb_status & LIMB_ROBOT || owner.species.species_flags & NO_BLOOD)
 		return

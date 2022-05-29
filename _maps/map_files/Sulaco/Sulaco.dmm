@@ -1715,7 +1715,6 @@
 /area/sulaco/showers)
 "agN" = (
 /obj/machinery/door/poddoor/shutters{
-	dir = 2;
 	id = "qm_warehouse";
 	name = "Warehouse Shutters"
 	},
@@ -3702,7 +3701,6 @@
 /area/sulaco/hallway/central_hall2)
 "asT" = (
 /obj/machinery/door/poddoor/shutters{
-	dir = 2;
 	id = "bar";
 	layer = 3.1;
 	name = "Briefing Shutters"
@@ -4009,7 +4007,6 @@
 /area/sulaco/hallway/central_hall2)
 "atX" = (
 /obj/machinery/door/poddoor/shutters{
-	dir = 2;
 	id = "bar";
 	layer = 3.1;
 	name = "Briefing Shutters"
@@ -4647,7 +4644,7 @@
 /area/sulaco/engineering/engine_monitoring)
 "awl" = (
 /obj/machinery/door/poddoor/shutters{
-	dir = 2;
+	dir = 8;
 	id = "bar";
 	layer = 3.9;
 	name = "Briefing Shutters"
@@ -9966,7 +9963,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "bcF" = (
-/obj/machinery/r_n_d/server/core,
+/obj/machinery/r_n_d/server/core/alt,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "bcG" = (
@@ -23622,6 +23619,16 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
+"ukn" = (
+/obj/machinery/door/poddoor/shutters{
+	id = "bar";
+	layer = 3.9;
+	name = "Briefing Shutters"
+	},
+/obj/machinery/door/firedoor,
+/obj/structure/window/framed/mainship/gray/toughened,
+/turf/open/floor/plating/platebotc,
+/area/sulaco/briefing)
 "ukL" = (
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_2)
@@ -24379,7 +24386,6 @@
 /area/sulaco/medbay/storage)
 "vtA" = (
 /obj/machinery/door/poddoor/shutters{
-	dir = 2;
 	id = "qm_warehouse";
 	name = "Warehouse Shutters"
 	},
@@ -58370,7 +58376,7 @@ awl
 asT
 atX
 asT
-awl
+ukn
 akW
 azd
 wYN

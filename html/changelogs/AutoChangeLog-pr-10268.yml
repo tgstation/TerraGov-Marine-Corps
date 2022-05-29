@@ -1,0 +1,9 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - rscadd: "SG minigun now has ammo boxes which hold 1000 rounds each."
+  - balance: "SG minigun is now perfect and nobody will ever have to balance it again."
+  - balance: "SG ammo factory refills are now cheaper but produce less."
+  - balance: "SG-29 drum now holds 250."
+  - balance: "All night vision goggles now use LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE"
+  - bugfix: "You can no longer buy T-25 refills"

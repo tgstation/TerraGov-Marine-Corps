@@ -1,0 +1,4 @@
+author: "KornFlaks"
+delete-after: True
+changes: 
+  - bugfix: "Balloon alerts resulting from an action targeting the ground no longer spams balloon alerts."
