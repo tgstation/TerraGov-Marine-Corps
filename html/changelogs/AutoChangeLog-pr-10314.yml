@@ -1,0 +1,6 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - code_imp: "flamer_fire_act gets a new argument that, among other things, means x-fuel is better than default at burning non-mob stuff."
+  - balance: "Flamers chew through resin faster."
+  - balance: "Miniflamers are weaker against mobs, but the same as before against resin."
