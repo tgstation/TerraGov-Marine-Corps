@@ -129,9 +129,11 @@
 	user.visible_message(span_notice("[user] starts applying \the [tool] to [target]'s [affected.encased]."), \
 	span_notice("You start applying \the [tool] to [target]'s [affected.encased]."))
 	target.custom_pain("Something hurts horribly in your [affected.display_name]!",1)
+	target.balloon_alert_to_viewers("Applying gel...")
 	..()
 
 /datum/surgery_step/open_encased/mend/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] applied \the [tool] to [target]'s [affected.encased]."), \
 	span_notice("You applied \the [tool] to [target]'s [affected.encased]."))
+	target.balloon_alert_to_viewers("Success")
 	affected.surgery_open_stage = 2
