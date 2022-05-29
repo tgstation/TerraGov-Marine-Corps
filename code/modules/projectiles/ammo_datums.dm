@@ -2291,7 +2291,6 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
 	var/danger_message = span_danger("A glob of acid lands with a splat and explodes into noxious fumes!")
 	armor_type = "bio"
-	accuracy_var_high = 10
 	max_range = 30
 	damage = 50
 	damage_type = STAMINA
