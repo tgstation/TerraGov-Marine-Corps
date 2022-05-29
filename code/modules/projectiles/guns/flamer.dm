@@ -267,7 +267,7 @@
 			var/mob/living/carbon/xenomorph/xeno_caught = mob_caught
 			if(CHECK_BITFIELD(xeno_caught.xeno_caste.caste_flags, CASTE_FIRE_IMMUNE))
 				continue
-		
+
 		else if(ishuman(mob_caught))
 			var/mob/living/carbon/human/human_caught = mob_caught
 			if(user)
@@ -323,6 +323,7 @@
 	pixel_shift_y = 18
 
 	mob_flame_damage_mod = 1
+	burn_level_mod = 0.6
 	flame_max_range = 4
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
@@ -570,7 +571,7 @@
 		qdel(src)
 		return
 
-	T.flamer_fire_act(burnlevel, firelevel)
+	T.flamer_fire_act(burnlevel)
 
 	var/j = 0
 	for(var/i in T)
@@ -579,13 +580,13 @@
 		var/atom/A = i
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
 			continue
-		A.flamer_fire_act(burnlevel, firelevel)
+		A.flamer_fire_act(burnlevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 
 
 // override this proc to give different idling-on-fire effects
-/mob/living/flamer_fire_act(burnlevel, firelevel)
+/mob/living/flamer_fire_act(burnlevel)
 	if(!burnlevel)
 		return
 	var/fire_mod = get_fire_resist()
@@ -604,16 +605,16 @@
 	to_chat(src, span_warning("You are burned!"))
 
 
-/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	. = ..()
 	updatehealth()
 
-/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel)
 	to_chat(src, span_xenowarning("Our extra-thick exoskeleton protects us from the flames."))
 
-/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
 	if(stat)
 		return
 	plasma_stored = xeno_caste.plasma_max

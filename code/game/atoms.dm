@@ -417,8 +417,8 @@ directive is properly returned.
 	return //For handling the effects of explosions on contents that would not normally be effected
 
 
-//Generalized Fire Proc.
-/atom/proc/flamer_fire_act()
+///Generalized Fire Proc. Burn level is the base fire damage being received.
+/atom/proc/flamer_fire_act(burnlevel)
 	return
 
 
