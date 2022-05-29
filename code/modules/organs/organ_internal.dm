@@ -346,6 +346,13 @@
 	vital = TRUE
 	organ_id = ORGAN_BRAIN
 
+/datum/internal_organ/brain/set_organ_status()
+	var/old_organ_status = organ_status
+	. = ..()
+	if(!.)
+		return
+	owner.skills.global_skill_modificator += old_organ_status - organ_status
+
 /datum/internal_organ/brain/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
 	removed_type = /obj/item/organ/brain/prosthetic
