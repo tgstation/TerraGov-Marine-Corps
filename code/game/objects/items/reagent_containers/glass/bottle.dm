@@ -161,13 +161,6 @@
 	icon_state = "bottle17"
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 60)
 
-/obj/item/reagent_containers/glass/bottle/peridaxon
-	name = "\improper Peridaxon bottle"
-	desc = "A small bottle. Contains Peridaxon - Used to treat internal organ damage."
-	icon_state = "bottle4"
-	volume = 20
-	list_reagents = list(/datum/reagent/medicine/peridaxon = 20)
-
 /obj/item/reagent_containers/glass/bottle/tramadol
 	name = "\improper Tramadol bottle"
 	desc = "A small bottle. Contains Tramadol - Used as a basic painkiller."

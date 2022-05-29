@@ -398,13 +398,6 @@
 		/datum/reagent/hypervene = 60,
 	)
 
-/obj/item/reagent_containers/hypospray/advanced/peridaxon
-	name = "Peridaxon hypospray"
-	desc = "A hypospray loaded with peridaxon."
-	list_reagents = list(
-		/datum/reagent/medicine/peridaxon = 60,
-	)
-
 /obj/item/reagent_containers/hypospray/advanced/quickclot
 	name = "Quickclot hypospray"
 	desc = "A hypospray loaded with quickclot."

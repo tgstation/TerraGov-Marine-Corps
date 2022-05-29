@@ -222,14 +222,6 @@
 	volume = 12
 	list_reagents = list(/datum/reagent/medicine/neuraline = 12)
 
-/obj/item/reagent_containers/hypospray/autoinjector/peridaxon
-	name = "peridaxon autoinjector"
-	desc = "An auto-injector loaded with 3 doses of Peridaxon, a chemical that suppresses organ damage."
-	icon_state = "autoinjector-6"
-	list_reagents = list(
-		/datum/reagent/medicine/peridaxon = 30,
-	)
-
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "peridaxon Plus autoinjector"
 	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"

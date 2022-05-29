@@ -192,8 +192,6 @@
 /datum/internal_organ/heart/process()
 	. = ..()
 
-	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		return
 	if(organ_status == ORGAN_BRUISED && prob(5))
 		owner.emote("me", 1, "grabs at [owner.p_their()] chest!")
 	else if(organ_status == ORGAN_BROKEN && prob(20))
@@ -224,8 +222,6 @@
 		if(prob(5))
 			owner.emote("cough")		//respitory tract infection
 
-	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		return
 	if((organ_status == ORGAN_BRUISED && prob(5)) || (organ_status == ORGAN_BROKEN && prob(20)))
 		owner.emote("me", 1, "gasps for air!")
 
@@ -282,11 +278,10 @@
 
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3
-		if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-			if(organ_status == ORGAN_BRUISED)
-				filter_effect -= 1
-			if(organ_status == ORGAN_BROKEN)
-				filter_effect -= 2
+		if(organ_status == ORGAN_BRUISED)
+			filter_effect -= 1
+		if(organ_status == ORGAN_BROKEN)
+			filter_effect -= 2
 
 		// Do some reagent filtering/processing.
 		for(var/datum/reagent/R in owner.reagents.reagent_list)
@@ -303,9 +298,6 @@
 		if(damage < 5 && prob(25))
 			owner.adjustToxLoss(-0.5)
 
-		//Deal toxin damage if damaged
-		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-			return
 		if(organ_status == ORGAN_BRUISED && prob(25))
 			owner.adjustToxLoss(0.1 * (damage/2))
 		else if(organ_status == ORGAN_BROKEN && prob(50))
@@ -330,15 +322,12 @@
 	// This should probably be expanded in some way, but fucked if I know
 	// what else kidneys can process in our reagent list.
 	var/datum/reagent/coffee = locate(/datum/reagent/consumable/drink/coffee) in owner.reagents.reagent_list
-	if(coffee && !owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+	if(coffee)
 		if(organ_status == ORGAN_BRUISED)
 			owner.adjustToxLoss(0.1 * PROCESS_ACCURACY)
 		else if(organ_status == ORGAN_BROKEN)
 			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 
-	//Deal toxin damage if damaged
-	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		return
 	if(organ_status == ORGAN_BRUISED && prob(25))
 		owner.adjustToxLoss(0.1 * (damage/3))
 	else if(organ_status == ORGAN_BROKEN && prob(50))
@@ -378,8 +367,6 @@
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
-	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		return
 	if(organ_status == ORGAN_BRUISED)
 		owner.set_blurriness(20)
 	if(organ_status == ORGAN_BROKEN)
