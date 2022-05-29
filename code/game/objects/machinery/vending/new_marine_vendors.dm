@@ -666,14 +666,15 @@
 
 /obj/effect/essentials_set/medic
 	spawned_gear_list = list(
-		/obj/item/defibrillator,
-		/obj/item/medevac_beacon,
-		/obj/item/roller/medevac,
-		/obj/item/roller,
 		/obj/item/bodybag/cryobag,
+		/obj/item/defibrillator,
+		/obj/item/healthanalyzer,
+		/obj/item/roller/medevac,
+		/obj/item/medevac_beacon,
+		/obj/item/roller,
 		/obj/item/tweezers,
-		/obj/item/healthanalyzer = 1,
-		/obj/item/reagent_containers/hypospray/advanced/big/oxycodone = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
+		/obj/item/storage/firstaid/adv,
 		/obj/item/clothing/glasses/hud/health,
 	)
 
