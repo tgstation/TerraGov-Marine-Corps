@@ -740,12 +740,13 @@ const ActionButtons = (props: ActionButtonProps, context) => {
     fluid
     height="16px"
     fontSize={0.75}
-    tooltip={observing ? "Cancel" : "Overwatch"}
+    tooltip={observing ? "Cancel" : "Dbl Click to set compass."}
     align="center"
     verticalAlignContent="middle"
     icon="eye"
     selected={observing}
-    onClick={() => act('Follow', { xeno: props.target_ref })} />);
+    onClick={() => act('Follow', { xeno: props.target_ref })}
+    onDblClick={() => act('Compass', { xeno: props.target_ref })} />);
 
   if (props.is_queen) {
     return (

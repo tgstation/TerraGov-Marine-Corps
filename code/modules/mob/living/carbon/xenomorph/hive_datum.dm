@@ -186,6 +186,11 @@
 			if(!isxeno(usr))
 				return
 			xeno_target.show_empty_castes = params["new_show_value"]
+		if("Compass")
+			if(!isxeno(usr))
+				return
+			var/mob/living/carbon/xenomorph/current_user = usr;
+			current_user.set_tracked(xeno_target)
 
 
 /datum/hive_status/proc/get_xeno_location(mob/living/carbon/xenomorph/xeno)
