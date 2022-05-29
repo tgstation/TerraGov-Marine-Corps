@@ -1,3 +1,5 @@
+#define SUPER_CHARGE_MULTIPLIER_COST 10
+
 /obj/item/defibrillator
 	name = "emergency defibrillator"
 	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead."
@@ -10,12 +12,13 @@
 	throwforce = 6
 	w_class = WEIGHT_CLASS_NORMAL
 
-	var/ready = FALSE
 	var/damage_threshold = 8 //This is the maximum non-oxy damage the defibrillator will heal to get a patient above -100, in all categories
-	var/charge_cost = 66 //How much energy is used.
+	var/charge_cost = 500 //How much energy is used.
 	var/obj/item/cell/dcell = null
 	var/datum/effect_system/spark_spread/sparks
 	var/defib_cooldown = 0 //Cooldown for toggling the defib
+	/// If we are attempting a super charged defibbrilation
+	var/super_charge = FALSE
 
 
 /obj/item/defibrillator/suicide_act(mob/user)
@@ -28,7 +31,7 @@
 	sparks = new
 	sparks.set_up(5, 0, src)
 	sparks.attach(src)
-	set_dcell(new /obj/item/cell())
+	set_dcell(new /obj/item/cell/high())
 	update_icon()
 
 
@@ -41,9 +44,7 @@
 
 
 /obj/item/defibrillator/update_icon()
-	icon_state = "defib"
-	if(ready)
-		icon_state += "_out"
+	icon_state = "defib_out"
 	if(dcell?.charge)
 		switch(round(dcell.charge * 100 / dcell.maxcharge))
 			if(67 to INFINITY)
@@ -78,29 +79,6 @@
 	if(!message)
 		return
 	return span_notice("[message] You can click-drag defibrillator on corpsman backpack to recharge it.")
-
-
-/obj/item/defibrillator/attack_self(mob/living/carbon/human/user)
-	if(!istype(user))
-		return
-	if(defib_cooldown > world.time)
-		return
-
-	//Job knowledge requirement
-	var/skill = user.skills.getRating("medical")
-	if(skill < SKILL_MEDICAL_PRACTICED)
-		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
-		span_notice("You fumble around figuring out how to use [src]."))
-		if(!do_after(user, SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill), TRUE, src, BUSY_ICON_UNSKILLED)) // 3 seconds with medical skill, 5 without
-			return
-
-	defib_cooldown = world.time + 2 SECONDS
-	ready = !ready
-	user.visible_message(span_notice("[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"]."),
-	span_notice("You turn [src] [ready? "on and open the cover" : "off and close the cover"]."))
-	playsound(get_turf(src), "sparks", 25, TRUE, 4)
-	update_icon()
-
 
 ///Wrapper to guarantee powercells are properly nulled and avoid hard deletes.
 /obj/item/defibrillator/proc/set_dcell(obj/item/cell/new_cell)
@@ -141,6 +119,11 @@
 
 	return TRUE
 
+/obj/item/defibrillator/attack_alternate(mob/living/carbon/human/H, mob/living/carbon/human/user)
+	super_charge = TRUE
+	attack(H, user)
+	super_charge = FALSE
+
 /obj/item/defibrillator/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
 	if(user.do_actions) //Currently deffibing
 		return
@@ -150,23 +133,27 @@
 
 	defib_cooldown = world.time + 2 SECONDS
 
+	var/defib_heal_amt = damage_threshold
+
 	//job knowledge requirement
 	var/skill = user.skills.getRating("medical")
 	if(skill < SKILL_MEDICAL_PRACTICED)
+		if(super_charge)
+			to_chat(src, span_warning("You don't know how to super charge!"))
+			return
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
 		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill) // 3 seconds with medical skill, 5 without
 		if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
 			return
+	else
+		defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
 	if(!ishuman(H))
 		to_chat(user, span_warning("You can't defibrilate [H]. You don't even know where to put the paddles!"))
 		return
-	if(!ready)
-		to_chat(user, span_warning("Take [src]'s paddles out first."))
-		return
-	if(dcell.charge <= charge_cost)
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery depleted. Cannot analyze nor administer shock."))
+	if(dcell.charge <= super_charge ? charge_cost * SUPER_CHARGE_MULTIPLIER_COST : charge_cost)
+		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Internal battery too low. Cannot analyze nor administer shock."))
 		to_chat(user, maybe_message_recharge_hint())
 		return
 	if(H.stat != DEAD)
@@ -204,7 +191,6 @@
 
 	//Do this now, order doesn't matter
 	sparks.start()
-	dcell.use(charge_cost)
 	update_icon()
 	playsound(get_turf(src), 'sound/items/defib_release.ogg', 25, 1)
 	user.visible_message(span_notice("[user] shocks [H] with the paddles."),
@@ -250,12 +236,19 @@
 
 	//At this point, the defibrillator is ready to work
 	if(!issynth(H) && total_damage > H.get_death_threshold())
-		var/supplementary_damage = total_damage - (H.maxHealth - H.get_death_threshold()) + 5
-		H.adjustBruteLoss(-(H.getBruteLoss()/total_damage) * supplementary_damage)
-		H.adjustFireLoss(-(H.getFireLoss()/total_damage) * supplementary_damage)
-		H.adjustToxLoss(-(H.getToxLoss()/total_damage) * supplementary_damage)
+		if(super_charge)
+			var/supplementary_damage = total_damage - (H.maxHealth - H.get_death_threshold()) + 5
+			H.adjustBruteLoss(-(H.getBruteLoss()/total_damage) * supplementary_damage)
+			H.adjustFireLoss(-(H.getFireLoss()/total_damage) * supplementary_damage)
+			H.adjustToxLoss(-(H.getToxLoss()/total_damage) * supplementary_damage)
+		else
+			H.adjustBruteLoss(-defib_heal_amt)
+			H.adjustFireLoss(-defib_heal_amt)
+			H.adjustToxLoss(-defib_heal_amt)
 		H.adjustOxyLoss(-H.getOxyLoss())
 		H.updatehealth() //Needed for the check to register properly
+
+	dcell.use(super_charge ? charge_cost * SUPER_CHARGE_MULTIPLIER_COST : charge_cost)
 
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful."))
 	H.set_stat(UNCONSCIOUS)

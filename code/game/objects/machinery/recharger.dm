@@ -42,12 +42,6 @@
 		to_chat(user, span_warning("The [name] blinks red as you try to insert the item!"))
 		return
 
-	if(istype(I, /obj/item/defibrillator))
-		var/obj/item/defibrillator/D = I
-		if(D.ready)
-			to_chat(user, span_warning("It won't fit, put the paddles back into [D] first!"))
-			return
-
 	if(!user.transferItemToLoc(I, src))
 		return
 
