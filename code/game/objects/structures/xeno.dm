@@ -169,6 +169,10 @@
 		Open()
 		return TRUE
 
+/obj/structure/mineral_door/resin/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(!state && ispath(proj.ammo.type, /datum/ammo/xeno/boiler_gas))
+		Open()
+	return ..()
 
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	var/turf/cur_loc = M.loc
