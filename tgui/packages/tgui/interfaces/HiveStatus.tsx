@@ -1,6 +1,6 @@
 import { useBackend, useLocalState } from '../backend';
 import { Window } from '../layouts';
-import { Button, Flex, Divider, Box, Section, Collapsible, ProgressBar, Tooltip } from '../components';
+import { Button, Flex, Divider, Box, Section, ProgressBar, Tooltip, Collapsible } from '../components';
 import { round } from 'common/math';
 
 type InputPack = {
@@ -34,8 +34,12 @@ type InputPack = {
   user_purchase_perms: boolean,
   user_maturity: number,
   user_next_mat_level: number,
-  user_show_empty: boolean,
   user_tracked: string,
+  user_show_empty: boolean,
+  user_show_general: boolean,
+  user_show_population: boolean,
+  user_show_xeno_list: boolean,
+  user_show_structures: boolean,
 };
 
 type XenoData = {
@@ -74,8 +78,15 @@ type PrimoUpgrades = {
 }
 
 export const HiveStatus = (_props, context) => {
-  const { data } = useBackend<InputPack>(context);
-  const { hive_name } = data;
+  const { act, data } = useBackend<InputPack>(context);
+  const {
+    hive_name,
+    user_ref,
+    user_show_general,
+    user_show_population,
+    user_show_xeno_list,
+    user_show_structures,
+  } = data;
 
   return (
     <Window
@@ -85,23 +96,78 @@ export const HiveStatus = (_props, context) => {
       width={700}
       height={800}>
       <Window.Content scrollable>
-        <Collapsible title="General Information" open>
+        <CachedCollapsible
+          title="General Information"
+          open={user_show_general}
+          onClickXeno={() => act('ToggleGeneral',
+            { xeno: user_ref,
+              new_value: user_show_general ? 0 : 1 })}>
           <GeneralInfo />
-        </Collapsible>
-        <Collapsible title="Hive Population" open>
+        </CachedCollapsible>
+        <Divider />
+        <CachedCollapsible
+          title="Hive Population"
+          open={user_show_population}
+          onClickXeno={() => act('TogglePopulation',
+            { xeno: user_ref,
+              new_value: user_show_population ? 0 : 1 })}>
           <PopulationPyramid />
-        </Collapsible>
+        </CachedCollapsible>
         <Divider />
-        <Collapsible title="Xenomorph List" open>
+        <CachedCollapsible
+          title="Xenomorph List"
+          open={user_show_xeno_list}
+          onClickXeno={() => act('ToggleXenoList',
+            { xeno: user_ref,
+              new_value: user_show_xeno_list ? 0 : 1 })}>
           <XenoList />
-        </Collapsible>
+        </CachedCollapsible>
         <Divider />
-        <Collapsible title="Hive Structures" open>
+        <CachedCollapsible
+          title="Hive Structures"
+          open={user_show_structures}
+          onClickXeno={() => act('ToggleStructures',
+            { xeno: user_ref,
+              new_value: user_show_structures ? 0 : 1 })}>
           <StructureList />
-        </Collapsible>
+        </CachedCollapsible>
         <Divider />
       </Window.Content>
     </Window>
+  );
+};
+
+const CachedCollapsible = (props: {title: string, open: boolean,
+  children?: JSX.Element, onClickXeno: any}, context) => {
+  const { data } = useBackend<InputPack>(context);
+  const { user_xeno } = data;
+
+  if (!user_xeno) {
+    return (
+      <Collapsible open title={props.title}>
+        {props.children}
+      </Collapsible>
+    );
+  }
+
+  return (
+    <Box mb={1}>
+      <div className="Table">
+        <div className="Table__cell">
+          <Button
+            fluid
+            icon={props.open ? 'chevron-down' : 'chevron-right'}
+            onClick={props.onClickXeno}>
+            {props.title}
+          </Button>
+        </div>
+      </div>
+      {!!props.open && (
+        <Box mt={1}>
+          {props.children}
+        </Box>
+      )}
+    </Box>
   );
 };
 
@@ -393,7 +459,7 @@ const PopulationPyramid = (_props, context) => {
       <Button.Checkbox
         checked={user_show_empty}
         tooltip="Display castes with no members"
-        onClick={() => act("ToggleEmpty", { xeno: user_ref, new_show_value: user_show_empty ? 0 : 1 })}>
+        onClick={() => act("ToggleEmpty", { xeno: user_ref, new_value: user_show_empty ? 0 : 1 })}>
         Show Empty
       </Button.Checkbox>
     );
