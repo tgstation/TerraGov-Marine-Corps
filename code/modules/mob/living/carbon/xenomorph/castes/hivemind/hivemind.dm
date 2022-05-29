@@ -103,6 +103,9 @@
 /mob/living/carbon/xenomorph/hivemind/lay_down()
 	return
 
+/mob/living/carbon/xenomorph/hivemind/set_resting()
+	return
+
 /mob/living/carbon/xenomorph/hivemind/change_form()
 	if(status_flags & INCORPOREAL && health != maxHealth)
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
