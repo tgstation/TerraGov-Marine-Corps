@@ -150,8 +150,6 @@
 
 	defib_cooldown = world.time + 2 SECONDS
 
-	var/defib_heal_amt = damage_threshold
-
 	//job knowledge requirement
 	var/skill = user.skills.getRating("medical")
 	if(skill < SKILL_MEDICAL_PRACTICED)
@@ -160,8 +158,6 @@
 		var/fumbling_time = SKILL_TASK_AVERAGE - (SKILL_TASK_VERY_EASY * skill) // 3 seconds with medical skill, 5 without
 		if(!do_after(user, fumbling_time, TRUE, H, BUSY_ICON_UNSKILLED))
 			return
-	else
-		defib_heal_amt *= skill * 0.5 //more healing power when used by a doctor (this means non-trained don't heal)
 
 	if(!ishuman(H))
 		to_chat(user, span_warning("You can't defibrilate [H]. You don't even know where to put the paddles!"))
@@ -220,10 +216,6 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring."))
 		return
 
-	var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
-	if(!issynth(H) && !isrobot(H) && heart && prob(25))
-		heart.take_damage(5) //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
-
 	if((HAS_TRAIT(H, TRAIT_UNDEFIBBABLE ) && !issynth(H)) || H.suiciding) //synthetic species have no expiration date
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much. No remedy possible."))
 		return
@@ -254,17 +246,16 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. No soul detected."))
 		return
 
+	var/total_damage = H.getBruteLoss() + H.getFireLoss() + H.getToxLoss()
+
 	//At this point, the defibrillator is ready to work
-	if(!issynth(H))
-		H.adjustBruteLoss(-defib_heal_amt)
-		H.adjustFireLoss(-defib_heal_amt)
-		H.adjustToxLoss(-defib_heal_amt)
+	if(!issynth(H) && total_damage > H.get_death_threshold())
+		var/supplementary_damage = total_damage - (H.maxHealth - H.get_death_threshold()) + 5
+		H.adjustBruteLoss(-(H.getBruteLoss()/total_damage) * supplementary_damage)
+		H.adjustFireLoss(-(H.getFireLoss()/total_damage) * supplementary_damage)
+		H.adjustToxLoss(-(H.getToxLoss()/total_damage) * supplementary_damage)
 		H.adjustOxyLoss(-H.getOxyLoss())
 		H.updatehealth() //Needed for the check to register properly
-
-	if(H.health <= H.get_death_threshold())
-		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Vital signs are too weak, repair damage and try again."))
-		return
 
 	user.visible_message(span_notice("[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful."))
 	H.set_stat(UNCONSCIOUS)
