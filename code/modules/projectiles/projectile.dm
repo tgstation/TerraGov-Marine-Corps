@@ -678,6 +678,34 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return
 	bullet_act(proj)
 
+//platforms
+/obj/structure/platform/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(!density && !(obj_flags & PROJ_IGNORE_DENSITY)) //structure is passable
+		return FALSE
+	if(src == proj.original_target) //clicking on the structure itself hits the structure
+		return TRUE
+	if(!throwpass)
+		return TRUE
+	if(proj.distance_travelled <= proj.ammo.barricade_clear_distance)
+		return FALSE
+	. = coverage //Hitchance.
+	if(!(cardinal_move & dir)) //The bullet will only hit if the platform and its movement are facing the same direction, as platforms are on the 'lower' turf, so act in the opposite direction to barricades.
+		if(!uncrossing)
+			proj.uncross_scheduled += src
+		return FALSE
+	if (uncrossing)
+		return FALSE
+	if(proj.ammo.flags_ammo_behavior & AMMO_SNIPER || proj.iff_signal || proj.ammo.flags_ammo_behavior & AMMO_ROCKET) //sniper, rockets and IFF rounds are better at getting past cover
+		. *= 0.8
+	if(!anchored)
+		. *= 0.5 //Half the protection from unaffixed structures.
+	///50% better protection when shooting from outside accurate range.
+	if(proj.distance_travelled > proj.ammo.accurate_range)
+		. *= 1.5
+///Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
+	. = min(. , . + 100 - proj.accuracy)
+	return prob(.)
+
 /obj/structure/window/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(proj.ammo.flags_ammo_behavior & AMMO_ENERGY && !opacity)
 		return FALSE
