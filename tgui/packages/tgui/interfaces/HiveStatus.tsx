@@ -20,6 +20,7 @@ type InputPack = {
   hive_primos: PrimoUpgrades[],
   hive_queen_remaining: number,
   hive_queen_max: number,
+  hive_structures: StructureData[],
   // ----- Per xeno info ------
   xeno_info: XenoData[],
   static_info: StaticData[],
@@ -34,6 +35,7 @@ type InputPack = {
   user_maturity: number,
   user_next_mat_level: number,
   user_show_empty: boolean,
+  user_tracked: string,
 };
 
 type XenoData = {
@@ -57,6 +59,14 @@ type StaticData = {
   can_transfer_plasma: boolean,
   evolution_max: number,
 };
+
+type StructureData = {
+  ref: string,
+  name: string,
+  integrity: number,
+  max_integrity: number,
+  location: string,
+}
 
 type PrimoUpgrades = {
   tier: number,
@@ -84,6 +94,10 @@ export const HiveStatus = (_props, context) => {
         <Divider />
         <Collapsible title="Xenomorph List" open>
           <XenoList />
+        </Collapsible>
+        <Divider />
+        <Collapsible title="Hive Structures" open>
+          <StructureList />
         </Collapsible>
         <Divider />
       </Window.Content>
@@ -495,34 +509,6 @@ const default_sort: sort_by = {
   down: true,
 };
 
-const min = (left: number, right: number) => {
-  return left > right ? right : left;
-};
-
-const power = (base: number, risen: number) => {
-  let value = 1, i: number;
-  for (i = 0; i < risen; i++) {
-    value *= base;
-  }
-  return value;
-};
-
-const first_letter = "a".charCodeAt(0);
-
-const HashString = (input: string) => {
-  // Taken from Stack Overflow.
-  let hash = 0, i: number, chr: number;
-  input = input.toLowerCase().replace(/[^a-z]/g, "");
-  const length = min(5, input.length);
-  for (i = 0; i <= length; i++) {
-    // Number of letters in alpha - numerical value of char starting from A
-    chr = 26 - (input.charCodeAt(i) - first_letter);
-    // Generating hash from order of letters, base 26
-    hash += chr * power(26, length - i);
-  }
-  return hash;
-};
-
 const XenoList = (_props, context) => {
   const { act, data } = useBackend<InputPack>(context);
   const {
@@ -531,6 +517,7 @@ const XenoList = (_props, context) => {
     user_ref,
     user_queen,
     user_watched_xeno,
+    user_tracked,
   } = data;
 
   const [
@@ -594,6 +581,11 @@ const XenoList = (_props, context) => {
     ? Number.MAX_SAFE_INTEGER
     : Number.MIN_SAFE_INTEGER;
 
+  if (sortingBy.category === location) {
+    // Sorting value inversed because direction is inversed.
+    xeno_info.sort((a, b) => -a.location.localeCompare(b.location));
+  }
+
   return (
     <Section>
       <Flex direction={sorting_direction}>
@@ -636,7 +628,7 @@ const XenoList = (_props, context) => {
               order = entry.plasma;
               break;
             case location:
-              order = HashString(entry.location);
+              order = 0; // Sorted by xeno_info.sort()
               break;
             default:
               order = 0;
@@ -654,6 +646,7 @@ const XenoList = (_props, context) => {
                 <Flex.Item width={action_width} mr={action_mr}>
                   {user_ref !== entry.ref
                   && <ActionButtons
+                    user_ref={user_ref}
                     target_ref={entry.ref}
                     is_queen={user_queen}
                     watched_xeno={user_watched_xeno}
@@ -685,6 +678,7 @@ const XenoList = (_props, context) => {
                 </Flex.Item>
                 {/* Caste type and nickname */}
                 <Flex.Item width={name_width}
+                  italic={user_tracked === entry.ref && user_ref !== entry.ref}
                   nowrap
                   style={{
                     'overflow': 'hidden',
@@ -727,6 +721,7 @@ const XenoList = (_props, context) => {
 };
 
 type ActionButtonProps = {
+  user_ref: string
   target_ref: string,
   is_queen: boolean,
   watched_xeno: string,
@@ -736,17 +731,24 @@ type ActionButtonProps = {
 const ActionButtons = (props: ActionButtonProps, context) => {
   const { act } = useBackend<InputPack>(context);
   const observing = props.target_ref === props.watched_xeno;
+
+  let timer: NodeJS.Timeout;
   const overwatch_button = (<Button
     fluid
     height="16px"
     fontSize={0.75}
-    tooltip={observing ? "Cancel" : "Dbl Click to set compass."}
+    tooltip={observing ? "Cancel" : "Dbl click to track."}
     align="center"
     verticalAlignContent="middle"
     icon="eye"
     selected={observing}
-    onClick={() => act('Follow', { xeno: props.target_ref })}
-    onDblClick={() => act('Compass', { xeno: props.target_ref })} />);
+    onClick={() => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => act('Follow', { xeno: props.target_ref }), 250); }}
+    onDblClick={() => {
+      clearTimeout(timer);
+      act('Compass', { xeno: props.user_ref, target: props.target_ref });
+    }} />);
 
   if (props.is_queen) {
     return (
@@ -778,5 +780,98 @@ const ActionButtons = (props: ActionButtonProps, context) => {
         {overwatch_button}
       </Flex.Item>
     </Flex>
+  );
+};
+
+const StructureList = (_props, context) => {
+  const { act, data } = useBackend<InputPack>(context);
+
+  const {
+    user_ref,
+    hive_structures,
+    user_tracked,
+  } = data;
+
+  const track_margin = 1;
+  const track_width = "100px";
+  const name_width = "30%"; // Matches xeno list name width.
+  const integrity_width = "60px";
+  const max_integ_width = "60px";
+
+  hive_structures.sort((a, b) => a.name.localeCompare(b.name));
+  hive_structures.sort((a, b) => {
+    const silo_a = a.name.includes("silo");
+    const silo_b = b.name.includes("silo");
+    if (silo_a && silo_b) return 0;
+    if (silo_a && !silo_b) return -1;
+    if (!silo_a && silo_b) return 1;
+    return 0;
+  });
+
+  return (
+    // Not sortable. Silos first then mixed turrets.
+    <Section>
+      <Flex direction="column">
+        <Flex.Item>
+          <Flex bold> {/* Header */}
+            <Flex.Item width={track_width} mr={track_margin} /> {/* Track */}
+            <Flex.Item width={name_width}>
+              Name
+            </Flex.Item>
+            <Flex.Item width={integrity_width}> {/* Integrity */}
+              Health
+            </Flex.Item>
+            <Flex.Item width={max_integ_width}> {/* Max integrity */}
+              Max
+            </Flex.Item>
+            <Flex.Item grow>
+              Location
+            </Flex.Item>
+          </Flex>
+        </Flex.Item>
+        <Flex.Item><Divider /></Flex.Item>
+        <Flex.Item>
+          {hive_structures.map((entry) => {
+            return (
+              <Flex key={entry.ref} mb={1}>
+                <Flex.Item width={track_width} mr={track_margin} align="center">
+                  <Button
+                    fluid
+                    height="16px"
+                    fontSize={0.8}
+                    tooltip={"Track structure"}
+                    align="center"
+                    verticalAlignContent="middle"
+                    selected={user_tracked === entry.ref}
+                    onClick={() => act('Compass', {
+                      xeno: user_ref,
+                      target: entry.ref,
+                    })}>
+                    Track
+                  </Button>
+                </Flex.Item>
+                <Flex.Item width={name_width}
+                  italic={user_tracked === entry.ref}>
+                  {entry.name}
+                </Flex.Item>
+                <Flex.Item width={integrity_width}>
+                  {entry.integrity < entry.max_integrity / 3
+                    ? <Box bold textColor="bad">{entry.integrity}</Box>
+                    : entry.integrity < entry.max_integrity / 3 * 2
+                      ? <Box textColor="average">{entry.integrity}</Box>
+                      : <Box textColor="good">{entry.integrity}</Box>}
+                </Flex.Item>
+                <Flex.Item width={max_integ_width}>
+                  {entry.max_integrity}
+                </Flex.Item>
+                <Flex.Item grow>
+                  {entry.location}
+                </Flex.Item>
+              </Flex>
+            );
+          })}
+        </Flex.Item>
+      </Flex>
+    </Section>
   );
 };

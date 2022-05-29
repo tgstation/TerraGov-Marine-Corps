@@ -90,6 +90,26 @@
 			"purchased" = purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[tier]].times_bought
 		))
 
+	.["hive_structures"] = list()
+	// Silos first.
+	for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
+		.["hive_structures"] += list(list(
+			"ref" = REF(resin_silo),
+			"name" = resin_silo.name,
+			"integrity" = resin_silo.obj_integrity,
+			"max_integrity" = resin_silo.max_integrity,
+			"location" = get_xeno_location(resin_silo),
+		))
+	// Then turrets.
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+		.["hive_structures"] += list(list(
+			"ref" = REF(turret),
+			"name" = turret.name,
+			"integrity" = turret.obj_integrity,
+			"max_integrity" = turret.max_integrity,
+			"location" = get_xeno_location(turret),
+		))
+
 	.["xeno_info"] = list()
 	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
 		if(initial(xeno.tier) == XENO_TIER_MINION)
@@ -122,8 +142,9 @@
 	.["user_evolution"] = isxeno(user) ? xeno_user.evolution_stored : 0
 
 	.["user_maturity"] = isxeno(user) ? xeno_user.upgrade_stored : 0
-	.["user_next_mat_level"] = isxeno(user) ? (xeno_user.upgrade_possible() ? xeno_user.xeno_caste.upgrade_threshold : 0) : 0
+	.["user_next_mat_level"] = isxeno(user) && xeno_user.upgrade_possible() ? xeno_user.xeno_caste.upgrade_threshold : 0
 	.["user_show_empty"] = isxeno(user) ? xeno_user.show_empty_castes : 0
+	.["user_tracked"] = isxeno(user) && !isnull(xeno_user.tracked) ? REF(xeno_user.tracked) : ""
 
 /datum/hive_status/ui_static_data(mob/user)
 	. = ..()
@@ -187,13 +208,19 @@
 				return
 			xeno_target.show_empty_castes = params["new_show_value"]
 		if("Compass")
-			if(!isxeno(usr))
+			var/atom/target = locate(params["target"])
+			if(isobserver(usr))
+				var/mob/dead/observer/ghost = usr
+				ghost.ManualFollow(target)
+			else if(!isxeno(usr))
 				return
-			var/mob/living/carbon/xenomorph/current_user = usr;
-			current_user.set_tracked(xeno_target)
+			if(target != xeno_target.tracked)
+				xeno_target.set_tracked(target)
+			else
+				xeno_target.clean_tracked()
 
-
-/datum/hive_status/proc/get_xeno_location(mob/living/carbon/xenomorph/xeno)
+/// Returns the string location of the xeno.
+/datum/hive_status/proc/get_xeno_location(atom/xeno)
 	. = "Unknown"
 	if(is_centcom_level(xeno.z))
 		return
