@@ -256,7 +256,7 @@
 
 	var/datum/hive_status/hive
 	///Cached state for showing empty in the hive status UI.
-	var/show_empty_castes = TRUE
+	var/show_empty_castes = FALSE
 	///Cached state for displaying general tab in the hive status UI.
 	var/show_general = TRUE
 	///Cached state for displaying hive population tab in the hive status UI.

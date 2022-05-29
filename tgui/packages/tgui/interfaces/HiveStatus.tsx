@@ -405,7 +405,7 @@ const PopulationPyramid = (_props, context) => {
   const [
     showEmpty,
     toggleEmpty,
-  ] = useLocalState(context, "showEmpty", true);
+  ] = useLocalState(context, "showEmpty", false);
 
   const primos: boolean[] = []; // Index is tier.
   const pyramid_data: PyramidCalc[] = [];
@@ -448,9 +448,9 @@ const PopulationPyramid = (_props, context) => {
       return (
         <Button.Checkbox
           checked={showEmpty}
-          tooltip="Display castes with no members"
+          tooltip="Display all castes"
           onClick={() => toggleEmpty(!showEmpty)}>
-          Show Empty
+          Show All
         </Button.Checkbox>
       );
     }
@@ -458,9 +458,9 @@ const PopulationPyramid = (_props, context) => {
     return (
       <Button.Checkbox
         checked={user_show_empty}
-        tooltip="Display castes with no members"
+        tooltip="Display all castes"
         onClick={() => act("ToggleEmpty", { xeno: user_ref, new_value: user_show_empty ? 0 : 1 })}>
-        Show Empty
+        Show All
       </Button.Checkbox>
     );
   };
