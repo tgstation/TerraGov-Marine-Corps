@@ -53,7 +53,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "aap" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -93,16 +93,18 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "aav" = (
-/turf/open/floor/tile/dark/yellow2/corner{
+/turf/closed/wall/r_wall,
+/area/ice_colony/exterior/surface/valley/north)
+"aaw" = (
+/obj/structure/closet/fireaxecabinet{
+	pixel_y = 32
+	},
+/turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/ice_colony/surface/engineering/electric)
-"aaw" = (
-/obj/item/weapon/gun/pistol/highpower,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "aax" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 4
@@ -158,15 +160,13 @@
 /obj/effect/landmark/corpsespawner/engineer/rig,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "aaL" = (
-/turf/closed/wall/r_wall,
-/area/ice_colony/exterior/surface/valley/north)
-"aaM" = (
+/obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark/yellow2{
-	dir = 1
+	dir = 5
 	},
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "aaN" = (
 /obj/machinery/light{
 	dir = 4
@@ -174,7 +174,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "aaO" = (
 /obj/effect/turf_overlay/icerock{
 	dir = 1
@@ -300,7 +300,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "abq" = (
 /obj/machinery/light{
 	dir = 1
@@ -312,10 +312,12 @@
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 1
 	},
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "abs" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/emails,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "abt" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/straight{
@@ -380,7 +382,7 @@
 /turf/open/floor/tile/dark/yellow2/corner{
 	dir = 4
 	},
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "abM" = (
 /turf/closed/ice/junction{
 	dir = 4
@@ -423,7 +425,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "abW" = (
 /turf/closed/ice/junction,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -432,13 +434,13 @@
 	dir = 5
 	},
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "abY" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
+/obj/structure/table/mainship/nometal,
+/obj/item/blueprints,
+/obj/item/clothing/ears/earmuffs,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "abZ" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 1
@@ -459,7 +461,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "acd" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/corner,
@@ -469,9 +471,9 @@
 /turf/closed/ice/thin/end,
 /area/ice_colony/exterior/surface/valley/northwest)
 "acf" = (
-/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/command)
 "ach" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/corner{
@@ -479,13 +481,12 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "aci" = (
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
-/turf/open/floor/tile/dark/yellow2{
-	dir = 1
-	},
-/area/ice_colony/surface/engineering/electric)
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/command)
 "acj" = (
 /turf/closed/ice_rock/corners{
 	dir = 10
@@ -552,7 +553,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "acv" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 6
@@ -562,30 +563,42 @@
 /obj/structure/rack,
 /obj/item/storage/toolbox/electrical,
 /turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "acx" = (
 /obj/machinery/light{
 	light_color = "#da2f1b"
 	},
 /obj/structure/rack,
 /turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "acy" = (
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "acz" = (
-/turf/closed/wall/r_wall,
-/area/ice_colony/surface/engineering/electric)
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
+	},
+/area/ice_colony/surface/engineering)
 "acA" = (
 /obj/structure/largecrate/random,
 /obj/machinery/light,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "acB" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/command)
 "acC" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 1
@@ -634,7 +647,7 @@
 "acM" = (
 /obj/structure/rack,
 /turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "acN" = (
 /obj/machinery/light{
 	dir = 4
@@ -643,7 +656,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "acO" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/end,
@@ -689,7 +702,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "acY" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/corner{
@@ -748,10 +761,13 @@
 	},
 /area/ice_colony/exterior/surface/valley/north)
 "adi" = (
-/turf/open/floor/tile/dark/yellow2{
-	dir = 5
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
-/area/ice_colony/surface/engineering/electric)
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/command)
 "adj" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/northeast)
@@ -1250,7 +1266,7 @@
 	},
 /obj/item/tool/stamp/ce,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/engineering)
 "afp" = (
 /turf/closed/ice/end{
 	dir = 8
@@ -4725,13 +4741,13 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
 "asF" = (
-/obj/structure/closet/fireaxecabinet{
-	pixel_y = 32
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
 	},
-/turf/open/floor/tile/dark/yellow2{
-	dir = 1
-	},
-/area/ice_colony/surface/engineering/electric)
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/command)
 "asH" = (
 /obj/structure/flora/pottedplant,
 /obj/machinery/light{
@@ -4745,11 +4761,10 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/lobby)
 "asK" = (
-/obj/machinery/computer/nuke_disk_generator/blue,
-/turf/open/floor/tile/dark/yellow2{
-	dir = 5
-	},
-/area/ice_colony/surface/engineering/electric)
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/command)
 "asL" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -30566,12 +30581,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/maintenance/central/construction)
-"coV" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/blueprints,
-/obj/item/clothing/ears/earmuffs,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/electric)
 "cqm" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/corner{
@@ -30587,15 +30596,6 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
-"cvY" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 8
-	},
-/area/ice_colony/surface/command)
 "cys" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -30622,11 +30622,6 @@
 	},
 /turf/open/floor/wood,
 /area/space)
-"cAV" = (
-/obj/structure/window_frame/colony/reinforced,
-/obj/item/shard,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
 "cBV" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -30645,6 +30640,11 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
+"cIs" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 9
+	},
+/area/ice_colony/surface/command)
 "cJg" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood,
@@ -30662,6 +30662,12 @@
 "cLf" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/storage/testroom)
+"cLr" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/ice_colony/surface/command)
 "cLG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -30688,11 +30694,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
-"cPH" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 9
-	},
-/area/ice_colony/surface/command)
 "cQF" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research)
@@ -30738,6 +30739,12 @@
 "cXp" = (
 /turf/closed/ice/straight,
 /area/ice_colony/exterior/surface/landing_pad2)
+"cXE" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/red2{
+	dir = 10
+	},
+/area/ice_colony/surface/command)
 "cXX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -30775,13 +30782,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
-"daO" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2,
-/area/ice_colony/surface/command)
 "dbp" = (
 /obj/effect/landmark/fob_sentry_rebel,
 /turf/open/floor/plating/ground/ice,
@@ -31011,6 +31011,12 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"dWS" = (
+/obj/effect/decal/cleanable/blood/xeno,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/ice_colony/surface/command)
 "dXS" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -31087,12 +31093,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
-"eqV" = (
-/obj/machinery/computer/security,
-/turf/open/floor/tile/dark/red2{
-	dir = 5
-	},
-/area/ice_colony/surface/command)
 "esg" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -31132,10 +31132,6 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation/smes)
-"ezl" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
 "eAl" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
@@ -31256,16 +31252,6 @@
 /obj/effect/turf_overlay/icerock,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/landing_pad2)
-"fft" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/photocopier,
-/turf/open/floor/tile/dark/red2{
-	dir = 6
-	},
-/area/ice_colony/surface/command)
 "fgn" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
@@ -31336,14 +31322,6 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
-"fAF" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
 "fCg" = (
 /obj/effect/landmark/corpsespawner/chef,
 /turf/open/floor/freezer,
@@ -31696,11 +31674,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
-"gQF" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 6
-	},
-/area/ice_colony/surface/command)
 "gQQ" = (
 /obj/effect/attach_point/electronics/dropship1,
 /turf/open/floor/plating,
@@ -31783,6 +31756,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
+"hpD" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2/corner,
+/area/ice_colony/surface/command)
 "hqp" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -32077,10 +32057,9 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
-"iug" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 8
-	},
+"isJ" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/red2,
 /area/ice_colony/surface/command)
 "iuP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -32329,6 +32308,15 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
+"jqw" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/ice_colony/surface/command)
 "jro" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /obj/effect/landmark/start/job/xenomorph,
@@ -32362,13 +32350,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/central)
-"jxJ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
 "jyB" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -32426,14 +32407,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
-"jIK" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
 "jKs" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -32605,11 +32578,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/cliff)
-"ktQ" = (
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 1
-	},
-/area/ice_colony/surface/command)
 "kub" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -32739,6 +32707,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
+"kWN" = (
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/ice_colony/surface/command)
 "kXC" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -32891,12 +32864,6 @@
 "lNs" = (
 /turf/open/floor/tile/dark/blue2,
 /area/space)
-"lNE" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2{
-	dir = 10
-	},
-/area/ice_colony/surface/command)
 "lPo" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -32925,12 +32892,9 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/south)
-"lSV" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
-/turf/open/floor/tile/dark/blue2{
+"lWb" = (
+/obj/structure/closet/secure_closet/security,
+/turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/ice_colony/surface/command)
@@ -33080,11 +33044,6 @@
 	},
 /turf/closed/ice,
 /area/ice_colony/exterior/surface/cliff)
-"mqI" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark/blue2/corner,
-/area/ice_colony/surface/command)
 "msn" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northeast)
@@ -33171,11 +33130,6 @@
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/wood,
 /area/space)
-"mHf" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
 "mJD" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2,
@@ -33222,12 +33176,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
-"mWZ" = (
-/obj/structure/closet/secure_closet/security,
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/ice_colony/surface/command)
 "mXH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -33319,6 +33267,11 @@
 "nsF" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
+"nsI" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark/blue2/corner,
+/area/ice_colony/surface/command)
 "nvo" = (
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/plating,
@@ -33387,6 +33340,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southwest)
+"nEc" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/ice_colony/surface/command)
 "nFR" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/corner{
@@ -33446,6 +33405,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
+"nQo" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/ice_colony/surface/command)
 "nRc" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -33762,13 +33726,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
-"oPE" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2/corner,
-/area/ice_colony/surface/command)
 "oQW" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -34025,12 +33982,6 @@
 "pMK" = (
 /turf/closed/ice_rock/westWall,
 /area/ice_colony/exterior/surface/landing_pad)
-"pNK" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/blue2{
-	dir = 6
-	},
-/area/ice_colony/surface/command)
 "pRk" = (
 /obj/item/lightstick/red/anchored,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -34292,11 +34243,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/north)
-"qZS" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 9
-	},
-/area/ice_colony/surface/command)
 "ram" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
@@ -34363,6 +34309,16 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
+"rjx" = (
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/photocopier,
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
+/area/ice_colony/surface/command)
 "rjH" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -34562,6 +34518,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
+"scU" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/ice_colony/surface/command)
 "scV" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -34774,13 +34735,6 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/ice_colony/surface/clinic/treatment)
-"sYj" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
 "sZh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/junction{
@@ -34875,6 +34829,21 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
+"tvR" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/effect/landmark/corpsespawner/security{
+	corpsebelt = null;
+	corpsesuit = /obj/item/clothing/suit/storage/CMB;
+	corpseuniform = /obj/item/clothing/under/CM_uniform;
+	name = "Deputy Edgar Nogi"
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
+/area/ice_colony/surface/command)
 "twQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -34911,10 +34880,6 @@
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
-"tHh" = (
-/obj/machinery/light,
-/turf/open/floor/tile/green/whitegreen,
-/area/ice_colony/surface/clinic/treatment)
 "tJT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -34995,12 +34960,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/west)
-"tYs" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
-/area/ice_colony/surface/command)
 "ubc" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
@@ -35095,6 +35054,11 @@
 /obj/item/ammo_magazine/shotgun,
 /turf/open/floor/wood,
 /area/space)
+"uyq" = (
+/obj/structure/window_frame/colony/reinforced,
+/obj/item/shard,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/command)
 "uyw" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -35163,10 +35127,10 @@
 /turf/open/ground/grass,
 /area/ice_colony/surface/hydroponics/lobby)
 "uLL" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/computer/emails,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/engineering/electric)
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/ice_colony/surface/command)
 "uNj" = (
 /obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/tile/dark/brown2{
@@ -35264,6 +35228,14 @@
 "viy" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/north)
+"vjl" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/command)
 "vjK" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
@@ -35430,21 +35402,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
-"vVa" = (
-/obj/structure/bed/chair/office/light{
-	dir = 8
-	},
-/obj/effect/landmark/corpsespawner/security{
-	corpsebelt = null;
-	corpsesuit = /obj/item/clothing/suit/storage/CMB;
-	corpseuniform = /obj/item/clothing/under/CM_uniform;
-	name = "Deputy Edgar Nogi"
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/ice_colony/surface/command)
 "vVE" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/weed_node,
@@ -35474,12 +35431,6 @@
 	},
 /turf/open/floor/plating,
 /area/ice_colony/surface/research)
-"wbv" = (
-/obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/ice_colony/surface/command)
 "wdf" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -35542,6 +35493,13 @@
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/exterior/surface/landing_pad2)
+"wsW" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2,
+/area/ice_colony/surface/command)
 "wth" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -35721,13 +35679,6 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/underground/caves/ice_w)
-"xil" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/xeno,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
 "xix" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -35765,6 +35716,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
+"xmN" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/ice_colony/surface/command)
 "xnK" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/southeast)
@@ -35808,10 +35768,10 @@
 	},
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
-"xvu" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2,
-/area/ice_colony/surface/command)
+"xqV" = (
+/obj/machinery/light,
+/turf/open/floor/tile/green/whitegreen,
+/area/ice_colony/surface/clinic/treatment)
 "xxm" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
@@ -35860,14 +35820,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
-"xDY" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
 "xFh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/excavation_site_spawner,
@@ -35930,14 +35882,12 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves/ice_w)
-"xVl" = (
-/obj/machinery/light{
-	light_color = "#da2f1b"
+"xWH" = (
+/obj/machinery/computer/security,
+/turf/open/floor/tile/dark/red2{
+	dir = 5
 	},
-/obj/structure/rack,
-/obj/item/storage/toolbox/mechanical,
-/turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/engineering/electric)
+/area/ice_colony/surface/command)
 "xWV" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/dark/blue2{
@@ -36033,6 +35983,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
+"ylt" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/command)
 "ylP" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
@@ -57740,7 +57697,7 @@ aES
 aFu
 aGS
 baj
-tHh
+xqV
 aou
 anA
 gvW
@@ -65303,10 +65260,10 @@ abe
 onk
 onk
 onk
-acz
-acz
-acz
-acz
+aeI
+aeI
+aeI
+aeI
 aec
 adg
 adO
@@ -65514,8 +65471,8 @@ abt
 onk
 onk
 onk
-acz
-acz
+aeI
+aeI
 abp
 abV
 acu
@@ -65725,8 +65682,8 @@ aaQ
 abu
 onk
 onk
-aaL
-acz
+aav
+aeI
 aau
 abr
 abX
@@ -65937,11 +65894,11 @@ aaQ
 onk
 onk
 onk
-aaL
-aao
 aav
-abs
-abY
+aao
+afA
+vdr
+ahL
 acx
 aed
 adw
@@ -65977,11 +65934,11 @@ aKf
 arX
 dRj
 auX
-cPH
+scU
 avA
-iug
-cvY
-iug
+uLL
+xmN
+uLL
 avA
 dRj
 atV
@@ -66149,12 +66106,12 @@ aaQ
 onk
 onk
 onk
-aaL
-aaM
-aaw
-uLL
-abY
-acy
+aav
+aeu
+afZ
+abs
+ahL
+agf
 acP
 aes
 aeQ
@@ -66190,10 +66147,10 @@ bJA
 apL
 auX
 aqC
-ezl
+acf
 haC
 dKp
-ezl
+acf
 haC
 apL
 atV
@@ -66361,12 +66318,12 @@ aaQ
 aaT
 abO
 onk
-aaL
-aci
+aav
+acz
 aaK
 afo
 acc
-acB
+vXi
 acS
 vXi
 vXi
@@ -66398,16 +66355,16 @@ aIh
 aJE
 aqC
 haC
-xil
+aci
 apL
 auX
 aqC
-sYj
-mqI
-lSV
-tYs
-tYs
-pNK
+ylt
+nsI
+jqw
+nEc
+nEc
+cLr
 atV
 mqj
 mqj
@@ -66573,12 +66530,12 @@ aaR
 aba
 abb
 onk
-aaL
-asF
-abs
-coV
-acf
-acy
+aav
+aaw
+vdr
+abY
+gPz
+agf
 acP
 adx
 afX
@@ -66785,12 +66742,12 @@ aaC
 aaC
 aaQ
 aaD
+aav
 aaL
-asK
 abJ
-abs
-acf
-xVl
+vdr
+gPz
+acy
 acT
 acT
 acT
@@ -66817,21 +66774,21 @@ atV
 ayX
 haC
 apz
-ezl
+acf
 haC
 aqw
 haC
 haC
-jxJ
+acB
 asd
 auX
 ayX
 dKp
 apL
 auk
-qZS
-vVa
-lNE
+cIs
+tvR
+cXE
 atV
 mqj
 mqj
@@ -66997,11 +66954,11 @@ aaC
 aaC
 aaR
 abb
-aaL
-acz
+aav
+aeI
 aaN
 abJ
-acf
+gPz
 acM
 acT
 ady
@@ -67040,10 +66997,10 @@ auX
 aqC
 dKp
 apL
-cAV
-wbv
+uyq
+dWS
 haC
-xvu
+isJ
 atV
 mqj
 mqj
@@ -67210,9 +67167,9 @@ aaC
 aaC
 aaR
 abb
-acz
-acz
-adi
+aeI
+aeI
+adx
 acV
 acN
 acT
@@ -67250,12 +67207,12 @@ dIn
 edb
 auX
 aqC
-oPE
-gQF
+hpD
+nQo
 auk
-eqV
-mWZ
-fft
+xWH
+lWb
+rjx
 atV
 mqj
 mqj
@@ -67423,10 +67380,10 @@ aaC
 aaC
 aaR
 abb
-acz
-acz
-acz
-acz
+aeI
+aeI
+aeI
+aeI
 aeh
 aeM
 aeM
@@ -67451,14 +67408,14 @@ amO
 nsF
 atV
 ayX
-ezl
+acf
 apk
 haC
 aug
 aqf
 aug
 aug
-jIK
+adi
 asd
 auX
 aqC
@@ -67672,9 +67629,9 @@ haC
 haC
 dKp
 mlA
-iug
-ktQ
-daO
+uLL
+kWN
+wsW
 auX
 auc
 aur
@@ -67886,7 +67843,7 @@ dKp
 haC
 haC
 haC
-daO
+wsW
 auX
 atF
 auh
@@ -68094,11 +68051,11 @@ aJe
 aqz
 aqC
 haC
-xDY
-mHf
-mHf
-mHf
-fAF
+asF
+asK
+asK
+asK
+vjl
 eOi
 fXQ
 gsu
@@ -68310,7 +68267,7 @@ asa
 asa
 aGH
 asa
-gQF
+nQo
 auX
 auh
 auh
