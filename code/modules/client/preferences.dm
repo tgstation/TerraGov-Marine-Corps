@@ -190,7 +190,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		loadout_manager = new
 		loadout_manager.loadouts_data = load_loadout_list()
 		quick_loadout = new
-		quick_loadout.loadouts_data = load_loadout_list()
 		if(load_preferences() && load_character())
 			C.set_fullscreen(fullscreen_mode)
 			return
