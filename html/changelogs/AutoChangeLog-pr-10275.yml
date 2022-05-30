@@ -1,4 +1,0 @@
-author: "Mechanelize"
-delete-after: True
-changes: 
-  - code_imp: "Split xeno related flags containing \"CAN\" into a new category called xeno_can_flags to bypass the 21 flag bitfield limit"

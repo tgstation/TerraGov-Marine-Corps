@@ -1,5 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - qol: "Metal, empty sandbags, plasteel and wood have icons based on how much stuff is in the stack"
-  - imageadd: "Icons for that"
