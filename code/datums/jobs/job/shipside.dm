@@ -845,10 +845,11 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 /datum/job/terragov/medical/researcher/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a civilian, working for the Nanotrasen Corporation, and are not subject to the military chain of command.
-You are tasked with researching and developing new medical treatments, weapons, conducting xenomorph studies, and learning new things.
-Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor.
-While the Corporate Liaison is not your boss, it would be wise to consult them on your findings or ask to use their NT fax machine."})
+	to_chat(M, {"You are a civilian, working for the Nanotrasen Corporation, but you are still subject to the military chain of command.
+You are tasked with deploying with the marines and researching the remains of the colony to get funding for Requisitions.
+You are free to use any new technology you discover as you want, or give them out to the marines.
+If shipside medbay is unstaffed, you should consider working as a regular doctor until someone else is available to take over.
+It is also recommended that you gear up like a regular marine, or your 'internship' might be ending early..."})
 
 /datum/job/terragov/medical/researcher/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
