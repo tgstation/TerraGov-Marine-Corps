@@ -210,13 +210,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"mi" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-N"
-	},
-/obj/machinery/computer3/server/rack,
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
 "mp" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -365,13 +358,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
-"tw" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-S"
-	},
-/obj/machinery/computer3/server/rack,
-/turf/open/floor,
-/area/bigredv2/outside/filtration_plant)
 "tx" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
@@ -400,9 +386,7 @@
 /area/bigredv2/outside/filtration_plant)
 "uA" = (
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-S"
-	},
+/obj/effect/decal/warning_stripes/box/threeside,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "uG" = (
@@ -735,8 +719,8 @@
 /area/bigredv2/outside/filtration_plant)
 "Lh" = (
 /obj/machinery/computer3/server/rack,
-/obj/effect/decal/warning_stripes{
-	icon_state = "U-N"
+/obj/effect/decal/warning_stripes/box/threeside{
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
@@ -1233,8 +1217,8 @@ Qh
 aF
 Gk
 nf
-tw
-mi
+uA
+Lh
 Vt
 Gk
 Uf
