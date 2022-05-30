@@ -112,8 +112,7 @@
 	pixel_shift_x = 10
 	pixel_shift_y = 19
 
-	aim_speed_mod	= 0.1
-	wield_delay_mod	= 0.1 SECONDS
+	wield_delay_mod	= 0.2 SECONDS
 
 	placed_overlay_iconstate = "tx7"
 

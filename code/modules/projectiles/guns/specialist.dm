@@ -508,8 +508,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	pixel_shift_x = 18
 	pixel_shift_y = 16
 
-	aim_speed_mod	= 0.1
-	wield_delay_mod	= 0.1 SECONDS
+	wield_delay_mod	= 0.2 SECONDS
 
 //-------------------------------------------------------
 //M5 RPG
