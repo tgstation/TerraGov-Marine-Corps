@@ -303,7 +303,7 @@
 /datum/surgery_step/generic/repair/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] sews some of the wounds on [target]'s [affected.display_name] shut.") , \
 	span_notice("You finish suturing some of the wounds on [target]'s [affected.display_name].") )
-  target.balloon_alert_to_viewers("Success")
+	target.balloon_alert_to_viewers("Success")
 	var/skilled_healing = base_healing * max(user.skills.getPercent("surgery", SKILL_SURGERY_EXPERT), 0.1)
 	var/burn_heal = min(skilled_healing, affected.burn_dam)
 	var/brute_heal = max(skilled_healing - burn_heal, 0)
