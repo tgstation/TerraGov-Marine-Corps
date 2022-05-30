@@ -9,10 +9,6 @@
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
 
-/datum/item_representation/quick
-	//quick vendor does not pull items from vendors
-	bypass_vendor_check = TRUE
-
 /datum/item_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
@@ -31,15 +27,6 @@
 /datum/item_representation/proc/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, user))
 		return
-	if(!text2path("[item_type]"))
-		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
-		return
-	var/obj/item/item = new item_type(master)
-	return item
-
-/datum/item_representation/quick/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
-	//if(seller && !bypass_vendor_check && !buy_item_in_vendor(item_type, seller, user))
-		//return
 	if(!text2path("[item_type]"))
 		to_chat(user, span_warning("[item_type] in your loadout is an invalid item, it has probably been changed or removed."))
 		return
@@ -130,19 +117,6 @@
 /datum/item_representation/stack/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
 	if(seller && !bypass_vendor_check && !buy_stack(item_type, seller, user, amount) && !buy_item_in_vendor(item_type, seller, user))
 		return
-	var/obj/item/stack/stack = new item_type(master)
-	stack.amount = amount
-	stack.update_weight()
-	stack.update_icon()
-	return stack
-
-/datum/item_representation/quick/stack
-	///Amount of items in the stack
-	var/amount = 0
-
-/datum/item_representation/quick/stack/instantiate_object(datum/loadout_seller/seller, master = null, mob/living/user)
-	//if(seller && !bypass_vendor_check && !buy_stack(item_type, seller, user, amount) && !buy_item_in_vendor(item_type, seller, user))
-		//return
 	var/obj/item/stack/stack = new item_type(master)
 	stack.amount = amount
 	stack.update_weight()

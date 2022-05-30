@@ -43,7 +43,7 @@
 	available_points = id.marine_points
 	buying_bitfield = id.marine_buy_flags
 	for(var/slot_key in GLOB.visible_item_slot_list)
-		var/datum/item_representation/quick/item_representation = loadout.item_list[slot_key]
+		var/datum/item_representation/item_representation = loadout.item_list[slot_key]
 		if(item_representation)
 			item_representation.bypass_vendor_check = TRUE
 		item_list[slot_key] = item_representation?.instantiate_object(src, null, user)
