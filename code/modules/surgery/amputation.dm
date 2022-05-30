@@ -26,18 +26,21 @@
 /datum/surgery_step/cut_limb/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] is beginning to cut off [target]'s [affected.display_name] with \the [tool].") , \
 	span_notice("You are beginning to cut off [target]'s [affected.display_name] with \the [tool]."))
+	target.balloon_alert_to_viewers("Sawing...")
 	target.custom_pain("Your [affected.display_name] is being ripped apart!", 1)
 	..()
 
 /datum/surgery_step/cut_limb/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] cuts off [target]'s [affected.display_name] with \the [tool]."), \
 	span_notice("You cut off [target]'s [affected.display_name] with \the [tool]."))
+	target.balloon_alert_to_viewers("Success")
 	affected.droplimb(1)
 	target.updatehealth()
 
 /datum/surgery_step/generic/cut_limb/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, sawing through the bone in [target]'s [affected.display_name] with \the [tool]!"), \
 	span_warning("Your hand slips, sawing through the bone in [target]'s [affected.display_name] with \the [tool]!"))
+	target.balloon_alert_to_viewers("Slipped!")
 	affected.createwound(CUT, 30)
 	affected.fracture()
 	affected.update_wounds()
