@@ -147,9 +147,9 @@
 
 
 
-/mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
+/mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel)
 	return_to_core()
-	to_chat(src, "<span class='xenonotice'>We were on top of fire, we got moved to our core.")
+	to_chat(src, span_xenonotice("We were on top of fire, we got moved to our core."))
 
 /mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T, strict_turf_check = FALSE)
 	SHOULD_BE_PURE(TRUE)

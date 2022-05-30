@@ -492,3 +492,29 @@
   - qol: Adds suit outer storage back to labcoats
   goose4429:
   - bugfix: Added missing equipment to Valhalla vendors
+2022-05-30:
+  Arctrooper8:
+  - rscadd: SG minigun now has ammo boxes which hold 1000 rounds each.
+  - balance: SG minigun is now perfect and nobody will ever have to balance it again.
+  - balance: SG ammo factory refills are now cheaper but produce less.
+  - balance: SG-29 drum now holds 250.
+  - balance: All night vision goggles now use LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+  - bugfix: You can no longer buy T-25 refills
+  KornFlaks:
+  - bugfix: Balloon alerts resulting from an action targeting the ground no longer
+      spams balloon alerts.
+  - bugfix: Floodlights, both LZ and Colony, now properly illuminate the area around
+      them.
+  - bugfix: Armored floodlight cell power calculation in its description was corrected.
+  Mechanelize:
+  - code_imp: Split xeno related flags containing "CAN" into a new category called
+      xeno_can_flags to bypass the 21 flag bitfield limit
+  QualityVan:
+  - code_imp: flamer_fire_act gets a new argument that, among other things, means
+      x-fuel is better than default at burning non-mob stuff.
+  - balance: Flamers chew through resin faster.
+  - balance: Miniflamers are weaker against mobs, but the same as before against resin.
+  breadhunt:
+  - qol: Metal, empty sandbags, plasteel and wood have icons based on how much stuff
+      is in the stack
+  - imageadd: Icons for that

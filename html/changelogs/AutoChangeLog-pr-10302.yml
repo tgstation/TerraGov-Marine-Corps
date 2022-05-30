@@ -1,5 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - bugfix: "Floodlights, both LZ and Colony, now properly illuminate the area around them."
-  - bugfix: "Armored floodlight cell power calculation in its description was corrected."

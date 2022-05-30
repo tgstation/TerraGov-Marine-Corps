@@ -1,0 +1,5 @@
+author: "breadhunt"
+delete-after: True
+changes: 
+  - bugfix: "CIC orbital spotlights now work again."
+  - balance: "Spotlight range 11 --> 15, about the same light level as combat floodlights"
