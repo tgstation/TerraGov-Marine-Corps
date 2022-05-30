@@ -1955,7 +1955,6 @@
 /area/whiskey_outpost)
 "iU" = (
 /obj/structure/closet/secure_closet/medical2,
-/obj/item/armor_module/storage/uniform/white_vest/surgery,
 /turf/open/floor/mainship/sterile/side,
 /area/whiskey_outpost)
 "iV" = (
@@ -2188,6 +2187,15 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/regular,
 /obj/structure/table/mainship,
+/obj/item/storage/firstaid/fire{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire{
+	pixel_x = 5;
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "jP" = (
@@ -3221,19 +3229,10 @@
 	},
 /area/whiskey_outpost/outside/south)
 "oQ" = (
-/obj/item/storage/firstaid/fire,
-/obj/item/storage/firstaid/fire{
-	pixel_x = 5;
-	pixel_y = 5
-	},
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/storage/firstaid/fire{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/structure/table/mainship,
+/obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "oS" = (
@@ -7802,6 +7801,7 @@
 /obj/item/defibrillator,
 /obj/machinery/recharger,
 /obj/structure/table/mainship,
+/obj/item/storage/surgical_tray,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "VA" = (
@@ -7965,6 +7965,11 @@
 /obj/structure/fence,
 /turf/open/ground/jungle/impenetrable/nobush,
 /area/whiskey_outpost/outside/south)
+"Xa" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/autodoc_console,
+/turf/open/floor/mainship/sterile,
+/area/whiskey_outpost)
 "Xc" = (
 /obj/machinery/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
@@ -17403,7 +17408,7 @@ jm
 iW
 Is
 yj
-yj
+fb
 Vs
 Ii
 Pv
@@ -17540,7 +17545,7 @@ jm
 ap
 yj
 yj
-Is
+Xa
 EZ
 Yi
 zF
