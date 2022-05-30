@@ -32413,6 +32413,7 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command)
 "mcs" = (
