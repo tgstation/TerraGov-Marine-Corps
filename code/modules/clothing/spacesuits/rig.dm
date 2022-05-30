@@ -21,7 +21,7 @@
 		icon_state = "rig[on]-[rig_color]"
 
 		if(on)
-			set_light(brightness_on)
+			set_light(brightness_on,brightness_on)
 		else
 			set_light(0)
 
