@@ -810,9 +810,9 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	paygrade = "CD"
 	total_positions = 2
 	supervisors = "the NT corporate office"
-	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
+	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
-	skills_type = /datum/skills/doctor
+	skills_type = /datum/skills/researcher
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_RESEARCHER
 	outfit = /datum/outfit/job/medical/researcher
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP
@@ -833,7 +833,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 /datum/job/terragov/medical/researcher/rebel
 	title = REBEL_MEDICAL_RESEARCHER
 	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
+	access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_ENGINEERING_REBEL)
 	minimal_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	outfit = /datum/outfit/job/medical/researcher/rebel
 	jobworth = list(
