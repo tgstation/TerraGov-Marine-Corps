@@ -193,6 +193,8 @@
 		return ..()
 	. = ..()
 	var/resin_choice = show_radial_menu(owner, owner, GLOB.resin_images_list, radius = 35)
+	if(!resin_choice)
+		return
 	var/i = GLOB.resin_images_list.Find(resin_choice)
 	X.selected_resin = buildable_structures[i]
 	var/atom/A = X.selected_resin
