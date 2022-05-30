@@ -274,6 +274,13 @@
 	},
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/glass/beaker/noreact,
+/obj/effect/spawner/random/pillbottle{
+	pixel_x = -2
+	},
+/obj/effect/spawner/random/pillbottle{
+	pixel_x = -3;
+	pixel_y = 4
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -1250,7 +1257,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "fI" = (
-/obj/machinery/iv_drip,
+/obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -1275,7 +1282,7 @@
 	},
 /area/whiskey_outpost)
 "fL" = (
-/obj/machinery/iv_drip,
+/obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/mainship/sterile/corner,
 /area/whiskey_outpost)
 "fM" = (
@@ -1948,6 +1955,7 @@
 /area/whiskey_outpost)
 "iU" = (
 /obj/structure/closet/secure_closet/medical2,
+/obj/item/armor_module/storage/uniform/white_vest/surgery,
 /turf/open/floor/mainship/sterile/side,
 /area/whiskey_outpost)
 "iV" = (
@@ -1956,6 +1964,7 @@
 /obj/effect/spawner/random/pillbottle{
 	pixel_x = -2
 	},
+/obj/item/armor_module/storage/uniform/white_vest/surgery,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -2352,6 +2361,8 @@
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
 /obj/structure/table/mainship,
+/obj/item/armor_module/storage/uniform/white_vest/surgery,
+/obj/item/clothing/suit/surgical,
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "kC" = (
@@ -4678,6 +4689,8 @@
 "wH" = (
 /obj/item/stack/barbed_wire/full,
 /obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
 "wI" = (
@@ -5119,6 +5132,13 @@
 /obj/effect/spawner/random/pillbottle,
 /obj/item/storage/pill_bottle/alkysine{
 	pixel_x = -8
+	},
+/obj/item/storage/pill_bottle/spaceacillin{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/storage/pill_bottle/spaceacillin{
+	pixel_x = 8
 	},
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
@@ -5716,6 +5736,8 @@
 "EF" = (
 /obj/item/stack/barbed_wire/full,
 /obj/effect/decal/lvsanddecal/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "EG" = (
@@ -16230,7 +16252,7 @@ we
 yj
 yj
 IN
-yj
+iW
 mg
 ac
 nH
@@ -16367,7 +16389,7 @@ Yi
 jQ
 yj
 Ip
-yj
+iW
 mg
 ac
 nK
