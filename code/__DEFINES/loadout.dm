@@ -141,9 +141,14 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDSUP, "Injector (Advanced)", 15, "orange"),
 	))
 
+//Needs a way to give all items at once that still works in loadout vendor
 GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
-	/obj/effect/essentials_set/smartgunner = list(CAT_ESS, "SG-29 essentials", 0, "white"),
-	/obj/effect/essentials_set/smartgunner/minigun = list(CAT_ESS, "SG-85 essentials", 0, "white"),
+	/obj/item/clothing/glasses/night/m56_goggles = list(CAT_ESS, "KLTD Smart Goggles", 0, "white"),
+	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_LEDSUP, "SG-29 Smartmachinegun", 29, "orange"), //If a smartgunner buys a SG-29, then they will have 16 points to purchase 4 SG-29 drums
+	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_LEDSUP, "SG-28 Ammo Drum", 4, "black"),
+	/obj/item/weapon/gun/minigun/smart_minigun = list(CAT_LEDSUP, "SG-85 Handheld Gatling Gun", 27, "orange"), //If a smartgunner buys a SG-85, then they should be able to buy only 1 powerpack and 2 ammo boxes
+	/obj/item/ammo_magazine/minigun_powerpack/smartgun =  list(CAT_LEDSUP, "SG-85 Powerpack", 10, "black"),
+	/obj/item/ammo_magazine/packet/smart_minigun = list(CAT_LEDSUP, "SG-85 Ammo Bin", 4, "black"),
 	))
 
 
