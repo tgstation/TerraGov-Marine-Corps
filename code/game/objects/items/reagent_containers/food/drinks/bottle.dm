@@ -48,8 +48,8 @@
 	var/armor_duration = 0 //The more force the bottle has, the longer the duration.
 
 	//Calculating duration and calculating damage.
-	armor_block = target.run_armor_check(affecting, "melee")
-	armor_duration = duration + force - target.getarmor(affecting, "melee")
+	armor_block = target.get_soft_armor("melee", affecting)
+	armor_duration = duration + force - armor_block
 
 	//Apply the damage!
 	target.apply_damage(force, BRUTE, affecting, armor_block)

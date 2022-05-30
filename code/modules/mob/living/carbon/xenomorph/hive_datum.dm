@@ -6,7 +6,6 @@
 	var/mob/living/carbon/xenomorph/living_xeno_ruler
 	var/xeno_queen_timer
 	var/xenos_per_queen = 8 //Minimum number of xenos to support a queen.
-	var/hive_orders = "" //What orders should the hive have
 	var/color = null
 	var/prefix = ""
 	var/hive_flags = NONE
@@ -166,15 +165,12 @@
 		xenos += xenos_by_typepath[typepath]
 	return xenos
 
-// doing this by type means we get a pseudo sorted list
-/datum/hive_status/proc/get_watchable_xenos()
+///Returning all xenos including queen that are not at centcom and not self.
+/datum/hive_status/proc/get_watchable_xenos(mob/living/carbon/xenomorph/self)
 	var/list/xenos = list()
 	for(var/typepath in xenos_by_typepath)
-		if(typepath == /mob/living/carbon/xenomorph/queen) // hardcoded check for now
-			continue
-		for(var/i in xenos_by_typepath[typepath])
-			var/mob/living/carbon/xenomorph/X = i
-			if(is_centcom_level(X.z))
+		for(var/mob/living/carbon/xenomorph/X AS in xenos_by_typepath[typepath])
+			if(X == self || is_centcom_level(X.z))
 				continue
 			xenos += X
 	return xenos
@@ -189,7 +185,7 @@
 			var/mob/living/carbon/xenomorph/X = i
 			if(is_centcom_level(X.z))
 				continue
-			if(!(X.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER))
+			if(!(X.xeno_caste.can_flags & CASTE_CAN_BE_LEADER))
 				continue
 			xenos += X
 	return xenos
@@ -897,8 +893,14 @@ to_chat will check for valid clients itself already so no need to double check f
 
 ///updates and sets the t2 and t3 xeno limits
 /datum/hive_status/proc/update_tier_limits()
-	tier3_xeno_limit = max(length(xenos_by_tier[XENO_TIER_THREE]),FLOOR((length(xenos_by_tier[XENO_TIER_ZERO])+length(xenos_by_tier[XENO_TIER_ONE])+length(xenos_by_tier[XENO_TIER_TWO])+length(xenos_by_tier[XENO_TIER_FOUR]))/3+1,1))
-	tier2_xeno_limit = max(length(xenos_by_tier[XENO_TIER_TWO]),length(xenos_by_tier[XENO_TIER_ZERO]) + length(xenos_by_tier[XENO_TIER_ONE]) + length(xenos_by_tier[XENO_TIER_FOUR])+1 - length(xenos_by_tier[XENO_TIER_THREE]))
+	var/zeros = get_total_tier_zeros()
+	var/ones = length(xenos_by_tier[XENO_TIER_ONE])
+	var/twos = length(xenos_by_tier[XENO_TIER_TWO])
+	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
+	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
+
+	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + 1, 1))
+	tier2_xeno_limit = max(twos, zeros + ones + fours + 1 - threes)
 
 // ***************************************
 // *********** Corrupted Xenos

@@ -16,7 +16,7 @@
 	throw_range = initial(throw_range)
 
 
-/obj/item/explosive/grenade/training/flamer_fire_act()
+/obj/item/explosive/grenade/training/flamer_fire_act(burnlevel)
 	return
 
 
@@ -268,7 +268,7 @@
 	. = ..()
 	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
-/obj/item/explosive/grenade/flare/flamer_fire_act()
+/obj/item/explosive/grenade/flare/flamer_fire_act(burnlevel)
 	if(!fuel) //it's out of fuel, an empty shell.
 		return
 	if(!active)
@@ -361,7 +361,7 @@
 		if(!target_zone || rand(40))
 			target_zone = "chest"
 		if(launched && CHECK_BITFIELD(resistance_flags, ON_FIRE) && !L.on_fire)
-			var/armor_block = L.run_armor_check(target_zone, "fire")
+			var/armor_block = L.get_soft_armor("fire", target_zone)
 			L.apply_damage(rand(throwforce*0.75,throwforce*1.25), BURN, target_zone, armor_block, updating_health = TRUE) //Do more damage if launched from a proper launcher and active
 
 	// Flares instantly burn out nodes when thrown at them.
