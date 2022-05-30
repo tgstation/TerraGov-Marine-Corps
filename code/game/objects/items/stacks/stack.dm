@@ -175,52 +175,57 @@
 			log_admin_private("[key_name(usr)] attempted to create a ([src]) stack ([R]) recipe with multiplier [multiplier] at [AREACOORD(usr.loc)].")
 			message_admins("[ADMIN_TPMONTY(usr)] attempted to create a ([src]) stack ([R]) recipe with multiplier [multiplier]. Possible HREF exploit.")
 			return
+
+		create_object(R, multiplier)
+
+/// Creates multiplier amount of objects based off of stack recipe R. Most creation variables are changed through stack recipe datum's variables
+/obj/item/stack/proc/create_object(datum/stack_recipe/R, multiplier)
+	if(!building_checks(R, multiplier))
+		return
+	if(usr.do_actions)
+		return
+	var/building_time = R.time
+	if(R.skill_req && usr.skills.getRating("construction") < R.skill_req)
+		building_time += R.time * ( R.skill_req - usr.skills.getRating("construction") ) * 0.5 // +50% time each skill point lacking.
+	if(R.skill_req && usr.skills.getRating("construction") > R.skill_req)
+		building_time -= clamp(R.time * ( usr.skills.getRating("construction") - R.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
+	if(building_time)
+		if(building_time > R.time)
+			usr.visible_message(span_notice("[usr] fumbles around figuring out how to build \a [R.title]."),
+			span_notice("You fumble around figuring out how to build \a [R.title]."))
+		else
+			usr.visible_message(span_notice("[usr] starts building \a [R.title]."),
+			span_notice("You start building \a [R.title]..."))
+		if(!do_after(usr, building_time, TRUE, src, BUSY_ICON_BUILD))
+			return
 		if(!building_checks(R, multiplier))
 			return
-		if(usr.do_actions)
+
+	var/obj/O
+	if(R.max_res_amount > 1) //Is it a stack?
+		O = new R.result_type(get_turf(usr), R.res_amount * multiplier)
+	else if(ispath(R.result_type, /turf))
+		var/turf/T = get_turf(usr)
+		if(!isturf(T))
 			return
-		var/building_time = R.time
-		if(R.skill_req && usr.skills.getRating("construction") < R.skill_req)
-			building_time += R.time * ( R.skill_req - usr.skills.getRating("construction") ) * 0.5 // +50% time each skill point lacking.
-		if(R.skill_req && usr.skills.getRating("construction") > R.skill_req)
-			building_time -= clamp(R.time * ( usr.skills.getRating("construction") - R.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
-		if(building_time)
-			if(building_time > R.time)
-				usr.visible_message(span_notice("[usr] fumbles around figuring out how to build \a [R.title]."),
-				span_notice("You fumble around figuring out how to build \a [R.title]."))
-			else
-				usr.visible_message(span_notice("[usr] starts building \a [R.title]."),
-				span_notice("You start building \a [R.title]..."))
-			if(!do_after(usr, building_time, TRUE, src, BUSY_ICON_BUILD))
-				return
-			if(!building_checks(R, multiplier))
-				return
+		T.PlaceOnTop(R.result_type)
+	else
+		O = new R.result_type(get_turf(usr))
+	if(O)
+		O.setDir(usr.dir)
+	use(R.req_amount * multiplier)
 
-		var/obj/O
-		if(R.max_res_amount > 1) //Is it a stack?
-			O = new R.result_type(get_turf(usr), R.res_amount * multiplier)
-		else if(ispath(R.result_type, /turf))
-			var/turf/T = get_turf(usr)
-			if(!isturf(T))
-				return
-			T.PlaceOnTop(R.result_type)
-		else
-			O = new R.result_type(get_turf(usr))
-		if(O)
-			O.setDir(usr.dir)
-		use(R.req_amount * multiplier)
+	if(QDELETED(O))
+		return //It's a stack and has already been merged
 
-		if(QDELETED(O))
-			return //It's a stack and has already been merged
+	if(isitem(O))
+		usr.put_in_hands(O)
 
-		if(isitem(O))
-			usr.put_in_hands(O)
-
-		//BubbleWrap - so newly formed boxes are empty
-		if(istype(O, /obj/item/storage))
-			for(var/obj/item/I in O)
-				qdel(I)
-		//BubbleWrap END
+	//BubbleWrap - so newly formed boxes are empty
+	if(istype(O, /obj/item/storage))
+		for(var/obj/item/I in O)
+			qdel(I)
+	//BubbleWrap END
 
 
 /obj/item/stack/proc/building_checks(datum/stack_recipe/R, multiplier)
@@ -360,6 +365,16 @@
 			to_chat(user, span_notice("Your [S.name] stack now contains [S.get_amount()] [S.singular_name]\s."))
 		return
 	return ..()
+
+/obj/item/stack/attack_self(mob/user)
+	if(!select_radial(user)) //Return false if the menu shouldn't be opened
+		return
+
+	return ..()
+
+/// Proc for special actions and radial menus on subtypes. Returning FALSE cancels the recipe menu for a stack.
+/obj/item/stack/proc/select_radial(mob/user)
+	return
 
 /*
 * Recipe datum
