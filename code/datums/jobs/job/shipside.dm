@@ -720,7 +720,6 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
 
 //Medical Officer
@@ -806,7 +805,6 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
 
 
@@ -894,7 +892,6 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	respack.handle_item_insertion(res_an, TRUE, null)
 	var/obj/item/tool/research/excavation_tool/res_ex = new
 	respack.handle_item_insertion(res_ex, TRUE, null)
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/medical/researcher/rebel
 	jobtype = /datum/job/terragov/medical/researcher/rebel

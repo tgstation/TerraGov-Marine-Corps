@@ -289,9 +289,16 @@
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
 
+/obj/item/reagent_containers/hypospray/advanced/oxycodone
+	name = "oxycodone hypospray"
+	desc = "A hypospray loaded with oxycodone."
+	amount_per_transfer_from_this = 5
+	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
+
 /obj/item/reagent_containers/hypospray/advanced/meraderm
 	name = "Meraderm hypospray"
 	desc = "A hypospray loaded with meralyne and dermaline."
+	amount_per_transfer_from_this = 5
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 30,
 		/datum/reagent/medicine/dermaline = 30,
@@ -450,11 +457,3 @@
 	list_reagents = list(
 		/datum/reagent/medicine/tricordrazine = 120,
 	)
-
-/obj/item/reagent_containers/hypospray/advanced/big/painkiller
-	name = "Advanced painkiller hypospray"
-	desc = "A hypospray loaded with a safe to use oxycodone mix."
-	list_reagents = list(
-		/datum/reagent/medicine/oxycodone = 60,
-		/datum/reagent/medicine/arithrazine = 60,
-		)

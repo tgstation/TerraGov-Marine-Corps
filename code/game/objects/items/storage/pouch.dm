@@ -343,7 +343,7 @@
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/painkiller(src)
+	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
 
 /obj/item/storage/pouch/medical_injectors
 	name = "medical injector pouch"
@@ -388,10 +388,10 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/isotonic(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
 /obj/item/storage/pouch/med_lolipops
@@ -411,11 +411,13 @@
 /obj/item/storage/pouch/surgery
 	name = "surgery tools pouch"
 	desc = "An eye catching white medical pouch capable of holding all your surgical tools."
-	icon_state = "medkit"
+	icon_state = "surgery"
 	storage_slots = 13
 	max_storage_space = 24
 	can_hold = list(
 		/obj/item/tool/surgery,
+		/obj/item/stack/nanopaste,
+		/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
 		/obj/item/tweezers,
 	)
 
@@ -426,15 +428,14 @@
 	new /obj/item/tool/surgery/scalpel(src)
 	new /obj/item/tool/surgery/hemostat(src)
 	new /obj/item/tool/surgery/retractor(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/tool/surgery/cautery(src)
 	new /obj/item/tool/surgery/circular_saw(src)
-	new /obj/item/tool/surgery/organ_kit
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/tool/surgery/bonegel(src)
 	new /obj/item/tool/surgery/bonesetter(src)
 	new /obj/item/tool/surgery/FixOVein(src)
 	new /obj/item/tool/surgery/suture(src)
-	new /obj/item/tool/surgery/solderingtool(src)
+	new /obj/item/stack/nanopaste(src)
 	new /obj/item/tweezers(src)
 
 /obj/item/storage/pouch/document

@@ -270,7 +270,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/outfit/job/marine/corpsman/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/big/painkiller, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_SUIT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine, SLOT_IN_HEAD)

@@ -5,7 +5,7 @@
 	icon_state = "solderingtool"
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/tool/solderingtool/attack(mob/living/carbon/human/H, mob/user)
+/obj/item/tool/surgery/solderingtool/attack(mob/living/carbon/human/H, mob/user)
 	if(!istype(H) || user.a_intent != INTENT_HELP)
 		return ..()
 
