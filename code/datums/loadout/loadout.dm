@@ -141,40 +141,32 @@
 		return
 	switch(action)
 		if("equipLoadout")
-			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
-				ui.user.balloon_alert(ui.user, "The vendor is still reloading")
-				return
-			var/datum/loadout_seller/seller = new (loadout_vendor.faction)
-			if(seller.try_to_equip_loadout(src, ui.user))
-				TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
-			ui.close()
+			if(istype(loadout_vendor, /obj/machinery/quick_vendor))
+				var/obj/item/card/id/I = usr.get_idcard()
+				if(job != I.rank)
+					to_chat(usr, span_warning("You are not in the right job for this loadout!"))
+					return
+				if(I.marine_buy_flags & MARINE_CAN_BUY_LOADOUT)
+					var/datum/loadout_seller/quick/quickseller = new (loadout_vendor.faction)
+					I.marine_buy_flags &= ~MARINE_CAN_BUY_LOADOUT
+					if(quickseller.try_to_equip_loadout(src, ui.user))
+						TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
+					ui.close()
+					return
+				else
+					to_chat(usr, span_warning("You can't buy things from this category anymore."))
+					return
+			else
+				if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
+					ui.user.balloon_alert(ui.user, "The vendor is still reloading")
+					return
+				var/datum/loadout_seller/seller = new (loadout_vendor.faction)
+				if(seller.try_to_equip_loadout(src, ui.user))
+					TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
+				ui.close()
 		if("deleteLoadout")
 			ui.user.client.prefs.loadout_manager.delete_loadout(ui.user, name, job)
 			ui.close()
-
-/datum/loadout/quick/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
-	. = ..()
-	if(.)
-		return
-	switch(action)
-		if("equipLoadout")
-			if(TIMER_COOLDOWN_CHECK(ui.user, COOLDOWN_LOADOUT_EQUIPPED))
-				ui.user.balloon_alert(ui.user, "The vendor is still reloading")
-				return
-			var/obj/item/card/id/I = usr.get_idcard()
-			if(job != I.rank)
-				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
-				return
-			if(I.marine_buy_flags & MARINE_CAN_BUY_LOADOUT)
-				var/datum/loadout_seller/seller = new (loadout_vendor.faction)
-				I.marine_buy_flags &= ~MARINE_CAN_BUY_LOADOUT
-				if(seller.try_to_equip_loadout(src, ui.user))
-					TIMER_COOLDOWN_START(ui.user, COOLDOWN_LOADOUT_EQUIPPED, 30 SECONDS)
-			else
-				to_chat(usr, span_warning("You can't buy things from this category anymore."))
-				return
-			ui.close()
-
 
 /datum/loadout/ui_assets(mob/user)
 	. = ..() || list()

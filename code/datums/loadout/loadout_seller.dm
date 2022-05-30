@@ -35,6 +35,19 @@
 		var/datum/item_representation/item_representation = loadout.item_list[slot_key]
 		item_list[slot_key] = item_representation?.instantiate_object(src, null, user)
 
+///quick vendor bypasses checks
+/datum/loadout_seller/quick/prepare_to_equip_loadout(datum/loadout/loadout, mob/user)
+	unavailable_items = 0
+	item_list = list()
+	var/obj/item/card/id/id = user.get_idcard()
+	available_points = id.marine_points
+	buying_bitfield = id.marine_buy_flags
+	for(var/slot_key in GLOB.visible_item_slot_list)
+		var/datum/item_representation/quick/item_representation = loadout.item_list[slot_key]
+		if(item_representation)
+			item_representation.bypass_vendor_check = TRUE
+		item_list[slot_key] = item_representation?.instantiate_object(src, null, user)
+
 ///Will equip the mob with the items that were bought previously
 /datum/loadout_seller/proc/do_equip_loadout(mob/living/user)
 	var/obj/item/item

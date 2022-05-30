@@ -9,6 +9,10 @@
 	/// If it's allowed to bypass the vendor check
 	var/bypass_vendor_check = FALSE
 
+/datum/item_representation/quick
+	//quick vendor does not pull items from vendors
+	bypass_vendor_check = TRUE
+
 /datum/item_representation/New(obj/item/item_to_copy)
 	if(!item_to_copy)
 		return
