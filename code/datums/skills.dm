@@ -649,12 +649,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "Vat Grown"
 	// default skills
 
-/datum/skills/vatgrown/early
-	name = "Vat Grown"
-	cqc = SKILL_CQC_WEAK
-	firearms = SKILL_FIREARMS_UNTRAINED
-	melee_weapons = SKILL_MELEE_WEAK
-
 /datum/skills/sectoid
 	name = "Sectoid"
 
