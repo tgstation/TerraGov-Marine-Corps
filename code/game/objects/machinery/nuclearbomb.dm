@@ -39,6 +39,7 @@
 	countdown = new(src)
 	name = "[initial(name)] ([UNIQUEID])"
 	SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "nuke")
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_on_hijack)
 
 
 /obj/machinery/nuclearbomb/Destroy()
@@ -92,6 +93,14 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_EXPLODED, z)
 	return TRUE
 
+/// Permanently disables this nuke, for use on hijack
+/obj/machinery/nuclearbomb/proc/disable_on_hijack()
+	desc += " A strong interference renders this inoperable."
+	machine_stat |= BROKEN
+	anchored = FALSE
+	if(timer_enabled)
+		timer_enabled = FALSE
+		stop_processing()
 
 /obj/machinery/nuclearbomb/attackby(obj/item/I, mob/user, params)
 	. = ..()
