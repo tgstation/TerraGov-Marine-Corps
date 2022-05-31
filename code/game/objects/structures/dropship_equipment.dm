@@ -319,6 +319,7 @@
 	density = FALSE
 	var/area/A
 	var/turf/T
+	var/obj/effect/rappel_rope/rope
 
 /obj/structure/dropship_equipment/rappel_system/Initialize()
 	. = ..()
@@ -343,22 +344,23 @@
 	flick("rappel_hatch_opening", src)
 	icon_state = "rappel_hatch_open"
 	step(user, get_dir(user, src))
-	new /obj/effect/rappel_rope(T)
+	rope = new /obj/effect/rappel_rope(T)
+	var/turf/currentT = get_turf(rope)//gets the turf of rope to prevent teleportation if pilot changes rappel spot
 	user.client.perspective = EYE_PERSPECTIVE
-	user.client.eye = T
+	user.client.eye = currentT
 
-	if(!do_after(user, 3 SECONDS, TRUE, T, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
+	if(!do_after(user, 3 SECONDS, TRUE, currentT, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
 		flick("rappel_hatch_closing", src)
 		icon_state = "rappel_hatch_closed"
 		user.client.perspective = MOB_PERSPECTIVE
 		user.client.eye = user
 		return
 
-	user.forceMove(T)
+	user.forceMove(currentT)
 	INVOKE_ASYNC(user, /mob/living/carbon/human.proc/animation_rappel)
 	user.client.perspective = MOB_PERSPECTIVE
 	user.client.eye = user
-	playsound(T, 'sound/items/rappel.ogg', 50, TRUE)
+	playsound(currentT, 'sound/items/rappel.ogg', 50, TRUE)
 
 	flick("rappel_hatch_closing", src)
 	icon_state = "rappel_hatch_closed"
@@ -372,6 +374,9 @@
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/datum/looping_sound/hovering/tadpolehoverloop
+	light_system = STATIC_LIGHT
+	light_power = 1
+	light_range = 2
 
 /obj/effect/rappel_rope/Initialize(mapload, ...)
 	. = ..()
