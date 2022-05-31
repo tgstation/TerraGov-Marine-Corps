@@ -18,7 +18,7 @@
 
 /datum/reagent/medicine/inaprovaline/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name))
+	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 14) //If you are in crit, and someone injects at least 15u into you at once, you will heal 30% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
@@ -457,7 +457,7 @@
 
 /datum/reagent/medicine/neuraline/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name))
+	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
@@ -550,7 +550,7 @@
 
 /datum/reagent/medicine/russian_red/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name))
+	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
