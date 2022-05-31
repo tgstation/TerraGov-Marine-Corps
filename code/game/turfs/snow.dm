@@ -70,7 +70,7 @@
 		L.y = y
 		L.pixel_x += rand(-5,5)
 		L.pixel_y += rand(-5,5)
-		L.set_light(2)
+		L.set_light(2,1)
 		playsound(user, 'sound/weapons/genhit.ogg', 25, 1)
 
 
