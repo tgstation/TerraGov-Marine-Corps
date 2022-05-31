@@ -99,6 +99,7 @@
 
 #define FLAMER_STREAM_STRAIGHT "straight"
 #define FLAMER_STREAM_CONE "cone"
+#define FLAMER_STREAM_RANGED "ranged"
 
 #define GUN_FIREMODE_SEMIAUTO "semi-auto fire mode"
 #define GUN_FIREMODE_BURSTFIRE "burst-fire mode"

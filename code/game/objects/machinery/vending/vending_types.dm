@@ -257,6 +257,7 @@
 			/obj/item/reagent_containers/glass/bottle/doctor_delight = -1,
 		),
 		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/inaprovaline = -1,
 			/obj/item/storage/pill_bottle/dexalin = -1,
 			/obj/item/storage/pill_bottle/spaceacillin = -1,
 			/obj/item/storage/pill_bottle/alkysine = -1,
@@ -270,7 +271,7 @@
 			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = -1,
 			/obj/item/stack/medical/heal_pack/advanced/burn_pack = -1,
 			/obj/item/stack/medical/heal_pack/ointment = -1,
-			/obj/item/stack/medical/heal_pack/gauze =1-1,
+			/obj/item/stack/medical/heal_pack/gauze = -1,
 			/obj/item/stack/medical/splint = -1,
 		),
 		"Misc" = list(

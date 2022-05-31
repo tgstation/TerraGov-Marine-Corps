@@ -205,7 +205,7 @@
 	playsound(src, 'sound/effects/glob.ogg', 25, 1)
 
 
-/obj/structure/reagent_dispensers/fueltank/flamer_fire_act()
+/obj/structure/reagent_dispensers/fueltank/flamer_fire_act(burnlevel)
 	explode()
 
 /obj/structure/reagent_dispensers/water_cooler
