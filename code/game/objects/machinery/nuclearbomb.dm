@@ -95,7 +95,7 @@
 
 /// Permanently disables this nuke, for use on hijack
 /obj/machinery/nuclearbomb/proc/disable_on_hijack()
-	desc += " Something seems to be wrong with it."
+	desc += " A strong interference renders this inoperable."
 	machine_stat |= BROKEN
 	anchored = FALSE
 	if(timer_enabled)
