@@ -831,6 +831,9 @@
 
 	allowed_uniform_type = /obj/item/clothing/under
 
+/obj/item/clothing/suit/modular/som/wornoutsom
+	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 65, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 55)
+
 /obj/item/clothing/suit/modular/som/light
 	name = "\improper SOM scout armor"
 	desc = "The M-11 scout armor is a lightweight suit that that allows for minimal encumberance while still providing reasonable protection. Often seen on scouts or other specialist units that aren't normally getting shot at. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -913,6 +916,9 @@
 
 /obj/item/clothing/head/modular/som/standard
 	starting_attachments = list(/obj/item/armor_module/storage/helmet/som)
+
+/obj/item/clothing/head/modular/som/standard/wornoutsom
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 
 /obj/item/clothing/head/modular/som/veteran
 	name = "\improper SOM veteran helmet"

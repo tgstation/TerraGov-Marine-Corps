@@ -82,8 +82,31 @@ obj/structure/platform_decoration
 			layer = ABOVE_MOB_LAYER
 
 /obj/structure/platform/rockcliff
-	icon = 'icons/obj/structures/platforms.dmi'
 	icon_state = "rockcliff"
 	name = "rock cliff"
 	desc = "A collection of stones and rocks that form a steep cliff,it looks climbable."
-	layer = BELOW_MOB_LAYER
+	coverage = 60
+
+/obj/structure/platform_decoration/rockcliff_deco
+	icon_state = "rockcliff_deco"
+	name = "rock cliff"
+	desc = "A collection of stones and rocks that form a steep cliff,it looks climbable."
+	coverage = 60
+
+/obj/structure/platform/rockcliff/icycliff
+	icon_state = "icerock"
+
+/obj/structure/platform_decoration/rockcliff_deco/icycliff_deco
+	icon_state = "icerock_deco"
+
+/obj/structure/platform/metalplatform
+	icon_state = "metalplatform"
+
+/obj/structure/platform_decoration/metalplatform_deco
+	icon_state = "metalplatform_deco"
+
+/obj/structure/platform/platform2
+	icon_state = "platform2"
+
+/obj/structure/platform_decoration/platform2_deco
+	icon_state = "platform2_deco"

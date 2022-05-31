@@ -463,6 +463,25 @@
 	icon_state =  "pump_on"
 	layer = GAS_PUMP_LAYER
 
+/obj/structure/prop/mainship/printer
+	name = "printer"
+	desc = "Machine for printing text or pictures onto paper."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "printer"
+
+/obj/structure/prop/mainship/cashregister
+	name = "cash register"
+	desc = "Registers cash and calculate transactions."
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "register_idle"
+	density = FALSE
+
+/obj/structure/prop/mainship/commstower
+	name = "communications tower"
+	desc = "A powerful communications tower able to transmit data at great distances"
+	icon = 'icons/obj/machines/comm_tower.dmi'
+	icon_state = "comm_tower"
+
 //items props
 
 /obj/item/prop

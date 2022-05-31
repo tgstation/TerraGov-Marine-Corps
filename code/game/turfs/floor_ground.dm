@@ -88,6 +88,14 @@
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
 
+/turf/open/ground/grass/grasspatch
+	name = "grass"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "grass1"
+	shoefootstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	mediumxenofootstep = FOOTSTEP_GRASS
+
 /turf/open/ground/grass/grass2
 	icon_state = "grass2"
 
@@ -123,6 +131,9 @@
 
 	name = "cave"
 	icon_state = "mars_cave"
+
+/turf/open/floor/plating/ground/mars/random/cave/darker
+	color = "#5e5e52"
 
 /turf/open/floor/plating/ground/mars/random/cave/rock
 	name = "cave"
@@ -304,3 +315,10 @@
 	name = "cave"
 	icon_state = "inner_cavesides"
 
+/turf/open/floor/plating/ground/dirtyellow
+	name = "dirt"
+	icon = 'icons/turf/dirt.dmi'
+	icon_state = "gyellow"
+	shoefootstep = FOOTSTEP_SNOW
+	barefootstep = FOOTSTEP_SNOW
+	mediumxenofootstep = FOOTSTEP_SNOW

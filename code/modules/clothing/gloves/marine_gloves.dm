@@ -86,6 +86,9 @@
 	item_state = "som"
 	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
 
+/obj/item/clothing/gloves/marine/som/wornoutsom
+	soft_armor = list("melee" = 25, "bullet" = 15, "laser" = 10, "energy" = 15, "bomb" = 15, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 15)
+
 
 /obj/item/clothing/gloves/marine/som/veteran
 	name = "\improper SoM veteran gloves"
