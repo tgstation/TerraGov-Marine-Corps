@@ -56,7 +56,7 @@
 /obj/item/ammo_magazine/standard_agls/fragmentation
 	name = "AGLS-37 box magazine (40mm Caseless)"
 	desc = "A box holding 30 40mm caseless Fragmentation grenades for the AGLS-37 automatic grenade launcher."
-	icon_state = "ags_mag"
+	icon_state = "ags_mag_frag"
 	default_ammo = /datum/ammo/ags_shrapnel
 
 /obj/item/ammo_magazine/standard_atgun

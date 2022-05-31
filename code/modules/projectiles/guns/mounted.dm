@@ -215,12 +215,12 @@
 
 /obj/item/weapon/gun/standard_agls
 	name = "\improper AGLS-37 Kauser automatic grenade launcher"
-	desc = "The AGLS-102 heavy machinegun, it's too heavy to be wielded or operated without the tripod. IFF capable. On the back, it reads 'The Explosions and Fragmentation from this weapon ARE NOT friendly fire capable. Kauser is not obligated to buy you new bodyparts for you or your friends if you lose them.'  Can be Deployed with Crtl-Click.   It CANNOT be turned once deployed, due to a lack of swivels, pick it up to move your cone of fire. Can be repaired with a blowtorch once deployed."
+	desc = "The AGLS-37 automatic grenade launching system, it's too heavy to be wielded or operated without the tripod. IFF capable. On the back, it reads 'The Explosions and Fragmentation from this weapon ARE NOT friendly fire capable. Kauser is not obligated to buy you new bodyparts for you or your friends if you lose them.'  Can be Deployed with Crtl-Click.   It CANNOT be turned once deployed, due to a lack of swivels, pick it up to move your cone of fire. Can be repaired with a blowtorch once deployed."
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "ags"
-//	fire_sound = 'sound/weapons/guns/fire/ags.ogg'
+	fire_sound = 'sound/weapons/guns/fire/ags.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_agls
 	scatter = 0
