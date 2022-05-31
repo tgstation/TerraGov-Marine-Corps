@@ -203,17 +203,17 @@ WEAPONS
 	cost = 10
 
 /datum/supply_packs/weapons/ags_emplacement
-	name = "AGS-37 Mounted Automated Grenade Launcher"
+	name = "AGLS-37 Mounted Automated Grenade Launcher"
 	contains = list(/obj/item/storage/box/tl102)
 	cost = 100
 
 /datum/supply_packs/weapons/ags_highexplo
-	name = "AGS-37 AGL high explosive grenades"
+	name = "AGLS-37 AGL high explosive grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls)
 	cost = 10
 
 /datum/supply_packs/weapons/ags_frag
-	name = "AGS-37 AGL fragmentation grenades"
+	name = "AGLS-37 AGL fragmentation grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/fragmentation)
 	cost = 10
 
