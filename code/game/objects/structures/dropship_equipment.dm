@@ -390,7 +390,7 @@
 	QDEL_NULL(tadpolehoverloop)
 	QDEL_IN(src, 5)
 
-/obj/structure/dropship_equipment/rappel_system/proc/can_use(var/mob/living/carbon/human/user)
+/obj/structure/dropship_equipment/rappel_system/proc/can_use(mob/living/carbon/human/user)
 	if(!T)
 		to_chat(user, span_warning("There is no designated rappel point yet."))
 		return FALSE
