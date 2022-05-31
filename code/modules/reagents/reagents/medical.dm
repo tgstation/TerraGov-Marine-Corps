@@ -707,12 +707,6 @@
 
 /datum/reagent/medicine/bicaridine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(effect_str, BURN)
-	if(!ishuman(L))
-		return
-	var/mob/living/carbon/human/H = L
-	for(var/datum/limb/X in H.limbs)
-		for(var/datum/wound/internal_bleeding/W in X.wounds)
-			W.damage = max(0, W.damage - (0.2*effect_str))
 
 /datum/reagent/medicine/bicaridine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, 3*effect_str, 2*effect_str)
@@ -774,39 +768,72 @@
 	name = "Quick Clot Plus"
 	description = "A chemical designed to quickly and painfully remove internal bleeding by encouraging coagulation. Should not be self-administered."
 	color = "#CC00FF"
-	overdose_threshold = REAGENTS_OVERDOSE/5 //Was 4, now 6 //Now 15 //Now 6 again, yay oldQC
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5 //10u
+	overdose_threshold = REAGENTS_OVERDOSE/5 //6u
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5 //12u
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 2.5
+	///The IB wound this dose of QCP will cure, if it lasts long enough
+	var/datum/wound/internal_bleeding/target_IB
+	///Ticks remaining before the target_IB is cured
+	var/ticks_left
+	///Ticks needed to cure an IB
+	var/ticks_to_cure_IB = 10
 
 /datum/reagent/medicine/quickclotplus/on_mob_add(mob/living/L, metabolism)
-	if(TIMER_COOLDOWN_CHECK(L, name))
-		return
-	L.adjustCloneLoss(5*effect_str)
+	select_wound(L)
 
 /datum/reagent/medicine/quickclotplus/on_mob_delete(mob/living/L, metabolism)
-	TIMER_COOLDOWN_START(L, name, 30 SECONDS)
+	if(target_IB)
+		to_chat(L, span_warning("The searing pain in your [target_IB.parent_limb.display_name] returns to a dull ache..."))
+		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
+		target_IB = null
 
 /datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism)
-	var/mob/living/carbon/human/H = L
-	for(var/datum/limb/X in H.limbs)
-		for(var/datum/wound/internal_bleeding/W in X.wounds)
-			W.damage = max(0, W.damage - (2.5*effect_str))
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY
 	L.adjustStaminaLoss(15*effect_str)
+	if(!target_IB)
+		select_wound(L)
+		ticks_left-- //Keep treatment time at the total ticks_to_cure if we select here, including the tick used to select a wound
+		return ..()
+	ticks_left--
+	if(!ticks_left)
+		to_chat(L, span_alert("The searing pain in your [target_IB.parent_limb.display_name] peaks, then slowly fades away entirely."))
+		target_IB.parent_limb.createwound(CUT, target_IB.damage / 2)
+		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
+		QDEL_NULL(target_IB)
+		L.adjustCloneLoss(5*effect_str)
 	return ..()
+
+///Choose an internal bleeding wound to lock onto and cure after a delay.
+/datum/reagent/medicine/quickclotplus/proc/select_wound(mob/living/L)
+	if(target_IB)
+		return
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/body = L
+	for(var/datum/limb/possible_limb AS in body.limbs)
+		for(var/datum/wound/internal_bleeding/possible_IB in possible_limb.wounds)
+			target_IB = possible_IB
+			RegisterSignal(target_IB, COMSIG_PARENT_QDELETING, .proc/clear_wound)
+			break
+		if(target_IB)
+			break
+	if(target_IB)
+		to_chat(body, span_highdanger("The deep ache in your [target_IB.parent_limb.display_name] erupts into searing pain!"))
+		ticks_left = ticks_to_cure_IB
+
+///If something else removes the wound before the drug finishes with it, we need to clean references.
+/datum/reagent/medicine/quickclotplus/proc/clear_wound(atom/target)
+	SIGNAL_HANDLER
+	if(target_IB)
+		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
+		target_IB = null
 
 
 /datum/reagent/medicine/quickclotplus/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(1.5*effect_str, TOX)
 	L.blood_volume -= 4
-	if(!ishuman(L))
-		return
-	var/mob/living/carbon/human/H = L
-	for(var/datum/limb/X in H.limbs)
-		for(var/datum/wound/internal_bleeding/W in X.wounds)
-			W.damage = max(0, W.damage - (5*effect_str))
 
 /datum/reagent/medicine/quickclotplus/overdose_crit_process(mob/living/L, metabolism)
 	L.blood_volume -= 20

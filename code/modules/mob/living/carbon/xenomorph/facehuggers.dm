@@ -651,7 +651,7 @@
 	if(exposed_temperature > 300)
 		kill_hugger()
 
-/obj/item/clothing/mask/facehugger/flamer_fire_act()
+/obj/item/clothing/mask/facehugger/flamer_fire_act(burnlevel)
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)

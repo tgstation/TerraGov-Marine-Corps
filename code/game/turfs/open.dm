@@ -396,7 +396,7 @@
 				continue
 
 			if(!L.on_fire || L.getFireLoss() <= 200)
-				L.take_overall_damage(0, LAVA_TILE_BURN_DAMAGE, clamp(L.get_soft_armor("fire"), 0, 80))
+				L.take_overall_damage(0, LAVA_TILE_BURN_DAMAGE * clamp(L.get_fire_resist(), 0.2, 1), updating_health = TRUE)
 				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()

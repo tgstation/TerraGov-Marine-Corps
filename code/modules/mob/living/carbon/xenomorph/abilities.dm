@@ -423,7 +423,7 @@
 
 	var/mob/living/carbon/xenomorph/target = A
 
-	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+	if(!(target.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
 			to_chat(owner, span_warning("We can't give that caste plasma."))
 			return FALSE
