@@ -328,14 +328,6 @@
 		/datum/reagent/medicine/nanoblood = 60,
 	)
 
-/obj/item/reagent_containers/hypospray/advanced/inaprovaline
-	name = "Inaprovaline hypospray"
-	desc = "A hypospray loaded with inaprovaline."
-	amount_per_transfer_from_this = 15
-	list_reagents = list(
-		/datum/reagent/medicine/inaprovaline = 60,
-	)
-
 /obj/item/reagent_containers/hypospray/advanced/spaceacillin
 	name = "Spaceacillin hypospray"
 	desc = "A hypospray loaded with spaceacillin."
@@ -364,14 +356,6 @@
 	list_reagents = list(
 		/datum/reagent/medicine/quickclot = 60,
 	)
-
-/obj/item/reagent_containers/hypospray/advanced/dexalin
-	name = "Dexalin hypospray"
-	desc = "A hypospray loaded with dexalin."
-	list_reagents = list(
-		/datum/reagent/medicine/dexalin = 60,
-	)
-
 
 
 /obj/item/reagent_containers/hypospray/advanced/update_icon()
@@ -456,4 +440,19 @@
 	desc = "A hypospray loaded with tricordrazine."
 	list_reagents = list(
 		/datum/reagent/medicine/tricordrazine = 120,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/big/inaprovaline
+	name = "Inaprovaline hypospray"
+	desc = "A hypospray loaded with inaprovaline."
+	amount_per_transfer_from_this = 15
+	list_reagents = list(
+		/datum/reagent/medicine/inaprovaline = 120,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/big/dexalin
+	name = "Dexalin hypospray"
+	desc = "A hypospray loaded with dexalin."
+	list_reagents = list(
+		/datum/reagent/medicine/dexalin = 120,
 	)
