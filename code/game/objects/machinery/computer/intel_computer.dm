@@ -52,7 +52,7 @@
 		SSpoints.supply_points[faction] += supply_reward
 		SSpoints.dropship_points += dropship_reward
 		priority_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
-
+		SSminimaps.remove_marker(src)
 
 /obj/machinery/computer/intel_computer/Destroy()
 	GLOB.intel_computers -= src

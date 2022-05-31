@@ -10,8 +10,6 @@
 	wall_smash = 0
 	health = 500
 	maxHealth = 500
-	amount_grown = 0
-	max_grown = 10
 	plasma_stored = 300
 	pixel_x = -16
 	old_x = -16
@@ -96,7 +94,7 @@
 	for(var/mob/living/carbon/xenomorph/xenomorph_alive AS in shuffle(GLOB.alive_xeno_list))
 		if(xenomorph_alive.hivenumber != ownerhive)
 			continue
-		if(!(xenomorph_alive.xeno_caste.caste_flags & CASTE_CAN_BECOME_KING))
+		if(!(xenomorph_alive.xeno_caste.can_flags & CASTE_CAN_BECOME_KING))
 			continue
 		var/accept_to_be_king = tgui_alert(xenomorph_alive, "The fate has landed and you, and you can become the King. Do you accept?", "Rise of the King", list("Accept", "Leave it for another xeno"), 20 SECONDS)
 		if(accept_to_be_king != "Accept")

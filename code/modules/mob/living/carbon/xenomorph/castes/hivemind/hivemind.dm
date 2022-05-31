@@ -47,6 +47,10 @@
 /mob/living/carbon/xenomorph/hivemind/upgrade_possible()
 	return FALSE
 
+/mob/living/carbon/xenomorph/hivemind/upgrade_xeno(newlevel, silent = FALSE)
+	newlevel = XENO_UPGRADE_BASETYPE
+	return ..()
+
 /mob/living/carbon/xenomorph/hivemind/updatehealth()
 	if(on_fire)
 		ExtinguishMob()
@@ -85,12 +89,10 @@
 		QDEL_NULL(core)
 	else
 		core = null
-	upgrade = XENO_UPGRADE_BASETYPE
 	return ..()
 
 
 /mob/living/carbon/xenomorph/hivemind/on_death()
-	upgrade = XENO_UPGRADE_BASETYPE
 	if(!QDELETED(core))
 		QDEL_NULL(core)
 	return ..()
@@ -145,9 +147,9 @@
 
 
 
-/mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
+/mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel)
 	return_to_core()
-	to_chat(src, "<span class='xenonotice'>We were on top of fire, we got moved to our core.")
+	to_chat(src, span_xenonotice("We were on top of fire, we got moved to our core."))
 
 /mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T, strict_turf_check = FALSE)
 	SHOULD_BE_PURE(TRUE)
