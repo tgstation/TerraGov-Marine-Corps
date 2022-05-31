@@ -83,6 +83,7 @@
 		/obj/item/ammo_magazine/tl102/hsg_nest,
 	)
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 //-------------------------------------------------------
 //MG-2005 mounted minigun
@@ -128,8 +129,8 @@
 	undeploy_time = 3 SECONDS
 	deployed_item = /obj/machinery/deployable/mounted
 
-	max_integrity = 200
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+	max_integrity = 300
+	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 //-------------------------------------------------------
 //ATR-22 mounted heavy dualcannon
@@ -171,8 +172,8 @@
 	undeploy_time = 3 SECONDS
 	deployed_item = /obj/machinery/deployable/mounted
 
-	max_integrity = 200
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+	max_integrity = 300
+	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 //-------------------------------------------------------
 //TE-9001 mounted heavy laser
@@ -215,8 +216,8 @@
 	undeploy_time = 3 SECONDS
 	deployed_item = /obj/machinery/deployable/mounted
 
-	max_integrity = 200
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+	max_integrity = 400
+	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 //-------------------------------------------------------
 //RR-15 mounted heavy recoilless rifle
@@ -263,8 +264,8 @@
 	undeploy_time = 3 SECONDS
 	deployed_item = /obj/machinery/deployable/mounted
 
-	max_integrity = 200
-	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+	max_integrity = 600
+	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	///the smoke effect after firing
 	var/datum/effect_system/smoke_spread/smoke

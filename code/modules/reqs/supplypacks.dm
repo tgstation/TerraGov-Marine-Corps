@@ -1533,8 +1533,8 @@ VEHICLES
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/hl_ammo
-	name = "Mounted Heavy Laser ammo"
-	contains = list(/obj/item/ammo_magazine/heavylaser)
+	name = "Mounted Heavy Laser ammo (x3)"
+	contains = list(/obj/item/ammo_magazine/heavylaser, /obj/item/ammo_magazine/heavylaser, /obj/item/ammo_magazine/heavylaser)
 	cost = 5
 	containertype = /obj/structure/closet/crate/ammo
 

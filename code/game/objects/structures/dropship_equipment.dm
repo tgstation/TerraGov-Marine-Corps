@@ -306,11 +306,119 @@
 		linked_console.selected_equipment = src
 		to_chat(user, span_notice("You select [src]."))
 
+//////////////////////////////////// rappel system //////////////////////////////////////
+/obj/structure/dropship_equipment/rappel_system
+	equip_category = DROPSHIP_CREW_WEAPON
+	name = "rappel deployment system"
+	desc = "A system that deploys rappel rope to go down fast without the need for the tadpole to land, you need to designate the rappel point at the navigation computer."
+	dropship_equipment_flags = IS_INTERACTABLE|IS_NOT_REMOVABLE
+	icon_state = "rappel_hatch_closed"
+	point_cost = 0
+	resistance_flags = RESIST_ALL
+	anchored = TRUE
+	density = FALSE
+	var/area/A
+	var/turf/T
+
+/obj/structure/dropship_equipment/rappel_system/Initialize()
+	. = ..()
+	GLOB.rappel_systems = src
+
+/obj/structure/dropship_equipment/rappel_system/attack_hand(mob/living/carbon/human/user)
+	if(!is_reserved_level(z))
+		to_chat(user, span_warning("You are not in-flight!"))
+		return
+
+	if(!can_use(user))
+		return
+
+	if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		to_chat(src, span_warning("That target is too deep underground!"))
+		return
+
+	if(T.density)
+		to_chat(src, span_warning("The selected rappel point is dense."))
+		return
+
+	flick("rappel_hatch_opening", src)
+	icon_state = "rappel_hatch_open"
+
+	if(!do_after(user, 15, FALSE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
+		flick("rappel_hatch_closing", src)
+		icon_state = "rappel_hatch_closed"
+		user.client.perspective = MOB_PERSPECTIVE
+		user.client.eye = user
+		return
+
+	user.client.perspective = EYE_PERSPECTIVE
+	user.client.eye = T
+	new /obj/effect/rappel_rope(T)
+	user.forceMove(T)
+	INVOKE_ASYNC(user, /mob/living/carbon/human.proc/animation_rappel)
+	user.client.perspective = MOB_PERSPECTIVE
+	user.client.eye = user
+	playsound(T, 'sound/items/rappel.ogg', 50, TRUE)
+
+	flick("rappel_hatch_closing", src)
+	icon_state = "rappel_hatch_closed"
+
+/obj/effect/rappel_rope
+	name = "rope"
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "rope"
+	layer = ABOVE_LYING_MOB_LAYER
+	anchored = TRUE
+	resistance_flags = RESIST_ALL
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/datum/looping_sound/hovering/tadpolehoverloop
+
+/obj/effect/rappel_rope/Initialize(mapload, ...)
+	. = ..()
+	tadpolehoverloop = new(list(src), FALSE)
+	var/turf/TR = get_turf(src)
+	TR.visible_message(span_warning("You see a dropship fly overhead and begin dropping ropes!"))
+	ropeanimation()
+
+/obj/effect/rappel_rope/proc/ropeanimation()
+	flick("rope_deploy", src)
+	tadpolehoverloop.start()
+	addtimer(CALLBACK(src, .proc/ropeanimation_stop), 2 SECONDS)
+
+/obj/effect/rappel_rope/proc/ropeanimation_stop()
+	tadpolehoverloop.stop()
+	flick("rope_up", src)
+	QDEL_NULL(tadpolehoverloop)
+	QDEL_IN(src, 5)
+
+/obj/structure/dropship_equipment/rappel_system/proc/can_use(var/mob/living/carbon/human/user)
+	if(!T)
+		to_chat(user, span_warning("There is no designated rappel point yet."))
+		return FALSE
+	if(user.buckled)
+		to_chat(user, span_warning("You cannot rappel while buckled!"))
+		return FALSE
+
+	if(user.lying_angle)
+		to_chat(user, span_warning("You are in no state to do that!"))
+		return FALSE
+
+	if(is_type_in_typecache(T, GLOB.blocked_droppod_tiles))
+		to_chat(user, span_warning("Extremely lethal hazard detected on the target location. Invalid area."))
+		return FALSE
+
+	for(var/x in T.contents)
+		var/atom/object = x
+		if(object.density)
+			to_chat(user, span_warning("Dense object detected in target location. Invalid area."))
+			return FALSE
+
+	return TRUE
+
 //////////////////////////////////// flare launcher //////////////////////////////////////
 /obj/structure/dropship_equipment/flare_launcher
 	equip_category = DROPSHIP_WEAPON
 	name = "flare launcher system"
-	desc = "A system that deploys flares. Fits on the weapon attach points of dropships. You need a powerloader to lift it."
+	desc = "A system that deploys flares stronger than the inputted flares. Fits on the weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "flare_system"
 	dropship_equipment_flags = IS_INTERACTABLE
 	point_cost = 150
@@ -346,7 +454,7 @@
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 40, 1)
 	deployment_cooldown = world.time + 100
 	target = get_ranged_target_turf(src, ship_base.dir, 10)
-	var/obj/item/explosive/grenade/flare/flare_to_launch = new /obj/item/explosive/grenade/flare(loc)
+	var/obj/item/explosive/grenade/flare/flare_to_launch = new /obj/item/explosive/grenade/flare/strongerflare(loc)
 	flare_to_launch.turn_on()
 	flare_to_launch.throw_at(target, 10, 2)
 	stored_amount--

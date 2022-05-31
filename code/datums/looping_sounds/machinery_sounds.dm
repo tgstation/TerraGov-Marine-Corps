@@ -11,3 +11,11 @@
 	mid_sounds = list('sound/machines/grill/grillsizzle.ogg' = 1)
 	mid_length = 18
 	volume = 50
+
+/datum/looping_sound/hovering
+	start_sound = 'sound/effects/tadpolehover_start.ogg'
+	start_length = 4
+	mid_sounds = list('sound/effects/tadpolehover_start.ogg'=1)
+	mid_length = 18
+	end_sound = 'sound/effects/tadpolehover_end.ogg'
+	volume = 100

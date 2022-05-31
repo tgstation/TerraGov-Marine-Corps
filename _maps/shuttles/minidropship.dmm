@@ -46,7 +46,6 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/light,
 /turf/open/floor/mainship/orange{
 	dir = 4
@@ -61,6 +60,7 @@
 	},
 /area/shuttle/minidropship)
 "s" = (
+/obj/structure/dropship_equipment/rappel_system,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "u" = (
@@ -68,9 +68,6 @@
 /turf/open/floor/mainship/orange,
 /area/shuttle/minidropship)
 "v" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "minidropship_podlock"
@@ -87,7 +84,6 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/light,
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -131,9 +127,6 @@
 /turf/open/shuttle/dropship/three,
 /area/shuttle/minidropship)
 "N" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "minidropship_podlock"
@@ -148,7 +141,6 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -157,9 +149,6 @@
 	},
 /area/shuttle/minidropship)
 "R" = (
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "minidropship_podlock"
@@ -182,7 +171,6 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/light{
 	dir = 1
 	},
