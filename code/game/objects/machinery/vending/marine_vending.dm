@@ -843,13 +843,14 @@
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
 			/obj/item/stack/medical/heal_pack/ointment = -1,
-			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 32,
-			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 32,
 			/obj/item/stack/medical/splint = -1,
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 50,
 		),
 		"Misc" = list(
-			/obj/item/healthanalyzer = 12,
-			/obj/item/bodybag/cryobag = 8,
+			/obj/item/defibrillator = 8,
+			/obj/item/healthanalyzer = 16,
+			/obj/item/bodybag/cryobag = 24,
 		),
 	)
 

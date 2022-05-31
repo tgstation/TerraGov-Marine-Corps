@@ -155,12 +155,8 @@
 	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) //only doctors and researchers can access these
 	products = list(
 		"Hypospray" = list (
-			/obj/item/defibrillator = 2,
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 15,
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 9,
-			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 15,
-			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 15,
-			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 6,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/dylovene = 12,
@@ -176,38 +172,25 @@
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 12,
 		),
 		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/inaprovaline = 12,
-			/obj/item/storage/pill_bottle/dexalin = 12,
-			/obj/item/storage/pill_bottle/spaceacillin = 12,
-			/obj/item/storage/pill_bottle/alkysine = 12,
-			/obj/item/storage/pill_bottle/imidazoline = 12,
-			/obj/item/storage/pill_bottle/peridaxon = 12,
-			/obj/item/storage/pill_bottle/quickclot = 12,
-			/obj/item/storage/pill_bottle/hypervene = 12,
+			/obj/item/storage/pill_bottle/bicaridine = 8,
+			/obj/item/storage/pill_bottle/kelotane = 8,
+			/obj/item/storage/pill_bottle/tramadol = 8,
+			/obj/item/storage/pill_bottle/tricordrazine = 8,
+			/obj/item/storage/pill_bottle/dylovene = 8,
+			/obj/item/storage/pill_bottle/inaprovaline = 8,
+			/obj/item/storage/pill_bottle/dexalin = 8,
+			/obj/item/storage/pill_bottle/spaceacillin = 8,
+			/obj/item/storage/pill_bottle/alkysine = 8,
+			/obj/item/storage/pill_bottle/imidazoline = 8,
+			/obj/item/storage/pill_bottle/quickclot = 8,
+			/obj/item/storage/pill_bottle/hypervene = 8,
 			/obj/item/storage/pill_bottle/russian_red = 6,
 		),
-		"Heal Pack" = list(
-			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 15,
-			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 15,
-			/obj/item/stack/medical/heal_pack/ointment = -1,
-			/obj/item/stack/medical/heal_pack/gauze = -1,
-			/obj/item/stack/medical/splint = -1,
-		),
 		"Misc" = list(
-			/obj/item/healthanalyzer = 15,
+			/obj/item/reagent_containers/syringe = -1,
+			/obj/item/tool/research/xeno_analyzer = -1,
+			/obj/item/tool/research/excavation_tool = -1,
 			/obj/item/clothing/glasses/hud/health = 6,
-			/obj/item/storage/belt/medical = 6,
-			/obj/item/reagent_containers/syringe = 20,
-			/obj/item/tool/research/xeno_analyzer = 5,
-			/obj/item/tool/research/excavation_tool = 5,
-		),
-		"Training Toxins" = list(
-			/obj/item/reagent_containers/glass/bottle/toxin = 1,
-			/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
-			/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
 		)
 	)
 	idle_power_usage = 211
