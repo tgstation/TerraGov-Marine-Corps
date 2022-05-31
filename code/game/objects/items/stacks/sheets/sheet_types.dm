@@ -84,7 +84,14 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	recipes = GLOB.metal_recipes
 
 /obj/item/stack/sheet/metal/select_radial(mob/user)
-	var/choice = show_radial_menu(user, user, GLOB.metal_radial_images, require_near = TRUE)
+	if(user.get_active_held_item() != src)
+		return
+	if(!can_interact(user))
+		return TRUE
+
+	add_fingerprint(usr, "topic")
+
+	var/choice = show_radial_menu(user, src, GLOB.metal_radial_images, require_near = TRUE)
 
 	switch (choice)
 		if("recipes")
