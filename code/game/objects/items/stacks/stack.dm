@@ -180,6 +180,10 @@
 
 /// Creates multiplier amount of objects based off of stack recipe R. Most creation variables are changed through stack recipe datum's variables
 /obj/item/stack/proc/create_object(datum/stack_recipe/R, multiplier)
+	if(usr.get_active_held_item() != src)
+		return
+	if(!can_interact(usr))
+		return TRUE
 	if(!building_checks(R, multiplier))
 		return
 	if(usr.do_actions)
