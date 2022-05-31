@@ -286,7 +286,10 @@
 	rappelsys = GLOB.rappel_systems
 	var/area/A = get_area(target)
 	var/turf/T = get_turf(target)
-	if(!target)
+	if(!A)
+		return
+
+	if(!T)
 		return
 
 	if(target.z == rappelsys.z)

@@ -342,17 +342,18 @@
 
 	flick("rappel_hatch_opening", src)
 	icon_state = "rappel_hatch_open"
+	step(user, get_dir(user, src))
+	new /obj/effect/rappel_rope(T)
+	user.client.perspective = EYE_PERSPECTIVE
+	user.client.eye = T
 
-	if(!do_after(user, 15, FALSE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
+	if(!do_after(user, 3 SECONDS, TRUE, T, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
 		flick("rappel_hatch_closing", src)
 		icon_state = "rappel_hatch_closed"
 		user.client.perspective = MOB_PERSPECTIVE
 		user.client.eye = user
 		return
 
-	user.client.perspective = EYE_PERSPECTIVE
-	user.client.eye = T
-	new /obj/effect/rappel_rope(T)
 	user.forceMove(T)
 	INVOKE_ASYNC(user, /mob/living/carbon/human.proc/animation_rappel)
 	user.client.perspective = MOB_PERSPECTIVE
@@ -382,7 +383,7 @@
 /obj/effect/rappel_rope/proc/ropeanimation()
 	flick("rope_deploy", src)
 	tadpolehoverloop.start()
-	addtimer(CALLBACK(src, .proc/ropeanimation_stop), 2 SECONDS)
+	addtimer(CALLBACK(src, .proc/ropeanimation_stop), 4 SECONDS)
 
 /obj/effect/rappel_rope/proc/ropeanimation_stop()
 	tadpolehoverloop.stop()
