@@ -1333,10 +1333,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor,
 /area/bigredv2/outside/office_complex)
-"OX" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/icefloor,
-/area/bigredv2/outside/office_complex)
 "Pn" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
@@ -1948,7 +1944,7 @@ Yh
 Nk
 xx
 JY
-OX
+wF
 "}
 (9,1,1) = {"
 bX
