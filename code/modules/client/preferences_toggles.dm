@@ -97,6 +97,14 @@
 
 	to_chat(src, span_notice("You will [(prefs.toggles_gameplay & RADIAL_MEDICAL) ? "now" : "no longer"] use the radial menu for medical purposes."))
 
+/client/verb/toggle_radial_stacks()
+	set category = "Preferences"
+	set name = "Toggle Radial Stacks Wheel"
+
+	prefs.toggles_gameplay ^= RADIAL_STACKS
+	prefs.save_preferences()
+
+	to_chat(src, span_notice("You will [(prefs.toggles_gameplay & RADIAL_STACKS) ? "now" : "no longer"] use the radial menu when interacting with material stacks."))
 
 /client/verb/toggle_lobby_music()
 	set category = "Preferences"

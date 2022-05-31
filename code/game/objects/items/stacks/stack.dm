@@ -367,10 +367,9 @@
 	return ..()
 
 /obj/item/stack/attack_self(mob/user)
-	if(!select_radial(user)) //Return false if the menu shouldn't be opened
-		return
-
-	return ..()
+	//We need to open the menu only if radial stacks are disabled, or if select_radial tells us to by returning TRUE
+	if(!(user.client.prefs.toggles_gameplay & RADIAL_STACKS) || select_radial(user))
+		return ..()
 
 /// Proc for special actions and radial menus on subtypes. Returning FALSE cancels the recipe menu for a stack.
 /obj/item/stack/proc/select_radial(mob/user)
