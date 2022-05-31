@@ -518,3 +518,21 @@
   - qol: Metal, empty sandbags, plasteel and wood have icons based on how much stuff
       is in the stack
   - imageadd: Icons for that
+2022-05-31:
+  BraveMole:
+  - bugfix: Fix loadouts giving marine access to nanomed vendor
+  - bugfix: Fix inap, RR and neuraline working on dead bodies
+  Lewdcifer:
+  - balance: RL-152 no longer accepts mini scopes.
+  QualityVan:
+  - bugfix: You can open and close m44 revolvers.
+  - bugfix: Fixed a tiny bit of unreachable code in gorger transfusion failure messages
+  Wayland-Smithy:
+  - bugfix: Fixed hivemind mob perma rest on ghosting.
+  - bugfix: Fixed xeno structure selection out of bounds error.
+  breadhunt:
+  - bugfix: CIC orbital spotlights now work again.
+  - balance: Spotlight range 11 --> 15, about the same light level as combat floodlights
+  - qol: Balloon alerts to surgery actions
+  goose4429:
+  - bugfix: Warrior punch and jab respect mob armor
