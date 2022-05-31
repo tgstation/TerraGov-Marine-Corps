@@ -204,6 +204,7 @@ obj/item/alienjar
 	anchored = TRUE
 	layer = MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
 
 /obj/structure/plasticflaps/CanAllowThrough(atom/A, turf/T)
 	. = ..()
