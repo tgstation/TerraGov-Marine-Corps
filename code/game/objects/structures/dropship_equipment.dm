@@ -354,6 +354,7 @@
 		icon_state = "rappel_hatch_closed"
 		user.client.perspective = MOB_PERSPECTIVE
 		user.client.eye = user
+		rope.ropeanimation_stop()
 		return
 
 	user.forceMove(currentT)
