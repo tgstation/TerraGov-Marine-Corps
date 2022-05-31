@@ -772,11 +772,10 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
 		/obj/item/storage/box/MRE = -1,
-		/obj/item/reagent_containers/food/drinks/flask = -1,
 		/obj/item/reagent_containers/food/drinks/flask/marine = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = -1
 	)
 //Christmas inventory
 /*
@@ -798,20 +797,20 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		"Pill Packet" = list(
-			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
-			/obj/item/storage/pill_bottle/packet/kelotane = -1,
-			/obj/item/storage/pill_bottle/packet/tramadol = -1,
-			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/packet/dylovene = -1,
+		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/tricordrazine = 12,
+			/obj/item/storage/pill_bottle/bicaridine = 12,
+			/obj/item/storage/pill_bottle/kelotane = 12,
+			/obj/item/storage/pill_bottle/tramadol = 12,
+			/obj/item/storage/pill_bottle/dylovene = 12
 		),
 		"Auto Injector" = list(
-			/obj/item/reagent_containers/hypospray/autoinjector/combat = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/tramadol = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/combat = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 30,
 			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 20,
@@ -843,7 +842,7 @@
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
-		"Pill Packet" = list(
+		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/bicaridine = -1,
 			/obj/item/storage/pill_bottle/kelotane = -1,
 			/obj/item/storage/pill_bottle/tramadol = -1,
@@ -942,6 +941,8 @@
 		/obj/item/clothing/glasses/hud/health = 4,
 		/obj/item/storage/firstaid/regular = 4,
 		/obj/item/storage/firstaid/adv = 8,
+		/obj/item/storage/pouch/medical = 4,
+		/obj/item/storage/pouch/medkit = 4,
 		/obj/item/storage/pouch/magazine/large = 4,
 		/obj/item/storage/pouch/magazine/pistol/large = 4,
 		/obj/item/clothing/mask/gas = 4,
@@ -1166,9 +1167,11 @@
 			/obj/item/storage/pouch/flare/full = -1,
 			/obj/item/storage/pouch/grenade = -1,
 			/obj/item/storage/pouch/explosive = -1,
+			/obj/item/storage/pouch/firstaid = -1,
+			/obj/item/storage/pouch/syringe = -1,
 			/obj/item/storage/pouch/medkit = -1,
-			/obj/item/storage/pouch/medical_injectors = -1,
 			/obj/item/storage/pouch/med_lolipops = -1,
+			/obj/item/storage/pouch/autoinjector = -1,
 			/obj/item/storage/pouch/construction = -1,
 			/obj/item/storage/pouch/electronics = -1,
 			/obj/item/storage/pouch/tools/full = -1,
