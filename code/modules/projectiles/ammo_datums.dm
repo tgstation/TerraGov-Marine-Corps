@@ -1793,7 +1793,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
 	hud_state = "laser_sniper"
-	damage = 70
+	damage = 60
 	penetration = 30
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IFF|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	max_range = 40
