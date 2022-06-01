@@ -137,17 +137,21 @@
 
 /obj/item/clothing/glasses/mgoggles
 	name = "marine ballistic goggles"
-	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
+	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet, but the tinting help with bright flashes too."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
-	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
+	flags_equip_slot = ITEM_SLOT_EYES
 	goggles = TRUE
+	eye_protection = 1
 
+/obj/item/clothing/glasses/mgoggles/Initialize()
+	. = ..()
+	AddComponent(/datum/component/clothing_tint, TINT_4, TRUE)
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"
-	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet. Contains prescription lenses in case you weren't sure if they were lame or not."
+	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet, but the tinting help with bright flashes too. Contains prescription lenses in case you weren't sure if they were lame or not."
 	prescription = TRUE
 
 /obj/item/clothing/glasses/mgoggles/attackby(obj/item/I, mob/user, params)
