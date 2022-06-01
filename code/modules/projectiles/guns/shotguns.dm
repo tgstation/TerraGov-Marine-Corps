@@ -129,6 +129,8 @@
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 
+	wield_delay_mod	= 0.2 SECONDS
+
 //-------------------------------------------------------
 //DOUBLE SHOTTY
 
