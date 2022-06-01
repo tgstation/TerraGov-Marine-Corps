@@ -163,10 +163,9 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/s)
 "mT" = (
-/obj/structure/window/framed/colony/reinforced/hull,
 /obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/bigredv2/outside/se)
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
 "nJ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1005,7 +1004,7 @@ PO
 GN
 XX
 XX
-mT
+XX
 XX
 GN
 PO
@@ -1208,6 +1207,6 @@ CC
 kn
 uf
 uf
-uf
+mT
 uf
 "}
