@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - bugfix: "Fixes metal cades being upgraded with nothing"

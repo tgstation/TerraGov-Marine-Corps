@@ -1,5 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - qol: "123456 keybind weapon swapping for CAS"
-  - bugfix: "Swaps south/east keybinds for CAS to where they should be"
