@@ -1731,7 +1731,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	overlays -= image('icons/Marine/marine-weapons.dmi', src, "active")
 	if(master_gun.active_attachable == src)
 		master_gun.active_attachable = null
-	master_gun.aim_slowdown					-= aim_speed_mod
 	master_gun.wield_delay					-= wield_delay_mod
 	master_gun = null
 	attached_to:gunattachment = null
