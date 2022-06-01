@@ -645,7 +645,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
 
 	iff_marine_damage_falloff = -0.10
-	aim_slowdown = 0.7
+	aim_slowdown = 2.0
 	wield_delay = 0.7 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
