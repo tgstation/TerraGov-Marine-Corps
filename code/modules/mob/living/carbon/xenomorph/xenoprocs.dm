@@ -382,6 +382,11 @@
 		to_chat(src, span_xenodanger("Our carapace crackles and our tendons strengthen. We are ready to evolve!"))
 		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
 
+/mob/living/carbon/xenomorph/larva/update_evolving()
+	// If larb is not ready to evo and is on weeds then apply +1 boost
+	if(loc_weeds_type && evolution_stored < xeno_caste.evolution_threshold)
+		evolution_stored = min(evolution_stored + 1, xeno_caste.evolution_threshold - 1) // leave the final point for the parent proc
+	return ..()
 
 /mob/living/carbon/xenomorph/show_inv(mob/user)
 	return
