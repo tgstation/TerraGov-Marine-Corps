@@ -91,6 +91,7 @@
 	name = "surgical cap"
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs."
 	icon_state = "surgcap_blue"
+	w_class = WEIGHT_CLASS_TINY
 	flags_inv_hide = HIDETOPHAIR
 
 /obj/item/clothing/head/surgery/purple
