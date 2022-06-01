@@ -1704,7 +1704,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!istype(attached_to, /obj/item/weapon/gun))
 		return
 	master_gun = attached_to
-	master_gun.aim_slowdown					+= aim_speed_mod
 	master_gun.wield_delay					+= wield_delay_mod
 	if(gun_user)
 		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_UNIQUEACTION, COMSIG_PARENT_QDELETING,  COMSIG_MOB_CLICK_RIGHT))
