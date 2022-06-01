@@ -93,11 +93,11 @@
 		return FALSE
 	buckling_human.visible_message("[span_notice("[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.")]'")
 	to_chat(buckling_human, span_information("You begin to feel sleepy."))
-	addtimer(CALLBACK(src, .proc/knock_out_buckled, buckling_human), rand(20, 40))
+	addtimer(CALLBACK(src, .proc/knock_out_buckled, buckling_human), rand(2 SECONDS, 4 SECONDS))
 	buckling_human.setDir(SOUTH)
 	return ..()
 
-///Knocks out someone buckled to the op table a few seconds later
+///Knocks out someone buckled to the op table a few seconds later. Won't knock out if they've been unbuckled since.
 /obj/machinery/optable/proc/knock_out_buckled(mob/living/buckled_mob)
 	if(!victim || victim != buckled_mob)
 		return
@@ -118,9 +118,10 @@
 	var/obj/item/anesthetic_mask = buckled_human.wear_mask
 	buckled_human.dropItemToGround(anesthetic_mask)
 	qdel(anesthetic_mask)
-	addtimer(CALLBACK(src, .proc/remove_knockout, buckled_mob), rand(20, 40))
+	addtimer(CALLBACK(src, .proc/remove_knockout, buckled_mob), rand(2 SECONDS, 4 SECONDS))
 	return ..()
 
+///Wakes the buckled mob back up after they're released
 /obj/machinery/optable/proc/remove_knockout(mob/living/buckled_mob)
 	REMOVE_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, "op_table")
 
