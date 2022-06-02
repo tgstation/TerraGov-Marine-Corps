@@ -1823,6 +1823,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "laser_sniper"
 	damage = 70
 	penetration = 30
+	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IFF|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	max_range = 40
 	damage_falloff = 0
@@ -1834,6 +1835,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "laser_heat"
 	damage = 40
 	penetration = 0
+	accurate_range_min = 5
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
 	hitscan_effect_icon = "u_laser_beam"
 
