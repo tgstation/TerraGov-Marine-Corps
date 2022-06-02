@@ -38,3 +38,19 @@
   - refactor: Cleans up fabricator code a bit
   - qol: Balloon alerts to fabricator
   - bugfix: Fabricator turns orange when it's active properly now
+2022-06-02:
+  DeltaFire15:
+  - balance: Larva gets 2 points evo / tick if on weeds, like before the larva evo
+      point rework.
+  Lewdcifer:
+  - imageadd: 'New lobby art: a good meme never dies.'
+  - imageadd: 'New lobby art: droid bullies larva.'
+  Lumipharon:
+  - balance: Underbarrel weapons now slightly impact wield times for their parent
+      guns.
+  QualityVan:
+  - code_imp: Operating tables don't use their anesthetic tank for internals any more.
+      They still need one though.
+  breadhunt:
+  - balance: Gives researcher engineering access for APCs. They'll still fumble though.
+  - bugfix: Fixes stack PR
