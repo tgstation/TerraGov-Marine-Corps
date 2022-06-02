@@ -1795,10 +1795,17 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "laser_sniper"
 	damage = 70
 	penetration = 30
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_IFF|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	max_range = 40
 	damage_falloff = 0
 	hitscan_effect_icon = "beam_heavy"
+
+/datum/ammo/energy/lasgun/marine/sniper/iff
+	name = "sniper laser smartbolt"
+	hud_state = "laser_sniper"
+	damage = 50
+	penetration = 30
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_IFF|AMMO_HITSCAN|AMMO_SNIPER
 
 /datum/ammo/energy/lasgun/marine/sniper_heat
 	name = "sniper heat bolt"

@@ -296,6 +296,8 @@
 	var/radial_icon = 'icons/mob/radial.dmi'
 	///The icon state the radial menu will use.
 	var/radial_icon_state = "laser"
+	///Windup delay modificatoin
+	var/windup_delay = 0
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/unique_action(mob/user)
 	if(!user)
@@ -319,6 +321,7 @@
 	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
 	rounds_per_shot = initial(choice.rounds_per_shot)
+	windup_delay = initial(choice.windup_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
@@ -612,7 +615,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper
 	name = "\improper Terra Experimental laser sniper rifle"
-	desc = "The T-ES, a Terra Experimental standard issue laser sniper rifle, it has an integrated charge selector for normal and heat settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
+	desc = "The T-ES, a Terra Experimental standard issue laser sniper rifle, it has an integrated charge selector for normal, IFF via laserbending through a internal computer at the cost of reduced damage, and a microwave setting that sets foes on fire. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_sniper_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
 	icon_state = "tes"
@@ -625,6 +628,7 @@
 	damage_falloff_mult = 0
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	windup_delay = 0
 
 	ammo_level_icon = "te"
 	icon_overlay_x_offset = -1
@@ -655,20 +659,28 @@
 	movement_acc_penalty_mult = 6
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
+		"Smart" = /datum/lasrifle/base/energy_sniper_mode/standard/IFF,
 		"Focused" = /datum/lasrifle/base/energy_sniper_mode/heat,
 	)
 
 /datum/lasrifle/base/energy_sniper_mode/standard
 	rounds_per_shot = 50
+	windup_delay = 0
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
-	message_to_user = "You set the sniper rifle's charge mode to IFF fire."
+	message_to_user = "You set the sniper rifle's charge mode to normal fire."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
 
+/datum/lasrifle/base/energy_sniper_mode/standard/IFF
+	windup_delay = 0.5 SECONDS
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper/iff
+	message_to_user = "You set the sniper rifle's charge mode to IFF fire."
+
 /datum/lasrifle/base/energy_sniper_mode/heat
 	rounds_per_shot = 150
+	windup_delay = 0
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper_heat
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
