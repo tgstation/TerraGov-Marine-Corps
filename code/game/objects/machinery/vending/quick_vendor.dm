@@ -181,9 +181,7 @@
 			loadout.loadout_vendor = loadout_vendor
 			loadout.ui_interact(ui.user)
 
-
-/////
-///Load a loadout from the savefile and returns it
+///Records all the available loadouts for this vendor, and returns the details of the loadout selected
 /datum/quickload_manager/proc/load_loadout(loadout_name, loadout_job)
 	///list of all available loadouts, in jatum format because horrible to read is nicer than horrible to create and edit
 	var/list/loadout_list = list(

@@ -18,19 +18,10 @@ const LoadoutNavigator = (props: Loadout, context) => {
         <Flex.Item grow={1}><div> </div></Flex.Item>
         <Flex.Item>
           <Button
-            onClick={() => { 
+            onClick={() => {
               act('equipLoadout');
             }}>
             Equip Loadout
-          </Button>
-        </Flex.Item>
-        <Flex.Item grow={1}><div> </div></Flex.Item>
-        <Flex.Item>
-          <Button
-            onClick={() => {
-              act('deleteLoadout');
-            }}>
-            Delete Loadout
           </Button>
         </Flex.Item>
         <Flex.Item grow={1}><div> </div></Flex.Item>
@@ -39,28 +30,28 @@ const LoadoutNavigator = (props: Loadout, context) => {
   );
 };
 
-export const LoadoutViewer = (props, context) => {
+export const QuickloadViewer = (props, context) => {
   const { data } = useBackend<LoadoutViewerData>(context);
-  
+
   const {
     loadout,
     items,
   }= data;
 
   return (
-    <Window 
+    <Window
       title="Loadout Viewer"
-      width={260} 
+      width={260}
       height={460}>
       <Window.Content>
         <Stack fill vertical>
-          <SlotSelector 
+          <SlotSelector
             items={items}
           />
           <LoadoutNavigator
             name={loadout.name}
             job={loadout.job}
-          /> 
+          />
         </Stack>
       </Window.Content>
     </Window>

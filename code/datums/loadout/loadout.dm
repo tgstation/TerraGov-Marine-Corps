@@ -117,7 +117,11 @@
 /datum/loadout/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "LoadoutViewer", name)
+		if(istype(loadout_vendor, /obj/machinery/quick_vendor))
+			//quickload UI doesn't have the option to delete loadouts
+			ui = new(user, src, "QuickloadViewer", name)
+		else
+			ui = new(user, src, "LoadoutViewer", name)
 		ui.open()
 
 /datum/loadout/ui_state(mob/user)
