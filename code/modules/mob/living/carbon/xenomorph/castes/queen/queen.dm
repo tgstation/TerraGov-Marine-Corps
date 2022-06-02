@@ -10,8 +10,6 @@
 	wall_smash = 0
 	health = 300
 	maxHealth = 300
-	amount_grown = 0
-	max_grown = 10
 	plasma_stored = 300
 	pixel_x = -16
 	old_x = -16

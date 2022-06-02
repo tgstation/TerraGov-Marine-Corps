@@ -1,6 +1,6 @@
 
 /mob/living/carbon/xenomorph/can_ventcrawl()
-	if(mob_size == MOB_SIZE_BIG || !(xeno_caste.caste_flags & CASTE_CAN_VENT_CRAWL))
+	if(mob_size == MOB_SIZE_BIG || !(xeno_caste.can_flags & CASTE_CAN_VENT_CRAWL))
 		return FALSE
 	else
 		return TRUE

@@ -178,6 +178,36 @@
 	icon_opened = "open_explosives"
 	icon_closed = "closed_explosives"
 
+/obj/structure/closet/crate/explosives/whiskeyoutpost/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/stick(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+	new /obj/item/explosive/grenade/phosphorus/upp(src)
+
+/obj/structure/closet/crate/explosives/whiskeyoutposttwo/Initialize()
+	. = ..()
+	new /obj/structure/closet/crate/explosives(src)
+	new /obj/item/storage/box/visual/grenade/razorburn(src)
+	new /obj/item/storage/box/visual/grenade/razorburn(src)
+	new /obj/item/storage/box/visual/grenade/M15(src)
+	new /obj/item/storage/box/visual/grenade/phosphorus(src)
+	new /obj/item/explosive/grenade/incendiary/molotov(src)
+	new /obj/item/explosive/grenade/incendiary/molotov(src)
+
 /obj/structure/closet/crate/freezer
 	name = "freezer crate"
 	desc = "A freezer crate."

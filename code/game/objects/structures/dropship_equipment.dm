@@ -501,7 +501,7 @@
 		to_chat(user, span_warning("[src] is busy."))
 		return //prevents spamming deployment/undeployment
 	if(luminosity != brightness)
-		set_light(brightness)
+		set_light(brightness, brightness)
 		icon_state = "spotlights_on"
 		to_chat(user, span_notice("You turn on [src]."))
 	else
@@ -526,7 +526,7 @@
 	set_light(0)
 
 /obj/structure/dropship_equipment/electronics/spotlights/on_arrival()
-	set_light(brightness)
+	set_light(brightness, brightness)
 
 /////////////////////////////////// COMPUTERS //////////////////////////////////////
 

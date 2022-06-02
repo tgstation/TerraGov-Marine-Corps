@@ -63,9 +63,10 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 2.5 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.50
+	accuracy_mult = 1.1
 	recoil = 2
 	scatter = 0
+	movement_acc_penalty_mult = 8
 
 	placed_overlay_iconstate = "antimat"
 
@@ -254,10 +255,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
 
 	fire_delay = 1.5 SECONDS
-	accuracy_mult = 1.50
+	accuracy_mult = 1.2
 	scatter = 3
 	recoil = 5
 	burst_amount = 1
+	movement_acc_penalty_mult = 7
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
@@ -305,10 +307,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 1.2 SECONDS
 	burst_amount = 1
-	accuracy_mult = 0.95
+	accuracy_mult = 1
 	scatter = -5
 	recoil = -1
 	wield_delay = 1.8 SECONDS
+	movement_acc_penalty_mult = 6
 
 
 
@@ -367,7 +370,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 0.4 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.4
+	accuracy_mult = 1.2
 	scatter = -3
 	recoil = 2
 
@@ -411,6 +414,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil = 2
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/minigun/Initialize()
 	. = ..()
@@ -429,7 +433,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	icon_state = "minigun_sg"
 	item_state = "minigun_sg"
 	fire_animation = "minigun_sg_fire"
-	max_shells = 1000 //codex
+	max_shells = 3000 //codex
 	caliber = CALIBER_10x26_CASELESS //codex
 	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
 	wield_delay = 1.5 SECONDS
@@ -440,8 +444,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	aim_slowdown = 1.5
 	actions_types = list()
 
-	fire_delay = 0.15 SECONDS
-	windup_delay = 0.4 SECONDS
+	fire_delay = 0.1 SECONDS
+	windup_delay = 0.7 SECONDS
 	scatter = -5
 	recoil = 0
 	recoil_unwielded = 4
@@ -480,7 +484,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 0.1 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.75
+	accuracy_mult = 1
 	recoil = 0
 	accuracy_mult_unwielded = 0.75
 	scatter = -1
@@ -507,6 +511,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	detach_delay = 3 SECONDS
 	pixel_shift_x = 18
 	pixel_shift_y = 16
+
+	wield_delay_mod	= 0.2 SECONDS
 
 //-------------------------------------------------------
 //M5 RPG
@@ -602,13 +608,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_FIREARMS
-	starting_attachment_types = list(/obj/item/attachable/scope/mini)
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -710,18 +714,21 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/launcher/rocket/oneuse
 	name = "\improper RL-72 disposable rocket launcher"
-	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm explosive rocket."
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm explosive rocket. Spacebar to shorten or extend it to make it storeable or fireable, respectively."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t72"
 	item_state = "t72"
 	max_shells = 1 //codex
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
+	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo_type = /obj/item/ammo_magazine/rocket/oneuse
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/oneuse)
 	reciever_flags = AMMO_RECIEVER_CLOSED|AMMO_RECIEVER_MAGAZINES
 	flags_equip_slot = ITEM_SLOT_BELT
 	attachable_allowed = list(/obj/item/attachable/magnetic_harness)
+	/// Indicates extension state of the launcher. True: Fireable and unable to fit in storage. False: Able to fit in storage but must be extended to fire.
+	var/extended = FALSE
 
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -730,6 +737,21 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	fire_delay = 1 SECONDS
 	recoil = 3
 	scatter = -100
+
+// Do a short windup, swap the extension status of the rocket if successful, then swap the flags.
+/obj/item/weapon/gun/launcher/rocket/oneuse/unique_action(mob/living/user)
+	playsound(user, 'sound/weapons/guns/misc/oneuse_deploy.ogg', 25, 1)
+	if(!do_after(user, 20, TRUE, src, BUSY_ICON_DANGER))
+		return
+	extended = !extended
+	if(!extended)
+		w_class = WEIGHT_CLASS_NORMAL
+		flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY
+		icon_state = initial(icon_state)
+		return
+	w_class = WEIGHT_CLASS_BULKY
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	icon_state = "[icon_state]_extended"
 
 //-------------------------------------------------------
 //SR-220 Railgun
@@ -768,3 +790,4 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	accuracy_mult = 2
 	recoil = 0
 	scatter = 0
+	movement_acc_penalty_mult = 6

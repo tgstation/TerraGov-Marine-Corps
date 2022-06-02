@@ -184,14 +184,10 @@
 				break
 
 	if(href_list["watch_xeno_name"])
-		if(!check_state())
-			return
-		var/follow_name = href_list["watch_xeno_name"]
-		for(var/mob/living/carbon/xenomorph/X AS in hive.get_watchable_xenos(usr))
-			if((isnum(X.nicknumber) && num2text(X.nicknumber) != follow_name) || X.nicknumber != follow_name)
-				continue
-			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, X)
-			break
+		var/target = locate(href_list["watch_xeno_name"])
+		if(isxeno(target))
+			// Checks for can use done in overwatch action.
+			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, target)
 
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
 /proc/xeno_message(message = null, span_class = "xenoannounce", size = 5, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type, arrow_color, report_distance = FALSE)
@@ -373,13 +369,13 @@
 		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
-	if(!hive.check_ruler())
+	if(!hive.check_ruler() && caste_base_type != /mob/living/carbon/xenomorph/larva) // Larva can evolve without leaders at round start.
 		return
 
 	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost()
+	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost() + spec_evolution_boost()
 	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
