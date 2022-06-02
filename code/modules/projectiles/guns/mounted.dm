@@ -224,7 +224,7 @@
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_agls
 	scatter = 0
-	fire_delay = 0.75 SECONDS
+	fire_delay = 1.2 SECONDS
 	burst_amount = 0
 	accuracy_mult = 1.2 //it's got a bipod
 	flags_item = IS_DEPLOYABLE|TWOHANDED
