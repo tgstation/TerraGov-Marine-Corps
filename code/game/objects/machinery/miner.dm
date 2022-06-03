@@ -265,18 +265,25 @@
 		return
 	if(add_tick >= required_ticks)
 		if(miner_upgrade_type == MINER_AUTOMATED)
-			for(var/direction in GLOB.cardinals)
-				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
-					continue
-				SSpoints.supply_points[faction] += mineral_value
-				do_sparks(5, TRUE, src)
-				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-				say("Ore shipment has been sold for [mineral_value] points.")
+			var/obstructions = list()
+			for(var/direction in GLOB.alldirs)
+				var/turf/selected_turf = get_step(loc, direction)
+				if(!isopenturf(selected_turf) && !istype(selected_turf, /turf/closed/wall/resin)) //Must be open on all sides to operate
+					obstructions += selected_turf.name
+
+			if(length(obstructions) > 0)
+				playsound(loc,'sound/machines/buzz-two.ogg', 35, FALSE)
+				say("Ore shipment export failed. Obstructed by: [jointext(obstructions, ", ")].")
 				add_tick = 0
 				return
-			playsound(loc,'sound/machines/buzz-two.ogg', 35, FALSE)
+
+			SSpoints.supply_points[faction] += mineral_value
+			do_sparks(5, TRUE, src)
+			playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
+			say("Ore shipment has been sold for [mineral_value] points.")
 			add_tick = 0
 			return
+
 		stored_mineral += 1
 		add_tick = 0
 	if(stored_mineral >= 8)	//Stores 8 boxes worth of minerals
