@@ -24,11 +24,6 @@
 	initialize_directions = initial(initialize_directions)
 
 /obj/machinery/atmospherics/pipe/manifold4w/update_icon()
-	var/turf/T = get_turf(src)
-	if(level == 2 || (!T.intact_tile && !istype(T, /turf/open/floor/plating/plating_catwalk)))
-		plane = GAME_PLANE
-	else
-		plane = FLOOR_PLANE
 	cut_overlays()
 	if(!center)
 		center = mutable_appearance(icon, "manifold_center")
