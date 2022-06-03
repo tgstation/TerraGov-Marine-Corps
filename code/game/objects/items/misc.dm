@@ -155,9 +155,3 @@
 /obj/item/dropship_points_voucher/examine(mob/user)
 	. = ..()
 	. += "It contains [extra_points] points."
-
-/obj/item/minerupgrade/automatic
-	name = "mining computer"
-	desc = "A small computer that can automate mining wells, reducing the need for oversight."
-	icon_state = "mining_drill_automaticdisplay"
-	uptype = "mining computer"

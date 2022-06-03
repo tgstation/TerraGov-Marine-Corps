@@ -41,11 +41,6 @@ OPERATIONS
 	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 10
 
-/datum/supply_packs/operations/autominer
-	name = "Autominer upgrade"
-	contains = list(/obj/item/minerupgrade/automatic)
-	cost = 5
-
 /datum/supply_packs/operations/miningwelloverclock
 	name = "Mining well reinforcement upgrade"
 	contains = list(/obj/item/minerupgrade/reinforcement)
@@ -150,11 +145,6 @@ OPERATIONS
 	cost = 40
 	containertype = null
 	available_against_xeno_only = TRUE
-
-/datum/supply_packs/operations/autominer
-	name = "Autominer upgrade"
-	contains = list(/obj/item/minerupgrade/automatic)
-	cost = 15
 
 /*******************************************************************************
 WEAPONS

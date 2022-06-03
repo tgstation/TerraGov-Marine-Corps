@@ -6,7 +6,6 @@
 #define MINER_LIGHT_SDAMAGE 4
 #define MINER_LIGHT_MDAMAGE 2
 #define MINER_LIGHT_DESTROYED 0
-#define MINER_AUTOMATED "mining computer"
 #define MINER_RESISTANT "reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
@@ -93,14 +92,6 @@
 			miner_integrity = 300
 		if(MINER_OVERCLOCKED)
 			required_ticks = 60
-		if(MINER_AUTOMATED)
-			if(stored_mineral)
-				SSpoints.supply_points[faction] += mineral_value * stored_mineral
-				do_sparks(5, TRUE, src)
-				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-				say("Ore shipment has been sold for [mineral_value * stored_mineral] points.")
-				stored_mineral = 0
-				start_processing()
 	miner_upgrade_type = upgrade.uptype
 	user.visible_message(span_notice("[user] attaches the [miner_upgrade_type] to the [src]!"))
 	qdel(upgrade)
@@ -141,9 +132,6 @@
 			if(MINER_OVERCLOCKED)
 				upgrade = new /obj/item/minerupgrade/overclock
 				required_ticks = initial(required_ticks)
-			if(MINER_AUTOMATED)
-				upgrade = new /obj/item/minerupgrade/automatic
-				stop_processing()
 		upgrade.forceMove(user.loc)
 		miner_upgrade_type = null
 		update_icon()
@@ -243,9 +231,6 @@
 	if(miner_status != MINER_RUNNING)
 		to_chat(user, span_warning("[src] is damaged!"))
 		return
-	if(miner_upgrade_type == MINER_AUTOMATED)
-		to_chat(user, span_warning("[src] is automated!"))
-		return
 	if(!stored_mineral)
 		to_chat(user, span_warning("[src] is not ready to produce a shipment yet!"))
 		return
@@ -264,19 +249,6 @@
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
 		return
 	if(add_tick >= required_ticks)
-		if(miner_upgrade_type == MINER_AUTOMATED)
-			for(var/direction in GLOB.cardinals)
-				if(!isopenturf(get_step(loc, direction))) //Must be open on one side to operate
-					continue
-				SSpoints.supply_points[faction] += mineral_value
-				do_sparks(5, TRUE, src)
-				playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-				say("Ore shipment has been sold for [mineral_value] points.")
-				add_tick = 0
-				return
-			playsound(loc,'sound/machines/buzz-two.ogg', 35, FALSE)
-			add_tick = 0
-			return
 		stored_mineral += 1
 		add_tick = 0
 	if(stored_mineral >= 8)	//Stores 8 boxes worth of minerals

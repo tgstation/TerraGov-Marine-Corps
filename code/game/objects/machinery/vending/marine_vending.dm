@@ -584,7 +584,6 @@
 			/obj/item/radio/headset/mainship/marine/delta = -1,
 		),
 		"Mining Equipment" = list(
-			/obj/item/minerupgrade/automatic = 1,
 			/obj/item/minerupgrade/reinforcement = 1,
 			/obj/item/minerupgrade/overclock = 1,
 		),
@@ -637,7 +636,6 @@
 		"Surplus Special Equipment" = list(
 			/obj/item/bodybag/tarp = 2,
 			/obj/item/explosive/plastique = 5,
-			/obj/item/minerupgrade/automatic = 3,
 			/obj/item/radio/headset/mainship/marine/alpha = -1,
 			/obj/item/radio/headset/mainship/marine/bravo = -1,
 			/obj/item/radio/headset/mainship/marine/charlie = -1,
