@@ -1120,7 +1120,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 12
 	damage = 10
 	penetration = 15
-	sundering = 2
+	sundering = 1
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
