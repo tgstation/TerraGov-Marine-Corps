@@ -88,7 +88,7 @@
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
 
-/turf/open/ground/grass/grasspatch
+/turf/open/ground/grasspatch
 	name = "grass"
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "grass1"

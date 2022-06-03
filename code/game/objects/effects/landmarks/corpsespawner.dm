@@ -383,7 +383,7 @@
 	name = "SOM Grunt"
 	corpseuniform = /obj/item/clothing/under/som
 	corpsesuit = /obj/item/clothing/suit/modular/som/wornoutsom
-	corpseback = /obj/item/storage/backpack/lightpack/som
+	corpseback = /obj/item/storage/backpack/satchel
 	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
 	corpsehelmet = /obj/item/clothing/head/modular/som/standard/wornoutsom
 	corpsegloves = /obj/item/clothing/gloves/marine/som/wornoutsom
@@ -395,10 +395,60 @@
 	name = "SOM Corpsman"
 	corpseuniform = /obj/item/clothing/under/som/medic
 	corpsesuit = /obj/item/clothing/suit/modular/som/wornoutsom
-	corpseback = /obj/item/storage/backpack/lightpack/som
+	corpseback = /obj/item/storage/backpack/corpsman
 	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
 	corpsehelmet = /obj/item/clothing/head/modular/som/standard/wornoutsom
 	corpsegloves = /obj/item/clothing/gloves/marine/som/wornoutsom
 	corpseshoes = /obj/item/clothing/shoes/marine/som/wornoutsom
 	corpsebelt = /obj/item/storage/belt/combatLifesaver/som
 	corpsepocket1 = /obj/item/storage/pouch/firstaid/som
+
+/obj/effect/landmark/corpsespawner/somvc
+	name = "SOM Vehicle Crewman"
+	corpseuniform = /obj/item/clothing/under/som
+	corpsesuit = /obj/item/clothing/suit/modular/som/wornoutsom
+	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
+	corpsehelmet = /obj/item/clothing/head/tgmcberet/red
+	corpsegloves = /obj/item/clothing/gloves/marine/som/wornoutsom
+	corpseshoes = /obj/item/clothing/shoes/marine/som/wornoutsom
+	corpsebelt = /obj/item/storage/holster/m25/full
+	corpsepocket1 = /obj/item/storage/pouch/firstaid/som
+
+/obj/effect/landmark/corpsespawner/sompo
+	name = "SOM Pilot Officer"
+	corpseuniform = /obj/item/clothing/under/marine/officer/pilot
+	corpsesuit = /obj/item/clothing/suit/modular/som/wornoutsom
+	corpsehelmet = /obj/item/clothing/head/helmet/marine/pilot/green
+	corpseglasses =/obj/item/clothing/glasses/sunglasses/aviator
+	corpsemask = /obj/item/clothing/mask/gas
+	corpsegloves = /obj/item/clothing/gloves/marine/som/wornoutsom
+	corpseshoes = /obj/item/clothing/shoes/marine/som/wornoutsom
+	corpsebelt = /obj/item/storage/holster/m25/full
+	corpsepocket1 = /obj/item/storage/pouch/firstaid/som
+
+/obj/effect/landmark/corpsespawner/somscientist
+	name = "Scientist"
+	corpseuniform = /obj/item/clothing/under/som
+	corpsesuit = /obj/item/clothing/suit/storage/labcoat
+	corpseback = /obj/item/storage/backpack
+	corpseshoes = /obj/item/clothing/shoes/white
+
+/obj/effect/landmark/corpsespawner/somradsuit
+	name = "Scientist"
+	corpseuniform = /obj/item/clothing/under/som
+	corpsesuit = /obj/item/clothing/suit/radiation
+	corpsehelmet = /obj/item/clothing/head/radiation
+	corpseback = /obj/item/tank/oxygen
+	corpseshoes = /obj/item/clothing/shoes/white
+
+/obj/effect/landmark/corpsespawner/somsec
+	name = "Security Officer"
+	corpseuniform = /obj/item/clothing/under/rank/security/navydarkblue
+	corpsesuit = /obj/item/clothing/suit/armor/vest/security
+	corpsehelmet = /obj/item/clothing/head/helmet
+	corpseback = /obj/item/storage/backpack/satchel
+	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpsebelt = /obj/item/storage/holster/m25/full
+
+
+

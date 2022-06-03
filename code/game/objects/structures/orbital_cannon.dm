@@ -574,3 +574,16 @@
 /obj/structure/ship_rail_gun/proc/impact_rail_gun(turf/T)
 	rail_gun_ammo.detonate_on(T)
 	cannon_busy = FALSE
+
+/obj/structure/gaussprop
+	name = "\improper Gauss Cannon"
+	desc = "An experimental heavy cannon meant to pierce even the strongest hulls of spaceships."
+	icon = 'icons/obj/machines/artillery.dmi'
+	icon_state = "Gauss_Cannon"
+	density = TRUE
+	anchored = TRUE
+	layer = LADDER_LAYER
+	bound_width = 128
+	bound_height = 64
+	bound_y = 32
+	resistance_flags = RESIST_ALL

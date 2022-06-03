@@ -164,3 +164,9 @@
 	name = "warden's uniform"
 	icon_state = "wardenblueclothes"
 	item_state = "wardenblueclothes"
+
+/obj/item/clothing/under/rank/security/navydarkblue
+	name = "security officer's uniform"
+	desc = "The latest in fashionable security outfits."
+	icon_state = "officerdnavyclothes"
+	item_state = "officerdnavyclothes"

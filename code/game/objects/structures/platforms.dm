@@ -84,13 +84,13 @@ obj/structure/platform_decoration
 /obj/structure/platform/rockcliff
 	icon_state = "rockcliff"
 	name = "rock cliff"
-	desc = "A collection of stones and rocks that form a steep cliff,it looks climbable."
+	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
 	coverage = 60
 
 /obj/structure/platform_decoration/rockcliff_deco
 	icon_state = "rockcliff_deco"
 	name = "rock cliff"
-	desc = "A collection of stones and rocks that form a steep cliff,it looks climbable."
+	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
 	coverage = 60
 
 /obj/structure/platform/rockcliff/icycliff

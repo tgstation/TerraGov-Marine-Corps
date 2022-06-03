@@ -94,3 +94,32 @@
 
 /obj/machinery/science/athogenic_Isolator/on/inserted
 	icon_state = "Pathogenic_Isolator_syringein_on"
+
+/obj/machinery/science/microscope
+	name = "Microscope"
+	icon_state = "microscope"
+	density = FALSE
+
+/obj/machinery/science_64
+	icon = 'icons/obj/machines/science_machines_64.dmi'
+	icon_state = "modifier"
+	name = "Modifier"
+	density = TRUE
+	anchored = TRUE
+	bound_width = 64
+
+/obj/machinery/science_64/chemstorage
+	name = "Chem Storage"
+	icon_state = "chemstorage"
+
+/obj/machinery/science_64/operate
+	name = "Operator"
+	icon_state = "operator"
+
+/obj/machinery/science_64/protolathebig
+	name = "Protolathe"
+	icon_state = "protolathe"
+
+/obj/machinery/science_64/medilathe
+	name = "Medilathe"
+	icon_state = "medilathe"
