@@ -515,3 +515,11 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/memorial
 	name = "Memorial Note"
 	info = {"May the souls of our fallen brothers be at rest; not that we may find solace in their passing, but that we should take our due initiative to press on in their memory."}
+
+/obj/item/paper/syndicateraid
+	name = "Operation Ash"
+	info = {"Retrieval of goods is priority. Contact Ash ASAP after retrieval. Everyone is expendable. Eliminate all witnesses."}
+
+/obj/item/paper/pmc
+	name = "Contain breach"
+	info = {"Ensure that the 'Beast' does not leak out. Intel suggests that enemy troops are set to capture the 'Beast'. Eliminate enemy at any cost. Use 'Big Bang' when OPSEC on the 'Beast' is compromised."}
