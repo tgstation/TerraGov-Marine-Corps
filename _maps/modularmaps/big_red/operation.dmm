@@ -31,12 +31,9 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "cq" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
+/obj/machinery/power/apc,
+/obj/structure/cable,
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "dw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -615,6 +612,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "yp" = (
@@ -632,6 +630,14 @@
 	name = "\improper Operations"
 	},
 /turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"ze" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
 /area/bigredv2/outside/admin_building)
 "zk" = (
 /obj/structure/table,
@@ -970,6 +976,7 @@
 /obj/machinery/door/airlock/mainship/command/free_access{
 	name = "\improper Operations Office"
 	},
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "Ky" = (
@@ -1230,6 +1237,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -1330,6 +1338,11 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
+/area/bigredv2/outside/admin_building)
+"YS" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "Zk" = (
 /obj/structure/cable,
@@ -1586,10 +1599,10 @@ AK
 xT
 xT
 Hh
-QL
-QL
-jM
-cq
+xT
+xT
+ze
+ol
 hc
 ic
 BN
@@ -1615,7 +1628,7 @@ ng
 fO
 oF
 fO
-rX
+ng
 fO
 mV
 BN
@@ -1691,8 +1704,8 @@ lt
 fO
 UW
 sT
-Jj
-gV
+cq
+YS
 xU
 Jj
 ta
