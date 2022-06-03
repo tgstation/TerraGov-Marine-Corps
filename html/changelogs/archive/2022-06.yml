@@ -54,3 +54,6 @@
   breadhunt:
   - balance: Gives researcher engineering access for APCs. They'll still fumble though.
   - bugfix: Fixes stack PR
+2022-06-03:
+  Lewdcifer:
+  - balance: Laser sniper IFF reverted.
