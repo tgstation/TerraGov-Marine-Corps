@@ -7,7 +7,7 @@
 	layer = OBJ_LAYER
 	plane = GAME_PLANE
 	opacity = FALSE
-	resistance_flags = PLASMACUTTER_IMMUNE
+	resistance_flags = RESIST_ALL
 	density = TRUE
 	coverage = 100
 

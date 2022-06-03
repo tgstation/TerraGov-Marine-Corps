@@ -515,3 +515,22 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/memorial
 	name = "Memorial Note"
 	info = {"May the souls of our fallen brothers be at rest; not that we may find solace in their passing, but that we should take our due initiative to press on in their memory."}
+
+/obj/item/paper/log
+	name = "Report Log 12:00/3/11/2417"
+	info = {"Rocinante Base<BR>
+			TerraGov IFF escape pod detected entering atmosphere landing near the base, a team was sent and traces of a resin like substance is reported inside the pod, awaiting further developments."}
+
+/obj/item/paper/log2
+	name = "Report Log 13:00/3/11/2417"
+	info = {"Rocinante Base<BR>
+			Xenomorph presence was reported and confirmed, code red, facility locked down, requesting sterilization teams authentication code Beetle-1186."}
+
+/obj/item/paper/logreply
+	name = "Report Log 13:30/3/11/2417"
+	info = {"SOM Highcom<BR>
+			Rocinante Base, messages not received heavy distortion of text recalibrate your communication systems and send again."}
+
+/obj/item/paper/log3
+	name = "Journal Log"
+	info = {"Im heavily wounded and i don't have the strength to reach the fax machine to send another report, if anyone is reading this TerraGov has orch- The rest of the page is covered in smears of blood."}

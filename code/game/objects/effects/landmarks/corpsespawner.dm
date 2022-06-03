@@ -443,7 +443,7 @@
 
 /obj/effect/landmark/corpsespawner/somsec
 	name = "Security Officer"
-	corpseuniform = /obj/item/clothing/under/rank/security/navydarkblue
+	corpseuniform = /obj/item/clothing/under/rank/security/navyblue
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpsehelmet = /obj/item/clothing/head/helmet
 	corpseback = /obj/item/storage/backpack/satchel

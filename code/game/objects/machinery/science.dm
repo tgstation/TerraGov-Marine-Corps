@@ -100,6 +100,17 @@
 	icon_state = "microscope"
 	density = FALSE
 
+/obj/machinery/science/survey
+	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "surveying_device"
+	name = "Surveying Device"
+
+/obj/machinery/science/measure
+	icon = 'icons/obj/machines/research.dmi'
+	icon_state = "measuring_device"
+	name = "Measuring Device"
+
+
 /obj/machinery/science_64
 	icon = 'icons/obj/machines/science_machines_64.dmi'
 	icon_state = "modifier"

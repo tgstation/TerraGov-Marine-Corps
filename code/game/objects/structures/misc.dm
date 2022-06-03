@@ -158,9 +158,26 @@ obj/item/alienjar
 		pixel_x += rand(-3,3)
 		pixel_y += rand(-3,3)
 
+//RANDOM RESEARCH DECOR
+/obj/structure/crystal
+	name = "Crystal"
+	icon = 'icons/obj/alien_autopsy.dmi'
+	icon_state = "crystal_1"
+	density = TRUE
 
+/obj/structure/crystal/crystal2
+	icon_state = "crystal_2"
 
+/obj/structure/crystal/crystalcrate
+	icon_state = "crystal_crate"
 
+/obj/structure/crystal/crystalmound
+	icon_state = "mound_1"
+	density = FALSE
+
+/obj/structure/crystal/crystalmound2
+	icon_state = "mound_2"
+	density = FALSE
 //stairs
 
 /obj/structure/stairs
