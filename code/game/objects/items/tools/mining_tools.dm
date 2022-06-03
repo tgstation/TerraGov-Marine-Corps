@@ -255,8 +255,10 @@
 		spark_system.set_up(5, 0, M)
 		spark_system.attach(M)
 		spark_system.start(M)
-		if(M.stat != DEAD)
+		if(isxeno(M) && M.stat != DEAD)
 			cell.charge += 200
+			var/mob/living/carbon/xenomorph/xeno = M
+			xeno.use_plasma(round(xeno.xeno_caste.plasma_regen_limit * xeno.xeno_caste.plasma_max * 0.2)) //One fifth of the xeno's regeneratable plasma per hit.
 	return ..()
 
 
