@@ -321,9 +321,6 @@
 /mob/living/carbon/xenomorph/get_eye_protection()
 	return 2
 
-/mob/living/carbon/xenomorph/need_breathe()
-	return FALSE
-
 /mob/living/carbon/xenomorph/vomit()
 	return
 
