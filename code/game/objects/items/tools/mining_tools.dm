@@ -91,7 +91,7 @@
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
-	attack_verb = list("dissolve", "disintegrate", "liquefy", "subliminate", "vaporize")
+	attack_verb = list("dissolves", "disintegrates", "liquefies", "subliminates", "vaporizes")
 	heat = 3800
 	light_system = MOVABLE_LIGHT
 	light_range = 2
