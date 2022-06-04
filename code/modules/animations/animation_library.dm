@@ -133,3 +133,15 @@ proc/animation_destruction_knock_fade(atom/A, speed = 7, x_n = rand(10,18), y_n 
 	animate(src, transform = matrix_list[1], time = speed, loop_amount)
 	for(var/i in 2 to sections)
 		animate(transform = matrix_list[i], time = speed)
+
+/mob/living/carbon/human/proc/animation_rappel()
+	var/pre_rappel_alpha = alpha
+	alpha = 20
+	dir = WEST
+	canmove = FALSE
+	var/matrix/initial_matrix = matrix(transform)
+	initial_matrix.Turn(45)
+	pixel_y = 8
+	var/matrix/reset_matrix = matrix(transform)
+	animate(src, 3, transform = reset_matrix, pixel_y = 0, alpha = pre_rappel_alpha, flags = ANIMATION_PARALLEL)
+	canmove = TRUE

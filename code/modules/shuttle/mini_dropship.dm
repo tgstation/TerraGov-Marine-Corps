@@ -46,6 +46,8 @@
 	var/damaged = FALSE
 	/// How long before you can launch tadpole after a landing
 	var/launching_delay = 10 SECONDS
+	/// Rappel system
+	var/obj/structure/dropship_equipment/rappel_system/rappelsys
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/Initialize(mapload)
 	..()
@@ -62,6 +64,9 @@
 		if(!current_user)
 			return
 		user = current_user
+
+	RegisterSignal(user, COMSIG_MOB_CLICKON, .proc/rappel_targeting, override = TRUE)
+	user.client.mouse_pointer_icon = 'icons/effects/supplypod_target.dmi'
 
 	for(var/datum/action/action_from_shuttle_docker AS in actions)
 		action_from_shuttle_docker.remove_action(user)
@@ -108,11 +113,6 @@
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/take_off()
 	shuttle_port = SSshuttle.getShuttle(shuttleId)
-	#ifndef TESTING
-	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
-		to_chat(ui_user, span_warning("The mothership is too far away from the theatre of operation, we cannot take off."))
-		return
-	#endif
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TADPOLE_LAUNCHING))
 		to_chat(ui_user, span_warning("The dropship's engines are not ready yet"))
 		return
@@ -217,6 +217,8 @@
 	if(ui_user)
 		remove_eye_control(ui_user)
 		UnregisterSignal(ui_user, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED))
+		UnregisterSignal(ui_user, COMSIG_MOB_CLICKON)
+		ui_user.client.mouse_pointer_icon = initial(ui_user.client.mouse_pointer_icon)
 		ui_user = null
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_data(mob/user)
@@ -273,3 +275,40 @@
 	origin.shuttle_port.set_mode(SHUTTLE_CALL)
 	origin.last_valid_ground_port = origin.my_port
 	SSshuttle.moveShuttleToDock(origin.shuttleId, origin.my_port, TRUE)
+
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/proc/rappel_targeting(datum/source, atom/target, turf/location)
+	rappelsys = GLOB.rappel_systems
+	var/area/A = get_area(target)
+	var/turf/T = get_turf(target)
+	if(!A)
+		return
+
+	if(!T)
+		return
+
+	if(target.z == rappelsys.z)
+		to_chat(source, span_warning("That target is in space!"))
+		return
+
+	if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		to_chat(source, span_warning("That target is too deep underground!"))
+		return
+
+	if(T.density)
+		to_chat(source, span_warning("That target is too dense!"))
+		return
+
+	if(is_type_in_typecache(T, GLOB.blocked_droppod_tiles))
+		to_chat(source, span_warning("Extremely lethal hazard detected on the target location. Invalid area."))
+		return
+
+	for(var/x in T.contents)
+		var/atom/object = x
+		if(object.density)
+			to_chat(source, span_warning("Dense object detected in target location. Invalid area."))
+			return
+
+	to_chat(source, span_notice("RAPPEL LOCATION LOCKED."))
+	playsound(source, 'sound/effects/binoctarget.ogg', 35)
+	rappelsys.A = A
+	rappelsys.T = T
