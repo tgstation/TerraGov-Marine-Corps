@@ -47,10 +47,10 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/yard/central)
 "al" = (
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/structure/table,
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/storage)
