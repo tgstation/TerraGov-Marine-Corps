@@ -142,6 +142,7 @@
 	name = "combat injector pouch"
 	desc = "Standard marine first-aid combat injector pouch. Specialized to store only autoinjectors."
 	icon_state = "firstaid_injector"
+	storage_slots = 10
 	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
 
 /obj/item/storage/pouch/firstaid/injectors/full
@@ -152,6 +153,11 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/alkysine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/imidazoline (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
@@ -397,7 +403,6 @@
 	desc = "A pouch specifically for auto-injectors."
 	icon_state = "autoinjector"
 	storage_slots = 8
-	max_storage_space = 14
 	can_hold = list(
 		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
@@ -431,8 +436,7 @@
 	name = "auto-injector pouch"
 	desc = "A pouch specifically for auto-injectors. This one comes pre-loaded with goodies!"
 	icon_state = "autoinjector"
-	storage_slots = 8
-	max_storage_space = 14
+	storage_slots = 10
 	can_hold = list(
 		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
@@ -445,6 +449,8 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/isotonic(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
@@ -484,7 +490,7 @@
 	icon_state = "medkit"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 4
-	storage_slots = 7
+	storage_slots = 6
 	can_hold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/dropper,
@@ -502,9 +508,8 @@
 	. = ..()
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/stack/medical/splint(src)
 
