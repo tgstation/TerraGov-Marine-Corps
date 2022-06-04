@@ -178,6 +178,29 @@
 	smoke.start()
 	qdel(src)
 
+///chemical grenades
+
+//neuro xeno nade
+/obj/item/explosive/grenade/smokebomb/neuro
+	name = "\improper M40-N Neurotoxin smoke grenade"
+	desc = "A smoke grenade containing a concentrated neurotoxin developed by Nanotrasen, supposedly derived from xenomorphs. Banned in some sectors as a chemical weapon, but classed as a less lethal riot control tool by the TGMC."
+	icon_state = "grenade_cloak"
+	item_state = "grenade_cloak"
+	det_time = 20
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
+	smokeradius = 5
+
+/obj/item/explosive/grenade/smokebomb/acid
+	name = "\improper M40-N Neurotoxin smoke grenade"
+	desc = "A smoke grenade containing an extremely powerful acid developed by Nanotrasen, supposedly derived from xenomorphs. Its use is considered a warcrime under several treaties that Terra Gov is not a signatory to."
+	icon_state = "grenade_cloak"
+	item_state = "grenade_cloak"
+	det_time = 20
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid
+	smokeradius = 5
+
 /obj/item/explosive/grenade/smokebomb/cloak
 	name = "\improper M40-2 SCDP smoke grenade"
 	desc = "A sophisticated version of the M40 HSDP with a slighty improved smoke screen payload. It's set to detonate in 2 seconds."
