@@ -239,7 +239,7 @@
 /obj/item/armor_module/storage/injector
 	name = "Injector Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of injectors."
-	icon_state = "mod_medic_bag"
+	icon_state = "mod_injector_bag"
 	storage =  /obj/item/storage/internal/modular/injector
 
 /obj/item/storage/internal/modular/injector
