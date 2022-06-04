@@ -2374,6 +2374,12 @@
 	dir = 6
 	},
 /area/space)
+"FB" = (
+/obj/structure/monorail{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/space)
 "FC" = (
 /obj/structure/platform,
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer{
@@ -23000,9 +23006,9 @@ iE
 iE
 ms
 Mx
-ZT
-rD
-ZT
+Mx
+FB
+Mx
 Mx
 iX
 nk
@@ -23132,9 +23138,9 @@ iE
 iE
 iE
 Mx
-ZT
-rD
-ZT
+Mx
+FB
+Mx
 Mx
 oc
 nk
@@ -25508,9 +25514,9 @@ iE
 iE
 ms
 Mx
-ZT
-rD
-ZT
+Mx
+FB
+Mx
 Mx
 CG
 oc
@@ -25640,9 +25646,9 @@ iE
 iE
 iE
 Mx
-ZT
-rD
-ZT
+Mx
+FB
+Mx
 Mx
 CG
 oc
