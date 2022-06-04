@@ -41,6 +41,8 @@
 	var/miner_upgrade_type
 	///What faction secured that miner
 	var/faction = FACTION_TERRAGOV
+	///What directions had closed turfs on init, to skip during later checks
+	var/list/ignore_turf_dirs = list()
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -56,6 +58,10 @@
 	SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_ALL, iconstate = "miner_[mineral_value >= PLATINUM_CRATE_SELL_AMOUNT ? "platinum" : "phoron"]_off")
 	start_processing()
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_on_hijack)
+	for(var/direction in GLOB.alldirs)
+		var/turf/selected_turf = get_step(loc, direction)
+		if(!isopenturf(selected_turf) && !istype(selected_turf, /turf/closed/wall/resin)) //Must be open on all sides to operate
+			ignore_turf_dirs += direction
 
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
@@ -267,6 +273,8 @@
 		if(miner_upgrade_type == MINER_AUTOMATED)
 			var/obstructions = list()
 			for(var/direction in GLOB.alldirs)
+				if(ignore_turf_dirs.Find(direction))
+					continue
 				var/turf/selected_turf = get_step(loc, direction)
 				if(!isopenturf(selected_turf) && !istype(selected_turf, /turf/closed/wall/resin)) //Must be open on all sides to operate
 					obstructions += selected_turf.name
