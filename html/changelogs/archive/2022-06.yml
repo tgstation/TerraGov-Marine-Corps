@@ -57,3 +57,19 @@
 2022-06-03:
   Lewdcifer:
   - balance: Laser sniper IFF reverted.
+2022-06-04:
+  Lewdcifer:
+  - balance: SG minigun sunder 2 > 1.
+  Wayland-Smithy:
+  - balance: 'Reduced the max_integrity of: coffins, large crates (the kind that must
+      be broken or opened with a crowbar), cases, barrels, ore boxes, plastic flaps,
+      hydro trays, mop buckets, janitorial carts, filing cabinets, and reagent dispensers.'
+  - bugfix: 'Added the xeno damageable flag to: janitorial carts, filing cabinets
+      and reagent dispensers (beer keg, boozeomat, etc..)'
+  - bugfix: Removed useless train vehicle attack_alien override preventing damage.
+  - bugfix: Fixed xenos not being able to open wrapped large parcels i.e. wrapped
+      lockers.
+  - bugfix: Opening gracefully, not smashing, closets does not put xeno attack on
+      cooldown.
+  - bugfix: Fixed closets not taking damage from slashes even though the animation
+      played and informed the xeno they "smashed" the object.
