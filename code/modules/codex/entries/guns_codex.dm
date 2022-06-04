@@ -320,6 +320,13 @@
 
 
 /datum/codex_entry/standard_smg
+	associated_paths = list(/obj/item/weapon/gun/smg/standard_pdr)
+	lore_text = "The 'Metrallador-38' is a rather strange design, being a rifle length weapon firing a pistol-sized round, which causes classification issues amongst some people.\
+	Some would argue that it is a pistol carbine due to the bullpup design and shortness, while the manufacter terms it as a personal defense rifle, which is the adopted term the TGMC uses it when fielding it. <br><br>\
+	It's generally spotted in use by folk who prefer a lighter weapon with decent magazine size, however most would say its attachment choices are severely lacking, and it is a rare sight in any military outfit that isn't in the hands of a second line trooper or support staff. \
+	In TerraGov service, its termed the 'SMG-38', and is well liked by Rapid Response Marine units and Navymen alike, however it is a rare sight outside of those two kind of units."
+
+/datum/codex_entry/standard_smg
 	associated_paths = list(/obj/item/weapon/gun/smg/standard_smg)
 	lore_text = "The MD-65 is a rather compact gun, designed for use by specialized troops who don't have the space to carry a bigger \
 	firearm and don't want to be stuck with a handgun. <br><br>\

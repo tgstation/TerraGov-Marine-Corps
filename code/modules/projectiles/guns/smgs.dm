@@ -350,3 +350,44 @@
 	scatter_unwielded = 4
 	aim_slowdown = 0.15
 	wield_delay = 0.2 SECONDS
+
+//-------------------------------------------------------
+//SMG-38 PDR, rifle sized so it gets rifle stats.
+
+/obj/item/weapon/gun/smg/standard_pdr
+	name = "\improper SMG-38 SCA personal defense rifle"
+	desc = "The San Cristo Arms SMG-38 personal defense rifle is a strange design spotted irregularly inside TGMC units at times, slugging out bullets at high velocity in a rifle bullpup package, for when overpenetration is a risk for ships but not the enemy infront of you. Includes a underbarreled directional flashlight. Uses 10x20mm rounds in a high capacity magazine."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t38"
+	item_state = "t38"
+	caliber = CALIBER_10X20_CASELESS //codex
+	max_shells = 80 //codex
+	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
+	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
+	flags_equip_slot = ITEM_SLOT_BACK
+	type_of_casings = null
+	default_ammo_type = /obj/item/ammo_magazine/smg/standard_pdr
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/smg/standard_pdr,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/magnetic_harness,
+	)
+
+	attachable_offset = list("muzzle_x" = 47, "muzzle_y" = 17,"rail_x" = 14, "rail_y" = 19, "under_x" = 32, "under_y" = 11, "stock_x" = 24, "stock_y" = 16)
+
+	accuracy_mult = 1.1
+	pen_modifier = 5
+	damage_mult = 0.75 //Totals up to 15 damage and 10 penetration.
+	damage_falloff_mult = 0.5
+	accuracy_mult_unwielded = 0.55
+	scatter = 0
+	scatter_unwielded = 15
+	fire_delay = 0.15 SECONDS
+	aim_slowdown = 0.35

@@ -54,6 +54,19 @@
 	icon_state_mini = "mag_t90"
 
 //-------------------------------------------------------
+//SMG-38 PDR Ammo
+
+/obj/item/ammo_magazine/smg/standard_pdr
+	name = "\improper SMG-38 personal defense rifle gun magazine (10x20mm)"
+	desc = "A 10x20mm caseless rifle gun magazine."
+	caliber = CALIBER_10X20_CASELESS
+	icon_state = "t38"
+	max_rounds = 80
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state_mini = "mag_t38"
+
+
+//-------------------------------------------------------
 //SMG-27, based on the SMG-27, based on the M7.
 
 /obj/item/ammo_magazine/smg/mp7
