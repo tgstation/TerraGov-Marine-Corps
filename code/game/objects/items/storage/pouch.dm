@@ -322,7 +322,7 @@
 		/obj/item/reagent_containers/hypospray,
 	)
 
-/obj/item/storage/pouch/pouch/medkit/firstaid
+/obj/item/storage/pouch/medkit/firstaid
 	desc = "Standard marine first-aid pouch. Contains basic pills, splints, and a stabilizing injector."
 
 /obj/item/storage/pouch/medkit/firstaid/Initialize()
