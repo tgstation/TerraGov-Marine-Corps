@@ -11,7 +11,7 @@
 	max_storage_space = 4
 
 /obj/item/storage/pill_bottle/packet/bicaridine
-	name = "bicaridine pill packet"
+	name = "Bicaridine pill packet"
 	icon_state = "bic_packet"
 	desc = "This packet contains bicaridine pills. Used to treat minor lacerations. Once you take them out they don't go back in. No more than 2 pills at once."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
@@ -19,7 +19,7 @@
 	max_storage_space = 8
 
 /obj/item/storage/pill_bottle/packet/kelotane
-	name = "kelotane pill packet"
+	name = "Kelotane pill packet"
 	icon_state = "kelo_packet"
 	desc = "This packet contains kelotane pills. Used to treat surface burns. Once you take them out they don't go back in. No more than 2 pills at once."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
@@ -27,7 +27,7 @@
 	max_storage_space = 8
 
 /obj/item/storage/pill_bottle/packet/tramadol
-	name = "tramadol pill packet"
+	name = "Tramadol pill packet"
 	icon_state = "tram_packet"
 	desc = "This packet contains tramadol pills. Used as a medium-strength painkiller. Once you take them out they don't go back in. No more than 2 pills at once."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
@@ -42,9 +42,9 @@
 	max_storage_space = 6
 
 /obj/item/storage/pill_bottle/packet/dylovene
-	name = "dyolovene pill packet"
+	name = "Dylovene pill packet"
 	icon_state = "tric_packet"
-	desc = "This packet containts dylovene pills. Used as a medium-strength painkiller. Once you take them out they don't go back in. No more than 2 pills at once."
+	desc = "This packet contains dylovene pills. Used to purge toxins and heal toxic damage. Once you take them out they don't go back in. No more than 2 pills at once."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 	storage_slots = 6
 	max_storage_space = 6

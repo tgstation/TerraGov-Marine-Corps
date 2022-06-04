@@ -197,7 +197,7 @@
 
 /obj/structure/closet/secure_closet/marine/medic/PopulateContents()
 	. = ..()
-	new /obj/item/storage/belt/combatLifesaver(src)
+	new /obj/item/storage/belt/lifesaver(src)
 	new /obj/item/clothing/glasses/hud/health(src)
 	new /obj/item/armor_module/storage/uniform/webbing(src)
 	new /obj/item/roller/medevac(src)
