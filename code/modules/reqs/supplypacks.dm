@@ -517,7 +517,7 @@ WEAPONS
 /datum/supply_packs/weapons/vector
 	name = "Vector"
 	contains = list(/obj/item/weapon/gun/smg/vector)
-	cost = 30
+	cost = 20
 
 
 /*******************************************************************************

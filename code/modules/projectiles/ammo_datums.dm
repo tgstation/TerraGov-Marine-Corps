@@ -570,7 +570,7 @@ datum/ammo/bullet/revolver/tp44
 	damage = 20
 	accurate_range = 4
 	damage_falloff = 1
-	sundering = 0.5
+	sundering = 0.4
 	penetration = 0
 	shrapnel_chance = 25
 
