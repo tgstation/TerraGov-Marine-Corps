@@ -14,22 +14,6 @@
 		var/mob/M = loc
 		M.update_inv_head()
 
-/obj/item/clothing/head/tgmcbandanna
-	name = "\improper TGMC bandanna"
-	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandanna serves as a lightweight and comfortable hat. Comes in two stylish colors."
-	icon = 'icons/obj/clothing/cm_hats.dmi'
-	item_icons = list(
-		slot_head_str = 'icons/mob/head_1.dmi',
-		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
-		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
-	icon_state = "band"
-	flags_inv_hide = NONE
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
-
-/obj/item/clothing/head/tgmcbandanna/tan
-	icon_state = "band2"
-
-
 /obj/item/clothing/head/beanie
 	name = "\improper TGMC beanie"
 	desc = "A standard military beanie, often worn by non-combat military personnel and support crews, though the occasional one finds its way to the front line. Popular due to being comfortable and snug."
