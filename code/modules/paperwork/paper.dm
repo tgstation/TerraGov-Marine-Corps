@@ -526,8 +526,20 @@ then, for every time you included a field, increment fields. */
 	info = {"Rocinante Base<BR>
 			Xenomorph presence was reported and confirmed, code red, facility locked down, requesting sterilization teams authentication code Beetle-1186."}
 
+/obj/item/paper/logarmor
+	name = "Research Note"
+	info = {"Rocinante Exosuit Module Research Division<BR>
+			Researcher Alex Kansas<BR>
+			The recently sent exosuit modules are very interesting, they provide an energy shield to the user which would let them atleast receive a few hits without any damage to the user the powerplant it uses is to blame for this as is rather weak, clearly suited for mass production theres allot of potential to be had here, were currently working on upgrading the powerplant for a stronger shield. On another note would have been nice if the blood was wiped off before it was sent."}
+
+/obj/item/paper/logjelly
+	name = "Research Note"
+	info = {"Rocinante Biological Research Division<BR>
+			Researcher Jeremy<BR>
+			This xenomorph jelly sample is fascinating, it completely makes any object or creature covered in it invulnerable to fire albeit for a short amount of time after the monkey we used it on caught on fire and a fire spread through out the pen, this seems like a recent evolution of the xenomorphs to counter incendiary weapons used against them."}
+
 /obj/item/paper/logreply
-	name = "Report Log 13:30/3/11/2417"
+	name = "Response 13:15/3/11/2417"
 	info = {"SOM Highcom<BR>
 			Rocinante Base, messages not received heavy distortion of text recalibrate your communication systems and send again."}
 

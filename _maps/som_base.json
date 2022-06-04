@@ -1,12 +1,12 @@
 {
-    "map_name": "Rocinante Polar Colony",
+    "map_name": "Rocinante Base",
     "map_path": "map_files/Rocinante_Colony",
     "map_file": "sombase.dmm",
     "environment_traits": {
         "COLD": true
     },
     "armor": "ice",
-	"announce_text": "After a failed TGMC operation to retake the Rocinante Polar Colony from the SOM.SF were sent in to destroy the nuclear device on the canterbury and any valuable material,contact was lost with the SF team with the last message being 'Runner, 200 meters, front!'",
+	"announce_text": "A military and research base of the SOM has recently gone dark, we have also lost contact with our agents embedded in the base but we were given a go signal to secure the base by highcom, get ready to neutralize any threat in the base.",
 	"traits":[{
 		"weather_snowstorm": true
 	}]

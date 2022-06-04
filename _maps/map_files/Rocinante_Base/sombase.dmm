@@ -17,6 +17,10 @@
 /obj/structure/flora/pottedplant/two,
 /turf/open/floor/mainship/red/full,
 /area/space)
+"ay" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/mainship,
+/area/space)
 "az" = (
 /obj/effect/decal/warning_stripes/thick,
 /turf/open/floor/plating/ground/dirtyellow,
@@ -63,6 +67,8 @@
 "bl" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder,
+/obj/item/resin_jelly,
+/obj/item/resin_jelly,
 /turf/open/floor/mainship/sterile/dark,
 /area/space)
 "bm" = (
@@ -1079,6 +1085,10 @@
 /obj/structure/girder/displaced,
 /turf/open/ground/grasspatch,
 /area/space)
+"nW" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/mainship,
+/area/space)
 "nX" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
 	dir = 2
@@ -1620,7 +1630,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/space)
 "vk" = (
-/obj/machinery/science_64/protolathebig,
+/obj/machinery/science_64,
 /turf/open/floor/mainship/sterile/purple/side,
 /area/space)
 "vo" = (
@@ -1739,6 +1749,7 @@
 /area/space)
 "wP" = (
 /obj/structure/sign/double/map/right,
+/obj/structure/bed/chair/sofa/corsat/right,
 /turf/open/floor/mainship,
 /area/space)
 "wQ" = (
@@ -2667,6 +2678,7 @@
 /area/space)
 "JG" = (
 /obj/structure/sign/double/map/left,
+/obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/mainship,
 /area/space)
 "JM" = (
@@ -3136,6 +3148,7 @@
 "PH" = (
 /obj/structure/table/reinforced,
 /obj/machinery/science/athogenic_Isolator/on,
+/obj/item/resin_jelly,
 /turf/open/floor/mainship/sterile/dark,
 /area/space)
 "PI" = (
@@ -3524,6 +3537,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
+/obj/item/paper/logjelly,
 /turf/open/floor/mainship/sterile/dark,
 /area/space)
 "TY" = (
@@ -3833,6 +3847,10 @@
 	},
 /turf/open/floor/plating,
 /area/space)
+"Ya" = (
+/obj/item/paper/logarmor,
+/turf/open/floor/mainship/sterile/dark,
+/area/space)
 "Yb" = (
 /turf/open/shuttle/escapepod/plain,
 /area/space)
@@ -3884,6 +3902,10 @@
 "YV" = (
 /obj/structure/somcas/wingtip/wing6,
 /turf/open/floor/plating,
+/area/space)
+"Ze" = (
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/mainship,
 /area/space)
 "Zl" = (
 /obj/structure/bed/chair/sofa/corsat,
@@ -16146,8 +16168,8 @@ CG
 Oc
 gD
 oc
-iE
-iE
+nW
+Ze
 mC
 mC
 mC
@@ -16278,8 +16300,8 @@ CG
 vt
 ag
 oc
-iE
-iE
+nW
+Ze
 mC
 mC
 mC
@@ -16542,7 +16564,7 @@ CG
 CG
 vt
 iX
-iE
+ay
 iE
 mC
 mC
@@ -16674,8 +16696,8 @@ CG
 Oc
 ag
 oc
-iE
-iE
+TQ
+VB
 mC
 mC
 mC
@@ -16806,8 +16828,8 @@ vt
 ag
 gD
 oc
-iE
-iE
+VB
+TQ
 mC
 mC
 mC
@@ -25105,7 +25127,7 @@ vd
 lJ
 oc
 wY
-vd
+Ya
 vd
 Jy
 oc
@@ -26418,7 +26440,7 @@ CG
 ex
 zM
 vu
-iE
+oc
 oc
 oc
 oc
@@ -26590,7 +26612,7 @@ ag
 ag
 CG
 CG
-iE
+ms
 iE
 iE
 iE
@@ -26814,7 +26836,7 @@ CG
 oc
 Rw
 vu
-iE
+uX
 oc
 nx
 Bw
@@ -26857,8 +26879,8 @@ CG
 oc
 oc
 oc
-iE
-iE
+iX
+iX
 oc
 oc
 oc
@@ -27078,7 +27100,7 @@ yg
 oc
 xY
 vu
-iE
+uX
 oc
 Eq
 UM
@@ -27210,7 +27232,7 @@ yg
 oc
 oc
 iE
-iE
+oc
 oc
 oc
 oc
@@ -27494,9 +27516,9 @@ iE
 iE
 JG
 oc
+YL
 iE
-iE
-iE
+ms
 ag
 ag
 Pm
@@ -27626,7 +27648,7 @@ iE
 iE
 wP
 oc
-iE
+tH
 iE
 iE
 ag
