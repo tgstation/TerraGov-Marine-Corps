@@ -95,6 +95,11 @@
 
 /obj/item/stack/interact(mob/user, recipes_sublist)
 	. = ..()
+
+	//We need to open the menu only if radial stacks are disabled, or if select_radial tells us to by returning TRUE
+	if(!(!(user.client.prefs.toggles_gameplay & RADIAL_STACKS) || select_radial(user)))
+		return
+
 	if(.)
 		return
 
@@ -364,18 +369,12 @@
 
 
 /obj/item/stack/attackby(obj/item/I, mob/user)
-	. = ..()
 	if(istype(I, merge_type))
 		var/obj/item/stack/S = I
 		if(merge(S))
 			to_chat(user, span_notice("Your [S.name] stack now contains [S.get_amount()] [S.singular_name]\s."))
 		return
 	return ..()
-
-/obj/item/stack/attack_self(mob/user)
-	//We need to open the menu only if radial stacks are disabled, or if select_radial tells us to by returning TRUE
-	if(!(user.client.prefs.toggles_gameplay & RADIAL_STACKS) || select_radial(user))
-		return ..()
 
 /// Proc for special actions and radial menus on subtypes. Returning FALSE cancels the recipe menu for a stack.
 /obj/item/stack/proc/select_radial(mob/user)

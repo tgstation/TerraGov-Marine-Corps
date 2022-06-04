@@ -123,6 +123,7 @@ GLOBAL_LIST_INIT(metal_radial_images, list(
 	number_of_extra_variants = 3
 
 /obj/item/stack/sheet/plasteel/attack_self(mob/user)
+	. = ..()
 	create_object(user, new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req =  SKILL_CONSTRUCTION_PLASTEEL), 1)
 
 
