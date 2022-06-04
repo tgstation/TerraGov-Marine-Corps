@@ -2366,8 +2366,8 @@
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/structure/table/mainship,
 /obj/item/armor_module/storage/uniform/white_vest/surgery,
 /obj/item/clothing/suit/surgical,
@@ -8180,8 +8180,8 @@
 /area/whiskey_outpost/outside/west)
 "Yz" = (
 /obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,

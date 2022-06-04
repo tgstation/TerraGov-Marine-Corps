@@ -1983,16 +1983,16 @@
 /obj/item/storage/belt/lifesaver,
 /obj/item/storage/belt/lifesaver,
 /obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/medical{
+/obj/item/storage/belt/lifesaver{
 	pixel_y = 9
 	},
-/obj/item/storage/belt/medical{
+/obj/item/storage/belt/lifesaver{
 	pixel_y = 9
 	},
-/obj/item/storage/belt/medical{
+/obj/item/storage/belt/lifesaver{
 	pixel_y = 9
 	},
-/obj/item/storage/belt/medical{
+/obj/item/storage/belt/lifesaver{
 	pixel_y = 9
 	},
 /obj/item/healthanalyzer,

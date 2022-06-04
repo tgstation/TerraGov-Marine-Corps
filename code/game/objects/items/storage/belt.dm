@@ -87,66 +87,6 @@
 	new /obj/item/tool/wirecutters(src)
 	new /obj/item/t_scanner(src)
 
-/obj/item/storage/belt/medical
-	name = "\improper M276 pattern medical storage rig"
-	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies, and light ammunitions."
-	icon_state = "medicalbelt"
-	item_state = "medical"
-	storage_slots = 14 //can hold 2 "rows" of very limited medical equipment and ammo.
-	max_w_class = 3
-	max_storage_space = 29
-
-	can_hold = list(
-		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/tool/lighter,
-		/obj/item/storage/fancy/cigarettes,
-		/obj/item/storage/pill_bottle,
-		/obj/item/stack/medical,
-		/obj/item/flashlight/pen,
-		/obj/item/clothing/mask/surgical,
-		/obj/item/clothing/gloves/latex,
-		/obj/item/storage/syringe_case,
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/smg/m25,
-		/obj/item/ammo_magazine/smg/standard_smg,
-		/obj/item/ammo_magazine/smg/standard_machinepistol,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/handful,
-		/obj/item/flashlight/flare,
-		/obj/item/explosive/grenade/flare,
-		/obj/item/reagent_containers/hypospray,
-		/obj/item/bodybag,
-		/obj/item/defibrillator,
-		/obj/item/storage/pill_bottle/packet,
-		/obj/item/roller,
-	)
-	storage_type_limits = list(
-		/obj/item/ammo_magazine = 3,
-	)
-
-/obj/item/storage/belt/medical/Initialize()
-	. = ..()
-	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/tramadol(src)
-	new /obj/item/storage/pill_bottle/tricordrazine(src)
-	new /obj/item/storage/pill_bottle/dylovene(src)
-	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/storage/pill_bottle/alkysine(src)
-	new /obj/item/storage/pill_bottle/imidazoline(src)
-	new /obj/item/storage/pill_bottle/quickclot(src)
-	new /obj/item/storage/pill_bottle/hypervene(src)
-	new /obj/item/roller(src)
-	new /obj/item/defibrillator(src)
-	new /obj/item/healthanalyzer(src)
-
-
 /obj/item/storage/belt/lifesaver
 	name = "\improper M276 pattern lifesaver bag"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
@@ -196,7 +136,7 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent containers."
 	icon_state = "hypospraybelt"
 	item_state = "medicbag"
-	storage_slots = 17
+	storage_slots = 18
 	max_storage_space = 42
 	max_w_class = 2
 	can_hold = list(
@@ -208,23 +148,24 @@
 
 /obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
-	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
-	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/dylovene(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/dexalin(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/imialky(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
-	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
 	new /obj/item/healthanalyzer(src)
+	new /obj/item/reagent_containers/hypospray/advanced/bicaridine(src)
+	new /obj/item/storage/bottlecase/bica(src)
+	new /obj/item/reagent_containers/hypospray/advanced/kelotane(src)
+	new /obj/item/storage/bottlecase/kelo(src)
+	new /obj/item/reagent_containers/hypospray/advanced/dylovene(src)
+	new /obj/item/storage/bottlecase/dylo(src)
+	new /obj/item/reagent_containers/hypospray/advanced/tramadol(src)
+	new /obj/item/storage/bottlecase/tram(src)
+	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
+	new /obj/item/storage/bottlecase/tricord(src)
+	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
 
 /obj/item/storage/belt/lifesaver/upp
 	name ="\improper Type 41 pattern lifesaver bag"

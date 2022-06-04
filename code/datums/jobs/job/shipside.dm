@@ -701,7 +701,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	jobtype = /datum/job/terragov/medical/professor
 
 	id = /obj/item/card/id
-	belt = /obj/item/storage/belt/medical
+	belt = /obj/item/storage/belt/lifesaver
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/rank/medical/blue
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/cmo
@@ -786,7 +786,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	jobtype = /datum/job/terragov/medical/medicalofficer
 
 	id = /obj/item/card/id
-	belt = /obj/item/storage/belt/medical
+	belt = /obj/item/storage/belt/lifesaver
 	ears = /obj/item/radio/headset/mainship/doc
 	w_uniform = /obj/item/clothing/under/rank/medical/purple
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
@@ -875,7 +875,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	name = MEDICAL_RESEARCHER
 	jobtype = /datum/job/terragov/medical/researcher
 	id = /obj/item/card/id
-	belt = /obj/item/storage/belt/medical
+	belt = /obj/item/storage/belt/lifesaver
 	ears = /obj/item/radio/headset/mainship/res
 	w_uniform = /obj/item/clothing/under/marine/officer/researcher
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/researcher

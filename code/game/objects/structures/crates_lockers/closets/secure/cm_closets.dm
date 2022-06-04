@@ -441,7 +441,7 @@
 		new /obj/item/radio/headset/mainship/doc(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
-	new /obj/item/storage/belt/medical(src)
+	new /obj/item/storage/belt/lifesaver(src)
 	new /obj/item/clothing/under/rank/medical/blue(src)
 	new /obj/item/clothing/under/rank/medical/green(src)
 	new /obj/item/clothing/under/rank/medical/purple(src)

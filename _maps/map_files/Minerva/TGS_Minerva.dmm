@@ -7143,21 +7143,8 @@
 /area/mainship/medical/lower_medical)
 "xO" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/lifesaver,
 /obj/item/healthanalyzer,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
+/obj/machinery/light,
 /obj/item/healthanalyzer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -10718,10 +10705,6 @@
 /area/mainship/medical/chemistry)
 "Ik" = (
 /obj/structure/rack,
-/obj/item/storage/pouch/medkit,
-/obj/item/storage/pouch/medkit,
-/obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/lifesaver,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},

@@ -8,7 +8,7 @@
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "hypo"
 	icon_state = "hypo_base"
-	amount_per_transfer_from_this = 10
+	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null
 	volume = 60
 	init_reagent_flags = OPENCONTAINER
@@ -25,11 +25,6 @@
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy."
 	core_name = "hypospray"
 
-/obj/item/reagent_containers/hypospray/advanced/big
-	name = "Advanced big hypospray"
-	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy. This one is a 120 unit version."
-	core_name = "hypospray"
-	volume = 120
 
 /obj/item/reagent_containers/hypospray/proc/empty(mob/user)
 	if(tgui_alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", list("Yes", "No")) != "Yes")
@@ -289,6 +284,143 @@
 	if(href_list["displayreagents"])
 		to_chat(usr, display_reagents())
 
+
+
+/obj/item/reagent_containers/hypospray/advanced/tricordrazine
+	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
+
+
+/obj/item/reagent_containers/hypospray/advanced/oxycodone
+	name = "oxycodone hypospray"
+	desc = "A hypospray loaded with oxycodone."
+	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
+
+/obj/item/reagent_containers/hypospray/advanced/combat
+	name = "Combat hypospray"
+	desc = "A hypospray loaded with several doses of advanced healing and painkilling chemicals. Intended for use in active combat."
+	list_reagents = list(
+		/datum/reagent/medicine/bicaridine = 20,
+		/datum/reagent/medicine/kelotane = 20,
+		/datum/reagent/medicine/tramadol = 20,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/combat_advanced
+	name = "Advanced combat hypospray"
+	desc = "A hypospray loaded with several doses of advanced healing and painkilling chemicals. Intended for use in active combat."
+	list_reagents = list(
+		/datum/reagent/medicine/meralyne = 20,
+		/datum/reagent/medicine/dermaline = 20,
+		/datum/reagent/medicine/tramadol = 20,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/meraderm
+	name = "Meraderm hypospray"
+	desc = "A hypospray loaded with meralyne and dermaline."
+	list_reagents = list(
+		/datum/reagent/medicine/meralyne = 30,
+		/datum/reagent/medicine/dermaline = 30,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/meralyne
+	name = "Meralyne hypospray"
+	desc = "A hypospray loaded with meralyne."
+	list_reagents = list(
+		/datum/reagent/medicine/meralyne = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/dermaline
+	name = "Dermaline hypospray"
+	desc = "A hypospray loaded with dermaline."
+	list_reagents = list(
+		/datum/reagent/medicine/dermaline = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/nanoblood
+	name = "Nanoblood hypospray"
+	desc = "A hypospray loaded with nanoblood."
+	list_reagents = list(
+		/datum/reagent/medicine/nanoblood = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/bicaridine
+	name = "Bicaridine hypospray"
+	desc = "A hypospray loaded with bicaridine."
+	list_reagents = list(
+		/datum/reagent/medicine/bicaridine = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/kelotane
+	name = "Kelotane hypospray"
+	desc = "A hypospray loaded with kelotane."
+	list_reagents = list(
+		/datum/reagent/medicine/kelotane = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/dylovene
+	name = "Dylovene hypospray"
+	desc = "A hypospray loaded with dylovene."
+	list_reagents = list(
+		/datum/reagent/medicine/dylovene = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/tramadol
+	name = "Tramadol hypospray"
+	desc = "A hypospray loaded with tramadol."
+	list_reagents = list(
+		/datum/reagent/medicine/tramadol = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/tricordrazine
+	name = "Tricordrazine hypospray"
+	desc = "A hypospray loaded with tricordrazine."
+	list_reagents = list(
+		/datum/reagent/medicine/tricordrazine = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/inaprovaline
+	name = "Inaprovaline hypospray"
+	desc = "A hypospray loaded with inaprovaline."
+	list_reagents = list(
+		/datum/reagent/medicine/inaprovaline = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/spaceacillin
+	name = "Spaceacillin hypospray"
+	desc = "A hypospray loaded with spaceacillin."
+	list_reagents = list(
+		/datum/reagent/medicine/spaceacillin = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/hypervene
+	name = "Hypervene hypospray"
+	desc = "A hypospray loaded with hypervene."
+	list_reagents = list(
+		/datum/reagent/hypervene = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/peridaxon
+	name = "Peridaxon hypospray"
+	desc = "A hypospray loaded with peridaxon."
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/quickclot
+	name = "Quickclot hypospray"
+	desc = "A hypospray loaded with quickclot."
+	list_reagents = list(
+		/datum/reagent/medicine/quickclot = 60,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/dexalin
+	name = "Dexalin hypospray"
+	desc = "A hypospray loaded with dexalin."
+	list_reagents = list(
+		/datum/reagent/medicine/dexalin = 60,
+	)
+
+
+
 /obj/item/reagent_containers/hypospray/advanced/update_icon()
 	. = ..()
 
@@ -332,124 +464,8 @@
 				dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]% <b>Amount per dose:</b> [dose]</br>"
 	return span_notice("[src]'s reagent display shows the following contents: [dat.Join(" ")]")
 
-/obj/item/reagent_containers/hypospray/advanced/tricordrazine
-	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
-
-/obj/item/reagent_containers/hypospray/advanced/oxycodone
-	name = "oxycodone hypospray"
-	desc = "A hypospray loaded with oxycodone."
-	amount_per_transfer_from_this = 5
-	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
-
-/obj/item/reagent_containers/hypospray/advanced/meraderm
-	name = "Meraderm hypospray"
-	desc = "A hypospray loaded with meralyne and dermaline."
-	amount_per_transfer_from_this = 5
-	list_reagents = list(
-		/datum/reagent/medicine/meralyne = 30,
-		/datum/reagent/medicine/dermaline = 30,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/meralyne
-	name = "Meralyne hypospray"
-	desc = "A hypospray loaded with meralyne."
-	amount_per_transfer_from_this = 5
-	list_reagents = list(
-		/datum/reagent/medicine/meralyne = 60,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/dermaline
-	name = "Dermaline hypospray"
-	desc = "A hypospray loaded with dermaline."
-	amount_per_transfer_from_this = 5
-	list_reagents = list(
-		/datum/reagent/medicine/dermaline = 60,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/nanoblood
-	name = "Nanoblood hypospray"
-	desc = "A hypospray loaded with nanoblood."
-	amount_per_transfer_from_this = 5
-	list_reagents = list(
-		/datum/reagent/medicine/nanoblood = 60,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/hypervene
-	name = "Hypervene hypospray"
-	desc = "A hypospray loaded with hypervene."
-	amount_per_transfer_from_this = 3
-	list_reagents = list(
-		/datum/reagent/hypervene = 60,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/big/bicaridine
-	name = "Bicaridine hypospray"
-	desc = "A hypospray loaded with bicaridine. "
-	list_reagents = list(
-		/datum/reagent/medicine/bicaridine = 120,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/big/kelotane
-	name = "Kelotane hypospray"
-	desc = "A hypospray loaded with kelotane."
-	list_reagents = list(
-		/datum/reagent/medicine/kelotane = 120,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/big/tramadol
-	name = "Tramadol hypospray"
-	desc = "A hypospray loaded with tramadol."
-	list_reagents = list(
-		/datum/reagent/medicine/tramadol = 120,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/big/dylovene
-	name = "Dylovene hypospray"
-	desc = "A hypospray loaded with dylovene."
-	list_reagents = list(
-		/datum/reagent/medicine/dylovene = 120,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/big/tricordrazine
-	name = "Tricordrazine hypospray"
-	desc = "A hypospray loaded with tricordrazine."
-	list_reagents = list(
-		/datum/reagent/medicine/tricordrazine = 120,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/big/inaprovaline
-	name = "Inaprovaline hypospray"
-	desc = "A hypospray loaded with inaprovaline."
-	amount_per_transfer_from_this = 15
-	list_reagents = list(
-		/datum/reagent/medicine/inaprovaline = 120,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/big/dexalin
-	name = "Dexalin hypospray"
-	desc = "A hypospray loaded with dexalin."
-	list_reagents = list(
-		/datum/reagent/medicine/dexalin = 120,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/big/spaceacillin
-	name = "Spaceacillin hypospray"
-	desc = "A hypospray loaded with spaceacillin. An advanced antibiotic."
-	list_reagents = list(
-		/datum/reagent/medicine/spaceacillin = 120,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/big/imialky
-	name = "Imialky hypospray"
-	desc = "A hypospray loaded with a mixture of imidazoline and alkysine. A mix meant to cure eye and brain damage."
-	list_reagents = list(
-		/datum/reagent/medicine/imidazoline = 60,
-		/datum/reagent/medicine/alkysine = 60,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/big/quickclot
-	name = "Quickclot hypospray"
-	desc = "A hypospray loaded with quickclot. A drug which restores blood and temporarily halts internal bleeding."
-	list_reagents = list(
-		/datum/reagent/medicine/quickclot = 120,
-	)
+/obj/item/reagent_containers/hypospray/advanced/big
+	name = "Advanced big hypospray"
+	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer and digital labeler. Handy. This one is a 120 unit version."
+	core_name = "hypospray"
+	volume = 120

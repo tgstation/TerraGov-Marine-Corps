@@ -952,7 +952,7 @@
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
-		/obj/item/storage/belt/medical = 6,
+		/obj/item/storage/belt/lifesaver = 6,
 		/obj/item/bodybag/cryobag = 4,
 		/obj/item/healthanalyzer = 4,
 		/obj/item/clothing/glasses/hud/health = 4,
