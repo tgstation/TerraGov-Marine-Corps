@@ -1980,9 +1980,9 @@
 /area/mainship/medical/medical_science)
 "aiX" = (
 /obj/structure/table/mainship,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/storage/belt/medical{
 	pixel_y = 9
 	},

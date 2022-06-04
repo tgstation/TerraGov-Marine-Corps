@@ -407,9 +407,9 @@
 /area/mainship/command/self_destruct)
 "ate" = (
 /obj/structure/table/mainship,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/storage/belt/medical{
 	pixel_y = 9
 	},
@@ -3408,8 +3408,8 @@
 /obj/structure/rack,
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medkit,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "diy" = (
@@ -18204,8 +18204,8 @@
 /obj/structure/rack,
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medkit,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic/rebel)
 "qlY" = (
@@ -20985,9 +20985,9 @@
 /area/mainship/engineering/engineering_workshop)
 "sHs" = (
 /obj/structure/table/mainship,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/storage/belt/medical{
 	pixel_y = 9
 	},

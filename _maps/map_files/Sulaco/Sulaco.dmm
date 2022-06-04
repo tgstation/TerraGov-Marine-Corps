@@ -235,8 +235,8 @@
 /area/sulaco/medbay/storage)
 "aaR" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/storage/belt/medical,
 /obj/machinery/firealarm,
 /turf/open/floor/prison/whitegreen/corner{
@@ -22284,7 +22284,7 @@
 /area/sulaco/maintenance/lower_maint2)
 "sBO" = (
 /obj/structure/rack,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/prison/red{
 	dir = 10

@@ -7143,8 +7143,8 @@
 /area/mainship/medical/lower_medical)
 "xO" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/healthanalyzer,
 /obj/machinery/light{
 	dir = 4
@@ -10720,8 +10720,8 @@
 /obj/structure/rack,
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medkit,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},

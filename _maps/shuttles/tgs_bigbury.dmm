@@ -262,7 +262,7 @@
 /area/shuttle/canterbury/medical)
 "be" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/storage/belt/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)

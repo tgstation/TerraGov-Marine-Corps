@@ -2361,11 +2361,11 @@
 	},
 /area/whiskey_outpost)
 "kB" = (
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
 /obj/structure/table/mainship,
@@ -8179,7 +8179,7 @@
 	},
 /area/whiskey_outpost/outside/west)
 "Yz" = (
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
 /obj/item/clothing/glasses/hud/health,
