@@ -114,6 +114,8 @@
 			.["show_typing"] = show_typing
 			.["tooltips"] = tooltips
 			.["widescreenpref"] = widescreenpref
+			.["radialmedicalpref"] = toggles_gameplay & RADIAL_MEDICAL
+			.["radialstackspref"] = toggles_gameplay & RADIAL_STACKS
 			.["scaling_method"] = scaling_method
 			.["pixel_size"] = pixel_size
 			.["parallax"] = parallax
@@ -685,6 +687,12 @@
 		if("widescreenpref")
 			widescreenpref = !widescreenpref
 			user.client.view_size.set_default(get_screen_size(widescreenpref))
+
+		if("radialmedicalpref")
+			toggles_gameplay ^= RADIAL_MEDICAL
+
+		if("radialstackspref")
+			toggles_gameplay ^= RADIAL_STACKS
 
 		if("pixel_size")
 			switch(pixel_size)

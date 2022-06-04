@@ -215,6 +215,20 @@ export const GameSettings = (props, context) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Radial medical wheel"
+                value="radialmedicalpref"
+                action="radialmedicalpref"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
+              <ToggleFieldPreference
+                label="Radial stacks wheel"
+                value="radialstackspref"
+                action="radialstackspref"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
               <LoopingSelectionPreference
                 label="Scaling Method"
                 value={scaling_method}
