@@ -240,8 +240,8 @@
 
 /turf/open/ground/jungle
 	allow_construction = FALSE
-	var/bushes_spawn = TRUE
-	var/plants_spawn = TRUE
+	var/vines_spawn = TRUE
+	var/plants_spawn = FALSE
 	name = "wet grass"
 	desc = "Thick, long wet grass"
 	icon = 'icons/turf/jungle.dmi'
@@ -277,8 +277,8 @@
 			var/obj/structure/jungle_plant/J = new(src)
 			J.pixel_x = rand(-6,6)
 			J.pixel_y = rand(-6,6)
-	if(bushes_spawn && prob(90))
-		new /obj/structure/bush(src)
+	if(vines_spawn && prob(8))
+		new /obj/structure/jungle/vines(src)
 
 
 /turf/open/ground/jungle/proc/Spread(probability, prob_loss = 50)
@@ -287,7 +287,7 @@
 
 	//to_chat(world, span_notice("Spread([probability])"))
 	for(var/turf/open/ground/jungle/J in orange(1, src))
-		if(!J.bushes_spawn)
+		if(!J.vines_spawn)
 			continue
 
 		var/turf/open/ground/jungle/P
@@ -301,13 +301,13 @@
 
 
 /turf/open/ground/jungle/clear
-	bushes_spawn = FALSE
+	vines_spawn = FALSE
 	plants_spawn = FALSE
 	icon_state = "grass_clear"
 	icon_spawn_state = "grass3"
 
 /turf/open/ground/jungle/path
-	bushes_spawn = FALSE
+	vines_spawn = FALSE
 	name = "dirt"
 	desc = "it is very dirty."
 	icon = 'icons/turf/jungle.dmi'
@@ -322,22 +322,22 @@
 
 
 /turf/open/ground/jungle/impenetrable
-	bushes_spawn = TRUE
+	vines_spawn = TRUE
 	icon_state = "grass_impenetrable"
 	icon_spawn_state = "grass1"
 
 /turf/open/ground/jungle/impenetrable/nobush
-	bushes_spawn = FALSE
+	vines_spawn = FALSE
 
 /turf/open/ground/jungle/impenetrable/Initialize()
 	. = ..()
-	if(bushes_spawn)
+	if(vines_spawn)
 		var/obj/structure/bush/B = new(src)
 		ENABLE_BITFIELD(B.resistance_flags, INDESTRUCTIBLE)
 
 
 /turf/open/ground/jungle/water
-	bushes_spawn = FALSE
+	vines_spawn = FALSE
 	name = "murky water"
 	desc = "thick, murky water"
 	icon = 'icons/misc/beach.dmi'

@@ -301,7 +301,7 @@
 				break
 			if(!affected_limbs.Find(X.name) )
 				continue
-			armor_block = H.run_armor_check(X, "acid")
+			armor_block = H.get_soft_armor("acid", X)
 			if(istype(X) && X.take_damage_limb(0, rand(raw_damage * 0.75, raw_damage * 1.25), blocked = armor_block))
 				H.UpdateDamageIcon()
 			limb_count++
@@ -391,12 +391,12 @@
 	return TRUE
 
 ///Signal sender for unique_action
-/obj/item/proc/do_unique_action(mob/user)
+/obj/item/proc/do_unique_action(mob/user, special_treatment = FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
-	return unique_action(user)
+	return unique_action(user, special_treatment)
 
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
-/obj/item/proc/unique_action(mob/user)
+/obj/item/proc/unique_action(mob/user, special_treatment = FALSE)
 	return
 
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed

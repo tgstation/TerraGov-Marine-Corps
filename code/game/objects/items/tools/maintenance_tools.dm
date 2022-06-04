@@ -251,7 +251,7 @@
 			welding = 1
 			if(M)
 				to_chat(M, span_notice("You switch [src] on."))
-			set_light(LIGHTER_LUMINOSITY)
+			set_light(1, LIGHTER_LUMINOSITY)
 			weld_tick += 8 //turning the tool on does not consume fuel directly, but it advances the process that regularly consumes fuel.
 			force = 15
 			damtype = BURN

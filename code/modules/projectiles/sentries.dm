@@ -249,7 +249,7 @@
 	visible_message(span_notice("The [name] powers up with a warm hum."))
 	set_light_range(initial(light_power))
 	set_light_color(initial(light_color))
-	set_light(SENTRY_LIGHT_POWER)
+	set_light(SENTRY_LIGHT_POWER,SENTRY_LIGHT_POWER)
 	update_icon()
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, .proc/check_next_shot)

@@ -31,3 +31,7 @@
 /area/whiskey_outpost/outside/south
 	name = "Whiskey Outpost South"
 	icon_state = "south"
+
+/area/whiskey_outpost/outside/rock
+	name = "Enclosed Area"
+	icon_state = "transparent"

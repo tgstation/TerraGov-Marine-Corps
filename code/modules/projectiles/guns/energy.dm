@@ -93,7 +93,7 @@
 	muzzle_flash_color = COLOR_LASER_RED
 
 	fire_delay = 3
-	accuracy_mult = 1.5
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 80 //Heavy and unwieldy
 	damage_falloff_mult = 0.5
@@ -430,7 +430,6 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.2
 	mode_list = list(
@@ -491,10 +490,10 @@
 
 	akimbo_additional_delay = 0.9
 	wield_delay = 0.6 SECONDS
-	scatter = 3
+	scatter = 2
 	scatter_unwielded = 4
 	fire_delay = 0.15 SECONDS
-	accuracy_mult = 1.1
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
 	damage_falloff_mult = 0.2
 	mode_list = list(
@@ -569,14 +568,15 @@
 
 	aim_slowdown = 0.2
 	wield_delay = 0.3 SECONDS
-	scatter = 2
+	scatter = 1
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.1
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.65
 	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
 	mode_list = list(
 		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
 		"Automatic standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic,
@@ -652,8 +652,9 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 1 SECONDS
-	accuracy_mult = 1.35
+	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.5
+	movement_acc_penalty_mult = 6
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_sniper_mode/heat,
@@ -716,7 +717,7 @@
 	wield_delay = 1.5 SECONDS
 	scatter = 1
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 0.95
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
 	damage_falloff_mult = 0.3
@@ -774,7 +775,6 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 0.5 SECONDS
-	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.3
 	mode_list = list(
@@ -822,7 +822,7 @@
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult = 1
-	scatter = 0
+	scatter = -2
 	recoil = 0
 	accuracy_mult_unwielded = 0.5
 	scatter_unwielded = 25
@@ -856,11 +856,12 @@
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 26, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
-	scatter = 4
-	accuracy_mult_unwielded = 0.7
+	scatter = 3
+	accuracy_mult_unwielded = 0.9
 	scatter_unwielded = 10
 	recoil_unwielded = 1
 	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -931,10 +932,11 @@
 	aim_slowdown = 1
 	wield_delay	= 1.2 SECONDS
 	fire_delay = 0.15 SECONDS
-	scatter = 4
+	scatter = 3
 	accuracy_mult_unwielded = 0.4
 	scatter_unwielded = 35
 	recoil_unwielded = 5
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)

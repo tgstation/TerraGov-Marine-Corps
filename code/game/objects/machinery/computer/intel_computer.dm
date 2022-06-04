@@ -38,6 +38,7 @@
 /obj/machinery/computer/intel_computer/Initialize()
 	. = ..()
 	GLOB.intel_computers += src
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_on_hijack)
 
 /obj/machinery/computer/intel_computer/process()
 	. = ..()
@@ -52,7 +53,7 @@
 		SSpoints.supply_points[faction] += supply_reward
 		SSpoints.dropship_points += dropship_reward
 		priority_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
-
+		SSminimaps.remove_marker(src)
 
 /obj/machinery/computer/intel_computer/Destroy()
 	GLOB.intel_computers -= src
@@ -60,7 +61,7 @@
 
 /obj/machinery/computer/intel_computer/interact(mob/user)
 	if(!active)
-		to_chat(user, span_notice(" This terminal has nothing of use on it."))
+		to_chat(user, span_notice("This terminal has nothing of use on it."))
 		return
 	return ..()
 
@@ -97,3 +98,14 @@
 			faction = ui_user.faction
 			START_PROCESSING(SSmachines, src)
 	update_icon()
+
+/// Deactivates this intel computer, for use on hijack
+/obj/machinery/computer/intel_computer/proc/disable_on_hijack()
+	GLOB.intel_computers -= src // prevents the event running
+	if(!active)
+		return
+	SStgui.close_uis(src)
+	SSminimaps.remove_marker(src)
+	active = FALSE
+	if(printing)
+		STOP_PROCESSING(SSmachines, src)

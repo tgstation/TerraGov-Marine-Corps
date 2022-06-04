@@ -127,7 +127,7 @@
 
 	var/b_loss = 0
 	var/f_loss = 0
-	var/armor = getarmor(null, "bomb") * 0.01
+	var/armor = get_soft_armor("bomb") * 0.01 //Gets average bomb armor over all limbs.
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -178,7 +178,7 @@
 		var/damage = M.melee_damage
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
-		var/armor = run_armor_check(affecting, "melee")
+		var/armor = get_soft_armor("melee", affecting)
 		apply_damage(damage, BRUTE, affecting, armor, updating_health = TRUE)
 
 /mob/living/carbon/human/show_inv(mob/living/user)

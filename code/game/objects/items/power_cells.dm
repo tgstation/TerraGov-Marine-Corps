@@ -110,7 +110,7 @@
 /obj/item/cell/rtg/plasma_cutter
 	name = "plasma cutter cell"
 	desc = "You shouldn't be seeing this"
-	maxcharge = 8500
+	maxcharge = 7500
 	self_recharge = TRUE
 	charge_amount = 25
 	charge_delay = 2 SECONDS //One hit on a resin thingy every 8 seconds, or one actual wall every 80 seconds.
