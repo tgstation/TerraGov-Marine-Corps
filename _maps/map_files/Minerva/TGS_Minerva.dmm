@@ -13021,7 +13021,7 @@
 /obj/item/clothing/suit/storage/hazardvest/lime,
 /obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/full,
+/obj/item/storage/pouch/medkit/firstaid,
 /obj/item/tool/taperoll/engineering,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)

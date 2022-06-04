@@ -8088,7 +8088,7 @@
 /obj/item/clothing/suit/storage/hazardvest/lime,
 /obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/full,
+/obj/item/storage/pouch/medkit/firstaid,
 /obj/item/tool/taperoll/engineering,
 /obj/item/tool/extinguisher/mini,
 /obj/item/storage/toolbox/mechanical,
