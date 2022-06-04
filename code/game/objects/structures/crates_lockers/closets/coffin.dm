@@ -4,6 +4,7 @@
 	icon_state = "coffin"
 	icon_closed = "coffin"
 	icon_opened = "coffin_open"
+	max_integrity = 40
 	anchored = FALSE
 
 /obj/structure/closet/coffin/update_icon_state()

@@ -1,5 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - balance: "LZ, Colony, and Armored Floodlights have had their lighting power (inverse dropoff) reduced. This means less lighting around the edges of floodlights but will now appear more circular in lit area."
-  - balance: "LZ and Colony Floodlights have had their lighting range improved to compensate for increased dropoff in light."

@@ -367,6 +367,51 @@
 					/obj/item/tool/kitchen/rollingpin,\
 					/obj/item/tool/kitchen/tray)
 
+///random medical items
+/obj/effect/spawner/random/pillbottle
+	name = "Random pill bottle spawner"
+	icon_state = "random_medicine"
+
+/obj/effect/spawner/random/pillbottle/item_to_spawn()
+		return pick(/obj/item/storage/pill_bottle/alkysine,\
+					/obj/item/storage/pill_bottle/imidazoline,\
+					/obj/item/storage/pill_bottle/bicaridine,\
+					/obj/item/storage/pill_bottle/kelotane,\
+					/obj/item/storage/pill_bottle/tramadol,\
+					/obj/item/storage/pill_bottle/inaprovaline,\
+					/obj/item/storage/pill_bottle/dylovene,\
+					/obj/item/storage/pill_bottle/spaceacillin)
+
+/obj/effect/spawner/random/surgical
+	name = "Random surgical instrument spawner"
+	icon_state = "random_surgical"
+
+/obj/effect/spawner/random/surgical/item_to_spawn()
+		return pick(/obj/item/tool/surgery/scalpel/manager,\
+					/obj/item/tool/surgery/scalpel,\
+					/obj/item/tool/surgery/hemostat,\
+					/obj/item/tool/surgery/retractor,\
+					/obj/item/stack/medical/heal_pack/advanced/bruise_pack,\
+					/obj/item/tool/surgery/cautery,\
+					/obj/item/tool/surgery/circular_saw,\
+					/obj/item/tool/surgery/suture,\
+					/obj/item/tool/surgery/bonegel,\
+					/obj/item/tool/surgery/bonesetter,\
+					/obj/item/tool/surgery/FixOVein,\
+					/obj/item/stack/nanopaste)
+
+/obj/effect/spawner/random/organ
+	name = "Random surgical organ spawner"
+	icon_state = "random_organ"
+
+/obj/effect/spawner/random/organ/item_to_spawn()
+		return pick(/obj/item/prop/organ/brain,\
+					/obj/item/prop/organ/heart,\
+					/obj/item/prop/organ/lungs,\
+					/obj/item/prop/organ/kidneys,\
+					/obj/item/prop/organ/eyes,\
+					/obj/item/prop/organ/liver,\
+					/obj/item/prop/organ/appendix)
 
 ///random cables
 /obj/effect/spawner/random/cable

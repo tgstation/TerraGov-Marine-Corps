@@ -101,8 +101,7 @@
 #define COVEREYES (1<<1) // Covers the eyes/protects them.
 #define COVERMOUTH (1<<2) // Covers the mouth.
 #define ALLOWINTERNALS (1<<3)	//mask allows internals
-#define ALLOWREBREATH (1<<4) //Mask allows to breath in really hot or really cold air.
-#define BLOCKGASEFFECT (1<<5) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
+#define BLOCKGASEFFECT (1<<4) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
 //HELMET AND MASK======================================================================================
 
 //SUITS AND HELMETS====================================================================================

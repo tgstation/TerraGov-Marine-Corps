@@ -110,6 +110,8 @@
 	pixel_shift_x = 10
 	pixel_shift_y = 19
 
+	wield_delay_mod	= 0.2 SECONDS
+
 	placed_overlay_iconstate = "tx7"
 
 /obj/item/weapon/gun/pistol/plasma_pistol/can_attach(obj/item/attaching_to, mob/attacher)
