@@ -72,7 +72,6 @@ GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 	/obj/item/clothing/head/tgmcberet,
 	/obj/item/clothing/head/headband,
 	/obj/item/clothing/head/headset,
-	/obj/item/clothing/head/tgmcbandanna,
 	/obj/item/clothing/gloves/black,
 	/obj/item/weapon/baton,
 	/obj/item/weapon/gun/energy/taser,

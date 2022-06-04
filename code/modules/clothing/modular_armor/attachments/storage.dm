@@ -236,6 +236,21 @@
 		/obj/item/tweezers,
 	)
 
+/obj/item/armor_module/storage/injector
+	name = "Injector Storage module"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of injectors."
+	icon_state = "mod_injector_bag"
+	storage =  /obj/item/storage/internal/modular/injector
+
+/obj/item/storage/internal/modular/injector
+	max_storage_space = 10
+	storage_slots = 10
+	max_w_class = WEIGHT_CLASS_TINY
+	can_hold = list(
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/hypospray/autoinjector,
+	)
+
 /obj/item/armor_module/storage/integrated
 	name = "IS Pattern Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Impedes movement somewhat, but holds about as much as a satchel could."

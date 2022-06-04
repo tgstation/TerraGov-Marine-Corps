@@ -1,9 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - balance: "Reduced the max_integrity of: coffins, large crates (the kind that must be broken or opened with a crowbar), cases, barrels, ore boxes, plastic flaps, hydro trays, mop buckets, janitorial carts, filing cabinets, and reagent dispensers."
-  - bugfix: "Added the xeno damageable flag to: janitorial carts, filing cabinets and reagent dispensers (beer keg, boozeomat, etc..)"
-  - bugfix: "Removed useless train vehicle attack_alien override preventing damage."
-  - bugfix: "Fixed xenos not being able to open wrapped large parcels i.e. wrapped lockers."
-  - bugfix: "Opening gracefully, not smashing, closets does not put xeno attack on cooldown."
-  - bugfix: "Fixed closets not taking damage from slashes even though the animation played and informed the xeno they \"smashed\" the object."
