@@ -176,54 +176,55 @@
 			message_admins("[ADMIN_TPMONTY(usr)] attempted to create a ([src]) stack ([R]) recipe with multiplier [multiplier]. Possible HREF exploit.")
 			return
 
-		create_object(R, multiplier)
+		create_object(usr, R, multiplier)
+
 
 /// Creates multiplier amount of objects based off of stack recipe R. Most creation variables are changed through stack recipe datum's variables
-/obj/item/stack/proc/create_object(datum/stack_recipe/R, multiplier)
-	if(usr.get_active_held_item() != src)
+/obj/item/stack/proc/create_object(mob/user, datum/stack_recipe/R, multiplier)
+	if(user.get_active_held_item() != src)
 		return
-	if(!can_interact(usr))
+	if(!can_interact(user))
 		return TRUE
-	if(!building_checks(R, multiplier))
+	if(!building_checks(user, R, multiplier))
 		return
-	if(usr.do_actions)
+	if(user.do_actions)
 		return
 	var/building_time = R.time
-	if(R.skill_req && usr.skills.getRating("construction") < R.skill_req)
-		building_time += R.time * ( R.skill_req - usr.skills.getRating("construction") ) * 0.5 // +50% time each skill point lacking.
-	if(R.skill_req && usr.skills.getRating("construction") > R.skill_req)
-		building_time -= clamp(R.time * ( usr.skills.getRating("construction") - R.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
+	if(R.skill_req && user.skills.getRating("construction") < R.skill_req)
+		building_time += R.time * ( R.skill_req - user.skills.getRating("construction") ) * 0.5 // +50% time each skill point lacking.
+	if(R.skill_req && user.skills.getRating("construction") > R.skill_req)
+		building_time -= clamp(R.time * ( user.skills.getRating("construction") - R.skill_req ) * 0.40, 0 , 0.85 * building_time) // -40% time each extra skill point
 	if(building_time)
 		if(building_time > R.time)
-			usr.visible_message(span_notice("[usr] fumbles around figuring out how to build \a [R.title]."),
+			user.visible_message(span_notice("[user] fumbles around figuring out how to build \a [R.title]."),
 			span_notice("You fumble around figuring out how to build \a [R.title]."))
 		else
-			usr.visible_message(span_notice("[usr] starts building \a [R.title]."),
+			user.visible_message(span_notice("[user] starts building \a [R.title]."),
 			span_notice("You start building \a [R.title]..."))
-		if(!do_after(usr, building_time, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, building_time, TRUE, src, BUSY_ICON_BUILD))
 			return
-		if(!building_checks(R, multiplier))
+		if(!building_checks(user, R, multiplier))
 			return
 
 	var/obj/O
 	if(R.max_res_amount > 1) //Is it a stack?
-		O = new R.result_type(get_turf(usr), R.res_amount * multiplier)
+		O = new R.result_type(get_turf(user), R.res_amount * multiplier)
 	else if(ispath(R.result_type, /turf))
-		var/turf/T = get_turf(usr)
+		var/turf/T = get_turf(user)
 		if(!isturf(T))
 			return
 		T.PlaceOnTop(R.result_type)
 	else
-		O = new R.result_type(get_turf(usr))
+		O = new R.result_type(get_turf(user))
 	if(O)
-		O.setDir(usr.dir)
+		O.setDir(user.dir)
 	use(R.req_amount * multiplier)
 
 	if(QDELETED(O))
 		return //It's a stack and has already been merged
 
 	if(isitem(O))
-		usr.put_in_hands(O)
+		user.put_in_hands(O)
 
 	//BubbleWrap - so newly formed boxes are empty
 	if(istype(O, /obj/item/storage))
@@ -232,31 +233,31 @@
 	//BubbleWrap END
 
 
-/obj/item/stack/proc/building_checks(datum/stack_recipe/R, multiplier)
+/obj/item/stack/proc/building_checks(mob/user, datum/stack_recipe/R, multiplier)
 	if (get_amount() < R.req_amount*multiplier)
 		if (R.req_amount*multiplier>1)
-			to_chat(usr, span_warning("You haven't got enough [src] to build \the [R.req_amount*multiplier] [R.title]\s!"))
+			to_chat(user, span_warning("You haven't got enough [src] to build \the [R.req_amount*multiplier] [R.title]\s!"))
 		else
-			to_chat(usr, span_warning("You haven't got enough [src] to build \the [R.title]!"))
+			to_chat(user, span_warning("You haven't got enough [src] to build \the [R.title]!"))
 		return FALSE
-	var/turf/T = get_turf(usr)
+	var/turf/T = get_turf(user)
 
 	switch(R.max_per_turf)
 		if(STACK_RECIPE_ONE_PER_TILE)
 			if(locate(R.result_type) in T)
-				to_chat(usr, span_warning("There is another [R.title] here!"))
+				to_chat(user, span_warning("There is another [R.title] here!"))
 				return FALSE
 		if(STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE)
 			for(var/obj/thing in T)
 				if(!istype(thing, R.result_type))
 					continue
-				if(thing.dir != usr.dir)
+				if(thing.dir != user.dir)
 					continue
-				to_chat(usr, span_warning("You can't build \the [R.title] on top of another!"))
+				to_chat(user, span_warning("You can't build \the [R.title] on top of another!"))
 				return FALSE
 	if(R.on_floor)
 		if(!isfloorturf(T) && !isbasalt(T) && !islavacatwalk(T) && !isopengroundturf(T))
-			to_chat(usr, span_warning("\The [R.title] must be constructed on the floor!"))
+			to_chat(user, span_warning("\The [R.title] must be constructed on the floor!"))
 			return FALSE
 		for(var/obj/AM in T)
 			if(istype(AM,/obj/structure/grille))
@@ -265,14 +266,14 @@
 				continue
 			if(!AM.density)
 				continue
-			if(AM.flags_atom & ON_BORDER && AM.dir != usr.dir)
+			if(AM.flags_atom & ON_BORDER && AM.dir != user.dir)
 				if(istype(AM, /obj/structure/window))
 					var/obj/structure/window/W = AM
 					if(!W.is_full_window())
 						continue
 				else
 					continue
-			to_chat(usr, span_warning("There is a [AM.name] right where you want to place \the [R.title], blocking the construction."))
+			to_chat(user, span_warning("There is a [AM.name] right where you want to place \the [R.title], blocking the construction."))
 			return FALSE
 	return TRUE
 
@@ -363,6 +364,7 @@
 
 
 /obj/item/stack/attackby(obj/item/I, mob/user)
+	. = ..()
 	if(istype(I, merge_type))
 		var/obj/item/stack/S = I
 		if(merge(S))
