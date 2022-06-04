@@ -601,7 +601,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
 	force = 15
-	wield_delay = 20
+	wield_delay = 12
 	wield_penalty = 1.6 SECONDS
 	aim_slowdown = 1.75
 	general_codex_key = "explosive weapons"
