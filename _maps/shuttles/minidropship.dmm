@@ -60,7 +60,6 @@
 	},
 /area/shuttle/minidropship)
 "s" = (
-/obj/structure/dropship_equipment/rappel_system,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "u" = (
