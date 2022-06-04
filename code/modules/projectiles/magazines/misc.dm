@@ -135,8 +135,8 @@
 	default_ammo = /datum/ammo/bullet/smg/acp
 	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_45ACP
-	current_rounds = 150
-	max_rounds = 150
+	current_rounds = 120
+	max_rounds = 120
 
 /obj/item/ammo_magazine/packet/p4570
 	name = "packet of .45-70"

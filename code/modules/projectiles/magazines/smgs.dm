@@ -123,6 +123,7 @@
 	name = "\improper Vector drum magazine (.45ACP)"
 	desc = "A .45ACP HP caliber drum magazine for the Vector, with even more dakka."
 	default_ammo = /datum/ammo/bullet/smg/acp
+	w_class = WEIGHT_CLASS_SMALL
 	caliber = CALIBER_45ACP
 	icon_state = "ppsh_ext"
 	max_rounds = 40 // HI-Point .45 ACP Drum mag

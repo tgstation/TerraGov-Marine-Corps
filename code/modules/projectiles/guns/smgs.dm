@@ -387,13 +387,9 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/burstfire_assembly,
-		/obj/item/attachable/gyro,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/scope,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
@@ -402,11 +398,10 @@
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
-		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16, "rail_x" = 22, "rail_y" = 19, "under_x" = 26, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
 	actions_types = list(/datum/action/item_action/aim_mode)
 
@@ -422,13 +417,9 @@
 	aim_slowdown = 0
 
 	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.85 //moving and akimbo yield lower acc
+	accuracy_mult_unwielded = 0.75 //moving or akimbo yield lower acc
 	scatter = -2
-	scatter_unwielded = 5 // Not exactly small weapon, and recoil blowback is only for vertical recoil
-
-	burst_amount = 2
-	burst_scatter_mult = 1
-	burst_delay = 0.05 SECONDS
+	scatter_unwielded = 6 // Not exactly small weapon, and recoil blowback is only for vertical recoil
 
 	movement_acc_penalty_mult = 0.1
 	upper_akimbo_accuracy = 5

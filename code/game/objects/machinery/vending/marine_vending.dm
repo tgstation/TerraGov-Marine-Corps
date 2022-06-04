@@ -517,6 +517,11 @@
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
 		),
+		"Imba" = list(
+			/obj/item/weapon/gun/smg/vector = -1,
+			/obj/item/ammo_magazine/smg/vector = -1,
+			/obj/item/ammo_magazine/packet/acp_smg = -1
+		),
 	)
 
 /obj/machinery/vending/cigarette
