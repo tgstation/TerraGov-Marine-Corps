@@ -278,12 +278,10 @@
 	switch(health_percent)
 		if(-INFINITY to 0)
 			miner_status = MINER_DESTROYED
-			stored_mineral = 0
+			stored_mineral = round(stored_mineral / 2)
 		if(1 to 50)
-			stored_mineral = 0
 			miner_status = MINER_MEDIUM_DAMAGE
 		if(51 to 99)
-			stored_mineral = 0
 			miner_status = MINER_SMALL_DAMAGE
 		if(100 to INFINITY)
 			start_processing()
