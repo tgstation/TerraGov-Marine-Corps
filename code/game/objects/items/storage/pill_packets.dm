@@ -43,7 +43,7 @@
 
 /obj/item/storage/pill_bottle/packet/dylovene
 	name = "dyolovene pill packet"
-	icon_state = "dylo_packet"
+	icon_state = "tric_packet"
 	desc = "This packet containts dylovene pills. Used as a medium-strength painkiller. Once you take them out they don't go back in. No more than 2 pills at once."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 	storage_slots = 6

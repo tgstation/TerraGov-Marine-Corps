@@ -66,7 +66,7 @@
 /obj/item/reagent_containers/glass/bottle/kelotane
 	name = "\improper Kelotane bottle"
 	desc = "A small bottle. Contains kelotane - used to treat burned areas."
-	icon_state = "bottle16"
+	icon_state = "bottle15"
 	list_reagents = list(/datum/reagent/medicine/kelotane = 60)
 
 /obj/item/reagent_containers/glass/bottle/dexalin
@@ -108,7 +108,7 @@
 /obj/item/reagent_containers/glass/bottle/dylovene
 	name = "dylovene bottle"
 	desc = "A small bottle of dylovene. Used to counter poisons. Basically an anti-toxin."
-	icon_state = "bottle7"
+	icon_state = "bottle16"
 	list_reagents = list(/datum/reagent/medicine/dylovene = 60)
 
 /obj/item/reagent_containers/glass/bottle/mutagen
@@ -158,7 +158,7 @@
 /obj/item/reagent_containers/glass/bottle/bicaridine
 	name = "\improper Bicaridine bottle"
 	desc = "A small bottle. Contains Bicaridine - Used to treat brute damage by doctors."
-	icon_state = "bottle17"
+	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 60)
 
 /obj/item/reagent_containers/glass/bottle/peridaxon
@@ -171,7 +171,7 @@
 /obj/item/reagent_containers/glass/bottle/tramadol
 	name = "\improper Tramadol bottle"
 	desc = "A small bottle. Contains Tramadol - Used as a basic painkiller."
-	icon_state = "bottle1"
+	icon_state = "bottle18"
 	volume = 60
 	list_reagents = list(/datum/reagent/medicine/tramadol = 60)
 
@@ -192,7 +192,7 @@
 /obj/item/reagent_containers/glass/bottle/tricordrazine
 	name = "\improper Tricordrazine bottle"
 	desc = "A small bottle. Contains tricordrazine - used as a generic treatment for injuries."
-	icon_state = "bottle18"
+	icon_state = "bottle4"
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
 
 /obj/item/reagent_containers/glass/bottle/meralyne

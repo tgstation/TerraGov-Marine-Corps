@@ -196,7 +196,7 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport hyposprays and reagent containers."
 	icon_state = "hypospraybelt"
 	item_state = "medicbag"
-	storage_slots = 21
+	storage_slots = 17
 	max_storage_space = 42
 	max_w_class = 2
 	can_hold = list(
@@ -211,16 +211,19 @@
 	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
 	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
-	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/dylovene(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline(src)
 	new /obj/item/reagent_containers/hypospray/advanced/big/dexalin(src)
-
+	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/imialky(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/lifesaver/upp
