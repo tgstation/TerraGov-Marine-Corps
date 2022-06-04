@@ -7,6 +7,8 @@
 	icon_state = "watertank"
 	density = TRUE
 	anchored = FALSE
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
 	///high chance to block bullets, offset by being unanchored
 	coverage = 80
 	///maximum tank capacity used to set reagents in initialize

@@ -301,6 +301,8 @@
 	var/attach_delay = 0 SECONDS
 	///Time it takes to detach src to a master gun.
 	var/detach_delay = 0 SECONDS
+	///How long ADS takes (time before firing)
+	var/wield_delay_mod	= 0
 
 
 /*

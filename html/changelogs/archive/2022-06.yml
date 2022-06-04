@@ -1,0 +1,59 @@
+2022-06-01:
+  Arctrooper8:
+  - bugfix: SG stuff can now be saved in loadouts again
+  Ghost_Guts (added to code by Lewdcifer):
+  - imageadd: 'New lobby art: between a crate and a hard place.'
+  QualityVan:
+  - balance: Tripled suture healing for people who should be doing surgery.
+  RipGrayson:
+  - rscadd: Created a random organ spawner.
+  - rscadd: Created a random pill bottle spawner.
+  - rscadd: Created a random surgical instrument spawner.
+  - balance: Added two more generators to WO to help with power issues.
+  - balance: Removed unused empty space around WO.
+  - balance: Added an extra autodoc to the front outpost of WO.
+  - balance: Added an extra blood vendor to the front outpost of WO.
+  - balance: Doctors on WO now have access to Spaceacillin.
+  - balance: Groundside doctors on WO now have access to surgical vests.
+  - balance: Groundside doctors on WO now have access to basic equipment lockers.
+  - bugfix: Jungle path turfs in WO are no longer black voids.
+  - bugfix: WO no longer generates runtimes on load.
+  - bugfix: WO no longer generates a million ugly bushes on every jungle surface.
+  - bugfix: WO no longer generates house plants underneath ugly bushes.
+  - bugfix: AI xenos on WO will no longer try to path through floodlights.
+  - bugfix: FIxed an unusable bodyscanner on WO that lacked a console.
+  - imageadd: Added some spawner related icons.
+  - qol: Added extra detail to WO in many areas of the map.
+  - qol: Gave all WO mineral turfs their own area.
+  - bugfix: The Canterbury can no longer land on top of Big Red disk generators.
+  Wayland-Smithy:
+  - bugfix: Fixed some groundside machinery not deactivating on hijack (like the nuke)
+  breadhunt:
+  - qol: 123456 keybind weapon swapping for CAS
+  - bugfix: Swaps south/east keybinds for CAS to where they should be
+  - bugfix: Fixed a ton of lights not working properly
+  - balance: This makes CAS flares and mortar flares useful again
+  - bugfix: Fixes metal cades being upgraded with nothing
+  - rscadd: Dropship fabricator queue
+  - refactor: Cleans up fabricator code a bit
+  - qol: Balloon alerts to fabricator
+  - bugfix: Fabricator turns orange when it's active properly now
+2022-06-02:
+  DeltaFire15:
+  - balance: Larva gets 2 points evo / tick if on weeds, like before the larva evo
+      point rework.
+  Lewdcifer:
+  - imageadd: 'New lobby art: a good meme never dies.'
+  - imageadd: 'New lobby art: droid bullies larva.'
+  Lumipharon:
+  - balance: Underbarrel weapons now slightly impact wield times for their parent
+      guns.
+  QualityVan:
+  - code_imp: Operating tables don't use their anesthetic tank for internals any more.
+      They still need one though.
+  breadhunt:
+  - balance: Gives researcher engineering access for APCs. They'll still fumble though.
+  - bugfix: Fixes stack PR
+2022-06-03:
+  Lewdcifer:
+  - balance: Laser sniper IFF reverted.

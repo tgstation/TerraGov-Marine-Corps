@@ -701,27 +701,6 @@
 		/obj/item/clothing/glasses/hud/health,
 	)
 
-/obj/effect/essentials_set/smartgunner
-	desc = "Tried and true."
-	spawned_gear_list = list(
-		/obj/item/clothing/glasses/night/m56_goggles,
-		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
-		/obj/item/ammo_magazine/standard_smartmachinegun,
-		/obj/item/ammo_magazine/standard_smartmachinegun,
-		/obj/item/ammo_magazine/standard_smartmachinegun,
-		/obj/item/ammo_magazine/standard_smartmachinegun,
-	)
-
-/obj/effect/essentials_set/smartgunner/minigun
-	desc = "I am heavy weapons smartgunner, and this is my weapon."
-	spawned_gear_list = list(
-		/obj/item/clothing/glasses/night/m56_goggles,
-		/obj/item/weapon/gun/minigun/smart_minigun,
-		/obj/item/ammo_magazine/minigun_powerpack/smartgun,
-		/obj/item/ammo_magazine/packet/smart_minigun,
-		/obj/item/ammo_magazine/packet/smart_minigun,
-	)
-
 /obj/effect/essentials_set/commander
 	spawned_gear_list = list(
 		/obj/item/beacon/supply_beacon,
