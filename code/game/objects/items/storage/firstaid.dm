@@ -480,7 +480,7 @@
 /obj/item/storage/pill_bottle/meralyne
 	name = "meralyne pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	icon_state = "pill_canistertall"
+	icon_state = "pill_canistercomplete"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
 	greyscale_colors = "#FD5964#ffffff"
@@ -494,7 +494,7 @@
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
 	desc = "Contains pills that heal brain damage."
-	icon_state = "pill_canistertall"
+	icon_state = "pill_canistercomplete"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
 	greyscale_colors = "#0292AC#ffffff"
@@ -509,7 +509,7 @@
 /obj/item/storage/pill_bottle/peridaxon
 	name = "peridaxon pill bottle"
 	desc = "Contains pills that suppress organ damage while waiting for a full treatment."
-	icon_state = "pill_canistertall"
+	icon_state = "pill_canistercomplete"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
 	greyscale_colors = "#6e6860#ffffff"
@@ -524,7 +524,7 @@
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
 	desc = "Contains pills that suppress internal bleeding while waiting for full treatment."
-	icon_state = "pill_canistertall"
+	icon_state = "pill_canistercomplete"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
 	greyscale_colors = "#5ed75e#ffffff"
@@ -539,7 +539,7 @@
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
 	desc = "Contains pills commonly used by untrained Squad Marines to avoid seeing their Squad Medic."
-	icon_state = "pill_canistertall"
+	icon_state = "pill_canistercomplete"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
 	greyscale_colors = "#387d4b#ffffff"

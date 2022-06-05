@@ -329,7 +329,6 @@
 /area/lv624/lazarus/crashed_ship)
 "ahH" = (
 /obj/structure/morgue/sarcophagus,
-/obj/item/toy/beach_ball/basketball,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
 "ahN" = (
@@ -14268,6 +14267,7 @@
 /area/lv624/lazarus/main_hall)
 "ngP" = (
 /obj/effect/decal/remains/xeno,
+/obj/structure/jungle/planttop1,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
@@ -22947,7 +22947,9 @@
 /area/lv624/lazarus/spaceport)
 "xCh" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/machinery/showcase/mulebot,
+/obj/machinery/showcase/mulebot{
+	pixel_x = -2
+	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "xCo" = (

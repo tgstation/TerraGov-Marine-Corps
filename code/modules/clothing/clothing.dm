@@ -108,7 +108,6 @@
 	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
-	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
 
 	// Strength of the armor light used by [proc/set_light()]
@@ -216,16 +215,6 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
-
-
-//some gas masks modify the air that you breathe in.
-/obj/item/clothing/mask/proc/filter_air(list/air_info)
-	if(flags_inventory & ALLOWREBREATH)
-		air_info[2] = T20C //heats/cools air to be breathable
-
-	return air_info
-
-
 
 ////////////////////////////////////////////////////////////////////////
 //Shoes

@@ -74,8 +74,6 @@
 		traits += "Scatter angle: [scatter]"
 	if(burst_scatter_mult)
 		traits += "Burst scatter angle multiplier: x[burst_scatter_mult]"
-	if(accuracy_mod)
-		traits += "Accuracy modifier: [accuracy_mod * 100]%"
 	if(accuracy_mult_unwielded)
 		traits += "Accuracy unwielded modifier: [((accuracy_mult_unwielded - 1) * 100) > 0 ? "+[(accuracy_mult_unwielded - 1) * 100]" : "[(accuracy_mult_unwielded - 1) * 100]"]%"
 	if(recoil_unwielded)

@@ -44,8 +44,8 @@
 	if(istype(O, /obj/vehicle/multitile/hitbox/cm_armored))
 		tank_collision(O)
 
-/obj/effect/alien/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+/obj/effect/alien/flamer_fire_act(burnlevel)
+	take_damage(burnlevel * 2, BURN, "fire")
 
 /obj/effect/alien/ex_act(severity)
 	switch(severity)
@@ -192,8 +192,8 @@
 		src.balloon_alert(X, "Destroyed")
 		qdel(src)
 
-/obj/structure/mineral_door/resin/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+/obj/structure/mineral_door/resin/flamer_fire_act(burnlevel)
+	take_damage(burnlevel * 2, BURN, "fire")
 
 /turf/closed/wall/resin/fire_act()
 	take_damage(50, BURN, "fire")
@@ -289,7 +289,7 @@
 	if(X.status_flags & INCORPOREAL)
 		return FALSE
 
-	if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_JELLY)
+	if(X.xeno_caste.can_flags & CASTE_CAN_HOLD_JELLY)
 		return attack_hand(X)
 	if(X.do_actions || !isnull(current_user))
 		return
@@ -341,9 +341,9 @@
 	qdel(src)
 
 /obj/item/resin_jelly/throw_at(atom/target, range, speed, thrower, spin, flying)
-	. = ..()
 	if(isxenohivelord(thrower))
 		RegisterSignal(src, COMSIG_MOVABLE_IMPACT, .proc/jelly_throw_hit)
+	. = ..()
 
 /obj/item/resin_jelly/proc/jelly_throw_hit(datum/source, atom/hit_atom)
 	SIGNAL_HANDLER

@@ -16,6 +16,8 @@
 	icon_state = "filingcabinet"
 	density = TRUE
 	anchored = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
 
 
 /obj/structure/filingcabinet/chestdrawer
