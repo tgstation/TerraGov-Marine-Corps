@@ -1111,35 +1111,16 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 15
 	sundering = 2
 
-/datum/ammo/bullet/smartminigun
+/datum/ammo/bullet/smart_minigun
 	name = "smartminigun bullet"
 	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range = 12
-	damage = 15
+	damage = 10
 	penetration = 15
-	sundering = 2
-
-/datum/ammo/bullet/smartgun/lethal
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	icon_state 	= "bullet"
 	sundering = 1
-
-/datum/ammo/bullet/smartgun/dirty
-	name = "irradiated smartgun bullet"
-	hud_state = "smartgun_radioactive"
-	shrapnel_chance = 75
-
-/datum/ammo/bullet/smartgun/dirty/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	victim.adjustToxLoss(10)//does tox damage now
-
-/datum/ammo/bullet/smartgun/dirty/lethal
-	flags_ammo_behavior = AMMO_BALLISTIC
-	icon_state 	= "bullet"
-	damage = 40
-	penetration = 30
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
@@ -1812,9 +1793,9 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/energy/lasgun/marine/sniper
 	name = "sniper laser bolt"
 	hud_state = "laser_sniper"
-	damage = 70
+	damage = 60
 	penetration = 30
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_IFF|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
+	sundering = 4
 	max_range = 40
 	damage_falloff = 0
 	hitscan_effect_icon = "beam_heavy"
@@ -1823,9 +1804,11 @@ datum/ammo/bullet/revolver/tp44
 	name = "sniper heat bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_heat"
+	shell_speed = 2.5
 	damage = 40
 	penetration = 0
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
+	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
 
 /datum/ammo/energy/lasgun/marine/pistol

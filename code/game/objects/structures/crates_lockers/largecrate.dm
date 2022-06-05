@@ -7,7 +7,7 @@
 	anchored = FALSE
 	var/dropmetal = TRUE
 	resistance_flags = XENO_DAMAGEABLE
-	max_integrity = 100
+	max_integrity = 40
 	hit_sound = 'sound/effects/woodhit.ogg'
 	var/spawn_type
 	var/spawn_amount

@@ -5,7 +5,7 @@
 	anchored = TRUE
 	density = TRUE
 	coverage = 25
-	light_system = HYBRID_LIGHT
+	light_system = STATIC_LIGHT
 	light_power = SQRTWO
 	///The brightness of the floodlight
 	var/brightness_on = 8
@@ -111,7 +111,7 @@
 	if(!cell)
 		. += span_notice("It has no cell installed")
 		return
-	. += span_notice("[cell] has [cell.charge / cell.maxcharge]% charge left")
+	. += span_notice("[cell] has [CEILING(cell.charge / cell.maxcharge * 100, 1)]% charge left")
 
 /// Handles the wrench act .
 /obj/machinery/floodlightcombat/wrench_act(mob/living/user, obj/item/I)

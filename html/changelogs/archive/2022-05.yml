@@ -460,3 +460,79 @@
   - bugfix: Xenos can now use chat overwatch while resting.
   breadhunt:
   - rscadd: Activated intel computers now show on minimap
+2022-05-29:
+  KornFlaks:
+  - balance: LZ, Colony, and Armored Floodlights have had their lighting power (inverse
+      dropoff) reduced. This means less lighting around the edges of floodlights but
+      will now appear more circular in lit area.
+  - balance: LZ and Colony Floodlights have had their lighting range improved to compensate
+      for increased dropoff in light.
+  - bugfix: Xenos in vents can now see the pipe network overlay.
+  - qol: Xeno theme reduced to Standard with Xeno watermark.
+  - rscdel: Removed images and CSS relating to previous xeno theme.
+  - refactor: Xeno evolution slots displayed in the hive status page now are the actual
+      number of slots.
+  Pariah919:
+  - balance: silo scaling is 2 from 2.5
+  QualityVan:
+  - bugfix: Arrowhead starts recharging again after taking damage
+  - balance: IB won't naturally get worse over time.
+  - balance: Quickclot won't stop IB from slowly increasing bruteloss on the limb
+      it's on. Bic+ina still will.
+  - balance: Bic OD won't slowly cure IB.
+  - bugfix: QCP will always remove internal bleeding so long as you have at least
+      5u injected and no purgatives. Every 5u injection will handle one instance of
+      IB.
+  - rscadd: New health scanner shows an alert if the patient has unscannable reagents
+      in them.
+  - rscadd: Extended nozzle for the standard flamer in the weapon vendor. Shoot fireballs
+      to ignite things from a distance! Up front damage is pretty lacking though.
+  - rscadd: Metal cades upgraded with caustic armor can't have xeno acid applied.
+  Sirsnek15:
+  - qol: Adds suit outer storage back to labcoats
+  goose4429:
+  - bugfix: Added missing equipment to Valhalla vendors
+2022-05-30:
+  Arctrooper8:
+  - rscadd: SG minigun now has ammo boxes which hold 1000 rounds each.
+  - balance: SG minigun is now perfect and nobody will ever have to balance it again.
+  - balance: SG ammo factory refills are now cheaper but produce less.
+  - balance: SG-29 drum now holds 250.
+  - balance: All night vision goggles now use LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+  - bugfix: You can no longer buy T-25 refills
+  KornFlaks:
+  - bugfix: Balloon alerts resulting from an action targeting the ground no longer
+      spams balloon alerts.
+  - bugfix: Floodlights, both LZ and Colony, now properly illuminate the area around
+      them.
+  - bugfix: Armored floodlight cell power calculation in its description was corrected.
+  Mechanelize:
+  - code_imp: Split xeno related flags containing "CAN" into a new category called
+      xeno_can_flags to bypass the 21 flag bitfield limit
+  QualityVan:
+  - code_imp: flamer_fire_act gets a new argument that, among other things, means
+      x-fuel is better than default at burning non-mob stuff.
+  - balance: Flamers chew through resin faster.
+  - balance: Miniflamers are weaker against mobs, but the same as before against resin.
+  breadhunt:
+  - qol: Metal, empty sandbags, plasteel and wood have icons based on how much stuff
+      is in the stack
+  - imageadd: Icons for that
+2022-05-31:
+  BraveMole:
+  - bugfix: Fix loadouts giving marine access to nanomed vendor
+  - bugfix: Fix inap, RR and neuraline working on dead bodies
+  Lewdcifer:
+  - balance: RL-152 no longer accepts mini scopes.
+  QualityVan:
+  - bugfix: You can open and close m44 revolvers.
+  - bugfix: Fixed a tiny bit of unreachable code in gorger transfusion failure messages
+  Wayland-Smithy:
+  - bugfix: Fixed hivemind mob perma rest on ghosting.
+  - bugfix: Fixed xeno structure selection out of bounds error.
+  breadhunt:
+  - bugfix: CIC orbital spotlights now work again.
+  - balance: Spotlight range 11 --> 15, about the same light level as combat floodlights
+  - qol: Balloon alerts to surgery actions
+  goose4429:
+  - bugfix: Warrior punch and jab respect mob armor
