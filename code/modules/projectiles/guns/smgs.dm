@@ -356,7 +356,7 @@
 
 /obj/item/weapon/gun/smg/standard_pdr
 	name = "\improper SMG-38 SCA personal defense rifle"
-	desc = "The San Cristo Arms SMG-38 personal defense rifle is a strange design spotted irregularly inside TGMC units at times, slugging out bullets at high velocity in a rifle bullpup package, for when overpenetration is a risk for ships but not the enemy infront of you. Includes a underbarreled directional flashlight. Uses 10x20mm rounds in a high capacity magazine."
+	desc = "The San Cristo Arms SMG-38 personal defense rifle is a strange design spotted irregularly inside TGMC units at times, slugging out bullets at high velocity in a rifle bullpup package, for when overpenetration is a risk for ships but not the enemy infront of you. Uses 10x20mm rounds in a high capacity magazine."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t38"
 	item_state = "t38"
@@ -389,6 +389,8 @@
 
 	accuracy_mult = 1.1
 	pen_modifier = 5
+	burst_amount = 3
+	burst_delay = 0.2 SECONDS
 	damage_mult = 0.75 //Totals up to 15 damage and 10 penetration.
 	extra_delay = -0.05 SECONDS
 	damage_falloff_mult = 0.5
