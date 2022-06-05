@@ -456,12 +456,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 				owner.adjustToxLoss(1)
 //LEVEL II
 	if(germ_level >= INFECTION_LEVEL_TWO && spaceacillin < 3)
-		//spread the infection to internal organs
-		var/datum/internal_organ/target_organ = null	//make internal organs become infected one at a time instead of all at once
-		for (var/datum/internal_organ/I in internal_organs)
-			if (I.germ_level > 0 && I.germ_level < min(germ_level, INFECTION_LEVEL_TWO))	//once the organ reaches whatever we can give it, or level two, switch to a different one
-				if (!target_organ || I.germ_level > target_organ.germ_level)	//choose the organ with the highest germ_level
-					target_organ = I
 
 		if(prob(round(germ_level/10)))
 			if (spaceacillin < MIN_ANTIBIOTICS)
@@ -472,18 +466,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		if (prob(25))	//adjust this to tweak how fast people take toxin damage from infections
 			owner.adjustToxLoss(1)
-
-		if (!target_organ)
-			//figure out which organs we can spread germs to and pick one at random
-			var/list/candidate_organs = list()
-			for (var/datum/internal_organ/I in internal_organs)
-				if (I.germ_level < germ_level)
-					candidate_organs += I
-			if (candidate_organs.len)
-				target_organ = pick(candidate_organs)
-
-		if (target_organ)
-			target_organ.germ_level++
 
 		//spread the infection to child and parent organs
 		if (children)
