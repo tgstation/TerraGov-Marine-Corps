@@ -617,6 +617,7 @@
 			/obj/item/storage/box/visual/magazine/compact/vp70/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/plasma_pistol/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_smg/full = 1,
+			/obj/item/storage/box/visual/magazine/compact/standard_pdr/full = 1,v
 			/obj/item/storage/box/visual/magazine/compact/standard_machinepistol/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_assaultrifle/full = 1,
 			/obj/item/storage/box/visual/magazine/compact/standard_carbine/full = 1,

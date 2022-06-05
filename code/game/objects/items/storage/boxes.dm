@@ -795,6 +795,19 @@
 	spawn_number = 40
 	spawn_type = /obj/item/ammo_magazine/smg/standard_machinepistol
 
+/obj/item/storage/box/visual/magazine/compact/standard_pdr
+	name = "SMG-38 magazine box"
+	desc = "A box specifically designed to hold a large amount of SMG-38 magazines."
+	closed_overlay = "mag_box_small_overlay_t38"
+	can_hold = list(
+		/obj/item/ammo_magazine/smg/standard_pdr,
+	)
+
+/obj/item/storage/box/visual/magazine/compact/standard_pdr/full
+	spawn_number = 40
+	spawn_type = /obj/item/ammo_magazine/smg/standard_pdr
+
+
 /obj/item/storage/box/visual/magazine/compact/ppsh
 	name = "PPSh drum magazine box"
 	desc = "A box specifically designed to hold a large amount of PPSh drum magazines."

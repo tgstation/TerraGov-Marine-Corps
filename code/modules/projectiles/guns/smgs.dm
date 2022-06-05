@@ -375,19 +375,25 @@
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lasersight,
+		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/burstfire_assembly,
 	)
 
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.1 SECONDS
+	aim_speed_modifier = 0.6
 	attachable_offset = list("muzzle_x" = 47, "muzzle_y" = 17,"rail_x" = 14, "rail_y" = 19, "under_x" = 32, "under_y" = 11, "stock_x" = 24, "stock_y" = 16)
 
 	accuracy_mult = 1.1
 	pen_modifier = 5
 	damage_mult = 0.75 //Totals up to 15 damage and 10 penetration.
+	extra_delay = -0.05 SECONDS
 	damage_falloff_mult = 0.5
 	accuracy_mult_unwielded = 0.55
 	scatter = 0
-	scatter_unwielded = 15
+	scatter_unwielded = 8
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.35
