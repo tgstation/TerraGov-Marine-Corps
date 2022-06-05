@@ -314,15 +314,20 @@
 	icon_state = "flare_system"
 	dropship_equipment_flags = IS_INTERACTABLE
 	point_cost = 150
-	var/deployment_cooldown
+	//cooldown for deployment
+	COOLDOWN_DECLARE(deploy_cooldown)
+	//stores target turf
 	var/turf/target
+	//amount of loaded flares
 	var/stored_amount = 4
+	//max capacity of flares in system
 	var/max_amount = 4
 
 /obj/structure/dropship_equipment/flare_launcher/equipment_interact(mob/user)
-	if(deployment_cooldown < world.time && stored_amount > 0) //check for cooldown and inserted flares
+	if(COOLDOWN_CHECK(src, deploy_cooldown) && stored_amount > 0) //check for deployment cooldown and inserted flares
 		deploy_flare()
 		to_chat(user, span_notice("You deploy [src], remaining flares [stored_amount]."))
+		COOLDOWN_START(src, deploy_cooldown, 5 SECONDS)//starts the cooldown for deployment
 	else
 		to_chat(user, span_warning("[src] is busy, [stored_amount] flares remaining."))
 		return //prevents spamming deployment
@@ -342,11 +347,12 @@
 	else
 		setDir(initial(dir))
 
+//gets target and deploy the flare launcher
 /obj/structure/dropship_equipment/flare_launcher/proc/deploy_flare()
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 40, 1)
 	deployment_cooldown = world.time + 100
 	target = get_ranged_target_turf(src, ship_base.dir, 10)
-	var/obj/item/explosive/grenade/flare/flare_to_launch = new /obj/item/explosive/grenade/flare/strongerflare(loc)
+	var/obj/item/explosive/grenade/flare/strongerflare/flare_to_launch = new(loc)
 	flare_to_launch.turn_on()
 	flare_to_launch.throw_at(target, 10, 2)
 	stored_amount--
@@ -475,7 +481,7 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "mg_system"
 	point_cost = 300
-	var/obj/machinery/deployable/mounted/deployed_mg
+	var/obj/machinery/deployable/mounted/deployed_mg //stores the deployed hsg
 
 /obj/structure/dropship_equipment/mg_holder/Initialize()
 	. = ..()
@@ -510,7 +516,7 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "minigun_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_minigun
+	var/obj/machinery/deployable/mounted/deployed_minigun //stores the deployed minigun
 
 /obj/structure/dropship_equipment/minigun_holder/Initialize()
 	. = ..()
@@ -545,7 +551,7 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "ac_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_dualcannon
+	var/obj/machinery/deployable/mounted/deployed_dualcannon //stores the deployed dualcannon
 
 /obj/structure/dropship_equipment/dualcannon_holder/Initialize()
 	. = ..()
@@ -580,7 +586,7 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "hl_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_heavylaser
+	var/obj/machinery/deployable/mounted/deployed_heavylaser //stores the deployed heavy laser
 
 /obj/structure/dropship_equipment/heavylaser_holder/Initialize()
 	. = ..()
@@ -615,7 +621,7 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "rr_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_heavyrr
+	var/obj/machinery/deployable/mounted/deployed_heavyrr //stores the deployed heavy rr
 
 /obj/structure/dropship_equipment/heavyrr_holder/Initialize()
 	. = ..()
