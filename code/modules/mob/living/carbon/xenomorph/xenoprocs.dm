@@ -550,6 +550,9 @@
 /mob/living/carbon/xenomorph/proc/set_tracked(atom/to_track)
 	if(tracked)
 		UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
+		if (tracked == to_track)
+			clean_tracked()
+			return
 	tracked = to_track
 	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, .proc/clean_tracked)
 

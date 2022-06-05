@@ -258,7 +258,9 @@
 
 	var/datum/hive_status/hive
 	///Cached state for showing empty in the hive status UI.
-	var/show_empty_castes = FALSE
+	var/show_empty_castes = TRUE
+	///Cached state displaying the caste totals in compact mode and hide caste icons.
+	var/compact_mode = FALSE
 	///Cached state for displaying general tab in the hive status UI.
 	var/show_general = TRUE
 	///Cached state for displaying hive population tab in the hive status UI.

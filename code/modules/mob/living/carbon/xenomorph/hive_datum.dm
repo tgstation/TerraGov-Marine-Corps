@@ -87,7 +87,7 @@
 	for(var/tier in GLOB.tier_to_primo_upgrade)
 		.["hive_primos"] += list(list(
 			"tier" = GLOB.tier_as_number[tier],
-			"purchased" = purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[tier]].times_bought
+			"purchased" = purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[tier]]?.times_bought
 		))
 
 	.["hive_structures"] = list()
@@ -143,6 +143,7 @@
 	.["user_tracked"] = isxeno(user) && !isnull(xeno_user.tracked) ? REF(xeno_user.tracked) : ""
 
 	.["user_show_empty"] = isxeno(user) ? xeno_user.show_empty_castes : 0
+	.["user_show_compact"] = isxeno(user) ? xeno_user.compact_mode : 0
 	.["user_show_general"] = isxeno(user) ? xeno_user.show_general : 0
 	.["user_show_population"] = isxeno(user) ? xeno_user.show_population : 0
 	.["user_show_xeno_list"] = isxeno(user) ? xeno_user.show_xeno_list : 0
@@ -223,16 +224,17 @@
 			if(isobserver(usr))
 				var/mob/dead/observer/ghost = usr
 				ghost.ManualFollow(target)
-			else if(!isxeno(usr))
+			if(!isxeno(usr))
 				return
-			if(target != xeno_target.tracked)
-				xeno_target.set_tracked(target)
-			else
-				xeno_target.clean_tracked()
+			xeno_target.set_tracked(target)
 		if("ToggleGeneral")
 			if(!isxeno(usr))
 				return
 			xeno_target.show_general = params["new_value"]
+		if("ToggleCompact")
+			if(!isxeno(usr))
+				return
+			xeno_target.compact_mode = params["new_value"]
 		if("TogglePopulation")
 			if(!isxeno(usr))
 				return

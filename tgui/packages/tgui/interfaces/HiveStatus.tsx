@@ -35,6 +35,7 @@ type InputPack = {
   user_maturity: number,
   user_next_mat_level: number,
   user_tracked: string,
+  user_show_compact: boolean,
   user_show_empty: boolean,
   user_show_general: boolean,
   user_show_population: boolean,
@@ -400,12 +401,18 @@ const PopulationPyramid = (_props, context) => {
     user_ref,
     user_xeno,
     user_show_empty,
+    user_show_compact,
   } = data;
 
   const [
     showEmpty,
     toggleEmpty,
   ] = useLocalState(context, "showEmpty", false);
+
+  const [
+    showCompact,
+    toggleCompact,
+  ] = useLocalState(context, "showCompact", false);
 
   const primos: boolean[] = []; // Index is tier.
   const pyramid_data: PyramidCalc[] = [];
@@ -442,34 +449,54 @@ const PopulationPyramid = (_props, context) => {
     hive_total++;
   });
 
-  const ShowBox = (_props, _context) => {
+  const ShowButtons = (_props, _context) => {
     if (!user_xeno) {
       // Observers will not be able to cache empty toggle.
       return (
-        <Button.Checkbox
-          checked={showEmpty}
-          tooltip="Display all castes"
-          onClick={() => toggleEmpty(!showEmpty)}>
-          Show All
-        </Button.Checkbox>
+        <div>
+          <Button.Checkbox
+            checked={showCompact}
+            onClick={() => toggleCompact(!showCompact)}>
+            Compact Mode
+          </Button.Checkbox>
+          {!showCompact && (
+            <Button.Checkbox
+              checked={showEmpty}
+              tooltip="Display all castes"
+              onClick={() => toggleEmpty(!showEmpty)}>
+              Show All
+            </Button.Checkbox>
+          )}
+        </div>
       );
     }
 
     return (
-      <Button.Checkbox
-        checked={user_show_empty}
-        tooltip="Display all castes"
-        onClick={() => act("ToggleEmpty", { xeno: user_ref, new_value: user_show_empty ? 0 : 1 })}>
-        Show All
-      </Button.Checkbox>
+      <div>
+        <Button.Checkbox
+          checked={user_show_compact}
+          onClick={() => act("ToggleCompact", { xeno: user_ref, new_value: user_show_compact ? 0 : 1 })}>
+          Compact Mode
+        </Button.Checkbox>
+        {!user_show_compact && (
+          <Button.Checkbox
+            checked={user_show_empty}
+            tooltip="Display all castes"
+            onClick={() => act("ToggleEmpty", { xeno: user_ref, new_value: user_show_empty ? 0 : 1 })}>
+            Show All
+          </Button.Checkbox>
+        )}
+      </div>
     );
   };
 
+  const compact_disp = user_xeno ? user_show_compact : showCompact;
+
   return (
     <Section title={`Total Living Sisters: ${hive_total}`}
-      align="center"
-      buttons={<ShowBox />}>
-      <Flex direction="column-reverse" align="center">
+      align={compact_disp ? "left" : "center"}
+      buttons={<ShowButtons />}>
+      <Flex direction="column-reverse" align={compact_disp ? "left" : "center"}>
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
           const max_slots = tier === 2
@@ -495,6 +522,22 @@ const PopulationPyramid = (_props, context) => {
           const primordial = primos[tier]
             ? (<Box as="span" textColor="good">[Primordial]</Box>)
             : "";
+          if (compact_disp) {
+            // Display less busy compact mode
+            return (
+              <Flex>
+                Tier {tier}: {(tier === 2 || tier === 3)
+                  ? ` (${tier_info.total}/${max_slots || 0}) `
+                  : ` ${tier_info.total} `}
+                Sisters |{' '}
+                {tier_info.index.map((value, idx) => {
+                  const count = tier_info.caste[idx];
+                  const static_entry = static_info[value];
+                  return `${static_entry.name}: ${count}`;
+                }).join(" | ")}
+              </Flex>
+            );
+          }
           const empty_disp = user_xeno ? user_show_empty : showEmpty;
           return (
             <Box
@@ -712,7 +755,6 @@ const XenoList = (_props, context) => {
                 <Flex.Item width={action_width} mr={action_mr}>
                   {user_ref !== entry.ref
                   && <ActionButtons
-                    user_ref={user_ref}
                     target_ref={entry.ref}
                     is_queen={user_queen}
                     watched_xeno={user_watched_xeno}
@@ -743,14 +785,22 @@ const XenoList = (_props, context) => {
                     }} />
                 </Flex.Item>
                 {/* Caste type and nickname */}
-                <Flex.Item width={name_width}
-                  italic={user_tracked === entry.ref && user_ref !== entry.ref}
-                  nowrap
-                  style={{
-                    'overflow': 'hidden',
-                    'text-overflow': 'ellipsis',
-                  }}>
-                  {entry.name}
+                <Flex.Item width={name_width}>
+                  <Button
+                    italic={user_tracked === entry.ref
+                      && user_ref !== entry.ref}
+                    nowrap
+                    verticalAlignContent="middle"
+                    style={{
+                      'overflow': 'hidden',
+                      'text-overflow': 'ellipsis',
+                      'margin-top': '-4px',
+                    }}
+                    backgroundColor="transparent"
+                    tooltip={user_ref !== entry.ref ? (user_tracked === entry.ref ? "Stop tracking" : "Track") : ""}
+                    onClick={() => { if (user_ref !== entry.ref) act('Compass', { xeno: user_ref, target: entry.ref }); }} >
+                    {entry.name}
+                  </Button>
                 </Flex.Item>
                 {/* Health percentage */}
                 <Flex.Item width={status_width}>
@@ -787,7 +837,6 @@ const XenoList = (_props, context) => {
 };
 
 type ActionButtonProps = {
-  user_ref: string
   target_ref: string,
   is_queen: boolean,
   watched_xeno: string,
@@ -803,18 +852,12 @@ const ActionButtons = (props: ActionButtonProps, context) => {
     fluid
     height="16px"
     fontSize={0.75}
-    tooltip={observing ? "Cancel" : "Dbl click to track."}
+    tooltip={observing ? "Cancel" : "Watch"}
     align="center"
     verticalAlignContent="middle"
     icon="eye"
     selected={observing}
-    onClick={() => {
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => act('Follow', { xeno: props.target_ref }), 250); }}
-    onDblClick={() => {
-      clearTimeout(timer);
-      act('Compass', { xeno: props.user_ref, target: props.target_ref });
-    }} />);
+    onClick={() => { act('Follow', { xeno: props.target_ref }); }} />);
 
   if (props.is_queen) {
     return (
