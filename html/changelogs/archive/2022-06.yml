@@ -73,3 +73,33 @@
       cooldown.
   - bugfix: Fixed closets not taking damage from slashes even though the animation
       played and informed the xeno they "smashed" the object.
+2022-06-05:
+  BraveMole:
+  - code_imp: Mobs no longer breath
+  GrayRachnid:
+  - bugfix: Removed the ability for an undeployed teleporter to not get melted.
+  - balance: Smartminigun ammo count reduced to 1,000 and mag box down to 500.
+  Lewdcifer:
+  - balance: SADAR is unable to fire until wielded.
+  Lumipharon:
+  - bugfix: The laser sniper's ammo has an accurate minimum range and the sniper flag
+      like other sniper ammo
+  QualityVan:
+  - code_imp: Ammo flag comments expanded
+  goose4429:
+  - qol: Attachments reorder
+  - rscadd: added Injector Jaeger module
+  novaepee:
+  - rscadd: headwear and service dress tab in clothing vendor to stop the clutter
+      that is clothing tab in clothing vendor. With that said, change clothing tab
+      to standard tab.
+  - rscadd: 'head bandanna into clothing vendor with two new colors: brown and grey.'
+  - rscdel: TGMC bandanna.
+  - imageadd: grey and brown bandanna
+  - balance: new Nuclear War pathway in Ice Colony
+  - balance: Move Ice Colony nuke to underground.
+  - balance: Move Ice Colony red disk to research.
+  - balance: Move Ice Colony blue disk to engineering
+  - balance: Move Ice Colony green disk to medical.
+  - balance: Move medical to dorm
+  - balance: add two cryo tubes in medical to reward marines for holding medical.
