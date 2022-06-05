@@ -319,7 +319,7 @@
 	Most would say that this machinegun makes you a walking dispenser of lead, you'll be slow and unwieldy with no match when it come to emptying a rain of lead on foe... or friend."
 
 
-/datum/codex_entry/standard_smg
+/datum/codex_entry/standard_pdr
 	associated_paths = list(/obj/item/weapon/gun/smg/standard_pdr)
 	lore_text = "The 'Metrallador-38' is a rather strange design, being a rifle length weapon firing a pistol-sized round, which causes classification issues amongst some people.\
 	Some would argue that it is a pistol carbine due to the bullpup design and shortness, while the manufacter terms it as a personal defense rifle, which is the adopted term the TGMC uses it when fielding it. <br><br>\
