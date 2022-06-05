@@ -350,7 +350,6 @@
 //gets target and deploy the flare launcher
 /obj/structure/dropship_equipment/flare_launcher/proc/deploy_flare()
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 40, 1)
-	deployment_cooldown = world.time + 100
 	target = get_ranged_target_turf(src, ship_base.dir, 10)
 	var/obj/item/explosive/grenade/flare/strongerflare/flare_to_launch = new(loc)
 	flare_to_launch.turn_on()
