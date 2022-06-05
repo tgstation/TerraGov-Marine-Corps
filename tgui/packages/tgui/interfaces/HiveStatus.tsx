@@ -17,6 +17,7 @@ type InputPack = {
   hive_orphan_collapse: number,
   hive_silo_max: number,
   hive_orphan_max: number,
+  hive_minion_count: number,
   hive_primos: PrimoUpgrades[],
   hive_queen_remaining: number,
   hive_queen_max: number,
@@ -395,6 +396,7 @@ const PopulationPyramid = (_props, context) => {
   const {
     hive_max_tier_two,
     hive_max_tier_three,
+    hive_minion_count,
     hive_primos,
     xeno_info,
     static_info,
@@ -524,8 +526,23 @@ const PopulationPyramid = (_props, context) => {
             : "";
           if (compact_disp) {
             // Display less busy compact mode
+            if (tier === 0) {
+              return (
+                <Box key={tier}>
+                  <Flex.Item>
+                    Larvas: {tier_info.caste[1] /* 1 = larva */} Sisters
+                  </Flex.Item>
+                  <Flex.Item>
+                    Minions: {hive_minion_count} Sisters
+                  </Flex.Item>
+                  <Flex.Item>
+                    Hivemind: {tier_info.caste[0] ? "Active" : "Inactive"}
+                  </Flex.Item>
+                </Box>
+              );
+            }
             return (
-              <Flex>
+              <Box key={tier}>
                 Tier {tier}: {(tier === 2 || tier === 3)
                   ? ` (${tier_info.total}/${max_slots || 0}) `
                   : ` ${tier_info.total} `}
@@ -535,7 +552,7 @@ const PopulationPyramid = (_props, context) => {
                   const static_entry = static_info[value];
                   return `${static_entry.name}: ${count}`;
                 }).join(" | ")}
-              </Flex>
+              </Box>
             );
           }
           const empty_disp = user_xeno ? user_show_empty : showEmpty;

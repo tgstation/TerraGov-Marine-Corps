@@ -68,6 +68,7 @@
 	. = ..()
 	.["hive_max_tier_two"] = tier2_xeno_limit
 	.["hive_max_tier_three"] = tier3_xeno_limit
+	.["hive_minion_count"] = length(xenos_by_tier[XENO_TIER_MINION])
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	.["hive_larva_current"] = xeno_job.job_points
