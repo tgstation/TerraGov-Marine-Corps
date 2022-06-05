@@ -361,8 +361,8 @@
 	icon_state = "t38"
 	item_state = "t38"
 	caliber = CALIBER_10X20_CASELESS //codex
-	max_shells = 80 //codex
-	fire_sound = 'sound/weapons/guns/fire/mp5.ogg'
+	max_shells = 70 //codex
+	fire_sound = 'sound/weapons/guns/fire/t38.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
 	flags_equip_slot = ITEM_SLOT_BACK
