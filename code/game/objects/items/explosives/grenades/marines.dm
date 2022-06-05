@@ -192,7 +192,7 @@
 	smokeradius = 5
 
 /obj/item/explosive/grenade/smokebomb/acid
-	name = "\improper M40-N Neurotoxin smoke grenade"
+	name = "\improper M40-A Acid smoke grenade"
 	desc = "A smoke grenade containing an extremely powerful acid developed by Nanotrasen, supposedly derived from xenomorphs. Its use is considered a warcrime under several treaties that Terra Gov is not a signatory to."
 	icon_state = "grenade_cloak"
 	item_state = "grenade_cloak"
