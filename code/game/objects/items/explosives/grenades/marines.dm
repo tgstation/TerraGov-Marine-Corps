@@ -201,6 +201,16 @@
 	smoketype = /datum/effect_system/smoke_spread/xeno/acid
 	smokeradius = 5
 
+/obj/item/explosive/grenade/smokebomb/setrapine
+	name = "\improper PLACEHOLDER setrapine smoke grenade"
+	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers."
+	icon_state = "grenade_cloak"
+	item_state = "grenade_cloak"
+	det_time = 20
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/setrapine
+	smokeradius = 6
+
 /obj/item/explosive/grenade/smokebomb/cloak
 	name = "\improper M40-2 SCDP smoke grenade"
 	desc = "A sophisticated version of the M40 HSDP with a slighty improved smoke screen payload. It's set to detonate in 2 seconds."
