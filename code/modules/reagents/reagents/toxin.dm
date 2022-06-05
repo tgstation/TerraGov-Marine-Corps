@@ -697,8 +697,8 @@
 
 
 //SOM nerve agent
-/datum/reagent/toxin/setrapine
-	name = "Setrapine"
+/datum/reagent/toxin/satrapine
+	name = "Satrapine"
 	description = "A nerve agent designed to incapacitate targets through debilitating pain. Its severity increases over time, causing various lung complications, and will purge common painkillers. Based on a chemical agent originally used against rebelling Martian colonists, improved by the SOM for their own use."
 	reagent_state = LIQUID
 	color = "#cfb000"
@@ -713,7 +713,7 @@
 	)
 	purge_rate = 1
 
-/datum/reagent/toxin/setrapine/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/toxin/satrapine/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 10)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT

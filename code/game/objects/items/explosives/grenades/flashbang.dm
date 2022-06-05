@@ -53,7 +53,7 @@
 		inner_effect(T,M,ear_safety)
 	else if(get_dist(M, T) <= outer_range)
 		outer_effect(T,M,ear_safety)
-	else if(!ear_safety)
+	else
 		max_range_effect(T,M,ear_safety)
 
 	base_effect(T,M,ear_safety) //done afterwards as it contains the eye/ear damage checks
@@ -95,8 +95,9 @@
 
 ///The effects applied to mobs outside of outer_range
 /obj/item/explosive/grenade/flashbang/proc/max_range_effect(turf/T , mob/living/carbon/M, ear_safety)
-	M.Stun(80)
-	M.adjust_ear_damage(rand(0, 1),6)
+	if(!ear_safety)
+		M.Stun(80)
+		M.adjust_ear_damage(rand(0, 1),6)
 
 
 /obj/item/explosive/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
@@ -174,7 +175,7 @@
 /obj/item/explosive/grenade/flashbang/stun/base_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(M.ear_damage >= 15)
 		to_chat(M, span_warning("Your ears start to ring badly!"))
-		if(prob(M.ear_damage - 15)) //You have to eat a lot of stun grenades to permanently deafen you
+		if(prob(M.ear_damage - 15)) //You have to eat a lot of stun grenades to risk permanently deafening you
 			to_chat(M, span_warning("You can't hear anything!"))
 			M.disabilities |= DEAF
 	else

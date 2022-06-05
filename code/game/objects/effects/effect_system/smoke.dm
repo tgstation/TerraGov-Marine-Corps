@@ -259,13 +259,13 @@
 	icon = 'icons/effects/effects.dmi'
 
 //SOM nerve agent smoke
-/obj/effect/particle_effect/smoke/setrapine
+/obj/effect/particle_effect/smoke/satrapine
 	color = "#b02828"
 	lifetime = 6
 	spread_speed = 7
 	expansion_speed = 3
 	strength = 1.5
-	smoke_traits = SMOKE_SETRAPINE|SMOKE_GASP|SMOKE_COUGH
+	smoke_traits = SMOKE_SATRAPINE|SMOKE_GASP|SMOKE_COUGH
 
 /////////////////////////////////////////
 // BOILER SMOKES
@@ -348,8 +348,8 @@ datum/effect_system/smoke_spread/tactical
 /datum/effect_system/smoke_spread/plasmaloss
 	smoke_type = /obj/effect/particle_effect/smoke/plasmaloss
 
-/datum/effect_system/smoke_spread/setrapine
-	smoke_type = /obj/effect/particle_effect/smoke/setrapine
+/datum/effect_system/smoke_spread/satrapine
+	smoke_type = /obj/effect/particle_effect/smoke/satrapine
 
 /datum/effect_system/smoke_spread/xeno
 	smoke_type = /obj/effect/particle_effect/smoke/xeno
