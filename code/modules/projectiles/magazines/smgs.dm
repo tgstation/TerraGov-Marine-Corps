@@ -61,7 +61,7 @@
 	desc = "A 10x20mm caseless rifle gun magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t38"
-	max_rounds = 80
+	max_rounds = 70
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_t38"
 

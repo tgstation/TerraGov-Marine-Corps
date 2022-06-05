@@ -181,7 +181,7 @@
 	///Same as above, for damage.
 	var/damage_mult = 1
 	///Additive, penetration addition, negative reduces, positive adds to penetration
-	var/pen_modifier = 1
+	var/pen_modifier = 0
 	///Same as above, for damage bleed (falloff)
 	var/damage_falloff_mult = 1
 	///Screen shake when the weapon is fired while wielded.
