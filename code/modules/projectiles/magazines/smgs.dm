@@ -62,7 +62,7 @@
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t38"
 	max_rounds = 70
-	w_class = WEIGHT_CLASS_NORMAL
+	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_t38"
 
 

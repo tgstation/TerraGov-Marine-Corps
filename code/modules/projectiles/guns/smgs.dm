@@ -362,6 +362,7 @@
 	item_state = "t38"
 	caliber = CALIBER_10X20_CASELESS //codex
 	max_shells = 70 //codex
+	w_class = WEIGHT_CLASS_BULKY
 	fire_sound = 'sound/weapons/guns/fire/t38.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
