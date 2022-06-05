@@ -389,7 +389,7 @@
 	attachable_offset = list("muzzle_x" = 47, "muzzle_y" = 17,"rail_x" = 14, "rail_y" = 19, "under_x" = 32, "under_y" = 11, "stock_x" = 24, "stock_y" = 16)
 
 	accuracy_mult = 1.1
-	pen_modifier = 5
+	pen_modifier = 10
 	burst_amount = 3
 	burst_delay = 0.2 SECONDS
 	damage_mult = 0.75 //Totals up to 15 damage and 10 penetration.
