@@ -310,8 +310,7 @@
 /datum/action/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(!(selected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER))
-		if(feedback)
-			xeno_ruler.balloon_alert(xeno_ruler, "Xeno cannot lead")
+		xeno_ruler.balloon_alert(xeno_ruler, "Xeno cannot lead")
 		return
 	xeno_ruler.balloon_alert(xeno_ruler, "Xeno promoted")
 	selected_xeno.balloon_alert(selected_xeno, "Promoted to leader")
