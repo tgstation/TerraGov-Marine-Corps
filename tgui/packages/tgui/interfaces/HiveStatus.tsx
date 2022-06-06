@@ -409,7 +409,7 @@ const PopulationPyramid = (_props, context) => {
   const [
     showEmpty,
     toggleEmpty,
-  ] = useLocalState(context, "showEmpty", false);
+  ] = useLocalState(context, "showEmpty", true);
 
   const [
     showCompact,
@@ -696,7 +696,7 @@ const XenoList = (_props, context) => {
   const leader_mr = "6px";
   const minimap_width = "14px";
   const minimap_mr = "6px";
-  const name_width = "30%";
+  const name_width = "33%";
   const status_width = "60px";
 
   const sorting_direction = sortingBy.down
@@ -802,16 +802,19 @@ const XenoList = (_props, context) => {
                     }} />
                 </Flex.Item>
                 {/* Caste type and nickname */}
-                <Flex.Item width={name_width}>
+                <Flex.Item width={name_width}
+                  style={{
+                    'overflow': 'hidden',
+                    'text-overflow': 'ellipsis',
+                  }}>
                   <Button
                     italic={user_tracked === entry.ref
                       && user_ref !== entry.ref}
                     nowrap
                     verticalAlignContent="middle"
                     style={{
-                      'overflow': 'hidden',
-                      'text-overflow': 'ellipsis',
-                      'margin-top': '-4px',
+                      'overflow': 'hidden', // hiding overflow prevents the button being slightly scrollable
+                      'margin-top': '-3px', // magic number, lines up button text with other cols
                     }}
                     backgroundColor="transparent"
                     tooltip={user_ref !== entry.ref ? (user_tracked === entry.ref ? "Stop tracking" : "Track") : ""}
