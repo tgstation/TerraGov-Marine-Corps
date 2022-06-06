@@ -184,18 +184,18 @@
 /obj/item/explosive/grenade/smokebomb/neuro
 	name = "\improper M40-N Neurotoxin smoke grenade"
 	desc = "A smoke grenade containing a concentrated neurotoxin developed by Nanotrasen, supposedly derived from xenomorphs. Banned in some sectors as a chemical weapon, but classed as a less lethal riot control tool by the TGMC."
-	icon_state = "grenade_cloak"
-	item_state = "grenade_cloak"
+	icon_state = "grenade_neuro"
+	item_state = "grenade_neuro"
 	det_time = 40
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
-	smokeradius = 5
+	smokeradius = 6
 
 /obj/item/explosive/grenade/smokebomb/acid
 	name = "\improper M40-A Acid smoke grenade"
 	desc = "A smoke grenade containing an extremely powerful acid developed by Nanotrasen, supposedly derived from xenomorphs. Its use is considered a warcrime under several treaties that Terra Gov is not a signatory to."
-	icon_state = "grenade_cloak"
-	item_state = "grenade_cloak"
+	icon_state = "grenade_acid"
+	item_state = "grenade_acid"
 	det_time = 40
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/xeno/acid
@@ -204,8 +204,8 @@
 /obj/item/explosive/grenade/smokebomb/satrapine
 	name = "\improper Satrapine smoke grenade"
 	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers."
-	icon_state = "grenade_cloak"
-	item_state = "grenade_cloak"
+	icon_state = "grenade_nerve"
+	item_state = "grenade_nerve"
 	det_time = 40
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/satrapine
