@@ -223,11 +223,12 @@
 	center_of_mass = list("x"=17, "y"=8)
 
 /obj/item/reagent_containers/food/drinks/flask/marine
-	name = "\improper TGMC flask"
-	desc = "A metal flask embossed with the TGMC logo and probably filled with a slurry of water, motor oil, and medicinal alcohol."
-	icon_state = "flask_tgmc"
+	name = "\improper Combat Canteen"
+	desc = "A canteen hardened with metal and filled to the brim with water. Stay hydrated!"
+	icon_state = "canteen"
 	center_of_mass = list("x"=17, "y"=8)
-	list_reagents = list(/datum/reagent/water = 51, /datum/reagent/consumable/ethanol/hooch = 9)
+	list_reagents = list(/datum/reagent/water = 60)
+	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/reagent_containers/food/drinks/flask/detflask
 	name = "detective's flask"
@@ -249,8 +250,9 @@
 	center_of_mass = list("x"=15, "y"=4)
 
 /obj/item/reagent_containers/food/drinks/britcup
-	name = "cup"
-	desc = "A cup with the British flag emblazoned on it. The sight of it irritates you."
+	name = "britisch teacup"
+	desc = "A teacup with the British flag emblazoned on it. The sight of it fills you with nostalgia."
 	icon_state = "britcup"
 	volume = 30
 	center_of_mass = list("x"=15, "y"=13)
+	list_reagents = list(/datum/reagent/consumable/drink/tea = 30)
