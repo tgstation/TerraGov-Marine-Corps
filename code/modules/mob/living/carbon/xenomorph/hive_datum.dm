@@ -143,13 +143,14 @@
 	.["user_next_mat_level"] = isxeno(user) && xeno_user.upgrade_possible() ? xeno_user.xeno_caste.upgrade_threshold : 0
 	.["user_tracked"] = isxeno(user) && !isnull(xeno_user.tracked) ? REF(xeno_user.tracked) : ""
 
-	.["user_show_empty"] = isxeno(user) ? xeno_user.show_empty_castes : 0
-	.["user_show_compact"] = isxeno(user) ? xeno_user.compact_mode : 0
-	.["user_show_general"] = isxeno(user) ? xeno_user.show_general : 0
-	.["user_show_population"] = isxeno(user) ? xeno_user.show_population : 0
-	.["user_show_xeno_list"] = isxeno(user) ? xeno_user.show_xeno_list : 0
-	.["user_show_structures"] = isxeno(user) ? xeno_user.show_structures : 0
+	.["user_show_empty"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_EMPTY : 0
+	.["user_show_compact"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_COMPACT_MODE : 0
+	.["user_show_general"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_GENERAL : 0
+	.["user_show_population"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_POPULATION : 0
+	.["user_show_xeno_list"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_XENO_LIST : 0
+	.["user_show_structures"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_STRUCTURES : 0
 
+/// Returns a data entry for the "xeno structures" list based on the structure passed
 /datum/hive_status/proc/get_structure_packet(obj/structure/xeno/struct)
 	return list(
 		"ref" = REF(struct),
@@ -219,7 +220,7 @@
 		if("ToggleEmpty")
 			if(!isxeno(usr))
 				return
-			xeno_target.show_empty_castes = params["new_value"]
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_EMPTY)
 		if("Compass")
 			var/atom/target = locate(params["target"])
 			if(isobserver(usr))
@@ -231,33 +232,33 @@
 		if("ToggleGeneral")
 			if(!isxeno(usr))
 				return
-			xeno_target.show_general = params["new_value"]
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_GENERAL)
 		if("ToggleCompact")
 			if(!isxeno(usr))
 				return
-			xeno_target.compact_mode = params["new_value"]
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_COMPACT_MODE)
 		if("TogglePopulation")
 			if(!isxeno(usr))
 				return
-			xeno_target.show_population = params["new_value"]
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_POPULATION)
 		if("ToggleXenoList")
 			if(!isxeno(usr))
 				return
-			xeno_target.show_xeno_list = params["new_value"]
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_XENO_LIST)
 		if("ToggleStructures")
 			if(!isxeno(usr))
 				return
-			xeno_target.show_structures = params["new_value"]
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_STRUCTURES)
 
-/// Returns the string location of the xeno.
+/// Returns the string location of the xeno
 /datum/hive_status/proc/get_xeno_location(atom/xeno)
 	. = "Unknown"
 	if(is_centcom_level(xeno.z))
 		return
 
-	var/area/A = get_area(xeno)
-	if(A)
-		. = A.name
+	var/area/xeno_area = get_area(xeno)
+	if(xeno_area)
+		. = xeno_area.name
 
 // ***************************************
 // *********** Helpers
@@ -317,7 +318,7 @@
 		xenos += xenos_by_typepath[typepath]
 	return xenos
 
-///Returning all xenos including queen that are not at centcom and not self.
+///Returning all xenos including queen that are not at centcom and not self
 /datum/hive_status/proc/get_watchable_xenos(mob/living/carbon/xenomorph/self)
 	var/list/xenos = list()
 	for(var/typepath in xenos_by_typepath)

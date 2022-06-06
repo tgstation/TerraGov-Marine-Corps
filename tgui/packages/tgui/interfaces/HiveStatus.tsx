@@ -101,36 +101,28 @@ export const HiveStatus = (_props, context) => {
         <CachedCollapsible
           title="General Information"
           open={user_show_general}
-          onClickXeno={() => act('ToggleGeneral',
-            { xeno: user_ref,
-              new_value: user_show_general ? 0 : 1 })}>
+          onClickXeno={() => act('ToggleGeneral', { xeno: user_ref })}>
           <GeneralInfo />
         </CachedCollapsible>
         <Divider />
         <CachedCollapsible
           title="Hive Population"
           open={user_show_population}
-          onClickXeno={() => act('TogglePopulation',
-            { xeno: user_ref,
-              new_value: user_show_population ? 0 : 1 })}>
+          onClickXeno={() => act('TogglePopulation', { xeno: user_ref })}>
           <PopulationPyramid />
         </CachedCollapsible>
         <Divider />
         <CachedCollapsible
           title="Xenomorph List"
           open={user_show_xeno_list}
-          onClickXeno={() => act('ToggleXenoList',
-            { xeno: user_ref,
-              new_value: user_show_xeno_list ? 0 : 1 })}>
+          onClickXeno={() => act('ToggleXenoList', { xeno: user_ref })}>
           <XenoList />
         </CachedCollapsible>
         <Divider />
         <CachedCollapsible
           title="Hive Structures"
           open={user_show_structures}
-          onClickXeno={() => act('ToggleStructures',
-            { xeno: user_ref,
-              new_value: user_show_structures ? 0 : 1 })}>
+          onClickXeno={() => act('ToggleStructures', { xeno: user_ref })}>
           <StructureList />
         </CachedCollapsible>
         <Divider />
@@ -475,13 +467,13 @@ const PopulationPyramid = (_props, context) => {
       <div>
         <Button.Checkbox
           checked={user_show_compact}
-          onClick={() => act("ToggleCompact", { xeno: user_ref, new_value: user_show_compact ? 0 : 1 })}>
+          onClick={() => act("ToggleCompact", { xeno: user_ref })}>
           Compact Mode
         </Button.Checkbox>
         <Button.Checkbox
           checked={user_show_empty}
           tooltip="Display all castes"
-          onClick={() => act("ToggleEmpty", { xeno: user_ref, new_value: user_show_empty ? 0 : 1 })}>
+          onClick={() => act("ToggleEmpty", { xeno: user_ref })}>
           Show Empty
         </Button.Checkbox>
       </div>

@@ -228,9 +228,10 @@
 			return
 		jump(xeno)
 
+/// Jump hivemind's camera to the passed xeno, if they are on/near weeds
 /mob/living/carbon/xenomorph/hivemind/proc/jump(mob/living/carbon/xenomorph/xeno)
 	if(!check_weeds(get_turf(xeno), TRUE))
-		src.balloon_alert(src, "No nearby weeds")
+		balloon_alert(src, "No nearby weeds")
 		return
 	if(!(status_flags & INCORPOREAL))
 		start_teleport(get_turf(xeno))

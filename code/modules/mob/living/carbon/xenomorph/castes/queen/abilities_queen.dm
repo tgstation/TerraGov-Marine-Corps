@@ -277,12 +277,14 @@
 	. = ..()
 	UnregisterSignal(L, COMSIG_XENOMORPH_LEADERSHIP)
 
+/// Signal handler for the set_xeno_lead action that checks can_use
 /datum/action/xeno_action/set_xeno_lead/proc/try_use_action(datum/source, mob/living/carbon/xenomorph/target)
 	SIGNAL_HANDLER
 	if(!can_use_action())
 		return
 	INVOKE_ASYNC(src, .proc/select_xeno_leader, target)
 
+/// Check if there is an empty slot and promote the passed xeno to a hive leader
 /datum/action/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/queen/xeno_ruler = owner
 
@@ -296,7 +298,7 @@
 
 	set_xeno_leader(selected_xeno)
 
-
+/// Remove the passed xeno's leadership
 /datum/action/xeno_action/set_xeno_lead/proc/unset_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	xeno_ruler.balloon_alert(xeno_ruler, "Xeno demoted")
@@ -307,6 +309,7 @@
 
 	selected_xeno.update_leader_icon(FALSE)
 
+/// Promote the passed xeno to a hive leader, should not be called direct
 /datum/action/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
 	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(!(selected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER))
@@ -370,6 +373,7 @@
 	. = ..()
 	UnregisterSignal(L, COMSIG_XENOMORPH_QUEEN_PLASMA)
 
+/// Signal handler for the queen_give_plasma action that checks can_use
 /datum/action/xeno_action/activable/queen_give_plasma/proc/try_use_ability(datum/source, mob/living/carbon/xenomorph/target)
 	SIGNAL_HANDLER
 	if(!can_use_ability(target, FALSE, XACT_IGNORE_SELECTED_ABILITY))

@@ -257,18 +257,9 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 
 	var/datum/hive_status/hive
-	///Cached state for showing empty in the hive status UI.
-	var/show_empty_castes = TRUE
-	///Cached state displaying the caste totals in compact mode and hide caste icons.
-	var/compact_mode = FALSE
-	///Cached state for displaying general tab in the hive status UI.
-	var/show_general = TRUE
-	///Cached state for displaying hive population tab in the hive status UI.
-	var/show_population = TRUE
-	///Cached state for displaying xeno list tab in the hive status UI.
-	var/show_xeno_list = TRUE
-	///Cached state for displaying structures tab in the hive status UI.
-	var/show_structures = TRUE
+
+	///State tracking of hive status toggles
+	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
 
 	var/list/overlays_standing[X_TOTAL_LAYERS]
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
