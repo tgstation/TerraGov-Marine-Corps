@@ -307,7 +307,7 @@
 	var/skilled_healing = base_healing * max(user.skills.getPercent("surgery", SKILL_SURGERY_EXPERT), 0.1)
 	var/burn_heal = min(skilled_healing, affected.burn_dam)
 	var/brute_heal = max(skilled_healing - burn_heal, 0)
-	target.HealDamage(target_zone, brute_heal, burn_heal)
+	affected.heal_limb_damage(brute_heal, burn_heal, updating_health = TRUE) //Corpses need their health updated manually since they don't do it themselves
 
 /datum/surgery_step/generic/repair/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, tearing through [target]'s skin with \the [tool]!") , \
