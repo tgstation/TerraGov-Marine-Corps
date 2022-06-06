@@ -461,14 +461,12 @@ const PopulationPyramid = (_props, context) => {
             onClick={() => toggleCompact(!showCompact)}>
             Compact Mode
           </Button.Checkbox>
-          {!showCompact && (
-            <Button.Checkbox
-              checked={showEmpty}
-              tooltip="Display all castes"
-              onClick={() => toggleEmpty(!showEmpty)}>
-              Show All
-            </Button.Checkbox>
-          )}
+          <Button.Checkbox
+            checked={showEmpty}
+            tooltip="Display all castes"
+            onClick={() => toggleEmpty(!showEmpty)}>
+            Show Empty
+          </Button.Checkbox>
         </div>
       );
     }
@@ -480,19 +478,18 @@ const PopulationPyramid = (_props, context) => {
           onClick={() => act("ToggleCompact", { xeno: user_ref, new_value: user_show_compact ? 0 : 1 })}>
           Compact Mode
         </Button.Checkbox>
-        {!user_show_compact && (
-          <Button.Checkbox
-            checked={user_show_empty}
-            tooltip="Display all castes"
-            onClick={() => act("ToggleEmpty", { xeno: user_ref, new_value: user_show_empty ? 0 : 1 })}>
-            Show All
-          </Button.Checkbox>
-        )}
+        <Button.Checkbox
+          checked={user_show_empty}
+          tooltip="Display all castes"
+          onClick={() => act("ToggleEmpty", { xeno: user_ref, new_value: user_show_empty ? 0 : 1 })}>
+          Show Empty
+        </Button.Checkbox>
       </div>
     );
   };
 
   const compact_disp = user_xeno ? user_show_compact : showCompact;
+  const empty_disp = user_xeno ? user_show_empty : showEmpty;
 
   return (
     <Section title={`Total Living Sisters: ${hive_total}`}
@@ -546,16 +543,18 @@ const PopulationPyramid = (_props, context) => {
                 Tier {tier}: {(tier === 2 || tier === 3)
                   ? ` (${tier_info.total}/${max_slots || 0}) `
                   : ` ${tier_info.total} `}
-                Sisters |{' '}
+                Sisters {!empty_disp && tier_info.total === 0 ? '' : '| '}
                 {tier_info.index.map((value, idx) => {
                   const count = tier_info.caste[idx];
+                  if (!empty_disp && count === 0) {
+                    return null;
+                  }
                   const static_entry = static_info[value];
                   return `${static_entry.name}: ${count}`;
-                }).join(" | ")}
+                }).filter((ti) => ti !== null).join(" | ")}
               </Box>
             );
           }
-          const empty_disp = user_xeno ? user_show_empty : showEmpty;
           return (
             <Box
               key={tier}
