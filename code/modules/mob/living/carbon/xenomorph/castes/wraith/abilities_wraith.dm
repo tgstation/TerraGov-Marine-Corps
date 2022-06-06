@@ -567,3 +567,32 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	health_points -= bullet_crossing.ammo.damage
 	if(health_points <= 0)
 		qdel(src)
+
+/datum/action/xeno_action/activable/timeshift
+	name = "Time Shift"
+	ability_name = "Time Shift"
+	action_icon_state = ""
+	mechanics_text = "Save the location and status of the target. When the time is up, the target location and status are restored"
+	plasma_cost = 100
+	cooldown_timer = 30 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_TIMESHIFT
+	/// How long till the time rewinds
+	var/rewind_time = 5 SECONDS
+	/// The targeted atom
+	var/mob/living/targeted
+	/// List of locations the atom took since it was last saved
+	var/list/turf/last_target_locs_list = list()
+	/// Initial health of the target
+	var/target_initial_health = 0
+
+
+/datum/action/xeno_action/activable/timeshift/use_ability(atom/A)
+	if(!isliving(A))
+		to_chat(owner, span_xenowarning("We cannot target that!"))
+		return
+
+	targeted = A
+	last_target_locs_list += get_turf(A)
+	target_initial_health = targeted.health
+	addtimer(src, .proc/rewind_time, rewind_time)
+
