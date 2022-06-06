@@ -97,6 +97,7 @@
 #define ZOMBIE_TRAIT "zombie"
 #define BULLET_ACT_TRAIT "bullet act" //Traits related to projectiles
 #define PORTAL_TRAIT "portal"
+#define OPTABLE_TRAIT "optable"
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
