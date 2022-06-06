@@ -914,7 +914,7 @@ const StructureList = (_props, context) => {
 
   const track_margin = 1;
   const track_width = "100px";
-  const name_width = "30%"; // Matches xeno list name width.
+  const name_width = "33%"; // Matches xeno list name width.
   const integrity_width = "60px";
   const max_integ_width = "60px";
 
@@ -984,7 +984,13 @@ const StructureList = (_props, context) => {
                 <Flex.Item width={max_integ_width}>
                   {entry.max_integrity}
                 </Flex.Item>
-                <Flex.Item grow>
+                <Flex.Item
+                  grow
+                  nowrap
+                  style={{
+                    'overflow': 'hidden',
+                    'text-overflow': 'ellipsis',
+                  }}>
                   {entry.location}
                 </Flex.Item>
               </Flex>
