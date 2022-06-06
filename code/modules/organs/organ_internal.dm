@@ -202,8 +202,9 @@
 	. = ..()
 	if(!.)
 		return
-	// For example, bruised heart will leave you with 25 stamina buffer,
+	// For example, bruised heart will leave you with 25 stamina buffer
 	owner.max_stamina_buffer += (old_organ_status - organ_status) * 25
+	owner.maxHealth += (old_organ_status - organ_status) * 20
 
 /datum/internal_organ/heart/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
@@ -232,6 +233,8 @@
 		return
 	// For example, bruised lungs will reduce stamina regen by 40%, broken by 80%
 	owner.stamina_regen_multiplier += (old_organ_status - organ_status) * 0.40
+	// Slowdown added when the heart is damaged
+	owner.add_movespeed_modifier(id = name, multiplicative_slowdown = organ_status)
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
