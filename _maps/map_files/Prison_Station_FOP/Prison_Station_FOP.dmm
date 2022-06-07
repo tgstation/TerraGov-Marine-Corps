@@ -36509,12 +36509,7 @@
 	dir = 4
 	},
 /obj/structure/closet/walllocker/emerglocker/full,
-<<<<<<< HEAD
 /turf/open/shuttle/blackfloor,
-=======
-/obj/item/weapon/gun/sentry/big_sentry/premade,
-/turf/open/floor/prison/blackfloor,
->>>>>>> e091f4da76880e9672a4ba4db27a26e6d2255d00
 /area/prison/pirate)
 "ckG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
