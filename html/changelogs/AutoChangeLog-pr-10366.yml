@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - balance: "Flamer's extended nozzle can remove vines and snow, along with other sources of ground fire."
-  - bugfix: "Flamer projectiles should more reliably ignite on hit."

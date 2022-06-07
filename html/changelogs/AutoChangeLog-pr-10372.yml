@@ -1,6 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscdel: "A memorable chokepoint in LV-624 cave"
-  - rscadd: "sand temple in LV-624 is now underground"
-  - rscadd: "crowbar in LV-624 LZ"

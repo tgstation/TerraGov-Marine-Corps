@@ -1,6 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - rscadd: "Water canteen to marine food vendor"
-  - balance: "canteen is now smoll"
-  - imagedel: "helmet flask sprite"

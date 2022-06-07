@@ -1,7 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - bugfix: "Fixed weeds not covering pipes on plating turfs."
-  - bugfix: "Fixed incorrect turfs disallowing resin placement in Prison's crashed ship."
-  - bugfix: "Fixed manifolds inexplicably being on a different plane than the rest of pipes."
-  - bugfix: "Fixed an error with certain crashed ship wall configurations always resulting in + pieces."
