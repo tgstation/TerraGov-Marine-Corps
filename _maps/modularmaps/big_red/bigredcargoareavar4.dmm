@@ -591,10 +591,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
-"OZ" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "Pb" = (
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
@@ -1828,7 +1824,7 @@ JU
 OL
 tS
 Hh
-OZ
+er
 bw
 er
 cJ

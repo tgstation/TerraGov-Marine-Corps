@@ -496,10 +496,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
-"GB" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "Hb" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
@@ -1902,7 +1898,7 @@ PZ
 ll
 sY
 eM
-GB
+sY
 qg
 UJ
 sS

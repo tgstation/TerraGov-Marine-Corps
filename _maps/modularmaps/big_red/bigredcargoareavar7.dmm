@@ -738,10 +738,6 @@
 "Wq" = (
 /turf/closed/wall,
 /area/bigredv2/outside/nw)
-"Wv" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "Xm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1771,7 +1767,7 @@ NJ
 jK
 JY
 Ly
-Wv
+JY
 LS
 Ly
 JY

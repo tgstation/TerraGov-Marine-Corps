@@ -141,7 +141,7 @@
 "jR" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1";
+	icon_state = "tube1"
 	},
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -282,10 +282,6 @@
 	dir = 5
 	},
 /area/bigredv2/outside/virology)
-"wl" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "xc" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
@@ -333,7 +329,7 @@
 /area/bigredv2/outside/nw)
 "An" = (
 /turf/open/floor/plating/warning{
-	dir = 1;
+	dir = 1
 	},
 /area/bigredv2/outside/nw)
 "Av" = (
@@ -347,7 +343,7 @@
 /area/bigredv2/outside/nw)
 "AY" = (
 /turf/open/floor/plating/warning{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/nw)
 "Bh" = (
@@ -359,7 +355,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
-	dir = 1;
+	dir = 1
 	},
 /area/bigredv2/outside/nw)
 "Dx" = (
@@ -376,7 +372,7 @@
 "Ef" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1";
+	icon_state = "tube1"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -599,7 +595,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/nw)
 "XJ" = (
@@ -1608,7 +1604,7 @@ xc
 YT
 uM
 nd
-wl
+jE
 JJ
 jE
 TI
