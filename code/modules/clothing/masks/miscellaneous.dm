@@ -122,7 +122,7 @@
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_armor_protection = HEAD|FACE
-	flags_inventory = COVERMOUTH|ALLOWREBREATH
+	flags_inventory = COVERMOUTH
 	w_class = WEIGHT_CLASS_SMALL
 	siemens_coefficient = 3.0
 

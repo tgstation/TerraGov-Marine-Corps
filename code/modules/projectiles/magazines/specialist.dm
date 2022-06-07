@@ -311,7 +311,7 @@
 	icon_state = "powerpacksg"
 	flags_magazine = MAGAZINE_WORN|MAGAZINE_REFILLABLE
 	default_ammo = /datum/ammo/bullet/smart_minigun
-	current_rounds = 3000
-	max_rounds = 3000
+	current_rounds = 1000
+	max_rounds = 1000
 	caliber = CALIBER_10x26_CASELESS
 	flags_item_map_variant = null

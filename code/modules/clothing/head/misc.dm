@@ -151,16 +151,23 @@
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 50, "bullet" = 80, "laser" = 50, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
-/obj/item/clothing/head/bandanna
-	name = "pirate bandanna"
-	desc = "Yarr."
-	icon_state = "bandanna"
-	item_state = "bandanna"
+/obj/item/clothing/head/bandanna/brown
+	name = "brown bandanna"
+	desc = "Typically worn by heavy-weapon operators, mercenaries and scouts, the bandanna serves as a lightweight and comfortable hat."
+	icon_state = "bandanna_brown"
+	item_state = "bandanna_brown"
+
+/obj/item/clothing/head/bandanna/grey
+	name = "grey bandanna"
+	desc = "Show off the bleak side of your soul."
+	icon_state = "bandanna_grey"
+	item_state = "bandanna_grey"
 
 /obj/item/clothing/head/bandanna/red
 	name = "red bandanna"
 	desc = "For when it comes crashing down and it hurts inside."
 	icon_state = "bandanna_red"
+	item_state = "bandanna_red"
 
 /obj/item/clothing/head/bowler
 	name = "bowler-hat"
