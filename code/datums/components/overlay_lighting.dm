@@ -127,15 +127,16 @@
 /datum/component/overlay_lighting/proc/get_new_turfs()
 	if(!current_holder)
 		return
+	LAZYINITLIST(affected_turfs)
 	if(range <= 2)
 		//Range here is 1 because actual range of lighting mask is 1 tile even if it says that range is 2
 		for(var/turf/lit_turf in RANGE_TURFS(1, current_holder.loc))
 			lit_turf.dynamic_lumcount += lum_power
-			LAZYADD(affected_turfs, lit_turf)
+			affected_turfs += lit_turf
 	else
 		for(var/turf/lit_turf in view(lumcount_range, get_turf(current_holder)))
 			lit_turf.dynamic_lumcount += lum_power
-			LAZYADD(affected_turfs, lit_turf)
+			affected_turfs += lit_turf
 
 
 ///Clears the old affected turfs and populates the new ones.
