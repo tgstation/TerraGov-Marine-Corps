@@ -2,7 +2,6 @@ import { useBackend, useLocalState } from "../../backend";
 import { Stack, Button, Section, LabeledList, Tabs, Flex } from "../../components";
 import { Window } from "../../layouts";
 import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
-import { NameInputModal } from './NameInputModal';
 
 const LoadoutItem = (props : LoadoutItemData, context) => {
   const { act } = useBackend(context);
