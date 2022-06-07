@@ -34016,12 +34016,8 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-<<<<<<< HEAD
 /obj/structure/cable,
 /turf/open/shuttle/blackfloor,
-=======
-/turf/open/floor/prison/blackfloor,
->>>>>>> e091f4da76880e9672a4ba4db27a26e6d2255d00
 /area/prison/pirate)
 "ccP" = (
 /obj/structure/cable,
