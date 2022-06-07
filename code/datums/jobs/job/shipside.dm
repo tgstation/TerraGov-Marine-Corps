@@ -720,6 +720,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
 
 //Medical Officer
@@ -805,6 +807,8 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
 
 
