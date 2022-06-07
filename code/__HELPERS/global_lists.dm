@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 			"sort_mod" = per_tier_counter[tier]++,
 			"tier" = GLOB.tier_as_number[tier],
 			"is_unique" = tier == XENO_TIER_FOUR, //TODO: Make this check a flag after caste flag refactoring is merged.
-			"can_transfer_plasma" = CHECK_BITFIELD(initial(caste.caste_flags), CASTE_CAN_BE_GIVEN_PLASMA),
+			"can_transfer_plasma" = CHECK_BITFIELD(initial(caste.can_flags), CASTE_CAN_BE_GIVEN_PLASMA),
 			"evolution_max" = initial(caste.evolution_threshold)
 		))
 

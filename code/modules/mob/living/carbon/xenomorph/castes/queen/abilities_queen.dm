@@ -350,7 +350,7 @@
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma, dead")
 		return FALSE
-	if(!CHECK_BITFIELD(receiver.xeno_caste.caste_flags, CASTE_CAN_BE_GIVEN_PLASMA))
+	if(!CHECK_BITFIELD(receiver.xeno_caste.can_flags, CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma")
 			return FALSE
