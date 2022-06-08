@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - qol: "UAVs can open doors by bumping into it"
