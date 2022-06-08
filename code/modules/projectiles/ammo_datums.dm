@@ -59,6 +59,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/deflagrate_multiplier = 1
 	///Flat damage caused if fire_burst is triggered by deflagrate
 	var/fire_burst_damage = 10
+	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
+	var/incendiary_strength = 10
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -1795,6 +1797,8 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "laser_sniper"
 	damage = 60
 	penetration = 30
+	accurate_range_min = 5
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 4
 	max_range = 40
 	damage_falloff = 0
@@ -1807,7 +1811,8 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2.5
 	damage = 40
 	penetration = 0
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
+	accurate_range_min = 5
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
 
@@ -2547,19 +2552,21 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME|AMMO_EXPLOSIVE
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE
 	armor_type = "fire"
 	max_range = 7
-	damage = 0
+	damage = 31
+	damage_falloff = 0
+	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
 	bullet_color = LIGHT_COLOR_FIRE
 	var/fire_color = "red"
-	var/burnlevel = 31
 	var/burntime = 17
+	var/burnlevel = 31
 
 /datum/ammo/flamethrower/drop_flame(turf/T)
 	if(!istype(T))
 		return
-	T.ignite(burntime, burnlevel, fire_color, burnlevel)
+	T.ignite(burntime, burnlevel, fire_color)
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M,obj/projectile/P)
 	drop_flame(get_turf(M))
@@ -2583,8 +2590,8 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "flame_blue"
 	max_range = 7
 	fire_color = "blue"
-	burnlevel = 46
 	burntime = 40
+	burnlevel = 46
 	bullet_color = COLOR_NAVY
 
 /datum/ammo/water

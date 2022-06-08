@@ -214,8 +214,7 @@
 						/obj/item/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
 						/obj/item/toy/deck = "helmet_card_card",
 						/obj/item/toy/handcard = "helmet_card_card",
-						/obj/item/reagent_containers/food/drinks/flask = "helmet_flask",
-						/obj/item/reagent_containers/food/drinks/flask/marine = "helmet_flask",
+						/obj/item/reagent_containers/food/drinks/flask/marine = "helmet_canteen",
 						/obj/item/reagent_containers/food/snacks/enrg_bar = "helmet_snack_eat",
 						/obj/item/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
@@ -226,10 +225,9 @@
 
 /obj/item/storage/internal/marinehelmet
 	storage_slots = 2
-	max_w_class = 1
+	max_w_class = WEIGHT_CLASS_TINY
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask,
 		/obj/item/reagent_containers/food/snacks,
 	)
 	cant_hold = list(
