@@ -670,7 +670,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/proc/attempt_to_spawn_larva_in_silo(mob/xeno_candidate, possible_silos, larva_already_reserved = FALSE)
-	xeno_candidate.playsound_local(xeno_candidate, 'sound/ambience/votestart.ogg', 50)
+	xeno_candidate.playsound_local(xeno_candidate, 'sound/ambience/votestart.ogg')
 	window_flash(xeno_candidate.client)
 	var/obj/structure/xeno/silo/chosen_silo
 	if(length(possible_silos) > 1)
