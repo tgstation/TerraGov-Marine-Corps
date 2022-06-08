@@ -325,7 +325,7 @@
 
 /obj/structure/dropship_equipment/flare_launcher/equipment_interact(mob/user)
 	if(!COOLDOWN_CHECK(src, deploy_cooldown)) //check for deployment cooldown
-		user.balloon_alert(user, "[src] is busy")
+		user.balloon_alert(user, "[src] is busy.")
 		return
 	if(stored_amount <= 0) //check for inserted flares
 		user.balloon_alert(user, "No flares remaining.")
@@ -347,9 +347,9 @@
 		setDir(ship_base.dir)
 	else
 		setDir(initial(dir))
-	update_icon()
+	update_icon_state()
 
-/obj/structure/dropship_equipment/flare_launcher/update_icon()
+/obj/structure/dropship_equipment/flare_launcher/update_icon_state()
 	if(ship_base)
 		icon_state = "flare_system_installed"
 	else
@@ -509,9 +509,9 @@
 		deployed_mg.loc = loc
 	else
 		deployed_mg.loc = src
-	update_icon()
+	update_icon_state()
 
-/obj/structure/dropship_equipment/mg_holder/update_icon()
+/obj/structure/dropship_equipment/mg_holder/update_icon_state()
 	if(ship_base)
 		icon_state = "mg_system_deployed"
 	else
@@ -549,9 +549,9 @@
 		deployed_minigun.loc = loc
 	else
 		deployed_minigun.loc = src
-	update_icon()
+	update_icon_state()
 
-/obj/structure/dropship_equipment/minigun_holder/update_icon()
+/obj/structure/dropship_equipment/minigun_holder/update_icon_state()
 	if(ship_base)
 		icon_state = "mg_system_deployed"
 	else
@@ -589,9 +589,9 @@
 		deployed_dualcannon.loc = loc
 	else
 		deployed_dualcannon.loc = src
-	update_icon()
+	update_icon_state()
 
-/obj/structure/dropship_equipment/dualcannon_holder/update_icon()
+/obj/structure/dropship_equipment/dualcannon_holder/update_icon_state()
 	if(ship_base)
 		icon_state = "mg_system_deployed"
 	else
@@ -629,9 +629,9 @@
 		deployed_heavylaser.loc = loc
 	else
 		deployed_heavylaser.loc = src
-	update_icon()
+	update_icon_state()
 
-/obj/structure/dropship_equipment/heavylaser_holder/update_icon()
+/obj/structure/dropship_equipment/heavylaser_holder/update_icon_state()
 	if(ship_base)
 		icon_state = "mg_system_deployed"
 	else
@@ -669,9 +669,9 @@
 		deployed_heavyrr.loc = loc
 	else
 		deployed_heavyrr.loc = src
-	update_icon()
+	update_icon_state()
 
-/obj/structure/dropship_equipment/heavyrr_holder/update_icon()
+/obj/structure/dropship_equipment/heavyrr_holder/update_icon_state()
 	. = ..()
 	if(ship_base)
 		icon_state = "mg_system_deployed"

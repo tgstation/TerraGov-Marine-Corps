@@ -406,8 +406,8 @@
 //Flares that the tadpole flare launcher launches
 /obj/item/explosive/grenade/flare/strongerflare
 	icon_state = "stronger_flare_grenade"
-	lower_fuel_limit = 30
-	upper_fuel_limit = 40
+	lower_fuel_limit = 25
+	upper_fuel_limit = 30
 	light_system = STATIC_LIGHT//movable light has a max range
 	light_range = 12
 	light_color = LIGHT_COLOR_CYAN
