@@ -10,11 +10,5 @@
 	. = ..()
 	return (. || handcuffed)
 
-
-/mob/living/carbon/proc/need_breathe()
-	if(reagents.has_reagent(/datum/reagent/toxin/lexorin) || HAS_TRAIT(src, TRAIT_STASIS))
-		return FALSE
-	return TRUE
-
 /mob/living/carbon/get_reagent_tags()
 	return species?.reagent_tag

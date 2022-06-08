@@ -224,8 +224,6 @@
 				if(I.robotic == ORGAN_ASSISTED||I.robotic == ORGAN_ROBOT)
 					// we can't deal with these
 					continue
-				if(I.germ_level > 1)
-					surgery_list += create_autodoc_surgery(L,ORGAN_SURGERY,ADSURGERY_GERMS,0,I)
 				if(I.damage > 0)
 					if(I.organ_id == ORGAN_EYES) // treat eye surgery differently
 						continue

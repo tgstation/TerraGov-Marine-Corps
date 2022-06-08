@@ -246,16 +246,6 @@
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red")
 	turf_to_ignite.ignite(burn_time, burn_level, fire_color)
 
-	// Melt a single layer of snow
-	if(istype(turf_to_ignite, /turf/open/floor/plating/ground/snow))
-		var/turf/open/floor/plating/ground/snow/snow_turf = turf_to_ignite
-		if(snow_turf.slayer > 0)
-			snow_turf.slayer -= 1
-			snow_turf.update_icon(1, 0)
-
-	for(var/obj/structure/jungle/vines/vines in turf_to_ignite)
-		QDEL_NULL(vines)
-
 	var/fire_mod
 	for(var/mob/living/mob_caught in turf_to_ignite) //Deal bonus damage if someone's caught directly in initial stream
 		if(mob_caught.stat == DEAD)
@@ -325,6 +315,8 @@
 	mob_flame_damage_mod = 1
 	burn_level_mod = 0.6
 	flame_max_range = 4
+
+	wield_delay_mod	= 0.2 SECONDS
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
 	flags_attach_features = NONE
@@ -445,6 +437,15 @@
 
 	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
 
+	for(var/obj/structure/jungle/vines/vines in src)
+		QDEL_NULL(vines)
+
+/turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+	if(slayer > 0)
+		slayer -= 1
+		update_icon(1, 0)
+	return ..()
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Time to redo part of abby's code.
 //Create a flame sprite object. Doesn't work like regular fire, ie. does not affect atmos or heat
@@ -491,6 +492,7 @@
 		COMSIG_ATOM_ENTERED = .proc/on_cross,
 	)
 	AddElement(/datum/element/connect_loc, connections)
+
 
 /obj/flamer_fire/Destroy()
 	STOP_PROCESSING(SSobj, src)

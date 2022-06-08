@@ -1,5 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - bugfix: "Fixed a ton of lights not working properly"
-  - balance: "This makes CAS flares and mortar flares useful again"

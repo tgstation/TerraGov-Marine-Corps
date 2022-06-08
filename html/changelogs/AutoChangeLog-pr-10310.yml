@@ -1,7 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes: 
-  - rscadd: "Dropship fabricator queue"
-  - refactor: "Cleans up fabricator code a bit"
-  - qol: "Balloon alerts to fabricator"
-  - bugfix: "Fabricator turns orange when it's active properly now"
