@@ -177,11 +177,6 @@
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
 		),
-		"Imba" = list(
-			/obj/item/weapon/gun/smg/vector = 2,
-			/obj/item/ammo_magazine/smg/vector = -1,
-			/obj/item/ammo_magazine/packet/acp_smg = -1
-		),
 	)
 
 	seasonal_items = list(
@@ -516,11 +511,6 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
-		),
-		"Imba" = list(
-			/obj/item/weapon/gun/smg/vector = -1,
-			/obj/item/ammo_magazine/smg/vector = -1,
-			/obj/item/ammo_magazine/packet/acp_smg = -1
 		),
 	)
 

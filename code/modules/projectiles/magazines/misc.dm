@@ -128,16 +128,6 @@
 	current_rounds = 150
 	max_rounds = 150
 
-/obj/item/ammo_magazine/packet/acp_smg
-	name = "box of .45 ACP HP"
-	desc = "A box containing common .45 ACP hollow-point rounds."
-	icon_state = "box_45acp"
-	default_ammo = /datum/ammo/bullet/smg/acp
-	w_class = WEIGHT_CLASS_SMALL
-	caliber = CALIBER_45ACP
-	current_rounds = 120
-	max_rounds = 120
-
 /obj/item/ammo_magazine/packet/p4570
 	name = "packet of .45-70"
 	desc = "A packet containing 50 rounds of .45-70 Government."
