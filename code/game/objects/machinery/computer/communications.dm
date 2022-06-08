@@ -194,10 +194,6 @@
 					message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href exploit on a [src]. [ADMIN_VERBOSEJMP(usr)].")
 					return FALSE
 
-				if(world.time < DISTRESS_TIME_LOCK)
-					to_chat(usr, span_warning("The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again."))
-					return FALSE
-
 				if(!SSticker?.mode)
 					return FALSE //Not a game mode?
 

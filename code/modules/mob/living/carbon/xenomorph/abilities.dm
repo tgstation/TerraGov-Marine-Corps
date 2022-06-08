@@ -1288,5 +1288,5 @@
 
 /datum/action/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.hive.interact(X)
+	X.hive.purchases.interact(X)
 	return succeed_activate()

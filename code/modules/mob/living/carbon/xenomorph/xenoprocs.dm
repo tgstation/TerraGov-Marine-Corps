@@ -27,60 +27,9 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
-
-
-/proc/xeno_status_output(list/xenolist, ignore_leads = TRUE, user)
-	var/xenoinfo = ""
-	var/leadprefix = (ignore_leads?"":"<b>(-L-)</b>")
-	for(var/mob/living/carbon/xenomorph/X AS in xenolist)
-		if(X.xeno_caste.tier == XENO_TIER_MINION)
-			continue
-		if(ignore_leads && X.queen_chosen_lead)
-			continue
-		xenoinfo += "<tr><td>[leadprefix]<a href='byond://?src=\ref[user];track_xeno_name=[X.nicknumber]'>[X.name]</a> "
-		if(!X.client)
-			xenoinfo += " <i>(SSD)</i>"
-
-		var/hp_color = "green"
-		switch(X.health/X.maxHealth)
-			if(0.33 to 0.66)
-				hp_color = "orange"
-			if(-1 to 0.33)
-				hp_color = "red"
-
-		var/distance = get_dist(user, X)
-
-		xenoinfo += " <b><font color=[hp_color]>Health: ([X.health]/[X.maxHealth])</font></b>"
-
-		xenoinfo += " <b><font color=green>([AREACOORD_NO_Z(X)][distance > 0 ? " <b>Distance: [distance]</b>" : ""])</font></b></td></tr>"
-
-	return xenoinfo
-
-
-///Relays health and location data about resin silos belonging to the same hive as the input user
-/proc/resin_silo_status_output(mob/living/carbon/xenomorph/user, datum/hive_status/hive)
-	. = "<BR><b>List of Resin Silos:</b><BR><table cellspacing=4>" //Resin silo data
-	for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
-		if(resin_silo.associated_hive == hive)
-
-			var/hp_color = "green"
-			switch(resin_silo.obj_integrity/resin_silo.max_integrity)
-				if(0.33 to 0.66)
-					hp_color = "orange"
-				if(0 to 0.33)
-					hp_color = "red"
-
-			var/distance = get_dist(user, resin_silo)
-			. += "<b><a href='byond://?src=\ref[user];track_silo_number=[resin_silo.number_silo]'>[resin_silo.name]</a> <font color=[hp_color]>Health: ([resin_silo.obj_integrity]/[resin_silo.max_integrity])</font></b> located at: <b><font color=green>[AREACOORD_NO_Z(resin_silo)]</font>  Distance : [distance]</b><BR>"
-
-	. += "</table>"
-
-
-
 /proc/check_hive_status(mob/user)
 	if(!SSticker)
 		return
-	var/dat = "<br>"
 
 	var/datum/hive_status/hive
 	if(isxeno(user))
@@ -90,71 +39,9 @@
 	else
 		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 
-	if(!hive)
-		CRASH("couldnt find a hive in check_hive_status")
+	hive.interact(user)
 
-	var/xenoinfo = ""
-
-	var/tier4counts = ""
-	var/tier3counts = ""
-	var/tier2counts = ""
-	var/tier1counts = ""
-
-	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/queen], TRUE, user)
-
-	xenoinfo += xeno_status_output(hive.xeno_leader_list, FALSE, user)
-
-	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind], TRUE, user)
-
-	for(var/typepath in hive.xenos_by_typepath)
-		var/mob/living/carbon/xenomorph/T = typepath
-		var/datum/xeno_caste/XC = GLOB.xeno_caste_datums[typepath][XENO_UPGRADE_BASETYPE]
-		if(XC.caste_flags & CASTE_HIDE_IN_STATUS)
-			continue
-
-		switch(initial(T.tier))
-			if(XENO_TIER_ZERO, XENO_TIER_MINION)
-				continue
-			if(XENO_TIER_FOUR)
-				tier4counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
-			if(XENO_TIER_THREE)
-				tier3counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
-			if(XENO_TIER_TWO)
-				tier2counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
-			if(XENO_TIER_ONE)
-				tier1counts += " | [initial(T.name)]s: [length(hive.xenos_by_typepath[typepath])]"
-
-		if(XC.caste_name == "Queen") //QM forgive me
-			continue
-		xenoinfo += xeno_status_output(hive.xenos_by_typepath[typepath], TRUE, user)
-
-	xenoinfo += xeno_status_output(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva], TRUE, user)
-
-	var/hivemind_text = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]) > 0 ? "Active" : "Inactive"
-
-	dat += "<b>Total Living Sisters: [hive.get_total_xeno_number()]</b><BR>"
-	dat += "<b>Tier 4: [length(hive.xenos_by_tier[XENO_TIER_FOUR])] Sisters</b>[tier4counts]<BR>"
-	dat += "<b>Tier 3: ([length(hive.xenos_by_tier[XENO_TIER_THREE])]/[hive.tier3_xeno_limit]) Sisters</b>[tier3counts]<BR>"
-	dat += "<b>Tier 2: ([length(hive.xenos_by_tier[XENO_TIER_TWO])]/[hive.tier2_xeno_limit]) Sisters</b>[tier2counts]<BR>"
-	dat += "<b>Tier 1: [length(hive.xenos_by_tier[XENO_TIER_ONE])] Sisters</b>[tier1counts]<BR>"
-	dat += "<b>Larvas: [length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva])] Sisters<BR>"
-	dat += "<b>Minions: [length(hive.xenos_by_tier[XENO_TIER_MINION])] Sisters<BR>"
-	dat += "<b>Psychic points : [SSpoints.xeno_points_by_hive[hive.hivenumber]]<BR>"
-	dat += "<b>Hivemind: [hivemind_text]<BR>"
-	if(hive.hivenumber == XENO_HIVE_NORMAL)
-		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-		dat += "<b>Burrowed Larva: [xeno_job.total_positions - xeno_job.current_positions] Sisters<BR>"
-	dat += "<table cellspacing=4>"
-	dat += xenoinfo
-	dat += "</table>"
-	dat += "<b>Larva points generated in one minute: [SSsilo.current_larva_spawn_rate]<BR>"
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	dat += "<b>Points needed for next larva: [xeno_job.job_points_needed - xeno_job.job_points]"
-	dat += resin_silo_status_output(user, hive)
-
-	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Hive Status</div>", 650, 650)
-	popup.set_content(dat)
-	popup.open(FALSE)
+	return
 
 /mob/living/carbon/xenomorph/Topic(href, href_list)
 	. = ..()
@@ -203,7 +90,7 @@
 ///returns TRUE if we are permitted to evo to the next case FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
 	if(upgrade == XENO_UPGRADE_THREE)
-		return hive.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
+		return hive.purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[xeno_caste.tier]].times_bought
 	return (upgrade != XENO_UPGRADE_INVALID && upgrade != XENO_UPGRADE_FOUR)
 
 //Adds stuff to your "Status" pane -- Specific castes can have their own, like carrier hugger count
@@ -275,17 +162,13 @@
 				msg_holder = "Very strong"
 		stat("[RECOVERY] pheromone strength:", msg_holder)
 
-	switch(hivenumber)
-		if(XENO_HIVE_NORMAL)
-			var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
-			if(hivemind_countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
-			var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
-			if(siloless_countdown)
-				stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
-
-		if(XENO_HIVE_CORRUPTED)
-			stat("Hive Orders:","Follow the instructions of our masters")
+	if(hivenumber == XENO_HIVE_NORMAL)
+		var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
+		if(hivemind_countdown)
+			stat("<b>Orphan hivemind collapse timer:</b>", hivemind_countdown)
+		var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
+		if(siloless_countdown)
+			stat("<b>Orphan hivemind collapse timer:</b>", siloless_countdown)
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
@@ -299,20 +182,6 @@
 	if(incapacitated())
 		to_chat(src, span_warning("We cannot do this in our current state."))
 		return FALSE
-	return TRUE
-
-//Checks your plasma levels and gives a handy message.
-/mob/living/carbon/xenomorph/proc/check_plasma(value, silent = FALSE)
-	if(stat)
-		if(!silent)
-			to_chat(src, span_warning("We cannot do this in our current state."))
-		return FALSE
-
-	if(value)
-		if(plasma_stored < value)
-			if(!silent)
-				to_chat(src, span_warning("We do not have enough plasma to do this. We require [value] plasma but have only [plasma_stored] stored."))
-			return FALSE
 	return TRUE
 
 /mob/living/carbon/xenomorph/proc/use_plasma(value)
@@ -681,6 +550,9 @@
 /mob/living/carbon/xenomorph/proc/set_tracked(atom/to_track)
 	if(tracked)
 		UnregisterSignal(tracked, COMSIG_PARENT_QDELETING)
+		if (tracked == to_track)
+			clean_tracked()
+			return
 	tracked = to_track
 	RegisterSignal(tracked, COMSIG_PARENT_QDELETING, .proc/clean_tracked)
 

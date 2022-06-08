@@ -258,6 +258,9 @@
 
 	var/datum/hive_status/hive
 
+	///State tracking of hive status toggles
+	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
+
 	var/list/overlays_standing[X_TOTAL_LAYERS]
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
 	var/datum/xeno_caste/xeno_caste
@@ -340,7 +343,7 @@
 
 	var/xeno_mobhud = FALSE //whether the xeno mobhud is activated or not.
 
-	var/queen_chosen_lead //whether the xeno has been selected by the queen as a leader.
+	var/queen_chosen_lead = FALSE //whether the xeno has been selected by the queen as a leader.
 
 	//Charge vars
 	var/is_charging = CHARGE_OFF //Will the mob charge when moving ? You need the charge verb to change this

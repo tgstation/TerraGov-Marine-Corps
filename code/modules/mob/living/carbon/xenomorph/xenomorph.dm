@@ -124,17 +124,6 @@
 	if(mind)
 		mind.name = name
 
-/mob/living/carbon/xenomorph/proc/tier_as_number()
-	switch(tier)
-		if(XENO_TIER_ZERO)
-			return 0
-		if(XENO_TIER_ONE)
-			return 1
-		if(XENO_TIER_TWO)
-			return 2
-		if(XENO_TIER_THREE)
-			return 3
-
 /mob/living/carbon/xenomorph/proc/upgrade_as_number()
 	switch(upgrade)
 		if(XENO_UPGRADE_INVALID)

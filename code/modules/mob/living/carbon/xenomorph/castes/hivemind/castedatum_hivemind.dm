@@ -38,6 +38,7 @@
 
 	// *** Abilities *** //
 	actions = list(
+		/datum/action/xeno_action/watch_xeno/hivemind,
 		/datum/action/xeno_action/change_form,
 		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/rally_hive/hivemind,

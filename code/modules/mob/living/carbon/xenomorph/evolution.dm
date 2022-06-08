@@ -270,6 +270,7 @@
 	if(!isturf(loc)) //cdel'd or moved into something
 		return
 
+	SStgui.close_user_uis(src) //Force close all UIs upon evolution.
 
 	//From there, the new xeno exists, hopefully
 	var/mob/living/carbon/xenomorph/new_xeno = new new_caste_type(get_turf(src))
