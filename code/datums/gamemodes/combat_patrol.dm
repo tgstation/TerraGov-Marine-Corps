@@ -1,7 +1,7 @@
 /datum/game_mode/combat_patrol
 	name = "Combat patrol"
 	config_tag = "Combat patrol"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY //MODE_NO_PERMANENT_WOUNDS is for nerds //also need to unfuck mode_two_human_factions, as it ties into a lot of things
+	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_SOM_OPFOR //MODE_NO_PERMANENT_WOUNDS is for nerds //mode_two_human_factions should be unfugged
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	shutters_drop_time = 5 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH

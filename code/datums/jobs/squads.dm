@@ -167,7 +167,7 @@
 )
 
 /datum/squad/xray
-	name = "X-ray"
+	name = "Xray"
 	id = XRAY_SQUAD
 	color = "#008000"
 	access = list(ACCESS_MARINE_CHARLIE)
