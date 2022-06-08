@@ -534,7 +534,7 @@
 	. = ..()
 	if(deployed_minigun)
 		return
-	var/obj/item/weapon/gun/minigunnest/new_gun = new(src)
+	var/obj/item/weapon/gun/minigun_nest/new_gun = new(src)
 	deployed_minigun = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_minigun. Therefore new_gun.loc = deployed_minigun.
 
 /obj/structure/dropship_equipment/minigun_holder/examine(mob/user)
@@ -575,7 +575,7 @@
 	. = ..()
 	if(deployed_dualcannon)
 		return
-	var/obj/item/weapon/gun/dualcannon/new_gun = new(src)
+	var/obj/item/weapon/gun/dual_cannon/new_gun = new(src)
 	deployed_dualcannon = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_dualcannon. Therefore new_gun.loc = deployed_dualcannon.
 
 /obj/structure/dropship_equipment/dualcannon_holder/examine(mob/user)
@@ -616,7 +616,7 @@
 	. = ..()
 	if(deployed_heavylaser)
 		return
-	var/obj/item/weapon/gun/heavylaser/new_gun = new(src)
+	var/obj/item/weapon/gun/heavy_laser/new_gun = new(src)
 	deployed_heavylaser = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavylaser. Therefore new_gun.loc = deployed_heavylaser.
 
 /obj/structure/dropship_equipment/heavylaser_holder/examine(mob/user)
@@ -657,7 +657,7 @@
 	. = ..()
 	if(deployed_heavyrr)
 		return
-	var/obj/item/weapon/gun/launcher/rocket/heavyrr/new_gun = new(src)
+	var/obj/item/weapon/gun/launcher/rocket/heavy_rr/new_gun = new(src)
 	deployed_heavyrr = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavyrr. Therefore new_gun.loc = deployed_heavyrr.
 
 /obj/structure/dropship_equipment/heavyrr_holder/examine(mob/user)

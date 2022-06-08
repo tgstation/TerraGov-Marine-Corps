@@ -89,7 +89,7 @@
 //-------------------------------------------------------
 //MG-2005 mounted minigun
 
-/obj/item/weapon/gun/minigunnest
+/obj/item/weapon/gun/minigun_nest
 	name = "\improper MG-2005 mounted minigun"
 	desc = "The MG-2005 mounted minigun is a gun simple in principle, it will shoot a lot of bullets really fast and will rip through xeno hordes."
 
@@ -102,7 +102,7 @@
 	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/heavyminigun
+	default_ammo_type = /obj/item/ammo_magazine/heavy_minigun
 
 	scatter = 10
 	deployed_scatter_change = -8
@@ -118,7 +118,7 @@
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavyminigun)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_minigun)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
@@ -130,7 +130,7 @@
 //-------------------------------------------------------
 //ATR-22 mounted heavy dualcannon
 
-/obj/item/weapon/gun/dualcannon
+/obj/item/weapon/gun/dual_cannon
 	name = "\improper ATR-22 mounted heavy dualcannon"
 	desc = "The ATR-22 mounted heavy dualcannon is a double barrel 20mm autocannon, usually seen fitted in terran armored vehicles. It shreds through armor and walls causing heavy sunder but is rather lacking in damage against xenomorph targets."
 	w_class = WEIGHT_CLASS_HUGE
@@ -141,7 +141,7 @@
 	fire_sound = 'sound/weapons/guns/fire/autocannon_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/dualcannon
+	default_ammo_type = /obj/item/ammo_magazine/dual_cannon
 
 	scatter = 10
 	deployed_scatter_change = -10
@@ -155,7 +155,7 @@
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/dualcannon)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/dual_cannon)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
@@ -167,7 +167,7 @@
 //-------------------------------------------------------
 //TE-9001 mounted heavy laser
 
-/obj/item/weapon/gun/heavylaser
+/obj/item/weapon/gun/heavy_laser
 	name = "\improper TE-9001 mounted heavy laser"
 	desc = "The TE-9001 mounted heavy laser is a non-IFF heavy laser that is powerful enough to start a sizeable fire on its impact, this weapon is exceptional at area denial."
 
@@ -179,7 +179,7 @@
 	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/heavylaser
+	default_ammo_type = /obj/item/ammo_magazine/heavy_laser
 
 	scatter = 10
 	deployed_scatter_change = -10
@@ -193,7 +193,7 @@
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest,)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavylaser)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_laser)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
@@ -205,7 +205,7 @@
 //-------------------------------------------------------
 //RR-15 mounted heavy recoilless rifle
 
-/obj/item/weapon/gun/launcher/rocket/heavyrr
+/obj/item/weapon/gun/launcher/rocket/heavy_rr
 	name = "\improper RR-15 mounted heavy recoilless rifle"
 	desc = "The RR-15 mounted recoilless rifle is a non-IFF, modernized version of the L6 Wombat using 75mm. Reintroduced due to the rather close quarter nature of combat against xenomorphs, this thing will kill mostly anything on its way."
 
@@ -218,7 +218,7 @@
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 
-	default_ammo_type = /obj/item/ammo_magazine/heavyrr
+	default_ammo_type = /obj/item/ammo_magazine/heavy_rr
 	max_shells = 1 //codex
 	caliber = CALIBER_75MM // codex
 
@@ -236,7 +236,7 @@
 
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(/obj/item/ammo_magazine/heavyrr)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_rr)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS

@@ -1174,7 +1174,7 @@ datum/ammo/bullet/revolver/tp44
 	shrapnel_chance = 25
 	sundering = 2.5
 
-/datum/ammo/bullet/dualcannon
+/datum/ammo/bullet/dual_cannon
 	name = "dualcannon bullet"
 	hud_state = "minigun"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
@@ -1186,13 +1186,13 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 7
 	max_range = 30
 
-/datum/ammo/bullet/dualcannon/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/bullet/dual_cannon/on_hit_turf(turf/T, obj/projectile/P)
 	P.proj_max_range -= 20
 
-/datum/ammo/bullet/dualcannon/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/dual_cannon/on_hit_mob(mob/M, obj/projectile/P)
 	P.proj_max_range -= 15
 
-/datum/ammo/bullet/dualcannon/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/bullet/dual_cannon/on_hit_obj(obj/O, obj/projectile/P)
 	P.proj_max_range -= 10
 
 /datum/ammo/bullet/railgun
@@ -1410,7 +1410,7 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 7)
 
-/datum/ammo/rocket/heavyrr
+/datum/ammo/rocket/heavy_rr
 	name = "75mm round"
 	icon_state = "heavyrr"
 	hud_state = "shell_he"
@@ -1425,7 +1425,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 50
 	handful_amount = 1
 
-/datum/ammo/rocket/heavyrr/drop_nade(turf/T)
+/datum/ammo/rocket/heavy_rr/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 4)
 
 /datum/ammo/rocket/wp
@@ -1903,7 +1903,7 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 10
 	hitscan_effect_icon = "xray_beam"
 
-/datum/ammo/energy/lasgun/marine/heavylaser
+/datum/ammo/energy/lasgun/marine/heavy_laser
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_INCENDIARY
 	damage = 60
 	penetration = 10
@@ -1911,22 +1911,22 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 30
 	hitscan_effect_icon = "beam_incen"
 
-/datum/ammo/energy/lasgun/marine/heavylaser/drop_nade(turf/T, radius = 1)
+/datum/ammo/energy/lasgun/marine/heavy_laser/drop_nade(turf/T, radius = 1)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 3, 3, 3, 3)
 
-/datum/ammo/energy/lasgun/marine/heavylaser/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
 
-/datum/ammo/energy/lasgun/marine/heavylaser/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(O))
 
-/datum/ammo/energy/lasgun/marine/heavylaser/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T)
 
-/datum/ammo/energy/lasgun/marine/heavylaser/do_at_max_range(obj/projectile/P)
+/datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P))
 
 // Plasma //
