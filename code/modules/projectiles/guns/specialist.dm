@@ -555,6 +555,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	windup_delay = 0.4 SECONDS
 	///the smoke effect after firing
 	var/datum/effect_system/smoke_spread/smoke
+	///removes backblast damage if false
+	var/backblastdamage = TRUE
 
 /obj/item/weapon/gun/launcher/rocket/Initialize(mapload, spawn_empty)
 	. = ..()
@@ -572,6 +574,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	var/turf/backblast_loc = get_step(blast_source, thrown_dir)
 	smoke.set_up(0, backblast_loc)
 	smoke.start()
+	if(!backblastdamage)
+		return
 	for(var/mob/living/carbon/victim in backblast_loc)
 		if(victim.lying_angle || victim.stat == DEAD) //Have to be standing up to get the fun stuff
 			continue

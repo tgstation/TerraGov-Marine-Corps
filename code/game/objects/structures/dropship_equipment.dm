@@ -281,9 +281,6 @@
 	to_chat(user, span_notice("You cannot touch [src] with the [clamp] due to the acid on [src]."))
 	return TRUE
 
-/obj/structure/dropship_equipment/update_icon()
-	return
-
 /obj/structure/dropship_equipment/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
 	on_launch()
@@ -347,9 +344,10 @@
 		setDir(ship_base.dir)
 	else
 		setDir(initial(dir))
-	update_icon_state()
+	update_icon()
 
 /obj/structure/dropship_equipment/flare_launcher/update_icon_state()
+	. = ..()
 	if(ship_base)
 		icon_state = "flare_system_installed"
 	else
@@ -488,7 +486,8 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "mg_system"
 	point_cost = 300
-	var/obj/machinery/deployable/mounted/deployed_mg //machine type for the internal gun which is new_gun
+	///machine type for the internal gun and for checking if the gun is deployed
+	var/obj/machinery/deployable/mounted/deployed_mg
 
 /obj/structure/dropship_equipment/mg_holder/Initialize()
 	. = ..()
@@ -509,7 +508,7 @@
 		deployed_mg.loc = loc
 	else
 		deployed_mg.loc = src
-	update_icon_state()
+	update_icon()
 
 /obj/structure/dropship_equipment/mg_holder/update_icon_state()
 	if(ship_base)
@@ -528,7 +527,8 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "minigun_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_minigun //machine type for the internal gun which is new_gun
+	///machine type for the internal gun and for checking if the gun is deployed
+	var/obj/machinery/deployable/mounted/deployed_minigun
 
 /obj/structure/dropship_equipment/minigun_holder/Initialize()
 	. = ..()
@@ -549,7 +549,7 @@
 		deployed_minigun.loc = loc
 	else
 		deployed_minigun.loc = src
-	update_icon_state()
+	update_icon()
 
 /obj/structure/dropship_equipment/minigun_holder/update_icon_state()
 	if(ship_base)
@@ -568,7 +568,8 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "ac_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_dualcannon //machine type for the internal gun which is new_gun
+	///machine type for the internal gun and for checking if the gun is deployed
+	var/obj/machinery/deployable/mounted/deployed_dualcannon
 
 /obj/structure/dropship_equipment/dualcannon_holder/Initialize()
 	. = ..()
@@ -589,7 +590,7 @@
 		deployed_dualcannon.loc = loc
 	else
 		deployed_dualcannon.loc = src
-	update_icon_state()
+	update_icon()
 
 /obj/structure/dropship_equipment/dualcannon_holder/update_icon_state()
 	if(ship_base)
@@ -608,7 +609,8 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "hl_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_heavylaser //machine type for the internal gun which is new_gun
+	///machine type for the internal gun and for checking if the gun is deployed
+	var/obj/machinery/deployable/mounted/deployed_heavylaser
 
 /obj/structure/dropship_equipment/heavylaser_holder/Initialize()
 	. = ..()
@@ -629,7 +631,7 @@
 		deployed_heavylaser.loc = loc
 	else
 		deployed_heavylaser.loc = src
-	update_icon_state()
+	update_icon()
 
 /obj/structure/dropship_equipment/heavylaser_holder/update_icon_state()
 	if(ship_base)
@@ -648,13 +650,14 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "rr_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_heavyrr //machine type for the internal gun which is new_gun
+	///machine type for the internal gun and for checking if the gun is deployed
+	var/obj/machinery/deployable/mounted/deployed_heavyrr
 
 /obj/structure/dropship_equipment/heavyrr_holder/Initialize()
 	. = ..()
 	if(deployed_heavyrr)
 		return
-	var/obj/item/weapon/gun/heavyrr/new_gun = new(src)
+	var/obj/item/weapon/gun/launcher/rocket/heavyrr/new_gun = new(src)
 	deployed_heavyrr = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavyrr. Therefore new_gun.loc = deployed_heavyrr.
 
 /obj/structure/dropship_equipment/heavyrr_holder/examine(mob/user)
@@ -669,10 +672,9 @@
 		deployed_heavyrr.loc = loc
 	else
 		deployed_heavyrr.loc = src
-	update_icon_state()
+	update_icon()
 
 /obj/structure/dropship_equipment/heavyrr_holder/update_icon_state()
-	. = ..()
 	if(ship_base)
 		icon_state = "mg_system_deployed"
 	else

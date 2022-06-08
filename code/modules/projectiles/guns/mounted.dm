@@ -205,7 +205,7 @@
 //-------------------------------------------------------
 //RR-15 mounted heavy recoilless rifle
 
-/obj/item/weapon/gun/heavyrr
+/obj/item/weapon/gun/launcher/rocket/heavyrr
 	name = "\improper RR-15 mounted heavy recoilless rifle"
 	desc = "The RR-15 mounted recoilless rifle is a non-IFF, modernized version of the L6 Wombat using 75mm. Reintroduced due to the rather close quarter nature of combat against xenomorphs, this thing will kill mostly anything on its way."
 
@@ -230,6 +230,7 @@
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	backblastdamage = FALSE
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
@@ -243,26 +244,6 @@
 
 	max_integrity = 600
 	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
-
-	///the smoke effect after firing
-	var/datum/effect_system/smoke_spread/smoke
-
-/obj/item/weapon/gun/heavyrr/Initialize(mapload, spawn_empty)
-	. = ..()
-	smoke = new(src, FALSE)
-
-/obj/item/weapon/gun/heavyrr/Destroy()
-	QDEL_NULL(smoke)
-	return ..()
-
-//Adding in the backblast. This is visual only and doesn't do any damage because the nest operator is right behind it.
-/obj/item/weapon/gun/heavyrr/apply_gun_modifiers(obj/projectile/projectile_to_fire, atom/target)
-	. = ..()
-	var/turf/blast_source = get_turf(src)
-	var/thrown_dir = REVERSE_DIR(get_dir(blast_source, target))
-	var/turf/backblast_loc = get_step(blast_source, thrown_dir)
-	smoke.set_up(0, backblast_loc)
-	smoke.start()
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
