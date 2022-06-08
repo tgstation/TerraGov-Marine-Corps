@@ -27,6 +27,10 @@
 
 #define STATUS_EFFECT_RESIN_JELLY_COATING /datum/status_effect/resin_jelly_coating
 
+#define STATUS_EFFECT_PLASMA_SURGE /datum/status_effect/plasma_surge
+
+#define STATUS_EFFECT_HEALING_INFUSION /datum/status_effect/healing_infusion
+
 /////////////
 // DEBUFFS //
 /////////////

@@ -32,13 +32,14 @@
 /obj/item/weapon/gun/energy/get_flags_magazine_features(obj/item/mag)
 	var/obj/item/cell/lasgun/cell = mag
 	return cell ? cell.flags_magazine_features : NONE
-
+//based off of basegun proc, should work.
 /obj/item/weapon/gun/energy/get_magazine_overlay(obj/item/mag)
-	return null
-
+	var/obj/item/cell/lasgun/cell = mag
+	return cell?.bonus_overlay
+//based off of basegun proc, should work.
 /obj/item/weapon/gun/energy/get_magazine_reload_delay(obj/item/mag)
-	return null
-
+	var/obj/item/cell/lasgun/cell = mag
+	return cell?.reload_delay
 
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
@@ -48,8 +49,8 @@
 	muzzle_flash = null //TO DO.
 	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
 	ammo_datum_type  = /datum/ammo/energy/taser
-	default_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle/marine)
+	default_ammo_type = /obj/item/cell/lasgun/lasrifle
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	rounds_per_shot = 500
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	gun_skill_category = GUN_SKILL_PISTOLS
@@ -84,7 +85,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
 	overcharge = FALSE
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 	aim_slowdown = 0.75
 	wield_delay = 1 SECONDS
@@ -92,43 +93,12 @@
 	muzzle_flash_color = COLOR_LASER_RED
 
 	fire_delay = 3
-	accuracy_mult = 1.5
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 80 //Heavy and unwieldy
 	damage_falloff_mult = 0.5
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
-
-/obj/item/weapon/gun/energy/lasgun/get_magazine_reload_delay(obj/item/mag)
-	var/obj/item/cell/lasgun/cell = mag
-	return cell?.reload_delay
-
-/obj/item/weapon/gun/energy/lasgun/tesla
-	name = "\improper Terra Experimental tesla shock rifle"
-	desc = "A Terra Experimental energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. Unlike the other TE Laser weapons, lasers don't come out of this weird weapon. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts. Uses standard Terra Experimental  (abbreviated as TE) power cells."
-	icon_state = "tesla"
-	item_state = "tesla"
-	icon = 'icons/Marine/gun64.dmi'
-	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
-	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
-	ammo_datum_type  = /datum/ammo/energy/tesla
-	flags_equip_slot = ITEM_SLOT_BACK
-	w_class = WEIGHT_CLASS_BULKY
-	default_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle/marine)
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
-	muzzle_flash_color = COLOR_TESLA_BLUE
-
-	rounds_per_shot = 150
-	fire_delay = 4 SECONDS
-	turret_flags = TURRET_INACCURATE
-	attachable_allowed = list(
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
-	)
 
 /obj/item/weapon/gun/energy/lasgun/unique_action(mob/user, dont_operate = FALSE)
 	QDEL_NULL(in_chamber)
@@ -167,29 +137,12 @@
 
 	return TRUE
 
-/obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
-	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	icon_state = "[base_gun_icon]_[cell_charge]"
-	update_mag_overlay()
-	update_item_state()
-
-/obj/item/weapon/gun/energy/lasgun/update_item_state(mob/user)
-	. = item_state
-	var/cell_charge = (!length(chamber_items) || rounds <= 0) ? 0 : CEILING((rounds / max((length(chamber_items) ? max_rounds : max_shells), 1)) * 100, 25)
-	item_state = "[initial(icon_state)]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
-	if(. != item_state && ishuman(user)) // what is this.
-		var/mob/living/carbon/human/human_user = user
-		if(src == human_user.l_hand)
-			human_user.update_inv_l_hand()
-		else if (src == human_user.r_hand)
-			human_user.update_inv_r_hand()
-
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
 
 /obj/item/weapon/gun/energy/lasgun/M43
 	name = "\improper M43 Sunfury Lasgun MK1"
-	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. It was the standard lasrifle for TGMC soldiers until it was replaced by the TX-73, due to its extremely modular lens system."
+	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. It was the standard lasrifle for TGMC soldiers until it was replaced by the LR-73, due to its extremely modular lens system."
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon_state = "m43"
 	item_state = "m43"
@@ -219,10 +172,10 @@
 		/obj/item/attachable/stock/lasgun,
 	)
 
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
 	starting_attachment_types = list(/obj/item/attachable/stock/lasgun)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
-
+	ammo_level_icon = "m43"
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
@@ -252,10 +205,12 @@
 	muzzleflash_iconstate = "muzzle_flash_pulse"
 	rounds_per_shot = ENERGY_STANDARD_AMMO_COST
 	muzzle_flash_color = COLOR_PULSE_BLUE
+	default_ammo_type = /obj/item/cell/lasgun/pulse
+	allowed_ammo_types = list(/obj/item/cell/lasgun/pulse)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
-
+	ammo_level_icon = "m19c4"
 	fire_delay = 8
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
@@ -282,17 +237,15 @@
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
-	name = "\improper TX-73 lasrifle MK2"
+	name = "\improper LR-73 lasrifle MK2"
 	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines."
-	force = 20 //Large and hefty! Includes stock bonus.
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx73"
 	item_state = "tx73"
 	max_shots = 50 //codex stuff
-	load_method = CELL //codex stuff
-	ammo_datum_type = /datum/ammo/energy/lasgun/M43
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
-	rounds_per_shot = 10
+	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
@@ -312,14 +265,13 @@
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
-
+	ammo_level_icon = "tx73"
 	accuracy_mult_unwielded = 0.5 //Heavy and unwieldy; you don't one hand this.
 	scatter_unwielded = 100 //Heavy and unwieldy; you don't one hand this.
 	damage_falloff_mult = 0.25
 	fire_delay = 2
-	default_ammo_type = /obj/item/cell/lasgun/lasrifle/marine
-	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle/marine)
-
+	default_ammo_type = /obj/item/cell/lasgun/lasrifle
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
 	var/list/datum/lasrifle/base/mode_list = list(
 	)
 
@@ -366,6 +318,7 @@
 	fire_delay = initial(choice.fire_delay)
 	burst_amount = initial(choice.burst_amount)
 	fire_sound = initial(choice.fire_sound)
+	rounds_per_shot = initial(choice.rounds_per_shot)
 	SEND_SIGNAL(src, COMSIG_GUN_BURST_SHOTS_TO_FIRE_MODIFIED, burst_amount)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIREDELAY_MODIFIED, fire_delay)
 	SEND_SIGNAL(src, COMSIG_GUN_FIRE_MODE_TOGGLE, initial(choice.fire_mode), user.client)
@@ -373,20 +326,66 @@
 	base_gun_icon = initial(choice.icon_state)
 	update_icon()
 	to_chat(user, initial(choice.message_to_user))
-	var/old_drain_amount = rounds_per_shot
-	rounds_per_shot = initial(choice.rounds_per_shot)
-	if(length(chamber_items))
-		adjust_current_rounds(chamber_items[current_chamber_position], old_drain_amount - rounds_per_shot)
 	user?.hud_used.update_ammo_hud(user, src)
+
 	if(!in_chamber || !length(chamber_items))
 		return
 	QDEL_NULL(in_chamber)
 
 	in_chamber = get_ammo_object(chamber_items[current_chamber_position])
 
-/obj/item/weapon/gun/energy/lasgun/lasrifle/update_item_state(mob/user) //Without this override icon states for wielded guns won't show. because lasgun overrides and this has no charge icons
-	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+//Tesla gun
+/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla
+	name = "\improper Terra Experimental tesla shock rifle"
+	desc = "A Terra Experimental energy rifle that fires balls of elecricity that shock all those near them, it is meant to drain the plasma of unidentified creatures from within, limiting their abilities. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts. Uses standard Terra Experimental (TE) power cells."
+	icon_state = "tesla"
+	item_state = "tesla"
+	icon = 'icons/Marine/gun64.dmi'
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	ammo_datum_type  = /datum/ammo/energy/tesla
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	default_ammo_type = /obj/item/cell/lasgun/lasrifle
+	allowed_ammo_types = list(/obj/item/cell/lasgun/lasrifle)
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SHOWS_AMMO_REMAINING
+	muzzle_flash_color = COLOR_TESLA_BLUE
+	ammo_level_icon = "tesla"
+	max_shots = 6 //codex stuff
+	rounds_per_shot = 100
+	fire_delay = 4 SECONDS
+	turret_flags = TURRET_INACCURATE
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
 
+	mode_list = list(
+		"Standard" = /datum/lasrifle/base/tesla_mode/standard,
+		"Focused" = /datum/lasrifle/base/tesla_mode/focused,
+	)
+
+/datum/lasrifle/base/tesla_mode/standard
+	rounds_per_shot = 100
+	ammo_datum_type = /datum/ammo/energy/tesla
+	fire_delay = 4 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	message_to_user = "You set the tesla shock rifle's power mode mode to standard."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tesla"
+
+/datum/lasrifle/base/tesla_mode/focused
+	rounds_per_shot = 100
+	ammo_datum_type = /datum/ammo/energy/tesla/focused
+	fire_delay = 4 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	message_to_user = "You set the tesla shock rifle's power mode mode to focused."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "tesla"
+	radial_icon_state = "laser_overcharge"
 
 //TE Tier 1 Series//
 
@@ -397,19 +396,16 @@
 	desc = "A Terra Experimental laser rifle, abbreviated as the TE-R. It has an integrated charge selector for normal and high settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
-	force = 20
 	icon_state = "ter"
 	item_state = "ter"
-	icon = 'icons/Marine/gun64.dmi'
-	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 50 //codex stuff
-	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
 	ammo_diff = null
 	rounds_per_shot = 12
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	turret_flags = TURRET_INACCURATE
+	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -434,9 +430,7 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
-	scatter_unwielded = 10
 	damage_falloff_mult = 0.2
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_rifle_mode/standard,
@@ -470,14 +464,11 @@
 	desc = "A TerraGov standard issue laser pistol abbreviated as TE-P. It has an integrated charge selector for normal, heat and taser settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_pistol_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Pistol Standard.ogg'
-	force = 20
 	icon_state = "tep"
 	item_state = "tep"
-	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	flags_equip_slot = ITEM_SLOT_BELT
 	max_shots = 30 //codex stuff
-	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/pistol
 	ammo_diff = null
 	rounds_per_shot = 20
@@ -499,12 +490,11 @@
 
 	akimbo_additional_delay = 0.9
 	wield_delay = 0.6 SECONDS
-	scatter = 3
+	scatter = 2
 	scatter_unwielded = 4
 	fire_delay = 0.15 SECONDS
-	accuracy_mult = 1.1
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
-	scatter_unwielded = 0
 	damage_falloff_mult = 0.2
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_pistol_mode/standard,
@@ -548,11 +538,8 @@
 	desc = "A TerraGov standard issue laser carbine, otherwise known as TE-C for short. It has an integrated charge selector for burst and scatter settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
-	force = 20
 	icon_state = "tec"
 	item_state = "tec"
-	icon = 'icons/Marine/gun64.dmi'
-	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 40 //codex stuff
 	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
@@ -560,7 +547,7 @@
 	rounds_per_shot = 15
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-
+	ammo_level_icon = "te"
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
@@ -581,15 +568,15 @@
 
 	aim_slowdown = 0.2
 	wield_delay = 0.3 SECONDS
-	scatter = 2
+	scatter = 1
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.1
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.65
-	scatter_unwielded = 15
 	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
 	mode_list = list(
 		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
 		"Automatic standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic,
@@ -628,19 +615,20 @@
 	desc = "The T-ES, a Terra Experimental standard issue laser sniper rifle, it has an integrated charge selector for normal and heat settings. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_laser_sniper_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
-	force = 20
 	icon_state = "tes"
 	item_state = "tes"
-	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 12 //codex stuff
-	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	ammo_diff = null
 	rounds_per_shot = 50
 	damage_falloff_mult = 0
 	gun_firemode = GUN_FIREMODE_SEMIAUTO
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+
+	ammo_level_icon = "te"
+	icon_overlay_x_offset = -1
+	icon_overlay_y_offset = -3
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -664,9 +652,9 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 1 SECONDS
-	accuracy_mult = 1.35
+	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.5
-	scatter_unwielded = 10
+	movement_acc_penalty_mult = 6
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_sniper_mode/heat,
@@ -696,18 +684,16 @@
 	desc = "A Terra Experimental standard issue machine laser gun, often called as the TE-M by marines. It has a fire switch for normal and efficiency modes. Uses standard Terra Experimental (abbreviated as TE) power cells. As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	reload_sound = 'sound/weapons/guns/interact/standard_machine_laser_reload.ogg'
 	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
-	force = 20
 	icon_state = "tem"
 	item_state = "tem"
-	icon = 'icons/Marine/gun64.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	max_shots = 150 //codex stuff
-	load_method = CELL //codex stuff
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser
 	ammo_diff = null
 	rounds_per_shot = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	ammo_level_icon = "te"
 
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -729,9 +715,9 @@
 
 	aim_slowdown = 1
 	wield_delay = 1.5 SECONDS
-	scatter = 4
+	scatter = 1
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 0.95
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
 	damage_falloff_mult = 0.3
@@ -783,13 +769,12 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 19,"rail_x" = 20, "rail_y" = 21, "under_x" = 30, "under_y" = 13, "stock_x" = 22, "stock_y" = 14)
-
+	ammo_level_icon = "tex"
 	aim_slowdown = 0.4
 	wield_delay = 0.5 SECONDS
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 0.5 SECONDS
-	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.3
 	mode_list = list(
@@ -814,3 +799,144 @@
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the xray rifle's charge mode to piercing mode."
 	radial_icon_state = "laser"
+
+//Martian death rays
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite
+	name = "volkite gun"
+	desc = "you shouldn't see this gun."
+	icon_state = "charger"
+	item_state = "charger"
+	fire_sound = 'sound/weapons/guns/fire/volkite_1.ogg'
+	dry_fire_sound = 'sound/weapons/guns/misc/error.ogg'
+	unload_sound = 'sound/weapons/guns/interact/volkite_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/volkite_reload.ogg'
+	max_shots = 50
+	ammo_datum_type = /datum/ammo/energy/volkite
+	rounds_per_shot = 24
+	default_ammo_type = /obj/item/cell/lasgun/volkite
+	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite)
+	gun_firemode = GUN_FIREMODE_AUTOMATIC
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_allowed = list()
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+
+	accuracy_mult = 1
+	scatter = -2
+	recoil = 0
+	accuracy_mult_unwielded = 0.5
+	scatter_unwielded = 25
+	recoil_unwielded = 3
+
+	aim_slowdown = 0.25
+	wield_delay = 0.4 SECONDS
+	wield_penalty = 0.2 SECONDS
+
+	damage_falloff_mult = 0.25
+	fire_delay = 0.2 SECONDS
+	mode_list = list()
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
+	name = "\improper volkite charger"
+	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
+	icon_state = "charger"
+	item_state = "charger"
+	ammo_level_icon = "charger"
+	max_shots = 45
+	rounds_per_shot = 24
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 26, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	scatter = 3
+	accuracy_mult_unwielded = 0.9
+	scatter_unwielded = 10
+	recoil_unwielded = 1
+	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/gyro)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
+	name = "\improper volkite caliver"
+	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
+	icon_state = "caliver"
+	item_state = "caliver"
+	ammo_level_icon = "caliver"
+	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
+	max_shots = 50
+	ammo_datum_type = /datum/ammo/energy/volkite/medium
+	rounds_per_shot = 36
+	default_ammo_type = /obj/item/cell/lasgun/volkite/highcap
+	allowed_ammo_types = list(
+		/obj/item/cell/lasgun/volkite/highcap,
+		/obj/item/cell/lasgun/volkite/powerpack,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
+	)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 33, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	accuracy_mult = 1.1
+	aim_slowdown = 0.45
+	wield_delay	= 0.7 SECONDS
+	fire_delay = 0.25 SECONDS
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/magharness
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/somvet
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin
+	name = "\improper volkite culverin"
+	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The culverin is the largest man portable example of volkite weaponry, and can lay down a staggering torrent of fire due to its linked back-mounted powerpack. Drag click the powerpack to the gun to load."
+	icon_state = "culverin"
+	item_state = "culverin"
+	ammo_level_icon = null
+	max_shots = 120
+	ammo_datum_type = /datum/ammo/energy/volkite/heavy
+	rounds_per_shot = 30
+	default_ammo_type = null
+	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/powerpack)
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+	)
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_WIELDED_FIRING_ONLY
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
+	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 17, "rail_y" = 22, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
+	aim_slowdown = 1
+	wield_delay	= 1.2 SECONDS
+	fire_delay = 0.15 SECONDS
+	scatter = 3
+	accuracy_mult_unwielded = 0.4
+	scatter_unwielded = 35
+	recoil_unwielded = 5
+	movement_acc_penalty_mult = 6
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)

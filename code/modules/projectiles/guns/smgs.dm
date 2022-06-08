@@ -8,7 +8,6 @@
 	load_method = MAGAZINE //codex
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY
-	movement_acc_penalty_mult = 2
 	wield_delay = 0.4 SECONDS
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -24,13 +23,15 @@
 	fire_delay = 0.3 SECONDS
 	burst_amount = 3
 	recoil_unwielded = 0.5
+	akimbo_additional_delay = 0.2
+	movement_acc_penalty_mult = 3
 
 //-------------------------------------------------------
-// T-19 Machinepistol. It fits here more.
+// MP-19 Machinepistol. It fits here more.
 
 /obj/item/weapon/gun/smg/standard_machinepistol
-	name = "\improper T-19 machinepistol"
-	desc = "The T-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
+	name = "\improper MP-19 machinepistol"
+	desc = "The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	item_state = "t19"
 	caliber = CALIBER_10X20_CASELESS //codex
@@ -59,15 +60,15 @@
 
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
 
-	accuracy_mult = 1.2
-	accuracy_mult_unwielded = 0.95
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.9
 	recoil_unwielded = 0
 	scatter = 0
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 4 //Made to be better used one handed.
+	scatter_unwielded = 4
 	aim_slowdown = 0.15
 	burst_amount = 5
-	movement_acc_penalty_mult = 0
+	movement_acc_penalty_mult = 2
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
@@ -75,8 +76,8 @@
 // War is hell. Not glorious.
 
 /obj/item/weapon/gun/smg/standard_smg
-	name = "\improper T-90 submachinegun"
-	desc = "The T-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
+	name = "\improper SMG-90 submachinegun"
+	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
 	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
 	icon_state = "t90"
 	item_state = "t90"
@@ -109,13 +110,12 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55
-
-	accuracy_mult = 1.15
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.9
-	scatter = 2
+	scatter = 1
 	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 8
-	aim_slowdown = 0.25
+	aim_slowdown = 0.2
 	burst_amount = 0
 
 	placed_overlay_iconstate = "t90"
@@ -130,8 +130,8 @@
 //M-25 SMG
 
 /obj/item/weapon/gun/smg/m25
-	name = "\improper MR-25 submachinegun"
-	desc = "The RivArms MR-25 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
+	name = "\improper SMG-25 submachinegun"
+	desc = "The RivArms SMG-25 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m25"
 	item_state = "m25"
@@ -165,18 +165,18 @@
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 14, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 16)
 
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.9
-	scatter = 7
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.95
+	scatter = 4
 	fire_delay = 0.2 SECONDS
-	scatter_unwielded = 15
+	scatter_unwielded = 10
 	aim_slowdown = 0.15
 	burst_amount = 3
 
 
 /obj/item/weapon/gun/smg/m25/elite
-	name = "\improper MR-25B2 submachinegun"
-	desc = "The RivArms MR-25 submachinegun, B2 variant. Has an integrated barrel charger. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
+	name = "\improper SMG-25B2 submachinegun"
+	desc = "The RivArms SMG-25 submachinegun, B2 variant. Has an integrated barrel charger. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m25b2"
 	item_state = "m25b2"
 	fire_sound = 'sound/weapons/guns/fire/smg_heavy.ogg'
@@ -197,11 +197,11 @@
 	flags_item_map_variant = NONE
 
 	burst_amount = 4
-	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 0.95
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 1
 	damage_mult = 1.2
-	aim_slowdown = 0.4
-	scatter = 4
+	aim_slowdown = 0.2
+	scatter = 3
 
 /obj/item/weapon/gun/smg/m25/elite/pmc
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -212,11 +212,11 @@
 	starting_attachment_types = list(/obj/item/attachable/suppressor) //Tacticool
 
 //-------------------------------------------------------
-//MP27, based on the grease gun
+//SMG-27, based on the grease gun
 
 /obj/item/weapon/gun/smg/mp7
-	name = "\improper MP27 submachinegun"
-	desc = "An archaic design going back hundreds of years, the MP27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms, though it somehow got into the hands of colonial rebels."
+	name = "\improper SMG-27 submachinegun"
+	desc = "An archaic design going back hundreds of years, the SMG-27 was common in its day. Today it sees limited use as cheap computer-printed replicas or family heirlooms, though it somehow got into the hands of colonial rebels."
 	icon_state = "mp7"
 	item_state = "mp7"
 	caliber = CALIBER_46X30 //codex
@@ -237,10 +237,9 @@
 	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 4
-	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 1.25
-	scatter = 12
-	scatter_unwielded = 24
+	accuracy_mult_unwielded = 0.9
+	scatter = 5
+	scatter_unwielded = 10
 	damage_mult = 1.2
 
 //-------------------------------------------------------
@@ -262,9 +261,9 @@
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
 	burst_delay = 0.2 SECONDS
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.75
-	scatter_unwielded = 20
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.8
+	scatter_unwielded = 8
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.3
 
@@ -319,7 +318,7 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 6
 	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 0.75
+	accuracy_mult_unwielded = 0.8
 	scatter = 5
 	scatter_unwielded = 15
 	aim_slowdown = 0.3
@@ -330,7 +329,7 @@
 //GENERIC UZI //Based on the uzi submachinegun, of course.
 
 /obj/item/weapon/gun/smg/uzi
-	name = "\improper MP-2 submachinegun"
+	name = "\improper SMG-2 submachinegun"
 	desc = "A cheap, reliable design and manufacture make this ubiquitous submachinegun useful despite the age. Put the fire selector to full auto for maximum firepower. Use two if you really want to go ham."
 	icon_state = "uzi"
 	item_state = "uzi"
@@ -347,7 +346,6 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 4
 	accuracy_mult_unwielded = 0.9
-	accuracy_mult = 1
 	scatter = 0
 	scatter_unwielded = 4
 	aim_slowdown = 0.15

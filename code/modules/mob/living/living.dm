@@ -337,13 +337,13 @@
 						to_chat(src, span_warning("[L] is restraining [P], you cannot push past."))
 					return
 
-		if(!L.buckled && !L.anchored)
+		if(!L.buckled && !L.anchored && !moving_diagonally)
 			var/mob_swap = FALSE
 			//the puller can always swap with its victim if on grab intent
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
 				mob_swap = TRUE
 			//restrained people act if they were on 'help' intent to prevent a person being pulled from being seperated from their puller
-			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
+			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP) && L.mob_size < MOB_SIZE_XENO)
 				mob_swap = TRUE
 			else if((mob_size >= MOB_SIZE_XENO || mob_size > L.mob_size) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap = TRUE
@@ -461,12 +461,12 @@
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
-/mob/proc/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/proc/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash, duration)
 	return
 
-/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash, duration = 40)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
-		overlay_fullscreen_timer(40, 20, "flash", type)
+		overlay_fullscreen_timer(duration, 20, "flash", type)
 		return TRUE
 
 /mob/living/proc/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
@@ -634,6 +634,8 @@ below 100 is not dizzy
 		return
 
 	update_sight()
+	if (stat == DEAD)
+		animate(client, pixel_x = 0, pixel_y = 0)
 	if(client.eye && client.eye != src)
 		var/atom/AT = client.eye
 		AT.get_remote_view_fullscreens(src)
@@ -641,6 +643,10 @@ below 100 is not dizzy
 		clear_fullscreen("remote_view", 0)
 	update_pipe_vision()
 
+/mob/living/update_sight()
+	if(SSticker.current_state == GAME_STATE_FINISHED && !is_centcom_level(z)) //Reveal ghosts to remaining survivors
+		see_invisible = SEE_INVISIBLE_OBSERVER
+	return ..()
 
 /mob/living/proc/can_track(mob/living/user)
 	//basic fast checks go first. When overriding this proc, I recommend calling ..() at the end.
@@ -671,7 +677,7 @@ below 100 is not dizzy
 		return FALSE
 	var/turf/our_tile = get_turf(src)
 	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, invisibility)
+	var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, 0, invisibility)
 	animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE

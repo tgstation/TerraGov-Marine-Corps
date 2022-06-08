@@ -3,6 +3,7 @@
 	icon_state = "blank"
 	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
 	blend_mode = BLEND_OVERLAY
+	plane = LOWEST_EVER_PLANE
 	var/show_alpha = 255
 	var/hide_alpha = 0
 
@@ -161,22 +162,28 @@
 
 /obj/screen/plane_master/o_light_visual
 	name = "overlight light visual plane master"
-	layer = O_LIGHTING_VISUAL_LAYER
 	plane = O_LIGHTING_VISUAL_PLANE
 	render_target = O_LIGHTING_VISUAL_RENDER_TARGET
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	blend_mode = BLEND_MULTIPLY
-	render_relay_plane = null
-
+	blend_mode_override = BLEND_MULTIPLY
 
 /obj/screen/plane_master/fullscreen
 	name = "fullscreen alert plane"
 	plane = FULLSCREEN_PLANE
 	render_relay_plane = RENDER_PLANE_NON_GAME
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/screen/plane_master/gravpulse
 	name = "gravpulse plane"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = GRAVITY_PULSE_PLANE
 	render_target = GRAVITY_PULSE_RENDER_TARGET
+	blend_mode = BLEND_ADD
+	blend_mode_override = BLEND_ADD
 	render_relay_plane = null
+
+/obj/screen/plane_master/balloon_chat
+	name = "balloon alert plane"
+	plane = BALLOON_CHAT_PLANE
+	render_relay_plane = RENDER_PLANE_NON_GAME

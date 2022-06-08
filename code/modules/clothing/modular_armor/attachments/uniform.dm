@@ -2,6 +2,7 @@
 //Uniform Storage.
 /obj/item/armor_module/storage/uniform
 	slot = ATTACHMENT_SLOT_UNIFORM
+	w_class = WEIGHT_CLASS_BULKY
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB|ATTACH_SEPERATE_MOB_OVERLAY|ATTACH_NO_HANDS
 	icon = 'icons/obj/clothing/ties.dmi'
 	attach_icon = 'icons/obj/clothing/ties_overlay.dmi'
@@ -35,6 +36,22 @@
 	desc = "Robust black synthcotton vest with lots of pockets to hold whatever you need, but cannot hold in hands."
 	icon_state = "vest_black"
 	storage = /obj/item/storage/internal/vest
+
+/obj/item/armor_module/storage/uniform/black_vest/som/Initialize()
+	. = ..()
+	new /obj/item/binoculars(storage)
+	new /obj/item/tool/crowbar/red(storage)
+	new /obj/item/radio(storage)
+	new /obj/item/tool/extinguisher/mini(storage)
+	new /obj/item/weapon/gun/pistol/standard_pocketpistol(storage)
+
+/obj/item/armor_module/storage/uniform/black_vest/som_vet/Initialize()
+	. = ..()
+	new /obj/item/tool/crowbar/red(storage)
+	new /obj/item/radio(storage)
+	new /obj/item/tool/extinguisher/mini(storage)
+	new /obj/item/ammo_magazine/handful/buckshot(storage)
+	new /obj/item/ammo_magazine/handful/buckshot(storage)
 
 /obj/item/storage/internal/vest
 	storage_slots = 5
@@ -104,6 +121,15 @@
 	desc = "A clean white Nylon vest with large pockets specially designed for holding common medical supplies."
 	storage = /obj/item/storage/internal/white_vest/medic
 
+/obj/item/armor_module/storage/uniform/white_vest/medic/som/Initialize()
+	. = ..()
+	new /obj/item/roller(storage)
+	new /obj/item/bodybag/cryobag(storage)
+	new /obj/item/tweezers (storage)
+	new /obj/item/storage/pill_bottle/spaceacillin(storage)
+	new /obj/item/storage/pill_bottle/alkysine(storage)
+	new /obj/item/storage/pill_bottle/imidazoline(storage)
+
 /obj/item/storage/internal/white_vest/medic
 	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
 	can_hold = list(
@@ -122,33 +148,25 @@
 		/obj/item/tweezers,
 	)
 
-/obj/item/armor_module/storage/uniform/knifeharness
-	name = "decorated harness"
-	desc = "A heavily decorated harness of sinew and leather with two knife-loops."
-	icon_state = "unathiharness2"
-	storage = /obj/item/storage/internal/knifeharness
-
-/obj/item/storage/internal/knifeharness
-	storage_slots = 2
-	max_storage_space = 4
-	can_hold = list(
-		/obj/item/weapon/unathiknife,
-		/obj/item/tool/kitchen/utensil/knife,
-		/obj/item/tool/kitchen/utensil/pknife,
-		/obj/item/tool/kitchen/knife,
-		/obj/item/tool/kitchen/knife/ritual,
-	)
-
-/obj/item/armor_module/storage/uniform/knifeharness/Initialize()
-	. = ..()
-	new /obj/item/weapon/unathiknife(storage)
-	new /obj/item/weapon/unathiknife(storage)
-
 /obj/item/armor_module/storage/uniform/holster
 	name = "shoulder holster"
 	desc = "A handgun holster"
 	icon_state = "holster"
 	storage = /obj/item/storage/internal/holster
+
+/obj/item/armor_module/storage/uniform/holster/freelancer
+
+/obj/item/armor_module/storage/uniform/holster/freelancer/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/g22(storage)
+
+/obj/item/armor_module/storage/uniform/holster/vp/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/vp70(storage)
+
+/obj/item/armor_module/storage/uniform/holster/highpower/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/highpower(storage)
 
 /obj/item/storage/internal/holster
 	storage_slots = 1
@@ -157,6 +175,7 @@
 		/obj/item/weapon/gun/pistol,
 		/obj/item/weapon/gun/revolver,
 		/obj/item/weapon/gun/smg/standard_machinepistol,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
 	)
 
 /obj/item/armor_module/storage/uniform/holster/armpit

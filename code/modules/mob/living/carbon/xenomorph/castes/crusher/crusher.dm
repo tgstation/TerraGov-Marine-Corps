@@ -18,13 +18,6 @@
 	old_x = -16
 	old_y = -3
 
-/mob/living/carbon/xenomorph/crusher/ex_act(severity)
-
-	flash_act()
-
-	if(severity == EXPLODE_DEVASTATE)
-		adjustBruteLoss(rand(200, 300), updating_health = TRUE)
-
 
 /mob/living/carbon/xenomorph/crusher/handle_special_state()
 	if(is_charging >= CHARGE_ON)
@@ -47,7 +40,7 @@
 	if(!isxeno(pulling))
 		return NONE
 	var/mob/living/carbon/xenomorph/grabbed = pulling
-	if(stat == CONSCIOUS && grabbed.xeno_caste.caste_flags & CASTE_CAN_RIDE_CRUSHER)
+	if(stat == CONSCIOUS && grabbed.xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER)
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
 		INVOKE_ASYNC(src, .proc/carry_xeno, grabbed)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK

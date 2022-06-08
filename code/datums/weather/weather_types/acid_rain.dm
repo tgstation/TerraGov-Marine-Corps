@@ -9,14 +9,14 @@
 	telegraph_overlay = "rain_med"
 
 	weather_message = span_highdanger("<i>Acidic rain pours down around you! Get inside!</i>")
-	weather_overlay = "rain_high"
+	weather_overlay = "acid_rain"
 	weather_duration_lower = 600
 	weather_duration_upper = 1500
 
 	end_duration = 100
 	end_message = span_boldannounce("The downpour gradually slows to a light shower. It should be safe outside now.")
 	end_sound = 'sound/weather/acidrain/acidrain_end.ogg'
-	end_overlay = "rain_med"
+	end_overlay = "rain_low"
 
 	area_type = /area
 	protect_indoors = TRUE
@@ -48,7 +48,7 @@
 /datum/weather/acid_rain/weather_act(mob/living/L)
 	if(L.stat == DEAD)
 		return
-	var/resist = L.getarmor(null, "acid")
+	var/resist = L.get_soft_armor("acid")
 	if(prob(max(0,100-resist)))
 		L.adjustFireLoss(7)
 		to_chat(L, span_boldannounce("You feel the acid rain melting you away!"))
@@ -56,10 +56,10 @@
 /datum/weather/acid_rain/harmless
 
 	telegraph_message = span_boldannounce("Thunder rumbles far above. You hear droplets drumming against the canopy.")
-	telegraph_overlay = "rain_low"
+	telegraph_overlay = "rain_med"
 
 	weather_message = span_boldannounce("<i>Rain pours down around you!</i>")
-	weather_overlay = "rain_med"
+	weather_overlay = "rain_high"
 
 	end_message = span_boldannounce("The downpour gradually slows to a light shower.")
 	end_overlay = "rain_low"

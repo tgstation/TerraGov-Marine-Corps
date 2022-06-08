@@ -44,6 +44,8 @@
 	AddElement(/datum/element/accelerate_on_crossed)
 	if(!swapped)
 		update_neighbours()
+	for(var/mob/living/living_mob in loc.contents)
+		SEND_SIGNAL(living_mob, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, src)
 
 /obj/effect/alien/weeds/Destroy()
 	parent_node = null
@@ -56,10 +58,10 @@
 	return ..()
 
 /obj/effect/alien/weeds/examine(mob/user)
-	..()
+	. = ..()
 	var/turf/T = get_turf(src)
 	if(isfloorturf(T))
-		T.ceiling_desc(user)
+		. += T.ceiling_desc()
 
 /obj/effect/alien/weeds/proc/update_neighbours(turf/U)
 	if(!U)

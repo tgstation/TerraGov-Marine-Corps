@@ -13,7 +13,7 @@
 2022-01-02:
   novaepee:
   - rscadd: Queen gets neurotoxin sting.
-  - qol: PMC SG spawns with mag harness on T-29
+  - qol: PMC SG spawns with mag harness on SG-29
   - bugfix: Big Red LZ2 NOW doesn't let Alamo clip through wall.
 2022-01-04:
   BraveMole:
@@ -228,7 +228,7 @@
   - balance: neurotoxin no longer purges. Removed neuro sting from shrike, queen and
       drone.
   RenovatedAtol:
-  - rscadd: T-29 drums factory
+  - rscadd: SG-29 drums factory
   - rscadd: 'T-81 magazine factory tweak: moved around tx8 ammo factory recipe'
   - rscdel: old tx8 ammo recipe
   SplinterGP:
@@ -458,3 +458,27 @@
   TiviPlus:
   - rscdel: Removed defender ricochet
   - bugfix: fixed invis weather
+2022-01-31:
+  Arctrooper8:
+  - balance: Contrand has now been removed from all vendors, their contents are now
+      (mostly) available without being hacked.
+  - rscdel: Deleted Tool storage vendor at JPR's request, and the general circuit
+      (not at JPR's request for that one though)
+  - qol: Engineers now start with an APC circuit and have had the iron build menu
+      improved, office chairs now have a description too!
+  - refactor: Makes vending lists nicer to look at while removing contraband lists
+  BraveMole:
+  - bugfix: Fix spit timing
+  - qol: Buy upgrade button in hive blessing menu no longer disabled
+  - balance: Wraith's time stop range down to a 3x3 square
+  - balance: Plasma cost down to 150 from 200
+  - balance: Shock is stacking faster but also disappearing faster
+  Lewdcifer:
+  - qol: Psychic Link will not cancel itself due to distance, instead toggles on/off
+  RipGrayson:
+  - rscadd: Implemented Rohesie's smoothing system.
+  - imageadd: Created new cave wall sprites.
+  - imageadd: Ported jungle wall sprites from CM.
+  - imageadd: Ported cult wall sprites from CM.
+  - imageadd: Ported a set of wall sprites from Eris to replace old Sulaco walls.
+  - imagedel: Deleted old Sulaco wall graphics.

@@ -1,0 +1,527 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aw" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"aU" = (
+/obj/structure/table,
+/obj/item/pizzabox/margherita,
+/obj/item/pizzabox/meat{
+	pixel_x = -5;
+	pixel_y = 12
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"aW" = (
+/obj/machinery/door_control{
+	dir = 1;
+	id = "Dormitories";
+	name = "Storm Shutters"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"aY" = (
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"bM" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"cC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/item/trash/chunk,
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"dI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"eI" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"gf" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"gU" = (
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"iV" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"jz" = (
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"mn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"mI" = (
+/obj/structure/bed/chair,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"nc" = (
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"nU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/reagent_dispensers/beerkeg,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"pl" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"pF" = (
+/obj/structure/table,
+/obj/item/ashtray/bronze,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"pH" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"pR" = (
+/obj/item/trash/chunk,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"rL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"tW" = (
+/obj/item/megaphone,
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"up" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"uE" = (
+/obj/structure/table,
+/obj/item/toy/deck,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"uN" = (
+/obj/item/radio/intercom{
+	anyai = 1;
+	freerange = 1;
+	frequency = 1469;
+	name = "General Listening Channel"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"vl" = (
+/obj/machinery/vending/cola,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"zx" = (
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"AW" = (
+/obj/structure/table,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"BF" = (
+/obj/item/trash/chunk,
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"BU" = (
+/obj/machinery/power/apc{
+	name = "Fitness APC"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"Ck" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"Dh" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"Ep" = (
+/obj/structure/table,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"EO" = (
+/obj/machinery/light{
+	dir = 1;
+	icon_state = "tube1"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"FL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/item/trash/chunk{
+	pixel_y = 5
+	},
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"FW" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"Gi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/chunk{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"Hb" = (
+/obj/machinery/vending/cigarette/colony,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"Hf" = (
+/obj/effect/decal/cleanable/blood{
+	icon_state = "xgib4"
+	},
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"Ii" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"Ip" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"IE" = (
+/obj/structure/table,
+/obj/item/trash/plate,
+/obj/item/reagent_containers/food/snacks/meatpizzaslice,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"Ji" = (
+/obj/machinery/alarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -30
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"Jn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/machinery/vending/snack{
+	icon_state = "snack-broken"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"Kj" = (
+/obj/structure/noticeboard{
+	dir = 1;
+	pixel_y = -27
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"Ni" = (
+/obj/item/trash/chunk{
+	pixel_x = 3;
+	pixel_y = -4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"Nk" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"NO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"Pr" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"TK" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/trash/plate,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"TX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"Xw" = (
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"Yz" = (
+/obj/structure/table,
+/obj/item/storage/donut_box/empty,
+/turf/open/floor,
+/area/bigredv2/outside/dorms)
+"YD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"Zn" = (
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+"ZZ" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/grimy{
+	},
+/area/bigredv2/outside/dorms)
+
+(1,1,1) = {"
+Pr
+gf
+Pr
+Pr
+Pr
+Pr
+Ii
+"}
+(2,1,1) = {"
+TK
+Ip
+pH
+Ip
+pR
+Ip
+rL
+"}
+(3,1,1) = {"
+aY
+jz
+gU
+pH
+gU
+pH
+dI
+"}
+(4,1,1) = {"
+gU
+gU
+gU
+Ip
+gU
+Ip
+TX
+"}
+(5,1,1) = {"
+gU
+gU
+gU
+gU
+gU
+gU
+Jn
+"}
+(6,1,1) = {"
+gU
+pH
+eI
+eI
+gU
+gU
+Hb
+"}
+(7,1,1) = {"
+gU
+mI
+uE
+Ep
+bM
+gU
+vl
+"}
+(8,1,1) = {"
+gU
+mI
+pF
+AW
+FW
+Pr
+aw
+"}
+(9,1,1) = {"
+gU
+mI
+Ep
+IE
+bM
+gU
+TX
+"}
+(10,1,1) = {"
+gU
+mI
+Ep
+Ep
+bM
+gU
+Kj
+"}
+(11,1,1) = {"
+BU
+mI
+Yz
+aU
+bM
+gU
+aW
+"}
+(12,1,1) = {"
+gU
+pH
+Ck
+Ck
+gU
+pH
+TX
+"}
+(13,1,1) = {"
+gU
+gU
+nU
+nU
+nc
+Ip
+TX
+"}
+(14,1,1) = {"
+gU
+Zn
+up
+up
+up
+up
+Ji
+"}
+(15,1,1) = {"
+EO
+Xw
+ZZ
+Xw
+tW
+up
+TX
+"}
+(16,1,1) = {"
+gU
+BF
+iV
+NO
+zx
+NO
+Nk
+"}
+(17,1,1) = {"
+gU
+Ni
+Hf
+Gi
+YD
+up
+Dh
+"}
+(18,1,1) = {"
+pH
+pl
+FL
+cC
+mn
+Xw
+TX
+"}
+(19,1,1) = {"
+gU
+TX
+gU
+gU
+uN
+gU
+TX
+"}

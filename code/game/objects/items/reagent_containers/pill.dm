@@ -5,7 +5,7 @@
 /obj/item/reagent_containers/pill
 	name = "pill"
 	icon = 'icons/obj/items/chemistry.dmi'
-	icon_state = null
+	icon_state = "pill1"
 	item_state = "pill"
 	possible_transfer_amounts = null
 	init_reagent_flags = AMOUNT_SKILLCHECK
@@ -16,7 +16,7 @@
 
 /obj/item/reagent_containers/pill/Initialize()
 	. = ..()
-	if(!icon_state)
+	if(icon_state == "pill1")
 		icon_state = pill_id ? GLOB.randomized_pill_icons[pill_id] : pick(GLOB.randomized_pill_icons)
 
 /obj/item/reagent_containers/pill/attack_self(mob/user as mob)
@@ -179,7 +179,7 @@
 
 /obj/item/reagent_containers/pill/zoom
 	pill_desc = "A Zoom pill! Gotta go fast!"
-	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyperzine = 5, /datum/reagent/consumable/nutriment = 3)
+	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyronalin = 5, /datum/reagent/consumable/nutriment = 3)
 	pill_id = 14
 
 /obj/item/reagent_containers/pill/russian_red

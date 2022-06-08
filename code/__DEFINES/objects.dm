@@ -85,11 +85,7 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 //plasma cutter
 
-#define PLASMACUTTER_MIN_MOD 0.01
 #define PLASMACUTTER_VLOW_MOD 0.1
-#define PLASMACUTTER_LOW_MOD 0.5
-#define PLASMACUTTER_HIGH_MOD 2
-#define PLASMACUTTER_VHIGH_MOD 3
 #define PLASMACUTTER_CUT_DELAY 30
 #define PLASMACUTTER_RESIN_MULTIPLIER 2
 #define PLASMACUTTER_BASE_COST 1000

@@ -1,14 +1,39 @@
 //Xeno structure flags
 #define IGNORE_WEED_REMOVAL (1<<0)
 #define HAS_OVERLAY (1<<1)
+#define CRITICAL_STRUCTURE (1<<2)
 
-//Weeds define
+//Weeds defines
 #define WEED "weed sac"
 #define STICKY_WEED "sticky weed sac"
 #define RESTING_WEED "resting weed sac"
+#define AUTOMATIC_WEEDING "repeating"
+
+//Pheromone defines
+#define RECOVERY "Recovery"
+#define WARDING "Warding"
+#define FRENZY "Frenzy"
 
 #define XENO_TURRET_ACID_ICONSTATE "acid_turret"
 #define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
+
+//Plant defines
+#define HEAL_PLANT "life fruit"
+#define ARMOR_PLANT "hard fruit"
+#define PLASMA_PLANT "power fruit"
+#define STEALTH_PLANT "night shade"
+#define STEALTH_PLANT_PASSIVE_CAMOUFLAGE_ALPHA 64
+
+//Resin defines
+#define RESIN_WALL "resin wall"
+#define STICKY_RESIN "sticky resin"
+#define RESIN_DOOR "resin door"
+
+//Xeno reagents defines
+#define DEFILER_NEUROTOXIN "Neurotoxin"
+#define DEFILER_HEMODILE "Hemodile"
+#define DEFILER_TRANSVITOX "Transvitox"
+#define DEFILER_OZELOMELYN "Ozelomelyn"
 
 #define TRAP_HUGGER "hugger"
 #define TRAP_SMOKE_NEURO "neurotoxin gas"
@@ -32,10 +57,18 @@ GLOBAL_LIST_INIT(weed_prob_list, list(
 		))
 
 //List of weed images
-GLOBAL_LIST_INIT(weed_images_list,  list(
+GLOBAL_LIST_INIT(weed_images_list, list(
 		WEED = image('icons/mob/actions.dmi', icon_state = WEED),
 		STICKY_WEED = image('icons/mob/actions.dmi', icon_state = STICKY_WEED),
 		RESTING_WEED = image('icons/mob/actions.dmi', icon_state = RESTING_WEED),
+		AUTOMATIC_WEEDING = image('icons/mob/actions.dmi', icon_state = AUTOMATIC_WEEDING)
+		))
+
+//List of pheromone images
+GLOBAL_LIST_INIT(pheromone_images_list, list(
+		RECOVERY = image('icons/mob/actions.dmi', icon_state = RECOVERY),
+		WARDING = image('icons/mob/actions.dmi', icon_state = WARDING),
+		FRENZY = image('icons/mob/actions.dmi', icon_state = FRENZY),
 		))
 
 //List of Defiler toxin types
@@ -46,30 +79,41 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 		/datum/reagent/toxin/xeno_ozelomelyn,
 		))
 
+//List of toxins improving defile's damage
+GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
+		/datum/reagent/toxin/xeno_ozelomelyn,
+		/datum/reagent/toxin/xeno_hemodile,
+		/datum/reagent/toxin/xeno_transvitox,
+		/datum/reagent/toxin/xeno_neurotoxin
+		)))
+
+//List of plant types
+GLOBAL_LIST_INIT(plant_type_list, list(
+		/obj/structure/xeno/plant/heal_fruit,
+		/obj/structure/xeno/plant/armor_fruit,
+		/obj/structure/xeno/plant/plasma_fruit,
+		/obj/structure/xeno/plant/stealth_plant
+		))
+
+//List of plant images
+GLOBAL_LIST_INIT(plant_images_list, list(
+		HEAL_PLANT = image('icons/Xeno/plants.dmi', icon_state = "heal_fruit"),
+		ARMOR_PLANT = image('icons/Xeno/plants.dmi', icon_state = "armor_fruit"),
+		PLASMA_PLANT = image('icons/Xeno/plants.dmi', icon_state = "plasma_fruit"),
+		STEALTH_PLANT = image('icons/Xeno/plants.dmi', icon_state = "stealth_plant")
+		))
+
+//List of resin structure images
+GLOBAL_LIST_INIT(resin_images_list, list(
+		RESIN_WALL = image('icons/mob/actions.dmi', icon_state = RESIN_WALL),
+		STICKY_RESIN = image('icons/mob/actions.dmi', icon_state = STICKY_RESIN),
+		RESIN_DOOR = image('icons/mob/actions.dmi', icon_state = RESIN_DOOR)
+		))
+
 //xeno upgrade flags
 ///Message the hive when we buy this upgrade
 #define UPGRADE_FLAG_MESSAGE_HIVE (1<<0)
 #define UPGRADE_FLAG_ONETIME (1<<0)
-
-
-//xeno primordial defines
-#define PRIMORDIAL_QUEEN "Primordial Queen"
-#define PRIMORDIAL_SHRIKE "Primordial Shrike"
-#define PRIMORDIAL_DEFILER "Primordial Defiler"
-#define PRIMORDIAL_SENTINEL "Primordial Sentinel"
-#define PRIMORDIAL_SPITTER "Primordial Spitter"
-#define PRIMORDIAL_RAVAGER "Primordial Ravager"
-#define PRIMORDIAL_CRUSHER "Primordial Crusher"
-#define PRIMORDIAL_GORGER "Primordial Gorger"
-#define PRIMORDIAL_HUNTER "Primordial Hunter"
-#define PRIMORDIAL_DEFENDER "Primordial Defender"
-#define PRIMORDIAL_RUNNER "Primordial Runner"
-#define PRIMORDIAL_WRAITH "Primordial Wraith"
-#define PRIMORDIAL_HIVELORD "Primordial Hivelord"
-#define PRIMORDIAL_WARRIOR "Primordial Warrior"
-#define PRIMORDIAL_BULL "Primordial Bull"
-#define PRIMORDIAL_BOILER "Primordial Boiler"
-#define PRIMORDIAL_PRAETORIAN "Primordial Praetorian"
 
 #define GHOSTS_CAN_TAKE_MINIONS "Smart Minions"
 

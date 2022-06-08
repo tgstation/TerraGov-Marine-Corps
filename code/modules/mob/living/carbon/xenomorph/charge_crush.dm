@@ -278,7 +278,8 @@
 
 		if(precrush > 0)
 			log_combat(charger, crushed_living, "xeno charged")
-			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, crushed_living.run_armor_check(BODY_ZONE_CHEST, "melee"), updating_health = TRUE) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
+			//There is a chance to do enough damage here to gib certain mobs. Better update immediately.
+			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, crushed_living.get_soft_armor("melee", BODY_ZONE_CHEST), updating_health = TRUE)
 			if(QDELETED(crushed_living))
 				charger.visible_message(span_danger("[charger] anihilates [preserved_name]!"),
 				span_xenodanger("We anihilate [preserved_name]!"))
@@ -321,6 +322,7 @@
 
 
 /datum/action/xeno_action/ready_charge/bull_charge
+	action_icon_state = "bull_ready_charge"
 	charge_type = CHARGE_BULL
 	speed_per_step = 0.15
 	steps_for_charge = 5
@@ -361,9 +363,9 @@
 			crush_sound = "alien_tail_attack"
 			to_chat(owner, span_notice("Now goring on impact."))
 
-/datum/action/xeno_action/ready_charge/bull_charge/agile_charge
-	agile_charge = TRUE
-
+/datum/action/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()
+	var/mob/living/carbon/xenomorph/X = owner
+	agile_charge = (X.upgrade == XENO_UPGRADE_FOUR)
 
 // ***************************************
 // *********** Pre-Crush

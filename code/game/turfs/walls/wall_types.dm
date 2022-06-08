@@ -60,6 +60,7 @@
 	walltype = "gwall"
 	resistance_flags = RESIST_ALL
 
+
 /turf/closed/wall/mainship/gray/handle_icon_junction(junction)
 	if (!walltype)
 		return
@@ -78,6 +79,12 @@
 
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
 	smoothing_groups = SMOOTH_CANTERBURY
+
+/turf/closed/wall/mainship/white/outer
+	name = "outer hull"
+	desc = "A huge chunk of metal used to seperate space from the ship"
+	icon_state = "wwall0"
+	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/mainship/research/can_be_dissolved()
 	return FALSE
@@ -242,6 +249,9 @@
 	return
 
 /turf/closed/wall/indestructible/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter)) //needed for user feedback, if not included the user will not receive a message when trying plasma cutter wall/indestructible turfs
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
+		to_chat(user, span_warning("[P] can't cut through this!"))
 	return
 
 /turf/closed/wall/indestructible/can_be_dissolved()
@@ -271,7 +281,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(0,16)]"
+		icon_state = "title_painting[rand(0,27)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"

@@ -9,7 +9,7 @@
 
 /obj/item/quikdeploy/examine(mob/user)
 	. = ..()
-	to_chat(user, "This QuikDeploy system seems to deploy a [thing_to_deploy.name].")
+	. += "This QuikDeploy system seems to deploy a [thing_to_deploy.name]."
 
 /obj/item/quikdeploy/attack_self(mob/user)
 	to_chat(user, "<span class='warning'>You start to deploy onto the tile in front of you...")

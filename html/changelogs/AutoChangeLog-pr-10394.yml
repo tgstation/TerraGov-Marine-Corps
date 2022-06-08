@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - rscdel: "Internal organs can't get infections. They mostly didn't already."

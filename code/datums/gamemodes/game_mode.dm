@@ -41,6 +41,8 @@
 	var/datum/emergency_call/picked_call = null //Which distress call is currently active
 	var/on_distress_cooldown = FALSE
 	var/waiting_for_candidates = FALSE
+	/// Ponderation rate of silos output. 1 is normal, 2 is twice
+	var/silo_scaling = 1
 
 
 /datum/game_mode/New()
@@ -101,7 +103,7 @@
 
 	for(var/hivenum in GLOB.hive_datums)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenum]
-		hive.setup_upgrades()
+		hive.purchases.setup_upgrades()
 	return TRUE
 
 
@@ -327,7 +329,21 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		else if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(!H.w_uniform)
-				var/job = pick(/datum/job/clf/leader, /datum/job/freelancer/leader, /datum/job/upp/leader, /datum/job/som/leader, /datum/job/pmc/leader, /datum/job/freelancer/standard, /datum/job/som/standard, /datum/job/clf/standard)
+				var/job = pick(
+					/datum/job/clf/leader,
+					/datum/job/clf/standard,
+					/datum/job/freelancer/leader,
+					/datum/job/freelancer/grenadier,
+					/datum/job/freelancer/standard,
+					/datum/job/upp/leader,
+					/datum/job/upp/heavy,
+					/datum/job/upp/standard,
+					/datum/job/som/leader,
+					/datum/job/som/veteran,
+					/datum/job/som/standard,
+					/datum/job/pmc/leader,
+					/datum/job/pmc/standard,
+				)
 				var/datum/job/J = SSjob.GetJobType(job)
 				H.apply_assigned_role_to_spawn(J)
 				H.regenerate_icons()
@@ -377,6 +393,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "No grenades exploded."
 	if(GLOB.round_statistics.total_human_deaths)
 		dat += "[GLOB.round_statistics.total_human_deaths] people were killed, among which [GLOB.round_statistics.total_human_revives] were revived and [GLOB.round_statistics.total_human_respawns] respawned. For a [(GLOB.round_statistics.total_human_revives / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% revival rate and a [(GLOB.round_statistics.total_human_respawns / max(GLOB.round_statistics.total_human_deaths, 1)) * 100]% respawn rate."
+	if(SSevacuation.human_escaped)
+		dat += "[SSevacuation.human_escaped] marines manage to evacuate, among [SSevacuation.initial_human_on_ship] that were on ship when xenomorphs arrived."
 	if(GLOB.round_statistics.now_pregnant)
 		dat += "[GLOB.round_statistics.now_pregnant] people infected among which [GLOB.round_statistics.total_larva_burst] burst. For a [(GLOB.round_statistics.total_larva_burst / max(GLOB.round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(GLOB.round_statistics.queen_screech)
@@ -429,6 +447,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
 	if(GLOB.round_statistics.larva_from_siloing_body)
 		dat += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
+	if(GLOB.round_statistics.points_from_research)
+		dat += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
 	if(length(GLOB.round_statistics.req_items_produced))
 		var/produced = "Requisitions produced: "
 		for(var/atom/movable/path AS in GLOB.round_statistics.req_items_produced)
@@ -454,7 +474,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/mob/living/carbon/human/H = i
 			if(!istype(H)) // Small fix?
 				continue
-			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client && H.afk_status == MOB_DISCONNECTED)
 				continue
 			if(H.status_flags & XENO_HOST)
 				continue
@@ -471,7 +491,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/mob/living/carbon/xenomorph/X = i
 			if(!istype(X)) // Small fix?
 				continue
-			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
+			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client && X.afk_status == MOB_DISCONNECTED)
 				continue
 			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
 				continue

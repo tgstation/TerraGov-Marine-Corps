@@ -23,7 +23,7 @@
 #define EVACUATION_STATUS_IN_PROGRESS 2
 #define EVACUATION_STATUS_COMPLETE 3
 
-#define EVACUATION_AUTOMATIC_DEPARTURE 3 MINUTES //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
+#define EVACUATION_AUTOMATIC_DEPARTURE 8 MINUTES //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
 #define EVACUATION_ESTIMATE_DEPARTURE ((evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1)
 #define EVACUATION_POD_LAUNCH_COOLDOWN 5 SECONDS
 
@@ -72,9 +72,10 @@
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"
 #define CRASH_EVAC_COMPLETED "CRASH_EVAC_COMPLETED"
-#define CRASH_NUKE_NONE "CRASH_NUKE_NONE"
-#define CRASH_NUKE_INPROGRESS "CRASH_NUKE_INPROGRESS"
-#define CRASH_NUKE_COMPLETED "CRASH_NUKE_COMPLETED"
+
+#define INFESTATION_NUKE_NONE "INFESTATION_NUKE_NONE"
+#define INFESTATION_NUKE_INPROGRESS "INFESTATION_NUKE_INPROGRESS"
+#define INFESTATION_NUKE_COMPLETED "INFESTATION_NUKE_COMPLETED"
 
 #define SURVIVOR_WEAPONS list(\
 				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
@@ -98,7 +99,9 @@
 
 #define EVACUATION_TIME_LOCK 30 MINUTES
 
-#define DISTRESS_TIME_LOCK 10 MINUTES
+//Distress mode collapse duration
+#define DISTRESS_ORPHAN_HIVEMIND 5 MINUTES
+#define DISTRESS_SILO_COLLAPSE 5 MINUTES
 
 #define SHUTTLE_HIJACK_LOCK 30 MINUTES
 
@@ -109,7 +112,7 @@
 #define SUPPLY_POINT_MARINE_SPAWN 2.5
 
 #define AFK_TIMER 5 MINUTES
-#define TIME_BEFORE_TAKING_BODY 5 MINUTES
+#define TIME_BEFORE_TAKING_BODY 1 MINUTES
 
 #define DEATHTIME_CHECK(M) ((world.time - GLOB.key_to_time_of_role_death[M.key]) < SSticker.mode?.respawn_time)
 #define DEATHTIME_MESSAGE(M) to_chat(M, span_warning("You have been dead for [(world.time - GLOB.key_to_time_of_role_death[M.key]) * 0.1] second\s.</span><br><span class='warning'>You must wait [SSticker.mode?.respawn_time * 0.1] seconds before rejoining the game!"))

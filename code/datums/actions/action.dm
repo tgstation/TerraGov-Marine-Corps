@@ -1,7 +1,7 @@
 /datum/action
 	var/name = "Generic Action"
 	var/desc
-	var/obj/target = null
+	var/datum/target = null
 	var/obj/screen/action_button/button = null
 	var/mob/owner
 	var/action_icon = 'icons/mob/actions.dmi'
@@ -10,17 +10,22 @@
 	var/background_icon_state = "template"
 	var/static/atom/movable/vis_obj/action/selected_frame/selected_frame = new
 	var/static/atom/movable/vis_obj/action/empowered_frame/empowered_frame = new //Got lazy and didn't make a child, ask tivi for a better solution.
+	///Main keybind signal for the action
+	var/keybind_signal
+	///Alternative keybind signal, to use the action differently
+	var/alternate_keybind_signal
 
 /datum/action/New(Target)
 	target = Target
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/clean_action)
 	button = new
-	if(target)
+	if(isobj(target))
+		var/obj/target_obj = target
 		var/image/IMG
-		if(ispath(target))
-			IMG = image(initial(target.icon), button, initial(target.icon_state))
+		if(ispath(target_obj))
+			IMG = image(initial(target_obj.icon), button, initial(target_obj.icon_state))
 		else
-			IMG = image(target.icon, button, target.icon_state)
+			IMG = image(target_obj.icon, button, target_obj.icon_state)
 		IMG.pixel_x = 0
 		IMG.pixel_y = 0
 		button.overlays += IMG
@@ -70,6 +75,13 @@
 		return FALSE
 	return TRUE
 
+///Signal Handler for main action
+/datum/action/proc/keybind_activation()
+	SIGNAL_HANDLER
+	if(can_use_action())
+		INVOKE_ASYNC(src, .proc/action_activate)
+	return COMSIG_KB_ACTIVATED
+
 ///Signal Handler for alternate actions
 /datum/action/proc/alternate_action_activate()
 	SIGNAL_HANDLER
@@ -101,14 +113,20 @@
 			return
 		remove_action(owner)
 	owner = M
-	M.actions += src
-	if(M.client)
-		M.client.screen += button
-	M.update_action_buttons()
-	M.actions_by_path[type] = src
+	owner.actions += src
+	if(owner.client)
+		owner.client.screen += button
+	owner.update_action_buttons()
+	owner.actions_by_path[type] = src
+	if(keybind_signal)
+		RegisterSignal(owner, keybind_signal, .proc/keybind_activation)
+	if(alternate_keybind_signal)
+		RegisterSignal(owner, alternate_keybind_signal, .proc/alternate_action_activate)
 	SEND_SIGNAL(M, ACTION_GIVEN)
 
 /datum/action/proc/remove_action(mob/M)
+	if(keybind_signal)
+		UnregisterSignal(M, keybind_signal)
 	if(M.client)
 		M.client.screen -= button
 	M.actions_by_path[type] = null

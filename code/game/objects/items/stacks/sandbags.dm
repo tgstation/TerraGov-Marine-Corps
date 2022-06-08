@@ -3,7 +3,7 @@
 //Empty sandbags
 /obj/item/stack/sandbags_empty
 	name = "empty sandbags"
-	desc = "Some empty sandbags, best to fill them up if you want to use them."
+	desc = "Some empty sandbags, best to fill them up with an entrenching tool if you want to use them."
 	singular_name = "sandbag"
 	icon_state = "sandbag_stack"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -12,6 +12,7 @@
 	throw_range = 20
 	max_amount = 50
 	attack_verb = list("hit", "bludgeoned", "whacked")
+	number_of_extra_variants = 3
 
 
 /obj/item/stack/sandbags_empty/attackby(obj/item/I, mob/user, params)

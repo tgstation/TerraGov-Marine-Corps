@@ -142,6 +142,7 @@
 /* Random teleporter, teleports atoms to locations ranging from teleport_x - teleport_x_offset, etc */
 
 /obj/effect/step_trigger/teleporter/random
+	icon_state = "shallnotpass"
 	var/teleport_x_offset = 0
 	var/teleport_y_offset = 0
 	var/teleport_z_offset = 0
@@ -154,3 +155,6 @@
 			to_chat(A, span_danger("You get lost into the depths of space, never to be seen again."))
 			qdel(A)
 
+/obj/effect/step_trigger/teleporter/random/Initialize(mapload)
+	. = ..()
+	icon_state = ""

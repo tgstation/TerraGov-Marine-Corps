@@ -65,6 +65,9 @@
 		replace_by_ai()
 	if(z) //Larva are initiated in null space
 		SSminimaps.add_marker(src, z, hud_flags = MINIMAP_FLAG_XENO, iconstate = xeno_caste.minimap_icon)
+	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/handle_weeds_adjacent_removed)
+	RegisterSignal(src, COMSIG_LIVING_WEEDS_AT_LOC_CREATED, .proc/handle_weeds_on_movement)
+	handle_weeds_on_movement()
 
 ///Change the caste of the xeno. If restore health is true, then health is set to the new max health
 /mob/living/carbon/xenomorph/proc/set_datum(restore_health_and_plasma = TRUE)
@@ -121,17 +124,6 @@
 	if(mind)
 		mind.name = name
 
-/mob/living/carbon/xenomorph/proc/tier_as_number()
-	switch(tier)
-		if(XENO_TIER_ZERO)
-			return 0
-		if(XENO_TIER_ONE)
-			return 1
-		if(XENO_TIER_TWO)
-			return 2
-		if(XENO_TIER_THREE)
-			return 3
-
 /mob/living/carbon/xenomorph/proc/upgrade_as_number()
 	switch(upgrade)
 		if(XENO_UPGRADE_INVALID)
@@ -185,7 +177,7 @@
 
 /mob/living/carbon/xenomorph/proc/grabbed_self_attack()
 	SIGNAL_HANDLER
-	if(!(xeno_caste.caste_flags & CASTE_CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
+	if(!(xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
 		return NONE
 	var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
 	if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
@@ -198,30 +190,30 @@
 	return
 
 /mob/living/carbon/xenomorph/examine(mob/user)
-	..()
-	to_chat(user, xeno_caste.caste_desc)
+	. = ..()
+	. += xeno_caste.caste_desc
 
 	if(stat == DEAD)
-		to_chat(user, "It is DEAD. Kicked the bucket. Off to that great hive in the sky.")
+		. += "It is DEAD. Kicked the bucket. Off to that great hive in the sky."
 	else if(stat == UNCONSCIOUS)
-		to_chat(user, "It quivers a bit, but barely moves.")
+		. += "It quivers a bit, but barely moves."
 	else
 		var/percent = (health / maxHealth * 100)
 		switch(percent)
 			if(95 to 101)
-				to_chat(user, "It looks quite healthy.")
+				. += "It looks quite healthy."
 			if(75 to 94)
-				to_chat(user, "It looks slightly injured.")
+				. += "It looks slightly injured."
 			if(50 to 74)
-				to_chat(user, "It looks injured.")
+				. += "It looks injured."
 			if(25 to 49)
-				to_chat(user, "It bleeds with sizzling wounds.")
+				. += "It bleeds with sizzling wounds."
 			if(1 to 24)
-				to_chat(user, "It is heavily injured and limping badly.")
+				. += "It is heavily injured and limping badly."
 
 	if(hivenumber != XENO_HIVE_NORMAL)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
-		to_chat(user, "It appears to belong to the [hive.prefix]hive")
+		. += "It appears to belong to the [hive.prefix]hive"
 	return
 
 /mob/living/carbon/xenomorph/Destroy()
@@ -318,9 +310,6 @@
 /mob/living/carbon/xenomorph/get_eye_protection()
 	return 2
 
-/mob/living/carbon/xenomorph/need_breathe()
-	return FALSE
-
 /mob/living/carbon/xenomorph/vomit()
 	return
 
@@ -363,9 +352,10 @@
 	LL_dir.icon_state = "trackoff"
 
 
-/mob/living/carbon/xenomorph/Moved(atom/newloc, direct)
+/mob/living/carbon/xenomorph/Moved(atom/old_loc, movement_dir)
 	if(is_zoomed)
 		zoom_out()
+	handle_weeds_on_movement()
 	return ..()
 
 /mob/living/carbon/xenomorph/set_stat(new_stat)
@@ -386,3 +376,17 @@
 	GLOB.offered_mob_list -= src
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 	a_intent = INTENT_HARM
+
+/// Handles logic for weeds nearby the xeno getting removed
+/mob/living/carbon/xenomorph/proc/handle_weeds_adjacent_removed(datum/source)
+	SIGNAL_HANDLER
+	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	if(!QDESTROYING(found_weed))
+		return
+	loc_weeds_type = null
+
+/// Handles logic for the xeno moving to a new weeds tile
+/mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
+	SIGNAL_HANDLER
+	var/obj/effect/alien/weeds/found_weed = locate(/obj/effect/alien/weeds) in loc
+	loc_weeds_type = found_weed?.type

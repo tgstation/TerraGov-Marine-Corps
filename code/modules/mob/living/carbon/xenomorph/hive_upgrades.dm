@@ -1,4 +1,80 @@
+#define PRIMORDIAL_TIER_ONE "Primordial tier one"
+#define PRIMORDIAL_TIER_TWO "Primordial tier two"
+#define PRIMORDIAL_TIER_THREE "Primordial tier three"
+#define PRIMORDIAL_TIER_FOUR "Primordial tier four"
+
 GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, "Primordial"))//uncomment to unlock globally
+GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
+	XENO_TIER_ONE = PRIMORDIAL_TIER_ONE,
+	XENO_TIER_TWO = PRIMORDIAL_TIER_TWO,
+	XENO_TIER_THREE = PRIMORDIAL_TIER_THREE,
+	XENO_TIER_FOUR = PRIMORDIAL_TIER_FOUR,
+))
+
+/datum/hive_purchases
+	interaction_flags = INTERACT_UI_INTERACT
+	///Flat list of upgrades we can buy
+	var/list/buyable_upgrades = list()
+	///Assocative list name = upgraderef
+	var/list/datum/hive_upgrade/upgrades_by_name = list()
+
+// ***************************************
+// *********** UI for hive store/blessing menu
+// ***************************************
+
+///Initializing hive status with all relevant to be purchased upgrades.
+/datum/hive_purchases/proc/setup_upgrades()
+	for(var/type in subtypesof(/datum/hive_upgrade))
+		var/datum/hive_upgrade/upgrade = new type
+		if(upgrade.name == "Error upgrade") //defaultname just skip it its probably organisation
+			continue
+		if(!(SSticker.mode.flags_xeno_abilities & upgrade.flags_gamemode))
+			continue
+		buyable_upgrades += upgrade
+		upgrades_by_name[upgrade.name] = upgrade
+
+/datum/hive_purchases/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "BlessingMenu", "Queen Mothers Blessings")
+		ui.open()
+
+/datum/hive_purchases/ui_state(mob/user)
+	return GLOB.conscious_state
+
+/datum/hive_purchases/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/spritesheet/blessingmenu)
+
+/datum/hive_purchases/ui_data(mob/user)
+	. = ..()
+
+	var/mob/living/carbon/xenomorph/X = user
+
+	.["upgrades"] = list()
+	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
+		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
+		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "iconstate" = upgrade.icon))
+	.["psypoints"] = SSpoints.xeno_points_by_hive[X.hive.hivenumber]
+
+/datum/hive_purchases/ui_static_data(mob/user)
+	. = ..()
+	.["categories"] = GLOB.upgrade_categories
+
+/datum/hive_purchases/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	switch(action)
+		if("buy")
+			var/buying = params["buyname"]
+			var/datum/hive_upgrade/upgrade = upgrades_by_name[buying]
+			var/mob/living/carbon/xenomorph/user = usr
+			if(!upgrade.can_buy(user, FALSE))
+				return
+			if(!upgrade.on_buy(user))
+				return
+			log_game("[key_name(user)] has purchased \a [upgrade] Blessing for [upgrade.psypoint_cost] psypoints for the [user.hive.hivenumber] hive")
+			if(upgrade.flags_upgrade & UPGRADE_FLAG_MESSAGE_HIVE)
+				xeno_message("[user] has purchased \a [upgrade] Blessing", "xenoannounce", 5, user.hivenumber)
 
 /datum/hive_upgrade
 	///name of the upgrade, string, used in ui
@@ -140,7 +216,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = XENO_TURRET_PRICE
 	flags_gamemode = ABILITY_DISTRESS
 	///How long to build one turret
-	var/build_time = 15 SECONDS
+	var/build_time = 10 SECONDS
 	///What type of turret is built
 	var/turret_type = /obj/structure/xeno/xeno_turret
 
@@ -158,9 +234,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	if(!T.is_weedable())
 		return FALSE
 
-	var/obj/effect/alien/weeds/alien_weeds = locate() in T
-
-	if(!alien_weeds)
+	if(!buyer.loc_weeds_type)
 		if(!silent)
 			to_chat(buyer, span_xenowarning("No weeds here!"))
 		return FALSE
@@ -238,7 +312,7 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 	psypoint_cost = 500
 
 /datum/hive_upgrade/primordial
-	category = "Primordial"
+	category = "Xenos"
 	flags_upgrade = UPGRADE_FLAG_ONETIME|UPGRADE_FLAG_MESSAGE_HIVE
 
 /datum/hive_upgrade/primordial/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
@@ -249,104 +323,26 @@ GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, 
 		return FALSE
 
 
-/datum/hive_upgrade/primordial/queen
-	name = PRIMORDIAL_QUEEN
-	desc = "Unlocks the primordial empresses queen charge. Walk in a straight line to begin charging. Can be toggled."
-	psypoint_cost = 300
+/datum/hive_upgrade/primordial/tier_four
+	name = PRIMORDIAL_TIER_FOUR
+	desc = "Unlocks the primordial for the last tier"
+	psypoint_cost = 600
 	icon = "primoqueen"
 
-/datum/hive_upgrade/primordial/shrike
-	name = PRIMORDIAL_SHRIKE
-	desc = "Unlocks the primordial shrikes gravity bomb. Activate to throw a gravity grenade thats sucks in everything in a radius."
-	psypoint_cost = 300
-	icon = "primoshrike"
-
-/datum/hive_upgrade/primordial/defiler
-	name = PRIMORDIAL_DEFILER
-	desc = "Unlocks the primordial defilers tentacle. Can grab most items and tallhosts from range and bring them to the defiler."
-	psypoint_cost = 225
-	icon = "primodefiler"
-
-/datum/hive_upgrade/primordial/sentinel
-	name = PRIMORDIAL_SENTINEL
-	desc = "Unlocks the primordial sentinels neurogas grenade. Allows them to throw a grenade that emits gas in an area."
-	psypoint_cost = 75
-	icon = "primosent"
-
-/datum/hive_upgrade/primordial/spitter
-	name = PRIMORDIAL_SPITTER
-	desc = "Decreases the spitters fire delay to epic proportions."
-	psypoint_cost = 125
-	icon = "primospitter"
-
-/datum/hive_upgrade/primordial/ravager
-	name = PRIMORDIAL_RAVAGER
-	desc = "Unlocks the primordial ravgers vampirism. A passive ability that increases the ravagers healing as it hits more enemies."
-	psypoint_cost = 225
+/datum/hive_upgrade/primordial/tier_three
+	name = PRIMORDIAL_TIER_THREE
+	desc = "Unlocks the primordial for the third tier"
+	psypoint_cost = 600
 	icon = "primorav"
 
-/datum/hive_upgrade/primordial/crusher
-	name = PRIMORDIAL_CRUSHER
-	desc = "Unlocks the primordial crushers advance. An ability that allows them to charge up their charge and release it in a sudden burst."
-	psypoint_cost = 225
-	icon = "primocrush"
-
-/datum/hive_upgrade/primordial/gorger
-	name = PRIMORDIAL_GORGER
-	desc = "Unlocks the primordial gorger's rejuvenate. An ability that allows them to significantly reduce incoming harm at the cost of being slown down."
-	psypoint_cost = 225
-	icon = "primogorger"
-
-/datum/hive_upgrade/primordial/hunter
-	name = PRIMORDIAL_HUNTER
-	desc = "Replaces the hunters stealth ability with the ability to disguise itself as any object."
-	psypoint_cost = 125
-	icon = "primohunter"
-
-/datum/hive_upgrade/primordial/defender
-	name = PRIMORDIAL_DEFENDER
-	desc = "Unlocks the primordial defenders centrifugal force. An ability that allows them to rapidly spin and attack enemies nearby."
-	psypoint_cost = 75
-	icon = "primodefender"
-
-/datum/hive_upgrade/primordial/warrior
-	name = PRIMORDIAL_WARRIOR
-	desc = "Unlocks the primordial warriors jab and empowered abilities. A ranged punch, on primordial every 3rd ability cast from a warrior will be an improved version of itself."
-	psypoint_cost = 125
+/datum/hive_upgrade/primordial/tier_two
+	name = PRIMORDIAL_TIER_TWO
+	desc = "Unlocks the primordial for the second tier"
+	psypoint_cost = 600
 	icon = "primowarrior"
 
-/datum/hive_upgrade/primordial/runner
-	name = PRIMORDIAL_RUNNER
-	desc = "Unlocks the primordial runner snatch ability. An ability that allows them to steal equipped items momentarily."
-	psypoint_cost = 75
-	icon = "primorunner"
-
-/datum/hive_upgrade/primordial/wraith
-	name = PRIMORDIAL_WRAITH
-	desc = "Unlocks the primordial wraith timestop ability. An ability that allows them to freeze nearby projectiles."
-	psypoint_cost = 125
-	icon = "primowraith"
-
-/datum/hive_upgrade/primordial/hivelord
-	name = PRIMORDIAL_HIVELORD
-	desc = "Unlocks the primordial hivelords traps, and upgrade it's corrosive acid to strong."
-	psypoint_cost = 125
-	icon = "primohivelord"
-
-/datum/hive_upgrade/primordial/bull
-	name = PRIMORDIAL_BULL
-	desc = "Unlocks the primordial bull agile charge, which allows him to change direction while charging, even diagonally"
-	psypoint_cost = 125
-	icon = "primobull"
-
-/datum/hive_upgrade/primordial/praetorian
-	name = PRIMORDIAL_PRAETORIAN
-	desc = "Unlocks the primordial praetorian acid dash, allowing them to quickly reposition while leaving an acid trail behind."
-	psypoint_cost = 225
-	icon = "primopraetorian"
-
-/datum/hive_upgrade/primordial/boiler
-	name = PRIMORDIAL_BOILER
-	desc = "Unlocks the primordial boiler's access to neurotoxin- and acid lances, direct-hit focussed bombardment types that leave a gas trail where they pass."
-	psypoint_cost = 225
-	icon = "primoboiler"
+/datum/hive_upgrade/primordial/tier_one
+	name = PRIMORDIAL_TIER_ONE
+	desc = "Unlocks the primordial for the first tier"
+	psypoint_cost = 600
+	icon = "primosent"

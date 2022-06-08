@@ -1,6 +1,6 @@
 
 /obj/vehicle/unmanned
-	name = "unmanned vehicle"
+	name = "UV-L Iguana"
 	desc = "A small remote-controllable vehicle, usually owned by the TGMC and other major armies."
 	icon = 'icons/obj/unmanned_vehicles.dmi'
 	icon_state = "light_uv"
@@ -10,10 +10,10 @@
 	light_power = 3
 	light_system = MOVABLE_LIGHT
 	move_delay = 2.5	//set this to limit the speed of the vehicle
-	max_integrity = 300
+	max_integrity = 150
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	flags_atom = BUMP_ATTACKABLE
-	soft_armor = list("melee" = 25, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
+	soft_armor = list("melee" = 25, "bullet" = 85, "laser" = 50, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	/// Path of "turret" attached
 	var/obj/item/uav_turret/turret_path
 	/// Type of the turret attached
@@ -43,12 +43,17 @@
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
 	COOLDOWN_DECLARE(fire_cooldown)
+	/// when next sound played
+	COOLDOWN_DECLARE(next_sound_play)
+	/// muzzleflash stuff
+	var/atom/movable/vis_obj/effect/muzzle_flash/flash
 
 /obj/vehicle/unmanned/Initialize()
 	. = ..()
 	ammo = GLOB.ammo_list[ammo]
 	name += " " + num2text(serial)
 	serial++
+	flash = new /atom/movable/vis_obj/effect/muzzle_flash(src)
 	GLOB.unmanned_vehicles += src
 	prepare_huds()
 	for(var/datum/atom_hud/squad/sentry_status_hud in GLOB.huds) //Add to the squad HUD
@@ -68,6 +73,7 @@
 /obj/vehicle/unmanned/Destroy()
 	. = ..()
 	GLOB.unmanned_vehicles -= src
+	QDEL_NULL(flash)
 
 /obj/vehicle/unmanned/take_damage(damage_amount, damage_type, damage_flag, effects, attack_dir, armour_penetration)
 	. = ..()
@@ -94,7 +100,7 @@
 /obj/vehicle/unmanned/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(ishuman(user))
-		to_chat(user, "It has [current_rounds] ammo left.")
+		. += "It has [current_rounds] ammo left."
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -117,6 +123,10 @@
 
 	if(world.time < last_move_time + move_delay)
 		return
+
+	if(COOLDOWN_CHECK(src, next_sound_play))
+		COOLDOWN_START(src, next_sound_play, 20)
+		playsound(get_turf(src), 'sound/ambience/tank_driving.ogg', 50, TRUE)
 
 	return Move(get_step(src, direction))
 
@@ -146,7 +156,7 @@
 
 ///Try to reload the turret of our vehicule
 /obj/vehicle/unmanned/proc/reload_turret(obj/item/ammo_magazine/ammo, mob/user)
-	if(!ispath(ammo.type, initial(turret_path.ammo_type)))
+	if(!ispath(ammo.type, initial(turret_path.magazine_type)))
 		to_chat(user, span_warning("This is not the right ammo!"))
 		return
 	user.visible_message(span_notice("[user] starts to reload [src] with [ammo]."), span_notice("You start to reload [src] with [ammo]."))
@@ -189,7 +199,7 @@
 	qdel(I)
 
 /**
- * Called when the drone is unlinked from a remote control
+ * Called when the drone is linked from a remote control
  */
 /obj/vehicle/unmanned/proc/on_link(atom/remote_controller)
 	SHOULD_CALL_PARENT(TRUE)
@@ -197,7 +207,7 @@
 	controlled = TRUE
 
 /**
- * Called when the drone is linked to a remote control
+ * Called when the drone is unlinked to a remote control
  */
 /obj/vehicle/unmanned/proc/on_unlink(atom/remote_controller)
 	SHOULD_CALL_PARENT(TRUE)
@@ -235,13 +245,22 @@
 		in_chamber.original_target = target
 		in_chamber.def_zone = pick("chest","chest","chest","head")
 		//Shoot at the thing
-		playsound(loc, gunnoise, 75, 1)
+		var/angle = Get_Angle(src, target)
+		playsound(loc, gunnoise, 65, 1)
 		in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 		in_chamber = null
 		COOLDOWN_START(src, fire_cooldown, fire_delay)
 		current_rounds--
+		flash.transform = null
+		flash.transform = turn(flash.transform, angle)
+		vis_contents += flash
+		addtimer(CALLBACK(src, .proc/delete_muzzle_flash), 0.2 SECONDS)
 		hud_set_uav_ammo()
 	return TRUE
+
+///Removes muzzle flash from unmanned vehicles
+/obj/vehicle/unmanned/proc/delete_muzzle_flash()
+	vis_contents -= flash
 
 /obj/vehicle/unmanned/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	take_damage(charger.xeno_caste.melee_damage * charger.xeno_melee_damage_modifier, BRUTE, "melee")
@@ -255,8 +274,8 @@
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(4, 4, 2 SECONDS)
 
-/obj/vehicle/unmanned/flamer_fire_act()
-	take_damage(20, BURN, "fire")
+/obj/vehicle/unmanned/flamer_fire_act(burnlevel)
+	take_damage(burnlevel / 2, BURN, "fire")
 
 /obj/vehicle/unmanned/fire_act()
 	take_damage(20, BURN, "fire")
@@ -286,7 +305,7 @@
 		return
 	if(!I.use_tool(src, user, 0, volume=50, amount=1))
 		return TRUE
-	repair_damage(10)
+	repair_damage(35)
 	if(obj_integrity == max_integrity)
 		balloon_alert_to_viewers("Fully repaired!")
 	else
@@ -295,15 +314,32 @@
 	return TRUE
 
 /obj/vehicle/unmanned/medium
-	name = "medium unmanned vehicle"
+	name = "UV-M Gecko"
 	icon_state = "medium_uv"
 	move_delay = 3
 	max_rounds = 200
-	max_integrity = 400
+	max_integrity = 200
 
 /obj/vehicle/unmanned/heavy
-	name = "heavy unmanned vehicle"
+	name = "UV-H Komodo"
 	icon_state = "heavy_uv"
-	move_delay = 3.5
+	move_delay = 4
 	max_rounds = 200
-	max_integrity = 600
+	max_integrity = 250
+
+/obj/structure/closet/crate/uav_crate
+	name = "\improper UV-L Iguana Crate"
+	desc = "A crate containing an unmanned vehicle with a controller and some spare ammo."
+	icon = 'icons/obj/structures/crates.dmi'
+	icon_state = "closed_weapons"
+	icon_opened = "open_weapons"
+	icon_closed = "closed_weapons"
+
+/obj/structure/closet/crate/uav_crate/PopulateContents()
+	new /obj/vehicle/unmanned(src)
+	new /obj/item/uav_turret(src)
+	new /obj/item/ammo_magazine/box11x35mm(src)
+	new /obj/item/ammo_magazine/box11x35mm(src)
+	new /obj/item/ammo_magazine/box11x35mm(src)
+	new /obj/item/unmanned_vehicle_remote(src)
+

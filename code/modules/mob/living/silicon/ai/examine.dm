@@ -1,5 +1,5 @@
 /mob/living/silicon/ai/examine(mob/user)
-	SHOULD_CALL_PARENT(0)
+	SHOULD_CALL_PARENT(FALSE) // TODO ai and human examine dont send examine signal
 	var/msg = "<span class='info'>*---------*<br>"
 	msg += "This is [icon2html(src, user)] <b>[src]</b>!<br>"
 
@@ -28,4 +28,4 @@
 
 	msg += "*---------*</span>"
 
-	to_chat(user, msg)
+	return list(msg)

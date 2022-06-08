@@ -7,6 +7,8 @@
 	icon_state = "motorbike"
 	max_integrity = 300
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 0, "bomb" = 30, "fire" = 60, "acid" = 60)
+	resistance_flags = XENO_DAMAGEABLE
+	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	key_type = null
 	integrity_failure = 0.5
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL|BUCKLE_NEEDS_HAND
@@ -18,6 +20,8 @@
 	var/fuel_count = 0
 	///max fuel that this bike can hold
 	var/fuel_max = 1000
+	///reference to the attached sidecar, if present
+	var/obj/item/sidecar/attached_sidecar
 	COOLDOWN_DECLARE(enginesound_cooldown)
 
 /obj/vehicle/ridden/motorbike/Initialize()
@@ -31,8 +35,8 @@
 	. = ..()
 	if(!ishuman(user))
 		return
-	to_chat(user, "To access internal storage click with an empty hand or drag the bike onto self.")
-	to_chat(user, "The fuel gauge on the bike reads \"[fuel_count/fuel_max*100]%\"")
+	. += "To access internal storage click with an empty hand or drag the bike onto self."
+	. += "The fuel gauge on the bike reads \"[fuel_count/fuel_max*100]%\""
 
 /obj/vehicle/ridden/motorbike/post_buckle_mob(mob/living/M)
 	add_overlay(motorbike_cover)
@@ -109,8 +113,71 @@
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		balloon_alert(user, "[fuel_count/fuel_max*100]%")
 		return TRUE
+	if(istype(I, /obj/item/sidecar))
+		if(user.do_actions)
+			balloon_alert(user, "Already busy!")
+			return FALSE
+		if(LAZYLEN(buckled_mobs))
+			balloon_alert("There is a rider already!")
+			return TRUE
+		balloon_alert(user, "You start attaching the sidecar...")
+		if(!do_after(user, 3 SECONDS, TRUE, src))
+			return TRUE
+		user.temporarilyRemoveItemFromInventory(I)
+		I.forceMove(src)
+		attached_sidecar = I
+		cut_overlay(motorbike_cover)
+		motorbike_cover.icon_state = "sidecar_cover"
+		motorbike_cover.icon = 'icons/obj/motorbike_sidecar.dmi'
+		motorbike_cover.pixel_x = -9
+		sidecar_dir_change(newdir = dir)
+		RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, .proc/sidecar_dir_change)
+		add_overlay(motorbike_cover)
+		RemoveElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike)
+		AddElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike/sidecar)
+		max_buckled_mobs = 2
+		max_occupants = 2
+		return TRUE
 	if(user.a_intent != INTENT_HARM)
 		return motor_pack.attackby(I, user, params)
+
+/obj/vehicle/ridden/motorbike/proc/sidecar_dir_change(datum/source, dir, newdir)
+	SIGNAL_HANDLER
+	switch(newdir)
+		if(NORTH)
+			pixel_x = 9
+		if(SOUTH)
+			pixel_x = -9
+		if(EAST, WEST)
+			pixel_x = 0
+
+/obj/vehicle/ridden/motorbike/wrench_act(mob/living/user, obj/item/I)
+	if(!attached_sidecar)
+		balloon_alert(user, "No sidecar attached!")
+		return TRUE
+	if(LAZYLEN(buckled_mobs))
+		balloon_alert(user, "Someone is riding this!")
+		return TRUE
+	if(user.do_actions)
+		balloon_alert(user, "Already busy!")
+		return FALSE
+	if(!do_after(user, 3 SECONDS, TRUE, src))
+		return TRUE
+	attached_sidecar.forceMove(get_turf(src))
+	attached_sidecar = null
+	RemoveElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike/sidecar)
+	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/motorbike)
+	max_buckled_mobs = 1
+	max_occupants = 1
+	cut_overlay(motorbike_cover)
+	motorbike_cover.icon_state = "motorbike_cover"
+	motorbike_cover.icon = 'icons/obj/vehicles.dmi'
+	motorbike_cover.pixel_x = 0
+	pixel_x = initial(pixel_x)
+	add_overlay(motorbike_cover)
+	UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
+	balloon_alert(user, "You dettach the sidecar!")
+	return TRUE
 
 /obj/vehicle/ridden/motorbike/obj_break()
 	START_PROCESSING(SSobj, src)
@@ -159,6 +226,15 @@
 		open(user)
 		return FALSE
 
+
+/**
+ * Sidecar that when attached lets you put two people on the bike
+ */
+/obj/item/sidecar
+	name = "motorbike sidecar"
+	desc = "A detached sidecar for TGMC motorbikes, which can be attached to them, allowing a second passenger. Use a wrench to dettach the sidecar."
+	icon = 'icons/obj/vehicles.dmi'
+	icon_state = "sidecar"
 
 #undef FUEL_PER_CAN_POUR
 #undef LOW_FUEL_LEFT_MESSAGE

@@ -2,6 +2,7 @@
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	obj_flags = CAN_BE_HIT
+	throwpass = FALSE
 
 	///Item that is deployed to create src.
 	var/obj/item/internal_item
@@ -92,6 +93,7 @@
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
 		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
 		return
+	operator?.unset_interaction()
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 
 /obj/machinery/deployable/Destroy()
@@ -102,7 +104,7 @@
 
 /obj/machinery/deployable/examine(mob/user)
 	. = ..()
-	internal_item.examine(user)
+	. += internal_item.examine(user)
 
 /obj/machinery/deployable/MouseDrop(over_object, src_location, over_location)
 	if(!ishuman(usr))
@@ -111,7 +113,7 @@
 	if(over_object != user || !in_range(src, user))
 		return
 	if(CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_WRENCH_DISASSEMBLE))
-		to_chat(user, "<span class = 'notice'>You cannot disassemble [src] without a wrench.</span>")
+		to_chat(user, span_notice("You cannot disassemble [src] without a wrench."))
 		return
 	disassemble(user)
 

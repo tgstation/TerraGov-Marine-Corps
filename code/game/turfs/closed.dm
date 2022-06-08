@@ -9,6 +9,8 @@
 	var/walltype
 	///The neighbours
 	var/junctiontype = NONE
+	///used for plasmacutter deconstruction
+	var/open_turf_type = /turf/open/floor/plating
 
 /turf/closed/mineral
 	name = "rock"
@@ -17,6 +19,7 @@
 	walltype = "lvwall"
 	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
@@ -42,7 +45,7 @@
 	smoothing_behavior = NO_SMOOTHING //big red does not currently have its own 3/4ths cave tileset, so it uses the old one without smoothing
 	smoothing_groups = NONE
 
-/turf/closed/mineral/indestructible/mineral
+/turf/closed/mineral/indestructible
 	name = "impenetrable rock"
 	icon_state = "lvwall-0-0-0-0"
 	walltype = "lvwall"
@@ -58,12 +61,12 @@
 	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_FLORA
 	walltype = "jungle"
+	open_turf_type = /turf/open/ground/jungle/clear
 
 /turf/closed/gm/tree
 	name = "dense jungle trees"
 	icon_state = "jungletree"
 	desc = "Some thick jungle trees."
-
 
 	//Not yet
 /turf/closed/gm/ex_act(severity)
@@ -74,7 +77,8 @@
 
 /turf/closed/gm/dense
 	name = "dense jungle wall"
-	
+	resistance_flags = PLASMACUTTER_IMMUNE
+
 //desertdam rock
 /turf/closed/desertdamrockwall
 	name = "rockwall"
@@ -84,15 +88,23 @@
 	walltype = "cave_wall"
 	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
+	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/desertdamrockwall/invincible
 	resistance_flags = RESIST_ALL
+
+/turf/closed/desertdamrockwall/invincible/perimeter
+	name = "wall"
+	icon_state = "pwall"
+	icon = 'icons/turf/shuttle.dmi'
 
 //lava rock
 /turf/closed/brock
 	name = "basalt rock"
 	icon = 'icons/turf/lava.dmi'
 	icon_state = "brock"
+	open_turf_type = /turf/open/lavaland/basalt
+
 
 /turf/closed/brock/Initialize(mapload)
 	. = ..()
@@ -118,6 +130,7 @@
 	icon = 'icons/turf/icewall.dmi'
 	icon_state = "Single"
 	desc = "It is very thick."
+	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice/single
 	icon_state = "Single"
@@ -168,27 +181,18 @@
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/glass) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
+		if(CHECK_BITFIELD(resistance_flags, RESIST_ALL) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
 			to_chat(user, span_warning("[P] can't cut through this!"))
 			return
-		if(!P.start_cut(user, name, src))
+		else if(!P.start_cut(user, name, src))
 			return
-
-		if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+		else if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
 			return
+		else
+			P.cut_apart(user, name, src) //purely a cosmetic effect
 
-		P.cut_apart(user, name, src)
-
-		if(ismineralturf(src) || istype(src, /turf/closed/desertdamrockwall))
-			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
-		else if(istype(src, /turf/closed/gm/dense))
-			ChangeTurf(/turf/open/ground/jungle/clear)
-		else if(istype(src, /turf/closed/brock))
-			var/choice = rand(1,50)
-			if(choice == 50)
-				ChangeTurf(/turf/open/lavaland/basalt/glowing)
-			else
-				ChangeTurf(/turf/open/lavaland/basalt)
+		//change targetted turf to a new one to simulate deconstruction
+		ChangeTurf(open_turf_type)
 
 //Ice Thin Wall
 /turf/closed/ice/thin
@@ -216,42 +220,14 @@
 /turf/closed/ice/thin/intersection
 	icon_state = "Intersection"
 
-/turf/closed/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
-			to_chat(user, span_warning("[P] can't cut through this!"))
-			return
-		if(!P.start_cut(user, name, src))
-			return
-
-		if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
-			return
-
-		P.cut_apart(user, name, src)
-
-		if(ismineralturf(src) || istype(src, /turf/closed/desertdamrockwall))
-			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
-		else if(istype(src, /turf/closed/gm/dense))
-			ChangeTurf(/turf/open/ground/jungle/clear)
-		else if(istype(src, /turf/closed/brock))
-			var/choice = rand(1,50)
-			if(choice == 50)
-				ChangeTurf(/turf/open/lavaland/basalt/glowing)
-			else
-				ChangeTurf(/turf/open/lavaland/basalt)
-		else
-			ChangeTurf(/turf/open/floor/plating/ground/ice)
-
-
 //ROCK WALLS------------------------------//
 
 //Icy Rock
 /turf/closed/ice_rock
 	name = "Icy rock"
 	icon = 'icons/turf/rockwall.dmi'
+	resistance_flags = PLASMACUTTER_IMMUNE
+	open_turf_type = /turf/open/floor/plating/ground/ice
 
 /turf/closed/ice_rock/single
 	icon_state = "single"
@@ -311,6 +287,7 @@
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
 	smoothing_behavior = NO_SMOOTHING
+	resistance_flags = PLASMACUTTER_IMMUNE
 
 /turf/closed/shuttle/re_corner/notdense
 	icon_state = "re_cornergrass"

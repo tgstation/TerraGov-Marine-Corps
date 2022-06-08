@@ -6,6 +6,7 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
+	throwpass = FALSE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = DOOR_OPEN_LAYER
 	explosion_block = 2
@@ -79,6 +80,10 @@
 			bumpopen(M)
 		return
 
+	if(isuav(AM))
+		try_to_activate_door(AM)
+		return
+
 	if(isobj(AM))
 		var/obj/O = AM
 		for(var/m in O.buckled_mobs)
@@ -110,15 +115,17 @@
 		return
 	return try_to_activate_door(user)
 
-/obj/machinery/door/proc/try_to_activate_door(mob/user)
+/obj/machinery/door/proc/try_to_activate_door(atom/user)
 	if(operating)
 		return
-	var/can_open
+	var/can_open = !Adjacent(user) || !requiresID() || ismob(user) && allowed(user)
 	if(!Adjacent(user))
 		can_open = TRUE
 	if(!requiresID())
 		can_open = TRUE
-	if(allowed(user))
+	if(ismob(user) && allowed(user))
+		can_open = TRUE
+	if(isuav(user))
 		can_open = TRUE
 	if(can_open)
 		if(density)
@@ -180,15 +187,9 @@
 
 /obj/machinery/door/proc/open()
 	SIGNAL_HANDLER_DOES_SLEEP
-	if(!density)
-		return TRUE
-	if(operating > 0 || !loc)
+	if(operating || welded || locked || !loc)
 		return FALSE
-	if(!SSticker)
-		return FALSE
-	if(!operating)
-		operating = TRUE
-
+	operating = TRUE
 	do_animate("opening")
 	icon_state = "door0"
 	set_opacity(FALSE)

@@ -119,8 +119,7 @@
 	span_notice("You put \the [tool] inside [target]'s [get_cavity(affected)] cavity."))
 	if(tool.w_class > get_max_wclass(affected)/2 && prob(50))
 		to_chat(user, span_warning("You tear some blood vessels trying to fit such a big object in this cavity."))
-		var/datum/wound/internal_bleeding/I = new (10)
-		affected.wounds += I
+		new /datum/wound/internal_bleeding(10, affected)
 		affected.owner.custom_pain("You feel something rip in your [affected.display_name]!", 1)
 	user.transferItemToLoc(tool, target)
 	affected.hidden = tool
@@ -157,6 +156,7 @@
 	user.visible_message(span_notice("[user] starts poking around inside the incision on [target]'s [affected.display_name] with \the [tool]."), \
 	span_notice("You start poking around inside the incision on [target]'s [affected.display_name] with \the [tool]."))
 	target.custom_pain("The pain in your chest is living hell!", 1)
+	target.balloon_alert_to_viewers("Checking...")
 	..()
 
 /datum/surgery_step/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
@@ -165,11 +165,13 @@
 		var/obj/item/implantfound = affected.implants[1]
 		user.visible_message(span_notice("[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool]."), \
 		span_notice("You take [implantfound] out of incision on [target]'s [affected.display_name]s with \the [tool]."))
+		target.balloon_alert_to_viewers("Implant found")
 		implantfound.unembed_ourself()
 
 	else if(affected.hidden)
 		user.visible_message(span_notice("[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool]."), \
 		span_notice(" You take something out of incision on [target]'s [affected.display_name]s with \the [tool]."))
+		target.balloon_alert_to_viewers("Shrapnel found")
 		affected.hidden.loc = get_turf(target)
 		affected.hidden.update_icon()
 		affected.hidden = null
@@ -177,10 +179,12 @@
 	else
 		user.visible_message(span_notice("[user] could not find anything inside [target]'s [affected.display_name], and pulls \the [tool] out."), \
 		span_notice("You could not find anything inside [target]'s [affected.display_name]."))
+		target.balloon_alert_to_viewers("Nothing found")
 
 /datum/surgery_step/implant_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!"), \
 	span_warning("Your hand slips, scraping tissue inside [target]'s [affected.display_name] with \the [tool]!"))
+	target.balloon_alert_to_viewers("Slipped!")
 	affected.createwound(CUT, 20)
 	if(affected.implants.len)
 		var/fail_prob = 10

@@ -34,8 +34,8 @@
 	sprite_name = "miniFE"
 
 /obj/item/tool/extinguisher/examine(mob/user)
-	..()
-	to_chat(user, "The safety is [safety ? "on" : "off"].")
+	. = ..()
+	. += "The safety is [safety ? "on" : "off"]."
 
 /obj/item/tool/extinguisher/attack_self(mob/user as mob)
 	safety = !safety

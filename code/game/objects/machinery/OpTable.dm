@@ -4,6 +4,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
 	density = TRUE
+	coverage = 10
 	layer = TABLE_LAYER
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
@@ -43,11 +44,11 @@
 
 
 /obj/machinery/optable/examine(mob/user)
-	..()
+	. = ..()
 	if(get_dist(user, src) > 2 && !isobserver(user))
 		return
 	if(anes_tank)
-		to_chat(user, span_information("It has an [anes_tank] connected with the gauge showing [round(anes_tank.pressure,0.1)] kPa."))
+		. += span_information("It has an [anes_tank] connected with the gauge showing [round(anes_tank.pressure,0.1)] kPa.")
 
 /obj/machinery/optable/attack_hand(mob/living/user)
 	. = ..()
@@ -90,12 +91,17 @@
 	if(!buckling_human.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/medical(buckling_human), SLOT_WEAR_MASK))
 		to_chat(user, span_danger("You can't fit the gas mask over their face!"))
 		return FALSE
-	buckling_human.internal = anes_tank
 	buckling_human.visible_message("[span_notice("[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.")]'")
 	to_chat(buckling_human, span_information("You begin to feel sleepy."))
+	addtimer(CALLBACK(src, .proc/knock_out_buckled, buckling_human), rand(2 SECONDS, 4 SECONDS))
 	buckling_human.setDir(SOUTH)
 	return ..()
 
+///Knocks out someone buckled to the op table a few seconds later. Won't knock out if they've been unbuckled since.
+/obj/machinery/optable/proc/knock_out_buckled(mob/living/buckled_mob)
+	if(!victim || victim != buckled_mob)
+		return
+	ADD_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT)
 
 /obj/machinery/optable/user_unbuckle_mob(mob/living/buckled_mob, mob/user, silent)
 	. = ..()
@@ -109,12 +115,15 @@
 	if(!ishuman(buckled_mob)) // sanity check
 		return
 	var/mob/living/carbon/human/buckled_human = buckled_mob
-	buckled_human.internal = null
 	var/obj/item/anesthetic_mask = buckled_human.wear_mask
 	buckled_human.dropItemToGround(anesthetic_mask)
 	qdel(anesthetic_mask)
+	addtimer(CALLBACK(src, .proc/remove_knockout, buckled_mob), rand(2 SECONDS, 4 SECONDS))
 	return ..()
 
+///Wakes the buckled mob back up after they're released
+/obj/machinery/optable/proc/remove_knockout(mob/living/buckled_mob)
+	REMOVE_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT)
 
 /obj/machinery/optable/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

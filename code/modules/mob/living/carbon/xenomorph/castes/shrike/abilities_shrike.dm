@@ -296,7 +296,7 @@
 	name = "Place acid well"
 	action_icon_state = "place_trap"
 	mechanics_text = "Place an acid well that can put out fires."
-	plasma_cost = 500
+	plasma_cost = 400
 	cooldown_timer = 2 MINUTES
 
 /datum/action/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
@@ -307,7 +307,8 @@
 			to_chat(owner, span_warning("We can't do that here."))
 		return FALSE
 
-	if(!(locate(/obj/effect/alien/weeds) in T))
+	var/mob/living/carbon/xenomorph/owner_xeno = owner
+	if(!owner_xeno.loc_weeds_type)
 		if(!silent)
 			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
@@ -359,7 +360,7 @@
 /obj/item/explosive/grenade/gravity/prime()
 	new /obj/effect/overlay/temp/emp_pulse(loc)
 	playsound(loc, 'sound/effects/EMPulse.ogg', 50)
-	for(var/atom/movable/victim in view(3))//yes this throws EVERYONE
+	for(var/atom/movable/victim in view(3, loc))//yes this throws EVERYONE
 		if(victim.anchored)
 			continue
 		if(isliving(victim))

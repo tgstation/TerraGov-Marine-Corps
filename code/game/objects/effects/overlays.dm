@@ -49,13 +49,90 @@
 	mouse_opacity = 0 //can't click to examine it
 	var/effect_duration = 10 //in deciseconds
 
+
+//Lase dots
+
 /obj/effect/overlay/blinking_laser //Used to indicate incoming CAS
 	name = "blinking laser"
 	anchored = TRUE
 	mouse_opacity = 0
-	icon = 'icons/obj/items/projectiles.dmi'
+	icon = 'icons/effects/lases.dmi'
 	icon_state = "laser_target3"
 	layer = ABOVE_FLY_LAYER
+
+//CAS:
+
+//Minirockets
+/obj/effect/overlay/blinking_laser/tfoot
+	icon_state = "tanglefoot_target"
+
+/obj/effect/overlay/blinking_laser/smoke
+	icon_state = "smoke_target"
+
+/obj/effect/overlay/blinking_laser/flare
+	icon_state = "flare_target"
+
+/obj/effect/overlay/blinking_laser/minirocket
+	icon_state = "minirocket_target"
+
+/obj/effect/overlay/blinking_laser/incendiary
+	icon_state = "incendiary_target"
+
+//Directional
+/obj/effect/overlay/blinking_laser/heavygun
+	icon_state = "gau_target"
+
+/obj/effect/overlay/blinking_laser/laser
+	icon_state = "laser_beam_target"
+
+//Missiles
+/obj/effect/overlay/blinking_laser/widowmaker
+	icon_state = "widowmaker_target"
+
+/obj/effect/overlay/blinking_laser/banshee
+	icon_state = "banshee_target"
+
+/obj/effect/overlay/blinking_laser/keeper
+	icon_state = "keeper_target"
+
+/obj/effect/overlay/blinking_laser/fatty
+	icon_state = "fatty_target"
+
+/obj/effect/overlay/blinking_laser/napalm
+	icon_state = "napalm_target"
+
+//Marine-only visuals. Prediction HUD, etc. Does not show without marine headset
+/obj/effect/overlay/blinking_laser/marine
+	name = "prediction matrix"
+	icon = 'icons/effects/lases.dmi'
+	icon_state = "nothing"
+	var/icon_state_on = "nothing"
+	hud_possible = list(SQUAD_HUD_TERRAGOV)
+
+/obj/effect/overlay/blinking_laser/marine/Initialize(mapload)
+	. = ..()
+	prepare_huds()
+	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
+	squad_hud.add_to_hud(src)
+	set_visuals()
+
+/obj/effect/overlay/blinking_laser/marine/proc/set_visuals()
+	var/image/new_hud_list = hud_list[SQUAD_HUD_TERRAGOV]
+	if(!new_hud_list)
+		return
+
+	new_hud_list.icon = 'icons/effects/lases.dmi'
+	new_hud_list.icon_state = icon_state_on
+	hud_list[SQUAD_HUD_TERRAGOV] = new_hud_list
+
+//Prediction lines. Those horizontal blue lines you see when CAS fires something
+/obj/effect/overlay/blinking_laser/marine/lines
+	layer = WALL_OBJ_LAYER //Above walls/items, not above mobs
+	icon_state_on = "middle"
+
+/obj/effect/overlay/blinking_laser/marine/lines/Initialize()
+	. = ..()
+	dir = pick(CARDINAL_DIRS) //Randomises type, for variation
 
 /obj/effect/overlay/temp/Initialize(mapload, effect_duration)
 	. = ..()
@@ -102,7 +179,7 @@
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
 
-/obj/effect/overlay/temp/laser_target/Initialize(mapload, named, assigned_squad = null)
+/obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	if(named)
 		name = "[named] laser"
@@ -130,12 +207,12 @@
 /obj/effect/overlay/temp/laser_target/examine(user)
 	. = ..()
 	if(ishuman(user))
-		to_chat(usr, span_danger("It's a laser to designate artillery targets, get away from it!"))
+		. += span_danger("It's a laser to designate artillery targets, get away from it!")
 
 /obj/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
 
-/obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, named, assigned_squad = null)
+/obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	linked_cam = new(src, name)
 	GLOB.active_cas_targets += src
@@ -148,12 +225,12 @@
 /obj/effect/overlay/temp/laser_target/cas/examine(user)
 	. = ..()
 	if(ishuman(user))
-		to_chat(usr, span_danger("It's a laser to designate cas targets, get away from it!"))
+		. += span_danger("It's a laser to designate CAS targets, get away from it!")
 
 /obj/effect/overlay/temp/laser_target/OB
 	icon_state = "laser_target2"
 
-/obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, named, assigned_squad)
+/obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 	GLOB.active_laser_targets += src
@@ -211,7 +288,7 @@
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 14
 
-/obj/effect/overlay/temp/gib_animation/Initialize(mapload, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
@@ -230,7 +307,7 @@
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	effect_duration = 10
 
-/obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, mob/source_mob, gib_icon, new_icon)
+/obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, effect_duration, mob/source_mob, gib_icon, new_icon)
 	. = ..()
 	icon = new_icon
 
@@ -242,7 +319,7 @@
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 12
 
-/obj/effect/overlay/temp/dust_animation/Initialize(mapload, mob/source_mob, gib_icon)
+/obj/effect/overlay/temp/dust_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
@@ -260,10 +337,10 @@
 	alpha = 0
 	vis_flags = NONE
 	blocks_emissive = NONE
-
+	
 /obj/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "time"
 	pixel_x = -60
 	pixel_y = -50
-	alpha = 70
+	alpha = 70	

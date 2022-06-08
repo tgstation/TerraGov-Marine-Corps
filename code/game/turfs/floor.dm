@@ -94,14 +94,14 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			switch(T.state)
 				if(0)
 					icon_state = "light_on"
-					set_light(5)
+					set_light(5,5)
 				if(1)
 					var/num = pick("1", "2", "3", "4")
 					icon_state = "light_on_flicker[num]"
-					set_light(5)
+					set_light(5,5)
 				if(2)
 					icon_state = "light_on_broken"
-					set_light(5)
+					set_light(5,5)
 				if(3)
 					icon_state = "light_off"
 					set_light(0)

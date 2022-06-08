@@ -6,7 +6,6 @@
 	caste_type_path = /mob/living/carbon/xenomorph/warrior
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
-	primordial_upgrade_name = PRIMORDIAL_WARRIOR
 	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
@@ -24,16 +23,20 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 120
+	upgrade_threshold = TIER_TWO_YOUNG_THRESHOLD
 
 	evolves_to = list(/mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/gorger)
 	deevolves_to = /mob/living/carbon/xenomorph/defender
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_IS_STRONG|CASTE_CAN_BECOME_KING
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 40, "acid" = 36)
+	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 20, "bio" = 36, "rad" = 36, "fire" = 40, "acid" = 36)
+
+	// *** Minimap Icon *** //
+	minimap_icon = "warrior"
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
@@ -41,6 +44,7 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/toggle_agility,
 		/datum/action/xeno_action/activable/lunge,
@@ -71,10 +75,10 @@
 	max_health = 310
 
 	// *** Evolution *** //
-	upgrade_threshold = 360
+	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 34, "bullet" = 45, "laser" = 45, "energy" = 34, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 45, "acid" = 36)
+	soft_armor = list("melee" = 34, "bullet" = 45, "laser" = 45, "energy" = 34, "bomb" = 20, "bio" = 36, "rad" = 36, "fire" = 45, "acid" = 36)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
@@ -100,10 +104,10 @@
 	max_health = 330
 
 	// *** Evolution *** //
-	upgrade_threshold = 840
+	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 38, "bullet" = 50, "laser" = 50, "energy" = 38, "bomb" = XENO_BOMB_RESIST_2, "bio" = 40, "rad" = 40, "fire" = 50, "acid" = 40)
+	soft_armor = list("melee" = 38, "bullet" = 50, "laser" = 50, "energy" = 38, "bomb" = 20, "bio" = 40, "rad" = 40, "fire" = 50, "acid" = 40)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
@@ -129,10 +133,10 @@
 	max_health = 350
 
 	// *** Evolution *** //
-	upgrade_threshold = 1320
+	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 50)
+	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = 20, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 50)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
@@ -157,11 +161,8 @@
 	// *** Health *** //
 	max_health = 350
 
-	// *** Evolution *** //
-	upgrade_threshold = 1320
-
 	// *** Defense *** //
-	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 50)
+	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = 20, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 50)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = -0.6
@@ -169,6 +170,7 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/toggle_agility,
 		/datum/action/xeno_action/activable/lunge,

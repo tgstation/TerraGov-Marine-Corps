@@ -1,21 +1,3 @@
-
-/*
-	run_armor_check(a,b)
-	args
-	a:def_zone - What part is getting hit, if null will check entire body
-	b:attack_flag - What type of attack, bullet, laser, energy, melee
-
-	Returns
-	The armour percentage which is deducted om the damage.
-*/
-/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "melee")
-	return getarmor(def_zone, attack_flag)
-
-
-//if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
-/mob/living/proc/getarmor(def_zone, type)
-	return 0
-
 //Handles the effects of "stun" weapons
 /**
 	stun_effect_act(stun_amount, agony_amount, def_zone)
@@ -72,10 +54,9 @@
 			return
 
 		src.visible_message(span_warning(" [src] has been hit by [O]."), null, null, 5)
-		var/armor = run_armor_check(null, "melee")
+		var/armor = get_soft_armor("melee")
 
-		if(armor < 1)
-			apply_damage(max(0, throw_damage - (throw_damage * soft_armor.getRating("melee") * 0.01)), dtype, null, armor, is_sharp(O), has_edge(O), TRUE)
+		apply_damage(throw_damage, dtype, BODY_ZONE_CHEST, armor, is_sharp(O), has_edge(O), TRUE)
 
 		if(O.item_fire_stacks)
 			fire_stacks += O.item_fire_stacks
@@ -134,6 +115,8 @@
 		return FALSE
 	if(!CHECK_BITFIELD(datum_flags, DF_ISPROCESSING))
 		return FALSE
+	if(get_fire_resist() <= 0 || get_hard_armor("fire", BODY_ZONE_CHEST) >= 100)	//having high fire resist makes you immune
+		return FALSE
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = TRUE
 		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, .proc/resist_fire)
@@ -148,7 +131,7 @@
 			emote("scream")
 
 /mob/living/carbon/xenomorph/IgniteMob()
-	if(fire_resist_modifier <= -1)	//having high fire resist makes you immune
+	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	. = ..()
 	if(!.)
@@ -194,6 +177,8 @@
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
 	if(status_flags & GODMODE) //Invulnerable mobs don't get fire stacks
 		return
+	if(add_fire_stacks > 0)	//Fire stack increases are affected by armor, end result rounded up.
+		add_fire_stacks = CEILING(add_fire_stacks * get_fire_resist(), 1)
 	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
@@ -279,3 +264,6 @@
 		. = shield_check.Invoke(attack_type, ., damage_type, silent)
 		if(!.)
 			break
+
+/mob/living/proc/get_fire_resist()
+	return clamp((100 - get_soft_armor("fire", null)) * 0.01, 0, 1)

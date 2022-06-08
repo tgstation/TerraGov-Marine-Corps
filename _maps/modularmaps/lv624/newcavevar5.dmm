@@ -1,0 +1,3557 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"au" = (
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
+"ay" = (
+/obj/structure/rack,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/ground/caves/central1)
+"bj" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central3)
+"bt" = (
+/obj/structure/rack,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/ground/caves/central1)
+"bA" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall,
+/area/lv624/ground/caves/rock)
+"bT" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/lv624/ground/caves/central2)
+"cp" = (
+/obj/effect/spawner/random/trash,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
+"cO" = (
+/turf/open/ground/coast{
+	dir = 4
+	},
+/area/lv624/ground/caves/central2)
+"cQ" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/ammo/shotgun,
+/turf/open/floor/carpet/side{
+	dir = 10;
+	},
+/area/lv624/ground/caves/central2)
+"dg" = (
+/obj/structure/closet/crate,
+/obj/effect/spawner/random/ammo/shotgun,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"eE" = (
+/obj/item/ammo_casing/shell,
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/lv624/ground/caves/central2)
+"eF" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/gun/rifle/standard_lmg,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"eH" = (
+/obj/structure/table/woodentable,
+/obj/item/tool/kitchen/knife/butcher,
+/obj/item/tool/kitchen/knife/butcher{
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"fC" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/lv624/ground/caves/central2)
+"fJ" = (
+/turf/open/floor/wood/broken,
+/area/lv624/ground/caves/central2)
+"gF" = (
+/obj/structure/closet/crate,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"gM" = (
+/obj/structure/largecrate/supply/explosives/mortar_flare,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"hl" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
+"iv" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
+"iN" = (
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central3)
+"iV" = (
+/obj/structure/bed/alien,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"jb" = (
+/obj/structure/flora/ausbushes/reedbush,
+/turf/open/ground/river,
+/area/lv624/ground/caves/central2)
+"je" = (
+/obj/structure/kitchenspike,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"jl" = (
+/obj/structure/closet/cabinet,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"jn" = (
+/obj/structure/window_frame/wood,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"jL" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/lv624/ground/caves/central2)
+"km" = (
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
+"kp" = (
+/turf/open/ground/coast{
+	dir = 1;
+	icon_state = "beachcorner"
+	},
+/area/lv624/ground/caves/central2)
+"kK" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat{
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/snacks/meat{
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"lb" = (
+/turf/open/ground/coast{
+	dir = 8
+	},
+/area/lv624/ground/caves/central2)
+"lF" = (
+/obj/vehicle/ridden/wheelchair,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"mf" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
+"mq" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/gun/machineguns{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken1"
+	},
+/area/lv624/ground/caves/central2)
+"mr" = (
+/obj/item/stack/sheet/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"mR" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/lv624/ground/caves/central2)
+"nH" = (
+/turf/closed/mineral,
+/area/lv624/ground/caves/rock)
+"nZ" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
+"os" = (
+/obj/structure/table/woodentable,
+/obj/machinery/microwave,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"ou" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/tritium{
+	pixel_x = -4
+	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/ground/caves/central1)
+"pb" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
+"ph" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
+	},
+/area/lv624/ground/caves/central2)
+"pi" = (
+/turf/open/ground/coast{
+	dir = 8;
+	icon_state = "beachcorner2"
+	},
+/area/lv624/ground/caves/central2)
+"pJ" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/lv624/ground/caves/central2)
+"pP" = (
+/obj/item/flashlight/lantern,
+/obj/structure/table/woodentable,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"pR" = (
+/turf/open/ground/coast{
+	dir = 8;
+	icon_state = "beachcorner"
+	},
+/area/lv624/ground/caves/central2)
+"qq" = (
+/turf/open/floor/tile/dark,
+/area/lv624/ground/caves/central1)
+"qD" = (
+/obj/structure/table/woodentable,
+/obj/item/tool/candle,
+/obj/item/tool/match{
+	pixel_x = 5;
+	pixel_y = 2
+	},
+/turf/open/floor/carpet/side{
+	},
+/area/lv624/ground/caves/central2)
+"qI" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/gun/shotgun/double,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"qU" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/item/weapon/twohanded/fireaxe,
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"ro" = (
+/obj/item/ammo_casing/shell,
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/lv624/ground/caves/central2)
+"rH" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
+"sl" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/gold{
+	amount = 2
+	},
+/obj/item/stack/sheet/mineral/platinum{
+	pixel_x = -6
+	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/ground/caves/central1)
+"st" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/gun/machineguns{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"sv" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/lv624/ground/caves/central2)
+"sH" = (
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"sL" = (
+/obj/machinery/door/airlock/sandstone,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"sR" = (
+/turf/closed/wall/r_wall,
+/area/lv624/ground/caves/rock)
+"ti" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"tS" = (
+/turf/closed/mineral,
+/area/lv624/ground/caves/central2)
+"us" = (
+/obj/item/storage/firstaid/fire,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"ut" = (
+/obj/structure/barricade/sandbags{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken1"
+	},
+/area/lv624/ground/caves/central2)
+"uV" = (
+/turf/closed/wall/wood,
+/area/lv624/ground/caves/central2)
+"ve" = (
+/turf/open/ground/coast{
+	icon_state = "beachcorner"
+	},
+/area/lv624/ground/caves/central2)
+"vi" = (
+/obj/item/ammo_casing/shell,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/lv624/ground/caves/central2)
+"vt" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/metal{
+	amount = 50;
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/stack/sheet/metal{
+	amount = 30
+	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/ground/caves/central1)
+"vz" = (
+/obj/structure/jungle/plantbot1/alien,
+/turf/open/ground/river,
+/area/lv624/ground/caves/central2)
+"vE" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken4"
+	},
+/area/lv624/ground/caves/central2)
+"wC" = (
+/obj/effect/ai_node,
+/turf/open/ground/coast{
+	dir = 5
+	},
+/area/lv624/ground/caves/central2)
+"wL" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/silver{
+	amount = 20
+	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/ground/caves/central1)
+"xy" = (
+/obj/effect/spawner/random/trash,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"xD" = (
+/obj/structure/bed/chair/wood/wings,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"yy" = (
+/obj/structure/largecrate/supply/ammo/standard_hmg,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"zB" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/ammo/machinegun{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"zC" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/ammo/shotgun,
+/turf/open/floor/carpet/side{
+	dir = 1;
+	},
+/area/lv624/ground/caves/central2)
+"zK" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
+"BH" = (
+/obj/item/storage/firstaid/regular,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"BK" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/spawner/random/gun/sidearms,
+/turf/open/floor/wood{
+	icon_state = "wood-broken1"
+	},
+/area/lv624/ground/caves/central2)
+"BP" = (
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lantern,
+/turf/open/floor/carpet/side{
+	dir = 6;
+	},
+/area/lv624/ground/caves/central2)
+"Cg" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"DD" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/lv624/ground/caves/central2)
+"DE" = (
+/obj/structure/rack,
+/obj/item/tool/pickaxe,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/ground/caves/central1)
+"DG" = (
+/obj/structure/barricade/sandbags{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"FC" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"Ge" = (
+/obj/structure/flora/ausbushes/fernybush,
+/turf/open/ground/river,
+/area/lv624/ground/caves/central2)
+"Gm" = (
+/obj/item/ammo_casing/shell,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"GI" = (
+/obj/effect/spawner/random/clothing,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"GM" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"GS" = (
+/obj/structure/table/woodentable,
+/obj/item/tool/candle,
+/obj/item/stack/sheet/metal{
+	pixel_x = 3
+	},
+/turf/open/floor/carpet/side{
+	dir = 9;
+	},
+/area/lv624/ground/caves/central2)
+"GW" = (
+/obj/effect/ai_node,
+/turf/open/floor/wood{
+	icon_state = "wood-broken1"
+	},
+/area/lv624/ground/caves/central2)
+"GZ" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"Hb" = (
+/turf/open/ground/river,
+/area/lv624/ground/caves/central2)
+"Hl" = (
+/obj/structure/closet/crate/freezer/rations,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"Hm" = (
+/obj/effect/spawner/random/clothing,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/lv624/ground/caves/central2)
+"Hz" = (
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/obj/structure/closet/cabinet,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"HD" = (
+/obj/machinery/door/airlock/mainship/secure/locked/free_access{
+	dir = 4;
+	name = "\improper Mining Storage"
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/ground/caves/central1)
+"HP" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/lv624/ground/caves/central1)
+"HU" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"Ig" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"Ik" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/lv624/ground/caves/central2)
+"Im" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
+"In" = (
+/turf/open/floor,
+/area/lv624/ground/caves/central1)
+"Is" = (
+/obj/structure/rack,
+/obj/item/tool/shovel,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/ground/caves/central1)
+"IF" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral,
+/area/lv624/ground/caves/rock)
+"IL" = (
+/turf/closed/wall,
+/area/lv624/ground/caves/central1)
+"IX" = (
+/obj/structure/barricade/sandbags{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"IZ" = (
+/obj/structure/largecrate/supply/ammo/shotgun,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"KG" = (
+/turf/open/ground/coast{
+	dir = 1
+	},
+/area/lv624/ground/caves/central2)
+"Ln" = (
+/turf/open/ground/coast{
+	dir = 5
+	},
+/area/lv624/ground/caves/central2)
+"LR" = (
+/obj/machinery/door/airlock/sandstone,
+/obj/effect/ai_node,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"LW" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
+"Mk" = (
+/obj/item/flashlight/flare,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
+"Mo" = (
+/obj/item/stack/sheet/wood,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
+"MN" = (
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"Ne" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/iron{
+	amount = 5
+	},
+/obj/item/stack/sheet/mineral/platinum,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/ground/caves/central1)
+"NO" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/lv624/ground/caves/central2)
+"OT" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/lv624/ground/caves/central2)
+"Pb" = (
+/obj/structure/bed/alien,
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"PI" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
+"Qk" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/metal{
+	pixel_x = 3
+	},
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"QN" = (
+/turf/open/ground/coast{
+	dir = 4;
+	icon_state = "beachcorner"
+	},
+/area/lv624/ground/caves/central2)
+"QX" = (
+/turf/open/ground/coast,
+/area/lv624/ground/caves/central2)
+"TP" = (
+/obj/effect/spawner/random/gun/sidearms,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"TR" = (
+/turf/open/ground/coast{
+	dir = 6
+	},
+/area/lv624/ground/caves/central2)
+"UT" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/diamond{
+	amount = 2
+	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/ground/caves/central1)
+"UU" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
+"Vi" = (
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lantern,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"Vo" = (
+/obj/structure/table/woodentable,
+/obj/item/stack/sheet/metal{
+	pixel_x = 3;
+	pixel_y = 1
+	},
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"Vt" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"VE" = (
+/obj/structure/rack,
+/obj/item/tool/shovel,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/ground/caves/central1)
+"We" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/wood/broken,
+/area/lv624/ground/caves/central2)
+"Wl" = (
+/obj/structure/barricade/sandbags,
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lantern,
+/obj/item/weapon/baseballbat/metal,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"WG" = (
+/obj/item/stack/sheet/wood,
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"WQ" = (
+/obj/structure/barricade/sandbags{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/lv624/ground/caves/central2)
+"Xu" = (
+/obj/structure/table/woodentable,
+/obj/item/tool/candle,
+/turf/open/floor/carpet/side{
+	dir = 5;
+	},
+/area/lv624/ground/caves/central2)
+"Xy" = (
+/obj/structure/table/woodentable,
+/obj/effect/spawner/random/ammo/machinegun,
+/obj/effect/spawner/random/gun/machineguns{
+	pixel_x = 2;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/lv624/ground/caves/central2)
+"XN" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral,
+/area/lv624/ground/caves/rock)
+"Yt" = (
+/turf/closed/wall/r_wall,
+/area/lv624/ground/caves/central1)
+"Yv" = (
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
+"ZD" = (
+/turf/closed/mineral/indestructible,
+/area/lv624/ground/caves/rock)
+
+(1,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+bj
+bj
+bj
+bj
+bj
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+iN
+iN
+iN
+iN
+iN
+iN
+"}
+(2,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+Yv
+pb
+Yv
+Yv
+Yv
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+iN
+"}
+(3,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+Yv
+Yv
+hl
+Yv
+Yv
+LW
+LW
+LW
+LW
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+ZD
+nH
+nH
+"}
+(4,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+LW
+LW
+nH
+nH
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+ZD
+nH
+nH
+"}
+(5,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+Yv
+Yv
+pb
+Yv
+Yv
+hl
+Yv
+Yv
+hl
+pb
+Yv
+Yv
+pb
+LW
+nH
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+ZD
+nH
+nH
+"}
+(6,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+LW
+LW
+hl
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+hl
+Yv
+Yv
+LW
+LW
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(7,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(8,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+hl
+LW
+LW
+nH
+ZD
+ZD
+ZD
+ZD
+ZD
+nH
+nH
+"}
+(9,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+Yv
+UU
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+LW
+LW
+nH
+ZD
+ZD
+ZD
+ZD
+ZD
+nH
+nH
+"}
+(10,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+Yv
+nZ
+hl
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+cp
+LW
+LW
+Yv
+Yv
+LW
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+ZD
+nH
+nH
+"}
+(11,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+hl
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+hl
+Yv
+LW
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(12,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+ve
+cO
+cO
+pR
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+pb
+Yv
+LW
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(13,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+LW
+pb
+ve
+TR
+Hb
+Hb
+wC
+pR
+hl
+Yv
+Yv
+Yv
+Yv
+hl
+Yv
+pb
+Yv
+LW
+LW
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+ZD
+nH
+nH
+"}
+(14,1,1) = {"
+nH
+nH
+nH
+nH
+LW
+LW
+Yv
+QX
+Hb
+Ge
+Hb
+Hb
+KG
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+zK
+Yv
+Yv
+LW
+nH
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+ZD
+nH
+nH
+"}
+(15,1,1) = {"
+nH
+nH
+nH
+LW
+LW
+Yv
+hl
+QX
+Hb
+Hb
+Hb
+Hb
+KG
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+UU
+Yv
+Yv
+LW
+nH
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+ZD
+nH
+nH
+"}
+(16,1,1) = {"
+nH
+nH
+nH
+LW
+Yv
+Yv
+Yv
+QX
+Hb
+vz
+Hb
+Hb
+KG
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+hl
+Yv
+Yv
+LW
+uV
+uV
+uV
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(17,1,1) = {"
+nH
+nH
+nH
+LW
+Yv
+Yv
+pb
+QX
+Hb
+Hb
+Hb
+vz
+KG
+hl
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+uV
+pP
+uV
+uV
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(18,1,1) = {"
+nH
+nH
+nH
+LW
+hl
+pb
+ve
+TR
+Hb
+Hb
+Hb
+Hb
+KG
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+hl
+jn
+DG
+ph
+uV
+uV
+uV
+uV
+ZD
+ZD
+ZD
+"}
+(19,1,1) = {"
+nH
+nH
+nH
+LW
+Yv
+Yv
+QX
+Hb
+Hb
+jb
+Hb
+Hb
+KG
+Yv
+Yv
+UU
+hl
+Yv
+LW
+LW
+Yv
+pb
+Yv
+jn
+DG
+MN
+GM
+jL
+yy
+uV
+ZD
+ZD
+ZD
+"}
+(20,1,1) = {"
+nH
+nH
+LW
+LW
+Yv
+Yv
+QX
+Hb
+Hb
+Hb
+Hb
+Hb
+Ln
+pR
+Yv
+Yv
+Mk
+Yv
+LW
+LW
+Yv
+Yv
+pb
+jn
+DG
+BK
+Cg
+NO
+MN
+uV
+ZD
+ZD
+ZD
+"}
+(21,1,1) = {"
+nH
+nH
+LW
+LW
+Yv
+pb
+QX
+Hb
+Hb
+Hb
+Hb
+Ge
+Hb
+KG
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+uV
+MN
+MN
+MN
+Gm
+MN
+uV
+nH
+nH
+nH
+"}
+(22,1,1) = {"
+nH
+nH
+LW
+LW
+hl
+Yv
+QX
+Hb
+vz
+Hb
+Hb
+Hb
+Hb
+KG
+Yv
+LW
+LW
+Yv
+cp
+nZ
+Yv
+hl
+Yv
+uV
+MN
+Gm
+MN
+MN
+jL
+uV
+nH
+nH
+nH
+"}
+(23,1,1) = {"
+nH
+nH
+nH
+LW
+Yv
+Yv
+QX
+Hb
+Hb
+Hb
+Hb
+Hb
+vz
+KG
+hl
+LW
+LW
+Yv
+hl
+Yv
+Yv
+Yv
+Yv
+uV
+xy
+NO
+FC
+WG
+MN
+uV
+nH
+nH
+nH
+"}
+(24,1,1) = {"
+nH
+nH
+nH
+LW
+Yv
+Yv
+QX
+Hb
+Hb
+Hb
+Hb
+pi
+lb
+QN
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+pb
+MN
+MN
+WG
+GW
+MN
+xy
+uV
+nH
+nH
+nH
+"}
+(25,1,1) = {"
+nH
+nH
+nH
+LW
+LW
+hl
+QX
+Hb
+jb
+Hb
+pi
+QN
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+uV
+MN
+FC
+Gm
+MN
+MN
+uV
+nH
+nH
+nH
+"}
+(26,1,1) = {"
+nH
+nH
+nH
+nH
+LW
+Yv
+QX
+Hb
+Hb
+pi
+QN
+Yv
+hl
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+uV
+MN
+HU
+MN
+MN
+mq
+uV
+nH
+nH
+nH
+"}
+(27,1,1) = {"
+nH
+nH
+nH
+nH
+LW
+pb
+kp
+lb
+lb
+QN
+Yv
+Yv
+zK
+Yv
+mf
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+jn
+ut
+Cg
+vE
+Gm
+st
+uV
+nH
+nH
+nH
+"}
+(28,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+Yv
+Yv
+Yv
+Yv
+hl
+Yv
+Yv
+Yv
+Yv
+pb
+hl
+Yv
+hl
+Yv
+Yv
+Yv
+mf
+jn
+DG
+TP
+mr
+FC
+zB
+uV
+nH
+nH
+nH
+"}
+(29,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+LW
+LW
+LW
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+uV
+FC
+FC
+MN
+MN
+Xy
+uV
+nH
+nH
+nH
+"}
+(30,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+uV
+uV
+uV
+uV
+uV
+uV
+LW
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+jn
+DG
+MN
+DD
+OT
+MN
+uV
+nH
+nH
+nH
+"}
+(31,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+je
+pJ
+MN
+MN
+je
+uV
+LW
+Yv
+UU
+hl
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+jn
+WQ
+HU
+us
+MN
+MN
+uV
+nH
+nH
+nH
+"}
+(32,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+eH
+MN
+MN
+GM
+kK
+uV
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+hl
+Yv
+jn
+DG
+MN
+MN
+MN
+uV
+uV
+nH
+nH
+nH
+"}
+(33,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+kK
+MN
+vE
+MN
+os
+uV
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+uV
+GM
+MN
+GM
+MN
+uV
+nH
+nH
+nH
+nH
+"}
+(34,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+sv
+MN
+eE
+MN
+Vo
+uV
+uV
+uV
+Yv
+LW
+LW
+hl
+Yv
+LW
+LW
+Yv
+uV
+uV
+uV
+uV
+uV
+uV
+ZD
+ZD
+nH
+nH
+"}
+(35,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+gF
+MN
+NO
+MN
+MN
+MN
+MN
+uV
+Yv
+LW
+LW
+Yv
+Yv
+LW
+LW
+Yv
+LW
+LW
+LW
+LW
+LW
+nH
+ZD
+ZD
+nH
+nH
+"}
+(36,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+qI
+vE
+MN
+ro
+MN
+eE
+ti
+jn
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+nH
+ZD
+ZD
+nH
+nH
+"}
+(37,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+uV
+Vt
+eF
+MN
+MN
+vE
+MN
+ti
+jn
+Yv
+Yv
+hl
+Yv
+LW
+LW
+Yv
+Yv
+hl
+Yv
+Yv
+Yv
+LW
+nH
+ZD
+ZD
+nH
+nH
+"}
+(38,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+gM
+MN
+pJ
+MN
+Ig
+MN
+NO
+ti
+jn
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+pb
+Yv
+pb
+LW
+Yv
+LW
+nH
+ZD
+ZD
+nH
+ZD
+"}
+(39,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+IZ
+MN
+MN
+Gm
+FC
+BH
+Gm
+MN
+uV
+Mo
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+pb
+hl
+Yv
+nH
+ZD
+ZD
+nH
+ZD
+"}
+(40,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+Hl
+mR
+MN
+MN
+GM
+MN
+fJ
+MN
+WG
+pb
+hl
+Yv
+Yv
+hl
+Yv
+Yv
+mf
+Yv
+Yv
+Yv
+Yv
+Yv
+nH
+nH
+nH
+nH
+ZD
+"}
+(41,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+MN
+MN
+MN
+pJ
+dg
+MN
+Gm
+MN
+uV
+Yv
+Yv
+LW
+Yv
+Yv
+Yv
+LW
+LW
+tS
+Yv
+LW
+LW
+Yv
+Yv
+nH
+nH
+nH
+nH
+"}
+(42,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+MN
+MN
+xD
+GS
+cQ
+GZ
+Ig
+ti
+jn
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+tS
+tS
+Yv
+Yv
+Yv
+Yv
+hl
+nH
+nH
+nH
+nH
+"}
+(43,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+MN
+fJ
+xD
+zC
+qD
+GZ
+FC
+ti
+jn
+Yv
+hl
+Yv
+Yv
+LW
+LW
+tS
+tS
+tS
+tS
+Yv
+hl
+Yv
+Yv
+Yv
+nH
+Yv
+Yv
+"}
+(44,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+pJ
+MN
+xD
+Xu
+BP
+GZ
+FC
+Ik
+jn
+Yv
+Yv
+Yv
+LW
+LW
+tS
+tS
+tS
+tS
+tS
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+"}
+(45,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+MN
+Gm
+MN
+MN
+fJ
+MN
+MN
+MN
+uV
+hl
+Yv
+Yv
+LW
+tS
+tS
+tS
+tS
+tS
+tS
+tS
+Yv
+LW
+LW
+Yv
+Yv
+hl
+Yv
+"}
+(46,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+MN
+MN
+FC
+qU
+MN
+MN
+vi
+MN
+uV
+Yv
+Yv
+LW
+tS
+tS
+tS
+tS
+tS
+tS
+tS
+tS
+Yv
+Yv
+Yv
+nZ
+Yv
+Yv
+Yv
+"}
+(47,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+MN
+fJ
+MN
+FC
+fC
+bT
+MN
+ti
+jn
+Yv
+Yv
+LW
+tS
+tS
+tS
+tS
+tS
+tS
+tS
+tS
+hl
+Yv
+Yv
+hl
+LW
+LW
+Yv
+"}
+(48,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+fJ
+MN
+lF
+fJ
+Gm
+MN
+MN
+ti
+jn
+hl
+Yv
+Yv
+hl
+tS
+tS
+tS
+tS
+tS
+tS
+pb
+Yv
+Yv
+cp
+Yv
+LW
+LW
+Yv
+"}
+(49,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+MN
+GM
+MN
+MN
+GM
+DD
+MN
+We
+jn
+Yv
+Yv
+Yv
+Yv
+tS
+tS
+tS
+tS
+tS
+Yv
+Yv
+pb
+Yv
+Yv
+Yv
+Yv
+Yv
+pb
+"}
+(50,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+uV
+uV
+uV
+uV
+LR
+uV
+LR
+uV
+uV
+uV
+Yv
+LW
+LW
+Yv
+tS
+tS
+tS
+tS
+tS
+Yv
+zK
+Yv
+LW
+LW
+Yv
+hl
+pb
+Yv
+"}
+(51,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+iV
+MN
+vE
+uV
+pJ
+MN
+iV
+jn
+Yv
+LW
+LW
+Yv
+tS
+tS
+tS
+tS
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+"}
+(52,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+jl
+MN
+Qk
+uV
+GI
+MN
+Wl
+jn
+hl
+Yv
+Yv
+hl
+Yv
+tS
+tS
+Yv
+hl
+Yv
+LW
+hl
+Yv
+Yv
+Yv
+Yv
+Yv
+nH
+"}
+(53,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+Pb
+MN
+Hm
+uV
+MN
+fJ
+iV
+jn
+pb
+Yv
+Yv
+Yv
+Yv
+Yv
+hl
+Yv
+Yv
+Yv
+pb
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+nH
+"}
+(54,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+Vi
+sH
+IX
+sL
+IX
+sH
+Hz
+jn
+Yv
+LW
+Yv
+LW
+LW
+Yv
+Yv
+LW
+LW
+Yv
+hl
+Yv
+LW
+LW
+hl
+Yv
+LW
+nH
+"}
+(55,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+uV
+uV
+jn
+jn
+uV
+jn
+jn
+uV
+uV
+hl
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+LW
+nH
+"}
+(56,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+LW
+LW
+LW
+LW
+LW
+LW
+pb
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+pb
+Yv
+Yv
+Yv
+Yv
+LW
+nH
+"}
+(57,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+Yv
+pb
+Yv
+Yv
+hl
+Yv
+pb
+Yv
+Yv
+Yv
+Yv
+Yv
+hl
+Yv
+Yv
+pb
+hl
+Yv
+Yv
+hl
+LW
+LW
+nH
+"}
+(58,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+Yv
+Yv
+pb
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+hl
+Yv
+LW
+LW
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+LW
+LW
+nH
+nH
+"}
+(59,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+LW
+LW
+Yv
+hl
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+LW
+LW
+nH
+nH
+nH
+"}
+(60,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+hl
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+nH
+nH
+nH
+nH
+"}
+(61,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+Yv
+UU
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+hl
+Yv
+Yv
+Yv
+Yv
+LW
+LW
+nH
+nH
+nH
+nH
+nH
+"}
+(62,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+nZ
+Yv
+zK
+Yv
+Yv
+Yv
+Yv
+Yv
+hl
+Yv
+Yv
+Yv
+LW
+LW
+Yv
+hl
+LW
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(63,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+hl
+Yv
+Yv
+Yv
+cp
+Yv
+hl
+Yv
+LW
+LW
+Yv
+Yv
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(64,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+hl
+Yv
+pb
+Yv
+Yv
+LW
+LW
+Yv
+Yv
+Yv
+pb
+Yv
+Yv
+Yv
+pb
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(65,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+LW
+nH
+nH
+LW
+Yv
+hl
+Yv
+Yv
+Yv
+UU
+Yv
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(66,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+Yv
+Yv
+LW
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+hl
+Yv
+Yv
+hl
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+"}
+(67,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+hl
+Yv
+Yv
+LW
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+Yv
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+"}
+(68,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+Yv
+Yv
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+Yv
+Yv
+Yv
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+"}
+(69,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+Yv
+Yv
+Yv
+Yv
+nH
+nH
+nH
+nH
+nH
+nH
+LW
+Yv
+Yv
+hl
+Yv
+hl
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(70,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+hl
+Yv
+Yv
+hl
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+Yv
+Yv
+Yv
+Yv
+Yv
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+"}
+(71,1,1) = {"
+ZD
+ZD
+ZD
+ZD
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+Yv
+Yv
+Yv
+Yv
+Yv
+nH
+nH
+nH
+nH
+nH
+nH
+Yv
+Yv
+Yv
+Yv
+Yv
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+"}
+(72,1,1) = {"
+ZD
+ZD
+ZD
+ZD
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+iv
+iv
+iv
+iv
+iv
+nH
+nH
+nH
+nH
+nH
+nH
+km
+iv
+iv
+iv
+iv
+nH
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+"}
+(73,1,1) = {"
+ZD
+ZD
+ZD
+ZD
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+au
+au
+au
+rH
+au
+nH
+nH
+nH
+nH
+nH
+rH
+au
+au
+au
+au
+rH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+"}
+(74,1,1) = {"
+ZD
+ZD
+ZD
+ZD
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+au
+au
+PI
+au
+Im
+nH
+nH
+nH
+nH
+nH
+au
+au
+au
+nH
+nH
+nH
+nH
+XN
+bA
+Is
+Ne
+bt
+bA
+"}
+(75,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+au
+au
+au
+au
+au
+nH
+nH
+nH
+nH
+au
+au
+Im
+au
+au
+nH
+nH
+nH
+IF
+sR
+sl
+qq
+ou
+sR
+"}
+(76,1,1) = {"
+ZD
+ZD
+ZD
+ZD
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+Im
+au
+Im
+au
+au
+au
+nH
+nH
+au
+au
+au
+au
+au
+au
+nH
+nH
+nH
+IF
+sR
+UT
+HP
+wL
+Yt
+"}
+(77,1,1) = {"
+ZD
+ZD
+ZD
+ZD
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+au
+au
+au
+au
+au
+au
+nH
+au
+Im
+au
+au
+Im
+au
+nH
+nH
+nH
+nH
+IF
+sR
+vt
+qq
+ay
+Yt
+"}
+(78,1,1) = {"
+ZD
+ZD
+ZD
+ZD
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+nH
+au
+au
+au
+Im
+au
+au
+au
+au
+au
+au
+au
+nH
+nH
+nH
+nH
+nH
+IF
+sR
+VE
+qq
+DE
+Yt
+"}
+(79,1,1) = {"
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+nH
+au
+rH
+au
+au
+au
+au
+Im
+au
+au
+au
+nH
+nH
+nH
+nH
+nH
+IF
+sR
+IL
+HD
+IL
+Yt
+"}
+(80,1,1) = {"
+ZD
+ZD
+ZD
+ZD
+nH
+ZD
+ZD
+ZD
+ZD
+nH
+nH
+nH
+nH
+au
+rH
+au
+au
+au
+au
+au
+rH
+au
+iv
+au
+nH
+nH
+nH
+IF
+nH
+In
+In
+In
+In
+"}

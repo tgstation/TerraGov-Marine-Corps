@@ -117,7 +117,7 @@
 			msg += "<br>\t<tt>[html_encode(message1)]</tt>"
 		if(message2)
 			msg += "<br>\t<tt>[html_encode(message2)]</tt>"
-		to_chat(user, msg.Join())
+		. += msg.Join()
 
 
 // Pictograph display which the AI can use to emote.

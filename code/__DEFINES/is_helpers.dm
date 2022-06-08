@@ -31,7 +31,6 @@
 
 #define ismineralturf(A) (istype(A, /turf/closed/mineral))
 
-
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
 
@@ -45,13 +44,6 @@
 #define ishuman(A) (istype(A, /mob/living/carbon/human))
 
 //Human sub-species
-#define ishorror(H) (is_species(H, datum/species/spook))
-#define isunathi(H) (is_species(H, /datum/species/unathi))
-#define istajaran(H) (is_species(H, /datum/species/tajaran))
-#define isskrell(H) (is_species(H, /datum/species/skrell))
-#define isvox(H) (is_species(H, /datum/species/vox))
-#define isvoxarmalis(H) (is_species(H, /datum/species/vox/armalis))
-#define isIPC(H) (is_species(H, /datum/species/machine))
 #define isrobot(H) (is_species(H, /datum/species/robot))
 #define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
 #define isspeciessynthetic(H) (H.species.species_flags & IS_SYNTHETIC)
@@ -66,7 +58,6 @@
 #define isstok(H) (is_species(H, /datum/species/monkey/stok))
 #define isnaera(H) (is_species(H, /datum/species/monkey/naera))
 #define isyiren(H) (is_species(H, /datum/species/monkey/yiren))
-
 
 //Job/role helpers
 #define ismarinefaction(H) (H.faction == "TerraGov")
@@ -169,8 +160,6 @@
 #define issuitwithstorage(A) (istype(A, /obj/item/clothing/suit/storage))
 
 #define isuniform(A) (istype(A, /obj/item/clothing/under))
-
-#define iswebbing(A) (istype(A, /obj/item/clothing/tie/storage))
 
 #define ismodulararmor(A) (istype(A, /obj/item/clothing/suit/modular))
 

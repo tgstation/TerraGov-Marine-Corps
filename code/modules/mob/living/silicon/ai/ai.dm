@@ -17,7 +17,7 @@
 	var/list/available_networks = list("marinemainship", "marine", "dropship1", "dropship2")
 	var/obj/machinery/camera/current
 
-	var/mob/camera/aiEye/eyeobj
+	var/mob/camera/aiEye/hud/eyeobj
 	var/sprint = 10
 	var/cooldown = 0
 	var/acceleration = FALSE
@@ -30,6 +30,7 @@
 
 	var/tracking = FALSE
 	var/last_paper_seen = 0
+	///Holds world time of our last regular announcement
 	var/last_announcement = 0
 
 	var/icon/holo_icon //Default is assigned when AI is created.
@@ -189,6 +190,11 @@
 
 		ai_actual_track(pick(target))
 
+#ifdef AI_VOX
+	if(href_list["say_word"])
+		play_vox_word(href_list["say_word"], null, src)
+		return
+#endif
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
 	if(QDELETED(C))
@@ -403,6 +409,9 @@
 		return
 	link_with_vehicle(new_vehicle)
 	ai.controlling = TRUE
+
+	var/mob/camera/aiEye/hud/eyeobj = ai.eyeobj
+	eyeobj.loc = ai.loc
 
 /// Signal handler to clear vehicle and stop remote control
 /datum/action/control_vehicle/proc/clear_vehicle()

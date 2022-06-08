@@ -56,7 +56,6 @@
 	icon_state = "death"
 	item_state = "death"
 	flags_atom = CONDUCT
-	fire_resist = T0C+5200
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 /obj/item/clothing/suit/johnny_coat
@@ -178,7 +177,7 @@
 	icon_state = "straight_jacket"
 	item_state = "straight_jacket"
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
-	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 
 /obj/item/clothing/suit/straight_jacket/equipped(mob/living/carbon/user, slot)
@@ -335,7 +334,7 @@
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/large_holster/blade
+		/obj/item/storage/holster/blade
 	)
 
 /obj/item/clothing/suit/replica

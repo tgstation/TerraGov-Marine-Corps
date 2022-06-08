@@ -52,7 +52,7 @@ Stepping directly on the mine will also blow it up
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
 
 /// Flamer fire will cause mines to trigger their explosion
-/obj/item/explosive/mine/flamer_fire_act()
+/obj/item/explosive/mine/flamer_fire_act(burnlevel)
 	. = ..()
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
 
@@ -78,13 +78,20 @@ Stepping directly on the mine will also blow it up
 	user.visible_message(span_notice("[user] finishes deploying [src]."), \
 	span_notice("You finish deploying [src]."))
 	var/obj/item/card/id/id = user.get_idcard()
-	iff_signal = id?.iff_signal
+	deploy_mine(user, id?.iff_signal)
+
+///this proc is used to deploy a mine
+/obj/item/explosive/mine/proc/deploy_mine(mob/living/user, iff_sig)
+	iff_signal = iff_sig
 	anchored = TRUE
 	armed = TRUE
 	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
 	update_icon()
-	user.drop_held_item()
-	setDir(user.dir) //The direction it is planted in is the direction the user faces at that time
+	if(user)
+		user.drop_held_item()
+		setDir(user.dir)
+	else
+		setDir(pick(CARDINAL_ALL_DIRS))
 	tripwire = new /obj/effect/mine_tripwire(get_step(loc, dir))
 	tripwire.linked_mine = src
 

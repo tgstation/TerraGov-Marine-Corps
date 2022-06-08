@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - rscadd: "Plasma cutters now cut plasma, 20% per hit."

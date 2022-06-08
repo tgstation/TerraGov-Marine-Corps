@@ -171,6 +171,7 @@
 	climbable = TRUE
 	layer = ABOVE_OBJ_LAYER //so they always appear above attach points when installed
 	resistance_flags = XENO_DAMAGEABLE
+	coverage = 20
 	///on what kind of base this can be installed.
 	var/equip_category
 	///the ship base the equipment is currently installed on.
@@ -332,11 +333,12 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT)
 	deployed_turret = null
+	dropship_equipment_flags &= ~IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/examine(mob/user)
 	. = ..()
 	if(!deployed_turret)
-		to_chat(user, "Its turret is missing.")
+		. += "Its turret is missing."
 
 /obj/structure/dropship_equipment/sentry_holder/on_launch()
 	undeploy_sentry()
@@ -407,6 +409,7 @@
 	deployed_turret.update_icon()
 	deployed_turret.loc = get_step(src, dir)
 	icon_state = "sentry_system_deployed"
+	dropship_equipment_flags |= IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/proc/undeploy_sentry()
 	if(!deployed_turret)
@@ -417,6 +420,7 @@
 	deployed_turret.set_on(FALSE)
 	deployed_turret.update_icon()
 	icon_state = "sentry_system_installed"
+	dropship_equipment_flags &= ~IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/rebel
 	sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
@@ -440,7 +444,7 @@
 /obj/structure/dropship_equipment/mg_holder/examine(mob/user)
 	. = ..()
 	if(!deployed_mg)
-		to_chat(user, "Its machine gun is missing.")
+		. += "Its machine gun is missing."
 
 /obj/structure/dropship_equipment/mg_holder/update_equipment()
 	if(!deployed_mg)
@@ -451,6 +455,11 @@
 	else
 		deployed_mg.loc = src
 		icon_state = "mg_system"
+
+/obj/structure/dropship_equipment/mg_holder/Destroy()
+	if(deployed_mg)
+		QDEL_NULL(deployed_mg)
+	return ..()
 
 
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
@@ -492,7 +501,7 @@
 		to_chat(user, span_warning("[src] is busy."))
 		return //prevents spamming deployment/undeployment
 	if(luminosity != brightness)
-		set_light(brightness)
+		set_light(brightness, brightness)
 		icon_state = "spotlights_on"
 		to_chat(user, span_notice("You turn on [src]."))
 	else
@@ -517,38 +526,7 @@
 	set_light(0)
 
 /obj/structure/dropship_equipment/electronics/spotlights/on_arrival()
-	set_light(brightness)
-
-
-/obj/structure/dropship_equipment/electronics/landing_zone_detector
-	name = "\improper LZ detector"
-	desc = "An electronic device linked to the dropship's camera system that lets you observe your landing zone mid-flight."
-	icon_state = "lz_detector"
-	point_cost = 400
-	var/obj/machinery/computer/security/dropship/linked_cam_console
-
-/obj/structure/dropship_equipment/electronics/landing_zone_detector/update_equipment()
-	if(ship_base)
-		if(!linked_cam_console)
-			for(var/obj/machinery/computer/security/dropship/D in range(5, loc))
-				linked_cam_console = D
-				break
-		icon_state = "[initial(icon_state)]_installed"
-	else
-		linked_cam_console = null
-		icon_state = initial(icon_state)
-
-
-/obj/structure/dropship_equipment/electronics/landing_zone_detector/Destroy()
-	linked_cam_console = null
-	return ..()
-
-/obj/structure/dropship_equipment/electronics/landing_zone_detector/on_launch()
-	linked_cam_console.network.Add("landing zones") //only accessible while in the air.
-
-/obj/structure/dropship_equipment/electronics/landing_zone_detector/on_arrival()
-	linked_cam_console.network.Remove("landing zones")
-
+	set_light(brightness, brightness)
 
 /////////////////////////////////// COMPUTERS //////////////////////////////////////
 
@@ -605,9 +583,9 @@
 /obj/structure/dropship_equipment/weapon/examine(mob/user)
 	. = ..()
 	if(ammo_equipped)
-		ammo_equipped.show_loaded_desc(user)
-	else
-		to_chat(user, "It's empty.")
+		. += ammo_equipped.show_loaded_desc(user)
+		return
+	. += "It's empty."
 
 
 
@@ -628,9 +606,19 @@
 
 	if(ammo_warn_sound)
 		playsound(target_turf, ammo_warn_sound, 70, 1)
-	var/obj/effect/overlay/blinking_laser/laser = new (target_turf)
+
+	//Lase
+	var/obj/effect/overlay/blinking_laser/laserdot = new SA.cas_effect(target_turf)
+	laserdot.dir = attackdir
+	var/list/effects_to_delete = list(laserdot)
+
+	//Marine-only visuals
+	var/predicted_dangerous_turfs = SA.get_turfs_to_impact(target_turf, attackdir)
+	for(var/turf/impact in predicted_dangerous_turfs)
+		effects_to_delete += new /obj/effect/overlay/blinking_laser/marine/lines(impact)
+
 	addtimer(CALLBACK(SA, /obj/structure/ship_ammo.proc/detonate_on, target_turf, attackdir), ammo_travelling_time)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, laser), ammo_travelling_time)
+	QDEL_LIST_IN(effects_to_delete, ammo_travelling_time)
 
 /obj/structure/dropship_equipment/weapon/heavygun
 	name = "\improper GAU-21 30mm cannon"
@@ -713,7 +701,7 @@
 	icon = 'icons/Marine/mainship_props64.dmi'
 	firing_sound = 'sound/weapons/gunship_laser.ogg'
 	firing_delay = 50 //5 seconds
-	point_cost = 500
+	point_cost = 600
 	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 	ammo_type_used = CAS_LASER_BATTERY
 
@@ -773,7 +761,7 @@
 /obj/structure/dropship_equipment/operatingtable/examine(mob/user)
 	. = ..()
 	if(!deployed_table)
-		to_chat(user, "Its table is broken.")
+		. += "Its table is broken."
 
 /obj/structure/dropship_equipment/operatingtable/Destroy()
 	QDEL_NULL(deployed_table)

@@ -67,7 +67,7 @@
 	mymob = owner
 	hide_actions_toggle = new
 
-	for(var/mytype in subtypesof(/obj/screen/plane_master))
+	for(var/mytype in subtypesof(/obj/screen/plane_master) - /obj/screen/plane_master/rendering_plate)
 		var/obj/screen/plane_master/instance = new mytype()
 		plane_masters["[instance.plane]"] = instance
 		instance.backdrop(mymob)

@@ -16,7 +16,7 @@
 	///List of the attachment overlay images. This is so that we can easily swap overlays in and out.
 	var/list/attachable_overlays
 
-/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachmments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
+/datum/component/attachment_handler/Initialize(list/slots, list/attachables_allowed, list/attachment_offsets, list/starting_attachments, datum/callback/can_attach, datum/callback/on_attach, datum/callback/on_detach, list/overlays = list())
 	. = ..()
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
@@ -32,9 +32,9 @@
 	attachable_overlays += slots
 
 	var/obj/parent_object = parent
-	if(length(starting_attachmments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
-		for(var/starting_attachment_type in starting_attachmments)
-			attach_without_user(attachment = new starting_attachment_type())
+	if(length(starting_attachments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
+		for(var/starting_attachment_type in starting_attachments)
+			attach_without_user(attachment = new starting_attachment_type(parent_object))
 
 	update_parent_overlay()
 
@@ -74,11 +74,17 @@
 		QDEL_NULL(attachment)
 		return
 
+	var/obj/item/old_attachment = slots[slot]
+
 	finish_handle_attachment(attachment, attachment_data, attacher)
 
 	if(!attacher)
 		return
 	attacher.temporarilyRemoveItemFromInventory(attachment)
+
+	//Re-try putting old attachment into hands, now that we've cleared them
+	if(old_attachment)
+		attacher.put_in_hands(old_attachment)
 
 
 ///Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.
@@ -93,6 +99,11 @@
 	slots[slot] = attachment
 	attachment_data_by_slot[slot] = attachment_data
 
+	var/obj/parent_obj = parent
+	///The gun has another gun attached to it
+	if(isgun(attachment) && isgun(parent) )
+		parent_obj:gunattachment = attachment
+
 	on_attach?.Invoke(attachment, attacker)
 
 	if(attachment_data[ON_ATTACH])
@@ -105,7 +116,7 @@
 	update_parent_overlay()
 	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 		return
-	var/obj/parent_obj = parent
+
 	if(!ismob(parent_obj.loc))
 		return
 	var/mob/wearing_mob = parent_obj.loc
@@ -257,11 +268,11 @@
 		QDEL_NULL(attachment)
 		return
 
-	user.put_in_hands(attachment)
-
 	if(attachment_data[ON_DETACH])
 		var/datum/callback/attachment_on_detach = CALLBACK(attachment, attachment_data[ON_DETACH])
 		attachment_on_detach.Invoke(parent, user)
+
+	user.put_in_hands(attachment)
 
 	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_DETACHED, parent, user)
 	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_DETACHED_FROM_ITEM, attachment, user)
@@ -293,7 +304,10 @@
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			icon_state = attachment.icon_state
 			icon = attachment.icon
-		overlay = image(icon, parent_item, icon_state, attachment_data[ATTACHMENT_LAYER])
+			overlay = image(icon, parent_item, icon_state)
+			overlay.overlays += attachment.overlays
+		else
+			overlay = image(icon, parent_item, icon_state)
 		var/slot_x = 0 //This and slot_y are for the event that the parent did not have an overlay_offsets. In that case the offsets default to 0
 		var/slot_y = 0
 		for(var/attachment_slot in attachment_offsets)
@@ -316,6 +330,10 @@
 ///Updates the mob sprite of the attachment.
 /datum/component/attachment_handler/proc/apply_custom(datum/source, image/standing)
 	SIGNAL_HANDLER
+	var/obj/item/parent_item = parent
+	if(!ismob(parent_item.loc))
+		return
+	var/mob/living/carbon/human/wearer = parent_item.loc
 	for(var/slot in slots)
 		var/obj/item/attachment = slots[slot]
 		if(!attachment)
@@ -323,6 +341,8 @@
 		var/list/attachment_data = attachment_data_by_slot[slot]
 		if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 			continue
+		if(attachment_data[ATTACHMENT_LAYER])
+			wearer.remove_overlay(attachment_data[ATTACHMENT_LAYER])
 		var/icon = attachment.icon
 		var/icon_state = attachment.icon_state
 		var/suffix = ""
@@ -335,13 +355,19 @@
 			else
 				icon = attachment_data[OVERLAY_ICON]
 				suffix = attachment.icon == icon ? "_a" : ""
-		var/image/new_overlay
-		new_overlay = image(icon, source, icon_state + suffix, attachment_data[ATTACHMENT_LAYER])
+		var/image/new_overlay = image(icon, wearer, icon_state + suffix, -attachment_data[ATTACHMENT_LAYER])
+		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
+			new_overlay.overlays += attachment.overlays
 		if(attachment_data[MOB_PIXEL_SHIFT_X])
 			new_overlay.pixel_x += attachment_data[MOB_PIXEL_SHIFT_X]
 		if(attachment_data[MOB_PIXEL_SHIFT_Y])
 			new_overlay.pixel_y += attachment_data[MOB_PIXEL_SHIFT_Y]
-		standing.overlays += new_overlay
+		if(!attachment_data[ATTACHMENT_LAYER])
+			standing.overlays += new_overlay
+			continue
+		wearer.overlays_standing[attachment_data[ATTACHMENT_LAYER]] = new_overlay
+		wearer.apply_overlay(attachment_data[ATTACHMENT_LAYER])
+
 
 ///Deletes the attachments when the parent deletes.
 /datum/component/attachment_handler/proc/clean_references()

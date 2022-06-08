@@ -1,0 +1,5457 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ag" = (
+/obj/structure/bed/chair/office/dark,
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"aA" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"aD" = (
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"aH" = (
+/obj/item/ammo_casing,
+/obj/item/stack/barbed_wire,
+/turf/open/floor/tile/dark/green2{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"aK" = (
+/obj/machinery/floodlight/landing,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 9
+	},
+/area/bigredv2/outside/space_port)
+"aM" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
+"aX" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"aY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"bb" = (
+/obj/structure/table,
+/obj/item/restraints/handcuffs,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"bi" = (
+/obj/machinery/landinglight/ds1/delayone,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"bn" = (
+/turf/open/floor/tile/dark/green2{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"by" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/red/redtaupecorner,
+/area/bigredv2/outside/marshal_office)
+"bN" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
+"bX" = (
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"ch" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"cj" = (
+/obj/structure/table,
+/obj/structure/paper_bin,
+/obj/structure/barricade/metal,
+/turf/open/floor/tile/dark/green2{
+	dir = 6
+	},
+/area/bigredv2/outside/space_port)
+"cm" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 9
+	},
+/area/bigredv2/outside/nw)
+"co" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/red/redtaupecorner,
+/area/bigredv2/outside/marshal_office)
+"cs" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/space_port)
+"cv" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"cz" = (
+/obj/structure/sign/safety/vent{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"cN" = (
+/obj/structure/window_frame/colony/reinforced,
+/obj/item/shard,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"cP" = (
+/obj/item/stack/sheet/metal,
+/obj/item/stack/rods,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
+"dm" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 8
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"dw" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"dz" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"ei" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/marshal_office)
+"eq" = (
+/obj/structure/cargo_container/green{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"eE" = (
+/obj/item/shard,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"eK" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 9
+	},
+/area/bigredv2/outside/space_port)
+"eP" = (
+/obj/machinery/landinglight/ds1{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"eT" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"eX" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"eY" = (
+/obj/structure/table,
+/obj/item/tool/extinguisher,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"eZ" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/gun/shotgun,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"fh" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"fy" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"fN" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"fP" = (
+/turf/open/floor/tile/dark/green2,
+/area/bigredv2/outside/space_port)
+"fQ" = (
+/obj/structure/window/reinforced,
+/obj/machinery/botany,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"fW" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/north)
+"gb" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/space_port)
+"gd" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/northwest)
+"gQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"gY" = (
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"hc" = (
+/obj/structure/cargo_container/red{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"hd" = (
+/obj/machinery/computer/secure_data,
+/obj/structure/table,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"hh" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"hI" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/telecomm)
+"hU" = (
+/obj/structure/table,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"ig" = (
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "tcomms";
+	name = "\improper Telecommunications Shutters"
+	},
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/bigredv2/outside/telecomm)
+"iB" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"iL" = (
+/obj/machinery/door/airlock/mainship/security/glass/free_access{
+	dir = 1;
+	name = "\improper Marshal Office Prison"
+	},
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/marshal_office)
+"iO" = (
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/spawner/random/gun/rifles,
+/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/ammo/rifle,
+/obj/effect/spawner/random/ammo/rifle,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/bigredv2/outside/marshal_office)
+"iQ" = (
+/obj/structure/table,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
+/obj/structure/barricade/metal,
+/turf/open/floor/tile/dark/green2,
+/area/bigredv2/outside/space_port)
+"jo" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/marshal_office)
+"ju" = (
+/obj/structure/noticeboard,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/space_port)
+"jv" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 4
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/space_port)
+"jx" = (
+/obj/structure/mirror/broken{
+	dir = 4
+	},
+/obj/item/tool/soap/deluxe,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/marshal_office)
+"jy" = (
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/n)
+"jB" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"jF" = (
+/obj/structure/cargo_container/green{
+	dir = 1
+	},
+/turf/open/floor/plating/warning,
+/area/bigredv2/outside/space_port)
+"jH" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/marshal_office)
+"jN" = (
+/obj/structure/table,
+/obj/item/folder/yellow,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"ke" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"kg" = (
+/obj/structure/sink,
+/turf/open/floor/freezer,
+/area/bigredv2/outside/marshal_office)
+"ks" = (
+/turf/open/floor/plating/warning,
+/area/bigredv2/outside/space_port)
+"kR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"kS" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/red/redtaupecorner,
+/area/bigredv2/outside/marshal_office)
+"ln" = (
+/obj/structure/solaris_sign,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/nw)
+"lA" = (
+/obj/machinery/landinglight/ds1/delaythree,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"lF" = (
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/console)
+"lJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
+"lS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"lT" = (
+/obj/machinery/light,
+/turf/open/floor/tile/red/redtaupecorner,
+/area/bigredv2/outside/marshal_office)
+"lV" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"lW" = (
+/obj/structure/table,
+/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/tool,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"lZ" = (
+/turf/open/floor/podhatch/floor,
+/area/bigredv2/outside/telecomm)
+"ma" = (
+/obj/structure/table,
+/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/tool,
+/turf/open/floor/tile/darkgreen/darkgreen2,
+/area/bigredv2/outside/space_port)
+"mc" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 6
+	},
+/area/bigredv2/outside/space_port)
+"mf" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"mh" = (
+/obj/structure/showcase{
+	icon_state = "broadcaster_send"
+	},
+/turf/open/floor/podhatch/floor,
+/area/bigredv2/outside/telecomm)
+"mi" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"mw" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/wall,
+/area/bigredv2/outside/marshal_office)
+"mM" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/bigredv2/outside/nw)
+"mP" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/nw)
+"nb" = (
+/obj/machinery/landinglight/ds1/delaytwo,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"nc" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/gun/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"nm" = (
+/obj/structure/table,
+/obj/item/folder/black,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"nt" = (
+/obj/machinery/computer/arcade,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"nv" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/marking/delivery,
+/area/bigredv2/outside/marshal_office)
+"nA" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"os" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
+"ov" = (
+/obj/structure/cable,
+/turf/open/floor/plating/warning,
+/area/bigredv2/outside/space_port)
+"ox" = (
+/obj/structure/table,
+/obj/effect/spawner/random/toolbox,
+/obj/machinery/door_control{
+	id = "Spaceport";
+	name = "Storm Shutters";
+	pixel_x = 32
+	},
+/obj/item/tool/pen,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"oB" = (
+/turf/open/floor/marking/delivery,
+/area/bigredv2/outside/marshal_office)
+"oE" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
+"oF" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"oJ" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Spaceport";
+	name = "\improper Spaceport Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"pd" = (
+/obj/machinery/botany,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/marshal_office)
+"pp" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/tile/darkgreen/darkgreen2,
+/area/bigredv2/outside/space_port)
+"pr" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"pw" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/northwest)
+"pB" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 6
+	},
+/area/bigredv2/outside/space_port)
+"pI" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/north)
+"pU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/stack/barbed_wire,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"qa" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/marshal_office)
+"qg" = (
+/obj/machinery/light,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"qn" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"qE" = (
+/obj/structure/table,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"qF" = (
+/obj/structure/cargo_container/green{
+	dir = 8
+	},
+/turf/open/floor/plating/warning,
+/area/bigredv2/outside/space_port)
+"qJ" = (
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/marshal_office)
+"qN" = (
+/obj/structure/window/framed/colony,
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "Spaceport";
+	name = "\improper Spaceport Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"qP" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tool,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 6
+	},
+/area/bigredv2/outside/space_port)
+"qS" = (
+/obj/item/stack/rods,
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"rc" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"rj" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/button/door/open_only/landing_zone,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"rm" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"rr" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/nw)
+"rz" = (
+/obj/structure/table,
+/obj/item/radio,
+/obj/structure/barricade/metal,
+/turf/open/floor/tile/dark/green2,
+/area/bigredv2/outside/space_port)
+"rW" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"sb" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"sg" = (
+/obj/structure/cable,
+/obj/machinery/light,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"si" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/nw)
+"sq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"sB" = (
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
+"sF" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"sG" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/tile/dark/green2{
+	dir = 4
+	},
+/area/bigredv2/outside/space_port)
+"sO" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/bigredv2/outside/nw)
+"tb" = (
+/obj/item/shard,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"tg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/red/redtaupecorner,
+/area/bigredv2/outside/marshal_office)
+"th" = (
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
+/area/bigredv2/outside/marshal_office)
+"tl" = (
+/obj/machinery/light,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"to" = (
+/obj/machinery/vending/cigarette/colony,
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"tv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"tA" = (
+/obj/machinery/computer/security,
+/turf/open/floor/tile/darkgreen/darkgreen2,
+/area/bigredv2/outside/space_port)
+"tB" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/gun/shotgun,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"tL" = (
+/obj/structure/sign/safety/hazard,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/space_port)
+"tM" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"tO" = (
+/obj/docking_port/stationary/marine_dropship/lz1,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
+"tR" = (
+/obj/machinery/disposal,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"tS" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/nw)
+"tT" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tool,
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"ua" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"ud" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"ui" = (
+/obj/structure/table,
+/obj/effect/spawner/random/ammo/shotgun,
+/obj/effect/spawner/random/ammo/shotgun,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"uE" = (
+/turf/closed/wall,
+/area/bigredv2/outside/space_port)
+"uK" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
+"vc" = (
+/obj/structure/largecrate/random/barrel,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"vd" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"vi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"vs" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"vx" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/north)
+"vA" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
+"vD" = (
+/obj/structure/closet/secure_closet/injection,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"vI" = (
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"vR" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/marshal_office)
+"vU" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
+"vY" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"wc" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"wh" = (
+/obj/structure/cable,
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"ww" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"wD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"wN" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
+"wX" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"xf" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"xh" = (
+/obj/structure/table,
+/obj/effect/spawner/random/ammo/sidearm,
+/obj/effect/spawner/random/gun/sidearms,
+/obj/structure/barricade/metal,
+/turf/open/floor/tile/dark/green2{
+	dir = 10
+	},
+/area/bigredv2/outside/space_port)
+"xj" = (
+/obj/machinery/floodlight/landing,
+/turf/open/floor/plating/asteroidplating,
+/area/bigredv2/outside/space_port)
+"xs" = (
+/obj/structure/closet/secure_closet/marshal,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"xD" = (
+/obj/structure/cargo_container/green{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"xH" = (
+/obj/structure/cargo_container/red{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"xL" = (
+/obj/structure/cable,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"xX" = (
+/obj/structure/table,
+/obj/item/folder/black_random,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"ye" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"yl" = (
+/obj/structure/bed/chair,
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/marshal_office)
+"yv" = (
+/obj/machinery/flasher/portable,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/bigredv2/outside/marshal_office)
+"yM" = (
+/obj/structure/table,
+/obj/machinery/computer/camera,
+/turf/open/floor/tile/dark/green2{
+	dir = 4
+	},
+/area/bigredv2/outside/space_port)
+"yN" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"yO" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"yP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"yR" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
+"yT" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"yY" = (
+/turf/open/floor/tile/red/redtaupecorner,
+/area/bigredv2/outside/marshal_office)
+"zb" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
+"zo" = (
+/obj/structure/cargo_container{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"zq" = (
+/obj/structure/table,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"zH" = (
+/obj/structure/rack,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/bigredv2/outside/marshal_office)
+"zV" = (
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/bigredv2/outside/marshal_office)
+"zZ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"Au" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/structure/window_frame/colony,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"AH" = (
+/obj/structure/closet/l3closet/security,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/bigredv2/outside/marshal_office)
+"AJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/window_frame/colony,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"AL" = (
+/obj/structure/cargo_container/green{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"AR" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 1;
+	name = "\improper Marshal Office Prison"
+	},
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/marshal_office)
+"AY" = (
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"Bb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"Bd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"Bw" = (
+/obj/structure/cargo_container/green{
+	dir = 4
+	},
+/turf/open/floor/plating/warning,
+/area/bigredv2/outside/space_port)
+"BC" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"BG" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"Cf" = (
+/turf/open/floor/tile/darkish,
+/area/bigredv2/outside/marshal_office)
+"CE" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"CQ" = (
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"Db" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"Dp" = (
+/obj/machinery/landinglight/ds1{
+	dir = 4
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/space_port)
+"DC" = (
+/turf/open/floor/tile/darkgreen/darkgreen2,
+/area/bigredv2/outside/space_port)
+"DD" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/bigredv2/outside/marshal_office)
+"DI" = (
+/obj/structure/cargo_container/red{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"DK" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"DL" = (
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
+"DV" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/bigredv2/outside/nw)
+"Ea" = (
+/obj/machinery/computer/telecomms/server,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"Ed" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"Ej" = (
+/obj/structure/table,
+/obj/effect/spawner/random/powercell,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"Ep" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 10
+	},
+/area/bigredv2/outside/nw)
+"Es" = (
+/obj/machinery/landinglight/ds1{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"EA" = (
+/obj/structure/cargo_container/red{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"EO" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/n)
+"EP" = (
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"Fb" = (
+/obj/structure/window/reinforced,
+/obj/machinery/botany,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"Fm" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
+"Fr" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 6
+	},
+/area/bigredv2/outside/space_port)
+"FI" = (
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor/tile/dark/green2{
+	dir = 9
+	},
+/area/bigredv2/outside/space_port)
+"FM" = (
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/nw)
+"FY" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"Gg" = (
+/obj/structure/sign/safety/hazard{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"Gl" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 6
+	},
+/area/bigredv2/outside/nw)
+"Gn" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"Gq" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"Gr" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/landmark/corpsespawner/prisoner,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"Gs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"Gx" = (
+/obj/machinery/computer/telecomms/monitor,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"Gz" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/bigredv2/outside/nw)
+"GC" = (
+/obj/structure/window/framed/colony/reinforced/tinted,
+/turf/open/floor/plating,
+/area/bigredv2/outside/marshal_office)
+"GG" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 4
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/space_port)
+"GL" = (
+/obj/structure/rack,
+/obj/item/armor_module/storage/uniform/black_vest,
+/obj/item/armor_module/storage/uniform/black_vest,
+/obj/item/armor_module/storage/uniform/black_vest,
+/obj/effect/spawner/random/ammo/shotgun,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"GW" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"Hi" = (
+/obj/machinery/washing_machine,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"Hj" = (
+/obj/item/ammo_casing,
+/turf/open/floor/tile/dark/green2,
+/area/bigredv2/outside/space_port)
+"Hn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 1;
+	name = "\improper Marshal Office Prison"
+	},
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/marshal_office)
+"Ho" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 8
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"Ht" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"Hv" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
+"Hx" = (
+/obj/machinery/floodlight/landing,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 5
+	},
+/area/bigredv2/outside/space_port)
+"HW" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/nw)
+"HZ" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"Ig" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/podhatch/floor,
+/area/bigredv2/outside/telecomm)
+"Ir" = (
+/obj/item/stack/barbed_wire,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"Iz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/freezer,
+/area/bigredv2/outside/marshal_office)
+"IB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"IJ" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
+"IO" = (
+/obj/structure/table,
+/obj/item/clothing/head/beret/sec/warden,
+/obj/effect/spawner/random/ammo/shotgun,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"IS" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	dir = 1;
+	name = "\improper Telecommunications"
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"IU" = (
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"IZ" = (
+/obj/machinery/landinglight/ds1{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"Jm" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 1
+	},
+/area/bigredv2/outside/nw)
+"JN" = (
+/turf/closed/wall,
+/area/bigredv2/outside/marshal_office)
+"Kb" = (
+/obj/machinery/vending/cigarette/colony,
+/turf/open/floor/tile/dark/green2{
+	dir = 5
+	},
+/area/bigredv2/outside/space_port)
+"Ks" = (
+/obj/item/ammo_casing,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"Ku" = (
+/obj/structure/cargo_container{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"KB" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"KD" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/marshal_office)
+"KL" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"KW" = (
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"Lj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"Ll" = (
+/turf/open/floor/freezer,
+/area/bigredv2/outside/marshal_office)
+"Lx" = (
+/turf/open/floor/tile/dark/green2{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"LI" = (
+/obj/structure/prop/mainship/hangar_stencil,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 10
+	},
+/area/bigredv2/outside/space_port)
+"LN" = (
+/obj/structure/table,
+/obj/effect/spawner/random/ammo/shotgun,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"LY" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/north)
+"LZ" = (
+/obj/machinery/landinglight/ds1,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"Mr" = (
+/obj/item/stack/rods,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
+"Mu" = (
+/obj/structure/cable,
+/obj/machinery/light,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"Mw" = (
+/obj/item/folder/yellow,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"Mx" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"MF" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Marshal Office Brig"
+	},
+/turf/open/floor/marking/delivery,
+/area/bigredv2/outside/marshal_office)
+"MT" = (
+/obj/item/shard,
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/structure/window_frame/colony/reinforced,
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating,
+/area/bigredv2/outside/marshal_office)
+"MY" = (
+/obj/machinery/door_control{
+	id = "Marshal Offices";
+	name = "Storm Shutters"
+	},
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
+/area/bigredv2/outside/marshal_office)
+"Nb" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 4
+	},
+/area/bigredv2/outside/marshal_office)
+"Nc" = (
+/obj/structure/sign/safety/hazard,
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"Nh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"NJ" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/open/floor/freezer,
+/area/bigredv2/outside/marshal_office)
+"Od" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"Oj" = (
+/obj/structure/table,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"On" = (
+/obj/structure/cable,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/nw)
+"Op" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
+"Or" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"OM" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"OO" = (
+/obj/machinery/landinglight/ds1/delayone,
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"OQ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/marking/delivery,
+/area/bigredv2/outside/marshal_office)
+"OS" = (
+/obj/structure/window_frame/colony/reinforced,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"Pf" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Marshal Office Isolation"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"Pi" = (
+/obj/structure/bed,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"Pr" = (
+/obj/machinery/recharge_station,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"Ps" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"Pv" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
+"Px" = (
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"PQ" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"PV" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/bigredv2/outside/marshal_office)
+"Qa" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/warning,
+/area/bigredv2/outside/space_port)
+"Qf" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"Qw" = (
+/obj/machinery/disposal,
+/turf/open/floor/tile/dark/green2{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"QC" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 4
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/space_port)
+"QI" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/northwest)
+"QK" = (
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"Rd" = (
+/obj/item/shard,
+/obj/item/shard,
+/turf/open/floor/tile/dark/green2{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
+"Re" = (
+/obj/item/stack/rods,
+/obj/item/stack/rods,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
+"Ru" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "\improper Marshal Office Prison Toilet"
+	},
+/turf/open/floor/freezer,
+/area/bigredv2/outside/marshal_office)
+"Rw" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/northwest)
+"Ry" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"RJ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"RN" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
+/area/bigredv2/outside/marshal_office)
+"RT" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
+/area/bigredv2/outside/marshal_office)
+"St" = (
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"SA" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"SB" = (
+/obj/structure/closet/firecloset,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"SE" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "Marshal Offices";
+	name = "\improper Marshal Offices Shutters"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/marshal_office)
+"SG" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/mainship/security/glass/free_access{
+	dir = 1;
+	name = "\improper Marshal Office Armory"
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"SX" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"Tf" = (
+/obj/structure/closet/l3closet/security,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/bigredv2/outside/marshal_office)
+"Tp" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 2;
+	id = "Marshal Offices";
+	name = "\improper Marshal Offices Shutters"
+	},
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating,
+/area/bigredv2/outside/marshal_office)
+"Ts" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 8
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"Tu" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"TC" = (
+/obj/structure/table,
+/obj/effect/spawner/random/technology_scanner,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"TG" = (
+/turf/closed/wall,
+/area/bigredv2/outside/telecomm)
+"TM" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 1;
+	name = "\improper Spaceport"
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"TN" = (
+/obj/structure/cable,
+/obj/structure/largecrate/random,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"Ua" = (
+/obj/structure/table,
+/obj/structure/barricade/metal,
+/obj/item/paper,
+/obj/item/tool/pen/blue,
+/turf/open/floor/tile/dark/green2,
+/area/bigredv2/outside/space_port)
+"Uw" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/bigredv2/outside/nw)
+"UG" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/space_port)
+"UJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"UK" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tool,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 10
+	},
+/area/bigredv2/outside/space_port)
+"UO" = (
+/obj/structure/table,
+/obj/effect/spawner/random/toolbox,
+/obj/effect/spawner/random/tool,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"UT" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tool,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"UW" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/gun/sidearms,
+/obj/effect/spawner/random/ammo/sidearm,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/bigredv2/outside/marshal_office)
+"Va" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/north)
+"Vb" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 6
+	},
+/area/bigredv2/outside/space_port)
+"Vj" = (
+/obj/structure/table,
+/obj/item/radio/headset/survivor,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"Vn" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"VH" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"VI" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"VL" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"Wd" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"Wk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door_control{
+	id = "tcomms";
+	name = "Storm Shutters"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"Wl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"Wm" = (
+/obj/machinery/botany,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
+	},
+/area/bigredv2/outside/marshal_office)
+"Wp" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 5
+	},
+/area/bigredv2/outside/space_port)
+"WF" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/marshal_office)
+"WI" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"WK" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"Xb" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"Xe" = (
+/obj/structure/table,
+/obj/effect/spawner/random/bomb_supply,
+/obj/effect/spawner/random/technology_scanner,
+/obj/effect/spawner/random/tool,
+/turf/open/floor/tile/darkgreen/darkgreen2,
+/area/bigredv2/outside/space_port)
+"Xl" = (
+/obj/item/radio/headset/survivor,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"Xr" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tool,
+/obj/machinery/door_control{
+	dir = 4;
+	id = "tcomms";
+	name = "Storm Shutters"
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"XD" = (
+/obj/structure/window/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/marshal_office)
+"XE" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
+/area/bigredv2/outside/marshal_office)
+"XL" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
+"XU" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
+"Yj" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor,
+/area/bigredv2/outside/marshal_office)
+"Yn" = (
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"Yv" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/nw)
+"Yy" = (
+/obj/structure/table,
+/obj/item/flashlight/lamp,
+/turf/open/floor/tile/dark/green2{
+	dir = 4
+	},
+/area/bigredv2/outside/space_port)
+"YG" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"YP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/mainship/security/glass/free_access{
+	dir = 1;
+	name = "\improper Marshal Office Prison"
+	},
+/turf/open/floor/tile/green/whitegreenfull,
+/area/bigredv2/outside/marshal_office)
+"YQ" = (
+/obj/structure/showcase{
+	icon_state = "bus"
+	},
+/turf/open/floor/podhatch/floor,
+/area/bigredv2/outside/telecomm)
+"Zh" = (
+/obj/machinery/landinglight/ds1{
+	dir = 8
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/space_port)
+"Zm" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"Zt" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/telecomm)
+"ZP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
+
+(1,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+"}
+(2,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+ud
+ud
+ud
+ud
+ud
+ud
+ud
+ud
+ud
+ud
+Gs
+ud
+ud
+ud
+ud
+ud
+ud
+ud
+ud
+ud
+CQ
+"}
+(3,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+hI
+hI
+hI
+hI
+hI
+hI
+hI
+hI
+hI
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+oF
+CQ
+"}
+(4,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+hI
+nm
+TC
+lW
+Gx
+Ea
+QK
+Xr
+TG
+Wk
+IU
+IU
+Lj
+IU
+IU
+IU
+IU
+gb
+oF
+CQ
+"}
+(5,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+hI
+lZ
+QK
+QK
+Xl
+rc
+QK
+qE
+ig
+XU
+IU
+IU
+IU
+IU
+IU
+IU
+Yn
+gb
+oF
+CQ
+"}
+(6,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+hI
+YQ
+QK
+QK
+sF
+QK
+Mw
+QK
+ig
+IU
+IU
+IU
+AY
+IU
+XU
+IU
+Nc
+gb
+gd
+zb
+"}
+(7,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+hI
+YQ
+Zt
+QK
+QK
+QK
+Zt
+Zm
+ig
+XU
+IU
+IU
+IU
+IU
+IU
+IU
+Yn
+gb
+IJ
+os
+"}
+(8,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+ud
+ud
+ud
+oF
+hI
+TG
+TG
+TG
+yT
+TG
+TG
+TG
+TG
+tv
+IU
+IU
+IB
+IU
+IU
+IU
+cv
+gb
+IJ
+os
+"}
+(9,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+gb
+gb
+hI
+Oj
+jN
+xX
+aD
+QK
+WI
+Ig
+TG
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+Yn
+gb
+IJ
+zb
+"}
+(10,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+mi
+XU
+TG
+qE
+Ht
+Ht
+Ht
+QK
+Xb
+lZ
+ig
+IU
+IU
+IU
+AY
+IU
+IU
+IU
+Nc
+gb
+IJ
+os
+"}
+(11,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+IU
+Ps
+IS
+Xb
+vi
+vi
+wD
+Xb
+Xb
+mh
+ig
+IU
+IU
+IU
+IU
+IU
+XU
+IU
+Yn
+gb
+oF
+CQ
+"}
+(12,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+ud
+ud
+ud
+ud
+ud
+ud
+ud
+ud
+ud
+oF
+gb
+IU
+xL
+TG
+QK
+QK
+QK
+Ht
+QK
+QK
+lZ
+ig
+IU
+XU
+IU
+IU
+IU
+IU
+IU
+IU
+gb
+oF
+CQ
+"}
+(13,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+IU
+gY
+TG
+xX
+dz
+eY
+Vj
+QK
+QK
+mh
+TG
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+gb
+oF
+CQ
+"}
+(14,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+eK
+vI
+LI
+IU
+IU
+ke
+AY
+IU
+IU
+XU
+gY
+TG
+TG
+TG
+TG
+TG
+TG
+TG
+TG
+TG
+IU
+IU
+XU
+IU
+IU
+IU
+IU
+KL
+gb
+oF
+CQ
+"}
+(15,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+IU
+cv
+IU
+qg
+gb
+zZ
+AY
+IU
+IU
+Ps
+gY
+Ps
+gY
+gY
+SA
+gY
+Ps
+xL
+gY
+gY
+gY
+gY
+Ps
+gY
+gY
+gY
+Ps
+gb
+oF
+CQ
+"}
+(16,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+Hx
+cs
+mc
+IU
+IU
+mi
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+xj
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+IU
+aK
+Or
+LI
+fy
+gb
+oF
+CQ
+"}
+(17,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+IU
+QC
+Dp
+jv
+GG
+QC
+Dp
+jv
+GG
+QC
+Dp
+jv
+GG
+QC
+Dp
+jv
+GG
+QC
+Dp
+jv
+GG
+QC
+IU
+fN
+IU
+Yn
+fy
+gb
+oF
+CQ
+"}
+(18,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+nb
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+uK
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+IZ
+Wp
+cs
+Vb
+fy
+gb
+oF
+CQ
+"}
+(19,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+OO
+DL
+DL
+uK
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+uK
+DL
+DL
+BG
+IU
+IU
+IU
+fy
+gb
+oF
+CQ
+"}
+(20,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+LZ
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+vs
+IU
+IU
+IU
+fy
+gb
+oF
+CQ
+"}
+(21,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+lA
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+Ed
+IU
+IU
+IU
+HZ
+gb
+oF
+CQ
+"}
+(22,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+nb
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+IZ
+IU
+IU
+IU
+fy
+gb
+oF
+CQ
+"}
+(23,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+jB
+bi
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+tO
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+BG
+IU
+IU
+IU
+fy
+gb
+oF
+CQ
+"}
+(24,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+LZ
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+vs
+IU
+XU
+IU
+Mu
+gb
+oF
+CQ
+"}
+(25,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+lA
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+yN
+IU
+IU
+IU
+fy
+gb
+oF
+CQ
+"}
+(26,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+nb
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+Es
+IU
+IU
+IU
+HZ
+gb
+oF
+CQ
+"}
+(27,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+OO
+DL
+DL
+uK
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+uK
+DL
+DL
+BG
+IU
+IU
+IU
+fy
+gb
+oF
+CQ
+"}
+(28,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+LZ
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+uK
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+DL
+vs
+eK
+Or
+LI
+fy
+gb
+oF
+CQ
+"}
+(29,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+AY
+Ts
+Vn
+dm
+eP
+Ts
+Wl
+Ho
+Zh
+Ts
+lV
+dm
+Zh
+Ts
+Vn
+VH
+Zh
+Ts
+Vn
+dm
+Zh
+Ts
+AY
+fN
+IU
+Yn
+fy
+gb
+oF
+CQ
+"}
+(30,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+aK
+Or
+LI
+cs
+cs
+cs
+cs
+cs
+cs
+cs
+cs
+cs
+cs
+xj
+cs
+UG
+cs
+UG
+UG
+cs
+cs
+cs
+cs
+cs
+Hx
+cs
+Fr
+pB
+gb
+oF
+CQ
+"}
+(31,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+fN
+IU
+Yn
+EP
+zo
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+ks
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+gb
+gb
+fN
+gY
+IU
+gb
+gb
+oF
+sB
+"}
+(32,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+Wp
+cs
+mc
+EP
+Ku
+EP
+EP
+EP
+EP
+zo
+EP
+EP
+EP
+ks
+EP
+EP
+EP
+EP
+EP
+zo
+EP
+ks
+gb
+IU
+fN
+gY
+IU
+TN
+gb
+Uw
+sB
+"}
+(33,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+YG
+EP
+EP
+EP
+Ku
+EP
+EP
+EP
+EP
+Ku
+EP
+EP
+EP
+ks
+EP
+EP
+EP
+EP
+EP
+Ku
+eq
+ks
+eT
+IU
+fN
+IU
+IU
+gY
+gb
+si
+mM
+"}
+(34,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+gb
+EP
+BC
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+Ku
+EP
+EP
+EP
+qF
+EP
+EP
+EP
+EP
+EP
+Ku
+AL
+ks
+OS
+eE
+fN
+IU
+IU
+sg
+gb
+Ep
+rr
+"}
+(35,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+oF
+tL
+gb
+gb
+gb
+EP
+EP
+CE
+VL
+EP
+EP
+EP
+EP
+EP
+EP
+jF
+EP
+EP
+EP
+EP
+EP
+EP
+xD
+ks
+gb
+IU
+fN
+IU
+IU
+TN
+gb
+mP
+FM
+"}
+(36,1,1) = {"
+yO
+yO
+yO
+yO
+yO
+vA
+vA
+vA
+yR
+gb
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+Ry
+YG
+EP
+Bw
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+gb
+vc
+fN
+IU
+IU
+gY
+Or
+Ep
+Yv
+"}
+(37,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+Hv
+os
+os
+yR
+gb
+Gg
+GW
+vY
+GW
+GW
+GW
+GW
+vY
+GW
+vY
+ov
+GW
+GW
+vY
+GW
+DI
+GW
+GW
+GW
+wh
+gY
+sb
+gY
+IU
+Ps
+gY
+On
+tS
+"}
+(38,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+os
+os
+zb
+os
+wN
+gb
+cz
+GW
+EP
+lS
+EP
+EP
+EP
+lS
+EP
+EP
+ks
+EP
+EP
+EP
+EP
+EA
+EP
+EP
+EP
+eT
+IU
+Wp
+cs
+cs
+cs
+cs
+Gl
+HW
+"}
+(39,1,1) = {"
+CQ
+CQ
+CQ
+os
+oE
+os
+os
+Hv
+iB
+gb
+uE
+vd
+TM
+uE
+uE
+qN
+qN
+uE
+uE
+EP
+ks
+EP
+EP
+EP
+EP
+xH
+EP
+EP
+EP
+gb
+vc
+IU
+IU
+IU
+IU
+gb
+ln
+rr
+"}
+(40,1,1) = {"
+CQ
+CQ
+CQ
+os
+os
+os
+os
+zb
+iB
+gb
+tM
+vd
+UJ
+ye
+tR
+lF
+UT
+UK
+uE
+Bd
+ks
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+gb
+gb
+St
+TM
+Mx
+Mx
+gb
+Gl
+FM
+"}
+(41,1,1) = {"
+CQ
+CQ
+CQ
+os
+zb
+os
+os
+os
+iB
+gb
+to
+St
+St
+St
+St
+St
+ag
+Xe
+oJ
+EP
+ks
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+gb
+FI
+hh
+Ir
+bn
+xh
+gb
+DV
+sO
+"}
+(42,1,1) = {"
+CQ
+CQ
+CQ
+os
+os
+os
+os
+CQ
+iB
+gb
+SB
+St
+hh
+St
+hh
+St
+St
+ma
+oJ
+EP
+ks
+EP
+EP
+YG
+EP
+EP
+EP
+EP
+YG
+gb
+Qw
+St
+hh
+eX
+Ua
+gb
+Mr
+bN
+"}
+(43,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+Hv
+os
+zb
+CQ
+iB
+gb
+SB
+hh
+ch
+SX
+hh
+hh
+VI
+tA
+uE
+EP
+ks
+Db
+EP
+EP
+EP
+EP
+EP
+hc
+EP
+OS
+Rd
+Ks
+St
+WK
+rz
+Mx
+lJ
+bN
+"}
+(44,1,1) = {"
+CQ
+CQ
+CQ
+os
+os
+Hv
+CQ
+CQ
+iB
+gb
+Pr
+St
+hh
+St
+WK
+St
+St
+pp
+Au
+EP
+ks
+zo
+EP
+EP
+EP
+EP
+eq
+EA
+EP
+cN
+Lx
+St
+hh
+hh
+Hj
+Mx
+cP
+sB
+"}
+(45,1,1) = {"
+CQ
+CQ
+CQ
+os
+zb
+os
+CQ
+CQ
+iB
+gb
+St
+St
+St
+Qf
+St
+St
+hh
+DC
+AJ
+YG
+ks
+Ku
+EP
+YG
+EP
+EP
+AL
+xH
+EP
+eT
+aH
+hh
+nA
+St
+fP
+qS
+XL
+ZP
+"}
+(46,1,1) = {"
+CQ
+CQ
+CQ
+os
+os
+os
+CQ
+CQ
+iB
+gb
+UT
+UO
+UO
+ox
+aX
+Ej
+tT
+qP
+oJ
+EP
+ks
+Ku
+EP
+EP
+EP
+EP
+xD
+EP
+EP
+ju
+Lx
+St
+pU
+Qf
+iQ
+gb
+Re
+sB
+"}
+(47,1,1) = {"
+CQ
+CQ
+CQ
+os
+os
+os
+CQ
+CQ
+iB
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+rj
+Qa
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+EP
+gb
+Kb
+sG
+Yy
+yM
+cj
+gb
+lJ
+sB
+"}
+(48,1,1) = {"
+CQ
+CQ
+CQ
+os
+os
+os
+zb
+CQ
+xf
+xf
+xf
+xf
+xf
+xf
+xf
+xf
+xf
+iB
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+tL
+gb
+tL
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+gb
+lJ
+sB
+"}
+(49,1,1) = {"
+CQ
+CQ
+CQ
+zb
+os
+os
+os
+os
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+ud
+xf
+xf
+xf
+xf
+xf
+xf
+xf
+xf
+vA
+pw
+vA
+xf
+xf
+ud
+ud
+ud
+ud
+ud
+vU
+Op
+"}
+(50,1,1) = {"
+CQ
+CQ
+CQ
+os
+os
+zb
+os
+os
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+CQ
+CQ
+yO
+CQ
+CQ
+CQ
+CQ
+sB
+sB
+"}
+(51,1,1) = {"
+CQ
+CQ
+CQ
+os
+os
+os
+os
+os
+os
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+zb
+CQ
+CQ
+yO
+CQ
+CQ
+CQ
+sB
+sB
+sB
+"}
+(52,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+Hv
+os
+os
+zb
+Hv
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+aM
+os
+CQ
+yO
+CQ
+CQ
+CQ
+sB
+sB
+cm
+"}
+(53,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+os
+zb
+os
+os
+os
+os
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+zb
+os
+CQ
+yO
+CQ
+CQ
+CQ
+Op
+sB
+Jm
+"}
+(54,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+os
+os
+os
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+Hv
+zb
+os
+zb
+Hv
+CQ
+CQ
+yO
+CQ
+CQ
+CQ
+sB
+sB
+Jm
+"}
+(55,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+zb
+os
+zb
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+Pv
+Pv
+Pv
+yO
+yO
+CQ
+CQ
+Op
+sB
+sB
+sB
+Jm
+"}
+(56,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+os
+os
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+Pv
+jH
+jH
+jH
+jH
+jH
+CQ
+CQ
+sB
+sB
+Op
+sB
+Gz
+"}
+(57,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+zb
+os
+os
+zb
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+zb
+Pv
+jH
+Cf
+yl
+qa
+jH
+CQ
+CQ
+sB
+sB
+sB
+sB
+sB
+"}
+(58,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+os
+os
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+Pv
+jH
+qa
+Cf
+Cf
+jH
+CQ
+sB
+Op
+sB
+sB
+sB
+sB
+"}
+(59,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+os
+zb
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+Pv
+jH
+tb
+GC
+GC
+jH
+sB
+sB
+sB
+sB
+sB
+Op
+sB
+"}
+(60,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+Hv
+os
+zb
+os
+Hv
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+zb
+Pv
+jH
+Gn
+KB
+KB
+jH
+jH
+jH
+jH
+SE
+SE
+jH
+sB
+"}
+(61,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+zb
+os
+os
+os
+os
+os
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+os
+Pv
+jH
+Wd
+kR
+Wd
+Gq
+oB
+Pf
+OQ
+kR
+bX
+jH
+Op
+"}
+(62,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+os
+zb
+os
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+QI
+os
+os
+Pv
+jH
+vD
+qn
+kR
+Wd
+oB
+bX
+oB
+bX
+Wd
+jH
+sB
+"}
+(63,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+zb
+os
+os
+os
+os
+CQ
+CQ
+CQ
+Hv
+os
+zb
+os
+os
+Fm
+Pv
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+MY
+tg
+jH
+jH
+"}
+(64,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+os
+os
+os
+zb
+os
+os
+zb
+os
+os
+Pv
+Pv
+jH
+jH
+jH
+nt
+nt
+nt
+JN
+wX
+zq
+jH
+th
+Wd
+yY
+jH
+"}
+(65,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+zb
+os
+os
+os
+os
+os
+os
+os
+ei
+jH
+jH
+jH
+Px
+rm
+wc
+Px
+Px
+AR
+Px
+DK
+iL
+th
+Wd
+lT
+jH
+"}
+(66,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+os
+os
+os
+os
+os
+os
+os
+ei
+pd
+Px
+fQ
+Px
+ua
+DK
+wc
+wc
+JN
+Pi
+Pi
+jH
+RN
+kR
+yY
+jH
+"}
+(67,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+Hv
+zb
+os
+os
+zb
+os
+zb
+Hv
+os
+Tp
+Wm
+Px
+Fb
+zq
+zq
+zq
+wc
+dw
+JN
+JN
+JN
+jH
+RN
+Wd
+yY
+jH
+"}
+(68,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+os
+os
+os
+os
+zb
+os
+mw
+pd
+Px
+Fb
+zq
+hU
+zq
+wc
+wc
+JN
+wX
+hU
+jH
+RN
+Wd
+kS
+jH
+"}
+(69,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+os
+os
+os
+os
+os
+MT
+qJ
+Px
+gQ
+OM
+Px
+Gr
+aA
+RJ
+Hn
+RJ
+RJ
+YP
+XE
+Yj
+by
+jH
+"}
+(70,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+zb
+os
+os
+os
+ei
+jo
+wc
+Nh
+pr
+Px
+fh
+DK
+Px
+JN
+Pi
+Pi
+jH
+th
+yP
+by
+jH
+"}
+(71,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+os
+os
+Tp
+qJ
+wc
+XD
+zq
+zq
+zq
+Px
+wc
+JN
+JN
+JN
+jH
+th
+yP
+tg
+jH
+"}
+(72,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+oE
+os
+ei
+pd
+Px
+Fb
+zq
+rW
+rW
+Px
+Px
+JN
+wX
+zq
+jH
+th
+sq
+by
+jH
+"}
+(73,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+Rw
+os
+Rw
+Tp
+pd
+DK
+Fb
+Px
+OM
+wc
+wc
+gQ
+AR
+DK
+Px
+iL
+th
+Tu
+yY
+jH
+"}
+(74,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+os
+os
+os
+Rw
+ei
+pd
+Px
+Fb
+DK
+Px
+Nb
+vR
+vR
+JN
+Pi
+Pi
+jH
+th
+yP
+lT
+jH
+"}
+(75,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+Rw
+os
+os
+os
+Rw
+ei
+jH
+jH
+jH
+jH
+Hi
+jH
+kg
+Ll
+JN
+JN
+JN
+jH
+RT
+yP
+by
+MF
+"}
+(76,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+Va
+fW
+LY
+Va
+fW
+yO
+CQ
+CQ
+CQ
+jH
+jH
+jH
+jx
+Ll
+Ru
+Iz
+NJ
+jH
+th
+ww
+co
+nv
+"}
+(77,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+Va
+Va
+LY
+Va
+Va
+CQ
+yO
+CQ
+CQ
+CQ
+CQ
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+jH
+"}
+(78,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+LY
+pI
+Va
+LY
+pI
+Va
+CQ
+CQ
+yO
+CQ
+CQ
+CQ
+CQ
+CQ
+jy
+jy
+jH
+yv
+DD
+zV
+DD
+jH
+xs
+"}
+(79,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+LY
+Va
+Va
+LY
+Va
+fW
+pI
+CQ
+CQ
+yO
+CQ
+CQ
+CQ
+CQ
+CQ
+jy
+EO
+jH
+AH
+KW
+KW
+KW
+jH
+LN
+"}
+(80,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+Va
+Va
+fW
+Va
+Va
+Va
+Va
+CQ
+CQ
+yO
+CQ
+CQ
+CQ
+CQ
+CQ
+jy
+jy
+jH
+Tf
+KW
+GL
+KW
+jH
+bb
+"}
+(81,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+fW
+Va
+Va
+Va
+fW
+Va
+Va
+CQ
+CQ
+yO
+CQ
+CQ
+CQ
+CQ
+jy
+jy
+jy
+jH
+zH
+Bb
+tB
+WF
+jH
+ui
+"}
+(82,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+Va
+Va
+Va
+Va
+Va
+Va
+fW
+CQ
+CQ
+yO
+CQ
+CQ
+CQ
+EO
+jy
+EO
+jy
+jH
+UW
+Od
+nc
+FY
+jH
+IO
+"}
+(83,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+LY
+Va
+Va
+vx
+Va
+Va
+Va
+CQ
+CQ
+yO
+CQ
+CQ
+jy
+jy
+jy
+jy
+jy
+jH
+PV
+Od
+eZ
+tl
+KD
+aY
+"}
+(84,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+Va
+Va
+LY
+Va
+Va
+fW
+CQ
+CQ
+yO
+CQ
+CQ
+jy
+EO
+jy
+jy
+EO
+jH
+UW
+Od
+PQ
+mf
+SG
+mf
+"}
+(85,1,1) = {"
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+CQ
+Va
+pI
+vx
+Va
+fW
+pI
+CQ
+CQ
+yO
+CQ
+CQ
+jy
+jy
+jy
+EO
+jy
+jH
+iO
+WF
+Od
+WF
+jH
+hd
+"}

@@ -1,0 +1,337 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"i" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/east)
+"o" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/east)
+"r" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"w" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/northeast)
+"B" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"F" = (
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"I" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/east)
+"K" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"N" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"O" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+"P" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
+"Z" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+I
+I
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+o
+B
+B
+I
+I
+I
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+K
+B
+B
+B
+B
+r
+i
+a
+a
+a
+"}
+(5,1,1) = {"
+w
+B
+B
+B
+B
+B
+B
+I
+a
+a
+a
+"}
+(6,1,1) = {"
+P
+B
+B
+r
+B
+B
+B
+I
+B
+a
+a
+"}
+(7,1,1) = {"
+P
+B
+B
+B
+B
+B
+B
+B
+I
+I
+I
+"}
+(8,1,1) = {"
+P
+K
+r
+B
+B
+B
+B
+O
+B
+K
+Z
+"}
+(9,1,1) = {"
+P
+B
+B
+B
+B
+B
+B
+B
+B
+Z
+K
+"}
+(10,1,1) = {"
+P
+B
+B
+B
+a
+a
+B
+I
+B
+Z
+B
+"}
+(11,1,1) = {"
+P
+K
+B
+a
+a
+a
+B
+Z
+Z
+B
+F
+"}
+(12,1,1) = {"
+P
+B
+a
+a
+a
+a
+N
+I
+B
+B
+B
+"}
+(13,1,1) = {"
+P
+a
+a
+a
+a
+N
+a
+a
+a
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+a
+a
+a
+N
+a
+a
+a
+a
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+N
+a
+a
+a
+a
+a
+"}
+(16,1,1) = {"
+a
+a
+a
+a
+a
+N
+a
+a
+a
+a
+a
+"}
+(17,1,1) = {"
+a
+a
+a
+a
+a
+N
+a
+a
+a
+a
+a
+"}
+(18,1,1) = {"
+a
+a
+a
+a
+a
+N
+a
+a
+a
+a
+a
+"}
+(19,1,1) = {"
+a
+a
+a
+a
+a
+N
+a
+a
+a
+a
+a
+"}
+(20,1,1) = {"
+a
+a
+a
+a
+a
+N
+a
+a
+a
+a
+a
+"}
+(21,1,1) = {"
+a
+a
+a
+a
+a
+N
+a
+a
+a
+a
+a
+"}
+(22,1,1) = {"
+N
+N
+N
+N
+N
+a
+a
+a
+a
+a
+a
+"}

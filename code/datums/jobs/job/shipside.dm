@@ -170,7 +170,7 @@ Make the TGMC proud!"})
 	jobtype = /datum/job/terragov/command/fieldcommander
 
 	id = /obj/item/card/id/dogtag
-	belt = /obj/item/storage/large_holster/blade/officer/full
+	belt = /obj/item/storage/holster/blade/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten
@@ -290,7 +290,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Distress<br /><br /><br />
-		<b>Duty</b>: Listen and coordinate your crew for the sole dropship you will use. Provide transport and close air support for the marines during the mission. Ensure no threats come aboard your dropship and by extension, the vessel which houses the crew.
+		<b>Duty</b>: Choose between the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
 	"}
 	minimap_icon = "pilot"
 
@@ -326,9 +326,10 @@ You are in charge of logistics and the overwatch system. You are also in line to
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your job is to fly, protect, and maintain the ship's dropship.
-While you are a warrant officer, your authority is limited to the dropship, where you have authority over the enlisted personnel.
-If you are not piloting, there is an autopilot fallback for command, but don't leave the dropship without reason."})
+	to_chat(M, {"Your job is to support marines with either close air support via the Condor, or mobile dropship support with the Tadpole.
+While you are in charge of all aerial crafts the Alamo does not require supervision outside of turning automatic mode on or off at crucial times, and you are expected to choose between the Condor and Tadpole.
+Though you are a warrant officer, your authority is limited to the dropship and your chosen aerial craft, where you have authority over the enlisted personnel.
+"})
 
 
 /datum/outfit/job/command/pilot
@@ -437,12 +438,19 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	glasses = /obj/item/clothing/glasses/welding/superior
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/beret/marine/techofficer
-	r_store = /obj/item/storage/pouch/electronics
-	back = /obj/item/storage/backpack/marine/satchel/tech
+	r_store = /obj/item/storage/pouch/construction
+	back = /obj/item/storage/backpack/marine/engineerpack
 
 /datum/outfit/job/engineering/chief/rebel
 	jobtype = /datum/job/terragov/engineering/chief/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
+
+/datum/outfit/job/engineering/chief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
 
 //Ship Engineer
 /datum/job/terragov/engineering/tech
@@ -695,14 +703,13 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
 	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/rank/marine_cmo
-	wear_suit = /obj/item/clothing/suit/storage/labcoat
+	w_uniform = /obj/item/clothing/under/rank/medical/blue
+	wear_suit = /obj/item/clothing/suit/storage/labcoat/cmo
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
-	suit_store = /obj/item/flashlight/pen
 	r_store = /obj/item/storage/pouch/medkit/full
 	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
@@ -714,6 +721,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
 
 //Medical Officer
 /datum/job/terragov/medical/medicalofficer
@@ -781,12 +789,13 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	id = /obj/item/card/id
 	belt = /obj/item/storage/belt/medical
 	ears = /obj/item/radio/headset/mainship/doc
-	w_uniform = /obj/item/clothing/under/rank/medical/green
+	w_uniform = /obj/item/clothing/under/rank/medical/purple
+	wear_suit = /obj/item/clothing/suit/storage/labcoat
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
-	head = /obj/item/clothing/head/surgery/green
+	head = /obj/item/clothing/head/surgery/purple
 	r_store = /obj/item/storage/pouch/medkit/full
 	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
@@ -798,6 +807,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
 
 
 //Researcher
@@ -807,7 +817,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	paygrade = "CD"
 	total_positions = 2
 	supervisors = "the NT corporate office"
-	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
+	access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/doctor
 	display_order = JOB_DISPLAY_ORDER_MEDICAL_RESEARCHER
@@ -830,7 +840,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 /datum/job/terragov/medical/researcher/rebel
 	title = REBEL_MEDICAL_RESEARCHER
 	faction = FACTION_TERRAGOV_REBEL
-	access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
+	access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_ENGINEERING_REBEL, ACCESS_CIVILIAN_ENGINEERING)
 	minimal_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_RESEARCH_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL, ACCESS_MARINE_CARGO_REBEL, ACCESS_MARINE_DROPSHIP_REBEL)
 	outfit = /datum/outfit/job/medical/researcher/rebel
 	jobworth = list(
@@ -842,10 +852,11 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 /datum/job/terragov/medical/researcher/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"You are a civilian, working for the Nanotrasen Corporation, and are not subject to the military chain of command.
-You are tasked with researching and developing new medical treatments, weapons, conducting xenomorph studies, and learning new things.
-Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor.
-While the Corporate Liaison is not your boss, it would be wise to consult them on your findings or ask to use their NT fax machine."})
+	to_chat(M, {"You are a civilian, working for the Nanotrasen Corporation, but you are still subject to the military chain of command.
+You are tasked with deploying with the marines and researching the remains of the colony to get funding for Requisitions.
+You are free to use any new technology you discover as you want, or give them out to the marines.
+If shipside medbay is unstaffed, you should consider working as a regular doctor until someone else is available to take over.
+It is also recommended that you gear up like a regular marine, or your 'internship' might be ending early..."})
 
 /datum/job/terragov/medical/researcher/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -869,12 +880,11 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	belt = /obj/item/storage/belt/medical
 	ears = /obj/item/radio/headset/mainship/res
 	w_uniform = /obj/item/clothing/under/marine/officer/researcher
-	wear_suit = /obj/item/clothing/suit/storage/labcoat/armored_coat
+	wear_suit = /obj/item/clothing/suit/storage/labcoat/researcher
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
-	suit_store = /obj/item/flashlight/pen
 	r_store = /obj/item/reagent_containers/glass/bottle/lemoline
 	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
@@ -885,6 +895,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	respack.handle_item_insertion(res_an, TRUE, null)
 	var/obj/item/tool/research/excavation_tool/res_ex = new
 	respack.handle_item_insertion(res_ex, TRUE, null)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/medical/researcher/rebel
 	jobtype = /datum/job/terragov/medical/researcher/rebel
@@ -902,7 +913,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	comm_title = "CL"
 	supervisors = "the NT corporate office"
 	total_positions = 1
-	access = list(ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH)
+	access = list(ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
 	minimal_access = list(ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
@@ -921,6 +932,25 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 		<b>Duty</b>: Manage relations between Nanotrasen and TerraGov Marine Corps. Report your findings via faxes. Reply if you’re called.
 	"}
 
+/datum/job/terragov/civilian/liaison/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600) // 0 to 10 hours
+			new_human.wear_id.paygrade = "NT1"
+		if(601 to 1500) // 10 to 25 hours
+			new_human.wear_id.paygrade = "NT2"
+		if(1501 to 3000) // 25 to 50 hours
+			new_human.wear_id.paygrade = "NT3"
+		if(3001 to 6000) // 50 to 100 hours
+			new_human.wear_id.paygrade = "NT4"
+		if(6000 to INFINITY) // Above 100 hours
+			new_human.wear_id.paygrade = "NT5"
 
 /datum/job/terragov/civilian/liaison/radio_help_message(mob/M)
 	. = ..()

@@ -204,12 +204,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 					else
 						dat += "[span_warning("None")]<br>"
-					dat += "<B>[current_squad.name] Beacon Targets:</b><br>"
-					if(length(GLOB.active_orbital_beacons))
-						for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in current_squad.squad_orbital_beacons)
-							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
-					else
-						dat += "[span_warning("None transmitting")]<br>"
 					dat += "<b>Selected Target:</b><br>"
 					if(!selected_target) // Clean the targets if nothing is selected
 						dat += "[span_warning("None")]<br>"
@@ -306,7 +300,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				return
 			selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 			current_squad = selected
-			current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Status pane for objectives.")
+			current_squad.message_squad("Attention - Your squad has been selected for Overwatch. Check your Game panel for objectives.")
 			current_squad.message_squad("Your Overwatch officer is: [operator.name].")
 			if(issilicon(usr))
 				to_chat(usr, span_boldnotice("Tactical data for squad '[current_squad]' loaded. All tactical functions initialized."))
@@ -447,12 +441,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
 				else
 					dat += "[span_warning("None")]<br>"
-				dat += "<B>Beacon Targets:</b><br>"
-				if(length(GLOB.active_orbital_beacons))
-					for(var/obj/item/beacon/orbital_bombardment_beacon/OB AS in GLOB.active_orbital_beacons)
-						dat += "<a href='?src=\ref[src];operation=use_cam;cam_target=[REF(OB)];selected_target=[REF(OB)]'>[OB]</a><br>"
-				else
-					dat += "[span_warning("None transmitting")]<br>"
 				dat += "<b>Selected Target:</b><br>"
 				if(!selected_target) // Clean the targets if nothing is selected
 					dat += "[span_warning("None")]<br>"
@@ -713,7 +701,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	var/power_amount = myAPC?.terminal?.powernet?.avail
 
-	if(power_amount >= 10000)
+	if(power_amount <= 10000)
 		return
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBITAL_SPOTLIGHT))
@@ -740,11 +728,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	resistance_flags = RESIST_ALL
 	light_system = STATIC_LIGHT
 	light_color = COLOR_TESLA_BLUE
-	light_power = 11	//This is a HUGE light.
+	light_range = 15	//This is a HUGE light.
+	light_power = SQRTWO
 
 /obj/effect/overwatch_light/Initialize()
 	. = ..()
-	set_light(light_power)
+	set_light(light_range, light_power)
 	playsound(src,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)
 	visible_message(span_warning("You see a twinkle in the sky before your surroundings are hit with a beam of light!"))
 	QDEL_IN(src, SPOTLIGHT_DURATION)

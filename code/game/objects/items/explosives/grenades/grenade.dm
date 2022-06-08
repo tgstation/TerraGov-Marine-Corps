@@ -75,7 +75,7 @@
 
 /obj/item/explosive/grenade/update_overlays()
 	. = ..()
-	if(dangerous && active)
+	if(dangerous)
 		overlays += new /obj/effect/overlay/danger
 
 
@@ -83,19 +83,8 @@
 	explosion(loc, light_impact_range = src.light_impact_range, small_animation = TRUE)
 	qdel(src)
 
-/obj/item/explosive/grenade/flamer_fire_act()
+/obj/item/explosive/grenade/flamer_fire_act(burnlevel)
 	activate()
-
-/obj/item/explosive/grenade/ex_act(severity)
-	switch(severity)
-		if(EXPLODE_DEVASTATE)
-			prime()
-		if(EXPLODE_HEAVY)
-			activate()
-		if(EXPLODE_LIGHT)
-			if(prob(50))
-				activate()
-
 
 /obj/item/explosive/grenade/attack_hand(mob/living/user)
 	. = ..()

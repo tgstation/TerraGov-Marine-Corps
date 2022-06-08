@@ -24,11 +24,12 @@
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/blade,
+		/obj/item/storage/holster/blade,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun,
 		/obj/item/storage/belt/knifepouch,
 		/obj/item/weapon/twohanded,
+		/obj/item/tool/pickaxe/plasmacutter,
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
@@ -89,11 +90,14 @@
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/armor/badge,
 	)
@@ -109,34 +113,6 @@
 /obj/item/clothing/suit/modular/Initialize()
 	. = ..()
 	update_icon() //Update for greyscale.
-
-/obj/item/clothing/suit/modular/equipped(mob/user, slot)
-	. = ..()
-	if(slot != SLOT_WEAR_SUIT)
-		return
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYADD(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/new_action = new(module)
-		new_action.give_action(user)
-
-/obj/item/clothing/suit/modular/unequipped(mob/unequipper, slot)
-	. = ..()
-	if(slot != SLOT_WEAR_SUIT)
-		return
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYREMOVE(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in module.actions
-		old_action.remove_action(unequipper)
 
 /obj/item/clothing/suit/modular/update_icon()
 	. = ..()
@@ -264,11 +240,13 @@
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
 		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/armor/badge,
 	)
@@ -308,14 +286,14 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/blade,
+		/obj/item/storage/holster/blade,
 		/obj/item/storage/belt/gun,
 	)
 
 /obj/item/clothing/suit/modular/xenonauten/light
 	name = "\improper Xenonauten-L pattern armored vest"
 	desc = "A XN-L vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a light variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	icon_state = "light"
 	item_state = "light"
 	slowdown = 0.3
@@ -323,7 +301,7 @@
 /obj/item/clothing/suit/modular/xenonauten/heavy
 	name = "\improper Xenonauten-H pattern armored vest"
 	desc = "A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
-	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 60)
+	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 60, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 60)
 	icon_state = "heavy"
 	item_state = "heavy"
 	slowdown = 0.7
@@ -360,6 +338,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
@@ -375,37 +354,59 @@
 			"Desert" = ARMOR_PALETTE_DESERT,
 			"Black" = ARMOR_PALETTE_BLACK,
 			"Grey" = ARMOR_PALETTE_GREY,
+			"Gun Metal" = ARMOR_PALETTE_GUN_METAL,
+			"Night Slate" = ARMOR_PALETTE_NIGHT_SLATE,
+			"Fall" = ARMOR_PALETTE_FALL,
 		),
 		"Red" = list(
 			"Dark Red" = ARMOR_PALETTE_RED,
 			"Bronze Red" = ARMOR_PALETTE_BRONZE_RED,
 			"Red" = ARMOR_PALETTE_LIGHT_RED,
+			"Blood Red" = ARMOR_PALETTE_BLOOD_RED,
 		),
 		"Green" = list(
 			"Green" = ARMOR_PALETTE_GREEN,
 			"Emerald" = ARMOR_PALETTE_EMERALD,
 			"Lime" = ARMOR_PALETTE_LIME,
 			"Mint" = ARMOR_PALETTE_MINT,
+			"Jade" = ARMOR_PALETTE_JADE,
+			"Leaf" = ARMOR_PALETTE_LEAF,
+			"Forest" = ARMOR_PALETTE_FOREST,
+			"Smoked Green" = ARMOR_PALETTE_SMOKED_GREEN,
 		),
 		"Purple" = list(
 			"Purple" = ARMOR_PALETTE_PURPLE,
 			"Lavander" = ARMOR_PALETTE_LAVANDER,
+			"Lilac" = ARMOR_PALETTE_LILAC,
+			"Iris Purple" = ARMOR_PALETTE_IRIS_PURPLE,
+			"Orchid" = ARMOR_PALETTE_ORCHID,
+			"Grape" = ARMOR_PALETTE_GRAPE,
 		),
 		"Blue" = list(
 			"Dark Blue" = ARMOR_PALETTE_BLUE,
 			"Blue" = ARMOR_PALETTE_LIGHT_BLUE,
 			"Cottonwood" = ARMOR_PALETTE_COTTONWOOD,
 			"Aqua" = ARMOR_PALETTE_AQUA,
+			"Cerulean" = ARMOR_PALETTE_CERULEAN,
+			"Sea Blue" = ARMOR_PALETTE_SEA_BLUE,
+			"Cloud" = ARMOR_PALETTE_CLOUD,
 		),
 		"Yellow" = list(
 			"Gold" = ARMOR_PALETTE_YELLOW,
 			"Yellow" = ARMOR_PALETTE_LIGHT_YELLOW,
+			"Angelic Gold" = ARMOR_PALETTE_ANGELIC,
+			"Honey" = ARMOR_PALETTE_HONEY,
+		),
+		"Orange" = list(
+			"Orange" = ARMOR_PALETTE_ORANGE,
+			"Beige" = ARMOR_PALETTE_BEIGE,
+			"Earth" = ARMOR_PALETTE_EARTH,
 		),
 		"Pink" = list(
 			"Salmon" = ARMOR_PALETTE_SALMON_PINK,
 			"Magenta" = ARMOR_PALETTE_MAGENTA_PINK,
+			"Sakura" = ARMOR_PALETTE_SAKURA,
 		),
-		"Orange" = ARMOR_PALETTE_ORANGE,
 	)
 	///Some defines to determin if the armor piece is allowed to be recolored.
 	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
@@ -539,39 +540,6 @@
 	if(armor_storage.storage.handle_mousedrop(usr, over_object))
 		return ..()
 
-/obj/item/clothing/head/modular/equipped(mob/user, slot)
-	. = ..()
-	if(slot != SLOT_HEAD)
-		return
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYADD(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/new_action = new(module)
-		new_action.give_action(user)
-	update_clothing_icon()
-
-
-/obj/item/clothing/head/modular/unequipped(mob/unequipper, slot)
-	. = ..()
-	for(var/key in attachments_by_slot)
-		if(!attachments_by_slot[key])
-			continue
-		var/obj/item/armor_module/module = attachments_by_slot[key]
-		if(!CHECK_BITFIELD(module.flags_attach_features, ATTACH_ACTIVATION))
-			continue
-		LAZYREMOVE(module.actions_types, /datum/action/item_action/toggle)
-		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in module.actions
-		if(!old_action)
-			continue
-		old_action.remove_action(unequipper)
-		module.actions = null
-
-	update_clothing_icon()
-
 /obj/item/clothing/head/modular/apply_custom(image/standing)
 	. = ..()
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
@@ -603,6 +571,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
@@ -638,6 +607,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
@@ -657,6 +627,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
@@ -676,6 +647,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
@@ -700,6 +672,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 
@@ -722,6 +695,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
@@ -741,6 +715,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
@@ -759,6 +734,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
@@ -790,6 +766,7 @@
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
 		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
 		/obj/item/armor_module/module/binoculars,
 		/obj/item/armor_module/module/antenna,
 		/obj/item/armor_module/storage/helmet,
@@ -817,4 +794,143 @@
 /obj/item/clothing/head/modular/marine/m10x/leader
 	name = "\improper M11X pattern leader helmet"
 	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
-	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 55, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+
+//SOM modular armour
+
+/obj/item/clothing/suit/modular/som
+	name = "\improper SOM light battle armor"
+	desc = "The M-21 battle armor is typically used by SOM light infantry, or other specialists that require more mobility at the cost of some protection. Provides good protection without minor impairment to the users mobility. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 45, "bullet" = 70, "laser" = 60, "energy" = 60, "bomb" = 55, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
+	icon_state = "som_medium"
+	item_state = "som_medium"
+	slowdown = 0.5
+
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/medical/basic,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge,
+	)
+
+	icon_state_variants = list(
+		"black",
+	)
+	current_variant = "black"
+
+	allowed_uniform_type = /obj/item/clothing/under
+
+/obj/item/clothing/suit/modular/som/light
+	name = "\improper SOM scout armor"
+	desc = "The M-11 scout armor is a lightweight suit that that allows for minimal encumberance while still providing reasonable protection. Often seen on scouts or other specialist units that aren't normally getting shot at. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 40, "bullet" = 65, "laser" = 55, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
+	icon_state = "som_light"
+	item_state = "som_light"
+	slowdown = 0.3
+
+/obj/item/clothing/suit/modular/som/heavy
+	name = "\improper SOM heavy battle armor"
+	desc = "A standard suit of M-31 heavy duty combat armor worn by SOM shock troops. Provides excellent protection however it does reduce mobility somewhat. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 60, "bio" = 50, "rad" = 65, "fire" = 70, "acid" = 50)
+	icon_state = "som_heavy"
+	item_state = "som_heavy"
+	slowdown = 0.7
+
+	siemens_coefficient = 0.4
+	permeability_coefficient = 0.5
+	gas_transfer_coefficient = 0.5
+
+/obj/item/clothing/suit/modular/som/heavy/leader
+	name = "\improper SOM Gorgon pattern assault armor"
+	desc = "A bulky suit of heavy combat armor, the M-35 'Gorgon' armour provides the user with superior protection without severely impacting mobility. Typically seen on SOM leaders or their most elite combat units due to the significant construction and maintenance requirements. You'll need serious firepower to punch through this. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = list("melee" = 60, "bullet" = 80, "laser" = 70, "energy" = 70, "bomb" = 70, "bio" = 55, "rad" = 70, "fire" = 80, "acid" = 50)
+	icon_state = "som_leader"
+	item_state = "som_leader"
+
+/obj/item/clothing/suit/modular/som/heavy/leader/valk
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/medical/basic,
+	)
+
+//helmet
+
+/obj/item/clothing/head/modular/som
+	name = "\improper SOM infantry helmet"
+	desc = "The standard combat helmet worn by SOM combat troops. Made using advanced polymers to provide very effective protection without compromising visibility."
+	icon = 'icons/mob/modular/m10.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+	icon_state = "som_helmet"
+	item_state = "som_helmet"
+	soft_armor = list("melee" = 45, "bullet" = 70, "laser" = 60, "energy" = 60, "bomb" = 55, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
+	accuracy_mod = 0
+	greyscale_config = null
+	greyscale_colors = null
+
+	flags_armor_protection = HEAD|FACE|EYES
+	attachments_allowed = list(
+		/obj/item/armor_module/module/tyr_head,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
+		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1,
+		/obj/item/armor_module/module/welding,
+		/obj/item/armor_module/module/welding/superior,
+		/obj/item/armor_module/module/binoculars,
+		/obj/item/armor_module/module/antenna,
+		/obj/item/armor_module/storage/helmet,
+		/obj/item/armor_module/storage/helmet/som_leader,
+		/obj/item/armor_module/storage/helmet/som_vet,
+		/obj/item/armor_module/storage/helmet/som,
+		/obj/item/armor_module/armor/visor/marine,
+		/obj/item/armor_module/armor/badge,
+	)
+
+	starting_attachments = list(/obj/item/armor_module/storage/helmet)
+
+	visorless_offset_x = 0
+	visorless_offset_y = 0
+	icon_state_variants = list(
+		"black",
+	)
+	current_variant = "black"
+	colorable_colors = list()
+
+/obj/item/clothing/head/modular/som/medic
+	starting_attachments = list(/obj/item/armor_module/storage/helmet/som_vet)
+
+/obj/item/clothing/head/modular/som/standard
+	starting_attachments = list(/obj/item/armor_module/storage/helmet/som)
+
+/obj/item/clothing/head/modular/som/veteran
+	name = "\improper SOM veteran helmet"
+	desc = "The standard combat helmet worn by SOM combat specialists. State of the art materials provides more protection for more valuable brains."
+	icon = 'icons/mob/modular/m10.dmi'
+	item_icons = list(
+		slot_head_str = 'icons/mob/modular/m10.dmi',
+		slot_l_hand_str = 'icons/mob/items_lefthand_1.dmi',
+		slot_r_hand_str = 'icons/mob/items_righthand_1.dmi',)
+	icon_state = "som_helmet"
+	item_state = "som_helmet"
+	soft_armor = list("melee" = 50, "bullet" = 75, "laser" = 65, "energy" = 65, "bomb" = 60, "bio" = 50, "rad" = 65, "fire" = 70, "acid" = 50)
+
+/obj/item/clothing/head/modular/som/veteran/leader
+	starting_attachments = list(/obj/item/armor_module/storage/helmet/som_leader)
+
+/obj/item/clothing/head/modular/som/veteran/vet
+	starting_attachments = list(/obj/item/armor_module/storage/helmet/som_vet)

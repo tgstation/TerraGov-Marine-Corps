@@ -60,11 +60,9 @@
 			.["gender"] = gender
 			.["ethnicity"] = ethnicity
 			.["species"] = species || "Human"
-			.["body_type"] = body_type
 			.["good_eyesight"] = good_eyesight
 			.["citizenship"] = citizenship
 			.["religion"] = religion
-			.["nanotrasen_relation"] = nanotrasen_relation
 			.["h_style"] = h_style
 			.["grad_style"] = grad_style
 			.["f_style"] = f_style
@@ -120,6 +118,8 @@
 			.["pixel_size"] = pixel_size
 			.["parallax"] = parallax
 			.["fullscreen_mode"] = fullscreen_mode
+			.["preferred_slot"] = slot_flag_to_fluff(preferred_slot)
+			.["preferred_slot_alt"] = slot_flag_to_fluff(preferred_slot_alt)
 		if(KEYBIND_SETTINGS)
 			.["is_admin"] = user.client?.holder ? TRUE : FALSE
 			.["key_bindings"] = list()
@@ -240,7 +240,7 @@
 		if("synthetic_type")
 			var/choice = tgui_input_list(ui.user, "What kind of synthetic do you want to play with?", "Synthetic type choice", SYNTH_TYPES)
 			if(choice)
-				ethnicity = choice
+				synthetic_type = choice
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -291,11 +291,6 @@
 			species = choice
 			var/datum/species/S = GLOB.all_species[species]
 			real_name = S.random_name(gender)
-
-		if("body_type")
-			var/choice = tgui_input_list(ui.user, "What body type do you want?", "Body type choice", GLOB.body_types_list)
-			if(choice)
-				body_type = choice
 
 		if("toggle_eyesight")
 			good_eyesight = !good_eyesight
@@ -467,19 +462,14 @@
 			b_eyes = hex2num(copytext(eyecolor, 6, 8))
 
 		if("citizenship")
-			var/choice = tgui_input_list(ui.user, "What nationality should you have?", "Nationality choice", CITIZENSHIP_CHOICES)
+			var/choice = tgui_input_list(ui.user, "Where do you hail from?", "Place of Origin", CITIZENSHIP_CHOICES)
 			if(choice)
 				citizenship = choice
 
 		if("religion")
-			var/choice = tgui_input_list(ui.user, "What gods do you worship to?", "Religion choice", RELIGION_CHOICES)
+			var/choice = tgui_input_list(ui.user, "What religion do you belive in?", "Belief", RELIGION_CHOICES)
 			if(choice)
 				religion = choice
-
-		if("corporation")
-			var/choice = tgui_input_list(ui.user, "How loyal are you to the corporation?", "Corporation choice", CORP_RELATIONS)
-			if(choice)
-				nanotrasen_relation = choice
 
 		if("squad")
 			var/new_squad = params["newValue"]
@@ -570,6 +560,16 @@
 
 		if("mute_others_combat_messages")
 			mute_others_combat_messages = !mute_others_combat_messages
+
+		if("preferred_slot_select")
+			var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Preferred Slot", SLOT_FLUFF_DRAW)
+			preferred_slot = slot_fluff_to_flag(slot)
+			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
+
+		if("preferred_slot_alt_select")
+			var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Alternate preferred Slot", SLOT_FLUFF_DRAW)
+			preferred_slot_alt = slot_fluff_to_flag(slot)
+			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
 
 		if("show_typing")
 			show_typing = !show_typing

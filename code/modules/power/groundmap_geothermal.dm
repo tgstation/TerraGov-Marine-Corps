@@ -36,9 +36,9 @@
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(corrupted)
-		to_chat(user, "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""].")
+		. += "It is covered in writhing tendrils [!isxeno(user) ? "that could be cut away with a welder" : ""]."
 	if(!isxeno(user) && !is_corruptible)
-		to_chat(user, "It is reinforced, making us not able to corrupt it.")
+		. += "It is reinforced, making us not able to corrupt it."
 
 /obj/machinery/power/geothermal/should_have_node()
 	return TRUE
@@ -88,8 +88,9 @@
 	start_processing()
 
 /obj/machinery/power/geothermal/process()
-	if(corrupted && corruption_on && length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list))
-		SSpoints.add_psy_points("[corrupted]", GENERATOR_PSYCH_POINT_OUTPUT / GLOB.geothermal_generator_ammount)
+	if(corrupted && corruption_on)
+		if(length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list))
+			SSpoints.add_psy_points("[corrupted]", GENERATOR_PSYCH_POINT_OUTPUT / GLOB.geothermal_generator_ammount)
 		return
 	if(!is_on || buildstate || !anchored || !powernet) //Default logic checking
 		return PROCESS_KILL
@@ -137,7 +138,7 @@
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	. = ..()
-	if(CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
+	if(CHECK_BITFIELD(X.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
 		to_chat(X, span_notice("You start to corrupt [src]"))
 		if(!do_after(X, 10 SECONDS, TRUE, src, BUSY_ICON_HOSTILE))
 			return

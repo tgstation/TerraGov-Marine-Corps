@@ -72,6 +72,10 @@
 	name = "Southwest Fossil Deposits"
 	icon_state = "lava_mining_fossil"
 
+/area/magmoor/cave/rock
+	name = "Enclosed Area"
+	icon_state = "transparent"
+
 //Compound Outside
 /area/magmoor/compound
 	ceiling = CEILING_NONE

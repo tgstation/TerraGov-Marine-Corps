@@ -214,8 +214,7 @@
 						/obj/item/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
 						/obj/item/toy/deck = "helmet_card_card",
 						/obj/item/toy/handcard = "helmet_card_card",
-						/obj/item/reagent_containers/food/drinks/flask = "helmet_flask",
-						/obj/item/reagent_containers/food/drinks/flask/marine = "helmet_flask",
+						/obj/item/reagent_containers/food/drinks/flask/marine = "helmet_canteen",
 						/obj/item/reagent_containers/food/snacks/enrg_bar = "helmet_snack_eat",
 						/obj/item/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
@@ -226,10 +225,9 @@
 
 /obj/item/storage/internal/marinehelmet
 	storage_slots = 2
-	max_w_class = 1
+	max_w_class = WEIGHT_CLASS_TINY
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask,
 		/obj/item/reagent_containers/food/snacks,
 	)
 	cant_hold = list(
@@ -411,6 +409,15 @@ obj/item/clothing/head/helmet/marine/pilot/green
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NONE
 	flags_item_map_variant = (ITEM_ICE_VARIANT)
+
+/obj/item/clothing/head/helmet/marine/riot
+	name = "M8 riot helmet"
+	desc = "It's a modified version of the widely used Riot Helmets for use against angry jarheads. Boasts high ballistic protection"
+	icon_state = "marine_riot"
+	soft_armor = list("melee" = 65, "bullet" = 110, "laser" = 110, "energy" = 5, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 30)
+	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inv_hide = HIDEEARS|HIDEEYES|HIDETOPHAIR
+	flags_item = SYNTH_RESTRICTED
 
 /*=============================PMCS==================================
 =======================================================================*/

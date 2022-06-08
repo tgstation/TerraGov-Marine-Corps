@@ -89,10 +89,10 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/gib_animation()
-	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, xeno_caste.gib_flick, icon)
+	new /obj/effect/overlay/temp/gib_animation/xeno(loc, 0, src, xeno_caste.gib_flick, icon)
 
 /mob/living/carbon/xenomorph/spawn_gibs()
 	xgibs(get_turf(src))
 
 /mob/living/carbon/xenomorph/dust_animation()
-	new /obj/effect/overlay/temp/dust_animation(loc, src, "dust-a")
+	new /obj/effect/overlay/temp/dust_animation(loc, 0, src, "dust-a")

@@ -15,11 +15,11 @@
 	mob_parent.a_intent = INTENT_HARM //Killing time
 	src.can_heal = can_heal
 
-/datum/ai_behavior/xeno/late_initialize()
-	. = ..()
+/datum/ai_behavior/xeno/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, /datum/ai_behavior.proc/deal_with_obstacle)
 	RegisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), .proc/refresh_abilities)
 	RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/check_for_critical_health)
+	return ..()
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/xeno/proc/refresh_abilities()
@@ -192,12 +192,11 @@
 
 ///Will try finding and resting on weeds
 /datum/ai_behavior/xeno/proc/try_to_heal()
-	var/mob/living/living_mob = mob_parent
-	if(!locate(/obj/effect/alien/weeds) in get_turf(mob_parent))
+	var/mob/living/carbon/xenomorph/living_mob = mob_parent
+	if(!living_mob.loc_weeds_type)
 		if(living_mob.resting)//We are resting on no weeds
 			SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
 			UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
-			return FALSE
 		return FALSE
 	if(living_mob.resting)//Already resting
 		if(living_mob.on_fire)

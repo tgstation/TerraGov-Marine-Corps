@@ -171,6 +171,14 @@
 	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 
+/obj/item/storage/syringe_case/injector
+	name = "Autoinjector case"
+	desc = "A case for storing autoinjectors."
+	icon_state = "syringe_case"
+	storage_slots = 3
+	w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
+
 /obj/item/storage/syringe_case/burn
 	name = "burn syringe case"
 	desc = "It's a medical case for storing syringes and bottles. This one contains meds designed to treat burns."
@@ -261,6 +269,90 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 
+
+	/*
+* Bottle Cases
+*/
+
+
+/obj/item/storage/bottlecase
+	name = "regeant bottle case"
+	desc = "It's a medical case for only storing regeant bottles."
+	icon_state = "syringe_case"
+	throw_speed = 2
+	throw_range = 8
+	storage_slots = 3
+	w_class = WEIGHT_CLASS_SMALL
+	can_hold = list(
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/glass/bottle,
+	)
+
+/obj/item/storage/bottlecase/bica
+	name = "bicaridine bottle case"
+	desc = "It's a medical case for storing three bicaridine bottles."
+	icon_state = "bica_bottles_case"
+
+/obj/item/storage/bottlecase/bica/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+
+/obj/item/storage/bottlecase/kelo
+	name = "kelotane bottle case"
+	desc = "It's a medical case for storing three kelotane bottles."
+	icon_state = "kelo_bottles_case"
+
+/obj/item/storage/bottlecase/kelo/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+
+/obj/item/storage/bottlecase/dylo
+	name = "dylovene bottle case"
+	desc = "It's a medical case for storing three dylovene bottles."
+	icon_state = "dylo_bottles_case"
+
+/obj/item/storage/bottlecase/dylo/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
+	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
+	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
+
+/obj/item/storage/bottlecase/tram
+	name = "tramadol bottle case"
+	desc = "It's a medical case for storing three tramadol bottles."
+	icon_state = "tram_bottles_case"
+
+/obj/item/storage/bottlecase/tram/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+
+/obj/item/storage/bottlecase/tricord
+	name = "tricordrazine bottle case"
+	desc = "It's a medical case for storing three tricordrazine bottles."
+	icon_state = "tricord_bottles_case"
+
+/obj/item/storage/bottlecase/tricord/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
+
+/obj/item/storage/bottlecase/dex
+	name = "dexalin bottle case"
+	desc = "It's a medical case for storing three dexalin bottles."
+	icon_state = "dex_bottles_case"
+
+/obj/item/storage/bottlecase/dex/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
+	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
 
 /*
 * Pill Bottles
@@ -388,7 +480,7 @@
 /obj/item/storage/pill_bottle/meralyne
 	name = "meralyne pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	icon_state = "pill_canistertall"
+	icon_state = "pill_canistercomplete"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
 	greyscale_colors = "#FD5964#ffffff"
@@ -402,7 +494,7 @@
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
 	desc = "Contains pills that heal brain damage."
-	icon_state = "pill_canistertall"
+	icon_state = "pill_canistercomplete"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
 	greyscale_colors = "#0292AC#ffffff"
@@ -417,7 +509,7 @@
 /obj/item/storage/pill_bottle/peridaxon
 	name = "peridaxon pill bottle"
 	desc = "Contains pills that suppress organ damage while waiting for a full treatment."
-	icon_state = "pill_canistertall"
+	icon_state = "pill_canistercomplete"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
 	greyscale_colors = "#6e6860#ffffff"
@@ -432,7 +524,7 @@
 /obj/item/storage/pill_bottle/quickclot
 	name = "quick-clot pill bottle"
 	desc = "Contains pills that suppress internal bleeding while waiting for full treatment."
-	icon_state = "pill_canistertall"
+	icon_state = "pill_canistercomplete"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
 	greyscale_colors = "#5ed75e#ffffff"
@@ -447,7 +539,7 @@
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
 	desc = "Contains pills commonly used by untrained Squad Marines to avoid seeing their Squad Medic."
-	icon_state = "pill_canistertall"
+	icon_state = "pill_canistercomplete"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
 	greyscale_colors = "#387d4b#ffffff"

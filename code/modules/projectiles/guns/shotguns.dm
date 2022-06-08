@@ -10,7 +10,6 @@
 	hand_reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_reload.ogg'
 	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
-	accuracy_mult = 1.15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	reciever_flags = AMMO_RECIEVER_HANDFULS
 	type_of_casings = "shell"
@@ -22,11 +21,12 @@
 
 	fire_delay = 6
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
-	scatter = 5
+	accuracy_mult_unwielded = 0.75
+	scatter = 4
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
+	movement_acc_penalty_mult = 2
 
 	placed_overlay_iconstate = "shotgun"
 
@@ -35,8 +35,8 @@
 //TACTICAL SHOTGUN
 
 /obj/item/weapon/gun/shotgun/combat
-	name = "\improper MK221 tactical shotgun"
-	desc = "The Nanotrasen MK221 Shotgun, a quick-firing semi-automatic shotgun based on the centuries old Benelli M4 shotgun. Only issued to the TGMC in small numbers."
+	name = "\improper SH-221 tactical shotgun"
+	desc = "The Nanotrasen SH-221 Shotgun, a quick-firing semi-automatic shotgun based on the centuries old Benelli M4 shotgun. Only issued to the TGMC in small numbers."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk221"
 	item_state = "mk221"
@@ -58,9 +58,7 @@
 	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/invisible)
 
 	fire_delay = 15 //one shot every 1.5 seconds.
-	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
-	scatter = 5
 	scatter_unwielded = 10
 	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than T-32.
 	recoil = 2
@@ -69,11 +67,11 @@
 
 
 //-------------------------------------------------------
-//T-39 semi automatic shotgun. Used by marines.
+//SH-39 semi automatic shotgun. Used by marines.
 
 /obj/item/weapon/gun/shotgun/combat/standardmarine
-	name = "\improper T-39 combat shotgun"
-	desc = "The Terran Armories T-39 combat shotgun is a semi automatic shotgun used by breachers and pointmen within the TGMC squads. Uses 12 gauge shells."
+	name = "\improper SH-39 combat shotgun"
+	desc = "The Terran Armories SH-39 combat shotgun is a semi automatic shotgun used by breachers and pointmen within the TGMC squads. Uses 12 gauge shells."
 	force = 20 //Has a stock already
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/gun64.dmi'
@@ -94,7 +92,6 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/stock/t39stock,
 	)
@@ -105,7 +102,7 @@
 	fire_delay = 14 //one shot every 1.4 seconds.
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 0.65
-	scatter = 4
+	scatter = 3
 	scatter_unwielded = 12
 	damage_mult = 0.7  //30% less damage. Faster firerate.
 	recoil = 0 //It has a stock on the sprite.
@@ -131,6 +128,8 @@
 	fire_delay = 20 // Base shotgun fire delay.
 	pixel_shift_x = 14
 	pixel_shift_y = 18
+
+	wield_delay_mod	= 0.2 SECONDS
 
 //-------------------------------------------------------
 //DOUBLE SHOTTY
@@ -160,9 +159,7 @@
 
 	fire_delay = 2
 	burst_delay = 2
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
-	scatter = 5
+	scatter = 4
 	scatter_unwielded = 8
 	recoil = 2
 	recoil_unwielded = 4
@@ -179,9 +176,8 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
 	fire_delay = 2
-	accuracy_mult = 0.85
-	accuracy_mult_unwielded = 0.85
-	scatter = 5
+	accuracy_mult = 0.9
+	scatter = 4
 	scatter_unwielded = 10
 	recoil = 3
 	recoil_unwielded = 5
@@ -190,7 +186,7 @@
 //MARINE DOUBLE SHOTTY
 
 /obj/item/weapon/gun/shotgun/double/marine
-	name = "\improper TS-34 double barrel shotgun"
+	name = "\improper SH-34 double barrel shotgun"
 	desc = "A double barreled shotgun of archaic, but sturdy design used by the TGMC. Due to reports of barrel bursting, the abiility to fire both barrels has been disabled. Uses 12 gauge shells, but can only hold 2 at a time."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "ts34"
@@ -218,9 +214,7 @@
 
 	fire_delay = 5
 	burst_amount = 1
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
-	scatter = 4
+	scatter = 3
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -255,7 +249,6 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/shotgun,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
@@ -265,9 +258,6 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
 	fire_delay = 20
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
-	scatter = 5
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -276,7 +266,7 @@
 //-------------------------------------------------------
 //A shotgun, how quaint.
 /obj/item/weapon/gun/shotgun/pump/cmb
-	name = "\improper Paladin-12 pump shotgun"
+	name = "\improper SH-12 Paladin pump shotgun"
 	desc = "A nine-round pump action shotgun. A shotgun used for hunting, home defence and police work, many versions of it exist and are used by just about anyone."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "pal12"
@@ -305,7 +295,6 @@
 	damage_mult = 0.75
 	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 1
-	scatter = 5
 	scatter_unwielded = 10
 	recoil = 0 // It has a stock. It's on the sprite.
 	recoil_unwielded = 0
@@ -339,6 +328,7 @@
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
@@ -353,19 +343,21 @@
 		/obj/item/attachable/stock/mosin,
 	)
 	actions_types = list(/datum/action/item_action/aim_mode)
+	force = 20
 	aim_fire_delay = 0.75 SECONDS
 	aim_speed_modifier = 0.8
 
 	fire_delay = 1.75 SECONDS
-	accuracy_mult = 1.45
+	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.7
-	scatter = -25
+	scatter = -1
 	scatter_unwielded = 12
-	recoil = 0
+	recoil = -3
 	recoil_unwielded = 4
 	cock_delay = 12
 	aim_slowdown = 1
-	wield_delay = 1 SECONDS
+	wield_delay = 1.2 SECONDS
+	movement_acc_penalty_mult = 4.5
 
 	placed_overlay_iconstate = "wood"
 
@@ -408,7 +400,6 @@
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 
 	fire_delay = 1 SECONDS
-	accuracy_mult = 1.45
 
 	scatter = -25
 	scatter_unwielded = 20
@@ -418,6 +409,7 @@
 
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
+	movement_acc_penalty_mult = 5
 
 	placed_overlay_iconstate = "wood"
 
@@ -444,7 +436,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 	fire_delay = 0.5 SECONDS
-	scatter = 3
+	scatter = 2
 	recoil = 1
 	recoil_unwielded = 1
 	aim_slowdown = 0
@@ -487,9 +479,9 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 	fire_delay = 8
-	accuracy_mult = 1.30
+	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.7
-	scatter = 3
+	scatter = 2
 	scatter_unwielded = 7
 	recoil = 2
 	recoil_unwielded = 4
@@ -531,7 +523,7 @@
 	aim_speed_modifier = 2
 
 	fire_delay = 10
-	accuracy_mult = 1.20
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.8
 	damage_falloff_mult = 0.5
 	scatter = -5
@@ -540,11 +532,12 @@
 	recoil_unwielded = 2
 	cock_delay = 2
 	aim_slowdown = 0.6
+	movement_acc_penalty_mult = 5
 
 //------------------------------------------------------
 //MBX900 Lever Action Shotgun
 /obj/item/weapon/gun/shotgun/pump/lever/mbx900
-	name = "\improper MBX-900 lever action shotgun"
+	name = "\improper MBX lever action shotgun"
 	desc = "A .410 bore lever action shotgun that fires nearly as fast as you can operate the lever. Renowed due to its devastating and extremely reliable design."
 	icon_state = "mbx900"
 	item_state = "mbx900"
@@ -575,21 +568,20 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 19, "under_x" = 27, "under_y" = 16, "stock_x" = 0, "stock_y" = 0)
 
 	flags_item_map_variant = NONE
 
 	fire_delay = 0.6 SECONDS
-	accuracy_mult = 1.4
+	accuracy_mult = 1.2
 	cock_delay = 0.2 SECONDS
 
 //------------------------------------------------------
-//T-35 Pump shotgun
+//SH-35 Pump shotgun
 /obj/item/weapon/gun/shotgun/pump/t35
-	name = "\improper T-35 pump shotgun"
-	desc = "The Terran Armories T-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
+	name = "\improper SH-35 pump shotgun"
+	desc = "The Terran Armories SH-35 is the shotgun used by the TerraGov Marine Corps. It's used as a close quarters tool when someone wants something more suited for close range than most people, or as an odd sidearm on your back for emergencies. Uses 12 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "t35"
 	item_state = "t35"
@@ -611,7 +603,6 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/t35stock,
 		/obj/item/attachable/motiondetector,
-		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 	)
@@ -621,9 +612,6 @@
 	flags_item_map_variant = NONE
 
 	fire_delay = 20
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
-	scatter = 5
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -677,6 +665,6 @@
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
 	extra_delay = 0.5 SECONDS
-	scatter = 2
+	scatter = 1
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1

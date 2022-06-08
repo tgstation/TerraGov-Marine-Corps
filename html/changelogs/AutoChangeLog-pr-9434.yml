@@ -1,9 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - rscadd: "Implemented Rohesie's smoothing system."
-  - imageadd: "Created new cave wall sprites."
-  - imageadd: "Ported jungle wall sprites from CM."
-  - imageadd: "Ported cult wall sprites from CM."
-  - imageadd: "Ported a set of wall sprites from Eris to replace old Sulaco walls."
-  - imagedel: "Deleted old Sulaco wall graphics."

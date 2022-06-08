@@ -28,6 +28,7 @@ FLOOR SAFES
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
 	resistance_flags = RESIST_ALL
+	coverage = 25
 	var/spawnkey = 1 //Spawn safe code on top of it?
 	var/open = 0		//is the safe open?
 	var/tumbler_1_pos	//the tumbler position- from 0 to 72

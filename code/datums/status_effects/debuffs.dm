@@ -202,7 +202,7 @@
 /datum/status_effect/plasmadrain/tick()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	if(xenoowner.plasma_stored >= 0)
-		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 17
+		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 10
 		xenoowner.plasma_stored -= remove_plasma_amount
 		if(xenoowner.plasma_stored <= 0)
 			xenoowner.plasma_stored = 0
@@ -247,103 +247,6 @@
 /datum/status_effect/incapacitating/harvester_slowdown/on_remove()
 	owner.remove_movespeed_modifier(MOVESPEED_ID_HARVEST_TRAM_SLOWDOWN)
 	return ..()
-
-
-//HEALING INFUSION buff for Hivelord
-/datum/status_effect/healing_infusion
-	id = "healing_infusion"
-	alert_type = /obj/screen/alert/status_effect/healing_infusion
-	//Buff ends whenever we run out of either health or sunder ticks, or time, whichever comes first
-	///Health recovery ticks
-	var/health_ticks_remaining
-	///Sunder recovery ticks
-	var/sunder_ticks_remaining
-
-/datum/status_effect/healing_infusion/on_creation(mob/living/new_owner, set_duration = HIVELORD_HEALING_INFUSION_DURATION, stacks_to_apply = HIVELORD_HEALING_INFUSION_TICKS)
-	if(!isxeno(new_owner))
-		CRASH("something applied [id] on a nonxeno, dont do that")
-
-	duration = set_duration
-	owner = new_owner
-	health_ticks_remaining = stacks_to_apply //Apply stacks
-	sunder_ticks_remaining = stacks_to_apply
-	return ..()
-
-
-/datum/status_effect/healing_infusion/on_apply()
-	. = ..()
-	if(!.)
-		return
-	ADD_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
-	owner.add_filter("hivelord_healing_infusion_outline", 3, outline_filter(1, COLOR_VERY_PALE_LIME_GREEN)) //Set our cool aura; also confirmation we have the buff
-	RegisterSignal(owner, COMSIG_XENOMORPH_HEALTH_REGEN, .proc/healing_infusion_regeneration) //Register so we apply the effect whenever the target heals
-	RegisterSignal(owner, COMSIG_XENOMORPH_SUNDER_REGEN, .proc/healing_infusion_sunder_regeneration) //Register so we apply the effect whenever the target heals
-
-/datum/status_effect/healing_infusion/on_remove()
-	REMOVE_TRAIT(owner, TRAIT_HEALING_INFUSION, TRAIT_STATUS_EFFECT(id))
-	owner.remove_filter("hivelord_healing_infusion_outline")
-	UnregisterSignal(owner, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN))
-
-	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off VFX
-	new /obj/effect/temp_visual/healing(get_turf(owner))
-
-	owner.balloon_alert(owner, "Regeneration is no longer accelerated")
-	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 25)
-
-	return ..()
-
-///Called when the target xeno regains HP via heal_wounds in life.dm
-/datum/status_effect/healing_infusion/proc/healing_infusion_regeneration(mob/living/carbon/xenomorph/patient)
-	SIGNAL_HANDLER
-
-	if(!health_ticks_remaining)
-		qdel(src)
-		return
-
-	health_ticks_remaining-- //Decrement health ticks
-
-	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
-
-	var/total_heal_amount = 6 + (patient.maxHealth * 0.03) //Base amount 6 HP plus 3% of max
-	if(patient.recovery_aura)
-		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
-
-	//Healing pool has been calculated; now to decrement it
-	var/brute_amount = min(patient.bruteloss, total_heal_amount)
-	if(brute_amount)
-		patient.adjustBruteLoss(-brute_amount, updating_health = TRUE)
-		total_heal_amount = max(0, total_heal_amount - brute_amount) //Decrement from our heal pool the amount of brute healed
-
-	if(!total_heal_amount) //no healing left, no need to continue
-		return
-
-	var/burn_amount = min(patient.fireloss, total_heal_amount)
-	if(burn_amount)
-		patient.adjustFireLoss(-burn_amount, updating_health = TRUE)
-
-
-///Called when the target xeno regains Sunder via heal_wounds in life.dm
-/datum/status_effect/healing_infusion/proc/healing_infusion_sunder_regeneration(mob/living/carbon/xenomorph/patient)
-	SIGNAL_HANDLER
-
-	if(!sunder_ticks_remaining)
-		qdel(src)
-		return
-
-	if(!locate(/obj/effect/alien/weeds) in patient.loc) //Doesn't work if we're not on weeds
-		return
-
-	sunder_ticks_remaining-- //Decrement sunder ticks
-
-	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
-
-	patient.adjust_sunder(-1.8 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
-
-
-/obj/screen/alert/status_effect/healing_infusion
-	name = "Healing Infusion"
-	desc = "You have accelerated natural healing."
-	icon_state = "healing_infusion"
 
 //MUTE
 /datum/status_effect/mute

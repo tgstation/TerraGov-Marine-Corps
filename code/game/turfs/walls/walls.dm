@@ -103,36 +103,37 @@
 
 	if(wall_integrity == max_integrity)
 		if (acided_hole)
-			to_chat(user, span_warning("It looks fully intact, except there's a large hole that could've been caused by some sort of acid."))
+			. += span_warning("It looks fully intact, except there's a large hole that could've been caused by some sort of acid.")
 		else
-			to_chat(user, span_notice("It looks fully intact."))
+			. += span_notice("It looks fully intact.")
 	else
 		var/integ = wall_integrity / max_integrity
 		if(integ >= 0.6)
-			to_chat(user, span_warning("It looks slightly damaged."))
+			. += span_warning("It looks slightly damaged.")
 		else if(integ >= 0.3)
-			to_chat(user, span_warning("It looks moderately damaged."))
+			. += span_warning("It looks moderately damaged.")
 		else
-			to_chat(user, span_danger("It looks heavily damaged."))
+			. += span_danger("It looks heavily damaged.")
 
 		if (acided_hole)
-			to_chat(user, span_warning("There's a large hole in the wall that could've been caused by some sort of acid."))
+			. += span_warning("There's a large hole in the wall that could've been caused by some sort of acid.")
 
+	// todo why does this not use defines?
 	switch(d_state)
 		if(1)
-			to_chat(user, span_info("The outer plating has been sliced open. A screwdriver should remove the support lines."))
+			. += span_info("The outer plating has been sliced open. A screwdriver should remove the support lines.")
 		if(2)
-			to_chat(user, span_info("The support lines have been removed. A blowtorch should slice through the metal cover."))
+			. += span_info("The support lines have been removed. A blowtorch should slice through the metal cover.")
 		if(3)
-			to_chat(user, span_info("The metal cover has been sliced through. A crowbar should pry it off."))
+			. += span_info("The metal cover has been sliced through. A crowbar should pry it off.")
 		if(4)
-			to_chat(user, span_info("The metal cover has been removed. A wrench will remove the anchor bolts."))
+			. += span_info("The metal cover has been removed. A wrench will remove the anchor bolts.")
 		if(5)
-			to_chat(user, span_info("The anchor bolts have been removed. Wirecutters will take care of the hydraulic lines."))
+			. += span_info("The anchor bolts have been removed. Wirecutters will take care of the hydraulic lines.")
 		if(6)
-			to_chat(user, span_info("Hydraulic lines are gone. A crowbar will pry off the inner sheath."))
+			. += span_info("Hydraulic lines are gone. A crowbar will pry off the inner sheath.")
 		if(7)
-			to_chat(user, span_info("The inner sheath is gone. A blowtorch should finish off this wall."))
+			. += span_info("The inner sheath is gone. A blowtorch should finish off this wall.")
 
 #define BULLETHOLE_STATES 10 //How many variations of bullethole patterns there are
 #define BULLETHOLE_MAX 8 * 3 //Maximum possible bullet holes.
@@ -327,15 +328,7 @@
 		to_chat(user, "[span_warning("[src] is much too tough for you to do anything to it with [I]")].")
 
 	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!P.start_cut(user, name, src))
-			return
-
-		if(!do_after(user, P.calc_delay(user), TRUE, src, BUSY_ICON_HOSTILE))
-			return
-
-		P.cut_apart(user, name, src)
-		dismantle_wall()
+		return
 
 	else if(wall_integrity < max_integrity && iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I

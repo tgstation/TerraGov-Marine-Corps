@@ -121,31 +121,34 @@ SUBSYSTEM_DEF(vote)
 
 
 /// Apply the result of the vote if it's possible
-/datum/controller/subsystem/vote/proc/result()
-	. = announce_result()
+/datum/controller/subsystem/vote/proc/result(default_result)
+	. = default_result
+	if(!.)
+		. = announce_result()
+	if(!.)
+		return
 	var/restart = FALSE
-	if(.)
-		switch(mode)
-			if("restart")
-				if(. == "Restart Round")
-					restart = TRUE
-			if("gamemode")
-				if(. == "Civil War")
-					deltimer(shipmap_timer_id)
-					var/datum/map_config/VM = config.maplist[SHIP_MAP]["Twin Pillars"]
-					SSmapping.changemap(VM, SHIP_MAP)
-				if(GLOB.master_mode != .)
-					SSticker.save_mode(.)
-					if(SSticker.HasRoundStarted())
-						restart = TRUE
-					else
-						GLOB.master_mode = .
-			if("groundmap")
-				var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
-				SSmapping.changemap(VM, GROUND_MAP)
-			if("shipmap")
-				var/datum/map_config/VM = config.maplist[SHIP_MAP][.]
+	switch(mode)
+		if("restart")
+			if(. == "Restart Round")
+				restart = TRUE
+		if("gamemode")
+			if(. == "Civil War")
+				deltimer(shipmap_timer_id)
+				var/datum/map_config/VM = config.maplist[SHIP_MAP]["Twin Pillars"]
 				SSmapping.changemap(VM, SHIP_MAP)
+			if(GLOB.master_mode != .)
+				SSticker.save_mode(.)
+				if(SSticker.HasRoundStarted())
+					restart = TRUE
+				else
+					GLOB.master_mode = .
+		if("groundmap")
+			var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
+			SSmapping.changemap(VM, GROUND_MAP)
+		if("shipmap")
+			var/datum/map_config/VM = config.maplist[SHIP_MAP][.]
+			SSmapping.changemap(VM, SHIP_MAP)
 	if(restart)
 		var/active_admins = FALSE
 		for(var/client/C in GLOB.admins)
@@ -269,7 +272,15 @@ SUBSYSTEM_DEF(vote)
 					choices.Add(option)
 			else
 				return FALSE
+		if(!length(choices))
+			to_chat(usr, span_warning("No choices available for that vote"))
+			reset()
+			return FALSE
 		mode = vote_type
+		if(length(choices) == 1)
+			result(choices[1])
+			reset()
+			return FALSE
 		initiator = initiator_key
 		started_time = world.time
 		var/text = "[capitalize(mode)] vote started by [initiator ? initiator : "server"]."
@@ -405,21 +416,9 @@ SUBSYSTEM_DEF(vote)
 
 /datum/action/innate/vote/proc/remove_vote_action(datum/source)
 	SIGNAL_HANDLER
-
-	if(remove_from_client())
+	if(owner)
 		remove_action(owner)
 	qdel(src)
 
 /datum/action/innate/vote/action_activate()
 	owner.vote()
-
-/datum/action/innate/vote/proc/remove_from_client()
-	if(!owner)
-		return FALSE
-	if(owner.client)
-		owner.client.player_details.player_actions -= src
-	else if(owner.ckey)
-		var/datum/player_details/P = GLOB.player_details[owner.ckey]
-		if(P)
-			P.player_actions -= src
-	return TRUE

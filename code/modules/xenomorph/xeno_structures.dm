@@ -10,9 +10,12 @@
 	if(!(xeno_structure_flags & IGNORE_WEED_REMOVAL))
 		RegisterSignal(loc, COMSIG_TURF_WEED_REMOVED, .proc/weed_removed)
 	GLOB.xeno_structure += src
+	if(xeno_structure_flags & CRITICAL_STRUCTURE)
+		GLOB.xeno_critical_structure += src
 
 /obj/structure/xeno/Destroy()
 	GLOB.xeno_structure -= src
+	GLOB.xeno_critical_structure -= src
 	return ..()
 
 /obj/structure/xeno/ex_act(severity)
@@ -25,11 +28,11 @@
 			take_damage(70)
 
 /obj/structure/xeno/attack_hand(mob/living/user)
-	to_chat(user, span_warning("You scrape ineffectively at \the [src]."))
+	balloon_alert(user, "You only scrape at it")
 	return TRUE
 
-/obj/structure/xeno/flamer_fire_act()
-	take_damage(10, BURN, "fire")
+/obj/structure/xeno/flamer_fire_act(burnlevel)
+	take_damage(burnlevel / 3, BURN, "fire")
 
 /obj/structure/xeno/fire_act()
 	take_damage(10, BURN, "fire")
@@ -117,24 +120,24 @@
 	. = ..()
 	if(!isxeno(user))
 		return
-	to_chat(user, "A hole for a little one to hide in ambush for or for spewing acid.")
+	. += "A hole for a little one to hide in ambush for or for spewing acid."
 	switch(trap_type)
 		if(TRAP_HUGGER)
-			to_chat(user, "There's a little one inside.")
+			. += "There's a little one inside."
 		if(TRAP_SMOKE_NEURO)
-			to_chat(user, "There's pressurized neurotoxin inside.")
+			. += "There's pressurized neurotoxin inside."
 		if(TRAP_SMOKE_ACID)
-			to_chat(user, "There's pressurized acid gas inside.")
+			. += "There's pressurized acid gas inside."
 		if(TRAP_ACID_WEAK)
-			to_chat(user, "There's pressurized weak acid inside.")
+			. += "There's pressurized weak acid inside."
 		if(TRAP_ACID_NORMAL)
-			to_chat(user, "There's pressurized normal acid inside.")
+			. += "There's pressurized normal acid inside."
 		if(TRAP_ACID_STRONG)
-			to_chat(user, "There's strong pressurized acid inside.")
+			. += "There's strong pressurized acid inside."
 		else
-			to_chat(user, "It's empty.")
+			. += "It's empty."
 
-/obj/structure/xeno/trap/flamer_fire_act()
+/obj/structure/xeno/trap/flamer_fire_act(burnlevel)
 	hugger?.kill_hugger()
 	trigger_trap()
 	set_trap_type(null)
@@ -196,16 +199,16 @@
 	if(X.a_intent == INTENT_HARM)
 		return ..()
 	if(trap_type == TRAP_HUGGER)
-		if(!(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS))
+		if(!(X.xeno_caste.can_flags & CASTE_CAN_HOLD_FACEHUGGERS))
 			return
 		if(!hugger)
-			to_chat(X, span_warning("[src] is empty.") )
+			balloon_alert(X, "It is empty")
 			return
 		X.put_in_active_hand(hugger)
 		hugger.go_active(TRUE)
 		hugger = null
 		set_trap_type(null)
-		to_chat(X, span_xenonotice("We remove the facehugger from [src]."))
+		balloon_alert(X, "Removed facehugger")
 		return
 	var/datum/action/xeno_action/activable/corrosive_acid/acid_action = locate(/datum/action/xeno_action/activable/corrosive_acid) in X.actions
 	if(istype(X.ammo, /datum/ammo/xeno/boiler_gas))
@@ -234,18 +237,18 @@
 		return
 	var/obj/item/clothing/mask/facehugger/FH = I
 	if(trap_type)
-		to_chat(user, span_warning("[src] is already full.") )
+		balloon_alert(user, "Already occupied")
 		return
 
 	if(FH.stat == DEAD)
-		to_chat(user, span_warning("You can't put a dead facehugger in [src].") )
+		balloon_alert(user, "Cannot insert facehugger")
 		return
 
 	user.transferItemToLoc(FH, src)
 	FH.go_idle(TRUE)
 	hugger = FH
 	set_trap_type(TRAP_HUGGER)
-	to_chat(user, span_xenonotice("You place a facehugger in [src].") )
+	balloon_alert(user, "Inserted facehugger")
 
 /*
 TUNNEL
@@ -259,7 +262,7 @@ TUNNEL
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE|BANISH_IMMUNE
 	layer = RESIN_STRUCTURE_LAYER
 
 	max_integrity = 140
@@ -313,7 +316,7 @@ TUNNEL
 	if(!isxeno(user) && !isobserver(user))
 		return
 	if(tunnel_desc)
-		to_chat(user, span_info("The Hivelord scent reads: \'[tunnel_desc]\'") )
+		. += span_info("The Hivelord scent reads: \'[tunnel_desc]\'")
 
 /obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE)
 	visible_message(span_danger("[src] suddenly collapses!") )
@@ -338,7 +341,7 @@ TUNNEL
 		return
 
 	if(X.a_intent == INTENT_HARM && X == creator)
-		to_chat(X, span_xenowarning("We begin filling in our tunnel...") )
+		balloon_alert(X, "Filling in tunnel...")
 		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
@@ -346,18 +349,18 @@ TUNNEL
 	//Prevents using tunnels by the queen to bypass the fog.
 	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
 		if(!X.hive.living_xeno_ruler)
-			to_chat(X, span_xenowarning("There is no ruler. We must choose one first.") )
+			balloon_alert(X, "No ruler")
 			return FALSE
 		else if(isxenoqueen(X))
-			to_chat(X, span_xenowarning("There is no reason to leave the safety of the caves yet.") )
+			balloon_alert(X, "No reason to leave yet")
 			return FALSE
 
 	if(X.anchored)
-		to_chat(X, span_xenowarning("We can't climb through a tunnel while immobile.") )
+		balloon_alert(X, "Cannot enter while immobile")
 		return FALSE
 
 	if(length(GLOB.xeno_tunnels) < 2)
-		to_chat(X, span_warning("There are no other tunnels in the network!") )
+		balloon_alert(X, "No exit tunnel")
 		return FALSE
 
 	pick_a_tunnel(X)
@@ -373,17 +376,17 @@ TUNNEL
 	if(!M.Adjacent(src) && M.loc != src) //Make sure we're close enough to our tunnel; either adjacent to or in one
 		return
 	if(QDELETED(targettunnel)) //Make sure our target destination still exists in the event the player keeps the interface open
-		to_chat(M, span_warning("That tunnel no longer exists!") )
+		balloon_alert(M, "Tunnel no longer exists")
 		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
 			M.forceMove(loc)
 		return
 	if(targettunnel == src)
-		to_chat(M, span_warning("We're already here!") )
+		balloon_alert(M, "We're already here")
 		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
 			M.forceMove(loc)
 		return
 	if(targettunnel.z != z)
-		to_chat(M, span_warning("That tunnel isn't connected to this one!") )
+		balloon_alert(M, "Tunnel not connected")
 		if(M.loc == src) //If we're in the tunnel and cancelling out, spit us out.
 			M.forceMove(loc)
 		return
@@ -402,10 +405,10 @@ TUNNEL
 		tunnel_time = 5
 
 	if(!do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
-		to_chat(M, span_warning("Our crawling was interrupted!") )
+		balloon_alert(M, "Crawling interrupted")
 		return
 	if(!targettunnel || !isturf(targettunnel.loc)) //Make sure the end tunnel is still there
-		to_chat(M, span_warning("\The [src] ended unexpectedly, so we return back up.") )
+		balloon_alert(M, "Tunnel ended unexpectedly")
 		return
 	M.forceMove(targettunnel)
 	var/double_check = tgui_alert(M, "Emerge here?", "Tunnel: [targettunnel]", list("Yes","Pick another tunnel"))
@@ -436,7 +439,6 @@ TUNNEL
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 5
-	layer = RESIN_STRUCTURE_LAYER
 
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
@@ -485,10 +487,10 @@ TUNNEL
 	return ..()
 
 /obj/structure/xeno/acidwell/examine(mob/user)
-	..()
+	. = ..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-	to_chat(user, span_xenonotice("An acid well made by [creator]. It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES] charges</b>.") )
+	. += span_xenonotice("An acid well made by [creator]. It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES] charges</b>.")
 
 /obj/structure/xeno/acidwell/deconstruct(disassembled = TRUE)
 	visible_message(span_danger("[src] suddenly collapses!") )
@@ -508,7 +510,7 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/xeno/acidwell/flamer_fire_act() //Removes a charge of acid, but fire is extinguished
+/obj/structure/xeno/acidwell/flamer_fire_act(burnlevel) //Removes a charge of acid, but fire is extinguished
 	acid_well_fire_interaction()
 
 /obj/structure/xeno/acidwell/fire_act() //Removes a charge of acid, but fire is extinguished
@@ -537,41 +539,43 @@ TUNNEL
 
 /obj/structure/xeno/acidwell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	if(X.a_intent == INTENT_HARM && (CHECK_BITFIELD(X.xeno_caste.caste_flags, CASTE_IS_BUILDER) || X == creator) ) //If we're a builder caste or the creator and we're on harm intent, deconstruct it.
-		to_chat(X, span_xenodanger("We begin removing \the [src]...") )
+		balloon_alert(X, "Removing...")
 		if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_HOSTILE))
-			to_chat(X, span_xenodanger("We stop removing \the [src]...") )
+			balloon_alert(X, "Stopped removing")
 			return
 		playsound(src, "alien_resin_break", 25)
 		deconstruct(TRUE, X)
 		return
 
 	if(charges >= 5)
-		to_chat(X, span_xenodanger("[src] is already full!") )
+		balloon_alert(X, "Already full")
 		return
 	if(charging)
-		to_chat(X, span_xenodanger("[src] is already being filled!") )
+		balloon_alert(X, "Already being filled")
 		return
 
 	if(X.plasma_stored < XENO_ACID_WELL_FILL_COST) //You need to have enough plasma to attempt to fill the well
-		to_chat(X, span_xenodanger("We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!") )
+		balloon_alert(X, "Need [XENO_ACID_WELL_FILL_COST - X.plasma_stored] more plasma")
 		return
 
 	charging = TRUE
-	to_chat(X, span_xenodanger("We begin refilling [src]...") )
+
+	balloon_alert(X, "Refilling...")
 	if(!do_after(X, XENO_ACID_WELL_FILL_TIME, FALSE, src, BUSY_ICON_BUILD))
 		charging = FALSE
-		to_chat(X, span_xenodanger("We abort refilling [src]!") )
+		balloon_alert(X, "Aborted refilling")
 		return
 
 	if(X.plasma_stored < XENO_ACID_WELL_FILL_COST)
 		charging = FALSE
-		to_chat(X, span_xenodanger("We don't have enough plasma to fill [src]! We need <b>[XENO_ACID_WELL_FILL_COST - X.plasma_stored]</b> more plasma!") )
+		balloon_alert(X, "Need [XENO_ACID_WELL_FILL_COST - X.plasma_stored] more plasma")
 		return
 
 	X.plasma_stored -= XENO_ACID_WELL_FILL_COST
 	charges++
 	charging = FALSE
 	update_icon()
+	balloon_alert(X, "Now has [charges] / [XENO_ACID_WELL_MAX_CHARGES] charges")
 	to_chat(X,span_xenonotice("We add acid to [src]. It is currently has <b>[charges] / [XENO_ACID_WELL_MAX_CHARGES] charges</b>.") )
 
 /obj/structure/xeno/acidwell/proc/on_cross(datum/source, atom/movable/A, oldloc, oldlocs)
@@ -604,8 +608,9 @@ TUNNEL
 		return
 
 	stepper.next_move_slowdown += charges * 2 //Acid spray has slow down so this should too; scales with charges, Min 2 slowdown, Max 10
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_L_FOOT, "acid") * 0.66) //33% armor pen
-	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.run_armor_check(BODY_ZONE_PRECISE_R_FOOT, "acid") * 0.66) //33% armor pen
+	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_L_FOOT, stepper.get_soft_armor("acid", BODY_ZONE_PRECISE_L_FOOT) * 0.66) //33% armor pen
+	stepper.apply_damage(charges * 10, BURN, BODY_ZONE_PRECISE_R_FOOT, stepper.get_soft_armor("acid", BODY_ZONE_PRECISE_R_FOOT) * 0.66) //33% armor pen
+	stepper.ExtinguishMob()
 	stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
 	span_danger("We are immersed in [src]'s acid!") , null, 5)
 	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
@@ -662,7 +667,7 @@ TUNNEL
 /obj/structure/xeno/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	if(isxeno(user))
-		to_chat(user, "It has [chargesleft] jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"].")
+		. += "It has [chargesleft] jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"]."
 
 /obj/structure/xeno/resin_jelly_pod/process()
 	if(nextjelly <= recharge_rate)
@@ -678,21 +683,23 @@ TUNNEL
 		return FALSE
 
 	if(X.a_intent == INTENT_HARM && isxenohivelord(X))
-		to_chat(X, span_xenowarning("We begin tearing at the [src]...") )
+		balloon_alert(X, "Destroying...")
 		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
 
 	if(!chargesleft)
+		balloon_alert(X, "No jelly remaining")
 		to_chat(X, span_xenonotice("We reach into \the [src], but only find dregs of resin. We should wait some more.") )
 		return
-	to_chat(X, span_xenonotice("We retrieve a resin jelly from \the [src].") )
+	balloon_alert(X, "Retrieved jelly")
 	new /obj/item/resin_jelly(loc)
 	chargesleft--
 	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
 		START_PROCESSING(SSslowprocess, src)
+
 /obj/structure/xeno/silo
-	name = "resin silo"
+	name = "Resin silo"
 	icon = 'icons/Xeno/resin_silo.dmi'
 	icon_state = "weed_silo"
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
@@ -700,7 +707,7 @@ TUNNEL
 	bound_height = 96
 	max_integrity = 1000
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL|CRITICAL_STRUCTURE
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
 	var/turf/center_turf
@@ -779,15 +786,15 @@ TUNNEL
 	var/current_integrity = (obj_integrity / max_integrity) * 100
 	switch(current_integrity)
 		if(0 to 20)
-			to_chat(user, span_warning("It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert."))
+			. += span_warning("It's barely holding, there's leaking oozes all around, and most eggs are broken. Yet it is not inert.")
 		if(20 to 40)
-			to_chat(user, span_warning("It looks severely damaged, its movements slow."))
+			. += span_warning("It looks severely damaged, its movements slow.")
 		if(40 to 60)
-			to_chat(user, span_warning("It's quite beat up, but it seems alive."))
+			. += span_warning("It's quite beat up, but it seems alive.")
 		if(60 to 80)
-			to_chat(user, span_warning("It's slightly damaged, but still seems healthy."))
+			. += span_warning("It's slightly damaged, but still seems healthy.")
 		if(80 to 100)
-			to_chat(user, span_info("It appears in good shape, pulsating healthily."))
+			. += span_info("It appears in good shape, pulsating healthily.")
 
 
 /obj/structure/xeno/silo/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir, armour_penetration)
@@ -841,7 +848,7 @@ TUNNEL
 /obj/structure/xeno/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = XENO_TURRET_ACID_ICONSTATE
-	name = "acid turret"
+	name = "Acid turret"
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires acid against intruders."
 	bound_width = 32
 	bound_height = 32
@@ -851,6 +858,7 @@ TUNNEL
 	density = TRUE
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|HAS_OVERLAY
+	throwpass = FALSE
 	///The hive it belongs to
 	var/datum/hive_status/associated_hive
 	///What kind of spit it uses
@@ -913,8 +921,8 @@ TUNNEL
 		if(EXPLODE_LIGHT)
 			take_damage(300)
 
-/obj/structure/xeno/xeno_turret/flamer_fire_act()
-	take_damage(60, BURN, "fire")
+/obj/structure/xeno/xeno_turret/flamer_fire_act(burnlevel)
+	take_damage(burnlevel * 2, BURN, "fire")
 	ENABLE_BITFIELD(resistance_flags, ON_FIRE)
 
 /obj/structure/xeno/xeno_turret/fire_act()
@@ -1072,7 +1080,7 @@ TUNNEL
 		newshot.color = initial(hugger_ammo.hugger_type.color)
 
 /obj/structure/xeno/xeno_turret/sticky
-	name = "sticky resin turret"
+	name = "Sticky resin turret"
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = XENO_TURRET_STICKY_ICONSTATE
 	desc = "A menacing looking construct of resin, it seems to be alive. It fires resin against intruders."
@@ -1099,6 +1107,7 @@ TUNNEL
 	bound_height = 64
 	obj_integrity = 600
 	max_integrity = 600
+	xeno_structure_flags = CRITICAL_STRUCTURE
 	///hivenumber of this tower
 	var/hivenumber
 	///boost amt to be added per tower per cycle
@@ -1124,7 +1133,7 @@ TUNNEL
 			take_damage(300)
 
 /obj/structure/xeno/maturitytower
-	name = "maturity tower"
+	name = "Maturity tower"
 	desc = "A sickly outcrop from the ground. It seems to ooze a strange chemical that makes the vegetation around it grow faster."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "maturitytower"
@@ -1132,6 +1141,7 @@ TUNNEL
 	bound_height = 64
 	obj_integrity = 400
 	max_integrity = 400
+	xeno_structure_flags = CRITICAL_STRUCTURE
 	///hivenumber of this tower
 	var/hivenumber
 	///boost amt to be added per tower per cycle
@@ -1163,7 +1173,7 @@ TUNNEL
 	bound_height = 96
 	max_integrity = 500
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL
+	xeno_structure_flags = IGNORE_WEED_REMOVAL | CRITICAL_STRUCTURE
 
 /obj/structure/xeno/spawner/Initialize()
 	. = ..()
@@ -1175,3 +1185,263 @@ TUNNEL
 /obj/structure/xeno/spawner/Destroy()
 	GLOB.xeno_spawner -= src
 	return ..()
+
+///Those structures need time to grow and are supposed to be extremely weak healh-wise
+/obj/structure/xeno/plant
+	name = "Xeno Plant"
+	max_integrity = 5
+	icon = 'icons/Xeno/plants.dmi'
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
+	///The plant's icon once it's fully grown
+	var/mature_icon_state
+	///Is the plant ready to be used ?
+	var/mature = FALSE
+	///How long does it take for the plant to be useable
+	var/maturation_time = 2 MINUTES
+
+/obj/structure/xeno/plant/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/on_mature), maturation_time)
+
+/obj/structure/xeno/plant/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!mature && isxeno(user))
+		balloon_alert(user, "Not fully grown")
+		return FALSE
+
+/obj/structure/xeno/plant/update_icon_state()
+	. = ..()
+	icon_state = (mature) ? mature_icon_state : initial(icon_state)
+
+///Called whenever someone uses the plant, xeno or marine
+/obj/structure/xeno/plant/proc/on_use(mob/user)
+	mature = FALSE
+	update_icon()
+	addtimer(CALLBACK(src, .proc/on_mature), maturation_time)
+	return TRUE
+
+///Called when the plant reaches maturity
+/obj/structure/xeno/plant/proc/on_mature(mob/user)
+	playsound(src, "alien_resin_build", 25)
+	mature = TRUE
+	update_icon()
+
+/obj/structure/xeno/plant/attack_hand(mob/living/user)
+	if(!can_interact(user))
+		return ..()
+	return on_use(user)
+
+/obj/structure/xeno/plant/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if((X.status_flags & INCORPOREAL))
+		return FALSE
+
+	if(X.a_intent == INTENT_HARM && isxenodrone(X))
+		balloon_alert(X, "Uprooted the plant")
+		X.do_attack_animation(src)
+		deconstruct(FALSE)
+		return FALSE
+	if(can_interact(X))
+		return on_use(X)
+	return TRUE
+
+/obj/structure/xeno/plant/heal_fruit
+	name = "life fruit"
+	desc = "It would almost be appetizing wasn't it for the green colour and the shifting fluids inside..."
+	icon_state = "heal_fruit_immature"
+	mature_icon_state = "heal_fruit"
+	///Minimum amount of health recovered
+	var/healing_amount_min = 125
+	///Maximum amount of health recovered, depends on the xeno's max health
+	var/healing_amount_max_health_scaling = 0.5
+
+/obj/structure/xeno/plant/heal_fruit/on_use(mob/user)
+	balloon_alert(user, "Consuming...")
+	if(!do_after(user, 2 SECONDS, FALSE, src))
+		return FALSE
+	if(!isxeno(user))
+		var/datum/effect_system/smoke_spread/xeno/acid/plant_explosion = new(get_turf(src))
+		plant_explosion.set_up(3,src)
+		plant_explosion.start()
+		visible_message(span_danger("[src] bursts, releasing toxic gas!"))
+		qdel(src)
+		return TRUE
+
+	var/mob/living/carbon/xenomorph/X = user
+	var/heal_amount = max(healing_amount_min, healing_amount_max_health_scaling * X.xeno_caste.max_health)
+	HEAL_XENO_DAMAGE(X,heal_amount)
+	playsound(user, "alien_drool", 25)
+	balloon_alert(X, "Health restored")
+	to_chat(X, span_xenowarning("We feel a sudden soothing chill as [src] tends to our wounds."))
+
+	return ..()
+
+/obj/structure/xeno/plant/armor_fruit
+	name = "hard fruit"
+	desc = "The contents of this fruit are protected by a tough outer shell."
+	icon_state = "armor_fruit_immature"
+	mature_icon_state = "armor_fruit"
+	///How much total sunder should we remove
+	var/sunder_removal = 30
+
+/obj/structure/xeno/plant/armor_fruit/on_use(mob/user)
+	balloon_alert(user, "Consuming...")
+	if(!do_after(user, 2 SECONDS, FALSE, src))
+		return FALSE
+	if(!isxeno(user))
+		var/turf/far_away_lands = get_turf(user)
+		for(var/x in 1 to 20)
+			var/turf/next_turf = get_step(far_away_lands, REVERSE_DIR(user.dir))
+			if(!next_turf)
+				break
+			far_away_lands = next_turf
+
+		user.throw_at(far_away_lands, 20, spin = TRUE)
+		to_chat(user, span_warning("[src] bursts, releasing a strong gust of pressurised gas!"))
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			H.adjust_stagger(3)
+			H.apply_damage(30, BRUTE, "chest", H.get_soft_armor("melee", "chest"))
+		qdel(src)
+		return TRUE
+
+	balloon_alert(user, "Armor restored")
+	to_chat(user, span_xenowarning("We shed our shattered scales as new ones grow to replace them!"))
+	var/mob/living/carbon/xenomorph/X = user
+	X.adjust_sunder(-sunder_removal)
+	playsound(user, "alien_drool", 25)
+	return ..()
+
+/obj/structure/xeno/plant/plasma_fruit
+	name = "power fruit"
+	desc = "A cyan fruit, beating like a creature's heart"
+	icon_state = "plasma_fruit_immature"
+	mature_icon_state = "plasma_fruit"
+	///How much bonus plasma should we restore during the duration, 1 being 100% from base regen
+	var/bonus_regen = 1
+	///How long should the buff last
+	var/duration = 1 MINUTES
+
+/obj/structure/xeno/plant/plasma_fruit/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!isxeno(user))
+		return
+	var/mob/living/carbon/xenomorph/X = user
+	if(X.has_status_effect(STATUS_EFFECT_PLASMA_SURGE))
+		balloon_alert(X, "Already increased plasma regen")
+		return FALSE
+
+/obj/structure/xeno/plant/plasma_fruit/on_use(mob/user)
+	balloon_alert(user, "Consuming...")
+	if(!do_after(user, 2 SECONDS, FALSE, src))
+		return FALSE
+	if(!isxeno(user))
+		visible_message(span_warning("[src] releases a sticky substance before spontaneously bursting into flames!"))
+		flame_radius(3, get_turf(src), colour = "green")
+		qdel(src)
+		return TRUE
+
+	var/mob/living/carbon/xenomorph/X = user
+	if(isxenoravager(X)) //Ask if this should be made into a trait for xenos with special ressources
+		to_chat(X, span_xenowarning("But our body rejects the fruit, our fury does not build up with a healthy diet!"))
+		return FALSE
+	X.apply_status_effect(/datum/status_effect/plasma_surge, X.xeno_caste.plasma_max, bonus_regen, duration)
+	balloon_alert(X, "Plasma restored")
+	to_chat(X, span_xenowarning("[src] Restores our plasma reserves, our organism is on overdrive!"))
+	playsound(user, "alien_drool", 25)
+	return ..()
+
+
+/obj/structure/xeno/plant/stealth_plant
+	name = "night shade"
+	desc = "A beautiful flower, what purpose it could serve to the alien hive is beyond you however..."
+	icon_state = "stealth_plant_immature"
+	mature_icon_state = "stealth_plant"
+	maturation_time = 4 MINUTES
+	///The radius of the passive structure camouflage, requires line of sight
+	var/camouflage_range = 7
+	///The range of the active stealth ability, does not require line of sight
+	var/active_camouflage_pulse_range = 10
+	///How long should veil last
+	var/active_camouflage_duration = 20 SECONDS
+	///How long until the plant can be activated again
+	var/cooldown = 2 MINUTES
+	///Is the active ability veil on cooldown ?
+	var/on_cooldown = FALSE
+	///The list of passively camouflaged structures
+	var/list/obj/structure/xeno/camouflaged_structures = list()
+	////The list of actively camouflaged xenos by veil
+	var/list/mob/living/carbon/xenomorph/camouflaged_xenos = list()
+
+/obj/structure/xeno/plant/stealth_plant/Initialize()
+	. = ..()
+
+/obj/structure/xeno/plant/stealth_plant/on_mature(mob/user)
+	. = ..()
+	START_PROCESSING(SSslowprocess, src)
+
+/obj/structure/xeno/plant/stealth_plant/Destroy()
+	for(var/obj/structure/xeno/xeno_struct AS in camouflaged_structures)
+		xeno_struct.alpha = initial(xeno_struct.alpha)
+	unveil()
+	STOP_PROCESSING(SSslowprocess, src)
+	return ..()
+
+/obj/structure/xeno/plant/stealth_plant/process()
+	for(var/turf/tile AS in RANGE_TURFS(camouflage_range, loc))
+		for(var/obj/structure/xeno/xeno_struct in tile)
+			if(istype(xeno_struct, /obj/structure/xeno/plant) || !line_of_sight(src, xeno_struct)) //We don't hide plants
+				continue
+			camouflaged_structures.Add(xeno_struct)
+			xeno_struct.alpha = STEALTH_PLANT_PASSIVE_CAMOUFLAGE_ALPHA
+
+/obj/structure/xeno/plant/stealth_plant/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(ishuman(user))
+		balloon_alert(user, "Nothing happens")
+		to_chat(user, span_notice("You caress [src]'s petals, nothing happens."))
+		return FALSE
+	if(on_cooldown)
+		balloon_alert(user, "Not ready yet")
+		to_chat(user, span_xenowarning("[src] soft light shimmers, we should give it more time to recover!"))
+		return FALSE
+
+/obj/structure/xeno/plant/stealth_plant/on_use(mob/user)
+	balloon_alert(user, "Shaking...")
+	if(!do_after(user, 2 SECONDS, FALSE, src))
+		return FALSE
+	visible_message(span_danger("[src] releases a burst of glowing pollen!"))
+	veil()
+	return TRUE
+
+///Hides all nearby xenos
+/obj/structure/xeno/plant/stealth_plant/proc/veil()
+	for(var/turf/tile in RANGE_TURFS(camouflage_range, loc))
+		for(var/mob/living/carbon/xenomorph/X in tile)
+			if(X.stat == DEAD || isxenohunter(X) || X.alpha != 255) //We don't mess with xenos capable of going stealth by themselves
+				continue
+			X.alpha = HUNTER_STEALTH_RUN_ALPHA
+			new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(X))
+			balloon_alert(X, "We now blend in")
+			to_chat(X, span_xenowarning("The pollen from [src] reacts with our scales, we are blending with our surroundings!"))
+			camouflaged_xenos.Add(X)
+	on_cooldown = TRUE
+	addtimer(CALLBACK(src, .proc/unveil), active_camouflage_duration)
+	addtimer(CALLBACK(src, .proc/ready), cooldown)
+
+///Called when veil() can be used once again
+/obj/structure/xeno/plant/stealth_plant/proc/ready()
+	visible_message(span_danger("[src] petals shift in hue, it is ready to release more pollen."))
+	on_cooldown = FALSE
+
+///Reveals all xenos hidden by veil()
+/obj/structure/xeno/plant/stealth_plant/proc/unveil()
+	for(var/mob/living/carbon/xenomorph/X AS in camouflaged_xenos)
+		X.alpha = initial(X.alpha)
+		balloon_alert(X, "Effect wears off")
+		to_chat(X, span_xenowarning("The effect of [src] wears off!"))

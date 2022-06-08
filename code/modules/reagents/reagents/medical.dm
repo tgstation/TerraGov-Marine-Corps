@@ -18,7 +18,7 @@
 
 /datum/reagent/medicine/inaprovaline/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name))
+	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 14) //If you are in crit, and someone injects at least 15u into you at once, you will heal 30% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
@@ -34,9 +34,7 @@
 
 /datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
-	if(metabolism & IS_VOX)
-		L.adjustToxLoss(REAGENTS_METABOLISM)
-	else if(iscarbon(L))
+	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.losebreath > 10)
 			C.set_Losebreath(10)
@@ -281,10 +279,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/dexalin/on_mob_life(mob/living/L,metabolism)
-	if(metabolism & IS_VOX)
-		L.adjustToxLoss(3*effect_str)
-	else
-		L.adjustOxyLoss(-3*effect_str)
+	L.adjustOxyLoss(-3*effect_str)
 	holder.remove_reagent("lexorin", effect_str)
 	return ..()
 
@@ -303,10 +298,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/dexalinplus/on_mob_life(mob/living/L,metabolism)
-	if(metabolism & IS_VOX)
-		L.adjustToxLoss(1.5*effect_str)
-	else
-		L.adjustOxyLoss(-L.getOxyLoss())
+	L.adjustOxyLoss(-L.getOxyLoss())
 	holder.remove_reagent("lexorin", effect_str)
 	return ..()
 
@@ -465,7 +457,7 @@
 
 /datum/reagent/medicine/neuraline/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name))
+	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
@@ -558,7 +550,7 @@
 
 /datum/reagent/medicine/russian_red/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
-	if(TIMER_COOLDOWN_CHECK(L, name))
+	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
 	if(L.health < H.health_threshold_crit && volume > 9) //If you are in crit, and someone injects at least 9u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
@@ -760,12 +752,8 @@
 		return ..()
 	var/mob/living/carbon/human/H = L
 	for(var/datum/limb/X in H.limbs)
-		for(var/datum/wound/W in X.wounds)
-			if(W.internal)
-				W.damage = max(0, W.damage - (effect_str))
-				X.update_damages()
-				if (X.update_icon())
-					X.owner.UpdateDamageIcon(1)
+		for(var/datum/wound/internal_bleeding/W in X.wounds)
+			W.damage = max(0, W.damage - (effect_str))
 	return ..()
 
 
@@ -780,32 +768,67 @@
 	name = "Quick Clot Plus"
 	description = "A chemical designed to quickly and painfully remove internal bleeding by encouraging coagulation. Should not be self-administered."
 	color = "#CC00FF"
-	overdose_threshold = REAGENTS_OVERDOSE/5 //Was 4, now 6 //Now 15 //Now 6 again, yay oldQC
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5 //10u
+	overdose_threshold = REAGENTS_OVERDOSE/5 //6u
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5 //12u
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 2.5
+	///The IB wound this dose of QCP will cure, if it lasts long enough
+	var/datum/wound/internal_bleeding/target_IB
+	///Ticks remaining before the target_IB is cured
+	var/ticks_left
+	///Ticks needed to cure an IB
+	var/ticks_to_cure_IB = 10
 
 /datum/reagent/medicine/quickclotplus/on_mob_add(mob/living/L, metabolism)
-	if(TIMER_COOLDOWN_CHECK(L, name))
-		return
-	L.adjustCloneLoss(5*effect_str)
+	select_wound(L)
 
 /datum/reagent/medicine/quickclotplus/on_mob_delete(mob/living/L, metabolism)
-	TIMER_COOLDOWN_START(L, name, 30 SECONDS)
+	if(target_IB)
+		to_chat(L, span_warning("The searing pain in your [target_IB.parent_limb.display_name] returns to a dull ache..."))
+		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
+		target_IB = null
 
 /datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism)
-	var/mob/living/carbon/human/H = L
-	for(var/datum/limb/X in H.limbs)
-		for(var/datum/wound/W in X.wounds)
-			if(W.internal)
-				W.damage = max(0, W.damage - (2.5*effect_str))
-				X.update_damages()
-				if (X.update_icon())
-					X.owner.UpdateDamageIcon(1)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY
 	L.adjustStaminaLoss(15*effect_str)
+	if(!target_IB)
+		select_wound(L)
+		ticks_left-- //Keep treatment time at the total ticks_to_cure if we select here, including the tick used to select a wound
+		return ..()
+	ticks_left--
+	if(!ticks_left)
+		to_chat(L, span_alert("The searing pain in your [target_IB.parent_limb.display_name] peaks, then slowly fades away entirely."))
+		target_IB.parent_limb.createwound(CUT, target_IB.damage / 2)
+		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
+		QDEL_NULL(target_IB)
+		L.adjustCloneLoss(5*effect_str)
 	return ..()
+
+///Choose an internal bleeding wound to lock onto and cure after a delay.
+/datum/reagent/medicine/quickclotplus/proc/select_wound(mob/living/L)
+	if(target_IB)
+		return
+	if(!ishuman(L))
+		return
+	var/mob/living/carbon/human/body = L
+	for(var/datum/limb/possible_limb AS in body.limbs)
+		for(var/datum/wound/internal_bleeding/possible_IB in possible_limb.wounds)
+			target_IB = possible_IB
+			RegisterSignal(target_IB, COMSIG_PARENT_QDELETING, .proc/clear_wound)
+			break
+		if(target_IB)
+			break
+	if(target_IB)
+		to_chat(body, span_highdanger("The deep ache in your [target_IB.parent_limb.display_name] erupts into searing pain!"))
+		ticks_left = ticks_to_cure_IB
+
+///If something else removes the wound before the drug finishes with it, we need to clean references.
+/datum/reagent/medicine/quickclotplus/proc/clear_wound(atom/target)
+	SIGNAL_HANDLER
+	if(target_IB)
+		UnregisterSignal(target_IB, COMSIG_PARENT_QDELETING)
+		target_IB = null
 
 
 /datum/reagent/medicine/quickclotplus/overdose_process(mob/living/L, metabolism)
@@ -840,79 +863,6 @@
 
 /datum/reagent/medicine/nanoblood/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(3*effect_str, TOX)
-
-/datum/reagent/medicine/hyperzine
-	name = "Hyperzine"
-	description = "Hyperzine is a highly effective, muscle and adrenal stimulant that massively accelerates metabolism.  May cause heart damage"
-	color = "#C8A5DC" // rgb: 200, 165, 220
-	overdose_threshold = REAGENTS_OVERDOSE/5
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
-	scannable = TRUE
-	purge_list = list(/datum/reagent/medicine/dexalinplus) //Does this purge any specific chems?
-	purge_rate = 15 //rate at which it purges specific chems
-	trait_flags = TACHYCARDIC
-
-/datum/reagent/medicine/hyperzine/on_mob_add(mob/living/L, metabolism)
-	. = ..()
-	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
-
-/datum/reagent/medicine/hyperzine/on_mob_delete(mob/living/L, metabolism)
-	L.remove_movespeed_modifier(type)
-	var/amount = current_cycle * 2
-	L.adjustOxyLoss(amount)
-	L.adjustStaminaLoss(amount * 1.5)
-	if(L.stat == DEAD)
-		var/death_message = span_danger("Your body is unable to bear the strain. The last thing you feel, aside from crippling exhaustion, is an explosive pain in your chest as you drop dead. It's a sad thing your adventures have ended here!")
-		if(iscarbon(L))
-			var/mob/living/carbon/C = L
-			if(C.species.species_flags & NO_PAIN)
-				death_message = span_danger("Your body is unable to bear the strain. The last thing you feel as you drop dead is utterly crippling exhaustion. It's a sad thing your adventures have ended here!")
-
-		to_chat(L, "[death_message]")
-	else
-		switch(amount)
-			if(4 to 20)
-				to_chat(L, span_warning("You feel a bit tired."))
-			if(21 to 50)
-				L.Paralyze(amount * 2)
-				to_chat(L, span_danger("You collapse as a sudden wave of fatigue washes over you."))
-			if(50 to INFINITY)
-				L.Unconscious(amount * 2)
-				to_chat(L, span_danger("Your world convulses as a wave of extreme fatigue washes over you!")) //when hyperzine is removed from the body, there's a backlash as it struggles to transition and operate without the drug
-
-	return ..()
-
-/datum/reagent/medicine/hyperzine/on_mob_life(mob/living/L, metabolism)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		C.adjust_nutrition(-volume * 1.5*effect_str)
-	if(prob(1))
-		L.emote(pick("twitch","blink_r","shiver"))
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			var/datum/internal_organ/heart/F = H.internal_organs_by_name["heart"]
-			F.take_damage(effect_str, TRUE)
-	return ..()
-
-/datum/reagent/medicine/hyperzine/overdose_process(mob/living/L, metabolism)
-	if(ishuman(L))
-		L.jitter(5)
-		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
-		if(E)
-			E.take_damage(0.5*effect_str, TRUE)
-	if(prob(10))
-		L.emote(pick("twitch", "blink_r", "shiver"))
-
-/datum/reagent/medicine/hyperzine/overdose_crit_process(mob/living/L, metabolism)
-	if(ishuman(L))
-		L.jitter(10)
-		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
-		if(E)
-			E.take_damage(2*effect_str, TRUE)
-	if(prob(25))
-		L.emote(pick("twitch", "blink_r", "shiver"))
 
 /datum/reagent/medicine/ultrazine
 	name = "Ultrazine"

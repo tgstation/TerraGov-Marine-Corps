@@ -31,7 +31,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 	setDir(pick(GLOB.cardinals))
-	set_light(3)
+	set_light(1, 3)
 
 	for(var/mob/living/L in loc)//Mobs
 		L.fire_act()

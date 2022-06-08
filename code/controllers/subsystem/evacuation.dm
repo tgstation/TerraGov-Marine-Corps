@@ -16,6 +16,10 @@ SUBSYSTEM_DEF(evacuation)
 	var/dest_status = NUKE_EXPLOSION_INACTIVE
 
 	var/flags_scuttle = FLAGS_SDEVAC_TIMELOCK
+	///How many marines were on ship when the dropship crashed
+	var/initial_human_on_ship = 0
+	///How many marines escaped
+	var/human_escaped = 0
 
 
 /datum/controller/subsystem/evacuation/proc/prepare()
@@ -35,8 +39,27 @@ SUBSYSTEM_DEF(evacuation)
 	dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / length(dest_rods)
 	dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
 
-
 /datum/controller/subsystem/evacuation/fire()
+	process_evacuation()
+	if(dest_status != NUKE_EXPLOSION_ACTIVE)
+		return
+	if(!dest_master.loc || dest_master.active_state != SELF_DESTRUCT_MACHINE_ARMED || dest_index > length(dest_rods))
+		return
+
+	var/obj/machinery/self_destruct/rod/I = dest_rods[dest_index]
+	if(world.time < dest_cooldown + I.activate_time)
+		return
+
+	I.toggle()
+
+	if(++dest_index > length(dest_rods))
+		return
+
+	I = dest_rods[dest_index]
+	I.activate_time = world.time
+
+///Deal with the escape pods, launching them when needed
+/datum/controller/subsystem/evacuation/proc/process_evacuation()
 	switch(evac_status)
 		if(EVACUATION_STATUS_INITIATING)
 			if(world.time < evac_time + EVACUATION_AUTOMATIC_DEPARTURE)
@@ -52,23 +75,6 @@ SUBSYSTEM_DEF(evacuation)
 			var/obj/docking_port/mobile/escape_pod/P = pick_n_take(pod_list)
 			P.launch()
 
-	switch(dest_status)
-		if(NUKE_EXPLOSION_ACTIVE)
-			if(!dest_master.loc || dest_master.active_state != SELF_DESTRUCT_MACHINE_ARMED || dest_index > length(dest_rods))
-				return
-
-			var/obj/machinery/self_destruct/rod/I = dest_rods[dest_index]
-			if(world.time < dest_cooldown + I.activate_time)
-				return
-
-			I.toggle()
-
-			if(++dest_index > length(dest_rods))
-				return
-
-			I = dest_rods[dest_index]
-			I.activate_time = world.time
-
 
 
 /datum/controller/subsystem/evacuation/proc/initiate_evacuation(override)
@@ -79,12 +85,12 @@ SUBSYSTEM_DEF(evacuation)
 	GLOB.enter_allowed = FALSE
 	evac_time = world.time
 	evac_status = EVACUATION_STATUS_INITIATING
-	priority_announce("Emergency evacuation has been triggered. Please proceed to the escape pods.", "Priority Alert", sound = 'sound/AI/evacuate.ogg')
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EVACUATION_STARTED)
+	priority_announce("Emergency evacuation has been triggered. Please proceed to the escape pods. Evacuation in [EVACUATION_AUTOMATIC_DEPARTURE/600] minutes.", "Priority Alert", sound = 'sound/AI/evacuate.ogg')
 	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 	pod_list = SSshuttle.escape_pods.Copy()
-	for(var/i in pod_list)
-		var/obj/docking_port/mobile/escape_pod/P = i
-		P.prep_for_launch()
+	for(var/obj/docking_port/mobile/escape_pod/pod AS in pod_list)
+		pod.prep_for_launch()
 	return TRUE
 
 
@@ -103,9 +109,8 @@ SUBSYSTEM_DEF(evacuation)
 	evac_time = null
 	evac_status = EVACUATION_STATUS_STANDING_BY
 	priority_announce("Evacuation has been cancelled.", "Priority Alert", sound = 'sound/AI/evacuate_cancelled.ogg')
-	for(var/i in pod_list)
-		var/obj/docking_port/mobile/escape_pod/P = i
-		P.unprep_for_launch()
+	for(var/obj/docking_port/mobile/escape_pod/pod AS in pod_list)
+		pod.unprep_for_launch()
 	return TRUE
 
 

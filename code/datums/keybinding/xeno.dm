@@ -40,12 +40,6 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
-/datum/keybinding/xeno/secrete_resin_silo
-	name = "secrete_resin_silo"
-	full_name = "Secrete Resin Silo"
-	description = "Builds a resin silo."
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
-
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
 	full_name = "Emit Recovery Pheromones"
@@ -365,17 +359,17 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
+/datum/keybinding/xeno/swap
+	name = "swap"
+	full_name = "Hunter: Swap"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_SWAP
+
 /datum/keybinding/xeno/mirage
 	name = "mirage"
 	full_name = "Hunter: Mirage"
 	description = "Creates multiple mirror images of the xeno."
 	keybind_signal = COMSIG_XENOABILITY_MIRAGE
-
-/datum/keybinding/xeno/haunt
-	name = "impair senses"
-	full_name = "Hunter: Silence"
-	description = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
-	keybind_signal = COMSIG_XENOABILITY_HAUNT
 
 /datum/keybinding/xeno/psychic_whisper
 	name = "psychic_whisper"
@@ -431,12 +425,6 @@
 	full_name = "Queen: Screech"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
-
-/datum/keybinding/xeno/watch_xeno
-	name = "watch_xeno"
-	full_name = "Queen: Watch Xeno"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
 
 /datum/keybinding/xeno/toggle_queen_zoom
 	name = "toggle_queen_zoom"
@@ -509,6 +497,12 @@
 	full_name = "Ravager: Select Ravage"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGE_SELECT
+
+/datum/keybinding/xeno/acid_dash
+	name = "acid_dash"
+	full_name = "Praetorian : Acid Dash"
+	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
+	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
 
 /datum/keybinding/xeno/toggle_savage
 	name = "toggle_savage"
@@ -599,29 +593,18 @@
 	full_name = "Spitter: Scatter Spit"
 	description = "Fires a scattershot of 6 acid globules which create acid puddles on impact or at the end of their range."
 	keybind_signal = COMSIG_XENOABILITY_SCATTER_SPIT
-/datum/keybinding/xeno/place_warp_shadow
-	name = "place_warp_shadow"
-	full_name = "Wraith: Place Warp Shadow"
-	description = "Create a rift in space/time that you can swap locations with using the Hyperposition ability."
-	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
 
-/datum/keybinding/xeno/hyperposition
-	name = "hyperposition"
-	full_name = "Wraith: Hyperposition"
-	description = "Swap locations with your warp shadow after a delay that scales with your distance from it."
-	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
+/datum/keybinding/xeno/portal
+	name = "portal"
+	full_name = "Wraith: Portal"
+	description = "Place the first portal on your location. You can travel from portal one to portal two and vice versa."
+	keybind_signal =COMSIG_XENOABILITY_PORTAL
 
-/datum/keybinding/xeno/phase_shift
-	name = "phase_shift"
-	full_name = "Wraith: Phase Shift"
-	description = "Move out of phase with reality for a short duration after a short delay, gaining invulnerability and the ability to move through almost all physical obstacles. Can't move into space."
-	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
-
-/datum/keybinding/xeno/resync
-	name = "resync"
-	full_name = "Wraith: Resync"
-	description = "Resynchronize with reality, ending Phase Shift's effect."
-	keybind_signal = COMSIG_XENOABILITY_RESYNC
+/datum/keybinding/xeno/portal_two
+	name = "portal_two"
+	full_name = "Wraith: Portal two"
+	description = "Place the second portal on your location. You can travel from portal one to portal two and vice versa."
+	keybind_signal =COMSIG_XENOABILITY_PORTAL_ALTERNATE
 
 /datum/keybinding/xeno/blink
 	name = "wraith_blink"
@@ -670,6 +653,18 @@
 	full_name = "Vent crawl"
 	description = "Enter an air vent and crawl through the pipe system."
 	keybind_signal = COMSIG_XENOABILITY_VENTCRAWL
+
+/datum/keybinding/xeno/sow
+	name = "sow"
+	full_name = "Drone : Sow"
+	description = "Plant the seeds of an alien plant."
+	keybind_signal = COMSIG_XENOABILITY_DROP_PLANT
+
+/datum/keybinding/xeno/sow_select_plant
+	name = "choose_plant"
+	full_name = "Drone : Choose plant"
+	description = "Pick what type of plant to sow."
+	keybind_signal = COMSIG_XENOABILITY_CHOOSE_PLANT
 
 /datum/keybinding/xeno/vent/down(client/user)
 	. = ..()

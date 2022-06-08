@@ -1,0 +1,2694 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aB" = (
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/deathmatch)
+"bl" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/obj/structure/flora/desert/grass/three{
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"bP" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/deathmatch)
+"bQ" = (
+/obj/structure/table/gamblingtable,
+/turf/open/floor/wood,
+/area/deathmatch)
+"dg" = (
+/obj/structure/ore_box,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"ds" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 2;
+	name = "\improper Civilian Housing"
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"eN" = (
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/wood,
+/area/deathmatch)
+"gi" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/deathmatch)
+"hw" = (
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
+"iq" = (
+/obj/structure/closet/secure_closet/freezer,
+/turf/open/floor/wood,
+/area/deathmatch)
+"jg" = (
+/obj/structure/flora/desert/grass/seven{
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"kv" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/deathmatch)
+"lX" = (
+/obj/effect/decal/cleanable/cobweb{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"mY" = (
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/deathmatch)
+"no" = (
+/obj/item/frame/rack,
+/turf/open/floor/wood,
+/area/deathmatch)
+"os" = (
+/obj/structure/bed,
+/obj/item/bedsheet/brown,
+/turf/open/floor/wood,
+/area/deathmatch)
+"oE" = (
+/obj/structure/flora/desert/cactus/multiple/eleven{
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"pl" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/deathmatch)
+"pC" = (
+/obj/structure/table/mainship,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"qR" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"qU" = (
+/obj/structure/ladder{
+	height = 1;
+	id = "cs_militia_2";
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
+"rf" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"rj" = (
+/obj/effect/landmark/deathmatch,
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"rn" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/deathmatch)
+"sv" = (
+/obj/structure/ladder{
+	height = 1;
+	id = "cs_militia_1";
+	pixel_y = 8
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
+"sM" = (
+/obj/structure/desertdam/decals/road/edge{
+	pixel_x = -16;
+	pixel_y = 16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 1;
+	pixel_x = 16;
+	pixel_y = -16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 4;
+	pixel_x = 16;
+	pixel_y = 16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 8;
+	pixel_x = -16;
+	pixel_y = -16
+	},
+/obj/structure/ladder{
+	height = 2;
+	id = "cs_militia_4";
+	pixel_y = 8
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/deathmatch)
+"uN" = (
+/obj/structure/closet/cabinet,
+/turf/open/floor/wood,
+/area/deathmatch)
+"uR" = (
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"uT" = (
+/obj/structure/flora/tree/joshua,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"vb" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 1
+	},
+/area/deathmatch)
+"xg" = (
+/obj/structure/flora/desert/grass/three{
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"xp" = (
+/obj/structure/flora/desert/grass/seven{
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/deathmatch)
+"xA" = (
+/obj/structure/desertdam/decals/road/edge{
+	pixel_x = -16;
+	pixel_y = 16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 1;
+	pixel_x = 16;
+	pixel_y = -16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 4;
+	pixel_x = 16;
+	pixel_y = 16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 8;
+	pixel_x = -16;
+	pixel_y = -16
+	},
+/obj/structure/ladder{
+	height = 2;
+	id = "cs_militia_3";
+	pixel_y = 8
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"xF" = (
+/obj/structure/table/gamblingtable,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Bm" = (
+/obj/structure/table/mainship,
+/obj/machinery/microwave,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Bs" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/deathmatch)
+"BL" = (
+/obj/structure/table/mainship,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"BN" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 9
+	},
+/area/deathmatch)
+"CC" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/deathmatch)
+"Dq" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
+"EP" = (
+/obj/structure/desertdam/decals/road/edge{
+	pixel_x = -16;
+	pixel_y = 16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 1;
+	pixel_x = 16;
+	pixel_y = -16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 4;
+	pixel_x = 16;
+	pixel_y = 16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 8;
+	pixel_x = -16;
+	pixel_y = -16
+	},
+/obj/structure/ladder{
+	height = 2;
+	id = "cs_militia_2";
+	pixel_y = 8
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"Gk" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"Gx" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 9
+	},
+/area/deathmatch)
+"GB" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
+"GH" = (
+/obj/structure/ladder{
+	height = 1;
+	id = "cs_militia_4";
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
+"Ih" = (
+/obj/structure/rack,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Is" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/deathmatch)
+"IB" = (
+/obj/structure/barricade/wooden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"IO" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
+"Kl" = (
+/obj/structure/ladder{
+	height = 1;
+	id = "cs_militia_3";
+	pixel_y = 8
+	},
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
+"LK" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/wood,
+/area/deathmatch)
+"LT" = (
+/turf/open/floor/wood,
+/area/deathmatch)
+"ML" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"MN" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper Civilian Housing"
+	},
+/turf/open/floor/wood,
+/area/deathmatch)
+"NB" = (
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
+"Od" = (
+/obj/structure/largecrate/random/barrel/white,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Or" = (
+/obj/structure/bookcase/manuals,
+/obj/item/book/manual/ripley_build_and_repair,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Pa" = (
+/obj/structure/table/mainship,
+/turf/open/floor/wood,
+/area/deathmatch)
+"PH" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Qa" = (
+/turf/open/floor/wood/broken,
+/area/deathmatch)
+"QI" = (
+/turf/closed/wall,
+/area/deathmatch)
+"RD" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/deathmatch)
+"TA" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/deathmatch)
+"TC" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/deathmatch)
+"Uv" = (
+/turf/closed/desertdamrockwall,
+/area/deathmatch)
+"Vo" = (
+/obj/effect/landmark/deathmatch,
+/obj/structure/flora/desert/grass/three{
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"Vq" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/effect/landmark/deathmatch,
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
+"Vu" = (
+/obj/structure/ladder{
+	height = 2;
+	id = "cs_militia_1";
+	pixel_y = 8
+	},
+/obj/structure/desertdam/decals/road/edge{
+	pixel_x = -16;
+	pixel_y = 16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 1;
+	pixel_x = 16;
+	pixel_y = -16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 4;
+	pixel_x = 16;
+	pixel_y = 16
+	},
+/obj/structure/desertdam/decals/road/edge{
+	dir = 8;
+	pixel_x = -16;
+	pixel_y = -16
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/deathmatch)
+"WC" = (
+/turf/closed/wall{
+	color = "#888888"
+	},
+/area/deathmatch)
+"WV" = (
+/turf/open/floor/plating/asteroidplating{
+	color = "#888888"
+	},
+/area/deathmatch)
+"Yq" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/deathmatch)
+"Yw" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/deathmatch)
+"YH" = (
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
+"Zh" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/deathmatch)
+
+(1,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(2,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+pl
+Is
+kv
+uR
+Yq
+sM
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WC
+WC
+WC
+WC
+Uv
+"}
+(3,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+pl
+pl
+pl
+kv
+uR
+uR
+uR
+jg
+uR
+Gk
+uR
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+GH
+WV
+WC
+Uv
+"}
+(4,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+kv
+uR
+uR
+Gk
+uR
+rf
+uR
+oE
+uR
+uR
+uR
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WC
+WC
+Dq
+Vq
+WV
+WC
+Uv
+"}
+(5,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+mY
+uR
+uR
+Uv
+uR
+uR
+Gk
+uR
+uR
+rf
+Gx
+bP
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WV
+WV
+WV
+WV
+WC
+Uv
+"}
+(6,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+kv
+uR
+jg
+uR
+rf
+uR
+uR
+Gx
+RD
+QI
+QI
+QI
+MN
+QI
+QI
+QI
+QI
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+WC
+WC
+WC
+WC
+Uv
+"}
+(7,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+kv
+uR
+uR
+uR
+QI
+QI
+QI
+QI
+QI
+QI
+QI
+rj
+QI
+LT
+QI
+os
+os
+QI
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+hw
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(8,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+kv
+uR
+uR
+Uv
+uR
+QI
+PH
+LT
+LT
+LT
+QI
+QI
+MN
+QI
+LT
+ds
+LT
+LT
+QI
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(9,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+kv
+uR
+oE
+uR
+jg
+uR
+QI
+Or
+LT
+LT
+Qa
+ds
+LT
+LT
+LT
+LT
+QI
+os
+os
+QI
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(10,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+mY
+uR
+uR
+rf
+uR
+uR
+dg
+QI
+Pa
+YH
+LT
+LT
+QI
+LT
+xF
+bQ
+LT
+QI
+QI
+QI
+QI
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(11,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+mY
+uR
+uR
+uR
+Gk
+rf
+uR
+QI
+pC
+LT
+Qa
+LK
+QI
+LT
+LT
+LT
+LT
+YH
+LT
+LT
+QI
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(12,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+mY
+uR
+uR
+uR
+uR
+uR
+uR
+QI
+lX
+LT
+eN
+Od
+QI
+LT
+LT
+LT
+LT
+LT
+LT
+LT
+QI
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(13,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+xA
+uR
+IB
+IB
+uR
+IB
+QI
+QI
+QI
+QI
+QI
+QI
+QI
+QI
+MN
+QI
+qR
+qR
+LT
+QI
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WC
+WC
+WC
+WC
+WV
+WC
+WC
+WC
+Uv
+Uv
+Uv
+"}
+(14,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+uR
+uR
+uR
+jg
+uR
+Yq
+pl
+pl
+aB
+QI
+Ih
+LT
+QI
+BL
+Pa
+LT
+QI
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WV
+hw
+WV
+WV
+WV
+WV
+WC
+Uv
+Uv
+Uv
+"}
+(15,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+bP
+uR
+uR
+rf
+uR
+uR
+uR
+uR
+Yq
+QI
+no
+LT
+QI
+ML
+ML
+LT
+QI
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+WC
+WC
+WC
+WC
+hw
+WC
+Uv
+Uv
+Uv
+"}
+(16,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+bP
+uR
+uR
+uR
+uR
+uR
+rf
+uR
+ds
+LT
+Qa
+QI
+LT
+LK
+TA
+QI
+Uv
+WC
+WC
+WC
+WC
+WC
+WV
+WC
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+"}
+(17,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+bP
+xg
+oE
+Gk
+uR
+uR
+jg
+QI
+uN
+uN
+QI
+Bm
+iq
+QI
+QI
+Uv
+WC
+WV
+WV
+WV
+WV
+WV
+WC
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+"}
+(18,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+bP
+uR
+uR
+uR
+rf
+uR
+QI
+QI
+QI
+QI
+QI
+QI
+QI
+QI
+Uv
+WC
+GB
+IO
+hw
+WC
+WC
+WC
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+"}
+(19,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+jg
+uR
+uR
+uR
+uR
+uR
+uR
+rf
+Yq
+aB
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+Kl
+WV
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+"}
+(20,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+rn
+aB
+pl
+kv
+uR
+uR
+uR
+Gk
+uR
+uR
+oE
+uR
+uR
+uR
+Yq
+Uv
+Uv
+Uv
+Uv
+WC
+WC
+WC
+WC
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+"}
+(21,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+aB
+pl
+kv
+rf
+uR
+uR
+uR
+uR
+xg
+uR
+uR
+uR
+uR
+uR
+Gk
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+hw
+WC
+Uv
+Uv
+Uv
+"}
+(22,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+kv
+uT
+uR
+uR
+uR
+EP
+uR
+uR
+Gx
+RD
+Uv
+Uv
+Uv
+uR
+uR
+uT
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+"}
+(23,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+Uv
+aB
+mY
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+Gx
+Uv
+Uv
+Uv
+Uv
+mY
+uR
+uR
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WC
+WC
+WC
+WC
+WC
+WC
+WC
+WV
+WC
+Uv
+Uv
+Uv
+"}
+(24,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+pl
+kv
+uR
+Gk
+uR
+Uv
+Uv
+uR
+uR
+Gx
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+uR
+uR
+Gx
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WV
+WV
+WV
+WV
+WV
+WV
+hw
+WC
+Uv
+Uv
+Uv
+"}
+(25,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+kv
+uR
+uR
+uR
+bl
+uR
+Uv
+Uv
+uR
+Gk
+Yq
+Uv
+Uv
+Uv
+pl
+kv
+uR
+rf
+Gx
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+hw
+WC
+WC
+WV
+GB
+GB
+WC
+WC
+WC
+Uv
+Uv
+Uv
+"}
+(26,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+aB
+kv
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+oE
+rf
+uR
+uR
+uR
+jg
+uR
+uR
+xg
+uR
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+WC
+WV
+qU
+NB
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(27,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+kv
+rf
+uR
+uR
+uR
+Gx
+Uv
+bP
+uR
+uR
+uR
+uR
+rf
+uR
+uR
+uR
+Gk
+uR
+uR
+Gx
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+WC
+WC
+WC
+WC
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(28,1,1) = {"
+Uv
+Uv
+Uv
+mY
+oE
+uR
+uR
+uR
+Gx
+Uv
+Uv
+Uv
+Uv
+gi
+RD
+RD
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(29,1,1) = {"
+Uv
+Uv
+Uv
+mY
+uR
+uR
+xg
+Gk
+Yq
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+pl
+pl
+pl
+aB
+aB
+aB
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(30,1,1) = {"
+Uv
+Uv
+aB
+kv
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+oE
+Yq
+aB
+Yw
+aB
+aB
+aB
+pl
+kv
+uR
+uR
+uR
+uR
+oE
+uR
+Yq
+Yw
+aB
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(31,1,1) = {"
+Uv
+Uv
+mY
+uR
+uR
+jg
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+Yq
+pl
+pl
+pl
+kv
+Gk
+uR
+xg
+uR
+Vu
+uR
+rf
+uR
+uR
+vb
+xp
+aB
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(32,1,1) = {"
+Uv
+Uv
+mY
+uR
+Gk
+uT
+Uv
+Uv
+Uv
+bP
+uR
+uR
+uR
+uR
+uR
+rf
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+vb
+aB
+aB
+Uv
+Uv
+Uv
+WC
+WV
+WC
+Uv
+Uv
+Uv
+Uv
+WC
+WC
+WC
+WC
+WC
+Uv
+"}
+(33,1,1) = {"
+Uv
+Uv
+mY
+uR
+xg
+Gx
+Uv
+Uv
+Uv
+Yw
+bP
+uR
+uR
+jg
+uR
+oE
+uR
+uR
+uR
+Gx
+Uv
+Uv
+Uv
+Uv
+uR
+uR
+Uv
+aB
+rn
+Uv
+Uv
+Uv
+Uv
+WC
+hw
+WC
+WC
+WC
+WC
+WC
+WC
+WV
+sv
+Vq
+WC
+Uv
+"}
+(34,1,1) = {"
+Uv
+aB
+kv
+rf
+uR
+vb
+Uv
+Uv
+Uv
+aB
+aB
+bP
+Gk
+uR
+uR
+uR
+uR
+Gx
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Gk
+uR
+Uv
+aB
+aB
+Uv
+Uv
+Uv
+Uv
+WC
+WV
+WV
+WV
+WV
+WV
+WV
+hw
+WV
+WV
+WV
+WC
+Uv
+"}
+(35,1,1) = {"
+Uv
+kv
+uR
+uR
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+aB
+RD
+RD
+RD
+RD
+Uv
+Uv
+Uv
+Uv
+Uv
+uR
+uR
+uR
+xg
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+WC
+WC
+WC
+WC
+WC
+WC
+WC
+WC
+WC
+WC
+WC
+WC
+Uv
+"}
+(36,1,1) = {"
+Uv
+uR
+uR
+uR
+Gx
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+uR
+rf
+uR
+uR
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(37,1,1) = {"
+Uv
+uR
+uR
+Gx
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+uR
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(38,1,1) = {"
+Uv
+uR
+uR
+vb
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+uR
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(39,1,1) = {"
+Uv
+bP
+Vo
+Yq
+Uv
+Uv
+Uv
+Uv
+Uv
+kv
+uR
+uR
+uR
+uR
+Yq
+aB
+Zh
+aB
+aB
+aB
+mY
+uR
+uR
+uR
+uR
+uR
+jg
+uR
+uR
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(40,1,1) = {"
+Uv
+mY
+uR
+uR
+Yq
+Uv
+Uv
+Uv
+kv
+uR
+uR
+uR
+Uv
+uR
+uR
+TC
+Zh
+aB
+aB
+rn
+kv
+uR
+oE
+uR
+rf
+uR
+uR
+Gk
+xg
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(41,1,1) = {"
+Uv
+Uv
+bP
+uR
+uR
+uR
+Yq
+Uv
+uR
+uR
+rf
+Uv
+Uv
+uR
+jg
+uR
+Bs
+pl
+pl
+kv
+uR
+uR
+xg
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(42,1,1) = {"
+Uv
+Uv
+Uv
+bP
+rf
+uR
+uR
+xg
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uR
+uT
+Gx
+RD
+RD
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(43,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+bP
+uR
+uR
+uR
+rf
+uR
+uR
+xg
+uR
+uR
+uR
+uR
+uR
+xg
+uR
+rf
+uR
+uR
+uR
+xg
+uR
+Gx
+aB
+aB
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(44,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+RD
+bP
+uR
+oE
+Gk
+Gx
+RD
+RD
+CC
+uR
+uR
+uR
+uR
+jg
+uR
+rf
+uR
+BN
+aB
+aB
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(45,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+aB
+aB
+RD
+RD
+RD
+aB
+aB
+aB
+Zh
+RD
+bP
+uR
+uR
+uR
+uR
+uR
+Gx
+aB
+aB
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
+(46,1,1) = {"
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+Uv
+"}
