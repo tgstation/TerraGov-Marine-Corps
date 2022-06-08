@@ -324,28 +324,36 @@
 	var/max_amount = 4
 
 /obj/structure/dropship_equipment/flare_launcher/equipment_interact(mob/user)
-	if(COOLDOWN_CHECK(src, deploy_cooldown) && stored_amount > 0) //check for deployment cooldown and inserted flares
-		deploy_flare()
-		to_chat(user, span_notice("You deploy [src], remaining flares [stored_amount]."))
-		COOLDOWN_START(src, deploy_cooldown, 5 SECONDS)//starts the cooldown for deployment
-	else
-		to_chat(user, span_warning("[src] is busy, [stored_amount] flares remaining."))
-		return //prevents spamming deployment
+	if(!COOLDOWN_CHECK(src, deploy_cooldown)) //check for deployment cooldown
+		user.balloon_alert(user, "[src] is busy")
+		return
+	if(stored_amount <= 0) //check for inserted flares
+		user.balloon_alert(user, "No flares remaining.")
+		return
+	deploy_flare()
+	user.balloon_alert(user, "You deploy [src], remaining flares [stored_amount].")
+	COOLDOWN_START(src, deploy_cooldown, 5 SECONDS)//starts the cooldown for deployment
 
 /obj/structure/dropship_equipment/flare_launcher/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(istype(I, /obj/item/explosive/grenade/flare) && stored_amount < max_amount)
 		stored_amount++
-		to_chat(user, span_notice("You insert a flare, remaining flares [stored_amount]."))
+		user.balloon_alert(user, "You insert a flare, remaining flares [stored_amount].")
 		qdel(I)
-		return
 
 /obj/structure/dropship_equipment/flare_launcher/update_equipment()
+	. = ..()
 	if(ship_base)
 		setDir(ship_base.dir)
-		icon_state = "flare_system_installed"
 	else
 		setDir(initial(dir))
+	update_icon()
+
+/obj/structure/dropship_equipment/flare_launcher/update_icon()
+	if(ship_base)
+		icon_state = "flare_system_installed"
+	else
+		icon_state = "flare_system"
 
 //gets target and deploy the flare launcher
 /obj/structure/dropship_equipment/flare_launcher/proc/deploy_flare()
@@ -480,13 +488,13 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "mg_system"
 	point_cost = 300
-	var/obj/machinery/deployable/mounted/deployed_mg //stores the deployed hsg
+	var/obj/machinery/deployable/mounted/deployed_mg //machine type for the internal gun which is new_gun
 
 /obj/structure/dropship_equipment/mg_holder/Initialize()
 	. = ..()
 	if(deployed_mg)
 		return
-	var/obj/item/weapon/gun/tl102/hsg_nest/new_gun = new(src) //Creates the internal gun of the deployed_mg first.
+	var/obj/item/weapon/gun/tl102/hsg_nest/new_gun = new(src)
 	deployed_mg = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_mg. Therefore new_gun.loc = deployed_mg.
 
 /obj/structure/dropship_equipment/mg_holder/examine(mob/user)
@@ -499,9 +507,14 @@
 		return
 	if(ship_base)
 		deployed_mg.loc = loc
-		icon_state = "mg_system_deployed"
 	else
 		deployed_mg.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/mg_holder/update_icon()
+	if(ship_base)
+		icon_state = "mg_system_deployed"
+	else
 		icon_state = "mg_system"
 
 /obj/structure/dropship_equipment/mg_holder/Destroy()
@@ -515,13 +528,13 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "minigun_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_minigun //stores the deployed minigun
+	var/obj/machinery/deployable/mounted/deployed_minigun //machine type for the internal gun which is new_gun
 
 /obj/structure/dropship_equipment/minigun_holder/Initialize()
 	. = ..()
 	if(deployed_minigun)
 		return
-	var/obj/item/weapon/gun/minigunnest/new_gun = new(src) //Creates the internal gun of the deployed_minigun first.
+	var/obj/item/weapon/gun/minigunnest/new_gun = new(src)
 	deployed_minigun = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_minigun. Therefore new_gun.loc = deployed_minigun.
 
 /obj/structure/dropship_equipment/minigun_holder/examine(mob/user)
@@ -534,9 +547,14 @@
 		return
 	if(ship_base)
 		deployed_minigun.loc = loc
-		icon_state = "mg_system_deployed"
 	else
 		deployed_minigun.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/minigun_holder/update_icon()
+	if(ship_base)
+		icon_state = "mg_system_deployed"
+	else
 		icon_state = "minigun_system"
 
 /obj/structure/dropship_equipment/minigun_holder/Destroy()
@@ -550,13 +568,13 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "ac_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_dualcannon //stores the deployed dualcannon
+	var/obj/machinery/deployable/mounted/deployed_dualcannon //machine type for the internal gun which is new_gun
 
 /obj/structure/dropship_equipment/dualcannon_holder/Initialize()
 	. = ..()
 	if(deployed_dualcannon)
 		return
-	var/obj/item/weapon/gun/dualcannon/new_gun = new(src) //Creates the internal gun of the deployed_dualcannon first.
+	var/obj/item/weapon/gun/dualcannon/new_gun = new(src)
 	deployed_dualcannon = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_dualcannon. Therefore new_gun.loc = deployed_dualcannon.
 
 /obj/structure/dropship_equipment/dualcannon_holder/examine(mob/user)
@@ -569,9 +587,14 @@
 		return
 	if(ship_base)
 		deployed_dualcannon.loc = loc
-		icon_state = "mg_system_deployed"
 	else
 		deployed_dualcannon.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/dualcannon_holder/update_icon()
+	if(ship_base)
+		icon_state = "mg_system_deployed"
+	else
 		icon_state = "ac_system"
 
 /obj/structure/dropship_equipment/dualcannon_holder/Destroy()
@@ -585,13 +608,13 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "hl_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_heavylaser //stores the deployed heavy laser
+	var/obj/machinery/deployable/mounted/deployed_heavylaser //machine type for the internal gun which is new_gun
 
 /obj/structure/dropship_equipment/heavylaser_holder/Initialize()
 	. = ..()
 	if(deployed_heavylaser)
 		return
-	var/obj/item/weapon/gun/heavylaser/new_gun = new(src) //Creates the internal gun of the deployed_heavylaser first.
+	var/obj/item/weapon/gun/heavylaser/new_gun = new(src)
 	deployed_heavylaser = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavylaser. Therefore new_gun.loc = deployed_heavylaser.
 
 /obj/structure/dropship_equipment/heavylaser_holder/examine(mob/user)
@@ -604,9 +627,14 @@
 		return
 	if(ship_base)
 		deployed_heavylaser.loc = loc
-		icon_state = "mg_system_deployed"
 	else
 		deployed_heavylaser.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/heavylaser_holder/update_icon()
+	if(ship_base)
+		icon_state = "mg_system_deployed"
+	else
 		icon_state = "hl_system"
 
 /obj/structure/dropship_equipment/heavylaser_holder/Destroy()
@@ -620,13 +648,13 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "rr_system"
 	point_cost = 0 //this removes it from the fabricator
-	var/obj/machinery/deployable/mounted/deployed_heavyrr //stores the deployed heavy rr
+	var/obj/machinery/deployable/mounted/deployed_heavyrr //machine type for the internal gun which is new_gun
 
 /obj/structure/dropship_equipment/heavyrr_holder/Initialize()
 	. = ..()
 	if(deployed_heavyrr)
 		return
-	var/obj/item/weapon/gun/heavyrr/new_gun = new(src) //Creates the internal gun of the deployed_heavurr first.
+	var/obj/item/weapon/gun/heavyrr/new_gun = new(src)
 	deployed_heavyrr = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavyrr. Therefore new_gun.loc = deployed_heavyrr.
 
 /obj/structure/dropship_equipment/heavyrr_holder/examine(mob/user)
@@ -639,9 +667,15 @@
 		return
 	if(ship_base)
 		deployed_heavyrr.loc = loc
-		icon_state = "mg_system_deployed"
 	else
 		deployed_heavyrr.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/heavyrr_holder/update_icon()
+	. = ..()
+	if(ship_base)
+		icon_state = "mg_system_deployed"
+	else
 		icon_state = "rr_system"
 
 /obj/structure/dropship_equipment/heavyrr_holder/Destroy()

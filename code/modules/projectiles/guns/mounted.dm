@@ -114,17 +114,11 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
-	attachable_allowed = list(
-		/obj/item/attachable/scope/unremovable/tl102/nest,
-	)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102/nest,
-	)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/heavyminigun,
-	)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavyminigun)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
@@ -157,17 +151,11 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
-	attachable_allowed = list(
-		/obj/item/attachable/scope/unremovable/tl102/nest,
-	)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102/nest,
-	)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/dualcannon,
-	)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/dualcannon)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
@@ -201,17 +189,11 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
-	attachable_allowed = list(
-		/obj/item/attachable/scope/unremovable/tl102/nest,
-	)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102/nest,
-	)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest,)
 
-	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/heavylaser,
-	)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavylaser)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
@@ -249,17 +231,11 @@
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
-	attachable_allowed = list(
-		/obj/item/attachable/scope/unremovable/tl102/nest,
-	)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/tl102/nest,
-	)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
 
-	allowed_ammo_types = list(
-		/obj/item/ammo_magazine/heavyrr,
-	)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavyrr)
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
