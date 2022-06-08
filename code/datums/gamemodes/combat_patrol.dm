@@ -11,16 +11,16 @@
 	var/game_timer
 	//todo: add more som roles
 	valid_job_types = list(
-		/datum/job/terragov/command/fieldcommander = 1,
-		/datum/job/terragov/squad/engineer = 6,
-		/datum/job/terragov/squad/corpsman = 6,
+		///datum/job/terragov/command/fieldcommander = 1,
+		/datum/job/terragov/squad/engineer = 4,
+		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 2,
-		/datum/job/terragov/squad/leader = 2,
+		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
-		/datum/job/som/squad/leader = 2,
-		/datum/job/som/squad/veteran = 6,
-		/datum/job/som/squad/engineer = 6,
-		/datum/job/som/squad/medic = 6,
+		/datum/job/som/squad/leader = 4,
+		/datum/job/som/squad/veteran = 4,
+		/datum/job/som/squad/engineer = 4,
+		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/standard = -1,
 	)
 
@@ -80,6 +80,13 @@
 		return
 
 	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/check_finished), 40 MINUTES, TIMER_STOPPABLE)
+
+/datum/game_mode/combat_patrol/game_end_countdown()
+	if(!game_timer)
+		return
+	var/eta = timeleft(game_timer) * 0.1
+	if(eta > 0)
+		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 ///checks how many marines and SOM are still alive
 /datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)

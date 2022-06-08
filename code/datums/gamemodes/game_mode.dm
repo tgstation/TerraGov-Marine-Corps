@@ -367,6 +367,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/get_siloless_collapse_countdown()
 	return
 
+///Provides the amount of time left before the game ends, used for the stat panel
+/datum/game_mode/proc/game_end_countdown()
+	return
+
 /datum/game_mode/proc/announce_medal_awards()
 	if(!length(GLOB.medal_awards))
 		return
