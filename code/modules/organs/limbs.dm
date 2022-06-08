@@ -667,7 +667,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return FALSE
 
 	if(amputation)
-		set_limb_flags(LIMB_AMPUTATED & LIMB_DESTROYED)
+		set_limb_flags(LIMB_AMPUTATED|LIMB_DESTROYED)
 	else
 		set_limb_flags(LIMB_DESTROYED)
 
