@@ -21,7 +21,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 400	//Increased from 325 (+25% rounded) due to stun nerf, will get shot more.
 
 	// *** Evolution *** //
 	evolution_threshold = 180
@@ -90,7 +90,7 @@
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 440	//Increased from 350 (+25% rounded) due to stun nerf, will get shot more.
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
@@ -118,7 +118,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 375
+	max_health = 470	//Increased from 375 (+25% rounded) due to stun nerf, will get shot more.
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
@@ -146,7 +146,7 @@
 	plasma_gain = 45
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 500	//Increased from 400 (+25% rounded) due to stun nerf, will get shot more.
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
@@ -174,7 +174,7 @@
 	plasma_gain = 45
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 500	//Increased from 400 (+25% rounded) due to stun nerf, will get shot more.
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = 20, "bio" = 23, "rad" = 23, "fire" = 45, "acid" = 20)
 

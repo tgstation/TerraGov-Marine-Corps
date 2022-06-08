@@ -55,8 +55,8 @@
 	name = "Psychic Fling"
 	action_icon_state = "fling"
 	mechanics_text = "Sends an enemy or an item flying. A close ranged ability."
-	cooldown_timer = 12 SECONDS
-	plasma_cost = 100
+	cooldown_timer = 6 SECONDS //Reduced from 12 to account for stun nerf
+	plasma_cost = 50 //Reduced from 100 to account for stun nerf
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
 	target_flags = XABB_MOB_TARGET
 
@@ -113,7 +113,7 @@
 	succeed_activate()
 	add_cooldown()
 	if(ishuman(victim))
-		victim.apply_effects(1, 0.1) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
+		victim.apply_effects(0.1, 0.1) 	// The fling stuns you enough to remove your gun, otherwise the marine effectively isn't stunned for long.
 		shake_camera(victim, 2, 1)
 
 	var/facing = get_dir(owner, victim)
@@ -136,8 +136,8 @@
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
 	mechanics_text = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
-	cooldown_timer = 50 SECONDS
-	plasma_cost = 300
+	cooldown_timer = 25 SECONDS //Reduced from 50 to account for stun nerf
+	plasma_cost = 150 //Reduced from 300 to account for stun nerf
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
 	alternate_keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT
@@ -183,7 +183,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD) //unless they are dead, then the blast mysteriously ignores them.
 					continue
-				H.apply_effects(1, 1) 	// Stun
+				H.apply_effects(0.1, 0.1) 	// Stun for just enough to drop the gun/held objects
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc //first we get the target's location
 			for(var/x in 1 to 6)
