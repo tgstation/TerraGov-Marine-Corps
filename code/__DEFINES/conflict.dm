@@ -163,6 +163,7 @@
 #define SMOKE_HUGGER_PACIFY (1<<17) //Smoke that pacifies huggers in its area; mainly used for vision blocking smoke
 #define SMOKE_XENO_SANGUINAL (1<<18) //Toxic crimson smoke created by the Defiler's Defile ability.
 #define SMOKE_XENO_OZELOMELYN (1<<19) //Smoke that purges chemicals and does minor capped toxin damage for Defiler.
+#define SMOKE_SATRAPINE (1<<20) //nerve agent that purges painkillers and causes increasing pain
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

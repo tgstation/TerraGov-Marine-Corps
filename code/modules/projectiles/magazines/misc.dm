@@ -66,8 +66,8 @@
 	icon_state = "box_smartminigun"
 	default_ammo = /datum/ammo/bullet/smart_minigun
 	caliber = CALIBER_10x26_CASELESS
-	current_rounds = 1000
-	max_rounds = 1000
+	current_rounds = 500
+	max_rounds = 500
 	w_class = WEIGHT_CLASS_NORMAL
 
 // pistol packets

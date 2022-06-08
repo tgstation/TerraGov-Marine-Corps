@@ -791,11 +791,10 @@
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = -1,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = -1,
 		/obj/item/storage/box/MRE = -1,
-		/obj/item/reagent_containers/food/drinks/flask = -1,
 		/obj/item/reagent_containers/food/drinks/flask/marine = -1,
-		/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = -1
 	)
 //Christmas inventory
 /*
@@ -1073,6 +1072,7 @@
 			/obj/item/armor_module/storage/general = -1,
 			/obj/item/armor_module/storage/engineering = -1,
 			/obj/item/armor_module/storage/medical = -1,
+			/obj/item/armor_module/storage/injector = -1,
 			/obj/item/armor_module/module/welding = -1,
 			/obj/item/armor_module/module/binoculars = -1,
 			/obj/item/armor_module/module/tyr_head = -1,

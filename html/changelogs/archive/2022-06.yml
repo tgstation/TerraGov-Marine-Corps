@@ -73,3 +73,64 @@
       cooldown.
   - bugfix: Fixed closets not taking damage from slashes even though the animation
       played and informed the xeno they "smashed" the object.
+2022-06-05:
+  BraveMole:
+  - code_imp: Mobs no longer breath
+  GrayRachnid:
+  - bugfix: Removed the ability for an undeployed teleporter to not get melted.
+  - balance: Smartminigun ammo count reduced to 1,000 and mag box down to 500.
+  Lewdcifer:
+  - balance: SADAR is unable to fire until wielded.
+  Lumipharon:
+  - bugfix: The laser sniper's ammo has an accurate minimum range and the sniper flag
+      like other sniper ammo
+  QualityVan:
+  - code_imp: Ammo flag comments expanded
+  goose4429:
+  - qol: Attachments reorder
+  - rscadd: added Injector Jaeger module
+  novaepee:
+  - rscadd: headwear and service dress tab in clothing vendor to stop the clutter
+      that is clothing tab in clothing vendor. With that said, change clothing tab
+      to standard tab.
+  - rscadd: 'head bandanna into clothing vendor with two new colors: brown and grey.'
+  - rscdel: TGMC bandanna.
+  - imageadd: grey and brown bandanna
+  - balance: new Nuclear War pathway in Ice Colony
+  - balance: Move Ice Colony nuke to underground.
+  - balance: Move Ice Colony red disk to research.
+  - balance: Move Ice Colony blue disk to engineering
+  - balance: Move Ice Colony green disk to medical.
+  - balance: Move medical to dorm
+  - balance: add two cryo tubes in medical to reward marines for holding medical.
+2022-06-07:
+  Arctrooper8:
+  - rscadd: Water canteen to marine food vendor
+  - balance: canteen is now smoll
+  - imagedel: helmet flask sprite
+  QualityVan:
+  - balance: Flamer's extended nozzle can remove vines and snow, along with other
+      sources of ground fire.
+  - bugfix: Flamer projectiles should more reliably ignite on hit.
+  - bugfix: Suture surgery updates patient health for scanners.
+  - bugfix: Self-examine correctly shows whether limbs are treated
+  - code_imp: trait define for op tables
+  - bugfix: Carriers and other appropriate xenos can pick up facehuggers again
+  RipGrayson:
+  - bugfix: Fixed weeds not covering pipes on plating turfs.
+  - bugfix: Fixed incorrect turfs disallowing resin placement in Prison's crashed
+      ship.
+  - bugfix: Fixed manifolds inexplicably being on a different plane than the rest
+      of pipes.
+  - bugfix: Fixed an error with certain crashed ship wall configurations always resulting
+      in + pieces.
+  breadhunt:
+  - balance: Researchers can now unlock groundside APCs for intel computers as intended
+      (oops)
+  novaepee:
+  - rscadd: another APC in Big Red's barrack and operation since they house green
+      disk
+  - rscadd: Change up barrack a bit to make up for the lost function of said APC room
+  - rscdel: A memorable chokepoint in LV-624 cave
+  - rscadd: sand temple in LV-624 is now underground
+  - rscadd: crowbar in LV-624 LZ

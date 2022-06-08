@@ -2,7 +2,6 @@
 	name = "M07 training grenade"
 	desc = "A harmless reusable version of the M40 HEDP, used for training. Capable of being loaded in the any grenade launcher, or thrown by hand."
 	icon_state = "training_grenade"
-	item_state = "grenade"
 	hud_state = "grenade_dummy"
 	dangerous = FALSE
 	icon_state_mini = "grenade_white"
@@ -24,7 +23,6 @@
 /obj/item/explosive/grenade/PMC
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
-	item_state = "grenade_ex"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	icon_state_mini = "grenade_red_white"
@@ -34,7 +32,6 @@
 	name = "\improper M15 fragmentation grenade"
 	desc = "An outdated TGMC fragmentation grenade. With decades of service in the TGMC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
-	item_state = "grenade_ex"
 	arm_sound = 'sound/weapons/armbombpin.ogg'
 	hud_state = "grenade_frag"
 	icon_state_mini = "grenade_yellow"
@@ -68,7 +65,6 @@
 	name = "alien bomb"
 	desc = "An odd, squishy, organ-like grenade. It will explode 3 seconds after squeezing it."
 	icon_state = "alien_grenade"
-	item_state = "grenade_ex"
 	hud_state = "grenade_frag"
 	light_impact_range = 6
 
@@ -77,7 +73,6 @@
 	desc = "Designed for use against various fast moving drones, this grenade will adhere to its target before detonating. It's fuse is set to 5 seconds."
 	icon_state = "grenade_sticky"
 	det_time = 5 SECONDS
-	item_state = "grenade_sticky"
 	light_impact_range = 3
 	///Current atom this grenade is attached to, used to remove the overlay.
 	var/atom/stuck_to
@@ -115,7 +110,6 @@
 	desc = "The M40 HIDP is a small, but deceptively strong incendiary grenade. It is set to detonate in 4 seconds."
 	icon_state = "grenade_fire"
 	det_time = 40
-	item_state = "grenade_fire"
 	hud_state = "grenade_fire"
 	icon_state_mini = "grenade_orange"
 
@@ -143,7 +137,6 @@
 	name = "\improper improvised firebomb"
 	desc = "A potent, improvised firebomb, coupled with a pinch of gunpowder. Cheap, very effective, and deadly in confined spaces. Commonly found in the hands of rebels and terrorists. It can be difficult to predict how many seconds you have before it goes off, so be careful. Chances are, it might explode in your face."
 	icon_state = "molotov"
-	item_state = "molotov"
 	arm_sound = 'sound/items/welder2.ogg'
 
 /obj/item/explosive/grenade/incendiary/molotov/Initialize()
@@ -162,7 +155,6 @@
 	desc = "The M40 HSDP is a small, but powerful smoke grenade. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
 	icon_state = "grenade_smoke"
 	det_time = 20
-	item_state = "grenade_smoke"
 	hud_state = "grenade_smoke"
 	dangerous = FALSE
 	icon_state_mini = "grenade_blue"
@@ -178,11 +170,40 @@
 	smoke.start()
 	qdel(src)
 
+///chemical grenades
+
+//neuro xeno nade
+/obj/item/explosive/grenade/smokebomb/neuro
+	name = "\improper M40-N Neurotoxin smoke grenade"
+	desc = "A smoke grenade containing a concentrated neurotoxin developed by Nanotrasen, supposedly derived from xenomorphs. Banned in some sectors as a chemical weapon, but classed as a less lethal riot control tool by the TGMC."
+	icon_state = "grenade_neuro"
+	det_time = 40
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/xeno/neuro/medium
+	smokeradius = 6
+
+/obj/item/explosive/grenade/smokebomb/acid
+	name = "\improper M40-A Acid smoke grenade"
+	desc = "A grenade set to release a cloud of extremely acidic smoke developed by Nanotrasen, supposedly derived from xenomorphs. Has a shiny acid resistant shell. Its use is considered a warcrime under several treaties, none of which Terra Gov is a signatory to."
+	icon_state = "grenade_acid"
+	det_time = 40
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/xeno/acid
+	smokeradius = 5
+
+/obj/item/explosive/grenade/smokebomb/satrapine
+	name = "\improper Satrapine smoke grenade"
+	desc = "A smoke grenade containing a nerve agent that can debilitate victims with severe pain, while purging common painkillers."
+	icon_state = "grenade_nerve"
+	det_time = 40
+	dangerous = TRUE
+	smoketype = /datum/effect_system/smoke_spread/satrapine
+	smokeradius = 6
+
 /obj/item/explosive/grenade/smokebomb/cloak
 	name = "\improper M40-2 SCDP smoke grenade"
 	desc = "A sophisticated version of the M40 HSDP with a slighty improved smoke screen payload. It's set to detonate in 2 seconds."
 	icon_state = "grenade_cloak"
-	item_state = "grenade_cloak"
 	hud_state = "grenade_hide"
 	icon_state_mini = "grenade_green"
 	smoketype = /datum/effect_system/smoke_spread/tactical
@@ -192,7 +213,6 @@
 	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 6 seconds."
 	icon_state = "grenade_pgas"
 	det_time = 60
-	item_state = "grenade_pgas"
 	icon_state_mini = "grenade_blue"
 	dangerous = TRUE
 	smoketype = /datum/effect_system/smoke_spread/plasmaloss
@@ -202,7 +222,6 @@
 	desc = "The M40 HPDP is a small, but powerful phosphorus grenade. It is set to detonate in 2 seconds."
 	icon_state = "grenade_phos"
 	det_time = 20
-	item_state = "grenade_phos"
 	hud_state = "grenade_hide"
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
 	icon_state_mini = "grenade_cyan"
@@ -234,7 +253,6 @@
 	name = "\improper M40 IMDP grenade"
 	desc = "A high explosive contact detonation munition utilizing the standard DP canister chassis. Has a focused blast specialized for door breaching and combating emplacements and light armoured vehicles. WARNING: Handthrowing does not result in sufficient force to trigger impact detonators."
 	icon_state = "grenade_impact"
-	item_state = "grenade_impact"
 	hud_state = "grenade_frag"
 	det_time = 40
 	dangerous = TRUE

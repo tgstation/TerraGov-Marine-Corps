@@ -385,6 +385,7 @@
 	name = "\improper Mysterious Temple"
 	icon_state = "sandtemple"
 	always_unpowered = TRUE
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/lv624/lazarus/sandtemple/sideroom //needed to allow nuke generator within temple to function
 	name = "\improper Mysterious Temple"
