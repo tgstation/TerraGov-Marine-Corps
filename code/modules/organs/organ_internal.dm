@@ -32,9 +32,6 @@
 	organ_holder = null
 	return ..()
 
-/datum/internal_organ/proc/rejuvenate()
-	damage=0
-
 /datum/internal_organ/New(mob/living/carbon/carbon_mob)
 	..()
 	if(!istype(carbon_mob))
