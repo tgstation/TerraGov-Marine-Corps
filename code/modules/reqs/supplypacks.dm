@@ -1522,25 +1522,25 @@ VEHICLES
 
 /datum/supply_packs/vehicles/dc_ammo
 	name = "Mounted Dualcannon ammo"
-	contains = list(/obj/item/ammo_magazine/dualcannon)
+	contains = list(/obj/item/ammo_magazine/dual_cannon)
 	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/minigun_ammo
 	name = "Mounted Minigun ammo"
-	contains = list(/obj/item/ammo_magazine/heavyminigun)
+	contains = list(/obj/item/ammo_magazine/heavy_minigun)
 	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/hl_ammo
 	name = "Mounted Heavy Laser ammo (x3)"
-	contains = list(/obj/item/ammo_magazine/heavylaser, /obj/item/ammo_magazine/heavylaser, /obj/item/ammo_magazine/heavylaser)
+	contains = list(/obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser)
 	cost = 5
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/rr_ammo
 	name = "Mounted Recoilless Rifle shell (x2)"
-	contains = list(/obj/item/ammo_magazine/heavyrr, /obj/item/ammo_magazine/heavyrr)
+	contains = list(/obj/item/ammo_magazine/heavy_rr, /obj/item/ammo_magazine/heavy_rr)
 	cost = 7
 	containertype = /obj/structure/closet/crate/ammo
 
