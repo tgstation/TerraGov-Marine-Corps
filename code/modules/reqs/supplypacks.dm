@@ -514,12 +514,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 1
 
-/datum/supply_packs/weapons/vector
-	name = "Vector"
-	contains = list(/obj/item/weapon/gun/smg/vector)
-	cost = 20
-
-
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/

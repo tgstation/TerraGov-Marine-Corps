@@ -75,6 +75,7 @@
 #define INIT_ORDER_TIMER 1
 #define INIT_ORDER_DEFAULT 0
 #define INIT_ORDER_AIR -1
+#define INIT_ORDER_RU_ITEMS -3 //before assets because vendor items need to preload
 #define INIT_ORDER_ASSETS -4
 #define INIT_ORDER_SPAWNING_POOL -5
 #define INIT_ORDER_OVERLAY -6
