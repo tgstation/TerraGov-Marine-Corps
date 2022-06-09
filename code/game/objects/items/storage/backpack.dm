@@ -880,7 +880,7 @@
 
 ///runs when something moves into a tile nearby us, if its a robotic human and is in line of sight, add it to affecting_list
 /obj/item/storage/backpack/dispenser/proc/entered_tiles(datum/source, mob/living/carbon/human/entering)
-	if(!ishuman(entering) || (!entering.species.species_flags & ROBOTIC_LIMBS)) // can only affect robots
+	if(!ishuman(entering) || !(entering.species.species_flags & ROBOTIC_LIMBS)) // can only affect robots
 		return
 	if(entering in affecting_list)
 		return
