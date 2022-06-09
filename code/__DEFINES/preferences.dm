@@ -149,6 +149,14 @@
 	"None"\
 	)
 
+#define SELECTABLE_SQUADS_SOM list(\
+	"Zulu",\
+	"Yankee",\
+	"Xray",\
+	"Whiskey",\
+	"None"\
+	)
+
 
 #define UI_STYLES list(\
 	"Midnight",\

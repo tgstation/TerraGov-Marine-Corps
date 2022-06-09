@@ -91,6 +91,7 @@
 		if(JOB_PREFERENCES)
 			.["job_preferences"] = job_preferences
 			.["preferred_squad"] = preferred_squad
+			.["preferred_squad_som"] = preferred_squad_som
 			.["alternate_option"] = alternate_option
 			.["special_occupation"] = be_special
 		if(GAME_SETTINGS)
@@ -160,6 +161,7 @@
 				)
 		if(JOB_PREFERENCES)
 			.["squads"] = SELECTABLE_SQUADS
+			.["squads_som"] = SELECTABLE_SQUADS_SOM
 			.["jobs"] = list()
 			for(var/datum/job/job AS in SSjob.joinable_occupations)
 				var/rank = job.title
@@ -310,6 +312,7 @@
 		if("jobreset")
 			job_preferences = list()
 			preferred_squad = "None"
+			preferred_squad_som = "None"
 			alternate_option = 2 // return to lobby
 
 		if("underwear")
@@ -482,6 +485,12 @@
 			if(!(new_squad in SELECTABLE_SQUADS))
 				return
 			preferred_squad = new_squad
+
+		if("squad_som")
+			var/new_squad_som = params["newValue"]
+			if(!(new_squad_som in SELECTABLE_SQUADS_SOM))
+				return
+			preferred_squad_som = new_squad_som
 
 		if("med_record")
 			var/new_record = trim(html_encode(params["medicalDesc"]), MAX_MESSAGE_LEN)

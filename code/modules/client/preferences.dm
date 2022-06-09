@@ -73,6 +73,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/ethnicity = "Western"
 	var/good_eyesight = TRUE
 	var/preferred_squad = "None"
+	///Your preferred squad, when playing SOM
+	var/preferred_squad_som = "None"
 	var/alternate_option = RETURN_TO_LOBBY
 	var/preferred_slot = SLOT_S_STORE
 	var/preferred_slot_alt = SLOT_BACK
