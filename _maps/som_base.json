@@ -1,6 +1,6 @@
 {
     "map_name": "Rocinante Base",
-    "map_path": "map_files/Rocinante_Colony",
+    "map_path": "map_files/Rocinante_Base",
     "map_file": "sombase.dmm",
     "environment_traits": {
         "COLD": true
