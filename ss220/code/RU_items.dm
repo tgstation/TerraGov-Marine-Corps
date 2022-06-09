@@ -8,10 +8,14 @@ SUBSYSTEM_DEF(ru_items)
 	var/list/items = list(
 		/obj/item/ammo_magazine/smg/vector = -1,
 		/obj/item/ammo_magazine/packet/acp_smg = -1,
+		/obj/item/weapon/twohanded/glaive/harvester = 2,
 	)
 
 	var/list/items_val = list(
 		/obj/item/weapon/gun/smg/vector = -1,
+		/obj/item/ammo_magazine/smg/vector = -1,
+		/obj/item/ammo_magazine/packet/acp_smg = -1,
+		/obj/item/weapon/twohanded/glaive/harvester = -1,
 	)
 
 
@@ -28,12 +32,14 @@ SUBSYSTEM_DEF(ru_items)
 	products["Imports"] = SSru_items.items
 
 /obj/machinery/vending/weapon/valhalla/build_ru_items()
-	products["Imports"] = SSru_items.items_val + SSru_items.items
+	products["Imports"] = SSru_items.items_val
 
 
 //List all custom items here
 
-//Vector, based on KRISS Vector 45ACP.
+///////////////////////////////////////////////////////////////////////
+////////////// Vector, based on KRISS Vector 45ACP. ///////////////////
+///////////////////////////////////////////////////////////////////////
 /obj/item/weapon/gun/smg/vector
 	name = "\improper Vector storm submachinegun"
 	desc = "The Vector is the TerraGov Marine Corps depelopment to increase assault capability of marines. Lightweight and simple to use. It features delayed blowback system, heavily reducing recoil even with its high ROF. A highly-customizable platform, it is reliable and versatile. Ideal weapon for quick assaults. Uses extended .45 ACP HP magazines"
@@ -135,3 +141,38 @@ SUBSYSTEM_DEF(ru_items)
 	name = "Vector"
 	contains = list(/obj/item/weapon/gun/smg/vector)
 	cost = 20
+
+
+///////////////////////////////////////////////////////////////////////
+////////////////// VAL-HAL-A, the Vali Halberd ////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+/obj/item/weapon/twohanded/glaive/harvester
+	name = "\improper VAL-HAL-A halberd harvester"
+	desc = "TerraGov Marine Corps' cutting-edge 'Harvester' halberd, with experimental plasma regulator. An advanced weapon that combines sheer force with the ability to apply a variety of debilitating effects when loaded with certain reagents, but should be used with both hands. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
+	icon_state = "VAL-HAL-A"
+	item_state = "VAL-HAL-A"
+	force = 60
+	force_wielded = 135 //Reminder: putting trama inside deals 60% additional damage
+	flags_item = DRAINS_XENO | TWOHANDED
+	attack_speed = 12 //Default is 7, this has slow attack
+	reach = 2 //like spear
+
+/obj/item/weapon/twohanded/glaive/harvester/Initialize()
+	. = ..()
+	AddComponent(/datum/component/harvester)
+
+/datum/supply_packs/weapons/valihalberd
+	name = "VAL-HAL-A"
+	contains = list(/obj/item/weapon/twohanded/glaive/harvester)
+	cost = 20
+
+/obj/item/weapon/twohanded/glaive/harvester/wield(mob/user)
+	. = ..()
+	if (!.)
+		return
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/twohanded/glaive/harvester/unwield(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
