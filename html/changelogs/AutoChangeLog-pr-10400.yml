@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - rscadd: "Add some new grenades for future gamemodes"
-  - bugfix: "Grenades are now actually visible in hand"
-  - refactor: "Refactored flashbang code"
