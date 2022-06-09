@@ -787,31 +787,28 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	max_w_class = 6
 	max_storage_space = 63
-	///list of stuff we're currently affecting in our area.
-	var/list/affecting_list
+	///list of human mobs we're currently affecting in our area.
+	var/list/mob/living/carbon/human/affecting_list
 
 /obj/item/storage/backpack/dispenser/open(mob/user)
 	if(loc == user)
 		return FALSE
 	return ..()
 
-
 /obj/item/storage/backpack/dispenser/attack_hand(mob/living/user)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		open(user)
-		return
-	return ..()
+	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		return ..()
+	open(user)
 
 /obj/item/storage/backpack/dispenser/MouseDrop(obj/over_object)
-	if(CHECK_BITFIELD(flags_item, IS_DEPLOYED))
-		if(over_object == usr && ishuman(over_object))
-			open(over_object)
-		return
-	return ..()
+	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED))
+		return ..()
+	if(over_object == usr && ishuman(over_object))
+		open(over_object)
 
 /obj/item/storage/backpack/dispenser/attack_self(mob/user)
 	if(!ishuman(user) || CHECK_BITFIELD(flags_item, NODROP))
-		return
+		return ..()
 	var/deploy_location = get_step(user, user.dir)
 	if(check_blocked_turf(deploy_location))
 		user.balloon_alert(user, "There is insufficient room to deploy [src]!")
