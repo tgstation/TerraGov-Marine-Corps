@@ -29,10 +29,10 @@
 		overlays.Cut()
 
 /obj/machinery/cell_charger/examine(mob/user)
-	..()
-	to_chat(user, "There's [charging ? "a" : "no"] cell in the charger.")
+	. = ..()
+	. += "There's [charging ? "a" : "no"] cell in the charger."
 	if(charging)
-		to_chat(user, "Current charge: [charging.charge]")
+		. += "Current charge: [charging.charge]"
 
 /obj/machinery/cell_charger/attackby(obj/item/I, mob/user, params)
 	. = ..()

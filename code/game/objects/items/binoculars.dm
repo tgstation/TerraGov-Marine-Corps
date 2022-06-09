@@ -15,6 +15,9 @@
 
 
 /obj/item/binoculars/attack_self(mob/user)
+	if(user.interactee && istype(user.interactee, /obj/machinery/deployable))
+		to_chat(user, span_warning("You can't use this right now!"))
+		return
 	zoom(user)
 
 #define MODE_CAS 0
@@ -48,21 +51,21 @@
 	return TRUE
 
 /obj/item/binoculars/tactical/examine(mob/user)
-	..()
+	. = ..()
 	switch(mode)
 		if(MODE_CAS)
-			to_chat(user, span_notice("They are currently set to CAS marking mode."))
+			. += span_notice("They are currently set to CAS marking mode.")
 		if(MODE_RANGE_FINDER)
-			to_chat(user, span_notice("They are currently set to range finding mode."))
+			. += span_notice("They are currently set to range finding mode.")
 		if(MODE_RAILGUN)
-			to_chat(user, span_notice("They are currently set to railgun targeting mode."))
+			. += span_notice("They are currently set to railgun targeting mode.")
 		if(MODE_ORBITAL)
-			to_chat(user, span_notice("They are currently set to orbital bombardment mode."))
-	to_chat(user, span_notice("Use on a mortar to link it for remote targeting."))
+			. += span_notice("They are currently set to orbital bombardment mode.")
+	. += span_notice("Use on a mortar to link it for remote targeting.")
 	if(linked_mortar)
-		to_chat(user, span_notice("They are currently linked to a mortar."))
+		. += span_notice("They are currently linked to a mortar.")
 		return
-	to_chat(user, span_notice("They are not linked to a mortar."))
+	. += span_notice("They are not linked to a mortar.")
 
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
@@ -231,7 +234,7 @@
 			return
 		if(MODE_RAILGUN)
 			to_chat(user, span_notice("ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE."))
-			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)
+			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 300 SECONDS) > world.time)
 				to_chat(user, "[icon2html(src, user)] [span_warning("The Rail Gun hasn't cooled down yet!")]")
 			else if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
@@ -245,7 +248,7 @@
 				to_chat(user, span_notice("TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE."))
 				while(laser)
 					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,user)
-					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+					if(!do_after(user, 3 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
 						QDEL_NULL(laser)
 						break
 		if(MODE_ORBITAL)

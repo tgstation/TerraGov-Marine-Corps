@@ -34,7 +34,7 @@
 	var/obj/parent_object = parent
 	if(length(starting_attachments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachments)
-			attach_without_user(attachment = new starting_attachment_type())
+			attach_without_user(attachment = new starting_attachment_type(parent_object))
 
 	update_parent_overlay()
 
@@ -74,11 +74,17 @@
 		QDEL_NULL(attachment)
 		return
 
+	var/obj/item/old_attachment = slots[slot]
+
 	finish_handle_attachment(attachment, attachment_data, attacher)
 
 	if(!attacher)
 		return
 	attacher.temporarilyRemoveItemFromInventory(attachment)
+
+	//Re-try putting old attachment into hands, now that we've cleared them
+	if(old_attachment)
+		attacher.put_in_hands(old_attachment)
 
 
 ///Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.
@@ -93,6 +99,11 @@
 	slots[slot] = attachment
 	attachment_data_by_slot[slot] = attachment_data
 
+	var/obj/parent_obj = parent
+	///The gun has another gun attached to it
+	if(isgun(attachment) && isgun(parent) )
+		parent_obj:gunattachment = attachment
+
 	on_attach?.Invoke(attachment, attacker)
 
 	if(attachment_data[ON_ATTACH])
@@ -105,7 +116,7 @@
 	update_parent_overlay()
 	if(!CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_APPLY_ON_MOB))
 		return
-	var/obj/parent_obj = parent
+
 	if(!ismob(parent_obj.loc))
 		return
 	var/mob/wearing_mob = parent_obj.loc
@@ -257,11 +268,11 @@
 		QDEL_NULL(attachment)
 		return
 
-	user.put_in_hands(attachment)
-
 	if(attachment_data[ON_DETACH])
 		var/datum/callback/attachment_on_detach = CALLBACK(attachment, attachment_data[ON_DETACH])
 		attachment_on_detach.Invoke(parent, user)
+
+	user.put_in_hands(attachment)
 
 	SEND_SIGNAL(attachment, COMSIG_ATTACHMENT_DETACHED, parent, user)
 	SEND_SIGNAL(parent, COMSIG_ATTACHMENT_DETACHED_FROM_ITEM, attachment, user)

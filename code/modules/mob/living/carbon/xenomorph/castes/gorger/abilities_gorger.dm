@@ -185,17 +185,19 @@
 			to_chat(owner, span_notice("We can only restore familiar biological lifeforms."))
 		return FALSE
 
+	var/mob/living/carbon/xenomorph/target_xeno = target
+
 	if(owner.do_actions)
 		return FALSE
-	if(!line_of_sight(owner, target, 2) || get_dist(owner, target) > 2)
+	if(!line_of_sight(owner, target_xeno, 2) || get_dist(owner, target_xeno) > 2)
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
-	if(isdead(target))
+	if(target_xeno.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
-	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_mob(owner, target_xeno, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 	return TRUE
 
@@ -271,11 +273,20 @@
 	plasma_cost = 0
 	target_flags = XABB_MOB_TARGET
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_LINK
+	///Timer for activating the link
+	var/apply_psychic_link_timer
+	///Overlay applied on the target xeno while linking
+	var/datum/progressicon/target_overlay
 
 /datum/action/xeno_action/activable/psychic_link/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return
+	if(apply_psychic_link_timer)
+		if(!silent)
+			owner.balloon_alert(owner, "cancelled")
+		link_cleanup()
+		return FALSE
 	if(owner.do_actions)
 		return FALSE
 	if(!isxeno(target))
@@ -299,30 +310,24 @@
 		if(!silent)
 			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
 		return FALSE
-	if(!do_mob(owner, target, GORGER_PSYCHIC_LINK_CHANNEL, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_LOC_CHANGE, extra_checks = new/datum/callback/(src, .proc/channel_checks, target)))
-		if(!silent)
-			to_chat(owner, span_warning("The linking was interrupted."))
-		return FALSE
-	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED))
-		if(!silent)
-			to_chat(owner, span_notice("You are already linked to a xenomorph."))
-		return FALSE
-	if(HAS_TRAIT(target, TRAIT_PSY_LINKED))
-		if(!silent)
-			to_chat(owner, span_notice("[target] is already linked to a xenomorph."))
-		return FALSE
 	return TRUE
 
-///Runs checks while the status is being applied
-/datum/action/xeno_action/activable/psychic_link/proc/channel_checks(atom/target)
-	return (get_dist(owner, target) <= GORGER_PSYCHIC_LINK_RANGE)
-
 /datum/action/xeno_action/activable/psychic_link/use_ability(atom/target)
+	apply_psychic_link_timer = addtimer(CALLBACK(src, .proc/apply_psychic_link, target), GORGER_PSYCHIC_LINK_CHANNEL, TIMER_UNIQUE|TIMER_STOPPABLE)
+	target_overlay = new (target, BUSY_ICON_MEDICAL)
+	owner.balloon_alert(owner, "linking...")
+
+///Activates the link
+/datum/action/xeno_action/activable/psychic_link/proc/apply_psychic_link(atom/target)
+	link_cleanup()
+	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED) || HAS_TRAIT(target, TRAIT_PSY_LINKED))
+		return fail_activate()
+
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/psychic_link = owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH, TRUE)
 	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, .proc/status_removed)
-	target.balloon_alert(owner_xeno, "Link successul.")
-	owner_xeno.balloon_alert(target, "[owner_xeno] has linked to you.")
+	target.balloon_alert(owner_xeno, "link successul")
+	owner_xeno.balloon_alert(target, "linked to [owner_xeno]")
 	if(!owner_xeno.resting)
 		owner_xeno.set_resting(TRUE, TRUE)
 	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, .proc/cancel_psychic_link)
@@ -338,7 +343,15 @@
 /datum/action/xeno_action/activable/psychic_link/proc/status_removed(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_XENO_PSYCHIC_LINK_REMOVED)
+	UnregisterSignal(owner, COMSIG_XENOMORPH_UNREST)
 	add_cooldown()
+
+///Clears up things used for the linking
+/datum/action/xeno_action/activable/psychic_link/proc/link_cleanup()
+	QDEL_NULL(target_overlay)
+	deltimer(apply_psychic_link_timer)
+	apply_psychic_link_timer = null
+
 
 /datum/action/xeno_action/activable/psychic_link/ai_should_use(atom/target)
 	return FALSE

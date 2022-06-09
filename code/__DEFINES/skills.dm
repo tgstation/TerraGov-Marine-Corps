@@ -53,6 +53,7 @@
 #define SKILL_CONSTRUCTION_PLASTEEL 2	//plasteel barricade,(RO, SL)
 #define SKILL_CONSTRUCTION_ADVANCED 3	//windows and girder construction (combat engi, CO)
 #define SKILL_CONSTRUCTION_MASTER 4	//building machine&computer frames (MT, CE)
+#define SKILL_CONSTRUCTION_INHUMAN 5	//Early synth level.
 
 
 
@@ -63,6 +64,7 @@
 #define SKILL_ENGINEER_PLASTEEL 2	//plasteel barricade repair
 #define SKILL_ENGINEER_ENGI 3	//hacking&&planet engine fixing&&apc building (combat engi)
 #define SKILL_ENGINEER_MASTER 4	//Telecomms fixing, faster engine fixing (ST)
+#define SKILL_ENGINEER_INHUMAN 5	//Early synth level.
 //higher levels give faster engine repair.
 
 

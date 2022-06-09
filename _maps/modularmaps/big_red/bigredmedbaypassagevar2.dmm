@@ -1,0 +1,71 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
+"f" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/admin_building)
+"l" = (
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/admin_building)
+"n" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"t" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/admin_building)
+"E" = (
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
+"R" = (
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/admin_building)
+"T" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/admin_building)
+
+(1,1,1) = {"
+a
+a
+a
+"}
+(2,1,1) = {"
+R
+R
+R
+"}
+(3,1,1) = {"
+f
+t
+f
+"}
+(4,1,1) = {"
+R
+T
+R
+"}
+(5,1,1) = {"
+R
+l
+R
+"}
+(6,1,1) = {"
+E
+n
+E
+"}

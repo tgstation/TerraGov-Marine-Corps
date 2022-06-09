@@ -14,6 +14,7 @@
 	hit_sound = 'sound/effects/metalhit.ogg'
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	max_integrity = 200
+	coverage = 40
 	soft_armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
@@ -199,8 +200,10 @@
 		else
 			X.visible_message(span_danger("\The [X] smashes \the [src]!"), \
 			span_danger("We smash \the [src]!"), null, 5)
+			take_damage(damage_amount, damage_type, damage_flag, effects, null, armor_penetration)
 		SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_CLOSET)
 	else if(!opened)
+		X.changeNext_move(0) // opening an unlocked closet does not trigger attack cooldown
 		return attack_hand(X)
 
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)

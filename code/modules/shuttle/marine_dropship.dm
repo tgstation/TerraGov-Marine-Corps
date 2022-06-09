@@ -79,12 +79,22 @@
 	name = "Landing Zone One"
 	id = "lz1"
 
+/obj/docking_port/stationary/marine_dropship/lz1/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
+
 /obj/docking_port/stationary/marine_dropship/lz1/prison
 	name = "LZ1: Main Hangar"
 
 /obj/docking_port/stationary/marine_dropship/lz2
 	name = "Landing Zone Two"
 	id = "lz2"
+
+/obj/docking_port/stationary/marine_dropship/lz2/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
 
 /obj/docking_port/stationary/marine_dropship/lz2/prison
 	name = "LZ2: Civ Residence Hangar"

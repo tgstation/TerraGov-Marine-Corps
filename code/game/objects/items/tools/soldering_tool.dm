@@ -2,7 +2,7 @@
 	name = "soldering tool"
 	desc = "A hand tool to fix combat robot's trauma. You do not need welding goggles for this and you need medical skills for this."
 	icon = 'icons/obj/items/surgery_tools.dmi'
-	icon_state = "alien_hemostat"
+	icon_state = "solderingtoolresprite1"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/tool/solderingtool/attack(mob/living/carbon/human/H, mob/user)
@@ -13,7 +13,7 @@
 	if(!affecting)
 		return TRUE
 
-	if(affecting.limb_status != LIMB_ROBOT)
+	if(!CHECK_BITFIELD(affecting.limb_status, LIMB_ROBOT))
 		balloon_alert(user, "Limb not robotic")
 		return TRUE
 

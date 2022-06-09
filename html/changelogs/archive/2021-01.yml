@@ -275,8 +275,8 @@
   SpaceLove:
   - rscadd: Synthetic ranks added
   Sulaboy:
-  - bugfix: M412L1 and M412 Elite now show correct stock
-  - bugfix: M412L1 can now attach rail-scope, and mini-scope
+  - bugfix: PR-412L1 and PR-412 Elite now show correct stock
+  - bugfix: PR-412L1 can now attach rail-scope, and mini-scope
   Surrealaser:
   - bugfix: Fixes damage delays for most relevant damage events.
   TiviPlus:

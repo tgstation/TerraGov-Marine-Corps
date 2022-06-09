@@ -87,8 +87,7 @@
 #define HIDELOWHAIR (1<<7)		// temporarily removes the user's facial hair overlay.
 #define HIDETOPHAIR (1<<8)		// temporarily removes the user's hair overlay. Leaves facial hair.
 #define HIDEALLHAIR (1<<9)		// temporarily removes the user's hair, facial and otherwise.
-#define HIDETAIL (1<<10)
-#define HIDEFACE (1<<11)	//Dictates whether we appear as unknown.
+#define HIDEFACE (1<<10)	//Dictates whether we appear as unknown.
 
 
 //==========================================================================================
@@ -103,8 +102,7 @@
 #define COVEREYES (1<<1) // Covers the eyes/protects them.
 #define COVERMOUTH (1<<2) // Covers the mouth.
 #define ALLOWINTERNALS (1<<3)	//mask allows internals
-#define ALLOWREBREATH (1<<4) //Mask allows to breath in really hot or really cold air.
-#define BLOCKGASEFFECT (1<<5) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
+#define BLOCKGASEFFECT (1<<4) // blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets
 //HELMET AND MASK======================================================================================
 
 //SUITS AND HELMETS====================================================================================
@@ -345,13 +343,17 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 #define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
 
 #define SLOT_EQUIP_ORDER list(\
+	SLOT_IN_BOOT,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH,\
+	SLOT_IN_HEAD,\
+	SLOT_IN_ACCESSORY,\
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
 	SLOT_IN_B_HOLSTER,\
 	SLOT_BACK,\
 	SLOT_WEAR_ID,\
 	SLOT_GLASSES,\
-	SLOT_IN_HEAD,\
 	SLOT_W_UNIFORM,\
 	SLOT_ACCESSORY,\
 	SLOT_WEAR_SUIT,\
@@ -364,11 +366,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_S_STORE,\
 	SLOT_L_STORE,\
 	SLOT_R_STORE,\
-	SLOT_IN_BOOT,\
 	SLOT_IN_STORAGE,\
-	SLOT_IN_L_POUCH,\
-	SLOT_IN_R_POUCH,\
-	SLOT_IN_ACCESSORY,\
 	SLOT_IN_SUIT,\
 	SLOT_IN_BACKPACK,\
 	SLOT_IN_BELT\
@@ -378,16 +376,17 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_HOLSTER,\
 	SLOT_IN_S_HOLSTER,\
 	SLOT_IN_B_HOLSTER,\
-	SLOT_BACK,\
-	SLOT_BELT,\
+	SLOT_IN_ACCESSORY,\
 	SLOT_S_STORE,\
+	SLOT_IN_L_POUCH,\
+	SLOT_IN_R_POUCH,\
+	SLOT_BELT,\
+	SLOT_WEAR_SUIT,\
+	SLOT_IN_STORAGE,\
 	SLOT_L_STORE,\
 	SLOT_R_STORE,\
+	SLOT_BACK,\
 	SLOT_IN_BOOT,\
-	SLOT_WEAR_SUIT,\
-	SLOT_IN_ACCESSORY,\
-	SLOT_IN_STORAGE,\
-	SLOT_IN_BELT,\
 	SLOT_IN_HEAD\
 	)
 
@@ -422,9 +421,83 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	SLOT_IN_L_POUCH,\
 	SLOT_IN_R_POUCH,\
 	SLOT_IN_HEAD,\
-	SLOT_IN_BELT\
+	SLOT_IN_BELT,\
 )
 
 #define ITEM_NOT_EQUIPPED 0
 #define ITEM_EQUIPPED_CARRIED 1 //To hands, a storage or the likes.
 #define ITEM_EQUIPPED_WORN 2 //Actually worn on the body.
+
+#define SLOT_FLUFF_DRAW list(\
+	"Suit Storage",\
+	"Suit Inside",\
+	"Belt",\
+	"Back",\
+	"Boot",\
+	"Helmet",\
+	"Left Pocket",\
+	"Right Pocket",\
+	"Webbing",\
+	"Belt",\
+	"Belt Holster",\
+	"Suit Storage Holster",\
+	"Back Holster",\
+)
+
+/proc/slot_fluff_to_flag(slot)
+	switch(slot)
+		if("Suit Storage")
+			return SLOT_S_STORE
+		if("Suit Inside")
+			return SLOT_WEAR_SUIT
+		if("Belt")
+			return SLOT_BELT
+		if("Back")
+			return SLOT_BACK
+		if("Boot")
+			return SLOT_IN_BOOT
+		if("Helmet")
+			return SLOT_IN_HEAD
+		if("Left Pocket")
+			return SLOT_L_STORE
+		if("Right Pocket")
+			return SLOT_R_STORE
+		if("Webbing")
+			return SLOT_IN_ACCESSORY
+		if("Belt")
+			return SLOT_IN_BELT
+		if("Belt Holster")
+			return SLOT_IN_HOLSTER
+		if("Suit Storage Holster")
+			return SLOT_IN_S_HOLSTER
+		if("Back Holster")
+			return SLOT_IN_B_HOLSTER
+
+/proc/slot_flag_to_fluff(slot)
+	switch(slot)
+		if(SLOT_S_STORE)
+			return "Suit Storage"
+		if(SLOT_WEAR_SUIT)
+			return "Suit Inside"
+		if(SLOT_BELT)
+			return "Belt"
+		if(SLOT_BACK)
+			return "Back"
+		if(SLOT_IN_BOOT)
+			return "Boot"
+		if(SLOT_IN_HEAD)
+			return "Helmet"
+		if(SLOT_L_STORE)
+			return "Left Pocket"
+		if(SLOT_R_STORE)
+			return "Right Pocket"
+		if(SLOT_IN_ACCESSORY)
+			return "Webbing"
+		if(SLOT_IN_BELT)
+			return "Belt"
+		if(SLOT_IN_HOLSTER)
+			return "Belt Holster"
+		if(SLOT_IN_S_HOLSTER)
+			return "Suit Storage Holster"
+		if(SLOT_IN_B_HOLSTER)
+			return "Back Holster"

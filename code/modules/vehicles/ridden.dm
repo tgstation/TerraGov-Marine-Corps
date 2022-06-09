@@ -11,9 +11,9 @@
 	if(!key_type)
 		return
 	if(!inserted_key)
-		to_chat(user, span_notice("Put a key inside it by clicking it with the key."))
+		. += span_notice("Put a key inside it by clicking it with the key.")
 	else
-		to_chat(user, span_notice("Alt-click [src] to remove the key."))
+		. += span_notice("Alt-click [src] to remove the key.")
 
 /obj/vehicle/ridden/generate_action_type(actiontype)
 	var/datum/action/vehicle/ridden/A = ..()

@@ -29,8 +29,13 @@ export const CharacterCustomization = (props, context) => {
     };
     return '#' + convert(red) + convert(green) + convert(blue);
   };
-  const genders = ["male", "female", "neuter", "plural"];
-
+  const genders = ["male", "female", "plural", "neuter"];
+  const genderToName = {
+    "male": "Male",
+    "female": "Female",
+    "neuter": "Object",
+    "plural": "Other",
+  };
   return (
     <>
       <Section title="Profile">
@@ -84,7 +89,7 @@ export const CharacterCustomization = (props, context) => {
                   <Button.Checkbox
                     inline
                     key={thisgender}
-                    content={capitalize(thisgender)}
+                    content={capitalize(genderToName[thisgender])}
                     checked={data['gender'] === thisgender}
                     onClick={() => act('toggle_gender', { newgender: thisgender })}
                   />
@@ -172,11 +177,6 @@ export const CharacterCustomization = (props, context) => {
                   </>
                 }
               />
-              <SelectFieldPreference
-                label={'Body type'}
-                value={'body_type'}
-                action={'body_type'}
-              />
             </LabeledList>
           </Flex.Item>
           <Flex.Item>
@@ -205,11 +205,6 @@ export const CharacterCustomization = (props, context) => {
                 label={'Religion'}
                 value={'religion'}
                 action={'religion'}
-              />
-              <SelectFieldPreference
-                label={'Corporate Relations'}
-                value={'nanotrasen_relation'}
-                action={'nanotrasen_relation'}
               />
             </LabeledList>
           </Flex.Item>

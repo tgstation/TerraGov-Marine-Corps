@@ -4,7 +4,7 @@
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "minelayer"
 	max_integrity = 200
-	flags_item = IS_DEPLOYABLE|DEPLOYED_NO_ROTATE
+	flags_item = IS_DEPLOYABLE
 	w_class = WEIGHT_CLASS_NORMAL
 	///amount of currently stored mines
 	var/stored_mines = 0
@@ -84,4 +84,4 @@
 
 /obj/machinery/deployable/minelayer/examine(mob/user)
 	. = ..()
-	to_chat(user, span_info("[src] currently has [stored_amount]/[max_amount] stored mines."))
+	. += span_info("[src] currently has [stored_amount]/[max_amount] stored mines.")

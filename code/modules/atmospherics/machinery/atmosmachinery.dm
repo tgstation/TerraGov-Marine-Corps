@@ -38,11 +38,11 @@
 	var/on = FALSE
 
 /obj/machinery/atmospherics/examine(mob/user)
-	..()
+	. = ..()
 	if(is_type_in_list(src, GLOB.ventcrawl_machinery) && isliving(user))
 		var/mob/living/L = user
 		if(L.can_ventcrawl())
-			to_chat(L, span_notice("Alt-click to crawl through it."))
+			. += span_notice("Alt-click to crawl through it.")
 
 /obj/machinery/atmospherics/New(loc, process = TRUE, setdir)
 	. = ..()
@@ -286,10 +286,8 @@
 				if(impassable)
 					return
 
-				var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
-				if(length(pipenetdiff))
-					user.update_pipe_vision(target_move)
 				user.forceMove(target_move)
+				user.update_pipe_vision()
 				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
 				var/silent_crawl = FALSE //Some creatures can move through the vents silently
 				if(isxeno(user))

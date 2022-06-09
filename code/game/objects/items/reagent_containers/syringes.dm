@@ -238,7 +238,7 @@
 		if((user != target) && !H.check_shields(COMBAT_TOUCH_ATTACK, 14, "melee"))
 			return
 
-		if (target != user && prob(target.getarmor(target_zone, "melee")))
+		if (target != user && prob(target.get_soft_armor("melee", target_zone)))
 			visible_message(span_danger("[user] tries to stab [target] in \the [hit_area] with [src], but the attack is deflected by armor!"))
 			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)

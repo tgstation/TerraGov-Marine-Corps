@@ -68,7 +68,7 @@
 /obj/item/alien_embryo/proc/process_growth()
 
 	if(stage <= 4)
-		counter += 1.5 //Free burst time in ~15 min.
+		counter += 2.5 //Free burst time in ~7/8 min.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
 		counter += 10 //Accelerates larval growth massively. Voluntarily drinking larval jelly while infected is straight-up suicide. Larva hits Stage 5 in exactly ONE minute.
@@ -206,8 +206,7 @@
 				O.take_damage(O.min_bruised_damage, TRUE)
 
 		var/datum/limb/chest = H.get_limb("chest")
-		var/datum/wound/internal_bleeding/I = new (15) //Apply internal bleeding to chest
-		chest.wounds += I
+		new /datum/wound/internal_bleeding(15, chest) //Apply internal bleeding to chest
 		chest.fracture()
 
 

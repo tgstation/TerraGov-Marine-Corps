@@ -21,6 +21,10 @@ map desertdam
 	minplayers 90
 endmap
 
+map icarus_military_port
+	minplayers 50
+endmap
+
 map bigred_v2
 	minplayers 25
 endmap
@@ -45,14 +49,13 @@ map research_outpost
 	maxplayers 40
 endmap
 
-map barrenquilla_mining
-	minplayers 30
-	maxplayers 80
-endmap
-
 map whiskey_outpost_v2
 endmap
 
 map magmoor_digsite_iv
 	minplayers 20
+endmap
+
+map orion_outpost
+	maxplayers 40
 endmap

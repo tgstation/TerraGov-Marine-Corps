@@ -8,7 +8,7 @@
 	item_state = "meson"
 	deactive_state = "degoggles_meson"
 	species_exception = list(/datum/species/robot)
-	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi', "Vox" = 'icons/mob/species/vox/eyes.dmi')
+	sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/glasses.dmi')
 	actions_types = list(/datum/action/item_action/toggle)
 	toggleable = 1
 	darkness_view = 2

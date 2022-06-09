@@ -1,7 +1,4 @@
 //SULACO AREAS--------------------------------------//
-/area/sulaco
-	ambience = list('sound/ambience/shipambience.ogg')
-	icon_state = "sulaco"
 
 /area/sulaco/bridge
 	name = "Sulaco Bridge"
@@ -43,11 +40,6 @@
 /area/sulaco/medbay/storage
 	name = "Sulaco Medbay Storage"
 	icon_state = "medbay2"
-	ambience = list('sound/ambience/signal.ogg'	)
-
-/area/sulaco/medbay/storage2
-	name = "Sulaco Medbay Storage"
-	icon_state = "medbay3"
 	ambience = list('sound/ambience/signal.ogg'	)
 
 /area/sulaco/medbay/west
@@ -108,9 +100,13 @@
 	name = "Sulaco Main Hallway"
 	icon_state = "hallF"
 
+/area/sulaco/hallway/dropshipprep
+	name = "Sulaco Dropship Prep"
+	icon_state = "red"
+
 /area/sulaco/briefing
 	name = "Sulaco Briefing Room"
-	icon_state = "law"
+	icon_state = "blue-red2"
 
 /area/sulaco/cryosleep
 	name = "Sulaco Cryogenic Storage"
@@ -132,10 +128,6 @@
 	name = "Sulaco Main Cargo Bay"
 	icon_state = "quartstorage"
 
-/area/sulaco/cargo
-	name = "Sulaco Main Cargo Bay"
-	icon_state = "quartstorage"
-
 /area/sulaco/cargo/office
 	name = "Sulaco Cargo Office"
 	icon_state = "quartoffice"
@@ -144,8 +136,9 @@
 	name = "Sulaco Prep Area"
 	icon_state = "red"
 
-/area/sulaco/supply/station
-	name = "Sulaco Supply Station"
+/area/sulaco/firingrange
+	name = "Sulaco Firing Range"
+	icon_state = "red2"
 
 /area/sulaco/maintenance
 	name = "Sulaco Maintenance"
@@ -224,25 +217,17 @@
 	name = "Sulaco Liaison's Quarters"
 	icon_state = "red"
 
-/area/sulaco/recroom
-	name = "Sulaco Rec Room"
-	icon_state = "red"
-
 /area/sulaco/morgue
 	name = "Sulaco Morgue"
 	icon_state = "morgue"
 
+/area/sulaco/bar
+	name = "Sulaco Bar"
+	icon_state = "purple"
+
 /area/sulaco/hangar
 	name = "Sulaco Dropship Hangar"
-	icon_state = "mining"
-
-/area/sulaco/hangar/one
-	name = "Sulaco Firing Range"
-	icon_state = "red2"
-
-/area/sulaco/hangar/two
-	name = "Sulaco Atmospherics"
-	icon_state = "blue-red2"
+	icon_state = "hangar"
 
 /area/sulaco/hangar/droppod
 	name = "Sulaco Drop pod bay"
@@ -280,14 +265,6 @@
 /area/sulaco/maintenance/lower_maint
 	name = "Sulaco Maintenance"
 	icon_state = "maintcentral"
-
-/area/sulaco/hub/top
-	name = "Sulaco Maintenance Hub"
-	icon_state = "yellow"
-
-/area/sulaco/hub/bottom
-	name = "Sulaco Maintenance Hub"
-	icon_state = "yellow"
 
 //Drop Pods
 /area/shuttle/drop1

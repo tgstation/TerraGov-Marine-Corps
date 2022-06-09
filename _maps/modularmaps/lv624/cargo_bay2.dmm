@@ -1,0 +1,732 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ah" = (
+/turf/open/floor/tile/brown{
+	dir = 10
+	},
+/area/lv624/lazarus/quartstorage)
+"as" = (
+/turf/open/floor/tile/brown{
+	dir = 5
+	},
+/area/lv624/lazarus/quartstorage)
+"au" = (
+/turf/open/floor/tile/brown/corner{
+	dir = 8
+	},
+/area/lv624/lazarus/quartstorage)
+"cE" = (
+/obj/structure/largecrate/random/barrel/red,
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/quartstorage)
+"dZ" = (
+/turf/open/floor/tile/brown/corner{
+	dir = 1
+	},
+/area/lv624/lazarus/quartstorage)
+"eh" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"eI" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"gi" = (
+/obj/structure/jungle/vines,
+/turf/closed/wall,
+/area/lv624/lazarus/quartstorage)
+"gJ" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/lv624/lazarus/quartstorage)
+"hX" = (
+/obj/structure/largecrate/chick,
+/turf/open/floor/tile/brown{
+	dir = 8
+	},
+/area/lv624/lazarus/quartstorage)
+"iE" = (
+/obj/structure/window_frame/colony,
+/turf/open/floor/plating,
+/area/lv624/lazarus/quartstorage)
+"iZ" = (
+/turf/open/floor/tile/brown{
+	dir = 9
+	},
+/area/lv624/lazarus/quartstorage)
+"jb" = (
+/obj/structure/cable,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"ji" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"ju" = (
+/obj/structure/rack,
+/obj/item/multitool,
+/obj/item/multitool,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"jV" = (
+/turf/open/floor/tile/brown{
+	dir = 8
+	},
+/area/lv624/lazarus/quartstorage)
+"kx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/closed/wall,
+/area/lv624/lazarus/quartstorage)
+"kz" = (
+/turf/open/floor/tile/brown{
+	dir = 4
+	},
+/area/lv624/lazarus/quartstorage)
+"mj" = (
+/obj/structure/closet/crate/freezer,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"mN" = (
+/obj/machinery/light/small,
+/turf/open/floor/tile/brown{
+	dir = 0
+	},
+/area/lv624/lazarus/quartstorage)
+"mS" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/brown{
+	dir = 5
+	},
+/area/lv624/lazarus/quartstorage)
+"mX" = (
+/obj/structure/largecrate/random/barrel/red,
+/turf/open/floor/tile/brown{
+	dir = 4
+	},
+/area/lv624/lazarus/quartstorage)
+"ov" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/tile/brown{
+	dir = 1
+	},
+/area/lv624/lazarus/quartstorage)
+"oA" = (
+/obj/effect/spawner/random/trash,
+/turf/open/floor/tile/brown{
+	dir = 0
+	},
+/area/lv624/lazarus/quartstorage)
+"pl" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"pF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/brown{
+	dir = 1
+	},
+/area/lv624/lazarus/quartstorage)
+"rz" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating/platebotc,
+/area/lv624/lazarus/quartstorage)
+"rF" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"th" = (
+/obj/structure/table/reinforced,
+/obj/effect/spawner/random/drink_alcohol_bottle,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"tH" = (
+/obj/effect/spawner/random/trash,
+/turf/open/floor/tile/brown{
+	dir = 4
+	},
+/area/lv624/lazarus/quartstorage)
+"vk" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/structure/cable,
+/obj/structure/sign/poster,
+/turf/closed/wall,
+/area/lv624/lazarus/quartstorage)
+"vP" = (
+/turf/open/floor/tile/brown/corner,
+/area/lv624/lazarus/quartstorage)
+"wF" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/tile/brown{
+	dir = 8
+	},
+/area/lv624/lazarus/quartstorage)
+"yx" = (
+/obj/structure/largecrate/supply/medicine/blood,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"yL" = (
+/obj/structure/rack,
+/obj/item/stack/cable_coil,
+/obj/item/weapon/combat_knife,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"ze" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	dir = 1;
+	name = "\improper Storage Dome"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
+"zv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"Ad" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/structure/largecrate/random/barrel/red,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"Bv" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/food/snacks/upp/fish,
+/obj/item/reagent_containers/food/snacks/upp/fish,
+/obj/item/reagent_containers/food/snacks/upp/fish,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"Cp" = (
+/obj/structure/largecrate/random/barrel/red,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"Ct" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"Cx" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"CF" = (
+/obj/effect/spawner/random/ammo,
+/turf/open/floor/tile/brown{
+	dir = 1
+	},
+/area/lv624/lazarus/quartstorage)
+"CG" = (
+/obj/effect/spawner/random/trash,
+/turf/open/floor/tile/brown{
+	dir = 8
+	},
+/area/lv624/lazarus/quartstorage)
+"Dx" = (
+/turf/open/floor/tile/brown{
+	dir = 6
+	},
+/area/lv624/lazarus/quartstorage)
+"ER" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Storage Dome"
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
+"Gt" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/tile/brown{
+	dir = 4
+	},
+/area/lv624/lazarus/quartstorage)
+"GS" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"HO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/tile/brown/corner{
+	dir = 1
+	},
+/area/lv624/lazarus/quartstorage)
+"Ic" = (
+/obj/structure/largecrate/random/barrel/red,
+/turf/open/floor/tile/brown{
+	dir = 0
+	},
+/area/lv624/lazarus/quartstorage)
+"Ih" = (
+/turf/open/floor/tile/brown{
+	dir = 0
+	},
+/area/lv624/lazarus/quartstorage)
+"Iu" = (
+/turf/template_noop,
+/area/template_noop)
+"IF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"IN" = (
+/obj/structure/largecrate/random/case,
+/turf/open/floor/tile/brown{
+	dir = 0
+	},
+/area/lv624/lazarus/quartstorage)
+"Jl" = (
+/obj/effect/spawner/random/ammo,
+/turf/open/floor/tile/brown{
+	dir = 6
+	},
+/area/lv624/lazarus/quartstorage)
+"JF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/largecrate/random/barrel/red,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"Kr" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/brown{
+	dir = 10
+	},
+/area/lv624/lazarus/quartstorage)
+"Lv" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"LK" = (
+/obj/structure/closet/crate/freezer/rations,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"Ml" = (
+/obj/structure/cable,
+/turf/closed/wall,
+/area/lv624/lazarus/quartstorage)
+"Nb" = (
+/obj/structure/largecrate,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"Ne" = (
+/turf/open/floor/tile/brown/corner{
+	dir = 4
+	},
+/area/lv624/lazarus/quartstorage)
+"Nw" = (
+/turf/open/floor/tile/brown{
+	dir = 1
+	},
+/area/lv624/lazarus/quartstorage)
+"NH" = (
+/obj/effect/spawner/random/trash,
+/turf/open/floor/tile/brown{
+	dir = 1
+	},
+/area/lv624/lazarus/quartstorage)
+"NR" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"OD" = (
+/obj/structure/cable,
+/turf/open/floor/tile/brown/corner{
+	dir = 8
+	},
+/area/lv624/lazarus/quartstorage)
+"OT" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/brown{
+	dir = 4
+	},
+/area/lv624/lazarus/quartstorage)
+"Ph" = (
+/obj/structure/rack,
+/obj/item/stack/medical/heal_pack/advanced/bruise_pack{
+	amount = 3
+	},
+/obj/effect/spawner/random/sugary_snack,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"PP" = (
+/obj/item/gift/marine,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/quartstorage)
+"PY" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/food/snacks/lollipop/combat,
+/obj/item/reagent_containers/food/snacks/lollipop/tramadol/combat,
+/obj/effect/spawner/random/tool,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"Qj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/sign/poster,
+/turf/closed/wall,
+/area/lv624/lazarus/quartstorage)
+"Rx" = (
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/brown{
+	dir = 0
+	},
+/area/lv624/lazarus/quartstorage)
+"RN" = (
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"Ss" = (
+/obj/item/storage/firstaid/o2,
+/obj/structure/rack,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"SB" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"Vs" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"VF" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"VI" = (
+/obj/structure/largecrate/random/barrel,
+/turf/open/floor/tile/brown{
+	dir = 1
+	},
+/area/lv624/lazarus/quartstorage)
+"WN" = (
+/turf/closed/wall,
+/area/lv624/lazarus/quartstorage)
+"XK" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"XR" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Storage Dome"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/quartstorage)
+"Yo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/brown{
+	dir = 0
+	},
+/area/lv624/lazarus/quartstorage)
+"YA" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/outdoors_snacks,
+/turf/open/floor/tile/neutral,
+/area/lv624/lazarus/quartstorage)
+"YT" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/closed/wall,
+/area/lv624/lazarus/quartstorage)
+
+(1,1,1) = {"
+Iu
+Iu
+Iu
+Iu
+Iu
+WN
+rz
+ER
+rz
+WN
+Iu
+Iu
+Iu
+Iu
+Iu
+"}
+(2,1,1) = {"
+Iu
+gi
+gJ
+iE
+gJ
+WN
+iZ
+jV
+ah
+WN
+gJ
+gJ
+gJ
+WN
+Iu
+"}
+(3,1,1) = {"
+Iu
+gJ
+cE
+jV
+hX
+CG
+dZ
+pl
+au
+wF
+jV
+jV
+Kr
+gJ
+Iu
+"}
+(4,1,1) = {"
+Iu
+gJ
+CF
+RN
+RN
+RN
+YA
+RN
+RN
+Nb
+RN
+Ss
+IN
+gJ
+Iu
+"}
+(5,1,1) = {"
+Iu
+iE
+VI
+RN
+mj
+RN
+RN
+RN
+RN
+Lv
+RN
+RN
+oA
+gJ
+Iu
+"}
+(6,1,1) = {"
+WN
+WN
+NH
+RN
+RN
+RN
+Cx
+yx
+Cp
+RN
+RN
+RN
+Rx
+WN
+WN
+"}
+(7,1,1) = {"
+gJ
+iZ
+HO
+zv
+zv
+ji
+kx
+Qj
+kx
+JF
+zv
+SB
+OD
+ah
+rz
+"}
+(8,1,1) = {"
+ze
+pF
+GS
+jb
+RN
+pl
+WN
+PP
+WN
+RN
+RN
+rF
+IF
+Yo
+ze
+"}
+(9,1,1) = {"
+iE
+as
+Ne
+jb
+jb
+jb
+Ml
+vk
+YT
+Ad
+XK
+VF
+vP
+Jl
+rz
+"}
+(10,1,1) = {"
+WN
+WN
+ov
+Bv
+RN
+Ph
+eI
+Ct
+RN
+RN
+RN
+NR
+mN
+WN
+WN
+"}
+(11,1,1) = {"
+Iu
+gJ
+NH
+RN
+RN
+RN
+RN
+Ct
+ju
+RN
+th
+RN
+Ih
+gJ
+Iu
+"}
+(12,1,1) = {"
+Iu
+gJ
+Nw
+eh
+RN
+LK
+PY
+Ct
+yL
+RN
+RN
+RN
+Ic
+gJ
+Iu
+"}
+(13,1,1) = {"
+Iu
+gJ
+mS
+kz
+kz
+tH
+Ne
+Vs
+vP
+Gt
+mX
+tH
+Dx
+gJ
+Iu
+"}
+(14,1,1) = {"
+Iu
+WN
+gJ
+gJ
+gJ
+WN
+as
+OT
+Dx
+WN
+gJ
+gJ
+gJ
+gi
+Iu
+"}
+(15,1,1) = {"
+Iu
+Iu
+Iu
+Iu
+Iu
+WN
+rz
+XR
+rz
+WN
+Iu
+Iu
+Iu
+Iu
+Iu
+"}

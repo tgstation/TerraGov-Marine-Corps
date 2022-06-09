@@ -580,6 +580,14 @@
 		I.on_exit_storage(src)
 		qdel(I)
 
+//finds a stored item to draw
+/obj/item/storage/do_quick_equip()
+	if(!length(contents))
+		return FALSE //we don't want to equip the storage item itself
+	var/obj/item/W = contents[length(contents)]
+	remove_from_storage(W, user = src)
+	return W
+
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
 	PopulateContents()

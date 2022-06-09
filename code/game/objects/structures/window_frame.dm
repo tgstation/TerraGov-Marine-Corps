@@ -8,7 +8,7 @@
 	density = TRUE
 	throwpass = TRUE
 	resistance_flags = DROPSHIP_IMMUNE | XENO_DAMAGEABLE
-	max_integrity = 120
+	max_integrity = 150
 	climbable = 1 //Small enough to vault over, but you do need to vault over it
 	climb_delay = 15 //One second and a half, gotta vault fast
 	smoothing_behavior = CARDINAL_SMOOTHING
@@ -18,6 +18,7 @@
 	var/basestate = "window"
 	var/junction = 0
 	var/reinforced = FALSE
+	coverage = 50
 
 /obj/structure/window_frame/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -128,6 +129,7 @@
 	icon_state = "col_rwindow0_frame"
 	basestate = "col_rwindow"
 	reinforced = TRUE
+	max_integrity = 300
 
 /obj/structure/window_frame/chigusa
 	icon_state = "chig_window0_frame"
@@ -143,6 +145,7 @@
 
 /obj/structure/window_frame/prison/reinforced
 	reinforced = TRUE
+	max_integrity = 300
 
 /obj/structure/window_frame/prison/hull
 	climbable = FALSE

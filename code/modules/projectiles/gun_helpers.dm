@@ -8,7 +8,7 @@
 /obj/item/weapon/gun/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
 		return ..()
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN_EJECTS))
 		do_unique_action(user, TRUE)
 		return
 	unload(user)
@@ -531,7 +531,7 @@ should be alright.
 
 	to_chat(usr, span_notice("You toggle the safety [HAS_TRAIT(src, TRAIT_GUN_SAFETY) ? "<b>off</b>" : "<b>on</b>"]."))
 	playsound(usr, 'sound/weapons/guns/interact/selector.ogg', 15, 1)
-	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
+	if(!HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		ADD_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
 	else
 		REMOVE_TRAIT(src, TRAIT_GUN_SAFETY, GUN_TRAIT)
@@ -681,11 +681,16 @@ should be alright.
 
 /obj/item/weapon/gun/proc/toggle_aim_mode(mob/living/carbon/human/user)
 	var/static/image/aim_mode_visual = image('icons/mob/hud.dmi', null, "aim_mode")
+
 	if(HAS_TRAIT(src, TRAIT_GUN_IS_AIMING))
 		user.overlays -= aim_mode_visual
 		REMOVE_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 		user.remove_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN)
 		modify_fire_delay(-aim_fire_delay)
+		///if your attached weapon has aim mode, stops it from aimming
+		if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
+			REMOVE_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
+			gunattachment:modify_fire_delay(-aim_fire_delay)
 		to_chat(user, span_notice("You cease aiming."))
 		return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -699,7 +704,7 @@ should be alright.
 	if(user.do_actions && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
 		return
 	if(!user.marksman_aura)
-		if(!do_after(user, 1 SECONDS, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
+		if(!do_after(user, aim_time, TRUE, CHECK_BITFIELD(flags_item, IS_DEPLOYED) ? loc : src, BUSY_ICON_BAR, ignore_turf_checks = TRUE))
 			to_chat(user, span_warning("<b>Your concentration is interrupted!</b>"))
 			return
 	if(!CHECK_BITFIELD(flags_item, WIELDED) && !CHECK_BITFIELD(flags_item, IS_DEPLOYED))
@@ -709,6 +714,10 @@ should be alright.
 	ADD_TRAIT(src, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
 	user.add_movespeed_modifier(MOVESPEED_ID_AIM_MODE_SLOWDOWN, TRUE, 0, NONE, TRUE, aim_speed_modifier)
 	modify_fire_delay(aim_fire_delay)
+	///if your attached weapon has aim mode, makes it aim
+	if( (gunattachment) && (/datum/action/item_action/aim_mode in gunattachment.actions_types) )
+		ADD_TRAIT(gunattachment, TRAIT_GUN_IS_AIMING, GUN_TRAIT)
+		gunattachment:modify_fire_delay(aim_fire_delay)
 	to_chat(user, span_notice("You line up your aim, allowing you to shoot past allies.</b>"))
 
 /// Signal handler to activate the rail attachement of that gun if it's in our active hand

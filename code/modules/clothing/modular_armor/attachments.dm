@@ -40,6 +40,9 @@
 	///Light modifier for attachment to an armor piece
 	var/light_mod = 0
 
+	///Replacement for initial icon that allows for the code to work with multiple variants
+	var/base_icon
+
 	///Assoc list that uses the parents type as a key. type = "new_icon_state". This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.
 	var/list/variants_by_parent_type = list()
 
@@ -67,8 +70,10 @@
 	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_actions)
 	if(!length(variants_by_parent_type) || !(parent.type in variants_by_parent_type))
+		base_icon = icon_state
 		return
 	icon_state = variants_by_parent_type[parent.type]
+	base_icon = variants_by_parent_type[parent.type]
 	update_icon()
 
 /// Called when the module is removed from the armor.
@@ -137,44 +142,65 @@
 			"Desert" = ARMOR_PALETTE_DESERT,
 			"Black" = ARMOR_PALETTE_BLACK,
 			"Grey" = ARMOR_PALETTE_GREY,
+			"Gun Metal" = ARMOR_PALETTE_GUN_METAL,
+			"Night Slate" = ARMOR_PALETTE_NIGHT_SLATE,
+			"Fall" = ARMOR_PALETTE_FALL,
 		),
 		"Red" = list(
 			"Dark Red" = ARMOR_PALETTE_RED,
 			"Bronze Red" = ARMOR_PALETTE_BRONZE_RED,
 			"Red" = ARMOR_PALETTE_LIGHT_RED,
+			"Blood Red" = ARMOR_PALETTE_BLOOD_RED,
 		),
 		"Green" = list(
 			"Green" = ARMOR_PALETTE_GREEN,
 			"Emerald" = ARMOR_PALETTE_EMERALD,
 			"Lime" = ARMOR_PALETTE_LIME,
 			"Mint" = ARMOR_PALETTE_MINT,
+			"Jade" = ARMOR_PALETTE_JADE,
+			"Leaf" = ARMOR_PALETTE_LEAF,
+			"Forest" = ARMOR_PALETTE_FOREST,
+			"Smoked Green" = ARMOR_PALETTE_SMOKED_GREEN,
 		),
 		"Purple" = list(
 			"Purple" = ARMOR_PALETTE_PURPLE,
 			"Lavander" = ARMOR_PALETTE_LAVANDER,
+			"Lilac" = ARMOR_PALETTE_LILAC,
+			"Iris Purple" = ARMOR_PALETTE_IRIS_PURPLE,
+			"Orchid" = ARMOR_PALETTE_ORCHID,
+			"Grape" = ARMOR_PALETTE_GRAPE,
 		),
 		"Blue" = list(
 			"Dark Blue" = ARMOR_PALETTE_BLUE,
 			"Blue" = ARMOR_PALETTE_LIGHT_BLUE,
 			"Cottonwood" = ARMOR_PALETTE_COTTONWOOD,
 			"Aqua" = ARMOR_PALETTE_AQUA,
+			"Cerulean" = ARMOR_PALETTE_CERULEAN,
+			"Sea Blue" = ARMOR_PALETTE_SEA_BLUE,
+			"Cloud" = ARMOR_PALETTE_CLOUD,
 		),
 		"Yellow" = list(
 			"Gold" = ARMOR_PALETTE_YELLOW,
 			"Yellow" = ARMOR_PALETTE_LIGHT_YELLOW,
+			"Angelic Gold" = ARMOR_PALETTE_ANGELIC,
+			"Honey" = ARMOR_PALETTE_HONEY,
+		),
+		"Orange" = list(
+			"Orange" = ARMOR_PALETTE_ORANGE,
+			"Beige" = ARMOR_PALETTE_BEIGE,
+			"Earth" = ARMOR_PALETTE_EARTH,
 		),
 		"Pink" = list(
 			"Salmon" = ARMOR_PALETTE_SALMON_PINK,
 			"Magenta" = ARMOR_PALETTE_MAGENTA_PINK,
+			"Sakura" = ARMOR_PALETTE_SAKURA,
 		),
-		"Orange" = ARMOR_PALETTE_ORANGE,
 	)
 	///Some defines to determin if the armor piece is allowed to be recolored.
 	var/colorable_allowed = COLOR_WHEEL_NOT_ALLOWED
 
 /obj/item/armor_module/armor/Initialize()
 	. = ..()
-	item_state = initial(icon_state) + "_a"
 	update_icon()
 
 /obj/item/armor_module/armor/on_attach(obj/item/attaching_to, mob/user)
@@ -284,5 +310,6 @@
 	return COMPONENT_NO_AFTERATTACK
 
 ///Relays the extra controls to the user when the parent is examined.
-/obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user)
-	to_chat(user, "Right click the [parent] with paint to color the [src]")
+/obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user, list/examine_list)
+	SIGNAL_HANDLER
+	examine_list += "Right click the [parent] with paint to color the [src]"

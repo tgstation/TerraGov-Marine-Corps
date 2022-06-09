@@ -43,11 +43,9 @@
 				I.take_damage(rand(3,5))
 
 			//Moving makes open wounds get infected much faster
-			for(var/j in E.wounds)
-				var/datum/wound/W = j
-				if(!W.infection_check())
-					continue
-				W.germ_level += 1
+			if(!(E.limb_wound_status & LIMB_WOUND_DISINFECTED) && E.brute_dam >= 20)
+				if(prob((E.brute_dam - (E.limb_wound_status & LIMB_WOUND_BANDAGED ? 50 : 0)) * 4))
+					E.germ_level++
 
 		if(E.name in list("l_leg", "l_foot", "r_leg", "r_foot") && !lying_angle)
 			if(!E.is_usable() || E.is_malfunctioning() || ( E.is_broken() && !(E.limb_status & LIMB_SPLINTED) && !(E.limb_status & LIMB_STABILIZED) ) )

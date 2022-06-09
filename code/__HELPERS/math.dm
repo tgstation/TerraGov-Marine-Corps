@@ -59,7 +59,7 @@
 
 
 ///Checks if ending atom is viewable by starting atom, uses bresenham line algorithm but checks some extra tiles on a diagonal next tile
-/proc/line_of_sight(atom/starting_atom, atom/ending_atom, maximum_dist = 7)
+/proc/line_of_sight(atom/starting_atom, atom/ending_atom, maximum_dist = 7, ignore_target_opacity = FALSE)
 	if(get_dist(starting_atom, ending_atom) > maximum_dist)
 		return FALSE
 	var/current_x_step = starting_atom.x//start at x and y, then add 1 or -1 to these to get every turf from starting_atom to ending_atom
@@ -76,6 +76,7 @@
 
 	var/x = abs_x_distance >> 1 //Counters for steps taken, setting to distance/2
 	var/y = abs_y_distance >> 1 //Bit-shifting makes me l33t.  It also makes get_line() unnessecarrily fast.
+	var/turf/final_turf = get_turf(ending_atom) //The goal
 	var/turf/last_turf = get_turf(starting_atom)
 	if(abs_x_distance >= abs_y_distance) //x distance is greater than y
 		for(var/distance_counter in 0 to (abs_x_distance - 1))//It'll take abs_x_distance steps to get there
@@ -97,7 +98,8 @@
 					if(i==2)
 						return FALSE
 			if(!can_see_through(last_turf, turf_to_check))
-				return FALSE
+				if(!(ignore_target_opacity && turf_to_check == final_turf)) //ignore_target_opacity chooses to ignore that for the final turf
+					return FALSE
 	else
 		for(var/distance_counter in 0 to (abs_y_distance - 1))
 			x += abs_x_distance
@@ -118,7 +120,8 @@
 					if(i==2)
 						return FALSE
 			if(!can_see_through(last_turf, turf_to_check))
-				return FALSE
+				if(!(ignore_target_opacity && turf_to_check == final_turf)) //ignore_target_opacity chooses to ignore that for the final turf
+					return FALSE
 	return TRUE
 
 

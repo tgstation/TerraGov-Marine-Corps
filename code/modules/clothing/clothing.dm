@@ -22,6 +22,7 @@
 
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
+	flags_inventory = NOQUICKEQUIP
 
 /obj/item/clothing/Initialize()
 	. = ..()
@@ -107,7 +108,6 @@
 	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
-	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
 
 	// Strength of the armor light used by [proc/set_light()]
@@ -160,7 +160,6 @@
 	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/gloves.dmi')
 
 
 /obj/item/clothing/gloves/update_clothing_icon()
@@ -207,7 +206,6 @@
 	icon = 'icons/obj/clothing/masks.dmi'
 	flags_equip_slot = ITEM_SLOT_MASK
 	flags_armor_protection = FACE|EYES
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
 	blood_sprite_state = "maskblood"
 	var/anti_hug = 0
 	var/toggleable = FALSE
@@ -217,16 +215,6 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
-
-
-//some gas masks modify the air that you breathe in.
-/obj/item/clothing/mask/proc/filter_air(list/air_info)
-	if(flags_inventory & ALLOWREBREATH)
-		air_info[2] = T20C //heats/cools air to be breathable
-
-	return air_info
-
-
 
 ////////////////////////////////////////////////////////////////////////
 //Shoes
@@ -241,7 +229,6 @@
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	blood_sprite_state = "shoeblood"
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/shoes.dmi')
 
 
 /obj/item/clothing/shoes/update_clothing_icon()

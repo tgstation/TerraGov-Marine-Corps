@@ -760,11 +760,11 @@ table tr:first-child th:first-child { border: none;}
 				qdel(src)
 
 /obj/machinery/alarm/examine(mob/user)
-	..()
+	. = ..()
 	if (buildstage < 2)
-		to_chat(user, "It is not wired.")
+		. += "It is not wired."
 	if (buildstage < 1)
-		to_chat(user, "The circuit is missing.")
+		. += "The circuit is missing."
 
 /obj/machinery/alarm/monitor
 	apply_danger_level = FALSE

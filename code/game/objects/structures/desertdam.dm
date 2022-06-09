@@ -24,8 +24,11 @@
 /obj/structure/desertdam/decals/road/edge
 	icon_state = "edge"
 
+/obj/structure/desertdam/decals/road/edge/long
+	icon_state = "road_edge_long"
+
 /obj/structure/desertdam/decals/road/stop
-	icon_state = "stop"
+	icon_state = "stop_decal"
 
 /obj/structure/desertdam/decals/road/line
 	icon_state = "line"
@@ -40,3 +43,4 @@
 	bound_width = 64
 	bound_height = 64
 	density = TRUE
+	coverage = 15

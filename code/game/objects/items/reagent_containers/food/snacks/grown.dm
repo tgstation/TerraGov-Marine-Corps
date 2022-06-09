@@ -140,40 +140,6 @@
 	filling_color = "#C4C4C4"
 	plantname = "plastic"
 
-/obj/item/reagent_containers/food/snacks/grown/shand
-	name = "S'rendarr's Hand leaf"
-	desc = "A leaf sample from a lowland thicket shrub. Smells strongly like wax."
-	icon_state = "shand"
-	filling_color = "#70C470"
-	plantname = "shand"
-
-/obj/item/reagent_containers/food/snacks/grown/mtear
-	name = "sprig of Messa's Tear"
-	desc = "A mountain climate herb with a soft, cold blue flower, known to contain an abundance of healing chemicals."
-	icon_state = "mtear"
-	filling_color = "#70C470"
-	plantname = "mtear"
-
-/obj/item/reagent_containers/food/snacks/grown/mtear/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	var/obj/item/stack/medical/heal_pack/ointment/tajaran/poultice = new /obj/item/stack/medical/heal_pack/ointment/tajaran(user.loc)
-
-	poultice.heal_burn = potency
-	qdel(src)
-
-	to_chat(user, span_notice("You mash the petals into a poultice."))
-
-/obj/item/reagent_containers/food/snacks/grown/shand/attack_self(mob/user as mob)
-	if(istype(user.loc,/turf/open/space))
-		return
-	var/obj/item/stack/medical/heal_pack/gauze/tajaran/poultice = new /obj/item/stack/medical/heal_pack/gauze/tajaran(user.loc)
-
-	poultice.heal_brute = potency
-	qdel(src)
-
-	to_chat(user, span_notice("You mash the leaves into a poultice."))
-
 /obj/item/reagent_containers/food/snacks/grown/glowberries
 	name = "bunch of glow-berries"
 	desc = "Nutritious!"

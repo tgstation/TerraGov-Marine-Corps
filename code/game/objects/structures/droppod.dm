@@ -16,6 +16,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 70, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
 	max_integrity = 50
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	coverage = 75
 	var/mob/occupant
 	var/target_x = 1
 	var/target_y = 1

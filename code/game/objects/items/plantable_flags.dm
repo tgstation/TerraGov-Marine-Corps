@@ -13,7 +13,7 @@
 
 /obj/item/flag_base/examine(mob/user)
 	. = ..()
-	to_chat(user, "It has a flag made for the [country_name] inside it.")
+	. += "It has a flag made for the [country_name] inside it."
 
 
 /obj/item/flag_base/attack_self(mob/user)

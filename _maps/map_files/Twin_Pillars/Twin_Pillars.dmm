@@ -1305,9 +1305,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks/rebel)
 "blQ" = (
@@ -1662,8 +1661,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/starboard_umbilical/rebel)
 "bHp" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/living/commandbunks/rebel)
 "bHz" = (
@@ -2148,7 +2146,7 @@
 	dir = 4
 	},
 /obj/item/weapon/gun/rifle/m412{
-	desc = "The M412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition. There is a worn inscription of a moth on it."
+	desc = "The PR-412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition. There is a worn inscription of a moth on it."
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range/rebel)
@@ -2478,9 +2476,8 @@
 /obj/item/bedsheet/captain,
 /obj/effect/landmark/start/job/captain,
 /mob/living/simple_animal/cat/Jones,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "coE" = (
@@ -3487,9 +3484,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "dmZ" = (
@@ -4729,9 +4725,8 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
 "etY" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison/rebel)
 "euh" = (
@@ -5253,9 +5248,8 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/starboard_hallway)
 "eSN" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks/rebel)
 "eSW" = (
@@ -5815,9 +5809,8 @@
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
 /obj/effect/landmark/start/job/fieldcommander/rebel,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks/rebel)
 "fqv" = (
@@ -8484,6 +8477,8 @@
 "hGZ" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/suit/storage/hazardvest,
+/obj/item/clothing/suit/storage/hazardvest/lime,
+/obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
 /obj/item/storage/pouch/medkit/full,
 /obj/item/storage/pouch/medical/full,
@@ -8588,9 +8583,8 @@
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
 /obj/item/armor_module/storage/uniform/holster,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison/rebel)
 "hMr" = (
@@ -9563,9 +9557,8 @@
 /obj/item/bedsheet/blue,
 /obj/effect/landmark/start/job/corporateliaison,
 /obj/structure/bed/fancy,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "iIp" = (
@@ -10111,9 +10104,8 @@
 	},
 /obj/item/camera,
 /obj/item/camera_film,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "jmw" = (
@@ -10600,9 +10592,8 @@
 /area/mainship/shipboard/starboard_missiles)
 "jJz" = (
 /obj/structure/closet/secure_closet/captain,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "jKq" = (
@@ -11035,9 +11026,8 @@
 "jYo" = (
 /obj/item/bedsheet/blue,
 /obj/structure/bed/fancy,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison/rebel)
 "jYJ" = (
@@ -11181,9 +11171,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "kdC" = (
@@ -11575,9 +11564,8 @@
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "kzB" = (
@@ -12192,7 +12180,7 @@
 	dir = 4
 	},
 /obj/item/weapon/gun/rifle/m412{
-	desc = "The M412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition. There is a worn inscription of a moth on it."
+	desc = "The PR-412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition. There is a worn inscription of a moth on it."
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
@@ -12414,9 +12402,8 @@
 /area/mainship/hull/lower_hull)
 "lfQ" = (
 /obj/machinery/marine_selector/clothes/commander/rebel,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks/rebel)
 "lfU" = (
@@ -13283,8 +13270,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "lVv" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/command/corporateliaison)
 "lWH" = (
@@ -13930,18 +13916,16 @@
 /obj/item/clothing/suit/armor/bulletproof,
 /obj/item/attachable/suppressor,
 /obj/item/armor_module/storage/uniform/holster,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "mAg" = (
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks/rebel)
 "mAk" = (
@@ -15100,9 +15084,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway/rebel)
 "nFu" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks/rebel)
 "nFC" = (
@@ -15795,9 +15778,8 @@
 	},
 /obj/item/camera,
 /obj/item/camera_film,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison/rebel)
 "okn" = (
@@ -16252,9 +16234,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "oBU" = (
@@ -17416,8 +17397,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "pzl" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/living/commandbunks)
 "pzO" = (
@@ -18538,9 +18518,8 @@
 /turf/open/floor/mainship/black/corner,
 /area/mainship/squads/general/rebel)
 "qxS" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison)
 "qya" = (
@@ -18596,6 +18575,8 @@
 "qyU" = (
 /obj/structure/table/mainship,
 /obj/item/clothing/suit/storage/hazardvest,
+/obj/item/clothing/suit/storage/hazardvest/lime,
+/obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
 /obj/item/storage/pouch/medkit/full,
 /obj/item/storage/pouch/medical/full,
@@ -18623,9 +18604,8 @@
 /area/mainship/command/cic/rebel)
 "qzX" = (
 /obj/structure/closet/secure_closet/captain,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks/rebel)
 "qAt" = (
@@ -18773,9 +18753,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar/rebel)
 "qGU" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks)
 "qHc" = (
@@ -19092,16 +19071,14 @@
 /obj/effect/landmark/start/job/captain/rebel,
 /obj/machinery/vending/nanomed,
 /mob/living/simple_animal/cat/Jones,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/commandbunks/rebel)
 "qUU" = (
 /obj/machinery/marine_selector/clothes/commander/loyalist,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "qVc" = (
@@ -22124,9 +22101,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks/rebel)
 "tAA" = (
@@ -22935,9 +22911,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/command/corporateliaison/rebel)
 "ujw" = (
@@ -23831,9 +23806,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "vaQ" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "vaU" = (
@@ -26411,9 +26385,8 @@
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
 /obj/effect/landmark/start/job/fieldcommander,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/mainship/living/numbertwobunks)
 "xkW" = (
@@ -26992,8 +26965,7 @@
 /turf/open/floor/plating,
 /area/mainship/command/telecomms/rebel)
 "xKf" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/mainship/command/corporateliaison/rebel)
 "xKy" = (

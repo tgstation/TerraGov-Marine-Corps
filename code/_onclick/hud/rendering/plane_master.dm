@@ -179,4 +179,11 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	plane = GRAVITY_PULSE_PLANE
 	render_target = GRAVITY_PULSE_RENDER_TARGET
+	blend_mode = BLEND_ADD
+	blend_mode_override = BLEND_ADD
 	render_relay_plane = null
+
+/obj/screen/plane_master/balloon_chat
+	name = "balloon alert plane"
+	plane = BALLOON_CHAT_PLANE
+	render_relay_plane = RENDER_PLANE_NON_GAME

@@ -793,9 +793,7 @@ Any new map or map change must comply to these specifications.
 #### TGM Format & Map Merge
 
 New maps should be converted into the .tgm format before making a pull request. All edits to existing maps should be correctly map merged. This is done using the [Map Merge](https://tgstation13.org/wiki/Map_Merger) utility included in the repo to convert the file to TGM format.
-Likewise, you MUST run Map Merge prior to opening your PR when updating existing maps to minimize the change differences (even when using third party mapping programs such as FastDMM.)
-
-Failure to run Map Merge on a map after using third party mapping programs (such as FastDMM) greatly increases the risk of the map's key dictionary becoming corrupted by future edits after running map merge. Resolving the corruption issue involves rebuilding the map's key dictionary; id est rewriting all the keys contained within the map by reconverting it from BYOND to TGM format - which creates very large differences that ultimately delay the PR process and is extremely likely to cause merge conflicts with other pull requests.
+It is HIGHLY recommend to use third party mapping programs such as StrongDMM to make map changes easier.
 
 #### Variable Editing (Var-edits)
 
@@ -813,6 +811,24 @@ All maps should be 255x255 at most because of known issues with how BYOND behave
 
 Ais should be able to go everywhere on the map and it should be a single network if possible (two levels maps get a pass). Nodes can be placed up to 15 tiles apart, including diagonally. Any walls or lava between two nodes will block the link between them. Remember that ais are stupid, and that some obstacles are impossible to cross for them, so make their paths simple.
 
+#### Limited marine supplies in shipside maps
+
+Marine players are given limited supplies for preparation and deployment to enhance their gameplay while not sacrificing xenomorph players' fun. This line of thought follows the philosophy that all shipside maps are not chosen over another in consideration of supplies. For example: if marines choose Pillar of Spring over all other maps due to Pillar of Spring having more round start sentries and mortars, then mappers or contributors are obligated to eliminate the bias. While not an exhausive list, all shipside maps follow the same number of supplies:
+
+Chem lab:
+3 bluespace beakers
+
+CAS armament:
+6 30mm ammo crates
+2 banshees
+2 keepers
+2 widowmakers
+4 mini rockets
+2 GAU-21 30 mm cannons
+2 rocket pods
+2 minirocket pods
+
+This doesn't mean that mappers can't put extra supplies in planetside maps, though the extra supplies should be far away from landing zones to prevent marine players from favoring one map over another when considering supplies.
 #### Anti fob area system implemented
 
 Xenos should not be able to build near the fob before shutters are down. As such, wide enough areas around FOB must be placed. An area is set as non-buildable if it contains a shutter.
@@ -823,7 +839,7 @@ Every area must have an APC. A ground map must have roughly 10 generators, with 
 
 #### Connected pipenet
 
-Every ship should have a believable and complete pipe system (ventilation, scrubbers). All pipes must belong to the same network. No pipes ending nowhere. Pipes groundside are not mandatory, but they add to the atmosphere and are usefull to xeno. 
+Every ship should have a believable and complete pipe system (ventilation, scrubbers). All pipes must belong to the same network. No pipes ending nowhere. Pipes groundside are not mandatory, but they add to the atmosphere and are usefull to xeno.
 
 #### Xenos related items (walls, weeds, silos, etc.)
 
@@ -836,7 +852,7 @@ Adding corpse spawner also add to the atmospher, but they are not mandatory.
 
 Any silo placed on map must be protected by enough fog. This fog only appears in crash gamemode and is here to prevent marines to go near xenos spawn locations
 
-#### Intel and nuke disk computers 
+#### Intel and nuke disk computers
 
 There should be a reasonnable amount of intel computers placed in areas with apc. 3 nuke disk computer (yellow, red, blue) must be placed around the map. A nuke landmark has to be present as well somewhere.
 

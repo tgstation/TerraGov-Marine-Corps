@@ -1,3 +1,4 @@
+#define LAVA_TILE_BURN_DAMAGE 20
 
 //turfs with density = FALSE
 /turf/open
@@ -60,8 +61,8 @@
 
 
 /turf/open/examine(mob/user)
-	..()
-	ceiling_desc(user)
+	. = ..()
+	. += ceiling_desc()
 
 /turf/open/river
 	can_bloody = FALSE
@@ -210,11 +211,13 @@
 
 /turf/open/shuttle/dropship/two
 	icon_state = "rasputin2"
+
 /turf/open/shuttle/dropship/three
 	icon_state = "rasputin3"
 
 /turf/open/shuttle/dropship/four
 	icon_state = "rasputin4"
+
 /turf/open/shuttle/dropship/five
 	icon_state = "rasputin5"
 
@@ -241,6 +244,9 @@
 
 /turf/open/shuttle/dropship/thirteen
 	icon_state = "rasputin13"
+
+/turf/open/shuttle/dropship/fourteen
+	icon_state = "floor6"
 
 /turf/open/shuttle/dropship/grating
 	icon = 'icons/turf/elevator.dmi'
@@ -277,6 +283,24 @@
 
 /turf/open/shuttle/escapepod/six
 	icon_state = "floor6"
+
+/turf/open/shuttle/escapepod/seven
+	icon_state = "floor7"
+
+/turf/open/shuttle/escapepod/eight
+	icon_state = "floor8"
+
+/turf/open/shuttle/escapepod/nine
+	icon_state = "floor9"
+
+/turf/open/shuttle/escapepod/ten
+	icon_state = "floor10"
+
+/turf/open/shuttle/escapepod/eleven
+	icon_state = "floor11"
+
+/turf/open/shuttle/escapepod/twelve
+	icon_state = "floor12"
 
 // Elevator floors
 /turf/open/shuttle/elevator
@@ -372,7 +396,7 @@
 				continue
 
 			if(!L.on_fire || L.getFireLoss() <= 200)
-				L.take_overall_damage(null, 20, clamp(L.getarmor(null, "fire"), 0, 80))
+				L.take_overall_damage(0, LAVA_TILE_BURN_DAMAGE * clamp(L.get_fire_resist(), 0.2, 1), updating_health = TRUE)
 				if(!CHECK_BITFIELD(L.flags_pass, PASSFIRE))//Pass fire allow to cross lava without igniting
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()

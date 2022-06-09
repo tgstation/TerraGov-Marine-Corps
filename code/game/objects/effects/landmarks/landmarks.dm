@@ -240,7 +240,7 @@
 	icon_state = "weapon1"
 	weapon_list = list(
 		/obj/item/weapon/gun/energy/lasgun/M43/practice,
-		/obj/item/weapon/gun/energy/lasgun/tesla,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
@@ -266,7 +266,6 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/combat_knife/upp,
 		/obj/item/stack/throwing_knife,
-		/obj/item/weapon/unathiknife,
 		/obj/item/weapon/chainofcommand,
 		/obj/item/weapon/broken_bottle,
 		/obj/item/weapon/baseballbat,

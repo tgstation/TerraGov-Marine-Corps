@@ -334,7 +334,7 @@
 	desc = "A direction sign, pointing out which way the Mining department is."
 	icon_state = "direction_mining"
 
-	
+
 
 /obj/structure/sign/fixedinplace //direction signs that do not init to a position, handy for when we have to fit 4 signs on a wall at once
 	directional = FALSE
@@ -557,3 +557,8 @@
 	name = "\improper TGMC poster"
 	desc = "An old recruitment poster for the TGMC. Looking at it floods you with a mixture of pride and sincere regret."
 	icon_state = "prop3"
+
+/obj/structure/sign/prop4
+	name = "TerraGov: United for Humanity"
+	desc = "A poster depicting TerraGov's logo and motto, reminding marines of who's looking out for humankind against the Xenomorph menace."
+	icon_state = "prop4"

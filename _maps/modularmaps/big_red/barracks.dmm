@@ -55,12 +55,24 @@
 /area/bigredv2/outside/admin_building)
 "cH" = (
 /obj/machinery/light,
-/turf/open/floor/plating,
+/obj/structure/cable,
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "cK" = (
 /obj/machinery/light{
 	dir = 4
 	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
+"dq" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -105,6 +117,14 @@
 	dir = 6
 	},
 /area/bigredv2/outside/admin_building)
+"fb" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/command/free_access{
+	dir = 1;
+	name = "\improper Operations Maintenance"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
 "fc" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
@@ -112,12 +132,7 @@
 /area/bigredv2/outside/admin_building)
 "fe" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 6
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "fx" = (
 /obj/structure/bed/chair/office/dark{
@@ -138,6 +153,8 @@
 	dir = 4
 	},
 /obj/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "fY" = (
@@ -163,9 +180,23 @@
 /obj/item/tool/pen/red,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
+"hn" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
 "ht" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"hG" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
 /area/bigredv2/outside/admin_building)
 "if" = (
 /obj/structure/cable,
@@ -179,10 +210,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "iT" = (
 /obj/structure/cable,
@@ -206,9 +234,23 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/admin_building)
-"jQ" = (
+"jz" = (
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"jQ" = (
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"jZ" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "kK" = (
 /obj/machinery/computer/security,
@@ -220,6 +262,25 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/ground/jungle/clear,
 /area/bigredv2/outside/admin_building)
+"la" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"lf" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"ll" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
 "lq" = (
 /obj/structure/table,
 /obj/machinery/faxmachine,
@@ -229,7 +290,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "mv" = (
-/obj/machinery/photocopier,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -280,6 +341,8 @@
 	dir = 9
 	},
 /obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
 	},
@@ -302,15 +365,27 @@
 	dir = 8;
 	on = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"pk" = (
-/turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "py" = (
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 4
 	},
+/area/bigredv2/outside/admin_building)
+"qm" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/bigredv2/outside/admin_building)
+"qq" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "qw" = (
 /turf/open/floor/asteroidfloor,
@@ -328,9 +403,18 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
 	},
+/area/bigredv2/outside/admin_building)
+"rv" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "rI" = (
 /obj/machinery/faxmachine,
@@ -359,6 +443,16 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"sE" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grimy,
+/area/bigredv2/outside/admin_building)
+"sQ" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
 /area/bigredv2/outside/admin_building)
 "td" = (
 /obj/structure/cable,
@@ -390,7 +484,15 @@
 	dir = 4
 	},
 /obj/machinery/light,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
+"tP" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "tU" = (
 /obj/machinery/light{
@@ -409,17 +511,22 @@
 	},
 /area/bigredv2/outside/admin_building)
 "uu" = (
-/obj/structure/table,
-/obj/machinery/computer/communications,
+/obj/machinery/computer3/server,
 /turf/open/floor/tile/dark/blue2{
-	dir = 6
+	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
 "uI" = (
 /obj/machinery/light,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
+/area/bigredv2/outside/admin_building)
+"uM" = (
+/obj/structure/bed/chair,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "vf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -448,6 +555,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/bigredv2/outside/admin_building)
 "xC" = (
@@ -455,26 +563,31 @@
 /obj/structure/table,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
+"xL" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/blue2/corner,
+/area/bigredv2/outside/admin_building)
 "xM" = (
-/obj/structure/bed/chair/office/dark,
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 8
-	},
+/obj/machinery/computer/nuke_disk_generator/green,
+/turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
 "xT" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"ye" = (
 /obj/machinery/door/airlock/mainship/command/free_access{
 	dir = 1;
 	name = "\improper Operations Maintenance"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
+/area/bigredv2/outside/admin_building)
+"xV" = (
+/obj/structure/bed,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"ye" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "yq" = (
 /obj/structure/cable,
@@ -488,9 +601,20 @@
 	dir = 9
 	},
 /area/bigredv2/outside/admin_building)
+"yD" = (
+/obj/machinery/light,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
 "zl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"zC" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "zQ" = (
@@ -525,11 +649,11 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "Bc" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
+	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2/corner,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "Bu" = (
 /obj/structure/cable,
@@ -543,13 +667,6 @@
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/area/bigredv2/outside/admin_building)
-"BU" = (
-/obj/machinery/door/airlock/mainship/command/free_access{
-	name = "\improper Operations Maintenance"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "BV" = (
 /turf/open/floor/wood,
@@ -580,6 +697,17 @@
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
+"Dz" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
+"DJ" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
 "Ed" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -595,11 +723,18 @@
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
+"Ev" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
 "ER" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
+/obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
 	},
@@ -629,11 +764,14 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "Gd" = (
-/obj/structure/table,
-/obj/machinery/computer/security,
-/turf/open/floor/tile/dark/blue2{
-	dir = 10
+/obj/machinery/door/airlock/mainship/command/free_access{
+	name = "\improper Operations Office"
 	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "Go" = (
 /obj/structure/rack,
@@ -646,24 +784,25 @@
 	},
 /area/bigredv2/outside/admin_building)
 "GK" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2/corner,
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "GM" = (
-/obj/structure/bed/chair/office/dark,
+/obj/structure/table,
+/obj/machinery/computer/communications,
 /turf/open/floor/tile/dark/blue2{
-	dir = 4
+	dir = 6
 	},
 /area/bigredv2/outside/admin_building)
 "GX" = (
 /obj/machinery/alarm{
 	dir = 1
 	},
-/turf/open/floor/plating,
+/obj/structure/cable,
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "Hg" = (
 /obj/structure/cable,
@@ -683,10 +822,8 @@
 	},
 /area/bigredv2/outside/admin_building)
 "HW" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/blue2{
-	dir = 8
-	},
+/obj/machinery/vending/cigarette,
+/turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "Io" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
@@ -749,6 +886,15 @@
 	dir = 1
 	},
 /area/bigredv2/outside/admin_building)
+"JS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
 "KC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -795,6 +941,18 @@
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
+"LG" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/blue2,
+/area/bigredv2/outside/admin_building)
+"Mh" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/white,
+/area/bigredv2/outside/admin_building)
 "Mj" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light{
@@ -807,7 +965,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "Mr" = (
-/obj/machinery/computer3/server,
+/obj/machinery/photocopier,
 /turf/open/floor/tile/dark/blue2{
 	dir = 5
 	},
@@ -826,6 +984,12 @@
 	dir = 4
 	},
 /area/bigredv2/outside/admin_building)
+"Ni" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/bigredv2/outside/admin_building)
 "Nq" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
@@ -833,12 +997,12 @@
 /turf/open/floor/tile/dark/blue2/corner,
 /area/bigredv2/outside/admin_building)
 "NB" = (
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
+	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 8
-	},
+/obj/machinery/light,
+/turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
 "ND" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -874,10 +1038,11 @@
 	},
 /area/bigredv2/outside/admin_building)
 "Om" = (
-/obj/machinery/computer3/server,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/power/apc,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -894,10 +1059,13 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "OE" = (
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/blue2/corner,
 /area/bigredv2/outside/admin_building)
 "OI" = (
 /obj/structure/cable,
@@ -907,7 +1075,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "Pb" = (
-/obj/machinery/computer/intel_computer,
+/obj/structure/bed/chair/office/dark,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -938,6 +1106,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
+/area/bigredv2/outside/admin_building)
+"Sd" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/bed/chair,
+/turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "Se" = (
 /obj/structure/cable,
@@ -988,6 +1163,11 @@
 	},
 /turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
+"Tt" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
 "TE" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
@@ -1015,6 +1195,7 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "UC" = (
@@ -1051,7 +1232,7 @@
 /area/bigredv2/outside/admin_building)
 "VB" = (
 /obj/structure/cable,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "VC" = (
 /obj/structure/cable,
@@ -1072,9 +1253,10 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "XA" = (
-/obj/machinery/power/apc,
-/obj/structure/cable,
-/turf/open/floor/plating,
+/obj/effect/ai_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
 /area/bigredv2/outside/admin_building)
 "XS" = (
 /obj/structure/cable,
@@ -1097,6 +1279,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/admin_building)
 "Yp" = (
@@ -1108,6 +1291,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/effect/landmark/weed_node,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "YR" = (
@@ -1130,6 +1314,19 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
+/area/bigredv2/outside/admin_building)
+"ZD" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/bigredv2/outside/admin_building)
+"ZW" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
 /area/bigredv2/outside/admin_building)
 
 (1,1,1) = {"
@@ -1174,10 +1371,10 @@ Xz
 YR
 ep
 ep
-SJ
+xV
 eD
 ep
-SJ
+xV
 eD
 ep
 Ym
@@ -1194,7 +1391,7 @@ CU
 US
 ep
 Ap
-fx
+tP
 fx
 cD
 nP
@@ -1212,12 +1409,12 @@ nH
 "}
 (4,1,1) = {"
 nH
-AM
+uM
 CU
 CU
 CU
 CU
-rM
+Dz
 ep
 lq
 cD
@@ -1248,15 +1445,15 @@ ep
 kK
 NW
 fY
-cD
+jZ
 NO
 ep
 Je
-JK
+rv
 nB
 MG
 JK
-nB
+lf
 nB
 td
 fc
@@ -1279,7 +1476,7 @@ Mk
 ep
 Dq
 bl
-Pr
+Ev
 Fx
 cK
 Pr
@@ -1291,7 +1488,7 @@ Yi
 (7,1,1) = {"
 nH
 AM
-CU
+sE
 Bu
 sx
 CU
@@ -1311,7 +1508,7 @@ ep
 ep
 ep
 Dq
-st
+ll
 nH
 "}
 (8,1,1) = {"
@@ -1333,7 +1530,7 @@ oG
 st
 ep
 VK
-BV
+DJ
 UL
 ep
 Dq
@@ -1347,14 +1544,14 @@ CU
 vf
 CU
 Bu
-ad
+Mh
 Pr
 py
-bl
-Pr
+xL
+Ev
 cK
 Pr
-Fx
+Bc
 Pr
 eX
 ep
@@ -1369,8 +1566,8 @@ nH
 (10,1,1) = {"
 Yi
 gQ
-CU
-CU
+sE
+sE
 CU
 Bu
 US
@@ -1380,7 +1577,7 @@ qy
 ep
 ep
 ep
-Zj
+Gd
 ep
 ep
 ep
@@ -1405,14 +1602,14 @@ TE
 st
 ep
 rI
-Ol
-Fx
+Tf
+Bc
 TR
 UC
 ep
-ep
 oS
-NB
+hG
+QL
 QL
 ER
 st
@@ -1436,9 +1633,9 @@ fW
 fx
 Va
 ep
-ep
+XA
 OE
-GK
+VC
 VC
 if
 eX
@@ -1453,18 +1650,18 @@ TE
 te
 ep
 oS
-Ub
+ZW
 st
 ep
 Om
-cD
+fe
 ph
-cD
+GK
 xM
-Gd
 ep
 pc
 te
+ep
 ep
 ep
 ep
@@ -1475,7 +1672,7 @@ Yi
 SJ
 KL
 QX
-ee
+Tt
 rV
 ep
 TE
@@ -1483,17 +1680,17 @@ bl
 eX
 ep
 Mr
-Pr
+uu
 mv
 Pb
 GM
-uu
 ep
-TE
+XA
+jz
 xT
 ye
 jQ
-pk
+VB
 nH
 "}
 (15,1,1) = {"
@@ -1514,11 +1711,11 @@ ep
 ep
 ep
 ep
-ep
-TE
+qm
 te
 ep
-XA
+Sd
+US
 cH
 nH
 "}
@@ -1530,7 +1727,7 @@ ep
 cd
 tH
 ep
-TE
+qm
 st
 ep
 yt
@@ -1540,11 +1737,11 @@ Go
 Go
 Ag
 ep
-oS
-Ub
+TE
 te
 ep
-jQ
+AM
+US
 GX
 nH
 "}
@@ -1560,18 +1757,18 @@ TE
 st
 ep
 fP
-Ne
+Ni
 SK
 Sw
 Ne
 uI
 ep
 TE
-Bc
-fe
+te
 ep
-jQ
-pk
+AM
+US
+qq
 nH
 "}
 (18,1,1) = {"
@@ -1583,7 +1780,7 @@ TE
 te
 ep
 TE
-st
+ll
 ep
 ep
 ep
@@ -1592,12 +1789,12 @@ ep
 ep
 ep
 ep
-TE
-te
+pc
+LG
 ep
-ep
-BU
-ep
+hn
+VB
+yD
 nH
 "}
 (19,1,1) = {"
@@ -1608,22 +1805,22 @@ ep
 TE
 zQ
 Ol
-Ub
+sQ
 NN
-Ol
-Ol
+Tf
+ZD
 Ol
 Aj
 cD
 Ol
-Ol
+Tf
 Ol
 Ub
-zQ
-HW
+te
+ep
 HW
 VB
-fc
+PQ
 nH
 "}
 (20,1,1) = {"
@@ -1644,12 +1841,12 @@ Se
 dV
 Za
 ea
-HN
+iT
 ir
-Pr
-cK
-Pr
-eX
+fb
+la
+zC
+Qo
 nH
 "}
 (21,1,1) = {"
@@ -1658,7 +1855,7 @@ ep
 ep
 ep
 TE
-te
+LG
 ep
 ep
 ep
@@ -1666,10 +1863,10 @@ ep
 ep
 ep
 ep
-TE
+pc
 st
 TE
-te
+NB
 ep
 ep
 ep
@@ -1693,7 +1890,7 @@ SJ
 eD
 ep
 TE
-st
+ll
 TE
 te
 ep
@@ -1744,10 +1941,10 @@ ep
 to
 ep
 ep
-TE
+pc
 st
-TE
-te
+qm
+NB
 ep
 to
 ep
@@ -1775,11 +1972,11 @@ st
 TE
 zQ
 Ol
-Aj
+JS
 tU
 Ol
 JO
-st
+ll
 nH
 "}
 (26,1,1) = {"
@@ -1791,7 +1988,7 @@ ND
 wq
 HN
 Eg
-HN
+dq
 HN
 Eg
 HN
@@ -1822,11 +2019,11 @@ Ol
 Ol
 Ol
 Ol
+ZD
 Ol
 Ol
 Ol
-Ol
-Ol
+ZD
 Ol
 Ol
 Ol
@@ -1842,7 +2039,7 @@ be
 cD
 LB
 Pr
-Pr
+Ev
 Pr
 Pr
 LB
@@ -1854,7 +2051,7 @@ LB
 Pr
 Pr
 cK
-Pr
+Ev
 Pr
 Pr
 Pr

@@ -117,6 +117,31 @@
 	use_power = NO_POWER_USE
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_DROPSHIP_REBEL)
+	/// Has the shutters alarm been played?
+	var/alarm_played = FALSE
+
+/obj/machinery/button/door/open_only/landing_zone/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
+
+/obj/machinery/button/door/open_only/landing_zone/attack_hand(mob/living/user)
+	if((machine_stat & (NOPOWER|BROKEN)))
+		return
+	if(!allowed(user))
+		to_chat(user, span_danger("Access Denied"))
+		flick("[initial(icon_state)]-denied", src)
+		return
+	if(alarm_played)
+		flick("[initial(icon_state)]-denied", src)
+		return
+	use_power(active_power_usage)
+	icon_state = "[initial(icon_state)]1"
+
+	alarm_played = TRUE
+	playsound_z(z, 'sound/effects/shutters_alarm.ogg', 15) // woop woop, shutters opening.
+	addtimer(CALLBACK(src, /atom/movable/.proc/update_icon), 1.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/pulsed), 185)
 
 /obj/machinery/button/door/open_only/landing_zone/pulsed()
 	. = ..()
@@ -231,7 +256,6 @@
 	var/mob/living/xeno
 	///What spawner is linked with this spawner
 	var/link = CLOSE
-	
 
 /obj/machinery/button/valhalla_button/attack_hand(mob/living/user)
 	var/xeno_wanted = tgui_input_list(user, "What xeno do you want to spawn?", "Xeno spawn", GLOB.all_xeno_types)
@@ -245,7 +269,7 @@
 	SIGNAL_HANDLER
 	xeno = null
 
-/obj/machinery/button/valhalla_button/far 
+/obj/machinery/button/valhalla_button/far
 	link = FAR
 
 /obj/machinery/button/valhalla_button/far2

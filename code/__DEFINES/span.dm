@@ -25,6 +25,7 @@
 #define span_hear(str) ("<span class='hear'>" + str + "</span>")
 #define span_highdanger(str) ("<span class='highdanger'>" + str + "</span>")
 #define span_info(str) ("<span class='info'>" + str + "</span>")
+#define span_infoplain(str) ("<span class='infoplain'>" + str + "</span>")
 #define span_information(str) ("<span class='information'>" + str + "</span>")
 #define span_interface(str) ("<span class='interface'>" + str + "</span>")
 #define span_italics(str) ("<span class='italics'>" + str + "</span>")
@@ -70,3 +71,4 @@
 #define span_xenonotice(str) ("<span class='xenonotice'>" + str + "</span>")
 #define span_xenowarning(str) ("<span class='xenowarning'>" + str + "</span>")
 #define span_yell(str) ("<span class='yell'>" + str + "</span>")
+#define span_deptradio(str) ("<span class='deptradio'>" + str + "</span>")

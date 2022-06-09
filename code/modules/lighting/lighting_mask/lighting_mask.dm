@@ -16,6 +16,7 @@
 	blend_mode = BLEND_ADD
 	appearance_flags = KEEP_TOGETHER|RESET_TRANSFORM
 	move_resist = INFINITY
+	vis_flags = VIS_HIDE
 
 	///The current angle the item is pointing at
 	var/current_angle = 0

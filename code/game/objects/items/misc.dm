@@ -24,7 +24,7 @@
 
 /obj/item/clock/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "The [src] reads: [GLOB.current_date_string] - [stationTimestamp()]")
+	. += "The [src] reads: [GLOB.current_date_string] - [stationTimestamp()]"
 
 /obj/item/bananapeel
 	name = "banana peel"
@@ -150,11 +150,11 @@
 	icon = 'icons/obj/items/card.dmi'
 	icon_state = "centcom"
 	///This is the number of points this thing has to give.
-	var/extra_points = 100
+	var/extra_points = 150
 
 /obj/item/dropship_points_voucher/examine(mob/user)
 	. = ..()
-	to_chat(user, "It contains [extra_points] points.")
+	. += "It contains [extra_points] points."
 
 /obj/item/minerupgrade/automatic
 	name = "mining computer"

@@ -6,6 +6,7 @@
 	layer = ABOVE_TABLE_LAYER
 	density = TRUE
 	anchored = TRUE
+	coverage = 10
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 500

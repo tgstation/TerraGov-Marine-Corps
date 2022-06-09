@@ -36,12 +36,6 @@ OPERATIONS
 	contains = list(/obj/item/beacon/supply_beacon)
 	cost = 10
 
-/datum/supply_packs/operations/beacons_orbital
-	name = "orbital beacon"
-	contains = list(/obj/item/beacon/orbital_bombardment_beacon)
-	cost = 30
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "fulton extraction pack"
 	contains = list(/obj/item/fulton_extraction_pack)
@@ -81,7 +75,7 @@ OPERATIONS
 
 /datum/supply_packs/operations/pinpointer
 	name = "pool tracker crate"
-	contains = list(/obj/item/pinpointer/pool)
+	contains = list(/obj/item/pinpointer)
 	cost = 20
 	available_against_xeno_only = TRUE
 
@@ -151,7 +145,7 @@ OPERATIONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/cas_voucher
-	name = "100 dropship fabricator points"
+	name = "150 dropship fabricator points"
 	contains = list(/obj/item/dropship_points_voucher)
 	cost = 40
 	containertype = null
@@ -171,22 +165,22 @@ WEAPONS
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/weapons/sentry
-	name = "UA 571-C Base Defense Sentry"
+	name = "ST-571 Base Defense Sentry"
 	contains = list(/obj/item/storage/box/sentry)
 	cost = 40
 
 /datum/supply_packs/weapons/sentry_ammo
-	name = "UA 571-C sentry ammunition"
+	name = "ST-571 sentry ammunition"
 	contains = list(/obj/item/ammo_magazine/sentry)
 	cost = 10
 
 /datum/supply_packs/weapons/minisentry
-	name = "UA-580 Portable Sentry"
+	name = "ST-580 Portable Sentry"
 	contains = list(/obj/item/storage/box/minisentry)
 	cost = 40
 
 /datum/supply_packs/weapons/minisentry_ammo
-	name = "UA-580 point defense sentry ammo"
+	name = "ST-580 point defense sentry ammo"
 	contains = list(/obj/item/ammo_magazine/minisentry)
 	cost = 10
 
@@ -199,117 +193,167 @@ WEAPONS
 
 
 /datum/supply_packs/weapons/m56d_emplacement
-	name = "TL-102 Mounted Heavy Smartgun"
+	name = "HSG-102 Mounted Heavy Smartgun"
 	contains = list(/obj/item/storage/box/tl102)
 	cost = 80
 
 /datum/supply_packs/weapons/m56d
-	name = "TL-102 mounted heavy smartgun ammo"
+	name = "HSG-102 mounted heavy smartgun ammo"
 	contains = list(/obj/item/ammo_magazine/tl102)
 	cost = 10
 
-/datum/supply_packs/weapons/tesla
-	name = "Tesla Shock Rifle"
-	contains = list(
-		/obj/item/weapon/gun/energy/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-	)
+/datum/supply_packs/weapons/antitankgun
+	name = "AT-36 Anti Tank Gun"
+	contains = list(/obj/item/weapon/gun/standard_atgun)
 	cost = 60
 
-/datum/supply_packs/ammo
-	name = "Energy Rifle cells 3x"
+/datum/supply_packs/weapons/antitankgunammo
+	name = "AT-36 AP-HE Shell (x3)"
 	contains = list(
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla,
+		/obj/item/ammo_magazine/standard_atgun,
+		/obj/item/ammo_magazine/standard_atgun,
+		/obj/item/ammo_magazine/standard_atgun,
 	)
+	cost = 2
+
+/datum/supply_packs/weapons/antitankgunammo/apcr
+	name = "AT-36 APCR Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/apcr,
+		/obj/item/ammo_magazine/standard_atgun/apcr,
+		/obj/item/ammo_magazine/standard_atgun/apcr,
+	)
+	cost = 2
+
+/datum/supply_packs/weapons/antitankgunammo/he
+	name = "AT-36 HE Shell (x3)"
+	contains = list(
+		/obj/item/ammo_magazine/standard_atgun/he,
+		/obj/item/ammo_magazine/standard_atgun/he,
+		/obj/item/ammo_magazine/standard_atgun,
+	)
+	cost = 2
+
+/datum/supply_packs/weapons/tesla
+	name = "Tesla Shock Rifle"
+	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla)
+	cost = 60
+
+/datum/supply_packs/weapons/tx54
+	name = "GL-54 airburst grenade launcher"
+	contains = list(/obj/item/weapon/gun/rifle/tx54)
+	cost = 30
+
+/datum/supply_packs/weapons/tx54_airburst
+	name = "GL-54 airburst grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54)
+	cost = 4
+
+/datum/supply_packs/weapons/tx54_incendiary
+	name = "GL-54 incendiary grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/incendiary)
+	cost = 6
+
+/datum/supply_packs/weapons/tx54_he
+	name = "GL-54 HE grenade magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/tx54/he)
 	cost = 10
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/recoillesskit
-	name = "T-160 Recoilless rifle kit"
-	contains = list(/obj/item/storage/box/recoilless_system)
+	name = "RL-160 Recoilless rifle kit"
+	contains = list(/obj/item/storage/holster/backholster/rpg/full)
 	cost = 40
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/shell_regular
-	name = "T-160 RR HE shell"
+	name = "RL-160 RR HE shell"
 	contains = list(/obj/item/ammo_magazine/rocket/recoilless)
 	cost = 3
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/shell_le
-	name = "T-160 RR LE shell"
+	name = "RL-160 RR LE shell"
 	contains = list(/obj/item/ammo_magazine/rocket/recoilless/light)
 	cost = 3
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/railgun
-	name = "TX-220 Railgun"
+	name = "SR-220 Railgun"
 	contains = list(/obj/item/weapon/gun/rifle/railgun)
 	cost = 40
 
 /datum/supply_packs/weapons/railgun_ammo
-	name = "Railgun round"
+	name = "Railgun armor piercing discarding sabot round"
 	contains = list(/obj/item/ammo_magazine/railgun)
-	cost = 3
+	cost = 2
+
+/datum/supply_packs/weapons/railgun_ammo/hvap
+	name = "Railgun high velocity armor piercing round"
+	contains = list(/obj/item/ammo_magazine/railgun/hvap)
+	cost = 2
+
+/datum/supply_packs/weapons/railgun_ammo/smart
+	name = "Railgun smart armor piercing round"
+	contains = list(/obj/item/ammo_magazine/railgun/smart)
+	cost = 2
 
 /datum/supply_packs/weapons/tx8
-	name = "TX-8 Scout Rifle"
+	name = "BR-8 Scout Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/tx8)
 	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_regular
-	name = "TX-8 scout magazine"
+	name = "BR-8 scout magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8)
 	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_impact
-	name = "TX-8 scout impact magazine"
+	name = "BR-8 scout impact magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/impact)
 	cost = 7
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/scout_incendiary
-	name = "TX-8 scout incendiary magazine"
+	name = "Br-8 scout incendiary magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/tx8/incendiary)
 	cost = 7
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/thermobaric
-	name = "T-57 Thermobaric Launcher"
+	name = "RL-57 Thermobaric Launcher"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4/t57)
 	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/thermobaric_wp
-	name = "T-57 Thermobaric WP rocket array"
+	name = "RL-57 Thermobaric WP rocket array"
 	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
 	cost = 5
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specdemo
-	name = "T-152 SADAR Rocket Launcher"
+	name = "RL-152 SADAR Rocket Launcher"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
 	cost = SADAR_PRICE
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_regular
-	name = "T-152 SADAR HE rocket"
+	name = "RL-152 SADAR HE rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar)
 	cost = 6
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_ap
-	name = "T-152 SADAR AP rocket"
+	name = "RL-152 SADAR AP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/ap)
 	cost = 7
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/rpg_wp
-	name = "T-152 SADAR WP rocket"
+	name = "RL-152 SADAR WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
 	cost = 5
 	available_against_xeno_only = TRUE
@@ -332,27 +376,39 @@ WEAPONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper
-	name = "T-81 IFF Auto Sniper kit"
+	name = "SR-81 IFF Auto Sniper kit"
 	contains = list(/obj/item/weapon/gun/rifle/standard_autosniper)
 	cost = 50
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/autosniper_regular
-	name = "T-81 IFF sniper magazine"
+	name = "SR-81 IFF sniper magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
 	cost = 3
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial
-	name = "T-26 Antimaterial rifle kit"
+	name = "SR-26 Antimaterial rifle kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 75
+	cost = 65
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial_ammo
-	name = "T-26 AMR magazine"
+	name = "SR-26 AMR magazine"
 	contains = list(/obj/item/ammo_magazine/sniper)
+	cost = 3
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/antimaterial_incend_ammo
+	name = "SR-26 AMR incendiary magazine"
+	contains = list(/obj/item/ammo_magazine/sniper/incendiary)
 	cost = 5
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/weapons/antimaterial_flak_ammo
+	name = "SR-26 AMR flak magazine"
+	contains = list(/obj/item/ammo_magazine/sniper/flak)
+	cost = 4
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/specminigun
@@ -366,53 +422,47 @@ WEAPONS
 	cost = 5
 
 /datum/supply_packs/weapons/mmg
-	name = "T-27 Medium Machinegun"
+	name = "MG-27 Medium Machinegun"
 	contains = list(/obj/item/weapon/gun/standard_mmg)
 	cost = 10
 
 /datum/supply_packs/weapons/hmg
-	name = "MG-08/495 heavy machinegun"
+	name = "HMG-08 heavy machinegun"
 	contains = list(/obj/item/weapon/gun/heavymachinegun)
 	cost = 30
 
 /datum/supply_packs/weapons/hmg_ammo
-	name = "MG-08/495 heavy machinegun ammo"
+	name = "HMG-08 heavy machinegun ammo"
 	contains = list(/obj/item/ammo_magazine/heavymachinegun)
 	cost = 7
 
 /datum/supply_packs/weapons/smartgun
-	name = "T-29 Smart Machinegun"
+	name = "SG-29 Smart Machinegun"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 40
 
 /datum/supply_packs/weapons/smartgun_ammo
-	name = "T-29 smartmachinegun ammo"
+	name = "SG-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 5
 
-/datum/supply_packs/weapons/smartrifle
-	name = "T-25 Smart Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/standard_smartrifle)
+/datum/supply_packs/weapons/smart_minigun
+	name = "SG-85 Smart Handheld Gatling Gun"
+	contains = list(/obj/item/weapon/gun/minigun/smart_minigun)
 	cost = 40
 
-/datum/supply_packs/weapons/smartrifle_ammo
-	name = "T-25 smartrifle magazine"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
-	cost = 2
-
-/datum/supply_packs/weapons/smartrifle_pack
-	name = "T-25 smartrifle ammo box"
-	notes = "Contains a box with 200 rounds for a T-25 (MAGAZINES SOLD SEPERATELY)"
-	contains = list(/obj/item/ammo_magazine/packet/t25)
-	cost = 4
+/datum/supply_packs/weapons/smart_minigun_ammo
+	name = "SG-85 ammo bin"
+	contains = list(/obj/item/ammo_magazine/packet/smart_minigun)
+	cost = 5
 
 /datum/supply_packs/weapons/flamethrower
-	name = "TL-84 Flamethrower"
+	name = "FL-84 Flamethrower"
 	contains = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard)
 	cost = 15
 
 /datum/supply_packs/weapons/napalm
-	name = "TL-84 normal fuel tank"
+	name = "FL-84 normal fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank)
 	cost = 3
 
@@ -427,7 +477,7 @@ WEAPONS
 	cost = 60
 
 /datum/supply_packs/weapons/rpgoneuse
-	name = "T-72 Disposable RPG"
+	name = "RL-72 Disposable RPG"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/oneuse)
 	cost = 5
 	available_against_xeno_only = TRUE
@@ -544,33 +594,60 @@ EXPLOSIVES
 	cost = 15
 
 /datum/supply_packs/explosives/mortar
-	name = "M402 mortar crate"
+	name = "T-50S mortar crate"
 	contains = list(/obj/item/mortar_kit)
-	cost = 40
+	cost = 25
 
 /datum/supply_packs/explosives/mortar_ammo_he
-	name = "M402 mortar HE shell"
-	contains = list(/obj/item/mortal_shell/he)
-	cost = 2
+	name = "T-50S mortar HE shell (x2)"
+	contains = list(/obj/item/mortal_shell/he,/obj/item/mortal_shell/he)
+	cost = 1
 
 /datum/supply_packs/explosives/mortar_ammo_incend
-	name = "M402 mortar incendiary shell"
-	contains = list(/obj/item/mortal_shell/incendiary)
-	cost = 2
+	name = "T-50S mortar incendiary shell (x2)"
+	contains = list(/obj/item/mortal_shell/incendiary, /obj/item/mortal_shell/incendiary)
+	cost = 1
 
 /datum/supply_packs/explosives/mortar_ammo_flare
-	name = "M402 mortar flare shell"
-	contains = list(/obj/item/mortal_shell/flare)
+	name = "T-50S mortar flare shell (x2)"
+	notes = "Can be fired out of the MG-100Y howitzer, as well."
+	contains = list(/obj/item/mortal_shell/flare,/obj/item/mortal_shell/flare)
 	cost = 1
 
 /datum/supply_packs/explosives/mortar_ammo_smoke
-	name = "M402 mortar smoke shell"
-	contains = list(/obj/item/mortal_shell/smoke)
+	name = "T-50S mortar smoke shell (x2)"
+	contains = list(/obj/item/mortal_shell/smoke, /obj/item/mortal_shell/smoke)
 	cost = 1
 
 /datum/supply_packs/explosives/mortar_ammo_plasmaloss
-	name = "M402 mortar tanglefoot shell"
+	name = "T-50S mortar tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/plasmaloss)
+	cost = 1
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/explosives/howitzer
+	name = "MG-100Y howitzer"
+	contains = list(/obj/item/mortar_kit/howitzer)
+	cost = 60
+
+/datum/supply_packs/explosives/howitzer_ammo_he
+	name = "MG-100Y howitzer HE shell (x2)"
+	contains = list(/obj/item/mortal_shell/howitzer/he, /obj/item/mortal_shell/howitzer/he)
+	cost = 3
+
+/datum/supply_packs/explosives/howitzer_ammo_incend
+	name = "MG-100Y howitzer incendiary shell (x2)"
+	contains = list(/obj/item/mortal_shell/howitzer/incendiary, /obj/item/mortal_shell/howitzer/incendiary)
+	cost = 3
+
+/datum/supply_packs/explosives/mortar_ammo_wp
+	name = "MG-100Y howitzer white phosporous smoke shell"
+	contains = list(/obj/item/mortal_shell/howitzer/white_phos)
+	cost = 2
+
+/datum/supply_packs/explosives/mortar_ammo_plasmaloss
+	name = "MG-100Y howitzer tanglefoot shell"
+	contains = list(/obj/item/mortal_shell/howitzer/plasmaloss)
 	cost = 2
 	available_against_xeno_only = TRUE
 
@@ -594,10 +671,11 @@ ARMOR
 /datum/supply_packs/armor/riot
 	name = "Heavy Riot Armor Set"
 	contains = list(
-		/obj/item/clothing/suit/armor/riot/marine,
-		/obj/item/clothing/head/helmet/riot,
+		/obj/item/clothing/suit/storage/marine/riot,
+		/obj/item/clothing/head/helmet/marine/riot,
 	)
-	cost = 30
+	cost = 12
+	available_against_xeno_only = TRUE
 
 /datum/supply_packs/armor/marine_shield
 	name = "TL-172 Defensive Shield"
@@ -863,7 +941,7 @@ MEDICAL
 	name = "lemoline"
 	notes = "Contains 1 bottle of lemoline with 10 units."
 	contains = list(/obj/item/reagent_containers/glass/bottle/lemoline)
-	cost = 25
+	cost = 5
 
 /datum/supply_packs/medical/advancedKits
 	name = "Advanced medical packs"
@@ -973,8 +1051,8 @@ ENGINEERING
 		/obj/item/storage/belt/utility/full,
 		/obj/item/storage/belt/utility/full,
 		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/suit/storage/hazardvest/lime,
+		/obj/item/clothing/suit/storage/hazardvest/blue,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/hardhat,
@@ -1066,32 +1144,32 @@ Imports
 	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/imports/m41a
-	name = "HK-11 Pulse Rifle"
+	name = "PR-11 Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m41a)
 	cost = 5
 
 /datum/supply_packs/imports/m41a/ammo
-	name = "HK-11 Pulse Rifle Ammo"
+	name = "PR-11 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m41a)
 	cost = 1
 
 /datum/supply_packs/imports/m412
-	name = "M412 Pulse Rifle"
+	name = "PR-412 Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m412)
 	cost = 5
 
 /datum/supply_packs/imports/m41a2/ammo
-	name = "M412 Pulse Rifle Ammo"
+	name = "PR-412 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle)
 	cost = 1
 
 /datum/supply_packs/imports/m412l1
-	name = "M412L1 Heavy Pulse Rifle"
+	name = "PR-412L1 Heavy Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m412l1_hpr)
 	cost = 15
 
 /datum/supply_packs/imports/m412l1/ammo
-	name = "M412L1 Heavy Pulse Rifle Ammo"
+	name = "PR-412L1 Heavy Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/m412l1_hpr)
 	cost = 5
 
@@ -1106,22 +1184,22 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/mp7
-	name = "MP27 SMG"
+	name = "SMG-27 SMG"
 	contains = list(/obj/item/weapon/gun/smg/mp7)
 	cost = 5
 
 /datum/supply_packs/imports/mp7/ammo
-	name = "MP27 SMG Ammo"
+	name = "SMG-27 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/mp7)
 	cost = 1
 
 /datum/supply_packs/imports/m25
-	name = "MR-25 SMG"
+	name = "SMG-25 SMG"
 	contains = list(/obj/item/weapon/gun/smg/m25)
 	cost = 5
 
 /datum/supply_packs/imports/m25/ammo
-	name = "MR-25 SMG Ammo"
+	name = "SMG-25 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/m25)
 	cost = 1
 
@@ -1136,12 +1214,12 @@ Imports
 	cost = 5
 
 /datum/supply_packs/imports/uzi
-	name = "MP-2 Uzi SMG"
+	name = "SMG-2 Uzi SMG"
 	contains = list(/obj/item/weapon/gun/smg/uzi)
 	cost = 5
 
 /datum/supply_packs/imports/uzi/ammo
-	name = "MP-2 Uzi SMG Ammo"
+	name = "SMG-2 Uzi SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/uzi)
 	cost = 1
 
@@ -1278,22 +1356,22 @@ Imports
 	cost = 1
 
 /datum/supply_packs/imports/rev44
-	name = "M-44 SAA Revolver"
+	name = "R-44 SAA Revolver"
 	contains = list(/obj/item/weapon/gun/revolver/single_action/m44)
 	cost = 5
 
 /datum/supply_packs/imports/rev357/ammo
-	name = "M-44 SAA Revolver Ammo"
+	name = "R-44 SAA Revolver Ammo"
 	contains = list(/obj/item/ammo_magazine/revolver)
 	cost = 5
 
 /datum/supply_packs/imports/g22
-	name = "G-22 Handgun"
+	name = "P-22 Handgun"
 	contains = list(/obj/item/weapon/gun/pistol/g22)
 	cost = 5
 
 /datum/supply_packs/imports/beretta92fs/ammo
-	name = "G-22 Handgun Ammo"
+	name = "P-22 Handgun Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/g22)
 	cost = 1
 
@@ -1396,19 +1474,19 @@ VEHICLES
 /datum/supply_packs/vehicles/uv_light_ammo
 	name = "Light UV ammo"
 	contains = list(/obj/item/ammo_magazine/box11x35mm)
-	cost = 10
+	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/uv_heavy_ammo
 	name = "Heavy UV ammo"
 	contains = list(/obj/item/ammo_magazine/box12x40mm)
-	cost = 10
+	cost = 3
 	containertype = /obj/structure/closet/crate/ammo
 
 /datum/supply_packs/vehicles/vehicle_remote
 	name = "Vehicle remote"
 	contains = list(/obj/item/unmanned_vehicle_remote)
-	cost = 10
+	cost = 1
 	containertype = /obj/structure/closet/crate
 
 /*******************************************************************************
@@ -1452,7 +1530,7 @@ FACTORY
 /datum/supply_packs/factory/phosphosrefill
 	name = "Phosphorus-resistant plates refill"
 	contains = list(/obj/item/factory_refill/phosnade_refill)
-	cost = 60
+	cost = 90
 
 /datum/supply_packs/factory/bignaderefill
 	name = "Rounded M15 plates refill"
@@ -1462,70 +1540,64 @@ FACTORY
 /datum/supply_packs/factory/sadar_refill_he
 	name = "SADAR HE missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_he_refill)
-	cost = 100
+	cost = 50
 
 /datum/supply_packs/factory/sadar_refill_ap
 	name = "SADAR AP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_ap_refill)
-	cost = 110
+	cost = 60
 
 /datum/supply_packs/factory/sadar_refill_wp
 	name = "SADAR WP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_wp_refill)
-	cost = 110
+	cost = 40
 
 /datum/supply_packs/factory/standard_recoilless_refill
 	name = "Recoilless standard missile assembly refill"
 	contains = list(/obj/item/factory_refill/normal_rr_missile_refill)
-	cost = 20
+	cost = 30
 
 /datum/supply_packs/factory/light_recoilless_refill
 	name = "Recoilless light missile assembly refill"
 	contains = list(/obj/item/factory_refill/light_rr_missile_refill)
-	cost = 20
+	cost = 30
 
 /datum/supply_packs/factory/pizzarefill
 	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
 	contains = list(/obj/item/factory_refill/pizza_refill)
 	cost = 29 //allows a one point profit if all pizzas are processed and sold back to ASRS
 
-/datum/supply_packs/factory/smartrifle_ammo_refill
-	name = "Smart rifle bullet parts refill"
-	contains = list(/obj/item/factory_refill/smartgunner_rifle_box_refill)
-	cost = 30
+/datum/supply_packs/factory/smartgun_minigun_box_refill
+	name = "Smart minigun bullet bin parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_minigun_box_refill)
+	cost = 25
 
 /datum/supply_packs/factory/smartgun_magazine_refill
 	name = "Smart machinegun drum parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
-	cost = 50
+	cost = 25
 
 /datum/supply_packs/factory/autosniper_magazine_refill
-	name = "T-81 IFF Auto Sniper magazine assembly refill"
+	name = "SR-81 IFF Auto Sniper magazine assembly refill"
 	contains = list(/obj/item/factory_refill/auto_sniper_magazine_refill)
 	cost = 40
 
 /datum/supply_packs/factory/scout_rifle_magazine_refill
-	name = "TX-8 scout rifle magazine assembly refill"
+	name = "BR-8 scout rifle magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
 	cost = 50
 
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"
 	contains = list(/obj/item/factory_refill/claymore_refill)
-	cost = 20
-
+	cost = 30
 
 /datum/supply_packs/factory/mateba_speedloader_refill
 	name = "Mateba autorevolver speedloader assembly refill"
 	contains = list(/obj/item/factory_refill/mateba_speedloader_refill)
-	cost = 20
+	cost = 30
 
 /datum/supply_packs/factory/railgun_magazine_refill
 	name = "Railgun magazine assembly refill"
 	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
 	cost = 20
-
-/datum/supply_packs/factory/scout_rifle_magazine_refill
-	name = "TX-8 scout rifle magazine assembly refill"
-	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
-	cost = 90

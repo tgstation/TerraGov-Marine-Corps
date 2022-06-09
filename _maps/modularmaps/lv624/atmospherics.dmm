@@ -15,8 +15,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 10
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "cn" = (
@@ -33,8 +32,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "cU" = (
@@ -91,8 +89,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 6
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "gi" = (
@@ -103,8 +100,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 10
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "iF" = (
@@ -115,8 +111,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "iN" = (
@@ -155,8 +150,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "lX" = (
@@ -168,8 +162,7 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "SW-in"
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "mZ" = (
@@ -220,8 +213,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 9
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "tr" = (
@@ -328,11 +320,10 @@
 /area/lv624/lazarus/atmos)
 "BD" = (
 /obj/structure/cryofeed/right,
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "BV" = (
@@ -358,8 +349,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "CS" = (
@@ -404,11 +394,10 @@
 /area/lv624/lazarus/atmos)
 "EN" = (
 /obj/structure/cryofeed,
-/obj/effect/decal/warning_stripes{
-	icon_state = "E-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 4
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "Gh" = (
@@ -455,8 +444,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "Ke" = (
@@ -483,8 +471,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 6
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "LL" = (
@@ -608,8 +595,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/floor/podhatch/floor{
-	icon_state = "bcircuitoff"
+/turf/open/floor/engine{
 	},
 /area/lv624/lazarus/atmos)
 "Wh" = (

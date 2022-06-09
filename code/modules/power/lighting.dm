@@ -22,14 +22,14 @@
 		icon_state = "bulb-construct-stage1"
 
 /obj/machinery/light_construct/examine(mob/user)
-	..()
+	. = ..()
 	switch(stage)
 		if(1)
-			to_chat(user, "It's an empty frame.")
+			. += "It's an empty frame."
 		if(2)
-			to_chat(user, "It's wired.")
+			. += "It's wired."
 		if(3)
-			to_chat(user, "The casing is closed.")
+			. += "The casing is closed."
 
 
 /obj/machinery/light_construct/attackby(obj/item/I, mob/user, params)
@@ -275,16 +275,16 @@
 
 // examine verb
 /obj/machinery/light/examine(mob/user)
-	..()
+	. = ..()
 	switch(status)
 		if(LIGHT_OK)
-			to_chat(user, "It is turned [light_on? "on" : "off"].")
+			. += "It is turned [light_on? "on" : "off"]."
 		if(LIGHT_EMPTY)
-			to_chat(user, "The [fitting] has been removed.")
+			. += "The [fitting] has been removed."
 		if(LIGHT_BURNED)
-			to_chat(user, "The [fitting] is burnt out.")
+			. += "The [fitting] is burnt out."
 		if(LIGHT_BROKEN)
-			to_chat(user, "The [fitting] has been smashed.")
+			. += "The [fitting] has been smashed."
 
 
 
@@ -679,31 +679,31 @@
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds1/delayone/turn_on()
 	icon_state = "landingstripe1"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds1/delaytwo/turn_on()
 	icon_state = "landingstripe2"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds1/delaythree/turn_on()
 	icon_state = "landingstripe3"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds2/delayone/turn_on()
 	icon_state = "landingstripe1"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds2/delaytwo/turn_on()
 	icon_state = "landingstripe2"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/landinglight/ds2/delaythree/turn_on()
 	icon_state = "landingstripe3"
-	set_light(2)
+	set_light(2,2)
 
 /obj/machinery/floor_warn_light
 	name = "alarm light"

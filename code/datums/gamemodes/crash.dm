@@ -17,7 +17,6 @@
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
-	var/planet_nuked = CRASH_NUKE_NONE
 	var/marines_evac = CRASH_EVAC_NONE
 
 	// Shuttle details
@@ -99,14 +98,14 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
-	
+
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 
 	for(var/i in GLOB.alive_xeno_list)
 		if(isxenolarva(i)) // Larva
 			var/mob/living/carbon/xenomorph/larva/X = i
-			X.amount_grown = X.max_grown
+			X.evolution_stored = X.xeno_caste.evolution_threshold //Immediate roundstart evo for larva.
 		else // Handles Shrike etc
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
@@ -143,10 +142,10 @@
 	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 
-	if(num_humans && planet_nuked == CRASH_NUKE_NONE && marines_evac == CRASH_EVAC_NONE && !force_end)
+	if(num_humans && planet_nuked == INFESTATION_NUKE_NONE && marines_evac == CRASH_EVAC_NONE && !force_end)
 		return FALSE
 
-	if(planet_nuked == CRASH_NUKE_NONE)
+	if(planet_nuked == INFESTATION_NUKE_NONE)
 		if(!num_humans)
 			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines
 			round_finished = MODE_INFESTATION_X_MAJOR
@@ -156,7 +155,7 @@
 			round_finished = MODE_INFESTATION_X_MINOR
 			return TRUE
 
-	if(planet_nuked == CRASH_NUKE_COMPLETED)
+	if(planet_nuked == INFESTATION_NUKE_COMPLETED)
 		if(marines_evac == CRASH_EVAC_NONE)
 			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines nuked the planet but didn't evac
 			round_finished = MODE_INFESTATION_M_MINOR
@@ -167,58 +166,11 @@
 	return FALSE
 
 
-/datum/game_mode/infestation/crash/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
-	SIGNAL_HANDLER
+/datum/game_mode/infestation/crash/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
 	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
 	if(!num_humans) // no humans left on planet to try and restart it.
 		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
-
-	priority_announce("WARNING. WARNING. Planetary Nuke deactivated. WARNING. WARNING. Self destruct failed. WARNING. WARNING.", "Priority Alert")
-
-/datum/game_mode/infestation/crash/proc/on_nuclear_explosion(datum/source, z_level)
-	SIGNAL_HANDLER
-	planet_nuked = CRASH_NUKE_INPROGRESS
-	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
-
-/datum/game_mode/infestation/crash/proc/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
-	SIGNAL_HANDLER
-	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	var/area_name = get_area_name(nuke)
-	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
-	HS.set_all_xeno_trackers(nuke)
-
-/datum/game_mode/infestation/crash/proc/play_cinematic(z_level)
-	GLOB.enter_allowed = FALSE
-	priority_announce("DANGER. DANGER. Planetary Nuke Activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
-	var/sound/S = sound(pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'), channel = CHANNEL_CINEMATIC)
-	SEND_SOUND(world, S)
-
-	for(var/x in GLOB.player_list)
-		var/mob/M = x
-		if(isobserver(M) || isnewplayer(M))
-			continue
-		shake_camera(M, 110, 4)
-
-	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
-	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
-	addtimer(VARSET_CALLBACK(src, planet_nuked, CRASH_NUKE_COMPLETED), nuketime)
-	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
-
-	Cinematic(CINEMATIC_CRASH_NUKE, world)
-
-
-/datum/game_mode/infestation/crash/proc/do_nuke_z_level(z_level)
-	if(!z_level)
-		return
-	for(var/i in GLOB.alive_living_list)
-		var/mob/living/victim = i
-		var/turf/victim_turf = get_turf(victim) //Sneaky people on lockers.
-		if(QDELETED(victim_turf) || victim_turf.z != z_level)
-			continue
-		victim.adjustFireLoss(victim.maxHealth*2)
-		CHECK_TICK
-
 
 /datum/game_mode/infestation/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	SIGNAL_HANDLER

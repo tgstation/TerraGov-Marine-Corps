@@ -12,7 +12,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	movement_acc_penalty_mult = 0
+	movement_acc_penalty_mult = 2
 	wield_delay = 0.2 SECONDS //If you modify your pistol to be two-handed, it will still be fast to aim
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
@@ -33,18 +33,18 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	actions_types = list(/datum/action/item_action/aim_mode) // all pistols can aim mode
 	aim_speed_modifier = 0.65
-	scatter = 0
+	scatter = -2
 	scatter_unwielded = 4
 	akimbo_additional_delay = 0.9
 
 	placed_overlay_iconstate = "pistol"
 
 //-------------------------------------------------------
-//TP-14 PISTOL
+//P-14 PISTOL
 
 /obj/item/weapon/gun/pistol/standard_pistol
-	name = "\improper TP-14 pistol"
-	desc = "The TP-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14-round 9mm magazines."
+	name = "\improper P-14 pistol"
+	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14-round 9mm magazines."
 	icon_state = "tp14"
 	item_state = "tp14"
 	caliber = CALIBER_9X19 //codex
@@ -59,7 +59,6 @@
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.95
-	scatter = 0
 	scatter_unwielded = 4
 	recoil = -2
 	recoil_unwielded = -2
@@ -67,9 +66,9 @@
 	lower_akimbo_accuracy = 4
 
 //-------------------------------------------------------
-//TX-7 Plasma Pistol
+//PP-7 Plasma Pistol
 /obj/item/weapon/gun/pistol/plasma_pistol
-	name = "\improper TX-7 plasma pistol"
+	name = "\improper PP-7 plasma pistol"
 	desc = "An experimental weapon designed to set the terrain and targets on fire. It hums with power as magnetic fields coil round each other."
 	icon_state = "tx7"
 	item_state = "tx7"
@@ -90,6 +89,7 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/scope/marine,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
@@ -100,7 +100,6 @@
 	muzzle_flash_color = COLOR_GREEN
 
 	fire_delay = 1.5 SECONDS
-	scatter = -1
 	scatter_unwielded = 2
 	recoil = -2
 	recoil_unwielded = -2
@@ -111,6 +110,8 @@
 	pixel_shift_x = 10
 	pixel_shift_y = 19
 
+	wield_delay_mod	= 0.2 SECONDS
+
 	placed_overlay_iconstate = "tx7"
 
 /obj/item/weapon/gun/pistol/plasma_pistol/can_attach(obj/item/attaching_to, mob/attacher)
@@ -118,6 +119,15 @@
 		return TRUE
 	to_chat(attacher, span_warning("You cannot attach [src] to [attaching_to] while [attachments_by_slot[ATTACHMENT_SLOT_RAIL]] occupies [src]'s rail slot."))
 	return FALSE
+
+/obj/item/weapon/gun/pistol/plasma_pistol/on_attach(obj/item/attached_to, mob/user)
+	flags_gun_features |= GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	return ..()
+
+/obj/item/weapon/gun/pistol/plasma_pistol/on_detach(obj/item/attached_to, mob/user)
+	flags_gun_features &= ~GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	return ..()
+
 
 /obj/item/weapon/gun/pistol/plasma_pistol/guardsman_pistol
 	name = "\improper Guardsman\'s plasma pistol"
@@ -149,14 +159,13 @@
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
-	scatter = 0
 
 //-------------------------------------------------------
-// TP-23 service pistol
+// P-23 service pistol
 
 /obj/item/weapon/gun/pistol/standard_heavypistol
-	name = "\improper TP-23 service pistol"
-	desc = "A standard TP-23 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch. Has an irremovable laser sight. Uses .45 magazines."
+	name = "\improper P-23 service pistol"
+	desc = "A standard P-23 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch. Has an irremovable laser sight. Uses .45 magazines."
 	icon_state = "tp23"
 	item_state = "tp23"
 	caliber = CALIBER_45ACP //codex
@@ -192,11 +201,11 @@
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
 
 //-------------------------------------------------------
-//M1911
+//P-1911
 
 /obj/item/weapon/gun/pistol/m1911
-	name = "\improper M1911 service pistol"
-	desc = "A M1911 chambered in .45 ACP. An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come."
+	name = "\improper P-1911 service pistol"
+	desc = "A P-1911 chambered in .45 ACP. An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come."
 	icon_state = "m1911"
 	item_state = "m1911"
 	caliber = CALIBER_45ACP //codex
@@ -217,7 +226,7 @@
 	recoil_unwielded = -1
 
 /obj/item/weapon/gun/pistol/m1911/custom
-	name = "\improper M1911A1 custom pistol"
+	name = "\improper P-1911A1 custom pistol"
 	desc = "A handgun that has received several modifications. It seems to have been lovingly taken care of and passed down for generations. Lacks an auto magazine eject feature."
 	icon_state = "m1911c"
 	attachable_allowed = list(
@@ -234,10 +243,10 @@
 	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
-//G-22. Blocc
+//P-22. Blocc
 
 /obj/item/weapon/gun/pistol/g22
-	name = "\improper G-22 pistol"
+	name = "\improper P-22 pistol"
 	desc = "A popular police firearm in the modern day. Chambered in 9x19mm."
 	icon_state = "g22"
 	item_state = "g22"
@@ -258,7 +267,7 @@
 	fire_delay = 0.2 SECONDS
 
 /obj/item/weapon/gun/pistol/g22/tranq
-	name = "\improper G-22 custom pistol"
+	name = "\improper P-22 custom pistol"
 	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
 	icon_state = "g22"
 	item_state = "g22"
@@ -318,6 +327,8 @@
 	recoil_unwielded = 2
 	scatter = 4
 	scatter_unwielded = 7
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.7
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	name = "\improper Desert Eagle custom pistol"
@@ -358,9 +369,7 @@
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible)
 
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 1.65
-	accuracy_mult_unwielded = 1.5
-	scatter = 0
+	accuracy_mult = 1.3
 	scatter_unwielded = 2
 	damage_mult = 1.3
 	aim_slowdown = 0.1
@@ -400,10 +409,10 @@
 	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
-//TP-17 Pocket pistol. Based on a PMM.
+//P-17 Pocket pistol. Based on a PMM.
 
 /obj/item/weapon/gun/pistol/standard_pocketpistol
-	name = "\improper TP-17 pocket pistol"
+	name = "\improper P-17 pocket pistol"
 	desc = "A tiny pistol used by the TGMC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP stored in an eight round magazine."
 	icon = 'icons/Marine/gun64.dmi' // This is here here for the empty sprite.
 	icon_state = "tp17"
@@ -429,9 +438,6 @@
 	fire_delay = 0.15 SECONDS
 	recoil = -2
 	recoil_unwielded = -2
-	accuracy_mult = 1.1
-	accuracy_mult_unwielded = 1
-	scatter = -2
 	scatter_unwielded = 0
 	aim_speed_modifier = 0
 
@@ -462,7 +468,7 @@
 	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
-	accuracy_mult = 1.5
+	accuracy_mult_unwielded = 0.7
 	scatter = 3
 	scatter_unwielded = 6
 
@@ -506,7 +512,7 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = 0
 	aim_slowdown = 0.2
-	scatter = 3
+	scatter = 0
 	scatter_unwielded = 6
 
 
@@ -620,7 +626,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/stock/rifle,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/lace,

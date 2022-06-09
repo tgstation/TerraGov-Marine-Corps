@@ -42,7 +42,7 @@
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/large_holster/blade
+		/obj/item/storage/holster/blade
 	)
 
 
@@ -100,7 +100,7 @@
 	allowed = list(
 		/obj/item/weapon/gun/,
 		/obj/item/flashlight,
-		/obj/item/storage/large_holster/blade,
+		/obj/item/storage/holster/blade,
 		/obj/item/storage/belt/gun/pistol/m4a3,
 		/obj/item/storage/belt/gun/m44,
 	)
@@ -120,12 +120,6 @@
 	permeability_coefficient = 0.7
 	time_to_unequip = 20
 	time_to_equip = 20
-
-/obj/item/clothing/suit/armor/riot/marine
-	name = "\improper M5 riot control armor"
-	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines. Slows you down a lot."
-	icon_state = "riot"
-	item_state = "swat"
 
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"

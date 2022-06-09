@@ -5,7 +5,6 @@
 	caste_desc = "A well defended hit-and-runner."
 	caste_type_path = /mob/living/carbon/xenomorph/bull
 	tier = XENO_TIER_TWO
-	primordial_upgrade_name = PRIMORDIAL_BULL
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "bull" //used to match appropriate wound overlays
 
@@ -30,13 +29,18 @@
 	deevolves_to = /mob/living/carbon/xenomorph/runner
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
+	caste_flags = CASTE_EVOLUTION_ALLOWED
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_BECOME_KING
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 35, "acid" = 25)
+	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 25, "energy" = 25, "bomb" = 0, "bio" = 25, "rad" = 25, "fire" = 35, "acid" = 25)
+
+	// *** Minimap Icon *** //
+	minimap_icon = "bull"
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/ready_charge/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge,
@@ -69,7 +73,7 @@
 	upgrade_threshold = TIER_TWO_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 40, "acid" = 28)
+	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 30, "energy" = 30, "bomb" = 0, "bio" = 28, "rad" = 28, "fire" = 40, "acid" = 28)
 
 /datum/xeno_caste/bull/elder
 	upgrade_name = "Elder"
@@ -94,7 +98,7 @@
 	upgrade_threshold = TIER_TWO_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 45, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 45, "acid" = 30)
+	soft_armor = list("melee" = 35, "bullet" = 45, "laser" = 35, "energy" = 35, "bomb" = 0, "bio" = 30, "rad" = 30, "fire" = 45, "acid" = 30)
 
 /datum/xeno_caste/bull/ancient
 	upgrade_name = "Ancient"
@@ -119,7 +123,7 @@
 	upgrade_threshold = TIER_TWO_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
+	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = 0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
 
 /datum/xeno_caste/bull/primordial
 	upgrade_name = "Primordial"
@@ -141,5 +145,5 @@
 	max_health = 325
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
+	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = 0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
 

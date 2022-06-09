@@ -6,6 +6,8 @@
 	var/orphan_hive_timer
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
+	/// State of the nuke
+	var/planet_nuked = INFESTATION_NUKE_NONE
 
 /datum/game_mode/infestation/post_setup()
 	. = ..()
@@ -273,3 +275,49 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/infestation/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
+
+/datum/game_mode/infestation/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
+	SIGNAL_HANDLER
+	priority_announce("WARNING. WARNING. Planetary Nuke deactivated. WARNING. WARNING. Self destruct failed. WARNING. WARNING.", "Priority Alert")
+
+/datum/game_mode/infestation/proc/on_nuclear_explosion(datum/source, z_level)
+	SIGNAL_HANDLER
+	planet_nuked = INFESTATION_NUKE_INPROGRESS
+	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
+
+/datum/game_mode/infestation/proc/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
+	SIGNAL_HANDLER
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/area_name = get_area_name(nuke)
+	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
+	HS.set_all_xeno_trackers(nuke)
+
+/datum/game_mode/infestation/proc/play_cinematic(z_level)
+	GLOB.enter_allowed = FALSE
+	priority_announce("DANGER. DANGER. Planetary Nuke Activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
+	var/sound/S = sound(pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'), channel = CHANNEL_CINEMATIC)
+	SEND_SOUND(world, S)
+
+	for(var/x in GLOB.player_list)
+		var/mob/M = x
+		if(isobserver(M) || isnewplayer(M))
+			continue
+		shake_camera(M, 110, 4)
+
+	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
+	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
+	addtimer(VARSET_CALLBACK(src, planet_nuked, INFESTATION_NUKE_COMPLETED), nuketime)
+	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
+
+	Cinematic(CINEMATIC_CRASH_NUKE, world)
+
+/datum/game_mode/infestation/proc/do_nuke_z_level(z_level)
+	if(!z_level)
+		return
+	for(var/i in GLOB.alive_living_list)
+		var/mob/living/victim = i
+		var/turf/victim_turf = get_turf(victim) //Sneaky people on lockers.
+		if(QDELETED(victim_turf) || victim_turf.z != z_level)
+			continue
+		victim.adjustFireLoss(victim.maxHealth*2)
+		CHECK_TICK

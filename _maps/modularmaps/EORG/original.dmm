@@ -1180,7 +1180,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "ez" = (
-/obj/item/reagent_containers/food/snacks/grown/mtear,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
 "eA" = (

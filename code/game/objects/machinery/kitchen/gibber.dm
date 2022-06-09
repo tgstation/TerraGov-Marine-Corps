@@ -6,6 +6,7 @@
 	icon_state = "grinder"
 	anchored = TRUE
 	density = TRUE
+	coverage = 25
 	var/operating = 0 //Is it on?
 	var/dirty = 0 // Does it need cleaning?
 	var/gibtime = 40 // Time from starting until meat appears

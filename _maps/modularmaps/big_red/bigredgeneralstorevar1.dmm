@@ -1,0 +1,1396 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"an" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/bun,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"az" = (
+/obj/structure/table,
+/obj/item/healthanalyzer,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"aO" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"bj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"bs" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/donkpocket,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"bX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"cj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"cJ" = (
+/obj/item/flashlight,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"cV" = (
+/obj/structure/table,
+/obj/item/storage/briefcase,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"dQ" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"ee" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"eX" = (
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"fh" = (
+/obj/machinery/light,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"fj" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"fs" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper General Store"
+	},
+/turf/open/floor/tile/bar,
+/area/bigredv2/outside/general_store)
+"fz" = (
+/obj/structure/closet/toolcloset,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"gT" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"he" = (
+/obj/structure/table,
+/obj/machinery/computer/pod/old{
+	name = "Register"
+	},
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"hf" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/reagent_containers/food/drinks/cans/aspen,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"hn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"hv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"hw" = (
+/obj/structure/barricade/wooden,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"hz" = (
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"iq" = (
+/obj/structure/barricade/wooden{
+	dir = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"iA" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "General Store";
+	name = "Storm Shutters"
+	},
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"iT" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"jc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"ji" = (
+/obj/structure/table,
+/obj/item/storage/box/snappops,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"jm" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"jp" = (
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"jQ" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/item/reagent_containers/food/snacks/donut,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"ky" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/donkpocket,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"kE" = (
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"lu" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"mc" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"mF" = (
+/obj/item/stack/sheet/wood{
+	amount = 2
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"mJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"nu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/restraints/handcuffs/cable/cyan,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"nv" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"oG" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/cans/thirteenloko,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"pb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"ph" = (
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"ps" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/flask,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/beer,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"px" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/cheesewedge,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"pW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"qz" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/flask,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"qD" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	dir = 1;
+	name = "\improper General Store Maintenance"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"qI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"qP" = (
+/obj/structure/bed,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"ri" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"sA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"tm" = (
+/obj/structure/table,
+/obj/item/toy/prize/mauler,
+/obj/item/toy/prize/odysseus,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"tn" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_store)
+"to" = (
+/turf/closed/wall,
+/area/bigredv2/outside/general_store)
+"tu" = (
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_store)
+"tP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"uD" = (
+/obj/structure/table,
+/obj/item/tool/surgery/surgicaldrill,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"uH" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"uK" = (
+/obj/machinery/light,
+/obj/structure/rack,
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"uV" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/reagent_containers/food/drinks/flask,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"vP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/snack,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"vY" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/aspen,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"wh" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/candy,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"wp" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/beer,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"wt" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/cans/tonic,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/aspen,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"wy" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"wH" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"wJ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"wP" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 1;
+	name = "\improper General Store"
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"xb" = (
+/obj/structure/table,
+/obj/machinery/light,
+/obj/item/toy/prize/ripley,
+/obj/item/toy/prize/odysseus,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"xG" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"xI" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/reagent_containers/food/drinks/flask,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"yk" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/blood,
+/obj/item/tool/kitchen/knife,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"yp" = (
+/obj/structure/window_frame/colony,
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_store)
+"yP" = (
+/obj/structure/table,
+/obj/item/flashlight,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"zv" = (
+/obj/structure/table,
+/obj/item/toy/dice,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"zI" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/donut,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"zR" = (
+/obj/structure/table,
+/obj/item/storage/box/snappops,
+/obj/item/storage/box/snappops,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Al" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"AR" = (
+/obj/structure/table,
+/obj/item/tool/kitchen/knife,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"AV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"Ba" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Bt" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Bz" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_store)
+"BJ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Ca" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Cx" = (
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Dc" = (
+/obj/structure/table,
+/obj/item/toy/prize/ripley,
+/obj/item/toy/prize/odysseus,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Dd" = (
+/obj/structure/table,
+/obj/machinery/computer/pod/old{
+	name = "Register"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"Dx" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"DI" = (
+/obj/structure/table,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/obj/item/weapon/gun/pistol/holdout,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"Ex" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper General Store"
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Ez" = (
+/obj/structure/table,
+/obj/item/multitool,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"EN" = (
+/obj/structure/table,
+/obj/item/tool/lighter/random,
+/obj/item/tool/lighter/random,
+/obj/item/storage/toolbox/mechanical,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"EZ" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/donkpocket,
+/obj/item/reagent_containers/food/snacks/donut,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Ff" = (
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Fg" = (
+/obj/structure/barricade/wooden{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Fz" = (
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	name = "\improper General Store Storage"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"FY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Gn" = (
+/obj/docking_port/stationary/crashmode,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Gp" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Gw" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"GS" = (
+/obj/item/weapon/gun/pistol/holdout,
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Hm" = (
+/turf/closed/wall,
+/area/bigredv2/outside/cargo)
+"Il" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/coffee,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"IB" = (
+/obj/structure/table,
+/obj/item/weapon/gun/pistol/holdout,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"II" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/computer/arcade,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"Jf" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Jr" = (
+/obj/structure/cable,
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"JM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"JW" = (
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Ki" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"KD" = (
+/obj/structure/table,
+/obj/effect/decal/cleanable/blood,
+/obj/item/alien_embryo,
+/obj/machinery/door_control{
+	id = "General Store";
+	name = "Storm Shutters"
+	},
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"KK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"Lm" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/candy,
+/obj/item/reagent_containers/food/snacks/chips,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"LP" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/cookie,
+/obj/item/reagent_containers/food/snacks/donut,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"LZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"Mb" = (
+/obj/structure/table,
+/obj/item/toy/prize/ripley,
+/obj/item/toy/prize/mauler,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Mj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_store)
+"MM" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_store)
+"Nr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Ns" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/roller,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Nu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"NG" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 1;
+	name = "\improper General Store"
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"NK" = (
+/obj/structure/table,
+/obj/item/toy/sword,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Po" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Pr" = (
+/obj/structure/table,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Pw" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/landmark/corpsespawner/doctor,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Pz" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/drinks/cans/thirteenloko,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Qg" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Qk" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating,
+/area/bigredv2/outside/cargo)
+"QE" = (
+/obj/structure/table,
+/obj/item/storage/briefcase,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"QN" = (
+/turf/open/floor/plating,
+/area/bigredv2/outside/general_store)
+"QR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"Ra" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"St" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/cookie,
+/obj/item/reagent_containers/food/snacks/donkpocket,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"SO" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"SX" = (
+/obj/structure/bed,
+/obj/item/toy/plush/farwa,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"SY" = (
+/obj/structure/table,
+/obj/item/toy/sword,
+/obj/item/toy/gun,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"TV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/cola,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"Vu" = (
+/obj/structure/table,
+/obj/item/toy/prize/mauler,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Vy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+"WI" = (
+/obj/machinery/computer/arcade,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"XD" = (
+/obj/structure/barricade/wooden{
+	dir = 1
+	},
+/obj/machinery/door_control{
+	id = "General Store";
+	name = "Storm Shutters"
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"XL" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"XN" = (
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Yh" = (
+/obj/structure/table,
+/obj/item/reagent_containers/food/snacks/cheesewedge,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/cookie,
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Ym" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"Ys" = (
+/obj/machinery/alarm{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/bigredv2/outside/general_store)
+"Zv" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper General Store"
+	},
+/turf/open/floor/tile/bar,
+/area/bigredv2/outside/general_store)
+"ZC" = (
+/obj/structure/table,
+/obj/item/weapon/gun/pistol/holdout,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"ZE" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/yellow/full,
+/area/bigredv2/outside/general_store)
+"ZJ" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/item/paper/crumpled/bloody,
+/turf/open/floor,
+/area/bigredv2/outside/general_store)
+
+(1,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+Bz
+fs
+Zv
+Bz
+to
+to
+"}
+(2,1,1) = {"
+MM
+Fg
+XN
+uH
+eX
+eX
+FY
+uH
+jp
+eX
+Jr
+Dc
+tm
+to
+"}
+(3,1,1) = {"
+MM
+Fg
+Cx
+nv
+nv
+JW
+nv
+nv
+JW
+nv
+hv
+JW
+xb
+to
+"}
+(4,1,1) = {"
+MM
+Fg
+qI
+zI
+St
+Yh
+EZ
+wH
+jQ
+Qg
+Ff
+nu
+Vu
+to
+"}
+(5,1,1) = {"
+MM
+Fg
+wy
+LP
+to
+to
+to
+to
+px
+JW
+Ff
+nv
+Mb
+to
+"}
+(6,1,1) = {"
+to
+mF
+BJ
+wh
+wh
+bs
+Lm
+ky
+an
+JW
+Bt
+bj
+lu
+qD
+"}
+(7,1,1) = {"
+to
+jp
+ri
+JW
+JW
+JW
+nv
+nv
+pW
+ZJ
+tP
+JW
+NK
+to
+"}
+(8,1,1) = {"
+to
+jp
+QR
+Vy
+Vy
+Ki
+Nr
+Vy
+Ki
+Vy
+Nu
+NK
+SY
+to
+"}
+(9,1,1) = {"
+to
+jp
+BJ
+gT
+Pz
+oG
+wt
+vY
+Il
+JW
+jp
+to
+to
+to
+"}
+(10,1,1) = {"
+to
+jp
+BJ
+wp
+to
+to
+to
+to
+Il
+JW
+jp
+to
+ph
+ph
+"}
+(11,1,1) = {"
+MM
+Fg
+BJ
+ps
+uV
+qz
+xI
+dQ
+hf
+JW
+SO
+to
+ph
+Gw
+"}
+(12,1,1) = {"
+MM
+Fg
+tP
+JW
+JW
+JW
+Qg
+JW
+JW
+mc
+jp
+to
+Qk
+Dx
+"}
+(13,1,1) = {"
+yp
+jp
+BJ
+ee
+JW
+JW
+JW
+iT
+JW
+JW
+Ys
+to
+ph
+Dx
+"}
+(14,1,1) = {"
+yp
+mF
+ac
+cV
+Pr
+cV
+Pr
+QE
+yP
+JW
+jp
+to
+ph
+Dx
+"}
+(15,1,1) = {"
+MM
+Fg
+tP
+Pr
+to
+to
+to
+to
+cV
+JW
+FY
+to
+ph
+Dx
+"}
+(16,1,1) = {"
+MM
+Fg
+BJ
+ji
+Pr
+ji
+ji
+IB
+zR
+JW
+xG
+to
+fj
+fh
+"}
+(17,1,1) = {"
+MM
+Fg
+BJ
+nv
+Gp
+JW
+JW
+JW
+nv
+nv
+SX
+to
+ph
+Dx
+"}
+(18,1,1) = {"
+to
+XD
+Pw
+Ca
+Ki
+Jf
+pb
+nv
+JW
+JW
+GS
+to
+ph
+Dx
+"}
+(19,1,1) = {"
+MM
+Fg
+nv
+bX
+nv
+sA
+JW
+bX
+Ns
+Cx
+fz
+to
+ph
+Dx
+"}
+(20,1,1) = {"
+MM
+JW
+JW
+jp
+XL
+Ra
+jp
+jp
+uH
+jp
+qP
+to
+fj
+Dx
+"}
+(21,1,1) = {"
+to
+Ex
+Ex
+to
+KD
+BJ
+uD
+JW
+zv
+nv
+to
+to
+ph
+Dx
+"}
+(22,1,1) = {"
+NG
+iq
+aO
+MM
+yk
+BJ
+az
+JW
+ZC
+bX
+to
+tn
+Dx
+Dx
+"}
+(23,1,1) = {"
+wP
+iq
+Cx
+MM
+EN
+tP
+Ez
+Qg
+AR
+nv
+to
+QN
+Qk
+ph
+"}
+(24,1,1) = {"
+to
+Ex
+Ex
+to
+Dd
+BJ
+he
+JW
+he
+JW
+to
+Mj
+ph
+ph
+"}
+(25,1,1) = {"
+MM
+iq
+nv
+kE
+kE
+KK
+kE
+kE
+kE
+wJ
+to
+QN
+ph
+ph
+"}
+(26,1,1) = {"
+to
+ZE
+Gn
+nv
+nv
+BJ
+JW
+JW
+JM
+jc
+to
+to
+Fz
+Hm
+"}
+(27,1,1) = {"
+MM
+WI
+JW
+bX
+Po
+hn
+kE
+jm
+kE
+LZ
+to
+tu
+fj
+hz
+"}
+(28,1,1) = {"
+MM
+II
+nv
+JW
+JW
+KK
+to
+MM
+MM
+MM
+to
+tu
+ph
+hz
+"}
+(29,1,1) = {"
+MM
+hw
+JW
+JW
+JW
+KK
+QN
+DI
+Ba
+kE
+to
+tu
+ph
+uK
+"}
+(30,1,1) = {"
+MM
+vP
+TV
+mJ
+cJ
+Ym
+Al
+AV
+iA
+jc
+to
+tu
+ph
+hz
+"}
+(31,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+cj
+Hm
+"}

@@ -1,5 +1,5 @@
 /datum/xeno_caste/larva
-	caste_name = "Bloody Larva"
+	caste_name = "Larva"
 	display_name = "Bloody Larva"
 	upgrade_name = ""
 	caste_desc = "D'awwwww, so cute!"
@@ -25,6 +25,7 @@
 	crit_health = -25
 
 	// *** Evolution *** //
+	evolution_threshold = 50
 	evolves_to = list(
 		/mob/living/carbon/xenomorph/drone,
 		/mob/living/carbon/xenomorph/runner,
@@ -33,14 +34,19 @@
 	)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_INNATE_HEALING
+	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_INNATE_HEALING
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_VENT_CRAWL
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+
+	// *** Minimap Icon *** //
+	minimap_icon = "larva"
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/xenohide,
 	)
 

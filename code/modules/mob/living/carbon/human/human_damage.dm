@@ -119,11 +119,6 @@
 		if(organic_only && bodypart.limb_status & LIMB_ROBOT)
 			continue
 		var/external_dam = bodypart.brute_dam
-		for(var/j in bodypart.wounds)
-			var/datum/wound/wound = j
-			if(!wound.internal)
-				continue
-			external_dam -= wound.damage
 		. += external_dam
 
 
@@ -174,33 +169,6 @@
 	if(species.species_flags & (IS_SYNTHETIC|NO_SCAN|ROBOTIC_LIMBS))
 		cloneloss = 0
 		return
-
-	var/heal_prob = max(0, 80 - getCloneLoss())
-	var/mut_prob = min(80, getCloneLoss()+10)
-	if (amount > 0)
-		if (prob(mut_prob))
-			var/list/datum/limb/candidates = list()
-			for (var/datum/limb/O in limbs)
-				if(O.limb_status & (LIMB_ROBOT|LIMB_DESTROYED|LIMB_MUTATED)) continue
-				candidates |= O
-			if (candidates.len)
-				var/datum/limb/O = pick(candidates)
-				O.mutate()
-				to_chat(src, "<span class = 'notice'>Something is not right with your [O.display_name]...</span>")
-				return
-	else
-		if (prob(heal_prob))
-			for (var/datum/limb/O in limbs)
-				if (O.limb_status & LIMB_MUTATED)
-					O.unmutate()
-					to_chat(src, "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>")
-					return
-
-	if (getCloneLoss() < 1)
-		for (var/datum/limb/O in limbs)
-			if (O.limb_status & LIMB_MUTATED)
-				O.unmutate()
-				to_chat(src, "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>")
 
 
 /mob/living/carbon/human/adjustOxyLoss(amount, forced = FALSE)
@@ -377,7 +345,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	damage = damage / partcount //damage all limbs equally.
 	while(parts.len)
 		var/datum/limb/picked = pick_n_take(parts)
-		apply_damage(damage, damagetype, picked, run_armor_check(picked, armortype), sharp, edge, updating_health)
+		apply_damage(damage, damagetype, picked, get_soft_armor(armortype, picked), sharp, edge, updating_health)
 
 ////////////////////////////////////////////
 

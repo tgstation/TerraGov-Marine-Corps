@@ -29,10 +29,10 @@
 
 /obj/structure/closet/boxinggloves/Initialize()
 	. = ..()
-	new /obj/item/clothing/gloves/boxing/blue(src)
-	new /obj/item/clothing/gloves/boxing/green(src)
-	new /obj/item/clothing/gloves/boxing/yellow(src)
-	new /obj/item/clothing/gloves/boxing(src)
+	new /obj/item/clothing/gloves/heldgloves/boxing/blue(src)
+	new /obj/item/clothing/gloves/heldgloves/boxing/green(src)
+	new /obj/item/clothing/gloves/heldgloves/boxing/yellow(src)
+	new /obj/item/clothing/gloves/heldgloves/boxing(src)
 
 
 /obj/structure/closet/masks

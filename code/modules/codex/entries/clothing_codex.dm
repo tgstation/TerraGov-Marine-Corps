@@ -120,6 +120,8 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 
 /obj/item/clothing/suit/storage/get_mechanics_info()
 	. = ..()
+	if(!pockets)
+		return
 	. += "<br><br>This item has an internal inventory of [pockets.storage_slots] slots."
 	. += "<br>It can carry weight [pockets.max_w_class] things or lighter."
 	if(length(pockets.bypass_w_limit))

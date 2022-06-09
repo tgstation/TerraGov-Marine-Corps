@@ -76,6 +76,8 @@
 
 #define CONVEYOR_LAYER 2.56 //conveyor belt
 
+#define TALL_GRASS_LAYER 2.5 //tall grass
+
 #define RESIN_STRUCTURE_LAYER 2.6
 
 #define LADDER_LAYER 2.7
@@ -126,6 +128,12 @@
 
 #define ABOVE_MOB_LAYER 4.1
 
+#define TANK_BARREL_LAYER 4.2
+
+#define TANK_TURRET_LAYER 4.27
+
+#define TANK_DECORATION_LAYER 4.3
+
 #define FACEHUGGER_LAYER 4.45
 
 #define ABOVE_ALL_MOB_LAYER 4.5
@@ -161,7 +169,6 @@
 #define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
 /// The layer you should use if you _really_ don't want an emissive overlay to be blocked.
 #define EMISSIVE_LAYER_UNBLOCKABLE 9999
-
 
 #define LIGHTING_BACKPLANE_LAYER 14.5
 

@@ -249,7 +249,7 @@
 	visible_message(span_notice("The [name] powers up with a warm hum."))
 	set_light_range(initial(light_power))
 	set_light_color(initial(light_color))
-	set_light(SENTRY_LIGHT_POWER)
+	set_light(SENTRY_LIGHT_POWER,SENTRY_LIGHT_POWER)
 	update_icon()
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(gun, COMSIG_MOB_GUN_FIRED, .proc/check_next_shot)
@@ -361,7 +361,7 @@
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
 		INVOKE_ASYNC(internal_gun, /obj/item/weapon/gun.proc/do_unique_action)
-	if(get_dist(src, gun_target) >= range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
+	if(get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
 		internal_gun.stop_fire()
 		return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
@@ -373,7 +373,10 @@
 	var/obj/item/weapon/gun/gun = internal_item
 	var/mob/living/target = get_target()
 	update_icon()
-	if(target != gun.target || get_dist(src, target) > range)
+	if(!target || get_dist(src, target) > range)
+		gun.stop_fire()
+		return
+	if(target != gun.target)
 		gun.stop_fire()
 	if(!gun.rounds)
 		sentry_alert(SENTRY_ALERT_AMMO)
@@ -450,13 +453,6 @@
 	icon = 'icons/Marine/sentry.dmi'
 	default_icon_state = "build_a_sentry"
 	update_icon()
-
-/obj/machinery/deployable/mounted/sentry/buildasentry/examine(mob/user)
-	. = ..()
-	if(!istype(internal_item, /obj/item/weapon/gun/revolver))
-		return
-	to_chat(user, span_notice("It is as if he were still with us.")) //I miss ye already Ocelot.
-
 
 /obj/machinery/deployable/mounted/sentry/buildasentry/update_overlays()
 	. = ..()

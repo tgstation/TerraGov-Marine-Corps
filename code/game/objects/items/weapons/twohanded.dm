@@ -375,8 +375,8 @@
 	toggle_item_bump_attack(user, FALSE)
 
 /obj/item/weapon/twohanded/rocketsledge/examine(mob/user)
-	..()
-	to_chat(user, "It contains [reagents.get_reagent_amount(/datum/reagent/fuel)]/[max_fuel] units of fuel!")
+	. = ..()
+	. += "It contains [reagents.get_reagent_amount(/datum/reagent/fuel)]/[max_fuel] units of fuel!"
 
 /obj/item/weapon/twohanded/rocketsledge/wield(mob/user)
 	. = ..()

@@ -111,7 +111,10 @@
 	RegisterSignal(lunge_target, COMSIG_PARENT_QDELETING, .proc/clean_lunge_target)
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/check_if_lunge_possible)
 	RegisterSignal(X, COMSIG_MOVABLE_POST_THROW, .proc/clean_lunge_target)
-	X.throw_at(get_step_towards(A, X), 6, 2, X)
+	if(lunge_target.Adjacent(X)) //They're already in range, neck grab without lunging.
+		lunge_grab(X, lunge_target)
+	else
+		X.throw_at(get_step_towards(A, X), 6, 2, X)
 
 	if(X.pulling && !isxeno(X.pulling)) //If we grabbed something give us combo.
 		X.empower(empowerable = FALSE) //Doesn't have a special interaction
@@ -420,10 +423,6 @@
 	update_icon()
 	return TRUE
 
-/obj/machinery/deployable/mounted/sentry/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone)
-	knock_down()
-	return ..()
-
 /obj/machinery/computer/punch_act(mob/living/carbon/xenomorph/X, damage, target_zone) //Break open the machine
 	set_disabled() //Currently only computers use this; falcon punch away its density
 	return ..()
@@ -484,9 +483,9 @@
 			L.remove_limb_flags(LIMB_SPLINTED)
 			to_chat(src, span_danger("The splint on your [L.display_name] comes apart!"))
 
-		L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
+		L.take_damage_limb(damage, 0, FALSE, FALSE, get_soft_armor("melee", target_zone))
 	else
-		apply_damage(damage, BRUTE, target_zone, run_armor_check(target_zone))
+		apply_damage(damage, BRUTE, target_zone, get_soft_armor("melee", target_zone))
 
 	if(push)
 		var/facing = get_dir(X, src)

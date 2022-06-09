@@ -1,0 +1,283 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"b" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave,
+/obj/machinery/light,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 10
+	},
+/area/bigredv2/caves/lambda_lab)
+"c" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
+"e" = (
+/obj/structure/curtain/medical,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 10
+	},
+/area/bigredv2/caves/lambda_lab)
+"f" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/rock)
+"h" = (
+/obj/effect/decal/cleanable/vomit,
+/turf/open/floor/tile/darkgreen/darkgreen2/corner{
+	dir = 1
+	},
+/area/bigredv2/caves/lambda_lab)
+"j" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 9
+	},
+/area/bigredv2/caves/lambda_lab)
+"v" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/northeast)
+"B" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/turf/open/floor/tile/green/whitegreen{
+	dir = 10
+	},
+/area/bigredv2/caves/lambda_lab)
+"L" = (
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 10
+	},
+/area/bigredv2/caves/lambda_lab)
+"M" = (
+/turf/closed/wall/r_wall,
+/area/bigredv2/caves/lambda_lab)
+"O" = (
+/obj/structure/curtain/medical,
+/obj/machinery/alarm{
+	dir = 1
+	},
+/turf/open/floor/tile/green/whitegreen{
+	dir = 10
+	},
+/area/bigredv2/caves/lambda_lab)
+"S" = (
+/obj/structure/curtain/medical,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 9
+	},
+/area/bigredv2/caves/lambda_lab)
+"T" = (
+/obj/effect/landmark/corpsespawner/doctor,
+/turf/open/floor/tile/darkgreen/darkgreen2/corner{
+	dir = 8
+	},
+/area/bigredv2/caves/lambda_lab)
+"U" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
+
+(1,1,1) = {"
+v
+c
+v
+a
+a
+a
+"}
+(2,1,1) = {"
+c
+U
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+c
+c
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+c
+a
+a
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(14,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(16,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(17,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(18,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(19,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(20,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(21,1,1) = {"
+a
+a
+a
+a
+a
+f
+"}
+(22,1,1) = {"
+M
+M
+M
+a
+a
+f
+"}
+(23,1,1) = {"
+j
+B
+M
+M
+a
+f
+"}
+(24,1,1) = {"
+S
+e
+O
+M
+M
+f
+"}
+(25,1,1) = {"
+h
+T
+L
+b
+M
+f
+"}
