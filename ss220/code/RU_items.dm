@@ -152,10 +152,10 @@ SUBSYSTEM_DEF(ru_items)
 	desc = "TerraGov Marine Corps' cutting-edge 'Harvester' halberd, with experimental plasma regulator. An advanced weapon that combines sheer force with the ability to apply a variety of debilitating effects when loaded with certain reagents, but should be used with both hands. Activate after loading to prime a single use of an effect. It also harvests substances from alien lifeforms it strikes when connected to the Vali system."
 	icon_state = "VAL-HAL-A"
 	item_state = "VAL-HAL-A"
-	force = 60
-	force_wielded = 135 //Reminder: putting trama inside deals 60% additional damage
+	force = 50
+	force_wielded = 100 //Reminder: putting trama inside deals 60% additional damage
 	flags_item = DRAINS_XENO | TWOHANDED
-	attack_speed = 12 //Default is 7, this has slow attack
+	attack_speed = 10 //Default is 7, this has slow attack
 	reach = 2 //like spear
 
 /obj/item/weapon/twohanded/glaive/harvester/Initialize()
@@ -166,13 +166,3 @@ SUBSYSTEM_DEF(ru_items)
 	name = "VAL-HAL-A"
 	contains = list(/obj/item/weapon/twohanded/glaive/harvester)
 	cost = 20
-
-/obj/item/weapon/twohanded/glaive/harvester/wield(mob/user)
-	. = ..()
-	if (!.)
-		return
-	toggle_item_bump_attack(user, TRUE)
-
-/obj/item/weapon/twohanded/glaive/harvester/unwield(mob/user)
-	. = ..()
-	toggle_item_bump_attack(user, FALSE)
