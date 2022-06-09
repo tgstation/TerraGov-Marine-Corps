@@ -55,8 +55,8 @@
 	name = "Psychic Fling"
 	action_icon_state = "fling"
 	mechanics_text = "Sends an enemy or an item flying. A close ranged ability."
-	cooldown_timer = 6 SECONDS //Reduced from 12 to account for stun nerf
-	plasma_cost = 50 //Reduced from 100 to account for stun nerf
+	cooldown_timer = 6 SECONDS
+	plasma_cost = 50
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_FLING
 	target_flags = XABB_MOB_TARGET
 
@@ -136,8 +136,8 @@
 	name = "Unrelenting Force"
 	action_icon_state = "screech"
 	mechanics_text = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
-	cooldown_timer = 25 SECONDS //Reduced from 50 to account for stun nerf
-	plasma_cost = 150 //Reduced from 300 to account for stun nerf
+	cooldown_timer = 25 SECONDS
+	plasma_cost = 150
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
 	alternate_keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE_SELECT
