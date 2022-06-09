@@ -827,6 +827,8 @@
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
 	affecting_list = list()
 	for(var/mob/living/carbon/human/human in view(2, src))
+		if(!entering.species.species_flags & ROBOTIC_LIMBS) // can only affect robots
+			continue
 		RegisterSignal(human, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
 		affecting_list[human] = beam(human, "blood_light")
 		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
@@ -873,27 +875,18 @@
 			qdel(affecting_list[affecting])
 			affecting_list -= affecting
 			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
-			return
-		if(CHECK_BITFIELD(affecting.species.species_flags, ROBOTIC_LIMBS))
-			affecting.heal_overall_damage(1, 1, TRUE)
 			continue
-		for(var/datum/limb/limb AS in affecting.limbs)
-			if(!(CHECK_BITFIELD(limb.limb_status, LIMB_ROBOT)))
-				continue
-			var/limb_damage_before = limb.get_damage()
-			if(!limb_damage_before)
-				continue
-			limb.heal_limb_damage(1, 1, FALSE, TRUE)
-			break
+		affecting.heal_overall_damage(1, 1, TRUE)
 
-///runs when something moves into a tile nearby us, if possible add it to affecting_list
+///runs when something moves into a tile nearby us, if its a robotic human and is in line of sight, add it to affecting_list
 /obj/item/storage/backpack/dispenser/proc/entered_tiles(datum/source, mob/living/carbon/human/entering)
-	if(!ishuman(entering))
+	if(!ishuman(entering) || (!entering.species.species_flags & ROBOTIC_LIMBS)) // can only affect robots
 		return
 	if(entering in affecting_list)
 		return
 	if(!line_of_sight(src, entering))
 		return
+
 	RegisterSignal(entering, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
 	entering.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
 	affecting_list[entering] = beam(entering, "blood_light")
