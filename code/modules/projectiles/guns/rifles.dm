@@ -670,7 +670,6 @@
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/compensator,
-		/obj/item/attachable/stock/t42stock,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
@@ -755,7 +754,6 @@
 	placed_overlay_iconstate = "lmg"
 
 /obj/item/weapon/gun/rifle/standard_lmg/autorifleman
-	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/t42barrel, /obj/item/attachable/reddot)
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
