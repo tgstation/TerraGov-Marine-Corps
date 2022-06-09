@@ -827,7 +827,7 @@
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
 	affecting_list = list()
 	for(var/mob/living/carbon/human/human in view(2, src))
-		if(!entering.species.species_flags & ROBOTIC_LIMBS) // can only affect robots
+		if(!(human.species.species_flags & ROBOTIC_LIMBS)) // can only affect robots
 			continue
 		RegisterSignal(human, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
 		affecting_list[human] = beam(human, "blood_light")
