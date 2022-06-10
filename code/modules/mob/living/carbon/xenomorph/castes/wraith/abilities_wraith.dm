@@ -421,7 +421,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	keybind_signal = COMSIG_XENOABILITY_PORTAL
 	alternate_keybind_signal = COMSIG_XENOABILITY_PORTAL_ALTERNATE
 	/// How far can you link two portals
-	var/range = 10
+	var/range = 20
 	/// The first portal
 	var/obj/effect/wraith_portal/portal_one
 	/// The second portal
@@ -485,8 +485,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	anchored = TRUE
 	opacity = FALSE
 	vis_flags = VIS_HIDE
-	/// "Health points" for the portal, aka how many bullets * proj damage can still cross it without destroying it
-	var/health_points = 150
 	/// Visual object for handling the viscontents
 	var/obj/effect/portal_effect/portal_visuals
 	/// The linked portal
@@ -523,9 +521,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Signal handler teleporting crossing atoms
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(istype(crosser, /obj/projectile))
-		damage_portal(crosser)
-		return
 	if(!linked_portal)
 		return
 	if(!COOLDOWN_CHECK(src, portal_cooldown))
@@ -562,8 +557,5 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	bullet.permutated.Cut()
 	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
 
-/// Damage the portal when a bullet is crossing
-/obj/effect/wraith_portal/proc/damage_portal(obj/projectile/bullet_crossing)
-	health_points -= bullet_crossing.ammo.damage
-	if(health_points <= 0)
-		qdel(src)
+/obj/effect/wraith_portal/ex_act()
+	qdel(src)
