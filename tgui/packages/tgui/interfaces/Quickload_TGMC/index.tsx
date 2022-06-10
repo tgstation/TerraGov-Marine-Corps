@@ -85,18 +85,10 @@ export const Quickload_TGMC = (props, context) => {
     job,
     setJob,
   ] = useLocalState(context, 'job', "Squad Marine");
-  const [
-    saveNewLoadout,
-    setSaveNewLoadout,
-  ] = useLocalState(context, 'saveLoadout', false);
-  const [
-    importNewLoadout,
-    setImportNewLoadout,
-  ] = useLocalState(context, 'importLoadout', false);
 
   return (
     <Window
-      title="Loadout Manager"
+      title="Quick Equip vendor"
       width={700}
       height={400}>
       <Window.Content>

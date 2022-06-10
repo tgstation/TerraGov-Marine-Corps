@@ -85,20 +85,13 @@ export const Quickload_SOM = (props, context) => {
     job,
     setJob,
   ] = useLocalState(context, 'job', "SOM Standard");
-  const [
-    saveNewLoadout,
-    setSaveNewLoadout,
-  ] = useLocalState(context, 'saveLoadout', false);
-  const [
-    importNewLoadout,
-    setImportNewLoadout,
-  ] = useLocalState(context, 'importLoadout', false);
 
   return (
     <Window
-      title="Loadout Manager"
+      title="Quick Equip vendor"
       width={700}
-      height={400}>
+      height={400}
+      theme="som">
       <Window.Content>
         <Stack vertical>
           <JobTabs job={job} setJob={setJob} />
