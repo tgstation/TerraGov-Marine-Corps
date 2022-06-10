@@ -1113,17 +1113,6 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "fc" = (
-/obj/item/storage/pill_bottle/peridaxon,
-/obj/item/storage/pill_bottle/peridaxon{
-	pixel_x = 5
-	},
-/obj/item/storage/pill_bottle/peridaxon{
-	pixel_x = 5;
-	pixel_y = 10
-	},
-/obj/item/storage/pill_bottle/peridaxon{
-	pixel_y = 10
-	},
 /obj/item/defibrillator,
 /obj/item/defibrillator,
 /obj/item/defibrillator,
