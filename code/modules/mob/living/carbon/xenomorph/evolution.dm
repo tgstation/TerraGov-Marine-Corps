@@ -245,6 +245,7 @@
 
 	if(!regression && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
 		to_chat(src, span_warning("We quiver, but nothing happens. We must hold still while evolving."))
+		return
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen)
 		if(hive.living_xeno_queen) //Do another check after the tick.
@@ -269,6 +270,7 @@
 	if(!isturf(loc)) //cdel'd or moved into something
 		return
 
+	SStgui.close_user_uis(src) //Force close all UIs upon evolution.
 
 	//From there, the new xeno exists, hopefully
 	var/mob/living/carbon/xenomorph/new_xeno = new new_caste_type(get_turf(src))
@@ -326,7 +328,7 @@
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 
-	if(queen_chosen_lead && (new_xeno.xeno_caste.caste_flags & CASTE_CAN_BE_LEADER)) // xeno leader is removed by Destroy()
+	if(queen_chosen_lead && (new_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER)) // xeno leader is removed by Destroy()
 		hive.add_leader(new_xeno)
 		new_xeno.hud_set_queen_overwatch()
 		if(hive.living_xeno_queen)
@@ -354,3 +356,7 @@
 	if(status_flags & INCORPOREAL)
 		return
 	return ..()
+
+///Handles special conditions that influence a caste's evolution point gain, such as larva gaining a bonus if on weed.
+/mob/living/carbon/xenomorph/proc/spec_evolution_boost()
+	return 0

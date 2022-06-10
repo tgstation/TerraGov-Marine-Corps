@@ -246,16 +246,6 @@
 /obj/item/weapon/gun/flamer/proc/flame_turf(turf/turf_to_ignite, mob/living/user, burn_time, burn_level, fire_color = "red")
 	turf_to_ignite.ignite(burn_time, burn_level, fire_color)
 
-	// Melt a single layer of snow
-	if(istype(turf_to_ignite, /turf/open/floor/plating/ground/snow))
-		var/turf/open/floor/plating/ground/snow/snow_turf = turf_to_ignite
-		if(snow_turf.slayer > 0)
-			snow_turf.slayer -= 1
-			snow_turf.update_icon(1, 0)
-
-	for(var/obj/structure/jungle/vines/vines in turf_to_ignite)
-		QDEL_NULL(vines)
-
 	var/fire_mod
 	for(var/mob/living/mob_caught in turf_to_ignite) //Deal bonus damage if someone's caught directly in initial stream
 		if(mob_caught.stat == DEAD)
@@ -267,7 +257,7 @@
 			var/mob/living/carbon/xenomorph/xeno_caught = mob_caught
 			if(CHECK_BITFIELD(xeno_caught.xeno_caste.caste_flags, CASTE_FIRE_IMMUNE))
 				continue
-		
+
 		else if(ishuman(mob_caught))
 			var/mob/living/carbon/human/human_caught = mob_caught
 			if(user)
@@ -323,7 +313,10 @@
 	pixel_shift_y = 18
 
 	mob_flame_damage_mod = 1
+	burn_level_mod = 0.6
 	flame_max_range = 4
+
+	wield_delay_mod	= 0.2 SECONDS
 
 /obj/item/weapon/gun/flamer/mini_flamer/unremovable
 	flags_attach_features = NONE
@@ -444,6 +437,15 @@
 
 	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
 
+	for(var/obj/structure/jungle/vines/vines in src)
+		QDEL_NULL(vines)
+
+/turf/open/floor/plating/ground/snow/ignite(fire_lvl, burn_lvl, f_color, fire_stacks = 0, fire_damage = 0)
+	if(slayer > 0)
+		slayer -= 1
+		update_icon(1, 0)
+	return ..()
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Time to redo part of abby's code.
 //Create a flame sprite object. Doesn't work like regular fire, ie. does not affect atmos or heat
@@ -490,6 +492,7 @@
 		COMSIG_ATOM_ENTERED = .proc/on_cross,
 	)
 	AddElement(/datum/element/connect_loc, connections)
+
 
 /obj/flamer_fire/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -570,7 +573,7 @@
 		qdel(src)
 		return
 
-	T.flamer_fire_act(burnlevel, firelevel)
+	T.flamer_fire_act(burnlevel)
 
 	var/j = 0
 	for(var/i in T)
@@ -579,13 +582,13 @@
 		var/atom/A = i
 		if(QDELETED(A)) //The destruction by fire of one atom may destroy others in the same turf.
 			continue
-		A.flamer_fire_act(burnlevel, firelevel)
+		A.flamer_fire_act(burnlevel)
 
 	firelevel -= 2 //reduce the intensity by 2 per tick
 
 
 // override this proc to give different idling-on-fire effects
-/mob/living/flamer_fire_act(burnlevel, firelevel)
+/mob/living/flamer_fire_act(burnlevel)
 	if(!burnlevel)
 		return
 	var/fire_mod = get_fire_resist()
@@ -604,16 +607,16 @@
 	to_chat(src, span_warning("You are burned!"))
 
 
-/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/flamer_fire_act(burnlevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
 	. = ..()
 	updatehealth()
 
-/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/queen/flamer_fire_act(burnlevel)
 	to_chat(src, span_xenowarning("Our extra-thick exoskeleton protects us from the flames."))
 
-/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel, firelevel)
+/mob/living/carbon/xenomorph/ravager/flamer_fire_act(burnlevel)
 	if(stat)
 		return
 	plasma_stored = xeno_caste.plasma_max

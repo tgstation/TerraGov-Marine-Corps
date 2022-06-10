@@ -12517,6 +12517,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle8)
+"lfr" = (
+/obj/item/tool/crowbar,
+/turf/open/floor/marking/warning{
+	dir = 10
+	},
+/area/lv624/lazarus/spaceport)
 "lfE" = (
 /obj/effect/spawner/random/toolbox,
 /turf/open/ground/grass,
@@ -14267,6 +14273,7 @@
 /area/lv624/lazarus/main_hall)
 "ngP" = (
 /obj/effect/decal/remains/xeno,
+/obj/structure/jungle/planttop1,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
@@ -17804,6 +17811,10 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle10)
+"rJe" = (
+/obj/item/tool/crowbar,
+/turf/open/floor,
+/area/lv624/lazarus/spaceport2)
 "rJh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -33078,7 +33089,7 @@ aym
 bfR
 bfR
 bfR
-aWe
+bfR
 bfR
 bfR
 bfR
@@ -33250,13 +33261,13 @@ abc
 abc
 abc
 aTS
-aWe
+bfR
 bfR
 bfR
 bpA
 bfR
 bfR
-aWe
+bfR
 bfR
 bfR
 bfR
@@ -33604,13 +33615,13 @@ abc
 abc
 abc
 aTS
-aWe
+bfR
 bfR
 bpA
 bfR
 bpA
 bfR
-aWe
+bfR
 bfR
 bfR
 eud
@@ -33786,7 +33797,7 @@ aym
 bfR
 bfR
 bfR
-aWe
+bfR
 bfR
 bfR
 bfR
@@ -33962,8 +33973,8 @@ xLJ
 xLJ
 aym
 bfR
-aWe
-aWe
+bfR
+bfR
 bfR
 eud
 bfR
@@ -34143,7 +34154,7 @@ aIm
 aIm
 aWe
 aWe
-aWe
+bfR
 aIm
 aIm
 aWe
@@ -38469,7 +38480,7 @@ kdu
 tSf
 eDX
 vvX
-vvX
+rJe
 mON
 vvX
 wEr
@@ -55992,7 +56003,7 @@ sPW
 qnx
 gif
 hVV
-iOa
+lfr
 tMe
 iPZ
 ens

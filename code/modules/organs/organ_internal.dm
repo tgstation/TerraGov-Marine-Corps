@@ -20,7 +20,6 @@
 	var/rejecting            // Is this organ already being rejected?
 	var/obj/item/organ/organ_holder // If not in a body, held in this item.
 	var/list/transplant_data
-	var/germ_level = 0		// INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
 	var/organ_id
 	/// State of the organ
 	var/organ_status = ORGAN_HEALTHY
@@ -33,6 +32,7 @@
 	organ_holder = null
 	return ..()
 
+<<<<<<< HEAD
 ///Handles germs on the organ
 /datum/internal_organ/proc/handle_antibiotics()
 	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
@@ -53,6 +53,8 @@
 /datum/internal_organ/proc/rejuvenate()
 	damage=0
 
+=======
+>>>>>>> master
 /datum/internal_organ/New(mob/living/carbon/carbon_mob)
 	..()
 	if(!istype(carbon_mob))
@@ -72,37 +74,6 @@
 /datum/internal_organ/proc/clean_owner()
 	SIGNAL_HANDLER
 	owner = null
-
-/datum/internal_organ/process()
-
-	//Process infections
-	if (robotic >= 2 || (owner.species && owner.species.species_flags & IS_PLANT))	//TODO make robotic internal and external organs separate types of organ instead of a flag
-		germ_level = 0
-		return
-
-	if(owner.bodytemperature >= 170)	//cryo stops germs from moving and doing their bad stuffs
-		//** Handle antibiotics and curing infections
-		handle_antibiotics()
-
-		//** Handle the effects of infections
-		var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
-
-		if (germ_level > 0 && germ_level < INFECTION_LEVEL_ONE/2 && prob(30))
-			germ_level--
-
-		if (germ_level >= INFECTION_LEVEL_ONE/2)
-			//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
-			if(antibiotics < MIN_ANTIBIOTICS && prob(round(germ_level/6)))
-				germ_level++
-
-		if (germ_level >= INFECTION_LEVEL_TWO)
-			var/datum/limb/parent = owner.get_limb(parent_limb)
-			//spread germs
-			if (antibiotics < MIN_ANTIBIOTICS && parent.germ_level < germ_level && ( parent.germ_level < INFECTION_LEVEL_ONE*2 || prob(30) ))
-				parent.germ_level++
-
-			if (prob(3))	//about once every 30 seconds
-				take_damage(1, prob(30))
 
 /datum/internal_organ/proc/take_damage(amount, silent= FALSE)
 	if(SSticker.mode?.flags_round_type & MODE_NO_PERMANENT_WOUNDS)
@@ -202,8 +173,9 @@
 	. = ..()
 	if(!.)
 		return
-	// For example, bruised heart will leave you with 25 stamina buffer,
+	// For example, bruised heart will leave you with 25 stamina buffer
 	owner.max_stamina_buffer += (old_organ_status - organ_status) * 25
+	owner.maxHealth += (old_organ_status - organ_status) * 20
 
 /datum/internal_organ/heart/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
@@ -218,9 +190,6 @@
 
 /datum/internal_organ/lungs/process()
 	..()
-	if (germ_level > INFECTION_LEVEL_ONE)
-		if(prob(5))
-			owner.emote("cough")		//respitory tract infection
 
 	if((organ_status == ORGAN_BRUISED && prob(5)) || (organ_status == ORGAN_BROKEN && prob(20)))
 		owner.emote("me", 1, "gasps for air!")
@@ -232,6 +201,11 @@
 		return
 	// For example, bruised lungs will reduce stamina regen by 40%, broken by 80%
 	owner.stamina_regen_multiplier += (old_organ_status - organ_status) * 0.40
+<<<<<<< HEAD
+=======
+	// Slowdown added when the heart is damaged
+	owner.add_movespeed_modifier(id = name, multiplicative_slowdown = organ_status)
+>>>>>>> master
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
@@ -248,13 +222,6 @@
 
 /datum/internal_organ/liver/process()
 	..()
-
-	if (germ_level > INFECTION_LEVEL_ONE)
-		if(prob(1))
-			to_chat(owner, span_warning("Your skin itches."))
-	if (germ_level > INFECTION_LEVEL_TWO)
-		if(prob(1))
-			spawn owner.vomit()
 
 	if(owner.life_tick % PROCESS_ACCURACY == 0)
 

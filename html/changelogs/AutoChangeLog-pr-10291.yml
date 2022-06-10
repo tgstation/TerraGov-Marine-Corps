@@ -1,5 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - qol: "Xeno theme reduced to Standard with Xeno watermark."
-  - rscdel: "Removed images and CSS relating to previous xeno theme."

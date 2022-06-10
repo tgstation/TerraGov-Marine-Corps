@@ -185,17 +185,19 @@
 			to_chat(owner, span_notice("We can only restore familiar biological lifeforms."))
 		return FALSE
 
+	var/mob/living/carbon/xenomorph/target_xeno = target
+
 	if(owner.do_actions)
 		return FALSE
-	if(!line_of_sight(owner, target, 2) || get_dist(owner, target) > 2)
+	if(!line_of_sight(owner, target_xeno, 2) || get_dist(owner, target_xeno) > 2)
 		if(!silent)
 			to_chat(owner, span_notice("It is beyond our reach, we must be close and our way must be clear."))
 		return FALSE
-	if(isdead(target))
+	if(target_xeno.stat == DEAD)
 		if(!silent)
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
-	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_mob(owner, target_xeno, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 	return TRUE
 

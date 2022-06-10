@@ -13,7 +13,7 @@
 		return FALSE
 
 	//If we can find it for in a shared vendor, we buy it
-	for(var/type in GLOB.loadout_linked_vendor[seller.faction])
+	for(var/type in (GLOB.loadout_linked_vendor[seller.faction] + GLOB.loadout_linked_vendor[user.job.title]))
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
 			if(item_datum.product_path == item_to_buy_type && item_datum.amount != 0)
 				item_datum.amount--

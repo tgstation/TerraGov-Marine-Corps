@@ -274,8 +274,8 @@
 	playsound(src, pick('sound/effects/bang.ogg','sound/effects/metal_crash.ogg','sound/effects/meteorimpact.ogg'), 50, 1)
 	Shake(4, 4, 2 SECONDS)
 
-/obj/vehicle/unmanned/flamer_fire_act()
-	take_damage(20, BURN, "fire")
+/obj/vehicle/unmanned/flamer_fire_act(burnlevel)
+	take_damage(burnlevel / 2, BURN, "fire")
 
 /obj/vehicle/unmanned/fire_act()
 	take_damage(20, BURN, "fire")

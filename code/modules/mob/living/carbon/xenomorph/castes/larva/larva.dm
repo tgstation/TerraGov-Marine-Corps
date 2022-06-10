@@ -84,3 +84,8 @@
 	log_game("[key_name(src)] died as a Larva at [AREACOORD(src)].")
 	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
 	return ..()
+
+/mob/living/carbon/xenomorph/larva/spec_evolution_boost()
+	if(!loc_weeds_type)
+		return 0
+	return 1

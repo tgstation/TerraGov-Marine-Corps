@@ -301,6 +301,8 @@
 	var/attach_delay = 0 SECONDS
 	///Time it takes to detach src to a master gun.
 	var/detach_delay = 0 SECONDS
+	///How long ADS takes (time before firing)
+	var/wield_delay_mod	= 0
 
 
 /*
@@ -714,7 +716,7 @@
 
 ///Wrapper proc to complete the whole firing process.
 /obj/item/weapon/gun/proc/Fire()
-	if(!target || (!gun_user && !istype(loc, /obj/machinery/deployable/mounted/sentry)) || (!CHECK_BITFIELD(flags_item, IS_DEPLOYED) && !able_to_fire(gun_user)) || windup_checked == WEAPON_WINDUP_CHECKING)
+	if(!target || !(gun_user || istype(loc, /obj/machinery/deployable/mounted/sentry)) || !(CHECK_BITFIELD(flags_item, IS_DEPLOYED) || able_to_fire(gun_user)) || windup_checked == WEAPON_WINDUP_CHECKING)
 		return
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
@@ -753,7 +755,7 @@
 			QDEL_NULL(in_chamber)
 		else
 			in_chamber = null
-		if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE))
+		if(!(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) || CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE)))
 			cycle(null)
 		if(length(chamber_items) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) && CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && get_current_rounds(chamber_items[current_chamber_position]) < (!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) ? rounds_per_shot : 0))
 			playsound(src, empty_sound, 25, 1)
@@ -869,7 +871,7 @@
 
 	simulate_recoil(dual_wield, firing_angle)
 
-	projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+	projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 
 	shots_fired++
 
@@ -978,13 +980,13 @@
  *  If the gun doesn't Toggle it will perform a cycle, if it requires operation the gun will check the cycle against the cock delays.
  *  If the gun does toggle, Unique action will open the chamber. (Open the barrel on a DB, or the cylinder on a revolver.)
  */
-/obj/item/weapon/gun/unique_action(mob/user, dont_operate = FALSE)
+/obj/item/weapon/gun/unique_action(mob/user, special_treatment = FALSE)
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 		return
 	if(!length(chamber_items) && in_chamber && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_TOGGLES_OPEN) && !CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION))
 		unload(user)
 		return
-	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !dont_operate)
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && !special_treatment)
 		if(last_cocked + cock_delay > world.time)
 			return
 		if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_UNIQUE_ACTION_LOCKS) && in_chamber)
@@ -1549,6 +1551,7 @@
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
+	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	if(flags_gun_features & GUN_IFF || HAS_TRAIT(src, TRAIT_GUN_IS_AIMING) || projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
 		var/iff_signal
@@ -1569,7 +1572,7 @@
 	var/gun_scatter = scatter_unwielded
 	var/wielded_fire
 
-	if(flags_item & WIELDED && wielded_stable() || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && CHECK_BITFIELD(master_gun.flags_item, WIELDED) && master_gun.wielded_stable()))
+	if(((flags_item & WIELDED) && wielded_stable()) || CHECK_BITFIELD(flags_item, IS_DEPLOYED) || (master_gun && CHECK_BITFIELD(master_gun.flags_item, WIELDED) && master_gun.wielded_stable()))
 		gun_accuracy_mult = accuracy_mult
 		gun_scatter = scatter
 		wielded_fire = TRUE

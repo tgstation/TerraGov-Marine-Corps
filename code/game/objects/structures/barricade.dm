@@ -512,6 +512,9 @@
 	var/static/list/cade_types = list(CADE_TYPE_BOMB = image(icon = 'icons/Marine/barricades.dmi', icon_state = "explosive_obj"), CADE_TYPE_MELEE = image(icon = 'icons/Marine/barricades.dmi', icon_state = "brute_obj"), CADE_TYPE_ACID = image(icon = 'icons/Marine/barricades.dmi', icon_state = "burn_obj"))
 	var/choice = show_radial_menu(user, src, cade_types, require_near = TRUE, tooltips = TRUE)
 
+	if(!choice)
+		return
+
 	if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to attach armor plates to [src]."),
 		span_notice("You fumble around figuring out how to attach armor plates on [src]."))

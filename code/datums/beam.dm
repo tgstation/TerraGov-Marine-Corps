@@ -173,7 +173,7 @@
 		if(living in blacklistmobs)
 			continue
 		source.beam(living, icon_state="lightning[rand(1,12)]", time = 3, maxdistance = zap_range + 2)
-		if(living.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA) //need 1 second more than the actual effect time
+		if(living.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA) //need 1 second more than the actual effect time
 			living.apply_status_effect(/datum/status_effect/noplasmaregen, 3 SECONDS)
 			living.apply_status_effect(/datum/status_effect/plasmadrain, 3 SECONDS)
 		living.add_slowdown(2)

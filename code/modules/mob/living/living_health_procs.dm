@@ -362,7 +362,7 @@
 			qdel(H)
 
 	for(var/datum/internal_organ/I in internal_organs)
-		I.damage = 0
+		I.heal_organ_damage(I.damage)
 
 	reagents.clear_reagents() //and clear all reagents in them
 	REMOVE_TRAIT(src, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)

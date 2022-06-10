@@ -91,8 +91,6 @@
 	var/chat_color_darkened
 	///HUD images that this mob can provide.
 	var/list/hud_possible
-	///Reference to atom being orbited
-	var/atom/orbit_target
 
 	///Whether this atom smooths with things around it, and what type of smoothing if any.
 	var/smoothing_behavior = NO_SMOOTHING
@@ -417,8 +415,8 @@ directive is properly returned.
 	return //For handling the effects of explosions on contents that would not normally be effected
 
 
-//Generalized Fire Proc.
-/atom/proc/flamer_fire_act()
+///Generalized Fire Proc. Burn level is the base fire damage being received.
+/atom/proc/flamer_fire_act(burnlevel)
 	return
 
 

@@ -8,6 +8,7 @@
 		"oderwat.indent-rainbow",
 		"platymuus.dm-langclient",
 		"editorconfig.editorconfig",
-		"eamodio.gitlens"
+		"eamodio.gitlens",
+		"anturk.dmi-editor"
 	]
 }
