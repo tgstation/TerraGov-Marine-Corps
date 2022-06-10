@@ -71,14 +71,14 @@
 		armor_overlays["lamp"] = null
 	user?.update_inv_wear_suit()
 
-/obj/item/clothing/suit/storage/marine/apply_custom(image/standing)
+/obj/item/clothing/suit/storage/marine/apply_custom(mutable_appearance/standing)
 	. = ..()
-	var/image/I
+	var/image/M
 	for(var/i in armor_overlays)
-		I = armor_overlays[i]
-		if(I)
-			I = image('icons/mob/suit_1.dmi',src,I.icon_state)
-			standing.overlays += I
+		M = armor_overlays[i]
+		if(M)
+			M = mutable_appearance('icons/mob/suit_1.dmi',M.icon_state)
+			standing.overlays += M
 
 
 /obj/item/clothing/suit/storage/marine/Destroy()

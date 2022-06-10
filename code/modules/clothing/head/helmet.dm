@@ -287,12 +287,12 @@
 
 /obj/item/clothing/head/helmet/marine/apply_custom(image/standing)
 	. = ..()
-	var/image/I
+	var/mutable_appearance/M
 	for(var/i in helmet_overlays)
-		I = helmet_overlays[i]
-		if(I)
-			I = image('icons/mob/modular/modular_helmet_storage.dmi',src,I.icon_state)
-			standing.overlays += I
+		M = helmet_overlays[i]
+		if(M)
+			M = mutable_appearance('icons/mob/modular/modular_helmet_storage.dmi',M.icon_state)
+			standing.overlays += M
 
 
 /obj/item/clothing/head/helmet/marine/proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.

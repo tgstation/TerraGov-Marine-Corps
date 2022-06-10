@@ -141,10 +141,10 @@
 		else
 			. += image('icons/obj/items/jetpack.dmi', src, "+jetpackempty")
 
-/obj/item/jetpack_marine/apply_custom(image/standing)
+/obj/item/jetpack_marine/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(lit)
-		standing.overlays += image('icons/mob/back.dmi',src,"+jetpack_lit")
+		standing.overlays += mutable_appearance('icons/mob/back.dmi',"+jetpack_lit")
 
 ///Manage the fuel indicator overlay
 /obj/item/jetpack_marine/proc/change_fuel_indicator()
