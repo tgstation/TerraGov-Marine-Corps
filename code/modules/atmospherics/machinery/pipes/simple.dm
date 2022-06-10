@@ -33,8 +33,3 @@
 		pipe_vision_img.icon_state = icon_state
 	update_layer()
 	update_alpha()
-	var/turf/T = get_turf(src)
-	if(level == 2 || (!T.intact_tile && !istype(T, /turf/open/floor/plating/plating_catwalk)))
-		plane = GAME_PLANE
-	else
-		plane = FLOOR_PLANE

@@ -1,4 +1,0 @@
-author: "KornFlaks"
-delete-after: True
-changes: 
-  - bugfix: "Xenos in vents can now see the pipe network overlay."

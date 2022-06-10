@@ -619,13 +619,14 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
 	light_color = COLOR_VERY_SOFT_YELLOW
-	light_system = HYBRID_LIGHT
+	light_system = STATIC_LIGHT
+	light_range = 12
 	light_power = 8 //Magnesium/sodium fires (White star) really are bright
 
 /obj/effect/cas_flare/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
-	set_light(light_power)
+	set_light(light_range, light_power)
 	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
 	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.

@@ -444,8 +444,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	aim_slowdown = 1.5
 	actions_types = list()
 
-	fire_delay = 0.15 SECONDS
-	windup_delay = 0.4 SECONDS
+	fire_delay = 0.1 SECONDS
+	windup_delay = 0.7 SECONDS
 	scatter = -5
 	recoil = 0
 	recoil_unwielded = 4
@@ -511,6 +511,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	detach_delay = 3 SECONDS
 	pixel_shift_x = 18
 	pixel_shift_y = 16
+
+	wield_delay_mod	= 0.2 SECONDS
 
 //-------------------------------------------------------
 //M5 RPG
@@ -587,6 +589,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	desc = "The RL-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the RL-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
 	icon_state = "m5"
 	item_state = "m5"
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY
 	max_shells = 1 //codex
 	caliber = CALIBER_84MM //codex
 	load_method = SINGLE_CASING //codex
@@ -606,13 +609,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/buildasentry,
 	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_FIREARMS
-	starting_attachment_types = list(/obj/item/attachable/scope/mini)
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'

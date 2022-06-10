@@ -447,14 +447,14 @@ WEAPONS
 	cost = 5
 
 /datum/supply_packs/weapons/smart_minigun
-	name = "SG-85 Microgun"
+	name = "SG-85 Smart Handheld Gatling Gun"
 	contains = list(/obj/item/weapon/gun/minigun/smart_minigun)
 	cost = 40
 
 /datum/supply_packs/weapons/smart_minigun_ammo
-	name = "SG-85 powerpack"
-	contains = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
-	cost = 10
+	name = "SG-85 ammo bin"
+	contains = list(/obj/item/ammo_magazine/packet/smart_minigun)
+	cost = 5
 
 /datum/supply_packs/weapons/flamethrower
 	name = "FL-84 Flamethrower"
@@ -1566,15 +1566,15 @@ FACTORY
 	contains = list(/obj/item/factory_refill/pizza_refill)
 	cost = 29 //allows a one point profit if all pizzas are processed and sold back to ASRS
 
-/datum/supply_packs/factory/smartrifle_ammo_refill
-	name = "Smart rifle bullet parts refill"
-	contains = list(/obj/item/factory_refill/smartgunner_rifle_box_refill)
-	cost = 20
+/datum/supply_packs/factory/smartgun_minigun_box_refill
+	name = "Smart minigun bullet bin parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_minigun_box_refill)
+	cost = 25
 
 /datum/supply_packs/factory/smartgun_magazine_refill
 	name = "Smart machinegun drum parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
-	cost = 50
+	cost = 25
 
 /datum/supply_packs/factory/autosniper_magazine_refill
 	name = "SR-81 IFF Auto Sniper magazine assembly refill"

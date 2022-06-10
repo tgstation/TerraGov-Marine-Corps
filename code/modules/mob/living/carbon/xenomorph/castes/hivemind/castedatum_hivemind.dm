@@ -22,7 +22,6 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_FIRE_IMMUNE|CASTE_IS_BUILDER|CASTE_DO_NOT_ALERT_LOW_LIFE
-
 	can_hold_eggs = CANNOT_HOLD_EGGS
 
 	// *** Defense *** //
@@ -39,6 +38,7 @@
 
 	// *** Abilities *** //
 	actions = list(
+		/datum/action/xeno_action/watch_xeno/hivemind,
 		/datum/action/xeno_action/change_form,
 		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/rally_hive/hivemind,

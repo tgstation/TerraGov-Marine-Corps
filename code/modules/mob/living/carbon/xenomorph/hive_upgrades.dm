@@ -11,6 +11,71 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	XENO_TIER_FOUR = PRIMORDIAL_TIER_FOUR,
 ))
 
+/datum/hive_purchases
+	interaction_flags = INTERACT_UI_INTERACT
+	///Flat list of upgrades we can buy
+	var/list/buyable_upgrades = list()
+	///Assocative list name = upgraderef
+	var/list/datum/hive_upgrade/upgrades_by_name = list()
+
+// ***************************************
+// *********** UI for hive store/blessing menu
+// ***************************************
+
+///Initializing hive status with all relevant to be purchased upgrades.
+/datum/hive_purchases/proc/setup_upgrades()
+	for(var/type in subtypesof(/datum/hive_upgrade))
+		var/datum/hive_upgrade/upgrade = new type
+		if(upgrade.name == "Error upgrade") //defaultname just skip it its probably organisation
+			continue
+		if(!(SSticker.mode.flags_xeno_abilities & upgrade.flags_gamemode))
+			continue
+		buyable_upgrades += upgrade
+		upgrades_by_name[upgrade.name] = upgrade
+
+/datum/hive_purchases/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "BlessingMenu", "Queen Mothers Blessings")
+		ui.open()
+
+/datum/hive_purchases/ui_state(mob/user)
+	return GLOB.conscious_state
+
+/datum/hive_purchases/ui_assets(mob/user)
+	. = ..()
+	. += get_asset_datum(/datum/asset/spritesheet/blessingmenu)
+
+/datum/hive_purchases/ui_data(mob/user)
+	. = ..()
+
+	var/mob/living/carbon/xenomorph/X = user
+
+	.["upgrades"] = list()
+	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
+		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
+		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "iconstate" = upgrade.icon))
+	.["psypoints"] = SSpoints.xeno_points_by_hive[X.hive.hivenumber]
+
+/datum/hive_purchases/ui_static_data(mob/user)
+	. = ..()
+	.["categories"] = GLOB.upgrade_categories
+
+/datum/hive_purchases/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	. = ..()
+	switch(action)
+		if("buy")
+			var/buying = params["buyname"]
+			var/datum/hive_upgrade/upgrade = upgrades_by_name[buying]
+			var/mob/living/carbon/xenomorph/user = usr
+			if(!upgrade.can_buy(user, FALSE))
+				return
+			if(!upgrade.on_buy(user))
+				return
+			log_game("[key_name(user)] has purchased \a [upgrade] Blessing for [upgrade.psypoint_cost] psypoints for the [user.hive.hivenumber] hive")
+			if(upgrade.flags_upgrade & UPGRADE_FLAG_MESSAGE_HIVE)
+				xeno_message("[user] has purchased \a [upgrade] Blessing", "xenoannounce", 5, user.hivenumber)
+
 /datum/hive_upgrade
 	///name of the upgrade, string, used in ui
 	var/name = "Error upgrade"

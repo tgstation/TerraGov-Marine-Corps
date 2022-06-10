@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - rscadd: "New health scanner shows an alert if the patient has unscannable reagents in them."

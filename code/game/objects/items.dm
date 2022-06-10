@@ -391,12 +391,12 @@
 	return TRUE
 
 ///Signal sender for unique_action
-/obj/item/proc/do_unique_action(mob/user)
+/obj/item/proc/do_unique_action(mob/user, special_treatment = FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
-	return unique_action(user)
+	return unique_action(user, special_treatment)
 
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
-/obj/item/proc/unique_action(mob/user)
+/obj/item/proc/unique_action(mob/user, special_treatment = FALSE)
 	return
 
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed

@@ -141,12 +141,14 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDSUP, "Injector (Advanced)", 15, "orange"),
 	))
 
+//A way to give them everything at once that still works with loadouts would be nice, but barring that make sure that your point calculation is set up so they don't get more than what they're supposed to
 GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
-	/obj/item/clothing/glasses/night/m56_goggles = list(CAT_ESS, "M26 head mounted sight", 0, "white"),
-	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_LEDSUP, "SG-29 Smartmachinegun", 29 , "white"), //If a smartgunner buys SG-29, then they will have 16 points to purchase 4 SG-29 drums
-	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_LEDSUP, "SG-29 Smartmachinegun ammo", 4 , "black"),
-	/obj/item/weapon/gun/minigun/smart_minigun = list(CAT_LEDSUP, "SG-85 Smart Handheld Gatling Gun", 25 , "white"), //A smartgunner can buy one minigun and two backpacks
-	/obj/item/ammo_magazine/minigun_powerpack/smartgun = list(CAT_LEDSUP, "SG-85 powerpack", 10, "black"),
+	/obj/item/clothing/glasses/night/m56_goggles = list(CAT_ESS, "KLTD Smart Goggles", 0, "white"),
+	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_LEDSUP, "SG-29 Smartmachinegun", 29, "orange"), //If a smartgunner buys a SG-29, then they will have 16 points to purchase 4 SG-29 drums
+	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_LEDSUP, "SG-29 Ammo Drum", 4, "black"),
+	/obj/item/weapon/gun/minigun/smart_minigun = list(CAT_LEDSUP, "SG-85 Handheld Gatling Gun", 27, "orange"), //If a smartgunner buys a SG-85, then they should be able to buy only 1 powerpack and 2 ammo bins
+	/obj/item/ammo_magazine/minigun_powerpack/smartgun =  list(CAT_LEDSUP, "SG-85 Powerpack", 10, "black"),
+	/obj/item/ammo_magazine/packet/smart_minigun = list(CAT_LEDSUP, "SG-85 Ammo Bin", 4, "black"),
 	))
 
 
@@ -191,7 +193,6 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/armor_supply,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed,
-		/obj/machinery/vending/medical/shipside,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
 	),
@@ -201,7 +202,6 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/armor_supply/loyalist,
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed,
-		/obj/machinery/vending/medical/shipside,
 		/obj/machinery/vending/cigarette,
 		/obj/machinery/vending/tool,
 	),
@@ -222,6 +222,9 @@ GLOBAL_LIST_INIT(loadout_linked_vendor, list(
 		/obj/machinery/vending/marineFood,
 		/obj/machinery/vending/MarineMed/valhalla,
 		/obj/machinery/vending/cigarette,
+	),
+	SQUAD_CORPSMAN = list(
+		/obj/machinery/vending/medical/shipside,
 	)
 ))
 
@@ -262,6 +265,7 @@ GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 		/obj/item/clothing/head/helmet/marine/robot = list(CAT_HEL, "Medium head robotic armor plating", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot/heavy = list(CAT_HEL, "Heavy head robotic armor plating", 0, "black"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
+		/obj/item/armor_module/storage/injector = list(CAT_MOD, "Injector Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/general = list(CAT_MOD, "General Purpose Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/engineering = list(CAT_MOD, "Engineering Storage Module", 0, "black"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
@@ -330,6 +334,7 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 		/obj/item/clothing/head/helmet/marine/robot = list(CAT_HEL, "Medium head robotic armor plating", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot/heavy = list(CAT_HEL, "Heavy head robotic armor plating", 0, "black"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
+		/obj/item/armor_module/storage/injector = list(CAT_MOD, "Injector Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/general = list(CAT_MOD, "General Purpose Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/engineering = list(CAT_MOD, "Engineering Storage Module", 0, "black"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
@@ -392,6 +397,7 @@ GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 		/obj/item/clothing/head/helmet/marine/robot = list(CAT_HEL, "Medium head robotic armor plating", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot/heavy = list(CAT_HEL, "Heavy head robotic armor plating", 0, "black"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
+		/obj/item/armor_module/storage/injector = list(CAT_MOD, "Injector Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/general = list(CAT_MOD, "General Purpose Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/engineering = list(CAT_MOD, "Engineering Storage Module", 0, "black"),
 		/obj/item/storage/pouch/autoinjector/advanced/full = list(CAT_POU, "Advanced Autoinjector pouch", 0, "orange"),
@@ -444,6 +450,7 @@ GLOBAL_LIST_INIT(smartgunner_clothes_listed_products, list(
 		/obj/item/armor_module/module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
 		/obj/item/armor_module/module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
+		/obj/item/armor_module/storage/injector = list(CAT_MOD, "Injector Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/general = list(CAT_MOD, "General Purpose Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/engineering = list(CAT_MOD, "Engineering Storage Module", 0, "black"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
@@ -504,6 +511,7 @@ GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/item/clothing/head/helmet/marine/robot = list(CAT_HEL, "Medium head robotic armor plating", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/robot/heavy = list(CAT_HEL, "Heavy head robotic armor plating", 0, "black"),
 		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
+		/obj/item/armor_module/storage/injector = list(CAT_MOD, "Injector Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/general = list(CAT_MOD, "General Purpose Storage Module", 0, "black"),
 		/obj/item/armor_module/storage/engineering = list(CAT_MOD, "Engineering Storage Module", 0, "black"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),

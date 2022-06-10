@@ -12,6 +12,7 @@
 	throw_range = 20
 	max_amount = 50
 	attack_verb = list("hit", "bludgeoned", "whacked")
+	number_of_extra_variants = 3
 
 
 /obj/item/stack/sandbags_empty/attackby(obj/item/I, mob/user, params)

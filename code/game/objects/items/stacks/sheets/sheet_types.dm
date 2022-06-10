@@ -57,6 +57,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	throwforce = 14.0
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/metal
+	number_of_extra_variants = 3
 
 
 /obj/item/stack/sheet/metal/small_stack
@@ -93,7 +94,7 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	throwforce = 15.0
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/plasteel
-
+	number_of_extra_variants = 3
 
 /obj/item/stack/sheet/plasteel/Initialize(mapload, amount)
 	. = ..()
@@ -132,7 +133,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
 	merge_type = /obj/item/stack/sheet/wood
-
+	number_of_extra_variants = 3
 
 /obj/item/stack/sheet/wood/large_stack
 	amount = 50
