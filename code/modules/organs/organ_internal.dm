@@ -32,29 +32,6 @@
 	organ_holder = null
 	return ..()
 
-<<<<<<< HEAD
-///Handles germs on the organ
-/datum/internal_organ/proc/handle_antibiotics()
-	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
-
-	if (!germ_level || antibiotics < MIN_ANTIBIOTICS)
-		return
-
-	if (germ_level < 10)
-		germ_level = 0	//cure instantly
-	else if (germ_level < INFECTION_LEVEL_ONE)
-		germ_level -= 4
-	else if (germ_level < INFECTION_LEVEL_TWO)
-		germ_level -= 3	//at germ_level == 500, this should cure the infection in a minute
-	else
-		germ_level -= 2 //at germ_level == 1000, this will cure the infection in 5 minutes
-
-
-/datum/internal_organ/proc/rejuvenate()
-	damage=0
-
-=======
->>>>>>> master
 /datum/internal_organ/New(mob/living/carbon/carbon_mob)
 	..()
 	if(!istype(carbon_mob))
@@ -201,11 +178,8 @@
 		return
 	// For example, bruised lungs will reduce stamina regen by 40%, broken by 80%
 	owner.stamina_regen_multiplier += (old_organ_status - organ_status) * 0.40
-<<<<<<< HEAD
-=======
 	// Slowdown added when the heart is damaged
 	owner.add_movespeed_modifier(id = name, multiplicative_slowdown = organ_status)
->>>>>>> master
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
