@@ -37,7 +37,7 @@
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
-	flags_item = IMPEDE_JETPACK
+	flags_item = SYNTH_RESTRICTED|IMPEDE_JETPACK
 	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
