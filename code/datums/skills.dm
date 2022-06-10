@@ -62,8 +62,6 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/police = SKILL_POLICE_DEFAULT
 	var/powerloader = SKILL_POWERLOADER_DEFAULT
 	var/large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
-	/// Malus or bonuses to all skills
-	var/global_skill_modificator = 0
 
 
 /datum/skills/New(cqc, melee_weapons,\
@@ -129,6 +127,26 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.powerloader+powerloader,\
 	src.large_vehicle+large_vehicle)
 
+/datum/skills/proc/modifyAllRatings(difference)
+	return getSkills(src.cqc+difference,\
+	src.melee_weapons+difference,\
+	src.firearms+difference,\
+	src.pistols+difference,\
+	src.shotguns+difference,\
+	src.rifles+difference,\
+	src.smgs+difference,\
+	src.heavy_weapons+difference,\
+	src.smartgun+difference,\
+	src.engineer+difference,\
+	src.construction+difference,\
+	src.leadership+difference,\
+	src.medical+difference,\
+	src.surgery+difference,\
+	src.pilot+difference,\
+	src.police+difference,\
+	src.powerloader+difference,\
+	src.large_vehicle+difference)
+
 /datum/skills/proc/setRating(cqc, melee_weapons,\
 firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun,\
 engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle)
@@ -160,10 +178,10 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 #undef SKILLSID
 
 /datum/skills/proc/getPercent(rating, max_rating)
-	return CLAMP01(max(vars[rating] + global_skill_modificator, 0) * 100 / max_rating * 0.01)
+	return CLAMP01(max(vars[rating], 0) * 100 / max_rating * 0.01)
 
 /datum/skills/proc/getRating(rating)
-	return max(vars[rating] + global_skill_modificator, 0)
+	return max(vars[rating], 0)
 
 /datum/skills/proc/getList()
 	return list("cqc" = cqc,\

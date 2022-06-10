@@ -300,7 +300,7 @@
 	. = ..()
 	if(!.)
 		return
-	owner.skills.global_skill_modificator += old_organ_status - organ_status
+	owner.skills = owner.skills.modifyAllRatings(old_organ_status - organ_status)
 
 /datum/internal_organ/brain/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
