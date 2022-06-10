@@ -166,10 +166,10 @@
 	action_icon_state = RESIN_WALL
 	mechanics_text = "Builds whatever resin you selected"
 	ability_name = "secrete resin"
-	plasma_cost = 75
+	plasma_cost = 60
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 	///Minimum time to build a resin structure
-	var/base_wait = 1 SECONDS
+	var/base_wait = 0.5 SECONDS
 	///Multiplicator factor to add to the building time, depends on the health of the structure built
 	var/scaling_wait = 1 SECONDS
 	///List of buildable structures. Order corresponds with resin_images_list.
@@ -229,7 +229,7 @@
 		if(/obj/effect/alien/resin/sticky)
 			build_resin_modifier = 0.5
 		if(/obj/structure/mineral_door/resin)
-			build_resin_modifier = 2
+			build_resin_modifier = 1
 
 	return (base_wait + scaling_wait - max(0, (scaling_wait * X.health / X.maxHealth))) * build_resin_modifier
 
@@ -329,7 +329,7 @@
 		if(/obj/effect/alien/resin/sticky)
 			plasma_cost = initial(plasma_cost) / 3
 		if(/obj/structure/mineral_door/resin)
-			plasma_cost = initial(plasma_cost) * 3
+			plasma_cost = initial(plasma_cost)
 
 	if(new_resin)
 		add_cooldown(SSmonitor.gamestate == SHUTTERS_CLOSED ? get_cooldown()/2 : get_cooldown())
