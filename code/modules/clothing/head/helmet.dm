@@ -285,7 +285,7 @@
 		var/mob/M = loc
 		M.update_inv_head()
 
-/obj/item/clothing/head/helmet/marine/apply_custom(image/standing)
+/obj/item/clothing/head/helmet/marine/apply_custom(mutable_appearance/standing)
 	. = ..()
 	var/mutable_appearance/M
 	for(var/i in helmet_overlays)
