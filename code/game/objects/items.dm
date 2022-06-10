@@ -555,7 +555,7 @@
 				return TRUE
 			return FALSE
 		if(SLOT_IN_ACCESSORY)
-			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/holster)) ||(H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/knifeharness)))
+			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform)))
 				var/obj/item/armor_module/storage/U = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
 				var/obj/item/storage/S = U.storage
 				if(S.can_be_inserted(src, warning))
@@ -609,7 +609,7 @@
 					return TRUE
 			return FALSE
 		if(SLOT_IN_S_HOLSTER)
-			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
+			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) || (H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.s_store
 				if(S.can_be_inserted(src, warning))
 					return TRUE
@@ -633,19 +633,41 @@
 			if(S.can_be_inserted(src, warning))
 				return TRUE
 		if(SLOT_IN_SUIT)
-			var/obj/item/clothing/suit/storage/S = H.wear_suit
-			if(!istype(S) || !S.pockets)
+			if(!H.wear_suit)
 				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
-				return TRUE
+			if(istype(H.wear_suit, /obj/item/clothing/suit/modular))
+				var/obj/item/clothing/suit/modular/T = H.wear_suit
+				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+					return FALSE
+				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			if(istype(H.wear_suit, /obj/item/clothing/suit/storage)) //old suits use the pocket var instead of storage attachments
+				var/obj/item/clothing/suit/storage/T = H.wear_suit
+				if(!T.pockets)
+					return FALSE
+				var/obj/item/storage/internal/S = T.pockets
+				if(S.can_be_inserted(src, warning))
+					return TRUE
 		if(SLOT_IN_HEAD)
-			var/obj/item/clothing/head/helmet/marine/S = H.head
-			if(!istype(S) || !S.pockets)
+			if(!H.head)
 				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
-				return TRUE
+			if(istype(H.head, /obj/item/clothing/head/modular))
+				var/obj/item/clothing/head/modular/T = H.head
+				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+					return FALSE
+				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			if(istype(H.head, /obj/item/clothing/head/helmet/marine)) //old hats use the pocket var instead of storage attachments
+				var/obj/item/clothing/head/helmet/marine/T = H.head
+				if(!T.pockets)
+					return FALSE
+				var/obj/item/storage/internal/S = T.pockets
+				if(S.can_be_inserted(src, warning))
+					return TRUE
 		if(SLOT_IN_BOOT)
 			var/obj/item/clothing/shoes/marine/S = H.shoes
 			if(!istype(S) || !S.pockets)
