@@ -113,7 +113,7 @@
 	else //Upgrade process finished or impossible
 		stat("Upgrade Progress:", "(FINISHED)")
 
-	stat("Health:", "[overheal ? "[overheal] + ": ""][health]/[xeno_caste.max_health]")
+	stat("Health:", "[overheal ? "[overheal] + ": ""][health]/[maxHealth]") //Changes with balance scalar, can't just use the caste
 
 	if(xeno_caste.plasma_max > 0)
 		stat("Plasma:", "[plasma_stored]/[xeno_caste.plasma_max]")
