@@ -604,6 +604,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		target_initial_sunder = xeno_target.sunder
 	addtimer(CALLBACK(src, .proc/start_rewinding), start_rewinding)
 	RegisterSignal(targeted, COMSIG_MOVABLE_MOVED, .proc/save_move)
+	targeted.add_filter("rewind_blur", 1, radial_blur_filter(0.3))
+	targeted.balloon_alert("You feel anchored to the past!")
 	add_cooldown()
 	succeed_activate()
 
@@ -616,7 +618,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/activable/rewind/proc/start_rewinding()
 	UnregisterSignal(targeted, COMSIG_MOVABLE_MOVED)
 	if(QDELETED(targeted) || targeted.stat == DEAD)
-		target = null
+		targeted = null
 		return
 	targeted.status_flags |= INCORPOREAL|GODMODE
 	INVOKE_NEXT_TICK(src, .proc/rewind)
@@ -636,7 +638,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(isxeno(target))
 			var/mob/living/carbon/xenomorph/xeno_target = targeted
 			xeno_target.sunder = target_initial_sunder
-		target = null
+		targeted = null
+		targeted.remove_filter("rewind_blur")
 		return
 
 	targeted.Move(loc_b, get_dir(loc_b, loc_a))
