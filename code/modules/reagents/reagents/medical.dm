@@ -623,32 +623,6 @@
 /datum/reagent/medicine/imidazoline/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, effect_str, 2*effect_str)
 
-/datum/reagent/medicine/peridaxon
-	name = "Peridaxon"
-	description = "Used to stabilize internal organs while waiting for surgery, and fixes organ damage at cryogenic temperatures. Medicate cautiously."
-	color = "#C845DC"
-	overdose_threshold = REAGENTS_OVERDOSE/2
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
-	custom_metabolism = REAGENTS_METABOLISM * 0.25
-	scannable = TRUE
-
-/datum/reagent/medicine/peridaxon/on_mob_life(mob/living/L, metabolism)
-	if(!ishuman(L))
-		return ..()
-	var/mob/living/carbon/human/H = L
-	for(var/datum/internal_organ/I in H.internal_organs)
-		if(I.damage)
-			if(L.bodytemperature > 169 && I.damage > 5)
-				continue
-			I.heal_organ_damage(effect_str)
-	return ..()
-
-/datum/reagent/medicine/peridaxon/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(2*effect_str, BRUTE)
-
-/datum/reagent/peridaxon/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(effect_str, 3*effect_str, 3*effect_str)
-
 /datum/reagent/medicine/peridaxon_plus
 	name = "Peridaxon Plus"
 	description = "Used to heal severely damaged internal organs in the field. Moderately toxic. Do not self-administer."

@@ -85,7 +85,6 @@
 /obj/item/storage/firstaid/toxin/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
-	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/packet/ryetalyn(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
@@ -482,14 +481,6 @@
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imidazoline
 	greyscale_colors = "#F7A151#ffffff" //orange like carrots
-
-/obj/item/storage/pill_bottle/peridaxon
-	name = "peridaxon pill bottle"
-	desc = "Contains pills that suppress organ damage while waiting for a full treatment."
-	icon_state = "pill_canistercomplete"
-	greyscale_config = /datum/greyscale_config/pillbottleround
-	pill_type_to_fill = /obj/item/reagent_containers/pill/peridaxon
-	greyscale_colors = "#6e6860#ffffff"
 
 /obj/item/storage/pill_bottle/russian_red
 	name = "\improper Russian Red pill bottle"

@@ -245,6 +245,7 @@
 
 	if(!regression && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
 		to_chat(src, span_warning("We quiver, but nothing happens. We must hold still while evolving."))
+		return
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen)
 		if(hive.living_xeno_queen) //Do another check after the tick.
@@ -269,6 +270,7 @@
 	if(!isturf(loc)) //cdel'd or moved into something
 		return
 
+	SStgui.close_user_uis(src) //Force close all UIs upon evolution.
 
 	//From there, the new xeno exists, hopefully
 	var/mob/living/carbon/xenomorph/new_xeno = new new_caste_type(get_turf(src))

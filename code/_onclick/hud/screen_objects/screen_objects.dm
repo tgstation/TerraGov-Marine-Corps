@@ -494,8 +494,8 @@
 	if(!isliving(usr))
 		return
 	var/mob/living/living_user = usr
-	if(living_user.getStaminaLoss() < 0 && living_user.max_stamina_buffer)
-		living_user.balloon_alert(living_user, "Stamina buffer:[(-living_user.getStaminaLoss() * 100 / living_user.max_stamina_buffer)]%")
+	if(living_user.getStaminaLoss() < 0 && living_user.max_stamina)
+		living_user.balloon_alert(living_user, "Stamina buffer:[(-living_user.getStaminaLoss() * 100 / living_user.max_stamina)]%")
 		return
 	living_user.balloon_alert(living_user, "You have [living_user.getStaminaLoss()] stamina loss")
 

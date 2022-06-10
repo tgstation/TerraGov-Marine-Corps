@@ -1,4 +1,0 @@
-author: "GrayRachnid"
-delete-after: True
-changes: 
-  - bugfix: "Removed the ability for an undeployed teleporter to not get melted."

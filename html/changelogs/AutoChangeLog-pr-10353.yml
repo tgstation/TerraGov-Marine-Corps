@@ -1,7 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscadd: "headwear and service dress tab in clothing vendor to stop the clutter that is clothing tab in clothing vendor. With that said, change clothing tab to standard tab."
-  - rscadd: "head bandanna into clothing vendor with two new colors: brown and grey."
-  - rscdel: "TGMC bandanna."
-  - imageadd: "grey and brown bandanna"

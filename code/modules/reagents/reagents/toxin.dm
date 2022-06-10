@@ -694,3 +694,53 @@
 		return
 	H.do_jitter_animation(1000)
 	addtimer(CALLBACK(H, /mob/living/carbon/human.proc/revive_to_crit, TRUE, TRUE), SSticker.mode?.zombie_transformation_time)
+
+
+//SOM nerve agent
+/datum/reagent/toxin/satrapine
+	name = "Satrapine"
+	description = "A nerve agent designed to incapacitate targets through debilitating pain. Its severity increases over time, causing various lung complications, and will purge common painkillers. Based on a chemical agent originally used against rebelling Martian colonists, improved by the SOM for their own use."
+	reagent_state = LIQUID
+	color = "#cfb000"
+	overdose_threshold = 10000
+	custom_metabolism = REAGENTS_METABOLISM
+	scannable = TRUE
+	toxpwr = 0
+	purge_list = list(
+		/datum/reagent/medicine/tramadol,
+		/datum/reagent/medicine/paracetamol,
+		/datum/reagent/medicine/inaprovaline,
+	)
+	purge_rate = 1
+
+/datum/reagent/toxin/satrapine/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 10)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		if(11 to 20)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
+			L.jitter(4)
+		if(21 to 30)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
+			L.jitter(6)
+		if(31 to INFINITY)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.5 //bad times ahead
+			L.jitter(8)
+
+	if(current_cycle > 21)
+		L.adjustStaminaLoss(effect_str)
+		if(iscarbon(L) && prob(min(current_cycle - 10,30)))
+			L.emote("me", 1, "coughs up blood!")
+			L:drip(10)
+		if(prob(min(current_cycle - 5,30)))
+			L.emote("me", 1, "gasps for air!")
+			L.Losebreath(4)
+		if(L.eye_blurry < 30)
+			L.adjust_blurriness(1.3)
+	else
+		L.adjustStaminaLoss(0.5*effect_str)
+		if(prob(20))
+			L.emote("gasp")
+			L.Losebreath(3)
+
+	return ..()

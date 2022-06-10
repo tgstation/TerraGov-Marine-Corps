@@ -80,6 +80,10 @@
 			bumpopen(M)
 		return
 
+	if(isuav(AM))
+		try_to_activate_door(AM)
+		return
+
 	if(isobj(AM))
 		var/obj/O = AM
 		for(var/m in O.buckled_mobs)
@@ -111,15 +115,17 @@
 		return
 	return try_to_activate_door(user)
 
-/obj/machinery/door/proc/try_to_activate_door(mob/user)
+/obj/machinery/door/proc/try_to_activate_door(atom/user)
 	if(operating)
 		return
-	var/can_open
+	var/can_open = !Adjacent(user) || !requiresID() || ismob(user) && allowed(user)
 	if(!Adjacent(user))
 		can_open = TRUE
 	if(!requiresID())
 		can_open = TRUE
-	if(allowed(user))
+	if(ismob(user) && allowed(user))
+		can_open = TRUE
+	if(isuav(user))
 		can_open = TRUE
 	if(can_open)
 		if(density)
