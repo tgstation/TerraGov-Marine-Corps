@@ -568,31 +568,77 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(health_points <= 0)
 		qdel(src)
 
-/datum/action/xeno_action/activable/timeshift
+/datum/action/xeno_action/activable/rewind
 	name = "Time Shift"
 	ability_name = "Time Shift"
-	action_icon_state = ""
+	action_icon_state = "woosh_swoosh"
 	mechanics_text = "Save the location and status of the target. When the time is up, the target location and status are restored"
 	plasma_cost = 100
 	cooldown_timer = 30 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_TIMESHIFT
+	keybind_signal = COMSIG_XENOABILITY_REWIND
+	use_state_flags = XACT_TARGET_SELF
 	/// How long till the time rewinds
-	var/rewind_time = 5 SECONDS
+	var/start_rewinding = 5 SECONDS
 	/// The targeted atom
 	var/mob/living/targeted
 	/// List of locations the atom took since it was last saved
 	var/list/turf/last_target_locs_list = list()
-	/// Initial health of the target
-	var/target_initial_health = 0
+	/// Initial burn damage of the target
+	var/target_initial_burn_damage = 0
+	/// Initial brute damage of the target
+	var/target_initial_brute_damage = 0
+	/// Initial sunder of the target
+	var/target_initial_sunder = 0
 
-
-/datum/action/xeno_action/activable/timeshift/use_ability(atom/A)
+/datum/action/xeno_action/activable/rewind/use_ability(atom/A)
 	if(!isliving(A))
 		to_chat(owner, span_xenowarning("We cannot target that!"))
 		return
 
 	targeted = A
 	last_target_locs_list += get_turf(A)
-	target_initial_health = targeted.health
-	addtimer(src, .proc/rewind_time, rewind_time)
+	target_initial_brute_damage = targeted.getBruteLoss()
+	target_initial_burn_damage = targeted.getFireLoss()
+	if(isxeno(A))
+		var/mob/living/carbon/xenomorph/xeno_target = targeted
+		target_initial_sunder = xeno_target.sunder
+	addtimer(CALLBACK(src, .proc/start_rewinding), start_rewinding)
+	RegisterSignal(targeted, COMSIG_MOVABLE_MOVED, .proc/save_move)
+	add_cooldown()
+	succeed_activate()
 
+/// Signal handler
+/datum/action/xeno_action/activable/rewind/proc/save_move(atom/movable/source, oldloc)
+	SIGNAL_HANDLER
+	last_target_locs_list += get_turf(oldloc)
+
+/// Start the reset process
+/datum/action/xeno_action/activable/rewind/proc/start_rewinding()
+	UnregisterSignal(targeted, COMSIG_MOVABLE_MOVED)
+	if(QDELETED(targeted) || targeted.stat == DEAD)
+		target = null
+		return
+	targeted.status_flags |= INCORPOREAL|GODMODE
+	INVOKE_NEXT_TICK(src, .proc/rewind)
+	targeted.canmove = FALSE
+	playsound(targeted, 'sound/effects/woosh_swoosh.ogg')
+
+/datum/action/xeno_action/activable/rewind/proc/rewind()
+	var/turf/loc_a = pop(last_target_locs_list)
+	if(loc_a)
+		new /obj/effect/temp_visual/xenomorph/afterimage(targeted.loc, targeted)
+
+	var/turf/loc_b = pop(last_target_locs_list)
+	if(!loc_b)
+		targeted.status_flags &= ~INCORPOREAL|GODMODE
+		targeted.canmove = TRUE
+		targeted.take_overall_damage(target_initial_brute_damage - targeted.getBruteLoss(), target_initial_burn_damage - targeted.getFireLoss(), updating_health = TRUE)
+		if(isxeno(target))
+			var/mob/living/carbon/xenomorph/xeno_target = targeted
+			xeno_target.sunder = target_initial_sunder
+		target = null
+		return
+
+	targeted.Move(loc_b, get_dir(loc_b, loc_a))
+	new /obj/effect/temp_visual/xenomorph/afterimage(loc_a, targeted)
+	INVOKE_NEXT_TICK(src, .proc/rewind)
