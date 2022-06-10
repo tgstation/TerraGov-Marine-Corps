@@ -597,6 +597,7 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "black"),
 		/obj/item/armor_module/storage/uniform/white_vest = list(CAT_WEB, "White medical vest", 0, "black"),
+		/obj/item/armor_module/storage/uniform/surgery_webbing = list(CAT_WEB, "White surgical webbing", 0, "black"),
 		/obj/item/clothing/tie/red = list(CAT_WEB, "Red Tie", 0, "black"),
 		/obj/item/clothing/tie/blue = list(CAT_WEB, "Blue Tie", 0, "black"),
 		/obj/item/clothing/tie/horrible = list(CAT_WEB, "Horrible Tie", 0, "black"),

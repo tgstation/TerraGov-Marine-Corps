@@ -796,8 +796,6 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
-	r_store = /obj/item/storage/pouch/medkit/medic
-	l_store = /obj/item/storage/pouch/surgery
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/medicalofficer/rebel
@@ -885,8 +883,6 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
-	r_store = /obj/item/storage/pouch/medkit/medic
-	l_store = /obj/item/storage/pouch/surgery
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/researcher/rebel
