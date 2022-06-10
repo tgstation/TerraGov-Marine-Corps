@@ -263,14 +263,14 @@
 	max_integrity = 200
 	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 	/// What item is this going to deploy when we put down the mortar?
-	var/deployed_item = /obj/machinery/deployable/mortar
+	var/deployable_item = /obj/machinery/deployable/mortar
 
 	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployed_item, 5 SECONDS)
+	AddElement(/datum/element/deployable_item, deployable_item, type, 5 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
 	do_unique_action(user)
@@ -292,7 +292,7 @@
 	max_integrity = 400
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	w_class = WEIGHT_CLASS_HUGE
-	deployed_item = /obj/machinery/deployable/mortar/howitzer
+	deployable_item = /obj/machinery/deployable/mortar/howitzer
 
 /obj/machinery/deployable/mortar/howitzer
 	anchored = FALSE // You can move this.
