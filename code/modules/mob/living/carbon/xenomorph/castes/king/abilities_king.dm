@@ -86,18 +86,18 @@
 
 ///Apply a filter on all items in the list of turfs
 /datum/action/xeno_action/activable/gravity_crush/proc/apply_filters(list/turfs)
-	for(var/turf/targetted AS in turfs)
-		targetted.add_filter("crushblur", 1, radial_blur_filter(0.3))
-		filters_applied += targetted
-		for(var/atom/movable/item AS in targetted.contents)
+	for(var/turf/targeted AS in turfs)
+		targeted.add_filter("crushblur", 1, radial_blur_filter(0.3))
+		filters_applied += targeted
+		for(var/atom/movable/item AS in targeted.contents)
 			item.add_filter("crushblur", 1, radial_blur_filter(0.3))
 			filters_applied += item
 
 ///Will crush every item on the turfs (unless they are a friendly xeno or dead)
 /datum/action/xeno_action/activable/gravity_crush/proc/do_grav_crush(list/turfs)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	for(var/turf/targetted AS in turfs)
-		for(var/atom/movable/item AS in targetted.contents)
+	for(var/turf/targeted AS in turfs)
+		for(var/atom/movable/item AS in targeted.contents)
 			if(isliving(item))
 				var/mob/living/mob_crushed = item
 				if(mob_crushed.stat == DEAD)//No abuse of that mechanic for some permadeath
