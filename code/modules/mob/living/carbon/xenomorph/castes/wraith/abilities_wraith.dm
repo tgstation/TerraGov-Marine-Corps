@@ -521,16 +521,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Signal handler teleporting crossing atoms
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(!linked_portal)
+	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || ishuman(crosser))
 		return
-	if(!COOLDOWN_CHECK(src, portal_cooldown))
-		return
-	if(crosser.anchored)
-		return
-	if(ishuman(crosser))
-		var/mob/living/carbon/human/human_crosser = crosser
-		if(human_crosser.stat >= UNCONSCIOUS)
-			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
 	crosser.flags_pass &= ~PASSMOB
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, .proc/do_teleport_atom)
