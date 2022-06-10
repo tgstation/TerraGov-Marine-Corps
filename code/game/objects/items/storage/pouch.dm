@@ -335,19 +335,6 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
-/obj/item/storage/pouch/pouch/medkit/combat
-	desc = "Standard marine medical combat pouch. Contains bandages, ointment, and combat injectors."
-
-/obj/item/storage/pouch/medkit/combat/Initialize()
-	. = ..()
-	new /obj/item/stack/medical/heal_pack/gauze(src)
-	new /obj/item/stack/medical/heal_pack/gauze(src)
-	new /obj/item/stack/medical/heal_pack/ointment(src)
-	new /obj/item/stack/medical/heal_pack/ointment(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-
 /obj/item/storage/pouch/medkit/medic/Initialize()
 	. = ..()
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
