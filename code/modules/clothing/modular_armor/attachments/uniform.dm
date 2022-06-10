@@ -113,7 +113,7 @@
 	storage = /obj/item/storage/internal/surgery_webbing
 
 /obj/item/storage/internal/surgery_webbing
-	storage_slots = 13
+	storage_slots = 11
 	max_storage_space = 24
 	can_hold = list(
 		/obj/item/tool/surgery,
@@ -121,7 +121,7 @@
 		/obj/item/tweezers,
 	)
 
-/obj/item/armor_module/storage/uniform/surgery_webbing/Initialize()
+/obj/item/storage/internal/surgery_webbing/Initialize()
 	. = ..()
 	new /obj/item/tool/surgery/scalpel/manager(src)
 	new /obj/item/tool/surgery/scalpel(src)
