@@ -21,6 +21,8 @@
 	var/obj/item/organ/organ_holder // If not in a body, held in this item.
 	var/list/transplant_data
 	var/organ_id
+	/// State of the organ
+	var/organ_status = ORGAN_HEALTHY
 
 /datum/internal_organ/process()
 		return 0
@@ -29,15 +31,6 @@
 	owner = null
 	organ_holder = null
 	return ..()
-
-/datum/internal_organ/proc/rejuvenate()
-	damage=0
-
-/datum/internal_organ/proc/is_bruised()
-	return damage >= min_bruised_damage
-
-/datum/internal_organ/proc/is_broken()
-	return damage >= min_broken_damage || cut_away
 
 /datum/internal_organ/New(mob/living/carbon/carbon_mob)
 	..()
@@ -73,9 +66,27 @@
 	var/datum/limb/parent = owner.get_limb(parent_limb)
 	if (!silent)
 		owner.custom_pain("Something inside your [parent.display_name] hurts a lot.", 1)
+	set_organ_status()
+
+/// Set the correct organ state
+/datum/internal_organ/proc/set_organ_status()
+	if(damage > min_broken_damage)
+		if(organ_status != ORGAN_BROKEN)
+			organ_status = ORGAN_BROKEN
+			return TRUE
+		return FALSE
+	if(damage > min_bruised_damage)
+		if(organ_status != ORGAN_BRUISED)
+			organ_status = ORGAN_BRUISED
+			return TRUE
+		return FALSE
+	if(organ_status != ORGAN_HEALTHY)
+		organ_status = ORGAN_HEALTHY
+		return TRUE
 
 /datum/internal_organ/proc/heal_organ_damage(amount)
 	damage = max(damage - amount, 0)
+	set_organ_status()
 
 /datum/internal_organ/proc/emp_act(severity)
 	switch(robotic)
@@ -129,12 +140,19 @@
 /datum/internal_organ/heart/process()
 	. = ..()
 
-	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		return
-	if(is_bruised() && prob(5))
+	if(organ_status == ORGAN_BRUISED && prob(5))
 		owner.emote("me", 1, "grabs at [owner.p_their()] chest!")
-	else if(is_broken() && prob(20))
+	else if(organ_status == ORGAN_BROKEN && prob(20))
 		owner.emote("me", 1, "clutches [owner.p_their()] chest!")
+
+/datum/internal_organ/heart/set_organ_status()
+	var/old_organ_status = organ_status
+	. = ..()
+	if(!.)
+		return
+	// For example, bruised heart will leave you with 25 stamina buffer
+	owner.max_stamina_buffer += (old_organ_status - organ_status) * 25
+	owner.maxHealth += (old_organ_status - organ_status) * 20
 
 /datum/internal_organ/heart/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
@@ -150,22 +168,18 @@
 /datum/internal_organ/lungs/process()
 	..()
 
-	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
+	if((organ_status == ORGAN_BRUISED && prob(5)) || (organ_status == ORGAN_BROKEN && prob(20)))
+		owner.emote("me", 1, "gasps for air!")
+
+/datum/internal_organ/lungs/set_organ_status()
+	var/old_organ_status = organ_status
+	. = ..()
+	if(!.)
 		return
-	if(is_bruised())
-		if(prob(5))
-			owner.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
-		if(prob(15))
-			owner.emote("me", 1, "gasps for air!")
-			owner.Losebreath(4)
-	else if(is_broken())
-		if(prob(30))
-			owner.emote("me", 1, "coughs up blood!")
-			owner.drip(10)
-		if(prob(50))
-			owner.emote("me", 1, "gasps for air!")
-			owner.Losebreath(10)
+	// For example, bruised lungs will reduce stamina regen by 40%, broken by 80%
+	owner.stamina_regen_multiplier += (old_organ_status - organ_status) * 0.40
+	// Slowdown added when the heart is damaged
+	owner.add_movespeed_modifier(id = name, multiplicative_slowdown = organ_status)
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
@@ -205,11 +219,10 @@
 
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3
-		if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-			if(is_bruised())
-				filter_effect -= 1
-			if(is_broken())
-				filter_effect -= 2
+		if(organ_status == ORGAN_BRUISED)
+			filter_effect -= 1
+		if(organ_status == ORGAN_BROKEN)
+			filter_effect -= 2
 
 		// Do some reagent filtering/processing.
 		for(var/datum/reagent/R in owner.reagents.reagent_list)
@@ -226,12 +239,9 @@
 		if(damage < 5 && prob(25))
 			owner.adjustToxLoss(-0.5)
 
-		//Deal toxin damage if damaged
-		if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-			return
-		if(is_bruised() && prob(25))
+		if(organ_status == ORGAN_BRUISED && prob(25))
 			owner.adjustToxLoss(0.1 * (damage/2))
-		else if(is_broken() && prob(50))
+		else if(organ_status == ORGAN_BROKEN && prob(50))
 			owner.adjustToxLoss(0.3 * (damage/2))
 
 /datum/internal_organ/liver/prosthetic
@@ -253,18 +263,15 @@
 	// This should probably be expanded in some way, but fucked if I know
 	// what else kidneys can process in our reagent list.
 	var/datum/reagent/coffee = locate(/datum/reagent/consumable/drink/coffee) in owner.reagents.reagent_list
-	if(coffee && !owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		if(is_bruised())
+	if(coffee)
+		if(organ_status == ORGAN_BRUISED)
 			owner.adjustToxLoss(0.1 * PROCESS_ACCURACY)
-		else if(is_broken())
+		else if(organ_status == ORGAN_BROKEN)
 			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
 
-	//Deal toxin damage if damaged
-	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		return
-	if(is_bruised() && prob(25))
+	if(organ_status == ORGAN_BRUISED && prob(25))
 		owner.adjustToxLoss(0.1 * (damage/3))
-	else if(is_broken() && prob(50))
+	else if(organ_status == ORGAN_BROKEN && prob(50))
 		owner.adjustToxLoss(0.2 * (damage/3))
 
 /datum/internal_organ/kidneys/prosthetic
@@ -301,11 +308,9 @@
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
-	if(owner.reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) >= 0.05)
-		return
-	if(is_bruised())
+	if(organ_status == ORGAN_BRUISED)
 		owner.set_blurriness(20)
-	if(is_broken())
+	if(organ_status == ORGAN_BROKEN)
 		owner.set_blindness(20)
 
 /datum/internal_organ/eyes/prosthetic
