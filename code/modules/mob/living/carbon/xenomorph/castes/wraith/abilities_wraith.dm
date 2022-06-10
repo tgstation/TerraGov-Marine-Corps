@@ -481,7 +481,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	portal_one.link_portal(portal_two)
 
 /obj/effect/wraith_portal
-	icon_state = "portal_object"
+	icon_state = "portal"
 	anchored = TRUE
 	opacity = FALSE
 	vis_flags = VIS_HIDE
@@ -498,12 +498,13 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/teleport_atom
 	)
+	if(portal_is_yellow)
+		icon_state = "portal1"
 	AddElement(/datum/element/connect_loc, connections)
 	portal_visuals += new
 	portal_visuals.layer = layer + 0.01
 	vis_contents += portal_visuals
 	add_filter("border_smoother", 1, gauss_blur_filter(1))
-	add_filter("portal_outline", 2, outline_filter(2, portal_is_yellow ? "#EE7D13" : "#0364E9"))
 
 /obj/effect/wraith_portal/Destroy()
 	linked_portal?.unlink()
