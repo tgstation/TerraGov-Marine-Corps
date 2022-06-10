@@ -121,6 +121,20 @@
 		/obj/item/tweezers,
 	)
 
+/obj/item/armor_module/storage/uniform/surgery_webbing/Initialize()
+	. = ..()
+	new /obj/item/tool/surgery/scalpel/manager(src)
+	new /obj/item/tool/surgery/scalpel(src)
+	new /obj/item/tool/surgery/hemostat(src)
+	new /obj/item/tool/surgery/retractor(src)
+	new /obj/item/tool/surgery/cautery(src)
+	new /obj/item/tool/surgery/circular_saw(src)
+	new /obj/item/tool/surgery/surgical_membrane(src)
+	new /obj/item/tool/surgery/bonegel(src)
+	new /obj/item/tool/surgery/bonesetter(src)
+	new /obj/item/tool/surgery/FixOVein(src)
+	new /obj/item/tool/surgery/suture(src)
+
 /obj/item/armor_module/storage/uniform/holster
 	name = "shoulder holster"
 	desc = "A handgun holster"

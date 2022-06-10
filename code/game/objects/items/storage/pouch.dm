@@ -425,14 +425,13 @@
 	name = "surgery tools pouch"
 	desc = "An eye catching white medical pouch capable of holding all your surgical tools."
 	icon_state = "surgery"
-	storage_slots = 13
+	storage_slots = 12
 	max_storage_space = 24
 	can_hold = list(
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
 	)
-
 
 /obj/item/storage/pouch/surgery/Initialize()
 	. = ..()
@@ -447,8 +446,6 @@
 	new /obj/item/tool/surgery/bonesetter(src)
 	new /obj/item/tool/surgery/FixOVein(src)
 	new /obj/item/tool/surgery/suture(src)
-	new /obj/item/stack/nanopaste(src)
-	new /obj/item/tweezers(src)
 
 /obj/item/storage/pouch/document
 	name = "document pouch"

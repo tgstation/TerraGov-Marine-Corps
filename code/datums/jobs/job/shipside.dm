@@ -718,9 +718,10 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	jobtype = /datum/job/terragov/medical/professor/rebel
 	ears = /obj/item/radio/headset/mainship/mcom/rebel
 
-/datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
 //Medical Officer
 /datum/job/terragov/medical/medicalofficer
@@ -806,6 +807,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
 
 //Researcher
@@ -890,6 +892,10 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 /datum/outfit/job/medical/researcher/rebel
 	jobtype = /datum/job/terragov/medical/researcher/rebel
 	ears = /obj/item/radio/headset/mainship/doc/rebel
+
+/datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
 /datum/job/terragov/civilian
 	job_category = JOB_CAT_CIVILIAN
