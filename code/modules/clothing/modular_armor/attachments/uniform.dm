@@ -67,29 +67,21 @@
 	name = "brown webbing vest"
 	desc = "Worn brownish synthcotton vest with lots of pockets to unload your hands."
 	icon_state = "vest_brown"
-	storage = /obj/item/storage/internal/vest // Same as black vest, just a visual difference
+	storage = /obj/item/storage/internal/vest
 
-/obj/item/armor_module/storage/uniform/white_vest/medic
-	name = "corpsman webbing"
-	desc = "A clean white Nylon vest with large pockets specially designed for holding common medical supplies."
-	storage = /obj/item/storage/internal/white_vest/medic
+/obj/item/armor_module/storage/uniform/white_vest
+	name = "white webbing vest"
+	desc = "A clean white Nylon vest with large pockets specially designed for medical supplies"
+	icon_state = "vest_white"
+	storage = /obj/item/storage/internal/white_vest
 
-/obj/item/armor_module/storage/uniform/white_vest/medic/som/Initialize()
-	. = ..()
-	new /obj/item/roller(storage)
-	new /obj/item/bodybag/cryobag(storage)
-	new /obj/item/tweezers (storage)
-	new /obj/item/storage/pill_bottle/spaceacillin(storage)
-	new /obj/item/storage/pill_bottle/alkysine(storage)
-	new /obj/item/storage/pill_bottle/imidazoline(storage)
-
-/obj/item/storage/internal/white_vest/medic
+/obj/item/storage/internal/white_vest
+	max_w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
 	max_storage_space = 24
 	can_hold = list(
 		/obj/item/stack/medical,
 		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
@@ -99,6 +91,33 @@
 		/obj/item/bodybag,
 		/obj/item/roller,
 		/obj/item/clothing/glasses/hud/health,
+		/obj/item/tweezers,
+	)
+
+/obj/item/armor_module/storage/uniform/white_vest/som
+	storage = /obj/item/storage/internal/white_vest
+
+/obj/item/armor_module/storage/uniform/white_vest/som/Initialize()
+	. = ..()
+	new /obj/item/roller(storage)
+	new /obj/item/bodybag/cryobag(storage)
+	new /obj/item/tweezers (storage)
+	new /obj/item/storage/pill_bottle/spaceacillin(storage)
+	new /obj/item/storage/pill_bottle/alkysine(storage)
+	new /obj/item/storage/pill_bottle/imidazoline(storage)
+
+/obj/item/armor_module/storage/uniform/surgery_webbing
+	name = "surgical webbing"
+	desc = "A clean white Nylon webbing composed of many straps and pockets to hold surgical tools."
+	icon_state = "webbing_white"
+	storage = /obj/item/storage/internal/surgery_webbing
+
+/obj/item/storage/internal/surgery_webbing
+	storage_slots = 13
+	max_storage_space = 24
+	can_hold = list(
+		/obj/item/tool/surgery,
+		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
 	)
 

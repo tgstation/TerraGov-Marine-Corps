@@ -701,7 +701,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	jobtype = /datum/job/terragov/medical/professor
 
 	id = /obj/item/card/id
-	belt = /obj/item/storage/belt/lifesaver
+	belt = /obj/item/storage/belt/rig/medical
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/rank/medical/blue
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/cmo
@@ -720,8 +720,6 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 
 /datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
 
 //Medical Officer
@@ -788,7 +786,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	jobtype = /datum/job/terragov/medical/medicalofficer
 
 	id = /obj/item/card/id
-	belt = /obj/item/storage/belt/lifesaver
+	belt = /obj/item/storage/belt/rig/medical
 	ears = /obj/item/radio/headset/mainship/doc
 	w_uniform = /obj/item/clothing/under/rank/medical/purple
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
@@ -807,8 +805,6 @@ You are also an expert when it comes to medication and treatment. If you do not 
 
 /datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
 
 
@@ -879,7 +875,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	name = MEDICAL_RESEARCHER
 	jobtype = /datum/job/terragov/medical/researcher
 	id = /obj/item/card/id
-	belt = /obj/item/storage/belt/lifesaver
+	belt = /obj/item/storage/belt/rig/research
 	ears = /obj/item/radio/headset/mainship/res
 	w_uniform = /obj/item/clothing/under/marine/officer/researcher
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/researcher
@@ -890,13 +886,6 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	r_store = /obj/item/storage/pouch/medkit/medic
 	l_store = /obj/item/storage/pouch/surgery
 	back = /obj/item/storage/backpack/marine/satchel
-
-/datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/obj/item/storage/backpack/respack = H.back
-	var/obj/item/tool/research/xeno_analyzer/res_an = new
-	respack.handle_item_insertion(res_an, TRUE, null)
-	var/obj/item/tool/research/excavation_tool/res_ex = new
-	respack.handle_item_insertion(res_ex, TRUE, null)
 
 /datum/outfit/job/medical/researcher/rebel
 	jobtype = /datum/job/terragov/medical/researcher/rebel

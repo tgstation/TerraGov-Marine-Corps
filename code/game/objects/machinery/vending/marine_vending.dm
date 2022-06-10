@@ -952,7 +952,6 @@
 		/obj/item/storage/backpack/marine/corpsman = 4,
 		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
 		/obj/item/encryptionkey/med = 4,
-		/obj/item/storage/belt/lifesaver = 6,
 		/obj/item/bodybag/cryobag = 4,
 		/obj/item/healthanalyzer = 4,
 		/obj/item/clothing/glasses/hud/health = 4,
@@ -1130,7 +1129,8 @@
 		"Webbings" = list(
 			/obj/item/armor_module/storage/uniform/black_vest = -1,
 			/obj/item/armor_module/storage/uniform/brown_vest = -1,
-			/obj/item/armor_module/storage/uniform/white_vest/medic = -1,
+			/obj/item/armor_module/storage/uniform/white_vest = -1,
+			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
 			/obj/item/armor_module/storage/uniform/webbing = -1,
 			/obj/item/armor_module/storage/uniform/holster = -1,
 		),
