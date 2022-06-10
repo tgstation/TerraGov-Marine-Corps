@@ -631,14 +631,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 			return "left foot"
 		if ("r_foot")
 			return "right foot"
-		if ("l_hand")
-			return "left hand"
-		if ("r_hand")
-			return "right hand"
-		if ("l_foot")
-			return "left foot"
-		if ("r_foot")
-			return "right foot"
 		else
 			return zone
 
