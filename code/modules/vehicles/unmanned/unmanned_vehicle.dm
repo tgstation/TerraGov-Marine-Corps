@@ -92,8 +92,6 @@
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "heavy_cannon")
 		if(TURRET_TYPE_LIGHT)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "light_cannon")
-		if(TURRET_TYPE_EXPLOSIVE)
-			. += image('icons/obj/unmanned_vehicles.dmi', src, "bomb")
 		if(TURRET_TYPE_DROIDLASER)
 			. += image('icons/obj/unmanned_vehicles.dmi', src, "droidlaser")
 
@@ -104,7 +102,7 @@
 
 /obj/vehicle/unmanned/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(istype(I, /obj/item/uav_turret) || istype(I, /obj/item/explosive/plastique))
+	if(istype(I, /obj/item/uav_turret))
 		return equip_turret(I, user)
 	if(istype(I, /obj/item/ammo_magazine))
 		return reload_turret(I, user)
@@ -190,8 +188,6 @@
 		current_rounds = turret.current_rounds
 		max_rounds = turret.max_rounds
 		hud_set_uav_ammo()
-	else
-		turret_type = TURRET_TYPE_EXPLOSIVE
 	user.visible_message(span_notice("[user] attaches [I] to [src]."),
 	span_notice("You attach [I] to [src]."))
 	update_icon()
