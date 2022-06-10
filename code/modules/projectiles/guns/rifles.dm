@@ -754,6 +754,7 @@
 	placed_overlay_iconstate = "lmg"
 
 /obj/item/weapon/gun/rifle/standard_lmg/autorifleman
+	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/reddot)
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
