@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Blink"
 	mechanics_text = "We teleport ourselves a short distance to a location within line of sight."
 	use_state_flags = XABB_TURF_TARGET
-	plasma_cost = 50
+	plasma_cost = 30
 	cooldown_timer = 0.5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BLINK
 
@@ -148,7 +148,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Banish"
 	mechanics_text = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
 	use_state_flags = XACT_TARGET_SELF
-	plasma_cost = 100
+	plasma_cost = 50
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BANISH
 	///Target we've banished
@@ -375,7 +375,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Time stop"
 	action_icon_state = "time_stop"
 	mechanics_text = "Freezes bullets in their course, and they will start to move again only after a certain time"
-	plasma_cost = 150
+	plasma_cost = 100
 	cooldown_timer = 1 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 	///The range of the ability
@@ -416,7 +416,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Portal"
 	action_icon_state = "portal"
 	mechanics_text = "Place a portal on your location. You can travel from portal to portal. Left click to create portal one, right click to create portal two"
-	plasma_cost = 100
+	plasma_cost = 50
 	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PORTAL
 	alternate_keybind_signal = COMSIG_XENOABILITY_PORTAL_ALTERNATE
