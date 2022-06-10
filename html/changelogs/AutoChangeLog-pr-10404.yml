@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "When you have two broken or missing legs or feet, you'll now fall down once or twice a minute."
-  - bugfix: "Amputated limbs are amputated."
