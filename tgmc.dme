@@ -863,6 +863,7 @@
 #include "code\game\objects\machinery\telecomms\machines\relay.dm"
 #include "code\game\objects\machinery\telecomms\machines\server.dm"
 #include "code\game\objects\machinery\vending\loadout_vendor.dm"
+#include "code\game\objects\machinery\vending\quick_vendor.dm"
 #include "code\game\objects\machinery\vending\marine_vending.dm"
 #include "code\game\objects\machinery\vending\new_marine_vendors.dm"
 #include "code\game\objects\machinery\vending\vending.dm"
