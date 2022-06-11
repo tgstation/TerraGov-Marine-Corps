@@ -87,16 +87,16 @@
 /datum/action/xeno_action/activable/forward_charge
 	name = "Forward Charge"
 	action_icon_state = "charge"
-	mechanics_text = "Charge up to 4 tiles and knockdown any targets in our way."
+	mechanics_text = "Charge up to 6 tiles and knockdown any targets in our way."
 	ability_name = "charge"
-	cooldown_timer = 10 SECONDS
+	cooldown_timer = 15 SECONDS
 	plasma_cost = 80
 	use_state_flags = XACT_USE_CRESTED|XACT_USE_FORTIFIED
 	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
 	///How far can we charge
-	var/range = 4
+	var/range = 6
 	///How long is the windup before charging
-	var/windup_time = 0.5 SECONDS
+	var/windup_time = 0 SECONDS
 
 /datum/action/xeno_action/activable/forward_charge/proc/charge_complete()
 	SIGNAL_HANDLER
