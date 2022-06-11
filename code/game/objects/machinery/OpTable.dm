@@ -101,7 +101,7 @@
 /obj/machinery/optable/proc/knock_out_buckled(mob/living/buckled_mob)
 	if(!victim || victim != buckled_mob)
 		return
-	ADD_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, "op_table")
+	ADD_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT)
 
 /obj/machinery/optable/user_unbuckle_mob(mob/living/buckled_mob, mob/user, silent)
 	. = ..()
@@ -123,7 +123,7 @@
 
 ///Wakes the buckled mob back up after they're released
 /obj/machinery/optable/proc/remove_knockout(mob/living/buckled_mob)
-	REMOVE_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, "op_table")
+	REMOVE_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT)
 
 /obj/machinery/optable/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()

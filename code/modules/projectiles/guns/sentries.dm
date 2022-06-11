@@ -25,7 +25,7 @@
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	deployed_item = /obj/machinery/deployable/mounted/sentry
+	deployable_item = /obj/machinery/deployable/mounted/sentry
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	deploy_time = 5 SECONDS
 

@@ -75,7 +75,6 @@
 	max_w_class = WEIGHT_CLASS_TINY
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask,
 	)
 
 	cant_hold = list(
