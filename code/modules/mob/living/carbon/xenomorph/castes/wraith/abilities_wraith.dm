@@ -604,8 +604,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		target_initial_sunder = xeno_target.sunder
 	addtimer(CALLBACK(src, .proc/start_rewinding), start_rewinding)
 	RegisterSignal(targeted, COMSIG_MOVABLE_MOVED, .proc/save_move)
-	targeted.add_filter("rewind_blur", 1, radial_blur_filter(0.3))
-	targeted.balloon_alert("You feel anchored to the past!")
+	targeted.add_filter("prerewind_blur", 1, radial_blur_filter(0.01))
+	targeted.balloon_alert(targeted, "You feel anchored to the past!")
 	add_cooldown()
 	succeed_activate()
 
@@ -616,6 +616,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /// Start the reset process
 /datum/action/xeno_action/activable/rewind/proc/start_rewinding()
+	targeted.remove_filter("prerewind_blur")
+	targeted.add_filter("rewind_blur", 1, radial_blur_filter(0.3))
 	UnregisterSignal(targeted, COMSIG_MOVABLE_MOVED)
 	if(QDELETED(targeted) || targeted.stat == DEAD)
 		targeted = null
@@ -623,7 +625,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	targeted.status_flags |= INCORPOREAL|GODMODE
 	INVOKE_NEXT_TICK(src, .proc/rewind)
 	targeted.canmove = FALSE
-	playsound(targeted, 'sound/effects/woosh_swoosh.ogg')
+	playsound(targeted, 'sound/effects/woosh_swoosh.ogg', 50)
 
 /datum/action/xeno_action/activable/rewind/proc/rewind()
 	var/turf/loc_a = pop(last_target_locs_list)
@@ -638,8 +640,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		if(isxeno(target))
 			var/mob/living/carbon/xenomorph/xeno_target = targeted
 			xeno_target.sunder = target_initial_sunder
-		targeted = null
 		targeted.remove_filter("rewind_blur")
+		targeted = null
 		return
 
 	targeted.Move(loc_b, get_dir(loc_b, loc_a))
