@@ -551,6 +551,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /obj/effect/wraith_portal/ex_act()
 	qdel(src)
+
 /datum/action/xeno_action/activable/rewind
 	name = "Time Shift"
 	ability_name = "Time Shift"
