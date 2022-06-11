@@ -13,6 +13,11 @@
 	icon_state = "stan9"
 	},
 /area/space)
+"am" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/rocinante_colony/surface/landing/landing_pad_one_external)
 "aq" = (
 /obj/structure/flora/pottedplant/two,
 /turf/open/floor/mainship/red/full,
@@ -35,6 +40,11 @@
 /obj/effect/decal/warning_stripes/thick,
 /turf/open/floor/plating/ground/dirtyellow,
 /area/space)
+"aA" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 5
+	},
+/area/rocinante_colony/surface/landing/landing_pad_one_external)
 "aB" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 4
@@ -334,6 +344,11 @@
 /obj/machinery/elevator_strut/bottom,
 /turf/open/floor/plating/ground/concrete,
 /area/space)
+"dT" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 9
+	},
+/area/rocinante_colony/surface/landing/landing_pad_one_external)
 "dU" = (
 /obj/effect/landmark/corpsespawner/som/corpsman,
 /turf/open/ground/grasspatch,
@@ -678,7 +693,9 @@
 /area/space)
 "hD" = (
 /obj/structure/prop/vehicle/truck,
-/turf/open/floor/plating/ground/concrete,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
 /area/space)
 "hG" = (
 /obj/structure/table/mainship,
@@ -1048,12 +1065,6 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
 	},
-/area/space)
-"lr" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/turf/open/floor/mainship/sterile/purple/side,
 /area/space)
 "lv" = (
 /obj/structure/table/reinforced,
@@ -1634,6 +1645,12 @@
 "qk" = (
 /turf/open/floor/mainship/sterile/white,
 /area/space)
+"qp" = (
+/obj/structure/table/mainship,
+/obj/structure/paper_bin,
+/obj/item/reagent_containers/food/drinks/coffee,
+/turf/open/floor/carpet,
+/area/space)
 "qx" = (
 /obj/machinery/door/airlock/prison/horizontal/open{
 	dir = 4
@@ -1928,6 +1945,12 @@
 	},
 /turf/open/floor/mainship,
 /area/space)
+"tB" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/item/reagent_containers/food/drinks/coffee,
+/turf/open/floor/carpet,
+/area/space)
 "tD" = (
 /obj/structure/cable{
 	layer = 1.99
@@ -1937,6 +1960,11 @@
 	},
 /turf/open/floor/mainship,
 /area/space)
+"tF" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/rocinante_colony/surface/landing/landing_pad_one_external)
 "tH" = (
 /obj/structure/bed/chair/sofa/corsat/right,
 /turf/open/floor/mainship,
@@ -2526,6 +2554,11 @@
 "Ae" = (
 /obj/structure/prop/mainship/turretprop,
 /turf/closed/wall/mainship/gray,
+/area/space)
+"Af" = (
+/obj/structure/table/mainship,
+/obj/item/paper/chapelnote,
+/turf/open/floor/mainship,
 /area/space)
 "Ai" = (
 /obj/structure/cable{
@@ -3137,6 +3170,7 @@
 /obj/item/clothing/suit/techpriest,
 /obj/item/clothing/shoes/techpriest,
 /obj/item/clothing/gloves/techpriest,
+/obj/item/paper/chapelnote3,
 /turf/open/floor/mainship,
 /area/space)
 "FR" = (
@@ -3363,6 +3397,11 @@
 "HW" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/mainship,
+/area/space)
+"Ib" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer3/laptop,
+/turf/open/floor/carpet,
 /area/space)
 "Id" = (
 /obj/machinery/autodoc_console,
@@ -4299,6 +4338,11 @@
 /obj/effect/landmark/corpsespawner/somsec,
 /turf/open/floor/mainship/sterile/dark,
 /area/space)
+"QR" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/turf/open/floor/carpet,
+/area/space)
 "QY" = (
 /obj/effect/landmark/corpsespawner/som,
 /turf/open/floor/plating/plating_catwalk,
@@ -4338,6 +4382,11 @@
 	dir = 6
 	},
 /turf/open/floor/plating/ground/snow/layer2,
+/area/space)
+"Rn" = (
+/obj/structure/table/mainship,
+/obj/item/paper/chapelnote2,
+/turf/open/floor/mainship,
 /area/space)
 "Ro" = (
 /obj/structure/largecrate/random/barrel/yellow,
@@ -4782,6 +4831,11 @@
 /obj/structure/bed/chair/sofa/corsat/right,
 /turf/open/floor/mainship/mono,
 /area/space)
+"UU" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 10
+	},
+/area/rocinante_colony/surface/landing/landing_pad_one_external)
 "Vg" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 2
@@ -8678,9 +8732,9 @@ CG
 yg
 yg
 yg
-mC
-mC
-mC
+yg
+yg
+CG
 mC
 mC
 mC
@@ -8789,13 +8843,13 @@ CG
 CG
 CG
 CG
-CG
-CG
-CG
-CG
-CG
-CG
-CG
+yg
+yg
+yg
+yg
+yg
+yg
+yg
 yg
 yg
 yg
@@ -8810,9 +8864,9 @@ CG
 CG
 yg
 yg
-mC
-mC
-mC
+yg
+yg
+CG
 mC
 mC
 mC
@@ -8942,9 +8996,9 @@ CG
 CG
 yg
 yg
-mC
-mC
-mC
+yg
+yg
+CG
 mC
 mC
 mC
@@ -8965,33 +9019,33 @@ re
 (29,1,1) = {"
 re
 kj
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
+dT
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+tF
+UU
 fd
 fd
 fd
@@ -9074,12 +9128,12 @@ CG
 CG
 CG
 yg
+yg
+yg
+CG
 mC
 mC
 mC
-CG
-CG
-CG
 yg
 yg
 yg
@@ -9097,6 +9151,7 @@ re
 (30,1,1) = {"
 re
 kj
+iY
 ry
 ry
 ry
@@ -9122,8 +9177,7 @@ ry
 ry
 ry
 ry
-ry
-ry
+kU
 fd
 fd
 fd
@@ -9206,12 +9260,12 @@ CG
 CG
 CG
 CG
-mC
-mC
-mC
 CG
 CG
 CG
+mC
+mC
+mC
 CG
 yg
 yg
@@ -9229,6 +9283,7 @@ re
 (31,1,1) = {"
 re
 kj
+iY
 ry
 ry
 ry
@@ -9254,8 +9309,7 @@ ry
 ry
 ry
 ry
-ry
-ry
+kU
 fd
 fd
 fd
@@ -9338,12 +9392,12 @@ CG
 CG
 CG
 CG
-mC
-mC
-mC
 CG
 CG
 CG
+mC
+mC
+mC
 CG
 CG
 yg
@@ -9361,7 +9415,7 @@ re
 (32,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 Wi
@@ -9387,7 +9441,7 @@ Jp
 la
 ry
 ry
-ry
+kU
 fd
 fd
 fd
@@ -9470,12 +9524,12 @@ CG
 CG
 CG
 CG
-mC
-mC
-mC
 CG
 CG
 CG
+mC
+mC
+mC
 CG
 CG
 yg
@@ -9493,7 +9547,7 @@ re
 (33,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 fU
@@ -9519,7 +9573,7 @@ jE
 qE
 ry
 ry
-ry
+kU
 fd
 fd
 fd
@@ -9602,12 +9656,12 @@ CG
 CG
 CG
 CG
-mC
-mC
-mC
 CG
 CG
 CG
+mC
+mC
+mC
 CG
 yg
 yg
@@ -9625,7 +9679,7 @@ re
 (34,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 fU
@@ -9651,7 +9705,7 @@ jE
 qE
 ry
 ry
-ry
+kU
 fd
 fd
 fd
@@ -9734,12 +9788,12 @@ CG
 CG
 CG
 CG
-mC
-mC
-mC
 CG
 CG
 CG
+mC
+mC
+mC
 yg
 yg
 yg
@@ -9757,7 +9811,7 @@ re
 (35,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 fU
@@ -9783,7 +9837,7 @@ jE
 qE
 ry
 ry
-ry
+kU
 fd
 fd
 fd
@@ -9866,12 +9920,12 @@ CG
 CG
 CG
 CG
-mC
-mC
-mC
 CG
 CG
 CG
+mC
+mC
+mC
 CG
 yg
 yg
@@ -9889,7 +9943,7 @@ re
 (36,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 fU
@@ -9915,7 +9969,7 @@ jE
 qE
 ry
 ry
-ry
+kU
 fd
 fd
 fd
@@ -9998,9 +10052,9 @@ CG
 CG
 CG
 CG
-mC
-mC
-mC
+CG
+CG
+CG
 mC
 mC
 mC
@@ -10021,7 +10075,7 @@ re
 (37,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 fU
@@ -10047,7 +10101,7 @@ jE
 qE
 ry
 ry
-ry
+kU
 fd
 fd
 fd
@@ -10130,9 +10184,9 @@ CG
 CG
 CG
 CG
-mC
-mC
-mC
+CG
+CG
+CG
 mC
 mC
 mC
@@ -10153,7 +10207,7 @@ re
 (38,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 fU
@@ -10179,7 +10233,7 @@ jE
 qE
 ry
 ry
-ry
+kU
 fd
 fd
 fd
@@ -10262,9 +10316,9 @@ CG
 CG
 CG
 CG
-mC
-mC
-mC
+CG
+CG
+CG
 mC
 mC
 mC
@@ -10285,7 +10339,7 @@ re
 (39,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 fU
@@ -10311,7 +10365,7 @@ jE
 qE
 ry
 ry
-ry
+kU
 fd
 fd
 fd
@@ -10417,7 +10471,7 @@ re
 (40,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 fU
@@ -10443,7 +10497,7 @@ jE
 qE
 ry
 ry
-ry
+kU
 fd
 fd
 fd
@@ -10536,9 +10590,9 @@ CG
 CG
 CG
 CG
-CG
-CG
-CG
+yg
+yg
+yg
 yg
 yg
 yg
@@ -10549,7 +10603,7 @@ re
 (41,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 fU
@@ -10575,7 +10629,7 @@ jE
 qE
 ry
 ry
-ry
+kU
 fd
 fd
 fd
@@ -10668,9 +10722,9 @@ CG
 CG
 CG
 CG
-CG
-CG
-CG
+yg
+yg
+yg
 yg
 yg
 CG
@@ -10681,7 +10735,7 @@ re
 (42,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 Zr
@@ -10707,7 +10761,7 @@ Tb
 iF
 ry
 ry
-ry
+kU
 fd
 fd
 fd
@@ -10800,10 +10854,10 @@ CG
 CG
 CG
 CG
-CG
-CG
-CG
-CG
+yg
+yg
+yg
+yg
 yg
 CG
 CG
@@ -10813,7 +10867,7 @@ re
 (43,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 ry
@@ -10932,10 +10986,10 @@ CG
 CG
 yg
 yg
-CG
-CG
-CG
-CG
+yg
+yg
+yg
+yg
 CG
 CG
 CG
@@ -10945,7 +10999,7 @@ re
 (44,1,1) = {"
 re
 kj
-ry
+iY
 ry
 ry
 ry
@@ -11065,9 +11119,9 @@ yg
 yg
 yg
 yg
-CG
-CG
-CG
+yg
+yg
+yg
 CG
 CG
 CG
@@ -11077,33 +11131,33 @@ re
 (45,1,1) = {"
 re
 kj
+aA
+am
+am
+am
+am
+am
+am
 ry
 ry
 ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
-ry
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
+am
 ry
 ry
 ry
@@ -12012,10 +12066,10 @@ LD
 mC
 zq
 CG
-ag
-ag
-ag
-ag
+yg
+yg
+yg
+yg
 yg
 yg
 yg
@@ -12146,8 +12200,8 @@ zq
 CG
 ag
 ag
-ag
-ag
+yg
+yg
 yg
 yg
 yg
@@ -13170,9 +13224,9 @@ bU
 vI
 oc
 oc
-mC
-mC
-mC
+iE
+iE
+iE
 oc
 yg
 yg
@@ -13301,10 +13355,10 @@ xD
 lH
 vI
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
 yg
 yg
@@ -13433,10 +13487,10 @@ qS
 Ej
 vI
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
 yg
 yg
@@ -13565,10 +13619,10 @@ mC
 mC
 mC
 tp
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
 yg
 yg
@@ -13697,8 +13751,8 @@ mC
 mC
 mC
 tp
-mC
-mC
+iE
+iE
 oc
 oc
 oc
@@ -13829,18 +13883,18 @@ mC
 mC
 Lg
 tp
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+oc
+oc
+oc
+oc
+oc
+oc
+oc
 yg
 yg
 yg
@@ -13961,18 +14015,18 @@ mC
 mC
 AM
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+iE
+iE
+iE
+iE
+iE
+iE
+oc
 yg
 yg
 yg
@@ -14093,18 +14147,18 @@ mC
 YB
 AM
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
 oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
 yg
 yg
 yg
@@ -14225,18 +14279,18 @@ mC
 mC
 AM
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
 oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
 yg
 yg
 yg
@@ -14359,16 +14413,16 @@ AM
 oc
 oc
 oc
-mC
-mC
+iE
+iE
 oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+iE
+iE
+iE
+iE
+iE
+iE
+oc
 yg
 yg
 yg
@@ -14489,18 +14543,18 @@ CT
 mC
 AM
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+oc
+oc
+oc
+oc
+oc
+oc
+oc
 yg
 yg
 yg
@@ -14621,18 +14675,18 @@ mC
 mC
 AM
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+iE
+iE
+iE
+iE
+iE
+iE
+oc
 yg
 yg
 yg
@@ -14753,18 +14807,18 @@ mC
 mC
 AM
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
 oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
 yg
 yg
 yg
@@ -14885,18 +14939,18 @@ eM
 mC
 AM
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
+iE
 oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
 yg
 yg
 yg
@@ -15017,18 +15071,18 @@ mC
 mC
 AM
 tp
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+iE
+iE
+iE
+iE
+iE
+iE
+oc
 yg
 yg
 yg
@@ -15149,18 +15203,18 @@ mC
 mC
 AM
 tp
-mC
-mC
+iE
+iE
 oc
 oc
 oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+oc
+oc
+oc
+oc
+oc
+oc
+oc
 yg
 yg
 yg
@@ -15281,10 +15335,10 @@ mC
 mC
 AM
 tp
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
 yg
 yg
@@ -15413,10 +15467,10 @@ mC
 mC
 AM
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
 yg
 yg
@@ -15545,10 +15599,10 @@ mC
 mC
 AM
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
 yg
 yg
@@ -15677,10 +15731,10 @@ mC
 mC
 AM
 oc
-mC
-mC
-mC
-mC
+iE
+iE
+iE
+iE
 oc
 yg
 yg
@@ -15811,8 +15865,8 @@ AM
 oc
 oc
 oc
-mC
-mC
+iE
+iE
 oc
 yg
 yg
@@ -16567,7 +16621,7 @@ oc
 CG
 CG
 CG
-mC
+LD
 mC
 mC
 yg
@@ -16699,7 +16753,7 @@ xi
 CG
 CG
 CG
-mC
+LD
 mC
 mC
 yg
@@ -16824,14 +16878,14 @@ yg
 oc
 JR
 QZ
-HB
+tB
 Tc
 JR
 xi
 CG
 CG
 CG
-mC
+LD
 mC
 mC
 yg
@@ -16963,7 +17017,7 @@ oc
 CG
 CG
 CG
-mC
+LD
 mC
 mC
 CG
@@ -17088,14 +17142,14 @@ yg
 oc
 JR
 RS
-AJ
+qp
 Tc
 JR
 oc
 oc
 oc
 oc
-mC
+LD
 mC
 mC
 CG
@@ -17220,14 +17274,14 @@ yg
 oc
 JR
 QZ
-HB
+Ib
 Tc
 JR
 xi
 iE
 iE
 oc
-mC
+LD
 mC
 mC
 CG
@@ -17359,7 +17413,7 @@ xi
 iE
 iE
 oc
-mC
+LD
 mC
 mC
 mC
@@ -17491,7 +17545,7 @@ oc
 iE
 iE
 oc
-mC
+LD
 mC
 mC
 mC
@@ -17623,7 +17677,7 @@ iE
 iE
 AU
 oc
-mC
+LD
 mC
 mC
 mC
@@ -17755,7 +17809,7 @@ iE
 iE
 iE
 nA
-mC
+LD
 mC
 yl
 CG
@@ -17887,9 +17941,9 @@ iE
 wK
 iE
 iE
+LD
 mC
-mC
-mC
+zq
 CG
 CG
 yg
@@ -18015,13 +18069,13 @@ oc
 xi
 xi
 oc
-iE
+vy
 iE
 AU
 oc
+LD
 mC
-mC
-mC
+zq
 CG
 CG
 yg
@@ -18147,13 +18201,13 @@ RT
 JR
 ER
 oc
-iE
+sZ
 iE
 iE
 oc
+LD
 mC
-mC
-mC
+zq
 CG
 CG
 CG
@@ -18223,7 +18277,7 @@ iE
 iE
 vv
 iE
-oc
+CG
 OK
 CG
 mC
@@ -18283,9 +18337,9 @@ iE
 iE
 iE
 oc
+LD
 mC
-mC
-mC
+zq
 CG
 CG
 CG
@@ -18355,7 +18409,7 @@ iE
 iE
 vv
 iE
-oc
+CG
 Fn
 gA
 mC
@@ -18415,20 +18469,20 @@ iE
 iE
 iE
 oc
+LD
 mC
 mC
-mC
-mC
-mC
-mC
-mC
+UC
+UC
+UC
+ib
 CG
 CG
 CG
 CG
 CG
 iX
-nk
+kJ
 iE
 jQ
 el
@@ -18539,7 +18593,7 @@ yg
 oc
 JR
 QZ
-HB
+QR
 Tc
 JR
 oc
@@ -18547,13 +18601,13 @@ oc
 oc
 oc
 oc
+LD
 mC
 mC
 mC
 mC
 mC
-mC
-mC
+zq
 CG
 CG
 CG
@@ -18679,13 +18733,13 @@ yg
 yg
 yg
 yg
+wO
+pF
+pF
+pF
 mC
 mC
-mC
-mC
-mC
-mC
-mC
+zq
 CG
 CG
 CG
@@ -18815,9 +18869,9 @@ iE
 iE
 oc
 oc
+LD
 mC
-mC
-mC
+zq
 CG
 CG
 CG
@@ -18947,9 +19001,9 @@ iE
 iE
 iE
 oc
+LD
 mC
-mC
-mC
+zq
 oc
 oc
 oc
@@ -19079,9 +19133,9 @@ iE
 iE
 iE
 oc
+LD
 mC
-mC
-mC
+zq
 oc
 iE
 iE
@@ -19211,9 +19265,9 @@ iE
 iE
 iE
 iE
+LD
 mC
-mC
-mC
+zq
 oc
 iE
 iE
@@ -19343,9 +19397,9 @@ oc
 iE
 iE
 iE
+LD
 mC
-mC
-mC
+zq
 oc
 oc
 oc
@@ -19356,9 +19410,9 @@ iE
 iE
 iE
 oc
-iX
-iX
-iX
+oc
+oc
+oc
 oc
 iE
 No
@@ -19475,9 +19529,9 @@ iE
 iE
 iE
 oc
+LD
 mC
-mC
-mC
+zq
 oc
 iE
 iE
@@ -19491,7 +19545,7 @@ Vg
 iE
 iE
 iE
-iE
+Tf
 iE
 No
 nk
@@ -19607,9 +19661,9 @@ iE
 iE
 iE
 oc
+LD
 mC
-mC
-mC
+zq
 oc
 iE
 iE
@@ -19739,9 +19793,9 @@ iE
 iE
 iE
 oc
+LD
 mC
-mC
-mC
+zq
 oc
 oc
 oc
@@ -19871,9 +19925,9 @@ iE
 oc
 oc
 oc
+LD
 mC
-mC
-mC
+zq
 oc
 iE
 iE
@@ -19885,7 +19939,7 @@ iE
 iE
 oc
 iE
-iE
+Mt
 oc
 oc
 aq
@@ -20003,9 +20057,9 @@ oc
 oc
 CG
 CG
+LD
 mC
-mC
-mC
+zq
 oc
 iE
 iE
@@ -20135,9 +20189,9 @@ dD
 oc
 CG
 CG
+LD
 mC
-mC
-mC
+zq
 oc
 oc
 oc
@@ -20267,9 +20321,9 @@ zM
 oc
 CG
 CG
+LD
 mC
-mC
-mC
+zq
 oc
 iE
 iE
@@ -20399,9 +20453,9 @@ iE
 oc
 CG
 CG
+LD
 mC
-mC
-mC
+zq
 oc
 iE
 iE
@@ -20531,9 +20585,9 @@ iE
 oc
 CG
 CG
+LD
 mC
-mC
-mC
+zq
 oc
 oc
 oc
@@ -20663,9 +20717,9 @@ iE
 oc
 yg
 yg
+LD
 mC
-mC
-mC
+zq
 yg
 yg
 yg
@@ -20797,7 +20851,7 @@ yg
 yg
 hD
 mC
-mC
+zq
 yg
 yg
 yg
@@ -20927,9 +20981,9 @@ iE
 oc
 yg
 yg
+LD
 mC
-mC
-mC
+zq
 yg
 yg
 yg
@@ -21059,9 +21113,9 @@ iE
 oc
 yg
 CG
+LD
 mC
-mC
-mC
+zq
 yg
 oc
 oc
@@ -21191,9 +21245,9 @@ oc
 oc
 CG
 CG
+LD
 mC
-mC
-mC
+zq
 oc
 oc
 iE
@@ -21325,7 +21379,7 @@ mC
 mC
 mC
 ot
-mC
+zq
 oc
 iE
 iE
@@ -21457,7 +21511,7 @@ mC
 mC
 mC
 mC
-mC
+zq
 iE
 iE
 iE
@@ -21589,7 +21643,7 @@ mC
 mC
 mC
 mC
-mC
+zq
 iE
 iE
 iE
@@ -21716,12 +21770,12 @@ mC
 mC
 oc
 oc
-mC
+LD
 mC
 mC
 mC
 ot
-mC
+zq
 oc
 iE
 iE
@@ -21848,12 +21902,12 @@ mC
 mC
 ld
 oc
+LD
 mC
 mC
 mC
 mC
-mC
-mC
+zq
 oc
 oc
 oc
@@ -21980,12 +22034,12 @@ mC
 mC
 iE
 oc
-mC
-mC
-mC
-mC
-mC
-mC
+wO
+pF
+pF
+pF
+pF
+PZ
 oc
 iE
 iE
@@ -22613,12 +22667,12 @@ in
 CG
 CG
 CG
-oc
 iE
 iE
 iE
 iE
-oc
+iE
+iE
 iE
 iE
 iE
@@ -22747,7 +22801,7 @@ CG
 CG
 oc
 oc
-iE
+oc
 oc
 oc
 oc
@@ -22878,10 +22932,10 @@ CG
 CG
 CG
 CG
-CG
-CG
-CG
-yg
+oc
+iE
+iE
+iE
 oc
 iE
 iE
@@ -23010,10 +23064,10 @@ yg
 CG
 CG
 CG
-CG
-CG
-CG
-yg
+oc
+iE
+iE
+iE
 oc
 iE
 iE
@@ -23139,14 +23193,14 @@ yg
 yg
 yg
 yg
-yg
 CG
 CG
 CG
-CG
-yg
-yg
-oc
+iE
+iE
+iE
+iE
+iE
 iE
 iE
 iE
@@ -23272,12 +23326,12 @@ yg
 yg
 yg
 yg
-yg
-yg
-yg
-yg
-yg
-yg
+CG
+CG
+oc
+iE
+iE
+iE
 oc
 iE
 iE
@@ -27877,8 +27931,8 @@ Te
 ex
 sV
 lG
-wT
-lr
+Te
+fa
 oc
 oc
 oc
@@ -28009,7 +28063,7 @@ oc
 oc
 vd
 Wb
-wT
+vd
 fa
 jg
 qk
@@ -28140,8 +28194,8 @@ oc
 wX
 vd
 vd
-vd
 xq
+vd
 fa
 oc
 qk
@@ -30623,8 +30677,8 @@ Mk
 vv
 oc
 NJ
-zM
-zM
+Af
+Rn
 oc
 CG
 CG
