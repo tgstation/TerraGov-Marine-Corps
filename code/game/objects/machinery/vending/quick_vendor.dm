@@ -12,7 +12,7 @@
 	///The faction of this quick load vendor
 	var/faction = FACTION_NEUTRAL
 
-	///List of all loadouts. Format is list(list(outfit_job, outfit_name))
+	///List of all loadouts. Format is list(list(loadout_job, loadout_name))
 	var/list/loadouts_data = list(
 		list("Squad Marine","Basic1"),
 		list("Squad Marine","Basic2"),
@@ -23,6 +23,20 @@
 		list("SOM Veteran","vet1"),
 		list("SOM Veteran","vet2"),
 		)
+	///lists the outfit datums that corrospond to the loadout options
+	var/list/loadout_list = list(
+		("Basic1SOM Standard") = /datum/outfit/quick/som/standard,
+		("Basic2SOM Standard") = /datum/outfit/quick/som/standard/one,
+		("vet1SOM Veteran") = /datum/outfit/quick/som/veteran,
+		("vet2SOM Veteran") = /datum/outfit/quick/som/veteran/three,
+		("Basic1Squad Marine") = /datum/outfit/quick/som/standard,
+		("Basic2Squad Marine") = /datum/outfit/quick/som/standard/one,
+		("vet1Squad Marine") = /datum/outfit/quick/som/veteran,
+		("vet2Squad Marine") = /datum/outfit/quick/som/veteran/three,
+	)
+
+/obj/machinery/quick_vendor/som
+	faction = FACTION_SOM
 
 /obj/machinery/quick_vendor/can_interact(mob/user)
 	. = ..()
@@ -43,9 +57,6 @@
 	if(I.registered_name != H.real_name)
 		return FALSE
 	return TRUE
-
-/obj/machinery/quick_vendor/som
-	faction = FACTION_SOM
 
 /obj/machinery/quick_vendor/ui_interact(mob/living/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -82,7 +93,7 @@
 			var/name = params["loadout_name"]
 			if(isnull(name))
 				return
-			var/datum/outfit/selected_loadout = load_loadout(name, job)
+			var/datum/outfit/selected_loadout = loadout_list["[name + job]"]
 			if(!selected_loadout)
 				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				CRASH("Fail to load loadouts")
@@ -99,24 +110,5 @@
 				to_chat(usr, span_warning("You can't buy things from this category anymore.")) //make early return instead?
 				return
 
-			//todo: check if still relevant
+			//todo: check if still relevant - NOTE refreshes the tgui I think, so probs best to have it.
 			//update_static_data(ui.user, ui)
-
-
-///Records all the available loadouts for this vendor, and returns the details of the loadout selected
-/obj/machinery/quick_vendor/proc/load_loadout(loadout_name, loadout_job)
-	///list of all available loadouts. todo: move to machine itself.
-	var/list/loadout_list = list(
-		("Basic1SOM Standard") = /datum/outfit/job/som/standard,
-		("Basic2SOM Standard") = /datum/outfit/job/som/standard/one,
-		("vet1SOM Veteran") = /datum/outfit/job/som/veteran,
-		("vet2SOM Veteran") = /datum/outfit/job/som/veteran/three,
-		("Basic1Squad Marine") = /datum/outfit/job/som/standard,
-		("Basic2Squad Marine") = /datum/outfit/job/som/standard/one,
-		("vet1Squad Marine") = /datum/outfit/job/som/veteran,
-		("vet2Squad Marine") = /datum/outfit/job/som/veteran/three,
-	)
-	var/datum/outfit/selected_loadout = loadout_list["[loadout_name + loadout_job]"]
-	if(!selected_loadout)
-		return FALSE
-	return selected_loadout
