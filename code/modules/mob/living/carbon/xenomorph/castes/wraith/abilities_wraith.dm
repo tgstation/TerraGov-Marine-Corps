@@ -604,7 +604,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		target_initial_sunder = xeno_target.sunder
 	addtimer(CALLBACK(src, .proc/start_rewinding), start_rewinding)
 	RegisterSignal(targeted, COMSIG_MOVABLE_MOVED, .proc/save_move)
-	targeted.add_filter("prerewind_blur", 1, radial_blur_filter(0.01))
+	targeted.add_filter("prerewind_blur", 1, radial_blur_filter(0.04))
 	targeted.balloon_alert(targeted, "You feel anchored to the past!")
 	add_cooldown()
 	succeed_activate()
