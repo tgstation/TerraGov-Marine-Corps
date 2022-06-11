@@ -189,3 +189,20 @@
   - bugfix: When you have two broken or missing legs or feet, you'll now fall down
       once or twice a minute.
   - bugfix: Amputated limbs are amputated.
+2022-06-11:
+  BraveMole:
+  - balance: 'Heart damage will decrease your maximum stamina and maximum health.
+      Nothing else balance :Lungs damage will decrease your stamina regen and your
+      speed. Nothing else delete: Peridaxon is no longer in the game, as effects from
+      organ damage are less severe'
+  Lumipharon:
+  - balance: Empowered jab now actually blinds instead of flashing
+  Mechanelize:
+  - balance: Ravager caste now has plasmadrain immunity.
+  QualityVan:
+  - balance: Xenos keep current percent health when a balance scalar is applied.
+  - bugfix: Game status window properly shows current max health when a balance scalar
+      is active.
+  Xsdew:
+  - soundadd: added a new sound for the MG42
+  - imageadd: replaced the MG42 Sprites

@@ -1,0 +1,4 @@
+author: "Vondiech"
+delete-after: True
+changes: 
+  - code_imp: "Turns long line of else-if's in parse_zone into a switch. Also removes 4 duplicate if's for the hands and feet"

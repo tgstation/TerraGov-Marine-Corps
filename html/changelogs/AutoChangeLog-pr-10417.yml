@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - balance: "Xenos keep current percent health when a balance scalar is applied."
-  - bugfix: "Game status window properly shows current max health when a balance scalar is active."
