@@ -13,11 +13,13 @@
 	icon_state = "red"
 
 /area/rocinante_colony/surface/building
-	name = "rocinante Colony Buildings"
+	name = "Rocinante Interior"
 	icon_state = "clear"
 	ceiling = CEILING_METAL
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_COLONY
+	ambience = list('sound/ambience/ambiencetemp.ogg', 'sound/ambience/ambiencepizzaday.ogg', 'sound/ambience/ambiencemeeting.ogg', 'sound/ambience/ambienceagent.ogg', 'sound/ambience/ambienceengi.ogg', 'sound/ambience/ambiencesec.ogg')
+
 
 /area/rocinante_colony/ground/underground
 	name = "rocinante Colony Underground"
@@ -27,6 +29,9 @@
 	minimap_color = MINIMAP_AREA_CAVES
 
 //landingZone
+/area/rocinante_colony/surface/landing
+	ambience = list('sound/ambience/ambiencetemp.ogg', 'sound/ambience/ambiencecontraband.ogg')
+
 /area/rocinante_colony/surface/landing/landing_pad_one
 	name = "Landing Pad 1"
 	icon_state = "landing_pad"

@@ -486,6 +486,7 @@
 #include "code\game\area\port_hamburg.dm"
 #include "code\game\area\prison.dm"
 #include "code\game\area\research_outpost.dm"
+#include "code\game\area\som_base.dm"
 #include "code\game\area\sulaco.dm"
 #include "code\game\area\valhallastation.dm"
 #include "code\game\area\vaporprocessing.dm"

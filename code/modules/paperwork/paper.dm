@@ -530,7 +530,7 @@ then, for every time you included a field, increment fields. */
 	name = "Research Note"
 	info = {"Rocinante Exosuit Module Research Division<BR>
 			Researcher Alec Kansas<BR>
-			Ive had a look at the recently acquired exosuit modules, from testing they provide an energy shield to the user which would let them atleast receive a few hits without any damage to the user, the powerplant it uses is to blame for this as is rather weak, clearly suited for mass production, theres allot of potential to be had here, were currently working on upgrading the powerplant for a stronger shield. On another note would have been nice if the blood was wiped off before it was sent."}
+			Ive had a look at the recently acquired exosuit modules, from testing they provide an energy shield to the user which would let them atleast receive a few hits without any damage to the user, the powerplant it uses is to blame for this as is rather weak, clearly suited for mass production, theres allot of potential to be had here, were currently working on upgrading the powerplant for a stronger shield. On another note thank you for sending the old pas vest i requested, would have been nice if the blood was wiped off before it was sent."}
 
 /obj/item/paper/logjelly
 	name = "Research Note"
@@ -551,3 +551,18 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/log3
 	name = "Journal Log"
 	info = {"Im heavily wounded and i don't have the strength to reach the fax machine to send another report, if anyone is reading this TerraGov has orch- The rest of the page is covered in smears of blood."}
+
+/obj/item/paper/chapelnote
+	name = "Note"
+	info = {"Imam Mahdi<BR>
+			Could we replace the pews with foldable chairs?.It has been a real pain having to move these pews away for our prayer mats also why is there spilled oil at the stand."}
+
+/obj/item/paper/chapelnote2
+	name = "Note"
+	info = {"Father John<BR>
+			Arch Belisarius Cawl, i have nothing against your religion but it would be nice if you were to clean up after, there is machinery and parts everywhere and i had to shutdown the computers because of the awful sound they keep making."}
+
+/obj/item/paper/chapelnote3
+	name = "Note"
+	info = {"Arch Belisarius Cawl<BR>
+			01000110 01100001 01110100 01101000 01100101 01110010 00100000 01001010 01101111 01101000 01101110 00100000 01110000 01101100 01100101 01100001 01110011 01100101 00100000 01100100 01101111 00100000 01101110 01101111 01110100 00100000 01110100 01100001 01101101 01110000 01100101 01110010 00100000 01110111 01101001 01110100 01101000 00100000 01110100 01101000 01100101 00100000 01100011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 01110011 00101100 00100000 01110100 01101000 01100101 01111001 00100000 01100001 01110010 01100101 00100000 01110110 01100101 01110010 01111001 00100000 01110011 01100101 01101110 01110011 01101001 01110100 01101001 01110110 01100101 00100000 01100001 01101110 01100100 00100000 01101001 00100000 01100010 01100101 01101100 01101001 01100101 01110110 01100101 00100000 01111001 01101111 01110101 00100000 01101000 01100001 01100100 00100000 01101010 01110101 01110011 01110100 00100000 01100010 01110010 01101001 01100011 01101011 01100101 01100100 00100000 01101111 01101110 01100101 00101100 00100000 01110100 01101111 00100000 01101101 01110101 01110100 01100101 00100000 01110100 01101000 01100101 00100000 01110011 01101111 01110101 01101110 01100100 01110011 00100000 01110100 01101000 01100101 01111001 00100000 01101101 01100001 01101011 01100101 00100000 01110000 01110010 01100101 01110011 01110011 00100000 01110100 01101000 01100101 00100000 01100010 01110101 01110100 01110100 01101111 01101110 00100000 01101110 01100101 01111000 01110100 00100000 01110100 01101111 00100000 01110100 01101000 01100101 00100000 01110000 01101111 01110111 01100101 01110010 00100000 01100010 01110101 01110100 01110100 01101111 01101110 00101110"}
