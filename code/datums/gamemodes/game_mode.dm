@@ -103,7 +103,7 @@
 
 	for(var/hivenum in GLOB.hive_datums)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenum]
-		hive.setup_upgrades()
+		hive.purchases.setup_upgrades()
 	return TRUE
 
 

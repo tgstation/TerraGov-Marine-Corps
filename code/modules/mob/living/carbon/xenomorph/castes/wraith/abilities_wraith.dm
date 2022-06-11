@@ -10,7 +10,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Blink"
 	mechanics_text = "We teleport ourselves a short distance to a location within line of sight."
 	use_state_flags = XABB_TURF_TARGET
-	plasma_cost = 50
+	plasma_cost = 30
 	cooldown_timer = 0.5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BLINK
 
@@ -148,7 +148,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Banish"
 	mechanics_text = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
 	use_state_flags = XACT_TARGET_SELF
-	plasma_cost = 100
+	plasma_cost = 50
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BANISH
 	///Target we've banished
@@ -375,7 +375,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Time stop"
 	action_icon_state = "time_stop"
 	mechanics_text = "Freezes bullets in their course, and they will start to move again only after a certain time"
-	plasma_cost = 150
+	plasma_cost = 100
 	cooldown_timer = 1 MINUTES
 	keybind_signal = COMSIG_XENOABILITY_TIMESTOP
 	///The range of the ability
@@ -416,12 +416,12 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ability_name = "Portal"
 	action_icon_state = "portal"
 	mechanics_text = "Place a portal on your location. You can travel from portal to portal. Left click to create portal one, right click to create portal two"
-	plasma_cost = 100
+	plasma_cost = 50
 	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PORTAL
 	alternate_keybind_signal = COMSIG_XENOABILITY_PORTAL_ALTERNATE
 	/// How far can you link two portals
-	var/range = 10
+	var/range = 20
 	/// The first portal
 	var/obj/effect/wraith_portal/portal_one
 	/// The second portal
@@ -485,8 +485,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	anchored = TRUE
 	opacity = FALSE
 	vis_flags = VIS_HIDE
-	/// "Health points" for the portal, aka how many bullets * proj damage can still cross it without destroying it
-	var/health_points = 150
 	/// Visual object for handling the viscontents
 	var/obj/effect/portal_effect/portal_visuals
 	/// The linked portal
@@ -531,19 +529,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Signal handler teleporting crossing atoms
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
-	if(istype(crosser, /obj/projectile))
-		damage_portal(crosser)
+	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || ishuman(crosser))
 		return
-	if(!linked_portal)
-		return
-	if(!COOLDOWN_CHECK(src, portal_cooldown))
-		return
-	if(crosser.anchored)
-		return
-	if(ishuman(crosser))
-		var/mob/living/carbon/human/human_crosser = crosser
-		if(human_crosser.stat >= UNCONSCIOUS)
-			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
 	crosser.flags_pass &= ~PASSMOB
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, .proc/do_teleport_atom)
@@ -569,12 +556,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 	bullet.permutated.Cut()
 	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
-
-/// Damage the portal when a bullet is crossing
-/obj/effect/wraith_portal/proc/damage_portal(obj/projectile/bullet_crossing)
-	health_points -= bullet_crossing.ammo.damage
-	if(health_points <= 0)
-		qdel(src)
 
 /obj/effect/portal_effect
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
@@ -606,3 +587,5 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(get_filter("portal_ripple"), time = 1.3 SECONDS, loop = -1, easing = LINEAR_EASING, radius = 32)
 
 	vis_contents += our_destination
+/obj/effect/wraith_portal/ex_act()
+	qdel(src)

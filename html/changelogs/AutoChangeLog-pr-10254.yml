@@ -1,0 +1,5 @@
+author: "Derrick2Electricboogaloo"
+delete-after: True
+changes: 
+  - bugfix: "Readded combat droids to Sulaco"
+  - bugfix: "Readded prevended protein bars to vendors"
