@@ -151,6 +151,10 @@
 /obj/item/reagent_containers/food/snacks/sliceable/creamcheesebread,
 /turf/open/floor/mainship,
 /area/space)
+"bM" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/mainship,
+/area/space)
 "bO" = (
 /obj/structure/platform/rockcliff{
 	dir = 4
@@ -231,6 +235,10 @@
 /obj/structure/sink/bathroom{
 	dir = 4
 	},
+/turf/open/floor/mainship,
+/area/space)
+"cC" = (
+/obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
 /turf/open/floor/mainship,
 /area/space)
 "cI" = (
@@ -772,6 +780,13 @@
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/mainship,
 /area/space)
+"ir" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/bed/bunkbed,
+/turf/open/floor/mainship,
+/area/space)
 "it" = (
 /obj/structure/crystal/crystalcrate,
 /turf/open/ground/grasspatch,
@@ -1165,6 +1180,11 @@
 	},
 /obj/item/clipboard,
 /turf/open/floor/mainship/red/full,
+/area/space)
+"mg" = (
+/obj/item/ammo_magazine/tank/tank_slauncher,
+/obj/structure/rack,
+/turf/open/floor/mainship,
 /area/space)
 "mh" = (
 /obj/structure/somcas{
@@ -1583,6 +1603,11 @@
 	},
 /turf/open/floor/mainship,
 /area/space)
+"pz" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/camera,
+/turf/open/floor/mainship,
+/area/space)
 "pB" = (
 /obj/structure/curtain/open/shower,
 /obj/machinery/door/window,
@@ -1892,6 +1917,11 @@
 "te" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/plating/ground/snow/layer2,
+/area/space)
+"tf" = (
+/obj/item/ammo_magazine/tank/tank_glauncher,
+/obj/structure/rack,
+/turf/open/floor/mainship,
 /area/space)
 "th" = (
 /obj/structure/fence,
@@ -3637,6 +3667,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship/sterile/dark,
 /area/space)
+"KM" = (
+/obj/structure/prop/brokenvendor/engivend,
+/turf/open/floor/mainship,
+/area/space)
 "KN" = (
 /obj/effect/landmark/xeno_resin_wall,
 /obj/effect/landmark/xeno_resin_wall,
@@ -3645,6 +3679,13 @@
 "KO" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/space)
+"KQ" = (
+/obj/structure/bed/chair/alt{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/mainship,
 /area/space)
 "KR" = (
 /obj/structure/stairs/seamless,
@@ -3911,6 +3952,12 @@
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
+/area/space)
+"Nh" = (
+/obj/structure/sink{
+	dir = 8
+	},
+/turf/open/floor/mainship,
 /area/space)
 "Nj" = (
 /obj/structure/platform_decoration/metalplatform_deco,
@@ -5008,6 +5055,12 @@
 "WI" = (
 /turf/open/floor/carpet/side,
 /area/space)
+"WM" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/space)
 "WZ" = (
 /obj/structure/prop/mainship/mission_planning_system,
 /turf/open/floor/mainship/blue{
@@ -5068,6 +5121,11 @@
 /obj/structure/prop/mainship/cashregister{
 	dir = 1
 	},
+/turf/open/floor/mainship,
+/area/space)
+"XM" = (
+/obj/item/mortal_shell/howitzer/he,
+/obj/structure/rack,
 /turf/open/floor/mainship,
 /area/space)
 "XS" = (
@@ -16899,8 +16957,8 @@ oc
 oc
 oc
 oc
-iE
-iE
+oc
+oc
 iE
 iE
 iE
@@ -17028,7 +17086,7 @@ yg
 yg
 yg
 oc
-iE
+Gc
 iE
 iE
 iE
@@ -17160,12 +17218,12 @@ yg
 yg
 yg
 oc
+Gc
 iE
-iE
-iE
-iE
-iE
+Gc
+Gc
 oc
+iE
 iE
 iE
 iE
@@ -17292,7 +17350,7 @@ yg
 yg
 yg
 oc
-iE
+oc
 oc
 oc
 oc
@@ -17524,11 +17582,11 @@ iE
 oc
 oc
 oc
+th
 CG
-CG
-CG
-CG
-CG
+th
+th
+th
 yg
 yg
 oc
@@ -17655,7 +17713,7 @@ iE
 iE
 iE
 iE
-oc
+iX
 CG
 CG
 CG
@@ -17787,7 +17845,7 @@ iE
 iE
 iE
 iE
-oc
+iX
 CG
 CG
 CG
@@ -17922,7 +17980,7 @@ iE
 oc
 CG
 CG
-CG
+dX
 CG
 yg
 yg
@@ -18047,14 +18105,14 @@ iE
 iE
 iE
 oc
-iE
-iE
-iE
-iE
 oc
-CG
-CG
-CG
+oc
+oc
+oc
+oc
+yg
+yg
+yg
 CG
 yg
 yg
@@ -18179,11 +18237,11 @@ iE
 iE
 iE
 oc
-iE
-iE
-iE
-iE
-oc
+yg
+yg
+yg
+yg
+yg
 yg
 yg
 yg
@@ -18311,11 +18369,11 @@ oc
 oc
 oc
 oc
-oc
-oc
-oc
-oc
-oc
+yg
+yg
+yg
+yg
+yg
 yg
 yg
 yg
@@ -18450,11 +18508,11 @@ yg
 yg
 yg
 yg
-yg
-yg
-yg
-yg
-yg
+oc
+oc
+oc
+oc
+oc
 yg
 yg
 yg
@@ -18578,15 +18636,15 @@ yg
 yg
 yg
 yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+oc
+oc
+oc
+oc
+oc
+TQ
+TQ
+nW
+oc
 yg
 yg
 yg
@@ -18710,15 +18768,15 @@ yg
 yg
 yg
 yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+oc
+KM
+iE
+iE
+bh
+iE
+iE
+nW
+oc
 yg
 yg
 yg
@@ -18842,15 +18900,15 @@ yg
 yg
 yg
 yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+oc
+cC
+iE
+iE
+oc
+VB
+iE
+VB
+oc
 yg
 yg
 yg
@@ -18865,8 +18923,8 @@ yg
 yg
 yg
 oc
-iE
-iE
+iX
+iX
 oc
 oc
 LD
@@ -18974,15 +19032,15 @@ CG
 CG
 yg
 yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+oc
+gB
+iE
+nv
+oc
+oc
+iE
+oc
+oc
 yg
 yg
 yg
@@ -19106,15 +19164,15 @@ ib
 CG
 yg
 yg
-yg
-yg
-yg
-yg
 oc
+gB
+vu
+zM
 oc
+XM
+iE
+tf
 oc
-oc
-yg
 yg
 yg
 yg
@@ -19138,7 +19196,7 @@ mC
 zq
 oc
 iE
-iE
+Nh
 iE
 iE
 iE
@@ -19238,6 +19296,24 @@ zq
 CG
 yg
 yg
+oc
+Fw
+iE
+zM
+oc
+XM
+iE
+mg
+oc
+oc
+oc
+oc
+yg
+yg
+yg
+yg
+yg
+yg
 yg
 yg
 yg
@@ -19246,32 +19322,14 @@ oc
 iE
 iE
 iE
-oc
-oc
-oc
-oc
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-oc
-iE
-iE
-iE
-iE
+ms
 LD
 mC
 zq
 oc
-iE
-iE
-oc
+ir
+WM
+iX
 iE
 iE
 iE
@@ -19370,12 +19428,12 @@ zq
 yg
 yg
 yg
-yg
-yg
-yg
-yg
 oc
+TA
 iE
+PE
+oc
+oc
 iE
 iE
 oc
@@ -19393,7 +19451,7 @@ yg
 oc
 oc
 oc
-oc
+iE
 iE
 iE
 iE
@@ -19502,12 +19560,12 @@ zq
 yg
 yg
 yg
-yg
-yg
-yg
-yg
 oc
+Jh
 iE
+iE
+oc
+XM
 iE
 iE
 oc
@@ -19534,7 +19592,7 @@ mC
 zq
 oc
 iE
-iE
+Nh
 iE
 iE
 iE
@@ -19634,12 +19692,12 @@ zq
 CG
 yg
 yg
-yg
 oc
 oc
+iE
+iE
 oc
-oc
-oc
+XM
 iE
 iE
 oc
@@ -19654,7 +19712,7 @@ iE
 iE
 vv
 iE
-oc
+iE
 iE
 iE
 iE
@@ -19665,9 +19723,9 @@ LD
 mC
 zq
 oc
-iE
-iE
-oc
+ir
+WM
+iX
 iE
 iE
 oc
@@ -19769,11 +19827,11 @@ yg
 yg
 oc
 iE
-iE
-iE
+gK
 oc
 oc
-iE
+oc
+Ks
 oc
 iX
 oc
@@ -19918,10 +19976,10 @@ iE
 Kv
 GA
 iE
-iE
-iE
-iE
-iE
+oc
+oc
+oc
+oc
 oc
 oc
 oc
@@ -19930,7 +19988,7 @@ mC
 zq
 oc
 iE
-iE
+Nh
 iE
 iE
 iE
@@ -20050,10 +20108,10 @@ iE
 Uz
 iE
 iE
-oc
-oc
-oc
-oc
+Hj
+cT
+zM
+dD
 oc
 CG
 CG
@@ -20061,9 +20119,9 @@ LD
 mC
 zq
 oc
-iE
-iE
-oc
+ir
+WM
+iX
 iE
 iE
 oc
@@ -20182,10 +20240,10 @@ iX
 oc
 iE
 iE
-Hj
-cT
 iE
-dD
+iE
+iE
+qP
 oc
 CG
 CG
@@ -20259,7 +20317,7 @@ oc
 JI
 hl
 Yj
-oc
+ex
 iE
 iE
 oc
@@ -20317,7 +20375,7 @@ mC
 mC
 mC
 mC
-zM
+iE
 oc
 CG
 CG
@@ -20326,7 +20384,7 @@ mC
 zq
 oc
 iE
-iE
+Nh
 iE
 iE
 iE
@@ -20457,14 +20515,14 @@ LD
 mC
 zq
 oc
+ir
+WM
+iX
 iE
 iE
-oc
 iE
-oc
-oc
 iE
-oc
+iE
 oc
 CG
 CG
@@ -20592,11 +20650,11 @@ oc
 oc
 oc
 oc
-iE
-iE
 oc
-iE
-iE
+oc
+oc
+oc
+oc
 oc
 CG
 CG
@@ -20723,13 +20781,13 @@ zq
 yg
 yg
 yg
-oc
-iE
-iE
-oc
-iE
-iE
-oc
+yg
+yg
+yg
+yg
+yg
+yg
+yg
 CG
 CG
 CG
@@ -20855,13 +20913,13 @@ zq
 yg
 yg
 yg
-oc
-oc
-oc
-oc
-oc
-oc
-oc
+yg
+yg
+yg
+yg
+yg
+yg
+yg
 CG
 CG
 CG
@@ -21611,7 +21669,7 @@ yg
 CG
 mC
 mC
-oc
+Ae
 iX
 iX
 oc
@@ -21744,10 +21802,10 @@ CG
 mC
 mC
 iX
-iE
-iE
-iE
-iE
+zM
+pz
+sv
+nv
 oc
 iE
 iE
@@ -21876,11 +21934,11 @@ CG
 mC
 mC
 iX
+FV
+qP
 iE
-iE
-iE
-iE
-iE
+zM
+oc
 iE
 iE
 Uz
@@ -22007,12 +22065,12 @@ CG
 CG
 mC
 mC
-iE
+sX
 iE
 iE
 GN
 iE
-iE
+sX
 iE
 iE
 Uz
@@ -22142,8 +22200,8 @@ CG
 oc
 iE
 iE
-iE
-iE
+dJ
+dJ
 oc
 iE
 iE
@@ -22272,7 +22330,7 @@ CG
 CG
 CG
 oc
-iE
+oW
 iX
 oc
 oc
@@ -22405,9 +22463,9 @@ CG
 CG
 oc
 iE
-iE
-iE
-iE
+TA
+Fw
+Jh
 oc
 iE
 nX
@@ -22667,12 +22725,12 @@ in
 CG
 CG
 CG
+sX
 iE
 iE
 iE
 iE
-iE
-iE
+sX
 iE
 iE
 iE
@@ -23444,9 +23502,9 @@ ea
 iE
 iE
 oc
-iE
-iE
-iE
+hG
+pz
+qP
 iE
 oc
 yg
@@ -23575,8 +23633,8 @@ iE
 iE
 iE
 iE
-iE
-iE
+sX
+qP
 iE
 iE
 iE
@@ -23708,10 +23766,10 @@ iT
 nk
 nk
 oc
-iE
-iE
-iE
-iE
+dJ
+zM
+nv
+zM
 oc
 yg
 yg
@@ -23951,7 +24009,7 @@ ZT
 Mx
 iX
 nk
-oc
+ex
 nk
 oc
 iX
@@ -30672,7 +30730,7 @@ iE
 PE
 fV
 Mk
-PE
+KQ
 Mk
 vv
 oc
@@ -30805,7 +30863,7 @@ iE
 iE
 iE
 iE
-iE
+bM
 iE
 on
 iE
@@ -30935,7 +30993,7 @@ mK
 Ja
 mK
 Ja
-iE
+bM
 iE
 iE
 iE
