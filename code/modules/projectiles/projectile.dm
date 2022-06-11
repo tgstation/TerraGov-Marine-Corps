@@ -1330,7 +1330,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 //This is where the bullet bounces off.
 /atom/proc/bullet_ping(obj/projectile/P)
-	if(!P.ammo.ping || prob(35))
+	if(!P.ammo.ping || prob(35) || flags_atom & IS_BULLET_PINGED)
 		return
 	if(P.ammo.sound_bounce)
 		playsound(src, P.ammo.sound_bounce, 50, 1)
