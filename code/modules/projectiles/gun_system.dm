@@ -744,6 +744,12 @@
 		return
 
 	last_fired = world.time
+	if(master_gun)
+		master_gun.last_fired = world.time
+	if(attachments_by_slot[ATTACHMENT_SLOT_UNDER])
+		var/obj/item/weapon/gun/under = attachments_by_slot[ATTACHMENT_SLOT_UNDER]
+		under.last_fired = world.time
+
 	SEND_SIGNAL(src, COMSIG_MOB_GUN_FIRED, target, src)
 
 	if(!max_chamber_items)
