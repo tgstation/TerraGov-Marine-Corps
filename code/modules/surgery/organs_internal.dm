@@ -106,7 +106,7 @@
 		if(I && I.damage > 0 && I.robotic != ORGAN_ROBOT)
 			user.visible_message(span_notice("[user] treats damage to [target]'s [I.name] with [tool_name]."), \
 			span_notice("You treat damage to [target]'s [I.name] with [tool_name].") )
-			I.damage = 0
+			I.heal_organ_damage(I.damage)
 	target.balloon_alert_to_viewers("Success")
 
 /datum/surgery_step/internal/fix_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
