@@ -134,3 +134,75 @@
   - rscdel: A memorable chokepoint in LV-624 cave
   - rscadd: sand temple in LV-624 is now underground
   - rscadd: crowbar in LV-624 LZ
+2022-06-09:
+  BraveMole:
+  - qol: UAVs can open doors by bumping into it
+  KornFlaks (RIP) & Wayland-Smithy:
+  - rscadd: Xeno hive status is now a constantly updating TGUI page.
+  - rscadd: Xeno hivemind players can now select a xeno to jump to using the hive
+      status UI overwatch button.
+  - rscadd: Evolving now closes all UI pages open.
+  - rscadd: Xeno purchased primordial tiers now display as a green [PRIMORDIAL] next
+      to the tier population in the hive status UI.
+  - imageadd: Ported CM hive status SSD icon.
+  - qol: Evolution is displayed and can now be accessed through the hive status UI.
+  - qol: Xeno overwatch selection now done through hive status UI. Action button no
+      longer visible.
+  - qol: Xeno overwatch can now be canceled without having to move by selecting the
+      same xeno to overwatch again.
+  - qol: Queen leadership toggle now done through hive status UI. Action button no
+      longer visible.
+  - qol: Queen transfer plasma now possible through hive status UI.
+  - qol: Xeno minimap icons now display next to corresponding xeno names in hive status
+      UI.
+  - qol: Xeno collapse timers now display in hive status UI instead of game tab.
+  - qol: Hive status UI can sort xeno lists by clicking on the column headers. Sorting
+      is done by xeno tier, health points, plasma remaining, and location by alphabetical
+      order to the first 5 letters.
+  - bugfix: Queen transfer plasma message now only visible to xenos.
+  - bugfix: Ghost orbiting code now properly returns an accurate reference to the
+      atom it is orbiting.
+  - refactor: Hive upgrades purchasing UI relocated to separate datum.
+  - refactor: Distress mode collapse timers are now a define.
+  - rscdel: Old HTML hive status page now lives at your grandparents' farm upstate.
+  - rscdel: Queen order, the unused direct to xeno version, has been removed.
+  - rscdel: Removed a vestigial time check that checked if a distress beacon could
+      be launched at 10 minutes into a round. Xenos can not hijack before 30 minutes
+      into a round.
+  Lumipharon:
+  - rscadd: Add some new grenades for future gamemodes
+  - bugfix: Grenades are now actually visible in hand
+  - refactor: Refactored flashbang code
+  - bugfix: Projectile speed modifiers now actually work
+  QualityVan:
+  - bugfix: Moving early cancels xeno evolution properly
+  - rscadd: Plasma cutters now cut plasma, 20% per hit.
+  - rscdel: Internal organs can't get infections. They mostly didn't already.
+  Vallat:
+  - refactor: refactored luminosity calculation for small movable lights therefore
+      increased projectiles movement performance by ~10%
+  novaepee:
+  - rscdel: Remove heavy reinforced wall in Ice Colony's red nuke disk, now xenomorphs
+      can melt into red nuke disk
+2022-06-10:
+  QualityVan:
+  - bugfix: When you have two broken or missing legs or feet, you'll now fall down
+      once or twice a minute.
+  - bugfix: Amputated limbs are amputated.
+2022-06-11:
+  BraveMole:
+  - balance: 'Heart damage will decrease your maximum stamina and maximum health.
+      Nothing else balance :Lungs damage will decrease your stamina regen and your
+      speed. Nothing else delete: Peridaxon is no longer in the game, as effects from
+      organ damage are less severe'
+  Lumipharon:
+  - balance: Empowered jab now actually blinds instead of flashing
+  Mechanelize:
+  - balance: Ravager caste now has plasmadrain immunity.
+  QualityVan:
+  - balance: Xenos keep current percent health when a balance scalar is applied.
+  - bugfix: Game status window properly shows current max health when a balance scalar
+      is active.
+  Xsdew:
+  - soundadd: added a new sound for the MG42
+  - imageadd: replaced the MG42 Sprites
