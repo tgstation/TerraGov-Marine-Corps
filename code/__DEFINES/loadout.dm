@@ -580,7 +580,7 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 		/obj/item/clothing/suit/storage/lawyer/purpjacket = list(CAT_AMR, "Purple Jacket", 0, "black"),
 		/obj/item/clothing/suit/storage/snow_suit = list(CAT_AMR, "Snowsuit", 0, "black"),
 		/obj/item/clothing/suit/armor/bulletproof = list(CAT_AMR, "Bulletproof Vest", 0, "black"),
-		/obj/item/clothing/suit/modular/pilot = list(CAT_AMR, "M70 flak jacket", 0, "black"),
+		/obj/item/clothing/suit/modular/xenonauten/pilot = list(CAT_AMR, "M70 flak jacket", 0, "black"),
 		/obj/item/clothing/suit/chef = list(CAT_AMR, "Chef's apron", 0, "black"),
 		/obj/item/clothing/suit/wcoat = list(CAT_AMR, "Waistcoat", 0, "black"),
 		/obj/item/clothing/suit/wizrobe/gentlecoat = list(CAT_AMR, "Gentleman's Coat", 0, "black"),
