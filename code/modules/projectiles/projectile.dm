@@ -1330,24 +1330,28 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 //This is where the bullet bounces off.
 /atom/proc/bullet_ping(obj/projectile/P)
-	if(!P.ammo.ping)
+	if(!P.ammo.ping || prob(35))
 		return
-	if(prob(65))
-		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
-		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
-		var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
-		if(prob(60))
-			angle += rand(-angle, 360 - angle)
-		I.pixel_x += rand(-6,6)
-		I.pixel_y += rand(-6,6)
+	if(P.ammo.sound_bounce)
+		playsound(src, P.ammo.sound_bounce, 50, 1)
+	var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
+	var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, src), 1)
+	if(prob(60))
+		angle += rand(-angle, 360 - angle)
+	I.pixel_x += rand(-6,6)
+	I.pixel_y += rand(-6,6)
 
-		var/matrix/rotate = matrix()
-		rotate.Turn(angle)
-		I.transform = rotate
-		add_overlay(I)
-		addtimer(CALLBACK(src, .proc/cut_overlay, I), 3, TIMER_CLIENT_TIME)
+	var/matrix/rotate = matrix()
+	rotate.Turn(angle)
+	I.transform = rotate
+	add_overlay(I)
+	addtimer(CALLBACK(src, .proc/bullet_ping_remove, I), 3, TIMER_CLIENT_TIME)
+	flags_atom |= IS_BULLET_PINGED
 
-
+/// Remove the bullet ping overlay
+/atom/proc/bullet_ping_remove(image/I)
+	cut_overlay(I)
+	flags_atom &= ~IS_BULLET_PINGED
 
 #define BULLET_MESSAGE_NO_SHOOTER 0
 #define BULLET_MESSAGE_HUMAN_SHOOTER 1
