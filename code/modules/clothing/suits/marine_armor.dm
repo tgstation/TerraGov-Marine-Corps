@@ -73,12 +73,12 @@
 
 /obj/item/clothing/suit/storage/marine/apply_custom(mutable_appearance/standing)
 	. = ..()
-	var/image/M
+	var/mutable_appearance/new_overlay
 	for(var/i in armor_overlays)
-		M = armor_overlays[i]
-		if(M)
-			M = mutable_appearance('icons/mob/suit_1.dmi',M.icon_state)
-			standing.overlays += M
+		new_overlay = armor_overlays[i]
+		if(new_overlay)
+			overlay = mutable_appearance('icons/mob/suit_1.dmi', new_overlay.icon_state)
+			standing.overlays += new_overlay
 
 
 /obj/item/clothing/suit/storage/marine/Destroy()

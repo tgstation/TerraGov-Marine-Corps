@@ -1155,21 +1155,21 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Generates worn icon for sprites on-mob.
 /obj/item/proc/make_worn_icon(species_type, slot_name, inhands, default_icon, default_layer)
 	//Get the required information about the base icon
-	var/icon2use = get_worn_icon_file(species_type = species_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
+	var/iconfile2use = get_worn_icon_file(species_type = species_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
 	var/layer2use = !inhands && worn_layer ? -worn_layer : -default_layer
 
 	//Snowflakey inhand icons in a specific slot
-	if(inhands && icon2use == icon_override)
+	if(inhands && iconfile2use == icon_override)
 		switch(slot_name)
 			if(slot_r_hand_str)
 				state2use += "_r"
 			if(slot_l_hand_str)
 				state2use += "_l"
 
-	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
+	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[iconfile2use], Worn State:[state2use], Worn Layer:[layer2use]")
 
-	var/mutable_appearance/standing = mutable_appearance(icon2use, state2use, layer2use)
+	var/mutable_appearance/standing = mutable_appearance(iconfile2use, state2use, layer2use)
 
 	//Apply any special features
 	if(!inhands)
