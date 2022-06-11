@@ -77,7 +77,7 @@
 	for(var/i in armor_overlays)
 		new_overlay = armor_overlays[i]
 		if(new_overlay)
-			overlay = mutable_appearance('icons/mob/suit_1.dmi', new_overlay.icon_state)
+			new_overlay = mutable_appearance('icons/mob/suit_1.dmi', new_overlay.icon_state)
 			standing.overlays += new_overlay
 
 
