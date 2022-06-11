@@ -291,12 +291,6 @@
 		/obj/item/storage/holster/blade,
 		/obj/item/storage/belt/gun,
 	)
-	icon_state_variants = list(
-		"drab",
-		"black",
-		"desert",
-		"snow",
-	)
 
 /obj/item/clothing/suit/modular/xenonauten/light
 	name = "\improper Xenonauten-L pattern armored vest"
