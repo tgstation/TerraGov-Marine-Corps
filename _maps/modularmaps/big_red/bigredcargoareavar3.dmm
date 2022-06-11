@@ -33,6 +33,9 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
+"bM" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/west)
 "bT" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -84,7 +87,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves)
+/area/bigredv2/caves/west)
 "fY" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
@@ -115,6 +118,9 @@
 "hm" = (
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
+"hG" = (
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northwest)
 "hH" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
@@ -141,7 +147,7 @@
 "jR" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1";
+	icon_state = "tube1"
 	},
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/plating,
@@ -189,6 +195,10 @@
 "mJ" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
+"mO" = (
+/obj/effect/decal/sandedge,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northwest)
 "nd" = (
 /obj/item/shard,
 /turf/open/floor/plating,
@@ -212,7 +222,7 @@
 "pZ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
+/area/bigredv2/caves/northwest)
 "qh" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand,
@@ -258,7 +268,7 @@
 /area/bigredv2/outside/nw)
 "tV" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves)
+/area/bigredv2/caves/northwest)
 "um" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -271,11 +281,15 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
+/area/bigredv2/caves/northwest)
 "uM" = (
 /obj/structure/xenoautopsy/tank/escaped,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
+"uU" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/west)
 "vu" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -319,21 +333,25 @@
 "yz" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves)
+/area/bigredv2/caves/northwest)
+"yF" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/west)
 "zc" = (
 /turf/closed/wall,
 /area/bigredv2/outside/medical)
 "Ac" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
+/area/bigredv2/caves/northwest)
 "Ad" = (
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "An" = (
 /turf/open/floor/plating/warning{
-	dir = 1;
+	dir = 1
 	},
 /area/bigredv2/outside/nw)
 "Av" = (
@@ -347,7 +365,7 @@
 /area/bigredv2/outside/nw)
 "AY" = (
 /turf/open/floor/plating/warning{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/nw)
 "Bh" = (
@@ -359,7 +377,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
-	dir = 1;
+	dir = 1
 	},
 /area/bigredv2/outside/nw)
 "Dx" = (
@@ -376,7 +394,7 @@
 "Ef" = (
 /obj/machinery/light{
 	dir = 1;
-	icon_state = "tube1";
+	icon_state = "tube1"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -403,6 +421,10 @@
 "Gl" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/virology)
+"GC" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/west)
 "GK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -432,7 +454,7 @@
 "HX" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves)
+/area/bigredv2/caves/northwest)
 "Ia" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -452,7 +474,7 @@
 /area/bigredv2/outside/nw)
 "Jf" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
+/area/bigredv2/caves/northwest)
 "JJ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -509,6 +531,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
+"Of" = (
+/obj/effect/decal/sandedge/corner2,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northwest)
 "Os" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -528,7 +554,10 @@
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 4
 	},
-/area/bigredv2/caves)
+/area/bigredv2/caves/west)
+"Qu" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/west)
 "Rk" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
@@ -552,6 +581,10 @@
 /obj/structure/xenoautopsy/tank/hugger,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
+"Sk" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/west)
 "St" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -599,7 +632,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/nw)
 "XJ" = (
@@ -630,7 +663,7 @@
 "ZP" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
+/area/bigredv2/caves/west)
 "ZZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -704,9 +737,9 @@ lp
 lp
 lp
 tV
-tV
-yz
-tV
+bM
+Sk
+bM
 lp
 lp
 "}
@@ -728,10 +761,10 @@ lp
 lp
 yz
 Jf
-Jf
-Jf
-Ac
-tV
+Qu
+Qu
+uU
+bM
 lp
 "}
 (5,1,1) = {"
@@ -752,11 +785,11 @@ lp
 HX
 Jf
 Jf
-Jf
-Jf
-Jf
-Ac
-tV
+Qu
+Qu
+Qu
+uU
+bM
 "}
 (6,1,1) = {"
 lp
@@ -776,11 +809,11 @@ lp
 Jf
 Jf
 pZ
-Jf
-Jf
-Jf
-pZ
-Jf
+Qu
+Qu
+Qu
+GC
+Qu
 "}
 (7,1,1) = {"
 lp
@@ -800,11 +833,11 @@ tV
 Jf
 Jf
 Jf
-Jf
-pZ
-Jf
-tV
-Jf
+Qu
+GC
+Qu
+bM
+Qu
 "}
 (8,1,1) = {"
 lp
@@ -824,11 +857,11 @@ Jf
 Jf
 Jf
 Jf
-Jf
-Jf
-Jf
-tV
-Ac
+Qu
+Qu
+Qu
+bM
+uU
 "}
 (9,1,1) = {"
 lp
@@ -848,11 +881,11 @@ pZ
 Ac
 Jf
 pZ
-Jf
-Jf
-Jf
+Qu
+Qu
+Qu
 fH
-Jf
+Qu
 "}
 (10,1,1) = {"
 Ac
@@ -872,11 +905,11 @@ Jf
 Jf
 Jf
 Jf
-Jf
-Jf
-Jf
-tV
-Jf
+Qu
+Qu
+Qu
+bM
+Qu
 "}
 (11,1,1) = {"
 Jf
@@ -896,10 +929,10 @@ Jf
 Jf
 Jf
 Jf
-Jf
-pZ
-Jf
-tV
+Qu
+GC
+Qu
+bM
 lp
 "}
 (12,1,1) = {"
@@ -920,9 +953,9 @@ pZ
 Ac
 Jf
 pZ
-Jf
-Jf
-Jf
+Qu
+Qu
+Qu
 fH
 lp
 "}
@@ -944,11 +977,11 @@ Jf
 Jf
 Jf
 Jf
-Jf
-Jf
-Jf
-Jf
-HX
+Qu
+Qu
+Qu
+Qu
+yF
 "}
 (14,1,1) = {"
 Jf
@@ -968,11 +1001,11 @@ lp
 lp
 lp
 lp
-Jf
-Jf
-Jf
-Jf
-tV
+Qu
+Qu
+Qu
+Qu
+bM
 "}
 (15,1,1) = {"
 uI
@@ -992,7 +1025,7 @@ lp
 lp
 lp
 lp
-Jf
+Qu
 lp
 lp
 ZP
@@ -1287,8 +1320,8 @@ dS
 ku
 "}
 (28,1,1) = {"
-lp
-lp
+mO
+hG
 lp
 lp
 lp
@@ -1311,9 +1344,9 @@ MD
 ku
 "}
 (29,1,1) = {"
-lp
-lp
-lp
+mO
+hG
+hG
 bT
 xc
 xc
@@ -1335,8 +1368,8 @@ dS
 pN
 "}
 (30,1,1) = {"
-lp
-lp
+mO
+hG
 xc
 xc
 Os
@@ -1359,7 +1392,7 @@ dS
 ku
 "}
 (31,1,1) = {"
-lp
+Of
 xc
 xc
 xc

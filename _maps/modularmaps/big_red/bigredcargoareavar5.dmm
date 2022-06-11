@@ -192,9 +192,9 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "lU" = (
-/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/sandedge/corner2,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
+/area/bigredv2/caves/northwest)
 "lZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -507,9 +507,9 @@
 	},
 /area/bigredv2/outside/virology)
 "Hz" = (
-/obj/structure/cable,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
+/obj/effect/decal/sandedge,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northwest)
 "HZ" = (
 /obj/structure/cargo_container/hd_blue{
 	dir = 1
@@ -1486,8 +1486,8 @@ Yr
 kj
 "}
 (28,1,1) = {"
-Uw
-Uw
+Hz
+ow
 Uw
 Uw
 Uw
@@ -1510,9 +1510,9 @@ Yr
 kj
 "}
 (29,1,1) = {"
-Uw
-Uw
-Uw
+Hz
+ow
+ow
 Uw
 Uw
 Uw
@@ -1535,7 +1535,7 @@ kj
 "}
 (30,1,1) = {"
 Hz
-Hz
+ow
 Km
 Km
 Km
@@ -1558,12 +1558,12 @@ cS
 kj
 "}
 (31,1,1) = {"
-Uw
-Km
 lU
 Km
 Km
 Km
+Pz
+mA
 ih
 Zx
 zF
@@ -1582,11 +1582,11 @@ Vf
 Qe
 "}
 (32,1,1) = {"
-Km
-Km
-Km
+Pz
 mA
 mA
+mA
+Ls
 Ls
 ih
 Yg
@@ -1606,7 +1606,7 @@ wg
 dE
 "}
 (33,1,1) = {"
-Km
+UP
 VW
 lr
 gs
@@ -1630,7 +1630,7 @@ dw
 dE
 "}
 (34,1,1) = {"
-Km
+UP
 Pd
 ax
 bq
@@ -1654,7 +1654,7 @@ rw
 Oi
 "}
 (35,1,1) = {"
-Pz
+UP
 Pd
 Oi
 Oi

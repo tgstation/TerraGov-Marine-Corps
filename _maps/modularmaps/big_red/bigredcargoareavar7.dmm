@@ -4,6 +4,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
+"aG" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
 "bQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -31,6 +35,10 @@
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
+"eR" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/west)
 "ft" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/virology)
@@ -93,16 +101,12 @@
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 4
 	},
-/area/bigredv2/caves)
+/area/bigredv2/caves/west)
 "iP" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
-"iY" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
 "jr" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 6
@@ -118,9 +122,10 @@
 "jK" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/nw)
-"kx" = (
+"jV" = (
+/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
+/area/bigredv2/caves/northwest)
 "kT" = (
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
@@ -133,7 +138,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
+/area/bigredv2/caves/northwest)
 "md" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 1
@@ -175,6 +180,13 @@
 "od" = (
 /turf/closed/wall/indestructible/mineral,
 /area/space)
+"oH" = (
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northwest)
+"oO" = (
+/obj/effect/decal/sandedge,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northwest)
 "oW" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -199,6 +211,9 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
+"qq" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/west)
 "qs" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
@@ -256,6 +271,10 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
+"tk" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/west)
 "tt" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/cavetodirt{
@@ -268,6 +287,10 @@
 	dir = 1
 	},
 /area/bigredv2/outside/virology)
+"ue" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/northwest)
 "ug" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -284,10 +307,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
-"uq" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves)
 "uK" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
@@ -302,7 +321,7 @@
 "uS" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
+/area/bigredv2/caves/west)
 "uU" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/warning{
@@ -364,6 +383,10 @@
 	dir = 9
 	},
 /area/bigredv2/outside/nw)
+"yh" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/west)
 "ym" = (
 /obj/structure/cargo_container/hd,
 /turf/open/floor/plating,
@@ -410,10 +433,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
-"AC" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves)
 "AG" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -459,7 +478,7 @@
 /area/bigredv2/outside/virology)
 "Eh" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves)
+/area/bigredv2/caves/northwest)
 "EC" = (
 /obj/machinery/light{
 	dir = 8
@@ -519,9 +538,8 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "Jy" = (
-/obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves)
+/area/bigredv2/caves/northwest)
 "JY" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -581,10 +599,8 @@
 	},
 /area/bigredv2/outside/nw)
 "MB" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves)
+/area/bigredv2/caves/west)
 "MV" = (
 /obj/structure/cargo_container/hd{
 	dir = 1
@@ -720,6 +736,10 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
+"UY" = (
+/obj/effect/decal/sandedge/corner2,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/caves/northwest)
 "Vq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -842,10 +862,10 @@ Ro
 Ro
 Ro
 Ro
-Eh
-Eh
-AC
-Eh
+MB
+MB
+MB
+MB
 Ro
 Ro
 "}
@@ -865,12 +885,12 @@ Ro
 Ro
 Ro
 Ro
-AC
-kx
-kx
-kx
-iY
-Eh
+MB
+qq
+qq
+qq
+qq
+MB
 Ro
 "}
 (5,1,1) = {"
@@ -888,14 +908,14 @@ Ro
 Ro
 Ro
 Ro
-uq
-kx
-kx
-kx
-kx
-kx
-iY
-Eh
+MB
+qq
+qq
+yh
+qq
+qq
+qq
+MB
 "}
 (6,1,1) = {"
 Ro
@@ -912,14 +932,14 @@ Ro
 Ro
 Ro
 Ro
-kx
-kx
-Jy
-kx
-kx
-kx
-Jy
-kx
+qq
+qq
+qq
+qq
+qq
+qq
+qq
+qq
 "}
 (7,1,1) = {"
 Ro
@@ -936,14 +956,14 @@ Ro
 Ro
 Ro
 Eh
-kx
-kx
-kx
-kx
-Jy
-kx
-Eh
-kx
+qq
+qq
+qq
+qq
+qq
+qq
+MB
+yh
 "}
 (8,1,1) = {"
 Ro
@@ -954,148 +974,148 @@ Ro
 Ro
 Ro
 Ro
-kx
-kx
-kx
 Jy
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-Eh
-iY
+Jy
+Jy
+Jy
+Jy
+aG
+qq
+yh
+qq
+yh
+qq
+qq
+eR
+qq
 "}
 (9,1,1) = {"
 Ro
-lT
-kx
-iY
-kx
 Jy
-kx
-kx
-iY
 Jy
-kx
-kx
-kx
 Jy
-iY
-kx
 Jy
-kx
-kx
-kx
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+qq
+qq
+qq
+qq
+qq
+qq
 MB
-kx
+qq
 "}
 (10,1,1) = {"
-iY
-kx
-kx
-kx
-kx
-kx
-kx
 Jy
-kx
-kx
-kx
-kx
-Eh
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-Eh
-kx
+Jy
+Jy
+jV
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+ue
+Jy
+qq
+qq
+qq
+qq
+qq
+yh
+MB
+qq
 "}
 (11,1,1) = {"
-kx
-kx
-kx
 Jy
-kx
-Eh
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-kx
 Jy
-kx
+Jy
+Jy
+Jy
 Eh
+jV
+Jy
+Jy
+Jy
+jV
+Jy
+Jy
+Jy
+qq
+qq
+qq
+qq
+qq
+qq
+MB
 Ro
 "}
 (12,1,1) = {"
-iY
+Jy
 Jy
 Eh
-uq
-kx
+Eh
 Jy
-kx
-kx
-iY
 Jy
-kx
+aG
 Jy
-kx
 Jy
-iY
-kx
 Jy
-kx
-kx
-kx
-MB
+Jy
+aG
+Jy
+lT
+qq
+qq
+qq
+yh
+qq
+yh
+eR
 Ro
 "}
 (13,1,1) = {"
 Eh
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-kx
+Jy
+Jy
+Jy
+Jy
+jV
+Jy
+Jy
+Jy
+Jy
+Jy
 Eh
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-kx
-uq
+Jy
+Jy
+qq
+qq
+qq
+qq
+qq
+qq
+qq
+MB
 "}
 (14,1,1) = {"
-kx
-kx
-kx
 Jy
-kx
-kx
+Jy
+jV
+Jy
+Jy
+Jy
 Ro
 Ro
 Ro
@@ -1107,18 +1127,18 @@ Ro
 Ro
 Ro
 Ro
-kx
-kx
-kx
-kx
-Eh
+qq
+qq
+qq
+tk
+MB
 "}
 (15,1,1) = {"
 lT
-kx
-kx
-kx
 Jy
+Jy
+Jy
+jV
 Ro
 Ro
 Ro
@@ -1131,16 +1151,16 @@ Ro
 Ro
 Ro
 Ro
-kx
+qq
 Ro
 Ro
 uS
 iL
 "}
 (16,1,1) = {"
-kx
 Jy
-kx
+jV
+Jy
 Ro
 Ro
 Ro
@@ -1162,8 +1182,8 @@ tt
 Ap
 "}
 (17,1,1) = {"
-kx
-kx
+Jy
+Jy
 Ro
 Ro
 Ro
@@ -1426,8 +1446,8 @@ Ap
 AG
 "}
 (28,1,1) = {"
-Ro
-Ro
+oO
+oH
 Ro
 Ro
 Ro
@@ -1450,9 +1470,9 @@ vU
 AG
 "}
 (29,1,1) = {"
-Ro
-Ro
-Ro
+oO
+oH
+oH
 NQ
 NJ
 NJ
@@ -1474,8 +1494,8 @@ Ap
 tS
 "}
 (30,1,1) = {"
-Ro
-Ro
+oO
+oH
 NJ
 NJ
 rB
@@ -1498,7 +1518,7 @@ Ap
 AG
 "}
 (31,1,1) = {"
-Ro
+UY
 NJ
 NJ
 NJ
