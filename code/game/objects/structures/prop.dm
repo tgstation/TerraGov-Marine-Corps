@@ -1040,3 +1040,14 @@
 
 /obj/structure/prop/vehicle/apc/decoration/emptyfuelcell
 	icon_state = "emptyfuelcell"
+
+/obj/structure/prop/vehicle/som_mech
+	name = "Marauder Assault Mech"
+	desc = "A heavily armed mech used by the SOM to spearhead an assault, this one seems to be non-functional."
+	icon = 'icons/Marine/mech_prop.dmi'
+	icon_state = "som_mech"
+	density = TRUE
+	coverage = 70
+	bound_width = 64
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER

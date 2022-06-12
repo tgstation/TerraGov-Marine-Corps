@@ -30,7 +30,7 @@
 
 //landingZone
 /area/rocinante_colony/surface/landing
-	ambience = list('sound/ambience/ambiencetemp.ogg', 'sound/ambience/ambiencecontraband.ogg')
+	ambience = list('sound/ambience/ambiencetemp.ogg', 'sound/ambience/ambiencepizzaday.ogg', 'sound/ambience/ambiencemeeting.ogg', 'sound/ambience/ambienceagent.ogg', 'sound/ambience/ambienceengi.ogg', 'sound/ambience/ambiencesec.ogg')
 
 /area/rocinante_colony/surface/landing/landing_pad_one
 	name = "Landing Pad 1"

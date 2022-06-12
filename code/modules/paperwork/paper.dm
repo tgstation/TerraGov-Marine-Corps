@@ -555,7 +555,7 @@ then, for every time you included a field, increment fields. */
 /obj/item/paper/chapelnote
 	name = "Note"
 	info = {"Imam Mahdi<BR>
-			Could we replace the pews with foldable chairs?.It has been a real pain having to move these pews away for our prayer mats also why is there spilled oil at the stand."}
+			Could we replace the pews with foldable chairs?It has been a real pain having to move these pews away for our prayer mats also why is there spilled oil at the stand."}
 
 /obj/item/paper/chapelnote2
 	name = "Note"
