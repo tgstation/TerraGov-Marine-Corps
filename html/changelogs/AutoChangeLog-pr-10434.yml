@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Wraith portal range buffed from 10 to 20"
-  - balance: "Wraith portals are no longer vulnerable to bullets; they are now vulnerable to explosions"
-  - balance: "Human can no longer cross portal"
