@@ -206,3 +206,17 @@
   Xsdew:
   - soundadd: added a new sound for the MG42
   - imageadd: replaced the MG42 Sprites
+2022-06-12:
+  BraveMole:
+  - balance: Wraith portal range buffed from 10 to 20
+  - balance: Wraith portals are no longer vulnerable to bullets; they are now vulnerable
+      to explosions
+  - balance: Human can no longer cross portal
+  - bugfix: Fix teleporter being mountable
+  - balance: Reduce plasma cost of all wraith abilities
+  Derrick2Electricboogaloo:
+  - bugfix: Readded combat droids to Sulaco
+  - bugfix: Readded prevended protein bars to vendors
+  Vondiech:
+  - code_imp: Turns long line of else-if's in parse_zone into a switch. Also removes
+      4 duplicate if's for the hands and feet

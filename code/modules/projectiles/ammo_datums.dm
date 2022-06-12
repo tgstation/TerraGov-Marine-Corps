@@ -2094,7 +2094,7 @@ datum/ammo/bullet/revolver/tp44
 	spit_cost = 100
 	damage = 40
 	smoke_strength = 0.9
-	reagent_transfer_amount = 9.5
+	reagent_transfer_amount = 8.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
 	smoke_strength = 0.9

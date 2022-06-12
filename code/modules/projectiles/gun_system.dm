@@ -309,7 +309,7 @@
  * Deployed and Sentry Vars
 */
 	///If the gun has a deployed item..
-	var/deployed_item = null
+	var/deployable_item = null
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
@@ -352,8 +352,8 @@
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
-	if(deployed_item)
-		AddElement(/datum/element/deployable_item, deployed_item, deploy_time, undeploy_time)
+	if(deployable_item)
+		AddElement(/datum/element/deployable_item, deployable_item, type, deploy_time, undeploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
