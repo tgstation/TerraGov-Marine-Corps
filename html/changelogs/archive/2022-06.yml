@@ -184,3 +184,39 @@
   novaepee:
   - rscdel: Remove heavy reinforced wall in Ice Colony's red nuke disk, now xenomorphs
       can melt into red nuke disk
+2022-06-10:
+  QualityVan:
+  - bugfix: When you have two broken or missing legs or feet, you'll now fall down
+      once or twice a minute.
+  - bugfix: Amputated limbs are amputated.
+2022-06-11:
+  BraveMole:
+  - balance: 'Heart damage will decrease your maximum stamina and maximum health.
+      Nothing else balance :Lungs damage will decrease your stamina regen and your
+      speed. Nothing else delete: Peridaxon is no longer in the game, as effects from
+      organ damage are less severe'
+  Lumipharon:
+  - balance: Empowered jab now actually blinds instead of flashing
+  Mechanelize:
+  - balance: Ravager caste now has plasmadrain immunity.
+  QualityVan:
+  - balance: Xenos keep current percent health when a balance scalar is applied.
+  - bugfix: Game status window properly shows current max health when a balance scalar
+      is active.
+  Xsdew:
+  - soundadd: added a new sound for the MG42
+  - imageadd: replaced the MG42 Sprites
+2022-06-12:
+  BraveMole:
+  - balance: Wraith portal range buffed from 10 to 20
+  - balance: Wraith portals are no longer vulnerable to bullets; they are now vulnerable
+      to explosions
+  - balance: Human can no longer cross portal
+  - bugfix: Fix teleporter being mountable
+  - balance: Reduce plasma cost of all wraith abilities
+  Derrick2Electricboogaloo:
+  - bugfix: Readded combat droids to Sulaco
+  - bugfix: Readded prevended protein bars to vendors
+  Vondiech:
+  - code_imp: Turns long line of else-if's in parse_zone into a switch. Also removes
+      4 duplicate if's for the hands and feet

@@ -211,7 +211,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 			/datum/reagent/medicine/synaptizine,
 			/datum/reagent/impedrezene,
 			/datum/reagent/medicine/hyronalin,
-			/datum/reagent/medicine/peridaxon,
 			/datum/reagent/toxin,
 			/datum/reagent/medicine/rezadone,
 			/datum/reagent/medicine/ethylredoxrazine,

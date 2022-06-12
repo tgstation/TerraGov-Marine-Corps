@@ -379,7 +379,7 @@
 						if(!surgery)
 							break
 						if(istype(S.organ_ref,/datum/internal_organ))
-							S.organ_ref.rejuvenate(TRUE)
+							S.organ_ref.heal_organ_damage(S.organ_ref.damage)
 						else
 							say("Organ is missing.")
 
@@ -423,7 +423,7 @@
 									break
 								occupant.disabilities &= ~NEARSIGHTED
 								occupant.disabilities &= ~BLIND
-								E.damage = 0
+								E.heal_organ_damage(E.damage)
 								E.eye_surgery_stage = 0
 
 
