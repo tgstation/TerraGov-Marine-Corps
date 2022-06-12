@@ -113,7 +113,7 @@
 	storage = /obj/item/storage/internal/surgery_webbing
 
 /obj/item/storage/internal/surgery_webbing
-	storage_slots = 11
+	storage_slots = 12
 	max_storage_space = 24
 	can_hold = list(
 		/obj/item/tool/surgery,

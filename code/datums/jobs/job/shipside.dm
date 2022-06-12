@@ -802,7 +802,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	jobtype = /datum/job/terragov/medical/medicalofficer/rebel
 	ears = /obj/item/radio/headset/mainship/doc/rebel
 
-/datum/outfit/job/terragov/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
@@ -889,7 +889,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	jobtype = /datum/job/terragov/medical/researcher/rebel
 	ears = /obj/item/radio/headset/mainship/doc/rebel
 
-/datum/outfit/job/terragov/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
