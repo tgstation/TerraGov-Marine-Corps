@@ -199,6 +199,7 @@
 			/obj/item/storage/pouch/surgery = -1,
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
 			/obj/item/clothing/glasses/hud/health = 6,
+			/obj/item/roller = 6,
 		)
 	)
 	idle_power_usage = 211
