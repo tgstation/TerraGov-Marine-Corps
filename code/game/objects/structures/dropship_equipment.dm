@@ -311,7 +311,7 @@
 	icon_state = "flare_system"
 	dropship_equipment_flags = IS_INTERACTABLE
 	point_cost = 150
-	//cooldown for deployment
+	///cooldown for deployment
 	COOLDOWN_DECLARE(deploy_cooldown)
 	//stores target turf
 	var/turf/target
@@ -644,7 +644,7 @@
 		QDEL_NULL(deployed_heavylaser)
 	return ..()
 
-/obj/structure/dropship_equipment/heavyrr_holder
+/obj/structure/dropship_equipment/heavy_rr_holder
 	name = "heavy recoilless rifle deployment system"
 	desc = "A box that deploys a modified RR-15 crewserved recoilless rifle. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
 	equip_category = DROPSHIP_CREW_WEAPON
@@ -653,19 +653,19 @@
 	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_heavyrr
 
-/obj/structure/dropship_equipment/heavyrr_holder/Initialize()
+/obj/structure/dropship_equipment/heavy_rr_holder/Initialize()
 	. = ..()
 	if(deployed_heavyrr)
 		return
 	var/obj/item/weapon/gun/launcher/rocket/heavy_rr/new_gun = new(src)
 	deployed_heavyrr = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavyrr. Therefore new_gun.loc = deployed_heavyrr.
 
-/obj/structure/dropship_equipment/heavyrr_holder/examine(mob/user)
+/obj/structure/dropship_equipment/heavy_rr_holder/examine(mob/user)
 	. = ..()
 	if(!deployed_heavyrr)
 		. += "Its recoilless rifle is missing."
 
-/obj/structure/dropship_equipment/heavyrr_holder/update_equipment()
+/obj/structure/dropship_equipment/heavy_rr_holder/update_equipment()
 	if(!deployed_heavyrr)
 		return
 	if(ship_base)
@@ -674,13 +674,13 @@
 		deployed_heavyrr.loc = src
 	update_icon()
 
-/obj/structure/dropship_equipment/heavyrr_holder/update_icon_state()
+/obj/structure/dropship_equipment/heavy_rr_holder/update_icon_state()
 	if(ship_base)
 		icon_state = "mg_system_deployed"
 	else
 		icon_state = "rr_system"
 
-/obj/structure/dropship_equipment/heavyrr_holder/Destroy()
+/obj/structure/dropship_equipment/heavy_rr_holder/Destroy()
 	if(deployed_heavyrr)
 		QDEL_NULL(deployed_heavyrr)
 	return ..()

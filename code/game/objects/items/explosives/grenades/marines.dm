@@ -421,19 +421,25 @@
 	QDEL_NULL(target)
 	return ..()
 
-//Flares that the tadpole flare launcher launches
+///Flares that the tadpole flare launcher launches
 /obj/item/explosive/grenade/flare/strongerflare
 	icon_state = "stronger_flare_grenade"
 	lower_fuel_limit = 25
 	upper_fuel_limit = 30
 	light_system = STATIC_LIGHT//movable light has a max range
-	light_range = 12
+	///The brightness of the flare
+	var/brightness = 12
 	light_color = LIGHT_COLOR_CYAN
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	anchored = TRUE//prevents marines from picking up and running around with a stronger flare
 
-/obj/item/explosive/grenade/flare/strongerflare/turn_off()
-	set_light(0)
-	return ..()
+/obj/item/explosive/grenade/flare/strongerflare/update_brightness()
+	. = ..()
+	if(active && fuel > 0)
+		icon_state = "[initial(icon_state)]_active"
+		set_light(brightness)
+	else
+		icon_state = initial(icon_state)
+		set_light(0)

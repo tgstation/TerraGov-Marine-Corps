@@ -1510,7 +1510,7 @@ VEHICLES
 
 /datum/supply_packs/vehicles/mounted_rr
 	name = "Mounted Heavy Recoilless Rifle"
-	contains = list(/obj/structure/dropship_equipment/heavyrr_holder)
+	contains = list(/obj/structure/dropship_equipment/heavy_rr_holder)
 	cost = 180
 
 /datum/supply_packs/vehicles/hsg_ammo
