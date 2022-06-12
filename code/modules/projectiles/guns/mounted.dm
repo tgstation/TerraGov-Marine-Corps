@@ -122,7 +122,7 @@
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
-	deployed_item = /obj/machinery/deployable/mounted
+	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 300
 	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -159,7 +159,7 @@
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
-	deployed_item = /obj/machinery/deployable/mounted
+	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 300
 	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -197,7 +197,7 @@
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
-	deployed_item = /obj/machinery/deployable/mounted
+	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 400
 	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -240,7 +240,7 @@
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
-	deployed_item = /obj/machinery/deployable/mounted
+	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 600
 	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)

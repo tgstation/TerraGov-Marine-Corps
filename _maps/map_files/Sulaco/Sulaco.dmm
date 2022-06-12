@@ -1664,7 +1664,7 @@
 	input_tag = "waste_in";
 	name = "Waste Tank Control";
 	output_tag = "waste_out";
-	sensors = list("waste_sensor" = "Tank")
+	sensors = list("waste_sensor"="Tank")
 	},
 /turf/open/floor/prison/yellow{
 	dir = 4
@@ -1777,7 +1777,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Oxygen Supply Console";
 	output_tag = "oxyvent";
-	sensors = list("oxy_sensor" = "Tank")
+	sensors = list("oxy_sensor"="Tank")
 	},
 /turf/open/floor/prison/yellow{
 	dir = 1
@@ -1851,7 +1851,7 @@
 	input_tag = "mix_in";
 	name = "Mixed Air Control";
 	output_tag = "mix_out";
-	sensors = list("mix_sensor" = "Tank")
+	sensors = list("mix_sensor"="Tank")
 	},
 /turf/open/floor/prison/yellow{
 	dir = 1
@@ -1861,7 +1861,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	name = "Nitrogen Control Console";
 	output_tag = "nit_out";
-	sensors = list("nit_sensor" = "Tank")
+	sensors = list("nit_sensor"="Tank")
 	},
 /turf/open/floor/prison/yellow{
 	dir = 1
@@ -4625,7 +4625,7 @@
 	input_tag = "cooling_in";
 	name = "Core Cooling";
 	output_tag = "cooling_out";
-	sensors = list("core_sensor" = "Tank")
+	sensors = list("core_sensor"="Tank")
 	},
 /turf/open/floor/prison/darkyellow/corner,
 /area/sulaco/engineering/engine_monitoring)
@@ -11942,6 +11942,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/dropship_equipment/flare_launcher,
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "dLZ" = (
@@ -18632,11 +18634,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/marine/chapel/chapel_office)
-"nDF" = (
-/obj/structure/rack,
-/obj/item/storage/box/sentry,
-/turf/open/floor/prison,
-/area/sulaco/hangar/storage)
 "nFJ" = (
 /obj/machinery/light{
 	dir = 4
@@ -22196,10 +22193,6 @@
 	dir = 1
 	},
 /area/sulaco/bridge)
-"sqv" = (
-/obj/vehicle/unmanned/droid,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint)
 "sqC" = (
 /obj/structure/shuttle/engine/propulsion/burst/right{
 	dir = 4
@@ -23321,7 +23314,7 @@
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye. This one appears reinforced to better protect the cranium. Rumored to have been made to thwart the efforts of sneaky Runers and hunters. A small inscription reads: 'D.C'";
 	flags_armor_features = 16;
 	name = "Modified welding helmet";
-	soft_armor = list("melee" = 15, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee"=15,"bullet"=0,"laser"=0,"energy"=0,"bomb"=0,"bio"=0,"rad"=0,"fire"=0,"acid"=0)
 	},
 /obj/item/storage/briefcase/inflatable,
 /turf/open/floor/prison/darkyellow{
@@ -23840,6 +23833,12 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_north_maint)
+"uwV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/dropship_equipment/flare_launcher,
+/obj/effect/decal/warning_stripes,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "uxf" = (
 /turf/open/floor/mainship/empty,
 /area/sulaco/cargo)
@@ -23962,10 +23961,6 @@
 	},
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
-"uGx" = (
-/obj/vehicle/unmanned/droid/scout,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint)
 "uHR" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
@@ -24077,15 +24072,6 @@
 	},
 /turf/open/floor/prison/marked,
 /area/sulaco/cargo)
-"uOH" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/vending/nanomed{
-	dir = 8
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "uPy" = (
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating/platebotc,
@@ -24215,11 +24201,6 @@
 	dir = 1
 	},
 /area/sulaco/engineering/engine_monitoring)
-"uYw" = (
-/obj/structure/largecrate/random,
-/obj/item/uav_turret/droid,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint)
 "uYW" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -24871,21 +24852,6 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
-"vTI" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/turf/open/floor/prison/kitchen,
-/area/sulaco/cafeteria)
 "vUF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
@@ -26006,6 +25972,7 @@
 /area/sulaco/engineering/atmos)
 "xCr" = (
 /obj/structure/dropship_equipment/sentry_holder,
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "xCs" = (
@@ -26340,6 +26307,7 @@
 "yfI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/dropship_equipment/sentry_holder,
+/obj/effect/decal/warning_stripes,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "yfM" = (
@@ -66809,7 +66777,7 @@ bFa
 bFa
 kOr
 kOr
-jYO
+uwV
 dLR
 aUL
 tpA
@@ -69902,7 +69870,7 @@ aVG
 aWh
 aWh
 aWh
-uGx
+fkB
 qTV
 dSG
 gHY
