@@ -313,15 +313,15 @@
 	point_cost = 150
 	///cooldown for deployment
 	COOLDOWN_DECLARE(deploy_cooldown)
-	//stores target turf
+	///stores target turf
 	var/turf/target
-	//amount of loaded flares
+	///amount of loaded flares
 	var/stored_amount = 4
-	//max capacity of flares in system
+	///max capacity of flares in system
 	var/max_amount = 4
 
 /obj/structure/dropship_equipment/flare_launcher/equipment_interact(mob/user)
-	if(!COOLDOWN_CHECK(src, deploy_cooldown)) //check for deployment cooldown
+	if(!COOLDOWN_CHECK(src, deploy_cooldown)) //prevents spamming deployment
 		user.balloon_alert(user, "[src] is busy.")
 		return
 	if(stored_amount <= 0) //check for inserted flares
@@ -329,7 +329,7 @@
 		return
 	deploy_flare()
 	user.balloon_alert(user, "You deploy [src], remaining flares [stored_amount].")
-	COOLDOWN_START(src, deploy_cooldown, 5 SECONDS)//starts the cooldown for deployment
+	COOLDOWN_START(src, deploy_cooldown, 5 SECONDS)
 
 /obj/structure/dropship_equipment/flare_launcher/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -353,7 +353,7 @@
 	else
 		icon_state = "flare_system"
 
-//gets target and deploy the flare launcher
+///gets target and deploy the flare launcher
 /obj/structure/dropship_equipment/flare_launcher/proc/deploy_flare()
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 40, 1)
 	target = get_ranged_target_turf(src, ship_base.dir, 10)
