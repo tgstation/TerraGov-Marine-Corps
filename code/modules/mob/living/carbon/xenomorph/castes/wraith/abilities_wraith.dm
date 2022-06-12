@@ -161,6 +161,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/banish_duration_timer_id
 	///Phantom zone reserved area
 	var/datum/turf_reservation/reserved_area
+	/// How far can you banish
+	var/range = 3
 
 /datum/action/xeno_action/activable/banish/Destroy()
 	QDEL_NULL(reserved_area) //clean up
@@ -177,9 +179,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/mob/living/carbon/xenomorph/X = owner
 
 	var/distance = get_dist(owner, A)
-	if(distance > X.xeno_caste.wraith_banish_range) //Needs to be in range.
+	if(distance > range) //Needs to be in range.
 		if(!silent)
-			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!"))
+			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - range] tiles closer!"))
 		return FALSE
 
 	if(!line_of_sight(owner, A, ignore_target_opacity = TRUE)) //Needs to be in line of sight.
@@ -573,6 +575,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/target_initial_brute_damage = 0
 	/// Initial sunder of the target
 	var/target_initial_sunder = 0
+	/// How far can you rewind someone
+	var/range = 5
 
 /datum/action/xeno_action/activable/rewind/use_ability(atom/A)
 	if(!isliving(A))
@@ -593,6 +597,13 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	add_cooldown()
 	succeed_activate()
 
+/datum/action/xeno_action/activable/rewind/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(distance > X.xeno_caste.wraith_banish_range) //Needs to be in range.
+		if(!silent)
+			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - range] tiles closer!"))
+		return FALSE
+
 /// Signal handler
 /datum/action/xeno_action/activable/rewind/proc/save_move(atom/movable/source, oldloc)
 	SIGNAL_HANDLER
@@ -606,7 +617,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(QDELETED(targeted) || targeted.stat == DEAD)
 		targeted = null
 		return
-	targeted.status_flags |= INCORPOREAL|GODMODE
+	targeted.status_flags |= (INCORPOREAL|GODMODE)
 	INVOKE_NEXT_TICK(src, .proc/rewind)
 	targeted.canmove = FALSE
 	playsound(targeted, 'sound/effects/woosh_swoosh.ogg', 50)
