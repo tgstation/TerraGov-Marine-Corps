@@ -1183,6 +1183,7 @@
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)
+	X.hive.update_tier_limits()
 	GLOB.round_statistics.larva_from_psydrain +=larva_point_reward / xeno_job.job_points_needed
 
 	log_combat(victim, owner, "was drained.")
