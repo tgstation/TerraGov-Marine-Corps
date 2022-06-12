@@ -86,19 +86,13 @@
 		"Specialized" = list(
 			/obj/item/weapon/gun/grenade_launcher/multinade_launcher = -1,
 			/obj/item/weapon/gun/grenade_launcher/single_shot = -1,
-			/obj/item/weapon/gun/rifle/tx54 = 2,
-			/obj/item/ammo_magazine/rifle/tx54 = 10,
-			/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = 2,
 			/obj/item/weapon/gun/rifle/pepperball = 4,
 			/obj/item/ammo_magazine/rifle/pepperball = 40,
-			/obj/item/storage/holster/backholster/rpg/full = 2,
 			/obj/item/weapon/gun/flamer/big_flamer/marinestandard = 4,
 			/obj/item/ammo_magazine/flamer_tank/backtank = 4,
 			/obj/item/ammo_magazine/flamer_tank/large = 20,
 			/obj/item/ammo_magazine/flamer_tank = 20,
-			/obj/item/tool/extinguisher = -1,
-			/obj/item/tool/extinguisher/mini = -1,
 			/obj/item/weapon/shield/riot/marine = 6,
 			/obj/item/jetpack_marine = 3,
 			/obj/item/weapon/powerfist = -1,
@@ -909,7 +903,7 @@
 	icon_state = "bloodvendor"
 	icon_deny = "bloodvendor-deny"
 	product_ads = "The best blood on the market!"
-	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP)
+	req_one_access = ALL_MARINE_ACCESS
 	products = list(
 		/obj/item/reagent_containers/blood/APlus = 5,
 		/obj/item/reagent_containers/blood/AMinus = 5,
@@ -921,7 +915,7 @@
 	)
 
 /obj/machinery/vending/MarineMed/Blood/rebel
-	req_one_access = list(ACCESS_MARINE_MEDBAY_REBEL, ACCESS_MARINE_CHEMISTRY_REBEL)
+	req_one_access = ALL_MARINE_ACCESS
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(list/productlist, category)
 	. = ..()
@@ -972,17 +966,21 @@
 	name = "\improper TerraGovTech Engineer System Vendor"
 	desc = "A marine engineering system vendor"
 	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
-	req_access = list(ACCESS_MARINE_ENGPREP)
+	req_one_access = ALL_MARINE_ACCESS
 	icon_state = "engiprep"
 	icon_deny = "engiprep-deny"
 	wrenchable = FALSE
 
 	products = list(
+		/obj/item/ammo_magazine/sentry = 8,
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
-		/obj/item/storage/box/sentry = 4,
-		/obj/item/storage/box/tl102 = 1,
 		/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
+		/obj/item/storage/holster/backholster/rpg/full = 2,
+		/obj/item/storage/box/tl102 = 1,
+		/obj/item/weapon/gun/rifle/tx54 = 2,
+		/obj/item/ammo_magazine/rifle/tx54 = 10,
+		/obj/item/ammo_magazine/rifle/tx54/incendiary = 4,
 		/obj/item/weapon/gun/heavymachinegun = 1,
 		/obj/item/ammo_magazine/heavymachinegun = 10,
 	)
@@ -990,7 +988,7 @@
 	prices = list()
 
 /obj/machinery/vending/shared_vending/marine_engi/rebel
-	req_access = list(ACCESS_MARINE_ENGPREP_REBEL)
+	req_one_access = ALL_MARINE_ACCESS
 	products = list(
 		/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
 		/obj/item/storage/box/sentry = 5,

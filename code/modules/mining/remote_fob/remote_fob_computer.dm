@@ -20,7 +20,7 @@
 	var/datum/action/innate/remote_fob/toggle_wiring/toggle_wiring //whether or not new barricades will be wired
 	var/do_wiring = FALSE
 	var/datum/action/innate/remote_fob/sentry/sentry
-	var/sentry_remaining = 0
+	var/sentry_remaining = 4
 	var/datum/action/innate/remote_fob/eject_metal_action/eject_metal_action
 	var/datum/action/innate/remote_fob/eject_plasteel_action/eject_plasteel_action
 
