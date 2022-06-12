@@ -618,7 +618,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	var/turf/loc_b = pop(last_target_locs_list)
 	if(!loc_b)
-		targeted.status_flags &= ~INCORPOREAL|GODMODE
+		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
 		targeted.canmove = TRUE
 		targeted.take_overall_damage(target_initial_brute_damage - targeted.getBruteLoss(), target_initial_burn_damage - targeted.getFireLoss(), updating_health = TRUE)
 		if(isxeno(target))
