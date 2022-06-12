@@ -936,6 +936,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
+	update_tier_limits()
 
 
 ///Handles the timer when all silos are destroyed
