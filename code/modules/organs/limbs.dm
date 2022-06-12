@@ -306,7 +306,7 @@
 	// heal internal organs
 	for(var/o in internal_organs)
 		var/datum/internal_organ/current_organ = o
-		current_organ.rejuvenate()
+		current_organ.heal_organ_damage(current_organ.damage)
 
 	// remove embedded objects and drop them on the floor
 	for(var/o in implants)
@@ -648,7 +648,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(body_part == CHEST)
 		return FALSE
 
-	set_limb_flags(LIMB_DESTROYED)
+	if(amputation)
+		set_limb_flags(LIMB_AMPUTATED|LIMB_DESTROYED)
+	else
+		set_limb_flags(LIMB_DESTROYED)
 
 	for(var/i in implants)
 		var/obj/item/embedded_thing = i

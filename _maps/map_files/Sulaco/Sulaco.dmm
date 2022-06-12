@@ -8893,6 +8893,20 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
+"aTq" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
+"aTt" = (
+/obj/structure/rack,
+/obj/item/storage/box/sentry,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "aTw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -17292,6 +17306,21 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar/cas)
+"lAn" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/turf/open/floor/prison/kitchen,
+/area/sulaco/cafeteria)
 "lBU" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -21166,6 +21195,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/security)
+"rgO" = (
+/obj/vehicle/unmanned/droid,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "rgW" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable,
@@ -21862,6 +21895,11 @@
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
+"sbM" = (
+/obj/structure/largecrate/random,
+/obj/item/uav_turret/droid,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "sbP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -23924,6 +23962,10 @@
 	},
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
+"uGx" = (
+/obj/vehicle/unmanned/droid/scout,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint)
 "uHR" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
@@ -45425,7 +45467,7 @@ aaY
 aaY
 aba
 anw
-vTI
+lAn
 aKD
 afG
 afG
@@ -46196,7 +46238,7 @@ aHY
 iNW
 aaH
 aJy
-vTI
+lAn
 aKD
 adZ
 adZ
@@ -64197,7 +64239,7 @@ aPF
 aPF
 aPF
 aPF
-uOH
+aTq
 aRx
 cMx
 aRx
@@ -65739,7 +65781,7 @@ aPF
 aPF
 aPF
 kOr
-nDF
+aTt
 pWS
 sFd
 pWS
@@ -69603,7 +69645,7 @@ kxY
 aWh
 aWh
 mPZ
-uYw
+sbM
 qTV
 aXO
 kjw
@@ -69860,7 +69902,7 @@ aVG
 aWh
 aWh
 aWh
-fkB
+uGx
 qTV
 dSG
 gHY
@@ -70117,7 +70159,7 @@ bYM
 aXY
 aWh
 aWh
-sqv
+rgO
 qTV
 nir
 eLA

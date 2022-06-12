@@ -1,4 +1,0 @@
-author: "Vallat"
-delete-after: True
-changes: 
-  - refactor: "refactored luminosity calculation for small movable lights therefore increased projectiles movement performance by ~10%"

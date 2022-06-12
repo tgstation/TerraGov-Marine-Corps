@@ -23,14 +23,11 @@
 	var/tier2_xeno_limit
 	///Queue of all observer wanting to join xeno side
 	var/list/mob/dead/observer/candidate
-
-	//hive store vars
-	///flat list of upgrades we can buy
-	var/list/buyable_upgrades = list()
-	///assoc list name = upgraderef
-	var/list/datum/hive_upgrade/upgrades_by_name = list()
 	///Its an int showing the count of living kings
 	var/king_present = 0
+
+	///Reference to upgrades available and purchased by this hive.
+	var/datum/hive_purchases/purchases = new
 
 // ***************************************
 // *********** Init
@@ -52,60 +49,216 @@
 	SSdirection.set_leader(hivenumber, null)
 
 // ***************************************
-// *********** UI for hive store/blessing menu
+// *********** UI for Hive Status
 // ***************************************
-
 /datum/hive_status/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "BlessingMenu", "Queen Mothers Blessings")
+		ui = new(user, src, "HiveStatus")
 		ui.open()
 
-///Sets up upgrades when the round starts
-/datum/hive_status/proc/setup_upgrades()
-	for(var/type in subtypesof(/datum/hive_upgrade))
-		var/datum/hive_upgrade/upgrade = new type
-		if(upgrade.name == "Error upgrade") //defaultname just skip it its probably organisation
-			continue
-		if(!(SSticker.mode.flags_xeno_abilities & upgrade.flags_gamemode))
-			continue
-		buyable_upgrades += upgrade
-		upgrades_by_name[upgrade.name] = upgrade
-
 /datum/hive_status/ui_state(mob/user)
-	return GLOB.conscious_state
+	return GLOB.hive_ui_state
 
 /datum/hive_status/ui_assets(mob/user)
 	. = ..()
-	. += get_asset_datum(/datum/asset/spritesheet/blessingmenu)
+	. += get_asset_datum(/datum/asset/spritesheet/hivestatus)
 
 /datum/hive_status/ui_data(mob/user)
 	. = ..()
-	.["upgrades"] = list()
-	for(var/datum/hive_upgrade/upgrade AS in buyable_upgrades)
-		.["upgrades"] += list(list("name" = upgrade.name, "desc" = upgrade.desc, "category" = upgrade.category,\
-		"cost" = upgrade.psypoint_cost, "times_bought" = upgrade.times_bought, "iconstate" = upgrade.icon))
-	.["psypoints"] = SSpoints.xeno_points_by_hive[hivenumber]
+	.["hive_max_tier_two"] = tier2_xeno_limit
+	.["hive_max_tier_three"] = tier3_xeno_limit
+	.["hive_minion_count"] = length(xenos_by_tier[XENO_TIER_MINION])
+
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	.["hive_larva_current"] = xeno_job.job_points
+	.["hive_larva_rate"] = SSsilo.current_larva_spawn_rate
+	.["hive_larva_burrowed"] = xeno_job.total_positions - xeno_job.current_positions
+
+	var/psy_points = SSpoints.xeno_points_by_hive[hivenumber]
+	.["hive_psy_points"] = !isnull(psy_points) ? psy_points : 0
+
+	var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
+	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0
+	var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
+	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
+	.["hive_queen_remaining"] = !isnull(xeno_queen_timer) ? timeleft(xeno_queen_timer) MILLISECONDS : 0
+
+	.["hive_primos"] = list()
+	for(var/tier in GLOB.tier_to_primo_upgrade)
+		.["hive_primos"] += list(list(
+			"tier" = GLOB.tier_as_number[tier],
+			"purchased" = purchases.upgrades_by_name[GLOB.tier_to_primo_upgrade[tier]]?.times_bought
+		))
+
+	.["hive_structures"] = list()
+	// Silos
+	for(var/obj/structure/xeno/silo/resin_silo AS in GLOB.xeno_resin_silos)
+		.["hive_structures"] += list(get_structure_packet(resin_silo))
+	// Acid, sticky, and hugger turrets.
+	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets)
+		.["hive_structures"] += list(get_structure_packet(turret))
+	// Maturity towers
+	for(var/obj/structure/xeno/maturitytower/tower AS in GLOB.hive_datums[hivenumber].maturitytowers)
+		.["hive_structures"] += list(get_structure_packet(tower))
+	// Evolution towers (if they're ever built)
+	for(var/obj/structure/xeno/evotower/tower AS in GLOB.hive_datums[hivenumber].evotowers)
+		.["hive_structures"] += list(get_structure_packet(tower))
+	// Spawners
+	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawner)
+		.["hive_structures"] += list(get_structure_packet(spawner))
+
+	.["xeno_info"] = list()
+	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
+		if(initial(xeno.tier) == XENO_TIER_MINION)
+			continue // Skipping minions
+		var/datum/xeno_caste/caste = xeno.xeno_caste
+		var/plasma_multi = caste.plasma_regen_limit == 0 ? 1 : caste.plasma_regen_limit // Division by 0 bad.
+		var/health = xeno.health > 0 ? xeno.health / xeno.maxHealth : -xeno.health / xeno.get_death_threshold()
+		.["xeno_info"] += list(list(
+			"ref" = REF(xeno),
+			"name" = xeno.name,
+			"location" = get_xeno_location(xeno),
+			"health" = round(health * 100, 1),
+			"plasma" = round((xeno.plasma_stored / (caste.plasma_max * plasma_multi)) * 100, 1),
+			"is_leader" = xeno.queen_chosen_lead,
+			"is_ssd" = !xeno.client,
+			"index" = GLOB.hive_ui_caste_index[caste.caste_type_path],
+		))
+
+	var/mob/living/carbon/xenomorph/xeno_user
+	if(isxeno(user))
+		xeno_user = user
+
+	var/mob/watched = ""
+	if(isobserver(user) && !QDELETED(user.orbiting))
+		watched = !QDELETED(user.orbiting.parent) ? REF(user.orbiting.parent) : ""
+	else if(isxeno(user))
+		watched = !QDELETED(xeno_user.observed_xeno) ? REF(xeno_user.observed_xeno) : ""
+	.["user_watched_xeno"] = watched
+
+	.["user_evolution"] = isxeno(user) ? xeno_user.evolution_stored : 0
+
+	.["user_maturity"] = isxeno(user) ? xeno_user.upgrade_stored : 0
+	.["user_next_mat_level"] = isxeno(user) && xeno_user.upgrade_possible() ? xeno_user.xeno_caste.upgrade_threshold : 0
+	.["user_tracked"] = isxeno(user) && !isnull(xeno_user.tracked) ? REF(xeno_user.tracked) : ""
+
+	.["user_show_empty"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_EMPTY : 0
+	.["user_show_compact"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_COMPACT_MODE : 0
+	.["user_show_general"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_GENERAL : 0
+	.["user_show_population"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_POPULATION : 0
+	.["user_show_xeno_list"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_XENO_LIST : 0
+	.["user_show_structures"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_STRUCTURES : 0
+
+/// Returns a data entry for the "xeno structures" list based on the structure passed
+/datum/hive_status/proc/get_structure_packet(obj/structure/xeno/struct)
+	return list(
+		"ref" = REF(struct),
+		"name" = struct.name,
+		"integrity" = struct.obj_integrity,
+		"max_integrity" = struct.max_integrity,
+		"location" = get_xeno_location(struct),
+	)
 
 /datum/hive_status/ui_static_data(mob/user)
 	. = ..()
-	.["categories"] = GLOB.upgrade_categories
+
+	.["static_info"] = GLOB.hive_ui_static_data
+
+	.["hive_name"] = name
+	.["hive_silo_max"] = DISTRESS_SILO_COLLAPSE MILLISECONDS //Timers are defined in miliseconds.
+	.["hive_orphan_max"] = DISTRESS_ORPHAN_HIVEMIND MILLISECONDS
+	.["hive_queen_max"] = QUEEN_DEATH_TIMER MILLISECONDS
+
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	.["hive_larva_threshold"] = xeno_job.job_points_needed
+
+	.["user_ref"] = REF(user)
+	.["user_xeno"] = isxeno(user)
+	.["user_queen"] = isxenoqueen(user)
+
+	.["user_index"] = 0
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		.["user_index"] = GLOB.hive_ui_caste_index[xeno_user.xeno_caste.caste_type_path]
+
+	.["user_purchase_perms"] = FALSE
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		var/datum/xeno_caste/caste = xeno_user.xeno_caste
+		.["user_purchase_perms"] = (/datum/action/xeno_action/blessing_menu in caste.actions)
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
+	var/mob/living/carbon/xenomorph/xeno_target = locate(params["xeno"])
+	if(QDELETED(xeno_target))
+		return
 	switch(action)
-		if("buy")
-			var/buying = params["buyname"]
-			var/datum/hive_upgrade/upgrade = upgrades_by_name[buying]
-			var/mob/living/carbon/xenomorph/user = usr
-			if(!upgrade.can_buy(user, FALSE))
+		if("Evolve")
+			if(!isxeno(usr))
 				return
-			if(!upgrade.on_buy(user))
+			GLOB.evo_panel.ui_interact(usr)
+		if("Follow")
+			if(isobserver(usr))
+				var/mob/dead/observer/ghost = usr
+				ghost.ManualFollow(xeno_target)
+			else if(!isxeno(usr))
 				return
-			log_game("[key_name(user)] has purchased \a [upgrade] Blessing for [upgrade.psypoint_cost] psypoints for the [hivenumber] hive")
-			if(upgrade.flags_upgrade & UPGRADE_FLAG_MESSAGE_HIVE)
-				xeno_message("[user] has purchased \a [upgrade] Blessing", "xenoannounce", 5, user.hivenumber)
+			SEND_SIGNAL(usr, COMSIG_XENOMORPH_WATCHXENO, xeno_target)
+		if("Leader")
+			if(!isxenoqueen(usr)) // Queen only. No boys allowed.
+				return
+			SEND_SIGNAL(usr, COMSIG_XENOMORPH_LEADERSHIP, xeno_target)
+		if("Plasma")
+			if(!isxenoqueen(usr)) // Queen only.
+				return
+			SEND_SIGNAL(usr, COMSIG_XENOMORPH_QUEEN_PLASMA, xeno_target)
+		if("Blessings")
+			if(!isxeno(usr))
+				return
+			SEND_SIGNAL(usr, COMSIG_XENOABILITY_BLESSINGSMENU)
+		if("ToggleEmpty")
+			if(!isxeno(usr))
+				return
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_EMPTY)
+		if("Compass")
+			var/atom/target = locate(params["target"])
+			if(isobserver(usr))
+				var/mob/dead/observer/ghost = usr
+				ghost.ManualFollow(target)
+			if(!isxeno(usr))
+				return
+			xeno_target.set_tracked(target)
+		if("ToggleGeneral")
+			if(!isxeno(usr))
+				return
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_GENERAL)
+		if("ToggleCompact")
+			if(!isxeno(usr))
+				return
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_COMPACT_MODE)
+		if("TogglePopulation")
+			if(!isxeno(usr))
+				return
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_POPULATION)
+		if("ToggleXenoList")
+			if(!isxeno(usr))
+				return
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_XENO_LIST)
+		if("ToggleStructures")
+			if(!isxeno(usr))
+				return
+			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_STRUCTURES)
 
+/// Returns the string location of the xeno
+/datum/hive_status/proc/get_xeno_location(atom/xeno)
+	. = "Unknown"
+	if(is_centcom_level(xeno.z))
+		return
+
+	var/area/xeno_area = get_area(xeno)
+	if(xeno_area)
+		. = xeno_area.name
 
 // ***************************************
 // *********** Helpers
@@ -165,7 +318,7 @@
 		xenos += xenos_by_typepath[typepath]
 	return xenos
 
-///Returning all xenos including queen that are not at centcom and not self.
+///Returning all xenos including queen that are not at centcom and not self
 /datum/hive_status/proc/get_watchable_xenos(mob/living/carbon/xenomorph/self)
 	var/list/xenos = list()
 	for(var/typepath in xenos_by_typepath)
@@ -619,7 +772,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 
 
-	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), 5 MINUTES, TIMER_STOPPABLE)
+	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), DISTRESS_ORPHAN_HIVEMIND, TIMER_STOPPABLE)
 
 
 /datum/hive_status/normal/burrow_larva(mob/living/carbon/xenomorph/larva/L)
@@ -812,7 +965,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		return
 
 	xeno_message("We don't have any silos! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
-	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), 5 MINUTES, TIMER_STOPPABLE)
+	D.siloless_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/siloless_hive_collapse), DISTRESS_SILO_COLLAPSE, TIMER_STOPPABLE)
 
 /**
  * Add a mob to the candidate queue, the first mobs of the queue will have priority on new larva spots

@@ -309,7 +309,7 @@
  * Deployed and Sentry Vars
 */
 	///If the gun has a deployed item..
-	var/deployed_item = null
+	var/deployable_item = null
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
@@ -352,8 +352,8 @@
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
-	if(deployed_item)
-		AddElement(/datum/element/deployable_item, deployed_item, deploy_time, undeploy_time)
+	if(deployable_item)
+		AddElement(/datum/element/deployable_item, deployable_item, type, deploy_time, undeploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
@@ -871,7 +871,7 @@
 
 	simulate_recoil(dual_wield, firing_angle)
 
-	projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+	projectile_to_fire.fire_at(target, master_gun ? gun_user : loc, src, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 
 	shots_fired++
 
@@ -1551,6 +1551,7 @@
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.damage *= damage_mult
 	projectile_to_fire.damage_falloff *= damage_falloff_mult
+	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
 	projectile_to_fire.projectile_speed += shell_speed_mod
 	if(flags_gun_features & GUN_IFF || HAS_TRAIT(src, TRAIT_GUN_IS_AIMING) || projectile_to_fire.ammo.flags_ammo_behavior & AMMO_IFF)
 		var/iff_signal
