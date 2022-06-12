@@ -151,7 +151,7 @@
 	///How much tipped we are.
 	var/tipped_level = 0
 	///Stops the machine from being hacked to shoot inventory or allow all access
-	var/hacking_safety = FALSE
+	var/hacking_safety = TRUE
 
 	var/scan_id = TRUE
 
