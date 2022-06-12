@@ -176,6 +176,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("We cannot banish this!"))
 		return FALSE
 
+	if(HAS_TRAIT(A, TRAIT_TIME_SHIFTED))
+		to_chat(owner, span_xenowarning("That target is already affected by a time manipulation effect!"))
+		return
+
 	var/distance = get_dist(owner, A)
 	if(distance > range) //Needs to be in range.
 		if(!silent)
@@ -576,8 +580,30 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	/// How far can you rewind someone
 	var/range = 5
 
-/datum/action/xeno_action/activable/rewind/use_ability(atom/A)
 
+/datum/action/xeno_action/activable/rewind/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+
+	var/distance = get_dist(owner, A)
+	if(distance > range) //Needs to be in range.
+		if(!silent)
+			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - range] tiles closer!"))
+		return FALSE
+
+	if(HAS_TRAIT(A, TRAIT_TIME_SHIFTED))
+		to_chat(owner, span_xenowarning("That target is already affected by a time manipulation effect!"))
+		return
+
+	if(!isliving(A))
+		to_chat(owner, span_xenowarning("We cannot target that!"))
+		return
+
+
+	var/mob/living/living_target = A
+	if(living_target.stat != CONSCIOUS)
+		to_chat(owner, span_xenowarning("The target is not in good enough shape!"))
+
+/datum/action/xeno_action/activable/rewind/use_ability(atom/A)
 	targeted = A
 	last_target_locs_list += get_turf(A)
 	target_initial_brute_damage = targeted.getBruteLoss()
@@ -589,26 +615,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	RegisterSignal(targeted, COMSIG_MOVABLE_MOVED, .proc/save_move)
 	targeted.add_filter("prerewind_blur", 1, radial_blur_filter(0.04))
 	targeted.balloon_alert(targeted, "You feel anchored to the past!")
+	ADD_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
 	add_cooldown()
 	succeed_activate()
-
-/datum/action/xeno_action/activable/rewind/can_use_ability(atom/A, silent, override_flags)
-	. = ..()
-
-	var/distance = get_dist(owner, A)
-	if(distance > range) //Needs to be in range.
-		if(!silent)
-			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - range] tiles closer!"))
-		return FALSE
-
-	if(!isliving(A))
-		to_chat(owner, span_xenowarning("We cannot target that!"))
-		return
-
-	var/mob/living/living_target = A
-	if(living_target.stat != CONSCIOUS)
-		to_chat(owner, span_xenowarning("The target is not in good enough shape!"))
-		return
+	return
 
 /// Signal handler
 /datum/action/xeno_action/activable/rewind/proc/save_move(atom/movable/source, oldloc)
@@ -645,6 +655,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			var/mob/living/carbon/xenomorph/xeno_target = targeted
 			xeno_target.sunder = target_initial_sunder
 		targeted.remove_filter("rewind_blur")
+		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
 		targeted = null
 		return
 
