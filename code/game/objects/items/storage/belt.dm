@@ -135,7 +135,7 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is a less common configuration, designed to transport medical supplies and heavier medical tools."
 	icon_state = "medicalbelt"
 	item_state = "medical"
-	storage_slots = 18
+	storage_slots = 16
 	max_w_class = 3
 	max_storage_space = 42
 
@@ -174,8 +174,6 @@
 	new /obj/item/bodybag/cryobag(src)
 	new /obj/item/roller(src)
 	new /obj/item/defibrillator(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/rig/research
@@ -194,8 +192,6 @@
 	new /obj/item/storage/pill_bottle/imidazoline(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
-	new /obj/item/bodybag/cryobag(src)
-	new /obj/item/roller(src)
 	new /obj/item/defibrillator(src)
 	new /obj/item/tool/research/excavation_tool(src)
 	new /obj/item/tool/research/xeno_analyzer(src)
