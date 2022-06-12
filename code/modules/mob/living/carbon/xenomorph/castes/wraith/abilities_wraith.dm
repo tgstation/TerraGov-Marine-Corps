@@ -579,9 +579,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/range = 5
 
 /datum/action/xeno_action/activable/rewind/use_ability(atom/A)
-	if(!isliving(A))
-		to_chat(owner, span_xenowarning("We cannot target that!"))
-		return
 
 	targeted = A
 	last_target_locs_list += get_turf(A)
@@ -604,6 +601,15 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - range] tiles closer!"))
 		return FALSE
 
+	if(!isliving(A))
+		to_chat(owner, span_xenowarning("We cannot target that!"))
+		return
+
+	var/mob/living/living_target = A
+	if(living_target.stat != CONSCIOUS)
+		to_chat(owner, span_xenowarning("The target is not in good enough shape!"))
+		return
+
 /// Signal handler
 /datum/action/xeno_action/activable/rewind/proc/save_move(atom/movable/source, oldloc)
 	SIGNAL_HANDLER
@@ -612,8 +618,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Start the reset process
 /datum/action/xeno_action/activable/rewind/proc/start_rewinding()
 	targeted.remove_filter("prerewind_blur")
-	targeted.add_filter("rewind_blur", 1, radial_blur_filter(0.3))
 	UnregisterSignal(targeted, COMSIG_MOVABLE_MOVED)
+	if(targeted.stat != CONSCIOUS)
+		targeted = null
+		return
+	targeted.add_filter("rewind_blur", 1, radial_blur_filter(0.3))
 	if(QDELETED(targeted) || targeted.stat == DEAD)
 		targeted = null
 		return
