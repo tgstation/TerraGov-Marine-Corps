@@ -104,6 +104,10 @@
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
+"cn" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "cr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -2296,10 +2300,10 @@ rA
 rA
 rA
 rA
-OF
+wS
 iY
-Gk
-ap
+Ce
+ok
 "}
 (6,1,1) = {"
 ap
@@ -2336,10 +2340,10 @@ rA
 rA
 JJ
 rA
-wS
+OF
 OW
 qV
-ok
+vO
 "}
 (7,1,1) = {"
 ap
@@ -2496,10 +2500,10 @@ rA
 rA
 rA
 rA
-wS
+OF
 OW
 Ce
-ok
+vO
 "}
 (11,1,1) = {"
 ap
@@ -2538,8 +2542,8 @@ JJ
 rA
 OF
 iY
-Gk
-ap
+Ce
+ok
 "}
 (12,1,1) = {"
 ap
@@ -2576,9 +2580,9 @@ rA
 rA
 rA
 rA
-rA
+cn
 iY
-Gk
+Ce
 ap
 "}
 (13,1,1) = {"

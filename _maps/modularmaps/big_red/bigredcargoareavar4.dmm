@@ -52,7 +52,7 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/nw)
 "er" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
@@ -742,14 +742,17 @@
 /area/bigredv2/caves/northwest)
 "VG" = (
 /obj/effect/decal/sandedge,
-/obj/machinery/door/airlock/multi_tile/secure2_glass,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
-/area/bigredv2/caves/northwest)
+/area/bigredv2/outside/nw)
 "VS" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
+"Wu" = (
+/obj/effect/decal/sandedge,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
 "Wy" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -1460,7 +1463,7 @@ ru
 "}
 (26,1,1) = {"
 Uk
-Uk
+JU
 gK
 JU
 JU
@@ -1483,7 +1486,7 @@ ri
 ru
 "}
 (27,1,1) = {"
-Uk
+Wu
 JU
 JU
 JU
