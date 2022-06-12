@@ -176,8 +176,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("We cannot banish this!"))
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/X = owner
-
 	var/distance = get_dist(owner, A)
 	if(distance > range) //Needs to be in range.
 		if(!silent)
@@ -596,7 +594,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/xeno_action/activable/rewind/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
-	if(distance > X.xeno_caste.wraith_banish_range) //Needs to be in range.
+
+	var/distance = get_dist(owner, A)
+	if(distance > range) //Needs to be in range.
 		if(!silent)
 			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - range] tiles closer!"))
 		return FALSE
