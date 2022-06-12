@@ -952,6 +952,7 @@
 		L.adjustOxyLoss(-effect_str)
 		L.heal_limb_damage(effect_str,effect_str)
 		L.adjustToxLoss(-effect_str)
+		L.heal_organ_damage(effect_str)
 	return ..()
 
 /datum/reagent/medicine/clonexadone
@@ -968,6 +969,7 @@
 		L.adjustOxyLoss(-3*effect_str)
 		L.heal_limb_damage(3*effect_str,3*effect_str)
 		L.adjustToxLoss(-3*effect_str)
+		L.heal_organ_damage(-3*effect_str)
 
 	return ..()
 
