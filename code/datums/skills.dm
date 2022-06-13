@@ -181,7 +181,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	return CLAMP01(max(vars[rating], 0) * 100 / max_rating * 0.01)
 
 /datum/skills/proc/getRating(rating)
-	return max(vars[rating], 0)
+	return vars[rating]
 
 /datum/skills/proc/getList()
 	return list("cqc" = cqc,\
