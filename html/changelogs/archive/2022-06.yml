@@ -220,3 +220,17 @@
   Vondiech:
   - code_imp: Turns long line of else-if's in parse_zone into a switch. Also removes
       4 duplicate if's for the hands and feet
+2022-06-13:
+  BraveMole:
+  - bugfix: Fix organ damage not being treated by surgery
+  Lumipharon:
+  - bugfix: fixed some issues with storage procs
+  MisterGrimm:
+  - bugfix: Fixes unintended Praetorian Neurotoxin nerf at Young to Mature.
+  RipGrayson:
+  - balance: Adjusted the breach points on LV624 LZ2 and BR LZ1.
+  - balance: The sand temple on LV624 now has an APC.
+  Wayland-Smithy:
+  - bugfix: Fixed missing hivemind can_flags.
+  novaepee:
+  - bugfix: flak jacket accepting modules
