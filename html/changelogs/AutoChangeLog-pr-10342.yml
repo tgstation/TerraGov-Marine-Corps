@@ -1,0 +1,8 @@
+author: "breadhunt"
+delete-after: True
+changes: 
+  - rscdel: "Removed plasteel crate recipe"
+  - qol: "Plasteel cades no longer require a menu to make, just press Z"
+  - qol: "Metal recipes have a new radial menu, old recipe menu selectable from it"
+  - rscadd: "You can also disable the radial menu completely for the old menu in the preferences tab"
+  - refactor: "Cleaned up mat and sandbag code a small bit"
