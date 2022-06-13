@@ -317,7 +317,6 @@
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 	)
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
