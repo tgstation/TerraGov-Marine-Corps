@@ -605,7 +605,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/xeno_action/activable/rewind/use_ability(atom/A)
 	targeted = A
-	last_target_locs_list += get_turf(A)
+	last_target_locs_list = list(get_turf(A))
 	target_initial_brute_damage = targeted.getBruteLoss()
 	target_initial_burn_damage = targeted.getFireLoss()
 	if(isxeno(A))
@@ -629,13 +629,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/activable/rewind/proc/start_rewinding()
 	targeted.remove_filter("prerewind_blur")
 	UnregisterSignal(targeted, COMSIG_MOVABLE_MOVED)
-	if(targeted.stat != CONSCIOUS)
+	if(QDELETED(targeted) || targeted.stat != CONSCIOUS)
 		targeted = null
 		return
 	targeted.add_filter("rewind_blur", 1, radial_blur_filter(0.3))
-	if(QDELETED(targeted) || targeted.stat == DEAD)
-		targeted = null
-		return
 	targeted.status_flags |= (INCORPOREAL|GODMODE)
 	INVOKE_NEXT_TICK(src, .proc/rewind)
 	targeted.canmove = FALSE
