@@ -486,10 +486,6 @@
 	dir = 5
 	},
 /area/bigredv2/outside/virology)
-"Ff" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "Gb" = (
 /obj/machinery/light{
 	dir = 1;
@@ -1807,7 +1803,7 @@ Km
 ih
 rR
 zz
-Ff
+zF
 Nj
 zF
 QZ

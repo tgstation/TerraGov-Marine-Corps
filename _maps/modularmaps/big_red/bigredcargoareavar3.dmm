@@ -296,10 +296,6 @@
 	dir = 5
 	},
 /area/bigredv2/outside/virology)
-"wl" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "xc" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
@@ -1641,7 +1637,7 @@ xc
 YT
 uM
 nd
-wl
+jE
 JJ
 jE
 TI

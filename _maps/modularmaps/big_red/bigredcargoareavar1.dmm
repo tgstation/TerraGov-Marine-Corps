@@ -162,10 +162,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
-"mn" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "mu" = (
 /obj/effect/decal/sandedge,
 /turf/open/floor/marking/asteroidwarning{
@@ -1501,7 +1497,7 @@ em
 em
 em
 em
-mn
+em
 em
 em
 em

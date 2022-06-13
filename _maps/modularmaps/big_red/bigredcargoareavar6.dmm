@@ -103,10 +103,6 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
-"jJ" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "km" = (
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
@@ -1736,7 +1732,7 @@ nS
 WI
 xh
 yH
-jJ
+WG
 EE
 WG
 Eg

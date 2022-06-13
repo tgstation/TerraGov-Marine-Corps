@@ -110,10 +110,11 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "adg" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirtgrassborder,
-/area/lv624/ground/jungle9)
+/obj/structure/jungle/vines/heavy,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
+	},
+/area/lv624/ground/jungle6)
 "adv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2062,12 +2063,9 @@
 /turf/open/ground/river,
 /area/lv624/ground/river3)
 "aHI" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirtgrassborder/corner{
-	dir = 1
-	},
-/area/lv624/ground/jungle9)
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/n)
 "aHK" = (
 /turf/open/ground/coast{
 	dir = 8
@@ -7650,11 +7648,6 @@
 	dir = 5
 	},
 /area/lv624/lazarus/security)
-"fif" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirtgrassborder/corner,
-/area/lv624/ground/jungle9)
 "fij" = (
 /obj/structure/table,
 /obj/item/clothing/shoes/sandal,
@@ -18266,10 +18259,6 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle6)
-"sfw" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle6)
 "sfH" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -26681,7 +26670,7 @@ jdc
 kBt
 miq
 vTe
-vqf
+xLz
 xLz
 lZZ
 wTy
@@ -27584,7 +27573,7 @@ uzl
 aRD
 mmx
 neU
-vqf
+xLz
 xLz
 qpS
 ubU
@@ -42075,9 +42064,9 @@ aJX
 mOs
 avd
 mOs
-avd
-avd
-avd
+uLT
+aWF
+iuG
 avd
 mOs
 mOs
@@ -42252,9 +42241,9 @@ avd
 mOs
 jxI
 mOs
-avd
-avd
-gWC
+xWM
+nny
+mhi
 avd
 mOs
 mOs
@@ -42428,10 +42417,10 @@ avd
 avd
 jxI
 auJ
-mOs
-uLT
-aWF
-iuG
+avd
+xWM
+kPD
+auH
 mOs
 mOs
 mOs
@@ -42457,9 +42446,9 @@ aES
 mOs
 mOs
 mOs
-fif
-pOJ
-xnf
+xRH
+aES
+aES
 aES
 mOs
 mOs
@@ -42602,12 +42591,12 @@ gMu
 brd
 ttA
 avd
-mOs
-mOs
+avd
 auJ
-mOs
+auJ
+avd
 dZO
-sfw
+nny
 auH
 mOs
 mOs
@@ -42634,9 +42623,9 @@ aES
 aET
 wEJ
 bjM
-adg
-miC
-hYO
+xRH
+aES
+aES
 aES
 mOs
 mOs
@@ -42779,9 +42768,9 @@ brd
 ttA
 avd
 avd
-mOs
-mOs
 avd
+auJ
+auJ
 auJ
 dZO
 kPD
@@ -42811,9 +42800,9 @@ pWs
 weB
 mOs
 mOs
-aHI
-tWO
-iiH
+xRH
+aET
+aET
 aES
 mOs
 mOs
@@ -42960,9 +42949,9 @@ mOs
 mOs
 avd
 auJ
-ejM
-sej
-weu
+dZO
+oXY
+ubO
 auJ
 mOs
 mOs
@@ -43137,9 +43126,9 @@ avd
 mOs
 mOs
 jxI
-jxI
-jxI
-jxI
+adg
+sej
+obX
 jxI
 auJ
 mOs
@@ -47213,7 +47202,7 @@ uYP
 uYP
 vkR
 hlt
-uYP
+aHI
 uYP
 uYP
 uCZ
@@ -49694,7 +49683,7 @@ gVO
 uYP
 uDS
 cIl
-miC
+cIl
 hYO
 aES
 xMs

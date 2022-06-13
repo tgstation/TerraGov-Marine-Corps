@@ -32047,10 +32047,6 @@
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
-"kgN" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/clearing/south)
 "kkx" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/straight{
@@ -32203,10 +32199,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
-"kQz" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/ice_colony/exterior/surface/valley/northwest)
 "kRm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -47297,7 +47289,7 @@ mDM
 lSk
 mDM
 lSk
-kQz
+ggq
 ggq
 mqj
 mqj
@@ -62862,7 +62854,7 @@ vPZ
 aYz
 vPZ
 bbm
-kgN
+vPZ
 aYz
 vPZ
 aYz

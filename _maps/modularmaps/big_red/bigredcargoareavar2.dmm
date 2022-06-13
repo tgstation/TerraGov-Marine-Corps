@@ -553,10 +553,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
-"Ta" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "Tj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -1645,7 +1641,7 @@ Zw
 iu
 Px
 gH
-Ta
+Px
 hX
 gH
 Mz
