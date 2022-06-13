@@ -1262,9 +1262,11 @@
 	scannable = TRUE
 	taste_description = "metal, followed by mild burning"
 	overdose_threshold = REAGENTS_OVERDOSE * 1.2 //slight buffer to keep you safe
+	var/healing_stacks = 0 // gained every time user is damaged, spent on healing
 
 /datum/reagent/medicine/research/medicalnanites/on_mob_add(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("You feel like you should stay near medical help until this shot settles in."))
+	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/nanites_gain_healing_stacks) //nanomachines son, they harden in response to physical trauma
 
 /datum/reagent/medicine/research/medicalnanites/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
@@ -1285,17 +1287,19 @@
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
 
-			if (volume >5 && L.getBruteLoss()) //Unhealed IB wasting nanites is an INTENTIONAL feature.
+			if (volume >5 && L.getBruteLoss() && healing_stacks) //Unhealed IB wasting nanites is an INTENTIONAL feature.
 				L.heal_limb_damage(2*effect_str, 0)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
+				healing_stacks -= 1
 				if(prob(40))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
 
-			if (volume > 5 && L.getFireLoss())
+			if (volume > 5 && L.getFireLoss() && healing_stacks)
 				L.heal_limb_damage(0, 2*effect_str)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
+				healing_stacks -= 1
 				if(prob(40))
 					to_chat(L, span_notice("Your burns begin to slough off, revealing healthy tissue!"))
 	return ..()
@@ -1306,6 +1310,10 @@
 
 /datum/reagent/medicine/research/medicalnanites/on_mob_delete(mob/living/L, metabolism)
 	to_chat(L, span_userdanger("Your nanites have been fully purged! They no longer affect you."))
+
+/datum/reagent/medicine/research/medicalnanites/proc/nanites_gain_healing_stacks()
+	SIGNAL_HANDLER
+	healing_stacks = 4 //up to 8 damage per instance
 
 /datum/reagent/medicine/research/stimulon
 	name = "Stimulon"
