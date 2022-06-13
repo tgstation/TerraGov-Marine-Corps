@@ -481,7 +481,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	portal_one.link_portal(portal_two)
 
 /obj/effect/wraith_portal
-	icon_state = "portal_object"
+	icon_state = "portal"
 	anchored = TRUE
 	opacity = FALSE
 	vis_flags = VIS_HIDE
@@ -496,14 +496,20 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/teleport_atom
 	)
+	if(portal_is_yellow)
+		icon_state = "portal1"
 	AddElement(/datum/element/connect_loc, connections)
+	portal_visuals = new
+	portal_visuals.layer = layer + 0.01
+	vis_contents += portal_visuals
 	add_filter("border_smoother", 1, gauss_blur_filter(1))
-	add_filter("portal_outline", 2, outline_filter(2, portal_is_yellow ? "#EE7D13" : "#0364E9"))
 
 /obj/effect/wraith_portal/Destroy()
 	linked_portal?.unlink()
 	linked_portal = null
 	REMOVE_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
+	vis_contents -= portal_visuals
+	QDEL_NULL(portal_visuals)
 	return ..()
 
 /// Link two portals
@@ -511,12 +517,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	linked_portal = portal_to_link
 	ADD_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
 	RegisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED, .proc/teleport_bullet)
+	portal_visuals.setup_visuals(portal_to_link)
 
 /// Unlink the portal
 /obj/effect/wraith_portal/proc/unlink()
 	linked_portal = null
 	REMOVE_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
 	UnregisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED)
+	portal_visuals.reset_visuals()
 
 /// Signal handler teleporting crossing atoms
 /obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
@@ -549,5 +557,35 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	bullet.permutated.Cut()
 	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
 
+/obj/effect/portal_effect
+	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_flags = VIS_INHERIT_ID
+	layer = DOOR_OPEN_LAYER
+	///turf destination to display
+	var/turf/our_destination
+
+/obj/effect/portal_effect/proc/setup_visuals(atom/target)
+	our_destination = get_turf(target)
+	update_portal_filters()
+
+/obj/effect/portal_effect/proc/reset_visuals()
+	our_destination = null
+	update_portal_filters()
+
+/obj/effect/portal_effect/proc/update_portal_filters()
+	clear_filters()
+	vis_contents = null
+
+	if(!our_destination)
+		return
+	var/static/icon/portal_mask = icon('icons/effects/effects.dmi', "portal_mask")
+	add_filter("portal_alpha", 1, list("type" = "alpha", "icon" = portal_mask))
+	add_filter("portal_blur", 1, list("type" = "blur", "size" = 0.5))
+	add_filter("portal_ripple", 1, list("type" = "ripple", "size" = 2, "radius" = 1, "falloff" = 1, "y" = 7))
+
+	animate(get_filter("portal_ripple"), time = 1.3 SECONDS, loop = -1, easing = LINEAR_EASING, radius = 32)
+
+	vis_contents += our_destination
 /obj/effect/wraith_portal/ex_act()
 	qdel(src)
