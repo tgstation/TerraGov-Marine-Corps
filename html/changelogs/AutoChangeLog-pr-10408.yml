@@ -1,0 +1,5 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscdel: "Remove miners that are near LZ in Ice Colony, Big Red, and LV-624"
+  - rscdel: "Remove the triple miners next to LV-624 red disk"
