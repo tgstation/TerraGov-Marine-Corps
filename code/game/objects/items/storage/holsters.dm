@@ -243,7 +243,10 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	base_icon = "m25_holster"
 	flags_equip_slot = ITEM_SLOT_BELT
-	holsterable_allowed = list(/obj/item/weapon/gun/smg/m25)
+	holsterable_allowed = list(
+		/obj/item/weapon/gun/smg/m25,
+		/obj/item/weapon/gun/smg/m25/holstered,
+		)
 	can_hold = list(/obj/item/weapon/gun/smg/m25)
 
 /obj/item/storage/holster/m25/full/Initialize()

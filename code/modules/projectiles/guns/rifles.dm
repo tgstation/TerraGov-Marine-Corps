@@ -165,10 +165,10 @@
 	placed_overlay_iconstate = "t12"
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
-	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
+	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel, /obj/item/weapon/gun/grenade_launcher/underslung)
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/engineer
-	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/t12barrel, /obj/item/attachable/angledgrip)
+	starting_attachment_types = list(/obj/item/attachable/stock/t12stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel, /obj/item/attachable/angledgrip)
 
 //-------------------------------------------------------
 //DMR-37 DMR
@@ -755,6 +755,9 @@
 
 /obj/item/weapon/gun/rifle/standard_lmg/autorifleman
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/reddot)
+
+/obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
+	starting_attachment_types = list(/obj/item/attachable/stock/t60stock, /obj/item/attachable/bipod, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle

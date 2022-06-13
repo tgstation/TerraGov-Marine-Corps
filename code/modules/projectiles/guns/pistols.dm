@@ -200,6 +200,8 @@
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
 
+/obj/item/weapon/gun/pistol/standard_heavypistol/tactical
+	starting_attachment_types = list(/obj/item/attachable/reddot)
 //-------------------------------------------------------
 //P-1911
 

@@ -14,14 +14,16 @@
 
 	///List of all loadouts. Format is list(list(loadout_job, loadout_name))
 	var/list/loadouts_data = list(
-		list("Squad Marine","Basic1"),
-		list("Squad Marine","Basic2"),
-		list("Squad Marine","vet1"),
-		list("Squad Marine","vet2"),
-		list("SOM Standard","Basic1"),
-		list("SOM Standard","Basic2"),
-		list("SOM Veteran","vet1"),
-		list("SOM Veteran","vet2"),
+		list("SOM Standard","Basic1",-1),
+		list("SOM Standard","Basic2",1),
+		list("SOM Veteran","vet1",-1),
+		list("SOM Veteran","vet2",1),
+		list("Squad Marine","AR12 rifleman",1),
+		list("Squad Marine","Laser rifleman",1),
+		list("Squad Marine","MG60 machinegunner",1),
+		list("Squad Marine","MG27 machinegunner",1),
+		list("Squad Marine","SH35 scout",1),
+		list("Squad Marine","Laser carbine scout",1),
 		)
 	///lists the outfit datums that corrospond to the loadout options
 	var/list/loadout_list = list(
@@ -29,10 +31,12 @@
 		("Basic2SOM Standard") = /datum/outfit/quick/som/standard/one,
 		("vet1SOM Veteran") = /datum/outfit/quick/som/veteran,
 		("vet2SOM Veteran") = /datum/outfit/quick/som/veteran/three,
-		("Basic1Squad Marine") = /datum/outfit/quick/som/standard,
-		("Basic2Squad Marine") = /datum/outfit/quick/som/standard/one,
-		("vet1Squad Marine") = /datum/outfit/quick/som/veteran,
-		("vet2Squad Marine") = /datum/outfit/quick/som/veteran/three,
+		("AR12 riflemanSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_assaultrifle,
+		("Laser riflemanSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_laserrifle,
+		("MG60 machinegunnerSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_machinegunner,
+		("MG27 machinegunnerSquad Marine") = /datum/outfit/quick/tgmc/marine/medium_machinegunner,
+		("SH35 scoutSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_shotgun,
+		("Laser carbine scoutSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_lasercarbine,
 	)
 
 /obj/machinery/quick_vendor/som

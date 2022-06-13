@@ -437,6 +437,9 @@
 		"Overcharge" = /datum/lasrifle/base/energy_rifle_mode/overcharge,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/reddot, /obj/item/weapon/gun/flamer/mini_flamer)
+
 /datum/lasrifle/base/energy_rifle_mode/standard
 	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
@@ -501,6 +504,9 @@
 		"Heat" = /datum/lasrifle/base/energy_pistol_mode/heat,
 		"Disabler" = /datum/lasrifle/base/energy_pistol_mode/disabler,
 	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/tactical
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 /datum/lasrifle/base/energy_pistol_mode/standard
 	rounds_per_shot = 20
@@ -583,6 +589,8 @@
 		"Spread" = /datum/lasrifle/base/energy_carbine_mode/base/spread,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/weapon/gun/grenade_launcher/underslung,)
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
 	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
