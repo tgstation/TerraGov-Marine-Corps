@@ -173,7 +173,6 @@
 			/obj/item/reagent_containers/glass/bottle/tramadol = 12,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = 12,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 12,
-			/obj/item/reagent_containers/glass/bottle/medicalnanites = 12,
 		),
 		"Pill Bottle" = list(
 			/obj/item/storage/pill_bottle/inaprovaline = 12,
