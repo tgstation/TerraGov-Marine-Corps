@@ -2,15 +2,14 @@
 /obj/machinery/deployable/dispenser
 	name = "TX-9000 Provisions Dispenser"
 	desc = "The TX-9000 also known as \"Dispenser\" is a machine capable of holding a big amount of items on it, while also healing nearby humans. Your allies will often ask you to lay down one of those."
+	density = TRUE
+	anchored = TRUE
 	///list of human mobs we're currently affecting in our area.
 	var/list/mob/living/carbon/human/affecting_list
+	var/active = FALSE
 
 /obj/machinery/deployable/dispenser/Initialize(mapload, _internal_item, deployer)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/afterinitialize)
-
-/obj/machinery/deployable/dispenser/proc/afterinitialize()
-	setDir(REVERSE_DIR(dir))
 	flick("dispenser_deploy", src)
 	addtimer(CALLBACK(.proc/deploy), 4.2 SECONDS)
 
@@ -24,12 +23,41 @@
 		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
 	for(var/turf/turfs AS in RANGE_TURFS(2, src))
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/entered_tiles)
+	active = TRUE
 	START_PROCESSING(SSobj, src)
 
 ///cleans human from affecting_list when it gets qdeletted
-/obj/item/storage/backpack/dispenser/proc/on_affecting_qdel(datum/source)
+/obj/machinery/deployable/dispenser/proc/on_affecting_qdel(datum/source)
 	SIGNAL_HANDLER
 	affecting_list -= source
+
+/obj/machinery/deployable/dispenser/CtrlClick(mob/user)
+	if(active != TRUE)
+		return
+	balloon_alert_to_viewers("Undeploying...")
+	flick("dispenser_undeploy", src)
+	for(var/turf/turfs AS in RANGE_TURFS(2, src))
+		UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
+	for(var/mob/living/carbon/human/affecting AS in affecting_list)
+		qdel(affecting_list[affecting])
+		UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
+	affecting_list = null
+	STOP_PROCESSING(SSobj, src)
+	addtimer(CALLBACK(src, .proc/undeploy), 4.2 SECONDS)
+
+/obj/machinery/deployable/dispenser/proc/undeploy()
+	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY)
+
+/obj/machinery/deployable/dispenser/attack_hand(mob/living/user)
+	. = ..()
+	var/obj/item/storage/internal_bag = internal_item
+	internal_bag.open(user)
+
+/obj/machinery/deployable/dispenser/attacked_by(obj/item/I, mob/living/user, def_zone)
+	internal_item.attackby()
+	. = ..()
+
+
 
 /obj/item/storage/backpack/dispenser
 	name = "TX-9000 Provisions Dispenser"
@@ -57,33 +85,6 @@
 	if(over_object == usr && ishuman(over_object))
 		open(over_object)
 
-/obj/item/storage/backpack/dispenser/attack_self(mob/user)
-	if(!ishuman(user) || CHECK_BITFIELD(flags_item, NODROP))
-		return ..()
-	var/deploy_location = get_step(user, user.dir)
-	if(check_blocked_turf(deploy_location))
-		user.balloon_alert(user, "There is insufficient room to deploy [src]!")
-		return
-	if(user.do_actions)
-		user.balloon_alert(user, "You are already doing something!")
-		return
-	user.balloon_alert(user, "You start deploying...")
-
-	user.temporarilyRemoveItemFromInventory(src)
-
-	forceMove(deploy_location)
-	density = TRUE
-	anchored = TRUE
-	dir = REVERSE_DIR(user.dir)
-	icon_state = "dispenser_deployed"
-	balloon_alert_to_viewers("Deploying...")
-	flick("dispenser_deploy", src)
-	ENABLE_BITFIELD(flags_item, IS_DEPLOYING)
-
-	addtimer(CALLBACK(src, .proc/deploy), 4.2 SECONDS)
-
-
-
 /obj/item/storage/backpack/dispenser/CtrlClick(mob/user)
 	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYED) || CHECK_BITFIELD(flags_item, IS_DEPLOYING))
 		return ..()
@@ -102,15 +103,6 @@
 	affecting_list = null
 	STOP_PROCESSING(SSobj, src)
 	addtimer(CALLBACK(src, .proc/undeploy), 4.2 SECONDS)
-
-//finishes undeploying the dispenser
-/obj/item/storage/backpack/dispenser/proc/undeploy()
-	if(!CHECK_BITFIELD(flags_item, IS_DEPLOYING))
-		return
-	density = FALSE
-	anchored = FALSE
-	DISABLE_BITFIELD(flags_item, IS_DEPLOYED)
-	DISABLE_BITFIELD(flags_item, IS_DEPLOYING)
 
 /obj/item/storage/backpack/dispenser/process()
 	for(var/mob/living/carbon/human/affecting AS in affecting_list)
