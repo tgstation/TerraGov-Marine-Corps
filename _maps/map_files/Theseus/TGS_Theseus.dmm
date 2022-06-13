@@ -5602,13 +5602,6 @@
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/fire,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},

@@ -1829,11 +1829,6 @@
 	},
 /obj/item/mass_spectrometer,
 /obj/item/reagent_scanner,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},

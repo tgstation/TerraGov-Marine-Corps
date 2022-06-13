@@ -147,11 +147,6 @@
 	list_reagents = list(/datum/reagent/medicine/dermaline = 7.5)
 	pill_id = 5
 
-/obj/item/reagent_containers/pill/paracetamol
-	pill_desc = "A paracetamol pill. Painkiller for the ages."
-	list_reagents = list(/datum/reagent/medicine/paracetamol = 15)
-	pill_id = 6
-
 /obj/item/reagent_containers/pill/tramadol
 	pill_desc = "A tramadol pill. A simple painkiller."
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)

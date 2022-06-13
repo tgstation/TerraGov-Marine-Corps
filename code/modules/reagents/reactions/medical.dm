@@ -38,7 +38,7 @@
 /datum/chemical_reaction/ryetalyn
 	name = "Ryetalyn"
 	results = list(/datum/reagent/medicine/ryetalyn = 2)
-	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/carbon = 1)
+	required_reagents = list(/datum/reagent/carbon = 1)
 
 /datum/chemical_reaction/cryoxadone
 	name = "Cryoxadone"
@@ -102,11 +102,6 @@
 	results = list(/datum/reagent/medicine/tramadol = 3)
 	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/consumable/ethanol = 1, /datum/reagent/oxygen = 1)
 
-/datum/chemical_reaction/paracetamol
-	name = "Paracetamol"
-	results = list(/datum/reagent/medicine/paracetamol = 3)
-	required_reagents = list(/datum/reagent/medicine/tramadol = 1, /datum/reagent/consumable/sugar = 1, /datum/reagent/water = 1)
-
 /datum/chemical_reaction/oxycodone
 	name = "Oxycodone"
 	results = list(/datum/reagent/medicine/oxycodone = 1)
@@ -128,11 +123,6 @@
 	name = "Hyronalin"
 	results = list(/datum/reagent/medicine/hyronalin = 2)
 	required_reagents = list(/datum/reagent/radium = 1, /datum/reagent/medicine/dylovene = 1)
-
-/datum/chemical_reaction/arithrazine
-	name = "Arithrazine"
-	results = list(/datum/reagent/medicine/arithrazine = 2)
-	required_reagents = list(/datum/reagent/medicine/hyronalin = 1, /datum/reagent/hydrogen = 1)
 
 /datum/chemical_reaction/kelotane
 	name = "Kelotane"
@@ -158,12 +148,12 @@
 /datum/chemical_reaction/hypervene //New purge chem.
 	name = "Hypervene"
 	results = list(/datum/reagent/hypervene = 3)
-	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/ethylredoxrazine = 1)
+	required_reagents = list( /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/ethylredoxrazine = 1)
 
 /datum/chemical_reaction/neuraline
 	name = "Neuraline"
 	results = list(/datum/reagent/medicine/neuraline = 4, /datum/reagent/toxin/huskpowder = 1)
-	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/larvajellyprepared = 1)
+	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/larvajellyprepared = 1)
 	required_catalysts = list(/datum/reagent/medicine/lemoline = 5)
 
 /datum/chemical_reaction/lemoline

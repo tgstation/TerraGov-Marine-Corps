@@ -1,7 +1,7 @@
 /datum/chemical_reaction/serotrotium
 	name = "Serotrotium"
 	results = list(/datum/reagent/serotrotium = 1) //Weird emotes, chance of minor drowsiness.
-	required_reagents = list(/datum/reagent/medicine/paracetamol = 1, /datum/reagent/medicine/tramadol = 1)
+	required_reagents = list(/datum/reagent/medicine/tramadol = 1)
 
 /datum/chemical_reaction/toxin_two //Space Atropine!
 	name = "Toxin"

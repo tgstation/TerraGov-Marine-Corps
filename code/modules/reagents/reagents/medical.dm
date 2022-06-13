@@ -79,32 +79,6 @@
 		L.Unconscious(30 SECONDS)
 	L.apply_damage(3*effect_str, CLONE)
 
-/datum/reagent/medicine/paracetamol
-	name = "Paracetamol"
-	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller, good for enduring heavy labor."
-	color = "#C855DC"
-	scannable = TRUE
-	custom_metabolism = REAGENTS_METABOLISM * 0.125
-	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/tricordrazine, /datum/reagent/medicine/bicaridine)
-	purge_rate = 1
-	overdose_threshold = REAGENTS_OVERDOSE*2
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
-
-/datum/reagent/medicine/paracetamol/on_mob_life(mob/living/L, metabolism)
-	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
-	L.heal_limb_damage(0.2*effect_str, 0.2*effect_str)
-	L.adjustToxLoss(-0.1*effect_str)
-	L.adjustStaminaLoss(-effect_str)
-	return ..()
-
-/datum/reagent/paracetamol/overdose_process(mob/living/L, metabolism)
-	L.hallucination = max(L.hallucination, 2)
-	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_LIGHT
-	L.apply_damage(0.5*effect_str, TOX)
-
-/datum/reagent/paracetamol/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(3*effect_str, TOX)
-
 /datum/reagent/medicine/tramadol
 	name = "Tramadol"
 	description = "A simple, yet effective painkiller."
@@ -342,7 +316,7 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/larvaway)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -517,27 +491,6 @@
 
 /datum/reagent/medicine/hyronalin/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, effect_str, effect_str)
-
-/datum/reagent/medicine/arithrazine
-	name = "Arithrazine"
-	description = "Arithrazine is an unstable medication used for minor cases of toxin poisoning."
-	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM
-	overdose_threshold = REAGENTS_OVERDOSE/2
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
-	scannable = TRUE
-
-/datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-0.5*effect_str)
-	if(prob(15))
-		L.take_limb_damage(effect_str, 0)
-	return ..()
-
-/datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(effect_str, TOX)
-
-/datum/reagent/arithrazine/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damages(effect_str, effect_str, 2*effect_str)
 
 /datum/reagent/medicine/russian_red
 	name = "Russian Red"

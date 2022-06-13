@@ -10143,11 +10143,6 @@
 	},
 /obj/item/mass_spectrometer,
 /obj/item/reagent_scanner,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "jod" = (
@@ -15745,11 +15740,6 @@
 	},
 /obj/item/mass_spectrometer,
 /obj/item/reagent_scanner,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
-/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)
 "ojp" = (

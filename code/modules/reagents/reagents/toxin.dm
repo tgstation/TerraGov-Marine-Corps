@@ -708,7 +708,6 @@
 	toxpwr = 0
 	purge_list = list(
 		/datum/reagent/medicine/tramadol,
-		/datum/reagent/medicine/paracetamol,
 		/datum/reagent/medicine/inaprovaline,
 	)
 	purge_rate = 1

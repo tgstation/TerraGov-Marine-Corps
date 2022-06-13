@@ -878,7 +878,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	packet_icon = "seed-apple"
 	plant_icon = "apple"
 	harvest_repeat = 1
-	chems = list(/datum/reagent/consumable/nutriment = list(1,10), /datum/reagent/medicine/paracetamol = list(1,2))
+	chems = list(/datum/reagent/consumable/nutriment = list(1,10))
 
 	lifespan = 55
 	maturation = 6
