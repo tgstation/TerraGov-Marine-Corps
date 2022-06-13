@@ -231,8 +231,3 @@
 	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	list_reagents = list(/datum/reagent/hypervene = 3)
 	pill_id = 14
-
-/obj/item/reagent_containers/pill/ultrazine
-	//pill_desc = "An ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
-	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)
-	pill_id = 21

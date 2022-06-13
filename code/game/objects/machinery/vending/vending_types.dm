@@ -237,7 +237,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
 			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/dylovene = -1,

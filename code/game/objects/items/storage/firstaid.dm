@@ -593,15 +593,6 @@
 	if(scan(user))
 		return ..()
 
-/obj/item/storage/pill_bottle/restricted/ultrazine
-	icon_state = "pill_canister1"
-	max_storage_space = 5
-	pill_type_to_fill = /obj/item/reagent_containers/pill/ultrazine
-	greyscale_colors = "#6CFEA9#ffffff"
-	req_access = list(ACCESS_NT_CORPORATE)
-	req_id_role = CORPORATE_LIAISON
-	scan_name = TRUE
-
 /obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)

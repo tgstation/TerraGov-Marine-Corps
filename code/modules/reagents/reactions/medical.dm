@@ -202,23 +202,7 @@
 	results = list(/datum/reagent/medicine/bihexajuline = 5)
 	required_reagents = list(/datum/reagent/medicine/bicaridine = 2, /datum/reagent/consumable/drink/milk = 1, /datum/reagent/iron = 2)
 
-/datum/chemical_reaction/quietus
-	name = "Quietus"
-	results = list(/datum/reagent/medicine/research/quietus = 1)
-	required_reagents = list(/datum/reagent/toxin/chloralhydrate = 3, /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/lemoline = 3)
-
-/datum/chemical_reaction/somolent
-	name = "Somolent"
-	results = list(/datum/reagent/medicine/research/somolent = 4)
-	required_reagents = list(/datum/reagent/toxin/sleeptoxin = 1, /datum/reagent/medicine/tricordrazine = 1, /datum/reagent/consumable/drink/doctor_delight = 1, /datum/reagent/medicine/paracetamol = 1)
-	required_catalysts = list(/datum/reagent/medicine/lemoline = 5)
-
 /datum/chemical_reaction/medicalnanites
 	name = "Medical Nanites"
-	results = list(/datum/reagent/medicine/research/medicalnanites = 1)
+	results = list(/datum/reagent/medicine/medicalnanites = 1)
 	required_reagents = list(/datum/reagent/toxin/nanites = 10, /datum/reagent/radium = 5, /datum/reagent/iron = 100, /datum/reagent/medicine/lemoline = 5)
-
-/datum/chemical_reaction/stimulum
-	name = "Stimulum"
-	results = list(/datum/reagent/medicine/research/stimulon = 1)
-	required_reagents = list(/datum/reagent/medicine/synaptizine = 10, /datum/reagent/medicine/arithrazine = 20, /datum/reagent/consumable/nutriment = 20, /datum/reagent/medicine/lemoline = 20)

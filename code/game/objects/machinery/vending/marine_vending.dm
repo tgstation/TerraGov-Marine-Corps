@@ -884,7 +884,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
 		),
 		"Heal Pack" = list(

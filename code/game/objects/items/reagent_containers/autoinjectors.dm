@@ -264,14 +264,6 @@
 		/datum/reagent/consumable/sugar = 5,
 	)
 
-/obj/item/reagent_containers/hypospray/autoinjector/roulettium
-	name = "roulettium autoinjector"
-	desc = "An auto-injector loaded with one shot of roulettium, an extremely powerful panacea. !THIS HAS A CHANCE OF UNRECOVERABLE DEATH!"
-	icon_state = "autoinjector-6"
-	amount_per_transfer_from_this = 1
-	volume = 1
-	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
-
 /obj/item/reagent_containers/hypospray/autoinjector/elite //only deathsquad should be able to get this
 	name = "elite autoinjector"
 	desc = "An elite auto-injector loaded with a strong and versatile combination of chemicals, healing most types of damage. Issued almost excusively to the infamous Nanotrasen deathsquads"
@@ -287,7 +279,7 @@
 	icon_state = "autoinjector-6"
 	amount_per_transfer_from_this = 1
 	volume = 1
-	list_reagents = list(/datum/reagent/medicine/research/medicalnanites = 1)
+	list_reagents = list(/datum/reagent/medicine/medicalnanites = 1)
 
 /obj/item/reagent_containers/hypospray/autoinjector/pain //made for debugging
 	name = "liquid pain autoinjector"
