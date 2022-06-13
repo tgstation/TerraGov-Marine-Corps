@@ -638,6 +638,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	targeted.canmove = FALSE
 	playsound(targeted, 'sound/effects/woosh_swoosh.ogg', 50)
 
+/// Move the target two tiles per tick
 /datum/action/xeno_action/activable/rewind/proc/rewind()
 	var/turf/loc_a = pop(last_target_locs_list)
 	if(loc_a)
