@@ -1281,11 +1281,11 @@
 			to_chat(L, span_warning("The pain rapidly subsides. Looks like they've adapted to you."))
 		if(152 to INFINITY)
 			if(volume < 30) //smol injection will self-replicate up to 30u using 240u of blood.
-				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.15)
+				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.10)
 				L.blood_volume -= 2
 
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
-				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
+				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.05)
 
 			if (volume >5 && L.getBruteLoss() && healing_stacks) //Unhealed IB wasting nanites is an INTENTIONAL feature.
 				L.heal_limb_damage(2*effect_str, 0)
