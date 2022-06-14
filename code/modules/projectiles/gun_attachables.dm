@@ -249,6 +249,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/datum/action/action_to_update AS in master_gun.actions)
 		if(action_to_update.target != src)
 			continue
+		LAZYREMOVE(master_gun.actions, action_to_update)
 		qdel(action_to_update)
 		break
 
@@ -1623,8 +1624,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		set_gun_user(master_gun.gun_user)
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		to_chat(user, span_notice("You start using [src]."))
-	for(var/action_to_update in master_gun.actions)
-		var/datum/action/action = action_to_update
+	for(var/datum/action/action AS in master_gun.actions)
 		action.update_button_icon()
 	return TRUE
 

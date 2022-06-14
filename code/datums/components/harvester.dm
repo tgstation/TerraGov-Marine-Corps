@@ -24,7 +24,7 @@
 	var/obj/item/item_parent = parent
 
 	reagent_select_action = new
-	item_parent.actions += reagent_select_action
+	LAZYADD(item_parent.actions, reagent_select_action)
 
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
 	RegisterSignal(parent, COMSIG_ITEM_UNIQUE_ACTION, .proc/activate_blade)
@@ -34,7 +34,7 @@
 
 /datum/component/harvester/Destroy(force, silent)
 	var/obj/item/item_parent = parent
-	item_parent.actions -= reagent_select_action
+	LAZYREMOVE(item_parent.actions, reagent_select_action)
 	QDEL_NULL(reagent_select_action)
 	return ..()
 
