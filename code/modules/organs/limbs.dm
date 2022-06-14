@@ -174,8 +174,7 @@
 
 
 	//High brute damage or sharp objects may damage internal organs, as well as usual attacks after breakpoint
-	if(internal_organs && (((sharp && brute >= 10) || brute >= 20) && prob(5)
-	|| (((brute_dam + burn_dam) >= min_broken_damage) && prob(5))))
+	if(internal_organs && (((sharp && brute >= 10) || brute >= 20) && prob(5) || (((brute_dam + burn_dam) >= min_broken_damage) && prob(5))))
 		//Damage an internal organ
 		var/datum/internal_organ/I = pick(internal_organs)
 		I.take_damage(brute / 2)
