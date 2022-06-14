@@ -781,6 +781,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	L.visible_message(span_xenodanger("[L] quickly burrows into the ground."))
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_positions(1)
+	update_tier_limits()
 	GLOB.round_statistics.total_xenos_created-- // keep stats sane
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(L)
@@ -936,6 +937,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
 			xeno_job.set_job_positions(-difference + xeno_job.current_positions)
+	update_tier_limits()
 
 
 ///Handles the timer when all silos are destroyed
