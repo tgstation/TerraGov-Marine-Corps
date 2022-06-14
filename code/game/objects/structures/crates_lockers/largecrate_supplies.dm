@@ -136,11 +136,6 @@
 	desc = "A supply crate containing two boxed ST-571 sentries."
 	supplies = list(/obj/item/storage/box/sentry = 2)
 
-/obj/structure/largecrate/supply/weapons/standard_hmg
-	name = "\improper HSG-102 mounted heavy smartgun chest (x2)"
-	desc = "A supply crate containing two boxed HSG-102 mounted heavy smartguns."
-	supplies = list(/obj/item/storage/box/tl102 = 2)
-
 /obj/structure/largecrate/supply/weapons/standard_atgun
 	name = "\improper AT-36 anti tank gun and ammo chest (x1, x10)"
 	desc = "A supply crate containing a AT-36 and a full set of ammo to load into the sponson."

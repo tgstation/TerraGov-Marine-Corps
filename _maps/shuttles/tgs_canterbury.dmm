@@ -142,7 +142,6 @@
 	},
 /obj/item/tool/hand_labeler,
 /obj/item/storage/toolbox/electrical,
-/obj/item/storage/box/tl102,
 /obj/machinery/light/small{
 	dir = 1
 	},
