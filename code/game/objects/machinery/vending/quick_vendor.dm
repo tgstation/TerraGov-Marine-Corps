@@ -12,7 +12,7 @@
 	///The faction of this quick load vendor
 	var/faction = FACTION_NEUTRAL
 
-	///List of all loadouts. Format is list(list(loadout_job, loadout_name))
+	///List of all loadouts. Format is list(list(loadout_job, loadout_name)) //todo: code more args, to include typepath, quantity, desc if needed, etc. Will need to update UI as well as vendor code as where)
 	var/list/loadouts_data = list(
 		list("SOM Standard","Basic1",-1),
 		list("SOM Standard","Basic2",1),
@@ -24,6 +24,10 @@
 		list("Squad Marine","MG27 machinegunner",1),
 		list("Squad Marine","SH35 scout",1),
 		list("Squad Marine","Laser carbine scout",1),
+		list("Squad Engineer","Rocket man",1),
+		list("Squad Engineer","Sentry technician",1),
+		list("Squad Engineer","Demolition specialist",1),
+		list("Squad Corpsman","AR12 standard corpsman",1),
 		)
 	///lists the outfit datums that corrospond to the loadout options
 	var/list/loadout_list = list(
@@ -37,6 +41,10 @@
 		("MG27 machinegunnerSquad Marine") = /datum/outfit/quick/tgmc/marine/medium_machinegunner,
 		("SH35 scoutSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_shotgun,
 		("Laser carbine scoutSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_lasercarbine,
+		("Rocket manSquad Engineer") = /datum/outfit/quick/tgmc/marine/rrengineer,
+		("Sentry technicianSquad Engineer") = /datum/outfit/quick/tgmc/marine/sentry,
+		("Demolition specialistSquad Engineer") = /datum/outfit/quick/tgmc/marine/demolition,
+		("AR12 standard corpsmanSquad Corpsman") = /datum/outfit/quick/tgmc/marine/standard_medic,
 	)
 
 /obj/machinery/quick_vendor/som

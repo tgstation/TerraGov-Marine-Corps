@@ -262,6 +262,12 @@
 
 	allowed_uniform_type = /obj/item/clothing/under
 
+/obj/item/clothing/suit/modular/xenonauten/engineer
+	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp, /obj/item/armor_module/storage/engineering)
+
+/obj/item/clothing/suit/modular/xenonauten/mimir
+	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/mark1)
+
 // Thank Jeff for providing sprites to color flak jacket
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper TerraGov standard flak jacket"
@@ -787,6 +793,12 @@
 	)
 
 	current_variant = "black"
+
+/obj/item/clothing/head/modular/marine/m10x/welding
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
+
+/obj/item/clothing/head/modular/marine/m10x/mimir
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1)
 
 /obj/item/clothing/head/modular/marine/m10x/heavy
 	name = "\improper M10XE pattern marine helmet"
