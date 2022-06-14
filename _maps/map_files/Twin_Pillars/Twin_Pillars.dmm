@@ -14170,7 +14170,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/vending/marine_medic/rebel,
+/obj/machinery/vending/medical/rebel,
 /obj/machinery/camera/autoname/mainship/rebelship{
 	dir = 8
 	},
@@ -22816,7 +22816,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/vending/marine_medic,
+/obj/machinery/vending/medical,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},

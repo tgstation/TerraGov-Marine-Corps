@@ -1187,7 +1187,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "fy" = (
-/obj/machinery/vending/marine_medic,
+/obj/machinery/vending/medical,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -2979,7 +2979,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "nV" = (
-/obj/machinery/vending/marine_medic,
+/obj/machinery/vending/medical,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
