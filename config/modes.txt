@@ -23,3 +23,8 @@ endmode
 mode Civil War
 	requiredplayers 2
 endmode
+
+mode Trouble In Terrorist Town
+	requiredplayers 0
+	votable 0
+endmode

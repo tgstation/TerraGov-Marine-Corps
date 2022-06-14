@@ -99,6 +99,9 @@ SUBSYSTEM_DEF(job)
 	if(!job.player_old_enough(player.client))
 		JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
 		return FALSE
+	if(!job.occupy_job_positions(1, GLOB.joined_player_list.Find(player.ckey)))
+		JobDebug("Cannot occupy position, Player: [player], Job:[job.title]")
+		return FALSE
 	if(ismarinejob(job))
 		if(!handle_initial_squad(player, job, latejoin, job.faction))
 			JobDebug("Failed to assign marine role to a squad. Player: [player.key] Job: [job.title]")
@@ -108,7 +111,6 @@ SUBSYSTEM_DEF(job)
 		unassigned -= player
 	if(job.job_category != JOB_CAT_XENO && !GLOB.joined_player_list.Find(player.ckey))
 		SSpoints.supply_points[job.faction] += SUPPLY_POINT_MARINE_SPAWN
-	job.occupy_job_positions(1, GLOB.joined_player_list.Find(player.ckey))
 	player.assigned_role = job
 	JobDebug("Player: [player] is now Job: [job.title], JCP:[job.current_positions], JPL:[job.total_positions]")
 	return TRUE
