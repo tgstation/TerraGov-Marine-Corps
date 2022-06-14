@@ -234,10 +234,7 @@
 /turf/closed/wall/mainship/white,
 /area/sulaco/medbay/storage)
 "aaR" = (
-/obj/structure/table/mainship,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/medical,
+/obj/structure/table/mainship/nometal,
 /obj/machinery/firealarm,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
@@ -17959,8 +17956,8 @@
 	},
 /area/sulaco/engineering/engine_monitoring)
 "mBB" = (
-/obj/structure/table/mainship,
-/obj/item/storage/pouch/medkit/full,
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/pouch/medkit/firstaid,
 /obj/item/tool/shovel/etool,
 /obj/item/stack/sandbags_empty/half,
 /obj/item/weapon/baton,
@@ -22342,8 +22339,6 @@
 /area/sulaco/maintenance/lower_maint2)
 "sBO" = (
 /obj/structure/rack,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/belt/combatLifesaver,
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/prison/red{
 	dir = 10

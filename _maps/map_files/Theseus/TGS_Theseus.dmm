@@ -8088,8 +8088,7 @@
 /obj/item/clothing/suit/storage/hazardvest/lime,
 /obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/full,
-/obj/item/storage/pouch/medical/full,
+/obj/item/storage/pouch/medkit/firstaid,
 /obj/item/tool/taperoll/engineering,
 /obj/item/tool/extinguisher/mini,
 /obj/item/storage/toolbox/mechanical,
@@ -9142,10 +9141,6 @@
 /area/mainship/living/numbertwobunks)
 "dwc" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "dwp" = (
@@ -20081,12 +20076,6 @@
 /area/mainship/command/cic)
 "xoW" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)

@@ -123,13 +123,13 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
 /obj/item/storage/firstaid/regular,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
 "y" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/regular,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/effect/landmark/distress_item,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/upp)
