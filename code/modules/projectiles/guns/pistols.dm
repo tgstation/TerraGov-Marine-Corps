@@ -636,7 +636,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 /obj/item/weapon/gun/pistol/smart_pistol
 	name = "\improper TX-13 smart pistol"
 	desc = "The TX-13 is a latest solution for personal officer defence produced by Terran Armories. A cutting-edge miniaturization technology allows mounting of smartgun IFF system on the pistol, albeit at high manufactoring cost. Unique design feature high-capacity mag on top of the barrel, with integrated sight. As with all smartgun systems, requires special training."
-	icon = "icons/Marine/gun64.dmi"
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx13"
 	item_state = "tx13"
 	caliber = CALIBER_9X19 //codex
