@@ -399,10 +399,10 @@
 		return U
 
 //////////////////CONFUSED
-/mob/living/proc/IsConfused() //If we're unconscious
+/mob/living/proc/IsConfused() //If we're confused
 	return has_status_effect(STATUS_EFFECT_CONFUSED)
 
-/mob/living/proc/AmountConfused() //How many deciseconds remain in our unconsciousness
+/mob/living/proc/AmountConfused() //How many deciseconds remain in our confusion. Also determines strength
 	var/datum/status_effect/confused/C = IsConfused()
 	if(C)
 		return C.duration - world.time
@@ -486,13 +486,6 @@
 					to_chat(src, span_boldwarning("[priority_absorb_key["self_message"]]"))
 			priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
-
-
-/mob/living/proc/adjust_drugginess(amount)
-	return
-
-/mob/living/proc/set_drugginess(amount)
-	return
 
 /mob/living/proc/jitter(amount)
 	jitteriness = clamp(jitteriness + amount,0, 1000)
@@ -579,7 +572,7 @@
 		ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, deaf)
 
 
-/mob/living/adjust_drugginess(amount)
+/mob/living/proc/adjust_drugginess(amount)
 	druggy = max(druggy + amount, 0)
 	if(druggy)
 		overlay_fullscreen("high", /obj/screen/fullscreen/high)
@@ -587,7 +580,7 @@
 		clear_fullscreen("high")
 
 
-/mob/living/set_drugginess(amount)
+/mob/living/proc/set_drugginess(amount)
 	druggy = max(amount, 0)
 	if(druggy)
 		overlay_fullscreen("high", /obj/screen/fullscreen/high)

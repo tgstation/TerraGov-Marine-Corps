@@ -224,7 +224,7 @@
 			owner.reagents.remove_reagent(R.type, R.custom_metabolism * filter_rate * 0.1)
 
 	//Heal toxin damage slowly if not damaged. If broken, increase it instead.
-	owner.adjustToxLoss((filter_rate - 2) * 0.1)
+	owner.adjustToxLoss((2 - filter_rate) * 0.1)
 	if(prob(organ_status))
 		owner.vomit() //No stomach, so the liver can cause vomiting instead. Stagger and slowdown plus feedback that something's wrong.
 
@@ -245,24 +245,49 @@
 	removed_type = /obj/item/organ/kidneys
 	robotic_type = /obj/item/organ/kidneys/prosthetic
 	organ_id = ORGAN_KIDNEYS
+	var/current_medicine_count = 0 //Tracks the number of reagent/medicine datums we currently have
+	var/current_medicine_cap = 5 //How many drugs we can take before they overwhelm us. Decreases with damage
+
+/datum/internal_organ/kidneys/New(mob/living/carbon/carbon_mob)
+	. = ..()
+	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, .proc/increase_medicines)
+	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETED, .proc/decrease_medicines)
+
+/datum/internal_organ/kidneys/clean_owner()
+	UnregisterSignal(owner.reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETED))
+	return ..()
+
+/datum/internal_organ/kidneys/proc/increase_medicines(datum/source, reagent_type, amount)
+	SIGNAL_HANDLER
+	if(ispath(reagent_type, /datum/reagent/medicine))
+		current_medicine_count++
+		if(current_medicine_count == current_medicine_cap + 1)
+			to_chat(owner, span_warning("All the different drugs in you are starting to make you feel off..."))
+
+/datum/internal_organ/kidneys/proc/decrease_medicines(datum/source, reagent_type)
+	SIGNAL_HANDLER
+	if(ispath(reagent_type, /datum/reagent/medicine))
+		current_medicine_count--
+		if(current_medicine_count == current_medicine_cap)
+			to_chat(owner, span_notice("You don't feel as overwhelmed by all the drugs any more."))
+
+/datum/internal_organ/kidneys/set_organ_status()
+	. = ..()
+	if(!.)
+		return
+	current_medicine_cap = initial(current_medicine_cap) - 2 * organ_status
 
 /datum/internal_organ/kidneys/process()
 	..()
 
-	// Coffee is really bad for you with busted kidneys.
-	// This should probably be expanded in some way, but fucked if I know
-	// what else kidneys can process in our reagent list.
-	var/datum/reagent/coffee = locate(/datum/reagent/consumable/drink/coffee) in owner.reagents.reagent_list
-	if(coffee)
-		if(organ_status == ORGAN_BRUISED)
-			owner.adjustToxLoss(0.1)
-		else if(organ_status == ORGAN_BROKEN)
-			owner.adjustToxLoss(0.3)
+	if(owner.reagents.has_reagent(/datum/reagent/water))
+		return //Hydration is good for your kidneys. Shame it purges medicines.
 
-	if(organ_status == ORGAN_BRUISED && prob(25))
-		owner.adjustToxLoss(0.1 * (damage/3))
-	else if(organ_status == ORGAN_BROKEN && prob(50))
-		owner.adjustToxLoss(0.2 * (damage/3))
+	var/overflow = current_medicine_count - current_medicine_cap
+	if(overflow > 0)
+		owner.set_drugginess(3)
+		if(prob(overflow * (organ_status + 1) * 10))
+			owner.Confused(2 SECONDS * (organ_status + 1))
 
 /datum/internal_organ/kidneys/prosthetic
 	robotic = ORGAN_ROBOT

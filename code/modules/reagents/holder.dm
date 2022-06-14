@@ -475,6 +475,7 @@
 			update_total()
 			if(my_atom)
 				my_atom.on_reagent_change(DEL_REAGENT)
+			SEND_SIGNAL(src, COMSIG_REAGENT_DELETED, reagent)
 	return 1
 
 
