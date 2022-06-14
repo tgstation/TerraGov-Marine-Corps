@@ -234,3 +234,20 @@
   - bugfix: Fixed missing hivemind can_flags.
   novaepee:
   - bugfix: flak jacket accepting modules
+2022-06-14:
+  BraveMole:
+  - balance: Internal organs damage are visible on the health analyzer
+  - rscadd: Add back portal fancy graphic
+  - rscadd: New portal sprite, by krab
+  Pariah919:
+  - bugfix: RL-72 has proper gunflags on spawn.
+  breadhunt:
+  - rscdel: Removed plasteel crate recipe
+  - qol: Plasteel cades no longer require a menu to make, just press Z
+  - qol: Metal recipes have a new radial menu, old recipe menu selectable from it
+  - rscadd: You can also disable the radial menu completely for the old menu in the
+      preferences tab
+  - refactor: Cleaned up mat and sandbag code a small bit
+  novaepee:
+  - rscdel: Remove miners that are near LZ in Ice Colony, Big Red, and LV-624
+  - rscdel: Remove the triple miners next to LV-624 red disk
