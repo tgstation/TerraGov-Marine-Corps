@@ -430,7 +430,8 @@
 	else
 		RegisterSignal(gun_user, COMSIG_KB_UNIQUEACTION, .proc/unique_action)
 	RegisterSignal(gun_user, COMSIG_PARENT_QDELETING, .proc/clean_gun_user)
-	RegisterSignal(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), .proc/stop_fire)
+	RegisterSignal(gun_user, COMSIG_MOB_MOUSEUP, .proc/handle_mouseup)
+	RegisterSignal(gun_user, list(COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM), .proc/stop_fire)
 	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, .proc/activate_rail_attachment)
 	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, .proc/activate_underrail_attachment)
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, .proc/unload_gun)
@@ -603,7 +604,8 @@
 
 	return TRUE
 
-
+/obj/item/weapon/gun/proc/handle_alt_fire(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
+	return
 //----------------------------------------------------------
 			//							    \\
 			// AFTER ATTACK AND CHAMBERING  \\
@@ -618,7 +620,7 @@
 	if(modifiers["shift"])
 		return
 
-	if(modifiers["right"] || modifiers["middle"])
+	if((modifiers["right"] && !(flags_gun_features & GUN_HAS_ALT_FIRE)) || modifiers["middle"])
 		modifiers -= "right"
 		modifiers -= "middle"
 		params = list2params(modifiers)
@@ -643,6 +645,9 @@
 	if(QDELETED(object))
 		return
 	set_target(get_turf_on_clickcatcher(object, gun_user, params))
+	if(modifiers["right"] && flags_gun_features & GUN_HAS_ALT_FIRE)
+		handle_alt_fire(source, object, location, control, params, bypass_checks)
+		return
 	if(gun_firemode == GUN_FIREMODE_SEMIAUTO)
 		if(!INVOKE_ASYNC(src, .proc/Fire) || windup_checked == WEAPON_WINDUP_CHECKING)
 			return
@@ -669,6 +674,15 @@
 	SIGNAL_HANDLER
 	active_attachable?.clean_target()
 	target = get_turf(target)
+
+/obj/item/weapon/gun/proc/handle_mouseup(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
+	SIGNAL_HANDLER
+	var/list/modifiers = params2list(params)
+	if(modifiers["right"])
+		to_chat(world, "reached rmb mouseup")
+		active_attachable?.stop_fire()
+		return
+	stop_fire()
 
 ///Reset variables used in firing and remove the gun from the autofire system
 /obj/item/weapon/gun/proc/stop_fire()

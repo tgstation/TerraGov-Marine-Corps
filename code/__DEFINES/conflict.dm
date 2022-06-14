@@ -78,6 +78,7 @@
 #define GUN_AMMO_COUNT_BY_SHOTS_REMAINING (1<<12)
 #define GUN_NO_PITCH_SHIFT_NEAR_EMPTY (1<<13)
 #define GUN_SHOWS_AMMO_REMAINING (1<<14)
+#define GUN_HAS_ALT_FIRE (1<<15)
 
 //reciever_flags. Used to determin how the gun cycles, what kind of ammo it uses, etc.
 #define AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION (1<<0)

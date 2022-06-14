@@ -399,7 +399,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	wield_delay = 12
 	gun_skill_category = GUN_SKILL_FIREARMS
 	aim_slowdown = 0.8
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_HAS_ALT_FIRE
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
@@ -407,14 +407,15 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 12
 
-	fire_delay = 0.15 SECONDS
-	windup_delay = 0.4 SECONDS
+	fire_delay = 0.1 SECONDS
+	windup_delay = 1 SECONDS
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	scatter = 5
 	recoil = 2
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 	movement_acc_penalty_mult = 4
+	var/alt_mouse_holded = FALSE
 
 /obj/item/weapon/gun/minigun/Initialize()
 	. = ..()
@@ -423,6 +424,39 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/minigun/Destroy()
 	SSmonitor.stats.miniguns_in_use -= src
 	return ..()
+
+/obj/item/weapon/gun/minigun/handle_alt_fire(datum/source, atom/object, turf/location, control, params, bypass_checks)
+	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
+		windup_checked = WEAPON_WINDUP_CHECKING
+		playsound(loc, windup_sound, 30, TRUE)
+		if(!do_after(gun_user, windup_delay, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+			windup_checked = WEAPON_WINDUP_NOT_CHECKED
+			return
+		windup_checked = WEAPON_WINDUP_CHECKED
+	if(!target)
+		windup_checked = WEAPON_WINDUP_NOT_CHECKED
+		return
+	alt_mouse_holded = TRUE
+	gun_user.add_movespeed_modifier("movespeed_modifier_minigun", multiplicative_slowdown = 1)
+
+/obj/item/weapon/gun/minigun/handle_mouseup(datum/source, atom/object, turf/location, control, params, bypass_checks)
+	var/list/modifiers = params2list(params)
+	if(active_attachable)
+		return ..()
+	if(modifiers["right"])
+		alt_mouse_holded = FALSE
+		var/datum/component/automatedfire/autofire/autocomponent = GetComponent(/datum/component/automatedfire/autofire)
+		if(autocomponent.shooting == FALSE)
+			stop_fire()
+			gun_user.remove_movespeed_modifier("movespeed_modifier_minigun")
+	if(modifiers["left"])
+		if(alt_mouse_holded)
+			SEND_SIGNAL(src, COMSIG_GUN_STOP_FIRE)
+			return
+		gun_user.remove_movespeed_modifier("movespeed_modifier_minigun")
+		stop_fire()
+
+
 
 
 // SG minigun
