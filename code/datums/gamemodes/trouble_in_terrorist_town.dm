@@ -26,6 +26,7 @@
 
 /datum/game_mode/infestation/distress/nuclear_war/trouble_in_terrorist_town/pre_setup()
 	. = ..()
+	SSminimaps.can_fire = FALSE
 	GLOB.xeno_caste_datums[/mob/living/carbon/xenomorph/larva][XENO_UPGRADE_INVALID].evolves_to = list(
 		/mob/living/carbon/xenomorph/drone,
 		/mob/living/carbon/xenomorph/hunter,
