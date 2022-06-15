@@ -175,7 +175,6 @@
 			/obj/item/assembly/signaler = -1,
 			/obj/item/binoculars = -1,
 			/obj/item/compass = -1,
-			/obj/item/bodybag/tarp = 10,
 		),
 	)
 
@@ -577,6 +576,7 @@
 			/obj/item/ammo_magazine/rocket/sadar = 3,
 			/obj/item/ammo_magazine/minigun_powerpack = 2,
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
+			/obj/item/bodybag/tarp = 10,
 			/obj/item/explosive/plastique = 5,
 			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
