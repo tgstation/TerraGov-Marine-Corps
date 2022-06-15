@@ -251,3 +251,20 @@
   novaepee:
   - rscdel: Remove miners that are near LZ in Ice Colony, Big Red, and LV-624
   - rscdel: Remove the triple miners next to LV-624 red disk
+2022-06-15:
+  Arctrooper8:
+  - rscadd: Surgery pouch
+  - rscadd: brute kits in surgical usage have been replaced with a new tool, surgical
+      membrane.
+  - rscdel: First aid pouch, Hypospray pouch, Syringe pouch, injector case.
+  - rscdel: Medical belts in medbay storage rooms.
+  - balance: Lifesaver belt now has every pill type alongside 6 kits, two splints,
+      and a health analyzer.
+  - balance: Rig belt now has every pill type.
+  - balance: full lolly pouches are now free and infinite from the vendor.
+  - balance: pill packet are free and infinite from MarineMed.
+  - balance: pill bottles have been moved to nanotrasen medical vendor.
+  - balance: moved stuff such as defib from nanotrasen medical vendor to MarineMed.
+  - balance: ERT/EORD spawns now use injector pouches.
+  Wayland-Smithy:
+  - bugfix: Fixed burrowed larva sometimes not counting toward tier limits.
