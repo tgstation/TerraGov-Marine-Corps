@@ -249,8 +249,7 @@
 	xenoowner.appearance = mark.marked_target.appearance
 	//Retaining old rendering layer to prevent rendering under objects.
 	xenoowner.layer = old_layer
-	xenoowner.underlays.Cut()
-	if(!SSticker.mode.flags_round_type & MODE_TROUBLE_IN_TERRORIST_TOWN)
+	if(!(SSticker.mode.flags_round_type & MODE_TROUBLE_IN_TERRORIST_TOWN))
 		xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!xenoowner.plasma_stored)
