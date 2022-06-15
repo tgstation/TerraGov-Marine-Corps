@@ -1,0 +1,9 @@
+author: "Lewdcifer"
+delete-after: True
+changes: 
+  - rscdel: "CAS flares can no longer be obtained from reqs."
+  - balance: "CAS flare packs available in weapon vendors increased from 30 to 50."
+  - rscdel: "Normal binoculars can no longer be obtained from reqs."
+  - rscdel: "Normal flares can no longer be obtained from reqs."
+  - rscdel: "Tarps can no longer be obtained from reqs."
+  - balance: "Number of tarps in reqs vendor increased from 2 to 10."
