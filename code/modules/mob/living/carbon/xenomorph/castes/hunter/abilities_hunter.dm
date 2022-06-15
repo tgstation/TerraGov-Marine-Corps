@@ -283,7 +283,7 @@
 
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!isliving(A) && (X.xeno_caste.upgrade != XENO_UPGRADE_FOUR) || !ismovable(A))
+	if(!isliving(A) && (X.xeno_caste.upgrade != XENO_UPGRADE_FOUR) && !(SSticker.mode?.flags_round_type & MODE_TROUBLE_IN_TERRORIST_TOWN) || !ismovable(A))
 		if(!silent)
 			to_chat(X, span_xenowarning("We cannot psychically mark this target!"))
 		return FALSE
