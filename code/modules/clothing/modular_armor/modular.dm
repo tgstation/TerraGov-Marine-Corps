@@ -315,6 +315,9 @@
 	item_state = "heavy"
 	slowdown = 0.7
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/leader
+	starting_attachments = list(/obj/item/armor_module/module/valkyrie_autodoc, /obj/item/armor_module/storage/general)
+
 /** Core helmet module */
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"

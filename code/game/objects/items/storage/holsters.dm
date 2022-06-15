@@ -261,7 +261,11 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	base_icon = "t19_holster"
 	flags_equip_slot = ITEM_SLOT_BELT
-	holsterable_allowed = list(/obj/item/weapon/gun/smg/standard_machinepistol)
+	holsterable_allowed = list(
+		/obj/item/weapon/gun/smg/standard_machinepistol,
+		/obj/item/weapon/gun/smg/standard_machinepistol/compact,
+		/obj/item/weapon/gun/smg/standard_machinepistol/vgrip,
+	)
 	can_hold = list(/obj/item/weapon/gun/smg/standard_machinepistol)
 
 /obj/item/storage/holster/t19/full/Initialize()

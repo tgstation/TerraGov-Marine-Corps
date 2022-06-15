@@ -28,6 +28,9 @@
 		list("Squad Engineer","Sentry technician",1),
 		list("Squad Engineer","Demolition specialist",1),
 		list("Squad Corpsman","AR12 standard corpsman",1),
+		list("Squad Smartgunner","SG29 smart machinegunner",1),
+		list("Squad Smartgunner","SG85 smart machinegunner",1),
+		list("Squad Leader","AR12 patrol leader",1),
 		)
 	///lists the outfit datums that corrospond to the loadout options
 	var/list/loadout_list = list(
@@ -41,10 +44,13 @@
 		("MG27 machinegunnerSquad Marine") = /datum/outfit/quick/tgmc/marine/medium_machinegunner,
 		("SH35 scoutSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_shotgun,
 		("Laser carbine scoutSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_lasercarbine,
-		("Rocket manSquad Engineer") = /datum/outfit/quick/tgmc/marine/rrengineer,
-		("Sentry technicianSquad Engineer") = /datum/outfit/quick/tgmc/marine/sentry,
-		("Demolition specialistSquad Engineer") = /datum/outfit/quick/tgmc/marine/demolition,
-		("AR12 standard corpsmanSquad Corpsman") = /datum/outfit/quick/tgmc/marine/standard_medic,
+		("Rocket manSquad Engineer") = /datum/outfit/quick/tgmc/engineer/rrengineer,
+		("Sentry technicianSquad Engineer") = /datum/outfit/quick/tgmc/engineer/sentry,
+		("Demolition specialistSquad Engineer") = /datum/outfit/quick/tgmc/engineer/demolition,
+		("AR12 standard corpsmanSquad Corpsman") = /datum/outfit/quick/tgmc/corpsman/standard_medic,
+		("SG29 smart machinegunnerSquad Smartgunner") = /datum/outfit/quick/tgmc/smartgunner/standard_sg,
+		("SG85 smart machinegunnerSquad Smartgunner") = /datum/outfit/quick/tgmc/smartgunner/minigun_sg,
+		("AR12 patrol leaderSquad Leader") = /datum/outfit/quick/tgmc/leader/standard_assaultrifle,
 	)
 
 /obj/machinery/quick_vendor/som
