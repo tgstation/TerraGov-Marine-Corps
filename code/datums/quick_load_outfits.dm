@@ -1,6 +1,11 @@
 /datum/outfit/quick
-	var/desc
-	var/jobtype
+	///Description of the loadout
+	var/desc = "hello"
+	///How much of this loadout there is. infinite by default
+	var/quantity = -1
+	///What job this loadout is associated with. Used for tabs and access.
+	var/jobtype = "Squad Marine"
+
 
 /datum/outfit/quick/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	pre_equip(H, visualsOnly)
@@ -215,6 +220,7 @@
 //Squad marine
 /datum/outfit/quick/tgmc/marine
 	name = "TGMC Squad Marine"
+	jobtype = "Squad Marine"
 
 //Standard AR12 unga
 /datum/outfit/quick/tgmc/marine/standard_assaultrifle
@@ -276,7 +282,6 @@
 /datum/outfit/quick/tgmc/marine/standard_laserrifle
 	name = "Laser rifleman"
 	desc = "PLACEHOLDER"
-	jobtype = /datum/job/terragov/squad/standard
 
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -500,7 +505,6 @@
 /datum/outfit/quick/tgmc/marine/standard_lasercarbine
 	name = "Laser carbine scout"
 	desc = "PLACEHOLDER"
-	jobtype = /datum/job/terragov/squad/standard
 
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -558,6 +562,7 @@
 //Squad Engineer
 /datum/outfit/quick/tgmc/engineer
 	name = "TGMC Squad Engineer"
+	jobtype = "Squad Engineer"
 
 //Rocket man
 /datum/outfit/quick/tgmc/engineer/rrengineer
@@ -726,6 +731,7 @@
 //Squad Medic
 /datum/outfit/quick/tgmc/corpsman
 	name = "TGMC Squad Corpsman"
+	jobtype = "Squad Corpsman"
 
 //AR12 Standard medic - WIP
 /datum/outfit/quick/tgmc/corpsman/standard_medic
@@ -784,6 +790,7 @@
 //Squad Smartgunner
 /datum/outfit/quick/tgmc/smartgunner
 	name = "TGMC Squad Smartgunner"
+	jobtype = "Squad Smartgunner"
 
 //Standard SG29
 /datum/outfit/quick/tgmc/smartgunner/standard_sg
@@ -885,6 +892,7 @@
 //Squad Leader
 /datum/outfit/quick/tgmc/leader
 	name = "TGMC Squad Leader"
+	jobtype = "Squad Leader"
 
 //Standard AR12 squad leader
 /datum/outfit/quick/tgmc/leader/standard_assaultrifle

@@ -1,3 +1,27 @@
+GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
+
+/proc/init_quick_loadouts()
+	. = list()
+	var/list/loadout_list = list(
+		/datum/outfit/quick/tgmc/marine/standard_assaultrifle,
+		/datum/outfit/quick/tgmc/marine/standard_laserrifle,
+		/datum/outfit/quick/tgmc/marine/standard_machinegunner,
+		/datum/outfit/quick/tgmc/marine/medium_machinegunner,
+		/datum/outfit/quick/tgmc/marine/standard_shotgun,
+		/datum/outfit/quick/tgmc/marine/standard_lasercarbine,
+		/datum/outfit/quick/tgmc/engineer/rrengineer,
+		/datum/outfit/quick/tgmc/engineer/sentry,
+		/datum/outfit/quick/tgmc/engineer/demolition,
+		/datum/outfit/quick/tgmc/corpsman/standard_medic,
+		/datum/outfit/quick/tgmc/smartgunner/standard_sg,
+		/datum/outfit/quick/tgmc/smartgunner/minigun_sg,
+		/datum/outfit/quick/tgmc/leader/standard_assaultrifle,
+	)
+
+	for(var/X in loadout_list)
+		.[X] = new X
+
+
 /obj/machinery/quick_vendor
 	name = "Kwik-E-Quip vendor"
 	desc = "An advanced vendor to instantly arm soldiers with specific sets of equipment, allowing for immediate combat deployment."
@@ -11,47 +35,6 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 	///The faction of this quick load vendor
 	var/faction = FACTION_NEUTRAL
-
-	///List of all loadouts. Format is list(list(loadout_job, loadout_name)) //todo: code more args, to include typepath, quantity, desc if needed, etc. Will need to update UI as well as vendor code as where)
-	var/list/loadouts_data = list(
-		list("SOM Standard","Basic1",-1),
-		list("SOM Standard","Basic2",1),
-		list("SOM Veteran","vet1",-1),
-		list("SOM Veteran","vet2",1),
-		list("Squad Marine","AR12 rifleman",1),
-		list("Squad Marine","Laser rifleman",1),
-		list("Squad Marine","MG60 machinegunner",1),
-		list("Squad Marine","MG27 machinegunner",1),
-		list("Squad Marine","SH35 scout",1),
-		list("Squad Marine","Laser carbine scout",1),
-		list("Squad Engineer","Rocket man",1),
-		list("Squad Engineer","Sentry technician",1),
-		list("Squad Engineer","Demolition specialist",1),
-		list("Squad Corpsman","AR12 standard corpsman",1),
-		list("Squad Smartgunner","SG29 smart machinegunner",1),
-		list("Squad Smartgunner","SG85 smart machinegunner",1),
-		list("Squad Leader","AR12 patrol leader",1),
-		)
-	///lists the outfit datums that corrospond to the loadout options
-	var/list/loadout_list = list(
-		("Basic1SOM Standard") = /datum/outfit/quick/som/standard,
-		("Basic2SOM Standard") = /datum/outfit/quick/som/standard/one,
-		("vet1SOM Veteran") = /datum/outfit/quick/som/veteran,
-		("vet2SOM Veteran") = /datum/outfit/quick/som/veteran/three,
-		("AR12 riflemanSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_assaultrifle,
-		("Laser riflemanSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_laserrifle,
-		("MG60 machinegunnerSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_machinegunner,
-		("MG27 machinegunnerSquad Marine") = /datum/outfit/quick/tgmc/marine/medium_machinegunner,
-		("SH35 scoutSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_shotgun,
-		("Laser carbine scoutSquad Marine") = /datum/outfit/quick/tgmc/marine/standard_lasercarbine,
-		("Rocket manSquad Engineer") = /datum/outfit/quick/tgmc/engineer/rrengineer,
-		("Sentry technicianSquad Engineer") = /datum/outfit/quick/tgmc/engineer/sentry,
-		("Demolition specialistSquad Engineer") = /datum/outfit/quick/tgmc/engineer/demolition,
-		("AR12 standard corpsmanSquad Corpsman") = /datum/outfit/quick/tgmc/corpsman/standard_medic,
-		("SG29 smart machinegunnerSquad Smartgunner") = /datum/outfit/quick/tgmc/smartgunner/standard_sg,
-		("SG85 smart machinegunnerSquad Smartgunner") = /datum/outfit/quick/tgmc/smartgunner/minigun_sg,
-		("AR12 patrol leaderSquad Leader") = /datum/outfit/quick/tgmc/leader/standard_assaultrifle,
-	)
 
 /obj/machinery/quick_vendor/som
 	faction = FACTION_SOM
@@ -89,17 +72,23 @@
 /obj/machinery/quick_vendor/ui_state(mob/user)
 	return GLOB.human_adjacent_state
 
+//shiny and new
 /obj/machinery/quick_vendor/ui_data(mob/living/user)
 	. = ..()
-	var/data = list()
+	var/list/data = list()
 	var/list/loadouts_data_tgui = list()
-	for(var/list/loadout_data in loadouts_data)
-		var/next_loadout_data = list()
-		next_loadout_data["job"] = loadout_data[1]
-		next_loadout_data["name"] = loadout_data[2]
-		loadouts_data_tgui += list(next_loadout_data)
-	data["loadout_list"] = loadouts_data_tgui
+	for(var/loadout_data in GLOB.quick_loadouts) //new shiny list
+		var/list/next_loadout_data = list() //makes a list item with the below lines, for each loadout entry in the list
+		var/datum/outfit/quick/current_loadout = GLOB.quick_loadouts[loadout_data]
+		next_loadout_data["job"] = current_loadout.jobtype
+		next_loadout_data["name"] = current_loadout.name
+		next_loadout_data["desc"] = current_loadout.desc
+		next_loadout_data["amount"] = current_loadout.quantity
+		next_loadout_data["outfit"] = current_loadout.type
+		loadouts_data_tgui += list(next_loadout_data) //adds that list to this list of lists
+	data["loadout_list"] = loadouts_data_tgui //makes data that list, then returns it.
 	return data
+
 
 /obj/machinery/quick_vendor/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
@@ -107,22 +96,18 @@
 		return
 	switch(action)
 		if("selectLoadout")
-			var/job = params["loadout_job"]
-			var/name = params["loadout_name"]
-			if(isnull(name))
-				return
-			var/datum/outfit/selected_loadout = loadout_list["[name + job]"]
+			var/datum/outfit/quick/selected_loadout = GLOB.quick_loadouts[text2path(params["loadout_outfit"])]
 			if(!selected_loadout)
 				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				CRASH("Fail to load loadouts")
 			//maybe could go somewhere else
 			var/obj/item/card/id/I = usr.get_idcard() //ui.user better?
-			if(job != I.rank)
+			if(selected_loadout.jobtype != I.rank)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
 			if(I.marine_buy_flags & MARINE_CAN_BUY_LOADOUT)
 				I.marine_buy_flags &= ~MARINE_CAN_BUY_LOADOUT
-				selected_loadout = new selected_loadout
+				//selected_loadout = new selected_loadout
 				selected_loadout.equip(ui.user) //actually equips the loadout
 			else
 				to_chat(usr, span_warning("You can't buy things from this category anymore.")) //make early return instead?

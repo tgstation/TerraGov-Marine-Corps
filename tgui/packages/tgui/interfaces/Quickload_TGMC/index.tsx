@@ -15,7 +15,7 @@ const LoadoutItem = (props : LoadoutItemData, context) => {
       buttons={
         <Button
           onClick={() => {
-            act('selectLoadout', { loadout_name: loadout.name, loadout_job: loadout.job });
+            act('selectLoadout', { loadout_outfit: loadout.outfit });
           }}>
           Select Loadout
         </Button>
