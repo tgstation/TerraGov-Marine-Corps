@@ -331,7 +331,7 @@
 	set name = "Hijack Dropship"
 	set desc = "Call down the dropship to the closest LZ or unlock the doors"
 
-	if(!SSticker?.mode)
+	if(!SSticker.mode)
 		to_chat(src, span_warning("This power doesn't work in this gamemode."))
 
 	if(!(hive.hive_flags & HIVE_CAN_HIJACK))

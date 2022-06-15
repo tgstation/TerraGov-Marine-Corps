@@ -472,7 +472,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!SSticker?.mode)
+	if(!SSticker.mode)
 		to_chat(src, span_warning("Please wait for the round to begin first."))
 
 	if(SSticker.mode.waiting_for_candidates)

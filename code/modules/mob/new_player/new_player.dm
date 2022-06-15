@@ -99,7 +99,7 @@
 	if(src != usr)
 		return
 
-	if(SSticker?.mode?.new_player_topic(src, href, href_list))
+	if(SSticker.mode?.new_player_topic(src, href, href_list))
 		return // Delegate to the gamemode to handle if they want to
 
 	switch(href_list["lobby_choice"])
@@ -146,7 +146,7 @@
 				if((xeno_job.total_positions-xeno_job.current_positions) > GLOB.alive_xeno_list.len * TOO_MUCH_BURROWED_PROPORTION)
 					if(tgui_alert(src, "There is a lack of xenos players on this round, unbalanced rounds are unfun for everyone. Are you sure you want to play as a marine? ", "Warning : the game is unbalanced", list("Yes", "No")) != "Yes")
 						return
-			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
+			if(!SSticker.mode?.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
 			SSticker.mode.LateSpawn(src)
 
@@ -416,7 +416,7 @@
 
 ///Attempts to latejoin the player
 /mob/new_player/proc/attempt_late_join(queue_override = FALSE)
-	if(!SSticker?.mode || SSticker.current_state != GAME_STATE_PLAYING)
+	if(!SSticker.mode || SSticker.current_state != GAME_STATE_PLAYING)
 		to_chat(src, span_warning("The round is either not ready, or has already finished."))
 		return
 

@@ -236,6 +236,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/mainship/proc/enable_squadhud()
+	if(SSticker.mode?.flags_round_type & MODE_TROUBLE_IN_TERRORIST_TOWN)
+		return
 	squadhud.add_hud_to(wearer)
 	headset_hud_on = TRUE
 	if(!camera.status)

@@ -410,7 +410,7 @@
 /mob/living/carbon/xenomorph/get_language_holder()
 	if(language_holder)
 		return language_holder
-	if(SSticker.mode.flags_round_type & MODE_TROUBLE_IN_TERRORIST_TOWN)
+	if(SSticker.mode?.flags_round_type & MODE_TROUBLE_IN_TERRORIST_TOWN)
 		language_holder = new /datum/language_holder(src)
 		return language_holder
 	language_holder = new initial_language_holder(src)

@@ -347,7 +347,7 @@ TUNNEL
 		return
 
 	//Prevents using tunnels by the queen to bypass the fog.
-	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
+	if(SSticker.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
 		if(!X.hive.living_xeno_ruler)
 			balloon_alert(X, "No ruler")
 			return FALSE

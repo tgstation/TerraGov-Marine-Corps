@@ -628,7 +628,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!istype(M))
 			return
 
-		if(!SSticker?.mode || SSticker.mode.waiting_for_candidates)
+		if(!SSticker.mode || SSticker.mode.waiting_for_candidates)
 			return
 
 		var/list/valid_calls = list("Random")

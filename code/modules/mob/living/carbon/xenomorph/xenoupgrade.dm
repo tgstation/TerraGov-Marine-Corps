@@ -26,7 +26,7 @@
 		if(found)
 			continue
 		var/datum/action/xeno_action/action = new allowed_action_path()
-		if(SSticker.mode.flags_xeno_abilities & action.gamemode_flags)
+		if(SSticker.mode?.flags_xeno_abilities & action.gamemode_flags)
 			action.give_action(src)
 
 	for(var/datum/action/xeno_action/action_already_added AS in actions_already_added)

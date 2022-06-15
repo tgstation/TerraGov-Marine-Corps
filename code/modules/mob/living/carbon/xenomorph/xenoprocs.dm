@@ -206,7 +206,8 @@
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
 			verbs |= verb_path
-
+	if(SSticker.mode?.flags_round_type & MODE_TROUBLE_IN_TERRORIST_TOWN)
+		verbs |= /mob/living/carbon/xenomorph/proc/hijack
 
 //Adds or removes a delay to movement based on your caste. If speed = 0 then it shouldn't do much.
 //Runners are -2, -4 is BLINDLINGLY FAST, +2 is fat-level

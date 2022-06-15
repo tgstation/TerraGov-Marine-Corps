@@ -230,7 +230,7 @@
 	if(!mark.marked_target)
 		to_chat(owner, span_warning("We have no target to disguise into!"))
 		return
-	if(ishuman(mark.marked_target) && !(SSticker.mode.flags_round_type & MODE_TROUBLE_IN_TERRORIST_TOWN))
+	if(ishuman(mark.marked_target) && !(SSticker.mode?.flags_round_type & MODE_TROUBLE_IN_TERRORIST_TOWN))
 		to_chat(owner, "You cannot turn into a human!")
 		return
 	old_appearance = xenoowner.appearance
@@ -249,7 +249,7 @@
 	xenoowner.appearance = mark.marked_target.appearance
 	//Retaining old rendering layer to prevent rendering under objects.
 	xenoowner.layer = old_layer
-	if(!(SSticker.mode.flags_round_type & MODE_TROUBLE_IN_TERRORIST_TOWN))
+	if(!(SSticker.mode?.flags_round_type & MODE_TROUBLE_IN_TERRORIST_TOWN))
 		xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!xenoowner.plasma_stored)

@@ -317,7 +317,7 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!SSticker?.mode)
+	if(!SSticker.mode)
 		return
 
 	if(alert("Are you sure you want to end the round?", "End Round", "Yes", "No") != "Yes")

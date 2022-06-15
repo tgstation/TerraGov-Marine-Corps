@@ -5,7 +5,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!SSticker?.mode || !SSevacuation)
+	if(!SSticker.mode || !SSevacuation)
 		return
 
 	var/dat

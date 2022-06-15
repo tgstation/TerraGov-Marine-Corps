@@ -137,7 +137,7 @@
 					to_chat(usr, span_warning("TGMC protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again."))
 					return FALSE
 
-				if(!SSticker?.mode)
+				if(!SSticker.mode)
 					to_chat(usr, span_warning("The [SSmapping.configs[SHIP_MAP].map_name]'s distress beacon must be activated prior to evacuation taking place."))
 					return FALSE
 
@@ -194,7 +194,7 @@
 					message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href exploit on a [src]. [ADMIN_VERBOSEJMP(usr)].")
 					return FALSE
 
-				if(!SSticker?.mode)
+				if(!SSticker.mode)
 					return FALSE //Not a game mode?
 
 				if(just_called || SSticker.mode.waiting_for_candidates)

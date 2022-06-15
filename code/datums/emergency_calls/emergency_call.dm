@@ -73,7 +73,7 @@
 
 
 /datum/emergency_call/proc/show_join_message()
-	if(!mob_max || !SSticker?.mode) //Not a joinable distress call.
+	if(!mob_max || !SSticker.mode) //Not a joinable distress call.
 		return
 
 	for(var/i in GLOB.observer_list)
@@ -85,7 +85,7 @@
 /datum/game_mode/proc/activate_distress(datum/emergency_call/chosen_call)
 	picked_call = chosen_call || get_random_call()
 
-	if(SSticker?.mode?.waiting_for_candidates) //It's already been activated
+	if(SSticker.mode?.waiting_for_candidates) //It's already been activated
 		return FALSE
 
 	picked_call.mob_max = rand(5, 15)
@@ -98,7 +98,7 @@
 	set category = "Ghost"
 	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
 
-	var/datum/emergency_call/distress = SSticker?.mode?.picked_call //Just to simplify things a bit
+	var/datum/emergency_call/distress = SSticker.mode?.picked_call //Just to simplify things a bit
 
 	if(is_banned_from(usr.ckey, ROLE_ERT))
 		to_chat(usr, span_danger("You are jobbanned from the emergency reponse team!"))
@@ -137,7 +137,7 @@
 	message_admins("Distress beacon: [name] has been reset.")
 
 /datum/emergency_call/proc/activate(announce = TRUE)
-	if(!SSticker?.mode) //Something horribly wrong with the gamemode SSticker
+	if(!SSticker.mode) //Something horribly wrong with the gamemode SSticker
 		message_admins("Distress beacon: [name] attempted to activate but no gamemode exists")
 		return FALSE
 
