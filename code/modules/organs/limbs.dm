@@ -856,10 +856,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/get_damage()	//returns total damage
 	return brute_dam + burn_dam	//could use health?
 
-//Not meaningful any more, need to remove from health scanners
-/datum/limb/proc/has_infected_wound()
-	return FALSE
-
 ///True if the limb has any damage on it
 /datum/limb/proc/has_external_wound()
 	return brute_dam || burn_dam
