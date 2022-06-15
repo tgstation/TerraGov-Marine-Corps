@@ -191,8 +191,10 @@
 	removed_type = /obj/item/organ/liver
 	robotic_type = /obj/item/organ/liver/prosthetic
 	organ_id = ORGAN_LIVER
-	var/alcohol_tolerance = 0.005 //lower value, higher resistance.
-	var/filter_rate = 3 //How fast we clean out toxins/toxloss while healthy
+	///lower value, higher resistance.
+	var/alcohol_tolerance = 0.005
+	///How fast we clean out toxins/toxloss. Adjusts based on organ damage.
+	var/filter_rate = 3
 
 /datum/internal_organ/liver/process()
 	..()
@@ -205,8 +207,7 @@
 		//Damaged one shares the fun
 		else
 			var/datum/internal_organ/O = pick(owner.internal_organs)
-			if(O)
-				O.take_damage(0.2, TRUE)
+			O?.take_damage(0.2, TRUE)
 
 	// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
 	if(!owner.drunkenness && owner.getToxLoss() <= 15 && organ_status == ORGAN_HEALTHY)
@@ -216,16 +217,16 @@
 			heal_organ_damage(0.04)
 
 	// Do some reagent filtering/processing.
-	for(var/datum/reagent/R in owner.reagents.reagent_list)
+	for(var/datum/reagent/potential_toxin AS in owner.reagents.reagent_list)
 		//Liver helps clear out any toxins but with drawbacks if damaged
-		if(istype(R, /datum/reagent/consumable/ethanol) || istype(R, /datum/reagent/toxin))
+		if(istype(potential_toxin, /datum/reagent/consumable/ethanol) || istype(potential_toxin, /datum/reagent/toxin))
 			if(organ_status != ORGAN_HEALTHY)
 				owner.adjustToxLoss(0.3 * organ_status)
-			owner.reagents.remove_reagent(R.type, R.custom_metabolism * filter_rate * 0.1)
+			owner.reagents.remove_reagent(potential_toxin.type, potential_toxin.custom_metabolism * filter_rate * 0.1)
 
 	//Heal toxin damage slowly if not damaged. If broken, increase it instead.
 	owner.adjustToxLoss((2 - filter_rate) * 0.1)
-	if(prob(organ_status))
+	if(prob(organ_status)) //Just under once every three minutes while bruised, twice as often while broken.
 		owner.vomit() //No stomach, so the liver can cause vomiting instead. Stagger and slowdown plus feedback that something's wrong.
 
 /datum/internal_organ/liver/set_organ_status()
@@ -245,26 +246,31 @@
 	removed_type = /obj/item/organ/kidneys
 	robotic_type = /obj/item/organ/kidneys/prosthetic
 	organ_id = ORGAN_KIDNEYS
-	var/current_medicine_count = 0 //Tracks the number of reagent/medicine datums we currently have
-	var/current_medicine_cap = 5 //How many drugs we can take before they overwhelm us. Decreases with damage
+	///Tracks the number of reagent/medicine datums we currently have
+	var/current_medicine_count = 0
+	///How many drugs we can take before they overwhelm us. Decreases with damage
+	var/current_medicine_cap = 5
 
 /datum/internal_organ/kidneys/New(mob/living/carbon/carbon_mob)
 	. = ..()
-	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, .proc/increase_medicines)
-	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETED, .proc/decrease_medicines)
+	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, .proc/owner_added_reagent)
+	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETED, .proc/owner_removed_reagent)
 
 /datum/internal_organ/kidneys/clean_owner()
 	UnregisterSignal(owner.reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETED))
 	return ..()
 
-/datum/internal_organ/kidneys/proc/increase_medicines(datum/source, reagent_type, amount)
+///Signaled proc. Check if the added reagent was under reagent/medicine. If so, increment medicine counter and potentially notify owner.
+/datum/internal_organ/kidneys/proc/owner_added_reagent(datum/source, reagent_type, amount)
 	SIGNAL_HANDLER
-	if(ispath(reagent_type, /datum/reagent/medicine))
-		current_medicine_count++
-		if(current_medicine_count == current_medicine_cap + 1)
-			to_chat(owner, span_warning("All the different drugs in you are starting to make you feel off..."))
+	if(!ispath(reagent_type, /datum/reagent/medicine))
+		return
+	current_medicine_count++
+	if(current_medicine_count == current_medicine_cap + 1)
+		to_chat(owner, span_warning("All the different drugs in you are starting to make you feel off..."))
 
-/datum/internal_organ/kidneys/proc/decrease_medicines(datum/source, reagent_type)
+///Signaled proc. Check if the removed reagent was under reagent/medicine. If so, decrement medicine counter and potentially notify owner.
+/datum/internal_organ/kidneys/proc/owner_removed_reagent(datum/source, reagent_type)
 	SIGNAL_HANDLER
 	if(ispath(reagent_type, /datum/reagent/medicine))
 		current_medicine_count--
@@ -284,10 +290,11 @@
 		return //Hydration is good for your kidneys. Shame it purges medicines.
 
 	var/overflow = current_medicine_count - current_medicine_cap
-	if(overflow > 0)
-		owner.set_drugginess(3)
-		if(prob(overflow * (organ_status + 1) * 10))
-			owner.Confused(2 SECONDS * (organ_status + 1))
+	if(overflow < 1)
+		return
+	owner.set_drugginess(3)
+	if(prob(overflow * (organ_status + 1) * 10))
+		owner.Confused(2 SECONDS * (organ_status + 1))
 
 /datum/internal_organ/kidneys/prosthetic
 	robotic = ORGAN_ROBOT
