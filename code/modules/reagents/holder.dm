@@ -462,21 +462,21 @@
 			del_reagent(R.type)
 			update_total()
 
-/datum/reagents/proc/del_reagent(reagent)
-	var/list/cached_reagents = reagent_list
-	for(var/_reagent in cached_reagents)
-		var/datum/reagent/R = _reagent
-		if (R.type == reagent)
-			if(my_atom && isliving(my_atom))
+
+///Remove a reagent datum with the type provided from this container. True if one is removed, false otherwise.
+/datum/reagents/proc/del_reagent(type_to_remove)
+	for(var/datum/reagent/test_reagent AS in reagent_list)
+		if (test_reagent.type == type_to_remove)
+			if(isliving(my_atom))
 				var/mob/living/L = my_atom
-				R.on_mob_delete(L, L.get_reagent_tags())
-			qdel(R)
-			reagent_list -= R
+				test_reagent.on_mob_delete(L, L.get_reagent_tags())
+			reagent_list -= test_reagent
+			qdel(test_reagent)
 			update_total()
-			if(my_atom)
-				my_atom.on_reagent_change(DEL_REAGENT)
-			SEND_SIGNAL(src, COMSIG_REAGENT_DELETED, reagent)
-	return 1
+			my_atom?.on_reagent_change(DEL_REAGENT)
+			SEND_SIGNAL(src, COMSIG_REAGENT_DELETED, type_to_remove)
+			return TRUE
+	return FALSE
 
 
 
