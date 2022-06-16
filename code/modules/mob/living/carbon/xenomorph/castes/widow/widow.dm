@@ -12,3 +12,6 @@
 	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16
 	old_x = -16
+	inherent_verbs = list(
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
+	)

@@ -14,18 +14,18 @@
 	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
-	attack_delay = 6
+	melee_damage = 7
+	attack_delay = 3
 
 	// *** Speed *** //
-	speed = -1.3
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 150
 	plasma_gain = 5
 
 	// *** Health *** //
-	max_health = 175
+	max_health = 250
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -46,6 +46,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide, // might remove later idk, depends on balance
+		/datum/action/xeno_action/tight
 	)
 
 /datum/xeno_caste/widow/young
@@ -60,14 +61,14 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Speed *** //
-	speed = -1.3
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 175
 	plasma_gain = 7
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 275
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
@@ -84,10 +85,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 10
 
 	// *** Speed *** //
-	speed = -1.4
+	speed = -0.7
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -111,17 +112,17 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 12
 
 	// *** Speed *** //
-	speed = -1.5
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 11
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 325
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
@@ -138,17 +139,17 @@
 	upgrade = XENO_UPGRADE_FOUR
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 15
 
 	// *** Speed *** //
-	speed = -1.5
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 11
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 350
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 20, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = 0, "bio" = 7, "rad" = 7, "fire" = 19, "acid" = 7)

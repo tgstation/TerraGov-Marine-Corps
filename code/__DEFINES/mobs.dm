@@ -687,6 +687,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Larva defines
 #define LARVA_VENT_CRAWL_TIME 1 SECONDS //Larva can crawl into vents fast
 
+//Widow Defines
+
+#define WIDOW_SPEED_BONUS 7
+
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3
