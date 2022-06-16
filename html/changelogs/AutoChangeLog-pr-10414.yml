@@ -1,5 +1,0 @@
-author: "Vondiech"
-delete-after: True
-changes: 
-  - bugfix: "Roundstart announcement text is now actually announced, apparently this has been broken for quite a while now."
-  - rscadd: "Icarus Military Port now has some actual announcement text lore."

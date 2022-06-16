@@ -268,3 +268,22 @@
   - balance: ERT/EORD spawns now use injector pouches.
   Wayland-Smithy:
   - bugfix: Fixed burrowed larva sometimes not counting toward tier limits.
+2022-06-16:
+  Kuro020:
+  - imageadd: EVA skull variant sprite changed
+  Lewdcifer:
+  - rscdel: CAS flares can no longer be obtained from reqs.
+  - balance: CAS flare packs available in weapon vendors increased from 30 to 50.
+  - rscdel: Normal binoculars can no longer be obtained from reqs.
+  - rscdel: Normal flares can no longer be obtained from reqs.
+  - rscdel: Tarps can no longer be obtained from reqs.
+  - balance: Number of tarps in reqs vendor increased from 2 to 10.
+  Lumipharon:
+  - balance: shotguns and the SMG90 no longer have extremely low akimbo scatter penalties
+  - balance: rifles no longer have zero akimbo firedelay penalties
+  QualityVan:
+  - bugfix: Healing lungs removes slowdown
+  Vondiech:
+  - bugfix: Roundstart announcement text is now actually announced, apparently this
+      has been broken for quite a while now.
+  - rscadd: Icarus Military Port now has some actual announcement text lore.
