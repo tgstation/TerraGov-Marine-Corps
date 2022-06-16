@@ -56,17 +56,6 @@ OPERATIONS
 	contains = list(/obj/item/minerupgrade/overclock)
 	cost = 5
 
-/datum/supply_packs/operations/cas_flares
-	name = "CAS flare pack"
-	contains = list(/obj/item/storage/box/m94/cas)
-	available_against_xeno_only = TRUE
-	cost = 5
-
-/datum/supply_packs/operations/binoculars_regular
-	name = "binoculars"
-	contains = list(/obj/item/binoculars)
-	cost = 15
-
 /datum/supply_packs/operations/binoculars_tatical
 	name = "tactical binoculars crate"
 	contains = list(/obj/item/binoculars/tactical)
@@ -77,17 +66,6 @@ OPERATIONS
 	name = "pool tracker crate"
 	contains = list(/obj/item/pinpointer)
 	cost = 20
-	available_against_xeno_only = TRUE
-
-/datum/supply_packs/operations/flares
-	name = "flare packs"
-	contains = list(/obj/item/storage/box/m94)
-	cost = 1
-
-/datum/supply_packs/operations/tarps
-	name = "V1 thermal-dampening tarp"
-	contains = list(/obj/item/bodybag/tarp)
-	cost = 6
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/deployable_camera
@@ -834,10 +812,10 @@ MEDICAL
 /datum/supply_packs/medical/advanced_medical
 	name = "Emergency medical supplies"
 	contains = list(
-		/obj/item/storage/pouch/autoinjector/advanced/full,
-		/obj/item/storage/pouch/autoinjector/advanced/full,
-		/obj/item/storage/pouch/autoinjector/advanced/full,
-		/obj/item/storage/pouch/autoinjector/advanced/full,
+		/obj/item/storage/pouch/medical_injectors/medic,
+		/obj/item/storage/pouch/medical_injectors/medic,
+		/obj/item/storage/pouch/medical_injectors/medic,
+		/obj/item/storage/pouch/medical_injectors/medic,
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline,

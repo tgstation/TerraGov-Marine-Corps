@@ -262,6 +262,7 @@
 
 	allowed_uniform_type = /obj/item/clothing/under
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/modular/xenonauten/engineer
 	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp, /obj/item/armor_module/storage/engineering)
 
@@ -269,6 +270,8 @@
 	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/mark1)
 
 // Thank Jeff for providing sprites to color flak jacket
+=======
+>>>>>>> 70b9fa39f125f3de9126155db4d510dc73cb0171
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper TerraGov standard flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
@@ -278,6 +281,9 @@
 	flags_item = NONE
 	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 25, "acid" = 30)
 	slowdown = 0.25
+
+	attachments_allowed = list()
+
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,

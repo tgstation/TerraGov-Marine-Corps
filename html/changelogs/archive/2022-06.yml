@@ -189,3 +189,101 @@
   - bugfix: When you have two broken or missing legs or feet, you'll now fall down
       once or twice a minute.
   - bugfix: Amputated limbs are amputated.
+2022-06-11:
+  BraveMole:
+  - balance: 'Heart damage will decrease your maximum stamina and maximum health.
+      Nothing else balance :Lungs damage will decrease your stamina regen and your
+      speed. Nothing else delete: Peridaxon is no longer in the game, as effects from
+      organ damage are less severe'
+  Lumipharon:
+  - balance: Empowered jab now actually blinds instead of flashing
+  Mechanelize:
+  - balance: Ravager caste now has plasmadrain immunity.
+  QualityVan:
+  - balance: Xenos keep current percent health when a balance scalar is applied.
+  - bugfix: Game status window properly shows current max health when a balance scalar
+      is active.
+  Xsdew:
+  - soundadd: added a new sound for the MG42
+  - imageadd: replaced the MG42 Sprites
+2022-06-12:
+  BraveMole:
+  - balance: Wraith portal range buffed from 10 to 20
+  - balance: Wraith portals are no longer vulnerable to bullets; they are now vulnerable
+      to explosions
+  - balance: Human can no longer cross portal
+  - bugfix: Fix teleporter being mountable
+  - balance: Reduce plasma cost of all wraith abilities
+  Derrick2Electricboogaloo:
+  - bugfix: Readded combat droids to Sulaco
+  - bugfix: Readded prevended protein bars to vendors
+  Vondiech:
+  - code_imp: Turns long line of else-if's in parse_zone into a switch. Also removes
+      4 duplicate if's for the hands and feet
+2022-06-13:
+  BraveMole:
+  - bugfix: Fix organ damage not being treated by surgery
+  Lumipharon:
+  - bugfix: fixed some issues with storage procs
+  MisterGrimm:
+  - bugfix: Fixes unintended Praetorian Neurotoxin nerf at Young to Mature.
+  RipGrayson:
+  - balance: Adjusted the breach points on LV624 LZ2 and BR LZ1.
+  - balance: The sand temple on LV624 now has an APC.
+  Wayland-Smithy:
+  - bugfix: Fixed missing hivemind can_flags.
+  novaepee:
+  - bugfix: flak jacket accepting modules
+2022-06-14:
+  BraveMole:
+  - balance: Internal organs damage are visible on the health analyzer
+  - rscadd: Add back portal fancy graphic
+  - rscadd: New portal sprite, by krab
+  Pariah919:
+  - bugfix: RL-72 has proper gunflags on spawn.
+  breadhunt:
+  - rscdel: Removed plasteel crate recipe
+  - qol: Plasteel cades no longer require a menu to make, just press Z
+  - qol: Metal recipes have a new radial menu, old recipe menu selectable from it
+  - rscadd: You can also disable the radial menu completely for the old menu in the
+      preferences tab
+  - refactor: Cleaned up mat and sandbag code a small bit
+  novaepee:
+  - rscdel: Remove miners that are near LZ in Ice Colony, Big Red, and LV-624
+  - rscdel: Remove the triple miners next to LV-624 red disk
+2022-06-15:
+  Arctrooper8:
+  - rscadd: Surgery pouch
+  - rscadd: brute kits in surgical usage have been replaced with a new tool, surgical
+      membrane.
+  - rscdel: First aid pouch, Hypospray pouch, Syringe pouch, injector case.
+  - rscdel: Medical belts in medbay storage rooms.
+  - balance: Lifesaver belt now has every pill type alongside 6 kits, two splints,
+      and a health analyzer.
+  - balance: Rig belt now has every pill type.
+  - balance: full lolly pouches are now free and infinite from the vendor.
+  - balance: pill packet are free and infinite from MarineMed.
+  - balance: pill bottles have been moved to nanotrasen medical vendor.
+  - balance: moved stuff such as defib from nanotrasen medical vendor to MarineMed.
+  - balance: ERT/EORD spawns now use injector pouches.
+  Wayland-Smithy:
+  - bugfix: Fixed burrowed larva sometimes not counting toward tier limits.
+2022-06-16:
+  Kuro020:
+  - imageadd: EVA skull variant sprite changed
+  Lewdcifer:
+  - rscdel: CAS flares can no longer be obtained from reqs.
+  - balance: CAS flare packs available in weapon vendors increased from 30 to 50.
+  - rscdel: Normal binoculars can no longer be obtained from reqs.
+  - rscdel: Normal flares can no longer be obtained from reqs.
+  - rscdel: Tarps can no longer be obtained from reqs.
+  - balance: Number of tarps in reqs vendor increased from 2 to 10.
+  Lumipharon:
+  - balance: shotguns and the SMG90 no longer have extremely low akimbo scatter penalties
+  - balance: rifles no longer have zero akimbo firedelay penalties
+  QualityVan:
+  - bugfix: Healing lungs removes slowdown
+  Vondiech:
+  - bugfix: Roundstart announcement text is now actually announced, apparently this
+      has been broken for quite a while now.
+  - rscadd: Icarus Military Port now has some actual announcement text lore.

@@ -6873,12 +6873,6 @@
 /area/mainship/hull/lower_hull)
 "uY" = (
 /obj/structure/rack,
-/obj/item/storage/pouch/medkit,
-/obj/item/storage/pouch/medkit,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/pouch/medical,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "uZ" = (
@@ -7578,8 +7572,7 @@
 /obj/item/clothing/suit/storage/hazardvest/lime,
 /obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/full,
-/obj/item/storage/pouch/medical/full,
+/obj/item/storage/pouch/medkit/firstaid,
 /obj/item/tool/taperoll/engineering,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -8805,24 +8798,6 @@
 /area/mainship/engineering/upper_engineering)
 "AH" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/healthanalyzer,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
 /obj/item/roller,
 /obj/item/roller,
 /obj/item/roller,

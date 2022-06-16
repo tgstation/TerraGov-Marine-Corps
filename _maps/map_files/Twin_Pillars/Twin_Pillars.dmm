@@ -407,21 +407,6 @@
 /area/mainship/command/self_destruct)
 "ate" = (
 /obj/structure/table/mainship,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
 /obj/item/healthanalyzer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -761,7 +746,6 @@
 /area/mainship/command/cic)
 "aIO" = (
 /obj/structure/table/mainship,
-/obj/item/storage/belt/medical,
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/firstaid/o2{
 	pixel_x = 3;
@@ -3408,10 +3392,6 @@
 /obj/structure/rack,
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medkit,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/pouch/medical,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "diy" = (
@@ -6343,7 +6323,6 @@
 /area/mainship/hallways/hangar)
 "fLB" = (
 /obj/structure/table/mainship,
-/obj/item/storage/belt/medical,
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/firstaid/o2{
 	pixel_x = 3;
@@ -8480,8 +8459,7 @@
 /obj/item/clothing/suit/storage/hazardvest/lime,
 /obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/full,
-/obj/item/storage/pouch/medical/full,
+/obj/item/storage/pouch/medkit/firstaid,
 /obj/item/tool/taperoll/engineering,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -18207,10 +18185,6 @@
 /obj/structure/rack,
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medkit,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/pouch/medical,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic/rebel)
 "qlY" = (
@@ -18578,8 +18552,6 @@
 /obj/item/clothing/suit/storage/hazardvest/lime,
 /obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/full,
-/obj/item/storage/pouch/medical/full,
 /obj/item/tool/taperoll/engineering,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
@@ -20992,21 +20964,6 @@
 /area/mainship/engineering/engineering_workshop)
 "sHs" = (
 /obj/structure/table/mainship,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
 /obj/item/healthanalyzer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical/rebel)

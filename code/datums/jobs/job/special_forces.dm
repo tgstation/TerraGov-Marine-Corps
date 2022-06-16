@@ -27,7 +27,7 @@
 	head = /obj/item/clothing/head/modular/marine/m10x
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed
 	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/special_forces/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -77,8 +77,8 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/PMC
 	head = /obj/item/clothing/head/helmet/marine/tech
 	suit_store = /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
-	r_store = /obj/item/storage/pouch/firstaid/injectors/full
-	l_store = /obj/item/storage/pouch/firstaid/full
+	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_store = /obj/item/storage/pouch/medkit/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/special_forces/breacher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

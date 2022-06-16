@@ -11,7 +11,7 @@
 
 /obj/item/minelayer/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/minelayer, 1 SECONDS)
+	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/minelayer, type, 1 SECONDS)
 
 /obj/machinery/deployable/minelayer
 	anchored = TRUE

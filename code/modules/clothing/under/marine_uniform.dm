@@ -389,7 +389,7 @@
 	item_state = "som_uniform_medic"
 
 /obj/item/clothing/under/som/medic/vest
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest/medic/som)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest/som)
 
 /obj/item/clothing/under/som/veteran
 	name = "\improper SoM veteran uniform"

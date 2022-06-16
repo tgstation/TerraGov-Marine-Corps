@@ -1113,17 +1113,6 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "fc" = (
-/obj/item/storage/pill_bottle/peridaxon,
-/obj/item/storage/pill_bottle/peridaxon{
-	pixel_x = 5
-	},
-/obj/item/storage/pill_bottle/peridaxon{
-	pixel_x = 5;
-	pixel_y = 10
-	},
-/obj/item/storage/pill_bottle/peridaxon{
-	pixel_y = 10
-	},
 /obj/item/defibrillator,
 /obj/item/defibrillator,
 /obj/item/defibrillator,
@@ -2361,13 +2350,13 @@
 	},
 /area/whiskey_outpost)
 "kB" = (
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/structure/table/mainship,
 /obj/item/armor_module/storage/uniform/white_vest/surgery,
 /obj/item/clothing/suit/surgical,
@@ -8179,9 +8168,9 @@
 	},
 /area/whiskey_outpost/outside/west)
 "Yz" = (
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,

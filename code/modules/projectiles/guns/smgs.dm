@@ -123,6 +123,8 @@
 	scatter_unwielded = 8
 	aim_slowdown = 0.2
 	burst_amount = 0
+	upper_akimbo_accuracy = 4
+	lower_akimbo_accuracy = 2
 
 	placed_overlay_iconstate = "t90"
 

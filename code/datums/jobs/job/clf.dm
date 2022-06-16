@@ -25,7 +25,7 @@
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/strawhat
 	suit_store = /obj/item/weapon/gun/smg/uzi
-	r_store = /obj/item/storage/pouch/general
+	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pill_bottle/zoom
 	back = /obj/item/storage/backpack/lightpack
 
@@ -64,7 +64,7 @@
 	jobtype = /datum/job/clf/medic
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/combatLifesaver/upp
+	belt = /obj/item/storage/belt/lifesaver/upp
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/black
@@ -72,8 +72,8 @@
 	gloves = /obj/item/clothing/gloves/black
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/skorpion
-	r_store = /obj/item/storage/firstaid/adv
-	l_store = /obj/item/storage/pouch/medical/full
+	r_store = /obj/item/storage/pouch/medkit/medic
+	l_store = /obj/item/storage/pouch/medical_injectors/medic
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -122,7 +122,7 @@
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/m16
 	r_store = /obj/item/storage/pouch/general/medium
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 
