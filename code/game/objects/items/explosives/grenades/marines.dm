@@ -431,7 +431,7 @@
 	///The brightness of the flare
 	var/brightness = 12
 
-/obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
+/obj/item/explosive/grenade/flare/strongerflare/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	anchored = TRUE//prevents marines from picking up and running around with a stronger flare
 
