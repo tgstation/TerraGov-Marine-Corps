@@ -246,7 +246,7 @@
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/smg/m25,
 		/obj/item/weapon/gun/smg/m25/holstered,
-		)
+	)
 	can_hold = list(/obj/item/weapon/gun/smg/m25)
 
 /obj/item/storage/holster/m25/full/Initialize()
