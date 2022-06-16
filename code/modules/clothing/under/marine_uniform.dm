@@ -42,7 +42,7 @@
 	icon_state = "marine_medic"
 
 /obj/item/clothing/under/marine/corpsman/corpman_vest
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest/medic)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/marine/engineer
 	name = "\improper TGMC engineer fatigues"

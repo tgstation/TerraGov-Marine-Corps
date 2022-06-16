@@ -738,7 +738,7 @@
 	name = "AR12 standard corpsman"
 	desc = "PLACEHOLDER"
 
-	belt = /obj/item/storage/belt/medicLifesaver/quick
+	belt = /obj/item/storage/belt/lifesaver/quick
 	ears = /obj/item/radio/headset/mainship/marine
 	glasses = /obj/item/clothing/glasses/hud/health
 	w_uniform = /obj/item/clothing/under/marine/corpsman/corpman_vest
@@ -748,7 +748,7 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/marine/m10x/mimir
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
-	r_store = /obj/item/storage/pouch/autoinjector
+	r_store = /obj/item/storage/pouch/medical_injectors
 	l_store = /obj/item/storage/pouch/magazine/large
 	back = /obj/item/storage/backpack/marine/corpsman
 

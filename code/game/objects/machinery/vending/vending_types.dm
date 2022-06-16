@@ -267,7 +267,7 @@
 		"Misc" = list(
 			/obj/item/healthanalyzer = -1,
 			/obj/item/clothing/glasses/hud/health = -1,
-			/obj/item/storage/belt/lifesaver = -1,
+			/obj/item/storage/belt/lifesaver/full = -1,
 			/obj/item/reagent_containers/syringe = -1,
 			/obj/item/tool/research/xeno_analyzer = -1,
 			/obj/item/tool/research/excavation_tool = -1,
