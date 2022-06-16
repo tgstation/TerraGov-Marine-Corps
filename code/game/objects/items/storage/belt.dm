@@ -155,13 +155,9 @@
 		/obj/item/tool/research,
 	)
 
-<<<<<<< HEAD
-/obj/item/storage/belt/medicLifesaver/loaded/Initialize()  //The belt, with all it's magic inside!
-=======
 /obj/item/storage/belt/rig/medical
 
 /obj/item/storage/belt/rig/medical/Initialize()  //The belt, with all it's magic inside!
->>>>>>> 70b9fa39f125f3de9126155db4d510dc73cb0171
 	. = ..()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
