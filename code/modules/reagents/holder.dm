@@ -467,6 +467,7 @@
 /datum/reagents/proc/del_reagent(type_to_remove)
 	for(var/datum/reagent/test_reagent AS in reagent_list)
 		if (test_reagent.type == type_to_remove)
+			SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
 			if(isliving(my_atom))
 				var/mob/living/L = my_atom
 				test_reagent.on_mob_delete(L, L.get_reagent_tags())
@@ -474,7 +475,6 @@
 			qdel(test_reagent)
 			update_total()
 			my_atom?.on_reagent_change(DEL_REAGENT)
-			SEND_SIGNAL(src, COMSIG_REAGENT_DELETED, type_to_remove)
 			return TRUE
 	return FALSE
 
@@ -597,6 +597,7 @@
 			return TRUE
 
 	//otherwise make a new one
+	SEND_SIGNAL(src, COMSIG_NEW_REAGENT_ADD, reagent, amount)
 	var/datum/reagent/R = new D.type(data)
 	cached_reagents += R
 	R.holder = src
@@ -613,7 +614,6 @@
 		my_atom.on_reagent_change(ADD_REAGENT)
 	if(!no_react)
 		handle_reactions()
-	SEND_SIGNAL(src, COMSIG_NEW_REAGENT_ADD, reagent, amount)
 	return TRUE
 
 /datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null) //// Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, /datum/reagent/consumable/ethanol/beer = 15)
