@@ -200,7 +200,7 @@
 	..()
 
 	//High toxins levels are dangerous if you aren't actively treating them. 100 seconds to hit bruised from this alone
-	if(owner.getToxLoss() >= (80 - 20 * organ_status) && !owner.reagents.has_reagent(/datum/reagent/medicine/dylovene))
+	if(owner.getToxLoss() >= (80 - 20 * organ_status))
 		//Healthy liver suffers on its own
 		if (organ_status != ORGAN_BROKEN)
 			take_damage(0.2, TRUE)
@@ -211,10 +211,7 @@
 
 	// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
 	if(!owner.drunkenness && owner.getToxLoss() <= 15 && organ_status == ORGAN_HEALTHY)
-		if(owner.reagents.has_reagent(/datum/reagent/medicine/dylovene)) // Detox effect
-			heal_organ_damage(0.2)
-		else
-			heal_organ_damage(0.04)
+		heal_organ_damage(0.04)
 
 	// Do some reagent filtering/processing.
 	for(var/datum/reagent/potential_toxin AS in owner.reagents.reagent_list)
