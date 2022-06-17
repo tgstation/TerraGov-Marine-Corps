@@ -179,7 +179,7 @@
 	// For example, bruised lungs will reduce stamina regen by 40%, broken by 80%
 	owner.stamina_regen_multiplier += (old_organ_status - organ_status) * 0.40
 	// Slowdown added when the heart is damaged
-	owner.add_movespeed_modifier(id = name, multiplicative_slowdown = organ_status)
+	owner.add_movespeed_modifier(id = name, override = TRUE, multiplicative_slowdown = organ_status)
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
