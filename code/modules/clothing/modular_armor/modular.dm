@@ -272,7 +272,27 @@
 	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 25, "acid" = 30)
 	slowdown = 0.25
 
-	attachments_allowed = list()
+	attachments_allowed = list(
+		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/module/fire_proof,
+		/obj/item/armor_module/module/tyr_extra_armor,
+		/obj/item/armor_module/module/tyr_extra_armor/mark1,
+		/obj/item/armor_module/module/mimir_environment_protection,
+		/obj/item/armor_module/module/mimir_environment_protection/mark1,
+		/obj/item/armor_module/module/hlin_explosive_armor,
+		/obj/item/armor_module/module/ballistic_armor,
+		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield,
+
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/engineering,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/injector,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/armor/badge
+	)
 
 	allowed = list(
 		/obj/item/weapon/gun,
