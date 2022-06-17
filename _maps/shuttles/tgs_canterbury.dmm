@@ -167,9 +167,12 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/storage/box/sentry,
-/obj/item/storage/box/sentry,
-/obj/item/storage/box/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "ay" = (

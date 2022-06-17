@@ -436,7 +436,6 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Af" = (
-/obj/structure/largecrate/supply/weapons/sentries,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Am" = (

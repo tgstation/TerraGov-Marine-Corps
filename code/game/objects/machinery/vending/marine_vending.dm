@@ -126,9 +126,11 @@
 			/obj/structure/closet/crate/mortar_ammo/howitzer_kit = 1,
 			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
 			/obj/item/weapon/gun/tl102 = 1,
-			/obj/item/ammo_magazine/tl102 = 2,
+			/obj/item/ammo_magazine/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 10,
+			/obj/item/weapon/gun/sentry/big_sentry = 1,
+			/obj/item/ammo_magazine/sentry = 4,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -195,7 +197,7 @@
 
 /obj/machinery/vending/weapon/crash
 
-products = list(
+	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle = -1,
@@ -369,7 +371,7 @@ products = list(
 
 /obj/machinery/vending/weapon/hvh
 
-products = list(
+	products = list(
 		"Rifles" = list(
 			/obj/item/weapon/gun/rifle/standard_assaultrifle = -1,
 			/obj/item/ammo_magazine/rifle/standard_assaultrifle = -1,

@@ -673,9 +673,12 @@
 /area/shuttle/canterbury)
 "ql" = (
 /obj/structure/rack,
-/obj/item/storage/box/sentry,
-/obj/item/storage/box/sentry,
-/obj/item/storage/box/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /obj/item/tool/screwdriver,
 /obj/item/tool/wrench,
 /obj/item/storage/toolbox/mechanical,

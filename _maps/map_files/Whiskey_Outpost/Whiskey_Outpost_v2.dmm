@@ -1018,7 +1018,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "eB" = (
-/obj/item/storage/box/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/west)
 "eC" = (
@@ -1355,7 +1356,10 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "fX" = (
-/obj/structure/largecrate/supply/weapons/sentries,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "gb" = (
@@ -1972,7 +1976,10 @@
 	},
 /area/whiskey_outpost)
 "iZ" = (
-/obj/structure/largecrate/supply/weapons/sentries,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 10
 	},
@@ -2586,7 +2593,8 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "lC" = (
-/obj/item/storage/box/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /obj/effect/decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
@@ -2810,7 +2818,8 @@
 	},
 /area/whiskey_outpost/outside/west)
 "nh" = (
-/obj/item/storage/box/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "ni" = (
@@ -4699,7 +4708,8 @@
 	},
 /area/whiskey_outpost/outside/south)
 "wT" = (
-/obj/item/storage/box/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/west)
 "wZ" = (
@@ -5005,7 +5015,12 @@
 /obj/structure/sign/greencross/star{
 	pixel_y = 32
 	},
-/obj/structure/largecrate/supply/ammo/sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/ammo_magazine/sentry,
 /obj/item/stack/razorwire/full,
 /obj/item/stack/razorwire/full,
 /obj/item/stack/razorwire/full,
@@ -6675,7 +6690,8 @@
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/west)
 "Mu" = (
-/obj/item/storage/box/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/east)
 "Mv" = (
@@ -7601,11 +7617,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "TV" = (
-/obj/item/storage/box/sentry{
-	pixel_x = 9;
-	pixel_y = 11
-	},
-/obj/item/storage/box/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /obj/effect/decal/grassdecal,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
@@ -7998,7 +8013,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "Xs" = (
-/obj/item/storage/box/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost)
 "Xt" = (
@@ -8179,7 +8195,8 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "YA" = (
-/obj/item/storage/box/sentry,
+/obj/item/weapon/gun/sentry/big_sentry,
+/obj/item/ammo_magazine/sentry,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "YB" = (

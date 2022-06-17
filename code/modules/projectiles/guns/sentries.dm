@@ -31,29 +31,6 @@
 
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry)
 
-/obj/item/storage/box/sentry
-	name = "\improper ST-571 sentry crate"
-	desc = "A large case containing all you need to set up an automated sentry."
-	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "sentry_case"
-	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = 5
-	storage_slots = 6
-	max_storage_space = 16
-	can_hold = list(
-		/obj/item/weapon/gun/sentry,
-		/obj/item/ammo_magazine/sentry,
-	)
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/sentry,
-		/obj/item/ammo_magazine/sentry,
-	)
-
-/obj/item/storage/box/sentry/Initialize()
-	. = ..()
-	new /obj/item/weapon/gun/sentry/big_sentry(src)
-	new /obj/item/ammo_magazine/sentry(src)
-
 /obj/item/weapon/gun/sentry/big_sentry
 	name = "\improper ST-571 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a M30 autocannon and a 500-round drum magazine."

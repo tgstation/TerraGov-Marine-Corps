@@ -8901,7 +8901,6 @@
 /area/sulaco/hangar)
 "aTt" = (
 /obj/structure/rack,
-/obj/item/storage/box/sentry,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "aTw" = (

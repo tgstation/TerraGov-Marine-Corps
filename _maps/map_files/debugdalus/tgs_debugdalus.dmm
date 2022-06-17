@@ -633,7 +633,6 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acX" = (
-/obj/item/storage/box/sentry,
 /obj/structure/rack,
 /obj/item/stack/sheet/glass{
 	amount = 50;

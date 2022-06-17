@@ -54,15 +54,6 @@
 		/obj/structure/largecrate/supply/powerloader = 1,
 	)
 
-/obj/effect/landmark/supplyspawner/turrets
-	name = "defensive gun emplacement supplies"
-	supply = list(
-		/obj/structure/largecrate/supply/weapons/sentries = 2,
-		/obj/structure/largecrate/supply/weapons/standard_hmg = 2,
-		/obj/structure/largecrate/supply/ammo/sentry = 1,
-		/obj/structure/largecrate/supply/ammo/standard_hmg = 1,
-	)
-
 /obj/effect/landmark/supplyspawner/food
 	name = "food crate supplies"
 	supply = list(/obj/structure/largecrate/supply/supplies/mre = 3, /obj/structure/largecrate/supply/supplies/water = 2)
@@ -131,11 +122,6 @@
 	desc = "A weapons chest containing two MG-42 LMG."
 	supplies = list(/obj/item/weapon/gun/rifle/standard_lmg = 2)
 
-/obj/structure/largecrate/supply/weapons/sentries
-	name = "\improper ST-571 sentry chest (x2)"
-	desc = "A supply crate containing two boxed ST-571 sentries."
-	supplies = list(/obj/item/storage/box/sentry = 2)
-
 /obj/structure/largecrate/supply/weapons/standard_atgun
 	name = "\improper AT-36 anti tank gun and ammo chest (x1, x10)"
 	desc = "A supply crate containing a AT-36 and a full set of ammo to load into the sponson."
@@ -174,11 +160,6 @@
 	name = "sidearm ammunition case (x40)"
 	desc = "An ammunition case containing sixteen R-44 speedloaders, and twenty-four P-14 magazines."
 	supplies = list(/obj/item/ammo_magazine/revolver/standard_revolver = 16, /obj/item/ammo_magazine/pistol/standard_pistol = 24)
-
-/obj/structure/largecrate/supply/ammo/sentry
-	name = "\improper ST-571 ammunition drum case (x6)"
-	desc = "An ammunition case containing six ST-571 sentry ammunition drums."
-	supplies = list(/obj/item/ammo_magazine/sentry = 6)
 
 /obj/structure/largecrate/supply/ammo/standard_hmg
 	name = "\improper HSG-102 ammunition box case (x6)"

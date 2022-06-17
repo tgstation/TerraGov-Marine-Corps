@@ -166,8 +166,8 @@ WEAPONS
 
 /datum/supply_packs/weapons/sentry
 	name = "ST-571 Base Defense Sentry"
-	contains = list(/obj/item/storage/box/sentry)
-	cost = 40
+	contains = list(/obj/item/weapon/gun/sentry/big_sentry)
+	cost = 30
 
 /datum/supply_packs/weapons/sentry_ammo
 	name = "ST-571 sentry ammunition"
@@ -176,8 +176,8 @@ WEAPONS
 
 /datum/supply_packs/weapons/minisentry
 	name = "ST-580 Portable Sentry"
-	contains = list(/obj/item/storage/box/minisentry)
-	cost = 40
+	contains = list(/obj/item/weapon/gun/sentry/mini)
+	cost = 20
 
 /datum/supply_packs/weapons/minisentry_ammo
 	name = "ST-580 point defense sentry ammo"
@@ -195,7 +195,7 @@ WEAPONS
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "HSG-102 Mounted Heavy Smartgun"
 	contains = list(/obj/item/weapon/gun/tl102)
-	cost = 60
+	cost = 70
 
 /datum/supply_packs/weapons/m56d
 	name = "HSG-102 mounted heavy smartgun ammo"

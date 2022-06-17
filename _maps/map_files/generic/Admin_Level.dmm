@@ -10601,7 +10601,6 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 4
 	},
-/obj/structure/largecrate/supply/weapons/sentries,
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig/interiorcavern)
 "ohJ" = (
