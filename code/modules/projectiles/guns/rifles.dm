@@ -19,7 +19,6 @@
 	scatter_unwielded = 13
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
-	akimbo_additional_delay = 0
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
