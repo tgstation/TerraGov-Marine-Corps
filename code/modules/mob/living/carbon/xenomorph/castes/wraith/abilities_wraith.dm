@@ -592,11 +592,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	if(HAS_TRAIT(A, TRAIT_TIME_SHIFTED))
 		to_chat(owner, span_xenowarning("That target is already affected by a time manipulation effect!"))
-		return
+		return FALSE
 
 	if(!isliving(A))
 		to_chat(owner, span_xenowarning("We cannot target that!"))
-		return
+		return FALSE
 
 
 	var/mob/living/living_target = A
