@@ -144,7 +144,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
@@ -201,7 +201,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -235,7 +235,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "aZ" = (
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -420,7 +420,7 @@
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury/cic)
 "bG" = (
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bH" = (
@@ -543,7 +543,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -664,7 +664,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/weapon,
+/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "qh" = (
@@ -1067,7 +1067,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Wk" = (

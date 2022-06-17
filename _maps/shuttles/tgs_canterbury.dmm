@@ -335,7 +335,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "be" = (
@@ -399,7 +399,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/vending/weapon,
+/obj/machinery/vending/weapon/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bt" = (
