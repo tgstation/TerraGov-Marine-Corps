@@ -287,3 +287,9 @@
   - bugfix: Roundstart announcement text is now actually announced, apparently this
       has been broken for quite a while now.
   - rscadd: Icarus Military Port now has some actual announcement text lore.
+2022-06-17:
+  Lewdcifer:
+  - balance: Fire strength against resin walls reduced from 1.5 to 1.25.
+  Lumipharon:
+  - bugfix: Xenos have been sent to climbing school, and can now climb platforms and
+      (unwired) barricades of all kinds.
