@@ -154,6 +154,7 @@ SUBSYSTEM_DEF(ru_items)
 	force = 40
 	force_wielded = 95 //Reminder: putting trama inside deals 60% additional damage
 	flags_item = DRAINS_XENO | TWOHANDED
+	resistance_flags = 0 //override glavie
 	attack_speed = 10 //Default is 7, this has slower attack
 	reach = 2 //like spear
 	slowdown = 0 //Slowdown in back slot
@@ -167,7 +168,7 @@ SUBSYSTEM_DEF(ru_items)
 /datum/supply_packs/weapons/valihalberd
 	name = "VAL-HAL-A"
 	contains = list(/obj/item/weapon/twohanded/glaive/harvester)
-	cost = 20
+	cost = 40
 
 
 
