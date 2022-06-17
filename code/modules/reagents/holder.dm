@@ -465,19 +465,18 @@
 
 ///Remove a reagent datum with the type provided from this container. True if one is removed, false otherwise.
 /datum/reagents/proc/del_reagent(type_to_remove)
-	for(var/datum/reagent/test_reagent AS in reagent_list)
-		if (test_reagent.type == type_to_remove)
-			SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
-			if(isliving(my_atom))
-				var/mob/living/L = my_atom
-				test_reagent.on_mob_delete(L, L.get_reagent_tags())
-			reagent_list -= test_reagent
-			qdel(test_reagent)
-			update_total()
-			my_atom?.on_reagent_change(DEL_REAGENT)
-			return TRUE
-	return FALSE
-
+	var/datum/reagent/reagent_to_remove = locate(type_to_remove) in reagent_list
+	if(!reagent_to_remove)
+		return FALSE
+	SEND_SIGNAL(src, COMSIG_REAGENT_DELETING, type_to_remove)
+	if(isliving(my_atom))
+		var/mob/living/L = my_atom
+		reagent_to_remove.on_mob_delete(L, L.get_reagent_tags())
+	reagent_list -= reagent_to_remove
+	qdel(reagent_to_remove)
+	update_total()
+	my_atom?.on_reagent_change(DEL_REAGENT)
+	return TRUE
 
 
 /datum/reagents/proc/update_total()
@@ -584,17 +583,16 @@
 	////
 
 	//add the reagent to the existing if it exists
-	for(var/A in cached_reagents)
-		var/datum/reagent/R = A
-		if (R.type == reagent)
-			R.volume += amount
-			update_total()
-			if(my_atom)
-				my_atom.on_reagent_change(ADD_REAGENT)
-			R.on_merge(data, amount)
-			if(!no_react)
-				handle_reactions()
-			return TRUE
+	var/datum/reagent/existing_reagent = locate(reagent) in cached_reagents
+	if(existing_reagent)
+		existing_reagent.volume += amount
+		update_total()
+		if(my_atom)
+			my_atom.on_reagent_change(ADD_REAGENT)
+		existing_reagent.on_merge(data, amount)
+		if(!no_react)
+			handle_reactions()
+		return TRUE
 
 	//otherwise make a new one
 	SEND_SIGNAL(src, COMSIG_NEW_REAGENT_ADD, reagent, amount)
