@@ -559,7 +559,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/activable/rewind
 	name = "Time Shift"
 	ability_name = "Time Shift"
-	action_icon_state = "woosh_swoosh"
+	action_icon_state = "rewind"
 	mechanics_text = "Save the location and status of the target. When the time is up, the target location and status are restored"
 	plasma_cost = 100
 	cooldown_timer = 30 SECONDS
@@ -635,7 +635,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	targeted.add_filter("rewind_blur", 1, radial_blur_filter(0.3))
 	targeted.status_flags |= (INCORPOREAL|GODMODE)
 	INVOKE_NEXT_TICK(src, .proc/rewind)
-	targeted.canmove = FALSE
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
 	playsound(targeted, 'sound/effects/woosh_swoosh.ogg', 50)
 
 /// Move the target two tiles per tick
@@ -647,7 +647,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/turf/loc_b = pop(last_target_locs_list)
 	if(!loc_b)
 		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
-		targeted.canmove = TRUE
+		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
 		targeted.take_overall_damage(target_initial_brute_damage - targeted.getBruteLoss(), target_initial_burn_damage - targeted.getFireLoss(), updating_health = TRUE)
 		if(isxeno(target))
 			var/mob/living/carbon/xenomorph/xeno_target = targeted

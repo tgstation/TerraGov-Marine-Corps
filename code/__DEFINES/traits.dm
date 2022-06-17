@@ -98,6 +98,7 @@
 #define BULLET_ACT_TRAIT "bullet act" //Traits related to projectiles
 #define PORTAL_TRAIT "portal"
 #define OPTABLE_TRAIT "optable"
+#define TIMESHIFT_TRAIT "timeshift"
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
