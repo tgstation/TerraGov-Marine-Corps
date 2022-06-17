@@ -51,7 +51,7 @@
 	bomb_delay = 32 SECONDS
 	ammo_multiplier = 1.5 SECONDS
 
-	acid_spray_duration = 10 SECONDS
+	acid_spray_duration = 20 SECONDS
 	acid_spray_damage = 16
 	acid_spray_damage_on_hit = 35
 	acid_spray_structure_damage = 45
