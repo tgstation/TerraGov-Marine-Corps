@@ -473,10 +473,6 @@
 	adj_dizzy = - 10
 
 /datum/reagent/consumable/drink/doctor_delight/on_mob_life(mob/living/L, metabolism)
-	L.adjustBruteLoss(-0.5, 0)
-	L.adjustFireLoss(-0.5, 0)
-	L.adjustToxLoss(-0.5, 0)
-	L.adjustOxyLoss(-0.5, 0)
 	L.AdjustConfused(-10 SECONDS)
 	return ..()
 
