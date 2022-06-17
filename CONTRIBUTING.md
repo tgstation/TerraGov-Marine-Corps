@@ -902,7 +902,7 @@ Just because something isn't on this list doesn't mean that it's acceptable. Use
 
 ## Content that requires prior approval
 
-The following content requires prior approval from Maintainers, Head Coders before making a Pull Request:
+The following content requires prior approval from Maintainers or Head Coders before making a Pull Request:
 * Changes to Rank names, rank times or job ranks
 
 ## A word on Git
