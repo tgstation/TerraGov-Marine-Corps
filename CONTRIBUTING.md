@@ -41,10 +41,6 @@ You can of course, as always, ask for help at #coding channel on our [Discord](h
 
 ## Meet the Team
 
-### Design Lead
-
-The Design Lead has the final say on what gameplay changes get into and out of the game. He or she has full veto power on any feature or balance additions, changes, or removals, and establishes a general, personally-preferred direction for the game. They can also appoint maintainers.
-
 ### Headcoder
 
 The Headcoder is responsible for overall quality of the code and has the veto power here. In addition they are also able to appoint maintainers.
@@ -906,7 +902,7 @@ Just because something isn't on this list doesn't mean that it's acceptable. Use
 
 ## Content that requires prior approval
 
-The following content requires prior approval from Maintainers, Head Coders or Project Leads before making a Pull Request:
+The following content requires prior approval from Maintainers, Head Coders before making a Pull Request:
 * Changes to Rank names, rank times or job ranks
 
 ## A word on Git
