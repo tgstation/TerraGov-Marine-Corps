@@ -272,8 +272,6 @@
 	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 25, "acid" = 30)
 	slowdown = 0.25
 
-	attachments_allowed = list()
-
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
