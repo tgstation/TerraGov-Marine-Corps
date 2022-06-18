@@ -97,7 +97,7 @@
 	icon_state = "t64"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_br
-	max_rounds = 35
+	max_rounds = 36
 	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/standard_br/incendiary
@@ -107,7 +107,7 @@
 	caliber = CALIBER_10x265_CASELESS
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_br/incendiary
-	max_rounds = 35
+	max_rounds = 36
 	icon_state_mini = "mag_rifle_big_red"
 
 //-------------------------------------------------------
