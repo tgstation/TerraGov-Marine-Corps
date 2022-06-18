@@ -1,0 +1,6 @@
+author: "Arctrooper8"
+delete-after: True
+changes: 
+  - rscdel: "TerraGovTech Corpsmen Vendor"
+  - qol: "NT Med now in Corpsmen prep"
+  - imagedel: "TerraGovTech Corpsmen Vendor"
