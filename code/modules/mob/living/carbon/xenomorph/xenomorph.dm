@@ -58,8 +58,8 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
-	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
+	ADD_TRAIT(src, TRAIT_BATONIMMUNE, XENO_TRAIT)
+	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, XENO_TRAIT)
 	hive.update_tier_limits()
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
