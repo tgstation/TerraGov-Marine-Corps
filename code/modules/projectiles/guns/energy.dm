@@ -877,6 +877,12 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/gyro)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/gyro)
+
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
 	name = "\improper volkite caliver"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
@@ -919,6 +925,9 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin
 	name = "\improper volkite culverin"

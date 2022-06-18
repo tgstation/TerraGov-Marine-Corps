@@ -155,6 +155,12 @@
 	. = ..()
 	new /obj/item/storage/wallet/random( src )
 
+
+/obj/item/storage/backpack/satchel/som
+	name = "mining satchel"
+	desc = "A satchel with origins dating back to the mining colonies."
+	icon_state = "som_lightpack" //todo:new sprite
+
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"
 	desc = "A trendy looking satchel."
