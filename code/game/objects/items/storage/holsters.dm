@@ -74,6 +74,14 @@
 	user.update_inv_belt()
 	user.update_inv_s_store()
 
+//Will only draw the specific holstered item, not ammo etc.
+/obj/item/storage/holster/do_quick_equip()
+	if(!holstered_item)
+		return FALSE
+	var/obj/item/W = holstered_item
+	remove_from_storage(W, user = src)
+	return W
+
 //backpack type holster items
 /obj/item/storage/holster/backholster
 	name = "backpack holster"

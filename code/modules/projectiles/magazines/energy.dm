@@ -5,6 +5,7 @@
 	desc = "A specialized high density battery used to power lasguns."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "m43"
+	item_state = null
 	maxcharge = 600 ///Changed due to the fact some maps and ERTs spawn with the child, the lasrifle. Charges on guns changed accordingly.
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
@@ -55,3 +56,78 @@
 
 /obj/item/cell/lasgun/fob_sentry/cell
 	maxcharge = INFINITY
+
+//volkite
+
+/obj/item/cell/lasgun/volkite
+	name = "\improper volkite energy cell"
+	desc = "A specialized high density battery used to power volkite weaponry."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "volkite"
+	maxcharge = 1080
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state_mini = "mag_cell"
+	charge_overlay = "volkite"
+	reload_delay = 0
+
+/obj/item/cell/lasgun/volkite/highcap
+	name = "\improper high capacity volkite energy cell"
+	desc = "An advanced, ultrahigh capacity battery used to power volkite weaponry."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "volkite_big"
+	maxcharge = 1800
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state_mini = "mag_cell"
+	charge_overlay = "volkite_big"
+
+/obj/item/cell/lasgun/volkite/powerpack
+	name = "\improper M-70 powerpack"
+	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry. Click drag cells to the powerpack to recharge."
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "volkite_powerpack"
+	charge_overlay = "volkite_back"
+	flags_atom = CONDUCT
+	flags_equip_slot = ITEM_SLOT_BACK
+	flags_magazine_features = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
+	w_class = WEIGHT_CLASS_HUGE
+	slowdown = 0.3
+	maxcharge = 4800
+	self_recharge = TRUE
+	charge_amount = 32
+	charge_delay = 2 SECONDS
+
+///Handles draining power from the powerpack, returns the value of the charge drained to MouseDrop where it's added to the cell.
+/obj/item/cell/lasgun/volkite/powerpack/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
+	var/warning = ""
+	if(amount > charge)
+		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
+		if(charge)
+			warning = "[src]'s powerpack recharge unit buzzes a warning, its battery only having enough power to partially recharge the cell for [charge] amount."
+		else
+			warning = "[src]'s powerpack recharge unit buzzes a warning, as its battery is completely depleted of charge."
+	else
+		playsound(src, 'sound/machines/ping.ogg', 25, 1)
+		warning = "[src]'s powerpack recharge unit cheerfully pings as it successfully recharges the cell."
+	. = min(charge, amount)
+	charge -= .
+	if(mention_charge)
+		to_chat(user, span_notice("[warning]<b>Charge Remaining: [charge]/[maxcharge]</b>"))
+	update_icon()
+
+/obj/item/cell/lasgun/volkite/powerpack/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the power cell onto the backpack will trigger its special functionality.
+	. = ..()
+	if(!istype(W, /obj/item/cell))
+		return
+
+	if(W != user.r_hand && W != user.l_hand)
+		to_chat(user, span_warning("[W] must be in your hand to do that."))
+		return
+
+	var/obj/item/cell/D = W
+	var/charge_difference = D.maxcharge - D.charge
+	if(charge_difference) //If the cell has less than max charge, recharge it.
+		var/charge_used = use_charge(user, charge_difference) //consume an appropriate amount of charge
+		D.charge += charge_used //Recharge the cell battery with the lower of the difference between its present and max cap, or the remaining charge
+		D.update_icon()
+	else
+		to_chat(user, span_warning("This cell is already at maximum charge!"))

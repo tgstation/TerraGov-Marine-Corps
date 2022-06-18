@@ -19,7 +19,6 @@
 	scatter_unwielded = 13
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
-	akimbo_additional_delay = 0
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
@@ -27,8 +26,8 @@
 //AR-18 Carbine
 
 /obj/item/weapon/gun/rifle/standard_carbine
-	name = "\improper AR-18 carbine"
-	desc = "The AR-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
+	name = "\improper AR-18 Kauser carbine"
+	desc = "The Kauser and Hoch AR-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
 	icon_state = "t18"
 	item_state = "t18"
 	fire_sound = "gun_t12"
@@ -82,12 +81,13 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.05 SECONDS
-	accuracy_mult = 1.10
-	scatter = 2
+	accuracy_mult = 1.05
+	scatter = 0
 	burst_scatter_mult = 0.25
 	burst_amount = 4
 	aim_slowdown = 0.30
 	damage_falloff_mult = 0.9
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/rifle/standard_carbine/pointman
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/lasersight, /obj/item/attachable/flashlight, /obj/item/attachable/t18barrel)
@@ -99,8 +99,8 @@
 //AR-12 Assault Rifle
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle
-	name = "\improper AR-12 assault rifle"
-	desc = "The AR-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
+	name = "\improper AR-12 K&H assault rifle"
+	desc = "The Keckler and Hoch AR-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the AR-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
 	icon_state = "t12"
 	item_state = "t12"
 	fire_sound = "gun_t12"
@@ -154,8 +154,8 @@
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
 	extra_delay = 0.05 SECONDS
-	accuracy_mult = 1.15
-	scatter = 0
+	accuracy_mult = 1.1
+	scatter = -2
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
 	aim_slowdown = 0.4
@@ -173,8 +173,8 @@
 //DMR-37 DMR
 
 /obj/item/weapon/gun/rifle/standard_dmr
-	name = "\improper DMR-37 designated marksman rifle"
-	desc = "The DMR-37  is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
+	name = "\improper DMR-37 SCA designated marksman rifle"
+	desc = "The San Cristo Arms DMR-37  is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t37"
 	item_state = "t37"
@@ -228,9 +228,10 @@
 	aim_speed_modifier = 2
 
 	fire_delay = 0.65 SECONDS
-	accuracy_mult = 1.25
-	scatter = -3
+	accuracy_mult = 1.15
+	scatter = -4
 	burst_amount = 1
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/standard_dmr/marksman
 	starting_attachment_types = list(/obj/item/attachable/scope, /obj/item/attachable/angledgrip, /obj/item/attachable/extended_barrel)
@@ -241,8 +242,8 @@
 //BR-64 BR
 
 /obj/item/weapon/gun/rifle/standard_br
-	name = "\improper BR-64 battle rifle"
-	desc = "The BR-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
+	name = "\improper BR-64 SCA battle rifle"
+	desc = "The San Cristo Arms BR-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Uses 10x26.5smm caseless caliber."
 	icon_state = "t64"
 	item_state = "t64"
 	icon = 'icons/Marine/gun64.dmi'
@@ -271,7 +272,6 @@
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/bipod,
 		/obj/item/attachable/gyro,
-		/obj/item/attachable/stock/br,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/magnetic_harness,
@@ -298,7 +298,7 @@
 	burst_amount = 3
 	burst_delay = 0.10 SECONDS
 	extra_delay = 0.25 SECONDS
-	accuracy_mult = 0.75
+	accuracy_mult = 0.9
 	scatter = 0
 
 //-------------------------------------------------------
@@ -311,7 +311,7 @@
 	icon_state = "m412"
 	item_state = "m412"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/PR-412.ogg"
+	fire_sound = 'sound/weapons/guns/fire/M412.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -358,8 +358,8 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.15
-	scatter = 0
+	accuracy_mult = 1.1
+	scatter = -1
 	wield_delay = 0.7 SECONDS
 	burst_amount = 3
 	aim_slowdown = 0.4
@@ -396,7 +396,6 @@
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/stock/irremoveable/rifle,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
 	)
@@ -408,7 +407,8 @@
 	burst_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
 	damage_mult = 1.5
-	scatter = 0
+	scatter = -2
+	force = 20
 
 
 //-------------------------------------------------------
@@ -454,7 +454,6 @@
 
 	burst_amount = 4
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.10
 	scatter = 0
 	fire_delay = 0.2 SECONDS
 
@@ -488,16 +487,23 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 1, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/stock/mpi_km)
+	force = 20
 
-	accuracy_mult = 1
 	burst_amount = 1
 	fire_delay = 0.25 SECONDS
-	scatter = 5
-	wield_delay = 0.7 SECONDS
+	scatter = 2
+	wield_delay = 0.8 SECONDS
 
 	placed_overlay_iconstate = "ak47"
+
+/obj/item/weapon/gun/rifle/mpi_km/som
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/mpi_km,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/magnetic_harness,
+	)
 
 //-------------------------------------------------------
 //M16 RIFLE
@@ -552,10 +558,10 @@
 	aim_speed_modifier = 2.5
 
 	fire_delay = 0.2 SECONDS
-	scatter = 3
+	scatter = 2
 	extra_delay = -0.05 SECONDS
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.3
+	accuracy_mult = 1.1
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
 
@@ -617,10 +623,11 @@
 
 	fire_delay = 0.15 SECONDS
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.25
+	accuracy_mult = 1.15
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
-	scatter = 3
+	scatter = 1
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/rifle/famas/freelancermedic
 	starting_attachment_types = list(/obj/item/attachable/lasersight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
@@ -630,8 +637,9 @@
 //MG-42 Light Machine Gun
 
 /obj/item/weapon/gun/rifle/standard_lmg
-	name = "\improper MG-42 light machine gun"
-	desc = "The MG-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
+	name = "\improper MG-42 Kauser light machine gun"
+	desc = "The Kauser MG-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t42"
 	item_state = "t42"
 	caliber = CALIBER_10X24_CASELESS //codex
@@ -639,7 +647,7 @@
 	force = 30
 	aim_slowdown = 0.8
 	wield_delay = 1 SECONDS
-	fire_sound =  'sound/weapons/guns/fire/t40.ogg'
+	fire_sound =  'sound/weapons/guns/fire/t42.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -661,38 +669,35 @@
 		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/compensator,
-		/obj/item/attachable/stock/t42stock,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
-		/obj/item/attachable/t42barrel,
 		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/t42stock)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 49, "muzzle_y" = 17,"rail_x" = 27, "rail_y" = 24, "under_x" = 31, "under_y" = 10, "stock_x" = 0, "stock_y" = 13)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 5
 
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1
-	scatter = 4
+	scatter = 2
 	scatter_unwielded = 80
 
 //-------------------------------------------------------
 //MG-60 General Purpose Machine Gun
 
 /obj/item/weapon/gun/rifle/standard_gpmg
-	name = "\improper MG-60 general purpose machine gun"
-	desc = "The MG-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
+	name = "\improper MG-60 Raummetall general purpose machine gun"
+	desc = "The Raummetall MG-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies, or in rare cases for marching fire. It uses 10x26mm boxes."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t60"
 	item_state = "t60"
@@ -741,14 +746,14 @@
 	damage_falloff_mult = 0.5
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
-	accuracy_mult = 1
-	scatter = 10
+	scatter = 7
 	scatter_unwielded = 45
+	movement_acc_penalty_mult = 6
 
 	placed_overlay_iconstate = "lmg"
 
 /obj/item/weapon/gun/rifle/standard_lmg/autorifleman
-	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/t42barrel, /obj/item/attachable/reddot)
+	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/reddot)
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
@@ -805,9 +810,10 @@
 	burst_delay = 0.1 SECONDS
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 1.05
-	scatter = 7
+	scatter = 5
 	scatter_unwielded = 25
 	recoil_unwielded = 5
+	force = 20
 
 	placed_overlay_iconstate = "lmg"
 
@@ -878,6 +884,7 @@
 	burst_amount = 3
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.8
+	scatter = -1
 
 
 /obj/item/weapon/gun/rifle/type71/flamer
@@ -897,7 +904,7 @@
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 2
-	accuracy_mult = 2
+	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 0.8
 	damage_mult = 1.3
 
@@ -908,8 +915,8 @@
 //TX-16 AUTOMATIC SHOTGUN
 
 /obj/item/weapon/gun/rifle/standard_autoshotgun
-	name = "\improper SH-15 automatic shotgun"
-	desc = "The SH-15 Automatic Assault Shotgun, produced by Terran Armories. Another iteration of the ZX series of firearms, taking over the SX as the semi-automatic shotgun provided to the TGMC. Compared to the SX, this Shotgun is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
+	name = "\improper Zauer SH-15 automatic shotgun"
+	desc = "The Zauer SH-15 Automatic Assault Shotgun, produced by Terran Armories. Another iteration of the ZX series of firearms, taking over the SX as the semi-automatic shotgun provided to the TGMC. Compared to the SX, this Shotgun is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
 	icon_state = "tx15"
 	item_state = "tx15"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
@@ -951,15 +958,17 @@
 	fire_delay = 1 SECONDS
 	accuracy_mult = 1.15
 	burst_amount = 1
+	scatter = -2
+	movement_acc_penalty_mult = 3
 
 //-------------------------------------------------------
-//T-29 Smart Machine Gun (It's more of a rifle than the SG.)
+//SG-29 Smart Machine Gun (It's more of a rifle than the SG.)
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun
-	name = "\improper T-29 smart machine gun"
-	desc = "The T-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
-	icon_state = "t29"
-	item_state = "t29"
+	name = "\improper SG-29 Raummetall-KT smart machine gun"
+	desc = "The Raummetall-KT SG-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	icon_state = "sg29"
+	item_state = "sg29"
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
 	force = 30
@@ -982,79 +991,28 @@
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/stock/t29stock,
-		/obj/item/attachable/t29barrel,
+		/obj/item/attachable/stock/sgstock,
+		/obj/item/attachable/sgbarrel,
 		/obj/item/attachable/shoulder_mount,
 	)
 
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel)
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel)
 	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
-	fire_delay = 0.25 SECONDS
+	fire_delay = 0.2 SECONDS
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1.2
+	accuracy_mult = 1.1
 	scatter = -5
 	scatter_unwielded = 40
+	movement_acc_penalty_mult = 4
 
 	placed_overlay_iconstate = "smartgun"
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
-	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel, /obj/item/attachable/magnetic_harness)
-
-// T-25 Smartrifle
-
-/obj/item/weapon/gun/rifle/standard_smartrifle
-	name = "\improper T-25 smartrifle"
-	desc = "The T-25 is the TGMC's current standard IFF-capable rifle. It's known for its ability to lay down quick fire support very well. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
-	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "t25"
-	item_state = "t25"
-	caliber = CALIBER_10x26_CASELESS //codex
-	max_shells = 100 //codex
-	force = 35
-	aim_slowdown = 0.7
-	wield_delay = 0.75 SECONDS
-	fire_sound = "gun_smartgun"
-	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
-	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_smartrifle
-	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_smartrifle)
-	attachable_allowed = list(
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/flashlight,
-		/obj/item/attachable/bipod,
-		/obj/item/attachable/burstfire_assembly,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/scope/marine,
-		/obj/item/attachable/motiondetector,
-		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
-	)
-
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
-	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
-	fire_delay = 0.25 SECONDS
-	burst_amount = 0
-	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1.2
-	scatter = 0
-	scatter_unwielded = 15
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/magnetic_harness)
 
 //-------------------------------------------------------
 //Sectoid Rifle
@@ -1085,6 +1043,7 @@
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
+	movement_acc_penalty_mult = 3
 
 //only sectoids can fire it
 /obj/item/weapon/gun/rifle/sectoid_rifle/able_to_fire(mob/user)
@@ -1104,8 +1063,8 @@
 //SR-127 bolt action sniper rifle
 
 /obj/item/weapon/gun/rifle/chambered
-	name = "\improper SR-127 bolt action rifle"
-	desc = "The SR-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF. It has an irremoveable scope. Uses 8.6×70mm box magazines."
+	name = "\improper SR-127 Bauer bolt action rifle"
+	desc = "The Bauer SR-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF. It has an irremoveable scope. Uses 8.6×70mm box magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tl127"
 	item_state = "tl127"
@@ -1148,7 +1107,7 @@
 
 	burst_amount = 0
 	fire_delay = 1.35 SECONDS
-	accuracy_mult = 1.35
+	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.7
 	scatter = -5
 	scatter_unwielded = 20
@@ -1157,14 +1116,15 @@
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
 	cock_delay = 0.7 SECONDS
+	movement_acc_penalty_mult = 6
 
 
 //-------------------------------------------------------
-//GL-81 Auto-Sniper
+//SR-81 Auto-Sniper
 
 /obj/item/weapon/gun/rifle/standard_autosniper
-	name = "\improper GL-81 automatic sniper rifle"
-	desc = "The GL-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It's users use it for it's high rate of fire for it's class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
+	name = "\improper SR-81 Kauser-KT automatic sniper rifle"
+	desc = "The Kauser-KT SR-81 is the TerraGov Marine Corps's automatic sniper rifle usually married to it's iconic NVG/KTLD scope combo. It's users use it for it's high rate of fire for it's class, and has decent performance in any range. Uses 8.6x70mm caseless with specialized pressures for IFF fire."
 	icon_state = "t81"
 	item_state = "t81"
 	fire_sound = 'sound/weapons/guns/fire/sniper.ogg'
@@ -1195,7 +1155,7 @@
 
 	burst_amount = 0
 	fire_delay = 0.55 SECONDS
-	accuracy_mult = 1.35
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.7
 	scatter = -5
 	scatter_unwielded = 20
@@ -1203,19 +1163,20 @@
 	recoil_unwielded = 4
 	aim_slowdown = 1
 	wield_delay = 1.3 SECONDS
+	movement_acc_penalty_mult = 6
 
 //-------------------------------------------------------
 //AR-11 Rifle, based on the gamer-11
 
 /obj/item/weapon/gun/rifle/tx11
-	name = "\improper AR-11 combat rifle"
-	desc = "The AR-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
+	name = "\improper AR-11 K&H combat rifle"
+	desc = "The Keckler and Hoch AR-11 is the former standard issue rifle of the TGMC. Most of them have been mothballed into storage long ago, but some still pop up in marine or mercenary hands. It is known for its large magazine size and great burst fire, but rather awkward to use, especially during combat. It uses 4.92×34mm caseless HV ammunition."
 	icon_state = "tx11"
 	item_state = "tx11"
 	caliber = CALIBER_492X34_CASELESS //codex
 	max_shells = 70 //codex
 	wield_delay = 0.65 SECONDS
-	fire_sound = "sound/weapons/guns/fire/PR-412.ogg"
+	fire_sound = 'sound/weapons/guns/fire/M412.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -1246,11 +1207,12 @@
 	burst_delay = 0.05 SECONDS
 	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1.2
-	scatter = 0
+	accuracy_mult = 1.15
+	scatter = -1
 	scatter_unwielded = 15
 	burst_scatter_mult = 0.33
 	aim_slowdown = 0.45
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/tx11/scopeless
 	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/tx11)
@@ -1265,8 +1227,8 @@
 //AR-21 Assault Rifle
 
 /obj/item/weapon/gun/rifle/standard_skirmishrifle
-	name = "\improper AR-21 skirmish rifle"
-	desc = "The AR-21 is a versatile rifle is developed to bridge a gap between higher caliber weaponry and a normal rifle. It fires a strong 10x25 round, which has decent stopping power. It however suffers in magazine size and movement capablity compared to smaller peers. It uses 10x25mm caseless ammunition."
+	name = "\improper AR-21 Kauser skirmish rifle"
+	desc = "The Kauser AR-21 is a versatile rifle is developed to bridge a gap between higher caliber weaponry and a normal rifle. It fires a strong 10x25 round, which has decent stopping power. It however suffers in magazine size and movement capablity compared to smaller peers. It uses 10x25mm caseless ammunition."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t21"
 	item_state = "t21"
@@ -1315,8 +1277,8 @@
 	fire_delay = 0.25 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.15
-	scatter = 0
+	accuracy_mult = 1.2
+	scatter = -2
 	wield_delay = 0.6 SECONDS
 	aim_slowdown = 0.5
 	damage_falloff_mult = 0.5
@@ -1325,8 +1287,8 @@
 //AF-51B MACHINEcarbine
 
 /obj/item/weapon/gun/rifle/alf_machinecarbine
-	name = "\improper ALF-51B machinecarbine"
-	desc = "The ALF-51B is an unoffical modification of a ALF-4, or better known as the AR-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
+	name = "\improper ALF-51B Kauser machinecarbine"
+	desc = "The Kauser ALF-51B is an unoffical modification of a ALF-51, or better known as the AR-18 carbine, modified to SMG length of barrel, rechambered for a stronger round, and belt based. Truly the peak of CQC. Useless past that. Aiming is impossible. Uses 10x25mm caseless ammunition."
 	icon_state = "alf51b"
 	item_state = "alf51b"
 	fire_animation = "alf51b_fire"
@@ -1359,12 +1321,12 @@
 	extra_delay = 0.5 SECONDS
 	///Same delay as normal burst mode
 	autoburst_delay = 0.7 SECONDS
-	accuracy_mult = 1
-	scatter = 7
+	scatter = 4
 	burst_amount = 4
 	aim_slowdown = 0.3
 	wield_delay = 0.4 SECONDS
 	damage_falloff_mult = 3
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
 	starting_attachment_types = list(
@@ -1410,8 +1372,9 @@
 	accuracy_mult = 1.1
 	burst_amount = 1
 	fire_delay = 0.2 SECONDS
-	scatter = 2
+	scatter = 1
 	wield_delay = 0.5 SECONDS
+	movement_acc_penalty_mult = 4
 
 //-------------------------------------------------------
 // GL-54 grenade launcher
@@ -1456,6 +1419,7 @@
 	wield_delay = 0.8 SECONDS
 	burst_amount = 1
 	accuracy_mult = 1.15
+	scatter = -2
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
 
@@ -1531,11 +1495,11 @@
 	burst_delay = 0.15 SECONDS
 	extra_delay = 0.05 SECONDS
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1
-	scatter = 2
+	scatter = 1
 	scatter_unwielded = 15
 	burst_scatter_mult = 2
 	aim_slowdown = 1
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/rifle/tx55/freelancer
 	starting_attachment_types = list(

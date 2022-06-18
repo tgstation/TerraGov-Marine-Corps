@@ -83,14 +83,7 @@
 	var/reach = 1
 
 
-	/* Species-specific sprites, concept stolen from Paradise//vg/.
-	ex:
-	sprite_sheets = list(
-		"Tajara" = 'icons/cat/are/bad'
-		)
-	If index term exists and icon_override is not set, this sprite sheet will be used.
-	*/
-
+	/// Species-specific sprites, concept stolen from Paradise//vg/. Ex: sprite_sheets = list("Combat Robot" = 'icons/mob/species/robot/backpack.dmi') If index term exists and icon_override is not set, this sprite sheet will be used.
 	var/list/sprite_sheets = null
 
 	//** These specify item/icon overrides for _slots_
@@ -308,7 +301,7 @@
 				break
 			if(!affected_limbs.Find(X.name) )
 				continue
-			armor_block = H.run_armor_check(X, "acid")
+			armor_block = H.get_soft_armor("acid", X)
 			if(istype(X) && X.take_damage_limb(0, rand(raw_damage * 0.75, raw_damage * 1.25), blocked = armor_block))
 				H.UpdateDamageIcon()
 			limb_count++
@@ -317,6 +310,14 @@
 		current_acid = null
 	return
 
+///Called to return an item to equip using the quick equip hotkey. Will try return a stored item, otherwise returns itself to equip.
+/obj/item/proc/do_quick_equip()
+	var/obj/item/found = locate(/obj/item/storage) in contents
+	if(!found)
+		found = locate(/obj/item/armor_module/storage) in contents
+	if(found)
+		return found.do_quick_equip()
+	return src
 
 ///called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
 /obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
@@ -390,12 +391,12 @@
 	return TRUE
 
 ///Signal sender for unique_action
-/obj/item/proc/do_unique_action(mob/user)
+/obj/item/proc/do_unique_action(mob/user, special_treatment = FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
-	return unique_action(user)
+	return unique_action(user, special_treatment)
 
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
-/obj/item/proc/unique_action(mob/user)
+/obj/item/proc/unique_action(mob/user, special_treatment = FALSE)
 	return
 
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed
@@ -546,6 +547,13 @@
 			if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 				return TRUE
 			return FALSE
+		if(SLOT_IN_ACCESSORY)
+			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform)))
+				var/obj/item/armor_module/storage/U = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			return FALSE
 		if(SLOT_S_STORE)
 			if(H.s_store)
 				return FALSE
@@ -594,7 +602,7 @@
 					return TRUE
 			return FALSE
 		if(SLOT_IN_S_HOLSTER)
-			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
+			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) || (H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.s_store
 				if(S.can_be_inserted(src, warning))
 					return TRUE
@@ -618,14 +626,43 @@
 			if(S.can_be_inserted(src, warning))
 				return TRUE
 		if(SLOT_IN_SUIT)
-			var/obj/item/clothing/suit/storage/S = H.wear_suit
-			if(!istype(S) || !S.pockets)
+			if(!H.wear_suit)
 				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
-				return TRUE
+			if(istype(H.wear_suit, /obj/item/clothing/suit/modular))
+				var/obj/item/clothing/suit/modular/T = H.wear_suit
+				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+					return FALSE
+				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			if(istype(H.wear_suit, /obj/item/clothing/suit/storage)) //old suits use the pocket var instead of storage attachments
+				var/obj/item/clothing/suit/storage/T = H.wear_suit
+				if(!T.pockets)
+					return FALSE
+				var/obj/item/storage/internal/S = T.pockets
+				if(S.can_be_inserted(src, warning))
+					return TRUE
 		if(SLOT_IN_HEAD)
-			var/obj/item/clothing/head/helmet/marine/S = H.head
+			if(!H.head)
+				return FALSE
+			if(istype(H.head, /obj/item/clothing/head/modular))
+				var/obj/item/clothing/head/modular/T = H.head
+				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+					return FALSE
+				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			if(istype(H.head, /obj/item/clothing/head/helmet/marine)) //old hats use the pocket var instead of storage attachments
+				var/obj/item/clothing/head/helmet/marine/T = H.head
+				if(!T.pockets)
+					return FALSE
+				var/obj/item/storage/internal/S = T.pockets
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+		if(SLOT_IN_BOOT)
+			var/obj/item/clothing/shoes/marine/S = H.shoes
 			if(!istype(S) || !S.pockets)
 				return FALSE
 			var/obj/item/storage/internal/T = S.pockets
@@ -1124,9 +1161,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	SEND_SIGNAL(src, COMSIG_ITEM_TOGGLE_ACTIVE, active)
 
 ///Generates worn icon for sprites on-mob.
-/obj/item/proc/make_worn_icon(slot_name, inhands, default_icon, default_layer)
+/obj/item/proc/make_worn_icon(species_type, slot_name, inhands, default_icon, default_layer)
 	//Get the required information about the base icon
-	var/icon/icon2use = get_worn_icon_file(slot_name = slot_name, default_icon = default_icon, inhands = inhands)
+	var/icon/icon2use = get_worn_icon_file(species_type = species_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
 	var/layer2use = !inhands && worn_layer ? -worn_layer : -default_layer
 
@@ -1155,13 +1192,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	return standing
 
 ///gets what icon dmi file shall be used for the on-mob sprite
-/obj/item/proc/get_worn_icon_file(slot_name,default_icon,inhands)
+/obj/item/proc/get_worn_icon_file(species_type,slot_name,default_icon,inhands)
 
 	//1: icon_override var
 	if(icon_override)
 		return icon_override
 
 	//2: species-specific sprite sheets.
+	. = LAZYACCESS(sprite_sheets, species_type)
 	if(. && !inhands)
 		return
 

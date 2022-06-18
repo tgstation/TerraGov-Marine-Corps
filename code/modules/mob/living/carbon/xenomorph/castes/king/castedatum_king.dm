@@ -25,7 +25,7 @@
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 30, "bio" = 45, "rad" = 45, "fire" = 100, "acid" = 45)
@@ -37,6 +37,7 @@
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
+		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/activable/cocoon,
 		/datum/action/xeno_action/activable/plant_weeds,
@@ -44,7 +45,10 @@
 		/datum/action/xeno_action/activable/nightfall,
 		/datum/action/xeno_action/activable/gravity_crush,
 		/datum/action/xeno_action/psychic_summon,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
 		/datum/action/xeno_action/set_agressivity,

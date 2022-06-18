@@ -43,8 +43,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/item/trash/chunk,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "dI" = (
@@ -71,8 +70,7 @@
 "iV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/effect/decal/cleanable/blood/gibs/limb,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "jz" = (
@@ -84,8 +82,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "mI" = (
@@ -105,8 +102,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "pF" = (
@@ -131,14 +127,12 @@
 /area/bigredv2/outside/dorms)
 "tW" = (
 /obj/item/megaphone,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "up" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "uE" = (
@@ -167,8 +161,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "AW" = (
@@ -178,8 +171,7 @@
 /area/bigredv2/outside/dorms)
 "BF" = (
 /obj/item/trash/chunk,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "BU" = (
@@ -218,8 +210,7 @@
 /obj/item/trash/chunk{
 	pixel_y = 5
 	},
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "FW" = (
@@ -236,8 +227,7 @@
 	pixel_y = 4
 	},
 /obj/item/reagent_containers/food/drinks/bottle/rum,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "Hb" = (
@@ -251,8 +241,7 @@
 /obj/effect/decal/cleanable/blood{
 	icon_state = "xgib4"
 	},
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "Ii" = (
@@ -307,8 +296,7 @@
 	pixel_y = -4
 	},
 /obj/effect/ai_node,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "Nk" = (
@@ -318,8 +306,7 @@
 "NO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "Pr" = (
@@ -339,8 +326,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "Xw" = (
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "Yz" = (
@@ -354,20 +340,17 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "Zn" = (
 /obj/item/reagent_containers/food/drinks/bottle/rum,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 "ZZ" = (
 /obj/machinery/vending/boozeomat,
-/turf/open/floor{
-	icon_state = "grimy"
+/turf/open/floor/grimy{
 	},
 /area/bigredv2/outside/dorms)
 

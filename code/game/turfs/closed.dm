@@ -68,7 +68,6 @@
 	icon_state = "jungletree"
 	desc = "Some thick jungle trees."
 
-
 	//Not yet
 /turf/closed/gm/ex_act(severity)
 	switch(severity)
@@ -79,7 +78,7 @@
 /turf/closed/gm/dense
 	name = "dense jungle wall"
 	resistance_flags = PLASMACUTTER_IMMUNE
-	
+
 //desertdam rock
 /turf/closed/desertdamrockwall
 	name = "rockwall"
@@ -93,6 +92,11 @@
 
 /turf/closed/desertdamrockwall/invincible
 	resistance_flags = RESIST_ALL
+
+/turf/closed/desertdamrockwall/invincible/perimeter
+	name = "wall"
+	icon_state = "pwall"
+	icon = 'icons/turf/shuttle.dmi'
 
 //lava rock
 /turf/closed/brock

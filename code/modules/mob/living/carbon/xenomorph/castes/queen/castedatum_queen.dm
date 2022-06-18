@@ -26,12 +26,12 @@
 	upgrade_threshold = TIER_THREE_YOUNG_THRESHOLD
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR|CASTE_IS_BUILDER|CASTE_CAN_BE_GIVEN_PLASMA
-
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
+	can_flags = CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 30, "bio" = 45, "rad" = 45, "fire" = 100, "acid" = 45)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 30, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 45)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -39,7 +39,6 @@
 
 	// *** Pheromones *** //
 	aura_strength = 3.5 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2 //Amount of leaders allowed
@@ -60,7 +59,10 @@
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
 		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/set_xeno_lead,
@@ -96,7 +98,7 @@
 	upgrade_threshold = TIER_THREE_MATURE_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = 30, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
+	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = 30, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
@@ -129,7 +131,7 @@
 	upgrade_threshold = TIER_THREE_ELDER_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 30, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
+	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 30, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 55)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
@@ -162,7 +164,7 @@
 	upgrade_threshold = TIER_THREE_ANCIENT_THRESHOLD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = 30, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
+	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = 30, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
@@ -192,7 +194,7 @@
 	max_health = 500
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = 30, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
+	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = 30, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS
@@ -217,7 +219,10 @@
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/psychic_cure/acidic_salve/queen,
 		/datum/action/xeno_action/activable/neurotox_sting/ozelomelyn,
-		/datum/action/xeno_action/toggle_pheromones,
+		/datum/action/xeno_action/pheromones,
+		/datum/action/xeno_action/pheromones/emit_recovery,
+		/datum/action/xeno_action/pheromones/emit_warding,
+		/datum/action/xeno_action/pheromones/emit_frenzy,
 		/datum/action/xeno_action/toggle_queen_zoom,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/set_xeno_lead,
@@ -226,6 +231,7 @@
 		/datum/action/xeno_action/deevolve,
 		/datum/action/xeno_action/rally_hive,
 		/datum/action/xeno_action/rally_minion,
+		/datum/action/xeno_action/activable/command_minions,
 		/datum/action/xeno_action/set_agressivity,
 		/datum/action/xeno_action/ready_charge,
 	)

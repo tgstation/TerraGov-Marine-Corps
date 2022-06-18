@@ -101,7 +101,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	wear_suit = /obj/item/clothing/suit/storage/marine/harness
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medkit/firstaid
 	r_hand = /obj/item/portable_vendor/marine/squadmarine
 
 /datum/outfit/job/marine/standard/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -172,7 +172,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	wear_suit = /obj/item/clothing/suit/storage/marine
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine/insulated
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medkit/firstaid
 	r_store = /obj/item/storage/pouch/construction/equippedengineer
 	r_hand = /obj/item/portable_vendor/marine/squadmarine/engineer
 	l_hand = /obj/item/encryptionkey/engi
@@ -254,15 +254,15 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/outfit/job/marine/corpsman/equipped
 	name = "Squad Corpsman (Equipped)"
 
-	belt = /obj/item/storage/belt/combatLifesaver
+	belt = /obj/item/storage/belt/lifesaver
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine/corpsman
 	wear_suit = /obj/item/clothing/suit/storage/marine
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
 	head = /obj/item/clothing/head/modular/marine/m10x
-	l_store = /obj/item/storage/pouch/medkit/equippedcorpsman
-	r_store = /obj/item/storage/pouch/medical/equippedcorpsman
+	l_store = /obj/item/storage/pouch/medkit/medic
+	r_store = /obj/item/storage/pouch/medical_injectors/medic
 	glasses = /obj/item/clothing/glasses/hud/health
 	r_hand = /obj/item/portable_vendor/marine/squadmarine/corpsman
 	l_hand = /obj/item/encryptionkey/med
@@ -272,8 +272,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_SUIT)
 	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine, SLOT_IN_BELT)
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/kelotane , SLOT_IN_HEAD)
@@ -323,7 +321,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
 		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
-		When it comes to heavy firepower during the early stages of an operation, TGMC has provided the squad with Smartgunners. They are those who trained to operate the T-29 Smart Machine Gun, an IFF heavy weapon that provides cover fire even directly behind the marines. Squad Smartgunners are best when fighting behind marines, as they can act as shields or during a hectic crossfire.
+		When it comes to heavy firepower during the early stages of an operation, TGMC has provided the squad with Smartgunners. They are those who trained to operate the SG-29 Smart Machine Gun, an IFF heavy weapon that provides cover fire even directly behind the marines. Squad Smartgunners are best when fighting behind marines, as they can act as shields or during a hectic crossfire.
 		<br /><br />
 		<b>Duty</b>: Be the backline of your pointmen, provide heavy weapons support with your smart machine gun.
 	"}
@@ -375,7 +373,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
 	head = /obj/item/clothing/head/modular/marine/m10x
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medkit/firstaid
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	r_hand = /obj/item/portable_vendor/marine/squadmarine/smartgunner
@@ -500,8 +498,8 @@ You are also in charge of communicating with command and letting them know about
 	head = /obj/item/clothing/head/modular/marine/m10x/leader
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
-	l_store = /obj/item/storage/pouch/firstaid/full
-	r_store = /obj/item/storage/pouch/medical/equippedcorpsman
+	l_store = /obj/item/storage/pouch/medkit/firstaid
+	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	r_hand = /obj/item/storage/box/squadmarine/squadleader
 	l_hand = /obj/item/encryptionkey/squadlead
 	belt = /obj/item/storage/belt/marine/t12

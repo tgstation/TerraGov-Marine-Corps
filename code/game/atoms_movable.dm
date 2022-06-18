@@ -112,7 +112,7 @@
 
 	if(smoothing_behavior && isturf(old_loc))
 		smooth_neighbors(old_loc)
-	
+
 	invisibility = INVISIBILITY_ABSTRACT
 
 	pulledby?.stop_pulling()
@@ -209,7 +209,7 @@
 			return
 		if(!(flags_atom & DIRLOCK))
 			setDir(direction)
-	
+
 	var/enter_return_value = newloc.Enter(src)
 	if(!(enter_return_value & TURF_CAN_ENTER))
 		if(can_pass_diagonally && !(enter_return_value & TURF_ENTER_ALREADY_MOVED))
@@ -466,12 +466,12 @@
 	if(!flying)
 		set_throwing(TRUE)
 		src.thrower = thrower
-	
+
 	var/originally_dir_locked = flags_atom & DIRLOCK
 	if(!originally_dir_locked)
 		setDir(get_dir(src, target))
 		flags_atom |= DIRLOCK
-	
+
 	var/atom/parrier	//If something parried the throw, this is set and prevents default throw ending in favor of triggering another throw back to its source.
 	throw_source = get_turf(src)	//store the origin turf
 
@@ -588,12 +588,6 @@
 		last_move = buckled_mob.last_move
 		return FALSE
 	return TRUE
-
-
-//called when a mob tries to breathe while inside us.
-/atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
-	. = return_air()
-
 
 /atom/movable/proc/check_blocked_turf(turf/target)
 	if(target.density)

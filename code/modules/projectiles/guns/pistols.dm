@@ -12,7 +12,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	movement_acc_penalty_mult = 0
+	movement_acc_penalty_mult = 2
 	wield_delay = 0.2 SECONDS //If you modify your pistol to be two-handed, it will still be fast to aim
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
@@ -33,7 +33,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	actions_types = list(/datum/action/item_action/aim_mode) // all pistols can aim mode
 	aim_speed_modifier = 0.65
-	scatter = 0
+	scatter = -2
 	scatter_unwielded = 4
 	akimbo_additional_delay = 0.9
 
@@ -59,7 +59,6 @@
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.95
-	scatter = 0
 	scatter_unwielded = 4
 	recoil = -2
 	recoil_unwielded = -2
@@ -101,7 +100,6 @@
 	muzzle_flash_color = COLOR_GREEN
 
 	fire_delay = 1.5 SECONDS
-	scatter = -1
 	scatter_unwielded = 2
 	recoil = -2
 	recoil_unwielded = -2
@@ -111,6 +109,8 @@
 	detach_delay = 3 SECONDS
 	pixel_shift_x = 10
 	pixel_shift_y = 19
+
+	wield_delay_mod	= 0.2 SECONDS
 
 	placed_overlay_iconstate = "tx7"
 
@@ -159,7 +159,6 @@
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
-	scatter = 0
 
 //-------------------------------------------------------
 // P-23 service pistol
@@ -328,6 +327,8 @@
 	recoil_unwielded = 2
 	scatter = 4
 	scatter_unwielded = 7
+	accuracy_mult = 1
+	accuracy_mult_unwielded = 0.7
 
 /obj/item/weapon/gun/pistol/heavy/gold
 	name = "\improper Desert Eagle custom pistol"
@@ -368,9 +369,7 @@
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible)
 
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 1.65
-	accuracy_mult_unwielded = 1.5
-	scatter = 0
+	accuracy_mult = 1.3
 	scatter_unwielded = 2
 	damage_mult = 1.3
 	aim_slowdown = 0.1
@@ -439,9 +438,6 @@
 	fire_delay = 0.15 SECONDS
 	recoil = -2
 	recoil_unwielded = -2
-	accuracy_mult = 1.1
-	accuracy_mult_unwielded = 1
-	scatter = -2
 	scatter_unwielded = 0
 	aim_speed_modifier = 0
 
@@ -472,7 +468,7 @@
 	damage_mult = 1.2
 	recoil = 1
 	recoil_unwielded = 2
-	accuracy_mult = 1.5
+	accuracy_mult_unwielded = 0.7
 	scatter = 3
 	scatter_unwielded = 6
 
@@ -516,7 +512,7 @@
 	accuracy_mult_unwielded = 0.95
 	recoil = 0
 	aim_slowdown = 0.2
-	scatter = 3
+	scatter = 0
 	scatter_unwielded = 6
 
 
@@ -630,7 +626,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/stock/rifle,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/lace,

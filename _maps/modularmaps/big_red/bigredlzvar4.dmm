@@ -977,7 +977,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/space_port)
 "wW" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/rack,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -1351,8 +1351,8 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
 "HH" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
@@ -1791,6 +1791,10 @@
 "Tn" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
+"TY" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "Uh" = (
 /obj/machinery/flasher/portable,
 /obj/effect/landmark/weed_node,
@@ -2173,10 +2177,10 @@ dV
 dV
 dV
 dV
-qg
+ti
 PE
-EA
-Zs
+Uo
+DP
 "}
 (6,1,1) = {"
 Zs
@@ -2213,7 +2217,7 @@ dV
 dV
 mw
 dV
-ti
+qg
 hN
 rl
 DP
@@ -2373,7 +2377,7 @@ dV
 dV
 dV
 dV
-ti
+qg
 hN
 Uo
 DP
@@ -2415,8 +2419,8 @@ mw
 dV
 qg
 PE
-EA
-Zs
+Uo
+DP
 "}
 (12,1,1) = {"
 Zs
@@ -2453,9 +2457,9 @@ dV
 dV
 dV
 dV
-dV
+TY
 PE
-EA
+Uo
 Zs
 "}
 (13,1,1) = {"

@@ -53,7 +53,7 @@
 	anchored = TRUE
 	w_class = 10
 	layer = ABOVE_FLY_LAYER
-	set_light(2)
+	set_light(2, 1)
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 	H.visible_message("[H] activates [src].",
 	"You activate [src].")

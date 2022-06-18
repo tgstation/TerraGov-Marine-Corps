@@ -19,31 +19,8 @@
 		if(blood_volume < BLOOD_VOLUME_NORMAL)
 			blood_volume += 0.1 // regenerate blood VERY slowly
 
-		heart_multi = initial(heart_multi)
-
-		// Damaged heart virtually reduces the blood volume, as the blood isn't
-		// being pumped properly anymore.
-		if(species && species.has_organ["heart"])
-			var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
-
-			if(!heart)
-				heart_multi *= 0.5 //you'd die in seconds but you can't remove internal organs even with varediting.
-
-			if(heart && reagents.get_reagent_amount(/datum/reagent/medicine/peridaxon) < 0.05 && heart.damage > 1)
-				if(heart.is_broken())
-					heart_multi *= 0.5
-					blood_volume = max(blood_volume - 1.3, 0)
-				else if(heart.is_bruised())
-					heart_multi *= 0.7
-					blood_volume = max(blood_volume - 0.5, 0)
-				else
-					heart_multi *= 0.9
-					blood_volume = max(blood_volume - 0.1, 0) //nulls regeneration
-
-
-
 	//Effects of bloodloss
-		switch(blood_volume * heart_multi)
+		switch(blood_volume)
 
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(1))
@@ -88,10 +65,7 @@
 			var/datum/limb/temp = l
 			if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
 				continue
-			for(var/w in temp.wounds)
-				var/datum/wound/W = w
-				if(W.bleeding())
-					blood_max += (W.damage / 60)
+			blood_max += temp.brute_dam / 60
 			if (temp.surgery_open_stage)
 				blood_max += 0.6  //Yer stomach is cut open
 

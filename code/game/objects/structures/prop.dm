@@ -180,6 +180,7 @@
 	icon_state = "TGMC1"
 	density = FALSE
 	resistance_flags = UNACIDABLE
+	layer = ABOVE_TURF_LAYER
 
 /obj/structure/prop/mainship/name_stencil/Initialize()
 	. = ..()
@@ -288,6 +289,15 @@
 	name = "\improper Command Airlock"
 	icon_state = "command_locked"
 
+/obj/structure/prop/mainship/telecomms
+	name = "\improper Command Airlock"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "broadcaster_send"
+
+/obj/structure/prop/mainship/telecomms/bus
+	name = "\improper Command Airlock"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "bus"
 
 /obj/structure/prop/mainship/suit_storage_prop
 	name = "Suit Storage Unit"
@@ -334,6 +344,19 @@
 	desc = "A ferocious, fang-bearing creature that resembles a fish."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "carpprop"
+	density = TRUE
+
+/obj/structure/prop/templedoor
+	name = "Strange Temple"
+	icon = 'icons/obj/doors/Doorsand.dmi'
+	icon_state = "door_open"
+	density = FALSE
+
+/obj/structure/prop/oresilo
+	name = "ore silo"
+	desc = "An all-in-one bluespace storage and transmission system for the colony's mineral distribution needs. This one appears to be deactivated."
+	icon = 'icons/obj/machines/mining_machines.dmi'
+	icon_state = "silo"
 	density = TRUE
 
 /obj/structure/prop/mainship/propcarp/Initialize(mapload) //slightly randomize carp to simulate life
@@ -453,6 +476,40 @@
 	desc = "An AI Module for programming laws to an AI."
 	icon_state = "std_mod"
 
+/obj/item/prop/organ
+	name = "organ"
+	desc = "It looks like it probably just plopped out. It's too decayed to be reinserted in a patient."
+	icon = 'icons/obj/items/organs.dmi'
+	icon_state = "heart"
+
+/obj/item/prop/organ/heart
+	name = "heart"
+	icon_state = "heart-off"
+
+/obj/item/prop/organ/brain
+	name = "brain"
+	icon_state = "brain1"
+
+/obj/item/prop/organ/appendix
+	name = "appendix"
+	icon_state = "appendix"
+
+/obj/item/prop/organ/lungs
+	name = "lungs"
+	icon_state = "lungs"
+
+/obj/item/prop/organ/kidneys
+	name = "kidneys"
+	icon_state = "kidneys"
+
+/obj/item/prop/organ/eyes
+	name = "eyes"
+	icon_state = "eyes"
+
+/obj/item/prop/organ/liver
+	name = "liver"
+	icon_state = "liver"
+
 /obj/item/prop/aimodule/Initialize(mapload)
 	. = ..()
 	name = pick("'Safeguard' AI Module'",
@@ -489,6 +546,7 @@
 	name = "\improper Broken vendor"
 	icon = 'icons/Marine/mainship_props.dmi'
 	desc = "The insides of this vendor are visible and rusted through, you get the feeling there's no fixing this machine."
+	density = TRUE
 
 /obj/structure/prop/brokenvendor/brokenweaponsrack
 	icon_state = "marinearmory-broken"
@@ -608,3 +666,392 @@
 
 /obj/structure/prop/vehicle/crawler/crawler_cargo
 	icon_state = "crawler_cargo"
+
+/obj/structure/prop/vehicle/tank
+	name = "Decommissioned TAV - Rhino"
+	desc = "A decomissioned tank, all methods of propulsion have been disabled and the entrances sealed."
+	icon = 'icons/Marine/tank_propns.dmi'
+	icon_state = "tank_complete"
+	density = TRUE
+	coverage = 80
+	bound_height = 128
+	bound_width = 128
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/tank/north
+	icon = 'icons/Marine/tank_propns.dmi'
+	icon_state = "tank_complete"
+	bound_height = 128
+	bound_width = 96
+
+/obj/structure/prop/vehicle/tank/north/base
+	name = "Decommissioned TAV - Rhino"
+	desc = "The base of a decomissioned tank."
+	icon_state = "tank_base"
+
+/obj/structure/prop/vehicle/tank/north/altnorth
+	icon_state = "tank_complete_alt"
+
+/obj/structure/prop/vehicle/tank/east
+	icon = 'icons/Marine/tank_propew.dmi'
+	icon_state = "tank_complete"
+	bound_height = 96
+	bound_width = 128
+
+/obj/structure/prop/vehicle/tank/east/base
+	name = "Decommissioned TAV - Rhino"
+	desc = "The base of a decomissioned tank."
+	icon_state = "tank_base"
+
+/obj/structure/prop/vehicle/tank/east/turret
+	icon_state = "turret_viper"
+	layer = TANK_TURRET_LAYER
+	desc = "The turret of a decomissioned tank."
+
+/obj/structure/prop/vehicle/tank/east/turret/complete
+	icon_state = "turret_complete"
+
+/obj/structure/prop/vehicle/tank/east/turretalt
+	icon_state = "turret_cobra"
+	layer = TANK_TURRET_LAYER
+	desc = "The turret of a decomissioned tank."
+
+/obj/structure/prop/vehicle/tank/east/barrel
+	icon_state = "ltb_cannon_0"
+	layer = TANK_BARREL_LAYER
+	mouse_opacity = 0
+
+/obj/structure/prop/vehicle/tank/east/barrel/broken
+	icon_state = "ltb_cannon_1"
+
+/obj/structure/prop/vehicle/tank/east/barrel/minigun
+	icon_state = "ltaaap_minigun_0"
+
+/obj/structure/prop/vehicle/tank/east/barrel/minigunbroken
+	icon_state = "ltaaap_minigun_1"
+
+/obj/structure/prop/vehicle/tank/east/alteast
+	icon_state = "tank_complete_alt"
+
+/obj/structure/prop/vehicle/tank/east/decoration
+	density = FALSE
+	mouse_opacity = 0
+	layer = TANK_DECORATION_LAYER
+
+/obj/structure/prop/vehicle/tank/east/decoration/treads
+	icon_state = "treads_stationary"
+
+/obj/structure/prop/vehicle/tank/east/decoration/damagedtreads
+	icon_state = "damaged_hardpt_treads"
+
+/obj/structure/prop/vehicle/tank/east/decoration/armor
+	icon_state = "caustic_armor"
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/tank/east/decoration/armor/causticarmor
+	icon_state = "caustic_armor"
+
+/obj/structure/prop/vehicle/tank/east/decoration/armor/concussivearmor
+	icon_state = "concussive_armor"
+
+/obj/structure/prop/vehicle/tank/east/decoration/armor/ballisticarmor
+	icon_state = "ballistic_armor"
+
+/obj/structure/prop/vehicle/tank/east/decoration/armor/paladinarmor
+	icon_state = "paladin_armor"
+
+/obj/structure/prop/vehicle/tank/east/decoration/damagedhardpoint
+	icon_state = "damaged_hardpt_armor"
+
+/obj/structure/prop/vehicle/tank/east/decoration/damagedhardpointframe
+	icon_state = "damaged_hardpt_frame"
+
+/obj/structure/prop/vehicle/tank/east/decoration/damagedhardpointturret
+	icon_state = "damaged_hardpt_turret"
+
+/obj/structure/prop/vehicle/tank/east/decoration/damagedhardpointone
+	icon_state = "damaged_hardpt_primary"
+
+/obj/structure/prop/vehicle/tank/east/decoration/damagedhardpointtwo
+	icon_state = "damaged_hardpt_secondary"
+
+/obj/structure/prop/vehicle/tank/east/decoration/damagedhardpointthree
+	icon_state = "damaged_hardpt_support"
+
+/obj/structure/prop/vehicle/tank/east/decoration/slaunchone
+	icon_state = "slauncher_0"
+
+/obj/structure/prop/vehicle/tank/east/decoration/slaunchtwo
+	icon_state = "slauncher_1"
+
+/obj/structure/prop/vehicle/tank/east/decoration/slaunchthree
+	icon_state = "slauncher_2"
+
+/obj/structure/prop/vehicle/tank/east/decoration/driveenhancerone
+	icon_state = "odrive_enhancer_1"
+
+/obj/structure/prop/vehicle/tank/east/decoration/driveenhancerzero
+	icon_state = "odrive_enhancer_0"
+
+/obj/structure/prop/vehicle/tank/east/decoration/flamer
+	icon_state = "flamer_1"
+
+/obj/structure/prop/vehicle/tank/east/decoration/glauncherone
+	icon_state = "glauncher_1"
+
+/obj/structure/prop/vehicle/tank/east/decoration/glauncherzero
+	icon_state = "glauncher_0"
+
+/obj/structure/prop/vehicle/tank/east/decoration/cupolaone
+	icon_state = "m56cupola_1"
+
+/obj/structure/prop/vehicle/tank/east/decoration/cupolazero
+	icon_state = "m56cupola_0"
+
+/obj/structure/prop/vehicle/tank/east/decoration/towlauncherone
+	icon_state = "towlauncher_1"
+
+/obj/structure/prop/vehicle/tank/east/decoration/towlauncherzero
+	icon_state = "towlauncher_0"
+
+/obj/structure/prop/vehicle/tank/east/decoration/warrayone
+	icon_state = "warray_1"
+
+/obj/structure/prop/vehicle/tank/east/decoration/warrayzero
+	icon_state = "warray_0"
+
+/obj/structure/prop/vehicle/tank/east/decoration/artmodone
+	icon_state = "artillerymod_1"
+
+/obj/structure/prop/vehicle/tank/east/decoration/artmodzero
+	icon_state = "artillerymod_0"
+
+/obj/structure/prop/vehicle/tank/east/armor/snowplow
+	icon_state = "snowplow_0"
+
+/obj/structure/prop/vehicle/tank/east/armor/snowplowone
+	icon_state = "snowplow_1"
+
+/obj/structure/prop/vehicle/tank/north/turret
+	icon_state = "turret_viper"
+	layer = TANK_TURRET_LAYER
+	desc = "The turret of a decomissioned tank."
+
+/obj/structure/prop/vehicle/tank/north/turret/complete
+	icon_state = "turret_complete"
+
+/obj/structure/prop/vehicle/tank/north/turretalt
+	icon_state = "turret_cobra"
+	layer = TANK_TURRET_LAYER
+	desc = "The turret of a decomissioned tank."
+
+/obj/structure/prop/vehicle/tank/north/barrel
+	icon_state = "ltb_cannon_0"
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = 0
+
+/obj/structure/prop/vehicle/tank/north/barrel/broken
+	icon_state = "ltb_cannon_1"
+
+/obj/structure/prop/vehicle/tank/north/barrel/minigun
+	icon_state = "ltaaap_minigun_0"
+
+/obj/structure/prop/vehicle/tank/north/barrel/minigunbroken
+	icon_state = "ltaaap_minigun_1"
+
+/obj/structure/prop/vehicle/tank/north/altnorth
+	icon_state = "tank_complete_alt"
+
+/obj/structure/prop/vehicle/tank/north/decoration
+	density = FALSE
+	mouse_opacity = 0
+	layer = TANK_DECORATION_LAYER
+
+/obj/structure/prop/vehicle/tank/north/decoration/treads
+	icon_state = "treads_stationary"
+
+/obj/structure/prop/vehicle/tank/north/decoration/damagedtreads
+	icon_state = "damaged_hardpt_treads"
+
+/obj/structure/prop/vehicle/tank/north/decoration/armor
+	icon_state = "caustic_armor"
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/tank/north/decoration/armor/causticarmor
+	icon_state = "caustic_armor"
+
+/obj/structure/prop/vehicle/tank/north/decoration/armor/concussivearmor
+	icon_state = "concussive_armor"
+
+/obj/structure/prop/vehicle/tank/north/decoration/armor/ballisticarmor
+	icon_state = "ballistic_armor"
+
+/obj/structure/prop/vehicle/tank/north/decoration/armor/paladinarmor
+	icon_state = "paladin_armor"
+
+/obj/structure/prop/vehicle/tank/north/decoration/damagedhardpoint
+	icon_state = "damaged_hardpt_armor"
+
+/obj/structure/prop/vehicle/tank/north/decoration/damagedhardpointframe
+	icon_state = "damaged_hardpt_frame"
+
+/obj/structure/prop/vehicle/tank/north/decoration/damagedhardpointturret
+	icon_state = "damaged_hardpt_turret"
+
+/obj/structure/prop/vehicle/tank/north/decoration/damagedhardpointone
+	icon_state = "damaged_hardpt_primary"
+
+/obj/structure/prop/vehicle/tank/north/decoration/damagedhardpointtwo
+	icon_state = "damaged_hardpt_secondary"
+
+/obj/structure/prop/vehicle/tank/north/decoration/damagedhardpointthree
+	icon_state = "damaged_hardpt_support"
+
+/obj/structure/prop/vehicle/tank/north/decoration/slaunchone
+	icon_state = "slauncher_0"
+
+/obj/structure/prop/vehicle/tank/north/decoration/slaunchtwo
+	icon_state = "slauncher_1"
+
+/obj/structure/prop/vehicle/tank/north/decoration/slaunchthree
+	icon_state = "slauncher_2"
+
+/obj/structure/prop/vehicle/tank/north/decoration/driveenhancerone
+	icon_state = "odrive_enhancer_1"
+
+/obj/structure/prop/vehicle/tank/north/decoration/driveenhancerzero
+	icon_state = "odrive_enhancer_0"
+
+/obj/structure/prop/vehicle/tank/north/decoration/flamer
+	icon_state = "flamer_1"
+
+/obj/structure/prop/vehicle/tank/north/decoration/glauncherone
+	icon_state = "glauncher_1"
+
+/obj/structure/prop/vehicle/tank/north/decoration/glauncherzero
+	icon_state = "glauncher_0"
+
+/obj/structure/prop/vehicle/tank/north/decoration/cupolaone
+	icon_state = "m56cupola_1"
+
+/obj/structure/prop/vehicle/tank/north/decoration/cupolazero
+	icon_state = "m56cupola_0"
+
+/obj/structure/prop/vehicle/tank/north/decoration/towlauncherone
+	icon_state = "towlauncher_1"
+
+/obj/structure/prop/vehicle/tank/north/decoration/towlauncherzero
+	icon_state = "towlauncher_0"
+
+/obj/structure/prop/vehicle/tank/north/decoration/warrayone
+	icon_state = "warray_1"
+
+/obj/structure/prop/vehicle/tank/north/decoration/warrayzero
+	icon_state = "warray_0"
+
+/obj/structure/prop/vehicle/tank/north/decoration/artmodone
+	icon_state = "artillerymod_1"
+
+/obj/structure/prop/vehicle/tank/north/decoration/artmodzero
+	icon_state = "artillerymod_0"
+
+/obj/structure/prop/vehicle/tank/north/armor/snowplow
+	icon_state = "snowplow_0"
+
+/obj/structure/prop/vehicle/tank/north/armor/snowplowone
+	icon_state = "snowplow_1"
+
+/obj/structure/prop/vehicle/apc
+	name = "Decommissioned TAV - Athena"
+	desc = "A decomissioned APC, all methods of propulsion have been disabled and the entrances sealed."
+	icon = 'icons/Marine/apc_prop.dmi'
+	icon_state = "apc_base"
+	density = TRUE
+	coverage = 70
+	bound_height = 128
+	bound_width = 128
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/vehicle/apc/med
+	icon_state = "apc_base_med"
+
+/obj/structure/prop/vehicle/apc/com
+	icon_state = "apc_base_com"
+
+/obj/structure/prop/vehicle/apc/wheelszero
+	icon_state = "wheels_0"
+	layer = TANK_TURRET_LAYER
+	mouse_opacity = 0
+
+/obj/structure/prop/vehicle/apc/wheelsone
+	icon_state = "wheels_1"
+	layer = TANK_TURRET_LAYER
+	mouse_opacity = 0
+
+/obj/structure/prop/vehicle/apc/damagedframe
+	icon_state = "damaged_frame"
+	mouse_opacity = 0
+
+/obj/structure/prop/vehicle/apc/damagedhptone
+	icon_state = "damaged_hdpt_primary"
+	mouse_opacity = 0
+
+/obj/structure/prop/vehicle/apc/damagedhpttwo
+	icon_state = "damaged_hdpt_secondary"
+	mouse_opacity = 0
+
+/obj/structure/prop/vehicle/apc/damagedhpthree
+	icon_state = "damaged_hdpt_support"
+	mouse_opacity = 0
+
+/obj/structure/prop/vehicle/apc/dualcannonzero
+	icon_state = "dualcannon_0"
+	mouse_opacity = 0
+
+/obj/structure/prop/vehicle/apc/dualcannonone
+	icon_state = "dualcannon_1"
+	mouse_opacity = 0
+
+/obj/structure/prop/vehicle/apc/decoration
+	icon_state = "frontalcannon_0"
+	density = FALSE
+	layer = TANK_DECORATION_LAYER
+	mouse_opacity = 0
+
+/obj/structure/prop/vehicle/apc/decoration/frontturretzero
+	icon_state = "frontalcannon_0"
+
+/obj/structure/prop/vehicle/apc/decoration/frontturretone
+	icon_state = "frontalcannon_1"
+
+/obj/structure/prop/vehicle/apc/decoration/freightzero
+	icon_state = "freight_0"
+
+/obj/structure/prop/vehicle/apc/decoration/freightone
+	icon_state = "freight_1"
+
+/obj/structure/prop/vehicle/apc/decoration/freighttwo
+	icon_state = "freight_2"
+
+/obj/structure/prop/vehicle/apc/decoration/freighttwo
+	icon_state = "freight_2"
+
+/obj/structure/prop/vehicle/apc/decoration/commsrelayzero
+	icon_state = "comms_relay_0"
+
+/obj/structure/prop/vehicle/apc/decoration/commsrelayone
+	icon_state = "comms_relay_1"
+
+/obj/structure/prop/vehicle/apc/decoration/flarelauncherzero
+	icon_state = "flare_launcher_0"
+
+/obj/structure/prop/vehicle/apc/decoration/flarelauncherone
+	icon_state = "flare_launcher_1"
+
+/obj/structure/prop/vehicle/apc/decoration/flarelaunchertwo
+	icon_state = "flare_launcher_2"
+
+/obj/structure/prop/vehicle/apc/decoration/emptyfuelcell
+	icon_state = "emptyfuelcell"

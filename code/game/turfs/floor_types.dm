@@ -776,6 +776,9 @@
 /turf/open/floor/carpet/edge2
 	icon_state = "carpetedge"
 
+/turf/open/floor/carpet/side
+	icon_state = "carpetside"
+
 // Start Prison tiles
 
 /turf/open/floor/prison
@@ -910,6 +913,14 @@
 
 /turf/open/floor/prison/red/corner
 	icon_state = "redcorner"
+
+/turf/open/floor/prison/blackfloor
+	icon = 'icons/turf/shuttle.dmi'
+	icon_state = "floor7"
+
+/turf/open/floor/prison/bluefloor
+	icon = 'icons/turf/shuttle.dmi'
+	icon_state = "floor"
 
 /////// grayscale floor for easy recoloring /////
 

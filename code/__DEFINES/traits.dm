@@ -96,6 +96,8 @@
 #define GUN_TRAIT "gun" //Traits related to guns
 #define ZOMBIE_TRAIT "zombie"
 #define BULLET_ACT_TRAIT "bullet act" //Traits related to projectiles
+#define PORTAL_TRAIT "portal"
+#define OPTABLE_TRAIT "optable"
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
@@ -146,6 +148,6 @@
 // item traits
 #define TRAIT_T_RAY_VISIBLE "t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
 // turf traits
-#define TRAIT_TURF_FREEZE_BULLET "freeze_bullet" //Stop projectiles on this tiles
+#define TRAIT_TURF_BULLET_MANIPULATION "bullet_manipulation" //This tile is doing something to projectile
 // projectile traits
 #define TRAIT_PROJ_HIT_SOMETHING "hit_something" //If projectile hit something on its path

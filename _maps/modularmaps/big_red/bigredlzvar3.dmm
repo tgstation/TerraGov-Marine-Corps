@@ -203,6 +203,10 @@
 /obj/structure/table,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
+"fd" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "fj" = (
 /obj/machinery/light{
 	dir = 4
@@ -898,6 +902,10 @@
 "wV" = (
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
+"wZ" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
 "xd" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
@@ -914,7 +922,6 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "xr" = (
-/obj/structure/sign/safety/hazard,
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
@@ -1132,8 +1139,8 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "BF" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
@@ -1545,7 +1552,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "NR" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/rack,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -2208,10 +2215,10 @@ PV
 PV
 PV
 PV
-wV
+wZ
 Bk
-CA
-hC
+Bi
+hI
 "}
 (6,1,1) = {"
 hC
@@ -2371,7 +2378,7 @@ PV
 wV
 Bk
 Bi
-PH
+hI
 "}
 (10,1,1) = {"
 hC
@@ -2450,8 +2457,8 @@ OB
 PV
 wV
 Bk
-CA
-hC
+Bi
+PH
 "}
 (12,1,1) = {"
 hC
@@ -2488,9 +2495,9 @@ PV
 PV
 PV
 PV
-PV
+fd
 Bk
-CA
+Bi
 hC
 "}
 (13,1,1) = {"

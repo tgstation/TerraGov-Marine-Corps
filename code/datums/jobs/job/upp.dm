@@ -86,7 +86,7 @@
 	jobtype = /datum/job/upp/medic
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/combatLifesaver/upp
+	belt = /obj/item/storage/belt/lifesaver/upp
 	ears = /obj/item/radio/headset/distress/usl
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP/medic
 	shoes = /obj/item/clothing/shoes/marine
@@ -95,7 +95,7 @@
 	head = /obj/item/clothing/head/uppcap
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/skorpion
-	r_store = /obj/item/storage/pouch/medkit
+	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack
 
@@ -158,7 +158,7 @@
 	head = /obj/item/clothing/head/helmet/UPP/heavy
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer
 	r_store = /obj/item/storage/pouch/explosive
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/upp/heavy/hvh
@@ -217,7 +217,7 @@
 	head = /obj/item/clothing/head/uppcap/beret
 	suit_store = /obj/item/weapon/gun/rifle/type71
 	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/upp/leader/hvh

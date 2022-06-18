@@ -75,7 +75,6 @@
 	max_w_class = WEIGHT_CLASS_TINY
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask,
 	)
 
 	cant_hold = list(
@@ -192,7 +191,7 @@
 		/obj/item/detpack,
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
-		/obj/item/tool/solderingtool,
+		/obj/item/tool/surgery/solderingtool,
 	)
 	cant_hold = list()
 
@@ -210,6 +209,14 @@
 	new /obj/item/storage/pill_bottle/dermaline(storage)
 	new /obj/item/storage/pill_bottle/tramadol(storage)
 
+/obj/item/armor_module/storage/medical/basic/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/packet/bicaridine(storage)
+	new /obj/item/storage/pill_bottle/packet/kelotane(storage)
+	new /obj/item/storage/pill_bottle/packet/tramadol(storage)
+	new /obj/item/stack/medical/splint(storage)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(storage)
+
 /obj/item/storage/internal/modular/medical
 	max_storage_space = 30
 	storage_slots = 5
@@ -226,6 +233,21 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/stack/medical,
 		/obj/item/tweezers,
+	)
+
+/obj/item/armor_module/storage/injector
+	name = "Injector Storage module"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of injectors."
+	icon_state = "mod_injector_bag"
+	storage =  /obj/item/storage/internal/modular/injector
+
+/obj/item/storage/internal/modular/injector
+	max_storage_space = 10
+	storage_slots = 10
+	max_w_class = WEIGHT_CLASS_TINY
+	can_hold = list(
+		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
 /obj/item/armor_module/storage/integrated
@@ -249,3 +271,18 @@
 	slowdown = 0
 	show_storage = TRUE
 	flags_attach_features = NONE
+
+/obj/item/armor_module/storage/helmet/som_leader/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(storage)
+
+/obj/item/armor_module/storage/helmet/som_vet/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
+	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red(storage)
+
+/obj/item/armor_module/storage/helmet/som/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(storage)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(storage)

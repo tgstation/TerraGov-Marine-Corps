@@ -9,8 +9,8 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "aD" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
@@ -915,6 +915,10 @@
 	dir = 10
 	},
 /area/bigredv2/outside/space_port)
+"xi" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "xj" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/asteroidplating,
@@ -1017,7 +1021,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "zH" = (
-/obj/machinery/computer/nuke_disk_generator/red,
+/obj/structure/rack,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -1421,6 +1425,10 @@
 	dir = 5
 	},
 /area/bigredv2/outside/space_port)
+"Kp" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
 "Ks" = (
 /obj/item/ammo_casing,
 /turf/open/floor/tile/dark,
@@ -1534,7 +1542,6 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "Nc" = (
-/obj/structure/sign/safety/hazard,
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
@@ -2250,10 +2257,10 @@ IU
 IU
 IU
 IU
-Yn
+Kp
 gb
-oF
-CQ
+IJ
+os
 "}
 (6,1,1) = {"
 CQ
@@ -2413,7 +2420,7 @@ IU
 Yn
 gb
 IJ
-zb
+os
 "}
 (10,1,1) = {"
 CQ
@@ -2453,7 +2460,7 @@ IU
 Nc
 gb
 IJ
-os
+zb
 "}
 (11,1,1) = {"
 CQ
@@ -2492,8 +2499,8 @@ XU
 IU
 Yn
 gb
-oF
-CQ
+IJ
+os
 "}
 (12,1,1) = {"
 CQ
@@ -2530,9 +2537,9 @@ IU
 IU
 IU
 IU
-IU
+xi
 gb
-oF
+IJ
 CQ
 "}
 (13,1,1) = {"

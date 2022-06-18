@@ -379,6 +379,20 @@
 	template_width = 85
 	template_height = 38
 
+/datum/map_template/modular/bigred/lz1seven
+	name = "Big red landing zone one"
+	mappath = "_maps/modularmaps/big_red/bigredlzvar7.dmm"
+	modular_id = "brlz1"
+	template_width = 85
+	template_height = 38
+
+/datum/map_template/modular/bigred/lz1eight
+	name = "Big red landing zone one"
+	mappath = "_maps/modularmaps/big_red/bigredlzvar8.dmm"
+	modular_id = "brlz1"
+	template_width = 85
+	template_height = 38
+
 /datum/map_template/modular/bigred/lz2one
 	name = "Big red landing zone two"
 	mappath = "_maps/modularmaps/big_red/bigredlz2var1.dmm"
@@ -494,6 +508,20 @@
 /datum/map_template/modular/bigred/atmosfour
 	name = "Big red atmos"
 	mappath = "_maps/modularmaps/big_red/bigredatmosvar4.dmm"
+	modular_id = "bratmos"
+	template_width = 24
+	template_height = 25
+
+/datum/map_template/modular/bigred/atmosfive
+	name = "Big red atmos"
+	mappath = "_maps/modularmaps/big_red/bigredatmosvar5.dmm"
+	modular_id = "bratmos"
+	template_width = 24
+	template_height = 25
+
+/datum/map_template/modular/bigred/atmossix
+	name = "Big red atmos"
+	mappath = "_maps/modularmaps/big_red/bigredatmosvar6.dmm"
 	modular_id = "bratmos"
 	template_width = 24
 	template_height = 25

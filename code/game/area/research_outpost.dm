@@ -46,6 +46,10 @@
 	ceiling = CEILING_GLASS
 	minimap_color = MINIMAP_AREA_SEC
 
+/area/outpost/cargo/engineering
+	name = "Cargo Engineering"
+	icon_state="orange"
+	ceiling = CEILING_GLASS
 
 // Cave Areas, cave.
 
@@ -64,13 +68,13 @@
 /area/outpost/caves/north
 	name = "Northern Caves"
 	icon_state="cave"
-	ceiling = CEILING_NONE
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/outpost/caves/north_east
 	// Note: This is where the hive is
 	name = "North Eastern Caves"
 	icon_state="cave"
-	ceiling = CEILING_UNDERGROUND
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/outpost/caves/east
 	name = "Eastern Caves"
@@ -100,7 +104,7 @@
 /area/outpost/caves/north_west
 	name = "North Western Caves"
 	icon_state="cave"
-	ceiling = CEILING_NONE
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 
 
@@ -167,13 +171,17 @@
 	ceiling = CEILING_GLASS
 	outside = FALSE
 
-/area/outpost/arrivals/security
-	name = "Arrivals Security Outpost"
+/area/outpost/arrivals/securitylz1
+	name = "LZ1 Security Outpost"
 	icon_state="brig"
 	ceiling = CEILING_GLASS
 	minimap_color = MINIMAP_AREA_SEC
 
-
+/area/outpost/arrivals/securitylz2
+	name = "LZ2 Security Outpost"
+	icon_state="brig"
+	ceiling = CEILING_GLASS
+	minimap_color = MINIMAP_AREA_SEC
 
 // Hallway Areas, a few of these, somewhat annoying as the south hallway branches out more than the others.
 

@@ -152,6 +152,11 @@
 		to_chat(user, "[span_notice("You inject [M] with [src]")].")
 		to_chat(M, span_warning("You feel a tiny prick!"))
 
+	// /mob/living/carbon/human/attack_hand causes
+	// changeNext_move(7) which creates a delay
+	// This line overrides the delay, and will absolutely break everything
+	user.changeNext_move(3) // please don't break the game
+
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 	reagents.reaction(A, INJECT)
 	var/trans = reagents.trans_to(A, amount_per_transfer_from_this)
@@ -391,13 +396,6 @@
 	desc = "A hypospray loaded with hypervene."
 	list_reagents = list(
 		/datum/reagent/hypervene = 60,
-	)
-
-/obj/item/reagent_containers/hypospray/advanced/peridaxon
-	name = "Peridaxon hypospray"
-	desc = "A hypospray loaded with peridaxon."
-	list_reagents = list(
-		/datum/reagent/medicine/peridaxon = 60,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/quickclot

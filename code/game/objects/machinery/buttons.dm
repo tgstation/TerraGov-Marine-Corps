@@ -120,6 +120,11 @@
 	/// Has the shutters alarm been played?
 	var/alarm_played = FALSE
 
+/obj/machinery/button/door/open_only/landing_zone/Initialize(mapload)
+	. = ..()
+	var/area/area = get_area(src)
+	area.flags_area |= MARINE_BASE
+
 /obj/machinery/button/door/open_only/landing_zone/attack_hand(mob/living/user)
 	if((machine_stat & (NOPOWER|BROKEN)))
 		return

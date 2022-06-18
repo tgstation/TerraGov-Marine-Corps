@@ -378,7 +378,7 @@
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
-	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
+	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_FIRE_HUD)
 
 /datum/atom_hud/xeno_heart
 	hud_icons = list(HEART_STATUS_HUD)
@@ -397,6 +397,31 @@
 
 	var/amount = min(round(sunder * 100 / xeno_caste.sunder_max, 10), 100)
 	holder.icon_state = "sundering[amount]"
+
+///Set fire stacks on the hud
+/mob/living/proc/hud_set_firestacks()
+	return
+
+/mob/living/carbon/xenomorph/hud_set_firestacks()
+	var/image/holder = hud_list[XENO_FIRE_HUD]
+	if(!holder)
+		return
+
+	if(stat == DEAD)
+		holder.icon_state = "firestack0"
+		return
+	switch(fire_stacks)
+		if(-INFINITY to 0)
+			holder.icon_state = "firestack0"
+		if(1 to 5)
+			holder.icon_state = "firestack1"
+		if(6 to 10)
+			holder.icon_state = "firestack2"
+		if(11 to 15)
+			holder.icon_state = "firestack3"
+		if(16 to INFINITY)
+			holder.icon_state = "firestack4"
+
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
 	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
@@ -420,29 +445,18 @@
 	if(stat != DEAD)
 		var/tempname = ""
 		if(frenzy_aura)
-			tempname += "frenzy"
+			tempname += FRENZY
 		if(warding_aura)
-			tempname += "warding"
+			tempname += WARDING
 		if(recovery_aura)
-			tempname += "recovery"
+			tempname += RECOVERY
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
 
-		switch(current_aura)
-			if("frenzy")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
-			if("recovery")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurarecovery")
-			if("warding")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
-
-		switch(leader_current_aura)
-			if("frenzy")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
-			if("recovery")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurarecovery")
-			if("warding")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
+		if(current_aura)
+			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[current_aura]")
+		if(leader_current_aura)
+			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[leader_current_aura]")
 
 	hud_list[PHEROMONE_HUD] = holder
 

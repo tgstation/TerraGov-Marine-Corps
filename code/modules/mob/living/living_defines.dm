@@ -39,7 +39,12 @@
 	var/drowsyness = 0
 
 	var/last_staminaloss_dmg = 0
+	/// Maximum amount of stamina a mob can have. Different from the stamina buffer because stamina has a positive and negative part
+	var/max_stamina = 0
+	/// How much stamina can you regen
 	var/max_stamina_buffer = 0
+	/// How fast does a mob regen its stamina
+	var/stamina_regen_multiplier = 1
 	var/is_dizzy = FALSE
 	var/druggy = 0
 
@@ -101,8 +106,6 @@
 	var/smokecloaked = FALSE //For the new Smoke Grenade
 
 	var/no_stun = FALSE
-
-	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
 

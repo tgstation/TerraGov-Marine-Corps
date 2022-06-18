@@ -266,7 +266,6 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/combat_knife/upp,
 		/obj/item/stack/throwing_knife,
-		/obj/item/weapon/unathiknife,
 		/obj/item/weapon/chainofcommand,
 		/obj/item/weapon/broken_bottle,
 		/obj/item/weapon/baseballbat,

@@ -127,7 +127,7 @@
 
 	var/b_loss = 0
 	var/f_loss = 0
-	var/armor = getarmor(null, "bomb") * 0.01
+	var/armor = get_soft_armor("bomb") * 0.01 //Gets average bomb armor over all limbs.
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -178,7 +178,7 @@
 		var/damage = M.melee_damage
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
-		var/armor = run_armor_check(affecting, "melee")
+		var/armor = get_soft_armor("melee", affecting)
 		apply_damage(damage, BRUTE, affecting, armor, updating_health = TRUE)
 
 /mob/living/carbon/human/show_inv(mob/living/user)
@@ -832,12 +832,12 @@
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
-	return L && L.is_bruised()
+	return L?.organ_status == ORGAN_BRUISED
 
 /mob/living/carbon/human/proc/rupture_lung()
 	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
 
-	if(L && !L.is_bruised())
+	if(L?.organ_status == ORGAN_BRUISED)
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
 		L.damage = L.min_bruised_damage
 
@@ -948,8 +948,9 @@
 
 	if(!(species.species_flags & NO_STAMINA))
 		AddComponent(/datum/component/stamina_behavior)
-		max_stamina_buffer = species.max_stamina_buffer
-		setStaminaLoss(-max_stamina_buffer)
+		max_stamina = species.max_stamina
+		max_stamina_buffer = max_stamina
+		setStaminaLoss(-max_stamina)
 
 	add_movespeed_modifier(MOVESPEED_ID_SPECIES, TRUE, 0, NONE, TRUE, species.slowdown)
 	species.on_species_gain(src, oldspecies) //todo move most of the stuff in this proc to here

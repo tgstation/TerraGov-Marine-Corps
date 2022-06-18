@@ -26,15 +26,13 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "e" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 1;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/library)
 "f" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 9;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/library)
 "g" = (
@@ -68,9 +66,8 @@
 "k" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/security,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/library)
 "l" = (
@@ -91,9 +88,8 @@
 /area/bigredv2/outside/library)
 "n" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 6;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/library)
 "o" = (
@@ -105,9 +101,8 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/library)
 "p" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/library)
 "q" = (
@@ -145,8 +140,7 @@
 	dir = 5
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/bigredv2/outside/library)
 "x" = (
@@ -174,9 +168,8 @@
 "B" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/library)
 "C" = (
@@ -189,8 +182,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "E" = (
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/bigredv2/outside/library)
 "F" = (
@@ -206,16 +198,14 @@
 /area/bigredv2/outside/library)
 "H" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/library)
 "I" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 5;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/library)
 "J" = (
@@ -247,25 +237,22 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "O" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 8;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/library)
 "P" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 4;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/library)
 "Q" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor/carpet{
-	icon_state = "carpetside"
+/turf/open/floor/carpet/side{
 	},
 /area/bigredv2/outside/library)
 "R" = (
@@ -312,9 +299,8 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Y" = (
-/turf/open/floor/carpet{
+/turf/open/floor/carpet/side{
 	dir = 10;
-	icon_state = "carpetside"
 	},
 /area/bigredv2/outside/library)
 "Z" = (

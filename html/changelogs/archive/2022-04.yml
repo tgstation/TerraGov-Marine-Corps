@@ -368,3 +368,48 @@
       grow into the back of your skull when stored.
   Wayland-Smithy:
   - qol: The hotkey "Say" input can now be Canceled like "Me"
+2022-04-28:
+  BraveMole:
+  - qol: Guns' name letter now follow a nomenclature.
+  Lumipharon:
+  - imageadd: added overlays for most alternative magazine types, and updated their
+      icons.
+  Pariah919:
+  - balance: Pepperball can mount magharness, does 25 flat plasma drain, and has aim
+      mode.
+  goose4429:
+  - balance: T-26, Removed on-hit slowdown
+2022-04-29:
+  Arctrooper8:
+  - bugfix: remove some seemingly excess pixels that poked out from undergarments.
+  Lumipharon:
+  - balance: APCR TAT rounds no longer trigger light explosions, this reduces it's
+      damage from around 260 to 160.
+  - rscadd: APCR and APHE TAT are now slowed by anything they pierce, reducing the
+      total distance they can travel.
+  - bugfix: Fix a bug where APCR TAT rounds can explode multiple times.
+  - rscadd: 'Volkite weaponry, Martian ray guns for SOM use only expansion: Updates
+      SOM ERT with new weaponry, armour and loadouts. You better be sure before you
+      hit that distress beacon.'
+  - balance: Marine armour energy armour scales with weight class
+  - bugfix: fixed a few misc sprite issues
+  - bugfix: Mobs with 0 medical skill will no longer know how to operate defibs better
+      than those with basic medical training.
+  - bugfix: ANFO now actually works when under it's radius limit
+  TiviPlus:
+  - bugfix: tweezers and so will no longer remove implants
+  - bugfix: robot heads can be reattached as intended
+  breadhunt:
+  - soundadd: Steals CM's boxing KO sound. Thanks CM!
+  - rscadd: Boxing gloves now deal stamina damage. Hit someone enough and that will
+      KO them. Still deals brute damage like normal punches, so be careful.
+  novaepee:
+  - rscadd: more generators in PoS
+  - rscadd: maint hall in PoS' bow
+  - balance: PoS now has two cryotubes
+  - balance: 'PoS now has more surgical trays expansion: PoS''s req has been flip.
+      This is so that belt is closer to Alamo if anyone running req wants to deliver
+      it to Alamo. expansion: PoS'' bar increases. Also, boxing ring is near bar in
+      case if anyone wants to fight the old fashion way. expansion: PoS'' medbay has
+      been remapped for the greater good'
+  - rscadd: PoS's Condor landing zone has hazard tiles to indicate where it lands.

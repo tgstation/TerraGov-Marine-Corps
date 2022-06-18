@@ -216,18 +216,14 @@
 	var/surgery_list = list()
 	for(var/datum/limb/L in M.limbs)
 		if(L)
-			for(var/datum/wound/W in L.wounds)
-				if(W.internal)
-					surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
-					break
+			if(L.wounds.len)
+				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 
 			var/organdamagesurgery = 0
 			for(var/datum/internal_organ/I in L.internal_organs)
 				if(I.robotic == ORGAN_ASSISTED||I.robotic == ORGAN_ROBOT)
 					// we can't deal with these
 					continue
-				if(I.germ_level > 1)
-					surgery_list += create_autodoc_surgery(L,ORGAN_SURGERY,ADSURGERY_GERMS,0,I)
 				if(I.damage > 0)
 					if(I.organ_id == ORGAN_EYES) // treat eye surgery differently
 						continue
@@ -383,7 +379,7 @@
 						if(!surgery)
 							break
 						if(istype(S.organ_ref,/datum/internal_organ))
-							S.organ_ref.rejuvenate(TRUE)
+							S.organ_ref.heal_organ_damage(S.organ_ref.damage)
 						else
 							say("Organ is missing.")
 
@@ -427,7 +423,7 @@
 									break
 								occupant.disabilities &= ~NEARSIGHTED
 								occupant.disabilities &= ~BLIND
-								E.damage = 0
+								E.heal_organ_damage(E.damage)
 								E.eye_surgery_stage = 0
 
 
@@ -444,9 +440,8 @@
 						for(var/datum/wound/W in S.limb_ref.wounds)
 							if(!surgery)
 								break
-							if(W.internal)
-								sleep(FIXVEIN_MAX_DURATION*surgery_mod)
-								S.limb_ref.wounds -= W
+							sleep(FIXVEIN_MAX_DURATION*surgery_mod)
+							qdel(W)
 						if(!surgery)
 							break
 						close_incision(occupant, S.limb_ref)
@@ -1129,34 +1124,44 @@
 			dat += "<hr>Manual Surgery Interface Unavaliable, Automatic Mode Engaged."
 		else
 			dat += "<hr>Manual Surgery Interface<hr>"
+			dat += "<b>Trauma Surgeries</b>"
+			dat += "<br>"
 			if(isnull(surgeryqueue["brute"]))
 				dat += "<a href='?src=\ref[src];brute=1'>Surgical Brute Damage Treatment</a><br>"
 			if(isnull(surgeryqueue["burn"]))
 				dat += "<a href='?src=\ref[src];burn=1'>Surgical Burn Damage Treatment</a><br>"
+			dat += "<b>Orthopedic Surgeries</b>"
+			dat += "<br>"
+			if(isnull(surgeryqueue["broken"]))
+				dat += "<a href='?src=\ref[src];broken=1'>Broken Bone Surgery</a><br>"
+			if(isnull(surgeryqueue["internal"]))
+				dat += "<a href='?src=\ref[src];internal=1'>Internal Bleeding Surgery</a><br>"
+			if(isnull(surgeryqueue["shrapnel"]))
+				dat += "<a href='?src=\ref[src];shrapnel=1'>Foreign Body Removal Surgery</a><br>"
+			if(isnull(surgeryqueue["missing"]))
+				dat += "<a href='?src=\ref[src];missing=1'>Limb Replacement Surgery</a><br>"
+			dat += "<b>Organ Surgeries</b>"
+			dat += "<br>"
+			if(isnull(surgeryqueue["organdamage"]))
+				dat += "<a href='?src=\ref[src];organdamage=1'>Surgical Organ Damage Treatment</a><br>"
+			if(isnull(surgeryqueue["organgerms"]))
+				dat += "<a href='?src=\ref[src];organgerms=1'>Organ Infection Treatment</a><br>"
+			if(isnull(surgeryqueue["eyes"]))
+				dat += "<a href='?src=\ref[src];eyes=1'>Corrective Eye Surgery</a><br>"
+			dat += "<b>Hematology Treatments</b>"
+			dat += "<br>"
+			if(isnull(surgeryqueue["blood"]))
+				dat += "<a href='?src=\ref[src];blood=1'>Blood Transfer</a><br>"
 			if(isnull(surgeryqueue["toxin"]))
 				dat += "<a href='?src=\ref[src];toxin=1'>Toxin Damage Chelation</a><br>"
 			if(isnull(surgeryqueue["dialysis"]))
 				dat += "<a href='?src=\ref[src];dialysis=1'>Dialysis</a><br>"
-			if(isnull(surgeryqueue["blood"]))
-				dat += "<a href='?src=\ref[src];blood=1'>Blood Transfer</a><br>"
-			if(isnull(surgeryqueue["organgerms"]))
-				dat += "<a href='?src=\ref[src];organgerms=1'>Organ Infection Treatment</a><br>"
-			if(isnull(surgeryqueue["organdamage"]))
-				dat += "<a href='?src=\ref[src];organdamage=1'>Surgical Organ Damage Treatment</a><br>"
-			if(isnull(surgeryqueue["eyes"]))
-				dat += "<a href='?src=\ref[src];eyes=1'>Corrective Eye Surgery</a><br>"
-			if(isnull(surgeryqueue["internal"]))
-				dat += "<a href='?src=\ref[src];internal=1'>Internal Bleeding Surgery</a><br>"
-			if(isnull(surgeryqueue["broken"]))
-				dat += "<a href='?src=\ref[src];broken=1'>Broken Bone Surgery</a><br>"
-			if(isnull(surgeryqueue["missing"]))
-				dat += "<a href='?src=\ref[src];missing=1'>Limb Replacement Surgery</a><br>"
 			if(isnull(surgeryqueue["necro"]))
 				dat += "<a href='?src=\ref[src];necro=1'>Necrosis Removal Surgery</a><br>"
-			if(isnull(surgeryqueue["shrapnel"]))
-				dat += "<a href='?src=\ref[src];shrapnel=1'>Foreign Body Removal Surgery</a><br>"
 			if(isnull(surgeryqueue["limbgerm"]))
 				dat += "<a href='?src=\ref[src];limbgerm=1'>Limb Disinfection Procedure</a><br>"
+			dat += "<b>Special Surgeries</b>"
+			dat += "<br>"
 			if(isnull(surgeryqueue["facial"]))
 				dat += "<a href='?src=\ref[src];facial=1'>Facial Reconstruction Surgery</a><br>"
 			if(isnull(surgeryqueue["open"]))
@@ -1224,13 +1229,9 @@
 		if(href_list["internal"])
 			for(var/i in connected.occupant.limbs)
 				var/datum/limb/L = i
-				for(var/x in L.wounds)
-					var/datum/wound/W = x
-					if(!W.internal)
-						continue
+				if(L.wounds.len)
 					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 					needed++
-					break
 			if(!needed)
 				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_INTERNAL,1)
 

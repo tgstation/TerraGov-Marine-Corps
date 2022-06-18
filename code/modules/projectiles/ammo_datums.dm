@@ -18,7 +18,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/sound_miss //When it misses someone.
 	var/sound_bounce //When it bounces off something.
 
-	var/accuracy 					= 5 		// This is added to the bullet's base accuracy
+	var/accuracy 					= 0 		// This is added to the bullet's base accuracy
 	var/accuracy_var_low			= 1 		// How much the accuracy varies when fired
 	var/accuracy_var_high			= 1
 	var/accurate_range 				= 5 		// For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though
@@ -55,6 +55,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/projectile_greyscale_config = null
 	///greyscale color for the projectile associated with the ammo
 	var/projectile_greyscale_colors = null
+	///Multiplier for deflagrate chance
+	var/deflagrate_multiplier = 1
+	///Flat damage caused if fire_burst is triggered by deflagrate
+	var/fire_burst_damage = 10
+	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
+	var/incendiary_strength = 10
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
 	return
@@ -94,8 +100,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		step_away(victim, proj)
 
 /datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, shake = 1, soft_size_threshold = 3, hard_size_threshold = 2)
-	if(!victim || victim == proj.firer)
-		CRASH("staggerstun called [victim ? "without a mob target" : "while the mob target was the firer"]")
+	if(!victim)
+		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
 		return
 	if(shake && (proj.distance_travelled > max_range || victim.lying_angle))
@@ -169,8 +175,43 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			continue
 		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
 			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
-		var/armor_block = victim.run_armor_check(null, proj.ammo.armor_type)
+		var/armor_block = victim.get_soft_armor(proj.ammo.armor_type)
 		victim.apply_damage(proj.damage * proj.airburst_multiplier, proj.ammo.damage_type, null, armor_block, updating_health = TRUE)
+
+///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
+/datum/ammo/proc/deflagrate(atom/target, obj/projectile/proj)
+	if(!target || !proj)
+		CRASH("deflagrate() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	if(!istype(target, /mob/living))
+		return
+	var/mob/living/victim = target
+	var/armor_block = victim.get_soft_armor("fire") //checks fire armour across the victim's whole body
+	var/deflagrate_chance = (proj.damage * deflagrate_multiplier * (100 + min(0, proj.penetration - armor_block)) / 100)
+	if(prob(deflagrate_chance))
+		playsound(target, 'sound/effects/incendiary_explode.ogg', 45, falloff = 5)
+		fire_burst(target, proj)
+
+///the actual fireblast triggered by deflagrate
+/datum/ammo/proc/fire_burst(atom/target, obj/projectile/proj)
+	if(!target || !proj)
+		CRASH("fire_burst() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
+	for(var/mob/living/carbon/victim in range(1, target))
+		if(victim == target)
+			victim.visible_message(span_danger("[victim] bursts into flames as they are deflagrated by \a [proj.name]!"))
+		else
+			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
+				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
+		//Damages the victims, inflicts brief stagger+slow, and ignites
+		var/armor_block = victim.get_soft_armor("fire") //checks fire armour across the victim's whole body
+		victim.apply_damage(fire_burst_damage, BURN, null, armor_block, updating_health = TRUE) //Placeholder damage, will be a ammo var
+
+		staggerstun(victim, proj, stagger = 0.5, slowdown = 0.5)
+
+		var/living_hard_armor = victim.hard_armor.getRating("fire")
+		if(victim.get_fire_resist() > 0 && living_hard_armor < 100) //won't ignite fully fireproof mobs
+			victim.adjust_fire_stacks(CEILING(5 - (living_hard_armor * 0.1), 1))
+			victim.IgniteMob()
+
 
 /datum/ammo/proc/fire_bonus_projectiles(obj/projectile/main_proj, atom/shooter, atom/source, range, speed, angle, target)
 	var/effect_icon = ""
@@ -286,7 +327,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_light"
 	damage = 15
 	penetration = 5
-	accurate_range = 5
 	sundering = 0.5
 
 /datum/ammo/bullet/pistol/tiny/ap
@@ -294,7 +334,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_lightap"
 	damage = 22.5
 	penetration = 15 //So it can actually hurt something.
-	accurate_range = 5
 	sundering = 0.5
 	damage_falloff = 1.5
 
@@ -313,7 +352,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
 	hud_state = "pistol_hollow"
-	accuracy = -15
+	accuracy = -10
 	shrapnel_chance = 45
 	sundering = 2
 
@@ -324,7 +363,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "armor-piercing pistol bullet"
 	hud_state = "pistol_ap"
 	damage = 20
-	accuracy = 10
 	penetration = 12.5
 	shrapnel_chance = 25
 	sundering = 2
@@ -357,13 +395,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
-	accuracy = 15
 	damage = 20
 
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
 	hud_state = "pistol_special"
-	accuracy = 15
+	accuracy = 5
 	damage = 32
 	penetration = 10
 	shrapnel_chance = 25
@@ -437,20 +474,18 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "revolver_heavy"
 	damage = 50
 	penetration = 5
-	accuracy = -15
+	accuracy = -10
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
 	hud_state = "revolver_impact"
 	handful_amount = 6
-	accuracy_var_high = 10
 	damage = 50
 	penetration = 20
 	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
 	staggerstun(M, P, weaken = 1, stagger = 1, slowdown = 1, knockback = 1, shake = 0.5)
-
 
 /datum/ammo/bullet/revolver/ricochet
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/small
@@ -511,7 +546,7 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	damage = 20
-	accurate_range = 5
+	accurate_range = 4
 	damage_falloff = 1
 	sundering = 0.5
 	penetration = 5
@@ -534,7 +569,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "rifle"
 	hud_state_empty = "rifle_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range = 15
+	accurate_range = 12
 	damage = 25
 	penetration = 5
 	sundering = 0.5
@@ -591,6 +626,7 @@ datum/ammo/bullet/revolver/tp44
 	shrapnel_chance = 0
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	accurate_range = 15
 	accurate_range_min = 6
 	damage = 40
 	penetration = 20
@@ -601,7 +637,7 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "hivelo_fire"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
 	damage = 25
-	accuracy = 10
+	accuracy = -10
 	penetration = 20
 	sundering = 2.5
 
@@ -630,8 +666,8 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0.5
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range_min = 0
-	accurate_range = 30
+	accurate_range = 25
+	accurate_range_min = 6
 	max_range = 40
 	damage = 65
 	penetration = 15
@@ -653,6 +689,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 25
 	sundering = 0
+	accuracy = -10
 
 /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	name = "incendiary marksman bullet"
@@ -661,6 +698,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage = 35
 	sundering = 0 // incen doens't have sundering
+	accuracy = -10
 
 
 /*
@@ -698,7 +736,7 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC
 	max_range = 15
 	shrapnel_chance = 0
-	accuracy = 15
+	accuracy = 5
 
 /datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/M, obj/projectile/P)
 	if(!M || M == P.firer)
@@ -965,13 +1003,13 @@ datum/ammo/bullet/revolver/tp44
 	hud_state_empty = "sniper_empty"
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SUNDERING
-	accurate_range_min = 5
+	accurate_range_min = 7
 	shell_speed = 4
 	accurate_range = 30
 	max_range = 40
 	damage = 90
-	penetration = 80
-	sundering = 0
+	penetration = 50
+	sundering = 15
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -1022,7 +1060,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "supersonic sniper bullet"
 	hud_state = "sniper_supersonic"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accuracy = 40
+	accuracy = 20
 	damage = 100
 	penetration = 60
 	sundering = 50
@@ -1034,7 +1072,6 @@ datum/ammo/bullet/revolver/tp44
 	damage = 80
 	penetration = 30
 	sundering = 7.5
-	accurate_range_min = 2
 	damage_falloff = 0.25
 
 /datum/ammo/bullet/sniper/pfc/flak
@@ -1044,7 +1081,6 @@ datum/ammo/bullet/revolver/tp44
 	damage = 40
 	penetration = 10
 	sundering = 10
-	accurate_range_min = 2
 	damage_falloff = 0.25
 
 /datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
@@ -1066,46 +1102,27 @@ datum/ammo/bullet/revolver/tp44
 //================================================
 */
 
-/datum/ammo/bullet/smartgun
-	name = "smartgun bullet"
-	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
-	hud_state = "smartgun"
-	hud_state_empty = "smartgun_empty"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range = 15
-	damage = 20
-	penetration = 20
-	sundering = 1
-
 /datum/ammo/bullet/smartmachinegun
-	name = "smartgun bullet"
+	name = "smartmachinegun bullet"
 	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accurate_range = 15
+	accurate_range = 12
 	damage = 20
 	penetration = 15
 	sundering = 2
 
-/datum/ammo/bullet/smartgun/lethal
+/datum/ammo/bullet/smart_minigun
+	name = "smartminigun bullet"
+	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
+	hud_state = "smartgun"
+	hud_state_empty = "smartgun_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	icon_state 	= "bullet"
+	accurate_range = 12
+	damage = 10
+	penetration = 15
 	sundering = 1
-
-/datum/ammo/bullet/smartgun/dirty
-	name = "irradiated smartgun bullet"
-	hud_state = "smartgun_radioactive"
-	shrapnel_chance = 75
-
-/datum/ammo/bullet/smartgun/dirty/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	victim.adjustToxLoss(10)//does tox damage now
-
-/datum/ammo/bullet/smartgun/dirty/lethal
-	flags_ammo_behavior = AMMO_BALLISTIC
-	icon_state 	= "bullet"
-	damage = 40
-	penetration = 30
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
@@ -1138,10 +1155,10 @@ datum/ammo/bullet/revolver/tp44
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	hud_state   = "smartgun"
 	hud_state_empty = "smartgun_empty"
-	accurate_range = 15
+	accurate_range = 12
 	damage = 40 //Reduced damage due to vastly increased mobility
 	penetration = 40 //Reduced penetration due to vastly increased mobility
-	accuracy = 15
+	accuracy = 5
 	barricade_clear_distance = 2
 	sundering = 5
 
@@ -1158,20 +1175,42 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 2.5
 
 /datum/ammo/bullet/railgun
-	name = "railgun round"
+	name = "armor piercing railgun slug"
 	hud_state = "alloy_spike"
 	icon_state 	= "blue_bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
-	max_range = 9
+	max_range = 14
 	damage = 150
-	penetration = 70
-	sundering = 90
+	penetration = 100
+	sundering = 20
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 3, shake = 0)
+	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 2, shake = 0)
+
+/datum/ammo/bullet/railgun/hvap
+	name = "high velocity railgun slug"
+	shell_speed = 5
+	max_range = 21
+	damage = 100
+	penetration = 30
+	sundering = 100
+
+/datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, stagger = 2, knockback = 3, shake = 0)
+
+/datum/ammo/bullet/railgun/smart
+	name = "smart armor piercing railgun slug"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
+	damage = 75
+	penetration = 20
+	sundering = 50
+
+/datum/ammo/bullet/railgun/smart/on_hit_mob(mob/M, obj/projectile/P)
+	staggerstun(M, P, stagger = 3, slowdown = 3, shake = 0)
+
 
 /datum/ammo/tx54
 	name = "20mm airburst grenade"
@@ -1342,7 +1381,6 @@ datum/ammo/bullet/revolver/tp44
 	name = "cannon round"
 	icon_state = "ltb"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
-	accuracy = 40
 	accurate_range = 15
 	max_range = 40
 	penetration = 200
@@ -1413,7 +1451,6 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "bomb"
 	damage_falloff = 0
 	shell_speed = 2
-	accuracy = 40
 	accurate_range = 20
 	max_range = 30
 	damage = 100
@@ -1432,7 +1469,6 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "bomb"
 	damage_falloff = 0
 	shell_speed = 2
-	accuracy = 40
 	accurate_range = 20
 	max_range = 30
 	damage = 175
@@ -1451,7 +1487,6 @@ datum/ammo/bullet/revolver/tp44
 	armor_type = "bomb"
 	damage_falloff = 0
 	shell_speed = 3
-	accuracy = 40
 	accurate_range = 15
 	max_range = 20
 	damage = 75
@@ -1482,17 +1517,31 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/drop_nade(turf/T)
 	explosion(T, 0, 2, 3, 2)
 
+/datum/ammo/rocket/atgun_shell/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 10
+
 /datum/ammo/rocket/atgun_shell/apcr
 	name = "tungsten penetrator"
 	hud_state = "shell_he"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
-	damage = 160
+	damage = 200
 	penetration = 40
 	sundering = 65
 
 /datum/ammo/rocket/atgun_shell/apcr/drop_nade(turf/T)
-	explosion(T, 0, 0, 1, 0)
+	explosion(T, 0, 0, 0, 1)
+
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+	P.proj_max_range -= 5
+	staggerstun(M, P, max_range = 20, stagger = 0.5, slowdown = 0.5, knockback = 2, shake = 1,  hard_size_threshold = 3)
+
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/O, obj/projectile/P)
+	P.proj_max_range -= 5
+
+/datum/ammo/rocket/atgun_shell/apcr/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 5
 
 /datum/ammo/rocket/atgun_shell/he
 	name = "high velocity high explosive shell"
@@ -1505,6 +1554,8 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/rocket/atgun_shell/he/drop_nade(turf/T)
 	explosion(T, 0, 3, 5, 0)
 
+/datum/ammo/rocket/atgun_shell/he/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T)
 /*
 //================================================
 					Energy Ammo
@@ -1520,7 +1571,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_ENERGY
 	armor_type = "energy"
-	accuracy = 20
+	accuracy = 15 //lasers fly fairly straight
 	bullet_color = COLOR_LASER_RED
 
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm
@@ -1575,17 +1626,6 @@ datum/ammo/bullet/revolver/tp44
 	if(isxeno(M)) //need 1 second more than the actual effect time
 		var/mob/living/carbon/xenomorph/X = M
 		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
-
-
-/datum/ammo/energy/droidblast
-	name = "energetic plasma bolt"
-	icon_state = "pulse2"
-	hud_state = "pulse"
-	damage = 45
-	max_range = 40
-	penetration = 50
-	sundering = 20
-	bullet_color = COLOR_PULSE_BLUE
 
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
@@ -1757,6 +1797,8 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "laser_sniper"
 	damage = 60
 	penetration = 30
+	accurate_range_min = 5
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 4
 	max_range = 40
 	damage_falloff = 0
@@ -1769,7 +1811,8 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 2.5
 	damage = 40
 	penetration = 0
-	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN
+	accurate_range_min = 5
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_SNIPER
 	sundering = 1
 	hitscan_effect_icon = "u_laser_beam"
 
@@ -1878,6 +1921,50 @@ datum/ammo/bullet/revolver/tp44
 		T = get_turf(proj)
 	T.ignite(heat, burn_damage, fire_color)
 
+//volkite
+
+/datum/ammo/energy/volkite
+	name = "thermal energy bolt"
+	icon_state = "overchargedlaser"
+	hud_state = "laser_heat"
+	hud_state_empty = "battery_empty_flash"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
+	bullet_color = COLOR_TAN_ORANGE
+	armor_type = "energy"
+	max_range = 14
+	accurate_range = 5 //for charger
+	shell_speed = 4
+	accuracy_var_low = 5
+	accuracy_var_high = 5
+	point_blank_range = 2
+	damage = 20
+	penetration = 15
+	sundering = 3
+	fire_burst_damage = 20
+
+	//inherited, could use some changes
+	ping = "ping_s"
+	sound_hit 	 	= "energy_hit"
+	sound_miss		= "energy_miss"
+	sound_bounce	= "energy_bounce"
+
+/datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
+	deflagrate(M, P)
+
+/datum/ammo/energy/volkite/medium
+	max_range = 25
+	accurate_range = 15
+	damage = 30
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	fire_burst_damage = 25
+
+/datum/ammo/energy/volkite/heavy
+	max_range = 35
+	accurate_range = 18
+	damage = 25
+	fire_burst_damage = 25
+
 /*
 //================================================
 					Xeno Spits
@@ -1945,7 +2032,7 @@ datum/ammo/bullet/revolver/tp44
 	C.add_slowdown(slowdown_stacks) //slow em down
 
 	set_reagents()
-	var/armor_block = (1 - C.run_armor_check(BODY_ZONE_CHEST, armor_type) * 0.01) //Check the target's armor mod; default to chest
+	var/armor_block = (1 - C.get_soft_armor(armor_type, BODY_ZONE_CHEST) * 0.01) //Check the target's armor mod; default to chest
 	for(var/reagent_id in spit_reagents) //modify by armor
 		spit_reagents[reagent_id] *= armor_block
 
@@ -2007,7 +2094,7 @@ datum/ammo/bullet/revolver/tp44
 	spit_cost = 100
 	damage = 40
 	smoke_strength = 0.9
-	reagent_transfer_amount = 9.5
+	reagent_transfer_amount = 8.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
 	smoke_strength = 0.9
@@ -2265,7 +2352,7 @@ datum/ammo/bullet/revolver/tp44
 
 	var/mob/living/carbon/carbon_victim = victim
 	set_reagents()
-	var/armor_block = (1 - carbon_victim.run_armor_check(BODY_ZONE_CHEST, armor_type) * 0.01) //Check the target's armor mod; default to chest
+	var/armor_block = (1 - carbon_victim.get_soft_armor(armor_type, BODY_ZONE_CHEST) * 0.01) //Check the target's armor mod; default to chest
 	for(var/reagent_id in spit_reagents) //modify by armor
 		spit_reagents[reagent_id] *= armor_block
 
@@ -2452,7 +2539,7 @@ datum/ammo/bullet/revolver/tp44
 	sound_armor	 	= "alloy_armor"
 	sound_bounce	= "alloy_bounce"
 	armor_type = "bullet"
-	accuracy = 40
+	accuracy = 20
 	accurate_range = 15
 	max_range = 15
 	damage = 40
@@ -2465,24 +2552,30 @@ datum/ammo/bullet/revolver/tp44
 	hud_state = "flame"
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR|AMMO_FLAME
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_FLAME|AMMO_EXPLOSIVE
 	armor_type = "fire"
-	max_range = 6
-	damage = 50
+	max_range = 7
+	damage = 31
+	damage_falloff = 0
+	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
 	bullet_color = LIGHT_COLOR_FIRE
 	var/fire_color = "red"
-	var/burnlevel = 24
 	var/burntime = 17
-	var/fire_delay = 20
+	var/burnlevel = 31
+
+/datum/ammo/flamethrower/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	T.ignite(burntime, burnlevel, fire_color)
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M,obj/projectile/P)
-	drop_flame(get_turf(P))
+	drop_flame(get_turf(M))
 
 /datum/ammo/flamethrower/on_hit_obj(obj/O,obj/projectile/P)
-	drop_flame(get_turf(P))
+	drop_flame(get_turf(O))
 
 /datum/ammo/flamethrower/on_hit_turf(turf/T,obj/projectile/P)
-	drop_flame(get_turf(P))
+	drop_flame(get_turf(T))
 
 /datum/ammo/flamethrower/do_at_max_range(obj/projectile/P)
 	drop_flame(get_turf(P))
@@ -2495,11 +2588,10 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
 	hud_state = "flame_blue"
-	max_range = 6
+	max_range = 7
 	fire_color = "blue"
-	burnlevel = 36
 	burntime = 40
-	fire_delay = 20
+	burnlevel = 46
 	bullet_color = COLOR_NAVY
 
 /datum/ammo/water

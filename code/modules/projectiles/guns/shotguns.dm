@@ -10,7 +10,6 @@
 	hand_reload_sound = 'sound/weapons/guns/interact/shotgun_shell_insert.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/shotgun_reload.ogg'
 	opened_sound = 'sound/weapons/guns/interact/shotgun_open.ogg'
-	accuracy_mult = 1.15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	reciever_flags = AMMO_RECIEVER_HANDFULS
 	type_of_casings = "shell"
@@ -22,11 +21,14 @@
 
 	fire_delay = 6
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
-	scatter = 5
+	accuracy_mult_unwielded = 0.75
+	scatter = 4
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
+	movement_acc_penalty_mult = 2
+	lower_akimbo_accuracy = 3
+	upper_akimbo_accuracy = 5
 
 	placed_overlay_iconstate = "shotgun"
 
@@ -58,9 +60,7 @@
 	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/invisible)
 
 	fire_delay = 15 //one shot every 1.5 seconds.
-	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
-	scatter = 5
 	scatter_unwielded = 10
 	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than T-32.
 	recoil = 2
@@ -104,7 +104,7 @@
 	fire_delay = 14 //one shot every 1.4 seconds.
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 0.65
-	scatter = 4
+	scatter = 3
 	scatter_unwielded = 12
 	damage_mult = 0.7  //30% less damage. Faster firerate.
 	recoil = 0 //It has a stock on the sprite.
@@ -130,6 +130,8 @@
 	fire_delay = 20 // Base shotgun fire delay.
 	pixel_shift_x = 14
 	pixel_shift_y = 18
+
+	wield_delay_mod	= 0.2 SECONDS
 
 //-------------------------------------------------------
 //DOUBLE SHOTTY
@@ -159,9 +161,7 @@
 
 	fire_delay = 2
 	burst_delay = 2
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
-	scatter = 5
+	scatter = 4
 	scatter_unwielded = 8
 	recoil = 2
 	recoil_unwielded = 4
@@ -178,9 +178,8 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
 	fire_delay = 2
-	accuracy_mult = 0.85
-	accuracy_mult_unwielded = 0.85
-	scatter = 5
+	accuracy_mult = 0.9
+	scatter = 4
 	scatter_unwielded = 10
 	recoil = 3
 	recoil_unwielded = 5
@@ -217,9 +216,7 @@
 
 	fire_delay = 5
 	burst_amount = 1
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
-	scatter = 4
+	scatter = 3
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -263,9 +260,6 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
 	fire_delay = 20
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
-	scatter = 5
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -303,7 +297,6 @@
 	damage_mult = 0.75
 	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 1
-	scatter = 5
 	scatter_unwielded = 10
 	recoil = 0 // It has a stock. It's on the sprite.
 	recoil_unwielded = 0
@@ -352,19 +345,21 @@
 		/obj/item/attachable/stock/mosin,
 	)
 	actions_types = list(/datum/action/item_action/aim_mode)
+	force = 20
 	aim_fire_delay = 0.75 SECONDS
 	aim_speed_modifier = 0.8
 
 	fire_delay = 1.75 SECONDS
-	accuracy_mult = 1.45
+	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.7
-	scatter = -25
+	scatter = -1
 	scatter_unwielded = 12
-	recoil = 0
+	recoil = -3
 	recoil_unwielded = 4
 	cock_delay = 12
 	aim_slowdown = 1
-	wield_delay = 1 SECONDS
+	wield_delay = 1.2 SECONDS
+	movement_acc_penalty_mult = 4.5
 
 	placed_overlay_iconstate = "wood"
 
@@ -407,7 +402,6 @@
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 
 	fire_delay = 1 SECONDS
-	accuracy_mult = 1.45
 
 	scatter = -25
 	scatter_unwielded = 20
@@ -417,6 +411,7 @@
 
 	aim_slowdown = 1
 	wield_delay = 1 SECONDS
+	movement_acc_penalty_mult = 5
 
 	placed_overlay_iconstate = "wood"
 
@@ -443,7 +438,7 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 	fire_delay = 0.5 SECONDS
-	scatter = 3
+	scatter = 2
 	recoil = 1
 	recoil_unwielded = 1
 	aim_slowdown = 0
@@ -486,9 +481,9 @@
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 	fire_delay = 8
-	accuracy_mult = 1.30
+	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.7
-	scatter = 3
+	scatter = 2
 	scatter_unwielded = 7
 	recoil = 2
 	recoil_unwielded = 4
@@ -530,7 +525,7 @@
 	aim_speed_modifier = 2
 
 	fire_delay = 10
-	accuracy_mult = 1.20
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.8
 	damage_falloff_mult = 0.5
 	scatter = -5
@@ -539,6 +534,7 @@
 	recoil_unwielded = 2
 	cock_delay = 2
 	aim_slowdown = 0.6
+	movement_acc_penalty_mult = 5
 
 //------------------------------------------------------
 //MBX900 Lever Action Shotgun
@@ -580,7 +576,7 @@
 	flags_item_map_variant = NONE
 
 	fire_delay = 0.6 SECONDS
-	accuracy_mult = 1.4
+	accuracy_mult = 1.2
 	cock_delay = 0.2 SECONDS
 
 //------------------------------------------------------
@@ -618,9 +614,6 @@
 	flags_item_map_variant = NONE
 
 	fire_delay = 20
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.85
-	scatter = 5
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -674,6 +667,6 @@
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots
 	extra_delay = 0.5 SECONDS
-	scatter = 2
+	scatter = 1
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1

@@ -201,6 +201,158 @@
 	chemsystem.RemoveComponent()
 	return ..()
 
+
+/obj/item/armor_module/module/eshield
+	name = "Arrowhead Energy Shield System"
+	desc = "A brand new innovation in armor systems, this module creates a shield around the user that is capable of negating all damage. If it sustains too much it will deactivate, and leave the user vulnerable."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "mod_eshield"
+	item_state = "mod_eshield_a"
+	slot = ATTACHMENT_SLOT_MODULE
+	slowdown = 0.2
+	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_eshield_xn")
+
+	///Current shield Health
+	var/shield_health = 0
+	///Maximum shield Health
+	var/max_shield_health = 40
+	///Amount to recharge per tick, processes once every two seconds.
+	var/recharge_rate = 8
+
+	///Spark system used to generate sparks when the armor takes damage
+	var/datum/effect_system/spark_spread/spark_system
+
+	///Shield color when the shield is 0 - 33% full
+	var/shield_color_low = COLOR_MAROON
+	///Shield color when the shield is 33 - 66% full
+	var/shield_color_mid = COLOR_MOSTLY_PURE_RED
+	///Shield color when the shield is 66% to full
+	var/shield_color_full = COLOR_BLUE_LIGHT
+	///Current shield color
+	var/current_color
+	///Delay it takes to start recharging again after the shield has been damaged.
+	var/damaged_shield_cooldown = 10 SECONDS
+	///Holds id for a timer which triggers recharge start. Null if not currently delayed.
+	var/recharge_timer
+
+
+/obj/item/armor_module/module/eshield/Initialize()
+	. = ..()
+	spark_system = new()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+
+/obj/item/armor_module/module/eshield/Destroy()
+	QDEL_NULL(spark_system)
+	return ..()
+
+/obj/item/armor_module/module/eshield/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/handle_equip)
+	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, .proc/handle_unequip)
+	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/parent_examine)
+
+
+/obj/item/armor_module/module/eshield/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(parent, list(COMSIG_ITEM_UNEQUIPPED, COMSIG_ITEM_EQUIPPED, COMSIG_PARENT_EXAMINE))
+	return ..()
+
+///Called to give extra info on parent examine.
+/obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/examiner)
+	SIGNAL_HANDLER
+	to_chat(examiner, span_notice("Recharge Rate: [recharge_rate/2] health per second\nCurrent Shield Health: [shield_health]\nMaximum Shield Health: [max_shield_health]\n"))
+	if(!recharge_timer)
+		return
+	to_chat(examiner, span_warning("Charging is delayed! It will start recharging again in [timeleft(recharge_timer) / 10] seconds!"))
+
+///Handles starting the shield when the parent is equiped to the correct slot.
+/obj/item/armor_module/module/eshield/proc/handle_equip(datum/source, mob/equipper, slot)
+	SIGNAL_HANDLER
+	if(slot != SLOT_WEAR_SUIT || !isliving(equipper))
+		return
+	if(!recharge_timer)
+		START_PROCESSING(SSobj, src)
+		playsound(equipper, 'sound/items/eshield_recharge.ogg', 40)
+
+	RegisterSignal(equipper, COMSIG_LIVING_SHIELDCALL, .proc/handle_shield)
+
+///Handles removing the shield when the parent is unequipped
+/obj/item/armor_module/module/eshield/proc/handle_unequip(datum/source, mob/unequipper, slot)
+	SIGNAL_HANDLER
+	if(slot != SLOT_WEAR_SUIT || !isliving(unequipper))
+		return
+	UnregisterSignal(unequipper, COMSIG_LIVING_SHIELDCALL)
+	STOP_PROCESSING(SSobj, src)
+	unequipper.remove_filter("eshield")
+	shield_health = 0
+
+///Adds the correct proc callback to the shield list for intercepting damage.
+/obj/item/armor_module/module/eshield/proc/handle_shield(datum/source, list/affecting_shields, dam_type)
+	SIGNAL_HANDLER
+	if(!shield_health)
+		return
+	affecting_shields += CALLBACK(src, .proc/intercept_damage)
+
+///Handles the interception of damage.
+/obj/item/armor_module/module/eshield/proc/intercept_damage(attack_type, incoming_damage, damage_type, silent)
+	if(attack_type == COMBAT_TOUCH_ATTACK) //Touch attack so runners can pounce
+		return incoming_damage
+	STOP_PROCESSING(SSobj, src)
+	deltimer(recharge_timer)
+	var/shield_left = shield_health - incoming_damage
+	var/mob/living/affected = parent.loc
+	affected.remove_filter("eshield")
+	if(shield_left > 0)
+		shield_health = shield_left
+		switch(shield_left / max_shield_health)
+			if(0 to 0.33)
+				affected.add_filter("eshield", 1, outline_filter(1, shield_color_low))
+			if(0.33 to 0.66)
+				affected.add_filter("eshield", 1, outline_filter(1, shield_color_mid))
+			if(0.66 to 1)
+				affected.add_filter("eshield", 1, outline_filter(1, shield_color_full))
+		spark_system.start()
+	else
+		shield_health = 0
+		recharge_timer = addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown + 1, TIMER_STOPPABLE) //Gives it a little extra time for the cooldown.
+		return -shield_left
+	recharge_timer = addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown, TIMER_STOPPABLE)
+	return 0
+
+///Starts the shield recharging after it has been broken.
+/obj/item/armor_module/module/eshield/proc/begin_recharge()
+	recharge_timer = null
+	if(!ishuman(parent.loc))
+		return
+	var/mob/living/carbon/human/wearer = parent.loc
+	if(wearer.wear_suit != parent)
+		return
+	playsound(wearer, 'sound/items/eshield_recharge.ogg', 40)
+	START_PROCESSING(SSobj, src)
+
+
+/obj/item/armor_module/module/eshield/process()
+	shield_health = min(shield_health + recharge_rate, max_shield_health)
+	if(shield_health == max_shield_health) //Once health is full, we don't need to process until the next time we take damage.
+		STOP_PROCESSING(SSobj, src)
+		return
+	var/new_color
+	switch(shield_health/max_shield_health)
+		if(0 to 0.2)
+			playsound(parent.loc, 'sound/items/eshield_down.ogg', 40)
+			new_color = (shield_color_low != current_color) ? shield_color_low : null
+		if(0.2 to 0.6)
+			new_color = (shield_color_mid != current_color) ? shield_color_mid : null
+		if(0.6 to 1)
+			new_color = (shield_color_full != current_color) ? shield_color_full : null
+	if(!new_color)
+		return
+	var/mob/living/affected = parent.loc
+	affected.remove_filter("eshield")
+	affected.add_filter("eshield", 1, outline_filter(1, new_color))
+
+
+
 /**
  *   Helmet Modules
 */

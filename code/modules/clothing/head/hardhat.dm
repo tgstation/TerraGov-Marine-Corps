@@ -37,6 +37,13 @@
 	update_action_button_icons()
 	update_icon()
 
+/obj/item/clothing/head/hardhat/attack_alien(mob/living/carbon/xenomorph/X, isrightclick = FALSE)
+	if(turn_light(X, FALSE) != CHECKS_PASSED)
+		return
+	playsound(loc, "alien_claw_metal", 25, 1)
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	to_chat(X, span_warning("We disable the metal thing's lights.") )
+
 /obj/item/clothing/head/hardhat/update_icon()
 	. = ..()
 	icon_state = "hardhat[light_on]_[hardhat_color]"

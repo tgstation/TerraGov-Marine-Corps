@@ -18,7 +18,7 @@
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
-	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH|ALLOWREBREATH
+	flags_inventory = COVEREYES|ALLOWINTERNALS|COVERMOUTH
 	flags_armor_protection = FACE|EYES
 	flags_atom = CRITICAL_ATOM
 	flags_item = NOBLUDGEON
@@ -130,7 +130,7 @@
 /obj/item/clothing/mask/facehugger/attack_hand(mob/living/user)
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
-		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
+		if(X.xeno_caste.can_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			deltimer(jumptimer)
 			deltimer(activetimer)
 			remove_danger_overlay() //Remove the exclamation overlay as we pick it up
@@ -560,9 +560,9 @@
 	if(ishuman(user))
 		var/hugsound = user.gender == FEMALE ? get_sfx("female_hugged") : get_sfx("male_hugged")
 		playsound(loc, hugsound, 25, 0)
-	if(!sterile && !issynth(user) && !isIPC(user))
+	if(!sterile && !issynth(user))
 		user.disable_lights(sparks = TRUE, silent = TRUE)
-		var/stamina_dmg = user.maxHealth + user.max_stamina_buffer
+		var/stamina_dmg = user.maxHealth + user.max_stamina
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(2 SECONDS)
 	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
@@ -651,7 +651,7 @@
 	if(exposed_temperature > 300)
 		kill_hugger()
 
-/obj/item/clothing/mask/facehugger/flamer_fire_act()
+/obj/item/clothing/mask/facehugger/flamer_fire_act(burnlevel)
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
@@ -707,7 +707,7 @@
 
 	var/mob/living/victim = M
 	do_attack_animation(M)
-	var/armor_block = victim.run_armor_check(BODY_ZONE_CHEST, "bio")
+	var/armor_block = victim.get_soft_armor("bio", BODY_ZONE_CHEST)
 	victim.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //This should prevent sprinting
 	victim.apply_damage(1, BRUTE, sharp = TRUE) //Token brute for the injection
 	victim.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, 10, no_overdose = TRUE)
@@ -774,7 +774,7 @@
 
 		target.adjust_stagger(3)
 		target.add_slowdown(15)
-		armor_block = target.run_armor_check(BODY_ZONE_CHEST, "bio")
+		armor_block = target.get_soft_armor("bio", BODY_ZONE_CHEST)
 		target.apply_damage(100, STAMINA, BODY_ZONE_CHEST, armor_block) //Small amount of stamina damage; meant to stop sprinting.
 
 	kill_hugger(0.5 SECONDS)
@@ -801,7 +801,7 @@
 	var/affecting = ran_zone(null, 0)
 	if(!affecting) //Still nothing??
 		affecting = BODY_ZONE_CHEST //Gotta have a torso?!
-	var/armor_block = victim.run_armor_check(affecting, "melee")
+	var/armor_block = victim.get_soft_armor("melee", affecting)
 	victim.apply_damage(CARRIER_SLASH_HUGGER_DAMAGE, BRUTE, affecting, armor_block) //Crap base damage after armour...
 	victim.visible_message(span_danger("[src] frantically claws at [victim]!"),span_danger("[src] frantically claws at you!"))
 	leaping = FALSE

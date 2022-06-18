@@ -701,7 +701,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	var/power_amount = myAPC?.terminal?.powernet?.avail
 
-	if(power_amount >= 10000)
+	if(power_amount <= 10000)
 		return
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBITAL_SPOTLIGHT))
@@ -728,11 +728,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	resistance_flags = RESIST_ALL
 	light_system = STATIC_LIGHT
 	light_color = COLOR_TESLA_BLUE
-	light_power = 11	//This is a HUGE light.
+	light_range = 15	//This is a HUGE light.
+	light_power = SQRTWO
 
 /obj/effect/overwatch_light/Initialize()
 	. = ..()
-	set_light(light_power)
+	set_light(light_range, light_power)
 	playsound(src,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)
 	visible_message(span_warning("You see a twinkle in the sky before your surroundings are hit with a beam of light!"))
 	QDEL_IN(src, SPOTLIGHT_DURATION)

@@ -36,6 +36,7 @@
 	var/b_eyes = 0
 
 	var/ethnicity = "Western"	// Ethnicity
+	var/species_type = ""
 
 	//Skin colour
 	var/r_skin = 0
@@ -55,9 +56,7 @@
 	var/backpack = 2		//Which backpack type the player has chosen. Nothing, Satchel or Backpack.
 
 	// General information
-	var/home_system = ""
 	var/citizenship = ""
-	var/personal_faction = ""
 	var/religion = ""
 
 	//Equipment slots
