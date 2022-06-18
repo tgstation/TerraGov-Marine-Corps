@@ -6282,7 +6282,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/vending/marine_medic,
+/obj/machinery/vending/medical,
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "ti" = (
