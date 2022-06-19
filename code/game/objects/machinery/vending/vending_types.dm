@@ -282,11 +282,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
 			/obj/item/reagent_containers/glass/bottle/toxin = 1,
-			/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
-			/obj/item/reagent_containers/glass/bottle/neurotoxin/light = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_hemodile = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_transvitox = 1,
-			/obj/item/reagent_containers/glass/bottle/xeno_sanguinal = 1,
 		),
 	)
 
