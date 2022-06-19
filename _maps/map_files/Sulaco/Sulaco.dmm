@@ -23772,7 +23772,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "uux" = (
-/obj/machinery/vending/marine_medic,
+/obj/machinery/vending/medical,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "uuN" = (

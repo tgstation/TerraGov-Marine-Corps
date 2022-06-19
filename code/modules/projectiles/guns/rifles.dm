@@ -257,7 +257,7 @@
 	aim_slowdown = 0.55
 	wield_delay = 0.7 SECONDS
 	force = 20
-	max_shells = 35 //codex
+	max_shells = 36 //codex
 	default_ammo_type = /obj/item/ammo_magazine/rifle/standard_br
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_br)
 	attachable_allowed = list(
