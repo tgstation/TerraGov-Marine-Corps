@@ -249,7 +249,6 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	for(var/datum/action/action_to_update AS in master_gun.actions)
 		if(action_to_update.target != src)
 			continue
-		LAZYREMOVE(master_gun.actions, action_to_update)
 		qdel(action_to_update)
 		break
 
