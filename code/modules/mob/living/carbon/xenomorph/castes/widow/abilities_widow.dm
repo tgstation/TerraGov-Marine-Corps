@@ -4,11 +4,7 @@
 /datum/action/xeno_action/tight
     name = "tight"
     ability_name = "tight"
-    action_icon_state = ""
     mechanics_text = " Move faster in tight spaces"
-
-    ///how much faster we move
-    var/tight_speed = 50
 
 /datum/action/xeno_action/tight/give_action(mob/M)
 	. = ..()
@@ -34,9 +30,10 @@
 	ability_name = "webspit"
 	mechanics_text = "We spit a stretchy web at our prey"
 
-	plasma_cost = 280
+	plasma_cost = 1
 	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
 
 /datum/action/xeno_action/activable/web_spit/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
+	message_admins("Spitted!")

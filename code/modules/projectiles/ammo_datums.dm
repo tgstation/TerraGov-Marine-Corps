@@ -2498,6 +2498,42 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/hugger/acid
 	hugger_type = /obj/item/clothing/mask/facehugger/combat/acid
 
+/// For Widows Web Spit Ability
+
+/datum/ammo/xeno/web
+	icon_state = "neurotoxin"
+	ping = "ping_x"
+	damage_type = STAMINA
+	flags_ammo_behavior = AMMO_XENO
+	var/added_spit_delay = 0 //used to make cooldown of the different spits vary.
+	var/spit_cost = 5
+	armor_type = "bio"
+	shell_speed = 1
+	accuracy = 40
+	accurate_range = 15
+	max_range = 15
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	bullet_color = COLOR_LIME
+	///Amount of stagger stacks imposed on impact if any
+	var/stagger_stacks
+	///Amount of slowdown stacks imposed on impact if any
+	var/slowdown_stacks
+
+
+/// Three different effects, currently they're here just for experimenting
+/datum/ammo/xeno/web/blind
+	//var/hit_eye_blur = 11
+
+
+/datum/ammo/xeno/web/snare
+
+
+
+/datum/ammo/xeno/web/weaken
+
+
+
 /*
 //================================================
 					Misc Ammo

@@ -46,7 +46,8 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide, // might remove later idk, depends on balance
-		/datum/action/xeno_action/tight
+		/datum/action/xeno_action/tight,
+		/datum/action/xeno_action/activable/web_spit,
 	)
 
 /datum/xeno_caste/widow/young
