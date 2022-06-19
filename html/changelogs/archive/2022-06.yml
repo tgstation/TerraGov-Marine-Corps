@@ -293,3 +293,16 @@
   Lumipharon:
   - bugfix: Xenos have been sent to climbing school, and can now climb platforms and
       (unwired) barricades of all kinds.
+2022-06-19:
+  Arctrooper8:
+  - rscdel: TerraGovTech Corpsmen Vendor
+  - qol: NT Med now in Corpsmen prep
+  - imagedel: TerraGovTech Corpsmen Vendor
+  BraveMole:
+  - rscadd: New wraith ability, rewind
+  Hatterhat:
+  - balance: the BR-64 battle rifle now has one extra round per magazine, raising
+      it to 36 rounds instead of 35, with a new theoretical max of 36+1 rounds in
+      the gun
+  QualityVan:
+  - bugfix: Runner primo snatch can't be used on corpses

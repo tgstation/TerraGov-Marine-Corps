@@ -1146,35 +1146,6 @@
 			temp_list -= R.product_path
 			if(!temp_list.len) break
 
-/obj/machinery/vending/marine_medic
-	name = "\improper TerraGovTech Medic Vendor"
-	desc = "A marine medic equipment vendor"
-	product_ads = "They were gonna die anyway.;Let's get space drugged!"
-	req_access = list(ACCESS_MARINE_MEDPREP)
-	icon_state = "corpsmanvendor"
-	icon_deny = "corpsmanvendor-deny"
-	wrenchable = FALSE
-
-	products = list(
-		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/modular/marine/m10x = 4,
-		/obj/item/storage/backpack/marine/corpsman = 4,
-		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
-		/obj/item/encryptionkey/med = 4,
-		/obj/item/bodybag/cryobag = 4,
-		/obj/item/healthanalyzer = 4,
-		/obj/item/clothing/glasses/hud/health = 4,
-		/obj/item/storage/firstaid/regular = 4,
-		/obj/item/storage/firstaid/adv = 8,
-		/obj/item/storage/pouch/magazine/large = 4,
-		/obj/item/storage/pouch/magazine/pistol/large = 4,
-		/obj/item/clothing/mask/gas = 4,
-		/obj/item/storage/pouch/pistol = 4,
-	)
-
-/obj/machinery/vending/marine_medic/rebel
-	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
-
 /obj/machinery/vending/armor_supply
 	name = "\improper Surplus Armor Equipment Vendor"
 	desc = "Am automated equipment rack hooked up to a colossal storage of armor and accessories. Nanotrasen designed a new vendor that utilize bluespace technology to send surplus equipment from outer colonies' sweatshops to your hands! Be grateful."

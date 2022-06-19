@@ -79,7 +79,7 @@
 #define STASIS_BAG_TRAIT "stasis_bag"
 #define SPECIES_TRAIT "species" // /datum/species innate trait
 #define CRYOPOD_TRAIT "cryopod"
-#define TRAIT_XENO "xeno"
+#define XENO_TRAIT "xeno"
 #define ARMOR_TRAIT "armor"
 #define STAT_TRAIT "stat"
 #define NECKGRAB_TRAIT "neckgrab"
@@ -98,6 +98,7 @@
 #define BULLET_ACT_TRAIT "bullet act" //Traits related to projectiles
 #define PORTAL_TRAIT "portal"
 #define OPTABLE_TRAIT "optable"
+#define TIMESHIFT_TRAIT "timeshift"
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
@@ -111,6 +112,7 @@
 #define TRAIT_IMMOBILE "immobile" //User is unable to move by its own volition.
 #define TRAIT_IS_RESURRECTING "resurrecting"
 #define TRAIT_PSY_LINKED "psy_linked"
+#define TRAIT_TIME_SHIFTED "time_shifted"
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"
 #define TRAIT_STUNIMMUNE "stun_immunity"
