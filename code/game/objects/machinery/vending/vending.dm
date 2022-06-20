@@ -1,5 +1,4 @@
 #define CAT_NORMAL 0
-#define CAT_HIDDEN 1
 #define CAT_COIN 2
 
 #define MAKE_VENDING_RECORD_DATA(record) list(\
@@ -22,7 +21,7 @@
 	var/price = 0
 	///What color it stays on the vend button, considering just nuking this.
 	var/display_color = "white"
-	///What category it belongs to, Normal, contraband or coin.
+	///What category it belongs to, Normal or Coin.
 	var/category = CAT_NORMAL
 	///Incase its a tabbed vendor what tab this belongs to.
 	var/tab
@@ -100,8 +99,6 @@
 	 *	Format for each entry is SEASON_NAME = "tab name"
 	 */
 	var/list/seasonal_items = list()
-	/// Contraband products that are only available on vendor when hacked.
-	var/list/contraband = list()
 	/// Premium products that are only available when using a coin to pay for it.
 	var/list/premium = list()
 	/// Prices for each item, list(/type/path = price), items not in the list don't have a price.
@@ -116,8 +113,6 @@
 
 	///list of /datum/vending_product's that are always available on the vendor
 	var/list/product_records = list()
-	///list of /datum/vending_product's that are available when vendor is hacked.
-	var/list/hidden_records = list()
 	///list of /datum/vending_product's that are available on the vendor when a coin is used.
 	var/list/coin_records = list()
 
@@ -136,22 +131,14 @@
 	var/icon_vend
 	///Icon state when failing to vend, be it by no access or money.
 	var/icon_deny
-	///how many seconds(duh) we have left electrified.
-	var/seconds_electrified = 0
-	///If we should fire items at customers! We're broken!
-	var/shoot_inventory = FALSE
 	///If true the machine won't be speaking slogans randomly. Stop spouting those godawful pitches!
 	var/shut_up = FALSE
-	///If the vending machine is hacked, makes the items on contraband list available.
-	var/extended_inventory = FALSE
 	/// 1 = requires PIN and checks accounts.  0 = You slide an ID, it vends, SPACE COMMUNISM!
 	var/check_accounts = 0
 	///Current cash card.
 	var/obj/item/spacecash/ewallet/ewallet
 	///How much tipped we are.
 	var/tipped_level = 0
-	///Stops the machine from being hacked to shoot inventory or allow all access
-	var/hacking_safety = FALSE
 
 	var/scan_id = TRUE
 
@@ -164,7 +151,6 @@
 
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
-	wires = new /datum/wires/vending(src)
 	slogan_list = text2list(product_slogans, ";")
 
 	// So not all machines speak at the exact same time.
@@ -178,13 +164,11 @@
 		build_shared_inventory()
 	else
 		build_inventory(products)
-		build_inventory(contraband, CAT_HIDDEN)
 		build_inventory(premium, CAT_COIN)
 
 	// we won't use these anymore so we can just null them
 	premium = null
 	products = null
-	contraband = null
 	start_processing()
 	return INITIALIZE_HINT_LATELOAD
 
@@ -193,10 +177,6 @@
 	. = ..()
 	power_change()
 
-
-/obj/machinery/vending/Destroy()
-	QDEL_NULL(wires)
-	return ..()
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
@@ -208,7 +188,7 @@
 
 /**
  * Builds shared vendors inventory
- * the first vendor that calls this uses build_inventory and makes their records in GLOB.vending_records[type] or premium or contraband, etc.
+ * the first vendor that calls this uses build_inventory and makes their records in GLOB.vending_records[type] or premium etc.
  * the rest of vendors of same type just set all their records to the respective global lists
  */
 /obj/machinery/vending/proc/build_shared_inventory()
@@ -217,12 +197,6 @@
 		GLOB.vending_records[type] = product_records
 	else
 		product_records = GLOB.vending_records[type]
-
-	if(!GLOB.vending_hidden_records[type])
-		build_inventory(contraband, CAT_HIDDEN)
-		GLOB.vending_hidden_records[type] = hidden_records
-	else
-		hidden_records = GLOB.vending_hidden_records[type]
 
 	if(!GLOB.vending_coin_records[type])
 		build_inventory(premium, CAT_COIN)
@@ -233,8 +207,6 @@
 ///Builds a vending machine inventory from the given list into their records depending of category.
 /obj/machinery/vending/proc/build_inventory(list/productlist, category = CAT_NORMAL)
 	var/list/recordlist = product_records
-	if(category == CAT_HIDDEN)
-		recordlist = hidden_records
 	if(category == CAT_COIN)
 		recordlist = coin_records
 
@@ -316,18 +288,6 @@
 
 	if(tipped_level)
 		to_chat(user, "Tip it back upright first!")
-
-	else if(isscrewdriver(I))
-		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-		to_chat(user, "You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] the maintenance panel.")
-		overlays.Cut()
-		if(CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			overlays += image(icon, "[initial(icon_state)]-panel")
-		updateUsrDialog()
-
-	else if(ismultitool(I) || iswirecutter(I))
-		if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
-			return
 
 		attack_hand(user)
 
@@ -465,7 +425,6 @@
 	. = list()
 	.["vendor_name"] = name
 	.["displayed_records"] = list()
-	.["hidden_records"] = list()
 	.["coin_records"] = list()
 	.["tabs"] = list()
 
@@ -473,11 +432,6 @@
 		if(R.tab && !(R.tab in .["tabs"]))
 			.["tabs"] += R.tab
 		.["displayed_records"] += list(MAKE_VENDING_RECORD_DATA(R))
-
-	for(var/datum/vending_product/R AS in hidden_records)
-		if(R.tab && !(R.tab in .["tabs"]))
-			.["tabs"] += R.tab
-		.["hidden_records"] += list(MAKE_VENDING_RECORD_DATA(R))
 
 	for(var/datum/vending_product/R AS in coin_records)
 		if(R.tab && !(R.tab in .["tabs"]))
@@ -488,12 +442,11 @@
 	. = list()
 	.["stock"] = list()
 
-	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
+	for(var/datum/vending_product/R AS in product_records + coin_records)
 		.["stock"][R.product_name] = R.amount
 
 	if(currently_vending)
 		.["currently_vending"] = MAKE_VENDING_RECORD_DATA(currently_vending)
-	.["extended"] = extended_inventory
 	.["isshared"] = isshared
 
 /obj/machinery/vending/ui_act(action, list/params)
@@ -504,12 +457,12 @@
 		return
 	switch(action)
 		if("vend")
-			if(!allowed(usr) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety))
+			if(!allowed(usr))
 				to_chat(usr, span_warning("Access denied."))
 				flick(icon_deny, src)
 				return
 
-			var/datum/vending_product/R = locate(params["vend"]) in product_records | hidden_records | coin_records
+			var/datum/vending_product/R = locate(params["vend"]) in product_records | coin_records
 			if(!istype(R) || !R.product_path || R.amount == 0)
 				return
 
@@ -535,7 +488,7 @@
 	updateUsrDialog()
 
 /obj/machinery/vending/proc/vend(datum/vending_product/R, mob/user)
-	if(!allowed(user) && (!wires.is_cut(WIRE_IDSCAN) || hacking_safety)) //For SECURE VENDING MACHINES YEAH
+	if(!allowed(user)) //For SECURE VENDING MACHINES YEAH
 		to_chat(user, span_warning("Access denied."))
 		flick(icon_deny, src)
 		return
@@ -543,9 +496,6 @@
 	if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(R.product_path, GLOB.hvh_restricted_items_list))
 		to_chat(user, span_warning("This item is banned by the Space Geneva Convention."))
 		flick(icon_deny, src)
-		return
-
-	if(R.category == CAT_HIDDEN && !extended_inventory)
 		return
 
 	vend_ready = 0 //One thing at a time!!
@@ -616,7 +566,7 @@
 	if(icon_vend)
 		flick(icon_vend, src) //Show the vending animation if needed
 	//More accurate comparison between absolute paths.
-	for(var/datum/vending_product/R AS in product_records + hidden_records + coin_records)
+	for(var/datum/vending_product/R AS in product_records + coin_records)
 		if(item_to_stock.type != R.product_path || istype(item_to_stock, /obj/item/storage)) //Nice try, specialists/engis
 			continue
 		if(istype(item_to_stock, /obj/item/weapon/gun))
@@ -670,17 +620,11 @@
 	if(!active)
 		return
 
-	if(seconds_electrified > 0)
-		seconds_electrified--
-
 	//Pitch to the people!  Really sell it!
 	if(((last_slogan + slogan_delay) <= world.time) && (slogan_list.len > 0) && (!shut_up) && prob(5))
 		var/slogan = pick(slogan_list)
 		speak(slogan)
 		last_slogan = world.time
-
-	if(shoot_inventory && prob(2) && !hacking_safety)
-		throw_item()
 
 /obj/machinery/vending/proc/speak(message)
 	if(machine_stat & NOPOWER)
@@ -715,31 +659,6 @@
 
 	machine_stat |= BROKEN
 	src.icon_state = "[initial(icon_state)]-broken"
-
-//Somebody cut an important wire and now we're following a new definition of "pitch."
-/obj/machinery/vending/proc/throw_item()
-	var/obj/throw_item = null
-	var/mob/living/target = locate() in view(7,src)
-	if(!target)
-		return FALSE
-
-	for(var/datum/vending_product/R AS in product_records)
-		if (R.amount <= 0) //Try to use a record that actually has something to dump.
-			continue
-		var/dump_path = R.product_path
-		if (!dump_path)
-			continue
-
-		R.amount--
-		throw_item = release_item(R, 0)
-		break
-	if (!throw_item)
-		return FALSE
-	spawn(0)
-		throw_item.throw_at(target, 16, 3, src)
-	src.visible_message(span_warning("[src] launches [throw_item.name] at [target]!"))
-	. = TRUE
-
 
 /obj/machinery/vending/take_damage(dam)
 	if(density && dam >= knockdown_threshold)

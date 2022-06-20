@@ -6,7 +6,6 @@ import { Window } from '../layouts';
 type VendingData = {
   vendor_name: string,
   displayed_records: VendingRecord[],
-  hidden_records: VendingRecord[],
   coin_records: VendingRecord[],
   tabs: string[],
   stock: VendingStock,
@@ -34,7 +33,6 @@ export const Vending = (props, context) => {
   const {
     vendor_name,
     currently_vending,
-    hidden_records,
     coin_records,
     extended,
     tabs,
@@ -115,9 +113,6 @@ export const Vending = (props, context) => {
           ))}
           {!!(coin_records.length > 0) && (
             <Premium />
-          )}
-          {hidden_records.length > 0 && !!extended && (
-            <Hacked />
           )}
           <Products />
         </Section>
@@ -279,42 +274,6 @@ const Products = (props, context) => {
     </Section>
   );
 };
-
-const Hacked = (props, context) => {
-  const { act, data } = useBackend<VendingData>(context);
-
-  const {
-    hidden_records,
-    stock,
-    tabs,
-  } = data;
-
-  const [
-    selectedTab,
-    setSelectedTab,
-  ] = useLocalState(context, 'selectedTab', tabs.length ? tabs[0] : null);
-
-  return (
-    <Section title="$*FD!!F">
-      <LabeledList>
-        {hidden_records
-          .filter(record => !record.tab || record.tab === selectedTab)
-          .map(hidden_record => {
-            return (
-              <ProductEntry
-                stock={stock[hidden_record.product_name]}
-                key={hidden_record.product_name}
-                product_color={hidden_record.product_color}
-                product_name={hidden_record.product_name}
-                prod_desc={hidden_record.prod_desc}
-                prod_ref={hidden_record.ref} />
-            );
-          })}
-      </LabeledList>
-    </Section>
-  );
-};
-
 
 const Premium = (props, context) => {
   const { act, data } = useBackend<VendingData>(context);
