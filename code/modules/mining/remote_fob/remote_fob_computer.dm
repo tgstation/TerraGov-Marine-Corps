@@ -3,7 +3,7 @@
 
 /obj/machinery/computer/camera_advanced/remote_fob
 	name = "FOB Construction Drone Control"
-	desc = "A computer console equipped with camera screen and controls for a planetside deployed construction drone. Materials or equipment vouchers can be added simply by inserting them into the computer."
+	desc = "A computer console equipped with camera screen and controls for a planetside deployed construction drone. Metal and plasteel sheets can be added simply by inserting them into the computer."
 	icon = 'icons/Marine/remotefob.dmi'
 	icon_state = "fobpc"
 	req_one_access = list(ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)
