@@ -214,23 +214,21 @@
 
 /obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
-	new /obj/item/healthanalyzer(src)
-	new /obj/item/reagent_containers/hypospray/advanced/bicaridine(src)
-	new /obj/item/storage/bottlecase/bica(src)
-	new /obj/item/reagent_containers/hypospray/advanced/kelotane(src)
-	new /obj/item/storage/bottlecase/kelo(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/bicaridine(src)
+	new /obj/item/reagent_containers/glass/bottle/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/kelotane(src)
+	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tramadol(src)
+	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine(src)
+	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/advanced/dylovene(src)
-	new /obj/item/storage/bottlecase/dylo(src)
-	new /obj/item/reagent_containers/hypospray/advanced/tramadol(src)
-	new /obj/item/storage/bottlecase/tram(src)
-	new /obj/item/reagent_containers/hypospray/advanced/tricordrazine(src)
-	new /obj/item/storage/bottlecase/tricord(src)
-	new /obj/item/reagent_containers/hypospray/advanced/dexalin(src)
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
+	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/lifesaver/upp
 	name ="\improper Type 41 pattern lifesaver bag"
