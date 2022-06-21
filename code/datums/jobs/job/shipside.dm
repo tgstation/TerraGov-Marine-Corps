@@ -64,7 +64,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	jobtype = /datum/job/terragov/command/captain
 
 	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/belt/gun/mateba/officer/full
+	belt = /obj/item/storage/belt/gun/pistol/smart_pistol/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
