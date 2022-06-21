@@ -544,23 +544,29 @@
 	if(table_status == TABLE_STATUS_FIRM)
 		user.visible_message(span_notice("[user] starts weakening [src]."),
 		span_notice("You start weakening [src]"))
+		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
 		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
+			cut_overlay(GLOB.welding_sparks)
 			return TRUE
 
 		user.visible_message(span_notice("[user] weakens [src]."),
 			span_notice("You weaken [src]"))
+		cut_overlay(GLOB.welding_sparks)
 		table_status = TABLE_STATUS_WEAKENED
 		return TRUE
 
 	user.visible_message(span_notice("[user] starts welding [src] back together."),
 		span_notice("You start welding [src] back together."))
+	add_overlay(GLOB.welding_sparks)
 	playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
 	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	user.visible_message(span_notice("[user] welds [src] back together."),
 		span_notice("You weld [src] back together."))
+	cut_overlay(GLOB.welding_sparks)
 	table_status = TABLE_STATUS_FIRM
 	return TRUE
 
