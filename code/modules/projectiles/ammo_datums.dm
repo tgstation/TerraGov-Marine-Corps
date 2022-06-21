@@ -2295,6 +2295,7 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 30
 	damage = 50
 	damage_type = STAMINA
+	damage_falloff = 0
 	penetration = 40
 	bullet_color = BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR
 	reagent_transfer_amount = 30
