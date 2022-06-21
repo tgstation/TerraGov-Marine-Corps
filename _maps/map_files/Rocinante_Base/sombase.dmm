@@ -220,6 +220,12 @@
 	dir = 4
 	},
 /area/space)
+"bD" = (
+/obj/effect/decal/warning_stripes/leader,
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
+/area/space)
 "bF" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
@@ -325,6 +331,10 @@
 "cl" = (
 /turf/open/floor/mainship/sterile/purple,
 /area/space)
+"co" = (
+/obj/effect/decal/warning_stripes/box,
+/turf/open/floor/mainship/black/full,
+/area/space)
 "cp" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -360,7 +370,9 @@
 /area/space)
 "cC" = (
 /obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
 /area/space)
 "cE" = (
 /obj/structure/table/mainship,
@@ -726,7 +738,9 @@
 /area/space)
 "eV" = (
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/leader,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black{
+	dir = 5
+	},
 /area/space)
 "eZ" = (
 /obj/machinery/light{
@@ -1036,6 +1050,12 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/white,
+/area/space)
+"hm" = (
+/obj/structure/bed/chair/alt,
+/turf/open/floor/mainship/black{
+	dir = 9
+	},
 /area/space)
 "ho" = (
 /obj/structure/table/mainship,
@@ -1428,6 +1448,12 @@
 /obj/structure/somcas/wingtip/wing13,
 /turf/open/floor/plating,
 /area/space)
+"ka" = (
+/obj/structure/bed/chair/alt{
+	dir = 1
+	},
+/turf/open/floor/mainship/black,
+/area/space)
 "ke" = (
 /obj/structure/bedsheetbin,
 /turf/open/floor/mainship/red{
@@ -1675,6 +1701,10 @@
 "lK" = (
 /obj/structure/prop/vehicle/crane/cranecargo,
 /turf/open/floor/plating/ground/concrete,
+/area/space)
+"lM" = (
+/obj/machinery/computer/telecomms/server,
+/turf/open/floor/mainship/red/full,
 /area/space)
 "lN" = (
 /obj/structure/prop/gau_gun,
@@ -2192,6 +2222,14 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
+/area/space)
+"oU" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/mainship/blue{
+	dir = 9
+	},
 /area/space)
 "oW" = (
 /obj/machinery/door/airlock/mainship/security,
@@ -2750,6 +2788,10 @@
 	dir = 8
 	},
 /area/space)
+"st" = (
+/obj/effect/decal/warning_stripes/box,
+/turf/closed/wall/mainship/gray,
+/area/space)
 "su" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/red{
@@ -2809,6 +2851,12 @@
 /obj/machinery/science_64/chemstorage,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 1
+	},
+/area/space)
+"sX" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/mainship/red{
+	dir = 5
 	},
 /area/space)
 "sZ" = (
@@ -2891,7 +2939,7 @@
 /area/space)
 "tu" = (
 /obj/structure/prop/brokenvendor/brokenuniformvendor,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black/full,
 /area/space)
 "tv" = (
 /turf/open/floor/mainship/sterile/purple/side{
@@ -3362,6 +3410,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/space)
+"wM" = (
+/obj/structure/prop/brokenvendor/brokenweaponsrack,
+/turf/open/floor/mainship/black{
+	dir = 6
+	},
+/area/space)
 "wO" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
@@ -3451,6 +3505,12 @@
 /obj/structure/crystal/crystal2,
 /turf/open/floor/plating/ground/dirtyellow,
 /area/space)
+"xw" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/space)
 "xz" = (
 /obj/machinery/vending/security,
 /turf/open/floor/mainship/blue{
@@ -3510,6 +3570,12 @@
 "xV" = (
 /obj/machinery/photocopier,
 /turf/open/floor/mainship/mono,
+/area/space)
+"xW" = (
+/obj/structure/bed/chair/alt{
+	dir = 8
+	},
+/turf/open/floor/mainship/black/corner,
 /area/space)
 "xX" = (
 /obj/effect/landmark/corpsespawner/somvc,
@@ -3629,7 +3695,9 @@
 /area/space)
 "yB" = (
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/corpsman,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
 /area/space)
 "yE" = (
 /obj/structure/bed,
@@ -3697,6 +3765,12 @@
 	},
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/closed/wall/indestructible,
+/area/space)
+"zl" = (
+/obj/structure/cargo_container/red{
+	dir = 1
+	},
+/turf/open/ground/grasspatch,
 /area/space)
 "zm" = (
 /obj/structure/barricade/metal{
@@ -3990,6 +4064,14 @@
 	},
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/ground/grasspatch,
+/area/space)
+"Bm" = (
+/obj/structure/bed/chair/alt{
+	dir = 1
+	},
+/turf/open/floor/mainship/red/corner{
+	dir = 8
+	},
 /area/space)
 "Bo" = (
 /obj/effect/landmark/corpsespawner/som,
@@ -4297,6 +4379,10 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/mono,
+/area/space)
+"DI" = (
+/obj/structure/prop/brokenvendor/brokenweaponsrack,
+/turf/open/floor/mainship/black/full,
 /area/space)
 "DK" = (
 /obj/structure/somcas{
@@ -4681,7 +4767,9 @@
 /area/space)
 "Gk" = (
 /obj/structure/prop/brokenvendor/brokencorpsmanvendor,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black{
+	dir = 9
+	},
 /area/space)
 "Gn" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -5120,6 +5208,10 @@
 /obj/structure/bed/chair/sofa/corsat/verticaltop,
 /turf/open/floor/mainship/mono,
 /area/space)
+"Je" = (
+/obj/structure/prop/mainship/mapping_computer,
+/turf/open/floor/mainship/mono,
+/area/space)
 "Jh" = (
 /obj/structure/prop/brokenvendor/surplusclothes,
 /turf/open/floor/mainship/mono,
@@ -5252,6 +5344,12 @@
 /obj/machinery/door/window,
 /turf/open/floor/mainship/sterile/white,
 /area/space)
+"Kh" = (
+/obj/structure/prop/brokenvendor/surplusclothes,
+/turf/open/floor/mainship/black{
+	dir = 10
+	},
+/area/space)
 "Kk" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating,
@@ -5337,7 +5435,9 @@
 /area/space)
 "KM" = (
 /obj/structure/prop/brokenvendor/engivend,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
 /area/space)
 "KN" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -5378,6 +5478,12 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
+/area/space)
+"La" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
 /area/space)
 "Lb" = (
 /obj/structure/window/framed/mainship/gray,
@@ -5685,6 +5791,13 @@
 	icon_state = "wall10"
 	},
 /area/space)
+"MK" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer3/server,
+/turf/open/floor/mainship/red{
+	dir = 5
+	},
+/area/space)
 "ML" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
@@ -5766,6 +5879,11 @@
 /area/space)
 "Nj" = (
 /obj/structure/platform_decoration/metalplatform_deco,
+/turf/open/floor/mainship/mono,
+/area/space)
+"Nk" = (
+/obj/structure/table/mainship,
+/obj/item/reagent_containers/food/snacks/meatpizzaslice,
 /turf/open/floor/mainship/mono,
 /area/space)
 "Nl" = (
@@ -6073,6 +6191,12 @@
 	dir = 9
 	},
 /area/rocinante_colony/surface/landing/landing_pad_two_external)
+"OT" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/space)
 "OU" = (
 /obj/machinery/science/survey,
 /turf/open/ground/grasspatch,
@@ -6407,6 +6531,18 @@
 	dir = 10
 	},
 /area/space)
+"QT" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/mainship/red/corner{
+	dir = 4
+	},
+/area/space)
+"QU" = (
+/obj/structure/cargo_container/red,
+/turf/open/ground/grasspatch,
+/area/space)
 "QY" = (
 /obj/effect/landmark/corpsespawner/som,
 /turf/open/floor/plating/plating_catwalk,
@@ -6556,6 +6692,12 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/ground/grasspatch,
 /area/space)
+"RO" = (
+/obj/effect/decal/warning_stripes/box,
+/turf/open/floor/mainship/black/corner{
+	dir = 4
+	},
+/area/space)
 "RP" = (
 /obj/structure/bed/chair/sofa/corsat/right,
 /turf/open/floor/mainship/red{
@@ -6579,7 +6721,9 @@
 /area/space)
 "RU" = (
 /obj/structure/prop/brokenvendor/brokenmarinemedvendor,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/black{
+	dir = 5
+	},
 /area/space)
 "RV" = (
 /obj/machinery/science/measure,
@@ -6591,7 +6735,9 @@
 /area/space)
 "Sa" = (
 /obj/structure/sign/double/map/left,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/red/corner{
+	dir = 1
+	},
 /area/space)
 "Sd" = (
 /obj/effect/decal/medical_decals/doc/four{
@@ -6647,6 +6793,14 @@
 "Sv" = (
 /obj/structure/prop/mainship/printer,
 /turf/open/floor/mainship/sterile/purple,
+/area/space)
+"Sw" = (
+/obj/structure/bed/chair/alt{
+	dir = 1
+	},
+/turf/open/floor/mainship/red{
+	dir = 10
+	},
 /area/space)
 "Sx" = (
 /obj/structure/dispenser,
@@ -6761,6 +6915,13 @@
 	},
 /turf/open/floor/carpet,
 /area/space)
+"Td" = (
+/obj/structure/monorail,
+/obj/structure/bed/chair/alt{
+	dir = 8
+	},
+/turf/open/ground/grasspatch,
+/area/space)
 "Te" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -6804,6 +6965,18 @@
 /obj/machinery/mineral/unloading_machine/corner/alt,
 /turf/open/floor/mainship/sterile/purple/corner{
 	dir = 8
+	},
+/area/space)
+"Ts" = (
+/obj/effect/decal/warning_stripes/box,
+/turf/open/floor/mainship/black,
+/area/space)
+"Tu" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/mainship/red{
+	dir = 10
 	},
 /area/space)
 "Tw" = (
@@ -6922,6 +7095,12 @@
 "Uc" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/blue,
+/area/space)
+"Ud" = (
+/obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
+/turf/open/floor/mainship/black{
+	dir = 9
+	},
 /area/space)
 "Ug" = (
 /turf/open/floor/scorched/two,
@@ -7129,6 +7308,12 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/sterile/dark,
 /area/space)
+"Vy" = (
+/obj/structure/cargo_container/red{
+	dir = 4
+	},
+/turf/open/ground/grasspatch,
+/area/space)
 "VB" = (
 /obj/structure/largecrate/random/case/double,
 /obj/effect/decal/warning_stripes/box,
@@ -7155,6 +7340,12 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/som,
+/area/space)
+"VH" = (
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
+	dir = 2
+	},
+/turf/open/ground/grasspatch,
 /area/space)
 "VJ" = (
 /obj/structure/window/framed/mainship/gray,
@@ -7282,6 +7473,12 @@
 /obj/structure/device/broken_piano,
 /turf/open/floor/mainship/mono,
 /area/space)
+"WA" = (
+/obj/effect/decal/warning_stripes/engineer,
+/turf/open/floor/mainship/black{
+	dir = 5
+	},
+/area/space)
 "WC" = (
 /obj/structure/table/mainship,
 /obj/machinery/conveyor_switch,
@@ -7305,6 +7502,12 @@
 	dir = 1
 	},
 /area/space)
+"WL" = (
+/obj/structure/bed/chair/alt,
+/turf/open/floor/mainship/black{
+	dir = 1
+	},
+/area/space)
 "WM" = (
 /obj/structure/toilet{
 	dir = 1
@@ -7314,6 +7517,14 @@
 "WP" = (
 /obj/structure/prop/gau_ammo,
 /turf/open/floor/mainship/black{
+	dir = 4
+	},
+/area/space)
+"WW" = (
+/obj/structure/bed/chair/alt{
+	dir = 1
+	},
+/turf/open/floor/mainship/red/corner{
 	dir = 4
 	},
 /area/space)
@@ -7485,6 +7696,13 @@
 	},
 /turf/open/floor/mainship/black{
 	dir = 1
+	},
+/area/space)
+"Yf" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/emails,
+/turf/open/floor/mainship/red{
+	dir = 5
 	},
 /area/space)
 "Yg" = (
@@ -7702,6 +7920,14 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
+/area/space)
+"ZL" = (
+/obj/structure/bed/chair/alt{
+	dir = 1
+	},
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
 /area/space)
 "ZM" = (
 /obj/structure/table/mainship,
@@ -12504,8 +12730,8 @@ CG
 CG
 CG
 CG
-yg
-yg
+CG
+CG
 CG
 CG
 CG
@@ -12638,7 +12864,7 @@ CG
 yg
 yg
 yg
-yg
+CG
 CG
 CG
 re
@@ -12770,7 +12996,7 @@ CG
 yg
 yg
 yg
-yg
+CG
 CG
 CG
 re
@@ -12902,7 +13128,7 @@ CG
 yg
 yg
 yg
-yg
+CG
 CG
 CG
 re
@@ -13034,7 +13260,7 @@ yg
 yg
 yg
 yg
-yg
+CG
 CG
 CG
 re
@@ -15530,11 +15756,11 @@ AM
 MN
 vI
 mC
-oc
 mC
 mC
-oc
-oc
+mC
+mC
+mC
 LD
 mC
 mC
@@ -15661,12 +15887,12 @@ Ua
 xD
 bU
 vI
-oc
-oc
-ll
-ll
-ll
-oc
+mC
+mC
+mC
+mC
+mC
+mC
 LD
 mC
 mC
@@ -15793,12 +16019,12 @@ xf
 xD
 lH
 vI
-oc
-ll
-ll
-ll
-ll
-oc
+mC
+mC
+mC
+mC
+mC
+mC
 wO
 pF
 pF
@@ -15925,11 +16151,11 @@ MN
 qS
 Ej
 vI
-oc
-ll
-ll
-ll
-ll
+mC
+mC
+mC
+mC
+mC
 oc
 oc
 oc
@@ -16057,11 +16283,11 @@ mC
 mC
 mC
 mC
-tp
-ll
-ll
-ll
-ll
+mC
+mC
+mC
+mC
+mC
 oc
 Fg
 ll
@@ -16189,11 +16415,11 @@ mC
 mC
 mC
 mC
-tp
-ll
-ll
 oc
 oc
+oc
+ll
+nX
 oc
 Fg
 ll
@@ -16322,8 +16548,8 @@ mC
 mC
 Lg
 tp
-ll
-ll
+zM
+zM
 ll
 ll
 oc
@@ -16453,9 +16679,9 @@ mC
 mC
 mC
 AM
-oc
-ll
-ll
+lY
+vK
+iE
 ll
 ll
 oc
@@ -16586,11 +16812,11 @@ mC
 YB
 AM
 oc
-zM
+Ov
 ll
 ll
 ll
-ll
+ra
 ll
 ll
 ll
@@ -16718,7 +16944,7 @@ mC
 mC
 AM
 oc
-zM
+hq
 ll
 ll
 ll
@@ -16853,7 +17079,7 @@ oc
 oc
 oc
 ll
-ll
+nX
 oc
 ll
 ll
@@ -16982,7 +17208,7 @@ CT
 mC
 AM
 oc
-zM
+rg
 zM
 ll
 ll
@@ -17114,8 +17340,8 @@ mC
 mC
 AM
 oc
-zM
-ll
+hG
+iE
 ll
 ll
 oc
@@ -17246,11 +17472,11 @@ mC
 mC
 AM
 lY
+vx
 ll
 ll
 ll
-ll
-ll
+ra
 ll
 ll
 ll
@@ -17378,13 +17604,13 @@ eM
 mC
 AM
 lY
+zM
+ll
+vx
 ll
 ll
 ll
-ll
-ll
-ll
-ll
+vx
 ll
 Xc
 sy
@@ -17510,13 +17736,13 @@ mC
 mC
 AM
 tp
+Ov
 ll
-ll
-ll
-ll
+hG
+zM
 oc
 zM
-zM
+hG
 ll
 Vk
 uo
@@ -17642,7 +17868,7 @@ mC
 mC
 AM
 oc
-ll
+qP
 ll
 oc
 oc
@@ -17776,13 +18002,13 @@ AM
 oc
 ll
 ll
-ll
-ll
+zd
+zM
+vy
 oc
-yg
-yg
-yg
-yg
+oc
+oc
+oc
 yg
 yg
 yg
@@ -17909,12 +18135,12 @@ oc
 ll
 ll
 ll
+qP
 ll
+jg
+qk
+aF
 oc
-yg
-yg
-yg
-yg
 yg
 yg
 yg
@@ -18040,13 +18266,13 @@ AM
 ra
 ll
 ll
+vx
 ll
 ll
 oc
-yg
-yg
-yg
-yg
+dt
+hl
+oc
 yg
 yg
 yg
@@ -18171,14 +18397,14 @@ mC
 AM
 ll
 ll
-ll
-ll
+sv
+Nk
+zM
 ll
 oc
-yg
-yg
-yg
-yg
+oc
+oc
+oc
 yg
 yg
 yg
@@ -18303,14 +18529,14 @@ mC
 AM
 oc
 oc
-oc
 ll
-ll
+zM
+Nk
+sv
+jg
+qk
+aF
 oc
-yg
-yg
-yg
-yg
 yg
 yg
 yg
@@ -18434,15 +18660,15 @@ mC
 mC
 Lg
 yg
-yg
-CG
-CG
-CG
-CG
-yg
-yg
-yg
-yg
+oc
+ll
+qP
+ll
+ll
+oc
+qk
+hl
+oc
 yg
 yg
 yg
@@ -18566,15 +18792,15 @@ mC
 mC
 AM
 yg
-yg
+oc
+oc
 CG
-CG
-CG
-CG
-yg
-yg
-yg
-yg
+VH
+oc
+oc
+oc
+oc
+oc
 yg
 yg
 yg
@@ -19558,9 +19784,9 @@ LD
 kV
 zq
 oc
-ll
-ll
-ll
+PW
+iE
+Je
 oc
 ll
 ll
@@ -19571,7 +19797,7 @@ CG
 CG
 CG
 CG
-CG
+QU
 yg
 yg
 yg
@@ -19644,11 +19870,11 @@ re
 yg
 yg
 yg
-yg
-yg
-yg
-yg
-yg
+CG
+CG
+CG
+CG
+CG
 yg
 yg
 yg
@@ -19690,9 +19916,9 @@ El
 mC
 zq
 oc
+vK
 ll
-ll
-ll
+qP
 oc
 ll
 ll
@@ -19703,7 +19929,7 @@ CG
 CG
 CG
 CG
-CG
+zl
 yg
 yg
 yg
@@ -19776,11 +20002,11 @@ re
 yg
 yg
 yg
-yg
-yg
-yg
-yg
-yg
+CG
+CG
+CG
+CG
+CG
 yg
 yg
 Mx
@@ -19822,8 +20048,8 @@ LD
 mC
 zq
 oc
-ll
-ll
+PW
+iE
 ll
 oc
 ll
@@ -19835,7 +20061,7 @@ CG
 CG
 CG
 CG
-CG
+Vy
 yg
 yg
 oc
@@ -19906,14 +20132,14 @@ re
 (93,1,1) = {"
 re
 yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+CG
+CG
+CG
+CG
+CG
+CG
+CG
+CG
 yg
 Mx
 ZT
@@ -20038,13 +20264,13 @@ re
 (94,1,1) = {"
 re
 yg
-yg
-yg
-yg
-yg
-yg
-yg
-yg
+CG
+CG
+CG
+CG
+CG
+CG
+CG
 CG
 CG
 Mx
@@ -20092,8 +20318,8 @@ ll
 ll
 ll
 ll
-ll
-ll
+zM
+zM
 lY
 CG
 CG
@@ -20170,12 +20396,12 @@ re
 (95,1,1) = {"
 re
 yg
-yg
-yg
-yg
-yg
-yg
-yg
+CG
+CG
+CG
+CG
+CG
+CG
 CG
 CG
 CG
@@ -20222,10 +20448,10 @@ ll
 ll
 ll
 oc
+vx
 ll
-ll
-ll
-ll
+sv
+zM
 lY
 CG
 CG
@@ -20302,9 +20528,9 @@ re
 (96,1,1) = {"
 re
 yg
-yg
-yg
-yg
+CG
+CG
+CG
 CG
 CG
 CG
@@ -20434,8 +20660,8 @@ re
 (97,1,1) = {"
 re
 yg
-yg
-yg
+CG
+CG
 CG
 CG
 CG
@@ -20566,8 +20792,8 @@ re
 (98,1,1) = {"
 re
 yg
-yg
-yg
+CG
+CG
 CG
 CG
 CG
@@ -20698,14 +20924,14 @@ re
 (99,1,1) = {"
 re
 yg
-yg
-yg
 CG
 CG
 CG
 CG
-yg
-yg
+CG
+CG
+CG
+CG
 yg
 cM
 ll
@@ -20831,7 +21057,7 @@ re
 re
 yg
 yg
-yg
+CG
 CG
 CG
 CG
@@ -20926,7 +21152,7 @@ ll
 jQ
 el
 AT
-Vg
+ll
 HL
 gX
 VN
@@ -21623,8 +21849,8 @@ re
 re
 yg
 yg
-yg
-yg
+CG
+CG
 CG
 CG
 CG
@@ -21754,10 +21980,10 @@ re
 (107,1,1) = {"
 re
 yg
-yg
-yg
-yg
-yg
+CG
+CG
+CG
+CG
 CG
 CG
 CG
@@ -21886,11 +22112,11 @@ re
 (108,1,1) = {"
 re
 yg
-yg
-yg
-yg
-yg
-yg
+CG
+CG
+CG
+CG
+CG
 CG
 CG
 CG
@@ -22018,10 +22244,10 @@ re
 (109,1,1) = {"
 re
 yg
-yg
-yg
-yg
-yg
+CG
+CG
+CG
+CG
 CG
 CG
 CG
@@ -22151,8 +22377,8 @@ re
 re
 yg
 yg
-yg
-yg
+CG
+CG
 CG
 CG
 CG
@@ -22283,7 +22509,7 @@ re
 re
 yg
 yg
-yg
+CG
 CG
 CG
 CG
@@ -22415,7 +22641,7 @@ re
 re
 yg
 yg
-yg
+CG
 CG
 CG
 CG
@@ -22546,8 +22772,8 @@ re
 (113,1,1) = {"
 re
 yg
-CG
-CG
+jJ
+gA
 CG
 CG
 CG
@@ -22678,9 +22904,9 @@ re
 (114,1,1) = {"
 re
 yg
-CG
-CG
-CG
+jJ
+jJ
+gA
 CG
 CG
 CG
@@ -22810,9 +23036,9 @@ re
 (115,1,1) = {"
 re
 yg
-CG
-CG
-CG
+jJ
+jJ
+Et
 CG
 CG
 CG
@@ -22942,12 +23168,12 @@ re
 (116,1,1) = {"
 re
 yg
+jJ
+Et
 CG
 CG
-CG
-CG
-CG
-CG
+Fn
+BS
 yg
 yg
 yg
@@ -23074,11 +23300,11 @@ re
 (117,1,1) = {"
 re
 yg
+Et
 CG
 CG
-CG
-CG
-CG
+Fn
+jJ
 yg
 yg
 yg
@@ -23209,8 +23435,8 @@ yg
 CG
 CG
 CG
-CG
-CG
+Xk
+jJ
 yg
 yg
 yg
@@ -23342,7 +23568,7 @@ yg
 CG
 CG
 CG
-CG
+Xk
 yg
 yg
 yg
@@ -23689,16 +23915,16 @@ mC
 zq
 oc
 oc
-ll
-zM
-zM
-zM
+hm
+gC
+gC
+Lv
 oc
 tu
 tu
 tu
-ll
-ll
+gE
+mY
 ra
 CG
 CG
@@ -23820,17 +24046,17 @@ Ka
 ot
 zq
 oc
-ll
-ll
-ll
-ll
-zM
+pg
+Js
+PE
+PE
+xh
 oc
+co
+co
+co
 ll
-ll
-ll
-ll
-ll
+Nl
 ll
 CG
 CG
@@ -23951,27 +24177,27 @@ mC
 mC
 mC
 zq
+ra
+Hh
 ll
 ll
 ll
-ll
-ll
-ll
+SK
 oc
-Fw
-Fw
-Fw
+DI
+DI
+DI
 ll
-ll
+Nl
 oc
 CG
 CG
 CG
 CG
 oc
-ll
-ll
-ll
+ti
+tm
+pc
 oc
 yg
 yg
@@ -24084,26 +24310,26 @@ ux
 ux
 zq
 ll
-ll
-ll
-ll
-ll
-ll
+qM
+eQ
+eQ
+Bz
+Nl
 oc
-ll
-ll
-ll
-ll
-ll
-oc
-oc
+co
+co
+co
+Bz
+Nl
 oc
 oc
 oc
 oc
+oc
+oc
+by
 ll
-ll
-ll
+mJ
 oc
 oc
 oc
@@ -24219,26 +24445,26 @@ oc
 oc
 oc
 oc
-ll
-ll
+Hh
+Nl
 oc
 tu
 tu
 tu
-ll
-ll
+Hh
+Nl
 oc
 Jd
 Gw
 zM
 oc
+ti
+qn
 ll
-ll
-ll
-vu
-vu
-vu
-vu
+Bm
+ZL
+ZL
+Sw
 oc
 yg
 yg
@@ -24349,28 +24575,28 @@ mC
 zq
 oc
 Gk
-ll
+mY
+st
+Hh
+Nl
+oc
+oc
+oc
+oc
+Hh
+Nl
 oc
 ll
 ll
-oc
-oc
-oc
-oc
-ll
 ll
 oc
-ll
-ll
-ll
-oc
-ll
+by
 ll
 ll
 vu
 vu
 vu
-vu
+KL
 oc
 yg
 yg
@@ -24481,28 +24707,28 @@ pF
 PZ
 oc
 yB
-ll
+Ts
 nK
-ll
-ll
+Hh
+Nl
 oc
-TA
-Jh
+YN
+Kh
 oc
-ll
-ll
+Hh
+Nl
 nK
 ll
 ll
 ll
 nK
+by
 ll
 ll
-ll
 vu
 vu
 vu
-vu
+KL
 oc
 oc
 oc
@@ -24613,16 +24839,16 @@ yg
 yg
 oc
 RU
-ll
+XZ
 oc
-ll
-ll
-ll
-ll
-ll
-ll
-ll
-ll
+WA
+bD
+nK
+Hh
+ss
+gE
+Js
+Nl
 oc
 Zh
 lY
@@ -24634,7 +24860,7 @@ zM
 vu
 vu
 vu
-vu
+KL
 oc
 Fz
 Fz
@@ -24750,15 +24976,15 @@ oc
 Tl
 oc
 oc
-ll
+WL
 zM
 ex
 zM
-ll
+ka
 oc
-ll
-ll
-ll
+oU
+aI
+La
 oc
 VF
 ZW
@@ -24766,7 +24992,7 @@ CY
 ll
 ll
 ll
-ll
+mJ
 sG
 qk
 qk
@@ -24876,21 +25102,21 @@ yg
 yg
 yg
 oc
-cC
-ll
-ll
-ll
-ll
+Ud
+gE
+gE
+gE
+mY
 oc
-ll
+Hh
 zM
 ex
 zM
-ll
+ka
 on
+GY
 ll
-ll
-ll
+zG
 ex
 bZ
 lA
@@ -24898,7 +25124,7 @@ zM
 vu
 vu
 vu
-vu
+KL
 ll
 qk
 qk
@@ -25009,28 +25235,28 @@ yg
 yg
 oc
 eV
+RO
+pA
 ll
-ll
-ll
-ll
+Nl
 oc
-ll
-ll
-ll
-ll
-ll
+Hh
+xW
+eQ
+eQ
+XZ
 oc
-ll
-ll
-ll
+HL
+nN
+xZ
 oc
+by
 ll
 ll
-ll
 vu
 vu
 vu
-vu
+KL
 oc
 qk
 qk
@@ -25144,10 +25370,10 @@ oc
 eV
 cC
 KM
-Fw
+wM
 oc
-ll
-ll
+qM
+XZ
 oc
 oc
 oc
@@ -25156,13 +25382,13 @@ lY
 lY
 oc
 oc
+by
 ll
 ll
-ll
 vu
 vu
 vu
-vu
+KL
 oc
 tj
 tj
@@ -25288,13 +25514,13 @@ CG
 CG
 yg
 oc
-ll
-ll
-ll
-vu
-vu
-vu
-vu
+qV
+oE
+Ku
+NP
+NP
+WW
+KL
 oc
 oc
 oc
@@ -25421,16 +25647,16 @@ CG
 yg
 oc
 oc
-ll
-ll
+by
+mJ
 oc
 oc
-ll
-nX
+by
+mJ
 oc
-ll
-ll
-ll
+ti
+tm
+pc
 oc
 oc
 oc
@@ -25499,7 +25725,7 @@ yg
 yg
 yg
 yg
-yg
+CG
 CG
 CG
 CG
@@ -25552,22 +25778,22 @@ CG
 CG
 CG
 sG
-ll
-ll
-ll
-ll
-ll
-ll
-ll
-ll
+ti
+qn
+bQ
+tm
+tm
+qn
+bQ
+tm
 Sa
 oc
-ll
-ll
-ll
-ll
-ll
-ll
+bQ
+tm
+tm
+tm
+tm
+pc
 ra
 qk
 qk
@@ -25586,7 +25812,7 @@ yg
 yg
 CG
 CG
-yg
+CG
 CG
 CG
 CG
@@ -25684,7 +25910,7 @@ CG
 CG
 CG
 ll
-ll
+by
 ll
 ll
 ll
@@ -25699,7 +25925,7 @@ ll
 ll
 ll
 ll
-ll
+mJ
 ll
 qk
 qk
@@ -25717,8 +25943,8 @@ yg
 yg
 yg
 yg
-yg
-yg
+CG
+CG
 yg
 VJ
 VJ
@@ -25816,22 +26042,22 @@ CG
 CG
 CG
 oc
+qV
+oE
+Ku
+fx
+fx
+fx
+fx
+fx
+fx
+fx
+oE
 ll
 ll
 ll
 ll
-ll
-ll
-ll
-ll
-ll
-ll
-ll
-ll
-ll
-ll
-ll
-ll
+mJ
 oc
 dt
 qk
@@ -25949,8 +26175,8 @@ CG
 CG
 oc
 oc
-ll
-ll
+by
+mJ
 oc
 oc
 pA
@@ -25958,12 +26184,12 @@ pA
 pA
 pA
 ex
-ll
-ll
-ll
-ll
-ll
-ll
+qV
+fx
+fx
+fx
+oE
+mJ
 oc
 dt
 qk
@@ -26080,10 +26306,10 @@ CG
 CG
 CG
 oc
-ll
-ll
-ll
-ll
+OT
+qn
+bQ
+pc
 oc
 BA
 vo
@@ -26094,8 +26320,8 @@ ll
 nX
 oc
 oc
-ll
-ll
+by
+mJ
 oc
 oc
 oc
@@ -26212,10 +26438,10 @@ oc
 oc
 oc
 oc
-ll
-ll
-ll
-ll
+xw
+SA
+zM
+KL
 lY
 Wq
 lw
@@ -26223,12 +26449,12 @@ Wq
 hH
 Oq
 ll
-ll
-ll
+sv
+hG
 oc
-ll
-ll
-ll
+by
+bQ
+pc
 oc
 ei
 ei
@@ -26344,10 +26570,10 @@ Gc
 xN
 Gc
 oc
-ll
-ll
-ll
-ll
+xw
+SA
+zM
+KL
 lY
 Wq
 lw
@@ -26356,11 +26582,11 @@ hH
 yg
 ll
 ll
-ll
+zM
 oc
+by
 ll
-ll
-ll
+mJ
 oc
 ei
 ei
@@ -26458,7 +26684,7 @@ ed
 ed
 qy
 ed
-ed
+Td
 ed
 ed
 ed
@@ -26476,23 +26702,23 @@ Gc
 ll
 Gc
 oc
+xw
 ll
 ll
-ll
-ll
+mJ
 lY
 Wq
 lw
 Wq
 hH
 yg
-ll
-ll
-ll
+vy
+sv
+tX
 oc
+by
 ll
-ll
-ll
+mJ
 oc
 ei
 ei
@@ -26608,23 +26834,23 @@ ll
 ll
 ll
 sG
-ll
-ll
-ll
-ll
+by
+SA
+zM
+KL
 oc
 Wq
 lw
 Wq
 hH
 oc
-ll
+hG
 ll
 ll
 oc
+by
 ll
-ll
-ll
+mJ
 oc
 ei
 ei
@@ -26740,23 +26966,23 @@ ll
 ll
 ll
 ll
-ll
-ll
-ll
-ll
+by
+SA
+zM
+KL
 oc
 Wq
 lw
 Wq
 hH
 oc
-ll
+qP
 ll
 ll
 oc
-ll
-ll
-ll
+qV
+fx
+qQ
 oc
 ei
 he
@@ -26872,10 +27098,10 @@ Gc
 ll
 Gc
 oc
-ll
-ll
-ll
-ll
+xw
+SA
+zM
+KL
 lY
 Wq
 lw
@@ -26884,7 +27110,7 @@ hH
 oc
 ll
 ll
-oc
+ll
 oc
 ll
 nX
@@ -27004,10 +27230,10 @@ Gc
 ll
 Gc
 oc
-ll
-ll
-ll
-ll
+sX
+fx
+fx
+qQ
 lY
 Wq
 ZT
@@ -27017,7 +27243,7 @@ PW
 iE
 ll
 oc
-ei
+oc
 ei
 ei
 ei
@@ -28681,7 +28907,7 @@ lY
 Ob
 Ob
 Ob
-Po
+lM
 oc
 yg
 yg
@@ -28809,11 +29035,11 @@ vd
 sT
 oc
 oc
-ll
-ll
-ll
-ll
-qP
+ti
+tm
+tm
+tm
+Tu
 oc
 yg
 yg
@@ -28941,11 +29167,11 @@ ti
 LP
 pc
 on
-ll
+by
 ll
 oc
 dQ
-ll
+mJ
 oc
 yg
 yg
@@ -29073,11 +29299,11 @@ Gs
 ll
 mJ
 oc
-ll
+by
 ll
 oc
 cb
-iE
+Fr
 oc
 yg
 yg
@@ -29205,11 +29431,11 @@ by
 Ob
 mJ
 oc
-ll
+by
 ll
 oc
 dQ
-ll
+mJ
 oc
 yg
 yg
@@ -29337,11 +29563,11 @@ by
 Ob
 mJ
 oc
-dQ
-vx
+Yf
+QT
 ll
 ll
-ll
+mJ
 oc
 yg
 yg
@@ -29470,10 +29696,10 @@ SE
 Fr
 oc
 oc
-cb
-ll
-ll
-ll
+MK
+fx
+fx
+qQ
 oc
 yg
 yg
