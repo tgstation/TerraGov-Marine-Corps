@@ -1971,7 +1971,7 @@
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
 "aCI" = (
-/obj/machinery/vending/marine_medic,
+/obj/machinery/vending/medical,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/alpha)
@@ -8088,8 +8088,7 @@
 /obj/item/clothing/suit/storage/hazardvest/lime,
 /obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/full,
-/obj/item/storage/pouch/medical/full,
+/obj/item/storage/pouch/medkit/firstaid,
 /obj/item/tool/taperoll/engineering,
 /obj/item/tool/extinguisher/mini,
 /obj/item/storage/toolbox/mechanical,
@@ -9142,10 +9141,6 @@
 /area/mainship/living/numbertwobunks)
 "dwc" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/command/cic)
 "dwp" = (
@@ -10906,6 +10901,17 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/brig)
+"gJa" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "gJi" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -12681,7 +12687,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "kaw" = (
-/turf/open/floor/mainship/orange,
+/obj/structure/dropship_equipment/flare_launcher,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "kbP" = (
 /obj/structure/table/reinforced,
@@ -16293,6 +16300,10 @@
 /obj/machinery/line_nexter,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
+"qiO" = (
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/mainship/floor,
+/area/mainship/hallways/hangar)
 "qjs" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -16774,6 +16785,9 @@
 	dir = 8
 	},
 /obj/machinery/light,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
@@ -17098,6 +17112,17 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
+"rHU" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "rIj" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -19237,7 +19262,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/engine_core)
 "vHX" = (
-/obj/machinery/vending/marine_medic,
+/obj/machinery/vending/medical,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -20081,12 +20106,6 @@
 /area/mainship/command/cic)
 "xoW" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/surgery_hallway)
@@ -20528,6 +20547,12 @@
 /obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
 /turf/open/floor/mainship/orange{
 	dir = 6
@@ -42474,7 +42499,7 @@ bAh
 ppE
 vVR
 vVR
-vVR
+gJa
 qYe
 bgb
 fZA
@@ -42731,7 +42756,7 @@ kxg
 uns
 uns
 uns
-uns
+qiO
 kaw
 bgb
 sao
@@ -42988,8 +43013,8 @@ fme
 uns
 uns
 uns
-uns
-kaw
+qiO
+lvI
 bgb
 fZA
 aVk
@@ -43245,7 +43270,7 @@ hHj
 uns
 uns
 uns
-uns
+qiO
 kaw
 bgb
 qae
@@ -43502,7 +43527,7 @@ yes
 gGw
 xCC
 xCC
-xCC
+rHU
 ybO
 bgb
 wem

@@ -66,7 +66,7 @@
 /obj/item/reagent_containers/glass/bottle/kelotane
 	name = "\improper Kelotane bottle"
 	desc = "A small bottle. Contains kelotane - used to treat burned areas."
-	icon_state = "bottle16"
+	icon_state = "bottle15"
 	list_reagents = list(/datum/reagent/medicine/kelotane = 60)
 
 /obj/item/reagent_containers/glass/bottle/dexalin
@@ -108,7 +108,7 @@
 /obj/item/reagent_containers/glass/bottle/dylovene
 	name = "dylovene bottle"
 	desc = "A small bottle of dylovene. Used to counter poisons. Basically an anti-toxin."
-	icon_state = "bottle7"
+	icon_state = "bottle16"
 	list_reagents = list(/datum/reagent/medicine/dylovene = 60)
 
 /obj/item/reagent_containers/glass/bottle/mutagen
@@ -158,20 +158,13 @@
 /obj/item/reagent_containers/glass/bottle/bicaridine
 	name = "\improper Bicaridine bottle"
 	desc = "A small bottle. Contains Bicaridine - Used to treat brute damage by doctors."
-	icon_state = "bottle17"
+	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/medicine/bicaridine = 60)
-
-/obj/item/reagent_containers/glass/bottle/peridaxon
-	name = "\improper Peridaxon bottle"
-	desc = "A small bottle. Contains Peridaxon - Used to treat internal organ damage."
-	icon_state = "bottle4"
-	volume = 20
-	list_reagents = list(/datum/reagent/medicine/peridaxon = 20)
 
 /obj/item/reagent_containers/glass/bottle/tramadol
 	name = "\improper Tramadol bottle"
 	desc = "A small bottle. Contains Tramadol - Used as a basic painkiller."
-	icon_state = "bottle1"
+	icon_state = "bottle18"
 	volume = 60
 	list_reagents = list(/datum/reagent/medicine/tramadol = 60)
 
@@ -192,7 +185,7 @@
 /obj/item/reagent_containers/glass/bottle/tricordrazine
 	name = "\improper Tricordrazine bottle"
 	desc = "A small bottle. Contains tricordrazine - used as a generic treatment for injuries."
-	icon_state = "bottle18"
+	icon_state = "bottle4"
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
 
 /obj/item/reagent_containers/glass/bottle/meralyne
@@ -219,59 +212,11 @@
 	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/medicine/nanoblood = 60)
 
-/obj/item/reagent_containers/glass/bottle/neurotoxin
-	name = "\improper Neurotoxin bottle"
-	desc = "A small bottle. Contains artificialy synthesized neurotoxin- useful for testing treatments, or training troops."
-	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 30)
-
-/obj/item/reagent_containers/glass/bottle/neurotoxin/light
-	name = "\improper Light Neurotoxin bottle"
-	desc = "A small bottle. Contains weakened synthesized neurotoxin- useful for testing treatments, or training troops."
-	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 30)
-
-/obj/item/reagent_containers/glass/bottle/xeno_hemodile
-	name = "\improper Hemodile bottle"
-	desc = "A small bottle. Contains artificialy synthesized hemodile- useful for testing treatments, or training troops."
-	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/toxin/xeno_hemodile = 30)
-
-/obj/item/reagent_containers/glass/bottle/xeno_transvitox
-	name = "\improper Transvitox bottle"
-	desc = "A small bottle. Contains artificialy synthesized transvitox- useful for testing treatments, training troops, or as a very risky medicine."
-	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/toxin/xeno_transvitox = 30)
-
-/obj/item/reagent_containers/glass/bottle/xeno_sanguinal
-	name = "\improper Sanguinal bottle"
-	desc = "A small bottle. Contains artificialy synthesized sanguinal- useful for testing treatments or training troops."
-	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/toxin/xeno_sanguinal = 30)
-
-/obj/item/reagent_containers/glass/bottle/xeno_ozelomelyn
-	name = "\improper xeno_ozelomelyn bottle"
-	desc = "A small bottle. Contains artificialy synthesized ozelomelyn- useful for testing treatments or training troops."
-	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/toxin/xeno_ozelomelyn = 30)
-
-/obj/item/reagent_containers/glass/bottle/xeno_zombium
-	name = "\improper Zombium bottle"
-	desc = "A small bottle. Contains artificialy synthesized zombium- useful for testing treatments, training troops, or attempting to start the end of the world."
-	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/zombium = 60)
-
 /obj/item/reagent_containers/glass/bottle/polyhexanide
 	name = "\improper Polyhexanide bottle"
 	desc = "A small bottle. Contains one and a half doses of polyhexanide, a sterilizer for internal surgical use."
 	icon_state = "bottle2"
 	list_reagents = list(/datum/reagent/medicine/polyhexanide = 30)
-
-/obj/item/reagent_containers/glass/bottle/medicalnanites
-	name = "\improper Nanomachines bottle"
-	desc = "A small bottle. Contains nanomachines modified for medical use, A potent new method of healing that that reproduces using a subject's blood and has a brief but potentially dangerous activation period!"
-	icon_state = "bottle7"
-	list_reagents = list(/datum/reagent/medicine/research/medicalnanites = 5)
 
 /obj/item/reagent_containers/glass/bottle/lemoline
 	name = "\improper Lemoline bottle"

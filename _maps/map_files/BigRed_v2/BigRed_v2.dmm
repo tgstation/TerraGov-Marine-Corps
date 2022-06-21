@@ -451,7 +451,7 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/side{
-	dir = 9;
+	dir = 9
 	},
 /area/bigredv2/outside/bar)
 "aeV" = (
@@ -3201,7 +3201,7 @@
 "asq" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/carpet/side{
-	dir = 10;
+	dir = 10
 	},
 /area/bigredv2/caves/lambda_lab)
 "asr" = (
@@ -3826,15 +3826,14 @@
 "awA" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/pen,
-/turf/open/floor/carpet/side{
-	},
+/turf/open/floor/carpet/side,
 /area/bigredv2/caves/lambda_lab)
 "awB" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/coffee,
 /obj/item/phone,
 /turf/open/floor/carpet/side{
-	dir = 6;
+	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
 "awC" = (
@@ -4672,12 +4671,12 @@
 /area/bigredv2/caves/lambda_lab)
 "aDv" = (
 /turf/open/floor/carpet/side{
-	dir = 1;
+	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDw" = (
 /turf/open/floor/carpet/side{
-	dir = 5;
+	dir = 5
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDy" = (
@@ -4692,7 +4691,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aDA" = (
 /turf/open/floor/carpet/side{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
 "aDQ" = (
@@ -4794,7 +4793,7 @@
 /area/bigredv2/outside/hydroponics)
 "aEl" = (
 /turf/open/floor/carpet/side{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
 "aEo" = (
@@ -5316,7 +5315,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/side{
-	dir = 1;
+	dir = 1
 	},
 /area/bigredv2/outside/bar)
 "aHJ" = (
@@ -5540,7 +5539,7 @@
 "aIq" = (
 /obj/structure/musician/piano,
 /turf/open/floor/carpet/side{
-	dir = 8;
+	dir = 8
 	},
 /area/bigredv2/outside/bar)
 "aIr" = (
@@ -12406,7 +12405,7 @@
 /area/bigredv2/outside/e)
 "eyt" = (
 /turf/open/floor/carpet/side{
-	dir = 1;
+	dir = 1
 	},
 /area/bigredv2/outside/bar)
 "eyz" = (
@@ -12429,7 +12428,7 @@
 /area/bigredv2/caves/southwest)
 "eIG" = (
 /turf/open/floor/carpet/side{
-	dir = 5;
+	dir = 5
 	},
 /area/bigredv2/outside/bar)
 "eIN" = (
@@ -12529,7 +12528,7 @@
 /area/bigredv2/caves/lambda_lab)
 "fhY" = (
 /turf/open/floor/carpet/side{
-	dir = 4;
+	dir = 4
 	},
 /area/bigredv2/outside/bar)
 "fjI" = (
@@ -12571,7 +12570,7 @@
 /area/bigredv2/caves/east)
 "fpO" = (
 /turf/open/floor/carpet/side{
-	dir = 10;
+	dir = 10
 	},
 /area/bigredv2/outside/bar)
 "fra" = (
@@ -12609,8 +12608,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "fDJ" = (
-/turf/open/floor/carpet/side{
-	},
+/turf/open/floor/carpet/side,
 /area/bigredv2/outside/bar)
 "fES" = (
 /obj/machinery/miner/damaged/platinum,
@@ -12648,7 +12646,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "fLz" = (
 /turf/open/floor/carpet/side{
-	dir = 6;
+	dir = 6
 	},
 /area/bigredv2/outside/bar)
 "fMu" = (
@@ -13470,7 +13468,7 @@
 "ltt" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
-	dir = 9;
+	dir = 9
 	},
 /area/bigredv2/caves/lambda_lab)
 "lvn" = (
@@ -13929,8 +13927,8 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "owS" = (
 /obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/west)
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
 "oxg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/marking/asteroidwarning{
@@ -14467,12 +14465,6 @@
 /obj/structure/cable,
 /turf/closed/wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"rLF" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 10
-	},
-/area/bigredv2/outside/c)
 "rLO" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -15001,8 +14993,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "vjn" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/carpet/side{
-	},
+/turf/open/floor/carpet/side,
 /area/bigredv2/outside/bar)
 "vmk" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -17335,12 +17326,12 @@ hqP
 hqP
 hqP
 hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
+axl
+axl
+axl
+axl
+axl
+axl
 hqP
 aaa
 aaa
@@ -17547,17 +17538,17 @@ aaa
 aaa
 aaa
 aaa
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
-hqP
+axl
+axl
+axl
+axl
+axl
+axl
+axl
+axl
+axl
+axl
+axl
 hqP
 aaa
 aaa
@@ -17764,11 +17755,11 @@ aaa
 aaa
 aaa
 aaa
-hqP
-hqP
-hqP
-hqP
-hqP
+axl
+axl
+axl
+axl
+axl
 axl
 axl
 axl
@@ -17806,7 +17797,7 @@ tQg
 tQg
 jOB
 tQg
-owS
+tQg
 tQg
 tQg
 sNF
@@ -26914,7 +26905,7 @@ aaa
 aaa
 uUn
 mxa
-mxa
+owS
 mxa
 aMa
 aaa
@@ -28651,7 +28642,7 @@ aaa
 aaa
 aaa
 aMg
-sZl
+lKw
 aMc
 aaa
 aaa
@@ -34972,7 +34963,7 @@ xCx
 xCx
 nEP
 oxP
-rLF
+aIm
 aaa
 aaa
 aaa

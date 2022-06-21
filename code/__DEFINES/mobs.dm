@@ -154,6 +154,7 @@
 #define XENO_TIER_FOUR "four"
 
 GLOBAL_LIST_INIT(xenotiers, list(XENO_TIER_MINION, XENO_TIER_ZERO, XENO_TIER_ONE, XENO_TIER_TWO, XENO_TIER_THREE, XENO_TIER_FOUR))
+GLOBAL_LIST_INIT(tier_as_number, list(XENO_TIER_MINION = -1, XENO_TIER_ZERO = 0, XENO_TIER_ONE = 1, XENO_TIER_TWO = 2, XENO_TIER_THREE = 3, XENO_TIER_FOUR = 4))
 
 // =============================
 // xeno upgrades
@@ -210,6 +211,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define ORGAN_BRAIN 5
 #define ORGAN_EYES 6
 #define ORGAN_APPENDIX 7
+
+#define ORGAN_HEALTHY 0
+#define ORGAN_BRUISED 1
+#define ORGAN_BROKEN 2
 
 //Brain Damage defines
 #define BRAIN_DAMAGE_MILD 20
@@ -485,28 +490,38 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2
 
+#define CASTE_INNATE_HEALING (1<<0) // Xenomorphs heal outside of weeds. Larvas, for example.
+#define CASTE_FIRE_IMMUNE (1<<1)
+#define CASTE_EVOLUTION_ALLOWED (1<<2)
+#define CASTE_IS_INTELLIGENT (1<<3) // A hive leader or able to use more human controls
+#define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<4) //Doesn't alert the hive when at low life, and is quieter when dying
+#define CASTE_HIDE_IN_STATUS (1<<5)
+#define CASTE_QUICK_HEAL_STANDING (1<<6) // Xenomorphs heal standing same if they were resting.
+#define CASTE_INNATE_PLASMA_REGEN (1<<7) // Xenos get full plasma regardless if they are on weeds or not
+#define CASTE_ACID_BLOOD (1<<8) //The acid blood effect which damages humans near xenos that take damage
+#define CASTE_IS_STRONG (1<<9)//can tear open acided walls without being big
+#define CASTE_IS_BUILDER (1<<10) //whether we are classified as a builder caste
+#define CASTE_IS_A_MINION (1<<11) //That's a dumb ai
+#define CASTE_PLASMADRAIN_IMMUNE (1<<12)
+
 #define CASTE_CAN_HOLD_FACEHUGGERS (1<<0)
 #define CASTE_CAN_VENT_CRAWL (1<<1)
 #define CASTE_CAN_BE_QUEEN_HEALED (1<<2)
 #define CASTE_CAN_BE_GIVEN_PLASMA (1<<3)
-#define CASTE_INNATE_HEALING (1<<4) // Xenomorphs heal outside of weeds. Larvas, for example.
-#define CASTE_FIRE_IMMUNE (1<<5)
-#define CASTE_EVOLUTION_ALLOWED (1<<6)
-#define CASTE_IS_INTELLIGENT (1<<7) // A hive leader or able to use more human controls
-#define CASTE_DO_NOT_ALERT_LOW_LIFE (1<<8) //Doesn't alert the hive when at low life, and is quieter when dying
-#define CASTE_CAN_BE_LEADER (1<<9)
-#define CASTE_HIDE_IN_STATUS (1<<10)
-#define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
-#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<12) // Xenomorphs can heal even without a queen on the same z level
-#define CASTE_INNATE_PLASMA_REGEN (1<<13) // Xenos get full plasma regardless if they are on weeds or not
-#define CASTE_ACID_BLOOD (1<<14) //The acid blood effect which damages humans near xenos that take damage
-#define CASTE_CAN_HOLD_JELLY (1<<15)//whether we can hold fireproof jelly in our hands
-#define CASTE_IS_STRONG (1<<16)//can tear open acided walls without being big
-#define CASTE_CAN_CORRUPT_GENERATOR (1<<17) //Can corrupt a generator
-#define CASTE_IS_BUILDER (1<<18) //whether we are classified as a builder caste
-#define CASTE_CAN_BECOME_KING (1<<19) //Can be choose to become a king
-#define CASTE_CAN_RIDE_CRUSHER (1<<20) //Can ride a crusher
-#define CASTE_IS_A_MINION (1<<21) //That's a dumb ai
+#define CASTE_CAN_BE_LEADER (1<<4)
+#define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<5) // Xenomorphs can heal even without a queen on the same z level
+#define CASTE_CAN_HOLD_JELLY (1<<6)//whether we can hold fireproof jelly in our hands
+#define CASTE_CAN_CORRUPT_GENERATOR (1<<7) //Can corrupt a generator
+#define CASTE_CAN_BECOME_KING (1<<8) //Can be choose to become a king
+#define CASTE_CAN_RIDE_CRUSHER (1<<9) //Can ride a crusher
+
+#define HIVE_STATUS_SHOW_EMPTY (1<<0)
+#define HIVE_STATUS_COMPACT_MODE (1<<1)
+#define HIVE_STATUS_SHOW_GENERAL (1<<2)
+#define HIVE_STATUS_SHOW_POPULATION (1<<3)
+#define HIVE_STATUS_SHOW_XENO_LIST (1<<4)
+#define HIVE_STATUS_SHOW_STRUCTURES (1<<5)
+#define HIVE_STATUS_DEFAULTS (HIVE_STATUS_SHOW_EMPTY | HIVE_STATUS_SHOW_GENERAL | HIVE_STATUS_SHOW_POPULATION | HIVE_STATUS_SHOW_XENO_LIST | HIVE_STATUS_SHOW_STRUCTURES)
 
 //Charge-Crush
 #define CHARGE_OFF 0
@@ -659,7 +674,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define WRAITH_BLINK_RANGE 3
 
 #define WRAITH_BANISH_BASE_DURATION 10 SECONDS
-#define WRAITH_BANISH_RANGE 3
 #define WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER 0.5
 #define WRAITH_BANISH_VERY_SHORT_MULTIPLIER 0.3
 

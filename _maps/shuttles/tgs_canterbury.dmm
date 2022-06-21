@@ -592,8 +592,6 @@
 /area/shuttle/canterbury/medical)
 "ce" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/combatLifesaver,
 /obj/item/healthanalyzer,
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/dark,

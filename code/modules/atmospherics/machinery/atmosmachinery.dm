@@ -286,10 +286,8 @@
 				if(impassable)
 					return
 
-				var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
-				if(length(pipenetdiff))
-					user.update_pipe_vision(target_move)
 				user.forceMove(target_move)
+				user.update_pipe_vision()
 				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
 				var/silent_crawl = FALSE //Some creatures can move through the vents silently
 				if(isxeno(user))

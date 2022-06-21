@@ -56,17 +56,6 @@ OPERATIONS
 	contains = list(/obj/item/minerupgrade/overclock)
 	cost = 5
 
-/datum/supply_packs/operations/cas_flares
-	name = "CAS flare pack"
-	contains = list(/obj/item/storage/box/m94/cas)
-	available_against_xeno_only = TRUE
-	cost = 5
-
-/datum/supply_packs/operations/binoculars_regular
-	name = "binoculars"
-	contains = list(/obj/item/binoculars)
-	cost = 15
-
 /datum/supply_packs/operations/binoculars_tatical
 	name = "tactical binoculars crate"
 	contains = list(/obj/item/binoculars/tactical)
@@ -77,17 +66,6 @@ OPERATIONS
 	name = "pool tracker crate"
 	contains = list(/obj/item/pinpointer)
 	cost = 20
-	available_against_xeno_only = TRUE
-
-/datum/supply_packs/operations/flares
-	name = "flare packs"
-	contains = list(/obj/item/storage/box/m94)
-	cost = 1
-
-/datum/supply_packs/operations/tarps
-	name = "V1 thermal-dampening tarp"
-	contains = list(/obj/item/bodybag/tarp)
-	cost = 6
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/deployable_camera
@@ -155,6 +133,11 @@ OPERATIONS
 	name = "Autominer upgrade"
 	contains = list(/obj/item/minerupgrade/automatic)
 	cost = 15
+
+/datum/supply_packs/operations/cash
+	name = "200 dollars"
+	contains = list(/obj/item/spacecash/c500)
+	cost = 5
 
 /*******************************************************************************
 WEAPONS
@@ -447,14 +430,14 @@ WEAPONS
 	cost = 5
 
 /datum/supply_packs/weapons/smart_minigun
-	name = "SG-85 Microgun"
+	name = "SG-85 Smart Handheld Gatling Gun"
 	contains = list(/obj/item/weapon/gun/minigun/smart_minigun)
 	cost = 40
 
 /datum/supply_packs/weapons/smart_minigun_ammo
-	name = "SG-85 powerpack"
-	contains = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
-	cost = 10
+	name = "SG-85 ammo bin"
+	contains = list(/obj/item/ammo_magazine/packet/smart_minigun)
+	cost = 5
 
 /datum/supply_packs/weapons/flamethrower
 	name = "FL-84 Flamethrower"
@@ -834,10 +817,10 @@ MEDICAL
 /datum/supply_packs/medical/advanced_medical
 	name = "Emergency medical supplies"
 	contains = list(
-		/obj/item/storage/pouch/autoinjector/advanced/full,
-		/obj/item/storage/pouch/autoinjector/advanced/full,
-		/obj/item/storage/pouch/autoinjector/advanced/full,
-		/obj/item/storage/pouch/autoinjector/advanced/full,
+		/obj/item/storage/pouch/medical_injectors/medic,
+		/obj/item/storage/pouch/medical_injectors/medic,
+		/obj/item/storage/pouch/medical_injectors/medic,
+		/obj/item/storage/pouch/medical_injectors/medic,
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
@@ -879,7 +862,6 @@ MEDICAL
 		/obj/item/storage/pill_bottle/kelotane,
 		/obj/item/storage/pill_bottle/tramadol,
 		/obj/item/storage/pill_bottle/quickclot,
-		/obj/item/storage/pill_bottle/peridaxon,
 		/obj/item/storage/box/pillbottles,
 	)
 	cost = 10
@@ -1489,6 +1471,61 @@ VEHICLES
 	cost = 1
 	containertype = /obj/structure/closet/crate
 
+/datum/supply_packs/vehicles/mounted_hsg
+	name = "Mounted HSG"
+	contains = list(/obj/structure/dropship_equipment/mg_holder)
+	cost = 50
+
+/datum/supply_packs/vehicles/mounted_dualcannon
+	name = "Mounted Dualcannon"
+	contains = list(/obj/structure/dropship_equipment/dualcannon_holder)
+	cost = 60
+
+/datum/supply_packs/vehicles/mounted_heavy_laser
+	name = "Mounted Heavy Laser"
+	contains = list(/obj/structure/dropship_equipment/heavylaser_holder)
+	cost = 90
+
+/datum/supply_packs/vehicles/mounted_minigun
+	name = "Mounted Automatic Minigun"
+	contains = list(/obj/structure/dropship_equipment/minigun_holder)
+	cost = 75
+
+/datum/supply_packs/vehicles/mounted_rr
+	name = "Mounted Heavy Recoilless Rifle"
+	contains = list(/obj/structure/dropship_equipment/heavy_rr_holder)
+	cost = 180
+
+/datum/supply_packs/vehicles/hsg_ammo
+	name = "Mounted HSG ammo"
+	contains = list(/obj/item/ammo_magazine/tl102/hsg_nest)
+	cost = 3
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/dc_ammo
+	name = "Mounted Dualcannon ammo"
+	contains = list(/obj/item/ammo_magazine/dual_cannon)
+	cost = 3
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/minigun_ammo
+	name = "Mounted Minigun ammo"
+	contains = list(/obj/item/ammo_magazine/heavy_minigun)
+	cost = 3
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/hl_ammo
+	name = "Mounted Heavy Laser ammo (x3)"
+	contains = list(/obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser)
+	cost = 5
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/rr_ammo
+	name = "Mounted Recoilless Rifle shell (x2)"
+	contains = list(/obj/item/ammo_magazine/heavy_rr, /obj/item/ammo_magazine/heavy_rr)
+	cost = 7
+	containertype = /obj/structure/closet/crate/ammo
+
 /*******************************************************************************
 FACTORY
 *******************************************************************************/
@@ -1567,15 +1604,15 @@ FACTORY
 	contains = list(/obj/item/factory_refill/pizza_refill)
 	cost = 29 //allows a one point profit if all pizzas are processed and sold back to ASRS
 
-/datum/supply_packs/factory/smartrifle_ammo_refill
-	name = "Smart rifle bullet parts refill"
-	contains = list(/obj/item/factory_refill/smartgunner_rifle_box_refill)
-	cost = 20
+/datum/supply_packs/factory/smartgun_minigun_box_refill
+	name = "Smart minigun bullet bin parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_minigun_box_refill)
+	cost = 25
 
 /datum/supply_packs/factory/smartgun_magazine_refill
 	name = "Smart machinegun drum parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
-	cost = 50
+	cost = 25
 
 /datum/supply_packs/factory/autosniper_magazine_refill
 	name = "SR-81 IFF Auto Sniper magazine assembly refill"

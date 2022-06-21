@@ -932,8 +932,8 @@
 /area/bigredv2/outside/c)
 "AS" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/healthanalyzer,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/office_complex)
@@ -1331,10 +1331,6 @@
 "OS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/turf/open/floor/plating/icefloor,
-/area/bigredv2/outside/office_complex)
-"OX" = (
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/icefloor,
 /area/bigredv2/outside/office_complex)
 "Pn" = (
@@ -1948,7 +1944,7 @@ Yh
 Nk
 xx
 JY
-OX
+wF
 "}
 (9,1,1) = {"
 bX

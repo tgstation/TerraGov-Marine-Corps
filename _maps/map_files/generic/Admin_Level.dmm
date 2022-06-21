@@ -1064,7 +1064,6 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/milk,
 /obj/item/reagent_containers/glass/bottle/lemoline,
-/obj/item/reagent_containers/glass/bottle/neurotoxin,
 /obj/machinery/reagentgrinder/nopower{
 	pixel_y = 7
 	},
@@ -16657,8 +16656,8 @@
 	pixel_y = 3
 	},
 /obj/item/storage/box/syringes,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/clothing/tie/stethoscope,
 /obj/item/clothing/tie/stethoscope,
 /obj/effect/decal/warning_stripes/box/empty,
@@ -17042,7 +17041,6 @@
 	},
 /obj/item/reagent_containers/food/drinks/milk,
 /obj/item/reagent_containers/glass/bottle/lemoline,
-/obj/item/reagent_containers/glass/bottle/neurotoxin,
 /turf/open/floor/tile/vault{
 	dir = 5
 	},

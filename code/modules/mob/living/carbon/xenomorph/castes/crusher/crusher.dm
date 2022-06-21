@@ -40,7 +40,7 @@
 	if(!isxeno(pulling))
 		return NONE
 	var/mob/living/carbon/xenomorph/grabbed = pulling
-	if(stat == CONSCIOUS && grabbed.xeno_caste.caste_flags & CASTE_CAN_RIDE_CRUSHER)
+	if(stat == CONSCIOUS && grabbed.xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER)
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
 		INVOKE_ASYNC(src, .proc/carry_xeno, grabbed)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK

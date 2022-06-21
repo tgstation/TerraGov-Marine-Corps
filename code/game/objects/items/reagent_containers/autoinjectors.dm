@@ -136,7 +136,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/dexalin
 	name = "dexalin autoinjector"
-	desc = "An auto-injector loaded with 3 doses of dexalin, an emergency stabilization medicine for patients in critical condition."
+	desc = "An auto-injector loaded with 3 doses of dexalin, a medicine that oxygenates the body helping those with respiratory issues or low blood."
 	icon_state = "autoinjector-2"
 	volume = 15
 	amount_per_transfer_from_this = 5
@@ -144,7 +144,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin
 	name = "spaceacillin autoinjector"
-	desc = "An auto-injector loaded with 3 doses of spaceacillin, an emergency medicine that help combat against infection before necrosis appears."
+	desc = "An auto-injector loaded with 3 doses of spaceacillin, an antibiotic medicine that helps combat infection and fight necrosis."
 	icon_state = "autoinjector-1"
 	volume = 15
 	amount_per_transfer_from_this = 5
@@ -221,14 +221,6 @@
 	amount_per_transfer_from_this = 4
 	volume = 12
 	list_reagents = list(/datum/reagent/medicine/neuraline = 12)
-
-/obj/item/reagent_containers/hypospray/autoinjector/peridaxon
-	name = "peridaxon autoinjector"
-	desc = "An auto-injector loaded with 3 doses of Peridaxon, a chemical that suppresses organ damage."
-	icon_state = "autoinjector-6"
-	list_reagents = list(
-		/datum/reagent/medicine/peridaxon = 30,
-	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "peridaxon Plus autoinjector"

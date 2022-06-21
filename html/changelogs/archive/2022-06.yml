@@ -1,0 +1,308 @@
+2022-06-01:
+  Arctrooper8:
+  - bugfix: SG stuff can now be saved in loadouts again
+  Ghost_Guts (added to code by Lewdcifer):
+  - imageadd: 'New lobby art: between a crate and a hard place.'
+  QualityVan:
+  - balance: Tripled suture healing for people who should be doing surgery.
+  RipGrayson:
+  - rscadd: Created a random organ spawner.
+  - rscadd: Created a random pill bottle spawner.
+  - rscadd: Created a random surgical instrument spawner.
+  - balance: Added two more generators to WO to help with power issues.
+  - balance: Removed unused empty space around WO.
+  - balance: Added an extra autodoc to the front outpost of WO.
+  - balance: Added an extra blood vendor to the front outpost of WO.
+  - balance: Doctors on WO now have access to Spaceacillin.
+  - balance: Groundside doctors on WO now have access to surgical vests.
+  - balance: Groundside doctors on WO now have access to basic equipment lockers.
+  - bugfix: Jungle path turfs in WO are no longer black voids.
+  - bugfix: WO no longer generates runtimes on load.
+  - bugfix: WO no longer generates a million ugly bushes on every jungle surface.
+  - bugfix: WO no longer generates house plants underneath ugly bushes.
+  - bugfix: AI xenos on WO will no longer try to path through floodlights.
+  - bugfix: FIxed an unusable bodyscanner on WO that lacked a console.
+  - imageadd: Added some spawner related icons.
+  - qol: Added extra detail to WO in many areas of the map.
+  - qol: Gave all WO mineral turfs their own area.
+  - bugfix: The Canterbury can no longer land on top of Big Red disk generators.
+  Wayland-Smithy:
+  - bugfix: Fixed some groundside machinery not deactivating on hijack (like the nuke)
+  breadhunt:
+  - qol: 123456 keybind weapon swapping for CAS
+  - bugfix: Swaps south/east keybinds for CAS to where they should be
+  - bugfix: Fixed a ton of lights not working properly
+  - balance: This makes CAS flares and mortar flares useful again
+  - bugfix: Fixes metal cades being upgraded with nothing
+  - rscadd: Dropship fabricator queue
+  - refactor: Cleans up fabricator code a bit
+  - qol: Balloon alerts to fabricator
+  - bugfix: Fabricator turns orange when it's active properly now
+2022-06-02:
+  DeltaFire15:
+  - balance: Larva gets 2 points evo / tick if on weeds, like before the larva evo
+      point rework.
+  Lewdcifer:
+  - imageadd: 'New lobby art: a good meme never dies.'
+  - imageadd: 'New lobby art: droid bullies larva.'
+  Lumipharon:
+  - balance: Underbarrel weapons now slightly impact wield times for their parent
+      guns.
+  QualityVan:
+  - code_imp: Operating tables don't use their anesthetic tank for internals any more.
+      They still need one though.
+  breadhunt:
+  - balance: Gives researcher engineering access for APCs. They'll still fumble though.
+  - bugfix: Fixes stack PR
+2022-06-03:
+  Lewdcifer:
+  - balance: Laser sniper IFF reverted.
+2022-06-04:
+  Lewdcifer:
+  - balance: SG minigun sunder 2 > 1.
+  Wayland-Smithy:
+  - balance: 'Reduced the max_integrity of: coffins, large crates (the kind that must
+      be broken or opened with a crowbar), cases, barrels, ore boxes, plastic flaps,
+      hydro trays, mop buckets, janitorial carts, filing cabinets, and reagent dispensers.'
+  - bugfix: 'Added the xeno damageable flag to: janitorial carts, filing cabinets
+      and reagent dispensers (beer keg, boozeomat, etc..)'
+  - bugfix: Removed useless train vehicle attack_alien override preventing damage.
+  - bugfix: Fixed xenos not being able to open wrapped large parcels i.e. wrapped
+      lockers.
+  - bugfix: Opening gracefully, not smashing, closets does not put xeno attack on
+      cooldown.
+  - bugfix: Fixed closets not taking damage from slashes even though the animation
+      played and informed the xeno they "smashed" the object.
+2022-06-05:
+  BraveMole:
+  - code_imp: Mobs no longer breath
+  GrayRachnid:
+  - bugfix: Removed the ability for an undeployed teleporter to not get melted.
+  - balance: Smartminigun ammo count reduced to 1,000 and mag box down to 500.
+  Lewdcifer:
+  - balance: SADAR is unable to fire until wielded.
+  Lumipharon:
+  - bugfix: The laser sniper's ammo has an accurate minimum range and the sniper flag
+      like other sniper ammo
+  QualityVan:
+  - code_imp: Ammo flag comments expanded
+  goose4429:
+  - qol: Attachments reorder
+  - rscadd: added Injector Jaeger module
+  novaepee:
+  - rscadd: headwear and service dress tab in clothing vendor to stop the clutter
+      that is clothing tab in clothing vendor. With that said, change clothing tab
+      to standard tab.
+  - rscadd: 'head bandanna into clothing vendor with two new colors: brown and grey.'
+  - rscdel: TGMC bandanna.
+  - imageadd: grey and brown bandanna
+  - balance: new Nuclear War pathway in Ice Colony
+  - balance: Move Ice Colony nuke to underground.
+  - balance: Move Ice Colony red disk to research.
+  - balance: Move Ice Colony blue disk to engineering
+  - balance: Move Ice Colony green disk to medical.
+  - balance: Move medical to dorm
+  - balance: add two cryo tubes in medical to reward marines for holding medical.
+2022-06-07:
+  Arctrooper8:
+  - rscadd: Water canteen to marine food vendor
+  - balance: canteen is now smoll
+  - imagedel: helmet flask sprite
+  QualityVan:
+  - balance: Flamer's extended nozzle can remove vines and snow, along with other
+      sources of ground fire.
+  - bugfix: Flamer projectiles should more reliably ignite on hit.
+  - bugfix: Suture surgery updates patient health for scanners.
+  - bugfix: Self-examine correctly shows whether limbs are treated
+  - code_imp: trait define for op tables
+  - bugfix: Carriers and other appropriate xenos can pick up facehuggers again
+  RipGrayson:
+  - bugfix: Fixed weeds not covering pipes on plating turfs.
+  - bugfix: Fixed incorrect turfs disallowing resin placement in Prison's crashed
+      ship.
+  - bugfix: Fixed manifolds inexplicably being on a different plane than the rest
+      of pipes.
+  - bugfix: Fixed an error with certain crashed ship wall configurations always resulting
+      in + pieces.
+  breadhunt:
+  - balance: Researchers can now unlock groundside APCs for intel computers as intended
+      (oops)
+  novaepee:
+  - rscadd: another APC in Big Red's barrack and operation since they house green
+      disk
+  - rscadd: Change up barrack a bit to make up for the lost function of said APC room
+  - rscdel: A memorable chokepoint in LV-624 cave
+  - rscadd: sand temple in LV-624 is now underground
+  - rscadd: crowbar in LV-624 LZ
+2022-06-09:
+  BraveMole:
+  - qol: UAVs can open doors by bumping into it
+  KornFlaks (RIP) & Wayland-Smithy:
+  - rscadd: Xeno hive status is now a constantly updating TGUI page.
+  - rscadd: Xeno hivemind players can now select a xeno to jump to using the hive
+      status UI overwatch button.
+  - rscadd: Evolving now closes all UI pages open.
+  - rscadd: Xeno purchased primordial tiers now display as a green [PRIMORDIAL] next
+      to the tier population in the hive status UI.
+  - imageadd: Ported CM hive status SSD icon.
+  - qol: Evolution is displayed and can now be accessed through the hive status UI.
+  - qol: Xeno overwatch selection now done through hive status UI. Action button no
+      longer visible.
+  - qol: Xeno overwatch can now be canceled without having to move by selecting the
+      same xeno to overwatch again.
+  - qol: Queen leadership toggle now done through hive status UI. Action button no
+      longer visible.
+  - qol: Queen transfer plasma now possible through hive status UI.
+  - qol: Xeno minimap icons now display next to corresponding xeno names in hive status
+      UI.
+  - qol: Xeno collapse timers now display in hive status UI instead of game tab.
+  - qol: Hive status UI can sort xeno lists by clicking on the column headers. Sorting
+      is done by xeno tier, health points, plasma remaining, and location by alphabetical
+      order to the first 5 letters.
+  - bugfix: Queen transfer plasma message now only visible to xenos.
+  - bugfix: Ghost orbiting code now properly returns an accurate reference to the
+      atom it is orbiting.
+  - refactor: Hive upgrades purchasing UI relocated to separate datum.
+  - refactor: Distress mode collapse timers are now a define.
+  - rscdel: Old HTML hive status page now lives at your grandparents' farm upstate.
+  - rscdel: Queen order, the unused direct to xeno version, has been removed.
+  - rscdel: Removed a vestigial time check that checked if a distress beacon could
+      be launched at 10 minutes into a round. Xenos can not hijack before 30 minutes
+      into a round.
+  Lumipharon:
+  - rscadd: Add some new grenades for future gamemodes
+  - bugfix: Grenades are now actually visible in hand
+  - refactor: Refactored flashbang code
+  - bugfix: Projectile speed modifiers now actually work
+  QualityVan:
+  - bugfix: Moving early cancels xeno evolution properly
+  - rscadd: Plasma cutters now cut plasma, 20% per hit.
+  - rscdel: Internal organs can't get infections. They mostly didn't already.
+  Vallat:
+  - refactor: refactored luminosity calculation for small movable lights therefore
+      increased projectiles movement performance by ~10%
+  novaepee:
+  - rscdel: Remove heavy reinforced wall in Ice Colony's red nuke disk, now xenomorphs
+      can melt into red nuke disk
+2022-06-10:
+  QualityVan:
+  - bugfix: When you have two broken or missing legs or feet, you'll now fall down
+      once or twice a minute.
+  - bugfix: Amputated limbs are amputated.
+2022-06-11:
+  BraveMole:
+  - balance: 'Heart damage will decrease your maximum stamina and maximum health.
+      Nothing else balance :Lungs damage will decrease your stamina regen and your
+      speed. Nothing else delete: Peridaxon is no longer in the game, as effects from
+      organ damage are less severe'
+  Lumipharon:
+  - balance: Empowered jab now actually blinds instead of flashing
+  Mechanelize:
+  - balance: Ravager caste now has plasmadrain immunity.
+  QualityVan:
+  - balance: Xenos keep current percent health when a balance scalar is applied.
+  - bugfix: Game status window properly shows current max health when a balance scalar
+      is active.
+  Xsdew:
+  - soundadd: added a new sound for the MG42
+  - imageadd: replaced the MG42 Sprites
+2022-06-12:
+  BraveMole:
+  - balance: Wraith portal range buffed from 10 to 20
+  - balance: Wraith portals are no longer vulnerable to bullets; they are now vulnerable
+      to explosions
+  - balance: Human can no longer cross portal
+  - bugfix: Fix teleporter being mountable
+  - balance: Reduce plasma cost of all wraith abilities
+  Derrick2Electricboogaloo:
+  - bugfix: Readded combat droids to Sulaco
+  - bugfix: Readded prevended protein bars to vendors
+  Vondiech:
+  - code_imp: Turns long line of else-if's in parse_zone into a switch. Also removes
+      4 duplicate if's for the hands and feet
+2022-06-13:
+  BraveMole:
+  - bugfix: Fix organ damage not being treated by surgery
+  Lumipharon:
+  - bugfix: fixed some issues with storage procs
+  MisterGrimm:
+  - bugfix: Fixes unintended Praetorian Neurotoxin nerf at Young to Mature.
+  RipGrayson:
+  - balance: Adjusted the breach points on LV624 LZ2 and BR LZ1.
+  - balance: The sand temple on LV624 now has an APC.
+  Wayland-Smithy:
+  - bugfix: Fixed missing hivemind can_flags.
+  novaepee:
+  - bugfix: flak jacket accepting modules
+2022-06-14:
+  BraveMole:
+  - balance: Internal organs damage are visible on the health analyzer
+  - rscadd: Add back portal fancy graphic
+  - rscadd: New portal sprite, by krab
+  Pariah919:
+  - bugfix: RL-72 has proper gunflags on spawn.
+  breadhunt:
+  - rscdel: Removed plasteel crate recipe
+  - qol: Plasteel cades no longer require a menu to make, just press Z
+  - qol: Metal recipes have a new radial menu, old recipe menu selectable from it
+  - rscadd: You can also disable the radial menu completely for the old menu in the
+      preferences tab
+  - refactor: Cleaned up mat and sandbag code a small bit
+  novaepee:
+  - rscdel: Remove miners that are near LZ in Ice Colony, Big Red, and LV-624
+  - rscdel: Remove the triple miners next to LV-624 red disk
+2022-06-15:
+  Arctrooper8:
+  - rscadd: Surgery pouch
+  - rscadd: brute kits in surgical usage have been replaced with a new tool, surgical
+      membrane.
+  - rscdel: First aid pouch, Hypospray pouch, Syringe pouch, injector case.
+  - rscdel: Medical belts in medbay storage rooms.
+  - balance: Lifesaver belt now has every pill type alongside 6 kits, two splints,
+      and a health analyzer.
+  - balance: Rig belt now has every pill type.
+  - balance: full lolly pouches are now free and infinite from the vendor.
+  - balance: pill packet are free and infinite from MarineMed.
+  - balance: pill bottles have been moved to nanotrasen medical vendor.
+  - balance: moved stuff such as defib from nanotrasen medical vendor to MarineMed.
+  - balance: ERT/EORD spawns now use injector pouches.
+  Wayland-Smithy:
+  - bugfix: Fixed burrowed larva sometimes not counting toward tier limits.
+2022-06-16:
+  Kuro020:
+  - imageadd: EVA skull variant sprite changed
+  Lewdcifer:
+  - rscdel: CAS flares can no longer be obtained from reqs.
+  - balance: CAS flare packs available in weapon vendors increased from 30 to 50.
+  - rscdel: Normal binoculars can no longer be obtained from reqs.
+  - rscdel: Normal flares can no longer be obtained from reqs.
+  - rscdel: Tarps can no longer be obtained from reqs.
+  - balance: Number of tarps in reqs vendor increased from 2 to 10.
+  Lumipharon:
+  - balance: shotguns and the SMG90 no longer have extremely low akimbo scatter penalties
+  - balance: rifles no longer have zero akimbo firedelay penalties
+  QualityVan:
+  - bugfix: Healing lungs removes slowdown
+  Vondiech:
+  - bugfix: Roundstart announcement text is now actually announced, apparently this
+      has been broken for quite a while now.
+  - rscadd: Icarus Military Port now has some actual announcement text lore.
+2022-06-17:
+  Lewdcifer:
+  - balance: Fire strength against resin walls reduced from 1.5 to 1.25.
+  Lumipharon:
+  - bugfix: Xenos have been sent to climbing school, and can now climb platforms and
+      (unwired) barricades of all kinds.
+2022-06-19:
+  Arctrooper8:
+  - rscdel: TerraGovTech Corpsmen Vendor
+  - qol: NT Med now in Corpsmen prep
+  - imagedel: TerraGovTech Corpsmen Vendor
+  BraveMole:
+  - rscadd: New wraith ability, rewind
+  Hatterhat:
+  - balance: the BR-64 battle rifle now has one extra round per magazine, raising
+      it to 36 rounds instead of 35, with a new theoretical max of 36+1 rounds in
+      the gun
+  QualityVan:
+  - bugfix: Runner primo snatch can't be used on corpses

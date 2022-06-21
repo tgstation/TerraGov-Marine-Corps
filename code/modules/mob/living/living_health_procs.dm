@@ -77,7 +77,7 @@
 	if(stamina_loss_adjustment > health_limit) //If we exceed maxHealth * 2 stamina damage, half of any excess as oxyloss
 		adjustOxyLoss((stamina_loss_adjustment - health_limit) * 0.5)
 
-	staminaloss = clamp(stamina_loss_adjustment, -max_stamina_buffer, health_limit)
+	staminaloss = clamp(stamina_loss_adjustment, -max_stamina, health_limit)
 
 	if(amount > 0)
 		last_staminaloss_dmg = world.time
@@ -114,8 +114,8 @@
 		hud_used.staminas.icon_state = "stamloss200"
 		return
 	var/relative_stamloss = getStaminaLoss()
-	if(relative_stamloss < 0 && max_stamina_buffer)
-		relative_stamloss = round(((relative_stamloss * 14) / max_stamina_buffer), 1)
+	if(relative_stamloss < 0 && max_stamina)
+		relative_stamloss = round(((relative_stamloss * 14) / max_stamina), 1)
 	else
 		relative_stamloss = round(((relative_stamloss * 7) / (maxHealth * 2)), 1)
 	hud_used.staminas.icon_state = "stamloss[relative_stamloss]"
@@ -362,7 +362,7 @@
 			qdel(H)
 
 	for(var/datum/internal_organ/I in internal_organs)
-		I.damage = 0
+		I.heal_organ_damage(I.damage)
 
 	reagents.clear_reagents() //and clear all reagents in them
 	REMOVE_TRAIT(src, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)

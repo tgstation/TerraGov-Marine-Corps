@@ -27,6 +27,8 @@
 	recoil = 2
 	recoil_unwielded = 4
 	movement_acc_penalty_mult = 2
+	lower_akimbo_accuracy = 3
+	upper_akimbo_accuracy = 5
 
 	placed_overlay_iconstate = "shotgun"
 
@@ -128,6 +130,8 @@
 	fire_delay = 20 // Base shotgun fire delay.
 	pixel_shift_x = 14
 	pixel_shift_y = 18
+
+	wield_delay_mod	= 0.2 SECONDS
 
 //-------------------------------------------------------
 //DOUBLE SHOTTY

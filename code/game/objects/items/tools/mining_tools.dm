@@ -91,7 +91,7 @@
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
-	attack_verb = list("dissolve", "disintegrate", "liquefy", "subliminate", "vaporize")
+	attack_verb = list("dissolves", "disintegrates", "liquefies", "subliminates", "vaporizes")
 	heat = 3800
 	light_system = MOVABLE_LIGHT
 	light_range = 2
@@ -255,8 +255,11 @@
 		spark_system.set_up(5, 0, M)
 		spark_system.attach(M)
 		spark_system.start(M)
-		if(M.stat != DEAD)
+		if(isxeno(M) && M.stat != DEAD)
 			cell.charge += 200
+			var/mob/living/carbon/xenomorph/xeno = M
+			if(!CHECK_BITFIELD(xeno.xeno_caste.caste_flags, CASTE_PLASMADRAIN_IMMUNE))
+				xeno.use_plasma(round(xeno.xeno_caste.plasma_regen_limit * xeno.xeno_caste.plasma_max * 0.2)) //One fifth of the xeno's regeneratable plasma per hit.
 	return ..()
 
 

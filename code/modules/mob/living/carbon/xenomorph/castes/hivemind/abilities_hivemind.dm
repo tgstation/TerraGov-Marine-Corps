@@ -58,8 +58,19 @@
 		return FALSE
 	return ..()
 
-/datum/action/xeno_action/pheromones/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+/datum/action/xeno_action/pheromones/hivemind/can_use_action(silent = FALSE, override_flags)
 	if (owner.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
+
+/datum/action/xeno_action/watch_xeno/hivemind/can_use_action(silent = FALSE, override_flags)
+	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HIVEMIND_MANIFESTATION))
+		return FALSE
+	return ..()
+
+/datum/action/xeno_action/watch_xeno/hivemind/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
+	if(!can_use_action())
+		return
+	var/mob/living/carbon/xenomorph/hivemind/hivemind = source
+	hivemind.jump(selected_xeno)
 

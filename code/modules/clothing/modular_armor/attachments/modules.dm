@@ -232,8 +232,8 @@
 	var/current_color
 	///Delay it takes to start recharging again after the shield has been damaged.
 	var/damaged_shield_cooldown = 10 SECONDS
-	///Cooldown used to determine when the shield should start charging again after it is broken.
-	COOLDOWN_DECLARE(shield_damaged_cooldown)
+	///Holds id for a timer which triggers recharge start. Null if not currently delayed.
+	var/recharge_timer
 
 
 /obj/item/armor_module/module/eshield/Initialize()
@@ -261,20 +261,18 @@
 /obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/examiner)
 	SIGNAL_HANDLER
 	to_chat(examiner, span_notice("Recharge Rate: [recharge_rate/2] health per second\nCurrent Shield Health: [shield_health]\nMaximum Shield Health: [max_shield_health]\n"))
-	if(COOLDOWN_CHECK(src, shield_damaged_cooldown))
+	if(!recharge_timer)
 		return
-	to_chat(examiner, span_warning("Charging is delayed! It will start recharging again in [COOLDOWN_TIMELEFT(src, shield_damaged_cooldown)/10] seconds!"))
+	to_chat(examiner, span_warning("Charging is delayed! It will start recharging again in [timeleft(recharge_timer) / 10] seconds!"))
 
 ///Handles starting the shield when the parent is equiped to the correct slot.
 /obj/item/armor_module/module/eshield/proc/handle_equip(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
 	if(slot != SLOT_WEAR_SUIT || !isliving(equipper))
 		return
-	if(COOLDOWN_CHECK(src, shield_damaged_cooldown))
+	if(!recharge_timer)
 		START_PROCESSING(SSobj, src)
 		playsound(equipper, 'sound/items/eshield_recharge.ogg', 40)
-	else
-		addtimer(CALLBACK(src, .proc/begin_recharge), COOLDOWN_TIMELEFT(src, shield_damaged_cooldown))
 
 	RegisterSignal(equipper, COMSIG_LIVING_SHIELDCALL, .proc/handle_shield)
 
@@ -297,8 +295,10 @@
 
 ///Handles the interception of damage.
 /obj/item/armor_module/module/eshield/proc/intercept_damage(attack_type, incoming_damage, damage_type, silent)
-	if(shield_health <= 0 || attack_type == COMBAT_TOUCH_ATTACK) //Touch attack so runners can pounce
+	if(attack_type == COMBAT_TOUCH_ATTACK) //Touch attack so runners can pounce
 		return incoming_damage
+	STOP_PROCESSING(SSobj, src)
+	deltimer(recharge_timer)
 	var/shield_left = shield_health - incoming_damage
 	var/mob/living/affected = parent.loc
 	affected.remove_filter("eshield")
@@ -314,16 +314,15 @@
 		spark_system.start()
 	else
 		shield_health = 0
+		recharge_timer = addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown + 1, TIMER_STOPPABLE) //Gives it a little extra time for the cooldown.
 		return -shield_left
-	STOP_PROCESSING(SSobj, src)
-	if(COOLDOWN_CHECK(src, shield_damaged_cooldown))
-		addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown + 1) //Gives it a little extra time for the cooldown.
-	COOLDOWN_START(src, shield_damaged_cooldown, damaged_shield_cooldown)
+	recharge_timer = addtimer(CALLBACK(src, .proc/begin_recharge), damaged_shield_cooldown, TIMER_STOPPABLE)
 	return 0
 
 ///Starts the shield recharging after it has been broken.
 /obj/item/armor_module/module/eshield/proc/begin_recharge()
-	if(!COOLDOWN_CHECK(src, shield_damaged_cooldown) || !ishuman(parent.loc) || isdead(parent.loc))
+	recharge_timer = null
+	if(!ishuman(parent.loc))
 		return
 	var/mob/living/carbon/human/wearer = parent.loc
 	if(wearer.wear_suit != parent)
@@ -333,11 +332,9 @@
 
 
 /obj/item/armor_module/module/eshield/process()
-	if(!COOLDOWN_CHECK(src, shield_damaged_cooldown))
-		STOP_PROCESSING(SSobj, src)
-		return
 	shield_health = min(shield_health + recharge_rate, max_shield_health)
-	if(shield_health == max_shield_health)
+	if(shield_health == max_shield_health) //Once health is full, we don't need to process until the next time we take damage.
+		STOP_PROCESSING(SSobj, src)
 		return
 	var/new_color
 	switch(shield_health/max_shield_health)

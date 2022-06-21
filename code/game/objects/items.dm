@@ -49,9 +49,10 @@
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
 
-	var/list/actions = list() //list of /datum/action's that this item has.
-	var/list/actions_types = list() //list of paths of action datums to give to the item on Initialize().
-
+	///list of /datum/action's that this item has.
+	var/list/actions
+	///list of paths of action datums to give to the item on Initialize().
+	var/list/actions_types
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
@@ -348,8 +349,7 @@
 	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
 
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
 
@@ -371,8 +371,7 @@
 
 	var/equipped_from_slot = flags_equip_slot & slotdefine2slotbit(slot)
 
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		A.remove_action(unequipper)
 
 	if(!equipped_from_slot)
@@ -391,12 +390,12 @@
 	return TRUE
 
 ///Signal sender for unique_action
-/obj/item/proc/do_unique_action(mob/user)
+/obj/item/proc/do_unique_action(mob/user, special_treatment = FALSE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNIQUE_ACTION, user)
-	return unique_action(user)
+	return unique_action(user, special_treatment)
 
 ///Anything unique the item can do, like pumping a shotgun, spin or whatever.
-/obj/item/proc/unique_action(mob/user)
+/obj/item/proc/unique_action(mob/user, special_treatment = FALSE)
 	return
 
 ///Used to enable/disable an item's bump attack. Grouped in a proc to make sure the signal or flags aren't missed
@@ -548,7 +547,7 @@
 				return TRUE
 			return FALSE
 		if(SLOT_IN_ACCESSORY)
-			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/holster)))
+			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform)))
 				var/obj/item/armor_module/storage/U = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
 				var/obj/item/storage/S = U.storage
 				if(S.can_be_inserted(src, warning))
@@ -602,7 +601,7 @@
 					return TRUE
 			return FALSE
 		if(SLOT_IN_S_HOLSTER)
-			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
+			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) || (H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.s_store
 				if(S.can_be_inserted(src, warning))
 					return TRUE
@@ -626,19 +625,41 @@
 			if(S.can_be_inserted(src, warning))
 				return TRUE
 		if(SLOT_IN_SUIT)
-			var/obj/item/clothing/suit/storage/S = H.wear_suit
-			if(!istype(S) || !S.pockets)
+			if(!H.wear_suit)
 				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
-				return TRUE
+			if(istype(H.wear_suit, /obj/item/clothing/suit/modular))
+				var/obj/item/clothing/suit/modular/T = H.wear_suit
+				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+					return FALSE
+				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			if(istype(H.wear_suit, /obj/item/clothing/suit/storage)) //old suits use the pocket var instead of storage attachments
+				var/obj/item/clothing/suit/storage/T = H.wear_suit
+				if(!T.pockets)
+					return FALSE
+				var/obj/item/storage/internal/S = T.pockets
+				if(S.can_be_inserted(src, warning))
+					return TRUE
 		if(SLOT_IN_HEAD)
-			var/obj/item/clothing/head/helmet/marine/S = H.head
-			if(!istype(S) || !S.pockets)
+			if(!H.head)
 				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
-				return TRUE
+			if(istype(H.head, /obj/item/clothing/head/modular))
+				var/obj/item/clothing/head/modular/T = H.head
+				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+					return FALSE
+				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			if(istype(H.head, /obj/item/clothing/head/helmet/marine)) //old hats use the pocket var instead of storage attachments
+				var/obj/item/clothing/head/helmet/marine/T = H.head
+				if(!T.pockets)
+					return FALSE
+				var/obj/item/storage/internal/S = T.pockets
+				if(S.can_be_inserted(src, warning))
+					return TRUE
 		if(SLOT_IN_BOOT)
 			var/obj/item/clothing/shoes/marine/S = H.shoes
 			if(!istype(S) || !S.pockets)
@@ -937,8 +958,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 
 /obj/item/proc/update_action_button_icons()
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		A.update_button_icon()
 
 

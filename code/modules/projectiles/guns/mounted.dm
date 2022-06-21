@@ -60,7 +60,7 @@
 
 	deploy_time = 5 SECONDS
 	undeploy_time = 3 SECONDS
-	deployed_item = /obj/machinery/deployable/mounted
+	deployable_item = /obj/machinery/deployable/mounted
 
 	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -84,6 +84,166 @@
 		/obj/item/ammo_magazine/tl102/hsg_nest,
 	)
 	flags_item =  IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+
+//-------------------------------------------------------
+//MG-2005 mounted minigun
+
+/obj/item/weapon/gun/minigun_nest
+	name = "\improper MG-2005 mounted minigun"
+	desc = "The MG-2005 mounted minigun is a gun simple in principle, it will shoot a lot of bullets really fast and will rip through xeno hordes."
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "minigun"
+	caliber = CALIBER_762X51
+
+	fire_sound = 'sound/weapons/guns/fire/minigun.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+
+	default_ammo_type = /obj/item/ammo_magazine/heavy_minigun
+
+	scatter = 10
+	deployed_scatter_change = -8
+	fire_delay = 0.15 SECONDS
+	windup_delay = 0.4 SECONDS
+	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_minigun)
+
+	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 300
+	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+
+//-------------------------------------------------------
+//ATR-22 mounted heavy dualcannon
+
+/obj/item/weapon/gun/dual_cannon
+	name = "\improper ATR-22 mounted heavy dualcannon"
+	desc = "The ATR-22 mounted heavy dualcannon is a double barrel 20mm autocannon, usually seen fitted in terran armored vehicles. It shreds through armor and walls causing heavy sunder but is rather lacking in damage against xenomorph targets."
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "autocannon"
+
+	fire_sound = 'sound/weapons/guns/fire/autocannon_fire.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+
+	default_ammo_type = /obj/item/ammo_magazine/dual_cannon
+
+	scatter = 10
+	deployed_scatter_change = -10
+	fire_delay = 0.4 SECONDS
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+
+	allowed_ammo_types = list(/obj/item/ammo_magazine/dual_cannon)
+
+	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 300
+	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+
+//-------------------------------------------------------
+//TE-9001 mounted heavy laser
+
+/obj/item/weapon/gun/heavy_laser
+	name = "\improper TE-9001 mounted heavy laser"
+	desc = "The TE-9001 mounted heavy laser is a non-IFF heavy laser that is powerful enough to start a sizeable fire on its impact, this weapon is exceptional at area denial."
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "heavylaser"
+
+	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
+	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
+
+	default_ammo_type = /obj/item/ammo_magazine/heavy_laser
+
+	scatter = 10
+	deployed_scatter_change = -10
+	fire_delay = 0.7 SECONDS
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest,)
+
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_laser)
+
+	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 400
+	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+
+//-------------------------------------------------------
+//RR-15 mounted heavy recoilless rifle
+
+/obj/item/weapon/gun/launcher/rocket/heavy_rr
+	name = "\improper RR-15 mounted heavy recoilless rifle"
+	desc = "The RR-15 mounted recoilless rifle is a non-IFF, modernized version of the L6 Wombat using 75mm. Reintroduced due to the rather close quarter nature of combat against xenomorphs, this thing will kill mostly anything on its way."
+
+	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon = 'icons/Marine/marine-hmg.dmi'
+	icon_state = "heavyrr"
+
+	fire_sound = 'sound/weapons/guns/fire/tank_cannon1.ogg'
+	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+
+	default_ammo_type = /obj/item/ammo_magazine/heavy_rr
+	max_shells = 1 //codex
+	caliber = CALIBER_75MM // codex
+
+	scatter = 10
+	deployed_scatter_change = -10
+	windup_delay = 1 SECONDS
+	fire_delay = 3 SECONDS
+
+	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	backblastdamage = FALSE
+
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl102/nest)
+
+	allowed_ammo_types = list(/obj/item/ammo_magazine/heavy_rr)
+
+	deploy_time = 5 SECONDS
+	undeploy_time = 3 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted
+
+	max_integrity = 600
+	soft_armor = list("melee" = 0, "bullet" = 100, "laser" = 0, "energy" = 0, "bomb" = 80, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 
 ///This is my meme version, the first version of the HSG-102 to have auto-fire, revel in its presence.
 /obj/item/weapon/gun/tl102/death
@@ -143,7 +303,7 @@
 
 	deploy_time = 8 SECONDS
 	undeploy_time = 3 SECONDS
-	deployed_item = /obj/machinery/deployable/mounted/moveable
+	deployable_item = /obj/machinery/deployable/mounted/moveable
 
 	max_integrity = 200
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
@@ -191,7 +351,7 @@
 
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
-	deployed_item = /obj/machinery/deployable/mounted
+	deployable_item = /obj/machinery/deployable/mounted
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
@@ -249,7 +409,7 @@
 	burst_amount = 1
 	undeploy_time = 2000 SECONDS
 	max_integrity = 500
-	deployed_item = /obj/machinery/deployable/mounted/moveable/atgun
+	deployable_item = /obj/machinery/deployable/mounted/moveable/atgun
 
 /obj/machinery/deployable/mounted/moveable/atgun
 	var/obj/item/storage/internal/ammo_rack/sponson = /obj/item/storage/internal/ammo_rack
