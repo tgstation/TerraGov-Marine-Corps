@@ -201,7 +201,7 @@
 
 /obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
 	if(istype(target, /obj/machinery/door/airlock/multi_tile))
-		if((target.dir == 1) || (target.dir == 2))
+		if((target.dir & NORTH) || (target.dir & SOUTH))
 			target.add_overlay(GLOB.welding_sparks_multitiledoor_vertical)
 		else
 			target.add_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
@@ -209,7 +209,7 @@
 		target.add_overlay(GLOB.welding_sparks)
 	. = ..()
 	if(istype(target, /obj/machinery/door/airlock/multi_tile))
-		if((target.dir == 1) || (target.dir == 2))
+		if((target.dir & NORTH) || (target.dir & SOUTH))
 			target.cut_overlay(GLOB.welding_sparks_multitiledoor_vertical)
 		else
 			target.cut_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
