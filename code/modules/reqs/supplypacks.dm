@@ -134,6 +134,11 @@ OPERATIONS
 	contains = list(/obj/item/minerupgrade/automatic)
 	cost = 15
 
+/datum/supply_packs/operations/cash
+	name = "200 dollars"
+	contains = list(/obj/item/spacecash/c500)
+	cost = 5
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
