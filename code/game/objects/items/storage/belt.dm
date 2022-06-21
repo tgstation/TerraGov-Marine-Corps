@@ -836,13 +836,13 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
 
-/obj/item/storage/belt/gun/mateba/captain
+/obj/item/storage/belt/gun/mateba/officer
 	icon_state = "c_mateba_holster"
 	item_state = "c_mateba_holster"
 
-/obj/item/storage/belt/gun/mateba/captain/full/Initialize()
+/obj/item/storage/belt/gun/mateba/officer/full/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/captain(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/custom(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
