@@ -51,9 +51,10 @@
 //Life variables
 #define CARBON_BREATH_DELAY 2 // The interval in life ticks between breathe()
 
-#define CARBON_MAX_OXYLOSS 3 //Defines how much oxyloss humans can get per breath tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
-#define CARBON_CRIT_MAX_OXYLOSS (round(SSmobs.wait/5, 0.1)) //The amount of damage you'll get when in critical condition.
-#define CARBON_RECOVERY_OXYLOSS -5 //the amount of oxyloss recovery per successful breath tick.
+///The amount of damage you'll take per tick when you can't breath. Default value is 1
+#define CARBON_CRIT_MAX_OXYLOSS (round(SSmobs.wait/5, 0.1))
+///the amount of oxyloss recovery per successful breath tick.
+#define CARBON_RECOVERY_OXYLOSS -5
 
 #define CARBON_KO_OXYLOSS 50
 #define HUMAN_CRITDRAG_OXYLOSS 3 //the amount of oxyloss taken per tile a human is dragged by a xeno while unconscious

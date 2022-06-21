@@ -9,8 +9,7 @@
 
 	var/obj/item/restraints/handcuffs/handcuffed //Whether or not the mob is handcuffed
 
-	var/failed_last_breath = FALSE //This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
-
+	///Tracks whether we can breath right now. Used for a hud icon and for message generation.
 	var/oxygen_alert = FALSE
 	var/phoron_alert = FALSE
 	var/fire_alert = FALSE
@@ -25,6 +24,7 @@
 	var/traumatic_shock = 0
 	var/shock_stage = 0
 
+	///Causes breathing to fail and generate oxyloss instead of recover it, even outside crit.
 	var/losebreath = 0
 	var/nutrition = NUTRITION_WELLFED
 
