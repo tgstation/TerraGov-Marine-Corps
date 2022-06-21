@@ -463,7 +463,7 @@
 
 /obj/item/weapon/gun/rifle/mpi_km
 	name = "\improper MPi-KM assault rifle"
-	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and higher than usual caliber rounds."
+	desc = "A cheap and robust rifle, sometimes better known as an 'AK'. Chambers 7.62x39mm. Despite lacking attachment points beyond its underbarrel, remains a popular product on the black market with its cheap cost and higher than usual caliber rounds."
 	icon_state = "ak47"
 	item_state = "ak47"
 	caliber = CALIBER_762X39 //codex
@@ -475,7 +475,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/rifle/mpi_km
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/mpi_km, /obj/item/ammo_magazine/rifle/mpi_km/extended)
-	aim_slowdown = 0.7
+	aim_slowdown = 0.6
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/flashlight,
@@ -483,6 +483,12 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/mpi_km,
 		/obj/item/attachable/shoulder_mount,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
