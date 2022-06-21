@@ -51,7 +51,7 @@
 	UnregisterSignal(user, list(COMSIG_MOB_CLICK_ALT_RIGHT, COMSIG_MOB_MIDDLE_CLICK))
 	UnregisterSignal(user, COMSIG_ITEM_EXCLUSIVE_TOGGLE)
 	selected = FALSE
-	actions.Cut()
+	LAZYCLEARLIST(actions)
 
 /obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action)
 	if(selected)
