@@ -263,7 +263,7 @@
 	icon_state = "mortar"
 
 	max_integrity = 200
-	flags_item = IS_DEPLOYABLE|DEPLOY_ON_INITIALIZE
+	flags_item = IS_DEPLOYABLE
 	/// What item is this going to deploy when we put down the mortar?
 	var/deployable_item = /obj/machinery/deployable/mortar
 
