@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - rscadd: "requisition can buy cash; 5 points for $200"
