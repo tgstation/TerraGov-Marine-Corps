@@ -643,8 +643,8 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
-	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol
-	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol)
+	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
