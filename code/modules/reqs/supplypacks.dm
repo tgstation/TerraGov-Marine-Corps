@@ -1466,6 +1466,61 @@ VEHICLES
 	cost = 1
 	containertype = /obj/structure/closet/crate
 
+/datum/supply_packs/vehicles/mounted_hsg
+	name = "Mounted HSG"
+	contains = list(/obj/structure/dropship_equipment/mg_holder)
+	cost = 50
+
+/datum/supply_packs/vehicles/mounted_dualcannon
+	name = "Mounted Dualcannon"
+	contains = list(/obj/structure/dropship_equipment/dualcannon_holder)
+	cost = 60
+
+/datum/supply_packs/vehicles/mounted_heavy_laser
+	name = "Mounted Heavy Laser"
+	contains = list(/obj/structure/dropship_equipment/heavylaser_holder)
+	cost = 90
+
+/datum/supply_packs/vehicles/mounted_minigun
+	name = "Mounted Automatic Minigun"
+	contains = list(/obj/structure/dropship_equipment/minigun_holder)
+	cost = 75
+
+/datum/supply_packs/vehicles/mounted_rr
+	name = "Mounted Heavy Recoilless Rifle"
+	contains = list(/obj/structure/dropship_equipment/heavy_rr_holder)
+	cost = 180
+
+/datum/supply_packs/vehicles/hsg_ammo
+	name = "Mounted HSG ammo"
+	contains = list(/obj/item/ammo_magazine/tl102/hsg_nest)
+	cost = 3
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/dc_ammo
+	name = "Mounted Dualcannon ammo"
+	contains = list(/obj/item/ammo_magazine/dual_cannon)
+	cost = 3
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/minigun_ammo
+	name = "Mounted Minigun ammo"
+	contains = list(/obj/item/ammo_magazine/heavy_minigun)
+	cost = 3
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/hl_ammo
+	name = "Mounted Heavy Laser ammo (x3)"
+	contains = list(/obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser, /obj/item/ammo_magazine/heavy_laser)
+	cost = 5
+	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/rr_ammo
+	name = "Mounted Recoilless Rifle shell (x2)"
+	contains = list(/obj/item/ammo_magazine/heavy_rr, /obj/item/ammo_magazine/heavy_rr)
+	cost = 7
+	containertype = /obj/structure/closet/crate/ammo
+
 /*******************************************************************************
 FACTORY
 *******************************************************************************/

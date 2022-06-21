@@ -703,8 +703,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_tile_offset = 3
 	deployed_scope_rezoom = TRUE
 
+//all mounted guns with a nest use this
 /obj/item/attachable/scope/unremovable/tl102/nest
-	zoom_tile_offset = 6
+	flags_attach_features = ATTACH_ACTIVATION
+	scope_delay = 2 SECONDS
+	zoom_tile_offset = 7
+	zoom_viewsize = 2
+	deployed_scope_rezoom = FALSE
 
 /obj/item/attachable/scope/activate(mob/living/carbon/user, turn_off)
 	if(turn_off)

@@ -13769,6 +13769,10 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
+"RF" = (
+/obj/structure/dropship_equipment/flare_launcher,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "RG" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -23108,8 +23112,8 @@ MW
 OS
 Ou
 VC
-VC
-VC
+RF
+RF
 VC
 CH
 OS
