@@ -29,11 +29,20 @@
 	name = "webspit"
 	ability_name = "webspit"
 	mechanics_text = "We spit a stretchy web at our prey"
-
 	plasma_cost = 1
 	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
 
 /datum/action/xeno_action/activable/web_spit/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
+
+	var/datum/ammo/xeno/web/web_spit = GLOB.ammo_list[/datum/ammo/xeno/web]
+
+	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
+
+	newspit.generate_bullet(web_spit, web_spit.damage * SPIT_UPGRADE_BONUS(X))
+	newspit.permutated += X
+	newspit.def_zone = X.get_limbzone_target()
+
+	newspit.fire_at(target, X, null, newspit.ammo.max_range)
 	message_admins("Spitted!")

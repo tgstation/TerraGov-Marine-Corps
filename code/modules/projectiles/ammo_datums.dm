@@ -2505,8 +2505,8 @@ datum/ammo/bullet/revolver/tp44
 	ping = "ping_x"
 	damage_type = STAMINA
 	flags_ammo_behavior = AMMO_XENO
-	var/added_spit_delay = 0 //used to make cooldown of the different spits vary.
-	var/spit_cost = 5
+	added_spit_delay = 0 //used to make cooldown of the different spits vary.
+	spit_cost = 5
 	armor_type = "bio"
 	shell_speed = 1
 	accuracy = 40
@@ -2516,23 +2516,28 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_high = 3
 	bullet_color = COLOR_LIME
 	///Amount of stagger stacks imposed on impact if any
-	var/stagger_stacks
+	stagger_stacks = 0
 	///Amount of slowdown stacks imposed on impact if any
-	var/slowdown_stacks
+	slowdown_stacks = 0
+	///Amount of blur on target
+	var/hit_eye_blur = 999
+	///List for bodyparts that upon being hit cause the target to become weakened
+	var/list/weaken_list = list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
+	///List for bodyparts that upon being hit cause the target to become ensnared
+	var/list/snare_list = list(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT)
 
-
-/// Three different effects, currently they're here just for experimenting
-/datum/ammo/xeno/web/blind
-	//var/hit_eye_blur = 11
-
-
-/datum/ammo/xeno/web/snare
-
-
-
-/datum/ammo/xeno/web/weaken
-
-
+/datum/ammo/xeno/web/on_hit_mob(mob/victim, obj/projectile/proj)
+    . = ..()
+    if(ishuman(victim))
+        var/mob/living/carbon/human/human_victim = victim
+        if(proj.def_zone == BODY_ZONE_HEAD)
+            human_victim.blur_eyes(hit_eye_blur)
+        if(proj.def_zone in weaken_list)
+            //apply weaken here
+            message_admins("weaken check")
+        if(proj.def_zone in snare_list)
+            //snare them here
+            message_admins("snare check")
 
 /*
 //================================================
