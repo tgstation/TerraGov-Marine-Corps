@@ -1,4 +1,0 @@
-author: "Mechanelize"
-delete-after: True
-changes: 
-  - bugfix: "Fixed meson scanner sprite for combat robots."

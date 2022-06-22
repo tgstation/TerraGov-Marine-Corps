@@ -1,4 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - code_imp: "removed unneeded list initialization on all items in order to improve game initialization"

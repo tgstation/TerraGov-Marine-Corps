@@ -306,3 +306,38 @@
       the gun
   QualityVan:
   - bugfix: Runner primo snatch can't be used on corpses
+2022-06-22:
+  Mechanelize:
+  - bugfix: Fixed meson scanner sprite for combat robots.
+  Pariah919:
+  - balance: MPi slowdown reduced a bit, it can take vgrip or underbarreled guns now
+      as attachments.
+  SplinterGP:
+  - code_imp: removed unneeded list initialization on all items in order to improve
+      game initialization
+  goose4429:
+  - bugfix: fixed valhalla med vendors
+  novaepee:
+  - rscadd: requisition can buy cash; 5 points for $200
+  tyeagg:
+  - rscadd: Mounted dualcannon
+  - rscadd: Mounted heavy laser
+  - rscadd: Mounted minigun
+  - rscadd: Mounted heavy recoilless rifle
+  - rscadd: Flare launcher for 150 ds points
+  - rscadd: Mounted heavy laser, mounted minigun, heavy rr to whiskey outpost
+  - rscadd: 2 Flare launcher systems on all shipside maps
+  - rscadd: Mounted dualcannon to req for 60 points
+  - rscadd: Mounted heavy laser to req for 90 points
+  - rscadd: Mounted minigun to req for 75 points
+  - rscadd: Mounted hsg to req for 50 points
+  - rscadd: Mounted heavy recoilless rifle for 180 points
+  - balance: Increased scoped range of hsg nest to around 9 tiles
+  - balance: Decreased hsg nest ammo capacity to 500
+  - soundadd: Dualcannon firing sound
+  - imageadd: Mounted dualcannon and ammo sprites
+  - imageadd: Mounted minigun
+  - imageadd: Mounted heavy recoilless rifle and ammo sprites
+  - imageadd: Mounted heavy laser and ammo sprites
+  - imageadd: Flare launcher system and installed sprites
+  - imageadd: stronger flare sprite
