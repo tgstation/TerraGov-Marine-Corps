@@ -23,11 +23,11 @@
 /area/ice_colony/exterior
 	name = "Ice Colony"
 	icon_state = "cliff_blocked"
-	requires_power = 1
-	always_unpowered = 1
-	power_light = 0
-	power_equip = 0
-	power_environ = 0
+	requires_power = TRUE
+	always_unpowered = TRUE
+	power_light = FALSE
+	power_equip = FALSE
+	power_environ = FALSE
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = ICE_COLONY_TEMPERATURE
 	minimap_color = MINIMAP_AREA_COLONY
@@ -56,12 +56,14 @@
 	name = "Aerodrome Landing Pad"
 	icon_state = "landing_pad"
 	outside = FALSE
+	always_unpowered = FALSE
 
 //Landing Pad for the Vindi. THIS IS NOT THE SHUTTLE AREA
 /area/ice_colony/exterior/surface/landing_pad2
 	name = "Emergency Landing Pad"
 	icon_state = "landing_pad"
 	outside = FALSE
+	always_unpowered = FALSE
 
 //Everything around the physical landing pad
 /area/ice_colony/exterior/surface/landing_pad_external
