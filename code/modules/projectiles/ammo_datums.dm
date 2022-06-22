@@ -2519,8 +2519,10 @@ datum/ammo/bullet/revolver/tp44
 	stagger_stacks = 0
 	///Amount of slowdown stacks imposed on impact if any
 	slowdown_stacks = 0
-	///Amount of blur on target
-	var/hit_eye_blur = 999
+	///Blind duration
+	var/hit_eye_blind = 25
+	///Snare duration
+	var/hit_immobilize = 10 SECONDS
 	///List for bodyparts that upon being hit cause the target to become weakened
 	var/list/weaken_list = list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 	///List for bodyparts that upon being hit cause the target to become ensnared
@@ -2531,13 +2533,12 @@ datum/ammo/bullet/revolver/tp44
     if(ishuman(victim))
         var/mob/living/carbon/human/human_victim = victim
         if(proj.def_zone == BODY_ZONE_HEAD)
-            human_victim.blur_eyes(hit_eye_blur)
+            human_victim.blind_eyes(hit_eye_blind)
         if(proj.def_zone in weaken_list)
             //apply weaken here
             message_admins("weaken check")
         if(proj.def_zone in snare_list)
-            //snare them here
-            message_admins("snare check")
+            human_victim.ImmobilizeNoChain(hit_immobilize)
 
 /*
 //================================================
