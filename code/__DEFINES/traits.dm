@@ -100,7 +100,7 @@
 #define OPTABLE_TRAIT "optable"
 #define TIMESHIFT_TRAIT "timeshift"
 /// Trait from a reagent of the given name
-#define REAGENT_TRAIT(reagent) ##reagent.name
+#define REAGENT_TRAIT(reagent) reagent.name
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
