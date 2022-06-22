@@ -460,8 +460,17 @@ Contains most of the procs that are called when a mob is attacked by something
 		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.display_name]."))
 
 	while(do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(volume = 50, amount = 2))
+		if(user == src) 
+			add_overlay(GLOB.welding_sparks)
+		else
+			src.add_overlay(GLOB.welding_sparks)
+		if(!do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD))
+			if(user == src) 
+				cut_overlay(GLOB.welding_sparks)
+			else
+				src.cut_overlay(GLOB.welding_sparks)	
 		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
-			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
+			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))	
 		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))
 			UpdateDamageIcon()
 		if(!I.tool_use_check(user, 2))
@@ -474,8 +483,16 @@ Contains most of the procs that are called when a mob is attacked by something
 				if(!checked_limb.brute_dam)
 					continue
 				affecting = checked_limb
+				if(user == src) 
+					cut_overlay(GLOB.welding_sparks)
+				else if(user != src)
+					src.cut_overlay(GLOB.welding_sparks)
 				break
 			if(previous_limb == affecting)
 				balloon_alert(user, "Dents fully repaired.")
+				if(user == src) 
+					cut_overlay(GLOB.welding_sparks)
+				else if(user != src)
+					src.cut_overlay(GLOB.welding_sparks)	
 				break
 	return TRUE

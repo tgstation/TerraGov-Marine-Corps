@@ -205,7 +205,7 @@
 			target.add_overlay(GLOB.welding_sparks_multitiledoor_vertical)
 		else
 			target.add_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
-	else
+	else if(istype(target, /obj))
 		target.add_overlay(GLOB.welding_sparks)
 	. = ..()
 	if(istype(target, /obj/machinery/door/airlock/multi_tile))
@@ -213,7 +213,7 @@
 			target.cut_overlay(GLOB.welding_sparks_multitiledoor_vertical)
 		else
 			target.cut_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
-	else
+	else if(istype(target, /obj))
 		target.cut_overlay(GLOB.welding_sparks)
 
 /obj/item/tool/weldingtool/attack_self(mob/user as mob)
