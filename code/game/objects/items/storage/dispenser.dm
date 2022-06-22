@@ -86,7 +86,7 @@
 	addtimer(CALLBACK(src, .proc/undeploy, user), 4.2 SECONDS)
 
 ///sends the signal for deployable_item element to undeploy it back on the item
-/obj/machinery/deployable/dispenser/proc/undeploy(var/mob/living/carbon/human/user)
+/obj/machinery/deployable/dispenser/proc/undeploy(mob/living/carbon/human/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 
 /obj/machinery/deployable/dispenser/attack_hand(mob/living/user)
