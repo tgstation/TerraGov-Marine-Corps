@@ -341,3 +341,10 @@
   - imageadd: Mounted heavy laser and ammo sprites
   - imageadd: Flare launcher system and installed sprites
   - imageadd: stronger flare sprite
+2022-06-23:
+  novaepee:
+  - rscadd: Mortar's description now tells players how to deploy and undeploy
+  - qol: Remove wrench from moving mortar; drag the mortar's sprite your mob's sprites
+      like other deployable objects
+  - balance: Makes it easier for mortar marines for tactical and superior position
+      with mortar
