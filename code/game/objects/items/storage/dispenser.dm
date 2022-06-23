@@ -99,10 +99,10 @@
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/user = usr //this is us
-	if(over_object != user || !in_range(src, user))
+	if(over_object != user || !Adjacent(user))
 		return
 	var/obj/item/storage/internal_bag = internal_item
-	internal_bag.MouseDrop()
+	internal_bag.open(user)
 
 
 /obj/item/storage/backpack/dispenser
