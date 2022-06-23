@@ -490,6 +490,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 			owner.adjustToxLoss(1)
 		if (prob(1))
 			to_chat(owner, span_notice("You have a high fever!"))
+//Not technically a germ effect, but derived from it
+	if(limb_status & LIMB_NECROTIZED)
+		for(var/datum/internal_organ/organ AS in internal_organs)
+			organ.take_damage(0.2, silent = TRUE) //1 point every 10 seconds, 100 seconds to bruise, five minutes to broken.
 
 
 ///Updating wounds. Handles natural damage healing from limb treatments and processes internal wounds
@@ -851,10 +855,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/get_damage()	//returns total damage
 	return brute_dam + burn_dam	//could use health?
-
-//Not meaningful any more, need to remove from health scanners
-/datum/limb/proc/has_infected_wound()
-	return FALSE
 
 ///True if the limb has any damage on it
 /datum/limb/proc/has_external_wound()
