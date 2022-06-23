@@ -283,7 +283,7 @@ Good luck, but do not expect to survive."})
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_LATEJOINABLE
 
 	exp_requirements = XP_REQ_SURVIVOR
-	exp_type = EXP_TYPE_LIVING
+	exp_type = EXP_TYPE_ALL
 
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
