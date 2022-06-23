@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - balance: "Boiler projectiles have 0 damage falloff."
