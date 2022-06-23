@@ -9,7 +9,7 @@ GLOBAL_LIST_INIT(exp_jobsmap, list(
 ))
 
 GLOBAL_LIST_INIT(exp_specialmap, list(
-	EXP_TYPE_LIVING = list(),
+	EXP_TYPE_LIVING = list("titles" = GLOB.jobs_regular_all + GLOB.jobs_xeno),
 	EXP_TYPE_SPECIAL = list(),
 	EXP_TYPE_GHOST = list(),
 	EXP_TYPE_ADMIN = list()
