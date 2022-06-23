@@ -83,15 +83,7 @@
 	STOP_PROCESSING(SSobj, src)
 	flick("dispenser_undeploy", src)
 	playsound(src, 'sound/machines/dispenser/dispenser_undeploy.ogg', 50)
-<<<<<<< HEAD
 	addtimer(CALLBACK(src, .proc/disassemble, user), 4.2 SECONDS)
-=======
-	addtimer(CALLBACK(src, .proc/undeploy, user), 4.2 SECONDS)
-
-///sends the signal for deployable_item element to undeploy it back on the item
-/obj/machinery/deployable/dispenser/proc/undeploy(mob/living/carbon/human/user)
-	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
->>>>>>> e7b0f0e22077c62124f4f035c24a819ff11fef8e
 
 /obj/machinery/deployable/dispenser/attack_hand(mob/living/user)
 	. = ..()
