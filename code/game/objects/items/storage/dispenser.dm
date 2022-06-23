@@ -22,7 +22,7 @@
 			continue
 		RegisterSignal(human, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
 		affecting_list[human] = beam(human, "blood_light", maxdistance = 2)
-		RegisterSignal(affecting_list[human], COMSIG_PARENT_PREQDELETED, .proc/on_beam_qdel)
+		RegisterSignal(affecting_list[human], COMSIG_PARENT_QDELETING, .proc/on_beam_qdel)
 		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
 	for(var/turf/turfs AS in RANGE_TURFS(2, src))
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, .proc/entered_tiles)
@@ -56,7 +56,7 @@
 	RegisterSignal(entering, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
 	entering.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
 	affecting_list[entering] = beam(entering, "blood_light", maxdistance = 2)
-	RegisterSignal(affecting_list[entering], COMSIG_PARENT_PREQDELETED, .proc/on_beam_qdel)
+	RegisterSignal(affecting_list[entering], COMSIG_PARENT_QDELETING, .proc/on_beam_qdel)
 
 ///cleans human from affecting_list when it gets qdeletted
 /obj/machinery/deployable/dispenser/proc/on_affecting_qdel(datum/source)
@@ -94,6 +94,16 @@
 	if(internal_item.attackby(I, user, params))
 		return
 	return ..()
+
+/obj/machinery/deployable/dispenser/MouseDrop(obj/over_object)
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/user = usr //this is us
+	if(over_object != user || !in_range(src, user))
+		return
+	var/obj/item/storage/internal_bag = internal_item
+	internal_bag.MouseDrop()
+
 
 /obj/item/storage/backpack/dispenser
 	name = "TX-9000 Provisions Dispenser"
