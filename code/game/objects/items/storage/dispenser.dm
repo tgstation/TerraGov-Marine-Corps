@@ -67,6 +67,7 @@
 /obj/machinery/deployable/dispenser/proc/on_beam_qdel(datum/source)
 	SIGNAL_HANDLER
 	var/datum/beam/beam = source
+	UnregisterSignal(beam.target, COMSIG_PARENT_QDELETING)
 	affecting_list -= beam.target
 
 /obj/machinery/deployable/dispenser/CtrlClick(mob/user)
