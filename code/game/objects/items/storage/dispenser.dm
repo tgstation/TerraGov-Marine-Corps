@@ -6,6 +6,7 @@
 	anchored = TRUE
 	///list of human mobs we're currently affecting in our area.
 	var/list/mob/living/carbon/human/affecting_list
+	///if the dispenser has finished deploying and is fully active and can be used.
 	var/active = FALSE
 
 /obj/machinery/deployable/dispenser/Initialize(mapload, _internal_item, deployer)
