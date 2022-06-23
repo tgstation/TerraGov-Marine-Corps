@@ -29,7 +29,7 @@
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/xenomorph = FREE_XENO_AT_START,
 		/datum/job/xenomorph/queen = 1,
-		/datum/job/survivor = 3
+		/datum/job/survivor/rambo = 3
 	)
 	var/siloless_hive_timer
 
