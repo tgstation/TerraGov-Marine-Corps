@@ -178,6 +178,14 @@
 	template_height = 10
 	keepcentered = TRUE
 
+/datum/map_template/modular/lv624/lvhydrobridge3
+	name = "LV Hydro Bridge Three"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge3.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+	keepcentered = TRUE
+
 /datum/map_template/modular/lv624/dome_atmos
 	name = "LV atmos dome"
 	mappath = "_maps/modularmaps/lv624/atmospherics.dmm"
