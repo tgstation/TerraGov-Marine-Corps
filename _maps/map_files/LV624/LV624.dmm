@@ -969,11 +969,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
-"atp" = (
-/obj/structure/flora/ausbushes/reedbush,
-/obj/structure/catwalk,
-/turf/open/ground/river,
-/area/lv624/ground/river2)
 "atq" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/effect/decal/warning_stripes/thin{
@@ -1723,15 +1718,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle6)
-"aDe" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor,
-/area/lv624/ground/river2)
 "aDf" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -3036,10 +3022,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
 /turf/open/ground/river,
-/area/lv624/ground/river2)
-"aWu" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor,
 /area/lv624/ground/river2)
 "aWw" = (
 /obj/structure/catwalk,
@@ -4888,13 +4870,6 @@
 /obj/structure/jungle/plantbot1/alien,
 /turf/open/ground/river,
 /area/lv624/ground/jungle6)
-"bPZ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/riverdecal/edge{
-	dir = 1
-	},
-/turf/open/floor,
-/area/lv624/ground/river2)
 "bQc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -5564,13 +5539,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river2)
-"cEi" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor,
-/area/lv624/ground/river2)
 "cEr" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -5681,15 +5649,6 @@
 	dir = 8
 	},
 /area/lv624/ground/river1)
-"cLT" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor,
-/area/lv624/ground/river2)
 "cLX" = (
 /obj/structure/window/reinforced/tinted,
 /obj/machinery/door/window,
@@ -5752,14 +5711,6 @@
 	dir = 1
 	},
 /area/lv624/ground/compound/c)
-"cOX" = (
-/obj/structure/flora/ausbushes/reedbush,
-/obj/structure/fence,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/lv624/ground/river2)
 "cPd" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -6294,11 +6245,6 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
-"dxy" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/riverdecal,
-/turf/open/floor,
-/area/lv624/ground/river2)
 "dxA" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
@@ -6877,10 +6823,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central1)
-"ekY" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating,
-/area/lv624/ground/river2)
 "elp" = (
 /obj/structure/closet/crate/hydroponics/prespawned,
 /turf/open/floor/tile/green/greentaupe{
@@ -7977,12 +7919,6 @@
 	dir = 1
 	},
 /area/lv624/ground/sand7)
-"fCH" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
-/obj/effect/decal/riverdecal,
-/turf/open/floor/plating,
-/area/lv624/ground/river2)
 "fCK" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
@@ -8210,10 +8146,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/ground/compound/n)
-"fRq" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/ground/river,
-/area/lv624/ground/river2)
 "fRF" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -10429,10 +10361,6 @@
 /obj/effect/decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple)
-"iEQ" = (
-/obj/structure/fence,
-/turf/open/floor/plating,
-/area/lv624/ground/river2)
 "iFv" = (
 /obj/effect/decal/sandytile,
 /obj/structure/stairs/cornerdark/seamless,
@@ -10810,12 +10738,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/lv624/lazarus/canteen)
-"jdm" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast{
-	dir = 5
-	},
-/area/lv624/ground/river2)
 "jdx" = (
 /obj/structure/jungle/vines,
 /turf/closed/wall,
@@ -11087,11 +11009,6 @@
 	dir = 8
 	},
 /area/lv624/ground/jungle9)
-"jun" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/riverdecal,
-/turf/open/floor,
-/area/lv624/ground/river2)
 "jvj" = (
 /obj/structure/table,
 /obj/item/explosive/grenade/chem_grenade/cleaner,
@@ -11298,20 +11215,13 @@
 	},
 /area/lv624/lazarus/research)
 "jFu" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/decal/riverdecal/edge,
-/turf/open/floor,
-/area/lv624/ground/river2)
+/obj/effect/spawner/modularmap/lv624/hydroroad,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
 "jGj" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple)
-"jGu" = (
-/obj/structure/catwalk,
-/turf/open/ground/coast/corner{
-	dir = 8
-	},
-/area/lv624/ground/jungle7)
 "jGT" = (
 /obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
@@ -12371,13 +12281,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
-"kVH" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/riverdecal/edge,
-/turf/open/floor,
-/area/lv624/ground/river2)
 "kWv" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
@@ -13461,13 +13364,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
-"mji" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/decal/riverdecal,
-/turf/open/floor,
-/area/lv624/ground/river2)
 "mjn" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass,
@@ -13877,9 +13773,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
-"mGq" = (
-/turf/closed/wall,
-/area/lv624/ground/jungle7)
 "mGr" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
@@ -15790,10 +15683,6 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
-"pdL" = (
-/obj/effect/decal/riverdecal,
-/turf/open/floor,
-/area/lv624/ground/river2)
 "pdN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -16212,13 +16101,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle6)
-"pJn" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/riverdecal,
-/turf/open/floor,
-/area/lv624/ground/river2)
 "pJt" = (
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
@@ -17131,13 +17013,6 @@
 /obj/effect/ai_node,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/jungle9)
-"qRc" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/decal/riverdecal/edge,
-/turf/open/floor,
-/area/lv624/ground/river2)
 "qRy" = (
 /obj/effect/landmark/fob_sentry,
 /turf/open/floor/tile/blue/whiteblue{
@@ -19015,13 +18890,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
-"tey" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/riverdecal/edge{
-	dir = 1
-	},
-/turf/open/floor,
-/area/lv624/ground/river2)
 "teE" = (
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
@@ -20167,12 +20035,6 @@
 "uoM" = (
 /turf/open/floor/marking/warning/corner,
 /area/lv624/lazarus/spaceport2)
-"uoO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/riverdecal,
-/turf/open/floor,
-/area/lv624/ground/river2)
 "uoW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -20679,11 +20541,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
-"uWH" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/riverdecal,
-/turf/open/floor/plating,
-/area/lv624/ground/river2)
 "uXe" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -21466,6 +21323,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"vVm" = (
+/obj/effect/spawner/modularmap/lv624/hydrobridge,
+/turf/open/space/basic,
+/area/space)
 "vVq" = (
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/spaceport2)
@@ -21851,15 +21712,6 @@
 /obj/structure/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
-"wqt" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/decal/riverdecal/edge{
-	dir = 1
-	},
-/turf/open/floor,
-/area/lv624/ground/river2)
 "wqu" = (
 /obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin{
@@ -46992,16 +46844,16 @@ bjm
 bmi
 aLC
 aKG
-aHv
-dYm
-ajz
-ajz
-ajz
-ajz
-ajz
-ajz
-jdm
-jGu
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
 ksD
 jeR
 mOs
@@ -47169,16 +47021,16 @@ aIN
 aKr
 aLC
 akI
-iEQ
-iEQ
-aPe
-kIl
-kIl
-ajz
-aIQ
-kIl
-uWH
-mGq
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
 ktn
 bfg
 mrP
@@ -47346,16 +47198,16 @@ rJr
 aJY
 azM
 aSY
-aDe
-aLJ
-tey
-kIl
-ajz
-ajz
-ajz
-pJn
-kVH
-aLJ
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
 kwn
 kUW
 mws
@@ -47523,16 +47375,16 @@ bcm
 bmj
 bqj
 bsp
-cEi
-ekY
-bPZ
-fCH
-fRq
-fRq
-uoO
-dxy
-jFu
-aWu
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
 kFH
 lpD
 mAu
@@ -47700,16 +47552,16 @@ alo
 bmi
 alm
 akq
-cJx
-tkm
-mGQ
-ajz
-ajz
-kIl
-ajz
-pdL
-ajz
-aOI
+vCy
+vCy
+vCy
+vCy
+vVm
+vCy
+vCy
+vCy
+vCy
+vCy
 koS
 koU
 kYQ
@@ -47877,16 +47729,16 @@ alo
 aKr
 azO
 aMf
-cLT
-aDn
-wqt
-mji
-ajz
-pdL
-kIl
-ajz
-qRc
-kIl
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
 kFN
 sVI
 hUF
@@ -48054,16 +47906,16 @@ alo
 aKr
 aLC
 akI
-cOX
-bea
-kIl
-ajz
-kIl
-jun
-aPe
-kIl
-iEQ
-aPe
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
 kIi
 bia
 mDv
@@ -48231,16 +48083,16 @@ alo
 aKr
 alm
 rMO
-aHv
-dYm
-ajz
-ajz
-ajz
-ajz
-ajz
-ajz
-atp
-aWw
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
+vCy
 aYp
 erd
 arW
@@ -52139,7 +51991,7 @@ aOj
 lxm
 atX
 atX
-arW
+jFu
 nbA
 bfg
 bsc
