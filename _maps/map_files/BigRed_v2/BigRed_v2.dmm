@@ -10331,9 +10331,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "bxf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -14033,6 +14031,15 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
+"peM" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/c)
 "pfi" = (
 /obj/structure/cable,
 /obj/effect/landmark/corpsespawner/scientist,
@@ -31279,9 +31286,9 @@ lKw
 lKw
 lKw
 wzM
-oxP
+peM
 bxd
-fHv
+vBu
 vBu
 vBu
 aWI
@@ -31496,9 +31503,9 @@ lKw
 irf
 aLd
 oxP
-oxP
 jEZ
 eBA
+oxP
 oxP
 oxP
 gvx
@@ -31713,9 +31720,9 @@ sZl
 lKw
 hlD
 oxP
-oxP
 bhP
 eBA
+oxP
 oxP
 aJm
 aJm
@@ -31930,9 +31937,9 @@ oah
 lKw
 lKw
 wzM
-oxP
 bhP
 eBA
+oxP
 aWJ
 lKw
 lKw
@@ -32147,9 +32154,9 @@ lKw
 lKw
 lKw
 wzM
-oxP
 bhP
 eBA
+oxP
 oxP
 aIm
 lKw
