@@ -99,6 +99,7 @@
 #define PORTAL_TRAIT "portal"
 #define OPTABLE_TRAIT "optable"
 #define TIMESHIFT_TRAIT "timeshift"
+#define BRAIN_TRAIT "brain"
 /// Trait from a reagent of the given name
 #define REAGENT_TRAIT(reagent) reagent.name
 /// inherited from riding vehicles
@@ -136,6 +137,7 @@
 #define TRAIT_TURRET_HIDDEN "turret_hidden" //target gets passed over by turrets choosing a victim
 #define TRAIT_MOB_ICON_UPDATE_BLOCKED "icon_blocked" //target should not update its icon_state
 #define TRAIT_HEARING_SENSITIVE "hearing_sensitive" //target is hearing sensitive
+#define TRAIT_DROOLING "drooling" //target is drooling
 ///Prevent mob from being ignited due to IgniteMob()
 #define TRAIT_NON_FLAMMABLE "non-flammable"
 /// Prevents mob from riding mobs when buckled onto something
