@@ -68,6 +68,10 @@
 	spawner_height = 33
 	spawner_width = 80
 
+/obj/effect/spawner/modularmap/lv624/hydrobridge
+	mapid = "lvhydrobridge"
+	spawner_height = 10
+	spawner_width = 8
 
 /************BIG RED******/
 /obj/effect/spawner/modularmap/bigred/operations //todo decrease y by one
