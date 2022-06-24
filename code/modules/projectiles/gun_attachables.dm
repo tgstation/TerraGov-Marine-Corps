@@ -703,8 +703,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_tile_offset = 3
 	deployed_scope_rezoom = TRUE
 
+//all mounted guns with a nest use this
 /obj/item/attachable/scope/unremovable/tl102/nest
-	zoom_tile_offset = 6
+	flags_attach_features = ATTACH_ACTIVATION
+	scope_delay = 2 SECONDS
+	zoom_tile_offset = 7
+	zoom_viewsize = 2
+	deployed_scope_rezoom = FALSE
 
 /obj/item/attachable/scope/activate(mob/living/carbon/user, turn_off)
 	if(turn_off)
@@ -1297,7 +1302,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	if(!isgun(attaching_to))
 		return FALSE
 	var/obj/item/weapon/gun/attaching_gun = attaching_to
-	if(ispath(attaching_gun.deployed_item, /obj/machinery/deployable/mounted/sentry))
+	if(ispath(attaching_gun.deployable_item, /obj/machinery/deployable/mounted/sentry))
 		to_chat(attacher, span_warning("[attaching_gun] is already a sentry!"))
 		return FALSE
 	return ..()
@@ -1305,7 +1310,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 /obj/item/attachable/buildasentry/on_attach(attaching_item, mob/user)
 	. = ..()
 	ENABLE_BITFIELD(master_gun.flags_item, IS_DEPLOYABLE)
-	master_gun.deployed_item = /obj/machinery/deployable/mounted/sentry/buildasentry
+	master_gun.deployable_item = /obj/machinery/deployable/mounted/sentry/buildasentry
 	master_gun.ignored_terrains = list(
 		/obj/machinery/deployable/mounted,
 		/obj/machinery/miner,
@@ -1321,7 +1326,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			/obj/structure/window/framed/prison,
 		)
 	master_gun.turret_flags |= TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
-	master_gun.AddElement(/datum/element/deployable_item, master_gun.deployed_item, deploy_time, undeploy_time)
+	master_gun.AddElement(/datum/element/deployable_item, master_gun.deployable_item, master_gun.type, deploy_time, undeploy_time)
 	update_icon()
 
 /obj/item/attachable/buildasentry/on_detach(detaching_item, mob/user)
@@ -1329,9 +1334,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/obj/item/weapon/gun/detaching_gun = detaching_item
 	DISABLE_BITFIELD(detaching_gun.flags_item, IS_DEPLOYABLE)
 	detaching_gun.ignored_terrains = null
-	detaching_gun.deployed_item = null
+	detaching_gun.deployable_item = null
 	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)
-	detaching_gun.RemoveElement(/datum/element/deployable_item, master_gun.deployed_item, deploy_time, undeploy_time)
+	detaching_gun.RemoveElement(/datum/element/deployable_item, master_gun.deployable_item, master_gun.type, deploy_time, undeploy_time)
 
 
 /obj/item/attachable/shoulder_mount
@@ -1623,8 +1628,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		set_gun_user(master_gun.gun_user)
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		to_chat(user, span_notice("You start using [src]."))
-	for(var/action_to_update in master_gun.actions)
-		var/datum/action/action = action_to_update
+	for(var/datum/action/action AS in master_gun.actions)
 		action.update_button_icon()
 	return TRUE
 

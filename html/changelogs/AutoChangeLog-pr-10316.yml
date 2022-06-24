@@ -1,6 +1,0 @@
-author: "BraveMole"
-delete-after: True
-changes: 
-  - balance: "Heart damage will decrease your maximum stamina and maximum health. Nothing else
-balance :Lungs damage will decrease your stamina regen and your speed. Nothing else
-delete: Peridaxon is no longer in the game, as effects from organ damage are less severe"

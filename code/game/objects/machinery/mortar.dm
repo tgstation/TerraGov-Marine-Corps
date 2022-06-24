@@ -241,7 +241,9 @@
 	qdel(mortar_shell)
 	firing = FALSE
 
-/obj/machinery/deployable/mortar/wrench_act(mob/living/user, obj/item/I)
+/obj/machinery/deployable/mortar/attack_hand_alternate(mob/living/user)
+	if(!Adjacent(user) || user.lying_angle || user.incapacitated() || !ishuman(user))
+		return
 
 	if(busy)
 		to_chat(user, span_warning("Someone else is currently using [src]."))
@@ -256,21 +258,21 @@
 //The portable mortar item
 /obj/item/mortar_kit
 	name = "\improper TA-50S mortar"
-	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Use Ctrl-Click to deploy."
+	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Ctrl+Click on a tile to deploy, drag the mortar's sprites to mob's sprite to undeploy."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar"
 
 	max_integrity = 200
-	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
+	flags_item = IS_DEPLOYABLE
 	/// What item is this going to deploy when we put down the mortar?
-	var/deployed_item = /obj/machinery/deployable/mortar
+	var/deployable_item = /obj/machinery/deployable/mortar
 
 	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY //No dumping this in most backpacks. Carry it, fatso
 
 /obj/item/mortar_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, deployed_item, 5 SECONDS)
+	AddElement(/datum/element/deployable_item, deployable_item, type, 5 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
 	do_unique_action(user)
@@ -292,7 +294,7 @@
 	max_integrity = 400
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
 	w_class = WEIGHT_CLASS_HUGE
-	deployed_item = /obj/machinery/deployable/mortar/howitzer
+	deployable_item = /obj/machinery/deployable/mortar/howitzer
 
 /obj/machinery/deployable/mortar/howitzer
 	anchored = FALSE // You can move this.

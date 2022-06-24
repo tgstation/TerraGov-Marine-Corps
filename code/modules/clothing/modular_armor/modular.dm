@@ -129,7 +129,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/clothing/suit/modular/apply_custom(image/standing)
+/obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE] || !istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		return standing
@@ -137,7 +137,7 @@
 	if(!storage_module.show_storage)
 		return standing
 	for(var/obj/item/stored AS in storage_module.storage.contents)
-		standing.overlays += image(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
+		standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
 	return standing
 
 /obj/item/clothing/suit/modular/mob_can_equip(mob/user, slot, warning)
@@ -262,7 +262,6 @@
 
 	allowed_uniform_type = /obj/item/clothing/under
 
-// Thank Jeff for providing sprites to color flak jacket
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper TerraGov standard flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
@@ -272,6 +271,9 @@
 	flags_item = NONE
 	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 5, "rad" = 5, "fire" = 25, "acid" = 30)
 	slowdown = 0.25
+
+	attachments_allowed = list()
+
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -540,13 +542,13 @@
 	if(armor_storage.storage.handle_mousedrop(usr, over_object))
 		return ..()
 
-/obj/item/clothing/head/modular/apply_custom(image/standing)
+/obj/item/clothing/head/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 		if(storage_module.show_storage)
 			for(var/obj/item/stored AS in storage_module.storage.contents)
-				standing.overlays += image(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
+				standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
 	if(attachments_by_slot[ATTACHMENT_SLOT_VISOR])
 		return standing
 	standing.pixel_x = visorless_offset_x

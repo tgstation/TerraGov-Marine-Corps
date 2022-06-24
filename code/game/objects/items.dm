@@ -49,9 +49,10 @@
 	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by flags_heat_protection flags
 	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by flags_cold_protection flags
 
-	var/list/actions = list() //list of /datum/action's that this item has.
-	var/list/actions_types = list() //list of paths of action datums to give to the item on Initialize().
-
+	///list of /datum/action's that this item has.
+	var/list/actions
+	///list of paths of action datums to give to the item on Initialize().
+	var/list/actions_types
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
@@ -92,14 +93,28 @@
 	var/list/item_state_slots
 	///>LazyList< Used to specify the icon file to be used when the item is worn in a certain slot. icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
 	var/list/item_icons
-	///icon equivalent but for on-mob icon.
-	var/icon/default_worn_icon
 	///specific layer for on-mob icon.
 	var/worn_layer
 	///tells if the item shall use item_state for non-inhands, needed due to some items using item_state only for inhands and not worn.
 	var/item_state_worn = FALSE
-
-	var/icon_override = null  //Used to override hardcoded ON-MOB clothing dmis in human clothing proc (i.e. not the icon_state sprites).
+	///overrides the icon file which the item will be used to render on mob, if its in hands it will add _l or _r to the state depending if its on left or right hand.
+	var/icon_override = null
+	///Dimensions of the icon file used when this item is worn, eg: hats.dmi (32x32 sprite, 64x64 sprite, etc.). Allows inhands/worn sprites to be of any size, but still centered on a mob properly
+	var/worn_x_dimension = 32
+	///Dimensions of the icon file used when this item is worn, eg: hats.dmi (32x32 sprite, 64x64 sprite, etc.). Allows inhands/worn sprites to be of any size, but still centered on a mob properly
+	var/worn_y_dimension = 32
+	///Same as for [worn_x_dimension][/obj/item/var/worn_x_dimension] but for inhands.
+	var/inhand_x_dimension = 32
+	///Same as for [worn_y_dimension][/obj/item/var/worn_y_dimension] but for inhands.
+	var/inhand_y_dimension = 32
+	/// Worn overlay will be shifted by this along x axis
+	var/worn_x_offset = 0
+	/// Worn overlay will be shifted by this along y axis
+	var/worn_y_offset = 0
+	///Worn nhand overlay will be shifted by this along x axis
+	var/inhand_x_offset = 0
+	///Worn inhand overlay will be shifted by this along y axis
+	var/inhand_y_offset = 0
 
 	var/flags_item_map_variant = NONE
 
@@ -348,8 +363,7 @@
 	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
 
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
 
@@ -371,8 +385,7 @@
 
 	var/equipped_from_slot = flags_equip_slot & slotdefine2slotbit(slot)
 
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		A.remove_action(unequipper)
 
 	if(!equipped_from_slot)
@@ -548,7 +561,7 @@
 				return TRUE
 			return FALSE
 		if(SLOT_IN_ACCESSORY)
-			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform/holster)))
+			if((H.w_uniform && istype(H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM], /obj/item/armor_module/storage/uniform)))
 				var/obj/item/armor_module/storage/U = H.w_uniform.attachments_by_slot[ATTACHMENT_SLOT_UNIFORM]
 				var/obj/item/storage/S = U.storage
 				if(S.can_be_inserted(src, warning))
@@ -602,7 +615,7 @@
 					return TRUE
 			return FALSE
 		if(SLOT_IN_S_HOLSTER)
-			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
+			if((H.s_store && istype(H.s_store, /obj/item/storage/holster)) || (H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
 				var/obj/item/storage/S = H.s_store
 				if(S.can_be_inserted(src, warning))
 					return TRUE
@@ -626,19 +639,41 @@
 			if(S.can_be_inserted(src, warning))
 				return TRUE
 		if(SLOT_IN_SUIT)
-			var/obj/item/clothing/suit/storage/S = H.wear_suit
-			if(!istype(S) || !S.pockets)
+			if(!H.wear_suit)
 				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
-				return TRUE
+			if(istype(H.wear_suit, /obj/item/clothing/suit/modular))
+				var/obj/item/clothing/suit/modular/T = H.wear_suit
+				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+					return FALSE
+				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			if(istype(H.wear_suit, /obj/item/clothing/suit/storage)) //old suits use the pocket var instead of storage attachments
+				var/obj/item/clothing/suit/storage/T = H.wear_suit
+				if(!T.pockets)
+					return FALSE
+				var/obj/item/storage/internal/S = T.pockets
+				if(S.can_be_inserted(src, warning))
+					return TRUE
 		if(SLOT_IN_HEAD)
-			var/obj/item/clothing/head/helmet/marine/S = H.head
-			if(!istype(S) || !S.pockets)
+			if(!H.head)
 				return FALSE
-			var/obj/item/storage/internal/T = S.pockets
-			if(T.can_be_inserted(src, warning))
-				return TRUE
+			if(istype(H.head, /obj/item/clothing/head/modular))
+				var/obj/item/clothing/head/modular/T = H.head
+				if(!T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE])
+					return FALSE
+				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/S = U.storage
+				if(S.can_be_inserted(src, warning))
+					return TRUE
+			if(istype(H.head, /obj/item/clothing/head/helmet/marine)) //old hats use the pocket var instead of storage attachments
+				var/obj/item/clothing/head/helmet/marine/T = H.head
+				if(!T.pockets)
+					return FALSE
+				var/obj/item/storage/internal/S = T.pockets
+				if(S.can_be_inserted(src, warning))
+					return TRUE
 		if(SLOT_IN_BOOT)
 			var/obj/item/clothing/shoes/marine/S = H.shoes
 			if(!istype(S) || !S.pockets)
@@ -937,8 +972,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 
 /obj/item/proc/update_action_button_icons()
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A AS in actions)
 		A.update_button_icon()
 
 
@@ -1141,30 +1175,34 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Generates worn icon for sprites on-mob.
 /obj/item/proc/make_worn_icon(species_type, slot_name, inhands, default_icon, default_layer)
 	//Get the required information about the base icon
-	var/icon/icon2use = get_worn_icon_file(species_type = species_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
+	var/iconfile2use = get_worn_icon_file(species_type = species_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
 	var/layer2use = !inhands && worn_layer ? -worn_layer : -default_layer
 
 	//Snowflakey inhand icons in a specific slot
-	if(inhands && icon2use == icon_override)
+	if(inhands && iconfile2use == icon_override)
 		switch(slot_name)
 			if(slot_r_hand_str)
 				state2use += "_r"
 			if(slot_l_hand_str)
 				state2use += "_l"
 
-	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
+	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[iconfile2use], Worn State:[state2use], Worn Layer:[layer2use]")
 
-	var/image/standing = image(icon2use, icon_state = state2use)
-	standing.alpha = alpha
-	standing.color = color
-	standing.layer = layer2use
+	var/mutable_appearance/standing = mutable_appearance(iconfile2use, state2use, layer2use)
 
 	//Apply any special features
 	if(!inhands)
 		apply_custom(standing)		//image overrideable proc to customize the onmob icon.
 		apply_blood(standing)			//Some items show blood when bloodied.
 		apply_accessories(standing)		//Some items sport accessories like webbings or ties.
+
+	standing = center_image(standing, inhands ? inhand_x_dimension : worn_x_dimension, inhands ? inhand_y_dimension : worn_y_dimension)
+
+	standing.pixel_x += inhands ? inhand_x_offset : worn_x_offset
+	standing.pixel_y += inhands ? inhand_y_offset : worn_y_offset
+	standing.alpha = alpha
+	standing.color = color
 
 	//Return our icon
 	return standing
@@ -1185,10 +1223,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	. = LAZYACCESS(item_icons, slot_name)
 	if(.)
 		return
-
-	//4: item's default icon
-	if(default_worn_icon)
-		return default_worn_icon
 
 	//5: provided default_icon
 	if(default_icon)
@@ -1215,15 +1249,15 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_state
 
 ///applies any custom thing to the sprite, caled by make_worn_icon().
-/obj/item/proc/apply_custom(image/standing)
+/obj/item/proc/apply_custom(mutable_appearance/standing)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing)
 	return standing
 
 ///applies blood on the item, called by make_worn_icon().
-/obj/item/proc/apply_blood(image/standing)
+/obj/item/proc/apply_blood(mutable_appearance/standing)
 	return standing
 
 ///applies any accessory the item may have, called by make_worn_icon().
-/obj/item/proc/apply_accessories(image/standing)
+/obj/item/proc/apply_accessories(mutable_appearance/standing)
 	return standing

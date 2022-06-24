@@ -10,6 +10,7 @@
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
 	///The type of stack the barricade dropped when disassembled if any.
 	var/stack_type

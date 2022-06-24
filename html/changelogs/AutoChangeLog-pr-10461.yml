@@ -1,0 +1,6 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - rscadd: "Kidneys now apply downsides if you have too many drugs in you. Cap gets lowered with organ damage."
+  - balance: "DD doesn't heal confusion any more."
+  - balance: "Minor liver tweaks, more or less the same on the whole. Main addition is a very small chance to vomit."

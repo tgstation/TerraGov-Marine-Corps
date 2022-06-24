@@ -349,7 +349,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
-	overlays_standing[HAIR_LAYER]	= image("icon"= face_standing, "layer" =-HAIR_LAYER)
+	overlays_standing[HAIR_LAYER] = mutable_appearance(face_standing, layer =-HAIR_LAYER)
 
 	apply_overlay(HAIR_LAYER)
 
@@ -442,15 +442,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		return
 	var/datum/limb/left_hand = get_limb("l_hand")
 	var/datum/limb/right_hand = get_limb("r_hand")
-	var/image/bloodsies
+	var/mutable_appearance/bloodsies
 	if(left_hand.limb_status & LIMB_DESTROYED)
 		if(right_hand.limb_status & LIMB_DESTROYED)
 			return //No hands.
-		bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhand_right") //Only right hand.
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhand_right") //Only right hand.
 	else if(right_hand.limb_status & LIMB_DESTROYED)
-		bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhand_left") //Only left hand.
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhand_left") //Only left hand.
 	else
-		bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands") //Both hands.
+		bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "bloodyhands") //Both hands.
 
 	bloodsies.color = blood_color
 	overlays_standing[GLOVES_LAYER]	= bloodsies
@@ -499,7 +499,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(shoes)
 		overlays_standing[SHOES_LAYER] = shoes.make_worn_icon(species_type = species.name, slot_name = slot_shoes_str, default_icon = 'icons/mob/feet.dmi', default_layer = SHOES_LAYER)
 	else if(feet_blood_color)
-		var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "shoeblood")
+		var/mutable_appearance/bloodsies = mutable_appearance(icon = 'icons/effects/blood.dmi', icon_state = "shoeblood")
 		bloodsies.color = feet_blood_color
 		overlays_standing[SHOES_LAYER] = bloodsies
 
@@ -673,20 +673,20 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/update_burst()
 	remove_overlay(BURST_LAYER)
-	var/image/standing
+	var/mutable_appearance/standing
 	if(chestburst == 1)
-		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "burst_stand", "layer" =-BURST_LAYER)
+		standing = mutable_appearance('icons/Xeno/Effects.dmi', "burst_stand", -BURST_LAYER)
 	else if(chestburst == 2)
-		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "bursted_stand", "layer" =-BURST_LAYER)
+		standing = mutable_appearance('icons/Xeno/Effects.dmi', "bursted_stand", -BURST_LAYER)
 
 	overlays_standing[BURST_LAYER]	= standing
 	apply_overlay(BURST_LAYER)
 
 /mob/living/carbon/human/update_headbite()
 	remove_overlay(HEADBITE_LAYER)
-	var/image/standing
+	var/mutable_appearance/standing
 	if(headbitten)
-		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "headbite_stand", "layer" =-HEADBITE_LAYER)
+		standing = mutable_appearance('icons/Xeno/Effects.dmi', "headbite_stand", -HEADBITE_LAYER)
 
 	overlays_standing[HEADBITE_LAYER]	= standing
 	apply_overlay(HEADBITE_LAYER)
@@ -695,7 +695,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	remove_overlay(FIRE_LAYER)
 	if(on_fire)
 		switch(fire_stacks)
-			if(1 to 14)	overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing_weak", "layer"=-FIRE_LAYER)
-			if(15 to 20) overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing_medium", "layer"=-FIRE_LAYER)
+			if(1 to 14)	overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/OnFire.dmi', "Standing_weak", -FIRE_LAYER)
+			if(15 to 20) overlays_standing[FIRE_LAYER] = mutable_appearance('icons/mob/OnFire.dmi', "Standing_medium", -FIRE_LAYER)
 
 		apply_overlay(FIRE_LAYER)

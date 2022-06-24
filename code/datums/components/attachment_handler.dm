@@ -328,7 +328,7 @@
 		parent_item.overlays += overlay
 
 ///Updates the mob sprite of the attachment.
-/datum/component/attachment_handler/proc/apply_custom(datum/source, image/standing)
+/datum/component/attachment_handler/proc/apply_custom(datum/source, mutable_appearance/standing)
 	SIGNAL_HANDLER
 	var/obj/item/parent_item = parent
 	if(!ismob(parent_item.loc))
@@ -355,7 +355,7 @@
 			else
 				icon = attachment_data[OVERLAY_ICON]
 				suffix = attachment.icon == icon ? "_a" : ""
-		var/image/new_overlay = image(icon, wearer, icon_state + suffix, -attachment_data[ATTACHMENT_LAYER])
+		var/mutable_appearance/new_overlay = mutable_appearance(icon, icon_state + suffix, -attachment_data[ATTACHMENT_LAYER])
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			new_overlay.overlays += attachment.overlays
 		if(attachment_data[MOB_PIXEL_SHIFT_X])

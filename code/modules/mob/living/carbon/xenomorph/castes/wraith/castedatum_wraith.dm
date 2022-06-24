@@ -49,6 +49,7 @@
 		/datum/action/xeno_action/activable/blink,
 		/datum/action/xeno_action/activable/banish,
 		/datum/action/xeno_action/recall,
+		/datum/action/xeno_action/activable/rewind,
 		/datum/action/xeno_action/portal,
 	)
 
@@ -160,6 +161,7 @@
 		/datum/action/xeno_action/activable/banish,
 		/datum/action/xeno_action/recall,
 		/datum/action/xeno_action/portal,
+		/datum/action/xeno_action/activable/rewind,
 		/datum/action/xeno_action/timestop,
 	)
 

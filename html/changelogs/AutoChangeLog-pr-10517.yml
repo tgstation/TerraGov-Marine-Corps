@@ -1,0 +1,4 @@
+author: "KuzyXD"
+delete-after: True
+changes: 
+  - code_imp: "Tgstation Test explorer for VScode now work properly"

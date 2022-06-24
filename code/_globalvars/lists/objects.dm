@@ -85,7 +85,6 @@ GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 
 GLOBAL_LIST_INIT(do_not_preserve_empty, typecacheof(list(
 	/obj/item/storage/backpack/marine/satchel,
-	/obj/item/storage/belt/security/MP,
 	/obj/item/storage/backpack/marine/satchel/corpsman,
 	/obj/item/storage/backpack/marine/satchel/tech,
 	/obj/item/storage/backpack/marine/standard), only_root_path = TRUE))
