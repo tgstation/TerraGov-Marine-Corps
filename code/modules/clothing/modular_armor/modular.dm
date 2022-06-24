@@ -129,7 +129,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/clothing/suit/modular/apply_custom(image/standing)
+/obj/item/clothing/suit/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(!attachments_by_slot[ATTACHMENT_SLOT_STORAGE] || !istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		return standing
@@ -137,7 +137,7 @@
 	if(!storage_module.show_storage)
 		return standing
 	for(var/obj/item/stored AS in storage_module.storage.contents)
-		standing.overlays += image(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
+		standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
 	return standing
 
 /obj/item/clothing/suit/modular/mob_can_equip(mob/user, slot, warning)
@@ -542,13 +542,13 @@
 	if(armor_storage.storage.handle_mousedrop(usr, over_object))
 		return ..()
 
-/obj/item/clothing/head/modular/apply_custom(image/standing)
+/obj/item/clothing/head/modular/apply_custom(mutable_appearance/standing)
 	. = ..()
 	if(attachments_by_slot[ATTACHMENT_SLOT_STORAGE] && istype(attachments_by_slot[ATTACHMENT_SLOT_STORAGE], /obj/item/armor_module/storage))
 		var/obj/item/armor_module/storage/storage_module = attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
 		if(storage_module.show_storage)
 			for(var/obj/item/stored AS in storage_module.storage.contents)
-				standing.overlays += image(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
+				standing.overlays += mutable_appearance(storage_module.show_storage_icon, icon_state = initial(stored.icon_state))
 	if(attachments_by_slot[ATTACHMENT_SLOT_VISOR])
 		return standing
 	standing.pixel_x = visorless_offset_x
