@@ -11,39 +11,9 @@
 	if(species.species_flags & NO_BLOOD)
 		return
 
-	if(stat == DEAD  || bodytemperature < 170 || blood_volume >= BLOOD_VOLUME_NORMAL)
-		return
+	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
 
-	blood_volume += 0.1 // regenerate blood VERY slowly
 
-	switch(blood_volume)
-		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
-			if(prob(1))
-				var/word = pick("dizzy","woozy","faint")
-				to_chat(src, span_warning("You feel [word]"))
-			if(oxyloss < 20)
-				adjustOxyLoss(3)
-		if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
-			if(eye_blurry < 50)
-				adjust_blurriness(5)
-			if(oxyloss < 40)
-				adjustOxyLoss(6)
-			else
-				adjustOxyLoss(3)
-			if(prob(10) && stat == UNCONSCIOUS)
-				adjustToxLoss(1)
-			if(prob(15))
-				Unconscious(rand(20,60))
-				var/word = pick("dizzy","woozy","faint")
-				to_chat(src, span_warning("You feel extremely [word]"))
-		if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
-			adjustOxyLoss(5)
-			adjustToxLoss(2)
-			if(prob(15))
-				var/word = pick("dizzy","woozy","faint")
-				to_chat(src, span_warning("You feel extremely [word]"))
-		if(0 to BLOOD_VOLUME_SURVIVE)
-			death()
 
 		//Blood regeneration if there is some space
 		if(blood_volume < BLOOD_VOLUME_NORMAL)
@@ -69,18 +39,58 @@
 						canvas.add_blood(species.blood_color) //Splash zone
 					playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
 
-	//Bleeding out
-	var/blood_max = 0
-	for(var/l in limbs)
-		var/datum/limb/temp = l
-		if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
-			continue
-		blood_max += temp.brute_dam / 60
-		if (temp.surgery_open_stage)
-			blood_max += 0.6  //Yer stomach is cut open
+	//Effects of bloodloss
+		switch(blood_volume)
 
-	if(blood_max)
-		drip(blood_max)
+			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
+				if(prob(1))
+					var/word = pick("dizzy","woozy","faint")
+					to_chat(src, span_warning("You feel [word]"))
+				if(oxyloss < 20)
+					adjustOxyLoss(3)
+			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
+				if(eye_blurry < 50)
+					adjust_blurriness(5)
+				if(oxyloss < 40)
+					adjustOxyLoss(6)
+				else
+					adjustOxyLoss(3)
+				if(prob(10) && stat == UNCONSCIOUS)
+					adjustToxLoss(1)
+				if(prob(15))
+					Unconscious(rand(20,60))
+					var/word = pick("dizzy","woozy","faint")
+					to_chat(src, span_warning("You feel extremely [word]"))
+			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
+				adjustOxyLoss(5)
+				adjustToxLoss(2)
+				if(prob(15))
+					var/word = pick("dizzy","woozy","faint")
+					to_chat(src, span_warning("You feel extremely [word]"))
+			if(0 to BLOOD_VOLUME_SURVIVE)
+				death()
+
+
+		// Without enough blood you slowly go hungry.
+		if(blood_volume < BLOOD_VOLUME_SAFE)
+			switch(nutrition)
+				if(300 to INFINITY)
+					adjust_nutrition(-10)
+				if(200 to 300)
+					adjust_nutrition(-3)
+
+		//Bleeding out
+		var/blood_max = 0
+		for(var/l in limbs)
+			var/datum/limb/temp = l
+			if(!(temp.limb_status & LIMB_BLEEDING) || temp.limb_status & LIMB_ROBOT)
+				continue
+			blood_max += temp.brute_dam / 60
+			if (temp.surgery_open_stage)
+				blood_max += 0.6  //Yer stomach is cut open
+
+		if(blood_max)
+			drip(blood_max)
 
 
 
