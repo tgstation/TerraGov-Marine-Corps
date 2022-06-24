@@ -348,3 +348,10 @@
       like other deployable objects
   - balance: Makes it easier for mortar marines for tactical and superior position
       with mortar
+2022-06-24:
+  QualityVan:
+  - rscadd: Necrosis causes organ damage over time. Accidentally removed this when
+      I killed organ germs.
+  - balance: Boiler projectiles have 0 damage falloff.
+  Wayland-Smithy:
+  - bugfix: Fixed jetpack flying while buckled.
