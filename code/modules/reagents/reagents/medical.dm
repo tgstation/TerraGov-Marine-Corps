@@ -17,6 +17,7 @@
 	trait_flags = TACHYCARDIC
 
 /datum/reagent/medicine/inaprovaline/on_mob_add(mob/living/L, metabolism)
+	ADD_TRAIT(L, TRAIT_IGNORE_SUFFOCATION, REAGENT_TRAIT(src))
 	var/mob/living/carbon/human/H = L
 	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
@@ -32,12 +33,12 @@
 				I.heal_organ_damage((I.damage-29) *effect_str)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
+/datum/reagent/medicine/inaprovaline/on_mob_delete(mob/living/L, metabolism)
+	REMOVE_TRAIT(L, TRAIT_IGNORE_SUFFOCATION, REAGENT_TRAIT(src))
+	return ..()
+
 /datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		if(C.losebreath > 10)
-			C.set_Losebreath(10)
 	return ..()
 
 /datum/reagent/medicine/inaprovaline/overdose_process(mob/living/L, metabolism)

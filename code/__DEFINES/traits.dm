@@ -99,6 +99,8 @@
 #define PORTAL_TRAIT "portal"
 #define OPTABLE_TRAIT "optable"
 #define TIMESHIFT_TRAIT "timeshift"
+/// Trait from a reagent of the given name
+#define REAGENT_TRAIT(reagent) reagent.name
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
 
@@ -138,6 +140,8 @@
 #define TRAIT_NON_FLAMMABLE "non-flammable"
 /// Prevents mob from riding mobs when buckled onto something
 #define TRAIT_CANT_RIDE "cant_ride"
+///Prevents humans from gaining oxyloss in their handle_breath()
+#define TRAIT_IGNORE_SUFFOCATION "ignore_suffocation"
 //All the traits for guns
 #define TRAIT_GUN_SAFETY "safety"
 #define TRAIT_GUN_FLASHLIGHT_ON "light_on"

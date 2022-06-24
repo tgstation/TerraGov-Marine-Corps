@@ -180,6 +180,10 @@
 	// Slowdown added when the heart is damaged
 	owner.add_movespeed_modifier(id = name, override = TRUE, multiplicative_slowdown = organ_status)
 
+/datum/internal_organ/lungs/take_damage(amount, silent= FALSE)
+	owner.adjust_Losebreath(amount) //Hits of 1 damage or less won't do anything due to how losebreath works, but any stronger and we'll get the wind knocked out of us for a bit. Mostly just flavor.
+	return ..()
+
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
 	removed_type = /obj/item/organ/lungs/prosthetic
