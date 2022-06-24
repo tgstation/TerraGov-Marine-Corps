@@ -93,6 +93,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
+"v" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
 "w" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -132,6 +139,10 @@
 /area/bigredv2/outside/c)
 "G" = (
 /obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "H" = (
@@ -228,10 +239,10 @@
 h
 S
 S
-S
-S
+I
 Z
 r
+o
 o
 a
 "}
@@ -321,7 +332,7 @@ I
 I
 I
 g
-O
+v
 "}
 (10,1,1) = {"
 e
@@ -393,7 +404,7 @@ O
 i
 Y
 Y
-Y
+I
 J
 r
 q

@@ -142,6 +142,13 @@
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
+"A" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/c)
 "B" = (
 /turf/open/floor,
 /area/bigredv2/outside/storage)
@@ -160,6 +167,9 @@
 /obj/structure/largecrate/supply/medicine/iv,
 /turf/open/floor,
 /area/bigredv2/outside/storage)
+"F" = (
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
 "G" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -275,10 +285,10 @@
 v
 e
 W
-W
-W
+F
+u
 r
-z
+A
 f
 a
 "}
@@ -368,7 +378,7 @@ n
 B
 x
 H
-q
+U
 "}
 (10,1,1) = {"
 P
@@ -440,7 +450,7 @@ q
 P
 h
 L
-L
+F
 u
 z
 C
