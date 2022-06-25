@@ -102,7 +102,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			is_blocked = TRUE
 	if(!is_blocked)
 		if(!skip_timer)
-			addtimer(CALLBACK(src, .proc/continue_acid_cone_spray, T, next_normal_turf, distance_left, facing, direction_flag, spray), 2)
+			addtimer(CALLBACK(src, .proc/continue_acid_cone_spray, T, next_normal_turf, distance_left, facing, direction_flag, spray), 0.2 SECONDS)
 			return
 		continue_acid_cone_spray(T, next_normal_turf, distance_left, facing, direction_flag, spray)
 
