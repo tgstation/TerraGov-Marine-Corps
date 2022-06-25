@@ -22,7 +22,7 @@
 		if(!(human.species.species_flags & ROBOTIC_LIMBS)) // can only affect robots
 			continue
 		RegisterSignal(human, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
-		affecting_list[human] = beam(human, "blood_light", maxdistance = 2)
+		affecting_list[human] = beam(human, "blood_light", maxdistance = 3)
 		RegisterSignal(affecting_list[human], COMSIG_PARENT_QDELETING, .proc/on_beam_qdel)
 		human.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
 	for(var/turf/turfs AS in RANGE_TURFS(2, src))
@@ -56,7 +56,7 @@
 
 	RegisterSignal(entering, COMSIG_PARENT_QDELETING, .proc/on_affecting_qdel)
 	entering.playsound_local(get_turf(src), 'sound/machines/dispenser/dispenser_heal.ogg', 50)
-	affecting_list[entering] = beam(entering, "blood_light", maxdistance = 2)
+	affecting_list[entering] = beam(entering, "blood_light", maxdistance = 3)
 	RegisterSignal(affecting_list[entering], COMSIG_PARENT_QDELETING, .proc/on_beam_qdel)
 
 ///cleans human from affecting_list when it gets qdeletted
@@ -85,7 +85,7 @@
 	STOP_PROCESSING(SSobj, src)
 	flick("dispenser_undeploy", src)
 	playsound(src, 'sound/machines/dispenser/dispenser_undeploy.ogg', 50)
-	addtimer(CALLBACK(src, .proc/disassemble, user), 4.2 SECONDS)
+	addtimer(CALLBACK(src, .proc/disassemble, user), 4.1 SECONDS)
 
 /obj/machinery/deployable/dispenser/attack_hand(mob/living/user)
 	. = ..()
