@@ -521,16 +521,11 @@
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
 
-	var/slowdown_multiplier = 1
+	var/slowdown_multiplier = 0.5 //Because hemodile is obviously in blood already
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
-		slowdown_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		slowdown_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
-		slowdown_multiplier *= 2
+	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+			slowdown_multiplier *= 2
 
 	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
 		if(0 to 1 && prob(10))
