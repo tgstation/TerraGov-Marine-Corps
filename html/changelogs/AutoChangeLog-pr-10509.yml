@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - balance: "Ice Colony LZ2 now has an APC."
-  - bugfix: "Ice Colony LZ1 now can be powered like any other LZ."
-  - bugfix: "Removed a duplicate APC from Ice Colony LZ1."

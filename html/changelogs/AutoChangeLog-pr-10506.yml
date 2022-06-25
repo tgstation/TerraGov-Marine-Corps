@@ -1,6 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - rscadd: "Taking lung damage will knock the wind out of you for a moment."
-  - bugfix: "The suffocation hud icon works"
-  - bugfix: "Neurotoxin stops you from breathing once it has you in stamcrit so you don't just ignore a third of its damage."

@@ -355,3 +355,31 @@
   - balance: Boiler projectiles have 0 damage falloff.
   Wayland-Smithy:
   - bugfix: Fixed jetpack flying while buckled.
+2022-06-25:
+  KuzyXD:
+  - code_imp: Tgstation Test explorer for VScode now work properly
+  QualityVan:
+  - rscadd: Kidneys now apply downsides if you have too many drugs in you. Cap gets
+      lowered with organ damage.
+  - balance: DD doesn't heal confusion any more.
+  - balance: Minor liver tweaks, more or less the same on the whole. Main addition
+      is a very small chance to vomit.
+  - rscadd: If you have too much blood in you and no quickclot, all the extra blood
+      will spill.
+  - rscadd: Taking lung damage will knock the wind out of you for a moment.
+  - bugfix: The suffocation hud icon works
+  - bugfix: Neurotoxin stops you from breathing once it has you in stamcrit so you
+      don't just ignore a third of its damage.
+  RipGrayson:
+  - balance: Ice Colony LZ2 now has an APC.
+  - bugfix: Ice Colony LZ1 now can be powered like any other LZ.
+  - bugfix: Removed a duplicate APC from Ice Colony LZ1.
+  SplinterGP:
+  - code_imp: changed human item rendering code so it can support bigger icons with
+      centralization.
+  goose4429:
+  - bugfix: fixed win messages
+  - balance: more basic pill bottles to NTMed+
+  novaepee:
+  - balance: Marine ballistic goggles are now tiny, letting you fit goggle and another
+      tiny object in helmet
