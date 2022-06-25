@@ -111,17 +111,6 @@
 		heal_overall_damage(0, -amount, updating_health = updating_health)
 
 
-//These procs fetch a cumulative total damage from all limbs
-/mob/living/carbon/human/proc/getexternalBruteLoss(organic_only = TRUE)
-	. = 0
-	for(var/i in limbs)
-		var/datum/limb/bodypart = i
-		if(organic_only && bodypart.limb_status & LIMB_ROBOT)
-			continue
-		var/external_dam = bodypart.brute_dam
-		. += external_dam
-
-
 /mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source = null)
 	if(species && species.brute_mod && amount > 0)
 		amount = amount*species.brute_mod
