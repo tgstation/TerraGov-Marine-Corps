@@ -640,7 +640,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	icon_state = "tx13"
 	item_state = "tx13"
 	caliber = CALIBER_9X19 //codex
-	max_shells = 30 //codex
+	max_shells = 25 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
