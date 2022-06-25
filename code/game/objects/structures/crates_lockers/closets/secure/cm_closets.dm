@@ -278,6 +278,9 @@
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 	new /obj/item/storage/backpack/marine/satchel/captain_cloak(src)
+	new /obj/item/storage/belt/gun/mateba/officer/full(src)
+
+
 
 /obj/structure/closet/secure_closet/securecom
 	name = "captain's secure box"
