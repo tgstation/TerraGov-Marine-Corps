@@ -570,6 +570,7 @@
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
 		"Surplus Special Equipment" = list(
+			/obj/item/pinpointer = 2
 			/obj/item/beacon/supply_beacon = 1,
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
