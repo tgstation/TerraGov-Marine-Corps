@@ -353,3 +353,61 @@
 	scatter_unwielded = 4
 	aim_slowdown = 0.15
 	wield_delay = 0.2 SECONDS
+
+//-------------------------------------------------------
+// SOM SMG
+
+/obj/item/weapon/gun/smg/som
+	name = "\improper V-21 submachinegun"
+	//maybe add a custom calibre later
+	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. It uses 10x20mm caseless rounds."
+	icon_state = "t19" //PLACEHOLDER
+	item_state = "t19" //PLACEHOLDER
+	caliber = CALIBER_10X20_CASELESS
+	max_shells = 50
+	flags_equip_slot = ITEM_SLOT_BACK
+	type_of_casings = null
+	default_ammo_type = /obj/item/ammo_magazine/smg/som
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som)
+	fire_sound = 'sound/weapons/guns/fire/smg_light.ogg' //PLACEHOLDER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //semi, full auto, fuller auto
+
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+	)
+
+	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
+
+	fire_delay = 0.15 SECONDS
+	damage_mult = 0.9 //on full auto it's a worse p90
+	aim_slowdown = 0.15
+	wield_delay = 0.4 SECONDS
+
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.95
+
+	recoil = 0
+	recoil_unwielded = 0.5
+
+	scatter = 2
+	scatter_unwielded = 8
+
+	burst_amount = 3
+	burst_delay = 0.1
+	autoburst_delay = 0.1 //this makes it fuller auto
+	burst_accuracy_mult = 0.7
+	burst_scatter_mult = 3
+
+	akimbo_additional_delay = 0.7
+	upper_akimbo_accuracy = 5
+	lower_akimbo_accuracy = 3

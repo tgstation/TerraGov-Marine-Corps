@@ -239,6 +239,25 @@
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	caliber = CALIBER_12G
 
+/obj/item/ammo_magazine/handful/micro_grenade
+	name = "handful of airburst micro grenades (10g)." //update
+	icon_state = "shotgun buckshot shell" //PLACEHOLDER
+	current_rounds = 3
+	max_rounds = 3
+	default_ammo = /datum/ammo/bullet/micro_rail/airburst
+	caliber = CALIBER_10G_RAIL
+
+/obj/item/ammo_magazine/handful/micro_grenade/dragonbreath
+	name = "handful of dragon's breath micro grenades (10g)." //update
+	icon_state = "shotgun buckshot shell" //PLACEHOLDER
+	default_ammo = /datum/ammo/bullet/micro_rail/dragonbreath
+
+/obj/item/ammo_magazine/handful/micro_grenade/smoke_burst
+	name = "handful of smoke burst micro grenades (10g)." //update
+	icon_state = "shotgun buckshot shell" //PLACEHOLDER
+	default_ammo = /datum/ammo/bullet/micro_rail/smoke_burst
+
+
 //----------------------------------------------------------------//
 
 /*

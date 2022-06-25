@@ -117,3 +117,39 @@
 	max_rounds = 50
 	bonus_overlay = "uzi_ex"
 	icon_state_mini = "mag_smg_yellow"
+
+//-------------------------------------------------------
+//V-21 SOM SMG
+
+/obj/item/ammo_magazine/smg/som
+	name = "\improper V-21 submachinegun magazine (10x20mm)"
+	desc = "A 10x20mm caseless submachinegun magazine."
+	caliber = CALIBER_10X20_CASELESS
+	icon_state = "t19" //PLACEHOLDER
+	max_rounds = 50
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/ammo_magazine/smg/som/ap
+	name = "\improper V-21 AP submachinegun magazine (10x20mm)"
+	desc = "A 10x20mm caseless submachinegun magazine, loaded in armor piercing rounds."
+	icon_state = "m25_ap" //PLACEHOLDER
+	default_ammo = /datum/ammo/bullet/smg/ap
+	icon_state_mini = "mag_smg_green"
+	bonus_overlay = "m25_ap" //PLACEHOLDER
+
+/obj/item/ammo_magazine/smg/som/incendiary
+	name = "\improper V-21 incendiary submachinegun magazine (10x20mm)"
+	desc = "A 10x20mm caseless submachinegun magazine, loaded in armor piercing rounds."
+	icon_state = "m25_ap" //PLACEHOLDER
+	default_ammo = /datum/ammo/bullet/smg/ap
+	icon_state_mini = "mag_smg_green"
+	bonus_overlay = "m25_ap" //PLACEHOLDER
+
+/obj/item/ammo_magazine/smg/som/extended
+	name = "\improper V-21 extended submachinegun magazine (10x20mm)"
+	desc = "An extended 10x20mm caseless submachinegun magazine."
+	icon_state = "m25_ext" //PLACEHOLDER
+	max_rounds = 75
+	icon_state_mini = "mag_smg_yellow"
+	bonus_overlay = "m25_ex" //PLACEHOLDER
+	w_class = WEIGHT_CLASS_NORMAL

@@ -548,6 +548,46 @@
 	recoil_unwielded = 3
 
 //-------------------------------------------------------
+//SOM pistol
+
+/obj/item/weapon/gun/pistol/som
+	name = "\improper V-11 pistol"
+	desc = "The standard sidearm used by the Sons of Mars. A reliable and simple weapon that is often seen on the export market on the outer colonies. Typically chambered in 9mm armor piercing rounds."
+	icon_state = "88m4" //PLACEHOLDER
+	item_state = "88m4" //PLACEHOLDER
+	caliber = CALIBER_9X19 //codex
+	max_shells = 18
+	fire_sound = 'sound/weapons/guns/fire/vp70.ogg' //PLACEHOLDER SOUNDS
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/som
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/som, /obj/item/ammo_magazine/pistol/som/incendiary, /obj/item/ammo_magazine/pistol/som/extended)
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
+	)
+
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
+
+	fire_delay = 0.15 SECONDS
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.95
+	recoil = -2
+	aim_slowdown = 0.1
+	scatter = 0
+	scatter_unwielded = 4
+
+//-------------------------------------------------------
 /*
 Auto 9 The gun RoboCop uses. A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
 It is a modified Beretta 93R, and can fire three round burst or single fire. Whether or not anyone else aside RoboCop can use it is not established.

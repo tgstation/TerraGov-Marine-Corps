@@ -1326,6 +1326,126 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/tx54/he/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P))
 
+
+//10-gauge Micro rail shells - aka micronades
+/datum/ammo/bullet/micro_rail
+	hud_state_empty = "shotgun_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	shell_speed = 2
+	handful_amount = 3
+	max_range = 3 //failure to detonate if the target is too close
+	damage = 15
+
+/datum/ammo/bullet/micro_rail/airburst
+	name = "airburst rail shell" //TEMP
+	handful_icon_state = "shotgun slug" //PLACEHOLDER
+	hud_state = "shotgun_slug" //PLACEHOLDER
+	bonus_projectiles_type = /datum/ammo/bullet/micro_rail_spread
+	bonus_projectiles_scatter = 10
+
+/datum/ammo/bullet/micro_rail/airburst/do_at_max_range(obj/projectile/proj)
+	bonus_projectiles_amount = 5
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 7, 3, Get_Angle(proj.firer, get_turf(proj)) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/bullet/micro_rail/dragonbreath
+	name = "dragon's breath rail shell" //TEMP
+	handful_icon_state = "shotgun slug" //PLACEHOLDER
+	hud_state = "shotgun_slug" //PLACEHOLDER
+	bonus_projectiles_type = /datum/ammo/bullet/micro_rail_spread/incendiary
+	bonus_projectiles_scatter = 10
+
+/datum/ammo/bullet/micro_rail/dragonbreath/do_at_max_range(obj/projectile/proj)
+	bonus_projectiles_amount = 5
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 6, 3, Get_Angle(proj.firer, get_turf(proj)) )
+	bonus_projectiles_amount = 0
+
+/datum/ammo/bullet/micro_rail/smoke_burst
+	name = "smoke burst rail shell" //TEMP
+	handful_icon_state = "shotgun slug" //PLACEHOLDER
+	hud_state = "shotgun_slug" //PLACEHOLDER
+	bonus_projectiles_type = /datum/ammo/smoke_burst
+	bonus_projectiles_scatter = 20
+
+/datum/ammo/bullet/micro_rail/smoke_burst/do_at_max_range(obj/projectile/proj)
+	bonus_projectiles_amount = 5
+	playsound(proj, sound(get_sfx("explosion_small")), 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, 6, 2, Get_Angle(proj.firer, get_turf(proj)) )
+	bonus_projectiles_amount = 0
+
+//submunitions for micro grenades
+/datum/ammo/bullet/micro_rail_spread
+	name = "Shrapnel"
+	icon_state = "flechette"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB
+	accuracy_var_low = 15
+	accuracy_var_high = 5
+	max_range = 7
+	damage = 20
+	penetration = 20
+	sundering = 3
+	damage_falloff = 1
+
+/datum/ammo/micro_rail_spread/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 5, stagger = 0.3, slowdown = 0.3, shake = 0)
+
+/datum/ammo/bullet/micro_rail_spread/incendiary
+	name = "incendiary flechette"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
+	damage = 15
+	penetration = 10
+	sundering = 1.5
+	max_range = 6
+
+/datum/ammo/micro_rail_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
+	staggerstun(M, proj, max_range = 5, stagger = 0.1, slowdown = 0.1, shake = 0)
+
+/datum/ammo/bullet/micro_rail_spread/incendiary/drop_flame(turf/T)
+	if(!istype(T))
+		return
+	T.ignite(5, 10)
+
+/datum/ammo/bullet/micro_rail_spread/incendiary/on_leave_turf(turf/T, atom/firer)
+	if(prob(40))
+		drop_flame(T)
+
+/datum/ammo/smoke_burst
+	name = "micro smoke canister"
+	icon_state = "bullet" //PLACEHOLDER
+	flags_ammo_behavior = AMMO_BALLISTIC
+	sound_hit 	 = "ballistic_hit"
+	sound_armor  = "ballistic_armor"
+	sound_miss	 = "ballistic_miss"
+	sound_bounce = "ballistic_bounce"
+	shell_speed = 2
+	damage = 5
+	shrapnel_chance = 0
+	max_range = 6
+	bullet_color = COLOR_VERY_SOFT_YELLOW
+	/// smoke type created when the projectile detonates
+	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
+	///radius this smoke will encompass
+	var/smokeradius = 1
+
+/datum/ammo/smoke_burst/drop_nade(turf/T)
+	var/datum/effect_system/smoke_spread/smoke = new smoketype()
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(smokeradius, T, rand(5,9))
+	smoke.start()
+
+/datum/ammo/smoke_burst/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/smoke_burst/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+
+/datum/ammo/smoke_burst/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T)
+
+/datum/ammo/smoke_burst/do_at_max_range(obj/projectile/P)
+	drop_nade(get_turf(P))
 /*
 //================================================
 					Rocket Ammo

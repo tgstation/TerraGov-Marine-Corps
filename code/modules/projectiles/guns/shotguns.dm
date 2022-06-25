@@ -677,3 +677,63 @@
 	scatter = 2
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1
+
+//-------------------------------------------------------
+//V-51 SOM shotgun
+
+
+/obj/item/weapon/gun/shotgun/som
+	name = "\improper V-51 combat shotgun"
+	desc = "The V-51 is the main shotgun employed by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick."
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon_state = "mk221" //PLACEHOLDER
+	item_state = "mk221" //PLACEHOLDER
+	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg' //PLACEHOLDER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	max_chamber_items = 9
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+	)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+
+	fire_delay = 1.8 SECONDS
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.5
+	scatter = 5
+	scatter_unwielded = 16
+	damage_mult = 0.85
+	recoil = 1
+	recoil_unwielded = 4
+	aim_slowdown = 0.45
+
+//-------------------------------------------------------
+//Inbuilt launcher for the V-31
+/obj/item/weapon/gun/shotgun/micro_grenade
+	name = "VA-61 micro rail launcher"
+	desc = "An inbuilt railgun designed to hurl so called 'micro grenades' at high velocity. By using railgun technology, the projectile does not need any propellant, helping greatly increase usable space for the payload."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "masterkey" //PLACEHOLDER - probs going to be invis.
+	max_chamber_items = 2 //TO BALANCE
+	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	slot = ATTACHMENT_SLOT_STOCK
+	default_ammo_type = /obj/item/ammo_magazine/handful/micro_grenade //WIP
+	caliber = CALIBER_10G_RAIL
+	type_of_casings = null
+
+	fire_delay = 1.5 SECONDS
+	accuracy_mult = 1.1
+	scatter = 0
+	recoil = 1
+
+	pixel_shift_x = 14 //does this actually do anything
+	pixel_shift_y = 18 //does this actually do anything
