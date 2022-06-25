@@ -587,13 +587,11 @@
 /datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
 	SIGNAL_HANDLER
 
-	var/tox_cap_multiplier = 1
+	var/tox_cap_multiplier = 0.5 //Because transvitox is obviously in blood already
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
-		tox_cap_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		tox_cap_multiplier *= 2
+	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+			tox_cap_multiplier *= 2 //Each other Defiler toxin doubles the multiplier
 
 	var/tox_loss = L.getToxLoss()
 	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
