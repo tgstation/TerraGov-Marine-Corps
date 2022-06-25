@@ -428,6 +428,7 @@
 		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
 		/obj/item/storage/belt/gun/pistol/standard_pistol = list(CAT_BEL, "Pistol belt", 0, "black"),
 		/obj/item/storage/belt/gun/revolver/standard_revolver = list(CAT_BEL, "Revolver belt", 0, "black"),
+		/obj/item/storage/belt/gun/mateba/officer/full = list(CAT_BEL, "Revolver belt", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
 		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt Harness", 0, "black"),
 		/obj/item/armor_module/module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
