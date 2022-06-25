@@ -29,6 +29,9 @@
 	},
 /area/bigredv2/outside/c)
 "i" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
@@ -72,6 +75,9 @@
 "q" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
+/obj/structure/bed/chair{
+	dir = 8
+	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -106,6 +112,9 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/structure/bed/chair{
+	dir = 8
+	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
 	},
@@ -222,6 +231,9 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "Y" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -380,17 +392,6 @@ O
 "}
 (14,1,1) = {"
 e
-m
-I
-I
-I
-I
-I
-g
-O
-"}
-(15,1,1) = {"
-e
 C
 z
 z
@@ -398,6 +399,17 @@ L
 s
 z
 M
+O
+"}
+(15,1,1) = {"
+e
+I
+I
+I
+I
+I
+I
+I
 O
 "}
 (16,1,1) = {"
