@@ -182,7 +182,7 @@
 
 
 // heal ONE limb, organ gets randomly selected from damaged ones.
-/mob/living/proc/heal_limb_damage(brute, burn, updating_health = FALSE)
+/mob/living/proc/heal_limb_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	if(updating_health)
@@ -200,7 +200,7 @@
 
 
 // heal MANY limbs, in random order
-/mob/living/proc/heal_overall_damage(brute, burn, updating_health = FALSE)
+/mob/living/proc/heal_overall_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	if(updating_health)
@@ -296,7 +296,7 @@
 	set_blindness(0, TRUE)
 	set_blurriness(0, TRUE)
 	set_ear_damage(0, 0)
-	heal_overall_damage(getBruteLoss(), getFireLoss())
+	heal_overall_damage(getBruteLoss(), getFireLoss(), robo_repair = TRUE)
 
 	// fix all of our organs
 	restore_all_organs()

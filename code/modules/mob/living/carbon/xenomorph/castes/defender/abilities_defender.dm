@@ -362,7 +362,7 @@
 
 	X.do_jitter_animation(1000)
 	X.set_sunder(0)
-	X.heal_overall_damage(25, 25, TRUE)
+	X.heal_overall_damage(25, 25, updating_health = TRUE)
 	add_cooldown()
 	return succeed_activate()
 
