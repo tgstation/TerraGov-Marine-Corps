@@ -201,7 +201,7 @@
 
 /obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
 	if(istype(target, /obj/machinery/door/airlock/mainship/marine))
-		if((target.dir & NORTH) || (target.dir & SOUTH))
+		if((target.dir & NORTH|SOUTH))
 			target.add_overlay(GLOB.welding_sparks_prepdoor)
 		else
 			target.add_overlay(GLOB.welding_sparks)
