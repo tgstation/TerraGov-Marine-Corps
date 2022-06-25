@@ -41,7 +41,7 @@
 	stomp_damage = 45
 	crest_toss_distance = 3
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -175,7 +175,7 @@
 	stomp_damage = 60
 	crest_toss_distance = 6
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

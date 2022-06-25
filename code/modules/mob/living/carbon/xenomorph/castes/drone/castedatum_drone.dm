@@ -49,7 +49,7 @@
 	minimap_icon = "drone"
 
 	// *** Abilities *** //
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -183,7 +183,7 @@
 	aura_strength = 2
 
 	// *** Abilities *** //
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

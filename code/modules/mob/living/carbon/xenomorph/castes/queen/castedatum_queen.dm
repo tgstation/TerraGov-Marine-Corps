@@ -45,7 +45,7 @@
 
 	minimap_icon = "xenoqueen"
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
@@ -206,7 +206,7 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 4
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,

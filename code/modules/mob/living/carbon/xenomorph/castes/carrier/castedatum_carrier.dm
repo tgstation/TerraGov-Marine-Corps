@@ -49,7 +49,7 @@
 	huggers_max = 4
 	hugger_delay = 2.5 SECONDS
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -194,7 +194,7 @@
 	huggers_max = 7
 	hugger_delay = 1.5 SECONDS
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

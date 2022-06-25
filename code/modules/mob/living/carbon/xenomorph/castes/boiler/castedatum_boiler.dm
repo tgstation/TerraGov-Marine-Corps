@@ -56,7 +56,7 @@
 	acid_spray_damage_on_hit = 35
 	acid_spray_structure_damage = 45
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -216,7 +216,7 @@
 
 	bomb_delay = 27 SECONDS
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

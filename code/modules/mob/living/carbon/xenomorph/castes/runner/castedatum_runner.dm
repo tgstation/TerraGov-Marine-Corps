@@ -52,7 +52,7 @@
 	minimap_icon = "runner"
 
 	// *** Abilities *** ///
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -183,7 +183,7 @@
 	pounce_delay = 13 SECONDS
 
 	// *** Abilities *** ///
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

@@ -49,7 +49,7 @@
 	minimap_icon = "praetorian"
 
 	// *** Abilities *** //
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -205,7 +205,7 @@
 	charge_type = CHARGE_TYPE_LARGE
 
 	// *** Abilities *** //
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

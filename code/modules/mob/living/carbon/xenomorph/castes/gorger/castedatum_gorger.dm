@@ -48,7 +48,7 @@
 	carnage_plasma_gain = 25
 	feast_plasma_drain = 20
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -164,7 +164,7 @@
 	drain_plasma_gain = 40
 	carnage_plasma_gain = 40
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

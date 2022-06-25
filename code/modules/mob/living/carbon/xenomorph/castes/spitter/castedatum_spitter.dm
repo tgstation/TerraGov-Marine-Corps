@@ -50,7 +50,7 @@
 	acid_spray_structure_damage = 45
 
 	// *** Abilities *** //
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

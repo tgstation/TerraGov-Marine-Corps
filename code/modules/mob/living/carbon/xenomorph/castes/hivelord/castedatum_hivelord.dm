@@ -50,7 +50,7 @@
 	minimap_icon = "hivelord"
 
 	// *** Abilities *** //
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -200,7 +200,7 @@
 	// *** Pheromones *** //
 	aura_strength = 3
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

@@ -47,7 +47,7 @@
 	crest_defense_slowdown = 0.8
 	fortify_armor = 50
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -177,7 +177,7 @@
 	crest_defense_slowdown = 0.8
 	fortify_armor = 55
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,

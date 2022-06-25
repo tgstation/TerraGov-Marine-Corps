@@ -50,7 +50,7 @@
 	minimap_icon = "hunter"
 
 	// *** Abilities *** //
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
@@ -176,7 +176,7 @@
 	// *** Ranged Attack *** //
 	pounce_delay = 10.0 SECONDS
 
-	actions = list\(
+	actions = list(
 		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
