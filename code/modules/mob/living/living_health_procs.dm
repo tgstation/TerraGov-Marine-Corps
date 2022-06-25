@@ -2,7 +2,7 @@
 //procs directly related to mob health
 
 
-/mob/living/proc/getBruteLoss()
+/mob/living/proc/getBruteLoss(organic_only = FALSE)
 	return bruteloss
 
 ///We straight up set bruteloss/brute damage to a desired amount unless godmode is enabled
@@ -19,7 +19,7 @@
 		updatehealth()
 
 
-/mob/living/proc/getFireLoss()
+/mob/living/proc/getFireLoss(organic_only = FALSE)
 	return fireloss
 
 ///We straight up set fireloss/burn damage to a desired amount unless godmode is enabled

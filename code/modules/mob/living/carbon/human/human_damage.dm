@@ -76,14 +76,14 @@
 	return brainloss
 
 //These procs fetch a cumulative total damage from all limbs
-/mob/living/carbon/human/getBruteLoss(organic_only=0)
+/mob/living/carbon/human/getBruteLoss(organic_only=FALSE)
 	var/amount = 0
 	for(var/datum/limb/O in limbs)
 		if(!(organic_only && O.limb_status & LIMB_ROBOT))
 			amount += O.brute_dam
 	return amount
 
-/mob/living/carbon/human/getFireLoss(organic_only=0)
+/mob/living/carbon/human/getFireLoss(organic_only=FALSE)
 	var/amount = 0
 	for(var/datum/limb/O in limbs)
 		if(!(organic_only && O.limb_status & LIMB_ROBOT))
