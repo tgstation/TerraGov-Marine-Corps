@@ -37,7 +37,7 @@
 			affecting_list -= affecting
 			UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
 			continue
-		affecting.heal_overall_damage(1, 1, TRUE)
+		affecting.heal_overall_damage(2, 2, TRUE, TRUE)
 
 /obj/machinery/deployable/dispenser/MouseDrop(obj/over_object)
 	if(over_object == usr && ishuman(over_object))
@@ -105,6 +105,13 @@
 		return
 	var/obj/item/storage/internal_bag = internal_item
 	internal_bag.open(user)
+
+/obj/machinery/deployable/dispenser/disassemble(mob/user)
+	var/obj/item/storage/internal_bag = internal_item
+	for(var/mob/watching in internal_bag.content_watchers)
+		internal_bag.close(watching)
+	. = ..()
+
 
 
 /obj/item/storage/backpack/dispenser

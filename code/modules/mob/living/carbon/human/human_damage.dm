@@ -269,7 +269,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 
 //Heal MANY limbs, in random order
-/mob/living/carbon/human/heal_overall_damage(brute, burn, updating_health = FALSE)
+/mob/living/carbon/human/heal_overall_damage(brute, burn, updating_health = FALSE, robotic_repair = FALSE)
 	var/list/datum/limb/parts = get_damaged_limbs(brute,burn)
 
 	var/update = 0
@@ -279,7 +279,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
 
-		update |= picked.heal_limb_damage(brute, burn)
+		update |= picked.heal_limb_damage(brute, burn, robotic_repair)
 
 		brute -= (brute_was-picked.brute_dam)
 		burn -= (burn_was-picked.burn_dam)
