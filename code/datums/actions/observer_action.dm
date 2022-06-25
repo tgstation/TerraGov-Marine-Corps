@@ -23,6 +23,7 @@
 /datum/action/observer_action/show_hivestatus
 	name = "Show Hive status"
 	action_icon_state = "watch_xeno"
+	keybind_signal = COMSIG_XENOABILITY_HIVE_STATUS
 
 
 /datum/action/observer_action/show_hivestatus/action_activate()

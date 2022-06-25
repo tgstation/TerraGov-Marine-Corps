@@ -16,6 +16,14 @@
 	X.lay_down()
 	return succeed_activate()
 
+//Hive status
+/datum/action/xeno_action/show_hivestatus
+	name = "Show Hive status"
+	action_icon_state = "watch_xeno"
+	mechanics_text = "Check the status of your hive."
+	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY|XACT_USE_CLOSEDTURF
+	keybind_signal = COMSIG_XENOABILITY_HIVE_STATUS
+
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************

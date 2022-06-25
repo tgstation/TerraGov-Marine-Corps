@@ -672,3 +672,9 @@
 		return
 	var/mob/living/carbon/xenomorph/xeno = user.mob
 	xeno.vent_crawl()
+
+/datum/keybinding/xeno/hive_status
+	name = "hive_status"
+	full_name = "Show hive status"
+	description = "Shows hive status menu"
+	keybind_signal = COMSIG_XENOABILITY_HIVE_STATUS

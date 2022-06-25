@@ -590,6 +590,7 @@
 
 // xeno abilities for keybindings
 
+#define COMSIG_XENOABILITY_HIVE_STATUS "xenoability_hive_status"
 #define COMSIG_XENOABILITY_REST "xenoability_rest"
 #define COMSIG_XENOABILITY_HEADBITE "xenoability_headbite"
 #define COMSIG_XENOABILITY_REGURGITATE "xenoability_regurgitate"
