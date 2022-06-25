@@ -357,7 +357,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 2
 
 /datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, slowdown = 0.5, knockback = 1)
+	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 
 /datum/ammo/bullet/pistol/ap
 	name = "armor-piercing pistol bullet"
@@ -383,7 +383,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 3.5
 
 /datum/ammo/bullet/pistol/superheavy/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, slowdown = 1, shake = 0)
+	staggerstun(M, P, stagger = 1, slowdown = 1, shake = 0)
 
 /datum/ammo/bullet/pistol/superheavy/derringer
 	handful_amount = 2
@@ -440,7 +440,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 3
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, slowdown = 0.5, knockback = 1)
+	staggerstun(M, P, stagger = 1, slowdown = 0.5, knockback = 1)
 
 datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
@@ -485,7 +485,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, slowdown = 1, knockback = 1, shake = 0.5)
+	staggerstun(M, P, weaken = 1, stagger = 1, slowdown = 1, knockback = 1, shake = 0.5)
 
 /datum/ammo/bullet/revolver/ricochet
 	bonus_projectiles_type = /datum/ammo/bullet/revolver/small
@@ -603,7 +603,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 1.25
 
 /datum/ammo/bullet/rifle/repeater/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 3, slowdown = 2, shake = 0.5)
+	staggerstun(M, P, max_range = 3, slowdown = 2, stagger = 1, shake = 0.5)
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -725,7 +725,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 15
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, knockback = 1, slowdown = 2)
+	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
 
 
 /datum/ammo/bullet/shotgun/beanbag
@@ -809,7 +809,7 @@ datum/ammo/bullet/revolver/tp44
 
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, knockback = 2, slowdown = 0.5, max_range = 3)
+	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
@@ -1054,7 +1054,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 10
 
 /datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 1, knockback = 2, slowdown = 0.5, max_range = 5)
+	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 5)
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
@@ -1084,7 +1084,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_falloff = 0.25
 
 /datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, knockback = 4, slowdown = 1.5, max_range = 17)
+	staggerstun(M, P, knockback = 4, slowdown = 1.5, stagger = 1, max_range = 17)
 
 
 /datum/ammo/bullet/sniper/auto
@@ -1188,7 +1188,7 @@ datum/ammo/bullet/revolver/tp44
 	on_pierce_multiplier = 0.85
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 1, slowdown = 2, knockback = 2, shake = 0)
+	staggerstun(M, P, weaken = 1, stagger = 3, slowdown = 2, knockback = 2, shake = 0)
 
 /datum/ammo/bullet/railgun/hvap
 	name = "high velocity railgun slug"
@@ -1199,7 +1199,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 100
 
 /datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, knockback = 3, shake = 0)
+	staggerstun(M, P, stagger = 2, knockback = 3, shake = 0)
 
 /datum/ammo/bullet/railgun/smart
 	name = "smart armor piercing railgun slug"
@@ -1209,7 +1209,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 50
 
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, slowdown = 3, shake = 0)
+	staggerstun(M, P, stagger = 3, slowdown = 3, shake = 0)
 
 
 /datum/ammo/tx54
