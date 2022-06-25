@@ -21,8 +21,10 @@
 	name = "Show Hive status"
 	action_icon_state = "watch_xeno"
 	mechanics_text = "Check the status of your hive."
-	use_state_flags = XACT_USE_LYING|XACT_USE_CRESTED|XACT_USE_AGILITY|XACT_USE_CLOSEDTURF
 	keybind_signal = COMSIG_XENOABILITY_HIVE_STATUS
+
+/datum/action/xeno_action/show_hivestatus/action_activate()
+	check_hive_status(usr)
 
 // ***************************************
 // *********** Drone-y abilities

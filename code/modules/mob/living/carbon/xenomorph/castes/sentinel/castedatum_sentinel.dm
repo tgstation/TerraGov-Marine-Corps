@@ -41,7 +41,8 @@
 	minimap_icon = "sentinel"
 
 	// *** Abilities *** //
-	actions = list(
+	actions = list\(
+		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
@@ -167,7 +168,8 @@
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade3, /datum/ammo/xeno/acid)
 
-	actions = list(
+	actions = list\(
+		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,

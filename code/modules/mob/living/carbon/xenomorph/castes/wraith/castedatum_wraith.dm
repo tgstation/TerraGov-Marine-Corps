@@ -42,7 +42,8 @@
 	minimap_icon = "wraith"
 
 	// *** Abilities *** //
-	actions = list(
+	actions = list\(
+		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
@@ -153,7 +154,8 @@
 	// *** Defense *** //
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 20, "energy" = 20, "bomb" = 0, "bio" = 18, "rad" = 25, "fire" = 30, "acid" = 18)
 
-	actions = list(
+	actions = list\(
+		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,

@@ -44,7 +44,8 @@
 	minimap_icon = "larva"
 
 	// *** Abilities *** //
-	actions = list(
+	actions = list\(
+		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/xenohide,

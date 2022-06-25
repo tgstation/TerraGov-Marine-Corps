@@ -42,7 +42,8 @@
 	agility_speed_increase = -0.6
 	agility_speed_armor = -30
 
-	actions = list(
+	actions = list\(
+		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
@@ -168,7 +169,8 @@
 	agility_speed_increase = -0.6
 	agility_speed_armor = -30
 
-	actions = list(
+	actions = list\(
+		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,

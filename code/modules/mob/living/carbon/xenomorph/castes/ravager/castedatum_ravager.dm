@@ -43,7 +43,8 @@
 	minimap_icon = "ravager"
 
 	// *** Abilities *** //
-	actions = list(
+	actions = list\(
+		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
@@ -164,7 +165,8 @@
 	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 40, "rad" = 40, "fire" = 70, "acid" = 40)
 
 	// *** Abilities *** //
-	actions = list(
+	actions = list\(
+		/datum/action/xeno_action/show_hivestatus,
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/watch_xeno,
 		/datum/action/xeno_action/activable/psydrain,
