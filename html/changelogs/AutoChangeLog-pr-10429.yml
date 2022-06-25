@@ -1,4 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - code_imp: "changed human item rendering code so it can support bigger icons with centralization."
