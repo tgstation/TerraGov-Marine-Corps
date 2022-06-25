@@ -206,7 +206,7 @@
 		else
 			target.add_overlay(GLOB.welding_sparks)
 	else if(istype(target, /obj/machinery/door/airlock/multi_tile))
-		if((target.dir & NORTH) || (target.dir & SOUTH))
+		if((target.dir & NORTH|SOUTH))
 			target.add_overlay(GLOB.welding_sparks_multitiledoor_vertical)
 		else
 			target.add_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
@@ -214,12 +214,12 @@
 		target.add_overlay(GLOB.welding_sparks)
 	. = ..()
 	if(istype(target, /obj/machinery/door/airlock/mainship/marine))
-		if((target.dir & NORTH) || (target.dir & SOUTH))
+		if((target.dir & NORTH|SOUTH))
 			target.cut_overlay(GLOB.welding_sparks_prepdoor)
 		else
 			target.cut_overlay(GLOB.welding_sparks)
 	else if(istype(target, /obj/machinery/door/airlock/multi_tile))
-		if((target.dir & NORTH) || (target.dir & SOUTH))
+		if((target.dir & NORTH|SOUTH))
 			target.cut_overlay(GLOB.welding_sparks_multitiledoor_vertical)
 		else
 			target.cut_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
