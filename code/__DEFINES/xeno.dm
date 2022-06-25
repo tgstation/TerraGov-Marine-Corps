@@ -81,7 +81,7 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 		))
 
 //List of toxins improving defile's damage
-GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
+GLOBAL_LIST_INIT(defile_purge_list, typecacheof(list(
 		/datum/reagent/toxin/xeno_ozelomelyn,
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,

@@ -61,7 +61,7 @@
 	for(var/datum/reagent/current_reagent AS in living_target.reagents.reagent_list) //Cycle through all chems
 		defile_reagent_amount += living_target.reagents.get_reagent_amount(current_reagent.type)
 		living_target.reagents.remove_reagent(current_reagent.type,defile_reagent_amount) //Purge current chem
-		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+		if(is_type_in_typecache(current_reagent, GLOB.defile_purge_list)) //For each xeno toxin reagent, double the strength multiplier
 			if(istype(current_reagent, /datum/reagent/toxin/xeno_neurotoxin)) //Make sure neurotoxin isn't double counted
 				if(neuro_applied)
 					continue
