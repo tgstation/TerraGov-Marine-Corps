@@ -610,7 +610,7 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_sanguinal/on_mob_life(mob/living/L, metabolism)
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 		L.adjustStaminaLoss(DEFILER_SANGUINAL_DAMAGE)
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
@@ -619,7 +619,7 @@
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 		L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
 
-	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE) //Causes brute damage
+	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE)
 
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
