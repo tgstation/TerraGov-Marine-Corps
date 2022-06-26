@@ -96,7 +96,7 @@
 	///How far can we charge
 	var/range = 5
 	///How long is the windup before charging
-	var/windup_time = 0.5 SECONDS
+	var/windup_time = 0.3 SECONDS
 
 /datum/action/xeno_action/activable/forward_charge/proc/charge_complete()
 	SIGNAL_HANDLER
