@@ -89,7 +89,7 @@
 	action_icon_state = "charge"
 	mechanics_text = "Charge up to 4 tiles and knockdown any targets in our way."
 	ability_name = "charge"
-	cooldown_timer = 8 SECONDS
+	cooldown_timer = 7 SECONDS
 	plasma_cost = 50
 	use_state_flags = XACT_USE_CRESTED|XACT_USE_FORTIFIED
 	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
