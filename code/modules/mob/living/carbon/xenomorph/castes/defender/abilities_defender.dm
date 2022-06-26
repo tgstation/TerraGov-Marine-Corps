@@ -90,11 +90,11 @@
 	mechanics_text = "Charge up to 4 tiles and knockdown any targets in our way."
 	ability_name = "charge"
 	cooldown_timer = 10 SECONDS
-	plasma_cost = 80
+	plasma_cost = 60
 	use_state_flags = XACT_USE_CRESTED|XACT_USE_FORTIFIED
 	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
 	///How far can we charge
-	var/range = 4
+	var/range = 5
 	///How long is the windup before charging
 	var/windup_time = 0.5 SECONDS
 
