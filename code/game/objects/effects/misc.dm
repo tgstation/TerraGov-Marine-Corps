@@ -86,7 +86,7 @@
 	. = ..()
 	dir  = pick(CARDINAL_DIRS)
 	GLOB.fog_blockers += src
-	if(icon_state) = "blocker"
+	if(icon_state = "blocker")
 		icon_state = ""
 
 
