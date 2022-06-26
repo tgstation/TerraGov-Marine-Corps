@@ -744,6 +744,13 @@ ARMOR
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 12
 
+/datum/supply_packs/armor/modular/attachments/eshield
+	name = "Jaeger Arrowhead energy shield module"
+	contains = list(
+		/obj/item/armor_module/module/eshield,
+	)
+	cost = 12
+
 /*******************************************************************************
 CLOTHING
 *******************************************************************************/
