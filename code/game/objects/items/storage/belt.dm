@@ -224,10 +224,12 @@
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/advanced/dylovene(src)
 	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/dexalin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/spaceacillin(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/imialky(src)
+	new /obj/item/reagent_containers/hypospray/advanced/big/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/advanced/hypervene(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/lifesaver/upp

@@ -246,68 +246,6 @@
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 
-/*
-* Bottle Cases
-*/
-
-
-/obj/item/storage/bottlecase
-	name = "regeant bottle case"
-	desc = "It's a medical case for only storing regeant bottles."
-	icon_state = "syringe_case"
-	throw_speed = 2
-	throw_range = 8
-	storage_slots = 3
-	w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/glass/bottle,
-	)
-
-/obj/item/storage/bottlecase/dylo
-	name = "dylovene bottle case"
-	desc = "It's a medical case for storing three dylovene bottles."
-	icon_state = "dylo_bottles_case"
-
-/obj/item/storage/bottlecase/dylo/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
-	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
-	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
-
-/obj/item/storage/bottlecase/tram
-	name = "tramadol bottle case"
-	desc = "It's a medical case for storing three tramadol bottles."
-	icon_state = "tram_bottles_case"
-
-/obj/item/storage/bottlecase/tram/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-	new /obj/item/reagent_containers/glass/bottle/tramadol(src)
-
-/obj/item/storage/bottlecase/tricord
-	name = "tricordrazine bottle case"
-	desc = "It's a medical case for storing three tricordrazine bottles."
-	icon_state = "tricord_bottles_case"
-
-/obj/item/storage/bottlecase/tricord/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
-
-/obj/item/storage/bottlecase/dex
-	name = "dexalin bottle case"
-	desc = "It's a medical case for storing three dexalin bottles."
-	icon_state = "dex_bottles_case"
-
-/obj/item/storage/bottlecase/dex/PopulateContents()
-	. = ..()
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
-	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
-
 
 /*
 * Pill Bottles
