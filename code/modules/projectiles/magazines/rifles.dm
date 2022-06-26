@@ -319,7 +319,6 @@
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 80
-	reload_delay = 1 SECONDS
 	icon_state_mini = "mag_t42"
 
 //-------------------------------------------------------
