@@ -1125,6 +1125,15 @@ Imports
 	group = "Imports"
 	containertype = /obj/structure/closet/crate/weapon
 
+/datum/supply_packs/imports/alf_machinecarbine
+	name = "ALF-51B Machinecarbine"
+	contains = list(/obj/item/weapon/gun/rifle/alf_machinecarbine)
+	cost = 5
+
+/datum/supply_packs/imports/alf_machinecarbine/ammo
+	name = "ALF-51B Machinecarbine Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/alf_machinecarbine)
+	cost = 1
 /datum/supply_packs/imports/m41a
 	name = "PR-11 Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m41a)
