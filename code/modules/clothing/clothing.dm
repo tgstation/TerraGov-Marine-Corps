@@ -92,6 +92,11 @@
 	item_state = "earmuffs"
 	flags_equip_slot = ITEM_SLOT_EARS
 
+/obj/item/clothing/ears/earmuffs/green
+	icon_state = "earmuffs2"
+
+/obj/item/clothing/ears/earmuffs/gold
+	icon_state = "earmuffs3"
 
 ///////////////////////////////////////////////////////////////////////
 //Suit

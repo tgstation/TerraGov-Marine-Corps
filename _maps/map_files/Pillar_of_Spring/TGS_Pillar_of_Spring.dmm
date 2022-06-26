@@ -837,6 +837,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "cH" = (
@@ -4711,7 +4712,6 @@
 /obj/machinery/holosign/surgery{
 	id = "or1sign"
 	},
-/obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mainship/medical/or/or1{
 	dir = 1
 	},
@@ -6300,7 +6300,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
@@ -6406,6 +6405,7 @@
 	dir = 6
 	},
 /obj/machinery/power/apc/mainship,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "tx" = (
@@ -7957,6 +7957,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "yf" = (
@@ -10790,9 +10791,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "Gu" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "Gv" = (
 /obj/structure/cable,
@@ -12028,6 +12028,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "JC" = (
@@ -14754,7 +14755,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
@@ -16510,7 +16510,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "VZ" = (
@@ -17613,6 +17612,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "Zi" = (
@@ -17747,7 +17747,6 @@
 /obj/machinery/holosign/surgery{
 	id = "or1sign"
 	},
-/obj/machinery/door/firedoor,
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/or/or2{
 	dir = 1
@@ -51228,7 +51227,7 @@ Fc
 Fc
 Fc
 Il
-Gu
+FP
 FP
 FP
 FX
@@ -51485,7 +51484,7 @@ vc
 CJ
 SA
 gy
-SA
+Gu
 SA
 SA
 FY
