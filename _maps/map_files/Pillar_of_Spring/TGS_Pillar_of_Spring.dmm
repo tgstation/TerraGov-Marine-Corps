@@ -5136,7 +5136,6 @@
 	},
 /area/mainship/medical/lower_medical)
 "pq" = (
-/obj/machinery/vending/shared_vending/marine_engi,
 /obj/machinery/light{
 	dir = 1
 	},

@@ -20341,7 +20341,6 @@
 /turf/open/floor/freezer,
 /area/sulaco/cafeteria/kitchen)
 "pIP" = (
-/obj/machinery/vending/shared_vending/marine_engi,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "pKm" = (
