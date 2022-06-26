@@ -931,7 +931,6 @@
 /area/shuttle/canterbury)
 "Mj" = (
 /obj/structure/rack,
-/obj/item/storage/box/tl102,
 /obj/item/storage/toolbox/electrical,
 /obj/item/tool/hand_labeler,
 /obj/item/stack/barbed_wire/full,

@@ -1,21 +1,3 @@
-///box for storage of ammo and gun
-/obj/item/storage/box/tl102
-	name = "\improper HSG-102 crate"
-	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a HSG-102 heavy smartgun\". There are many other warning labels atop that are too faded to read."
-	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "crate"
-	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 7
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/tl102,
-		/obj/item/ammo_magazine/tl102,
-	)
-
-/obj/item/storage/box/tl102/Initialize()
-	. = ..()
-	new /obj/item/weapon/gun/tl102(src) //gun itself
-	new /obj/item/ammo_magazine/tl102(src) //ammo for the gun
-
 ///HSG-102, now with full auto. It is not a superclass of deployed guns, however there are a few varients.
 /obj/item/weapon/gun/tl102
 	name = "\improper HSG-102 mounted heavy smartgun"

@@ -177,8 +177,8 @@ WEAPONS
 
 /datum/supply_packs/weapons/m56d_emplacement
 	name = "HSG-102 Mounted Heavy Smartgun"
-	contains = list(/obj/item/storage/box/tl102)
-	cost = 80
+	contains = list(/obj/item/weapon/gun/tl102)
+	cost = 70
 
 /datum/supply_packs/weapons/m56d
 	name = "HSG-102 mounted heavy smartgun ammo"
