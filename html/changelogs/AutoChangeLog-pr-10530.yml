@@ -1,0 +1,4 @@
+author: "Losenis"
+delete-after: True
+changes: 
+  - balance: "Operational supplies vendor now has a free pinpointer."
