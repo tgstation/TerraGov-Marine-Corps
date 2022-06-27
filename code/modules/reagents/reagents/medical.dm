@@ -349,14 +349,6 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "a roll of gauze"
 
-/datum/reagent/medicine/dylovene/on_mob_add(mob/living/L, metabolism)
-	L.add_stamina_regen_modifier(name, -0.5)
-	return ..()
-
-/datum/reagent/medicine/dylovene/on_mob_delete(mob/living/L, metabolism)
-	L.remove_stamina_regen_modifier(name)
-	return ..()
-
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
 	L.hallucination = max(0, L.hallucination -  2.5*effect_str)
 	L.adjustToxLoss(-effect_str)
