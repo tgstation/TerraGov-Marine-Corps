@@ -160,7 +160,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/imidazoline
 	name = "imidazoline autoinjector"
-	desc = "An auto-injector loaded with 3 doses of imidazoline, medicine for fixing eyesight."
+	desc = "An auto-injector loaded with 3 doses of imidazoline, medicine for temporarily ignoring eye damage. Excessive use advised against."
 	icon_state = "autoinjector-5"
 	list_reagents = list(/datum/reagent/medicine/imidazoline = 30)
 

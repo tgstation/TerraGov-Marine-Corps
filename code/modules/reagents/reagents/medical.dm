@@ -601,7 +601,8 @@
 
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
-	description = "Heals eye damage"
+	description = "Suppresses eye damage. Damages kidneys with continued use."
+	custom_metabolism = REAGENTS_METABOLISM * 0.5 //0.1 units per 2s, just over 3m per 10u pill
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -611,11 +612,11 @@
 /datum/reagent/medicine/imidazoline/on_mob_life(mob/living/L, metabolism)
 	L.adjust_blurriness(-5)
 	L.adjust_blindness(-5)
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
-		if(E)
-			E.heal_organ_damage(effect_str)
+	if(!ishuman(L))
+		return ..()
+	var/mob/living/carbon/human/human_owner = L
+	var/datum/internal_organ/kidneys/owner_kidneys = human_owner.internal_organs_by_name["kidneys"]
+	owner_kidneys.take_damage(0.01) //One point of damage per 10u volume.
 	return ..()
 
 /datum/reagent/medicine/imidazoline/overdose_process(mob/living/L, metabolism)

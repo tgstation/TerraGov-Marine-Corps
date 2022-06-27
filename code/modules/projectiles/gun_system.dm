@@ -1604,7 +1604,7 @@
 		projectile_to_fire.firer = user
 		if(isliving(user))
 			var/mob/living/living_user = user
-			gun_accuracy_mod += living_user.ranged_accuracy_mod
+			gun_accuracy_mod += living_user.get_mob_accuracy()
 			if(iscarbon(user))
 				var/mob/living/carbon/carbon_user = user
 				projectile_to_fire.def_zone = user.zone_selected

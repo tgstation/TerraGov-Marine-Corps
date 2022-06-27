@@ -17,6 +17,10 @@
 		return FALSE
 	return has_eyes()
 
+///Fetches the mob's accuracy modifier. Mostly important for humans.
+/mob/living/proc/get_mob_accuracy()
+	return ranged_accuracy_mod
+
 /mob/living/proc/reagent_check(datum/reagent/R)
 	return TRUE
 

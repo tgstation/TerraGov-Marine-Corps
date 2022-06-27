@@ -193,7 +193,7 @@
 	pill_id = 14
 
 /obj/item/reagent_containers/pill/imidazoline
-	pill_desc = "An imidazoline pill. Heals eye damage."
+	pill_desc = "An imidazoline pill. Suppresses eye damage as long as it's in the patient, but slowly harms kidneys."
 	list_reagents = list(/datum/reagent/medicine/imidazoline = 10)
 	pill_id = 17
 

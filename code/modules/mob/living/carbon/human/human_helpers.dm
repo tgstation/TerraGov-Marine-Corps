@@ -202,6 +202,12 @@
 		return FALSE
 	return TRUE
 
+/mob/living/carbon/human/get_mob_accuracy()
+	var/acc = ranged_accuracy_mod
+	var/datum/internal_organ/eyes/our_eyes = internal_organs_by_name["eyes"]
+	if(!reagents.has_reagent(/datum/reagent/medicine/imidazoline))
+		acc += our_eyes.get_accuracy_penalty()
+	return acc
 
 /mob/living/carbon/human/has_legs()
 	. = 0

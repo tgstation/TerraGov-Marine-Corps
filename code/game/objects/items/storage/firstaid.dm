@@ -477,7 +477,7 @@
 
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
-	desc = "Contains pills that heal eye damage."
+	desc = "Contains pills that suppress eye damage. Long term use advised against."
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imidazoline
 	greyscale_colors = "#F7A151#ffffff" //orange like carrots

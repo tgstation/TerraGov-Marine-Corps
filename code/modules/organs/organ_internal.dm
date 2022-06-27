@@ -332,10 +332,16 @@
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()
+	if(owner.reagents.has_reagent(/datum/reagent/medicine/imidazoline))
+		return
 	if(organ_status == ORGAN_BRUISED)
-		owner.set_blurriness(20)
+		if(prob(5))
+			owner.adjust_blurriness(2) //As a reminder to the player that something's wrong
 	if(organ_status == ORGAN_BROKEN)
 		owner.set_blindness(20)
+
+/datum/internal_organ/eyes/proc/get_accuracy_penalty()
+	return organ_status * -50
 
 /datum/internal_organ/eyes/prosthetic
 	robotic = ORGAN_ROBOT
