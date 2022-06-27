@@ -9264,7 +9264,9 @@
 /turf/open/floor/tile/lightred,
 /area/centcom/valhalla/medical/chemistry)
 "muw" = (
-/obj/machinery/door/airlock/command/thunderdome,
+/obj/machinery/door/airlock/command/thunderdome{
+	dir = 2
+	},
 /turf/open/floor,
 /area/tdome)
 "muI" = (
