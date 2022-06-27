@@ -102,6 +102,7 @@
 		if(WT.remove_fuel(1, user))
 			user.visible_message(span_notice("[user] starts welding [src] with [WT]."), \
 			span_notice("You start welding [src] with [WT]."))
+			add_overlay(GLOB.welding_sparks)
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 			if(do_after(user, 50, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				playsound(get_turf(src), 'sound/items/welder2.ogg', 25, 1)
@@ -109,9 +110,11 @@
 					user.visible_message(span_notice("[user] welds [src] shut."), \
 					span_notice("You weld [src] shut."))
 					welded = TRUE
+					cut_overlay(GLOB.welding_sparks)
 				else
 					user.visible_message(span_notice("[user] welds [src] open."), \
 					span_notice("You weld [src] open."))
+					cut_overlay(GLOB.welding_sparks)
 					welded = FALSE
 				update_icon()
 				pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
