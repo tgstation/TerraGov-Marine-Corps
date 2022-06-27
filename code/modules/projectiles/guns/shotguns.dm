@@ -688,7 +688,7 @@
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk221" //PLACEHOLDER
 	item_state = "mk221" //PLACEHOLDER
-	fire_sound = 'sound/weapons/guns/fire/shotgun_automatic.ogg' //PLACEHOLDER
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg' //PLACEHOLDER
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	max_chamber_items = 9
@@ -722,9 +722,11 @@
 	name = "VA-61 micro rail launcher"
 	desc = "An inbuilt railgun designed to hurl so called 'micro grenades' at high velocity. By using railgun technology, the projectile does not need any propellant, helping greatly increase usable space for the payload."
 	icon = 'icons/Marine/marine-weapons.dmi'
-	icon_state = "masterkey" //PLACEHOLDER - probs going to be invis.
+	icon_state = "" //PLACEHOLDER - probs going to be invis.
+	fire_sound = 'sound/weapons/guns/fire/pred_plasma_shot.ogg'
 	max_chamber_items = 2 //TO BALANCE
 	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_attach_features = NONE
 	slot = ATTACHMENT_SLOT_STOCK
 	default_ammo_type = /obj/item/ammo_magazine/handful/micro_grenade //WIP
 	caliber = CALIBER_10G_RAIL

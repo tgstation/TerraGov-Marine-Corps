@@ -395,7 +395,7 @@
 	name = "\improper V-31 magazine (10x24mm)"
 	desc = "A 10mm rifle magazine designed for the V-31."
 	caliber = CALIBER_10X24_CASELESS
-	icon_state = "m412" //PLACEHOLDER
+	icon_state = "v31" //PLACEHOLDER
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
@@ -405,7 +405,7 @@
 	name = "\improper V-31 AP magazine (10x24mm)"
 	desc = "A 10mm rifle magazine designed for the V-31, loaded with armor piercing rounds."
 	caliber = CALIBER_10X24_CASELESS
-	icon_state = "m412_ap" //PLACEHOLDER
+	icon_state = "v31" //PLACEHOLDER
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/ap
 	max_rounds = 50
@@ -414,6 +414,6 @@
 /obj/item/ammo_magazine/rifle/som/incendiary
 	name = "\improper V-31 incendiary magazine (10x24mm)"
 	desc = "A 10mm rifle magazine designed for the V-31, loaded with incendiary rounds."
-	icon_state = "m412_incendiary"
+	icon_state = "v31"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
 	icon_state_mini = "mag_rifle_big_red"

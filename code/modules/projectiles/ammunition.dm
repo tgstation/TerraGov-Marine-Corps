@@ -240,21 +240,26 @@
 	caliber = CALIBER_12G
 
 /obj/item/ammo_magazine/handful/micro_grenade
-	name = "handful of airburst micro grenades (10g)." //update
-	icon_state = "shotgun buckshot shell" //PLACEHOLDER
+	name = "handful of airburst micro grenades (10g)" //update
+	icon_state = "micro_grenade" //PLACEHOLDER
 	current_rounds = 3
 	max_rounds = 3
 	default_ammo = /datum/ammo/bullet/micro_rail/airburst
 	caliber = CALIBER_10G_RAIL
 
 /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath
-	name = "handful of dragon's breath micro grenades (10g)." //update
-	icon_state = "shotgun buckshot shell" //PLACEHOLDER
+	name = "handful of dragon's breath micro grenades (10g)" //update
+	icon_state = "micro_grenade" //PLACEHOLDER
 	default_ammo = /datum/ammo/bullet/micro_rail/dragonbreath
 
+/obj/item/ammo_magazine/handful/micro_grenade/cluster
+	name = "handful of clustermunition micro grenades (10g)" //update
+	icon_state = "micro_grenade" //PLACEHOLDER
+	default_ammo = /datum/ammo/bullet/micro_rail/cluster
+
 /obj/item/ammo_magazine/handful/micro_grenade/smoke_burst
-	name = "handful of smoke burst micro grenades (10g)." //update
-	icon_state = "shotgun buckshot shell" //PLACEHOLDER
+	name = "handful of smoke burst micro grenades (10g)" //update
+	icon_state = "micro_grenade" //PLACEHOLDER
 	default_ammo = /datum/ammo/bullet/micro_rail/smoke_burst
 
 

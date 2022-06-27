@@ -1558,8 +1558,9 @@
 /obj/item/weapon/gun/rifle/som
 	name = "\improper V-31 assault rifle"
 	desc = "The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. Nevertheless the V-31 continues to see use due to it's comparative ease of manufacture, and due to the inbuilt grenade launcher designed for so called 'micro' grenades. Has good handling due to its compact bullpup design, and is generally effective at all ranges. Uses 10x25mm caseless ammunition."
-	icon_state = "tx55" //PLACEHOLDER
-	item_state = "tx55" //PLACEHOLDER
+	icon_state = "v31"
+	icon = 'icons/Marine/gun64.dmi'
+	item_state = "v31"
 	fire_sound = "gun_t12" //PLACEHOLDER SOUNDS
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
@@ -1594,7 +1595,7 @@
 	starting_attachment_types = list(
 		/obj/item/weapon/gun/shotgun/micro_grenade,
 	)
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 22, "under_x" = 21, "under_y" = 14, "stock_x" = -1, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 16,"rail_x" = 23, "rail_y" = 24, "under_x" = 33, "under_y" = 11, "stock_x" = -1, "stock_y" = 17)
 
 	wield_delay = 0.5 SECONDS
 

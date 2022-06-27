@@ -361,15 +361,16 @@
 	name = "\improper V-21 submachinegun"
 	//maybe add a custom calibre later
 	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. It uses 10x20mm caseless rounds."
-	icon_state = "t19" //PLACEHOLDER
-	item_state = "t19" //PLACEHOLDER
+	icon_state = "v21"
+	icon = 'icons/Marine/gun64.dmi'
+	item_state = "v21"
 	caliber = CALIBER_10X20_CASELESS
 	max_shells = 50
 	flags_equip_slot = ITEM_SLOT_BACK
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/som
-	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som)
-	fire_sound = 'sound/weapons/guns/fire/smg_light.ogg' //PLACEHOLDER
+	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som, /obj/item/ammo_magazine/smg/som/ap, /obj/item/ammo_magazine/smg/som/incendiary, /obj/item/ammo_magazine/smg/som/extended)
+	fire_sound = 'sound/weapons/guns/fire/smg_heavy.ogg' //PLACEHOLDER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //semi, full auto, fuller auto
 
 	attachable_allowed = list(
@@ -386,7 +387,7 @@
 		/obj/item/attachable/motiondetector,
 	)
 
-	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 36, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 22, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 
 	fire_delay = 0.15 SECONDS
 	damage_mult = 0.9 //on full auto it's a worse p90
