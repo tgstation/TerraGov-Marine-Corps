@@ -127,7 +127,7 @@
 			/obj/structure/largecrate/supply/weapons/standard_atgun = 1,
 			/obj/item/storage/box/sentry = 4,
 			/obj/item/weapon/gun/tl102 = 1,
-			/obj/item/ammo_magazine/tl102 = 2,
+			/obj/item/ammo_magazine/tl102 = 1,
 			/obj/item/weapon/gun/heavymachinegun = 1,
 			/obj/item/ammo_magazine/heavymachinegun = 10,
 		),
