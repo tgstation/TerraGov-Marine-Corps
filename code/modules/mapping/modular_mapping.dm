@@ -162,6 +162,54 @@
 	template_height = 15
 	keepcentered = TRUE
 
+/datum/map_template/modular/lv624/lvhydrobridge1
+	name = "LV Hydro Bridge One"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge1.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+	keepcentered = TRUE
+
+/datum/map_template/modular/lv624/lvhydrobridge2
+	name = "LV Hydro Bridge Two"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge2.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+	keepcentered = TRUE
+
+/datum/map_template/modular/lv624/lvhydrobridge3
+	name = "LV Hydro Bridge Three"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge3.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+	keepcentered = TRUE
+
+/datum/map_template/modular/lv624/southsandtemple1
+	name = "LV South Sand Temple One"
+	mappath = "_maps/modularmaps/lv624/southsandtemple1.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+	keepcentered = TRUE
+
+/datum/map_template/modular/lv624/southsandtemple2
+	name = "LV Hydro Bridge Two"
+	mappath = "_maps/modularmaps/lv624/southsandtemple2.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+	keepcentered = TRUE
+
+/datum/map_template/modular/lv624/southsandtemple3
+	name = "LV Hydro Bridge Three"
+	mappath = "_maps/modularmaps/lv624/southsandtemple3.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+	keepcentered = TRUE
+
 /datum/map_template/modular/lv624/dome_atmos
 	name = "LV atmos dome"
 	mappath = "_maps/modularmaps/lv624/atmospherics.dmm"
