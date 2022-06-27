@@ -171,12 +171,11 @@
 		owner.emote("me", 1, "gasps for air!")
 
 /datum/internal_organ/lungs/set_organ_status()
-	var/old_organ_status = organ_status
 	. = ..()
 	if(!.)
 		return
 	// For example, bruised lungs will reduce stamina regen by 40%, broken by 80%
-	owner.stamina_regen_multiplier += (old_organ_status - organ_status) * 0.40
+	owner.add_stamina_regen_modifier(name, organ_status * -0.40)
 	// Slowdown added when the heart is damaged
 	owner.add_movespeed_modifier(id = name, override = TRUE, multiplicative_slowdown = organ_status)
 
