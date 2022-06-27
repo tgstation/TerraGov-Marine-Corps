@@ -8547,8 +8547,8 @@
 /turf/open/floor/cult,
 /area/sulaco/morgue)
 "aRo" = (
-/obj/structure/table/woodentable,
 /obj/machinery/faxmachine,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "aRq" = (
@@ -9433,13 +9433,13 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
 "aWU" = (
-/obj/structure/table/woodentable,
 /obj/item/book/manual/security_space_law,
 /obj/item/tool/crowbar,
 /obj/item/multitool,
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "aWW" = (
@@ -9582,7 +9582,7 @@
 "aYq" = (
 /obj/item/clipboard,
 /obj/item/tool/hand_labeler,
-/obj/structure/table/woodentable,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
 "aYu" = (
@@ -9872,7 +9872,6 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/medbay/hangar)
 "baJ" = (
-/obj/structure/table/woodentable,
 /obj/item/folder/black_random,
 /obj/item/folder/black_random{
 	pixel_y = 2
@@ -9885,16 +9884,17 @@
 	pixel_x = -1;
 	pixel_y = 6
 	},
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
 "baK" = (
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
 "baO" = (
-/obj/structure/table/woodentable,
 /obj/item/tool/stamp/internalaffairs{
 	pixel_y = 6
 	},
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "baQ" = (
@@ -9968,8 +9968,8 @@
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "bbH" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/skills,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bbJ" = (
@@ -10008,18 +10008,18 @@
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "bcq" = (
-/obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/tea,
 /obj/item/storage/box/nt_mre,
 /obj/item/ashtray/bronze,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bcr" = (
-/obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = 6
 	},
 /obj/item/folder/white,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bcs" = (
@@ -10062,7 +10062,7 @@
 "bcN" = (
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/obj/structure/table/woodentable,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bcO" = (
@@ -10157,10 +10157,10 @@
 /turf/open/floor/prison,
 /area/sulaco/telecomms/office)
 "bdI" = (
-/obj/structure/table/woodentable,
 /obj/item/tool/lighter/zippo,
 /obj/item/cell/hyper,
 /obj/item/camera,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "bdM" = (
@@ -10191,9 +10191,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/table/woodentable,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /obj/item/tool/lighter/zippo,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "bdZ" = (
@@ -10269,8 +10269,8 @@
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "beL" = (
-/obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "bfC" = (
@@ -20880,9 +20880,9 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
 "qtU" = (
-/obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/spacetwinkie,
 /obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "quS" = (
@@ -24091,8 +24091,8 @@
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo/prep)
 "uCA" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/security/wooden_tv,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "uCU" = (
@@ -24783,8 +24783,8 @@
 	},
 /area/sulaco/medbay)
 "vDs" = (
-/obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "vDU" = (
