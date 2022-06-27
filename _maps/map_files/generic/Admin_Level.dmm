@@ -1539,10 +1539,7 @@
 /turf/open/floor/tile/dark,
 /area/centcom/valhalla/chapel/main)
 "bZu" = (
-/obj/machinery/door/poddoor{
-	id = "thunderdome1";
-	name = "Thunderdome Blast Door"
-	},
+/obj/machinery/door/poddoor/shutters/mainship/thunderdome/one,
 /turf/open/floor/plating,
 /area/tdome)
 "bZR" = (
@@ -5752,10 +5749,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla/security/brig)
 "hGe" = (
-/obj/machinery/door/poddoor{
-	id = "thunderdome2";
-	name = "Thunderdome Blast Door"
-	},
+/obj/machinery/door/poddoor/shutters/mainship/thunderdome/two,
 /turf/open/floor/plating,
 /area/tdome)
 "hGj" = (
@@ -10229,6 +10223,10 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 4
 	},
+/obj/machinery/door/window{
+	dir = 1;
+	name = "Security Desk"
+	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig)
 "nDI" = (
@@ -10302,6 +10300,22 @@
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
+/obj/machinery/door/window{
+	dir = 1;
+	name = "Security Desk"
+	},
+/obj/machinery/door_control/old/valhalla{
+	id = "brigfront";
+	name = "Brig Access Control";
+	pixel_x = -5;
+	pixel_y = -2
+	},
+/obj/machinery/door_control/old/valhalla{
+	id = "brigfront";
+	name = "Brig Access Control";
+	pixel_x = 6;
+	pixel_y = -2
+	},
 /turf/open/floor/plating,
 /area/centcom/valhalla/security/brig)
 "nFT" = (
@@ -10867,15 +10881,11 @@
 /obj/machinery/door_control/old/valhalla{
 	desc = "A remote control switch for the medbay foyer.";
 	id = "secexterior";
-	name = "Security Exterior Doors Control";
-	pixel_x = 38;
-	pixel_y = 24
+	name = "Security Exterior Doors Control"
 	},
 /obj/machinery/door_control/old/valhalla{
 	id = "brigfront";
-	name = "Brig Access Control";
-	pixel_x = 24;
-	pixel_y = 24
+	name = "Brig Access Control"
 	},
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -16920,7 +16930,7 @@
 /obj/machinery/door/window{
 	name = "Security Desk"
 	},
-/obj/machinery/door/poddoor{
+/obj/machinery/door/poddoor/shutters/mainship{
 	id = "brigfront";
 	name = "Brig Blast door"
 	},
