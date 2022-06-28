@@ -1557,11 +1557,11 @@
 
 /obj/item/weapon/gun/rifle/som
 	name = "\improper V-31 assault rifle"
-	desc = "The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. Nevertheless the V-31 continues to see use due to it's comparative ease of manufacture, and due to the inbuilt grenade launcher designed for so called 'micro' grenades. Has good handling due to its compact bullpup design, and is generally effective at all ranges. Uses 10x25mm caseless ammunition."
+	desc = "The V-31 was the primary rifle of the Sons of Mars until the introduction of more advanced energy weapons. Nevertheless the V-31 continues to see common use due to it's comparative ease of production and maintenance, and due to the inbuilt low velocity railgun designed for so called 'micro' grenades. Has good handling due to its compact bullpup design, and is generally effective at all ranges. Uses 10x25mm caseless ammunition."
 	icon_state = "v31"
 	icon = 'icons/Marine/gun64.dmi'
 	item_state = "v31"
-	fire_sound = "gun_t12" //PLACEHOLDER SOUNDS
+	fire_sound = 'sound/weapons/guns/fire/som_rifle.ogg' //PLACEHOLDER SOUNDS
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
@@ -1612,8 +1612,8 @@
 
 	burst_amount = 3
 	burst_delay = 0.1 SECONDS
-	extra_delay = 0.05 SECONDS
-	autoburst_delay = 0.25 SECONDS
+	extra_delay = 0.1 SECONDS
+	autoburst_delay = 0.3 SECONDS
 	burst_accuracy_mult = 1
 	burst_scatter_mult = 2
 

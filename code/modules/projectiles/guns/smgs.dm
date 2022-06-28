@@ -370,7 +370,7 @@
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/som
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som, /obj/item/ammo_magazine/smg/som/ap, /obj/item/ammo_magazine/smg/som/incendiary, /obj/item/ammo_magazine/smg/som/extended)
-	fire_sound = 'sound/weapons/guns/fire/smg_heavy.ogg' //PLACEHOLDER
+	fire_sound = 'sound/weapons/guns/fire/vector_fire.ogg' //PLACEHOLDER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //semi, full auto, fuller auto
 
 	attachable_allowed = list(
@@ -390,12 +390,11 @@
 	attachable_offset = list("muzzle_x" = 36, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 22, "under_x" = 31, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 
 	fire_delay = 0.15 SECONDS
-	damage_mult = 0.9 //on full auto it's a worse p90
 	aim_slowdown = 0.15
 	wield_delay = 0.4 SECONDS
 
-	accuracy_mult = 1.2
-	accuracy_mult_unwielded = 0.95
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.9
 
 	recoil = 0
 	recoil_unwielded = 0.5
@@ -403,11 +402,12 @@
 	scatter = 2
 	scatter_unwielded = 8
 
-	burst_amount = 3
-	burst_delay = 0.1
-	autoburst_delay = 0.1 //this makes it fuller auto
+	burst_amount = 1
+	burst_delay = 0.1 SECONDS
+	extra_delay = 0.1 SECONDS
+	autoburst_delay = 0.1 SECONDS //this makes it fuller auto
 	burst_accuracy_mult = 0.7
-	burst_scatter_mult = 3
+	burst_scatter_mult = 9
 
 	akimbo_additional_delay = 0.7
 	upper_akimbo_accuracy = 5
