@@ -210,6 +210,8 @@
 		/obj/item/reagent_containers/glass/beaker,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/hypospray/advanced,
+		/obj/item/storage/bottlecase,
 	)
 
 /obj/item/storage/belt/hypospraybelt/Initialize()  //The belt, with all it's magic inside!
@@ -231,6 +233,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
 /obj/item/storage/belt/lifesaver/upp
 	name ="\improper Type 41 pattern lifesaver bag"
