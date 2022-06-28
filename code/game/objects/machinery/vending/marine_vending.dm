@@ -717,10 +717,6 @@
 		),
 	)
 
-	seasonal_items = list(
-		SEASONAL_GUNS = "Seasonal",
-	)
-
 /obj/machinery/vending/weapon/hvh/team_one
 
 /obj/machinery/vending/weapon/hvh/team_two
