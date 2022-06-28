@@ -54,7 +54,7 @@
 		return
 	if(occupant.stat == DEAD)
 		return
-	if(!occupant.getBruteLoss(TRUE) && !occupant.getFireLoss(TRUE) && autoeject) //release the patient automatically when brute and burn are handled on non-robotic limbs
+	if(!occupant.getBruteLoss(TRUE) && !occupant.getFireLoss(TRUE) && !occupant.getCloneLoss() && autoeject) //release the patient automatically when brute and burn are handled on non-robotic limbs
 		go_out(TRUE)
 		return
 	occupant.bodytemperature = 100 //Atmos is long gone, we'll just set temp directly.
