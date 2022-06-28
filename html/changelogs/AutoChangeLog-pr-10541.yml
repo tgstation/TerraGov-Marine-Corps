@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - balance: "Peridaxon Plus cloneloss scales with the organ damage it heals"
