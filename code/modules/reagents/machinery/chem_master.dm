@@ -294,7 +294,7 @@
 			return
 
 		else if(href_list["change_bottle"])
-			#define MAX_BOTTLE_SPRITE 4 //max icon state of the bottle sprites
+			#define MAX_BOTTLE_SPRITE 5 //max icon state of the bottle sprites
 			var/dat = "<table>"
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
 				dat += "<tr><td><a href=\"?src=\ref[src]&bottle_sprite=[i]\">Select</a><img src=\"bottle-[i].png\" /><br></td></tr>"

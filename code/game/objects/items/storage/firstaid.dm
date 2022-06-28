@@ -412,8 +412,8 @@
 /obj/item/storage/pill_bottle/dermaline
 	name = "dermaline pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	greyscale_colors = "#ffef00#FFFFFF"
 
 /obj/item/storage/pill_bottle/dylovene
@@ -425,8 +425,8 @@
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "inaprovaline pill bottle"
 	desc = "Contains pills that prevent wounds from getting worse on their own."
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/inaprovaline
+	greyscale_config = /datum/greyscale_config/pillbottlebox
 	greyscale_colors = "#9966CC#ffffff"
 
 /obj/item/storage/pill_bottle/tramadol
@@ -438,13 +438,14 @@
 /obj/item/storage/pill_bottle/paracetamol
 	name = "paracetamol pill bottle"
 	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
+	greyscale_config = /datum/greyscale_config/pillbottlebox
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
 	desc = "Contains pills that handle low-level viral and bacterial infections. Effect increases with dosage."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/spaceacillin
+	greyscale_config = /datum/greyscale_config/pillbottlebox
 	greyscale_colors = "#90F7F5#ffffff"
 
 /obj/item/storage/pill_bottle/bicaridine
@@ -457,8 +458,8 @@
 	name = "meralyne pill bottle"
 	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canistercomplete"
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	greyscale_colors = "#FD5964#ffffff"
 
 /obj/item/storage/pill_bottle/dexalin
@@ -471,15 +472,15 @@
 	name = "alkysine pill bottle"
 	desc = "Contains pills that heal brain damage."
 	icon_state = "pill_canistercomplete"
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
+	greyscale_config = /datum/greyscale_config/pillbottlebubble
 	greyscale_colors = "#0292AC#ffffff"
 
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
 	desc = "Contains pills that heal eye damage."
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imidazoline
+	greyscale_config = /datum/greyscale_config/pillbottlebubble
 	greyscale_colors = "#F7A151#ffffff" //orange like carrots
 
 /obj/item/storage/pill_bottle/russian_red
@@ -493,8 +494,8 @@
 	name = "quick-clot pill bottle"
 	desc = "Contains pills that suppress internal bleeding while waiting for full treatment."
 	icon_state = "pill_canistercomplete"
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/quickclot
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	greyscale_colors = "#5ed75e#ffffff"
 
 /obj/item/storage/pill_bottle/hypervene
@@ -502,14 +503,15 @@
 	desc = "A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/hypervene
+	greyscale_config = /datum/greyscale_config/pillbottlebubble
 	greyscale_colors = "#AC6D32#ffffff"
 
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
 	desc = "Contains pills capable of minorly healing all main types of damages."
 	icon_state = "pill_canistercomplete"
-	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
+	greyscale_config = /datum/greyscale_config/pillbottleround
 	greyscale_colors = "#f8f4f8#ffffff"
 
 /obj/item/storage/pill_bottle/happy
