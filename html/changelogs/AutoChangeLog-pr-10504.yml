@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - rscadd: "Ported TG's welder effect for use when welding doors/objects."

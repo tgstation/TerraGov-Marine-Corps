@@ -383,3 +383,20 @@
   novaepee:
   - balance: Marine ballistic goggles are now tiny, letting you fit goggle and another
       tiny object in helmet
+2022-06-28:
+  Losenis:
+  - balance: Operational supplies vendor now has a free pinpointer.
+  QualityVan:
+  - bugfix: If you have both organ damage and necrosis, trying to treat with a membrane
+      will prioritize the necrosis.
+  - code_imp: Added routing to enable robot healing on two function calls.
+  RipGrayson:
+  - rscadd: Ported TG's welder effect for use when welding doors/objects.
+  - bugfix: Fixed a couple bad AI nodes
+  - imageadd: Ported some icons from CM.
+  - imageadd: Ported and resprited a firedoor icon from Baystation.
+  - imagedel: Removed old fire door icon from game.
+  - imagedel: Removed old exterior airlock icon from game.
+  - code_imp: Added a couple table and earmuff variants to the game.
+  heffy117:
+  - bugfix: fixed minor map issues

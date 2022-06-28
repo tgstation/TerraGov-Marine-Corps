@@ -1,9 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - bugfix: "Fixed a couple bad AI nodes"
-  - imageadd: "Ported some icons from CM."
-  - imageadd: "Ported and resprited a firedoor icon from Baystation."
-  - imagedel: "Removed old fire door icon from game."
-  - imagedel: "Removed old exterior airlock icon from game."
-  - code_imp: "Added a couple table and earmuff variants to the game."
