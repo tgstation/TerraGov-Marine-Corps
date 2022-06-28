@@ -21,6 +21,14 @@
 	var/autoinjectorsprite = "11"
 	var/client/has_sprites = list()
 	var/max_pill_count = 20
+	var/pill_bottle_names = list(
+		"pill_canister",
+		"round_pill_bottle",
+		"pill_bubble",
+		"pill_spire",
+		"pill_crate",
+		"pill_box",
+	)
 
 
 /obj/machinery/chem_master/Initialize()
@@ -272,10 +280,10 @@
 				P.update_icon()
 
 		else if(href_list["change_pill_bottle"])
-			#define MAX_PILL_BOTTLE_SPRITE 2 //max icon state of the pill sprites
+			#define MAX_PILL_BOTTLE_SPRITE 6 //max icon state of the pill sprites
 			var/dat = "<table>"
-			dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[1]\">Select</a><img src=\"pill_canister.png\" /><br></td></tr>"
-			dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[2]\">Select</a><img src=\"round_pill_bottle.png\" /><br></td></tr>"
+			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
+				dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[i]\">Select</a><img src=\"[pill_bottle_names[i]].png\" /><br></td></tr>"
 			dat += "</table>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Pill Bottle</div>")
 			popup.set_content(dat)
@@ -334,8 +342,8 @@
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
-			user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill_canister"), "pill_canister.png")
-			user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "round_pill_bottle"), "round_pill_bottle.png")
+			for(var/i = 1 to MAX_PILL_BOTTLE_SPRITE)
+				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', pill_bottle_names[i]), pill_bottle_names[i]+".png")
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill" + num2text(i)), "pill[i].png")
 			for(var/i = 1 to MAX_BOTTLE_SPRITE)
@@ -381,7 +389,7 @@
 		else
 			dat += "Empty<BR>"
 		if(!condi)
-			dat += "<HR><BR><A href='?src=\ref[src];createpillbottle=1'>Load pill bottle</A><a href=\"?src=\ref[src]&change_pill_bottle=1\">Change</a><img src=\"pill_canister[pillbottlesprite].png\" /><BR>"
+			dat += "<HR><BR><A href='?src=\ref[src];createpillbottle=1'>Load pill bottle</A><a href=\"?src=\ref[src]&change_pill_bottle=1\">Change</a><img src=\"[pill_bottle_names[text2num(pillbottlesprite)]].png\" /><BR>"
 			dat += "<A href='?src=\ref[src];createpill=1'>Create pill (15 units max)</A><a href=\"?src=\ref[src]&change_pill=1\">Change</a><img src=\"pill[pillsprite].png\" /><BR>"
 			dat += "<A href='?src=\ref[src];createpill_multiple=1'>Create multiple pills</A><BR>"
 			dat += "<A href='?src=\ref[src];createbottle=1'>Create bottle (60 units max)<a href=\"?src=\ref[src]&change_bottle=1\">Change</A><img src=\"bottle-[bottlesprite].png\" /><BR>"
