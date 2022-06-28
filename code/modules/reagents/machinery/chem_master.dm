@@ -274,7 +274,7 @@
 		else if(href_list["change_pill_bottle"])
 			#define MAX_PILL_BOTTLE_SPRITE 2 //max icon state of the pill sprites
 			var/dat = "<table>"
-			dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[1]\">Select</a><img src=\"pill_canister1.png\" /><br></td></tr>"
+			dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[1]\">Select</a><img src=\"pill_canister.png\" /><br></td></tr>"
 			dat += "<tr><td><a href=\"?src=\ref[src]&pill_bottle_sprite=[2]\">Select</a><img src=\"round_pill_bottle.png\" /><br></td></tr>"
 			dat += "</table>"
 			var/datum/browser/popup = new(user, "chem_master", "<div align='center'>Change Pill Bottle</div>")
@@ -334,7 +334,7 @@
 	if(!(user.client in has_sprites))
 		spawn()
 			has_sprites += user.client
-			user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill_canister1"), "pill_canister1.png")
+			user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill_canister"), "pill_canister.png")
 			user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "round_pill_bottle"), "round_pill_bottle.png")
 			for(var/i = 1 to MAX_PILL_SPRITE)
 				user << browse_rsc(icon('icons/obj/items/chemistry.dmi', "pill" + num2text(i)), "pill[i].png")
