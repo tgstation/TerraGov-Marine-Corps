@@ -29,6 +29,14 @@
 		"pill_crate",
 		"pill_box",
 	)
+	var/pill_bottle_configs = list(
+		/datum/greyscale_config/pillbottle,
+		/datum/greyscale_config/pillbottleround,
+		/datum/greyscale_config/pillbottlebubble,
+		/datum/greyscale_config/pillbottlespire,
+		/datum/greyscale_config/pillbottlecrate,
+		/datum/greyscale_config/pillbottlebox,
+	)
 
 
 /obj/machinery/chem_master/Initialize()
@@ -203,8 +211,7 @@
 					return
 				var/bottle_label = reject_bad_text(tgui_input_text(user, "Label:", "Enter desired bottle label", encode = FALSE))
 				var/obj/item/storage/pill_bottle/I = new/obj/item/storage/pill_bottle
-				if(pillbottlesprite == "2")//if the "2" sprite is selected, use the round pill bottle sprite
-					I.set_greyscale_config(/datum/greyscale_config/pillbottleround)
+				I.set_greyscale_config(pill_bottle_configs[text2num(pillbottlesprite)])
 				if(bottle_label)
 					I.name = "[bottle_label] pill bottle"
 				loaded_pill_bottle = I
