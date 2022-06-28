@@ -11,7 +11,5 @@
 	old_x = -16
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
+	mob_size = MOB_SIZE_BIG
 	var/emitting_gas = FALSE
-	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/vent_crawl,
-	)
