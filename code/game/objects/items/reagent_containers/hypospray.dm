@@ -352,14 +352,14 @@
 
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine
 	name = "Tricordrazine hypospray"
-	desc = "A hypospray loaded with tricordrazine. A chemical that minorly heals all main types of damages."
+	desc = "A hypospray loaded with tricordrazine. A chemical that heal cuts, bruises, burns, toxicity, and oxygen deprivation."
 	list_reagents = list(
 		/datum/reagent/medicine/tricordrazine = 60,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/dylovene
 	name = "Dylovene hypospray"
-	desc = "A hypospray loaded with dylovene. A chemical that heals toxic damage whilst purging toxins."
+	desc = "A hypospray loaded with dylovene. A chemical that heal toxicity whilst purging toxins, hindering stamina in the process."
 	list_reagents = list(
 		/datum/reagent/medicine/dylovene = 60,
 	)
@@ -390,7 +390,7 @@
 
 /obj/item/reagent_containers/hypospray/advanced/oxycodone
 	name = "oxycodone hypospray"
-	desc = "A hypospray loaded with oxycodone. An advanced but highly addictive chemical which almost entirely negates pain. "
+	desc = "A hypospray loaded with oxycodone. An advanced but highly addictive chemical which almost entirely negates pain and shock."
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
 
 /obj/item/reagent_containers/hypospray/advanced/hypervene
@@ -438,9 +438,16 @@
 
 /obj/item/reagent_containers/hypospray/advanced/big/tricordrazine
 	name = "Big tricordrazine hypospray"
-	desc = "A hypospray loaded with tricordrazine. A chemical that minorly heals all main types of damages."
+	desc = "A hypospray loaded with tricordrazine. A chemical that heal cuts, bruises, burns, toxicity, and oxygen deprivation."
 	list_reagents = list(
 		/datum/reagent/medicine/tricordrazine = 120,
+	)
+
+/obj/item/reagent_containers/hypospray/advanced/big/dylovene
+	name = "Big dylovene hypospray"
+	desc = "A hypospray loaded with dylovene. A chemical that heal toxicity whilst purging toxins, hindering stamina in the process."
+	list_reagents = list(
+		/datum/reagent/medicine/dylovene = 120,
 	)
 
 /obj/item/reagent_containers/hypospray/advanced/big/inaprovaline
