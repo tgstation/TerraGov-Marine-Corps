@@ -13,6 +13,8 @@
 	var/volume = 30
 	var/liquifier = FALSE //Can liquify/grind pills without needing fluid to dissolve.
 	var/list/list_reagents
+	///Whether we can restock this in a vendor without it having its starting reagents
+	var/free_refills = TRUE
 
 
 /obj/item/reagent_containers/Initialize()
@@ -68,3 +70,9 @@
 			. += "; [R.name]([R.volume]u)"
 	else
 		. = "No reagents"
+
+/obj/item/reagent_containers/proc/has_initial_reagents()
+	for(var/reagent_to_check in list_reagents)
+		if(reagents.get_reagent_amount(reagent_to_check) != list_reagents[reagent_to_check])
+			return FALSE
+	return TRUE
