@@ -199,7 +199,32 @@
 			var/mob/living/L = O
 			L.IgniteMob()
 
-
+/obj/item/tool/weldingtool/use_tool(atom/target, mob/living/user, delay, amount, volume, datum/callback/extra_checks)
+	if(istype(target, /obj/machinery/door/airlock/mainship/marine))
+		if((target.dir & NORTH|SOUTH))
+			target.add_overlay(GLOB.welding_sparks_prepdoor)
+		else
+			target.add_overlay(GLOB.welding_sparks)
+	else if(istype(target, /obj/machinery/door/airlock/multi_tile))
+		if((target.dir & NORTH|SOUTH))
+			target.add_overlay(GLOB.welding_sparks_multitiledoor_vertical)
+		else
+			target.add_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
+	else if(istype(target, /obj))
+		target.add_overlay(GLOB.welding_sparks)
+	. = ..()
+	if(istype(target, /obj/machinery/door/airlock/mainship/marine))
+		if((target.dir & NORTH|SOUTH))
+			target.cut_overlay(GLOB.welding_sparks_prepdoor)
+		else
+			target.cut_overlay(GLOB.welding_sparks)
+	else if(istype(target, /obj/machinery/door/airlock/multi_tile))
+		if((target.dir & NORTH|SOUTH))
+			target.cut_overlay(GLOB.welding_sparks_multitiledoor_vertical)
+		else
+			target.cut_overlay(GLOB.welding_sparks_multitiledoor_horizontal)
+	else if(istype(target, /obj))
+		target.cut_overlay(GLOB.welding_sparks)
 
 /obj/item/tool/weldingtool/attack_self(mob/user as mob)
 	if(!status)

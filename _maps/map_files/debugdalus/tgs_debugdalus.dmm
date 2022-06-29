@@ -277,7 +277,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "abf" = (
-/obj/machinery/vending/marine_medic,
+/obj/machinery/vending/medical,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 4

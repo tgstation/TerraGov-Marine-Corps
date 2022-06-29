@@ -181,8 +181,6 @@
 	//Banish - Values for the Wraith's Banish ability
 	///Base duration of Banish before modifiers
 	var/wraith_banish_base_duration = WRAITH_BANISH_BASE_DURATION
-	///Base range of Banish
-	var/wraith_banish_range = WRAITH_BANISH_RANGE
 
 	//Blink - Values for the Wraith's Blink ability
 	///Cooldown multiplier of Blink when used on non-friendlies

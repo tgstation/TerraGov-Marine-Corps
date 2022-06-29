@@ -140,6 +140,7 @@
 
 //#define FLY_LAYER 5
 
+#define WELDING_TOOL_EFFECT_LAYER 5.05
 #define RIPPLE_LAYER 5.1
 
 #define GHOST_LAYER 6
