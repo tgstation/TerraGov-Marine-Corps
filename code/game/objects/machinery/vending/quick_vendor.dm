@@ -77,7 +77,6 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 /obj/machinery/quick_vendor/ui_state(mob/user)
 	return GLOB.human_adjacent_state
 
-//shiny and new
 /obj/machinery/quick_vendor/ui_data(mob/living/user)
 	. = ..()
 	var/list/data = list()
@@ -117,8 +116,4 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 				selected_loadout.quantity --
 				selected_loadout.equip(ui.user) //actually equips the loadout
 			else
-				to_chat(usr, span_warning("You can't buy things from this category anymore.")) //make early return instead?
-				return
-
-			//todo: check if still relevant - NOTE refreshes the tgui I think, so probs best to have it.
-			//update_static_data(ui.user, ui)
+				to_chat(usr, span_warning("You can't buy things from this category anymore."))
