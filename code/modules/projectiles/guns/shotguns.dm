@@ -319,6 +319,7 @@
 	load_method = SINGLE_CASING //codex
 	max_chamber_items = 4 //codex
 	default_ammo_type = /datum/ammo/bullet/sniper/svd
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/boltclip)
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	cocked_message = "You work the bolt."
