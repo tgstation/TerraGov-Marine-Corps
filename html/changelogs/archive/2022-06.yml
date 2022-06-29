@@ -400,3 +400,11 @@
   - code_imp: Added a couple table and earmuff variants to the game.
   heffy117:
   - bugfix: fixed minor map issues
+2022-06-29:
+  DeltaFire15:
+  - bugfix: All explosions should now affect wraith portals, not just CAS GAU ones.
+  QualityVan:
+  - balance: Peridaxon Plus cloneloss scales with the organ damage it heals
+  - code_imp: Pills and hypos call a proc they were missing. No gameplay change.
+  - balance: Dylovene reduces stamina regen by half instead of preventing it entirely,
+      but does so at any volume.

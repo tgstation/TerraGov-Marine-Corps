@@ -1,4 +1,0 @@
-author: "DeltaFire15"
-delete-after: True
-changes: 
-  - bugfix: "All explosions should now affect wraith portals, not just CAS GAU ones."

@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - balance: "Dylovene reduces stamina regen by half instead of preventing it entirely, but does so at any volume."
