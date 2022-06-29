@@ -2106,7 +2106,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
 				if(!change || !istype(H))
 					return
-				if(!ismarinejob(H.job) || !issommarinejob(H.job))
+				if(!ismarinejob(H.job) && !issommarinejob(H.job))
 					to_chat(usr, span_warning("Only marine jobs may be part of squads."))
 					return
 				H.change_squad(change)
