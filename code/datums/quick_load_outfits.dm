@@ -10,43 +10,58 @@
 /datum/outfit/quick/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	pre_equip(H, visualsOnly)
 
-	//Start with uniform,suit,backpack for additional slots
+	//Start with uniform,suit,backpack for additional slots. Deletes any existing equipped item to avoid accidentally losing half your loadout. Not for standard gamemodes!
 	if(w_uniform)
+		qdel(H.w_uniform)
 		H.equip_to_slot_or_del(new w_uniform(H),SLOT_W_UNIFORM, override_nodrop = TRUE)
 	if(wear_suit)
+		qdel(H.wear_suit)
 		H.equip_to_slot_or_del(new wear_suit(H),SLOT_WEAR_SUIT, override_nodrop = TRUE)
 	if(back)
+		qdel(H.back)
 		H.equip_to_slot_or_del(new back(H),SLOT_BACK, override_nodrop = TRUE)
 	if(belt)
+		qdel(H.belt)
 		H.equip_to_slot_or_del(new belt(H),SLOT_BELT, override_nodrop = TRUE)
 	if(gloves)
+		qdel(H.gloves)
 		H.equip_to_slot_or_del(new gloves(H),SLOT_GLOVES, override_nodrop = TRUE)
 	if(shoes)
+		qdel(H.shoes)
 		H.equip_to_slot_or_del(new shoes(H),SLOT_SHOES, override_nodrop = TRUE)
 	if(head)
+		qdel(H.head)
 		H.equip_to_slot_or_del(new head(H),SLOT_HEAD, override_nodrop = TRUE)
 	if(mask)
+		qdel(H.wear_mask)
 		H.equip_to_slot_or_del(new mask(H),SLOT_WEAR_MASK, override_nodrop = TRUE)
 	if(ears)
+		qdel(H.wear_ear)
 		if(visualsOnly)
 			H.equip_to_slot_or_del(new /obj/item/radio/headset(H), SLOT_EARS, override_nodrop = TRUE) //We don't want marine cameras. For now they have the same item_state as the rest.
 		else
 			H.equip_to_slot_or_del(new ears(H, H.assigned_squad, jobtype), SLOT_EARS, override_nodrop = TRUE) //todo: add a safety check here just in case
 	if(glasses)
+		qdel(H.glasses)
 		H.equip_to_slot_or_del(new glasses(H),SLOT_GLASSES, override_nodrop = TRUE)
 	if(id)
 		H.equip_to_slot_or_del(new id(H),SLOT_WEAR_ID, override_nodrop = TRUE)
 	if(suit_store)
+		qdel(H.s_store)
 		H.equip_to_slot_or_del(new suit_store(H),SLOT_S_STORE, override_nodrop = TRUE)
 	if(l_hand)
+		qdel(H.l_hand)
 		H.put_in_l_hand(new l_hand(H))
 	if(r_hand)
+		qdel(H.r_hand)
 		H.put_in_r_hand(new r_hand(H))
 
 	if(!visualsOnly) // Items in pockets or backpack don't show up on mob's icon.
 		if(l_store)
+			qdel(H.l_store)
 			H.equip_to_slot_or_del(new l_store(H),SLOT_L_STORE, override_nodrop = TRUE)
 		if(r_store)
+			qdel(H.r_store)
 			H.equip_to_slot_or_del(new r_store(H),SLOT_R_STORE, override_nodrop = TRUE)
 
 		if(box)
@@ -736,7 +751,7 @@
 //AR12 Standard medic - WIP
 /datum/outfit/quick/tgmc/corpsman/standard_medic
 	name = "AR12 standard corpsman"
-	desc = "Keeping everone else in the fight. Armed with an AR-12 and an impressive array of tools for healing your team. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
+	desc = "Keeping everone else in the fight. Armed with an AR-12 and an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
 
 	belt = /obj/item/storage/belt/lifesaver/quick
 	ears = /obj/item/radio/headset/mainship/marine
