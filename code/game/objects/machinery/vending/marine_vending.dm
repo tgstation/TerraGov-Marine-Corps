@@ -817,12 +817,12 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		"Pill Packet" = list(
-			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
-			/obj/item/storage/pill_bottle/packet/kelotane = -1,
-			/obj/item/storage/pill_bottle/packet/tramadol = -1,
-			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/packet/dylovene = -1,
+		"Pill Bottles" = list(
+			/obj/item/storage/pill_bottle/smoll/bicaridine = 15,
+			/obj/item/storage/pill_bottle/smoll/kelotane = 15,
+			/obj/item/storage/pill_bottle/smoll/tramadol = 15,
+			/obj/item/storage/pill_bottle/smoll/tricordrazine = 15,
+			/obj/item/storage/pill_bottle/smoll/dylovene = 15,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,
@@ -862,12 +862,12 @@
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
-		"Pill Packet" = list(
-			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
-			/obj/item/storage/pill_bottle/packet/kelotane = -1,
-			/obj/item/storage/pill_bottle/packet/tramadol = -1,
-			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/packet/dylovene = -1,
+		"Pill Bottles" = list(
+			/obj/item/storage/pill_bottle/smoll/bicaridine = -1,
+			/obj/item/storage/pill_bottle/smoll/kelotane = -1,
+			/obj/item/storage/pill_bottle/smoll/tramadol = -1,
+			/obj/item/storage/pill_bottle/smoll/tricordrazine = -1,
+			/obj/item/storage/pill_bottle/smoll/dylovene = -1,
 		),
 		"Auto Injector" = list(
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,

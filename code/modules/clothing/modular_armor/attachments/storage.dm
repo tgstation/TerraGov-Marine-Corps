@@ -211,9 +211,9 @@
 
 /obj/item/armor_module/storage/medical/basic/Initialize()
 	. = ..()
-	new /obj/item/storage/pill_bottle/packet/bicaridine(storage)
-	new /obj/item/storage/pill_bottle/packet/kelotane(storage)
-	new /obj/item/storage/pill_bottle/packet/tramadol(storage)
+	new /obj/item/storage/pill_bottle/smoll/bicaridine(storage)
+	new /obj/item/storage/pill_bottle/smoll/kelotane(storage)
+	new /obj/item/storage/pill_bottle/smoll/tramadol(storage)
 	new /obj/item/stack/medical/splint(storage)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(storage)
 

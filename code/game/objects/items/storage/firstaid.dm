@@ -58,7 +58,6 @@
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/storage/pill_bottle/packet/leporazine(src)
 	new /obj/item/storage/syringe_case/burn(src)
 
 
@@ -72,7 +71,6 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
 	new /obj/item/stack/medical/splint(src)
-	new /obj/item/storage/pill_bottle/packet/russian_red(src)
 
 
 /obj/item/storage/firstaid/toxin
@@ -85,7 +83,6 @@
 /obj/item/storage/firstaid/toxin/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
 	new /obj/item/storage/pill_bottle/dylovene(src)
-	new /obj/item/storage/pill_bottle/packet/ryetalyn(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/storage/syringe_case/tox(src)
@@ -418,7 +415,7 @@
 
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
-	desc = "Contains pills that heal toxic damage and purge toxins and neurotoxins of all kinds."
+	desc = "Contains pills that heal toxicity whilst purging toxins, hindering stamina in the process."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 	greyscale_colors = "#669900#ffffff"
 
@@ -506,7 +503,7 @@
 
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
-	desc = "Contains pills capable of minorly healing all main types of damages."
+	desc = "Contains pills that heal cuts, bruises, burns, toxicity, and oxygen deprivation. Take no more than two at a time."
 	icon_state = "pill_canistercomplete"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
@@ -525,6 +522,42 @@
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 	greyscale_colors = "#ef3ad4#ffffff"
+
+/obj/item/storage/pill_bottle/smoll
+	name = "child friendly pill bottle"
+	desc = "A wide colourful pill bottle covered in basic large font instructions."
+	max_storage_space = 7
+	greyscale_config = /datum/greyscale_config/pillbottleround
+
+/obj/item/storage/pill_bottle/smoll/bicaridine
+	name = "bicaridine pill bottle"
+	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
+	greyscale_colors = "#DA0000#ffffff"
+
+/obj/item/storage/pill_bottle/smoll/kelotane
+	name = "kelotane pill bottle"
+	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
+	greyscale_colors = "#CC9900#FFFFFF"
+
+/obj/item/storage/pill_bottle/smoll/tramadol
+	name = "tramadol pill bottle"
+	desc = "Contains pills that numb pain. Take two for a stronger effect at the cost of a toxic effect."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
+	greyscale_colors = "#a09ca0#ffffff"
+
+/obj/item/storage/pill_bottle/smoll/tricordrazine
+	name = "tricordrazine pill bottle"
+	desc = "Contains pills that heal cuts, bruises, burns, toxicity, and oxygen deprivation. Take no more than two at a time."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
+	greyscale_colors = "#f8f4f8#ffffff"
+
+/obj/item/storage/pill_bottle/smoll/dylovene
+	name = "dylovene pill bottle"
+	desc = "Contains pills that heal toxicity whilst purging toxins, hindering stamina in the process."
+	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
+	greyscale_colors = "#669900#ffffff"
 
 /obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
 	. = ..()

@@ -318,7 +318,6 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
-		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray,
 	)
 
@@ -327,11 +326,11 @@
 
 /obj/item/storage/pouch/medkit/firstaid/Initialize()
 	. = ..()
-	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
-	new /obj/item/storage/pill_bottle/packet/kelotane(src)
-	new /obj/item/storage/pill_bottle/packet/tramadol(src)
-	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
-	new /obj/item/storage/pill_bottle/packet/dylovene(src)
+	new /obj/item/storage/pill_bottle/smoll/bicaridine(src)
+	new /obj/item/storage/pill_bottle/smoll/kelotane(src)
+	new /obj/item/storage/pill_bottle/smoll/tramadol(src)
+	new /obj/item/storage/pill_bottle/smoll/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/smoll/dylovene(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
