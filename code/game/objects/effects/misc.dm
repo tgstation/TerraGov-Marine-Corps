@@ -72,7 +72,12 @@
 	opacity = FALSE
 	density = TRUE
 	icon_state = "blocker"
+	mouse_opacity = 0
 
+/obj/effect/forcefield/Initialize()
+	. = ..()
+	if(icon_state == "blocker")
+		icon_state = ""
 
 /obj/effect/forcefield/fog
 	name = "dense fog"
@@ -81,14 +86,10 @@
 	icon_state = "smoke"
 	opacity = TRUE
 
-
 /obj/effect/forcefield/fog/Initialize()
 	. = ..()
 	dir  = pick(CARDINAL_DIRS)
 	GLOB.fog_blockers += src
-	if(icon_state == "blocker")
-		icon_state = ""
-
 
 /obj/effect/forcefield/fog/Destroy()
 	GLOB.fog_blockers -= src

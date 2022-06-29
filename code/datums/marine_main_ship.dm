@@ -31,6 +31,34 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 		if("delta")
 			level = SEC_LEVEL_DELTA
 
+	if(level <= SEC_LEVEL_BLUE)
+		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
+			light.lightalarm.stop(light)
+			light.light_color = "#ffffff"
+			light.brightness = 8
+			light.light_range = 8
+			if(istype(light, /obj/machinery/light/mainship/small))
+				light.icon_state = "bulb1"	
+			else
+				light.icon_state = "tube1"	
+			light.update_light()
+	else
+		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
+			if(level == SEC_LEVEL_DELTA) //start ominous self destruct sound when delta
+				light.lightalarm.start(light)
+			light.light_color = "#da4635"
+			light.brightness = 3.0
+			light.light_range = 7.5
+			if(prob(75)) //randomize light range on most lights, patchy lights give a sense of danger
+				var/rangelevel = pick(5.5,6.0,6.5,7.0)
+				if(prob(15))
+					rangelevel -= pick(0.5,1.0,1.5,2.0)
+				light.light_range = rangelevel
+			if(istype(light, /obj/machinery/light/mainship/small))
+				light.icon_state = "bulbred"	
+			else
+				light.icon_state = "tubered"
+			light.update_light()	 
 
 	//Will not be announced if you try to set to the same level as it already is
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != security_level)
@@ -41,7 +69,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 				security_level = SEC_LEVEL_GREEN
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
-						SD.set_picture("default")
+						SD.set_picture("default")	
 			if(SEC_LEVEL_BLUE)
 				if(security_level < SEC_LEVEL_BLUE)
 					if(announce)
@@ -72,7 +100,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
-						SD.set_picture("redalert")
+						SD.set_picture("redalert")	
 			if(SEC_LEVEL_DELTA)
 				if(announce)
 					priority_announce("Attention! Delta security level reached! " + CONFIG_GET(string/alert_delta), "Priority Alert")
@@ -86,7 +114,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 
 		for(var/obj/machinery/firealarm/FA in GLOB.machines)
 			if(is_mainship_level(FA.z))
-				FA.update_icon()
+				FA.update_icon()			
 	else
 		return
 
