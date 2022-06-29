@@ -198,21 +198,21 @@
 	template_height = 24
 
 /datum/map_template/modular/lv624/southsandtempletwo
-	name = "LV Hydro Bridge Two"
+	name = "LV South Sand Temple Two"
 	mappath = "_maps/modularmaps/lv624/southsandtemple2.dmm"
 	modular_id = "lvsouthsandtemple"
 	template_width = 22
 	template_height = 24
 
 /datum/map_template/modular/lv624/southsandtemplethree
-	name = "LV Hydro Bridge Three"
+	name = "LV South Sand Temple Three"
 	mappath = "_maps/modularmaps/lv624/southsandtemple3.dmm"
 	modular_id = "lvsouthsandtemple"
 	template_width = 22
 	template_height = 24
 
 /datum/map_template/modular/lv624/southsandtemplefour
-	name = "LV Hydro Bridge Four"
+	name = "LV South Sand Temple Four"
 	mappath = "_maps/modularmaps/lv624/southsandtemple4.dmm"
 	modular_id = "lvsouthsandtemple"
 	template_width = 22
