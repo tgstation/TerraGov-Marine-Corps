@@ -1,0 +1,6 @@
+author: "goose4429"
+delete-after: True
+changes: 
+  - imageadd: "Added injector and pill bottle sprites"
+  - bugfix: "Fixed a lot of medical sprites"
+  - bugfix: "Fixed chemmaster display errors"
