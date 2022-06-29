@@ -407,6 +407,8 @@
 
 /area/mainship/squads/general/rebel
 
+/area/mainship/squads/general/som
+
 /area/mainship/squads/req
 	name = "Requisitions"
 	icon_state = "req"
