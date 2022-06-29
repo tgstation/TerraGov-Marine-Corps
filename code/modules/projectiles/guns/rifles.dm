@@ -1590,14 +1590,15 @@
 		/obj/item/attachable/motiondetector,
 	)
 
-	flags_gun_features = GUN_AMMO_COUNTER
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = list(
 		/obj/item/weapon/gun/shotgun/micro_grenade,
 	)
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 16,"rail_x" = 23, "rail_y" = 24, "under_x" = 33, "under_y" = 11, "stock_x" = -1, "stock_y" = 17)
+	actions_types = list(/datum/action/item_action/aim_mode)
 
-	wield_delay = 0.5 SECONDS
+	wield_delay = 0.6 SECONDS
 
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 2
@@ -1605,7 +1606,7 @@
 	fire_delay = 0.2 SECONDS
 	aim_slowdown = 0.35
 
-	accuracy_mult = 1.05
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.55
 	scatter = 1
 	scatter_unwielded = 15
@@ -1614,10 +1615,5 @@
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.1 SECONDS
 	autoburst_delay = 0.3 SECONDS
-	burst_accuracy_mult = 1
-	burst_scatter_mult = 2
 
 	damage_falloff_mult = 0.7
-
-	aim_fire_delay = 0.1 SECONDS
-	aim_speed_modifier = 2

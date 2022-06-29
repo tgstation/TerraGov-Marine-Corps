@@ -393,7 +393,7 @@
 	aim_slowdown = 0.15
 	wield_delay = 0.4 SECONDS
 
-	accuracy_mult = 1.1
+	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.9
 
 	recoil = 0
