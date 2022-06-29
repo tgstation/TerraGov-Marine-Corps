@@ -349,11 +349,17 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "a roll of gauze"
 
+/datum/reagent/medicine/dylovene/on_mob_add(mob/living/L, metabolism)
+	L.add_stamina_regen_modifier(name, -0.5)
+	return ..()
+
+/datum/reagent/medicine/dylovene/on_mob_delete(mob/living/L, metabolism)
+	L.remove_stamina_regen_modifier(name)
+	return ..()
+
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
 	L.hallucination = max(0, L.hallucination -  2.5*effect_str)
 	L.adjustToxLoss(-effect_str)
-	if(volume > 10)
-		L.adjustStaminaLoss(0.5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/dylovene/overdose_process(mob/living/L, metabolism)
@@ -633,23 +639,17 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	scannable = TRUE
 
-/datum/reagent/medicine/peridaxon_plus/on_mob_add(mob/living/L, metabolism)
-	if(TIMER_COOLDOWN_CHECK(L, name))
-		return
-	L.adjustCloneLoss(5*effect_str)
-
-/datum/reagent/medicine/peridaxon_plus/on_mob_delete(mob/living/L, metabolism)
-	TIMER_COOLDOWN_START(L, name, 30 SECONDS)
-
 /datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	L.adjustStaminaLoss(10*effect_str)
 	if(!ishuman(L))
 		return ..()
 	var/mob/living/carbon/human/H = L
-	for(var/datum/internal_organ/I in H.internal_organs)
-		if(I.damage)
-			I.heal_organ_damage(2*effect_str)
+	var/datum/internal_organ/organ = H.get_damaged_organ()
+	if(!organ)
+		return ..()
+	organ.heal_organ_damage(3 * effect_str)
+	H.adjustCloneLoss(1 * effect_str)
 	return ..()
 
 /datum/reagent/medicine/peridaxon_plus/overdose_process(mob/living/L, metabolism)

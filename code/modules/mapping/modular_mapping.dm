@@ -162,7 +162,7 @@
 	template_height = 15
 	keepcentered = TRUE
 
-/datum/map_template/modular/lv624/lvhydrobridge1
+/datum/map_template/modular/lv624/lvhydrobridgeone
 	name = "LV Hydro Bridge One"
 	mappath = "_maps/modularmaps/lv624/lvhydrobridge1.dmm"
 	modular_id = "lvhydrobridge"
@@ -170,7 +170,7 @@
 	template_height = 10
 	keepcentered = TRUE
 
-/datum/map_template/modular/lv624/lvhydrobridge2
+/datum/map_template/modular/lv624/lvhydrobridgetwo
 	name = "LV Hydro Bridge Two"
 	mappath = "_maps/modularmaps/lv624/lvhydrobridge2.dmm"
 	modular_id = "lvhydrobridge"
@@ -178,7 +178,7 @@
 	template_height = 10
 	keepcentered = TRUE
 
-/datum/map_template/modular/lv624/lvhydrobridge3
+/datum/map_template/modular/lv624/lvhydrobridgethree
 	name = "LV Hydro Bridge Three"
 	mappath = "_maps/modularmaps/lv624/lvhydrobridge3.dmm"
 	modular_id = "lvhydrobridge"
@@ -186,7 +186,15 @@
 	template_height = 10
 	keepcentered = TRUE
 
-/datum/map_template/modular/lv624/southsandtemple1
+/datum/map_template/modular/lv624/lvhydrobridgefour
+	name = "LV Hydro Bridge Four"
+	mappath = "_maps/modularmaps/lv624/lvhydrobridge4.dmm"
+	modular_id = "lvhydrobridge"
+	template_width = 8
+	template_height = 10
+	keepcentered = TRUE
+
+/datum/map_template/modular/lv624/southsandtempleone
 	name = "LV South Sand Temple One"
 	mappath = "_maps/modularmaps/lv624/southsandtemple1.dmm"
 	modular_id = "lvsouthsandtemple"
@@ -194,7 +202,7 @@
 	template_height = 24
 	keepcentered = TRUE
 
-/datum/map_template/modular/lv624/southsandtemple2
+/datum/map_template/modular/lv624/southsandtempletwo
 	name = "LV Hydro Bridge Two"
 	mappath = "_maps/modularmaps/lv624/southsandtemple2.dmm"
 	modular_id = "lvsouthsandtemple"
@@ -202,9 +210,17 @@
 	template_height = 24
 	keepcentered = TRUE
 
-/datum/map_template/modular/lv624/southsandtemple3
+/datum/map_template/modular/lv624/southsandtemplethree
 	name = "LV Hydro Bridge Three"
 	mappath = "_maps/modularmaps/lv624/southsandtemple3.dmm"
+	modular_id = "lvsouthsandtemple"
+	template_width = 22
+	template_height = 24
+	keepcentered = TRUE
+
+/datum/map_template/modular/lv624/southsandtemplefour
+	name = "LV Hydro Bridge Four"
+	mappath = "_maps/modularmaps/lv624/southsandtemple4.dmm"
 	modular_id = "lvsouthsandtemple"
 	template_width = 22
 	template_height = 24

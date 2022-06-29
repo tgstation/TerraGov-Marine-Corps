@@ -120,6 +120,24 @@
 		relative_stamloss = round(((relative_stamloss * 7) / (maxHealth * 2)), 1)
 	hud_used.staminas.icon_state = "stamloss[relative_stamloss]"
 
+/// Adds an entry to our stamina_regen_modifiers and updates stamina_regen_multiplier
+/mob/living/proc/add_stamina_regen_modifier(mod_name, mod_value)
+	stamina_regen_modifiers[mod_name] = mod_value
+	recalc_stamina_regen_multiplier()
+
+/// Removes an entry from our stamina_regen_modifiers and updates stamina_regen_multiplier. Returns TRUE if an entry was removed
+/mob/living/proc/remove_stamina_regen_modifier(mod_name)
+	if(!stamina_regen_modifiers.Remove(mod_name))
+		return FALSE
+	recalc_stamina_regen_multiplier()
+	return TRUE
+
+/// Regenerates stamina_regen_multiplier from initial based on the current modifier list, minimum 0.
+/mob/living/proc/recalc_stamina_regen_multiplier()
+	stamina_regen_multiplier = initial(stamina_regen_multiplier)
+	for(var/mod_name in stamina_regen_modifiers)
+		stamina_regen_multiplier += stamina_regen_modifiers[mod_name]
+	stamina_regen_multiplier = max(stamina_regen_multiplier, 0)
 
 /mob/living/proc/getCloneLoss()
 	return cloneloss
