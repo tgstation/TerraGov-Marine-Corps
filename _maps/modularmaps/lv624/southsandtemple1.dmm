@@ -18,7 +18,6 @@
 /area/lv624/ground/sand9)
 "ba" = (
 /obj/structure/jungle/plantbot1/alien,
-/obj/effect/ai_node,
 /turf/open/ground/coast{
 	dir = 4
 	},
@@ -231,10 +230,11 @@
 /area/lv624/ground/sand6)
 "um" = (
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "grass1"
+/turf/open/ground/coast{
+	dir = 4;
+	icon_state = "beachcorner"
 	},
-/area/lv624/lazarus/sandtemple)
+/area/lv624/ground/sand6)
 "uu" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -262,10 +262,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle8)
-"uX" = (
-/obj/structure/jungle/vines,
-/turf/closed/gm/dense,
-/area/lv624/lazarus/sandtemple)
 "vU" = (
 /obj/effect/decal/sandytile,
 /turf/open/floor/tile/whiteyellow/full,
@@ -353,7 +349,6 @@
 /area/lv624/lazarus/sandtemple)
 "CB" = (
 /obj/effect/decal/sandytile,
-/obj/effect/ai_node,
 /obj/effect/decal/grassdecal{
 	dir = 1
 	},
@@ -463,12 +458,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle8)
-"IN" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 1;
-	icon_state = "grassdirt_corner2"
-	},
-/area/lv624/lazarus/sandtemple)
 "IU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -496,23 +485,11 @@
 "Km" = (
 /turf/open/ground/coast,
 /area/lv624/ground/sand6)
-"KR" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/sand3)
 "Lg" = (
 /turf/open/ground/coast/corner2{
 	dir = 1
 	},
 /area/lv624/ground/river3)
-"LN" = (
-/obj/effect/decal/sandytile,
-/obj/effect/decal/sandytile,
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/lazarus/sandtemple)
 "Mb" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -616,18 +593,11 @@
 	icon_state = "grass1"
 	},
 /area/lv624/lazarus/sandtemple)
-"Rx" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 8;
-	icon_state = "grassdirt_corner2"
-	},
-/area/lv624/lazarus/sandtemple)
 "RZ" = (
 /turf/open/floor/plating/ground/dirt/typeone,
 /area/lv624/lazarus/sandtemple)
 "Sq" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt/typetwo,
 /area/lv624/lazarus/sandtemple)
 "SL" = (
@@ -676,10 +646,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river3)
-"VY" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/river3)
 "Wn" = (
 /turf/open/ground/river,
 /area/lv624/ground/river3)
@@ -711,11 +677,6 @@
 "Ya" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
-"Yf" = (
-/turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "grassdirt_corner2"
-	},
 /area/lv624/lazarus/sandtemple)
 "Yg" = (
 /obj/effect/ai_node,
@@ -749,11 +710,6 @@
 "ZP" = (
 /turf/open/floor/plating/ground/dirt/dug,
 /area/lv624/lazarus/sandtemple)
-"ZZ" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
 
 (1,1,1) = {"
 Km
@@ -770,10 +726,10 @@ HW
 HW
 HW
 AP
-cT
 AP
 AP
-cT
+AP
+AP
 Hq
 IU
 AP
@@ -797,9 +753,9 @@ HW
 HW
 HW
 AP
+cT
 AP
-AP
-AP
+cT
 uu
 aS
 AP
@@ -809,7 +765,7 @@ Wn
 "}
 (3,1,1) = {"
 PR
-Ww
+um
 aw
 Pw
 sb
@@ -838,7 +794,7 @@ ue
 aw
 iB
 sb
-KR
+Pw
 sb
 GH
 HW
@@ -915,7 +871,7 @@ YR
 NK
 NK
 Zk
-LN
+ls
 Fc
 Zk
 sZ
@@ -942,10 +898,10 @@ Ya
 Zk
 Zk
 Zk
-ZZ
+Ya
+NK
 sZ
-sZ
-Pb
+Zk
 QK
 NU
 YA
@@ -965,13 +921,13 @@ YR
 "}
 (9,1,1) = {"
 NK
+Pb
 Zk
-Zk
 NK
-IN
-uX
+GT
 NK
 NK
+GT
 EE
 Fc
 Bi
@@ -985,7 +941,7 @@ GT
 ZP
 NK
 pM
-um
+Ri
 EJ
 YR
 "}
@@ -994,8 +950,8 @@ Zk
 Zk
 NK
 NK
-Rx
-Yf
+NK
+NK
 Zk
 Fc
 QK
@@ -1111,7 +1067,7 @@ ab
 SL
 dD
 dD
-VY
+dD
 dD
 kA
 gO
@@ -1163,9 +1119,9 @@ Wn
 JI
 oo
 Wn
-Wn
-Wn
 JI
+Wn
+Wn
 Wn
 Wn
 Wn
