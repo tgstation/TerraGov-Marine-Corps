@@ -1,5 +1,6 @@
 GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 
+///The list is shared across all quick vendors, but they will only display the tabs specified by the vendor, and only show the loadouts with jobs that match the displayed tabs.
 /proc/init_quick_loadouts()
 	. = list()
 	var/list/loadout_list = list(
