@@ -2,6 +2,9 @@ export type Loadout =
   {
     name: string;
     job: string;
+    desc: string;
+    amount: string;
+    outfit: string;
   }
 
 export type LoadoutItemData =

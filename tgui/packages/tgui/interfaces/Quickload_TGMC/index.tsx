@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from "../../backend";
-import { Stack, Button, Section, LabeledList, Tabs, Flex } from "../../components";
+import { Stack, Button, Section, Box, LabeledList, Modal, Tabs, Flex } from "../../components";
 import { Window } from "../../layouts";
 import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
 
@@ -8,6 +8,11 @@ const LoadoutItem = (props : LoadoutItemData, context) => {
   const {
     loadout,
   } = props;
+
+  const [
+    showDesc,
+    setShowDesc,
+  ] = useLocalState<String|null>(context, 'showDesc', null);
 
   return (
     <LabeledList.Item
@@ -21,6 +26,10 @@ const LoadoutItem = (props : LoadoutItemData, context) => {
         </Button>
       }
       label={loadout.name}>
+      {!!loadout.desc && (
+        <Button
+          onClick={() => setShowDesc(loadout.desc)}>?
+        </Button>)}
       <div> </div>
     </LabeledList.Item>
   );
@@ -82,6 +91,11 @@ export const Quickload_TGMC = (props, context) => {
   const { loadout_list } = data;
 
   const [
+    showDesc,
+    setShowDesc,
+  ] = useLocalState(context, 'showDesc', null);
+
+  const [
     job,
     setJob,
   ] = useLocalState(context, 'job', "Squad Marine");
@@ -91,6 +105,14 @@ export const Quickload_TGMC = (props, context) => {
       title="Quick Equip vendor"
       width={700}
       height={400}>
+      {showDesc && (
+        <Modal width="400px">
+          <Box>{showDesc}</Box>
+          <Button
+            content="Dismiss"
+            onClick={() => setShowDesc(null)} />
+        </Modal>
+      )}
       <Window.Content>
         <Stack vertical>
           <JobTabs job={job} setJob={setJob} />

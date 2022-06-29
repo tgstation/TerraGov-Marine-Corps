@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from "../../backend";
-import { Stack, Button, Section, LabeledList, Tabs, Flex } from "../../components";
+import { Stack, Button, Section, Box, LabeledList, Modal, Tabs, Flex } from "../../components";
 import { Window } from "../../layouts";
 import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
 
@@ -9,18 +9,27 @@ const LoadoutItem = (props : LoadoutItemData, context) => {
     loadout,
   } = props;
 
+  const [
+    showDesc,
+    setShowDesc,
+  ] = useLocalState<String|null>(context, 'showDesc', null);
+
   return (
     <LabeledList.Item
       labelColor="white"
       buttons={
         <Button
           onClick={() => {
-            act('selectLoadout', { loadout_name: loadout.name, loadout_job: loadout.job });
+            act('selectLoadout', { loadout_outfit: loadout.outfit });
           }}>
           Select Loadout
         </Button>
       }
       label={loadout.name}>
+      {!!loadout.desc && (
+        <Button
+          onClick={() => setShowDesc(loadout.desc)}>?
+        </Button>)}
       <div> </div>
     </LabeledList.Item>
   );
@@ -82,6 +91,11 @@ export const Quickload_SOM = (props, context) => {
   const { loadout_list } = data;
 
   const [
+    showDesc,
+    setShowDesc,
+  ] = useLocalState(context, 'showDesc', null);
+
+  const [
     job,
     setJob,
   ] = useLocalState(context, 'job', "SOM Standard");
@@ -92,6 +106,14 @@ export const Quickload_SOM = (props, context) => {
       width={700}
       height={400}
       theme="som">
+      {showDesc && (
+        <Modal width="400px">
+          <Box>{showDesc}</Box>
+          <Button
+            content="Dismiss"
+            onClick={() => setShowDesc(null)} />
+        </Modal>
+      )}
       <Window.Content>
         <Stack vertical>
           <JobTabs job={job} setJob={setJob} />

@@ -1,6 +1,6 @@
 /datum/outfit/quick
 	///Description of the loadout
-	var/desc = "hello"
+	var/desc = "Description here"
 	///How much of this loadout there is. infinite by default
 	var/quantity = -1
 	///What job this loadout is associated with. Used for tabs and access.
@@ -215,7 +215,7 @@
 //placeholder in case any base configurations are needed for marine outfits
 /datum/outfit/quick/tgmc
 	name = "TGMC base"
-	desc = "hello world"
+	desc = "This is the base typepath for all TGMC quick vendor outfits. You shouldn't see this."
 
 //Squad marine
 /datum/outfit/quick/tgmc/marine
@@ -225,7 +225,7 @@
 //Standard AR12 unga
 /datum/outfit/quick/tgmc/marine/standard_assaultrifle
 	name = "AR12 rifleman"
-	desc = "PLACEHOLDER"
+	desc = "The classic line rifleman. Equipped with an AR-12 with UGL, heavy armor, and plenty of grenades and ammunition."
 
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -281,7 +281,7 @@
 //Standard laser rifle unga
 /datum/outfit/quick/tgmc/marine/standard_laserrifle
 	name = "Laser rifleman"
-	desc = "PLACEHOLDER"
+	desc = "For when bullets don't cut the mustard. Laser rifle with miniflamer and heavy armor. Lasers are more effective against SOM armor, but cannot break bones and damage organs."
 
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -337,7 +337,7 @@
 //MG60 machinegunner
 /datum/outfit/quick/tgmc/marine/standard_machinegunner
 	name = "MG60 machinegunner"
-	desc = "PLACEHOLDER"
+	desc = "The old reliable workhorse of the TGMC. Equipped with an MG-60 with bipod, medium armor and some basic construction supplies. Good for holding ground and providing firesupport, and the cost of some mobility and armor."
 
 	belt = /obj/item/storage/belt/sparepouch
 	ears = /obj/item/radio/headset/mainship/marine
@@ -388,7 +388,7 @@
 //MG27 machinegunner
 /datum/outfit/quick/tgmc/marine/medium_machinegunner
 	name = "MG27 machinegunner"
-	desc = "PLACEHOLDER"
+	desc = "For when you need the biggest gun you can carry. Equipped with an MG-27 and miniscope and a MR-25 SMG as a side arm, as well as medium armor and a small amount of construction supplies. Allows for devestating, albeit static firepower."
 
 	belt = /obj/item/storage/holster/m25
 	ears = /obj/item/radio/headset/mainship/marine
@@ -437,7 +437,7 @@
 //shotgun unga
 /datum/outfit/quick/tgmc/marine/standard_shotgun
 	name = "SH35 scout"
-	desc = "PLACEHOLDER"
+	desc = "For getting too close for comfort. Equipped with a SH-35 with buckshot and flechette rounds, a MP-19 sidearm, a good amount of grenades and light armor with a cutting edge 'arrowhead' shield module. Provides for excellent mobility and devestating close range firepower, but will falter against sustained firepower."
 
 	belt = /obj/item/storage/belt/shotgun
 	ears = /obj/item/radio/headset/mainship/marine
@@ -504,7 +504,7 @@
 //Laser carbine scout
 /datum/outfit/quick/tgmc/marine/standard_lasercarbine
 	name = "Laser carbine scout"
-	desc = "PLACEHOLDER"
+	desc = "Highly mobile light infantry. Equipped with a laser carbine with UGL and a laser pistol sidearm, plenty of grenades and light armor with a cutting edge 'arrowhead' shield module. Excellent mobility, but not suited for sustained combat."
 
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -567,7 +567,7 @@
 //Rocket man
 /datum/outfit/quick/tgmc/engineer/rrengineer
 	name = "Rocket man"
-	desc = "PLACEHOLDER"
+	desc = "Bringing the big guns. Equipped with a AR-18 and RL-160 along with the standard engineer kit. Excellent against groups of enemy infantry or light armor, but only has limited ammunition."
 
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -612,7 +612,7 @@
 //sentry nerd
 /datum/outfit/quick/tgmc/engineer/sentry
 	name = "Sentry technician"
-	desc = "PLACEHOLDER"
+	desc = "Firing more guns than you have hands. Equipped with a AR-12 with miniflamer, and two minisentries along with the standard engineer kit. Allows the user to quickly setup strong points and lock areas down, with some sensible placement."
 
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -669,7 +669,7 @@
 //Demo man
 /datum/outfit/quick/tgmc/engineer/demolition
 	name = "Demolition specialist"
-	desc = "PLACEHOLDER"
+	desc = "Boom boom, shake the room. Equipped with a SH-35 and UGL and an impressive array of mines, detpacks and grenades, along with the standard engineer kit. Excellent for blasting through any obstacle, and mining areas to restrict enemy movement."
 
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -736,7 +736,7 @@
 //AR12 Standard medic - WIP
 /datum/outfit/quick/tgmc/corpsman/standard_medic
 	name = "AR12 standard corpsman"
-	desc = "PLACEHOLDER"
+	desc = "Keeping everone else in the fight. Armed with an AR-12 and an impressive array of tools for healing your team. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
 
 	belt = /obj/item/storage/belt/lifesaver/quick
 	ears = /obj/item/radio/headset/mainship/marine
@@ -795,7 +795,7 @@
 //Standard SG29
 /datum/outfit/quick/tgmc/smartgunner/standard_sg
 	name = "SG29 smart machinegunner"
-	desc = "PLACEHOLDER"
+	desc = "A gun smarter than the average bear, or marine. Equipped with an SG-29 and medium armor, responsible for providing mobile, accurate firesupport thanks to your IFF ammunition."
 
 	belt = /obj/item/belt_harness/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -845,7 +845,7 @@
 //Minigun SG
 /datum/outfit/quick/tgmc/smartgunner/minigun_sg
 	name = "SG85 smart machinegunner"
-	desc = "PLACEHOLDER"
+	desc = "More bullets than sense. Equipped with an SG-85 smart minigun, a MP-19 sidearm, medium armor and a whole lot of bullets. For when you want to unleash a firehose of firepower. Try not to run out of ammo."
 
 	belt = /obj/item/storage/holster/t19
 	ears = /obj/item/radio/headset/mainship/marine
@@ -897,7 +897,7 @@
 //Standard AR12 squad leader
 /datum/outfit/quick/tgmc/leader/standard_assaultrifle
 	name = "AR12 patrol leader"
-	desc = "PLACEHOLDER"
+	desc = "Gives the orders. Equipped with an AR-12 with UGL, plenty of grenades, some support kit such as deployable cameras, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents."
 
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -969,12 +969,12 @@
 //placeholder in case any base configurations are needed for marine outfits
 /datum/outfit/quick/som
 	name = "SOM base"
-	desc = "hello world"
+	desc = "This is the base typepath for all SOM quick vendor outfits. You shouldn't see this."
 
 //SOM Squad marine
 /datum/outfit/quick/som/marine
 	name = "SOM Squad Marine"
-	jobtype = "SOM Squad Standard"
+	jobtype = "SOM Standard"
 
 //AK47
 /datum/outfit/quick/som/marine/mpi
@@ -1153,7 +1153,7 @@
 //SOM Squad Veteran
 /datum/outfit/quick/som/veteran
 	name = "SOM Squad Veteran"
-	jobtype = "SOM Squad Veteran"
+	jobtype = "SOM Veteran"
 
 //charger
 /datum/outfit/quick/som/veteran/charger
@@ -1215,7 +1215,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 
 //Culverin
-/datum/outfit/quick/som/veteran/charger
+/datum/outfit/quick/som/veteran/culverin
 	name = "Culverin heavy firesupport"
 
 	id = /obj/item/card/id/dogtag/som
@@ -1233,7 +1233,7 @@
 	l_store = /obj/item/storage/pouch/grenade
 	back = /obj/item/cell/lasgun/volkite/powerpack
 
-/datum/outfit/quick/som/veteran/charger/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/quick/som/veteran/culverin/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_ACCESSORY)

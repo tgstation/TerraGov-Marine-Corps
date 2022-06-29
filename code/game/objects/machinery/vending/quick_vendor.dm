@@ -16,6 +16,11 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/tgmc/smartgunner/standard_sg,
 		/datum/outfit/quick/tgmc/smartgunner/minigun_sg,
 		/datum/outfit/quick/tgmc/leader/standard_assaultrifle,
+		/datum/outfit/quick/som/marine/mpi,
+		/datum/outfit/quick/som/marine/charger,
+		/datum/outfit/quick/som/marine/caliver,
+		/datum/outfit/quick/som/veteran/charger,
+		/datum/outfit/quick/som/veteran/culverin,
 	)
 
 	for(var/X in loadout_list)
