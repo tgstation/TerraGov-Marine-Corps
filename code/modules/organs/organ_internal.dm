@@ -1,4 +1,3 @@
-#define PROCESS_ACCURACY 10
 
 /****************************************************
 				INTERNAL ORGANS
@@ -150,7 +149,6 @@
 	. = ..()
 	if(!.)
 		return
-	// For example, bruised heart will leave you with 25 stamina buffer
 	owner.max_stamina_buffer += (old_organ_status - organ_status) * 25
 	owner.maxHealth += (old_organ_status - organ_status) * 20
 
@@ -172,14 +170,17 @@
 		owner.emote("me", 1, "gasps for air!")
 
 /datum/internal_organ/lungs/set_organ_status()
-	var/old_organ_status = organ_status
 	. = ..()
 	if(!.)
 		return
 	// For example, bruised lungs will reduce stamina regen by 40%, broken by 80%
-	owner.stamina_regen_multiplier += (old_organ_status - organ_status) * 0.40
+	owner.add_stamina_regen_modifier(name, organ_status * -0.40)
 	// Slowdown added when the heart is damaged
 	owner.add_movespeed_modifier(id = name, override = TRUE, multiplicative_slowdown = organ_status)
+
+/datum/internal_organ/lungs/take_damage(amount, silent= FALSE)
+	owner.adjust_Losebreath(amount) //Hits of 1 damage or less won't do anything due to how losebreath works, but any stronger and we'll get the wind knocked out of us for a bit. Mostly just flavor.
+	return ..()
 
 /datum/internal_organ/lungs/prosthetic
 	robotic = ORGAN_ROBOT
@@ -191,58 +192,47 @@
 	parent_limb = "chest"
 	removed_type = /obj/item/organ/liver
 	robotic_type = /obj/item/organ/liver/prosthetic
-	var/alcohol_tolerance = 0.005 //lower value, higher resistance.
 	organ_id = ORGAN_LIVER
+	///lower value, higher resistance.
+	var/alcohol_tolerance = 0.005
+	///How fast we clean out toxins/toxloss. Adjusts based on organ damage.
+	var/filter_rate = 3
 
 /datum/internal_organ/liver/process()
 	..()
 
-	if(owner.life_tick % PROCESS_ACCURACY == 0)
+	//High toxins levels are dangerous if you aren't actively treating them. 100 seconds to hit bruised from this alone
+	if(owner.getToxLoss() >= (80 - 20 * organ_status))
+		//Healthy liver suffers on its own
+		if (organ_status != ORGAN_BROKEN)
+			take_damage(0.2, TRUE)
+		//Damaged one shares the fun
+		else
+			var/datum/internal_organ/O = pick(owner.internal_organs)
+			O?.take_damage(0.2, TRUE)
 
-		//High toxins levels are dangerous
-		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent(/datum/reagent/medicine/dylovene))
-			//Healthy liver suffers on its own
-			if (damage < min_broken_damage)
-				take_damage(0.2 * PROCESS_ACCURACY, TRUE)
-			//Damaged one shares the fun
-			else
-				var/datum/internal_organ/O = pick(owner.internal_organs)
-				if(O)
-					O.take_damage(0.2  * PROCESS_ACCURACY, TRUE)
+	// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
+	if(!owner.drunkenness && owner.getToxLoss() <= 15 && organ_status == ORGAN_HEALTHY)
+		heal_organ_damage(0.04)
 
-		// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
-		if(!owner.drunkenness && owner.getToxLoss() <= 15 && min_bruised_damage > damage > 0)
-			if(!owner.reagents.has_reagent(/datum/reagent/medicine/dylovene)) // Detox effect
-				heal_organ_damage(0.2 * PROCESS_ACCURACY)
-			else
-				heal_organ_damage(0.04 * PROCESS_ACCURACY)
+	// Do some reagent filtering/processing.
+	for(var/datum/reagent/potential_toxin AS in owner.reagents.reagent_list)
+		//Liver helps clear out any toxins but with drawbacks if damaged
+		if(istype(potential_toxin, /datum/reagent/consumable/ethanol) || istype(potential_toxin, /datum/reagent/toxin))
+			if(organ_status != ORGAN_HEALTHY)
+				owner.adjustToxLoss(0.3 * organ_status)
+			owner.reagents.remove_reagent(potential_toxin.type, potential_toxin.custom_metabolism * filter_rate * 0.1)
 
-		// Get the effectiveness of the liver.
-		var/filter_effect = 3
-		if(organ_status == ORGAN_BRUISED)
-			filter_effect -= 1
-		if(organ_status == ORGAN_BROKEN)
-			filter_effect -= 2
+	//Heal toxin damage slowly if not damaged. If broken, increase it instead.
+	owner.adjustToxLoss((2 - filter_rate) * 0.1)
+	if(prob(organ_status)) //Just under once every three minutes while bruised, twice as often while broken.
+		owner.vomit() //No stomach, so the liver can cause vomiting instead. Stagger and slowdown plus feedback that something's wrong.
 
-		// Do some reagent filtering/processing.
-		for(var/datum/reagent/R in owner.reagents.reagent_list)
-			// Damaged liver means some chemicals are very dangerous
-			// The liver is also responsible for clearing out alcohol and toxins.
-			// Ethanol and all drinks and all poisons are bad.K
-			if(istype(R, /datum/reagent/consumable/ethanol) || istype(R, /datum/reagent/toxin))
-				if(filter_effect < 3)
-					var/toxloss = istype(R, /datum/reagent/toxin) ? 0.3 : 0.1
-					owner.adjustToxLoss(toxloss * PROCESS_ACCURACY)
-				owner.reagents.remove_reagent(R.type, R.custom_metabolism*filter_effect)
-
-		//Heal toxin damage slowly if not damaged
-		if(damage < 5 && prob(25))
-			owner.adjustToxLoss(-0.5)
-
-		if(organ_status == ORGAN_BRUISED && prob(25))
-			owner.adjustToxLoss(0.1 * (damage/2))
-		else if(organ_status == ORGAN_BROKEN && prob(50))
-			owner.adjustToxLoss(0.3 * (damage/2))
+/datum/internal_organ/liver/set_organ_status()
+	. = ..()
+	if(!.)
+		return
+	filter_rate = initial(filter_rate) - organ_status
 
 /datum/internal_organ/liver/prosthetic
 	robotic = ORGAN_ROBOT
@@ -255,24 +245,56 @@
 	removed_type = /obj/item/organ/kidneys
 	robotic_type = /obj/item/organ/kidneys/prosthetic
 	organ_id = ORGAN_KIDNEYS
+	///Tracks the number of reagent/medicine datums we currently have
+	var/current_medicine_count = 0
+	///How many drugs we can take before they overwhelm us. Decreases with damage
+	var/current_medicine_cap = 5
+
+/datum/internal_organ/kidneys/New(mob/living/carbon/carbon_mob)
+	. = ..()
+	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, .proc/owner_added_reagent)
+	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETING, .proc/owner_removed_reagent)
+
+/datum/internal_organ/kidneys/clean_owner()
+	UnregisterSignal(owner.reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETING))
+	return ..()
+
+///Signaled proc. Check if the added reagent was under reagent/medicine. If so, increment medicine counter and potentially notify owner.
+/datum/internal_organ/kidneys/proc/owner_added_reagent(datum/source, reagent_type, amount)
+	SIGNAL_HANDLER
+	if(!ispath(reagent_type, /datum/reagent/medicine))
+		return
+	current_medicine_count++
+	if(current_medicine_count == current_medicine_cap + 1)
+		to_chat(owner, span_warning("All the different drugs in you are starting to make you feel off..."))
+
+///Signaled proc. Check if the removed reagent was under reagent/medicine. If so, decrement medicine counter and potentially notify owner.
+/datum/internal_organ/kidneys/proc/owner_removed_reagent(datum/source, reagent_type)
+	SIGNAL_HANDLER
+	if(!ispath(reagent_type, /datum/reagent/medicine))
+		return
+	current_medicine_count--
+	if(current_medicine_count == current_medicine_cap)
+		to_chat(owner, span_notice("You don't feel as overwhelmed by all the drugs any more."))
+
+/datum/internal_organ/kidneys/set_organ_status()
+	. = ..()
+	if(!.)
+		return
+	current_medicine_cap = initial(current_medicine_cap) - 2 * organ_status
 
 /datum/internal_organ/kidneys/process()
 	..()
 
-	// Coffee is really bad for you with busted kidneys.
-	// This should probably be expanded in some way, but fucked if I know
-	// what else kidneys can process in our reagent list.
-	var/datum/reagent/coffee = locate(/datum/reagent/consumable/drink/coffee) in owner.reagents.reagent_list
-	if(coffee)
-		if(organ_status == ORGAN_BRUISED)
-			owner.adjustToxLoss(0.1 * PROCESS_ACCURACY)
-		else if(organ_status == ORGAN_BROKEN)
-			owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
+	if(owner.reagents.has_reagent(/datum/reagent/water))
+		return //Hydration is good for your kidneys. Shame it purges medicines.
 
-	if(organ_status == ORGAN_BRUISED && prob(25))
-		owner.adjustToxLoss(0.1 * (damage/3))
-	else if(organ_status == ORGAN_BROKEN && prob(50))
-		owner.adjustToxLoss(0.2 * (damage/3))
+	var/overflow = current_medicine_count - current_medicine_cap
+	if(overflow < 1)
+		return
+	owner.set_drugginess(3)
+	if(prob(overflow * (organ_status + 1) * 10))
+		owner.Confused(2 SECONDS * (organ_status + 1))
 
 /datum/internal_organ/kidneys/prosthetic
 	robotic = ORGAN_ROBOT
@@ -286,6 +308,17 @@
 	robotic_type = /obj/item/organ/brain/prosthetic
 	vital = TRUE
 	organ_id = ORGAN_BRAIN
+
+/datum/internal_organ/brain/set_organ_status()
+	var/old_organ_status = organ_status
+	. = ..()
+	if(!.)
+		return
+	owner.skills = owner.skills.modifyAllRatings(old_organ_status - organ_status)
+	if(organ_status >= ORGAN_BRUISED)
+		ADD_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)
+	else
+		REMOVE_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)
 
 /datum/internal_organ/brain/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT

@@ -71,6 +71,7 @@
 	anchored = TRUE
 	opacity = FALSE
 	density = TRUE
+	icon_state = "blocker"
 
 
 /obj/effect/forcefield/fog
@@ -85,6 +86,8 @@
 	. = ..()
 	dir  = pick(CARDINAL_DIRS)
 	GLOB.fog_blockers += src
+	if(icon_state == "blocker")
+		icon_state = ""
 
 
 /obj/effect/forcefield/fog/Destroy()

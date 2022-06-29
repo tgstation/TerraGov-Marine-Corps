@@ -177,12 +177,12 @@
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 6,
 		),
 		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/bicaridine = 6,
-			/obj/item/storage/pill_bottle/kelotane = 6,
-			/obj/item/storage/pill_bottle/tramadol = 6,
-			/obj/item/storage/pill_bottle/tricordrazine = 6,
-			/obj/item/storage/pill_bottle/dylovene = 6,
-			/obj/item/storage/pill_bottle/inaprovaline = 6,
+			/obj/item/storage/pill_bottle/bicaridine = 15,
+			/obj/item/storage/pill_bottle/kelotane = 15,
+			/obj/item/storage/pill_bottle/tramadol = 15,
+			/obj/item/storage/pill_bottle/tricordrazine = 15,
+			/obj/item/storage/pill_bottle/dylovene = 15,
+			/obj/item/storage/pill_bottle/inaprovaline = 15,
 			/obj/item/storage/pill_bottle/dexalin = 6,
 			/obj/item/storage/pill_bottle/spaceacillin = 6,
 			/obj/item/storage/pill_bottle/alkysine = 6,
@@ -318,7 +318,6 @@
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 	)
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)

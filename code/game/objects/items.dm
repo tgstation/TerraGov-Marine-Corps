@@ -1,3 +1,8 @@
+GLOBAL_DATUM_INIT(welding_sparks, /mutable_appearance, mutable_appearance('icons/effects/welding_effect.dmi', "welding_sparks", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
+GLOBAL_DATUM_INIT(welding_sparks_multitiledoor_vertical, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_vertical", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
+GLOBAL_DATUM_INIT(welding_sparks_multitiledoor_horizontal, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_horizontal", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
+GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearance('icons/effects/welding_effect_multitile_door.dmi', "welding_sparks_marinedoor", WELDING_TOOL_EFFECT_LAYER, ABOVE_LIGHTING_PLANE))
+
 /obj/item
 	name = "item"
 	icon = 'icons/obj/items/items.dmi'
@@ -93,14 +98,28 @@
 	var/list/item_state_slots
 	///>LazyList< Used to specify the icon file to be used when the item is worn in a certain slot. icon_override or sprite_sheets are set they will take precendence over this, assuming they apply to the slot in question.
 	var/list/item_icons
-	///icon equivalent but for on-mob icon.
-	var/icon/default_worn_icon
 	///specific layer for on-mob icon.
 	var/worn_layer
 	///tells if the item shall use item_state for non-inhands, needed due to some items using item_state only for inhands and not worn.
 	var/item_state_worn = FALSE
-
-	var/icon_override = null  //Used to override hardcoded ON-MOB clothing dmis in human clothing proc (i.e. not the icon_state sprites).
+	///overrides the icon file which the item will be used to render on mob, if its in hands it will add _l or _r to the state depending if its on left or right hand.
+	var/icon_override = null
+	///Dimensions of the icon file used when this item is worn, eg: hats.dmi (32x32 sprite, 64x64 sprite, etc.). Allows inhands/worn sprites to be of any size, but still centered on a mob properly
+	var/worn_x_dimension = 32
+	///Dimensions of the icon file used when this item is worn, eg: hats.dmi (32x32 sprite, 64x64 sprite, etc.). Allows inhands/worn sprites to be of any size, but still centered on a mob properly
+	var/worn_y_dimension = 32
+	///Same as for [worn_x_dimension][/obj/item/var/worn_x_dimension] but for inhands.
+	var/inhand_x_dimension = 32
+	///Same as for [worn_y_dimension][/obj/item/var/worn_y_dimension] but for inhands.
+	var/inhand_y_dimension = 32
+	/// Worn overlay will be shifted by this along x axis
+	var/worn_x_offset = 0
+	/// Worn overlay will be shifted by this along y axis
+	var/worn_y_offset = 0
+	///Worn nhand overlay will be shifted by this along x axis
+	var/inhand_x_offset = 0
+	///Worn inhand overlay will be shifted by this along y axis
+	var/inhand_y_offset = 0
 
 	var/flags_item_map_variant = NONE
 
@@ -1161,30 +1180,34 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Generates worn icon for sprites on-mob.
 /obj/item/proc/make_worn_icon(species_type, slot_name, inhands, default_icon, default_layer)
 	//Get the required information about the base icon
-	var/icon/icon2use = get_worn_icon_file(species_type = species_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
+	var/iconfile2use = get_worn_icon_file(species_type = species_type, slot_name = slot_name, default_icon = default_icon, inhands = inhands)
 	var/state2use = get_worn_icon_state(slot_name = slot_name, inhands = inhands)
 	var/layer2use = !inhands && worn_layer ? -worn_layer : -default_layer
 
 	//Snowflakey inhand icons in a specific slot
-	if(inhands && icon2use == icon_override)
+	if(inhands && iconfile2use == icon_override)
 		switch(slot_name)
 			if(slot_r_hand_str)
 				state2use += "_r"
 			if(slot_l_hand_str)
 				state2use += "_l"
 
-	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
+	//testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[iconfile2use], Worn State:[state2use], Worn Layer:[layer2use]")
 
-	var/image/standing = image(icon2use, icon_state = state2use)
-	standing.alpha = alpha
-	standing.color = color
-	standing.layer = layer2use
+	var/mutable_appearance/standing = mutable_appearance(iconfile2use, state2use, layer2use)
 
 	//Apply any special features
 	if(!inhands)
 		apply_custom(standing)		//image overrideable proc to customize the onmob icon.
 		apply_blood(standing)			//Some items show blood when bloodied.
 		apply_accessories(standing)		//Some items sport accessories like webbings or ties.
+
+	standing = center_image(standing, inhands ? inhand_x_dimension : worn_x_dimension, inhands ? inhand_y_dimension : worn_y_dimension)
+
+	standing.pixel_x += inhands ? inhand_x_offset : worn_x_offset
+	standing.pixel_y += inhands ? inhand_y_offset : worn_y_offset
+	standing.alpha = alpha
+	standing.color = color
 
 	//Return our icon
 	return standing
@@ -1205,10 +1228,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	. = LAZYACCESS(item_icons, slot_name)
 	if(.)
 		return
-
-	//4: item's default icon
-	if(default_worn_icon)
-		return default_worn_icon
 
 	//5: provided default_icon
 	if(default_icon)
@@ -1235,15 +1254,15 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return icon_state
 
 ///applies any custom thing to the sprite, caled by make_worn_icon().
-/obj/item/proc/apply_custom(image/standing)
+/obj/item/proc/apply_custom(mutable_appearance/standing)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, standing)
 	return standing
 
 ///applies blood on the item, called by make_worn_icon().
-/obj/item/proc/apply_blood(image/standing)
+/obj/item/proc/apply_blood(mutable_appearance/standing)
 	return standing
 
 ///applies any accessory the item may have, called by make_worn_icon().
-/obj/item/proc/apply_accessories(image/standing)
+/obj/item/proc/apply_accessories(mutable_appearance/standing)
 	return standing

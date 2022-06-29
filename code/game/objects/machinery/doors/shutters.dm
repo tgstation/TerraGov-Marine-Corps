@@ -99,6 +99,17 @@
 	icon_state = "shutter1"
 	openspeed = 4 //shorter open animation.
 
+/obj/machinery/door/poddoor/shutters/mainship/thunderdome/one
+	name = "Thunderdome Blast Door"
+	id = "thunderdome1"
+	resistance_flags = RESIST_ALL
+
+
+/obj/machinery/door/poddoor/shutters/mainship/thunderdome/two
+	name = "Thunderdome Blast Door"
+	id = "thunderdome2"
+	resistance_flags = RESIST_ALL
+
 //transit shutters used by marine dropships
 /obj/machinery/door/poddoor/shutters/transit
 	name = "Transit shutters"
