@@ -1,0 +1,6 @@
+author: "goose4429"
+delete-after: True
+changes: 
+  - rscadd: "Added TX-13, the smartpistol"
+  - balance: "Captain has cool Smartpistol belt by default and a mateba in his closet."
+  - balance: "FC has cool Mateba belt by default and a revolver in his closet."

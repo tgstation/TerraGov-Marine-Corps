@@ -5,11 +5,6 @@
 
 	if(notransform || stat == DEAD) //If we're dead or set to notransform don't bother processing life
 		return
-	if(!HAS_TRAIT(src, TRAIT_STASIS))
-		if(health < get_crit_threshold() && !reagents.has_reagent(/datum/reagent/medicine/inaprovaline))
-			adjustOxyLoss(CARBON_CRIT_MAX_OXYLOSS, TRUE)
-		else
-			adjustOxyLoss(CARBON_RECOVERY_OXYLOSS, TRUE)
 
 	. = ..()
 

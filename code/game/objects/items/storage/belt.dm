@@ -835,13 +835,13 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
 
-/obj/item/storage/belt/gun/mateba/captain
+/obj/item/storage/belt/gun/mateba/officer
 	icon_state = "c_mateba_holster"
 	item_state = "c_mateba_holster"
 
-/obj/item/storage/belt/gun/mateba/captain/full/Initialize()
+/obj/item/storage/belt/gun/mateba/officer/full/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/captain(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/custom(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
@@ -915,4 +915,35 @@
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
 	new /obj/item/ammo_magazine/shotgun/buckshot(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
+
+
+/obj/item/storage/belt/gun/pistol/m4a3/officer/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
+	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/hp(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
+	new /obj/item/ammo_magazine/pistol/ap(src)
+	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
+
+/obj/item/storage/belt/gun/pistol/smart_pistol
+	name = "\improper SP-13 holster rig"
+	desc = "A holster belt, which holds SP-13 smartpistol and magazines for it."
+	can_hold = list(
+		/obj/item/weapon/gun/pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+	)
+
+/obj/item/storage/belt/gun/pistol/smart_pistol/full/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
+	new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol(src)
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)

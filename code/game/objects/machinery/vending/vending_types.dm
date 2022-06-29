@@ -163,7 +163,6 @@
 			/obj/item/reagent_containers/hypospray/advanced/tramadol = 5,
 			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 5,
 			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
-
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/bicaridine = 6,
@@ -178,12 +177,12 @@
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = 6,
 		),
 		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/bicaridine = 6,
-			/obj/item/storage/pill_bottle/kelotane = 6,
-			/obj/item/storage/pill_bottle/tramadol = 6,
-			/obj/item/storage/pill_bottle/tricordrazine = 6,
-			/obj/item/storage/pill_bottle/dylovene = 6,
-			/obj/item/storage/pill_bottle/inaprovaline = 6,
+			/obj/item/storage/pill_bottle/bicaridine = 15,
+			/obj/item/storage/pill_bottle/kelotane = 15,
+			/obj/item/storage/pill_bottle/tramadol = 15,
+			/obj/item/storage/pill_bottle/tricordrazine = 15,
+			/obj/item/storage/pill_bottle/dylovene = 15,
+			/obj/item/storage/pill_bottle/inaprovaline = 15,
 			/obj/item/storage/pill_bottle/dexalin = 6,
 			/obj/item/storage/pill_bottle/spaceacillin = 6,
 			/obj/item/storage/pill_bottle/alkysine = 6,
@@ -200,7 +199,7 @@
 			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
 			/obj/item/clothing/glasses/hud/health = 6,
 			/obj/item/roller = 6,
-		)
+		),
 	)
 	idle_power_usage = 211
 
@@ -221,25 +220,24 @@
 	resistance_flags = INDESTRUCTIBLE
 	products = list(
 		"Hypospray" = list (
-			/obj/item/defibrillator = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/hypervene = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
-			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = -1,
-			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
+			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 10,
+			/obj/item/reagent_containers/hypospray/advanced = 5,
+			/obj/item/reagent_containers/hypospray/advanced/bicaridine = 5,
+			/obj/item/reagent_containers/hypospray/advanced/kelotane = 5,
+			/obj/item/reagent_containers/hypospray/advanced/tramadol = 5,
+			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 5,
+			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
 		),
 		"Reagent Bottle" = list(
-			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
 			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
+			/obj/item/reagent_containers/glass/bottle/kelotane = -1,
+			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
+			/obj/item/reagent_containers/glass/bottle/dylovene = -1,
 			/obj/item/reagent_containers/glass/bottle/inaprovaline = -1,
 			/obj/item/reagent_containers/glass/bottle/sleeptoxin = -1,
 			/obj/item/reagent_containers/glass/bottle/spaceacillin = -1,
-			/obj/item/reagent_containers/glass/bottle/kelotane = -1,
 			/obj/item/reagent_containers/glass/bottle/dexalin = -1,
-			/obj/item/reagent_containers/glass/bottle/tramadol = -1,
 			/obj/item/reagent_containers/glass/bottle/oxycodone = -1,
 			/obj/item/reagent_containers/glass/bottle/polyhexanide = -1,
 			/obj/item/reagent_containers/glass/bottle/adminordrazine = -1,
@@ -248,6 +246,11 @@
 			/obj/item/reagent_containers/glass/bottle/doctor_delight = -1,
 		),
 		"Pill Bottle" = list(
+			/obj/item/storage/pill_bottle/bicaridine = -1,
+			/obj/item/storage/pill_bottle/kelotane = -1,
+			/obj/item/storage/pill_bottle/tramadol = -1,
+			/obj/item/storage/pill_bottle/tricordrazine = -1,
+			/obj/item/storage/pill_bottle/dylovene = -1,
 			/obj/item/storage/pill_bottle/inaprovaline = -1,
 			/obj/item/storage/pill_bottle/dexalin = -1,
 			/obj/item/storage/pill_bottle/spaceacillin = -1,
@@ -265,13 +268,20 @@
 			/obj/item/stack/medical/splint = -1,
 		),
 		"Misc" = list(
-			/obj/item/healthanalyzer = -1,
-			/obj/item/clothing/glasses/hud/health = -1,
-			/obj/item/storage/belt/lifesaver = -1,
 			/obj/item/reagent_containers/syringe = -1,
 			/obj/item/tool/research/xeno_analyzer = -1,
 			/obj/item/tool/research/excavation_tool = -1,
+			/obj/item/storage/pouch/surgery = -1,
+			/obj/item/armor_module/storage/uniform/surgery_webbing = -1,
+			/obj/item/clothing/glasses/hud/health = -1,
+			/obj/item/roller = -1,
+		),
+		"Valhalla" = list(
 			/obj/item/reagent_containers/glass/beaker/bluespace = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/rezadone = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/virilyth = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/roulettium = -1,
+			/obj/item/reagent_containers/glass/bottle/toxin = 1,
 		),
 	)
 
@@ -308,7 +318,6 @@
 		/obj/item/healthanalyzer = 1,
 		/obj/item/stack/medical/splint = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 	)
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)

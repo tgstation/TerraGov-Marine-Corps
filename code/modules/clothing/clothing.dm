@@ -59,16 +59,16 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
-/obj/item/clothing/apply_blood(image/standing)
+/obj/item/clothing/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
-		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
+		var/image/bloodsies	= mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
 		bloodsies.color	= blood_color
 		standing.add_overlay(bloodsies)
 
-/obj/item/clothing/suit/apply_blood(image/standing)
+/obj/item/clothing/suit/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
 		blood_sprite_state = "[blood_overlay_type]blood"
-		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
+		var/image/bloodsies	= mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
 		bloodsies.color = blood_color
 		standing.add_overlay(bloodsies)
 
@@ -92,6 +92,11 @@
 	item_state = "earmuffs"
 	flags_equip_slot = ITEM_SLOT_EARS
 
+/obj/item/clothing/ears/earmuffs/green
+	icon_state = "earmuffs2"
+
+/obj/item/clothing/ears/earmuffs/gold
+	icon_state = "earmuffs3"
 
 ///////////////////////////////////////////////////////////////////////
 //Suit

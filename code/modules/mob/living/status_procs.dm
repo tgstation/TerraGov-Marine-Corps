@@ -399,16 +399,19 @@
 		return U
 
 //////////////////CONFUSED
-/mob/living/proc/IsConfused() //If we're unconscious
+///Returns the current confuse status effect if any, else FALSE
+/mob/living/proc/IsConfused()
 	return has_status_effect(STATUS_EFFECT_CONFUSED)
 
-/mob/living/proc/AmountConfused() //How many deciseconds remain in our unconsciousness
+///Returns the remaining duration if a confuse effect exists, else 0
+/mob/living/proc/AmountConfused()
 	var/datum/status_effect/confused/C = IsConfused()
 	if(C)
 		return C.duration - world.time
 	return 0
 
-/mob/living/proc/Confused(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+///Set confused effect duration to the provided value if not less than current duration
+/mob/living/proc/Confused(amount, ignore_canstun = FALSE)
 	if(status_flags & GODMODE)
 		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
@@ -421,6 +424,7 @@
 			C = apply_status_effect(STATUS_EFFECT_CONFUSED, amount)
 		return C
 
+///Set confused effect duration to the provided value
 /mob/living/proc/SetConfused(amount, ignore_canstun = FALSE) //Sets remaining duration
 	if(status_flags & GODMODE)
 		return
@@ -437,6 +441,7 @@
 			C = apply_status_effect(STATUS_EFFECT_CONFUSED, amount)
 		return C
 
+///Increases confused effect duration by the provided value.
 /mob/living/proc/AdjustConfused(amount, ignore_canstun = FALSE) //Adds to remaining duration
 	if(status_flags & GODMODE)
 		return
@@ -486,13 +491,6 @@
 					to_chat(src, span_boldwarning("[priority_absorb_key["self_message"]]"))
 			priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
-
-
-/mob/living/proc/adjust_drugginess(amount)
-	return
-
-/mob/living/proc/set_drugginess(amount)
-	return
 
 /mob/living/proc/jitter(amount)
 	jitteriness = clamp(jitteriness + amount,0, 1000)
@@ -578,16 +576,16 @@
 	if(!isnull(deaf))
 		ear_deaf = max((disabilities & DEAF|| ear_damage >= 100) ? 1 : 0, deaf)
 
-
-/mob/living/adjust_drugginess(amount)
+///Modify mob's drugginess in either direction, minimum zero. Adds or removes druggy overlay as appropriate.
+/mob/living/proc/adjust_drugginess(amount)
 	druggy = max(druggy + amount, 0)
 	if(druggy)
 		overlay_fullscreen("high", /obj/screen/fullscreen/high)
 	else
 		clear_fullscreen("high")
 
-
-/mob/living/set_drugginess(amount)
+///Sets mob's drugginess to provided amount, minimum 0. Adds or removes druggy overlay as appropriate.
+/mob/living/proc/set_drugginess(amount)
 	druggy = max(amount, 0)
 	if(druggy)
 		overlay_fullscreen("high", /obj/screen/fullscreen/high)

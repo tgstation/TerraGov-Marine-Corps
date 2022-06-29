@@ -1,7 +1,7 @@
 
 
 /datum/surgery_step/necro
-	priority = 1
+	priority = 3
 	var/necro_step
 
 /datum/surgery_step/necro/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
