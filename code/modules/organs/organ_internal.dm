@@ -149,7 +149,6 @@
 	. = ..()
 	if(!.)
 		return
-	// For example, bruised heart will leave you with 25 stamina buffer
 	owner.max_stamina_buffer += (old_organ_status - organ_status) * 25
 	owner.maxHealth += (old_organ_status - organ_status) * 20
 
@@ -309,6 +308,17 @@
 	robotic_type = /obj/item/organ/brain/prosthetic
 	vital = TRUE
 	organ_id = ORGAN_BRAIN
+
+/datum/internal_organ/brain/set_organ_status()
+	var/old_organ_status = organ_status
+	. = ..()
+	if(!.)
+		return
+	owner.skills = owner.skills.modifyAllRatings(old_organ_status - organ_status)
+	if(organ_status >= ORGAN_BRUISED)
+		ADD_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)
+	else
+		REMOVE_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)
 
 /datum/internal_organ/brain/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT
