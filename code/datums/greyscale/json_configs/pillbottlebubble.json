@@ -2,14 +2,14 @@
 	"": [
 		{
 			"type": "icon_state",
-			"icon_state": "pill_canister",
+			"icon_state": "pill_bubble",
 			"blend_mode": "overlay",
 			"color_ids": [ 1 ]
 		},
 		[
 			{
 				"type": "icon_state",
-				"icon_state": "pill_canister_label",
+				"icon_state": "pill_bubble_label",
 				"blend_mode": "overlay",
 				"color_ids": [ 2 ]
 			}
