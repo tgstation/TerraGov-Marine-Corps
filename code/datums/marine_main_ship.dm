@@ -33,6 +33,9 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 
 	if(level <= SEC_LEVEL_BLUE)
 		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
+			var/area/A = get_area(light)
+			if(!A.power_light) //do not adjust unpowered bulbs
+				continue
 			light.lightalarm.stop(light)
 			light.light_color = "#ffffff"
 			light.brightness = 8
@@ -44,12 +47,17 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			light.update_light()
 	else
 		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
+			var/area/A = get_area(light) 
+			if(!A.power_light) //do not adjust unpowered bulbs
+				continue
 			if(level == SEC_LEVEL_DELTA) //start ominous self destruct sound when delta
 				light.lightalarm.start(light)
+			else 
+				light.lightalarm.stop(light) //stop the sound if we go back to red
 			light.light_color = "#da4635"
 			light.brightness = 3.0
 			light.light_range = 7.5
-			if(prob(75)) //randomize light range on most lights, patchy lights give a sense of danger
+			if(prob(75)) //randomize light range on most lights, patchy lighting gives a sense of danger
 				var/rangelevel = pick(5.5,6.0,6.5,7.0)
 				if(prob(15))
 					rangelevel -= pick(0.5,1.0,1.5,2.0)
