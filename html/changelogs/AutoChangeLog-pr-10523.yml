@@ -1,0 +1,5 @@
+author: "goose4429"
+delete-after: True
+changes: 
+  - bugfix: "Fixed defiler toxins sometimes not counting in synergies"
+  - refactor: "Refactored xeno toxins code"
