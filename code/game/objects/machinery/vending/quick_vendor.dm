@@ -82,7 +82,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	. = ..()
 	var/list/data = list()
 	var/list/loadouts_data_tgui = list()
-	for(var/loadout_data in GLOB.quick_loadouts) //new shiny list
+	for(var/loadout_data in GLOB.quick_loadouts)
 		var/list/next_loadout_data = list() //makes a list item with the below lines, for each loadout entry in the list
 		var/datum/outfit/quick/current_loadout = GLOB.quick_loadouts[loadout_data]
 		next_loadout_data["job"] = current_loadout.jobtype
@@ -90,8 +90,8 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		next_loadout_data["desc"] = current_loadout.desc
 		next_loadout_data["amount"] = current_loadout.quantity
 		next_loadout_data["outfit"] = current_loadout.type
-		loadouts_data_tgui += list(next_loadout_data) //adds that list to this list of lists
-	data["loadout_list"] = loadouts_data_tgui //makes data that list, then returns it.
+		loadouts_data_tgui += list(next_loadout_data)
+	data["loadout_list"] = loadouts_data_tgui
 	return data
 
 
@@ -105,14 +105,16 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 			if(!selected_loadout)
 				to_chat(ui.user, span_warning("Error when loading this loadout"))
 				CRASH("Fail to load loadouts")
-			//maybe could go somewhere else
+			if(selected_loadout.quantity == 0)
+				to_chat(usr, span_warning("This loadout has been depleted, you'll need to pick another."))
+				return
 			var/obj/item/card/id/I = usr.get_idcard() //ui.user better?
 			if(selected_loadout.jobtype != I.rank)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
 			if(I.marine_buy_flags & MARINE_CAN_BUY_LOADOUT)
 				I.marine_buy_flags &= ~MARINE_CAN_BUY_LOADOUT
-				//selected_loadout = new selected_loadout
+				selected_loadout.quantity --
 				selected_loadout.equip(ui.user) //actually equips the loadout
 			else
 				to_chat(usr, span_warning("You can't buy things from this category anymore.")) //make early return instead?
