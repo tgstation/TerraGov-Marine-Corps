@@ -634,11 +634,11 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 // Smart pistol, based on Calico M-950
 /obj/item/weapon/gun/pistol/smart_pistol
-	name = "\improper TX-13 smart pistol"
-	desc = "The TX-13 is a latest solution for personal officer defence produced by Terran Armories. A cutting-edge miniaturization technology allows mounting of smartgun IFF system on the pistol, albeit at high manufactoring cost. Unique design feature high-capacity mag on top of the barrel, with integrated sight. As with all smartgun systems, requires special training."
+	name = "\improper SP-13 smart pistol"
+	desc = "The SP-13 is a latest solution for personal officer defence produced by Terran Armories. A cutting-edge miniaturization technology allows mounting of smartgun IFF system on the pistol, albeit at high manufactoring cost. Unique design feature high-capacity mag on top of the barrel, with integrated sight. As with all smartgun systems, requires special training."
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "tx13"
-	item_state = "tx13"
+	icon_state = "sp13"
+	item_state = "sp13"
 	caliber = CALIBER_9X19 //codex
 	max_shells = 25 //codex
 	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound

@@ -931,8 +931,8 @@
 	INVOKE_ASYNC(src, .proc/handle_item_insertion, new_gun)
 
 /obj/item/storage/belt/gun/pistol/smart_pistol
-	name = "\improper TX-13 holster rig"
-	desc = "A holster belt, which holds TX-13 smartpistol and magazines for it."
+	name = "\improper SP-13 holster rig"
+	desc = "A holster belt, which holds SP-13 smartpistol and magazines for it."
 	can_hold = list(
 		/obj/item/weapon/gun/pistol/smart_pistol,
 		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,

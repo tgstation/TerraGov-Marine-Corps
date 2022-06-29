@@ -208,10 +208,10 @@
 	icon_state = "c70"
 	max_rounds = 300
 
-//TX-13 (Calico)
+//SP-13 (Calico)
 /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
-	name = "\improper TX-13 magazine (9mm)"
-	desc = "A TX-13 magazine."
+	name = "\improper SP-13 magazine (9mm)"
+	desc = "A SP-13 magazine."
 	caliber = CALIBER_9X19
 	icon_state = "tx13"
 	max_rounds = 25
