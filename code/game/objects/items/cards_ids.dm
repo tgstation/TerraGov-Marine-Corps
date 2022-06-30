@@ -253,10 +253,18 @@
 	var/dogtag_taken = FALSE
 
 // Vendor points for job override
-/obj/item/card/id/dogtag/corpsman
-	marine_points = MEDIC_TOTAL_BUY_POINTS
+/obj/item/card/id/dogtag/smartgun
+	marine_points[CAT_SGSUP] = DEFAULT_TOTAL_BUY_POINTS
+
 /obj/item/card/id/dogtag/engineer
-	marine_points = ENGINEER_TOTAL_BUY_POINTS
+	marine_points[CAT_ENGSUP] = ENGINEER_TOTAL_BUY_POINTS
+
+/obj/item/card/id/dogtag/leader
+	marine_points[CAT_LEDSUP] = DEFAULT_TOTAL_BUY_POINTS
+
+/obj/item/card/id/dogtag/corpsman
+	marine_points[CAT_MEDSUP] = MEDIC_TOTAL_BUY_POINTS
+	marine_points[CAT_INJ] = MEDIC_INJECTOR_TOTAL_BUY_POINTS
 
 /obj/item/card/id/dogtag/som
 	name = "\improper Sons of Mars dogtag"
