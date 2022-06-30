@@ -77,6 +77,73 @@
 		/obj/item/attachable/scope/unremovable/tl102,
 	)
 
+
+
+//cope test
+/obj/item/weapon/gun/sentry/big_sentry/cope
+	name = "\improper C.O.P.E turret"
+	desc = "Cope, nerd"
+	max_integrity = 200
+	integrity_failure = 50
+	deploy_time = 1 SECONDS
+	undeploy_time = 1 SECONDS
+	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
+	//flags_item = IS_DEPLOYABLE
+	///How long to deploy after thrown
+	var/det_time = 4 SECONDS
+
+/obj/item/weapon/gun/sentry/big_sentry/cope/attack_self(mob/user)
+	if(active)
+		return
+
+	if(!user.dextrous)
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
+		return
+
+	activate(user)
+
+	user.visible_message(span_warning("[user] primes \a [name]!"), \
+	span_warning("You prime \a [name]!"))
+
+	if(iscarbon(user))
+		var/mob/living/carbon/C = user
+		C.throw_mode_on()
+
+/obj/item/weapon/gun/sentry/big_sentry/cope/activate(mob/user)
+	if(active)
+		return
+
+	if(user)
+		log_explosion("[key_name(user)] primed [src] at [AREACOORD(user.loc)].")
+		log_combat(user, src, "primed")
+
+	icon_state = initial(icon_state) + "_active"
+	active = TRUE
+	//playsound(loc, arm_sound, 25, 1, 6) //add arm sound
+	addtimer(CALLBACK(src, .proc/prime), det_time)
+
+/obj/item/weapon/gun/sentry/big_sentry/cope/proc/reset()
+	active = FALSE
+	icon_state = initial(icon_state)
+
+/obj/item/weapon/gun/sentry/big_sentry/cope/proc/prime()
+	var/obj/deployed_machine
+
+	deployed_machine = new deployable_item(loc, src, usr)//Creates new structure or machine at 'deploy' location and passes on 'item_to_deploy'
+	deployed_machine.setDir(SOUTH)
+
+	deployed_machine.max_integrity = max_integrity //Syncs new machine or structure integrity with that of the item.
+	deployed_machine.obj_integrity = obj_integrity
+
+	deployed_machine.update_icon_state()
+
+	forceMove(deployed_machine) //Moves the Item into the machine or structure
+
+	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
+
+	//RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
+
+//////
 /obj/item/weapon/gun/sentry/big_sentry/premade
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
