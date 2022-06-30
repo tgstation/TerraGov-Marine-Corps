@@ -81,7 +81,13 @@
 	var/blood_type = "\[UNSET\]"
 
 	///How many points you can use to buy items
-	var/marine_points = list[]
+	var/marine_points = list(
+		CAT_MEDSUP = 0,
+		CAT_MEDINJ = 0,
+		CAT_ENGSUP = 0,
+		CAT_LEDSUP = 0,
+		CAT_
+	)
 	///What category of items can you buy
 	var/marine_buy_flags = MARINE_CAN_BUY_ALL
 
