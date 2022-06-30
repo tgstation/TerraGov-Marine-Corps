@@ -115,8 +115,8 @@
 
 //Handles the conversion of Machine into Item. 'source' should be the Machine. User is the one undeploying. It can be undeployed without a user, if so, the var 'location' is required. If 'source' is not /obj/machinery/deployable then 'undeploying' should be the item to be undeployed from the machine.
 /datum/element/deployable_item/proc/finish_undeploy(datum/source, mob/user)
-	var/obj/machinery/deployable/deployed_machine = source //The machinethat is undeploying should be the the one sending the Signal
-	var/obj/item/attached_item  = deployed_machine.internal_item //Item the machine is undeploying
+	var/obj/deployed_machine = source //The machinethat is undeploying should be the the one sending the Signal
+	var/obj/item/attached_item  = deployed_machine:internal_item //Item the machine is undeploying
 
 	if(!user)
 		CRASH("[source] has sent the signal COMSIG_ITEM_UNDEPLOY to [attached_item] without the arg 'user'")
@@ -139,7 +139,7 @@
 	attached_item.max_integrity = deployed_machine.max_integrity
 	attached_item.obj_integrity = deployed_machine.obj_integrity
 
-	deployed_machine.internal_item = null
+	deployed_machine:internal_item = null
 
 	QDEL_NULL(deployed_machine)
 	attached_item.update_icon_state()
