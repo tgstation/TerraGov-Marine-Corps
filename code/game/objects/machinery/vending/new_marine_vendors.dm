@@ -122,7 +122,9 @@
 			var/obj/item/card/id/I = usr.get_idcard()
 
 			var/list/L = listed_products[idx]
+			var/item_category = L[1]
 			var/cost = L[3]
+			to_chat(usr, span_warning(num2text(cost)+" and "+item_category))
 
 			if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(idx, GLOB.hvh_restricted_items_list))
 				to_chat(usr, span_warning("This item is banned by the Space Geneva Convention."))

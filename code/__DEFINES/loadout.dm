@@ -56,6 +56,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MAS = list(MARINE_CAN_BUY_MASK),
 		CAT_ESS = list(MARINE_CAN_BUY_ESSENTIALS),
 		CAT_MEDSUP = null,
+		CAT_MEDINJ = null,
 		CAT_ENGSUP = null,
 		CAT_LEDSUP = null,
 	))
@@ -110,10 +111,10 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 8, "black"),
 		///////////////////////////////////////// INJECTORS /////////////////////////////////////////////////
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDINJ, "Injector (Advanced)", 5, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = list(CAT_MEDSUP, "Injector (QuickclotPlus)", 1, "orange"),
-		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDSUP, "Injector (Peridaxon Plus)", 1, "orange"),
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 4, "orange"),
-		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 14, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = list(CAT_MEDINJ, "Injector (QuickclotPlus)", 1, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDINJ, "Injector (Peridaxon Plus)", 1, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDINJ, "Injector (Synaptizine)", 4, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDINJ, "Injector (Neuraline)", 14, "orange"),
 	))
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
