@@ -93,7 +93,7 @@
 
 /datum/reagent/medicine/paracetamol/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
-	L.heal_limb_damage(0.2*effect_str, 0.2*effect_str)
+	L.heal_limb_damage(0.3*effect_str, 0.3*effect_str)
 	L.adjustToxLoss(-0.1*effect_str)
 	L.adjustStaminaLoss(-effect_str)
 	return ..()
@@ -418,6 +418,7 @@
 	if(TIMER_COOLDOWN_CHECK(L, name))
 		return
 	L.adjustStaminaLoss(-30*effect_str)
+	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.3) //small but significant speed increase
 	to_chat(L, span_userdanger("You feel a burst of energy as the stimulants course through you! Time to go!"))
 
 /datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
@@ -426,8 +427,10 @@
 	L.AdjustUnconscious(-20)
 	L.AdjustStun(-20)
 	L.AdjustParalyzed(-20)
-	L.adjustToxLoss(effect_str)
 	L.hallucination = max(0, L.hallucination - 10)
+	L.adjustToxLoss(effect_str)
+	L.reagents.add_reagent(/datum/reagent/toxin, 2)
+
 	switch(current_cycle)
 		if(1 to 10)
 			L.adjustStaminaLoss(-7.5*effect_str)
@@ -444,6 +447,7 @@
 	L.apply_damages(effect_str, effect_str, effect_str)
 
 /datum/reagent/medicine/synaptizine/on_mob_delete(mob/living/L, metabolism)
+	L.remove_movespeed_modifier(type)
 	to_chat(L, span_userdanger("The room spins as you start to come down off your stimulants!"))
 	TIMER_COOLDOWN_START(L, name, 60 SECONDS)
 
@@ -451,7 +455,7 @@
 	name = "Neuraline"
 	description = "A chemical cocktail tailored to enhance or dampen specific neural processes."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	custom_metabolism = REAGENTS_METABOLISM * 2.5
 	overdose_threshold = 5
 	overdose_crit_threshold = 6
 	scannable = FALSE
@@ -460,7 +464,7 @@
 	var/mob/living/carbon/human/H = L
 	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
-	if(L.health < H.health_threshold_crit && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
+	if(L.health < H.health_threshold_crit && volume > 4) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
 		L.adjustFireLoss(-L.getFireLoss() * 0.20)
@@ -487,8 +491,8 @@
 	L.AdjustParalyzed(-20)
 	L.AdjustSleeping(-40)
 	L.adjustStaminaLoss(-30*effect_str)
-	L.heal_limb_damage(7.5*effect_str, 7.5*effect_str)
-	L.adjustToxLoss(3.75*effect_str)
+	L.heal_limb_damage(5*effect_str, 5*effect_str)
+	L.adjustToxLoss(2*effect_str)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.setShock_Stage(min(C.shock_stage - volume*effect_str, 150)) //will pull a target out of deep paincrit instantly, if he's in it
@@ -1237,7 +1241,7 @@
 			if(L.stat == UNCONSCIOUS)
 				L.heal_limb_damage(10*effect_str, 10*effect_str)
 				L.adjustCloneLoss(-0.2*effect_str-(0.02*(L.maxHealth - L.health)))
-				holder.remove_reagent(/datum/reagent/medicine/research/somolent, 0.6)
+				holder.remove_reagent(/datum/reagent/medicine/research/somolent, (1-custom_metabolism)) //1u per tick
 			if(prob(50) && L.stat != UNCONSCIOUS)
 				L.adjustStaminaLoss((current_cycle*0.75 - 14)*effect_str)
 	return ..()

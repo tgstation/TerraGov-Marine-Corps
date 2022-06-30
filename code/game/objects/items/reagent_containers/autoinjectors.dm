@@ -167,7 +167,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
 	desc = "An auto-injector loaded with 3 uses of hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomiting."
-	icon_state = "Toxic"
+	icon_state = "AngelLight"
 	amount_per_transfer_from_this = 3
 	volume = 9
 	list_reagents = list(/datum/reagent/hypervene = 9)
@@ -195,32 +195,22 @@
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine
 	name = "synaptizine autoinjector"
 	desc = "An auto-injector freshly loaded with a safe-to-use synaptizine mix."
-	icon_state = "Mystery"
-	amount_per_transfer_from_this = 3
-	volume = 9
+	icon_state = "Devilpower"
+	amount_per_transfer_from_this = 5
+	volume = 15
 	list_reagents = list(
-		/datum/reagent/medicine/synaptizine = 3,
-		/datum/reagent/medicine/hyronalin = 6,
-	)
-
-/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired
-	name = "expired synaptizine autoinjector"
-	desc = "An auto-injector said to be loaded with a safe-to-use synaptizine mix, 3 months past it's expiration date."
-	icon_state = "autoinjector-1"
-	amount_per_transfer_from_this = 2
-	volume = 6
-	list_reagents = list(
-		/datum/reagent/medicine/synaptizine = 3,
-		/datum/reagent/medicine/hyronalin = 3,
+		/datum/reagent/medicine/synaptizine = 5,
+		/datum/reagent/medicine/hyronalin = 5,
+		/datum/reagent/medicine/ryetalyn = 5,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/neuraline
 	name = "neuraline autoinjector"
 	desc = "An auto-injector loaded with 3 doses of neuraline, an extremely powerful stimulant. !DO NOT USE MORE THAN ONCE AT A TIME!"
 	icon_state = "RedWhite"
-	amount_per_transfer_from_this = 4
-	volume = 12
-	list_reagents = list(/datum/reagent/medicine/neuraline = 12)
+	amount_per_transfer_from_this = 5
+	volume = 15
+	list_reagents = list(/datum/reagent/medicine/neuraline = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "peridaxon Plus autoinjector"
@@ -234,14 +224,13 @@
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/russian_red
-	name = "Emergency autoinjector"
+	name = "Russian Red autoinjector"
 	desc = "An autoinjector loaded with a single use of Russian Red. Restores a significant amount of stamina and heals a large amount of damage, but causes slight permanent damage."
 	icon_state = "Redwood"
-	amount_per_transfer_from_this = 15
-	volume = 15
+	amount_per_transfer_from_this = 10
+	volume = 10
 	list_reagents = list(
 		/datum/reagent/medicine/russian_red = 10,
-		/datum/reagent/medicine/ryetalyn = 5,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/polyhexanide
@@ -298,18 +287,10 @@
 
 	list_reagents = list(/datum/reagent/toxin/pain = 100)
 
-/obj/item/reagent_containers/hypospray/autoinjector/nanoblood
-	name = "nanoblood autoinjector"
-	desc = "An auto-injector loaded with 2 doses of nanoblood, a rare chem which helps dealing with worst cases of bloodloss."
-	icon_state = "autoinjector-6"
-	amount_per_transfer_from_this = 5
-	volume = 10
-	list_reagents = list(/datum/reagent/medicine/nanoblood = 10)
-
-/obj/item/reagent_containers/hypospray/autoinjector/detox
-	name = "detox autoinjector"
+/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge
+	name = "toxin cleanup autoinjector"
 	desc = "An auto-injector loaded with toxin-purging chemicals."
-	icon_state = "autoinjector-6"
+	icon_state = "Toxic"
 	amount_per_transfer_from_this = 5
 	volume = 15
 	list_reagents = list(
@@ -317,8 +298,8 @@
 		/datum/reagent/medicine/dylovene = 10,
 	)
 
-/obj/item/reagent_containers/hypospray/autoinjector/detox/advanced
-	name = "advanced detox autoinjector"
+/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge/advanced
+	name = "advanced toxin cleanup autoinjector"
 	volume = 30
 	list_reagents = list(
 		/datum/reagent/medicine/ryetalyn = 10,
@@ -327,11 +308,79 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/toxin_heal
 	name = "detox autoinjector"
-	desc = "An auto-injector loaded with toxin-purging chemicals."
-	icon_state = "autoinjector-6"
+	desc = "An auto-injector loaded with chemicals to heal effects of toxin poisoning."
+	icon_state = "autoinjector-1"
 	amount_per_transfer_from_this = 5
 	volume = 15
 	list_reagents = list(
-		/datum/reagent/medicine/ryetalyn = 5,
+		/datum/reagent/medicine/hyronalin = 5,
 		/datum/reagent/medicine/dylovene = 10,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal/advanced
+	name = "advanced detox autoinjector"
+	volume = 30
+	list_reagents = list(
+		/datum/reagent/medicine/hyronalin = 10,
+		/datum/reagent/medicine/dylovene = 10,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/emergency
+	name = "emergency autoinjector"
+	desc = "An auto-injector loaded with single dose of chemicals to use in worst case."
+	icon_state = "autoinjector-9"
+	amount_per_transfer_from_this = 30
+	list_reagents = list(
+		/datum/reagent/medicine/inaprovaline = 19, //little over 15 to be able to stand up from crit
+		/datum/reagent/medicine/russian_red = 10,
+		/datum/reagent/medicine/synaptizine = 0.5, //float is ok I guess, unga can change inject amt on injectors anyway to get different doses
+		/datum/reagent/medicine/ryetalyn = 0.5,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/emergency/advanced
+	name = "advanced emergency autoinjector"
+	list_reagents = list(
+		/datum/reagent/medicine/inaprovaline = 19,
+		/datum/reagent/medicine/neuraline = 5,
+		/datum/reagent/medicine/synaptizine = 2,
+		/datum/reagent/medicine/hyronalin = 2,
+		/datum/reagent/medicine/ryetalyn = 2,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/painkiller
+	name = "painkiller autoinjector"
+	desc = "An auto-injector loaded with powerful painkillers."
+	icon_state = "autoinjector-6"
+	amount_per_transfer_from_this = 15
+	list_reagents = list(
+		/datum/reagent/medicine/tramadol = 10,
+		/datum/reagent/medicine/oxycodone = 20,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/paracetamol
+	name = "paracetamol autoinjector"
+	desc = "An auto-injector loaded with paracetamol, old long-lasting combat drug which conflicts with modern ones."
+	icon_state = "autoinjector-6"
+	amount_per_transfer_from_this = 15
+	list_reagents = list(
+		/datum/reagent/medicine/paracetamol = 15,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/nanoblood
+	name = "nanoblood autoinjector"
+	desc = "An auto-injector loaded with 2 doses of nanoblood, a rare chem which helps dealing with worst cases of bloodloss."
+	icon_state = "Vampirekiss"
+	amount_per_transfer_from_this = 5
+	volume = 10
+	list_reagents = list(/datum/reagent/medicine/nanoblood = 10)
+
+/obj/item/reagent_containers/hypospray/autoinjector/somolent
+	name = "somolent autoinjector"
+	desc = "An auto-injector loaded with somolent mix, putting recepient to sleep and healing him rapidly."
+	icon_state = "Mystery"
+	amount_per_transfer_from_this = 20
+	list_reagents = list(
+		/datum/reagent/medicine/research/somolent = 10, //about 120 heals
+		/datum/reagent/toxin/sleeptoxin = 8,
+		/datum/reagent/toxin/chloralhydrate = 2,
 	)
