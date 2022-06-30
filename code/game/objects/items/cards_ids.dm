@@ -86,7 +86,7 @@
 		CAT_MEDINJ = 0,
 		CAT_ENGSUP = 0,
 		CAT_LEDSUP = 0,
-		CAT_
+		CAT_SGSUP  = 0,
 	)
 	///What category of items can you buy
 	var/marine_buy_flags = MARINE_CAN_BUY_ALL
