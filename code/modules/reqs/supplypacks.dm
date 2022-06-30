@@ -507,6 +507,16 @@ WEAPONS
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
 	cost = 60
 
+/datum/supply_packs/weapons/smart_pistol
+	name = "TX13 smartpistol"
+	contains = list(/obj/item/weapon/gun/pistol/smart_pistol)
+	cost = 15
+/datum/supply_packs/weapons/smart_pistol_ammo
+	name = "TX13 smartpistol ammo"
+	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
+	cost = 1
+
+
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/

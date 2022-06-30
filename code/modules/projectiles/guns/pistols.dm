@@ -630,3 +630,43 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/lace,
 	)
+
+
+// Smart pistol, based on Calico M-950
+/obj/item/weapon/gun/pistol/smart_pistol
+	name = "\improper SP-13 smart pistol"
+	desc = "The SP-13 is a latest solution for personal officer defence produced by Terran Armories. A cutting-edge miniaturization technology allows mounting of smartgun IFF system on the pistol, albeit at high manufactoring cost. Unique design feature high-capacity mag on top of the barrel, with integrated sight. As with all smartgun systems, requires special training."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "sp13"
+	item_state = "sp13"
+	caliber = CALIBER_9X19 //codex
+	max_shells = 25 //codex
+	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound
+	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/lace,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_skill_category = GUN_SKILL_SMARTGUN
+
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+
+	aim_slowdown = 0.2
+	wield_delay = 0.4 SECONDS
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.85
+	scatter = 3
+	scatter_unwielded = 5
+	recoil = -2
+	recoil_unwielded = -2
