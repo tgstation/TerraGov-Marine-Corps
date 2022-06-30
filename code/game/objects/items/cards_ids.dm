@@ -246,6 +246,9 @@
 	iff_signal = TGMC_LOYALIST_IFF
 	var/dogtag_taken = FALSE
 
+// Vendor points for job override
+/obj/item/card/id/dogtag/corpsman
+	marine_points = MEDIC_TOTAL_BUY_POINTS
 /obj/item/card/id/dogtag/engineer
 	marine_points = ENGINEER_TOTAL_BUY_POINTS
 

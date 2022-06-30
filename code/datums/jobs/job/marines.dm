@@ -246,7 +246,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	name = SQUAD_CORPSMAN
 	jobtype = /datum/job/terragov/squad/corpsman
 
-	id = /obj/item/card/id/dogtag
+	id = /obj/item/card/id/dogtag/corpsman
 	back = /obj/item/storage/backpack/marine/corpsman
 
 /datum/outfit/job/marine/corpsman/rebel
