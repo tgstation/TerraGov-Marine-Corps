@@ -45,10 +45,10 @@
 	icon_state = "autoinjector-4"
 	amount_per_transfer_from_this = 15
 	list_reagents = list(
-		/datum/reagent/medicine/bicaridine = 10,
-		/datum/reagent/medicine/kelotane = 10,
-		/datum/reagent/medicine/dylovene = 5,
-		/datum/reagent/medicine/tramadol = 5,
+		/datum/reagent/medicine/bicaridine = 8,
+		/datum/reagent/medicine/kelotane = 8,
+		/datum/reagent/medicine/tricordrazine = 8,
+		/datum/reagent/medicine/tramadol = 6,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
@@ -297,3 +297,41 @@
 	volume = 100
 
 	list_reagents = list(/datum/reagent/toxin/pain = 100)
+
+/obj/item/reagent_containers/hypospray/autoinjector/nanoblood
+	name = "nanoblood autoinjector"
+	desc = "An auto-injector loaded with 2 doses of nanoblood, a rare chem which helps dealing with worst cases of bloodloss."
+	icon_state = "autoinjector-6"
+	amount_per_transfer_from_this = 5
+	volume = 10
+	list_reagents = list(/datum/reagent/medicine/nanoblood = 10)
+
+/obj/item/reagent_containers/hypospray/autoinjector/detox
+	name = "detox autoinjector"
+	desc = "An auto-injector loaded with toxin-purging chemicals."
+	icon_state = "autoinjector-6"
+	amount_per_transfer_from_this = 5
+	volume = 15
+	list_reagents = list(
+		/datum/reagent/medicine/ryetalyn = 5,
+		/datum/reagent/medicine/dylovene = 10,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/detox/advanced
+	name = "advanced detox autoinjector"
+	volume = 30
+	list_reagents = list(
+		/datum/reagent/medicine/ryetalyn = 10,
+		/datum/reagent/medicine/dylovene = 20,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal
+	name = "detox autoinjector"
+	desc = "An auto-injector loaded with toxin-purging chemicals."
+	icon_state = "autoinjector-6"
+	amount_per_transfer_from_this = 5
+	volume = 15
+	list_reagents = list(
+		/datum/reagent/medicine/ryetalyn = 5,
+		/datum/reagent/medicine/dylovene = 10,
+	)

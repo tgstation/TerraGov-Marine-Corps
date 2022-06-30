@@ -60,7 +60,7 @@
 	reagent_state = SOLID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	scannable = TRUE
-	custom_metabolism = REAGENTS_METABOLISM * 0.125
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	purge_list = list(/datum/reagent/toxin, /datum/reagent/zombium)
 	purge_rate = 5
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -220,8 +220,6 @@
 	description = "Kelotane is a drug used to treat burns."
 	color = "#D8C58C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/medicine/ryetalyn)
-	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
@@ -250,8 +248,6 @@
 	overdose_threshold = REAGENTS_OVERDOSE*0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
-	purge_list = list(/datum/reagent/medicine/oxycodone)
-	purge_rate = 0.2
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
@@ -314,8 +310,6 @@
 	description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries."
 	color = "#B865CC"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/medicine/ryetalyn)
-	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "grossness"
@@ -510,13 +504,13 @@
 	name = "Hyronalin"
 	description = "Hyronalin is a medicinal drug used to counter the effect of toxin poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
 /datum/reagent/medicine/hyronalin/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-effect_str)
+	L.adjustToxLoss(-2*effect_str)
 	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
@@ -527,19 +521,21 @@
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
-	description = "Arithrazine is a component medicine capable of healing very minor amounts of toxin poisoning."
+	description = "Arithrazine is a dangerous medicine capable of healing toxin damage, but with severe side effects of chemical burns and internal hematomas."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM * 1.25
+	custom_metabolism = REAGENTS_METABOLISM * 5
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE
 
 /datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-0.2*effect_str)
+	L.adjustToxLoss(-effect_str)
+	L.take_limb_damage(2*effect_str, 2*effect_str)
 	return ..()
 
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(effect_str, TOX)
+	L.take_limb_damage(2*effect_str, 2*effect_str)
 
 /datum/reagent/arithrazine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, effect_str, 2*effect_str)
@@ -662,8 +658,6 @@
 	name = "Bicaridine"
 	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
 	color = "#E8756C"
-	purge_list = list(/datum/reagent/medicine/ryetalyn)
-	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
@@ -691,8 +685,6 @@
 	overdose_threshold = REAGENTS_OVERDOSE*0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
-	purge_list = list(/datum/reagent/medicine/oxycodone)
-	purge_rate = 0.2
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(2*effect_str, 0)
