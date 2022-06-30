@@ -15,12 +15,6 @@ export const MarineSelector = (props, context) => {
     setShowDesc,
   ] = useLocalState(context, 'showDesc', null);
 
-  const {
-    current_m_points,
-    total_marine_points,
-    show_points,
-  } = data;
-
   const categories = Object
     .keys(data.displayed_records)
     .map(key => ({
@@ -31,8 +25,8 @@ export const MarineSelector = (props, context) => {
     .filter(category => (
       category.entries.length > 0
       && (showEmpty
-      || category.remaining > 0
-      || !category.total && !!current_m_points)
+      || category.remaining > 0 || category.remaining_points > 0
+      || !category.total && !!category.total_points)
     ));
 
   return (
@@ -52,18 +46,6 @@ export const MarineSelector = (props, context) => {
           title="Choose your equipment"
           buttons={
             <>
-              {!!show_points && (
-                <ProgressBar
-                  width="100px"
-                  value={current_m_points / total_marine_points}
-                  ranges={{
-                    good: [0.67, Infinity],
-                    average: [0.33, 0.67],
-                    bad: [-Infinity, 0.33],
-                  }} >
-                  {current_m_points +"/"+ total_marine_points + " Points"}
-                </ProgressBar>
-              )}
               <Box inline width="4px" />
               <Button
                 icon="power-off"
@@ -92,17 +74,21 @@ const ItemCategory = (props, context) => {
     category: {
       entries,
       name,
+      choice,
       remaining,
       total,
+      remaining_points,
+      total_points,
     },
   } = props;
 
-  const cant_buy = total && !remaining;
+  const cant_buy = ((choice === "choice") && !remaining)
+    || ((choice === "points") && !remaining_points);
 
   return (
     <Section
       title={name}
-      buttons={!!total && (
+      buttons={((choice === "choice") && (
         <ProgressBar
           value={remaining
             / total}
@@ -112,7 +98,18 @@ const ItemCategory = (props, context) => {
             bad: [-Infinity, 0.1],
           }} >
           {remaining +"/"+ total + " Choices"}
-        </ProgressBar>)}>
+        </ProgressBar>))
+      || ((choice === "points") && (
+        <ProgressBar
+          value={remaining_points
+            / total_points}
+          ranges={{
+            good: [0.67, Infinity],
+            average: [0.33, 0.67],
+            bad: [-Infinity, 0.33],
+          }} >
+          {remaining_points +"/"+ total_points + " Points"}
+        </ProgressBar>))}>
       <LabeledList>
         {entries.map(display_record => {
           return (
@@ -171,7 +168,7 @@ const ItemLine = (props, context) => {
             </Box>
           )}
           <Button
-            disabled={cant_buy || prod_cost > current_m_points}
+            disabled={cant_buy}
             onClick={() => act(
               'vend',
               { vend: prod_index })}

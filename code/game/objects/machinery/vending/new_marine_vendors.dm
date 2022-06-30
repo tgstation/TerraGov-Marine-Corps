@@ -72,13 +72,13 @@
 /obj/machinery/marine_selector/ui_static_data(mob/user)
 	. = list()
 	.["displayed_records"] = list()
+	var/obj/item/card/id/ID = user.get_idcard()
+
 	for(var/c in categories)
 		.["displayed_records"][c] = list()
 
 	.["vendor_name"] = name
 	.["show_points"] = use_points
-	var/obj/item/card/id/ID = user.get_idcard()
-	.["total_marine_points"] = ID ? initial(ID.marine_points[CAT_MEDSUP]) : 0
 
 
 	for(var/i in listed_products)
@@ -94,17 +94,28 @@
 	. = list()
 
 	var/obj/item/card/id/I = user.get_idcard()
-	.["current_m_points"] = I?.marine_points || 0
 	var/buy_flags = I?.marine_buy_flags || NONE
-
 
 	.["cats"] = list()
 	for(var/i in GLOB.marine_selector_cats)
-		.["cats"][i] = list("remaining" = 0, "total" = 0)
+		.["cats"][i] = list(
+			"remaining" = 0,
+			"total" = 0,
+			"remaining_points" = 0,
+			"total_points" = 0,
+			"choice" = "choice",
+			)
 		for(var/flag in GLOB.marine_selector_cats[i])
 			.["cats"][i]["total"]++
 			if(buy_flags & flag)
 				.["cats"][i]["remaining"]++
+		for(var/nm in I?.marine_points)
+			.["cats"][nm] = list(
+				"remaining_points" = I?.marine_points[nm],
+				"total_points" = initial(I?.marine_points[nm]),
+				"choice" = "points",
+				)
+
 
 /obj/machinery/marine_selector/ui_act(action, list/params)
 	. = ..()
@@ -125,7 +136,7 @@
 			var/item_category = L[1]
 			var/cost = L[3]
 			to_chat(usr, span_warning(num2text(cost)+" and "+item_category))
-			to_chat(usr, span_warning("points:" + I.marine_points))
+			to_chat(usr, span_warning("points:" + num2text(I.marine_points[item_category])))
 
 			if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(idx, GLOB.hvh_restricted_items_list))
 				to_chat(usr, span_warning("This item is banned by the Space Geneva Convention."))
@@ -189,6 +200,7 @@
 
 			if(use_points)
 				I.marine_points[item_category] -= cost
+				to_chat(usr, span_warning("now:" + num2text(I.marine_points[item_category])))
 			. = TRUE
 
 	updateUsrDialog()
@@ -939,6 +951,10 @@
 #undef MARINE_CAN_BUY_ESSENTIALS
 
 #undef MARINE_CAN_BUY_ALL
-#undef MARINE_TOTAL_BUY_POINTS
+#undef DEFAULT_TOTAL_BUY_POINTS
+#undef DEFAULT_INJECTOR_TOTAL_BUY_POINTS
+#undef MEDIC_TOTAL_BUY_POINTS
+#undef MEDIC_INJECTOR_TOTAL_BUY_POINTS
+#undef ENGINEER_TOTAL_BUY_POINTS
 #undef SQUAD_LOCK
 #undef JOB_LOCK
