@@ -2529,16 +2529,36 @@ datum/ammo/bullet/revolver/tp44
 	var/list/snare_list = list(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT)
 
 /datum/ammo/xeno/web/on_hit_mob(mob/victim, obj/projectile/proj)
-    . = ..()
-    if(ishuman(victim))
-        var/mob/living/carbon/human/human_victim = victim
-        if(proj.def_zone == BODY_ZONE_HEAD)
-            human_victim.blind_eyes(hit_eye_blind)
-        if(proj.def_zone in weaken_list)
-            //apply weaken here
-            message_admins("weaken check")
-        if(proj.def_zone in snare_list)
-            human_victim.Immobilize(hit_immobilize)
+	. = ..()
+	if(ishuman(victim))
+		var/mob/living/carbon/human/human_victim = victim
+		if(proj.def_zone == BODY_ZONE_HEAD)
+			human_victim.blind_eyes(hit_eye_blind)
+		if(proj.def_zone in weaken_list)
+			//apply weaken here
+			message_admins("weaken check")
+		if(proj.def_zone in snare_list)
+			human_victim.Immobilize(hit_immobilize)
+
+/datum/ammo/xeno/web/snare_ball
+	icon_state = "neurotoxin"
+	ping = "ping_x"
+	damage_type = STAMINA
+	flags_ammo_behavior = AMMO_XENO
+	added_spit_delay = 0 //used to make cooldown of the different spits vary.
+	spit_cost = 5
+	armor_type = "bio"
+	shell_speed = 1
+	accuracy = 40
+	accurate_range = 15
+	max_range = 15
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	bullet_color = COLOR_LIME
+
+/datum/ammo/xeno/web/snare_ball/on_hit_turf(turf/T, obj/projectile/proj)
+	. = ..()
+
 
 /*
 //================================================

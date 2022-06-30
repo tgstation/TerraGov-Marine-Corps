@@ -45,4 +45,33 @@
 	newspit.def_zone = X.get_limbzone_target()
 
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)
-	message_admins("Spitted!")
+
+// ***************************************
+// *********** Burrow
+// ***************************************
+
+/datum/action/xeno_action/activable/burrow
+	name = "burrow"
+	ability_name = "burrow"
+	mechanics_text = " Burrow into the ground to hide in plain sight "
+	plasma_cost = 1
+	cooldown_timer = 1 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_BURROW
+
+/datum/action/xeno_action/activable/burrow/use_ability()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
+		return fail_activate()
+	//burrow code goes here
+
+// ***************************************
+// *********** Snare Ball
+// ***************************************
+
+/datum/action/xeno_action/activable/snare_ball
+	name = "snare_ball"
+	ability_name = "snare_ball"
+	mechanics_text = " Spit a huge ball of web that snares groups of marines "
+	plasma_cost = 1
+	cooldown_timer = 1 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_SNARE_BALL
