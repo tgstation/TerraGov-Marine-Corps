@@ -72,7 +72,6 @@
 /obj/machinery/marine_selector/ui_static_data(mob/user)
 	. = list()
 	.["displayed_records"] = list()
-	var/obj/item/card/id/ID = user.get_idcard()
 
 	for(var/c in categories)
 		.["displayed_records"][c] = list()
@@ -109,13 +108,19 @@
 			.["cats"][i]["total"]++
 			if(buy_flags & flag)
 				.["cats"][i]["remaining"]++
-		for(var/nm in I?.marine_points)
-			.["cats"][nm] = list(
-				"remaining_points" = I?.marine_points[nm],
-				"total_points" = initial(I?.marine_points[nm]),
-				"choice" = "points",
-				)
 
+	for(var/nm in I?.marine_points)
+		.["cats"][nm] = list(
+			"remaining_points" = I?.marine_points[nm],
+			"total_points" = initial(I?.marine_points[nm]),
+			"choice" = "points",
+			)
+
+	for(var/nm in I?.marine_points)
+		//to_chat(usr, span_warning("Var 1: "+num2text(initial(I).marine_points[nm])))
+		to_chat(usr, span_warning("Var 2: "+num2text(initial(I.marine_points)[nm])))
+		to_chat(usr, span_warning("Cur: "+num2text(I.marine_points[nm])))
+		to_chat(usr, span_warning("End Cat"))
 
 /obj/machinery/marine_selector/ui_act(action, list/params)
 	. = ..()
@@ -135,8 +140,6 @@
 			var/list/L = listed_products[idx]
 			var/item_category = L[1]
 			var/cost = L[3]
-			to_chat(usr, span_warning(num2text(cost)+" and "+item_category))
-			to_chat(usr, span_warning("points:" + num2text(I.marine_points[item_category])))
 
 			if(SSticker.mode?.flags_round_type & MODE_HUMAN_ONLY && is_type_in_typecache(idx, GLOB.hvh_restricted_items_list))
 				to_chat(usr, span_warning("This item is banned by the Space Geneva Convention."))
@@ -200,7 +203,6 @@
 
 			if(use_points)
 				I.marine_points[item_category] -= cost
-				to_chat(usr, span_warning("now:" + num2text(I.marine_points[item_category])))
 			. = TRUE
 
 	updateUsrDialog()
