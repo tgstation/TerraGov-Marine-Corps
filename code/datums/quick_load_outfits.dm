@@ -854,10 +854,9 @@
 	name = "SOM Squad Marine"
 	jobtype = "SOM Standard"
 
-//AK47
 /datum/outfit/quick/som/marine/mpi
 	name = "MPI rifleman"
-	desc = "PLACEHOLDER"
+	desc = "The infantryman on a budget. Equipped with an MPI with UGL, medium armor and a good selection of grenades. While the SOM have developed some exceptionally advanced weaponry, it appears demand far outstrips their production capacity, so many rank and file solders are seen with easy to manufacture and maintain weapons such as the MPI. Despite it's ancient design, still packs a punch."
 
 	id = /obj/item/card/id/dogtag/som
 	belt = /obj/item/storage/belt/marine/som
@@ -912,14 +911,13 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 
-//Charger
 /datum/outfit/quick/som/marine/charger
 	name = "Charger rifleman"
-	desc = "PLACEHOLDER"
+	desc = "The cutting edge light infantryman of the SOM. Equipped with a volkite charger, medium armor and a good variety of grenades. Volkite weapons are exceptionally dangerous, especially against poorly armored or tightly grouped opponents. The charger is the SOM's premier close/medium range weapon, with good mobility, and can be used (with some difficulty) one handed."
 
 	id = /obj/item/card/id/dogtag/som
 	belt = /obj/item/storage/belt/marine/som
-	ears = /obj/item/radio/headset/distress/som //tochange
+	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/som/webbing
 	shoes = /obj/item/clothing/shoes/marine/som/knife
 	wear_suit = /obj/item/clothing/suit/modular/som
@@ -970,14 +968,13 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 
-//Caliver
 /datum/outfit/quick/som/marine/caliver
 	name = "Caliver rifleman"
-	desc = "PLACEHOLDER"
+	desc = "The cutting edge general infantryman. Equipped with a volkite caliver, medium armor and a good variety of grenades. Volkite weapons are exceptionally dangerous, especially against poorly armored or tightly grouped opponents. The caliver inflicts devastating damage and is effective at longer ranges than the charger, making it more of a true rifle. It's larger size makes it harder to lug around however."
 
 	id = /obj/item/card/id/dogtag/som
 	belt = /obj/item/storage/belt/marine/som
-	ears = /obj/item/radio/headset/distress/som //tochange
+	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/som/webbing
 	shoes = /obj/item/clothing/shoes/marine/som/knife
 	wear_suit = /obj/item/clothing/suit/modular/som
@@ -1033,13 +1030,13 @@
 	name = "SOM Squad Veteran"
 	jobtype = "SOM Veteran"
 
-//charger
 /datum/outfit/quick/som/veteran/charger
 	name = "Charger Veteran"
+	desc = "Heavily armed and armored SOM elite. Equipped with a volkite charger configured for better one handed use, heavy armor and a good variety of grenades. Volkite weapons are exceptionally dangerous, especially against poorly armored or tightly grouped opponents. The charger is the SOM's premier close/medium range weapon, with good mobility, and can be used (with some difficulty) one handed."
 
 	id = /obj/item/card/id/dogtag/som
 	belt = /obj/item/storage/belt/marine/som
-	ears = /obj/item/radio/headset/distress/som //tochange
+	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/som/veteran/webbing
 	shoes = /obj/item/clothing/shoes/marine/som/knife
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy
@@ -1057,7 +1054,7 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/highpower, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/highpower(H), SLOT_IN_BACKPACK) //attachments
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/highpower(H), SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BACKPACK)
@@ -1092,13 +1089,13 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 
-//Culverin
 /datum/outfit/quick/som/veteran/culverin
 	name = "Culverin heavy firesupport"
+	desc = "Heavily armored heavy firesupport. Equipped with a volkite culverin and self charging backpack power unit, and a shotgun sidearm. The culverin is the most powerful man portable weapon the SOM have been seen to field. Capabable of laying down a tremendous barrage of firepower for extended periods of time. Although the back-mounted powerpack is self charging, it cannot keep up with the immense power requirements of the gun, so sustained, prolonged use can degrade the weapon's effectiveness greatly."
 
 	id = /obj/item/card/id/dogtag/som
 	belt = /obj/item/weapon/gun/shotgun/double/sawn
-	ears = /obj/item/radio/headset/distress/som //tochange
+	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/som/veteran/webbing
 	shoes = /obj/item/clothing/shoes/marine/som/knife
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy

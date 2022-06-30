@@ -1,5 +1,4 @@
-export type Loadout =
-  {
+export type Loadout = {
     name: string;
     job: string;
     desc: string;
@@ -7,24 +6,20 @@ export type Loadout =
     outfit: string;
   }
 
-export type LoadoutItemData =
-  {
+export type LoadoutItemData = {
     loadout: Loadout;
   }
 
-export type LoadoutListData =
-  {
+export type LoadoutListData = {
     loadout_list: Loadout[];
   }
 
-export type LoadoutTabData =
-{
+export type LoadoutTabData = {
   job: string;
   setJob: any;
 }
 
-export type LoadoutManagerData =
-  {
+export type LoadoutManagerData = {
     loadout_list: Loadout[];
   };
 

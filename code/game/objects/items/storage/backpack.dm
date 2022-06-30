@@ -159,7 +159,7 @@
 /obj/item/storage/backpack/satchel/som
 	name = "mining satchel"
 	desc = "A satchel with origins dating back to the mining colonies."
-	icon_state = "som_lightpack" //todo:new sprite
+	icon_state = "som_satchel"
 
 /obj/item/storage/backpack/satchel/norm
 	name = "satchel"

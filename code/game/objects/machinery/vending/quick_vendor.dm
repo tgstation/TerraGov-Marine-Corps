@@ -53,27 +53,29 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	if(!ishuman(user))
 		return FALSE
 
-	var/mob/living/carbon/human/H = user
-	if(!allowed(H))
+	var/mob/living/carbon/human/human_user = user
+	if(!allowed(human_user))
 		return FALSE
 
-	if(!isidcard(H.get_idcard())) //not wearing an ID
+	if(!isidcard(human_user.get_idcard())) //not wearing an ID
 		return FALSE
 
-	var/obj/item/card/id/I = H.get_idcard()
-	if(I.registered_name != H.real_name)
+	var/obj/item/card/id/user_id = human_user.get_idcard()
+	if(user_id.registered_name != human_user.real_name)
 		return FALSE
 	return TRUE
 
 /obj/machinery/quick_vendor/ui_interact(mob/living/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		if(faction == FACTION_SOM)
+	if(ui)
+		return
+	switch(faction)
+		if(FACTION_SOM)
 			//SOM vendor has SOM specific job titles
 			ui = new(user, src, "Quickload_SOM")
 		else
 			ui = new(user, src, "Quickload_TGMC")
-		ui.open()
+	ui.open()
 
 /obj/machinery/quick_vendor/ui_state(mob/user)
 	return GLOB.human_adjacent_state
@@ -108,12 +110,12 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 			if(selected_loadout.quantity == 0)
 				to_chat(usr, span_warning("This loadout has been depleted, you'll need to pick another."))
 				return
-			var/obj/item/card/id/I = usr.get_idcard() //ui.user better?
-			if(selected_loadout.jobtype != I.rank)
+			var/obj/item/card/id/user_id = usr.get_idcard() //ui.user better?
+			if(selected_loadout.jobtype != user_id.rank)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
-			if(I.marine_buy_flags & MARINE_CAN_BUY_LOADOUT)
-				I.marine_buy_flags &= ~MARINE_CAN_BUY_LOADOUT
+			if(user_id.marine_buy_flags & MARINE_CAN_BUY_LOADOUT)
+				user_id.marine_buy_flags &= ~MARINE_CAN_BUY_LOADOUT
 				selected_loadout.quantity --
 				selected_loadout.equip(ui.user) //actually equips the loadout
 			else

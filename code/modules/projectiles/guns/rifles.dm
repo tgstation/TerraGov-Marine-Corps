@@ -93,7 +93,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/lasersight, /obj/item/attachable/flashlight)
 
 /obj/item/weapon/gun/rifle/standard_carbine/engineer
-	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight,)
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
 
 //-------------------------------------------------------
 //AR-12 Assault Rifle
@@ -512,6 +512,7 @@
 		/obj/item/attachable/stock/mpi_km,
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
 	)
 
 //-------------------------------------------------------
