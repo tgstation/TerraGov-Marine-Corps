@@ -37,8 +37,8 @@
 
 /datum/chemical_reaction/ryetalyn
 	name = "Ryetalyn"
-	results = list(/datum/reagent/medicine/ryetalyn = 2)
-	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/carbon = 1, /datum/reagent/medicine/lemoline = 1)
+	results = list(/datum/reagent/medicine/ryetalyn = 4)
+	required_reagents = list(/datum/reagent/medicine/hyronalin = 3, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/cryoxadone
 	name = "Cryoxadone"
@@ -115,7 +115,7 @@
 
 /datum/chemical_reaction/synaptizine
 	name = "Synaptizine"
-	results = list(/datum/reagent/medicine/synaptizine = 3)
+	results = list(/datum/reagent/medicine/synaptizine = 2)
 	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/lithium = 1, /datum/reagent/water = 1, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/leporazine
@@ -126,13 +126,13 @@
 
 /datum/chemical_reaction/hyronalin
 	name = "Hyronalin"
-	results = list(/datum/reagent/medicine/hyronalin = 2)
+	results = list(/datum/reagent/medicine/hyronalin = 3)
 	required_reagents = list(/datum/reagent/radium = 1, /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/arithrazine
 	name = "Arithrazine"
 	results = list(/datum/reagent/medicine/arithrazine = 2)
-	required_reagents = list(/datum/reagent/medicine/hyronalin = 1, /datum/reagent/hydrogen = 1)
+	required_reagents = list(/datum/reagent/medicine/dylovene = 1, /datum/reagent/hydrogen = 1)
 
 /datum/chemical_reaction/kelotane
 	name = "Kelotane"
@@ -142,7 +142,7 @@
 /datum/chemical_reaction/peridaxon_plus
 	name = "Peridaxon Plus"
 	results = list(/datum/reagent/medicine/peridaxon_plus = 1)
-	required_reagents = list(/datum/reagent/medicine/ryetalyn = 5, /datum/reagent/toxin/phoron = 5)
+	required_reagents = list(/datum/reagent/medicine/dylovene = 5, /datum/reagent/toxin/phoron = 5, /datum/reagent/medicine/lemoline = 2)
 
 /datum/chemical_reaction/quickclot
 	name = "Quick-Clot"
@@ -163,7 +163,7 @@
 /datum/chemical_reaction/neuraline
 	name = "Neuraline"
 	results = list(/datum/reagent/medicine/neuraline = 4, /datum/reagent/toxin/huskpowder = 1)
-	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/larvajellyprepared = 1)
+	required_reagents = list(/datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/tricordrazine = 2, /datum/reagent/consumable/larvajellyprepared = 1)
 	required_catalysts = list(/datum/reagent/medicine/lemoline = 5)
 
 /datum/chemical_reaction/lemoline
