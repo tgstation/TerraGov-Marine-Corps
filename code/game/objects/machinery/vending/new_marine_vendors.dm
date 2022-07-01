@@ -94,6 +94,7 @@
 
 	var/obj/item/card/id/I = user.get_idcard()
 	var/buy_flags = I?.marine_buy_flags || NONE
+	var/obj/item/card/id/dogtag/full/ptscheck = new /obj/item/card/id/dogtag/full
 
 	.["cats"] = list()
 	for(var/i in GLOB.marine_selector_cats)
@@ -112,15 +113,9 @@
 	for(var/nm in I?.marine_points)
 		.["cats"][nm] = list(
 			"remaining_points" = I?.marine_points[nm],
-			"total_points" = initial(I?.marine_points[nm]),
+			"total_points" = ptscheck?.marine_points[nm],
 			"choice" = "points",
 			)
-
-	for(var/nm in I?.marine_points)
-		//to_chat(usr, span_warning("Var 1: "+num2text(initial(I).marine_points[nm])))
-		to_chat(usr, span_warning("Var 2: "+num2text(initial(I.marine_points)[nm])))
-		to_chat(usr, span_warning("Cur: "+num2text(I.marine_points[nm])))
-		to_chat(usr, span_warning("End Cat"))
 
 /obj/machinery/marine_selector/ui_act(action, list/params)
 	. = ..()

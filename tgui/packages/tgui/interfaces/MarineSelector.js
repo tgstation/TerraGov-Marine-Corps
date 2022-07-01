@@ -25,8 +25,7 @@ export const MarineSelector = (props, context) => {
     .filter(category => (
       category.entries.length > 0
       && (showEmpty
-      || category.remaining > 0 || category.remaining_points > 0
-      || !category.total && !!category.total_points)
+      || category.remaining > 0 || category.remaining_points > 0)
     ));
 
   return (
@@ -116,7 +115,8 @@ const ItemCategory = (props, context) => {
             <ItemLine
               display_record={display_record}
               key={display_record.id}
-              cant_buy={cant_buy} />
+              cant_buy={cant_buy}
+              remaining_points={remaining_points} />
           ); }
         )}
       </LabeledList>
@@ -133,10 +133,6 @@ const ItemLine = (props, context) => {
   ] = useLocalState(context, 'showDesc', null);
 
   const {
-    current_m_points,
-  } = data;
-
-  const {
     display_record: {
       id,
       prod_cost,
@@ -146,6 +142,7 @@ const ItemLine = (props, context) => {
       prod_desc,
     },
     cant_buy,
+    remaining_points,
   } = props;
 
   return (
@@ -168,7 +165,7 @@ const ItemLine = (props, context) => {
             </Box>
           )}
           <Button
-            disabled={cant_buy}
+            disabled={cant_buy || (prod_cost > remaining_points)}
             onClick={() => act(
               'vend',
               { vend: prod_index })}

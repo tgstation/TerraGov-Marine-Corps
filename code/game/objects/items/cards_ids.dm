@@ -268,6 +268,15 @@
 		CAT_INJ = MEDIC_INJECTOR_TOTAL_BUY_POINTS,
 	)
 
+/obj/item/card/id/dogtag/full
+	marine_points = list(
+		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
+		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
+		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
+		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
+		CAT_INJ = MEDIC_INJECTOR_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/dogtag/som
 	name = "\improper Sons of Mars dogtag"
 	desc = "Used by the Sons of Mars."
