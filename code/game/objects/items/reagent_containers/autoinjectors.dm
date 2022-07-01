@@ -398,7 +398,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/imialky
 	name = "imialky autoinjector"
 	desc = "An auto-injector loaded with imidazoline and alkysine, to treat eye and head damage."
-	icon_state = "autoinjector-8"
+	icon_state = "AngelLight"
 	amount_per_transfer_from_this = 10
 	volume = 30
 	list_reagents = list(

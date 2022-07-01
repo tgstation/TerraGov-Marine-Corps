@@ -70,6 +70,20 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 #define PLASTEEL_PRICE_IN_GEAR_VENDOR 4
 #define SANDBAG_PRICE_IN_GEAR_VENDOR 5
 
+GLOBAL_LIST_INIT(marine_gear_listed_products, list(
+		////////////////////////////////////// INJECTORS /////////////////////////////////////////////
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_INJ, "Advanced combat", 4, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/combat = list(CAT_INJ, "Combat", 1, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge = list(CAT_INJ, "Toxin purge", 2, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal = list(CAT_INJ, "Toxin heal", 2, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/painkiller = list(CAT_INJ, "Painkiller", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/paracetamol = list(CAT_INJ, "Paracetamol", 3, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic/big = list(CAT_INJ, "Big isotonic", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/imialky = list(CAT_INJ, "ImiAlky", 1, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/stimulant = list(CAT_INJ, "Stimulant", 4, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/emergency = list(CAT_INJ, "Emergency", 5, "black"),
+	))
+
 GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/effect/essentials_set/engi = list(CAT_ESS, "Essential Engineer Set", 0, "white"),
 		/obj/item/stack/sheet/metal/small_stack = list(CAT_ENGSUP, "Metal x10", METAL_PRICE_IN_GEAR_VENDOR, "orange"),
@@ -98,6 +112,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_ENGSUP, "Razorburn canister", 7, "black"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_smol = list(CAT_ENGSUP, "Razorburn grenade", 3, "black"),
 		////////////////////////////////////// INJECTORS /////////////////////////////////////////////
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_INJ, "Advanced combat", 4, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = list(CAT_INJ, "Combat", 1, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge = list(CAT_INJ, "Toxin purge", 2, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal = list(CAT_INJ, "Toxin heal", 2, "black"),
@@ -158,8 +173,7 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/storage/backpack/marine/radiopack = list(CAT_LEDSUP, "Radio Pack", 15, "black"),
 		/obj/item/storage/firstaid/adv = list(CAT_LEDSUP, "Advanced firstaid kit", 10, "orange"),
 		////////////////////////////////////// INJECTORS /////////////////////////////////////////////
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_INJ, "Synaptizine", 6, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_INJ, "Advanced", 4, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_INJ, "Advanced combat", 4, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = list(CAT_INJ, "Combat", 1, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge = list(CAT_INJ, "Toxin purge", 2, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal = list(CAT_INJ, "Toxin heal", 2, "black"),
@@ -180,6 +194,7 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/ammo_magazine/minigun_powerpack/smartgun =  list(CAT_SGSUP, "SG-85 Powerpack", 10, "black"),
 	/obj/item/ammo_magazine/packet/smart_minigun = list(CAT_SGSUP, "SG-85 Ammo Bin", 4, "black"),
 	////////////////////////////////////// INJECTORS /////////////////////////////////////////////
+	/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_INJ, "Advanced combat", 4, "orange"),
 	/obj/item/reagent_containers/hypospray/autoinjector/combat = list(CAT_INJ, "Combat", 1, "orange"),
 	/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge = list(CAT_INJ, "Toxin purge", 2, "orange"),
 	/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal = list(CAT_INJ, "Toxin heal", 2, "black"),
@@ -194,6 +209,7 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 
 ///Assoc list linking the job title with their specific points vendor
 GLOBAL_LIST_INIT(job_specific_points_vendor, list(
+	SQUAD_MARINE = GLOB.marine_gear_listed_products,
 	SQUAD_ENGINEER = GLOB.engineer_gear_listed_products,
 	SQUAD_CORPSMAN = GLOB.medic_gear_listed_products,
 	SQUAD_LEADER = GLOB.leader_gear_listed_products,

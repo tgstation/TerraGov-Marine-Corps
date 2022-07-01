@@ -207,6 +207,7 @@
 	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
 	icon_state = "marineuniform"
 	vendor_role = /datum/job/terragov/squad/standard
+	use_points = TRUE
 	categories = list(
 		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
 		CAT_GLA = list(MARINE_CAN_BUY_GLASSES),
@@ -219,11 +220,12 @@
 		CAT_MOD = list(MARINE_CAN_BUY_MODULE),
 		CAT_ARMMOD = list(MARINE_CAN_BUY_ARMORMOD),
 		CAT_MAS = list(MARINE_CAN_BUY_MASK),
+		CAT_INJ = null
 	)
 
 /obj/machinery/marine_selector/clothes/Initialize()
 	. = ..()
-	listed_products = GLOB.marine_clothes_listed_products
+	listed_products = GLOB.marine_clothes_listed_products + GLOB.marine_gear_listed_products
 
 /obj/machinery/marine_selector/clothes/loyalist
 	faction = FACTION_TERRAGOV
