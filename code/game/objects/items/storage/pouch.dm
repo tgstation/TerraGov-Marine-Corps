@@ -346,10 +346,10 @@
 	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
 
 /obj/item/storage/pouch/medical_injectors
-	name = "medical injector pouch"
+	name = " injector pouch"
 	desc = "A specialized medical pouch that can only hold auto-injectors."
 	icon_state = "firstaid_injector"
-	storage_slots = 8
+	storage_slots = 10
 	max_storage_space = 14
 	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
 
@@ -358,13 +358,8 @@
 
 /obj/item/storage/pouch/medical_injectors/firstaid/Initialize()
 	. = ..()
-	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
 /obj/item/storage/pouch/medical_injectors/som
@@ -383,6 +378,11 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
+/obj/item/storage/pouch/medical_injectors/medic
+	name = "medical injector pouch"
+	desc = "A specialized injector pouch with advanced medicine."
+	storage_slots = 12
+
 /obj/item/storage/pouch/medical_injectors/medic/Initialize() //corpsman autoinjector pouch gets upgraded, but more general chems.
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
@@ -390,9 +390,9 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/somolent(src)
 
 /obj/item/storage/pouch/med_lolipops
 	name = "medical lolipop pouch"
