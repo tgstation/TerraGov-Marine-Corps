@@ -71,22 +71,6 @@
 	UnregisterSignal(beam.target, COMSIG_PARENT_QDELETING)
 	affecting_list -= beam.target
 
-/obj/machinery/deployable/dispenser/CtrlClick(mob/user)
-	if(active != TRUE)
-		return
-	active = FALSE
-	balloon_alert_to_viewers("Undeploying...")
-	for(var/turf/turfs AS in RANGE_TURFS(2, src))
-		UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
-	for(var/mob/living/carbon/human/affecting AS in affecting_list)
-		qdel(affecting_list[affecting])
-		UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
-	affecting_list = null
-	STOP_PROCESSING(SSobj, src)
-	flick("dispenser_undeploy", src)
-	playsound(src, 'sound/machines/dispenser/dispenser_undeploy.ogg', 50)
-	addtimer(CALLBACK(src, .proc/disassemble, user), 4.1 SECONDS)
-
 /obj/machinery/deployable/dispenser/attack_hand(mob/living/user)
 	. = ..()
 	var/obj/item/storage/internal_bag = internal_item
@@ -103,14 +87,26 @@
 	var/mob/living/carbon/human/user = usr //this is us
 	if(over_object != user || !Adjacent(user))
 		return
-	var/obj/item/storage/internal_bag = internal_item
-	internal_bag.open(user)
+	if(active != TRUE)
+		return
+	active = FALSE
+	balloon_alert_to_viewers("Undeploying...")
+	for(var/turf/turfs AS in RANGE_TURFS(2, src))
+		UnregisterSignal(turfs, COMSIG_ATOM_ENTERED)
+	for(var/mob/living/carbon/human/affecting AS in affecting_list)
+		qdel(affecting_list[affecting])
+		UnregisterSignal(affecting, COMSIG_PARENT_QDELETING)
+	affecting_list = null
+	STOP_PROCESSING(SSobj, src)
+	flick("dispenser_undeploy", src)
+	playsound(src, 'sound/machines/dispenser/dispenser_undeploy.ogg', 50)
+	addtimer(CALLBACK(src, .proc/disassemble, user), 4 SECONDS)
 
 /obj/machinery/deployable/dispenser/disassemble(mob/user)
 	var/obj/item/storage/internal_bag = internal_item
 	for(var/mob/watching in internal_bag.content_watchers)
 		internal_bag.close(watching)
-	. = ..()
+	return ..()
 
 
 
