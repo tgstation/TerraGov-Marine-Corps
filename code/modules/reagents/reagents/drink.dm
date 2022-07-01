@@ -468,15 +468,64 @@
 	description = "A gulp a day keeps the MediBot away. That's probably for the best."
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	taste_description = "homely fruit"
-	nutriment_factor = - 1
-	custom_metabolism = REAGENTS_METABOLISM * 0.25 //Twice the rate of paracetamol
+	custom_metabolism = FOOD_METABOLISM //Twice as fast as normal medicine. It is food, after all.
+	scannable = TRUE
 	adj_dizzy = - 10
+	///Tracks the current healing amounts based on what other healing chems are in body.
+	var/list/current_healing
+	///Maps reagent types to triggered healing. Lists are in order brute/fire/tox/oxy
+	var/list/healing_by_chem = list(\
+		/datum/reagent/medicine/bicaridine = list(0.5, 0, 0, 0),\
+		/datum/reagent/medicine/kelotane = list(0, 0.5, 0, 0),\
+		/datum/reagent/medicine/dylovene = list(0, 0, 0.5, 0),\
+		/datum/reagent/medicine/dexalin = list(0, 0, 0, 0.5),\
+		/datum/reagent/medicine/paracetamol = list(0.2, 0.2, 0.2, 0.2),\
+		/datum/reagent/medicine/meralyne = list(1, 0, 0, 0),\
+		/datum/reagent/medicine/dermaline = list(0, 1, 0, 0),\
+	)
+
+
+/datum/reagent/consumable/drink/doctor_delight/on_mob_add(mob/living/L, metabolism)
+	. = ..()
+	current_healing = list(0, 0, 0, 0)
+	for(var/datum/reagent/starting_reagent AS in L.reagents.reagent_list)
+		add_healing(starting_reagent.type)
+	RegisterSignal(L.reagents, COMSIG_NEW_REAGENT_ADD, .proc/mob_adds_reagent)
+	RegisterSignal(L.reagents, COMSIG_REAGENT_DELETING, .proc/mob_removes_reagent)
+
+/datum/reagent/consumable/drink/doctor_delight/on_mob_delete(mob/living/L, metabolism)
+	UnregisterSignal(L.reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETING))
+	return ..()
+
+///Signal wrapper for COMSIG_NEW_REAGENT_ADD, calls add_healing
+/datum/reagent/consumable/drink/doctor_delight/proc/mob_adds_reagent(datum/source, reagent_path, amount)
+	SIGNAL_HANDLER
+	add_healing(reagent_path)
+
+///If the new reagent is in our healing_by_chem list, adjust current_healing up accordingly.
+/datum/reagent/consumable/drink/doctor_delight/proc/add_healing(reagent_path)
+	if(!healing_by_chem[reagent_path])
+		return
+	for(var/i in 1 to 4)
+		current_healing[i] += healing_by_chem[reagent_path][i]
+
+///Signal wrapper for COMSIG_REAGENT_DELETING, calls remove_healing
+/datum/reagent/consumable/drink/doctor_delight/proc/mob_removes_reagent(datum/source, reagent_path)
+	SIGNAL_HANDLER
+	remove_healing(reagent_path)
+
+///If the removed reagent is in our healing_by_chem list, adjust current_healing down accordingly.
+/datum/reagent/consumable/drink/doctor_delight/proc/remove_healing(reagent_path)
+	if(!healing_by_chem[reagent_path])
+		return
+	for(var/i in 1 to 4)
+		current_healing[i] -= healing_by_chem[reagent_path][i]
 
 /datum/reagent/consumable/drink/doctor_delight/on_mob_life(mob/living/L, metabolism)
-	L.adjustBruteLoss(-0.5, 0)
-	L.adjustFireLoss(-0.5, 0)
-	L.adjustToxLoss(-0.5, 0)
-	L.adjustOxyLoss(-0.5, 0)
+	L.adjustBruteLoss(-current_healing[1], 0)
+	L.adjustFireLoss(-current_healing[2], 0)
+	L.adjustToxLoss(-current_healing[3], 0)
+	L.adjustOxyLoss(-current_healing[4], 0)
 	return ..()
 
 /datum/reagent/consumable/drink/atomicbomb

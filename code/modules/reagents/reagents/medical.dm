@@ -1104,7 +1104,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
 	custom_metabolism = REAGENTS_METABOLISM * 5
-	purge_list = list(/datum/reagent/medicine, /datum/reagent/toxin, /datum/reagent/zombium)
+	purge_list = list(/datum/reagent/medicine, /datum/reagent/toxin, /datum/reagent/zombium, /datum/reagent/consumable)
 	purge_rate = 5
 	scannable = TRUE
 	taste_description = "punishment"
