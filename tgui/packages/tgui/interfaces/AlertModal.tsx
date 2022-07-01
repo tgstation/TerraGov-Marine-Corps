@@ -31,9 +31,8 @@ export const AlertModal = (_, context) => {
   // Dynamically sets window dimensions
   const windowHeight
     = 115
-    + (message.length > 30 ? Math.ceil(message.length / 3) : 0)
-    + (message.length && large_buttons ? 5 : 0)
-    + (buttons.length > 2 ? buttons.length * 25 : 0);
+    + (message.length > 30 ? Math.ceil(message.length / 4) : 0)
+    + (message.length && large_buttons ? 5 : 0);
   const windowWidth = 325 + (buttons.length > 2 ? 55 : 0);
   const onKey = (direction: number) => {
     if (selected === 0 && direction === KEY_DECREMENT) {
@@ -94,16 +93,14 @@ const ButtonDisplay = (props, context) => {
   const { data } = useBackend<AlertModalData>(context);
   const { buttons = [], large_buttons, swapped_buttons } = data;
   const { selected } = props;
-  const buttonDirection
-    = (buttons.length > 2 ? 'column' : 'row')
-    + (!swapped_buttons ? '-reverse' : '');
 
   return (
     <Flex
       align="center"
-      direction={buttonDirection}
+      direction={!swapped_buttons ? 'row-reverse' : 'row'}
       fill
-      justify="space-around">
+      justify="space-around"
+      wrap>
       {buttons?.map((button, index) =>
         !!large_buttons && buttons.length < 3 ? (
           <Flex.Item grow key={index}>
@@ -146,7 +143,8 @@ const AlertButton = (props, context) => {
       pr={2}
       pt={large_buttons ? 0.33 : 0}
       selected={selected}
-      textAlign="center">
+      textAlign="center"
+      width={!large_buttons && buttonWidth}>
       {!large_buttons ? button : button.toUpperCase()}
     </Button>
   );

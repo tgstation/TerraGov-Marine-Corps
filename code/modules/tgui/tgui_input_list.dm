@@ -143,15 +143,15 @@
 
 /datum/tgui_list_input/ui_static_data(mob/user)
 	. = list()
-	.["items"] = items
-
-/datum/tgui_list_input/ui_data(mob/user)
-	. = list()
 	.["init_value"] = default || items[1]
+	.["items"] = items
 	.["message"] = message
 	.["large_buttons"] = user.client.prefs.tgui_input_big_buttons
 	.["swapped_buttons"] = user.client.prefs.tgui_input_buttons_swap
 	.["title"] = title
+
+/datum/tgui_list_input/ui_data(mob/user)
+	. = list()
 	if(timeout)
 		.["timeout"] = clamp((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS), 0, 1)
 

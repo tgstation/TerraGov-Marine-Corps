@@ -137,27 +137,17 @@
 	return GLOB.always_state
 
 /datum/tgui_input_number/ui_static_data(mob/user)
-	. = list(
-		"init_value" = default, // Default is a reserved keyword
-		"max_value" = max_value,
-		"message" = message,
-		"min_value" = min_value,
-		"preferences" = list(),
-		"title" = title,
-		"large_buttons" = user.client.prefs.tgui_input_big_buttons,
-		"swapped_buttons" = user.client.prefs.tgui_input_buttons_swap,
-	)
-
-/datum/tgui_input_number/ui_data(mob/user)
 	. = list()
 	.["init_value"] = default // Default is a reserved keyword
 	.["max_value"] = max_value
 	.["message"] = message
 	.["min_value"] = min_value
-	.["preferences"] = list()
-	.["preferences"]["large_buttons"] = user.client.prefs.tgui_input_big_buttons
-	.["preferences"]["swapped_buttons"] = user.client.prefs.tgui_input_buttons_swap
+	.["large_buttons"] = user.client.prefs.tgui_input_big_buttons
+	.["swapped_buttons"] = user.client.prefs.tgui_input_buttons_swap
 	.["title"] = title
+
+/datum/tgui_input_number/ui_data(mob/user)
+	. = list()
 	if(timeout)
 		.["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
 
