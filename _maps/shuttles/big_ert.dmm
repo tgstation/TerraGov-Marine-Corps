@@ -197,10 +197,8 @@
 /obj/structure/table/mainship,
 /obj/item/storage/pouch/medkit,
 /obj/item/storage/pouch/medkit,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver,
 /obj/item/reagent_containers/spray/surgery,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
@@ -319,7 +317,7 @@
 "bb" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/regular,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "bc" = (

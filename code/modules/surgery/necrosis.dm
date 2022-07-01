@@ -1,7 +1,7 @@
 
 
 /datum/surgery_step/necro
-	priority = 1
+	priority = 3
 	var/necro_step
 
 /datum/surgery_step/necro/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
@@ -49,8 +49,7 @@
 /datum/surgery_step/necro/treat_necrosis
 
 	allowed_tools = list(
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack= 100,
-		/obj/item/stack/medical/heal_pack/gauze = 20,
+		/obj/item/tool/surgery/surgical_membrane = 100,
 	)
 
 	can_infect = 0

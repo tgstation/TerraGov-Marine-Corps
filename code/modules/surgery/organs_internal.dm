@@ -1,6 +1,5 @@
 // Internal surgeries.
 /datum/surgery_step/internal
-	priority = 3
 	can_infect = 1
 	blood_level = 1
 
@@ -12,6 +11,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/internal/remove_embryo
+	priority = 3
 	allowed_tools = list(
 		/obj/item/tool/surgery/hemostat = 100,
 		/obj/item/tool/wirecutters = 75,
@@ -62,9 +62,9 @@
 
 
 /datum/surgery_step/internal/fix_organ
+	priority = 1
 	allowed_tools = list(
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack= 100,
-		/obj/item/stack/medical/heal_pack/gauze = 20,
+		/obj/item/tool/surgery/surgical_membrane = 100,
 	)
 
 	min_duration = FIX_ORGAN_MIN_DURATION
@@ -80,48 +80,32 @@
 
 
 /datum/surgery_step/internal/fix_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	var/tool_name = "\the [tool]"
-	if(istype(tool, /obj/item/stack/medical/heal_pack/advanced/bruise_pack))
-		tool_name = "regenerative membrane"
-	else if(istype(tool, /obj/item/stack/medical/heal_pack/gauze))
-		tool_name = "the bandaid"
-
 	for(var/datum/internal_organ/I in affected.internal_organs)
 		if(I && I.damage > 0 && I.robotic != ORGAN_ROBOT)
-			user.visible_message(span_notice("[user] starts treating damage to [target]'s [I.name] with [tool_name]."), \
-			span_notice("You start treating damage to [target]'s [I.name] with [tool_name].") )
+			user.visible_message(span_notice("[user] starts treating damage to [target]'s [I.name] with the surgical membrane."), \
+			span_notice("You start treating damage to [target]'s [I.name] with the surgical membrane.") )
 			target.balloon_alert_to_viewers("Fixing...")
 
 	target.custom_pain("The pain in your [affected.display_name] is living hell!", 1)
 	..()
 
 /datum/surgery_step/internal/fix_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	var/tool_name = "\the [tool]"
-	if(istype(tool, /obj/item/stack/medical/heal_pack/advanced/bruise_pack))
-		tool_name = "regenerative membrane"
-	else if(istype(tool, /obj/item/stack/medical/heal_pack/gauze))
-		tool_name = "the bandaid"
-
 	for(var/datum/internal_organ/I in affected.internal_organs)
 		if(I && I.damage > 0 && I.robotic != ORGAN_ROBOT)
-			user.visible_message(span_notice("[user] treats damage to [target]'s [I.name] with [tool_name]."), \
-			span_notice("You treat damage to [target]'s [I.name] with [tool_name].") )
-			I.damage = 0
-	target.balloon_alert_to_viewers("Success")
+
+			user.visible_message(span_notice("[user] treats damage to [target]'s [I.name] with surgical membrane."), \
+			span_notice("You treat damage to [target]'s [I.name] with surgical membrane.") )
+			I.heal_organ_damage(I.damage)
+			target.balloon_alert_to_viewers("Success")
 
 /datum/surgery_step/internal/fix_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message(span_warning("[user]'s hand slips, getting mess and tearing the inside of [target]'s [affected.display_name] with \the [tool]!"), \
-	span_warning("Your hand slips, getting mess and tearing the inside of [target]'s [affected.display_name] with \the [tool]!"))
+	user.visible_message(span_warning("[user]'s hand slips, getting messy and tearing the inside of [target]'s [affected.display_name] with \the [tool]!"), \
+	span_warning("Your hand slips, getting messy and tearing the inside of [target]'s [affected.display_name] with \the [tool]!"))
 	target.balloon_alert_to_viewers("Slipped!")
 	var/dam_amt = 2
 
-	if(istype(tool, /obj/item/stack/medical/heal_pack/advanced/bruise_pack))
+	if(istype(tool, /obj/item/tool/surgery/surgical_membrane))
 		target.adjustToxLoss(5)
-
-	else if(istype(tool, /obj/item/stack/medical/heal_pack/gauze))
-		dam_amt = 5
-		target.adjustToxLoss(10)
-		affected.createwound(CUT, 5)
 
 	for(var/datum/internal_organ/I in affected.internal_organs)
 		if(I && I.damage > 0)

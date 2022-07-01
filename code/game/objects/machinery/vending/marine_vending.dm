@@ -43,6 +43,7 @@
 			/obj/item/weapon/gun/rifle/chambered = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
 			/obj/item/weapon/gun/shotgun/pump/bolt = -1,
+			/obj/item/ammo_magazine/rifle/boltclip = -1,
 			/obj/item/ammo_magazine/rifle/bolt = -1,
 			/obj/item/weapon/gun/shotgun/double/martini = -1,
 			/obj/item/ammo_magazine/rifle/martini = -1,
@@ -115,7 +116,7 @@
 			/obj/item/explosive/grenade/smokebomb/drain = 10,
 			/obj/item/explosive/grenade/mirage = 100,
 			/obj/item/storage/box/m94 = 200,
-			/obj/item/storage/box/m94/cas = 30,
+			/obj/item/storage/box/m94/cas = 50,
 		),
 		"Attachments" = list(
 			/obj/item/attachable/bayonet = -1,
@@ -570,13 +571,14 @@
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
 		"Surplus Special Equipment" = list(
+			/obj/item/pinpointer = 1,
 			/obj/item/beacon/supply_beacon = 1,
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
 			/obj/item/ammo_magazine/rocket/sadar = 3,
 			/obj/item/ammo_magazine/minigun_powerpack = 2,
 			/obj/item/ammo_magazine/shotgun/mbx900 = 2,
-			/obj/item/bodybag/tarp = 2,
+			/obj/item/bodybag/tarp = 10,
 			/obj/item/explosive/plastique = 5,
 			/obj/item/fulton_extraction_pack = 2,
 			/obj/item/clothing/suit/storage/marine/harness/boomvest = 20,
@@ -816,18 +818,18 @@
 	wrenchable = FALSE
 	isshared = TRUE
 	products = list(
-		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/tricordrazine = 12,
-			/obj/item/storage/pill_bottle/bicaridine = 12,
-			/obj/item/storage/pill_bottle/kelotane = 12,
-			/obj/item/storage/pill_bottle/tramadol = 12,
-			/obj/item/storage/pill_bottle/dylovene = 12
+		"Pill Packet" = list(
+			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
+			/obj/item/storage/pill_bottle/packet/kelotane = -1,
+			/obj/item/storage/pill_bottle/packet/tramadol = -1,
+			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
+			/obj/item/storage/pill_bottle/packet/dylovene = -1,
 		),
 		"Auto Injector" = list(
-			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/tramadol = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/combat = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1,
@@ -838,18 +840,18 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 30,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
-			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
 			/obj/item/stack/medical/heal_pack/ointment = -1,
-			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 32,
-			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 32,
 			/obj/item/stack/medical/splint = -1,
+			/obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50,
+			/obj/item/stack/medical/heal_pack/advanced/burn_pack = 50,
 		),
 		"Misc" = list(
-			/obj/item/healthanalyzer = 12,
-			/obj/item/bodybag/cryobag = 8,
+			/obj/item/defibrillator = 8,
+			/obj/item/healthanalyzer = 16,
+			/obj/item/bodybag/cryobag = 24,
 		),
 	)
 
@@ -860,18 +862,18 @@
 	resistance_flags = INDESTRUCTIBLE
 	use_power = NO_POWER_USE
 	products = list(
-		"Pill Bottle" = list(
-			/obj/item/storage/pill_bottle/tricordrazine = -1,
-			/obj/item/storage/pill_bottle/bicaridine = -1,
-			/obj/item/storage/pill_bottle/kelotane = -1,
-			/obj/item/storage/pill_bottle/tramadol = -1,
-			/obj/item/storage/pill_bottle/dylovene = -1
+		"Pill Packet" = list(
+			/obj/item/storage/pill_bottle/packet/bicaridine = -1,
+			/obj/item/storage/pill_bottle/packet/kelotane = -1,
+			/obj/item/storage/pill_bottle/packet/tramadol = -1,
+			/obj/item/storage/pill_bottle/packet/tricordrazine = -1,
+			/obj/item/storage/pill_bottle/packet/dylovene = -1,
 		),
 		"Auto Injector" = list(
-			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/tramadol = -1,
+			/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/combat = -1,
 			/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1,
@@ -932,38 +934,6 @@
 			R.product_name += blood_type? " [blood_type]" : ""
 			temp_list -= R.product_path
 			if(!temp_list.len) break
-
-/obj/machinery/vending/marine_medic
-	name = "\improper TerraGovTech Medic Vendor"
-	desc = "A marine medic equipment vendor"
-	product_ads = "They were gonna die anyway.;Let's get space drugged!"
-	req_access = list(ACCESS_MARINE_MEDPREP)
-	icon_state = "corpsmanvendor"
-	icon_deny = "corpsmanvendor-deny"
-	wrenchable = FALSE
-
-	products = list(
-		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/modular/marine/m10x = 4,
-		/obj/item/storage/backpack/marine/corpsman = 4,
-		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
-		/obj/item/encryptionkey/med = 4,
-		/obj/item/storage/belt/medical = 6,
-		/obj/item/bodybag/cryobag = 4,
-		/obj/item/healthanalyzer = 4,
-		/obj/item/clothing/glasses/hud/health = 4,
-		/obj/item/storage/firstaid/regular = 4,
-		/obj/item/storage/firstaid/adv = 8,
-		/obj/item/storage/pouch/medical = 4,
-		/obj/item/storage/pouch/medkit = 4,
-		/obj/item/storage/pouch/magazine/large = 4,
-		/obj/item/storage/pouch/magazine/pistol/large = 4,
-		/obj/item/clothing/mask/gas = 4,
-		/obj/item/storage/pouch/pistol = 4,
-	)
-
-/obj/machinery/vending/marine_medic/rebel
-	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/vending/shared_vending/marine_engi
 	name = "\improper TerraGovTech Engineer System Vendor"
@@ -1128,7 +1098,7 @@
 		"Webbings" = list(
 			/obj/item/armor_module/storage/uniform/black_vest = -1,
 			/obj/item/armor_module/storage/uniform/brown_vest = -1,
-			/obj/item/armor_module/storage/uniform/white_vest/medic = -1,
+			/obj/item/armor_module/storage/uniform/white_vest = -1,
 			/obj/item/armor_module/storage/uniform/webbing = -1,
 			/obj/item/armor_module/storage/uniform/holster = -1,
 		),
@@ -1154,11 +1124,9 @@
 			/obj/item/storage/pouch/flare/full = -1,
 			/obj/item/storage/pouch/grenade = -1,
 			/obj/item/storage/pouch/explosive = -1,
-			/obj/item/storage/pouch/firstaid = -1,
-			/obj/item/storage/pouch/syringe = -1,
 			/obj/item/storage/pouch/medkit = -1,
+			/obj/item/storage/pouch/medical_injectors = -1,
 			/obj/item/storage/pouch/med_lolipops = -1,
-			/obj/item/storage/pouch/autoinjector = -1,
 			/obj/item/storage/pouch/construction = -1,
 			/obj/item/storage/pouch/electronics = -1,
 			/obj/item/storage/pouch/tools/full = -1,

@@ -47,6 +47,14 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	null, \
 	))
 
+
+GLOBAL_LIST_INIT(metal_radial_images, list(
+	"recipes" = image('icons/Marine/barricades.dmi', icon_state = "plus"),
+	"barricade" = image('icons/Marine/barricades.dmi', icon_state = "metal_0"),
+	"razorwire" = image('icons/obj/structures/barbedwire.dmi', icon_state = "barbedwire_assembly"),
+	"barbedwire" = image('icons/Marine/marine-items.dmi', icon_state = "barbed_wire")
+	))
+
 /obj/item/stack/sheet/metal
 	name = "metal"
 	desc = "Sheets made out of metal. It has been dubbed Metal Sheets."
@@ -75,13 +83,31 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	. = ..()
 	recipes = GLOB.metal_recipes
 
+/obj/item/stack/sheet/metal/select_radial(mob/user)
+	if(user.get_active_held_item() != src)
+		return
+	if(!can_interact(user))
+		return TRUE
+
+	add_fingerprint(usr, "topic")
+
+	var/choice = show_radial_menu(user, src, GLOB.metal_radial_images, require_near = TRUE)
+
+	switch (choice)
+		if("recipes")
+			return TRUE
+		if("barricade")
+			create_object(user, new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 4, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_METAL), 1)
+		if("barbedwire")
+			create_object(user, new/datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 2, 1, 20, time = 1 SECONDS, skill_req = SKILL_CONSTRUCTION_METAL), 1)
+		if("razorwire")
+			create_object(user, new/datum/stack_recipe("razor wire", /obj/item/stack/razorwire, 3, 1, 20, time = 5 SECONDS, skill_req = SKILL_CONSTRUCTION_METAL), 1)
+
+	return FALSE
+
 /*
 * Plasteel
 */
-GLOBAL_LIST_INIT(plasteel_recipes, list ( \
-	new/datum/stack_recipe("metal crate", /obj/structure/closet/crate, 5, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE), \
-	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req =  SKILL_CONSTRUCTION_PLASTEEL)
-	))
 
 /obj/item/stack/sheet/plasteel
 	name = "plasteel"
@@ -96,9 +122,9 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	merge_type = /obj/item/stack/sheet/plasteel
 	number_of_extra_variants = 3
 
-/obj/item/stack/sheet/plasteel/Initialize(mapload, amount)
+/obj/item/stack/sheet/plasteel/attack_self(mob/user)
 	. = ..()
-	recipes = GLOB.plasteel_recipes
+	create_object(user, new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req =  SKILL_CONSTRUCTION_PLASTEEL), 1)
 
 
 /obj/item/stack/sheet/plasteel/small_stack

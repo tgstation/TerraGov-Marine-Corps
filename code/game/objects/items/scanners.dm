@@ -163,7 +163,7 @@ REAGENT SCANNER
 	if(ishuman(patient))
 		var/mob/living/carbon/human/human_patient = patient
 		var/infection_message
-		var/infected
+		var/infected = 0
 		var/internal_bleeding
 
 		var/unknown_implants = 0
@@ -174,16 +174,12 @@ REAGENT SCANNER
 						continue
 					internal_bleeding = TRUE
 					break
-			if(!infected)
-				if(limb.germ_level >= INFECTION_LEVEL_THREE)
-					infection_message = "Subject's [limb.display_name] is in the last stage of infection. < 30u of antibiotics recommended."
-					infected = 2
-				if(limb.germ_level >= INFECTION_LEVEL_ONE && limb.germ_level < INFECTION_LEVEL_THREE)
-					infection_message = "Subject's [limb.display_name] has an infection. Antibiotics recommended."
-					infected = 1
-				if(limb.has_infected_wound())
-					infection_message = "Infected wound detected in subject's [limb.display_name]. Disinfection recommended."
-					infected = 1
+			if(infected < 2 && limb.limb_status & LIMB_NECROTIZED)
+				infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
+				infected = 2
+			if(infected < 1 && limb.germ_level > INFECTION_LEVEL_ONE)
+				infection_message = "Infection detected in subject's [limb.display_name]. Antibiotics recommended."
+				infected = 1
 
 			if(limb.hidden)
 				unknown_implants++
@@ -226,13 +222,17 @@ REAGENT SCANNER
 		data["body_temperature"] = "[round(human_patient.bodytemperature*1.8-459.67, 0.1)] degrees F ([round(human_patient.bodytemperature-T0C, 0.1)] degrees C)"
 		data["pulse"] = "[human_patient.get_pulse(GETPULSE_TOOL)] bpm"
 		data["implants"] = unknown_implants
-
-	if (!isrobot(patient) && (patient.getBrainLoss() >= 100 || !patient.has_brain()))
-		data["brain_damage"] = "Subject is brain dead"
-	else if (patient.getBrainLoss() >= 60)
-		data["brain_damage"] = "Severe brain damage detected. Subject likely to have intellectual disabilities."
-	else if (patient.getBrainLoss() >= 10)
-		data["brain_damage"] = "<b>Significant brain damage</b> detected. Subject may have had a concussion."
+		var/damaged_organs = list()
+		for(var/datum/internal_organ/organ AS in human_patient.internal_organs)
+			if(organ.organ_status == ORGAN_HEALTHY)
+				continue
+			var/current_organ = list(
+				"name" = organ.name,
+				"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
+				"damage" = organ.damage
+			)
+			damaged_organs += list(current_organ)
+		data["damaged_organs"] = damaged_organs
 
 	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
 		if(!patient.key)

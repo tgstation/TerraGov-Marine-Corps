@@ -129,6 +129,10 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
+"dE" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "dS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -227,6 +231,10 @@
 /area/bigredv2/outside/space_port)
 "gM" = (
 /obj/machinery/landinglight/ds1/delaytwo,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
+"hf" = (
+/obj/structure/sign/safety/hazard,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "hh" = (
@@ -977,7 +985,6 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "AR" = (
-/obj/structure/sign/safety/hazard,
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
@@ -2183,10 +2190,10 @@ bg
 bg
 bg
 bg
-In
+hf
 MN
-TS
-ac
+yT
+Yn
 "}
 (6,1,1) = {"
 ac
@@ -2346,7 +2353,7 @@ bg
 In
 MN
 yT
-GW
+Yn
 "}
 (10,1,1) = {"
 ac
@@ -2386,7 +2393,7 @@ bg
 AR
 MN
 yT
-Yn
+GW
 "}
 (11,1,1) = {"
 ac
@@ -2425,8 +2432,8 @@ Yp
 bg
 In
 MN
-TS
-ac
+yT
+Yn
 "}
 (12,1,1) = {"
 ac
@@ -2463,9 +2470,9 @@ bg
 bg
 bg
 bg
-bg
+dE
 MN
-TS
+yT
 ac
 "}
 (13,1,1) = {"

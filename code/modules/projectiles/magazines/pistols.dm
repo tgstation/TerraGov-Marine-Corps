@@ -207,3 +207,13 @@
 	caliber = CALIBER_70MANKEY
 	icon_state = "c70"
 	max_rounds = 300
+
+//SP-13 (Calico)
+/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
+	name = "\improper SP-13 magazine (9mm)"
+	desc = "A SP-13 magazine."
+	caliber = CALIBER_9X19
+	icon_state = "tx13"
+	max_rounds = 25
+	w_class = WEIGHT_CLASS_SMALL
+	default_ammo = /datum/ammo/bullet/pistol

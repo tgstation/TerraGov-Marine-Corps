@@ -4457,7 +4457,7 @@
 /obj/item/healthanalyzer,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/structure/table/mainship,
-/obj/item/storage/belt/medical,
+/obj/item/storage/belt/lifesaver,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},

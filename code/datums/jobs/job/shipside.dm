@@ -64,7 +64,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	jobtype = /datum/job/terragov/command/captain
 
 	id = /obj/item/card/id/gold
-	belt = /obj/item/storage/belt/gun/mateba/captain/full
+	belt = /obj/item/storage/belt/gun/pistol/smart_pistol/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/command
 	shoes = /obj/item/clothing/shoes/marinechief/captain
@@ -180,7 +180,7 @@ Make the TGMC proud!"})
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/fieldcommand
 	back = /obj/item/storage/backpack/marine/satchel
-	suit_store = /obj/item/storage/belt/gun/pistol/m4a3/fieldcommander/
+	suit_store = /obj/item/storage/belt/gun/mateba/officer/full
 
 /datum/outfit/job/command/fieldcommander/rebel
 	jobtype = /datum/job/terragov/command/fieldcommander/rebel
@@ -701,7 +701,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	jobtype = /datum/job/terragov/medical/professor
 
 	id = /obj/item/card/id
-	belt = /obj/item/storage/belt/medical
+	belt = /obj/item/storage/belt/rig/medical
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/rank/medical/blue
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/cmo
@@ -710,8 +710,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
-	r_store = /obj/item/storage/pouch/medkit/full
-	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
+	r_store = /obj/item/storage/pouch/medkit/medic
+	l_store = /obj/item/storage/pouch/surgery
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/professor/rebel
@@ -787,7 +787,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	jobtype = /datum/job/terragov/medical/medicalofficer
 
 	id = /obj/item/card/id
-	belt = /obj/item/storage/belt/medical
+	belt = /obj/item/storage/belt/rig/medical
 	ears = /obj/item/radio/headset/mainship/doc
 	w_uniform = /obj/item/clothing/under/rank/medical/purple
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
@@ -796,8 +796,6 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
-	r_store = /obj/item/storage/pouch/medkit/full
-	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/job/medical/medicalofficer/rebel
@@ -877,7 +875,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	name = MEDICAL_RESEARCHER
 	jobtype = /datum/job/terragov/medical/researcher
 	id = /obj/item/card/id
-	belt = /obj/item/storage/belt/medical
+	belt = /obj/item/storage/belt/rig/research
 	ears = /obj/item/radio/headset/mainship/res
 	w_uniform = /obj/item/clothing/under/marine/officer/researcher
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/researcher
@@ -885,21 +883,16 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
-	r_store = /obj/item/reagent_containers/glass/bottle/lemoline
-	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
-
-/datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/obj/item/storage/backpack/respack = H.back
-	var/obj/item/tool/research/xeno_analyzer/res_an = new
-	respack.handle_item_insertion(res_an, TRUE, null)
-	var/obj/item/tool/research/excavation_tool/res_ex = new
-	respack.handle_item_insertion(res_ex, TRUE, null)
-	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/medical/researcher/rebel
 	jobtype = /datum/job/terragov/medical/researcher/rebel
 	ears = /obj/item/radio/headset/mainship/doc/rebel
+
+/datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
 
 /datum/job/terragov/civilian
 	job_category = JOB_CAT_CIVILIAN

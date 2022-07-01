@@ -1174,6 +1174,27 @@ datum/ammo/bullet/revolver/tp44
 	shrapnel_chance = 25
 	sundering = 2.5
 
+/datum/ammo/bullet/dual_cannon
+	name = "dualcannon bullet"
+	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	accurate_range = 5
+	damage = 25
+	penetration = 100
+	sundering = 7
+	max_range = 30
+
+/datum/ammo/bullet/dual_cannon/on_hit_turf(turf/T, obj/projectile/P)
+	P.proj_max_range -= 20
+
+/datum/ammo/bullet/dual_cannon/on_hit_mob(mob/M, obj/projectile/P)
+	P.proj_max_range -= 15
+
+/datum/ammo/bullet/dual_cannon/on_hit_obj(obj/O, obj/projectile/P)
+	P.proj_max_range -= 10
+
 /datum/ammo/bullet/railgun
 	name = "armor piercing railgun slug"
 	hud_state = "alloy_spike"
@@ -1388,6 +1409,24 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 7)
+
+/datum/ammo/rocket/heavy_rr
+	name = "75mm round"
+	icon_state = "heavyrr"
+	hud_state = "shell_he"
+	hud_state_empty = "shell_empty"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	accuracy = 40
+	accurate_range = 15
+	max_range = 40
+	shell_speed = 3
+	penetration = 200
+	damage = 200
+	sundering = 50
+	handful_amount = 1
+
+/datum/ammo/rocket/heavy_rr/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 4)
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
@@ -1864,6 +1903,32 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 10
 	hitscan_effect_icon = "xray_beam"
 
+/datum/ammo/energy/lasgun/marine/heavy_laser
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_ENERGY|AMMO_SUNDERING|AMMO_HITSCAN|AMMO_INCENDIARY
+	damage = 60
+	penetration = 10
+	sundering = 1
+	max_range = 30
+	hitscan_effect_icon = "beam_incen"
+
+/datum/ammo/energy/lasgun/marine/heavy_laser/drop_nade(turf/T, radius = 1)
+	if(!T || !isturf(T))
+		return
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	flame_radius(radius, T, 3, 3, 3, 3)
+
+/datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+
+/datum/ammo/energy/lasgun/marine/heavy_laser/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T)
+
+/datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(obj/projectile/P)
+	drop_nade(get_turf(P))
+
 // Plasma //
 
 /datum/ammo/energy/plasma
@@ -2094,7 +2159,7 @@ datum/ammo/bullet/revolver/tp44
 	spit_cost = 100
 	damage = 40
 	smoke_strength = 0.9
-	reagent_transfer_amount = 9.5
+	reagent_transfer_amount = 8.5
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
 	smoke_strength = 0.9
@@ -2283,6 +2348,7 @@ datum/ammo/bullet/revolver/tp44
 	max_range = 30
 	damage = 50
 	damage_type = STAMINA
+	damage_falloff = 0
 	penetration = 40
 	bullet_color = BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR
 	reagent_transfer_amount = 30

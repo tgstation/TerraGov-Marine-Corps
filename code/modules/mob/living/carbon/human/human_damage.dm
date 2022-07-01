@@ -76,14 +76,14 @@
 	return brainloss
 
 //These procs fetch a cumulative total damage from all limbs
-/mob/living/carbon/human/getBruteLoss(organic_only=0)
+/mob/living/carbon/human/getBruteLoss(organic_only=FALSE)
 	var/amount = 0
 	for(var/datum/limb/O in limbs)
 		if(!(organic_only && O.limb_status & LIMB_ROBOT))
 			amount += O.brute_dam
 	return amount
 
-/mob/living/carbon/human/getFireLoss(organic_only=0)
+/mob/living/carbon/human/getFireLoss(organic_only=FALSE)
 	var/amount = 0
 	for(var/datum/limb/O in limbs)
 		if(!(organic_only && O.limb_status & LIMB_ROBOT))
@@ -98,7 +98,7 @@
 	if(amount > 0)
 		take_overall_damage(amount, updating_health = updating_health)
 	else
-		heal_overall_damage(-amount, 0, updating_health)
+		heal_overall_damage(-amount, 0, updating_health = updating_health)
 
 
 /mob/living/carbon/human/adjustFireLoss(amount, updating_health = FALSE)
@@ -108,18 +108,7 @@
 	if(amount > 0)
 		take_overall_damage(0, amount, updating_health = updating_health)
 	else
-		heal_overall_damage(0, -amount, updating_health)
-
-
-//These procs fetch a cumulative total damage from all limbs
-/mob/living/carbon/human/proc/getexternalBruteLoss(organic_only = TRUE)
-	. = 0
-	for(var/i in limbs)
-		var/datum/limb/bodypart = i
-		if(organic_only && bodypart.limb_status & LIMB_ROBOT)
-			continue
-		var/external_dam = bodypart.brute_dam
-		. += external_dam
+		heal_overall_damage(0, -amount, updating_health = updating_health)
 
 
 /mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source = null)
@@ -221,9 +210,11 @@
 ////////////////////////////////////////////
 
 //Returns a list of damaged limbs
-/mob/living/carbon/human/proc/get_damaged_limbs(brute, burn)
+/mob/living/carbon/human/proc/get_damaged_limbs(brute, burn, include_robotics = FALSE)
 	var/list/datum/limb/parts = list()
 	for(var/datum/limb/O in limbs)
+		if(O.limb_status & LIMB_ROBOT && !include_robotics)
+			continue
 		if((brute && O.brute_dam) || (burn && O.burn_dam) || !(O.surgery_open_stage == 0))
 			parts += O
 	return parts
@@ -239,15 +230,13 @@
 //Heals ONE external organ, organ gets randomly selected from damaged ones.
 //It automatically updates damage overlays if necesary
 //It automatically updates health status
-/mob/living/carbon/human/heal_limb_damage(brute, burn, updating_health = FALSE)
-	var/list/datum/limb/parts = get_damaged_limbs(brute, burn)
+/mob/living/carbon/human/heal_limb_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
+	var/list/datum/limb/parts = get_damaged_limbs(brute, burn, robo_repair)
 	if(!parts.len)
 		return
 	var/datum/limb/picked = pick(parts)
-	if(picked.heal_limb_damage(brute, burn, updating_health = updating_health))
+	if(picked.heal_limb_damage(brute, burn, robo_repair, updating_health))
 		UpdateDamageIcon()
-	if(updating_health)
-		updatehealth()
 
 /*
 In most cases it makes more sense to use apply_damage() instead! And make sure to check armour if applicable.
@@ -267,10 +256,9 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 	speech_problem_flag = 1
 
-
-//Heal MANY limbs, in random order
-/mob/living/carbon/human/heal_overall_damage(brute, burn, updating_health = FALSE, robotic_repair = FALSE)
-	var/list/datum/limb/parts = get_damaged_limbs(brute,burn)
+///Heal MANY limbs, in random order. If robo_repair is TRUE then both metal and flesh limbs will be healed, otherwise only flesh.
+/mob/living/carbon/human/heal_overall_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
+	var/list/datum/limb/parts = get_damaged_limbs(brute, burn, robo_repair)
 
 	var/update = 0
 	while(parts.len && (brute>0 || burn>0) )
@@ -279,10 +267,10 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		var/brute_was = picked.brute_dam
 		var/burn_was = picked.burn_dam
 
-		update |= picked.heal_limb_damage(brute, burn, robotic_repair)
+		update |= picked.heal_limb_damage(brute, burn, robo_repair)
 
-		brute -= (brute_was-picked.brute_dam)
-		burn -= (burn_was-picked.burn_dam)
+		brute -= (brute_was - picked.brute_dam)
+		burn -= (burn_was - picked.burn_dam)
 
 		parts -= picked
 	if(updating_health)

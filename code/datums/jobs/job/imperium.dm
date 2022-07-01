@@ -43,7 +43,7 @@
 	belt = /obj/item/storage/belt/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial
 	head = /obj/item/clothing/head/helmet/marine/imperial
-	r_store = /obj/item/storage/pouch/firstaid/full
+	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_store = /obj/item/storage/pouch/flare/full
 	back = /obj/item/storage/backpack/lightpack
 
@@ -119,12 +119,12 @@
 	name = "Guardsman Medicae"
 	jobtype = /datum/job/imperial/guardsman/medicae
 
-	belt = /obj/item/storage/belt/combatLifesaver
+	belt = /obj/item/storage/belt/lifesaver
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/medicae
 	head = /obj/item/clothing/head/helmet/marine/imperial
 	glasses = /obj/item/clothing/glasses/hud/health
-	l_store = /obj/item/storage/pouch/medkit
-	r_store = /obj/item/storage/pouch/autoinjector
+	l_store = /obj/item/storage/pouch/medkit/medic
+	r_store = /obj/item/storage/pouch/medical_injectors/medic
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/imperial/medicae/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
