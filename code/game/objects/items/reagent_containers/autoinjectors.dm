@@ -216,11 +216,10 @@
 	name = "peridaxon Plus autoinjector"
 	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
 	icon_state = "VioWhite"
-	amount_per_transfer_from_this = 3
-	volume = 9
+	amount_per_transfer_from_this = 1
+	volume = 3
 	list_reagents = list(
 		/datum/reagent/medicine/peridaxon_plus = 3,
-		/datum/reagent/medicine/hyronalin = 6,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/russian_red
@@ -307,7 +306,7 @@
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/toxin_heal
-	name = "detox autoinjector"
+	name = "toxin heal autoinjector"
 	desc = "An auto-injector loaded with chemicals to heal effects of toxin poisoning."
 	icon_state = "autoinjector-1"
 	amount_per_transfer_from_this = 5
@@ -318,11 +317,11 @@
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/toxin_heal/advanced
-	name = "advanced detox autoinjector"
+	name = "advanced toxin heal autoinjector"
 	volume = 30
 	list_reagents = list(
 		/datum/reagent/medicine/hyronalin = 10,
-		/datum/reagent/medicine/dylovene = 10,
+		/datum/reagent/medicine/dylovene = 20,
 	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/emergency
@@ -383,4 +382,38 @@
 		/datum/reagent/medicine/research/somolent = 10, //about 120 heals
 		/datum/reagent/toxin/sleeptoxin = 8,
 		/datum/reagent/toxin/chloralhydrate = 2,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/isotonic/big
+	name = "large isotonic solution autoinjector"
+	desc = "An auto-injector loaded with a large dose of isotonic solution, formulated to quickly recover fluid volume after blood loss or trauma."
+	icon_state = "autoinjector-8"
+	amount_per_transfer_from_this = 30
+	volume = 30
+	list_reagents = list(
+		/datum/reagent/iron = 15,
+		/datum/reagent/consumable/nutriment = 15,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/imialky
+	name = "imialky autoinjector"
+	desc = "An auto-injector loaded with imidazoline and alkysine, to treat eye and head damage."
+	icon_state = "autoinjector-8"
+	amount_per_transfer_from_this = 10
+	volume = 30
+	list_reagents = list(
+		/datum/reagent/medicine/alkysine = 10,
+		/datum/reagent/medicine/imidazoline = 20,
+	)
+
+/obj/item/reagent_containers/hypospray/autoinjector/stimulant
+	name = "stimulant autoinjector"
+	desc = "An auto-injector loaded with single dose of stimulant to boost combat performance."
+	icon_state = "Devilpower"
+	amount_per_transfer_from_this = 6
+	volume = 6
+	list_reagents = list(
+		/datum/reagent/medicine/synaptizine = 2,
+		/datum/reagent/medicine/ryetalyn = 2,
+		/datum/reagent/medicine/hyronalin = 2,
 	)

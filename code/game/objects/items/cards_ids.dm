@@ -81,7 +81,10 @@
 	var/blood_type = "\[UNSET\]"
 
 	///How many points you can use to buy items
-	var/marine_points = list()
+	var/marine_points = list(
+		CAT_INJ = DEFAULT_INJECTOR_TOTAL_BUY_POINTS,
+	)
+
 	///What category of items can you buy
 	var/marine_buy_flags = MARINE_CAN_BUY_ALL
 
@@ -250,22 +253,25 @@
 /obj/item/card/id/dogtag/smartgun
 	marine_points = list(
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
+		CAT_INJ = DEFAULT_INJECTOR_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/engineer
 	marine_points = list(
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
+		CAT_INJ = DEFAULT_INJECTOR_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/leader
 	marine_points = list(
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
+		CAT_INJ = DEFAULT_INJECTOR_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/corpsman
 	marine_points = list(
 		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
-		CAT_INJ = MEDIC_INJECTOR_TOTAL_BUY_POINTS,
+		CAT_MEDINJ = MEDIC_INJECTOR_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/full
@@ -274,7 +280,8 @@
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
-		CAT_INJ = MEDIC_INJECTOR_TOTAL_BUY_POINTS,
+		CAT_INJ = DEFAULT_INJECTOR_TOTAL_BUY_POINTS,
+		CAT_MEDINJ = MEDIC_INJECTOR_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/som
