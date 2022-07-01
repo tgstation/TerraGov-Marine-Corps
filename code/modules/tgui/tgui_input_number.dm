@@ -127,7 +127,6 @@
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "NumberInputModal")
-		ui.set_autoupdate(FALSE)
 		ui.open()
 
 /datum/tgui_input_number/ui_close(mob/user)
@@ -151,6 +150,14 @@
 
 /datum/tgui_input_number/ui_data(mob/user)
 	. = list()
+	.["init_value"] = default // Default is a reserved keyword
+	.["max_value"] = max_value
+	.["message"] = message
+	.["min_value"] = min_value
+	.["preferences"] = list()
+	.["preferences"]["large_buttons"] = user.client.prefs.tgui_input_big_buttons
+	.["preferences"]["swapped_buttons"] = user.client.prefs.tgui_input_buttons_swap
+	.["title"] = title
 	if(timeout)
 		.["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
 

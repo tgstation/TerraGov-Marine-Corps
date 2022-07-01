@@ -19,6 +19,12 @@
 			user = client.mob
 		else
 			return
+	// Client does NOT have tgui_input on: Returns regular input
+	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input))
+		if(length(buttons) == 2)
+			return alert(user, message, title, buttons[1], buttons[2])
+		if(length(buttons) == 3)
+			return alert(user, message, title, buttons[1], buttons[2], buttons[3])
 	var/datum/tgui_modal/alert = new(user, message, title, buttons, timeout, autofocus)
 	alert.ui_interact(user)
 	alert.wait()
@@ -48,6 +54,12 @@
 			user = client.mob
 		else
 			return
+	// Client does NOT have tgui_input on: Returns regular input
+	if(!user.client.prefs.tgui_input)
+		if(length(buttons) == 2)
+			return alert(user, message, title, buttons[1], buttons[2])
+		if(length(buttons) == 3)
+			return alert(user, message, title, buttons[1], buttons[2], buttons[3])
 	var/datum/tgui_modal/async/alert = new(user, message, title, buttons, callback, timeout, autofocus)
 	alert.ui_interact(user)
 
@@ -111,19 +123,14 @@
 /datum/tgui_modal/ui_state(mob/user)
 	return GLOB.always_state
 
-/datum/tgui_modal/ui_static_data(mob/user)
-	. = list(
-		"autofocus" = autofocus,
-		"buttons" = buttons,
-		"message" = message,
-		"preferences" = list(),
-		"title" = title,
-		"large_buttons" = user.client.prefs.tgui_input_big_buttons,
-		"swapped_buttons" = user.client.prefs.tgui_input_buttons_swap,
-	)
-
 /datum/tgui_modal/ui_data(mob/user)
 	. = list()
+	.["autofocus"] = autofocus
+	.["buttons"] = buttons
+	.["message"] = message
+	.["large_buttons"] = user.client.prefs.tgui_input_big_buttons
+	.["swapped_buttons"] = user.client.prefs.tgui_input_buttons_swap
+	.["title"] = title
 	if(timeout)
 		.["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
 
