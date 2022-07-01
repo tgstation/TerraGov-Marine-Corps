@@ -271,7 +271,7 @@
 
 /datum/chemical_reaction/plasmalosssmoke
 	name = "Tanglefoot smoke"
-	required_reagents = list(/datum/reagent/toxin/sleeptoxin = 2, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1)
+	required_reagents = list(/datum/reagent/toxin/sleeptoxin = 2, /datum/reagent/medicine/synaptizine = 1, /datum/reagent/sulfur = 1)
 
 /datum/chemical_reaction/plasmalosssmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/smoke_radius = round(sqrt(created_volume), 1)
