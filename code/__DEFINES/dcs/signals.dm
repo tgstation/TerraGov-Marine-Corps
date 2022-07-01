@@ -723,7 +723,7 @@
 
 #define COMSIG_XENOABILITY_WEB_SPIT "xenoability_web_spit"
 #define COMSIG_XENOABILITY_BURROW "xenoability_burrow"
-#define COMSIG_XENOABILITY_SNARE_BALL
+#define COMSIG_XENOABILITY_SNARE_BALL "xenoability_snare_ball"
 
 // throw parry signals
 #define COMSIG_THROW_PARRY_CHECK "throw_parry_check"

@@ -75,3 +75,4 @@
 	plasma_cost = 1
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SNARE_BALL
+
