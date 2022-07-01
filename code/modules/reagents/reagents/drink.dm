@@ -465,7 +465,7 @@
 
 /datum/reagent/consumable/drink/doctor_delight
 	name = "The Doctor's Delight"
-	description = "A gulp a day keeps the MediBot away. That's probably for the best."
+	description = "A gulp a day keeps the MediBot away. That's probably for the best. Improves the effect of most common healing drugs."
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	taste_description = "homely fruit"
 	custom_metabolism = FOOD_METABOLISM //Twice as fast as normal medicine. It is food, after all.
