@@ -360,6 +360,8 @@
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
 /obj/item/storage/pouch/medical_injectors/som
