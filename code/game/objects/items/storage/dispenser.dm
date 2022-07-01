@@ -39,11 +39,6 @@
 			continue
 		affecting.heal_overall_damage(2, 2, TRUE, TRUE)
 
-/obj/machinery/deployable/dispenser/MouseDrop(obj/over_object)
-	if(over_object == usr && ishuman(over_object))
-		var/obj/item/storage/backpack/dispenser/internal_bag = internal_item
-		internal_bag.open(usr)
-
 ///checks if a mob that moved close is elligible to get heal beamed.
 /obj/machinery/deployable/dispenser/proc/entered_tiles(datum/source, mob/living/carbon/human/entering)
 	SIGNAL_HANDLER
@@ -107,8 +102,6 @@
 	for(var/mob/watching in internal_bag.content_watchers)
 		internal_bag.close(watching)
 	return ..()
-
-
 
 /obj/item/storage/backpack/dispenser
 	name = "TX-9000 provisions dispenser"
