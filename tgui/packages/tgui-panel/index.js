@@ -68,7 +68,7 @@ const setupApp = () => {
   setupPanelFocusHacks();
   captureExternalLinks();
 
-  // Subscribe for Redux state updates
+  // Re-render UI on store updates
   store.subscribe(renderApp);
 
   // Subscribe for bankend updates
