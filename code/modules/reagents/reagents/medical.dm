@@ -60,7 +60,7 @@
 	reagent_state = SOLID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	scannable = TRUE
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	custom_metabolism = REAGENTS_METABOLISM * 0.125
 	purge_list = list(/datum/reagent/toxin, /datum/reagent/zombium)
 	purge_rate = 5
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -93,7 +93,7 @@
 
 /datum/reagent/medicine/paracetamol/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
-	L.heal_limb_damage(0.3*effect_str, 0.3*effect_str)
+	L.heal_limb_damage(0.2*effect_str, 0.2*effect_str)
 	L.adjustToxLoss(-0.1*effect_str)
 	L.adjustStaminaLoss(-effect_str)
 	return ..()
@@ -220,6 +220,8 @@
 	description = "Kelotane is a drug used to treat burns."
 	color = "#D8C58C"
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/ryetalyn)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
@@ -248,6 +250,8 @@
 	overdose_threshold = REAGENTS_OVERDOSE*0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/oxycodone)
+	purge_rate = 0.2
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
@@ -310,6 +314,8 @@
 	description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries."
 	color = "#B865CC"
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/ryetalyn)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "grossness"
@@ -418,7 +424,6 @@
 	if(TIMER_COOLDOWN_CHECK(L, name))
 		return
 	L.adjustStaminaLoss(-30*effect_str)
-	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.3) //small but significant speed increase
 	to_chat(L, span_userdanger("You feel a burst of energy as the stimulants course through you! Time to go!"))
 
 /datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
@@ -427,10 +432,8 @@
 	L.AdjustUnconscious(-20)
 	L.AdjustStun(-20)
 	L.AdjustParalyzed(-20)
-	L.hallucination = max(0, L.hallucination - 10)
 	L.adjustToxLoss(effect_str)
-	L.reagents.add_reagent(/datum/reagent/toxin, 2)
-
+	L.hallucination = max(0, L.hallucination - 10)
 	switch(current_cycle)
 		if(1 to 10)
 			L.adjustStaminaLoss(-7.5*effect_str)
@@ -447,7 +450,6 @@
 	L.apply_damages(effect_str, effect_str, effect_str)
 
 /datum/reagent/medicine/synaptizine/on_mob_delete(mob/living/L, metabolism)
-	L.remove_movespeed_modifier(type)
 	to_chat(L, span_userdanger("The room spins as you start to come down off your stimulants!"))
 	TIMER_COOLDOWN_START(L, name, 60 SECONDS)
 
@@ -455,7 +457,7 @@
 	name = "Neuraline"
 	description = "A chemical cocktail tailored to enhance or dampen specific neural processes."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM * 2.5
+	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = 5
 	overdose_crit_threshold = 6
 	scannable = FALSE
@@ -464,7 +466,7 @@
 	var/mob/living/carbon/human/H = L
 	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
-	if(L.health < H.health_threshold_crit && volume > 4) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
+	if(L.health < H.health_threshold_crit && volume > 3) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
 		L.adjustFireLoss(-L.getFireLoss() * 0.20)
@@ -491,8 +493,8 @@
 	L.AdjustParalyzed(-20)
 	L.AdjustSleeping(-40)
 	L.adjustStaminaLoss(-30*effect_str)
-	L.heal_limb_damage(5*effect_str, 5*effect_str)
-	L.adjustToxLoss(2*effect_str)
+	L.heal_limb_damage(7.5*effect_str, 7.5*effect_str)
+	L.adjustToxLoss(3.75*effect_str)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.setShock_Stage(min(C.shock_stage - volume*effect_str, 150)) //will pull a target out of deep paincrit instantly, if he's in it
@@ -508,13 +510,13 @@
 	name = "Hyronalin"
 	description = "Hyronalin is a medicinal drug used to counter the effect of toxin poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	custom_metabolism = REAGENTS_METABOLISM
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
 /datum/reagent/medicine/hyronalin/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-2*effect_str)
+	L.adjustToxLoss(-effect_str)
 	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
@@ -525,21 +527,19 @@
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
-	description = "Arithrazine is a dangerous medicine capable of healing toxin damage, but with severe side effects of chemical burns and internal hematomas."
+	description = "Arithrazine is a component medicine capable of healing very minor amounts of toxin poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM * 5
+	custom_metabolism = REAGENTS_METABOLISM * 1.25
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE
 
 /datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-effect_str)
-	L.take_limb_damage(2*effect_str, 2*effect_str)
+	L.adjustToxLoss(-0.2*effect_str)
 	return ..()
 
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(effect_str, TOX)
-	L.take_limb_damage(2*effect_str, 2*effect_str)
 
 /datum/reagent/arithrazine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(effect_str, effect_str, 2*effect_str)
@@ -662,6 +662,8 @@
 	name = "Bicaridine"
 	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
 	color = "#E8756C"
+	purge_list = list(/datum/reagent/medicine/ryetalyn)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
@@ -689,6 +691,8 @@
 	overdose_threshold = REAGENTS_OVERDOSE*0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/oxycodone)
+	purge_rate = 0.2
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(2*effect_str, 0)
@@ -1241,7 +1245,7 @@
 			if(L.stat == UNCONSCIOUS)
 				L.heal_limb_damage(10*effect_str, 10*effect_str)
 				L.adjustCloneLoss(-0.2*effect_str-(0.02*(L.maxHealth - L.health)))
-				holder.remove_reagent(/datum/reagent/medicine/research/somolent, (1-custom_metabolism)) //1u per tick
+				holder.remove_reagent(/datum/reagent/medicine/research/somolent, 0.6)
 			if(prob(50) && L.stat != UNCONSCIOUS)
 				L.adjustStaminaLoss((current_cycle*0.75 - 14)*effect_str)
 	return ..()
