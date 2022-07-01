@@ -77,11 +77,11 @@ GLOBAL_LIST_INIT(marine_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge = list(CAT_INJ, "Toxin purge", 2, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal = list(CAT_INJ, "Toxin heal", 2, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/painkiller = list(CAT_INJ, "Painkiller", 1, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/paracetamol = list(CAT_INJ, "Paracetamol", 3, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/paracetamol = list(CAT_INJ, "Paracetamol", 2, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/isotonic/big = list(CAT_INJ, "Big isotonic", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/imialky = list(CAT_INJ, "ImiAlky", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/stimulant = list(CAT_INJ, "Stimulant", 4, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/emergency = list(CAT_INJ, "Emergency", 5, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/emergency = list(CAT_INJ, "Emergency", 4, "black"),
 	))
 
 GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
@@ -117,11 +117,11 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge = list(CAT_INJ, "Toxin purge", 2, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal = list(CAT_INJ, "Toxin heal", 2, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/painkiller = list(CAT_INJ, "Painkiller", 1, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/paracetamol = list(CAT_INJ, "Paracetamol", 3, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/paracetamol = list(CAT_INJ, "Paracetamol", 2, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/isotonic/big = list(CAT_INJ, "Big isotonic", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/imialky = list(CAT_INJ, "ImiAlky", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/stimulant = list(CAT_INJ, "Stimulant", 4, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/emergency = list(CAT_INJ, "Emergency", 5, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/emergency = list(CAT_INJ, "Emergency", 4, "black"),
 	))
 
 GLOBAL_LIST_INIT(medic_gear_listed_products, list(
@@ -178,11 +178,11 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge = list(CAT_INJ, "Toxin purge", 2, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal = list(CAT_INJ, "Toxin heal", 2, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/painkiller = list(CAT_INJ, "Painkiller", 1, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/paracetamol = list(CAT_INJ, "Paracetamol", 3, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/paracetamol = list(CAT_INJ, "Paracetamol", 2, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/isotonic/big = list(CAT_INJ, "Big isotonic", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/imialky = list(CAT_INJ, "ImiAlky", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/stimulant = list(CAT_INJ, "Stimulant", 4, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/emergency = list(CAT_INJ, "Emergency", 5, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/emergency = list(CAT_INJ, "Emergency", 4, "black"),
 	))
 
 //A way to give them everything at once that still works with loadouts would be nice, but barring that make sure that your point calculation is set up so they don't get more than what they're supposed to
@@ -199,11 +199,11 @@ GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
 	/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge = list(CAT_INJ, "Toxin purge", 2, "orange"),
 	/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal = list(CAT_INJ, "Toxin heal", 2, "black"),
 	/obj/item/reagent_containers/hypospray/autoinjector/painkiller = list(CAT_INJ, "Painkiller", 1, "black"),
-	/obj/item/reagent_containers/hypospray/autoinjector/paracetamol = list(CAT_INJ, "Paracetamol", 3, "black"),
+	/obj/item/reagent_containers/hypospray/autoinjector/paracetamol = list(CAT_INJ, "Paracetamol", 2, "black"),
 	/obj/item/reagent_containers/hypospray/autoinjector/isotonic/big = list(CAT_INJ, "Big isotonic", 1, "black"),
 	/obj/item/reagent_containers/hypospray/autoinjector/imialky = list(CAT_INJ, "ImiAlky", 1, "black"),
 	/obj/item/reagent_containers/hypospray/autoinjector/stimulant = list(CAT_INJ, "Stimulant", 4, "black"),
-	/obj/item/reagent_containers/hypospray/autoinjector/emergency = list(CAT_INJ, "Emergency", 5, "black"),
+	/obj/item/reagent_containers/hypospray/autoinjector/emergency = list(CAT_INJ, "Emergency", 4, "black"),
 	))
 
 
