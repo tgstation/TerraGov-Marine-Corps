@@ -512,6 +512,7 @@
 	desc = "A crate containing a basic set of a mortar and some shells, to get an engineer started."
 
 /obj/structure/closet/crate/mortar_ammo/mortar_kit/PopulateContents()
+	new /obj/item/hud_tablet/mortar(src)
 	new /obj/item/mortar_kit(src)
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)
@@ -551,6 +552,7 @@
 	desc = "A crate containing a basic, somehow compressed kit consisting of an entire howitzer and some shells, to get a artilleryman started."
 
 /obj/structure/closet/crate/mortar_ammo/howitzer_kit/PopulateContents()
+	new /obj/item/hud_tablet/mortar/howitzer(src)
 	new /obj/item/mortar_kit/howitzer(src)
 	new /obj/item/mortal_shell/howitzer/incendiary(src)
 	new /obj/item/mortal_shell/howitzer/incendiary(src)
