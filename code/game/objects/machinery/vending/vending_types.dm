@@ -48,6 +48,7 @@
 		/obj/item/reagent_containers/food/drinks/bottle/tomatojuice = 4,
 		/obj/item/reagent_containers/food/drinks/bottle/limejuice = 4,
 		/obj/item/reagent_containers/food/drinks/bottle/cream = 4,
+		/obj/item/reagent_containers/food/drinks/bottle/doctor_delight = 4,
 		/obj/item/reagent_containers/food/drinks/cans/tonic = 8,
 		/obj/item/reagent_containers/food/drinks/cans/cola = 8,
 		/obj/item/reagent_containers/food/drinks/cans/sodawater = 15,
@@ -130,6 +131,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 10,
 		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 10,
 		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
+		/obj/item/reagent_containers/food/drinks/cans/doctor_delight = 10,
 	)
 
 	prices = list(
@@ -143,6 +145,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/souto/grape/diet = 5,
 		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 2,
 		/obj/item/reagent_containers/food/drinks/cans/cola = 10,
+		/obj/item/reagent_containers/food/drinks/cans/doctor_delight = 10,
 	)
 	idle_power_usage = 200
 

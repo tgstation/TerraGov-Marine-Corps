@@ -190,3 +190,10 @@
 	icon_state = "souto_diet_grape"
 	center_of_mass = list("x"=16, "y"=10)
 	list_reagents = list(/datum/reagent/consumable/drink/grapejuice = 25, /datum/reagent/water = 25)
+
+/obj/item/reagent_containers/food/drinks/cans/doctor_delight
+	name = "\improper Doctor's Delight"
+	desc = "Fruity goodness, to keep the medibots away. What's a medibot? Improves any pills you take with it."
+	icon_state = "doctordelightcan"
+	center_of_mass = list("x" = 16, "y" = 10)
+	list_reagents = list(/datum/reagent/consumable/drink/doctor_delight = 30)

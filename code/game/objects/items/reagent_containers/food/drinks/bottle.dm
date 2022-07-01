@@ -266,3 +266,12 @@
 	center_of_mass = list("x"=16, "y"=8)
 	isGlass = 0
 	list_reagents = list(/datum/reagent/consumable/drink/limejuice = 100)
+
+/obj/item/reagent_containers/food/drinks/bottle/doctor_delight
+	name = "Doctor's Delight"
+	desc = "Basically fruit punch. Take with pills to improve their healing."
+	icon_state = "doctorsdelightcarton"
+	item_state = "carton"
+	center_of_mass = list("x"=16, "y"=8)
+	isGlass = FALSE
+	list_reagents = list(/datum/reagent/consumable/drink/doctor_delight = 100)
