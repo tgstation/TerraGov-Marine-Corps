@@ -72,3 +72,7 @@
 #define span_xenowarning(str) ("<span class='xenowarning'>" + str + "</span>")
 #define span_yell(str) ("<span class='yell'>" + str + "</span>")
 #define span_deptradio(str) ("<span class='deptradio'>" + str + "</span>")
+
+// Spans that use embedded tgui components:
+// Sorted alphabetically
+#define span_tooltip(tip, main_text) ("<span data-component=\"Tooltip\" data-content=\"" + tip + "\" class=\"tooltip\">" + main_text + "</span>")
