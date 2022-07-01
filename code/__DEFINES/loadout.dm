@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDINJ, "Synaptizine", 5, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge/advanced = list(CAT_MEDINJ, "Toxin purge", 2, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal/advanced = list(CAT_MEDINJ, "Toxin heal", 2, "orange"),
-		/obj/item/reagent_containers/hypospray/autoinjector/emergency/advanced = list(CAT_MEDINJ, "Emergency", 5, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/emergency/advanced = list(CAT_MEDINJ, "Emergency", 6, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/nanoblood = list(CAT_MEDINJ, "Nanoblood", 6, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/somolent = list(CAT_MEDINJ, "Somolent", 6, "black"),
 	))
