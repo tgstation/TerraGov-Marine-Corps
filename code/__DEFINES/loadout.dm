@@ -144,7 +144,7 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDINJ, "Advanced combat", 3, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = list(CAT_MEDINJ, "Quickclot Plus", 2, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDINJ, "Peridaxon Plus", 2, "orange"),
-		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDINJ, "Synaptizine", 4, "black"),
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDINJ, "Synaptizine", 5, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_purge/advanced = list(CAT_MEDINJ, "Toxin purge", 2, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/toxin_heal/advanced = list(CAT_MEDINJ, "Toxin heal", 2, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/emergency/advanced = list(CAT_MEDINJ, "Emergency", 5, "orange"),
