@@ -1,3 +1,7 @@
 2022-07-01:
   crayonLover09:
   - imageadd: 'New lobby art: Woyer boxing'
+2022-07-02:
+  QualityVan:
+  - bugfix: You don't get weird vision while in cryo
+  - balance: Kidneys don't produce drawbacks while in cryo
