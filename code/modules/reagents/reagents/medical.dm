@@ -415,10 +415,10 @@
 	purge_rate = 5
 
 /datum/reagent/medicine/synaptizine/on_mob_add(mob/living/L, metabolism)
+	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.3) //small but significant speed increase
 	if(TIMER_COOLDOWN_CHECK(L, name))
 		return
 	L.adjustStaminaLoss(-30*effect_str)
-	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.3) //small but significant speed increase
 	to_chat(L, span_userdanger("You feel a burst of energy as the stimulants course through you! Time to go!"))
 
 /datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
