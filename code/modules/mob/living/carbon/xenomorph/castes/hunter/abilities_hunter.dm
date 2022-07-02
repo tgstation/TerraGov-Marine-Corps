@@ -191,6 +191,7 @@
 	span_danger("We strike [target] with [flavour] precision!"))
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
+	target.Paralyze(5)
 	target.blind_eyes(3)
 	target.blur_eyes(6)
 
