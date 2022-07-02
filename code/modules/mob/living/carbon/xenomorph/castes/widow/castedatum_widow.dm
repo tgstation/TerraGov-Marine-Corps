@@ -46,11 +46,18 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide, // might remove later idk, depends on balance
-		/datum/action/xeno_action/tight,
 		/datum/action/xeno_action/activable/web_spit,
 		/datum/action/xeno_action/activable/burrow,
 		/datum/action/xeno_action/activable/snare_ball,
 	)
+
+	/datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)
+		. = ..()
+		xenomorph.AddElement(/datum/element/wall_speedup, WIDOW_SPEED_BONUS)
+
+	/datum/xeno_caste/widow/on_caste_removed(mob/xenomorph)
+		. = ..()
+		xenomorph.RemoveElement(/datum/element/wall_speedup, WIDOW_SPEED_BONUS)
 
 /datum/xeno_caste/widow/young
 	upgrade_name = "Young"

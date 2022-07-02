@@ -1,28 +1,4 @@
 // ***************************************
-// *********** Move fast in tight space THIS WILL BE TURNED INTO AN ELEMENT
-// ***************************************
-/datum/action/xeno_action/tight
-    name = "tight"
-    ability_name = "tight"
-    mechanics_text = " Move faster in tight spaces"
-
-/datum/action/xeno_action/tight/give_action(mob/M)
-	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/tight_speed)
-
-/// Signal Handler for increased movement speed in 1x1 spaces
-/datum/action/xeno_action/tight/proc/tight_speed(datum/source, atom/oldloc)
-	SIGNAL_HANDLER
-	var/static/list/dirs_to_check = list(NORTH, EAST, SOUTH, WEST, SOUTHEAST, NORTHWEST, SOUTHWEST, NORTHEAST)
-	for(var/direction in dirs_to_check)
-		if(!isclosedturf(get_step(owner, direction)))
-			continue
-		if(!isclosedturf(get_step(owner, REVERSE_DIR(direction))))
-			continue
-		owner.next_move_slowdown -= WIDOW_SPEED_BONUS
-		break
-
-// ***************************************
 // *********** Web Spit
 // ***************************************
 /datum/action/xeno_action/activable/web_spit
@@ -79,8 +55,10 @@
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SNARE_BALL
 
-/datum/action/xeno_action/activable/snare_ball/use_ability()
+/datum/action/xeno_action/activable/snare_ball/use_ability(atom/A)
+	var/turf/target = get_turf(A)
 	var/mob/living/carbon/xenomorph/X = owner
+	X.face_atom(target)
 	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_DANGER)) // currently here for balance prediction, shooting a 5x5 AoE snare is pretty insane even for T3 imo
 		return fail_activate()
 	//snare ball spitting goes here

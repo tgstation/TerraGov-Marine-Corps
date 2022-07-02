@@ -2,12 +2,15 @@
 /datum/element/wall_speedup
 	element_flags = ELEMENT_BESPOKE
 	id_arg_index = 2
+	///The amount of speed gained by being inbetween walls
+	var/wall_speed_amount = 1
 
-/datum/element/wall_speedup/Attach(datum/target)
+/datum/element/wall_speedup/Attach(datum/target, wall_speed_amount)
 	if(!isliving(target))
 		return ELEMENT_INCOMPATIBLE
 	. = ..()
 	RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/wall_speed)
+	src.wall_speed_amount = wall_speed_amount
 
 /datum/element/plasma_on_attacked/Detach(datum/source, force)
 	. = ..()
@@ -22,5 +25,5 @@
 			continue
 		if(!isclosedturf(get_step(fast, REVERSE_DIR(direction))))
 			continue
-		fast.next_move_slowdown -= WIDOW_SPEED_BONUS // dunno how to approach this, maybe fast.movespeed or somet
+		fast.next_move_slowdown -= wall_speed_amount
 		break
