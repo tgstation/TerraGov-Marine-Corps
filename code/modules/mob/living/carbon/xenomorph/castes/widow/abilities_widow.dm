@@ -37,7 +37,7 @@
 /datum/action/xeno_action/activable/web_spit/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	var/datum/ammo/xeno/web/web_spit = GLOB.ammo_list[/datum/ammo/xeno/web]
+	var/datum/ammo/xeno/acid/web/web_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/web]
 
 	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
 
@@ -81,6 +81,6 @@
 
 /datum/action/xeno_action/activable/snare_ball/use_ability()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(X, 1 SECOND, TRUE, X, BUSY_ICON_DANGER)) // currently here for balance prediction, shooting a 5x5 AoE snare is pretty insane even for T3 imo
+	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_DANGER)) // currently here for balance prediction, shooting a 5x5 AoE snare is pretty insane even for T3 imo
 		return fail_activate()
 	//snare ball spitting goes here
