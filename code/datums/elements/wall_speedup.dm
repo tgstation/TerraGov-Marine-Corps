@@ -1,4 +1,4 @@
-/// Not entierly sure how to go about this
+/// This element makes you move faster when opposite adjacent turfs are closed, you get a flat movement speed bonus
 /datum/element/wall_speedup
 	element_flags = ELEMENT_BESPOKE
 	id_arg_index = 2
