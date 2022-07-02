@@ -495,14 +495,14 @@
 	L.AdjustParalyzed(-20)
 	L.AdjustSleeping(-40)
 	L.adjustStaminaLoss(-30*effect_str)
-	L.heal_limb_damage(5*effect_str, 5*effect_str)
+	var/heal_strength = 5
 	L.adjustToxLoss(2*effect_str)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.setShock_Stage(min(C.shock_stage - volume*effect_str, 150)) //will pull a target out of deep paincrit instantly, if he's in it
 		if(L.health < 0 && volume > 1) //Heals better in softcrit, no microdosing
-			L.heal_limb_damage(3*effect_str, 3*effect_str)
-			L.Losebreath
+			heal_strength = 8
+	L.heal_limb_damage(heal_strength*effect_str, heal_strength*effect_str)
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
