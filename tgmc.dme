@@ -362,6 +362,7 @@
 #include "code\datums\elements\scalping.dm"
 #include "code\datums\elements\shrapnel_removal.dm"
 #include "code\datums\elements\special_clothing_overlay.dm"
+#include "code\datums\elements\tight.dm"
 #include "code\datums\elements\undertile.dm"
 #include "code\datums\elements\windowshutter.dm"
 #include "code\datums\emergency_calls\clf.dm"
