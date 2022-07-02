@@ -458,6 +458,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2.5
 	overdose_threshold = 6
 	overdose_crit_threshold = 7
+	scannable = TRUE
 
 /datum/reagent/medicine/neuraline/on_mob_add(mob/living/L, metabolism)
 	ADD_TRAIT(L, TRAIT_IGNORE_SUFFOCATION, REAGENT_TRAIT(src))
@@ -502,7 +503,9 @@
 		C.setShock_Stage(min(C.shock_stage - volume*effect_str, 150)) //will pull a target out of deep paincrit instantly, if he's in it
 		if(L.health < 0 && volume > 1) //Heals better in softcrit, no microdosing
 			heal_strength = 8
-	L.heal_limb_damage(heal_strength*effect_str, heal_strength*effect_str)
+
+	L.adjustBruteLoss(-heal_strength*effect_str)
+	L.adjustFireLoss(-heal_strength*effect_str)
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
@@ -577,7 +580,8 @@
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(10*effect_str, 10*effect_str)
+	L.adjustBruteLoss(-10*effect_str)
+	L.adjustFireLoss(-10*effect_str)
 	L.adjustToxLoss(-2.5*effect_str)
 	L.adjustCloneLoss(effect_str)
 	if(iscarbon(L))
@@ -1239,14 +1243,16 @@
 	switch(current_cycle)
 		if(1 to 24)
 			if(L.stat == UNCONSCIOUS)
-				L.heal_limb_damage(0.4*current_cycle*effect_str, 0.4*current_cycle*effect_str)
+				L.adjustBruteLoss(-0.4*current_cycle*effect_str)
+				L.adjustFireLoss(-0.4*current_cycle*effect_str)
 			if(prob(20) && L.stat != UNCONSCIOUS)
 				to_chat(L, span_notice("You feel as though you should be sleeping for the medicine to work."))
 		if(25)
 			to_chat(L, span_notice("You feel very sleepy all of a sudden."))
 		if(26 to INFINITY)
 			if(L.stat == UNCONSCIOUS)
-				L.heal_limb_damage(10*effect_str, 10*effect_str)
+				L.adjustBruteLoss(-10*effect_str)
+				L.adjustFireLoss(-10*effect_str)
 				L.adjustCloneLoss(-0.2*effect_str-(0.02*(L.maxHealth - L.health)))
 				holder.remove_reagent(/datum/reagent/medicine/research/somolent, (1-custom_metabolism)) //1u per tick
 			if(prob(50) && L.stat != UNCONSCIOUS)
