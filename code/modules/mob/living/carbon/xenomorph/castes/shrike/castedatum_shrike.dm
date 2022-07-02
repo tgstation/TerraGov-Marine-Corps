@@ -174,7 +174,7 @@
 	plasma_gain = 45
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 450
 	// *** Defense *** //
 	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = 20, "bio" = 23, "rad" = 23, "fire" = 45, "acid" = 20)
 
