@@ -264,7 +264,7 @@
 	mechanics_text = "Plant yourself for a large defensive boost."
 	ability_name = "fortify"
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
-	cooldown_timer = 1 SECONDS
+	cooldown_timer = 0 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_FORTIFY
 	var/last_fortify_bonus = 0
 
