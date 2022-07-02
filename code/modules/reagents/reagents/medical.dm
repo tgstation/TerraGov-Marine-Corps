@@ -456,15 +456,15 @@
 	description = "A chemical cocktail tailored to enhance or dampen specific neural processes."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 2.5
-	overdose_threshold = 5
-	overdose_crit_threshold = 6
-	scannable = FALSE
+	overdose_threshold = 6
+	overdose_crit_threshold = 7
 
 /datum/reagent/medicine/neuraline/on_mob_add(mob/living/L, metabolism)
+	ADD_TRAIT(L, TRAIT_IGNORE_SUFFOCATION, REAGENT_TRAIT(src))
 	var/mob/living/carbon/human/H = L
 	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
-	if(L.health < H.health_threshold_crit && volume > 4) //If you are in crit, and someone injects at least 3u into you, you will heal 20% of your physical damage instantly.
+	if(L.health < H.health_threshold_crit && volume > 4) //If you are in crit, and someone injects at least 4u into you, you will heal 20% of your physical damage instantly.
 		to_chat(L, span_userdanger("You feel a rush of energy as stimulants course through your veins!"))
 		L.adjustBruteLoss(-L.getBruteLoss() * 0.20)
 		L.adjustFireLoss(-L.getFireLoss() * 0.20)
@@ -475,6 +475,10 @@
 					return
 				I.heal_organ_damage((I.damage-29) *effect_str)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
+
+/datum/reagent/medicine/neuraline/on_mob_delete(mob/living/L, metabolism)
+	REMOVE_TRAIT(L, TRAIT_IGNORE_SUFFOCATION, REAGENT_TRAIT(src))
+	return ..()
 
 /datum/reagent/medicine/neuraline/on_mob_life(mob/living/L)
 	L.reagent_shock_modifier += (2 * PAIN_REDUCTION_VERY_HEAVY)
@@ -496,6 +500,9 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.setShock_Stage(min(C.shock_stage - volume*effect_str, 150)) //will pull a target out of deep paincrit instantly, if he's in it
+		if(L.health < 0 && volume > 1) //Heals better in softcrit, no microdosing
+			L.heal_limb_damage(3*effect_str, 3*effect_str)
+			L.Losebreath
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
