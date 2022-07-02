@@ -137,7 +137,6 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/advanced/meraderm = list(CAT_MEDSUP, "hypospray (60u Meraderm)", 8, "black"), //half the units of the meraderm case half the price
 		/obj/item/storage/syringe_case/nanoblood = list(CAT_MEDSUP, "syringe Case (120u Nanoblood)", 16, "black"),
 		/obj/item/reagent_containers/hypospray/advanced/nanoblood = list(CAT_MEDSUP, "hypospray (60u Nanoblood)", 8, "orange"), //bit more than half of the nanoblood case
-		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Advanced hypospray", 1, "black"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 8, "orange"),
 		////////////////////////////////////// INJECTORS /////////////////////////////////////////////
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDINJ, "Neuraline", 8, "orange"),
