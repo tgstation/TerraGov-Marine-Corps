@@ -2500,11 +2500,9 @@ datum/ammo/bullet/revolver/tp44
 
 /// For Widows Web Spit Ability
 
-/datum/ammo/xeno/web
+/datum/ammo/xeno/acid/web
 	icon_state = "neurotoxin"
-	ping = "ping_x"
 	damage_type = STAMINA
-	flags_ammo_behavior = AMMO_XENO
 	added_spit_delay = 0 //used to make cooldown of the different spits vary.
 	spit_cost = 5
 	armor_type = "bio"
@@ -2512,13 +2510,6 @@ datum/ammo/bullet/revolver/tp44
 	accuracy = 40
 	accurate_range = 15
 	max_range = 15
-	accuracy_var_low = 3
-	accuracy_var_high = 3
-	bullet_color = COLOR_LIME
-	///Amount of stagger stacks imposed on impact if any
-	stagger_stacks = 0
-	///Amount of slowdown stacks imposed on impact if any
-	slowdown_stacks = 0
 	///Blind duration
 	var/hit_eye_blind = 25
 	///Snare duration
@@ -2528,7 +2519,7 @@ datum/ammo/bullet/revolver/tp44
 	///List for bodyparts that upon being hit cause the target to become ensnared
 	var/list/snare_list = list(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT)
 
-/datum/ammo/xeno/web/on_hit_mob(mob/victim, obj/projectile/proj)
+/datum/ammo/xeno/acid/web/on_hit_mob(mob/victim, obj/projectile/proj)
 	. = ..()
 	if(ishuman(victim))
 		var/mob/living/carbon/human/human_victim = victim
@@ -2540,11 +2531,10 @@ datum/ammo/bullet/revolver/tp44
 		if(proj.def_zone in snare_list)
 			human_victim.Immobilize(hit_immobilize)
 
-/datum/ammo/xeno/web/snare_ball
+/datum/ammo/xeno/acid/web/snare_ball
 	icon_state = "neurotoxin"
 	ping = "ping_x"
 	damage_type = STAMINA
-	flags_ammo_behavior = AMMO_XENO
 	added_spit_delay = 0 //used to make cooldown of the different spits vary.
 	spit_cost = 5
 	armor_type = "bio"
@@ -2552,11 +2542,8 @@ datum/ammo/bullet/revolver/tp44
 	accuracy = 40
 	accurate_range = 15
 	max_range = 15
-	accuracy_var_low = 3
-	accuracy_var_high = 3
-	bullet_color = COLOR_LIME
 
-/datum/ammo/xeno/web/snare_ball/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/xeno/acid/web/snare_ball/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
 
 

@@ -29,6 +29,7 @@
 	name = "webspit"
 	ability_name = "webspit"
 	mechanics_text = "We spit a stretchy web at our prey"
+	action_icon_state = "toggle_bomb0" // temporary until I get my own icons
 	plasma_cost = 1
 	cooldown_timer = 5 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_WEB_SPIT
@@ -54,6 +55,7 @@
 	name = "burrow"
 	ability_name = "burrow"
 	mechanics_text = " Burrow into the ground to hide in plain sight "
+	action_icon_state = "savage_on" //temporary until I get my own icons
 	plasma_cost = 1
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BURROW
@@ -72,7 +74,13 @@
 	name = "snare_ball"
 	ability_name = "snare_ball"
 	mechanics_text = " Spit a huge ball of web that snares groups of marines "
+	action_icon_state = "scatter_spit" // temporary until I get my own icons
 	plasma_cost = 1
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SNARE_BALL
 
+/datum/action/xeno_action/activable/snare_ball/use_ability()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!do_after(X, 1 SECOND, TRUE, X, BUSY_ICON_DANGER)) // currently here for balance prediction, shooting a 5x5 AoE snare is pretty insane even for T3 imo
+		return fail_activate()
+	//snare ball spitting goes here
