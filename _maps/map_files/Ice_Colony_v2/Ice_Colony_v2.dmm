@@ -32401,10 +32401,6 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
-"lPy" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
 "lPP" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
@@ -74007,7 +74003,7 @@ aYC
 aYC
 aYC
 aYC
-lPy
+aYC
 aYC
 aYC
 aYC

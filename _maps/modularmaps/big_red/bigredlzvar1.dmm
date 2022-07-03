@@ -1343,10 +1343,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/marshal_office)
-"IC" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "IS" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
@@ -4055,7 +4051,7 @@ xM
 xM
 xM
 xM
-IC
+xM
 xM
 xM
 cQ

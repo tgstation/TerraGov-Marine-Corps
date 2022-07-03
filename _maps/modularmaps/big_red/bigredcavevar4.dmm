@@ -23,10 +23,6 @@
 "j" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
-"n" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
 "o" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -35,10 +31,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
-"q" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "s" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -989,7 +981,7 @@ j
 j
 j
 H
-q
+H
 H
 H
 H
@@ -1720,7 +1712,7 @@ j
 u
 j
 j
-n
+j
 u
 j
 j

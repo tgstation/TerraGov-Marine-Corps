@@ -3,10 +3,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
-"b" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
 "f" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
@@ -93,10 +89,6 @@
 "P" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
-"R" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "S" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
@@ -984,7 +976,7 @@ y
 y
 y
 y
-R
+y
 y
 y
 y
@@ -1715,7 +1707,7 @@ F
 P
 F
 F
-b
+F
 P
 F
 F

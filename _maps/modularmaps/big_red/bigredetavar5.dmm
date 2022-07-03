@@ -790,10 +790,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/bar)
-"GG" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor,
-/area/bigredv2/outside/general_offices)
 "GO" = (
 /obj/machinery/light,
 /turf/open/floor,
@@ -1348,7 +1344,7 @@ cC
 eO
 ps
 Ds
-GG
+Sr
 ko
 nm
 JR

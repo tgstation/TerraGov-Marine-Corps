@@ -494,10 +494,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
-"LR" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
 "LY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -1945,7 +1941,7 @@ Os
 xc
 xc
 xc
-LR
+xc
 xc
 xc
 zc

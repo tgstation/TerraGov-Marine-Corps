@@ -27,10 +27,6 @@
 	dir = 9
 	},
 /area/bigredv2/outside/space_port)
-"aM" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northwest)
 "aX" = (
 /obj/machinery/light{
 	dir = 4
@@ -4131,7 +4127,7 @@ CQ
 CQ
 CQ
 os
-aM
+os
 os
 CQ
 yO

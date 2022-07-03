@@ -455,10 +455,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
-"rE" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall,
-/area/bigredv2/outside/office_complex)
 "sb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/drip,
@@ -1146,11 +1142,6 @@
 "QF" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/turf/open/floor,
-/area/bigredv2/outside/office_complex)
-"QI" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "QQ" = (
@@ -1848,7 +1839,7 @@ My
 pe
 DD
 Zu
-rE
+Zu
 Zu
 Zu
 Zu
@@ -1928,7 +1919,7 @@ Zu
 Zu
 Zu
 GD
-QI
+zq
 BH
 Zu
 es

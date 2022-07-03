@@ -1231,12 +1231,6 @@
 "gr" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northwestmonorail/morgue)
-"gs" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/ice/thin/junction{
-	dir = 1
-	},
-/area/icy_caves/caves/rock)
 "gx" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
@@ -2008,10 +2002,6 @@
 "kC" = (
 /turf/closed/ice/corner,
 /area/icy_caves/outpost/LZ2)
-"kE" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/west)
 "kF" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -2494,10 +2484,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/alienstuff)
-"mO" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/ice/thin/intersection,
-/area/icy_caves/caves/rock)
 "mP" = (
 /obj/machinery/light{
 	dir = 8
@@ -2624,15 +2610,6 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/mining/west)
-"ny" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/ice_rock/single,
-/area/icy_caves/caves/rock)
-"nz" = (
-/obj/docking_port/stationary/crashmode,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/outside)
 "nA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2708,12 +2685,6 @@
 /obj/item/storage/box/gloves,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
-"nX" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/docking_port/mobile/crashmode/bigbury,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery)
 "nZ" = (
 /obj/machinery/light{
 	dir = 4
@@ -2874,10 +2845,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
-"oN" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside/center)
 "oO" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -3822,7 +3789,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/docking_port/mobile/crashmode/bigbury,
 /turf/open/floor/tile/dark/green2{
 	dir = 8
 	},
@@ -4219,13 +4185,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
-"uo" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/docking_port/mobile/crashmode/bigbury,
-/obj/effect/ai_node,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/outside/center)
 "up" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2,
 /obj/structure/window/reinforced{
@@ -4759,10 +4718,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/caves)
-"wE" = (
-/obj/docking_port/mobile/crashmode/bigbury,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/refinery)
 "wF" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -7320,10 +7275,6 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/icy_caves/caves/northwestmonorail)
-"Ig" = (
-/obj/docking_port/mobile/crashmode/bigbury,
-/turf/open/floor/cult,
-/area/icy_caves/caves/chapel)
 "Ih" = (
 /obj/structure/cargo_container/green{
 	dir = 1
@@ -8772,12 +8723,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/icy_caves/caves/northwestmonorail)
-"Oy" = (
-/obj/docking_port/mobile/crashmode/bigbury,
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/icy_caves/outpost/LZ2)
 "OC" = (
 /obj/structure/bed/chair,
 /turf/open/floor/wood,
@@ -9907,11 +9852,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
-"TU" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/docking_port/mobile/crashmode/bigbury,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/garage)
 "TV" = (
 /turf/closed/ice/corner,
 /area/icy_caves/caves/east)
@@ -15986,7 +15926,7 @@ OJ
 Zx
 ZU
 ZU
-kE
+ZU
 ZU
 SF
 ZU
@@ -16795,7 +16735,7 @@ DY
 sl
 DY
 DY
-wE
+DY
 yK
 DY
 DY
@@ -17125,7 +17065,7 @@ SI
 SI
 SI
 xR
-TU
+tR
 Iv
 QF
 tC
@@ -17268,7 +17208,7 @@ Gw
 Gw
 Ug
 LA
-nX
+bb
 bb
 bb
 AM
@@ -19277,7 +19217,7 @@ Tb
 UV
 UV
 YZ
-ny
+YZ
 YZ
 ow
 li
@@ -21784,7 +21724,7 @@ my
 my
 my
 my
-oN
+my
 Iw
 my
 my
@@ -22056,7 +21996,7 @@ Xw
 Xw
 BT
 Vn
-Ig
+Vn
 Le
 Vn
 nr
@@ -23639,7 +23579,7 @@ cl
 ym
 MH
 IC
-mO
+IC
 Uk
 YK
 YK
@@ -23668,7 +23608,7 @@ nu
 nu
 nu
 Xg
-uo
+mM
 nu
 zh
 nu
@@ -25320,7 +25260,7 @@ ym
 ym
 dT
 MH
-gs
+Vc
 ST
 BL
 Qw
@@ -25494,7 +25434,7 @@ Td
 ym
 Vz
 IC
-mO
+IC
 ME
 Qh
 Us
@@ -28637,7 +28577,7 @@ lA
 lA
 wN
 wN
-nz
+wN
 wN
 wN
 wN
@@ -29112,7 +29052,7 @@ WA
 cG
 Ko
 WA
-Oy
+WA
 ZN
 nd
 oq

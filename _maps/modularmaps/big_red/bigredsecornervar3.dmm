@@ -151,10 +151,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
-"iD" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "iR" = (
 /obj/item/mecha_parts/part/durand_left_arm,
 /obj/effect/decal/warning_stripes/thick{
@@ -484,11 +480,6 @@
 /obj/effect/spawner/random/trash,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/bigredv2/caves/undergroundrobotics)
-"zL" = (
-/obj/docking_port/stationary/crashmode,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "Ax" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -1295,7 +1286,7 @@ QB
 QB
 Mn
 Mn
-iD
+Mn
 Mn
 Mn
 Mn
@@ -1671,7 +1662,7 @@ be
 Dp
 "}
 (12,1,1) = {"
-iD
+Mn
 Mn
 Mn
 Mn
@@ -2096,7 +2087,7 @@ DY
 QB
 LX
 QB
-zL
+uA
 QB
 Mn
 Mn

@@ -36,10 +36,6 @@
 	dir = 6
 	},
 /area/bigredv2/outside/virology)
-"eJ" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "fb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -247,10 +243,6 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
-"vY" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
 "xM" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/virology)
@@ -1788,7 +1780,7 @@ gH
 Px
 sz
 gH
-eJ
+Px
 Px
 gH
 iu
@@ -1925,7 +1917,7 @@ QK
 Zw
 Zw
 Zw
-vY
+Zw
 nF
 fG
 nK

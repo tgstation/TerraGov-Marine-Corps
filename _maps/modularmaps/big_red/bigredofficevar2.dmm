@@ -140,7 +140,7 @@
 /turf/open/floor/plating/icefloor,
 /area/bigredv2/outside/c)
 "cp" = (
-/obj/machinery/door/airlock/mainship/marine/canterbury{
+/obj/machinery/door/airlock/mainship/marine{
 	dir = 8
 	},
 /turf/open/floor/mainship/red/full,
@@ -403,7 +403,6 @@
 /area/bigredv2/outside/office_complex)
 "ls" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/docking_port/stationary/crashmode,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
@@ -653,10 +652,6 @@
 "tP" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/icefloor,
-/area/bigredv2/outside/office_complex)
-"tR" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall,
 /area/bigredv2/outside/office_complex)
 "uc" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -955,7 +950,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "Bn" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/bigredv2/outside/office_complex)
 "Bv" = (
@@ -2202,7 +2197,7 @@ jZ
 xf
 NB
 Tx
-tR
+Tx
 Tx
 Tx
 Tx

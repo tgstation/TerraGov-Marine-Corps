@@ -10,10 +10,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
-"h" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "i" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -468,7 +464,7 @@ w
 w
 x
 x
-h
+x
 x
 x
 x
@@ -844,7 +840,7 @@ J
 a
 "}
 (12,1,1) = {"
-h
+x
 x
 x
 x

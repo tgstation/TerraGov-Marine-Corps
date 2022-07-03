@@ -26,10 +26,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nw)
-"aV" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
 "cd" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -180,11 +176,6 @@
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
-/area/bigredv2/outside/nw)
-"lB" = (
-/obj/docking_port/stationary/crashmode,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "lG" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2002,7 +1993,7 @@ eM
 sY
 cJ
 Aa
-lB
+sS
 mQ
 sY
 sY
@@ -2139,7 +2130,7 @@ Js
 EM
 EM
 EM
-aV
+EM
 EM
 EM
 Ks

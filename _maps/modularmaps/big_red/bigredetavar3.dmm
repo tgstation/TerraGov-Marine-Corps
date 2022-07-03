@@ -139,10 +139,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"hS" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor,
-/area/bigredv2/outside/general_offices)
 "hU" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark,
@@ -1254,7 +1250,7 @@ Sd
 Iw
 Iw
 gH
-hS
+Iw
 fz
 Iw
 IQ

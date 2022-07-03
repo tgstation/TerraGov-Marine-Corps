@@ -776,16 +776,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/c)
-"NB" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	id = "Engineering";
-	name = "\improper Engineering Shutters"
-	},
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "NN" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -1044,7 +1034,7 @@ lr
 ci
 dZ
 bg
-NB
+jq
 sH
 sH
 sH

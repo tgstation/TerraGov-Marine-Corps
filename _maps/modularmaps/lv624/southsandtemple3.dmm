@@ -584,13 +584,6 @@
 	dir = 1
 	},
 /area/lv624/ground/river3)
-"UW" = (
-/obj/docking_port/stationary/crashmode,
-/obj/structure/stairs/seamless{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
 "Wt" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
@@ -771,7 +764,7 @@ OZ
 hG
 hG
 hG
-UW
+hG
 HY
 oF
 cm

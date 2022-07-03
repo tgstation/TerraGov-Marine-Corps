@@ -589,10 +589,6 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
-"mI" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "mR" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
@@ -4174,7 +4170,7 @@ ap
 ap
 ap
 ap
-mI
+ap
 ap
 ap
 mR

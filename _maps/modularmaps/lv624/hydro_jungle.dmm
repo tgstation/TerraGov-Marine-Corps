@@ -10,10 +10,6 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
-"bH" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/gm/dense,
-/area/lv624/ground/caves/rock)
 "bL" = (
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
@@ -710,7 +706,7 @@ Xf
 MX
 Ne
 UP
-bH
+Xl
 Xl
 Xl
 MK

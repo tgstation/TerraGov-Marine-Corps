@@ -621,11 +621,6 @@
 /obj/item/trash/eat,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
-"AL" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor,
-/area/bigredv2/outside/office_complex)
 "Bd" = (
 /obj/machinery/light{
 	dir = 4
@@ -742,10 +737,6 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/tile/red/redtaupecorner,
-/area/bigredv2/outside/office_complex)
-"Gq" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall,
 /area/bigredv2/outside/office_complex)
 "GR" = (
 /obj/effect/landmark/weed_node,
@@ -1616,7 +1607,7 @@ FZ
 wr
 pp
 ov
-Gq
+ov
 ov
 ov
 ov
@@ -1696,7 +1687,7 @@ ov
 ov
 ov
 As
-AL
+JI
 cg
 ov
 VI

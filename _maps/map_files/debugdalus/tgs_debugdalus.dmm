@@ -37,7 +37,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aai" = (
-/obj/effect/landmark/start/job/crash/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/landmark/start/latejoin,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -45,24 +45,24 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aaj" = (
-/obj/effect/landmark/start/job/crash/squadleader,
+/obj/effect/landmark/start/job/squadleader,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aak" = (
-/obj/effect/landmark/start/job/crash/squadleader,
+/obj/effect/landmark/start/job/squadleader,
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoin,
 /obj/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aal" = (
-/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aam" = (
-/obj/effect/landmark/start/job/crash/squadmarine,
+/obj/effect/landmark/start/job/squadmarine,
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
@@ -1266,7 +1266,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afX" = (
-/obj/effect/landmark/start/job/crash/squadsmartgunner,
+/obj/effect/landmark/start/job/squadsmartgunner,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
@@ -2640,7 +2640,7 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
 "tmK" = (
-/obj/effect/landmark/start/job/crash/squadleader,
+/obj/effect/landmark/start/job/squadleader,
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,

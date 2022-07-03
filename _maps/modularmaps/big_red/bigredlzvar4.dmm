@@ -1764,10 +1764,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
-"SS" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "Ta" = (
 /obj/machinery/light{
 	dir = 4
@@ -4051,7 +4047,7 @@ Zs
 Zs
 Zs
 Zs
-SS
+Zs
 Zs
 Zs
 Vb

@@ -62,10 +62,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/stairs/rampbottom,
 /area/bigredv2/outside/chapel)
-"m" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/engine/cult,
-/area/bigredv2/outside/chapel)
 "n" = (
 /obj/machinery/light{
 	dir = 1
@@ -253,7 +249,7 @@ a
 (2,1,1) = {"
 a
 h
-m
+t
 t
 t
 t

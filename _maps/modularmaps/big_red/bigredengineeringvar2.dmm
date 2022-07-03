@@ -466,10 +466,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"AA" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/engineering)
 "AQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/head/welding,
@@ -959,7 +955,7 @@ HC
 Gv
 AS
 kp
-AA
+GH
 Sp
 Sp
 Sp

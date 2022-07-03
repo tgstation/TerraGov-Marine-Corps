@@ -317,16 +317,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"qg" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	id = "Engineering";
-	name = "\improper Engineering Shutters"
-	},
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
 "qi" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor,
@@ -1067,7 +1057,7 @@ Nz
 Rf
 Os
 Di
-qg
+bj
 Gl
 Gl
 Gl

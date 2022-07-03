@@ -33,10 +33,6 @@
 "B" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
-"H" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "K" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
@@ -444,7 +440,7 @@ e
 B
 v
 v
-H
+v
 v
 v
 v
@@ -820,7 +816,7 @@ a
 a
 "}
 (12,1,1) = {"
-H
+v
 v
 v
 v

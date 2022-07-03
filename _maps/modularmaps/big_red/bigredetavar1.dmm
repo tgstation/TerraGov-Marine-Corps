@@ -56,10 +56,6 @@
 /obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/hydroponics)
-"eZ" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor,
-/area/bigredv2/outside/general_offices)
 "fd" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -1226,7 +1222,7 @@ fY
 gk
 gk
 wz
-eZ
+gk
 Qr
 jQ
 Iw

@@ -178,13 +178,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/sand9)
-"rS" = (
-/obj/docking_port/stationary/crashmode,
-/obj/structure/stairs/seamless{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/sandtemple)
 "sb" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand3)
@@ -873,7 +866,7 @@ Dr
 Qq
 Qq
 Qq
-rS
+Qq
 qf
 qf
 HW

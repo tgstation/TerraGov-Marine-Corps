@@ -786,10 +786,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
-"XU" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
 "Yg" = (
 /obj/item/stack/sheet/wood,
 /turf/open/floor/plating,
@@ -2111,7 +2107,7 @@ Km
 Km
 Km
 Km
-XU
+Km
 Pd
 Du
 Oi

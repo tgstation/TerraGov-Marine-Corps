@@ -41491,13 +41491,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/security)
-"elG" = (
-/obj/structure/toilet{
-	dir = 1
-	},
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/prison/sterilewhite,
-/area/prison/toilet/canteen)
 "emX" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/cellstripe{
@@ -46867,10 +46860,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
 /area/prison/security/head)
-"tlK" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall/prison,
-/area/prison/cellblock/vip)
 "tlV" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	dir = 2;
@@ -48559,13 +48548,6 @@
 /obj/effect/landmark/dropship_start_location,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/yard)
-"ybf" = (
-/obj/structure/sink{
-	dir = 8
-	},
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/prison/plate,
-/area/prison/cellblock/mediumsec/south)
 "ybO" = (
 /obj/structure/window/framed/prison/cell,
 /obj/structure/disposalpipe/segment{
@@ -72463,7 +72445,7 @@ bof
 bpq
 bfc
 bfc
-tlK
+bfc
 bfc
 bfc
 bfc
@@ -80743,7 +80725,7 @@ ccV
 cnB
 ctT
 cun
-ybf
+ccB
 cvB
 cun
 ccB
@@ -100991,7 +100973,7 @@ bpL
 bpU
 bxl
 bnG
-elG
+boV
 btt
 bul
 wCb

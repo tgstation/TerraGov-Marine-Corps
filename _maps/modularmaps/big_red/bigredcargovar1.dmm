@@ -125,10 +125,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"lq" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall,
-/area/bigredv2/outside/cargo)
 "lZ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -604,7 +600,7 @@ Ln
 Ln
 gi
 OW
-lq
+Ln
 Ln
 Ln
 Ln

@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"am" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor,
-/area/bigredv2/outside/dorms)
 "dG" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -464,7 +460,7 @@ Qp
 Qp
 Qp
 Qp
-am
+Qp
 kG
 "}
 (13,1,1) = {"

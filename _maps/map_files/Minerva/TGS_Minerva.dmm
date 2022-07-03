@@ -763,7 +763,7 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "co" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_garden)
 "cp" = (
@@ -2195,7 +2195,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
 "gS" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /obj/machinery/door/poddoor/shutters/opened/wy{
 	dir = 2
 	},
@@ -3664,7 +3664,7 @@
 /turf/open/floor/mainship_hull,
 /area/mainship/powered)
 "ma" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)
 "mb" = (
@@ -5166,7 +5166,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "rF" = (
-/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/window/framed/mainship,
 /obj/structure/sign/evac,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/evacuation)

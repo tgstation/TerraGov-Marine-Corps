@@ -5,11 +5,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
-"ar" = (
-/obj/docking_port/stationary/crashmode,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/mainship/mono,
-/area/bigredv2/caves/secomplex)
 "aJ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
@@ -256,10 +251,6 @@
 	dir = 6
 	},
 /area/bigredv2/caves/secomplex)
-"nz" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "nS" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark,
@@ -1637,7 +1628,7 @@ fs
 fs
 "}
 (12,1,1) = {"
-nz
+Mk
 Mk
 Mk
 Mk
@@ -2020,7 +2011,7 @@ Ro
 Pz
 SJ
 SG
-ar
+aJ
 SG
 SG
 aJ

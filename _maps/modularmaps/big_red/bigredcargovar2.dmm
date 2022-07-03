@@ -104,10 +104,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"dq" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall,
-/area/bigredv2/outside/cargo)
 "dx" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/cargo)
@@ -751,7 +747,7 @@ WM
 WM
 Cd
 CI
-dq
+WM
 WM
 WM
 WM

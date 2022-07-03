@@ -399,7 +399,6 @@
 	dir = 1;
 	name = "\improper General Store"
 	},
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "xb" = (
@@ -579,11 +578,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/bigredv2/outside/general_store)
-"Gn" = (
-/obj/docking_port/stationary/crashmode,
-/obj/effect/ai_node,
-/turf/open/floor,
 /area/bigredv2/outside/general_store)
 "Gp" = (
 /obj/effect/landmark/start/job/survivor,
@@ -1301,7 +1295,7 @@ ph
 (26,1,1) = {"
 to
 ZE
-Gn
+Cx
 nv
 nv
 BJ

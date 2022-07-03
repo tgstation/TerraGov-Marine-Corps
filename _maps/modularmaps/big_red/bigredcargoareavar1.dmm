@@ -185,10 +185,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
-"ob" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
 "oh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -314,10 +310,6 @@
 /obj/structure/cargo_container/horizontal{
 	dir = 1
 	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
-"xe" = (
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "xD" = (
@@ -1882,7 +1874,7 @@ em
 em
 dL
 em
-xe
+em
 em
 em
 HC
@@ -2019,7 +2011,7 @@ aB
 aB
 aB
 aB
-ob
+aB
 yp
 JY
 qC

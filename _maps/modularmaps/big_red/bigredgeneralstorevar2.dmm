@@ -308,11 +308,6 @@
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
-"rY" = (
-/obj/docking_port/stationary/crashmode,
-/obj/effect/ai_node,
-/turf/open/floor,
-/area/bigredv2/outside/general_store)
 "sa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -579,7 +574,6 @@
 	dir = 1;
 	name = "\improper General Store"
 	},
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "IO" = (
@@ -1314,7 +1308,7 @@ dk
 (26,1,1) = {"
 SM
 QZ
-rY
+Rs
 mk
 mk
 oN

@@ -490,10 +490,6 @@
 /obj/item/camera_film,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"CX" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/engineering)
 "Db" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -955,7 +951,7 @@ ql
 Ke
 Yq
 JZ
-CX
+vP
 NS
 NS
 NS

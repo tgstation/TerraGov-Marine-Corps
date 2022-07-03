@@ -117,10 +117,6 @@
 /obj/machinery/light,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"md" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
 "mw" = (
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
@@ -1208,6 +1204,6 @@ pA
 hz
 jt
 jt
-md
+jt
 jt
 "}

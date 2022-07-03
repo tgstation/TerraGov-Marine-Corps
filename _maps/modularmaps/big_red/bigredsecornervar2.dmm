@@ -105,10 +105,6 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
-"cG" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "cH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/mainship,
@@ -1228,11 +1224,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
-"Ki" = (
-/obj/docking_port/stationary/crashmode,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "Km" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -1347,10 +1338,6 @@
 /obj/structure/prop/brokenvendor/brokencorpsmanvendor,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
-"MO" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/rustedpreparea)
 "Nb" = (
 /obj/effect/decal/sandedge/corner2{
 	dir = 1
@@ -1390,10 +1377,6 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor/mainship,
 /area/bigredv2/caves/rustedpreparea)
-"Od" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
-/area/bigredv2/caves/southeast)
 "Om" = (
 /obj/effect/decal/sandedge/corner2{
 	dir = 1
@@ -1474,10 +1457,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
-"QH" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/mainship/floor,
-/area/bigredv2/caves/rustedpreparea)
 "Rf" = (
 /obj/effect/decal/sandedge/corner2,
 /turf/open/floor/plating/mainship,
@@ -1503,10 +1482,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/caves/rustedpreparea)
-"RA" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "RE" = (
 /obj/effect/decal/sandedge/corner{
 	dir = 1
@@ -2016,7 +1991,7 @@ oh
 oh
 Bq
 UR
-MO
+UR
 UR
 UR
 UR
@@ -2431,7 +2406,7 @@ oh
 FP
 VT
 UR
-MO
+UR
 UR
 UR
 UR
@@ -2442,7 +2417,7 @@ yt
 FP
 jx
 LX
-QH
+IO
 GA
 pg
 Ab
@@ -2460,7 +2435,7 @@ nd
 jS
 "}
 (12,1,1) = {"
-cG
+ax
 ax
 ax
 ax
@@ -2766,7 +2741,7 @@ oh
 oh
 oh
 oh
-RA
+oh
 XH
 oh
 AT
@@ -2885,7 +2860,7 @@ si
 oh
 Fq
 oh
-Ki
+Ai
 oh
 ax
 Ci
@@ -3593,7 +3568,7 @@ sL
 oh
 AT
 AT
-Od
+Fq
 Fq
 oh
 oh
@@ -4536,7 +4511,7 @@ oh
 oh
 oh
 oh
-RA
+oh
 oh
 oh
 oh

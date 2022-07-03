@@ -9,14 +9,6 @@
 "ad" = (
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
-"ag" = (
-/obj/docking_port/stationary/crashmode,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
 "av" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1997,7 +1989,7 @@ HN
 av
 nF
 Eg
-ag
+HN
 Eg
 HN
 HN

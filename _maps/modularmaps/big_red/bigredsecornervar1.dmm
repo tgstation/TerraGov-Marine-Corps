@@ -9,10 +9,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
-"f" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "h" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -479,7 +475,7 @@ I
 I
 a
 a
-f
+a
 a
 a
 a
@@ -855,7 +851,7 @@ o
 s
 "}
 (12,1,1) = {"
-f
+a
 a
 a
 a

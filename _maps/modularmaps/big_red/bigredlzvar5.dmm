@@ -33,10 +33,6 @@
 	dir = 6
 	},
 /area/bigredv2/outside/space_port)
-"aF" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "aJ" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -4044,7 +4040,7 @@ LF
 LF
 LF
 LF
-aF
+LF
 LF
 LF
 Er

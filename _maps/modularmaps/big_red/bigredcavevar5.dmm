@@ -84,10 +84,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
-"O" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
-/area/bigredv2/caves/rock)
 "P" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -95,10 +91,6 @@
 "Q" = (
 /obj/structure/fence,
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
-"T" = (
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "U" = (
@@ -980,7 +972,7 @@ g
 g
 g
 g
-O
+g
 g
 g
 g
@@ -1711,7 +1703,7 @@ i
 p
 i
 i
-T
+i
 p
 i
 i

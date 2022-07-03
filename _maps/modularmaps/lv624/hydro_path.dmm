@@ -105,10 +105,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
-"po" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/gm/dense,
-/area/lv624/ground/caves/rock)
 "px" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -604,7 +600,7 @@ Jv
 Yx
 Fv
 HV
-po
+DF
 DF
 DF
 bv

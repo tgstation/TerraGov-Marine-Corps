@@ -1552,10 +1552,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
-"PT" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall,
-/area/bigredv2/outside/medical)
 "PW" = (
 /obj/item/trash/chips,
 /obj/structure/cable,
@@ -2287,7 +2283,7 @@ Xl
 AK
 zs
 ni
-PT
+oG
 oG
 md
 Ls

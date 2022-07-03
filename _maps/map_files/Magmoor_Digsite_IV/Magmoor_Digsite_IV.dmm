@@ -12418,12 +12418,6 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/magmoor/mining/refinery)
-"jaj" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/lavaland/lava/lpiece{
-	dir = 4
-	},
-/area/magmoor/cave/southeast)
 "jak" = (
 /obj/machinery/conveyor,
 /obj/item/stack/sheet/mineral/gold{
@@ -16734,12 +16728,6 @@
 /obj/structure/prop/oresilo,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/cargo/storage/south)
-"mdJ" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/mainship/silver{
-	dir = 10
-	},
-/area/magmoor/civilian/arrival)
 "mdS" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
@@ -17557,10 +17545,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage)
-"mKE" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/lavaland/lava/single/middle,
-/area/magmoor/compound)
 "mKW" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -18146,10 +18130,6 @@
 	dir = 8
 	},
 /area/magmoor/engi/power)
-"nfx" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/magmoor/compound/north)
 "nfy" = (
 /obj/structure/closet/crate,
 /turf/open/floor/mainship/cargo,
@@ -18318,7 +18298,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor/mainship,
 /area/magmoor/cargo/processing)
 "nlR" = (
@@ -20202,19 +20181,6 @@
 	dir = 8
 	},
 /area/magmoor/civilian/dorms)
-"ozX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/docking_port/stationary/crashmode,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor/plating/ground/concrete/edge{
-	dir = 4
-	},
-/area/magmoor/compound/east)
 "ozY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -22595,12 +22561,6 @@
 	dir = 1
 	},
 /area/magmoor/cave/south)
-"qbL" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/mainship/green{
-	dir = 4
-	},
-/area/magmoor/hydroponics)
 "qbM" = (
 /obj/structure/lattice,
 /turf/open/lavaland/basalt/cave{
@@ -24330,10 +24290,6 @@
 	dir = 4
 	},
 /area/magmoor/compound/northeast)
-"rol" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/magmoor/compound)
 "roq" = (
 /turf/open/floor/mainship/orange/corner{
 	dir = 8
@@ -27207,7 +27163,6 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/central)
 "sXH" = (
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor/stairs/rampbottom,
 /area/magmoor/civilian/chapel)
 "sXY" = (
@@ -27526,12 +27481,6 @@
 "tkF" = (
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/cave/east)
-"tkH" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 4
-	},
-/area/magmoor/compound)
 "tkM" = (
 /obj/structure/flora/rock/alt2,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -28118,10 +28067,6 @@
 	dir = 10
 	},
 /area/magmoor/compound/northwest)
-"tDi" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/magmoor/compound/northeast)
 "tDw" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 5
@@ -28335,15 +28280,6 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/magmoor/command/office)
-"tKo" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/tile/blue/taupeblue{
-	dir = 8
-	},
-/area/magmoor/civilian/dorms)
 "tKx" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
@@ -29890,12 +29826,6 @@
 	dir = 4
 	},
 /area/magmoor/compound/northeast)
-"uKQ" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/mainship/white/corner{
-	dir = 1
-	},
-/area/magmoor/civilian/arrival/east)
 "uLr" = (
 /obj/structure/closet/wardrobe/mixed,
 /turf/open/floor/tile/purple/taupepurple{
@@ -45604,7 +45534,7 @@ gCc
 tkA
 rZO
 cly
-qbL
+bXv
 nxN
 xtU
 bXv
@@ -50295,7 +50225,7 @@ xSv
 scg
 qey
 hkW
-rol
+hkW
 rCg
 rCg
 rCg
@@ -51428,7 +51358,7 @@ xLS
 rUi
 xoJ
 xoJ
-tKo
+xoJ
 vBw
 xoJ
 xoJ
@@ -52337,7 +52267,7 @@ hUN
 sWH
 sWH
 sWH
-nfx
+sWH
 iLh
 uah
 uSx
@@ -55650,7 +55580,7 @@ kgD
 uDu
 qey
 wba
-tkH
+wXc
 wXc
 wXc
 kgD
@@ -56099,7 +56029,7 @@ emZ
 emZ
 emZ
 cBi
-mKE
+naI
 uYU
 qsW
 uDu
@@ -57537,7 +57467,7 @@ wPm
 mBG
 xEM
 jgI
-mdJ
+bXa
 wPm
 wPm
 wPm
@@ -64911,7 +64841,7 @@ mCw
 mCw
 mCw
 mCw
-jaj
+mTB
 mhB
 amS
 amS
@@ -69369,7 +69299,7 @@ wBG
 wMh
 whk
 xtT
-uKQ
+wgz
 vHh
 wSW
 yjO
@@ -74699,7 +74629,7 @@ lcx
 lcx
 lcx
 lcx
-tDi
+lcx
 lcx
 lcx
 ssN
@@ -74728,7 +74658,7 @@ eVT
 cbx
 cbx
 cbx
-ozX
+wra
 eVT
 cbx
 cbx

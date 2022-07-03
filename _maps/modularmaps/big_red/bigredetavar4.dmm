@@ -73,7 +73,7 @@
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/light{
 	dir = 4;
-	icon_state = "tube1";
+	icon_state = "tube1"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -810,10 +810,6 @@
 "Lv" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
-"LV" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor,
-/area/bigredv2/outside/general_offices)
 "Mj" = (
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
@@ -1004,7 +1000,7 @@
 "VW" = (
 /obj/machinery/light{
 	dir = 4;
-	icon_state = "tube1";
+	icon_state = "tube1"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
@@ -1273,7 +1269,7 @@ zY
 te
 te
 xj
-LV
+te
 ms
 te
 Hw

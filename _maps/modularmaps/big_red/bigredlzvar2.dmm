@@ -189,10 +189,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
-"fs" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northwest)
 "ft" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3983,7 +3979,7 @@ lw
 lw
 lw
 zH
-fs
+zH
 zH
 lw
 mc

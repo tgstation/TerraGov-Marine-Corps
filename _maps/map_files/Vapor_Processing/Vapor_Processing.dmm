@@ -96,7 +96,6 @@
 /area/shuttle/drop2/lz2)
 "as" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "at" = (
@@ -571,7 +570,6 @@
 /area/shuttle/drop1/lz1)
 "cb" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cc" = (
@@ -2888,9 +2886,6 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo2)
-"ly" = (
-/turf/open/floor/tile/green/whitegreen,
-/area/lv624/lazarus/medbay)
 "lA" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
@@ -5364,10 +5359,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/ground,
 /area/space)
-"FJ" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/grass,
-/area/lv624/ground/compound/se)
 "Gn" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -7074,7 +7065,7 @@ fm
 fD
 fD
 fD
-ly
+fD
 ht
 fC
 eK
@@ -12189,7 +12180,7 @@ eN
 eN
 eO
 li
-FJ
+li
 lj
 li
 qG

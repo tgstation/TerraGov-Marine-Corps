@@ -320,10 +320,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
-"pk" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall,
-/area/bigredv2/outside/office_complex)
 "pp" = (
 /obj/machinery/vending/snack,
 /turf/open/floor,
@@ -572,11 +568,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/se)
-"AH" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor,
-/area/bigredv2/outside/office_complex)
 "Ba" = (
 /obj/machinery/vending/cola,
 /turf/open/floor,
@@ -1574,7 +1565,7 @@ Es
 oD
 gz
 eB
-pk
+eB
 eB
 eB
 eB
@@ -1654,7 +1645,7 @@ eB
 eB
 eB
 VB
-AH
+kj
 kc
 eB
 Yj

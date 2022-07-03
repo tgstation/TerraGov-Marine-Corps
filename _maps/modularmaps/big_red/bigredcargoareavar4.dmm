@@ -98,10 +98,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
-"hp" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
 "hy" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/virology)
@@ -2135,7 +2131,7 @@ JU
 JU
 JU
 JU
-hp
+JU
 Ii
 WS
 wA

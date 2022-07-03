@@ -23,11 +23,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/virology)
-"dn" = (
-/obj/docking_port/stationary/crashmode,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "dv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -711,10 +706,6 @@
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
-/area/bigredv2/outside/nw)
-"RO" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "RQ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1934,7 +1925,7 @@ rR
 JY
 BV
 Ly
-dn
+zm
 JY
 Dr
 JY
@@ -2071,7 +2062,7 @@ rB
 NJ
 NJ
 NJ
-RO
+NJ
 NJ
 NJ
 Wq

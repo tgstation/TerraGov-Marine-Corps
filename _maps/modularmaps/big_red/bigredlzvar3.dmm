@@ -1762,10 +1762,6 @@
 /obj/machinery/washing_machine,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
-"SP" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northwest)
 "SU" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
@@ -4089,7 +4085,7 @@ hC
 hC
 hC
 hI
-SP
+hI
 hI
 hC
 Dg

@@ -325,10 +325,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nw)
-"yi" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
 "yD" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
@@ -2040,7 +2036,7 @@ nS
 nS
 nS
 nS
-yi
+nS
 ON
 iV
 Mr

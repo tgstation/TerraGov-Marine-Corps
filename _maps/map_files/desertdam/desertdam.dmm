@@ -54437,7 +54437,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "oDe" = (
-/obj/machinery/door/airlock/mainship/command/canterbury{
+/obj/machinery/door/airlock/mainship/command{
 	dir = 1;
 	locked = 1;
 	name = "\improper Command Cockpit"
