@@ -354,13 +354,14 @@
 	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
 
 /obj/item/storage/pouch/medical_injectors/firstaid
-	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors. Contains basic injectors, a stabilizing injector, stimulant injector, and an emergency injector."
+	desc = "Standard marine first-aid injector pouch. Specialized to store only auto-injectors."
 
 /obj/item/storage/pouch/medical_injectors/firstaid/Initialize()
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dylovene
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/russian_red (src)
 
@@ -393,7 +394,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/nanoblood(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/somolent(src)
 
 /obj/item/storage/pouch/med_lolipops
