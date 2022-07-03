@@ -592,6 +592,10 @@
 /obj/structure/table/reinforced,
 /obj/item/healthanalyzer,
 /obj/machinery/light,
+/obj/machinery/reagentgrinder{
+	pixel_x = -1;
+	pixel_y = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cf" = (
