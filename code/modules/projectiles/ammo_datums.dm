@@ -599,7 +599,7 @@ datum/ammo/bullet/revolver/tp44
 	name = "heavy impact rifle bullet"
 	hud_state = "revolver_heavy"
 	damage = 70
-	penetration = 20
+	penetration = 15
 	sundering = 1.25
 
 /datum/ammo/bullet/rifle/repeater/on_hit_mob(mob/M, obj/projectile/P)

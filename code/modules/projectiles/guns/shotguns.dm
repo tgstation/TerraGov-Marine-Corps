@@ -505,7 +505,7 @@
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
 	caliber = CALIBER_4570 //codex
 	load_method = SINGLE_CASING //codex
-	max_chamber_items = 13 //codex
+	max_chamber_items = 9 //codex
 	default_ammo_type = /datum/ammo/bullet/rifle/repeater
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'//good enough for now.
