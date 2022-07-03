@@ -71,6 +71,7 @@
 	else
 		. = "No reagents"
 
+///True if this object currently contains at least its starting reagents, false otherwise. Extra reagents are ignored.
 /obj/item/reagent_containers/proc/has_initial_reagents()
 	for(var/reagent_to_check in list_reagents)
 		if(reagents.get_reagent_amount(reagent_to_check) != list_reagents[reagent_to_check])
