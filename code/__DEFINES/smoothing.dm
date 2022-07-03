@@ -5,7 +5,6 @@
 //smoothing_groups
 #define SMOOTH_GENERAL_STRUCTURES (1<<0) //Walls, doors, windows, girders, you name it.
 #define SMOOTH_XENO_STRUCTURES (1<<1) //Resin structures.
-#define SMOOTH_CANTERBURY (1<<2) //TGS Canterbury
 #define SMOOTH_FLORA (1<<3) //Vegetation walls
 #define SMOOTH_MINERAL_STRUCTURES (1<<4) //Caves
 

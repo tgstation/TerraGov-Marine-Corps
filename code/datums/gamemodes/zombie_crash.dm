@@ -1,4 +1,4 @@
-/datum/game_mode/infestation/crash/zombie
+/datum/game_mode/infestation/zombie //Tried to save zombie gamemode from the crash removal
 	name = "Zombie Crash"
 	config_tag = "Zombie Crash"
 	flags_round_type = MODE_XENO_SPAWN_PROTECTION
@@ -15,11 +15,11 @@
 	///How many points can be spent by the zombie overmind
 	var/zombie_points = 0
 
-/datum/game_mode/infestation/crash/zombie/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
+/datum/game_mode/infestation/zombie/on_nuke_started(datum/source, obj/machinery/nuclearbomb/nuke)
 	return
 
-/datum/game_mode/infestation/crash/zombie/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
+/datum/game_mode/infestation/zombie/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	return
 
-/datum/game_mode/infestation/crash/zombie/balance_scales()
+/datum/game_mode/infestation/zombie/balance_scales()
 	zombie_points += get_total_joblarvaworth()

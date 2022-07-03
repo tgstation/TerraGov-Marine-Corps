@@ -39,9 +39,6 @@
 /turf/closed/wall/mainship/outer/reinforced
 	name = "reinforced hull"
 
-/turf/closed/wall/mainship/outer/canterbury
-	smoothing_groups = SMOOTH_CANTERBURY
-
 /turf/closed/wall/mainship/white
 	walltype = "wwall"
 	icon_state = "wwall0"
@@ -76,9 +73,6 @@
 	else
 		icon_state = "[walltype][junction]"
 	junctiontype = junction
-
-/turf/closed/wall/mainship/white/canterbury //For ship smoothing.
-	smoothing_groups = SMOOTH_CANTERBURY
 
 /turf/closed/wall/mainship/white/outer
 	name = "outer hull"

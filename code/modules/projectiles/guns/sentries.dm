@@ -174,9 +174,4 @@
 	turret_flags = TURRET_LOCKED|TURRET_ON|TURRET_IMMOBILE|TURRET_RADIAL
 	sentry_iff_signal = NONE
 
-/obj/item/weapon/gun/sentry/premade/canterbury
-	name = "SG-577 Gauss Dropship Turret"
-	ammo_datum_type = /datum/ammo/bullet/turret
-	sentry_iff_signal = TGMC_LOYALIST_IFF
-
 

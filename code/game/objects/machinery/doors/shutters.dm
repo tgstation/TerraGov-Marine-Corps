@@ -117,7 +117,7 @@
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	resistance_flags = RESIST_ALL|DROPSHIP_IMMUNE
 	id = "ghhjmugggggtgggbg" // do not have any button or thing have an ID assigned to this, it is a very bad idea.
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES|SMOOTH_CANTERBURY
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
 
 /obj/machinery/door/poddoor/shutters/mainship/open

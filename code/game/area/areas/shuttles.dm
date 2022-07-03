@@ -173,22 +173,3 @@
 
 /area/shuttle/caravan/freighter3
 	name = "Tiny Freighter"
-
-/area/shuttle/canterbury
-	name = "Canterbury"
-	requires_power = TRUE
-	always_unpowered = FALSE
-
-/area/shuttle/canterbury/Initialize(mapload, ...)
-	. = ..()
-	var/area/area = get_area(src)
-	area.flags_area |= MARINE_BASE
-
-/area/shuttle/canterbury/cic
-	name = "Combat Information Center"
-
-/area/shuttle/canterbury/medical
-	name = "Medical"
-
-/area/shuttle/canterbury/general
-	name = "Canterbury"

@@ -152,14 +152,6 @@
 	shuttle_id = SHUTTLE_SUPPLY
 	name = SHUTTLE_SUPPLY
 
-/datum/map_template/shuttle/tgs_canterbury
-	shuttle_id = SHUTTLE_CANTERBURY
-	name = "Canterbury"
-
-/datum/map_template/shuttle/tgs_bigbury
-	shuttle_id = SHUTTLE_BIGBURY
-	name = "Bigbury"
-
 /datum/map_template/shuttle/escape_shuttle
 	shuttle_id = SHUTTLE_ESCAPE_SHUTTLE
 	name = "Escape Shuttle"

@@ -918,7 +918,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!length(SSshuttle.dropships) && !SSshuttle.canterbury)
+	if(!length(SSshuttle.dropships))
 		return
 
 	var/list/available_shuttles = list()

@@ -20,7 +20,6 @@ SUBSYSTEM_DEF(shuttle)
 	var/list/escape_pods = list()
 	var/list/ert_shuttles = list()
 	var/list/dropships = list()
-	var/obj/docking_port/mobile/crashmode/canterbury = null
 
 	var/list/orderhistory = list()
 
@@ -285,9 +284,6 @@ SUBSYSTEM_DEF(shuttle)
 		transit_requesters = SSshuttle.transit_requesters
 	if (istype(SSshuttle.transit_request_failures))
 		transit_request_failures = SSshuttle.transit_request_failures
-
-	if (istype(SSshuttle.canterbury))
-		canterbury = SSshuttle.canterbury
 
 	if (istype(SSshuttle.orderhistory))
 		orderhistory = SSshuttle.orderhistory
