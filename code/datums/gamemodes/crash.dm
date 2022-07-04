@@ -207,7 +207,7 @@
 		var/mob/living/carbon/human/H = i
 		if(!H.job)
 			continue
-		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+		if(count_flags & COUNT_IGNORE_HUMAN_SSD && (H.state != DEAD && !H.client))
 			continue
 		if(H.status_flags & XENO_HOST)
 			continue
