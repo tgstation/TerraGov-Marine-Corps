@@ -81,7 +81,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 				security_level = SEC_LEVEL_GREEN
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
-						SD.set_picture("default")	
+						SD.set_picture("default")
 			if(SEC_LEVEL_BLUE)
 				if(security_level < SEC_LEVEL_BLUE)
 					if(announce)
@@ -112,7 +112,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 
 				for(var/obj/machinery/status_display/SD in GLOB.machines)
 					if(is_mainship_level(SD.z))
-						SD.set_picture("redalert")	
+						SD.set_picture("redalert")
 			if(SEC_LEVEL_DELTA)
 				if(announce)
 					priority_announce("Attention! Delta security level reached! " + CONFIG_GET(string/alert_delta), "Priority Alert")
@@ -126,7 +126,7 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 
 		for(var/obj/machinery/firealarm/FA in GLOB.machines)
 			if(is_mainship_level(FA.z))
-				FA.update_icon()			
+				FA.update_icon()
 	else
 		return
 
