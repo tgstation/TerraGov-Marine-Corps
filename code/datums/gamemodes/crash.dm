@@ -199,3 +199,19 @@
 		return //Things are balanced, no burrowed needed
 	xeno_job.add_job_positions(1)
 	xeno_hive.update_tier_limits()
+
+/datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
+	. = 0
+
+	for(var/i in GLOB.human_mob_list)
+		var/mob/living/carbon/human/H = i
+		if(!H.job)
+			continue
+		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+			continue
+		if(H.status_flags & XENO_HOST)
+			continue
+		if(!(H.z in z_levels) || isspaceturf(H.loc))
+			continue
+		. += H.job.jobworth[/datum/job/xenomorph]
+
