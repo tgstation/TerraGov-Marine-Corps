@@ -5,3 +5,10 @@
   QualityVan:
   - bugfix: You don't get weird vision while in cryo
   - balance: Kidneys don't produce drawbacks while in cryo
+2022-07-04:
+  RipGrayson:
+  - balance: The Canterbury and its larger cousin now have reagent grinders.
+  goose4429:
+  - bugfix: Defiler can't choose sanguinal
+  novaepee:
+  - rscdel: Removed more expensive autominer

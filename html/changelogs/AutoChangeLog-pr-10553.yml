@@ -1,4 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes: 
-  - rscdel: "Removed more expensive autominer"
