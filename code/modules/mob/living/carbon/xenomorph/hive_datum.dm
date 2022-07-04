@@ -532,6 +532,8 @@
 /datum/hive_status/proc/update_leader_pheromones() // helper function to easily trigger an update of leader pheromones
 	for(var/mob/living/carbon/xenomorph/leader AS in xeno_leader_list)
 		leader.handle_xeno_leader_pheromones(living_xeno_queen)
+	for(var/obj/structure/xeno/silo/ressilos AS in GLOB.xeno_resin_silos)
+		ressilos.handle_xeno_leader_pheromones(living_xeno_queen)
 
 // ***************************************
 // *********** Status changes

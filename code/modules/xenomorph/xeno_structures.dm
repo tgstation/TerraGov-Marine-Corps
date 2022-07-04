@@ -922,6 +922,14 @@ TUNNEL
 
 	hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
 
+/obj/structure/xeno/silo/proc/handle_xeno_leader_pheromones(mob/living/carbon/xenomorph/queen/Q)
+	if(QDELETED(Q) || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
+		leader_aura_strength = 0
+		leader_current_aura = ""
+	else
+		leader_aura_strength = Q.xeno_caste.aura_strength
+		leader_current_aura = Q.current_aura
+
 /obj/structure/xeno/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
 	icon_state = XENO_TURRET_ACID_ICONSTATE
