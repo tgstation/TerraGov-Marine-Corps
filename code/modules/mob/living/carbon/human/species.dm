@@ -55,7 +55,7 @@
 
 	/// new maxHealth [/mob/living/carbon/human/var/maxHealth] of the human mob once species is applied
 	var/total_health = 100
-	var/max_stamina_buffer = 50
+	var/max_stamina = 50
 
 	var/cold_level_1 = BODYTEMP_COLD_DAMAGE_LIMIT_ONE  	// Cold damage level 1 below this point.
 	var/cold_level_2 = BODYTEMP_COLD_DAMAGE_LIMIT_TWO  	// Cold damage level 2 below this point.
@@ -236,13 +236,6 @@
 			H.dropItemToGround(thing)
 	for(var/newtrait in inherent_traits)
 		ADD_TRAIT(H, newtrait, SPECIES_TRAIT)
-	var/datum/reagents/R
-	if(species_flags & NO_CHEM_METABOLIZATION)
-		R = new /datum/reagents(0)
-	else
-		R = new /datum/reagents(1000)
-	H.reagents = R
-	R.my_atom = H
 
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
@@ -442,16 +435,31 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	paincries = list(MALE = "robot_pain", FEMALE = "robot_pain")
 	goredcries = list(MALE = "robot_scream", FEMALE = "robot_scream")
 	warcries = list(MALE = "robot_warcry", FEMALE = "robot_warcry")
+	death_message = "shudders violently whilst spitting out error text before collapsing, their visual sensor darkening..."
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 	joinable_roundstart = TRUE
 
 /datum/species/robot/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	H.speech_span = SPAN_ROBOT
+	H.health_threshold_crit = -100
 
 /datum/species/robot/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	H.speech_span = initial(H.speech_span)
+	H.health_threshold_crit = -50
+
+/mob/living/carbon/human/species/robot/handle_regular_hud_updates()
+	. = ..()
+	if(health <= 0 && health > -50)
+		clear_fullscreen("robotlow")
+		overlay_fullscreen("robothalf", /obj/screen/fullscreen/robothalf)
+	else if(health <= -50)
+		clear_fullscreen("robothalf")
+		overlay_fullscreen("robotlow", /obj/screen/fullscreen/robotlow)
+	else
+		clear_fullscreen("robothalf")
+		clear_fullscreen("robotlow")
 
 
 /datum/species/synthetic
@@ -493,19 +501,19 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
-/datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
+/datum/species/synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
 
-/mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
-	return TRUE
-
 
 /datum/species/synthetic/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.remove_hud_from(H)
-	return ..()
+
+/mob/living/carbon/human/species/synthetic/binarycheck(mob/H)
+	return TRUE
 
 
 /datum/species/early_synthetic //cosmetic differences only
@@ -545,16 +553,16 @@ GLOBAL_VAR_INIT(join_as_robot_allowed, TRUE)
 	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
-/datum/species/early_synthetic/handle_post_spawn(mob/living/carbon/human/H)
+/datum/species/early_synthetic/on_species_gain(mob/living/carbon/human/H, datum/species/old_species)
 	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.add_hud_to(H)
 
 
 /datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
 	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
 	AH.remove_hud_from(H)
-	return ..()
 
 /mob/living/carbon/human/species/early_synthetic/binarycheck(mob/H)
 	return TRUE

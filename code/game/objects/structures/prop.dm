@@ -476,6 +476,40 @@
 	desc = "An AI Module for programming laws to an AI."
 	icon_state = "std_mod"
 
+/obj/item/prop/organ
+	name = "organ"
+	desc = "It looks like it probably just plopped out. It's too decayed to be reinserted in a patient."
+	icon = 'icons/obj/items/organs.dmi'
+	icon_state = "heart"
+
+/obj/item/prop/organ/heart
+	name = "heart"
+	icon_state = "heart-off"
+
+/obj/item/prop/organ/brain
+	name = "brain"
+	icon_state = "brain1"
+
+/obj/item/prop/organ/appendix
+	name = "appendix"
+	icon_state = "appendix"
+
+/obj/item/prop/organ/lungs
+	name = "lungs"
+	icon_state = "lungs"
+
+/obj/item/prop/organ/kidneys
+	name = "kidneys"
+	icon_state = "kidneys"
+
+/obj/item/prop/organ/eyes
+	name = "eyes"
+	icon_state = "eyes"
+
+/obj/item/prop/organ/liver
+	name = "liver"
+	icon_state = "liver"
+
 /obj/item/prop/aimodule/Initialize(mapload)
 	. = ..()
 	name = pick("'Safeguard' AI Module'",
@@ -512,6 +546,7 @@
 	name = "\improper Broken vendor"
 	icon = 'icons/Marine/mainship_props.dmi'
 	desc = "The insides of this vendor are visible and rusted through, you get the feeling there's no fixing this machine."
+	density = TRUE
 
 /obj/structure/prop/brokenvendor/brokenweaponsrack
 	icon_state = "marinearmory-broken"

@@ -3,109 +3,12 @@
  * SPDX-License-Identifier: MIT
  */
 
-@use 'sass:color';
-@use 'sass:meta';
-
-
-@use '../colors.scss' with (
-  $primary: #43096d,
-  $fg-map-keys: (),
-  $bg-map-keys: (),
-);
-@use '../base.scss' with (
-  $color-fg: #b23593,
-  $color-bg: #290041,
-  $color-bg-grad-spread: 6%,
-  $border-radius: 2px,
-);
-
 
 .theme-xeno {
-  font-family: 'Segoe', Verdana, Tahoma, sans-serif;
-   // Atomic classes
-  @include meta.load-css('../atomic/color.scss');
-
-   // Components
-  @include meta.load-css('../components/Button.scss', $with: (
-    'color-default': transparent,
-    'color-disabled': transparent,
-    'color-selected': transparent,
-    'color-caution': transparent,
-    'color-danger': transparent,
-  ));
-  @include meta.load-css('../components/Tabs.scss', $with: (
-    'tab-color-selected': transparent,
-    'tab-color-hovered': transparent,
-    'text-color': #b23593,
-  ));
-  @include meta.load-css('../components/Input.scss', $with: (
-    'border-color': #404b6e,
-  ));
-  @include meta.load-css('../components/NoticeBox.scss', $with: (
-    'background-color': #6a0dad,
-  ));
-  @include meta.load-css('../components/NumberInput.scss', $with: (
-    'border-color': #404b6e,
-  ));
-  @include meta.load-css('../components/ProgressBar.scss', $with: (
-    'background-color': rgba(0, 0, 0, 0.5),
-  ));
-  @include meta.load-css('../components/Section.scss');
-  @include meta.load-css('../components/Tooltip.scss', $with: (
-    'background-color': #21003b,
-  ));
-
-   // Layouts
-  @include meta.load-css('../layouts/Layout.scss');
-  @include meta.load-css('../layouts/Window.scss');
-  @include meta.load-css('../layouts/TitleBar.scss', $with: (
-    'background-color': #21003b,
-  ));
-
   .Layout__content {
-    background-image: url(../../assets/xeno/floor_tile.png);
-    background-repeat: round;
-    background-size: 32px;
-    border-image-source: url(../../assets/xeno/weed_border.png);
-    border-image-slice: 32 32 fill;
-    border-image-width: 32px ;
-    border-image-repeat: round;
-  }
-
-  .Tab {
-    border-image-source: url(../../assets/xeno/resin_wall.png);
-    border-image-slice: 16 32 fill;
-    border-image-width: 32px ;
-    border-image-repeat: repeat;
-  }
-  .Tab:hover{
-    border-image-source: url(../../assets/xeno/resin_wall_thicc.png)
-  }
-  .Tab--selected {
-    border-image-source: url(../../assets/xeno/resin_wall_weeded.png);
-  }
-  .Tab--selected:hover {
-    border-image-source: url(../../assets/xeno/resin_wall_thicc_weeded.png)
-  }
-  .Button {
-    border-image-source: url(../../assets/xeno/resin_wall.png);
-    border-image-slice: 16 32 fill;
-    border-image-width: 64px;
-    border-image-repeat: round;
-    color: #b23593;
-  }
-  .Button:hover {
-    color: #b23593;
-    border-image-source: url(../../assets/xeno/resin_wall_thicc.png);
-  }
-  .Button:focus {
-    background-color: transparent;
-    color: #b23593;
-  }
-  .Button--selected {
-    border-image-source: url(../../assets/xeno/resin_wall_weeded.png)
-  }
-  .Button--selected:hover {
-    border-image-source: url(../../assets/xeno/resin_wall_thicc_weeded.png)
+    background-image: url('../../assets/xeno/xeno_bg.svg');
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }

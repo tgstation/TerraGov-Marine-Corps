@@ -55,9 +55,6 @@ GLOBAL_VAR(restart_counter)
 
 	load_mode()
 
-	if(byond_version < RECOMMENDED_VERSION)
-		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
-
 	update_status()
 
 	change_tick_lag(CONFIG_GET(number/ticklag))

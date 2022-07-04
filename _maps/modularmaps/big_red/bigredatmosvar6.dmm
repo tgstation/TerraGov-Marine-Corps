@@ -86,9 +86,8 @@
 /area/bigredv2/outside/se)
 "gx" = (
 /obj/structure/window/framed/colony/reinforced/hull,
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating,
-/area/bigredv2/outside/se)
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/east)
 "gL" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -1155,7 +1154,7 @@ Xe
 Eg
 qK
 qK
-gx
+qK
 qK
 Eg
 qk
@@ -1358,6 +1357,6 @@ PU
 Nh
 SX
 SX
-SX
+gx
 SX
 "}

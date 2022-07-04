@@ -101,7 +101,7 @@
 	///Minimum health threshold before the effect is deactivated
 	var/minimum_health
 	///If the target xeno was within range
-	var/was_within_range = TRUE
+	var/was_within_range = FALSE
 
 /datum/status_effect/xeno_psychic_link/on_creation(mob/living/new_owner, set_duration, mob/living/carbon/target_mob, link_range, redirect_mod, minimum_health, scaling = FALSE)
 	owner = new_owner
@@ -114,12 +114,14 @@
 	ADD_TRAIT(owner, TRAIT_PSY_LINKED, TRAIT_STATUS_EFFECT(id))
 	RegisterSignal(owner, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
 	RegisterSignal(target_mob, COMSIG_MOB_DEATH, .proc/handle_mob_dead)
-	link_toggle(TRUE)
 	var/link_message = "[owner] has linked to you and is redirecting some of your injuries. If they get too hurt, the link may be broken."
 	if(link_range > 0)
 		link_message += " Keep within [link_range] tiles to maintain it."
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
 		RegisterSignal(target_mob, COMSIG_MOVABLE_MOVED, .proc/handle_dist)
+		handle_dist()
+	else
+		link_toggle(TRUE)
 	to_chat(target_mob, span_xenonotice(link_message))
 	return ..()
 

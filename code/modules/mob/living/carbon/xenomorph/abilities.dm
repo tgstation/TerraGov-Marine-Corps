@@ -84,9 +84,7 @@
 
 ///Chose which weed will be planted by the xeno owner or toggle automatic weeding
 /datum/action/xeno_action/activable/plant_weeds/proc/choose_weed()
-	var/list/choices = GLOB.weed_images_list.Copy()
-	choices[AUTOMATIC_WEEDING] = image('icons/mob/actions.dmi', icon_state = "repeating")
-	var/weed_choice = show_radial_menu(owner, owner, choices, radius = 48)
+	var/weed_choice = show_radial_menu(owner, owner, GLOB.weed_images_list, radius = 35)
 	if(!weed_choice)
 		return
 	if(weed_choice == AUTOMATIC_WEEDING)
@@ -157,13 +155,15 @@
 		return FALSE
 	return ..()
 
-/datum/action/xeno_action/activable/plant_weeds/ranged/should_show()
-	return !(owner.status_flags & INCORPOREAL)
+/datum/action/xeno_action/activable/plant_weeds/ranged/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
+	if (owner.status_flags & INCORPOREAL)
+		return FALSE
+	return ..()
 
 // Secrete Resin
 /datum/action/xeno_action/activable/secrete_resin
 	name = "Secrete Resin"
-	action_icon_state = "resin wall"
+	action_icon_state = RESIN_WALL
 	mechanics_text = "Builds whatever resin you selected"
 	ability_name = "secrete resin"
 	plasma_cost = 75
@@ -172,7 +172,7 @@
 	var/base_wait = 1 SECONDS
 	///Multiplicator factor to add to the building time, depends on the health of the structure built
 	var/scaling_wait = 1 SECONDS
-	///List of buildable structures
+	///List of buildable structures. Order corresponds with resin_images_list.
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
 		/obj/effect/alien/resin/sticky,
@@ -187,20 +187,33 @@
 	return ..()
 
 /datum/action/xeno_action/activable/secrete_resin/action_activate()
-
+	//Left click on the secrete resin button opens up radial menu (new type of changing structures).
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability != src)
 		return ..()
 	. = ..()
+	var/resin_choice = show_radial_menu(owner, owner, GLOB.resin_images_list, radius = 35)
+	if(!resin_choice)
+		return
+	var/i = GLOB.resin_images_list.Find(resin_choice)
+	X.selected_resin = buildable_structures[i]
+	var/atom/A = X.selected_resin
+	X.balloon_alert(X, initial(A.name))
+	update_button_icon()
+
+/datum/action/xeno_action/activable/secrete_resin/alternate_action_activate()
+	//Right click on secrete resin button cycles through to the next construction type (old method of changing structures).
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.selected_ability != src)
+		return ..()
 	var/i = buildable_structures.Find(X.selected_resin)
 	if(length(buildable_structures) == i)
 		X.selected_resin = buildable_structures[1]
 	else
 		X.selected_resin = buildable_structures[i+1]
 	var/atom/A = X.selected_resin
-	to_chat(X, span_notice("We will now build <b>[initial(A.name)]\s</b> when secreting resin."))
+	X.balloon_alert(X, initial(A.name))
 	update_button_icon()
-
 
 /datum/action/xeno_action/activable/secrete_resin/use_ability(atom/A)
 	build_resin(get_turf(owner))
@@ -324,99 +337,71 @@
 
 	plasma_cost = initial(plasma_cost) //Reset the plasma cost
 
-/datum/action/xeno_action/toggle_pheromones
-	name = "Open/Collapse Pheromone Options"
-	action_icon_state = "emit_pheromones"
-	mechanics_text = "Opens your pheromone options."
-	plasma_cost = 0
-	var/PheromonesOpen = FALSE //If the  pheromone choices buttons are already displayed or not
-
-/datum/action/xeno_action/toggle_pheromones/ai_should_start_consider()
-	return TRUE
-
-/datum/action/xeno_action/toggle_pheromones/ai_should_use(target)
-	if(PheromonesOpen)
-		return ..()
-	return TRUE
-
-/datum/action/xeno_action/toggle_pheromones/can_use_action()
-	return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices at any time
-
-/datum/action/xeno_action/toggle_pheromones/action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(PheromonesOpen)
-		PheromonesOpen = FALSE
-		for(var/datum/action/path in owner.actions)
-			if(istype(path, /datum/action/xeno_action/pheromones))
-				path.remove_action(X)
-	else
-		PheromonesOpen = TRUE
-		var/list/subtypeactions = subtypesof(/datum/action/xeno_action/pheromones)
-		for(var/path in subtypeactions)
-			var/datum/action/xeno_action/pheromones/A = new path()
-			A.give_action(X)
-
 /datum/action/xeno_action/pheromones
-	name = "SHOULD NOT EXIST"
-	plasma_cost = 30 //Base plasma cost for begin to emit pheromones
-	var/aura_type = null //String for aura to emit
+	name = "Emit Pheromones"
+	action_icon_state = "emit_pheromones"
+	plasma_cost = 30
+	mechanics_text = "Opens your pheromone options."
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY|XACT_USE_LYING
 
-/datum/action/xeno_action/pheromones/ai_should_start_consider()
-	return TRUE
-
-/datum/action/xeno_action/pheromones/ai_should_use(target)
+/datum/action/xeno_action/pheromones/proc/apply_pheros(phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.current_aura)
-		return ..()
-	if(prob(33)) //Since the pheromones go from recovery => warding => frenzy, this enables AI to somewhat randomly pick one of the three pheros to emit
-		return ..()
-	return TRUE
 
-/datum/action/xeno_action/pheromones/action_activate() //Must pass the basic plasma cost; reduces copy pasta
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!aura_type)
-		return FALSE
-
-	if(X.current_aura == aura_type)
-		X.visible_message(span_xenowarning("\The [X] stops emitting strange pheromones."), \
-		span_xenowarning("We stop emitting [X.current_aura] pheromones."), null, 5)
+	if(X.current_aura == phero_choice)
+		X.balloon_alert(X, "Stop emitting")
 		X.current_aura = null
 		if(isxenoqueen(X))
 			X.hive?.update_leader_pheromones()
 		X.hud_set_pheromone()
-		return fail_activate() // dont use plasma
+		return fail_activate()
 
-	X.current_aura = aura_type
-	X.visible_message(span_xenowarning("\The [X] begins to emit strange-smelling pheromones."), \
-	span_xenowarning("We begin to emit '[X.current_aura]' pheromones."), null, 5)
+	X.current_aura = phero_choice
+	X.balloon_alert(X, "[X.current_aura]")
 	playsound(X.loc, "alien_drool", 25)
 
 	if(isxenoqueen(X))
 		X.hive?.update_leader_pheromones()
 	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
-	return succeed_activate()
+	succeed_activate()
 
-/datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
-	name = "Emit Recovery Pheromones"
-	action_icon_state = "emit_recovery"
+/datum/action/xeno_action/pheromones/action_activate()
+	var/phero_choice = show_radial_menu(owner, owner, GLOB.pheromone_images_list, radius = 35)
+	if(!phero_choice)
+		return fail_activate()
+	apply_pheros(phero_choice)
+
+/datum/action/xeno_action/pheromones/emit_recovery
+	name = "Toggle Recovery Pheromones"
 	mechanics_text = "Increases healing for yourself and nearby teammates."
-	aura_type = "recovery"
 	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
 
+/datum/action/xeno_action/pheromones/emit_recovery/action_activate()
+	apply_pheros(RECOVERY)
+
+/datum/action/xeno_action/pheromones/emit_recovery/should_show()
+	return FALSE
+
 /datum/action/xeno_action/pheromones/emit_warding
-	name = "Emit Warding Pheromones"
-	action_icon_state = "emit_warding"
+	name = "Toggle Warding Pheromones"
 	mechanics_text = "Increases armor for yourself and nearby teammates."
-	aura_type = "warding"
 	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
 
+/datum/action/xeno_action/pheromones/emit_warding/action_activate()
+	apply_pheros(WARDING)
+
+/datum/action/xeno_action/pheromones/emit_warding/should_show()
+	return FALSE
+
 /datum/action/xeno_action/pheromones/emit_frenzy
-	name = "Emit Frenzy Pheromones"
-	action_icon_state = "emit_frenzy"
+	name = "Toggle Frenzy Pheromones"
 	mechanics_text = "Increases damage for yourself and nearby teammates."
-	aura_type = "frenzy"
 	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
+
+/datum/action/xeno_action/pheromones/emit_frenzy/action_activate()
+	apply_pheros(FRENZY)
+
+/datum/action/xeno_action/pheromones/emit_frenzy/should_show()
+	return FALSE
 
 
 /datum/action/xeno_action/activable/transfer_plasma
@@ -440,7 +425,7 @@
 
 	var/mob/living/carbon/xenomorph/target = A
 
-	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+	if(!(target.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 		if(!silent)
 			to_chat(owner, span_warning("We can't give that caste plasma."))
 			return FALSE
@@ -1198,6 +1183,7 @@
 	SSpoints.add_psy_points(X.hivenumber, psy_points_reward)
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(larva_point_reward)
+	X.hive.update_tier_limits()
 	GLOB.round_statistics.larva_from_psydrain +=larva_point_reward / xeno_job.job_points_needed
 
 	log_combat(victim, owner, "was drained.")
@@ -1303,5 +1289,5 @@
 
 /datum/action/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.hive.interact(X)
+	X.hive.purchases.interact(X)
 	return succeed_activate()

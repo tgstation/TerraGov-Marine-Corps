@@ -306,7 +306,7 @@
 	// heal internal organs
 	for(var/o in internal_organs)
 		var/datum/internal_organ/current_organ = o
-		current_organ.rejuvenate()
+		current_organ.heal_organ_damage(current_organ.damage)
 
 	// remove embedded objects and drop them on the floor
 	for(var/o in implants)
@@ -456,12 +456,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 				owner.adjustToxLoss(1)
 //LEVEL II
 	if(germ_level >= INFECTION_LEVEL_TWO && spaceacillin < 3)
-		//spread the infection to internal organs
-		var/datum/internal_organ/target_organ = null	//make internal organs become infected one at a time instead of all at once
-		for (var/datum/internal_organ/I in internal_organs)
-			if (I.germ_level > 0 && I.germ_level < min(germ_level, INFECTION_LEVEL_TWO))	//once the organ reaches whatever we can give it, or level two, switch to a different one
-				if (!target_organ || I.germ_level > target_organ.germ_level)	//choose the organ with the highest germ_level
-					target_organ = I
 
 		if(prob(round(germ_level/10)))
 			if (spaceacillin < MIN_ANTIBIOTICS)
@@ -472,18 +466,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		if (prob(25))	//adjust this to tweak how fast people take toxin damage from infections
 			owner.adjustToxLoss(1)
-
-		if (!target_organ)
-			//figure out which organs we can spread germs to and pick one at random
-			var/list/candidate_organs = list()
-			for (var/datum/internal_organ/I in internal_organs)
-				if (I.germ_level < germ_level)
-					candidate_organs += I
-			if (candidate_organs.len)
-				target_organ = pick(candidate_organs)
-
-		if (target_organ)
-			target_organ.germ_level++
 
 		//spread the infection to child and parent organs
 		if (children)
@@ -508,9 +490,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 			owner.adjustToxLoss(1)
 		if (prob(1))
 			to_chat(owner, span_notice("You have a high fever!"))
+//Not technically a germ effect, but derived from it
+	if(limb_status & LIMB_NECROTIZED)
+		for(var/datum/internal_organ/organ AS in internal_organs)
+			organ.take_damage(0.2, silent = TRUE) //1 point every 10 seconds, 100 seconds to bruise, five minutes to broken.
 
 
-//Updating wounds. Handles wound natural I had some free spachealing, internal bleedings and infections
+///Updating wounds. Handles natural damage healing from limb treatments and processes internal wounds
 /datum/limb/proc/update_wounds()
 
 	if((limb_status & LIMB_ROBOT)) //Robotic limbs don't heal or get worse.
@@ -530,7 +516,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (update_icon())
 		owner.UpdateDamageIcon(1)
 
-//Updates BLEEDING status.
+///Updates LIMB_BLEEDING limb flag
 /datum/limb/proc/update_bleeding()
 	if(limb_status & LIMB_ROBOT || owner.species.species_flags & NO_BLOOD)
 		return
@@ -666,7 +652,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(body_part == CHEST)
 		return FALSE
 
-	set_limb_flags(LIMB_DESTROYED)
+	if(amputation)
+		set_limb_flags(LIMB_AMPUTATED|LIMB_DESTROYED)
+	else
+		set_limb_flags(LIMB_DESTROYED)
 
 	for(var/i in implants)
 		var/obj/item/embedded_thing = i
@@ -798,7 +787,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/is_bandaged()
 	if(!(surgery_open_stage == 0))
 		return 1
-	return limb_wound_status & LIMB_WOUND_BANDAGED
+	return limb_wound_status & LIMB_WOUND_BANDAGED || !brute_dam
 
 /datum/limb/proc/disinfect()
 	if(limb_wound_status & LIMB_WOUND_DISINFECTED || (burn_dam < 20 && brute_dam < 20))
@@ -827,7 +816,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/is_salved()
 	if(!(surgery_open_stage == 0))
 		return 1
-	return limb_wound_status & LIMB_WOUND_SALVED
+	return limb_wound_status & LIMB_WOUND_SALVED || !burn_dam
 
 /datum/limb/proc/fracture()
 
@@ -866,10 +855,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/get_damage()	//returns total damage
 	return brute_dam + burn_dam	//could use health?
-
-//Not meaningful any more, need to remove from health scanners
-/datum/limb/proc/has_infected_wound()
-	return FALSE
 
 ///True if the limb has any damage on it
 /datum/limb/proc/has_external_wound()

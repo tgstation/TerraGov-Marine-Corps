@@ -10,6 +10,7 @@
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
 	///The type of stack the barricade dropped when disassembled if any.
 	var/stack_type
@@ -506,11 +507,14 @@
 		return FALSE
 
 	if(metal_sheets.get_amount() < CADE_UPGRADE_REQUIRED_SHEETS)
-		to_chat(user, span_warning("You need at least [CADE_UPGRADE_REQUIRED_SHEETS] metal sheets to repair the base of [src]."))
+		to_chat(user, span_warning("You need at least [CADE_UPGRADE_REQUIRED_SHEETS] metal sheets to upgrade [src]."))
 		return FALSE
 
 	var/static/list/cade_types = list(CADE_TYPE_BOMB = image(icon = 'icons/Marine/barricades.dmi', icon_state = "explosive_obj"), CADE_TYPE_MELEE = image(icon = 'icons/Marine/barricades.dmi', icon_state = "brute_obj"), CADE_TYPE_ACID = image(icon = 'icons/Marine/barricades.dmi', icon_state = "burn_obj"))
 	var/choice = show_radial_menu(user, src, cade_types, require_near = TRUE, tooltips = TRUE)
+
+	if(!choice)
+		return
 
 	if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to attach armor plates to [src]."),
@@ -533,7 +537,8 @@
 		if(CADE_TYPE_MELEE)
 			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30)
 		if(CADE_TYPE_ACID)
-			soft_armor = soft_armor.modifyRating(bio = 0, acid = 20)
+			soft_armor = soft_armor.modifyRating(acid = 20)
+			resistance_flags |= UNACIDABLE
 
 	barricade_upgrade_type = choice
 
@@ -587,20 +592,25 @@
 
 	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 	span_notice("You begin repairing the damage to [src]."))
+	add_overlay(GLOB.welding_sparks)
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
 	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	if(obj_integrity <= max_integrity * 0.3 || obj_integrity == max_integrity)
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	if(!WT.remove_fuel(2, user))
 		to_chat(user, span_warning("Not enough fuel to finish the task."))
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	user.visible_message(span_notice("[user] repairs some damage on [src]."),
 	span_notice("You repair [src]."))
+	cut_overlay(GLOB.welding_sparks)
 	repair_damage(150)
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
@@ -768,7 +778,8 @@
 				if(CADE_TYPE_MELEE)
 					soft_armor = soft_armor.modifyRating(melee = -30, bullet = -30)
 				if(CADE_TYPE_ACID)
-					soft_armor = soft_armor.modifyRating(bio = 0, acid = -20)
+					soft_armor = soft_armor.modifyRating(acid = -20)
+					resistance_flags &= ~UNACIDABLE
 
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 			barricade_upgrade_type = null
@@ -894,16 +905,19 @@
 
 		user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 		span_notice("You begin repairing the damage to [src]."))
+		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		busy = TRUE
 
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
+			cut_overlay(GLOB.welding_sparks)
 			busy = FALSE
 			return
 
 		busy = FALSE
 		user.visible_message(span_notice("[user] repairs some damage on [src]."),
 		span_notice("You repair [src]."))
+		cut_overlay(GLOB.welding_sparks)
 		repair_damage(150)
 		update_icon()
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)

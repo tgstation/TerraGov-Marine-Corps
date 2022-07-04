@@ -211,6 +211,8 @@ GLOBAL_PROTECT(exp_specialmap)
 				continue
 			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
 		scaled_job.add_job_points(jobworth[index])
+	var/datum/hive_status/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	normal_hive.update_tier_limits()
 	return TRUE
 
 /datum/job/proc/free_job_positions(amount)

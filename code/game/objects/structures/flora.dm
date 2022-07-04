@@ -16,8 +16,8 @@
 				qdel(src)
 
 
-/obj/structure/flora/flamer_fire_act()
-	take_damage(25, BURN, "fire")
+/obj/structure/flora/flamer_fire_act(burnlevel)
+	take_damage(burnlevel, BURN, "fire")
 
 /obj/structure/flora/fire_act()
 	take_damage(25, BURN, "fire")
@@ -85,8 +85,8 @@
 
 	qdel(src)
 
-/obj/structure/flora/tree/flamer_fire_act()
-	take_damage(5, BURN, "fire")
+/obj/structure/flora/tree/flamer_fire_act(burnlevel)
+	take_damage(burnlevel/6, BURN, "fire")
 
 
 /obj/structure/flora/tree/update_overlays()
@@ -209,6 +209,18 @@
 /obj/structure/flora/grass/both/Initialize()
 	. = ..()
 	icon_state = "snowgrassall[rand(1, 3)]"
+
+//grayscale tall grass
+/obj/structure/flora/grass/tallgrass
+	name = "tall grass"
+	icon = 'icons/obj/flora/tallgrass.dmi'
+	icon_state = "tallgrass"
+	layer = TALL_GRASS_LAYER
+	opacity = TRUE
+
+/obj/structure/flora/grass/tallgrass/tallgrasscorner
+	name = "tall grass"
+	icon_state = "tallgrass_corner"
 
 //bushes
 /obj/structure/flora/bush

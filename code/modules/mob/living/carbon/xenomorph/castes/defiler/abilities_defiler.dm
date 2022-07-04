@@ -23,13 +23,13 @@
 
 	if(!A.can_sting())
 		if(!silent)
-			to_chat(owner, span_xenodanger("Our sting won't affect this target!"))
+			A.balloon_alert(owner, "Cannot effect")
 		return FALSE
 
 	if(!owner.Adjacent(A))
 		var/mob/living/carbon/xenomorph/X = owner
 		if(!silent)
-			to_chat(X, span_warning("We can't reach this target! We need to be adjacent!"))
+			A.balloon_alert(X, "Cannot reach")
 		return FALSE
 
 
@@ -61,7 +61,7 @@
 	for(var/datum/reagent/current_reagent AS in living_target.reagents.reagent_list) //Cycle through all chems
 		defile_reagent_amount += living_target.reagents.get_reagent_amount(current_reagent.type)
 		living_target.reagents.remove_reagent(current_reagent.type,defile_reagent_amount) //Purge current chem
-		if(is_type_in_typecache(current_reagent, GLOB.defile_purge_list)) //For each xeno toxin reagent, double the strength multiplier
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
 			if(istype(current_reagent, /datum/reagent/toxin/xeno_neurotoxin)) //Make sure neurotoxin isn't double counted
 				if(neuro_applied)
 					continue
@@ -107,7 +107,7 @@
 
 /datum/action/xeno_action/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
-	to_chat(owner, span_xenodanger("We feel our dorsal vents bristle with heated gas. We can use Emit Noxious Gas again."))
+	to_chat(owner, span_xenodanger("We feel our dorsal vents bristle with heated gas. We can emit Noxious Gas again."))
 	return ..()
 
 /datum/action/xeno_action/emit_neurogas/action_activate()
@@ -116,6 +116,7 @@
 	//give them fair warning
 	X.visible_message(span_danger("Tufts of smoke begin to billow from [X]!"), \
 	span_xenodanger("Our dorsal vents widen, preparing to emit toxic smoke. We must keep still!"))
+	X.balloon_alert(X, "Keep still...")
 
 	X.emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
 	succeed_activate()
@@ -200,7 +201,7 @@
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 
 	if(istype(A, /obj/effect/alien/egg/gas))
-		to_chat(X, span_warning("That egg has already been filled with toxic gas.") )
+		A.balloon_alert(X, "Egg already injected")
 		return fail_activate()
 
 	if(!istype(A, /obj/effect/alien/egg/hugger))
@@ -208,12 +209,14 @@
 
 	var/obj/effect/alien/egg/alien_egg = A
 	if(alien_egg.maturity_stage != alien_egg.stage_ready_to_burst)
-		to_chat(X, span_warning("That egg isn't strong enough to hold our gases."))
+		alien_egg.balloon_alert(X, "Egg not mature")
 		return fail_activate()
 
+	alien_egg.balloon_alert_to_viewers("Injecting...")
 	X.visible_message(span_danger("[X] starts injecting the egg with neurogas, killing the little one inside!"), \
 		span_xenodanger("We extend our stinger into the egg, filling it with gas, killing the little one inside!"))
 	if(!do_after(X, 2 SECONDS, TRUE, alien_egg, BUSY_ICON_HOSTILE))
+		alien_egg.balloon_alert_to_viewers("Canceled injection")
 		X.visible_message(span_danger("The stinger retracts from [X], leaving the egg and little one alive."), \
 			span_xenodanger("Our stinger retracts, leaving the egg and little one alive."))
 		return fail_activate()
@@ -269,7 +272,7 @@
 		X.selected_reagent = GLOB.defiler_toxin_type_list[i+1]
 
 	var/atom/A = X.selected_reagent
-	to_chat(X, span_notice("We will now use <b>[initial(A.name)]</b>."))
+	X.balloon_alert(X, "[initial(A.name)]")
 	update_button_icon()
 	return succeed_activate()
 
@@ -294,7 +297,7 @@
 		if(R.name == toxin_choice)
 			X.selected_reagent = R.type
 			break
-	to_chat(X, span_notice("We will now use <b>[toxin_choice]</b>."))
+	X.balloon_alert(X, "[toxin_choice]")
 	update_button_icon()
 	return succeed_activate()
 
@@ -328,7 +331,7 @@
 	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, .proc/reagent_slash_deactivate, X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
 	reagent_slash_reagent = X.selected_reagent
 
-	to_chat(X, span_xenodanger("Our spines fill with virulent toxins!")) //Let the user know
+	X.balloon_alert(X, "Reagent slash active") //Let the user know
 	X.playsound_local(X, 'sound/voice/alien_drool2.ogg', 25)
 
 	succeed_activate()
@@ -343,7 +346,7 @@
 	reagent_slash_duration_timer_id = null
 	reagent_slash_reagent = null
 
-	to_chat(X, span_xenodanger("We are no longer benefitting from [src].")) //Let the user know
+	X.balloon_alert(X, "Reagent slash over") //Let the user know
 	X.playsound_local(X, 'sound/voice/hiss5.ogg', 25)
 
 
@@ -392,18 +395,18 @@
 		return
 	if(!isitem(A) && !ishuman(A))
 		if(!silent)
-			to_chat(owner, span_warning("We cant use that on [A]!"))
+			A.balloon_alert(owner, "Cannot grab")
 		return FALSE
 	if(isliving(A))
 		var/mob/living/livingtarget = A
 		if(livingtarget.stat == DEAD)
 			if(!silent)
-				to_chat(owner, span_warning("We cant use that on [livingtarget], they're dead!"))
+				livingtarget.balloon_alert(owner, "Cannot grab, dead")
 			return FALSE
 	var/atom/movable/target = A
 	if(target.anchored)
 		if(!silent)
-			to_chat(owner, span_warning("[target] is anchored and cannot be moved!"))
+			target.balloon_alert(owner, "Cannot grab, anchored")
 		return FALSE
 
 	var/turf/current = get_turf(owner)
@@ -416,7 +419,7 @@
 	while((current != target_turf))
 		if(current.density)
 			if(!silent)
-				to_chat(owner, span_warning("We can't reach [target]!"))
+				target.balloon_alert(owner, "Cannot reach")
 			return FALSE
 		current = get_step_towards(current, target_turf)
 
@@ -435,7 +438,7 @@
 	QDEL_NULL(tentacle)
 	qdel(source)
 	if(!can_use_ability(target, TRUE, XACT_IGNORE_COOLDOWN|XACT_IGNORE_PLASMA))
-		to_chat(owner, span_warning("We failed to grab anything!"))
+		owner.balloon_alert(owner, "Grab failed")
 		return
 	tentacle = owner.beam(target, "curse0",'icons/effects/beam.dmi')
 	playsound(target, 'sound/effects/blobattack.ogg', 40, 1)

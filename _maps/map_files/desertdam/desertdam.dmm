@@ -3089,7 +3089,7 @@
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aop" = (
 /obj/machinery/door/poddoor/shutters{
-	dir = 2
+	dir = 8
 	},
 /turf/closed/wall{
 	name = "reinforced metal wall"
@@ -4843,12 +4843,6 @@
 "auT" = (
 /turf/open/floor/tile/white,
 /area/desert_dam/interior/lab_northeast/east_lab_lobby)
-"auU" = (
-/obj/machinery/door/poddoor/shutters/opened{
-	dir = 2
-	},
-/turf/open/shuttle/dropship/floor,
-/area/shuttle/tri_trans2/alpha)
 "auV" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/blue/whiteblue{
@@ -6848,9 +6842,7 @@
 /area/desert_dam/exterior/valley/valley_medical)
 "aDW" = (
 /obj/structure/cable,
-/obj/machinery/door/poddoor/shutters{
-	dir = 2
-	},
+/obj/machinery/door/poddoor/shutters,
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/medical/medsecure)
 "aDX" = (
@@ -7851,6 +7843,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_cargo)
 "aKr" = (
+/obj/machinery/door/poddoor/shutters/opened,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/tri_trans2/alpha)
 "aKv" = (
@@ -8807,14 +8800,6 @@
 	},
 /turf/open/ground/coast/corner,
 /area/desert_dam/exterior/river/riverside_east)
-"aON" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 2
-	},
-/turf/closed/wall{
-	name = "reinforced metal wall"
-	},
-/area/desert_dam/building/warehouse/loading)
 "aOO" = (
 /obj/machinery/recharge_station,
 /turf/open/floor/tile/dark/yellow2{
@@ -30015,7 +30000,7 @@
 /area/desert_dam/building/medical/garage)
 "cIB" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/garage)
 "cIC" = (
@@ -51918,9 +51903,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/desert_dam/exterior/valley/valley_mining)
 "mzr" = (
-/obj/machinery/door/poddoor/shutters/opened{
-	dir = 2
-	},
+/obj/machinery/door/poddoor/shutters/opened,
 /obj/structure/cable,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/tri_trans2/alpha)
@@ -64355,7 +64338,7 @@
 /area/desert_dam/building/security/marshals_office)
 "wSH" = (
 /obj/machinery/door/poddoor/shutters{
-	dir = 2
+	dir = 8
 	},
 /turf/closed/wall/r_wall,
 /area/desert_dam/building/medical/medsecure)
@@ -79470,7 +79453,7 @@ dTs
 bhu
 aop
 aqj
-aop
+aqj
 aqj
 aop
 aqj
@@ -83853,7 +83836,7 @@ dTs
 cZB
 chl
 aOX
-auU
+aKr
 aKr
 aOX
 chl
@@ -84085,11 +84068,11 @@ dTs
 dTs
 dTs
 cZB
-aON
 aPH
-aON
 aPH
-aON
+aPH
+aPH
+aPH
 aPH
 cZB
 acu
@@ -93801,7 +93784,7 @@ dTs
 dTs
 dTs
 rwf
-wSH
+aEo
 aEo
 wSH
 aEo

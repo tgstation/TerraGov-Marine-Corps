@@ -105,7 +105,7 @@
 			var/damage = rand(1, max_dmg)
 
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
-			var/armor_block = run_armor_check(affecting, "melee")
+			var/armor_block = get_soft_armor("melee", affecting)
 
 			playsound(loc, attack.attack_sound, 25, TRUE)
 
@@ -160,7 +160,7 @@
 			var/randn = rand(1, 100) + skills.getRating("cqc") * 5 - H.skills.getRating("cqc") * 5
 
 			if (randn <= 25)
-				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
+				apply_effect(3, WEAKEN, get_soft_armor("melee", affecting))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[H] has pushed [src]!"), null, null, 5)
 				log_combat(user, src, "pushed")
@@ -255,13 +255,13 @@
 		if(org.limb_status & LIMB_DESTROYED)
 			status = "MISSING!"
 
-		if(brute_treated == FALSE && brutedamage > 0)
+		if(brute_treated && brutedamage > 0)
 			treat = "(Bandaged"
-			if(burn_treated == FALSE && burndamage > 0)
+			if(burn_treated && burndamage > 0)
 				treat += " and Salved)"
 			else
 				treat += ")"
-		else if(burn_treated == FALSE && burndamage > 0)
+		else if(burn_treated && burndamage > 0)
 			treat += "(Salved)"
 		var/msg = "My [org.display_name] is [status]. [treat]"
 		final_msg += status=="OK" ? span_notice(msg) : span_warning (msg)

@@ -144,9 +144,11 @@ REAGENT SCANNER
 
 		"hugged" = (locate(/obj/item/alien_embryo) in patient)
 	)
+	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
 	for(var/datum/reagent/reagent AS in patient.reagents.reagent_list)
 		if(!reagent.scannable)
+			data["has_unknown_chemicals"] = TRUE
 			continue
 		chemicals_lists["[reagent.name]"] = list(
 			"name" = reagent.name,
@@ -154,14 +156,14 @@ REAGENT SCANNER
 			"od" = reagent.overdosed,
 			"dangerous" = reagent.overdosed || istype(reagent, /datum/reagent/toxin)
 		)
-	data["has_chemicals"] = length(chemicals_lists)
+	data["has_chemicals"] = length(patient.reagents.reagent_list)
 	data["chemicals_lists"] = chemicals_lists
 
 	var/list/limb_data_lists = list()
 	if(ishuman(patient))
 		var/mob/living/carbon/human/human_patient = patient
 		var/infection_message
-		var/infected
+		var/infected = 0
 		var/internal_bleeding
 
 		var/unknown_implants = 0
@@ -172,16 +174,12 @@ REAGENT SCANNER
 						continue
 					internal_bleeding = TRUE
 					break
-			if(!infected)
-				if(limb.germ_level >= INFECTION_LEVEL_THREE)
-					infection_message = "Subject's [limb.display_name] is in the last stage of infection. < 30u of antibiotics recommended."
-					infected = 2
-				if(limb.germ_level >= INFECTION_LEVEL_ONE && limb.germ_level < INFECTION_LEVEL_THREE)
-					infection_message = "Subject's [limb.display_name] has an infection. Antibiotics recommended."
-					infected = 1
-				if(limb.has_infected_wound())
-					infection_message = "Infected wound detected in subject's [limb.display_name]. Disinfection recommended."
-					infected = 1
+			if(infected < 2 && limb.limb_status & LIMB_NECROTIZED)
+				infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
+				infected = 2
+			if(infected < 1 && limb.germ_level > INFECTION_LEVEL_ONE)
+				infection_message = "Infection detected in subject's [limb.display_name]. Antibiotics recommended."
+				infected = 1
 
 			if(limb.hidden)
 				unknown_implants++
@@ -199,8 +197,8 @@ REAGENT SCANNER
 				"name" = limb.display_name,
 				"brute" = round(limb.brute_dam),
 				"burn" = round(limb.burn_dam),
-				"bandaged" = !limb.is_bandaged(),
-				"salved" = !limb.is_salved(),
+				"bandaged" = limb.is_bandaged(),
+				"salved" = limb.is_salved(),
 				"missing" = CHECK_BITFIELD(limb.limb_status, LIMB_DESTROYED),
 				"limb_status" = null,
 				"bleeding" = CHECK_BITFIELD(limb.limb_status, LIMB_BLEEDING),
@@ -224,13 +222,17 @@ REAGENT SCANNER
 		data["body_temperature"] = "[round(human_patient.bodytemperature*1.8-459.67, 0.1)] degrees F ([round(human_patient.bodytemperature-T0C, 0.1)] degrees C)"
 		data["pulse"] = "[human_patient.get_pulse(GETPULSE_TOOL)] bpm"
 		data["implants"] = unknown_implants
-
-	if (!isrobot(patient) && (patient.getBrainLoss() >= 100 || !patient.has_brain()))
-		data["brain_damage"] = "Subject is brain dead"
-	else if (patient.getBrainLoss() >= 60)
-		data["brain_damage"] = "Severe brain damage detected. Subject likely to have intellectual disabilities."
-	else if (patient.getBrainLoss() >= 10)
-		data["brain_damage"] = "Significant brain damage</b> detected. Subject may have had a concussion."
+		var/damaged_organs = list()
+		for(var/datum/internal_organ/organ AS in human_patient.internal_organs)
+			if(organ.organ_status == ORGAN_HEALTHY)
+				continue
+			var/current_organ = list(
+				"name" = organ.name,
+				"status" = organ.organ_status == ORGAN_BRUISED ? "Bruised" : "Broken",
+				"damage" = organ.damage
+			)
+			damaged_organs += list(current_organ)
+		data["damaged_organs"] = damaged_organs
 
 	if(patient.has_brain() && patient.stat != DEAD && ishuman(patient))
 		if(!patient.key)

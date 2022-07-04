@@ -1,6 +1,6 @@
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, ProgressBar, NoticeBox, Section } from '../components';
-import { KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_SPACE, KEY_UP, KEY_W, KEY_D, KEY_S, KEY_A } from '../../common/keycodes';
+import { KEY_DOWN, KEY_ENTER, KEY_LEFT, KEY_RIGHT, KEY_SPACE, KEY_UP, KEY_W, KEY_D, KEY_S, KEY_A, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6 } from '../../common/keycodes';
 import { Window } from '../layouts';
 
 type CasData = {
@@ -42,6 +42,24 @@ export const MarineCasship = (props, context) => {
           if (keyCode === KEY_SPACE) {
             act('launch');
           }
+          if (keyCode === KEY_1) {
+            act('change_weapon', { selection: 1 });
+          }
+          if (keyCode === KEY_2) {
+            act('change_weapon', { selection: 2 });
+          }
+          if (keyCode === KEY_3) {
+            act('change_weapon', { selection: 3 });
+          }
+          if (keyCode === KEY_4) {
+            act('change_weapon', { selection: 4 });
+          }
+          if (keyCode === KEY_5) {
+            act('change_weapon', { selection: 5 });
+          }
+          if (keyCode === KEY_6) {
+            act('deselect');
+          }
           if (data.plane_state !== 0) {
             let newdir = 0;
             switch (keyCode) {
@@ -49,12 +67,12 @@ export const MarineCasship = (props, context) => {
               case KEY_W:
                 newdir = 1;
                 break;
-              case KEY_RIGHT:
-              case KEY_D:
-                newdir = 2;
-                break;
               case KEY_DOWN:
               case KEY_S:
+                newdir = 2;
+                break;
+              case KEY_RIGHT:
+              case KEY_D:
                 newdir = 4;
                 break;
               case KEY_LEFT:

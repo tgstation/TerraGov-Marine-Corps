@@ -20,31 +20,28 @@ GLOBAL_LIST_EMPTY(gear_datums)
 	cost = 1
 	slot = SLOT_HEAD
 
+/datum/gear/bandanna_grey
+	display_name = "TGMC bandanna (grey)"
+	path = /obj/item/clothing/head/bandanna/grey
+	cost = 3
+	slot = SLOT_HEAD
+
 /datum/gear/bandanna_red
 	display_name = "TGMC bandanna (red)"
 	path = /obj/item/clothing/head/bandanna/red
 	cost = 3
 	slot = SLOT_HEAD
 
-datum/gear/eye_patch
+/datum/gear/bandanna_brown
+	display_name = "TGMC bandanna (brown)"
+	path = /obj/item/clothing/head/bandanna/brown
+	cost = 3
+	slot = SLOT_HEAD
+/datum/gear/eye_patch
 	display_name = "Eye Patch"
 	path = /obj/item/clothing/glasses/eyepatch
 	cost = 2
 	slot = SLOT_GLASSES
-
-/datum/gear/bandanna_green
-	display_name = "TGMC bandanna (green)"
-	path = /obj/item/clothing/head/tgmcbandanna
-	cost = 3
-	slot = SLOT_HEAD
-
-
-/datum/gear/bandanna_tan
-	display_name = "TGMC bandanna (tan)"
-	path = /obj/item/clothing/head/tgmcbandanna/tan
-	cost = 3
-	slot = SLOT_HEAD
-
 
 /datum/gear/beret
 	display_name = "TGMC beret (blue)"

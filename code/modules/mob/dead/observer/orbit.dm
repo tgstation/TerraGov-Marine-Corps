@@ -37,8 +37,8 @@
 			. = TRUE
 		if("toggle_observe")
 			auto_observe = !auto_observe
-			if(auto_observe && owner.orbit_target)
-				owner.do_observe(owner.orbit_target)
+			if(auto_observe && !QDELETED(owner.orbiting.parent))
+				owner.do_observe(owner.orbiting.parent)
 			else
 				owner.reset_perspective(null)
 

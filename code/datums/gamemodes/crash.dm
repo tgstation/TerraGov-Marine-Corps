@@ -98,14 +98,14 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
-	
+
 	if(!(flags_round_type & MODE_INFESTATION))
 		return
 
 	for(var/i in GLOB.alive_xeno_list)
 		if(isxenolarva(i)) // Larva
 			var/mob/living/carbon/xenomorph/larva/X = i
-			X.amount_grown = X.max_grown
+			X.evolution_stored = X.xeno_caste.evolution_threshold //Immediate roundstart evo for larva.
 		else // Handles Shrike etc
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
@@ -198,3 +198,4 @@
 	if(larva_surplus < 1)
 		return //Things are balanced, no burrowed needed
 	xeno_job.add_job_positions(1)
+	xeno_hive.update_tier_limits()

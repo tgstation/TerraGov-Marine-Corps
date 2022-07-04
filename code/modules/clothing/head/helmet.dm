@@ -214,8 +214,7 @@
 						/obj/item/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
 						/obj/item/toy/deck = "helmet_card_card",
 						/obj/item/toy/handcard = "helmet_card_card",
-						/obj/item/reagent_containers/food/drinks/flask = "helmet_flask",
-						/obj/item/reagent_containers/food/drinks/flask/marine = "helmet_flask",
+						/obj/item/reagent_containers/food/drinks/flask/marine = "helmet_canteen",
 						/obj/item/reagent_containers/food/snacks/enrg_bar = "helmet_snack_eat",
 						/obj/item/reagent_containers/food/snacks/packaged_burrito = "helmet_snack_burrito",
 						/obj/item/clothing/glasses/mgoggles = "goggles",
@@ -226,10 +225,9 @@
 
 /obj/item/storage/internal/marinehelmet
 	storage_slots = 2
-	max_w_class = 1
+	max_w_class = WEIGHT_CLASS_TINY
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask,
 		/obj/item/reagent_containers/food/snacks,
 	)
 	cant_hold = list(
@@ -287,14 +285,14 @@
 		var/mob/M = loc
 		M.update_inv_head()
 
-/obj/item/clothing/head/helmet/marine/apply_custom(image/standing)
+/obj/item/clothing/head/helmet/marine/apply_custom(mutable_appearance/standing)
 	. = ..()
-	var/image/I
+	var/mutable_appearance/M
 	for(var/i in helmet_overlays)
-		I = helmet_overlays[i]
-		if(I)
-			I = image('icons/mob/modular/modular_helmet_storage.dmi',src,I.icon_state)
-			standing.overlays += I
+		M = helmet_overlays[i]
+		if(M)
+			M = mutable_appearance('icons/mob/modular/modular_helmet_storage.dmi',M.icon_state)
+			standing.overlays += M
 
 
 /obj/item/clothing/head/helmet/marine/proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.

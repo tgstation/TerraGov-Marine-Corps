@@ -89,7 +89,7 @@
 		damage_mod += dam_bonus
 
 	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
-		armor_block = run_armor_check(affecting, "melee")
+		armor_block = get_soft_armor("melee", affecting)
 
 	for(var/i in damage_mod)
 		damage += i

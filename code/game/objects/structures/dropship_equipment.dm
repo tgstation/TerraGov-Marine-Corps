@@ -281,9 +281,6 @@
 	to_chat(user, span_notice("You cannot touch [src] with the [clamp] due to the acid on [src]."))
 	return TRUE
 
-/obj/structure/dropship_equipment/update_icon()
-	return
-
 /obj/structure/dropship_equipment/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
 	on_launch()
@@ -306,7 +303,62 @@
 		linked_console.selected_equipment = src
 		to_chat(user, span_notice("You select [src]."))
 
+//////////////////////////////////// flare launcher //////////////////////////////////////
+/obj/structure/dropship_equipment/flare_launcher
+	equip_category = DROPSHIP_WEAPON
+	name = "flare launcher system"
+	desc = "A system that deploys flares stronger than the inputted flares. Fits on the weapon attach points of dropships. You need a powerloader to lift it."
+	icon_state = "flare_system"
+	dropship_equipment_flags = IS_INTERACTABLE
+	point_cost = 150
+	///cooldown for deployment
+	COOLDOWN_DECLARE(deploy_cooldown)
+	///amount of loaded flares
+	var/stored_amount = 4
+	///max capacity of flares in system
+	var/max_amount = 4
 
+/obj/structure/dropship_equipment/flare_launcher/equipment_interact(mob/user)
+	if(!COOLDOWN_CHECK(src, deploy_cooldown)) //prevents spamming deployment
+		user.balloon_alert(user, "[src] is busy.")
+		return
+	if(stored_amount <= 0) //check for inserted flares
+		user.balloon_alert(user, "No flares remaining.")
+		return
+	deploy_flare()
+	user.balloon_alert(user, "You deploy [src], remaining flares [stored_amount].")
+	COOLDOWN_START(src, deploy_cooldown, 5 SECONDS)
+
+/obj/structure/dropship_equipment/flare_launcher/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/explosive/grenade/flare) && stored_amount < max_amount)
+		stored_amount++
+		user.balloon_alert(user, "You insert a flare, remaining flares [stored_amount].")
+		qdel(I)
+
+/obj/structure/dropship_equipment/flare_launcher/update_equipment()
+	. = ..()
+	if(ship_base)
+		setDir(ship_base.dir)
+	else
+		setDir(initial(dir))
+	update_icon()
+
+/obj/structure/dropship_equipment/flare_launcher/update_icon_state()
+	. = ..()
+	if(ship_base)
+		icon_state = "flare_system_installed"
+	else
+		icon_state = "flare_system"
+
+///gets target and deploy the flare launcher
+/obj/structure/dropship_equipment/flare_launcher/proc/deploy_flare()
+	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 40, 1)
+	var/turf/target = get_ranged_target_turf(src, dir, 10)
+	var/obj/item/explosive/grenade/flare/strongerflare/flare_to_launch = new(loc)
+	flare_to_launch.turn_on()
+	flare_to_launch.throw_at(target, 10, 2)
+	stored_amount--
 
 //////////////////////////////////// turret holders //////////////////////////////////////
 
@@ -333,6 +385,7 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT)
 	deployed_turret = null
+	dropship_equipment_flags &= ~IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/examine(mob/user)
 	. = ..()
@@ -408,6 +461,7 @@
 	deployed_turret.update_icon()
 	deployed_turret.loc = get_step(src, dir)
 	icon_state = "sentry_system_deployed"
+	dropship_equipment_flags |= IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/proc/undeploy_sentry()
 	if(!deployed_turret)
@@ -418,6 +472,7 @@
 	deployed_turret.set_on(FALSE)
 	deployed_turret.update_icon()
 	icon_state = "sentry_system_installed"
+	dropship_equipment_flags &= ~IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/sentry_holder/rebel
 	sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship/rebel
@@ -429,13 +484,14 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "mg_system"
 	point_cost = 300
+	///machine type for the internal gun and for checking if the gun is deployed
 	var/obj/machinery/deployable/mounted/deployed_mg
 
 /obj/structure/dropship_equipment/mg_holder/Initialize()
 	. = ..()
 	if(deployed_mg)
 		return
-	var/obj/item/weapon/gun/tl102/hsg_nest/new_gun = new(src) //Creates the internal gun of the deployed_mg first.
+	var/obj/item/weapon/gun/tl102/hsg_nest/new_gun = new(src)
 	deployed_mg = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_mg. Therefore new_gun.loc = deployed_mg.
 
 /obj/structure/dropship_equipment/mg_holder/examine(mob/user)
@@ -448,11 +504,184 @@
 		return
 	if(ship_base)
 		deployed_mg.loc = loc
-		icon_state = "mg_system_deployed"
 	else
 		deployed_mg.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/mg_holder/update_icon_state()
+	if(ship_base)
+		icon_state = "mg_system_deployed"
+	else
 		icon_state = "mg_system"
 
+/obj/structure/dropship_equipment/mg_holder/Destroy()
+	if(deployed_mg)
+		QDEL_NULL(deployed_mg)
+	return ..()
+
+/obj/structure/dropship_equipment/minigun_holder
+	name = "minigun deployment system"
+	desc = "A box that deploys a modified MG-2005 crewserved minigun. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	equip_category = DROPSHIP_CREW_WEAPON
+	icon_state = "minigun_system"
+	point_cost = 0 //this removes it from the fabricator
+	///machine type for the internal gun and for checking if the gun is deployed
+	var/obj/machinery/deployable/mounted/deployed_minigun
+
+/obj/structure/dropship_equipment/minigun_holder/Initialize()
+	. = ..()
+	if(deployed_minigun)
+		return
+	var/obj/item/weapon/gun/minigun_nest/new_gun = new(src)
+	deployed_minigun = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_minigun. Therefore new_gun.loc = deployed_minigun.
+
+/obj/structure/dropship_equipment/minigun_holder/examine(mob/user)
+	. = ..()
+	if(!deployed_minigun)
+		. += "Its minigun is missing."
+
+/obj/structure/dropship_equipment/minigun_holder/update_equipment()
+	if(!deployed_minigun)
+		return
+	if(ship_base)
+		deployed_minigun.loc = loc
+	else
+		deployed_minigun.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/minigun_holder/update_icon_state()
+	if(ship_base)
+		icon_state = "mg_system_deployed"
+	else
+		icon_state = "minigun_system"
+
+/obj/structure/dropship_equipment/minigun_holder/Destroy()
+	if(deployed_minigun)
+		QDEL_NULL(deployed_minigun)
+	return ..()
+
+/obj/structure/dropship_equipment/dualcannon_holder
+	name = "dualcannon deployment system"
+	desc = "A box that deploys a modified ATR-22 crewserved dualcannon. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	equip_category = DROPSHIP_CREW_WEAPON
+	icon_state = "ac_system"
+	point_cost = 0 //this removes it from the fabricator
+	///machine type for the internal gun and for checking if the gun is deployed
+	var/obj/machinery/deployable/mounted/deployed_dualcannon
+
+/obj/structure/dropship_equipment/dualcannon_holder/Initialize()
+	. = ..()
+	if(deployed_dualcannon)
+		return
+	var/obj/item/weapon/gun/dual_cannon/new_gun = new(src)
+	deployed_dualcannon = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_dualcannon. Therefore new_gun.loc = deployed_dualcannon.
+
+/obj/structure/dropship_equipment/dualcannon_holder/examine(mob/user)
+	. = ..()
+	if(!deployed_dualcannon)
+		. += "Its dualcannon is missing."
+
+/obj/structure/dropship_equipment/dualcannon_holder/update_equipment()
+	if(!deployed_dualcannon)
+		return
+	if(ship_base)
+		deployed_dualcannon.loc = loc
+	else
+		deployed_dualcannon.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/dualcannon_holder/update_icon_state()
+	if(ship_base)
+		icon_state = "mg_system_deployed"
+	else
+		icon_state = "ac_system"
+
+/obj/structure/dropship_equipment/dualcannon_holder/Destroy()
+	if(deployed_dualcannon)
+		QDEL_NULL(deployed_dualcannon)
+	return ..()
+
+/obj/structure/dropship_equipment/heavylaser_holder
+	name = "heavy laser deployment system"
+	desc = "A box that deploys a modified TE-9001 crewserved heavylaser. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	equip_category = DROPSHIP_CREW_WEAPON
+	icon_state = "hl_system"
+	point_cost = 0 //this removes it from the fabricator
+	///machine type for the internal gun and for checking if the gun is deployed
+	var/obj/machinery/deployable/mounted/deployed_heavylaser
+
+/obj/structure/dropship_equipment/heavylaser_holder/Initialize()
+	. = ..()
+	if(deployed_heavylaser)
+		return
+	var/obj/item/weapon/gun/heavy_laser/new_gun = new(src)
+	deployed_heavylaser = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavylaser. Therefore new_gun.loc = deployed_heavylaser.
+
+/obj/structure/dropship_equipment/heavylaser_holder/examine(mob/user)
+	. = ..()
+	if(!deployed_heavylaser)
+		. += "Its heavy laser is missing."
+
+/obj/structure/dropship_equipment/heavylaser_holder/update_equipment()
+	if(!deployed_heavylaser)
+		return
+	if(ship_base)
+		deployed_heavylaser.loc = loc
+	else
+		deployed_heavylaser.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/heavylaser_holder/update_icon_state()
+	if(ship_base)
+		icon_state = "mg_system_deployed"
+	else
+		icon_state = "hl_system"
+
+/obj/structure/dropship_equipment/heavylaser_holder/Destroy()
+	if(deployed_heavylaser)
+		QDEL_NULL(deployed_heavylaser)
+	return ..()
+
+/obj/structure/dropship_equipment/heavy_rr_holder
+	name = "heavy recoilless rifle deployment system"
+	desc = "A box that deploys a modified RR-15 crewserved recoilless rifle. Fits on the crewserved weapon attach points of dropships. You need a powerloader to lift it."
+	equip_category = DROPSHIP_CREW_WEAPON
+	icon_state = "rr_system"
+	point_cost = 0 //this removes it from the fabricator
+	///machine type for the internal gun and for checking if the gun is deployed
+	var/obj/machinery/deployable/mounted/deployed_heavyrr
+
+/obj/structure/dropship_equipment/heavy_rr_holder/Initialize()
+	. = ..()
+	if(deployed_heavyrr)
+		return
+	var/obj/item/weapon/gun/launcher/rocket/heavy_rr/new_gun = new(src)
+	deployed_heavyrr = new_gun.loc //new_gun.loc, since it deploys on new(), is located within the deployed_heavyrr. Therefore new_gun.loc = deployed_heavyrr.
+
+/obj/structure/dropship_equipment/heavy_rr_holder/examine(mob/user)
+	. = ..()
+	if(!deployed_heavyrr)
+		. += "Its recoilless rifle is missing."
+
+/obj/structure/dropship_equipment/heavy_rr_holder/update_equipment()
+	if(!deployed_heavyrr)
+		return
+	if(ship_base)
+		deployed_heavyrr.loc = loc
+	else
+		deployed_heavyrr.loc = src
+	update_icon()
+
+/obj/structure/dropship_equipment/heavy_rr_holder/update_icon_state()
+	if(ship_base)
+		icon_state = "mg_system_deployed"
+	else
+		icon_state = "rr_system"
+
+/obj/structure/dropship_equipment/heavy_rr_holder/Destroy()
+	if(deployed_heavyrr)
+		QDEL_NULL(deployed_heavyrr)
+	return ..()
 
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
 
@@ -493,7 +722,7 @@
 		to_chat(user, span_warning("[src] is busy."))
 		return //prevents spamming deployment/undeployment
 	if(luminosity != brightness)
-		set_light(brightness)
+		set_light(brightness, brightness)
 		icon_state = "spotlights_on"
 		to_chat(user, span_notice("You turn on [src]."))
 	else
@@ -518,7 +747,7 @@
 	set_light(0)
 
 /obj/structure/dropship_equipment/electronics/spotlights/on_arrival()
-	set_light(brightness)
+	set_light(brightness, brightness)
 
 /////////////////////////////////// COMPUTERS //////////////////////////////////////
 

@@ -32,29 +32,6 @@ Contains most of the procs that are called when a mob is attacked by something
 	return ..()
 
 
-/mob/living/carbon/human/getarmor(def_zone, type)
-	var/armorval = 0
-	var/total = 0
-
-	if(def_zone)
-		if(isorgan(def_zone))
-			return getarmor_organ(def_zone, type)
-		var/datum/limb/affecting = get_limb(def_zone)
-		return getarmor_organ(affecting, type)
-		//If a specific bodypart is targetted, check how that bodypart is protected and return the value.
-
-	//If you don't specify a bodypart, it checks ALL your bodyparts for protection, and averages out the values
-	else
-		for(var/X in limbs)
-			var/datum/limb/E = X
-			var/weight = GLOB.organ_rel_size[E.name]
-			armorval += getarmor_organ(E, type) * weight
-			total += weight
-			#ifdef DEBUG_HUMAN_EXPLOSIONS
-			to_chat(src, "DEBUG getarmor: total: [total], armorval: [armorval], weight: [weight], name: [E.name]")
-			#endif
-	return round(armorval / max(total, 1), 1)
-
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(datum/limb/def_zone)
 	if (!def_zone)
@@ -96,11 +73,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 /mob/living/carbon/human/dummy/remove_limb_armor(obj/item/armor_item)
 	return
-
-
-///This proc returns the armour value for a particular external organ.
-/mob/living/carbon/human/proc/getarmor_organ(datum/limb/affected_limb, type)
-	return affected_limb.soft_armor.getRating(type)
 
 
 /mob/living/carbon/human/proc/check_head_coverage()
@@ -176,7 +148,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			log_combat(user, src, "attacked", I, "(FAILED: shield blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
 			return TRUE
 
-	var/armor = run_armor_check(affecting, "melee")
+	var/armor = get_soft_armor("melee", affecting)
 	var/attack_verb = LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"
 	var/armor_verb
 	switch(armor)
@@ -199,7 +171,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
-	if((weapon_sharp || weapon_edge) && prob(getarmor(target_zone, "melee")))
+	if((weapon_sharp || weapon_edge) && prob(get_soft_armor("melee", target_zone)))
 		weapon_sharp = FALSE
 		weapon_edge = FALSE
 
@@ -330,7 +302,7 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	thrown_item.set_throwing(FALSE) // Hit the limb.
 
-	var/armor = run_armor_check(affecting, "melee") //I guess "melee" is the best fit here
+	var/armor = get_soft_armor("melee", affecting) //I guess "melee" is the best fit here
 
 	if(armor >= 100)
 		visible_message(span_notice("\The [thrown_item] bounces on [src]'s armor!"), null, null, 5)
@@ -487,9 +459,12 @@ Contains most of the procs that are called when a mob is attacked by something
 	user.visible_message(span_notice("[user] starts to fix some of the dents on [src]'s [affecting.display_name]."),\
 		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.display_name]."))
 
+	add_overlay(GLOB.welding_sparks)
 	while(do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(volume = 50, amount = 2))
+		if(!do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD))
+			user.cut_overlay(GLOB.welding_sparks)
 		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
-			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
+			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))	
 		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))
 			UpdateDamageIcon()
 		if(!I.tool_use_check(user, 2))
@@ -506,4 +481,5 @@ Contains most of the procs that are called when a mob is attacked by something
 			if(previous_limb == affecting)
 				balloon_alert(user, "Dents fully repaired.")
 				break
+	cut_overlay(GLOB.welding_sparks)
 	return TRUE

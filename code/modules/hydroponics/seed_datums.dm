@@ -191,7 +191,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	if(additional_chems)
 		var/list/possible_chems = list(
 			/datum/reagent/medicine/bicaridine,
-			/datum/reagent/medicine/hyperzine,
 			/datum/reagent/medicine/cryoxadone,
 			/datum/reagent/blood,
 			/datum/reagent/water,
@@ -212,7 +211,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 			/datum/reagent/medicine/synaptizine,
 			/datum/reagent/impedrezene,
 			/datum/reagent/medicine/hyronalin,
-			/datum/reagent/medicine/peridaxon,
 			/datum/reagent/toxin,
 			/datum/reagent/medicine/rezadone,
 			/datum/reagent/medicine/ethylredoxrazine,
@@ -934,7 +932,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	mutants = null
 	packet_icon = "seed-ambrosiadeus"
 	plant_icon = "ambrosiadeus"
-	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/medicine/research/somolent = list(5,10), /datum/reagent/medicine/synaptizine = list(1,8,1), /datum/reagent/medicine/hyperzine = list(1,10,1), /datum/reagent/space_drugs = list(1,10))
+	chems = list(/datum/reagent/consumable/nutriment = list(1), /datum/reagent/medicine/research/somolent = list(5,10), /datum/reagent/medicine/synaptizine = list(1,8,1), /datum/reagent/medicine/hyronalin = list(1,10,1), /datum/reagent/space_drugs = list(1,10))
 
 //Mushrooms/varieties.
 /datum/seed/mushroom

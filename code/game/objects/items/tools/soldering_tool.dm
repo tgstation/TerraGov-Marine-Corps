@@ -1,11 +1,11 @@
-/obj/item/tool/solderingtool
+/obj/item/tool/surgery/solderingtool
 	name = "soldering tool"
 	desc = "A hand tool to fix combat robot's trauma. You do not need welding goggles for this and you need medical skills for this."
 	icon = 'icons/obj/items/surgery_tools.dmi'
-	icon_state = "alien_hemostat"
+	icon_state = "solderingtool"
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/tool/solderingtool/attack(mob/living/carbon/human/H, mob/user)
+/obj/item/tool/surgery/solderingtool/attack(mob/living/carbon/human/H, mob/user)
 	if(!istype(H) || user.a_intent != INTENT_HELP)
 		return ..()
 

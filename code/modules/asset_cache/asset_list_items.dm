@@ -136,4 +136,10 @@
 
 /datum/asset/spritesheet/mechaarmor/register()
 	InsertAll("", 'icons/UI_Icons/mecha/armor.dmi')
+
+/datum/asset/spritesheet/hivestatus
+	name = "hivestatus"
+
+/datum/asset/spritesheet/hivestatus/register()
+	InsertAll("", 'icons/UI_Icons/hive_status_icons.dmi')
 	..()

@@ -1,9 +1,9 @@
-#define MAX_LOADABLE_REAGENT_AMOUNT 60
+#define MAX_LOADABLE_REAGENT_AMOUNT 30
 #define NO_REAGENT_COLOR "#FFFFFF"
 
 /datum/component/harvester
 	///reagent selected for actions
-	var/selected_reagent
+	var/datum/reagent/selected_reagent
 	///Loaded reagent
 	var/datum/reagent/loaded_reagent
 	///List of loadable reagents
@@ -21,10 +21,10 @@
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	reagent_select_action = new
-
 	var/obj/item/item_parent = parent
-	item_parent.actions += reagent_select_action
+
+	reagent_select_action = new
+	LAZYADD(item_parent.actions, reagent_select_action)
 
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, .proc/examine)
 	RegisterSignal(parent, COMSIG_ITEM_UNIQUE_ACTION, .proc/activate_blade)
@@ -34,7 +34,7 @@
 
 /datum/component/harvester/Destroy(force, silent)
 	var/obj/item/item_parent = parent
-	item_parent.actions -= reagent_select_action
+	LAZYREMOVE(item_parent.actions, reagent_select_action)
 	QDEL_NULL(reagent_select_action)
 	return ..()
 
@@ -69,32 +69,31 @@
 		return
 
 	if(!isreagentcontainer(cont) || istype(cont, /obj/item/reagent_containers/pill))
-		to_chat(user, span_rose("[cont] isn't compatible with [source]."))
+		user.balloon_alert(user, "incompatible")
 		return
 
 	var/obj/item/reagent_containers/container = cont
 
 	if(!container.reagents.total_volume)
-		to_chat(user, span_rose("Empty container."))
+		user.balloon_alert(user, "empty")
 		return
 
 	if(length(container.reagents.reagent_list) > 1)
-		to_chat(user, span_rose("The solution needs to contain only a single type of reagent."))
+		user.balloon_alert(user, "homogeneous mixture required")
 		return
 
 	var/datum/reagent/reagent_to_load = container.reagents.reagent_list[1].type
 
 	if(!loadable_reagents[reagent_to_load])
-		to_chat(user, span_rose("Incompatible reagent. Check the reagents list for which you can use."))
+		user.balloon_alert(user, "incompatible reagent, check description")
 		return
 
 	if(loaded_reagents[reagent_to_load] > MAX_LOADABLE_REAGENT_AMOUNT)
-		to_chat(user, span_rose("[reagent_to_load] storage is full."))
+		user.balloon_alert(user, "full")
 		return
 
-	to_chat(user, span_notice("You begin filling up [source] with [reagent_to_load]."))
+	user.balloon_alert(user, "filling up...")
 	if(!do_after(user, 1 SECONDS, TRUE, source, BUSY_ICON_BAR, null, PROGRESS_BRASS))
-		to_chat(user, span_rose("Reservoir for [reagent_to_load] is full."))
 		return
 
 	if(!loaded_reagents[reagent_to_load])
@@ -103,24 +102,25 @@
 	var/added_amount = min(container.reagents.total_volume, MAX_LOADABLE_REAGENT_AMOUNT - loaded_reagents[reagent_to_load])
 	container.reagents.remove_reagent(reagent_to_load, added_amount)
 	loaded_reagents[reagent_to_load] += added_amount
-	to_chat(user, span_rose("You load [added_amount]u. It now holds [loaded_reagents[reagent_to_load]]u."))
+	user.balloon_alert(user, "[loaded_reagents[reagent_to_load]]u")
 	if(length(loaded_reagents) == 1)
 		update_selected_reagent(reagent_to_load)
 
 ///Handles behavior when activating the weapon
 /datum/component/harvester/proc/activate_blade_async(datum/source, mob/user)
+
 	if(loaded_reagent)
-		to_chat(user, span_rose("The blade is powered with [initial(loaded_reagent.name)]. Stab a creature to release the substance."))
+		user.balloon_alert(user, "[initial(loaded_reagent.name)]")
 		return
 
 	if(!selected_reagent)
-		to_chat(user, span_rose("Select a reagent."))
+		user.balloon_alert(user, "no reagent")
 		return
 
 	var/use_amount = loadable_reagents[selected_reagent]
 
 	if(loaded_reagents[selected_reagent] < use_amount)
-		to_chat(user, span_rose("Not enough substance."))
+		user.balloon_alert(user, "insufficient liquid")
 		return
 
 	if(user.do_actions)
@@ -135,16 +135,17 @@
 	loaded_reagents[selected_reagent] -= use_amount
 	if(!loaded_reagents[selected_reagent])
 		loaded_reagents -= selected_reagent
+	user.balloon_alert(user, "loaded")
 
 ///Handles behavior when attacking a mob
 /datum/component/harvester/proc/attack_async(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
 	to_chat(user, span_rose("You prepare to stab <b>[target != user ? "[target]" : "yourself"]</b>!"))
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	if((target != user) && do_after(user, 2 SECONDS, TRUE, target, BUSY_ICON_DANGER))
-		target.heal_overall_damage(12.5, 0, TRUE)
+		target.heal_overall_damage(12.5, 0, updating_health = TRUE)
 	else
 		target.adjustStaminaLoss(-30)
-		target.heal_overall_damage(6, 0, TRUE)
+		target.heal_overall_damage(6, 0, updating_health = TRUE)
 
 ///Signal handler calling when user is filling the harvester
 /datum/component/harvester/proc/attackby(datum/source, obj/item/cont, mob/user)
@@ -189,7 +190,7 @@
 
 	if(!loaded_reagents[loaded_reagent])
 		update_selected_reagent(null)
-		to_chat(user, span_rose("You have ran out of [initial(loaded_reagent.name)]."))
+		user.balloon_alert(user, "[initial(loaded_reagent.name)]: empty")
 	loaded_reagent = null
 
 #undef MAX_LOADABLE_REAGENT_AMOUNT
@@ -230,7 +231,6 @@
 
 /datum/action/harvester/reagent_select/update_button_icon()
 	. = ..()
-	button.overlays -= selected_reagent_overlay
 	button.overlays += selected_reagent_overlay
 
 #undef NO_REAGENT_COLOR

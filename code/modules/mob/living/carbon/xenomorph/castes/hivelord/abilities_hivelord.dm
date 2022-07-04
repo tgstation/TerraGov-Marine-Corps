@@ -56,7 +56,7 @@
 	var/mob/living/carbon/xenomorph/walker = owner
 	speed_activated = TRUE
 	if(!silent)
-		to_chat(owner, span_notice("We become one with the resin. We feel the urge to run!"))
+		owner.balloon_alert(owner, "Resin walk active")
 	if(walker.loc_weeds_type)
 		speed_bonus_active = TRUE
 		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
@@ -66,7 +66,7 @@
 /datum/action/xeno_action/toggle_speed/proc/resinwalk_off(silent = FALSE)
 	var/mob/living/carbon/xenomorph/walker = owner
 	if(!silent)
-		to_chat(owner, span_warning("We feel less in tune with the resin."))
+		owner.balloon_alert(owner, "Resin walk ended")
 	if(speed_bonus_active)
 		walker.remove_movespeed_modifier(type)
 		speed_bonus_active = FALSE
@@ -77,8 +77,8 @@
 /datum/action/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/walker = owner
-	if(!isturf(walker.loc) || !walker.check_plasma(10, TRUE))
-		to_chat(owner, span_warning("We feel dizzy as the world slows down."))
+	if(!isturf(walker.loc) || walker.plasma_stored < 10)
+		owner.balloon_alert(owner, "Resin walk ended, no plasma")
 		resinwalk_off(TRUE)
 		return
 	if(walker.loc_weeds_type)
@@ -111,15 +111,15 @@
 	var/turf/T = get_turf(owner)
 	if(locate(/obj/structure/xeno/tunnel) in T)
 		if(!silent)
-			to_chat(owner, span_warning("There already is a tunnel here."))
+			T.balloon_alert(owner, "Tunnel already here")
 		return
 	if(!T.can_dig_xeno_tunnel())
 		if(!silent)
-			to_chat(owner, span_warning("We scrape around, but we can't seem to dig through that kind of floor."))
+			T.balloon_alert(owner, "Cannot dig, bad terrain")
 		return FALSE
 	if(owner.get_active_held_item())
 		if(!silent)
-			to_chat(owner, span_warning("We need an empty claw for this!"))
+			owner.balloon_alert(owner, "Cannot dig, needs empty hand")
 		return FALSE
 
 /datum/action/xeno_action/build_tunnel/on_cooldown_finish()
@@ -129,17 +129,19 @@
 
 /datum/action/xeno_action/build_tunnel/action_activate()
 	var/turf/T = get_turf(owner)
+	var/mob/living/carbon/xenomorph/hivelord/X = owner
 
-	owner.visible_message(span_xenonotice("[owner] begins digging out a tunnel entrance."), \
+	X.balloon_alert(X, "Digging...")
+	X.visible_message(span_xenonotice("[X] begins digging out a tunnel entrance."), \
 	span_xenonotice("We begin digging out a tunnel entrance."), null, 5)
-	if(!do_after(owner, HIVELORD_TUNNEL_DIG_TIME, TRUE, T, BUSY_ICON_BUILD))
-		to_chat(owner, span_warning("Our tunnel caves in as we stop digging it."))
+	if(!do_after(X, HIVELORD_TUNNEL_DIG_TIME, TRUE, T, BUSY_ICON_BUILD))
+		X.balloon_alert(X, "Digging aborted")
 		return fail_activate()
 
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
-	var/mob/living/carbon/xenomorph/hivelord/X = owner
+	T.balloon_alert(X, "Tunnel dug")
 	X.visible_message(span_xenonotice("\The [X] digs out a tunnel entrance."), \
 	span_xenonotice("We dig out a tunnel, connecting it to our network."), null, 5)
 	var/obj/structure/xeno/tunnel/newt = new(T)
@@ -194,13 +196,13 @@
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
-			to_chat(owner, span_warning("We can't do that here."))
+			T.balloon_alert(owner, "Cannot place pod")
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(!owner_xeno.loc_weeds_type)
 		if(!silent)
-			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+			T.balloon_alert(owner, "Cannot place pod, no weeds")
 		return FALSE
 
 	if(!T.check_disallow_alien_fortification(owner, silent))
@@ -233,13 +235,13 @@
 		return
 	if(owner.l_hand || owner.r_hand)
 		if(!silent)
-			to_chat(owner, span_xenonotice("We require free hands for this!"))
+			owner.balloon_alert(owner, "Cannot jelly, need empty hands")
 		return FALSE
 
 /datum/action/xeno_action/create_jelly/action_activate()
 	var/obj/item/resin_jelly/jelly = new(owner.loc)
 	owner.put_in_hands(jelly)
-	to_chat(owner, span_xenonotice("We create a globule of resin from our ovipostor."))
+	to_chat(owner, span_xenonotice("We create a globule of resin from our ovipostor.")) // Ewww...
 	add_cooldown()
 	succeed_activate()
 
@@ -264,13 +266,13 @@
 
 	if(!isxeno(target))
 		if(!silent)
-			to_chat(owner, span_warning("We can only target fellow sisters with [src]!"))
+			target.balloon_alert(owner, "Cannot heal, only xenos")
 		return FALSE
 	var/mob/living/carbon/xenomorph/patient = target
 
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
-			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
+			target.balloon_alert(owner, "Cannot heal, dead")
 		return FALSE
 
 	if(!check_distance(target, silent))
@@ -278,7 +280,7 @@
 
 	if(HAS_TRAIT(target, TRAIT_HEALING_INFUSION))
 		if(!silent)
-			to_chat(owner, span_warning("[patient] is already benefitting from [src]!"))
+			target.balloon_alert(owner, "Cannot heal, already infused")
 		return FALSE
 
 
@@ -286,11 +288,12 @@
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
 		if(!silent)
+			target.balloon_alert(owner, "Cannot reach")
 			to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
 		return FALSE
 	else if(!line_of_sight(owner, target))
 		if(!silent)
-			to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
+			target.balloon_alert(owner, "Cannot heal, no line of sight")
 		return FALSE
 	return TRUE
 

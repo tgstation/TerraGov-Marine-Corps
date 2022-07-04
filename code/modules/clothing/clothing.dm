@@ -59,16 +59,16 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
-/obj/item/clothing/apply_blood(image/standing)
+/obj/item/clothing/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
-		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
+		var/image/bloodsies	= mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
 		bloodsies.color	= blood_color
 		standing.add_overlay(bloodsies)
 
-/obj/item/clothing/suit/apply_blood(image/standing)
+/obj/item/clothing/suit/apply_blood(mutable_appearance/standing)
 	if(blood_overlay && blood_sprite_state)
 		blood_sprite_state = "[blood_overlay_type]blood"
-		var/image/bloodsies	= image(icon = 'icons/effects/blood.dmi', icon_state = blood_sprite_state)
+		var/image/bloodsies	= mutable_appearance('icons/effects/blood.dmi', blood_sprite_state)
 		bloodsies.color = blood_color
 		standing.add_overlay(bloodsies)
 
@@ -92,6 +92,11 @@
 	item_state = "earmuffs"
 	flags_equip_slot = ITEM_SLOT_EARS
 
+/obj/item/clothing/ears/earmuffs/green
+	icon_state = "earmuffs2"
+
+/obj/item/clothing/ears/earmuffs/gold
+	icon_state = "earmuffs3"
 
 ///////////////////////////////////////////////////////////////////////
 //Suit
@@ -108,7 +113,6 @@
 	attachments_allowed = list(/obj/item/armor_module/armor/badge)
 	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
-	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
 
 	// Strength of the armor light used by [proc/set_light()]
@@ -216,16 +220,6 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
-
-
-//some gas masks modify the air that you breathe in.
-/obj/item/clothing/mask/proc/filter_air(list/air_info)
-	if(flags_inventory & ALLOWREBREATH)
-		air_info[2] = T20C //heats/cools air to be breathable
-
-	return air_info
-
-
 
 ////////////////////////////////////////////////////////////////////////
 //Shoes
