@@ -18,8 +18,6 @@
 						//also useful for items with many icon_state values when you don't want to make an inhand sprite for each value.
 	///The icon state used to represent this image in "icons/obj/items/items_mini.dmi" Used in /obj/item/storage/box/visual to display tiny items in the box
 	var/icon_state_mini = "item"
-	var/force = 0
-	var/damtype = BRUTE
 	///Byond tick delay between left click attacks
 	var/attack_speed = 11
 	///Byond tick delay between right click alternate attacks

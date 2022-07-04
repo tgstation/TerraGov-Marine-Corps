@@ -91,6 +91,9 @@ Administrative related.
 
 /datum/config_entry/flag/log_game
 
+/// log mech data
+/datum/config_entry/flag/log_mecha
+
 /datum/config_entry/flag/log_asset
 
 /datum/config_entry/flag/log_vote

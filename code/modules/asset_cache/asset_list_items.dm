@@ -130,3 +130,10 @@
 /datum/asset/spritesheet/blessingmenu/register()
 	InsertAll("", 'icons/UI_Icons/buyable_icons.dmi')
 	..()
+
+/datum/asset/spritesheet/mechaarmor
+	name = "mechaarmor"
+
+/datum/asset/spritesheet/mechaarmor/register()
+	InsertAll("", 'icons/UI_Icons/mecha/armor.dmi')
+	..()
