@@ -151,8 +151,6 @@
 
 /obj/machinery/light/mainship
 	base_state = "tube"
-	///Are we red or not, set during red or delta security changes
-	var/redmode = FALSE
 
 /obj/machinery/light/mainship/Initialize()
 	. = ..()

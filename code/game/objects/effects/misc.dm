@@ -72,7 +72,7 @@
 	opacity = FALSE
 	density = TRUE
 	icon_state = "blocker"
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/forcefield/Initialize()
 	. = ..()

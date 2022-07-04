@@ -38,26 +38,26 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			var/area/A = get_area(light)
 			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs
 				continue
-			light.light_color = "#ffffff"
+			light.light_color = COLOR_WHITE
 			light.brightness = 8
 			light.light_range = 8
 			if(istype(light, /obj/machinery/light/mainship/small))
 				light.icon_state = "bulb1"
-				light.base_state = "bulb"	
+				light.base_state = "bulb"
 			else
-				light.icon_state = "tube1"	
+				light.icon_state = "tube1"
 			light.update_light()
 	else
 		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
 			light.base_state = "tubered"
 			if(level != SEC_LEVEL_DELTA)
 				light.lightalarm.stop(light)
-			var/area/A = get_area(light) 
+			var/area/A = get_area(light)
 			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs
 				continue
 			if(level == SEC_LEVEL_DELTA) //start ominous self destruct sound when delta
 				light.lightalarm.start(light)
-			light.light_color = "#da4635"
+			light.light_color = COLOR_SOMEWHAT_LIGHTER_RED
 			light.brightness = 3.0
 			light.light_range = 7.5
 			if(prob(75)) //randomize light range on most lights, patchy lighting gives a sense of danger
@@ -67,10 +67,10 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 				light.light_range = rangelevel
 			if(istype(light, /obj/machinery/light/mainship/small))
 				light.icon_state = "bulbred1"
-				light.base_state = "bulbred"	
+				light.base_state = "bulbred"
 			else
 				light.icon_state = "tubered1"
-			light.update_light()	 
+			light.update_light()
 
 	//Will not be announced if you try to set to the same level as it already is
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != security_level)
