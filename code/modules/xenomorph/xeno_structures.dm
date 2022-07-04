@@ -714,6 +714,14 @@ TUNNEL
 	var/datum/hive_status/associated_hive
 	var/silo_area
 	var/number_silo
+	var/current_aura
+	var/aura_strength = 5
+	var/frenzy_aura
+	var/recovery_aura
+	var/warding_aura
+	//Leader vars
+	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
+	var/leader_current_aura = "" //Pheromone type inherited from Queen
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 	COOLDOWN_DECLARE(silo_proxy_alert_cooldown)
 
@@ -839,11 +847,79 @@ TUNNEL
 	//Regenerate if we're at less than max integrity
 	if(obj_integrity < max_integrity)
 		obj_integrity = min(obj_integrity + 25, max_integrity) //Regen 5 HP per sec
+	handle_aura_emiter()
 
 /obj/structure/xeno/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
+
+/obj/structure/xeno/silo/proc/handle_aura_emiter()
+	if(!current_aura && !leader_current_aura) //Gotta be emitting some pheromones to actually do something
+		return
+
+	var/self_range = round(6 + aura_strength * 2) //Range of pheros emitted by self selected pheromones
+	var/lead_range = round(6 + leader_aura_strength * 2) //Range of pheros granted by queen leadership
+	for(var/mob/living/carbon/xenomorph/xeno AS in associated_hive.get_all_xenos())
+		if(z != xeno.z || xeno.on_fire)
+			continue
+		if(current_aura && get_dist(src, xeno) <= self_range)
+			switch(current_aura)
+				if(FRENZY)
+					if(aura_strength > xeno.frenzy_new)
+						xeno.frenzy_new = aura_strength
+				if(WARDING)
+					if(aura_strength > xeno.warding_new)
+						xeno.warding_new = aura_strength
+				if(RECOVERY)
+					if(aura_strength > xeno.recovery_new)
+						xeno.recovery_new = aura_strength
+		if(leader_current_aura && get_dist(src, xeno) <= lead_range)
+			switch(leader_current_aura)
+				if(FRENZY)
+					if(leader_aura_strength > xeno.frenzy_new)
+						xeno.frenzy_new = leader_aura_strength
+				if(WARDING)
+					if(leader_aura_strength > xeno.warding_new)
+						xeno.warding_new = leader_aura_strength
+				if(RECOVERY)
+					if(leader_aura_strength > xeno.recovery_new)
+						xeno.recovery_new = leader_aura_strength
+
+/obj/structure/xeno/silo/proc/hud_set_pheromone()
+	var/image/holder = hud_list[PHEROMONE_HUD]
+	if(!holder)
+		return
+	holder.overlays.Cut()
+	holder.icon_state = "hudblank"
+	var/tempname = ""
+	if(frenzy_aura)
+		tempname += FRENZY
+	if(warding_aura)
+		tempname += WARDING
+	if(recovery_aura)
+		tempname += RECOVERY
+	if(tempname)
+		holder.icon_state = "hud[tempname]"
+
+	if(current_aura)
+		holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[current_aura]")
+	if(leader_current_aura)
+		holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[leader_current_aura]")
+
+	hud_list[PHEROMONE_HUD] = holder
+
+/obj/structure/xeno/silo/proc/apply_pheros(phero_choice)
+	if(current_aura == phero_choice)
+		balloon_alert(src, "Stop emitting")
+		current_aura = null
+		hud_set_pheromone()
+
+	current_aura = phero_choice
+	balloon_alert(src, "[src.current_aura]")
+	playsound(src.loc, "alien_drool", 25)
+
+	hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
 
 /obj/structure/xeno/xeno_turret
 	icon = 'icons/Xeno/acidturret.dmi'
