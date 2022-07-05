@@ -537,6 +537,18 @@
 		return
 	return ..()
 
+/mob/living/carbon/xenomorph/queen/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
+	if(prob(90)) //Just to keep spam down
+		return
+	to_chat(src, span_xenowarning("Our extra-thick exoskeleton protects us from the flames."))
+
+/mob/living/carbon/xenomorph/ravager/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
+	gain_plasma(burnlevel) //We refill full plasma every life tick as long as we're actively standing in flames, exact amount here isn't too important
+	if(prob(90))
+		return
+	to_chat(src, span_xenodanger("The raging flames dance around you!"))
+
+
 
 /obj/flamer_fire/proc/updateicon()
 	var/light_color = "LIGHT_COLOR_LAVA"
