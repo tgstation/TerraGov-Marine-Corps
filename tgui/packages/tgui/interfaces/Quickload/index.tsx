@@ -58,7 +58,7 @@ const LoadoutList = (props: LoadoutListData) => {
 const JobTabs = (props: LoadoutTabData, context) => {
   const { job, setJob } = props;
   const { data } = useBackend<any>(context);
-  const categories_to_use = data.vendor_categories
+  const categories_to_use = data.vendor_categories;
   return (
     <Section>
       <Flex>
@@ -66,7 +66,9 @@ const JobTabs = (props: LoadoutTabData, context) => {
         <Flex.Item>
           <Tabs>
             {categories_to_use.map((role, i) => (
-              <Tabs.Tab selected={job === role.jobs} onClick={() => setJob(role)}>
+              <Tabs.Tab
+                selected={job === role.jobs}
+                onClick={() => setJob(role)}>
                 {role}
               </Tabs.Tab>
             ))}
@@ -81,8 +83,8 @@ const JobTabs = (props: LoadoutTabData, context) => {
 export const Quickload = (props, context) => {
   const { act, data } = useBackend<LoadoutManagerData>(context);
   const { loadout_list } = data;
-  const ui_theme_to_use = data.ui_theme
-  const default_job_tab = data.vendor_categories[0]
+  const ui_theme_to_use = data.ui_theme;
+  const default_job_tab = data.vendor_categories[0];
 
   const [
     showDesc,
