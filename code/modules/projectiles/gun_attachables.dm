@@ -703,8 +703,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_tile_offset = 3
 	deployed_scope_rezoom = TRUE
 
+//all mounted guns with a nest use this
 /obj/item/attachable/scope/unremovable/tl102/nest
-	zoom_tile_offset = 6
+	flags_attach_features = ATTACH_ACTIVATION
+	scope_delay = 2 SECONDS
+	zoom_tile_offset = 7
+	zoom_viewsize = 2
+	deployed_scope_rezoom = FALSE
 
 /obj/item/attachable/scope/activate(mob/living/carbon/user, turn_off)
 	if(turn_off)
@@ -1623,8 +1628,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		set_gun_user(master_gun.gun_user)
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		to_chat(user, span_notice("You start using [src]."))
-	for(var/action_to_update in master_gun.actions)
-		var/datum/action/action = action_to_update
+	for(var/datum/action/action AS in master_gun.actions)
 		action.update_button_icon()
 	return TRUE
 

@@ -10,6 +10,7 @@
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
+	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
 	///The type of stack the barricade dropped when disassembled if any.
 	var/stack_type
@@ -591,20 +592,25 @@
 
 	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 	span_notice("You begin repairing the damage to [src]."))
+	add_overlay(GLOB.welding_sparks)
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
 	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	if(obj_integrity <= max_integrity * 0.3 || obj_integrity == max_integrity)
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	if(!WT.remove_fuel(2, user))
 		to_chat(user, span_warning("Not enough fuel to finish the task."))
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	user.visible_message(span_notice("[user] repairs some damage on [src]."),
 	span_notice("You repair [src]."))
+	cut_overlay(GLOB.welding_sparks)
 	repair_damage(150)
 	update_icon()
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
@@ -899,16 +905,19 @@
 
 		user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 		span_notice("You begin repairing the damage to [src]."))
+		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		busy = TRUE
 
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
+			cut_overlay(GLOB.welding_sparks)
 			busy = FALSE
 			return
 
 		busy = FALSE
 		user.visible_message(span_notice("[user] repairs some damage on [src]."),
 		span_notice("You repair [src]."))
+		cut_overlay(GLOB.welding_sparks)
 		repair_damage(150)
 		update_icon()
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)

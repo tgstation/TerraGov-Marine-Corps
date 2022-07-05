@@ -434,6 +434,11 @@
 		if(!silent)
 			owner.balloon_alert(owner, "Cannot snatch")
 		return FALSE
+	var/mob/living/carbon/human/target = A
+	if(target.stat == DEAD)
+		if(!silent)
+			owner.balloon_alert(owner, "Cannot snatch")
+		return FALSE
 
 /datum/action/xeno_action/activable/snatch/use_ability(atom/A)
 	succeed_activate()

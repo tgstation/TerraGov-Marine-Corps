@@ -263,8 +263,7 @@
 		W.unequipped(src, SLOT_L_HAND)
 		update_inv_l_hand()
 		//removes item's actions, may be readded once re-equipped to the new slot
-		for(var/X in W.actions)
-			var/datum/action/A = X
+		for(var/datum/action/A AS in W.actions)
 			A.remove_action(src)
 
 	else if(W == r_hand)
@@ -272,8 +271,7 @@
 		W.unequipped(src, SLOT_R_HAND)
 		update_inv_r_hand()
 		//removes item's actions, may be readded once re-equipped to the new slot
-		for(var/X in W.actions)
-			var/datum/action/A = X
+		for(var/datum/action/A AS in W.actions)
 			A.remove_action(src)
 
 	W.screen_loc = null
@@ -375,18 +373,32 @@
 			var/obj/item/storage/S = back
 			S.handle_item_insertion(W, TRUE, src)
 		if(SLOT_IN_SUIT)
-			var/obj/item/clothing/suit/storage/S = wear_suit
-			var/obj/item/storage/internal/T = S.pockets
-			T.handle_item_insertion(W, FALSE, src)
-			T.close(src)
+			if(istype(wear_suit, /obj/item/clothing/suit/modular))
+				var/obj/item/clothing/suit/modular/T = wear_suit
+				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/S = U.storage
+				S.handle_item_insertion(W, FALSE, src)
+				S.close(src)
+			if(istype(wear_suit, /obj/item/clothing/suit/storage)) //old suits use the pocket var instead of storage attachments
+				var/obj/item/clothing/suit/storage/T = wear_suit
+				var/obj/item/storage/internal/S = T.pockets
+				S.handle_item_insertion(W, FALSE, src)
+				S.close(src)
 		if(SLOT_IN_BELT)
 			var/obj/item/storage/belt/S = belt
 			S.handle_item_insertion(W, FALSE, src)
 		if(SLOT_IN_HEAD)
-			var/obj/item/clothing/head/helmet/marine/S = head
-			var/obj/item/storage/internal/T = S.pockets
-			T.handle_item_insertion(W, FALSE, src)
-			T.close(src)
+			if(istype(head, /obj/item/clothing/head/modular))
+				var/obj/item/clothing/head/modular/T = head
+				var/obj/item/armor_module/storage/U = T.attachments_by_slot[ATTACHMENT_SLOT_STORAGE]
+				var/obj/item/storage/S = U.storage
+				S.handle_item_insertion(W, FALSE, src)
+				S.close(src)
+			if(istype(head, /obj/item/clothing/head/helmet/marine)) //old hats use pocket var instead of storage attachments
+				var/obj/item/clothing/head/helmet/marine/T = head
+				var/obj/item/storage/internal/S = T.pockets
+				S.handle_item_insertion(W, FALSE, src)
+				S.close(src)
 		if(SLOT_IN_HOLSTER)
 			var/obj/item/storage/S = belt
 			S.handle_item_insertion(W, FALSE, src)

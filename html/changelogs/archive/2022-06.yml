@@ -206,3 +206,218 @@
   Xsdew:
   - soundadd: added a new sound for the MG42
   - imageadd: replaced the MG42 Sprites
+2022-06-12:
+  BraveMole:
+  - balance: Wraith portal range buffed from 10 to 20
+  - balance: Wraith portals are no longer vulnerable to bullets; they are now vulnerable
+      to explosions
+  - balance: Human can no longer cross portal
+  - bugfix: Fix teleporter being mountable
+  - balance: Reduce plasma cost of all wraith abilities
+  Derrick2Electricboogaloo:
+  - bugfix: Readded combat droids to Sulaco
+  - bugfix: Readded prevended protein bars to vendors
+  Vondiech:
+  - code_imp: Turns long line of else-if's in parse_zone into a switch. Also removes
+      4 duplicate if's for the hands and feet
+2022-06-13:
+  BraveMole:
+  - bugfix: Fix organ damage not being treated by surgery
+  Lumipharon:
+  - bugfix: fixed some issues with storage procs
+  MisterGrimm:
+  - bugfix: Fixes unintended Praetorian Neurotoxin nerf at Young to Mature.
+  RipGrayson:
+  - balance: Adjusted the breach points on LV624 LZ2 and BR LZ1.
+  - balance: The sand temple on LV624 now has an APC.
+  Wayland-Smithy:
+  - bugfix: Fixed missing hivemind can_flags.
+  novaepee:
+  - bugfix: flak jacket accepting modules
+2022-06-14:
+  BraveMole:
+  - balance: Internal organs damage are visible on the health analyzer
+  - rscadd: Add back portal fancy graphic
+  - rscadd: New portal sprite, by krab
+  Pariah919:
+  - bugfix: RL-72 has proper gunflags on spawn.
+  breadhunt:
+  - rscdel: Removed plasteel crate recipe
+  - qol: Plasteel cades no longer require a menu to make, just press Z
+  - qol: Metal recipes have a new radial menu, old recipe menu selectable from it
+  - rscadd: You can also disable the radial menu completely for the old menu in the
+      preferences tab
+  - refactor: Cleaned up mat and sandbag code a small bit
+  novaepee:
+  - rscdel: Remove miners that are near LZ in Ice Colony, Big Red, and LV-624
+  - rscdel: Remove the triple miners next to LV-624 red disk
+2022-06-15:
+  Arctrooper8:
+  - rscadd: Surgery pouch
+  - rscadd: brute kits in surgical usage have been replaced with a new tool, surgical
+      membrane.
+  - rscdel: First aid pouch, Hypospray pouch, Syringe pouch, injector case.
+  - rscdel: Medical belts in medbay storage rooms.
+  - balance: Lifesaver belt now has every pill type alongside 6 kits, two splints,
+      and a health analyzer.
+  - balance: Rig belt now has every pill type.
+  - balance: full lolly pouches are now free and infinite from the vendor.
+  - balance: pill packet are free and infinite from MarineMed.
+  - balance: pill bottles have been moved to nanotrasen medical vendor.
+  - balance: moved stuff such as defib from nanotrasen medical vendor to MarineMed.
+  - balance: ERT/EORD spawns now use injector pouches.
+  Wayland-Smithy:
+  - bugfix: Fixed burrowed larva sometimes not counting toward tier limits.
+2022-06-16:
+  Kuro020:
+  - imageadd: EVA skull variant sprite changed
+  Lewdcifer:
+  - rscdel: CAS flares can no longer be obtained from reqs.
+  - balance: CAS flare packs available in weapon vendors increased from 30 to 50.
+  - rscdel: Normal binoculars can no longer be obtained from reqs.
+  - rscdel: Normal flares can no longer be obtained from reqs.
+  - rscdel: Tarps can no longer be obtained from reqs.
+  - balance: Number of tarps in reqs vendor increased from 2 to 10.
+  Lumipharon:
+  - balance: shotguns and the SMG90 no longer have extremely low akimbo scatter penalties
+  - balance: rifles no longer have zero akimbo firedelay penalties
+  QualityVan:
+  - bugfix: Healing lungs removes slowdown
+  Vondiech:
+  - bugfix: Roundstart announcement text is now actually announced, apparently this
+      has been broken for quite a while now.
+  - rscadd: Icarus Military Port now has some actual announcement text lore.
+2022-06-17:
+  Lewdcifer:
+  - balance: Fire strength against resin walls reduced from 1.5 to 1.25.
+  Lumipharon:
+  - bugfix: Xenos have been sent to climbing school, and can now climb platforms and
+      (unwired) barricades of all kinds.
+2022-06-19:
+  Arctrooper8:
+  - rscdel: TerraGovTech Corpsmen Vendor
+  - qol: NT Med now in Corpsmen prep
+  - imagedel: TerraGovTech Corpsmen Vendor
+  BraveMole:
+  - rscadd: New wraith ability, rewind
+  Hatterhat:
+  - balance: the BR-64 battle rifle now has one extra round per magazine, raising
+      it to 36 rounds instead of 35, with a new theoretical max of 36+1 rounds in
+      the gun
+  QualityVan:
+  - bugfix: Runner primo snatch can't be used on corpses
+2022-06-22:
+  Mechanelize:
+  - bugfix: Fixed meson scanner sprite for combat robots.
+  Pariah919:
+  - balance: MPi slowdown reduced a bit, it can take vgrip or underbarreled guns now
+      as attachments.
+  SplinterGP:
+  - code_imp: removed unneeded list initialization on all items in order to improve
+      game initialization
+  goose4429:
+  - bugfix: fixed valhalla med vendors
+  novaepee:
+  - rscadd: requisition can buy cash; 5 points for $200
+  tyeagg:
+  - rscadd: Mounted dualcannon
+  - rscadd: Mounted heavy laser
+  - rscadd: Mounted minigun
+  - rscadd: Mounted heavy recoilless rifle
+  - rscadd: Flare launcher for 150 ds points
+  - rscadd: Mounted heavy laser, mounted minigun, heavy rr to whiskey outpost
+  - rscadd: 2 Flare launcher systems on all shipside maps
+  - rscadd: Mounted dualcannon to req for 60 points
+  - rscadd: Mounted heavy laser to req for 90 points
+  - rscadd: Mounted minigun to req for 75 points
+  - rscadd: Mounted hsg to req for 50 points
+  - rscadd: Mounted heavy recoilless rifle for 180 points
+  - balance: Increased scoped range of hsg nest to around 9 tiles
+  - balance: Decreased hsg nest ammo capacity to 500
+  - soundadd: Dualcannon firing sound
+  - imageadd: Mounted dualcannon and ammo sprites
+  - imageadd: Mounted minigun
+  - imageadd: Mounted heavy recoilless rifle and ammo sprites
+  - imageadd: Mounted heavy laser and ammo sprites
+  - imageadd: Flare launcher system and installed sprites
+  - imageadd: stronger flare sprite
+2022-06-23:
+  novaepee:
+  - rscadd: Mortar's description now tells players how to deploy and undeploy
+  - qol: Remove wrench from moving mortar; drag the mortar's sprite your mob's sprites
+      like other deployable objects
+  - balance: Makes it easier for mortar marines for tactical and superior position
+      with mortar
+2022-06-24:
+  QualityVan:
+  - rscadd: Necrosis causes organ damage over time. Accidentally removed this when
+      I killed organ germs.
+  - balance: Boiler projectiles have 0 damage falloff.
+  Wayland-Smithy:
+  - bugfix: Fixed jetpack flying while buckled.
+2022-06-25:
+  KuzyXD:
+  - code_imp: Tgstation Test explorer for VScode now work properly
+  QualityVan:
+  - rscadd: Kidneys now apply downsides if you have too many drugs in you. Cap gets
+      lowered with organ damage.
+  - balance: DD doesn't heal confusion any more.
+  - balance: Minor liver tweaks, more or less the same on the whole. Main addition
+      is a very small chance to vomit.
+  - rscadd: If you have too much blood in you and no quickclot, all the extra blood
+      will spill.
+  - rscadd: Taking lung damage will knock the wind out of you for a moment.
+  - bugfix: The suffocation hud icon works
+  - bugfix: Neurotoxin stops you from breathing once it has you in stamcrit so you
+      don't just ignore a third of its damage.
+  RipGrayson:
+  - balance: Ice Colony LZ2 now has an APC.
+  - bugfix: Ice Colony LZ1 now can be powered like any other LZ.
+  - bugfix: Removed a duplicate APC from Ice Colony LZ1.
+  SplinterGP:
+  - code_imp: changed human item rendering code so it can support bigger icons with
+      centralization.
+  goose4429:
+  - bugfix: fixed win messages
+  - balance: more basic pill bottles to NTMed+
+  novaepee:
+  - balance: Marine ballistic goggles are now tiny, letting you fit goggle and another
+      tiny object in helmet
+2022-06-28:
+  Losenis:
+  - balance: Operational supplies vendor now has a free pinpointer.
+  QualityVan:
+  - bugfix: If you have both organ damage and necrosis, trying to treat with a membrane
+      will prioritize the necrosis.
+  - code_imp: Added routing to enable robot healing on two function calls.
+  RipGrayson:
+  - rscadd: Ported TG's welder effect for use when welding doors/objects.
+  - bugfix: Fixed a couple bad AI nodes
+  - imageadd: Ported some icons from CM.
+  - imageadd: Ported and resprited a firedoor icon from Baystation.
+  - imagedel: Removed old fire door icon from game.
+  - imagedel: Removed old exterior airlock icon from game.
+  - code_imp: Added a couple table and earmuff variants to the game.
+  heffy117:
+  - bugfix: fixed minor map issues
+2022-06-29:
+  DeltaFire15:
+  - bugfix: All explosions should now affect wraith portals, not just CAS GAU ones.
+  QualityVan:
+  - balance: Peridaxon Plus cloneloss scales with the organ damage it heals
+  - code_imp: Pills and hypos call a proc they were missing. No gameplay change.
+  - balance: Dylovene reduces stamina regen by half instead of preventing it entirely,
+      but does so at any volume.
+2022-06-30:
+  BraveMole:
+  - balance: Hyro, rye and synap now have lemoline in their recipes
+  - balance: Brain damage reduces your skills rating, nothing else
+  goose4429:
+  - imageadd: Added injector and pill bottle sprites
+  - bugfix: Fixed a lot of medical sprites
+  - bugfix: Fixed chemmaster display errors
+  - bugfix: Fixed defiler toxins sometimes not counting in synergies
+  - refactor: Refactored xeno toxins code
+  - rscadd: Added TX-13, the smartpistol
+  - balance: Captain has cool Smartpistol belt by default and a mateba in his closet.
+  - balance: FC has cool Mateba belt by default and a revolver in his closet.
