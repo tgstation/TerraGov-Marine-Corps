@@ -110,7 +110,6 @@
 	recoil = 0 //It has a stock on the sprite.
 	recoil_unwielded = 2
 	wield_delay = 1 SECONDS
-	akimbo_additional_delay = 0.9
 
 /obj/item/weapon/gun/shotgun/combat/masterkey
 	name = "masterkey shotgun"
