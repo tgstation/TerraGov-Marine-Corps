@@ -684,37 +684,34 @@
 
 /obj/item/weapon/gun/shotgun/som
 	name = "\improper V-51 combat shotgun"
-	desc = "The V-51 is the main shotgun employed by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick."
+	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick."
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon_state = "mk221" //PLACEHOLDER
-	item_state = "mk221" //PLACEHOLDER
-	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg' //PLACEHOLDER
+	icon_state = "v51"
+	icon = 'icons/Marine/gun64.dmi'
+	item_state = "v51"
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	max_chamber_items = 9
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/compensator,
-		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
 	)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 26, "rail_y" = 22, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 
 	fire_delay = 1.8 SECONDS
 	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.5
-	scatter = 5
+	accuracy_mult_unwielded = 0.6
+	scatter = 4
 	scatter_unwielded = 16
 	damage_mult = 0.85
 	recoil = 1
 	recoil_unwielded = 4
-	aim_slowdown = 0.45
+	aim_slowdown = 0.4
+	wield_delay = 0.7
 
 //-------------------------------------------------------
 //Inbuilt launcher for the V-31
