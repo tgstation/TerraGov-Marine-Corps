@@ -181,12 +181,6 @@ h1.alert, h2.alert		{color: #000000;}
 
 .centerbold				{				 	text-align: center; font-weight: bold;}
 
-.tajaran				{color: #803B56;}
-.tajaran_signlang		{color: #941C1C;}
-.skrell					{color: #00CED1;}
-.soghun					{color: #228B22;}
-.changeling				{color: #800080;}
-.vox					{color: #AA00AA;}
 .rough					{font-family: trebuchet-ms, cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
 .command_headset		{font-weight: bold; font-size: 18px;}

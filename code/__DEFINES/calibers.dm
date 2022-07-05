@@ -61,6 +61,7 @@
 #define CALIBER_67MM "67mm shell"
 #define CALIBER_68MM "68mm rocket"
 #define CALIBER_37MM "37mm"
+#define CALIBER_75MM "75mm" //Heavy Recoilless Rifle
 
 #define CALIBER_ROCKETARRAY "rocket array"
 #define CALIBER_ROCKETTOY "toy rocket"
@@ -77,6 +78,7 @@
 #define CALIBER_12X40 "12x40mm Gauss" //Gauss Sentries
 #define CALIBER_10X20 "10x20mm" //Minisentry
 #define CALIBER_10X30 "10x30mm caseless"
+#define CALIBER_20 "20mm" //Dualcannon
 
 ///Unmanned vehicles
 #define CALIBER_11X35 "11x35mm"

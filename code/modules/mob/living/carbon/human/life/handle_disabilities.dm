@@ -1,28 +1,5 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/handle_disabilities()
-	. = ..()
-
-	switch(rand(0, 200))
-		if(0 to 3)
-			if(getBrainLoss() >= 5)
-				custom_pain("Your head feels numb and painful.")
-		if(4 to 6)
-			if(eye_blurry <= 0 && getBrainLoss() >= 15 )
-				to_chat(src, span_danger("It becomes hard to see for some reason."))
-				blur_eyes(10)
-		if(7 to 9)
-			if((hand && get_held_item()) && getBrainLoss())
-				to_chat(src, span_danger("Your hand won't respond properly, you drop what you're holding."))
-				drop_held_item()
-		if(10 to 12)
-			if(!lying_angle && getBrainLoss())
-				to_chat(src, span_danger("Your legs won't respond properly, you fall down."))
-				set_resting(TRUE)
-		else
-			return
-
-
 /mob/living/carbon/human/handle_impaired_vision()
 	. = ..()
 

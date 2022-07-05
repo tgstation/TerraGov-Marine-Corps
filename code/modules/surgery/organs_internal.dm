@@ -1,6 +1,5 @@
 // Internal surgeries.
 /datum/surgery_step/internal
-	priority = 3
 	can_infect = 1
 	blood_level = 1
 
@@ -12,6 +11,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/internal/remove_embryo
+	priority = 3
 	allowed_tools = list(
 		/obj/item/tool/surgery/hemostat = 100,
 		/obj/item/tool/wirecutters = 75,
@@ -33,6 +33,7 @@
 /datum/surgery_step/internal/remove_embryo/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] starts to pull something out from [target]'s ribcage with \the [tool]."), \
 					span_notice("You start to pull something out from [target]'s ribcage with \the [tool]."))
+	target.balloon_alert_to_viewers("Pulling...")
 	target.custom_pain("Something hurts horribly in your chest!",1)
 	..()
 
@@ -41,6 +42,7 @@
 	if(A)
 		user.visible_message(span_warning("[user] rips a wriggling parasite out of [target]'s ribcage!"),
 							span_warning("You rip a wriggling parasite out of [target]'s ribcage!"))
+		target.balloon_alert_to_viewers("Success")
 		var/mob/living/carbon/xenomorph/larva/L = locate() in target //the larva was fully grown, ready to burst.
 		if(L)
 			L.forceMove(target.loc)
@@ -60,10 +62,9 @@
 
 
 /datum/surgery_step/internal/fix_organ
+	priority = 1
 	allowed_tools = list(
-		/obj/item/stack/medical/heal_pack/advanced/bruise_pack= 100,
-		/obj/item/stack/medical/heal_pack/gauze = 20,
-		/obj/item/stack/medical/heal_pack/gauze/tajaran = 70,
+		/obj/item/tool/surgery/surgical_membrane = 100,
 	)
 
 	min_duration = FIX_ORGAN_MIN_DURATION
@@ -79,45 +80,32 @@
 
 
 /datum/surgery_step/internal/fix_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	var/tool_name = "\the [tool]"
-	if(istype(tool, /obj/item/stack/medical/heal_pack/advanced/bruise_pack))
-		tool_name = "regenerative membrane"
-	else if(istype(tool, /obj/item/stack/medical/heal_pack/gauze))
-		tool_name = "the bandaid"
-
 	for(var/datum/internal_organ/I in affected.internal_organs)
 		if(I && I.damage > 0 && I.robotic != ORGAN_ROBOT)
-			user.visible_message(span_notice("[user] starts treating damage to [target]'s [I.name] with [tool_name]."), \
-			span_notice("You start treating damage to [target]'s [I.name] with [tool_name].") )
+			user.visible_message(span_notice("[user] starts treating damage to [target]'s [I.name] with the surgical membrane."), \
+			span_notice("You start treating damage to [target]'s [I.name] with the surgical membrane.") )
+			target.balloon_alert_to_viewers("Fixing...")
 
 	target.custom_pain("The pain in your [affected.display_name] is living hell!", 1)
 	..()
 
 /datum/surgery_step/internal/fix_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	var/tool_name = "\the [tool]"
-	if(istype(tool, /obj/item/stack/medical/heal_pack/advanced/bruise_pack))
-		tool_name = "regenerative membrane"
-	else if(istype(tool, /obj/item/stack/medical/heal_pack/gauze))
-		tool_name = "the bandaid"
-
 	for(var/datum/internal_organ/I in affected.internal_organs)
 		if(I && I.damage > 0 && I.robotic != ORGAN_ROBOT)
-			user.visible_message(span_notice("[user] treats damage to [target]'s [I.name] with [tool_name]."), \
-			span_notice("You treat damage to [target]'s [I.name] with [tool_name].") )
-			I.damage = 0
+
+			user.visible_message(span_notice("[user] treats damage to [target]'s [I.name] with surgical membrane."), \
+			span_notice("You treat damage to [target]'s [I.name] with surgical membrane.") )
+			I.heal_organ_damage(I.damage)
+			target.balloon_alert_to_viewers("Success")
 
 /datum/surgery_step/internal/fix_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	user.visible_message(span_warning("[user]'s hand slips, getting mess and tearing the inside of [target]'s [affected.display_name] with \the [tool]!"), \
-	span_warning("Your hand slips, getting mess and tearing the inside of [target]'s [affected.display_name] with \the [tool]!"))
+	user.visible_message(span_warning("[user]'s hand slips, getting messy and tearing the inside of [target]'s [affected.display_name] with \the [tool]!"), \
+	span_warning("Your hand slips, getting messy and tearing the inside of [target]'s [affected.display_name] with \the [tool]!"))
+	target.balloon_alert_to_viewers("Slipped!")
 	var/dam_amt = 2
 
-	if(istype(tool, /obj/item/stack/medical/heal_pack/advanced/bruise_pack))
+	if(istype(tool, /obj/item/tool/surgery/surgical_membrane))
 		target.adjustToxLoss(5)
-
-	else if(istype(tool, /obj/item/stack/medical/heal_pack/gauze))
-		dam_amt = 5
-		target.adjustToxLoss(10)
-		affected.createwound(CUT, 5)
 
 	for(var/datum/internal_organ/I in affected.internal_organs)
 		if(I && I.damage > 0)
@@ -151,6 +139,7 @@
 			user.visible_message(span_notice("[user] starts mending the damage to [target]'s [I.name]'s mechanisms."), \
 			span_notice("You start mending the damage to [target]'s [I.name]'s mechanisms.") )
 
+	target.balloon_alert_to_viewers("Mending...")
 	target.custom_pain("The pain in your [affected.display_name] is living hell!", 1)
 	..()
 
@@ -160,10 +149,12 @@
 			user.visible_message(span_notice("[user] repairs [target]'s [I.name] with [tool]."), \
 			span_notice("You repair [target]'s [I.name] with [tool].") )
 			I.damage = 0
+	target.balloon_alert_to_viewers("Success")
 
 /datum/surgery_step/internal/fix_organ_robotic/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, gumming up the mechanisms inside of [target]'s [affected.display_name] with \the [tool]!"), \
 	span_warning("Your hand slips, gumming up the mechanisms inside of [target]'s [affected.display_name] with \the [tool]!"))
+	target.balloon_alert_to_viewers("Slipped!")
 
 	target.adjustToxLoss(5)
 	affected.createwound(CUT, 5)
@@ -220,11 +211,13 @@
 	user.visible_message(span_notice("[user] starts to separate [target]'s [affected.surgery_organ] with \the [tool]."), \
 	span_notice("You start to separate [target]'s [affected.surgery_organ] with \the [tool].") )
 	target.custom_pain("The pain in your [affected.display_name] is living hell!", 1)
+	target.balloon_alert_to_viewers("Separating...")
 	..()
 
 /datum/surgery_step/internal/detach_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] has separated [target]'s [affected.surgery_organ] with \the [tool].") , \
 	span_notice("You have separated [target]'s [affected.surgery_organ] with \the [tool]."))
+	target.balloon_alert_to_viewers("Success")
 
 	var/datum/internal_organ/I = target.internal_organs_by_name[affected.surgery_organ]
 	I.cut_away = TRUE
@@ -233,6 +226,7 @@
 /datum/surgery_step/internal/detach_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!"), \
 	span_warning("Your hand slips, slicing an artery inside [target]'s [affected.display_name] with \the [tool]!"))
+	target.balloon_alert_to_viewers("Slipped!")
 	affected.createwound(CUT, rand(30, 50), 1)
 	affected.update_wounds()
 	affected.surgery_organ = null
@@ -284,11 +278,13 @@
 	user.visible_message(span_notice("[user] starts removing [target]'s [affected.surgery_organ] with \the [tool]."), \
 	span_notice("You start removing [target]'s [affected.surgery_organ] with \the [tool]."))
 	target.custom_pain("Someone's ripping out your [affected.surgery_organ]!", 1)
+	target.balloon_alert_to_viewers("Removing...")
 	..()
 
 /datum/surgery_step/internal/remove_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] has removed [target]'s [affected.surgery_organ] with \the [tool]."), \
 	span_notice("You have removed [target]'s [affected.surgery_organ] with \the [tool]."))
+	target.balloon_alert_to_viewers("Success")
 
 	//Extract the organ!
 	if(affected.surgery_organ)
@@ -320,6 +316,7 @@
 /datum/surgery_step/internal/remove_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, damaging the flesh in [target]'s [affected.display_name] with \the [tool]!"), \
 	span_warning("Your hand slips, damaging the flesh in [target]'s [affected.display_name] with \the [tool]!"))
+	target.balloon_alert_to_viewers("Slipped!")
 	affected.createwound(BRUISE, 20)
 	affected.update_wounds()
 	affected.surgery_organ = null
@@ -377,11 +374,13 @@
 	user.visible_message(span_notice("[user] starts transplanting \the [tool] into [target]'s [affected.display_name]."), \
 	span_notice("You start transplanting \the [tool] into [target]'s [affected.display_name]."))
 	target.custom_pain("Someone's rooting around in your [affected.display_name]!", 1)
+	target.balloon_alert_to_viewers("Transplanting...")
 	..()
 
 /datum/surgery_step/internal/replace_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] has transplanted \the [tool] into [target]'s [affected.display_name]."), \
 	span_notice("You have transplanted \the [tool] into [target]'s [affected.display_name]."))
+	target.balloon_alert_to_viewers("Success")
 	user.temporarilyRemoveItemFromInventory(tool)
 	var/obj/item/organ/O = tool
 
@@ -410,6 +409,7 @@
 /datum/surgery_step/internal/replace_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, damaging \the [tool]!"), \
 	span_warning("Your hand slips, damaging \the [tool]!"))
+	target.balloon_alert_to_viewers("Slipped!")
 	var/obj/item/organ/I = tool
 	if(istype(I))
 		I.organ_data.take_damage(rand(3, 5), 0)
@@ -462,11 +462,13 @@
 	user.visible_message(span_notice("[user] begins reattaching [target]'s [affected.surgery_organ] with \the [tool]."), \
 	span_notice("You start reattaching [target]'s [affected.surgery_organ] with \the [tool]."))
 	target.custom_pain("Someone's digging needles into your [affected.surgery_organ]!", 1)
+	target.balloon_alert_to_viewers("Reattaching...")
 	..()
 
 /datum/surgery_step/internal/attach_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_notice("[user] has reattached [target]'s [affected.surgery_organ] with \the [tool].") , \
 	span_notice("You have reattached [target]'s [affected.surgery_organ] with \the [tool]."))
+	target.balloon_alert_to_viewers("Success")
 
 	var/datum/internal_organ/I = target.internal_organs_by_name[affected.surgery_organ]
 	I.cut_away = FALSE
@@ -475,6 +477,7 @@
 /datum/surgery_step/internal/attach_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, damaging the flesh in [target]'s [affected.display_name] with \the [tool]!"), \
 	span_warning("Your hand slips, damaging the flesh in [target]'s [affected.display_name] with \the [tool]!"))
+	target.balloon_alert_to_viewers("Slipped!")
 	affected.createwound(BRUISE, 20)
 	affected.update_wounds()
 	affected.surgery_organ = null

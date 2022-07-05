@@ -136,7 +136,7 @@
 /mob/living/carbon/human/proc/has_working_organs()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
-	if(!heart || heart.is_broken() || !has_brain())
+	if(!heart || heart.organ_status == ORGAN_BROKEN || !has_brain())
 		return FALSE
 
 	return TRUE
@@ -181,7 +181,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is braindead. No remedy possible."))
 		return
 
-	if(!H.has_working_organs() && !isrobot(H))
+	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 
@@ -228,7 +228,7 @@
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient's brain has decayed too much. No remedy possible."))
 		return
 
-	if(!H.has_working_organs() && !isrobot(H))
+	if(!H.has_working_organs() && !(H.species.species_flags & ROBOTIC_LIMBS))
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Defibrillation failed. Patient's organs are too damaged to sustain life. Deliver patient to a MD for surgical intervention."))
 		return
 

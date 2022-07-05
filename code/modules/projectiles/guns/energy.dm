@@ -93,7 +93,7 @@
 	muzzle_flash_color = COLOR_LASER_RED
 
 	fire_delay = 3
-	accuracy_mult = 1.5
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 80 //Heavy and unwieldy
 	damage_falloff_mult = 0.5
@@ -142,7 +142,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/M43
 	name = "\improper M43 Sunfury Lasgun MK1"
-	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. It was the standard lasrifle for TGMC soldiers until it was replaced by the PP-73, due to its extremely modular lens system."
+	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. It was the standard lasrifle for TGMC soldiers until it was replaced by the LR-73, due to its extremely modular lens system."
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon_state = "m43"
 	item_state = "m43"
@@ -237,7 +237,7 @@
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
-	name = "\improper PP-73 lasrifle MK2"
+	name = "\improper LR-73 lasrifle MK2"
 	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx73"
@@ -430,13 +430,15 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.2
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_rifle_mode/standard,
 		"Overcharge" = /datum/lasrifle/base/energy_rifle_mode/overcharge,
 	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/reddot, /obj/item/weapon/gun/flamer/mini_flamer)
 
 /datum/lasrifle/base/energy_rifle_mode/standard
 	rounds_per_shot = 12
@@ -491,10 +493,10 @@
 
 	akimbo_additional_delay = 0.9
 	wield_delay = 0.6 SECONDS
-	scatter = 3
+	scatter = 2
 	scatter_unwielded = 4
 	fire_delay = 0.15 SECONDS
-	accuracy_mult = 1.1
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
 	damage_falloff_mult = 0.2
 	mode_list = list(
@@ -502,6 +504,9 @@
 		"Heat" = /datum/lasrifle/base/energy_pistol_mode/heat,
 		"Disabler" = /datum/lasrifle/base/energy_pistol_mode/disabler,
 	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/tactical
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 /datum/lasrifle/base/energy_pistol_mode/standard
 	rounds_per_shot = 20
@@ -569,20 +574,23 @@
 
 	aim_slowdown = 0.2
 	wield_delay = 0.3 SECONDS
-	scatter = 2
+	scatter = 1
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	burst_delay = 0.15 SECONDS
-	accuracy_mult = 1.1
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.65
 	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
 	mode_list = list(
 		"Auto burst standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard,
 		"Automatic standard" = /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard/automatic,
 		"Spread" = /datum/lasrifle/base/energy_carbine_mode/base/spread,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/weapon/gun/grenade_launcher/underslung,)
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
 	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
@@ -652,8 +660,9 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 1 SECONDS
-	accuracy_mult = 1.35
+	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.5
+	movement_acc_penalty_mult = 6
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
 		"Heat" = /datum/lasrifle/base/energy_sniper_mode/heat,
@@ -716,7 +725,7 @@
 	wield_delay = 1.5 SECONDS
 	scatter = 1
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 0.95
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
 	damage_falloff_mult = 0.3
@@ -774,7 +783,6 @@
 	scatter = 0
 	scatter_unwielded = 10
 	fire_delay = 0.5 SECONDS
-	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	damage_falloff_mult = 0.3
 	mode_list = list(
@@ -822,7 +830,7 @@
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
 	accuracy_mult = 1
-	scatter = 0
+	scatter = -2
 	recoil = 0
 	accuracy_mult_unwielded = 0.5
 	scatter_unwielded = 25
@@ -856,17 +864,24 @@
 	)
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 13,"rail_x" = 6, "rail_y" = 20, "under_x" = 26, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
-	scatter = 4
-	accuracy_mult_unwielded = 0.7
+	scatter = 3
+	accuracy_mult_unwielded = 0.9
 	scatter_unwielded = 10
 	recoil_unwielded = 1
 	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 4
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/gyro)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/gyro)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
 	name = "\improper volkite caliver"
@@ -911,6 +926,9 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin
 	name = "\improper volkite culverin"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The culverin is the largest man portable example of volkite weaponry, and can lay down a staggering torrent of fire due to its linked back-mounted powerpack. Drag click the powerpack to the gun to load."
@@ -931,10 +949,11 @@
 	aim_slowdown = 1
 	wield_delay	= 1.2 SECONDS
 	fire_delay = 0.15 SECONDS
-	scatter = 4
+	scatter = 3
 	accuracy_mult_unwielded = 0.4
 	scatter_unwielded = 35
 	recoil_unwielded = 5
+	movement_acc_penalty_mult = 6
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)

@@ -226,8 +226,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/space_port)
 "fD" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
@@ -1039,6 +1039,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
+"Bb" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "Br" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
@@ -2166,10 +2170,10 @@ Vd
 Vd
 Vd
 Vd
-NH
+sk
 kz
-zB
-LF
+fQ
+Xr
 "}
 (6,1,1) = {"
 LF
@@ -2206,7 +2210,7 @@ Vd
 Vd
 eE
 Vd
-sk
+NH
 HU
 Id
 Xr
@@ -2366,7 +2370,7 @@ Vd
 Vd
 Vd
 Vd
-sk
+NH
 HU
 fQ
 Xr
@@ -2408,8 +2412,8 @@ eE
 Vd
 NH
 kz
-zB
-LF
+fQ
+Xr
 "}
 (12,1,1) = {"
 LF
@@ -2446,9 +2450,9 @@ Vd
 Vd
 Vd
 Vd
-Vd
+Bb
 kz
-zB
+fQ
 LF
 "}
 (13,1,1) = {"

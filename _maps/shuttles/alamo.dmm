@@ -183,9 +183,7 @@
 /area/shuttle/dropship/alamo)
 "aJ" = (
 /obj/item/radio/intercom/dropship,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin6"
-	},
+/turf/open/shuttle/dropship/six,
 /area/shuttle/dropship/alamo)
 "aK" = (
 /turf/open/shuttle/dropship/five,
@@ -362,9 +360,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "bo" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin4"
-	},
+/turf/open/shuttle/dropship/four,
 /area/shuttle/dropship/alamo)
 "bp" = (
 /obj/item/radio/intercom/dropship,

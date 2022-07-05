@@ -103,7 +103,7 @@
 
 	for(var/hivenum in GLOB.hive_datums)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenum]
-		hive.setup_upgrades()
+		hive.purchases.setup_upgrades()
 	return TRUE
 
 
@@ -451,6 +451,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		dat += "[GLOB.round_statistics.larva_from_marine_spawning] larvas came from marine spawning."
 	if(GLOB.round_statistics.larva_from_siloing_body)
 		dat += "[GLOB.round_statistics.larva_from_siloing_body] larvas came from siloing bodies."
+	if(GLOB.round_statistics.points_from_research)
+		dat += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
 	if(length(GLOB.round_statistics.req_items_produced))
 		var/produced = "Requisitions produced: "
 		for(var/atom/movable/path AS in GLOB.round_statistics.req_items_produced)
@@ -476,7 +478,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/mob/living/carbon/human/H = i
 			if(!istype(H)) // Small fix?
 				continue
-			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client && H.afk_status == MOB_DISCONNECTED)
 				continue
 			if(H.status_flags & XENO_HOST)
 				continue
@@ -493,7 +495,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			var/mob/living/carbon/xenomorph/X = i
 			if(!istype(X)) // Small fix?
 				continue
-			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
+			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client && X.afk_status == MOB_DISCONNECTED)
 				continue
 			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
 				continue

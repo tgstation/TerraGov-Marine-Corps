@@ -34,7 +34,7 @@
 	head = /obj/item/clothing/head/frelancer
 	suit_store = /obj/item/weapon/gun/rifle/m16/freelancer
 	r_store = /obj/item/storage/pouch/shotgun
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -153,7 +153,7 @@
 	jobtype = /datum/job/freelancer/medic
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/combatLifesaver
+	belt = /obj/item/storage/belt/lifesaver/full
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/rebreather/scarf/freelancer
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer
@@ -163,7 +163,7 @@
 	head = /obj/item/clothing/head/frelancer
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/famas/freelancermedic
-	r_store = /obj/item/storage/pouch/autoinjector/advanced/full
+	r_store = /obj/item/storage/pouch/medical_injectors/medic
 	l_store = /obj/item/storage/pouch/magazine/large
 	back = /obj/item/storage/backpack/lightpack
 
@@ -213,7 +213,7 @@
 	head = /obj/item/clothing/head/frelancer
 	suit_store = /obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
 	r_store = /obj/item/storage/pouch/grenade
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -344,7 +344,7 @@
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/m16/freelancer
 	r_store = /obj/item/storage/pouch/shotgun
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/freelancer/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -374,7 +374,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/leader/two
 	suit_store = /obj/item/weapon/gun/rifle/tx11/freelancertwo
 	r_store = /obj/item/storage/pouch/grenade
-	l_store = /obj/item/storage/pouch/firstaid/full
+	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/freelancer/leader/one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

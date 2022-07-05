@@ -180,6 +180,7 @@
 	icon_state = "TGMC1"
 	density = FALSE
 	resistance_flags = UNACIDABLE
+	layer = ABOVE_TURF_LAYER
 
 /obj/structure/prop/mainship/name_stencil/Initialize()
 	. = ..()
@@ -288,6 +289,15 @@
 	name = "\improper Command Airlock"
 	icon_state = "command_locked"
 
+/obj/structure/prop/mainship/telecomms
+	name = "\improper Command Airlock"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "broadcaster_send"
+
+/obj/structure/prop/mainship/telecomms/bus
+	name = "\improper Command Airlock"
+	icon = 'icons/obj/stationobjs.dmi'
+	icon_state = "bus"
 
 /obj/structure/prop/mainship/suit_storage_prop
 	name = "Suit Storage Unit"
@@ -334,6 +344,19 @@
 	desc = "A ferocious, fang-bearing creature that resembles a fish."
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "carpprop"
+	density = TRUE
+
+/obj/structure/prop/templedoor
+	name = "Strange Temple"
+	icon = 'icons/obj/doors/Doorsand.dmi'
+	icon_state = "door_open"
+	density = FALSE
+
+/obj/structure/prop/oresilo
+	name = "ore silo"
+	desc = "An all-in-one bluespace storage and transmission system for the colony's mineral distribution needs. This one appears to be deactivated."
+	icon = 'icons/obj/machines/mining_machines.dmi'
+	icon_state = "silo"
 	density = TRUE
 
 /obj/structure/prop/mainship/propcarp/Initialize(mapload) //slightly randomize carp to simulate life
@@ -453,6 +476,40 @@
 	desc = "An AI Module for programming laws to an AI."
 	icon_state = "std_mod"
 
+/obj/item/prop/organ
+	name = "organ"
+	desc = "It looks like it probably just plopped out. It's too decayed to be reinserted in a patient."
+	icon = 'icons/obj/items/organs.dmi'
+	icon_state = "heart"
+
+/obj/item/prop/organ/heart
+	name = "heart"
+	icon_state = "heart-off"
+
+/obj/item/prop/organ/brain
+	name = "brain"
+	icon_state = "brain1"
+
+/obj/item/prop/organ/appendix
+	name = "appendix"
+	icon_state = "appendix"
+
+/obj/item/prop/organ/lungs
+	name = "lungs"
+	icon_state = "lungs"
+
+/obj/item/prop/organ/kidneys
+	name = "kidneys"
+	icon_state = "kidneys"
+
+/obj/item/prop/organ/eyes
+	name = "eyes"
+	icon_state = "eyes"
+
+/obj/item/prop/organ/liver
+	name = "liver"
+	icon_state = "liver"
+
 /obj/item/prop/aimodule/Initialize(mapload)
 	. = ..()
 	name = pick("'Safeguard' AI Module'",
@@ -489,6 +546,7 @@
 	name = "\improper Broken vendor"
 	icon = 'icons/Marine/mainship_props.dmi'
 	desc = "The insides of this vendor are visible and rusted through, you get the feeling there's no fixing this machine."
+	density = TRUE
 
 /obj/structure/prop/brokenvendor/brokenweaponsrack
 	icon_state = "marinearmory-broken"

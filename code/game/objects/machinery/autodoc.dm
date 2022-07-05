@@ -142,7 +142,7 @@
 			blood_transfer = 0
 			say("Blood transfer complete.")
 	if(heal_brute)
-		if(occupant.getexternalBruteLoss() > 0)
+		if(occupant.getBruteLoss() > 0)
 			occupant.heal_limb_damage(3, 0)
 			updating_health = TRUE
 			if(prob(10))
@@ -216,18 +216,14 @@
 	var/surgery_list = list()
 	for(var/datum/limb/L in M.limbs)
 		if(L)
-			for(var/datum/wound/W in L.wounds)
-				if(W.internal)
-					surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
-					break
+			if(L.wounds.len)
+				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 
 			var/organdamagesurgery = 0
 			for(var/datum/internal_organ/I in L.internal_organs)
 				if(I.robotic == ORGAN_ASSISTED||I.robotic == ORGAN_ROBOT)
 					// we can't deal with these
 					continue
-				if(I.germ_level > 1)
-					surgery_list += create_autodoc_surgery(L,ORGAN_SURGERY,ADSURGERY_GERMS,0,I)
 				if(I.damage > 0)
 					if(I.organ_id == ORGAN_EYES) // treat eye surgery differently
 						continue
@@ -383,7 +379,7 @@
 						if(!surgery)
 							break
 						if(istype(S.organ_ref,/datum/internal_organ))
-							S.organ_ref.rejuvenate(TRUE)
+							S.organ_ref.heal_organ_damage(S.organ_ref.damage)
 						else
 							say("Organ is missing.")
 
@@ -427,7 +423,7 @@
 									break
 								occupant.disabilities &= ~NEARSIGHTED
 								occupant.disabilities &= ~BLIND
-								E.damage = 0
+								E.heal_organ_damage(E.damage)
 								E.eye_surgery_stage = 0
 
 
@@ -444,9 +440,8 @@
 						for(var/datum/wound/W in S.limb_ref.wounds)
 							if(!surgery)
 								break
-							if(W.internal)
-								sleep(FIXVEIN_MAX_DURATION*surgery_mod)
-								S.limb_ref.wounds -= W
+							sleep(FIXVEIN_MAX_DURATION*surgery_mod)
+							qdel(W)
 						if(!surgery)
 							break
 						close_incision(occupant, S.limb_ref)
@@ -1234,13 +1229,9 @@
 		if(href_list["internal"])
 			for(var/i in connected.occupant.limbs)
 				var/datum/limb/L = i
-				for(var/x in L.wounds)
-					var/datum/wound/W = x
-					if(!W.internal)
-						continue
+				if(L.wounds.len)
 					N.fields["autodoc_manual"] += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_INTERNAL)
 					needed++
-					break
 			if(!needed)
 				N.fields["autodoc_manual"] += create_autodoc_surgery(null,LIMB_SURGERY,ADSURGERY_INTERNAL,1)
 

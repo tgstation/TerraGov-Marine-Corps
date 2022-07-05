@@ -10,8 +10,7 @@
 /area/bigredv2/outside/se)
 "s" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/se)
 "t" = (
@@ -22,8 +21,7 @@
 /turf/closed/wall,
 /area/bigredv2/caves/east)
 "D" = (
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/se)
 "E" = (
@@ -34,8 +32,7 @@
 /area/bigredv2/caves/rock)
 "V" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/se)
 

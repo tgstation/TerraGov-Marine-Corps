@@ -98,6 +98,12 @@
 		new /obj/item/frame/table/gambling(get_turf(src))
 		qdel(src)
 
+/obj/item/frame/table/fancywood
+	icon_state = "fwood_tableparts"
+
+/obj/item/frame/table/rusticwood
+	icon_state = "pwood_tableparts"
+
 /*
 * Gambling Table Parts
 */

@@ -125,7 +125,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/marine
 	name = "\improper Squad Preparations"
 	icon = 'icons/obj/doors/mainship/2x1prepdoor.dmi'
-	req_access = list(ACCESS_MARINE_PREP)
 	opacity = FALSE
 	glass = TRUE
 

@@ -16,6 +16,9 @@
 /obj/item/clothing/under/marine/standard
 	flags_item_map_variant = null
 
+/obj/item/clothing/under/marine/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
 // camo things stuff yeah!
 
 /obj/item/clothing/under/marine/camo
@@ -38,12 +41,16 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_medic"
 
+/obj/item/clothing/under/marine/corpsman/corpman_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
 /obj/item/clothing/under/marine/engineer
 	name = "\improper TGMC engineer fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat engineer fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_engineer"
 
+/obj/item/clothing/under/marine/engineer/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
 
 /obj/item/clothing/under/marine/jaeger
 	name = "\improper TGMC jaeger undersuit"
@@ -167,7 +174,7 @@
 
 /obj/item/clothing/under/marine/officer/researcher
 	name = "researcher clothes"
-	desc = "A simple set of kevlar-weaved, hazmat-tested, EMF-augmented clothing worn by marine researchers. You suspect it's not as robust-proof as advertised."
+	desc = "A set of formal, yet comfy, clothing worn by scholars and researchers alike."
 	icon_state = "research_jumpsuit"
 
 /obj/item/clothing/under/whites
@@ -367,19 +374,15 @@
 	icon_state = "rdalt"
 	adjustment_variants = list()
 
-/obj/item/clothing/under/rank/marine_cmo
-	name = "marine chief medical officer jumpsuit"
-	desc = "It's made of a special fiber that provides minor protection against biohazards."
-	icon_state = "marine_cmo"
-	adjustment_variants = list(
-		"Half" = "_h",
-	)
 /obj/item/clothing/under/som
 	name = "\improper SoM uniform"
 	desc = "A heavily modified mining uniform based off the ones used by mining colonies."
 	icon_state = "som_uniform"
 	item_state = "som_uniform"
 	has_sensor = FALSE
+
+/obj/item/clothing/under/som/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
 
 /obj/item/clothing/under/som/medic
@@ -389,7 +392,11 @@
 	item_state = "som_uniform_medic"
 
 /obj/item/clothing/under/som/medic/vest
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest/medic/som)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
+//to be replaced
+/obj/item/clothing/under/som/medic/white_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest/som)
 
 /obj/item/clothing/under/som/veteran
 	name = "\improper SoM veteran uniform"
@@ -397,6 +404,10 @@
 	icon_state = "som_uniform_veteran"
 	item_state = "som_uniform_veteran"
 
+/obj/item/clothing/under/som/veteran/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
+
+//below to be replaced
 /obj/item/clothing/under/som/veteran/highpower
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/highpower)
 
@@ -412,6 +423,10 @@
 	icon_state = "som_uniform_leader"
 	item_state = "som_uniform_leader"
 
+/obj/item/clothing/under/som/leader/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
+
+//to be replaced
 /obj/item/clothing/under/som/leader/highpower
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/highpower)
 

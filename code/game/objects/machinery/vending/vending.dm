@@ -644,11 +644,16 @@
 			if(stack.amount != initial(stack.amount))
 				to_chat(user, span_warning("[stack] has been partially used. You must replace the missing amount before you can restock it."))
 				return
+		else if(istype(item_to_stock, /obj/item/reagent_containers))
+			var/obj/item/reagent_containers/reagent_container = item_to_stock
+			if(!reagent_container.free_refills && !reagent_container.has_initial_reagents())
+				to_chat(user, span_warning("\The [reagent_container] is missing some of its reagents. You must refill it before you can restock it."))
+				return
 
 		if(item_to_stock.loc == user) //Inside the mob's inventory
 			if(item_to_stock.flags_item & WIELDED)
 				item_to_stock.unwield(user)
-			user.temporarilyRemoveItemFromInventory(item_to_stock)
+			user.transferItemToLoc(item_to_stock, src)
 
 		if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 			var/obj/item/storage/S = item_to_stock.loc

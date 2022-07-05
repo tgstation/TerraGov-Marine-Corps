@@ -14,7 +14,6 @@
 *		M5 survival knife
 *		Upp Type 30 survival knife
 *		M11 throwing knife
-*		Unathi duelling knife
 *		Chainsword
 */
 
@@ -315,16 +314,6 @@
 			continue
 		break
 
-/obj/item/weapon/unathiknife
-	name = "duelling knife"
-	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
-	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "unathiknife"
-	attack_verb = list("ripped", "torn", "cut")
-
-/obj/item/weapon/unathiknife/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
-	return ..()
 
 /obj/item/weapon/chainsword
 	name = "chainsword"

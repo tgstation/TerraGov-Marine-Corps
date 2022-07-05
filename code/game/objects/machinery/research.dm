@@ -107,6 +107,7 @@
 /obj/machinery/researchcomp/ui_static_data(mob/user)
 	. = ..()
 
+	.["acquired_points"] = GLOB.round_statistics.points_from_research
 	.["anchored"] = anchored
 	.["researching"] = researching
 	if(!init_resource)
@@ -308,6 +309,7 @@
 
 /obj/item/research_product/supply_export(faction_selling)
 	SSpoints.supply_points[faction_selling] += export_points
+	GLOB.round_statistics.points_from_research += export_points
 	return new /datum/export_report(export_points, name, faction_selling)
 
 /obj/item/research_product/money/examine(user)

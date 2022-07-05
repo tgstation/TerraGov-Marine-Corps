@@ -34,7 +34,7 @@
 	var/obj/parent_object = parent
 	if(length(starting_attachments) && parent_object.loc) //Attaches starting attachments if the object is not instantiated in nullspace. If it is created in null space, such as in a loadout vendor. It wont create default attachments.
 		for(var/starting_attachment_type in starting_attachments)
-			attach_without_user(attachment = new starting_attachment_type())
+			attach_without_user(attachment = new starting_attachment_type(parent_object))
 
 	update_parent_overlay()
 
@@ -74,11 +74,17 @@
 		QDEL_NULL(attachment)
 		return
 
+	var/obj/item/old_attachment = slots[slot]
+
 	finish_handle_attachment(attachment, attachment_data, attacher)
 
 	if(!attacher)
 		return
 	attacher.temporarilyRemoveItemFromInventory(attachment)
+
+	//Re-try putting old attachment into hands, now that we've cleared them
+	if(old_attachment)
+		attacher.put_in_hands(old_attachment)
 
 
 ///Finishes setting up the attachment. This is where the attachment actually attaches. This can be called directly to bypass any checks to directly attach an object.
@@ -322,7 +328,7 @@
 		parent_item.overlays += overlay
 
 ///Updates the mob sprite of the attachment.
-/datum/component/attachment_handler/proc/apply_custom(datum/source, image/standing)
+/datum/component/attachment_handler/proc/apply_custom(datum/source, mutable_appearance/standing)
 	SIGNAL_HANDLER
 	var/obj/item/parent_item = parent
 	if(!ismob(parent_item.loc))
@@ -349,7 +355,7 @@
 			else
 				icon = attachment_data[OVERLAY_ICON]
 				suffix = attachment.icon == icon ? "_a" : ""
-		var/image/new_overlay = image(icon, wearer, icon_state + suffix, -attachment_data[ATTACHMENT_LAYER])
+		var/mutable_appearance/new_overlay = mutable_appearance(icon, icon_state + suffix, -attachment_data[ATTACHMENT_LAYER])
 		if(CHECK_BITFIELD(attachment_data[FLAGS_ATTACH_FEATURES], ATTACH_SAME_ICON))
 			new_overlay.overlays += attachment.overlays
 		if(attachment_data[MOB_PIXEL_SHIFT_X])

@@ -40,12 +40,6 @@
 	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 
-/datum/keybinding/xeno/secrete_resin_silo
-	name = "secrete_resin_silo"
-	full_name = "Secrete Resin Silo"
-	description = "Builds a resin silo."
-	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
-
 /datum/keybinding/xeno/emit_recovery
 	name = "emit_recovery"
 	full_name = "Emit Recovery Pheromones"
@@ -365,17 +359,17 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
+/datum/keybinding/xeno/swap
+	name = "swap"
+	full_name = "Hunter: Swap"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_SWAP
+
 /datum/keybinding/xeno/mirage
 	name = "mirage"
 	full_name = "Hunter: Mirage"
 	description = "Creates multiple mirror images of the xeno."
 	keybind_signal = COMSIG_XENOABILITY_MIRAGE
-
-/datum/keybinding/xeno/haunt
-	name = "impair senses"
-	full_name = "Hunter: Silence"
-	description = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds."
-	keybind_signal = COMSIG_XENOABILITY_HAUNT
 
 /datum/keybinding/xeno/psychic_whisper
 	name = "psychic_whisper"
@@ -431,12 +425,6 @@
 	full_name = "Queen: Screech"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
-
-/datum/keybinding/xeno/watch_xeno
-	name = "watch_xeno"
-	full_name = "Queen: Watch Xeno"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_WATCH_XENO
 
 /datum/keybinding/xeno/toggle_queen_zoom
 	name = "toggle_queen_zoom"

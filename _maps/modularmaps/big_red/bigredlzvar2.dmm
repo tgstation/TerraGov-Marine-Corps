@@ -1314,6 +1314,10 @@
 /obj/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
+"Jc" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "Jo" = (
 /obj/structure/cargo_container/red{
 	dir = 4
@@ -1377,8 +1381,8 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "Lr" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
@@ -1640,7 +1644,6 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "Sf" = (
-/obj/structure/sign/safety/hazard,
 /obj/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
@@ -1648,6 +1651,10 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"Sm" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
 "Sw" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/marshal_office)
@@ -2102,10 +2109,10 @@ gM
 gM
 gM
 gM
-qF
+Sm
 Ei
-Se
-lw
+qX
+zH
 "}
 (6,1,1) = {"
 lw
@@ -2145,7 +2152,7 @@ gM
 Sf
 Ei
 ie
-IM
+zH
 "}
 (7,1,1) = {"
 lw
@@ -2265,7 +2272,7 @@ gM
 qF
 Ei
 qX
-IM
+zH
 "}
 (10,1,1) = {"
 lw
@@ -2344,8 +2351,8 @@ RI
 gM
 qF
 Ei
-Se
-lw
+qX
+zH
 "}
 (12,1,1) = {"
 lw
@@ -2382,9 +2389,9 @@ gM
 gM
 gM
 gM
-gM
+Jc
 Ei
-Se
+qX
 lw
 "}
 (13,1,1) = {"

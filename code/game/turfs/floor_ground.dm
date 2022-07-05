@@ -198,6 +198,9 @@
 	icon = 'icons/turf/catwalks.dmi'
 	icon_state = "catwalk-159"
 
+/turf/open/floor/plating/ground/desertdam/grate/alternate
+	icon_state = "catwalk-255"
+
 //desert floor
 /turf/open/floor/plating/ground/desertdam/desert
 	name = "desert"
@@ -228,13 +231,37 @@
 	name = "concrete"
 	icon_state = "cement_sunbleached5"
 
-/turf/open/floor/plating/ground/desertdam/asphalt/corner
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside
 	name = "asphalt"
-	icon_state = "sunbleached_asphalt_corner"
+	icon_state = "cement_sunbleached_twoside"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/threeside
+	name = "asphalt"
+	icon_state = "cement_sunbleached_threeside"
 
 /turf/open/floor/plating/ground/desertdam/asphalt/edge
 	name = "asphalt"
-	icon_state = "sunbleached_asphalt_edge"
+	icon_state = "cement_sunbleached_edge"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/open
+	name = "asphalt"
+	icon_state = "cement_sunbleached_open"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/tile
+	name = "asphalt"
+	icon_state = "tile"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/edge/regular
+	name = "asphalt"
+	icon_state = "cement_edge"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/twoside/regular
+	name = "asphalt"
+	icon_state = "cement_twoside"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular
+	name = "asphalt"
+	icon_state = "cement_threeside"
 
 
 //CAVE

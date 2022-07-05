@@ -14,6 +14,8 @@
 	resistance_flags = XENO_DAMAGEABLE
 	hit_sound = 'sound/effects/metalhit.ogg'
 	coverage = 10
+	//determines if we drop metal on deconstruction
+	var/dropmetal = TRUE
 	var/parts = /obj/item/frame/table
 	var/table_status = TABLE_STATUS_FIRM
 	var/sheet_type = /obj/item/stack/sheet/metal
@@ -23,6 +25,9 @@
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	max_integrity = 40
 
+/obj/structure/table/mainship/nometal
+	dropmetal = FALSE
+
 /obj/structure/table/deconstruct(disassembled)
 	if(disassembled)
 		new parts(loc)
@@ -30,7 +35,8 @@
 		if(reinforced)
 			if(prob(50))
 				new /obj/item/stack/rods(loc)
-		new sheet_type(src)
+		if(dropmetal)
+			new sheet_type(src)
 	return ..()
 
 /obj/structure/table/proc/update_adjacent(location = loc)
@@ -481,6 +487,25 @@
 	table_prefix = "wood"
 	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 20
+
+/obj/structure/table/fancywoodentable
+	name = "fancy wooden table"
+	desc = "An expensive fancy wood surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	icon_state = "fwoodtable"
+	parts = /obj/item/frame/table/fancywood
+
+/obj/structure/table/rusticwoodentable
+	name = "rustic wooden table"
+	desc = "A rustic wooden surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	icon_state = "pwoodtable"
+	parts = /obj/item/frame/table/rusticwood
+
+/obj/structure/table/black
+	name = "black metal table"
+	desc = "A sleek black metallic surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	icon_state = "blacktable"
+	parts = /obj/item/frame/table
+
 /*
 * Gambling tables
 */
@@ -538,23 +563,29 @@
 	if(table_status == TABLE_STATUS_FIRM)
 		user.visible_message(span_notice("[user] starts weakening [src]."),
 		span_notice("You start weakening [src]"))
+		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
 		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
+			cut_overlay(GLOB.welding_sparks)
 			return TRUE
 
 		user.visible_message(span_notice("[user] weakens [src]."),
 			span_notice("You weaken [src]"))
+		cut_overlay(GLOB.welding_sparks)
 		table_status = TABLE_STATUS_WEAKENED
 		return TRUE
 
 	user.visible_message(span_notice("[user] starts welding [src] back together."),
 		span_notice("You start welding [src] back together."))
+	add_overlay(GLOB.welding_sparks)
 	playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
 	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)) || !WT.remove_fuel(1, user))
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	user.visible_message(span_notice("[user] welds [src] back together."),
 		span_notice("You weld [src] back together."))
+	cut_overlay(GLOB.welding_sparks)
 	table_status = TABLE_STATUS_FIRM
 	return TRUE
 

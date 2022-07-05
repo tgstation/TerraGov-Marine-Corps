@@ -7733,11 +7733,6 @@
 /obj/structure/closet,
 /turf/open/floor/wood,
 /area/prison/chapel)
-"ayA" = (
-/obj/structure/closet,
-/obj/item/storage/bible/koran,
-/turf/open/floor/wood,
-/area/prison/chapel)
 "ayB" = (
 /obj/structure/closet,
 /obj/item/storage/bible,
@@ -23551,9 +23546,6 @@
 /obj/structure/bed,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/holding/holding1)
-"bua" = (
-/turf/open/floor/prison/bright_clean/two,
-/area/prison/holding/holding1)
 "bub" = (
 /obj/structure/bed/chair,
 /turf/open/floor/prison/bright_clean/two,
@@ -33965,7 +33957,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ccD" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
@@ -34029,7 +34021,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ccP" = (
 /obj/structure/cable,
@@ -35227,7 +35219,7 @@
 "cgp" = (
 /obj/structure/bed,
 /obj/machinery/alarm,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cgr" = (
 /obj/effect/decal/cleanable/blood,
@@ -35969,7 +35961,7 @@
 /obj/structure/closet/walllocker/emerglocker/full{
 	dir = 4
 	},
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ciN" = (
 /obj/structure/disposalpipe/segment,
@@ -36519,7 +36511,7 @@
 	},
 /obj/structure/closet/walllocker/emerglocker/full,
 /obj/item/weapon/gun/sentry/big_sentry/premade,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ckG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -37238,7 +37230,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cmG" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -37280,7 +37272,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/shuttle,
+/turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
 "cmN" = (
 /obj/structure/cable,
@@ -37382,7 +37374,7 @@
 	dir = 1
 	},
 /obj/structure/closet/walllocker/emerglocker/full,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cne" = (
 /obj/structure/bed/chair/office/dark{
@@ -38597,18 +38589,18 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/shuttle,
+/turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
 "crm" = (
 /obj/machinery/computer/communications/bee,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
-/turf/open/shuttle,
+/turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
 "crn" = (
 /obj/machinery/computer/communications/bee,
 /obj/structure/table/reinforced,
-/turf/open/shuttle,
+/turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
 "cro" = (
 /obj/structure/table/reinforced,
@@ -38616,7 +38608,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/shuttle,
+/turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
 "crp" = (
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -38740,16 +38732,16 @@
 /area/prison/pirate)
 "crM" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "crN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "crO" = (
 /obj/structure/bed,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "crP" = (
 /obj/item/radio/survivor,
@@ -38771,7 +38763,7 @@
 	id = "pirate_cargo";
 	name = "Cargo Door Control"
 	},
-/turf/open/shuttle,
+/turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
 "crT" = (
 /obj/structure/closet/crate/radiation,
@@ -38864,14 +38856,14 @@
 "csm" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "csn" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "csp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -38904,7 +38896,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/shuttle,
+/turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
 "csu" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -38913,7 +38905,7 @@
 /obj/machinery/door/airlock/centcom{
 	name = "Rocinante Bridge"
 	},
-/turf/open/shuttle,
+/turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
 "csv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -39022,13 +39014,13 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "csU" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Rocinante Captain's Quarters"
 	},
-/turf/open/shuttle,
+/turf/open/floor/prison/bluefloor,
 /area/prison/pirate)
 "csV" = (
 /obj/structure/closet/crate/medical,
@@ -39303,11 +39295,11 @@
 "ctD" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/donkpockets,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ctE" = (
 /obj/item/ammo_magazine/rifle/mpi_km,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ctF" = (
 /obj/structure/bed,
@@ -39315,11 +39307,11 @@
 	dir = 1
 	},
 /obj/item/weapon/gun/rifle/mpi_km,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ctG" = (
 /obj/structure/closet,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "ctH" = (
 /obj/machinery/light/small{
@@ -39422,14 +39414,14 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cuh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
 	},
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cui" = (
 /obj/structure/bed,
@@ -39738,7 +39730,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cvm" = (
 /turf/open/floor/prison/sterilewhite,
@@ -39758,7 +39750,7 @@
 	dir = 10
 	},
 /obj/item/ammo_magazine/rifle/mpi_km,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cvp" = (
 /obj/structure/table/reinforced,
@@ -40051,8 +40043,8 @@
 /turf/open/floor/freezer,
 /area/prison/pirate)
 "cwp" = (
-/obj/machinery/door/airlock{
-	name = "Toilet"
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Rocinante Storage/Medical"
 	},
 /turf/open/floor/freezer,
 /area/prison/pirate)
@@ -40080,7 +40072,7 @@
 	dir = 2;
 	name = "Rocinante Secondary Airlock"
 	},
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cwt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -40089,7 +40081,7 @@
 /obj/structure/table/reinforced/flipped{
 	dir = 4
 	},
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cwu" = (
 /obj/structure/cable,
@@ -41220,10 +41212,7 @@
 	},
 /area/prison/hangar/main)
 "dtT" = (
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
-	},
+/turf/open/floor/prison/bright_clean/two,
 /area/prison/holding/holding1)
 "duu" = (
 /obj/machinery/light{
@@ -46585,7 +46574,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "swo" = (
 /obj/structure/sink{
@@ -46689,7 +46678,7 @@
 /turf/open/floor/wood,
 /area/prison/quarters/research)
 "sHD" = (
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "sIj" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -47430,7 +47419,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/shuttle/blackfloor,
+/turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "uPA" = (
 /obj/structure/sink,
@@ -76543,7 +76532,7 @@ akK
 lXO
 akV
 axM
-ayA
+ayz
 ayD
 ayD
 ayD
@@ -93813,7 +93802,7 @@ buX
 bvV
 btZ
 buX
-bua
+dtT
 btZ
 btZ
 bue
@@ -94065,13 +94054,13 @@ vSz
 aVS
 uLs
 bsY
-bua
-bua
-bua
-bua
-bua
-bua
-bua
+dtT
+dtT
+dtT
+dtT
+dtT
+dtT
+dtT
 bAf
 bue
 bCI
@@ -94323,12 +94312,12 @@ aTF
 aTF
 aTF
 bub
-bua
-bua
+dtT
+dtT
 bwQ
 bwQ
 dtT
-bua
+dtT
 bAg
 bue
 bCH
@@ -94580,12 +94569,12 @@ iFG
 iFG
 aTF
 bub
-bua
-bua
+dtT
+dtT
 bwQ
 bwQ
-bua
-bua
+dtT
+dtT
 bAg
 bue
 bBC
@@ -94837,12 +94826,12 @@ aYu
 iFG
 aTF
 bub
-bua
-bua
+dtT
+dtT
 bwS
 bxu
-bua
-bua
+dtT
+dtT
 bAg
 bue
 bCH
@@ -95094,13 +95083,13 @@ aYu
 qFw
 aTF
 bjU
-bua
+dtT
 kpA
 bwT
 bwh
-bua
-bua
-bua
+dtT
+dtT
+dtT
 bue
 oAY
 bEA
@@ -95353,7 +95342,7 @@ aTF
 bNT
 bue
 bue
-bua
+dtT
 jRG
 bue
 bue
@@ -95867,7 +95856,7 @@ aTF
 bue
 bue
 bue
-bua
+dtT
 bxw
 bue
 bue
@@ -96122,12 +96111,12 @@ aYu
 iFG
 bts
 dCg
-bua
-bua
-bua
+dtT
+dtT
+dtT
 jRG
-bua
-bua
+dtT
+dtT
 bAi
 bBw
 oAY

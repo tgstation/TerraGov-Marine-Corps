@@ -13,7 +13,7 @@
 		return FALSE
 
 	//If we can find it for in a shared vendor, we buy it
-	for(var/type in GLOB.loadout_linked_vendor[seller.faction])
+	for(var/type in (GLOB.loadout_linked_vendor[seller.faction] + GLOB.loadout_linked_vendor[user.job.title]))
 		for(var/datum/vending_product/item_datum AS in GLOB.vending_records[type])
 			if(item_datum.product_path == item_to_buy_type && item_datum.amount != 0)
 				item_datum.amount--
@@ -174,3 +174,17 @@
 		next_loadout_data += loadouts_data[++i]
 		new_loadouts_data += list(next_loadout_data)
 	return new_loadouts_data
+
+///If the item is not a stack, return 1. If it is a stack, return the stack size
+/proc/get_item_stack_number(obj/item/I)
+	if(!istype(I, /obj/item/stack))
+		return 1
+	var/obj/item/stack/stack = I
+	return stack.amount
+
+///If the item representation is not a stack, return 1. Else, return the satck size
+/proc/get_item_stack_representation_amount(datum/item_representation/item_representation)
+	if(!istype(item_representation, /datum/item_representation/stack))
+		return 1
+	var/datum/item_representation/stack/stack = item_representation
+	return stack.amount

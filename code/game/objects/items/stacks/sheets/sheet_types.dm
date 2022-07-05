@@ -47,6 +47,14 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	null, \
 	))
 
+
+GLOBAL_LIST_INIT(metal_radial_images, list(
+	"recipes" = image('icons/Marine/barricades.dmi', icon_state = "plus"),
+	"barricade" = image('icons/Marine/barricades.dmi', icon_state = "metal_0"),
+	"razorwire" = image('icons/obj/structures/barbedwire.dmi', icon_state = "barbedwire_assembly"),
+	"barbedwire" = image('icons/Marine/marine-items.dmi', icon_state = "barbed_wire")
+	))
+
 /obj/item/stack/sheet/metal
 	name = "metal"
 	desc = "Sheets made out of metal. It has been dubbed Metal Sheets."
@@ -57,6 +65,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	throwforce = 14.0
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/metal
+	number_of_extra_variants = 3
 
 
 /obj/item/stack/sheet/metal/small_stack
@@ -74,13 +83,31 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	. = ..()
 	recipes = GLOB.metal_recipes
 
+/obj/item/stack/sheet/metal/select_radial(mob/user)
+	if(user.get_active_held_item() != src)
+		return
+	if(!can_interact(user))
+		return TRUE
+
+	add_fingerprint(usr, "topic")
+
+	var/choice = show_radial_menu(user, src, GLOB.metal_radial_images, require_near = TRUE)
+
+	switch (choice)
+		if("recipes")
+			return TRUE
+		if("barricade")
+			create_object(user, new/datum/stack_recipe("metal barricade", /obj/structure/barricade/metal, 4, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_METAL), 1)
+		if("barbedwire")
+			create_object(user, new/datum/stack_recipe("barbed wire", /obj/item/stack/barbed_wire, 2, 1, 20, time = 1 SECONDS, skill_req = SKILL_CONSTRUCTION_METAL), 1)
+		if("razorwire")
+			create_object(user, new/datum/stack_recipe("razor wire", /obj/item/stack/razorwire, 3, 1, 20, time = 5 SECONDS, skill_req = SKILL_CONSTRUCTION_METAL), 1)
+
+	return FALSE
+
 /*
 * Plasteel
 */
-GLOBAL_LIST_INIT(plasteel_recipes, list ( \
-	new/datum/stack_recipe("metal crate", /obj/structure/closet/crate, 5, time = 5 SECONDS, max_per_turf = STACK_RECIPE_ONE_PER_TILE), \
-	new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req =  SKILL_CONSTRUCTION_PLASTEEL)
-	))
 
 /obj/item/stack/sheet/plasteel
 	name = "plasteel"
@@ -93,11 +120,11 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	throwforce = 15.0
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/plasteel
+	number_of_extra_variants = 3
 
-
-/obj/item/stack/sheet/plasteel/Initialize(mapload, amount)
+/obj/item/stack/sheet/plasteel/attack_self(mob/user)
 	. = ..()
-	recipes = GLOB.plasteel_recipes
+	create_object(user, new/datum/stack_recipe("plasteel barricade", /obj/structure/barricade/plasteel, 5, time = 8 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req =  SKILL_CONSTRUCTION_PLASTEEL), 1)
 
 
 /obj/item/stack/sheet/plasteel/small_stack
@@ -132,7 +159,7 @@ GLOBAL_LIST_INIT(wood_recipes, list ( \
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
 	merge_type = /obj/item/stack/sheet/wood
-
+	number_of_extra_variants = 3
 
 /obj/item/stack/sheet/wood/large_stack
 	amount = 50
@@ -187,7 +214,7 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new/datum/stack_recipe("P-17 mag box", /obj/item/storage/box/visual/magazine/compact/standard_pocketpistol), \
 		new/datum/stack_recipe("88M4 mag box", /obj/item/storage/box/visual/magazine/compact/vp70), \
 		new/datum/stack_recipe("Derringer packet box", /obj/item/storage/box/visual/magazine/compact/derringer), \
-		new/datum/stack_recipe("SR-8 plasma cell box", /obj/item/storage/box/visual/magazine/compact/plasma_pistol), \
+		new/datum/stack_recipe("PP-7 plasma cell box", /obj/item/storage/box/visual/magazine/compact/plasma_pistol), \
 		)), \
 	new/datum/stack_recipe_list("smg boxes",list( \
 		new/datum/stack_recipe("SMG-90 mag box", /obj/item/storage/box/visual/magazine/compact/standard_smg), \
@@ -200,7 +227,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new/datum/stack_recipe("AR-18 mag box", /obj/item/storage/box/visual/magazine/compact/standard_carbine), \
 		new/datum/stack_recipe("AR-21 mag box", /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle), \
 		new/datum/stack_recipe("AR-11 mag box", /obj/item/storage/box/visual/magazine/compact/tx11), \
-		new/datum/stack_recipe("T-25 mag box", /obj/item/storage/box/visual/magazine/compact/standard_smartrifle), \
 		new/datum/stack_recipe("Martini Henry packet box", /obj/item/storage/box/visual/magazine/compact/martini), \
 		new/datum/stack_recipe("TE cell box", /obj/item/storage/box/visual/magazine/compact/lasrifle/marine), \
 		new/datum/stack_recipe("SH-15 mag box", /obj/item/storage/box/visual/magazine/compact/tx15), \
@@ -216,7 +242,6 @@ GLOBAL_LIST_INIT(cardboard_recipes, list ( \
 		new/datum/stack_recipe("MG-60 mag box", /obj/item/storage/box/visual/magazine/compact/standard_gpmg), \
 		new/datum/stack_recipe("MG-27 mag box", /obj/item/storage/box/visual/magazine/compact/standard_mmg), \
 		new/datum/stack_recipe("HMG-08 drum box", /obj/item/storage/box/visual/magazine/compact/heavymachinegun), \
-		new/datum/stack_recipe("T-29 drum box", /obj/item/storage/box/visual/magazine/compact/standard_smartmachinegun), \
 		)) \
 	))
 

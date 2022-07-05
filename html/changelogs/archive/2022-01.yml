@@ -13,7 +13,7 @@
 2022-01-02:
   novaepee:
   - rscadd: Queen gets neurotoxin sting.
-  - qol: PMC SG spawns with mag harness on T-29
+  - qol: PMC SG spawns with mag harness on SG-29
   - bugfix: Big Red LZ2 NOW doesn't let Alamo clip through wall.
 2022-01-04:
   BraveMole:
@@ -228,7 +228,7 @@
   - balance: neurotoxin no longer purges. Removed neuro sting from shrike, queen and
       drone.
   RenovatedAtol:
-  - rscadd: T-29 drums factory
+  - rscadd: SG-29 drums factory
   - rscadd: 'T-81 magazine factory tweak: moved around tx8 ammo factory recipe'
   - rscdel: old tx8 ammo recipe
   SplinterGP:

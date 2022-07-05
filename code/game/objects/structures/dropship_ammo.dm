@@ -274,18 +274,46 @@
 	name = "high-velocity 30mm ammo crate"
 	icon_state = "30mm_crate_hv"
 	desc = "A crate full of 30mm high-velocity bullets used on the dropship heavy guns."
-	travelling_time = 5 SECONDS
+	travelling_time = 3 SECONDS
 	point_cost = 150
 
-/obj/structure/ship_ammo/heavygun/railgun
+
+//railgun
+/obj/structure/ship_ammo/railgun
 	name = "Railgun Ammo"
-	desc = "This is not meant to exist"
+	desc = "This is not meant to exist."
+	icon_state = "30mm_crate_hv"
+	icon = 'icons/Marine/mainship_props.dmi'
+	equipment_type = /obj/structure/dropship_equipment/weapon/minirocket_pod
 	ammo_count = 400
 	max_ammo_count = 400
-	ammo_used_per_firing = 40
-	bullet_spread_range = 5
+	ammo_name = "railgun"
+	ammo_used_per_firing = 10
+	travelling_time = 0 SECONDS
+	transferable_ammo = TRUE
 	point_cost = 0
+	ammo_type = RAILGUN_AMMO
+	devastating_explosion_range = 0
+	heavy_explosion_range = 2
+	light_explosion_range = 4
+	prediction_type = CAS_AMMO_EXPLOSIVE
 
+/obj/structure/ship_ammo/railgun/detonate_on(turf/impact, attackdir = NORTH)
+	impact.ceiling_debris_check(2)
+	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
+	var/datum/effect_system/expl_particles/P = new
+	P.set_up(4, 0, impact)
+	P.start()
+	if(!ammo_count)
+		QDEL_IN(src, travelling_time) //deleted after last railgun has fired and impacted the ground.
+
+/obj/structure/ship_ammo/railgun/show_loaded_desc(mob/user)
+	if(ammo_count)
+		to_chat(user, "It's loaded with \a [src] containing [ammo_count] slug\s.")
+
+/obj/structure/ship_ammo/railgun/examine(mob/user)
+	. = ..()
+	. += "It has [ammo_count] slug\s."
 
 //laser battery
 
@@ -302,7 +330,7 @@
 	transferable_ammo = TRUE
 	ammo_used_per_firing = 10
 	warning_sound = 'sound/effects/nightvision.ogg'
-	point_cost = 150
+	point_cost = 85
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
 	var/laze_radius = 4
 	ammo_type = CAS_LASER_BATTERY
@@ -429,7 +457,7 @@
 	desc = "The SM-17 'Fatty', an experimental missile utilising a supercooled tanglefoot payload. Harmless to marines, but destroys resin walls around the impact site."
 	icon_state = "fatty"
 	ammo_id = "f"
-	point_cost = 200
+	point_cost = 150
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
@@ -591,13 +619,14 @@
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = RESIST_ALL
 	light_color = COLOR_VERY_SOFT_YELLOW
-	light_system = HYBRID_LIGHT
+	light_system = STATIC_LIGHT
+	light_range = 12
 	light_power = 8 //Magnesium/sodium fires (White star) really are bright
 
 /obj/effect/cas_flare/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
-	set_light(light_power)
+	set_light(light_range, light_power)
 	T.visible_message(span_warning("You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!"))
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
 	QDEL_IN(src, rand(70 SECONDS, 90 SECONDS)) // About the same burn time as a flare, considering it requires it's own CAS run.

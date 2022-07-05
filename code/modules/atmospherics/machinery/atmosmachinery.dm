@@ -37,6 +37,9 @@
 	var/pipe_state //icon_state as a pipe item
 	var/on = FALSE
 
+	///Whether we get pipenet vision while inside or just see normally.
+	var/can_see_pipes = TRUE
+
 /obj/machinery/atmospherics/examine(mob/user)
 	. = ..()
 	if(is_type_in_list(src, GLOB.ventcrawl_machinery) && isliving(user))
@@ -286,10 +289,8 @@
 				if(impassable)
 					return
 
-				var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
-				if(length(pipenetdiff))
-					user.update_pipe_vision(target_move)
 				user.forceMove(target_move)
+				user.update_pipe_vision()
 				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
 				var/silent_crawl = FALSE //Some creatures can move through the vents silently
 				if(isxeno(user))
@@ -312,11 +313,9 @@
 	return list()
 
 /obj/machinery/atmospherics/update_remote_sight(mob/user)
+	if(!can_see_pipes)
+		return
 	user.sight |= (SEE_TURFS|BLIND)
-
-//Used for certain children of obj/machinery/atmospherics to not show pipe vision when mob is inside it.
-/obj/machinery/atmospherics/proc/can_see_pipes()
-	return TRUE
 
 /obj/machinery/atmospherics/proc/update_layer()
 	layer = initial(layer) + (piping_layer - PIPING_LAYER_DEFAULT) * PIPING_LAYER_LCHANGE

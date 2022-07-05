@@ -30,9 +30,7 @@
 "bs" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/PMC,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/bigredv2/outside/general_offices)
 "bL" = (
 /obj/effect/ai_node,
@@ -48,13 +46,10 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
-	icon_state = "gib6"
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "cN" = (
 /obj/structure/dropship_piece/two/corner/frontleft,
@@ -64,16 +59,12 @@
 /area/bigredv2/outside/general_offices)
 "cZ" = (
 /obj/structure/computerframe,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "dv" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/effect/ai_node,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/bigredv2/outside/general_offices)
 "dE" = (
 /turf/closed/wall,
@@ -82,9 +73,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "dY" = (
-/obj/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
-	icon_state = "gib6"
 	},
 /obj/effect/ai_node,
 /turf/open/floor{
@@ -137,9 +127,7 @@
 /area/bigredv2/outside/general_offices)
 "fd" = (
 /obj/structure/bed/chair/dropship/passenger,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "ff" = (
 /obj/effect/landmark/lv624/fog_blocker,
@@ -259,9 +247,7 @@
 "jQ" = (
 /obj/structure/rack,
 /obj/item/restraints/handcuffs,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "kc" = (
 /obj/structure/bed,
@@ -280,13 +266,10 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "kB" = (
-/obj/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
-	icon_state = "gib6"
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/bigredv2/outside/general_offices)
 "kU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -345,9 +328,8 @@
 /area/bigredv2/outside/general_offices)
 "nm" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
-	icon_state = "gib6"
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
@@ -401,9 +383,7 @@
 "pR" = (
 /obj/machinery/washing_machine,
 /obj/item/clothing/under/darkred,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "pW" = (
 /turf/closed/shuttle/dropship2{
@@ -533,14 +513,11 @@
 	},
 /area/bigredv2/outside/general_offices)
 "uD" = (
-/obj/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
-	icon_state = "gib6"
 	},
 /obj/effect/ai_node,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/bigredv2/outside/general_offices)
 "uS" = (
 /obj/structure/cable,
@@ -617,9 +594,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "zM" = (
-/turf/open/shuttle/dropship{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/dropship/five,
 /area/bigredv2/outside/general_offices)
 "zP" = (
 /obj/structure/rack,
@@ -649,9 +624,7 @@
 /area/bigredv2/outside/general_offices)
 "Al" = (
 /obj/effect/ai_node,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "Ap" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -668,18 +641,14 @@
 /obj/effect/spawner/gibspawner/human,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/ai_node,
-/turf/open/shuttle/dropship{
-	icon_state = "floor8"
-	},
+/turf/open/shuttle/dropship/five,
 /area/bigredv2/outside/general_offices)
 "AE" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 4;
 	name = "\improper Dormitories Lavatory"
 	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "AW" = (
 /obj/effect/landmark/lv624/fog_blocker,
@@ -699,9 +668,7 @@
 /area/bigredv2/outside/general_offices)
 "BI" = (
 /obj/machinery/door/airlock/mainship/generic,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/bigredv2/outside/general_offices)
 "BM" = (
 /obj/effect/decal/cleanable/dirt,
@@ -715,9 +682,7 @@
 "Ct" = (
 /obj/machinery/washing_machine,
 /obj/item/clothing/under/brown,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "CJ" = (
 /turf/closed/shuttle/dropship2{
@@ -801,9 +766,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "FR" = (
 /turf/closed/shuttle/ert{
@@ -812,9 +775,7 @@
 	},
 /area/bigredv2/outside/general_offices)
 "FW" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/bigredv2/outside/general_offices)
 "FY" = (
 /obj/effect/landmark/weed_node,
@@ -822,9 +783,8 @@
 /area/bigredv2/outside/general_offices)
 "Gp" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
-	icon_state = "gib6"
 	},
 /turf/open/floor{
 	icon_state = "platingdmg1"
@@ -837,9 +797,7 @@
 /area/bigredv2/outside/hydroponics)
 "GA" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "GG" = (
 /turf/closed/mineral/bigred,
@@ -868,9 +826,7 @@
 "HD" = (
 /obj/structure/rack,
 /obj/effect/ai_node,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "HG" = (
 /obj/machinery/vending/cigarette/colony,
@@ -890,18 +846,15 @@
 /area/bigredv2/outside/general_offices)
 "Im" = (
 /obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/ds2,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "Ix" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/northeast)
 "Iy" = (
-/obj/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
-	icon_state = "gib6"
 	},
 /turf/open/floor{
 	icon_state = "wall_thermite"
@@ -914,9 +867,8 @@
 	},
 /area/bigredv2/outside/general_offices)
 "IC" = (
-/obj/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
-	icon_state = "gib6"
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
@@ -938,9 +890,8 @@
 	},
 /area/bigredv2/outside/ne)
 "JN" = (
-/obj/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
-	icon_state = "gib6"
 	},
 /turf/open/floor/plating{
 	icon_state = "panelscorched"
@@ -990,9 +941,7 @@
 /area/bigredv2/outside/hydroponics)
 "Mw" = (
 /obj/machinery/washing_machine,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "ML" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1035,9 +984,7 @@
 	icon_state = "u_psycopath_l"
 	},
 /obj/effect/ai_node,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/bigredv2/outside/general_offices)
 "OE" = (
 /obj/machinery/light{
@@ -1056,14 +1003,11 @@
 "PA" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/corpsespawner/PMC,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "PH" = (
-/obj/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
-	icon_state = "gib6"
 	},
 /turf/open/floor/plating{
 	dir = 8;
@@ -1076,18 +1020,14 @@
 	},
 /area/bigredv2/outside/general_offices)
 "Qq" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "Qv" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	name = "\improper Dormitories Bedroom"
 	},
-/turf/open/floor{
-	icon_state = "wood"
-	},
+/turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "QB" = (
 /turf/closed/wall,
@@ -1100,17 +1040,14 @@
 /area/bigredv2/outside/general_offices)
 "QS" = (
 /obj/effect/landmark/corpsespawner/PMC,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "RJ" = (
 /turf/closed/wall,
 /area/bigredv2/outside/general_offices)
 "Sd" = (
-/obj/effect/decal/cleanable/blood{
+/obj/effect/decal/cleanable/blood/six{
 	dir = 1;
-	icon_state = "gib6"
 	},
 /turf/open/floor/plating{
 	icon_state = "platingdmg3"
@@ -1125,9 +1062,7 @@
 "So" = (
 /obj/machinery/washing_machine,
 /obj/item/clothing/under/lightbrown,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "Su" = (
 /obj/structure/rack,
@@ -1139,9 +1074,7 @@
 /area/bigredv2/outside/general_offices)
 "Sw" = (
 /obj/item/clothing/under/darkred,
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "Th" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1196,9 +1129,7 @@
 "UK" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/remains,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "UP" = (
 /turf/open/floor{
@@ -1259,9 +1190,7 @@
 /area/bigredv2/outside/dorms)
 "Wp" = (
 /obj/structure/rack,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "Wv" = (
 /turf/closed/shuttle/dropship2{
@@ -1288,9 +1217,7 @@
 	},
 /area/bigredv2/outside/general_offices)
 "XT" = (
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "Yq" = (
 /obj/structure/barricade/wooden{

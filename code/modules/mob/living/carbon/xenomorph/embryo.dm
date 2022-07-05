@@ -206,8 +206,7 @@
 				O.take_damage(O.min_bruised_damage, TRUE)
 
 		var/datum/limb/chest = H.get_limb("chest")
-		var/datum/wound/internal_bleeding/I = new (15) //Apply internal bleeding to chest
-		chest.wounds += I
+		new /datum/wound/internal_bleeding(15, chest) //Apply internal bleeding to chest
 		chest.fracture()
 
 

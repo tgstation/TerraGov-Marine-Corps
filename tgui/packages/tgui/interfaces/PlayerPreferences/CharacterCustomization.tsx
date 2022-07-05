@@ -206,11 +206,6 @@ export const CharacterCustomization = (props, context) => {
                 value={'religion'}
                 action={'religion'}
               />
-              <SelectFieldPreference
-                label={'Corporate Relations'}
-                value={'nanotrasen_relation'}
-                action={'nanotrasen_relation'}
-              />
             </LabeledList>
           </Flex.Item>
         </Flex>

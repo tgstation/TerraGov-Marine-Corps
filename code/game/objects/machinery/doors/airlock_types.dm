@@ -7,11 +7,12 @@
 
 /obj/machinery/door/airlock/command
 	name = "\improper Command Airlock"
-	icon = 'icons/obj/doors/Doorcom.dmi'
+	icon = 'icons/obj/doors/mainship/comdoor.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 
 /obj/machinery/door/airlock/command/thunderdome
 	name = "\improper Thunderdome Administration"
+	icon = 'icons/obj/doors/mainship/comdoor.dmi'
 	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
 
 /obj/machinery/door/airlock/security
@@ -21,17 +22,17 @@
 
 /obj/machinery/door/airlock/engineering
 	name = "\improper Engineering Airlock"
-	icon = 'icons/obj/doors/Dooreng.dmi'
+	icon = 'icons/obj/doors/mainship/engidoor.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 
 /obj/machinery/door/airlock/medical
 	name = "\improper Medical Airlock"
-	icon = 'icons/obj/doors/Doormed.dmi'
+	icon = 'icons/obj/doors/mainship/medidoor.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_med
 
 /obj/machinery/door/airlock/maintenance
 	name = "\improper Maintenance Hatch"
-	icon = 'icons/obj/doors/Doormaint.dmi'
+	icon = 'icons/obj/doors/mainship/maintdoor.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_mai
 
 /obj/machinery/door/airlock/external
@@ -44,13 +45,13 @@
 
 /obj/machinery/door/airlock/glass
 	name = "\improper Glass Airlock"
-	icon = 'icons/obj/doors/Doorglass.dmi'
+	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
 	opacity = FALSE
 	glass = TRUE
 
 /obj/machinery/door/airlock/centcom
 	name = "\improper Airlock"
-	icon = 'icons/obj/doors/Doorele.dmi'
+	icon = 'icons/obj/doors/mainship/securedoor.dmi'
 	opacity = TRUE
 
 /obj/machinery/door/airlock/vault
@@ -61,13 +62,13 @@
 
 /obj/machinery/door/airlock/freezer
 	name = "\improper Freezer Airlock"
-	icon = 'icons/obj/doors/Doorfreezer.dmi'
+	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
 	opacity = TRUE
 	assembly_type = /obj/structure/door_assembly/door_assembly_fre
 
 /obj/machinery/door/airlock/hatch
 	name = "\improper Airtight Hatch"
-	icon = 'icons/obj/doors/Doorhatchele.dmi'
+	icon = 'icons/obj/doors/mainship/securedoor.dmi'
 	opacity = TRUE
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
 
@@ -76,27 +77,27 @@
 
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "\improper Maintenance Hatch"
-	icon = 'icons/obj/doors/Doorhatchmaint2.dmi'
+	icon = 'icons/obj/doors/mainship/maintdoor.dmi'
 	opacity = TRUE
 	assembly_type = /obj/structure/door_assembly/door_assembly_mhatch
 
 /obj/machinery/door/airlock/glass_command
 	name = "\improper Command Airlock"
-	icon = 'icons/obj/doors/Doorcomglass.dmi'
+	icon = 'icons/obj/doors/mainship/comdoor.dmi'
 	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 	glass = TRUE
 
 /obj/machinery/door/airlock/glass_engineering
 	name = "\improper Engineering Airlock"
-	icon = 'icons/obj/doors/Doorengglass.dmi'
+	icon = 'icons/obj/doors/mainship/engidoor.dmi'
 	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_eng
 	glass = TRUE
 
 /obj/machinery/door/airlock/glass_security
 	name = "\improper Security Airlock"
-	icon = 'icons/obj/doors/Doorsecglass.dmi'
+	icon = 'icons/obj/doors/Doorsec.dmi'
 	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
 	glass = TRUE

@@ -44,7 +44,7 @@
 			var/affecting = H.get_limb(ran_zone(null, 0))
 			if(!affecting) //Still nothing??
 				affecting = H.get_limb("chest") //Gotta have a torso?!
-			var/armor_block = H.run_armor_check(affecting, "melee")
+			var/armor_block = H.get_soft_armor("melee", affecting)
 			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
 			H.apply_damage(damage, STAMINA, updating_health = TRUE) //...But some sweet armour ignoring Stamina
 			H.Paralyze(5) //trip and go
@@ -362,7 +362,7 @@
 
 	X.do_jitter_animation(1000)
 	X.set_sunder(0)
-	X.heal_overall_damage(25, 25, TRUE)
+	X.heal_overall_damage(25, 25, updating_health = TRUE)
 	add_cooldown()
 	return succeed_activate()
 
@@ -426,7 +426,7 @@
 		var/affecting = slapped.get_limb(ran_zone(null, 0))
 		if(!affecting)
 			affecting = slapped.get_limb("chest")
-		var/armor_block = slapped.run_armor_check(affecting, "melee")
+		var/armor_block = slapped.get_soft_armor("melee", affecting)
 		slapped.apply_damage(damage, BRUTE, affecting, armor_block)
 		slapped.apply_damage(damage, STAMINA, updating_health = TRUE)
 		slapped.Paralyze(3)

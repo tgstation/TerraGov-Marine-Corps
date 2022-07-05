@@ -216,6 +216,10 @@
 /obj/machinery/computer/arcade,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"fC" = (
+/obj/structure/sign/safety/hazard,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "fM" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
@@ -1007,8 +1011,8 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "Ad" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "W-corner"
+/obj/effect/decal/warning_stripes/linethick{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
@@ -2177,10 +2181,10 @@ QL
 QL
 QL
 QL
-og
+lV
 tE
-hP
-xM
+iu
+GX
 "}
 (6,1,1) = {"
 xM
@@ -2217,10 +2221,10 @@ QL
 QL
 WB
 QL
-lV
+og
 wC
 iC
-GX
+QU
 "}
 (7,1,1) = {"
 xM
@@ -2377,10 +2381,10 @@ QL
 QL
 QL
 QL
-lV
+og
 wC
 iu
-GX
+QU
 "}
 (11,1,1) = {"
 xM
@@ -2419,8 +2423,8 @@ WB
 QL
 og
 tE
-hP
-xM
+iu
+GX
 "}
 (12,1,1) = {"
 xM
@@ -2457,9 +2461,9 @@ QL
 QL
 QL
 QL
-QL
+fC
 tE
-hP
+iu
 xM
 "}
 (13,1,1) = {"

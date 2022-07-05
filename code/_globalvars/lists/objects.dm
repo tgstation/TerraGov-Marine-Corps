@@ -59,7 +59,8 @@ GLOBAL_LIST_EMPTY(unmanned_vehicles)
 GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/structure/closet/crate,
 	/obj/structure/largecrate/supply,
-	/obj/machinery/vending)))
+	/obj/machinery/vending,
+	/obj/vehicle/unmanned)))
 
 //hypersleep related
 GLOBAL_LIST_EMPTY(cryoed_item_list)
@@ -71,7 +72,6 @@ GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 	/obj/item/clothing/head/tgmcberet,
 	/obj/item/clothing/head/headband,
 	/obj/item/clothing/head/headset,
-	/obj/item/clothing/head/tgmcbandanna,
 	/obj/item/clothing/gloves/black,
 	/obj/item/weapon/baton,
 	/obj/item/weapon/gun/energy/taser,
@@ -85,7 +85,6 @@ GLOBAL_LIST_INIT(do_not_preserve, typecacheof(list(
 
 GLOBAL_LIST_INIT(do_not_preserve_empty, typecacheof(list(
 	/obj/item/storage/backpack/marine/satchel,
-	/obj/item/storage/belt/security/MP,
 	/obj/item/storage/backpack/marine/satchel/corpsman,
 	/obj/item/storage/backpack/marine/satchel/tech,
 	/obj/item/storage/backpack/marine/standard), only_root_path = TRUE))

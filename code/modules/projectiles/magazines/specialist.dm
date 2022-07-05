@@ -64,7 +64,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8
 	name = "\improper high velocity magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity rounds for use in the SR-8 battle rifle. The SR-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressuered high velocity rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8"
 	caliber = CALIBER_10X28_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/tx8
@@ -73,7 +73,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8/incendiary
 	name = "\improper high velocity incendiary magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity incendiary rounds for use in the SR-8 battle rifle. The SR-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressuered high velocity incendiary rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
 	caliber = CALIBER_10X28_CASELESS
 	icon_state = "tx8_incend"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/incendiary
@@ -82,7 +82,7 @@
 
 /obj/item/ammo_magazine/rifle/tx8/impact
 	name = "\improper high velocity impact magazine (10x28mm)"
-	desc = "A magazine of overpressuered high velocity impact rounds for use in the SR-8 battle rifle. The SR-8 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of overpressuered high velocity impact rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8_impact"
 	default_ammo = /datum/ammo/bullet/rifle/tx8/impact
 	icon_state_mini = "mag_rifle_big_blue"
@@ -237,8 +237,8 @@
 // railgun
 
 /obj/item/ammo_magazine/railgun
-	name = "railgun canister (rail projectile)"
-	desc = "A canister holding a projectile to be used inside a railgun."
+	name = "railgun canister (Armor Piercing Discarding Sabot)"
+	desc = "A canister holding a tungsten projectile to be used inside a railgun. APDS is written across the canister, this round will penetrate through most armor, but will not leave much of a hole."
 	caliber = CALIBER_RAILGUN
 	icon_state = "railgun"
 	default_ammo = /datum/ammo/bullet/railgun
@@ -246,6 +246,18 @@
 	reload_delay = 20 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_railgun"
+
+/obj/item/ammo_magazine/railgun/hvap
+	name = "railgun canister (High Velocity Armor Piericing)"
+	desc = "A canister holding a tungsten projectile to be used inside a railgun. HVAP is written across the canister. This round has less punching power than other railgun canister types, but will leave a sizeable hole in the targets armor."
+	icon_state = "railgun_hvap"
+	default_ammo = /datum/ammo/bullet/railgun/hvap
+
+/obj/item/ammo_magazine/railgun/smart
+	name = "railgun canister (Smart Armor Piericing)"
+	desc = "A canister holding a tungsten projectile to be used inside a railgun. SAP is written across the canister. This round has poor punching power due to low velocity for the smart ammunition, but will leave a target significantly staggered and stunned due to the impact."
+	icon_state = "railgun_smart"
+	default_ammo = /datum/ammo/bullet/railgun/smart
 
 // pepperball
 
@@ -283,9 +295,23 @@
 
 /obj/item/ammo_magazine/minigun_powerpack/snow
 	icon_state = "s_powerpack"
+	flags_item_map_variant = null
 
 /obj/item/ammo_magazine/minigun_powerpack/fancy
 	icon_state = "powerpackw"
+	flags_item_map_variant = null
 
 /obj/item/ammo_magazine/minigun_powerpack/merc
 	icon_state = "powerpackp"
+	flags_item_map_variant = null
+
+/obj/item/ammo_magazine/minigun_powerpack/smartgun
+	name = "\improper SG-85 powerpack"
+	desc = "A reinforced backpack heavy with the IFF altered ammunition, onboard micro generator, and extensive cooling system which enables the SG-85 gatling gun to operate. \nUse the SG-85 on the backpack itself to connect them."
+	icon_state = "powerpacksg"
+	flags_magazine = MAGAZINE_WORN|MAGAZINE_REFILLABLE
+	default_ammo = /datum/ammo/bullet/smart_minigun
+	current_rounds = 1000
+	max_rounds = 1000
+	caliber = CALIBER_10x26_CASELESS
+	flags_item_map_variant = null

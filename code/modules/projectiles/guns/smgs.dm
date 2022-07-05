@@ -8,7 +8,6 @@
 	load_method = MAGAZINE //codex
 	force = 8
 	w_class = WEIGHT_CLASS_BULKY
-	movement_acc_penalty_mult = 2
 	wield_delay = 0.4 SECONDS
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
@@ -25,6 +24,7 @@
 	burst_amount = 3
 	recoil_unwielded = 0.5
 	akimbo_additional_delay = 0.2
+	movement_acc_penalty_mult = 3
 
 //-------------------------------------------------------
 // MP-19 Machinepistol. It fits here more.
@@ -60,17 +60,23 @@
 
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 19,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 14, "stock_x" = 24, "stock_y" = 10)
 
-	accuracy_mult = 1.2
-	accuracy_mult_unwielded = 0.95
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.9
 	recoil_unwielded = 0
 	scatter = 0
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 4 //Made to be better used one handed.
+	scatter_unwielded = 4
 	aim_slowdown = 0.15
 	burst_amount = 5
-	movement_acc_penalty_mult = 0
+	movement_acc_penalty_mult = 2
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
+
+/obj/item/weapon/gun/smg/standard_machinepistol/compact
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/smg/standard_machinepistol/vgrip //cutest looking gun setup in the game
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip)
 
 //-------------------------------------------------------
 // War is hell. Not glorious.
@@ -110,14 +116,15 @@
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55
-
-	accuracy_mult = 1.15
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.9
-	scatter = 2
+	scatter = 1
 	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 8
-	aim_slowdown = 0.25
+	aim_slowdown = 0.2
 	burst_amount = 0
+	upper_akimbo_accuracy = 4
+	lower_akimbo_accuracy = 2
 
 	placed_overlay_iconstate = "t90"
 
@@ -166,14 +173,16 @@
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 14, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 16)
 
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.9
-	scatter = 7
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.95
+	scatter = 4
 	fire_delay = 0.2 SECONDS
-	scatter_unwielded = 15
+	scatter_unwielded = 10
 	aim_slowdown = 0.15
 	burst_amount = 3
 
+/obj/item/weapon/gun/smg/m25/holstered
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
 
 /obj/item/weapon/gun/smg/m25/elite
 	name = "\improper SMG-25B2 submachinegun"
@@ -198,11 +207,11 @@
 	flags_item_map_variant = NONE
 
 	burst_amount = 4
-	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 0.95
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 1
 	damage_mult = 1.2
-	aim_slowdown = 0.4
-	scatter = 4
+	aim_slowdown = 0.2
+	scatter = 3
 
 /obj/item/weapon/gun/smg/m25/elite/pmc
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -238,10 +247,9 @@
 	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
 	burst_amount = 4
-	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 1.25
-	scatter = 12
-	scatter_unwielded = 24
+	accuracy_mult_unwielded = 0.9
+	scatter = 5
+	scatter_unwielded = 10
 	damage_mult = 1.2
 
 //-------------------------------------------------------
@@ -263,9 +271,9 @@
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
 	burst_delay = 0.2 SECONDS
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.75
-	scatter_unwielded = 20
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.8
+	scatter_unwielded = 8
 	fire_delay = 0.15 SECONDS
 	aim_slowdown = 0.3
 
@@ -320,7 +328,7 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 6
 	accuracy_mult = 1.05
-	accuracy_mult_unwielded = 0.75
+	accuracy_mult_unwielded = 0.8
 	scatter = 5
 	scatter_unwielded = 15
 	aim_slowdown = 0.3
@@ -348,7 +356,6 @@
 	fire_delay = 0.15 SECONDS
 	burst_amount = 4
 	accuracy_mult_unwielded = 0.9
-	accuracy_mult = 1
 	scatter = 0
 	scatter_unwielded = 4
 	aim_slowdown = 0.15
