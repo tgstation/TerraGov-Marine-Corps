@@ -66,7 +66,7 @@ const JobTabs = (props: LoadoutTabData, context) => {
         <Flex.Item>
           <Tabs>
             {categories_to_use.map((role, i) => (
-              <Tabs.Tab
+              <Tabs.Tab key={i}
                 selected={job === role.jobs}
                 onClick={() => setJob(role)}>
                 {role}
