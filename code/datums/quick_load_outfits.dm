@@ -849,7 +849,7 @@
 	name = "SOM base"
 	desc = "This is the base typepath for all SOM quick vendor outfits. You shouldn't see this."
 
-//SOM Squad marine
+//SOM Squad Marine
 /datum/outfit/quick/som/marine
 	name = "SOM Squad Marine"
 	jobtype = "SOM Standard"
@@ -1025,7 +1025,17 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 
-//SOM Squad Veteran
+
+/datum/outfit/quick/som/engineer
+	name = "SOM Squad Engineer"
+	jobtype = "SOM Engineer"
+
+
+/datum/outfit/quick/som/medic
+	name = "SOM Squad Medic"
+	jobtype = "SOM Medic"
+
+
 /datum/outfit/quick/som/veteran
 	name = "SOM Squad Veteran"
 	jobtype = "SOM Veteran"
@@ -1133,3 +1143,8 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
+
+
+/datum/outfit/quick/som/squad_leader
+	name = "SOM Squad Leader"
+	jobtype = "SOM Leader"

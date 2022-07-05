@@ -21,6 +21,7 @@ export type LoadoutTabData = {
 
 export type LoadoutManagerData = {
     loadout_list: Loadout[];
+    ui_theme: string;
   };
 
 export type NameInputModalData = {

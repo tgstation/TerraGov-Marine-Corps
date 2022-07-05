@@ -55,29 +55,21 @@ const LoadoutList = (props: LoadoutListData) => {
   );
 };
 
-const JobTabs = (props: LoadoutTabData) => {
+const JobTabs = (props: LoadoutTabData, context) => {
   const { job, setJob } = props;
+  const { data } = useBackend<any>(context);
+  const categories_to_use = data.vendor_categories
   return (
     <Section>
       <Flex>
         <Flex.Item grow={1}><div> </div></Flex.Item>
         <Flex.Item>
           <Tabs>
-            <Tabs.Tab selected={job === "Squad Marine"} onClick={() => setJob("Squad Marine")}>
-              Squad Marine
-            </Tabs.Tab>
-            <Tabs.Tab selected={job === "Squad Engineer"} onClick={() => setJob("Squad Engineer")}>
-              Squad Engineer
-            </Tabs.Tab>
-            <Tabs.Tab selected={job === "Squad Corpsman"} onClick={() => setJob("Squad Corpsman")}>
-              Squad Corpsman
-            </Tabs.Tab>
-            <Tabs.Tab selected={job === "Squad Smartgunner"} onClick={() => setJob("Squad Smartgunner")}>
-              Squad Smartgunner
-            </Tabs.Tab>
-            <Tabs.Tab selected={job === "Squad Leader"} onClick={() => setJob("Squad Leader")}>
-              Squad Leader
-            </Tabs.Tab>
+            {categories_to_use.map((role, i) => (
+              <Tabs.Tab selected={job === role.jobs} onClick={() => setJob(role)}>
+                {role}
+              </Tabs.Tab>
+            ))}
           </Tabs>
         </Flex.Item>
         <Flex.Item grow={1}><div> </div></Flex.Item>
@@ -86,9 +78,11 @@ const JobTabs = (props: LoadoutTabData) => {
   );
 };
 
-export const Quickload_TGMC = (props, context) => {
+export const Quickload = (props, context) => {
   const { act, data } = useBackend<LoadoutManagerData>(context);
   const { loadout_list } = data;
+  const ui_theme_to_use = data.ui_theme
+  const default_job_tab = data.vendor_categories[0]
 
   const [
     showDesc,
@@ -98,13 +92,14 @@ export const Quickload_TGMC = (props, context) => {
   const [
     job,
     setJob,
-  ] = useLocalState(context, 'job', "Squad Marine");
+  ] = useLocalState(context, 'job', default_job_tab);
 
   return (
     <Window
       title="Quick Equip vendor"
       width={700}
-      height={400}>
+      height={400}
+      theme={ui_theme_to_use}>
       {showDesc && (
         <Modal width="400px">
           <Box>{showDesc}</Box>

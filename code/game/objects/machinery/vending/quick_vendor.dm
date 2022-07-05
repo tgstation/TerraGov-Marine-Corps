@@ -41,9 +41,24 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	interaction_flags = INTERACT_MACHINE_TGUI
 	///The faction of this quick load vendor
 	var/faction = FACTION_NEUTRAL
+	//the different tabs in the vendor
+	var/list/categories = list(
+		"Squad Marine",
+		"Squad Engineer",
+		"Squad Corpsman",
+		"Squad Smartgunner",
+		"Squad Leader",
+	)
 
 /obj/machinery/quick_vendor/som
 	faction = FACTION_SOM
+	categories = list(
+		"SOM Standard",
+		"SOM Engineer",
+		"SOM Medic",
+		"SOM Veteran",
+		"SOM Leader",
+	)
 
 /obj/machinery/quick_vendor/can_interact(mob/user)
 	. = ..()
@@ -69,12 +84,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(ui)
 		return
-	switch(faction)
-		if(FACTION_SOM)
-			//SOM vendor has SOM specific job titles
-			ui = new(user, src, "Quickload_SOM")
-		else
-			ui = new(user, src, "Quickload_TGMC")
+	ui = new(user, src, "Quickload")
 	ui.open()
 
 /obj/machinery/quick_vendor/ui_state(mob/user)
@@ -94,6 +104,14 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		next_loadout_data["outfit"] = current_loadout.type
 		loadouts_data_tgui += list(next_loadout_data)
 	data["loadout_list"] = loadouts_data_tgui
+	var/ui_theme
+	switch(faction)
+		if(FACTION_SOM)
+			ui_theme = "som"
+		else
+			ui_theme = "ntos"
+	data["ui_theme"] = ui_theme
+	data["vendor_categories"] = categories
 	return data
 
 
