@@ -816,10 +816,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	hud_type = DATA_HUD_SQUAD_SOM
 	minimap_type = /datum/action/minimap/som
 
-///gotta update when new roles
 /obj/item/radio/headset/mainship/som/Initialize(mapload, datum/squad/squad, rank)
 	if(squad)
-		icon_state = "headset_marine_[lowertext(squad.name)]" //icon states todo
+		icon_state = "headset_marine_[lowertext(squad.name)]"
 		var/dat = "marine [lowertext(squad.name)]"
 		frequency = squad.radio_freq
 		if(ispath(rank, /datum/job/som/squad/leader))
@@ -839,7 +838,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/som/zulu
 	name = "SOM zulu radio headset"
-	icon_state = "headset_marine_alpha" //todo: icon work
+	icon_state = "headset_marine_zulu"
 	frequency = FREQ_ZULU
 	minimap_type = /datum/action/minimap/som
 
@@ -863,7 +862,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/som/yankee
 	name = "SOM yankee radio headset"
-	icon_state = "headset_marine_alpha" //todo: icon work
+	icon_state = "headset_marine_yankee"
 	frequency = FREQ_YANKEE
 	minimap_type = /datum/action/minimap/som
 
@@ -887,7 +886,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/som/xray
 	name = "SOM xray radio headset"
-	icon_state = "headset_marine_alpha" //todo: icon work
+	icon_state = "headset_marine_xray"
 	frequency = FREQ_XRAY
 	minimap_type = /datum/action/minimap/som
 
@@ -911,7 +910,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset/mainship/som/whiskey
 	name = "SOM whiskey radio headset"
-	icon_state = "headset_marine_alpha" //todo: icon work
+	icon_state = "headset_marine_whiskey"
 	frequency = FREQ_WHISKEY
 	minimap_type = /datum/action/minimap/som
 
