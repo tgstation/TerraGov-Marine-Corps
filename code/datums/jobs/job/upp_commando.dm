@@ -71,7 +71,7 @@
 	jobtype = /datum/job/upp/commando/medic
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/lifesaver/upp
+	belt = /obj/item/storage/belt/lifesaver/full/upp
 	ears = /obj/item/radio/headset/distress/usl
 	w_uniform = /obj/item/clothing/under/marine/veteran/UPP/medic
 	shoes = /obj/item/clothing/shoes/marine
