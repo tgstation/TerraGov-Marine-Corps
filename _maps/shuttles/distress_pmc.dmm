@@ -172,7 +172,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
 /obj/item/storage/firstaid/regular,
-/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver/full,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "I" = (

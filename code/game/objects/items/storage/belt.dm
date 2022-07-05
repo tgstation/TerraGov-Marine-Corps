@@ -106,7 +106,7 @@
 		/obj/item/stack/medical,
 	)
 
-/obj/item/storage/belt/lifesaver/Initialize()  //The belt, with all it's magic inside!
+/obj/item/storage/belt/lifesaver/full/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
@@ -128,6 +128,67 @@
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/healthanalyzer(src)
+
+/obj/item/storage/belt/lifesaver/full/upp
+	name ="\improper Type 41 pattern lifesaver bag"
+	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
+	icon_state = "medicalbag_u"
+	item_state = "medicbag_u"
+
+
+/obj/item/storage/belt/lifesaver/som/
+	name = "\improper S17 lifesaver bag"
+	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
+	icon_state = "medicbag_som"
+	item_state = "medicbag_som"
+
+/obj/item/storage/belt/lifesaver/som/ert/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/storage/pill_bottle/meralyne(src)
+	new /obj/item/storage/pill_bottle/dermaline(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/healthanalyzer(src)
+
+/obj/item/storage/belt/lifesaver/quick/Initialize()  //quick load for combat patrol
+	. = ..()
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/tricordrazine(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/alkysine(src)
+	new /obj/item/storage/pill_bottle/imidazoline(src)
+	new /obj/item/storage/pill_bottle/meralyne(src)
+	new /obj/item/storage/pill_bottle/dermaline(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/rig
@@ -155,8 +216,6 @@
 		/obj/item/tool/research,
 	)
 
-/obj/item/storage/belt/rig/medical
-
 /obj/item/storage/belt/rig/medical/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
 	new /obj/item/storage/pill_bottle/bicaridine(src)
@@ -175,8 +234,6 @@
 	new /obj/item/roller(src)
 	new /obj/item/defibrillator(src)
 	new /obj/item/healthanalyzer(src)
-
-/obj/item/storage/belt/rig/research
 
 /obj/item/storage/belt/rig/research/Initialize()  //The belt, with all it's magic inside!
 	. = ..()
@@ -231,20 +288,6 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
-
-/obj/item/storage/belt/lifesaver/upp
-	name ="\improper Type 41 pattern lifesaver bag"
-	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
-	icon_state = "medicalbag_u"
-	item_state = "medicbag_u"
-
-
-/obj/item/storage/belt/lifesaver/som
-	name = "\improper S17 lifesaver bag"
-	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
-	icon_state = "medicbag_som"
-	item_state = "medicbag_som"
-
 
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
