@@ -3088,6 +3088,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
+"jw" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/living/numbertwobunks)
 "jx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3286,6 +3290,10 @@
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"ka" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/hull/lower_hull)
 "kb" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -3803,6 +3811,10 @@
 	dir = 9
 	},
 /area/mainship/command/cic)
+"lr" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship/outer,
+/area/mainship/hull/lower_hull)
 "ls" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
@@ -4891,6 +4903,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
+"oD" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/engineering/ce_room)
 "oE" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -6858,6 +6874,10 @@
 /obj/effect/decal/warning_stripes/box/small,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"uU" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/engineering/lower_engine_monitoring)
 "uW" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -9353,6 +9373,10 @@
 /obj/structure/sign/electricshock,
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
+"Cq" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/command/corporateliaison)
 "Cr" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -15511,6 +15535,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"Tl" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship/white,
+/area/mainship/medical/lower_medical)
 "Tm" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 1
@@ -15816,6 +15844,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"Ug" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/command/self_destruct)
 "Uh" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -16436,6 +16468,10 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
+"VO" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/living/pilotbunks)
 "VP" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -16606,6 +16642,10 @@
 	dir = 9
 	},
 /area/mainship/living/cafeteria_starboard)
+"Wm" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/squads/general)
 "Wn" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -43181,7 +43221,7 @@ Mb
 bZ
 Gv
 Mb
-Mb
+ka
 Mb
 Mb
 Mb
@@ -43715,7 +43755,7 @@ bd
 bd
 Gb
 bd
-bd
+Tl
 pp
 aY
 aY
@@ -43773,7 +43813,7 @@ sJ
 Im
 bZ
 uk
-OP
+uU
 WX
 AU
 OP
@@ -43931,7 +43971,7 @@ aa
 Tm
 Um
 cu
-ad
+lr
 lX
 lX
 lX
@@ -43992,7 +44032,7 @@ kl
 kl
 pd
 Nw
-uM
+Cq
 uM
 uM
 md
@@ -44010,7 +44050,7 @@ sa
 sw
 Go
 tg
-Ox
+jw
 JZ
 rG
 sI
@@ -50969,7 +51009,7 @@ Ds
 Ds
 Ds
 Dt
-OM
+oD
 OM
 OM
 Uy
@@ -51384,7 +51424,7 @@ aa
 Tm
 Um
 ay
-ad
+lr
 bl
 aF
 aF
@@ -51719,7 +51759,7 @@ jS
 qC
 ZS
 Nn
-qC
+Wm
 qC
 sQ
 qC
@@ -51940,7 +51980,7 @@ pR
 AP
 AV
 AV
-AV
+VO
 AV
 AV
 NU
@@ -51959,7 +51999,7 @@ nq
 qC
 qC
 qC
-qC
+Wm
 qC
 qC
 Fg
@@ -52433,7 +52473,7 @@ Mb
 bZ
 Gv
 Mb
-Mb
+ka
 Mb
 Mb
 Mb
@@ -54563,7 +54603,7 @@ bk
 eW
 Lb
 Lb
-OF
+Ug
 Lb
 Lb
 Vk

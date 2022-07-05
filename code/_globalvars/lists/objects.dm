@@ -17,6 +17,7 @@ GLOBAL_LIST_EMPTY(xeno_tunnels)						//list of all /obj/structure/xeno/tunnel
 GLOBAL_LIST_EMPTY(machines)					        //NOTE: this is a list of ALL machines now. The processing machines list is SSmachine.processing !
 GLOBAL_LIST_EMPTY(faxmachines)
 GLOBAL_LIST_EMPTY(mainship_lights)					//list of mainship lights, used for altering intensity and color during red and delta security levels
+GLOBAL_LIST_EMPTY(ship_alarms)						//list of shipside alarm effects used for delta level alert sirens
 GLOBAL_LIST_EMPTY(intel_computers)					//All the intel computers for the random events
 GLOBAL_LIST_EMPTY(nuke_disk_generators)
 GLOBAL_LIST_EMPTY(nuke_list)						//list of all /obj/machinery/nuclearbomb

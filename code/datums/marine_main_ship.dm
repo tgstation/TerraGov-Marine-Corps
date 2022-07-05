@@ -32,9 +32,10 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 			level = SEC_LEVEL_DELTA
 
 	if(level <= SEC_LEVEL_BLUE)
+		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
+			alarmplayer.deltalarm.stop(alarmplayer)
 		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
 			light.base_state = "tube"
-			light.lightalarm.stop(light)
 			var/area/A = get_area(light)
 			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs
 				continue
@@ -48,15 +49,16 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 				light.icon_state = "tube1"
 			light.update_light()
 	else
+		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
+			if(level != SEC_LEVEL_DELTA)
+				alarmplayer.deltalarm.stop(alarmplayer)
+			else
+				alarmplayer.deltalarm.start(alarmplayer)
 		for(var/obj/machinery/light/mainship/light AS in GLOB.mainship_lights)
 			light.base_state = "tubered"
-			if(level != SEC_LEVEL_DELTA)
-				light.lightalarm.stop(light)
 			var/area/A = get_area(light)
 			if(!A.power_light || light.status != LIGHT_OK) //do not adjust unpowered or broken bulbs
 				continue
-			if(level == SEC_LEVEL_DELTA) //start ominous self destruct sound when delta
-				light.lightalarm.start(light)
 			light.light_color = COLOR_SOMEWHAT_LIGHTER_RED
 			light.brightness = 3.0
 			light.light_range = 7.5

@@ -146,27 +146,17 @@
 	var/switchcount = 0
 	/// true if rigged to explode
 	var/rigged = FALSE
-	///looping sound for red alert alarm sound
-	var/datum/looping_sound/alarm_loop/lightalarm
 
 /obj/machinery/light/mainship
 	base_state = "tube"
 
 /obj/machinery/light/mainship/Initialize()
 	. = ..()
-	lightalarm = new(null, FALSE)
 	GLOB.mainship_lights += src
 
 /obj/machinery/light/mainship/Destroy()
 	. = ..()
-	QDEL_NULL(lightalarm)
 	GLOB.mainship_lights -= src
-
-/obj/machinery/light/mainship/update(trigger, toggle_on)
-	. = ..()
-	var/area/A = get_area(src)
-	if(!A.power_light)
-		lightalarm.stop(src)
 
 /obj/machinery/light/mainship/small
 	icon_state = "bulb1"

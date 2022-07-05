@@ -65,7 +65,24 @@
 /obj/effect/rune/attunement
 	luminosity = 5
 
+/obj/effect/soundplayer
+	anchored = TRUE
+	opacity = FALSE
+	density = TRUE
+	icon_state = "speaker"
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	var/datum/looping_sound/alarm_loop/deltalarm
 
+/obj/effect/soundplayer/Initialize()
+	. = ..()
+	deltalarm = new(null, FALSE)
+	GLOB.ship_alarms += src
+	icon_state = ""
+
+/obj/effect/soundplayer/Destroy()
+	. = ..()
+	QDEL_NULL(deltalarm)
+	GLOB.ship_alarms -= src
 
 /obj/effect/forcefield
 	anchored = TRUE

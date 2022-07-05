@@ -3202,7 +3202,7 @@
 /area/mainship/living/numbertwobunks)
 "bgW" = (
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/stripesquare,
 /area/mainship/engineering/engine_core)
 "bgX" = (
 /obj/effect/attach_point/electronics/dropship1,
@@ -5468,6 +5468,10 @@
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/commandbunks)
+"bAg" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/squads/alpha)
 "bAh" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
@@ -6136,9 +6140,9 @@
 "bIz" = (
 /obj/structure/cable,
 /obj/machinery/door_control/mainship/research{
+	dir = 8;
 	id = "containmentlockdown";
-	name = "Containment Lockdown";
-	pixel_x = 25
+	name = "Containment Lockdown"
 	},
 /obj/structure/disposalpipe/segment/corner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6704,15 +6708,12 @@
 /obj/item/folder/black_random,
 /turf/open/floor/mainship/orange,
 /area/mainship/engineering/lower_engineering)
-"bMX" = (
-/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/lower_engineering)
 "bMY" = (
 /obj/machinery/camera/autoname/mainship,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/seamless{
 	dir = 4
 	},
+/turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "bNi" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -8530,6 +8531,10 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/engineering/lower_engine_monitoring)
+"csd" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/command/corporateliaison)
 "csh" = (
 /obj/machinery/status_display{
 	pixel_y = 30
@@ -10010,6 +10015,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/grunt_rnr)
+"fgc" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/shipboard/firing_range)
 "fgi" = (
 /obj/effect/decal/warning_stripes/box/small{
 	dir = 1
@@ -10358,6 +10367,10 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/floor,
 /area/mainship/command/cic)
+"fHN" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/squads/delta)
 "fIS" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/cargo,
@@ -10623,9 +10636,10 @@
 /area/mainship/command/bridge)
 "geX" = (
 /obj/machinery/light/mainship,
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/seamless{
 	dir = 4
 	},
+/turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "gfg" = (
 /obj/machinery/holopad,
@@ -11035,6 +11049,10 @@
 	dir = 4
 	},
 /area/mainship/squads/req)
+"gXD" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/living/grunt_rnr)
 "gYz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -12768,6 +12786,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/engine_core)
+"kmW" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/living/basketball)
 "knx" = (
 /turf/open/floor/carpet/side{
 	dir = 10
@@ -12855,6 +12877,10 @@
 	dir = 4
 	},
 /area/mainship/hull/starboard_hull)
+"ksA" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/living/commandbunks)
 "ktb" = (
 /turf/open/floor/mainship/purple{
 	dir = 1
@@ -13154,6 +13180,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
+"kQN" = (
+/obj/effect/soundplayer,
+/turf/open/floor/mainship_hull,
+/area/space)
 "kQP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14015,6 +14045,14 @@
 	dir = 8
 	},
 /area/mainship/squads/req)
+"mgQ" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/living/starboard_garden)
+"mhn" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/living/numbertwobunks)
 "mjJ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -14820,6 +14858,10 @@
 	dir = 10
 	},
 /area/mainship/medical/medical_science)
+"nCD" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/hull/starboard_hull)
 "nCT" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -16555,9 +16597,10 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/seamless{
 	dir = 4
 	},
+/turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "qDD" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -16699,9 +16742,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/seamless{
 	dir = 4
 	},
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/engine_core)
 "qQK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17841,9 +17885,10 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-/turf/open/floor/stairs/rampbottom{
+/obj/structure/stairs/seamless{
 	dir = 4
 	},
+/turf/open/floor/mainship/mono,
 /area/mainship/engineering/engine_core)
 "taC" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -18457,6 +18502,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/port_hull)
+"ueJ" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/living/pilotbunks)
 "ufH" = (
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /obj/machinery/light/mainship{
@@ -19197,6 +19246,10 @@
 "vAo" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
+"vAw" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/engineering/engine_core)
 "vBi" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -19521,6 +19574,10 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/squads/req)
+"wfJ" = (
+/obj/effect/soundplayer,
+/turf/closed/wall/mainship,
+/area/mainship/engineering/ce_room)
 "wgD" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -32458,7 +32515,7 @@ wPV
 wPV
 wPV
 wPV
-wPV
+kQN
 wPV
 wPV
 wPV
@@ -40925,7 +40982,7 @@ rJN
 rJN
 rJN
 rJN
-rJN
+ksA
 lvI
 bbR
 bkO
@@ -40953,7 +41010,7 @@ bea
 cuH
 lOP
 lvI
-ahA
+csd
 ahA
 ahA
 ahA
@@ -46322,7 +46379,7 @@ abR
 wKA
 biq
 bhg
-abR
+mhn
 lvI
 xQe
 bbo
@@ -46350,7 +46407,7 @@ bdW
 cwV
 lOP
 oaQ
-lzj
+ueJ
 nQu
 bTQ
 fqH
@@ -51720,7 +51777,7 @@ xkA
 xkA
 xkA
 dXn
-pES
+kmW
 aLX
 bjU
 blj
@@ -51746,7 +51803,7 @@ bsC
 nsv
 dzn
 bWC
-acf
+mgQ
 acf
 acf
 acf
@@ -57113,7 +57170,7 @@ aXM
 aXM
 wMS
 aXm
-aXm
+fgc
 jxM
 siJ
 tur
@@ -57143,7 +57200,7 @@ alw
 ruj
 bQh
 ruj
-bSw
+gXD
 vos
 bMo
 bli
@@ -62514,7 +62571,7 @@ iJv
 iJv
 iJv
 jwy
-aWH
+bAg
 biu
 bjV
 blj
@@ -62540,7 +62597,7 @@ bnF
 nsv
 bQw
 ruj
-cbn
+fHN
 wLT
 pGn
 pGn
@@ -69196,7 +69253,7 @@ rkC
 bgU
 rhS
 rhS
-abR
+mhn
 cOj
 bkk
 cOj
@@ -69222,7 +69279,7 @@ blZ
 cOj
 xgX
 cOj
-aoP
+wfJ
 tEU
 bSY
 gbk
@@ -72815,7 +72872,7 @@ suc
 bpX
 bKa
 qAW
-bMX
+btq
 bhO
 aVB
 aVB
@@ -74595,7 +74652,7 @@ aai
 aai
 abq
 abD
-aap
+nCD
 nTz
 brQ
 xON
@@ -74615,7 +74672,7 @@ bBi
 llV
 ler
 xON
-brQ
+vAw
 xCV
 aVs
 acC
