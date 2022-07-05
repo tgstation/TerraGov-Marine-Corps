@@ -1,4 +1,0 @@
-author: "Vondiech"
-delete-after: True
-changes: 
-  - bugfix: "Removes non-existant reqtorio recipe for br-8 scout rifle ammo since it was merged with the IFF ammo recipe."

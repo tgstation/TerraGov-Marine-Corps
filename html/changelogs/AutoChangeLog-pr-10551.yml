@@ -1,4 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - code_imp: "Reagent containers can be set to not allow restocking after use."

@@ -12,3 +12,11 @@
   - bugfix: Defiler can't choose sanguinal
   novaepee:
   - rscdel: Removed more expensive autominer
+2022-07-05:
+  BraveMole:
+  - balance: Revert xeno winning shipside even if killed
+  QualityVan:
+  - code_imp: Reagent containers can be set to not allow restocking after use.
+  Vondiech:
+  - bugfix: Removes non-existant reqtorio recipe for br-8 scout rifle ammo since it
+      was merged with the IFF ammo recipe.
