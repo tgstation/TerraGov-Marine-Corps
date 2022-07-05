@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - rscadd: "Adds the Quick equip vendor for future gamemode and admin use"
