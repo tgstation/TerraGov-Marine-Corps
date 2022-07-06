@@ -16735,8 +16735,8 @@
 	pixel_y = 3
 	},
 /obj/item/storage/box/syringes,
-/obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
 /obj/item/clothing/tie/stethoscope,
 /obj/item/clothing/tie/stethoscope,
 /obj/effect/decal/warning_stripes/box/empty,

@@ -71,13 +71,12 @@ GLOBAL_LIST_INIT(pheromone_images_list, list(
 		FRENZY = image('icons/mob/actions.dmi', icon_state = FRENZY),
 		))
 
-//List of Defiler toxin types
+//List of Defiler toxin types available for selection
 GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 		/datum/reagent/toxin/xeno_ozelomelyn,
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_neurotoxin,
-		/datum/reagent/toxin/xeno_sanguinal,
 		))
 
 //List of toxins improving defile's damage
