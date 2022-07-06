@@ -79,22 +79,20 @@
 
 
 
-//cope test
+//thrown SOM sentry
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope
-	name = "\improper C.O.P.E turret"
-	desc = "Cope, nerd"
+	name = "\improper C.O.P.E sentry"
+	desc = "The Centurion Omnidirectional Point-defense Energy sentry is a man portal automated weapon system utilised by the SOM. It is activated in hand, then thrown into place before it deploys, and it's ground hugging profile makes it a difficult target to accurately hit. Equipped with a compact volkite weapon system, and a recharging battery to allow for prolonged use."
 	icon_state = "cope"
 	icon = 'icons/Marine/sentry.dmi'
-	max_integrity = 200
+	max_integrity = 225
 	integrity_failure = 50
 	deploy_time = 1 SECONDS
 	undeploy_time = 1 SECONDS
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS|TURRET_RADIAL
 	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
-	///How long to deploy after thrown
-	var/det_time = 4 SECONDS
+	turret_range = 9
 
-	max_integrity = 200
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 
 	ignored_terrains = list(
@@ -102,19 +100,24 @@
 		/obj/machinery/miner,
 	)
 
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE //doesn't autoeject it's recharging battery
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	flags_item = IS_DEPLOYABLE|TWOHANDED
 
-	max_shots = 45
+	max_shots = 150
 	rounds_per_shot = 12
 	fire_delay = 0.15 SECONDS
 	scatter = 3
 	damage_falloff_mult = 0.5
 	ammo_datum_type = /datum/ammo/energy/volkite/light
-	rounds_per_shot = 12
-	default_ammo_type = /obj/item/cell/lasgun/volkite
-	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite)
+	default_ammo_type = /obj/item/cell/lasgun/volkite/turret
+	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/turret, /obj/item/cell/lasgun/volkite, /obj/item/cell/lasgun/volkite/highcap)
+
+	///How long to deploy after thrown
+	var/det_time = 4 SECONDS
+	///The sound made when activated
+	var/arm_sound = 'sound/weapons/armbomb.ogg'
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attack_self(mob/user)
 	if(active)
@@ -137,13 +140,9 @@
 	if(active)
 		return
 
-	if(user)
-		log_explosion("[key_name(user)] primed [src] at [AREACOORD(user.loc)].")
-		log_combat(user, src, "primed")
-
 	icon_state = initial(icon_state) + "_active"
 	active = TRUE
-	//playsound(loc, arm_sound, 25, 1, 6) //add arm sound
+	playsound(loc, arm_sound, 25, 1, 6)
 	addtimer(CALLBACK(src, .proc/prime), det_time)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/reset()
@@ -165,9 +164,6 @@
 
 	ENABLE_BITFIELD(flags_item, IS_DEPLOYED)
 
-	//RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, .proc/undeploy)
-
-//////
 /obj/item/weapon/gun/sentry/big_sentry/premade
 	sentry_iff_signal = TGMC_LOYALIST_IFF
 	flags_item = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE
