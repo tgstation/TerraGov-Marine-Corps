@@ -460,8 +460,9 @@
 	. += image('icons/Marine/sentry.dmi', src, internal_gun.placed_overlay_iconstate, dir = dir)
 
 
-
+//Throwable turret
 /obj/machinery/deployable/mounted/sentry/cope
+	density = FALSE
 
 ///Dissassembles the device
 /obj/machinery/deployable/mounted/sentry/cope/disassemble(mob/user)
@@ -471,7 +472,7 @@
 		return
 	operator?.unset_interaction()
 
-	var/obj/item/weapon/gun/sentry/big_sentry/cope/attached_item  = internal_item //Item the machine is undeploying
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attached_item  = internal_item //Item the machine is undeploying
 
 	if(!ishuman(user))
 		return

@@ -2030,6 +2030,13 @@ datum/ammo/bullet/revolver/tp44
 	damage = 25
 	fire_burst_damage = 25
 
+/datum/ammo/energy/volkite/light
+	max_range = 25
+	accurate_range = 12
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	penetration = 10
+
 /*
 //================================================
 					Xeno Spits

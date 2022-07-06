@@ -80,21 +80,43 @@
 
 
 //cope test
-/obj/item/weapon/gun/sentry/big_sentry/cope
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope
 	name = "\improper C.O.P.E turret"
 	desc = "Cope, nerd"
 	icon_state = "cope"
+	icon = 'icons/Marine/sentry.dmi'
 	max_integrity = 200
 	integrity_failure = 50
 	deploy_time = 1 SECONDS
 	undeploy_time = 1 SECONDS
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS|TURRET_RADIAL
 	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
-	//flags_item = IS_DEPLOYABLE
 	///How long to deploy after thrown
 	var/det_time = 4 SECONDS
 
-/obj/item/weapon/gun/sentry/big_sentry/cope/attack_self(mob/user)
+	max_integrity = 200
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
+
+	ignored_terrains = list(
+		/obj/machinery/deployable/mounted,
+		/obj/machinery/miner,
+	)
+
+	flags_gun_features = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	flags_item = IS_DEPLOYABLE|TWOHANDED
+
+	max_shots = 45
+	rounds_per_shot = 12
+	fire_delay = 0.15 SECONDS
+	scatter = 3
+	damage_falloff_mult = 0.5
+	ammo_datum_type = /datum/ammo/energy/volkite/light
+	rounds_per_shot = 12
+	default_ammo_type = /obj/item/cell/lasgun/volkite
+	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attack_self(mob/user)
 	if(active)
 		return
 
@@ -111,7 +133,7 @@
 		var/mob/living/carbon/C = user
 		C.throw_mode_on()
 
-/obj/item/weapon/gun/sentry/big_sentry/cope/activate(mob/user)
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/activate(mob/user)
 	if(active)
 		return
 
@@ -124,11 +146,11 @@
 	//playsound(loc, arm_sound, 25, 1, 6) //add arm sound
 	addtimer(CALLBACK(src, .proc/prime), det_time)
 
-/obj/item/weapon/gun/sentry/big_sentry/cope/proc/reset()
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/reset()
 	active = FALSE
 	icon_state = initial(icon_state)
 
-/obj/item/weapon/gun/sentry/big_sentry/cope/proc/prime()
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/prime()
 	var/obj/deployed_machine
 
 	deployed_machine = new deployable_item(loc, src, usr)//Creates new structure or machine at 'deploy' location and passes on 'item_to_deploy'
