@@ -82,7 +82,7 @@
 	var/mob/living/carbon/human/user = usr //this is us
 	if(over_object != user || !Adjacent(user))
 		return
-	if(active != TRUE)
+	if(!active)
 		return
 	active = FALSE
 	balloon_alert_to_viewers("Undeploying...")
