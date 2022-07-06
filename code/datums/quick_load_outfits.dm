@@ -869,7 +869,7 @@
 	head = /obj/item/clothing/head/modular/som
 	suit_store = /obj/item/weapon/gun/rifle/som/standard
 	r_store = /obj/item/storage/pouch/firstaid/som
-	l_store = /obj/item/storage/pouch/grenade
+	l_store = /obj/item/storage/pouch/grenade/som
 	back = /obj/item/storage/backpack/satchel/som
 
 /datum/outfit/quick/som/marine/standard_assaultrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -926,7 +926,7 @@
 	head = /obj/item/clothing/head/modular/som
 	suit_store = /obj/item/weapon/gun/smg/som/scout
 	r_store = /obj/item/storage/pouch/firstaid/som
-	l_store = /obj/item/storage/pouch/grenade
+	l_store = /obj/item/storage/pouch/grenade/som
 	back = /obj/item/storage/backpack/satchel/som
 
 /datum/outfit/quick/som/marine/scout/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -984,7 +984,7 @@
 	head = /obj/item/clothing/head/modular/som
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
 	r_store = /obj/item/storage/pouch/firstaid/som
-	l_store = /obj/item/storage/pouch/grenade
+	l_store = /obj/item/storage/pouch/grenade/som
 	back = /obj/item/storage/backpack/satchel/som
 
 /datum/outfit/quick/som/marine/charger/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1056,7 +1056,7 @@
 	glasses = /obj/item/clothing/glasses/meson
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
 	r_store = /obj/item/storage/pouch/firstaid/som
-	l_store = /obj/item/storage/pouch/grenade
+	l_store = /obj/item/storage/pouch/grenade/som
 	back = /obj/item/storage/backpack/satchel/som
 
 /datum/outfit/quick/som/veteran/charger/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1115,7 +1115,7 @@
 	glasses = /obj/item/clothing/glasses/meson
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness
 	r_store = /obj/item/storage/pouch/firstaid/som
-	l_store = /obj/item/storage/pouch/grenade
+	l_store = /obj/item/storage/pouch/grenade/som
 	back = /obj/item/cell/lasgun/volkite/powerpack
 
 /datum/outfit/quick/som/veteran/culverin/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
