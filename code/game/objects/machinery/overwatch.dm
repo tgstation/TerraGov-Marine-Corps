@@ -776,8 +776,9 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 
 	if(!(command_aura in command_aura_allowed))
 		return
-	command_aura_cooldown = 45 //40 ticks, or 90 seconds overall CD, 60 practical.
-	command_aura_tick = 15//15 ticks, or 30 seconds apprx.
+
+	command_aura_cooldown = 45 //45 ticks, or 90 seconds overall CD, 60 practical.
+
 	var/message = ""
 	switch(command_aura)
 		if("move")
@@ -795,6 +796,15 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!", ";READY WEAPONS!", ";TAKE AIM!", ";LINE YOUR SIGHTS!", ";LOCK AND LOAD!", ";GET READY TO FIRE!")
 			say(message)
 			add_emote_overlay(focus)
+
+	//If we're in overwatch, pass the aura down to it instead with the same strength and duration.
+	if(istype(remote_control, /mob/camera/aiEye/remote/hud))
+		var/mob/camera/aiEye/remote/hud/ordered_eye = remote_control
+		ordered_eye.relay_order(command_aura, skills.getRating("leadership") - 1)
+		command_aura = null
+	else
+		command_aura_tick = 15//15 ticks, or 30 seconds apprx.
+
 	update_action_buttons()
 
 

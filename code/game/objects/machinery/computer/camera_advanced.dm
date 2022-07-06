@@ -292,6 +292,9 @@
 	icon_state = "nothing"
 	var/icon_state_on = "cas_camera"
 	hud_possible = list(SQUAD_HUD_TERRAGOV)
+	var/command_aura
+	var/command_aura_ticks
+	var/command_aura_strength
 
 /mob/camera/aiEye/remote/hud/Initialize()
 	. = ..()
@@ -305,6 +308,36 @@
 	holder.icon = icon
 	holder.icon_state = icon_state_on
 	hud_list[hud_type] = holder
+
+///Takes a buffing order (move, hold, or focus) from somewhere and then pulses it out for 15 life ticks.
+/mob/camera/aiEye/remote/hud/proc/relay_order(order, strength)
+	command_aura = order
+	command_aura_strength = strength
+	command_aura_ticks = 15
+	START_PROCESSING(SSobj, src) //It's a mob, but SSmob is only for living stuff. Same frequency.
+	pulse_aura()
+
+/mob/camera/aiEye/remote/hud/process()
+	if(command_aura_ticks < 1)
+		return PROCESS_KILL
+	command_aura_ticks--
+	pulse_aura()
+
+///Sends our current command aura to all mobs in range. Separate from process so we can do it right on apply too.
+/mob/camera/aiEye/remote/hud/proc/pulse_aura()
+	if(!command_aura)
+		return
+	for(var/mob/living/carbon/human/recipient in range(4 + command_aura_strength, src))
+		switch(command_aura)
+			if("move")
+				if(command_aura_strength > recipient.mobility_new)
+					recipient.mobility_new = command_aura_strength
+			if("hold")
+				if(command_aura_strength > recipient.protection_new)
+					recipient.protection_new = command_aura_strength
+			if("focus")
+				if(command_aura_strength > recipient.marksman_new)
+					recipient.marksman_new = command_aura_strength
 
 //This one's for overwatch/CIC
 /mob/camera/aiEye/remote/hud/overwatch
