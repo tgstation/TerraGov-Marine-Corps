@@ -83,10 +83,12 @@
 /obj/item/weapon/gun/sentry/big_sentry/cope
 	name = "\improper C.O.P.E turret"
 	desc = "Cope, nerd"
+	icon_state = "cope"
 	max_integrity = 200
 	integrity_failure = 50
 	deploy_time = 1 SECONDS
 	undeploy_time = 1 SECONDS
+	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS|TURRET_RADIAL
 	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
 	//flags_item = IS_DEPLOYABLE
 	///How long to deploy after thrown
