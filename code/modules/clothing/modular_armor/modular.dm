@@ -838,6 +838,7 @@
 		/obj/item/armor_module/module/hlin_explosive_armor,
 		/obj/item/armor_module/module/ballistic_armor,
 		/obj/item/armor_module/module/chemsystem,
+		/obj/item/armor_module/module/eshield/som,
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/engineering,
@@ -862,6 +863,10 @@
 	icon_state = "som_light"
 	item_state = "som_light"
 	slowdown = 0.3
+
+/obj/item/clothing/suit/modular/som/light/shield
+	starting_attachments = list(/obj/item/armor_module/module/eshield/som)
+
 
 /obj/item/clothing/suit/modular/som/heavy
 	name = "\improper SOM heavy battle armor"

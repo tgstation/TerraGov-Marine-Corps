@@ -366,7 +366,6 @@
 
 /obj/item/weapon/gun/smg/som
 	name = "\improper V-21 submachinegun"
-	//maybe add a custom calibre later
 	desc = "The V-21 is the principal submachinegun used by the Sons of Mars, designed to be used effectively one or two handed with  a variable rate of fire. When fired at full speed it's performance is severely degraded unless used properly wielded, while the lower rate of fire can still be effectively used one handed when necessary. It uses 10x20mm caseless rounds."
 	icon_state = "v21"
 	icon = 'icons/Marine/gun64.dmi'
@@ -377,7 +376,7 @@
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/som
 	allowed_ammo_types = list(/obj/item/ammo_magazine/smg/som, /obj/item/ammo_magazine/smg/som/ap, /obj/item/ammo_magazine/smg/som/incendiary, /obj/item/ammo_magazine/smg/som/extended)
-	fire_sound = 'sound/weapons/guns/fire/vector_fire.ogg' //PLACEHOLDER
+	fire_sound = 'sound/weapons/guns/fire/vector_fire.ogg'
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST) //semi, full auto, fuller auto
 
 	attachable_allowed = list(
@@ -419,3 +418,10 @@
 	akimbo_additional_delay = 0.7
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
+
+/obj/item/weapon/gun/smg/som/scout
+	starting_attachment_types = list(
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/motiondetector,
+	)

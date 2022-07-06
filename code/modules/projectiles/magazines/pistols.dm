@@ -193,19 +193,19 @@
 	name = "\improper V-11 AP magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = CALIBER_9X19
-	icon_state = "88m4" //PLACEHOLDER
+	icon_state = "v11"
 	max_rounds = 18
 
 /obj/item/ammo_magazine/pistol/som/incendiary
 	name = "\improper V-11 incendiary magazine (9mm)"
-	icon_state = "m4a3_incendiary" //PLACEHOLDER
+	icon_state = "v11_incend"
 	default_ammo = /datum/ammo/bullet/pistol/incendiary
 	icon_state_mini = "mag_pistol_red"
 
 /obj/item/ammo_magazine/pistol/som/extended
 	name = "\improper V-11 extended magazine (9mm)"
 	max_rounds = 30
-	icon_state = "m4a3_ext" //PLACEHOLDER
+	icon_state = "v11_extended"
 	icon_state_mini = "mag_pistol_yellow"
 
 //-------------------------------------------------------

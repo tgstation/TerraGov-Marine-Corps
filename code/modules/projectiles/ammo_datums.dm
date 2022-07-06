@@ -558,6 +558,14 @@ datum/ammo/bullet/revolver/tp44
 	penetration = 30
 	sundering = 3
 
+/datum/ammo/bullet/smg/incendiary
+	name = "incendiary submachinegun bullet"
+	hud_state = "smg_fire"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
+	damage = 18
+	penetration = 0
+
+
 /*
 //================================================
 					Rifle Ammo
@@ -1469,7 +1477,7 @@ datum/ammo/bullet/revolver/tp44
 	for(var/mob/living/carbon/victim in range(1, T))
 		victim.visible_message(span_danger("[victim] is hit by the bomblet blast!"),
 			isxeno(victim) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
-		var/armor_block = victim.run_armor_check(null, "bomb")
+		var/armor_block = victim.get_soft_armor("bomb")
 		victim.apply_damage(rand(5, 15), BRUTE, null, armor_block, updating_health = TRUE)
 		victim.apply_damage(rand(5, 15), BURN, null, armor_block, updating_health = TRUE)
 		staggerstun(victim, P, stagger = 0.5, slowdown = 0.5)

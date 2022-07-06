@@ -553,11 +553,11 @@
 /obj/item/weapon/gun/pistol/som
 	name = "\improper V-11 pistol"
 	desc = "The standard sidearm used by the Sons of Mars. A reliable and simple weapon that is often seen on the export market on the outer colonies. Typically chambered in 9mm armor piercing rounds."
-	icon_state = "88m4" //PLACEHOLDER
-	item_state = "88m4" //PLACEHOLDER
-	caliber = CALIBER_9X19 //codex
+	icon_state = "v11"
+	item_state = "v11"
+	caliber = CALIBER_9X19
 	max_shells = 18
-	fire_sound = 'sound/weapons/guns/fire/vp70.ogg' //PLACEHOLDER SOUNDS
+	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
@@ -570,14 +570,13 @@
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/lasersight,
-		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/burstfire_assembly,
 		/obj/item/attachable/lace,
 	)
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 22,"rail_x" = 19, "rail_y" = 23, "under_x" = 21, "under_y" = 16, "stock_x" = 11, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 6, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 11, "stock_y" = 10)
 
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1.2
@@ -586,6 +585,12 @@
 	aim_slowdown = 0.1
 	scatter = 0
 	scatter_unwielded = 4
+
+/obj/item/weapon/gun/pistol/som/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/reddot,
+	)
 
 //-------------------------------------------------------
 /*

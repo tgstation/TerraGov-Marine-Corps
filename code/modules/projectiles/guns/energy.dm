@@ -844,6 +844,29 @@
 	fire_delay = 0.2 SECONDS
 	mode_list = list()
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta
+	name = "\improper volkite charger"
+	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The 'serpenta' is pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size."
+	icon_state = "vx12"
+	item_state = "vx12"
+	ammo_level_icon = ""
+	max_shots = 15
+	rounds_per_shot = 36
+	ammo_datum_type = /datum/ammo/energy/volkite/medium
+	default_ammo_type = /obj/item/cell/lasgun/volkite/small
+	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/small)
+	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	fire_delay = 0.3 SECONDS
+	scatter = -1
+	scatter_unwielded = 5
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.9
+	recoil_unwielded = 0
+	damage_falloff_mult = 0.5
+	movement_acc_penalty_mult = 2
+	aim_slowdown = 0.1
+
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
 	name = "\improper volkite charger"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."

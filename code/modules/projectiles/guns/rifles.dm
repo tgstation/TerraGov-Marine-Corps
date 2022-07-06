@@ -1537,7 +1537,7 @@
 	icon_state = "v31"
 	icon = 'icons/Marine/gun64.dmi'
 	item_state = "v31"
-	fire_sound = 'sound/weapons/guns/fire/som_rifle.ogg' //PLACEHOLDER SOUNDS
+	fire_sound = 'sound/weapons/guns/fire/som_rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
@@ -1593,3 +1593,11 @@
 	autoburst_delay = 0.3 SECONDS
 
 	damage_falloff_mult = 0.7
+
+/obj/item/weapon/gun/rifle/som/standard
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/shotgun/micro_grenade,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+	)

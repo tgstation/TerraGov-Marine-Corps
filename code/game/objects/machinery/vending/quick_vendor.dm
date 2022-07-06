@@ -17,9 +17,9 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/tgmc/smartgunner/standard_sg,
 		/datum/outfit/quick/tgmc/smartgunner/minigun_sg,
 		/datum/outfit/quick/tgmc/leader/standard_assaultrifle,
-		/datum/outfit/quick/som/marine/mpi,
+		/datum/outfit/quick/som/marine/standard_assaultrifle,
+		/datum/outfit/quick/som/marine/scout,
 		/datum/outfit/quick/som/marine/charger,
-		/datum/outfit/quick/som/marine/caliver,
 		/datum/outfit/quick/som/veteran/charger,
 		/datum/outfit/quick/som/veteran/culverin,
 	)
@@ -53,11 +53,11 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 /obj/machinery/quick_vendor/som
 	faction = FACTION_SOM
 	categories = list(
-		"SOM Standard",
-		"SOM Engineer",
-		"SOM Medic",
-		"SOM Veteran",
-		"SOM Leader",
+		"SOM Squad Standard",
+		"SOM Squad Engineer",
+		"SOM Squad Medic",
+		"SOM Squad Veteran",
+		"SOM Squad Leader",
 	)
 
 /obj/machinery/quick_vendor/can_interact(mob/user)
