@@ -2853,6 +2853,10 @@
 "oP" = (
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostsw)
+"oQ" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/engineering)
 "oR" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
@@ -3842,9 +3846,12 @@
 /area/orion_outpost/ground/underground/caveE)
 "tQ" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/shotgun/beanbag,
-/obj/item/ammo_magazine/shotgun/beanbag,
 /obj/item/weapon/gun/shotgun/pump/cmb,
+/obj/item/weapon/gun/shotgun/pump/cmb,
+/obj/item/weapon/gun/shotgun/pump/cmb,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -4397,6 +4404,10 @@
 	dir = 10
 	},
 /area/orion_outpost/surface/building/prep)
+"wZ" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/brig)
 "xb" = (
 /obj/item/mortal_shell/howitzer/he,
 /turf/open/floor/mainship/black/full,
@@ -8503,6 +8514,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostcent)
+"Se" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/canteen)
 "Sf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -9140,6 +9155,10 @@
 	dir = 5
 	},
 /area/orion_outpost/surface/landing_pad)
+"Vl" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/administration)
 "Vm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12950,7 +12969,7 @@ Qy
 IV
 op
 Hc
-Hc
+Vl
 Hc
 mt
 Id
@@ -17329,7 +17348,7 @@ NC
 Fn
 Vt
 hI
-SZ
+wZ
 gD
 SN
 Fn
@@ -19161,7 +19180,7 @@ kp
 AO
 Fm
 pJ
-dJ
+Se
 aa
 dJ
 hA
@@ -22385,7 +22404,7 @@ yV
 yI
 yI
 qg
-Eo
+oQ
 Eo
 Io
 Xi
