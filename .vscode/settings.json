@@ -9,6 +9,9 @@
     	"**/.yarn": true,
     	"**/.pnp.*": true
 	},
+	"workbench.editorAssociations": {
+		"*.dmi": "imagePreview.previewEditor"
+	},
 	"files.eol": "\n",
 	"gitlens.advanced.blame.customArguments": ["-w"],
 	"tgstationTestExplorer.project.resultsType": "json",
