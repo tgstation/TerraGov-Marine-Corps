@@ -20,3 +20,6 @@
   Vondiech:
   - bugfix: Removes non-existant reqtorio recipe for br-8 scout rifle ammo since it
       was merged with the IFF ammo recipe.
+2022-07-06:
+  Lumipharon:
+  - rscadd: Adds the Quick equip vendor for future gamemode and admin use
