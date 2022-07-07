@@ -43,6 +43,7 @@
 			/obj/item/weapon/gun/rifle/chambered = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
 			/obj/item/weapon/gun/shotgun/pump/bolt = -1,
+			/obj/item/ammo_magazine/rifle/boltclip = -1,
 			/obj/item/ammo_magazine/rifle/bolt = -1,
 			/obj/item/weapon/gun/shotgun/double/martini = -1,
 			/obj/item/ammo_magazine/rifle/martini = -1,
@@ -839,7 +840,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 30,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
-			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,

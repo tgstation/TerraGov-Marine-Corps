@@ -48,8 +48,8 @@
 		return TRUE
 	if(!num_xenos)
 		if(round_stage == INFESTATION_MARINE_CRASHING)
-			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory... for xenos.
-			round_finished = MODE_INFESTATION_X_MINOR
+			message_admins("Round finished: [MODE_INFESTATION_M_MINOR]") //marines lost the ground operation but managed to wipe out Xenos on the ship at a greater cost, minor victory
+			round_finished = MODE_INFESTATION_M_MINOR
 			return TRUE
 		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big
 		round_finished = MODE_INFESTATION_M_MAJOR

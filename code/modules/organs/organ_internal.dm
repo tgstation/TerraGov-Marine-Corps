@@ -149,7 +149,6 @@
 	. = ..()
 	if(!.)
 		return
-	// For example, bruised heart will leave you with 25 stamina buffer
 	owner.max_stamina_buffer += (old_organ_status - organ_status) * 25
 	owner.maxHealth += (old_organ_status - organ_status) * 20
 
@@ -250,6 +249,8 @@
 	var/current_medicine_count = 0
 	///How many drugs we can take before they overwhelm us. Decreases with damage
 	var/current_medicine_cap = 5
+	///Whether we were over cap the last time we checked.
+	var/old_overflow = FALSE
 
 /datum/internal_organ/kidneys/New(mob/living/carbon/carbon_mob)
 	. = ..()
@@ -266,8 +267,6 @@
 	if(!ispath(reagent_type, /datum/reagent/medicine))
 		return
 	current_medicine_count++
-	if(current_medicine_count == current_medicine_cap + 1)
-		to_chat(owner, span_warning("All the different drugs in you are starting to make you feel off..."))
 
 ///Signaled proc. Check if the removed reagent was under reagent/medicine. If so, decrement medicine counter and potentially notify owner.
 /datum/internal_organ/kidneys/proc/owner_removed_reagent(datum/source, reagent_type)
@@ -275,8 +274,6 @@
 	if(!ispath(reagent_type, /datum/reagent/medicine))
 		return
 	current_medicine_count--
-	if(current_medicine_count == current_medicine_cap)
-		to_chat(owner, span_notice("You don't feel as overwhelmed by all the drugs any more."))
 
 /datum/internal_organ/kidneys/set_organ_status()
 	. = ..()
@@ -290,9 +287,21 @@
 	if(owner.reagents.has_reagent(/datum/reagent/water))
 		return //Hydration is good for your kidneys. Shame it purges medicines.
 
-	var/overflow = current_medicine_count - current_medicine_cap
-	if(overflow < 1)
+	if(owner.bodytemperature <= 170) //No sense worrying about a chem cap if we're in cryo anyway.
 		return
+
+	var/overflow = current_medicine_count - current_medicine_cap
+
+	if(overflow < 1)
+		if(old_overflow)
+			to_chat(owner, span_notice("You don't feel as overwhelmed by all the drugs any more."))
+			old_overflow = FALSE
+		return
+
+	if(!old_overflow)
+		to_chat(owner, span_warning("All the different drugs in you are starting to make you feel off..."))
+		old_overflow = TRUE
+
 	owner.set_drugginess(3)
 	if(prob(overflow * (organ_status + 1) * 10))
 		owner.Confused(2 SECONDS * (organ_status + 1))
@@ -309,6 +318,17 @@
 	robotic_type = /obj/item/organ/brain/prosthetic
 	vital = TRUE
 	organ_id = ORGAN_BRAIN
+
+/datum/internal_organ/brain/set_organ_status()
+	var/old_organ_status = organ_status
+	. = ..()
+	if(!.)
+		return
+	owner.skills = owner.skills.modifyAllRatings(old_organ_status - organ_status)
+	if(organ_status >= ORGAN_BRUISED)
+		ADD_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)
+	else
+		REMOVE_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)
 
 /datum/internal_organ/brain/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT

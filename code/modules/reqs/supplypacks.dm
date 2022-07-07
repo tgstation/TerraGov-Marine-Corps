@@ -129,11 +129,6 @@ OPERATIONS
 	containertype = null
 	available_against_xeno_only = TRUE
 
-/datum/supply_packs/operations/autominer
-	name = "Autominer upgrade"
-	contains = list(/obj/item/minerupgrade/automatic)
-	cost = 15
-
 /datum/supply_packs/operations/cash
 	name = "200 dollars"
 	contains = list(/obj/item/spacecash/c500)
@@ -506,6 +501,16 @@ WEAPONS
 	name = "Rocket Sledge"
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
 	cost = 60
+
+/datum/supply_packs/weapons/smart_pistol
+	name = "TX13 smartpistol"
+	contains = list(/obj/item/weapon/gun/pistol/smart_pistol)
+	cost = 15
+/datum/supply_packs/weapons/smart_pistol_ammo
+	name = "TX13 smartpistol ammo"
+	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
+	cost = 1
+
 
 /*******************************************************************************
 EXPLOSIVES

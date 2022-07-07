@@ -64,7 +64,7 @@
 	jobtype = /datum/job/clf/medic
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/lifesaver/upp
+	belt = /obj/item/storage/belt/lifesaver/full/upp
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/black

@@ -521,16 +521,11 @@
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
 
-	var/slowdown_multiplier = 1
+	var/slowdown_multiplier = 0.5 //Because hemodile is obviously in blood already
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox)) //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
-		slowdown_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		slowdown_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
-		slowdown_multiplier *= 2
+	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+			slowdown_multiplier *= 2 //Each other Defiler toxin increases the multiplier by 2x; 2x if we have 1 combo chem, 4x if we have 2
 
 	switch(slowdown_multiplier) //Description varies in severity and probability with the multiplier
 		if(0 to 1 && prob(10))
@@ -569,13 +564,11 @@
 	if(prob(10))
 		to_chat(L, span_warning("You notice your wounds crusting over with disgusting green ichor.") )
 
-	var/tox_cap_multiplier = 1
+	var/tox_cap_multiplier = 0.5 //Because transvitox is obviously in blood already
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
-		tox_cap_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		tox_cap_multiplier *= 2
+	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+			tox_cap_multiplier *= 2 //Each other Defiler toxin doubles the multiplier
 
 	var/tox_loss = L.getToxLoss()
 	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
@@ -594,13 +587,11 @@
 /datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
 	SIGNAL_HANDLER
 
-	var/tox_cap_multiplier = 1
+	var/tox_cap_multiplier = 0.5 //Because transvitox is obviously in blood already
 
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
-		tox_cap_multiplier *= 2
-
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
-		tox_cap_multiplier *= 2
+	for(var/datum/reagent/current_reagent AS in L.reagents.reagent_list) //Cycle through all chems
+		if(is_type_in_typecache(current_reagent, GLOB.defiler_toxins_typecache_list)) //For each xeno toxin reagent, double the strength multiplier
+			tox_cap_multiplier *= 2 //Each other Defiler toxin doubles the multiplier
 
 	var/tox_loss = L.getToxLoss()
 	if(tox_loss > DEFILER_TRANSVITOX_CAP) //If toxin levels are already at their cap, cancel out
@@ -619,7 +610,7 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_sanguinal/on_mob_life(mob/living/L, metabolism)
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile)) //Each other Defiler toxin doubles the multiplier
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 		L.adjustStaminaLoss(DEFILER_SANGUINAL_DAMAGE)
 
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
@@ -628,7 +619,7 @@
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 		L.adjustFireLoss(DEFILER_SANGUINAL_DAMAGE)
 
-	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE) //Causes brute damage
+	L.apply_damage(DEFILER_SANGUINAL_DAMAGE, BRUTE, sharp = TRUE)
 
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
