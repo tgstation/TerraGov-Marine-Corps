@@ -1,7 +1,7 @@
 /datum/job/som
 	job_category = JOB_CAT_MARINE
-	access = ALL_ANTAGONIST_ACCESS //placeholder
-	minimal_access = ALL_ANTAGONIST_ACCESS //placeholder
+	access = ALL_ANTAGONIST_ACCESS
+	minimal_access = ALL_ANTAGONIST_ACCESS
 	faction = FACTION_SOM
 
 
@@ -9,8 +9,6 @@
 	. = ..()
 	H.undershirt = 6
 	H.regenerate_icons()
-
-///wip stuff, need to move main SOM and ert chads to separate child branches of SOM...
 
 //Base job for normal gameplay SOM, not ERT.
 /datum/job/som/squad
@@ -42,27 +40,26 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 
 //SOM Standard
 /datum/job/som/squad/standard
-	title = SOM_SQUAD_MARINE //can change when ert split out if desired
+	title = SOM_SQUAD_MARINE
 	paygrade = "SOM1"
-	comm_title = "Mar" //placeholder
+	comm_title = "Mar"
 	minimap_icon = "private"
-	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE //what does this actually do differently from default?
+	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	outfit = /datum/outfit/job/som/squad/standard
 
-	//need work
 	html_description = {"
 		<b>Difficulty</b>: Easy<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress, Combat patrol<br /><br /><br />
+		<b>Gamemode Availability</b>: Combat patrol<br /><br /><br />
 		The backbone of the Sons of Mars are their rank and file marines, trained and equipped to fight the conventional military of their former oppressors. They are fitted with the standard arsenal that the SOM offers, equipped with traditional projectile weaponry as well are less common but more deadly volkite weapons as the SOM's industry allows. They’re often high in numbers and divided into squads, but they’re the lowest ranking individuals, with a low degree of skill, not adapt to engineering or medical roles. Still, they are not limited to the arsenal they can take on the field to deal whatever threat that lurks against the Sons of Mars.
 		<br /><br />
 		<b>Duty</b>: Carry out orders made by your acting Squad Leader, deal with any threats that oppose the Sons of Mars.
 	"}
 
-/datum/job/som/squad/standard/radio_help_message(mob/M) //needs work
+/datum/job/som/squad/standard/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are a rank-and-file soldier of the Sons of Mars, and that is your strength.
 What you lack alone, you gain standing shoulder to shoulder with the men and women of the SOM. For Mars!"})
@@ -78,18 +75,17 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	title = SOM_SQUAD_ENGINEER
 	paygrade = "SOM2"
 	comm_title = "Eng"
-	total_positions = 12 //where is this used, there is another value under gamemode...
+	total_positions = 12
 	skills_type = /datum/skills/combat_engineer
 	display_order = JOB_DISPLAY_ORDER_SUQAD_ENGINEER
 	outfit = /datum/outfit/job/som/squad/engineer
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 
-	//todo: update this
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress, Combat patrol<br /><br /><br />
+		<b>Gamemode Availability</b>: Combat patrol<br /><br /><br />
 		A mastermind of on-field construction, often regarded as the answer on whether the FOB succeeds or not, Squad Engineers are the people who construct the Forward Operating Base (FOB) and guard whatever threat that endangers the marines. In addition to this, they are also in charge of repairing power generators on the field as well as mining drills for requisitions. They have a high degree of engineering skill, meaning they can deploy and repair barricades faster than regular marines.
 		<br /><br />
 		<b>Duty</b>: Construct and reinforce the FOB that has been ordered by your acting Squad Leader, fix power generators and mining drills in the AO and stay on guard for any dangers that threaten your FOB.
@@ -112,22 +108,21 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	title = SOM_SQUAD_CORPSMAN
 	paygrade = "SOM2"
 	comm_title = "Med"
-	total_positions = 16 //whatdo?
+	total_positions = 16
 	minimap_icon = "medic"
 	skills_type = /datum/skills/combat_medic
 	display_order = JOB_DISPLAY_ORDER_SQUAD_CORPSMAN
 	outfit = /datum/outfit/job/som/squad/medic
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 
-	//todo: update this
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
+		<b>Gamemode Availability</b>: Combat patrol<br /><br /><br />
 		Corpsman are the vital line between life and death of a marine’s life should a marine be wounded in battle, if provided they do not run away. While marines treat themselves, it is the corpsmen who will treat injuries beyond what a normal person can do. With a higher degree of medical skill compared to a normal marine, they are capable of doing medical actions faster and reviving with defibrillators will heal more on each attempt. They can also perform surgery, in an event if there are no acting medical officers onboard.
 		<br /><br />
-		<b>Duty</b>: Tend the injuries of your fellow marines or related personnel, keep them at fighting strength. Evacuate those who are incapacitated or rendered incapable of fighting due to severe wounds or larvae infections.
+		<b>Duty</b>: Tend the injuries of your fellow marines or related personnel, keep them at fighting strength.
 	"}
 	minimap_icon = "medic"
 
@@ -148,29 +143,26 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	title = SOM_SQUAD_VETERAN
 	paygrade = "SOM3"
 	comm_title = "SGnr"
-	total_positions = 8 //whatdo???
+	total_positions = 8
 	skills_type = /datum/skills/crafty //smarter than the average bear
-	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER //not certain what this does
+	display_order = JOB_DISPLAY_ORDER_SQUAD_SMARTGUNNER
 	minimap_icon = "smartgunner"
 	outfit = /datum/outfit/job/som/squad/veteran
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	//todo: update this
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Squad Leader<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
-		When it comes to heavy firepower during the early stages of an operation, TGMC has provided the squad with Smartgunners. They are those who trained to operate the T-29 Smart Machine Gun, an IFF heavy weapon that provides cover fire even directly behind the marines. Squad Smartgunners are best when fighting behind marines, as they can act as shields or during a hectic crossfire.
+		<b>Gamemode Availability</b>: Combat patrol<br /><br /><br />
+		You are a seasoned veteran of the SOM. You have fought and bled for the cause, proving your self a true Son of Mars. As fitting reward for your service, you are entrusted with best arms and equipment the SOM can offer, and you are expected to serve as an example to your fellow soldier.
 		<br /><br />
-		<b>Duty</b>: Be the backline of your pointmen, provide heavy weapons support with your smart machine gun.
+		<b>Duty</b>: Show your comrades how a true Son of Mars acts, and crush our enemies without mercy!.
 	"}
 
-//eh.
 /datum/job/som/squad/veteran/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are the a Veteran among the SOM. With your long experience (and better training and equipment), your job is to provide special weapons support to bolster the line."})
 
-//Charger
 /datum/outfit/job/som/squad/veteran
 	name = "SOM Veteran"
 	jobtype = /datum/job/som/squad/veteran
@@ -192,13 +184,12 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
-	//todo: update this
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
 		<b>Unlock Requirement</b>: Starting Role<br /><br />
-		<b>Gamemode Availability</b>: Crash, Distress<br /><br /><br />
-		Squad Leaders are basically the boss of any able-bodied squad. Though while they are not trained compared to engineers, corpsmen and smartgunners, they are (usually) capable of leading the squad. They have access to command assets such as a ship railgun, orbital bombardment as examples.
+		<b>Gamemode Availability</b>: Combat patrol<br /><br /><br />
+		Squad Leaders are basically the boss of any able-bodied squad. Though while they are not trained compared to engineers, corpsmen and smartgunners, they are (usually) capable of leading the squad. They can issue orders to bolster their soldiers, and are expected to confidentally lead them to victory.
 		<br /><br />
 		<b>Duty</b>: Be a responsible leader of your squad, make sure your squad communicates frequently all the time and ensure they are working together for the task at hand. Stay safe, as you’re a valuable leader.
 	"}
@@ -208,7 +199,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	to_chat(M, {"\nYou are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating.
 You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."})
 
-//Charger
 /datum/outfit/job/som/squad/leader
 	name = "SOM Leader"
 	jobtype = /datum/job/som/squad/leader
@@ -216,8 +206,7 @@ You are also in charge of communicating with command and letting them know about
 	id = /obj/item/card/id/dogtag/som
 
 
-////////////
-///ERT roles
+//ERT roles
 
 /datum/job/som/ert
 	access = ALL_ANTAGONIST_ACCESS

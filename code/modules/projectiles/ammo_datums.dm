@@ -1358,8 +1358,8 @@ datum/ammo/bullet/revolver/tp44
 
 //10-gauge Micro rail shells - aka micronades
 /datum/ammo/bullet/micro_rail
-	hud_state_empty = "shotgun_empty"
-	handful_icon_state = "micro_grenade" //PLACEHOLDER
+	hud_state_empty = "grenade_empty_flash"
+	handful_icon_state = "micro_grenade_airburst"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	shell_speed = 2
 	handful_amount = 3
@@ -1384,24 +1384,24 @@ datum/ammo/bullet/revolver/tp44
 
 //piercing scatter shot
 /datum/ammo/bullet/micro_rail/airburst
-	name = "airburst rail shell" //TEMP
-	handful_icon_state = "micro_grenade" //PLACEHOLDER
-	hud_state = "shotgun_slug" //PLACEHOLDER
+	name = "micro grenade"
+	handful_icon_state = "micro_grenade_airburst"
+	hud_state = "grenade_airburst"
 	bonus_projectiles_type = /datum/ammo/bullet/micro_rail_spread
 
 //incendiary piercing scatter shot
 /datum/ammo/bullet/micro_rail/dragonbreath
-	name = "dragon's breath rail shell" //TEMP
-	handful_icon_state = "micro_grenade" //PLACEHOLDER
-	hud_state = "shotgun_slug" //PLACEHOLDER
+	name = "micro grenade"
+	handful_icon_state = "micro_grenade_incendiary"
+	hud_state = "grenade_fire"
 	bonus_projectiles_type = /datum/ammo/bullet/micro_rail_spread/incendiary
 	bonus_projectile_range = 6
 
-//cluster grenade. Bomblets explode in a rough cone pattern.
+//cluster grenade. Bomblets explode in a rough cone pattern
 /datum/ammo/bullet/micro_rail/cluster
-	name = "airburst rail shell" //TEMP
-	handful_icon_state = "micro_grenade" //PLACEHOLDER
-	hud_state = "shotgun_slug" //PLACEHOLDER
+	name = "micro grenade"
+	handful_icon_state = "micro_grenade_cluster"
+	hud_state = "grenade_he"
 	bonus_projectiles_type = /datum/ammo/micro_rail_cluster
 	bonus_projectile_quantity = 7
 	bonus_projectile_range = 6
@@ -1409,9 +1409,9 @@ datum/ammo/bullet/revolver/tp44
 
 //creates a literal smokescreen
 /datum/ammo/bullet/micro_rail/smoke_burst
-	name = "smoke burst rail shell" //TEMP
-	handful_icon_state = "micro_grenade" //PLACEHOLDER
-	hud_state = "shotgun_slug" //PLACEHOLDER
+	name = "micro grenade"
+	handful_icon_state = "micro_grenade_smoke"
+	hud_state = "grenade_smoke"
 	bonus_projectiles_type = /datum/ammo/smoke_burst
 	bonus_projectiles_scatter = 20
 	bonus_projectile_range = 6

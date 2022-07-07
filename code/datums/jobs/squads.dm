@@ -129,12 +129,12 @@
 		REBEL_SQUAD_LEADER = 1,
 )
 
-//SOM squads - WIP
+//SOM squads
 /datum/squad/zulu
 	name = "Zulu"
 	id = ZULU_SQUAD
 	color = "#FF6A00"
-	access = list(ACCESS_MARINE_ALPHA) //todo: access for SOM squads
+	access = list(ACCESS_MARINE_ALPHA) //No unique SOM access yet
 	radio_freq = FREQ_ZULU
 	faction = FACTION_SOM
 	current_positions = list(

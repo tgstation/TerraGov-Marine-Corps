@@ -144,7 +144,7 @@
 	icon_state = "xeno_spawn"
 	job = /datum/job/xenomorph
 
-//SOM - WIP
+//SOM
 /obj/effect/landmark/start/job/som/squadstandard
 	icon_state = "PFC"
 	job = /datum/job/som/squad/standard
