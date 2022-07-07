@@ -247,3 +247,12 @@
 	. = ..()
 	var/turf/location = get_turf(src)
 	to_chat(user, span_notice("After looking at the [src] you can tell your general coordinates.") + span_bold(" LONGITUDE [location.x]. LATITUDE [location.y]."))
+
+/obj/item/compass/afterattack(atom/target, mob/user, has_proximity, click_parameters)
+	. = ..()
+	if(user.do_actions)
+		return
+	var/turf/target_turf = isturf(target)? target : get_turf(target)
+	if(!do_after(user, 1 SECONDS))
+		return
+	to_chat(user, span_notice("Given your current position, target coordinates are:") + span_bold(" LONGITUDE [target_turf.x]. LATITUDE [target_turf.y]."))
