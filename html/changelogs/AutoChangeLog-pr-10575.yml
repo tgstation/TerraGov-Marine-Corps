@@ -1,0 +1,5 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - bugfix: "Kidneys count microdosed chems against their limit"
+  - bugfix: "Confuse effects won't be created with infinite duration and zero function."
