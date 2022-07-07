@@ -464,6 +464,12 @@
 /obj/machinery/deployable/mounted/sentry/cope
 	density = FALSE
 
+
+/obj/machinery/deployable/mounted/sentry/cope/sentry_start_fire()
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.update_ammo_count() //checks if the battery has recharged enough to fire
+	return ..()
+
 ///Dissassembles the device
 /obj/machinery/deployable/mounted/sentry/cope/disassemble(mob/user)
 	var/obj/item/item = internal_item

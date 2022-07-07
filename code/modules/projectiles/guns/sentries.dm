@@ -89,7 +89,7 @@
 	integrity_failure = 50
 	deploy_time = 1 SECONDS
 	undeploy_time = 1 SECONDS
-	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS|TURRET_RADIAL
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
 	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
 	turret_range = 9
 
@@ -108,7 +108,7 @@
 	max_shots = 150
 	rounds_per_shot = 12
 	fire_delay = 0.15 SECONDS
-	scatter = 3
+	scatter = -3
 	damage_falloff_mult = 0.5
 	ammo_datum_type = /datum/ammo/energy/volkite/light
 	default_ammo_type = /obj/item/cell/lasgun/volkite/turret
