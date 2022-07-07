@@ -70,7 +70,7 @@
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop.
 
-///round timer - this probably doesn't need to have some of this stuff
+///round timer
 /datum/game_mode/combat_patrol/proc/set_game_timer()
 	if(!iscombatpatrolgamemode(SSticker.mode))
 		return
@@ -89,9 +89,7 @@
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 ///checks how many marines and SOM are still alive
-/datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND, ZTRAIT_RESERVED)), count_flags)
-	//todo: replace main_ship and reserved (marine ship and transit) with home base shit
-
+/datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)), count_flags)
 	///number of TGMC alive
 	var/num_marines = 0
 	///number of SOM alive
@@ -105,7 +103,7 @@
 		//counts the live marines and SOM
 		for(var/i in GLOB.humans_by_zlevel["[z]"])
 			var/mob/living/carbon/human/H = i
-			if(!istype(H)) // Small fix?
+			if(!istype(H))
 				continue
 			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 				continue
@@ -113,7 +111,7 @@
 				continue
 			if(H.faction == FACTION_XENO)
 				continue
-			if(isspaceturf(H.loc)) //not certain why this is here...
+			if(isspaceturf(H.loc))
 				continue
 			if(H.faction == FACTION_SOM)
 				num_som++
@@ -122,11 +120,11 @@
 	//counts the dead marines and SOM
 	for(var/i in GLOB.dead_human_list)
 		var/mob/living/carbon/human/H = i
-		if(!istype(H)) //I'm not certain if this needs to be here
+		if(!istype(H))
 			continue
 		if(H.faction == FACTION_XENO)
 			continue
-		if(isspaceturf(H.loc)) //not certain why this is here...
+		if(isspaceturf(H.loc))
 			continue
 		if(H.faction == FACTION_SOM)
 			num_dead_som++
