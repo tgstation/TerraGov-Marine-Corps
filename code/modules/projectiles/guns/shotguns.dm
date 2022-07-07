@@ -705,8 +705,11 @@
 	damage_mult = 0.85
 	recoil = 1
 	recoil_unwielded = 4
-	aim_slowdown = 0.4
+	aim_slowdown = 0.35
 	wield_delay = 0.7
+
+/obj/item/weapon/gun/shotgun/som/pointman
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/motiondetector)
 
 //-------------------------------------------------------
 //Inbuilt launcher for the V-31

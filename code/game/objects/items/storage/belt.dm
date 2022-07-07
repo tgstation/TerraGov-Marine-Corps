@@ -483,6 +483,10 @@
 
 	return ..()
 
+/obj/item/storage/belt/shotgun/som
+	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Made in traditional SOM leather."
+	icon_state = "shotgunbelt_som"
+
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
 	desc = "A belt good enough for holding all your .577/400 ball rounds."

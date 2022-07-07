@@ -1598,6 +1598,5 @@
 	starting_attachment_types = list(
 		/obj/item/weapon/gun/shotgun/micro_grenade,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/compensator,
 		/obj/item/attachable/reddot,
 	)
