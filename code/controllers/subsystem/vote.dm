@@ -137,6 +137,10 @@ SUBSYSTEM_DEF(vote)
 				deltimer(shipmap_timer_id)
 				var/datum/map_config/VM = config.maplist[SHIP_MAP]["Twin Pillars"]
 				SSmapping.changemap(VM, SHIP_MAP)
+			if(. == "Combat Patrol")
+				deltimer(shipmap_timer_id)
+				var/datum/map_config/VM = config.maplist[SHIP_MAP]["Combat Patrol Base"]
+				SSmapping.changemap(VM, SHIP_MAP)
 			if(GLOB.master_mode != .)
 				SSticker.save_mode(.)
 				if(SSticker.HasRoundStarted())
@@ -213,6 +217,8 @@ SUBSYSTEM_DEF(vote)
 					if(mode.time_between_round && (world.realtime - SSpersistence.last_modes_round_date[mode.name]) < mode.time_between_round)
 						continue
 					if(istype(mode, /datum/game_mode/civil_war) && SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_TWIN_PILLARS)
+						continue
+					if(istype(mode, /datum/game_mode/combat_patrol) && SSticker.current_state < GAME_STATE_PLAYING && SSmapping.configs[SHIP_MAP].map_name != MAP_COMBAT_PATROL_BASE)
 						continue
 					if(players > mode.maximum_players)
 						continue

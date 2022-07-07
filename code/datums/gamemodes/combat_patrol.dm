@@ -1,17 +1,15 @@
 /datum/game_mode/combat_patrol
 	name = "Combat patrol"
 	config_tag = "Combat patrol"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_SOM_OPFOR //MODE_NO_PERMANENT_WOUNDS is for nerds //mode_two_human_factions should be unfugged
+	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_SOM_OPFOR //MODE_NO_PERMANENT_WOUNDS is for nerds
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	shutters_drop_time = 5 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
-	respawn_time = 10 MINUTES
+	respawn_time = 12 MINUTES
 	time_between_round = 0 HOURS
 	/// Timer used to calculate how long till round ends
 	var/game_timer
-	//todo: add more som roles
 	valid_job_types = list(
-		///datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/squad/engineer = 4,
 		/datum/job/terragov/squad/corpsman = 8,
 		/datum/job/terragov/squad/smartgunner = 2,
@@ -28,15 +26,15 @@
 	. = ..()
 	for(var/area/area_to_lit AS in GLOB.sorted_areas)
 		var/turf/first_turf = area_to_lit.contents[1]
-		if(first_turf.z != 2)
-			continue
 		switch(area_to_lit.ceiling)
 			if(CEILING_NONE to CEILING_GLASS)
-				area_to_lit.set_base_lighting(COLOR_WHITE, 255)
+				area_to_lit.set_base_lighting(COLOR_WHITE, 200)
 			if(CEILING_METAL)
-				area_to_lit.set_base_lighting(COLOR_WHITE, 150)
+				area_to_lit.set_base_lighting(COLOR_WHITE, 100)
 			if(CEILING_UNDERGROUND to CEILING_UNDERGROUND_METAL)
-				area_to_lit.set_base_lighting(COLOR_WHITE, 50)
+				area_to_lit.set_base_lighting(COLOR_WHITE, 75)
+			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
+				area_to_lit.set_base_lighting(COLOR_WHITE, 25)
 	GLOB.join_as_robot_allowed = FALSE
 
 /datum/game_mode/combat_patrol/announce()
@@ -68,7 +66,7 @@
 	. = ..()
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time)
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop.
 
 ///round timer - this probably doesn't need to have some of this stuff
 /datum/game_mode/combat_patrol/proc/set_game_timer()
