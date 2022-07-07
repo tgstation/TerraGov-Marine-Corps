@@ -1,0 +1,4 @@
+author: "QualityVan"
+delete-after: True
+changes: 
+  - rscadd: "Clicking on stuff when you're carrying a compass will tell you that stuff's coordinates."
