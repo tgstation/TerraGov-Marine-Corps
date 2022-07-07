@@ -581,6 +581,10 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
 "adA" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
 /turf/open/floor/prison/whitepurple{
 	dir = 5
 	},
@@ -11567,6 +11571,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
 	},
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/north)
@@ -35219,6 +35227,10 @@
 "cgp" = (
 /obj/structure/bed,
 /obj/machinery/alarm,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
 /turf/open/floor/prison/blackfloor,
 /area/prison/pirate)
 "cgr" = (
@@ -39774,6 +39786,10 @@
 	dir = 8
 	},
 /obj/machinery/light/small,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cvw" = (
@@ -41279,6 +41295,13 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
+"dGP" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/prison/bright_clean/two,
+/area/prison/residential/north)
 "dJr" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
@@ -42401,6 +42424,13 @@
 	},
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
+"gVt" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/prison/bright_clean/two,
+/area/prison/residential/north)
 "gWy" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/prison,
@@ -43657,6 +43687,15 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/cleanmarked,
 /area/prison/yard)
+"ksL" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor/prison/whitepurple{
+	dir = 6
+	},
+/area/prison/research/secret/biolab)
 "ksV" = (
 /obj/machinery/vending/cigarette/colony,
 /obj/effect/decal/warning_stripes/thin{
@@ -45591,6 +45630,13 @@
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/plating,
 /area/prison/residential/central)
+"pWy" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor/prison/whitepurple,
+/area/prison/research/secret/biolab)
 "pWz" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -45716,6 +45762,17 @@
 /obj/structure/cable,
 /turf/open/floor/wood/broken,
 /area/prison/library)
+"qio" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating,
+/area/prison/hangar/main)
 "qiV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -45838,6 +45895,13 @@
 "qBA" = (
 /turf/open/floor/carpet,
 /area/prison/chapel)
+"qBT" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/prison/research/secret/biolab)
 "qDV" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -46411,6 +46475,15 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
+"rXp" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/prison/cellstripe{
+	dir = 8
+	},
+/area/prison/hangar/main)
 "rYj" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/effect/ai_node,
@@ -46502,6 +46575,13 @@
 	dir = 9
 	},
 /area/prison/cellblock/highsec/south/north)
+"slO" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/prison/bright_clean/two,
+/area/prison/residential/north)
 "soh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
@@ -46792,6 +46872,16 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet,
 /area/prison/research/RD)
+"sWv" = (
+/obj/structure/bed/chair/comfy{
+	dir = 8
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/prison/darkred/full,
+/area/prison/hangar/main)
 "sWQ" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating,
@@ -48240,6 +48330,13 @@
 	dir = 8
 	},
 /area/prison/cellblock/highsec/north/north)
+"wUH" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/prison,
+/area/prison/hangar/main)
 "wUR" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -48372,6 +48469,13 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/central)
+"xsd" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/plating,
+/area/prison/pirate)
 "xtT" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow,
@@ -48496,6 +48600,13 @@
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/space/sea,
 /area/prison/command/quarters)
+"xOa" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/floor/prison/blackfloor,
+/area/prison/pirate)
 "xRA" = (
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/wood,
@@ -56235,7 +56346,7 @@ azW
 avN
 qlN
 rIq
-aBV
+gVt
 aBV
 aBV
 aHe
@@ -58293,7 +58404,7 @@ aHN
 aHN
 aST
 aFX
-aBV
+slO
 aHe
 aBV
 avN
@@ -59580,7 +59691,7 @@ aBV
 aBV
 aBV
 aHe
-aBV
+dGP
 avN
 azk
 azk
@@ -70722,7 +70833,7 @@ ctE
 cuh
 uOt
 swi
-sHD
+xOa
 cio
 cwp
 cio
@@ -72782,7 +72893,7 @@ cio
 ckF
 cwt
 cio
-lZe
+xsd
 lZe
 lZe
 lZe
@@ -85744,7 +85855,7 @@ aeC
 owV
 owV
 aha
-aeX
+pWy
 agt
 agK
 agX
@@ -87280,7 +87391,7 @@ acF
 acX
 ado
 adx
-svM
+qBT
 aeg
 aeg
 hdc
@@ -89082,7 +89193,7 @@ adA
 adM
 aek
 aeI
-aeY
+ksL
 afj
 afj
 afj
@@ -108965,7 +109076,7 @@ dXl
 bwr
 bnQ
 mSO
-bnQ
+wUH
 aXt
 obp
 obp
@@ -111024,7 +111135,7 @@ byi
 byl
 bzn
 bqf
-bBV
+rXp
 bBV
 bBV
 bBV
@@ -111789,7 +111900,7 @@ pOu
 pOu
 hFq
 pOu
-vDZ
+qio
 gdP
 gdP
 gdP
@@ -111804,7 +111915,7 @@ bET
 bET
 bET
 bET
-bET
+sWv
 bET
 bNq
 bxM

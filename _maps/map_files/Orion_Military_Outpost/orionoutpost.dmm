@@ -133,6 +133,15 @@
 	dir = 8
 	},
 /area/orion_outpost/ground/outpostnw)
+"aH" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#82796c"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "aK" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave{
@@ -359,6 +368,15 @@
 	dir = 1
 	},
 /area/orion_outpost/surface/building/command)
+"bP" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#948a7c"
+	},
+/area/orion_outpost/ground/outpostsw)
 "bS" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/mars/random/cave{
@@ -838,6 +856,15 @@
 	dir = 8
 	},
 /area/orion_outpost/surface/building/administration)
+"eo" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#82796c"
+	},
+/area/orion_outpost/ground/underground/caveS)
 "ep" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /obj/structure/cable,
@@ -1659,6 +1686,15 @@
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
+"it" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#82796c"
+	},
+/area/orion_outpost/ground/underground/caveS)
 "iu" = (
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/mainship/orange{
@@ -1817,6 +1853,15 @@
 	dir = 8
 	},
 /area/orion_outpost/ground/outpostw)
+"jd" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#82796c"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "je" = (
 /obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/mainship/sterile/side{
@@ -2258,6 +2303,15 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
+"ln" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#948a7c"
+	},
+/area/orion_outpost/surface/landing_pad2_external)
 "lp" = (
 /turf/open/floor/mainship/orange{
 	dir = 5
@@ -2374,6 +2428,15 @@
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/prep)
+"lW" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#948a7c"
+	},
+/area/orion_outpost/ground/outpostsw)
 "lX" = (
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/mono,
@@ -3755,6 +3818,15 @@
 	dir = 1
 	},
 /area/orion_outpost/surface/building/cargo)
+"sz" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#948a7c"
+	},
+/area/orion_outpost/ground/outpostsw)
 "sB" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
@@ -4198,6 +4270,15 @@
 	color = "#ffb682"
 	},
 /area/orion_outpost/ground/outposte)
+"uO" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#82796c"
+	},
+/area/orion_outpost/ground/underground/caveS)
 "uP" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -5072,6 +5153,24 @@
 	dir = 5
 	},
 /area/orion_outpost/surface/landing_pad_2)
+"zi" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#82796c"
+	},
+/area/orion_outpost/ground/underground/caveN)
+"zn" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#82796c"
+	},
+/area/orion_outpost/ground/underground/caveN)
 "zo" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave{
@@ -5941,6 +6040,15 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/blue,
 /area/orion_outpost/surface/building/administration)
+"Di" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#948a7c"
+	},
+/area/orion_outpost/surface/landing_pad2_external)
 "Dk" = (
 /obj/structure/desertdam/decals/road/edge{
 	icon_state = "road_edge_decal9"
@@ -6079,6 +6187,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/command)
+"Ef" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/orion_outpost/surface/landing_pad2_external)
 "Eg" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -8517,6 +8632,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/nebuilding)
+"Qs" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/orion_outpost/surface/landing_pad2_external)
 "Qt" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -8941,6 +9063,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/ground/outpostsw)
+"Sq" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#82796c"
+	},
+/area/orion_outpost/ground/underground/caveS)
 "Sr" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete,
@@ -9458,6 +9589,15 @@
 /obj/structure/barricade/metal,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/bunker)
+"UJ" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave{
+	color = "#948a7c"
+	},
+/area/orion_outpost/ground/outpostsw)
 "UK" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54";
@@ -10972,7 +11112,7 @@ so
 so
 so
 so
-so
+sz
 Rp
 Rp
 Rp
@@ -11529,7 +11669,7 @@ tC
 tC
 tC
 tC
-tC
+ln
 tC
 tC
 tC
@@ -11653,7 +11793,7 @@ gZ
 Ra
 Ra
 Ra
-tC
+Di
 tC
 tC
 tC
@@ -11904,7 +12044,7 @@ so
 so
 so
 so
-so
+bP
 Rp
 Rp
 SP
@@ -12313,7 +12453,7 @@ gZ
 Ra
 Ra
 eW
-eW
+Qs
 IH
 ft
 ft
@@ -12558,7 +12698,7 @@ Rp
 Rp
 Rp
 Rp
-so
+UJ
 so
 so
 so
@@ -12957,7 +13097,7 @@ Rp
 Rp
 Rp
 Rp
-so
+lW
 so
 so
 so
@@ -13500,7 +13640,7 @@ Ra
 gZ
 Ra
 Ra
-eW
+Ef
 Bf
 eW
 eW
@@ -30906,7 +31046,7 @@ Db
 Db
 Db
 cG
-cG
+Sq
 cG
 cG
 cG
@@ -31055,7 +31195,7 @@ Ho
 VD
 Ho
 Ho
-oJ
+zn
 oJ
 oJ
 oJ
@@ -31194,7 +31334,7 @@ oJ
 oJ
 oJ
 oJ
-oJ
+aH
 Ho
 Ho
 Ho
@@ -31825,7 +31965,7 @@ cG
 cG
 cG
 cG
-cG
+uO
 Db
 Db
 Db
@@ -31835,7 +31975,7 @@ cG
 cG
 cG
 cG
-cG
+it
 Db
 Db
 Db
@@ -32109,7 +32249,7 @@ eA
 kG
 Ho
 VD
-oJ
+zi
 oJ
 oJ
 oJ
@@ -32254,7 +32394,7 @@ oJ
 oJ
 oJ
 oJ
-oJ
+jd
 Ho
 VD
 Ho
@@ -32492,7 +32632,7 @@ cG
 cG
 cG
 cG
-cG
+eo
 Db
 Db
 Db

@@ -7,8 +7,6 @@
 	flags_xeno_abilities = ABILITY_CRASH
 	respawn_time = 12 MINUTES
 	time_between_round = 0 HOURS
-	/// Timer used to calculate how long till round ends
-	var/game_timer
 	valid_job_types = list(
 		/datum/job/terragov/squad/engineer = 4,
 		/datum/job/terragov/squad/corpsman = 8,
@@ -21,6 +19,10 @@
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/standard = -1,
 	)
+	/// Timer used to calculate how long till round ends
+	var/game_timer
+	///The length of time until round ends.
+	var/max_game_time = 40 MINUTES
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
@@ -77,7 +79,7 @@
 	if(D.game_timer)
 		return
 
-	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/check_finished), 40 MINUTES, TIMER_STOPPABLE)
+	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/check_finished), max_game_time, TIMER_STOPPABLE)
 
 /datum/game_mode/combat_patrol/game_end_countdown()
 	if(!game_timer)
@@ -138,7 +140,7 @@
 	if(round_finished)
 		return TRUE
 
-	if(SSmonitor.gamestate != GROUNDSIDE) //check what this does, probs means marines haven't landed yet for civil war
+	if(SSmonitor.gamestate != GROUNDSIDE || !game_timer)
 		return
 
 	///pulls the number of marines and SOM, both dead and alive

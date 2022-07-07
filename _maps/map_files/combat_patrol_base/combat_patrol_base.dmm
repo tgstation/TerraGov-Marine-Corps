@@ -10,6 +10,12 @@
 /area/mainship/squads/general/som{
 	requires_power = 0
 	})
+"cl" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
 "cq" = (
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
@@ -17,6 +23,14 @@
 /obj/machinery/telecomms/receiver/preset_left,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"dm" = (
+/obj/structure/patrol_point{
+	id = "TGMC_13"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general{
+	requires_power = 0
+	})
 "dS" = (
 /obj/machinery/telecomms/processor/preset_two/som,
 /turf/open/floor/mainship/tcomms,
@@ -25,6 +39,14 @@
 /obj/effect/landmark/start/job/crash/squadleader,
 /turf/open/floor/asteroid,
 /area/mainship/squads/general{
+	requires_power = 0
+	})
+"eo" = (
+/obj/structure/patrol_point{
+	id = "SOM_11"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
 	requires_power = 0
 	})
 "eZ" = (
@@ -60,6 +82,14 @@
 /area/mainship/squads/general{
 	requires_power = 0
 	})
+"kH" = (
+/obj/structure/patrol_point{
+	id = "SOM_24"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
 "lA" = (
 /obj/machinery/light{
 	dir = 4
@@ -76,6 +106,25 @@
 /obj/machinery/telecomms/server/presets/command/som,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"nv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
 "nF" = (
 /obj/machinery/telecomms/server/presets/yankee,
 /turf/open/floor/mainship/tcomms,
@@ -95,6 +144,14 @@
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"ra" = (
+/obj/structure/patrol_point{
+	id = "TGMC_24"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general{
+	requires_power = 0
+	})
 "rL" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/mainship/tcomms,
@@ -109,6 +166,14 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"sY" = (
+/obj/structure/patrol_point{
+	id = "TGMC_12"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general{
+	requires_power = 0
+	})
 "tk" = (
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/mainship/tcomms,
@@ -121,6 +186,14 @@
 	})
 "uB" = (
 /obj/effect/landmark/start/job/som/squadcorpsman,
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
+"vZ" = (
+/obj/structure/patrol_point{
+	id = "SOM_22"
+	},
 /turf/open/floor/asteroid,
 /area/mainship/squads/general/som{
 	requires_power = 0
@@ -147,6 +220,14 @@
 /area/mainship/squads/general{
 	requires_power = 0
 	})
+"zp" = (
+/obj/structure/patrol_point{
+	id = "SOM_23"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
 "zx" = (
 /obj/machinery/telecomms/processor/preset_four/som,
 /turf/open/floor/mainship/tcomms,
@@ -164,6 +245,22 @@
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"Cr" = (
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/machinery/vending/marineFood,
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
 "Dc" = (
 /obj/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/asteroid,
@@ -200,6 +297,68 @@
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"Fq" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
+"FG" = (
+/obj/structure/patrol_point{
+	id = "TGMC_1
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general{
+	requires_power = 0
+	})
+"Ht" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
+"HN" = (
+/obj/structure/patrol_point{
+	id = "SOM_14"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
+"Il" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/patrol_point{
+	id = "TGMC_14"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general{
+	requires_power = 0
+	})
 "Jc" = (
 /obj/machinery/telecomms/processor/preset_one/som,
 /turf/open/floor/mainship/tcomms,
@@ -220,10 +379,29 @@
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"Mq" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/patrol_point{
+	id = "TGMC_22"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general{
+	requires_power = 0
+	})
 "Mr" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"Ne" = (
+/obj/structure/patrol_point{
+	id = "TGMC_21"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general{
+	requires_power = 0
+	})
 "Nk" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship/tcomms,
@@ -250,6 +428,17 @@
 /area/mainship/squads/general/som{
 	requires_power = 0
 	})
+"PY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/patrol_point{
+	id = "SOM_21"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
 "Ql" = (
 /obj/machinery/light{
 	dir = 8
@@ -262,10 +451,26 @@
 /obj/machinery/telecomms/server/presets/bravo,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"Ra" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general{
+	requires_power = 0
+	})
 "Rm" = (
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"Te" = (
+/obj/structure/patrol_point{
+	id = "SOM_12"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
 "Tu" = (
 /obj/machinery/telecomms/bus/preset_four/som,
 /turf/open/floor/mainship/tcomms,
@@ -302,6 +507,17 @@
 /area/mainship/squads/general{
 	requires_power = 0
 	})
+"Xx" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/patrol_point{
+	id = "SOM_13"
+	},
+/turf/open/floor/asteroid,
+/area/mainship/squads/general/som{
+	requires_power = 0
+	})
 "XZ" = (
 /obj/machinery/telecomms/bus/preset_one/som,
 /turf/open/floor/mainship/tcomms,
@@ -320,6 +536,14 @@
 	})
 "Yq" = (
 /obj/effect/landmark/start/latejoin,
+/turf/open/floor/asteroid,
+/area/mainship/squads/general{
+	requires_power = 0
+	})
+"YJ" = (
+/obj/structure/patrol_point{
+	id = "TGMC_23"
+	},
 /turf/open/floor/asteroid,
 /area/mainship/squads/general{
 	requires_power = 0
@@ -464,27 +688,27 @@ eZ
 eZ
 eZ
 eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
+Dp
 eZ
 eZ
 eZ
@@ -567,25 +791,25 @@ eZ
 eZ
 eZ
 Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
-Dp
+Ea
+cl
+Ea
+Ea
+Ea
+Ql
+Ea
+Ea
+Ea
+Ea
+nv
+Ea
+Ea
+Ea
+Ht
+Ql
+Ea
+Ea
+Cr
 Dp
 eZ
 eZ
@@ -670,21 +894,21 @@ eZ
 eZ
 Dp
 Ea
+cl
 Ea
 Ea
 Ea
 Ea
-Ql
 Ea
 Ea
 Ea
 Ea
-Ql
 Ea
 Ea
 Ea
 Ea
-Ql
+Ea
+Ea
 Ea
 Ea
 Ea
@@ -771,6 +995,15 @@ eZ
 eZ
 eZ
 Dp
+UI
+cl
+Ea
+fY
+fY
+fY
+fY
+fY
+fY
 Ea
 Ea
 Ea
@@ -780,16 +1013,7 @@ Ea
 Ea
 Ea
 Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
+JP
 Dp
 eZ
 eZ
@@ -873,16 +1097,8 @@ eZ
 eZ
 eZ
 Dp
-UI
 Ea
-Ea
-Ea
-fY
-fY
-fY
-fY
-fY
-fY
+cl
 Ea
 Ea
 Ea
@@ -891,7 +1107,15 @@ Ea
 Ea
 Ea
 Ea
-JP
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
 Dp
 eZ
 eZ
@@ -975,25 +1199,25 @@ eZ
 eZ
 eZ
 Dp
+eo
+cl
+Ea
+Ea
+Ym
+Ym
+Ym
+Ym
+Ym
+Ea
+PI
 Ea
 Ea
 Ea
+PI
 Ea
 Ea
 Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
+PI
 Dp
 eZ
 eZ
@@ -1077,9 +1301,8 @@ eZ
 eZ
 eZ
 Dp
-Ea
-Ea
-Ea
+Te
+cl
 Ea
 Ea
 Ym
@@ -1096,6 +1319,7 @@ PI
 Ea
 Ea
 Ea
+PI
 Dp
 eZ
 eZ
@@ -1179,22 +1403,22 @@ eZ
 eZ
 eZ
 Dp
+Xx
+cl
+xf
 Ea
 Ea
 Ea
 Ea
 Ea
-Ym
-Ym
-Ym
-Ym
-Ym
-Ea
-PI
 Ea
 Ea
 Ea
-PI
+Ea
+Ea
+Ea
+Ea
+Ea
 Ea
 Ea
 Ea
@@ -1281,15 +1505,15 @@ eZ
 eZ
 eZ
 Dp
-UI
-Ea
-Ea
+HN
+cl
 xf
 Ea
+aT
+aT
 Ea
-Ea
-Ea
-Ea
+aT
+aT
 Ea
 Ea
 Ea
@@ -1384,15 +1608,7 @@ eZ
 eZ
 Dp
 Ea
-Ea
-Ea
-xf
-Ea
-aT
-aT
-Ea
-aT
-aT
+cl
 Ea
 Ea
 Ea
@@ -1401,7 +1617,15 @@ Ea
 Ea
 Ea
 Ea
-JP
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
 Dp
 eZ
 eZ
@@ -1486,24 +1710,24 @@ eZ
 eZ
 Dp
 Ea
+cl
+Ea
+Ea
+Ym
+Ym
+Ea
+tU
+tU
+Ea
+PI
 Ea
 Ea
 Ea
+PI
 Ea
 Ea
 Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
+PI
 Dp
 eZ
 eZ
@@ -1588,8 +1812,7 @@ eZ
 eZ
 Dp
 Ea
-Ea
-Ea
+cl
 Ea
 Ea
 Ym
@@ -1606,6 +1829,7 @@ PI
 Ea
 Ea
 Ea
+PI
 Dp
 eZ
 eZ
@@ -1690,21 +1914,21 @@ eZ
 eZ
 Dp
 Ea
+cl
 Ea
 Ea
 Ea
 Ea
-Ym
-Ym
-Ea
-tU
-tU
-Ea
-PI
 Ea
 Ea
 Ea
-PI
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
 Ea
 Ea
 Ea
@@ -1791,15 +2015,15 @@ eZ
 eZ
 eZ
 Dp
+PY
+cl
+xf
 Ea
+aT
+aT
 Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
+aT
+aT
 Ea
 Ea
 Ea
@@ -1893,16 +2117,10 @@ eZ
 eZ
 eZ
 Dp
-UI
-Ea
-Ea
+vZ
+cl
 xf
 Ea
-aT
-aT
-Ea
-aT
-aT
 Ea
 Ea
 Ea
@@ -1911,7 +2129,13 @@ Ea
 Ea
 Ea
 Ea
-JP
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
 Dp
 eZ
 eZ
@@ -1995,25 +2219,25 @@ eZ
 eZ
 eZ
 Dp
+zp
+cl
+Ea
+Ea
+Ym
+Ym
+Ym
+Ym
+Ym
+Ea
+PI
 Ea
 Ea
 Ea
-xf
+PI
 Ea
 Ea
 Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
+PI
 Dp
 eZ
 eZ
@@ -2097,9 +2321,8 @@ eZ
 eZ
 eZ
 Dp
-Ea
-Ea
-Ea
+kH
+cl
 Ea
 Ea
 Ym
@@ -2116,6 +2339,7 @@ PI
 Ea
 Ea
 Ea
+PI
 Dp
 eZ
 eZ
@@ -2200,21 +2424,21 @@ eZ
 eZ
 Dp
 Ea
+cl
 Ea
 Ea
 Ea
 Ea
-Ym
-Ym
-Ym
-Ym
-Ym
-Ea
-PI
 Ea
 Ea
 Ea
-PI
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
+Ea
 Ea
 Ea
 Ea
@@ -2302,14 +2526,14 @@ eZ
 eZ
 Dp
 UI
+cl
 Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
-Ea
+uB
+uB
+uB
+uB
+uB
+uB
 Ea
 Ea
 Ea
@@ -2404,15 +2628,15 @@ eZ
 eZ
 Dp
 Ea
+cl
 Ea
 Ea
 Ea
-uB
-uB
-uB
-uB
-uB
-uB
+Ea
+Ea
+Ea
+Ea
+Ea
 Ea
 Ea
 Ea
@@ -2506,12 +2730,7 @@ eZ
 eZ
 Dp
 Ea
-Ea
-Ea
-Ea
-Ea
-lA
-Ea
+cl
 Ea
 Ea
 Ea
@@ -2520,10 +2739,15 @@ Ea
 Ea
 Ea
 Ea
+Fq
+Ea
+Ea
+Ea
+Ht
 lA
 Ea
 Ea
-Ea
+Ht
 Dp
 eZ
 eZ
@@ -4138,12 +4362,7 @@ eZ
 eZ
 Bq
 ao
-ao
-ao
-ao
-ao
-jW
-ao
+Ra
 ao
 ao
 ao
@@ -4152,10 +4371,15 @@ ao
 ao
 ao
 ao
+nv
+ao
+ao
+ao
+Ht
 jW
 ao
 ao
-ao
+Ht
 Bq
 eZ
 eZ
@@ -4240,15 +4464,15 @@ eZ
 eZ
 Bq
 ao
+Ra
 ao
 ao
 ao
-DJ
-DJ
-DJ
-DJ
-DJ
-DJ
+ao
+ao
+ao
+ao
+ao
 ao
 ao
 ao
@@ -4342,15 +4566,15 @@ eZ
 eZ
 Bq
 Xl
+Ra
 ao
 ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
+DJ
+DJ
+DJ
+DJ
+DJ
+DJ
 ao
 ao
 ao
@@ -4444,21 +4668,21 @@ eZ
 eZ
 Bq
 ao
+Ra
 ao
 ao
 ao
 ao
-JL
-JL
-JL
-JL
-JL
-ao
-Yf
 ao
 ao
 ao
-Yf
+ao
+ao
+ao
+ao
+ao
+ao
+ao
 ao
 ao
 ao
@@ -4545,8 +4769,8 @@ eZ
 eZ
 eZ
 Bq
-ao
-ao
+FG
+Ra
 ao
 ao
 ao
@@ -4555,7 +4779,6 @@ JL
 JL
 JL
 JL
-ao
 Yf
 ao
 ao
@@ -4564,6 +4787,7 @@ Yf
 ao
 ao
 ao
+Yf
 Bq
 eZ
 eZ
@@ -4647,25 +4871,25 @@ eZ
 eZ
 eZ
 Bq
+sY
+Ra
 ao
 ao
 ao
-dY
+JL
+JL
+JL
+JL
+JL
+Yf
 ao
 ao
 ao
+Yf
 ao
 ao
 ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
+Yf
 Bq
 eZ
 eZ
@@ -4749,16 +4973,11 @@ eZ
 eZ
 eZ
 Bq
-Xl
-ao
+dm
+Ra
 ao
 dY
 ao
-Yq
-Yq
-ao
-Yq
-Yq
 ao
 ao
 ao
@@ -4767,7 +4986,12 @@ ao
 ao
 ao
 ao
-EJ
+ao
+ao
+ao
+ao
+ao
+ao
 Bq
 eZ
 eZ
@@ -4851,16 +5075,16 @@ eZ
 eZ
 eZ
 Bq
+Il
+Ra
 ao
+dY
 ao
+Yq
+Yq
 ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
+Yq
+Yq
 ao
 ao
 ao
@@ -4954,6 +5178,7 @@ eZ
 eZ
 Bq
 ao
+Ra
 ao
 ao
 ao
@@ -4961,14 +5186,13 @@ ao
 ao
 ao
 ao
-Dc
-Dc
-ao
-Yf
 ao
 ao
 ao
-Yf
+ao
+ao
+ao
+ao
 ao
 ao
 ao
@@ -5056,7 +5280,7 @@ eZ
 eZ
 Bq
 ao
-ao
+Ra
 ao
 ao
 ao
@@ -5065,7 +5289,6 @@ ao
 ao
 Dc
 Dc
-ao
 Yf
 ao
 ao
@@ -5074,6 +5297,7 @@ Yf
 ao
 ao
 ao
+Yf
 Bq
 eZ
 eZ
@@ -5158,24 +5382,24 @@ eZ
 eZ
 Bq
 ao
+Ra
 ao
 ao
 ao
 ao
 ao
 ao
+Dc
+Dc
+Yf
 ao
 ao
 ao
+Yf
 ao
 ao
 ao
-ao
-ao
-ao
-ao
-ao
-ao
+Yf
 Bq
 eZ
 eZ
@@ -5260,15 +5484,15 @@ eZ
 eZ
 Bq
 ao
+Ra
 ao
 ao
-dY
 ao
-Yq
-Yq
 ao
-Yq
-Yq
+ao
+ao
+ao
+ao
 ao
 ao
 ao
@@ -5361,11 +5585,16 @@ eZ
 eZ
 eZ
 Bq
-Xl
-ao
+Ne
+Ra
 ao
 dY
 ao
+Yq
+Yq
+ao
+Yq
+Yq
 ao
 ao
 ao
@@ -5375,11 +5604,6 @@ ao
 ao
 ao
 ao
-ao
-ao
-ao
-ao
-EJ
 Bq
 eZ
 eZ
@@ -5463,22 +5687,22 @@ eZ
 eZ
 eZ
 Bq
+Mq
+Ra
+ao
+dY
 ao
 ao
 ao
 ao
 ao
-JL
-JL
-JL
-JL
-JL
-ao
-Yf
 ao
 ao
 ao
-Yf
+ao
+ao
+ao
+ao
 ao
 ao
 ao
@@ -5565,8 +5789,8 @@ eZ
 eZ
 eZ
 Bq
-ao
-ao
+YJ
+Ra
 ao
 ao
 ao
@@ -5575,7 +5799,6 @@ JL
 JL
 JL
 JL
-ao
 Yf
 ao
 ao
@@ -5584,6 +5807,7 @@ Yf
 ao
 ao
 ao
+Yf
 Bq
 eZ
 eZ
@@ -5667,25 +5891,25 @@ eZ
 eZ
 eZ
 Bq
+ra
+Ra
 ao
 ao
 ao
+JL
+JL
+JL
+JL
+JL
+Yf
 ao
 ao
 ao
+Yf
 ao
 ao
 ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
+Yf
 Bq
 eZ
 eZ
@@ -5769,16 +5993,8 @@ eZ
 eZ
 eZ
 Bq
-Xl
 ao
-ao
-ao
-su
-su
-su
-su
-su
-su
+Ra
 ao
 ao
 ao
@@ -5787,7 +6003,15 @@ ao
 ao
 ao
 ao
-EJ
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
+ao
 Bq
 eZ
 eZ
@@ -5871,6 +6095,16 @@ eZ
 eZ
 eZ
 Bq
+Xl
+Ra
+ao
+ao
+su
+su
+su
+su
+su
+su
 ao
 ao
 ao
@@ -5879,17 +6113,7 @@ ao
 ao
 ao
 ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
-ao
+EJ
 Bq
 eZ
 eZ
@@ -5974,21 +6198,21 @@ eZ
 eZ
 Bq
 ao
+Ra
 ao
 ao
 ao
 ao
-xX
 ao
 ao
 ao
 ao
-xX
 ao
 ao
 ao
 ao
-xX
+ao
+ao
 ao
 ao
 ao
@@ -6075,25 +6299,25 @@ eZ
 eZ
 eZ
 Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
-Bq
+ao
+Ra
+ao
+ao
+ao
+xX
+ao
+ao
+ao
+ao
+Fq
+ao
+ao
+ao
+nv
+xX
+ao
+ao
+Ht
 Bq
 eZ
 eZ
@@ -6176,27 +6400,27 @@ eZ
 eZ
 eZ
 eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
-eZ
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
+Bq
 eZ
 eZ
 eZ

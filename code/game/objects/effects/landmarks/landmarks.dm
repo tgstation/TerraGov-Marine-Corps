@@ -472,3 +472,14 @@
 /obj/effect/landmark/valhalla_xeno_spawn_landmark_far_two/Initialize()
 	. = ..()
 	GLOB.valhalla_xeno_spawn_landmark[FAR2] = src
+
+//Combat patrol spawn in spots
+/obj/effect/landmark/patrol_point
+	name = "Patrol exit point"
+	//ID to link with an associated start point
+	var/id = null
+
+/obj/effect/landmark/patrol_point/Initialize()
+	. = ..()
+	//adds the exit points to the glob, and the start points link to them in lateinit
+	GLOB.patrol_point_list += src

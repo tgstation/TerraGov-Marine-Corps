@@ -10146,6 +10146,13 @@
 	dir = 1
 	},
 /area/bigredv2/outside/s)
+"bvr" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "bvz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/poddoor/two_tile_hor{
@@ -11976,6 +11983,13 @@
 "bKH" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/north)
+"bLx" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "bQk" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/tile/yellow/full,
@@ -12434,6 +12448,13 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
+"eIO" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "eIP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -15208,6 +15229,13 @@
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
+"wpM" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "wrd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -59626,7 +59654,7 @@ hqP
 hqP
 hqP
 hqP
-vyZ
+bvr
 vyZ
 vyZ
 vyZ
@@ -60716,7 +60744,7 @@ xNf
 xNf
 xNf
 vyZ
-vyZ
+eIO
 vyZ
 kKe
 kKe
@@ -62023,7 +62051,7 @@ vyZ
 vyZ
 vyZ
 vyZ
-vyZ
+bLx
 hqP
 hqP
 hqP
@@ -62880,7 +62908,7 @@ hqP
 hqP
 hqP
 hqP
-vyZ
+wpM
 vyZ
 vyZ
 hqP
