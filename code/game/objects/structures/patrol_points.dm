@@ -19,6 +19,9 @@
 
 /obj/structure/patrol_point/LateInitialize()
 	. = ..()
+	create_link()
+
+/obj/structure/patrol_point/proc/create_link()
 	//Links this object to it's associated exit point
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		if(exit_point.id == id)
@@ -31,8 +34,11 @@
 	if(user.incapacitated() || !Adjacent(user) || user.lying_angle || user.buckled || user.anchored)
 		return
 	if(!linked_point)
-		//Link your stuff bro.
-		to_chat(user, span_warning("This doesn't seem to go anywhere."))
+		create_link()
+		if(!linked_point)
+			//Link your stuff bro. There may be a better way to do this, but the way modular map insert works, linking does not properly happen during initialisation
+			to_chat(user, span_warning("This doesn't seem to go anywhere."))
+			return
 	user.visible_message(span_notice("[user] goes through the [src]."),
 	span_notice("You walk through the [src]."))
 	user.trainteleport(linked_point.loc)
