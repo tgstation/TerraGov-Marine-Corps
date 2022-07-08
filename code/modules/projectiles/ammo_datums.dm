@@ -725,7 +725,7 @@ datum/ammo/bullet/revolver/tp44
 	sundering = 15
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1, slowdown = 2)
+	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 1, slowdown = 2)
 
 
 /datum/ammo/bullet/shotgun/beanbag
