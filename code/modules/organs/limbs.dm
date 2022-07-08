@@ -195,6 +195,7 @@
 		if(splint_health <= 0)
 			remove_limb_flags(LIMB_SPLINTED)
 			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
+			playsound(src, 'sound/items/splint_break.ogg', 50)
 		else
 			splint_health = max(splint_health - (brute + burn), 0)
 
