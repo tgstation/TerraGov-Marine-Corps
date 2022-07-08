@@ -78,7 +78,7 @@
 	maxcharge = 540
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_cell"
-	charge_overlay = null
+	charge_overlay = "volkite_small"
 
 /obj/item/cell/lasgun/volkite/highcap
 	name = "\improper high capacity volkite energy cell"

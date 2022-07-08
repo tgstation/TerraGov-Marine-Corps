@@ -849,6 +849,7 @@
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The 'serpenta' is pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size."
 	icon_state = "vx12"
 	item_state = "vx12"
+	w_class = WEIGHT_CLASS_NORMAL
 	ammo_level_icon = ""
 	max_shots = 15
 	rounds_per_shot = 36
@@ -856,8 +857,9 @@
 	default_ammo_type = /obj/item/cell/lasgun/volkite/small
 	allowed_ammo_types = list(/obj/item/cell/lasgun/volkite/small)
 	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
-	fire_delay = 0.3 SECONDS
+	gun_firemode = GUN_FIREMODE_SEMIAUTO
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	fire_delay = 0.35 SECONDS
 	scatter = -1
 	scatter_unwielded = 5
 	accuracy_mult = 1.15
