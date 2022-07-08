@@ -2505,6 +2505,8 @@ datum/ammo/bullet/revolver/tp44
 	damage_type = STAMINA
 	added_spit_delay = 0 //used to make cooldown of the different spits vary.
 	spit_cost = 5
+	sound_hit = "alien_resin_build2"
+	sound_bounce = "alien_resin_build3"
 	armor_type = "bio"
 	shell_speed = 1
 	accuracy = 40
@@ -2532,7 +2534,7 @@ datum/ammo/bullet/revolver/tp44
 			human_victim.Immobilize(hit_immobilize)
 
 /datum/ammo/xeno/acid/web/snare_ball
-	icon_state = "neurotoxin"
+	icon_state = "boiler_gas2"
 	ping = "ping_x"
 	damage_type = STAMINA
 	added_spit_delay = 0 //used to make cooldown of the different spits vary.
@@ -2545,7 +2547,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/web/snare_ball/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
-
+	message_admins("I hit a turf")
 
 /*
 //================================================

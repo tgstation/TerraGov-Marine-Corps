@@ -61,4 +61,17 @@
 	X.face_atom(target)
 	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_DANGER)) // currently here for balance prediction, shooting a 5x5 AoE snare is pretty insane even for T3 imo
 		return fail_activate()
-	//snare ball spitting goes here
+
+	var/datum/ammo/xeno/acid/web/snare_ball = GLOB.ammo_list[/datum/ammo/xeno/acid/web/snare_ball]
+	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
+
+	newspit.generate_bullet(snare_ball)
+	newspit.fire_at(target, X, null, newspit.ammo.max_range)
+
+/obj/aoe_snare
+	name = "aoe_snare"
+	icon_state = "boiler_gas2"
+	desc = "Looks very sticky"
+	obj_integrity = 5
+	max_integrity = 100
+	layer = ABOVE_ALL_MOB_LAYER
