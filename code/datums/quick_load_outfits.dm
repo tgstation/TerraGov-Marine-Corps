@@ -102,7 +102,7 @@
 
 //Standard AR12 unga
 /datum/outfit/quick/tgmc/marine/standard_assaultrifle
-	name = "AR12 rifleman"
+	name = "AR-12 rifleman"
 	desc = "The classic line rifleman. Equipped with an AR-12 with UGL, heavy armor, and plenty of grenades and ammunition."
 
 	belt = /obj/item/storage/belt/marine
@@ -214,7 +214,7 @@
 
 //MG60 machinegunner
 /datum/outfit/quick/tgmc/marine/standard_machinegunner
-	name = "MG60 machinegunner"
+	name = "MG-60 machinegunner"
 	desc = "The old reliable workhorse of the TGMC. Equipped with an MG-60 with bipod, medium armor and some basic construction supplies. Good for holding ground and providing firesupport, and the cost of some mobility and armor."
 
 	belt = /obj/item/storage/belt/sparepouch
@@ -265,7 +265,7 @@
 
 //MG27 machinegunner
 /datum/outfit/quick/tgmc/marine/medium_machinegunner
-	name = "MG27 machinegunner"
+	name = "MG-27 machinegunner"
 	desc = "For when you need the biggest gun you can carry. Equipped with an MG-27 and miniscope and a MR-25 SMG as a side arm, as well as medium armor and a small amount of construction supplies. Allows for devestating, albeit static firepower."
 
 	belt = /obj/item/storage/holster/m25
@@ -314,7 +314,7 @@
 
 //shotgun unga
 /datum/outfit/quick/tgmc/marine/standard_shotgun
-	name = "SH35 scout"
+	name = "SH-35 scout"
 	desc = "For getting too close for comfort. Equipped with a SH-35 with buckshot and flechette rounds, a MP-19 sidearm, a good amount of grenades and light armor with a cutting edge 'arrowhead' shield module. Provides for excellent mobility and devestating close range firepower, but will falter against sustained firepower."
 
 	belt = /obj/item/storage/belt/shotgun
@@ -446,6 +446,7 @@
 /datum/outfit/quick/tgmc/engineer/rrengineer
 	name = "Rocket man"
 	desc = "Bringing the big guns. Equipped with a AR-18 and RL-160 along with the standard engineer kit. Excellent against groups of enemy infantry or light armor, but only has limited ammunition."
+	quantity = 2
 
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -611,7 +612,7 @@
 	name = "TGMC Squad Corpsman"
 	jobtype = "Squad Corpsman"
 
-//AR12 Standard medic - WIP
+//AR12 Standard medic
 /datum/outfit/quick/tgmc/corpsman/standard_medic
 	name = "AR12 standard corpsman"
 	desc = "Keeping everone else in the fight. Armed with an AR-12 and an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
@@ -664,6 +665,59 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_L_POUCH)
+
+/datum/outfit/quick/tgmc/corpsman/laser_medic
+	name = "Laser rifle corpsman"
+	desc = "Keeping everone else in the fight. Armed with an laser rifle with miniflamer and an impressive array of tools for healing your team, and a 'Mimir' biological protection module to allow you to continue operating in hazardous environments. With medivacs out of the question, you are the only thing standing between your buddies and an early grave."
+
+	belt = /obj/item/storage/belt/lifesaver/quick
+	ears = /obj/item/radio/headset/mainship/marine
+	glasses = /obj/item/clothing/glasses/hud/health
+	w_uniform = /obj/item/clothing/under/marine/corpsman/corpman_vest
+	shoes = /obj/item/clothing/shoes/marine/full
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/mimir
+	gloves = /obj/item/clothing/gloves/marine
+	mask = /obj/item/clothing/mask/gas
+	head = /obj/item/clothing/head/modular/marine/m10x/mimir
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
+	r_store = /obj/item/storage/pouch/medical_injectors
+	l_store = /obj/item/storage/pouch/magazine/large
+	back = /obj/item/storage/backpack/marine/corpsman
+
+/datum/outfit/quick/tgmc/corpsman/laser_medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/isotonic, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_L_POUCH)
 
 //Squad Smartgunner
 /datum/outfit/quick/tgmc/smartgunner
@@ -724,6 +778,7 @@
 /datum/outfit/quick/tgmc/smartgunner/minigun_sg
 	name = "SG85 smart machinegunner"
 	desc = "More bullets than sense. Equipped with an SG-85 smart minigun, a MP-19 sidearm, medium armor and a whole lot of bullets. For when you want to unleash a firehose of firepower. Try not to run out of ammo."
+	quantity = 2
 
 	belt = /obj/item/storage/holster/t19
 	ears = /obj/item/radio/headset/mainship/marine
@@ -767,14 +822,12 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 
-//Squad Leader
 /datum/outfit/quick/tgmc/leader
 	name = "TGMC Squad Leader"
 	jobtype = "Squad Leader"
 
-//Standard AR12 squad leader
 /datum/outfit/quick/tgmc/leader/standard_assaultrifle
-	name = "AR12 patrol leader"
+	name = "AR-12 patrol leader"
 	desc = "Gives the orders. Equipped with an AR-12 with UGL, plenty of grenades, some support kit such as deployable cameras, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents."
 
 	belt = /obj/item/storage/belt/marine
@@ -840,7 +893,71 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 
+/datum/outfit/quick/tgmc/leader/standard_carbine
+	name = "AR-18 patrol leader"
+	desc = "Gives the orders. Equipped with an AR-18 with plasma pistol attachment, plenty of grenades, as well as heavy armor with a 'valkyrie' autodoc module. You can provide excellent support to your squad thanks to your kit and order shouting talents, while unleashing excellent damage at medium range."
 
+	belt = /obj/item/storage/belt/marine
+	ears = /obj/item/radio/headset/mainship/marine
+	glasses = /obj/item/clothing/glasses/hud/health
+	w_uniform = /obj/item/clothing/under/marine/black_vest
+	shoes = /obj/item/clothing/shoes/marine/full
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/leader
+	gloves = /obj/item/clothing/gloves/marine
+	mask = /obj/item/clothing/mask/gas
+	head = /obj/item/clothing/head/modular/marine/m10x/leader
+	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/plasma_pistol
+	r_store = /obj/item/storage/pouch/medkit
+	l_store = /obj/item/storage/pouch/grenade
+	back = /obj/item/storage/backpack/marine/standard
+
+/datum/outfit/quick/tgmc/leader/standard_carbine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x24mm, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_smol, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/binoculars/tactical/range, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/tactical(H), SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/burn_pack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/bicaridine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/kelotane, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tramadol, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/inaprovaline, SLOT_IN_R_POUCH)
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/acid, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/neuro, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 
 //// SOM loadouts ////
 
@@ -1504,7 +1621,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 
 /datum/outfit/quick/som/veteran/caliver_pack
-	name = "Caliver Veteran"
+	name = "Caliver Heavy Veteran"
 	desc = "Heavily armed and armored SOM elite. Equipped with a volkite caliver, heavy armor, plenty of grenades and a back mounted self charging power supply. Volkite weapons are exceptionally dangerous, especially against poorly armored or tightly grouped opponents. The caliver provides deadly firepower at all ranges, and the power pack allows for sustained period of fire, although over extended periods of time the recharge may struggle to keep up with the demands of the weapon."
 
 	id = /obj/item/card/id/dogtag/som
@@ -1556,6 +1673,7 @@
 /datum/outfit/quick/som/veteran/culverin
 	name = "Culverin heavy firesupport"
 	desc = "Heavily armored heavy firesupport. Equipped with a volkite culverin and self charging backpack power unit, and a shotgun sidearm. The culverin is the most powerful man portable weapon the SOM have been seen to field. Capabable of laying down a tremendous barrage of firepower for extended periods of time. Although the back-mounted powerpack is self charging, it cannot keep up with the immense power requirements of the gun, so sustained, prolonged use can degrade the weapon's effectiveness greatly."
+	quantity = 2
 
 	id = /obj/item/card/id/dogtag/som
 	belt = /obj/item/weapon/gun/shotgun/double/sawn
