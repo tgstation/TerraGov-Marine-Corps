@@ -570,7 +570,7 @@
 /obj/item/storage/belt/grenade
 	name="\improper M276 pattern M40 HEDP rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed to carry bulk quantities of M40 HEDP Grenades."
-	icon_state="grenadebelt" // temp
+	icon_state="grenadebelt"
 	item_state="grenadebelt"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 9
@@ -578,6 +578,10 @@
 	max_storage_space = 27
 	can_hold = list(/obj/item/explosive/grenade)
 
+/obj/item/storage/belt/grenade/som
+	name="\improper S16 pattern grenade rig"
+	desc="A simple harness system available in many configurations. This version is designed to carry bulk quantities of grenades."
+	icon_state="grenadebelt_som"
 
 /obj/item/storage/belt/grenade/standard/Initialize()
 	. = ..()
