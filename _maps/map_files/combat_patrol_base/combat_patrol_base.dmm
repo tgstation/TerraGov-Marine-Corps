@@ -185,6 +185,10 @@
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
+"xt" = (
+/obj/machinery/telecomms/server/presets/command,
+/turf/open/floor/mainship,
+/area/mainship/command/telecomms)
 "yp" = (
 /obj/structure/patrol_point{
 	id = "TGMC_23"
@@ -413,6 +417,10 @@
 /obj/effect/landmark/start/job/som/squadengineer,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/som)
+"RY" = (
+/obj/machinery/telecomms/server/presets/command/som,
+/turf/open/floor/mainship,
+/area/mainship/command/telecomms)
 "Sg" = (
 /obj/effect/landmark/start/latejoinsom,
 /turf/open/floor/mainship,
@@ -2144,7 +2152,7 @@ Sw
 "}
 (27,1,1) = {"
 bg
-dO
+RY
 dO
 dO
 dO
@@ -2516,7 +2524,7 @@ Sw
 "}
 (33,1,1) = {"
 bg
-dO
+xt
 dO
 dO
 dO

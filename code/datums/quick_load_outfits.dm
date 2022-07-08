@@ -40,7 +40,7 @@
 		if(visualsOnly)
 			H.equip_to_slot_or_del(new /obj/item/radio/headset(H), SLOT_EARS, override_nodrop = TRUE)
 		else
-			H.equip_to_slot_or_del(new ears(H, H.assigned_squad, jobtype), SLOT_EARS, override_nodrop = TRUE)
+			H.equip_to_slot_or_del(new ears(H, H.assigned_squad, H.job.type), SLOT_EARS, override_nodrop = TRUE)
 	if(glasses)
 		qdel(H.glasses)
 		H.equip_to_slot_or_del(new glasses(H),SLOT_GLASSES, override_nodrop = TRUE)
