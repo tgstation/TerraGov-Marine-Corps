@@ -426,12 +426,12 @@
 /obj/item/clothing/under/som/leader/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
+/obj/item/clothing/under/som/leader/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
 //to be replaced
 /obj/item/clothing/under/som/leader/highpower
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/highpower)
-
-/obj/item/clothing/under/som/leader/webbing
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/som)
 
 /obj/item/clothing/under/sectoid
 	name = "psionic field"

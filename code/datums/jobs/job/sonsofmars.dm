@@ -596,6 +596,13 @@ You are also in charge of communicating with command and letting them know about
 	l_store = /obj/item/storage/pouch/general/large
 
 /datum/outfit/job/som/ert/leader/two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+
+	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_pocketpistol, SLOT_IN_ACCESSORY)
+
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_R_POUCH)
