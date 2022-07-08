@@ -1495,7 +1495,7 @@
 	jobtype = "SOM Squad Leader"
 
 /datum/outfit/quick/som/squad_leader/charger
-	name = "Charger Veteran"
+	name = "Charger Leader"
 	desc = "For the leader that prefers to be up close and personal. Equipped with a volkite charger, Gorgon heavy armor with 'Valkyrie' autodoctor module and a good variety of grenades. Allows for excellent close to medium range firepower, with first rate survivability. Very dangerous."
 
 	id = /obj/item/card/id/dogtag/som
@@ -1507,7 +1507,7 @@
 	gloves = /obj/item/clothing/gloves/marine/som/veteran
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/veteran
-	glasses = glasses = /obj/item/clothing/glasses/hud/health
+	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
 	r_store = /obj/item/storage/pouch/pistol/som
 	l_store = /obj/item/storage/pouch/grenade/som
@@ -1549,7 +1549,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 
 /datum/outfit/quick/som/squad_leader/caliver
-	name = "Charger Veteran"
+	name = "Caliver Leader"
 	desc = "Victory through superior firepower. Equipped with a volkite caliver and motion sensor, Gorgon heavy armor with 'Valkyrie' autodoctor module and a good variety of grenades. Allows for excellent damage at all ranges, with first rate survivability. Very dangerous."
 
 	id = /obj/item/card/id/dogtag/som
@@ -1561,7 +1561,7 @@
 	gloves = /obj/item/clothing/gloves/marine/som/veteran
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/veteran
-	glasses = glasses = /obj/item/clothing/glasses/hud/health
+	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	r_store = /obj/item/storage/pouch/pistol/som
 	l_store = /obj/item/storage/pouch/grenade/som
