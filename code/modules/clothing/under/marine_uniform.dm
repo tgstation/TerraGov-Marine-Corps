@@ -411,9 +411,6 @@
 /obj/item/clothing/under/som/veteran/highpower
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/highpower)
 
-/obj/item/clothing/under/som/veteran/webbing
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/som)
-
 /obj/item/clothing/under/som/veteran/webbing_vet
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/som_vet)
 

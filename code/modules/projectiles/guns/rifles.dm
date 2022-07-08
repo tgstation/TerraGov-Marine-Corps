@@ -1585,7 +1585,7 @@
 	fire_delay = 0.2 SECONDS
 	aim_slowdown = 0.35
 
-	accuracy_mult = 1.1
+	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.55
 	scatter = 1
 	scatter_unwielded = 15
@@ -1601,5 +1601,4 @@
 	starting_attachment_types = list(
 		/obj/item/weapon/gun/shotgun/micro_grenade,
 		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/reddot,
 	)
