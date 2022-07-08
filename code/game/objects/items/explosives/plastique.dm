@@ -18,7 +18,7 @@
 	/// smoke type created when the c4 detonates
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
 	/// radius this smoke will encompass
-	var/smokeradius = 2
+	var/smokeradius = 1
 
 /obj/item/explosive/plastique/Destroy()
 	plant_target = null
@@ -113,7 +113,7 @@
 		return
 	explosion(plant_target, 0, 0, 1, 0, 0, 1, 0, 1)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	smoke.set_up(smokeradius, loc, 11)
+	smoke.set_up(smokeradius, loc, 2)
 	smoke.start()
 	plant_target.ex_act(EXPLODE_DEVASTATE)
 	qdel(src)
