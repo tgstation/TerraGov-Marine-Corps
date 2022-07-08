@@ -141,6 +141,7 @@
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
@@ -159,6 +160,7 @@
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
@@ -177,6 +179,7 @@
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
@@ -195,6 +198,7 @@
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(

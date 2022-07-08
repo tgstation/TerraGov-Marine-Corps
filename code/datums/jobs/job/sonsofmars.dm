@@ -124,7 +124,6 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		<br /><br />
 		<b>Duty</b>: Tend the injuries of your fellow marines or related personnel, keep them at fighting strength.
 	"}
-	minimap_icon = "medic"
 
 datum/job/som/squad/medic/radio_help_message(mob/M)
 	. = ..()
