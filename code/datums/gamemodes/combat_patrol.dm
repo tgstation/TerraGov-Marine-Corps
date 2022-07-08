@@ -27,7 +27,6 @@
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
 	for(var/area/area_to_lit AS in GLOB.sorted_areas)
-		var/turf/first_turf = area_to_lit.contents[1]
 		switch(area_to_lit.ceiling)
 			if(CEILING_NONE to CEILING_GLASS)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 200)
