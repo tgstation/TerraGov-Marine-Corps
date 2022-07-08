@@ -55,7 +55,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "fL" = (
-/obj/machinery/door/poddoor/timed_late,
+/obj/machinery/door/poddoor/timed_late/containment,
 /turf/open/floor/mainship,
 /area/mainship/squads/general/som)
 "fM" = (
@@ -446,7 +446,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general/som)
 "Vu" = (
-/obj/machinery/door/poddoor/timed_late,
+/obj/machinery/door/poddoor/timed_late/containment,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Vz" = (
