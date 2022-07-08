@@ -1,0 +1,22 @@
+2022-07-01:
+  crayonLover09:
+  - imageadd: 'New lobby art: Woyer boxing'
+2022-07-02:
+  QualityVan:
+  - bugfix: You don't get weird vision while in cryo
+  - balance: Kidneys don't produce drawbacks while in cryo
+2022-07-04:
+  RipGrayson:
+  - balance: The Canterbury and its larger cousin now have reagent grinders.
+  goose4429:
+  - bugfix: Defiler can't choose sanguinal
+  novaepee:
+  - rscdel: Removed more expensive autominer
+2022-07-05:
+  BraveMole:
+  - balance: Revert xeno winning shipside even if killed
+  QualityVan:
+  - code_imp: Reagent containers can be set to not allow restocking after use.
+  Vondiech:
+  - bugfix: Removes non-existant reqtorio recipe for br-8 scout rifle ammo since it
+      was merged with the IFF ammo recipe.
