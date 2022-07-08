@@ -1096,6 +1096,131 @@
 	name = "SOM Squad Engineer"
 	jobtype = "SOM Squad Engineer"
 
+/datum/outfit/quick/som/engineer/standard_assaultrifle
+	name = "V-31 Engineer"
+	desc = "Battlefield engineer; building up and tearing down. Equipped with a V-31 assault rifle with integrated 'micro grenade' rail launcher, medium armor and a selection of explosives. Has a variety of supplies and equipment to build, repair or apply demolitions in the field. A valuable support asset to a well rounded combat force. "
+
+	id = /obj/item/card/id/dogtag/som
+	belt = /obj/item/storage/belt/marine/som
+	ears = /obj/item/radio/headset/mainship/som
+	w_uniform = /obj/item/clothing/under/som/webbing
+	shoes = /obj/item/clothing/shoes/marine/som/knife
+	wear_suit = /obj/item/clothing/suit/modular/som/engineer
+	gloves = /obj/item/clothing/gloves/marine/som/insulated
+	mask = /obj/item/clothing/mask/gas
+	head = /obj/item/clothing/head/modular/som
+	glasses = /obj/item/clothing/glasses/meson
+	suit_store = /obj/item/weapon/gun/rifle/som/standard
+	r_store = /obj/item/storage/pouch/firstaid/som
+	l_store = /obj/item/storage/pouch/tools/som/full
+	back = /obj/item/storage/backpack/lightpack/som
+
+/datum/outfit/quick/som/engineer/standard_assaultrifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/upp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
+	/obj/item/stack/cable_coil
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/som, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/burn_pack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tricordrazine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tramadol, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_R_POUCH)
+
+/datum/outfit/quick/som/engineer/charger
+	name = "Charger Engineer"
+	desc = "Battlefield engineer; building up and tearing down. Equipped with a volkite charger, medium armor and a selection of explosives. Has a variety of supplies and equipment to build, repair or apply demolitions in the field. A valuable support asset to a well rounded combat force. "
+
+	id = /obj/item/card/id/dogtag/som
+	belt = /obj/item/storage/belt/marine/som
+	ears = /obj/item/radio/headset/mainship/som
+	w_uniform = /obj/item/clothing/under/som/webbing
+	shoes = /obj/item/clothing/shoes/marine/som/knife
+	wear_suit = /obj/item/clothing/suit/modular/som/engineer
+	gloves = /obj/item/clothing/gloves/marine/som/insulated
+	mask = /obj/item/clothing/mask/gas
+	head = /obj/item/clothing/head/modular/som
+	glasses = /obj/item/clothing/glasses/meson
+	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
+	r_store = /obj/item/storage/pouch/firstaid/som
+	l_store = /obj/item/storage/pouch/tools/som/full
+	back = /obj/item/storage/backpack/lightpack/som
+
+/datum/outfit/quick/som/engineer/charger/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/upp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
+	/obj/item/stack/cable_coil
+
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_ACCESSORY)
+
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/burn_pack, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tricordrazine, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/tramadol, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_R_POUCH)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_R_POUCH)
 
 /datum/outfit/quick/som/medic
 	name = "SOM Squad Medic"
@@ -1180,7 +1305,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_L_POUCH)
 
 /datum/outfit/quick/som/medic/charger
-	name = "V-31 Medic"
+	name = "Charger Medic"
 	desc = "Keeping your buddies alive and in the fight. Equipped with a volkite charger for powerful close to medium range firepower, medium armor and a good selection of grenades. Packs a large amount of medical supplies, the squad medic is vital to maintaining combat viability."
 
 	id = /obj/item/card/id/dogtag/som

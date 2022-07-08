@@ -856,6 +856,9 @@
 
 	allowed_uniform_type = /obj/item/clothing/under
 
+/obj/item/clothing/suit/modular/som/engineer
+	starting_attachments = list(/obj/item/armor_module/storage/engineering)
+
 /obj/item/clothing/suit/modular/som/light
 	name = "\improper SOM scout armor"
 	desc = "The M-11 scout armor is a lightweight suit that that allows for minimal encumberance while still providing reasonable protection. Often seen on scouts or other specialist units that aren't normally getting shot at. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
