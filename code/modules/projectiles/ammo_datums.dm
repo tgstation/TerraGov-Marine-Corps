@@ -2353,7 +2353,7 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR
 	reagent_transfer_amount = 30
 	///On a direct hit, how long is the target paralyzed?
-	var/hit_paralyze_time = 1 SECONDS
+	var/hit_paralyze_time = 2.5 SECONDS
 	///On a direct hit, how much do the victim's eyes get blurred?
 	var/hit_eye_blur = 11
 	///On a direct hit, how much drowsyness gets added to the target?
@@ -2465,7 +2465,7 @@ datum/ammo/bullet/revolver/tp44
 	damage_type = BURN
 	penetration = 40
 	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
-	hit_paralyze_time = 1 SECONDS
+	hit_paralyze_time = 2 SECONDS
 	hit_eye_blur = 1
 	hit_drowsyness = 1
 	reagent_transfer_amount = 0
