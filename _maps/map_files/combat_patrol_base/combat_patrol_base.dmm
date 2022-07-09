@@ -5,140 +5,147 @@
 	},
 /obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "aL" = (
 /obj/structure/patrol_point{
 	id = "TGMC_24"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "bg" = (
 /turf/closed/wall/r_wall/unmeltable,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "bz" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "bX" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "ch" = (
 /obj/structure/patrol_point{
 	id = "TGMC_13"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
-"cC" = (
+/area/mainship/patrol_base)
+"cv" = (
+/obj/structure/table/mainship,
+/obj/item/facepaint/green,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base/som)
 "cU" = (
 /obj/structure/patrol_point{
 	id = "SOM_22"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "dv" = (
 /turf/closed/wall,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "dJ" = (
 /turf/closed/wall,
-/area/mainship/squads/general)
-"dO" = (
-/turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base)
 "dP" = (
 /obj/machinery/telecomms/server/presets/whiskey,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "fL" = (
 /obj/machinery/door/poddoor/timed_late/containment,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "fM" = (
 /obj/machinery/telecomms/server/presets/alpha,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "fT" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "gk" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "go" = (
 /obj/machinery/telecomms/hub/preset/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
+"ik" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/som)
 "ir" = (
 /turf/closed/wall/r_wall/unmeltable,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "jp" = (
 /obj/structure/patrol_point{
 	id = "TGMC_14"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "jw" = (
 /obj/machinery/telecomms/server/presets/xray,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "jG" = (
 /obj/machinery/telecomms/server/presets/bravo,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "lu" = (
 /obj/machinery/telecomms/hub/preset,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "lH" = (
 /obj/machinery/telecomms/bus/preset_one/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "lI" = (
 /obj/machinery/telecomms/server/presets/yankee,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "mm" = (
 /obj/effect/landmark/start/job/som/squadleader,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
+"nm" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base)
 "pd" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "qb" = (
 /obj/machinery/telecomms/server/presets/charlie,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "qe" = (
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "qo" = (
 /obj/machinery/telecomms/server/presets/zulu,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "qL" = (
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "rT" = (
 /obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "sR" = (
 /obj/structure/patrol_point{
 	id = "SOM_14"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "sX" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -154,47 +161,47 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "tq" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "tz" = (
 /obj/machinery/telecomms/bus/preset_three/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "ud" = (
 /obj/structure/patrol_point{
 	id = "TGMC_21"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "vL" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "vW" = (
 /obj/machinery/telecomms/server/presets/common/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "wg" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "xt" = (
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "yp" = (
 /obj/structure/patrol_point{
 	id = "TGMC_23"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "yx" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -209,42 +216,42 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "yG" = (
 /obj/effect/landmark/start/job/som/squadengineer,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "yS" = (
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "AD" = (
 /obj/machinery/telecomms/bus/preset_four/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "Bm" = (
 /obj/machinery/telecomms/server/presets/engineering/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "Bs" = (
 /obj/structure/patrol_point{
 	id = "TGMC_22"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "BB" = (
 /turf/closed/wall/r_wall/unmeltable,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "BD" = (
 /obj/structure/patrol_point{
 	id = "TGMC_11"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "BI" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "Co" = (
 /turf/open/space/basic{
 	dir = 1
@@ -255,127 +262,129 @@
 	id = "SOM_13"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "CR" = (
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "De" = (
 /obj/machinery/telecomms/processor/preset_one/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
-"DI" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/hyper{
-	cell_type = /obj/item/cell/infinite;
-	dir = 1
-	},
+/area/mainship/patrol_base/telecomms)
+"Dg" = (
+/obj/structure/table/mainship,
+/obj/item/tool/hand_labeler,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base)
 "Ee" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "Eo" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
+"Er" = (
+/obj/structure/table/mainship,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/som)
 "Fm" = (
 /obj/machinery/telecomms/server/presets/medical/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "Fw" = (
 /obj/structure/patrol_point{
 	id = "TGMC_12"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "Fz" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "FP" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "GM" = (
 /obj/machinery/telecomms/processor/preset_two/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "HI" = (
 /obj/machinery/telecomms/broadcaster/preset_left/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "Ic" = (
 /obj/machinery/telecomms/broadcaster/preset_left,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "If" = (
 /obj/effect/landmark/start/job/som/squadstandard,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "Iu" = (
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "IC" = (
 /obj/structure/patrol_point{
 	id = "SOM_12"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "Jw" = (
 /obj/machinery/telecomms/processor/preset_three/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "JF" = (
 /obj/machinery/telecomms/receiver/preset_left/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
+"JY" = (
+/obj/structure/table/mainship,
+/obj/item/facepaint/green,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base)
 "Kz" = (
 /obj/machinery/quick_vendor,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "KF" = (
 /obj/machinery/telecomms/receiver/preset_left,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "KI" = (
 /obj/machinery/telecomms/processor/preset_three,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "KR" = (
 /obj/machinery/telecomms/processor/preset_four/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "Lz" = (
 /obj/machinery/telecomms/receiver/preset_right/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "Mq" = (
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "Mr" = (
 /obj/structure/patrol_point{
 	id = "SOM_11"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "MB" = (
-/obj/machinery/power/apc/hyper{
-	cell_type = /obj/item/cell/infinite;
-	dir = 1
-	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "NF" = (
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "NT" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -389,42 +398,42 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "Ox" = (
 /obj/effect/landmark/start/job/som/squadveteran,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "OM" = (
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "PQ" = (
 /obj/structure/patrol_point{
 	id = "SOM_21"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "Qr" = (
 /obj/structure/patrol_point{
 	id = "SOM_24"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "Rq" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/effect/landmark/start/job/som/squadengineer,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "RY" = (
 /obj/machinery/telecomms/server/presets/command/som,
 /turf/open/floor/mainship,
-/area/mainship/command/telecomms)
+/area/mainship/patrol_base/telecomms)
 "Sg" = (
 /obj/effect/landmark/start/latejoinsom,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "Sw" = (
 /turf/open/space/basic,
 /area/space)
@@ -434,7 +443,7 @@
 	},
 /obj/effect/landmark/start/job/som/squadcorpsman,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "TS" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -448,15 +457,15 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "UL" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "Vu" = (
 /obj/machinery/door/poddoor/timed_late/containment,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "Vz" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -471,7 +480,7 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "VE" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -487,56 +496,51 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "VI" = (
 /obj/effect/landmark/start/job/som/squadcorpsman,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "VY" = (
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "Wv" = (
 /obj/machinery/quick_vendor/som,
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "WN" = (
 /obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "Xe" = (
 /obj/structure/patrol_point{
 	id = "SOM_23"
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "XE" = (
 /obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "XH" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "XJ" = (
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 "YY" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/mainship/squads/general/som)
+/area/mainship/patrol_base/som)
 "ZD" = (
-/obj/machinery/power/apc/hyper{
-	cell_type = /obj/item/cell/infinite;
-	dir = 1
-	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
-/area/mainship/squads/general)
+/area/mainship/patrol_base)
 
 (1,1,1) = {"
 Sw
@@ -1212,11 +1216,11 @@ dv
 yx
 VY
 VY
+cv
+cv
 VY
-VY
-VY
-VY
-VY
+Er
+ik
 VY
 ir
 "}
@@ -1274,12 +1278,12 @@ dv
 yx
 VY
 VY
+Er
+ik
 VY
+cv
+cv
 VY
-VY
-VY
-VY
-DI
 ir
 "}
 (13,1,1) = {"
@@ -1966,10 +1970,10 @@ Sw
 "}
 (24,1,1) = {"
 bg
-dO
+MB
 go
 lH
-dO
+MB
 tz
 AD
 De
@@ -2028,16 +2032,16 @@ Sw
 "}
 (25,1,1) = {"
 bg
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
 bg
 Sw
 Sw
@@ -2090,16 +2094,16 @@ Sw
 "}
 (26,1,1) = {"
 bg
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
 bg
 Sw
 Sw
@@ -2153,15 +2157,15 @@ Sw
 (27,1,1) = {"
 bg
 RY
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
 bg
 Sw
 Sw
@@ -2214,16 +2218,16 @@ Sw
 "}
 (28,1,1) = {"
 bg
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
 bg
 Sw
 Sw
@@ -2462,16 +2466,16 @@ Sw
 "}
 (32,1,1) = {"
 bg
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
 bg
 Sw
 Sw
@@ -2525,14 +2529,14 @@ Sw
 (33,1,1) = {"
 bg
 xt
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
 MB
 bg
 Sw
@@ -2586,16 +2590,16 @@ Sw
 "}
 (34,1,1) = {"
 bg
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
 bg
 Sw
 Sw
@@ -2648,16 +2652,16 @@ Sw
 "}
 (35,1,1) = {"
 bg
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
-dO
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
+MB
 bg
 Sw
 Sw
@@ -2998,24 +3002,24 @@ Sw
 Sw
 Sw
 BB
-cC
+ZD
 Vu
-cC
+ZD
 bX
 WN
 WN
 WN
-cC
+ZD
 dJ
 NT
-cC
-cC
-cC
+ZD
+ZD
+ZD
 vL
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (41,1,1) = {"
@@ -3060,24 +3064,24 @@ Sw
 Sw
 Sw
 BB
-cC
+ZD
 Vu
-cC
+ZD
 WN
 WN
 WN
 WN
-cC
+ZD
 dJ
 NT
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (42,1,1) = {"
@@ -3124,19 +3128,19 @@ Sw
 BB
 Eo
 Vu
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
 gk
 dJ
 Eo
-cC
-cC
+ZD
+ZD
 Kz
 Kz
-cC
+ZD
 Kz
 Kz
 gk
@@ -3186,22 +3190,22 @@ Sw
 BB
 BD
 Vu
-cC
+ZD
 bz
 bz
 bz
 bz
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (44,1,1) = {"
@@ -3248,22 +3252,22 @@ Sw
 BB
 Fw
 Vu
-cC
+ZD
 bz
 bz
 bz
 bz
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (45,1,1) = {"
@@ -3310,22 +3314,22 @@ Sw
 BB
 ch
 Vu
-cC
+ZD
 bz
 bz
 bz
 bz
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (46,1,1) = {"
@@ -3372,22 +3376,22 @@ Sw
 BB
 jp
 Vu
-cC
+ZD
 XJ
 XJ
 XJ
 XJ
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
 Kz
 Kz
-cC
+ZD
 Kz
 Kz
-cC
+ZD
 BB
 "}
 (47,1,1) = {"
@@ -3434,21 +3438,21 @@ Sw
 BB
 Eo
 Vu
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 gk
 BB
 "}
@@ -3494,24 +3498,24 @@ Sw
 Sw
 Sw
 BB
-cC
+ZD
 Vu
-cC
+ZD
 XE
-cC
-cC
+ZD
+ZD
 OM
 gk
 dJ
 Eo
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (49,1,1) = {"
@@ -3556,23 +3560,23 @@ Sw
 Sw
 Sw
 BB
-cC
+ZD
 Vu
-cC
+ZD
 XE
-cC
-cC
+ZD
+ZD
 OM
-cC
+ZD
 dJ
 Vz
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+JY
+JY
+ZD
+Dg
+nm
 ZD
 BB
 "}
@@ -3618,24 +3622,24 @@ Sw
 Sw
 Sw
 BB
-cC
+ZD
 Vu
-cC
+ZD
 XE
-cC
-cC
+ZD
+ZD
 OM
-cC
+ZD
 dJ
 Vz
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+Dg
+nm
+ZD
+JY
+JY
+ZD
 BB
 "}
 (51,1,1) = {"
@@ -3680,24 +3684,24 @@ Sw
 Sw
 Sw
 BB
-cC
+ZD
 Vu
-cC
+ZD
 XE
-cC
-cC
+ZD
+ZD
 OM
 gk
 dJ
 Eo
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (52,1,1) = {"
@@ -3744,21 +3748,21 @@ Sw
 BB
 Eo
 Vu
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 gk
 BB
 "}
@@ -3806,22 +3810,22 @@ Sw
 BB
 ud
 Vu
-cC
+ZD
 XJ
 XJ
 XJ
 XJ
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
 Kz
 Kz
-cC
+ZD
 Kz
 Kz
-cC
+ZD
 BB
 "}
 (54,1,1) = {"
@@ -3868,22 +3872,22 @@ Sw
 BB
 Bs
 Vu
-cC
+ZD
 bz
 bz
 bz
 bz
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (55,1,1) = {"
@@ -3930,22 +3934,22 @@ Sw
 BB
 yp
 Vu
-cC
+ZD
 bz
 bz
 bz
 bz
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (56,1,1) = {"
@@ -3992,22 +3996,22 @@ Sw
 BB
 aL
 Vu
-cC
+ZD
 bz
 bz
 bz
 bz
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (57,1,1) = {"
@@ -4054,19 +4058,19 @@ Sw
 BB
 Eo
 Vu
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
 gk
 dJ
 Eo
-cC
-cC
+ZD
+ZD
 Kz
 Kz
-cC
+ZD
 Kz
 Kz
 gk
@@ -4114,24 +4118,24 @@ Sw
 Sw
 Sw
 BB
-cC
+ZD
 Vu
-cC
+ZD
 Ee
 Ee
 Ee
 Ee
-cC
+ZD
 dJ
 Vz
-cC
-cC
-cC
-cC
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (59,1,1) = {"
@@ -4176,24 +4180,24 @@ Sw
 Sw
 Sw
 BB
-cC
+ZD
 Vu
-cC
+ZD
 al
 Ee
 Ee
 Ee
-cC
+ZD
 dJ
 sX
-cC
-cC
-cC
+ZD
+ZD
+ZD
 tq
-cC
-cC
-cC
-cC
+ZD
+ZD
+ZD
+ZD
 BB
 "}
 (60,1,1) = {"
