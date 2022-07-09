@@ -464,7 +464,6 @@
 /obj/machinery/deployable/mounted/sentry/cope
 	density = FALSE
 
-
 /obj/machinery/deployable/mounted/sentry/cope/sentry_start_fire()
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	internal_gun.update_ammo_count() //checks if the battery has recharged enough to fire
@@ -474,7 +473,7 @@
 /obj/machinery/deployable/mounted/sentry/cope/disassemble(mob/user)
 	var/obj/item/item = internal_item
 	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
-		to_chat(user, span_notice("The [src] is anchored in place and cannot be disassembled."))
+		to_chat(user, span_notice("[src] is anchored in place and cannot be disassembled."))
 		return
 	operator?.unset_interaction()
 

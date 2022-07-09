@@ -145,10 +145,12 @@
 	playsound(loc, arm_sound, 25, 1, 6)
 	addtimer(CALLBACK(src, .proc/prime), det_time)
 
+///Reverts the gun back to it's unarmed state, allowing it to be activated again
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/reset()
 	active = FALSE
 	icon_state = initial(icon_state)
 
+///Deploys the weapon into a sentry after activation
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/prime()
 	var/obj/deployed_machine
 
