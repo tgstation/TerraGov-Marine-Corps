@@ -736,8 +736,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	BULLET_DEBUG("Base accuracy is <b>[hit_chance]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range.
 		if(proj.distance_travelled <= proj.ammo.point_blank_range) //If bullet within point blank range, big accuracy buff.
-			BULLET_DEBUG("Point blank range (+50)")
-			hit_chance += 50
+			BULLET_DEBUG("Point blank range (+30)")
+			hit_chance += 30
 		else if(proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range UNLESS in point blank range
 			BULLET_DEBUG("Sniper ammo, too close (-[min(100, hit_chance) - (proj.ammo.accurate_range_min - proj.distance_travelled) * 10])")
 			hit_chance = min(100, hit_chance) //excess accuracy doesn't help within minimum accurate range
@@ -748,7 +748,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	hit_chance = max(5, hit_chance) //default hit chance after range factors is at least 5%.
 
-	hit_chance += (mob_size - 1) * 25 //You're easy to hit when you're swoll, hard to hit when you're a manlet
+	hit_chance += (mob_size - 1) * 20 //You're easy to hit when you're swoll, hard to hit when you're a manlet
 
 	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
 	hit_chance -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on body part targeted.
