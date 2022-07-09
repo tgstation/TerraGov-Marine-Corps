@@ -584,6 +584,7 @@
 	anchored = TRUE
 	layer = LADDER_LAYER
 	bound_width = 128
-	bound_height = 64
-	bound_y = 32
+	bound_height = 32
+	bound_y = 64
+	pixel_y = -32
 	resistance_flags = RESIST_ALL

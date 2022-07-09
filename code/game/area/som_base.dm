@@ -22,6 +22,8 @@
 	minimap_color = MINIMAP_AREA_COLONY
 	ambience = list('sound/ambience/ambiencetemp.ogg', 'sound/ambience/ambiencepizzaday.ogg', 'sound/ambience/ambiencemeeting.ogg', 'sound/ambience/ambiencereport.ogg', 'sound/ambience/ambienceengi.ogg', 'sound/ambience/ambiencesec.ogg')
 
+/area/rocinante_Base/surface/building/building_underground
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/rocinante_Base/ground/underground
 	name = "rocinante Base Underground"
@@ -100,8 +102,8 @@
 	name = "Northern Caves"
 	icon_state = "cave"
 
-/area/rocinante_Base/ground/underground/caveNW
-	name = "Northwestern Caves"
+/area/rocinante_Base/ground/underground/caveCent
+	name = "Central Caves"
 	icon_state = "cave"
 
 /area/rocinante_Base/ground/underground/caveE
@@ -118,5 +120,73 @@
 
 //BaseBuildings
 /area/rocinante_Base/surface/building/administration
-	name = "Admin"
+	name = "Administration"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/adminbreakroom
+	name = "Administration Break Room"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/laundromat
+	name = "Laundromat"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/tramstation_nw
+	name = "Northwestern Tram Station"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/tramstation_cent
+	name = "Central Tram Station"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/tramstation_e
+	name = "Eastern Tram Station"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/office_n
+	name = "Northern Office Building"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/chapel_ne
+	name = "Northeastern Chapel"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/complex_hall
+	name = "Western Research Complex Hallway"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/complex_hall_e
+	name = "Eastern Research Complex Hallway"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/complex_sec
+	name = "Research Complex Security Post"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/research_lab
+	name = "Central Research Labs"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/crystal_lab
+	name = "Crystal Research Labs"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/tele_lab
+	name = "Teleportation Research Labs"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/bio_lab
+	name = "Biological Research Labs"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/command
+	name = "Command"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/vehicle_garage
+	name = "Vehicle Garage"
+	icon_state = "cave"
+
+/area/rocinante_Base/surface/building/garage_sec
+	name = "Vehicle Garage Security Post"
 	icon_state = "cave"
