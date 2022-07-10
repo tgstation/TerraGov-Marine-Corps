@@ -29,3 +29,8 @@
       coordinates.
   - bugfix: Kidneys count microdosed chems against their limit
   - bugfix: Confuse effects won't be created with infinite duration and zero function.
+2022-07-10:
+  crayonLover09:
+  - soundadd: Added splint break sound
+  goose4429:
+  - balance: If xeno lose shipside, they lose
