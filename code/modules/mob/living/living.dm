@@ -22,6 +22,9 @@
 	handle_slowdown()
 	handle_stagger()
 
+///Get an aura and apply it if we care about its type and it's stronger than our current.
+/mob/living/proc/recieve_aura(aura_type, strength) //Of course, living doesn't care about any types
+
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
 	reagent_pain_modifier = 0

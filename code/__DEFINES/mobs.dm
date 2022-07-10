@@ -785,3 +785,14 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define TIER_THREE_MATURE_THRESHOLD 500
 #define TIER_THREE_ELDER_THRESHOLD 1000
 #define TIER_THREE_ANCIENT_THRESHOLD 100
+
+
+// Pheromones and buff orders
+
+#define RECOVERY "Recovery"
+#define WARDING "Warding"
+#define FRENZY "Frenzy"
+
+#define AURA_HUMAN_MOVE "move"
+#define AURA_HUMAN_HOLD "hold"
+#define AURA_HUMAN_FOCUS "focus"

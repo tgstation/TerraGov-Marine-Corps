@@ -9,11 +9,6 @@
 #define RESTING_WEED "resting weed sac"
 #define AUTOMATIC_WEEDING "repeating"
 
-//Pheromone defines
-#define RECOVERY "Recovery"
-#define WARDING "Warding"
-#define FRENZY "Frenzy"
-
 #define XENO_TURRET_ACID_ICONSTATE "acid_turret"
 #define XENO_TURRET_STICKY_ICONSTATE "resin_turret"
 

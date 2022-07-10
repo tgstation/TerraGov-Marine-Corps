@@ -86,6 +86,9 @@
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
 #define COMSIG_LIMB_UNDESTROYED "limb_undestroyed"
 
+// /datum/aura_bearer signals
+#define COMSIG_AURA_FINISHED "aura_finished" //From /datum/aura_bearer/stop_emitting(), called when an aura dies.
+
 /// Admin helps
 /// From /datum/admin_help/RemoveActive().
 /// Fired when an adminhelp is made inactive either due to closing or resolving.
