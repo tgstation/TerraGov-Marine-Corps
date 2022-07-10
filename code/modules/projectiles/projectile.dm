@@ -104,6 +104,8 @@
 	var/proj_max_range = 30
 	///A damage multiplier applied when a mob from the same faction as the projectile firer is hit
 	var/friendly_fire_multiplier = 0.5
+	///The "point blank" range of the projectile. Inside this range the projectile gets a bonus to hit
+	var/point_blank_range = 0
 
 /obj/projectile/Initialize()
 	. = ..()
@@ -735,7 +737,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	hit_chance += proj.accuracy
 	BULLET_DEBUG("Base accuracy is <b>[hit_chance]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range.
-		if(proj.distance_travelled <= proj.ammo.point_blank_range) //If bullet within point blank range, big accuracy buff.
+		if(proj.distance_travelled <= proj.point_blank_range) //If bullet within point blank range, big accuracy buff.
 			BULLET_DEBUG("Point blank range (+30)")
 			hit_chance += 30
 		else if(proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range UNLESS in point blank range
