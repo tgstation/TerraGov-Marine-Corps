@@ -400,7 +400,7 @@
 	corpsehelmet = /obj/item/clothing/head/modular/som/standard/wornoutsom
 	corpsegloves = /obj/item/clothing/gloves/marine/som/wornoutsom
 	corpseshoes = /obj/item/clothing/shoes/marine/som/wornoutsom
-	corpsebelt = /obj/item/storage/belt/combatLifesaver/som
+	corpsebelt = /obj/item/storage/belt/lifesaver/som
 	corpsepocket1 = /obj/item/storage/pouch/firstaid/som
 
 /obj/effect/landmark/corpsespawner/somvc
