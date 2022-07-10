@@ -48,6 +48,10 @@
 		reagents.add_reagent(/datum/reagent/toxin/xeno_sanguinal, GAS_INHALE_REAGENT_TRANSFER_AMOUNT * S.strength)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_OZELOMELYN))
 		reagents.add_reagent(/datum/reagent/toxin/xeno_ozelomelyn, GAS_INHALE_REAGENT_TRANSFER_AMOUNT * S.strength)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_SATRAPINE))
+		to_chat(src, span_danger("Your eyes are burning!"))
+		blur_eyes(4)
+		reagents.add_reagent(/datum/reagent/toxin/satrapine, GAS_INHALE_REAGENT_TRANSFER_AMOUNT * S.strength)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.pre_chem_effect(src)
 
@@ -69,3 +73,7 @@
 		reagents.add_reagent(/datum/reagent/toxin/xeno_transvitox, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
 		if(prob(10 * S.strength * protection))
 			to_chat(src, span_danger("Your exposed wounds coagulate with a dark green tint!"))
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_SATRAPINE) && (internal || has_smoke_protection())) //either inhaled or this.
+		reagents.add_reagent(/datum/reagent/toxin/satrapine, round(GAS_INHALE_REAGENT_TRANSFER_AMOUNT * 0.6 * S.strength * protection, 0.1))
+		if(prob(10 * S.strength * protection))
+			to_chat(src, span_danger("Your whole body feels like it's burning!"))

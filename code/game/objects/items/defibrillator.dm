@@ -136,7 +136,7 @@
 /mob/living/carbon/human/proc/has_working_organs()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
-	if(!heart || heart.is_broken() || !has_brain())
+	if(!heart || heart.organ_status == ORGAN_BROKEN || !has_brain())
 		return FALSE
 
 	return TRUE

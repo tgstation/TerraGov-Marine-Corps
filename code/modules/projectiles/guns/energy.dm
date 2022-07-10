@@ -437,6 +437,9 @@
 		"Overcharge" = /datum/lasrifle/base/energy_rifle_mode/overcharge,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/reddot, /obj/item/weapon/gun/flamer/mini_flamer)
+
 /datum/lasrifle/base/energy_rifle_mode/standard
 	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
@@ -501,6 +504,9 @@
 		"Heat" = /datum/lasrifle/base/energy_pistol_mode/heat,
 		"Disabler" = /datum/lasrifle/base/energy_pistol_mode/disabler,
 	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/tactical
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 /datum/lasrifle/base/energy_pistol_mode/standard
 	rounds_per_shot = 20
@@ -583,6 +589,8 @@
 		"Spread" = /datum/lasrifle/base/energy_carbine_mode/base/spread,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/weapon/gun/grenade_launcher/underslung,)
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
 	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
@@ -633,18 +641,20 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/unremovable/laser_sniper_scope,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/weapon/gun/rifle/pepperball/pepperball_mini,
 		/obj/item/attachable/shoulder_mount,
-		/obj/item/attachable/bipod,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 18,"rail_x" = 19, "rail_y" = 19, "under_x" = 28, "under_y" = 8, "stock_x" = 22, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/laser_sniper_scope)
 
-	iff_marine_damage_falloff = -0.10
 	aim_slowdown = 0.7
 	wield_delay = 0.7 SECONDS
 	scatter = 0
@@ -655,7 +665,7 @@
 	movement_acc_penalty_mult = 6
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/energy_sniper_mode/standard,
-		"Focused" = /datum/lasrifle/base/energy_sniper_mode/heat,
+		"Heat" = /datum/lasrifle/base/energy_sniper_mode/heat,
 	)
 
 /datum/lasrifle/base/energy_sniper_mode/standard
@@ -663,7 +673,7 @@
 	fire_delay = 1 SECONDS
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine/sniper
 	fire_sound = 'sound/weapons/guns/fire/Laser Sniper Standard.ogg'
-	message_to_user = "You set the sniper rifle's charge mode to IFF fire."
+	message_to_user = "You set the sniper rifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
 
@@ -867,6 +877,12 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/gyro)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/gyro)
+
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
 	name = "\improper volkite caliver"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
@@ -909,6 +925,9 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin
 	name = "\improper volkite culverin"

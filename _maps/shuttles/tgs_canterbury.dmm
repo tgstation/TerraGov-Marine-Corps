@@ -438,9 +438,7 @@
 /obj/item/storage/box/bodybags,
 /obj/item/roller,
 /obj/item/roller,
-/obj/machinery/firealarm{
-	dir = 8
-	},
+/obj/machinery/firealarm,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -592,10 +590,12 @@
 /area/shuttle/canterbury/medical)
 "ce" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/combatLifesaver,
 /obj/item/healthanalyzer,
 /obj/machinery/light,
+/obj/machinery/reagentgrinder{
+	pixel_x = -1;
+	pixel_y = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cf" = (
@@ -662,8 +662,8 @@
 	dir = 2
 	},
 /obj/machinery/door_control{
-	id = "aft_engine_podlock";
-	pixel_x = 32
+	dir = 8;
+	id = "aft_engine_podlock"
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury)

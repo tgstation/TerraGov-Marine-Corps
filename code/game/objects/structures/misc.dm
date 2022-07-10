@@ -57,6 +57,7 @@
 	icon_state = "mopbucket"
 	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 40
 	var/amount_per_transfer_from_this = 5 //Shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 
 /obj/structure/mopbucket/Initialize()
@@ -221,6 +222,7 @@ obj/item/alienjar
 	anchored = TRUE
 	layer = MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
 
 /obj/structure/plasticflaps/CanAllowThrough(atom/A, turf/T)
 	. = ..()

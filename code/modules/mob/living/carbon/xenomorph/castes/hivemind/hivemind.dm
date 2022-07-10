@@ -103,6 +103,9 @@
 /mob/living/carbon/xenomorph/hivemind/lay_down()
 	return
 
+/mob/living/carbon/xenomorph/hivemind/set_resting()
+	return
+
 /mob/living/carbon/xenomorph/hivemind/change_form()
 	if(status_flags & INCORPOREAL && health != maxHealth)
 		to_chat(src, span_xenowarning("You do not have the strength to manifest yet!"))
@@ -147,9 +150,9 @@
 
 
 
-/mob/living/carbon/xenomorph/hivemind/flamer_fire_act()
+/mob/living/carbon/xenomorph/hivemind/flamer_fire_act(burnlevel)
 	return_to_core()
-	to_chat(src, "<span class='xenonotice'>We were on top of fire, we got moved to our core.")
+	to_chat(src, span_xenonotice("We were on top of fire, we got moved to our core."))
 
 /mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T, strict_turf_check = FALSE)
 	SHOULD_BE_PURE(TRUE)
@@ -223,13 +226,17 @@
 		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
 		if(!istype(xeno))
 			return
-		if(!check_weeds(get_turf(xeno), TRUE))
-			to_chat(src, span_warning("They are not near any weeds we can jump to."))
-			return
-		if(!(status_flags & INCORPOREAL))
-			start_teleport(get_turf(xeno))
-			return
-		abstract_move(get_turf(xeno))
+		jump(xeno)
+
+/// Jump hivemind's camera to the passed xeno, if they are on/near weeds
+/mob/living/carbon/xenomorph/hivemind/proc/jump(mob/living/carbon/xenomorph/xeno)
+	if(!check_weeds(get_turf(xeno), TRUE))
+		balloon_alert(src, "No nearby weeds")
+		return
+	if(!(status_flags & INCORPOREAL))
+		start_teleport(get_turf(xeno))
+		return
+	abstract_move(get_turf(xeno))
 
 /// Hivemind just doesn't have any icons to update, disabled for now
 /mob/living/carbon/xenomorph/hivemind/update_icon()

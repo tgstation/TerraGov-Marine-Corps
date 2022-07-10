@@ -1387,10 +1387,10 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "es" = (
-/obj/structure/table/woodentable,
 /obj/item/tool/stamp/internalaffairs{
 	pixel_y = 6
 	},
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "et" = (
@@ -1410,14 +1410,13 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "ev" = (
-/obj/structure/table/woodentable,
 /obj/item/storage/fancy/cigar,
 /obj/structure/disposalpipe/segment,
 /obj/item/tool/pen,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "ew" = (
-/obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/bottle/sake{
 	pixel_x = 5;
 	pixel_y = 5
@@ -1426,6 +1425,7 @@
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "ey" = (
@@ -1554,26 +1554,25 @@
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "eW" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/skills,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "eX" = (
-/obj/structure/table/woodentable,
 /obj/item/paper,
 /obj/item/tool/pen,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "eY" = (
-/obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "eZ" = (
-/obj/structure/table/woodentable,
 /obj/structure/paper_bin{
 	pixel_x = -4;
 	pixel_y = 5
@@ -1582,6 +1581,7 @@
 /obj/item/clipboard{
 	pixel_x = 5
 	},
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "fb" = (
@@ -1936,20 +1936,20 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "gd" = (
-/obj/structure/table/woodentable,
 /obj/machinery/microwave{
 	pixel_y = 5
 	},
 /obj/item/storage/box/donkpockets,
 /obj/item/storage/box/donkpockets,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "ge" = (
-/obj/structure/table/woodentable,
 /obj/item/storage/box/cups{
 	pixel_x = 5;
 	pixel_y = 2
 	},
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "gf" = (
@@ -3960,7 +3960,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/evacuation)
 "nd" = (
-/obj/machinery/vending/marine_medic,
+/obj/machinery/vending/medical,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/general)
 "nf" = (
@@ -7143,21 +7143,8 @@
 /area/mainship/medical/lower_medical)
 "xO" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
 /obj/item/healthanalyzer,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
-/obj/item/storage/belt/medical{
-	pixel_y = 9
-	},
+/obj/machinery/light,
 /obj/item/healthanalyzer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -10718,12 +10705,6 @@
 /area/mainship/medical/chemistry)
 "Ik" = (
 /obj/structure/rack,
-/obj/item/storage/pouch/medkit,
-/obj/item/storage/pouch/medkit,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/pouch/medical,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -13023,8 +13004,7 @@
 /obj/item/clothing/suit/storage/hazardvest/lime,
 /obj/item/clothing/suit/storage/hazardvest/blue,
 /obj/item/tool/shovel/etool,
-/obj/item/storage/pouch/medkit/full,
-/obj/item/storage/pouch/medical/full,
+/obj/item/storage/pouch/medkit/firstaid,
 /obj/item/tool/taperoll/engineering,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
@@ -13789,6 +13769,10 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
+"RF" = (
+/obj/structure/dropship_equipment/flare_launcher,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
 "RG" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -23128,8 +23112,8 @@ MW
 OS
 Ou
 VC
-VC
-VC
+RF
+RF
 VC
 CH
 OS

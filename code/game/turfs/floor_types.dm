@@ -933,6 +933,14 @@
 /turf/open/floor/prison/red/corner
 	icon_state = "redcorner"
 
+/turf/open/floor/prison/blackfloor
+	icon = 'icons/turf/shuttle.dmi'
+	icon_state = "floor7"
+
+/turf/open/floor/prison/bluefloor
+	icon = 'icons/turf/shuttle.dmi'
+	icon_state = "floor"
+
 /////// grayscale floor for easy recoloring /////
 
 /turf/open/floor/grayscale

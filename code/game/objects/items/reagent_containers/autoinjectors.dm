@@ -42,7 +42,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/combat
 	name = "combat autoinjector"
 	desc = "An autoinjector loaded with 2 doses of healing and painkilling chemicals. Intended for use in active combat."
-	icon_state = "autoinjector-4"
+	icon_state = "RedGreen"
 	amount_per_transfer_from_this = 15
 	list_reagents = list(
 		/datum/reagent/medicine/bicaridine = 10,
@@ -54,7 +54,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
 	name = "Advanced combat autoinjector"
 	desc = "An autoinjector loaded with 2 doses of advanced healing and painkilling chemicals. Intended for use in active combat."
-	icon_state = "autoinjector-7"
+	icon_state = "Lilac"
 	amount_per_transfer_from_this = 15
 	list_reagents = list(
 		/datum/reagent/medicine/meralyne = 10,
@@ -136,7 +136,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/dexalin
 	name = "dexalin autoinjector"
-	desc = "An auto-injector loaded with 3 doses of dexalin, an emergency stabilization medicine for patients in critical condition."
+	desc = "An auto-injector loaded with 3 doses of dexalin, a medicine that oxygenates the body helping those with respiratory issues or low blood."
 	icon_state = "autoinjector-2"
 	volume = 15
 	amount_per_transfer_from_this = 5
@@ -144,7 +144,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin
 	name = "spaceacillin autoinjector"
-	desc = "An auto-injector loaded with 3 doses of spaceacillin, an emergency medicine that help combat against infection before necrosis appears."
+	desc = "An auto-injector loaded with 3 doses of spaceacillin, an antibiotic medicine that helps combat infection and fight necrosis."
 	icon_state = "autoinjector-1"
 	volume = 15
 	amount_per_transfer_from_this = 5
@@ -167,7 +167,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
 	desc = "An auto-injector loaded with 3 uses of hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomiting."
-	icon_state = "autoinjector-12"
+	icon_state = "Toxic"
 	amount_per_transfer_from_this = 3
 	volume = 9
 	list_reagents = list(/datum/reagent/hypervene = 9)
@@ -195,7 +195,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine
 	name = "synaptizine autoinjector"
 	desc = "An auto-injector freshly loaded with a safe-to-use synaptizine mix."
-	icon_state = "autoinjector-1"
+	icon_state = "Mystery"
 	amount_per_transfer_from_this = 3
 	volume = 9
 	list_reagents = list(
@@ -217,23 +217,15 @@
 /obj/item/reagent_containers/hypospray/autoinjector/neuraline
 	name = "neuraline autoinjector"
 	desc = "An auto-injector loaded with 3 doses of neuraline, an extremely powerful stimulant. !DO NOT USE MORE THAN ONCE AT A TIME!"
-	icon_state = "autoinjector-6"
+	icon_state = "RedWhite"
 	amount_per_transfer_from_this = 4
 	volume = 12
 	list_reagents = list(/datum/reagent/medicine/neuraline = 12)
 
-/obj/item/reagent_containers/hypospray/autoinjector/peridaxon
-	name = "peridaxon autoinjector"
-	desc = "An auto-injector loaded with 3 doses of Peridaxon, a chemical that suppresses organ damage."
-	icon_state = "autoinjector-6"
-	list_reagents = list(
-		/datum/reagent/medicine/peridaxon = 30,
-	)
-
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "peridaxon Plus autoinjector"
 	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
-	icon_state = "autoinjector-8"
+	icon_state = "VioWhite"
 	amount_per_transfer_from_this = 3
 	volume = 9
 	list_reagents = list(
@@ -244,7 +236,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/russian_red
 	name = "Emergency autoinjector"
 	desc = "An autoinjector loaded with a single use of Russian Red. Restores a significant amount of stamina and heals a large amount of damage, but causes slight permanent damage."
-	icon_state = "autoinjector-7"
+	icon_state = "Redwood"
 	amount_per_transfer_from_this = 15
 	volume = 15
 	list_reagents = list(

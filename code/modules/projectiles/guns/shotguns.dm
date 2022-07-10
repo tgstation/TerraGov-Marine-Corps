@@ -27,6 +27,8 @@
 	recoil = 2
 	recoil_unwielded = 4
 	movement_acc_penalty_mult = 2
+	lower_akimbo_accuracy = 3
+	upper_akimbo_accuracy = 5
 
 	placed_overlay_iconstate = "shotgun"
 
@@ -128,6 +130,8 @@
 	fire_delay = 20 // Base shotgun fire delay.
 	pixel_shift_x = 14
 	pixel_shift_y = 18
+
+	wield_delay_mod	= 0.2 SECONDS
 
 //-------------------------------------------------------
 //DOUBLE SHOTTY
@@ -315,6 +319,7 @@
 	load_method = SINGLE_CASING //codex
 	max_chamber_items = 4 //codex
 	default_ammo_type = /datum/ammo/bullet/sniper/svd
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/boltclip)
 	gun_skill_category = GUN_SKILL_RIFLES
 	cocked_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	cocked_message = "You work the bolt."
@@ -621,6 +626,7 @@
 //buckshot variants
 /obj/item/weapon/gun/shotgun/pump/t35/pointman
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/angledgrip, /obj/item/attachable/bayonet)
 
 /obj/item/weapon/gun/shotgun/pump/t35/nonstandard
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot

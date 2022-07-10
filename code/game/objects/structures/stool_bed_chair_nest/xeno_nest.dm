@@ -133,8 +133,8 @@
 		. += image("icon_state" = "nest_overlay", "layer" = LYING_MOB_LAYER + 0.1)
 
 
-/obj/structure/bed/nest/flamer_fire_act()
-	take_damage(50, BURN, "fire")
+/obj/structure/bed/nest/flamer_fire_act(burnlevel)
+	take_damage(burnlevel * 2, BURN, "fire")
 
 /obj/structure/bed/nest/fire_act()
 	take_damage(50, BURN, "fire")

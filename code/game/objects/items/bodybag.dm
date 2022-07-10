@@ -218,11 +218,11 @@
 		to_chat(bodybag_occupant, span_danger("You jolt out of [name] upon being hit!"))
 		open()
 
-/obj/structure/closet/bodybag/flamer_fire_act()
+/obj/structure/closet/bodybag/flamer_fire_act(burnlevel)
 	if(!opened && bodybag_occupant)
 		to_chat(bodybag_occupant, span_danger("The intense heat forces you out of [name]!"))
 		open()
-		bodybag_occupant.flamer_fire_act()
+		bodybag_occupant.flamer_fire_act(burnlevel)
 
 /obj/structure/closet/bodybag/ex_act(severity)
 	if(!opened && bodybag_occupant)

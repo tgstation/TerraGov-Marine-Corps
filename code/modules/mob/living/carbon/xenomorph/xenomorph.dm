@@ -58,8 +58,8 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	ADD_TRAIT(src, TRAIT_BATONIMMUNE, TRAIT_XENO)
-	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, TRAIT_XENO)
+	ADD_TRAIT(src, TRAIT_BATONIMMUNE, XENO_TRAIT)
+	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, XENO_TRAIT)
 	hive.update_tier_limits()
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
@@ -94,10 +94,26 @@
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
 	warding_aura = 0 //Resets aura for reapplying armor
 
-///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff
+///Will multiply the base max health of this xeno by GLOB.xeno_stat_multiplicator_buff while maintaining current health percent.
 /mob/living/carbon/xenomorph/proc/apply_health_stat_buff()
-	maxHealth = max(xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff, 10)
-	health = min(health, maxHealth)
+	var/new_max_health = max(xeno_caste.max_health * GLOB.xeno_stat_multiplicator_buff, 10)
+	var/needed_healing = 0
+
+	if(health < 0) //In crit. Death threshold below 0 doesn't change with stat buff, so we can just apply damage equal to the max health change
+		needed_healing = maxHealth - new_max_health //Positive means our max health is going down, so heal to keep parity
+	else
+		var/current_health_percent = health / maxHealth //We want to keep this fixed so that applying the scalar doesn't heal or harm, relatively.
+		var/new_health = current_health_percent * new_max_health //What we're aiming for
+		var/new_total_damage = new_max_health - new_health
+		var/current_total_damage = maxHealth - health
+		needed_healing = current_total_damage - new_total_damage
+
+	var/brute_healing = min(getBruteLoss(), needed_healing)
+	adjustBruteLoss(-brute_healing)
+	adjustFireLoss(-(needed_healing - brute_healing))
+
+	maxHealth = new_max_health
+	updatehealth()
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
@@ -123,17 +139,6 @@
 	real_name = name
 	if(mind)
 		mind.name = name
-
-/mob/living/carbon/xenomorph/proc/tier_as_number()
-	switch(tier)
-		if(XENO_TIER_ZERO)
-			return 0
-		if(XENO_TIER_ONE)
-			return 1
-		if(XENO_TIER_TWO)
-			return 2
-		if(XENO_TIER_THREE)
-			return 3
 
 /mob/living/carbon/xenomorph/proc/upgrade_as_number()
 	switch(upgrade)
@@ -188,7 +193,7 @@
 
 /mob/living/carbon/xenomorph/proc/grabbed_self_attack()
 	SIGNAL_HANDLER
-	if(!(xeno_caste.caste_flags & CASTE_CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
+	if(!(xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER) || !isxenocrusher(pulling))
 		return NONE
 	var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
 	if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
@@ -320,9 +325,6 @@
 
 /mob/living/carbon/xenomorph/get_eye_protection()
 	return 2
-
-/mob/living/carbon/xenomorph/need_breathe()
-	return FALSE
 
 /mob/living/carbon/xenomorph/vomit()
 	return

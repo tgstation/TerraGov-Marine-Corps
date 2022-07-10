@@ -130,7 +130,6 @@
 	max_integrity = 200
 	flags_item = IS_DEPLOYABLE|DEPLOYED_WRENCH_DISASSEMBLE
 
-	resistance_flags = RESIST_ALL
 	w_class = WEIGHT_CLASS_BULKY
 	flags_equip_slot = ITEM_SLOT_BACK
 	///The linked teleporter
@@ -141,7 +140,7 @@
 
 /obj/item/teleporter_kit/Initialize()
 	. = ..()
-	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, 2 SECONDS)
+	AddElement(/datum/element/deployable_item, /obj/machinery/deployable/teleporter, type, 2 SECONDS)
 	cell = new /obj/item/cell/high(src)
 
 /obj/item/teleporter_kit/Destroy()

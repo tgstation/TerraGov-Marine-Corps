@@ -929,3 +929,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	SIGNAL_HANDLER
 	current_acid = null
 
+/turf/balloon_alert_perform(mob/viewer, text)
+	// Balloon alerts occuring on turf objects result in mass spam of alerts.
+	// Thus, no more balloon alerts for turfs.
+	return

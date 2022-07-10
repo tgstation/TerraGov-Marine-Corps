@@ -47,10 +47,10 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/yard/central)
 "al" = (
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
 /obj/structure/table,
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/storage)
@@ -2314,9 +2314,9 @@
 /area/outpost/hallway/west)
 "kG" = (
 /obj/effect/landmark/corpsespawner/doctor{
-	corpsebelt = /obj/item/storage/belt/medical;
+	corpsebelt = /obj/item/storage/belt/lifesaver/full;
 	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpsepocket2 = /obj/item/storage/pouch/medkit/full;
+	corpsepocket2 = /obj/item/storage/pouch/medkit/firstaid;
 	corpseradio = /obj/item/radio/headset/survivor;
 	corpseshoes = /obj/item/clothing/shoes/snow;
 	corpsesuit = /obj/item/clothing/suit/storage/snow_suit/doctor;
@@ -6723,11 +6723,11 @@
 	},
 /area/outpost/caves/east)
 "Fp" = (
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
-/obj/item/storage/belt/medical,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
 /obj/structure/table,
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/storage)

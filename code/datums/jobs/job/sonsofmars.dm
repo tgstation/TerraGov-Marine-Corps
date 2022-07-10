@@ -109,7 +109,7 @@
 	jobtype = /datum/job/som/medic
 
 	id = /obj/item/card/id/dogtag/som
-	belt = /obj/item/storage/belt/combatLifesaver/som
+	belt = /obj/item/storage/belt/lifesaver/som/ert
 	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/som/medic/vest
 	shoes = /obj/item/clothing/shoes/marine/som/knife
@@ -119,7 +119,7 @@
 	head = /obj/item/clothing/head/modular/som/medic
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/som
-	r_store = /obj/item/storage/pouch/autoinjector/advanced/full
+	r_store = /obj/item/storage/pouch/medical_injectors/medic
 	l_store = /obj/item/storage/pouch/magazine/large
 	back = /obj/item/storage/backpack/lightpack/som
 
