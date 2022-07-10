@@ -202,9 +202,7 @@ You are also in charge of communicating with command and letting them know about
 
 	id = /obj/item/card/id/dogtag/som
 
-
 //ERT roles
-
 /datum/job/som/ert
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
