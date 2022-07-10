@@ -137,7 +137,7 @@
 	item_state = "medicbag_u"
 
 
-/obj/item/storage/belt/lifesaver/som/
+/obj/item/storage/belt/lifesaver/som
 	name = "\improper S17 lifesaver bag"
 	desc = "A belt with heavy origins from the belt used by paramedics and doctors in the old mining colonies."
 	icon_state = "medicbag_som"
