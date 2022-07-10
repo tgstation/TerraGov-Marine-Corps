@@ -1565,8 +1565,6 @@
 	//no point blank bonus when akimbo
 	if(dual_wield)
 		projectile_to_fire.point_blank_range = 0
-	else
-		projectile_to_fire.point_blank_range = projectile_to_fire.ammo.point_blank_range
 
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1)

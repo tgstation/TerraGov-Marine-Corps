@@ -149,6 +149,7 @@
 /obj/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
 	ammo = ispath(ammo_datum) ? GLOB.ammo_list[ammo_datum] : ammo_datum
 	name 		= ammo.name
+	point_blank_range = ammo.point_blank_range
 
 	///sets greyscale for the projectile if it has been specified by the ammo datum
 	if (ammo.projectile_greyscale_config && ammo.projectile_greyscale_colors)
