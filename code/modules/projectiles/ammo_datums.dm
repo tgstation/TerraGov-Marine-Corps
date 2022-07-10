@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
 		return
-	if(shake && (proj.distance_travelled > max_range || victim.lying_angle))
+	if(proj.distance_travelled > max_range)
 		return
 	var/impact_message = ""
 	if(isxeno(victim))
@@ -144,15 +144,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	//Check for and apply soft CC
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
-		var/stagger_immune = FALSE
-		if(isxeno(carbon_victim))
-			var/mob/living/carbon/xenomorph/xeno_victim = victim
-			if(isxenoqueen(xeno_victim)) //Stagger too powerful vs the Queen, so she's immune.
-				stagger_immune = TRUE
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Initial stagger is: <b>[target.stagger]</b>"))
 		#endif
-		if(!stagger_immune)
+		if(!isxenoqueen(carbon_victim)) ////Stagger too powerful vs the Queen, so she's immune.
 			carbon_victim.adjust_stagger(stagger)
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Final stagger is: <b>[target.stagger]</b>"))
