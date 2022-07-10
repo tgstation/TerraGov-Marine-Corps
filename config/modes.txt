@@ -23,3 +23,7 @@ endmode
 mode Civil War
 	requiredplayers 2
 endmode
+
+mode Combat patrol
+	requiredplayers 2
+endmode
