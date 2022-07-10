@@ -2547,8 +2547,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/web/snare_ball/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
-	message_admins("I hit a turf")
-
+	new /obj/structure/xeno/aoe_snare(get_turf(T))
 /*
 //================================================
 					Misc Ammo

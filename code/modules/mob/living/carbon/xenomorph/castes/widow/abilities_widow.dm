@@ -2,8 +2,8 @@
 // *********** Web Spit
 // ***************************************
 /datum/action/xeno_action/activable/web_spit
-	name = "webspit"
-	ability_name = "webspit"
+	name = "Web Spit"
+	ability_name = "Web Spit"
 	mechanics_text = "We spit a stretchy web at our prey"
 	action_icon_state = "toggle_bomb0" // temporary until I get my own icons
 	plasma_cost = 1
@@ -28,8 +28,8 @@
 // ***************************************
 
 /datum/action/xeno_action/activable/burrow
-	name = "burrow"
-	ability_name = "burrow"
+	name = "Burrow"
+	ability_name = "Burrow"
 	mechanics_text = " Burrow into the ground to hide in plain sight "
 	action_icon_state = "savage_on" //temporary until I get my own icons
 	plasma_cost = 1
@@ -47,8 +47,8 @@
 // ***************************************
 
 /datum/action/xeno_action/activable/snare_ball
-	name = "snare_ball"
-	ability_name = "snare_ball"
+	name = "snare_ball" // change to in character name later
+	ability_name = "snare_ball" // change to in character name later
 	mechanics_text = " Spit a huge ball of web that snares groups of marines "
 	action_icon_state = "scatter_spit" // temporary until I get my own icons
 	plasma_cost = 1
@@ -68,10 +68,22 @@
 	newspit.generate_bullet(snare_ball)
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)
 
-/obj/aoe_snare
-	name = "aoe_snare"
-	icon_state = "boiler_gas2"
+/obj/structure/xeno/aoe_snare
+	name = "aoe_snare" // change to in character name later
+	icon = 'icons/obj/items/projectiles.dmi' // temp ?
+	icon_state = "boiler_gas2" // temp
 	desc = "Looks very sticky"
+	destroy_sound = "alien_resin_break"
 	obj_integrity = 5
 	max_integrity = 100
+	var/snare_radius = 5
 	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+
+/obj/structure/xeno/aoe_snare/Initialize(mapload, atom/A)
+	. = ..()
+	var/list/snaredvictims = list() //this is so that we can remove the snare trait once aoe_snare is destroyed
+	for(var/mob/living/carbon/human/victims in view(snare_radius, src.loc))
+		ADD_TRAIT(victims, TRAIT_IMMOBILE, A)
+		snaredvictims.Add(victims)
+	message_admins(snaredvictims)
