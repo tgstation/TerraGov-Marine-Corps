@@ -1563,7 +1563,7 @@
 		projectile_to_fire.iff_signal = iff_signal
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
 	//no point blank bonus when akimbo
-	if(dual_wield == TRUE)
+	if(dual_wield)
 		projectile_to_fire.point_blank_range = 0
 	else
 		projectile_to_fire.point_blank_range = projectile_to_fire.ammo.point_blank_range
