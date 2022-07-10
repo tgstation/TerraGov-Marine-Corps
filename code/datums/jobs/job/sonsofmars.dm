@@ -165,9 +165,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/outfit/job/som/squad/veteran
 	name = "SOM Veteran"
 	jobtype = /datum/job/som/squad/veteran
-
 	id = /obj/item/card/id/dogtag/som
-
 
 /datum/job/som/squad/leader
 	title = SOM_SQUAD_LEADER
