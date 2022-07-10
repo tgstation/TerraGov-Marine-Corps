@@ -77,13 +77,11 @@
 	obj_integrity = 5
 	max_integrity = 100
 	var/snare_radius = 5
+	var/snare_duration = 20
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
 /obj/structure/xeno/aoe_snare/Initialize(mapload, atom/A)
 	. = ..()
-	var/list/snaredvictims = list() //this is so that we can remove the snare trait once aoe_snare is destroyed
-	for(var/mob/living/carbon/human/victims in view(snare_radius, src.loc))
-		ADD_TRAIT(victims, TRAIT_IMMOBILE, A)
-		snaredvictims.Add(victims)
-	message_admins(snaredvictims)
+	for(var/mob/living/carbon/human/victims in view(snare_radius, loc))
+		victims.Immobilize(snare_duration, TRUE)
