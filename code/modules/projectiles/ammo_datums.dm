@@ -130,7 +130,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	//Check for and apply hard CC.
 	if(hard_size_threshold >= victim.mob_size)
-	//if((victim.mob_size == MOB_SIZE_BIG && hard_size_threshold > 2) || (victim.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(victim) && hard_size_threshold > 0))
 		var/mob/living/living_victim = victim
 		if(!living_victim.IsStun() && !living_victim.IsParalyzed()) //Prevent chain stunning.
 			living_victim.apply_effects(stun,weaken)
@@ -148,7 +147,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Initial stagger is: <b>[target.stagger]</b>"))
 		#endif
-		if(!isxenoqueen(carbon_victim)) ////Stagger too powerful vs the Queen, so she's immune.
+		if(!isxenoqueen(carbon_victim)) //Stagger too powerful vs the Queen, so she's immune.
 			carbon_victim.adjust_stagger(stagger)
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Final stagger is: <b>[target.stagger]</b>"))
