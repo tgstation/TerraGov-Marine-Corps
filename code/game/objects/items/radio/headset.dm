@@ -817,22 +817,23 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	minimap_type = /datum/action/minimap/som
 
 /obj/item/radio/headset/mainship/som/Initialize(mapload, datum/squad/squad, rank)
-	if(squad)
-		icon_state = "headset_marine_[lowertext(squad.name)]"
-		var/dat = "marine [lowertext(squad.name)]"
-		frequency = squad.radio_freq
-		if(ispath(rank, /datum/job/som/squad/leader))
-			dat += " leader"
-			keyslot2 = /obj/item/encryptionkey/squadlead/som
-			use_command = TRUE
-			command = TRUE
-		else if(ispath(rank, /datum/job/som/squad/engineer))
-			dat += " engineer"
-			keyslot2 = /obj/item/encryptionkey/engi/som
-		else if(ispath(rank, /datum/job/som/squad/medic))
-			dat += " corpsman"
-			keyslot2 = /obj/item/encryptionkey/med/som
-		name = dat + " radio headset"
+	if(!squad)
+		return ..()
+	icon_state = "headset_marine_[lowertext(squad.name)]"
+	var/dat = "marine [lowertext(squad.name)]"
+	frequency = squad.radio_freq
+	if(ispath(rank, /datum/job/som/squad/leader))
+		dat += " leader"
+		keyslot2 = /obj/item/encryptionkey/squadlead/som
+		use_command = TRUE
+		command = TRUE
+	else if(ispath(rank, /datum/job/som/squad/engineer))
+		dat += " engineer"
+		keyslot2 = /obj/item/encryptionkey/engi/som
+	else if(ispath(rank, /datum/job/som/squad/medic))
+		dat += " corpsman"
+		keyslot2 = /obj/item/encryptionkey/med/som
+	name = dat + " radio headset"
 	return ..()
 
 

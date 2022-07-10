@@ -68,7 +68,7 @@
 		var/datum/hive_status/hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 		msg += "<b>Total Players: [length(Lines)]</b>"
 		msg += "<br><b>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
-		msg += "<br><b>Humans: [count_humans]</b> <b>(Marines: ~[count_marine_humans])</b> <b>(Marines: ~[count_som_marine_humans])</b> <b>(Infected: [count_infectedhumans])</b><br>"
+		msg += "<br><b>Humans: [count_humans]</b> <b>(Marines: ~[count_marine_humans])</b> <b>(Sons of Mars: ~[count_som_marine_humans])</b> <b>(Infected: [count_infectedhumans])</b><br>"
 		msg += "<br><b>Xenos: [count_aliens]</b> <b>(Ruler: [hive.living_xeno_ruler ? "Alive" : "Dead"])</b>"
 	else
 		msg += "<b>Total Players: [length(Lines)]</b>"

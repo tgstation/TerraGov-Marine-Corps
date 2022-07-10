@@ -1469,6 +1469,7 @@ datum/ammo/bullet/revolver/tp44
 	bullet_color = COLOR_VERY_SOFT_YELLOW
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread
 
+///handles the actual bomblet detonation
 /datum/ammo/micro_rail_cluster/proc/detonate(turf/T, obj/projectile/P)
 	playsound(T, sound(get_sfx("explosion_small")), 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
@@ -1478,8 +1479,8 @@ datum/ammo/bullet/revolver/tp44
 		victim.visible_message(span_danger("[victim] is hit by the bomblet blast!"),
 			isxeno(victim) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
 		var/armor_block = victim.get_soft_armor("bomb")
-		victim.apply_damage(rand(5, 15), BRUTE, null, armor_block, updating_health = TRUE)
-		victim.apply_damage(rand(5, 15), BURN, null, armor_block, updating_health = TRUE)
+		victim.apply_damage(10), BRUTE, null, armor_block, updating_health = FALSE)
+		victim.apply_damage(10), BURN, null, armor_block, updating_health = TRUE)
 		staggerstun(victim, P, stagger = 0.5, slowdown = 0.5)
 
 /datum/ammo/micro_rail_cluster/on_leave_turf(turf/T, atom/firer, obj/projectile/proj)

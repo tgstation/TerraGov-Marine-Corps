@@ -12,7 +12,7 @@
 	var/obj/effect/landmark/patrol_point/linked_point = null
 
 /obj/structure/patrol_point/Initialize()
-	. = ..()
+	..()
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -21,8 +21,8 @@
 	. = ..()
 	create_link()
 
+///Links the patrol point to its associated exit point
 /obj/structure/patrol_point/proc/create_link()
-	//Links this object to it's associated exit point
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		if(exit_point.id == id)
 			linked_point = exit_point
