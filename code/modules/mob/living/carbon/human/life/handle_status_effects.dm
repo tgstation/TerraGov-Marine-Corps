@@ -24,12 +24,13 @@
 			command_aura_strength = skills.getRating("leadership") - 1
 			var/command_aura_range = round(4 + command_aura_strength * 1)
 			for(var/mob/living/carbon/human/H in range(command_aura_range, src))
-				if(command_aura == "move" && command_aura_strength > H.mobility_new)
-					H.mobility_new = command_aura_strength
-				if(command_aura == "hold" && command_aura_strength > H.protection_new)
-					H.protection_new = command_aura_strength
-				if(command_aura == "focus" && command_aura_strength > H.marksman_new)
-					H.marksman_new = command_aura_strength
+				if(H.faction == faction) //You can only give orders to people in your own faction
+					if(command_aura == "move" && command_aura_strength > H.mobility_new)
+						H.mobility_new = command_aura_strength
+					if(command_aura == "hold" && command_aura_strength > H.protection_new)
+						H.protection_new = command_aura_strength
+					if(command_aura == "focus" && command_aura_strength > H.marksman_new)
+						H.marksman_new = command_aura_strength
 
 	set_mobility_aura(mobility_new)
 	protection_aura = protection_new
