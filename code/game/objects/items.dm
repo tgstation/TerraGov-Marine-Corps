@@ -387,7 +387,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/unequipped(mob/unequipper, slot)
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, unequipper, slot)
-	SEND_SIGNAL(src, COMSIG_REMOVE_ATTACHMENT_OVERLAY, unequipper, slot)
 
 	var/equipped_from_slot = flags_equip_slot & slotdefine2slotbit(slot)
 
