@@ -45,7 +45,7 @@
 	RegisterSignal(parent, COMSIG_CLICK_ALT, .proc/start_detach) //For Detaching
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/clean_references) //Dels attachments.
 	RegisterSignal(parent, COMSIG_ITEM_APPLY_CUSTOM_OVERLAY, .proc/apply_custom)
-	RegisterSignal(parent, COMSIG_REMOVE_ATTACHMENT_OVERLAY, .proc/remove_overlay)
+	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, .proc/remove_overlay)
 
 ///Starts processing the attack, and whether or not the attachable can attack.
 /datum/component/attachment_handler/proc/start_handle_attachment(datum/source, obj/attacking, mob/attacker)
