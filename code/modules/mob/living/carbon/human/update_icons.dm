@@ -399,7 +399,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 /mob/living/carbon/human/update_inv_w_uniform()
 	remove_overlay(UNIFORM_LAYER)
-	remove_overlay(CAPE_LAYER)
 	if(!w_uniform)
 		return
 	if(client && hud_used?.hud_shown && hud_used.inventory_shown)
