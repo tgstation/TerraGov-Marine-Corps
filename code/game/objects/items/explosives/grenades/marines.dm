@@ -279,8 +279,8 @@
 	light_range = 6
 	light_color = LIGHT_COLOR_FLARE
 	var/fuel = 0
-	var/lower_fuel_limit = 800
-	var/upper_fuel_limit = 1000
+	var/lower_fuel_limit = 300
+	var/upper_fuel_limit = 360
 
 /obj/item/explosive/grenade/flare/Initialize()
 	. = ..()
