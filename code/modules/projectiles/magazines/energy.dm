@@ -114,20 +114,24 @@
 		to_chat(user, span_notice("[warning]<b>Charge Remaining: [charge]/[maxcharge]</b>"))
 	update_icon()
 
-/obj/item/cell/lasgun/volkite/powerpack/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the power cell onto the backpack will trigger its special functionality.
+/obj/item/cell/lasgun/volkite/powerpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!istype(W, /obj/item/cell))
+	if(istype(I, /obj/item/weapon/gun) && loc == user)
+		var/obj/item/weapon/gun/gun = I
+		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
+			return
+		gun.reload(src, user)
 		return
 
-	if(W != user.r_hand && W != user.l_hand)
-		to_chat(user, span_warning("[W] must be in your hand to do that."))
-		return
-
-	var/obj/item/cell/D = W
-	var/charge_difference = D.maxcharge - D.charge
-	if(charge_difference) //If the cell has less than max charge, recharge it.
-		var/charge_used = use_charge(user, charge_difference) //consume an appropriate amount of charge
-		D.charge += charge_used //Recharge the cell battery with the lower of the difference between its present and max cap, or the remaining charge
-		D.update_icon()
-	else
-		to_chat(user, span_warning("This cell is already at maximum charge!"))
+	if(istype(I, /obj/item/cell))
+		if(I != user.r_hand && I != user.l_hand)
+			to_chat(user, span_warning("[I] must be in your hand to do that."))
+			return
+		var/obj/item/cell/D = I
+		var/charge_difference = D.maxcharge - D.charge
+		if(charge_difference) //If the cell has less than max charge, recharge it.
+			var/charge_used = use_charge(user, charge_difference) //consume an appropriate amount of charge
+			D.charge += charge_used //Recharge the cell battery with the lower of the difference between its present and max cap, or the remaining charge
+			D.update_icon()
+		else
+			to_chat(user, span_warning("This cell is already at maximum charge!"))
