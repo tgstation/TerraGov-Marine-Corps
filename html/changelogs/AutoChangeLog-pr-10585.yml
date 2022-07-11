@@ -1,5 +1,0 @@
-author: "QualityVan"
-delete-after: True
-changes: 
-  - bugfix: "If you stand still as a disguised hunter, you won't use any plasma."
-  - bugfix: "Hunters with stealth active get half plasma regen while still and zero while moving, instead of the opposite."

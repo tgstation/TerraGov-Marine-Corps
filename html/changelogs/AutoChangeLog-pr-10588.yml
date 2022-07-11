@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Fixed wraith portal changing projectile's shooter and breaking things like boiler glob size, and teleporting buckled humans."

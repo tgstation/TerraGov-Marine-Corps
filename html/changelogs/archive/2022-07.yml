@@ -34,3 +34,13 @@
   - soundadd: Added splint break sound
   goose4429:
   - balance: If xeno lose shipside, they lose
+2022-07-11:
+  QualityVan:
+  - bugfix: If you stand still as a disguised hunter, you won't use any plasma.
+  - bugfix: Hunters with stealth active get half plasma regen while still and zero
+      while moving, instead of the opposite.
+  Wayland-Smithy:
+  - bugfix: Fixed wraith portal changing projectile's shooter and breaking things
+      like boiler glob size, and teleporting buckled humans.
+  crayonLover09:
+  - qol: Delimbing procs scream emote
