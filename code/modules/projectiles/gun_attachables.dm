@@ -199,9 +199,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			if(master_gun == living_user.l_hand || master_gun == living_user.r_hand)
 				action_to_update.give_action(living_user)
 
-	//custom overlays for specific guns
-	if(length(variants_by_parent_type) && (master_gun.type in variants_by_parent_type))
-		icon_state = variants_by_parent_type[master_gun.type]
+	//custom attachment icons for specific guns
+	if(length(variants_by_parent_type))
+		for(var/selection in variants_by_parent_type)
+			if(istype(master_gun, selection))
+				icon_state = variants_by_parent_type[selection]
 
 	update_icon()
 
