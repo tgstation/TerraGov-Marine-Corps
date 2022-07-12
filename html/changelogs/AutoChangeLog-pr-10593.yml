@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - bugfix: "Fixed projectile staggerstun effects not respecting their max range unless they caused screenshake"
+  - refactor: "minor refactors to the staggerstun proc"
