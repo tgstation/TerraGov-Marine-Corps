@@ -19,21 +19,29 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/action(mob/source, atom/target, list/modifiers)
 	if(!action_checks(target))
 		return FALSE
-	. = ..()//start the cooldown early because of sleeps
+	. = ..()
+	chassis.vis_contents += firing_effect
+	fire_bullet(source, target)
+	addtimer(CALLBACK(src, .proc/remove_flash), 2)
 	for(var/i in 1 to projectiles_per_shot)
-		if(energy_drain && !chassis.has_charge(energy_drain))//in case we run out of energy mid-burst, such as emp
-			break
-		var/angle = Get_Angle(src, target)
-		var/obj/projectile/projectile_obj = new(get_turf(src))
-		projectile_obj.generate_bullet(GLOB.ammo_list[ammotype])
-		projectile_obj.fire_at(target, source, chassis)
-		chassis.vis_contents += firing_effect
-		firing_effect.transform = turn(firing_effect.transform, angle)
-		playsound(chassis, fire_sound, 50, TRUE)
-
-		sleep(max(0, projectile_delay)) // tivi todo fix this by using unmanned as model
+		addtimer(CALLBACK(src, .proc/fire_bullet, source, target), (i-1)*projectile_delay)
 
 	chassis.log_message("Fired from [name], targeting [target].", LOG_ATTACK)
+
+///removes the flash object from viscontents
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/remove_flash()
+	chassis.vis_contents -= firing_effect
+
+///proc that actually fires the bullet after timer, should use autofire instead
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/fire_bullet(mob/source, atom/target)
+	if(energy_drain && !chassis.has_charge(energy_drain))//in case we run out of energy mid-burst, such as emp
+		return
+	var/angle = Get_Angle(src, target)
+	var/obj/projectile/projectile_obj = new(get_turf(src))
+	projectile_obj.generate_bullet(GLOB.ammo_list[ammotype])
+	projectile_obj.fire_at(target, chassis, chassis) // get_angle_with_scatter
+	firing_effect.transform = turn(firing_effect.transform, angle)
+	playsound(chassis, fire_sound, 50, TRUE)
 
 //Base energy weapon type
 /obj/item/mecha_parts/mecha_equipment/weapon/energy
@@ -108,7 +116,6 @@
 	projectiles = 40
 	projectiles_cache = 40
 	projectiles_cache_max = 160
-	projectiles_per_shot = 4
 	variance = 25
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_BUCKSHOT

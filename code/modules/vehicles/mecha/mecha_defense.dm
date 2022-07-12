@@ -129,7 +129,7 @@
 		ammo_resupply(W, user)
 		return
 
-	if(user.get_idcard(TRUE))
+	if(isidcard(W))
 		if((mecha_flags & ADDING_ACCESS_POSSIBLE) || (mecha_flags & ADDING_MAINT_ACCESS_POSSIBLE))
 			if(internals_access_allowed(user))
 				ui_interact(user)

@@ -56,7 +56,7 @@
 	///Whether the mechs maintenance protocols are on or off
 	var/construction_state = MECHA_LOCKED
 	///Contains flags for the mecha
-	var/mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_LIGHTS | MMI_COMPATIBLE
+	var/mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MMI_COMPATIBLE
 	///Stores the DNA enzymes of a carbon so tht only they can access the mech
 	var/dna_lock
 	///Spark effects are handled by this datum
@@ -309,8 +309,8 @@
 		else
 			mouse_pointer = 'icons/mecha/mecha_mouse.dmi'
 
-	for(var/mob/mob_occupant as anything in occupants) // tivi todo doesnt work
-		mob_occupant.update_mouse_pointer()
+	for(var/mob/mob_occupant as anything in occupants)
+		mob_occupant.client.mouse_pointer_icon = mouse_pointer // note this is update_mouse_pointer() on tg
 
 //override this proc if you need to split up mecha control between multiple people (see savannah_ivanov.dm)
 /obj/vehicle/sealed/mecha/auto_assign_occupant_flags(mob/M)
@@ -388,7 +388,7 @@
 /obj/vehicle/sealed/mecha/process(delta_time)
 	if(internal_damage)
 		if(internal_damage & MECHA_INT_FIRE)
-			//tivi todo
+			take_damage(10, BURN, FIRE)
 
 		if(internal_damage & MECHA_INT_SHORT_CIRCUIT)
 			if(get_charge())
@@ -443,7 +443,7 @@
 		use_power(2*delta_time)
 
 //Diagnostic HUD updates
-	hud_set_mecha_health() // tivi todo why is this shit in process
+	hud_set_mecha_health()
 	hud_set_mecha_battery()
 
 ///Called when a driver clicks somewhere. Handles everything like equipment, punches, etc.

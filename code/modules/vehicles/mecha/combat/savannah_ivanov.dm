@@ -19,7 +19,7 @@
 	base_icon_state = "savannah_ivanov"
 	icon_state = "savannah_ivanov_0_0"
 	//does not include mmi compatibility
-	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_LIGHTS
+	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS
 	mech_type = EXOSUIT_MODULE_SAVANNAH
 	move_delay = 3
 	max_integrity = 450 //really tanky, like damn
@@ -313,7 +313,6 @@
 		end_missile_targeting()
 	SEND_SOUND(owner, 'sound/machines/triple_beep.ogg')
 	S_TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_MISSILE_STRIKE, strike_cooldown_time)
-	//tivi todo what about this
 	/** podspawn(list(
 		"target" = target_turf,
 		"style" = STYLE_MISSILE,

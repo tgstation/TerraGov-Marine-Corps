@@ -615,7 +615,7 @@
 	var/amount = round(current_rounds * 100 / max_rounds, 10)
 	holder.icon_state = "plasma[amount]"
 
-///Mecha health, snowflake cus of how // tivi todo
+///Mecha health hud updates
 /obj/vehicle/sealed/mecha/proc/hud_set_mecha_health()
 	var/image/holder = hud_list[MACHINE_HEALTH_HUD]
 
@@ -631,7 +631,7 @@
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
 	holder.icon_state = "xenohealth[amount]"
 
-///Makes sentry health visible // tivi todo
+///Updates mecha battery
 /obj/vehicle/sealed/mecha/proc/hud_set_mecha_battery()
 	var/image/holder = hud_list[MACHINE_AMMO_HUD]
 

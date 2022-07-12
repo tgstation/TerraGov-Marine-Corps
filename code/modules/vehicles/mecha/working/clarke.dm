@@ -25,7 +25,7 @@
 	wreckage = /obj/structure/mecha_wreckage/clarke
 	mech_type = EXOSUIT_MODULE_CLARKE
 	enter_delay = 40
-	mecha_flags = ADDING_ACCESS_POSSIBLE | IS_ENCLOSED | HAS_LIGHTS | MMI_COMPATIBLE | OMNIDIRECTIONAL_ATTACKS
+	mecha_flags = ADDING_ACCESS_POSSIBLE | IS_ENCLOSED | HAS_HEADLIGHTS | MMI_COMPATIBLE | OMNIDIRECTIONAL_ATTACKS
 
 /obj/vehicle/sealed/mecha/working/clarke/Initialize(mapload)
 	. = ..()
