@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - bugfix: "Volkite culverins and calivers can now be normally reloaded by clicking the powerpack with the gun, instead of only being tac reloadable"
+  - rscadd: "Volkite powerpacks now recharge cells by clicking the powerpack with the cell instead of click dragging"
