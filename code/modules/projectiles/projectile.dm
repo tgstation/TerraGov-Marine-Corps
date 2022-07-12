@@ -165,7 +165,7 @@
 	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
-/obj/projectile/proc/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity, suppress_light = FALSE)
+/obj/projectile/proc/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity, suppress_light = FALSE, atom/loc_override = shooter)
 	if(!isnull(speed))
 		projectile_speed = speed
 
@@ -187,7 +187,7 @@
 	if(source)
 		shot_from = source
 	permutated[src] = TRUE
-	loc = shooter
+	loc = loc_override
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc
@@ -955,7 +955,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(effect_icon)
 		src.effect_icon = effect_icon
 
-/obj/projectile/hitscan/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity, suppress_light)
+/obj/projectile/hitscan/fire_at(atom/target, atom/shooter, atom/source, range, speed, angle, recursivity, suppress_light, atom/loc_override = shooter)
 	if(!isnull(range))
 		proj_max_range = range
 	if(shooter)
@@ -964,7 +964,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(source)
 		shot_from = source
 	permutated[src] = TRUE
-	loc = shooter
+	loc = loc_override
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc

@@ -20,3 +20,27 @@
   Vondiech:
   - bugfix: Removes non-existant reqtorio recipe for br-8 scout rifle ammo since it
       was merged with the IFF ammo recipe.
+2022-07-06:
+  Lumipharon:
+  - rscadd: Adds the Quick equip vendor for future gamemode and admin use
+2022-07-08:
+  QualityVan:
+  - rscadd: Clicking on stuff when you're carrying a compass will tell you that stuff's
+      coordinates.
+  - bugfix: Kidneys count microdosed chems against their limit
+  - bugfix: Confuse effects won't be created with infinite duration and zero function.
+2022-07-10:
+  crayonLover09:
+  - soundadd: Added splint break sound
+  goose4429:
+  - balance: If xeno lose shipside, they lose
+2022-07-11:
+  QualityVan:
+  - bugfix: If you stand still as a disguised hunter, you won't use any plasma.
+  - bugfix: Hunters with stealth active get half plasma regen while still and zero
+      while moving, instead of the opposite.
+  Wayland-Smithy:
+  - bugfix: Fixed wraith portal changing projectile's shooter and breaking things
+      like boiler glob size, and teleporting buckled humans.
+  crayonLover09:
+  - qol: Delimbing procs scream emote

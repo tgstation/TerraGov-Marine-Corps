@@ -90,6 +90,20 @@
 	icon_state_mini = "mag_cell"
 	charge_overlay = "volkite_big"
 
+/obj/item/cell/lasgun/volkite/turret
+	name = "\improper volkite nuclear energy cell"
+	desc = "A nuclear powered battery designed for certain heavy SOM machinery like sentries. Slowly charges over time."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "volkite_turret"
+	maxcharge = 1800
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state_mini = "mag_cell"
+	charge_overlay = "volkite"
+	reload_delay = 0
+	self_recharge = TRUE
+	charge_amount = 24
+	charge_delay = 2 SECONDS
+
 /obj/item/cell/lasgun/volkite/powerpack
 	name = "\improper M-70 powerpack"
 	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry. Click drag cells to the powerpack to recharge."
