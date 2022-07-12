@@ -366,7 +366,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_xn")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_xn", /obj/item/clothing/head/modular/som/welder = "welding_head_som")
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
@@ -410,7 +410,7 @@
 	icon_state = "welding_head"
 	item_state = "welding_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_superior_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_superior_xn")
+	variants_by_parent_type = list(/obj/item/clothing/head/modular/marine/m10x = "welding_head_superior_xn", /obj/item/clothing/head/modular/marine/m10x/leader = "welding_head_superior_xn", /obj/item/clothing/head/modular/som/welder = "welding_head_som")
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
 	prefered_slot = SLOT_HEAD
