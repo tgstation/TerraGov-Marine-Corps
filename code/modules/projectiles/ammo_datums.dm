@@ -2548,6 +2548,9 @@ datum/ammo/bullet/revolver/tp44
 /datum/ammo/xeno/acid/web/snare_ball/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
 	new /obj/structure/xeno/aoe_snare(get_turf(T))
+/datum/ammo/xeno/acid/web/snare_ball/on_hit_mob(mob/victim, obj/projectile/proj)
+	. = ..()
+	new /obj/structure/xeno/aoe_snare(get_turf(victim))
 /*
 //================================================
 					Misc Ammo

@@ -76,12 +76,19 @@
 	destroy_sound = "alien_resin_break"
 	obj_integrity = 5
 	max_integrity = 100
-	var/snare_radius = 5
-	var/snare_duration = 20
+	var/leash_radius = 5 // doubles as the range for the leash and how far away ugnas can move before being pulled in
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
 /obj/structure/xeno/aoe_snare/Initialize(mapload, atom/A)
 	. = ..()
-	for(var/mob/living/carbon/human/victims in view(snare_radius, loc))
-		victims.Immobilize(snare_duration, TRUE)
+	for(var/mob/living/carbon/human/victims in view(leash_radius, loc))
+		beam(victims, "beam_heavy", 'icons/obj/items/projectiles.dmi', INFINITY, leash_radius + 1)
+		RegisterSignal(victims, COMSIG_MOVABLE_MOVED, .proc/check_dist)
+
+/obj/structure/xeno/aoe_snare/proc/check_dist(datum/victims, atom/oldloc)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/human/victim = victims
+	var/distance = get_dist(victim, loc)
+	if(distance >= leash_radius)
+		victim.forceMove(loc)
