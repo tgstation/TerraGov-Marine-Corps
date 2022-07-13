@@ -262,6 +262,13 @@
 
 	allowed_uniform_type = /obj/item/clothing/under
 
+/obj/item/clothing/suit/modular/xenonauten/engineer
+	starting_attachments = list(/obj/item/armor_module/module/better_shoulder_lamp, /obj/item/armor_module/storage/engineering)
+
+/obj/item/clothing/suit/modular/xenonauten/mimir
+	starting_attachments = list(/obj/item/armor_module/module/mimir_environment_protection/mark1)
+
+// Thank Jeff for providing sprites to color flak jacket
 /obj/item/clothing/suit/modular/xenonauten/pilot
 	name = "\improper TerraGov standard flak jacket"
 	desc = "A flak jacket used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
@@ -300,6 +307,9 @@
 	item_state = "light"
 	slowdown = 0.3
 
+/obj/item/clothing/suit/modular/xenonauten/light/shield
+	starting_attachments = list(/obj/item/armor_module/module/eshield)
+
 /obj/item/clothing/suit/modular/xenonauten/heavy
 	name = "\improper Xenonauten-H pattern armored vest"
 	desc = "A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -307,6 +317,9 @@
 	icon_state = "heavy"
 	item_state = "heavy"
 	slowdown = 0.7
+
+/obj/item/clothing/suit/modular/xenonauten/heavy/leader
+	starting_attachments = list(/obj/item/armor_module/module/valkyrie_autodoc, /obj/item/armor_module/storage/general)
 
 /** Core helmet module */
 /obj/item/clothing/head/modular
@@ -786,6 +799,12 @@
 	)
 
 	current_variant = "black"
+
+/obj/item/clothing/head/modular/marine/m10x/welding
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
+
+/obj/item/clothing/head/modular/marine/m10x/mimir
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1)
 
 /obj/item/clothing/head/modular/marine/m10x/heavy
 	name = "\improper M10XE pattern marine helmet"

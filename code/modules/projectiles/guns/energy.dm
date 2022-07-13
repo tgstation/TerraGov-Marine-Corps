@@ -437,6 +437,9 @@
 		"Overcharge" = /datum/lasrifle/base/energy_rifle_mode/overcharge,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/reddot, /obj/item/weapon/gun/flamer/mini_flamer)
+
 /datum/lasrifle/base/energy_rifle_mode/standard
 	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
@@ -501,6 +504,9 @@
 		"Heat" = /datum/lasrifle/base/energy_pistol_mode/heat,
 		"Disabler" = /datum/lasrifle/base/energy_pistol_mode/disabler,
 	)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/tactical
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 /datum/lasrifle/base/energy_pistol_mode/standard
 	rounds_per_shot = 20
@@ -583,6 +589,8 @@
 		"Spread" = /datum/lasrifle/base/energy_carbine_mode/base/spread,
 	)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/weapon/gun/grenade_launcher/underslung,)
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
 	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
@@ -869,6 +877,12 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/gyro)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/gyro)
+
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
 	name = "\improper volkite caliver"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
@@ -911,6 +925,9 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin
 	name = "\improper volkite culverin"

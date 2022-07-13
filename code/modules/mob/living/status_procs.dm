@@ -405,7 +405,7 @@
 
 ///Returns the remaining duration if a confuse effect exists, else 0
 /mob/living/proc/AmountConfused()
-	var/datum/status_effect/confused/C = IsConfused()
+	var/datum/status_effect/incapacitating/confused/C = IsConfused()
 	if(C)
 		return C.duration - world.time
 	return 0
@@ -417,7 +417,7 @@
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE))  || ignore_canstun)
-		var/datum/status_effect/confused/C = IsConfused()
+		var/datum/status_effect/incapacitating/confused/C = IsConfused()
 		if(C)
 			C.duration = max(world.time + amount, C.duration)
 		else if(amount > 0)
@@ -431,7 +431,7 @@
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
-		var/datum/status_effect/confused/C = IsConfused()
+		var/datum/status_effect/incapacitating/confused/C = IsConfused()
 		if(amount <= 0)
 			if(C)
 				qdel(C)
@@ -448,7 +448,7 @@
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
-		var/datum/status_effect/confused/C = IsConfused()
+		var/datum/status_effect/incapacitating/confused/C = IsConfused()
 		if(C)
 			C.duration += amount
 		else if(amount > 0)

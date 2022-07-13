@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
 		return
-	if(shake && (proj.distance_travelled > max_range || victim.lying_angle))
+	if(proj.distance_travelled > max_range)
 		return
 	var/impact_message = ""
 	if(isxeno(victim))
@@ -129,7 +129,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			impact_message += span_warning("You are shaken by the sudden impact!")
 
 	//Check for and apply hard CC.
-	if((victim.mob_size == MOB_SIZE_BIG && hard_size_threshold > 2) || (victim.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(victim) && hard_size_threshold > 0))
+	if(hard_size_threshold >= victim.mob_size)
 		var/mob/living/living_victim = victim
 		if(!living_victim.IsStun() && !living_victim.IsParalyzed()) //Prevent chain stunning.
 			living_victim.apply_effects(stun,weaken)
@@ -144,15 +144,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	//Check for and apply soft CC
 	if(iscarbon(victim))
 		var/mob/living/carbon/carbon_victim = victim
-		var/stagger_immune = FALSE
-		if(isxeno(carbon_victim))
-			var/mob/living/carbon/xenomorph/xeno_victim = victim
-			if(isxenoqueen(xeno_victim)) //Stagger too powerful vs the Queen, so she's immune.
-				stagger_immune = TRUE
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Initial stagger is: <b>[target.stagger]</b>"))
 		#endif
-		if(!stagger_immune)
+		if(!isxenoqueen(carbon_victim)) //Stagger too powerful vs the Queen, so she's immune.
 			carbon_victim.adjust_stagger(stagger)
 		#if DEBUG_STAGGER_SLOWDOWN
 		to_chat(world, span_debuginfo("Damage: Final stagger is: <b>[target.stagger]</b>"))
@@ -2029,6 +2024,13 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 18
 	damage = 25
 	fire_burst_damage = 25
+
+/datum/ammo/energy/volkite/light
+	max_range = 25
+	accurate_range = 12
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+	penetration = 10
 
 /*
 //================================================

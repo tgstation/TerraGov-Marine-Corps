@@ -195,6 +195,7 @@
 		if(splint_health <= 0)
 			remove_limb_flags(LIMB_SPLINTED)
 			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
+			playsound(owner, 'sound/items/splint_break.ogg', 100, sound_range = 1, falloff = 5)
 		else
 			splint_health = max(splint_health - (brute + burn), 0)
 
@@ -266,6 +267,8 @@
 		return update_icon()
 	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * CONFIG_GET(number/organ_health_multiplier))
 		droplimb() //Reached max damage threshold through brute damage, that limb is going bye bye
+		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
+			owner.emote("scream")
 		return
 
 	if(updating_health)

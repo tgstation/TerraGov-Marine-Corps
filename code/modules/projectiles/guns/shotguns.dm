@@ -110,6 +110,7 @@
 	recoil = 0 //It has a stock on the sprite.
 	recoil_unwielded = 2
 	wield_delay = 1 SECONDS
+	akimbo_additional_delay = 0.9
 
 /obj/item/weapon/gun/shotgun/combat/masterkey
 	name = "masterkey shotgun"
@@ -626,6 +627,7 @@
 //buckshot variants
 /obj/item/weapon/gun/shotgun/pump/t35/pointman
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/angledgrip, /obj/item/attachable/bayonet)
 
 /obj/item/weapon/gun/shotgun/pump/t35/nonstandard
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
