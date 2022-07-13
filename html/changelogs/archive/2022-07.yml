@@ -44,3 +44,17 @@
       like boiler glob size, and teleporting buckled humans.
   crayonLover09:
   - qol: Delimbing procs scream emote
+2022-07-13:
+  Lumipharon:
+  - bugfix: Orders no longer apply to humans in factions other than your own
+  - rscadd: Adds the COPE sentry for the SOM
+  - bugfix: Fixed projectile staggerstun effects not respecting their max range unless
+      they caused screenshake
+  - refactor: minor refactors to the staggerstun proc
+  - bugfix: Some gun mob sprite fixes
+  - bugfix: Attachments like capes and Tyr no longer get stuck on your mob when removed
+  - balance: SH39 akimbo additional delay changed to 0.9 from 0.5.
+  - bugfix: Volkite culverins and calivers can now be normally reloaded by clicking
+      the powerpack with the gun, instead of only being tac reloadable
+  - rscadd: Volkite powerpacks now recharge cells by clicking the powerpack with the
+      cell instead of click dragging
