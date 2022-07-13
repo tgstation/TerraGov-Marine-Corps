@@ -35,6 +35,7 @@
 		to_chat(M, span_notice("You swallow [src]."))
 		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
+			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, reagents.total_volume)
 
 		qdel(src)

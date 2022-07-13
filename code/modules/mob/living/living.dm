@@ -78,6 +78,7 @@
 
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
+	stamina_regen_modifiers = list()
 
 /mob/living/Destroy()
 	for(var/i in embedded_objects)

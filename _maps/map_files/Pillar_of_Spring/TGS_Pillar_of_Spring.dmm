@@ -837,6 +837,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "cH" = (
@@ -4711,7 +4712,6 @@
 /obj/machinery/holosign/surgery{
 	id = "or1sign"
 	},
-/obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mainship/medical/or/or1{
 	dir = 1
 	},
@@ -5377,8 +5377,8 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "qi" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/skills,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "qj" = (
@@ -5465,12 +5465,12 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "qw" = (
-/obj/structure/table/woodentable,
 /obj/structure/paper_bin{
 	pixel_x = 7;
 	pixel_y = 6
 	},
 /obj/item/tool/pen,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "qy" = (
@@ -6279,8 +6279,8 @@
 /obj/machinery/firealarm{
 	dir = 1
 	},
-/obj/structure/table/woodentable,
 /obj/machinery/computer/security/marinemainship_network,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "th" = (
@@ -6299,7 +6299,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
@@ -6405,6 +6404,7 @@
 	dir = 6
 	},
 /obj/machinery/power/apc/mainship,
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "tx" = (
@@ -7956,6 +7956,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "yf" = (
@@ -10175,9 +10176,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/table/woodentable,
 /obj/item/book/codebook,
 /obj/item/megaphone,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
@@ -10201,12 +10202,12 @@
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "EF" = (
-/obj/structure/table/woodentable,
 /obj/machinery/light,
 /obj/machinery/door_control/old/ai{
 	id = "cl_shutters";
 	name = "Privacy Shutters"
 	},
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "EG" = (
@@ -10739,15 +10740,14 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "Go" = (
-/obj/structure/table/woodentable,
 /obj/item/clipboard{
 	pixel_x = 5
 	},
 /obj/item/newspaper,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "Gp" = (
-/obj/structure/table/woodentable,
 /obj/item/storage/fancy/cigar,
 /obj/item/clothing/mask/cigarette/pipe{
 	pixel_y = 5
@@ -10755,6 +10755,7 @@
 /obj/item/newspaper,
 /obj/item/reagent_containers/food/drinks/britcup,
 /obj/item/storage/box/matches,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "Gq" = (
@@ -10789,9 +10790,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "Gu" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "Gv" = (
 /obj/structure/cable,
@@ -11667,8 +11667,8 @@
 /area/mainship/living/commandbunks)
 "IF" = (
 /obj/machinery/light,
-/obj/structure/table/woodentable,
 /obj/machinery/computer/marine_card,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "IG" = (
@@ -12027,6 +12027,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "JC" = (
@@ -14753,7 +14754,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/ai_node,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
@@ -16509,7 +16509,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "VZ" = (
@@ -17612,6 +17611,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "Zi" = (
@@ -17746,7 +17746,6 @@
 /obj/machinery/holosign/surgery{
 	id = "or1sign"
 	},
-/obj/machinery/door/firedoor,
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/or/or2{
 	dir = 1
@@ -51227,7 +51226,7 @@ Fc
 Fc
 Fc
 Il
-Gu
+FP
 FP
 FP
 FX
@@ -51484,7 +51483,7 @@ vc
 CJ
 SA
 gy
-SA
+Gu
 SA
 SA
 FY

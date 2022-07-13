@@ -71,17 +71,21 @@
 
 	user.visible_message(span_notice("[user] begins repairing damage to [src]."),
 	span_notice("You begin repairing the damage to [src]."))
+	add_overlay(GLOB.welding_sparks)
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 
 	if(!do_after(user, weld_time, TRUE, src, BUSY_ICON_FRIENDLY))
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	if(!WT.remove_fuel(2, user))
 		to_chat(user, span_warning("Not enough fuel to finish the task."))
+		cut_overlay(GLOB.welding_sparks)
 		return TRUE
 
 	user.visible_message(span_notice("[user] repairs some damage on [src]."),
 	span_notice("You repair [src]."))
+	cut_overlay(GLOB.welding_sparks)
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
 	repair_damage(120)
 	update_icon()

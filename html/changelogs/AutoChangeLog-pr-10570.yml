@@ -1,0 +1,8 @@
+author: "tyeagg"
+delete-after: True
+changes: 
+  - bugfix: "orion cave and grass turf"
+  - bugfix: "generators not being wired"
+  - balance: "increase coverage of vehicle props"
+  - balance: "reworked caves for orion"
+  - rscadd: "surv spawns for orion"

@@ -7978,9 +7978,9 @@
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/port_point_defense)
 "caS" = (
-/obj/structure/table/woodentable,
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "caY" = (
@@ -9688,11 +9688,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "etd" = (
-/obj/structure/table/woodentable,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /obj/item/ashtray/bronze,
 /obj/item/tool/lighter/zippo,
 /obj/machinery/door_control/mainship/corporate,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "etF" = (
@@ -12309,9 +12309,9 @@
 /turf/open/floor/plating,
 /area/mainship/command/bridge)
 "jkH" = (
-/obj/structure/table/woodentable,
 /obj/item/camera_film,
 /obj/item/camera,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "jkR" = (
@@ -13745,8 +13745,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/basketball)
 "lIZ" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/skills,
+/obj/structure/table/fancywoodentable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "lLS" = (

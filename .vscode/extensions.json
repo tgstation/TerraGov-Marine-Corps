@@ -1,6 +1,5 @@
 {
 	"recommendations": [
-		"gbasood.byond-dm-language-support",
 		"arcanis.vscode-zipfs",
 		"dbaeumer.vscode-eslint",
 		"donkie.vscode-tgstation-test-adapter",

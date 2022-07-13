@@ -43,8 +43,10 @@
 	var/max_stamina = 0
 	/// How much stamina can you regen
 	var/max_stamina_buffer = 0
-	/// How fast does a mob regen its stamina
+	/// How fast does a mob regen its stamina. Shouldn't go below 0.
 	var/stamina_regen_multiplier = 1
+	/// Maps modifiers by name to a value, applied additively to stamina_regen_multiplier
+	var/list/stamina_regen_modifiers
 	var/is_dizzy = FALSE
 	var/druggy = 0
 

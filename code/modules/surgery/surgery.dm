@@ -8,9 +8,9 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 	//Provisional priority list
 	//0 : Generic (Incision, Bones, Internal Bleeding, Limb Removal, Cautery)
 	//X + 0.1 : Upgrades
-	//1 : Generic Priority (Necrosis, Encased Surgery, Cavities, Implants, Reattach)
+	//1 : Generic Priority (Organ repair, Encased Surgery, Cavities, Implants, Reattach)
 	//2 : Sub-Surgeries (Mouth and Eyes)
-	//3 : Special surgeries (Embryos, Bone Chips, Hematoma)
+	//3 : Special surgeries (Embryos, Bone Chips, Hematoma, Necrosis)
 
 	var/list/allowed_tools = null //Array of type path referencing tools that can be used for this step, and how well are they suited for it
 	var/list/allowed_species = null //List of names referencing species that this step applies to.

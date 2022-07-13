@@ -352,6 +352,8 @@
 	undeploy_time = 0.5 SECONDS
 	max_integrity = 200
 
+/obj/item/weapon/gun/standard_mmg/machinegunner
+	starting_attachment_types = list(/obj/item/attachable/stock/irremoveable/t27, /obj/item/attachable/scope/mini)
 //-------------------------------------------------------
 //AT-36 Anti Tank Gun
 

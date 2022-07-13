@@ -149,7 +149,6 @@
 	. = ..()
 	if(!.)
 		return
-	// For example, bruised heart will leave you with 25 stamina buffer
 	owner.max_stamina_buffer += (old_organ_status - organ_status) * 25
 	owner.maxHealth += (old_organ_status - organ_status) * 20
 
@@ -171,12 +170,11 @@
 		owner.emote("me", 1, "gasps for air!")
 
 /datum/internal_organ/lungs/set_organ_status()
-	var/old_organ_status = organ_status
 	. = ..()
 	if(!.)
 		return
 	// For example, bruised lungs will reduce stamina regen by 40%, broken by 80%
-	owner.stamina_regen_multiplier += (old_organ_status - organ_status) * 0.40
+	owner.add_stamina_regen_modifier(name, organ_status * -0.40)
 	// Slowdown added when the heart is damaged
 	owner.add_movespeed_modifier(id = name, override = TRUE, multiplicative_slowdown = organ_status)
 
@@ -251,6 +249,12 @@
 	var/current_medicine_count = 0
 	///How many drugs we can take before they overwhelm us. Decreases with damage
 	var/current_medicine_cap = 5
+	///Whether we were over cap the last time we checked.
+	var/old_overflow = FALSE
+	///Total medicines added since last tick
+	var/new_medicines = 0
+	///Total medicines removed since last tick
+	var/removed_medicines = 0
 
 /datum/internal_organ/kidneys/New(mob/living/carbon/carbon_mob)
 	. = ..()
@@ -266,18 +270,14 @@
 	SIGNAL_HANDLER
 	if(!ispath(reagent_type, /datum/reagent/medicine))
 		return
-	current_medicine_count++
-	if(current_medicine_count == current_medicine_cap + 1)
-		to_chat(owner, span_warning("All the different drugs in you are starting to make you feel off..."))
+	new_medicines++
 
 ///Signaled proc. Check if the removed reagent was under reagent/medicine. If so, decrement medicine counter and potentially notify owner.
 /datum/internal_organ/kidneys/proc/owner_removed_reagent(datum/source, reagent_type)
 	SIGNAL_HANDLER
 	if(!ispath(reagent_type, /datum/reagent/medicine))
 		return
-	current_medicine_count--
-	if(current_medicine_count == current_medicine_cap)
-		to_chat(owner, span_notice("You don't feel as overwhelmed by all the drugs any more."))
+	removed_medicines++
 
 /datum/internal_organ/kidneys/set_organ_status()
 	. = ..()
@@ -288,12 +288,28 @@
 /datum/internal_organ/kidneys/process()
 	..()
 
-	if(owner.reagents.has_reagent(/datum/reagent/water))
-		return //Hydration is good for your kidneys. Shame it purges medicines.
+	var/bypass = FALSE
 
-	var/overflow = current_medicine_count - current_medicine_cap
-	if(overflow < 1)
+	if(owner.bodytemperature <= 170) //No sense worrying about a chem cap if we're in cryo anyway. Still need to clear tick counts.
+		bypass = TRUE
+
+	current_medicine_count += new_medicines //We want to include medicines that were individually both added and removed this tick
+	var/overflow = current_medicine_count - current_medicine_cap //This catches any case where a reagent was added with volume below its metabolism
+	current_medicine_count -= removed_medicines //Otherwise, you can microdose infinite chems without kidneys complaining
+
+	new_medicines = 0
+	removed_medicines = 0
+
+	if(overflow < 1 || bypass)
+		if(old_overflow)
+			to_chat(owner, span_notice("You don't feel as overwhelmed by all the drugs any more."))
+			old_overflow = FALSE
 		return
+
+	if(!old_overflow)
+		to_chat(owner, span_warning("All the different drugs in you are starting to make you feel off..."))
+		old_overflow = TRUE
+
 	owner.set_drugginess(3)
 	if(prob(overflow * (organ_status + 1) * 10))
 		owner.Confused(2 SECONDS * (organ_status + 1))
@@ -310,6 +326,17 @@
 	robotic_type = /obj/item/organ/brain/prosthetic
 	vital = TRUE
 	organ_id = ORGAN_BRAIN
+
+/datum/internal_organ/brain/set_organ_status()
+	var/old_organ_status = organ_status
+	. = ..()
+	if(!.)
+		return
+	owner.skills = owner.skills.modifyAllRatings(old_organ_status - organ_status)
+	if(organ_status >= ORGAN_BRUISED)
+		ADD_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)
+	else
+		REMOVE_TRAIT(owner, TRAIT_DROOLING, BRAIN_TRAIT)
 
 /datum/internal_organ/brain/prosthetic //used by synthetic species
 	robotic = ORGAN_ROBOT

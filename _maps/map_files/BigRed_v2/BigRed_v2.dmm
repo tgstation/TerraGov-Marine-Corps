@@ -8572,13 +8572,8 @@
 /turf/open/floor/tile/lightred/full,
 /area/bigredv2/outside/cargo)
 "bhP" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "bhQ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -8597,9 +8592,7 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "bii" = (
 /obj/structure/cable,
@@ -8662,11 +8655,8 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "biY" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 4
-	},
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "biZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -10331,9 +10321,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "bxf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -12060,6 +12048,13 @@
 	dir = 4
 	},
 /area/bigredv2/outside/sw)
+"cku" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
 "crR" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -12633,7 +12628,7 @@
 /area/bigredv2/outside/general_offices)
 "fIW" = (
 /obj/effect/landmark/dropship_start_location,
-/turf/open/floor/plating/ground/mars/dirttosand{
+/turf/open/floor/marking/asteroidwarning{
 	dir = 5
 	},
 /area/bigredv2/outside/c)
@@ -13185,9 +13180,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "jFj" = (
 /obj/effect/decal/cleanable/dirt,
@@ -13407,6 +13400,10 @@
 /obj/effect/landmark/weed_node,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
+"kVx" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/c)
 "kWi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -14312,6 +14309,12 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"qLx" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/bigredv2/outside/c)
 "qPG" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -31278,10 +31281,10 @@ aMg
 lKw
 lKw
 lKw
-wzM
-oxP
+aMc
+cku
 bxd
-fHv
+vBu
 vBu
 vBu
 aWI
@@ -31495,10 +31498,10 @@ lKw
 lKw
 irf
 aLd
-oxP
-oxP
+aMc
 jEZ
 eBA
+oxP
 oxP
 oxP
 gvx
@@ -31712,10 +31715,10 @@ lKw
 sZl
 lKw
 hlD
-oxP
-oxP
-bhP
+aMc
+bhR
 eBA
+oxP
 oxP
 aJm
 aJm
@@ -31929,10 +31932,10 @@ lKw
 oah
 lKw
 lKw
-wzM
-oxP
-bhP
+aMc
+bhR
 eBA
+oxP
 aWJ
 lKw
 lKw
@@ -32146,10 +32149,10 @@ lKw
 lKw
 lKw
 lKw
-wzM
-oxP
-bhP
+aMc
+bhR
 eBA
+oxP
 oxP
 aIm
 lKw
@@ -33888,9 +33891,9 @@ aaa
 aaa
 aaa
 aaa
-biY
-biY
-biY
+biB
+biB
+biB
 bDU
 blS
 kWi
@@ -34105,10 +34108,10 @@ aaa
 aaa
 aaa
 aaa
-gvx
-oxP
-oxP
-biz
+qLx
+vBu
+vBu
+kVx
 blJ
 blJ
 blJ
@@ -35835,8 +35838,8 @@ aIm
 lKw
 irf
 lKw
-lKw
-bhP
+aMc
+bhR
 nEP
 oxP
 aJm
@@ -36052,8 +36055,8 @@ oxP
 aIm
 lKw
 lKw
-lKw
-bhP
+aMc
+bhR
 eBA
 aWJ
 lKw
@@ -36269,7 +36272,7 @@ bfI
 bfI
 bfI
 bfI
-bfI
+bhP
 bhQ
 eBA
 aWJ
@@ -36486,7 +36489,7 @@ bfa
 bfa
 bfa
 aLi
-aLi
+biY
 bhR
 eBA
 aWJ
@@ -36703,8 +36706,8 @@ oxP
 oxP
 pMC
 aJm
-oxP
-bhP
+aMc
+bhR
 nEP
 oxP
 oFg
@@ -36920,7 +36923,7 @@ buJ
 aIp
 lKw
 lKw
-wzM
+aMc
 bhS
 biB
 biZ
@@ -37138,7 +37141,7 @@ lKw
 lKw
 lKw
 fIW
-aMd
+vBu
 vBu
 vBu
 vBu

@@ -1,0 +1,60 @@
+2022-07-01:
+  crayonLover09:
+  - imageadd: 'New lobby art: Woyer boxing'
+2022-07-02:
+  QualityVan:
+  - bugfix: You don't get weird vision while in cryo
+  - balance: Kidneys don't produce drawbacks while in cryo
+2022-07-04:
+  RipGrayson:
+  - balance: The Canterbury and its larger cousin now have reagent grinders.
+  goose4429:
+  - bugfix: Defiler can't choose sanguinal
+  novaepee:
+  - rscdel: Removed more expensive autominer
+2022-07-05:
+  BraveMole:
+  - balance: Revert xeno winning shipside even if killed
+  QualityVan:
+  - code_imp: Reagent containers can be set to not allow restocking after use.
+  Vondiech:
+  - bugfix: Removes non-existant reqtorio recipe for br-8 scout rifle ammo since it
+      was merged with the IFF ammo recipe.
+2022-07-06:
+  Lumipharon:
+  - rscadd: Adds the Quick equip vendor for future gamemode and admin use
+2022-07-08:
+  QualityVan:
+  - rscadd: Clicking on stuff when you're carrying a compass will tell you that stuff's
+      coordinates.
+  - bugfix: Kidneys count microdosed chems against their limit
+  - bugfix: Confuse effects won't be created with infinite duration and zero function.
+2022-07-10:
+  crayonLover09:
+  - soundadd: Added splint break sound
+  goose4429:
+  - balance: If xeno lose shipside, they lose
+2022-07-11:
+  QualityVan:
+  - bugfix: If you stand still as a disguised hunter, you won't use any plasma.
+  - bugfix: Hunters with stealth active get half plasma regen while still and zero
+      while moving, instead of the opposite.
+  Wayland-Smithy:
+  - bugfix: Fixed wraith portal changing projectile's shooter and breaking things
+      like boiler glob size, and teleporting buckled humans.
+  crayonLover09:
+  - qol: Delimbing procs scream emote
+2022-07-13:
+  Lumipharon:
+  - bugfix: Orders no longer apply to humans in factions other than your own
+  - rscadd: Adds the COPE sentry for the SOM
+  - bugfix: Fixed projectile staggerstun effects not respecting their max range unless
+      they caused screenshake
+  - refactor: minor refactors to the staggerstun proc
+  - bugfix: Some gun mob sprite fixes
+  - bugfix: Attachments like capes and Tyr no longer get stuck on your mob when removed
+  - balance: SH39 akimbo additional delay changed to 0.9 from 0.5.
+  - bugfix: Volkite culverins and calivers can now be normally reloaded by clicking
+      the powerpack with the gun, instead of only being tac reloadable
+  - rscadd: Volkite powerpacks now recharge cells by clicking the powerpack with the
+      cell instead of click dragging
