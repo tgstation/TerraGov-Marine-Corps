@@ -2533,7 +2533,7 @@ datum/ammo/bullet/revolver/tp44
 		if(proj.def_zone in snare_list)
 			human_victim.Immobilize(hit_immobilize)
 
-/datum/ammo/xeno/acid/web/snare_ball
+/datum/ammo/xeno/acid/web/leash_ball
 	icon_state = "boiler_gas2"
 	ping = "ping_x"
 	damage_type = STAMINA
@@ -2545,12 +2545,12 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 15
 	max_range = 15
 
-/datum/ammo/xeno/acid/web/snare_ball/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/xeno/acid/web/leash_ball/on_hit_turf(turf/T, obj/projectile/proj)
 	. = ..()
-	new /obj/structure/xeno/aoe_snare(get_turf(T))
-/datum/ammo/xeno/acid/web/snare_ball/on_hit_mob(mob/victim, obj/projectile/proj)
+	new /obj/structure/xeno/aoe_leash(get_turf(T))
+/datum/ammo/xeno/acid/web/leash_ball/on_hit_mob(mob/victim, obj/projectile/proj)
 	. = ..()
-	new /obj/structure/xeno/aoe_snare(get_turf(victim))
+	new /obj/structure/xeno/aoe_leash(get_turf(victim))
 /*
 //================================================
 					Misc Ammo

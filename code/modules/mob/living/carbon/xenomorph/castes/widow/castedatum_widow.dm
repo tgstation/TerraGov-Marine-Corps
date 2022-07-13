@@ -48,7 +48,7 @@
 		/datum/action/xeno_action/xenohide, // might remove later idk, depends on balance
 		/datum/action/xeno_action/activable/web_spit,
 		/datum/action/xeno_action/activable/burrow,
-		/datum/action/xeno_action/activable/snare_ball,
+		/datum/action/xeno_action/activable/leash_ball,
 	)
 
 /datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)

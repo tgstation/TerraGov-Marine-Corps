@@ -43,33 +43,33 @@
 	//burrow code goes here
 
 // ***************************************
-// *********** Snare Ball
+// *********** Leash Ball
 // ***************************************
 
-/datum/action/xeno_action/activable/snare_ball
-	name = "snare_ball" // change to in character name later
-	ability_name = "snare_ball" // change to in character name later
+/datum/action/xeno_action/activable/leash_ball
+	name = "leash_ball" // change to in character name later
+	ability_name = "leash_ball" // change to in character name later
 	mechanics_text = " Spit a huge ball of web that snares groups of marines "
 	action_icon_state = "scatter_spit" // temporary until I get my own icons
 	plasma_cost = 1
 	cooldown_timer = 1 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_SNARE_BALL
+	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
 
-/datum/action/xeno_action/activable/snare_ball/use_ability(atom/A)
+/datum/action/xeno_action/activable/leash_ball/use_ability(atom/A)
 	var/turf/target = get_turf(A)
 	var/mob/living/carbon/xenomorph/X = owner
 	X.face_atom(target)
 	if(!do_after(X, 1 SECONDS, TRUE, X, BUSY_ICON_DANGER)) // currently here for balance prediction, shooting a 5x5 AoE snare is pretty insane even for T3 imo
 		return fail_activate()
 
-	var/datum/ammo/xeno/acid/web/snare_ball = GLOB.ammo_list[/datum/ammo/xeno/acid/web/snare_ball]
+	var/datum/ammo/xeno/acid/web/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/acid/web/leash_ball]
 	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
 
-	newspit.generate_bullet(snare_ball)
+	newspit.generate_bullet(leash_ball)
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)
 
-/obj/structure/xeno/aoe_snare
-	name = "aoe_snare" // change to in character name later
+/obj/structure/xeno/aoe_leash
+	name = "aoe_leash" // change to in character name later
 	icon = 'icons/obj/items/projectiles.dmi' // temp ?
 	icon_state = "boiler_gas2" // temp
 	desc = "Looks very sticky"
@@ -80,15 +80,17 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
-/obj/structure/xeno/aoe_snare/Initialize(mapload, atom/A)
+/// Humans caught get beamed and registered for proc/check_dist
+/obj/structure/xeno/aoe_leash/Initialize(mapload, atom/A)
 	. = ..()
 	for(var/mob/living/carbon/human/victims in view(leash_radius, loc))
-		beam(victims, "beam_heavy", 'icons/obj/items/projectiles.dmi', INFINITY, leash_radius + 1)
+		beam(victims, "beam_heavy", 'icons/obj/items/projectiles.dmi', INFINITY, INFINITY)
 		RegisterSignal(victims, COMSIG_MOVABLE_MOVED, .proc/check_dist)
 
-/obj/structure/xeno/aoe_snare/proc/check_dist(datum/victims, atom/oldloc)
+/// Humans caught in the aoe_leash will be pulled back if they leave it's radius
+/obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victims, atom/oldloc)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/human/victim = victims
+	var/mob/living/carbon/human/victim = leash_victims
 	var/distance = get_dist(victim, loc)
 	if(distance >= leash_radius)
-		victim.forceMove(loc)
+		victim.Move(oldloc)
