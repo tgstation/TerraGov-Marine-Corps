@@ -40,8 +40,8 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
 		return fail_activate()
-	//burrow code goes here
 
+/datum/action/xeno_action/activable/
 // ***************************************
 // *********** Leash Ball
 // ***************************************
@@ -67,16 +67,16 @@
 
 	newspit.generate_bullet(leash_ball)
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)
-
 /obj/structure/xeno/aoe_leash
-	name = "aoe_leash" // change to in character name later
+	name = "Snaring Web"
 	icon = 'icons/obj/items/projectiles.dmi' // temp ?
 	icon_state = "boiler_gas2" // temp
 	desc = "Looks very sticky"
 	destroy_sound = "alien_resin_break"
-	obj_integrity = 5
-	max_integrity = 100
-	var/leash_radius = 5 // doubles as the range for the leash and how far away ugnas can move before being pulled in
+	obj_integrity = 40
+	max_integrity = 2400
+	var/leash_radius = 5 /// radius for aoe_leash and range for the leash
+	var/intergrity_increase = 200
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
@@ -86,6 +86,7 @@
 	for(var/mob/living/carbon/human/victims in view(leash_radius, loc))
 		beam(victims, "beam_heavy", 'icons/obj/items/projectiles.dmi', INFINITY, INFINITY)
 		RegisterSignal(victims, COMSIG_MOVABLE_MOVED, .proc/check_dist)
+		obj_integrity = obj_integrity + intergrity_increase
 
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
 /obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victims, atom/oldloc)
@@ -94,3 +95,7 @@
 	var/distance = get_dist(victim, loc)
 	if(distance >= leash_radius)
 		victim.Move(oldloc)
+
+// ***************************************
+// *********** Spawn Spiderling
+// ***************************************
