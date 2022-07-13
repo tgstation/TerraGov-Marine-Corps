@@ -15,6 +15,14 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/ammo_magazine/smg/vector = -1,
 		/obj/item/ammo_magazine/packet/acp_smg = -1,
 		/obj/item/weapon/twohanded/glaive/harvester = -1,
+		/obj/item/clothing/head/helmet/marine/robot/advanced/acid = -1,
+		/obj/item/clothing/suit/storage/marine/robot/advanced/acid = -1,
+		/obj/item/clothing/head/helmet/marine/robot/advanced/physical = -1,
+		/obj/item/clothing/suit/storage/marine/robot/advanced/physical = -1,
+		/obj/item/clothing/head/helmet/marine/robot/advanced/bomb = -1,
+		/obj/item/clothing/suit/storage/marine/robot/advanced/bomb = -1,
+		/obj/item/clothing/head/helmet/marine/robot/advanced/fire = -1,
+		/obj/item/clothing/suit/storage/marine/robot/advanced/fire = -1,
 	)
 
 
@@ -195,3 +203,128 @@ SUBSYSTEM_DEF(ru_items)
 
 	user.add_movespeed_modifier(MOVESPEED_ID_WIELDED_SLOWDOWN, TRUE, 0, NONE, TRUE, wielded_slowdown)
 
+
+///////////////////////////////////////////////////////////////////////
+///////////////////////// Robotic armor ///////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+/obj/item/clothing/head/helmet/marine/robot/advanced
+	flags_item_map_variant = 0
+	icon = 'ss220/icons/item/Roboarmor.dmi'
+	item_icons = list(
+		slot_head_str = 'ss220/icons/item/Roboarmor.dmi',
+	)
+
+/obj/item/clothing/suit/storage/marine/robot/advanced
+	flags_item_map_variant = 0
+	icon = 'ss220/icons/item/Roboarmor.dmi'
+	item_icons = list(
+		slot_wear_suit_str = 'ss220/icons/item/Roboarmor.dmi',
+	)
+	pockets = /obj/item/storage/internal/modular/general
+
+/obj/item/clothing/head/helmet/marine/robot/advanced/acid
+	name = "\improper Exidobate upper armor plating"
+	desc = "Heavy armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside. It was created for the survival of robots in places with high acid concentration. Uses the already known technology of nickel-gold plates to protect important modules in the upper part of the robot"
+	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 65, "energy" = 65, "bomb" = 50, "bio" = 65, "rad" = 50, "fire" = 40, "acid" = 75)
+
+	icon_state = "robo_helm_acid"
+	item_state = "robo_helm_acid"
+
+/obj/item/clothing/suit/storage/marine/robot/advanced/acid
+	name = "\improper Exidobate armor plating"
+	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside. It was created for the survival of robots in places with high acid concentration. Armor uses nickel and golden plate technology for perfect protection against acids."
+	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 80, "energy" = 80, "bomb" = 50, "bio" = 80, "rad" = 50, "fire" = 60, "acid" = 75)
+	slowdown = 0.7
+
+	icon_state = "robo_armor_acid"
+	item_state = "robo_armor_acid"
+
+/obj/item/clothing/head/helmet/marine/robot/advanced/physical
+	name = "\improper Cingulata upper armor plating"
+	desc = "Heavy armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside. It was based on the Colonial Police Special Forces helmet and redesigned by engineers for robots. The helmet received a reinforced lining as well as a base, which added protection from aggressive fauna and firearms."
+	soft_armor = list("melee" = 75, "bullet" = 80, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 20, "acid" = 50)
+
+	icon_state = "robo_helm_physical"
+	item_state = "robo_helm_physical"
+
+/obj/item/clothing/suit/storage/marine/robot/advanced/physical
+	name = "\improper Cingulata armor plating"
+	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside. Originally it was created as a police plate armor for robots  anti-terrorist operations, but later the chief engineers remade it for the needs of the TGMC. The armor received additional plates to protect against aggressive fauna and firearms."
+	soft_armor = list("melee" = 75, "bullet" = 85, "laser" = 70, "energy" = 70, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 60)
+	slowdown = 0.7
+
+	icon_state = "robo_armor_physical"
+	item_state = "robo_armor_physical"
+
+/obj/item/clothing/head/helmet/marine/robot/advanced/bomb
+	name = "\improper Tardigrada upper armor plating"
+	desc = "Heavy armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside.The upper part of the armor was specially designed for robots, as cases of head loss in robots due to mine and grenade explosions have become more frequent. Helmet  has a reinforced attachment to the main part, which, according to scientists, will lead to a decrease in cases of loss of important modules. It has increased protection against shock waves and explosions."
+	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 50, "energy" = 50, "bomb" = 90, "bio" = 50, "rad" = 50, "fire" = 20, "acid" = 50)
+
+	icon_state = "robo_helm_bomb"
+	item_state = "robo_helm_bomb"
+
+/obj/item/clothing/suit/storage/marine/robot/advanced/bomb
+	name = "\improper Tardigrada armor plating"
+	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside. This armor was specially designed to work with explosives and mines. Often it was installed on old robots of sappers and engineers to increase their survival rate. The armor is equipped with reinforced protection against shock waves and explosions."
+	soft_armor = list("melee" = 60, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 90, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 60)
+	slowdown = 0.7
+
+	icon_state = "robo_armor_bomb"
+	item_state = "robo_armor_bomb"
+
+/obj/item/clothing/head/helmet/marine/robot/advanced/fire
+	name = "\improper Urodela upper armor plating"
+	desc = "Heavy armor plating designed for self mounting on the upper half of TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside.The top armor made from fireproof glass-like material. This is done in order not to reduce the effectiveness of the robot's tracking modules. The glass itself can withstand high temperatures and a short stay in lava."
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 80, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
+	hard_armor = list("fire" = 200)
+
+	icon_state = "robo_helm_fire"
+	item_state = "robo_helm_fire"
+
+/obj/item/clothing/suit/storage/marine/robot/advanced/fire
+	name = "\improper Urodela armor plating"
+	desc = "Heavy armor plating designed for self mounting on TerraGov combat robotics. It has self-sealing bolts for mounting on robotic owners inside. The armor is inspired by the mining exosuits used on lava planets. Upgraded by TeraGova engineers for robots that use a flamethrower and work in an environment of elevated temperatures. Armor protects important modules and wiring from fire and lava, which gives robots high survivability in fire."
+	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 80, "energy" = 70, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 60)
+	hard_armor = list("fire" = 200)
+	slowdown = 0.5
+
+	icon_state = "robo_armor_fire"
+	item_state = "robo_armor_fire"
+
+/datum/supply_packs/armor/robot/advanced/acid
+	name = "Exidobate acid protection armor set"
+	contains = list(
+		/obj/item/clothing/head/helmet/marine/robot/advanced/acid,
+		/obj/item/clothing/suit/storage/marine/robot/advanced/acid,
+	)
+	cost = 60
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/armor/robot/advanced/physical
+	name = "Cingulata physical protection armor set"
+	contains = list(
+		/obj/item/clothing/head/helmet/marine/robot/advanced/physical,
+		/obj/item/clothing/suit/storage/marine/robot/advanced/physical,
+	)
+	cost = 60
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/armor/robot/advanced/bomb
+	name = "Tardigrada bomb protection armor set"
+	contains = list(
+		/obj/item/clothing/head/helmet/marine/robot/advanced/bomb,
+		/obj/item/clothing/suit/storage/marine/robot/advanced/bomb,
+	)
+	cost = 60
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/armor/robot/advanced/fire
+	name = "Urodela fire protection armor set"
+	contains = list(
+		/obj/item/clothing/head/helmet/marine/robot/advanced/fire,
+		/obj/item/clothing/suit/storage/marine/robot/advanced/fire,
+	)
+	cost = 60
+	available_against_xeno_only = TRUE
