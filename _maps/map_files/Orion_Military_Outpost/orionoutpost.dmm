@@ -846,13 +846,6 @@
 	dir = 5
 	},
 /area/orion_outpost/surface/building/cargo)
-"eG" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_12";
-	name = "TGMC exit point 12"
-	},
-/turf/closed/mineral,
-/area/orion_outpost/ground/underground/caveS)
 "eH" = (
 /obj/machinery/light{
 	dir = 4
@@ -3378,13 +3371,6 @@
 	dir = 1
 	},
 /area/orion_outpost/surface/building/armory)
-"rc" = (
-/obj/effect/landmark/patrol_point{
-	id = "TGMC_11";
-	name = "TGMC exit point 11"
-	},
-/turf/closed/mineral,
-/area/orion_outpost/ground/underground/caveS)
 "re" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -6983,6 +6969,13 @@
 	dir = 4
 	},
 /area/orion_outpost/surface/building/medbay)
+"Kw" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/underground/caveS)
 "Kx" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grasspatch/grassyellow,
@@ -9553,6 +9546,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral,
 /area/orion_outpost/ground/outpostsw)
+"Xs" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/orion_outpost/ground/underground/caveS)
 "Xt" = (
 /obj/machinery/light{
 	dir = 4
@@ -31497,7 +31497,7 @@ zi
 zi
 zi
 Db
-eG
+Db
 Db
 Db
 Db
@@ -31627,7 +31627,7 @@ zi
 zi
 zi
 zi
-zi
+Kw
 Db
 Db
 Db
@@ -32152,9 +32152,9 @@ zi
 zi
 bW
 zi
-zi
+Xs
 Db
-rc
+Db
 Db
 Db
 Db
