@@ -24,10 +24,10 @@
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)
 
 // ***************************************
-// *********** Burrow
+// *********** Toggle Burrow
 // ***************************************
 
-/datum/action/xeno_action/activable/burrow
+/datum/action/xeno_action/activable/toggle_burrow
 	name = "Burrow"
 	ability_name = "Burrow"
 	mechanics_text = " Burrow into the ground to hide in plain sight "
@@ -36,12 +36,20 @@
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BURROW
 
-/datum/action/xeno_action/activable/burrow/use_ability()
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
-		return fail_activate()
 
-/datum/action/xeno_action/activable/
+/datum/action/xeno_action/toggle_burrow/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	X.burrowed = !X.burrowed
+
+	if(X.burrowed)
+		to_chat(X, span_xenowarning("We start burrowing into the ground"))
+
+	else
+		to_chat(X, span_xenowarning("We unburrow ourselves"))
+	X.update_icons()
+	add_cooldown()
+	return succeed_activate()
+
 // ***************************************
 // *********** Leash Ball
 // ***************************************
