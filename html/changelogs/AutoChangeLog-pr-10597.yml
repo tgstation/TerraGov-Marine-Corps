@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes: 
-  - bugfix: "Attachments like capes and Tyr no longer get stuck on your mob when removed"
