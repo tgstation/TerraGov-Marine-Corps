@@ -5931,18 +5931,11 @@
 /turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJR" = (
-/obj/structure/cable,
 /obj/machinery/access_button/airlock_exterior{
 	master_tag = "viro_controller";
-	pixel_y = -28
+	pixel_y = 28
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/purple2,
+/turf/open/floor/engine,
 /area/bigredv2/caves/lambda_lab)
 "aJS" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -58589,9 +58582,9 @@ ssU
 aGW
 afv
 wnS
-aJR
+aJK
 adZ
-aLJ
+aJR
 aLJ
 aLJ
 aLJ
