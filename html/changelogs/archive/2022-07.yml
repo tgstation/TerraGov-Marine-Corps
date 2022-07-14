@@ -58,3 +58,15 @@
       the powerpack with the gun, instead of only being tac reloadable
   - rscadd: Volkite powerpacks now recharge cells by clicking the powerpack with the
       cell instead of click dragging
+2022-07-14:
+  Lumipharon:
+  - balance: C4 causes less smoke for a much shorter duration on detonation
+  - bugfix: Splint break sounds no longer carry over large distances
+  Wayland-Smithy:
+  - qol: 'Added a keybind for Wraith: Time Shift.'
+  tyeagg:
+  - bugfix: orion cave and grass turf
+  - bugfix: generators not being wired
+  - balance: increase coverage of vehicle props
+  - balance: reworked caves for orion
+  - rscadd: surv spawns for orion
