@@ -1,0 +1,8 @@
+author: "RipGrayson"
+delete-after: True
+changes: 
+  - bugfix: "Fixed fancy tables not displaying correctly"
+  - bugfix: "Fixed invisible blockers being visible"
+  - bugfix: "Fixed a busted overlay check when welding scrubbers."
+  - soundadd: "Added a warning sound for self destruct during Delta alert levels."
+  - imageadd: "Added some custom icons for red tinted lights during red alert."
