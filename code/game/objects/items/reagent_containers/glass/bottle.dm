@@ -185,7 +185,7 @@
 /obj/item/reagent_containers/glass/bottle/tricordrazine
 	name = "\improper Tricordrazine bottle"
 	desc = "A small bottle. Contains tricordrazine - used as a generic treatment for injuries."
-	icon_state = "bottle4"
+	icon_state = "bottle-5"
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 60)
 
 /obj/item/reagent_containers/glass/bottle/meralyne
