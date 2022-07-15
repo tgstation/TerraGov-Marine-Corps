@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - bugfix: "Armour attachments will display the correct icons on armor types as expected"
+  - refactor: "Refactored variant icons for armor attachments"
+  - rscadd: "Added variant icon support to gun attachments"

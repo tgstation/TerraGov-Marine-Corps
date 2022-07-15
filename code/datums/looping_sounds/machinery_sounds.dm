@@ -11,3 +11,9 @@
 	mid_sounds = list('sound/machines/grill/grillsizzle.ogg' = 1)
 	mid_length = 18
 	volume = 50
+
+/datum/looping_sound/alarm_loop
+	mid_sounds = list('sound/machines/sound_machines_FireAlarm2.ogg', 'sound/machines/sound_machines_FireAlarm4.ogg')
+	mid_length = 18
+	volume = 50
+	extra_range = 20
