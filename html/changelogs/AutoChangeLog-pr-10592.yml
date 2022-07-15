@@ -1,0 +1,7 @@
+author: "Lumipharon"
+delete-after: True
+changes: 
+  - balance: "accuracy bonus for large mob size reduced slightly"
+  - balance: "accuracy bonus for PB range reduced slightly"
+  - balance: "Akimbo makes PB range 0 instead of 2"
+  - bugfix: "Fixed an accuracy malus triggering for a target being out of view when it was still in widescreen view."
