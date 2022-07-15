@@ -782,6 +782,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	user.sync_lighting_plane_alpha()
 	return TRUE
 
+/obj/item/attachable/scope/zoom(mob/living/user, tileoffset, viewsize)
+	. = ..()
+	//Makes the gun zoom align with the attachment, used for projectile procs
+	if(zoom)
+		master_gun.zoom = TRUE
+	else
+		master_gun.zoom = FALSE
+
 /obj/item/attachable/scope/optical/update_remote_sight(mob/living/user)
 	. = ..()
 	user.see_in_dark = 2
