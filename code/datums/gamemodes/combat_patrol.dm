@@ -145,6 +145,9 @@
 	var/num_dead_marines = living_player_list[3]
 	var/num_dead_som = living_player_list[4]
 
+	if(num_marines && num_som)
+		return //fighting is ongoing
+
 	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
 	if(!num_marines)
 		if(!num_som)
