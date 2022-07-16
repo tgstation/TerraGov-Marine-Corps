@@ -127,6 +127,15 @@
 		/obj/item/storage/pill_bottle,
 	)
 
+/obj/item/storage/pouch/firstaid/combat_patrol/Initialize()
+	. = ..()
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+
 /obj/item/storage/pouch/firstaid/som
 	name = "mining first aid pouch"
 	desc = "A basic first aid pouch originally used by miners due to dangerous working conditions on the mining colonies. This one is marked as belonging to the SOM."
@@ -141,6 +150,14 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
+/obj/item/storage/pouch/firstaid/som/combat_patrol/Initialize()
+	. = ..()
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
 /obj/item/storage/pouch/pistol
 	name = "sidearm pouch"
@@ -341,9 +358,28 @@
 	fill_type = /obj/item/explosive/grenade
 	fill_number = 4
 
+/obj/item/storage/pouch/grenade/combat_patrol/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/acid(src)
+	new /obj/item/explosive/grenade/smokebomb/neuro(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
+
+
 /obj/item/storage/pouch/grenade/som
 	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
 	icon_state = "grenade_som"
+
+/obj/item/storage/pouch/grenade/som/combat_patrol/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/smokebomb/satrapine(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
+	new /obj/item/explosive/grenade/flashbang/stun(src)
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
@@ -618,7 +654,7 @@
 	new /obj/item/stack/sheet/metal/large_stack (src)
 	new /obj/item/stack/sheet/plasteel/medium_stack (src)
 
-/obj/item/storage/pouch/construction
+/obj/item/storage/pouch/construction/som
 	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool. Made with traditional SOM leather."
 	icon_state = "construction_som"
 

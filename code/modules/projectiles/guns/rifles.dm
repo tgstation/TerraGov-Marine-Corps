@@ -92,6 +92,9 @@
 /obj/item/weapon/gun/rifle/standard_carbine/pointman
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/lasersight, /obj/item/attachable/flashlight)
 
+/obj/item/weapon/gun/rifle/standard_carbine/standard
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/weapon/gun/grenade_launcher/underslung, /obj/item/attachable/reddot, /obj/item/attachable/extended_barrel)
+
 /obj/item/weapon/gun/rifle/standard_carbine/engineer
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
 

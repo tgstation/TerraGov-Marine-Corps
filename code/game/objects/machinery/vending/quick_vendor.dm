@@ -4,6 +4,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 /proc/init_quick_loadouts()
 	. = list()
 	var/list/loadout_list = list(
+		/datum/outfit/quick/tgmc/marine/standard_carbine,
 		/datum/outfit/quick/tgmc/marine/standard_assaultrifle,
 		/datum/outfit/quick/tgmc/marine/standard_laserrifle,
 		/datum/outfit/quick/tgmc/marine/standard_machinegunner,
