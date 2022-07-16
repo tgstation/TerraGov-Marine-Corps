@@ -134,7 +134,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[FRENZY] pheromone strength:", msg_holder)
+		stat("[AURA_XENO_FRENZY] pheromone strength:", msg_holder)
 	if(warding_aura)
 		switch(warding_aura)
 			if(-INFINITY to 1.0)
@@ -147,7 +147,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[WARDING] pheromone strength:", msg_holder)
+		stat("[AURA_XENO_WARDING] pheromone strength:", msg_holder)
 	if(recovery_aura)
 		switch(recovery_aura)
 			if(-INFINITY to 1.0)
@@ -160,7 +160,7 @@
 				msg_holder = "Strong"
 			if(4.0 to INFINITY)
 				msg_holder = "Very strong"
-		stat("[RECOVERY] pheromone strength:", msg_holder)
+		stat("[AURA_XENO_RECOVERY] pheromone strength:", msg_holder)
 
 	if(hivenumber == XENO_HIVE_NORMAL)
 		var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()

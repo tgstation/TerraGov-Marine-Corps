@@ -789,9 +789,9 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 // Pheromones and buff orders
 
-#define RECOVERY "Recovery"
-#define WARDING "Warding"
-#define FRENZY "Frenzy"
+#define AURA_XENO_RECOVERY "Recovery"
+#define AURA_XENO_WARDING "Warding"
+#define AURA_XENO_FRENZY "Frenzy"
 
 #define AURA_HUMAN_MOVE "move"
 #define AURA_HUMAN_HOLD "hold"

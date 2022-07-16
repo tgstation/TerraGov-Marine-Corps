@@ -445,11 +445,11 @@
 	if(stat != DEAD)
 		var/tempname = ""
 		if(frenzy_aura)
-			tempname += FRENZY
+			tempname += AURA_XENO_FRENZY
 		if(warding_aura)
-			tempname += WARDING
+			tempname += AURA_XENO_WARDING
 		if(recovery_aura)
-			tempname += RECOVERY
+			tempname += AURA_XENO_RECOVERY
 		if(tempname)
 			holder.icon_state = "hud[tempname]"
 

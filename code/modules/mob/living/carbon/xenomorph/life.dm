@@ -174,24 +174,24 @@
 			continue
 		if(current_aura && get_dist(src, xeno) <= self_range)
 			switch(current_aura)
-				if(FRENZY)
+				if(AURA_XENO_FRENZY)
 					if(xeno_caste.aura_strength > xeno.frenzy_new)
 						xeno.frenzy_new = xeno_caste.aura_strength
-				if(WARDING)
+				if(AURA_XENO_WARDING)
 					if(xeno_caste.aura_strength > xeno.warding_new)
 						xeno.warding_new = xeno_caste.aura_strength
-				if(RECOVERY)
+				if(AURA_XENO_RECOVERY)
 					if(xeno_caste.aura_strength > xeno.recovery_new)
 						xeno.recovery_new = xeno_caste.aura_strength
 		if(leader_current_aura && get_dist(src, xeno) <= lead_range)
 			switch(leader_current_aura)
-				if(FRENZY)
+				if(AURA_XENO_FRENZY)
 					if(leader_aura_strength > xeno.frenzy_new)
 						xeno.frenzy_new = leader_aura_strength
-				if(WARDING)
+				if(AURA_XENO_WARDING)
 					if(leader_aura_strength > xeno.warding_new)
 						xeno.warding_new = leader_aura_strength
-				if(RECOVERY)
+				if(AURA_XENO_RECOVERY)
 					if(leader_aura_strength > xeno.recovery_new)
 						xeno.recovery_new = leader_aura_strength
 

@@ -376,7 +376,7 @@
 	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
 
 /datum/action/xeno_action/pheromones/emit_recovery/action_activate()
-	apply_pheros(RECOVERY)
+	apply_pheros(AURA_XENO_RECOVERY)
 
 /datum/action/xeno_action/pheromones/emit_recovery/should_show()
 	return FALSE
@@ -387,7 +387,7 @@
 	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
 
 /datum/action/xeno_action/pheromones/emit_warding/action_activate()
-	apply_pheros(WARDING)
+	apply_pheros(AURA_XENO_WARDING)
 
 /datum/action/xeno_action/pheromones/emit_warding/should_show()
 	return FALSE
@@ -398,7 +398,7 @@
 	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
 
 /datum/action/xeno_action/pheromones/emit_frenzy/action_activate()
-	apply_pheros(FRENZY)
+	apply_pheros(AURA_XENO_FRENZY)
 
 /datum/action/xeno_action/pheromones/emit_frenzy/should_show()
 	return FALSE
