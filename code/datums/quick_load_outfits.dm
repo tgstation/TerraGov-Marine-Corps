@@ -828,6 +828,7 @@
 /datum/outfit/quick/som/marine/charger
 	name = "Charger rifleman"
 	desc = "The future infantryman of the SOM. Equipped with a volkite charger, medium armor and a good variety of grenades. Volkite weapons are exceptionally dangerous, especially against poorly armored or tightly grouped opponents. The charger is the SOM's premier close/medium range weapon, with good mobility, and can be used (with some difficulty) one handed when required."
+	quantity = 4
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
 
@@ -922,6 +923,7 @@
 /datum/outfit/quick/som/engineer/charger
 	name = "Charger Engineer"
 	desc = "Battlefield engineer; building up and tearing down. Equipped with a volkite charger, medium armor, a deployable COPE sentry and a selection of explosives. Has a variety of supplies and equipment to build, repair or apply demolitions in the field. A valuable support asset to a well rounded combat force. "
+	quantity = 2
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
 
@@ -1037,6 +1039,7 @@
 /datum/outfit/quick/som/medic/charger
 	name = "Charger Medic"
 	desc = "Keeping your buddies alive and in the fight. Equipped with a volkite charger for powerful close to medium range firepower, medium armor and a good selection of grenades. Packs a large amount of medical supplies, the squad medic is vital to maintaining combat viability."
+	quantity = 2
 
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/standard
 
