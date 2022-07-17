@@ -1562,6 +1562,9 @@
 			iff_signal = sentry.iff_signal
 		projectile_to_fire.iff_signal = iff_signal
 	projectile_to_fire.damage_marine_falloff = iff_marine_damage_falloff
+	//no point blank bonus when akimbo
+	if(dual_wield)
+		projectile_to_fire.point_blank_range = 0
 
 
 /obj/item/weapon/gun/proc/setup_bullet_accuracy(obj/projectile/projectile_to_fire, mob/user, bullets_fired = 1)

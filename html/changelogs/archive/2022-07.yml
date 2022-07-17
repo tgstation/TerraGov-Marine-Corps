@@ -58,3 +58,39 @@
       the powerpack with the gun, instead of only being tac reloadable
   - rscadd: Volkite powerpacks now recharge cells by clicking the powerpack with the
       cell instead of click dragging
+2022-07-14:
+  Lumipharon:
+  - balance: C4 causes less smoke for a much shorter duration on detonation
+  - bugfix: Splint break sounds no longer carry over large distances
+  Wayland-Smithy:
+  - qol: 'Added a keybind for Wraith: Time Shift.'
+  tyeagg:
+  - bugfix: orion cave and grass turf
+  - bugfix: generators not being wired
+  - balance: increase coverage of vehicle props
+  - balance: reworked caves for orion
+  - rscadd: surv spawns for orion
+2022-07-15:
+  RipGrayson:
+  - bugfix: Fixed fancy tables not displaying correctly
+  - bugfix: Fixed invisible blockers being visible
+  - bugfix: Fixed a busted overlay check when welding scrubbers.
+  - soundadd: Added a warning sound for self destruct during Delta alert levels.
+  - imageadd: Added some custom icons for red tinted lights during red alert.
+2022-07-16:
+  Arctrooper8:
+  - rscdel: Fully removes Bottlecases.
+  - qol: Chemical liquid colours now match their pill bottles.
+  - qol: Premade Hypospray descriptions have been updated to explain what their chems
+      do.
+  - balance: Changes the content of Hypospray belt.
+  - bugfix: No more invisible things in hypospray belt.
+  Lumipharon:
+  - bugfix: Armour attachments will display the correct icons on armor types as expected
+  - refactor: Refactored variant icons for armor attachments
+  - rscadd: Added variant icon support to gun attachments
+  - balance: accuracy bonus for large mob size reduced slightly
+  - balance: accuracy bonus for PB range reduced slightly
+  - balance: Akimbo makes PB range 0 instead of 2
+  - bugfix: Fixed an accuracy malus triggering for a target being out of view when
+      it was still in widescreen view.

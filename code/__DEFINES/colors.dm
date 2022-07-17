@@ -25,11 +25,13 @@
 
 #define COLOR_RED "#FF0000"
 #define COLOR_MOSTLY_PURE_RED "#FF3300"
+#define COLOR_SOMEWHAT_LIGHTER_RED "#da4635"
 #define COLOR_DARK_RED "#A50824"
 #define COLOR_RED_LIGHT "#FF3333"
 #define COLOR_MAROON "#800000"
 #define COLOR_VIVID_RED "#FF3232"
 #define COLOR_LIGHT_GRAYISH_RED "#E4C7C5"
+
 /// Warm but extremely diluted red. rgb(250, 130, 130)
 #define COLOR_SOFT_RED "#FA8282"
 #define COLOR_LASER_RED "#FF8D8D"
