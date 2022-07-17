@@ -227,7 +227,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
 
 /datum/outfit/quick/tgmc/marine/auto_shotgun
-	name = "AR-11 rifleman"
+	name = "SH-15 shocktrooper"
 	desc = "The perfect blend of damage and fire speed. Equipped with an SH-15 with heavy armor, and plenty of grenades and ammunition. Excellent single shot damage and a great rate of fire for a shotgun, only limited by a small magazine size."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_autoshotgun/standard
