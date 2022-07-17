@@ -74,7 +74,7 @@
 #define MODE_SOM_MARINE_MINOR "Marine Minor Victory"
 #define MODE_SOM_SOM_MAJOR "Sons of Mars Major Victory"
 #define MODE_SOM_SOM_MINOR "Sons of Mars Minor Victory"
-#define MODE_COMBAT_PATROL_DRAW "Draw: Both sides wiped out!"
+#define MODE_COMBAT_PATROL_DRAW "DRAW: Mutual Annihilation"
 
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"

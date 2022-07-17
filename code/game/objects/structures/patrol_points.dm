@@ -8,7 +8,7 @@
 	layer = LADDER_LAYER
 	//ID to link with associated exit point
 	var/id = null
-	//The linked exit point
+	///The linked exit point
 	var/obj/effect/landmark/patrol_point/linked_point = null
 
 /obj/structure/patrol_point/Initialize()
