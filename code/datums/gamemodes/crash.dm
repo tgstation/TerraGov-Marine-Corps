@@ -203,13 +203,10 @@
 /datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
 	. = 0
 
-	for(var/i in GLOB.human_mob_list)
-		var/mob/living/carbon/human/H = i
+	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
 		if(!H.job)
 			continue
-		if(count_flags & COUNT_IGNORE_HUMAN_SSD && (H.stat != DEAD && !H.client))
-			continue
-		if(H.status_flags & XENO_HOST)
+		if(count_flags & COUNT_IGNORE_HUMAN_SSD && (H.stat != DEAD && H.client))
 			continue
 		if(!(H.z in z_levels) || isspaceturf(H.loc))
 			continue
