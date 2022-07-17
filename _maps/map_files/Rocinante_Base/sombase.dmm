@@ -4,6 +4,11 @@
 	dir = 8
 	},
 /area/rocinante_Base/ground/base_n)
+"ab" = (
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/rocinante_Base/surface/building/laundromat)
 "ac" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/emails,
@@ -59,7 +64,7 @@
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "aq" = (
 /obj/structure/flora/pottedplant/two,
 /turf/open/floor/mainship/blue{
@@ -135,7 +140,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "aF" = (
 /obj/structure/sink/bathroom{
 	dir = 4
@@ -180,6 +185,13 @@
 /obj/structure/bed/chair,
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_s)
+"aM" = (
+/obj/machinery/door/airlock/mainship/secure/free_access,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/vehicle_garage)
+"aN" = (
+/turf/open/floor/mainship/red/corner,
+/area/rocinante_Base/surface/building/administration)
 "aO" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
@@ -190,7 +202,7 @@
 	layer = 1.99
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "aQ" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
@@ -236,11 +248,16 @@
 /obj/structure/prop/mainship/protolathe/engi,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_s)
+"aZ" = (
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/rocinante_Base/surface/building/administration)
 "ba" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan1"
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "bb" = (
 /obj/structure/prop/rocket_pod,
 /turf/open/floor/mainship/black{
@@ -275,7 +292,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "bi" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -309,7 +326,7 @@
 /obj/item/storage/fancy/cigar,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "bo" = (
 /turf/closed/mineral{
 	color = "#c2e4ff"
@@ -346,7 +363,7 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "bv" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -408,7 +425,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "bG" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857";
@@ -444,7 +461,7 @@
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "bM" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/mainship/mono,
@@ -494,6 +511,10 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_sw)
+"bX" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/tramstation_cent)
 "bY" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 4
@@ -524,6 +545,12 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_e)
+"ce" = (
+/obj/structure/toilet/alternate{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "cf" = (
 /turf/open/ground/river,
 /area/rocinante_Base/ground/base_e)
@@ -571,7 +598,7 @@
 	},
 /obj/item/clipboard,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "co" = (
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/mainship/black/full,
@@ -619,7 +646,7 @@
 "cw" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/mainship/black/full,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "cx" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -637,7 +664,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "cB" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 10
@@ -706,10 +733,16 @@
 /obj/machinery/computer/prisoner,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_se)
+"cP" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/rocinante_Base/surface/building/adminbreakroom)
 "cQ" = (
 /obj/structure/bed/chair/alt,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/laundromat)
 "cR" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -717,7 +750,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "cS" = (
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 10
@@ -766,7 +799,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "dc" = (
 /obj/structure/flora/grass/tallgrass{
 	color = "#5b7857"
@@ -811,7 +844,7 @@
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "dm" = (
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/ground/base_w)
@@ -831,7 +864,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "dq" = (
 /obj/machinery/door/airlock/mainship/generic/glass,
 /turf/open/floor/mainship/mono,
@@ -897,14 +930,19 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
+"dC" = (
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/rocinante_Base/surface/building/tramstation_cent)
 "dD" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "dE" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /obj/structure/barricade/guardrail{
@@ -936,17 +974,18 @@
 	},
 /area/rocinante_Base/ground/base_s)
 "dI" = (
-/obj/structure/cable{
-	layer = 1.99
-	},
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
-/area/rocinante_Base/ground/base_n)
+/turf/closed/wall/mainship/gray,
+/area/rocinante_Base/surface/building/administration)
 "dJ" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_s)
+"dK" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "dM" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtyellow,
@@ -1096,7 +1135,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/red,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/laundromat)
 "eq" = (
 /obj/effect/landmark/corpsespawner/somsec,
 /turf/open/floor/mainship/blue,
@@ -1107,6 +1146,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_nw)
+"es" = (
+/obj/structure/bed/chair/sofa/corsat/verticaltop,
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/rocinante_Base/surface/building/administration)
 "eu" = (
 /obj/effect/decal/siding,
 /turf/open/floor/mainship/som/s,
@@ -1131,6 +1176,9 @@
 /obj/machinery/processor,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_ne)
+"ez" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/rocinante_Base/surface/building/tramstation_cent)
 "eA" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/plating,
@@ -1143,6 +1191,9 @@
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_e)
+"eD" = (
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/laundromat)
 "eE" = (
 /obj/structure/platform{
 	dir = 8
@@ -1156,7 +1207,7 @@
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "eG" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan25"
@@ -1172,7 +1223,7 @@
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "eJ" = (
 /turf/open/floor/mainship/blue{
 	dir = 4
@@ -1190,7 +1241,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "eM" = (
 /obj/structure/powerloader_wreckage,
 /turf/open/floor/plating/ground/concrete,
@@ -1199,6 +1250,9 @@
 /obj/structure/prop/mainship/turretprop,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_s)
+"eO" = (
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/adminbreakroom)
 "eP" = (
 /turf/closed/shuttle/escapepod{
 	icon_state = "wall9"
@@ -1219,7 +1273,7 @@
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "eT" = (
 /obj/structure/prop/brokenvendor/brokenweaponsrack,
 /turf/open/floor/mainship/blue{
@@ -1252,7 +1306,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "fa" = (
 /turf/open/floor/mainship/sterile/purple/side,
 /area/rocinante_Base/ground/base_cent)
@@ -1341,7 +1395,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "fv" = (
 /obj/structure/table/mainship,
 /turf/open/ground/grasspatch,
@@ -1404,6 +1458,10 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_ne)
+"fE" = (
+/obj/machinery/status_display,
+/turf/closed/wall/mainship/gray,
+/area/rocinante_Base/surface/building/laundromat)
 "fF" = (
 /obj/structure/roci_sign,
 /turf/open/ground/grasspatch,
@@ -1413,7 +1471,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "fH" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass{
 	dir = 1
@@ -1459,6 +1517,10 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/sterile/white,
 /area/rocinante_Base/ground/base_se)
+"fQ" = (
+/obj/machinery/door/airlock/glass,
+/turf/open/floor/plating,
+/area/rocinante_Base/surface/building/tramstation_cent)
 "fR" = (
 /obj/structure/platform/metalplatform{
 	dir = 8
@@ -1516,14 +1578,14 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/som/sw,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "gc" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/rocinante_Base/ground/base_cent)
 "gd" = (
 /turf/open/floor/mainship/sterile/white,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "ge" = (
 /obj/structure/somcas,
 /turf/open/floor/plating,
@@ -1577,6 +1639,9 @@
 /obj/structure/cargo_container/red,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_ne)
+"gn" = (
+/turf/open/floor/plating/ground/concrete/lines,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "go" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan8"
@@ -1597,7 +1662,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "gs" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
@@ -1620,7 +1685,7 @@
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "gx" = (
 /obj/structure/platform/rockcliff{
 	dir = 1
@@ -1636,7 +1701,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/laundromat)
 "gA" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857";
@@ -1692,6 +1757,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_s)
+"gL" = (
+/obj/machinery/door/airlock/multi_tile/mainship/personalglass{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/adminbreakroom)
 "gM" = (
 /turf/open/floor/mainship/blue{
 	dir = 5
@@ -1735,7 +1806,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "gX" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/blue{
@@ -1758,7 +1829,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "he" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -1782,11 +1853,11 @@
 	layer = 1.99
 	},
 /turf/open/floor/mainship/red/corner,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/laundromat)
 "hi" = (
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/mainship/red/full,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "hj" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 2
@@ -1862,7 +1933,7 @@
 	layer = 1.99
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "hy" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -1889,7 +1960,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "hF" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/red{
@@ -1951,7 +2022,7 @@
 /turf/open/floor/mainship/black/corner{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "hR" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -1966,7 +2037,7 @@
 /obj/structure/table/mainship,
 /obj/structure/paper_bin,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "hU" = (
 /obj/structure/prop/mainship/printer,
 /turf/open/floor/mainship/mono,
@@ -1980,6 +2051,11 @@
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_sw)
+"hX" = (
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/rocinante_Base/surface/building/laundromat)
 "hY" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -2018,7 +2094,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "ig" = (
 /obj/structure/platform/rockcliff{
 	dir = 1
@@ -2065,7 +2141,11 @@
 "ip" = (
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/laundromat)
+"iq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/administration)
 "ir" = (
 /obj/machinery/light{
 	dir = 1
@@ -2108,13 +2188,13 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "iy" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "iz" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -2129,7 +2209,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan3"
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "iC" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/mono,
@@ -2152,12 +2232,23 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_cent)
+"iH" = (
+/turf/open/floor/mainship/red/corner{
+	dir = 4
+	},
+/area/rocinante_Base/surface/building/administration)
 "iI" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
+"iJ" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "iK" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857"
@@ -2176,9 +2267,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_ne)
 "iO" = (
-/obj/structure/window/framed/mainship/gray,
-/turf/open/floor/mainship/red/full,
-/area/rocinante_Base/ground/base_n)
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
 "iP" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/rocinante_Base/ground/base_ne)
@@ -2189,6 +2281,11 @@
 /obj/item/ammo_casing,
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_e)
+"iS" = (
+/turf/open/floor/mainship/red{
+	dir = 6
+	},
+/area/rocinante_Base/surface/building/administration)
 "iT" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/red{
@@ -2246,7 +2343,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "ja" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 4
@@ -2259,6 +2356,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_ne)
+"je" = (
+/turf/open/floor/mainship/red{
+	dir = 10
+	},
+/area/rocinante_Base/surface/building/tramstation_cent)
 "jf" = (
 /obj/structure/window/reinforced/altwindow{
 	dir = 1
@@ -2299,7 +2401,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "jo" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
@@ -2347,7 +2449,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "jw" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -2363,7 +2465,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "jz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/r_wall,
@@ -2413,6 +2515,12 @@
 	},
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_e)
+"jK" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "jL" = (
 /obj/structure/cargo_container/red{
 	dir = 4
@@ -2492,12 +2600,16 @@
 	},
 /turf/open/floor/mainship/black,
 /area/rocinante_Base/ground/base_se)
+"kd" = (
+/obj/structure/prop/mainship/turretprop,
+/turf/closed/wall/mainship/gray,
+/area/rocinante_Base/surface/building/administration)
 "ke" = (
 /obj/structure/bedsheetbin,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/laundromat)
 "kf" = (
 /obj/machinery/science/isolator/inserted,
 /turf/open/floor/mainship/sterile/dark,
@@ -2570,7 +2682,7 @@
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "ku" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/mainship/mono,
@@ -2617,7 +2729,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "kD" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857";
@@ -2639,7 +2751,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "kH" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass,
 /turf/open/floor/mainship/sterile/dark,
@@ -2679,7 +2791,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "kP" = (
 /obj/item/stack/sheet/animalhide/monkey,
 /obj/effect/decal/cleanable/blood/gibs/body,
@@ -2692,7 +2804,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "kR" = (
 /obj/structure/platform_decoration/rockcliff_deco{
 	dir = 1
@@ -2746,17 +2858,22 @@
 "ld" = (
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "le" = (
 /obj/structure/platform/metalplatform{
 	dir = 1
 	},
 /turf/open/floor/mainship/black/full,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "lf" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_n)
+"lg" = (
+/turf/open/floor/mainship/red{
+	dir = 5
+	},
+/area/rocinante_Base/surface/building/administration)
 "lh" = (
 /obj/structure/table/mainship,
 /obj/structure/window/reinforced/altwindow,
@@ -2786,7 +2903,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "lo" = (
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -2815,7 +2932,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "lt" = (
 /obj/structure/mopbucket,
 /turf/open/floor/mainship/mono,
@@ -2845,7 +2962,7 @@
 /obj/structure/bed/chair/sofa/corsat,
 /obj/machinery/newscaster,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "lz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -2885,7 +3002,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "lG" = (
 /obj/structure/prop/mainship/printer,
 /turf/open/floor/mainship/sterile/dark,
@@ -3002,7 +3119,7 @@
 /obj/structure/rack,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "mh" = (
 /obj/structure/somcas{
 	icon_state = "16"
@@ -3021,6 +3138,12 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/rocinante_Base/ground/base_n)
+"ml" = (
+/obj/structure/bed/chair/alt{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "mm" = (
 /obj/structure/safe,
 /turf/open/floor/mainship/silver,
@@ -3067,7 +3190,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "mv" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/red/corner{
@@ -3128,7 +3251,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "mJ" = (
 /turf/open/floor/mainship/red,
 /area/rocinante_Base/ground/base_se)
@@ -3216,7 +3339,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "nb" = (
 /obj/structure/platform/metalplatform{
 	dir = 4
@@ -3241,7 +3364,7 @@
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/laundromat)
 "nf" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -3355,7 +3478,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "nA" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass,
 /turf/open/floor/mainship/mono,
@@ -3379,7 +3502,7 @@
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/laundromat)
 "nE" = (
 /obj/machinery/light{
 	dir = 1
@@ -3387,13 +3510,13 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "nF" = (
 /obj/structure/prop/brokenvendor/brokenuniformvendor/specialist,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "nG" = (
 /turf/closed/mineral{
 	color = "#c2e4ff"
@@ -3485,7 +3608,7 @@
 /obj/structure/largecrate/random/barrel/green,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "nX" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
 	dir = 2
@@ -3496,7 +3619,7 @@
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "nZ" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer3/laptop,
@@ -3526,7 +3649,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "oe" = (
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/floor/mainship/mono,
@@ -3563,7 +3686,17 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
+"ol" = (
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/rocinante_Base/surface/building/adminbreakroom)
+"om" = (
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
 "on" = (
 /obj/machinery/door/airlock/mainship/generic/glass{
 	dir = 2
@@ -3601,7 +3734,7 @@
 /turf/open/floor/mainship/black/corner{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "ow" = (
 /obj/machinery/science/survey{
 	dir = 8
@@ -3616,11 +3749,15 @@
 	color = "#c2e4ff"
 	},
 /area/rocinante_Base/ground/base_w)
+"oy" = (
+/obj/structure/bed/chair/sofa/corsat/right,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/laundromat)
 "oz" = (
 /turf/open/floor/mainship/black/corner{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "oA" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
@@ -3629,7 +3766,7 @@
 "oB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass,
 /turf/open/floor/mainship/red/full,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "oC" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/red{
@@ -3663,7 +3800,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "oI" = (
 /obj/structure/window/reinforced/altwindow,
 /turf/open/floor/mainship/mono,
@@ -3803,6 +3940,11 @@
 /obj/structure/prop/mainship/turretprop,
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/ground/base_n)
+"pi" = (
+/turf/open/floor/mainship/red/corner{
+	dir = 8
+	},
+/area/rocinante_Base/surface/building/laundromat)
 "pj" = (
 /obj/machinery/science/survey{
 	dir = 4
@@ -3894,7 +4036,7 @@
 "pv" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "pw" = (
 /obj/structure/sink{
 	dir = 4
@@ -3917,6 +4059,11 @@
 /obj/machinery/computer/emails,
 /turf/open/floor/mainship/sterile/purple/corner,
 /area/rocinante_Base/ground/base_n)
+"pz" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan20"
+	},
+/area/rocinante_Base/surface/building/tramstation_cent)
 "pA" = (
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/mainship/mono,
@@ -3972,17 +4119,17 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "pM" = (
 /obj/structure/prop/mainship/printer,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "pN" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "pO" = (
 /obj/structure/largecrate/random/barrel/red,
 /obj/machinery/newscaster{
@@ -3991,8 +4138,10 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_ne)
 "pP" = (
-/turf/closed/shuttle/ert,
-/area/rocinante_Base/ground/base_cent)
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/rocinante_Base/surface/building/administration)
 "pQ" = (
 /obj/structure/prop/vehicle/truck,
 /turf/open/floor/plating/ground/concrete,
@@ -4014,6 +4163,11 @@
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_ne)
+"pV" = (
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
 "pW" = (
 /obj/machinery/door/airlock/mainship/secure/free_access,
 /turf/open/floor/mainship/mono,
@@ -4056,16 +4210,17 @@
 	},
 /turf/open/floor/wood,
 /area/rocinante_Base/ground/base_n)
+"qf" = (
+/obj/structure/bed/chair/sofa/corsat/verticaltop,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/tramstation_cent)
 "qg" = (
 /obj/structure/prop/brokenvendor/surplusarmor,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_se)
 "qh" = (
-/obj/structure/cable{
-	layer = 1.99
-	},
-/turf/open/floor/mainship/red/corner,
-/area/rocinante_Base/ground/base_cent)
+/turf/closed/wall/mainship/gray,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "qi" = (
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/ground/base_e)
@@ -4137,7 +4292,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "qy" = (
 /obj/structure/target_stake,
 /obj/item/target,
@@ -4151,6 +4306,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_e)
+"qA" = (
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/rocinante_Base/surface/building/adminbreakroom)
 "qB" = (
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/open/floor/plating,
@@ -4179,7 +4339,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 10
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "qI" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -4188,6 +4348,12 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_cent)
+"qJ" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "qK" = (
 /obj/structure/platform_decoration/metalplatform_deco{
 	dir = 4
@@ -4251,7 +4417,7 @@
 /turf/open/floor/mainship/red/corner{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "qZ" = (
 /obj/structure/barricade/guardrail,
 /turf/open/floor/plating,
@@ -4299,7 +4465,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "rj" = (
 /obj/effect/landmark/corpsespawner/somscientist,
 /turf/open/floor/mainship/sterile/purple/side{
@@ -4319,10 +4485,15 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "rm" = (
 /turf/open/floor/mainship/sterile/corner,
 /area/rocinante_Base/ground/base_cent)
+"rn" = (
+/turf/open/floor/mainship/red{
+	dir = 6
+	},
+/area/rocinante_Base/surface/building/adminbreakroom)
 "ro" = (
 /turf/open/floor/mainship/red,
 /area/rocinante_Base/ground/base_n)
@@ -4344,7 +4515,7 @@
 "rt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/red,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "ru" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -4435,13 +4606,13 @@
 "rK" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "rL" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "rM" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/open/floor/mainship/blue{
@@ -4496,6 +4667,11 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_e)
+"rW" = (
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 8
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
 "rX" = (
 /obj/structure/desertdam/decals/road/line,
 /turf/open/floor/plating/ground/concrete,
@@ -4512,14 +4688,14 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "sa" = (
 /obj/structure/platform/rockcliff,
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_cent)
 "sb" = (
 /turf/open/floor/mainship/blue/full,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "sc" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 1
@@ -4587,6 +4763,10 @@
 /obj/machinery/science_64/protolathebig,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_n)
+"sn" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "so" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/ground/grasspatch,
@@ -4658,7 +4838,7 @@
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "sD" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/mainship/sterile/dark,
@@ -4691,7 +4871,7 @@
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "sL" = (
 /obj/structure/shuttle/engine/heater{
 	dir = 4
@@ -4705,6 +4885,15 @@
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_se)
+"sN" = (
+/obj/structure/sink/bathroom{
+	dir = 4
+	},
+/obj/structure/mirror{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "sO" = (
 /obj/structure/powerloader_wreckage,
 /turf/open/floor/plating/ground/concrete,
@@ -4751,7 +4940,7 @@
 	layer = 1.99
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "sZ" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
@@ -4783,7 +4972,7 @@
 /obj/structure/rack,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "tg" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 1
@@ -4844,7 +5033,12 @@
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
+"tr" = (
+/turf/open/floor/mainship/red{
+	dir = 5
+	},
+/area/rocinante_Base/surface/building/laundromat)
 "ts" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857"
@@ -4872,7 +5066,7 @@
 "tw" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "tz" = (
 /obj/structure/cable{
 	layer = 1.99
@@ -4881,7 +5075,12 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
+"tA" = (
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/rocinante_Base/surface/building/laundromat)
 "tB" = (
 /obj/structure/table/mainship,
 /obj/item/clipboard,
@@ -4900,7 +5099,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "tE" = (
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 10
@@ -4935,7 +5134,7 @@
 "tJ" = (
 /obj/structure/closet/fireaxecabinet,
 /turf/closed/wall/mainship/gray,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "tK" = (
 /obj/structure/crystal,
 /turf/open/floor/plating/ground/dirtyellow,
@@ -4943,10 +5142,10 @@
 "tL" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/laundromat)
 "tM" = (
 /turf/open/floor/mainship/black/corner,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "tN" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship/mono,
@@ -5029,7 +5228,7 @@
 /area/rocinante_Base/ground/base_ne)
 "ud" = (
 /turf/closed/shuttle/ert,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "ue" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -5114,7 +5313,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/red,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "uv" = (
 /obj/effect/attach_point/electronics/dropship1,
 /turf/open/floor/plating,
@@ -5136,7 +5335,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "uz" = (
 /turf/open/floor/mainship/blue,
 /area/rocinante_Base/ground/base_se)
@@ -5164,7 +5363,7 @@
 	layer = 1.99
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "uF" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/sterile/corner{
@@ -5205,6 +5404,12 @@
 /obj/effect/landmark/corpsespawner/som,
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_se)
+"uP" = (
+/obj/machinery/door/airlock/multi_tile/mainship/personalglass{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/administration)
 "uQ" = (
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 1
@@ -5216,6 +5421,9 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_e)
+"uS" = (
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/administration)
 "uT" = (
 /obj/effect/landmark/corpsespawner/sompo,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -5227,7 +5435,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "uV" = (
 /obj/structure/somcas{
 	icon_state = "15"
@@ -5245,11 +5453,16 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "uY" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_w)
+"va" = (
+/turf/open/floor/mainship/red/corner{
+	dir = 4
+	},
+/area/rocinante_Base/surface/building/laundromat)
 "vb" = (
 /obj/structure/somcas{
 	icon_state = "32"
@@ -5271,7 +5484,7 @@
 	layer = 1.99
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/laundromat)
 "vg" = (
 /obj/structure/platform_decoration/rockcliff_deco,
 /turf/open/ground/grasspatch,
@@ -5298,6 +5511,12 @@
 /obj/machinery/vending/security,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_w)
+"vm" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/adminbreakroom)
 "vn" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/mainship/red{
@@ -5342,7 +5561,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "vw" = (
 /obj/effect/decal/siding,
 /obj/effect/decal/siding{
@@ -5401,7 +5620,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/som/se,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "vI" = (
 /turf/open/floor/mainship_hull/dir,
 /area/rocinante_Base/ground/base_sw)
@@ -5448,7 +5667,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/laundromat)
 "vW" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/mono,
@@ -5468,7 +5687,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "vZ" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
@@ -5488,6 +5707,11 @@
 	dir = 10
 	},
 /area/rocinante_Base/ground/base_se)
+"we" = (
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/rocinante_Base/surface/building/administration)
 "wf" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -5583,10 +5807,8 @@
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_w)
 "wA" = (
-/turf/closed/shuttle/ert{
-	icon_state = "stan5"
-	},
-/area/rocinante_Base/ground/base_cent)
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "wB" = (
 /obj/structure/ship_ammo/rocket/banshee,
 /turf/open/floor/mainship/mono,
@@ -5630,7 +5852,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "wM" = (
 /obj/structure/prop/brokenvendor/brokenweaponsrack,
 /turf/open/floor/mainship/black{
@@ -5662,7 +5884,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "wS" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/plating/plating_catwalk,
@@ -5702,7 +5924,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "xb" = (
 /turf/open/floor/mainship/blue{
 	dir = 6
@@ -5741,6 +5963,10 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/carpet,
 /area/rocinante_Base/ground/base_cent)
+"xj" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/laundromat)
 "xk" = (
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/surface/landing/landing_pad_one_external)
@@ -5775,13 +6001,17 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "xq" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_e)
+"xs" = (
+/obj/structure/bed/chair/sofa/corsat/verticaltop,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/administration)
 "xt" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -5821,7 +6051,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "xD" = (
 /obj/structure/monorail{
 	dir = 4
@@ -5854,10 +6084,14 @@
 /obj/structure/prop/vehicle/tank/north/decoration/armor/concussivearmor,
 /obj/structure/prop/vehicle/tank/north/barrel/minigun,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "xL" = (
 /turf/open/floor/mainship/sterile/purple/corner,
 /area/rocinante_Base/ground/base_e)
+"xM" = (
+/obj/machinery/door/airlock/multi_tile/mainship/personalglass,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/administration)
 "xN" = (
 /obj/structure/closet,
 /turf/open/floor/mainship/mono,
@@ -5908,7 +6142,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "xY" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/snacks/sliceable/bananabread,
@@ -5953,7 +6187,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "yg" = (
 /turf/closed/mineral{
 	color = "#c2e4ff"
@@ -5996,7 +6230,7 @@
 "yo" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "yp" = (
 /obj/structure/prop/mainship/sensor_computer2,
 /turf/open/floor/mainship/mono,
@@ -6021,7 +6255,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "yt" = (
 /obj/structure/platform/rockcliff{
 	dir = 1
@@ -6067,6 +6301,12 @@
 	dir = 1
 	},
 /area/rocinante_Base/ground/base_se)
+"yC" = (
+/obj/structure/bed/chair/sofa/corsat/verticalsouth,
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/rocinante_Base/surface/building/tramstation_cent)
 "yD" = (
 /obj/structure/cargo_container/hd{
 	dir = 4
@@ -6079,7 +6319,7 @@
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "yF" = (
 /turf/open/floor/mainship/blue{
 	dir = 8
@@ -6113,6 +6353,11 @@
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/open/floor/plating,
 /area/rocinante_Base/ground/base_ne)
+"yO" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 9
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
 "yP" = (
 /obj/machinery/power/smes/buildable/empty{
 	dir = 1
@@ -6247,7 +6492,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "zs" = (
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -6361,7 +6606,7 @@
 "zS" = (
 /obj/machinery/door/airlock/mainship/marine,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "zT" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass,
 /turf/open/floor/mainship/sterile/dark,
@@ -6372,11 +6617,8 @@
 	},
 /area/rocinante_Base/surface/landing/landing_pad_two)
 "zW" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/turf/closed/wall/mainship/gray,
+/area/rocinante_Base/surface/building/adminbreakroom)
 "zX" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 1
@@ -6408,6 +6650,11 @@
 	},
 /turf/open/floor/mainship/sterile/purple/side,
 /area/rocinante_Base/ground/base_ne)
+"Ad" = (
+/turf/open/floor/mainship/red{
+	dir = 10
+	},
+/area/rocinante_Base/surface/building/adminbreakroom)
 "Ae" = (
 /obj/structure/prop/mainship/turretprop,
 /turf/closed/wall/mainship/gray,
@@ -6471,6 +6718,9 @@
 	},
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_e)
+"Aq" = (
+/turf/open/floor/plating,
+/area/rocinante_Base/surface/building/tramstation_cent)
 "Ar" = (
 /obj/structure/prop/brokenvendor/brokencorpsmanvendor,
 /turf/open/floor/mainship/sterile/dark,
@@ -6523,6 +6773,9 @@
 	dir = 8
 	},
 /area/rocinante_Base/ground/base_ne)
+"AB" = (
+/turf/closed/wall/mainship/gray,
+/area/rocinante_Base/surface/building/tramstation_cent)
 "AC" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/mainship/mono,
@@ -6534,7 +6787,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "AE" = (
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_e)
@@ -6672,13 +6925,17 @@
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "Bc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
 /area/rocinante_Base/ground/base_sw)
+"Bd" = (
+/obj/structure/monorail,
+/turf/open/floor/plating,
+/area/rocinante_Base/surface/building/tramstation_cent)
 "Be" = (
 /obj/structure/monorail{
 	dir = 4
@@ -6690,7 +6947,7 @@
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Bh" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/sterile/dark,
@@ -6817,7 +7074,7 @@
 "BE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "BF" = (
 /obj/structure/flora/grass/tallgrass{
 	color = "#5b7857"
@@ -6833,13 +7090,16 @@
 "BH" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "BJ" = (
 /obj/structure/toilet/alternate{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/rocinante_Base/ground/base_n)
+"BL" = (
+/turf/open/floor/mainship/red/corner,
+/area/rocinante_Base/surface/building/tramstation_cent)
 "BM" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/ground/grasspatch,
@@ -6875,6 +7135,12 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_n)
+"BV" = (
+/obj/effect/decal/siding{
+	dir = 1
+	},
+/turf/open/floor/mainship/som,
+/area/rocinante_Base/surface/building/administration)
 "BW" = (
 /obj/machinery/telecomms/processor,
 /turf/open/floor/mainship/mono,
@@ -6945,6 +7211,11 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_n)
+"Cm" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 5
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Cn" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor/plating/ground/concrete,
@@ -6954,10 +7225,16 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_cent)
+"Cp" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/red,
+/area/rocinante_Base/surface/building/administration)
 "Cq" = (
 /obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/mainship/black,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Cr" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -7077,7 +7354,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "CM" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/mono,
@@ -7087,7 +7364,7 @@
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "CO" = (
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_e)
@@ -7132,7 +7409,7 @@
 	dir = 10
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "CY" = (
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship/mono,
@@ -7156,6 +7433,14 @@
 "Dc" = (
 /turf/closed/mineral/indestructible,
 /area/rocinante_Base/ground/base_nw)
+"Dd" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/rocinante_Base/surface/building/administration)
 "De" = (
 /obj/structure/cargo_container/hd,
 /turf/open/floor/plating/ground/concrete,
@@ -7200,7 +7485,7 @@
 "Dn" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/black,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Do" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857";
@@ -7231,7 +7516,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Dt" = (
 /obj/machinery/door/window/secure/windoor_secure_alt{
 	dir = 2
@@ -7245,7 +7530,7 @@
 /turf/open/floor/mainship/black{
 	dir = 6
 	},
-/area/rocinante_Base/ground/base_s)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Dv" = (
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 9
@@ -7284,7 +7569,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "DC" = (
 /obj/structure/largecrate,
 /turf/open/ground/grasspatch,
@@ -7358,6 +7643,11 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_s)
+"DS" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
 "DT" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/emails,
@@ -7382,7 +7672,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "DX" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security,
@@ -7411,7 +7701,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Ed" = (
 /turf/open/floor/mainship/sterile/purple/corner,
 /area/rocinante_Base/ground/base_ne)
@@ -7459,7 +7749,7 @@
 	layer = 1.99
 	},
 /turf/open/floor/mainship/red,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/laundromat)
 "En" = (
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_n)
@@ -7480,7 +7770,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Et" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857";
@@ -7512,7 +7802,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "EA" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan2"
@@ -7553,7 +7843,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "EM" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/wooden_tv,
@@ -7604,6 +7894,12 @@
 /obj/machinery/door/airlock/mainship/engineering,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_s)
+"EX" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/administration)
 "EY" = (
 /obj/machinery/door/window/secure/windoor_secure_alt{
 	dir = 2
@@ -7620,7 +7916,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Fb" = (
 /obj/machinery/science_64/protolathebig,
 /turf/open/floor/mainship/sterile/purple/corner{
@@ -7690,7 +7986,7 @@
 /turf/open/floor/mainship/black/corner{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Fq" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 8
@@ -7726,7 +8022,7 @@
 "Fx" = (
 /obj/structure/urinal,
 /turf/open/floor/mainship/sterile/white,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Fy" = (
 /obj/structure/rack,
 /obj/item/armor_module/module/eshield,
@@ -7854,7 +8150,7 @@
 /obj/structure/table/mainship,
 /obj/item/cell/high,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "FS" = (
 /obj/structure/barricade/metal{
 	dir = 4
@@ -7898,7 +8194,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "Ga" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 8
@@ -7910,7 +8206,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "Gc" = (
 /obj/structure/bed/bunkbed,
 /turf/open/floor/mainship/mono,
@@ -7943,7 +8239,7 @@
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "Gi" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
@@ -7975,7 +8271,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Gr" = (
 /obj/structure/somcas/wingtip/wing8,
 /turf/open/floor/plating,
@@ -7992,7 +8288,7 @@
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Gu" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/silver{
@@ -8006,7 +8302,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/computer3/laptop,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Gw" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/mono,
@@ -8026,6 +8322,12 @@
 	},
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_w)
+"Gz" = (
+/obj/effect/decal/siding{
+	dir = 9
+	},
+/turf/open/floor/mainship/som/ne,
+/area/rocinante_Base/surface/building/administration)
 "GA" = (
 /obj/structure/platform_decoration/metalplatform_deco{
 	dir = 4
@@ -8033,7 +8335,7 @@
 /turf/open/floor/mainship/black/corner{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "GB" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer3/laptop,
@@ -8047,7 +8349,7 @@
 	layer = 1.99
 	},
 /turf/open/floor/mainship/red/full,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "GD" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grasspatch,
@@ -8061,7 +8363,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "GF" = (
 /obj/structure/platform_decoration/rockcliff_deco{
 	dir = 8
@@ -8093,6 +8395,12 @@
 	},
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_w)
+"GL" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/rocinante_Base/surface/building/administration)
 "GM" = (
 /obj/structure/platform/metalplatform{
 	dir = 1
@@ -8208,6 +8516,9 @@
 	dir = 1
 	},
 /area/rocinante_Base/ground/base_cent)
+"Hl" = (
+/turf/open/floor/plating/ground/concrete/edge,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Hm" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -8216,6 +8527,15 @@
 	dir = 1
 	},
 /area/rocinante_Base/ground/base_cent)
+"Hn" = (
+/obj/machinery/status_display,
+/turf/closed/wall/mainship/gray,
+/area/rocinante_Base/surface/building/tramstation_cent)
+"Ho" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Hp" = (
 /turf/closed/shuttle/escapepod{
 	icon_state = "wall8"
@@ -8237,7 +8557,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "Hs" = (
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/ground/underground/caveN)
@@ -8248,7 +8568,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "Hu" = (
 /obj/structure/cable{
 	layer = 1.99
@@ -8256,7 +8576,7 @@
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "Hv" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship/mono,
@@ -8289,7 +8609,7 @@
 	layer = 1.99
 	},
 /turf/open/floor/mainship/red/full,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "HE" = (
 /obj/effect/decal/warning_stripes/box/arrow{
 	dir = 1
@@ -8314,6 +8634,11 @@
 	},
 /turf/open/floor/plating/ground/dirtyellow,
 /area/rocinante_Base/ground/base_n)
+"HI" = (
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
+/area/rocinante_Base/surface/building/administration)
 "HJ" = (
 /obj/structure/somcas/wingtip,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -8386,7 +8711,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/laundromat)
 "HX" = (
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_se)
@@ -8422,7 +8747,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Id" = (
 /obj/machinery/autodoc_console,
 /turf/open/floor/mainship/sterile/dark,
@@ -8456,7 +8781,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/black,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Ij" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/emails,
@@ -8469,6 +8794,11 @@
 /obj/structure/sign/double/map/left,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_n)
+"Im" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer3/server,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/tramstation_cent)
 "In" = (
 /obj/structure/sign/double/map/left,
 /turf/open/floor/mainship/sterile/dark,
@@ -8564,6 +8894,12 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating,
 /area/rocinante_Base/ground/base_s)
+"IH" = (
+/obj/structure/toilet/alternate{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/rocinante_Base/surface/building/administration)
 "II" = (
 /obj/effect/decal/warning_stripes/linethick,
 /obj/structure/prop/mainship/pipeprop,
@@ -8605,7 +8941,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "IR" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/emails,
@@ -8652,7 +8988,7 @@
 "IY" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/shuttle/dropship/floor,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "IZ" = (
 /turf/open/floor/scorched,
 /area/rocinante_Base/ground/base_e)
@@ -8757,7 +9093,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 10
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Jy" = (
 /obj/structure/rack,
 /obj/item/armor_module/module/eshield,
@@ -8771,7 +9107,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan5"
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "JB" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/silver{
@@ -8891,7 +9227,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/black,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "JZ" = (
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/mainship/mono,
@@ -8906,11 +9242,9 @@
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_w)
 "Kc" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
+/obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "Kd" = (
 /obj/structure/prop/vehicle/van,
 /turf/open/floor/plating/ground/concrete,
@@ -8951,7 +9285,7 @@
 /turf/open/floor/mainship/red{
 	dir = 5
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Km" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -8961,12 +9295,16 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Kp" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_ne)
+"Kq" = (
+/obj/structure/bed/chair/sofa/corsat/right,
+/turf/open/floor/mainship/red,
+/area/rocinante_Base/surface/building/laundromat)
 "Kr" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/emails,
@@ -8989,7 +9327,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Kw" = (
 /obj/structure/monorail,
 /obj/machinery/door/poddoor/mainship/indestructible{
@@ -9008,7 +9346,12 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/laundromat)
+"KA" = (
+/turf/open/floor/mainship/blue{
+	dir = 9
+	},
+/area/rocinante_Base/surface/building/administration)
 "KB" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grasspatch,
@@ -9120,7 +9463,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "KY" = (
 /obj/structure/barricade/plasteel{
 	dir = 4
@@ -9138,9 +9481,9 @@
 	},
 /area/rocinante_Base/ground/base_se)
 "Lb" = (
-/obj/structure/window/framed/mainship/gray,
-/turf/open/shuttle/dropship/floor,
-/area/rocinante_Base/ground/base_cent)
+/obj/machinery/status_display,
+/turf/closed/wall/mainship/gray,
+/area/rocinante_Base/surface/building/administration)
 "Lc" = (
 /turf/open/floor/mainship/silver{
 	dir = 8
@@ -9237,7 +9580,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Lt" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering,
 /turf/open/floor/mainship/mono,
@@ -9425,7 +9768,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Md" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -9514,7 +9857,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Mt" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	dir = 2
@@ -9532,7 +9875,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/black/corner,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Mw" = (
 /obj/structure/prop/brokenvendor/surplusclothes,
 /turf/open/floor/mainship/blue,
@@ -9594,6 +9937,11 @@
 /obj/item/stack/rods,
 /turf/open/floor/plating/dmg1,
 /area/rocinante_Base/ground/base_w)
+"MH" = (
+/turf/open/floor/mainship/red/corner{
+	dir = 4
+	},
+/area/rocinante_Base/surface/building/tramstation_cent)
 "MJ" = (
 /turf/closed/shuttle/escapepod{
 	icon_state = "wall10"
@@ -9777,7 +10125,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Nt" = (
 /turf/closed/mineral{
 	color = "#c2e4ff"
@@ -9791,7 +10139,7 @@
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /obj/machinery/light,
 /turf/open/floor/mainship/red,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "Nw" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/snacks/twobread,
@@ -9837,7 +10185,7 @@
 /obj/structure/bed/chair/sofa/corsat,
 /obj/structure/sign/double/map/left,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "NH" = (
 /obj/structure/platform/metalplatform{
 	dir = 1
@@ -9873,7 +10221,7 @@
 /turf/open/floor/mainship/black{
 	dir = 10
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "NO" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass{
 	dir = 1
@@ -9900,7 +10248,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "NS" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -9963,7 +10311,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/black/corner,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Of" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/red{
@@ -10016,7 +10364,7 @@
 /turf/closed/shuttle/ert{
 	icon_state = "stan5"
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "Ox" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/red{
@@ -10066,7 +10414,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "OH" = (
 /obj/structure/table/mainship,
 /obj/item/tool/mop,
@@ -10096,7 +10444,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "OP" = (
 /obj/structure/window,
 /turf/open/floor/mainship/sterile/dark,
@@ -10169,7 +10517,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Pd" = (
 /obj/structure/closet/radiation,
 /turf/open/floor/mainship/sterile/dark,
@@ -10253,6 +10601,12 @@
 	dir = 4
 	},
 /area/rocinante_Base/ground/base_cent)
+"Pv" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/laundromat)
 "Pw" = (
 /obj/structure/platform_decoration/metalplatform_deco{
 	dir = 8
@@ -10277,6 +10631,10 @@
 	color = "#c2e4ff"
 	},
 /area/rocinante_Base/ground/base_nw)
+"PB" = (
+/obj/effect/landmark/corpsespawner/somsec,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/administration)
 "PC" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/mono,
@@ -10315,7 +10673,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "PJ" = (
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -10371,6 +10729,11 @@
 	dir = 8
 	},
 /area/rocinante_Base/ground/base_se)
+"PT" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 10
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
 "PU" = (
 /obj/effect/landmark/corpsespawner/som,
 /turf/open/floor/plating,
@@ -10409,6 +10772,11 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_e)
+"Qc" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan25"
+	},
+/area/rocinante_Base/surface/building/tramstation_cent)
 "Qd" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -10423,7 +10791,7 @@
 /obj/structure/table/mainship,
 /obj/item/phone,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Qf" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -10441,14 +10809,14 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Qh" = (
 /obj/structure/bed,
 /obj/item/bedsheet/red,
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Qi" = (
 /mob/living/simple_animal/corgi{
 	desc = "It's a corgi,its been trained to sniff out contraband."
@@ -10462,7 +10830,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Qj" = (
 /turf/open/floor/mainship/blue{
 	dir = 4
@@ -10485,7 +10853,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Qn" = (
 /obj/structure/bed/chair/sofa/corsat,
 /turf/open/floor/mainship/red{
@@ -10546,6 +10914,12 @@
 	dir = 5
 	},
 /area/rocinante_Base/ground/base_ne)
+"Qx" = (
+/obj/structure/bed/chair/sofa/corsat/left,
+/turf/open/floor/mainship/red{
+	dir = 10
+	},
+/area/rocinante_Base/surface/building/laundromat)
 "Qy" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -10602,7 +10976,7 @@
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "QK" = (
 /turf/closed/shuttle/ert{
 	icon_state = "stan3"
@@ -10626,7 +11000,7 @@
 "QP" = (
 /obj/structure/prop/vehicle/som_mech,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "QQ" = (
 /obj/machinery/door/airlock/mainship/marine,
 /turf/open/floor/mainship/mono,
@@ -10676,6 +11050,9 @@
 /obj/structure/somcas/wingtip/wing4,
 /turf/open/floor/plating,
 /area/rocinante_Base/ground/base_s)
+"Rb" = (
+/turf/open/floor/mainship/red,
+/area/rocinante_Base/surface/building/administration)
 "Rc" = (
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
@@ -10700,7 +11077,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/red/full,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Rh" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grasspatch,
@@ -10782,7 +11159,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Ry" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/station_alert,
@@ -10885,7 +11262,7 @@
 /turf/open/floor/mainship/black{
 	dir = 9
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "RS" = (
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/corpsespawner/somscientist,
@@ -10942,6 +11319,14 @@
 	dir = 1
 	},
 /area/rocinante_Base/ground/base_cent)
+"Sd" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 6
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
+"Se" = (
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/tramstation_cent)
 "Sf" = (
 /obj/structure/platform/metalplatform{
 	dir = 8
@@ -10998,7 +11383,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Sq" = (
 /obj/structure/crystal/crystal2,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -11037,6 +11422,9 @@
 /obj/structure/prop/mainship/turretprop,
 /turf/closed/wall/mainship/gray,
 /area/rocinante_Base/ground/base_w)
+"Sz" = (
+/turf/open/floor/mainship/red,
+/area/rocinante_Base/surface/building/adminbreakroom)
 "SA" = (
 /obj/structure/bed/chair/alt,
 /turf/open/floor/mainship/mono,
@@ -11053,6 +11441,10 @@
 	dir = 8
 	},
 /area/rocinante_Base/ground/base_ne)
+"SD" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/administration)
 "SE" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer3/server,
@@ -11076,7 +11468,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "SK" = (
 /obj/structure/bed/chair/alt{
 	dir = 8
@@ -11109,7 +11501,7 @@
 	dir = 10
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "SQ" = (
 /turf/open/floor/plating/dmg3,
 /area/rocinante_Base/ground/underground/caveW)
@@ -11138,7 +11530,12 @@
 /obj/structure/table/mainship,
 /obj/item/clipboard,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
+"SV" = (
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/rocinante_Base/surface/building/administration)
 "SW" = (
 /obj/structure/cable{
 	layer = 1.99
@@ -11211,14 +11608,14 @@
 	layer = 1.99
 	},
 /turf/open/floor/mainship/red/full,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Th" = (
 /obj/effect/decal/siding,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
 /turf/open/floor/mainship/som/s,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Ti" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 4
@@ -11246,7 +11643,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Tp" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
@@ -11330,7 +11727,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "TE" = (
 /obj/machinery/door/poddoor/mainship/indestructible,
 /turf/open/floor/plating/plating_catwalk,
@@ -11348,7 +11745,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "TG" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass{
 	dir = 1
@@ -11362,7 +11759,7 @@
 /obj/structure/prop/vehicle/apc/wheelszero,
 /obj/structure/prop/vehicle/apc/decoration/frontturretzero,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "TJ" = (
 /obj/structure/crystal/crystalmound2,
 /turf/open/floor/plating/ground/dirtyellow,
@@ -11396,7 +11793,7 @@
 /obj/structure/largecrate,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "TS" = (
 /obj/structure/table/mainship,
 /obj/structure/window/reinforced{
@@ -11432,7 +11829,13 @@
 /turf/open/floor/mainship/black{
 	dir = 5
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
+"TX" = (
+/obj/machinery/door/airlock/mainship/security{
+	dir = 2
+	},
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "TY" = (
 /obj/structure/sign/electricshock,
 /turf/closed/wall/mainship/gray,
@@ -11441,7 +11844,7 @@
 /obj/structure/table/mainship,
 /obj/item/pizzabox/margherita,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
 "Ua" = (
 /obj/structure/monorail{
 	dir = 6
@@ -11480,6 +11883,10 @@
 "Ug" = (
 /turf/open/floor/scorched/two,
 /area/rocinante_Base/ground/base_e)
+"Uh" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/administration)
 "Uj" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -11492,7 +11899,7 @@
 /turf/open/floor/mainship/red/corner{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Um" = (
 /obj/machinery/light{
 	dir = 8
@@ -11500,7 +11907,7 @@
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Un" = (
 /turf/closed/shuttle/escapepod{
 	icon_state = "wall3"
@@ -11572,7 +11979,7 @@
 "Uz" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "UA" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -11581,13 +11988,13 @@
 	layer = 1.99
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "UB" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
 	},
 /turf/open/floor/mainship/blue/full,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "UC" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
@@ -11623,13 +12030,19 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "UI" = (
 /obj/structure/prop/brokenvendor/brokenweaponsrack,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
+"UJ" = (
+/obj/effect/decal/siding{
+	dir = 5
+	},
+/turf/open/floor/mainship/som/nw,
+/area/rocinante_Base/surface/building/administration)
 "UK" = (
 /obj/machinery/door/window/windoor_alt{
 	dir = 1
@@ -11691,7 +12104,7 @@
 /area/rocinante_Base/surface/landing/landing_pad_one_external)
 "UV" = (
 /turf/open/floor/mainship/black,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "UW" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -11712,7 +12125,12 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/adminbreakroom)
+"Va" = (
+/turf/open/floor/mainship/blue{
+	dir = 5
+	},
+/area/rocinante_Base/surface/building/administration)
 "Vb" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -11746,6 +12164,9 @@
 /obj/structure/prop/mainship/printer,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_n)
+"Vi" = (
+/turf/open/floor/mainship/sterile/white,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Vk" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -11832,7 +12253,7 @@
 /obj/structure/largecrate/random/case/double,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "VC" = (
 /obj/machinery/science_64,
 /turf/open/floor/mainship/sterile/purple/side{
@@ -11848,7 +12269,7 @@
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/laundromat)
 "VF" = (
 /obj/effect/decal/siding{
 	dir = 1
@@ -11882,7 +12303,7 @@
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "VN" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/emails,
@@ -11896,7 +12317,7 @@
 /turf/open/floor/mainship/black{
 	dir = 8
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "VP" = (
 /obj/structure/barricade/guardrail,
 /turf/open/floor/plating/icefloor/warnplate,
@@ -11942,20 +12363,20 @@
 "VX" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/red/full,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "VY" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/red/full,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "VZ" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Wa" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -11963,7 +12384,7 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/tramstation_cent)
 "Wb" = (
 /obj/machinery/photocopier,
 /turf/open/floor/mainship/sterile/dark,
@@ -11982,6 +12403,10 @@
 /obj/structure/bed/chair/sofa/corsat/verticaltop,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_n)
+"Wg" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/adminbreakroom)
 "Wh" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security,
@@ -12041,6 +12466,10 @@
 	},
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_nw)
+"Wv" = (
+/obj/structure/window/framed/mainship/gray,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/laundromat)
 "Ww" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -12082,7 +12511,7 @@
 /area/rocinante_Base/ground/base_n)
 "WD" = (
 /turf/open/floor/mainship/red/full,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "WF" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 10
@@ -12103,7 +12532,7 @@
 "WJ" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/red,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "WK" = (
 /obj/machinery/computer/rdservercontrol,
 /turf/open/floor/mainship/sterile/purple/side{
@@ -12149,6 +12578,14 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_e)
+"WT" = (
+/turf/closed/mineral{
+	color = "#c2e4ff"
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
+"WU" = (
+/turf/open/floor/mainship/red,
+/area/rocinante_Base/surface/building/tramstation_cent)
 "WW" = (
 /obj/structure/bed/chair/alt{
 	dir = 1
@@ -12192,6 +12629,11 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating,
 /area/rocinante_Base/ground/base_s)
+"Xd" = (
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/rocinante_Base/surface/building/administration)
 "Xe" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
@@ -12202,7 +12644,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Xg" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/silver,
@@ -12228,6 +12670,11 @@
 	},
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_e)
+"Xl" = (
+/turf/open/floor/mainship/red{
+	dir = 10
+	},
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Xm" = (
 /obj/effect/attach_point/weapon/dropship1{
 	dir = 8;
@@ -12259,7 +12706,7 @@
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "Xr" = (
 /obj/structure/barricade/metal,
 /turf/open/floor/mainship/mono,
@@ -12272,11 +12719,16 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/administration)
 "Xu" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_cent)
+"Xv" = (
+/turf/open/floor/mainship/red{
+	dir = 6
+	},
+/area/rocinante_Base/surface/building/tramstation_cent)
 "Xw" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/silver{
@@ -12338,7 +12790,7 @@
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/laundromat)
 "XL" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/rocinante_Base/ground/base_n)
@@ -12347,7 +12799,7 @@
 /obj/structure/rack,
 /obj/effect/decal/warning_stripes/box,
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "XN" = (
 /obj/structure/platform/rockcliff{
 	dir = 4
@@ -12445,7 +12897,7 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Yf" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/emails,
@@ -12465,6 +12917,12 @@
 /obj/structure/crystal,
 /turf/open/ground/grasspatch,
 /area/rocinante_Base/ground/base_cent)
+"Yi" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/rocinante_Base/surface/building/administration)
 "Yj" = (
 /obj/structure/sink/bathroom{
 	dir = 8
@@ -12528,6 +12986,10 @@
 /obj/structure/largecrate,
 /turf/open/floor/mainship/mono,
 /area/rocinante_Base/ground/base_ne)
+"Yv" = (
+/obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Yw" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
@@ -12543,7 +13005,13 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/tramstation_cent)
+"Yz" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/rocinante_Base/surface/building/tramstation_cent)
 "YA" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/silver/corner,
@@ -12554,6 +13022,11 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_Base/ground/base_s)
+"YC" = (
+/turf/open/floor/mainship/red{
+	dir = 9
+	},
+/area/rocinante_Base/surface/building/tramstation_cent)
 "YD" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grasspatch,
@@ -12620,6 +13093,11 @@
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_Base/ground/base_cent)
+"YP" = (
+/turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/rocinante_Base/surface/building/administration)
 "YQ" = (
 /obj/structure/prop/mainship/sensor_computer3,
 /turf/open/floor/mainship/sterile/dark,
@@ -12642,10 +13120,15 @@
 /obj/structure/somcas/wingtip/wing6,
 /turf/open/floor/plating,
 /area/rocinante_Base/ground/base_s)
+"YW" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer3/laptop,
+/turf/open/floor/mainship/mono,
+/area/rocinante_Base/surface/building/administration)
 "YX" = (
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship/black,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "YY" = (
 /obj/structure/prop/gau_ammo,
 /turf/open/floor/mainship/black{
@@ -12708,18 +13191,15 @@
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
 "Zk" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
 /area/rocinante_Base/ground/base_sw)
 "Zl" = (
-/obj/structure/bedsheetbin,
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
-/area/rocinante_Base/ground/base_n)
+/turf/closed/wall/mainship/gray,
+/area/rocinante_Base/surface/building/laundromat)
 "Zm" = (
 /obj/structure/bed/chair/pew{
 	dir = 10
@@ -12743,7 +13223,12 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/rocinante_Base/ground/base_cent)
+/area/rocinante_Base/surface/building/vehicle_garage)
+"Zq" = (
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/rocinante_Base/surface/building/tramstation_cent)
 "Zr" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
@@ -12816,6 +13301,14 @@
 	},
 /turf/open/floor/plating,
 /area/rocinante_Base/ground/base_cent)
+"ZI" = (
+/obj/structure/cable{
+	layer = 1.99
+	},
+/turf/open/floor/mainship/red{
+	dir = 4
+	},
+/area/rocinante_Base/surface/building/adminbreakroom)
 "ZJ" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857";
@@ -12831,7 +13324,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/white,
-/area/rocinante_Base/ground/base_n)
+/area/rocinante_Base/surface/building/administration)
 "ZL" = (
 /obj/structure/bed/chair/alt{
 	dir = 1
@@ -12888,11 +13381,8 @@
 /turf/open/floor/wood,
 /area/rocinante_Base/ground/base_n)
 "ZV" = (
-/obj/structure/cable{
-	layer = 1.99
-	},
-/turf/open/floor/mainship/red/full,
-/area/rocinante_Base/ground/base_cent)
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_Base/surface/building/vehicle_garage)
 "ZW" = (
 /obj/effect/decal/siding,
 /obj/structure/bed/chair/alt,
@@ -24214,15 +24704,15 @@ MR
 MR
 MR
 MR
-ph
-Vf
-Vf
+kd
+dI
+dI
 cn
-iO
-iO
+VX
+VX
 Rg
-Cz
-SI
+Lb
+dI
 lD
 lD
 rz
@@ -24359,22 +24849,22 @@ MB
 MB
 MB
 bN
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
+dI
+dI
+dI
+dI
+dI
+dI
+dI
+dI
+dI
 Ey
 mI
 yr
 Mc
 Qi
 Jx
-SI
+dI
 lD
 lD
 rz
@@ -24511,21 +25001,21 @@ zE
 Fi
 MB
 bN
-XO
-Yc
+Xt
+KA
 Um
 tq
 ls
-yF
+we
 qH
 sb
 UB
-us
+Va
 eZ
-MF
+aZ
 iZ
 TF
-bP
+HI
 Xt
 lD
 lD
@@ -24663,23 +25153,23 @@ An
 du
 Fi
 MB
-Vf
-us
-MF
-MF
-MF
-MF
-bP
-Vf
-Vf
-Vf
+dI
+Va
+aZ
+aZ
+aZ
+aZ
+HI
+dI
+dI
+dI
 tJ
-JH
+uS
 Qg
-Vf
-Vf
-SI
-SI
+dI
+dI
+dI
+dI
 lD
 rz
 rz
@@ -24815,23 +25305,23 @@ An
 du
 lu
 MR
-Vf
-Vf
-xd
+dI
+dI
+Kc
 qx
-Vf
-xd
+dI
+Kc
 qx
-Vf
-IP
-ZQ
+dI
+SV
+pP
 To
-ZQ
+pP
 Ic
 To
 aE
 Bb
-SI
+dI
 lD
 rz
 rz
@@ -24968,21 +25458,21 @@ Cu
 HH
 MR
 MR
-Vf
+dI
 kG
-JH
-Vf
+uS
+dI
 kG
-JH
-Vf
+uS
+dI
 cA
 uE
 uE
 uE
 tz
 uE
-lj
-Wl
+PB
+Rb
 VX
 lD
 rz
@@ -25120,22 +25610,22 @@ bN
 bN
 MR
 MR
-Vf
+dI
 OO
 uX
-Vf
+dI
 OO
 uX
-Vf
+dI
 UH
-ar
-ar
-JH
+SD
+SD
+uS
 yf
 uE
-Wf
+xs
 Nv
-SI
+dI
 lD
 rz
 rz
@@ -25272,22 +25762,22 @@ bN
 MR
 MR
 MR
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
+dI
+dI
+dI
+dI
+dI
+dI
+dI
 cA
-HA
-CR
-QE
+Uh
+YW
+Gz
 vH
 uE
-JH
-Wl
-SI
+uS
+Rb
+dI
 lD
 rz
 rz
@@ -25425,20 +25915,20 @@ MR
 MR
 MB
 MB
-Vf
+dI
 pM
 fu
-ZQ
+pP
 VZ
-Cz
+Lb
 cA
-HA
+Uh
 Qe
-MM
+BV
 Th
 uE
-JH
-Wl
+uS
+Rb
 hi
 lD
 rz
@@ -25577,21 +26067,21 @@ MR
 MR
 MB
 MB
-Vf
-vV
-CR
-JH
-ro
-Vf
+dI
+Yi
+YW
+uS
+Rb
+dI
 cA
-HA
-CR
-SM
+Uh
+YW
+UJ
 gb
 uE
-JH
-Wl
-SI
+uS
+Rb
+dI
 lD
 Kj
 Kj
@@ -25720,30 +26210,30 @@ MB
 MB
 mp
 mp
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
+dI
+dI
+dI
+dI
+dI
+dI
+dI
 MB
 MB
-xd
-lo
-JH
-hp
-ro
-Vf
+Kc
+YP
+uS
+iq
+Rb
+dI
 UH
-ar
+SD
 FR
-lj
+PB
 yf
 uE
-Wf
+xs
 Nv
-SI
+dI
 lD
 KB
 MQ
@@ -25872,29 +26362,29 @@ mp
 mp
 mp
 mp
-Vf
+dI
 ZK
 gd
-cr
-IP
+GL
+SV
 sC
-Vf
-Vf
-Vf
-Vf
+dI
+dI
+dI
+dI
 rl
 Gv
 hx
-Em
+Cp
 Tg
 cA
-JH
-JH
-JH
+uS
+uS
+uS
 SP
 tD
 if
-Wl
+Rb
 VX
 lD
 ul
@@ -26024,30 +26514,30 @@ mp
 mp
 mp
 mp
-Vf
-BJ
+dI
+IH
 gd
-Vf
-lo
+dI
+YP
 Ul
 aE
 iy
 sC
-Jn
-lo
-JH
-hs
-ro
+xM
+YP
+uS
+EX
+Rb
 WD
-Yk
-vi
+lg
+Xd
 OG
 uy
 iI
 tz
-Ve
+es
 ap
-SI
+dI
 lD
 dG
 tG
@@ -26176,30 +26666,30 @@ mp
 mp
 mp
 mp
-Vf
-Vf
-Vf
-Vf
-lo
-JH
-hp
-JH
-ro
-JH
-Yk
-vi
-vi
-St
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
+dI
+dI
+dI
+dI
+YP
+uS
+iq
+uS
+Rb
+uS
+lg
+Xd
+Xd
+iS
+dI
+dI
+dI
+dI
+dI
+dI
 wL
-Vf
-SI
-SI
+dI
+dI
+dI
 lD
 rz
 KE
@@ -26328,29 +26818,29 @@ mp
 mp
 mp
 mp
-Vf
+dI
 ZK
 Fx
-Vf
-lo
-au
-vi
-Ri
-ro
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
+dI
+YP
+aN
+Xd
+iH
+Rb
+dI
+dI
+dI
+dI
+dI
+dI
 mp
 mp
 mp
-Vf
-lo
+dI
+YP
 tz
-ro
-SI
+Rb
+dI
 rz
 rz
 KB
@@ -26480,16 +26970,16 @@ mp
 mp
 mp
 mp
-Vf
-BJ
+dI
+IH
 gd
-cr
-Yk
-St
-Vf
-lo
-ro
-Vf
+GL
+lg
+iS
+dI
+YP
+Rb
+dI
 mp
 mp
 mp
@@ -26498,11 +26988,11 @@ mp
 mp
 mp
 mp
-Vf
+dI
 nE
 tz
 tw
-SI
+dI
 rz
 rz
 rz
@@ -26632,16 +27122,16 @@ mp
 mp
 mp
 mp
-Vf
-Vf
-Vf
-Vf
-JH
-kN
-Vf
+dI
+dI
+dI
+dI
+uS
+uP
+dI
 Kl
 rL
-Vf
+dI
 mp
 mp
 mp
@@ -26650,10 +27140,10 @@ GS
 Jt
 kD
 kM
-iO
+VX
 uU
 tz
-ro
+Rb
 VX
 rz
 rz
@@ -26790,10 +27280,10 @@ XL
 JH
 JH
 JH
-Vf
-xd
-xd
-Vf
+dI
+Kc
+Kc
+dI
 mp
 mp
 CZ
@@ -26802,10 +27292,10 @@ MB
 MR
 fs
 kD
-iO
+VX
 Sp
 tz
-ro
+Rb
 VX
 hM
 rz
@@ -26954,10 +27444,10 @@ eg
 bN
 bN
 Jt
-iO
+VX
 Xq
 tz
-ro
+Rb
 VX
 zD
 rz
@@ -27106,11 +27596,11 @@ MB
 MB
 jX
 mp
-Vf
-lo
+dI
+YP
 tz
-ro
-SI
+Rb
+dI
 zD
 MQ
 KB
@@ -27258,11 +27748,11 @@ MB
 MB
 mp
 mp
-Vf
+dI
 nE
 tz
 tw
-SI
+dI
 zD
 vR
 Kj
@@ -27410,11 +27900,11 @@ MB
 MB
 MB
 mp
-Vf
-lo
+dI
+YP
 zr
 uu
-SI
+dI
 bo
 zD
 hM
@@ -27565,8 +28055,8 @@ En
 oB
 oH
 tz
-ro
-SI
+Rb
+dI
 bo
 bo
 rz
@@ -27717,8 +28207,8 @@ En
 HD
 cA
 tz
-ro
-SI
+Rb
+dI
 bo
 bo
 Kj
@@ -27863,21 +28353,21 @@ En
 fs
 MR
 eg
-Vf
-Vf
-Vf
-Vf
-Vf
+dI
+dI
+dI
+dI
+dI
 wL
-Vf
-SI
-SI
-SI
-SI
-SI
-SI
-SI
-SI
+dI
+dI
+dI
+dI
+dI
+dI
+dI
+dI
+dI
 SI
 SI
 SI
@@ -28015,21 +28505,21 @@ En
 Jt
 MB
 MB
-iO
-IP
-ZQ
-ZQ
+VX
+SV
+pP
+pP
 rZ
 Ic
 vY
-xg
-xg
-xg
-xg
-xg
-xg
-bE
-SI
+pP
+pP
+pP
+pP
+pP
+pP
+sC
+dI
 Vn
 Lp
 Lp
@@ -28167,11 +28657,11 @@ En
 jX
 bN
 MB
-iO
-lo
-JH
-JH
-JH
+VX
+YP
+uS
+uS
+uS
 CX
 nz
 BE
@@ -28196,15 +28686,15 @@ bo
 bo
 bo
 bo
-SI
-SI
-SI
-SI
-SI
+qh
+qh
+qh
+qh
+qh
 TQ
 TQ
 nW
-SI
+qh
 bo
 bo
 bo
@@ -28319,13 +28809,13 @@ En
 bN
 MB
 YD
-Vf
-Yk
-vi
-vi
+dI
+lg
+Xd
+Xd
 Rx
-dI
-dI
+lm
+lm
 lm
 lm
 Hr
@@ -28333,7 +28823,7 @@ PI
 lm
 lm
 QJ
-ZV
+HD
 aO
 lD
 rX
@@ -28348,15 +28838,15 @@ bo
 bo
 bo
 bo
-SI
+qh
 pL
 wR
 Es
 bh
-DO
-DO
+wA
+wA
 nW
-SI
+qh
 bo
 bo
 bo
@@ -28471,21 +28961,21 @@ En
 MB
 MB
 MB
-Vf
-Vf
-Vf
-Vf
-Vf
+dI
+dI
+dI
+dI
+dI
 GC
-Vf
-SI
-SI
-SI
+dI
+zW
+zW
+zW
 aP
-rG
-SI
-SI
-SI
+gL
+zW
+zW
+zW
 aO
 lD
 rX
@@ -28500,15 +28990,15 @@ bo
 bo
 bo
 bo
-SI
+qh
 nF
-DO
+wA
 UV
-SI
+qh
 VB
-DO
+wA
 VB
-SI
+qh
 bo
 bo
 bo
@@ -28522,11 +29012,11 @@ SI
 bo
 bo
 bo
-SI
-aV
-aV
-fJ
-fJ
+qh
+sn
+sn
+qh
+qh
 LD
 xT
 MV
@@ -28623,21 +29113,21 @@ En
 MB
 MB
 MB
-Vf
+dI
 sK
 xC
 lF
-od
+Dd
 mu
 eF
-SI
+zW
 bL
 jn
 jn
 kQ
-xg
-bE
-SI
+qA
+Ad
+zW
 aO
 hu
 rX
@@ -28652,15 +29142,15 @@ rz
 rz
 bo
 bo
-SI
+qh
 TD
-DO
+wA
 YX
-SI
-SI
-DO
-SI
-SI
+qh
+qh
+wA
+qh
+qh
 bo
 bo
 bo
@@ -28671,14 +29161,14 @@ Gi
 SI
 SI
 SI
-SI
-SI
-SI
-SI
+qh
+qh
+qh
+qh
 RR
 wR
-is
-fJ
+Es
+qh
 LD
 xT
 MV
@@ -28775,21 +29265,21 @@ En
 MB
 MB
 ck
-Vf
-lo
+dI
+YP
 pN
 SU
 UA
-JH
+uS
 WJ
-SI
+zW
 NR
 aP
 TZ
-RZ
-tI
-Wl
-SI
+Wg
+vm
+Sz
+zW
 aO
 lD
 rX
@@ -28804,15 +29294,15 @@ mL
 rz
 bo
 bo
-SI
+qh
 TD
-Kz
+ml
 Dn
-SI
+qh
 XM
-DO
+wA
 tf
-SI
+qh
 bo
 bo
 bo
@@ -28823,14 +29313,14 @@ bo
 bo
 bo
 bo
-SI
-Ub
-Xy
-Qf
+qh
+sN
+Vi
+qJ
 SJ
-DO
-wm
-fJ
+wA
+UV
+qh
 LD
 xT
 MV
@@ -28927,21 +29417,21 @@ En
 MB
 YD
 An
-Vf
-lo
+dI
+YP
 hS
-ar
+SD
 uE
-JH
-ro
-SI
+uS
+Rb
+zW
 GE
 sY
-RZ
+Wg
 TZ
-DO
+eO
 yo
-SI
+zW
 Uw
 Co
 Co
@@ -28956,18 +29446,18 @@ ht
 rz
 bo
 bo
-SI
+qh
 UI
-DO
+wA
 Dn
-SI
+qh
 XM
-DO
+wA
 mg
-SI
-SI
-SI
-SI
+qh
+qh
+qh
+qh
 bo
 bo
 bo
@@ -28975,14 +29465,14 @@ bo
 bo
 bo
 bo
-SI
-nc
-Xy
-SI
+qh
+ce
+Vi
+qh
 SJ
-DO
-wm
-aS
+wA
+UV
+Yv
 LD
 xT
 MV
@@ -29079,21 +29569,21 @@ En
 MB
 MB
 An
-Vf
+dI
 kt
-dI
-dI
-dI
-vi
-St
-SI
+lm
+lm
+lm
+Xd
+iS
+zW
 Gh
-lm
-lm
-zs
-zs
-wH
-SI
+ZI
+ZI
+ol
+ol
+rn
+zW
 bo
 bo
 rz
@@ -29108,33 +29598,33 @@ ht
 bo
 bo
 bo
-SI
+qh
 ri
-DO
+wA
 JY
-SI
-SI
-DO
-DO
-SI
+qh
+qh
+wA
+wA
+qh
 Qh
 NM
-SI
-SI
-SI
+qh
+qh
+qh
 bo
 bo
 bo
 bo
 bo
-SI
-SI
-SI
-SI
+qh
+qh
+qh
+qh
 SJ
-DO
-wm
-ll
+wA
+UV
+wA
 LD
 xT
 MV
@@ -29231,21 +29721,21 @@ En
 MB
 MB
 Do
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
-Vf
-SI
-SI
-SI
+dI
+dI
+dI
+dI
+dI
+dI
+dI
+zW
+zW
+zW
 aP
-rG
-SI
-SI
-SI
+gL
+zW
+zW
+zW
 SI
 SI
 bo
@@ -29260,33 +29750,33 @@ ht
 bo
 bo
 bo
-SI
+qh
 TW
-DO
+wA
 UV
-SI
+qh
 XM
-DO
-DO
-SI
+wA
+wA
+qh
 SJ
 ov
 wR
 NM
-SI
-SI
-SI
-SI
-SI
-SI
-SI
-SI
+qh
+qh
+qh
+qh
+qh
+qh
+qh
+qh
 RR
 wR
 Fp
-DO
-wm
-fJ
+wA
+UV
+qh
 LD
 xT
 MV
@@ -29384,19 +29874,19 @@ MB
 MB
 MB
 MB
-Vf
-IP
+Zl
+tA
 HW
-ZQ
+ab
 HW
 VE
 gy
-YL
-SI
+Qx
+zW
 Hu
-xg
-bE
-Qf
+qA
+Ad
+cP
 Xy
 Ub
 SI
@@ -29412,20 +29902,20 @@ ht
 rz
 bo
 bo
-SI
-SI
+qh
+qh
 Bf
 nY
-SI
+qh
 XM
-DO
-DO
-SI
+wA
+wA
+qh
 Gt
 xX
 VM
 yE
-SI
+qh
 na
 wR
 EL
@@ -29434,11 +29924,11 @@ xa
 wR
 wR
 Fp
-DO
-DO
-DO
-wm
-fJ
+wA
+wA
+wA
+UV
+qh
 LD
 xT
 MV
@@ -29536,19 +30026,19 @@ Vf
 YD
 MB
 MB
-xd
-lo
+Wv
+hX
 tL
-JH
+eD
 tL
-yG
-RZ
-tH
-SI
+oy
+xj
+Kq
+zW
 UZ
-DO
-Wl
-SI
+eO
+Sz
+zW
 yU
 nc
 SI
@@ -29565,21 +30055,21 @@ rz
 bo
 bo
 bo
-SI
-DO
+qh
+wA
 Zp
-SI
-SI
-SI
-pW
-SI
-aV
-SI
+qh
+qh
+qh
+aM
+qh
+sn
+qh
 zS
-SI
-SI
+qh
+qh
 Zj
-tI
+jK
 Mv
 CN
 Ye
@@ -29590,7 +30080,7 @@ VM
 VM
 Ms
 Du
-fJ
+qh
 LD
 xT
 MV
@@ -29688,19 +30178,19 @@ Vf
 Vf
 MB
 MB
-Vf
-lo
+Zl
+hX
 tL
-JH
+eD
 tL
 cQ
-DO
+eD
 ep
-SI
+zW
 UZ
-DO
-Wl
-SI
+eO
+Sz
+zW
 SI
 SI
 SI
@@ -29717,7 +30207,7 @@ rz
 rz
 bo
 bo
-SI
+qh
 RR
 wR
 wR
@@ -29731,18 +30221,18 @@ wR
 Es
 DB
 SJ
-DO
+wA
 ov
 Kv
 GA
 UV
-SI
-SI
-SI
-SI
-SI
-fJ
-fJ
+qh
+qh
+qh
+qh
+qh
+qh
+qh
 LD
 xT
 MV
@@ -29840,19 +30330,19 @@ vr
 Vf
 MB
 jX
-xd
-lo
-JH
-JH
-JH
-JH
-DO
-bd
-xg
+Wv
+hX
+eD
+eD
+eD
+eD
+eD
+pi
+qA
 qX
-DO
-Wl
-Qf
+eO
+Sz
+cP
 Xy
 Ub
 SI
@@ -29869,9 +30359,9 @@ rz
 rz
 bo
 bo
-SI
+qh
 SJ
-DO
+wA
 tM
 VM
 VM
@@ -29881,7 +30371,7 @@ oz
 tM
 VM
 nY
-SI
+qh
 Bf
 VM
 VM
@@ -29892,7 +30382,7 @@ Ds
 kO
 VO
 dD
-SI
+qh
 Ek
 Ek
 LD
@@ -29992,19 +30482,19 @@ yG
 Vf
 MB
 bN
-Vf
-lo
-JH
-JH
-Cz
+Zl
+hX
+eD
+eD
+fE
 ip
-DO
+eD
 Kz
-SI
+zW
 aP
-DO
-Wl
-SI
+eO
+Sz
+zW
 Xy
 nc
 SI
@@ -30021,30 +30511,30 @@ Lp
 Lp
 mL
 bo
-SI
+qh
 SJ
-DO
+wA
 UV
-SI
-SI
-SI
-SI
+qh
+qh
+qh
+qh
 SJ
 UV
-SI
-SI
-SI
-aV
-aV
-aV
-SI
+qh
+qh
+qh
+sn
+sn
+sn
+qh
 SJ
-DO
-DO
-DO
-DO
+wA
+wA
+wA
+wA
 Ii
-SI
+qh
 wE
 wE
 Zd
@@ -30144,19 +30634,19 @@ JH
 Vf
 bN
 Jt
-Vf
+Zl
 vV
-ar
-JH
-uE
-uE
-aP
-qh
-lm
-lm
-zs
-wH
-SI
+xj
+eD
+Pv
+Pv
+Pv
+hh
+ZI
+ZI
+ol
+rn
+zW
 SI
 SI
 SI
@@ -30172,12 +30662,12 @@ rX
 lD
 lD
 ht
-SI
-SI
+qh
+qh
 SJ
 Xf
 UV
-SI
+qh
 RR
 wR
 wR
@@ -30185,18 +30675,18 @@ Fp
 ov
 wR
 Es
-SI
-Vn
-Lp
-mL
-SI
+qh
+yO
+DS
+PT
+qh
 SJ
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
 UV
-aV
+sn
 wE
 wE
 Zd
@@ -30296,19 +30786,19 @@ JH
 Vf
 bN
 MR
-Vf
-Yk
-XK
-Ri
-hh
 Zl
+tr
+XK
+va
+hh
+ke
 ke
 ne
-SI
-DO
-rG
-SI
-SI
+zW
+eO
+gL
+zW
+zW
 bo
 bo
 bo
@@ -30330,25 +30820,25 @@ Fp
 BH
 UV
 vv
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
 TH
-lD
+ZV
 UV
-SI
-aO
-lD
-ht
-SI
+qh
+iO
+ZV
+gn
+qh
 SJ
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
 UV
-aV
+sn
 wE
 wE
 Zd
@@ -30448,15 +30938,15 @@ vr
 Vf
 fs
 bG
-Vf
-Vf
-Vf
-lo
+Zl
+Zl
+Zl
+hX
 Em
-Vf
-SI
-SI
-SI
+Zl
+Zl
+Zl
+zW
 rz
 rz
 rz
@@ -30477,30 +30967,30 @@ lD
 lD
 ht
 jv
-DO
-DO
+wA
+wA
 BH
-DO
+wA
 Uz
-lD
-lD
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
 Ko
-lD
+ZV
 ha
-lD
-ht
-SI
+ZV
+gn
+qh
 SJ
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
 UV
-SI
+qh
 wE
 wE
 Zd
@@ -30602,10 +31092,10 @@ bG
 kM
 mp
 mp
-Vf
-lo
+Zl
+hX
 Em
-Vf
+Zl
 bo
 bo
 bo
@@ -30629,30 +31119,30 @@ lD
 lD
 ht
 jv
-DO
-DO
-DO
-DO
+wA
+wA
+wA
+wA
 Uz
-lD
-lD
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
 Ko
-lD
+ZV
 ha
-lD
-ht
-SI
+ZV
+gn
+qh
 SJ
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
 UV
-SI
+qh
 vj
 vj
 Zd
@@ -30754,10 +31244,10 @@ mp
 mp
 mp
 mp
-Vf
-Yk
+Zl
+tr
 nD
-Vf
+Zl
 bo
 bo
 bo
@@ -30783,28 +31273,28 @@ ht
 jv
 VM
 oz
-DO
+wA
 UV
 vv
-lD
-lD
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
 UV
-SI
-aO
-lD
-ht
-SI
+qh
+iO
+ZV
+gn
+qh
 SJ
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
 UV
-SI
+qh
 vj
 vj
 hD
@@ -30906,10 +31396,10 @@ mp
 mp
 mp
 mp
-Vf
-JH
+Zl
+eD
 vf
-Vf
+Zl
 bo
 bo
 bo
@@ -30932,12 +31422,12 @@ rX
 lD
 lD
 ht
-SI
-SI
+qh
+qh
 SJ
-DO
+wA
 UV
-SI
+qh
 Bf
 CL
 CL
@@ -30945,18 +31435,18 @@ CL
 CL
 hQ
 UV
-SI
-aO
-lD
-ht
-SI
+qh
+iO
+ZV
+gn
+qh
 SJ
-lD
+ZV
 gW
 gW
-lD
+ZV
 UV
-SI
+qh
 vj
 vj
 Zd
@@ -31055,19 +31545,19 @@ JH
 Vf
 Vf
 mp
-IP
-ZQ
-ZQ
-ZQ
-ZQ
+YC
+Zq
+Zq
+Zq
+Zq
 od
-ZQ
-xg
-xg
-xg
-xg
-bE
-SI
+Zq
+Zq
+Zq
+Zq
+Zq
+je
+AB
 aO
 lD
 lD
@@ -31085,30 +31575,30 @@ Co
 Co
 jo
 bo
-SI
+qh
 SJ
-fO
+iJ
 UV
-SI
-SI
+qh
+qh
 fG
 hE
 Ec
 gr
 le
 UV
-SI
-aO
-lD
-ht
-SI
+qh
+iO
+ZV
+gn
+qh
 Bf
 VM
-lD
-lD
+ZV
+ZV
 VM
 nY
-SI
+qh
 vj
 wE
 Zd
@@ -31214,12 +31704,12 @@ dp
 Wa
 dp
 Wa
-Kc
-Kc
+dp
+dp
 Yy
-DO
-Wl
-SI
+Se
+WU
+AB
 aO
 lD
 lD
@@ -31237,30 +31727,30 @@ WY
 bi
 QM
 bo
-SI
+qh
 ok
 dk
 ov
 wR
 wR
 Fp
-DO
-DO
+wA
+wA
 Ii
 cw
 UV
-SI
-aO
-lD
-ht
-SI
-SI
-SI
-lD
-lD
-SI
-SI
-SI
+qh
+iO
+ZV
+gn
+qh
+qh
+qh
+ZV
+ZV
+qh
+qh
+qh
 wE
 wE
 Zd
@@ -31359,19 +31849,19 @@ XL
 XL
 XL
 XL
-XL
-XL
-wc
+ez
+ez
+pz
 ud
-Tz
+fQ
 ud
-Tz
-pP
+fQ
+ud
 ba
 KX
-DO
-Wl
-aV
+Se
+WU
+bX
 aO
 lD
 lD
@@ -31389,30 +31879,30 @@ Gf
 yk
 Dj
 bo
-SI
+qh
 SJ
 bn
 Oe
 VM
 VM
 oz
-DO
-fO
+wA
+iJ
 UV
 cw
 UV
-SI
-aO
-lD
-XB
-Lp
-Lp
-Lp
+qh
+iO
+ZV
+rW
+DS
+DS
+DS
 Qm
 Qm
-Lp
-Lp
-Lp
+DS
+DS
+DS
 PS
 PS
 qu
@@ -31511,19 +32001,19 @@ hN
 hN
 hN
 hN
-hN
-hN
+Aq
+Aq
 IY
 FZ
-JH
-JH
-JH
-DO
-Lb
+Se
+Se
+Se
+Se
+IY
 KX
-DO
-Wl
-aV
+Se
+WU
+bX
 aO
 lD
 lD
@@ -31541,30 +32031,30 @@ fC
 tF
 sU
 bo
-SI
+qh
 SJ
-Az
+dK
 UV
-SI
-SI
+qh
+qh
 eI
 kC
 Gp
 CN
 le
 UV
-SI
-aO
-lD
-lD
-lD
-lD
-lD
-lD
-lD
-lD
-lD
-lD
+qh
+iO
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
 HX
 HX
 HX
@@ -31663,19 +32153,19 @@ Ft
 Ft
 Ft
 Ft
-Ft
-Ft
+Bd
+Bd
 IY
-Wf
+qf
 pv
-Dy
-Wf
-Xu
-Lb
+Im
+qf
+pv
+IY
 KX
-DO
-Wl
-SI
+Se
+WU
+AB
 aO
 lD
 lD
@@ -31693,11 +32183,11 @@ aV
 aV
 SI
 SI
-SI
+qh
 SJ
-DO
+wA
 UV
-SI
+qh
 wR
 AD
 AD
@@ -31705,18 +32195,18 @@ AD
 AD
 GA
 UV
-SI
-aO
-lD
-EP
-Co
-Co
-Co
+qh
+iO
+ZV
+Hl
+Ho
+Ho
+Ho
 IQ
 IQ
-Co
-Co
-Co
+Ho
+Ho
+Ho
 yh
 nl
 nl
@@ -31815,19 +32305,19 @@ hN
 hN
 hN
 hN
-hN
-hN
+Aq
+Aq
 IY
-JH
-JH
-JH
-JH
-DO
-Lb
+Se
+Se
+Se
+Se
+Se
+IY
 KX
-DO
-Wl
-SI
+Se
+WU
+AB
 aO
 lD
 Ea
@@ -31845,30 +32335,30 @@ mP
 dv
 MC
 nv
-SI
+qh
 SJ
-DO
+wA
 UV
 vv
-lD
-lD
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
 UV
-SI
-aO
-lD
-ht
-SI
-SI
-SI
-lD
-lD
-SI
-SI
-SI
+qh
+iO
+ZV
+gn
+qh
+qh
+qh
+ZV
+ZV
+qh
+qh
+qh
 Zd
 HX
 HX
@@ -31967,19 +32457,19 @@ XL
 XL
 XL
 XL
-XL
-XL
-im
+ez
+ez
+Qc
 Ow
-Tz
+fQ
 JA
-Tz
-wA
+fQ
+JA
 iB
 KX
-DO
-Wl
-aV
+Se
+WU
+bX
 aO
 lD
 lD
@@ -31997,30 +32487,30 @@ FV
 Az
 DO
 Uc
-SI
+qh
 SJ
-DO
-DO
+wA
+wA
 Uz
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
 xK
-lD
+ZV
 Ko
-lD
+ZV
 ha
-lD
-ht
-SI
+ZV
+gn
+qh
 Ns
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
 ix
-SI
+qh
 Zd
 HX
 HX
@@ -32126,12 +32616,12 @@ eL
 Ht
 eL
 Ht
-zW
-zW
+eL
+eL
 bu
-DO
-Wl
-aV
+Se
+WU
+bX
 aO
 lD
 lD
@@ -32149,30 +32639,30 @@ qN
 DO
 GN
 fh
-hj
+TX
 SJ
-DO
-DO
+wA
+wA
 Uz
-lD
-lD
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
 Ko
-lD
+ZV
 ha
-lD
-ht
-SI
+ZV
+gn
+qh
 da
-lD
-lD
+ZV
+ZV
 QP
-lD
+ZV
 UV
-SI
+qh
 wb
 eH
 eH
@@ -32271,19 +32761,19 @@ WZ
 IL
 GB
 Vf
-Of
-JH
-JH
-JH
-JH
-JH
+Yz
+Se
+Se
+Se
+Se
+Se
 jy
-DO
-DO
-DO
-DO
-Wl
-SI
+Se
+Se
+Se
+Se
+WU
+AB
 aO
 lD
 lD
@@ -32301,30 +32791,30 @@ gh
 eJ
 cH
 TC
-SI
+qh
 SJ
-DO
-DO
+wA
+wA
 Uz
-lD
-lD
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
 Ko
-lD
+ZV
 ha
-lD
-ht
+ZV
+gn
 rK
 Pc
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
 Cq
-SI
+qh
 vj
 vj
 vj
@@ -32423,19 +32913,19 @@ hs
 JH
 mk
 Vf
-Of
-JH
-JH
-JH
-JH
-vr
-Cz
+Yz
+Se
+Se
+Se
+Se
 ld
-DO
-By
-zs
-wH
-SI
+Hn
+ld
+Se
+BL
+dC
+Xv
+AB
 Uw
 bB
 Co
@@ -32453,30 +32943,30 @@ RI
 aV
 SI
 SI
-SI
+qh
 Bf
 VM
 nY
 vv
-lD
-lD
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
+ZV
+ZV
 UV
-SI
-aO
-lD
-ht
+qh
+iO
+ZV
+gn
 rK
 bF
-lD
-lD
-lD
-lD
+ZV
+ZV
+ZV
+ZV
 UV
-SI
+qh
 vj
 vj
 vj
@@ -32577,17 +33067,17 @@ io
 Vf
 eS
 Gb
-oC
-Ri
-JH
+yC
+MH
+Se
 NG
-Vf
+AB
 ly
-DO
-Wl
-SI
-SI
-SI
+Se
+WU
+AB
+AB
+AB
 DO
 tO
 SI
@@ -32605,11 +33095,11 @@ mF
 kh
 eT
 Aa
-SI
-SI
-DO
+qh
+qh
+wA
 Fa
-SI
+qh
 VM
 VM
 VM
@@ -32617,18 +33107,18 @@ VM
 VM
 VM
 nY
-SI
-Uw
-Co
-jo
-SI
+qh
+Cm
+Ho
+Sd
+qh
 Bf
 VM
 xp
 cR
 VM
 gw
-SI
+qh
 vj
 vj
 vj
@@ -32757,30 +33247,30 @@ qN
 DO
 DO
 fh
-SI
-PV
-xg
-bE
-SI
-SI
-SI
-SI
-SI
-SI
-SI
-SI
-SI
-bo
-bo
-bo
-SI
-SI
-SI
-SI
-SI
-SI
-SI
-SI
+qh
+om
+pV
+Xl
+qh
+qh
+qh
+qh
+qh
+qh
+qh
+qh
+qh
+WT
+WT
+WT
+qh
+qh
+qh
+qh
+qh
+qh
+qh
+qh
 vj
 vj
 vj

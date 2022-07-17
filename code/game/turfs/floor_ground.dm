@@ -96,6 +96,9 @@
 	barefootstep = FOOTSTEP_GRASS
 	mediumxenofootstep = FOOTSTEP_GRASS
 
+/turf/open/ground/grasspatch/grassyellow
+	color = "#ffb682"
+
 /turf/open/ground/grass/grass2
 	icon_state = "grass2"
 
@@ -133,7 +136,7 @@
 	icon_state = "mars_cave"
 
 /turf/open/floor/plating/ground/mars/random/cave/darker
-	color = "#5e5e52"
+	color = "#948a7c"
 
 /turf/open/floor/plating/ground/mars/random/cave/rock
 	name = "cave"
