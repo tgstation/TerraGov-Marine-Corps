@@ -1424,3 +1424,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /obj/structure/xeno/evotower/get_xeno_hivenumber()
 	return hivenumber
+
+/mob/living/spiderling/get_xeno_hivenumber()
+	return hivenumber

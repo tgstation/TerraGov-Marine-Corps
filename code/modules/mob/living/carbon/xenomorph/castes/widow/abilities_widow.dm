@@ -115,3 +115,70 @@
 // *********** Spawn Spiderling
 // ***************************************
 
+/mob/living/spiderling
+	name = "Spiderling"
+	flags_pass = PASSXENO
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "facehugger"
+	/// Which hive this spiderling belongs to
+	var/hivenumber = XENO_HIVE_NORMAL
+
+/mob/living/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/spidermother)
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/spiderling, spidermother)
+	hivenumber = spidermother.hivenumber
+
+/datum/action/xeno_action/create_spiderling
+
+/datum/action/xeno_action/create_spiderling/action_activate()
+	. = ..()
+	new /mob/living/spiderling(owner.loc, owner)
+
+/datum/ai_behavior/spiderling
+	target_distance = 1
+	base_action = ESCORTING_ATOM
+
+/datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
+	. = ..()
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/go_to_target)
+
+/datum/ai_behavior/spiderling/proc/go_to_target(source, mob/living/target)
+	SIGNAL_HANDLER
+	change_action(MOVING_TO_ATOM, target)
+
+///Signal handler to try to attack our target
+/datum/ai_behavior/spiderling/proc/attack_target(datum/soure, atom/attacked)
+	SIGNAL_HANDLER
+	if(world.time < mob_parent.next_move)
+		return
+	if(!attacked)
+		attacked = atom_to_walk_to
+	if(get_dist(attacked, mob_parent) > 1)
+		return
+	mob_parent.face_atom(attacked)
+	mob_parent.UnarmedAttack(attacked, TRUE)
+
+/datum/ai_behavior/spiderling/look_for_new_state()
+	switch(current_action)
+		if(MOVING_TO_ATOM)
+			if(escorted_atom && get_dist(escorted_atom, mob_parent) > 3)
+				change_action(ESCORTING_ATOM, escorted_atom)
+				return
+
+/datum/ai_behavior/spiderling/register_action_signals(action_type)
+	if(action_type == MOVING_TO_ATOM)
+		RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, .proc/attack_target)
+		if(ishuman(atom_to_walk_to))
+			RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, /datum/ai_behavior.proc/change_action, ESCORTING_ATOM, escorted_atom)
+			return
+
+	return ..()
+
+/datum/ai_behavior/spiderling/unregister_action_signals(action_type)
+	if(action_type == MOVING_TO_ATOM)
+		UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
+		if(ishuman(atom_to_walk_to))
+			UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
+			return
+
+	return ..()

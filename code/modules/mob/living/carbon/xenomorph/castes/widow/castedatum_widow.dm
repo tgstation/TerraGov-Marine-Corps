@@ -171,5 +171,6 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide,
+		/datum/action/xeno_action/create_spiderling,
 		//primo ability goes here
 	)

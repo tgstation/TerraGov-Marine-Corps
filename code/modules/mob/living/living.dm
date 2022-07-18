@@ -347,6 +347,8 @@
 				mob_swap = TRUE
 			else if((mob_size >= MOB_SIZE_XENO || mob_size > L.mob_size) && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones. Xenos can always shove xenos
 				mob_swap = TRUE
+			else if(get_xeno_hivenumber() == L.get_xeno_hivenumber() && L.flags_pass & PASSXENO)
+				mob_swap = TRUE
 			if(mob_swap)
 				//switch our position with L
 				if(loc && !loc.Adjacent(L.loc))
