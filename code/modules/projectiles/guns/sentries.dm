@@ -85,7 +85,7 @@
 	desc = "The Centurion Omnidirectional Point-defense Energy sentry is a man portal automated weapon system utilised by the SOM. It is activated in hand, then thrown into place before it deploys, and it's ground hugging profile makes it a difficult target to accurately hit. Equipped with a compact volkite weapon system, and a recharging battery to allow for prolonged use, but can take other volkite cells in a pinch."
 	icon_state = "cope"
 	icon = 'icons/Marine/sentry.dmi'
-	max_integrity = 225
+	max_integrity = 200
 	integrity_failure = 50
 	deploy_time = 1 SECONDS
 	undeploy_time = 1 SECONDS
