@@ -85,7 +85,7 @@
 	desc = "The Centurion Omnidirectional Point-defense Energy sentry is a man portal automated weapon system utilised by the SOM. It is activated in hand, then thrown into place before it deploys, and it's ground hugging profile makes it a difficult target to accurately hit. Equipped with a compact volkite weapon system, and a recharging battery to allow for prolonged use, but can take other volkite cells in a pinch."
 	icon_state = "cope"
 	icon = 'icons/Marine/sentry.dmi'
-	max_integrity = 200
+	max_integrity = 225
 	integrity_failure = 50
 	deploy_time = 1 SECONDS
 	undeploy_time = 1 SECONDS
@@ -153,6 +153,10 @@
 
 ///Deploys the weapon into a sentry after activation
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/prime()
+	if(!istype(loc, /turf)) //no deploying out of bags or in hand
+		reset()
+		return
+
 	var/obj/deployed_machine
 
 	deployed_machine = new deployable_item(loc, src, usr)//Creates new structure or machine at 'deploy' location and passes on 'item_to_deploy'
