@@ -357,9 +357,6 @@
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours
 
-	// Widow vars
-	var/burrowed = 0 // 0 - burrowed, 1 - unburrowed
-
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0

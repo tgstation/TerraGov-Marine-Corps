@@ -47,7 +47,7 @@
 		/datum/action/xeno_action/activable/psydrain,
 		/datum/action/xeno_action/xenohide, // might remove later idk, depends on balance
 		/datum/action/xeno_action/activable/web_spit,
-		/datum/action/xeno_action/activable/toggle_burrow,
+		/datum/action/xeno_action/activable/burrow,
 		/datum/action/xeno_action/activable/leash_ball,
 	)
 
