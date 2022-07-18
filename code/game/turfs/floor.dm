@@ -512,6 +512,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return
 
+		flick("floorweld", src)
 		to_chat(user, span_warning("You fix some dents on the broken plating."))
 		playsound(src, 'sound/items/welder.ogg', 25, 1)
 		icon_state = "plating"

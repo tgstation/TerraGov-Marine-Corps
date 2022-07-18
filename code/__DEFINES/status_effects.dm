@@ -49,7 +49,7 @@
 
 #define STATUS_EFFECT_ADMINSLEEP /datum/status_effect/incapacitating/adminsleep //the affected is admin slept
 
-#define STATUS_EFFECT_CONFUSED /datum/status_effect/confused // random direction chosen when trying to move
+#define STATUS_EFFECT_CONFUSED /datum/status_effect/incapacitating/confused // random direction chosen when trying to move
 
 #define STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF /datum/status_effect/stacking/gun_skill/accuracy/debuff // Decreases the accuracy of the mob
 

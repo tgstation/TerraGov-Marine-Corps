@@ -43,6 +43,7 @@
 			/obj/item/weapon/gun/rifle/chambered = -1,
 			/obj/item/ammo_magazine/rifle/chamberedrifle = -1,
 			/obj/item/weapon/gun/shotgun/pump/bolt = -1,
+			/obj/item/ammo_magazine/rifle/boltclip = -1,
 			/obj/item/ammo_magazine/rifle/bolt = -1,
 			/obj/item/weapon/gun/shotgun/double/martini = -1,
 			/obj/item/ammo_magazine/rifle/martini = -1,
@@ -570,6 +571,7 @@
 	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
 		"Surplus Special Equipment" = list(
+			/obj/item/pinpointer = 1,
 			/obj/item/beacon/supply_beacon = 1,
 			/obj/item/ammo_magazine/rifle/autosniper = 3,
 			/obj/item/ammo_magazine/rifle/tx8 = 3,
@@ -838,7 +840,6 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 30,
 			/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20,
-			/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 		),
 		"Heal Pack" = list(
 			/obj/item/stack/medical/heal_pack/gauze = -1,
@@ -933,35 +934,6 @@
 			R.product_name += blood_type? " [blood_type]" : ""
 			temp_list -= R.product_path
 			if(!temp_list.len) break
-
-/obj/machinery/vending/marine_medic
-	name = "\improper TerraGovTech Medic Vendor"
-	desc = "A marine medic equipment vendor"
-	product_ads = "They were gonna die anyway.;Let's get space drugged!"
-	req_access = list(ACCESS_MARINE_MEDPREP)
-	icon_state = "corpsmanvendor"
-	icon_deny = "corpsmanvendor-deny"
-	wrenchable = FALSE
-
-	products = list(
-		/obj/item/clothing/under/marine/corpsman = 4,
-		/obj/item/clothing/head/modular/marine/m10x = 4,
-		/obj/item/storage/backpack/marine/corpsman = 4,
-		/obj/item/storage/backpack/marine/satchel/corpsman = 4,
-		/obj/item/encryptionkey/med = 4,
-		/obj/item/bodybag/cryobag = 4,
-		/obj/item/healthanalyzer = 4,
-		/obj/item/clothing/glasses/hud/health = 4,
-		/obj/item/storage/firstaid/regular = 4,
-		/obj/item/storage/firstaid/adv = 8,
-		/obj/item/storage/pouch/magazine/large = 4,
-		/obj/item/storage/pouch/magazine/pistol/large = 4,
-		/obj/item/clothing/mask/gas = 4,
-		/obj/item/storage/pouch/pistol = 4,
-	)
-
-/obj/machinery/vending/marine_medic/rebel
-	req_access = list(ACCESS_MARINE_MEDPREP_REBEL)
 
 /obj/machinery/vending/shared_vending/marine_engi
 	name = "\improper TerraGovTech Engineer System Vendor"

@@ -477,7 +477,6 @@
 	L.adjustFireLoss(-0.5, 0)
 	L.adjustToxLoss(-0.5, 0)
 	L.adjustOxyLoss(-0.5, 0)
-	L.AdjustConfused(-10 SECONDS)
 	return ..()
 
 /datum/reagent/consumable/drink/atomicbomb

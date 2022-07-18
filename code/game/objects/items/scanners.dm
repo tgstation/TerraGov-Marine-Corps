@@ -163,7 +163,7 @@ REAGENT SCANNER
 	if(ishuman(patient))
 		var/mob/living/carbon/human/human_patient = patient
 		var/infection_message
-		var/infected
+		var/infected = 0
 		var/internal_bleeding
 
 		var/unknown_implants = 0
@@ -174,16 +174,12 @@ REAGENT SCANNER
 						continue
 					internal_bleeding = TRUE
 					break
-			if(!infected)
-				if(limb.germ_level >= INFECTION_LEVEL_THREE)
-					infection_message = "Subject's [limb.display_name] is in the last stage of infection. < 30u of antibiotics recommended."
-					infected = 2
-				if(limb.germ_level >= INFECTION_LEVEL_ONE && limb.germ_level < INFECTION_LEVEL_THREE)
-					infection_message = "Subject's [limb.display_name] has an infection. Antibiotics recommended."
-					infected = 1
-				if(limb.has_infected_wound())
-					infection_message = "Infected wound detected in subject's [limb.display_name]. Disinfection recommended."
-					infected = 1
+			if(infected < 2 && limb.limb_status & LIMB_NECROTIZED)
+				infection_message = "Subject's [limb.display_name] has necrotized. Surgery required."
+				infected = 2
+			if(infected < 1 && limb.germ_level > INFECTION_LEVEL_ONE)
+				infection_message = "Infection detected in subject's [limb.display_name]. Antibiotics recommended."
+				infected = 1
 
 			if(limb.hidden)
 				unknown_implants++
