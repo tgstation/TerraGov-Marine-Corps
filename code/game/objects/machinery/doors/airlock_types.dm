@@ -683,6 +683,18 @@
 	opacity = FALSE
 	glass = TRUE
 
+/obj/machinery/door/airlock/mainship/marine/handle_weldingtool_overlay(removing = FALSE)
+	if(!removing)
+		if(dir & NORTH|SOUTH)
+			add_overlay(GLOB.welding_sparks_prepdoor)
+		else
+			add_overlay(GLOB.welding_sparks)
+	else
+		if(dir & NORTH|SOUTH)
+			cut_overlay(GLOB.welding_sparks_prepdoor)
+		else
+			cut_overlay(GLOB.welding_sparks)
+
 /obj/machinery/door/airlock/mainship/marine/canterbury //For wallsmoothing
 
 /obj/machinery/door/airlock/mainship/marine/general/sl
