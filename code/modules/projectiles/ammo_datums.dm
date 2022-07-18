@@ -2188,8 +2188,8 @@ datum/ammo/bullet/revolver/tp44
 	accuracy_var_high = 5
 	point_blank_range = 2
 	damage = 20
-	penetration = 15
-	sundering = 3
+	penetration = 10
+	sundering = 2
 	fire_burst_damage = 20
 
 	//inherited, could use some changes
@@ -2220,7 +2220,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 12
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	penetration = 10
+	penetration = 5
 
 /*
 //================================================
