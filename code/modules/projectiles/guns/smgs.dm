@@ -72,6 +72,12 @@
 	upper_akimbo_accuracy = 5
 	lower_akimbo_accuracy = 3
 
+/obj/item/weapon/gun/smg/standard_machinepistol/compact
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/lasersight)
+
+/obj/item/weapon/gun/smg/standard_machinepistol/vgrip //cutest looking gun setup in the game
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip)
+
 //-------------------------------------------------------
 // War is hell. Not glorious.
 
@@ -175,6 +181,8 @@
 	aim_slowdown = 0.15
 	burst_amount = 3
 
+/obj/item/weapon/gun/smg/m25/holstered
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
 
 /obj/item/weapon/gun/smg/m25/elite
 	name = "\improper SMG-25B2 submachinegun"

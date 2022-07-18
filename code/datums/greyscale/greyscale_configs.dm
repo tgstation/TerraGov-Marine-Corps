@@ -19,6 +19,22 @@
 	icon_file='icons/obj/items/chemistry.dmi'
 	json_config = 'code/datums/greyscale/json_configs/pillbottleround.json'
 
+/datum/greyscale_config/pillbottlebubble
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottlebubble.json'
+
+/datum/greyscale_config/pillbottlespire
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottlespire.json'
+
+/datum/greyscale_config/pillbottlecrate
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottlecrate.json'
+
+/datum/greyscale_config/pillbottlebox
+	icon_file='icons/obj/items/chemistry.dmi'
+	json_config = 'code/datums/greyscale/json_configs/pillbottlebox.json'
+
 
 /*
  * MODULAR HELMETS

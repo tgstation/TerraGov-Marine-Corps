@@ -1,6 +1,5 @@
 // Internal surgeries.
 /datum/surgery_step/internal
-	priority = 3
 	can_infect = 1
 	blood_level = 1
 
@@ -12,6 +11,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/internal/remove_embryo
+	priority = 3
 	allowed_tools = list(
 		/obj/item/tool/surgery/hemostat = 100,
 		/obj/item/tool/wirecutters = 75,
@@ -62,6 +62,7 @@
 
 
 /datum/surgery_step/internal/fix_organ
+	priority = 1
 	allowed_tools = list(
 		/obj/item/tool/surgery/surgical_membrane = 100,
 	)

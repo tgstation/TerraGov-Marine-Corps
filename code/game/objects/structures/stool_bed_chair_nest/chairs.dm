@@ -93,12 +93,15 @@
 
 		user.visible_message(span_notice("[user] begins welding down \the [src]."),
 		span_notice("You begin welding down \the [src]."))
+		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
+			cut_overlay(GLOB.welding_sparks)
 			to_chat(user, span_warning("You need to stand still!"))
 			return
 		user.visible_message(span_notice("[user] welds down \the [src]."),
 		span_notice("You weld down \the [src]."))
+		cut_overlay(GLOB.welding_sparks)
 		if(buildstacktype && dropmetal)
 			new buildstacktype(loc, buildstackamount)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
@@ -356,7 +359,9 @@
 		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message(span_warning("[user] begins repairing \the [src]."),
 		span_warning("You begin repairing \the [src]."))
+		add_overlay(GLOB.welding_sparks)
 		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
+			cut_overlay(GLOB.welding_sparks)
 			return
 
 		user.visible_message(span_warning("[user] repairs \the [src]."),

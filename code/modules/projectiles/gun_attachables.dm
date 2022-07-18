@@ -131,6 +131,11 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///Sound played on attach
 	var/attach_sound = 'sound/machines/click.ogg'
 
+	///Replacement for initial icon that allows for the code to work with multiple variants
+	var/base_icon
+	///Assoc list that uses the parents type as a key. type = "new_icon_state". This will change the icon state depending on what type the parent is. If the list is empty, or the parent type is not within, it will have no effect.
+	var/list/variants_by_parent_type = list()
+
 /obj/item/attachable/Initialize()
 	. = ..()
 	AddElement(/datum/element/attachment, slot, icon, .proc/on_attach, .proc/on_detach, .proc/activate, .proc/can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, attach_skill, attach_skill_upper_threshold, attach_sound)
@@ -194,6 +199,12 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 			if(master_gun == living_user.l_hand || master_gun == living_user.r_hand)
 				action_to_update.give_action(living_user)
 
+	//custom attachment icons for specific guns
+	if(length(variants_by_parent_type))
+		for(var/selection in variants_by_parent_type)
+			if(istype(master_gun, selection))
+				icon_state = variants_by_parent_type[selection]
+
 	update_icon()
 
 ///Called when the attachment is detached from something. If the thing is a gun, it returns its stats to what they were before being attached.
@@ -253,6 +264,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		break
 
 	master_gun = null
+	icon_state = initial(icon_state)
 	update_icon()
 
 
@@ -703,8 +715,13 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	zoom_tile_offset = 3
 	deployed_scope_rezoom = TRUE
 
+//all mounted guns with a nest use this
 /obj/item/attachable/scope/unremovable/tl102/nest
-	zoom_tile_offset = 6
+	flags_attach_features = ATTACH_ACTIVATION
+	scope_delay = 2 SECONDS
+	zoom_tile_offset = 7
+	zoom_viewsize = 2
+	deployed_scope_rezoom = FALSE
 
 /obj/item/attachable/scope/activate(mob/living/carbon/user, turn_off)
 	if(turn_off)
@@ -764,6 +781,14 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	user.sync_lighting_plane_alpha()
 	return TRUE
+
+/obj/item/attachable/scope/zoom(mob/living/user, tileoffset, viewsize)
+	. = ..()
+	//Makes the gun zoom align with the attachment, used for projectile procs
+	if(zoom)
+		master_gun.zoom = TRUE
+	else
+		master_gun.zoom = FALSE
 
 /obj/item/attachable/scope/optical/update_remote_sight(mob/living/user)
 	. = ..()
@@ -1623,8 +1648,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		set_gun_user(master_gun.gun_user)
 		overlays += image('icons/Marine/marine-weapons.dmi', src, "active")
 		to_chat(user, span_notice("You start using [src]."))
-	for(var/action_to_update in master_gun.actions)
-		var/datum/action/action = action_to_update
+	for(var/datum/action/action AS in master_gun.actions)
 		action.update_button_icon()
 	return TRUE
 

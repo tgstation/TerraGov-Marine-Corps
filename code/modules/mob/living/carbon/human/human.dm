@@ -6,14 +6,6 @@
 	if(!species)
 		set_species()
 
-	var/datum/reagents/R
-	if(species.species_flags & NO_CHEM_METABOLIZATION)
-		R = new /datum/reagents(0)
-	else
-		R = new /datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
-
 	. = ..()
 
 	GLOB.human_mob_list += src
@@ -916,6 +908,14 @@
 	if(oldspecies)
 		//additional things to change when we're no longer that species
 		oldspecies.post_species_loss(src)
+
+	var/datum/reagents/R
+	if(species.species_flags & NO_CHEM_METABOLIZATION)
+		R = new /datum/reagents(0)
+	else
+		R = new /datum/reagents(1000)
+	reagents = R
+	R.my_atom = src
 
 	species.create_organs(src)
 

@@ -263,8 +263,7 @@
 		W.unequipped(src, SLOT_L_HAND)
 		update_inv_l_hand()
 		//removes item's actions, may be readded once re-equipped to the new slot
-		for(var/X in W.actions)
-			var/datum/action/A = X
+		for(var/datum/action/A AS in W.actions)
 			A.remove_action(src)
 
 	else if(W == r_hand)
@@ -272,8 +271,7 @@
 		W.unequipped(src, SLOT_R_HAND)
 		update_inv_r_hand()
 		//removes item's actions, may be readded once re-equipped to the new slot
-		for(var/X in W.actions)
-			var/datum/action/A = X
+		for(var/datum/action/A AS in W.actions)
 			A.remove_action(src)
 
 	W.screen_loc = null

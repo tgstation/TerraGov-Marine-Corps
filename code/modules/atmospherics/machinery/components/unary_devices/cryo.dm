@@ -10,6 +10,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 	interaction_flags = INTERACT_MACHINE_TGUI
+	can_see_pipes = FALSE
 
 	var/autoeject = FALSE
 	var/release_notice = FALSE
@@ -53,23 +54,18 @@
 		return
 	if(occupant.stat == DEAD)
 		return
-	if(occupant.health > (occupant.maxHealth - 2) && autoeject) //release the patient automatically when at, or near full health
+	if(!occupant.getBruteLoss(TRUE) && !occupant.getFireLoss(TRUE) && !occupant.getCloneLoss() && autoeject) //release the patient automatically when brute and burn are handled on non-robotic limbs
 		go_out(TRUE)
 		return
-	occupant.bodytemperature = 100 //Temp fix for broken atmos
-	occupant.set_stat(UNCONSCIOUS)
-	if(occupant.bodytemperature < T0C)
-		occupant.Paralyze(20 SECONDS)
-		if(occupant.getOxyLoss())
-			occupant.adjustOxyLoss(-1)
+	occupant.bodytemperature = 100 //Atmos is long gone, we'll just set temp directly.
+	occupant.Sleeping(20 SECONDS)
 
-		//severe damage should heal waaay slower without proper chemicals
-		if(occupant.bodytemperature < 225)
-			if (occupant.getToxLoss())
-				occupant.adjustToxLoss(max(-1, -20/occupant.getToxLoss()))
-			var/heal_brute = occupant.getBruteLoss() ? min(1, 20/occupant.getBruteLoss()) : 0
-			var/heal_fire = occupant.getFireLoss() ? min(1, 20/occupant.getFireLoss()) : 0
-			occupant.heal_limb_damage(heal_brute, heal_fire, updating_health = TRUE)
+	//You'll heal slowly just from being in an active pod, but chemicals speed it up.
+	if(occupant.getOxyLoss())
+		occupant.adjustOxyLoss(-1)
+	if (occupant.getToxLoss())
+		occupant.adjustToxLoss(-1)
+	occupant.heal_limb_damage(1, 1, updating_health = TRUE)
 	var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
 	var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
 	var/has_cryo_medicine = has_cryo || has_clonexa
@@ -221,7 +217,7 @@
 	. = ..()
 
 	if(istype(I, /obj/item/reagent_containers/glass))
-		
+
 		for(var/datum/reagent/X in I.reagents.reagent_list)
 			if(X.medbayblacklist)
 				to_chat(user, span_warning("The cryo cell's automatic safety features beep softly, they must have detected a harmful substance in the beaker."))
@@ -236,7 +232,7 @@
 			return
 
 		beaker =  I
-		
+
 
 		var/reagentnames = ""
 
@@ -314,7 +310,6 @@
 	if(M.health > -100 && (M.health < 0 || M.IsSleeping()))
 		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
 	occupant = M
-//	M.metabslow = 1
 	update_icon()
 	return TRUE
 
@@ -439,9 +434,6 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/can_crawl_through()
 	return // can't ventcrawl in or out of cryo.
-
-/obj/machinery/atmospherics/components/unary/cryo_cell/can_see_pipes()
-	return 0 // you can't see the pipe network when inside a cryo cell.
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
 	if(!occupant)

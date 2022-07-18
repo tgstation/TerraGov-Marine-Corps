@@ -1,6 +1,8 @@
 /mob/living/carbon/human/say_mod(input, message_mode, datum/language/language)
 	if(slurring)
 		return "slurs"
+	if(HAS_TRAIT(src, TRAIT_DROOLING))
+		return "drools"
 	else
 		. = ..()
 

@@ -30000,7 +30000,7 @@
 /area/desert_dam/building/medical/garage)
 "cIB" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver/full,
 /turf/open/floor/plating,
 /area/desert_dam/building/medical/garage)
 "cIC" = (
