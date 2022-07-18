@@ -184,6 +184,9 @@
 /obj/item/weapon/gun/smg/m25/holstered
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
 
+/obj/item/weapon/gun/smg/m25/magharness
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/compensator, /obj/item/attachable/gyro)
+
 /obj/item/weapon/gun/smg/m25/elite
 	name = "\improper SMG-25B2 submachinegun"
 	desc = "The RivArms SMG-25 submachinegun, B2 variant. Has an integrated barrel charger. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."

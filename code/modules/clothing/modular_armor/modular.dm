@@ -321,6 +321,9 @@
 /obj/item/clothing/suit/modular/xenonauten/heavy/leader
 	starting_attachments = list(/obj/item/armor_module/module/valkyrie_autodoc, /obj/item/armor_module/storage/general)
 
+/obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
+	starting_attachments = list(/obj/item/armor_module/module/tyr_extra_armor/mark1)
+
 /** Core helmet module */
 /obj/item/clothing/head/modular
 	name = "Jaeger Pattern Helmet"
@@ -805,6 +808,9 @@
 
 /obj/item/clothing/head/modular/marine/m10x/mimir
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1)
+
+/obj/item/clothing/head/modular/marine/m10x/tyr
+	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/tyr_head)
 
 /obj/item/clothing/head/modular/marine/m10x/heavy
 	name = "\improper M10XE pattern marine helmet"
