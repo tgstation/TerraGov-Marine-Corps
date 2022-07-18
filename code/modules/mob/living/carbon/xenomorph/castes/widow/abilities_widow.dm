@@ -24,10 +24,10 @@
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)
 
 // ***************************************
-// *********** Toggle Burrow
+// *********** Burrow
 // ***************************************
 
-/datum/action/xeno_action/activable/toggle_burrow
+/datum/action/xeno_action/activable/burrow
 	name = "Burrow"
 	ability_name = "Burrow"
 	mechanics_text = " Burrow into the ground to hide in plain sight "
@@ -36,19 +36,26 @@
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BURROW
 
-
-/datum/action/xeno_action/toggle_burrow/action_activate()
+/datum/action/xeno_action/activable/burrow/use_ability(atom/A)
+	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	X.burrowed = !X.burrowed
+	to_chat(X, span_xenowarning("We start burrowing into the ground"))
+	if(!do_after(X, 1 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+		return fail_activate()
+	to_chat(X, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
+	X.alpha = 0
+	X.mouse_opacity = 0
+	X.density = FALSE
+	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/un_burrow)
 
-	if(X.burrowed)
-		to_chat(X, span_xenowarning("We start burrowing into the ground"))
+/datum/action/xeno_action/activable/burrow/proc/un_burrow(mob/M)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/X = owner
+	X.alpha = 255
+	X.mouse_opacity = 255
+	X.density = TRUE
+	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
 
-	else
-		to_chat(X, span_xenowarning("We unburrow ourselves"))
-	X.update_icons()
-	add_cooldown()
-	return succeed_activate()
 
 // ***************************************
 // *********** Leash Ball
@@ -107,3 +114,4 @@
 // ***************************************
 // *********** Spawn Spiderling
 // ***************************************
+
