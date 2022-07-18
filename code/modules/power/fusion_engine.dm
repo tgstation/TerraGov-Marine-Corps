@@ -173,13 +173,16 @@
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 			user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
 			span_notice("You start welding [src]'s internal damage."))
+			add_overlay(GLOB.welding_sparks)
 			if(do_after(user, 200, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
 				if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on)
+					cut_overlay(GLOB.welding_sparks)
 					return FALSE
 				playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 				buildstate = FUSION_ENGINE_MEDIUM_DAMAGE
 				user.visible_message(span_notice("[user] welds [src]'s internal damage."),
 				span_notice("You weld [src]'s internal damage."))
+				cut_overlay(GLOB.welding_sparks)
 				update_icon()
 				return TRUE
 		else

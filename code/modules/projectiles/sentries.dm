@@ -458,3 +458,45 @@
 	. = ..()
 	var/obj/item/weapon/gun/internal_gun = internal_item
 	. += image('icons/Marine/sentry.dmi', src, internal_gun.placed_overlay_iconstate, dir = dir)
+
+
+//Throwable turret
+/obj/machinery/deployable/mounted/sentry/cope
+	density = FALSE
+
+/obj/machinery/deployable/mounted/sentry/cope/sentry_start_fire()
+	var/obj/item/weapon/gun/internal_gun = internal_item
+	internal_gun.update_ammo_count() //checks if the battery has recharged enough to fire
+	return ..()
+
+///Dissassembles the device
+/obj/machinery/deployable/mounted/sentry/cope/disassemble(mob/user)
+	var/obj/item/item = internal_item
+	if(CHECK_BITFIELD(item.flags_item, DEPLOYED_NO_PICKUP))
+		to_chat(user, span_notice("[src] is anchored in place and cannot be disassembled."))
+		return
+	operator?.unset_interaction()
+
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attached_item  = internal_item //Item the machine is undeploying
+
+	if(!ishuman(user))
+		return
+	set_on(FALSE)
+	user.balloon_alert(user, "You start disassembling [attached_item]")
+	if(!do_after(user, attached_item.undeploy_time, TRUE, src, BUSY_ICON_BUILD))
+		set_on(TRUE)
+		return
+
+	DISABLE_BITFIELD(attached_item.flags_item, IS_DEPLOYED)
+
+	attached_item.reset()
+	user.unset_interaction()
+	user.put_in_hands(attached_item)
+
+	attached_item.max_integrity = max_integrity
+	attached_item.obj_integrity = obj_integrity
+
+	internal_item = null
+
+	QDEL_NULL(src)
+	attached_item.update_icon_state()

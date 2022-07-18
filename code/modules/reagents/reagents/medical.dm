@@ -10,13 +10,14 @@
 /datum/reagent/medicine/inaprovaline
 	name = "Inaprovaline"
 	description = "Inaprovaline is a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients."
-	color = "#C8A5DC" // rgb: 200, 165, 220
+	color = "#9966CC" // rgb: 200, 165, 220
 	overdose_threshold = REAGENTS_OVERDOSE*2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
 	scannable = TRUE
 	trait_flags = TACHYCARDIC
 
 /datum/reagent/medicine/inaprovaline/on_mob_add(mob/living/L, metabolism)
+	ADD_TRAIT(L, TRAIT_IGNORE_SUFFOCATION, REAGENT_TRAIT(src))
 	var/mob/living/carbon/human/H = L
 	if(TIMER_COOLDOWN_CHECK(L, name) || L.stat == DEAD)
 		return
@@ -32,12 +33,12 @@
 				I.heal_organ_damage((I.damage-29) *effect_str)
 		TIMER_COOLDOWN_START(L, name, 300 SECONDS)
 
+/datum/reagent/medicine/inaprovaline/on_mob_delete(mob/living/L, metabolism)
+	REMOVE_TRAIT(L, TRAIT_IGNORE_SUFFOCATION, REAGENT_TRAIT(src))
+	return ..()
+
 /datum/reagent/medicine/inaprovaline/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		if(C.losebreath > 10)
-			C.set_Losebreath(10)
 	return ..()
 
 /datum/reagent/medicine/inaprovaline/overdose_process(mob/living/L, metabolism)
@@ -82,7 +83,7 @@
 /datum/reagent/medicine/paracetamol
 	name = "Paracetamol"
 	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller, good for enduring heavy labor."
-	color = "#C855DC"
+	color = "#cac5c5"
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
 	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/tricordrazine, /datum/reagent/medicine/bicaridine)
@@ -108,7 +109,7 @@
 /datum/reagent/medicine/tramadol
 	name = "Tramadol"
 	description = "A simple, yet effective painkiller."
-	color = "#C8A5DC"
+	color = "#8a8686"
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -131,7 +132,7 @@
 /datum/reagent/medicine/oxycodone
 	name = "Oxycodone"
 	description = "An effective and very addictive painkiller."
-	color = "#C805DC"
+	color = "#4b4848"
 	custom_metabolism = REAGENTS_METABOLISM * 1.25
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
@@ -217,7 +218,7 @@
 /datum/reagent/medicine/kelotane
 	name = "Kelotane"
 	description = "Kelotane is a drug used to treat burns."
-	color = "#D8C58C"
+	color = "#CC9900"
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/ryetalyn)
 	purge_rate = 1
@@ -245,7 +246,7 @@
 /datum/reagent/medicine/dermaline
 	name = "Dermaline"
 	description = "Dermaline is the next step in burn medication. Works twice as good as kelotane and enables the body to restore even the direst heat-damaged tissue."
-	color = "#F8C57C"
+	color = "#ffef00"
 	overdose_threshold = REAGENTS_OVERDOSE*0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
@@ -273,7 +274,7 @@
 /datum/reagent/medicine/dexalin
 	name = "Dexalin"
 	description = "Dexalin is used in the treatment of oxygen deprivation."
-	color = "#C865FC"
+	color = "#5972FD"
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
@@ -292,7 +293,7 @@
 /datum/reagent/medicine/dexalinplus
 	name = "Dexalin Plus"
 	description = "Dexalin Plus is used in the treatment of oxygen deprivation. It is highly effective."
-	color = "#C8A5FC"
+	color = "#2445ff"
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE
@@ -311,7 +312,7 @@
 /datum/reagent/medicine/tricordrazine
 	name = "Tricordrazine"
 	description = "Tricordrazine is a highly potent stimulant, originally derived from cordrazine. Can be used to treat a wide range of injuries."
-	color = "#B865CC"
+	color = "#f8f8f8"
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/ryetalyn)
 	purge_rate = 1
@@ -340,7 +341,7 @@
 /datum/reagent/medicine/dylovene
 	name = "Dylovene"
 	description = "Dylovene is a broad-spectrum antitoxin."
-	color = "#A8F59C"
+	color = "#669900"
 	scannable = TRUE
 	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/research/stimulon, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
 	purge_rate = 1
@@ -348,11 +349,17 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "a roll of gauze"
 
+/datum/reagent/medicine/dylovene/on_mob_add(mob/living/L, metabolism)
+	L.add_stamina_regen_modifier(name, -0.5)
+	return ..()
+
+/datum/reagent/medicine/dylovene/on_mob_delete(mob/living/L, metabolism)
+	L.remove_stamina_regen_modifier(name)
+	return ..()
+
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
 	L.hallucination = max(0, L.hallucination -  2.5*effect_str)
 	L.adjustToxLoss(-effect_str)
-	if(volume > 10)
-		L.adjustStaminaLoss(0.5*effect_str)
 	return ..()
 
 /datum/reagent/medicine/dylovene/overdose_process(mob/living/L, metabolism)
@@ -502,7 +509,7 @@
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
 	description = "Hyronalin is a medicinal drug used to counter the effect of toxin poisoning."
-	color = "#C8A5DC" // rgb: 200, 165, 220
+	color = "#426300" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -540,7 +547,7 @@
 /datum/reagent/medicine/russian_red
 	name = "Russian Red"
 	description = "An emergency generic treatment with extreme side effects."
-	color = "#C8A5DC" // rgb: 200, 165, 220
+	color = "#3d0000" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 5
 	overdose_threshold = REAGENTS_OVERDOSE/2   //so it makes the OD threshold effectively 15 so two pills is too much but one is fine
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2.5 //and this makes the Critical OD 20
@@ -581,7 +588,7 @@
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
 	description = "Alkysine is a drug used to lessen the damage to neurological tissue after a catastrophic injury. Can heal brain tissue."
-	color = "#E89599"
+	color = "#0292AC"
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -601,7 +608,7 @@
 /datum/reagent/medicine/imidazoline
 	name = "Imidazoline"
 	description = "Heals eye damage"
-	color = "#C8A5DC" // rgb: 200, 165, 220
+	color = "#F7A151" // rgb: 200, 165, 220
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
@@ -626,19 +633,11 @@
 /datum/reagent/medicine/peridaxon_plus
 	name = "Peridaxon Plus"
 	description = "Used to heal severely damaged internal organs in the field. Moderately toxic. Do not self-administer."
-	color = "#C845DC"
+	color = "#FFC896"
 	overdose_threshold = REAGENTS_OVERDOSE/30
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/25
 	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	scannable = TRUE
-
-/datum/reagent/medicine/peridaxon_plus/on_mob_add(mob/living/L, metabolism)
-	if(TIMER_COOLDOWN_CHECK(L, name))
-		return
-	L.adjustCloneLoss(5*effect_str)
-
-/datum/reagent/medicine/peridaxon_plus/on_mob_delete(mob/living/L, metabolism)
-	TIMER_COOLDOWN_START(L, name, 30 SECONDS)
 
 /datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
 	L.reagents.add_reagent(/datum/reagent/toxin,5)
@@ -646,9 +645,11 @@
 	if(!ishuman(L))
 		return ..()
 	var/mob/living/carbon/human/H = L
-	for(var/datum/internal_organ/I in H.internal_organs)
-		if(I.damage)
-			I.heal_organ_damage(2*effect_str)
+	var/datum/internal_organ/organ = H.get_damaged_organ()
+	if(!organ)
+		return ..()
+	organ.heal_organ_damage(3 * effect_str)
+	H.adjustCloneLoss(1 * effect_str)
 	return ..()
 
 /datum/reagent/medicine/peridaxon_plus/overdose_process(mob/living/L, metabolism)
@@ -660,7 +661,7 @@
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
 	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
-	color = "#E8756C"
+	color = "#DA0000"
 	purge_list = list(/datum/reagent/medicine/ryetalyn)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -685,8 +686,8 @@
 
 /datum/reagent/medicine/meralyne
 	name = "Meralyne"
-	description = "Meralyne is a concentrated form of bicardine and can be used to treat extensive blunt trauma."
-	color = "#E6666C"
+	description = "Meralyne is a concentrated form of bicaridine and can be used to treat extensive blunt trauma."
+	color = "#FD5964"
 	overdose_threshold = REAGENTS_OVERDOSE*0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
@@ -712,7 +713,7 @@
 /datum/reagent/medicine/quickclot
 	name = "Quick Clot"
 	description = "A chemical designed to quickly arrest all sorts of bleeding by encouraging coagulation. Can rectify internal bleeding at cryogenic temperatures."
-	color = "#CC00FF"
+	color = "#E07BAD"
 	overdose_threshold = REAGENTS_OVERDOSE/2 //Was 4, now 6 //Now 15
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE //scannable now.  HUZZAH.
@@ -739,7 +740,7 @@
 /datum/reagent/medicine/quickclotplus
 	name = "Quick Clot Plus"
 	description = "A chemical designed to quickly and painfully remove internal bleeding by encouraging coagulation. Should not be self-administered."
-	color = "#CC00FF"
+	color = "#f1accf"
 	overdose_threshold = REAGENTS_OVERDOSE/5 //6u
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5 //12u
 	scannable = TRUE
@@ -813,7 +814,7 @@
 /datum/reagent/medicine/nanoblood
 	name = "Nanoblood"
 	description = "A chemical designed to massively boost the body's natural blood restoration rate. Causes fatigue and minor toxic effects."
-	color = "#CC00FF"
+	color = "#A10808"
 	overdose_threshold = REAGENTS_OVERDOSE/5 //6u
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5 //10u
 	scannable = TRUE
@@ -1007,7 +1008,7 @@
 /datum/reagent/medicine/spaceacillin
 	name = "Spaceacillin"
 	description = "An all-purpose antiviral agent."
-	color = "#C8A5DC" // rgb: 200, 165, 220
+	color = "#90F7F5" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 0.05
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -1099,7 +1100,7 @@
 /datum/reagent/hypervene // this isn't under /medicine so things that purge /datum/reagent/medicine like neuro/larval don't purge it
 	name = "Hypervene"
 	description = "Quickly purges the body of toxin damage, radiation and all other chemicals. Causes significant pain."
-	color = "#19C832"
+	color = "#AC6D32"
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
 	custom_metabolism = REAGENTS_METABOLISM * 5
@@ -1283,14 +1284,14 @@
 			if(volume < 35) //allows 10 ticks of healing for 20 points of free heal to lower scratch damage bloodloss amounts.
 				L.reagents.add_reagent(/datum/reagent/medicine/research/medicalnanites, 0.1)
 
-			if (volume >5 && L.getBruteLoss()) //Unhealed IB wasting nanites is an INTENTIONAL feature.
+			if (volume >5 && L.getBruteLoss(organic_only = TRUE))
 				L.heal_limb_damage(2*effect_str, 0)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)
 				if(prob(40))
 					to_chat(L, span_notice("Your cuts and bruises begin to scab over rapidly!"))
 
-			if (volume > 5 && L.getFireLoss())
+			if (volume > 5 && L.getFireLoss(organic_only = TRUE))
 				L.heal_limb_damage(0, 2*effect_str)
 				L.adjustToxLoss(0.1*effect_str)
 				holder.remove_reagent(/datum/reagent/medicine/research/medicalnanites, 0.5)

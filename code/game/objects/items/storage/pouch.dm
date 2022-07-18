@@ -113,6 +113,32 @@
 	new /obj/item/stack/sheet/plasteel(src, 15)
 	new /obj/item/tool/weldingtool(src)
 
+/obj/item/storage/pouch/firstaid
+	name = "first-aid pouch"
+	desc = "Standard marine first-aid pouch. It can contain autoinjectors, sets of pills, and bandages."
+	icon_state = "firstaid"
+	storage_slots = 6
+	can_hold = list(
+		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/stack/medical,
+		/obj/item/storage/pill_bottle,
+	)
+
+/obj/item/storage/pouch/firstaid/som
+	name = "mining first aid pouch"
+	desc = "A basic first aid pouch originally used by miners due to dangerous working conditions on the mining colonies. This one is marked as belonging to the SOM."
+	icon_state = "firstaid_som"
+
+/obj/item/storage/pouch/firstaid/som/full/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/packet/bicaridine(src)
+	new /obj/item/storage/pill_bottle/packet/kelotane(src)
+	new /obj/item/storage/pill_bottle/packet/tramadol(src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
+
+
 /obj/item/storage/pouch/pistol
 	name = "sidearm pouch"
 	desc = "It can contain a pistol or revolver. Useful for emergencies."

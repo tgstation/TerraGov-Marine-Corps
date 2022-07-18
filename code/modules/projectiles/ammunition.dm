@@ -237,6 +237,13 @@
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	caliber = CALIBER_12G
 
+/obj/item/ammo_magazine/handful/flechette
+	name = "handful of shotgun flechette shells (12g)"
+	icon_state = "shotgun flechette shell"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/flechette
+	caliber = CALIBER_12G
+
 //----------------------------------------------------------------//
 
 /*

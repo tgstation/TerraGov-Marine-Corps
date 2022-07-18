@@ -161,6 +161,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/banish_duration_timer_id
 	///Phantom zone reserved area
 	var/datum/turf_reservation/reserved_area
+	/// How far can you banish
+	var/range = 3
 
 /datum/action/xeno_action/activable/banish/Destroy()
 	QDEL_NULL(reserved_area) //clean up
@@ -174,12 +176,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			to_chat(owner, span_xenowarning("We cannot banish this!"))
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/X = owner
+	if(HAS_TRAIT(A, TRAIT_TIME_SHIFTED))
+		to_chat(owner, span_xenowarning("That target is already affected by a time manipulation effect!"))
+		return
 
 	var/distance = get_dist(owner, A)
-	if(distance > X.xeno_caste.wraith_banish_range) //Needs to be in range.
+	if(distance > range) //Needs to be in range.
 		if(!silent)
-			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - WRAITH_BANISH_RANGE] tiles closer!"))
+			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - range] tiles closer!"))
 		return FALSE
 
 	if(!line_of_sight(owner, A, ignore_target_opacity = TRUE)) //Needs to be in line of sight.
@@ -485,6 +489,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	anchored = TRUE
 	opacity = FALSE
 	vis_flags = VIS_HIDE
+	resistance_flags = UNACIDABLE | CRUSHER_IMMUNE | BANISH_IMMUNE
 	/// Visual object for handling the viscontents
 	var/obj/effect/portal_effect/portal_visuals
 	/// The linked portal
@@ -539,6 +544,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /// Signal handler to teleport the crossing atom when its move is done
 /obj/effect/wraith_portal/proc/do_teleport_atom(atom/movable/crosser)
 	SIGNAL_HANDLER
+	for(var/mob/rider AS in crosser.buckled_mobs)
+		if(ishuman(rider))
+			crosser.unbuckle_mob(rider)
 	crosser.Move(get_turf(linked_portal), crosser.dir)
 	UnregisterSignal(crosser, COMSIG_MOVABLE_MOVED)
 
@@ -555,7 +563,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!linked_portal) // A lot of racing conditions here
 		return
 	bullet.permutated.Cut()
-	bullet.fire_at(shooter = linked_portal, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE)
+	bullet.fire_at(shooter = bullet.firer, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE, loc_override = get_turf(linked_portal))
 
 /obj/effect/portal_effect
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
@@ -589,3 +597,108 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	vis_contents += our_destination
 /obj/effect/wraith_portal/ex_act()
 	qdel(src)
+
+/datum/action/xeno_action/activable/rewind
+	name = "Time Shift"
+	ability_name = "Time Shift"
+	action_icon_state = "rewind"
+	mechanics_text = "Save the location and status of the target. When the time is up, the target location and status are restored"
+	plasma_cost = 100
+	cooldown_timer = 30 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_REWIND
+	use_state_flags = XACT_TARGET_SELF
+	/// How long till the time rewinds
+	var/start_rewinding = 5 SECONDS
+	/// The targeted atom
+	var/mob/living/targeted
+	/// List of locations the atom took since it was last saved
+	var/list/turf/last_target_locs_list = list()
+	/// Initial burn damage of the target
+	var/target_initial_burn_damage = 0
+	/// Initial brute damage of the target
+	var/target_initial_brute_damage = 0
+	/// Initial sunder of the target
+	var/target_initial_sunder = 0
+	/// How far can you rewind someone
+	var/range = 5
+
+
+/datum/action/xeno_action/activable/rewind/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+
+	var/distance = get_dist(owner, A)
+	if(distance > range) //Needs to be in range.
+		if(!silent)
+			to_chat(owner, span_xenowarning("Our target is too far away! It must be [distance - range] tiles closer!"))
+		return FALSE
+
+	if(HAS_TRAIT(A, TRAIT_TIME_SHIFTED))
+		to_chat(owner, span_xenowarning("That target is already affected by a time manipulation effect!"))
+		return FALSE
+
+	if(!isliving(A))
+		to_chat(owner, span_xenowarning("We cannot target that!"))
+		return FALSE
+
+
+	var/mob/living/living_target = A
+	if(living_target.stat != CONSCIOUS)
+		to_chat(owner, span_xenowarning("The target is not in good enough shape!"))
+
+/datum/action/xeno_action/activable/rewind/use_ability(atom/A)
+	targeted = A
+	last_target_locs_list = list(get_turf(A))
+	target_initial_brute_damage = targeted.getBruteLoss()
+	target_initial_burn_damage = targeted.getFireLoss()
+	if(isxeno(A))
+		var/mob/living/carbon/xenomorph/xeno_target = targeted
+		target_initial_sunder = xeno_target.sunder
+	addtimer(CALLBACK(src, .proc/start_rewinding), start_rewinding)
+	RegisterSignal(targeted, COMSIG_MOVABLE_MOVED, .proc/save_move)
+	targeted.add_filter("prerewind_blur", 1, radial_blur_filter(0.04))
+	targeted.balloon_alert(targeted, "You feel anchored to the past!")
+	ADD_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
+	add_cooldown()
+	succeed_activate()
+	return
+
+/// Signal handler
+/datum/action/xeno_action/activable/rewind/proc/save_move(atom/movable/source, oldloc)
+	SIGNAL_HANDLER
+	last_target_locs_list += get_turf(oldloc)
+
+/// Start the reset process
+/datum/action/xeno_action/activable/rewind/proc/start_rewinding()
+	targeted.remove_filter("prerewind_blur")
+	UnregisterSignal(targeted, COMSIG_MOVABLE_MOVED)
+	if(QDELETED(targeted) || targeted.stat != CONSCIOUS)
+		targeted = null
+		return
+	targeted.add_filter("rewind_blur", 1, radial_blur_filter(0.3))
+	targeted.status_flags |= (INCORPOREAL|GODMODE)
+	INVOKE_NEXT_TICK(src, .proc/rewind)
+	ADD_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
+	playsound(targeted, 'sound/effects/woosh_swoosh.ogg', 50)
+
+/// Move the target two tiles per tick
+/datum/action/xeno_action/activable/rewind/proc/rewind()
+	var/turf/loc_a = pop(last_target_locs_list)
+	if(loc_a)
+		new /obj/effect/temp_visual/xenomorph/afterimage(targeted.loc, targeted)
+
+	var/turf/loc_b = pop(last_target_locs_list)
+	if(!loc_b)
+		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
+		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
+		targeted.take_overall_damage(target_initial_brute_damage - targeted.getBruteLoss(), target_initial_burn_damage - targeted.getFireLoss(), updating_health = TRUE)
+		if(isxeno(target))
+			var/mob/living/carbon/xenomorph/xeno_target = targeted
+			xeno_target.sunder = target_initial_sunder
+		targeted.remove_filter("rewind_blur")
+		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
+		targeted = null
+		return
+
+	targeted.Move(loc_b, get_dir(loc_b, loc_a))
+	new /obj/effect/temp_visual/xenomorph/afterimage(loc_a, targeted)
+	INVOKE_NEXT_TICK(src, .proc/rewind)

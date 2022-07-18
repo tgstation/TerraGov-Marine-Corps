@@ -18,6 +18,26 @@
 		//Blood regeneration if there is some space
 		if(blood_volume < BLOOD_VOLUME_NORMAL)
 			blood_volume += 0.1 // regenerate blood VERY slowly
+		if(blood_volume > BLOOD_VOLUME_MAXIMUM) //Warning: contents under pressure.
+			var/spare_blood = blood_volume - ((BLOOD_VOLUME_MAXIMUM + BLOOD_VOLUME_NORMAL) / 2) //Knock you to the midpoint between max and normal to not spam.
+			if(drip(spare_blood))
+				var/bleed_range = 0
+				switch(spare_blood)
+					if(0 to 30) //20 is the functional minimum due to midpoint calc
+						to_chat(src, span_notice("Some spare blood leaks out of your nose."))
+					if(30 to 100)
+						to_chat(src, span_notice("Spare blood gushes out of your ears and mouth. Must've had too much."))
+						bleed_range = 1
+					if(100 to INFINITY)
+						visible_message(span_notice("Several jets of blood open up across [src]'s body and paint the surroundings red. How'd [p_they()] do that?"), \
+							span_notice("Several jets of blood open up across your body and paint your surroundings red. You feel like you aren't under as much pressure any more."))
+						bleed_range = 3
+				if(bleed_range)
+					for(var/turf/canvas in RANGE_TURFS(bleed_range, src))
+						add_splatter_floor(canvas)
+					for(var/mob/canvas in viewers(bleed_range, src))
+						canvas.add_blood(species.blood_color) //Splash zone
+					playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
 
 	//Effects of bloodloss
 		switch(blood_volume)
@@ -88,6 +108,7 @@
 				add_splatter_floor(loc)
 			else
 				add_splatter_floor(loc, 1)
+		return TRUE
 
 /mob/living/carbon/human/drip(amt)
 	if(HAS_TRAIT(src, TRAIT_STASIS)) // stasis now stops bloodloss
@@ -162,7 +183,7 @@
 			if(b_id == "blood" && R.data && !(R.data["blood_type"] in get_safe_blood(blood_type)))
 				reagents.add_reagent(/datum/reagent/toxin, amount * 0.5)
 			else
-				blood_volume = min(blood_volume + round(amount, 0.1), BLOOD_VOLUME_MAXIMUM)
+				blood_volume += round(amount, 0.1)
 		else
 			reagents.add_reagent(R.type, amount, R.data)
 			reagents.update_total()
@@ -333,11 +354,12 @@
 
 	// Find a blood decal or create a new one.
 	var/obj/effect/decal/cleanable/blood/B = locate() in T
-	if(!B)
-		B = new /obj/effect/decal/cleanable/blood/splatter(T)
-		if(b_color)
-			B.basecolor = b_color
-			B.color = b_color
+	if(B)
+		return
+	B = new /obj/effect/decal/cleanable/blood/splatter(T)
+	if(b_color)
+		B.basecolor = b_color
+		B.color = b_color
 
 
 /mob/living/carbon/human/add_splatter_floor(turf/T, small_drip, b_color)
