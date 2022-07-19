@@ -1,4 +1,0 @@
-author: "Stan_Albatross"
-delete-after: True
-changes: 
-  - refactor: "refactored the application and removal of welding torch overlays so that they do not use istype() procs excessively"

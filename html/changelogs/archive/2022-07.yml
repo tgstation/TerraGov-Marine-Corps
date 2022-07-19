@@ -94,3 +94,7 @@
   - balance: Akimbo makes PB range 0 instead of 2
   - bugfix: Fixed an accuracy malus triggering for a target being out of view when
       it was still in widescreen view.
+2022-07-19:
+  Stan_Albatross:
+  - refactor: refactored the application and removal of welding torch overlays so
+      that they do not use istype() procs excessively
