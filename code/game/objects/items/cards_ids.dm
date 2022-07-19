@@ -81,9 +81,7 @@
 	var/blood_type = "\[UNSET\]"
 
 	///How many points you can use to buy items
-	var/marine_points = list(
-		CAT_INJ = DEFAULT_INJECTOR_TOTAL_BUY_POINTS,
-	)
+	var/marine_points = list()
 
 	///What category of items can you buy
 	var/marine_buy_flags = MARINE_CAN_BUY_ALL

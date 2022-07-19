@@ -25,6 +25,8 @@
 	var/list/listed_products
 	///The faction of that vendor, can be null
 	var/faction
+	var/obj/item/card/id/dogtag/full/ptscheck
+
 
 /obj/machinery/marine_selector/update_icon()
 	if(is_operational())
@@ -94,7 +96,6 @@
 
 	var/obj/item/card/id/I = user.get_idcard()
 	var/buy_flags = I?.marine_buy_flags || NONE
-	var/obj/item/card/id/dogtag/full/ptscheck = new /obj/item/card/id/dogtag/full
 
 	.["cats"] = list()
 	for(var/i in GLOB.marine_selector_cats)
