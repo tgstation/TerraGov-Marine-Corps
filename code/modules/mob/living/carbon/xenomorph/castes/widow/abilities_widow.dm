@@ -144,6 +144,8 @@
 
 /datum/ai_behavior/spiderling/proc/go_to_target(source, mob/living/target)
 	SIGNAL_HANDLER
+	if(mob_parent.get_xeno_hivenumber() == target.get_xeno_hivenumber())
+		return
 	change_action(MOVING_TO_ATOM, target)
 
 ///Signal handler to try to attack our target
