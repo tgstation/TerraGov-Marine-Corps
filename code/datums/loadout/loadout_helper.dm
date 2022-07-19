@@ -145,12 +145,6 @@
 		selling_bitfield |= i
 	if(!(seller.buying_bitfield & selling_bitfield))
 		return FALSE
-	if(selling_bitfield == (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH))
-		if(seller.buying_bitfield & MARINE_CAN_BUY_R_POUCH)
-			seller.buying_bitfield &= ~MARINE_CAN_BUY_R_POUCH
-		else
-			seller.buying_bitfield &= ~MARINE_CAN_BUY_L_POUCH
-		return TRUE
 	seller.buying_bitfield &= ~selling_bitfield
 	return TRUE
 

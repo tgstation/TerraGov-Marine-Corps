@@ -81,7 +81,9 @@
 	var/blood_type = "\[UNSET\]"
 
 	///How many points you can use to buy items
-	var/marine_points = list()
+	var/marine_points = list(
+		CAT_POU = DEFAULT_POUCH_POINTS,
+	)
 
 	///What category of items can you buy
 	var/marine_buy_flags = MARINE_CAN_BUY_ALL
@@ -250,26 +252,31 @@
 // Vendor points for job override
 /obj/item/card/id/dogtag/smartgun
 	marine_points = list(
+		CAT_POU = DEFAULT_POUCH_POINTS,
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/engineer
 	marine_points = list(
+		CAT_POU = DEFAULT_POUCH_POINTS,
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/leader
 	marine_points = list(
+		CAT_POU = DEFAULT_POUCH_POINTS,
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/corpsman
 	marine_points = list(
+		CAT_POU = DEFAULT_POUCH_POINTS,
 		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/full
 	marine_points = list(
+		CAT_POU = DEFAULT_POUCH_POINTS,
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
