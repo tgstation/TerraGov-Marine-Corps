@@ -150,10 +150,11 @@
 				return
 
 			if(I.marine_buy_choices[item_category] && GLOB.marine_selector_cats[item_category])
-				I.marine_buy_choices -= 1
+				I.marine_buy_choices[item_category] -= 1
 			else
-				to_chat(usr, span_warning("You can't buy things from this category anymore."))
-				return
+				if(cost == 0)
+					to_chat(usr, span_warning("You can't buy things from this category anymore."))
+					return
 
 			var/obj/item/vended_item
 
