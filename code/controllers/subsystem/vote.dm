@@ -190,6 +190,7 @@ SUBSYSTEM_DEF(vote)
 	if(multiple_vote)
 		choices_by_ckey[usr.ckey] += vote
 	else
+		choices[choices[choices_by_ckey[usr.ckey][1]]]--
 		choices_by_ckey[usr.ckey] = list(vote)
 
 /// Start the vote, and prepare the choices to send to everyone
