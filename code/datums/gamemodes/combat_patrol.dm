@@ -22,7 +22,9 @@
 	/// Timer used to calculate how long till round ends
 	var/game_timer
 	///The length of time until round ends.
-	var/max_game_time = 40 MINUTES
+	var/max_game_time = 5 MINUTES
+	///Whether the max game time has been reached
+	var/max_time_reached
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
@@ -76,7 +78,7 @@
 	if(D.game_timer)
 		return
 
-	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/check_finished), max_game_time, TIMER_STOPPABLE)
+	D.game_timer = addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_end), max_game_time, TIMER_STOPPABLE)
 
 /datum/game_mode/combat_patrol/game_end_countdown()
 	if(!game_timer)
@@ -84,6 +86,11 @@
 	var/eta = timeleft(game_timer) * 0.1
 	if(eta > 0)
 		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
+	else
+		return "Patrol finished"
+
+/datum/game_mode/combat_patrol/proc/set_game_end()
+	max_time_reached = TRUE
 
 ///checks how many marines and SOM are still alive
 /datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)), count_flags)
@@ -145,7 +152,7 @@
 	var/num_dead_marines = living_player_list[3]
 	var/num_dead_som = living_player_list[4]
 
-	if(num_marines && num_som)
+	if(num_marines && num_som && !max_time_reached)
 		return //fighting is ongoing
 
 	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
