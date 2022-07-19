@@ -143,16 +143,15 @@ SUBSYSTEM_DEF(vote)
 				SSmapping.changemap(VM, SHIP_MAP)
 			if(GLOB.master_mode != .)
 				SSticker.save_mode(.)
-				var/datum/game_mode/current_gamemode = config.pick_mode(GLOB.master_mode)
-				if((current_gamemode.flags_round_type & MODE_SPECIFIC_SHIP_MAP) && !SSticker.HasRoundStarted())
-					GLOB.master_mode = .
-					addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), 5 SECONDS)
-					SSticker.Reboot("Restarting server when valid ship map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
-					return
 				if(SSticker.HasRoundStarted())
 					restart = TRUE
 				else
 					GLOB.master_mode = .
+					var/datum/game_mode/current_gamemode = config.pick_mode(GLOB.master_mode)
+					if(current_gamemode.flags_round_type & MODE_SPECIFIC_SHIP_MAP)
+						addtimer(CALLBACK(src, .proc/initiate_vote, "shipmap", null, TRUE), 5 SECONDS)
+						SSticker.Reboot("Restarting server when valid ship map selected", CONFIG_GET(number/vote_period) + 15 SECONDS)
+						return
 		if("groundmap")
 			var/datum/map_config/VM = config.maplist[GROUND_MAP][.]
 			SSmapping.changemap(VM, GROUND_MAP)
