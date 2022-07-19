@@ -1,99 +1,506 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"al" = (
+"ac" = (
+/obj/structure/flora/pottedplant/ten,
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"af" = (
+/obj/structure/bed/bunkbed,
+/obj/item/bedsheet/red{
+	pixel_y = 10
+	},
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor/mainship,
+/turf/open/floor/grayscale/round/darkgray,
+/area/mainship/patrol_base/som)
+"ag" = (
+/obj/effect/decal/warning_stripes/box/arrow,
+/turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
-"aL" = (
-/obj/structure/patrol_point{
-	id = "TGMC_24"
+"al" = (
+/obj/structure/table/holotable/wood,
+/obj/machinery/chem_dispenser/beer{
+	dir = 8
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/wood,
+/area/mainship/patrol_base/som)
+"ap" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
+"aE" = (
+/turf/open/floor/carpet/side,
+/area/mainship/patrol_base/som)
+"aH" = (
+/obj/effect/landmark/start/job/som/squadengineer,
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"aL" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"aO" = (
+/turf/open/floor/carpet/side{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"aP" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"aQ" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal4,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
 "bg" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/mainship/patrol_base/telecomms)
-"bz" = (
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base)
-"bX" = (
-/obj/machinery/light{
-	dir = 8
+"bs" = (
+/obj/structure/patrol_point{
+	id = "TGMC_21"
 	},
-/obj/effect/landmark/start/job/squadengineer,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/stripesquare,
 /area/mainship/patrol_base)
-"ch" = (
+"bz" = (
+/obj/machinery/quick_vendor,
+/obj/structure/window/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/research,
+/area/mainship/patrol_base)
+"bI" = (
+/obj/machinery/vending/cola,
+/obj/machinery/light,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"bL" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced,
+/turf/open/floor/tile/dark,
+/area/mainship/patrol_base/som)
+"bP" = (
 /obj/structure/patrol_point{
 	id = "TGMC_13"
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/stripesquare,
 /area/mainship/patrol_base)
+"bX" = (
+/turf/open/floor/prison/red{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
+"ch" = (
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"cl" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/som/squadengineer,
+/turf/open/floor/carpet/side{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "cv" = (
-/obj/structure/table/mainship,
-/obj/item/facepaint/green,
-/turf/open/floor/mainship,
+/turf/open/floor/grayscale/round/darkgray,
+/area/mainship/patrol_base/som)
+"cN" = (
+/turf/open/floor/prison/red{
+	dir = 10
+	},
 /area/mainship/patrol_base/som)
 "cU" = (
-/obj/structure/patrol_point{
-	id = "SOM_22"
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 8
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/prison/red{
+	dir = 8
+	},
 /area/mainship/patrol_base/som)
+"dk" = (
+/obj/item/stool,
+/turf/open/floor/carpet/side{
+	dir = 9
+	},
+/area/mainship/patrol_base)
+"dl" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
 "dv" = (
-/turf/closed/wall,
+/turf/open/floor/carpet,
 /area/mainship/patrol_base/som)
 "dJ" = (
-/turf/closed/wall,
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
+"dL" = (
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 8
+	},
+/turf/open/floor/prison/red{
+	dir = 10
+	},
+/area/mainship/patrol_base/som)
+"dM" = (
+/obj/structure/patrol_point{
+	id = "SOM_24"
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
 "dP" = (
 /obj/machinery/telecomms/server/presets/whiskey,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"dW" = (
+/turf/closed/wall/clock,
+/area/chapel/main)
+"eg" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/som/squadcorpsman,
+/turf/open/floor/carpet/side{
+	dir = 9
+	},
+/area/mainship/patrol_base/som)
+"ej" = (
+/obj/effect/landmark/start/job/som/squadleader,
+/turf/open/floor/wood,
+/area/mainship/patrol_base/som)
+"el" = (
+/obj/structure/table/holotable/wood,
+/obj/effect/spawner/random/drink_cans,
+/obj/effect/spawner/random/drink_cans,
+/obj/effect/spawner/random/drink_cans,
+/obj/effect/spawner/random/drink_cans,
+/obj/effect/spawner/random/drink_cans,
+/obj/effect/spawner/random/drink_cans,
+/turf/open/floor/wood,
+/area/mainship/patrol_base)
+"eo" = (
+/obj/machinery/door/airlock/mainship/security/free_access{
+	dir = 1;
+	name = Bathroom
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/mainship/patrol_base/som)
+"ex" = (
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 8
+	},
+/turf/open/floor/prison/red{
+	dir = 9
+	},
+/area/mainship/patrol_base/som)
+"eN" = (
+/turf/open/floor/prison/red/corner{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
+"eS" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"eT" = (
+/turf/open/floor/mainship/ntlogo,
+/area/mainship/patrol_base)
+"fo" = (
+/obj/machinery/vending/cigarette,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/side{
+	dir = 6
+	},
+/area/mainship/patrol_base/som)
+"fp" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
 "fL" = (
-/obj/machinery/door/poddoor/timed_late/containment,
-/turf/open/floor/mainship,
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/prison,
 /area/mainship/patrol_base/som)
 "fM" = (
 /obj/machinery/telecomms/server/presets/alpha,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"fQ" = (
+/obj/structure/bed/chair/sofa/corner{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/mainship/patrol_base)
 "fT" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"fV" = (
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
+"gd" = (
+/obj/structure/flora/pottedplant/two,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"ge" = (
+/turf/open/floor/carpet/side,
+/area/mainship/patrol_base)
 "gk" = (
-/obj/machinery/light,
-/turf/open/floor/mainship,
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal3,
+/turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "go" = (
 /obj/machinery/telecomms/hub/preset/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"gr" = (
+/turf/open/floor/wood,
+/area/mainship/patrol_base/som)
+"hc" = (
+/obj/machinery/light,
+/turf/open/floor/prison/sterilewhite,
+/area/mainship/patrol_base/som)
+"hh" = (
+/obj/structure/bed/bunkbed,
+/obj/item/bedsheet/red{
+	pixel_y = 10
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/grayscale/round/darkgray,
+/area/mainship/patrol_base/som)
+"hq" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/som/squadstandard,
+/turf/open/floor/prison/sterilewhite,
+/area/mainship/patrol_base/som)
+"hT" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	last_move = s
+	},
+/turf/open/floor/prison/darkred,
+/area/mainship/patrol_base/som)
+"hX" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"ig" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/som/squadstandard,
+/turf/open/floor/carpet/side{
+	dir = 10
+	},
+/area/mainship/patrol_base/som)
 "ik" = (
-/obj/structure/table/mainship,
-/turf/open/floor/mainship,
+/obj/structure/bed/bunkbed,
+/obj/item/bedsheet/red{
+	pixel_y = 10
+	},
+/turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
 "ir" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/mainship/patrol_base/som)
-"jp" = (
 /obj/structure/patrol_point{
-	id = "TGMC_14"
+	id = "SOM_23"
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"it" = (
+/turf/open/floor/wood,
+/area/mainship/patrol_base)
+"iR" = (
+/obj/structure/table/gamblingtable,
+/obj/item/toy/dice/d20,
+/turf/open/floor/carpet,
+/area/mainship/patrol_base)
+"iX" = (
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/prison/red{
+	dir = 5
+	},
+/area/mainship/patrol_base/som)
+"jh" = (
+/obj/machinery/smartfridge/drinks,
+/turf/open/floor/wood,
+/area/mainship/patrol_base)
+"jp" = (
+/turf/open/floor/mainship/blue/corner{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"jr" = (
+/obj/structure/flora/pottedplant/eighteen,
+/turf/open/floor/mainship/blue{
+	dir = 5
+	},
 /area/mainship/patrol_base)
 "jw" = (
 /obj/machinery/telecomms/server/presets/xray,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"jC" = (
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
+	name = SurfaceLadders;
+	req_access = null
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
 "jG" = (
 /obj/machinery/telecomms/server/presets/bravo,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"jX" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"jZ" = (
+/turf/open/floor/prison/red{
+	dir = 9
+	},
+/area/mainship/patrol_base/som)
+"kp" = (
+/turf/open/floor/carpet/side{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
+"kA" = (
+/obj/structure/sink/bathroom{
+	dir = 1
+	},
+/obj/structure/mirror{
+	pixel_y = -29
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/mainship/patrol_base)
+"kC" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/drinks/cans/beer{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka{
+	pixel_x = 5;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass{
+	pixel_y = -5
+	},
+/turf/open/floor/carpet/side{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
+"kH" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/mainship/patrol_base/som)
+"kN" = (
+/obj/machinery/vending/snack,
+/obj/machinery/light,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"kT" = (
+/obj/structure/patrol_point{
+	id = "SOM_14"
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"lf" = (
+/obj/machinery/vending/cola,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"lm" = (
+/obj/structure/flora/pottedplant/eighteen,
+/turf/open/floor/prison/red{
+	dir = 6
+	},
+/area/mainship/patrol_base/som)
+"lp" = (
+/turf/open/floor/carpet/side{
+	dir = 5
+	},
+/area/mainship/patrol_base)
 "lu" = (
 /obj/machinery/telecomms/hub/preset,
 /turf/open/floor/mainship,
@@ -106,24 +513,289 @@
 /obj/machinery/telecomms/server/presets/yankee,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"lM" = (
+/turf/open/floor/prison/red/corner{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
+"lQ" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 8
+	},
+/turf/open/floor/prison/darkred{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
+"lS" = (
+/obj/structure/table/mainship,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
 "mm" = (
-/obj/effect/landmark/start/job/som/squadleader,
-/turf/open/floor/mainship,
+/turf/open/floor/prison/red{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
+"mU" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"nf" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison/darkred{
+	dir = 8
+	},
 /area/mainship/patrol_base/som)
 "nm" = (
-/obj/structure/table/mainship,
-/turf/open/floor/mainship,
+/turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
+"nt" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 8;
+	pixel_y = 16
+	},
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"nz" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"nF" = (
+/obj/machinery/door/window/secure{
+	dir = 2
+	},
+/turf/open/floor/wood,
+/area/mainship/patrol_base)
+"nI" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal6,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"nR" = (
+/obj/structure/bed/chair/nometal,
+/obj/effect/landmark/start/job/squadengineer,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"nZ" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/prison/red{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
+"oq" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"or" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"os" = (
+/obj/structure/flora/pottedplant/twentyone,
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"ox" = (
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
+/turf/open/floor/stairs/rampbottom{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
+"oK" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"oO" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/squadmarine,
+/obj/machinery/light,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"oP" = (
+/obj/structure/toilet,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/patrol_base)
+"pb" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
 "pd" = (
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/prison/red{
+	dir = 6
+	},
+/area/mainship/patrol_base/som)
+"pg" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 8
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/patrol_base)
+"pk" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"pz" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/turf/open/floor/prison,
 /area/mainship/patrol_base/som)
 "qb" = (
 /obj/machinery/telecomms/server/presets/charlie,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"qc" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal5,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
 "qe" = (
 /obj/machinery/telecomms/bus/preset_one,
 /turf/open/floor/mainship,
@@ -132,136 +804,518 @@
 /obj/machinery/telecomms/server/presets/zulu,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"qK" = (
+/turf/open/floor/prison/darkred/corners{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "qL" = (
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"qQ" = (
+/obj/structure/window/framed/mainship/toughened,
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/patrol_base)
+"rk" = (
+/obj/structure/patrol_point{
+	id = "TGMC_24"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/patrol_base)
+"rv" = (
+/obj/structure/bed/chair/comfy/brown,
+/turf/open/floor/carpet/side{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"rF" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/mainship/patrol_base)
 "rT" = (
 /obj/machinery/telecomms/bus/preset_two,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"sR" = (
-/obj/structure/patrol_point{
-	id = "SOM_14"
-	},
-/turf/open/floor/mainship,
+"rW" = (
+/obj/effect/landmark/start/job/som/squadstandard,
+/turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
-"sX" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/turf/open/floor/mainship,
+"rZ" = (
+/obj/structure/table/holotable/wood,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/open/floor/wood,
 /area/mainship/patrol_base)
-"tq" = (
-/obj/machinery/light{
+"sg" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"sk" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"sz" = (
+/obj/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/prison/darkred{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
+"sR" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/plating,
+/area/mainship/patrol_base/som)
+"sW" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
+"sX" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/mainship/plate/outline,
+/area/mainship/patrol_base)
+"tq" = (
+/obj/structure/bed/bunkbed,
+/obj/item/bedsheet/blue{
+	pixel_y = 10
+	},
+/turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
 "tz" = (
 /obj/machinery/telecomms/bus/preset_three/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"ud" = (
-/obj/structure/patrol_point{
-	id = "TGMC_21"
+"tQ" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"tU" = (
+/obj/structure/window/framed/prison/cell,
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 1
 	},
-/turf/open/floor/mainship,
-/area/mainship/patrol_base)
-"vL" = (
-/obj/machinery/light{
+/turf/open/floor/prison/red{
 	dir = 8
 	},
-/turf/open/floor/mainship,
+/area/mainship/patrol_base/som)
+"ua" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 4;
+	pixel_y = 16
+	},
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"uc" = (
+/turf/open/floor/mainship/sterile/white,
+/area/mainship/patrol_base)
+"ud" = (
+/turf/open/floor/prison/darkred{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
+"up" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal4,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"ur" = (
+/obj/structure/patrol_point{
+	id = "TGMC_11"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/patrol_base)
+"uy" = (
+/obj/structure/bed/chair/nometal,
+/obj/effect/landmark/start/job/squadcorpsman,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"uz" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"uR" = (
+/obj/effect/landmark/start/job/squadengineer,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"vf" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/box/tgmc_mre,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"vo" = (
+/obj/structure/patrol_point{
+	id = "SOM_21"
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"vI" = (
+/obj/structure/flora/pottedplant/twentytwo,
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"vL" = (
+/obj/structure/table/black,
+/obj/item/facepaint/green,
+/turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
 "vW" = (
 /obj/machinery/telecomms/server/presets/common/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"we" = (
+/turf/open/floor/mainship/terragov/north,
+/area/mainship/patrol_base)
 "wg" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"wo" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	pixel_x = 16
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
+"wr" = (
+/turf/closed/wall/mainship/outer/reinforced{
+	desc = Whatdidyouexpecttosee?Surelyyoudidn'tthinkweweregonnadothisENTIREstructure.
+	},
+/area/mainship/patrol_base)
+"wu" = (
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
+	name = SurfaceLadders;
+	req_access = null
+	},
+/turf/open/floor/prison/red{
+	dir = 9
+	},
+/area/mainship/patrol_base/som)
+"wz" = (
+/turf/open/floor/prison/darkred{
+	dir = 6
+	},
+/area/mainship/patrol_base/som)
+"wU" = (
+/obj/structure/table/holotable/wood,
+/obj/item/storage/box/drinkingglasses,
+/turf/open/floor/wood,
+/area/mainship/patrol_base/som)
+"xl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/mainship/patrol_base)
 "xt" = (
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"yp" = (
-/obj/structure/patrol_point{
-	id = "TGMC_23"
+"xu" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
-/turf/open/floor/mainship,
-/area/mainship/patrol_base)
-"yx" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/turf/open/floor/mainship,
+/obj/structure/window/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison,
 /area/mainship/patrol_base/som)
+"xz" = (
+/obj/machinery/vending/dinnerware,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/mainship/patrol_base)
+"xC" = (
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/prison/red{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
+"xO" = (
+/turf/open/floor/prison/darkred{
+	dir = 9
+	},
+/area/mainship/patrol_base/som)
+"xQ" = (
+/turf/open/floor/prison/red/corner{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
+"ym" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 1
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/patrol_base)
+"yp" = (
+/turf/open/floor/mainship/plate/outline,
+/area/mainship/patrol_base)
+"yr" = (
+/turf/open/floor/prison/red{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
+"yx" = (
+/turf/open/floor/carpet,
+/area/mainship/patrol_base)
+"yy" = (
+/obj/machinery/door/airlock/multi_tile/mainship{
+	name = Bathroom
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/mainship/patrol_base)
+"yD" = (
+/obj/machinery/door/airlock/mainship/generic/bathroom/toilet{
+	dir = 2
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/patrol_base)
 "yG" = (
-/obj/effect/landmark/start/job/som/squadengineer,
-/turf/open/floor/mainship,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison/red{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
+"yH" = (
+/obj/effect/landmark/start/job/squadsmartgunner,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"yI" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"yN" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/light,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal2,
+/turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
 "yS" = (
 /obj/machinery/telecomms/bus/preset_three,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"zj" = (
+/obj/machinery/vending/sovietsoda,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"zo" = (
+/obj/machinery/quick_vendor,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/research,
+/area/mainship/patrol_base)
+"zV" = (
+/turf/open/floor/prison/darkred,
+/area/mainship/patrol_base/som)
+"Ak" = (
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
+	name = SurfaceLadders;
+	req_access = null
+	},
+/turf/open/floor/prison/red{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
 "AD" = (
 /obj/machinery/telecomms/bus/preset_four/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"AG" = (
+/obj/structure/bed/chair/sofa/corner{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/mainship/patrol_base)
+"AZ" = (
+/turf/open/floor/prison/red{
+	dir = 5
+	},
+/area/mainship/patrol_base/som)
 "Bm" = (
 /obj/machinery/telecomms/server/presets/engineering/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"Bq" = (
+/obj/structure/window/framed/mainship/hull,
+/obj/machinery/door/poddoor/timed_late/containment,
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/patrol_base)
 "Bs" = (
-/obj/structure/patrol_point{
-	id = "TGMC_22"
-	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
 "BB" = (
-/turf/closed/wall/r_wall/unmeltable,
+/obj/structure/patrol_point{
+	id = "TGMC_23"
+	},
+/turf/open/floor/mainship/stripesquare,
 /area/mainship/patrol_base)
 "BD" = (
-/obj/structure/patrol_point{
-	id = "TGMC_11"
-	},
-/turf/open/floor/mainship,
-/area/mainship/patrol_base)
+/turf/open/floor/prison/darkred/corners,
+/area/mainship/patrol_base/som)
 "BI" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"Co" = (
-/turf/open/space/basic{
+"BZ" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
 	dir = 1
 	},
-/area/space)
-"CM" = (
-/obj/structure/patrol_point{
-	id = "SOM_13"
+/obj/structure/window/reinforced,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"Cd" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
 	},
-/turf/open/floor/mainship,
+/obj/effect/landmark/start/job/squadmarine,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"Ch" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/bed/bunkbed,
+/obj/item/bedsheet/red{
+	pixel_y = 10
+	},
+/turf/open/floor/grayscale/round/darkgray,
+/area/mainship/patrol_base/som)
+"Co" = (
+/obj/structure/flora/pottedplant/ten,
+/turf/open/floor/prison/red{
+	dir = 5
+	},
+/area/mainship/patrol_base/som)
+"CM" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/tile/dark,
 /area/mainship/patrol_base/som)
 "CR" = (
 /obj/machinery/telecomms/bus/preset_four,
@@ -272,47 +1326,216 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "Dg" = (
-/obj/structure/table/mainship,
-/obj/item/tool/hand_labeler,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
 /area/mainship/patrol_base)
+"Dr" = (
+/turf/open/floor/prison/darkred{
+	dir = 5
+	},
+/area/mainship/patrol_base/som)
+"Dt" = (
+/obj/machinery/door/window/secure{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/mainship/patrol_base/som)
+"DP" = (
+/obj/structure/window/framed/prison/cell,
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 2
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
 "Ee" = (
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/blue/corner,
 /area/mainship/patrol_base)
-"Eo" = (
+"Eh" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"Ek" = (
+/obj/machinery/quick_vendor,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/mainship/research,
+/area/mainship/patrol_base)
+"En" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"Eo" = (
+/turf/open/floor/mainship/blue/corner{
+	dir = 1
+	},
 /area/mainship/patrol_base)
 "Er" = (
-/obj/structure/table/mainship,
-/obj/item/tool/hand_labeler,
-/turf/open/floor/mainship,
+/obj/structure/curtain/open/temple{
+	name = Bunks
+	},
+/turf/open/floor/grayscale/round/darkgray,
+/area/mainship/patrol_base/som)
+"EM" = (
+/obj/structure/bed/chair/nometal,
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"EX" = (
+/obj/structure/table/holotable/wood,
+/obj/item/reagent_containers/food/drinks/shaker,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/mainship/patrol_base/som)
+"Fc" = (
+/obj/machinery/door/airlock/multi_tile/secure2{
+	desc = Youaren'tgonnaabandonthefightright?Itslockedforareason.;
+	name = MainBase
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
+"Ff" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/bed/bunkbed,
+/obj/item/bedsheet/red{
+	pixel_y = 10
+	},
+/turf/open/floor/grayscale/round/darkgray,
+/area/mainship/patrol_base/som)
+"Fj" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"Fk" = (
+/obj/machinery/light,
+/turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
 "Fm" = (
 /obj/machinery/telecomms/server/presets/medical/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"Fw" = (
-/obj/structure/patrol_point{
-	id = "TGMC_12"
+"Fo" = (
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 1
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"Fw" = (
+/turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
 "Fz" = (
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"FJ" = (
+/obj/machinery/quick_vendor,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship/research,
+/area/mainship/patrol_base)
+"FL" = (
+/obj/machinery/door/airlock/mainship/generic/bathroom/toilet,
+/turf/open/floor/prison/sterilewhite,
+/area/mainship/patrol_base/som)
 "FP" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"FY" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/mainship/patrol_base)
+"Go" = (
+/obj/structure/patrol_point{
+	id = "TGMC_12"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/patrol_base)
+"GL" = (
+/obj/structure/flora/pottedplant/one,
+/turf/open/floor/mainship/blue{
+	dir = 9
+	},
+/area/mainship/patrol_base)
 "GM" = (
 /obj/machinery/telecomms/processor/preset_two/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"Hl" = (
+/obj/structure/patrol_point{
+	id = "SOM_12"
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"Ho" = (
+/obj/structure/patrol_point{
+	id = "TGMC_14"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/patrol_base)
+"Hy" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"HA" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/som/squadveteran,
+/turf/open/floor/carpet/side{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
+"HG" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
 "HI" = (
 /obj/machinery/telecomms/broadcaster/preset_left/som,
 /turf/open/floor/mainship,
@@ -322,35 +1545,122 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "If" = (
-/obj/effect/landmark/start/job/som/squadstandard,
-/turf/open/floor/mainship,
+/turf/closed/wall/r_wall/prison_unmeltable,
 /area/mainship/patrol_base/som)
+"Ih" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 5
+	},
+/area/mainship/patrol_base)
 "Iu" = (
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "IC" = (
-/obj/structure/patrol_point{
-	id = "SOM_12"
+/turf/open/floor/prison/darkred{
+	dir = 4
 	},
-/turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
+"IH" = (
+/obj/effect/landmark/start/latejoinsom,
+/turf/open/floor/grayscale/round/darkgray,
+/area/mainship/patrol_base/som)
+"IM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"Jb" = (
+/turf/open/floor/carpet/side{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"Jf" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/mainship/patrol_base/som)
+"Jg" = (
+/obj/machinery/quick_vendor,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/research,
+/area/mainship/patrol_base)
+"Ji" = (
+/obj/structure/bed/chair/sofa{
+	dir = 1
+	},
+/turf/open/floor/carpet,
+/area/mainship/patrol_base)
 "Jw" = (
 /obj/machinery/telecomms/processor/preset_three/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"JB" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/squadmarine,
+/obj/machinery/light,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
 "JF" = (
 /obj/machinery/telecomms/receiver/preset_left/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"JH" = (
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
+	name = SurfaceLadders;
+	req_access = null
+	},
+/turf/open/floor/prison/red{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
+"JL" = (
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 1
+	},
+/turf/open/floor/mainship/blue{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"JO" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"JR" = (
+/obj/effect/landmark/start/job/som/squadveteran,
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
 "JY" = (
-/obj/structure/table/mainship,
-/obj/item/facepaint/green,
-/turf/open/floor/mainship,
+/obj/structure/bed/chair/nometal,
+/obj/effect/landmark/start/job/squadsmartgunner,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"Kd" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 9
+	},
+/area/mainship/patrol_base)
+"Kk" = (
+/obj/structure/bed/chair/comfy/brown{
+	dir = 4
+	},
+/turf/open/floor/carpet/side,
 /area/mainship/patrol_base)
 "Kz" = (
-/obj/machinery/quick_vendor,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/ntlogo/nt2,
 /area/mainship/patrol_base)
 "KF" = (
 /obj/machinery/telecomms/receiver/preset_left,
@@ -360,32 +1670,315 @@
 /obj/machinery/telecomms/processor/preset_three,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"KO" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal1,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
 "KR" = (
 /obj/machinery/telecomms/processor/preset_four/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"KS" = (
+/obj/structure/bed/bunkbed,
+/obj/item/bedsheet/blue{
+	pixel_y = 10
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
+"Le" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"Lf" = (
+/obj/structure/flora/pottedplant/twentyone,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"Ll" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"Lr" = (
+/obj/structure/patrol_point{
+	id = "TGMC_22"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/mainship/patrol_base)
+"Lx" = (
+/obj/structure/table/holotable/wood,
+/obj/item/storage/box/drinkingglasses,
+/obj/item/storage/box/drinkingglasses,
+/obj/item/storage/box/drinkingglasses,
+/turf/open/floor/wood,
+/area/mainship/patrol_base)
 "Lz" = (
 /obj/machinery/telecomms/receiver/preset_right/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"LH" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/box/nt_mre,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"LN" = (
+/obj/effect/landmark/start/job/som/squadcorpsman,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"Me" = (
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
 "Mq" = (
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "Mr" = (
-/obj/structure/patrol_point{
-	id = "SOM_11"
+/turf/open/floor/prison/arrow{
+	dir = 8
 	},
-/turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
 "MB" = (
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"MS" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"MU" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"MW" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/mainship/patrol_base/som)
+"Nq" = (
+/obj/structure/flora/pottedplant/one,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"Nv" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal2,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
 "NF" = (
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"NG" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = 25
+	},
+/turf/open/floor/prison/sterilewhite,
+/area/mainship/patrol_base/som)
 "NT" = (
+/turf/open/floor/mainship/blue/corner{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"NZ" = (
+/obj/structure/table/holotable/wood,
+/obj/machinery/chem_dispenser/soda,
+/turf/open/floor/wood,
+/area/mainship/patrol_base)
+"Ol" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"On" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/red{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
+"Oq" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"Ow" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -397,149 +1990,655 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
-/turf/open/floor/mainship,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "Ox" = (
-/obj/effect/landmark/start/job/som/squadveteran,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/som)
-"OM" = (
-/obj/effect/landmark/start/job/squadsmartgunner,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base)
-"PQ" = (
-/obj/structure/patrol_point{
-	id = "SOM_21"
+/obj/structure/stairs/seamless{
+	dir = 1
 	},
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/som)
-"Qr" = (
-/obj/structure/patrol_point{
-	id = "SOM_24"
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
 	},
-/turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
-"Rq" = (
+"Oz" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"OA" = (
+/turf/open/floor/carpet/side{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
+"OF" = (
+/obj/machinery/quick_vendor,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/som/squadengineer,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/research,
+/area/mainship/patrol_base)
+"OH" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = 25
+	},
+/obj/effect/landmark/start/job/som/squadstandard,
+/turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
+"OI" = (
+/turf/open/floor/prison/darkred{
+	dir = 10
+	},
+/area/mainship/patrol_base/som)
+"OM" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship/plate/outline,
+/area/mainship/patrol_base)
+"Pe" = (
+/obj/machinery/quick_vendor,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/research,
+/area/mainship/patrol_base)
+"Pm" = (
+/obj/structure/flora/pottedplant/twentytwo,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"Ps" = (
+/obj/structure/bed/chair/nometal,
+/obj/effect/landmark/start/job/squadleader,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"PB" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal2,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"PQ" = (
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"PX" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal6,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"Qe" = (
+/obj/structure/patrol_point{
+	id = "SOM_13"
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"Qn" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal5,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"Qr" = (
+/turf/open/floor/prison/red/corner,
+/area/mainship/patrol_base/som)
+"Qw" = (
+/obj/item/stool,
+/turf/open/floor/carpet/side{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Rc" = (
+/turf/open/floor/prison/arrow{
+	dir = 4
+	},
+/area/mainship/patrol_base/som)
+"Rq" = (
+/obj/machinery/door/airlock/mainship/security/locked{
+	desc = Youaren'tgonnaabandonthefightright?Itslockedforareason.;
+	name = MainBase
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"Rr" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"Rs" = (
+/obj/machinery/light,
+/turf/open/floor/carpet/side{
+	dir = 10
+	},
+/area/mainship/patrol_base)
+"Rt" = (
+/obj/effect/landmark/start/job/squadcorpsman,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"Ru" = (
+/obj/structure/table/mainship,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/obj/item/facepaint/green,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"RC" = (
+/obj/structure/table/holotable/wood,
+/obj/machinery/chem_dispenser/soda{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/mainship/patrol_base/som)
+"RD" = (
+/obj/item/paper/clockresearch1{
+	pixel_x = -10;
+	pixel_y = -5
+	},
+/obj/item/paper/clockresearch2{
+	pixel_x = 10;
+	pixel_y = -5
+	},
+/mob/living/simple_animal/parrot/clock_hawk{
+	desc = Ifyoucaredenoughtocheckthisspotandexaminethisparrot,Icommendyou.Butthereisnothinghereforyou.;
+	name = HiddenWardenofthePast
+	},
+/obj/item/clothing/tie/medal/bronze_heart{
+	desc = Okfine,youdogetONEawardforfindingthis,butthisisit.;
+	name = NosyNancyAward;
+	pixel_y = -9
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/cult/clock,
+/area/chapel/main)
+"RP" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/som/squadengineer,
+/turf/open/floor/prison/sterilewhite,
+/area/mainship/patrol_base/som)
+"RV" = (
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
+/area/mainship/patrol_base)
 "RY" = (
 /obj/machinery/telecomms/server/presets/command/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "Sg" = (
-/obj/effect/landmark/start/latejoinsom,
-/turf/open/floor/mainship,
+/turf/open/floor/prison/red,
+/area/mainship/patrol_base/som)
+"Sq" = (
+/obj/machinery/light,
+/turf/open/floor/prison/red,
 /area/mainship/patrol_base/som)
 "Sw" = (
 /turf/open/space/basic,
 /area/space)
 "Sy" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
+/area/mainship/patrol_base)
+"SG" = (
+/obj/effect/landmark/start/job/som/squadleader,
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"SR" = (
+/turf/open/floor/prison/sterilewhite,
+/area/mainship/patrol_base/som)
+"ST" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal4/req,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"SU" = (
+/obj/structure/window/framed/prison/cell,
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"SY" = (
+/obj/structure/flora/pottedplant/two,
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"TO" = (
+/turf/open/floor/mainship/ntlogo/nt3,
+/area/mainship/patrol_base)
+"TP" = (
+/obj/item/stool,
+/obj/effect/landmark/start/job/som/squadstandard,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"TS" = (
+/turf/closed/wall/r_wall/prison_unmeltable{
+	desc = Whatdidyouexpecttosee?Surelyyoudidn'tthinkweweregonnadothisENTIREstructure.
+	},
+/area/mainship/patrol_base/som)
+"TW" = (
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
+	name = Canteen;
+	req_access = null
+	},
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"Uw" = (
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"UE" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/obj/item/reagent_containers/food/snacks/protein_pack{
+	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
+	name = "SoM protein bar"
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"UL" = (
+/obj/structure/bed/chair/comfy/brown{
+	dir = 8
+	},
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/som/squadcorpsman,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/som)
-"TS" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/som)
-"UL" = (
-/obj/machinery/light,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/som)
-"Vu" = (
-/obj/machinery/door/poddoor/timed_late/containment,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base)
-"Vz" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base)
-"VE" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/obj/item/reagent_containers/food/snacks/protein_pack,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/som)
-"VI" = (
-/obj/effect/landmark/start/job/som/squadcorpsman,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/som)
-"VY" = (
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/som)
-"Wv" = (
-/obj/machinery/quick_vendor/som,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/som)
-"WN" = (
-/obj/effect/landmark/start/job/squadengineer,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base)
-"Xe" = (
-/obj/structure/patrol_point{
-	id = "SOM_23"
+/obj/effect/landmark/start/job/som/squadleader,
+/turf/open/floor/carpet/side{
+	dir = 5
 	},
-/turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
-"XE" = (
-/obj/effect/landmark/start/job/squadleader,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base)
-"XH" = (
-/obj/machinery/light{
+"Va" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/wood,
+/area/mainship/patrol_base/som)
+"Vc" = (
+/turf/open/floor/stairs/rampbottom{
 	dir = 8
 	},
-/turf/open/floor/mainship,
+/area/mainship/patrol_base/som)
+"Vd" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"Vq" = (
+/obj/machinery/vending/marineFood,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base)
+"Vu" = (
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Vy" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/prison/darkred,
+/area/mainship/patrol_base/som)
+"Vz" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"VE" = (
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"VH" = (
+/obj/structure/table/black,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
+"VI" = (
+/obj/structure/curtain/open,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"VO" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/mainship/patrol_base)
+"VY" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/som/squadveteran,
+/turf/open/floor/prison/sterilewhite,
+/area/mainship/patrol_base/som)
+"Wr" = (
+/obj/machinery/quick_vendor/som,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"Wv" = (
+/obj/effect/landmark/start/job/som/squadcorpsman,
+/obj/structure/bed/chair/nometal{
+	dir = 4
+	},
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"Wy" = (
+/obj/structure/bed/bunkbed,
+/obj/item/bedsheet/blue{
+	pixel_y = 10
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
+"WN" = (
+/obj/structure/table/holotable/wood,
+/obj/effect/spawner/random/drink_alcohol_bottle,
+/turf/open/floor/wood,
+/area/mainship/patrol_base/som)
+"WX" = (
+/obj/structure/table/holotable/wood,
+/obj/machinery/chem_dispenser/beer,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/mainship/patrol_base)
+"Xe" = (
+/turf/open/floor/prison/darkred{
+	dir = 8
+	},
+/area/mainship/patrol_base/som)
+"Xt" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
+"Xy" = (
+/obj/structure/patrol_point{
+	id = "SOM_11"
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"XE" = (
+/turf/open/floor/mainship/blue{
+	dir = 4
+	},
+/area/mainship/patrol_base)
+"XH" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/obj/machinery/door/poddoor/timed_late/containment{
+	dir = 8
+	},
+/turf/open/floor/plating,
 /area/mainship/patrol_base/som)
 "XJ" = (
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base)
-"YY" = (
+"XM" = (
+/turf/open/floor/mainship/terragov/north{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"XR" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	pixel_x = -16
+	},
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
+"XV" = (
 /obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/blue{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"Yx" = (
+/obj/structure/table/holotable/wood,
+/obj/effect/spawner/random/drink_alcohol_bottle,
+/turf/open/floor/wood,
+/area/mainship/patrol_base)
+"YD" = (
+/obj/structure/patrol_point{
+	id = "SOM_22"
+	},
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
+"YU" = (
+/obj/structure/table/fancywoodentable,
+/obj/item/storage/fancy/cigar,
+/turf/open/floor/carpet/side{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
+"YY" = (
+/turf/open/floor/mainship/plate,
+/area/mainship/patrol_base)
+"Zc" = (
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/mainship,
+/area/mainship/patrol_base/som)
+"Zz" = (
+/obj/structure/table/fancywoodentable,
+/obj/machinery/light,
+/turf/open/floor/carpet/side{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"ZC" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/wood,
 /area/mainship/patrol_base/som)
 "ZD" = (
-/turf/open/floor/mainship,
+/obj/machinery/quick_vendor,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship/research,
+/area/mainship/patrol_base)
+"ZN" = (
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
+"ZX" = (
+/obj/machinery/light/spot{
+	dir = 1
+	},
+/turf/open/floor/mainship/terragov{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"ZY" = (
+/obj/effect/landmark/start/job/squadleader,
+/turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 
 (1,1,1) = {"
@@ -583,26 +2682,26 @@ Sw
 Sw
 Sw
 Sw
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
+Sw
+Sw
+Sw
+TS
+TS
+TS
+TS
+TS
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (2,1,1) = {"
 Sw
@@ -635,36 +2734,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-VY
-fL
-VY
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
 Rq
-yG
-yG
-yG
-VY
-dv
+If
+Rq
 TS
-VY
-VY
-VY
-XH
-VY
-VY
-VY
-VY
-ir
+TS
+TS
+TS
+TS
+TS
+TS
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (3,1,1) = {"
 Sw
@@ -697,36 +2796,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-VY
+If
+MU
+xu
+BZ
+BZ
+BZ
+xu
+BZ
+MS
+BZ
+xu
+BZ
 fL
-VY
+If
+jZ
 yG
-yG
-yG
-yG
+cN
+If
 VY
-dv
-TS
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-ir
+If
+RP
+If
+hq
+If
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (4,1,1) = {"
 Sw
@@ -759,36 +2858,36 @@ Sw
 Sw
 Sw
 Sw
+If
+PQ
+xO
+Xe
+Xe
+Xe
+Xe
+Xe
+Xe
+Xe
+Xe
+Xe
+Xe
+OI
+mm
+PQ
+Sg
+If
+FL
+If
+FL
+If
+FL
+If
 Sw
 Sw
 Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-ir
-pd
-fL
-VY
-VY
-VY
-VY
-VY
-UL
-dv
-pd
-VY
-VY
-Wv
-Wv
-VY
-Wv
-Wv
-UL
-ir
 "}
 (5,1,1) = {"
 Sw
@@ -821,36 +2920,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-Mr
-fL
-VY
 If
+PQ
+ud
+PQ
+PQ
+oK
+PQ
+PQ
+PQ
+oK
+PQ
+PQ
+PQ
+Vy
+mm
+PQ
+Sg
 If
+MW
+SR
+SR
+SR
+hc
 If
-If
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-ir
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (6,1,1) = {"
 Sw
@@ -883,36 +2982,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
+If
+fp
+ud
+BD
 IC
-fL
-VY
+IC
+IC
+IC
+IC
+IC
+IC
+IC
+IC
+wz
+mm
+PQ
+Sg
+eo
+SR
+OH
+NG
+OH
+NG
 If
-If
-If
-If
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-ir
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (7,1,1) = {"
 Sw
@@ -945,36 +3044,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
+If
+pb
+ud
+zV
+If
+bL
 CM
-fL
-VY
+CM
+MS
+CM
+CM
+CM
+kH
+If
+mm
+PQ
+Sq
 If
 If
 If
 If
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-ir
+If
+If
+If
+If
+If
+If
+If
+If
+If
 "}
 (8,1,1) = {"
 Sw
@@ -1007,36 +3106,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Co
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
+If
+Oz
+sz
+zV
+If
+If
 sR
-fL
-VY
+sR
+jX
+sR
+sR
+sR
+If
+If
+mm
+PQ
 Sg
-Sg
-Sg
-Sg
-VY
-VY
-VY
-VY
-VY
-Wv
-Wv
-VY
-Wv
-Wv
-VY
-ir
+If
+eg
+HA
+kC
+cl
+ig
+If
+Ch
+ik
+ik
+ik
+hh
+If
 "}
 (9,1,1) = {"
 Sw
@@ -1069,36 +3168,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-pd
-fL
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-UL
-ir
+If
+pb
+ud
+zV
+Ru
+SU
+Xy
+Hl
+PQ
+PQ
+Qe
+kT
+DP
+pz
+mm
+PQ
+Sg
+If
+kp
+dv
+dv
+dv
+aE
+Er
+cv
+IH
+IH
+IH
+IH
+If
 "}
 (10,1,1) = {"
 Sw
@@ -1131,36 +3230,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-VY
-fL
-VY
+If
+pb
+ud
+zV
+lS
+SU
+Zc
+Zc
+Zc
+Zc
+Zc
+Zc
+DP
+sk
 mm
-VY
+PQ
+Sg
 Ox
-Ox
-UL
+kp
 dv
-pd
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-ir
+dv
+dv
+aE
+Er
+cv
+ik
+ik
+ik
+ik
+If
 "}
 (11,1,1) = {"
 Sw
@@ -1193,36 +3292,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-VY
-fL
-VY
+If
+pb
+ud
+zV
+If
+If
+ex
+cU
+cU
+cU
+cU
+dL
+If
+If
 mm
-VY
+PQ
+Sg
 Ox
-Ox
-VY
+kp
 dv
-yx
-VY
-VY
-cv
-cv
-VY
+dv
+dv
+aE
 Er
+cv
 ik
-VY
-ir
+ik
+ik
+ik
+If
 "}
 (12,1,1) = {"
 Sw
@@ -1255,36 +3354,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-VY
-fL
-VY
-mm
-VY
-Ox
-Ox
-VY
+If
+Oz
+ud
+zV
+wu
+nf
+lM
+Mr
+PQ
+PQ
+Mr
+eN
+yG
+Ak
+lM
+PQ
+Sg
+If
+YU
 dv
-yx
-VY
-VY
+dv
+dv
+aE
 Er
-ik
-VY
 cv
-cv
-VY
-ir
+IH
+IH
+IH
+IH
+If
 "}
 (13,1,1) = {"
 Sw
@@ -1317,36 +3416,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-VY
-fL
-VY
+If
+Oq
+ud
+hT
 mm
-VY
-Ox
-Ox
+PQ
+PQ
+Qr
+yr
+yr
+xQ
+PQ
+PQ
+PQ
+PQ
+PQ
+Sg
+If
 UL
-dv
-pd
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-ir
+OA
+OA
+OA
+fo
+If
+Ff
+ik
+ik
+ik
+af
+If
 "}
 (14,1,1) = {"
 Sw
@@ -1379,36 +3478,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-pd
-fL
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-UL
-ir
+If
+Oq
+ud
+zV
+If
+Nq
+PQ
+Sg
+PQ
+PQ
+mm
+PQ
+Pm
+If
+PQ
+PQ
+Sq
+If
+If
+ox
+ox
+ox
+If
+If
+If
+If
+If
+If
+If
+If
 "}
 (15,1,1) = {"
 Sw
@@ -1441,36 +3540,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
+If
+En
+ud
+zV
+sg
 PQ
-fL
-VY
+PQ
 Sg
+PQ
+PQ
+mm
+PQ
+PQ
+sg
+PQ
+PQ
 Sg
-Sg
-Sg
-VY
-VY
-VY
-VY
-VY
-Wv
-Wv
-VY
-Wv
-Wv
-VY
-ir
+tQ
+lf
+rW
+VE
+VE
+SG
+SG
+If
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (16,1,1) = {"
 Sw
@@ -1503,36 +3602,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-cU
-fL
-VY
 If
+Oq
+ud
+zV
 If
+Lf
+PQ
+Sg
+PQ
+PQ
+mm
+PQ
+gd
 If
+PQ
+PQ
+Sg
+mU
+zj
+rW
+VE
+VE
+Qn
+Qn
 If
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-ir
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (17,1,1) = {"
 Sw
@@ -1565,36 +3664,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-Xe
-fL
-VY
 If
+Oq
+ud
+hT
+JH
+PQ
+PQ
+eN
+bX
+bX
+lM
+PQ
+PQ
+jC
+PQ
+PQ
+Sg
 If
+Ol
+VE
+VE
+VE
+Nv
+yN
 If
-If
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-ir
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (18,1,1) = {"
 Sw
@@ -1627,36 +3726,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
+If
+Oz
+ud
+zV
+AZ
+On
+xQ
+Rc
+PQ
+PQ
+Rc
 Qr
-fL
-VY
+On
+yr
+xQ
+PQ
+Sg
+TW
+VE
+VE
+VE
+VE
+JR
+JR
 If
-If
-If
-If
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-ir
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (19,1,1) = {"
 Sw
@@ -1689,36 +3788,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
+If
+pb
+ud
+zV
+If
+If
+iX
+xC
+xC
+xC
+xC
 pd
-fL
-VY
-VY
-VY
-VY
-VY
-UL
-dv
-pd
-VY
-VY
+If
+If
+mm
+PQ
+Sg
+VE
+VE
+VE
+VE
+VE
 Wv
 Wv
-VY
-Wv
-Wv
-UL
-ir
+If
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (20,1,1) = {"
 Sw
@@ -1751,36 +3850,36 @@ Sw
 Sw
 Sw
 Sw
+If
+pb
+ud
+zV
+lS
+tU
+Vc
+Vc
+Vc
+Vc
+Vc
+Vc
+DP
+Le
+mm
+PQ
+Sg
+If
+yI
+LN
+VE
+VE
+nI
+nI
+If
 Sw
 Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-VY
-fL
-VY
-VI
-VI
-VI
-VI
-VY
-dv
-yx
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-VY
-ir
 "}
 (21,1,1) = {"
 Sw
@@ -1813,36 +3912,36 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+If
+pb
+ud
+zV
+Ru
+SU
+vo
+YD
+PQ
+PQ
 ir
-VY
-fL
-VY
-Sy
-VI
-VI
-VI
-VY
-dv
+dM
+DP
+UE
+mm
+PQ
+Sg
+If
+aP
+rW
 VE
-VY
-VY
-VY
-YY
-VY
-VY
-VY
-VY
-ir
+VE
+aQ
+aQ
+If
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (22,1,1) = {"
 Sw
@@ -1875,36 +3974,36 @@ Sw
 Sw
 Sw
 Sw
+If
+Oz
+lQ
+zV
+If
+If
+XH
+XH
+hX
+XH
+XH
+XH
+If
+If
+mm
+PQ
+Sg
+TW
+VE
+VE
+VE
+VE
+aH
+aH
+If
 Sw
 Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
-ir
 "}
 (23,1,1) = {"
 bg
@@ -1937,31 +4036,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+If
+pb
+ud
+zV
+If
+MU
+BZ
+BZ
+MS
+BZ
+BZ
+BZ
+fL
+If
+mm
+PQ
+Sg
+VE
+VE
+VE
+VE
+VE
+VE
+VE
+If
 Sw
 Sw
 Sw
@@ -1999,31 +4098,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+If
+nZ
+ud
+qK
+Xe
+Xe
+Xe
+Xe
+Xe
+Xe
+Xe
+Xe
+Xe
+OI
+mm
+PQ
+Sg
+If
+Ol
+VE
+VE
+VE
+VE
+Fk
+If
 Sw
 Sw
 Sw
@@ -2061,31 +4160,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+If
+PQ
+ud
+PQ
+PQ
+oK
+PQ
+PQ
+PQ
+oK
+PQ
+PQ
+PQ
+Vy
+mm
+PQ
+Sg
+tQ
+TP
+TP
+TP
+TP
+TP
+VE
+If
 Sw
 Sw
 Sw
@@ -2123,31 +4222,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+If
+PQ
+Dr
+IC
+IC
+IC
+IC
+IC
+IC
+IC
+IC
+IC
+IC
+wz
+mm
+PQ
+Sg
+Va
+WN
+WN
+WN
+WN
+WN
+Dt
+If
 Sw
 Sw
 Sw
@@ -2185,31 +4284,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+If
+MU
+Wr
+BZ
+BZ
+BZ
+Wr
+BZ
+MS
+BZ
+Wr
+BZ
+fL
+If
+Co
+On
+lm
+Va
+gr
+gr
+ej
+gr
+gr
+gr
+If
 Sw
 Sw
 Sw
@@ -2247,31 +4346,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+If
+RC
+al
+EX
+wU
+Jf
+ZC
+If
 Sw
 Sw
 Sw
@@ -2326,14 +4425,14 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+If
+If
+If
+If
+If
+If
+If
+If
 Sw
 Sw
 Sw
@@ -2868,12 +4967,12 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
 Sw
 Sw
 Sw
@@ -2930,6 +5029,12 @@ Sw
 Sw
 Sw
 Sw
+Fw
+oP
+yD
+uc
+kA
+Fw
 Sw
 Sw
 Sw
@@ -2939,26 +5044,20 @@ Sw
 Sw
 Sw
 Sw
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (40,1,1) = {"
 Sw
@@ -2992,6 +5091,12 @@ Sw
 Sw
 Sw
 Sw
+Fw
+Fw
+Fw
+uc
+kA
+Fw
 Sw
 Sw
 Sw
@@ -3001,26 +5106,20 @@ Sw
 Sw
 Sw
 Sw
-BB
-ZD
-Vu
-ZD
-bX
-WN
-WN
-WN
-ZD
-dJ
-NT
-ZD
-ZD
-ZD
-vL
-ZD
-ZD
-ZD
-ZD
-BB
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (41,1,1) = {"
 Sw
@@ -3054,6 +5153,12 @@ Sw
 Sw
 Sw
 Sw
+Fw
+oP
+yD
+uc
+kA
+Fw
 Sw
 Sw
 Sw
@@ -3063,26 +5168,20 @@ Sw
 Sw
 Sw
 Sw
-BB
-ZD
-Vu
-ZD
-WN
-WN
-WN
-WN
-ZD
-dJ
-NT
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-BB
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (42,1,1) = {"
 Sw
@@ -3116,6 +5215,12 @@ Sw
 Sw
 Sw
 Sw
+Fw
+Fw
+Fw
+uc
+kA
+Fw
 Sw
 Sw
 Sw
@@ -3125,26 +5230,20 @@ Sw
 Sw
 Sw
 Sw
-BB
-Eo
-Vu
-ZD
-ZD
-ZD
-ZD
-ZD
-gk
-dJ
-Eo
-ZD
-ZD
-Kz
-Kz
-ZD
-Kz
-Kz
-gk
-BB
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (43,1,1) = {"
 Sw
@@ -3178,6 +5277,12 @@ Sw
 Sw
 Sw
 Sw
+Fw
+oP
+yD
+uc
+uc
+Fw
 Sw
 Sw
 Sw
@@ -3187,26 +5292,20 @@ Sw
 Sw
 Sw
 Sw
-BB
-BD
-Vu
-ZD
-bz
-bz
-bz
-bz
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-BB
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 "}
 (44,1,1) = {"
 Sw
@@ -3235,40 +5334,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
 Fw
-Vu
-ZD
-bz
-bz
-bz
-bz
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-BB
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+yy
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
 "}
 (45,1,1) = {"
 Sw
@@ -3297,40 +5396,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
+Fw
+NZ
+it
+Yx
+dk
+Jb
+Jb
+Jb
+Jb
+Rs
+Fw
+GL
 ch
-Vu
-ZD
+ch
+xl
+ch
+ch
+ac
+Fw
 bz
-bz
-bz
-bz
+ZD
+ZD
+OF
 ZD
 ZD
 ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-BB
+FJ
+Fw
+KO
+KO
+PB
+PB
+gk
+Fw
 "}
 (46,1,1) = {"
 Sw
@@ -3359,40 +5458,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
+Fw
+WX
+it
+Yx
+Qw
+yx
+yx
+yx
+yx
+ge
+Fw
+XV
+Ee
+rF
+rF
 jp
-Vu
-ZD
-XJ
-XJ
-XJ
-XJ
-ZD
-ZD
-ZD
-ZD
-ZD
-Kz
-Kz
-ZD
-Kz
-Kz
-ZD
-BB
+Bs
+JO
+Fw
+yp
+OM
+OM
+OM
+OM
+OM
+OM
+yp
+Fw
+pk
+or
+or
+or
+JB
+Fw
 "}
 (47,1,1) = {"
 Sw
@@ -3421,40 +5520,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
-Eo
+Fw
+Lx
+it
+Yx
+Qw
+yx
+VO
+AG
+yx
+ge
+YY
 Vu
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
+EM
+vL
+VH
+Vz
+Bs
+NT
+ch
+ch
+ch
+ch
+ch
+ch
+ch
+ch
+ch
+RV
+nm
+nm
+nm
+Ps
 gk
-BB
+Fw
 "}
 (48,1,1) = {"
 Sw
@@ -3483,40 +5582,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
-ZD
+Fw
+rZ
+it
+Yx
+Qw
+yx
+iR
+Ji
+yx
+ge
+YY
 Vu
-ZD
-XE
-ZD
-ZD
-OM
-gk
+EM
+vL
+VH
+Vz
+Bs
+Bs
+Bs
 dJ
-Eo
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-BB
+Bs
+Bs
+Bs
+dJ
+Bs
+Bs
+Bs
+HG
+nm
+nm
+nm
+Ps
+qc
+Fw
 "}
 (49,1,1) = {"
 Sw
@@ -3545,40 +5644,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
-ZD
+Fw
+el
+it
+Yx
+Qw
+yx
+FY
+fQ
+yx
+ge
+YY
 Vu
-ZD
-XE
-ZD
-ZD
-OM
-ZD
-dJ
+EM
+vL
+VH
 Vz
-ZD
-ZD
-JY
-JY
-ZD
-Dg
+Bs
+Bs
+Bs
+dJ
+Bs
+Bs
+Bs
+dJ
+Bs
+Bs
+Bs
+HG
 nm
-ZD
-BB
+nm
+nm
+JY
+LH
+Fw
 "}
 (50,1,1) = {"
 Sw
@@ -3607,40 +5706,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
-ZD
+Fw
+jh
+it
+Yx
+Qw
+yx
+yx
+yx
+yx
+ge
+YY
 Vu
-ZD
-XE
-ZD
-ZD
-OM
-ZD
-dJ
+EM
+vL
+VH
 Vz
-ZD
-ZD
+Bs
+Ee
+XE
+XE
+XE
+XE
+XE
+XE
+XE
+XE
+XE
 Dg
 nm
-ZD
+nm
+nm
 JY
-JY
-ZD
-BB
+vf
+Fw
 "}
 (51,1,1) = {"
 Sw
@@ -3669,40 +5768,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
-ZD
+Fw
+xz
+it
+Yx
+Qw
+yx
+yx
+yx
+yx
+Kk
+Fw
 Vu
-ZD
-XE
-ZD
-ZD
+EM
+vL
+VH
+Vz
+Xt
+ua
+Fw
+yp
 OM
-gk
-dJ
-Eo
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-BB
+OM
+OM
+OM
+OM
+OM
+yp
+Fw
+oq
+yH
+nm
+nm
+yH
+Fw
 "}
 (52,1,1) = {"
 Sw
@@ -3731,40 +5830,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
+Fw
+Sy
+it
+nF
+lp
+aO
+aO
+aO
+rv
+Zz
+Fw
+XV
+NT
+uz
+uz
 Eo
-Vu
+Bs
+JO
+Fw
+bz
+ZD
+ZD
+zo
 ZD
 ZD
 ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-gk
-BB
+FJ
+Fw
+Fj
+ZY
+nm
+nm
+bI
+Fw
 "}
 (53,1,1) = {"
 Sw
@@ -3793,40 +5892,40 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
-ud
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
 Vu
-ZD
-XJ
-XJ
-XJ
-XJ
-ZD
-ZD
-ZD
-ZD
-ZD
-Kz
-Kz
-ZD
-Kz
-Kz
-ZD
-BB
+Bs
+Bs
+Bs
+Bs
+Bs
+Uw
+Fw
+qQ
+qQ
+qQ
+Fw
+pg
+pg
+pg
+pg
+Fw
+Ow
+ZY
+nm
+nm
+Eh
+Fw
 "}
 (54,1,1) = {"
 Sw
@@ -3864,31 +5963,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
-Bs
+wr
+Fc
 Vu
-ZD
-bz
-bz
-bz
-bz
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-BB
+Bs
+Bs
+Bs
+Bs
+Bs
+NT
+ch
+ch
+ch
+vI
+ym
+ur
+Go
+bP
+Ho
+Fw
+Fw
+VI
+VI
+VI
+Fw
+Fw
 "}
 (55,1,1) = {"
 Sw
@@ -3926,31 +6025,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
-yp
+wr
+Bs
 Vu
-ZD
-bz
-bz
-bz
-bz
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-BB
+Ee
+XE
+XE
+XE
+jp
+ag
+Bs
+Bs
+wo
+NT
+JL
+ch
+ch
+ch
+Ll
+Fw
+tq
+ZN
+Bs
+ZN
+tq
+Fw
 "}
 (56,1,1) = {"
 Sw
@@ -3988,31 +6087,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
+wr
+Fw
+Vu
+Uw
+Kd
+Hy
 aL
 Vu
-ZD
-bz
-bz
-bz
-bz
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-BB
+XR
+Bs
+Bs
+ag
+Bs
+fV
+Bs
+Bs
+Bs
+Uw
+Fw
+tq
+XJ
+eT
+XJ
+tq
+Fw
 "}
 (57,1,1) = {"
 Sw
@@ -4050,31 +6149,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
-Eo
+wr
+Fw
+XV
+Uw
+nz
+ZX
+we
 Vu
-ZD
-ZD
-ZD
-ZD
-ZD
-gk
-dJ
-Eo
-ZD
-ZD
+Bs
+Bs
+Bs
+Bs
+Bs
+fV
+Bs
+Bs
+Bs
+Uw
+Fw
+Wy
+XJ
 Kz
-Kz
-ZD
-Kz
-Kz
-gk
-BB
+XJ
+KS
+Fw
 "}
 (58,1,1) = {"
 Sw
@@ -4112,31 +6211,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
-ZD
+wr
+Fw
 Vu
-ZD
-Ee
-Ee
-Ee
-Ee
-ZD
-dJ
-Vz
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-ZD
-BB
+Uw
+Ih
+Rr
+XM
+Vu
+wo
+Bs
+Bs
+ag
+Bs
+fV
+Bs
+Bs
+Bs
+Uw
+Fw
+tq
+XJ
+TO
+XJ
+tq
+Fw
 "}
 (59,1,1) = {"
 Sw
@@ -4174,31 +6273,31 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-BB
-ZD
+wr
+Fc
 Vu
-ZD
-al
+NT
+ch
+ch
+ch
+Eo
+ag
+Bs
+Bs
+XR
 Ee
-Ee
-Ee
-ZD
-dJ
-sX
-ZD
-ZD
-ZD
+Fo
+XE
+XE
+XE
+Vd
+Fw
 tq
-ZD
-ZD
-ZD
-ZD
-BB
+ZN
+Bs
+ZN
+tq
+Fw
 "}
 (60,1,1) = {"
 Sw
@@ -4236,29 +6335,649 @@ Sw
 Sw
 Sw
 Sw
+wr
+Bs
+Vu
+Bs
+Bs
+Bs
+Bs
+Bs
+Ee
+XE
+XE
+XE
+SY
+ym
+bs
+Lr
+BB
+rk
+Fw
+Fw
+VI
+VI
+VI
+Fw
+Fw
+"}
+(61,1,1) = {"
 Sw
 Sw
 Sw
 Sw
 Sw
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
-BB
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+wr
+Fw
+Vu
+Bs
+Bs
+Bs
+Bs
+Bs
+Uw
+Fw
+qQ
+qQ
+qQ
+Fw
+Bq
+Bq
+Bq
+Bq
+Fw
+ap
+Rt
+nm
+nm
+eS
+Fw
+"}
+(62,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+XV
+Ee
+rF
+rF
+jp
+Bs
+JO
+Fw
+bz
+Ek
+Ek
+Jg
+Ek
+Ek
+Ek
+FJ
+Fw
+dl
+Rt
+nm
+nm
+kN
+Fw
+"}
+(63,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+Vu
+EM
+vL
+VH
+Vz
+sW
+nt
+Fw
+yp
+sX
+sX
+sX
+sX
+sX
+sX
+yp
+Fw
+Vq
+uR
+nm
+nm
+uR
+Fw
+"}
+(64,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+Vu
+EM
+vL
+VH
+Vz
+Bs
+NT
+ch
+ch
+ch
+ch
+ch
+ch
+ch
+ch
+ch
+RV
+nm
+nm
+nm
+nR
+vf
+Fw
+"}
+(65,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+Vu
+EM
+vL
+VH
+Vz
+Bs
+Bs
+Bs
+dJ
+Bs
+Bs
+Bs
+dJ
+Bs
+Bs
+Bs
+HG
+nm
+nm
+nm
+nR
+LH
+Fw
+"}
+(66,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+Vu
+EM
+vL
+VH
+Vz
+Bs
+Bs
+Bs
+dJ
+Bs
+Bs
+Bs
+dJ
+Bs
+Bs
+Bs
+HG
+nm
+nm
+nm
+uy
+qc
+Fw
+"}
+(67,1,1) = {"
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+Vu
+EM
+vL
+VH
+Vz
+Bs
+Ee
+XE
+XE
+XE
+XE
+XE
+XE
+XE
+XE
+XE
+Dg
+nm
+nm
+nm
+uy
+PX
+Fw
+"}
+(68,1,1) = {"
+dW
+dW
+dW
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+XV
+NT
+uz
+uz
+Eo
+Bs
+JO
+Fw
+yp
+sX
+sX
+sX
+sX
+sX
+sX
+yp
+Fw
+Cd
+Me
+Me
+Me
+oO
+Fw
+"}
+(69,1,1) = {"
+dW
+RD
+dW
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+jr
+XE
+XE
+IM
+XE
+XE
+os
+Fw
+bz
+Ek
+Ek
+Pe
+Ek
+Ek
+Ek
+FJ
+Fw
+up
+up
+ST
+ST
+PX
+Fw
+"}
+(70,1,1) = {"
+dW
+dW
+dW
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
 "}
