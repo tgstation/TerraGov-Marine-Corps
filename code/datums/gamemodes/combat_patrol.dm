@@ -22,7 +22,7 @@
 	/// Timer used to calculate how long till round ends
 	var/game_timer
 	///The length of time until round ends.
-	var/max_game_time = 5 MINUTES
+	var/max_game_time = 35 MINUTES
 	///Whether the max game time has been reached
 	var/max_time_reached
 
