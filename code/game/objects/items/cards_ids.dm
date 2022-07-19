@@ -86,6 +86,8 @@
 	///What category of items can you buy - used for armor and poucehs
 	var/marine_buy_choices = list()
 
+	var/can_buy_loadout = TRUE
+
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
 	var/rank = null			//actual job
