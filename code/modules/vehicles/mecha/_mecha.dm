@@ -246,7 +246,7 @@
 		mob_exit(ejectee, TRUE, TRUE)
 
 	if(LAZYLEN(flat_equipment))
-		for(var/obj/item/mecha_parts/mecha_equipment/equip as anything in flat_equipment)
+		for(var/obj/item/mecha_parts/mecha_equipment/equip AS in flat_equipment)
 			equip.detach(loc)
 			qdel(equip)
 	radio = null
