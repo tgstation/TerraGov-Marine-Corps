@@ -162,11 +162,7 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 
 /// How many points a marine can spend in job specific vendors by default
 #define DEFAULT_TOTAL_BUY_POINTS 45
-/// How many points a marine can spend on injectors
-#define DEFAULT_INJECTOR_TOTAL_BUY_POINTS 6
 /// How many points a medic can spend on pills
-#define MEDIC_TOTAL_BUY_POINTS 40
-/// How many points a medic can spend on injectors
-#define MEDIC_INJECTOR_TOTAL_BUY_POINTS 10
+#define MEDIC_TOTAL_BUY_POINTS 45
 /// How many points an engineer can spend
 #define ENGINEER_TOTAL_BUY_POINTS 75
