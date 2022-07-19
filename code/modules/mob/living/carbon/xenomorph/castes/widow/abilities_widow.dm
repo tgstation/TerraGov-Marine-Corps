@@ -88,21 +88,23 @@
 	icon_state = "boiler_gas2" // temp
 	desc = "Looks very sticky"
 	destroy_sound = "alien_resin_break"
-	obj_integrity = 40
-	max_integrity = 2400
+	obj_integrity = 0
+	max_integrity = 1920
 	var/leash_radius = 5 /// radius for aoe_leash and range for the leash
-	var/intergrity_increase = 200
+	var/intergrity_increase = 240
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
 /// Humans caught get beamed and registered for proc/check_dist
 /obj/structure/xeno/aoe_leash/Initialize(mapload, atom/A)
 	. = ..()
-	for(var/mob/living/carbon/human/victims in view(leash_radius, loc))
+	var/mob/living/carbon/human/victims
+	for(victims in view(leash_radius, loc))
 		beam(victims, "beam_heavy", 'icons/obj/items/projectiles.dmi', INFINITY, INFINITY)
 		RegisterSignal(victims, COMSIG_MOVABLE_MOVED, .proc/check_dist)
 		obj_integrity = obj_integrity + intergrity_increase
-
+		if(obj_integrity > max_integrity)
+			obj_integrity = max_integrity
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
 /obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victims, atom/oldloc)
 	SIGNAL_HANDLER
@@ -119,7 +121,7 @@
 	name = "Spiderling"
 	flags_pass = PASSXENO
 	icon = 'icons/Xeno/Effects.dmi'
-	icon_state = "facehugger"
+	icon_state = "spiderling"
 	/// Which hive this spiderling belongs to
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -128,12 +130,32 @@
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/spiderling, spidermother)
 	hivenumber = spidermother.hivenumber
 
+/mob/living/spiderling/bullet_act(obj/projectile/proj)
+	. = ..()
+	if(proj.ammo.flags_ammo_behaviour & AMMO_XENO)
+		return FALSE
+
+/mob/living/spiderling/update_stat()
+	. = ..()
+	if(.)
+		return
+
+	if(stat == DEAD)
+		return
+
+	if(health <= 0)
+		gib()
+
 /datum/action/xeno_action/create_spiderling
 
 /datum/action/xeno_action/create_spiderling/action_activate()
 	. = ..()
 	new /mob/living/spiderling(owner.loc, owner)
 
+
+// ***************************************
+// *********** Spiderling AI Section
+// ***************************************
 /datum/ai_behavior/spiderling
 	target_distance = 1
 	base_action = ESCORTING_ATOM
