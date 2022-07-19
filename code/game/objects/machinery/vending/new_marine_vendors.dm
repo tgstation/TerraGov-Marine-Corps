@@ -95,26 +95,20 @@
 	. = list()
 
 	var/obj/item/card/id/I = user.get_idcard()
-	var/buy_flags = I?.marine_buy_choices || NONE
+	var/buy_choices = I?.marine_buy_choices
 
 	.["cats"] = list()
-	for(var/i in GLOB.marine_selector_cats)
-		.["cats"][i] = list(
-			"remaining" = 0,
-			"total" = 0,
-			"remaining_points" = 0,
-			"total_points" = 0,
+	for(var/cat in GLOB.marine_selector_cats)
+		.["cats"][cat] = list(
+			"remaining" = buy_choices[cat],
+			"total" = GLOB.marine_selector_cats[cat],
 			"choice" = "choice",
 			)
-		for(var/flag in GLOB.marine_selector_cats[i])
-			.["cats"][i]["total"]++
-			if(buy_flags & flag)
-				.["cats"][i]["remaining"]++
 
-	for(var/nm in I?.marine_points)
-		.["cats"][nm] = list(
-			"remaining_points" = I?.marine_points[nm],
-			"total_points" = ptscheck?.marine_points[nm],
+	for(var/cat in I?.marine_points)
+		.["cats"][cat] = list(
+			"remaining_points" = I?.marine_points[cat],
+			"total_points" = ptscheck?.marine_points[cat],
 			"choice" = "points",
 			)
 
@@ -156,8 +150,7 @@
 					flick(icon_deny, src)
 				return
 
-			var/list/C = GLOB.marine_selector_cats[item_category]
-			if(I.marine_buy_choices[item_category] && C)
+			if(I.marine_buy_choices[item_category] && GLOB.marine_selector_cats[item_category])
 				I.marine_buy_choices -= 1
 			else
 				to_chat(usr, span_warning("You can't buy things from this category anymore."))
@@ -178,7 +171,7 @@
 
 			use_power(active_power_usage)
 
-			if(bitf == MARINE_CAN_BUY_UNIFORM && !issynth(usr))
+			if(item_category == CAT_STD && !issynth(usr))
 				var/mob/living/carbon/human/H = usr
 				if(!istype(H.job, /datum/job/terragov/command/fieldcommander))
 					var/headset_type = H.faction == FACTION_TERRAGOV ? /obj/item/radio/headset/mainship/marine : /obj/item/radio/headset/mainship/marine/rebel
@@ -201,17 +194,17 @@
 	vendor_role = /datum/job/terragov/squad/standard
 	use_points = TRUE
 	categories = list(
-		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
-		CAT_GLA = list(MARINE_CAN_BUY_GLASSES),
-		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
-		CAT_AMR = list(MARINE_CAN_BUY_ARMOR),
-		CAT_BAK = list(MARINE_CAN_BUY_BACKPACK),
-		CAT_WEB = list(MARINE_CAN_BUY_WEBBING),
-		CAT_BEL = list(MARINE_CAN_BUY_BELT),
-		CAT_POU = DEFAULT_POUCH_POINTS,
-		CAT_MOD = list(MARINE_CAN_BUY_MODULE),
-		CAT_ARMMOD = list(MARINE_CAN_BUY_ARMORMOD),
-		CAT_MAS = list(MARINE_CAN_BUY_MASK),
+		CAT_STD = 1,
+		CAT_GLA = 1,
+		CAT_HEL = 1,
+		CAT_AMR = 1,
+		CAT_BAK = 1,
+		CAT_WEB = 1,
+		CAT_BEL = 1,
+		CAT_POU = 2,
+		CAT_MOD = 1,
+		CAT_ARMMOD = 1,
+		CAT_MAS = 1,
 	)
 
 /obj/machinery/marine_selector/clothes/Initialize()
@@ -924,19 +917,6 @@
 		/obj/item/tool/weldingtool,
 		/obj/item/stack/cable_coil/twentyfive,
 	)
-
-
-#undef MARINE_CAN_BUY_UNIFORM
-#undef MARINE_CAN_BUY_SHOES
-#undef MARINE_CAN_BUY_HELMET
-#undef MARINE_CAN_BUY_ARMOR
-#undef MARINE_CAN_BUY_GLOVES
-#undef MARINE_CAN_BUY_EAR
-#undef MARINE_CAN_BUY_BACKPACK
-#undef MARINE_CAN_BUY_BELT
-#undef MARINE_CAN_BUY_GLASSES
-#undef MARINE_CAN_BUY_MASK
-#undef MARINE_CAN_BUY_ESSENTIALS
 
 #undef DEFAULT_TOTAL_BUY_POINTS
 #undef MEDIC_TOTAL_BUY_POINTS

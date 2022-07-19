@@ -160,7 +160,6 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 
 #define SQUAD_MAX_POSITIONS(total_positions) CEILING(total_positions / length(SSjob.active_squads), 1)
 
-#define DEFAULT_POUCH_POINTS 2
 /// How many points a marine can spend in job specific vendors by default
 #define DEFAULT_TOTAL_BUY_POINTS 45
 /// How many points a medic can spend on pills

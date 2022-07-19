@@ -81,12 +81,10 @@
 	var/blood_type = "\[UNSET\]"
 
 	///How many points you can use to buy items
-	var/marine_points = list(
-		CAT_POU = DEFAULT_POUCH_POINTS,
-	)
+	var/marine_points = list()
 
-	///What category of items can you buy
-	var/marine_buy_choices = GLOB.marine_selector_cats
+	///What category of items can you buy - used for armor and poucehs
+	var/marine_buy_choices = list()
 
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job
@@ -105,6 +103,7 @@
 		return
 	var/mob/living/carbon/human/H = loc
 	blood_type = H.blood_type
+	marine_buy_choices = GLOB.marine_selector_cats //by default you can buy the whole list
 	GLOB.id_card_list += src
 
 /obj/item/card/id/Destroy()
@@ -252,31 +251,26 @@
 // Vendor points for job override
 /obj/item/card/id/dogtag/smartgun
 	marine_points = list(
-		CAT_POU = DEFAULT_POUCH_POINTS,
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/engineer
 	marine_points = list(
-		CAT_POU = DEFAULT_POUCH_POINTS,
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/leader
 	marine_points = list(
-		CAT_POU = DEFAULT_POUCH_POINTS,
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/corpsman
 	marine_points = list(
-		CAT_POU = DEFAULT_POUCH_POINTS,
 		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/full
 	marine_points = list(
-		CAT_POU = DEFAULT_POUCH_POINTS,
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
