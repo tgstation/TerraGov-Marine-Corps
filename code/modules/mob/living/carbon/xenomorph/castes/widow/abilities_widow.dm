@@ -131,9 +131,9 @@
 	hivenumber = spidermother.hivenumber
 
 /mob/living/spiderling/bullet_act(obj/projectile/proj)
-	. = ..()
 	if(proj.ammo.flags_ammo_behavior & AMMO_XENO)
 		return FALSE
+	return ..()
 
 /mob/living/spiderling/update_stat()
 	. = ..()
