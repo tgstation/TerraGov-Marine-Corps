@@ -268,7 +268,7 @@
 	return ..()
 
 /obj/vehicle/sealed/mecha/obj_destruction(damage_amount, damage_type, damage_flag)
-	for(var/mob/living/occupant as anything in occupants)
+	for(var/mob/living/occupant AS in occupants)
 		if(isAI(occupant))
 			occupant.gib() //No wreck, no AI to recover
 			continue
