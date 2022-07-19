@@ -309,7 +309,7 @@
 		else
 			mouse_pointer = 'icons/mecha/mecha_mouse.dmi'
 
-	for(var/mob/mob_occupant as anything in occupants)
+	for(var/mob/mob_occupant AS in occupants)
 		mob_occupant.client.mouse_pointer_icon = mouse_pointer // note this is update_mouse_pointer() on tg
 
 //override this proc if you need to split up mecha control between multiple people (see savannah_ivanov.dm)
