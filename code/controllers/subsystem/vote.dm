@@ -297,6 +297,8 @@ SUBSYSTEM_DEF(vote)
 			result(choices[1])
 			reset()
 			return FALSE
+		if(length(choices) == 2)
+			multiple_vote = FALSE
 		initiator = initiator_key
 		started_time = world.time
 		var/text = "[capitalize(mode)] vote started by [initiator ? initiator : "server"]."
