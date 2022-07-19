@@ -254,7 +254,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/outfit/job/marine/corpsman/equipped
 	name = "Squad Corpsman (Equipped)"
 
-	belt = /obj/item/storage/belt/lifesaver
+	belt = /obj/item/storage/belt/lifesaver/full
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine/corpsman
 	wear_suit = /obj/item/clothing/suit/storage/marine

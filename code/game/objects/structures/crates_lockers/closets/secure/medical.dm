@@ -61,7 +61,7 @@
 /obj/structure/closet/secure_closet/medical3/PopulateContents()
 	. = ..()
 	new /obj/item/clothing/glasses/hud/health(src)
-	new /obj/item/storage/belt/lifesaver(src)
+	new /obj/item/storage/belt/lifesaver/full(src)
 	new /obj/item/storage/backpack/marine/satchel(src)
 	new /obj/item/clothing/under/rank/medical/blue(src)
 	new /obj/item/clothing/under/rank/medical/green(src)

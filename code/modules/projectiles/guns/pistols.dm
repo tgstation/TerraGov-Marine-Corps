@@ -200,6 +200,8 @@
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
 
+/obj/item/weapon/gun/pistol/standard_heavypistol/tactical
+	starting_attachment_types = list(/obj/item/attachable/reddot)
 //-------------------------------------------------------
 //P-1911
 
@@ -515,6 +517,8 @@
 	scatter = 0
 	scatter_unwielded = 6
 
+/obj/item/weapon/gun/pistol/vp70/tactical
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/compensator)
 
 //-------------------------------------------------------
 //VP78

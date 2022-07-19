@@ -604,7 +604,7 @@
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "van"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
@@ -616,7 +616,7 @@
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "truck"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
@@ -631,7 +631,7 @@
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "crane"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 64
 	bound_width = 64
 	resistance_flags = RESIST_ALL
@@ -646,7 +646,7 @@
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "crawler"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL

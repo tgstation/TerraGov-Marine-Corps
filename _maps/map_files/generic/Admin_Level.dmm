@@ -2440,11 +2440,6 @@
 /turf/open/floor/tile/neutral/full,
 /area/centcom/valhalla/engine/break_room)
 "dkn" = (
-/obj/machinery/flasher{
-	id = "AI";
-	pixel_x = 9;
-	pixel_y = -24
-	},
 /obj/item/radio/intercom{
 	broadcasting = 1;
 	dir = 1;
@@ -14152,6 +14147,10 @@
 /area/centcom/valhalla/engine/atmos_monitoring)
 "sIO" = (
 /obj/effect/decal/warning_stripes/thick/corner,
+/obj/machinery/flasher{
+	id = "AI";
+	pixel_y = 31
+	},
 /turf/open/floor/tile/neutral/corner{
 	dir = 1
 	},
@@ -16735,8 +16734,8 @@
 	pixel_y = 3
 	},
 /obj/item/storage/box/syringes,
-/obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
 /obj/item/clothing/tie/stethoscope,
 /obj/item/clothing/tie/stethoscope,
 /obj/effect/decal/warning_stripes/box/empty,

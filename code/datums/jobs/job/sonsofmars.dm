@@ -37,7 +37,7 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/standard
 	suit_store = /obj/item/weapon/gun/rifle/mpi_km/som
-	r_store = /obj/item/storage/pouch/medical_injectors/som
+	r_store = /obj/item/storage/pouch/firstaid/som/full
 	l_store = /obj/item/storage/pouch/pistol
 	back = /obj/item/storage/backpack/lightpack/som
 
@@ -109,7 +109,7 @@
 	jobtype = /datum/job/som/medic
 
 	id = /obj/item/card/id/dogtag/som
-	belt = /obj/item/storage/belt/lifesaver/som
+	belt = /obj/item/storage/belt/lifesaver/som/ert
 	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/som/medic/vest
 	shoes = /obj/item/clothing/shoes/marine/som/knife
@@ -189,7 +189,7 @@
 	glasses = /obj/item/clothing/glasses/meson
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
 	r_store = /obj/item/storage/pouch/grenade
-	l_store = /obj/item/storage/pouch/medical_injectors/som
+	l_store = /obj/item/storage/pouch/firstaid/som/full
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/job/som/veteran/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
