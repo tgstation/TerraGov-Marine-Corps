@@ -502,7 +502,7 @@
 
 /datum/outfit/quick/tgmc/engineer/demolition
 	name = "Demolition specialist"
-	desc = "Boom boom, shake the room. Equipped with a SH-35 and UGL and an impressive array of mines, detpacks and grenades, along with the standard engineer kit. Excellent for blasting through any obstacle, and mining areas to restrict enemy movement."
+	desc = "Boom boom, shake the room. Equipped with a SH-15 and UGL and an impressive array of mines, detpacks and grenades, along with the standard engineer kit. Excellent for blasting through any obstacle, and mining areas to restrict enemy movement."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 	back = /obj/item/storage/backpack/marine/tech
