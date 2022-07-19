@@ -1392,7 +1392,6 @@
 	},
 /area/mainship/medical/operating_room_one)
 "brK" = (
-/obj/machinery/vending/shared_vending/marine_engi/loyalist,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "brO" = (
@@ -6686,7 +6685,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "gaB" = (
-/obj/machinery/vending/shared_vending/marine_engi/rebel,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req/rebel)
 "gaY" = (
