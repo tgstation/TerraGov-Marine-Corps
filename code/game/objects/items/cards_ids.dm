@@ -86,7 +86,7 @@
 	)
 
 	///What category of items can you buy
-	var/marine_buy_flags = MARINE_CAN_BUY_ALL
+	var/marine_buy_choices = GLOB.marine_selector_cats
 
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system
 	var/assignment = null	//can be alt title or the actual job

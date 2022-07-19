@@ -95,7 +95,7 @@
 	. = list()
 
 	var/obj/item/card/id/I = user.get_idcard()
-	var/buy_flags = I?.marine_buy_flags || NONE
+	var/buy_flags = I?.marine_buy_choices || NONE
 
 	.["cats"] = list()
 	for(var/i in GLOB.marine_selector_cats)
@@ -155,16 +155,13 @@
 				if(icon_deny)
 					flick(icon_deny, src)
 				return
-			var/bitf = NONE
-			var/list/C = GLOB.marine_selector_cats[L[1]]
-			for(var/i in C)
-				bitf |= i
-			if(bitf)
-				if(I.marine_buy_flags & bitf)
-					I.marine_buy_flags &= ~bitf
-				else
-					to_chat(usr, span_warning("You can't buy things from this category anymore."))
-					return
+
+			var/list/C = GLOB.marine_selector_cats[item_category]
+			if(I.marine_buy_choices[item_category] && C)
+				I.marine_buy_choices -= 1
+			else
+				to_chat(usr, span_warning("You can't buy things from this category anymore."))
+				return
 
 			var/obj/item/vended_item
 
@@ -941,7 +938,6 @@
 #undef MARINE_CAN_BUY_MASK
 #undef MARINE_CAN_BUY_ESSENTIALS
 
-#undef MARINE_CAN_BUY_ALL
 #undef DEFAULT_TOTAL_BUY_POINTS
 #undef MEDIC_TOTAL_BUY_POINTS
 #undef ENGINEER_TOTAL_BUY_POINTS

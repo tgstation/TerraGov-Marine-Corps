@@ -22,7 +22,7 @@
 	var/list/job_specific_list = GLOB.loadout_role_essential_set[user.job.title]
 
 	//If we still have our essential kit, and the item is in there, we take one from it
-	if(seller.buying_bitfield & MARINE_CAN_BUY_ESSENTIALS && islist(job_specific_list) && job_specific_list[item_to_buy_type] > seller.unique_items_list[item_to_buy_type])
+	if(seller.buying_choices_left[CAT_ESS] && islist(job_specific_list) && job_specific_list[item_to_buy_type] > seller.unique_items_list[item_to_buy_type])
 		seller.unique_items_list[item_to_buy_type]++
 		return TRUE
 
@@ -131,21 +131,15 @@
 	var/headset_type = faction == FACTION_TERRAGOV_REBEL ? /obj/item/radio/headset/mainship/marine/rebel : /obj/item/radio/headset/mainship/marine
 	user.equip_to_slot_or_del(new headset_type(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
 
-/// Will check if the selected category can be bought according to the buying_bitfield
-/proc/can_buy_category(category, buying_bitfield)
-	var/selling_bitfield = NONE
-	for(var/i in GLOB.marine_selector_cats[category])
-		selling_bitfield |= i
-	return buying_bitfield & selling_bitfield
+/// Will check if the selected category can be bought according to the category choices left
+/proc/can_buy_category(category, category_choices)
+	return category_choices && GLOB.marine_selector_cats[category]
 
 /// Return true if you can buy this category, and also change the loadout seller buying bitfield
 /proc/buy_category(category, datum/loadout_seller/seller)
-	var/selling_bitfield = NONE
-	for(var/i in GLOB.marine_selector_cats[category])
-		selling_bitfield |= i
-	if(!(seller.buying_bitfield & selling_bitfield))
+	if(!(seller.buying_choices_left[category] && GLOB.marine_selector_cats[category]))
 		return FALSE
-	seller.buying_bitfield &= ~selling_bitfield
+	seller.buying_choices_left[category]-= 1
 	return TRUE
 
 /proc/load_player_loadout(player_ckey, loadout_job, loadout_name)
