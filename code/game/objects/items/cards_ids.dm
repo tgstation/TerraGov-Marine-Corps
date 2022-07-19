@@ -253,25 +253,21 @@
 /obj/item/card/id/dogtag/smartgun
 	marine_points = list(
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
-		CAT_INJ = DEFAULT_INJECTOR_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/engineer
 	marine_points = list(
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
-		CAT_INJ = DEFAULT_INJECTOR_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/leader
 	marine_points = list(
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
-		CAT_INJ = DEFAULT_INJECTOR_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/corpsman
 	marine_points = list(
 		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
-		CAT_MEDINJ = MEDIC_INJECTOR_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/full
@@ -280,8 +276,6 @@
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_MEDSUP = MEDIC_TOTAL_BUY_POINTS,
-		CAT_INJ = DEFAULT_INJECTOR_TOTAL_BUY_POINTS,
-		CAT_MEDINJ = MEDIC_INJECTOR_TOTAL_BUY_POINTS,
 	)
 
 /obj/item/card/id/dogtag/som
