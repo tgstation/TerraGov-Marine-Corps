@@ -361,7 +361,7 @@
 
 /obj/vehicle/sealed/mecha/examine(mob/user)
 	. = ..()
-	var/integrity = obj_integrity*100/max_integrity
+	var/integrity = obj_integrity * 100/ max_integrity
 	switch(integrity)
 		if(85 to 100)
 			. += "It's fully intact."
