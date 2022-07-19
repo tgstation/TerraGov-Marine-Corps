@@ -132,7 +132,7 @@
 
 /mob/living/spiderling/bullet_act(obj/projectile/proj)
 	. = ..()
-	if(proj.ammo.flags_ammo_behaviour & AMMO_XENO)
+	if(proj.ammo.flags_ammo_behavior & AMMO_XENO)
 		return FALSE
 
 /mob/living/spiderling/update_stat()
