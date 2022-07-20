@@ -76,7 +76,7 @@
 	///How long it takes to vend an item, vend_ready is false during that.
 	var/vend_delay = 10
 	///Vending flags to determine the behaviour of the machine
-	var/vending_flags = null
+	var/vending_flags = NONE
 	/// A /datum/vending_product instance of what we're paying for right now.
 	var/datum/vending_product/currently_vending = null
 	///If this vendor uses a global list for items.
@@ -673,7 +673,7 @@
 			display_message_and_visuals(user, show_feedback, "You panic and erratically fumble around!", VENDING_RESTOCK_DENY)
 			return FALSE
 
-	else if(record.amount >= 0) //Item is finite so we are more strict on it's condition
+	else if(record.amount >= 0) //Item is finite so we are more strict on its condition
 
 		if(isammomagazine(item_to_stock))
 			var/obj/item/ammo_magazine/A = item_to_stock
