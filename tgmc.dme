@@ -107,6 +107,7 @@
 #include "code\__DEFINES\turf_flags.dm"
 #include "code\__DEFINES\typeids.dm"
 #include "code\__DEFINES\vehicles.dm"
+#include "code\__DEFINES\vending.dm"
 #include "code\__DEFINES\vv.dm"
 #include "code\__DEFINES\wires.dm"
 #include "code\__DEFINES\xeno.dm"

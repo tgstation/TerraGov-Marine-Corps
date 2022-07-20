@@ -685,6 +685,7 @@
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
 	icon_deny = "lascharger-denied"
+	vending_flags = VENDING_RECHARGER
 	wrenchable = TRUE
 	drag_delay = FALSE
 	anchored = FALSE
@@ -708,78 +709,16 @@
 /obj/machinery/vending/lasgun/update_icon()
 	if(machine_max_charge)
 		switch(machine_current_charge / max(1,machine_max_charge))
-			if(0)
-				icon_state = "lascharger-off"
-			if(1 to 0.76)
+			if(0.7 to 1)
 				icon_state = "lascharger"
-			if(0.75 to 0.51)
+			if(0.51 to 0.75)
 				icon_state = "lascharger_75"
-			if(0.50 to 0.26)
+			if(0.26 to 0.50)
 				icon_state = "lascharger_50"
-			if(0.25 to 0.01)
+			if(0.01 to 0.25)
 				icon_state = "lascharger_25"
-
-/obj/machinery/vending/lasgun/examine(mob/user)
-	. = ..()
-	. += "<b>It has [machine_current_charge] of [machine_max_charge] charge remaining.</b>"
-
-
-/obj/machinery/vending/lasgun/MouseDrop_T(atom/movable/A, mob/user)
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
-
-	if(user.stat || user.restrained() || user.lying_angle)
-		return
-
-	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)
-		return
-
-	var/obj/item/I = A
-	if(istype(I, /obj/item/cell/lasgun))
-		stock(I, user, TRUE)
-	else
-		stock(I, user)
-
-/obj/machinery/vending/lasgun/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
-	//More accurate comparison between absolute paths.
-	for(var/datum/vending_product/R AS in (product_records + coin_records ))
-		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/storage)) //Nice try, specialists/engis
-			if(istype(item_to_stock, /obj/item/cell/lasgun) && recharge)
-				if(!recharge_lasguncell(item_to_stock, user))
-					return //Can't recharge so cancel out
-
-			if(item_to_stock.loc == user) //Inside the mob's inventory
-				if(item_to_stock.flags_item & WIELDED)
-					item_to_stock.unwield(user)
-				user.temporarilyRemoveItemFromInventory(item_to_stock)
-
-			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
-				var/obj/item/storage/S = item_to_stock.loc
-				S.remove_from_storage(item_to_stock, user.loc, user)
-
-			qdel(item_to_stock)
-			if(!recharge)
-				user.visible_message(span_notice("[user] stocks [src] with \a [R.product_name]."),
-				span_notice("You stock [src] with \a [R.product_name]."))
-			R.amount++
-			updateUsrDialog()
-			break //We found our item, no reason to go on.
-
-/obj/machinery/vending/lasgun/proc/recharge_lasguncell(obj/item/cell/lasgun/A, mob/user)
-	var/recharge_cost = (A.maxcharge - A.charge)
-	if(recharge_cost > machine_current_charge)
-		to_chat(user, span_warning("[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge]."))
-		return FALSE
-	else
-		to_chat(user, span_warning("You insert [A] into [src] to be recharged."))
-		if(icon_vend)
-			flick(icon_vend,src)
-		playsound(loc, 'sound/machines/hydraulics_1.ogg', 25, 0, 1)
-		machine_current_charge -= min(machine_current_charge, recharge_cost)
-		to_chat(user, span_notice("This dispenser has [machine_current_charge] of [machine_max_charge] remaining."))
-		update_icon()
-		return TRUE
-
+			if(0)
+				icon_state = "lascharger_0"
 
 /obj/machinery/vending/marineFood
 	name = "\improper Marine Food and Drinks Vendor"

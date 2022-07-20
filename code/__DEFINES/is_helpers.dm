@@ -153,6 +153,10 @@
 
 #define isgun(A) (istype(A, /obj/item/weapon/gun))
 
+#define isammomagazine(A) (istype(A, /obj/item/ammo_magazine))
+
+#define isgrenade(A) (istype(A, /obj/item/explosive/grenade))
+
 #define isstorage(A) (istype(A, /obj/item/storage))
 
 #define isitemstack(A) (istype(A, /obj/item/stack))
@@ -190,6 +194,8 @@
 #define ismultitool(I) (istype(I, /obj/item/multitool))
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
+
+#define iscell(I) (istype(I, /obj/item/cell))
 
 #define isfactorypart(I) (istype(I, /obj/item/factory_part))
 
