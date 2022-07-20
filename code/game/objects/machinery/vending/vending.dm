@@ -667,6 +667,12 @@
 				display_message_and_visuals(user, show_feedback, "Gun has non-standard attachments equipped!", VENDING_RESTOCK_DENY)
 				return FALSE
 
+	else if(isgrenade(item_to_stock))
+		var/obj/item/explosive/grenade/grenade = item_to_stock
+		if(grenade.active) //Machine ain't gonna save you from your dumb decisions now
+			display_message_and_visuals(user, show_feedback, "You panic and erratically fumble around!", VENDING_RESTOCK_DENY)
+			return FALSE
+
 	else if(record.amount >= 0) //Item is finite so we are more strict on it's condition
 
 		if(isammomagazine(item_to_stock))
@@ -710,12 +716,6 @@
 			if(!reagent_container.free_refills && !reagent_container.has_initial_reagents())
 				display_message_and_visuals(user, show_feedback, "\The [reagent_container] is missing some of its reagents!", VENDING_RESTOCK_DENY)
 				return FALSE
-
-	if(isgrenade(item_to_stock))
-		var/obj/item/explosive/grenade/grenade = item_to_stock
-		if(grenade.active) //Machine ain't gonna save you from your dumb decisions now
-			display_message_and_visuals(user, show_feedback, "You panic and erratically fumble around!", VENDING_RESTOCK_DENY)
-			return FALSE
 
 	// At this point the item is guaranteed to be accepted into the vending machine
 
