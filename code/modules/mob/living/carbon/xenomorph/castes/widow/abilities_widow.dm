@@ -124,6 +124,8 @@
 	icon_state = "spiderling"
 	/// Which hive this spiderling belongs to
 	var/hivenumber = XENO_HIVE_NORMAL
+	/// How much damage the spiderling deals
+	var/spiderling_damage = 10
 
 /mob/living/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/spidermother)
 	. = ..()
@@ -145,6 +147,17 @@
 
 	if(health <= 0)
 		gib()
+/// Proc for attacking whatever the spidermother attacks
+/mob/living/spiderling/UnarmedAttack(mob/living/carbon/human/target, mob/living/carbon/xenomorph/widow/spidermother)
+	/// This is here so that Spiderling attacks the same limb(s) as their spidermother does
+	var/datum/limb/affecting = target.get_xeno_slash_zone(spidermother)
+
+	do_attack_animation(target, ATTACK_EFFECT_REDSLASH)
+	playsound(loc, "alien_claw_flesh", 25, 1)
+	visible_message("\The [src] slashes [target]!")
+
+	target.apply_damage(spiderling_damage, BRUTE, affecting, 0, TRUE, TRUE, updating_health = TRUE)
+	changeNext_move(10)
 
 /datum/action/xeno_action/create_spiderling
 
@@ -159,6 +172,8 @@
 /datum/ai_behavior/spiderling
 	target_distance = 1
 	base_action = ESCORTING_ATOM
+	///Necessary for turret detection and attack_xeno to work
+	var/status_flags = INCORPOREAL
 
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
@@ -171,7 +186,7 @@
 	change_action(MOVING_TO_ATOM, target)
 
 ///Signal handler to try to attack our target
-/datum/ai_behavior/spiderling/proc/attack_target(datum/soure, atom/attacked)
+/datum/ai_behavior/spiderling/proc/attack_target(datum/source, atom/attacked)
 	SIGNAL_HANDLER
 	if(world.time < mob_parent.next_move)
 		return
@@ -180,7 +195,7 @@
 	if(get_dist(attacked, mob_parent) > 1)
 		return
 	mob_parent.face_atom(attacked)
-	mob_parent.UnarmedAttack(attacked, TRUE)
+	mob_parent.UnarmedAttack(attacked, mob_parent)
 
 /datum/ai_behavior/spiderling/look_for_new_state()
 	switch(current_action)
