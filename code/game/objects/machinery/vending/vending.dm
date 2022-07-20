@@ -711,11 +711,11 @@
 				display_message_and_visuals(user, show_feedback, "\The [reagent_container] is missing some of its reagents!", VENDING_RESTOCK_DENY)
 				return FALSE
 
-		if(isgrenade(item_to_stock))
-			var/obj/item/explosive/grenade/grenade = item_to_stock
-			if(grenade.active) //Machine ain't gonna save you from your dumb decisions now
-				display_message_and_visuals(user, show_feedback, "You panic and erratically fumble around!", VENDING_RESTOCK_DENY)
-				return FALSE
+	if(isgrenade(item_to_stock))
+		var/obj/item/explosive/grenade/grenade = item_to_stock
+		if(grenade.active) //Machine ain't gonna save you from your dumb decisions now
+			display_message_and_visuals(user, show_feedback, "You panic and erratically fumble around!", VENDING_RESTOCK_DENY)
+			return FALSE
 
 	// At this point the item is guaranteed to be accepted into the vending machine
 
