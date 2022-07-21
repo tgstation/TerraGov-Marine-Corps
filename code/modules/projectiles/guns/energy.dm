@@ -591,6 +591,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/weapon/gun/grenade_launcher/underslung,)
+
 /datum/lasrifle/base/energy_carbine_mode/auto_burst_standard ///I know this seems tacky, but if I make auto burst a standard firemode it somehow buffs spread's fire delay.
 	rounds_per_shot = 15
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
@@ -845,7 +846,7 @@
 	mode_list = list()
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta
-	name = "\improper volkite charger"
+	name = "\improper VX-12 Serpenta"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The 'serpenta' is pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size."
 	icon_state = "vx12"
 	item_state = "vx12"
@@ -870,7 +871,7 @@
 	aim_slowdown = 0.1
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger
-	name = "\improper volkite charger"
+	name = "\improper VX-32 Charger"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The charger is a light weight weapon with a high rate of fire, designed for high mobility and easy handling. Ineffective at longer ranges."
 	icon_state = "charger"
 	item_state = "charger"
@@ -909,7 +910,7 @@
 	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/gyro)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver
-	name = "\improper volkite caliver"
+	name = "\improper VX-33 Caliver"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The caliver is the primary rifle of the volkite family, and effective at most ranges and situations. Drag click the powerpack to the gun to use that instead of magazines."
 	icon_state = "caliver"
 	item_state = "caliver"
@@ -955,7 +956,7 @@
 	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin
-	name = "\improper volkite culverin"
+	name = "\improper VX-42 Culverin"
 	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The culverin is the largest man portable example of volkite weaponry, and can lay down a staggering torrent of fire due to its linked back-mounted powerpack. Drag click the powerpack to the gun to load."
 	icon_state = "culverin"
 	item_state = "culverin"
