@@ -25,6 +25,8 @@
 	var/max_game_time = 35 MINUTES
 	///Whether the max game time has been reached
 	var/max_time_reached
+	/// Time between two bioscan
+	var/bioscan_interval = 5 MINUTES
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
@@ -91,6 +93,72 @@
 
 /datum/game_mode/combat_patrol/proc/set_game_end()
 	max_time_reached = TRUE
+
+/////////
+/datum/game_mode/combat_patrol/process()
+	if(round_finished)
+		return PROCESS_KILL
+
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BIOSCAN) || bioscan_interval == 0)
+		return
+	announce_bioscans_marine_som()
+
+// make sure you don't turn 0 into a false positive
+#define BIOSCAN_DELTA(count, delta) count ? max(0, count + rand(-delta, delta)) : 0
+
+///Annonce to everyone the number of xeno and marines on ship and ground
+/datum/game_mode/combat_patrol/proc/announce_bioscans_marine_som(show_locations = TRUE, delta = 2, announce_marines = TRUE, announce_som = TRUE)
+	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
+	var/list/list/counts = list(FACTION_TERRAGOV = 0, FACTION_SOM = 0)
+	var/list/list/area/locations = list(FACTION_TERRAGOV = 0, FACTION_SOM = 0)
+	var/list/list/som_list = GLOB.alive_human_list_faction[FACTION_SOM]
+	var/list/list/tgmc_list = GLOB.alive_human_list_faction[FACTION_TERRAGOV]
+
+	if(length(som_list))
+		counts[FACTION_SOM] += length(som_list)
+		locations[FACTION_SOM] = get_area(pick(som_list))
+	if(length(tgmc_list))
+		counts[FACTION_TERRAGOV] += length(tgmc_list)
+		locations[FACTION_TERRAGOV] = get_area(pick(tgmc_list))
+
+	//Adjust the randomness there so everyone gets the same thing
+	var/numTGMCr = BIOSCAN_DELTA(counts[FACTION_TERRAGOV], delta)
+	var/numSOMr = BIOSCAN_DELTA(counts[FACTION_SOM], delta)
+	var/TGMCLocation = locations[FACTION_TERRAGOV]
+	var/SOMLocation	= locations[FACTION_SOM]
+
+	//announcement for SOM
+	var/som_scan_name = "Long Range Tactical Bioscan Status"
+	var/som_scan_input = {"Bioscan complete.
+
+Sensors indicate [numTGMCr || "no"] unknown lifeform signature[numTGMCr > 1 ? "s":""] present in the area of operation[TGMCLocation ? ", including one at:[TGMCLocation]":""]"}
+
+	if(announce_som)
+		priority_announce(som_scan_input, som_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (som_list + GLOB.observer_list))
+
+	//announcement for TGMC
+	var/marine_scan_name = "Long Range Tactical Bioscan Status"
+	var/marine_scan_input = {"Bioscan complete.
+
+Sensors indicate [numSOMr || "no"] unknown lifeform signature[numSOMr > 1 ? "s":""] present in the area of operation[SOMLocation ? ", including one at:[SOMLocation]":""]"}
+
+	if(announce_marines)
+		priority_announce(marine_scan_input, marine_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (tgmc_list + GLOB.observer_list))
+
+	log_game("Bioscan. [counts[FACTION_TERRAGOV]] active TGMC personnel[TGMCLocation ? " Location:[TGMCLocation]":""] and [counts[FACTION_SOM]] active SOM personnel[SOMLocation ? " Location:[SOMLocation]":""]")
+
+	for(var/i in GLOB.observer_list)
+		var/mob/M = i
+		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
+		to_chat(M, {"<span class='alert'>[counts[FACTION_SOM]] SOM alive.
+[counts[FACTION_TERRAGOV]] Marine\s alive."})
+
+	message_admins("Bioscan - Marines: [counts[FACTION_TERRAGOV]] active TGMC personnel[TGMCLocation ? " .Location:[TGMCLocation]":""]")
+	message_admins("Bioscan - SOM: [counts[FACTION_SOM]] active SOM personnel[SOMLocation ? " .Location:[SOMLocation]":""]")
+
+#undef BIOSCAN_DELTA
+
+/////////////////
 
 ///checks how many marines and SOM are still alive
 /datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)), count_flags)
