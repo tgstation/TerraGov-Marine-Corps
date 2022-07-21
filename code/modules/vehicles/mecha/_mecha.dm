@@ -397,7 +397,7 @@
 				cell.charge -= min(10 * delta_time, cell.charge)
 				cell.maxcharge -= min(10 * delta_time, cell.maxcharge)
 
-	for(var/mob/living/occupant as anything in occupants)
+	for(var/mob/living/occupant AS in occupants)
 		if(!enclosed && occupant?.incapacitated()) //no sides mean it's easy to just sorta fall out if you're incapacitated.
 			visible_message(span_warning("[occupant] tumbles out of the cockpit!"))
 			mob_exit(occupant) //bye bye
