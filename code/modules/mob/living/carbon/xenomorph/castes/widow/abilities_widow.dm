@@ -27,7 +27,7 @@
 // *********** Burrow
 // ***************************************
 
-/datum/action/xeno_action/activable/burrow
+/datum/action/xeno_action/burrow
 	name = "Burrow"
 	ability_name = "Burrow"
 	mechanics_text = " Burrow into the ground to hide in plain sight "
@@ -35,9 +35,12 @@
 	plasma_cost = 1
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BURROW
+	var/burrowed = FALSE
 
-/datum/action/xeno_action/activable/burrow/use_ability(atom/A)
+/datum/action/xeno_action/burrow/action_activate()
 	. = ..()
+	if(burrowed == TRUE)
+		return
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_xenowarning("We start burrowing into the ground"))
 	if(!do_after(X, 1 SECONDS, TRUE, target, BUSY_ICON_DANGER))
@@ -46,14 +49,17 @@
 	X.alpha = 0
 	X.mouse_opacity = 0
 	X.density = FALSE
+	burrowed = TRUE
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/un_burrow)
 
-/datum/action/xeno_action/activable/burrow/proc/un_burrow(mob/M)
+
+/datum/action/xeno_action/burrow/proc/un_burrow(mob/M)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
 	X.alpha = 255
 	X.mouse_opacity = 255
 	X.density = TRUE
+	burrowed = FALSE
 	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
 
 
@@ -181,21 +187,25 @@
 
 /datum/ai_behavior/spiderling/proc/go_to_target(source, mob/living/target)
 	SIGNAL_HANDLER
+	if(!isliving(target))
+		return
 	if(mob_parent.get_xeno_hivenumber() == target.get_xeno_hivenumber())
 		return
 	change_action(MOVING_TO_ATOM, target)
 
 ///Signal handler to try to attack our target
-/datum/ai_behavior/spiderling/proc/attack_target(datum/source, atom/attacked)
+/datum/ai_behavior/spiderling/proc/attack_target(datum/source)
 	SIGNAL_HANDLER
 	if(world.time < mob_parent.next_move)
 		return
-	if(!attacked)
-		attacked = atom_to_walk_to
-	if(get_dist(attacked, mob_parent) > 1)
+	if(get_dist(atom_to_walk_to, mob_parent) > 1)
 		return
-	mob_parent.face_atom(attacked)
-	mob_parent.UnarmedAttack(attacked, mob_parent)
+	var/mob/living/victim = atom_to_walk_to
+	if(victim.stat == UNCONSCIOUS)
+		change_action(ESCORTING_ATOM, escorted_atom)
+		return
+	mob_parent.face_atom(atom_to_walk_to)
+	mob_parent.UnarmedAttack(atom_to_walk_to, mob_parent)
 
 /datum/ai_behavior/spiderling/look_for_new_state()
 	switch(current_action)
