@@ -656,18 +656,6 @@
 		display_message_and_visuals(user, show_feedback, "Can't restock containers!", VENDING_RESTOCK_DENY)
 		return FALSE
 
-	if(isgun(item_to_stock))
-		var/obj/item/weapon/gun/G = item_to_stock
-
-		if(G.rounds) //We are not barbarians and stock loaded weapons. TerraGov has standards!
-			display_message_and_visuals(user, show_feedback, "Gun is still loaded!", VENDING_RESTOCK_DENY)
-			return FALSE
-
-		for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
-			if((A.flags_attach_features & ATTACH_REMOVABLE) && !(is_type_in_list(A, G.starting_attachment_types))) //There are attachments that are default and others that can't be removed
-				display_message_and_visuals(user, show_feedback, "Gun has non-standard attachments equipped!", VENDING_RESTOCK_DENY)
-				return FALSE
-
 	else if(isgrenade(item_to_stock))
 		var/obj/item/explosive/grenade/grenade = item_to_stock
 		if(grenade.active) //Machine ain't gonna save you from your dumb decisions now
