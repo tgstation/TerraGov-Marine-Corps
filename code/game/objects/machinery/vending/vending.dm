@@ -168,10 +168,6 @@
 
 	///Faction of the vendor. Can be null
 	var/faction
-	///If the machine clean itself up after being idle.
-	var/self_cleaned = TRUE
-	///Timer for the self_cleanup to trigger automatically upon being idle.
-	COOLDOWN_DECLARE(self_clean_cooldown)
 
 
 /obj/machinery/vending/Initialize(mapload, ...)
@@ -605,8 +601,7 @@
 		else
 			return
 	SSblackbox.record_feedback("tally", "vendored", 1, R.product_name)
-	self_cleaned = FALSE
-	COOLDOWN_START(src, self_clean_cooldown, 2.5 MINUTES)
+	addtimer(CALLBACK(src, .proc/stock_vacuum), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
 	if(vending_sound)
 		playsound(src, vending_sound, 25, 0)
 	else
@@ -758,7 +753,6 @@
 	stocked ? display_message_and_visuals(user, TRUE, "Automatically restocked all items from outlet.", VENDING_RESTOCK_ACCEPT) : null
 
 	update_icon()
-	self_cleaned = TRUE
 
 /**
  * Displays a balloon alert to the user if enable is true
@@ -805,9 +799,6 @@
 
 	if(shoot_inventory && prob(2) && !hacking_safety)
 		throw_item()
-
-	if(COOLDOWN_CHECK(src, self_clean_cooldown) && !self_cleaned) // It's been a while since somoene vended something
-		stock_vacuum()
 
 /obj/machinery/vending/proc/speak(message)
 	if(machine_stat & NOPOWER)
