@@ -483,7 +483,7 @@
 	return ..()
 
 /obj/item/storage/belt/shotgun/som
-	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Made in traditional SOM leather."
+	desc = "An ammunition belt designed to hold shotgun shells or individual bullets. Made with traditional SOM leather."
 	icon_state = "shotgunbelt_som"
 
 /obj/item/storage/belt/shotgun/martini
@@ -800,7 +800,7 @@
 
 /obj/item/storage/belt/gun/pistol/m4a3/som
 	name = "\improper S19 holster rig"
-	desc = "A belt with origins to old colony security holster rigs."
+	desc = "A belt with origins dating back to old colony security holster rigs."
 	icon_state = "som_belt_pistol"
 	item_state = "som_belt_pistol"
 

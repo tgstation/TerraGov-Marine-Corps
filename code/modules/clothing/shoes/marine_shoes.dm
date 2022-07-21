@@ -141,7 +141,7 @@
 
 /obj/item/clothing/shoes/marine/som
 	name = "\improper S11 combat shoes"
-	desc = "Shoes with origins dating back to the old mining colonies."
+	desc = "Shoes with origins dating back to the old mining colonies. These were made for more than just walking."
 	icon_state = "som"
 	item_state = "som"
 	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)

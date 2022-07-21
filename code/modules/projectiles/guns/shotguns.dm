@@ -716,7 +716,7 @@
 //Inbuilt launcher for the V-31
 /obj/item/weapon/gun/shotgun/micro_grenade
 	name = "VA-61 micro rail launcher"
-	desc = "An inbuilt railgun designed to hurl so called 'micro grenades' at high velocity. By using railgun technology, the projectile does not need any propellant, helping greatly increase usable space for the payload."
+	desc = "An in-built railgun designed to fire so called 'micro grenades'. By using railgun technology, the projectile does not need any propellant, helping greatly increase usable space for the payload."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "va61"
 	fire_sound = 'sound/weapons/guns/fire/pred_plasma_shot.ogg'
