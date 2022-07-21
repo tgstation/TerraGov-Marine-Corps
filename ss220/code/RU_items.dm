@@ -45,6 +45,102 @@ SUBSYSTEM_DEF(ru_items)
 //List all custom items here
 
 ///////////////////////////////////////////////////////////////////////
+////////////////////////  T25, old version .///////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+/obj/item/weapon/gun/rifle/T25
+	name = "\improper T-25 smartrifle"
+	desc = "The T-25 is the TGMC's current standard IFF-capable rifle. It's known for its ability to lay down quick fire support very well. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "T25"
+	item_state = "T25"
+	caliber = CALIBER_10x26_CASELESS //codex
+	max_shells = 80 //codex
+	force = 20
+	aim_slowdown = 0.5
+	wield_delay = 0.9 SECONDS
+	fire_sound = "gun_smartgun"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/rifle/T25
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/T25)
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/compensator,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/attachable/motiondetector,
+	)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
+	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
+
+	fire_delay = 0.2 SECONDS
+	burst_amount = 0
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.2
+	scatter = -5
+	scatter_unwielded = 60
+
+/obj/item/ammo_magazine/rifle/T25
+	name = "\improper T-25 magazine (10x26mm)"
+	desc = "A 10mm assault rifle magazine."
+	caliber = CALIBER_10x26_CASELESS
+	icon_state = "T25"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/T25
+	max_rounds = 80
+	icon_state_mini = "mag_rifle_big"
+
+/datum/ammo/bullet/rifle/T25
+	name = "smartmachinegun bullet"
+	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
+	hud_state = "smartgun"
+	hud_state_empty = "smartgun_empty"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	accurate_range = 20
+	damage = 20
+	penetration = 10
+	sundering = 1.5
+
+/obj/item/ammo_magazine/packet/T25_rifle
+	name = "box of 10x26mm high-pressure"
+	desc = "A box containing 300 rounds of 10x26mm 'HP' caseless tuned for a smartgun."
+	icon_state = "box_t25"
+	default_ammo = /datum/ammo/bullet/rifle/T25
+	caliber = CALIBER_10x26_CASELESS
+	current_rounds = 300
+	max_rounds = 300
+
+/datum/supply_packs/weapons/rifle/T25
+	name = "T25 smartrifle"
+	contains = list(/obj/item/weapon/gun/rifle/T25)
+	cost = 40
+
+/datum/supply_packs/weapons/ammo_magazine/rifle/T25
+	name = "T25 smartrifle magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/T25)
+	cost = 2
+
+/datum/supply_packs/weapons/ammo_magazine/packet/T25_rifle
+	name = "T25 smartrifle ammo box"
+	contains = list(/obj/item/ammo_magazine/packet/T25_rifle)
+	cost = 6
+
+///////////////////////////////////////////////////////////////////////
 ////////////// Vector, based on KRISS Vector 45ACP. ///////////////////
 ///////////////////////////////////////////////////////////////////////
 /obj/item/weapon/gun/smg/vector
