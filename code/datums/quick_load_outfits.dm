@@ -418,6 +418,24 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_ACCESSORY)
 
+/datum/outfit/quick/tgmc/marine/machete
+	name = "Assault marine"
+	desc = "This doesn't look standard issue... Equipped with a SMG-25, machete and jetpack, along with light armor upgraded with a 'arrowhead' shield module. It's not clear why this is here, nevertheless it has excellent mobility, and would likely be devastating against anyone you manage to actually reach."
+
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/light/shield
+	back = /obj/item/jetpack_marine
+	belt = /obj/item/storage/holster/blade/machete/full
+	suit_store = /obj/item/weapon/gun/smg/m25/magharness
+
+/datum/outfit/quick/tgmc/marine/machete/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25/extended, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m25, SLOT_IN_ACCESSORY)
+
 //Base TGMC engineer outfit
 /datum/outfit/quick/tgmc/engineer
 	name = "TGMC Squad Engineer"
