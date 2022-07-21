@@ -302,6 +302,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
+"fZ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/mainship/patrol_base)
 "gd" = (
 /obj/structure/flora/pottedplant/two,
 /turf/open/floor/prison,
@@ -444,7 +450,7 @@
 	dir = 1
 	},
 /obj/structure/mirror{
-	pixel_y = -29
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/white,
 /area/mainship/patrol_base)
@@ -816,6 +822,12 @@
 "qQ" = (
 /obj/structure/window/framed/mainship/toughened,
 /turf/open/floor/mainship/stripesquare,
+/area/mainship/patrol_base)
+"ra" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base/wide_right{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
 "rk" = (
 /obj/structure/patrol_point{
@@ -1400,9 +1412,8 @@
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
 "Fc" = (
-/obj/machinery/door/airlock/multi_tile/secure2{
-	desc = Youaren'tgonnaabandonthefightright?Itslockedforareason.;
-	name = MainBase
+/obj/structure/prop/mainship/doorblocker/patrol_base/wide_left{
+	dir = 8
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
@@ -1939,8 +1950,7 @@
 	dir = 4
 	},
 /obj/structure/mirror{
-	dir = 4;
-	pixel_x = 25
+	dir = 8
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
@@ -2042,11 +2052,10 @@
 /obj/structure/sink{
 	dir = 4
 	},
-/obj/structure/mirror{
-	dir = 4;
-	pixel_x = 25
-	},
 /obj/effect/landmark/start/job/som/squadstandard,
+/obj/structure/mirror{
+	dir = 8
+	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
 "OI" = (
@@ -2120,9 +2129,8 @@
 	},
 /area/mainship/patrol_base/som)
 "Rq" = (
-/obj/machinery/door/airlock/mainship/security/locked{
-	desc = Youaren'tgonnaabandonthefightright?Itslockedforareason.;
-	name = MainBase
+/obj/structure/prop/mainship/doorblocker/patrol_base/som{
+	dir = 8
 	},
 /turf/open/floor/prison,
 /area/mainship/patrol_base/som)
@@ -2629,9 +2637,6 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
 "ZX" = (
-/obj/machinery/light/spot{
-	dir = 1
-	},
 /turf/open/floor/mainship/terragov{
 	dir = 1
 	},
@@ -5281,7 +5286,7 @@ Fw
 oP
 yD
 uc
-uc
+fZ
 Fw
 Sw
 Sw
@@ -6026,7 +6031,7 @@ Sw
 Sw
 Sw
 wr
-Bs
+ra
 Vu
 Ee
 XE
@@ -6336,7 +6341,7 @@ Sw
 Sw
 Sw
 wr
-Bs
+ra
 Vu
 Bs
 Bs
