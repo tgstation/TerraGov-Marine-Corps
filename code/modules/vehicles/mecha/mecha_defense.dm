@@ -112,7 +112,7 @@
 	. = ..()
 	if(enclosed || mecha_flags & SILICON_PILOT)
 		return
-	for(var/mob/living/cookedalive as anything in occupants)
+	for(var/mob/living/cookedalive AS in occupants)
 		if(cookedalive.fire_stacks < 5)
 			cookedalive.adjust_fire_stacks(1)
 			cookedalive.IgniteMob()
