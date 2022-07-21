@@ -628,10 +628,10 @@
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	w_uniform = /obj/item/clothing/under/marine/black_vest
 	shoes = /obj/item/clothing/shoes/marine/full
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_one
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas/tactical
-	head = /obj/item/clothing/head/modular/marine/m10x
+	head = /obj/item/clothing/head/modular/marine/m10x/tyr
 	r_store = /obj/item/storage/pouch/firstaid/combat_patrol
 	l_store = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/marine/satchel
@@ -644,7 +644,7 @@
 
 /datum/outfit/quick/tgmc/smartgunner/standard_sg
 	name = "SG29 smart machinegunner"
-	desc = "A gun smarter than the average bear, or marine. Equipped with an SG-29 and medium armor, responsible for providing mobile, accurate firesupport thanks to your IFF ammunition."
+	desc = "A gun smarter than the average bear, or marine. Equipped with an SG-29 and heavy armor upgraded with a 'Tyr' extra armor mdule, the SG is responsible for providing mobile, accurate firesupport thanks to your IFF ammunition."
 
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
 
@@ -664,11 +664,11 @@
 
 /datum/outfit/quick/tgmc/smartgunner/minigun_sg
 	name = "SG85 smart machinegunner"
-	desc = "More bullets than sense. Equipped with an SG-85 smart minigun, a MP-19 sidearm, medium armor and a whole lot of bullets. For when you want to unleash a firehose of firepower. Try not to run out of ammo."
+	desc = "More bullets than sense. Equipped with an SG-85 smart minigun, a MP-19 sidearm, heavy armor upgraded with a 'Tyr' extra armor mdule and a whole lot of bullets. For when you want to unleash a firehose of firepower. Try not to run out of ammo."
 	quantity = 2
 
 	belt = /obj/item/storage/holster/t19
-	suit_store = /obj/item/weapon/gun/minigun/smart_minigun/magharness
+	suit_store = /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
 	back = /obj/item/ammo_magazine/minigun_powerpack/smartgun
 
 /datum/outfit/quick/tgmc/smartgunner/minigun_sg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
