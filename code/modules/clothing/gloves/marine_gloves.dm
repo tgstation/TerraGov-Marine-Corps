@@ -84,7 +84,7 @@
 	desc = "Gloves with origins dating back to the old mining colonies, they look pretty tough."
 	icon_state = "som"
 	item_state = "som"
-	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
+	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
 
 /obj/item/clothing/gloves/marine/som/insulated
 	name = "\improper Insulated SoM gloves"
@@ -96,7 +96,7 @@
 	desc = "Gloves with origins dating back to the old mining colonies. These ones seem tougher than normal."
 	icon_state = "som_veteran"
 	item_state = "som_veteran"
-	soft_armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+	soft_armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 
 /obj/item/clothing/gloves/marine/commissar
 	name = "\improper commissar gloves"
