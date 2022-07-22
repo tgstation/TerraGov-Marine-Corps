@@ -147,4 +147,39 @@
 	icon_state = "xeno_spawn"
 	job = /datum/job/xenomorph
 
-/obj/effect/landmark/start/job/survivor
+/obj/effect/landmark/start/job/scientist
+	icon_state = "Scientist"
+	job = /datum/job/survivor/scientist
+
+/obj/effect/landmark/start/job/doctor
+	icon_state = "Medical Doctor"
+	job = /datum/job/survivor/doctor
+
+/obj/effect/landmark/start/job/liaison
+	icon_state = "Laywer"
+	job = /datum/job/survivor/liaison
+
+/obj/effect/landmark/start/job/civilian
+	icon_state = "Assistant"
+	job = /datum/job/survivor/civilian
+
+/obj/effect/landmark/start/job/chef
+	icon_state = "Cook"
+	job = /datum/job/survivor/chef
+
+/obj/effect/landmark/start/job/botanist
+	icon_state = "Botanist"
+	job = /datum/job/survivor/botanist
+
+/obj/effect/landmark/start/job/atmos
+	icon_state = "Atmospheric Technician"
+	job = /datum/job/survivor/atmos
+
+/obj/effect/landmark/start/job/chaplain
+	icon_state = "Chaplain"
+	job = /datum/job/survivor/chaplain
+
+/obj/effect/landmark/start/job/miner
+	icon_state = "Shaft Miner"
+	job = /datum/job/survivor/miner
+

@@ -193,22 +193,6 @@ Good luck, but do not expect to survive."})
 	back = /obj/item/storage/backpack/satchel/norm
 
 
-//Salesman
-/datum/job/survivor/salesman
-	title = "Salesman Survivor"
-	outfit = /datum/outfit/job/survivor/salesman
-
-
-/datum/outfit/job/survivor/salesman
-	name = "Salesman Survivor"
-	jobtype = /datum/job/survivor/salesman
-
-	w_uniform = /obj/item/clothing/under/liaison_suit
-	wear_suit = /obj/item/clothing/suit/armor/vest
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel
-
-
 //Colonial Marshal
 /datum/job/survivor/marshal
 	title = "Colonial Marshal Survivor"
