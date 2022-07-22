@@ -111,6 +111,7 @@
 		obj_integrity = obj_integrity + intergrity_increase
 		if(obj_integrity > max_integrity)
 			obj_integrity = max_integrity
+
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
 /obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victims, atom/oldloc)
 	SIGNAL_HANDLER
