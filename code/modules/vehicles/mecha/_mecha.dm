@@ -246,7 +246,7 @@
 		mob_exit(ejectee, TRUE, TRUE)
 
 	if(LAZYLEN(flat_equipment))
-		for(var/obj/item/mecha_parts/mecha_equipment/equip as anything in flat_equipment)
+		for(var/obj/item/mecha_parts/mecha_equipment/equip AS in flat_equipment)
 			equip.detach(loc)
 			qdel(equip)
 	radio = null
@@ -268,7 +268,7 @@
 	return ..()
 
 /obj/vehicle/sealed/mecha/obj_destruction(damage_amount, damage_type, damage_flag)
-	for(var/mob/living/occupant as anything in occupants)
+	for(var/mob/living/occupant AS in occupants)
 		if(isAI(occupant))
 			occupant.gib() //No wreck, no AI to recover
 			continue
@@ -309,7 +309,7 @@
 		else
 			mouse_pointer = 'icons/mecha/mecha_mouse.dmi'
 
-	for(var/mob/mob_occupant as anything in occupants)
+	for(var/mob/mob_occupant AS in occupants)
 		mob_occupant.client.mouse_pointer_icon = mouse_pointer // note this is update_mouse_pointer() on tg
 
 //override this proc if you need to split up mecha control between multiple people (see savannah_ivanov.dm)
@@ -345,7 +345,8 @@
 		to_chat(mob_occupant, span_notice("Equipment control unit has been rebooted successfully."))
 	set_mouse_pointer()
 
-/obj/vehicle/sealed/mecha/proc/update_part_values() ///Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
+///Updates the values given by scanning module and capacitor tier, called when a part is removed or inserted.
+/obj/vehicle/sealed/mecha/proc/update_part_values() 
 	if(scanmod)
 		normal_step_energy_drain = 20 - (5 * scanmod.rating) //10 is normal, so on lowest part its worse, on second its ok and on higher its real good up to 0 on best
 		step_energy_drain = normal_step_energy_drain
@@ -359,7 +360,7 @@
 
 /obj/vehicle/sealed/mecha/examine(mob/user)
 	. = ..()
-	var/integrity = obj_integrity*100/max_integrity
+	var/integrity = obj_integrity * 100/ max_integrity
 	switch(integrity)
 		if(85 to 100)
 			. += "It's fully intact."
@@ -395,7 +396,7 @@
 				cell.charge -= min(10 * delta_time, cell.charge)
 				cell.maxcharge -= min(10 * delta_time, cell.maxcharge)
 
-	for(var/mob/living/occupant as anything in occupants)
+	for(var/mob/living/occupant AS in occupants)
 		if(!enclosed && occupant?.incapacitated()) //no sides mean it's easy to just sorta fall out if you're incapacitated.
 			visible_message(span_warning("[occupant] tumbles out of the cockpit!"))
 			mob_exit(occupant) //bye bye
