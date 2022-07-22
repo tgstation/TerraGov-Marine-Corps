@@ -267,6 +267,7 @@ SUBSYSTEM_DEF(job)
 	var/turf/spawn_turf
 	if(!joined_late || job.job_flags & JOB_FLAG_OVERRIDELATEJOINSPAWN)
 		spawn_turf = job.return_spawn_turf()
+	if(spawn_turf)
 		SendToAtom(new_character, spawn_turf)
 	else
 		SendToLateJoin(new_character, job)
