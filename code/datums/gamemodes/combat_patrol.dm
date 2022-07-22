@@ -69,7 +69,8 @@
 	. = ..()
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop.
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time + 15 MINUTES) //first respawn wave is 15 minutes after shutters
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + 5 MINUTES)
 
 ///round timer
@@ -95,7 +96,6 @@
 /datum/game_mode/combat_patrol/proc/set_game_end()
 	max_time_reached = TRUE
 
-/////////
 /datum/game_mode/combat_patrol/process()
 	if(round_finished)
 		return PROCESS_KILL
@@ -159,7 +159,15 @@ Sensors indicate [numSOMr || "no"] unknown lifeform signature[numSOMr > 1 ? "s":
 
 #undef BIOSCAN_DELTA
 
-/////////////////
+///Allows all the dead to respawn together
+/datum/game_mode/combat_patrol/proc/respawn_wave()
+	var/datum/game_mode/combat_patrol/D = SSticker.mode
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), 10 MINUTES)
+
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/M = i
+		GLOB.key_to_time_of_role_death[M.key] = 0
+		to_chat(M, span_danger("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!"))
 
 ///checks how many marines and SOM are still alive
 /datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)), count_flags)
