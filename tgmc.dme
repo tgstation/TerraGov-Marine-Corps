@@ -1760,7 +1760,6 @@
 #include "code\modules\vehicles\mecha\equipment\tools\work_tools.dm"
 #include "code\modules\vehicles\mecha\equipment\weapons\mecha_ammo.dm"
 #include "code\modules\vehicles\mecha\equipment\weapons\weapons.dm"
-#include "code\modules\vehicles\mecha\working\clarke.dm"
 #include "code\modules\vehicles\mecha\working\ripley.dm"
 #include "code\modules\vehicles\mecha\working\working.dm"
 #include "code\modules\vehicles\multitile\cm_armored.dm"

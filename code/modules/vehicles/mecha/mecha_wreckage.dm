@@ -10,11 +10,17 @@
 	density = TRUE
 	anchored = FALSE
 	opacity = FALSE
+	///list of welder-salvaged items that it can output
 	var/list/welder_salvage = list(/obj/item/stack/sheet/plasteel)
+	/// times we can salvage this mech
 	var/salvage_num = 5
+	///list of crowbar-salvaged items that it can output
 	var/list/crowbar_salvage = list()
+	/// if the wires got pulled yet
 	var/wires_removed = FALSE
-	var/mob/living/silicon/ai/AI //AIs to be salvaged
+	///AIs to be salvaged
+	var/mob/living/silicon/ai/AI
+	/// parts of the mechs that can be taken out
 	var/list/parts
 
 /obj/structure/mecha_wreckage/Initialize(mapload, mob/living/silicon/ai/AI_pilot)

@@ -25,13 +25,9 @@
 			gear = equip_by_category[MECHA_R_ARM]
 	if(!gear)
 		return
-	var/brokenstatus = gear.obj_integrity
-	// always leave at least 1 health
-	brokenstatus--
-	var/damage_to_deal = min(brokenstatus, damage)
-	if(!damage_to_deal)
+	if(!gear.obj_integrity <= 1)
 		return
-	gear.take_damage(damage_to_deal)
+	gear.take_damage(min(gear.obj_integrity-1, damage))
 
 /obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
@@ -278,8 +274,8 @@
 			cell = null
 	return ..()
 
-/obj/vehicle/sealed/mecha/proc/ammo_resupply(obj/item/mecha_ammo/A, mob/user,fail_chat_override = FALSE)
-	if(!A.rounds)
+/obj/vehicle/sealed/mecha/proc/ammo_resupply(obj/item/mecha_ammo/reload_box, mob/user,fail_chat_override = FALSE)
+	if(!reload_box.rounds)
 		if(!fail_chat_override)
 			to_chat(user, span_warning("This box of ammo is empty!"))
 		return FALSE
@@ -288,33 +284,33 @@
 	for(var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun in flat_equipment)
 		ammo_needed = 0
 
-		if(!istype(gun, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic) && gun.ammo_type == A.ammo_type)
+		if(!istype(gun, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic) && gun.ammo_type == reload_box.ammo_type)
 			continue
 		found_gun = TRUE
-		if(A.direct_load)
+		if(reload_box.direct_load)
 			ammo_needed = initial(gun.projectiles) - gun.projectiles
 		else
 			ammo_needed = gun.projectiles_cache_max - gun.projectiles_cache
 
 		if(!ammo_needed)
 			continue
-		if(ammo_needed < A.rounds)
-			if(A.direct_load)
+		if(ammo_needed < reload_box.rounds)
+			if(reload_box.direct_load)
 				gun.projectiles = gun.projectiles + ammo_needed
 			else
 				gun.projectiles_cache = gun.projectiles_cache + ammo_needed
-			playsound(get_turf(user),A.load_audio,50,TRUE)
-			to_chat(user, span_notice("You add [ammo_needed] [A.ammo_type][ammo_needed > 1?"s":""] to the [gun.name]"))
-			A.rounds = A.rounds - ammo_needed
+			playsound(get_turf(user), reload_box.load_audio, 50, TRUE)
+			to_chat(user, span_notice("You add [ammo_needed] [reload_box.ammo_type][ammo_needed > 1?"s":""] to the [gun.name]"))
+			reload_box.rounds = reload_box.rounds - ammo_needed
 			return TRUE
 
-		if(A.direct_load)
-			gun.projectiles = gun.projectiles + A.rounds
+		if(reload_box.direct_load)
+			gun.projectiles = gun.projectiles + reload_box.rounds
 		else
-			gun.projectiles_cache = gun.projectiles_cache + A.rounds
-		playsound(get_turf(user),A.load_audio,50,TRUE)
-		to_chat(user, span_notice("You add [A.rounds] [A.ammo_type][A.rounds > 1?"s":""] to the [gun.name]"))
-		A.rounds = 0
+			gun.projectiles_cache = gun.projectiles_cache + reload_box.rounds
+		playsound(get_turf(user),reload_box.load_audio,50,TRUE)
+		to_chat(user, span_notice("You add [reload_box.rounds] [reload_box.ammo_type][reload_box.rounds > 1?"s":""] to the [gun.name]"))
+		reload_box.rounds = 0
 		return TRUE
 	if(!fail_chat_override)
 		if(found_gun)

@@ -53,7 +53,8 @@
 	equipment_slot = MECHA_UTILITY
 	/// Repaired health per second
 	var/health_boost = 0.5
-	var/icon/droid_overlay
+	///overlay to show on the mech
+	var/image/droid_overlay
 	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH)
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/Destroy()
@@ -63,7 +64,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/attach(obj/vehicle/sealed/mecha/M, attach_right = FALSE)
 	. = ..()
-	droid_overlay = new(src.icon, icon_state = "repair_droid")
+	droid_overlay = image(icon, icon_state = "repair_droid")
 	M.add_overlay(droid_overlay)
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/detach()
@@ -78,11 +79,11 @@
 	chassis.cut_overlay(droid_overlay)
 	if(activated)
 		START_PROCESSING(SSobj, src)
-		droid_overlay = new(src.icon, icon_state = "repair_droid_a")
+		droid_overlay = image(icon, icon_state = "repair_droid_a")
 		log_message("Activated.", LOG_MECHA)
 	else
 		STOP_PROCESSING(SSobj, src)
-		droid_overlay = new(src.icon, icon_state = "repair_droid")
+		droid_overlay = image(icon, icon_state = "repair_droid")
 		log_message("Deactivated.", LOG_MECHA)
 	chassis.add_overlay(droid_overlay)
 
@@ -103,7 +104,7 @@
 			return PROCESS_KILL
 	else //no repair needed, we turn off
 		chassis.cut_overlay(droid_overlay)
-		droid_overlay = new(src.icon, icon_state = "repair_droid")
+		droid_overlay = image(icon, icon_state = "repair_droid")
 		chassis.add_overlay(droid_overlay)
 		activated = FALSE
 		return PROCESS_KILL
@@ -119,8 +120,9 @@
 	range = MECHA_MELEE
 	equipment_slot = MECHA_POWER
 	activated = FALSE
-	var/coeff = 100
+	/// axtual stack of fuel to consume
 	var/obj/item/stack/sheet/fuel
+	///max fuel material count allowed
 	var/max_fuel = 150000
 	/// Fuel used per second while idle, not generating
 	var/fuelrate_idle = 12.5

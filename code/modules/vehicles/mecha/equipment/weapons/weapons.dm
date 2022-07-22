@@ -4,12 +4,17 @@
 	equipment_slot = MECHA_WEAPON
 	destroy_sound = 'sound/mecha/weapdestr.ogg'
 	mech_flags = EXOSUIT_MODULE_COMBAT
+	/// ammo datum typepath
 	var/ammotype
+	///sound file to play when this weapon does it's action
 	var/fire_sound
+	/// how many projectiles this weapon
 	var/projectiles_per_shot = 1
+	/// basically spread
 	var/variance = 0
-	var/randomspread = FALSE //use random spread for machineguns, instead of shotgun scatter
+	///delay between single burst shots
 	var/projectile_delay = 0
+	///muzzle flash effect to show when firing
 	var/obj/effect/firing_effect = /atom/movable/vis_obj/effect/muzzle_flash //the visual effect appearing when the weapon is fired.
 
 /obj/item/mecha_parts/mecha_equipment/weapon/Initialize()
@@ -52,10 +57,15 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic
 	name = "general ballistic weapon"
 	fire_sound = 'sound/weapons/guns/fire/gunshot.ogg'
+	///ammo left in the mag
 	var/projectiles
-	var/projectiles_cache //ammo to be loaded in, if possible.
+	///ammo left total
+	var/projectiles_cache
+	///ammo total storable
 	var/projectiles_cache_max
-	var/disabledreload //For weapons with no cache (like the rockets) which are reloaded by hand
+	///Whather this object only uses one mag and cannot be reloaded with the UI button
+	var/disabledreload
+	/// string define for the ammo type that this can be reloaded with
 	var/ammo_type
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/action_checks(target)
@@ -131,7 +141,6 @@
 	projectiles_cache_max = 1200
 	projectiles_per_shot = 3
 	variance = 6
-	randomspread = 1
 	projectile_delay = 2
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_LMG

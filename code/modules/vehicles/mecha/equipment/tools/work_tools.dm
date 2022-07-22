@@ -46,8 +46,9 @@
 			to_chat(source, "No further supplies can be provided to [M].")
 		else
 			to_chat(source, "No providable supplies found in cargo hold")
+		return
 
-	else if(isobj(target))
+	if(isobj(target))
 		var/obj/clamptarget = target
 		if(clamptarget.anchored)
 			to_chat(source, "[icon2html(src, source)][span_warning("[target] is firmly secured!")]")
@@ -68,8 +69,9 @@
 			cargo_holder.box = clamptarget
 		to_chat(source, "[icon2html(src, source)][span_notice("[target] successfully loaded.")]")
 		log_message("Loaded [clamptarget]. Cargo compartment capacity: [cargo_holder.cargo_capacity - LAZYLEN(cargo_holder.cargo)]", LOG_MECHA)
+		return
 
-	else if(isliving(target))
+	if(isliving(target))
 		var/mob/living/M = target
 		if(M.stat == DEAD)
 			return
@@ -107,6 +109,7 @@
 							span_userdanger("[chassis] squeezes you!"),\
 							span_hear("You hear something crack."))
 		log_combat(source, M, "attacked", "[name]", "(INTENT: [source.a_intent]) (DAMTYPE: [uppertext(damtype)])")
+		return
 	return ..()
 
 
@@ -189,171 +192,3 @@
 		if("refill")
 			attempt_refill(usr)
 			return TRUE
-
-#define MODE_DECONSTRUCT 0
-#define MODE_WALL 1
-#define MODE_AIRLOCK 2
-
-/obj/item/mecha_parts/mecha_equipment/rcd
-	name = "mounted RCD"
-	desc = "An exosuit-mounted Rapid Construction Device."
-	icon_state = "mecha_rcd"
-	equip_cooldown = 10
-	energy_drain = 250
-	range = MECHA_MELEE|MECHA_RANGED
-	///determines what we'll so when clicking on a turf
-	var/mode = MODE_DECONSTRUCT
-
-/obj/item/mecha_parts/mecha_equipment/rcd/get_snowflake_data()
-	return list(
-		"snowflake_id" = MECHA_SNOWFLAKE_ID_MODE,
-		"name" = "RCD control",
-		"mode" = get_mode_name(),
-	)
-
-/// fetches the mode name to display in the UI
-/obj/item/mecha_parts/mecha_equipment/rcd/proc/get_mode_name()
-	switch(mode)
-		if(MODE_DECONSTRUCT)
-			return "Deconstruct"
-		if(MODE_WALL)
-			return "Build wall"
-		if(MODE_AIRLOCK)
-			return "Build Airlock"
-		else
-			return "Someone didnt set this"
-
-/obj/item/mecha_parts/mecha_equipment/rcd/ui_act(action, list/params)
-	. = ..()
-	if(.)
-		return
-	if(action == "change_mode")
-		mode++
-		if(mode > MODE_AIRLOCK)
-			mode = MODE_DECONSTRUCT
-		switch(mode)
-			if(MODE_DECONSTRUCT)
-				to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("Switched RCD to Deconstruct.")]")
-				energy_drain = initial(energy_drain)
-			if(MODE_WALL)
-				to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("Switched RCD to Construct Walls and Flooring.")]")
-				energy_drain = 2*initial(energy_drain)
-			if(MODE_AIRLOCK)
-				to_chat(chassis.occupants, "[icon2html(src, chassis.occupants)][span_notice("Switched RCD to Construct Airlock.")]")
-				energy_drain = 2*initial(energy_drain)
-		return TRUE
-
-/obj/item/mecha_parts/mecha_equipment/rcd/action(mob/source, atom/target, list/modifiers)
-	if(!isturf(target) && !istype(target, /obj/machinery/door/airlock))
-		target = get_turf(target)
-	if(!action_checks(target) || get_dist(chassis, target)>3 || istype(target, /turf/open/space/transit))
-		return
-	playsound(chassis, 'sound/machines/click.ogg', 50, TRUE)
-
-	switch(mode)
-		if(MODE_DECONSTRUCT)
-			to_chat(source, "[icon2html(src, source)][span_notice("Deconstructing [target]...")]")
-			if(iswallturf(target))
-				var/turf/closed/wall/W = target
-				if(!do_after_cooldown(W, source))
-					return
-				W.ScrapeAway()
-			else if(isfloorturf(target))
-				var/turf/open/floor/F = target
-				if(!do_after_cooldown(target, source))
-					return
-				F.ScrapeAway()
-			else if (istype(target, /obj/machinery/door/airlock))
-				if(!do_after_cooldown(target, source))
-					return
-				qdel(target)
-		if(MODE_WALL)
-			if(isspaceturf(target))
-				var/turf/open/space/S = target
-				to_chat(source, "[icon2html(src, source)][span_notice("Building Floor...")]")
-				if(!do_after_cooldown(S, source))
-					return
-				S.PlaceOnTop(/turf/open/floor/plating)
-			else if(isfloorturf(target))
-				var/turf/open/floor/F = target
-				to_chat(source, "[icon2html(src, source)][span_notice("Building Wall...")]")
-				if(!do_after_cooldown(F, source))
-					return
-				F.PlaceOnTop(/turf/closed/wall)
-		if(MODE_AIRLOCK)
-			if(isfloorturf(target))
-				to_chat(source, "[icon2html(src, source)][span_notice("Building Airlock...")]")
-				if(!do_after_cooldown(target, source))
-					return
-				var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock(target)
-				T.autoclose = TRUE
-				playsound(target, 'sound/effects/sparks2.ogg', 50, TRUE)
-	chassis.spark_system.start()
-	playsound(target, 'sound/items/deconstruct.ogg', 50, TRUE)
-	return ..()
-
-#undef MODE_DECONSTRUCT
-#undef MODE_WALL
-#undef MODE_AIRLOCK
-
-//Dunno where else to put this so shrug
-/obj/item/mecha_parts/mecha_equipment/ripleyupgrade
-	name = "Ripley MK-II Conversion Kit"
-	desc = "A pressurized canopy attachment kit for an Autonomous Power Loader Unit \"Ripley\" MK-I mecha, to convert it to the slower, but space-worthy MK-II design. This kit cannot be removed, once applied."
-	icon_state = "ripleyupgrade"
-	mech_flags = EXOSUIT_MODULE_RIPLEY
-
-/obj/item/mecha_parts/mecha_equipment/ripleyupgrade/can_attach(obj/vehicle/sealed/mecha/working/ripley/M, attach_right = FALSE)
-	if(M.type != /obj/vehicle/sealed/mecha/working/ripley)
-		to_chat(loc, span_warning("This conversion kit can only be applied to APLU MK-I models."))
-		return FALSE
-	if(LAZYLEN(M.cargo))
-		to_chat(loc, span_warning("[M]'s cargo hold must be empty before this conversion kit can be applied."))
-		return FALSE
-	if(!(M.mecha_flags & ADDING_MAINT_ACCESS_POSSIBLE)) //non-removable upgrade, so lets make sure the pilot or owner has their say.
-		to_chat(loc, span_warning("[M] must have maintenance protocols active in order to allow this conversion kit."))
-		return FALSE
-	if(LAZYLEN(M.occupants)) //We're actualy making a new mech and swapping things over, it might get weird if players are involved
-		to_chat(loc, span_warning("[M] must be unoccupied before this conversion kit can be applied."))
-		return FALSE
-	if(!M.cell) //Turns out things break if the cell is missing
-		to_chat(loc, span_warning("The conversion process requires a cell installed."))
-		return FALSE
-	return TRUE
-
-/obj/item/mecha_parts/mecha_equipment/ripleyupgrade/attach(obj/vehicle/sealed/mecha/markone, attach_right = FALSE)
-	var/obj/vehicle/sealed/mecha/working/ripley/mk2/marktwo = new (get_turf(markone),1)
-	if(!marktwo)
-		return
-	QDEL_NULL(marktwo.cell)
-	if (markone.cell)
-		marktwo.cell = markone.cell
-		markone.cell.forceMove(marktwo)
-		markone.cell = null
-	QDEL_NULL(marktwo.scanmod)
-	if (markone.scanmod)
-		marktwo.scanmod = markone.scanmod
-		markone.scanmod.forceMove(marktwo)
-		markone.scanmod = null
-	QDEL_NULL(marktwo.capacitor)
-	if (markone.capacitor)
-		marktwo.capacitor = markone.capacitor
-		markone.capacitor.forceMove(marktwo)
-		markone.capacitor = null
-	marktwo.update_part_values()
-	for(var/obj/item/mecha_parts/mecha_equipment/equipment in markone.flat_equipment) //Move the equipment over...
-		if(istype(equipment, /obj/item/mecha_parts/mecha_equipment/ejector))
-			continue //the MK2 already has one.
-		var/righthandgun = markone.equip_by_category[MECHA_R_ARM] == equipment
-		equipment.detach(marktwo)
-		equipment.attach(marktwo, righthandgun)
-	marktwo.dna_lock = markone.dna_lock
-	marktwo.mecha_flags = markone.mecha_flags
-	marktwo.strafe = markone.strafe
-	//Integ set to the same percentage integ as the old mecha, rounded to be whole number
-	marktwo.obj_integrity = round((markone.obj_integrity / markone.max_integrity) * marktwo.obj_integrity)
-	if(markone.name != initial(markone.name))
-		marktwo.name = markone.name
-	markone.wreckage = FALSE
-	qdel(markone)
-	playsound(get_turf(marktwo),'sound/items/ratchet.ogg',50,TRUE)
