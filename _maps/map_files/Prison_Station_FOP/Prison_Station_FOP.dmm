@@ -5844,7 +5844,6 @@
 	dir = 9
 	},
 /obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/darkred,
 /area/prison/security/checkpoint/maxsec_highsec)
 "asU" = (
@@ -17299,7 +17298,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
 "bba" = (
@@ -19337,7 +19335,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/cleanmarked,
 /area/prison/canteen)
 "bhc" = (
@@ -19371,7 +19368,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/ai_node,
 /turf/open/floor/prison/kitchen,
 /area/prison/kitchen)
@@ -24510,7 +24506,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/north)
 "bxp" = (
@@ -28557,7 +28552,6 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "bKD" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/bright_clean,
 /area/prison/holding/holding2)
 "bKE" = (
@@ -37162,7 +37156,6 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/protective)
 "cmv" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
@@ -38089,7 +38082,6 @@
 /obj/machinery/conveyor{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "cpu" = (
@@ -38881,7 +38873,6 @@
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "csr" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "css" = (
@@ -41344,7 +41335,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "dXl" = (
@@ -41358,7 +41348,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/ai_node,
 /turf/open/floor/prison/yellow{
 	dir = 1
@@ -41789,7 +41778,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "fgf" = (
@@ -42116,13 +42104,11 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/prison/security/monitoring/highsec)
 "gnb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/red/corner,
 /area/prison/cellblock/highsec/north/south)
 "gnd" = (
@@ -42219,7 +42205,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
 "gCu" = (
@@ -42269,7 +42254,6 @@
 /turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
 "gGZ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/cellstripe{
 	dir = 8
 	},
@@ -42348,7 +42332,6 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "gPc" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "gPp" = (
@@ -43095,7 +43078,6 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "iYm" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/bright_clean,
 /area/prison/visitation)
 "iYA" = (
@@ -43257,7 +43239,6 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/engineering/atmos)
 "jqt" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
@@ -43379,11 +43360,9 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/research)
 "jEP" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison,
 /area/prison/cellblock/vip)
 "jEZ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/green{
 	dir = 8
 	},
@@ -43553,7 +43532,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
 "kaY" = (
@@ -43629,7 +43607,6 @@
 	},
 /area/prison/cellblock/lowsec/ne)
 "kpA" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/holding/holding1)
 "kpB" = (
@@ -43735,7 +43712,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/mediumsec/north)
 "kGQ" = (
@@ -43809,7 +43785,6 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/west)
 "kWF" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "kWG" = (
@@ -45091,7 +45066,6 @@
 "ouQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/south)
@@ -45211,7 +45185,6 @@
 	},
 /area/prison/hangar/civilian)
 "oRV" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/north)
@@ -45456,7 +45429,6 @@
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
 "pEh" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "pEW" = (
@@ -45963,7 +45935,6 @@
 /area/prison/cellblock/highsec/south/south)
 "qST" = (
 /obj/structure/window/reinforced,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/green,
 /area/prison/quarters/staff)
 "qTo" = (
@@ -46031,7 +46002,6 @@
 /turf/open/floor/plating,
 /area/prison/research/secret/biolab)
 "rdQ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "reb" = (
@@ -46153,7 +46123,6 @@
 /turf/open/ground/grass,
 /area/prison/residential/central)
 "rqp" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "rqK" = (
@@ -46674,7 +46643,6 @@
 /area/prison/residential/south)
 "sHr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/prison/quarters/research)
 "sHD" = (
@@ -47140,7 +47108,6 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/east)
 "tXr" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "tXM" = (
@@ -48011,7 +47978,6 @@
 	},
 /area/prison/cellblock/highsec/north/north)
 "wmW" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/carpet,
 /area/prison/chapel)
 "wmY" = (
@@ -48272,7 +48238,6 @@
 "xbZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/prison/chapel)
 "xcb" = (
@@ -48353,7 +48318,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/yellow/corner{
 	dir = 8
 	},
@@ -48386,7 +48350,6 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/west)
 "xwA" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison,
 /area/prison/hangar_storage/research)
 "xwG" = (
@@ -48635,7 +48598,6 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "yiA" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/laundry)

@@ -17,21 +17,6 @@
 		C.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(C), SLOT_SHOES)
 		C.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(C), SLOT_GLOVES)
 
-	var/weapons = pick(SURVIVOR_WEAPONS)
-	var/obj/item/weapon/W = weapons[1]
-	var/obj/item/ammo_magazine/A = weapons[2]
-	C.equip_to_slot_or_del(new /obj/item/belt_harness(C), SLOT_BELT)
-	C.put_in_hands(new W(C))
-	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
-	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
-	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
-
-	C.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(C), SLOT_GLASSES)
-	C.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(C), SLOT_R_STORE)
-	C.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(C), SLOT_L_STORE)
-	C.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(C), SLOT_IN_BACKPACK)
-	C.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/rugged(C), SLOT_HEAD)
-
 	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_PRISON_STATION)
 			to_chat(M, span_notice("You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks... until now."))
@@ -58,22 +43,6 @@ You are not hostile to TGMC, nor you should oppose or disrupt their objective, u
 If you find any other survivors in the area, cooperate with them to increase your chances of survival.
 Depending on the job you've undertook, you may have additional skills to help others when needed.
 Good luck, but do not expect to survive."})
-
-
-//Assistant
-/datum/job/survivor/assistant
-	title = "Assistant Survivor"
-	outfit = /datum/outfit/job/survivor/assistant
-
-
-/datum/outfit/job/survivor/assistant
-	name = "Assistant Survivor"
-	jobtype = /datum/job/survivor/assistant
-
-	w_uniform = /obj/item/clothing/under/color/grey
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/norm
-	wear_suit = /obj/item/clothing/suit/armor/vest
 
 
 //Scientist
@@ -124,24 +93,6 @@ Good luck, but do not expect to survive."})
 	wear_suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
-
-
-//Security Guard
-/datum/job/survivor/security
-	title = "Security Guard Survivor"
-	skills_type = /datum/skills/civilian/survivor/marshal
-	outfit = /datum/outfit/job/survivor/security
-
-
-/datum/outfit/job/survivor/security
-	name = "Security Guard Survivor"
-	jobtype = /datum/job/survivor/security
-
-	w_uniform = /obj/item/clothing/under/rank/security/corp
-	wear_suit = /obj/item/clothing/suit/armor/bulletproof
-	shoes = /obj/item/clothing/shoes/marine
-	back = /obj/item/storage/backpack/satchel/sec
-
 
 //Civilian
 /datum/job/survivor/civilian
@@ -273,20 +224,3 @@ Good luck, but do not expect to survive."})
 	wear_suit = /obj/item/clothing/suit/storage/CMB
 	shoes = /obj/item/clothing/shoes/jackboots
 	back = /obj/item/storage/backpack/satchel/sec
-
-
-// Rambo Survivor
-/datum/job/survivor/rambo
-	title = "Survivor"
-	skills_type = /datum/skills/civilian/survivor/master
-	outfit = /datum/outfit/job/survivor/rambo
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN
-
-/datum/outfit/job/survivor/rambo
-	name = "Survivor"
-	jobtype = /datum/job/survivor/rambo
-	w_uniform = /obj/item/clothing/under/color/grey
-	wear_suit = /obj/item/clothing/suit/armor/rugged
-	shoes = /obj/item/clothing/shoes/ruggedboot
-	back = /obj/item/storage/backpack/satchel/rugged
-	gloves = /obj/item/clothing/gloves/ruggedgloves

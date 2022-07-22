@@ -566,7 +566,6 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "wQ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/bigredv2/outside/admin_building)
 "wR" = (
@@ -1199,7 +1198,6 @@
 	},
 /area/bigredv2/outside/admin_building)
 "PN" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "Qc" = (
@@ -1328,7 +1326,6 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/admin_building)
 "UC" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/admin_building)
 "UF" = (

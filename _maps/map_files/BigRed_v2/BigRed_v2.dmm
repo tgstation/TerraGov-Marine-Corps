@@ -1799,7 +1799,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "alt" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
@@ -2650,7 +2649,6 @@
 /area/bigredv2/outside/marshal_office)
 "aoW" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "aoX" = (
@@ -6530,7 +6528,6 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMj" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aMk" = (
@@ -8234,7 +8231,6 @@
 /turf/open/space/basic,
 /area/space)
 "bbh" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bbi" = (
@@ -9045,7 +9041,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "blB" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/alarm{
 	dir = 4
@@ -9115,7 +9110,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bma" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bmb" = (
@@ -9559,7 +9553,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bpe" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpn" = (
@@ -9764,7 +9757,6 @@
 /area/bigredv2/outside/cargo)
 "bqT" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bqV" = (
@@ -12307,7 +12299,6 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "dSQ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "dTR" = (

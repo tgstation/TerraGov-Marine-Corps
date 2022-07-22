@@ -457,7 +457,6 @@
 	},
 /area/lv624/lazarus/medbay)
 "MQ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2
 	},
@@ -474,7 +473,6 @@
 	},
 /area/lv624/lazarus/medbay)
 "NL" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluecorner{
 	dir = 2

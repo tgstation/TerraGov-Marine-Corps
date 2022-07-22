@@ -927,7 +927,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering/tool)
 "adP" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/ice_colony/surface/engineering/tool)
 "adQ" = (
@@ -2989,7 +2988,6 @@
 	},
 /area/ice_colony/underground/hangar)
 "alT" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
@@ -3051,7 +3049,6 @@
 	},
 /area/ice_colony/surface/mining)
 "ame" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
@@ -3848,7 +3845,6 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "apn" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "apo" = (
@@ -5840,7 +5836,6 @@
 /turf/closed/ice/thin/end,
 /area/ice_colony/exterior/surface/valley/southeast)
 "awN" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "awO" = (
@@ -6745,7 +6740,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "aAa" = (
@@ -6813,7 +6807,6 @@
 	},
 /area/ice_colony/exterior/underground/caves/ice_nw)
 "aAl" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/disposals)
 "aAm" = (
@@ -8067,7 +8060,6 @@
 	},
 /area/ice_colony/surface/garage/one)
 "aEw" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
@@ -12417,7 +12409,6 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "aTx" = (
@@ -12568,7 +12559,6 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTQ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "aTR" = (
@@ -13898,7 +13888,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/tech_storage)
 "aXV" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
@@ -14180,7 +14169,6 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aYZ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aZa" = (
@@ -17003,7 +16991,6 @@
 	},
 /area/ice_colony/underground/hangar)
 "bjb" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/shuttle/dropship{
 	icon_state = "floor8"
 	},
@@ -29111,7 +29098,6 @@
 "bXp" = (
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
@@ -30889,7 +30875,6 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "eyy" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation/smes)
 "eAl" = (

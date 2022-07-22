@@ -209,7 +209,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "lE" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "mo" = (

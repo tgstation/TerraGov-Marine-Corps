@@ -1673,7 +1673,6 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/office_complex)
 "Yo" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},

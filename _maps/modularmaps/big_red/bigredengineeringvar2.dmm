@@ -573,7 +573,6 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/southwest)
 "Gp" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Gv" = (

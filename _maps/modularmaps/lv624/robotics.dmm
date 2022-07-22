@@ -177,7 +177,6 @@
 	},
 /area/lv624/lazarus/robotics)
 "uR" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8

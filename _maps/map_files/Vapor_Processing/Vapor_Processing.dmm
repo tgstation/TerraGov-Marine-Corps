@@ -1079,7 +1079,6 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/compound/c)
 "er" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
 "es" = (
@@ -2251,7 +2250,6 @@
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "iV" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/ground,
 /area/vapor_processing/west_compound)
 "iW" = (
@@ -2822,7 +2820,6 @@
 /turf/open/ground,
 /area/lv624/ground/compound/se)
 "lk" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "ll" = (
@@ -3124,7 +3121,6 @@
 /turf/open/floor,
 /area/lv624/lazarus/research)
 "mI" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3363,7 +3359,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "nS" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -3565,7 +3560,6 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "oR" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -5161,7 +5155,6 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
 "uk" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1

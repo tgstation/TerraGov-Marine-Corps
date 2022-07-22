@@ -2113,7 +2113,6 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/yard/south_east)
 "jI" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "jJ" = (
@@ -2724,7 +2723,6 @@
 /area/outpost/science)
 "mm" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/arrivals)
 "mn" = (
@@ -3100,7 +3098,6 @@
 /area/outpost/dormitories)
 "nZ" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/outpost/cargo/office)
 "ob" = (
@@ -4635,7 +4632,6 @@
 	},
 /area/outpost/yard/south)
 "vk" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
@@ -5496,7 +5492,6 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/yard/north_east)
 "zw" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo)
 "zx" = (
@@ -5934,7 +5929,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -6421,7 +6415,6 @@
 /area/outpost/engineering/engine)
 "DY" = (
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -8043,7 +8036,6 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/caves/east)
 "LG" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 1
@@ -9368,7 +9360,6 @@
 /area/outpost/hallway/west)
 "Rq" = (
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -9541,7 +9532,6 @@
 	},
 /area/outpost/medbay)
 "RY" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -9688,7 +9678,6 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "SK" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "SL" = (
@@ -10208,7 +10197,6 @@
 /area/outpost/engineering/hallway)
 "Vf" = (
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "Vh" = (

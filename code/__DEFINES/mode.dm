@@ -77,16 +77,6 @@
 #define INFESTATION_NUKE_INPROGRESS "INFESTATION_NUKE_INPROGRESS"
 #define INFESTATION_NUKE_COMPLETED "INFESTATION_NUKE_COMPLETED"
 
-#define SURVIVOR_WEAPONS list(\
-				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
-				list(/obj/item/weapon/gun/shotgun/double/sawn, /obj/item/ammo_magazine/handful/buckshot),\
-				list(/obj/item/weapon/gun/smg/uzi, /obj/item/ammo_magazine/smg/uzi),\
-				list(/obj/item/weapon/gun/smg/m25, /obj/item/ammo_magazine/smg/m25),\
-				list(/obj/item/weapon/gun/rifle/m16, /obj/item/ammo_magazine/rifle/m16),\
-				list(/obj/item/weapon/gun/shotgun/pump/bolt, /obj/item/ammo_magazine/rifle/bolt),\
-				list(/obj/item/weapon/gun/shotgun/pump/lever, /obj/item/ammo_magazine/packet/magnum))
-
-
 #define LATEJOIN_LARVA_DISABLED 0
 
 

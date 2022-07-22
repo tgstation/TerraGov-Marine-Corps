@@ -588,7 +588,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "IV" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "Jm" = (

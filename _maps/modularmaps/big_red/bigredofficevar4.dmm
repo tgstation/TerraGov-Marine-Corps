@@ -61,7 +61,6 @@
 /area/bigredv2/outside/office_complex)
 "cj" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "cE" = (
@@ -340,7 +339,6 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "my" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},
@@ -1356,7 +1354,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "YB" = (

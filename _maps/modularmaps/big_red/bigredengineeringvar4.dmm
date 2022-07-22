@@ -441,7 +441,6 @@
 	},
 /area/bigredv2/caves/southwest)
 "Aq" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "Au" = (

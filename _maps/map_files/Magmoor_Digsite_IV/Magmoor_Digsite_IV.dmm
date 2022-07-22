@@ -2597,7 +2597,6 @@
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
 "ckq" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "ckr" = (
@@ -5783,7 +5782,6 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "eeW" = (
@@ -5925,7 +5923,6 @@
 /area/magmoor/landing/two)
 "ejo" = (
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/magmoor/hydroponics/north)
 "ejs" = (
@@ -6306,7 +6303,6 @@
 	},
 /area/magmoor/medical/treatment)
 "eAr" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/orange,
 /area/magmoor/cargo/processing/south)
 "eAD" = (
@@ -9324,7 +9320,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -9491,7 +9486,6 @@
 /turf/open/floor/stairs/rampbottom,
 /area/magmoor/research)
 "gKZ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/green{
 	dir = 5
 	},
@@ -12019,7 +12013,6 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/central)
 "iJm" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage/south)
 "iJy" = (
@@ -13185,7 +13178,6 @@
 	},
 /area/magmoor/compound)
 "jyr" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
@@ -13689,7 +13681,6 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/dorms)
 "jPd" = (
@@ -17972,7 +17963,6 @@
 /area/magmoor/research)
 "mYl" = (
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/toilet)
 "mYK" = (
@@ -18002,7 +17992,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/ai_node,
 /turf/open/floor/tile/bar,
 /area/magmoor/civilian/clean)
@@ -18218,7 +18207,6 @@
 /area/magmoor/mining/refinery)
 "niH" = (
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/shower)
 "njd" = (
@@ -19637,7 +19625,6 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/freezer,
 /area/magmoor/cargo/freezer)
 "ohD" = (
@@ -22309,7 +22296,6 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing)
 "pRd" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing)
 "pRw" = (
@@ -22667,7 +22653,6 @@
 	},
 /area/magmoor/cargo/processing/south)
 "qeb" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/lobby)
 "qek" = (
@@ -25974,7 +25959,6 @@
 	},
 /area/magmoor/compound/northwest)
 "sjI" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -26697,7 +26681,6 @@
 /turf/open/floor/plating,
 /area/magmoor/compound/north)
 "sHx" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/magmoor/hydroponics)
 "sHU" = (
@@ -27192,7 +27175,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/magmoor/hydroponics/south)
 "sWH" = (
@@ -28332,7 +28314,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/magmoor/command/office)
 "tKo" = (
@@ -29176,7 +29157,6 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
 "uri" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/lobby)
@@ -30040,7 +30020,6 @@
 /turf/open/floor/tile/blue/taupeblue,
 /area/magmoor/civilian/dorms)
 "uQX" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/taupeblue,
 /area/magmoor/civilian/dorms)
 "uRm" = (
@@ -33183,7 +33162,6 @@
 /turf/open/floor/mainship,
 /area/magmoor/cargo/processing/south)
 "wGk" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/magmoor/civilian/dorms)
 "wGm" = (
@@ -33726,7 +33704,6 @@
 	},
 /area/magmoor/command/lobby/east)
 "wWQ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/blue/corner{
 	dir = 1
 	},
@@ -35879,7 +35856,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},

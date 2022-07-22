@@ -6005,7 +6005,6 @@
 	},
 /area/lv624/ground/river1)
 "drc" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "dri" = (
@@ -7466,7 +7465,6 @@
 /area/lv624/lazarus/fitness)
 "fkR" = (
 /obj/item/toy/inflatable_duck,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/ground/river,
 /area/lv624/lazarus/fitness)
 "flD" = (
@@ -8953,7 +8951,6 @@
 	icon_state = "coffin_open";
 	opened = 1
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/chapel{
 	dir = 1
 	},
@@ -9239,7 +9236,6 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/c)
 "hrr" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -9310,7 +9306,6 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "hBr" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8)
 "hCV" = (
@@ -12632,7 +12627,6 @@
 	dir = 4;
 	icon_state = "wooden_chair_wings"
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
 	},
@@ -14720,7 +14714,6 @@
 /obj/structure/bed/chair/comfy/lime{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -14854,7 +14847,6 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/corporate_affairs)
 "oti" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "otx" = (
@@ -15702,7 +15694,6 @@
 	},
 /area/lv624/ground/jungle8)
 "pDB" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -18381,7 +18372,6 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "sXT" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -18688,7 +18678,6 @@
 	},
 /area/lv624/lazarus/engineering)
 "tmf" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/dark,
@@ -19293,7 +19282,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/ruin)
 "tVY" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -19871,7 +19859,6 @@
 /obj/item/stack/sheet/wood{
 	amount = 2
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "uGh" = (

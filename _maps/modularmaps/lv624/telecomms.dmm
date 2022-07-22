@@ -162,7 +162,6 @@
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},

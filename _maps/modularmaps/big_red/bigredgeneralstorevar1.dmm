@@ -586,7 +586,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "Gp" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "Gw" = (

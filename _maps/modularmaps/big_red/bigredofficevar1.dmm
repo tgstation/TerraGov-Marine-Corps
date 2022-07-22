@@ -243,7 +243,6 @@
 /turf/open/floor/grimy,
 /area/bigredv2/outside/office_complex)
 "ld" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},
@@ -276,7 +275,6 @@
 /area/bigredv2/outside/office_complex)
 "mh" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "mq" = (

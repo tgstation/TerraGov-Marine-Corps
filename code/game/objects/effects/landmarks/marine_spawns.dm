@@ -140,10 +140,6 @@
 /obj/effect/landmark/start/job/ai/rebel
 	job = /datum/job/terragov/silicon/ai/rebel
 
-/obj/effect/landmark/start/job/survivor
-	icon_state = "Shaft Miner"
-	job = /datum/job/survivor/rambo
-
 /obj/effect/landmark/start/job/fallen
 	job = /datum/job/fallen
 

@@ -142,7 +142,6 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/chapel{
 	dir = 4
 	},

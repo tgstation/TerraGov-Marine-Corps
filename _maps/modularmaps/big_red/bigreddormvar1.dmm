@@ -33,7 +33,6 @@
 /area/bigredv2/outside/dorms)
 "hT" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "iG" = (
@@ -296,7 +295,6 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "RW" = (

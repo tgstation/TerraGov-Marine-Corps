@@ -476,7 +476,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "vw" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "vR" = (

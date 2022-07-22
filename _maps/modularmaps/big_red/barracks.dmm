@@ -158,14 +158,12 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "fY" = (
-/obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "gj" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/admin_building)
 "gk" = (

@@ -2854,7 +2854,6 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostsw)
 "oQ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/engineering)
 "oR" = (
@@ -4405,7 +4404,6 @@
 	},
 /area/orion_outpost/surface/building/prep)
 "wZ" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/brig)
 "xb" = (
@@ -8515,7 +8513,6 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostcent)
 "Se" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
 "Sf" = (
@@ -9156,7 +9153,6 @@
 	},
 /area/orion_outpost/surface/landing_pad)
 "Vl" = (
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/administration)
 "Vm" = (

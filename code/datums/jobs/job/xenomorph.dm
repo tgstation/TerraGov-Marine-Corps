@@ -5,7 +5,6 @@
 	selection_color = "#B2A3CC"
 	display_order = JOB_DISPLAY_ORDER_XENOMORPH
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_SHOW_OPEN_POSITIONS
-	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 	job_points_needed  = 10 //Redefined via config.
 	faction = FACTION_XENO
 	html_description = {"
@@ -60,7 +59,6 @@
 	display_order = JOB_DISPLAY_ORDER_XENO_QUEEN
 	exp_requirements = XP_REQ_EXPERIENCED
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_HIDE_CURRENT_POSITIONS
-	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 	html_description = {"
 		<b>Difficulty</b>: Soul crushing<br /><br />
 		<b>You answer to the</b> Queen Mother<br /><br />
