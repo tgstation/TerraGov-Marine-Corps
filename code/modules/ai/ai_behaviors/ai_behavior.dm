@@ -39,7 +39,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///If the mob attached to the ai is offered on xeno creation
 	var/is_offered_on_creation = FALSE
 
-/datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom_)
+/datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom)
 	..()
 	src.escorted_atom = escorted_atom
 	if(isnull(parent_to_assign))
