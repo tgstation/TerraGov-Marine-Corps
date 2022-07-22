@@ -40,6 +40,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/inquisitive_ghost = FALSE
 	///A weakref to the original corpse of the observer
 	var/datum/weakref/can_reenter_corpse
+	var/obj/item/healthanalyzer/ghost/healthscanner = new()
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
@@ -50,6 +51,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/ghost_xenohud = FALSE
 	var/ghost_orderhud = FALSE
 	var/ghost_vision = TRUE
+	///If the ghost can healthscan a human with a single click
+	var/ghost_healthscan = FALSE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
 	///Position in the larva queue
 	var/larva_position = 0
@@ -438,6 +441,21 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			client.prefs.save_preferences()
 			to_chat(src, span_boldnotice("[hud_choice] [ghost_orderhud ? "Enabled" : "Disabled"]"))
 
+///Toggles the ghost healthscanner on or off
+/mob/dead/observer/verb/toggle_healthscanner()
+	set category = "Ghost"
+	set name = "Toggle Health Scanner"
+	set desc = "Click on a human to do a ghost health scan"
+
+	ghost_healthscan = !ghost_healthscan
+	to_chat(src, "[ghost_healthscan ? "Enabled" : "Disabled"] ghost health scan.")
+
+	if(ghost_healthscan)
+		RegisterSignal(src, COMSIG_OBSERVER_CLICKON, .proc/healthscan)
+		START_PROCESSING(SSobj, healthscanner)
+	else
+		UnregisterSignal(src, COMSIG_OBSERVER_CLICKON)
+		STOP_PROCESSING(SSobj, healthscanner)
 
 
 /mob/dead/observer/verb/teleport(area/A in GLOB.sorted_areas)
@@ -846,6 +864,19 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		observetarget.observers -= src
 		UNSETEMPTY(observetarget.observers)
 	observetarget = null
+
+///Perform a ghost health scan on target mob
+/mob/dead/observer/proc/healthscan(mob/user, mob/living/carbon/target)
+	SIGNAL_HANDLER
+
+	if(!ghost_healthscan || !iscarbon(target) || isxeno(target) || !healthscanner)
+		return
+
+	if(!healthscanner.current_user)
+		healthscanner.current_user = src
+
+	INVOKE_ASYNC(healthscanner, /obj/item/healthanalyzer.proc/scan_target, target)
+
 
 /mob/dead/observer/verb/dnr()
 	set category = "Ghost"

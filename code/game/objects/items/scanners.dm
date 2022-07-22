@@ -78,6 +78,11 @@ REAGENT SCANNER
 	///Distance the current_user can be away from the patient and still get health data.
 	var/track_distance = 3
 
+/obj/item/healthanalyzer/Destroy()
+	. = ..()
+	patient = null
+	current_user = null
+
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
 	. = ..()
 	if(user.skills.getRating("medical") < skill_threshold)
@@ -94,11 +99,17 @@ REAGENT SCANNER
 	to_chat(user, span_notice("[user] has analyzed [M]'s vitals."))
 	patient = M
 	current_user = user
-	ui_interact(user)
-	update_static_data(user)
+	scan_target(patient)
 	if(user.skills.getRating("medical") < upper_skill_threshold)
 		return
 	START_PROCESSING(SSobj, src)
+
+/obj/item/healthanalyzer/proc/scan_target(mob/living/carbon/Target)
+	if(!iscarbon(Target) || isxeno(Target))
+		return
+	patient = Target
+	ui_interact(current_user)
+	update_static_data(current_user)
 
 /obj/item/healthanalyzer/ui_state(mob/user)
 	return GLOB.not_incapacitated_state
@@ -246,6 +257,16 @@ REAGENT SCANNER
 	name = "\improper HF2 integrated health analyzer"
 	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
 	skill_threshold = SKILL_MEDICAL_UNTRAINED
+
+/obj/item/healthanalyzer/ghost
+	name = "\improper Ghost health analyzer"
+	skill_threshold = SKILL_MEDICAL_UNTRAINED
+
+/obj/item/healthanalyzer/ghost/process()
+	update_static_data(current_user)
+
+/obj/item/healthanalyzer/ghost/ui_state(mob/user)
+	return GLOB.observer_state
 
 /obj/item/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."

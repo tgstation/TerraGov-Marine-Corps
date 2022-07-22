@@ -114,6 +114,13 @@
 	playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 	update_icon()
 
+/obj/machinery/deployable/teleporter/attack_ghost(mob/dead/observer/user)
+	var/obj/item/teleporter_kit/kit = internal_item
+	if(!kit || !kit.linked_teleporter)
+		return
+	user.forceMove(get_turf(kit.linked_teleporter))
+
+
 /obj/machinery/deployable/teleporter/update_icon_state()
 	var/obj/item/teleporter_kit/kit = internal_item
 	if(powered() || kit.cell?.charge > TELEPORTING_COST)
@@ -144,9 +151,15 @@
 	cell = new /obj/item/cell/high(src)
 
 /obj/item/teleporter_kit/Destroy()
+	linked_teleporter.linked_teleporter = null
 	linked_teleporter = null
 	QDEL_NULL(cell)
 	return ..()
+
+/obj/item/teleporter_kit/attack_ghost(mob/dead/observer/user)
+	if(!linked_teleporter)
+		return
+	user.forceMove(get_turf(linked_teleporter))
 
 ///Link the two teleporters
 /obj/item/teleporter_kit/proc/set_linked_teleporter(obj/item/teleporter_kit/linked_teleporter)

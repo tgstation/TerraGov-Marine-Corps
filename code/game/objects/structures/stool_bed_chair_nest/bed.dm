@@ -32,7 +32,7 @@
 
 /obj/structure/bed/nometal
 	dropmetal = FALSE
-	
+
 /obj/structure/bed/bunkbed
 	name = "bunk bed"
 	icon_state = "bunkbed"
@@ -364,6 +364,12 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 /obj/structure/bed/medevac_stretcher/attack_hand_alternate(mob/living/user)
 	activate_medevac_teleport(user)
 
+/obj/structure/bed/medevac_stretcher/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(!linked_beacon)
+		return
+	user.forceMove(get_turf(linked_beacon))
+
 /obj/structure/bed/medevac_stretcher/proc/activate_medevac_teleport(mob/user)
 	if(!ishuman(user))
 		return
@@ -532,6 +538,11 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 /obj/item/roller/medevac/attack_self(mob/user)
 	deploy_roller(user, user.loc)
 
+/obj/item/roller/medevac/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(!linked_beacon)
+		return
+	user.forceMove(get_turf(linked_beacon))
 
 /obj/item/roller/medevac/examine(mob/user)
 	. = ..()
@@ -637,6 +648,16 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		to_chat(user, span_warning("You retrieve and deactivate [src]."))
 		icon_state = "med_beacon0"
 		playsound(loc,'sound/machines/click.ogg', 25, FALSE)
+
+/obj/item/medevac_beacon/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	if(linked_bed_deployed)
+		user.forceMove(get_turf(linked_bed_deployed))
+		return
+	else if(linked_bed)
+		user.forceMove(get_turf(linked_bed))
+		return
+
 
 /obj/item/medevac_beacon/attackby(obj/item/I, mob/user, params) //Corpsmen can lock their beacons.
 	. = ..()
