@@ -53,7 +53,7 @@
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/un_burrow)
 
 
-/datum/action/xeno_action/burrow/proc/un_burrow(mob/M)
+/datum/action/xeno_action/burrow/proc/unburrow(mob/M)
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
 	X.alpha = 255
@@ -101,7 +101,7 @@
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
-/// Humans caught get beamed and registered for proc/check_dist
+/// Humans caught get beamed and registered for proc/check_dist, aoe_leash also gains increased integrity for each caught human
 /obj/structure/xeno/aoe_leash/Initialize(mapload, atom/A)
 	. = ..()
 	var/mob/living/carbon/human/victims
