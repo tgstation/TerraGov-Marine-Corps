@@ -146,3 +146,5 @@
 /obj/effect/landmark/start/job/xenomorph
 	icon_state = "xeno_spawn"
 	job = /datum/job/xenomorph
+
+/obj/effect/landmark/start/job/survivor
