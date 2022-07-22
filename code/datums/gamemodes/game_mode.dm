@@ -93,7 +93,8 @@
 
 /datum/game_mode/proc/setup()
 	SHOULD_CALL_PARENT(TRUE)
-	SSjob.DivideOccupations()
+	if(!(flags_round_type && MODE_NO_JOB_DISTRIBUTION))
+		SSjob.DivideOccupations()
 	create_characters()
 	spawn_characters()
 	transfer_characters()

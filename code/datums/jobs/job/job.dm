@@ -336,6 +336,9 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/return_spawn_turf()
 	return pick(GLOB.spawns_by_job[type])
 
+/datum/job/survivor/return_spawn_turf()
+	return pick_n_take(GLOB.spawns_by_job[type])
+
 /datum/job/proc/handle_special_preview(client/parent)
 	return FALSE
 

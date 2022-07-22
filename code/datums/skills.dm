@@ -252,6 +252,11 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 
+/datum/skills/civilian/survivor/engineer
+	name = "Survivor Engineer"
+	engineer = SKILL_ENGINEER_MASTER
+	construction = SKILL_CONSTRUCTION_MASTER
+
 /datum/skills/civilian/survivor/marshal
 	name = "Survivor Marshal"
 	cqc = SKILL_CQC_MP

@@ -23,3 +23,7 @@ endmode
 mode Civil War
 	requiredplayers 2
 endmode
+
+mode Trouble in Terrorist Town
+	requiredplayers 10
+endmode

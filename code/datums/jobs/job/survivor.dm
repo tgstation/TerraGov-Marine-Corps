@@ -160,6 +160,21 @@ Good luck, but do not expect to survive."})
 	back = /obj/item/storage/backpack/satchel/eng
 
 
+/datum/job/survivor/engineer
+	title = "Engineer"
+	skills_type = /datum/skills/civilian/survivor/engineer
+	outfit = /datum/outfit/job/survivor/engineer
+
+/datum/outfit/job/survivor/engineer
+	name = "Engineer"
+	jobtype = /datum/job/survivor/engineer
+
+	w_uniform = /obj/item/clothing/under/rank/engineer
+	wear_suit = /obj/item/clothing/suit/armor/vest
+	shoes = /obj/item/clothing/shoes/black
+	back = /obj/item/storage/backpack/satchel/eng
+
+
 //Chaplain
 /datum/job/survivor/chaplain
 	title = "Chaplain Survivor"

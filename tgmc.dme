@@ -389,6 +389,7 @@
 #include "code\datums\gamemodes\distress.dm"
 #include "code\datums\gamemodes\extended.dm"
 #include "code\datums\gamemodes\game_mode.dm"
+#include "code\datums\gamemodes\trouble_in_terrorist_town.dm"
 #include "code\datums\gamemodes\infestation.dm"
 #include "code\datums\gamemodes\nuclear_war.dm"
 #include "code\datums\greyscale\_greyscale_config.dm"

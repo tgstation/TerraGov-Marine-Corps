@@ -1451,6 +1451,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/start/job/survivor/engineer,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -2151,6 +2152,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hydroponics/north)
 "aiN" = (
+/obj/effect/landmark/start/job/survivor/botanist,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
@@ -4405,15 +4407,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
-"ara" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/open/floor/freezer,
-/area/ice_colony/surface/dorms/restroom_e)
 "arf" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/corner{
@@ -4496,6 +4489,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/landmark/start/job/survivor/civilian,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
 "arr" = (
@@ -4621,9 +4615,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2,
-/area/ice_colony/surface/dorms)
-"arQ" = (
-/turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "arR" = (
 /obj/machinery/space_heater,
@@ -6807,8 +6798,10 @@
 	},
 /area/ice_colony/exterior/underground/caves/ice_nw)
 "aAl" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/survivor/botanist,
 /turf/open/floor/tile/dark2,
-/area/ice_colony/surface/disposals)
+/area/ice_colony/surface/hydroponics/south)
 "aAm" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -7877,6 +7870,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/start/job/survivor/miner,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/one)
 "aDU" = (
@@ -8060,10 +8054,11 @@
 	},
 /area/ice_colony/surface/garage/one)
 "aEw" = (
-/turf/open/floor/tile/green/whitegreen{
-	dir = 10
+/obj/effect/landmark/start/job/survivor/botanist,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 1
 	},
-/area/ice_colony/surface/clinic/lobby)
+/area/ice_colony/surface/hydroponics/lobby)
 "aEx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9598,6 +9593,7 @@
 /area/ice_colony/surface/command)
 "aKg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/start/job/survivor/liaison,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "aKh" = (
@@ -10364,6 +10360,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/start/job/survivor/civilian,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/canteen)
 "aNe" = (
@@ -12467,6 +12464,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/landmark/start/job/survivor/miner,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -12517,6 +12515,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/landmark/start/job/survivor/miner,
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
@@ -12567,8 +12566,9 @@
 	},
 /area/ice_colony/surface/research)
 "aTS" = (
-/turf/open/floor/freezer,
-/area/ice_colony/surface/bar/bar)
+/obj/effect/landmark/start/job/survivor/botanist,
+/turf/open/ground/grass,
+/area/ice_colony/surface/hydroponics/north)
 "aTT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -12918,6 +12918,7 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
 	},
+/obj/effect/landmark/start/job/survivor/civilian,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aVd" = (
@@ -14169,8 +14170,9 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aYZ" = (
-/turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/container_yard)
+/obj/effect/landmark/start/job/survivor/botanist,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/hydroponics/north)
 "aZa" = (
 /obj/structure/closet/toolcloset,
 /turf/open/floor/tile/dark/brown2{
@@ -15648,6 +15650,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
+/obj/effect/landmark/start/job/survivor/engineer,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/excavation)
 "beh" = (
@@ -16991,10 +16994,9 @@
 	},
 /area/ice_colony/underground/hangar)
 "bjb" = (
-/turf/open/shuttle/dropship{
-	icon_state = "floor8"
-	},
-/area/ice_colony/underground/responsehangar)
+/obj/effect/landmark/start/job/survivor/botanist,
+/turf/open/ground/grass,
+/area/ice_colony/surface/hydroponics/south)
 "bjc" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark/brown2,
@@ -17163,6 +17165,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/landmark/start/job/survivor/miner,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
 "bjP" = (
@@ -17699,6 +17702,7 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
+/obj/effect/landmark/start/job/survivor/chaplain,
 /turf/open/floor/carpet,
 /area/ice_colony/underground/crew/chapel)
 "blV" = (
@@ -18054,6 +18058,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
+/obj/effect/landmark/start/job/survivor/chaplain,
 /turf/open/floor/tile/chapel{
 	dir = 1
 	},
@@ -19354,6 +19359,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/effect/landmark/start/job/survivor/civilian,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "brz" = (
@@ -20080,6 +20086,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
+/obj/effect/landmark/start/job/survivor/civilian,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bue" = (
@@ -20699,6 +20706,7 @@
 "bvR" = (
 /obj/effect/decal/warning_stripes/nscenter,
 /obj/effect/decal/warning_stripes,
+/obj/effect/landmark/start/job/survivor/civilian,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bvS" = (
@@ -30398,6 +30406,14 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
+"ciF" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/landmark/start/job/survivor/doctor,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/clinic/treatment)
 "clq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
@@ -30434,6 +30450,13 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"cyM" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/survivor/miner,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/requesition)
 "czW" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -30454,6 +30477,25 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
+"cFs" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/survivor/doctor,
+/turf/open/floor/tile/white,
+/area/ice_colony/underground/medical/lobby)
+"cFt" = (
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 1
+	},
+/area/ice_colony/underground/hallway/north_west)
+"cHh" = (
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/tile/chapel{
+	dir = 1
+	},
+/area/ice_colony/underground/crew/chapel)
 "cIs" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 9
@@ -30676,6 +30718,21 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
+"dzg" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/wood,
+/area/ice_colony/surface/bar/bar)
+"dzi" = (
+/obj/effect/landmark/start/job/survivor/engineer,
+/turf/open/floor/plating/icefloor,
+/area/ice_colony/underground/hangar)
+"dzA" = (
+/obj/effect/landmark/start/job/survivor/engineer,
+/turf/open/floor/tile/dark/yellow2,
+/area/ice_colony/surface/engineering)
 "dAo" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -30688,6 +30745,10 @@
 	dir = 8
 	},
 /area/ice_colony/underground/maintenance/east)
+"dCm" = (
+/obj/effect/landmark/start/job/survivor/miner,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/requesition)
 "dEc" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
@@ -30832,6 +30893,16 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"ern" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/start/job/survivor/engineer,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/garage/one)
+"erz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/start/job/survivor/liaison,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/command/center)
 "erM" = (
 /obj/machinery/landinglight/ds2{
 	dir = 4
@@ -30854,6 +30925,13 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
+"evI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/job/survivor/miner,
+/turf/open/floor/tile/dark,
+/area/ice_colony/surface/excavationbarracks)
 "ewL" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
@@ -30875,8 +30953,9 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/south)
 "eyy" = (
-/turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/substation/smes)
+/obj/effect/landmark/start/job/survivor/botanist,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/hydroponics/lobby)
 "eAl" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
@@ -30939,6 +31018,10 @@
 "ePo" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"ePB" = (
+/obj/effect/landmark/start/job/survivor/doctor,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/clinic/treatment)
 "eWD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -30991,6 +31074,16 @@
 "fnv" = (
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
+"fnR" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/obj/effect/landmark/start/job/survivor/doctor,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/clinic/treatment)
 "fnZ" = (
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/research)
@@ -31031,6 +31124,17 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"fvX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/survivor/miner,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/garage/one)
 "fxH" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
@@ -31072,6 +31176,12 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
+"fMR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/start/job/survivor/engineer,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/storage)
 "fNR" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -31185,6 +31295,18 @@
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/taxiway)
+"gny" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/start/job/survivor/engineer,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/engineering)
+"goH" = (
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 9
+	},
+/area/ice_colony/underground/engineering)
 "goZ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -31325,6 +31447,12 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security)
+"gJR" = (
+/obj/effect/landmark/start/job/survivor/chef,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 4
+	},
+/area/ice_colony/underground/crew/canteen)
 "gJT" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -31381,8 +31509,9 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "haC" = (
-/turf/open/floor/tile/dark2,
-/area/ice_colony/surface/command)
+/obj/effect/landmark/start/job/survivor/botanist,
+/turf/open/ground/grass,
+/area/ice_colony/surface/hydroponics/lobby)
 "hcx" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
@@ -31428,6 +31557,11 @@
 	},
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
+"hnk" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/job/survivor/miner,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/requesition/lobby)
 "hot" = (
 /obj/structure/sign/greencross,
 /turf/open/floor/tile/darkgreen/darkgreen2,
@@ -31527,6 +31661,11 @@
 "hOI" = (
 /turf/closed/ice/end,
 /area/ice_colony/exterior/underground/caves/ice_w)
+"hOR" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/southwest)
 "hOW" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -31702,6 +31841,10 @@
 "iuY" = (
 /turf/closed/ice/end,
 /area/ice_colony/exterior/surface/landing_pad2)
+"ixX" = (
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/engineering)
 "iyH" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -31741,6 +31884,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
+"iEK" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/landmark/start/job/survivor/engineer,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/hangar/checkpoint)
 "iFb" = (
 /turf/closed/ice/thin/end{
 	dir = 8
@@ -31820,6 +31970,13 @@
 	},
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/northwest)
+"iYK" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/landmark/start/job/survivor/miner,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/requesition)
 "jac" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -31970,6 +32127,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
+"jEZ" = (
+/obj/effect/landmark/start/job/survivor/chef,
+/turf/open/floor/freezer,
+/area/ice_colony/surface/bar/bar)
 "jFl" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -31983,6 +32144,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
+"jIx" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/survivor/doctor,
+/turf/open/floor/tile/red/whitered{
+	dir = 1
+	},
+/area/ice_colony/underground/medical/hallway)
 "jKs" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -32228,6 +32399,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves)
+"kPr" = (
+/obj/effect/landmark/start/job/survivor/miner,
+/turf/open/floor/tile/dark,
+/area/ice_colony/surface/excavationbarracks)
 "kQa" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -32244,6 +32419,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
+"kTs" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/medical/lobby)
 "kWN" = (
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
@@ -32352,6 +32532,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/northWall,
 /area/ice_colony/exterior/surface/cliff)
+"lDE" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/hydroponics/south)
 "lEa" = (
 /turf/closed/ice_rock/northWall,
 /area/ice_colony/exterior/surface/landing_pad2)
@@ -32704,6 +32889,10 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
+"nhH" = (
+/obj/effect/landmark/start/job/survivor/chef,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/crew/canteen)
 "niU" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 4
@@ -32867,6 +33056,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
+"nPZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
 "nQo" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 6
@@ -32919,6 +33113,7 @@
 /obj/effect/landmark/corpsespawner/doctor,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/start/job/survivor/doctor,
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/storage)
 "oaD" = (
@@ -33098,6 +33293,11 @@
 /obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south)
+"oDe" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/survivor/doctor,
+/turf/open/floor/tile/white,
+/area/ice_colony/underground/medical/treatment)
 "oDn" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -33255,6 +33455,17 @@
 	},
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
+"plu" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/landmark/start/job/survivor/doctor,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/clinic/treatment)
 "pnw" = (
 /obj/machinery/vending/cigarette/colony,
 /obj/machinery/light{
@@ -33412,6 +33623,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hallway/south_east)
+"pYH" = (
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/west)
 "pZz" = (
 /obj/structure/bed/chair/wood/normal,
 /turf/open/floor/wood,
@@ -33438,6 +33653,12 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
+"qbY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/wood,
+/area/ice_colony/underground/crew/library)
 "qdg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -33538,6 +33759,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
+"qAd" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/survivor/doctor,
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/clinic/lobby)
 "qAU" = (
 /turf/open/floor/plating,
 /area/ice_colony/surface/research)
@@ -33547,6 +33775,10 @@
 "qDA" = (
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
+"qEk" = (
+/obj/effect/landmark/start/job/survivor/engineer,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/garage/one)
 "qFz" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -33643,6 +33875,16 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves)
+"rdd" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/excavation)
 "rdg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -33695,6 +33937,10 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
+"riY" = (
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/excavation)
 "rjx" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -33728,6 +33974,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
+"roi" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/survivor/doctor,
+/turf/open/floor/tile/white,
+/area/ice_colony/underground/medical/storage)
 "roA" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -33881,6 +34134,13 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/north)
+"sbN" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/survivor/doctor,
+/turf/open/floor/tile/white,
+/area/ice_colony/underground/medical/or)
 "scU" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -34035,6 +34295,10 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"sES" = (
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/medical/lobby)
 "sFu" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -34108,6 +34372,14 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice,
 /area/ice_colony/exterior/surface/cliff)
+"tfd" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/landmark/start/job/survivor/doctor,
+/turf/open/floor/tile/white,
+/area/ice_colony/underground/medical/treatment)
 "tfi" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
@@ -34208,6 +34480,11 @@
 /obj/effect/landmark/fob_sentry,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/taxiway)
+"tEd" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/job/survivor/engineer,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/engineering)
 "tGL" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
@@ -34263,6 +34540,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/straight,
 /area/ice_colony/exterior/underground/caves)
+"tTz" = (
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/engineering)
 "tTQ" = (
 /obj/machinery/light{
 	dir = 8
@@ -34924,6 +35205,10 @@
 /obj/structure/table/woodentable,
 /turf/open/floor/wood,
 /area/ice_colony/surface/clinic/treatment)
+"wNA" = (
+/obj/effect/landmark/start/job/survivor/civilian,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/hallway/south_east)
 "wNS" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice/corner,
@@ -35232,6 +35517,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice/end,
 /area/ice_colony/exterior/surface/cliff)
+"yde" = (
+/obj/effect/landmark/start/job/survivor/chef,
+/turf/open/floor/freezer,
+/area/ice_colony/surface/bar/canteen)
 "yem" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -41149,7 +41438,7 @@ mpQ
 qaE
 mpQ
 mpQ
-mpQ
+dCm
 mpQ
 bhY
 biy
@@ -41278,7 +41567,7 @@ uqz
 atL
 uJV
 uJV
-uJV
+haC
 aGO
 uJV
 uJV
@@ -41358,7 +41647,7 @@ mpQ
 mpQ
 mpQ
 mpQ
-qaE
+cyM
 mpQ
 mpQ
 mpQ
@@ -42416,7 +42705,7 @@ bfn
 bdK
 bfm
 mpQ
-bgC
+iYK
 bgC
 bqa
 bip
@@ -42637,7 +42926,7 @@ bgy
 bha
 bid
 biq
-bha
+hnk
 bjs
 bha
 bjR
@@ -43295,7 +43584,7 @@ brp
 bqq
 bqU
 bsC
-bsi
+sES
 btW
 bsi
 bsi
@@ -43513,7 +43802,7 @@ vJM
 vtn
 vtn
 vtn
-vtn
+kTs
 vtn
 bxi
 bxX
@@ -43941,7 +44230,7 @@ bvs
 bwE
 btH
 bqU
-bJP
+jIx
 bzd
 byP
 bzX
@@ -44129,7 +44418,7 @@ bev
 bgH
 bkC
 bkR
-blQ
+cHh
 bmx
 bng
 bvz
@@ -44172,7 +44461,7 @@ bFO
 puE
 bGr
 bHL
-bGr
+fMR
 bIE
 bJH
 bKc
@@ -44437,7 +44726,7 @@ ggq
 ggq
 ahH
 fWI
-fWI
+aTS
 ahE
 fWI
 fWI
@@ -44458,7 +44747,7 @@ dmv
 dmv
 dmv
 atL
-auZ
+aEw
 avE
 atL
 dmv
@@ -44581,7 +44870,7 @@ bJS
 bzd
 byP
 bAa
-bzz
+roi
 bAT
 byP
 hls
@@ -44682,7 +44971,7 @@ dmv
 ayW
 aAn
 ujx
-ujx
+bjb
 ujx
 aAn
 ayW
@@ -44691,7 +44980,7 @@ dmv
 ayW
 aAn
 ujx
-ujx
+bjb
 ujx
 aAn
 ayW
@@ -44785,7 +45074,7 @@ btF
 buv
 bvg
 qOw
-bwm
+cFs
 bvg
 bxL
 bqU
@@ -45621,7 +45910,7 @@ bor
 boU
 bpC
 bkE
-bnz
+cFt
 wBJ
 brp
 bqq
@@ -45726,7 +46015,7 @@ dmv
 uqz
 atL
 asN
-ati
+eyy
 ati
 ati
 ati
@@ -45816,7 +46105,7 @@ alP
 bSs
 bhp
 bVQ
-alP
+dzi
 bVQ
 bjw
 bev
@@ -46348,16 +46637,16 @@ lSk
 ahH
 owt
 aiN
-aiN
-aiN
+ame
+ame
 ahH
-aiN
-aiN
-aiN
-aiN
+ame
+ame
+ame
+ame
 owt
-aiN
-aiN
+ame
+ame
 aLa
 ahH
 asH
@@ -46692,7 +46981,7 @@ btd
 btd
 hZS
 bwg
-bwL
+oDe
 bwL
 mXI
 bwL
@@ -46804,7 +47093,7 @@ obZ
 obZ
 obZ
 aRJ
-obZ
+lDE
 obZ
 aAv
 vxF
@@ -46813,7 +47102,7 @@ vxF
 aZv
 vxF
 vxF
-wmD
+pYH
 wmD
 wmD
 aCa
@@ -47624,7 +47913,7 @@ amF
 amf
 amE
 anx
-ajm
+aYZ
 ajm
 api
 aif
@@ -47634,7 +47923,7 @@ mqj
 mqj
 atL
 asN
-ati
+eyy
 ati
 ati
 ati
@@ -47653,7 +47942,7 @@ mqj
 ayp
 aAN
 aEf
-aEf
+aAl
 aGg
 vxF
 vxF
@@ -47754,7 +48043,7 @@ bYA
 bwj
 brK
 bwt
-bvE
+tfd
 bxs
 byd
 bqZ
@@ -47763,7 +48052,7 @@ byS
 bAb
 chG
 bAX
-chG
+erz
 chG
 chG
 bCQ
@@ -47887,7 +48176,7 @@ uqz
 wmD
 wmD
 vlr
-bkU
+hOR
 aLu
 vlr
 bkU
@@ -48386,7 +48675,7 @@ brK
 btE
 bET
 bYz
-bvM
+sbN
 cbQ
 brK
 bwv
@@ -52189,7 +52478,7 @@ bkZ
 bkZ
 bno
 hyx
-bnY
+qbY
 bnY
 bnY
 bqu
@@ -52849,11 +53138,11 @@ seh
 byI
 bzE
 sdv
-sdv
+nhH
 sdv
 bBx
 sdv
-sdv
+nhH
 sdv
 sdv
 bDX
@@ -53143,18 +53432,18 @@ apC
 ari
 arE
 aAi
-arQ
+awN
 ast
 arE
 ast
-arQ
+awN
 aAi
 arE
 avm
 avW
 arE
 aAi
-arQ
+awN
 ast
 axl
 ayx
@@ -53354,19 +53643,19 @@ alk
 apC
 arN
 arF
-arQ
-arQ
+awN
+awN
 asu
 arE
 asu
-arQ
-arQ
+awN
+awN
 arF
 avn
 aqS
 arF
-arQ
-arQ
+awN
+awN
 asu
 axl
 ayy
@@ -53779,18 +54068,18 @@ apC
 ari
 arE
 aAi
-arQ
+awN
 ast
 arE
 ast
-arQ
+awN
 aAi
 arE
 avm
 avW
 arE
 aAi
-arQ
+awN
 ast
 axl
 ayz
@@ -53867,7 +54156,7 @@ dXS
 bci
 bcJ
 bcL
-beb
+rdd
 bcL
 bcL
 bhz
@@ -53908,14 +54197,14 @@ bJB
 byt
 byI
 bzI
-bzu
+gJR
 sdv
 kRz
 bBz
 bzu
 sdv
 bRc
-bzu
+gJR
 bEa
 bEK
 bEV
@@ -53990,19 +54279,19 @@ aqN
 arj
 aBj
 arF
-arQ
-arQ
+awN
+awN
 asu
 arE
 asu
-arQ
-arQ
+awN
+awN
 arF
 avn
 aqS
 arF
 cJg
-arQ
+awN
 asu
 axl
 axy
@@ -54419,14 +54708,14 @@ ovU
 ast
 arE
 ast
-arQ
+awN
 aAi
 arE
 avm
 avW
 arE
 aAi
-arQ
+awN
 ast
 axl
 ayC
@@ -54443,7 +54732,7 @@ aDS
 aEs
 aqe
 aoz
-gvW
+ePB
 aGI
 aNG
 aNI
@@ -54626,8 +54915,8 @@ aqO
 arn
 stC
 arF
-arQ
-arQ
+awN
+awN
 asu
 arE
 atY
@@ -54637,8 +54926,8 @@ aDB
 aEx
 aqS
 arF
-arQ
-arQ
+awN
+awN
 asu
 axl
 ayD
@@ -54942,7 +55231,7 @@ uPy
 uPy
 bsY
 uPy
-uPy
+wNA
 uPy
 uPy
 uPy
@@ -55268,7 +55557,7 @@ asv
 arH
 arH
 arH
-arH
+nPZ
 arH
 avr
 avY
@@ -55280,7 +55569,7 @@ arH
 arH
 arH
 arH
-arH
+nPZ
 arH
 aBm
 aqe
@@ -55775,7 +56064,7 @@ eAl
 bci
 bcO
 bcL
-bcL
+riY
 bcL
 bcL
 bhG
@@ -55924,7 +56213,7 @@ aCC
 aRb
 aDx
 aDX
-aEw
+aEX
 aBd
 aEP
 aqd
@@ -56110,19 +56399,19 @@ arg
 aqW
 art
 arF
-arQ
-arQ
+awN
+awN
 asu
 arE
 ato
-arQ
-arQ
+awN
+awN
 arF
 avn
 aqS
 arF
-arQ
-arQ
+awN
+awN
 asu
 axQ
 ayE
@@ -56323,18 +56612,18 @@ aqX
 aru
 arE
 aAI
-arQ
+awN
 ast
 arE
 ast
-arQ
+awN
 aAI
 arE
 avm
 avW
 arE
 aAI
-arQ
+awN
 ast
 axQ
 ayA
@@ -56357,7 +56646,7 @@ oyN
 aHN
 aIf
 aID
-aJi
+ciF
 xXh
 apN
 aob
@@ -56746,19 +57035,19 @@ aqP
 aqZ
 aBH
 arF
-arQ
+awN
 cJg
 asu
 arE
 atp
-arQ
-arQ
+awN
+awN
 arF
 avn
 aqS
 arF
-arQ
-arQ
+awN
+awN
 axz
 axQ
 ayG
@@ -56776,7 +57065,7 @@ aEX
 aFN
 aER
 gvW
-vRq
+plu
 gvW
 aFs
 aou
@@ -56805,7 +57094,7 @@ aRn
 aKw
 aTf
 aNZ
-aNZ
+yde
 aNZ
 aKw
 aKC
@@ -56963,7 +57252,7 @@ ovU
 ast
 arE
 ast
-arQ
+awN
 aAI
 arE
 avm
@@ -57195,7 +57484,7 @@ xPh
 asJ
 asJ
 asJ
-aEh
+qAd
 asJ
 asJ
 aHr
@@ -57205,7 +57494,7 @@ gvW
 wgm
 aou
 aoy
-aJh
+fnR
 gvW
 apI
 aob
@@ -57223,7 +57512,7 @@ aLz
 aNd
 aLz
 aOD
-aNZ
+yde
 aQg
 aRg
 aKw
@@ -57387,14 +57676,14 @@ arT
 asy
 arE
 asu
-arQ
-arQ
+awN
+awN
 arF
 avn
 aqS
 arF
-arQ
-arQ
+awN
+awN
 asu
 axQ
 ayR
@@ -57583,11 +57872,11 @@ alV
 alm
 amU
 alm
-ara
+azZ
 alm
-ara
+azZ
 alm
-ara
+azZ
 alm
 azZ
 alm
@@ -57599,14 +57888,14 @@ arT
 asz
 arE
 ast
-arQ
+awN
 aAI
 arE
 avm
 avW
 arE
 aAI
-arQ
+awN
 ast
 axQ
 aHL
@@ -57705,7 +57994,7 @@ dEc
 bqh
 dEc
 dEc
-dEc
+tTz
 bqV
 bnk
 aZF
@@ -57912,7 +58201,7 @@ bnk
 bnJ
 dEc
 dEc
-bpm
+goH
 bpy
 bZg
 bqo
@@ -58289,7 +58578,7 @@ aRl
 aKy
 aTk
 aTP
-aTS
+aTQ
 aTk
 aKy
 aKC
@@ -58501,7 +58790,7 @@ aRG
 aKy
 aTk
 aTQ
-aTS
+aTQ
 aTk
 aKy
 aKC
@@ -58712,9 +59001,9 @@ aNj
 aSc
 aKy
 aTo
-aTS
-aTS
-aTS
+jEZ
+aTQ
+aTQ
 aKy
 aKC
 lbt
@@ -58741,7 +59030,7 @@ vCr
 bSv
 bVw
 bUz
-bUz
+kPr
 bWn
 bSv
 bQz
@@ -58926,7 +59215,7 @@ bgP
 bgS
 bsz
 bLb
-aTS
+aTQ
 aKy
 aKC
 lbt
@@ -58934,7 +59223,7 @@ aKC
 aVw
 aVV
 aYd
-aYZ
+aVV
 aVV
 aVV
 aVV
@@ -58953,7 +59242,7 @@ vCr
 bSv
 bDM
 bVH
-bUz
+kPr
 bWn
 bSv
 bSv
@@ -59178,7 +59467,7 @@ bYd
 bYk
 ctm
 bqP
-nWU
+ixX
 nWU
 bnk
 bnO
@@ -59340,7 +59629,7 @@ wTF
 aKy
 aLi
 aLi
-aNj
+dzg
 aNM
 aOJ
 aOJ
@@ -59381,7 +59670,7 @@ bWd
 bWo
 bUl
 caa
-bUz
+kPr
 bXv
 bXH
 bCH
@@ -59395,7 +59684,7 @@ nWU
 bnk
 bnP
 dEc
-dEc
+tTz
 bpp
 dEc
 bqh
@@ -59799,7 +60088,7 @@ bVO
 vMB
 beq
 vMB
-vMB
+evI
 bWm
 bWB
 bWM
@@ -62284,7 +62573,7 @@ aBT
 aAR
 aDL
 aBT
-aDP
+fvX
 aAR
 aAR
 aGl
@@ -62490,7 +62779,7 @@ wkf
 mqj
 azD
 azV
-aAS
+ern
 aCp
 aBR
 aAS
@@ -63338,7 +63627,7 @@ wkf
 mqj
 azD
 azU
-aAR
+qEk
 aBn
 aBT
 aAR
@@ -64351,7 +64640,7 @@ adN
 aex
 aed
 afv
-gPz
+tEd
 agh
 gPz
 ahL
@@ -65415,7 +65704,7 @@ agm
 agy
 agL
 ahL
-agf
+dzA
 agi
 aiV
 ajv
@@ -65429,22 +65718,22 @@ amO
 nsF
 atV
 aqC
-haC
+apn
 apk
-haC
+apn
 apL
 aJD
 aqC
-haC
+apn
 bJA
 qKJ
 auX
 sdW
 acf
-haC
+apn
 dKp
 acf
-haC
+apn
 apL
 atV
 mqj
@@ -65621,7 +65910,7 @@ acS
 vXi
 vXi
 aij
-vXi
+gny
 aga
 agn
 aiT
@@ -65647,7 +65936,7 @@ aHW
 aIh
 aJE
 aqC
-haC
+apn
 aci
 dRm
 auX
@@ -65856,9 +66145,9 @@ aqC
 apb
 aGk
 aHX
-haC
+apn
 aJF
-haC
+apn
 arY
 cXX
 mId
@@ -66065,13 +66354,13 @@ amO
 nsF
 atV
 ayX
-haC
+apn
 apz
 acf
-haC
+apn
 aqw
-haC
-haC
+apn
+apn
 acB
 asd
 auX
@@ -66278,12 +66567,12 @@ wkf
 atV
 aoB
 apn
-haC
-haC
+apn
+apn
 apL
 aqz
 aqC
-haC
+apn
 cXX
 mId
 auX
@@ -66292,7 +66581,7 @@ dKp
 apL
 uyq
 dWS
-haC
+apn
 isJ
 atV
 mqj
@@ -66703,7 +66992,7 @@ atV
 ayX
 acf
 apk
-haC
+apn
 aug
 aqf
 aug
@@ -66918,8 +67207,8 @@ aGG
 aHW
 aug
 aqw
-haC
-haC
+apn
+apn
 dKp
 mlA
 uLL
@@ -66974,7 +67263,7 @@ aLr
 sbk
 aNt
 sbk
-aOW
+iEK
 aOj
 aOj
 aOj
@@ -67131,11 +67420,11 @@ aHX
 aJe
 aqz
 aqC
-haC
+apn
 dKp
-haC
-haC
-haC
+apn
+apn
+apn
 wsW
 auX
 atF
@@ -67337,13 +67626,13 @@ avU
 nsF
 atV
 aqC
-haC
+apn
 apz
-haC
+apn
 aJe
 aqz
 aqC
-haC
+apn
 asF
 asK
 asK
@@ -71564,7 +71853,7 @@ agr
 ahc
 aiI
 rRt
-eyy
+aks
 ahw
 akc
 akt
@@ -74359,7 +74648,7 @@ axK
 axW
 azc
 cLG
-aAl
+aAg
 aAz
 aBe
 awP
@@ -75649,7 +75938,7 @@ aKn
 aLb
 bbr
 bgF
-bjb
+bIY
 blx
 blx
 blx
