@@ -707,90 +707,24 @@
 /area/mainship/patrol_base)
 "pz" = (
 /obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/prison,
 /area/mainship/patrol_base/som)
 "qb" = (
@@ -864,102 +798,6 @@
 /area/mainship/patrol_base)
 "sg" = (
 /obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
-"sk" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
 /turf/open/floor/prison,
 /area/mainship/patrol_base/som)
 "sz" = (
@@ -1698,166 +1536,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
-"Le" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
 "Lf" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/prison,
@@ -2270,138 +1948,6 @@
 "Uw" = (
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
-"UE" = (
-/obj/machinery/vending/marineFood,
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/obj/item/reagent_containers/food/snacks/protein_pack{
-	desc = MostdefinitelynottheexactsameasaTGMCproteinbar,andyoushouldnotgetmorefromthevendasthoseareNOTthesame.;
-	name = "SoM protein bar"
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
 "UL" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
@@ -3248,7 +2794,7 @@ Zc
 Zc
 Zc
 DP
-sk
+pz
 mm
 PQ
 Sg
@@ -3868,7 +3414,7 @@ Vc
 Vc
 Vc
 DP
-Le
+pz
 mm
 PQ
 Sg
@@ -3930,7 +3476,7 @@ PQ
 ir
 dM
 DP
-UE
+pz
 mm
 PQ
 Sg
