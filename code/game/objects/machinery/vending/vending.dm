@@ -168,8 +168,6 @@
 
 	///Faction of the vendor. Can be null
 	var/faction
-	///Timerid for the automatic mass restock of excess items.
-	var/restock_timer
 
 
 /obj/machinery/vending/Initialize(mapload, ...)
@@ -603,7 +601,7 @@
 		else
 			return
 	SSblackbox.record_feedback("tally", "vendored", 1, R.product_name)
-	restock_timer = addtimer(CALLBACK(src, .proc/stock_vacuum), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE) // We clean up some time after the last item has been vended.
+	addtimer(CALLBACK(src, .proc/stock_vacuum), 2.5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE) // We clean up some time after the last item has been vended.
 	if(vending_sound)
 		playsound(src, vending_sound, 25, 0)
 	else
@@ -741,7 +739,6 @@
 		stocked = stock(I, null, FALSE) ? TRUE : stocked
 
 	stocked ? display_message_and_visuals(user, TRUE, "Automatically restocked all items from outlet.", VENDING_RESTOCK_ACCEPT) : null
-	restock_timer ? deltimer(restock_timer) : null
 
 	update_icon()
 
