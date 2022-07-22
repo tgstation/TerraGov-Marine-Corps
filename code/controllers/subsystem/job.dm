@@ -265,15 +265,8 @@ SUBSYSTEM_DEF(job)
 
 	//If we joined at roundstart we should be positioned at our workstation
 	var/turf/spawn_turf
-	if(joined_late)
-		if(job.job_flags & JOB_FLAG_OVERRIDELATEJOINSPAWN)
-			spawn_turf = job.return_spawn_turf()
-	else
-		if(length(GLOB.jobspawn_overrides[job.title]))
-			spawn_turf = pick(GLOB.jobspawn_overrides[job.title])
-		else
-			spawn_turf = job.return_spawn_turf()
-	if(spawn_turf)
+	if(!joined_late || job.job_flags & JOB_FLAG_OVERRIDELATEJOINSPAWN)
+		spawn_turf = job.return_spawn_turf()
 		SendToAtom(new_character, spawn_turf)
 	else
 		SendToLateJoin(new_character, job)
@@ -338,17 +331,10 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
-	if(assigned_role && length(GLOB.jobspawn_overrides[assigned_role])) //We're doing something special today.
-		SendToAtom(M, pick(GLOB.jobspawn_overrides[assigned_role]))
-		return
-	if(assigned_role.faction == FACTION_TERRAGOV_REBEL && length(GLOB.latejoinrebel))
-		SendToAtom(M, pick(GLOB.latejoinrebel))
-		return
-	if(length(GLOB.latejoin))
-		SendToAtom(M, pick(GLOB.latejoin))
-		return
-	message_admins("Unable to send mob [M] to late join!")
-	CRASH("Unable to send mob [M] to late join!")
+	if(!length(GLOB.latejoin))
+		message_admins("Unable to send mob [M] to late join!")
+		CRASH("Unable to send mob [M] to late join!")
+	SendToAtom(M, pick(GLOB.latejoin))
 
 
 /datum/controller/subsystem/job/proc/JobDebug(message)
