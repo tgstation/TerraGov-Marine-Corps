@@ -2591,15 +2591,16 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/xeno/acid/web/on_hit_mob(mob/victim, obj/projectile/proj)
 	. = ..()
-	if(ishuman(victim))
-		var/mob/living/carbon/human/human_victim = victim
-		if(proj.def_zone == BODY_ZONE_HEAD)
-			human_victim.blind_eyes(hit_eye_blind)
-		if(proj.def_zone in weaken_list)
-			//apply weaken here
-			message_admins("weaken check")
-		if(proj.def_zone in snare_list)
-			human_victim.Immobilize(hit_immobilize)
+	if(!ishuman(victim))
+		return
+	var/mob/living/carbon/human/human_victim = victim
+	if(proj.def_zone == BODY_ZONE_HEAD)
+		human_victim.blind_eyes(hit_eye_blind)
+	if(proj.def_zone in weaken_list)
+		//apply weaken here
+		message_admins("weaken check")
+	if(proj.def_zone in snare_list)
+		human_victim.Immobilize(hit_immobilize)
 
 /datum/ammo/xeno/acid/web/leash_ball
 	icon_state = "boiler_gas2" // temp
