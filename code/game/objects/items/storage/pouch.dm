@@ -129,8 +129,8 @@
 
 /obj/item/storage/pouch/firstaid/combat_patrol/Initialize()
 	. = ..()
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
 	new /obj/item/storage/pill_bottle/packet/tramadol(src)
 	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
 	new /obj/item/stack/medical/splint(src)
@@ -152,8 +152,8 @@
 
 /obj/item/storage/pouch/firstaid/som/combat_patrol/Initialize()
 	. = ..()
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/bicaridine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/kelotane(src)
 	new /obj/item/storage/pill_bottle/packet/tramadol(src)
 	new /obj/item/storage/pill_bottle/packet/tricordrazine(src)
 	new /obj/item/stack/medical/splint(src)
