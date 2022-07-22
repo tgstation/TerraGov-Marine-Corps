@@ -154,6 +154,7 @@
 
 	if(health <= 0)
 		gib()
+
 /// Proc for attacking whatever the spidermother attacks
 /mob/living/spiderling/UnarmedAttack(mob/living/carbon/human/target, mob/living/carbon/xenomorph/widow/spidermother)
 	/// This is here so that Spiderling attacks the same limb(s) as their spidermother does
