@@ -132,7 +132,7 @@
 	var/som_scan_name = "Long Range Tactical Bioscan Status"
 	var/som_scan_input = {"Bioscan complete.
 
-Sensors indicate [numTGMCr || "no"] unknown lifeform signature[numTGMCr > 1 ? "s":""] present in the area of operation[TGMCLocation ? ", including one at:[TGMCLocation]":""]"}
+Sensors indicate [numTGMCr || "no"] unknown lifeform signature[numTGMCr > 1 ? "s":""] present in the area of operations[TGMCLocation ? ", including one at: [TGMCLocation]":""]"}
 
 	if(announce_som)
 		priority_announce(som_scan_input, som_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (som_list + GLOB.observer_list))
@@ -141,12 +141,12 @@ Sensors indicate [numTGMCr || "no"] unknown lifeform signature[numTGMCr > 1 ? "s
 	var/marine_scan_name = "Long Range Tactical Bioscan Status"
 	var/marine_scan_input = {"Bioscan complete.
 
-Sensors indicate [numSOMr || "no"] unknown lifeform signature[numSOMr > 1 ? "s":""] present in the area of operation[SOMLocation ? ", including one at:[SOMLocation]":""]"}
+Sensors indicate [numSOMr || "no"] unknown lifeform signature[numSOMr > 1 ? "s":""] present in the area of operations[SOMLocation ? ", including one at: [SOMLocation]":""]"}
 
 	if(announce_marines)
 		priority_announce(marine_scan_input, marine_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (tgmc_list + GLOB.observer_list))
 
-	log_game("Bioscan. [counts[FACTION_TERRAGOV]] active TGMC personnel[TGMCLocation ? " Location:[TGMCLocation]":""] and [counts[FACTION_SOM]] active SOM personnel[SOMLocation ? " Location:[SOMLocation]":""]")
+	log_game("Bioscan. [counts[FACTION_TERRAGOV]] active TGMC personnel[TGMCLocation ? " Location: [TGMCLocation]":""] and [counts[FACTION_SOM]] active SOM personnel[SOMLocation ? " Location: [SOMLocation]":""]")
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
