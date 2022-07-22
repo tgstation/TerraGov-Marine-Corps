@@ -98,3 +98,8 @@
   Stan_Albatross:
   - refactor: refactored the application and removal of welding torch overlays so
       that they do not use istype() procs excessively
+2022-07-22:
+  BraveMole:
+  - rscadd: Allow multiple choice voting
+  XElectricX:
+  - bugfix: Make hybrid lights visible again
