@@ -41,7 +41,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 
 /datum/ai_behavior/New(loc, mob/parent_to_assign, atom/escorted_atom_)
 	..()
-	escorted_atom = escorted_atom_
+	src.escorted_atom = escorted_atom
 	if(isnull(parent_to_assign))
 		stack_trace("An ai behavior was initialized without a parent to assign it to; destroying mind. Mind type: [type]")
 		qdel(src)
