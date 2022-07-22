@@ -2581,7 +2581,7 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 15
 	max_range = 15
 	///Blind duration
-	var/hit_eye_blind = 25
+	var/hit_eye_blind = 25 SECONDS
 	///Snare duration
 	var/hit_immobilize = 20 SECONDS
 	///List for bodyparts that upon being hit cause the target to become weakened
@@ -2602,10 +2602,9 @@ datum/ammo/bullet/revolver/tp44
 			human_victim.Immobilize(hit_immobilize)
 
 /datum/ammo/xeno/acid/web/leash_ball
-	icon_state = "boiler_gas2"
+	icon_state = "boiler_gas2" // temp
 	ping = "ping_x"
 	damage_type = STAMINA
-	added_spit_delay = 0 //used to make cooldown of the different spits vary.
 	spit_cost = 5
 	armor_type = "bio"
 	shell_speed = 1

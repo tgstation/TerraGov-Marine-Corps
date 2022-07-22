@@ -35,6 +35,7 @@
 	plasma_cost = 1
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_BURROW
+	/// This is to prevent crashing by registering the same signal twice
 	var/burrowed = FALSE
 
 /datum/action/xeno_action/burrow/action_activate()
@@ -50,7 +51,7 @@
 	X.mouse_opacity = 0
 	X.density = FALSE
 	burrowed = TRUE
-	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/un_burrow)
+	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/unburrow)
 
 
 /datum/action/xeno_action/burrow/proc/unburrow(mob/M)
@@ -96,8 +97,10 @@
 	destroy_sound = "alien_resin_break"
 	obj_integrity = 0
 	max_integrity = 1920
-	var/leash_radius = 5 /// radius for aoe_leash and range for the leash
-	var/intergrity_increase = 240
+	/// Radius for how far the leash should affect humans and how far away they may walk
+	var/leash_radius = 5
+	/// How much more integrity aoe_leash gains per caught marine, it is preferable that max_integrity is this var * 8.
+	var/integrity_increase = 240
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
 
@@ -108,7 +111,7 @@
 	for(victims in view(leash_radius, loc))
 		beam(victims, "beam_heavy", 'icons/obj/items/projectiles.dmi', INFINITY, INFINITY)
 		RegisterSignal(victims, COMSIG_MOVABLE_MOVED, .proc/check_dist)
-		obj_integrity = obj_integrity + intergrity_increase
+		obj_integrity = obj_integrity + integrity_increase
 		if(obj_integrity > max_integrity)
 			obj_integrity = max_integrity
 
