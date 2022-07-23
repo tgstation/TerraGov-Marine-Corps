@@ -14,7 +14,7 @@
 		/datum/job/terragov/squad/leader = 4,
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/som/squad/leader = 4,
-		/datum/job/som/squad/veteran = 4,
+		/datum/job/som/squad/veteran = 2,
 		/datum/job/som/squad/engineer = 4,
 		/datum/job/som/squad/medic = 8,
 		/datum/job/som/squad/standard = -1,
@@ -41,6 +41,13 @@
 			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 25)
 	GLOB.join_as_robot_allowed = FALSE
+
+/datum/game_mode/combat_patrol/scale_roles()
+	. = ..()
+	if(!.)
+		return
+	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/som/squad/veteran)
+	scaled_job.job_points_needed  = 5 //Every 5 non vets join, a new vet slot opens
 
 /datum/game_mode/combat_patrol/announce()
 	to_chat(world, "<b>The current game mode is - Combat Patrol!</b>")

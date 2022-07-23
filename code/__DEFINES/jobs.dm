@@ -160,6 +160,8 @@ GLOBAL_LIST_INIT(jobs_fallen_all, typecacheof(list(/datum/job/fallen)))
 #define SMARTIE_POINTS_HIGH 3
 #define SYNTH_POINTS_REGULAR 1
 
+#define VETERAN_POINTS_REGULAR 1
+
 #define MARINE_SPAWN_ORIGIN "xenos from marine spawn"
 #define PSY_DRAIN_ORIGIN "xenos from psy drained bodies"
 #define COCOON_ORIGIN "xenos from cocoon that reached its endlife"
