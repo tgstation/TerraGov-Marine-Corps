@@ -66,6 +66,8 @@
 
 /datum/action/xeno_action/burrow/proc/unburrow()
 	SIGNAL_HANDLER
+	if(!burrowed)
+		return
 	var/mob/living/carbon/xenomorph/X = owner
 	X.alpha = 255
 	X.mouse_opacity = 255
