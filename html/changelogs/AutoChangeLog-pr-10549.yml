@@ -1,8 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - rscdel: "Fully removes Bottlecases."
-  - qol: "Chemical liquid colours now match their pill bottles."
-  - qol: "Premade Hypospray descriptions have been updated to explain what their chems do."
-  - balance: "Changes the content of Hypospray belt."
-  - bugfix: "No more invisible things in hypospray belt."
