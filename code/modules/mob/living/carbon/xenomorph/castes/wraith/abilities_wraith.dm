@@ -517,6 +517,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	QDEL_NULL(portal_visuals)
 	return ..()
 
+/obj/effect/wraith_portal/attack_ghost(mob/dead/observer/user)
+	. = ..()
+	linked_portal ? user.forceMove(get_turf(linked_portal)) : null
+
 /// Link two portals
 /obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)
 	linked_portal = portal_to_link
