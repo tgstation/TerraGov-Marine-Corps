@@ -96,6 +96,7 @@
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)
 	succeed_activate()
 	add_cooldown()
+
 /obj/structure/xeno/aoe_leash
 	name = "Snaring Web"
 	icon = 'icons/obj/items/projectiles.dmi' // temp ?
