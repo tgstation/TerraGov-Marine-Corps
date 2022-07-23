@@ -52,18 +52,31 @@
 	X.alpha = 0
 	X.mouse_opacity = 0
 	X.density = FALSE
+	X.throwpass = TRUE
 	burrowed = TRUE
+	for(var/mob/living/spiderling/kids in view(1, owner.loc))
+		kids.alpha = 0
+		kids.mouse_opacity = 0
+		kids.density = FALSE
+		kids.throwpass = TRUE
+
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/unburrow)
 	succeed_activate()
 	add_cooldown()
 
-/datum/action/xeno_action/burrow/proc/unburrow(mob/M)
+/datum/action/xeno_action/burrow/proc/unburrow()
 	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
 	X.alpha = 255
 	X.mouse_opacity = 255
 	X.density = TRUE
+	X.throwpass = FALSE
 	burrowed = FALSE
+	for(var/mob/living/spiderling/kids in view(1, owner.loc))
+		kids.alpha = 255
+		kids.mouse_opacity = 255
+		kids.density = TRUE
+		kids.throwpass = FALSE
 	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
 	succeed_activate()
 	add_cooldown()
@@ -132,7 +145,7 @@
 		victim.Move(oldloc)
 
 // ***************************************
-// *********** Spawn Spiderling
+// *********** Spiderling Section
 // ***************************************
 
 /mob/living/spiderling
@@ -142,7 +155,7 @@
 	icon_state = "spiderling"
 	/// Which hive this spiderling belongs to
 	var/hivenumber = XENO_HIVE_NORMAL
-	/// How much damage the spiderling deals
+	/// How much BRUTE damage the spiderling deals
 	var/spiderling_damage = 10
 
 /mob/living/spiderling/Initialize(mapload, mob/living/carbon/xenomorph/spidermother)
