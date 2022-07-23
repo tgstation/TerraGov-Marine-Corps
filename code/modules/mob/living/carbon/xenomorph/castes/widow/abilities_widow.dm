@@ -22,6 +22,8 @@
 	newspit.def_zone = X.get_limbzone_target()
 
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)
+	succeed_activate()
+	add_cooldown()
 
 // ***************************************
 // *********** Burrow
@@ -52,7 +54,8 @@
 	X.density = FALSE
 	burrowed = TRUE
 	RegisterSignal(X, COMSIG_MOVABLE_MOVED, .proc/unburrow)
-
+	succeed_activate()
+	add_cooldown()
 
 /datum/action/xeno_action/burrow/proc/unburrow(mob/M)
 	SIGNAL_HANDLER
@@ -62,6 +65,8 @@
 	X.density = TRUE
 	burrowed = FALSE
 	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
+	succeed_activate()
+	add_cooldown()
 
 
 // ***************************************
@@ -89,6 +94,8 @@
 
 	newspit.generate_bullet(leash_ball)
 	newspit.fire_at(target, X, null, newspit.ammo.max_range)
+	succeed_activate()
+	add_cooldown()
 /obj/structure/xeno/aoe_leash
 	name = "Snaring Web"
 	icon = 'icons/obj/items/projectiles.dmi' // temp ?
@@ -171,11 +178,23 @@
 	changeNext_move(10)
 
 /datum/action/xeno_action/create_spiderling
+	name = "Birth Spiderling"
+	ability_name = "birth_spiderling"
+	mechanics_text = " Spawn a spiderling directly under you"
+	action_icon_state = "spawn_hugger" // temporary until I get my own icons
+	plasma_cost = 1 // increase later
+	cooldown_timer = 10 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_LEASH_BALL
+
 
 /datum/action/xeno_action/create_spiderling/action_activate()
 	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!do_after(X, 5 SECONDS, TRUE, X, BUSY_ICON_DANGER))
+		return fail_activate()
 	new /mob/living/spiderling(owner.loc, owner)
-
+	succeed_activate()
+	add_cooldown()
 
 // ***************************************
 // *********** Spiderling AI Section
