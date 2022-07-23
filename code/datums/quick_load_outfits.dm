@@ -1319,6 +1319,7 @@
 /datum/outfit/quick/som/veteran/caliver_pack
 	name = "Caliver Heavy Veteran"
 	desc = "Heavily armed and armored SOM elite. Equipped with a volkite caliver, heavy armor, plenty of grenades and a back mounted self charging power supply. Volkite weapons are exceptionally dangerous, especially against poorly armored or tightly grouped opponents. The caliver provides deadly firepower at all ranges, and the power pack allows for sustained period of fire, although over extended periods of time the recharge may struggle to keep up with the demands of the weapon."
+	quantity = 2
 
 	belt = /obj/item/storage/belt/grenade/som
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard
