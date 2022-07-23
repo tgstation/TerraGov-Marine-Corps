@@ -8,6 +8,7 @@ SUBSYSTEM_DEF(ru_items)
 	var/list/items = list(
 		/obj/item/ammo_magazine/smg/vector = -1,
 		/obj/item/ammo_magazine/packet/acp_smg = -1,
+		/obj/item/weapon/gun/revolver/standard_revolver/coltrifle = -1,
 	)
 
 	var/list/items_val = list(
@@ -15,6 +16,7 @@ SUBSYSTEM_DEF(ru_items)
 		/obj/item/ammo_magazine/smg/vector = -1,
 		/obj/item/ammo_magazine/packet/acp_smg = -1,
 		/obj/item/weapon/twohanded/glaive/harvester = -1,
+		/obj/item/weapon/gun/revolver/standard_revolver/coltrifle = -1,
 		/obj/item/clothing/head/helmet/marine/robot/advanced/acid = -1,
 		/obj/item/clothing/suit/storage/marine/robot/advanced/acid = -1,
 		/obj/item/clothing/head/helmet/marine/robot/advanced/physical = -1,
@@ -43,6 +45,43 @@ SUBSYSTEM_DEF(ru_items)
 
 
 //List all custom items here
+
+///////////////////////////////////////////////////////////////////////
+//////// Сoltrifle, based on Colt Model 1855 Revolving Rifle. /////////
+///////////////////////////////////////////////////////////////////////
+
+/obj/item/weapon/gun/revolver/standard_revolver/coltrifle
+	name = "\improper M1855 Revolving Rifle"
+	desc = "A revolver and carbine hybrid, designed and manufactured a long time ago by Crowford Armory Union. Popular back then, but completely obsolete today. Still used by some antiquity lovers."
+	icon = 'icons/marine/gun64.dmi'
+	icon_state = "coltrifle"
+	item_state = "coltrifle"
+	fire_animation = "coltrifle_fire"
+	gun_skill_category = GUN_SKILL_RIFLES
+	flags_equip_slot = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	damage_mult = 1.1
+	force = 20
+
+	scatter = 0
+	scatter_unwielded = 5
+
+	fire_delay = 0.2 SECONDS
+	upper_akimbo_accuracy = 6
+	lower_akimbo_accuracy = 3
+	akimbo_additional_delay = 1
+
+	recoil = 0
+	recoil_unwielded = 0
+
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+	)
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 24, "rail_y" = 22)
 
 ///////////////////////////////////////////////////////////////////////
 ////////////////////////  T25, old version .///////////////////////////

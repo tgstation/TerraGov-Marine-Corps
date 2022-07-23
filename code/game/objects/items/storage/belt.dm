@@ -830,9 +830,6 @@
 	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
 	icon_state = "tp44_holster"
 	item_state = "tp44_holster"
-	bypass_w_limit = list(
-		/obj/item/weapon/gun/revolver,
-	)
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
@@ -844,7 +841,7 @@
 	icon_state = "m44_holster"
 	item_state = "m44_holster"
 	max_storage_space = 16
-	max_w_class = 4
+	max_w_class = 3
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
 		/obj/item/ammo_magazine/revolver,
