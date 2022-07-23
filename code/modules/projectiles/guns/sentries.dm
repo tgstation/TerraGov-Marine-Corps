@@ -82,7 +82,7 @@
 //thrown SOM sentry
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope
 	name = "\improper COPE sentry"
-	desc = "The Centurion Omnidirectional Point-defense Energy sentry is a man portal automated weapon system utilised by the SOM. It is activated in hand, then thrown into place before it deploys, and it's ground hugging profile makes it a difficult target to accurately hit. Equipped with a compact volkite weapon system, and a recharging battery to allow for prolonged use, but can take other volkite cells in a pinch."
+	desc = "The Centurion Omnidirectional Point-defense Energy sentry is a man portable, automated weapon system utilised by the SOM. It is activated in hand then thrown into place before it deploys, where it's ground hugging profile makes it a difficult target to accurately hit. Equipped with a compact volkite weapon system, and a recharging battery to allow for prolonged use, but can take other volkite cells in a pinch."
 	icon_state = "cope"
 	icon = 'icons/Marine/sentry.dmi'
 	max_integrity = 225
@@ -108,7 +108,7 @@
 
 	max_shots = 150
 	rounds_per_shot = 12
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.2 SECONDS
 	scatter = -3
 	damage_falloff_mult = 0.5
 	ammo_datum_type = /datum/ammo/energy/volkite/light
