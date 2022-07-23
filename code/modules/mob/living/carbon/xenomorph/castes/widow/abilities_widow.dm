@@ -226,7 +226,7 @@
 	if(get_dist(atom_to_walk_to, mob_parent) > 1)
 		return
 	var/mob/living/victim = atom_to_walk_to
-	if(victim.stat == UNCONSCIOUS)
+	if(victim.stat != CONSCIOUS)
 		change_action(ESCORTING_ATOM, escorted_atom)
 		return
 	mob_parent.face_atom(atom_to_walk_to)
