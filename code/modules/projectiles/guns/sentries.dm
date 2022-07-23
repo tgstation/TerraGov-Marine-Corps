@@ -93,6 +93,7 @@
 	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
 	turret_range = 9
 	w_class = WEIGHT_CLASS_NORMAL //same as other sentries
+	sentry_iff_signal = SON_OF_MARS_IFF
 
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 
@@ -237,6 +238,10 @@
 
 	deploy_time = 3 SECONDS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+
+/obj/item/weapon/gun/sentry/mini/combat_patrol
+	sentry_iff_signal = TGMC_LOYALIST_IFF
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS
 
 /obj/item/weapon/gun/sentry/premade
 	name = "SG-577 Gauss Turret"
