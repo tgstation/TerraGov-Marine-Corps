@@ -42,7 +42,7 @@
 
 /datum/action/xeno_action/burrow/action_activate()
 	. = ..()
-	if(burrowed == TRUE)
+	if(burrowed)
 		return
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_xenowarning("We start burrowing into the ground"))
