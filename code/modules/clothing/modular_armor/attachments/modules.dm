@@ -210,6 +210,7 @@
 	item_state = "mod_eshield_a"
 	slot = ATTACHMENT_SLOT_MODULE
 	slowdown = 0.3
+	soft_armor = list("melee" = -10, "bullet" = -5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = -5, "rad" = 0, "fire" = 0, "acid" = -5)
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_eshield_xn")
 
 	///Current shield Health
