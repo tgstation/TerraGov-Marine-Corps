@@ -123,23 +123,23 @@
 	var/list/tgmc_list = player_list[2]
 	var/num_som = length(player_list[1])
 	var/num_tgmc = length(player_list[2])
-	var/TGMCLocation
-	var/SOMLocation
+	var/tgmc_location
+	var/som_location
 
 	if(num_som)
-		SOMLocation = get_area(pick(player_list[1]))
+		som_location = get_area(pick(player_list[1]))
 	if(num_tgmc)
-		TGMCLocation = get_area(pick(player_list[2]))
+		tgmc_location = get_area(pick(player_list[2]))
 
 	//Adjust the randomness there so everyone gets the same thing
-	var/numTGMCr = BIOSCAN_DELTA(num_tgmc, delta)
-	var/numSOMr = BIOSCAN_DELTA(num_som, delta)
+	var/num_tgmc_delta = BIOSCAN_DELTA(num_tgmc, delta)
+	var/num_som_delta = BIOSCAN_DELTA(num_som, delta)
 
 	//announcement for SOM
 	var/som_scan_name = "Long Range Tactical Bioscan Status"
 	var/som_scan_input = {"Bioscan complete.
 
-Sensors indicate [numTGMCr || "no"] unknown lifeform signature[numTGMCr > 1 ? "s":""] present in the area of operations[TGMCLocation ? ", including one at: [TGMCLocation]":""]"}
+Sensors indicate [num_tgmc_delta || "no"] unknown lifeform signature[num_tgmc_delta > 1 ? "s":""] present in the area of operations[tgmc_location ? ", including one at: [tgmc_location]":""]"}
 
 	if(announce_som)
 		priority_announce(som_scan_input, som_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (som_list + GLOB.observer_list))
@@ -148,12 +148,12 @@ Sensors indicate [numTGMCr || "no"] unknown lifeform signature[numTGMCr > 1 ? "s
 	var/marine_scan_name = "Long Range Tactical Bioscan Status"
 	var/marine_scan_input = {"Bioscan complete.
 
-Sensors indicate [numSOMr || "no"] unknown lifeform signature[numSOMr > 1 ? "s":""] present in the area of operations[SOMLocation ? ", including one at: [SOMLocation]":""]"}
+Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delta > 1 ? "s":""] present in the area of operations[som_location ? ", including one at: [som_location]":""]"}
 
 	if(announce_marines)
 		priority_announce(marine_scan_input, marine_scan_name, sound = 'sound/AI/bioscan.ogg', receivers = (tgmc_list + GLOB.observer_list))
 
-	log_game("Bioscan. [num_tgmc] active TGMC personnel[TGMCLocation ? " Location: [TGMCLocation]":""] and [num_som] active SOM personnel[SOMLocation ? " Location: [SOMLocation]":""]")
+	log_game("Bioscan. [num_tgmc] active TGMC personnel[tgmc_location ? " Location: [tgmc_location]":""] and [num_som] active SOM personnel[som_location ? " Location: [som_location]":""]")
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
@@ -161,8 +161,8 @@ Sensors indicate [numSOMr || "no"] unknown lifeform signature[numSOMr > 1 ? "s":
 		to_chat(M, {"<span class='alert'>[num_som] SOM alive.
 [num_tgmc] Marine\s alive."})
 
-	message_admins("Bioscan - Marines: [num_tgmc] active TGMC personnel[TGMCLocation ? " .Location:[TGMCLocation]":""]")
-	message_admins("Bioscan - SOM: [num_som] active SOM personnel[SOMLocation ? " .Location:[SOMLocation]":""]")
+	message_admins("Bioscan - Marines: [num_tgmc] active TGMC personnel[tgmc_location ? " .Location:[tgmc_location]":""]")
+	message_admins("Bioscan - SOM: [num_som] active SOM personnel[som_location ? " .Location:[som_location]":""]")
 
 #undef BIOSCAN_DELTA
 
@@ -218,15 +218,15 @@ Sensors indicate [numSOMr || "no"] unknown lifeform signature[numSOMr > 1 ? "s":
 	///pulls the number of marines and SOM, both dead and alive
 	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
 	var/num_som = length(player_list[1])
-	var/num_marines = length(player_list[2])
+	var/num_tgmc = length(player_list[2])
 	var/num_dead_som = length(player_list[3])
 	var/num_dead_marines = length(player_list[4])
 
-	if(num_marines && num_som && !max_time_reached)
+	if(num_tgmc && num_som && !max_time_reached)
 		return //fighting is ongoing
 
 	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
-	if(!num_marines)
+	if(!num_tgmc)
 		if(!num_som)
 			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //everyone died at the same time, no one wins
 			round_finished = MODE_COMBAT_PATROL_DRAW
