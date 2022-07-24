@@ -432,7 +432,9 @@
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
 	zoom(user)
-	active = !active
+	if(active == zoom) //Zooming failed for some reason and didn't change
+		return
+	active = zoom
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
 	icon_state = initial(icon_state) + "[active ? "_active" : ""]"
 	item_state = icon_state + "_a"
