@@ -544,6 +544,11 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/som)
+"mN" = (
+/obj/structure/table/black,
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
 "mU" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /obj/structure/window/framed/prison/reinforced/hull,
@@ -1536,10 +1541,14 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
-"Lf" = (
-/obj/structure/flora/pottedplant/twentyone,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+"Le" = (
+/obj/structure/table/black,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/turf/open/floor/mainship/floor,
+/area/mainship/patrol_base)
 "Ll" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/blue{
@@ -1611,7 +1620,11 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
 "Nq" = (
-/obj/structure/flora/pottedplant/one,
+/obj/structure/table/mainship,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
+/obj/item/attachable/magnetic_harness,
 /turf/open/floor/prison,
 /area/mainship/patrol_base/som)
 "Nv" = (
@@ -2068,6 +2081,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
+"WK" = (
+/obj/structure/table/mainship,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/prison,
+/area/mainship/patrol_base/som)
 "WN" = (
 /obj/structure/table/holotable/wood,
 /obj/effect/spawner/random/drink_alcohol_bottle,
@@ -3096,7 +3115,7 @@ En
 ud
 zV
 sg
-PQ
+WK
 PQ
 Sg
 PQ
@@ -3158,7 +3177,7 @@ Oq
 ud
 zV
 If
-Lf
+Nq
 PQ
 Sg
 PQ
@@ -5332,8 +5351,8 @@ Kk
 Fw
 Vu
 EM
-vL
-VH
+Le
+Le
 Vz
 Xt
 ua
@@ -6324,8 +6343,8 @@ Sw
 Fw
 Vu
 EM
-vL
-VH
+mN
+mN
 Vz
 Bs
 Ee
