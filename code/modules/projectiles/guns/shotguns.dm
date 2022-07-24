@@ -712,6 +712,10 @@
 /obj/item/weapon/gun/shotgun/som/pointman
 	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/motiondetector)
 
+/obj/item/weapon/gun/shotgun/som/support
+	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness)
+
 //-------------------------------------------------------
 //Inbuilt launcher for the V-31
 /obj/item/weapon/gun/shotgun/micro_grenade
