@@ -144,6 +144,11 @@
 		if(obj_integrity > max_integrity)
 			obj_integrity = max_integrity
 
+/*
+/obj/structure/xeno/aoe_leash/obj_destruction()
+	. = ..()
+	// Remove beams here and unregister signals if necessary
+*/
 /// Humans caught in the aoe_leash will be pulled back if they leave it's radius
 /obj/structure/xeno/aoe_leash/proc/check_dist(datum/leash_victims, atom/oldloc)
 	SIGNAL_HANDLER
@@ -152,6 +157,20 @@
 	if(distance >= leash_radius)
 		victim.Move(oldloc)
 
+/obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+	if(X.status_flags & INCORPOREAL)
+		return
+	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
+	span_xenonotice("We start to tear down \the [src]."))
+	if(!do_after(X, 4 SECONDS, TRUE, X, BUSY_ICON_GENERIC))
+		return
+	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
+		return
+	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
+	span_xenonotice("We tear down \the [src]."))
+	playsound(src, "alien_resin_break", 25)
+	take_damage(max_integrity)
 // ***************************************
 // *********** Spiderling Section
 // ***************************************
