@@ -29,7 +29,6 @@ GLOBAL_LIST_EMPTY(fog_blockers)
 GLOBAL_LIST_EMPTY(huntergames_primary_spawns)
 GLOBAL_LIST_EMPTY(huntergames_secondary_spawns)
 
-GLOBAL_LIST_EMPTY(jobspawn_overrides)					//These will take precedence over normal spawnpoints if created.
 
 GLOBAL_LIST_EMPTY(newplayer_start)
 GLOBAL_LIST_EMPTY(tdome1)

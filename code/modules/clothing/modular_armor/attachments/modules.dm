@@ -210,6 +210,7 @@
 	item_state = "mod_eshield_a"
 	slot = ATTACHMENT_SLOT_MODULE
 	slowdown = 0.2
+	soft_armor = list("melee" = -10, "bullet" = -5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = -5, "rad" = 0, "fire" = 0, "acid" = -5)
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/light = "mod_eshield_xn", /obj/item/clothing/suit/modular/xenonauten/heavy = "mod_eshield_xn")
 
 	///Current shield Health
@@ -217,7 +218,7 @@
 	///Maximum shield Health
 	var/max_shield_health = 40
 	///Amount to recharge per tick, processes once every two seconds.
-	var/recharge_rate = 8
+	var/recharge_rate = 10
 
 	///Spark system used to generate sparks when the armor takes damage
 	var/datum/effect_system/spark_spread/spark_system
@@ -435,7 +436,9 @@
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
 	zoom(user)
-	active = !active
+	if(active == zoom) //Zooming failed for some reason and didn't change
+		return
+	active = zoom
 	to_chat(user, span_notice("You toggle \the [src]. [active ? "enabling" : "disabling"] it."))
 	icon_state = initial(icon_state) + "[active ? "_active" : ""]"
 	item_state = icon_state + "_a"
