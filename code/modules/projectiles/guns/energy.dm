@@ -440,6 +440,9 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/rifleman
 	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/reddot, /obj/item/weapon/gun/flamer/mini_flamer)
 
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/medic
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness, /obj/item/weapon/gun/flamer/mini_flamer)
+
 /datum/lasrifle/base/energy_rifle_mode/standard
 	rounds_per_shot = 12
 	ammo_datum_type = /datum/ammo/energy/lasgun/marine
