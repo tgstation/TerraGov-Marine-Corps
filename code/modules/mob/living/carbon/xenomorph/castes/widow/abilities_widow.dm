@@ -44,17 +44,22 @@
 	. = ..()
 	if(burrowed)
 		return
+
 	var/mob/living/carbon/xenomorph/X = owner
+
 	to_chat(X, span_xenowarning("We start burrowing into the ground"))
 	if(!do_after(X, 1 SECONDS, TRUE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 	to_chat(X, span_xenowarning("We have burrowed ourselves, we are hidden from the enemy"))
+
 	X.alpha = 0
 	X.mouse_opacity = 0
 	X.density = FALSE
 	X.throwpass = TRUE
 	burrowed = TRUE
+
 	for(var/mob/living/spiderling/kids in view(1, owner.loc))
+		RegisterSignal(kids, COMSIG_MOVABLE_MOVED, .proc/unburrow)
 		kids.alpha = 0
 		kids.mouse_opacity = 0
 		kids.density = FALSE
@@ -64,8 +69,15 @@
 	succeed_activate()
 	add_cooldown()
 
-/datum/action/xeno_action/burrow/proc/unburrow()
+/datum/action/xeno_action/burrow/proc/unburrow(mob/M)
 	SIGNAL_HANDLER
+	if(!isxeno(M))
+		M.alpha = 255
+		M.mouse_opacity = 255
+		M.density = TRUE
+		M.throwpass = FALSE
+		UnregisterSignal(M, COMSIG_MOVABLE_MOVED)
+		return
 	if(!burrowed)
 		return
 	var/mob/living/carbon/xenomorph/X = owner
@@ -74,15 +86,9 @@
 	X.density = TRUE
 	X.throwpass = FALSE
 	burrowed = FALSE
-	for(var/mob/living/spiderling/kids in view(1, owner.loc))
-		kids.alpha = 255
-		kids.mouse_opacity = 255
-		kids.density = TRUE
-		kids.throwpass = FALSE
 	UnregisterSignal(X, COMSIG_MOVABLE_MOVED)
 	succeed_activate()
 	add_cooldown()
-
 
 // ***************************************
 // *********** Leash Ball
