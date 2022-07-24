@@ -57,7 +57,6 @@
 	for(var/job_type in shuttle.spawns_by_job)
 		GLOB.spawns_by_job[job_type] = shuttle.spawns_by_job[job_type]
 
-	GLOB.jobspawn_overrides = list()
 	GLOB.latejoin = shuttle.latejoins
 	GLOB.latejoin_cryo = shuttle.latejoins
 	GLOB.latejoin_gateway = shuttle.latejoins
