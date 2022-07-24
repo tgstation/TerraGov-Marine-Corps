@@ -3,20 +3,20 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "c" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "i" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "o" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "w" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "K" = (

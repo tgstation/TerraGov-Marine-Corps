@@ -96,7 +96,7 @@
 		if(iscarbon(user))
 			var/mob/living/carbon/C = user
 			C.throw_mode_on()
-		overlays += new/obj/effect/overlay/danger
+		overlays += new/atom/movable/effect/overlay/danger
 		spawn(rand(3,50))
 			spark_system.start(src)
 			explode()
@@ -128,7 +128,7 @@
 
 		if(user.do_actions)
 			return
-		var/obj/effect/overlay/sparks/spark_overlay = new
+		var/atom/movable/effect/overlay/sparks/spark_overlay = new
 
 		if(!rigged)
 			if(skill < SKILL_ENGINEER_ENGI) //Field engi skill or better or ya fumble.

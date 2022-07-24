@@ -1,6 +1,6 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
-GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/effect/alien/egg, /obj/structure/mineral_door, /obj/effect/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
+GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
 
 /datum/ammo
 	var/name 		= "generic bullet"
@@ -2233,7 +2233,7 @@ datum/ammo/bullet/revolver/tp44
 		if(is_type_in_typecache(O, GLOB.no_sticky_resin))
 			return
 
-	new /obj/effect/alien/resin/sticky(T)
+	new /obj/alien/resin/sticky(T)
 
 /datum/ammo/xeno/sticky/turret
 	max_range = 9
@@ -2322,7 +2322,7 @@ datum/ammo/bullet/revolver/tp44
 	if(T.density)
 		return
 
-	new /obj/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
+	new /atom/movable/effect/xenomorph/spray(T, puddle_duration, puddle_acid_damage)
 
 
 ///For the Spitter's Scatterspit ability

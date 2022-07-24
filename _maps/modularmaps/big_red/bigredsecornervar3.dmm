@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/obj/effect/landmark/start/job/xenomorph,
+/atom/movable/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "aA" = (
@@ -11,23 +11,23 @@
 /area/bigredv2/caves/undergroundrobotics)
 "aF" = (
 /obj/item/mecha_parts/part/durand_right_arm,
-/obj/effect/decal/warning_stripes/thick,
+/atom/movable/effect/decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "aG" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/cable,
+/atom/movable/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/cable,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "aS" = (
-/obj/effect/decal/warning_stripes/thick{
+/atom/movable/effect/decal/warning_stripes/thick{
 	dir = 10
 	},
-/obj/effect/decal/warning_stripes/thick{
+/atom/movable/effect/decal/warning_stripes/thick{
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
@@ -53,8 +53,8 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "ci" = (
-/obj/effect/decal/warning_stripes/thick,
-/obj/effect/landmark/corpsespawner/scientist,
+/atom/movable/effect/decal/warning_stripes/thick,
+/atom/movable/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "cK" = (
@@ -65,7 +65,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "ea" = (
-/obj/effect/decal/warning_stripes/thick{
+/atom/movable/effect/decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -90,7 +90,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "fq" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
@@ -140,15 +140,15 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "hv" = (
-/obj/effect/decal/warning_stripes/thick{
+/atom/movable/effect/decal/warning_stripes/thick{
 	dir = 9
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "hD" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "iD" = (
@@ -157,7 +157,7 @@
 /area/bigredv2/caves/rock)
 "iR" = (
 /obj/item/mecha_parts/part/durand_left_arm,
-/obj/effect/decal/warning_stripes/thick{
+/atom/movable/effect/decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -169,25 +169,25 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "jk" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/undergroundrobotics)
 "jV" = (
-/obj/effect/landmark/corpsespawner/security,
+/atom/movable/effect/landmark/corpsespawner/security,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "jX" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "kl" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 10
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "kr" = (
-/obj/effect/spawner/random/cable,
+/atom/movable/effect/spawner/random/cable,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -209,8 +209,8 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/undergroundrobotics)
 "lt" = (
-/obj/effect/landmark/start/job/xenomorph,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/start/job/xenomorph,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "lC" = (
@@ -218,7 +218,7 @@
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/item/ammo_magazine/shotgun/flechette,
 /obj/item/ammo_magazine/shotgun/flechette,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 5
 	},
@@ -227,20 +227,20 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "lV" = (
-/obj/effect/decal/sandedge,
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/decal/sandedge,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "ma" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /obj/machinery/light,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/undergroundrobotics)
 "nb" = (
@@ -263,8 +263,8 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "nM" = (
-/obj/effect/landmark/corpsespawner/engineer,
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/landmark/corpsespawner/engineer,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "nZ" = (
@@ -304,8 +304,8 @@
 /area/bigredv2/caves/southeast)
 "qr" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tech_supply,
+/atom/movable/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tech_supply,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -327,7 +327,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "qL" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)
 "qU" = (
@@ -358,8 +358,8 @@
 /turf/closed/wall,
 /area/bigredv2/caves/undergroundrobotics)
 "sD" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "tk" = (
@@ -370,18 +370,18 @@
 /area/bigredv2/caves/undergroundrobotics)
 "tm" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/atom/movable/effect/spawner/random/ammo/rifle,
+/atom/movable/effect/spawner/random/ammo/rifle,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 9
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "tM" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/undergroundrobotics)
 "uA" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "uC" = (
@@ -399,19 +399,19 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "vj" = (
-/obj/effect/spawner/random/gun/sidearms,
+/atom/movable/effect/spawner/random/gun/sidearms,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "vR" = (
-/obj/effect/decal/cleanable/cobweb2,
+/atom/movable/effect/decal/cleanable/cobweb2,
 /obj/structure/bookcase/manuals,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 5
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "wv" = (
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 4
 	},
@@ -421,9 +421,9 @@
 /obj/item/weapon/gun/rifle/m16,
 /obj/item/ammo_magazine/rifle/m16,
 /obj/item/ammo_magazine/rifle/m16,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
+/atom/movable/effect/spawner/random/ammo/rifle,
+/atom/movable/effect/spawner/random/gun/rifles,
+/atom/movable/effect/spawner/random/gun/rifles,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
@@ -451,18 +451,18 @@
 "xS" = (
 /obj/structure/table/reinforced,
 /obj/item/mmi,
-/obj/effect/spawner/random/cable,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/cable,
+/atom/movable/effect/spawner/random/tool,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "xU" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/atom/movable/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "yZ" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
@@ -471,27 +471,27 @@
 /obj/structure/bed/chair/reinforced{
 	dir = 1
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "zl" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "zA" = (
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/bigredv2/caves/undergroundrobotics)
 "zL" = (
 /obj/docking_port/stationary/crashmode,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Ax" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/undergroundrobotics)
 "AP" = (
@@ -500,7 +500,7 @@
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/undergroundrobotics)
 "Bj" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Ck" = (
@@ -518,12 +518,12 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "CJ" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "CO" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "Da" = (
@@ -533,13 +533,13 @@
 /turf/open/space/basic,
 /area/space)
 "DX" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "DY" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)
 "El" = (
@@ -547,17 +547,17 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "Et" = (
-/obj/effect/decal/warning_stripes/thick,
+/atom/movable/effect/decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "EC" = (
 /obj/item/mecha_parts/part/durand_torso,
-/obj/effect/decal/warning_stripes/thick,
+/atom/movable/effect/decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "EH" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "EL" = (
@@ -569,31 +569,31 @@
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/bigredv2/caves/undergroundrobotics)
 "Fy" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "FJ" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/bigredv2/caves/undergroundrobotics)
 "FL" = (
-/obj/effect/decal/warning_stripes/thick{
+/atom/movable/effect/decal/warning_stripes/thick{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thick/corner{
+/atom/movable/effect/decal/warning_stripes/thick/corner{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "GJ" = (
-/obj/effect/decal/warning_stripes/thick{
+/atom/movable/effect/decal/warning_stripes/thick{
 	dir = 6
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "GN" = (
-/obj/effect/spawner/random/cable,
+/atom/movable/effect/spawner/random/cable,
 /obj/structure/flora/ausbushes/grassybush,
 /obj/structure/window/full{
 	dir = 1
@@ -611,7 +611,7 @@
 	dir = 4;
 	pixel_x = -16
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/undergroundrobotics)
 "Ho" = (
@@ -634,12 +634,12 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "HQ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "HV" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/undergroundrobotics)
 "Iy" = (
@@ -647,8 +647,8 @@
 /obj/item/weapon/gun/rifle/famas,
 /obj/item/ammo_magazine/rifle/famas,
 /obj/item/ammo_magazine/rifle/famas,
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/gun/rifles,
+/atom/movable/effect/spawner/random/gun/rifles,
+/atom/movable/effect/spawner/random/gun/rifles,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 10
 	},
@@ -657,7 +657,7 @@
 /turf/closed/wall,
 /area/bigredv2/caves/undergroundrobotics)
 "Jn" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "Jz" = (
@@ -668,7 +668,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "JK" = (
-/obj/effect/spawner/random/cable,
+/atom/movable/effect/spawner/random/cable,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 6
 	},
@@ -688,14 +688,14 @@
 /area/bigredv2/caves/undergroundrobotics)
 "KB" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/powercell,
+/atom/movable/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/powercell,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "LO" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "LX" = (
@@ -718,15 +718,15 @@
 /area/bigredv2/caves/undergroundrobotics)
 "MJ" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tech_supply,
+/atom/movable/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tech_supply,
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 4
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "MK" = (
-/obj/effect/spawner/random/cable,
-/obj/effect/decal/warning_stripes/thick{
+/atom/movable/effect/spawner/random/cable,
+/atom/movable/effect/decal/warning_stripes/thick{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -775,7 +775,7 @@
 "Ql" = (
 /obj/structure/table/mainship,
 /obj/item/paper/crumpled,
-/obj/effect/spawner/random/ammo/sidearm,
+/atom/movable/effect/spawner/random/ammo/sidearm,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
@@ -790,30 +790,30 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Rh" = (
-/obj/effect/decal/warning_stripes/thick{
+/atom/movable/effect/decal/warning_stripes/thick{
 	dir = 5
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "Rr" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/warning_stripes/thick,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "RS" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "Su" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tool,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 6
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "Ta" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_wall,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Tc" = (
@@ -821,7 +821,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "TE" = (
-/obj/effect/landmark/xeno_resin_wall,
+/atom/movable/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "TY" = (
@@ -839,7 +839,7 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "UL" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Vi" = (
@@ -853,7 +853,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "Vr" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tool,
 /obj/item/flash,
 /obj/machinery/light{
 	dir = 1
@@ -863,28 +863,28 @@
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "VX" = (
-/obj/effect/decal/warning_stripes/thick{
+/atom/movable/effect/decal/warning_stripes/thick{
 	dir = 1
 	},
-/obj/effect/spawner/random/trash,
-/obj/effect/ai_node,
+/atom/movable/effect/spawner/random/trash,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
 "Wo" = (
 /obj/machinery/light,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/undergroundrobotics)
 "WD" = (
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/undergroundrobotics)
 "Xn" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/undergroundrobotics)
 "Yq" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/undergroundrobotics)
 "Zu" = (
@@ -897,15 +897,15 @@
 /area/bigredv2/caves/undergroundrobotics)
 "ZH" = (
 /obj/structure/table/reinforced,
-/obj/effect/spawner/random/powercell,
+/atom/movable/effect/spawner/random/powercell,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8
 	},
 /area/bigredv2/caves/undergroundrobotics)
 "ZI" = (
-/obj/effect/decal/cleanable/cobweb,
+/atom/movable/effect/decal/cleanable/cobweb,
 /obj/structure/filingcabinet,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 9
 	},

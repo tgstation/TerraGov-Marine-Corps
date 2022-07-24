@@ -1,4 +1,4 @@
-/obj/effect/countdown
+/atom/movable/effect/countdown
 	name = "countdown"
 	desc = "We're leaving together\n\
 		But still it's farewell\n\
@@ -14,34 +14,34 @@
 	var/displayed_text
 	var/atom/attached_to
 
-/obj/effect/countdown/Initialize()
+/atom/movable/effect/countdown/Initialize()
 	. = ..()
 	attach(loc)
 
-/obj/effect/countdown/examine(mob/user)
+/atom/movable/effect/countdown/examine(mob/user)
 	. = ..()
 	. += "This countdown is displaying: [displayed_text]."
 
-/obj/effect/countdown/proc/attach(atom/A)
+/atom/movable/effect/countdown/proc/attach(atom/A)
 	attached_to = A
 	forceMove(get_turf(A))
 
-/obj/effect/countdown/proc/start()
+/atom/movable/effect/countdown/proc/start()
 	if(!started)
 		START_PROCESSING(SSobj, src)
 		started = TRUE
 
-/obj/effect/countdown/proc/stop()
+/atom/movable/effect/countdown/proc/stop()
 	if(started)
 		maptext = null
 		STOP_PROCESSING(SSobj, src)
 		started = FALSE
 
-/obj/effect/countdown/proc/get_value()
+/atom/movable/effect/countdown/proc/get_value()
 	// Get the value from our atom
 	return
 
-/obj/effect/countdown/process()
+/atom/movable/effect/countdown/process()
 	if(QDELETED(attached_to))
 		qdel(src)
 	forceMove(get_turf(attached_to))
@@ -55,19 +55,19 @@
 	else
 		maptext = null
 
-/obj/effect/countdown/Destroy()
+/atom/movable/effect/countdown/Destroy()
 	attached_to = null
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/countdown/ex_act(severity) //immune to explosions
+/atom/movable/effect/countdown/ex_act(severity) //immune to explosions
 	return
 
-/obj/effect/countdown/nuclearbomb
+/atom/movable/effect/countdown/nuclearbomb
 	name = "nuclear bomb countdown"
 	color = "#81FF14"
 
-/obj/effect/countdown/nuclearbomb/get_value()
+/atom/movable/effect/countdown/nuclearbomb/get_value()
 	if(QDELETED(attached_to))
 		return
 	var/obj/machinery/nuclearbomb/N = attached_to

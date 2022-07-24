@@ -1,14 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "b" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "c" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/atom/movable/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "d" = (
@@ -16,8 +16,8 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "e" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/xeno_resin_door,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "f" = (
@@ -25,39 +25,39 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "h" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "i" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
 "j" = (
 /turf/closed/wall/indestructible/mineral,
 /area/space)
 "m" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_wall,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "n" = (
 /obj/structure/fence,
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "o" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
 "q" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "s" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "u" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
 "v" = (
@@ -65,55 +65,55 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "w" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "A" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "D" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "F" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "G" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "I" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "K" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "M" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
 "N" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "O" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
 "Q" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "U" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "Z" = (
-/obj/effect/landmark/xeno_resin_wall,
+/atom/movable/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 

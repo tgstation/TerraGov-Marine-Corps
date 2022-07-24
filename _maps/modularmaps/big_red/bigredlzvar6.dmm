@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ag" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/decal/cleanable/blood/gibs/core,
+/atom/movable/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "aA" = (
@@ -9,7 +9,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "aD" = (
-/obj/effect/decal/warning_stripes/linethick{
+/atom/movable/effect/decal/warning_stripes/linethick{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -42,7 +42,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "bb" = (
@@ -60,19 +60,19 @@
 	},
 /area/bigredv2/outside/space_port)
 "by" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "bN" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "bX" = (
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "ch" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "cj" = (
@@ -84,15 +84,15 @@
 	},
 /area/bigredv2/outside/space_port)
 "cm" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
 /area/bigredv2/outside/nw)
 "co" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "cs" = (
@@ -101,7 +101,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "cv" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "cz" = (
@@ -118,7 +118,7 @@
 "cP" = (
 /obj/item/stack/sheet/metal,
 /obj/item/stack/rods,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
@@ -133,9 +133,9 @@
 	},
 /area/bigredv2/outside/space_port)
 "dw" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "dz" = (
@@ -146,7 +146,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "ei" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/marshal_office)
 "eq" = (
@@ -168,7 +168,7 @@
 /obj/machinery/landinglight/ds1{
 	dir = 8
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
@@ -188,15 +188,15 @@
 /area/bigredv2/outside/telecomm)
 "eZ" = (
 /obj/structure/rack,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/gun/shotgun,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/spawner/random/gun/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "fh" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "fy" = (
@@ -214,11 +214,11 @@
 "fQ" = (
 /obj/structure/window/reinforced,
 /obj/machinery/botany,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "fW" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
 "gb" = (
@@ -231,8 +231,8 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
 "gQ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "gY" = (
@@ -251,7 +251,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "hh" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "hI" = (
@@ -259,7 +259,7 @@
 /area/bigredv2/outside/telecomm)
 "hU" = (
 /obj/structure/table,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "ig" = (
@@ -272,7 +272,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/telecomm)
 "iB" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
@@ -290,10 +290,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/spawner/random/gun/rifles,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
-/obj/effect/spawner/random/ammo/rifle,
+/atom/movable/effect/spawner/random/gun/rifles,
+/atom/movable/effect/spawner/random/ammo/rifle,
+/atom/movable/effect/spawner/random/ammo/rifle,
+/atom/movable/effect/spawner/random/ammo/rifle,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -306,7 +306,7 @@
 /turf/open/floor/tile/dark/green2,
 /area/bigredv2/outside/space_port)
 "jo" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -328,7 +328,7 @@
 	dir = 4
 	},
 /obj/item/tool/soap/deluxe,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
 "jy" = (
@@ -370,12 +370,12 @@
 /turf/open/floor/plating/warning,
 /area/bigredv2/outside/space_port)
 "kR" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "kS" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "ln" = (
@@ -395,7 +395,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/console)
 "lJ" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
@@ -415,15 +415,15 @@
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
 /area/bigredv2/outside/space_port)
 "lW" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/technology_scanner,
+/atom/movable/effect/spawner/random/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "lZ" = (
@@ -431,8 +431,8 @@
 /area/bigredv2/outside/telecomm)
 "ma" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/technology_scanner,
+/atom/movable/effect/spawner/random/tool,
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
 "mc" = (
@@ -457,7 +457,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "mw" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall,
 /area/bigredv2/outside/marshal_office)
 "mM" = (
@@ -477,10 +477,10 @@
 /area/bigredv2/outside/space_port)
 "nc" = (
 /obj/structure/rack,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/gun/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/spawner/random/gun/shotgun,
+/atom/movable/effect/spawner/random/ammo/shotgun,
+/atom/movable/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "nm" = (
@@ -497,8 +497,8 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "nA" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/corpsespawner/engineer,
+/atom/movable/effect/decal/cleanable/blood,
+/atom/movable/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "os" = (
@@ -510,7 +510,7 @@
 /area/bigredv2/outside/space_port)
 "ox" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
 /obj/machinery/door_control{
 	id = "Spaceport";
 	name = "Storm Shutters";
@@ -523,8 +523,8 @@
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "oE" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "oF" = (
@@ -550,40 +550,40 @@
 /area/bigredv2/outside/marshal_office)
 "pp" = (
 /obj/item/shard,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
 "pr" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "pw" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/northwest)
 "pB" = (
 /obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
 	},
 /area/bigredv2/outside/space_port)
 "pI" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
 "pU" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/item/stack/barbed_wire,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "qa" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "qg" = (
@@ -594,7 +594,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "qE" = (
@@ -622,7 +622,7 @@
 /area/bigredv2/outside/space_port)
 "qP" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tool,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 6
 	},
@@ -653,7 +653,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "rr" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
 "rz" = (
@@ -664,7 +664,7 @@
 /area/bigredv2/outside/space_port)
 "rW" = (
 /obj/structure/table,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "sb" = (
@@ -688,15 +688,15 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "sB" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "sF" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "sG" = (
@@ -718,8 +718,8 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "tg" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "th" = (
@@ -740,7 +740,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "tv" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -752,7 +752,7 @@
 /area/bigredv2/outside/space_port)
 "tB" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/shotgun,
+/atom/movable/effect/spawner/random/gun/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "tL" = (
@@ -776,13 +776,13 @@
 /area/bigredv2/outside/space_port)
 "tS" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "tT" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
-/obj/effect/spawner/random/tech_supply,
+/atom/movable/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tech_supply,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "ua" = (
@@ -797,8 +797,8 @@
 /area/bigredv2/caves/rock)
 "ui" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
-/obj/effect/spawner/random/ammo/shotgun,
+/atom/movable/effect/spawner/random/ammo/shotgun,
+/atom/movable/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "uE" = (
@@ -817,8 +817,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "vi" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
@@ -831,11 +831,11 @@
 	},
 /area/bigredv2/outside/space_port)
 "vx" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/north)
 "vA" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
@@ -844,13 +844,13 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "vI" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
 /area/bigredv2/outside/space_port)
 "vR" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
@@ -861,11 +861,11 @@
 /area/bigredv2/outside/nw)
 "vY" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "wc" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "wh" = (
@@ -880,18 +880,18 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "wD" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "wN" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "wX" = (
@@ -902,14 +902,14 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "xf" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "xh" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/sidearm,
-/obj/effect/spawner/random/gun/sidearms,
+/atom/movable/effect/spawner/random/ammo/sidearm,
+/atom/movable/effect/spawner/random/gun/sidearms,
 /obj/structure/barricade/metal,
 /turf/open/floor/tile/dark/green2{
 	dir = 10
@@ -941,7 +941,7 @@
 /area/bigredv2/outside/space_port)
 "xL" = (
 /obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "xX" = (
@@ -982,18 +982,18 @@
 	},
 /area/bigredv2/outside/space_port)
 "yO" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "yP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "yR" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
@@ -1007,7 +1007,7 @@
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "zb" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "zo" = (
@@ -1040,7 +1040,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Au" = (
-/obj/effect/decal/cleanable/blood/gibs,
+/atom/movable/effect/decal/cleanable/blood/gibs,
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -1054,7 +1054,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "AJ" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/window_frame/colony,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
@@ -1072,12 +1072,12 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "AY" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Bb" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "Bd" = (
@@ -1096,7 +1096,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "BG" = (
@@ -1111,14 +1111,14 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/marshal_office)
 "CE" = (
-/obj/effect/decal/cleanable/blood/gibs/core,
+/atom/movable/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "CQ" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "Db" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "Dp" = (
@@ -1133,7 +1133,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
 "DD" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -1146,7 +1146,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "DK" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "DL" = (
@@ -1168,14 +1168,14 @@
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 1
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
 /area/bigredv2/outside/space_port)
 "Ej" = (
 /obj/structure/table,
-/obj/effect/spawner/random/powercell,
+/atom/movable/effect/spawner/random/powercell,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "Ep" = (
@@ -1190,7 +1190,7 @@
 /obj/machinery/landinglight/ds1{
 	dir = 1
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -1202,7 +1202,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "EO" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
 "EP" = (
@@ -1214,8 +1214,8 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "Fm" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "Fr" = (
@@ -1226,7 +1226,7 @@
 /area/bigredv2/outside/space_port)
 "FI" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark/green2{
 	dir = 9
 	},
@@ -1257,22 +1257,22 @@
 /area/bigredv2/outside/nw)
 "Gn" = (
 /obj/item/shard,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "Gq" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "Gr" = (
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/corpsespawner/prisoner,
+/atom/movable/effect/landmark/corpsespawner/prisoner,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "Gs" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
@@ -1281,7 +1281,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "Gz" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 5
 	},
@@ -1303,7 +1303,7 @@
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
-/obj/effect/spawner/random/ammo/shotgun,
+/atom/movable/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "GW" = (
@@ -1327,7 +1327,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/marshal_office)
 "Ho" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 8
 	},
@@ -1336,11 +1336,11 @@
 	},
 /area/bigredv2/outside/space_port)
 "Ht" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "Hv" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "Hx" = (
@@ -1356,7 +1356,7 @@
 /area/bigredv2/outside/nw)
 "HZ" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "Ig" = (
@@ -1376,8 +1376,8 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
 "IB" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "IJ" = (
@@ -1389,7 +1389,7 @@
 "IO" = (
 /obj/structure/table,
 /obj/item/clothing/head/beret/sec/warden,
-/obj/effect/spawner/random/ammo/shotgun,
+/atom/movable/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "IS" = (
@@ -1451,7 +1451,7 @@
 /area/bigredv2/outside/marshal_office)
 "KL" = (
 /obj/machinery/light,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "KW" = (
@@ -1461,7 +1461,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Ll" = (
@@ -1480,7 +1480,7 @@
 /area/bigredv2/outside/space_port)
 "LN" = (
 /obj/structure/table,
-/obj/effect/spawner/random/ammo/shotgun,
+/atom/movable/effect/spawner/random/ammo/shotgun,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "LY" = (
@@ -1492,7 +1492,7 @@
 /area/bigredv2/outside/space_port)
 "Mr" = (
 /obj/item/stack/rods,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
@@ -1519,9 +1519,9 @@
 /area/bigredv2/outside/marshal_office)
 "MT" = (
 /obj/item/shard,
-/obj/effect/decal/cleanable/blood/gibs,
+/atom/movable/effect/decal/cleanable/blood/gibs,
 /obj/structure/window_frame/colony/reinforced,
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "MY" = (
@@ -1542,13 +1542,13 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "Nc" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "Nh" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "NJ" = (
@@ -1558,7 +1558,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/marshal_office)
 "Od" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "Oj" = (
@@ -1574,7 +1574,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "Op" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "Or" = (
@@ -1586,16 +1586,16 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "OO" = (
 /obj/machinery/landinglight/ds1/delayone,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "OQ" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/delivery,
 /area/bigredv2/outside/marshal_office)
 "OS" = (
@@ -1618,11 +1618,11 @@
 /area/bigredv2/outside/space_port)
 "Ps" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Pv" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northwest)
 "Px" = (
@@ -1630,7 +1630,7 @@
 /area/bigredv2/outside/marshal_office)
 "PQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "PV" = (
@@ -1670,7 +1670,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "QI" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
 "QK" = (
@@ -1686,7 +1686,7 @@
 "Re" = (
 /obj/item/stack/rods,
 /obj/item/stack/rods,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
@@ -1703,7 +1703,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northwest)
 "Ry" = (
-/obj/effect/decal/cleanable/blood/gibs,
+/atom/movable/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "RJ" = (
@@ -1711,13 +1711,13 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "RN" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
 "RT" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
@@ -1753,7 +1753,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "SX" = (
-/obj/effect/decal/cleanable/blood/gibs/up,
+/atom/movable/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "Tf" = (
@@ -1769,7 +1769,7 @@
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
 	},
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "Ts" = (
@@ -1784,14 +1784,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "TC" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/atom/movable/effect/spawner/random/technology_scanner,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1828,38 +1828,38 @@
 	},
 /area/bigredv2/outside/nw)
 "UG" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
 /area/bigredv2/outside/space_port)
 "UJ" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "UK" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tool,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 10
 	},
 /area/bigredv2/outside/space_port)
 "UO" = (
 /obj/structure/table,
-/obj/effect/spawner/random/toolbox,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "UT" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tool,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "UW" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/gun/sidearms,
-/obj/effect/spawner/random/ammo/sidearm,
+/atom/movable/effect/spawner/random/gun/sidearms,
+/atom/movable/effect/spawner/random/ammo/sidearm,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -1868,7 +1868,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
 "Vb" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
 	},
@@ -1890,25 +1890,25 @@
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 8
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
 /area/bigredv2/outside/space_port)
 "VI" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "VL" = (
-/obj/effect/decal/cleanable/blood/oil,
+/atom/movable/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "Wd" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "Wk" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/door_control{
 	id = "tcomms";
 	name = "Storm Shutters"
@@ -1916,7 +1916,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Wl" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
 	},
@@ -1926,7 +1926,7 @@
 /area/bigredv2/outside/space_port)
 "Wm" = (
 /obj/machinery/botany,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -1937,7 +1937,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "WF" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "WI" = (
@@ -1948,7 +1948,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "WK" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "Xb" = (
@@ -1957,9 +1957,9 @@
 /area/bigredv2/outside/telecomm)
 "Xe" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/technology_scanner,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/bomb_supply,
+/atom/movable/effect/spawner/random/technology_scanner,
+/atom/movable/effect/spawner/random/tool,
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
 "Xl" = (
@@ -1968,8 +1968,8 @@
 /area/bigredv2/outside/telecomm)
 "Xr" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tech_supply,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tech_supply,
+/atom/movable/effect/spawner/random/tool,
 /obj/machinery/door_control{
 	dir = 4;
 	id = "tcomms";
@@ -1979,12 +1979,12 @@
 /area/bigredv2/outside/telecomm)
 "XD" = (
 /obj/structure/window/reinforced,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "XE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
@@ -1996,7 +1996,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "XU" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Yj" = (
@@ -2021,7 +2021,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "YG" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "YP" = (
@@ -2057,8 +2057,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "ZP" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 

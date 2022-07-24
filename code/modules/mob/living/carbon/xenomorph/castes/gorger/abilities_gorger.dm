@@ -44,7 +44,7 @@
 		if(!silent)
 			to_chat(owner_xeno, span_warning("We're too busy being on fire to do this!"))
 		return FALSE
-	for(var/obj/effect/forcefield/fog in range(1, owner_xeno))
+	for(var/atom/movable/effect/forcefield/fog in range(1, owner_xeno))
 		if(!silent)
 			to_chat(owner_xeno, span_warning("We are too close to the fog."))
 		return FALSE

@@ -110,7 +110,7 @@
 		return FALSE
 	if(use_power && !machine_stat)
 		use_power(7500 / severity)
-	new /obj/effect/overlay/temp/emp_sparks (loc)
+	new /atom/movable/effect/overlay/temp/emp_sparks (loc)
 	return ..()
 
 

@@ -10,7 +10,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "iT" = (
-/obj/effect/landmark/xeno_resin_wall,
+/atom/movable/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "jw" = (
@@ -34,13 +34,13 @@
 "lR" = (
 /obj/structure/rack,
 /obj/item/tool/shovel,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
 "mn" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "oz" = (
@@ -53,8 +53,8 @@
 	},
 /area/lv624/ground/caves/central1)
 "sl" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "ty" = (
@@ -70,21 +70,21 @@
 	},
 /area/lv624/ground/caves/central1)
 "tV" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "vw" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/rock)
 "vH" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "xC" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "yv" = (
@@ -106,14 +106,14 @@
 /area/lv624/ground/caves/central1)
 "Bu" = (
 /obj/structure/rack,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/lv624/ground/caves/central1)
 "Co" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/xeno_resin_door,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Eg" = (
@@ -137,7 +137,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -146,18 +146,18 @@
 /turf/closed/wall,
 /area/lv624/ground/caves/central1)
 "IM" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "Ji" = (
 /turf/closed/mineral,
 /area/lv624/ground/caves/rock)
 "JG" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "LD" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "NC" = (
@@ -167,8 +167,8 @@
 /turf/closed/mineral,
 /area/lv624/ground/caves/central1)
 "SB" = (
-/obj/effect/landmark/lv624/fog_blocker,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/rock)
 "Uf" = (
@@ -186,11 +186,11 @@
 	},
 /area/lv624/ground/caves/central1)
 "Uh" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "Wc" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
 /area/lv624/ground/caves/rock)
 "Xi" = (

@@ -304,7 +304,7 @@
 	var/zoom_turf = null
 
 	///Type of weeds the xeno is standing on, null when not on weeds
-	var/obj/effect/alien/weeds/loc_weeds_type
+	var/obj/alien/weeds/loc_weeds_type
 
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
 	var/tier = XENO_TIER_ONE //This will track their "tier" to restrict/limit evolutions

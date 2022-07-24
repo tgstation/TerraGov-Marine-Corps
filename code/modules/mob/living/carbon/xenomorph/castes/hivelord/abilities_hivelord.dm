@@ -10,7 +10,7 @@
 	plasma_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
-		/obj/effect/alien/resin/sticky,
+		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
 	)
 	///the maximum range of the ability
@@ -310,8 +310,8 @@
 	playsound(target, 'sound/effects/magic.ogg', 25) //Cool SFX
 	playsound(owner, 'sound/effects/magic.ogg', 25) //Cool SFX
 	owner.beam(target, "medbeam", time = 1 SECONDS, maxdistance = 10)
-	new /obj/effect/temp_visual/telekinesis(get_turf(owner))
-	new /obj/effect/temp_visual/telekinesis(get_turf(target))
+	new /atom/movable/effect/temp_visual/telekinesis(get_turf(owner))
+	new /atom/movable/effect/temp_visual/telekinesis(get_turf(target))
 	to_chat(target, span_xenodanger("Our wounds begin to knit and heal rapidly as [owner]'s healing energies infuse us.")) //Let the target know.
 
 	var/mob/living/carbon/xenomorph/patient = target

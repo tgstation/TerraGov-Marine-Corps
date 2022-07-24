@@ -29,7 +29,7 @@
 	.["equipment_data"] = list()
 	.["targets_data"] = list()
 	for(var/X in GLOB.active_laser_targets)
-		var/obj/effect/overlay/temp/laser_target/LT = X
+		var/atom/movable/effect/overlay/temp/laser_target/LT = X
 		var/area/laser_area = get_area(LT)
 		.["targets_data"] += list(list("target_name" = "[LT.name] ([laser_area.name])", "target_tag" = LT.target_id))
 	shuttle_equipments = shuttle.equipments
@@ -84,7 +84,7 @@
 				if(!do_after(L, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return FALSE
 			for(var/X in GLOB.active_laser_targets)
-				var/obj/effect/overlay/temp/laser_target/LT = X
+				var/atom/movable/effect/overlay/temp/laser_target/LT = X
 				if(LT.target_id == targ_id)
 					if(shuttle.mode != SHUTTLE_CALL)
 						to_chat(L, span_warning("Dropship can only fire while in flight."))

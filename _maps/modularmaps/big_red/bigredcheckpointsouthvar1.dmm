@@ -9,12 +9,12 @@
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/se)
 "s" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/se)
 "t" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "C" = (
@@ -31,7 +31,7 @@
 /turf/closed/wall,
 /area/bigredv2/caves/rock)
 "V" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark{
 	},
 /area/bigredv2/outside/se)

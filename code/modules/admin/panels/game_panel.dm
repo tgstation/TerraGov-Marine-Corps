@@ -67,7 +67,7 @@
 		return
 
 	var/static/list/create_object_forms = list(
-	/obj, /obj/structure, /obj/structure/dropship_equipment, /obj/structure/ship_ammo, /obj/machinery, /obj/effect, /obj/item, /obj/item/reagent_containers, /obj/item/clothing, /obj/item/stack, /obj/item, /obj/item/explosive, /obj/item/weapon, /obj/item/weapon/gun, /obj/item/ammo_magazine)
+	/obj, /obj/structure, /obj/structure/dropship_equipment, /obj/structure/ship_ammo, /obj/machinery, /atom/movable/effect, /obj/item, /obj/item/reagent_containers, /obj/item/clothing, /obj/item/stack, /obj/item, /obj/item/explosive, /obj/item/weapon, /obj/item/weapon/gun, /obj/item/ammo_magazine)
 
 	var/path = input("Select the path of the object you wish to create.", "Path", /obj) in create_object_forms
 	var/html_form = create_object_forms[path]

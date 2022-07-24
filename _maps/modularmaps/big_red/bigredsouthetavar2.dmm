@@ -6,18 +6,18 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "d" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "i" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "l" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "M" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "O" = (

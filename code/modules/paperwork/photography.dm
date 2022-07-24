@@ -347,7 +347,7 @@
 		p.set_picture(picture, TRUE, TRUE)
 
 
-/obj/effect/appearance_clone/New(loc, atom/A) //Intentionally not Initialize(), to make sure the clone assumes the intended appearance in time for the camera getFlatIcon.
+/atom/movable/effect/appearance_clone/New(loc, atom/A) //Intentionally not Initialize(), to make sure the clone assumes the intended appearance in time for the camera getFlatIcon.
 	if(istype(A))
 		appearance = A.appearance
 		dir = A.dir
@@ -374,13 +374,13 @@
 			var/turf/newT = locate(cloned_center_x + offset_x, cloned_center_y + offset_y, clone_area.bottom_left_coords[3])
 			if(!(newT in clone_area.reserved_turfs))		//sanity check so we don't overwrite other areas somehow
 				continue
-			atoms += new /obj/effect/appearance_clone(newT, T)
+			atoms += new /atom/movable/effect/appearance_clone(newT, T)
 			if(T.loc.icon_state)
-				atoms += new /obj/effect/appearance_clone(newT, T.loc)
+				atoms += new /atom/movable/effect/appearance_clone(newT, T.loc)
 			for(var/i in T.contents)
 				var/atom/A = i
 				if(!A.invisibility || (see_ghosts && isobserver(A)))
-					atoms += new /obj/effect/appearance_clone(newT, A)
+					atoms += new /atom/movable/effect/appearance_clone(newT, A)
 		skip_normal = TRUE
 		wipe_atoms = TRUE
 		center = locate(cloned_center_x, cloned_center_y, clone_area.bottom_left_coords[3])

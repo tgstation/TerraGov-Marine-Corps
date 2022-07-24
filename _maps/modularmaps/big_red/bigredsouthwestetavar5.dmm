@@ -1,12 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "bm" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south)
 "bT" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/effect/spawner/random/technology_scanner,
+/atom/movable/effect/spawner/random/technology_scanner,
 /obj/item/xenos_claw,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
@@ -16,14 +16,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark/red2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "ci" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "cG" = (
@@ -42,27 +42,27 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "ey" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/ground/jungle/clear,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "eA" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/ai_node,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "eQ" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "eZ" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "fk" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/decal/sandedge/corner2{
+/atom/movable/effect/decal/sandedge/corner2{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/red2{
@@ -70,18 +70,18 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "gE" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "gQ" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/atom/movable/effect/spawner/random/technology_scanner,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "hB" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "hR" = (
@@ -90,8 +90,8 @@
 /turf/open/floor/tile/dark/red2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "hV" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/sandedge{
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/decal/sandedge{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/red2/corner,
@@ -100,11 +100,11 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "iQ" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "ja" = (
@@ -113,15 +113,15 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "jK" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "kg" = (
 /turf/closed/wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "ko" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "kJ" = (
@@ -137,7 +137,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "mN" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "nj" = (
@@ -161,7 +161,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -177,16 +177,16 @@
 /turf/open/floor/tile/dark/red2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "qv" = (
-/obj/effect/decal/cleanable/blood/gibs,
+/atom/movable/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "rR" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "tn" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "tA" = (
@@ -202,13 +202,13 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark/red2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "uf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "un" = (
@@ -224,14 +224,14 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "vR" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "vX" = (
@@ -239,7 +239,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "wF" = (
-/obj/effect/landmark/corpsespawner/scientist,
+/atom/movable/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "xw" = (
@@ -254,7 +254,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "xE" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "xJ" = (
@@ -270,7 +270,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "zn" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -287,11 +287,11 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "zR" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/atom/movable/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "Ai" = (
-/obj/effect/decal/cleanable/blood/oil,
+/atom/movable/effect/decal/cleanable/blood/oil,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Am" = (
@@ -308,13 +308,13 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "AB" = (
-/obj/effect/decal/sandedge/corner2{
+/atom/movable/effect/decal/sandedge/corner2{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Bj" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "By" = (
@@ -342,7 +342,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "FS" = (
-/obj/effect/landmark/start/job/xenomorph,
+/atom/movable/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Gc" = (
@@ -351,8 +351,8 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "GB" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "He" = (
@@ -362,12 +362,12 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Hu" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south)
 "Jn" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "JF" = (
@@ -383,7 +383,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Kq" = (
-/obj/effect/decal/cleanable/blood/xeno,
+/atom/movable/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
@@ -398,7 +398,7 @@
 "LO" = (
 /obj/structure/table,
 /obj/item/alienjar,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
@@ -420,14 +420,14 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Nt" = (
-/obj/effect/landmark/start/job/xenomorph,
+/atom/movable/effect/landmark/start/job/xenomorph,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "NO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "NX" = (
@@ -443,18 +443,18 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Ox" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "PC" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "PD" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "PG" = (
@@ -476,7 +476,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "SI" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/atom/movable/effect/spawner/random/technology_scanner,
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 8
 	},
@@ -494,7 +494,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/south)
 "Th" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "Tp" = (
@@ -510,7 +510,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "TX" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Uk" = (
@@ -541,7 +541,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "WO" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "WV" = (
@@ -559,11 +559,11 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Zp" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "ZH" = (
-/obj/effect/landmark/xeno_resin_wall,
+/atom/movable/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "ZO" = (

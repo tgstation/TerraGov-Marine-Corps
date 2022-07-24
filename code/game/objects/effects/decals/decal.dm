@@ -1,3 +1,3 @@
-/obj/effect/decal
+/atom/movable/effect/decal
 	name = "decal"
 	plane = FLOOR_PLANE

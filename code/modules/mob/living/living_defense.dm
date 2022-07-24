@@ -222,7 +222,7 @@
 /mob/living/proc/screech_act(mob/living/carbon/xenomorph/queen/Q)
 	shake_camera(src, 3 SECONDS, 1)
 
-/mob/living/effect_smoke(obj/effect/particle_effect/smoke/S)
+/mob/living/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CAMO))
@@ -235,7 +235,7 @@
 	LAZYSET(smoke_delays, S.type, world.time + S.minimum_effect_delay)
 	smoke_contact(S)
 
-/mob/living/proc/smoke_contact(obj/effect/particle_effect/smoke/S)
+/mob/living/proc/smoke_contact(atom/movable/effect/particle_effect/smoke/S)
 	var/protection = max(1 - get_permeability_protection() * S.bio_protection, 0)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
 		ExtinguishMob()

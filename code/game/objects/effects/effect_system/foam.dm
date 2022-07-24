@@ -5,7 +5,7 @@
 // Similar to smoke, but spreads out more
 //foam effect
 
-/obj/effect/particle_effect/foam
+/atom/movable/effect/particle_effect/foam
 	name = "foam"
 	icon_state = "greyscalefoam"
 	opacity = FALSE
@@ -23,7 +23,7 @@
 	///flags for the foam, such as RAZOR_FOAM and METAL_FOAM.
 	var/foam_flags = NONE
 
-/obj/effect/particle_effect/foam/Initialize()
+/atom/movable/effect/particle_effect/foam/Initialize()
 	. = ..()
 	create_reagents(1000) //limited by the size of the reagent holder anyway.
 	START_PROCESSING(SSfastprocess, src)
@@ -33,12 +33,12 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/effect/particle_effect/foam/Destroy()
+/atom/movable/effect/particle_effect/foam/Destroy()
 	STOP_PROCESSING(SSfastprocess, src)
 	return ..()
 
 ///Finishes the foam, stopping it from processing and doing whatever it has to do.
-/obj/effect/particle_effect/foam/proc/kill_foam()
+/atom/movable/effect/particle_effect/foam/proc/kill_foam()
 	STOP_PROCESSING(SSfastprocess, src)
 	if(foam_flags & METAL_FOAM)
 		new /obj/structure/foamedmetal(loc)
@@ -53,7 +53,7 @@
 	flick("[icon_state]-disolve", src)
 	QDEL_IN(src, 5)
 
-/obj/effect/particle_effect/foam/process()
+/atom/movable/effect/particle_effect/foam/process()
 	lifetime--
 	if(lifetime < 1)
 		kill_foam()
@@ -79,14 +79,14 @@
 	spread_foam()
 
 ///Spreads the foam in the 4 cardinal directions and gives them the reagents and all.
-/obj/effect/particle_effect/foam/proc/spread_foam()
+/atom/movable/effect/particle_effect/foam/proc/spread_foam()
 	for(var/direction in GLOB.cardinals)
 		var/turf/T = get_step(src, direction)
 		if(!T)
 			continue
 		if(!T.Enter(src))
 			continue
-		var/obj/effect/particle_effect/foam/oldF = locate() in T
+		var/atom/movable/effect/particle_effect/foam/oldF = locate() in T
 		if(oldF)
 			continue
 
@@ -96,7 +96,7 @@
 			reagents.reaction(L, VAPOR, 1/reagent_divisor)
 			lifetime--
 
-		var/obj/effect/particle_effect/foam/F = new type(T)
+		var/atom/movable/effect/particle_effect/foam/F = new type(T)
 		F.spread_amount = spread_amount
 		reagents.copy_to(F, reagents.total_volume)
 		F.color = color
@@ -104,11 +104,11 @@
 
 // foam disolves when heated
 // except metal foams
-/obj/effect/particle_effect/foam/fire_act(exposed_temperature, exposed_volume)
+/atom/movable/effect/particle_effect/foam/fire_act(exposed_temperature, exposed_volume)
 	if(!(foam_flags & METAL_FOAM|RAZOR_FOAM) && prob(max(0, exposed_temperature - 475)))
 		kill_foam()
 
-/obj/effect/particle_effect/foam/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+/atom/movable/effect/particle_effect/foam/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(foam_flags & METAL_FOAM|RAZOR_FOAM)
 		return
@@ -151,7 +151,7 @@
 /datum/effect_system/foam_spread/start()
 	if(spread_amount <= 0)
 		return
-	var/obj/effect/particle_effect/foam/F = new(location)
+	var/atom/movable/effect/particle_effect/foam/F = new(location)
 	var/foamcolor = mix_color_from_reagents(carrying_reagents.reagent_list)
 	carrying_reagents.copy_to(F, carrying_reagents.total_volume/spread_amount)
 	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)

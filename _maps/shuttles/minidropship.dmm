@@ -11,7 +11,7 @@
 /turf/open/floor/mainship_hull,
 /area/shuttle/minidropship)
 "b" = (
-/obj/effect/attach_point/weapon/minidropship,
+/atom/movable/effect/attach_point/weapon/minidropship,
 /turf/closed/wall/mainship/outer/reinforced,
 /area/shuttle/minidropship)
 "h" = (
@@ -200,7 +200,7 @@
 	},
 /area/shuttle/minidropship)
 "Y" = (
-/obj/effect/attach_point/crew_weapon/minidropship,
+/atom/movable/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 

@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aW" = (
 /obj/structure/table,
-/obj/effect/spawner/random/tool,
+/atom/movable/effect/spawner/random/tool,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -16,7 +16,7 @@
 	},
 /area/bigredv2/outside/sw)
 "cA" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/shuttle/drop2/lz2)
 "cO" = (
@@ -54,7 +54,7 @@
 /area/bigredv2/outside/cargo)
 "dU" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -74,7 +74,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "fy" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -84,11 +84,11 @@
 	},
 /area/bigredv2/outside/w)
 "fP" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
 "gf" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
 "gg" = (
@@ -103,7 +103,7 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/sw)
 "hf" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 8
 	},
@@ -136,13 +136,13 @@
 /turf/open/floor/plating/asteroidplating,
 /area/shuttle/drop2/lz2)
 "lu" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
 "lO" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
 "ma" = (
@@ -164,7 +164,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "mH" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
@@ -193,7 +193,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "oW" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "pc" = (
@@ -202,11 +202,11 @@
 	},
 /area/shuttle/drop2/lz2)
 "pl" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "po" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "qM" = (
@@ -220,7 +220,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "rq" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
 "ru" = (
@@ -241,7 +241,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "sJ" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2{
 	dir = 8
 	},
@@ -250,14 +250,14 @@
 	},
 /area/shuttle/drop2/lz2)
 "ta" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
 "tf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "tq" = (
@@ -268,7 +268,7 @@
 /turf/open/space/basic,
 /area/space)
 "tQ" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
 "ub" = (
@@ -281,7 +281,7 @@
 /area/shuttle/drop2/lz2)
 "uh" = (
 /obj/structure/table,
-/obj/effect/spawner/random/technology_scanner,
+/atom/movable/effect/spawner/random/technology_scanner,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -324,7 +324,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/w)
 "xn" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
 	},
@@ -400,7 +400,7 @@
 /turf/open/floor/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "Cm" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
 "CL" = (
@@ -424,14 +424,14 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/shuttle/drop2/lz2)
 "DB" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "DZ" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
 	},
@@ -442,20 +442,20 @@
 	},
 /area/shuttle/drop2/lz2)
 "EK" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "ER" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/west)
 "FR" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "GK" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
@@ -474,7 +474,7 @@
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -496,12 +496,12 @@
 	},
 /area/shuttle/drop2/lz2)
 "Ky" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
 "KW" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
@@ -519,7 +519,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "LK" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning,
 /area/shuttle/drop2/lz2)
 "Mb" = (
@@ -557,7 +557,7 @@
 /area/shuttle/drop2/lz2)
 "ON" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -588,7 +588,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "Px" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 8
 	},
@@ -597,12 +597,12 @@
 /turf/closed/wall/indestructible/mineral,
 /area/space)
 "Qg" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/w)
 "QA" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "QP" = (
@@ -645,13 +645,13 @@
 	},
 /area/shuttle/drop2/lz2)
 "TD" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
 "Ub" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/marking/asteroidwarning,
 /area/shuttle/drop2/lz2)
@@ -669,12 +669,12 @@
 	},
 /area/shuttle/drop2/lz2)
 "UO" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "UP" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "Ve" = (
@@ -690,14 +690,14 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "WT" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
 "XS" = (
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
 	},
@@ -707,12 +707,12 @@
 /turf/closed/wall,
 /area/bigredv2/outside/cargo)
 "Yb" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
 "Yk" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/marking/asteroidwarning,
 /area/shuttle/drop2/lz2)

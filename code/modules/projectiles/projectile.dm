@@ -139,7 +139,7 @@
 	permutated[AM] = TRUE //Don't want to hit them again.
 
 
-/obj/projectile/effect_smoke(obj/effect/particle_effect/smoke/S)
+/obj/projectile/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
@@ -709,7 +709,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /obj/machinery/door/poddoor/railing/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
-/obj/effect/alien/egg/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+/obj/alien/egg/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	return src == proj.original_target
 
 /obj/structure/xeno/trap/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -826,7 +826,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/carbon/do_projectile_hit(obj/projectile/proj)
 	. = ..()
 	if(!(species?.species_flags & NO_BLOOD) && proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, proj.dir, get_blood_color())
+		new /atom/movable/effect/temp_visual/dir_setting/bloodsplatter(loc, proj.dir, get_blood_color())
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)

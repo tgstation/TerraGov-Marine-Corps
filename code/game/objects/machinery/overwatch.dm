@@ -198,7 +198,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>[current_squad.name] Laser Targets:</b><br>"
 					if(length(GLOB.active_laser_targets))
-						for(var/obj/effect/overlay/temp/laser_target/LT in current_squad.squad_laser_targets)
+						for(var/atom/movable/effect/overlay/temp/laser_target/LT in current_squad.squad_laser_targets)
 							if(!istype(LT))
 								continue
 							dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
@@ -435,7 +435,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					dat += "<font color='green'>Ready!</font><br>"
 				dat += "<B>Laser Targets:</b><br>"
 				if(length(GLOB.active_laser_targets))
-					for(var/obj/effect/overlay/temp/laser_target/LT in GLOB.active_laser_targets)
+					for(var/atom/movable/effect/overlay/temp/laser_target/LT in GLOB.active_laser_targets)
 						if(!istype(LT))
 							continue
 						dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(LT)];selected_target=[REF(LT)]'>[LT]</a><br>"
@@ -714,13 +714,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/turf/target = get_turf(A)
 	if(!target)
 		return
-	new /obj/effect/overwatch_light(target)
+	new /atom/movable/effect/overwatch_light(target)
 	use_power(10000)	//Huge light needs big power. Still less than autodocs.
 	TIMER_COOLDOWN_START(src, COOLDOWN_ORBITAL_SPOTLIGHT, SPOTLIGHT_COOLDOWN_DURATION)
 	to_chat(source, span_notice("Orbital spotlight activated. Duration : [SPOTLIGHT_DURATION]"))
 
 //This is an effect to be sure it is properly deleted and it does not interfer with existing lights too much.
-/obj/effect/overwatch_light
+/atom/movable/effect/overwatch_light
 	name = "overwatch beam of light"
 	desc = "You are not supposed to see this. Please report it."
 	icon_state = "" //No sprite
@@ -731,7 +731,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	light_range = 15	//This is a HUGE light.
 	light_power = SQRTWO
 
-/obj/effect/overwatch_light/Initialize()
+/atom/movable/effect/overwatch_light/Initialize()
 	. = ..()
 	set_light(light_range, light_power)
 	playsound(src,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)

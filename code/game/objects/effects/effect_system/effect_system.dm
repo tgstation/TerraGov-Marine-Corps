@@ -54,7 +54,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 /datum/effect_system/Destroy()
 	holder = null
 	return ..()
-	
+
 
 /////////////////////////////////////////////
 // GENERIC STEAM SPREAD SYSTEM
@@ -71,7 +71,7 @@ OPTIONAL: steam.attach(mob)
 steam.start() -- spawns the effect
 */
 /////////////////////////////////////////////
-/obj/effect/particle_effect/steam
+/atom/movable/effect/particle_effect/steam
 	name = "steam"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
@@ -82,7 +82,7 @@ steam.start() -- spawns the effect
 /datum/effect_system/steam_spread/spawn_particle()
 	if(holder)
 		location = get_turf(holder)
-	var/obj/effect/particle_effect/steam/steam = new /obj/effect/particle_effect/steam(location)
+	var/atom/movable/effect/particle_effect/steam/steam = new /atom/movable/effect/particle_effect/steam(location)
 	var/direction
 	if(cardinals)
 		direction = pick(GLOB.cardinals)
@@ -100,7 +100,7 @@ steam.start() -- spawns the effect
 // will always spawn at the items location.
 /////////////////////////////////////////////
 
-/obj/effect/particle_effect/sparks
+/atom/movable/effect/particle_effect/sparks
 	name = "sparks"
 	icon_state = "sparks"
 	anchored = TRUE
@@ -110,7 +110,7 @@ steam.start() -- spawns the effect
 	light_range = 1
 	light_color = COLOR_VERY_SOFT_YELLOW
 
-/obj/effect/particle_effect/sparks/Initialize()
+/atom/movable/effect/particle_effect/sparks/Initialize()
 	. = ..()
 	playsound(src.loc, "sparks", 25, 1)
 	QDEL_IN(src, 10 SECONDS)
@@ -121,7 +121,7 @@ steam.start() -- spawns the effect
 /datum/effect_system/spark_spread/spawn_particle()
 	if(holder)
 		location = get_turf(holder)
-	var/obj/effect/particle_effect/sparks/sparks = new /obj/effect/particle_effect/sparks(location)
+	var/atom/movable/effect/particle_effect/sparks/sparks = new /atom/movable/effect/particle_effect/sparks(location)
 	var/direction
 	if(src.cardinals)
 		direction = pick(GLOB.cardinals)
@@ -165,7 +165,7 @@ steam.start() -- spawns the effect
 /// and don't call start() in a loop that will be repeated otherwise it'll get spammed!
 /////////////////////////////////////////////
 
-/obj/effect/particle_effect/ion_trails
+/atom/movable/effect/particle_effect/ion_trails
 	name = "ion trails"
 	icon_state = "ion_trails"
 	anchored = TRUE
@@ -174,7 +174,7 @@ steam.start() -- spawns the effect
 	var/turf/T = get_turf(holder)
 	if(T != oldposition)
 		if(isspaceturf(T))
-			var/obj/effect/particle_effect/ion_trails/I = new /obj/effect/particle_effect/ion_trails(oldposition)
+			var/atom/movable/effect/particle_effect/ion_trails/I = new /atom/movable/effect/particle_effect/ion_trails(oldposition)
 			oldposition = T
 			I.setDir(holder.dir)
 			flick("ion_fade", I)
@@ -190,7 +190,7 @@ steam.start() -- spawns the effect
 
 /datum/effect_system/trail/steam_trail_follow/spawn_particle()
 	if(number < 3)
-		var/obj/effect/particle_effect/steam/I = new /obj/effect/particle_effect/steam(oldposition)
+		var/atom/movable/effect/particle_effect/steam/I = new /atom/movable/effect/particle_effect/steam(oldposition)
 		number++
 		oldposition = get_turf(holder)
 		I.setDir(holder.dir)
@@ -198,6 +198,6 @@ steam.start() -- spawns the effect
 
 	addtimer(CALLBACK(src, .proc/start, TRUE), 0.2 SECONDS)
 
-/datum/effect_system/trail/steam_trail_follow/proc/decay(obj/effect/particle_effect/steam/I)
+/datum/effect_system/trail/steam_trail_follow/proc/decay(atom/movable/effect/particle_effect/steam/I)
 	qdel(I)
 	number--

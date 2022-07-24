@@ -1,4 +1,4 @@
-/obj/effect/portal
+/atom/movable/effect/portal
 	name = "portal"
 	desc = "Looks unstable."
 	icon = 'icons/obj/stationobjs.dmi'

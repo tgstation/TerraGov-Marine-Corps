@@ -40,7 +40,7 @@
 
 /obj/structure/mineral_door/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
-	if(istype(mover, /obj/effect/beam))
+	if(istype(mover, /atom/movable/effect/beam))
 		return !opacity
 
 /obj/structure/mineral_door/proc/TryToSwitchState(atom/user)

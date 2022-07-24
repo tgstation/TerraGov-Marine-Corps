@@ -170,7 +170,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	new /obj/effect/decal/cleanable/ash(src.loc)
+	new /atom/movable/effect/decal/cleanable/ash(src.loc)
 	src.visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
 	playsound(src, 'sound/effects/snap.ogg', 25, 1)
 	qdel(src)
@@ -187,7 +187,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(2, 0, src)
 	s.start()
-	new /obj/effect/decal/cleanable/ash(src.loc)
+	new /atom/movable/effect/decal/cleanable/ash(src.loc)
 	visible_message(span_warning(" The [src.name] explodes!"),span_warning(" You hear a snap!"))
 	playsound(src, 'sound/effects/snap.ogg', 25, 1)
 	qdel(src)
@@ -236,7 +236,7 @@
 		src.empty = 0
 
 
-		var/obj/effect/decal/D = new/obj/effect/decal/(get_turf(src))
+		var/atom/movable/effect/decal/D = new/atom/movable/effect/decal/(get_turf(src))
 		D.name = "water"
 		D.icon = 'icons/obj/items/chemistry.dmi'
 		D.icon_state = "chempuff"

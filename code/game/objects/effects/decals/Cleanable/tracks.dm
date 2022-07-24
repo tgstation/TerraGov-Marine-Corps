@@ -29,7 +29,7 @@
 		src.wet=_wet
 
 // Footprints, tire trails...
-/obj/effect/decal/cleanable/blood/tracks
+/atom/movable/effect/decal/cleanable/blood/tracks
 	amount = 0
 	random_icon_states = null
 	var/dirs=0
@@ -141,14 +141,14 @@
 			overlays += I
 		updatedtracks=0 // Clear our memory of updated tracks.
 
-/obj/effect/decal/cleanable/blood/tracks/footprints
+/atom/movable/effect/decal/cleanable/blood/tracks/footprints
 	name = "wet footprints"
 	desc = "Whoops..."
 	coming_state = "human1"
 	going_state  = "human2"
 	amount = 0
 
-/obj/effect/decal/cleanable/blood/tracks/wheels
+/atom/movable/effect/decal/cleanable/blood/tracks/wheels
 	name = "wet tracks"
 	desc = "Whoops..."
 	coming_state = "wheels"

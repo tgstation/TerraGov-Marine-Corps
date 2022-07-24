@@ -31,7 +31,7 @@
 /turf/closed/wall/indestructible/mineral,
 /area/space)
 "o" = (
-/obj/effect/landmark/xeno_resin_wall,
+/atom/movable/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "q" = (
@@ -39,18 +39,18 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "w" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/northeast)
 "x" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/rock)
 "C" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "D" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "I" = (
@@ -60,26 +60,26 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "L" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "P" = (
 /turf/open/space/basic,
 /area/space)
 "R" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/ai_node,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "S" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
 "T" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 "U" = (
-/obj/effect/landmark/lv624/fog_blocker,
+/atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "V" = (
@@ -87,8 +87,8 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "Z" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
 

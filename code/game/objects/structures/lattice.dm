@@ -82,7 +82,7 @@
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/open))
 		var/turf/open/O = T
-		var/obj/effect/river_overlay/R = locate() in T // remove any river overlays
+		var/atom/movable/effect/river_overlay/R = locate() in T // remove any river overlays
 		if(R)
 			qdel(R)
 		O.has_catwalk = TRUE

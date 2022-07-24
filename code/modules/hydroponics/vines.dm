@@ -1,6 +1,6 @@
 
 // SPACE VINES (Note that this code is very similar to Biomass code)
-/obj/effect/plantsegment
+/atom/movable/effect/plantsegment
 	name = "space vines"
 	desc = "An extremely expansionistic species of vine."
 	icon = 'icons/effects/spacevines.dmi'
@@ -20,16 +20,16 @@
 
 	// Life vars/
 	var/energy = 0
-	var/obj/effect/plant_controller/master = null
+	var/atom/movable/effect/plant_controller/master = null
 	var/datum/seed/seed
 
-/obj/effect/plantsegment/Destroy()
+/atom/movable/effect/plantsegment/Destroy()
 	if(master)
 		master.vines -= src
 		master.growth_queue -= src
 	return ..()
 
-/obj/effect/plantsegment/attackby(obj/item/I, mob/user, params)
+/atom/movable/effect/plantsegment/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(iswelder(I))
@@ -56,7 +56,7 @@
 		manual_unbuckle(user)
 
 
-/obj/effect/plantsegment/attack_hand(mob/living/user)
+/atom/movable/effect/plantsegment/attack_hand(mob/living/user)
 	.  = ..()
 	if(.)
 		return
@@ -70,7 +70,7 @@
 	manual_unbuckle(user)
 
 
-/obj/effect/plantsegment/proc/manual_unbuckle(mob/user)
+/atom/movable/effect/plantsegment/proc/manual_unbuckle(mob/user)
 	if(!LAZYLEN(buckled_mobs))
 		return FALSE
 	if(!prob(seed ? min(max(0,100 - seed.potency),100) : 50))
@@ -97,7 +97,7 @@
 	return TRUE
 
 
-/obj/effect/plantsegment/proc/grow()
+/atom/movable/effect/plantsegment/proc/grow()
 
 	if(!energy)
 		src.icon_state = pick("Med1", "Med2", "Med3")
@@ -114,7 +114,7 @@
 		src.icon_state = pick("Hvy1", "Hvy2", "Hvy3")
 		energy = 2
 
-/obj/effect/plantsegment/proc/entangle_mob()
+/atom/movable/effect/plantsegment/proc/entangle_mob()
 	if(limited_growth)
 		return
 	if(!prob(seed ? seed.potency : 25))
@@ -157,7 +157,7 @@
 					victim.reagents.add_reagent(rid, injecting)
 
 
-/obj/effect/plantsegment/proc/update()
+/atom/movable/effect/plantsegment/proc/update()
 	if(!seed) return
 
 	// Update bioluminescence.
@@ -189,18 +189,18 @@
 				flower_overlay.color = seed.flower_colour
 			overlays += flower_overlay
 
-/obj/effect/plantsegment/proc/spread()
+/atom/movable/effect/plantsegment/proc/spread()
 	var/direction = pick(GLOB.cardinals)
 	var/step = get_step(src,direction)
 	if(istype(step,/turf/open/floor))
 		var/turf/open/floor/F = step
-		if(!locate(/obj/effect/plantsegment,F))
+		if(!locate(/atom/movable/effect/plantsegment,F))
 			if(F.Enter(src))
 				if(master)
 					master.spawn_piece( F )
 
 // Explosion damage.
-/obj/effect/plantsegment/ex_act(severity)
+/atom/movable/effect/plantsegment/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			die()
@@ -213,15 +213,15 @@
 
 
 // Hotspots kill vines.
-/obj/effect/plantsegment/fire_act(null, temp, volume)
+/atom/movable/effect/plantsegment/fire_act(null, temp, volume)
 	qdel(src)
 
-/obj/effect/plantsegment/proc/die()
+/atom/movable/effect/plantsegment/proc/die()
 	if(seed && harvest && rand(5))
 		seed.harvest(src,1)
 		qdel(src)
 
-/obj/effect/plantsegment/proc/life()
+/atom/movable/effect/plantsegment/proc/life()
 
 	if(!seed)
 		return
@@ -245,15 +245,15 @@
 		return
 
 
-/obj/effect/plantsegment/flamer_fire_act(burnlevel)
+/atom/movable/effect/plantsegment/flamer_fire_act(burnlevel)
 	qdel(src)
 
-/obj/effect/plant_controller
+/atom/movable/effect/plant_controller
 
 	//What this does is that instead of having the grow minimum of 1, required to start growing, the minimum will be 0,
 	//meaning if you get the spacevines' size to something less than 20 plots, it won't grow anymore.
 
-	var/list/obj/effect/plantsegment/vines = list()
+	var/list/atom/movable/effect/plantsegment/vines = list()
 	var/list/growth_queue = list()
 	var/reached_collapse_size
 	var/reached_slowdown_size
@@ -263,12 +263,12 @@
 	var/slowdown_limit = 30
 	var/limited_growth = 0
 
-/obj/effect/plant_controller/creeper
+/atom/movable/effect/plant_controller/creeper
 	collapse_limit = 6
 	slowdown_limit = 3
 	limited_growth = 1
 
-/obj/effect/plant_controller/Initialize()
+/atom/movable/effect/plant_controller/Initialize()
 	. = ..()
 
 	if(!istype(loc,/turf/open/floor))
@@ -278,12 +278,12 @@
 
 	START_PROCESSING(SSobj, src)
 
-/obj/effect/plant_controller/Destroy()
+/atom/movable/effect/plant_controller/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/plant_controller/proc/spawn_piece(turf/location)
-	var/obj/effect/plantsegment/SV = new(location)
+/atom/movable/effect/plant_controller/proc/spawn_piece(turf/location)
+	var/atom/movable/effect/plantsegment/SV = new(location)
 	SV.limited_growth = src.limited_growth
 	growth_queue += SV
 	vines += SV
@@ -293,7 +293,7 @@
 		SV.name = "[seed.seed_name] vines"
 		SV.update()
 
-/obj/effect/plant_controller/process()
+/atom/movable/effect/plant_controller/process()
 
 	// Space vines exterminated. Remove the controller
 	if(!vines)
@@ -327,8 +327,8 @@
 	// Update as many pieces of vine as we're allowed to.
 	// Append updated vines to the end of the growth queue.
 	var/i = 0
-	var/list/obj/effect/plantsegment/queue_end = list()
-	for(var/obj/effect/plantsegment/SV in growth_queue)
+	var/list/atom/movable/effect/plantsegment/queue_end = list()
+	for(var/atom/movable/effect/plantsegment/SV in growth_queue)
 		i++
 		queue_end += SV
 		growth_queue -= SV

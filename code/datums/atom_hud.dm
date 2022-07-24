@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT_TYPED(huds, /datum/atom_hud, list(
 	if(!A || (A in hudatoms))
 		return FALSE
 	hudatoms |= A
-	if(istype(A, /obj/effect/temp_visual))
+	if(istype(A, /atom/movable/effect/temp_visual))
 		RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/remove_from_hud)
 	for(var/u in hudusers)
 		var/mob/M = u

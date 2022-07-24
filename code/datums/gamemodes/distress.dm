@@ -34,7 +34,7 @@
 
 	for(var/i in GLOB.xeno_turret_turfs)
 		new /obj/structure/xeno/xeno_turret(i)
-	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
+	for(var/atom/movable/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob(COCOONED_DEATH)
 
 

@@ -38,7 +38,7 @@
 	///Fire radius, for incendiary weapons
 	var/fire_range = 0
 	///Type of CAS dot indicator effect to be used
-	var/cas_effect = /obj/effect/overlay/blinking_laser
+	var/cas_effect = /atom/movable/effect/overlay/blinking_laser
 	///CAS impact prediction type to use. Explosive, incendiary, etc
 	var/prediction_type = CAS_AMMO_HARMLESS
 
@@ -222,7 +222,7 @@
 	///Width of the square we are attacking, so you can make rectangular attacks later
 	var/attack_width = 3
 	ammo_type = CAS_30MM
-	cas_effect = /obj/effect/overlay/blinking_laser/heavygun
+	cas_effect = /atom/movable/effect/overlay/blinking_laser/heavygun
 
 /obj/structure/ship_ammo/heavygun/examine(mob/user)
 	. = ..()
@@ -261,8 +261,8 @@
 		strafed = strafelist[1]
 		strafelist -= strafed
 		strafed.ex_act(EXPLODE_LIGHT)
-		new /obj/effect/particle_effect/expl_particles(strafed)
-		new /obj/effect/temp_visual/heavyimpact(strafed)
+		new /atom/movable/effect/particle_effect/expl_particles(strafed)
+		new /atom/movable/effect/temp_visual/heavyimpact(strafed)
 		for(var/atom/movable/AM AS in strafed)
 			AM.ex_act(EXPLODE_LIGHT)
 
@@ -334,7 +334,7 @@
 	///The length of the beam that will come out of when we fire do both ends xxxoxxx where o is where you click
 	var/laze_radius = 4
 	ammo_type = CAS_LASER_BATTERY
-	cas_effect = /obj/effect/overlay/blinking_laser/laser
+	cas_effect = /atom/movable/effect/overlay/blinking_laser/laser
 
 /obj/structure/ship_ammo/laser_battery/examine(mob/user)
 	. = ..()
@@ -411,7 +411,7 @@
 	heavy_explosion_range = 4
 	light_explosion_range = 7
 	prediction_type = CAS_AMMO_EXPLOSIVE
-	cas_effect = /obj/effect/overlay/blinking_laser/widowmaker
+	cas_effect = /atom/movable/effect/overlay/blinking_laser/widowmaker
 
 /obj/structure/ship_ammo/rocket/widowmaker/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
@@ -429,7 +429,7 @@
 	light_explosion_range = 7
 	fire_range = 7
 	prediction_type = CAS_AMMO_INCENDIARY
-	cas_effect = /obj/effect/overlay/blinking_laser/banshee
+	cas_effect = /atom/movable/effect/overlay/blinking_laser/banshee
 
 /obj/structure/ship_ammo/rocket/banshee/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
@@ -458,7 +458,7 @@
 	icon_state = "fatty"
 	ammo_id = "f"
 	point_cost = 150
-	cas_effect = /obj/effect/overlay/blinking_laser/fatty
+	cas_effect = /atom/movable/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
@@ -478,7 +478,7 @@
 	light_explosion_range = 4
 	fire_range = 5
 	prediction_type = CAS_AMMO_INCENDIARY
-	cas_effect = /obj/effect/overlay/blinking_laser/incendiary
+	cas_effect = /atom/movable/effect/overlay/blinking_laser/incendiary
 
 /obj/structure/ship_ammo/rocket/napalm/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
@@ -509,7 +509,7 @@
 	heavy_explosion_range = 2
 	light_explosion_range = 4
 	prediction_type = CAS_AMMO_EXPLOSIVE
-	cas_effect = /obj/effect/overlay/blinking_laser/minirocket
+	cas_effect = /atom/movable/effect/overlay/blinking_laser/minirocket
 
 /obj/structure/ship_ammo/minirocket/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
@@ -543,7 +543,7 @@
 	light_explosion_range = 3 //Slightly weaker than standard minirockets
 	fire_range = 3 //Fire range should be the same as the explosion range. Explosion should leave fire, not vice versa
 	prediction_type = CAS_AMMO_INCENDIARY
-	cas_effect = /obj/effect/overlay/blinking_laser/incendiary
+	cas_effect = /atom/movable/effect/overlay/blinking_laser/incendiary
 
 /obj/structure/ship_ammo/minirocket/incendiary/detonate_on(turf/impact, attackdir = NORTH)
 	. = ..()
@@ -554,7 +554,7 @@
 	desc = "A pack of laser guided screening smoke mini rockets."
 	icon_state = "minirocket_smoke"
 	point_cost = 25
-	cas_effect = /obj/effect/overlay/blinking_laser/smoke
+	cas_effect = /atom/movable/effect/overlay/blinking_laser/smoke
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
 	light_explosion_range = 2
@@ -576,7 +576,7 @@
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
 	light_explosion_range = 2
-	cas_effect = /obj/effect/overlay/blinking_laser/tfoot
+	cas_effect = /atom/movable/effect/overlay/blinking_laser/tfoot
 
 /obj/structure/ship_ammo/minirocket/tangle/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(2)
@@ -593,7 +593,7 @@
 	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy."
 	icon_state = "minirocket_ilm"
 	point_cost = 25 // Not a real rocket, so its cheap
-	cas_effect = /obj/effect/overlay/blinking_laser/flare
+	cas_effect = /atom/movable/effect/overlay/blinking_laser/flare
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
 	light_explosion_range = 0
@@ -610,9 +610,9 @@
 		QDEL_IN(src, travelling_time) //deleted after last minirocket has fired and impacted the ground.
 
 /obj/structure/ship_ammo/minirocket/illumination/proc/drop_cas_flare(turf/impact)
-	new /obj/effect/cas_flare(impact)
+	new /atom/movable/effect/cas_flare(impact)
 
-/obj/effect/cas_flare
+/atom/movable/effect/cas_flare
 	name = "illumination flare"
 	desc = "Report this if you actually see this FUCK"
 	icon_state = "" //No sprite
@@ -623,7 +623,7 @@
 	light_range = 12
 	light_power = 8 //Magnesium/sodium fires (White star) really are bright
 
-/obj/effect/cas_flare/Initialize()
+/atom/movable/effect/cas_flare/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
 	set_light(light_range, light_power)

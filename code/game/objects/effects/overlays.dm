@@ -1,16 +1,16 @@
-/obj/effect/overlay
+/atom/movable/effect/overlay
 	name = "overlay"
 
-/obj/effect/overlay/beam//Not actually a projectile, just an effect.
+/atom/movable/effect/overlay/beam//Not actually a projectile, just an effect.
 	name="beam"
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
 
-/obj/effect/overlay/beam/Initialize()
+/atom/movable/effect/overlay/beam/Initialize()
 	. = ..()
 	QDEL_IN(src, 1 SECONDS)
 
-/obj/effect/overlay/palmtree_r
+/atom/movable/effect/overlay/palmtree_r
 	name = "Palm tree"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm1"
@@ -18,7 +18,7 @@
 	layer = FLY_LAYER
 	anchored = TRUE
 
-/obj/effect/overlay/palmtree_l
+/atom/movable/effect/overlay/palmtree_l
 	name = "Palm tree"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "palm2"
@@ -26,24 +26,24 @@
 	layer = FLY_LAYER
 	anchored = TRUE
 
-/obj/effect/overlay/coconut
+/atom/movable/effect/overlay/coconut
 	name = "Coconuts"
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "coconuts"
 
-/obj/effect/overlay/danger
+/atom/movable/effect/overlay/danger
 	name = "Danger"
 	icon = 'icons/obj/items/grenade.dmi'
 	icon_state = "danger"
 	layer = ABOVE_FLY_LAYER
 
-/obj/effect/overlay/sparks
+/atom/movable/effect/overlay/sparks
 	name = "Sparks"
 	layer = ABOVE_FLY_LAYER
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "electricity"
 
-/obj/effect/overlay/temp
+/atom/movable/effect/overlay/temp
 	anchored = TRUE
 	layer = ABOVE_FLY_LAYER //above mobs
 	mouse_opacity = 0 //can't click to examine it
@@ -52,7 +52,7 @@
 
 //Lase dots
 
-/obj/effect/overlay/blinking_laser //Used to indicate incoming CAS
+/atom/movable/effect/overlay/blinking_laser //Used to indicate incoming CAS
 	name = "blinking laser"
 	anchored = TRUE
 	mouse_opacity = 0
@@ -63,60 +63,60 @@
 //CAS:
 
 //Minirockets
-/obj/effect/overlay/blinking_laser/tfoot
+/atom/movable/effect/overlay/blinking_laser/tfoot
 	icon_state = "tanglefoot_target"
 
-/obj/effect/overlay/blinking_laser/smoke
+/atom/movable/effect/overlay/blinking_laser/smoke
 	icon_state = "smoke_target"
 
-/obj/effect/overlay/blinking_laser/flare
+/atom/movable/effect/overlay/blinking_laser/flare
 	icon_state = "flare_target"
 
-/obj/effect/overlay/blinking_laser/minirocket
+/atom/movable/effect/overlay/blinking_laser/minirocket
 	icon_state = "minirocket_target"
 
-/obj/effect/overlay/blinking_laser/incendiary
+/atom/movable/effect/overlay/blinking_laser/incendiary
 	icon_state = "incendiary_target"
 
 //Directional
-/obj/effect/overlay/blinking_laser/heavygun
+/atom/movable/effect/overlay/blinking_laser/heavygun
 	icon_state = "gau_target"
 
-/obj/effect/overlay/blinking_laser/laser
+/atom/movable/effect/overlay/blinking_laser/laser
 	icon_state = "laser_beam_target"
 
 //Missiles
-/obj/effect/overlay/blinking_laser/widowmaker
+/atom/movable/effect/overlay/blinking_laser/widowmaker
 	icon_state = "widowmaker_target"
 
-/obj/effect/overlay/blinking_laser/banshee
+/atom/movable/effect/overlay/blinking_laser/banshee
 	icon_state = "banshee_target"
 
-/obj/effect/overlay/blinking_laser/keeper
+/atom/movable/effect/overlay/blinking_laser/keeper
 	icon_state = "keeper_target"
 
-/obj/effect/overlay/blinking_laser/fatty
+/atom/movable/effect/overlay/blinking_laser/fatty
 	icon_state = "fatty_target"
 
-/obj/effect/overlay/blinking_laser/napalm
+/atom/movable/effect/overlay/blinking_laser/napalm
 	icon_state = "napalm_target"
 
 //Marine-only visuals. Prediction HUD, etc. Does not show without marine headset
-/obj/effect/overlay/blinking_laser/marine
+/atom/movable/effect/overlay/blinking_laser/marine
 	name = "prediction matrix"
 	icon = 'icons/effects/lases.dmi'
 	icon_state = "nothing"
 	var/icon_state_on = "nothing"
 	hud_possible = list(SQUAD_HUD_TERRAGOV)
 
-/obj/effect/overlay/blinking_laser/marine/Initialize(mapload)
+/atom/movable/effect/overlay/blinking_laser/marine/Initialize(mapload)
 	. = ..()
 	prepare_huds()
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[DATA_HUD_SQUAD_TERRAGOV]
 	squad_hud.add_to_hud(src)
 	set_visuals()
 
-/obj/effect/overlay/blinking_laser/marine/proc/set_visuals()
+/atom/movable/effect/overlay/blinking_laser/marine/proc/set_visuals()
 	var/image/new_hud_list = hud_list[SQUAD_HUD_TERRAGOV]
 	if(!new_hud_list)
 		return
@@ -126,20 +126,20 @@
 	hud_list[SQUAD_HUD_TERRAGOV] = new_hud_list
 
 //Prediction lines. Those horizontal blue lines you see when CAS fires something
-/obj/effect/overlay/blinking_laser/marine/lines
+/atom/movable/effect/overlay/blinking_laser/marine/lines
 	layer = WALL_OBJ_LAYER //Above walls/items, not above mobs
 	icon_state_on = "middle"
 
-/obj/effect/overlay/blinking_laser/marine/lines/Initialize()
+/atom/movable/effect/overlay/blinking_laser/marine/lines/Initialize()
 	. = ..()
 	dir = pick(CARDINAL_DIRS) //Randomises type, for variation
 
-/obj/effect/overlay/temp/Initialize(mapload, effect_duration)
+/atom/movable/effect/overlay/temp/Initialize(mapload, effect_duration)
 	. = ..()
 	flick(icon_state, src)
 	QDEL_IN(src, effect_duration ? effect_duration : src.effect_duration)
 
-/obj/effect/overlay/temp/point
+/atom/movable/effect/overlay/temp/point
 	name = "arrow"
 	desc = "It's an arrow hanging in mid-air. There may be a wizard about."
 	icon = 'icons/mob/screen/generic.dmi'
@@ -147,12 +147,12 @@
 	anchored = TRUE
 	effect_duration = 25
 
-/obj/effect/overlay/temp/point/big
+/atom/movable/effect/overlay/temp/point/big
 	icon_state = "big_arrow"
 	effect_duration = 40
 
 //Special laser for coordinates, not for CAS
-/obj/effect/overlay/temp/laser_coordinate
+/atom/movable/effect/overlay/temp/laser_coordinate
 	name = "laser"
 	anchored = TRUE
 	mouse_opacity = 1
@@ -161,13 +161,13 @@
 	effect_duration = 600
 	var/obj/item/binoculars/tactical/source_binoc
 
-/obj/effect/overlay/temp/laser_coordinate/Destroy()
+/atom/movable/effect/overlay/temp/laser_coordinate/Destroy()
 	if(source_binoc)
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 		source_binoc = null
 	return ..()
 
-/obj/effect/overlay/temp/laser_target
+/atom/movable/effect/overlay/temp/laser_target
 	name = "laser"
 	anchored = TRUE
 	mouse_opacity = 1
@@ -179,7 +179,7 @@
 	var/obj/machinery/camera/laser_cam/linked_cam
 	var/datum/squad/squad
 
-/obj/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
+/atom/movable/effect/overlay/temp/laser_target/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	if(named)
 		name = "[named] laser"
@@ -188,7 +188,7 @@
 	if(squad)
 		squad.squad_laser_targets += src
 
-/obj/effect/overlay/temp/laser_target/Destroy()
+/atom/movable/effect/overlay/temp/laser_target/Destroy()
 	if(squad)
 		squad.squad_laser_targets -= src
 		squad = null
@@ -201,45 +201,45 @@
 		linked_cam = null
 	return ..()
 
-/obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
+/atom/movable/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
 	return
 
-/obj/effect/overlay/temp/laser_target/examine(user)
+/atom/movable/effect/overlay/temp/laser_target/examine(user)
 	. = ..()
 	if(ishuman(user))
 		. += span_danger("It's a laser to designate artillery targets, get away from it!")
 
-/obj/effect/overlay/temp/laser_target/cas
+/atom/movable/effect/overlay/temp/laser_target/cas
 	icon_state = "laser_target_coordinate"
 
-/obj/effect/overlay/temp/laser_target/cas/Initialize(mapload, effect_duration, named, assigned_squad = null)
+/atom/movable/effect/overlay/temp/laser_target/cas/Initialize(mapload, effect_duration, named, assigned_squad = null)
 	. = ..()
 	linked_cam = new(src, name)
 	GLOB.active_cas_targets += src
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAS_LASER_CREATED, src)
 
-/obj/effect/overlay/temp/laser_target/cas/Destroy()
+/atom/movable/effect/overlay/temp/laser_target/cas/Destroy()
 	GLOB.active_cas_targets -= src
 	return ..()
 
-/obj/effect/overlay/temp/laser_target/cas/examine(user)
+/atom/movable/effect/overlay/temp/laser_target/cas/examine(user)
 	. = ..()
 	if(ishuman(user))
 		. += span_danger("It's a laser to designate CAS targets, get away from it!")
 
-/obj/effect/overlay/temp/laser_target/OB
+/atom/movable/effect/overlay/temp/laser_target/OB
 	icon_state = "laser_target2"
 
-/obj/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
+/atom/movable/effect/overlay/temp/laser_target/OB/Initialize(mapload, effect_duration, named, assigned_squad)
 	. = ..()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OB_LASER_CREATED, src)
 	GLOB.active_laser_targets += src
 
-/obj/effect/overlay/temp/laser_target/OB/Destroy()
+/atom/movable/effect/overlay/temp/laser_target/OB/Destroy()
 	GLOB.active_laser_targets -= src
 	return ..()
 
-/obj/effect/overlay/temp/blinking_laser //not used for CAS anymore but some admin buttons still use it
+/atom/movable/effect/overlay/temp/blinking_laser //not used for CAS anymore but some admin buttons still use it
 	name = "blinking laser"
 	anchored = TRUE
 	effect_duration = 10
@@ -248,14 +248,14 @@
 	icon_state = "laser_target3"
 
 
-/obj/effect/overlay/temp/sniper_laser
+/atom/movable/effect/overlay/temp/sniper_laser
 	name = "laser"
 	mouse_opacity = 0
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "sniper_laser"
 
 
-/obj/effect/overlay/temp/emp_sparks
+/atom/movable/effect/overlay/temp/emp_sparks
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "empdisable"
 	name = "emp sparks"
@@ -265,14 +265,14 @@
 		setDir(pick(GLOB.cardinals))
 		..()
 
-/obj/effect/overlay/temp/emp_pulse
+/atom/movable/effect/overlay/temp/emp_pulse
 	name = "emp pulse"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "emppulse"
 	effect_duration = 20
 
 
-/obj/effect/overlay/temp/tank_laser
+/atom/movable/effect/overlay/temp/tank_laser
 	name = "tanklaser"
 	anchored = TRUE
 	mouse_opacity = 0
@@ -284,30 +284,30 @@
 
 //gib animation
 
-/obj/effect/overlay/temp/gib_animation
+/atom/movable/effect/overlay/temp/gib_animation
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 14
 
-/obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
+/atom/movable/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
 
-/obj/effect/overlay/temp/gib_animation/ex_act(severity)
+/atom/movable/effect/overlay/temp/gib_animation/ex_act(severity)
 	return
 
 
-/obj/effect/overlay/temp/gib_animation/animal
+/atom/movable/effect/overlay/temp/gib_animation/animal
 	icon = 'icons/mob/animal.dmi'
 	effect_duration = 12
 
 
-/obj/effect/overlay/temp/gib_animation/xeno
+/atom/movable/effect/overlay/temp/gib_animation/xeno
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	effect_duration = 10
 
-/obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, effect_duration, mob/source_mob, gib_icon, new_icon)
+/atom/movable/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, effect_duration, mob/source_mob, gib_icon, new_icon)
 	. = ..()
 	icon = new_icon
 
@@ -315,18 +315,18 @@
 
 //dust animation
 
-/obj/effect/overlay/temp/dust_animation
+/atom/movable/effect/overlay/temp/dust_animation
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 12
 
-/obj/effect/overlay/temp/dust_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
+/atom/movable/effect/overlay/temp/dust_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
 
 ///Lighting overlay for the Light overlay component
-/obj/effect/overlay/light_visible
+/atom/movable/effect/overlay/light_visible
 	name = ""
 	icon = 'icons/effects/light_overlays/light_32.dmi'
 	icon_state = "light"
@@ -337,10 +337,10 @@
 	alpha = 0
 	vis_flags = NONE
 	blocks_emissive = NONE
-	
-/obj/effect/overlay/temp/timestop_effect
+
+/atom/movable/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "time"
 	pixel_x = -60
 	pixel_y = -50
-	alpha = 70	
+	alpha = 70

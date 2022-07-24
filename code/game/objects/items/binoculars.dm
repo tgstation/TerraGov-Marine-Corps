@@ -30,7 +30,7 @@
 	desc = "A pair of binoculars, with a laser targeting function. Alt+Click or unique action to toggle mode. Ctrl+Click when using to target something. Shift+Click to get coordinates. Ctrl+Shift+Click to fire OB when lasing in OB mode"
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
-	var/obj/effect/overlay/temp/laser_target/laser
+	var/atom/movable/effect/overlay/temp/laser_target/laser
 	var/target_acquisition_delay = 100 //10 seconds
 	var/mode = 0  //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment, 4 for range finding and mortar targeting.
 	var/changable = TRUE //If set to FALSE, you can't toggle the mode between CAS and coordinate finding
@@ -216,7 +216,7 @@
 	switch(mode)
 		if(MODE_CAS)
 			to_chat(user, span_notice("TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE."))
-			var/obj/effect/overlay/temp/laser_target/cas/CS = new (TU, 0, laz_name, S)
+			var/atom/movable/effect/overlay/temp/laser_target/cas/CS = new (TU, 0, laz_name, S)
 			laser = CS
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 			while(laser)
@@ -239,7 +239,7 @@
 			else if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
 			else
-				var/obj/effect/overlay/temp/laser_target/RGL = new (TU, 0, laz_name, S)
+				var/atom/movable/effect/overlay/temp/laser_target/RGL = new (TU, 0, laz_name, S)
 				laser = RGL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
@@ -256,7 +256,7 @@
 			if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] [span_warning("No target detected!")]")
 			else
-				var/obj/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
+				var/atom/movable/effect/overlay/temp/laser_target/OB/OBL = new (TU, 0, laz_name, S)
 				laser = OBL
 				playsound(src, 'sound/effects/binoctarget.ogg', 35)
 				if(!do_after(user, 15 SECONDS, TRUE, user, BUSY_ICON_GENERIC))

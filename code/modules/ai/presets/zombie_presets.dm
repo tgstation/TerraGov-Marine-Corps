@@ -25,10 +25,10 @@
 /mob/living/carbon/human/species/zombie/ai/patrol/strong
 	race = "Strong zombie"
 
-/obj/effect/zombie_basic_pack
+/atom/movable/effect/zombie_basic_pack
 	name = "Template for 6 basic zombies, plus a leader"
 
-/obj/effect/zombie_basic_pack/Initialize()
+/atom/movable/effect/zombie_basic_pack/Initialize()
 	. = ..()
 	var/leader = new /mob/living/carbon/human/species/zombie/ai/patrol(loc)
 	for(var/i in 1 to 6)

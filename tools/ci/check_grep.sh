@@ -128,7 +128,7 @@ if grep -ni 'centcomm' code/**/*.dm; then
     echo "Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
     st=1
 fi;
-if grep -ni '/obj/effect/alien/weeds/node' _maps/**/*.dmm; then
+if grep -ni '/obj/alien/weeds/node' _maps/**/*.dmm; then
     echo "Do not directly add weeds on maps, use landmarks."
     st=1
 fi;

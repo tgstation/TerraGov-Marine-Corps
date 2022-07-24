@@ -13,7 +13,7 @@
 /obj/machinery/alarm{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "d" = (
@@ -59,7 +59,7 @@
 	},
 /area/bigredv2/outside/chapel)
 "l" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/stairs/rampbottom,
 /area/bigredv2/outside/chapel)
 "m" = (
@@ -90,7 +90,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "t" = (
@@ -130,7 +130,7 @@
 	},
 /area/bigredv2/outside/chapel)
 "C" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "D" = (
@@ -142,7 +142,7 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/survivor,
+/atom/movable/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/chapel{
 	dir = 4
 	},
@@ -184,12 +184,12 @@
 /area/bigredv2/outside/chapel)
 "O" = (
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "P" = (
 /obj/structure/table/woodentable,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "R" = (
@@ -235,7 +235,7 @@
 "Z" = (
 /obj/structure/table/woodentable,
 /obj/item/radio/headset/survivor,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 

@@ -10,10 +10,10 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aad" = (
-/obj/effect/landmark/start/job/squadcorpsman,
+/atom/movable/effect/landmark/start/job/squadcorpsman,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aae" = (
@@ -21,50 +21,50 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aaf" = (
-/obj/effect/landmark/start/job/squadengineer,
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/job/squadengineer,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aag" = (
-/obj/effect/landmark/start/job/squadcorpsman,
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/job/squadcorpsman,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aah" = (
-/obj/effect/landmark/start/job/squadcorpsman,
+/atom/movable/effect/landmark/start/job/squadcorpsman,
 /obj/structure/cable,
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aai" = (
-/obj/effect/landmark/start/job/crash/squadsmartgunner,
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/job/crash/squadsmartgunner,
+/atom/movable/effect/landmark/start/latejoin,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aaj" = (
-/obj/effect/landmark/start/job/crash/squadleader,
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/job/crash/squadleader,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aak" = (
-/obj/effect/landmark/start/job/crash/squadleader,
+/atom/movable/effect/landmark/start/job/crash/squadleader,
 /obj/structure/cable,
-/obj/effect/landmark/start/latejoin,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/start/latejoin,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aal" = (
-/obj/effect/landmark/start/job/crash/squadmarine,
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/job/crash/squadmarine,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aam" = (
-/obj/effect/landmark/start/job/crash/squadmarine,
+/atom/movable/effect/landmark/start/job/crash/squadmarine,
 /obj/structure/cable,
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aan" = (
@@ -76,7 +76,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "aaq" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "aat" = (
@@ -293,7 +293,7 @@
 /area/mainship/living/port_garden)
 "abi" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "abl" = (
@@ -556,7 +556,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/chiefshipengineer,
+/atom/movable/effect/landmark/start/job/chiefshipengineer,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "acz" = (
@@ -587,7 +587,7 @@
 /area/mainship/hallways/hangar)
 "acI" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acJ" = (
@@ -629,7 +629,7 @@
 "acT" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/ds1/delaytwo,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acX" = (
@@ -680,7 +680,7 @@
 /area/mainship/command/self_destruct)
 "ade" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
 "adh" = (
@@ -782,7 +782,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "adA" = (
-/obj/effect/landmark/start/job/shiptech,
+/atom/movable/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
@@ -816,7 +816,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "adH" = (
@@ -859,7 +859,7 @@
 /area/mainship/engineering/engineering_workshop)
 "adN" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/job/shiptech,
+/atom/movable/effect/landmark/start/job/shiptech,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -897,7 +897,7 @@
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "adV" = (
@@ -906,7 +906,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "adW" = (
-/obj/effect/landmark/start/job/pilotofficer,
+/atom/movable/effect/landmark/start/job/pilotofficer,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "adZ" = (
@@ -923,7 +923,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeh" = (
-/obj/effect/landmark/start/job/captain,
+/atom/movable/effect/landmark/start/job/captain,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aei" = (
@@ -943,7 +943,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "aet" = (
@@ -965,7 +965,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "aey" = (
-/obj/effect/landmark/start/job/ai,
+/atom/movable/effect/landmark/start/job/ai,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "aez" = (
@@ -989,7 +989,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeD" = (
-/obj/effect/landmark/start/job/corporateliaison,
+/atom/movable/effect/landmark/start/job/corporateliaison,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeF" = (
@@ -1009,7 +1009,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeH" = (
-/obj/effect/landmark/start/job/fieldcommander,
+/atom/movable/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeI" = (
@@ -1032,7 +1032,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "aeN" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "aeP" = (
@@ -1073,7 +1073,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeW" = (
-/obj/effect/landmark/start/job/synthetic,
+/atom/movable/effect/landmark/start/job/synthetic,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aeX" = (
@@ -1089,7 +1089,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "afe" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "afg" = (
@@ -1111,9 +1111,9 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afj" = (
-/obj/effect/landmark/start/job/shiptech,
+/atom/movable/effect/landmark/start/job/shiptech,
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afk" = (
@@ -1192,14 +1192,14 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "afC" = (
-/obj/effect/attach_point/weapon/dropship2{
+/atom/movable/effect/attach_point/weapon/dropship2{
 	dir = 8;
 	icon_state = "equip_base_l_wing"
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "afD" = (
-/obj/effect/attach_point/weapon/dropship2{
+/atom/movable/effect/attach_point/weapon/dropship2{
 	dir = 4;
 	icon_state = "equip_base_r_wing"
 	},
@@ -1237,12 +1237,12 @@
 	name = "Quartermaster's stamp"
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afI" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/job/requisitionsofficer,
+/atom/movable/effect/landmark/start/job/requisitionsofficer,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afM" = (
@@ -1262,12 +1262,12 @@
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "afU" = (
-/obj/effect/landmark/start/job/shiptech,
+/atom/movable/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "afX" = (
-/obj/effect/landmark/start/job/crash/squadsmartgunner,
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/job/crash/squadsmartgunner,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "afY" = (
@@ -1401,7 +1401,7 @@
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
 "agJ" = (
-/obj/effect/landmark/start/job/staffofficer,
+/atom/movable/effect/landmark/start/job/staffofficer,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "agN" = (
@@ -1430,7 +1430,7 @@
 	id = "supply_elevator_railing"
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
 "agW" = (
@@ -1473,7 +1473,7 @@
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 1
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "ahd" = (
@@ -1487,7 +1487,7 @@
 "ahh" = (
 /obj/machinery/light,
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "ahi" = (
@@ -1520,7 +1520,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aho" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ahq" = (
@@ -1695,7 +1695,7 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ahT" = (
-/obj/effect/landmark/start/job/medicalofficer,
+/atom/movable/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ahU" = (
@@ -1733,15 +1733,15 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ahY" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
 "ahZ" = (
-/obj/effect/landmark/start/job/cmo,
+/atom/movable/effect/landmark/start/job/cmo,
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
 "aia" = (
-/obj/effect/landmark/start/job/researcher,
+/atom/movable/effect/landmark/start/job/researcher,
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
 "aib" = (
@@ -1821,7 +1821,7 @@
 /area/mainship/medical/medical_science)
 "ail" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
 "aim" = (
@@ -1834,7 +1834,7 @@
 /area/mainship/medical/medical_science)
 "ais" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ait" = (
@@ -2209,7 +2209,7 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
 "ajX" = (
-/obj/effect/landmark/start/job/medicalofficer,
+/atom/movable/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
 "ajY" = (
@@ -2341,7 +2341,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship,
 /area/mainship/command/telecomms)
 "eBB" = (
@@ -2420,7 +2420,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "iSK" = (
-/obj/effect/landmark/start/job/staffofficer,
+/atom/movable/effect/landmark/start/job/staffofficer,
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -2501,7 +2501,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "lIR" = (
-/obj/effect/landmark/start/job/medicalofficer,
+/atom/movable/effect/landmark/start/job/medicalofficer,
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
@@ -2574,7 +2574,7 @@
 /area/mainship/living/cryo_cells)
 "qCi" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/toolbox,
+/atom/movable/effect/spawner/random/toolbox,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
@@ -2640,9 +2640,9 @@
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
 "tmK" = (
-/obj/effect/landmark/start/job/crash/squadleader,
+/atom/movable/effect/landmark/start/job/crash/squadleader,
 /obj/structure/cable,
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
 "tpB" = (

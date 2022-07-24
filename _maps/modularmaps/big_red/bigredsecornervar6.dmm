@@ -1,17 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "al" = (
 /obj/structure/largecrate/random/barrel/blue,
-/obj/effect/decal/cleanable/cobweb2,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/cobweb2,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "ar" = (
 /obj/docking_port/stationary/crashmode,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "aJ" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "aK" = (
@@ -19,15 +19,15 @@
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "aW" = (
-/obj/effect/decal/cleanable/cobweb,
+/atom/movable/effect/decal/cleanable/cobweb,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "bi" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/shuttle/escapepod/five,
 /area/bigredv2/caves/secomplex)
 "bs" = (
-/obj/effect/decal/cleanable/blood/gibs/xeno,
+/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/secomplex)
 "bw" = (
@@ -42,7 +42,7 @@
 	},
 /area/bigredv2/caves/secomplex)
 "cG" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "cH" = (
@@ -51,12 +51,12 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "cM" = (
-/obj/effect/decal/cleanable/blood/gibs/limb,
+/atom/movable/effect/decal/cleanable/blood/gibs/limb,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "dy" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
@@ -70,25 +70,25 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "ef" = (
-/obj/effect/decal/cleanable/blood/gibs/xeno/body,
+/atom/movable/effect/decal/cleanable/blood/gibs/xeno/body,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "et" = (
 /obj/machinery/door/airlock/mainship/maint,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "eA" = (
-/obj/effect/landmark/start/job/xenomorph,
+/atom/movable/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "eW" = (
-/obj/effect/landmark/corpsespawner,
+/atom/movable/effect/landmark/corpsespawner,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "fm" = (
-/obj/effect/decal/cleanable/blood/gibs/body,
+/atom/movable/effect/decal/cleanable/blood/gibs/body,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "fs" = (
@@ -99,15 +99,15 @@
 /area/bigredv2/caves/secomplex)
 "gP" = (
 /obj/structure/largecrate/supply/supplies/plasteel,
-/obj/effect/decal/cleanable/cobweb2,
+/atom/movable/effect/decal/cleanable/cobweb2,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "gQ" = (
-/obj/effect/landmark/xeno_resin_wall,
+/atom/movable/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "hg" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "hw" = (
@@ -115,11 +115,11 @@
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "hG" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/secomplex)
 "io" = (
-/obj/effect/decal/cleanable/blood/xeno,
+/atom/movable/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "iB" = (
@@ -143,23 +143,23 @@
 /area/bigredv2/caves/secomplex)
 "jp" = (
 /obj/item/ammo_casing/bullet,
-/obj/effect/spawner/random/gun/rifles,
+/atom/movable/effect/spawner/random/gun/rifles,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "jx" = (
 /obj/structure/ship_ammo/rocket/banshee,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "jz" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 10
 	},
 /area/bigredv2/caves/secomplex)
 "jD" = (
-/obj/effect/landmark/corpsespawner,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/corpsespawner,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "kd" = (
@@ -170,7 +170,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "kB" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupebluecorner,
 /area/bigredv2/caves/secomplex)
 "kH" = (
@@ -220,7 +220,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "mu" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 10
 	},
@@ -235,9 +235,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "mX" = (
-/obj/effect/decal/cleanable/cobweb2,
+/atom/movable/effect/decal/cleanable/cobweb2,
 /obj/structure/bookcase/manuals,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "nb" = (
@@ -249,7 +249,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "nr" = (
-/obj/effect/decal/sandedge{
+/atom/movable/effect/decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/tile/blue/taupeblue{
@@ -261,7 +261,7 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "nS" = (
-/obj/effect/spawner/gibspawner/human,
+/atom/movable/effect/spawner/gibspawner/human,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "nY" = (
@@ -272,7 +272,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "oa" = (
-/obj/effect/decal/cleanable/cobweb2,
+/atom/movable/effect/decal/cleanable/cobweb2,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "od" = (
@@ -283,13 +283,13 @@
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "pf" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
 /area/bigredv2/caves/secomplex)
 "pR" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "qp" = (
@@ -301,7 +301,7 @@
 	},
 /area/bigredv2/caves/secomplex)
 "rH" = (
-/obj/effect/decal/sandedge/corner{
+/atom/movable/effect/decal/sandedge/corner{
 	dir = 8
 	},
 /turf/open/floor/tile/damaged/panel,
@@ -311,11 +311,11 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "rX" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "sp" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "sz" = (
@@ -342,7 +342,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "tH" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "ud" = (
@@ -350,33 +350,33 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "ue" = (
-/obj/effect/decal/sandedge/corner2{
+/atom/movable/effect/decal/sandedge/corner2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "uk" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 1
 	},
 /area/bigredv2/caves/secomplex)
 "ul" = (
-/obj/effect/landmark/xeno_silo_spawn,
+/atom/movable/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "uB" = (
-/obj/effect/spawner/random/gun/shotgun,
+/atom/movable/effect/spawner/random/gun/shotgun,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "uT" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 6
 	},
 /area/bigredv2/caves/secomplex)
 "uV" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "vr" = (
@@ -396,7 +396,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "wR" = (
-/obj/effect/landmark/corpsespawner/security,
+/atom/movable/effect/landmark/corpsespawner/security,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "xg" = (
@@ -412,7 +412,7 @@
 /area/bigredv2/caves/secomplex)
 "ye" = (
 /obj/item/limb/l_arm,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "yr" = (
@@ -431,8 +431,8 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "zw" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Af" = (
@@ -444,37 +444,37 @@
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "AE" = (
-/obj/effect/decal/sandedge{
+/atom/movable/effect/decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Bc" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "Bm" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/secomplex)
 "Bn" = (
-/obj/effect/decal/cleanable/blood/gibs/up,
+/atom/movable/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "BD" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)
 "BE" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/secomplex)
 "Cz" = (
-/obj/effect/decal/cleanable/blood/gibs,
+/atom/movable/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Ds" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Dw" = (
@@ -486,30 +486,30 @@
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "DG" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "DQ" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "DX" = (
-/obj/effect/decal/cleanable/cobweb,
+/atom/movable/effect/decal/cleanable/cobweb,
 /obj/structure/filingcabinet,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Em" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)
 "ED" = (
-/obj/effect/decal/sandedge,
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/decal/sandedge,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "EJ" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/blood/splatter,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "EP" = (
@@ -518,7 +518,7 @@
 /area/bigredv2/caves/secomplex)
 "FZ" = (
 /obj/structure/largecrate/supply/explosives/mines,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Gn" = (
@@ -530,15 +530,15 @@
 	},
 /area/bigredv2/caves/secomplex)
 "Hn" = (
-/obj/effect/landmark/corpsespawner/engineer,
+/atom/movable/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Hy" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Is" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Iu" = (
@@ -552,15 +552,15 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "IN" = (
-/obj/effect/decal/cleanable/blood/gibs/body,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/blood/gibs/body,
+/atom/movable/effect/ai_node,
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/secomplex)
 "Jw" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "JU" = (
-/obj/effect/decal/cleanable/blood/gibs/xeno/limb,
+/atom/movable/effect/decal/cleanable/blood/gibs/xeno/limb,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "JW" = (
@@ -568,11 +568,11 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Kd" = (
-/obj/effect/decal/cleanable/blood/gibs/xeno,
+/atom/movable/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Kk" = (
-/obj/effect/decal/cleanable/blood/gibs/core,
+/atom/movable/effect/decal/cleanable/blood/gibs/core,
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/secomplex)
 "Kq" = (
@@ -581,21 +581,21 @@
 /area/bigredv2/caves/secomplex)
 "Kr" = (
 /obj/structure/largecrate/supply/supplies/metal,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "KH" = (
-/obj/effect/decal/sandedge{
+/atom/movable/effect/decal/sandedge{
 	dir = 4
 	},
 /turf/open/floor/tile/damaged/panel,
 /area/bigredv2/caves/secomplex)
 "KO" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/secomplex)
 "Lj" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "Lq" = (
@@ -603,11 +603,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "LK" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "LT" = (
-/obj/effect/landmark/corpsespawner/security,
+/atom/movable/effect/landmark/corpsespawner/security,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Mk" = (
@@ -633,7 +633,7 @@
 /area/bigredv2/caves/secomplex)
 "Oj" = (
 /obj/structure/bed/chair/reinforced,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "Ok" = (
@@ -641,12 +641,12 @@
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/item/ammo_magazine/shotgun/flechette,
 /obj/item/ammo_magazine/shotgun/flechette,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Pa" = (
-/obj/effect/landmark/start/job/xenomorph,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/start/job/xenomorph,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "Pz" = (
@@ -654,7 +654,7 @@
 /area/bigredv2/caves/secomplex)
 "PA" = (
 /obj/item/ammo_casing/bullet,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Qa" = (
@@ -698,21 +698,21 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "SJ" = (
-/obj/effect/decal/sandedge,
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/decal/sandedge,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "SX" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/secomplex)
 "Tq" = (
-/obj/effect/landmark/xeno_resin_door,
-/obj/effect/decal/sandedge,
+/atom/movable/effect/landmark/xeno_resin_door,
+/atom/movable/effect/decal/sandedge,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "TC" = (
-/obj/effect/decal/cleanable/blood/gibs,
+/atom/movable/effect/decal/cleanable/blood/gibs,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
@@ -720,30 +720,30 @@
 /turf/open/floor/tile/dark2,
 /area/bigredv2/caves/secomplex)
 "Ua" = (
-/obj/effect/decal/cleanable/cobweb,
-/obj/effect/decal/mecha_wreckage/ripley/lv624,
+/atom/movable/effect/decal/cleanable/cobweb,
+/obj/mecha_wreckage/ripley/lv624,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Ub" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/secomplex)
 "Uh" = (
-/obj/effect/decal/sandedge/corner2,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/sandedge/corner2,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Um" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/secomplex)
 "Uo" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "Uq" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "UB" = (
@@ -755,20 +755,20 @@
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "Vp" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/shuttle/escapepod/five,
 /area/bigredv2/caves/secomplex)
 "Vq" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)
 "VD" = (
-/obj/effect/landmark/corpsespawner/security,
+/atom/movable/effect/landmark/corpsespawner/security,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "VH" = (
-/obj/effect/decal/cleanable/blood/gibs/limb,
+/atom/movable/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/secomplex)
 "Wh" = (
@@ -776,7 +776,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Wi" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "Wt" = (
@@ -792,12 +792,12 @@
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "Xe" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Xi" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/decal/sandedge{
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/decal/sandedge{
 	dir = 8
 	},
 /turf/open/floor/tile/blue/taupeblue{
@@ -805,16 +805,16 @@
 	},
 /area/bigredv2/caves/secomplex)
 "Xq" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "XI" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "XO" = (
-/obj/effect/decal/cleanable/blood/gibs,
+/atom/movable/effect/decal/cleanable/blood/gibs,
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/secomplex)
 "Yg" = (
@@ -823,7 +823,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Ym" = (
-/obj/effect/decal/cleanable/cobweb,
+/atom/movable/effect/decal/cleanable/cobweb,
 /obj/structure/bed/chair/reinforced{
 	dir = 1
 	},
@@ -834,7 +834,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
 "Yy" = (
-/obj/effect/landmark/xeno_resin_door,
+/atom/movable/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/secomplex)
 "YO" = (
@@ -861,16 +861,16 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "ZE" = (
-/obj/effect/landmark/corpsespawner,
+/atom/movable/effect/landmark/corpsespawner,
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
 "ZK" = (
-/obj/effect/landmark/corpsespawner,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/corpsespawner,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/secomplex)
 "ZQ" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /obj/item/stack/sheet/metal,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 8

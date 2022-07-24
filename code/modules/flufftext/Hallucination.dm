@@ -73,12 +73,12 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	var/turf/T = locate(target.x + x_off, target.y + y_off, target.z)
 	return T
 
-/obj/effect/hallucination
+/atom/movable/effect/hallucination
 	invisibility = INVISIBILITY_OBSERVER
 	anchored = TRUE
 	var/mob/living/carbon/target = null
 
-/obj/effect/hallucination/simple
+/atom/movable/effect/hallucination/simple
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Runner Walking"
 	var/px = 0
@@ -88,14 +88,14 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	var/image_layer = MOB_LAYER
 	var/active = TRUE //qdelery
 
-/obj/effect/hallucination/simple/Initialize(mapload, mob/living/carbon/T)
+/atom/movable/effect/hallucination/simple/Initialize(mapload, mob/living/carbon/T)
 	. = ..()
 	target = T
 	current_image = GetImage()
 	if(target.client)
 		target.client.images |= current_image
 
-/obj/effect/hallucination/simple/proc/GetImage()
+/atom/movable/effect/hallucination/simple/proc/GetImage()
 	var/image/I = image(icon,src,icon_state,image_layer,dir=src.dir)
 	I.pixel_x = px
 	I.pixel_y = py
@@ -103,7 +103,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		I.color = col_mod
 	return I
 
-/obj/effect/hallucination/simple/proc/Show(update=1)
+/atom/movable/effect/hallucination/simple/proc/Show(update=1)
 	if(active)
 		if(target.client)
 			target.client.images.Remove(current_image)
@@ -112,7 +112,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if(target.client)
 			target.client.images |= current_image
 
-/obj/effect/hallucination/simple/update_icon(new_state,new_icon,new_px=0,new_py=0)
+/atom/movable/effect/hallucination/simple/update_icon(new_state,new_icon,new_px=0,new_py=0)
 	icon_state = new_state
 	if(new_icon)
 		icon = new_icon
@@ -122,26 +122,26 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	py = new_py
 	Show()
 
-/obj/effect/hallucination/simple/Moved(atom/OldLoc, Dir)
+/atom/movable/effect/hallucination/simple/Moved(atom/OldLoc, Dir)
 	Show()
 
-/obj/effect/hallucination/simple/Destroy()
+/atom/movable/effect/hallucination/simple/Destroy()
 	if(target.client)
 		target.client.images.Remove(current_image)
 	active = FALSE
 	return ..()
 
-/obj/effect/hallucination/simple/xeno
+/atom/movable/effect/hallucination/simple/xeno
 	name = "Mature Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Runner Walking"
 
-/obj/effect/hallucination/simple/xeno/Initialize(mapload, mob/living/carbon/T)
+/atom/movable/effect/hallucination/simple/xeno/Initialize(mapload, mob/living/carbon/T)
 	. = ..()
 	name = "Mature Runner ([rand(100, 999)])"
 
-/obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, speed)
+/atom/movable/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, speed)
 	if(hit_atom == target && target.stat != DEAD)
 		target.Paralyze(3 SECONDS, TRUE, TRUE)
 		target.visible_message(span_danger("[target] flails around wildly."),span_xenowarning("\The [src] pounces at [target]!"))
@@ -149,7 +149,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /datum/hallucination/xeno_attack
 	//Xeno crawls from nearby vent,jumps at you, and goes back in
 	var/obj/machinery/atmospherics/components/unary/vent_pump/pump = null
-	var/obj/effect/hallucination/simple/xeno/xeno = null
+	var/atom/movable/effect/hallucination/simple/xeno/xeno = null
 
 /datum/hallucination/xeno_attack/New(mob/living/carbon/C, forced = TRUE)
 	set waitfor = FALSE
