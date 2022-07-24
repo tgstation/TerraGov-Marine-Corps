@@ -151,6 +151,10 @@
 	. = ..()
 	GLOB.survivor_spawn += src
 
+/obj/effect/landmark/start/job/survivor/Destroy()
+	GLOB.survivor_spawn -= src
+	return ..()
+
 /obj/effect/landmark/start/job/survivor/scientist
 	icon_state = "Scientist"
 	job = /datum/job/survivor/scientist

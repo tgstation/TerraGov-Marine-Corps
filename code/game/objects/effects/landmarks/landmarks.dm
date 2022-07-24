@@ -239,8 +239,33 @@
 	name = "Tier 1 Weapon Spawn"
 	icon_state = "weapon1"
 	weapon_list = list(
-		/obj/item/weapon/gun/energy/lasgun/M43/practice,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla,
+		/obj/item/weapon/claymore/mercsword/machete,
+		/obj/item/weapon/katana/replica,
+		/obj/item/weapon/combat_knife,
+		/obj/item/weapon/combat_knife/upp,
+		/obj/item/stack/throwing_knife,
+		/obj/item/weapon/chainofcommand,
+		/obj/item/weapon/broken_bottle,
+		/obj/item/weapon/baseballbat,
+		/obj/item/weapon/baseballbat/metal,
+		/obj/item/weapon/butterfly,
+		/obj/item/weapon/butterfly/switchblade,
+		/obj/item/weapon/katana/samurai,
+		/obj/item/weapon/claymore,
+		/obj/item/weapon/claymore/mercsword,
+		/obj/item/weapon/claymore/mercsword/captain,
+		/obj/item/weapon/claymore/mercsword/commissar_sword,
+		/obj/item/weapon/katana,
+		/obj/item/weapon/twohanded/fireaxe,
+		/obj/item/weapon/twohanded/spear,
+		/obj/item/weapon/twohanded/glaive,
+	)
+
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn
+	name = "Tier 2 Weapon Spawn"
+	icon_state = "weapon2"
+	weapon_list = list(
+		/obj/item/weapon/gun/energy/lasgun/M43,
 		/obj/item/weapon/gun/grenade_launcher/single_shot/flare,
 		/obj/item/weapon/gun/pistol/standard_pistol,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
@@ -261,31 +286,9 @@
 		/obj/item/weapon/gun/revolver/upp,
 		/obj/item/weapon/gun/revolver/small,
 		/obj/item/weapon/gun/revolver/cmb,
-		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/katana/replica,
-		/obj/item/weapon/combat_knife,
-		/obj/item/weapon/combat_knife/upp,
-		/obj/item/stack/throwing_knife,
-		/obj/item/weapon/chainofcommand,
-		/obj/item/weapon/broken_bottle,
-		/obj/item/weapon/baseballbat,
-		/obj/item/weapon/baseballbat/metal,
-		/obj/item/weapon/butterfly,
-		/obj/item/weapon/butterfly/switchblade,
-		/obj/item/weapon/katana/samurai,
-	)
-
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn
-	name = "Tier 2 Weapon Spawn"
-	icon_state = "weapon2"
-	weapon_list = list(
-		/obj/item/weapon/gun/energy/lasgun/M43,
 		/obj/item/weapon/gun/shotgun/pump/lever,
 		/obj/item/weapon/gun/pistol/g22/tranq,
 		/obj/item/weapon/gun/pistol/m1911/custom,
-		/obj/item/weapon/gun/revolver/mateba,
-		/obj/item/weapon/gun/revolver/mateba/notmarine,
-		/obj/item/weapon/gun/revolver/mateba/custom,
 		/obj/item/weapon/gun/smg/standard_machinepistol,
 		/obj/item/weapon/gun/smg/standard_smg,
 		/obj/item/weapon/gun/smg/m25,
@@ -293,14 +296,6 @@
 		/obj/item/weapon/gun/smg/skorpion,
 		/obj/item/weapon/gun/smg/ppsh,
 		/obj/item/weapon/gun/smg/uzi,
-		/obj/item/weapon/claymore,
-		/obj/item/weapon/claymore/mercsword,
-		/obj/item/weapon/claymore/mercsword/captain,
-		/obj/item/weapon/claymore/mercsword/commissar_sword,
-		/obj/item/weapon/katana,
-		/obj/item/weapon/twohanded/fireaxe,
-		/obj/item/weapon/twohanded/spear,
-		/obj/item/weapon/twohanded/glaive,
 	)
 
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn
@@ -308,6 +303,9 @@
 	icon_state = "weapon3"
 	weapon_list = list(
 		/obj/item/weapon/gun/rifle/standard_carbine,
+		/obj/item/weapon/gun/revolver/mateba,
+		/obj/item/weapon/gun/revolver/mateba/notmarine,
+		/obj/item/weapon/gun/revolver/mateba/custom,
 		/obj/item/weapon/gun/rifle/standard_assaultrifle,
 		/obj/item/weapon/gun/rifle/standard_dmr,
 		/obj/item/weapon/gun/rifle/standard_br,
@@ -378,6 +376,39 @@
 						/obj/item/weapon/banhammer,
 						/obj/item/weapon/chainsword,
 						)
+
+/obj/effect/landmark/armor_spawn
+	var/list/spawn_list
+
+/obj/effect/landmark/armor_spawn/Initialize()
+	. = ..()
+	var/armor_to_spawn = pick(spawn_list)
+	new armor_to_spawn(loc)
+
+/obj/effect/landmark/armor_spawn/tier1_armor_spawn
+	name = "Tier 1 Armor Spawn"
+	icon_state = "weapon1"
+	spawn_list = list(
+		/obj/item/clothing/suit/armor/vest,
+		/obj/item/clothing/suit/armor/laserproof,
+		/obj/item/clothing/suit/armor/bulletproof,
+		/obj/item/clothing/suit/armor/riot,
+
+	)
+
+/obj/effect/landmark/armor_spawn/tier2_armor_spawn
+	name = "Tier 2 Armor Spawn"
+	icon_state = "weapon2"
+	spawn_list = list(
+		/obj/item/clothing/suit/storage/marine/M3E,
+		/obj/item/clothing/suit/storage/marine/M3P,
+		/obj/item/clothing/suit/storage/marine/M3P/tech,
+		/obj/item/clothing/suit/storage/marine/leader,
+		/obj/item/clothing/suit/storage/militia,
+	)
+
+
+
 
 //used to spawn a different dropship control console groundside for HvH mode
 /obj/effect/landmark/dropship_console_spawn_lz1

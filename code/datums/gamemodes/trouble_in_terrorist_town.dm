@@ -16,12 +16,6 @@
 
 /datum/game_mode/trouble_in_terrorist_town/pre_setup()
 	. = ..()
-	for (var/obj/machinery/power/apc/apc AS in GLOB.apcs_list)
-		apc.cell.charge = apc.cell.maxcharge
-		apc.cell.update_icon()
-		apc.update_icon()
-		apc.update()
-
 	for(var/area/area_to_lit AS in GLOB.sorted_areas)
 		var/turf/first_turf = area_to_lit.contents[1]
 		if(first_turf.z != 2)
