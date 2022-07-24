@@ -179,9 +179,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		CRASH("deflagrate() error: target [isnull(target) ? "null" : target] | proj [isnull(proj) ? "null" : proj]")
 	if(!istype(target, /mob/living))
 		return
+	var/effective_damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //we want to take falloff into account
+	if(!effective_damage)
+		return
 	var/mob/living/victim = target
 	var/armor_block = victim.get_soft_armor("fire") //checks fire armour across the victim's whole body
-	var/deflagrate_chance = (proj.damage * deflagrate_multiplier * (100 + min(0, proj.penetration - armor_block)) / 100)
+	var/deflagrate_chance = (effective_damage * deflagrate_multiplier * (100 + min(0, proj.penetration - armor_block)) / 100)
 	if(prob(deflagrate_chance))
 		playsound(target, 'sound/effects/incendiary_explode.ogg', 45, falloff = 5)
 		fire_burst(target, proj)
@@ -200,7 +203,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/armor_block = victim.get_soft_armor("fire") //checks fire armour across the victim's whole body
 		victim.apply_damage(fire_burst_damage, BURN, null, armor_block, updating_health = TRUE) //Placeholder damage, will be a ammo var
 
-		staggerstun(victim, proj, stagger = 0.5, slowdown = 0.5)
+		staggerstun(victim, proj, 30, stagger = 0.5, slowdown = 0.5, shake = 0)
 
 		var/living_hard_armor = victim.hard_armor.getRating("fire")
 		if(victim.get_fire_resist() > 0 && living_hard_armor < 100) //won't ignite fully fireproof mobs
