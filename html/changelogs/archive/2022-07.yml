@@ -94,3 +94,25 @@
   - balance: Akimbo makes PB range 0 instead of 2
   - bugfix: Fixed an accuracy malus triggering for a target being out of view when
       it was still in widescreen view.
+2022-07-19:
+  Stan_Albatross:
+  - refactor: refactored the application and removal of welding torch overlays so
+      that they do not use istype() procs excessively
+2022-07-22:
+  BraveMole:
+  - rscadd: Allow multiple choice voting
+  XElectricX:
+  - bugfix: Make hybrid lights visible again
+2022-07-24:
+  Dediinside:
+  - imageadd: Belt sprite for revolvers.
+2022-07-25:
+  BraveMole:
+  - code_imp: Remove a unused part of jobspawning system
+  KrabSpider:
+  - balance: Arrowhead now has negative armor.
+  - balance: Increases arrowhead recharge to 10 from 8.
+  QualityVan:
+  - bugfix: You won't get sent to zoom hell for zooming while you zoom.
+  Wayland-Smithy:
+  - balance: Untangle from razorwire via resist no longer applies a slowdown.

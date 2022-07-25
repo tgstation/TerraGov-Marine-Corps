@@ -8,6 +8,7 @@
 		"platymuus.dm-langclient",
 		"editorconfig.editorconfig",
 		"eamodio.gitlens",
-		"anturk.dmi-editor"
+		"anturk.dmi-editor",
+		"sukumo28.wav-preview"
 	]
 }
