@@ -101,19 +101,13 @@
 	var/list/internal_organs_by_name = list() // so internal organs have less ickiness too
 
 	var/command_aura = null //The command aura we are using as a string. Need to be trained or higher in Leadership
-	var/command_aura_strength = 0 //The strength of our command aura. This depends on our Leadership skill
-	var/command_aura_allowed = list("move", "hold", "focus") //Auras we can create. Leadership checked separately
-	var/command_aura_tick = 0 //How many ticks left before we cut out your command aura
-	var/command_aura_cooldown = 0 //Cooldown on our command aura
+	var/command_aura_allowed = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS) //Auras we can create. Leadership checked separately
+	///Whether we can use another command order yet. Either null or a timer ID.
+	var/command_aura_cooldown
 
 	var/mobility_aura = 0
 	var/protection_aura = 0
 	var/marksman_aura = 0
-
-	var/mobility_new = 0
-	var/protection_new = 0
-	var/marksman_new = 0
-	var/aura_recovery_multiplier = 0
 
 	var/datum/squad/assigned_squad //the squad assigned to
 

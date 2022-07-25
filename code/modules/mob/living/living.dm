@@ -22,8 +22,11 @@
 	handle_slowdown()
 	handle_stagger()
 
-///Get an aura and apply it if we care about its type and it's stronger than our current.
-/mob/living/proc/recieve_aura(aura_type, strength) //Of course, living doesn't care about any types
+///Update what auras we'll receive this life tick if it's either new or stronger than current. aura_type as AURA_ define, strength as number.
+/mob/living/proc/receive_aura(aura_type, strength)
+	if(received_auras[aura_type] > strength)
+		return
+	received_auras[aura_type] = strength
 
 /mob/living/proc/handle_organs()
 	reagent_shock_modifier = 0
@@ -82,6 +85,7 @@
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
 	stamina_regen_modifiers = list()
+	received_auras = list()
 
 /mob/living/Destroy()
 	for(var/i in embedded_objects)

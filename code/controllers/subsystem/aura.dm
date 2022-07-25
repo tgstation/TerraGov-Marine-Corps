@@ -90,7 +90,7 @@ SUBSYSTEM_DEF(aura)
 		if(get_dist(aura_center, potential_hearer) > range)
 			continue
 		for(var/aura in aura_types)
-			potential_hearer.recieve_aura(aura, strength)
+			potential_hearer.receive_aura(aura, strength)
 
 ///Send out our aura to all xenos close enough and on the same z-level
 /datum/aura_bearer/proc/pulse_xenos()
@@ -101,4 +101,4 @@ SUBSYSTEM_DEF(aura)
 		if(get_dist(aura_center, potential_hearer) > range)
 			continue
 		for(var/aura in aura_types)
-			potential_hearer.recieve_aura(aura, strength)
+			potential_hearer.receive_aura(aura, strength)

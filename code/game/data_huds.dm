@@ -563,11 +563,11 @@
 			holder.icon_state = "hud[tempname]"
 
 		switch(command_aura)
-			if("move")
+			if(AURA_HUMAN_MOVE)
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudmoveaura")
-			if("hold")
+			if(AURA_HUMAN_HOLD)
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudholdaura")
-			if("focus")
+			if(AURA_HUMAN_FOCUS)
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudfocusaura")
 
 	hud_list[ORDER_HUD] = holder
