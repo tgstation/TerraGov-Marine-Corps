@@ -206,7 +206,7 @@
 	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
 		if(!H.job)
 			continue
-		if(!(H.z in z_levels) || isspaceturf(H.loc))
+		if(isspaceturf(H.loc))
 			continue
 		. += H.job.jobworth[/datum/job/xenomorph]
 
