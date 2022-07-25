@@ -513,14 +513,6 @@
 
 	placed_overlay_iconstate = "ak47"
 
-/obj/item/weapon/gun/rifle/mpi_km/som
-	starting_attachment_types = list(
-		/obj/item/attachable/stock/mpi_km,
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/weapon/gun/grenade_launcher/underslung,
-	)
-
 //-------------------------------------------------------
 //M16 RIFLE
 
@@ -1613,4 +1605,11 @@
 	starting_attachment_types = list(
 		/obj/item/weapon/gun/shotgun/micro_grenade,
 		/obj/item/attachable/verticalgrip,
+	)
+
+/obj/item/weapon/gun/rifle/som/mag_harness
+	starting_attachment_types = list(
+		/obj/item/weapon/gun/shotgun/micro_grenade,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/magnetic_harness,
 	)
