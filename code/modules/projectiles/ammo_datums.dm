@@ -2573,7 +2573,8 @@ datum/ammo/bullet/revolver/tp44
 	damage_type = STAMINA
 	added_spit_delay = 0 //used to make cooldown of the different spits vary.
 	spit_cost = 5
-	sound_hit = "alien_resin_build2"
+	//icon_state = "" need to create my own
+	sound_hit = "snap" // temp but I might keep it as currently no xeno causes this sound and that will alert nearby ungas that Widow has spit on someone
 	sound_bounce = "alien_resin_build3"
 	armor_type = "bio"
 	shell_speed = 1
