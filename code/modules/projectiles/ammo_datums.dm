@@ -2584,6 +2584,8 @@ datum/ammo/bullet/revolver/tp44
 	var/hit_eye_blind = 25 SECONDS
 	///Snare duration
 	var/hit_immobilize = 20 SECONDS
+	///Weaken duration
+	var/hit_weaken = 20 SECONDS
 	///List for bodyparts that upon being hit cause the target to become weakened
 	var/list/weaken_list = list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 	///List for bodyparts that upon being hit cause the target to become ensnared
@@ -2597,8 +2599,7 @@ datum/ammo/bullet/revolver/tp44
 	if(proj.def_zone == BODY_ZONE_HEAD)
 		human_victim.blind_eyes(hit_eye_blind)
 	if(proj.def_zone in weaken_list)
-		//apply weaken here
-		message_admins("weaken check")
+		human_victim.apply_effect(hit_weaken, WEAKEN)
 	if(proj.def_zone in snare_list)
 		human_victim.Immobilize(hit_immobilize)
 
