@@ -1,5 +1,5 @@
 
-// Used for spray that you spray at walls, tables, hydrovats etc
+// Used for spray that you spray at walls, tables, hydrovats etc.
 /atom/movable/effect/decal/spraystill
 	density = FALSE
 	anchored = TRUE
