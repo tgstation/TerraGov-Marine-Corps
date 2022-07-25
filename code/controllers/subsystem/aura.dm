@@ -39,6 +39,8 @@ SUBSYSTEM_DEF(aura)
 	var/static/list/xeno_auras = list(AURA_XENO_FRENZY, AURA_XENO_WARDING, AURA_XENO_RECOVERY)
 	///Whether we care about xenos - at least one relevant aura is enough if we have multiple.
 	var/affects_xenos = FALSE
+	///Whether we should skip the next tick. Set to false after skipping once. Won't pulse to targets or reduce duration.
+	var/suppressed = FALSE
 
 /datum/aura_bearer/New(atom/aura_emitter, aura_names, aura_range, aura_strength, aura_duration)
 	..()
@@ -71,6 +73,9 @@ SUBSYSTEM_DEF(aura)
 	return ..()
 
 /datum/aura_bearer/process()
+	if(suppressed)
+		suppressed = FALSE
+		return
 	if(affects_humans)
 		pulse_humans()
 	if(affects_xenos)

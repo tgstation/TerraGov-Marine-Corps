@@ -11,11 +11,13 @@
 	if(gloves && germ_level > gloves.germ_level && prob(10))
 		gloves.germ_level++
 
+	return TRUE
+
+/mob/living/carbon/human/handle_received_auras()
+
 	set_mobility_aura(received_auras[AURA_HUMAN_MOVE] || 0)
 	protection_aura = received_auras[AURA_HUMAN_HOLD] || 0
 	marksman_aura = received_auras[AURA_HUMAN_FOCUS] || 0
-
-	received_auras.Cut()
 
 	//Natural recovery; enhanced by hold/protection aura.
 	if(protection_aura)
@@ -24,7 +26,7 @@
 		jitter(- 3 * aura_recovery_multiplier)
 	hud_set_order()
 
-	return TRUE
+	..()
 
 
 /mob/living/carbon/human/proc/set_mobility_aura(new_aura)

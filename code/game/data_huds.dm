@@ -454,9 +454,11 @@
 			holder.icon_state = "hud[tempname]"
 
 		if(current_aura)
-			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[current_aura]")
+			for(var/aura_type in current_aura.aura_types)
+				holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[aura_type]")
 		if(leader_current_aura)
-			holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[leader_current_aura]")
+			for(var/aura_type in leader_current_aura.aura_types)
+				holder.overlays += image('icons/mob/hud.dmi', src, "hudaura[aura_type]")
 
 	hud_list[PHEROMONE_HUD] = holder
 

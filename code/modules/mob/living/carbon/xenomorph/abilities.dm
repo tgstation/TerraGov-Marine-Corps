@@ -347,16 +347,16 @@
 /datum/action/xeno_action/pheromones/proc/apply_pheros(phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(X.current_aura == phero_choice)
+	if(X.current_aura && X.current_aura.aura_types[1] == phero_choice)
 		X.balloon_alert(X, "Stop emitting")
-		X.current_aura = null
+		QDEL_NULL(X.current_aura)
 		if(isxenoqueen(X))
 			X.hive?.update_leader_pheromones()
 		X.hud_set_pheromone()
 		return fail_activate()
-
-	X.current_aura = phero_choice
-	X.balloon_alert(X, "[X.current_aura]")
+	QDEL_NULL(X.current_aura)
+	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, -1)
+	X.balloon_alert(X, "[phero_choice]")
 	playsound(X.loc, "alien_drool", 25)
 
 	if(isxenoqueen(X))
