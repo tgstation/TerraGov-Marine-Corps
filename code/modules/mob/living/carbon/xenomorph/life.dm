@@ -161,7 +161,7 @@
 /mob/living/carbon/xenomorph/handle_received_auras()
 
 	if(frenzy_aura != (received_auras[AURA_XENO_FRENZY] || 0))
-		set_frenzy_aura(temp_frenzy)
+		set_frenzy_aura(received_auras[AURA_XENO_FRENZY] || 0)
 
 	if(warding_aura != (received_auras[AURA_XENO_WARDING] || 0))
 		if(warding_aura) //If either the new or old warding is 0, we can skip adjusting armor for it.

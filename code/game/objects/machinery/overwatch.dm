@@ -777,7 +777,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(!(command_aura in command_aura_allowed))
 		return
 	var/aura_strength = skills.getRating("leadership") - 1
-	var/new_aura = SSaura.add_emitter(src, command_aura, aura_strength + 4, aura_strength, 15) //Not in seconds because we use subsystem fire count.
+	var/new_aura = SSaura.add_emitter(src, command_aura, aura_strength + 4, aura_strength, 15, faction) //Not in seconds because we use subsystem fire count.
 
 	RegisterSignal(new_aura, COMSIG_AURA_FINISHED, .proc/end_command_aura)
 	command_aura_cooldown = addtimer(CALLBACK(src, .proc/end_command_aura_cooldown), 45 SECONDS)

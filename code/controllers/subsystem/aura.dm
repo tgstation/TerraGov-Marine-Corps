@@ -11,12 +11,12 @@ SUBSYSTEM_DEF(aura)
 		bearer.process()
 
 ///Use this to start a new emitter with the specified stats. Returns the emitter in question, just qdel it to end early.
-/datum/controller/subsystem/aura/proc/add_emitter(atom/center, type, range, strength, duration)
+/datum/controller/subsystem/aura/proc/add_emitter(atom/center, type, range, strength, duration, faction)
 	if(!istype(center))
 		return
-	if(!type || !range || !strength || !duration)
+	if(!type || !range || !strength || !duration || !faction)
 		return
-	. =  new /datum/aura_bearer(center, type, range, strength, duration)
+	. =  new /datum/aura_bearer(center, type, range, strength, duration, faction)
 	active_auras += .
 
 ///The thing that actually pushes out auras to nearby mobs.
@@ -31,6 +31,8 @@ SUBSYSTEM_DEF(aura)
 	var/strength
 	///How many subsystem fires we have left, negative means infinite duration
 	var/duration
+	///Aura is only applied to mobs in this faction
+	var/faction
 	///List of aura defines that mean we care about humans
 	var/static/list/human_auras = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS)
 	///Whether we care about humans - at least one relevant aura is enough if we have multiple.
@@ -42,12 +44,13 @@ SUBSYSTEM_DEF(aura)
 	///Whether we should skip the next tick. Set to false after skipping once. Won't pulse to targets or reduce duration.
 	var/suppressed = FALSE
 
-/datum/aura_bearer/New(atom/aura_emitter, aura_names, aura_range, aura_strength, aura_duration)
+/datum/aura_bearer/New(atom/aura_emitter, aura_names, aura_range, aura_strength, aura_duration, aura_faction)
 	..()
 	emitter = aura_emitter
 	range = aura_range
 	strength = aura_strength
 	duration = aura_duration
+	faction = aura_faction
 	if(!islist(aura_names))
 		aura_types = list(aura_names)
 	else
@@ -94,6 +97,8 @@ SUBSYSTEM_DEF(aura)
 	for(var/mob/living/carbon/human/potential_hearer AS in GLOB.humans_by_zlevel["[aura_center.z]"])
 		if(get_dist(aura_center, potential_hearer) > range)
 			continue
+		if(potential_hearer.faction != faction)
+			continue
 		for(var/aura in aura_types)
 			potential_hearer.receive_aura(aura, strength)
 
@@ -104,6 +109,8 @@ SUBSYSTEM_DEF(aura)
 		return
 	for(var/mob/living/carbon/xenomorph/potential_hearer AS in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[aura_center.z]"])
 		if(get_dist(aura_center, potential_hearer) > range)
+			continue
+		if(potential_hearer.faction != faction)
 			continue
 		for(var/aura in aura_types)
 			potential_hearer.receive_aura(aura, strength)

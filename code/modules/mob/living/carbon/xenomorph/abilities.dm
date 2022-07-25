@@ -355,7 +355,7 @@
 		X.hud_set_pheromone()
 		return fail_activate()
 	QDEL_NULL(X.current_aura)
-	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, -1)
+	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, -1, X.faction)
 	X.balloon_alert(X, "[phero_choice]")
 	playsound(X.loc, "alien_drool", 25)
 
