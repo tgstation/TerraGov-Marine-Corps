@@ -130,7 +130,7 @@
 
 	// *** Carrier Abilities *** //
 	huggers_max = 6
-	hugger_delay = 2 SECONDS
+	hugger_delay = 1.5 SECONDS
 
 /datum/xeno_caste/carrier/ancient
 	upgrade_name = "Ancient"
@@ -191,7 +191,7 @@
 
 	// *** Carrier Abilities *** //
 	huggers_max = 7
-	hugger_delay = 1 SECONDS
+	hugger_delay = 0.8 SECONDS
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
