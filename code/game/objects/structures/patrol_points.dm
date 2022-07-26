@@ -25,7 +25,13 @@
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		if(exit_point.id == id)
 			linked_point = exit_point
+			RegisterSignal(linked_point, COMSIG_PARENT_QDELETING, .proc/delete_link)
 			return
+
+///Removes the linked patrol exist point
+/obj/structure/patrol_point/proc/delete_link()
+	SIGNAL_HANDLER
+	linked_point = null
 
 /obj/structure/patrol_point/attack_hand(mob/living/user)
 	. = ..()

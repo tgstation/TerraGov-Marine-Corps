@@ -476,3 +476,8 @@
 	. = ..()
 	//adds the exit points to the glob, and the start points link to them in lateinit
 	GLOB.patrol_point_list += src
+
+/obj/effect/landmark/patrol_point/Destroy()
+	GLOB.patrol_point_list -= src
+	SEND_SIGNAL(src, COMSIG_PARENT_QDELETING)
+	return ..()
