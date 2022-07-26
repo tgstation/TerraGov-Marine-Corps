@@ -2582,11 +2582,11 @@ datum/ammo/bullet/revolver/tp44
 	accurate_range = 15
 	max_range = 15
 	///Blind duration
-	var/hit_eye_blind = 25 SECONDS
+	var/hit_eye_blind = 10 SECONDS
 	///Snare duration
-	var/hit_immobilize = 20 SECONDS
+	var/hit_immobilize = 5 SECONDS
 	///Weaken duration
-	var/hit_weaken = 20 SECONDS
+	var/hit_weaken = 3 SECONDS
 	///List for bodyparts that upon being hit cause the target to become weakened
 	var/list/weaken_list = list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 	///List for bodyparts that upon being hit cause the target to become ensnared
