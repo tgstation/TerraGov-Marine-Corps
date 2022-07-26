@@ -71,10 +71,10 @@
 #define MODE_CIVIL_WAR_REBEL_MAJOR "Rebel Major Victory"
 #define MODE_CIVIL_WAR_DRAW "Civil War Draw"
 
-#define MODE_SOM_MARINE_MAJOR "Marine Major Victory"
-#define MODE_SOM_MARINE_MINOR "Marine Minor Victory"
-#define MODE_SOM_SOM_MAJOR "Sons of Mars Major Victory"
-#define MODE_SOM_SOM_MINOR "Sons of Mars Minor Victory"
+#define MODE_COMBAT_PATROL_MARINE_MAJOR "Marine Major Victory"
+#define MODE_COMBAT_PATROL_MARINE_MINOR "Marine Minor Victory"
+#define MODE_COMBAT_PATROL_SOM_MAJOR "Sons of Mars Major Victory"
+#define MODE_COMBAT_PATROL_SOM_MINOR "Sons of Mars Minor Victory"
 #define MODE_COMBAT_PATROL_DRAW "DRAW: Mutual Annihilation"
 
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"

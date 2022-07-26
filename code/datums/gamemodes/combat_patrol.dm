@@ -231,23 +231,23 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //everyone died at the same time, no one wins
 			round_finished = MODE_COMBAT_PATROL_DRAW
 			return TRUE
-		message_admins("Round finished: [MODE_SOM_SOM_MAJOR]") //SOM wiped out ALL the marines, SOM major victory
-		round_finished = MODE_SOM_SOM_MAJOR
+		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MAJOR]") //SOM wiped out ALL the marines, SOM major victory
+		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
 		return TRUE
 
 	if(!num_som)
-		message_admins("Round finished: [MODE_SOM_MARINE_MAJOR]") //Marines wiped out ALL the SOM, marine major victory
-		round_finished = MODE_SOM_MARINE_MAJOR
+		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]") //Marines wiped out ALL the SOM, marine major victory
+		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
 		return TRUE
 
 	//minor victories for more kills or draw for equal kills
 	if(num_dead_marines > num_dead_som)
-		message_admins("Round finished: [MODE_SOM_SOM_MINOR]") //The SOM inflicted greater casualties on the marines, SOM minor victory
-		round_finished = MODE_SOM_SOM_MINOR
+		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MINOR]") //The SOM inflicted greater casualties on the marines, SOM minor victory
+		round_finished = MODE_COMBAT_PATROL_SOM_MINOR
 		return TRUE
 	if(num_dead_som > num_dead_marines)
-		message_admins("Round finished: [MODE_SOM_MARINE_MINOR]") //The marines inflicted greater casualties on the SOM, marine minor victory
-		round_finished = MODE_SOM_MARINE_MINOR
+		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MINOR]") //The marines inflicted greater casualties on the SOM, marine minor victory
+		round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
 		return TRUE
 
 	message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //equal number of kills, or any other edge cases

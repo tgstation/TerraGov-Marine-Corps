@@ -6,7 +6,7 @@
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	layer = LADDER_LAYER
-	//ID to link with associated exit point
+	///ID to link with associated exit point
 	var/id = null
 	///The linked exit point
 	var/obj/effect/landmark/patrol_point/linked_point = null
