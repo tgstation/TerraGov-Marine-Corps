@@ -98,7 +98,7 @@
 
 	// *** Carrier Abilities *** //
 	huggers_max = 5
-	hugger_delay = 2.5 SECONDS
+	hugger_delay = 2.0 SECONDS
 
 /datum/xeno_caste/carrier/elder
 	upgrade_name = "Elder"
@@ -162,7 +162,7 @@
 
 	// *** Carrier Abilities *** //
 	huggers_max = 7
-	hugger_delay = 1.5 SECONDS
+	hugger_delay = 1 SECONDS
 
 /datum/xeno_caste/carrier/primodial
 	upgrade_name = "Primordial"
@@ -191,7 +191,7 @@
 
 	// *** Carrier Abilities *** //
 	huggers_max = 7
-	hugger_delay = 1.5 SECONDS
+	hugger_delay = 1 SECONDS
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

@@ -39,7 +39,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	mechanics_text = "Click on a non tile and non mob to bring a facehugger into your hand. Click at a target or tile to throw a facehugger."
 	ability_name = "throw facehugger"
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
-	cooldown_timer = 3 SECONDS
+	cooldown_timer = 1 SECONDS
 
 /datum/action/xeno_action/activable/throw_hugger/get_cooldown()
 	var/mob/living/carbon/xenomorph/carrier/X = owner
