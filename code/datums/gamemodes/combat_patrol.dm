@@ -1,6 +1,6 @@
 /datum/game_mode/combat_patrol
-	name = "Combat patrol"
-	config_tag = "Combat patrol"
+	name = "Combat Patrol"
+	config_tag = "Combat Patrol"
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_SOM_OPFOR|MODE_SPECIFIC_SHIP_MAP //MODE_NO_PERMANENT_WOUNDS is for nerds
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	shutters_drop_time = 5 MINUTES

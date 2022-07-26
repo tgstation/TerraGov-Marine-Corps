@@ -93,7 +93,7 @@
 		//combat patrol timer
 		var/patrol_end_countdown = SSticker.mode?.game_end_countdown()
 		if(patrol_end_countdown)
-			stat("<b>Combat patrol timer:</b>", patrol_end_countdown)
+			stat("<b>Combat Patrol timer:</b>", patrol_end_countdown)
 
 		if(internal)
 			stat("Internal Atmosphere Info", internal.name)
