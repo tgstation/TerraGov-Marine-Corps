@@ -18,7 +18,6 @@
 
 
 /obj/structure/patrol_point/LateInitialize()
-	. = ..()
 	create_link()
 
 ///Links the patrol point to its associated exit point
@@ -26,6 +25,7 @@
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		if(exit_point.id == id)
 			linked_point = exit_point
+			return
 
 /obj/structure/patrol_point/attack_hand(mob/living/user)
 	. = ..()

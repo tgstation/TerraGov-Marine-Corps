@@ -24,7 +24,7 @@
 	///The length of time until round ends.
 	var/max_game_time = 35 MINUTES
 	///Whether the max game time has been reached
-	var/max_time_reached
+	var/max_time_reached = FALSE
 	/// Time between two bioscan
 	var/bioscan_interval = 5 MINUTES
 
