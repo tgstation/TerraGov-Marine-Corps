@@ -479,5 +479,4 @@
 
 /obj/effect/landmark/patrol_point/Destroy()
 	GLOB.patrol_point_list -= src
-	SEND_SIGNAL(src, COMSIG_PARENT_QDELETING)
 	return ..()
