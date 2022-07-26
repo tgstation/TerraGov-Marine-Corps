@@ -457,7 +457,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/brig/gear_room)
 "cg" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/north_east)
 "ch" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -499,7 +499,7 @@
 /area/outpost/caves/north_east)
 "cv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/west)
 "cw" = (
 /obj/structure/cable,
@@ -934,7 +934,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/lz2)
 "eG" = (
 /obj/structure/table,
@@ -1211,7 +1211,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "fW" = (
 /obj/machinery/power/apc/drained{
@@ -2005,7 +2005,7 @@
 	},
 /area/outpost/engineering/engine)
 "jk" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/cargo)
 "jl" = (
 /turf/open/floor/plating/asteroidwarning{
@@ -2028,7 +2028,7 @@
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo/engineering)
 "jq" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "jr" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -2760,7 +2760,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_west)
 "mv" = (
 /obj/machinery/floodlight/landing,
@@ -3293,7 +3293,7 @@
 /area/outpost/caves/west)
 "oU" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "oV" = (
 /obj/structure/largecrate/random/case,
@@ -3378,7 +3378,7 @@
 "pj" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/yard/east)
 "pk" = (
 /obj/effect/decal/cleanable/blood/writing{
@@ -4333,7 +4333,7 @@
 	},
 /area/outpost/cargo)
 "tH" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/lv624/lazarus/console)
 "tJ" = (
 /obj/structure/cable,
@@ -4553,7 +4553,7 @@
 /area/outpost/yard/north_east)
 "uP" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "uQ" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -4921,7 +4921,7 @@
 	},
 /area/outpost/caves/south)
 "wz" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/yard/east)
 "wA" = (
 /obj/machinery/light,
@@ -6193,11 +6193,11 @@
 "CO" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "CP" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/cargo)
 "CR" = (
 /obj/structure/window/framed/colony/reinforced,
@@ -6472,7 +6472,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Em" = (
 /obj/structure/table,
@@ -7009,7 +7009,7 @@
 /area/outpost/cargo)
 "GF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/lz1)
 "GH" = (
 /obj/structure/cable,
@@ -7943,7 +7943,7 @@
 /turf/open/floor/tile/dark2,
 /area/outpost/arrivals/securitylz2)
 "KR" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/lz2)
 "KS" = (
 /obj/machinery/vending/hydroseeds,
@@ -8111,7 +8111,7 @@
 	},
 /area/outpost/caves/north_west)
 "LU" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_east)
 "LV" = (
 /obj/structure/cable,
@@ -8787,7 +8787,7 @@
 /area/outpost/cargo/engineering)
 "OF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/lz2)
 "OG" = (
 /obj/structure/cable,
@@ -9163,7 +9163,7 @@
 /area/outpost/hallway/west)
 "Qw" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_east)
 "Qz" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -9278,7 +9278,7 @@
 /area/outpost/lz2)
 "QX" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "QY" = (
 /turf/closed/wall/r_wall,
@@ -10094,7 +10094,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/west)
 "UA" = (
 /obj/effect/ai_node,
@@ -10649,7 +10649,7 @@
 	},
 /area/outpost/hallway/central)
 "Xi" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/east)
 "Xj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10832,7 +10832,7 @@
 /area/outpost/cargo/engineering)
 "Yb" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_east)
 "Yc" = (
 /obj/structure/cable,
@@ -10858,7 +10858,7 @@
 /area/outpost/hallway/central)
 "Yg" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/outpost/caves/south_west)
 "Yh" = (
 /obj/effect/landmark/weed_node,
@@ -11045,7 +11045,7 @@
 	},
 /area/outpost/lz2)
 "Zc" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Zd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{

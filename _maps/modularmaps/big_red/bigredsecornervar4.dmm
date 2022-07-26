@@ -12,7 +12,7 @@
 /area/bigredv2/caves/southeast)
 "h" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "i" = (
 /obj/effect/landmark/start/job/xenomorph,
@@ -37,7 +37,7 @@
 /area/bigredv2/caves/southeast)
 "s" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "t" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -47,7 +47,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "x" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "y" = (
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -62,7 +62,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "J" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "N" = (
 /obj/effect/ai_node,

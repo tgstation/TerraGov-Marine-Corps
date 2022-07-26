@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ac" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/filtration_plant)
 "aj" = (
 /obj/effect/landmark/weed_node,
@@ -152,7 +152,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "it" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "iz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -718,7 +718,7 @@
 /area/bigredv2/outside/filtration_plant)
 "Pu" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "PH" = (
 /obj/effect/decal/warning_stripes/box/threeside,

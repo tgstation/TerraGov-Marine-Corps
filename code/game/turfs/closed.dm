@@ -14,11 +14,10 @@
 
 /turf/closed/mineral
 	name = "rock"
-	icon = 'icons/turf/ground_map.dmi'
-	icon_state = "lvwall-0-0-0-0"
-	walltype = "lvwall"
-	smoothing_behavior = DIAGONAL_SMOOTHING
-	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rock"
+	smoothing_behavior = NONE
+	smoothing_groups = NONE
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 
 /turf/closed/mineral/Initialize(mapload)
@@ -37,6 +36,28 @@
 				if(WEST)
 					rock_side.pixel_x -= world.icon_size
 			overlays += rock_side
+
+/turf/closed/mineral/smooth
+	name = "rock"
+	icon = 'icons/turf/walls/lvwall.dmi'
+	icon_state = "lvwall-0-0-0-0"
+	walltype = "lvwall"
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+
+/turf/closed/mineral/smooth/indestructible
+	resistance_flags = RESIST_ALL
+
+/turf/closed/mineral/smooth/bigred
+	name = "rock"
+	icon = 'icons/turf/walls/redwall.dmi'
+	icon_state = "red_wall-0-0-0-0"
+	walltype = "red_wall"
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
+
+/turf/closed/mineral/smooth/bigred/indestructible
+	resistance_flags = RESIST_ALL
 
 /turf/closed/mineral/bigred
 	name = "rock"

@@ -363,7 +363,7 @@
 /area/bigredv2/outside/general_offices)
 "pg" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "ph" = (
 /obj/structure/girder,
@@ -800,7 +800,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/bigredv2/outside/general_offices)
 "GG" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "GJ" = (
 /obj/structure/table,

@@ -31,10 +31,10 @@
 "h" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "i" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "j" = (
 /obj/machinery/door/airlock/mainship/secure/locked/free_access{
@@ -146,7 +146,7 @@
 /area/lv624/ground/caves/central1)
 "A" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "B" = (
 /obj/effect/landmark/weed_node,
@@ -173,7 +173,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
 "K" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "L" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -198,7 +198,7 @@
 /area/lv624/ground/caves/central1)
 "Q" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "R" = (
 /obj/structure/rack,
@@ -233,7 +233,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "Y" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central2)
 "Z" = (
 /obj/effect/landmark/xeno_resin_door,

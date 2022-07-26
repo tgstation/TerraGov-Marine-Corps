@@ -3,7 +3,7 @@
 /turf/open/space/basic,
 /area/space)
 "aab" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "aad" = (
 /obj/effect/spawner/modularmap/bigred/landingzoneone,
@@ -12271,7 +12271,7 @@
 /area/bigredv2/outside/e)
 "dGX" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "dLO" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -12819,7 +12819,7 @@
 /area/bigredv2/outside/engineering)
 "gWD" = (
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "gXj" = (
 /obj/machinery/light{
@@ -12875,7 +12875,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/e)
 "hqP" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "hsK" = (
 /turf/closed/wall/r_wall,
@@ -13391,7 +13391,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "kUQ" = (
 /obj/effect/landmark/weed_node,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "kVx" = (
 /obj/effect/decal/cleanable/dirt,
@@ -13869,7 +13869,7 @@
 /area/bigredv2/outside/bar)
 "olJ" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "onL" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -14436,7 +14436,7 @@
 "rqW" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "rww" = (
 /obj/machinery/miner/damaged,
@@ -14678,7 +14678,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/s)
 "tku" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/storage/testroom)
 "tkZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -15101,7 +15101,7 @@
 /area/bigredv2/outside/s)
 "vKO" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "vLk" = (
 /obj/structure/fence,

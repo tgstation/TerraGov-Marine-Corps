@@ -230,7 +230,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/w)
 "qE" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/shuttle/drop2/lz2)
 "qM" = (
 /turf/closed/wall/r_wall,
@@ -289,13 +289,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/sw)
 "uU" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/west)
 "wa" = (
 /obj/effect/decal/cleanable/dirt,
@@ -321,7 +321,7 @@
 /area/shuttle/drop2/lz2)
 "xc" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "yh" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -347,7 +347,7 @@
 /area/shuttle/drop2/lz2)
 "yV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/w)
 "ze" = (
 /obj/item/stack/sheet/metal,
@@ -470,7 +470,7 @@
 /area/shuttle/drop2/lz2)
 "FV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/sw)
 "Gx" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -485,7 +485,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "GG" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "GZ" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -768,7 +768,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "VQ" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Wq" = (
 /obj/machinery/power/apc/drained{

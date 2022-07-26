@@ -100,7 +100,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "gW" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/sw)
 "hf" = (
 /obj/effect/decal/cleanable/dirt,
@@ -122,10 +122,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "jK" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/shuttle/drop2/lz2)
 "jR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -152,7 +152,7 @@
 	},
 /area/bigredv2/outside/w)
 "mc" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "mo" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
@@ -207,7 +207,7 @@
 /area/bigredv2/caves/southwest)
 "po" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "qM" = (
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -394,7 +394,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/virology)
 "BT" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/w)
 "BV" = (
 /turf/open/floor/asteroidfloor,
@@ -448,7 +448,7 @@
 "ER" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/west)
 "FR" = (
 /obj/effect/decal/cleanable/dirt,
@@ -505,7 +505,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Lf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -594,7 +594,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "PY" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "Qg" = (
 /obj/effect/decal/cleanable/dirt,
@@ -743,7 +743,7 @@
 /area/shuttle/drop2/lz2)
 "ZV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 
 (1,1,1) = {"

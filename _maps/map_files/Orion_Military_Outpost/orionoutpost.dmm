@@ -33,7 +33,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostsw)
 "aj" = (
 /obj/structure/cable,
@@ -45,7 +45,7 @@
 /area/orion_outpost/ground/outpostcent)
 "ak" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostnw)
 "al" = (
 /obj/structure/cable,
@@ -120,7 +120,7 @@
 /area/orion_outpost/surface/building/administration)
 "aF" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostsw)
 "aG" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -298,7 +298,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
 "bD" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostcent)
 "bE" = (
 /turf/open/floor/mainship/sterile/corner,
@@ -628,7 +628,7 @@
 /turf/open/floor/mainship/blue,
 /area/orion_outpost/surface/building/administration)
 "ds" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outposte)
 "dt" = (
 /obj/machinery/light,
@@ -798,7 +798,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/tadpolepad)
 "eq" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/outpostnw)
 "es" = (
 /obj/structure/table/mainship,
@@ -828,7 +828,7 @@
 /turf/open/floor/bcircuit,
 /area/orion_outpost/surface/building/engineering)
 "eA" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/underground/caveS)
 "eB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -966,7 +966,7 @@
 /obj/structure/platform{
 	dir = 8
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outposts)
 "fm" = (
 /obj/structure/cable,
@@ -1041,7 +1041,7 @@
 /turf/open/ground/river,
 /area/orion_outpost/ground/river/riverside_south)
 "fD" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outposts)
 "fF" = (
 /obj/effect/ai_node,
@@ -1127,7 +1127,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
 "fX" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/underground/caveE)
 "fY" = (
 /obj/structure/table/mainship,
@@ -1322,7 +1322,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/surface/landing_pad2_external)
 "ha" = (
 /obj/effect/landmark/corpsespawner/marine,
@@ -1481,7 +1481,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostnw)
 "hM" = (
 /obj/structure/prop/brokenvendor/brokenweaponsrack,
@@ -1626,7 +1626,7 @@
 	},
 /area/orion_outpost/surface/building/atc)
 "iy" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostn)
 "iz" = (
 /turf/open/floor/prison,
@@ -1659,7 +1659,7 @@
 /area/orion_outpost/ground/outpostse)
 "iE" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/surface/landing_pad2_external)
 "iG" = (
 /obj/structure/bed/chair{
@@ -1707,7 +1707,7 @@
 	},
 /area/orion_outpost/ground/outpostcent)
 "iP" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/outpostn)
 "iR" = (
 /obj/effect/ai_node,
@@ -2005,7 +2005,7 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outposts)
 "kl" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -2078,7 +2078,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/surface/building/vehicledepot)
 "kD" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/surface/building/atc)
 "kE" = (
 /obj/structure/cable,
@@ -2090,7 +2090,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/orion_outpost/ground/outpostsw)
 "kG" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/underground/caveN)
 "kH" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
@@ -2817,7 +2817,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "oF" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/outpostw)
 "oG" = (
 /turf/open/floor/mainship/terragov/north{
@@ -3238,7 +3238,7 @@
 /area/orion_outpost/ground/outpostcent)
 "qH" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/underground/caveE)
 "qI" = (
 /obj/effect/landmark/xeno_silo_spawn,
@@ -3263,7 +3263,7 @@
 /turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "qN" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostnw)
 "qO" = (
 /obj/machinery/power/geothermal,
@@ -3517,7 +3517,7 @@
 /turf/open/ground/river,
 /area/orion_outpost/ground/river/riverside_south)
 "sb" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/outposts)
 "sc" = (
 /turf/open/floor/mainship/cargo/arrow{
@@ -3769,7 +3769,7 @@
 	},
 /area/orion_outpost/surface/building/ammodepot)
 "tu" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostse)
 "tw" = (
 /obj/effect/decal/cleanable/blood,
@@ -3782,7 +3782,7 @@
 	},
 /area/orion_outpost/surface/building/engineering)
 "ty" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
 "tC" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -3887,7 +3887,7 @@
 	},
 /area/orion_outpost/surface/building/prep)
 "tZ" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/outposte)
 "ua" = (
 /obj/machinery/light,
@@ -3971,7 +3971,7 @@
 /area/orion_outpost/surface/building/canteen)
 "uz" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostn)
 "uA" = (
 /obj/structure/bed/chair/office/dark{
@@ -4422,7 +4422,7 @@
 /area/orion_outpost/ground/outpostsw)
 "xh" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/underground/caveS)
 "xi" = (
 /obj/structure/closet/secure_closet/personal,
@@ -4540,7 +4540,7 @@
 	},
 /area/orion_outpost/surface/building/atc)
 "xQ" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/surface/landing_pad2_external)
 "xR" = (
 /obj/machinery/light{
@@ -5609,7 +5609,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostcent)
 "CX" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/outpostse)
 "CY" = (
 /obj/structure/cable,
@@ -5634,7 +5634,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/armory)
 "Db" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/underground/caveS)
 "Dc" = (
 /obj/structure/prop/mainship/mission_planning_system,
@@ -5702,7 +5702,7 @@
 /turf/open/ground/grasspatch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "DG" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostw)
 "DH" = (
 /obj/structure/stairs/seamless/platform/alt{
@@ -6395,7 +6395,7 @@
 	},
 /area/orion_outpost/surface/building/cargo)
 "Ho" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/underground/caveN)
 "Hq" = (
 /obj/effect/ai_node,
@@ -6822,7 +6822,7 @@
 /area/orion_outpost/surface/building/administration)
 "JJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/surface/building/atc)
 "JL" = (
 /turf/open/floor/mainship/orange{
@@ -7076,7 +7076,7 @@
 /area/orion_outpost/surface/building/cargo)
 "KY" = (
 /obj/effect/decal/riverdecal,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostcent)
 "KZ" = (
 /obj/effect/ai_node,
@@ -7102,7 +7102,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostse)
 "Lf" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/surface/landing_pad_external)
 "Lg" = (
 /obj/structure/table/mainship,
@@ -7487,7 +7487,7 @@
 /area/orion_outpost/surface/building/engineering)
 "Ng" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/surface/landing_pad_external)
 "Nh" = (
 /obj/structure/cable,
@@ -7648,7 +7648,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/surface/landing_pad2_external)
 "NM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -8273,7 +8273,7 @@
 	},
 /area/orion_outpost/surface/building/armory)
 "Ra" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/surface/landing_pad2_external)
 "Rb" = (
 /obj/structure/cable,
@@ -8337,7 +8337,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "Rp" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostsw)
 "Rq" = (
 /obj/structure/desertdam/decals/road/edge{
@@ -8641,7 +8641,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/ammodepot)
 "SP" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/outpostsw)
 "SQ" = (
 /obj/structure/bed/chair/office/dark{
@@ -8802,7 +8802,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/outpostnw)
 "TI" = (
 /obj/machinery/light,
@@ -8873,7 +8873,7 @@
 /area/orion_outpost/surface/building/canteen)
 "Ua" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostnw)
 "Ub" = (
 /turf/open/floor/plating/ground/concrete,
@@ -9110,7 +9110,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/administration)
 "UY" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/orion_outpost/ground/underground/caveE)
 "Vc" = (
 /turf/open/floor/plating/ground/concrete/lines{
@@ -9239,7 +9239,7 @@
 /area/orion_outpost/ground/outpostse)
 "VD" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/underground/caveN)
 "VE" = (
 /turf/open/floor/mainship/mono,
@@ -9320,7 +9320,7 @@
 /area/orion_outpost/surface/building/cargo)
 "Wd" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostse)
 "Wg" = (
 /obj/structure/rack,
@@ -9545,7 +9545,7 @@
 /area/orion_outpost/surface/building/breakroom)
 "Xr" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostsw)
 "Xt" = (
 /obj/machinery/light{

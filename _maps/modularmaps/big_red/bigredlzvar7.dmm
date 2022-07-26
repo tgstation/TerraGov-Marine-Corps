@@ -20,7 +20,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "ap" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "aq" = (
 /obj/machinery/light{
@@ -213,7 +213,7 @@
 /area/bigredv2/outside/telecomm)
 "eP" = (
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "eR" = (
 /obj/structure/cargo_container/red{
@@ -591,11 +591,11 @@
 /area/bigredv2/outside/space_port)
 "mI" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "mR" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "nf" = (
 /obj/effect/decal/cleanable/dirt,
@@ -670,7 +670,7 @@
 "oN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "pd" = (
 /obj/machinery/recharge_station,
@@ -775,7 +775,7 @@
 "rK" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "rL" = (
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -1418,7 +1418,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Gm" = (
 /turf/open/floor/tile/red/redtaupecorner{
@@ -1502,7 +1502,7 @@
 /area/bigredv2/outside/nw)
 "HE" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "HF" = (
 /turf/open/floor/plating/icefloor/warnplate{
@@ -1581,7 +1581,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Jq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,

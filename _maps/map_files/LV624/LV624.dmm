@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aab" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/space)
 "aad" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -2645,7 +2645,7 @@
 /area/lv624/ground/sand1)
 "aQx" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "aQC" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -3198,7 +3198,7 @@
 /area/lv624/ground/compound)
 "baA" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "baH" = (
 /obj/effect/ai_node,
@@ -7108,7 +7108,7 @@
 /area/lv624/lazarus/kitchen)
 "eRk" = (
 /obj/effect/landmark/xeno_resin_wall,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central4)
 "eRy" = (
 /obj/structure/jungle/vines,
@@ -11242,7 +11242,7 @@
 /area/lv624/lazarus/security)
 "jWv" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "jWw" = (
 /obj/item/stack/sheet/wood{
@@ -12498,7 +12498,7 @@
 	},
 /area/lv624/ground/jungle10)
 "lyj" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "lyB" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -13568,7 +13568,7 @@
 /area/lv624/lazarus/secure_storage)
 "mIM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "mJw" = (
 /obj/structure/barricade/wooden,
@@ -22403,7 +22403,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "xBU" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
 "xBZ" = (
 /obj/effect/ai_node,
@@ -22544,7 +22544,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "xLJ" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "xLK" = (
 /turf/open/floor/plating/ground/dirt,

@@ -1,12 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/space)
 "ab" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/west1)
 "ac" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/central2)
 "ad" = (
 /turf/open/floor,
@@ -18,7 +18,7 @@
 /turf/open/ground,
 /area/space)
 "ag" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/space)
 "ah" = (
 /turf/open/ground/grass/grass2,
@@ -347,10 +347,10 @@
 /turf/open/floor/grass,
 /area/lv624/ground/compound/n)
 "bg" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/west1)
 "bh" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central2)
 "bi" = (
 /obj/effect/landmark/lv624/fog_blocker,
@@ -438,19 +438,19 @@
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
 "bC" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "bD" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/central1)
 "bE" = (
 /turf/open/ground,
 /area/lv624/ground/caves/east1)
 "bF" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/east1)
 "bG" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/east1)
 "bH" = (
 /obj/effect/landmark/corpsespawner/scientist{
@@ -1378,19 +1378,16 @@
 	},
 /area/vapor_processing/cargo2)
 "fz" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/vapor_processing/caves/se)
 "fA" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/vapor_processing/caves/se)
 "fB" = (
 /turf/open/ground,
 /area/vapor_processing/caves/se)
 "fC" = (
 /turf/closed/wall,
-/area/lv624/lazarus/medbay)
-"fD" = (
-/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/medbay)
 "fE" = (
 /obj/structure/cable,
@@ -5186,7 +5183,7 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "un" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/lazarus/fitness)
 "uq" = (
 /obj/structure/table,
@@ -5325,7 +5322,7 @@
 /area/lv624/lazarus/engineering)
 "ww" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/vapor_processing/caves/se)
 "xc" = (
 /obj/machinery/computer/nuke_disk_generator/red,
@@ -5336,14 +5333,14 @@
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
 "zj" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/compound/se)
 "AB" = (
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/lv624/lazarus/quartstorage)
 "AG" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/vapor_processing/east_compound)
 "AS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -5370,7 +5367,7 @@
 /area/lv624/ground/compound/se)
 "Gn" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central2)
 "GM" = (
 /obj/machinery/miner/damaged,
@@ -5416,7 +5413,7 @@
 /area/lv624/lazarus/quartstorage)
 "Lt" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/east1)
 "Lv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5428,7 +5425,7 @@
 /area/lv624/lazarus/engineering)
 "Ml" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/east1)
 "MD" = (
 /obj/structure/window/framed/colony,
@@ -5450,7 +5447,7 @@
 /area/vapor_processing/south_compound)
 "Qv" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/central1)
 "Sa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -5474,7 +5471,7 @@
 /area/lv624/lazarus/research)
 "UJ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "Va" = (
 /obj/machinery/miner/damaged/platinum,
@@ -5488,7 +5485,7 @@
 /area/vapor_processing/cargo3)
 "Xw" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/west1)
 "ZJ" = (
 /obj/machinery/miner/damaged/platinum,
@@ -7071,9 +7068,9 @@ eG
 iG
 ee
 fm
-fD
-fD
-fD
+ly
+ly
+ly
 ly
 ht
 fC
@@ -7173,10 +7170,10 @@ eH
 ee
 iH
 ee
-fD
-fD
-fD
-fD
+ly
+ly
+ly
+ly
 lR
 fC
 eK
@@ -7381,7 +7378,7 @@ fa
 fC
 gb
 hc
-fD
+ly
 fC
 eK
 eK
@@ -7483,7 +7480,7 @@ fa
 fC
 gc
 hd
-fD
+ly
 fC
 eK
 em
@@ -7585,7 +7582,7 @@ fa
 fC
 gd
 he
-fD
+ly
 fC
 eK
 em
@@ -7687,7 +7684,7 @@ fa
 fC
 ge
 hf
-fD
+ly
 fC
 eK
 em
@@ -7788,7 +7785,7 @@ eK
 fa
 fC
 gf
-fD
+ly
 hu
 fC
 eK
@@ -7890,7 +7887,7 @@ fo
 fa
 fC
 gg
-fD
+ly
 hv
 fC
 eK
@@ -7992,7 +7989,7 @@ fa
 fa
 fC
 gh
-fD
+ly
 hw
 fC
 eK
@@ -8094,7 +8091,7 @@ eK
 fa
 qC
 gi
-fD
+ly
 hx
 qC
 eK
@@ -8196,7 +8193,7 @@ eK
 fa
 qC
 gj
-fD
+ly
 hy
 qC
 eK
@@ -8298,7 +8295,7 @@ eK
 fa
 fC
 gk
-fD
+ly
 hz
 fC
 eK
@@ -8502,7 +8499,7 @@ em
 fa
 fC
 gm
-fD
+ly
 hB
 fC
 eK
@@ -8604,7 +8601,7 @@ em
 fI
 fC
 gn
-fD
+ly
 hC
 fC
 eK

@@ -548,7 +548,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "Nh" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "NT" = (
 /obj/effect/landmark/corpsespawner/marine,
@@ -583,7 +583,7 @@
 /area/bigredv2/outside/s)
 "PU" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Qx" = (
 /obj/effect/decal/cleanable/dirt,

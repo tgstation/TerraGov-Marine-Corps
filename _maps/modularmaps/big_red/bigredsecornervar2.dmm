@@ -4,7 +4,7 @@
 /turf/open/floor/mainship/floor,
 /area/bigredv2/caves/rustedpreparea)
 "ax" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "aC" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -107,7 +107,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "cG" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "cH" = (
 /obj/effect/decal/cleanable/dirt,
@@ -488,7 +488,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/rustedpreparea)
 "nd" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "np" = (
 /turf/open/floor/mainship/red{
@@ -549,7 +549,7 @@
 /obj/effect/decal/sandedge{
 	dir = 4
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "pg" = (
 /obj/effect/decal/sandedge{
@@ -761,7 +761,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "uZ" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "vt" = (
 /obj/effect/decal/sandedge{
@@ -940,7 +940,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "BG" = (
 /obj/effect/decal/sandedge,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "BI" = (
 /obj/structure/disposalpipe/segment,
@@ -1219,7 +1219,7 @@
 /obj/effect/decal/sandedge/corner{
 	dir = 1
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Kg" = (
 /obj/machinery/door/firedoor/mainship,
@@ -1409,7 +1409,7 @@
 /obj/effect/decal/sandedge{
 	dir = 1
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "OE" = (
 /obj/structure/window/reinforced{
@@ -1527,7 +1527,7 @@
 /obj/machinery/door/window/right{
 	dir = 1
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/southeast)
 "RS" = (
 /obj/effect/decal/sandedge{
@@ -1538,7 +1538,7 @@
 /area/bigredv2/caves/rustedpreparea)
 "Sl" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "SD" = (
 /obj/structure/prop/brokenvendor/engivend,
@@ -1570,7 +1570,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
 "Ua" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/southeast)
 "Uq" = (
 /obj/item/stack/sheet/metal,

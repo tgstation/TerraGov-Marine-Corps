@@ -42,7 +42,7 @@
 "be" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "bf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -104,7 +104,7 @@
 /area/bigredv2/outside/space_port)
 "cA" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "cC" = (
 /obj/structure/cargo_container/green{
@@ -127,7 +127,7 @@
 /area/bigredv2/outside/marshal_office)
 "cQ" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "cS" = (
 /obj/structure/rack,
@@ -293,7 +293,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "hT" = (
 /turf/open/floor/plating/dmg1,
@@ -861,7 +861,7 @@
 "wD" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "wS" = (
 /obj/machinery/floodlight/landing,
@@ -913,7 +913,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "xM" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "xS" = (
 /obj/machinery/computer/shuttle/shuttle_control/dropship,
@@ -1039,7 +1039,7 @@
 /area/bigredv2/outside/space_port)
 "Au" = (
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "AA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1102,7 +1102,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "CJ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1345,7 +1345,7 @@
 /area/bigredv2/outside/marshal_office)
 "IC" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "IS" = (
 /obj/structure/table,
