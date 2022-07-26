@@ -18,7 +18,6 @@
 
 
 /obj/structure/patrol_point/LateInitialize()
-	. = ..()
 	create_link()
 
 ///Links the patrol point to its associated exit point
