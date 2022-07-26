@@ -1453,7 +1453,7 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/micro_rail_cluster
 	name = "bomblet"
-	icon_state = "bullet" //PLACEHOLDER
+	icon_state = "bullet"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_LEAVE_TURF
 	sound_hit 	 = "ballistic_hit"
 	sound_armor  = "ballistic_armor"
@@ -1465,6 +1465,7 @@ datum/ammo/bullet/revolver/tp44
 	shrapnel_chance = 0
 	max_range = 6
 	bullet_color = COLOR_VERY_SOFT_YELLOW
+	///the smoke effect at the point of detonation
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread
 
 ///handles the actual bomblet detonation

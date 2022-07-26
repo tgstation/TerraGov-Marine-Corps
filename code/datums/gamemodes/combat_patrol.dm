@@ -202,7 +202,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 			continue
 		if(H.faction == FACTION_SOM)
 			som_dead += H
-		if(H.faction == FACTION_TERRAGOV)
+		else if(H.faction == FACTION_TERRAGOV)
 			tgmc_dead += H
 
 	return list(som_alive, tgmc_alive, som_dead, tgmc_dead)

@@ -99,9 +99,9 @@
 	var/hud_type
 	if(faction == FACTION_TERRAGOV)
 		hud_type = DATA_HUD_SQUAD_TERRAGOV
-	if(faction == FACTION_TERRAGOV_REBEL)
+	else if(faction == FACTION_TERRAGOV_REBEL)
 		hud_type = DATA_HUD_SQUAD_REBEL
-	if(faction == FACTION_SOM)
+	else if(faction == FACTION_SOM)
 		hud_type = DATA_HUD_SQUAD_SOM
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	squad_hud.add_to_hud(src)
@@ -129,9 +129,9 @@
 	var/hud_type
 	if(faction == FACTION_TERRAGOV)
 		hud_type = DATA_HUD_SQUAD_TERRAGOV
-	if(faction == FACTION_TERRAGOV_REBEL)
+	else if(faction == FACTION_TERRAGOV_REBEL)
 		hud_type = DATA_HUD_SQUAD_REBEL
-	if(faction == FACTION_SOM)
+	else if(faction == FACTION_SOM)
 		hud_type = DATA_HUD_SQUAD_SOM
 	var/image/holder = hud_list[hud_type]
 	if(!holder)

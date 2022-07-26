@@ -274,9 +274,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(wearer.job?.job_flags & JOB_FLAG_ALWAYS_VISIBLE_ON_MINIMAP || wearer.stat == DEAD) //We show to all marines if we have this flag, separated by faction
 		if(hud_type == DATA_HUD_SQUAD_TERRAGOV)
 			marker_flags = MINIMAP_FLAG_MARINE
-		if(hud_type == DATA_HUD_SQUAD_REBEL)
+		else if(hud_type == DATA_HUD_SQUAD_REBEL)
 			marker_flags = MINIMAP_FLAG_MARINE_REBEL
-		if(hud_type == DATA_HUD_SQUAD_SOM)
+		else if(hud_type == DATA_HUD_SQUAD_SOM)
 			marker_flags = MINIMAP_FLAG_MARINE_SOM
 	if(HAS_TRAIT(wearer, TRAIT_UNDEFIBBABLE))
 		SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
@@ -298,9 +298,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/marker_flags
 	if(hud_type == DATA_HUD_SQUAD_TERRAGOV)
 		marker_flags = MINIMAP_FLAG_MARINE
-	if(hud_type == DATA_HUD_SQUAD_REBEL)
+	else if(hud_type == DATA_HUD_SQUAD_REBEL)
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
-	if(hud_type == DATA_HUD_SQUAD_SOM)
+	else if(hud_type == DATA_HUD_SQUAD_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
 	SSminimaps.add_marker(wearer, wearer.z, marker_flags, "defibbable")
 
@@ -313,9 +313,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/marker_flags
 	if(hud_type == DATA_HUD_SQUAD_TERRAGOV)
 		marker_flags = MINIMAP_FLAG_MARINE
-	if(hud_type == DATA_HUD_SQUAD_REBEL)
+	else if(hud_type == DATA_HUD_SQUAD_REBEL)
 		marker_flags = MINIMAP_FLAG_MARINE_REBEL
-	if(hud_type == DATA_HUD_SQUAD_SOM)
+	else if(hud_type == DATA_HUD_SQUAD_SOM)
 		marker_flags = MINIMAP_FLAG_MARINE_SOM
 	SSminimaps.add_marker(wearer, wearer.z, marker_flags, "undefibbable")
 
