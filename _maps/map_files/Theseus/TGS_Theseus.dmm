@@ -3732,7 +3732,17 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/machinery/bodyscanner,
+/obj/structure/table/mainship/nometal,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -4277,6 +4287,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
+"bor" = (
+/obj/effect/decal/medical_decals/cryo/cell,
+/turf/open/floor/mainship/sterile/side{
+	dir = 9
+	},
+/area/mainship/medical/lower_medical)
 "bos" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -4589,6 +4605,9 @@
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 8
+	},
+/obj/effect/decal/medical_decals/cryo{
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 9
@@ -6006,8 +6025,10 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "bGZ" = (
-/obj/machinery/body_scanconsole,
-/turf/open/floor/mainship/sterile/dark,
+/obj/machinery/autodoc,
+/turf/open/floor/mainship/sterile/side{
+	dir = 9
+	},
 /area/mainship/medical/lower_medical)
 "bHc" = (
 /obj/structure/table/mainship/nometal,
@@ -6554,8 +6575,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bMe" = (
-/obj/machinery/sleep_console,
-/turf/open/floor/mainship/sterile/side,
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
+	},
 /area/mainship/medical/lower_medical)
 "bMg" = (
 /obj/structure/table/reinforced,
@@ -8694,6 +8717,12 @@
 	dir = 8
 	},
 /area/mainship/command/cic)
+"cDG" = (
+/obj/machinery/autodoc,
+/turf/open/floor/mainship/sterile/side{
+	dir = 10
+	},
+/area/mainship/medical/lower_medical)
 "cFr" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -8702,6 +8731,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
+"cGn" = (
+/obj/effect/decal/medical_decals/cryo/cell/two,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "cGL" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -9084,10 +9117,6 @@
 	dir = 1
 	},
 /area/mainship/hallways/hangar)
-"doe" = (
-/obj/machinery/autodoc_console,
-/turf/open/floor/mainship/sterile,
-/area/mainship/medical/lower_medical)
 "dom" = (
 /obj/structure/disposalpipe/segment/corner,
 /obj/structure/cable,
@@ -9122,6 +9151,7 @@
 /area/mainship/hallways/starboard_hallway)
 "dus" = (
 /obj/machinery/cloning/vats,
+/obj/effect/decal/medical_decals/cryo/mid,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -9887,6 +9917,7 @@
 /area/mainship/medical/lower_medical)
 "eNZ" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/effect/decal/medical_decals/cryo/mid,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -12388,6 +12419,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/effect/decal/medical_decals/cryo{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -15081,6 +15115,7 @@
 /area/mainship/living/pilotbunks)
 "nRc" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/effect/decal/medical_decals/cryo/mid,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -16013,6 +16048,7 @@
 /area/mainship/command/cic)
 "pCr" = (
 /obj/machinery/roomba,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -16490,6 +16526,7 @@
 	},
 /area/mainship/medical/lower_medical)
 "qvE" = (
+/obj/machinery/autodoc_console,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "qwa" = (
@@ -18707,7 +18744,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_starboard)
 "uBZ" = (
-/obj/machinery/autodoc,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "uDw" = (
@@ -19129,14 +19166,10 @@
 	},
 /area/mainship/engineering/lower_engineering)
 "vrv" = (
-/obj/structure/table/mainship/nometal,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
-/obj/item/roller,
+/obj/machinery/bodyscanner,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -19706,10 +19739,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/repair_bay)
 "wsC" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/storage/box/bodybags,
-/obj/item/storage/box/bodybags,
 /obj/machinery/firealarm,
+/obj/machinery/body_scanconsole,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -19932,6 +19963,7 @@
 /area/mainship/command/cic)
 "wRf" = (
 /obj/machinery/holopad,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "wSO" = (
@@ -20292,6 +20324,7 @@
 /area/mainship/medical/lower_medical)
 "xCj" = (
 /obj/machinery/cloning/vats,
+/obj/effect/decal/medical_decals/cryo/mid,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -20681,7 +20714,6 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/machinery/sleeper,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -50760,7 +50792,7 @@ hBs
 lzV
 blQ
 nRc
-buo
+bor
 bDb
 bkw
 buo
@@ -51019,10 +51051,10 @@ blQ
 tqR
 iGu
 iGu
-bGZ
+xpi
 iGu
 iGu
-bMe
+sBz
 bsC
 tkF
 wNU
@@ -51274,9 +51306,9 @@ boT
 rJr
 blQ
 eNZ
-iGu
+cGn
 bAs
-bKG
+bMe
 iOS
 iGu
 bKC
@@ -51532,9 +51564,9 @@ uGF
 blQ
 vrv
 bAs
-buo
+bGZ
 uBZ
-bDb
+cDG
 iOS
 bKE
 bsC
@@ -51790,7 +51822,7 @@ blQ
 wsC
 bze
 qvE
-doe
+uBZ
 qvE
 sBz
 bsB

@@ -43,7 +43,7 @@
 	job = /datum/job/terragov/medical/medicalofficer
 
 /obj/effect/landmark/start/job/researcher
-	icon_state = "MD"
+	icon_state = "Research"
 	job = /datum/job/terragov/medical/researcher
 
 /obj/effect/landmark/start/job/corporateliaison

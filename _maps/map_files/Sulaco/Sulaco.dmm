@@ -792,6 +792,9 @@
 /area/sulaco/medbay/surgery_two)
 "acJ" = (
 /obj/machinery/autodoc,
+/obj/machinery/light/mainship{
+	dir = 8
+	},
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -1018,7 +1021,7 @@
 /turf/closed/banish_space,
 /area/space)
 "adB" = (
-/obj/machinery/bodyscanner,
+/obj/machinery/autodoc,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -1059,7 +1062,17 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/surgery_one)
 "adH" = (
-/obj/machinery/body_scanconsole,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/bodyscanner,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -1121,12 +1134,14 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
 "adO" = (
 /obj/machinery/cloning/vats,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/decal/medical_decals/cryo/mid,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -8732,6 +8747,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
+"aSj" = (
+/obj/effect/decal/medical_decals/cryo/cell,
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay)
 "aSk" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -9774,7 +9793,13 @@
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
 "aZU" = (
-/obj/machinery/camera/autoname,
+/obj/structure/rack,
+/obj/item/tool/crowbar,
+/obj/effect/spawner/random/toolbox,
+/obj/item/stack/cable_coil,
+/obj/item/assembly/timer,
+/obj/item/assembly/infra,
+/obj/item/cell/high,
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
@@ -11424,6 +11449,12 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/hydro)
+"cNZ" = (
+/obj/structure/cable,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay)
 "cOs" = (
 /obj/structure/closet/basketball,
 /turf/open/floor/tile/darkgreen/darkgreen2,
@@ -13039,6 +13070,22 @@
 	dir = 4
 	},
 /area/sulaco/research)
+"flZ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/body_scanconsole,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 1
+	},
+/area/sulaco/medbay)
 "fmy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -13263,6 +13310,7 @@
 /area/sulaco/medbay)
 "fzI" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/effect/decal/medical_decals/cryo/mid,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -14633,6 +14681,14 @@
 	dir = 8
 	},
 /area/sulaco/marine)
+"hBy" = (
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/prison/whitegreen{
+	dir = 4
+	},
+/area/sulaco/research)
 "hBC" = (
 /obj/structure/table/mainship,
 /obj/item/roller,
@@ -18409,6 +18465,10 @@
 /obj/item/reagent_containers/food/snacks/flour,
 /turf/open/floor/freezer,
 /area/sulaco/cafeteria/kitchen)
+"mPp" = (
+/obj/effect/decal/medical_decals/cryo/cell/two,
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay)
 "mPO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/mainship{
@@ -19042,6 +19102,10 @@
 /obj/machinery/cic_maptable,
 /turf/open/floor/prison,
 /area/sulaco/cargo)
+"nQx" = (
+/obj/structure/cable,
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay)
 "nQB" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 1
@@ -20185,9 +20249,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "plO" = (
-/obj/machinery/light/mainship{
-	dir = 8
+/obj/machinery/power/apc/mainship{
+	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay)
 "pme" = (
@@ -25192,6 +25257,16 @@
 	},
 /turf/open/floor/prison/red,
 /area/mainship/shipboard/weapon_room)
+"vZM" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/effect/decal/medical_decals/cryo{
+	dir = 1
+	},
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay)
 "waf" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/structure/window/framed/mainship/gray/toughened,
@@ -53098,7 +53173,7 @@ aaW
 aRh
 aRG
 aRI
-fkY
+hBy
 jsB
 tao
 tus
@@ -54003,8 +54078,8 @@ jDY
 adf
 esb
 sZr
-adH
-adf
+acK
+cNZ
 acK
 jXT
 mDu
@@ -54260,8 +54335,8 @@ vRz
 ygk
 eOM
 adN
-kMl
-ade
+cvw
+nQx
 adV
 jXT
 mDu
@@ -54515,7 +54590,7 @@ hNA
 oXn
 aaJ
 adU
-odW
+adH
 adf
 vtC
 ovJ
@@ -54772,7 +54847,7 @@ oxz
 afc
 eqh
 ade
-pKP
+flZ
 ade
 gXI
 ade
@@ -55289,7 +55364,7 @@ ade
 aco
 ade
 fzI
-ade
+aSj
 hBC
 jXT
 mDu
@@ -55803,7 +55878,7 @@ aeP
 pKP
 ade
 fzI
-ade
+mPp
 aer
 jXT
 hjK
@@ -56574,7 +56649,7 @@ qkC
 adc
 hAY
 adO
-hAY
+vZM
 bqm
 jOr
 sZZ

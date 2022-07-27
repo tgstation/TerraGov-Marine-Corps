@@ -1554,7 +1554,6 @@
 /area/mainship/hull/port_hull)
 "eU" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/autodoc,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "eW" = (
@@ -2930,6 +2929,7 @@
 "jt" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/effect/soundplayer,
+/obj/effect/decal/medical_decals/cryo/mid,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -4594,6 +4594,7 @@
 /area/mainship/engineering/port_atmos)
 "pb" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/effect/decal/medical_decals/cryo/mid,
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/lower_medical)
 "pe" = (
@@ -4610,6 +4611,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/decal/medical_decals/cryo/cell/two,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -5270,6 +5272,7 @@
 /obj/item/stack/cable_coil,
 /obj/item/assembly/timer,
 /obj/item/assembly/infra,
+/obj/item/cell/high,
 /turf/open/floor/mainship/research,
 /area/mainship/medical/medical_science)
 "rT" = (
@@ -7142,6 +7145,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/decal/medical_decals/cryo/cell,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -8225,12 +8229,14 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "AN" = (
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
+/obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "AO" = (
@@ -8952,7 +8958,7 @@
 /area/mainship/squads/general)
 "CU" = (
 /obj/machinery/autodoc_console,
-/turf/open/floor/mainship/sterile,
+/turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "CV" = (
 /obj/structure/rack,
@@ -9383,6 +9389,7 @@
 /area/mainship/medical/lower_medical)
 "Es" = (
 /obj/structure/disposalpipe/segment,
+/obj/machinery/autodoc,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/lower_medical)
 "Et" = (
@@ -9679,6 +9686,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "Fe" = (
@@ -9688,6 +9696,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "Ff" = (
@@ -22385,9 +22394,9 @@ kt
 kt
 zH
 AM
-wG
 CU
-wG
+zO
+CU
 Fd
 rY
 GZ
