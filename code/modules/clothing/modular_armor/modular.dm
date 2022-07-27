@@ -947,9 +947,6 @@
 /obj/item/clothing/head/modular/som/welder
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
 
-/obj/item/clothing/head/modular/som/welder
-	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/module/welding)
-
 /obj/item/clothing/head/modular/som/veteran
 	name = "\improper SOM veteran helmet"
 	desc = "The standard combat helmet worn by SOM combat specialists. State of the art materials provides more protection for more valuable brains."
