@@ -49,12 +49,9 @@
 	resistance_flags = RESIST_ALL
 
 /turf/closed/mineral/smooth/bigred
-	name = "rock"
 	icon = 'icons/turf/walls/redwall.dmi'
 	icon_state = "red_wall-0-0-0-0"
 	walltype = "red_wall"
-	smoothing_behavior = DIAGONAL_SMOOTHING
-	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
 
 /turf/closed/mineral/smooth/bigred/indestructible
 	resistance_flags = RESIST_ALL
