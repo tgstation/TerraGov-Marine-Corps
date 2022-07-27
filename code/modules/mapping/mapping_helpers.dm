@@ -91,14 +91,10 @@
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = ""
 	var/late = FALSE
-	///If the mapping_helper should activate automatically and delete itself afterwards or not.
-	var/manual_use = FALSE
 
 /obj/effect/mapping_helpers/Initialize()
 	. = ..()
-	if(manual_use)
-		return
-	return late ? INITIALIZE_HINT_LATELOAD : manual_use ? null : INITIALIZE_HINT_QDEL
+	return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
 
 
 //airlock helpers
@@ -215,8 +211,32 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	return list(component_type,D)
 	*/
 
-// Sorts items in a neat diagonal line/ grid (best used on a stack of the same/ similar shaped items)
-/obj/effect/mapping_helpers/stack_sort
+/obj/effect/mapping_helpers/stack
+	name = "You shouldn't be seeing this."
+	///Whether to not active and qdel itself after Init
+	var/manual_use = FALSE
+
+/obj/effect/mapping_helpers/stack/Initialize()
+	. = ..()
+	if(manual_use)
+		return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_NORMAL
+	Run()
+
+///Checks for tables and racks in specified turf and returns the height in pixels atoms should be shifted for.
+/obj/effect/mapping_helpers/stack/proc/Check_Height_Table_Rack(turf/T)
+	if(!T)
+		return
+	if(locate(/obj/structure/table) in T)
+		return 4
+	if(locate(/obj/structure/rack) in T)
+		return 3
+
+///Runs the stack mapping_helper's unique proc.
+/obj/effect/mapping_helpers/stack/proc/Run()
+	return
+
+///Sorts items in a neat diagonal line/ grid (best used on a stack of the same/ similar shaped items)
+/obj/effect/mapping_helpers/stack/sort
 	name = "Item Stack Sorter"
 	icon_state = "stack_sort"
 	/// Amount of rows
@@ -232,12 +252,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	/// Pixelshifting between each item in a column
 	var/shift_x = 3
 	var/shift_y = 4
+	///Whitelist for the items to sort. null = all
+	var/list/whitelist = list()
 
-/obj/effect/mapping_helpers/stack_sort/Initialize(mapload)
-	. = ..()
-	sort()
-
-/obj/effect/mapping_helpers/stack_sort/proc/sort()
+/obj/effect/mapping_helpers/stack/sort/Run()
 	var/amount = 0
 	var/current_item = 1
 	var/current_spot = 1
@@ -254,9 +272,17 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	var/list/numbersort = list()
 	var/localoffset_x = offset_x
 	var/localoffset_y = offset_y + Check_Height_Table_Rack(loc)
+	var/list/items = list()
 
 	for (var/obj/item/I in T)
-		amount++
+		if(whitelist)
+			if(I.type in whitelist)
+				items += I
+				amount++
+		else
+			items += I
+			amount++
+
 	if (!amount)
 		log_world("### MAP WARNING, [src] had no items to sort at [x],[y],[z]!")
 		return
@@ -316,7 +342,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	//Put the items according to the organized list
 	current_spot = 1
 	current_item = 1
-	for (var/obj/item/I in loc)
+	for (var/obj/item/I in items)
 		I.layer = initial(I.layer)
 		if (current_item > spot_size)
 			if (remaining) //Do one extra item for this spot to get rid of the remainder
@@ -334,7 +360,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 		I.layer += 0.00001 * current_spot
 		current_item++
 
-/obj/effect/mapping_helpers/stack_sort/fivebythree
+/obj/effect/mapping_helpers/stack/sort/fivebythree
 	max_vertical = 5
 	max_horizontal = 3
 	displace_x = 3
@@ -342,7 +368,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	shift_x = 4
 	shift_y = 3
 
-/obj/effect/mapping_helpers/stack_sort/diagonalfivebythree
+/obj/effect/mapping_helpers/stack/sort/diagonalfivebythree
 	max_vertical = 5
 	max_horizontal = 3
 	displace_x = 3
@@ -350,7 +376,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	shift_x = 3
 	shift_y = 3
 
-/obj/effect/mapping_helpers/stack_sort/diamondthreebythree
+/obj/effect/mapping_helpers/stack/sort/diamondthreebythree
 	max_vertical = 3
 	max_horizontal = 3
 	displace_x = 4
@@ -358,7 +384,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	shift_x = 4
 	shift_y = 4
 
-/obj/effect/mapping_helpers/stack_sort/blocktwobytwo
+/obj/effect/mapping_helpers/stack/sort/blocktwobytwo
 	max_vertical = 2
 	max_horizontal = 2
 	displace_x = 14
@@ -366,7 +392,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	shift_x = 0
 	shift_y = 6
 
-/obj/effect/mapping_helpers/stack_sort/blocktwobythree
+/obj/effect/mapping_helpers/stack/sort/blocktwobythree
 	max_vertical = 3
 	max_horizontal = 2
 	displace_x = 14
@@ -374,7 +400,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	shift_x = 0
 	shift_y = 6
 
-/obj/effect/mapping_helpers/stack_sort/blockthreebythree
+/obj/effect/mapping_helpers/stack/sort/blockthreebythree
 	max_vertical = 3
 	max_horizontal = 3
 	displace_x = 7
@@ -382,89 +408,75 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	shift_x = 0
 	shift_y = 6
 
-//For use by admemes ingame. Spawn it, varedit it, then call proc/sort() to make it do it's magic.
-/obj/effect/mapping_helpers/stack_sort/manual
+// For use by admemes ingame. Varedit and call proc/Run()
+/obj/effect/mapping_helpers/stack/sort/manual
 	name = "Manual item stack sorter"
 	desc = "Call proc/sort() to sort items. Don't forget to delete it if done."
 	manual_use = TRUE
 
-//Randomly sets objects in a random pixel_x and pixel_y on this turf
-/obj/effect/mapping_helpers/stack_shift
-	name = "Object pixel shifter"
+//Randomly sets atoms in a random pixel_x and pixel_y on this turf
+/obj/effect/mapping_helpers/stack/shift
+	name = "Atom pixel shifter"
 	icon_state = "stack_shift"
-	var/offset_x = 0
-	var/offset_y = 0
-	///Override to determine which objects to shift.
-	var/list/objects = list()
-
-/obj/effect/mapping_helpers/stack_shift/Initialize(mapload)
-	. = ..()
-	var/obj/effect/mapping_helpers/stack_displace = locate(/obj/effect/mapping_helpers/stack_displace) in loc
-	if(stack_displace)
-		return
-	Shift()
+	///Whitelist of which atom/movable typepaths to pixelshift.
+	var/list/whitelist = list()
+	///Override to determine which atoms to shift.
+	var/list/atom/movable/atoms = list()
 
 ///Pixelshifts all objects on the same turf or all objects specified in var/list/objects by -8 to 8 pixels in both axis.
-/obj/effect/mapping_helpers/stack_shift/proc/Shift()
-	///Amount of pixels objects should be shifted upwards in addition to the normal pixelshift.
-	var/localoffset_y
+/obj/effect/mapping_helpers/stack/shift/Run()
 
-	if(objects)
-		for(var/obj/O in objects)
-			localoffset_y = offset_y + Check_Height_Table_Rack(O.loc)
-			O.pixel_x = rand(-8, 8)
-			O.pixel_y = rand(-8, 8) + localoffset_y
+	for(var/W in whitelist)
+		if(!ismovableatom(W))
+			whitelist -= W
+
+	if(atoms)
+		for(var/atom/movable/A in atoms)
+			A.pixel_x = rand(-8, 8)
+			A.pixel_y = rand(-8, 8) + Check_Height_Table_Rack(A.loc)
 	else
-		localoffset_y = offset_y + Check_Height_Table_Rack(loc)
-		for(var/obj/O in loc)
-			O.pixel_x = rand(-8, 8)
-			O.pixel_y = rand(-8, 8) + localoffset_y
+		for(var/atom/movable/A in loc)
+			if(whitelist && !A.type in whitelist)
+				continue
+			A.pixel_x = rand(-8, 8)
+			A.pixel_y = rand(-8, 8) + Check_Height_Table_Rack(loc)
 
-/obj/effect/mapping_helpers/stack_shift/manual
+// For use by admemes ingame. Varedit and call proc/Run()
+/obj/effect/mapping_helpers/stack/shift/manual
 	name = "Manual shifter"
 	desc = "Call proc/Shift() to pixel-move items. Don't forget to delete it if done."
 	manual_use = TRUE
 
-///Checks for tables and racks in specified turf and returns the height in pixels objects should be shifted for.
-/obj/effect/mapping_helpers/proc/Check_Height_Table_Rack(turf/T)
-	if(!T)
-		return
-	if(locate(/obj/structure/table) in T)
-		return 4
-	if(locate(/obj/structure/rack) in T)
-		return 3
-
-
 //Randomly displaces objects around
-/obj/effect/mapping_helpers/stack_displace
-	name = "Object displacer"
+/obj/effect/mapping_helpers/stack/displace
+	name = "Atom  displacer"
 	icon_state = "stack_displace"
 	var/range_x = 2
 	var/range_y = 2
-	/// Amount of tries per object to displace
+	///Amount of tries per atom to displace
 	var/tries = 5
-	/// List of all /obj/ that should be affected. null = all
-	var/whitelist = null
+	///List of all /atom/moveable types that should be affected. null = all
+	var/list/whitelist = list()
+	///Spawn a stack/shift and pass on the objects from displacement?
+	var/pixelshift = FALSE
 
-/obj/effect/mapping_helpers/stack_displace/Initialize()
-	. = ..()
-	Displace()
-
-/obj/effect/mapping_helpers/stack_displace/proc/Displace()
+/obj/effect/mapping_helpers/stack/displace/Run()
 	var/pass = TRUE
-	var/obj/effect/mapping_helpers/stack_shift/shift_helper = locate(/obj/effect/mapping_helpers/stack_shift) in loc
-	for(var/obj/O in loc)
+	var/obj/effect/mapping_helpers/stack/shift/manual/shift
+	if(pixelshift)
+		shift = new(loc)
+	for(var/atom/movable/A in loc)
 		if(whitelist)
 			pass = FALSE
 			for(var/W in whitelist)
-				if(istype(O, W))
+				if(istype(A, W))
 					pass = TRUE
 
 		if(!pass)
 			continue
 
-		if(shift_helper)
-			shift_helper.objects += O
+		if(pixelshift)
+			shift.atoms += A
 
 		turf_search:
 			for(var/i= 0, i < tries, i++)
@@ -477,30 +489,54 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 				if (isopenturf(T)) // No walls
 					if (!isspaceturf(T)) // No space
 						if (!isspacearea(T.loc)) // Not in space
-							for(var/obj/Obj in T)
-								if(Obj.density && !(istype(Obj, /obj/structure/table) || istype(Obj, /obj/structure/rack))) // No dense objects in turf, except for tables and racks
+							for(var/obj/O in T)
+								if(O.density && !(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))) // No dense objects in turf, except for tables and racks
 									continue turf_search
-							O.forceMove(T)
+							A.forceMove(T)
 							break
+	if(pixelshift)
+		shift.Run()
+		qdel(shift)
 
-/obj/effect/mapping_helpers/stack_displace/item
+/obj/effect/mapping_helpers/stack/displace/item
 	name = "Item displacer"
 	whitelist = list(/obj/item)
 
-/obj/effect/mapping_helpers/stack_displace/trash
+/obj/effect/mapping_helpers/stack/displace/trash
 	name = "Trash displacer"
 	whitelist = list(/obj/item/trash)
 
-/obj/effect/mapping_helpers/stack_displace/crate
+/obj/effect/mapping_helpers/stack/displace/crate
 	name = "Crate displacer"
 	whitelist = list(/obj/structure/largecrate, /obj/structure/closet)
 
-/obj/effect/mapping_helpers/stack_displace/machinery
+/obj/effect/mapping_helpers/stack/displace/machinery
 	name = "Machine displacer"
 	whitelist = list(/obj/machinery)
 
-// For use be admemes ingame. Varedit and call proc/Displace()
-/obj/effect/mapping_helpers/stack_displace/manual
+/obj/effect/mapping_helpers/stack/displace/mob
+	name = "Mob displacer"
+	whitelist = list(
+		/mob/living,
+		/obj/effect/landmark/corpsespawner
+	)
+
+/obj/effect/mapping_helpers/stack/displace/gun
+	name = "Gun/ Ammo displacer"
+	whitelist = list(
+		/obj/item/weapon/gun,
+		/obj/effect/spawner/random/gun,
+		/obj/effect/spawner/random/ammo,
+		/obj/effect/landmark/weapon_spawn,
+		/obj/effect/spawner/random_set/gun,
+		/obj/effect/spawner/random_set/machineguns,
+		/obj/effect/spawner/random_set/rifle,
+		/obj/effect/spawner/random_set/shotgun,
+		/obj/effect/spawner/random_set/sidearms
+	)
+
+// For use by admemes ingame. Varedit and call proc/Run()
+/obj/effect/mapping_helpers/stack/displace/manual
 	name = "Manual displacer"
 	desc = "Call proc/Displace() to move items. Don't forget to delete it if done."
 	manual_use = TRUE

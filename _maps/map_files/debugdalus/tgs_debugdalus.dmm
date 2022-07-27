@@ -612,7 +612,7 @@
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
-/obj/effect/mapping_helpers/stack_sort/diagonalfivebythree,
+/obj/effect/mapping_helpers/stack/sort/diagonalfivebythree,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acI" = (
@@ -693,7 +693,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
-/obj/effect/mapping_helpers/stack_sort,
+/obj/effect/mapping_helpers/stack/sort,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "acZ" = (
@@ -1206,7 +1206,7 @@
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
-/obj/effect/mapping_helpers/stack_sort,
+/obj/effect/mapping_helpers/stack/sort,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "afs" = (
@@ -1240,7 +1240,7 @@
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
-/obj/effect/mapping_helpers/stack_sort/fivebythree,
+/obj/effect/mapping_helpers/stack/sort/fivebythree,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "afu" = (
@@ -1672,7 +1672,7 @@
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
-/obj/effect/mapping_helpers/stack_sort/blockthreebythree,
+/obj/effect/mapping_helpers/stack/sort/blockthreebythree,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "ahu" = (
@@ -2412,7 +2412,7 @@
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
-/obj/effect/mapping_helpers/stack_sort/manual,
+/obj/effect/mapping_helpers/stack/sort/manual,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "azU" = (
@@ -2453,7 +2453,7 @@
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
-/obj/effect/mapping_helpers/stack_sort/blocktwobythree,
+/obj/effect/mapping_helpers/stack/sort/blocktwobythree,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bgb" = (
@@ -2589,8 +2589,7 @@
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
-/obj/effect/mapping_helpers/stack_displace,
-/obj/effect/mapping_helpers/stack_shift,
+/obj/effect/mapping_helpers/stack/displace,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "fVU" = (
@@ -2647,7 +2646,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
-/obj/effect/mapping_helpers/stack_sort/blockthreebythree,
+/obj/effect/mapping_helpers/stack/sort/blockthreebythree,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "hni" = (
@@ -2685,7 +2684,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
-/obj/effect/mapping_helpers/stack_sort/blocktwobytwo,
+/obj/effect/mapping_helpers/stack/sort/blocktwobytwo,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "hyS" = (
@@ -2751,7 +2750,7 @@
 /obj/item/storage/firstaid/rad,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/toxin,
-/obj/effect/mapping_helpers/stack_sort/blocktwobythree,
+/obj/effect/mapping_helpers/stack/sort/blocktwobythree,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "kso" = (
@@ -2769,7 +2768,7 @@
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/o2,
 /obj/item/storage/firstaid/rad,
-/obj/effect/mapping_helpers/stack_sort/blocktwobytwo,
+/obj/effect/mapping_helpers/stack/sort/blocktwobytwo,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "lcb" = (
@@ -2833,7 +2832,7 @@
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
-/obj/effect/mapping_helpers/stack_sort/diamondthreebythree,
+/obj/effect/mapping_helpers/stack/sort/diamondthreebythree,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "lGz" = (
@@ -2879,7 +2878,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
-/obj/effect/mapping_helpers/stack_sort/blocktwobythree,
+/obj/effect/mapping_helpers/stack/sort/blocktwobythree,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "mlP" = (
@@ -2910,38 +2909,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "nTI" = (
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/effect/mapping_helpers/stack_displace,
-/turf/open/floor/mainship,
+/turf/open/space/basic,
 /area/mainship/hallways/hangar)
 "oNT" = (
 /obj/machinery/light{
@@ -2953,6 +2921,40 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"oQS" = (
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/effect/mapping_helpers/stack/shift,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "qko" = (
@@ -3024,7 +3026,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
-/obj/effect/mapping_helpers/stack_sort/diamondthreebythree,
+/obj/effect/mapping_helpers/stack/sort/diamondthreebythree,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "rlt" = (
@@ -3058,7 +3060,7 @@
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
 /obj/item/storage/pill_bottle/bicaridine,
-/obj/effect/mapping_helpers/stack_sort/blocktwobytwo,
+/obj/effect/mapping_helpers/stack/sort/blocktwobytwo,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "rmh" = (
@@ -3139,7 +3141,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
-/obj/effect/mapping_helpers/stack_sort/diagonalfivebythree,
+/obj/effect/mapping_helpers/stack/sort/diagonalfivebythree,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "tae" = (
@@ -3218,7 +3220,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
-/obj/effect/mapping_helpers/stack_sort/manual,
+/obj/effect/mapping_helpers/stack/sort/manual,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "vHf" = (
@@ -3268,6 +3270,42 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"xoF" = (
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/item/storage/pill_bottle/bicaridine,
+/obj/effect/mapping_helpers/stack/displace{
+	pixelshift = 1
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "xsM" = (
 /obj/machinery/light{
 	dir = 1
@@ -3318,7 +3356,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
-/obj/effect/mapping_helpers/stack_sort/fivebythree,
+/obj/effect/mapping_helpers/stack/sort/fivebythree,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "ybc" = (
@@ -4976,16 +5014,16 @@ bOu
 bOu
 bOu
 bOu
-bOu
-bOu
-bOu
-bOu
 fSJ
 bOu
 bOu
 bOu
 bOu
 bOu
+bOu
+bOu
+bOu
+xoF
 bOu
 bOu
 bOu
@@ -5705,7 +5743,7 @@ bOu
 bOu
 bOu
 nTI
-bOu
+oQS
 bOu
 bOu
 bOu
