@@ -383,28 +383,6 @@
 	var/armor_to_spawn = pick(spawn_list)
 	new armor_to_spawn(loc)
 
-/obj/effect/landmark/armor_spawn/tier1_armor_spawn
-	name = "Tier 1 Armor Spawn"
-	icon_state = "weapon1"
-	spawn_list = list(
-		/obj/item/clothing/suit/armor/vest,
-		/obj/item/clothing/suit/armor/laserproof,
-		/obj/item/clothing/suit/armor/bulletproof,
-		/obj/item/clothing/suit/armor/riot,
-
-	)
-
-/obj/effect/landmark/armor_spawn/tier2_armor_spawn
-	name = "Tier 2 Armor Spawn"
-	icon_state = "weapon2"
-	spawn_list = list(
-		/obj/item/clothing/suit/storage/marine/M3E,
-		/obj/item/clothing/suit/storage/marine/M3P,
-		/obj/item/clothing/suit/storage/marine/M3P/tech,
-		/obj/item/clothing/suit/storage/marine/leader,
-		/obj/item/clothing/suit/storage/militia,
-	)
-
 
 
 

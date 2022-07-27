@@ -57,7 +57,6 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/scientist
 
 	w_uniform = /obj/item/clothing/under/rank/scientist
-	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/tox
 
@@ -74,25 +73,10 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/doctor
 
 	w_uniform = /obj/item/clothing/under/rank/medical
-	wear_suit = /obj/item/clothing/suit/armor/vest
+	wear_suit = /obj/item/clothing/suit/surgical
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/med
 
-
-//Liaison
-/datum/job/survivor/liaison
-	title = "Liaison Survivor"
-	outfit = /datum/outfit/job/survivor/liaison
-
-
-/datum/outfit/job/survivor/liaison
-	name = "Liaison Survivor"
-	jobtype = /datum/job/survivor/liaison
-
-	w_uniform = /obj/item/clothing/under/liaison_suit
-	wear_suit = /obj/item/clothing/suit/armor/bulletproof
-	shoes = /obj/item/clothing/shoes/black
-	back = /obj/item/storage/backpack/satchel/norm
 
 //Civilian
 /datum/job/survivor/civilian
@@ -105,7 +89,6 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/civilian
 
 	w_uniform = /obj/item/clothing/under/pj/red
-	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 
@@ -122,7 +105,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/chef
 
 	w_uniform = /obj/item/clothing/under/rank/chef
-	wear_suit = /obj/item/clothing/suit/armor/vest
+	wear_suit = /obj/item/clothing/suit/chef
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 
@@ -138,7 +121,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/botanist
 
 	w_uniform = /obj/item/clothing/under/rank/hydroponics
-	wear_suit = /obj/item/clothing/suit/armor/vest
+	wear_suit = /obj/item/clothing/suit/apron
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/hydroponics
 
@@ -155,7 +138,6 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/atmos
 
 	w_uniform = /obj/item/clothing/under/rank/atmospheric_technician
-	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/eng
 
@@ -170,7 +152,6 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/engineer
 
 	w_uniform = /obj/item/clothing/under/rank/engineer
-	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/eng
 
@@ -186,7 +167,6 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/chaplain
 
 	w_uniform = /obj/item/clothing/under/rank/chaplain
-	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 
@@ -203,7 +183,6 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/miner
 
 	w_uniform = /obj/item/clothing/under/rank/miner
-	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 

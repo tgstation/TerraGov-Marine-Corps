@@ -9593,7 +9593,6 @@
 /area/ice_colony/surface/command)
 "aKg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/start/job/survivor/liaison,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "aKh" = (
@@ -30914,7 +30913,6 @@
 /area/ice_colony/surface/garage/one)
 "erz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/start/job/survivor/liaison,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/command/center)
 "erM" = (
