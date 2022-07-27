@@ -7037,7 +7037,6 @@
 /turf/open/ground/grass,
 /area/lv624/lazarus/sleep_female)
 "eMS" = (
-/obj/docking_port/stationary/crashmode,
 /obj/structure/catwalk,
 /turf/open/ground/coast/corner,
 /area/lv624/ground/river1)
@@ -11390,6 +11389,14 @@
 /obj/structure/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/lazarus/sleep_male)
+"kfz" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle10)
 "kfC" = (
 /obj/structure/jungle/planttop1,
 /turf/open/ground/grass,
@@ -13199,6 +13206,7 @@
 /area/lv624/lazarus/bar)
 "mng" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "mny" = (
@@ -18204,6 +18212,10 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor,
 /area/lv624/ground/river2)
+"sMQ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/wall,
+/area/lv624/lazarus/hydroponics)
 "sNh" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -28043,7 +28055,7 @@ xLz
 xLz
 xLz
 xLz
-nSW
+kfz
 xLz
 xvY
 wnj
@@ -41103,7 +41115,7 @@ xmz
 avd
 avd
 mOs
-mOs
+kUz
 mOs
 mOs
 mOs
@@ -48349,7 +48361,7 @@ eUv
 rcz
 rcz
 brD
-eUY
+sMQ
 biS
 bqx
 bqx

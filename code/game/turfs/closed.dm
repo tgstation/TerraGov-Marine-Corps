@@ -95,7 +95,6 @@
 		if(EXPLODE_DEVASTATE)
 			ChangeTurf(/turf/open/ground/grass)
 
-
 /turf/closed/gm/dense
 	name = "dense jungle wall"
 	resistance_flags = PLASMACUTTER_IMMUNE
