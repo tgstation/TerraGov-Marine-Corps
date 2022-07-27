@@ -525,6 +525,8 @@
 		hud_type = SQUAD_HUD_REBEL
 	else if(faction == FACTION_SOM)
 		hud_type = SQUAD_HUD_SOM
+	if(!hud_type)
+		return
 	var/image/holder = hud_list[hud_type]
 	holder.icon_state = ""
 	holder.overlays.Cut()
