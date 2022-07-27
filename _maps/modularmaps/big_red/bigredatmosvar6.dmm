@@ -84,10 +84,6 @@
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/se)
-"gx" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/east)
 "gL" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -1357,6 +1353,6 @@ PU
 Nh
 SX
 SX
-gx
+SX
 SX
 "}
