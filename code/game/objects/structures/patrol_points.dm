@@ -6,7 +6,7 @@
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	layer = LADDER_LAYER
-	//ID to link with associated exit point
+	///ID to link with associated exit point
 	var/id = null
 	///The linked exit point
 	var/obj/effect/landmark/patrol_point/linked_point = null
@@ -18,7 +18,6 @@
 
 
 /obj/structure/patrol_point/LateInitialize()
-	. = ..()
 	create_link()
 
 ///Links the patrol point to its associated exit point
@@ -26,6 +25,13 @@
 	for(var/obj/effect/landmark/patrol_point/exit_point AS in GLOB.patrol_point_list)
 		if(exit_point.id == id)
 			linked_point = exit_point
+			RegisterSignal(linked_point, COMSIG_PARENT_QDELETING, .proc/delete_link)
+			return
+
+///Removes the linked patrol exist point
+/obj/structure/patrol_point/proc/delete_link()
+	SIGNAL_HANDLER
+	linked_point = null
 
 /obj/structure/patrol_point/attack_hand(mob/living/user)
 	. = ..()

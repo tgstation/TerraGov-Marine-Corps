@@ -1,6 +1,6 @@
 /datum/game_mode/combat_patrol
-	name = "Combat patrol"
-	config_tag = "Combat patrol"
+	name = "Combat Patrol"
+	config_tag = "Combat Patrol"
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_SOM_OPFOR|MODE_SPECIFIC_SHIP_MAP //MODE_NO_PERMANENT_WOUNDS is for nerds
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	shutters_drop_time = 5 MINUTES
@@ -24,7 +24,7 @@
 	///The length of time until round ends.
 	var/max_game_time = 35 MINUTES
 	///Whether the max game time has been reached
-	var/max_time_reached
+	var/max_time_reached = FALSE
 	/// Time between two bioscan
 	var/bioscan_interval = 5 MINUTES
 
@@ -202,7 +202,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 			continue
 		if(H.faction == FACTION_SOM)
 			som_dead += H
-		if(H.faction == FACTION_TERRAGOV)
+		else if(H.faction == FACTION_TERRAGOV)
 			tgmc_dead += H
 
 	return list(som_alive, tgmc_alive, som_dead, tgmc_dead)
@@ -231,23 +231,23 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //everyone died at the same time, no one wins
 			round_finished = MODE_COMBAT_PATROL_DRAW
 			return TRUE
-		message_admins("Round finished: [MODE_SOM_SOM_MAJOR]") //SOM wiped out ALL the marines, SOM major victory
-		round_finished = MODE_SOM_SOM_MAJOR
+		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MAJOR]") //SOM wiped out ALL the marines, SOM major victory
+		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
 		return TRUE
 
 	if(!num_som)
-		message_admins("Round finished: [MODE_SOM_MARINE_MAJOR]") //Marines wiped out ALL the SOM, marine major victory
-		round_finished = MODE_SOM_MARINE_MAJOR
+		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]") //Marines wiped out ALL the SOM, marine major victory
+		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
 		return TRUE
 
 	//minor victories for more kills or draw for equal kills
 	if(num_dead_marines > num_dead_som)
-		message_admins("Round finished: [MODE_SOM_SOM_MINOR]") //The SOM inflicted greater casualties on the marines, SOM minor victory
-		round_finished = MODE_SOM_SOM_MINOR
+		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MINOR]") //The SOM inflicted greater casualties on the marines, SOM minor victory
+		round_finished = MODE_COMBAT_PATROL_SOM_MINOR
 		return TRUE
 	if(num_dead_som > num_dead_marines)
-		message_admins("Round finished: [MODE_SOM_MARINE_MINOR]") //The marines inflicted greater casualties on the SOM, marine minor victory
-		round_finished = MODE_SOM_MARINE_MINOR
+		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MINOR]") //The marines inflicted greater casualties on the SOM, marine minor victory
+		round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
 		return TRUE
 
 	message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //equal number of kills, or any other edge cases

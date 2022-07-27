@@ -1,0 +1,4 @@
+author: "nova_epee, Benjamin Carmine"
+delete-after: True
+changes: 
+  - imageadd: "new spitter sprites!"
