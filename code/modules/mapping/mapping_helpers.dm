@@ -215,9 +215,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	name = "You shouldn't be seeing this."
 	///Whether to not active and qdel itself after Init
 	var/manual_use = FALSE
+	///Whitelist to determine which atoms to affect. null = all
+	var/list/whitelist = list()
 
 /obj/effect/mapping_helpers/stack/Initialize()
 	. = ..()
+	whitelist = typecacheof(whitelist)
 	if(manual_use)
 		return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_NORMAL
 	Run()
@@ -227,7 +230,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	if(!T)
 		return
 	if(locate(/obj/structure/table) in T)
-		return 4
+		return 6
 	if(locate(/obj/structure/rack) in T)
 		return 3
 
@@ -252,8 +255,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	/// Pixelshifting between each item in a column
 	var/shift_x = 3
 	var/shift_y = 4
-	///Whitelist for the items to sort. null = all
-	var/list/whitelist = list()
 
 /obj/effect/mapping_helpers/stack/sort/Run()
 	var/amount = 0
@@ -275,13 +276,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	var/list/items = list()
 
 	for (var/obj/item/I in T)
-		if(whitelist)
-			if(I.type in whitelist)
-				items += I
-				amount++
-		else
-			items += I
-			amount++
+		if(length(whitelist) && !(is_type_in_typecache(I.type, whitelist)))
+			continue
+
+		items += I
+		amount++
 
 	if (!amount)
 		log_world("### MAP WARNING, [src] had no items to sort at [x],[y],[z]!")
@@ -418,28 +417,26 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 /obj/effect/mapping_helpers/stack/shift
 	name = "Atom pixel shifter"
 	icon_state = "stack_shift"
-	///Whitelist of which atom/movable typepaths to pixelshift.
-	var/list/whitelist = list()
 	///Override to determine which atoms to shift.
 	var/list/atom/movable/atoms = list()
 
 ///Pixelshifts all objects on the same turf or all objects specified in var/list/objects by -8 to 8 pixels in both axis.
 /obj/effect/mapping_helpers/stack/shift/Run()
 
-	for(var/W in whitelist)
-		if(!ismovableatom(W))
-			whitelist -= W
-
-	if(atoms)
+	if(length(atoms))
 		for(var/atom/movable/A in atoms)
-			A.pixel_x = rand(-8, 8)
+			A.pixel_x = rand(-8, 8) // only -8 to +8 so people can always see at a glance on which turf the item is on.
 			A.pixel_y = rand(-8, 8) + Check_Height_Table_Rack(A.loc)
 	else
 		for(var/atom/movable/A in loc)
-			if(whitelist && !A.type in whitelist)
+			if(length(whitelist) && !(is_type_in_typecache(A.type, whitelist)))
 				continue
 			A.pixel_x = rand(-8, 8)
 			A.pixel_y = rand(-8, 8) + Check_Height_Table_Rack(loc)
+
+/obj/effect/mapping_helpers/stack/shift/item
+	name = "Item pixel shifter"
+	whitelist = list(/obj/item)
 
 // For use by admemes ingame. Varedit and call proc/Run()
 /obj/effect/mapping_helpers/stack/shift/manual
@@ -455,24 +452,17 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	var/range_y = 2
 	///Amount of tries per atom to displace
 	var/tries = 5
-	///List of all /atom/moveable types that should be affected. null = all
-	var/list/whitelist = list()
 	///Spawn a stack/shift and pass on the objects from displacement?
 	var/pixelshift = FALSE
 
 /obj/effect/mapping_helpers/stack/displace/Run()
-	var/pass = TRUE
 	var/obj/effect/mapping_helpers/stack/shift/manual/shift
+
 	if(pixelshift)
 		shift = new(loc)
-	for(var/atom/movable/A in loc)
-		if(whitelist)
-			pass = FALSE
-			for(var/W in whitelist)
-				if(istype(A, W))
-					pass = TRUE
 
-		if(!pass)
+	for(var/atom/movable/A in loc) // Gotta make sure only whitelisted (if the whitelist is on) atoms pass through
+		if(length(whitelist) && !(is_type_in_typecache(A.type, whitelist)))
 			continue
 
 		if(pixelshift)
@@ -480,8 +470,8 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 
 		turf_search:
 			for(var/i= 0, i < tries, i++)
-				var/target_x = clamp(x + rand(-range_x , range_x), 0, 255)
-				var/target_y = clamp(y + rand(-range_y , range_y), 0, 255)
+				var/target_x = round(clamp(x + rand(-range_x , range_x), 0, 255), 1)
+				var/target_y = round(clamp(y + rand(-range_y , range_y), 0, 255), 1)
 				var/turf/T = locate(target_x, target_y, z)
 				if (!T) //How?
 					log_world("### MAP WARNING, [src] cannot find turf at [target_x],[target_y],[z]!")
@@ -489,25 +479,29 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 				if (isopenturf(T)) // No walls
 					if (!isspaceturf(T)) // No space
 						if (!isspacearea(T.loc)) // Not in space
-							for(var/obj/O in T)
-								if(O.density && !(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))) // No dense objects in turf, except for tables and racks
+							for(var/obj/O in T) // No dense objects in turf, except for tables and racks
+								if(O.density && !(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack)))
 									continue turf_search
 							A.forceMove(T)
 							break
-	if(pixelshift)
+	if(pixelshift) // Run the pixel-shifter with the atoms we displaced passed along.
 		shift.Run()
 		qdel(shift)
 
 /obj/effect/mapping_helpers/stack/displace/item
 	name = "Item displacer"
+	pixelshift = TRUE
 	whitelist = list(/obj/item)
 
 /obj/effect/mapping_helpers/stack/displace/trash
 	name = "Trash displacer"
+	pixelshift = TRUE
 	whitelist = list(/obj/item/trash)
 
 /obj/effect/mapping_helpers/stack/displace/crate
 	name = "Crate displacer"
+	range_x = 1
+	range_y = 1
 	whitelist = list(/obj/structure/largecrate, /obj/structure/closet)
 
 /obj/effect/mapping_helpers/stack/displace/machinery
@@ -523,8 +517,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 
 /obj/effect/mapping_helpers/stack/displace/gun
 	name = "Gun/ Ammo displacer"
+	pixelshift = TRUE
 	whitelist = list(
 		/obj/item/weapon/gun,
+		/obj/item/ammo_magazine,
 		/obj/effect/spawner/random/gun,
 		/obj/effect/spawner/random/ammo,
 		/obj/effect/landmark/weapon_spawn,
