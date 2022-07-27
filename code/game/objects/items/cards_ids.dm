@@ -101,7 +101,7 @@
 
 /obj/item/card/id/Initialize()
 	. = ..()
-	marine_buy_choices = GLOB.marine_selector_cats //by default you can buy the whole list
+	marine_buy_choices = GLOB.marine_selector_cats.Copy() //by default you can buy the whole list
 	if(!ishuman(loc))
 		return
 	var/mob/living/carbon/human/H = loc

@@ -55,7 +55,7 @@
 	prepare_to_equip_loadout(loadout, user)
 	var/obj/item/card/id/id = user.get_idcard()
 	for(var/category in id.marine_buy_choices)
-		id.marine_buy_choices[category] = min(buying_choices_left, id.marine_buy_choices[category])
+		id.marine_buy_choices[category] = min(buying_choices_left[category], id.marine_buy_choices[category])
 	id.marine_points = available_points
 	do_equip_loadout(user)
 	if(length(unique_items_list))

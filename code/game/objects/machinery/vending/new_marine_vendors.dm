@@ -136,7 +136,7 @@
 					flick(icon_deny, src)
 				return
 
-			if(use_points && I.marine_points[item_category] < cost)
+			if(use_points && (item_category in I.marine_points) && I.marine_points[item_category] < cost)
 				to_chat(usr, span_warning("Not enough points."))
 				if(icon_deny)
 					flick(icon_deny, src)
@@ -149,12 +149,13 @@
 					flick(icon_deny, src)
 				return
 
-			if(I.marine_buy_choices[item_category] && GLOB.marine_selector_cats[item_category])
-				I.marine_buy_choices[item_category] -= 1
-			else
-				if(cost == 0)
-					to_chat(usr, span_warning("You can't buy things from this category anymore."))
-					return
+			if(item_category in I.marine_buy_choices)
+				if(I.marine_buy_choices[item_category] && GLOB.marine_selector_cats[item_category])
+					I.marine_buy_choices[item_category] -= 1
+				else
+					if(cost == 0)
+						to_chat(usr, span_warning("You can't buy things from this category anymore."))
+						return
 
 			var/obj/item/vended_item
 
@@ -181,7 +182,7 @@
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 
-			if(use_points)
+			if(use_points && (item_category in I.marine_points))
 				I.marine_points[item_category] -= cost
 			. = TRUE
 
