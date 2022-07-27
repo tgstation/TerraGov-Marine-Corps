@@ -346,15 +346,6 @@ TUNNEL
 			deconstruct(FALSE)
 		return
 
-	//Prevents using tunnels by the queen to bypass the fog.
-	if(SSticker?.mode && SSticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
-		if(!X.hive.living_xeno_ruler)
-			balloon_alert(X, "No ruler")
-			return FALSE
-		else if(isxenoqueen(X))
-			balloon_alert(X, "No reason to leave yet")
-			return FALSE
-
 	if(X.anchored)
 		balloon_alert(X, "Cannot enter while immobile")
 		return FALSE

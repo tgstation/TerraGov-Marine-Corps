@@ -904,7 +904,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		qdel(structure)
 
-	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS_ADVANCED)
+	if(SSticker.mode?.flags_round_type & MODE_PSY_POINTS)
 		SSpoints.xeno_points_by_hive[hivenumber] = SILO_PRICE + XENO_TURRET_PRICE //Give a free silo when going shipside and a turret
 
 

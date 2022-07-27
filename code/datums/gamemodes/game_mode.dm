@@ -248,14 +248,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 /datum/game_mode/proc/setup_blockers()
 	set waitfor = FALSE
-	if(flags_round_type & MODE_FOG_ACTIVATED)
-		var/turf/T
-		while(GLOB.fog_blocker_locations.len)
-			T = GLOB.fog_blocker_locations[GLOB.fog_blocker_locations.len]
-			GLOB.fog_blocker_locations.len--
-			new /obj/effect/forcefield/fog(T)
-			stoplag()
-		addtimer(CALLBACK(src, .proc/remove_fog), FOG_DELAY_INTERVAL + SSticker.round_start_time + rand(-5 MINUTES, 5 MINUTES))
 
 	if(flags_round_type & MODE_LZ_SHUTTERS)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/send_global_signal, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), SSticker.round_start_time + shutters_drop_time)
@@ -538,16 +530,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(isxenoresearcharea(get_area(xeno)))
 		return TRUE
 	return FALSE
-
-
-/datum/game_mode/proc/remove_fog()
-	set waitfor = FALSE
-
-	DISABLE_BITFIELD(flags_round_type, MODE_FOG_ACTIVATED)
-
-	for(var/i in GLOB.fog_blockers)
-		qdel(i)
-		stoplag(1)
 
 
 /datum/game_mode/proc/CanLateSpawn(mob/new_player/NP, datum/job/job)
