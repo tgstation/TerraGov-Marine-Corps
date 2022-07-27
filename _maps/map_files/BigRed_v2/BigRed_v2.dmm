@@ -5930,13 +5930,6 @@
 	},
 /turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
-"aJR" = (
-/obj/machinery/access_button/airlock_exterior{
-	master_tag = "viro_controller";
-	pixel_y = 28
-	},
-/turf/open/floor/engine,
-/area/bigredv2/caves/lambda_lab)
 "aJS" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -12880,6 +12873,13 @@
 "hsK" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/cargo)
+"htY" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "hwc" = (
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -13207,6 +13207,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"jKZ" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "jLo" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -13246,6 +13253,13 @@
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
+"jVc" = (
+/obj/machinery/access_button/airlock_exterior{
+	master_tag = "viro_controller";
+	pixel_y = 28
+	},
+/turf/open/floor/engine,
+/area/bigredv2/caves/lambda_lab)
 "jWg" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -13337,6 +13351,13 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/s)
+"kDT" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "kEl" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/bot,
@@ -14677,6 +14698,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/s)
+"thR" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northeast)
 "tku" = (
 /turf/closed/wall/indestructible/mineral,
 /area/storage/testroom)
@@ -58584,7 +58612,7 @@ afv
 wnS
 aJK
 adZ
-aJR
+jVc
 aLJ
 aLJ
 aLJ
@@ -59619,7 +59647,7 @@ hqP
 hqP
 hqP
 hqP
-vyZ
+jKZ
 vyZ
 vyZ
 vyZ
@@ -60709,7 +60737,7 @@ xNf
 xNf
 xNf
 vyZ
-vyZ
+thR
 vyZ
 kKe
 kKe
@@ -62016,7 +62044,7 @@ vyZ
 vyZ
 vyZ
 vyZ
-vyZ
+kDT
 hqP
 hqP
 hqP
@@ -62873,7 +62901,7 @@ hqP
 hqP
 hqP
 hqP
-vyZ
+htY
 vyZ
 vyZ
 hqP

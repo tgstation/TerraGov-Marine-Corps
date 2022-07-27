@@ -673,3 +673,66 @@
 	scatter = 1
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1
+
+//-------------------------------------------------------
+//V-51 SOM shotgun
+
+
+/obj/item/weapon/gun/shotgun/som
+	name = "\improper V-51 combat shotgun"
+	desc = "The V-51 is the main shotgun utilised by the Sons of Mars. Slower firing than some other semi automatic shotguns, but packs more of a kick."
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon_state = "v51"
+	icon = 'icons/Marine/gun64.dmi'
+	item_state = "v51"
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	max_chamber_items = 9
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+	)
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 26, "rail_y" = 22, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+
+	fire_delay = 1.8 SECONDS
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.6
+	scatter = 4
+	scatter_unwielded = 16
+	damage_mult = 0.85
+	recoil = 1
+	recoil_unwielded = 4
+	aim_slowdown = 0.35
+	wield_delay = 0.65 SECONDS
+
+/obj/item/weapon/gun/shotgun/som/pointman
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/motiondetector)
+
+/obj/item/weapon/gun/shotgun/som/support
+	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
+	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness)
+
+//-------------------------------------------------------
+//Inbuilt launcher for the V-31
+/obj/item/weapon/gun/shotgun/micro_grenade
+	name = "VA-61 micro rail launcher"
+	desc = "An in-built railgun designed to fire so called 'micro grenades'. By using railgun technology, the projectile does not need any propellant, helping greatly increase usable space for the payload."
+	icon = 'icons/Marine/marine-weapons.dmi'
+	icon_state = "va61"
+	fire_sound = 'sound/weapons/guns/fire/pred_plasma_shot.ogg'
+	max_chamber_items = 2
+	flags_gun_features = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
+	flags_attach_features = NONE
+	slot = ATTACHMENT_SLOT_STOCK
+	default_ammo_type = /obj/item/ammo_magazine/handful/micro_grenade
+	caliber = CALIBER_10G_RAIL
+	type_of_casings = null
+
+	fire_delay = 1.5 SECONDS
+	accuracy_mult = 1.1
+	scatter = 0
+	recoil = 1

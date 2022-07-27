@@ -490,6 +490,13 @@
 "nd" = (
 /turf/closed/wall/indestructible/mineral,
 /area/space)
+"nh" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/rustedpreparea)
 "np" = (
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -904,6 +911,16 @@
 "Ab" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/rustedpreparea)
+"Ag" = (
+/obj/effect/decal/sandedge{
+	dir = 1
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
 "Ai" = (
 /obj/effect/ai_node,
@@ -1379,6 +1396,14 @@
 "Ny" = (
 /turf/open/floor/plating,
 /area/bigredv2/caves/southeast)
+"NG" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/rustedpreparea)
 "NJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/prop/brokenvendor/brokenweaponsrack,
@@ -1681,6 +1706,16 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/southeast)
+"Zn" = (
+/obj/effect/decal/sandedge{
+	dir = 4
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/mainship/mono,
+/area/bigredv2/caves/rustedpreparea)
 "Zq" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/rustedpreparea)
@@ -2935,7 +2970,7 @@ Ca
 oj
 md
 ax
-mm
+Zn
 kI
 pw
 FP
@@ -3202,7 +3237,7 @@ FP
 Ab
 UR
 UR
-UR
+nh
 UR
 HS
 Kf
@@ -3349,7 +3384,7 @@ ax
 ax
 ax
 ax
-KL
+Ag
 UR
 UR
 FP
@@ -3548,7 +3583,7 @@ Tw
 UR
 UR
 Ab
-Ye
+NG
 ax
 ax
 BG
