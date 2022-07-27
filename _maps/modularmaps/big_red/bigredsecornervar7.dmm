@@ -33,18 +33,46 @@
 "B" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
+"C" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "H" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
+"I" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "K" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
+"L" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "M" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
+"R" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "V" = (
@@ -2207,7 +2235,7 @@ v
 v
 v
 v
-B
+C
 B
 B
 e
@@ -3049,7 +3077,7 @@ e
 B
 B
 B
-B
+I
 v
 v
 v
@@ -3243,11 +3271,11 @@ B
 B
 B
 B
-B
+L
 v
 v
 v
-B
+R
 B
 B
 B

@@ -4,6 +4,7 @@
 
 #define RADIO_CHANNEL_COMMON "Common"
 #define RADIO_CHANNEL_COMMON_REBEL "Common Rebel"
+#define RADIO_CHANNEL_SOM "Common SOM"
 #define RADIO_KEY_COMMON ";"
 
 #define RADIO_CHANNEL_REQUISITIONS "Requisitions"
@@ -13,16 +14,19 @@
 
 #define RADIO_CHANNEL_ENGINEERING "Engineering"
 #define RADIO_CHANNEL_ENGINEERING_REBEL "Engineering Rebel"
+#define RADIO_CHANNEL_ENGINEERING_SOM "Engineering SOM"
 #define RADIO_KEY_ENGINEERING "e"
 #define RADIO_TOKEN_ENGINEERING ":e"
 
 #define RADIO_CHANNEL_MEDICAL "Medical"
 #define RADIO_CHANNEL_MEDICAL_REBEL "Medical Rebel"
+#define RADIO_CHANNEL_MEDICAL_SOM "Medical SOM"
 #define RADIO_KEY_MEDICAL "m"
 #define RADIO_TOKEN_MEDICAL ":m"
 
 #define RADIO_CHANNEL_COMMAND "Command"
 #define RADIO_CHANNEL_COMMAND_REBEL "Command Rebel"
+#define RADIO_CHANNEL_COMMAND_SOM "Command SOM"
 #define RADIO_KEY_COMMAND "v"
 #define RADIO_TOKEN_COMMAND ":v"
 
@@ -33,21 +37,25 @@
 
 #define RADIO_CHANNEL_ALPHA "Alpha"
 #define RADIO_CHANNEL_ALPHA_REBEL "Alpha Rebel"
+#define RADIO_CHANNEL_ZULU "Zulu"
 #define RADIO_KEY_ALPHA "q"
 #define RADIO_TOKEN_ALPHA ":q"
 
 #define RADIO_CHANNEL_BRAVO "Bravo"
 #define RADIO_CHANNEL_BRAVO_REBEL "Bravo Rebel"
+#define RADIO_CHANNEL_YANKEE "Yankee"
 #define RADIO_KEY_BRAVO "b"
 #define RADIO_TOKEN_BRAVO ":b"
 
 #define RADIO_CHANNEL_CHARLIE "Charlie"
 #define RADIO_CHANNEL_CHARLIE_REBEL "Charlie Rebel"
+#define RADIO_CHANNEL_XRAY "Xray"
 #define RADIO_KEY_CHARLIE "c"
 #define RADIO_TOKEN_CHARLIE ":c"
 
 #define RADIO_CHANNEL_DELTA "Delta"
 #define RADIO_CHANNEL_DELTA_REBEL "Delta Rebel"
+#define RADIO_CHANNEL_WHISKEY "Whiskey"
 #define RADIO_KEY_DELTA "d"
 #define RADIO_TOKEN_DELTA ":d"
 
@@ -57,7 +65,6 @@
 #define RADIO_CHANNEL_USL "USL"
 #define RADIO_CHANNEL_DEATHSQUAD "Deathsquad"
 #define RADIO_CHANNEL_IMPERIAL "Imperial"
-#define RADIO_CHANNEL_SOM "Sons of Mars"
 #define RADIO_CHANNEL_SECTOID "Alien"
 #define RADIO_CHANNEL_ECHO "Echo"
 #define RADIO_CHANNEL_DS1 "Alamo"
@@ -66,6 +73,16 @@
 
 #define MIN_FREE_FREQ 1201 // -------------------------------------------------
 // Frequencies are always odd numbers and range from 1201 to 1599.
+
+//SOM squads
+#define FREQ_COMMAND_SOM 1235
+#define FREQ_MEDICAL_SOM 1237
+#define FREQ_ENGINEERING_SOM 1239
+
+#define FREQ_ZULU 1241
+#define FREQ_YANKEE 1243
+#define FREQ_XRAY 1245
+#define FREQ_WHISKEY 1247
 
 #define MIN_ERT_FREQ 1331
 #define FREQ_PMC 1331
@@ -107,7 +124,6 @@
 
 #define FREQ_COMMON 1437
 #define FREQ_COMMON_REBEL 1439
-
 
 #define MIN_FREQ 1441 // ------------------------------------------------------
 // Only the 1441 to 1489 range is freely available for general conversation.

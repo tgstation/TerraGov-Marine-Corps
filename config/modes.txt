@@ -27,3 +27,7 @@ endmode
 mode Trouble in Terrorist Town
 	requiredplayers 10
 endmode
+
+mode Combat Patrol
+	requiredplayers 2
+endmode

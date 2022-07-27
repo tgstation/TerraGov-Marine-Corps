@@ -757,6 +757,15 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
+"apo" = (
+/obj/structure/jungle/vines,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/ground/grass,
+/area/lv624/ground/jungle3)
 "apq" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_door,
@@ -5076,6 +5085,13 @@
 	dir = 4
 	},
 /area/lv624/ground/jungle8)
+"chR" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "chS" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/freezer,
@@ -9905,6 +9921,15 @@
 	dir = 8
 	},
 /area/lv624/lazarus/corporate_affairs)
+"ilC" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/ground/jungle1)
 "inS" = (
 /obj/structure/cargo_container/gorg{
 	dir = 4
@@ -10001,6 +10026,13 @@
 	},
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
+"iwg" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "iwB" = (
 /obj/structure/jungle/vines,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10391,6 +10423,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/sand8)
+"iXk" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "iXL" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -10826,6 +10865,13 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
 	},
+/area/lv624/ground/jungle3)
+"jwJ" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "jxq" = (
 /obj/item/stack/sheet/wood,
@@ -11731,6 +11777,15 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/sand8)
+"kyZ" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
+/area/lv624/ground/jungle1)
 "kzi" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/bulletproof,
@@ -12689,6 +12744,13 @@
 	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
+"lLz" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "lMg" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/machinery/light{
@@ -14958,6 +15020,14 @@
 /obj/effect/spawner/random/trash,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
+"ozw" = (
+/obj/structure/jungle/vines,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/ground/grass,
+/area/lv624/ground/jungle3)
 "ozC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -15646,6 +15716,13 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle4)
+"pyP" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/ground/grass,
+/area/lv624/ground/jungle5)
 "pzx" = (
 /obj/structure/jungle/vines/heavy,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -20069,6 +20146,14 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"uUO" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/lv624/ground/jungle5)
 "uUS" = (
 /turf/open/ground/grass/beach/corner{
 	dir = 4
@@ -20592,6 +20677,13 @@
 /obj/structure/jungle/vines/heavy,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
+"vGy" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "vGK" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/structure/cable,
@@ -21471,6 +21563,13 @@
 /obj/structure/cargo_container,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
+"wEs" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "wEB" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light/small,
@@ -21803,6 +21902,13 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"wVq" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "wVL" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor,
@@ -22327,6 +22433,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
+"xye" = (
+/obj/structure/jungle/vines,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/ground/ruin)
 "xzj" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -22856,6 +22970,13 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
+"yau" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "yaB" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/closed/wall/r_wall,
@@ -25041,7 +25162,7 @@ mOs
 mOs
 bch
 bch
-bck
+ozw
 mOs
 rHH
 aab
@@ -25569,7 +25690,7 @@ mcU
 tnW
 vXW
 voM
-mcU
+xye
 kPr
 ujI
 bch
@@ -25750,7 +25871,7 @@ qkL
 kPr
 jZc
 bch
-bch
+jwJ
 rHH
 aab
 "}
@@ -27166,7 +27287,7 @@ txE
 xrl
 hVm
 btc
-wIQ
+apo
 rHH
 aab
 "}
@@ -27908,7 +28029,7 @@ xLJ
 xLJ
 xLJ
 xLJ
-abc
+wEs
 abc
 abc
 abc
@@ -28790,7 +28911,7 @@ lyj
 lyj
 lyj
 aym
-abc
+iXk
 abc
 abc
 abc
@@ -29852,7 +29973,7 @@ lyj
 lyj
 lyj
 aym
-abc
+chR
 abc
 abc
 abc
@@ -30739,7 +30860,7 @@ xLJ
 xLJ
 xLJ
 xLJ
-abc
+iwg
 aQE
 aQE
 abc
@@ -58857,7 +58978,7 @@ aab
 aab
 xLJ
 xLJ
-aah
+lLz
 aah
 aah
 aah
@@ -60278,7 +60399,7 @@ aal
 aaD
 aah
 aal
-aah
+yau
 aah
 aah
 aaD
@@ -60450,7 +60571,7 @@ aab
 aab
 xLJ
 xLJ
-aah
+wVq
 aah
 aah
 aaD
@@ -60764,7 +60885,7 @@ mOs
 mOs
 mOs
 mOs
-wwB
+uUO
 xhQ
 xhQ
 yjz
@@ -60773,7 +60894,7 @@ xdc
 bZA
 bqX
 mqj
-mqj
+ilC
 eqC
 bdk
 bdk
@@ -60990,7 +61111,7 @@ aah
 aal
 aah
 aah
-aah
+vGy
 afh
 afh
 afh
@@ -61130,7 +61251,7 @@ mOs
 xvc
 tBE
 tBE
-ylZ
+kyZ
 mOs
 mOs
 mOs
@@ -61470,7 +61591,7 @@ mOs
 ssi
 wrP
 ssi
-wrP
+pyP
 mOs
 mOs
 mOs

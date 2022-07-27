@@ -36,14 +36,13 @@
 #define MODE_INFESTATION (1<<0)
 #define MODE_NO_LATEJOIN (1<<1)
 #define MODE_HAS_FINISHED (1<<2)
-#define MODE_FOG_ACTIVATED (1<<3)
+#define MODE_SOM_OPFOR (1<<3)
 #define MODE_INFECTION (1<<4)
 #define MODE_HUMAN_ANTAGS (1<<5)
 #define MODE_LZ_SHUTTERS (1<<6)
 #define MODE_XENO_SPAWN_PROTECT (1<<7)
 #define MODE_XENO_RULER (1<<8)
 #define MODE_PSY_POINTS (1<<9)
-#define MODE_PSY_POINTS_ADVANCED (1<<10)
 #define MODE_HIJACK_POSSIBLE (1<<11)
 #define MODE_DEAD_GRAB_FORBIDDEN (1<<12)
 #define MODE_SILO_RESPAWN (1<<13)
@@ -53,6 +52,7 @@
 #define MODE_NO_PERMANENT_WOUNDS (1<<17)
 #define MODE_SPAWNING_MINIONS (1<<18)
 #define MODE_NO_JOB_DISTRIBUTION (1<<19)
+#define MODE_SPECIFIC_SHIP_MAP (1<<20)
 
 #define MODE_LANDMARK_RANDOM_ITEMS (1<<0)
 #define MODE_LANDMARK_SPAWN_XENO_TURRETS (1<<1)
@@ -69,6 +69,12 @@
 #define MODE_CIVIL_WAR_LOYALIST_MAJOR "Loyalist Major Victory"
 #define MODE_CIVIL_WAR_REBEL_MAJOR "Rebel Major Victory"
 #define MODE_CIVIL_WAR_DRAW "Civil War Draw"
+
+#define MODE_COMBAT_PATROL_MARINE_MAJOR "Marine Major Victory"
+#define MODE_COMBAT_PATROL_MARINE_MINOR "Marine Minor Victory"
+#define MODE_COMBAT_PATROL_SOM_MAJOR "Sons of Mars Major Victory"
+#define MODE_COMBAT_PATROL_SOM_MINOR "Sons of Mars Minor Victory"
+#define MODE_COMBAT_PATROL_DRAW "DRAW: Mutual Annihilation"
 
 #define CRASH_EVAC_NONE "CRASH_EVAC_NONE"
 #define CRASH_EVAC_INPROGRESS "CRASH_EVAC_INPROGRESS"

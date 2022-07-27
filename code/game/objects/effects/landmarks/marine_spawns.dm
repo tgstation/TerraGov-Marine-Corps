@@ -78,10 +78,6 @@
 	icon_state = "SL"
 	job = /datum/job/terragov/squad/leader
 
-/obj/effect/landmark/start/job/squadleader
-	icon_state = "SL"
-	job = /datum/job/terragov/squad/leader
-
 /obj/effect/landmark/start/job/ai
 	icon_state = "AI"
 	job = /datum/job/terragov/silicon/ai
@@ -130,9 +126,6 @@
 
 /obj/effect/landmark/start/job/squadsmartgunner/rebel
 	job = /datum/job/terragov/squad/smartgunner/rebel
-
-/obj/effect/landmark/start/job/squadleader/rebel
-	job = /datum/job/terragov/squad/leader/rebel
 
 /obj/effect/landmark/start/job/squadleader/rebel
 	job = /datum/job/terragov/squad/leader/rebel
@@ -195,3 +188,23 @@
 	icon_state = "Shaft Miner"
 	job = /datum/job/survivor/miner
 
+//SOM
+/obj/effect/landmark/start/job/som/squadstandard
+	icon_state = "PFC"
+	job = /datum/job/som/squad/standard
+
+/obj/effect/landmark/start/job/som/squadveteran
+	icon_state = "SGnr"
+	job = /datum/job/som/squad/veteran
+
+/obj/effect/landmark/start/job/som/squadengineer
+	icon_state = "Eng"
+	job = /datum/job/som/squad/engineer
+
+/obj/effect/landmark/start/job/som/squadcorpsman
+	icon_state = "HM"
+	job = /datum/job/som/squad/medic
+
+/obj/effect/landmark/start/job/som/squadleader
+	icon_state = "SL"
+	job = /datum/job/som/squad/leader

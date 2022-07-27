@@ -4,24 +4,45 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 /proc/init_quick_loadouts()
 	. = list()
 	var/list/loadout_list = list(
+		/datum/outfit/quick/tgmc/marine/standard_carbine,
 		/datum/outfit/quick/tgmc/marine/standard_assaultrifle,
+		/datum/outfit/quick/tgmc/marine/combat_rifle,
 		/datum/outfit/quick/tgmc/marine/standard_laserrifle,
+		/datum/outfit/quick/tgmc/marine/auto_shotgun,
 		/datum/outfit/quick/tgmc/marine/standard_machinegunner,
 		/datum/outfit/quick/tgmc/marine/medium_machinegunner,
 		/datum/outfit/quick/tgmc/marine/standard_shotgun,
 		/datum/outfit/quick/tgmc/marine/standard_lasercarbine,
+		/datum/outfit/quick/tgmc/marine/shield_tank,
+		/datum/outfit/quick/tgmc/marine/machete,
 		/datum/outfit/quick/tgmc/engineer/rrengineer,
 		/datum/outfit/quick/tgmc/engineer/sentry,
 		/datum/outfit/quick/tgmc/engineer/demolition,
 		/datum/outfit/quick/tgmc/corpsman/standard_medic,
+		/datum/outfit/quick/tgmc/corpsman/auto_shotgun,
+		/datum/outfit/quick/tgmc/corpsman/laser_medic,
 		/datum/outfit/quick/tgmc/smartgunner/standard_sg,
 		/datum/outfit/quick/tgmc/smartgunner/minigun_sg,
 		/datum/outfit/quick/tgmc/leader/standard_assaultrifle,
-		/datum/outfit/quick/som/marine/mpi,
+		/datum/outfit/quick/tgmc/leader/standard_carbine,
+		/datum/outfit/quick/tgmc/leader/combat_rifle,
+		/datum/outfit/quick/tgmc/leader/auto_shotgun,
+		/datum/outfit/quick/som/marine/standard_assaultrifle,
+		/datum/outfit/quick/som/marine/scout,
+		/datum/outfit/quick/som/marine/shotgunner,
 		/datum/outfit/quick/som/marine/charger,
-		/datum/outfit/quick/som/marine/caliver,
+		/datum/outfit/quick/som/engineer/standard_assaultrifle,
+		/datum/outfit/quick/som/engineer/standard_smg,
+		/datum/outfit/quick/som/engineer/standard_shotgun,
+		/datum/outfit/quick/som/medic/standard_assaultrifle,
+		/datum/outfit/quick/som/medic/standard_smg,
+		/datum/outfit/quick/som/medic/standard_shotgun,
 		/datum/outfit/quick/som/veteran/charger,
+		/datum/outfit/quick/som/veteran/caliver,
+		/datum/outfit/quick/som/veteran/caliver_pack,
 		/datum/outfit/quick/som/veteran/culverin,
+		/datum/outfit/quick/som/squad_leader/charger,
+		/datum/outfit/quick/som/squad_leader/caliver,
 	)
 
 	for(var/X in loadout_list)
@@ -53,11 +74,11 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 /obj/machinery/quick_vendor/som
 	faction = FACTION_SOM
 	categories = list(
-		"SOM Standard",
-		"SOM Engineer",
-		"SOM Medic",
-		"SOM Veteran",
-		"SOM Leader",
+		"SOM Squad Standard",
+		"SOM Squad Engineer",
+		"SOM Squad Medic",
+		"SOM Squad Veteran",
+		"SOM Squad Leader",
 	)
 
 /obj/machinery/quick_vendor/can_interact(mob/user)

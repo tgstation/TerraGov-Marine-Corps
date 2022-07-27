@@ -373,6 +373,13 @@
 /obj/item/tool/hand_labeler,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
+"kb" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "kd" = (
 /obj/machinery/light{
 	dir = 4
@@ -800,6 +807,13 @@
 /area/bigredv2/outside/space_port)
 "vb" = (
 /turf/closed/mineral/bigred,
+/area/bigredv2/outside/space_port)
+"vi" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "vp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -1549,6 +1563,15 @@
 	dir = 10
 	},
 /area/bigredv2/outside/space_port)
+"QA" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
 "QE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/window_frame/colony,
@@ -1836,6 +1859,15 @@
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
+	},
+/area/bigredv2/outside/space_port)
+"XN" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
 	},
 /area/bigredv2/outside/space_port)
 "XQ" = (
@@ -2331,7 +2363,7 @@ lw
 lw
 Se
 Ei
-gM
+kb
 TK
 mR
 qE
@@ -2482,7 +2514,7 @@ lw
 lw
 Se
 Ei
-su
+QA
 gM
 ph
 gM
@@ -2528,7 +2560,7 @@ Iq
 gM
 gM
 uZ
-gM
+vi
 gM
 gM
 gM
@@ -2842,7 +2874,7 @@ lw
 lw
 Se
 Ei
-su
+XN
 FR
 im
 im
