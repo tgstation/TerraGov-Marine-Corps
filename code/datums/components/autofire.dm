@@ -104,12 +104,11 @@
 /datum/component/automatedfire/autofire/process_shot()
 	if(!shooting)
 		return
-	if(timeleft(shot_timer, SSautomatedfire) > 0)//This mean duplication somewhere, we abort now
+	if(next_fire > world.time)//This mean duplication somewhere, we abort now
 		return
 	if(!callback_fire.Invoke())//If the parent has failed to fire, we reset the component
 		hard_reset()
 		return
-	var/delay = 0
 	switch(fire_mode)
 		if(GUN_FIREMODE_BURSTFIRE)
 			shots_fired++
@@ -123,11 +122,11 @@
 				return
 			callback_bursting.Invoke(TRUE)
 			bursting = TRUE
-			delay = burstfire_shot_delay
+			next_fire = world.time + burstfire_shot_delay
 		if(GUN_FIREMODE_AUTOBURST)
 			shots_fired++
 			if(shots_fired == burst_shots_to_fire)
-				delay = auto_burst_fire_shot_delay
+				next_fire = world.time + auto_burst_fire_shot_delay
 				shots_fired = 0
 				callback_bursting.Invoke(FALSE)
 				bursting = FALSE
@@ -138,12 +137,9 @@
 			else
 				callback_bursting.Invoke(TRUE)
 				bursting = TRUE
-				delay = burstfire_shot_delay
+				next_fire = world.time + burstfire_shot_delay
 		if(GUN_FIREMODE_AUTOMATIC)
-			delay = auto_fire_shot_delay
+			next_fire = world.time + auto_fire_shot_delay
 		if(GUN_FIREMODE_SEMIAUTO)
 			return
-	if(!delay)
-		return
-	shot_timer = addtimer(CALLBACK(src, .proc/process_shot), delay, TIMER_DELETE_ME|TIMER_STOPPABLE, SSautomatedfire)
-
+	schedule_shot()
