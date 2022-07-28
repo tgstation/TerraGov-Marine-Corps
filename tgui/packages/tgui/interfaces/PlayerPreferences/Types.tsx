@@ -78,7 +78,9 @@ type TextInputModalData = {
 type JobPreferencesData = {
   alternate_option: number,
   squads: string[],
+  squads_som: string[],
   preferred_squad: string,
+  preferred_squad_som: string,
   overflow_job: string[],
   special_occupation: number,
   special_occupations: PreferencesSpecialOccupations,

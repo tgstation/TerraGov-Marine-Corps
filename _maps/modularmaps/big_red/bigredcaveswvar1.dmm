@@ -21,6 +21,13 @@
 /atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
+"k" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/southwest)
 "p" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southwest)
@@ -46,6 +53,13 @@
 "C" = (
 /atom/movable/effect/landmark/excavation_site_spawner,
 /atom/movable/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
+"F" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "H" = (
@@ -76,6 +90,20 @@
 "T" = (
 /atom/movable/effect/landmark/weed_node,
 /atom/movable/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southwest)
+"U" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/southwest)
+"X" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "Z" = (
@@ -326,7 +354,7 @@ x
 x
 x
 x
-h
+F
 p
 p
 p
@@ -727,7 +755,7 @@ x
 x
 x
 I
-p
+U
 h
 h
 h
@@ -831,7 +859,7 @@ h
 h
 h
 h
-p
+k
 x
 x
 x
@@ -1050,7 +1078,7 @@ I
 p
 h
 h
-h
+X
 p
 x
 x

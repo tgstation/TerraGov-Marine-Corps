@@ -428,6 +428,13 @@
 /atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
+"kV" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "kX" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/tile/white,
@@ -1050,6 +1057,13 @@
 	dir = 4
 	},
 /area/bigredv2/outside/marshal_office)
+"Bt" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "BH" = (
 /obj/item/shard,
 /atom/movable/effect/decal/cleanable/blood/gibs,
@@ -1635,6 +1649,13 @@
 /obj/machinery/light,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
+"QX" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "Rl" = (
 /obj/structure/table,
 /atom/movable/effect/spawner/random/technology_scanner,
@@ -1683,6 +1704,15 @@
 /atom/movable/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
+"RX" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
 "Sg" = (
 /obj/item/tool/pen,
 /turf/open/floor/tile/dark,
@@ -3023,7 +3053,7 @@ LF
 LF
 zB
 kz
-po
+RX
 mN
 Nr
 Qk
@@ -3265,7 +3295,7 @@ zB
 kz
 SK
 SK
-SK
+QX
 SK
 Jd
 SK
@@ -3310,11 +3340,11 @@ SK
 SK
 SK
 SK
-SK
+kV
 SK
 Jd
 SK
-SK
+Bt
 SK
 NJ
 SK

@@ -1390,8 +1390,15 @@
 /turf/closed/wall,
 /area/lv624/lazarus/medbay)
 "fD" = (
-/turf/open/floor/tile/green/whitegreen,
-/area/lv624/lazarus/medbay)
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 4
+	},
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "fE" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -5335,6 +5342,13 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
+"ye" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/se)
 "zj" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/compound/se)
@@ -5359,11 +5373,32 @@
 /atom/movable/effect/landmark/xeno_silo_spawn,
 /turf/open/ground,
 /area/vapor_processing/caves/se)
+"Cv" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/ground,
+/area/space)
+"CJ" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
 "CU" = (
 /atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /atom/movable/effect/landmark/xeno_resin_wall,
 /turf/open/ground,
 /area/space)
+"Ek" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
@@ -5372,6 +5407,13 @@
 /atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/central2)
+"GD" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "GM" = (
 /obj/machinery/miner/damaged,
 /turf/open/ground/grass/grass2,
@@ -5435,6 +5477,27 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/lv624/ground/compound/se)
+"NF" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
+"NO" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"NZ" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/ground,
+/area/space)
 "Oh" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -5444,6 +5507,20 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/vapor_processing/east_compound)
+"OP" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"PB" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "PI" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/grass,
@@ -5468,6 +5545,13 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"TZ" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
 "Ud" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/scorched/two,
@@ -5476,10 +5560,31 @@
 /atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/central1)
+"UU" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
 "Va" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
+"VG" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/ground,
+/area/space)
+"Wo" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/ground,
+/area/space)
 "Xd" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/whiteyellow/corner{
@@ -5490,6 +5595,13 @@
 /atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/west1)
+"XN" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "ZJ" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/grass,
@@ -5599,7 +5711,7 @@ aa
 "}
 (2,1,1) = {"
 aa
-ad
+CJ
 ad
 ad
 ad
@@ -5690,7 +5802,7 @@ mc
 mc
 mc
 mc
-mc
+XN
 mc
 mc
 mc
@@ -5706,7 +5818,7 @@ av
 az
 av
 ad
-ad
+NF
 ad
 ad
 ad
@@ -5899,7 +6011,7 @@ mc
 mc
 mc
 mc
-mc
+GD
 mc
 aa
 "}
@@ -6010,7 +6122,7 @@ aa
 ad
 ad
 ad
-ad
+Ek
 ai
 ap
 ap
@@ -6099,7 +6211,7 @@ ch
 bY
 cc
 cf
-ch
+fD
 bT
 mc
 mc
@@ -6110,7 +6222,7 @@ aa
 (7,1,1) = {"
 aa
 ad
-ad
+TZ
 az
 ad
 aj
@@ -6204,7 +6316,7 @@ cd
 bZ
 cy
 mc
-mc
+PB
 mc
 mc
 aa
@@ -7071,9 +7183,9 @@ eG
 iG
 ee
 fm
-fD
-fD
-fD
+ly
+ly
+ly
 ly
 ht
 fC
@@ -7173,10 +7285,10 @@ eH
 ee
 iH
 ee
-fD
-fD
-fD
-fD
+ly
+ly
+ly
+ly
 lR
 fC
 eK
@@ -7381,7 +7493,7 @@ fa
 fC
 gb
 hc
-fD
+ly
 fC
 eK
 eK
@@ -7483,7 +7595,7 @@ fa
 fC
 gc
 hd
-fD
+ly
 fC
 eK
 em
@@ -7585,7 +7697,7 @@ fa
 fC
 gd
 he
-fD
+ly
 fC
 eK
 em
@@ -7687,7 +7799,7 @@ fa
 fC
 ge
 hf
-fD
+ly
 fC
 eK
 em
@@ -7788,7 +7900,7 @@ eK
 fa
 fC
 gf
-fD
+ly
 hu
 fC
 eK
@@ -7890,7 +8002,7 @@ fo
 fa
 fC
 gg
-fD
+ly
 hv
 fC
 eK
@@ -7992,7 +8104,7 @@ fa
 fa
 fC
 gh
-fD
+ly
 hw
 fC
 eK
@@ -8094,7 +8206,7 @@ eK
 fa
 qC
 gi
-fD
+ly
 hx
 qC
 eK
@@ -8196,7 +8308,7 @@ eK
 fa
 qC
 gj
-fD
+ly
 hy
 qC
 eK
@@ -8298,7 +8410,7 @@ eK
 fa
 fC
 gk
-fD
+ly
 hz
 fC
 eK
@@ -8502,7 +8614,7 @@ em
 fa
 fC
 gm
-fD
+ly
 hB
 fC
 eK
@@ -8604,7 +8716,7 @@ em
 fI
 fC
 gn
-fD
+ly
 hC
 fC
 eK
@@ -14374,10 +14486,10 @@ aa
 aa
 aa
 bd
+Wo
 af
 af
-af
-af
+VG
 af
 af
 af
@@ -14681,7 +14793,7 @@ aa
 aa
 aa
 af
-af
+NZ
 af
 af
 cv
@@ -14788,7 +14900,7 @@ af
 af
 af
 af
-af
+Cv
 aa
 aa
 aa
@@ -15076,11 +15188,11 @@ Jt
 oC
 lm
 lm
-ll
+ye
 ll
 ll
 li
-li
+NO
 aa
 "}
 (95,1,1) = {"
@@ -15384,7 +15496,7 @@ ll
 li
 li
 li
-li
+UU
 aa
 aa
 aa
@@ -15482,7 +15594,7 @@ pb
 fB
 pj
 Jt
-li
+OP
 li
 li
 aa

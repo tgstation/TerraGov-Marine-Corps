@@ -430,6 +430,13 @@
 /atom/movable/effect/ai_node,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
+"mz" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "mI" = (
 /obj/machinery/vending/cigarette/colony,
 /obj/machinery/status_display{
@@ -673,6 +680,15 @@
 	dir = 8
 	},
 /area/bigredv2/outside/marshal_office)
+"sS" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
 "tr" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 1
@@ -1450,12 +1466,23 @@
 /area/bigredv2/outside/space_port)
 "LH" = (
 /obj/machinery/light,
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Mb" = (
 /atom/movable/effect/decal/cleanable/dirt,
 /atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
+"Md" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "Me" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
@@ -2492,7 +2519,7 @@ MN
 MN
 MN
 MN
-bg
+mz
 dV
 ga
 Ko
@@ -2923,7 +2950,7 @@ ac
 ac
 TS
 MN
-ed
+sS
 as
 Gz
 Gz
@@ -3323,7 +3350,7 @@ ac
 ac
 TS
 MN
-Rc
+Md
 Gg
 Rc
 Rc

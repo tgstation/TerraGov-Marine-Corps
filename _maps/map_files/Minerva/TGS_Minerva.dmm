@@ -8351,7 +8351,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
 "Bd" = (
-/obj/machinery/vending/shared_vending/marine_engi,
 /obj/machinery/alarm,
 /turf/open/floor/mainship/orange{
 	dir = 5

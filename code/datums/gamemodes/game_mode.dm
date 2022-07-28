@@ -338,9 +338,9 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 					/datum/job/upp/leader,
 					/datum/job/upp/heavy,
 					/datum/job/upp/standard,
-					/datum/job/som/leader,
-					/datum/job/som/veteran,
-					/datum/job/som/standard,
+					/datum/job/som/ert/leader,
+					/datum/job/som/ert/veteran,
+					/datum/job/som/ert/standard,
 					/datum/job/pmc/leader,
 					/datum/job/pmc/standard,
 				)
@@ -365,6 +365,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 
 ///starts the timer to end the round when no silo is left
 /datum/game_mode/proc/get_siloless_collapse_countdown()
+	return
+
+///Provides the amount of time left before the game ends, used for the stat panel
+/datum/game_mode/proc/game_end_countdown()
 	return
 
 /datum/game_mode/proc/announce_medal_awards()

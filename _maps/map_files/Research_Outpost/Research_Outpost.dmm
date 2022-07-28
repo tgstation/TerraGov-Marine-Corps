@@ -281,6 +281,13 @@
 	dir = 6
 	},
 /area/outpost/yard/east)
+"bo" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_west)
 "bp" = (
 /atom/movable/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark,
@@ -671,6 +678,13 @@
 	dir = 4
 	},
 /area/outpost/yard/east)
+"dv" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_west)
 "dw" = (
 /turf/open/floor/plating/dmg2,
 /area/outpost/arrivals)
@@ -1326,6 +1340,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
+"gs" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_west)
 "gt" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -2589,6 +2610,13 @@
 "lA" = (
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
+"lB" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "lC" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -4332,6 +4360,13 @@
 	dir = 9
 	},
 /area/outpost/cargo)
+"tG" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_east)
 "tH" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/lazarus/console)
@@ -4440,6 +4475,13 @@
 	dir = 1
 	},
 /area/outpost/brig)
+"ui" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "uj" = (
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
@@ -5403,6 +5445,13 @@
 /atom/movable/effect/ai_node,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
+"zc" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_west)
 "ze" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker/noreact,
@@ -6088,6 +6137,13 @@
 	dir = 9
 	},
 /area/outpost/lz1)
+"Cj" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_east)
 "Ck" = (
 /atom/movable/effect/ai_node,
 /turf/open/floor/plating/asteroidfloor,
@@ -7088,6 +7144,13 @@
 	dir = 8
 	},
 /area/outpost/yard/east)
+"GZ" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_east)
 "Hb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7311,6 +7374,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals/securitylz1)
+"Ij" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "Ik" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -7443,6 +7513,13 @@
 /obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/lz1)
+"IQ" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_east)
 "IS" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
@@ -7608,6 +7685,13 @@
 	dir = 4
 	},
 /area/outpost/science)
+"JD" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_west)
 "JF" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_west)
@@ -9781,6 +9865,13 @@
 /atom/movable/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
+"Tf" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_west)
 "Tg" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10113,6 +10204,13 @@
 	dir = 5
 	},
 /area/outpost/yard/central)
+"UD" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_west)
 "UE" = (
 /obj/structure/table,
 /obj/machinery/power/apc/drained,
@@ -10177,6 +10275,13 @@
 	dir = 8
 	},
 /area/outpost/hallway/central)
+"UX" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "UY" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -10902,6 +11007,13 @@
 	dir = 8
 	},
 /area/outpost/medbay/chemistry)
+"Yu" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south_west)
 "Yv" = (
 /obj/machinery/light{
 	dir = 1
@@ -14835,7 +14947,7 @@ Zc
 Zc
 mu
 Zc
-JF
+gs
 JF
 JF
 JF
@@ -15235,7 +15347,7 @@ Zc
 JF
 JF
 JF
-JF
+UD
 Zc
 Zc
 jq
@@ -15953,7 +16065,7 @@ Cp
 Cp
 Cp
 Cp
-Cp
+JD
 Cp
 Cp
 Cp
@@ -16207,7 +16319,7 @@ Zc
 Zc
 Zc
 QX
-Cp
+zc
 Cp
 Cp
 Cp
@@ -16346,7 +16458,7 @@ Cp
 Cp
 rj
 Cp
-Cp
+bo
 Zc
 Cp
 Cp
@@ -16419,7 +16531,7 @@ Hc
 Zc
 mu
 QX
-JF
+dv
 JF
 JF
 Zh
@@ -16601,7 +16713,7 @@ Zc
 Zc
 Zc
 Zc
-Cp
+Tf
 rj
 rj
 rj
@@ -17083,7 +17195,7 @@ Zc
 JF
 JF
 JF
-JF
+Yu
 Zc
 Zc
 jq
@@ -25979,7 +26091,7 @@ Yo
 cs
 WB
 WB
-Yx
+UX
 Yo
 Yo
 QX
@@ -26766,7 +26878,7 @@ Zc
 Zc
 QX
 Yo
-Yx
+lB
 qO
 WB
 WB
@@ -26907,7 +27019,7 @@ EV
 WB
 Yx
 Yo
-Yx
+Ij
 Zc
 DB
 Yx
@@ -27562,7 +27674,7 @@ QX
 Yo
 Yx
 Yx
-Yx
+ui
 Yo
 qO
 qO
@@ -28951,7 +29063,7 @@ Zc
 Zc
 Zc
 Zc
-Hm
+Cj
 Hm
 Hm
 Zc
@@ -29739,7 +29851,7 @@ PD
 Qz
 Dk
 TD
-Hm
+GZ
 Hm
 sI
 Hm
@@ -30273,7 +30385,7 @@ Hm
 Hm
 Hm
 Hm
-Hm
+IQ
 LU
 jq
 Kv
@@ -30665,7 +30777,7 @@ OF
 Qw
 Zc
 Zc
-Hm
+tG
 Hm
 Hm
 LU

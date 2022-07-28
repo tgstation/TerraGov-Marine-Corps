@@ -2,6 +2,13 @@
 "a" = (
 /turf/open/space/basic,
 /area/space)
+"g" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "h" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
@@ -22,6 +29,13 @@
 /area/bigredv2/caves/southeast)
 "s" = (
 /atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
+"v" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "w" = (
@@ -46,8 +60,22 @@
 /atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
+"H" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "K" = (
 /atom/movable/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
+"M" = (
+/atom/movable/effect/landmarkpatrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "N" = (
@@ -2643,7 +2671,7 @@ h
 h
 h
 h
-h
+v
 z
 z
 z
@@ -2658,7 +2686,7 @@ h
 h
 h
 h
-h
+H
 z
 z
 z
@@ -3406,6 +3434,7 @@ z
 z
 z
 z
+M
 h
 h
 h
@@ -3414,8 +3443,7 @@ h
 h
 h
 h
-h
-h
+g
 z
 z
 z

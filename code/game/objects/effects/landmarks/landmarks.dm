@@ -28,17 +28,12 @@
 	icon_state = "x"
 	anchored = TRUE
 	layer = MOB_LAYER
-	var/jobspawn_override = FALSE
 	var/delete_after_roundstart = TRUE
 	var/used = FALSE
 
 
 /atom/movable/effect/landmark/start/Initialize()
 	GLOB.start_landmarks_list += src
-	if(jobspawn_override)
-		if(!GLOB.jobspawn_overrides[name])
-			GLOB.jobspawn_overrides[name] = list()
-		GLOB.jobspawn_overrides[name] += src
 	. = ..()
 	if(name != "start")
 		tag = "start*[name]"
@@ -46,8 +41,6 @@
 
 /atom/movable/effect/landmark/start/Destroy()
 	GLOB.start_landmarks_list -= src
-	if(jobspawn_override)
-		GLOB.jobspawn_overrides[name] -= src
 	return ..()
 
 
@@ -71,6 +64,11 @@
 /atom/movable/effect/landmark/start/latejoinrebel/Initialize()
 	. = ..()
 	GLOB.latejoinrebel += loc
+	return INITIALIZE_HINT_QDEL
+
+/atom/movable/effect/landmark/start/latejoinsom/Initialize()
+	. = ..()
+	GLOB.latejoinsom += loc
 	return INITIALIZE_HINT_QDEL
 
 /atom/movable/effect/landmark/start/latejoin_gateway/Initialize()
@@ -467,3 +465,18 @@
 /atom/movable/effect/landmark/valhalla_xeno_spawn_landmark_far_two/Initialize()
 	. = ..()
 	GLOB.valhalla_xeno_spawn_landmark[FAR2] = src
+
+//Combat patrol spawn in spots
+/atom/movable/effect/landmarkpatrol_point
+	name = "Patrol exit point"
+	//ID to link with an associated start point
+	var/id = null
+
+/atom/movable/effect/landmarkpatrol_point/Initialize()
+	. = ..()
+	//adds the exit points to the glob, and the start points link to them in lateinit
+	GLOB.patrol_point_list += src
+
+/atom/movable/effect/landmarkpatrol_point/Destroy()
+	GLOB.patrol_point_list -= src
+	return ..()

@@ -567,7 +567,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "acj" = (
-/obj/machinery/vending/shared_vending/marine_engi,
 /turf/open/floor/mainship/green{
 	dir = 8
 	},

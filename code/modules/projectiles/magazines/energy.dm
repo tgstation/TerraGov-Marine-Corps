@@ -64,11 +64,21 @@
 	desc = "A specialized high density battery used to power volkite weaponry."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "volkite"
-	maxcharge = 1080
+	maxcharge = 960
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
 	charge_overlay = "volkite"
 	reload_delay = 0
+
+/obj/item/cell/lasgun/volkite/small
+	name = "\improper high capacity volkite energy cell"
+	desc = "A specialized compact battery used to power the smallest volkite weaponry."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "volkite_small"
+	maxcharge = 540
+	w_class = WEIGHT_CLASS_SMALL
+	icon_state_mini = "mag_cell"
+	charge_overlay = "volkite_small"
 
 /obj/item/cell/lasgun/volkite/highcap
 	name = "\improper high capacity volkite energy cell"
