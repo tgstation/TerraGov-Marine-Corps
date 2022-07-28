@@ -361,6 +361,30 @@
 	icon_state = "carpprop"
 	density = TRUE
 
+/obj/structure/prop/mainship/prop_sec
+	name = "Security Officer"
+	desc = "They look rather busy and pays no attention to you."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "secprop"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
+/obj/structure/prop/mainship/prop_so
+	name = "Officer"
+	desc = "They look rather busy and pays no attention to you."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "officerprop"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
+/obj/structure/prop/mainship/prop_tech
+	name = "Technician"
+	desc = "They look rather busy and pays no attention to you."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "techieprop"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
 /obj/structure/prop/templedoor
 	name = "Strange Temple"
 	icon = 'icons/obj/doors/Doorsand.dmi'
@@ -1070,3 +1094,33 @@
 
 /obj/structure/prop/vehicle/apc/decoration/emptyfuelcell
 	icon_state = "emptyfuelcell"
+
+
+/obj/structure/prop/radio_prop
+	name = "Radio"
+	desc = "A standard military radio."
+	icon = 'icons/obj/items/radio.dmi'
+	icon_state = "beacon"
+	var/datum/looping_sound/radio/chatter_loop
+
+/obj/structure/prop/radio_prop/Initialize(mapload, ...)
+	. = ..()
+	chatter_loop = new(null, FALSE)
+	chatter_loop.start(src)
+
+/obj/structure/prop/radio_prop/Destroy()
+	QDEL_NULL(chatter_loop)
+	return ..()
+
+/obj/structure/prop/vehicle/som_mech
+	name = "Marauder Assault Mech"
+	desc = "A heavily armed mech used by the SOM to spearhead an assault, this one seems to be non-functional."
+	icon = 'icons/Marine/mech_prop.dmi'
+	icon_state = "som_mech"
+	density = TRUE
+	coverage = 70
+	bound_width = 32
+	pixel_x = -15
+	pixel_y = -15
+	resistance_flags = RESIST_ALL
+	layer = ABOVE_MOB_LAYER

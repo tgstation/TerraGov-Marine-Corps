@@ -17,3 +17,9 @@
 	mid_length = 18
 	volume = 50
 	extra_range = 20
+
+/datum/looping_sound/radio
+	mid_sounds = list('sound/effects/radio_chatter/radio1.ogg' = 1, 'sound/effects/radio_chatter/radio2.ogg' = 1, 'sound/effects/radio_chatter/radio3.ogg' = 1, 'sound/effects/radio_chatter/radio4.ogg' = 1, 'sound/effects/radio_chatter/radio5.ogg' = 1, 'sound/effects/radio_chatter/radio6.ogg' = 1, 'sound/effects/radio_chatter/radio7.ogg' = 1, 'sound/effects/radio_chatter/radio8.ogg' = 1, 'sound/effects/radio_chatter/radio9.ogg' = 1)
+	mid_length = 30 SECONDS
+	volume = 75
+
