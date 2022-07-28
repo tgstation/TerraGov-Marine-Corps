@@ -759,7 +759,7 @@
 /area/lv624/ground/caves/west1)
 "apo" = (
 /obj/structure/jungle/vines,
-/atom/movable/effect/landmarklv624/fog_blocker/xeno_spawn,
+/atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /atom/movable/effect/landmarkpatrol_point{
 	id = "SOM_12";
 	name = "SOM exit point 12"
