@@ -1,12 +1,12 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/wall/indestructible/mineral,
 /area/space)
 "ab" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/west1)
 "ac" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/central2)
 "ad" = (
 /turf/open/floor,
@@ -18,7 +18,7 @@
 /turf/open/ground,
 /area/space)
 "ag" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral,
 /area/space)
 "ah" = (
 /turf/open/ground/grass/grass2,
@@ -347,10 +347,10 @@
 /turf/open/floor/grass,
 /area/lv624/ground/compound/n)
 "bg" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral,
 /area/lv624/ground/caves/west1)
 "bh" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral,
 /area/lv624/ground/caves/central2)
 "bi" = (
 /obj/effect/landmark/lv624/fog_blocker,
@@ -438,19 +438,19 @@
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
 "bC" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral,
 /area/lv624/ground/caves/central1)
 "bD" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/central1)
 "bE" = (
 /turf/open/ground,
 /area/lv624/ground/caves/east1)
 "bF" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/east1)
 "bG" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral,
 /area/lv624/ground/caves/east1)
 "bH" = (
 /obj/effect/landmark/corpsespawner/scientist{
@@ -1378,10 +1378,10 @@
 	},
 /area/vapor_processing/cargo2)
 "fz" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/wall/indestructible/mineral,
 /area/vapor_processing/caves/se)
 "fA" = (
-/turf/closed/mineral/smooth,
+/turf/closed/mineral,
 /area/vapor_processing/caves/se)
 "fB" = (
 /turf/open/ground,
@@ -1389,6 +1389,16 @@
 "fC" = (
 /turf/closed/wall,
 /area/lv624/lazarus/medbay)
+"fD" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 4
+	},
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "fE" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -5183,7 +5193,7 @@
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
 "un" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/wall/indestructible/mineral,
 /area/lv624/lazarus/fitness)
 "uq" = (
 /obj/structure/table,
@@ -5322,7 +5332,7 @@
 /area/lv624/lazarus/engineering)
 "ww" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral,
 /area/vapor_processing/caves/se)
 "xc" = (
 /obj/machinery/computer/nuke_disk_generator/red,
@@ -5332,15 +5342,22 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/c)
+"ye" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/se)
 "zj" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/compound/se)
 "AB" = (
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/lv624/lazarus/quartstorage)
 "AG" = (
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/wall/indestructible/mineral,
 /area/vapor_processing/east_compound)
 "AS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -5356,19 +5373,47 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/ground,
 /area/vapor_processing/caves/se)
+"Cv" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/ground,
+/area/space)
+"CJ" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
 "CU" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/ground,
 /area/space)
+"Ek" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "Gn" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral,
 /area/lv624/ground/caves/central2)
+"GD" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "GM" = (
 /obj/machinery/miner/damaged,
 /turf/open/ground/grass/grass2,
@@ -5413,7 +5458,7 @@
 /area/lv624/lazarus/quartstorage)
 "Lt" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/east1)
 "Lv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5425,13 +5470,34 @@
 /area/lv624/lazarus/engineering)
 "Ml" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral,
 /area/lv624/ground/caves/east1)
 "MD" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/lv624/ground/compound/se)
+"NF" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
+"NO" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"NZ" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/ground,
+/area/space)
 "Oh" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -5441,13 +5507,27 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/vapor_processing/east_compound)
+"OP" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
+"PB" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "PI" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/grass,
 /area/vapor_processing/south_compound)
 "Qv" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/indestructible,
+/turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/central1)
 "Sa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -5465,18 +5545,46 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
+"TZ" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
 "Ud" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
 "UJ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral,
 /area/lv624/ground/caves/central1)
+"UU" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/grass,
+/area/lv624/ground/compound/se)
 "Va" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
+"VG" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/ground,
+/area/space)
+"Wo" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/ground,
+/area/space)
 "Xd" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/whiteyellow/corner{
@@ -5485,8 +5593,15 @@
 /area/vapor_processing/cargo3)
 "Xw" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth,
+/turf/closed/mineral,
 /area/lv624/ground/caves/west1)
+"XN" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "ZJ" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/grass,
@@ -5596,7 +5711,7 @@ aa
 "}
 (2,1,1) = {"
 aa
-ad
+CJ
 ad
 ad
 ad
@@ -5687,7 +5802,7 @@ mc
 mc
 mc
 mc
-mc
+XN
 mc
 mc
 mc
@@ -5703,7 +5818,7 @@ av
 az
 av
 ad
-ad
+NF
 ad
 ad
 ad
@@ -5896,7 +6011,7 @@ mc
 mc
 mc
 mc
-mc
+GD
 mc
 aa
 "}
@@ -6007,7 +6122,7 @@ aa
 ad
 ad
 ad
-ad
+Ek
 ai
 ap
 ap
@@ -6096,7 +6211,7 @@ ch
 bY
 cc
 cf
-ch
+fD
 bT
 mc
 mc
@@ -6107,7 +6222,7 @@ aa
 (7,1,1) = {"
 aa
 ad
-ad
+TZ
 az
 ad
 aj
@@ -6201,7 +6316,7 @@ cd
 bZ
 cy
 mc
-mc
+PB
 mc
 mc
 aa
@@ -14371,10 +14486,10 @@ aa
 aa
 aa
 bd
+Wo
 af
 af
-af
-af
+VG
 af
 af
 af
@@ -14678,7 +14793,7 @@ aa
 aa
 aa
 af
-af
+NZ
 af
 af
 cv
@@ -14785,7 +14900,7 @@ af
 af
 af
 af
-af
+Cv
 aa
 aa
 aa
@@ -15073,11 +15188,11 @@ Jt
 oC
 lm
 lm
-ll
+ye
 ll
 ll
 li
-li
+NO
 aa
 "}
 (95,1,1) = {"
@@ -15381,7 +15496,7 @@ ll
 li
 li
 li
-li
+UU
 aa
 aa
 aa
@@ -15479,7 +15594,7 @@ pb
 fB
 pj
 Jt
-li
+OP
 li
 li
 aa
