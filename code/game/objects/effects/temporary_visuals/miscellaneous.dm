@@ -125,7 +125,7 @@
 	duration = RALLY_ORDER_DURATION
 
 ///Set visuals for the hud
-/atom/movable/temp_visual/order/proc/set_visuals(faction)
+/atom/movable/effect/temp_visual/order/proc/set_visuals(faction)
 	var/hud_type
 	if(faction == FACTION_TERRAGOV)
 		hud_type = DATA_HUD_SQUAD_TERRAGOV
