@@ -40,7 +40,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/inquisitive_ghost = FALSE
 	///A weakref to the original corpse of the observer
 	var/datum/weakref/can_reenter_corpse
-	var/obj/item/healthanalyzer/ghost/healthscanner = new()
+	var/obj/item/healthanalyzer/ghost/healthscanner
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
@@ -73,6 +73,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	GLOB.ghost_images_simple |= ghostimage_simple
 
 	updateallghostimages()
+
+	healthscanner = new()
 
 	var/turf/T
 	var/mob/body = loc
@@ -448,7 +450,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set desc = "Click on a human to do a ghost health scan"
 
 	ghost_healthscan = !ghost_healthscan
-	to_chat(src, "[ghost_healthscan ? "Enabled" : "Disabled"] ghost health scan.")
+	balloon_alert(src, "[ghost_healthscan ? "Enabled" : "Disabled"] health scan.")
 
 	if(ghost_healthscan)
 		RegisterSignal(src, COMSIG_OBSERVER_CLICKON, .proc/healthscan)

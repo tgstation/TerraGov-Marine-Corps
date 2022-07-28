@@ -519,7 +519,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /obj/effect/wraith_portal/attack_ghost(mob/dead/observer/user)
 	. = ..()
-	linked_portal ? user.forceMove(get_turf(linked_portal)) : null
+	if(!linked_portal)
+		return
+	user.forceMove(get_turf(linked_portal))
 
 /// Link two portals
 /obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)

@@ -366,7 +366,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/structure/bed/medevac_stretcher/attack_ghost(mob/dead/observer/user)
 	. = ..()
-	if(!linked_beacon || !linked_beacon.loc) //TODO: Redo medevac links
+	if(!linked_beacon?.loc) //TODO: Redo medevac links
 		return
 	user.forceMove(get_turf(linked_beacon))
 
@@ -540,7 +540,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/roller/medevac/attack_ghost(mob/dead/observer/user)
 	. = ..()
-	if(!linked_beacon || !linked_beacon.loc) //TODO: Redo medevac links
+	if(!linked_beacon?.loc) //TODO: Redo medevac links
 		return
 	user.forceMove(get_turf(linked_beacon))
 
