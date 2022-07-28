@@ -145,22 +145,22 @@
 	job = /datum/job/xenomorph
 
 //SOM
-/atom/movable/landmark/start/job/som/squadstandard
+/atom/movable/effect/landmark/start/job/som/squadstandard
 	icon_state = "PFC"
 	job = /datum/job/som/squad/standard
 
-/atom/movable/landmark/start/job/som/squadveteran
+/atom/movable/effect/landmark/start/job/som/squadveteran
 	icon_state = "SGnr"
 	job = /datum/job/som/squad/veteran
 
-/atom/movable/landmark/start/job/som/squadengineer
+/atom/movable/effect/landmark/start/job/som/squadengineer
 	icon_state = "Eng"
 	job = /datum/job/som/squad/engineer
 
-/atom/movable/landmark/start/job/som/squadcorpsman
+/atom/movable/effect/landmark/start/job/som/squadcorpsman
 	icon_state = "HM"
 	job = /datum/job/som/squad/medic
 
-/atom/movable/landmark/start/job/som/squadleader
+/atom/movable/effect/landmark/start/job/som/squadleader
 	icon_state = "SL"
 	job = /datum/job/som/squad/leader
