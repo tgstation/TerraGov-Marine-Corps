@@ -65,8 +65,8 @@
 
 /turf/closed/mineral/indestructible
 	name = "impenetrable rock"
-	icon_state = "lvwall-0-0-0-0"
-	walltype = "lvwall"
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "rock_dark"
 	smoothing_behavior = DIAGONAL_SMOOTHING
 	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
 	resistance_flags = RESIST_ALL
