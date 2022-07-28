@@ -1,9 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ac" = (
-/obj/structure/flora/pottedplant/ten,
-/turf/open/floor/mainship/blue{
-	dir = 10
-	},
+/turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "af" = (
 /obj/structure/bed/bunkbed,
@@ -16,9 +13,11 @@
 /turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
 "ag" = (
-/obj/effect/decal/warning_stripes/box/arrow,
-/turf/open/floor/mainship/floor,
-/area/mainship/patrol_base)
+/obj/structure/prop/mainship/name_stencil,
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
 "al" = (
 /obj/structure/table/holotable/wood,
 /obj/machinery/chem_dispenser/beer{
@@ -26,6 +25,12 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
+"am" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
 "ap" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -46,6 +51,14 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/prison/kitchen,
+/area/space)
+"au" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
 /area/mainship/patrol_base)
 "aE" = (
 /turf/open/floor/carpet/side,
@@ -62,11 +75,6 @@
 	dir = 10
 	},
 /area/mainship/patrol_base)
-"aO" = (
-/turf/open/floor/carpet/side{
-	dir = 4
-	},
-/area/mainship/patrol_base)
 "aP" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/prison/kitchen,
@@ -80,43 +88,27 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/mainship/patrol_base/telecomms)
 "bs" = (
-/obj/structure/patrol_point{
-	id = "TGMC_21"
+/obj/structure/bed/chair/nometal{
+	dir = 4
 	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/patrol_base)
-"bz" = (
-/obj/machinery/quick_vendor,
-/obj/structure/window/reinforced,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/research,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "bI" = (
 /obj/machinery/vending/cola,
 /obj/machinery/light,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
-"bL" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced,
-/turf/open/floor/tile/dark,
-/area/mainship/patrol_base/som)
-"bP" = (
-/obj/structure/patrol_point{
-	id = "TGMC_13"
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/patrol_base)
+/area/space)
 "bX" = (
-/turf/open/floor/prison/red{
+/obj/structure/prop/mainship/name_stencil{
+	icon_state = "TGMC3"
+	},
+/turf/open/floor/mainship_hull/dir{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/space)
 "ch" = (
-/turf/open/floor/mainship/blue{
-	dir = 8
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
 	},
 /area/mainship/patrol_base)
 "cl" = (
@@ -132,23 +124,33 @@
 /turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
 "cN" = (
-/turf/open/floor/prison/red{
-	dir = 10
-	},
-/area/mainship/patrol_base/som)
-"cU" = (
-/obj/machinery/door/poddoor/timed_late/containment{
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/mainship/blue{
 	dir = 8
 	},
-/turf/open/floor/prison/red{
+/area/mainship/patrol_base)
+"cO" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"cY" = (
+/obj/structure/barricade/plasteel{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/orange{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base)
 "dk" = (
-/obj/item/stool,
-/turf/open/floor/carpet/side{
-	dir = 9
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "dl" = (
 /obj/machinery/vending/marineFood,
@@ -178,34 +180,26 @@
 	dir = 1
 	},
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "dv" = (
 /turf/open/floor/carpet,
 /area/mainship/patrol_base/som)
-"dJ" = (
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 1
-	},
-/turf/open/floor/mainship/floor,
+"dz" = (
+/obj/structure/prop/vehicle/crawler/crawler_fuel,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"dL" = (
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 8
-	},
-/turf/open/floor/prison/red{
-	dir = 10
-	},
-/area/mainship/patrol_base/som)
 "dM" = (
-/obj/structure/patrol_point{
-	id = "SOM_24"
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/obj/structure/prop/mainship/mapping_computer,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
 "dP" = (
 /obj/machinery/telecomms/server/presets/whiskey,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"dQ" = (
+/obj/structure/filingcabinet/security,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "dW" = (
 /turf/closed/wall/clock,
 /area/chapel/main)
@@ -223,14 +217,10 @@
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
 "el" = (
-/obj/structure/table/holotable/wood,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/turf/open/floor/wood,
+/obj/structure/cargo_container/nt{
+	dir = 8
+	},
+/turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
 "eo" = (
 /obj/machinery/door/airlock/mainship/security/free_access{
@@ -239,23 +229,10 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
-"ex" = (
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 8
-	},
-/turf/open/floor/prison/red{
-	dir = 9
-	},
-/area/mainship/patrol_base/som)
-"eN" = (
-/turf/open/floor/prison/red/corner{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "eS" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "eT" = (
 /turf/open/floor/mainship/ntlogo,
 /area/mainship/patrol_base)
@@ -269,61 +246,53 @@
 	},
 /area/mainship/patrol_base/som)
 "fp" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
-"fL" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/obj/machinery/elevator_strut/bottom,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "fM" = (
 /obj/machinery/telecomms/server/presets/alpha,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "fQ" = (
-/obj/structure/bed/chair/sofa/corner{
-	dir = 8
+/turf/open/floor/mainship_hull/dir{
+	dir = 10
 	},
-/turf/open/floor/carpet,
-/area/mainship/patrol_base)
+/area/space)
 "fT" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"fV" = (
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 1
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/patrol_base)
 "fZ" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile/white,
+/obj/machinery/quick_vendor,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "gd" = (
-/obj/structure/flora/pottedplant/two,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 1
+	},
+/area/mainship/patrol_base)
 "ge" = (
-/turf/open/floor/carpet/side,
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/mainship/blue{
+	dir = 5
+	},
 /area/mainship/patrol_base)
 "gk" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal3,
 /turf/open/floor/prison/kitchen,
+/area/space)
+"gl" = (
+/obj/structure/sign/double/map/right,
+/turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
 "go" = (
 /obj/machinery/telecomms/hub/preset/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
+"gp" = (
+/turf/open/floor/mainship/floor,
+/area/space)
 "gr" = (
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
@@ -341,6 +310,12 @@
 	},
 /turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
+"hk" = (
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window10"
+	},
+/turf/open/floor/mainship_hull,
+/area/mainship/patrol_base)
 "hq" = (
 /obj/structure/toilet{
 	dir = 4
@@ -350,19 +325,6 @@
 	},
 /obj/effect/landmark/start/job/som/squadstandard,
 /turf/open/floor/prison/sterilewhite,
-/area/mainship/patrol_base/som)
-"hT" = (
-/obj/effect/decal/warning_stripes/box/arrow{
-	last_move = s
-	},
-/turf/open/floor/prison/darkred,
-/area/mainship/patrol_base/som)
-"hX" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 8
-	},
-/turf/open/floor/prison,
 /area/mainship/patrol_base/som)
 "ig" = (
 /obj/structure/bed/chair/sofa/right{
@@ -380,79 +342,63 @@
 	},
 /turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
-"ir" = (
-/obj/structure/patrol_point{
-	id = "SOM_23"
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
 "it" = (
-/turf/open/floor/wood,
-/area/mainship/patrol_base)
-"iR" = (
-/obj/structure/table/gamblingtable,
-/obj/item/toy/dice/d20,
-/turf/open/floor/carpet,
-/area/mainship/patrol_base)
-"iX" = (
-/obj/machinery/door/poddoor/timed_late/containment,
-/turf/open/floor/prison/red{
-	dir = 5
+/obj/structure/prop/mainship/name_stencil{
+	icon_state = "TGMC2"
 	},
-/area/mainship/patrol_base/som)
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
+"iy" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/donut_box,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "jh" = (
-/obj/machinery/smartfridge/drinks,
-/turf/open/floor/wood,
-/area/mainship/patrol_base)
-"jp" = (
-/turf/open/floor/mainship/blue/corner{
-	dir = 4
+/obj/structure/prop/vehicle/tank/east/turret/complete{
+	pixel_y = 10
 	},
+/turf/open/space/basic,
+/area/space)
+"jp" = (
+/turf/open/floor/plating/ground/concrete/edge,
 /area/mainship/patrol_base)
 "jr" = (
-/obj/structure/flora/pottedplant/eighteen,
-/turf/open/floor/mainship/blue{
-	dir = 5
+/obj/structure/bed/chair/office/dark{
+	dir = 4
 	},
+/turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
 "jw" = (
 /obj/machinery/telecomms/server/presets/xray,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "jC" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
-	name = SurfaceLadders;
-	req_access = null
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/obj/structure/prop/mainship/sensor_computer2,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "jG" = (
 /obj/machinery/telecomms/server/presets/bravo,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"jX" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/obj/machinery/door/poddoor/timed_late/containment,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
-"jZ" = (
-/turf/open/floor/prison/red{
-	dir = 9
+"jI" = (
+/obj/structure/sign/double/map/left,
+/turf/open/floor/mainship_hull,
+/area/mainship/patrol_base)
+"jW" = (
+/obj/structure/cargo_container{
+	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
 "kp" = (
 /turf/open/floor/carpet/side{
 	dir = 1
 	},
 /area/mainship/patrol_base/som)
 "kA" = (
-/obj/structure/sink/bathroom{
-	dir = 1
-	},
-/obj/structure/mirror{
-	dir = 1
-	},
-/turf/open/floor/mainship/sterile/white,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "kC" = (
 /obj/structure/table/fancywoodentable,
@@ -475,37 +421,27 @@
 	},
 /area/mainship/patrol_base/som)
 "kH" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/mainship/patrol_base/som)
+/obj/structure/shuttle/engine/propulsion/burst/left,
+/turf/open/shuttle/dropship/three,
+/area/mainship/patrol_base)
 "kN" = (
 /obj/machinery/vending/snack,
 /obj/machinery/light,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "kT" = (
-/obj/structure/patrol_point{
-	id = "SOM_14"
+/obj/structure/bed/chair/office/dark{
+	dir = 1
 	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "lf" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
 "lm" = (
-/obj/structure/flora/pottedplant/eighteen,
-/turf/open/floor/prison/red{
-	dir = 6
-	},
-/area/mainship/patrol_base/som)
-"lp" = (
-/turf/open/floor/carpet/side{
-	dir = 5
-	},
+/obj/structure/prop/mainship/sensor_computer1,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "lu" = (
 /obj/machinery/telecomms/hub/preset,
@@ -520,68 +456,38 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "lM" = (
-/turf/open/floor/prison/red/corner{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
+/obj/vehicle/train/cargo/engine,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
 "lQ" = (
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 8
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
-/turf/open/floor/prison/darkred{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "lS" = (
-/obj/structure/table/mainship,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/hand_labeler,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
-"mm" = (
-/turf/open/floor/prison/red{
-	dir = 1
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 9
 	},
-/area/mainship/patrol_base/som)
-"mN" = (
-/obj/structure/table/black,
-/obj/item/storage/belt/utility/full,
-/turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
 "mU" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
-"nf" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/prison/darkred{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "nm" = (
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
-"nt" = (
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 8;
-	pixel_y = 16
-	},
-/turf/open/floor/mainship/blue,
-/area/mainship/patrol_base)
+/area/space)
 "nz" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 1
 	},
 /area/mainship/patrol_base)
 "nF" = (
-/obj/machinery/door/window/secure{
-	dir = 2
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window1"
 	},
-/turf/open/floor/wood,
+/turf/open/floor/mainship_hull,
 /area/mainship/patrol_base)
 "nI" = (
 /obj/structure/table/reinforced/prison,
@@ -592,16 +498,7 @@
 /obj/structure/bed/chair/nometal,
 /obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
-"nZ" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/prison/red{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
+/area/space)
 "oq" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -634,20 +531,14 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "or" = (
 /obj/structure/bed/chair/nometal{
 	dir = 8
 	},
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
-"os" = (
-/obj/structure/flora/pottedplant/twentyone,
-/turf/open/floor/mainship/blue{
-	dir = 6
-	},
-/area/mainship/patrol_base)
+/area/space)
 "ox" = (
 /obj/structure/stairs/seamless{
 	dir = 4
@@ -657,11 +548,9 @@
 	},
 /area/mainship/patrol_base/som)
 "oK" = (
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "oO" = (
 /obj/structure/bed/chair/nometal{
 	dir = 4
@@ -669,37 +558,23 @@
 /obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/light,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "oP" = (
-/obj/structure/toilet,
-/obj/machinery/light/small{
+/turf/open/floor/mainship_hull,
+/area/space)
+"pb" = (
+/obj/structure/bed/chair/nometal{
 	dir = 1
 	},
-/turf/open/floor/mainship/sterile/dark,
+/turf/open/floor/mainship/terragov/north{
+	dir = 5
+	},
 /area/mainship/patrol_base)
-"pb" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
-"pd" = (
-/obj/machinery/door/poddoor/timed_late/containment,
-/turf/open/floor/prison/red{
-	dir = 6
-	},
-/area/mainship/patrol_base/som)
 "pg" = (
-/obj/structure/window/framed/mainship/hull,
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 8
+/turf/open/floor/mainship_hull/dir{
+	dir = 9
 	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/patrol_base)
+/area/space)
 "pk" = (
 /obj/structure/bed/chair/nometal{
 	dir = 8
@@ -709,8 +584,239 @@
 	dir = 1
 	},
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "pz" = (
+/obj/structure/shuttle/engine/propulsion{
+	opacity = 0;
+	dir = 1
+	},
+/turf/open/space/basic,
+/area/space)
+"qb" = (
+/obj/machinery/telecomms/server/presets/charlie,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"qc" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal5,
+/turf/open/floor/prison/kitchen,
+/area/space)
+"qe" = (
+/obj/machinery/telecomms/bus/preset_one,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"qk" = (
+/obj/structure/cargo_container{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"qo" = (
+/obj/machinery/telecomms/server/presets/zulu,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"qK" = (
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"qL" = (
+/obj/machinery/telecomms/server/presets/delta,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"qY" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"ra" = (
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"rv" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/red/full,
+/area/mainship/patrol_base)
+"rF" = (
+/obj/structure/largecrate/random/barrel/red,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"rR" = (
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
+/area/space)
+"rT" = (
+/obj/machinery/telecomms/bus/preset_two,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"rW" = (
+/obj/effect/landmark/start/job/som/squadstandard,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"sg" = (
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
+"sn" = (
+/obj/structure/cargo_container/nt{
+	dir = 1
+	},
+/turf/closed/wall/mainship/outer/reinforced,
+/area/mainship/patrol_base)
+"ss" = (
+/obj/effect/landmark/start/job/squadengineer,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"sA" = (
+/obj/machinery/cic_maptable,
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"sN" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/mainship/orange,
+/area/mainship/patrol_base)
+"sR" = (
+/obj/machinery/photocopier,
+/turf/open/floor/mainship/blue,
+/area/mainship/patrol_base)
+"tq" = (
+/obj/structure/bed/bunkbed,
+/obj/item/bedsheet/blue{
+	pixel_y = 10
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"tz" = (
+/obj/machinery/telecomms/bus/preset_three/som,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"tK" = (
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window6"
+	},
+/turf/open/floor/mainship_hull,
+/area/mainship/patrol_base)
+"tQ" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/prison/kitchen,
+/area/mainship/patrol_base/som)
+"tU" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"ua" = (
+/obj/structure/prop/vehicle/apc{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/dualcannonzero{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/wheelszero{
+	dir = 4
+	},
+/obj/structure/prop/vehicle/apc/decoration/frontturretzero{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"uc" = (
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"ud" = (
+/obj/structure/prop/mainship/mission_planning_system,
+/turf/open/floor/mainship/blue{
+	dir = 6
+	},
+/area/mainship/patrol_base)
+"up" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/reagent_containers/food/snacks/mre_pack/meal4,
+/turf/open/floor/prison/kitchen,
+/area/space)
+"ur" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"uy" = (
+/obj/structure/bed/chair/nometal,
+/obj/effect/landmark/start/job/squadcorpsman,
+/turf/open/floor/prison/kitchen,
+/area/space)
+"uz" = (
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
+/area/mainship/patrol_base)
+"uR" = (
+/obj/effect/landmark/start/job/squadengineer,
+/turf/open/floor/prison/kitchen,
+/area/space)
+"vf" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/storage/box/tgmc_mre,
+/turf/open/floor/prison/kitchen,
+/area/space)
+"vo" = (
+/obj/structure/bed/chair/nometal,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"vL" = (
+/obj/effect/landmark/start/job/squadsmartgunner,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"vW" = (
+/obj/machinery/telecomms/server/presets/common/som,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"we" = (
+/turf/open/floor/mainship/terragov/north,
+/area/mainship/patrol_base)
+"wg" = (
+/obj/machinery/telecomms/server/presets/common,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"wr" = (
+/obj/structure/bed/chair/nometal{
+	dir = 1
+	},
+/turf/open/floor/mainship/blue/full,
+/area/mainship/patrol_base)
+"wz" = (
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
+"wU" = (
+/obj/structure/table/holotable/wood,
+/obj/item/storage/box/drinkingglasses,
+/turf/open/floor/wood,
+/area/mainship/patrol_base/som)
+"xe" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"xt" = (
+/obj/machinery/telecomms/server/presets/command,
+/turf/open/floor/mainship,
+/area/mainship/patrol_base/telecomms)
+"xz" = (
+/obj/structure/prop/mainship/name_stencil{
+	icon_state = "TGMC4"
+	},
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
+"xC" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -730,325 +836,46 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
-"qb" = (
-/obj/machinery/telecomms/server/presets/charlie,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/telecomms)
-"qc" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/mre_pack/meal5,
-/turf/open/floor/prison/kitchen,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/obj/item/reagent_containers/food/snacks/protein_pack,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"qe" = (
-/obj/machinery/telecomms/bus/preset_one,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/telecomms)
-"qo" = (
-/obj/machinery/telecomms/server/presets/zulu,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/telecomms)
-"qK" = (
-/turf/open/floor/prison/darkred/corners{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
-"qL" = (
-/obj/machinery/telecomms/server/presets/delta,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/telecomms)
-"qQ" = (
-/obj/structure/window/framed/mainship/toughened,
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/patrol_base)
-"ra" = (
-/obj/structure/prop/mainship/doorblocker/patrol_base/wide_right{
-	dir = 8
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/patrol_base)
-"rk" = (
-/obj/structure/patrol_point{
-	id = "TGMC_24"
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/patrol_base)
-"rv" = (
-/obj/structure/bed/chair/comfy/brown,
-/turf/open/floor/carpet/side{
-	dir = 4
-	},
-/area/mainship/patrol_base)
-"rF" = (
-/obj/structure/bed/chair/nometal{
-	dir = 4
-	},
-/turf/open/floor/mainship/blue{
-	dir = 4
-	},
-/area/mainship/patrol_base)
-"rT" = (
-/obj/machinery/telecomms/bus/preset_two,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/telecomms)
-"rW" = (
-/obj/effect/landmark/start/job/som/squadstandard,
-/turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base/som)
-"rZ" = (
-/obj/structure/table/holotable/wood,
-/obj/item/reagent_containers/food/drinks/shaker,
-/turf/open/floor/wood,
-/area/mainship/patrol_base)
-"sg" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
-"sz" = (
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 4
-	},
-/turf/open/floor/prison/darkred{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
-"sR" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/obj/machinery/door/poddoor/timed_late/containment,
-/turf/open/floor/plating,
-/area/mainship/patrol_base/som)
-"sW" = (
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 8
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/patrol_base)
-"sX" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/mainship/plate/outline,
-/area/mainship/patrol_base)
-"tq" = (
-/obj/structure/bed/bunkbed,
-/obj/item/bedsheet/blue{
-	pixel_y = 10
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/patrol_base)
-"tz" = (
-/obj/machinery/telecomms/bus/preset_three/som,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/telecomms)
-"tQ" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base/som)
-"tU" = (
-/obj/structure/window/framed/prison/cell,
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 1
-	},
-/turf/open/floor/prison/red{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
-"ua" = (
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 4;
-	pixel_y = 16
-	},
-/turf/open/floor/mainship/blue,
-/area/mainship/patrol_base)
-"uc" = (
-/turf/open/floor/mainship/sterile/white,
-/area/mainship/patrol_base)
-"ud" = (
-/turf/open/floor/prison/darkred{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
-"up" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/reagent_containers/food/snacks/mre_pack/meal4,
-/turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
-"ur" = (
-/obj/structure/patrol_point{
-	id = "TGMC_11"
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/patrol_base)
-"uy" = (
-/obj/structure/bed/chair/nometal,
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
-"uz" = (
-/obj/structure/bed/chair/nometal{
-	dir = 8
-	},
-/turf/open/floor/mainship/blue{
-	dir = 8
-	},
-/area/mainship/patrol_base)
-"uR" = (
-/obj/effect/landmark/start/job/squadengineer,
-/turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
-"vf" = (
-/obj/structure/table/mainship/nometal,
-/obj/item/storage/box/tgmc_mre,
-/turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
-"vo" = (
-/obj/structure/patrol_point{
-	id = "SOM_21"
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
-"vI" = (
-/obj/structure/flora/pottedplant/twentytwo,
-/turf/open/floor/mainship/blue{
-	dir = 10
-	},
-/area/mainship/patrol_base)
-"vL" = (
-/obj/structure/table/black,
-/obj/item/facepaint/green,
-/turf/open/floor/mainship/floor,
-/area/mainship/patrol_base)
-"vW" = (
-/obj/machinery/telecomms/server/presets/common/som,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/telecomms)
-"we" = (
-/turf/open/floor/mainship/terragov/north,
-/area/mainship/patrol_base)
-"wg" = (
-/obj/machinery/telecomms/server/presets/common,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/telecomms)
-"wo" = (
-/obj/effect/decal/warning_stripes/box/arrow{
-	pixel_x = 16
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/patrol_base)
-"wr" = (
-/turf/closed/wall/mainship/outer/reinforced{
-	desc = Whatdidyouexpecttosee?Surelyyoudidn'tthinkweweregonnadothisENTIREstructure.
-	},
-/area/mainship/patrol_base)
-"wu" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
-	name = SurfaceLadders;
-	req_access = null
-	},
-/turf/open/floor/prison/red{
-	dir = 9
-	},
-/area/mainship/patrol_base/som)
-"wz" = (
-/turf/open/floor/prison/darkred{
-	dir = 6
-	},
-/area/mainship/patrol_base/som)
-"wU" = (
-/obj/structure/table/holotable/wood,
-/obj/item/storage/box/drinkingglasses,
-/turf/open/floor/wood,
-/area/mainship/patrol_base/som)
-"xl" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/blue{
-	dir = 8
-	},
-/area/mainship/patrol_base)
-"xt" = (
-/obj/machinery/telecomms/server/presets/command,
-/turf/open/floor/mainship,
-/area/mainship/patrol_base/telecomms)
-"xu" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
-"xz" = (
-/obj/machinery/vending/dinnerware,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/mainship/patrol_base)
-"xC" = (
-/obj/machinery/door/poddoor/timed_late/containment,
-/turf/open/floor/prison/red{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "xO" = (
-/turf/open/floor/prison/darkred{
-	dir = 9
+/obj/structure/cargo_container/nt{
+	dir = 1
 	},
-/area/mainship/patrol_base/som)
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
 "xQ" = (
-/turf/open/floor/prison/red/corner{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
+/obj/machinery/cic_maptable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
 "ym" = (
-/obj/structure/window/framed/mainship/hull,
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 1
-	},
-/turf/open/floor/mainship/stripesquare,
+/obj/vehicle/train/cargo/trolley,
+/turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "yp" = (
-/turf/open/floor/mainship/plate/outline,
+/turf/open/floor/plating/ground/concrete/lines,
 /area/mainship/patrol_base)
-"yr" = (
-/turf/open/floor/prison/red{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
 "yx" = (
-/turf/open/floor/carpet,
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer3/server,
+/turf/open/floor/mainship/orange,
 /area/mainship/patrol_base)
 "yy" = (
-/obj/machinery/door/airlock/multi_tile/mainship{
-	name = Bathroom
-	},
-/turf/open/floor/mainship/sterile/white,
-/area/mainship/patrol_base)
-"yD" = (
-/obj/machinery/door/airlock/mainship/generic/bathroom/toilet{
-	dir = 2
-	},
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/patrol_base)
-"yG" = (
-/obj/machinery/light{
+/obj/structure/bed/chair/nometal{
 	dir = 8
 	},
-/turf/open/floor/prison/red{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "yH" = (
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "yI" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/prison/kitchen,
@@ -1068,76 +895,67 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
 "zo" = (
-/obj/machinery/quick_vendor,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/light{
+/obj/structure/cargo_container/nt{
 	dir = 4
 	},
-/turf/open/floor/mainship/research,
+/turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
 "zV" = (
-/turf/open/floor/prison/darkred,
-/area/mainship/patrol_base/som)
-"Ak" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
-	name = SurfaceLadders;
-	req_access = null
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 6
 	},
-/turf/open/floor/prison/red{
+/area/mainship/patrol_base)
+"Ad" = (
+/obj/structure/barricade/plasteel{
 	dir = 8
 	},
-/area/mainship/patrol_base/som)
+/obj/machinery/light,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base)
 "AD" = (
 /obj/machinery/telecomms/bus/preset_four/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"AG" = (
-/obj/structure/bed/chair/sofa/corner{
+"AE" = (
+/obj/structure/cargo_container/nt{
 	dir = 4
 	},
-/turf/open/floor/carpet,
+/turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
-"AZ" = (
-/turf/open/floor/prison/red{
-	dir = 5
-	},
-/area/mainship/patrol_base/som)
+"AG" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Bl" = (
+/obj/effect/landmark/start/job/squadleader,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "Bm" = (
 /obj/machinery/telecomms/server/presets/engineering/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"Bq" = (
-/obj/structure/window/framed/mainship/hull,
-/obj/machinery/door/poddoor/timed_late/containment,
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/patrol_base)
 "Bs" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
-"BB" = (
-/obj/structure/patrol_point{
-	id = "TGMC_23"
-	},
-/turf/open/floor/mainship/stripesquare,
+"BA" = (
+/obj/structure/shuttle/engine/propulsion/burst/right,
+/turf/open/shuttle/dropship/three,
 /area/mainship/patrol_base)
 "BD" = (
-/turf/open/floor/prison/darkred/corners,
-/area/mainship/patrol_base/som)
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 5
+	},
+/area/mainship/patrol_base)
 "BI" = (
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "BZ" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/obj/structure/largecrate,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
 "Cd" = (
 /obj/structure/bed/chair/nometal{
 	dir = 4
@@ -1147,7 +965,7 @@
 	dir = 1
 	},
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "Ch" = (
 /obj/machinery/light{
 	dir = 8
@@ -1158,19 +976,15 @@
 	},
 /turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
+"Cj" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/emails,
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
+/area/mainship/patrol_base)
 "Co" = (
-/obj/structure/flora/pottedplant/ten,
-/turf/open/floor/prison/red{
-	dir = 5
-	},
-/area/mainship/patrol_base/som)
-"CM" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/tile/dark,
+/turf/open/space/basic,
 /area/mainship/patrol_base/som)
 "CR" = (
 /obj/machinery/telecomms/bus/preset_four,
@@ -1185,56 +999,31 @@
 	dir = 6
 	},
 /area/mainship/patrol_base)
-"Dr" = (
-/turf/open/floor/prison/darkred{
-	dir = 5
-	},
-/area/mainship/patrol_base/som)
 "Dt" = (
 /obj/machinery/door/window/secure{
 	dir = 8
 	},
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
-"DP" = (
-/obj/structure/window/framed/prison/cell,
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 2
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
 "Ee" = (
-/turf/open/floor/mainship/blue/corner,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
 /area/mainship/patrol_base)
 "Eh" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "Ek" = (
-/obj/machinery/quick_vendor,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/mainship/research,
-/area/mainship/patrol_base)
-"En" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer/emails,
+/turf/open/floor/mainship/blue{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base)
 "Eo" = (
-/turf/open/floor/mainship/blue/corner{
-	dir = 1
-	},
+/obj/structure/largecrate/random/barrel/red,
+/turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base)
 "Er" = (
 /obj/structure/curtain/open/temple{
@@ -1243,8 +1032,14 @@
 /turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
 "EM" = (
-/obj/structure/bed/chair/nometal,
-/turf/open/floor/mainship/blue,
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"EU" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "EX" = (
 /obj/structure/table/holotable/wood,
@@ -1255,10 +1050,11 @@
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
 "Fc" = (
-/obj/structure/prop/mainship/doorblocker/patrol_base/wide_left{
+/obj/machinery/elevator_strut/bottom,
+/obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Ff" = (
 /obj/machinery/light{
@@ -1270,6 +1066,12 @@
 	},
 /turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
+"Fh" = (
+/obj/structure/bed/chair/nometal{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
 "Fj" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -1296,7 +1098,7 @@
 	dir = 1
 	},
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "Fk" = (
 /obj/machinery/light,
 /turf/open/floor/prison/kitchen,
@@ -1306,12 +1108,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "Fo" = (
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 1
-	},
-/turf/open/floor/mainship/blue{
-	dir = 4
-	},
+/turf/open/space/basic,
 /area/mainship/patrol_base)
 "Fw" = (
 /turf/closed/wall/mainship/outer/reinforced,
@@ -1320,14 +1117,6 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"FJ" = (
-/obj/machinery/quick_vendor,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/open/floor/mainship/research,
-/area/mainship/patrol_base)
 "FL" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom/toilet,
 /turf/open/floor/prison/sterilewhite,
@@ -1336,40 +1125,21 @@
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"FY" = (
-/obj/structure/bed/chair/sofa/right{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/mainship/patrol_base)
-"Go" = (
-/obj/structure/patrol_point{
-	id = "TGMC_12"
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/patrol_base)
 "GL" = (
-/obj/structure/flora/pottedplant/one,
-/turf/open/floor/mainship/blue{
-	dir = 9
-	},
+/obj/machinery/status_display,
+/turf/closed/wall/mainship/outer/reinforced,
 /area/mainship/patrol_base)
 "GM" = (
 /obj/machinery/telecomms/processor/preset_two/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"Hl" = (
-/obj/structure/patrol_point{
-	id = "SOM_12"
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
-"Ho" = (
-/obj/structure/patrol_point{
-	id = "TGMC_14"
-	},
-/turf/open/floor/mainship/stripesquare,
+"GQ" = (
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
+"Ho" = (
+/turf/closed/wall/mainship/outer/reinforced,
+/area/space)
 "Hy" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 8
@@ -1389,7 +1159,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/blue,
-/area/mainship/patrol_base)
+/area/space)
 "HI" = (
 /obj/machinery/telecomms/broadcaster/preset_left/som,
 /turf/open/floor/mainship,
@@ -1402,8 +1172,12 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/mainship/patrol_base/som)
 "Ih" = (
-/turf/open/floor/mainship/terragov/north{
-	dir = 5
+/turf/closed/wall/mainship/gray/outer,
+/area/space)
+"Ii" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/mainship/orange{
+	dir = 10
 	},
 /area/mainship/patrol_base)
 "Iu" = (
@@ -1411,47 +1185,22 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "IC" = (
-/turf/open/floor/prison/darkred{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
+/obj/structure/largecrate/supply,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "IH" = (
 /obj/effect/landmark/start/latejoinsom,
 /turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
-"IM" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship/blue{
-	dir = 4
-	},
-/area/mainship/patrol_base)
-"Jb" = (
-/turf/open/floor/carpet/side{
-	dir = 8
-	},
-/area/mainship/patrol_base)
 "Jf" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
 "Jg" = (
-/obj/machinery/quick_vendor,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/obj/machinery/light{
+/obj/structure/largecrate/random/barrel,
+/turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
-/turf/open/floor/mainship/research,
-/area/mainship/patrol_base)
-"Ji" = (
-/obj/structure/bed/chair/sofa{
-	dir = 1
-	},
-/turf/open/floor/carpet,
 /area/mainship/patrol_base)
 "Jw" = (
 /obj/machinery/telecomms/processor/preset_three/som,
@@ -1464,32 +1213,11 @@
 /obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/light,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "JF" = (
 /obj/machinery/telecomms/receiver/preset_left/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"JH" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
-	name = SurfaceLadders;
-	req_access = null
-	},
-/turf/open/floor/prison/red{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
-"JL" = (
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 1
-	},
-/turf/open/floor/mainship/blue{
-	dir = 8
-	},
-/area/mainship/patrol_base)
-"JO" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/blue,
-/area/mainship/patrol_base)
 "JR" = (
 /obj/effect/landmark/start/job/som/squadveteran,
 /obj/structure/bed/chair/nometal{
@@ -1501,17 +1229,24 @@
 /obj/structure/bed/chair/nometal,
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "Kd" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 9
 	},
 /area/mainship/patrol_base)
-"Kk" = (
-/obj/structure/bed/chair/comfy/brown{
+"Ki" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Kp" = (
+/obj/structure/barricade/plasteel{
 	dir = 4
 	},
-/turf/open/floor/carpet/side,
+/obj/machinery/light,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
 /area/mainship/patrol_base)
 "Kz" = (
 /turf/open/floor/mainship/ntlogo/nt2,
@@ -1528,7 +1263,7 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal1,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "KR" = (
 /obj/machinery/telecomms/processor/preset_four/som,
 /turf/open/floor/mainship,
@@ -1540,33 +1275,16 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/mainship/floor,
-/area/mainship/patrol_base)
-"Le" = (
-/obj/structure/table/black,
-/obj/item/attachable/magnetic_harness,
-/obj/item/attachable/magnetic_harness,
-/obj/item/attachable/magnetic_harness,
-/obj/item/attachable/magnetic_harness,
-/turf/open/floor/mainship/floor,
-/area/mainship/patrol_base)
+/area/space)
 "Ll" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/blue{
-	dir = 10
-	},
+/obj/effect/landmark/start/job/squadcorpsman,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"Lr" = (
-/obj/structure/patrol_point{
-	id = "TGMC_22"
+"Lm" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
 	},
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/patrol_base)
-"Lx" = (
-/obj/structure/table/holotable/wood,
-/obj/item/storage/box/drinkingglasses,
-/obj/item/storage/box/drinkingglasses,
-/obj/item/storage/box/drinkingglasses,
-/turf/open/floor/wood,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "Lz" = (
 /obj/machinery/telecomms/receiver/preset_right/som,
@@ -1576,57 +1294,65 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/storage/box/nt_mre,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "LN" = (
 /obj/effect/landmark/start/job/som/squadcorpsman,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
+"LP" = (
+/obj/effect/decal/warning_stripes/box/arrow{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/patrol_base)
 "Me" = (
 /obj/structure/bed/chair/nometal{
 	dir = 4
 	},
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "Mq" = (
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"Mr" = (
-/turf/open/floor/prison/arrow{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
 "MB" = (
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"MS" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
+"MF" = (
+/turf/open/floor/mainship/ntlogo,
+/area/space)
+"MP" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 10
 	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"MS" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base)
+"MT" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "MU" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/turf/open/floor/mainship/orange{
+	dir = 5
+	},
+/area/mainship/patrol_base)
 "MW" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
-"Nq" = (
-/obj/structure/table/mainship,
-/obj/item/attachable/magnetic_harness,
-/obj/item/attachable/magnetic_harness,
-/obj/item/attachable/magnetic_harness,
-/obj/item/attachable/magnetic_harness,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+"Ns" = (
+/obj/structure/largecrate,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
+/area/mainship/patrol_base)
 "Nv" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal2,
@@ -1645,15 +1371,8 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
-"NT" = (
-/turf/open/floor/mainship/blue/corner{
-	dir = 8
-	},
-/area/mainship/patrol_base)
 "NZ" = (
-/obj/structure/table/holotable/wood,
-/obj/machinery/chem_dispenser/soda,
-/turf/open/floor/wood,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/patrol_base)
 "Ol" = (
 /obj/machinery/light{
@@ -1662,23 +1381,10 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
 "On" = (
-/obj/machinery/light{
-	dir = 4
+/turf/open/floor/mainship/blue{
+	dir = 1
 	},
-/turf/open/floor/prison/red{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
-"Oq" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/area/mainship/patrol_base)
 "Ow" = (
 /obj/machinery/vending/marineFood,
 /obj/item/reagent_containers/food/snacks/protein_pack,
@@ -1701,7 +1407,7 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "Ox" = (
 /obj/structure/stairs/seamless{
 	dir = 1
@@ -1710,35 +1416,16 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/som)
-"Oz" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
 "OA" = (
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
 /area/mainship/patrol_base/som)
 "OF" = (
-/obj/machinery/quick_vendor,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
+/turf/open/floor/mainship_hull/dir{
+	dir = 6
 	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/research,
-/area/mainship/patrol_base)
+/area/space)
 "OH" = (
 /obj/structure/sink{
 	dir = 4
@@ -1750,103 +1437,58 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
 "OI" = (
-/turf/open/floor/prison/darkred{
-	dir = 10
+/obj/structure/shuttle/engine/propulsion{
+	opacity = 0
 	},
-/area/mainship/patrol_base/som)
-"OM" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/mainship/plate/outline,
-/area/mainship/patrol_base)
+/turf/open/space/basic,
+/area/space)
 "Pe" = (
-/obj/machinery/quick_vendor,
-/obj/structure/window/reinforced{
-	dir = 1
+/turf/open/floor/mainship_hull/dir{
+	dir = 5
 	},
-/obj/structure/window/reinforced,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship/research,
-/area/mainship/patrol_base)
-"Pm" = (
-/obj/structure/flora/pottedplant/twentytwo,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/area/space)
 "Ps" = (
 /obj/structure/bed/chair/nometal,
 /obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
+"Py" = (
+/turf/open/floor/mainship/ntlogo/nt3,
+/area/space)
 "PB" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal2,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "PQ" = (
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/turf/open/floor/mainship/blue/full,
+/area/mainship/patrol_base)
 "PX" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal6,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
-"Qe" = (
-/obj/structure/patrol_point{
-	id = "SOM_13"
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/area/space)
 "Qn" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal5,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
 "Qr" = (
-/turf/open/floor/prison/red/corner,
-/area/mainship/patrol_base/som)
-"Qw" = (
-/obj/item/stool,
-/turf/open/floor/carpet/side{
-	dir = 1
-	},
+/turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
-"Rc" = (
-/turf/open/floor/prison/arrow{
-	dir = 4
-	},
-/area/mainship/patrol_base/som)
-"Rq" = (
-/obj/structure/prop/mainship/doorblocker/patrol_base/som{
-	dir = 8
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+"Qw" = (
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "Rr" = (
 /turf/open/floor/mainship/terragov/north{
 	dir = 4
 	},
 /area/mainship/patrol_base)
-"Rs" = (
-/obj/machinery/light,
-/turf/open/floor/carpet/side{
-	dir = 10
-	},
-/area/mainship/patrol_base)
 "Rt" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
-"Ru" = (
-/obj/structure/table/mainship,
-/obj/item/facepaint/green,
-/obj/item/facepaint/green,
-/obj/item/facepaint/green,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/area/space)
 "RC" = (
 /obj/structure/table/holotable/wood,
 /obj/machinery/chem_dispenser/soda{
@@ -1877,6 +1519,14 @@
 	},
 /turf/open/floor/cult/clock,
 /area/chapel/main)
+"RM" = (
+/obj/machinery/door/poddoor/mainship/indestructible{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/patrol_base)
 "RP" = (
 /obj/structure/toilet{
 	dir = 4
@@ -1892,24 +1542,45 @@
 	dir = 10
 	},
 /area/mainship/patrol_base)
+"RW" = (
+/turf/open/floor/mainship/ntlogo/nt2,
+/area/space)
 "RY" = (
 /obj/machinery/telecomms/server/presets/command/som,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
-"Sg" = (
-/turf/open/floor/prison/red,
-/area/mainship/patrol_base/som)
+"Sl" = (
+/obj/structure/closet/secure_closet/security,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Sn" = (
+/obj/structure/window/framed/mainship/spaceworthy{
+	icon_state = "col_window12"
+	},
+/turf/open/floor/mainship_hull,
+/area/mainship/patrol_base)
 "Sq" = (
-/obj/machinery/light,
-/turf/open/floor/prison/red,
-/area/mainship/patrol_base/som)
+/obj/structure/cargo_container{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/patrol_base)
+"St" = (
+/obj/structure/barricade/plasteel{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/patrol_base)
 "Sw" = (
 /turf/open/space/basic,
 /area/space)
-"Sy" = (
-/obj/machinery/vending/boozeomat,
-/turf/open/floor/wood,
-/area/mainship/patrol_base)
 "SG" = (
 /obj/effect/landmark/start/job/som/squadleader,
 /obj/structure/bed/chair/nometal{
@@ -1917,6 +1588,14 @@
 	},
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
+"SQ" = (
+/obj/structure/cargo_container/nt{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/mainship/patrol_base)
 "SR" = (
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
@@ -1924,18 +1603,23 @@
 /obj/structure/table/mainship/nometal,
 /obj/item/reagent_containers/food/snacks/mre_pack/meal4/req,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "SU" = (
-/obj/structure/window/framed/prison/cell,
-/obj/machinery/door/poddoor/timed_late/containment{
+/obj/effect/decal/warning_stripes/stripedsquare,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"SY" = (
+/turf/open/floor/mainship_hull/dir{
 	dir = 1
 	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
-"SY" = (
-/obj/structure/flora/pottedplant/two,
-/turf/open/floor/mainship/blue{
-	dir = 6
+/area/space)
+"TK" = (
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/turf/open/floor/mainship/orange{
+	dir = 1
 	},
 /area/mainship/patrol_base)
 "TO" = (
@@ -1959,7 +1643,8 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
 "Uw" = (
-/turf/open/floor/mainship/blue,
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "UL" = (
 /obj/structure/bed/chair/comfy/brown{
@@ -1973,18 +1658,18 @@
 	dir = 5
 	},
 /area/mainship/patrol_base/som)
+"UP" = (
+/turf/open/floor/mainship/blue{
+	dir = 10
+	},
+/area/space)
 "Va" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
 "Vc" = (
-/turf/open/floor/stairs/rampbottom{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
-"Vd" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/blue{
+/obj/structure/bed/chair/nometal,
+/turf/open/floor/mainship/terragov/north{
 	dir = 6
 	},
 /area/mainship/patrol_base)
@@ -2005,44 +1690,31 @@
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /obj/item/reagent_containers/food/snacks/protein_pack,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 "Vu" = (
-/turf/open/floor/mainship/blue{
-	dir = 1
-	},
-/area/mainship/patrol_base)
-"Vy" = (
-/obj/effect/decal/warning_stripes/box/arrow{
-	dir = 1
-	},
-/turf/open/floor/prison/darkred,
-/area/mainship/patrol_base/som)
-"Vz" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
 	},
-/turf/open/floor/mainship/blue{
-	dir = 1
-	},
+/turf/open/floor/mainship/purple/full,
 /area/mainship/patrol_base)
+"Vy" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
 "VE" = (
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
 "VH" = (
-/obj/structure/table/black,
-/obj/item/tool/hand_labeler,
-/turf/open/floor/mainship/floor,
+/obj/structure/prop/vehicle/crane/cranecargo,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 1
+	},
 /area/mainship/patrol_base)
 "VI" = (
 /obj/structure/curtain/open,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base)
-"VO" = (
-/obj/structure/bed/chair/sofa/left{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/mainship/patrol_base)
+/area/space)
 "VY" = (
 /obj/structure/toilet{
 	dir = 4
@@ -2053,17 +1725,16 @@
 /obj/effect/landmark/start/job/som/squadveteran,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
-"Wr" = (
-/obj/machinery/quick_vendor/som,
-/obj/structure/window/reinforced{
+"Wf" = (
+/obj/structure/bed/chair/nometal{
 	dir = 1
 	},
-/obj/structure/window/reinforced,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/turf/open/floor/mainship/research,
+/area/mainship/patrol_base)
+"Wr" = (
+/obj/structure/bed/bunkbed,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "Wv" = (
 /obj/effect/landmark/start/job/som/squadcorpsman,
 /obj/structure/bed/chair/nometal{
@@ -2080,89 +1751,63 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
-/area/mainship/patrol_base)
-"WK" = (
-/obj/structure/table/mainship,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/area/space)
 "WN" = (
 /obj/structure/table/holotable/wood,
 /obj/effect/spawner/random/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
 "WX" = (
-/obj/structure/table/holotable/wood,
-/obj/machinery/chem_dispenser/beer,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/mainship/patrol_base)
-"Xe" = (
-/turf/open/floor/prison/darkred{
-	dir = 8
-	},
-/area/mainship/patrol_base/som)
-"Xt" = (
 /obj/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
-/turf/open/floor/mainship/floor,
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"Xy" = (
-/obj/structure/patrol_point{
-	id = "SOM_11"
+"Xe" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
 	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Xr" = (
+/turf/open/floor/mainship/research,
+/area/mainship/patrol_base)
 "XE" = (
-/turf/open/floor/mainship/blue{
-	dir = 4
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 10
 	},
 /area/mainship/patrol_base)
-"XH" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/obj/machinery/door/poddoor/timed_late/containment{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/mainship/patrol_base/som)
 "XJ" = (
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
-/area/mainship/patrol_base)
-"XM" = (
-/turf/open/floor/mainship/terragov/north{
-	dir = 6
-	},
-/area/mainship/patrol_base)
-"XR" = (
-/obj/effect/decal/warning_stripes/box/arrow{
-	pixel_x = -16
-	},
-/turf/open/floor/mainship/floor,
+/area/space)
+"XU" = (
+/obj/structure/bed/chair/nometal,
+/turf/open/floor/mainship/research,
 /area/mainship/patrol_base)
 "XV" = (
-/obj/machinery/light{
+/obj/structure/bed/chair/nometal{
 	dir = 1
 	},
-/turf/open/floor/mainship/blue{
-	dir = 1
-	},
+/turf/open/floor/mainship/orange/full,
 /area/mainship/patrol_base)
-"Yx" = (
-/obj/structure/table/holotable/wood,
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/turf/open/floor/wood,
+"Yh" = (
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
 /area/mainship/patrol_base)
 "YD" = (
-/obj/structure/patrol_point{
-	id = "SOM_22"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/turf/open/floor/prison,
-/area/mainship/patrol_base/som)
+/obj/machinery/elevator_strut/bottom,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"YF" = (
+/obj/structure/table/mainship/nometal,
+/obj/machinery/computer3/laptop,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
 "YU" = (
 /obj/structure/table/fancywoodentable,
 /obj/item/storage/fancy/cigar,
@@ -2171,36 +1816,33 @@
 	},
 /area/mainship/patrol_base/som)
 "YY" = (
-/turf/open/floor/mainship/plate,
-/area/mainship/patrol_base)
-"Zc" = (
-/turf/open/floor/stairs/rampbottom{
-	dir = 4
+/turf/open/floor/mainship/orange{
+	dir = 9
 	},
-/area/mainship/patrol_base/som)
-"Zz" = (
-/obj/structure/table/fancywoodentable,
-/obj/machinery/light,
-/turf/open/floor/carpet/side{
+/area/mainship/patrol_base)
+"Zf" = (
+/obj/structure/prop/mainship/sensor_computer3,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base)
+"Zt" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/mainship/orange{
 	dir = 6
+	},
+/area/mainship/patrol_base)
+"Zw" = (
+/turf/open/floor/mainship/blue{
+	dir = 9
 	},
 /area/mainship/patrol_base)
 "ZC" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
-"ZD" = (
-/obj/machinery/quick_vendor,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/mainship/research,
-/area/mainship/patrol_base)
 "ZN" = (
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship/floor,
-/area/mainship/patrol_base)
+/area/space)
 "ZX" = (
 /turf/open/floor/mainship/terragov{
 	dir = 1
@@ -2209,7 +1851,7 @@
 "ZY" = (
 /obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/prison/kitchen,
-/area/mainship/patrol_base)
+/area/space)
 
 (1,1,1) = {"
 Sw
@@ -2255,10 +1897,10 @@ Sw
 Sw
 Sw
 Sw
-TS
-TS
-TS
-TS
+Co
+Co
+Co
+Co
 TS
 Sw
 Sw
@@ -2304,23 +1946,23 @@ Sw
 Sw
 Sw
 Sw
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-Rq
-If
-Rq
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 TS
 TS
 TS
@@ -2366,23 +2008,23 @@ Sw
 Sw
 Sw
 Sw
-If
-MU
-xu
-BZ
-BZ
-BZ
-xu
-BZ
-MS
-BZ
-xu
-BZ
-fL
-If
-jZ
-yG
-cN
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 VY
 If
@@ -2428,23 +2070,23 @@ Sw
 Sw
 Sw
 Sw
-If
-PQ
-xO
-Xe
-Xe
-Xe
-Xe
-Xe
-Xe
-Xe
-Xe
-Xe
-Xe
-OI
-mm
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 FL
 If
@@ -2490,23 +2132,23 @@ Sw
 Sw
 Sw
 Sw
-If
-PQ
-ud
-PQ
-PQ
-oK
-PQ
-PQ
-PQ
-oK
-PQ
-PQ
-PQ
-Vy
-mm
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 MW
 SR
@@ -2552,23 +2194,23 @@ Sw
 Sw
 Sw
 Sw
-If
-fp
-ud
-BD
-IC
-IC
-IC
-IC
-IC
-IC
-IC
-IC
-IC
-wz
-mm
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 eo
 SR
 OH
@@ -2614,23 +2256,23 @@ Sw
 Sw
 Sw
 Sw
-If
-pb
-ud
-zV
-If
-bL
-CM
-CM
-MS
-CM
-CM
-CM
-kH
-If
-mm
-PQ
-Sq
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 If
 If
@@ -2676,23 +2318,23 @@ Sw
 Sw
 Sw
 Sw
-If
-Oz
-sz
-zV
-If
-If
-sR
-sR
-jX
-sR
-sR
-sR
-If
-If
-mm
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 eg
 HA
@@ -2738,23 +2380,23 @@ Sw
 Sw
 Sw
 Sw
-If
-pb
-ud
-zV
-Ru
-SU
-Xy
-Hl
-PQ
-PQ
-Qe
-kT
-DP
-pz
-mm
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 kp
 dv
@@ -2800,23 +2442,23 @@ Sw
 Sw
 Sw
 Sw
-If
-pb
-ud
-zV
-lS
-SU
-Zc
-Zc
-Zc
-Zc
-Zc
-Zc
-DP
-pz
-mm
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 Ox
 kp
 dv
@@ -2862,23 +2504,23 @@ Sw
 Sw
 Sw
 Sw
-If
-pb
-ud
-zV
-If
-If
-ex
-cU
-cU
-cU
-cU
-dL
-If
-If
-mm
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 Ox
 kp
 dv
@@ -2924,23 +2566,23 @@ Sw
 Sw
 Sw
 Sw
-If
-Oz
-ud
-zV
-wu
-nf
-lM
-Mr
-PQ
-PQ
-Mr
-eN
-yG
-Ak
-lM
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 YU
 dv
@@ -2986,23 +2628,23 @@ Sw
 Sw
 Sw
 Sw
-If
-Oq
-ud
-hT
-mm
-PQ
-PQ
-Qr
-yr
-yr
-xQ
-PQ
-PQ
-PQ
-PQ
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 UL
 OA
@@ -3048,23 +2690,23 @@ Sw
 Sw
 Sw
 Sw
-If
-Oq
-ud
-zV
-If
-Nq
-PQ
-Sg
-PQ
-PQ
-mm
-PQ
-Pm
-If
-PQ
-PQ
-Sq
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 If
 ox
@@ -3110,23 +2752,23 @@ Sw
 Sw
 Sw
 Sw
-If
-En
-ud
-zV
-sg
-WK
-PQ
-Sg
-PQ
-PQ
-mm
-PQ
-PQ
-sg
-PQ
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 tQ
 lf
 rW
@@ -3172,23 +2814,23 @@ Sw
 Sw
 Sw
 Sw
-If
-Oq
-ud
-zV
-If
-Nq
-PQ
-Sg
-PQ
-PQ
-mm
-PQ
-gd
-If
-PQ
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 mU
 zj
 rW
@@ -3234,23 +2876,23 @@ Sw
 Sw
 Sw
 Sw
-If
-Oq
-ud
-hT
-JH
-PQ
-PQ
-eN
-bX
-bX
-lM
-PQ
-PQ
-jC
-PQ
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 Ol
 VE
@@ -3295,24 +2937,24 @@ Sw
 Sw
 Sw
 Sw
-Sw
-If
-Oz
-ud
-zV
-AZ
-On
-xQ
-Rc
-PQ
-PQ
-Rc
-Qr
-On
-yr
-xQ
-PQ
-Sg
+jh
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 TW
 VE
 VE
@@ -3354,27 +2996,27 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-If
-pb
-ud
-zV
-If
-If
-iX
-xC
-xC
-xC
-xC
-pd
-If
-If
-mm
-PQ
-Sg
+pz
+pg
+fQ
+OI
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 VE
 VE
 VE
@@ -3416,27 +3058,27 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-If
-pb
-ud
-zV
-lS
-tU
-Vc
-Vc
-Vc
-Vc
-Vc
-Vc
-DP
-pz
-mm
-PQ
-Sg
+pg
+pg
+fQ
+fQ
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 yI
 LN
@@ -3478,27 +3120,27 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-If
-pb
-ud
-zV
-Ru
-SU
-vo
-YD
-PQ
-PQ
-ir
-dM
-DP
-pz
-mm
-PQ
-Sg
+Pe
+Pe
+OF
+OF
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 aP
 rW
@@ -3540,27 +3182,27 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-If
-Oz
-lQ
-zV
-If
-If
-XH
-XH
-hX
-XH
-XH
-XH
-If
-If
-mm
-PQ
-Sg
+pz
+Pe
+OF
+OI
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 TW
 VE
 VE
@@ -3606,23 +3248,23 @@ Sw
 Sw
 Sw
 Sw
-If
-pb
-ud
-zV
-If
-MU
-BZ
-BZ
-MS
-BZ
-BZ
-BZ
-fL
-If
-mm
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 VE
 VE
 VE
@@ -3659,32 +3301,32 @@ Sw
 Sw
 Sw
 Sw
+Vy
+Vy
+Vy
+ag
+Vy
+Vy
+it
+Vy
+Vy
+bX
+Vy
+Vy
+xz
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-If
-nZ
-ud
-qK
-Xe
-Xe
-Xe
-Xe
-Xe
-Xe
-Xe
-Xe
-Xe
-OI
-mm
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 Ol
 VE
@@ -3721,32 +3363,32 @@ Sw
 Sw
 Sw
 Sw
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
+oP
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-If
-PQ
-ud
-PQ
-PQ
-oK
-PQ
-PQ
-PQ
-oK
-PQ
-PQ
-PQ
-Vy
-mm
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 tQ
 TP
 TP
@@ -3783,32 +3425,32 @@ Sw
 Sw
 Sw
 Sw
+oP
+Fw
+Fw
+Uw
+Uw
+Fw
+Fw
+Uw
+Uw
+Fw
+Fw
+oP
+oP
 Sw
 Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-If
-PQ
-Dr
-IC
-IC
-IC
-IC
-IC
-IC
-IC
-IC
-IC
-IC
-wz
-mm
-PQ
-Sg
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 Va
 WN
 WN
@@ -3842,35 +3484,35 @@ Sw
 Sw
 Sw
 Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+kA
+uc
+uc
+kA
+kA
+uc
+uc
+kA
+Fw
+Fw
+Fw
+Fw
+Fw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-If
-MU
-Wr
-BZ
-BZ
-BZ
-Wr
-BZ
-MS
-BZ
-Wr
-BZ
-fL
-If
 Co
-On
-lm
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 Va
 gr
 gr
@@ -3904,35 +3546,35 @@ Sw
 Sw
 Sw
 Sw
+Fw
+Wr
+Wr
+Wr
+Wr
+kA
+vL
+yy
+kA
+kA
+kA
+yy
+vL
+Wr
+Wr
+Wr
+Wr
+Fw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
-If
+Co
+Co
+Co
+Co
+Co
+Co
+Co
+Co
 If
 RC
 al
@@ -3966,24 +3608,24 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+Fw
+Ll
+Ll
+Ll
+Ll
+kA
+kA
+kA
+kA
+kA
+kA
+kA
+kA
+ss
+ss
+ss
+ss
+Fw
 Sw
 Sw
 Sw
@@ -4028,24 +3670,24 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+Fw
+Wr
+Wr
+Wr
+Wr
+kA
+vL
+kA
+xC
+GL
+xC
+kA
+vL
+Wr
+Wr
+Wr
+Wr
+Fw
 Sw
 Sw
 Sw
@@ -4090,24 +3732,24 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+Fw
+Bl
+Bl
+Bl
+Bl
+kA
+kA
+kA
+xC
+GL
+xC
+kA
+kA
+Qw
+Qw
+Qw
+Qw
+Fw
 Sw
 Sw
 Sw
@@ -4152,24 +3794,24 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+Fw
+Wr
+Wr
+Wr
+Wr
+kA
+vL
+kA
+kA
+kA
+kA
+kA
+vL
+Wr
+Wr
+Wr
+Wr
+Fw
 Sw
 Sw
 Sw
@@ -4214,24 +3856,24 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+kA
+kA
+kA
+NZ
+kA
+kA
+kA
+kA
+Fw
+Fw
+Fw
+Fw
+Fw
 Sw
 Sw
 Sw
@@ -4276,29 +3918,29 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+SY
+oP
+oP
+oP
+Fw
+Fw
+xC
+kA
+NZ
+kA
+xC
+Fw
+Fw
+Fw
+kA
+kA
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
 Sw
 Sw
 Sw
@@ -4338,29 +3980,29 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+SY
+oP
+oP
+oP
+jI
+Fw
+xC
+WX
+NZ
+WX
+xC
+Fw
+kA
+kA
+kA
+GQ
+lS
+Sq
+SQ
+Ee
+Ee
+Sq
+el
 Sw
 Sw
 Sw
@@ -4400,29 +4042,29 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+SY
+oP
+Fw
+Fw
+gl
+Fw
+Fw
+kA
+NZ
+kA
+Fw
+Fw
+Fw
+Fw
+Fw
+GQ
+uz
+jW
+xO
+ac
+ac
+jW
+sn
 Sw
 Sw
 Sw
@@ -4462,29 +4104,29 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+SY
+oP
+Fw
+fZ
+fZ
+fZ
+sg
+NZ
+NZ
+NZ
+sg
+fZ
+fZ
+fZ
+Fw
+ur
+uz
+qk
+AE
+ac
+ac
+qk
+zo
 Sw
 Sw
 Sw
@@ -4524,29 +4166,29 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+SY
+oP
+Uw
+kA
+kA
+kA
+Fh
+Kd
+Hy
+aL
+Fh
+kA
+kA
+kA
+Uw
+kA
+uz
+ac
+ac
+ac
+ac
+ac
 Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Sw
-Sw
-Sw
-Sw
 Sw
 Sw
 Sw
@@ -4586,29 +4228,29 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Fw
+SY
 oP
-yD
-uc
+Uw
 kA
+kA
+kA
+NZ
+nz
+ZX
+we
+NZ
+kA
+kA
+kA
+Uw
+kA
+uz
+ac
+ym
+ac
+ac
+ac
 Fw
-Sw
-Sw
-Sw
-Sw
 Sw
 Sw
 Sw
@@ -4646,31 +4288,31 @@ Sw
 Sw
 Sw
 Sw
+jh
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
+SY
+oP
 Fw
+fZ
+fZ
+fZ
+sg
+pb
+Rr
+Vc
+sg
+fZ
+fZ
+fZ
 Fw
+rF
+uz
+ac
+lM
+ac
+ac
+ac
 Fw
-uc
-kA
-Fw
-Sw
-Sw
-Sw
-Sw
 Sw
 Sw
 Sw
@@ -4705,34 +4347,34 @@ Sw
 Sw
 Sw
 Sw
+pz
+pg
+fQ
+OI
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Fw
+SY
 oP
-yD
-uc
-kA
 Fw
-Sw
-Sw
-Sw
-Sw
+fZ
+fZ
+fZ
+sg
+Wf
+eT
+XU
+sg
+fZ
+fZ
+fZ
+Fw
+kA
+uz
+ac
+jp
+ch
+ch
+ch
+Fw
 Sw
 Sw
 Sw
@@ -4767,34 +4409,34 @@ Sw
 Sw
 Sw
 Sw
+pg
+pg
+fQ
+fQ
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Fw
-Fw
-Fw
-uc
+SY
+oP
+Uw
+kA
+kA
+kA
+NZ
+Xr
+Kz
+Xr
+NZ
+kA
+kA
+kA
+EM
+kA
+VH
+ac
+yp
+kA
+kA
 kA
 Fw
-Sw
-Sw
-Sw
-Sw
 Sw
 Sw
 Sw
@@ -4829,34 +4471,34 @@ Sw
 Sw
 Sw
 Sw
+Pe
+Pe
+OF
+OF
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Fw
+SY
 oP
-yD
-uc
-fZ
+Uw
+kA
+kA
+kA
+bs
+Xr
+TO
+Xr
+bs
+kA
+kA
+kA
+EM
+kA
+uz
+ac
+yp
+kA
+kA
+kA
 Fw
-Sw
-Sw
-Sw
-Sw
 Sw
 Sw
 Sw
@@ -4891,6 +4533,34 @@ Sw
 Sw
 Sw
 Sw
+pz
+Pe
+OF
+OI
+Sw
+SY
+oP
+Fw
+fZ
+fZ
+fZ
+sg
+LP
+NZ
+LP
+sg
+fZ
+fZ
+fZ
+Fw
+kA
+uz
+ac
+ra
+Ee
+Ee
+XE
+Fw
 Sw
 Sw
 Sw
@@ -4903,41 +4573,13 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-yy
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
+Ih
+Ho
+Ho
+Ho
+Ho
+Ho
+Ho
 "}
 (45,1,1) = {"
 Sw
@@ -4958,48 +4600,48 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+kA
 NZ
-it
-Yx
-dk
-Jb
-Jb
-Jb
-Jb
-Rs
+kA
 Fw
-GL
-ch
-ch
-xl
-ch
-ch
+Fw
+Fw
+Fw
+Fw
+kA
+uz
 ac
+ac
+ua
+ac
+yp
 Fw
-bz
-ZD
-ZD
-OF
-ZD
-ZD
-ZD
-FJ
-Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ih
 KO
 KO
 PB
 PB
 gk
-Fw
+Ho
 "}
 (46,1,1) = {"
 Sw
@@ -5020,48 +4662,48 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-WX
-it
-Yx
-Qw
-yx
-yx
-yx
-yx
-ge
+RV
 Fw
+Zw
+cN
+Cj
+Uw
+kA
+NZ
+kA
+rv
+rv
 XV
-Ee
-rF
-rF
-jp
-Bs
-JO
+XV
 Fw
-yp
-OM
-OM
-OM
-OM
-OM
-OM
+kA
+uz
+ac
+ac
+ac
+ac
 yp
 Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ih
 pk
 or
 or
 or
 JB
-Fw
+Ho
 "}
 (47,1,1) = {"
 Sw
@@ -5082,48 +4724,48 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-Lx
-it
-Yx
-Qw
-yx
-VO
+Qr
+PQ
+On
+kA
+sA
+Uw
+kA
+NZ
+kA
+rv
+rv
+XV
+XV
+Uw
 AG
-yx
-ge
-YY
-Vu
-EM
-vL
-VH
-Vz
-Bs
-NT
-ch
-ch
-ch
-ch
-ch
-ch
-ch
-ch
-ch
-RV
+uz
+ac
+ac
+ac
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+UP
 nm
 nm
 nm
 Ps
 gk
-Fw
+Ho
 "}
 (48,1,1) = {"
 Sw
@@ -5144,48 +4786,48 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-rZ
-it
-Yx
-Qw
-yx
-iR
-Ji
-yx
-ge
-YY
-Vu
-EM
-vL
-VH
-Vz
-Bs
-Bs
-Bs
-dJ
-Bs
-Bs
-Bs
-dJ
-Bs
-Bs
-Bs
+kA
+Fw
+lm
+kA
+Qr
+GL
+kA
+dM
+kA
+rv
+rv
+XV
+XV
+Uw
+AG
+uz
+ac
+ac
+ac
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 HG
 nm
 nm
 nm
 Ps
 qc
-Fw
+Ho
 "}
 (49,1,1) = {"
 Sw
@@ -5206,48 +4848,48 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-el
-it
-Yx
-Qw
-yx
-FY
-fQ
-yx
-ge
-YY
-Vu
-EM
-vL
-VH
-Vz
-Bs
-Bs
-Bs
-dJ
-Bs
-Bs
-Bs
-dJ
-Bs
-Bs
-Bs
+kA
+Fw
+Zf
+kT
+Qr
+Ki
+vo
+sg
+kA
+kA
+kA
+kA
+kA
+Fw
+kA
+uz
+ac
+jp
+ch
+ch
+zV
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 HG
 nm
 nm
 nm
 JY
 LH
-Fw
+Ho
 "}
 (50,1,1) = {"
 Sw
@@ -5268,48 +4910,48 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-jh
-it
-Yx
-Qw
-yx
-yx
-yx
-yx
-ge
-YY
+kA
+Fw
+jC
+kA
+sR
+GL
+kA
+xQ
+kA
+wr
+wr
 Vu
-EM
-vL
-VH
-Vz
-Bs
-Ee
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-Dg
+Vu
+Uw
+kA
+uz
+ac
+yp
+IC
+Fw
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+rR
 nm
 nm
 nm
 JY
 vf
-Fw
+Ho
 "}
 (51,1,1) = {"
 Sw
@@ -5330,48 +4972,48 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-xz
-it
-Yx
-Qw
-yx
-yx
-yx
-yx
-Kk
-Fw
+Qr
+PQ
+On
+kA
+jr
+Uw
+kA
+NZ
+kA
+wr
+wr
 Vu
-EM
-Le
-Le
-Vz
-Xt
-ua
-Fw
+Vu
+Uw
+xe
+uz
+ac
 yp
-OM
-OM
-OM
-OM
-OM
-OM
-yp
+IC
 Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 oq
 yH
 nm
 nm
 yH
-Fw
+Ho
 "}
 (52,1,1) = {"
 Sw
@@ -5392,48 +5034,48 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-Sy
-it
-nF
-lp
-aO
-aO
-aO
-rv
-Zz
+Dg
 Fw
-XV
-NT
+ge
+Ek
+ud
+Uw
+WX
+NZ
+WX
+wr
+wr
+Vu
+Vu
+Fw
+Fw
 uz
-uz
-Eo
-Bs
-JO
+ac
+yp
 Fw
-bz
-ZD
-ZD
-zo
-ZD
-ZD
-ZD
-FJ
 Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 Fj
 ZY
 nm
 nm
 bI
-Fw
+Ho
 "}
 (53,1,1) = {"
 Sw
@@ -5452,6 +5094,28 @@ Sw
 Sw
 Sw
 Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+kA
+NZ
+kA
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+uz
+ac
+yp
+Fw
 Sw
 Sw
 Sw
@@ -5462,40 +5126,18 @@ Sw
 Sw
 Sw
 Sw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Vu
-Bs
-Bs
-Bs
-Bs
-Bs
-Uw
-Fw
-qQ
-qQ
-qQ
-Fw
-pg
-pg
-pg
-pg
-Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 Ow
 ZY
 nm
 nm
 Eh
-Fw
+Ho
 "}
 (54,1,1) = {"
 Sw
@@ -5513,6 +5155,29 @@ Sw
 Sw
 Sw
 Sw
+Fw
+Fw
+fp
+kA
+kA
+kA
+kA
+kA
+kA
+fp
+kA
+NZ
+kA
+kA
+SU
+lS
+Jg
+Jg
+RM
+gd
+ac
+yp
+Fw
 Sw
 Sw
 Sw
@@ -5528,36 +5193,13 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-wr
-Fc
-Vu
-Bs
-Bs
-Bs
-Bs
-Bs
-NT
-ch
-ch
-ch
-vI
-ym
-ur
-Go
-bP
 Ho
-Fw
-Fw
+Ho
 VI
 VI
 VI
-Fw
-Fw
+Ho
+Ho
 "}
 (55,1,1) = {"
 Sw
@@ -5575,51 +5217,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-wr
-ra
-Vu
-Ee
-XE
-XE
-XE
-jp
-ag
-Bs
-Bs
-wo
-NT
-JL
-ch
-ch
-ch
-Ll
 Fw
+Xe
+dk
+dk
+dk
+dk
+dk
+dk
+dk
+dk
+lQ
+NZ
+kA
+kA
+SU
+uz
+Eo
+MS
+am
+ac
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 tq
 ZN
-Bs
+gp
 ZN
 tq
-Fw
+Ho
 "}
 (56,1,1) = {"
 Sw
@@ -5637,51 +5279,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-wr
 Fw
-Vu
-Uw
-Kd
-Hy
-aL
-Vu
-XR
-Bs
-Bs
-ag
-Bs
-fV
-Bs
-Bs
-Bs
-Uw
+oK
+wz
+wz
 Fw
+St
+Ad
+Fw
+kH
+wz
+cO
+NZ
+NZ
+NZ
+SU
+uz
+ac
+MS
+am
+ac
+ac
+yp
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 tq
 XJ
-eT
+MF
 XJ
 tq
-Fw
+Ho
 "}
 (57,1,1) = {"
 Sw
@@ -5699,51 +5341,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-wr
 Fw
-XV
-Uw
-nz
-ZX
-we
-Vu
-Bs
-Bs
-Bs
-Bs
-Bs
-fV
-Bs
-Bs
-Bs
-Uw
+oK
+wz
+tK
+nF
+YY
+qK
+qK
+Ii
+wz
+cO
+NZ
+kA
+kA
+SU
+uz
+ac
+ac
+am
+ac
+ac
+yp
 Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 Wy
 XJ
-Kz
+RW
 XJ
 KS
-Fw
+Ho
 "}
 (58,1,1) = {"
 Sw
@@ -5761,51 +5403,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-wr
 Fw
-Vu
-Uw
-Ih
-Rr
-XM
-Vu
-wo
+oK
+wz
+Sn
+yx
+TK
 Bs
 Bs
-ag
-Bs
-fV
-Bs
-Bs
-Bs
-Uw
+sN
+wz
+qY
+NZ
+kA
+kA
+SU
+uz
+ac
+BZ
+am
+ac
+ac
+yp
 Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 tq
 XJ
-TO
+Py
 XJ
 tq
-Fw
+Ho
 "}
 (59,1,1) = {"
 Sw
@@ -5823,51 +5465,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-wr
-Fc
-Vu
-NT
-ch
-ch
-ch
-Eo
-ag
-Bs
-Bs
-XR
-Ee
-Fo
-XE
-XE
-XE
-Vd
 Fw
+oK
+wz
+hk
+nF
+MU
+Yh
+Yh
+Zt
+wz
+cO
+NZ
+kA
+kA
+SU
+BD
+Ns
+Ns
+au
+ch
+ch
+zV
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 tq
 ZN
-Bs
+gp
 ZN
 tq
-Fw
+Ho
 "}
 (60,1,1) = {"
 Sw
@@ -5885,51 +5527,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-wr
-ra
-Vu
-Bs
-Bs
-Bs
-Bs
-Bs
-Ee
-XE
-XE
-XE
-SY
-ym
-bs
-Lr
-BB
-rk
+Fw
+oK
+wz
+wz
+Fw
+cY
+Kp
+Fw
+BA
+wz
+cO
+NZ
+kA
+dz
+Fw
+Uw
+Uw
 Fw
 Fw
+Fw
+Fw
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
+Ho
 VI
 VI
 VI
-Fw
-Fw
+Ho
+Ho
 "}
 (61,1,1) = {"
 Sw
@@ -5947,51 +5589,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-wr
 Fw
-Vu
-Bs
-Bs
-Bs
-Bs
-Bs
-Uw
+MP
+YD
+tU
+tU
+tU
+tU
+tU
+tU
+Fc
+EU
+NZ
+kA
+kA
 Fw
-qQ
-qQ
-qQ
+uc
+iy
+MT
 Fw
-Bq
-Bq
-Bq
-Bq
 Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 ap
 Rt
 nm
 nm
 eS
-Fw
+Ho
 "}
 (62,1,1) = {"
 Sw
@@ -6009,51 +5651,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-XV
-Ee
-rF
-rF
-jp
-Bs
-JO
+Xe
+dk
+dk
+dk
+dk
+dk
+dk
+dk
+dk
+lQ
+NZ
+kA
+kA
 Fw
-bz
-Ek
-Ek
-Jg
-Ek
-Ek
-Ek
-FJ
+lm
+Lm
+kA
+Sl
 Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 dl
 Rt
 nm
 nm
 kN
-Fw
+Ho
 "}
 (63,1,1) = {"
 Sw
@@ -6071,51 +5713,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-Vu
-EM
-vL
-VH
-Vz
-sW
-nt
+oK
+wz
+wz
 Fw
-yp
-sX
-sX
-sX
-sX
-sX
-sX
-yp
+St
+Ad
 Fw
+kH
+wz
+cO
+NZ
+kA
+kA
+Uw
+Zf
+kA
+kA
+Sl
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 Vq
 uR
 nm
 nm
 uR
-Fw
+Ho
 "}
 (64,1,1) = {"
 Sw
@@ -6133,51 +5775,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-Vu
-EM
-vL
-VH
-Vz
-Bs
-NT
-ch
-ch
-ch
-ch
-ch
-ch
-ch
-ch
-ch
-RV
+oK
+wz
+tK
+nF
+YY
+qK
+qK
+Ii
+wz
+cO
+NZ
+kA
+kA
+Uw
+jC
+kT
+kA
+kA
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+UP
 nm
 nm
 nm
 nR
 vf
-Fw
+Ho
 "}
 (65,1,1) = {"
 Sw
@@ -6195,51 +5837,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-Vu
-EM
-vL
-VH
-Vz
+oK
+wz
+Sn
+yx
+TK
 Bs
 Bs
-Bs
-dJ
-Bs
-Bs
-Bs
-dJ
-Bs
-Bs
-Bs
+sN
+wz
+qY
+NZ
+kA
+kA
+Fw
+YF
+kA
+kA
+kA
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 HG
 nm
 nm
 nm
 nR
 LH
-Fw
+Ho
 "}
 (66,1,1) = {"
 Sw
@@ -6257,51 +5899,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-Vu
-EM
-vL
-VH
-Vz
-Bs
-Bs
-Bs
-dJ
-Bs
-Bs
-Bs
-dJ
-Bs
-Bs
-Bs
+oK
+wz
+hk
+nF
+MU
+Yh
+Yh
+Zt
+wz
+cO
+NZ
+kA
+kA
+Ki
+kA
+kA
+dQ
+Fw
+Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
 HG
 nm
 nm
 nm
 uy
 qc
-Fw
+Ho
 "}
 (67,1,1) = {"
 Sw
@@ -6319,51 +5961,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-Vu
-EM
-mN
-mN
-Vz
-Bs
-Ee
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-XE
-Dg
+oK
+wz
+wz
+Fw
+cY
+Kp
+Fw
+BA
+wz
+cO
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fo
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+rR
 nm
 nm
 nm
 uy
 PX
-Fw
+Ho
 "}
 (68,1,1) = {"
 dW
@@ -6381,51 +6023,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-XV
-NT
-uz
-uz
-Eo
-Bs
-JO
+MP
+YD
+tU
+tU
+tU
+tU
+tU
+tU
+Fc
+EU
 Fw
-yp
-sX
-sX
-sX
-sX
-sX
-sX
-yp
-Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 Cd
 Me
 Me
 Me
 oO
-Fw
+Ho
 "}
 (69,1,1) = {"
 dW
@@ -6443,51 +6085,51 @@ Sw
 Sw
 Sw
 Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
-Sw
 Fw
-jr
-XE
-XE
-IM
-XE
-XE
-os
 Fw
-bz
-Ek
-Ek
-Pe
-Ek
-Ek
-Ek
-FJ
+kA
+kA
+kA
+kA
+kA
+kA
+kA
+kA
+kA
 Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
 up
 up
 ST
 ST
 PX
-Fw
+Ho
 "}
 (70,1,1) = {"
 dW
@@ -6506,6 +6148,17 @@ Sw
 Sw
 Sw
 Sw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
+Fw
 Sw
 Sw
 Sw
@@ -6526,28 +6179,17 @@ Sw
 Sw
 Sw
 Sw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
-Fw
+Sw
+Sw
+Sw
+Sw
+Sw
+Sw
+Ho
+Ho
+Ho
+Ho
+Ho
+Ho
+Ho
 "}
