@@ -1,6 +1,9 @@
 //Landmarks and other helpers which speed up the mapping process and reduce the number of unique instances/subtypes of items/turf/ect
 
+///Maximum amount of items per turf allowed to be sorted by mapping_helper/stack/sort
 #define MAX_SORTER_AMOUNT 128
+///Maximum amount of tries the stack/displace has to find a valid turf
+#define MAX_DISPLACE_TRIES 5
 
 /obj/effect/baseturf_helper //Set the baseturfs of every turf in the /area/ it is placed.
 	name = "baseturf editor"
@@ -225,6 +228,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 		return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_NORMAL
 	Run()
 
+///Runs the stack mapping_helper's unique proc.
+/obj/effect/mapping_helpers/stack/proc/Run()
+	return
+
 ///Checks for tables and racks in specified turf and returns the height in pixels atoms should be shifted for.
 /obj/effect/mapping_helpers/stack/proc/Check_Height_Table_Rack(turf/T)
 	if(!T)
@@ -234,129 +241,148 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	if(locate(/obj/structure/rack) in T)
 		return 3
 
-///Runs the stack mapping_helper's unique proc.
-/obj/effect/mapping_helpers/stack/proc/Run()
-	return
+///Moves atom/movable/A into the specified pixel-position and applies an additive layer ontop of it.
+/obj/effect/mapping_helpers/stack/proc/pixel_move_atom(atom/movable/A, xpos, ypos, add_layer)
+	if(!A)
+		return
+	A.pixel_x = xpos ? xpos : A.pixel_x
+	A.pixel_y = ypos ? ypos : A.pixel_y
+	switch(add_layer)
+		if(-1) // Reset layer
+			A.layer = initial(A.layer)
+		if(0.00001 to INFINITY) // Add add_layer to layer
+			A.layer = initial(A.layer) + add_layer
+		else // Auto-layer using pixel_x and pixel_y.
+			A.layer = initial(A.layer) + (A.pixel_x * 0.00001) + (A.pixel_y * -0.001)
 
-///Sorts items in a neat diagonal line/ grid (best used on a stack of the same/ similar shaped items)
+
+
+/**
+ * Sorts items in a neat diagonal line/ grid (best used on a stack of the same/ similar shaped items)
+ * Only accepts items since mobs and structures are just generally too big to make look nicely stacked.
+ */
 /obj/effect/mapping_helpers/stack/sort
 	name = "Item Stack Sorter"
 	icon_state = "stack_sort"
-	/// Amount of rows
+	///Amount of rows
 	var/max_vertical = 3
-	/// Amount of columns
-	var/max_horizontal = 1 //If used together with max_vertical, will create a diagonal grid like sort
-	/// Offset for the entire stack (used for non-centered sprites)
+	///Amount of columns
+	var/max_horizontal = 1
+	///Horizontal offset for the entire stack
 	var/offset_x = 0
+	///Vertical offset for the entire stack
 	var/offset_y = 0
-	/// Pixelshifting between each column
+	///Pixelshifting horizontally between each column
 	var/displace_x = 3
+	///Pixelshifting vertically between each column
 	var/displace_y = -2
-	/// Pixelshifting between each item in a column
+	///Pixelshifting horizontally between each item in a column
 	var/shift_x = 3
+	///Pixelshifting vertically between each item in a column
 	var/shift_y = 4
 
 /obj/effect/mapping_helpers/stack/sort/Run()
-	var/amount = 0
+	///#th item in the current spot.
 	var/current_item = 1
+	///#th spot in list/spots
 	var/current_spot = 1
-	var/vert_amt = 0
-	var/hori_amt = 1
+	///Amount of rows and how many spots there are in a column
+	var/rows = 1
+	///Amount of columns and how many spots there are in a row
+	var/columns = 1
 	///Remaining amount of items needing to distribute across existing spots
 	var/remaining = 0
 	///Amount of items to stack onto every spot to fit all items in.
 	var/spot_size = 1
-	var/total_spots = 0
-	var/turf/T = loc
-	var/list/tempspots = list()
-	var/list/spots = list()
+	///Unorganized list of raw spot-data. tempspots = list("5" = list(1,6,8)). key is vertical pixel, value is a list of horizontal pixels.
+	var/list/list/tempspots = list()
+	///List of the keys from the assoc list tempspots. Used to sort the vertical pixels in descending order.
 	var/list/numbersort = list()
-	var/localoffset_x = offset_x
-	var/localoffset_y = offset_y + Check_Height_Table_Rack(loc)
+	///Proper organized two-dimensional list of spots. spots[i] = list(y-pos, x-pos)
+	var/list/spots = list()
+	///Horizontal offset to be applied in the entire sort
+	var/localoffset_x = offset_x + pixel_x // Just add in the pixel-shift if a third-party spawns us and expects this to work
+	///Vertical offset to be applied in the entire sort
+	var/localoffset_y = offset_y + pixel_y + Check_Height_Table_Rack(loc)
+	///Total amount of items to sort
+	var/amount = 0
+	///List of items to sort
 	var/list/items = list()
 
-	for (var/obj/item/I in T)
+	for (var/obj/item/I in loc)
 		if(length(whitelist) && !(is_type_in_typecache(I.type, whitelist)))
 			continue
 
 		items += I
 		amount++
 
-	if (!amount)
-		log_world("### MAP WARNING, [src] had no items to sort at [x],[y],[z]!")
-		return
 	if(amount > MAX_SORTER_AMOUNT) // Oh god what have you done!?
 		log_world("### MAP WARNING, [src] had too many items to sort at [x],[y],[z]!")
 		return
-	if(max_vertical <= 0 | max_horizontal <= 0)
+	if(max_vertical <= 0 || max_horizontal <= 0)
 		log_world("### MAP WARNING, [src] had invalid var(s) at [x],[y],[z]!")
 		return
 
-	//Determine the amount of rows and columns
-	vert_amt = amount
-	while (vert_amt > max_vertical) //Spread out items more horizontal if vertical space is full
-		if (hori_amt == max_horizontal)
-			vert_amt = max_vertical
+	// Determine the amount of rows and columns by continuously spreading them out more horizontal starting from a overloaded vertical stack
+	rows = amount
+	while (rows > max_vertical) // Spread out items more horizontal if vertical space is full
+		if (columns == max_horizontal) // Horizontal space is full, it's gonna be a full grid
+			rows = max_vertical
 			break;
-		vert_amt *= 0.5
-		vert_amt = CEILING(vert_amt,1)
-		hori_amt++
-	total_spots = vert_amt * hori_amt
-	spots.len = total_spots
+		rows *= 0.5
+		rows = CEILING(rows,1)
+		columns++
+	spots.len = rows * columns
 
-	//Determine the amount of items in a spot as well as the offset
-	if (amount > total_spots) // All spots are full but we still got items to place
-		spot_size = amount / total_spots
+	// Determine the amount of items in a spot as well as the offset
+	if (amount > length(spots)) // All spots are full but we still got items to place
+		spot_size = amount / length(spots)
 		spot_size = FLOOR(spot_size, 1)
-		remaining = MODULUS(amount, total_spots)
-	if(vert_amt)
-		localoffset_y += ((hori_amt - 1) * 0.5 * displace_y) + ((vert_amt - 1) * 0.5 * shift_y)
-		localoffset_y = FLOOR(localoffset_y, 1)
-	if(hori_amt)
-		localoffset_x += ((hori_amt - 1) * 0.5 * displace_x) + ((vert_amt - 1) * 0.5 * shift_x)
-		localoffset_x = FLOOR(localoffset_x, 1)
+		remaining = MODULUS(amount, length(spots))
 
-	//Build the spots list with all locations in them
-	for(var/i = 1, i <= vert_amt, i++)
-		for(var/j = 1, j <= hori_amt, j++)
-			var/pos_x = localoffset_x - ((j - 1) * displace_x) - ((i - 1) * shift_x)
-			var/pos_y = localoffset_y - ((j - 1) * displace_y) - ((i - 1) * shift_y)
+	// Locates the upper right corner of the sorting bounding box
+	localoffset_y += ((columns - 1) * 0.5 * displace_y) + ((rows - 1) * 0.5 * shift_y)
+	localoffset_y = FLOOR(localoffset_y, 1)
+	localoffset_x += ((columns - 1) * 0.5 * displace_x) + ((rows - 1) * 0.5 * shift_x)
+	localoffset_x = FLOOR(localoffset_x, 1)
+
+	// Build the spots list with all locations in them using an assoc list
+	for(var/current_row = 1, current_row <= rows, current_row++)
+		for(var/current_column = 1, current_column <= columns, current_column++)
+			var/pos_x = localoffset_x - ((current_column - 1) * displace_x) - ((current_row - 1) * shift_x)
+			var/pos_y = localoffset_y - ((current_column - 1) * displace_y) - ((current_row - 1) * shift_y)
 			if(tempspots["[pos_y]"] == null)
 				tempspots["[pos_y]"] = list()
 			tempspots["[pos_y]"].Add(pos_x)
 
-	//Sort the list to be y-desc : x-asc
+	// Sort the list to be y-desc = list(x-asc,...)
 	for(var/num in tempspots)
-		numbersort.Add(text2num(num))
+		numbersort.Add(text2num(num)) // Lets sort using numbers, not strings.
 	numbersort = sortTim(numbersort, cmp = /proc/cmp_numeric_dsc)
-	for(var/L in tempspots)
-		tempspots[L] = sortTim(tempspots[L], cmp = /proc/cmp_numeric_asc)
+	for(var/key in tempspots) // Keys are strings, values are numbers. Sort the values in ascending order.
+		tempspots[key] = sortTim(tempspots[key], cmp = /proc/cmp_numeric_asc)
 
-	//Organize a proper list to use
-	for(var/p in numbersort)
-		for(var/q = 1, q <= tempspots["[p]"].len, q++)
-			spots[current_spot] = list(p,tempspots["[p]"][q])
+	// Organize a proper list to use
+	for(var/number_key in numbersort) // numbersort is sorted in descending order. Starting with highest value going down here.
+		for(var/i = 1, i <= length(tempspots["[number_key]"]), i++) // values in tempspots is sorted in ascending order.
+			spots[current_spot] = list(number_key, tempspots["[number_key]"][i])
 			current_spot++
+	// list/spots is now a sorted two dimensional list with each entry being = list(y-pos, x-pos)
 
-	//Put the items according to the organized list
+	// Put the items according to the organized spots list
 	current_spot = 1
 	current_item = 1
 	for (var/obj/item/I in items)
-		I.layer = initial(I.layer)
 		if (current_item > spot_size)
-			if (remaining) //Do one extra item for this spot to get rid of the remainder
+			if (remaining) // If we have for example 4 spots and 6 items to sort, we put 1 extra item in 2 spots
 				remaining--
-				I.pixel_x = spots[current_spot][2]
-				I.pixel_y = spots[current_spot][1]
-				I.layer += 0.00001 * current_spot
+				pixel_move_atom(I, spots[current_spot][2], spots[current_spot][1] , 0.00001 * current_spot)
 				current_spot++ // Populate the next spot
 				current_item = 1
 				continue
 			current_spot++ // Populate the next spot
 			current_item = 1
-		I.pixel_x = spots[current_spot][2]
-		I.pixel_y = spots[current_spot][1]
-		I.layer += 0.00001 * current_spot
+		pixel_move_atom(I, spots[current_spot][2], spots[current_spot][1] , 0.00001 * current_spot)
 		current_item++
 
 /obj/effect/mapping_helpers/stack/sort/fivebythree
@@ -425,14 +451,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 
 	if(length(atoms))
 		for(var/atom/movable/A in atoms)
-			A.pixel_x = rand(-8, 8) // only -8 to +8 so people can always see at a glance on which turf the item is on.
-			A.pixel_y = rand(-8, 8) + Check_Height_Table_Rack(A.loc)
+			pixel_move_atom(A, rand(-8, 8), rand(-8, 8) + Check_Height_Table_Rack(A.loc), null) // only -8 to +8 so people can always see at a glance on which turf the item is on.
 	else
 		for(var/atom/movable/A in loc)
 			if(length(whitelist) && !(is_type_in_typecache(A.type, whitelist)))
 				continue
-			A.pixel_x = rand(-8, 8)
-			A.pixel_y = rand(-8, 8) + Check_Height_Table_Rack(loc)
+			pixel_move_atom(A, rand(-8, 8), rand(-8, 8) + Check_Height_Table_Rack(loc), null)
 
 /obj/effect/mapping_helpers/stack/shift/item
 	name = "Item pixel shifter"
@@ -470,11 +494,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 
 		turf_search:
 			for(var/i= 0, i < tries, i++)
-				var/target_x = round(clamp(x + rand(-range_x , range_x), 0, 255), 1)
+				var/target_x = round(clamp(x + rand(-range_x , range_x), 0, 255), 1) //Why the fuck does it sometimes move items 4 tiles away instead of a maximum of two??
 				var/target_y = round(clamp(y + rand(-range_y , range_y), 0, 255), 1)
 				var/turf/T = locate(target_x, target_y, z)
 				if (!T) //How?
-					log_world("### MAP WARNING, [src] cannot find turf at [target_x],[target_y],[z]!")
+					log_world("### MAP WARNING, [src] cannot find turf at [target_x], [target_y], [z]!")
 					continue
 				if (isopenturf(T)) // No walls
 					if (!isspaceturf(T)) // No space
