@@ -529,7 +529,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	whitelist = list(
 		/obj/structure/largecrate,
 		/obj/structure/closet,
-		)
+	)
 
 /obj/effect/mapping_helpers/stack/displace/machinery
 	name = "Machine displacer"
