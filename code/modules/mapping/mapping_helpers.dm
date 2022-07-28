@@ -526,7 +526,10 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	name = "Crate displacer"
 	range_x = 1
 	range_y = 1
-	whitelist = list(/obj/structure/largecrate, /obj/structure/closet)
+	whitelist = list(
+		/obj/structure/largecrate,
+		/obj/structure/closet,
+		)
 
 /obj/effect/mapping_helpers/stack/displace/machinery
 	name = "Machine displacer"
@@ -536,7 +539,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	name = "Mob displacer"
 	whitelist = list(
 		/mob/living,
-		/obj/effect/landmark/corpsespawner
+		/obj/effect/landmark/corpsespawner,
 	)
 
 /obj/effect/mapping_helpers/stack/displace/gun
@@ -552,7 +555,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 		/obj/effect/spawner/random_set/machineguns,
 		/obj/effect/spawner/random_set/rifle,
 		/obj/effect/spawner/random_set/shotgun,
-		/obj/effect/spawner/random_set/sidearms
+		/obj/effect/spawner/random_set/sidearms,
 	)
 
 // For use by admemes ingame. Varedit and call proc/Run()
