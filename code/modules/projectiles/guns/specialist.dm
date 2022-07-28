@@ -451,6 +451,9 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/minigun/smart_minigun/motion_detector
+	starting_attachment_types = list(/obj/item/attachable/motiondetector)
+
 // PEPPERBALL GUN
 
 //-------------------------------------------------------

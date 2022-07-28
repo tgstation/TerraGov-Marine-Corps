@@ -3,6 +3,9 @@
 
 /datum/job/terragov/radio_help_message(mob/M)
 	. = ..()
+	if(istype(SSticker.mode, /datum/game_mode/combat_patrol))
+		to_chat(M, span_highdanger("Your platoon has orders to patrol a remote TerraGov territory that the Sons of Mars are illegally attempting to claim. Intel suggests hostile patrols are in the area to try maintain defacto control. Work with your team and eliminate all SOM you encounter while minimising your own casualties! High Command considers wiping out all enemies a major victory, or inflicting more casualties a minor victory."))
+		return
 	if(SSticker.mode?.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
 		to_chat(M, span_highdanger("You are a proud member of the [faction == FACTION_TERRAGOV ? "Loyalist" : "Rebel"] faction. Kill your enemies!"))
 	if(CONFIG_GET(number/minimal_access_threshold))

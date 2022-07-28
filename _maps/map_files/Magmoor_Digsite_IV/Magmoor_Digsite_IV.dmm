@@ -575,6 +575,10 @@
 /area/magmoor/compound/east)
 "aAs" = (
 /obj/item/shard,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
 /turf/open/floor/mainship/sterile/purple/corner,
 /area/magmoor/research/containment)
 "aAB" = (
@@ -1109,6 +1113,10 @@
 /obj/structure/bed/stool{
 	pixel_y = 8
 	},
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/containment)
 "bbt" = (
@@ -1288,6 +1296,13 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/magmoor/security/infocenter)
+"bkN" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/mainship/floor,
+/area/magmoor/landing/two)
 "bli" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -4457,7 +4472,7 @@
 /obj/item/healthanalyzer,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/structure/table/mainship,
-/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver/full,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -5265,6 +5280,13 @@
 	dir = 9
 	},
 /area/magmoor/cave/west)
+"dNB" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northwest)
 "dNH" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
@@ -6296,6 +6318,13 @@
 /mob/living/simple_animal/cow,
 /turf/open/floor/grass,
 /area/magmoor/hydroponics)
+"ezC" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/mining/fossil)
 "eAq" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6800,6 +6829,19 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/mainship/sterile/purple/side,
 /area/magmoor/research/containment)
+"eUh" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/mainship,
+/area/magmoor/landing/two)
 "eUO" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
@@ -9076,6 +9118,13 @@
 /obj/structure/ore_box,
 /turf/open/floor/marking/loadingarea,
 /area/magmoor/mining/refinery)
+"guF" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/mining/fossil)
 "guT" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -9584,6 +9633,16 @@
 	dir = 1
 	},
 /area/magmoor/cargo/processing/south)
+"gPJ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor/plating,
+/area/magmoor/research/containment)
 "gPW" = (
 /turf/open/lavaland/lava/lpiece{
 	dir = 8
@@ -15819,6 +15878,13 @@
 	dir = 6
 	},
 /area/magmoor/compound)
+"lua" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northwest)
 "luh" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/tcomms,
@@ -18720,6 +18786,13 @@
 	dir = 4
 	},
 /area/magmoor/cave/south)
+"nDN" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/mining/fossil)
 "nDV" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -19720,6 +19793,13 @@
 	},
 /turf/open/floor/plating,
 /area/magmoor/engi/power)
+"okM" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northwest)
 "okO" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 8
@@ -21438,6 +21518,13 @@
 	dir = 4
 	},
 /area/magmoor/cargo/storage)
+"pmy" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/mining/fossil)
 "pmG" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -21499,6 +21586,13 @@
 /obj/effect/attach_point/electronics/dropship1,
 /turf/open/floor/plating,
 /area/magmoor/landing/two)
+"poU" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northwest)
 "ppt" = (
 /turf/open/floor/mainship/orange/corner{
 	dir = 8
@@ -24837,6 +24931,13 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing)
+"rBc" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/magmoor/research/containment)
 "rBu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -35731,6 +35832,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/lobby)
+"yaS" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/mainship/cargo,
+/area/magmoor/landing/two)
 "yaX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -35804,6 +35912,16 @@
 	dir = 6
 	},
 /area/magmoor/command/commandroom)
+"ycg" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/mainship,
+/area/magmoor/landing/two)
 "yco" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 1
@@ -38653,7 +38771,7 @@ xFa
 xFa
 pSd
 hKU
-pSd
+guF
 xFa
 xFa
 pSd
@@ -38980,7 +39098,7 @@ xFa
 xFa
 xFa
 xFa
-aFS
+okM
 guT
 bCo
 bCo
@@ -40062,7 +40180,7 @@ xFa
 pSd
 pSd
 pSd
-pSd
+pmy
 xFa
 xFa
 xFa
@@ -40607,7 +40725,7 @@ rRl
 aFS
 aFS
 aFS
-aFS
+lua
 xFa
 xFa
 xFa
@@ -40750,7 +40868,7 @@ pSd
 pSd
 pSd
 lko
-pSd
+ezC
 pSd
 pSd
 pSd
@@ -41077,7 +41195,7 @@ aFS
 aFS
 xFa
 xFa
-aFS
+poU
 aFS
 bCo
 qlL
@@ -41765,7 +41883,7 @@ xFa
 xFa
 xFa
 aFS
-aFS
+dNB
 qlL
 qlL
 nqC
@@ -41927,7 +42045,7 @@ pSd
 pSd
 pSd
 pSd
-pSd
+nDN
 xFa
 xFa
 xFa
@@ -68339,7 +68457,7 @@ lYH
 lYH
 bkh
 lYH
-lYH
+rBc
 egY
 afR
 clO
@@ -69500,7 +69618,7 @@ bDI
 aWp
 bsC
 aWp
-bsC
+gPJ
 byE
 bDI
 bFY
@@ -77780,7 +77898,7 @@ wDR
 wDR
 wDR
 wDR
-wDR
+eUh
 jcf
 xFa
 xFa
@@ -78475,7 +78593,7 @@ uaX
 tnE
 oya
 dTG
-dVI
+yaS
 arf
 dVI
 iwi
@@ -79638,7 +79756,7 @@ jpE
 sUD
 uaX
 aCx
-xiG
+ycg
 xiG
 xiG
 xiG
@@ -80110,7 +80228,7 @@ tyi
 tyi
 tyi
 tyi
-tyi
+bkN
 quK
 yht
 yht

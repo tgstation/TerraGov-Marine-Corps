@@ -64,11 +64,21 @@
 	desc = "A specialized high density battery used to power volkite weaponry."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "volkite"
-	maxcharge = 1080
+	maxcharge = 960
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
 	charge_overlay = "volkite"
 	reload_delay = 0
+
+/obj/item/cell/lasgun/volkite/small
+	name = "\improper high capacity volkite energy cell"
+	desc = "A specialized compact battery used to power the smallest volkite weaponry."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "volkite_small"
+	maxcharge = 540
+	w_class = WEIGHT_CLASS_SMALL
+	icon_state_mini = "mag_cell"
+	charge_overlay = "volkite_small"
 
 /obj/item/cell/lasgun/volkite/highcap
 	name = "\improper high capacity volkite energy cell"
@@ -79,6 +89,20 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_cell"
 	charge_overlay = "volkite_big"
+
+/obj/item/cell/lasgun/volkite/turret
+	name = "\improper volkite nuclear energy cell"
+	desc = "A nuclear powered battery designed for certain heavy SOM machinery like sentries. Slowly charges over time."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "volkite_turret"
+	maxcharge = 1800
+	w_class = WEIGHT_CLASS_NORMAL
+	icon_state_mini = "mag_cell"
+	charge_overlay = "volkite"
+	reload_delay = 0
+	self_recharge = TRUE
+	charge_amount = 24
+	charge_delay = 2 SECONDS
 
 /obj/item/cell/lasgun/volkite/powerpack
 	name = "\improper M-70 powerpack"
@@ -114,16 +138,21 @@
 		to_chat(user, span_notice("[warning]<b>Charge Remaining: [charge]/[maxcharge]</b>"))
 	update_icon()
 
-/obj/item/cell/lasgun/volkite/powerpack/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the power cell onto the backpack will trigger its special functionality.
+/obj/item/cell/lasgun/volkite/powerpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	if(!istype(W, /obj/item/cell))
+	if(istype(I, /obj/item/weapon/gun) && loc == user)
+		var/obj/item/weapon/gun/gun = I
+		if(!CHECK_BITFIELD(gun.reciever_flags, AMMO_RECIEVER_MAGAZINES))
+			return
+		gun.reload(src, user)
 		return
 
-	if(W != user.r_hand && W != user.l_hand)
-		to_chat(user, span_warning("[W] must be in your hand to do that."))
+	if(!istype(I, /obj/item/cell))
 		return
-
-	var/obj/item/cell/D = W
+	if(I != user.r_hand && I != user.l_hand)
+		to_chat(user, span_warning("[I] must be in your hand to do that."))
+		return
+	var/obj/item/cell/D = I
 	var/charge_difference = D.maxcharge - D.charge
 	if(charge_difference) //If the cell has less than max charge, recharge it.
 		var/charge_used = use_charge(user, charge_difference) //consume an appropriate amount of charge

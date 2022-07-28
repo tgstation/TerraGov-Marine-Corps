@@ -200,6 +200,8 @@
 /obj/item/weapon/gun/pistol/standard_heavypistol/suppressed
 	starting_attachment_types = list(/obj/item/attachable/suppressor, /obj/item/attachable/flashlight) //Tacticool
 
+/obj/item/weapon/gun/pistol/standard_heavypistol/tactical
+	starting_attachment_types = list(/obj/item/attachable/reddot)
 //-------------------------------------------------------
 //P-1911
 
@@ -515,6 +517,8 @@
 	scatter = 0
 	scatter_unwielded = 6
 
+/obj/item/weapon/gun/pistol/vp70/tactical
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/lasersight, /obj/item/attachable/compensator)
 
 //-------------------------------------------------------
 //VP78
@@ -542,6 +546,51 @@
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	recoil_unwielded = 3
+
+//-------------------------------------------------------
+//SOM pistol
+
+/obj/item/weapon/gun/pistol/som
+	name = "\improper V-11 pistol"
+	desc = "The standard sidearm used by the Sons of Mars. A reliable and simple weapon that is often seen on the export market on the outer colonies. Typically chambered in 9mm armor piercing rounds."
+	icon_state = "v11"
+	item_state = "v11"
+	caliber = CALIBER_9X19
+	max_shells = 18
+	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
+	default_ammo_type = /obj/item/ammo_magazine/pistol/som
+	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/som, /obj/item/ammo_magazine/pistol/som/incendiary, /obj/item/ammo_magazine/pistol/som/extended)
+	force = 8
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/lace,
+	)
+
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 6, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 11, "stock_y" = 10)
+
+	fire_delay = 0.15 SECONDS
+	accuracy_mult = 1.2
+	accuracy_mult_unwielded = 0.95
+	recoil = -2
+	aim_slowdown = 0.1
+	scatter = 0
+	scatter_unwielded = 4
+
+/obj/item/weapon/gun/pistol/som/standard
+	starting_attachment_types = list(
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/reddot,
+	)
 
 //-------------------------------------------------------
 /*

@@ -2397,13 +2397,13 @@
 	},
 /area/whiskey_outpost)
 "kB" = (
-/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver/full,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
-/obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
 /obj/structure/table/mainship,
 /obj/item/armor_module/storage/uniform/white_vest/surgery,
 /obj/item/clothing/suit/surgical,
@@ -4719,7 +4719,6 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "wc" = (
-/obj/machinery/vending/shared_vending/marine_engi,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -6598,7 +6597,6 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "Kw" = (
-/obj/machinery/vending/shared_vending/marine_engi,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
@@ -8393,9 +8391,9 @@
 	},
 /area/whiskey_outpost/outside/west)
 "Yz" = (
-/obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/lifesaver,
-/obj/item/storage/belt/lifesaver,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
+/obj/item/storage/belt/lifesaver/full,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/glasses/hud/health,

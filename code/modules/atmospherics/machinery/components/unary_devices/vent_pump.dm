@@ -122,10 +122,12 @@
 				return TRUE
 			else
 				to_chat(user, span_warning("[WT] needs to be on to start this task."))
+				cut_overlay(GLOB.welding_sparks)
 				return FALSE
 		else
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
-			return TRUE
+			cut_overlay(GLOB.welding_sparks)
+			return TRUE	
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_pump/can_unwrench(mob/user)

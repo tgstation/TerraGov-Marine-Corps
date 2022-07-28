@@ -262,12 +262,14 @@
 	layer = LADDER_LAYER
 	light_range = 4
 	resistance_flags = RESIST_ALL //no delaminations here
+	opacity = TRUE
 
 /obj/structure/prop/mainship/doorblocker //doors that exist only to block access, used mostly for valhalla omegastation
 	name = "\improper Barred Airlock"
 	icon = 'icons/Marine/mainship_props.dmi'
 	resistance_flags = RESIST_ALL
 	desc = "It opens and closes."
+	opacity = TRUE
 
 /obj/structure/prop/mainship/doorblocker/maint
 	name = "\improper Maintenance Hatch"
@@ -288,6 +290,19 @@
 /obj/structure/prop/mainship/doorblocker/command
 	name = "\improper Command Airlock"
 	icon_state = "command_locked"
+
+/obj/structure/prop/mainship/doorblocker/patrol_base
+	name = "\improper Main Airlock"
+	icon_state = "command_locked"
+
+/obj/structure/prop/mainship/doorblocker/patrol_base/som
+	icon_state = "security_locked"
+
+/obj/structure/prop/mainship/doorblocker/patrol_base/wide_left
+	icon_state = "secure_wide_left_locked"
+
+/obj/structure/prop/mainship/doorblocker/patrol_base/wide_right
+	icon_state = "secure_wide_right_locked"
 
 /obj/structure/prop/mainship/telecomms
 	name = "\improper Command Airlock"
@@ -604,7 +619,7 @@
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "van"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
@@ -616,7 +631,7 @@
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "truck"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
@@ -631,7 +646,7 @@
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "crane"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 64
 	bound_width = 64
 	resistance_flags = RESIST_ALL
@@ -646,7 +661,7 @@
 	icon = 'icons/obj/structures/vehicles.dmi'
 	icon_state = "crawler"
 	density = TRUE
-	coverage = 70
+	coverage = 80
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL

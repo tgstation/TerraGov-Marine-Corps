@@ -179,7 +179,7 @@
 	icon_state = "asleep"
 
 //CONFUSED
-/datum/status_effect/confused
+/datum/status_effect/incapacitating/confused
 	id = "confused"
 	alert_type = /obj/screen/alert/status_effect/confused
 
