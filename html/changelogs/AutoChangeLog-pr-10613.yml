@@ -1,7 +1,0 @@
-author: "Arctrooper8"
-delete-after: True
-changes: 
-  - rscdel: "TerraGov Tech Vendor"
-  - qol: "Reorganized Automated Weapons Vendors, adding new tabs such as Melee and Heavy Weapons. (Nothing removed)"
-  - balance: "Crash specific Automated Weapons Vendor lacking Heavy weapons tab and RPG."
-  - imagedel: "TerraGov Tech Vendor"
