@@ -209,6 +209,13 @@
 	},
 /turf/open/shuttle/escapepod,
 /area/bigredv2/caves/secomplex)
+"lP" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "lU" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -516,6 +523,13 @@
 /obj/machinery/power/apc/weak,
 /turf/open/shuttle/elevator/grating,
 /area/bigredv2/caves/secomplex)
+"FO" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "FZ" = (
 /obj/structure/largecrate/supply/explosives/mines,
 /obj/effect/landmark/weed_node,
@@ -666,6 +680,14 @@
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
+"QV" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "QY" = (
 /obj/structure/largecrate/machine,
 /turf/open/floor/tile/dark,
@@ -822,6 +844,13 @@
 /obj/machinery/computer/security/marinemainship_network,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/secomplex)
+"Yi" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "Ym" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/bed/chair/reinforced{
@@ -4783,7 +4812,7 @@ Mk
 Mk
 Mk
 Mk
-Ro
+lP
 Ro
 Ro
 Ro
@@ -5481,7 +5510,7 @@ Ro
 Ro
 tH
 Ro
-Ro
+FO
 le
 hG
 hG
@@ -5557,7 +5586,7 @@ Ro
 Ro
 Ro
 Xq
-tH
+QV
 Mk
 Mk
 Mk
@@ -5612,7 +5641,7 @@ qp
 Mk
 Mk
 Mk
-Ro
+Yi
 Ro
 Ro
 Ro

@@ -678,6 +678,13 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
+"rk" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "rs" = (
 /obj/structure/table,
 /obj/item/folder/yellow,
@@ -1382,6 +1389,13 @@
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
+"JV" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "Ki" = (
 /obj/structure/table,
 /obj/effect/spawner/random/bomb_supply,
@@ -1556,6 +1570,14 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/n)
+"Ou" = (
+/obj/structure/cable,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "Oy" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -1969,6 +1991,10 @@
 "ZF" = (
 /obj/machinery/light/built{
 	dir = 1
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/space_port)
@@ -2474,7 +2500,7 @@ xM
 xM
 hP
 tE
-QL
+JV
 QL
 QL
 NZ
@@ -2565,7 +2591,7 @@ QL
 QL
 QL
 ql
-ql
+Ou
 ql
 ql
 ql
@@ -2599,7 +2625,7 @@ YE
 ze
 QL
 QL
-QL
+rk
 QL
 QL
 QL

@@ -1311,6 +1311,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
+"Gi" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "Gr" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
@@ -1460,6 +1468,14 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"Kc" = (
+/obj/structure/cable,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "KG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/white,
@@ -1503,6 +1519,13 @@
 "Mg" = (
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
+"Mk" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/space_port)
 "Mu" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/dmg3,
@@ -1919,6 +1942,16 @@
 	dir = 9
 	},
 /area/bigredv2/outside/space_port)
+"WX" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "Xo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -2208,7 +2241,7 @@ RY
 Pf
 eW
 zU
-OB
+Gi
 PV
 PV
 PV
@@ -2397,7 +2430,7 @@ hC
 hC
 CA
 Bk
-NO
+WX
 OB
 Ry
 eW
@@ -2455,7 +2488,7 @@ PV
 PV
 OB
 PV
-wV
+Mk
 Bk
 Bi
 PH
@@ -2604,7 +2637,7 @@ DG
 hb
 hb
 OG
-hb
+Kc
 DG
 Tl
 hb

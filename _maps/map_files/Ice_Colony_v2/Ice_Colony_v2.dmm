@@ -30155,6 +30155,13 @@
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/underground/caves/open)
+"cbr" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating,
+/area/ice_colony/surface/mining)
 "cbO" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/weed_node,
@@ -30419,6 +30426,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
+"cmu" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/underground/caves/open)
 "cnu" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/tile/dark2,
@@ -31156,6 +31170,16 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/underground/caves/ice_se)
+"gaF" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/closed/ice/thin/end{
+	dir = 1
+	},
+/area/ice_colony/exterior/surface/valley/northeast)
 "gck" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
@@ -31886,6 +31910,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
+"jib" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/landing_pad2)
 "jkQ" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/southwest)
@@ -32007,6 +32038,13 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/taxiway)
+"jMc" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "jMW" = (
 /turf/closed/ice/end{
 	dir = 8
@@ -32835,6 +32873,16 @@
 	dir = 6
 	},
 /area/ice_colony/exterior/underground/caves/open)
+"nJU" = (
+/obj/effect/turf_underlay/icefloor,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/closed/ice/thin/straight{
+	dir = 4
+	},
+/area/ice_colony/exterior/surface/valley/northeast)
 "nKI" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -32861,6 +32909,10 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "nOj" = (
 /obj/effect/turf_underlay/icefloor,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
 /turf/closed/ice/thin/end{
 	dir = 4
 	},
@@ -33156,6 +33208,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
+"oLn" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/underground/caves/open)
 "oNA" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/pass)
@@ -33648,6 +33707,13 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/south)
+"rbB" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "rcI" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
@@ -33840,6 +33906,13 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
+"rMs" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/landing_pad2)
 "rMt" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -34022,6 +34095,13 @@
 	dir = 8
 	},
 /area/ice_colony/underground/crew/bball)
+"swq" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/tile/dark,
+/area/ice_colony/exterior/surface/landing_pad2)
 "sxy" = (
 /turf/open/floor/wood,
 /area/ice_colony/surface/clinic/treatment)
@@ -34535,6 +34615,13 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
+"uSD" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor/plating,
+/area/ice_colony/surface/mining)
 "uUO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -34727,6 +34814,13 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/underground/caves/ice_w)
+"vOV" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "vPZ" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
@@ -35100,6 +35194,13 @@
 /obj/machinery/light,
 /turf/open/floor/tile/green/whitegreen,
 /area/ice_colony/surface/clinic/treatment)
+"xth" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/underground/caves/open)
 "xxm" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/ice,
@@ -35132,6 +35233,13 @@
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
+"xCj" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "xCs" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -35177,6 +35285,13 @@
 	},
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
+"xML" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "xNj" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/ice/thin/single,
@@ -36160,7 +36275,7 @@ tjg
 hyh
 hyh
 hyh
-hyh
+rMs
 pwi
 oYA
 foI
@@ -37222,7 +37337,7 @@ hyh
 hyh
 hyh
 hyh
-hyh
+jib
 hyh
 hyh
 hyh
@@ -37405,7 +37520,7 @@ ovs
 lzc
 vfw
 vfw
-vfw
+cmu
 aZF
 aZF
 aZF
@@ -37612,7 +37727,7 @@ ePo
 ePo
 ePo
 blD
-ePo
+xCj
 ovs
 vQx
 bBD
@@ -38062,7 +38177,7 @@ aaa
 (14,1,1) = {"
 bSw
 aae
-xGZ
+swq
 aay
 xBE
 cTP
@@ -38682,7 +38797,7 @@ cav
 vfw
 xdc
 eGj
-vfw
+xth
 bjZ
 bSw
 aaa
@@ -38891,7 +39006,7 @@ aZF
 bRM
 aZF
 aZF
-vfw
+oLn
 eGj
 vfw
 aZF
@@ -69001,7 +69116,7 @@ blD
 ePo
 ePo
 ePo
-ePo
+vOV
 aZF
 aZF
 aZF
@@ -69632,7 +69747,7 @@ ePo
 gwe
 gwe
 aZF
-ePo
+xML
 ePo
 ePo
 ePo
@@ -70489,7 +70604,7 @@ ePo
 ePo
 ePo
 ePo
-ePo
+rbB
 gwe
 aZF
 bjZ
@@ -70902,7 +71017,7 @@ ePo
 ePo
 aZF
 gwe
-ePo
+jMc
 ePo
 ePo
 ePo
@@ -74772,7 +74887,7 @@ anq
 anq
 anq
 aoW
-amk
+uSD
 alE
 alE
 mqj
@@ -75400,7 +75515,7 @@ aac
 aac
 aaB
 abc
-aeB
+gaF
 alF
 amk
 amK
@@ -76255,14 +76370,14 @@ alE
 ami
 amk
 aoj
-amk
+cbr
 apu
 apF
 alE
 alD
 alC
 adj
-adA
+nJU
 aaP
 aaZ
 aaC

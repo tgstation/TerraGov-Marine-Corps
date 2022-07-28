@@ -89,14 +89,20 @@
 /obj/effect/temp_visual/order
 	icon = 'icons/Marine/marine-items.dmi'
 	var/icon_state_on
-	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_REBEL)
+	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_REBEL, SQUAD_HUD_SOM)
 	duration = ORDER_DURATION
 	layer = TURF_LAYER
 
 /obj/effect/temp_visual/order/Initialize(mapload, faction)
 	. = ..()
 	prepare_huds()
-	var/hud_type = faction == FACTION_TERRAGOV ? DATA_HUD_SQUAD_TERRAGOV : DATA_HUD_SQUAD_REBEL
+	var/hud_type
+	if(faction == FACTION_TERRAGOV)
+		hud_type = DATA_HUD_SQUAD_TERRAGOV
+	else if(faction == FACTION_TERRAGOV_REBEL)
+		hud_type = DATA_HUD_SQUAD_REBEL
+	else if(faction == FACTION_SOM)
+		hud_type = DATA_HUD_SQUAD_SOM
 	var/datum/atom_hud/squad/squad_hud = GLOB.huds[hud_type]
 	squad_hud.add_to_hud(src)
 	set_visuals(faction)
@@ -120,7 +126,13 @@
 
 ///Set visuals for the hud
 /obj/effect/temp_visual/order/proc/set_visuals(faction)
-	var/hud_type = faction == FACTION_TERRAGOV ? SQUAD_HUD_TERRAGOV : SQUAD_HUD_REBEL
+	var/hud_type
+	if(faction == FACTION_TERRAGOV)
+		hud_type = DATA_HUD_SQUAD_TERRAGOV
+	else if(faction == FACTION_TERRAGOV_REBEL)
+		hud_type = DATA_HUD_SQUAD_REBEL
+	else if(faction == FACTION_SOM)
+		hud_type = DATA_HUD_SQUAD_SOM
 	var/image/holder = hud_list[hud_type]
 	if(!holder)
 		return

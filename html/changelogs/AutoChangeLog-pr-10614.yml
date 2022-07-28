@@ -1,0 +1,6 @@
+author: "TheOneAndMightyRed"
+delete-after: True
+changes: 
+  - qol: "Added a new button to restock all loose items ontop of a vending machine's turf."
+  - bugfix: "Lasgun field charger now updates their charge meter icon state properly."
+  - bugfix: "Vending machines no longer save you from active grenades"

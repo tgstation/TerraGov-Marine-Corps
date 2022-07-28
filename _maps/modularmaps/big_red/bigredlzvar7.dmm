@@ -146,6 +146,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
+"du" = (
+/obj/structure/cable,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/tile/dark,
+/area/bigredv2/outside/space_port)
 "dv" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
@@ -1485,6 +1493,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
+"Hl" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/bigredv2/outside/space_port)
 "Hp" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
@@ -1942,6 +1959,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
+"TL" = (
+/obj/structure/cable,
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "Ud" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
@@ -1970,6 +1995,13 @@
 "UY" = (
 /turf/closed/wall,
 /area/bigredv2/outside/telecomm)
+"Va" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "Vd" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -2440,7 +2472,7 @@ ap
 ap
 ap
 Nu
-gF
+du
 gF
 gF
 gF
@@ -2638,7 +2670,7 @@ Ln
 FL
 rA
 rA
-rA
+Va
 rA
 rA
 rA
@@ -2686,7 +2718,7 @@ rA
 LB
 LB
 LB
-LB
+TL
 LB
 oz
 LB
@@ -2793,7 +2825,7 @@ ap
 ap
 Gk
 iY
-kW
+Hl
 uT
 GJ
 jp

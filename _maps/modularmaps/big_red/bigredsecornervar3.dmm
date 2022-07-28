@@ -134,6 +134,13 @@
 	},
 /turf/open/floor/tile/blue,
 /area/bigredv2/caves/undergroundrobotics)
+"ha" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "hr" = (
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 8
@@ -474,6 +481,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
+"zk" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "zl" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/taupeblue{
@@ -586,6 +600,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/undergroundrobotics)
+"FQ" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "GJ" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 6
@@ -614,6 +635,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/blue/taupeblue,
 /area/bigredv2/caves/undergroundrobotics)
+"Ha" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
 "Ho" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/blue,
@@ -4468,7 +4496,7 @@ Mn
 Mn
 Mn
 Mn
-QB
+FQ
 QB
 QB
 QB
@@ -4527,7 +4555,7 @@ Mn
 Mn
 Mn
 Mn
-QB
+zk
 QB
 QB
 QB
@@ -4750,7 +4778,7 @@ QB
 QB
 sD
 QB
-QB
+Ha
 Mn
 Mn
 Mn
@@ -4807,7 +4835,7 @@ Mn
 Mn
 Mn
 Mn
-QB
+ha
 QB
 QB
 QB
