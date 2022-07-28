@@ -45763,10 +45763,10 @@
 /turf/open/floor/wood/broken,
 /area/prison/library)
 "qio" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /atom/movable/effect/landmarkpatrol_point{
 	id = "TGMC_12";
 	name = "TGMC exit point 12"

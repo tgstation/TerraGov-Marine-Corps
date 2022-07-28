@@ -1312,7 +1312,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "Gi" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /atom/movable/effect/landmarkpatrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"

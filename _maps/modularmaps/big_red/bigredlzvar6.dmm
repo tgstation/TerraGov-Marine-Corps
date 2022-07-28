@@ -1216,7 +1216,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "EQ" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /atom/movable/effect/landmarkpatrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
@@ -1568,7 +1568,7 @@
 /area/bigredv2/outside/marshal_office)
 "Nk" = (
 /obj/structure/cable,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /atom/movable/effect/landmarkpatrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"

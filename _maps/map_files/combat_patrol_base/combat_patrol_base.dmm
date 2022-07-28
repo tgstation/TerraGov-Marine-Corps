@@ -16,7 +16,7 @@
 /turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
 "ag" = (
-/obj/effect/decal/warning_stripes/box/arrow,
+/atom/movable/effect/decal/warning_stripes/box/arrow,
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
 "al" = (
@@ -183,7 +183,7 @@
 /turf/open/floor/carpet,
 /area/mainship/patrol_base/som)
 "dJ" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
@@ -224,12 +224,12 @@
 /area/mainship/patrol_base/som)
 "el" = (
 /obj/structure/table/holotable/wood,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
 /turf/open/floor/wood,
 /area/mainship/patrol_base)
 "eo" = (
@@ -352,7 +352,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
 "hT" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	last_move = s
 	},
 /turf/open/floor/prison/darkred,
@@ -525,7 +525,7 @@
 	},
 /area/mainship/patrol_base/som)
 "lQ" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 8
 	},
 /turf/open/floor/prison/darkred{
@@ -566,7 +566,7 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "nt" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 8;
 	pixel_y = 16
 	},
@@ -657,7 +657,7 @@
 	},
 /area/mainship/patrol_base/som)
 "oK" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -806,7 +806,7 @@
 /turf/open/floor/prison,
 /area/mainship/patrol_base/som)
 "sz" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/prison/darkred{
@@ -819,7 +819,7 @@
 /turf/open/floor/plating,
 /area/mainship/patrol_base/som)
 "sW" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
@@ -856,7 +856,7 @@
 	},
 /area/mainship/patrol_base/som)
 "ua" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4;
 	pixel_y = 16
 	},
@@ -932,7 +932,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "wo" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	pixel_x = 16
 	},
 /turf/open/floor/mainship/floor,
@@ -1385,7 +1385,7 @@
 	},
 /area/mainship/patrol_base/som)
 "HG" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/mainship/blue,
@@ -2012,7 +2012,7 @@
 	},
 /area/mainship/patrol_base)
 "Vy" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/prison/darkred,
@@ -2089,7 +2089,7 @@
 /area/mainship/patrol_base/som)
 "WN" = (
 /obj/structure/table/holotable/wood,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
 "WX" = (
@@ -2106,7 +2106,7 @@
 	},
 /area/mainship/patrol_base/som)
 "Xt" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
@@ -2139,7 +2139,7 @@
 	},
 /area/mainship/patrol_base)
 "XR" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	pixel_x = -16
 	},
 /turf/open/floor/mainship/floor,
@@ -2154,7 +2154,7 @@
 /area/mainship/patrol_base)
 "Yx" = (
 /obj/structure/table/holotable/wood,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/mainship/patrol_base)
 "YD" = (

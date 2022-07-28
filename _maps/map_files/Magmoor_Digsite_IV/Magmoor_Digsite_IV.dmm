@@ -6830,10 +6830,10 @@
 /turf/open/floor/mainship/sterile/purple/side,
 /area/magmoor/research/containment)
 "eUh" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /atom/movable/effect/landmarkpatrol_point{
@@ -9634,7 +9634,7 @@
 	},
 /area/magmoor/cargo/processing/south)
 "gPJ" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /atom/movable/effect/landmarkpatrol_point{
@@ -35913,7 +35913,7 @@
 	},
 /area/magmoor/command/commandroom)
 "ycg" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /atom/movable/effect/landmarkpatrol_point{

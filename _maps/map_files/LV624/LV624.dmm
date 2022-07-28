@@ -20160,7 +20160,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "uUO" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /atom/movable/effect/landmarkpatrol_point{
 	id = "TGMC_13";
 	name = "TGMC exit point 13"

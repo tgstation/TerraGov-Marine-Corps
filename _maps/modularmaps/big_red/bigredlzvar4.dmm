@@ -651,7 +651,7 @@
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/rock)
 "pr" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /atom/movable/effect/landmarkpatrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"

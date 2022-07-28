@@ -913,7 +913,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
 "Ag" = (
-/obj/effect/decal/sandedge{
+/atom/movable/effect/decal/sandedge{
 	dir = 1
 	},
 /atom/movable/effect/landmarkpatrol_point{
@@ -1707,7 +1707,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/caves/southeast)
 "Zn" = (
-/obj/effect/decal/sandedge{
+/atom/movable/effect/decal/sandedge{
 	dir = 4
 	},
 /atom/movable/effect/landmarkpatrol_point{
