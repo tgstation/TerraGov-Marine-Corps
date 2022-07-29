@@ -129,6 +129,83 @@
 		REBEL_SQUAD_LEADER = 1,
 )
 
+//SOM squads
+/datum/squad/zulu
+	name = "Zulu"
+	id = ZULU_SQUAD
+	color = "#FF6A00"
+	access = list(ACCESS_MARINE_ALPHA) //No unique SOM access yet
+	radio_freq = FREQ_ZULU
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/yankee
+	name = "Yankee"
+	id = YANKEE_SQUAD
+	color = "#009999"
+	access = list(ACCESS_MARINE_BRAVO)
+	radio_freq = FREQ_YANKEE
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/xray
+	name = "Xray"
+	id = XRAY_SQUAD
+	color = "#008000"
+	access = list(ACCESS_MARINE_CHARLIE)
+	radio_freq = FREQ_XRAY
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
+
+/datum/squad/whiskey
+	name = "Whiskey"
+	id = WHISKEY_SQUAD
+	color = "#CC00CC"
+	access = list(ACCESS_MARINE_DELTA)
+	radio_freq = FREQ_WHISKEY
+	faction = FACTION_SOM
+	current_positions = list(
+		SOM_SQUAD_MARINE = 0,
+		SOM_SQUAD_VETERAN = 0,
+		SOM_SQUAD_CORPSMAN = 0,
+		SOM_SQUAD_ENGINEER = 0,
+		SOM_SQUAD_LEADER = 0,
+)
+	max_positions = list(
+		SOM_SQUAD_MARINE = -1,
+		SOM_SQUAD_LEADER = 1,
+)
+
 GLOBAL_LIST_EMPTY(glovemarkings)
 GLOBAL_LIST_EMPTY(armormarkings)
 GLOBAL_LIST_EMPTY(armormarkings_sl)
@@ -177,7 +254,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	current_positions[new_squaddie.job.title]++
 
-	if(ismarineleaderjob(new_squaddie.job) && !squad_leader)
+	if((ismarineleaderjob(new_squaddie.job) || issommarineleaderjob(new_squaddie.job)) && !squad_leader)
 		squad_leader = new_squaddie
 		SSdirection.set_leader(tracking_id, new_squaddie)
 		SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, new_squaddie)
@@ -272,7 +349,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, squad_leader)
 
 	//Handle aSL skill level and radio
-	if(!ismarineleaderjob(squad_leader.job))
+	if(!ismarineleaderjob(squad_leader.job) || !issommarineleaderjob(squad_leader.job))
 		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_NOVICE)
 		if(squad_leader.mind)
 			var/datum/job/J = squad_leader.job
@@ -303,7 +380,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	SSdirection.start_tracking(TRACKING_ID_MARINE_COMMANDER, H)
 
 	//Handle aSL skill level and radio
-	if(!ismarineleaderjob(squad_leader.job))
+	if(!ismarineleaderjob(squad_leader.job) || !issommarineleaderjob(squad_leader.job))
 		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_EXPERT)
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()

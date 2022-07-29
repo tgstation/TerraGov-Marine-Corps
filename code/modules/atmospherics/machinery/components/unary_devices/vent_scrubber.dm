@@ -112,9 +112,13 @@
 				update_icon()
 				pipe_vision_img = image(src, loc, layer = ABOVE_HUD_LAYER, dir = dir)
 				pipe_vision_img.plane = ABOVE_HUD_PLANE
+				cut_overlay(GLOB.welding_sparks)
 				return TRUE
+			else
+				cut_overlay(GLOB.welding_sparks)	
 		else
 			to_chat(user, span_warning("[WT] needs to be on to start this task."))
+			cut_overlay(GLOB.welding_sparks)
 	return FALSE
 
 /obj/machinery/atmospherics/components/unary/vent_scrubber/can_unwrench(mob/user)

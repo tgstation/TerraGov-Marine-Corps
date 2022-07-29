@@ -45,6 +45,7 @@ type OrbitList = {
 type OrbitData = {
   humans: OrbitList[],
   marines: OrbitList[],
+  som: OrbitList[],
   survivors: OrbitList[],
   xenos: OrbitList[],
   dead: OrbitList[],
@@ -118,6 +119,7 @@ export const Orbit = (props: any, context: any) => {
   const {
     humans,
     marines,
+    som,
     survivors,
     xenos,
     dead,
@@ -133,6 +135,7 @@ export const Orbit = (props: any, context: any) => {
     for (const source of [
       humans,
       marines,
+      som,
       survivors,
       xenos,
     ]) {
@@ -206,6 +209,18 @@ export const Orbit = (props: any, context: any) => {
 
         <Section title={`Marines - (${marines.length})`}>
           {marines
+            .filter(searchFor(searchText))
+            .sort(compareNumberedText)
+            .map(thing => (
+              <OrbitedButton
+                key={thing.name}
+                color="good"
+                thing={thing} />
+            ))}
+        </Section>
+
+        <Section title={`SOM - (${som.length})`}>
+          {som
             .filter(searchFor(searchText))
             .sort(compareNumberedText)
             .map(thing => (

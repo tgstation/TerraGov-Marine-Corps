@@ -43584,6 +43584,13 @@
 "fJE" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
+"fJR" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_24";
+	name = "TGMC exit point 24"
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/desert_dam/exterior/landing/landing_pad_one_external)
 "fKd" = (
 /obj/structure/cable,
 /turf/closed/wall{
@@ -43868,6 +43875,13 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
+/area/desert_dam/exterior/landing/landing_pad_one_external)
+"fUl" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_22";
+	name = "TGMC exit point 22"
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "fUE" = (
 /obj/effect/decal/cleanable/dirt,
@@ -48426,6 +48440,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/desert_dam/exterior/valley/valley_wilderness)
+"jKi" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_13";
+	name = "SOM exit point 13"
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/edge,
+/area/desert_dam/exterior/landing/landing_pad_three_external)
 "jKo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/prop/vehicle/crane/cranecargo,
@@ -50912,6 +50933,16 @@
 /obj/structure/flora/desert/grass/three,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/bar_valley_dam)
+"lDV" = (
+/obj/structure/desertdam/decals/road{
+	dir = 4
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_12";
+	name = "TGMC exit point 12"
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/desert_dam/exterior/landing/landing_pad_two_external)
 "lEv" = (
 /obj/structure/flora/rock/pile/alt3,
 /turf/open/floor/plating/ground/mars/random/cave{
@@ -52325,6 +52356,13 @@
 	},
 /turf/open/floor/tile/blue/whiteblue,
 /area/desert_dam/building/medical/medsecure)
+"mOz" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_22";
+	name = "SOM exit point 22"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/desert_dam/interior/caves/east_caves)
 "mPc" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/icefloor/warnplate,
@@ -53887,6 +53925,13 @@
 "odn" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/desert_dam/exterior/valley/valley_northwest)
+"odq" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_21";
+	name = "SOM exit point 21"
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/desert_dam/interior/caves/east_caves)
 "odr" = (
 /obj/structure/table/reinforced,
 /obj/item/roller,
@@ -54298,6 +54343,10 @@
 /area/desert_dam/exterior/valley/valley_civilian)
 "oyq" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/patrol_point{
+	id = "SOM_12";
+	name = "SOM exit point 12"
+	},
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -56757,6 +56806,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/desert_dam/building/security/execution_chamber)
+"qtH" = (
+/obj/structure/desertdam/decals/road{
+	dir = 4
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_21";
+	name = "TGMC exit point 21"
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/desert_dam/exterior/landing/landing_pad_one_external)
 "qtP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -57420,6 +57479,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/desert_dam/exterior/valley/valley_labs)
+"qVd" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_14";
+	name = "SOM exit point 14"
+	},
+/turf/open/floor/plating,
+/area/desert_dam/exterior/landing/landing_pad_three)
 "qVj" = (
 /obj/structure/cable,
 /obj/structure/cable,
@@ -57741,6 +57807,10 @@
 "rlG" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 1
+	},
+/obj/effect/landmark/patrol_point{
+	id = "SOM_11";
+	name = "SOM exit point 11"
 	},
 /turf/open/floor/mainship/orange{
 	dir = 8
@@ -60651,6 +60721,10 @@
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 1
 	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_14";
+	name = "TGMC exit point 14"
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 5
 	},
@@ -61290,6 +61364,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/desert_dam/interior/dam_interior/control_room)
+"uly" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_24";
+	name = "SOM exit point 24"
+	},
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/desert_dam/interior/caves/east_caves)
 "ume" = (
 /obj/structure/flora/tree/joshua,
 /obj/effect/landmark/xeno_resin_door,
@@ -62922,6 +63003,16 @@
 	},
 /turf/open/floor/prison/whitegreen/full,
 /area/desert_dam/interior/east_engineering)
+"vHr" = (
+/obj/structure/desertdam/decals/road{
+	dir = 8
+	},
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_11";
+	name = "TGMC exit point 11"
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/desert_dam/exterior/landing/landing_pad_two_external)
 "vIa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -65549,6 +65640,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/ground/river/desertdam/clean/deep_water_clean,
 /area/desert_dam/exterior/river/riverside_east)
+"xPe" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_23";
+	name = "TGMC exit point 23"
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/desert_dam/exterior/landing/landing_pad_one_external)
 "xPA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/desertdam/decals/road{
@@ -65634,6 +65734,15 @@
 	dir = 8
 	},
 /area/desert_dam/interior/caves/central_caves)
+"xUB" = (
+/obj/effect/landmark/patrol_point{
+	id = "TGMC_13";
+	name = "TGMC exit point 13"
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/desert_dam/exterior/landing/landing_pad_two_external)
 "xUJ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -65679,6 +65788,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/grate/alternate,
 /area/desert_dam/exterior/river/riverside_central_north)
+"xWd" = (
+/obj/effect/landmark/patrol_point{
+	id = "SOM_23";
+	name = "SOM exit point 23"
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/desert_dam/interior/caves/east_caves)
 "xWm" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -70023,7 +70139,7 @@ isZ
 cDY
 cDY
 cMD
-iXh
+jKi
 kzc
 tmE
 tmE
@@ -72147,10 +72263,10 @@ acu
 acu
 dTs
 qTr
-gox
+fUl
 gox
 iRO
-gox
+fJR
 gox
 iAq
 pxR
@@ -72360,7 +72476,7 @@ cDY
 wMF
 wMF
 isZ
-cDY
+qVd
 cDY
 fhl
 iXh
@@ -73783,7 +73899,7 @@ acu
 "}
 (34,1,1) = {"
 acu
-beT
+qtH
 hSr
 beT
 beT
@@ -74258,7 +74374,7 @@ dTs
 gox
 gox
 gox
-iAq
+xPe
 iDQ
 iDQ
 djG
@@ -119887,7 +120003,7 @@ dTs
 dTs
 dTs
 xGe
-aaq
+uly
 aiN
 anA
 apJ
@@ -120599,7 +120715,7 @@ bQV
 aRx
 axC
 dTs
-bAw
+mOz
 bGp
 bAw
 bAw
@@ -121046,7 +121162,7 @@ ycz
 ycz
 nxU
 ycz
-ycz
+vHr
 acu
 "}
 (236,1,1) = {"
@@ -121747,7 +121863,7 @@ gXe
 gXe
 gXe
 dBh
-gXe
+lDV
 gXe
 acu
 "}
@@ -121760,7 +121876,7 @@ dTs
 dTs
 xGe
 dTs
-bcH
+odq
 bcH
 bcH
 bcH
@@ -122209,7 +122325,7 @@ oud
 oud
 oud
 oud
-oud
+xUB
 oud
 oud
 dTs
@@ -122708,7 +122824,7 @@ dTs
 dTs
 dTs
 aRx
-aRx
+xWd
 dTs
 dTs
 dTs

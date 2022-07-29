@@ -372,3 +372,33 @@
 	default_ammo = /datum/ammo/tx54/incendiary
 	icon_state = "tx54_airburst"
 	greyscale_colors = "#fa7923"
+
+//-------------------------------------------------------
+//V-31 SOM rifle
+
+/obj/item/ammo_magazine/rifle/som
+	name = "\improper V-31 magazine (10x24mm)"
+	desc = "A 10mm rifle magazine designed for the V-31."
+	caliber = CALIBER_10X24_CASELESS
+	icon_state = "v31"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 50
+	icon_state_mini = "mag_rifle_big"
+
+/obj/item/ammo_magazine/rifle/som/ap
+	name = "\improper V-31 AP magazine (10x24mm)"
+	desc = "A 10mm rifle magazine designed for the V-31, loaded with armor piercing rounds."
+	caliber = CALIBER_10X24_CASELESS
+	icon_state = "v31_ap"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/ap
+	max_rounds = 50
+	icon_state_mini = "mag_rifle_big_green"
+
+/obj/item/ammo_magazine/rifle/som/incendiary
+	name = "\improper V-31 incendiary magazine (10x24mm)"
+	desc = "A 10mm rifle magazine designed for the V-31, loaded with incendiary rounds."
+	icon_state = "v31_incend"
+	default_ammo = /datum/ammo/bullet/rifle/incendiary
+	icon_state_mini = "mag_rifle_big_red"
