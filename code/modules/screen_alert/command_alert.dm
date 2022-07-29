@@ -15,11 +15,11 @@
 /datum/action/innate/message_squad
 	name = "Send Order"
 	action_icon_state = "screen_order_marine"
+	keybind_signal = COMSIG_KB_SENDORDER
 	///What skill is needed to have this action
 	var/skill_name = "leadership"
 	///What minimum level in that skill is needed to have that action
 	var/skill_min = SKILL_LEAD_EXPERT
-	keybind_signal = COMSIG_KB_SENDORDER
 
 /datum/action/innate/message_squad/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
