@@ -6,6 +6,10 @@
 	var/arrow_type
 	///the type of the visual added on the ground. If it has no visual type, the order can have any atom has a target
 	var/visual_type
+	///What skill is needed to have this action
+	var/skill_name = "leadership"
+	///What minimum level in that skill is needed to have that action
+	var/skill_min = SKILL_LEAD_EXPERT
 
 /datum/action/innate/order/give_action(mob/M)
 	. = ..()
@@ -97,6 +101,15 @@
 	arrow_type = /obj/screen/arrow/attack_order_arrow
 	visual_type = /obj/effect/temp_visual/order/attack_order
 
+/datum/action/innate/order/attack_order/should_show()
+	return owner.skills.getRating(skill_name) >= skill_min
+
+/datum/action/innate/order/attack_order/action_activate()
+	var/mob/living/carbon/human/human = owner
+	if(send_order(human, human.assigned_squad, human.faction))
+		var/message = pick(";MARINES, FIGHT! SHOOT! KILL!!", ";BLAST THEM!", ";MAKE THEM EAT LEAD!", ";END THEM!", ";ATTACK HERE!", ";CHARGE!", ";RUN THEM OVER!")
+		owner.say(message)
+
 /datum/action/innate/order/defend_order
 	name = "Send Defend Order"
 	action_icon_state = "defend"
@@ -104,21 +117,35 @@
 	arrow_type = /obj/screen/arrow/defend_order_arrow
 	visual_type = /obj/effect/temp_visual/order/defend_order
 
+/datum/action/innate/order/defend_order/should_show()
+	return owner.skills.getRating(skill_name) >= skill_min
+
+/datum/action/innate/order/defend_order/action_activate()
+	var/mob/living/carbon/human/human = owner
+	if(send_order(human, human.assigned_squad, human.faction))
+		var/message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!", ";TAKE COVER!", ";COVER THE AREA!", ";BRACE FOR COVER!", ";BRACE!", ";INCOMING!", ";DON'T PUSH! STAY HERE!")
+		owner.say(message)
+
 /datum/action/innate/order/retreat_order
 	name = "Send Retreat Order"
 	action_icon_state = "retreat"
 	verb_name = "retreat from"
 	visual_type = /obj/effect/temp_visual/order/retreat_order
 
+/datum/action/innate/order/retreat_order/should_show()
+	return owner.skills.getRating(skill_name) >= skill_min
+
+/datum/action/innate/order/retreat_order/action_activate()
+	var/mob/living/carbon/human/human = owner
+	if(send_order(human, human.assigned_squad, human.faction))
+		var/message = pick(";RETREAT! RETREAT!", ";GET OUT OF HERE!", ";DON'T DIE HERE! RUN!", ";RUN! RUN FOR YOUR LIFE!", ";DISENGAGE! I REPEAT, DISENGAGE!", ";GIVE UP GROUND! GIVE IT UP!")
+		owner.say(message)
+
 /datum/action/innate/order/rally_order
 	name = "Send Rally Order"
 	action_icon_state = "rally"
 	verb_name = "rally to"
 	arrow_type = /obj/screen/arrow/rally_order_arrow
-	///What skill is needed to have this action
-	var/skill_name = "leadership"
-	///What minimum level in that skill is needed to have that action
-	var/skill_min = SKILL_LEAD_EXPERT
 
 /datum/action/innate/order/rally_order/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min
