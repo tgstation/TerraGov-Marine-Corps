@@ -91,3 +91,21 @@
 	full_name = "Activate suit health analyzer"
 	description = ""
 	keybind_signal = COMSIG_KB_SUITANALYZER
+
+/datum/keybinding/human/move_order
+	name = "move_order"
+	full_name = "Issue Move Order"
+	description = "Order marines to move faster"
+	keybind_signal = COMSIG_KB_MOVEORDER
+
+/datum/keybinding/human/hold_order
+	name = "hold_order"
+	full_name = "Issue Hold Order"
+	description = "Order marines to hold ground"
+	keybind_signal = COMSIG_KB_HOLDORDER
+
+/datum/keybinding/human/focus_order
+	name = "focus_order"
+	full_name = "Issue Focus Order"
+	description = "Order marines to aim better"
+	keybind_signal = COMSIG_KB_FOCUSORDER
