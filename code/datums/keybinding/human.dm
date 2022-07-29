@@ -115,3 +115,9 @@
 	full_name = "Send Rally Order"
 	description = "Order marines to rally"
 	keybind_signal = COMSIG_KB_RALLYORDER
+
+/datum/keybinding/human/send_order
+	name = "send_order"
+	full_name = "Send Order"
+	description = "Order marines a certain message"
+	keybind_signal = COMSIG_KB_SENDORDER
