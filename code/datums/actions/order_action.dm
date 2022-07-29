@@ -119,6 +119,7 @@
 	var/skill_name = "leadership"
 	///What minimum level in that skill is needed to have that action
 	var/skill_min = SKILL_LEAD_EXPERT
+	keybind_signal = COMSIG_KB_RALLYORDER
 
 /datum/action/innate/order/rally_order/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min

@@ -109,3 +109,9 @@
 	full_name = "Issue Focus Order"
 	description = "Order marines to aim better"
 	keybind_signal = COMSIG_KB_FOCUSORDER
+
+/datum/keybinding/human/rally_order
+	name = "rally_order"
+	full_name = "Send Rally Order"
+	description = "Order marines to rally"
+	keybind_signal = COMSIG_KB_RALLYORDER
