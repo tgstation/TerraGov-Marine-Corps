@@ -3,7 +3,7 @@
 /turf/open/space/basic,
 /area/space)
 "g" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_13";
 	name = "TGMC exit point 13"
 	},
@@ -32,7 +32,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "v" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_14";
 	name = "TGMC exit point 14"
 	},
@@ -61,7 +61,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "H" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_12";
 	name = "TGMC exit point 12"
 	},
@@ -72,7 +72,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "M" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_11";
 	name = "TGMC exit point 11"
 	},

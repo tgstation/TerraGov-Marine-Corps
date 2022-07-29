@@ -679,7 +679,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "rk" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},
@@ -1390,7 +1390,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "JV" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
 	},
@@ -1572,7 +1572,7 @@
 /area/bigredv2/outside/n)
 "Ou" = (
 /obj/structure/cable,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},
@@ -1992,7 +1992,7 @@
 /obj/machinery/light/built{
 	dir = 1
 	},
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_22";
 	name = "TGMC exit point 22"
 	},

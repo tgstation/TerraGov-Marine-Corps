@@ -429,7 +429,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "kV" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_22";
 	name = "TGMC exit point 22"
 	},
@@ -1058,7 +1058,7 @@
 	},
 /area/bigredv2/outside/marshal_office)
 "Bt" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},
@@ -1650,7 +1650,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "QX" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
 	},
@@ -1705,7 +1705,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/marshal_office)
 "RX" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},

@@ -76,7 +76,7 @@
 /area/bigredv2/outside/marshal_office)
 "br" = (
 /obj/structure/cable,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_22";
 	name = "TGMC exit point 22"
 	},
@@ -652,7 +652,7 @@
 /area/bigredv2/caves/rock)
 "pr" = (
 /atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},
@@ -1516,7 +1516,7 @@
 /area/bigredv2/outside/space_port)
 "LN" = (
 /obj/structure/cable,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},
@@ -2006,7 +2006,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "ZY" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
 	},

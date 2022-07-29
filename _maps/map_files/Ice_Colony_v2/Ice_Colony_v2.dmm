@@ -25001,7 +25001,7 @@
 "diw" = (
 /atom/movable/effect/turf_underlay/icefloor,
 /atom/movable/effect/turf_underlay/icefloor,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_23";
 	name = "SOM exit point 23"
 	},
@@ -25892,7 +25892,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "ffU" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_11";
 	name = "SOM exit point 11"
 	},
@@ -25929,7 +25929,7 @@
 	},
 /area/ice_colony/underground/maintenance/east)
 "fkg" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_12";
 	name = "SOM exit point 12"
 	},
@@ -26393,7 +26393,7 @@
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/valley/north)
 "grl" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_14";
 	name = "TGMC exit point 14"
 	},
@@ -26937,7 +26937,7 @@
 "hyV" = (
 /atom/movable/effect/turf_underlay/icefloor,
 /atom/movable/effect/turf_underlay/icefloor,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
 	},
@@ -28740,7 +28740,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/research/field_gear)
 "liR" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_21";
 	name = "SOM exit point 21"
 	},
@@ -28938,7 +28938,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/maintenance/central/construction)
 "lCm" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},
@@ -29505,7 +29505,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "mBK" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_12";
 	name = "TGMC exit point 12"
 	},
@@ -31330,7 +31330,7 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "qms" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},
@@ -32005,7 +32005,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "rzp" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_13";
 	name = "TGMC exit point 13"
 	},
@@ -33509,7 +33509,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "uyG" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_11";
 	name = "TGMC exit point 11"
 	},
@@ -33850,7 +33850,7 @@
 /turf/closed/ice/thin/corner,
 /area/ice_colony/exterior/surface/valley/southwest)
 "vdh" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_13";
 	name = "SOM exit point 13"
 	},
@@ -34046,7 +34046,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "vuk" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_14";
 	name = "SOM exit point 14"
 	},
@@ -34697,7 +34697,7 @@
 "wLj" = (
 /atom/movable/effect/turf_underlay/icefloor,
 /atom/movable/effect/turf_underlay/icefloor,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_24";
 	name = "SOM exit point 24"
 	},
@@ -34717,7 +34717,7 @@
 /turf/open/floor/tile/dark/purple2,
 /area/ice_colony/surface/research)
 "wPB" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_22";
 	name = "TGMC exit point 22"
 	},
@@ -35125,7 +35125,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "xGL" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_22";
 	name = "SOM exit point 22"
 	},

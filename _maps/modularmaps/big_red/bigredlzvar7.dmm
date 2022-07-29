@@ -148,7 +148,7 @@
 /area/bigredv2/outside/marshal_office)
 "du" = (
 /obj/structure/cable,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_22";
 	name = "TGMC exit point 22"
 	},
@@ -1494,7 +1494,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "Hl" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
 	},
@@ -1961,7 +1961,7 @@
 /area/bigredv2/outside/marshal_office)
 "TL" = (
 /obj/structure/cable,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},
@@ -1996,7 +1996,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/telecomm)
 "Va" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},

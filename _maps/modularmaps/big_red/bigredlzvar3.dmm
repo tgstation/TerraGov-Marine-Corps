@@ -1313,7 +1313,7 @@
 /area/bigredv2/outside/space_port)
 "Gi" = (
 /atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
 	},
@@ -1470,7 +1470,7 @@
 /area/bigredv2/outside/marshal_office)
 "Kc" = (
 /obj/structure/cable,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},
@@ -1520,7 +1520,7 @@
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/outside/telecomm)
 "Mk" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},
@@ -1946,7 +1946,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_22";
 	name = "TGMC exit point 22"
 	},

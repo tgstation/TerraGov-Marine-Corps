@@ -200,7 +200,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/marshal_office)
 "fu" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_22";
 	name = "TGMC exit point 22"
 	},
@@ -1217,7 +1217,7 @@
 /area/bigredv2/outside/space_port)
 "EQ" = (
 /atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
 	},
@@ -1569,7 +1569,7 @@
 "Nk" = (
 /obj/structure/cable,
 /atom/movable/effect/decal/cleanable/dirt,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},
@@ -1681,7 +1681,7 @@
 /area/bigredv2/outside/space_port)
 "Qq" = (
 /obj/structure/prop/mainship/hangar_stencil,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},

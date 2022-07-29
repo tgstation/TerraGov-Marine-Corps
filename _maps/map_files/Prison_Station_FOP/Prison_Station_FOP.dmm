@@ -581,7 +581,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
 "adA" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_21";
 	name = "SOM exit point 21"
 	},
@@ -11572,7 +11572,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_22";
 	name = "TGMC exit point 22"
 	},
@@ -35227,7 +35227,7 @@
 "cgp" = (
 /obj/structure/bed,
 /obj/machinery/alarm,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_12";
 	name = "SOM exit point 12"
 	},
@@ -39786,7 +39786,7 @@
 	dir = 8
 	},
 /obj/machinery/light/small,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_13";
 	name = "SOM exit point 13"
 	},
@@ -41296,7 +41296,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/nw)
 "dGP" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},
@@ -42425,7 +42425,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/ne)
 "gVt" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
 	},
@@ -43688,7 +43688,7 @@
 /turf/open/floor/prison/cleanmarked,
 /area/prison/yard)
 "ksL" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_22";
 	name = "SOM exit point 22"
 	},
@@ -45631,7 +45631,7 @@
 /turf/open/floor/plating,
 /area/prison/residential/central)
 "pWy" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_24";
 	name = "SOM exit point 24"
 	},
@@ -45767,7 +45767,7 @@
 	dir = 4
 	},
 /atom/movable/effect/decal/warning_stripes/thin,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_12";
 	name = "TGMC exit point 12"
 	},
@@ -45896,7 +45896,7 @@
 /turf/open/floor/carpet,
 /area/prison/chapel)
 "qBT" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_23";
 	name = "SOM exit point 23"
 	},
@@ -46476,7 +46476,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "rXp" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_11";
 	name = "TGMC exit point 11"
 	},
@@ -46576,7 +46576,7 @@
 	},
 /area/prison/cellblock/highsec/south/north)
 "slO" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},
@@ -46876,7 +46876,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 8
 	},
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_14";
 	name = "TGMC exit point 14"
 	},
@@ -48331,7 +48331,7 @@
 	},
 /area/prison/cellblock/highsec/north/north)
 "wUH" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_13";
 	name = "TGMC exit point 13"
 	},
@@ -48470,7 +48470,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/central)
 "xsd" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_14";
 	name = "SOM exit point 14"
 	},
@@ -48601,7 +48601,7 @@
 /turf/open/space/sea,
 /area/prison/command/quarters)
 "xOa" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_11";
 	name = "SOM exit point 11"
 	},

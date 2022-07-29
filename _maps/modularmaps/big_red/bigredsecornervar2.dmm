@@ -491,7 +491,7 @@
 /turf/closed/wall/indestructible/mineral,
 /area/space)
 "nh" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_14";
 	name = "TGMC exit point 14"
 	},
@@ -916,7 +916,7 @@
 /atom/movable/effect/decal/sandedge{
 	dir = 1
 	},
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_11";
 	name = "TGMC exit point 11"
 	},
@@ -1398,7 +1398,7 @@
 /area/bigredv2/caves/southeast)
 "NG" = (
 /atom/movable/effect/landmarkweed_node,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_12";
 	name = "TGMC exit point 12"
 	},
@@ -1710,7 +1710,7 @@
 /atom/movable/effect/decal/sandedge{
 	dir = 4
 	},
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_13";
 	name = "TGMC exit point 13"
 	},

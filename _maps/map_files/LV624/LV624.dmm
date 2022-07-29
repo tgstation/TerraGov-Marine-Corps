@@ -760,7 +760,7 @@
 "apo" = (
 /obj/structure/jungle/vines,
 /atom/movable/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_12";
 	name = "SOM exit point 12"
 	},
@@ -5086,7 +5086,7 @@
 	},
 /area/lv624/ground/jungle8)
 "chR" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_22";
 	name = "TGMC exit point 22"
 	},
@@ -9927,7 +9927,7 @@
 	},
 /area/lv624/lazarus/corporate_affairs)
 "ilC" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_14";
 	name = "TGMC exit point 14"
 	},
@@ -10032,7 +10032,7 @@
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
 "iwg" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},
@@ -10429,7 +10429,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "iXk" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
 	},
@@ -10872,7 +10872,7 @@
 	},
 /area/lv624/ground/jungle3)
 "jwJ" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_13";
 	name = "SOM exit point 13"
 	},
@@ -11783,7 +11783,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "kyZ" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_11";
 	name = "TGMC exit point 11"
 	},
@@ -12751,7 +12751,7 @@
 	},
 /area/lv624/lazarus/quartstorage)
 "lLz" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_22";
 	name = "SOM exit point 22"
 	},
@@ -15030,7 +15030,7 @@
 /area/lv624/lazarus/bar)
 "ozw" = (
 /obj/structure/jungle/vines,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_11";
 	name = "SOM exit point 11"
 	},
@@ -15725,7 +15725,7 @@
 	},
 /area/lv624/ground/jungle4)
 "pyP" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_12";
 	name = "TGMC exit point 12"
 	},
@@ -20161,7 +20161,7 @@
 /area/lv624/lazarus/quart)
 "uUO" = (
 /atom/movable/effect/ai_node,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_13";
 	name = "TGMC exit point 13"
 	},
@@ -20691,7 +20691,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "vGy" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_23";
 	name = "SOM exit point 23"
 	},
@@ -21577,7 +21577,7 @@
 /turf/open/floor,
 /area/lv624/lazarus/spaceport2)
 "wEs" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},
@@ -21916,7 +21916,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "wVq" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_21";
 	name = "SOM exit point 21"
 	},
@@ -22448,7 +22448,7 @@
 /area/lv624/lazarus/toilet)
 "xye" = (
 /obj/structure/jungle/vines,
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_14";
 	name = "SOM exit point 14"
 	},
@@ -22984,7 +22984,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
 "yau" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_24";
 	name = "SOM exit point 24"
 	},

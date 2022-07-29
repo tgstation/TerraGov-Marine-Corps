@@ -282,7 +282,7 @@
 	},
 /area/outpost/yard/east)
 "bo" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_22";
 	name = "TGMC exit point 22"
 	},
@@ -679,7 +679,7 @@
 	},
 /area/outpost/yard/east)
 "dv" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_13";
 	name = "SOM exit point 13"
 	},
@@ -1341,7 +1341,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
 "gs" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_11";
 	name = "SOM exit point 11"
 	},
@@ -2611,7 +2611,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "lB" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_21";
 	name = "SOM exit point 21"
 	},
@@ -4361,7 +4361,7 @@
 	},
 /area/outpost/cargo)
 "tG" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_11";
 	name = "TGMC exit point 11"
 	},
@@ -4476,7 +4476,7 @@
 	},
 /area/outpost/brig)
 "ui" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_23";
 	name = "SOM exit point 23"
 	},
@@ -5446,7 +5446,7 @@
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "zc" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_21";
 	name = "TGMC exit point 21"
 	},
@@ -6138,7 +6138,7 @@
 	},
 /area/outpost/lz1)
 "Cj" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_14";
 	name = "TGMC exit point 14"
 	},
@@ -7145,7 +7145,7 @@
 	},
 /area/outpost/yard/east)
 "GZ" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_13";
 	name = "TGMC exit point 13"
 	},
@@ -7375,7 +7375,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals/securitylz1)
 "Ij" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_24";
 	name = "SOM exit point 24"
 	},
@@ -7514,7 +7514,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/lz1)
 "IQ" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_12";
 	name = "TGMC exit point 12"
 	},
@@ -7686,7 +7686,7 @@
 	},
 /area/outpost/science)
 "JD" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_24";
 	name = "TGMC exit point 24"
 	},
@@ -9866,7 +9866,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
 "Tf" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "TGMC_23";
 	name = "TGMC exit point 23"
 	},
@@ -10205,7 +10205,7 @@
 	},
 /area/outpost/yard/central)
 "UD" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_12";
 	name = "SOM exit point 12"
 	},
@@ -10276,7 +10276,7 @@
 	},
 /area/outpost/hallway/central)
 "UX" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_22";
 	name = "SOM exit point 22"
 	},
@@ -11008,7 +11008,7 @@
 	},
 /area/outpost/medbay/chemistry)
 "Yu" = (
-/atom/movable/effect/landmarkpatrol_point{
+/atom/movable/effect/landmark/patrol_point{
 	id = "SOM_14";
 	name = "SOM exit point 14"
 	},
