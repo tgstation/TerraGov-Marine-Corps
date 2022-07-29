@@ -86,6 +86,11 @@
 	item_state = "som"
 	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
 
+/obj/item/clothing/gloves/marine/som/insulated
+	name = "\improper Insulated SoM gloves"
+	desc = "Gloves with origins dating back to the old mining colonies. These ones appear to have an electrically insulating layer built into them."
+	siemens_coefficient = 0
+
 /obj/item/clothing/gloves/marine/som/veteran
 	name = "\improper SoM veteran gloves"
 	desc = "Gloves with origins dating back to the old mining colonies. These ones seem tougher than normal."
