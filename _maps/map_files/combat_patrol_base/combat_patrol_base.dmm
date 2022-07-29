@@ -1632,11 +1632,6 @@
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"xh" = (
-/turf/open/floor/mainship/blue{
-	dir = 5
-	},
-/area/mainship/patrol_base)
 "xk" = (
 /obj/structure/prop/mainship/prop_tech{
 	dir = 4
@@ -1997,11 +1992,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
-"Dg" = (
-/turf/open/floor/mainship/blue{
-	dir = 6
-	},
-/area/mainship/patrol_base)
 "Dl" = (
 /turf/open/floor/mainship/black{
 	dir = 10
@@ -2014,7 +2004,9 @@
 /area/mainship/patrol_base/som)
 "DQ" = (
 /obj/structure/somcas/wingtip/wing5,
-/turf/open/floor/plating/ground/concrete,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 4
+	},
 /area/mainship/patrol_base/som)
 "Ea" = (
 /obj/machinery/door/poddoor/mainship/indestructible{
@@ -2680,7 +2672,7 @@
 "NB" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/concrete/lines{
-	dir = 4
+	dir = 6
 	},
 /area/mainship/patrol_base/som)
 "NF" = (
@@ -2887,6 +2879,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "PQ" = (
+/obj/structure/prop/mainship/doorblocker/patrol_base,
 /turf/open/floor/mainship/blue/full,
 /area/mainship/patrol_base)
 "PX" = (
@@ -3049,11 +3042,6 @@
 	dir = 9
 	},
 /area/mainship/patrol_base/som)
-"RV" = (
-/turf/open/floor/mainship/blue{
-	dir = 10
-	},
-/area/mainship/patrol_base)
 "RW" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -3294,10 +3282,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
 "UC" = (
-/turf/open/floor/mainship/blue{
-	dir = 9
-	},
-/area/mainship/patrol_base)
+/turf/open/floor/plating/ground/concrete/edge,
+/area/mainship/patrol_base/som)
 "UD" = (
 /turf/open/floor/mainship/silver{
 	dir = 9
@@ -4540,7 +4526,7 @@ Sw
 Sw
 Sw
 Sw
-Sw
+If
 If
 Nd
 hq
@@ -4763,7 +4749,7 @@ Mv
 aH
 Fk
 Fk
-IH
+If
 IH
 "}
 (19,1,1) = {"
@@ -4825,8 +4811,8 @@ fy
 ZC
 Fk
 Fk
+If
 IH
-Sw
 "}
 (20,1,1) = {"
 Sw
@@ -4887,8 +4873,8 @@ If
 dt
 Fk
 Fk
+If
 IH
-Sw
 "}
 (21,1,1) = {"
 Sw
@@ -4949,8 +4935,8 @@ jf
 HE
 Fk
 Fk
+If
 IH
-Sw
 "}
 (22,1,1) = {"
 Sw
@@ -5011,8 +4997,8 @@ Fk
 Fk
 mU
 Fk
+Ea
 IH
-Sw
 "}
 (23,1,1) = {"
 Sw
@@ -5073,8 +5059,8 @@ Fk
 Fk
 Fk
 Fk
+Ea
 IH
-Sw
 "}
 (24,1,1) = {"
 Sw
@@ -5135,8 +5121,8 @@ Fk
 Fk
 Fk
 Fk
+Ea
 IH
-Sw
 "}
 (25,1,1) = {"
 Sw
@@ -5196,9 +5182,9 @@ Df
 Fk
 Df
 Fk
+Fk
 If
 IH
-Sw
 "}
 (26,1,1) = {"
 Sw
@@ -5259,7 +5245,7 @@ If
 If
 If
 If
-Sw
+If
 Sw
 "}
 (27,1,1) = {"
@@ -5561,9 +5547,9 @@ ni
 dX
 Fk
 Fk
-Fk
-Fk
-Fk
+UC
+SD
+SD
 DQ
 IH
 Sw
@@ -5623,7 +5609,7 @@ wB
 Fk
 Fk
 Fk
-Fk
+fz
 Fk
 Fk
 Fk
@@ -5686,9 +5672,9 @@ SD
 SD
 SD
 NB
-SD
-SD
-SD
+Fk
+Fk
+Fk
 IH
 Sw
 Sw
@@ -9111,9 +9097,9 @@ Sw
 Sw
 Sw
 Fw
-UC
-tq
-RV
+kA
+kA
+kA
 Fw
 up
 Cd
@@ -9173,9 +9159,9 @@ Sw
 Sw
 Sw
 Fw
-On
 kA
-Qr
+kA
+kA
 PQ
 On
 kA
@@ -9235,7 +9221,7 @@ Sw
 Sw
 Sw
 Fw
-On
+kA
 kA
 kA
 Fw
@@ -9297,7 +9283,7 @@ Sw
 Sw
 Sw
 Fw
-On
+kA
 kA
 kA
 Fw
@@ -9359,7 +9345,7 @@ Sw
 Sw
 Sw
 Fw
-On
+kA
 kA
 kA
 Fw
@@ -9421,9 +9407,9 @@ Sw
 Sw
 Sw
 Fw
-On
 kA
-Qr
+kA
+kA
 PQ
 On
 kA
@@ -9483,9 +9469,9 @@ Sw
 Sw
 Sw
 Fw
-xh
-rH
-Dg
+kA
+kA
+kA
 Fw
 Jc
 Ek
