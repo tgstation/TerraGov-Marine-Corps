@@ -941,9 +941,6 @@
 /obj/item/clothing/head/modular/som/standard
 	starting_attachments = list(/obj/item/armor_module/storage/helmet/som)
 
-/obj/item/clothing/head/modular/som/standard/wornoutsom
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
-
 /obj/item/clothing/head/modular/som/veteran
 	name = "\improper SOM veteran helmet"
 	desc = "The standard combat helmet worn by SOM combat specialists. State of the art materials provides more protection for more valuable brains."
