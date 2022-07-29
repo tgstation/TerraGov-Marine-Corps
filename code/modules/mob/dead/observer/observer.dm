@@ -40,6 +40,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/inquisitive_ghost = FALSE
 	///A weakref to the original corpse of the observer
 	var/datum/weakref/can_reenter_corpse
+	///Internal health scanner that ghosts can use via the "Toggle Health Scanner" verb in the ghost tab.
 	var/obj/item/healthanalyzer/ghost/healthscanner
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
 							//If you died in the game and are a ghsot - this will remain as null.

@@ -104,10 +104,10 @@ REAGENT SCANNER
 		return
 	START_PROCESSING(SSobj, src)
 
-/obj/item/healthanalyzer/proc/scan_target(mob/living/carbon/Target)
-	if(!iscarbon(Target) || isxeno(Target))
+/obj/item/healthanalyzer/proc/scan_target(mob/living/carbon/target)
+	if(!target || !iscarbon(target) || isxeno(target))
 		return
-	patient = Target
+	patient = target
 	ui_interact(current_user)
 	update_static_data(current_user)
 

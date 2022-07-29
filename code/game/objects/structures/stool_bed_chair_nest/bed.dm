@@ -654,10 +654,8 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(linked_bed_deployed && istype(linked_bed_deployed, /obj/structure/bed/medevac_stretcher)) //TODO: Redo medevac links
 		user.forceMove(get_turf(linked_bed_deployed))
 		return
-	else if(linked_bed && istype(linked_bed_deployed, /obj/item/roller/medevac))
+	if(linked_bed && istype(linked_bed_deployed, /obj/item/roller/medevac))
 		user.forceMove(get_turf(linked_bed))
-		return
-
 
 /obj/item/medevac_beacon/attackby(obj/item/I, mob/user, params) //Corpsmen can lock their beacons.
 	. = ..()
