@@ -929,7 +929,7 @@ MEDICAL
 	notes = "Contains 2 bottles of lemoline with 10 units each."
 	contains = list(
 		/obj/item/reagent_containers/glass/bottle/lemoline,
-		/obj/item/reagent_containers/glass/bottle/lemoline
+		/obj/item/reagent_containers/glass/bottle/lemoline,
 		)
 	cost = 5
 
