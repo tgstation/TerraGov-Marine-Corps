@@ -93,6 +93,9 @@
 	item_state = "som_veteran"
 	soft_armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 
+/obj/item/clothing/gloves/marine/som/wornoutsom
+	soft_armor = list("melee" = 25, "bullet" = 15, "laser" = 10, "energy" = 15, "bomb" = 15, "bio" = 5, "rad" = 5, "fire" = 15, "acid" = 15)
+
 /obj/item/clothing/gloves/marine/commissar
 	name = "\improper commissar gloves"
 	desc = "Gloves worn by commissars of the Imperial Army so that they do not soil their hands with the blood of their men."

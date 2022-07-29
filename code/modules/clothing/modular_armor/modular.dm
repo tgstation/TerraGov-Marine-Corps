@@ -902,6 +902,9 @@
 		/obj/item/armor_module/storage/medical/basic,
 	)
 
+/obj/item/clothing/suit/modular/som/wornoutsom
+	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 65, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 55)
+
 //helmet
 
 /obj/item/clothing/head/modular/som
@@ -972,3 +975,6 @@
 
 /obj/item/clothing/head/modular/som/veteran/vet
 	starting_attachments = list(/obj/item/armor_module/storage/helmet/som_vet)
+
+/obj/item/clothing/head/modular/som/standard/wornoutsom
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
