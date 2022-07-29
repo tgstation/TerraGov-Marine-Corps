@@ -930,7 +930,7 @@ MEDICAL
 	contains = list(
 		/obj/item/reagent_containers/glass/bottle/lemoline,
 		/obj/item/reagent_containers/glass/bottle/lemoline,
-		)
+	)
 	cost = 5
 
 /datum/supply_packs/medical/advancedKits
