@@ -61,7 +61,7 @@
 	name = "rope"
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "rope"
-	layer = ABOVE_LYING_MOB_LAYER
+	layer = ABOVE_MOB_LAYER
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

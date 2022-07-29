@@ -916,6 +916,7 @@
 #include "code\game\objects\structures\safe.dm"
 #include "code\game\objects\structures\sensor_tower.dm"
 #include "code\game\objects\structures\signs.dm"
+#include "code\game\objects\structures\som_cas_parts.dm"
 #include "code\game\objects\structures\supplypod.dm"
 #include "code\game\objects\structures\supports.dm"
 #include "code\game\objects\structures\tables_racks.dm"
