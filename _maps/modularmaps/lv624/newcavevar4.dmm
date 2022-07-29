@@ -2,7 +2,7 @@
 "aK" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "aP" = (
 /obj/structure/rack,
@@ -17,7 +17,7 @@
 /area/lv624/ground/caves/central2)
 "dP" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "ge" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -63,10 +63,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "pF" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "pL" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "sr" = (
 /turf/open/floor/plating/ground/dirt,
@@ -152,7 +152,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "Hk" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "JT" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -201,7 +201,7 @@
 /turf/open/floor,
 /area/lv624/ground/caves/central1)
 "VV" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central2)
 "WQ" = (
 /turf/closed/wall/r_wall,

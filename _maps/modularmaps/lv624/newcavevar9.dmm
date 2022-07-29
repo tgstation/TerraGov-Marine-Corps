@@ -57,7 +57,7 @@
 	},
 /area/lv624/ground/caves/central2)
 "fl" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "fs" = (
 /turf/open/floor/plating/ground/dirt,
@@ -286,7 +286,7 @@
 "Aq" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "AW" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -303,7 +303,7 @@
 /area/lv624/ground/caves/central1)
 "Bm" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Bo" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -445,7 +445,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Tr" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "TA" = (
 /obj/structure/rack,
@@ -526,7 +526,7 @@
 /turf/open/floor/wood,
 /area/lv624/ground/caves/central2)
 "Yu" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "Yz" = (
 /obj/structure/rack,

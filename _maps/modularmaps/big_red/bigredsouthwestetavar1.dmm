@@ -48,7 +48,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "gc" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "gg" = (
 /obj/effect/landmark/weed_node,
@@ -207,7 +207,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "qZ" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "rl" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -224,7 +224,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "uU" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "uY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -432,7 +432,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "QK" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Rk" = (
 /obj/effect/landmark/lv624/fog_blocker,

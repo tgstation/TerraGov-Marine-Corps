@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "b" = (
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -18,7 +18,7 @@
 /area/bigredv2/caves/southeast)
 "f" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "h" = (
 /obj/machinery/miner/damaged/platinum,
@@ -30,7 +30,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "o" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "q" = (
 /obj/effect/landmark/start/job/xenomorph,
@@ -102,7 +102,7 @@
 /area/bigredv2/caves/southeast)
 "Q" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "S" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,

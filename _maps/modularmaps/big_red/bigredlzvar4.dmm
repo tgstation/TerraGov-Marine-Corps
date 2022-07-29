@@ -271,7 +271,7 @@
 "gp" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "gq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -648,7 +648,7 @@
 "pp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "pr" = (
 /obj/effect/decal/cleanable/dirt,
@@ -841,7 +841,7 @@
 /area/bigredv2/outside/space_port)
 "tr" = (
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "tt" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
@@ -924,7 +924,7 @@
 /area/bigredv2/outside/nw)
 "vv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "vQ" = (
 /obj/structure/table/reinforced,
@@ -1255,7 +1255,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "EB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1665,7 +1665,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "PS" = (
 /obj/structure/table,
@@ -1790,7 +1790,7 @@
 /area/bigredv2/outside/marshal_office)
 "SS" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Ta" = (
 /obj/machinery/light{
@@ -1860,7 +1860,7 @@
 /area/bigredv2/caves/north)
 "Vb" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Vg" = (
 /obj/machinery/light{
@@ -1991,7 +1991,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/space_port)
 "Zs" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "ZA" = (
 /obj/structure/closet/secure_closet/injection,

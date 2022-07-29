@@ -3,7 +3,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "aL" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "bo" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -73,7 +73,7 @@
 /area/lv624/ground/caves/central1)
 "kP" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "kS" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -133,7 +133,7 @@
 "rj" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "sm" = (
 /obj/structure/rack,
@@ -211,7 +211,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/central1)
 "Ff" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "Gr" = (
 /obj/structure/rack,
@@ -242,7 +242,7 @@
 	},
 /area/lv624/ground/caves/central2)
 "Kx" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "MQ" = (
 /turf/open/ground/coast{

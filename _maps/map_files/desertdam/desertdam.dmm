@@ -575,7 +575,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_labs)
 "ada" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/interior/dam_interior/hanger)
 "ade" = (
 /obj/machinery/floodlight/colony,
@@ -1129,7 +1129,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/desert_dam/exterior/valley/valley_labs)
 "agd" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/interior/dam_interior/south_tunnel)
 "agf" = (
 /obj/structure/bed/chair/office/dark{
@@ -7352,7 +7352,7 @@
 	},
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
 "aHh" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/interior/dam_interior/south_tunnel_entrance)
 "aHi" = (
 /obj/machinery/light,
@@ -7673,7 +7673,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "aJc" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/interior/caves/central_caves)
 "aJd" = (
 /turf/closed/wall/r_wall/chigusa,
@@ -9858,7 +9858,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/valley/valley_civilian)
 "aUY" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -33818,7 +33818,7 @@
 	desc = "pipe going under solid rock was a cm thing, I had nothing to do with it";
 	dir = 4
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "ddJ" = (
 /obj/machinery/conveyor{
@@ -39820,7 +39820,7 @@
 	},
 /area/desert_dam/building/medical/virology_wing)
 "dTs" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "dTA" = (
 /obj/structure/sink{
@@ -39843,7 +39843,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/desert_dam/exterior/river/riverside_south)
 "dTI" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/building/hydroponics/hydroponics_breakroom)
 "dTK" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -43096,7 +43096,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "fpZ" = (
 /obj/structure/table,
@@ -44444,7 +44444,7 @@
 "guw" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "guK" = (
 /obj/effect/landmark/weed_node,
@@ -46033,7 +46033,7 @@
 /area/desert_dam/exterior/valley/north_valley_dam)
 "hJi" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "hJT" = (
 /obj/structure/cable,
@@ -47332,7 +47332,7 @@
 /turf/open/floor/prison,
 /area/desert_dam/building/security/execution_chamber)
 "iRO" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
 "iRQ" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -48135,7 +48135,7 @@
 /area/desert_dam/interior/dam_interior/break_room)
 "jyo" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/desert_dam/exterior/rock)
 "jyw" = (
 /obj/effect/decal/cleanable/dirt,
@@ -51082,7 +51082,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "lKr" = (
 /obj/structure/disposalpipe/segment{
@@ -52240,7 +52240,7 @@
 /turf/open/floor/prison/kitchen,
 /area/desert_dam/building/cafeteria/cafeteria)
 "mKs" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/valley/valley_telecoms)
 "mKF" = (
 /obj/effect/landmark/weed_node,
@@ -57004,7 +57004,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_crashsite)
 "qAI" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/landing/landing_pad_two_external)
 "qAW" = (
 /obj/structure/flora/desert/grass/eleven,
@@ -57422,7 +57422,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "qTs" = (
 /obj/structure/flora/desert/grass/nine,
@@ -58476,7 +58476,7 @@
 /area/desert_dam/interior/caves/central_caves)
 "rOW" = (
 /obj/structure/cable,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "rPb" = (
 /obj/structure/platform{
@@ -59441,7 +59441,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "sAA" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -59821,7 +59821,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_cargo)
 "sVq" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/desert_dam/exterior/rock)
 "sVz" = (
 /obj/effect/landmark/weed_node,
@@ -61162,7 +61162,7 @@
 /area/desert_dam/interior/dam_interior/central_tunnel)
 "ubV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "ucf" = (
 /obj/effect/ai_node,
@@ -65376,7 +65376,7 @@
 /area/desert_dam/building/cafeteria/cafeteria)
 "xGe" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/desert_dam/exterior/rock)
 "xGk" = (
 /obj/machinery/door/poddoor/mainship/open{

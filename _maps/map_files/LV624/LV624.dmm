@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aab" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/space)
 "aad" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -2654,7 +2654,7 @@
 /area/lv624/ground/sand1)
 "aQx" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "aQC" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -3207,7 +3207,7 @@
 /area/lv624/ground/compound)
 "baA" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "baH" = (
 /obj/effect/ai_node,
@@ -7053,7 +7053,6 @@
 /turf/open/ground/grass,
 /area/lv624/lazarus/sleep_female)
 "eMS" = (
-/obj/docking_port/stationary/crashmode,
 /obj/structure/catwalk,
 /turf/open/ground/coast/corner,
 /area/lv624/ground/river1)
@@ -7124,7 +7123,7 @@
 /area/lv624/lazarus/kitchen)
 "eRk" = (
 /obj/effect/landmark/xeno_resin_wall,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central4)
 "eRy" = (
 /obj/structure/jungle/vines,
@@ -11288,7 +11287,7 @@
 /area/lv624/lazarus/security)
 "jWv" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "jWw" = (
 /obj/item/stack/sheet/wood{
@@ -11436,6 +11435,14 @@
 /obj/structure/jungle/vines,
 /turf/open/floor/plating,
 /area/lv624/lazarus/sleep_male)
+"kfz" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle10)
 "kfC" = (
 /obj/structure/jungle/planttop1,
 /turf/open/ground/grass,
@@ -12553,7 +12560,7 @@
 	},
 /area/lv624/ground/jungle10)
 "lyj" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "lyB" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -13261,6 +13268,7 @@
 /area/lv624/lazarus/bar)
 "mng" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "mny" = (
@@ -13630,7 +13638,7 @@
 /area/lv624/lazarus/secure_storage)
 "mIM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "mJw" = (
 /obj/structure/barricade/wooden,
@@ -18281,6 +18289,10 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor,
 /area/lv624/ground/river2)
+"sMQ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/wall,
+/area/lv624/lazarus/hydroponics)
 "sNh" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -22517,7 +22529,7 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "xBU" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/storage/testroom)
 "xBZ" = (
 /obj/effect/ai_node,
@@ -22658,7 +22670,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle10)
 "xLJ" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "xLK" = (
 /turf/open/floor/plating/ground/dirt,
@@ -28164,7 +28176,7 @@ xLz
 xLz
 xLz
 xLz
-nSW
+kfz
 xLz
 xvY
 wnj
@@ -41224,7 +41236,7 @@ xmz
 avd
 avd
 mOs
-mOs
+kUz
 mOs
 mOs
 mOs
@@ -48470,7 +48482,7 @@ eUv
 rcz
 rcz
 brD
-eUY
+sMQ
 biS
 bqx
 bqx

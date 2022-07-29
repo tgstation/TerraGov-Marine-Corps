@@ -368,7 +368,7 @@
 /area/bigredv2/outside/hydroponics)
 "qC" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "rh" = (
 /obj/machinery/light,
@@ -808,7 +808,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/general_offices)
 "Lv" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "LV" = (
 /obj/docking_port/stationary/crashmode,

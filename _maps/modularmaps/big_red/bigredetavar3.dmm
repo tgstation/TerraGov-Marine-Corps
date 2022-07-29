@@ -431,7 +431,7 @@
 /area/bigredv2/outside/general_offices)
 "uv" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "uy" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -618,7 +618,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/ne)
 "CY" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "DM" = (
 /obj/machinery/light,

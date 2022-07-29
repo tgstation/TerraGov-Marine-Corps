@@ -35,7 +35,7 @@
 /area/bigredv2/outside/space_port)
 "aF" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "aJ" = (
 /obj/structure/window/framed/colony,
@@ -80,7 +80,7 @@
 	dir = 2
 	},
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "cf" = (
 /obj/item/shard,
@@ -408,7 +408,7 @@
 "jO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "ks" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
@@ -470,7 +470,7 @@
 "lx" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "lz" = (
 /turf/closed/wall,
@@ -989,7 +989,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "zC" = (
 /obj/machinery/light,
@@ -1039,12 +1039,12 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Ba" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Bb" = (
 /obj/structure/sign/safety/hazard,
@@ -1149,7 +1149,7 @@
 /area/bigredv2/outside/telecomm)
 "Er" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Et" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1426,7 +1426,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "LF" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "LI" = (
 /turf/open/floor/plating/dmg1,
@@ -1495,7 +1495,7 @@
 /area/bigredv2/outside/marshal_office)
 "Np" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Nq" = (
 /obj/structure/table,
@@ -1782,7 +1782,7 @@
 /area/bigredv2/outside/marshal_office)
 "Tw" = (
 /obj/structure/cable,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "TG" = (
 /obj/effect/decal/cleanable/dirt,

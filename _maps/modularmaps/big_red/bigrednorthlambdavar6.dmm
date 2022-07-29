@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "f" = (
 /obj/machinery/chem_dispenser,
@@ -28,7 +28,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
 "n" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "o" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -80,7 +80,7 @@
 /area/bigredv2/caves/northeast)
 "U" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "V" = (
 /obj/structure/closet/crate/internals,

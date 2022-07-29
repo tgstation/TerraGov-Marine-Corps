@@ -472,7 +472,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/s)
 "zl" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "zH" = (
 /turf/open/floor{
@@ -502,7 +502,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "Bh" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/filtration_plant)
 "Bx" = (
 /obj/machinery/light,
@@ -874,7 +874,7 @@
 /area/bigredv2/outside/filtration_plant)
 "TE" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "TF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{

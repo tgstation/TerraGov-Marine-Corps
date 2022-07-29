@@ -59,7 +59,7 @@
 	},
 /area/bigredv2/outside/se)
 "hz" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "hB" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -162,7 +162,7 @@
 /area/bigredv2/outside/filtration_plant)
 "pA" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "pJ" = (
 /obj/item/clothing/head/warning_cone,

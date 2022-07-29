@@ -2388,7 +2388,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/whiskey_outpost)
 "kz" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/whiskey_outpost/outside/rock)
 "kA" = (
 /obj/machinery/light,
@@ -6296,7 +6296,7 @@
 /area/whiskey_outpost/outside/west)
 "HV" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/whiskey_outpost/outside/south)
 "HW" = (
 /turf/open/floor/plating/asteroidfloor,
@@ -6871,10 +6871,10 @@
 /area/whiskey_outpost/outside/south)
 "Mw" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/whiskey_outpost/outside/rock)
 "Mx" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/whiskey_outpost/outside/west)
 "MB" = (
 /obj/structure/platform{
@@ -8245,7 +8245,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "Xz" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/whiskey_outpost/outside/rock)
 "XB" = (
 /obj/structure/platform{

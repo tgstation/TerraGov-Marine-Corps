@@ -453,7 +453,7 @@
 /turf/open/floor/plating/warning,
 /area/bigredv2/outside/space_port)
 "lw" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "lH" = (
 /obj/structure/table,
@@ -466,7 +466,7 @@
 /area/bigredv2/outside/marshal_office)
 "mc" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "ms" = (
 /obj/structure/window/reinforced,
@@ -615,7 +615,7 @@
 "qt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "qv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -806,7 +806,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "vb" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/space_port)
 "vi" = (
 /obj/effect/landmark/patrol_point{
@@ -873,7 +873,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "wx" = (
 /obj/structure/table,
@@ -956,7 +956,7 @@
 "zk" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "zB" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -1664,7 +1664,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Sf" = (
 /obj/effect/ai_node,
@@ -1760,7 +1760,7 @@
 /area/bigredv2/outside/marshal_office)
 "Ux" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "UF" = (
 /obj/structure/rack,

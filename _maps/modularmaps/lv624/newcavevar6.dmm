@@ -6,7 +6,7 @@
 /area/lv624/ground/caves/central2)
 "aN" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "aW" = (
 /obj/structure/rack,
@@ -18,7 +18,7 @@
 	},
 /area/lv624/ground/caves/central1)
 "aY" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "bj" = (
 /obj/effect/ai_node,
@@ -38,7 +38,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "cQ" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "df" = (
 /obj/effect/landmark/weed_node,
@@ -267,7 +267,7 @@
 "tw" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "tE" = (
 /turf/open/ground/coast{
@@ -277,7 +277,7 @@
 /area/lv624/ground/caves/central2)
 "ua" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "ui" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -770,7 +770,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/caves/central2)
 "Xe" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "XE" = (
 /turf/open/floor/plating/ground/dirt,
