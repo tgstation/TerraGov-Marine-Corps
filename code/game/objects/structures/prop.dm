@@ -369,11 +369,6 @@
 	resistance_flags = RESIST_ALL
 	density = TRUE
 
-/obj/structure/prop/mainship/prop_sec/attackby(mob/living/M)
-	. = ..()
-	M.Paralyze(10 SECONDS)
-	balloon_alert_to_viewers("The [src] hits [M] with a stun baton knocking them down!")
-
 /obj/structure/prop/mainship/prop_so
 	name = "Officer"
 	desc = "They look rather busy and pays no attention to you."
