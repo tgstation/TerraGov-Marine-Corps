@@ -407,7 +407,6 @@
 	name = "SOM Vehicle Crewman"
 	corpseuniform = /obj/item/clothing/under/som
 	corpsesuit = /obj/item/clothing/suit/modular/som/wornoutsom
-	corpseback = /obj/item/weapon/smg/som/scout
 	corpsemask = /obj/item/clothing/mask/gas/tactical/coif
 	corpsehelmet = /obj/item/clothing/head/tgmcberet/red
 	corpsegloves = /obj/item/clothing/gloves/marine/som/wornoutsom
@@ -419,7 +418,6 @@
 	name = "SOM Pilot Officer"
 	corpseuniform = /obj/item/clothing/under/marine/officer/pilot
 	corpsesuit = /obj/item/clothing/suit/modular/som/wornoutsom
-	corpseback = /obj/item/weapon/shotgun/som/pointman
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/pilot/green
 	corpseglasses =/obj/item/clothing/glasses/sunglasses/aviator
 	corpsemask = /obj/item/clothing/mask/gas
