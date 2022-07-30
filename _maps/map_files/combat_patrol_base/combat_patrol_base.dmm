@@ -2935,12 +2935,6 @@
 	dir = 1
 	},
 /area/mainship/patrol_base)
-"QL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 1
-	},
-/area/mainship/patrol_base)
 "QO" = (
 /obj/structure/patrol_point{
 	id = "TGMC_23"
@@ -8618,7 +8612,7 @@ Eh
 Eh
 Uw
 xk
-QL
+uz
 ac
 LH
 ac
@@ -8680,7 +8674,7 @@ nR
 nR
 Uw
 cT
-QL
+uz
 ac
 ym
 ac
@@ -9300,7 +9294,7 @@ kA
 Fj
 Fw
 hV
-QL
+uz
 ac
 jp
 ch
@@ -9362,7 +9356,7 @@ Vu
 Vu
 Uw
 UP
-QL
+uz
 ac
 yp
 IC
