@@ -193,6 +193,8 @@ SUBSYSTEM_DEF(vote)
 	if(list_of_votes.Find(vote))
 		list_of_votes.Remove(vote)
 		choices[choices[vote]]--
+		if(!multiple_vote && voted.Find(usr.ckey))
+			voted -= usr.ckey
 		return
 
 	choices[choices[vote]]++
