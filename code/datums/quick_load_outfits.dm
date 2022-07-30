@@ -1197,7 +1197,7 @@
 	name = "SOM Squad Medic"
 	jobtype = "SOM Squad Medic"
 
-	belt = /obj/item/storage/belt/lifesaver/som/
+	belt = /obj/item/storage/belt/lifesaver/som
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/medic/vest
 	shoes = /obj/item/clothing/shoes/marine/som/knife
