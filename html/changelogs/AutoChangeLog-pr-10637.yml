@@ -1,6 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes: 
-  - bugfix: "The Canterbury can no longer land on the red disk generator in LV."
-  - imageadd: "Created new wall sprites for Big Red."
-  - code_imp: "Changed typepaths for smooth mineral walls so they aren't scattered across the multiple areas."
