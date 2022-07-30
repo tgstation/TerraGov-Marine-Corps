@@ -2190,11 +2190,12 @@ datum/ammo/bullet/revolver/tp44
 	shell_speed = 4
 	accuracy_var_low = 5
 	accuracy_var_high = 5
+	accuracy = 5
 	point_blank_range = 2
 	damage = 20
 	penetration = 10
 	sundering = 2
-	fire_burst_damage = 20
+	fire_burst_damage = 15
 
 	//inherited, could use some changes
 	ping = "ping_s"
@@ -2207,17 +2208,17 @@ datum/ammo/bullet/revolver/tp44
 
 /datum/ammo/energy/volkite/medium
 	max_range = 25
-	accurate_range = 15
+	accurate_range = 12
 	damage = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	fire_burst_damage = 25
+	fire_burst_damage = 20
 
 /datum/ammo/energy/volkite/heavy
 	max_range = 35
-	accurate_range = 18
+	accurate_range = 12
 	damage = 25
-	fire_burst_damage = 25
+	fire_burst_damage = 20
 
 /datum/ammo/energy/volkite/light
 	max_range = 25
