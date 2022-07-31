@@ -848,15 +848,17 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /datum/action/skill/issue_order/move
 	name = "Issue Move Order"
 	order_type = AURA_HUMAN_MOVE
+	keybind_signal = COMSIG_KB_MOVEORDER
 
 /datum/action/skill/issue_order/hold
 	name = "Issue Hold Order"
 	order_type = AURA_HUMAN_HOLD
+	keybind_signal = COMSIG_KB_HOLDORDER
 
 /datum/action/skill/issue_order/focus
 	name = "Issue Focus Order"
 	order_type = AURA_HUMAN_FOCUS
-
+	keybind_signal = COMSIG_KB_FOCUSORDER
 
 
 /datum/action/skill/toggle_orders
