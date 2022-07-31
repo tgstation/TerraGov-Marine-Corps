@@ -48,6 +48,9 @@
 	user.visible_message(span_notice("[user] goes through the [src]."),
 	span_notice("You walk through the [src]."))
 	user.trainteleport(linked_point.loc)
+	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
+	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>KING OF THE HILL</u></span><br>" + "OBJECTIVE: CAPTURE AND HOLD THE SENSOR TOWER.", /obj/screen/text/screen_text/command_order)
+	update_icon()
 
 /obj/structure/patrol_point/attack_ghost(mob/dead/observer/user)
 	. = ..()

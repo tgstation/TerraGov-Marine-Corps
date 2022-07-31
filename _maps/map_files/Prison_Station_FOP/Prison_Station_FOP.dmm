@@ -40311,7 +40311,6 @@
 /area/prison/pirate)
 "cxs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cxv" = (
@@ -42721,10 +42720,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/highsec/south/north)
-"hWY" = (
-/obj/effect/landmark/sensor_tower,
-/turf/open/floor/prison/sterilewhite,
-/area/prison/research/secret/biolab)
 "hXd" = (
 /turf/open/floor/wood/broken,
 /area/prison/library)
@@ -44956,13 +44951,6 @@
 	},
 /turf/open/floor/wood/broken,
 /area/prison/residential/north)
-"oaR" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/landmark/sensor_tower,
-/turf/open/floor/plating,
-/area/prison/hangar_storage/research)
 "oaU" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/red{
@@ -87908,7 +87896,7 @@ adx
 adL
 svM
 svM
-hWY
+svM
 svM
 afP
 aeX
@@ -95402,7 +95390,7 @@ lhZ
 lhZ
 lhZ
 lhZ
-oaR
+lhZ
 lhZ
 lhZ
 lhZ

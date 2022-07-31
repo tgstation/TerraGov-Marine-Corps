@@ -12451,6 +12451,11 @@
 "ePI" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/west)
+"eQp" = (
+/obj/effect/decal/warning_stripes,
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor,
+/area/bigredv2/outside/filtration_plant)
 "eUA" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -38483,7 +38488,7 @@ bkE
 nad
 bpU
 bqp
-bpU
+eQp
 kvV
 bkQ
 bsE

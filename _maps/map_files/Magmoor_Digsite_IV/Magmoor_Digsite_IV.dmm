@@ -11940,7 +11940,6 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
 "iDj" = (
-/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/yellow{
 	dir = 5
 	},
@@ -29792,10 +29791,6 @@
 	dir = 6
 	},
 /area/magmoor/compound/northeast)
-"uEF" = (
-/obj/effect/landmark/sensor_tower,
-/turf/open/floor/mainship/sterile/dark,
-/area/magmoor/medical/treatment)
 "uEV" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/southwest)
@@ -60788,7 +60783,7 @@ hRs
 mwN
 iVx
 spq
-uEF
+hAH
 giX
 gyn
 peg

@@ -26,6 +26,8 @@
 			icon_state += "_loyalist"
 		if(FACTION_TERRAGOV_REBEL)
 			icon_state += "_rebel"
+		if(FACTION_SOM)
+			icon_state += "_rebel"
 
 /obj/structure/sensor_tower/attack_hand(mob/living/user)
 	if(!ishuman(user))
@@ -42,6 +44,9 @@
 		return
 	user.visible_message(span_notice("[user] captured [src]! For the [human_user.faction]s"), span_notice("You captured [src]! For the [human_user.faction]s"))
 	faction = human_user.faction
+	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
+		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
+		human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SENSOR TOWER CAPTURED</u></span><br>" + "[faction] HAS CAPTURED THE SENSOR TOWER.", /obj/screen/text/screen_text/command_order)
 	update_icon()
 
 /obj/structure/sensor_tower/update_icon()
@@ -57,6 +62,9 @@
 		if(FACTION_TERRAGOV_REBEL)
 			SSminimaps.remove_marker(src)
 			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "rebel_zone")
+		if(FACTION_SOM)
+			SSminimaps.remove_marker(src)
+			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "som_zone")
 		else
 			SSminimaps.remove_marker(src)
 			SSminimaps.add_marker(src, z, MINIMAP_FLAG_ALL, "neutral_zone")

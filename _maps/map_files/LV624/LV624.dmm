@@ -703,8 +703,10 @@
 /area/lv624/lazarus/tablefort)
 "aoN" = (
 /obj/effect/landmark/sensor_tower,
-/turf/open/floor/plating,
-/area/lv624/ground/caves/central1)
+/turf/open/floor/tile/green/greentaupe{
+	dir = 1
+	},
+/area/lv624/lazarus/hydroponics)
 "aoP" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/sand5)
@@ -48468,7 +48470,7 @@ rcz
 rrY
 eUv
 rcz
-rcz
+aoN
 brD
 eUY
 biS
@@ -49469,7 +49471,7 @@ vCy
 ekr
 amE
 anB
-aoN
+anB
 apH
 ajY
 tTs

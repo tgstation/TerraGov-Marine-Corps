@@ -54292,6 +54292,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/desert_dam/interior/dam_interior/engine_west_wing)
+"oww" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/prison/bright_clean/two,
+/area/desert_dam/building/medical/surgery_observation)
 "owP" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -104450,7 +104454,7 @@ dPJ
 dPX
 ctY
 cvc
-cvb
+oww
 cwR
 ctY
 cyk

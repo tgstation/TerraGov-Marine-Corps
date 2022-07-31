@@ -5782,7 +5782,6 @@
 "awE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
 	dir = 4
 	},
@@ -33163,8 +33162,8 @@
 /area/ice_colony/underground/maintenance/east)
 "oCp" = (
 /obj/effect/landmark/sensor_tower,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/valley/south)
+/turf/open/floor/tile/white,
+/area/ice_colony/surface/clinic/treatment)
 "oDn" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -50817,7 +50816,7 @@ eAl
 eAl
 bVW
 eAl
-oCp
+eAl
 jKs
 eAl
 vCr
@@ -54785,7 +54784,7 @@ ary
 aEr
 aqe
 aER
-gvW
+oCp
 xLJ
 aHr
 aHO

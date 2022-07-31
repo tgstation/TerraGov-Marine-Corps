@@ -1,11 +1,11 @@
 /datum/game_mode/combat_patrol
 	name = "Combat Patrol"
 	config_tag = "Combat Patrol"
-	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_SOM_OPFOR|MODE_SPECIFIC_SHIP_MAP //MODE_NO_PERMANENT_WOUNDS is for nerds
+	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS|MODE_SOM_OPFOR|MODE_SPECIFIC_SHIP_MAP //MODE_NO_PERMANENT_WOUNDS is for nerds
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
 	shutters_drop_time = 5 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
-	respawn_time = 12 MINUTES
+	respawn_time = 7 MINUTES
 	time_between_round = 0 HOURS
 	valid_job_types = list(
 		/datum/job/terragov/squad/engineer = 4,
@@ -27,6 +27,9 @@
 	var/max_time_reached = FALSE
 	/// Time between two bioscan
 	var/bioscan_interval = 5 MINUTES
+	win_points_needed = 700
+	///How many points per zone to control, determined by the number of zones
+	var/points_per_zone_per_second = 1
 
 /datum/game_mode/combat_patrol/post_setup()
 	. = ..()
@@ -40,6 +43,10 @@
 				area_to_lit.set_base_lighting(COLOR_WHITE, 75)
 			if(CEILING_DEEP_UNDERGROUND to CEILING_DEEP_UNDERGROUND_METAL)
 				area_to_lit.set_base_lighting(COLOR_WHITE, 25)
+	for(var/turf/T AS in GLOB.sensor_towers)
+		new /obj/structure/sensor_tower(T)
+	if(GLOB.zones_to_control.len)
+		points_per_zone_per_second = 1 / GLOB.zones_to_control.len
 	GLOB.join_as_robot_allowed = FALSE
 
 /datum/game_mode/combat_patrol/scale_roles()
@@ -51,7 +58,7 @@
 
 /datum/game_mode/combat_patrol/announce()
 	to_chat(world, "<b>The current game mode is - Combat Patrol!</b>")
-	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Seek and destroy any hostiles you encounter, good hunting!</b>")
+	to_chat(world, "<b>The TGMC and SOM both lay claim to this planet. Across contested areas, small combat patrols frequently clash in their bid to enforce their respective claims. Capture the sensor tower and hold it to win, good hunting!</b>")
 	to_chat(world, "<b>WIP, report bugs on the github!</b>")
 
 //sets TGMC and SOM squads
@@ -169,12 +176,14 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 ///Allows all the dead to respawn together
 /datum/game_mode/combat_patrol/proc/respawn_wave()
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), 10 MINUTES)
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), 5 MINUTES)
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
 		GLOB.key_to_time_of_role_death[M.key] = 0
-		to_chat(M, span_danger("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!"))
+		M.playsound_local(M, 'sound/ambience/votestart.ogg', 75, 1)
+		M.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>RESPAWN WAVE AVAILABLE</u></span><br>" + "YOU CAN NOW RESPAWN.", /obj/screen/text/screen_text/command_order)
+		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!!")]</font><br>")
 
 ///checks how many marines and SOM are still alive
 /datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)), count_flags)
@@ -215,45 +224,23 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	if(SSmonitor.gamestate != GROUNDSIDE || !game_timer)
 		return
 
-	///pulls the number of marines and SOM, both dead and alive
-	var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
-	var/num_som = length(player_list[1])
-	var/num_tgmc = length(player_list[2])
-	var/num_dead_som = length(player_list[3])
-	var/num_dead_marines = length(player_list[4])
+	for(var/obj/structure/sensor_tower/sensor_tower AS in GLOB.zones_to_control)
+		if(sensor_tower.faction)
+			LAZYSET(points_per_faction, sensor_tower.faction, LAZYACCESS(points_per_faction, sensor_tower.faction) + points_per_zone_per_second)
 
-	if(num_tgmc && num_som && !max_time_reached)
-		return //fighting is ongoing
-
-	//major victor for wiping out the enemy, or draw if both sides wiped simultaneously somehow
-	if(!num_tgmc)
-		if(!num_som)
-			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //everyone died at the same time, no one wins
+	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) >= win_points_needed)
+		if(LAZYACCESS(points_per_faction, FACTION_SOM) >= win_points_needed)
+			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //everyone got enough points at the same time, no one wins
 			round_finished = MODE_COMBAT_PATROL_DRAW
 			return TRUE
-		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MAJOR]") //SOM wiped out ALL the marines, SOM major victory
-		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
-		return TRUE
-
-	if(!num_som)
-		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]") //Marines wiped out ALL the SOM, marine major victory
+		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
 		return TRUE
-
-	//minor victories for more kills or draw for equal kills
-	if(num_dead_marines > num_dead_som)
-		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MINOR]") //The SOM inflicted greater casualties on the marines, SOM minor victory
-		round_finished = MODE_COMBAT_PATROL_SOM_MINOR
+	if(LAZYACCESS(points_per_faction, FACTION_SOM) >= win_points_needed)
+		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MAJOR]")
+		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
 		return TRUE
-	if(num_dead_som > num_dead_marines)
-		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MINOR]") //The marines inflicted greater casualties on the SOM, marine minor victory
-		round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
-		return TRUE
-
-	message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //equal number of kills, or any other edge cases
-	round_finished = MODE_COMBAT_PATROL_DRAW
-	return TRUE
-
+	return FALSE
 
 /datum/game_mode/combat_patrol/declare_completion()
 	. = ..()

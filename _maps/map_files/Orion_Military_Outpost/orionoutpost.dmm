@@ -5122,6 +5122,10 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostnw)
+"Ay" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/mainship/mono,
+/area/orion_outpost/surface/building/canteen)
 "Az" = (
 /obj/structure/flora/grass/tallgrass{
 	color = "#7a8c54"
@@ -18766,7 +18770,7 @@ Fm
 Fm
 Fm
 jq
-dJ
+Ay
 dJ
 dJ
 eR

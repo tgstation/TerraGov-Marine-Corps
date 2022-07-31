@@ -9619,7 +9619,6 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/arrivals)
 "RX" = (
-/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
 	},

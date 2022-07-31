@@ -3436,6 +3436,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/east)
+"rf" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/medbay)
 "rg" = (
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
@@ -6672,7 +6676,6 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/obj/effect/landmark/sensor_tower,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "Fd" = (
@@ -20497,7 +20500,7 @@ Ai
 sg
 uR
 RK
-Kp
+rf
 rW
 Kp
 Ai
