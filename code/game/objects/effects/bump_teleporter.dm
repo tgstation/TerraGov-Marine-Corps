@@ -1,6 +1,6 @@
 GLOBAL_LIST_EMPTY(bump_teleporters)
 
-/obj/effect/bump_teleporter
+/atom/movable/effect/bump_teleporter
 	name = "bump-teleporter"
 	icon = 'icons/mob/screen/generic.dmi'
 	icon_state = "x2"
@@ -11,15 +11,15 @@ GLOBAL_LIST_EMPTY(bump_teleporters)
 	density = TRUE
 	opacity = FALSE
 
-/obj/effect/bump_teleporter/Initialize()
+/atom/movable/effect/bump_teleporter/Initialize()
 	. = ..()
 	GLOB.bump_teleporters += src
 
-/obj/effect/bump_teleporter/Destroy()
+/atom/movable/effect/bump_teleporter/Destroy()
 	GLOB.bump_teleporters -= src
 	return ..()
 
-/obj/effect/bump_teleporter/Bumped(atom/user)
+/atom/movable/effect/bump_teleporter/Bumped(atom/user)
 	if(!ismob(user))
 		//user.loc = src.loc	//Stop at teleporter location
 		return
@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(bump_teleporters)
 		//user.loc = src.loc	//Stop at teleporter location, there is nowhere to teleport to.
 		return
 
-	for(var/obj/effect/bump_teleporter/BT in GLOB.bump_teleporters)
+	for(var/atom/movable/effect/bump_teleporter/BT in GLOB.bump_teleporters)
 		if(BT.id == src.id_target)
 			usr.loc = BT.loc	//Teleport to location with correct id.
 			return

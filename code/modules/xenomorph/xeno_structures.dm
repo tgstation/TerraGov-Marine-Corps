@@ -174,13 +174,13 @@
 			smoke.start()
 		if(TRAP_ACID_WEAK)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))
-				new /obj/effect/xenomorph/spray(acided, 7 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
+				new /atom/movable/effect/xenomorph/spray(acided, 7 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 		if(TRAP_ACID_NORMAL)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))
-				new /obj/effect/xenomorph/spray(acided, 10 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
+				new /atom/movable/effect/xenomorph/spray(acided, 10 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 		if(TRAP_ACID_STRONG)
 			for(var/turf/acided AS in RANGE_TURFS(1, src))
-				new /obj/effect/xenomorph/spray(acided, 12 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
+				new /atom/movable/effect/xenomorph/spray(acided, 12 SECONDS, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 	xeno_message("A [trap_type] trap at [AREACOORD_NO_Z(src)] has been triggered!", "xenoannounce", 5, get_xeno_hivenumber(),  FALSE, get_turf(src), 'sound/voice/alien_talk2.ogg', FALSE, null, /obj/screen/arrow/attack_order_arrow, COLOR_ORANGE, TRUE)
 	set_trap_type(null)
 
@@ -219,11 +219,11 @@
 		if(!do_after(X, 2 SECONDS, TRUE, src))
 			return
 		switch(acid_action.acid_type)
-			if(/obj/effect/xenomorph/acid/weak)
+			if(/atom/movable/effect/xenomorph/acid/weak)
 				set_trap_type(TRAP_ACID_WEAK)
-			if(/obj/effect/xenomorph/acid)
+			if(/atom/movable/effect/xenomorph/acid)
 				set_trap_type(TRAP_ACID_NORMAL)
-			if(/obj/effect/xenomorph/acid/strong)
+			if(/atom/movable/effect/xenomorph/acid/strong)
 				set_trap_type(TRAP_ACID_STRONG)
 	else
 		return // nothing happened!
@@ -614,7 +614,7 @@ TUNNEL
 	stepper.visible_message(span_danger("[stepper] is immersed in [src]'s acid!") , \
 	span_danger("We are immersed in [src]'s acid!") , null, 5)
 	playsound(stepper, "sound/bullets/acid_impact1.ogg", 10 * charges)
-	new /obj/effect/temp_visual/acid_bath(get_turf(stepper))
+	new /atom/movable/effect/temp_visual/acid_bath(get_turf(stepper))
 	acid_smoke = new(get_turf(stepper)) //spawn acid smoke when charges are actually used
 	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
 	acid_smoke.start()
@@ -743,8 +743,8 @@ TUNNEL
 
 /obj/structure/xeno/silo/LateInitialize()
 	. = ..()
-	if(!locate(/obj/effect/alien/weeds) in center_turf)
-		new /obj/effect/alien/weeds/node(center_turf)
+	if(!locate(/obj/alien/weeds) in center_turf)
+		new /obj/alien/weeds/node(center_turf)
 	associated_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(associated_hive)
 		RegisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
@@ -1426,7 +1426,7 @@ TUNNEL
 			if(X.stat == DEAD || isxenohunter(X) || X.alpha != 255) //We don't mess with xenos capable of going stealth by themselves
 				continue
 			X.alpha = HUNTER_STEALTH_RUN_ALPHA
-			new /obj/effect/temp_visual/alien_fruit_eaten(get_turf(X))
+			new /atom/movable/effect/temp_visual/alien_fruit_eaten(get_turf(X))
 			balloon_alert(X, "We now blend in")
 			to_chat(X, span_xenowarning("The pollen from [src] reacts with our scales, we are blending with our surroundings!"))
 			camouflaged_xenos.Add(X)

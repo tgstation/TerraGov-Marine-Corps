@@ -61,7 +61,7 @@
 		return
 
 	owner_xeno.plasma_stored -= GORGER_REJUVENATE_COST
-	new /obj/effect/temp_visual/telekinesis(get_turf(owner_xeno))
+	new /atom/movable/effect/temp_visual/telekinesis(get_turf(owner_xeno))
 	to_chat(owner_xeno, span_notice("We feel our wounds close up."))
 
 	var/amount = owner_xeno.maxHealth * GORGER_REJUVENATE_HEAL
@@ -263,7 +263,7 @@
 				continue
 			var/heal_amount = healing_on_hit
 			HEAL_XENO_DAMAGE(target_xeno, heal_amount)
-			new /obj/effect/temp_visual/telekinesis(get_turf(target_xeno))
+			new /atom/movable/effect/temp_visual/telekinesis(get_turf(target_xeno))
 			to_chat(target_xeno, span_notice("You feel your wounds being restored by [owner_xeno]'s pheromones."))
 
 	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_CARNAGE)
@@ -389,8 +389,8 @@
 	owner.remove_filter("hivelord_healing_infusion_outline")
 	UnregisterSignal(owner, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_SUNDER_REGEN))
 
-	new /obj/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off VFX
-	new /obj/effect/temp_visual/healing(get_turf(owner))
+	new /atom/movable/effect/temp_visual/telekinesis(get_turf(owner)) //Wearing off VFX
+	new /atom/movable/effect/temp_visual/healing(get_turf(owner))
 
 	owner.balloon_alert(owner, "Regeneration is no longer accelerated")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 25)
@@ -407,7 +407,7 @@
 
 	health_ticks_remaining-- //Decrement health ticks
 
-	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
+	new /atom/movable/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
 
 	var/total_heal_amount = 6 + (patient.maxHealth * 0.03) //Base amount 6 HP plus 3% of max
 	if(patient.recovery_aura)
@@ -440,7 +440,7 @@
 
 	sunder_ticks_remaining-- //Decrement sunder ticks
 
-	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
+	new /atom/movable/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
 	patient.adjust_sunder(-1.8 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
 

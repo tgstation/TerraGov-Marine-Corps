@@ -192,7 +192,7 @@
 			meatslab.loc = src.loc
 			meatslab.throw_at(Tx,i,3,src)
 			if (!Tx.density)
-				new /obj/effect/decal/cleanable/blood/gibs(Tx,i)
+				new /atom/movable/effect/decal/cleanable/blood/gibs(Tx,i)
 		src.operating = 0
 		update_icon()
 

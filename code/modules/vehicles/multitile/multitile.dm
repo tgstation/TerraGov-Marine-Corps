@@ -12,12 +12,12 @@ Vehicles are placed on the map by a spawner or admin verb
 //This was part of an old plan to have a dynamic number of vehicle interiors
 //Turns out that's incredibly fucking dificult, so a fixed number is gonna be the ideal choice
 /*
-/obj/effect/landmark/multitile_starter
+/atom/movable/effect/landmark/multitile_starter
 	name = "Landmark"
 	desc = "Where the interiors for multitiles start spawning"
 */
 
-/obj/effect/multitile_spawner
+/atom/movable/effect/multitile_spawner
 
 	var/width = 2
 	var/height = 3
@@ -25,25 +25,25 @@ Vehicles are placed on the map by a spawner or admin verb
 
 //A hidden marker for where you mount and dismount the vehicle
 //You could have multiple if you wanted
-/obj/effect/multitile_entrance
+/atom/movable/effect/multitile_entrance
 	name = "Entrance marker"
 	desc = "Marker for the entrance of a multitile vehicle."
 
 	var/obj/vehicle/multitile/root/master
 	invisibility = INVISIBILITY_MAXIMUM
 
-/obj/effect/multitile_entrance/Destroy(force = FALSE)
+/atom/movable/effect/multitile_entrance/Destroy(force = FALSE)
 	if(!force)
 		return QDEL_HINT_LETMELIVE
 	return ..()
 
 //Always moves where you want it to, no matter what
-/obj/effect/multitile_entrance/Move(atom/A)
+/atom/movable/effect/multitile_entrance/Move(atom/A)
 	loc = get_turf(A)
 	return TRUE
 
 //A basic handoff to the root object to actually deal with attempted player entrance
-/obj/effect/multitile_entrance/verb/enter_multitile()
+/atom/movable/effect/multitile_entrance/verb/enter_multitile()
 	set category = "Vehicle"
 	set name = "Enter Vehicle"
 	set src in view(0)
@@ -52,7 +52,7 @@ Vehicles are placed on the map by a spawner or admin verb
 
 //Remnant of vehicle interiors
 /*
-/obj/effect/landmark/multitile_exit
+/atom/movable/effect/landmark/multitile_exit
 	name = "Landmark"
 	desc = "Marker for the exit of the interior"
 
@@ -62,7 +62,7 @@ Vehicles are placed on the map by a spawner or admin verb
 */
 
 /*
-/obj/effect/landmark/multitile_exit/verb/exit_multitile(mob/M)
+/atom/movable/effect/landmark/multitile_exit/verb/exit_multitile(mob/M)
 	set category = "Vehicle"
 	set name = "Exit Vehicle"
 	set src in master
@@ -93,8 +93,8 @@ Vehicles are placed on the map by a spawner or admin verb
 
 	var/old_dir
 
-	var/obj/effect/multitile_entrance/entrance
-	//var/obj/effect/landmark/multitile_exit/exit
+	var/atom/movable/effect/multitile_entrance/entrance
+	//var/atom/movable/effect/landmark/multitile_exit/exit
 
 	//Objects that move in accordance with this one
 	//Objects indexed by /datum/coords

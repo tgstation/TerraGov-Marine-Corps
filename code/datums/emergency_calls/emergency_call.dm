@@ -271,7 +271,7 @@
 
 
 /datum/emergency_call/proc/get_spawn_point(is_for_items)
-	var/obj/effect/landmark/L
+	var/atom/movable/effect/landmark/L
 	if(is_for_items)
 		L = pick(shuttle?.item_spawns)
 	else

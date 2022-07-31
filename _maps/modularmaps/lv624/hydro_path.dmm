@@ -36,7 +36,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle7)
 "hI" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
@@ -82,7 +82,7 @@
 /area/lv624/ground/compound/ne)
 "mC" = (
 /obj/structure/jungle/vines,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "nL" = (
@@ -93,7 +93,7 @@
 /area/lv624/ground/jungle9)
 "on" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "ov" = (
@@ -127,7 +127,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "qo" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "qD" = (
@@ -167,7 +167,7 @@
 /area/lv624/lazarus/main_hall)
 "tI" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "tQ" = (
@@ -185,7 +185,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "vw" = (
-/obj/effect/decal/remains/xeno,
+/atom/movable/effect/decal/remains/xeno,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "wl" = (
@@ -247,7 +247,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "AV" = (
@@ -256,7 +256,7 @@
 /area/lv624/ground/compound/ne)
 "Dd" = (
 /obj/structure/jungle/vines/heavy,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
@@ -313,7 +313,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "Id" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "Im" = (
@@ -360,7 +360,7 @@
 	},
 /area/lv624/ground/jungle9)
 "KD" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
 "KP" = (
@@ -403,7 +403,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/ne)
 "On" = (
@@ -464,7 +464,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "Vg" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "VQ" = (

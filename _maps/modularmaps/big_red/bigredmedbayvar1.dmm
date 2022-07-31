@@ -1,23 +1,23 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ab" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "ar" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "az" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "aF" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "aT" = (
@@ -28,7 +28,7 @@
 /area/bigredv2/outside/medical)
 "aY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "bk" = (
@@ -41,19 +41,19 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "bo" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/medical)
 "bp" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "bM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "bX" = (
@@ -71,7 +71,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "cS" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -81,8 +81,8 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/obj/effect/landmark/corpsespawner/doctor,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/corpsespawner/doctor,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "dg" = (
@@ -96,12 +96,12 @@
 	},
 /area/bigredv2/outside/medical)
 "dn" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "do" = (
 /obj/machinery/bodyscanner,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
@@ -124,13 +124,13 @@
 /area/bigredv2/outside/medical)
 "dN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "dZ" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -142,10 +142,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/corpsespawner/doctor,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/corpsespawner/doctor,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "eA" = (
@@ -156,7 +156,7 @@
 /area/bigredv2/outside/medical)
 "eD" = (
 /obj/structure/closet/secure_closet/chemical,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -173,7 +173,7 @@
 /area/bigredv2/outside/medical)
 "eP" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
+/atom/movable/effect/spawner/random/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -185,7 +185,7 @@
 "fo" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/toxin,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "fp" = (
@@ -197,7 +197,7 @@
 "fs" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/adv,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "fG" = (
@@ -214,13 +214,13 @@
 /area/bigredv2/outside/medical)
 "gj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/corpsespawner/security,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/corpsespawner/security,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "gq" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /obj/structure/cable,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -231,7 +231,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "gA" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "gJ" = (
@@ -241,8 +241,8 @@
 /area/bigredv2/outside/medical)
 "gQ" = (
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "gZ" = (
@@ -258,13 +258,13 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "hp" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "hq" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "ht" = (
@@ -318,14 +318,14 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "iI" = (
-/obj/effect/spawner/random/bomb_supply,
+/atom/movable/effect/spawner/random/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
 "iK" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "iP" = (
@@ -333,7 +333,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "iQ" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "iX" = (
@@ -352,7 +352,7 @@
 "jt" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "jG" = (
@@ -362,8 +362,8 @@
 	},
 /area/bigredv2/outside/medical)
 "kd" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "kh" = (
@@ -374,8 +374,8 @@
 /area/bigredv2/outside/medical)
 "kk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "kv" = (
@@ -393,7 +393,7 @@
 	},
 /area/bigredv2/outside/medical)
 "kG" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 4
 	},
@@ -416,7 +416,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "lE" = (
@@ -432,7 +432,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "mv" = (
@@ -446,8 +446,8 @@
 	dir = 4;
 	on = 1
 	},
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "mS" = (
@@ -468,7 +468,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "nq" = (
@@ -480,7 +480,7 @@
 	},
 /area/bigredv2/outside/medical)
 "nP" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/alarm{
 	dir = 8
 	},
@@ -509,7 +509,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -533,7 +533,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "pg" = (
-/obj/effect/decal/cleanable/vomit,
+/atom/movable/effect/decal/cleanable/vomit,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "ph" = (
@@ -586,8 +586,8 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "qw" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "qH" = (
@@ -624,7 +624,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "rs" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -658,7 +658,7 @@
 /area/bigredv2/outside/medical)
 "sk" = (
 /obj/structure/bed/chair,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "sq" = (
@@ -673,14 +673,14 @@
 	},
 /area/bigredv2/outside/medical)
 "sG" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "sS" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "sW" = (
@@ -696,7 +696,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "tt" = (
-/obj/effect/decal/cleanable/blood/gibs,
+/atom/movable/effect/decal/cleanable/blood/gibs,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic"
 	},
@@ -726,15 +726,15 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "tU" = (
 /obj/machinery/chem_master,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -745,15 +745,15 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "ua" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/corpsespawner/doctor,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "ug" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "un" = (
@@ -763,7 +763,7 @@
 "us" = (
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ut" = (
@@ -777,13 +777,13 @@
 	},
 /area/bigredv2/outside/medical)
 "uD" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "uU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "uZ" = (
@@ -798,7 +798,7 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "vl" = (
-/obj/effect/decal/cleanable/blood/gibs/body,
+/atom/movable/effect/decal/cleanable/blood/gibs/body,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "vr" = (
@@ -813,7 +813,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "vF" = (
@@ -828,8 +828,8 @@
 "vQ" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "vY" = (
@@ -846,7 +846,7 @@
 	dir = 8;
 	on = 1
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "wl" = (
@@ -854,7 +854,7 @@
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "wG" = (
-/obj/effect/decal/cleanable/vomit,
+/atom/movable/effect/decal/cleanable/vomit,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "wU" = (
@@ -866,12 +866,12 @@
 	},
 /area/bigredv2/outside/medical)
 "wZ" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/item/clothing/gloves/latex,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "xa" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "xb" = (
@@ -893,13 +893,13 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "xh" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "yk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -907,7 +907,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "yp" = (
@@ -925,8 +925,8 @@
 	},
 /area/bigredv2/outside/medical)
 "yU" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
@@ -947,7 +947,7 @@
 	},
 /area/bigredv2/outside/medical)
 "zD" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
@@ -963,8 +963,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Aq" = (
@@ -976,8 +976,8 @@
 /area/bigredv2/outside/medical)
 "Av" = (
 /obj/item/weapon/broken_bottle,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/corpsespawner/doctor,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "AF" = (
@@ -1018,7 +1018,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "BC" = (
@@ -1037,7 +1037,7 @@
 /area/bigredv2/outside/medical)
 "BU" = (
 /obj/item/reagent_scanner,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -1067,7 +1067,7 @@
 /area/bigredv2/outside/medical)
 "Cx" = (
 /obj/structure/bed/roller,
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
@@ -1091,20 +1091,20 @@
 /area/bigredv2/outside/medical)
 "CW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
 "Dx" = (
-/obj/effect/landmark/corpsespawner/doctor,
+/atom/movable/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Dz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/corpsespawner/doctor{
+/atom/movable/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpseidjob = "Doctor";
@@ -1118,14 +1118,14 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "DQ" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /obj/item/trash/chips,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "DS" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -1180,10 +1180,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Ff" = (
@@ -1204,7 +1204,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
@@ -1216,12 +1216,12 @@
 "FK" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "FX" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
 	},
@@ -1232,7 +1232,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Gh" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "Gi" = (
@@ -1244,17 +1244,17 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Gr" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "Gy" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/blood,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "GF" = (
 /obj/machinery/light,
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
@@ -1271,7 +1271,7 @@
 	dir = 1;
 	name = "\improper Medical Clinic Chemistry"
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "He" = (
@@ -1297,7 +1297,7 @@
 /area/bigredv2/outside/medical)
 "Hu" = (
 /obj/structure/bed,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "HA" = (
@@ -1308,7 +1308,7 @@
 /obj/structure/sink{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "HZ" = (
@@ -1333,14 +1333,14 @@
 /area/bigredv2/outside/medical)
 "IR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "IT" = (
 /obj/structure/table,
-/obj/effect/spawner/random/bomb_supply,
-/obj/effect/spawner/random/bomb_supply,
+/atom/movable/effect/spawner/random/bomb_supply,
+/atom/movable/effect/spawner/random/bomb_supply,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -1349,7 +1349,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "IZ" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1365,12 +1365,12 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "JN" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "Kd" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/corpsespawner/doctor,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
@@ -1393,15 +1393,15 @@
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "KC" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "KI" = (
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "KN" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/item/explosive/grenade/chem_grenade/large,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/outside/medical)
@@ -1421,7 +1421,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
 "Lo" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/bigredv2/outside/medical)
 "Lq" = (
@@ -1461,7 +1461,7 @@
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "Mm" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/item/tool/extinguisher,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
@@ -1492,16 +1492,16 @@
 /area/bigredv2/outside/medical)
 "MZ" = (
 /obj/machinery/chem_master,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
 "Nt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "NJ" = (
@@ -1511,7 +1511,7 @@
 "NK" = (
 /obj/structure/table,
 /obj/item/storage/box/masks,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "NW" = (
@@ -1528,17 +1528,17 @@
 	dir = 1;
 	on = 1
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Ot" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "Ow" = (
 /obj/structure/table,
 /obj/item/tool/surgery/bonesetter,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/medical)
 "Ox" = (
@@ -1547,13 +1547,13 @@
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "ON" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "OT" = (
@@ -1562,7 +1562,7 @@
 	dir = 8
 	},
 /obj/item/tool/surgery/circular_saw,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 1
 	},
@@ -1572,14 +1572,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
 /area/bigredv2/outside/medical)
 "PI" = (
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Qa" = (
@@ -1587,11 +1587,11 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Qj" = (
-/obj/effect/landmark/excavation_site_spawner,
+/atom/movable/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "Qt" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
@@ -1600,12 +1600,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Qx" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1616,7 +1616,7 @@
 /obj/structure/table,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/fire,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "QR" = (
@@ -1647,11 +1647,11 @@
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "Rs" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Rw" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/door_control{
 	dir = 1;
 	id = "Medical";
@@ -1752,7 +1752,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "TU" = (
@@ -1766,12 +1766,12 @@
 /area/bigredv2/outside/medical)
 "Ub" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "UW" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "UZ" = (
@@ -1781,7 +1781,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "Vl" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1797,17 +1797,17 @@
 /area/bigredv2/outside/medical)
 "VZ" = (
 /obj/structure/bed/chair,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "Wx" = (
 /obj/machinery/optable,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /obj/item/organ/heart/prosthetic,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "WQ" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -1829,8 +1829,8 @@
 /area/bigredv2/outside/medical)
 "XM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/purple/whitepurplecorner{
 	dir = 4
 	},
@@ -1846,7 +1846,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Yi" = (
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 4
 	},
@@ -1856,15 +1856,15 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "Yp" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/outside/medical)
 "YE" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "YM" = (
@@ -1877,7 +1877,7 @@
 "Za" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Zt" = (
@@ -1887,7 +1887,7 @@
 "ZD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ZE" = (
@@ -1897,13 +1897,13 @@
 	},
 /area/bigredv2/outside/medical)
 "ZF" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ZG" = (
 /obj/machinery/body_scanconsole,
-/obj/effect/decal/cleanable/dirt,
+/atom/movable/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "ZM" = (

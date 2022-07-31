@@ -1,10 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/obj/effect/landmark/corpsespawner/colonist,
+/atom/movable/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "b" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor,
@@ -16,14 +16,14 @@
 	},
 /area/lv624/ground/river2)
 "d" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "g" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -43,7 +43,7 @@
 /turf/open/floor/plating,
 /area/lv624/ground/river2)
 "n" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
@@ -65,7 +65,7 @@
 /turf/closed/wall,
 /area/lv624/ground/river2)
 "u" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor,
@@ -93,7 +93,7 @@
 /area/lv624/ground/river2)
 "G" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "I" = (
@@ -128,7 +128,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "X" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lv624/ground/river2)
 

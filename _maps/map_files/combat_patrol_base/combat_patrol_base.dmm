@@ -16,7 +16,7 @@
 /turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
 "ag" = (
-/obj/effect/decal/warning_stripes/box/arrow,
+/atom/movable/effect/decal/warning_stripes/box/arrow,
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
 "al" = (
@@ -51,7 +51,7 @@
 /turf/open/floor/carpet/side,
 /area/mainship/patrol_base/som)
 "aH" = (
-/obj/effect/landmark/start/job/som/squadengineer,
+/atom/movable/effect/landmark/start/job/som/squadengineer,
 /obj/structure/bed/chair/nometal{
 	dir = 8
 	},
@@ -123,7 +123,7 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/som/squadengineer,
+/atom/movable/effect/landmark/start/job/som/squadengineer,
 /turf/open/floor/carpet/side{
 	dir = 8
 	},
@@ -183,7 +183,7 @@
 /turf/open/floor/carpet,
 /area/mainship/patrol_base/som)
 "dJ" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
@@ -213,23 +213,23 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/som/squadcorpsman,
+/atom/movable/effect/landmark/start/job/som/squadcorpsman,
 /turf/open/floor/carpet/side{
 	dir = 9
 	},
 /area/mainship/patrol_base/som)
 "ej" = (
-/obj/effect/landmark/start/job/som/squadleader,
+/atom/movable/effect/landmark/start/job/som/squadleader,
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
 "el" = (
 /obj/structure/table/holotable/wood,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
-/obj/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
+/atom/movable/effect/spawner/random/drink_cans,
 /turf/open/floor/wood,
 /area/mainship/patrol_base)
 "eo" = (
@@ -348,11 +348,11 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/som/squadstandard,
+/atom/movable/effect/landmark/start/job/som/squadstandard,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
 "hT" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	last_move = s
 	},
 /turf/open/floor/prison/darkred,
@@ -368,7 +368,7 @@
 /obj/structure/bed/chair/sofa/right{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/som/squadstandard,
+/atom/movable/effect/landmark/start/job/som/squadstandard,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
@@ -525,7 +525,7 @@
 	},
 /area/mainship/patrol_base/som)
 "lQ" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 8
 	},
 /turf/open/floor/prison/darkred{
@@ -566,7 +566,7 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "nt" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 8;
 	pixel_y = 16
 	},
@@ -590,7 +590,7 @@
 /area/mainship/patrol_base/som)
 "nR" = (
 /obj/structure/bed/chair/nometal,
-/obj/effect/landmark/start/job/squadengineer,
+/atom/movable/effect/landmark/start/job/squadengineer,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "nZ" = (
@@ -639,7 +639,7 @@
 /obj/structure/bed/chair/nometal{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/squadmarine,
+/atom/movable/effect/landmark/start/job/squadmarine,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "os" = (
@@ -657,7 +657,7 @@
 	},
 /area/mainship/patrol_base/som)
 "oK" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/prison,
@@ -666,7 +666,7 @@
 /obj/structure/bed/chair/nometal{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/squadmarine,
+/atom/movable/effect/landmark/start/job/squadmarine,
 /obj/machinery/light,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
@@ -704,7 +704,7 @@
 /obj/structure/bed/chair/nometal{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/squadmarine,
+/atom/movable/effect/landmark/start/job/squadmarine,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -793,7 +793,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "rW" = (
-/obj/effect/landmark/start/job/som/squadstandard,
+/atom/movable/effect/landmark/start/job/som/squadstandard,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
 "rZ" = (
@@ -806,7 +806,7 @@
 /turf/open/floor/prison,
 /area/mainship/patrol_base/som)
 "sz" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/prison/darkred{
@@ -819,7 +819,7 @@
 /turf/open/floor/plating,
 /area/mainship/patrol_base/som)
 "sW" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
@@ -856,7 +856,7 @@
 	},
 /area/mainship/patrol_base/som)
 "ua" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4;
 	pixel_y = 16
 	},
@@ -883,7 +883,7 @@
 /area/mainship/patrol_base)
 "uy" = (
 /obj/structure/bed/chair/nometal,
-/obj/effect/landmark/start/job/squadcorpsman,
+/atom/movable/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "uz" = (
@@ -895,7 +895,7 @@
 	},
 /area/mainship/patrol_base)
 "uR" = (
-/obj/effect/landmark/start/job/squadengineer,
+/atom/movable/effect/landmark/start/job/squadengineer,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "vf" = (
@@ -932,7 +932,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/telecomms)
 "wo" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	pixel_x = 16
 	},
 /turf/open/floor/mainship/floor,
@@ -1046,7 +1046,7 @@
 	},
 /area/mainship/patrol_base/som)
 "yH" = (
-/obj/effect/landmark/start/job/squadsmartgunner,
+/atom/movable/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "yI" = (
@@ -1142,7 +1142,7 @@
 /obj/structure/bed/chair/nometal{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/squadmarine,
+/atom/movable/effect/landmark/start/job/squadmarine,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1379,13 +1379,13 @@
 /obj/structure/bed/chair/sofa/right{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/som/squadveteran,
+/atom/movable/effect/landmark/start/job/som/squadveteran,
 /turf/open/floor/carpet/side{
 	dir = 8
 	},
 /area/mainship/patrol_base/som)
 "HG" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/mainship/blue,
@@ -1416,7 +1416,7 @@
 	},
 /area/mainship/patrol_base/som)
 "IH" = (
-/obj/effect/landmark/start/latejoinsom,
+/atom/movable/effect/landmark/start/latejoinsom,
 /turf/open/floor/grayscale/round/darkgray,
 /area/mainship/patrol_base/som)
 "IM" = (
@@ -1461,7 +1461,7 @@
 /obj/structure/bed/chair/nometal{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/squadmarine,
+/atom/movable/effect/landmark/start/job/squadmarine,
 /obj/machinery/light,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
@@ -1491,7 +1491,7 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/patrol_base)
 "JR" = (
-/obj/effect/landmark/start/job/som/squadveteran,
+/atom/movable/effect/landmark/start/job/som/squadveteran,
 /obj/structure/bed/chair/nometal{
 	dir = 8
 	},
@@ -1499,7 +1499,7 @@
 /area/mainship/patrol_base/som)
 "JY" = (
 /obj/structure/bed/chair/nometal,
-/obj/effect/landmark/start/job/squadsmartgunner,
+/atom/movable/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "Kd" = (
@@ -1578,14 +1578,14 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "LN" = (
-/obj/effect/landmark/start/job/som/squadcorpsman,
+/atom/movable/effect/landmark/start/job/som/squadcorpsman,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
 "Me" = (
 /obj/structure/bed/chair/nometal{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/squadmarine,
+/atom/movable/effect/landmark/start/job/squadmarine,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "Mq" = (
@@ -1743,7 +1743,7 @@
 /obj/structure/sink{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/som/squadstandard,
+/atom/movable/effect/landmark/start/job/som/squadstandard,
 /obj/structure/mirror{
 	dir = 8
 	},
@@ -1778,7 +1778,7 @@
 /area/mainship/patrol_base/som)
 "Ps" = (
 /obj/structure/bed/chair/nometal,
-/obj/effect/landmark/start/job/squadleader,
+/atom/movable/effect/landmark/start/job/squadleader,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "PB" = (
@@ -1837,7 +1837,7 @@
 	},
 /area/mainship/patrol_base)
 "Rt" = (
-/obj/effect/landmark/start/job/squadcorpsman,
+/atom/movable/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 "Ru" = (
@@ -1884,7 +1884,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/som/squadengineer,
+/atom/movable/effect/landmark/start/job/som/squadengineer,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
 "RV" = (
@@ -1911,7 +1911,7 @@
 /turf/open/floor/wood,
 /area/mainship/patrol_base)
 "SG" = (
-/obj/effect/landmark/start/job/som/squadleader,
+/atom/movable/effect/landmark/start/job/som/squadleader,
 /obj/structure/bed/chair/nometal{
 	dir = 4
 	},
@@ -1943,7 +1943,7 @@
 /area/mainship/patrol_base)
 "TP" = (
 /obj/item/stool,
-/obj/effect/landmark/start/job/som/squadstandard,
+/atom/movable/effect/landmark/start/job/som/squadstandard,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base/som)
 "TS" = (
@@ -1968,7 +1968,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/som/squadleader,
+/atom/movable/effect/landmark/start/job/som/squadleader,
 /turf/open/floor/carpet/side{
 	dir = 5
 	},
@@ -2012,7 +2012,7 @@
 	},
 /area/mainship/patrol_base)
 "Vy" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 1
 	},
 /turf/open/floor/prison/darkred,
@@ -2050,7 +2050,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/som/squadveteran,
+/atom/movable/effect/landmark/start/job/som/squadveteran,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/patrol_base/som)
 "Wr" = (
@@ -2065,7 +2065,7 @@
 /turf/open/floor/prison,
 /area/mainship/patrol_base/som)
 "Wv" = (
-/obj/effect/landmark/start/job/som/squadcorpsman,
+/atom/movable/effect/landmark/start/job/som/squadcorpsman,
 /obj/structure/bed/chair/nometal{
 	dir = 4
 	},
@@ -2089,7 +2089,7 @@
 /area/mainship/patrol_base/som)
 "WN" = (
 /obj/structure/table/holotable/wood,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som)
 "WX" = (
@@ -2106,7 +2106,7 @@
 	},
 /area/mainship/patrol_base/som)
 "Xt" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
@@ -2130,7 +2130,7 @@
 /turf/open/floor/plating,
 /area/mainship/patrol_base/som)
 "XJ" = (
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base)
 "XM" = (
@@ -2139,7 +2139,7 @@
 	},
 /area/mainship/patrol_base)
 "XR" = (
-/obj/effect/decal/warning_stripes/box/arrow{
+/atom/movable/effect/decal/warning_stripes/box/arrow{
 	pixel_x = -16
 	},
 /turf/open/floor/mainship/floor,
@@ -2154,7 +2154,7 @@
 /area/mainship/patrol_base)
 "Yx" = (
 /obj/structure/table/holotable/wood,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/mainship/patrol_base)
 "YD" = (
@@ -2198,7 +2198,7 @@
 /turf/open/floor/mainship/research,
 /area/mainship/patrol_base)
 "ZN" = (
-/obj/effect/landmark/start/latejoin,
+/atom/movable/effect/landmark/start/latejoin,
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base)
 "ZX" = (
@@ -2207,7 +2207,7 @@
 	},
 /area/mainship/patrol_base)
 "ZY" = (
-/obj/effect/landmark/start/job/squadleader,
+/atom/movable/effect/landmark/start/job/squadleader,
 /turf/open/floor/prison/kitchen,
 /area/mainship/patrol_base)
 

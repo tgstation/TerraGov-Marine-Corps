@@ -199,7 +199,7 @@ directive is properly returned.
 	return
 
 
-/atom/proc/effect_smoke(obj/effect/particle_effect/smoke/S)
+/atom/proc/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
 	if(S.lifetime < 1)
 		return FALSE
 	return TRUE

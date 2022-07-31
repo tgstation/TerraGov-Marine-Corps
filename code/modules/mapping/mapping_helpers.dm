@@ -2,7 +2,7 @@
 
 
 
-/obj/effect/baseturf_helper //Set the baseturfs of every turf in the /area/ it is placed.
+/atom/movable/effect/baseturf_helper //Set the baseturfs of every turf in the /area/ it is placed.
 	name = "baseturf editor"
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = ""
@@ -12,11 +12,11 @@
 
 	layer = POINT_LAYER
 
-/obj/effect/baseturf_helper/Initialize()
+/atom/movable/effect/baseturf_helper/Initialize()
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/baseturf_helper/LateInitialize()
+/atom/movable/effect/baseturf_helper/LateInitialize()
 	if(!baseturf_to_replace)
 		baseturf_to_replace = typecacheof(/turf/open/space)
 	else if(!length(baseturf_to_replace))
@@ -33,7 +33,7 @@
 
 	qdel(src)
 
-/obj/effect/baseturf_helper/proc/replace_baseturf(turf/thing)
+/atom/movable/effect/baseturf_helper/proc/replace_baseturf(turf/thing)
 	var/list/baseturf_cache = thing.baseturfs
 	if(length(baseturf_cache))
 		for(var/i in baseturf_cache)
@@ -50,62 +50,62 @@
 
 
 
-/obj/effect/baseturf_helper/space
+/atom/movable/effect/baseturf_helper/space
 	name = "space baseturf editor"
 	baseturf = /turf/open/space
 /*
-/obj/effect/baseturf_helper/asteroid
+/atom/movable/effect/baseturf_helper/asteroid
 	name = "asteroid baseturf editor"
 	baseturf = /turf/open/floor/plating/asteroid
 
-/obj/effect/baseturf_helper/asteroid/airless
+/atom/movable/effect/baseturf_helper/asteroid/airless
 	name = "asteroid airless baseturf editor"
 	baseturf = /turf/open/floor/plating/asteroid/airless
 
-/obj/effect/baseturf_helper/asteroid/basalt
+/atom/movable/effect/baseturf_helper/asteroid/basalt
 	name = "asteroid basalt baseturf editor"
 	baseturf = /turf/open/floor/plating/asteroid/basalt
 
-/obj/effect/baseturf_helper/asteroid/snow
+/atom/movable/effect/baseturf_helper/asteroid/snow
 	name = "asteroid snow baseturf editor"
 	baseturf = /turf/open/floor/plating/asteroid/snow
 
-/obj/effect/baseturf_helper/beach/sand
+/atom/movable/effect/baseturf_helper/beach/sand
 	name = "beach sand baseturf editor"
 	baseturf = /turf/open/floor/plating/beach/sand
 
-/obj/effect/baseturf_helper/beach/water
+/atom/movable/effect/baseturf_helper/beach/water
 	name = "water baseturf editor"
 	baseturf = /turf/open/floor/plating/beach/water
 
-/obj/effect/baseturf_helper/lava
+/atom/movable/effect/baseturf_helper/lava
 	name = "lava baseturf editor"
 	baseturf = /turf/open/lava/smooth
 
-/obj/effect/baseturf_helper/lava_land/surface
+/atom/movable/effect/baseturf_helper/lava_land/surface
 	name = "lavaland baseturf editor"
 	baseturf = /turf/open/lava/smooth/lava_land_surface
 */
 
-/obj/effect/mapping_helpers
+/atom/movable/effect/mapping_helpers
 	icon = 'icons/effects/mapping_helpers.dmi'
 	icon_state = ""
 	var/late = FALSE
 
-/obj/effect/mapping_helpers/Initialize()
+/atom/movable/effect/mapping_helpers/Initialize()
 	. = ..()
 	return late ? INITIALIZE_HINT_LATELOAD : INITIALIZE_HINT_QDEL
 
 
 //airlock helpers
-/obj/effect/mapping_helpers/airlock
+/atom/movable/effect/mapping_helpers/airlock
 	layer = DOOR_HELPER_LAYER
 
-/obj/effect/mapping_helpers/airlock/cyclelink_helper
+/atom/movable/effect/mapping_helpers/airlock/cyclelink_helper
 	name = "airlock cyclelink helper"
 	icon_state = "airlock_cyclelink_helper"
 
-/obj/effect/mapping_helpers/airlock/cyclelink_helper/Initialize(mapload)
+/atom/movable/effect/mapping_helpers/airlock/cyclelink_helper/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
@@ -120,11 +120,11 @@
 		//log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 
 
-/obj/effect/mapping_helpers/airlock/locked
+/atom/movable/effect/mapping_helpers/airlock/locked
 	name = "airlock lock helper"
 	icon_state = "airlock_locked_helper"
 
-/obj/effect/mapping_helpers/airlock/locked/Initialize(mapload)
+/atom/movable/effect/mapping_helpers/airlock/locked/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
@@ -140,11 +140,11 @@
 	else
 		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 
-/obj/effect/mapping_helpers/airlock/unres
+/atom/movable/effect/mapping_helpers/airlock/unres
 	name = "airlock unresctricted side helper"
 	icon_state = "airlock_unres_helper"
 
-/obj/effect/mapping_helpers/airlock/unres/Initialize(mapload)
+/atom/movable/effect/mapping_helpers/airlock/unres/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
@@ -158,12 +158,12 @@
 
 //needs to do its thing before spawn_rivers() is called
 /*
-INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
+INITIALIZE_IMMEDIATE(/atom/movable/effect/mapping_helpers/no_lava)
 
-/obj/effect/mapping_helpers/no_lava
+/atom/movable/effect/mapping_helpers/no_lava
 	icon_state = "no_lava"
 
-/obj/effect/mapping_helpers/no_lava/Initialize()
+/atom/movable/effect/mapping_helpers/no_lava/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
 	T.flags_1 |= NO_LAVA_GEN_1
@@ -171,7 +171,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 
 /*
 //This helper applies components to things on the map directly.
-/obj/effect/mapping_helpers/component_injector
+/atom/movable/effect/mapping_helpers/component_injector
 	name = "Component Injector"
 	late = TRUE
 	var/target_type
@@ -179,7 +179,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	var/component_type
 
 //Late init so everything is likely ready and loaded (no warranty)
-/obj/effect/mapping_helpers/component_injector/LateInitialize()
+/atom/movable/effect/mapping_helpers/component_injector/LateInitialize()
 	if(!ispath(component_type,/datum/component))
 		CRASH("Wrong component type in [type] - [component_type] is not a component")
 	var/turf/T = get_turf(src)
@@ -195,16 +195,16 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 		qdel(src)
 		return
 
-/obj/effect/mapping_helpers/component_injector/proc/build_args()
+/atom/movable/effect/mapping_helpers/component_injector/proc/build_args()
 	return list(component_type)
 
-/obj/effect/mapping_helpers/component_injector/infective
+/atom/movable/effect/mapping_helpers/component_injector/infective
 	name = "Infective Injector"
 	icon_state = "component_infective"
 	component_type = /datum/component/infective
 	var/disease_type
 
-/obj/effect/mapping_helpers/component_injector/infective/build_args()
+/atom/movable/effect/mapping_helpers/component_injector/infective/build_args()
 	if(!ispath(disease_type,/datum/disease))
 		CRASH("Wrong disease type passed in.")
 	var/datum/disease/D = new disease_type()

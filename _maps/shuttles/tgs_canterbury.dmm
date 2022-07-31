@@ -53,7 +53,7 @@
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/crash/fieldcommander,
+/atom/movable/effect/landmark/start/job/crash/fieldcommander,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ak" = (
@@ -137,7 +137,7 @@
 /area/shuttle/canterbury)
 "av" = (
 /obj/structure/rack,
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/item/tool/hand_labeler,
@@ -199,7 +199,7 @@
 /area/shuttle/canterbury)
 "aB" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/job/crash/squadmarine,
+/atom/movable/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aC" = (
@@ -255,7 +255,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/crash/squadmarine,
+/atom/movable/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
@@ -300,7 +300,7 @@
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "aV" = (
-/obj/effect/landmark/start/job/crash/squadleader,
+/atom/movable/effect/landmark/start/job/crash/squadleader,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aW" = (
@@ -312,10 +312,10 @@
 /area/shuttle/canterbury)
 "aZ" = (
 /obj/machinery/power/terminal,
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -341,12 +341,12 @@
 /area/shuttle/canterbury)
 "bg" = (
 /obj/structure/cable,
-/obj/effect/landmark/start/job/crash/synthetic,
+/atom/movable/effect/landmark/start/job/crash/synthetic,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bi" = (
 /obj/machinery/power/smes/preset,
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -380,14 +380,14 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury/medical)
 "bp" = (
-/obj/effect/landmark/start/latejoin/crash,
+/atom/movable/effect/landmark/start/latejoin/crash,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bq" = (
-/obj/effect/landmark/start/latejoin/crash,
+/atom/movable/effect/landmark/start/latejoin/crash,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "br" = (
@@ -424,7 +424,7 @@
 "by" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/vending/nanomed,
-/obj/effect/landmark/start/job/crash/medicalofficer,
+/atom/movable/effect/landmark/start/job/crash/medicalofficer,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bz" = (
@@ -466,7 +466,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bD" = (
-/obj/effect/landmark/start/job/crash/squadsmartgunner,
+/atom/movable/effect/landmark/start/job/crash/squadsmartgunner,
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
@@ -482,7 +482,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/crash/squadcorpsman,
+/atom/movable/effect/landmark/start/job/crash/squadcorpsman,
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "bF" = (
@@ -542,14 +542,14 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/crash/squadmarine,
+/atom/movable/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bW" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/crash/squadmarine,
+/atom/movable/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bZ" = (
@@ -565,7 +565,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "ca" = (
-/obj/effect/landmark/start/job/crash/cmo,
+/atom/movable/effect/landmark/start/job/crash/cmo,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cb" = (
@@ -579,7 +579,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/crash/squadsmartgunner,
+/atom/movable/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "cd" = (
@@ -613,7 +613,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/crash/squadmarine,
+/atom/movable/effect/landmark/start/job/crash/squadmarine,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -688,13 +688,13 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/crash/squadengineer,
+/atom/movable/effect/landmark/start/job/crash/squadengineer,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
 /area/shuttle/canterbury)
 "cz" = (
-/obj/effect/landmark/start/job/crash/squadmarine,
+/atom/movable/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -709,7 +709,7 @@
 /area/shuttle/canterbury)
 "cF" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/job/crash/squadcorpsman,
+/atom/movable/effect/landmark/start/job/crash/squadcorpsman,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cH" = (
@@ -734,7 +734,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cO" = (
-/obj/effect/landmark/start/job/crash/squadengineer,
+/atom/movable/effect/landmark/start/job/crash/squadengineer,
 /obj/structure/window/reinforced/toughened,
 /obj/machinery/light{
 	dir = 4
@@ -745,26 +745,26 @@
 /area/shuttle/canterbury)
 "cP" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/job/crash/squadengineer,
+/atom/movable/effect/landmark/start/job/crash/squadengineer,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cQ" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/job/crash/squadsmartgunner,
+/atom/movable/effect/landmark/start/job/crash/squadsmartgunner,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cR" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/crash/squadcorpsman,
+/atom/movable/effect/landmark/start/job/crash/squadcorpsman,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cS" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/crash/squadengineer,
+/atom/movable/effect/landmark/start/job/crash/squadengineer,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cT" = (
@@ -772,19 +772,19 @@
 	dir = 1
 	},
 /obj/machinery/light/small,
-/obj/effect/landmark/start/job/crash/squadspecialist,
+/atom/movable/effect/landmark/start/job/crash/squadspecialist,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cU" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/crash/squadspecialist,
+/atom/movable/effect/landmark/start/job/crash/squadspecialist,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cV" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/start/job/crash/medicalofficer,
+/atom/movable/effect/landmark/start/job/crash/medicalofficer,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cW" = (
@@ -823,7 +823,7 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "db" = (
-/obj/effect/landmark/start/job/crash/squadcorpsman,
+/atom/movable/effect/landmark/start/job/crash/squadcorpsman,
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
@@ -853,7 +853,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/crash/squadmarine,
+/atom/movable/effect/landmark/start/job/crash/squadmarine,
 /obj/machinery/light/small,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
@@ -865,7 +865,7 @@
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "KE" = (
-/obj/effect/landmark/start/job/crash/squadmarine,
+/atom/movable/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "RS" = (

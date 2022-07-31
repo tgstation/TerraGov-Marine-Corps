@@ -24,7 +24,7 @@
 	var/destroy_sound //Sound this object makes when destroyed.
 
 	var/item_fire_stacks = 0	//How many fire stacks it applies
-	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+	var/atom/movable/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
 	var/list/req_access = null
 	var/list/req_one_access = null
@@ -134,7 +134,7 @@
 
 
 
-/obj/effect_smoke(obj/effect/particle_effect/smoke/S)
+/atom/movable/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return

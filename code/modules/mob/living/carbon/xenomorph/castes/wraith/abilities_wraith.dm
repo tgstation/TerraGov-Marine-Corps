@@ -116,9 +116,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!silent) //Sound effects
 		playsound(teleporter, 'sound/effects/EMPulse.ogg', 25, 1) //Sound at the location we are arriving at
 
-	new /obj/effect/temp_visual/blink_portal(get_turf(teleporter))
+	new /atom/movable/effect/temp_visual/blink_portal(get_turf(teleporter))
 
-	new /obj/effect/temp_visual/wraith_warp(get_turf(teleporter))
+	new /atom/movable/effect/temp_visual/wraith_warp(get_turf(teleporter))
 
 	for(var/mob/living/living_target in range(1, teleporter.loc))
 
@@ -154,7 +154,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	///Target we've banished
 	var/atom/movable/banishment_target = null
 	///SFX indicating the banished target's position
-	var/obj/effect/temp_visual/banishment_portal/portal = null
+	var/atom/movable/effect/temp_visual/banishment_portal/portal = null
 	///Backup coordinates to teleport the banished to, in case the portal gets destroyed (shuttles!!)
 	var/list/backup_coordinates = list(0,0,0)
 	///The timer ID of any Banish currently active
@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	ghost.face_atom(A) //Face the target so we don't look like an ass
 
 	teleport_debuff_aoe(banishment_target) //Debuff when we disappear
-	portal = new /obj/effect/temp_visual/banishment_portal(banished_turf)
+	portal = new /atom/movable/effect/temp_visual/banishment_portal(banished_turf)
 	banishment_target.resistance_flags = RESIST_ALL
 
 	if(isliving(A))
@@ -398,7 +398,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	playsound(owner, 'sound/magic/timeparadox2.ogg', 50, TRUE)
 	succeed_activate()
 	add_cooldown()
-	new /obj/effect/overlay/temp/timestop_effect(central_turf, duration)
+	new /atom/movable/effect/overlay/temp/timestop_effect(central_turf, duration)
 	addtimer(CALLBACK(src, .proc/remove_bullet_freeze, turfs_affected, central_turf), duration)
 	addtimer(CALLBACK(src, .proc/play_sound_stop), duration - 3 SECONDS)
 
@@ -427,9 +427,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	/// How far can you link two portals
 	var/range = 20
 	/// The first portal
-	var/obj/effect/wraith_portal/portal_one
+	var/atom/movable/effect/wraith_portal/portal_one
 	/// The second portal
-	var/obj/effect/wraith_portal/portal_two
+	var/atom/movable/effect/wraith_portal/portal_two
 
 /datum/action/xeno_action/portal/remove_action(mob/M)
 	clean_portals()
@@ -444,7 +444,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	RegisterSignal(M, COMSIG_MOB_DEATH, .proc/clean_portals)
 
 /datum/action/xeno_action/portal/can_use_action(silent, override_flags)
-	if(locate(/obj/effect/wraith_portal) in get_turf(owner))
+	if(locate(/atom/movable/effect/wraith_portal) in get_turf(owner))
 		if(!silent)
 			to_chat(owner, span_xenowarning("There is already a portal here!"))
 		return FALSE
@@ -484,19 +484,19 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	portal_two.link_portal(portal_one)
 	portal_one.link_portal(portal_two)
 
-/obj/effect/wraith_portal
+/atom/movable/effect/wraith_portal
 	icon_state = "portal"
 	anchored = TRUE
 	opacity = FALSE
 	vis_flags = VIS_HIDE
 	resistance_flags = UNACIDABLE | CRUSHER_IMMUNE | BANISH_IMMUNE
 	/// Visual object for handling the viscontents
-	var/obj/effect/portal_effect/portal_visuals
+	var/atom/movable/effect/portal_effect/portal_visuals
 	/// The linked portal
-	var/obj/effect/wraith_portal/linked_portal
+	var/atom/movable/effect/wraith_portal/linked_portal
 	COOLDOWN_DECLARE(portal_cooldown)
 
-/obj/effect/wraith_portal/Initialize(mapload, portal_is_yellow = FALSE)
+/atom/movable/effect/wraith_portal/Initialize(mapload, portal_is_yellow = FALSE)
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/teleport_atom
@@ -509,7 +509,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	vis_contents += portal_visuals
 	add_filter("border_smoother", 1, gauss_blur_filter(1))
 
-/obj/effect/wraith_portal/Destroy()
+/atom/movable/effect/wraith_portal/Destroy()
 	linked_portal?.unlink()
 	linked_portal = null
 	REMOVE_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
@@ -518,21 +518,21 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	return ..()
 
 /// Link two portals
-/obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)
+/atom/movable/effect/wraith_portal/proc/link_portal(atom/movable/effect/wraith_portal/portal_to_link)
 	linked_portal = portal_to_link
 	ADD_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
 	RegisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED, .proc/teleport_bullet)
 	portal_visuals.setup_visuals(portal_to_link)
 
 /// Unlink the portal
-/obj/effect/wraith_portal/proc/unlink()
+/atom/movable/effect/wraith_portal/proc/unlink()
 	linked_portal = null
 	REMOVE_TRAIT(loc, TRAIT_TURF_BULLET_MANIPULATION, PORTAL_TRAIT)
 	UnregisterSignal(loc, COMSIG_TURF_PROJECTILE_MANIPULATED)
 	portal_visuals.reset_visuals()
 
 /// Signal handler teleporting crossing atoms
-/obj/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
+/atom/movable/effect/wraith_portal/proc/teleport_atom/(datum/source, atom/movable/crosser)
 	SIGNAL_HANDLER
 	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || ishuman(crosser))
 		return
@@ -542,7 +542,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
 /// Signal handler to teleport the crossing atom when its move is done
-/obj/effect/wraith_portal/proc/do_teleport_atom(atom/movable/crosser)
+/atom/movable/effect/wraith_portal/proc/do_teleport_atom(atom/movable/crosser)
 	SIGNAL_HANDLER
 	for(var/mob/rider AS in crosser.buckled_mobs)
 		if(ishuman(rider))
@@ -551,7 +551,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	UnregisterSignal(crosser, COMSIG_MOVABLE_MOVED)
 
 /// Signal handler for teleporting a crossing bullet
-/obj/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
+/atom/movable/effect/wraith_portal/proc/teleport_bullet(datum/source, obj/projectile/bullet)
 	SIGNAL_HANDLER
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/new_range = bullet.proj_max_range - bullet.distance_travelled
@@ -565,7 +565,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	bullet.permutated.Cut()
 	bullet.fire_at(shooter = bullet.firer, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE, loc_override = get_turf(linked_portal))
 
-/obj/effect/portal_effect
+/atom/movable/effect/portal_effect
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	vis_flags = VIS_INHERIT_ID
@@ -573,15 +573,15 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	///turf destination to display
 	var/turf/our_destination
 
-/obj/effect/portal_effect/proc/setup_visuals(atom/target)
+/atom/movable/effect/portal_effect/proc/setup_visuals(atom/target)
 	our_destination = get_turf(target)
 	update_portal_filters()
 
-/obj/effect/portal_effect/proc/reset_visuals()
+/atom/movable/effect/portal_effect/proc/reset_visuals()
 	our_destination = null
 	update_portal_filters()
 
-/obj/effect/portal_effect/proc/update_portal_filters()
+/atom/movable/effect/portal_effect/proc/update_portal_filters()
 	clear_filters()
 	vis_contents = null
 
@@ -595,7 +595,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	animate(get_filter("portal_ripple"), time = 1.3 SECONDS, loop = -1, easing = LINEAR_EASING, radius = 32)
 
 	vis_contents += our_destination
-/obj/effect/wraith_portal/ex_act()
+/atom/movable/effect/wraith_portal/ex_act()
 	qdel(src)
 
 /datum/action/xeno_action/activable/rewind
@@ -684,7 +684,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/xeno_action/activable/rewind/proc/rewind()
 	var/turf/loc_a = pop(last_target_locs_list)
 	if(loc_a)
-		new /obj/effect/temp_visual/xenomorph/afterimage(targeted.loc, targeted)
+		new /atom/movable/effect/temp_visual/xenomorph/afterimage(targeted.loc, targeted)
 
 	var/turf/loc_b = pop(last_target_locs_list)
 	if(!loc_b)
@@ -700,5 +700,5 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 
 	targeted.Move(loc_b, get_dir(loc_b, loc_a))
-	new /obj/effect/temp_visual/xenomorph/afterimage(loc_a, targeted)
+	new /atom/movable/effect/temp_visual/xenomorph/afterimage(loc_a, targeted)
 	INVOKE_NEXT_TICK(src, .proc/rewind)

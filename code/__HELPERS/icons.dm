@@ -1110,7 +1110,7 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 	var/filter_index = length(filters)
 	animate(filters[filter_index],y=-32,time=time)
 	//Appearing part
-	var/obj/effect/overlay/appearing_part = new
+	var/atom/movable/effect/overlay/appearing_part = new
 	appearing_part.appearance = result_appearance
 	appearing_part.appearance_flags |= KEEP_TOGETHER | KEEP_APART
 	appearing_part.vis_flags = VIS_INHERIT_ID

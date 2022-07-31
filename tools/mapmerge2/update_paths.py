@@ -8,8 +8,8 @@ from dmm import *
 desc = """
 Update dmm files given update file/string.
 Replacement syntax example:
-    /turf/open/floor/plasteel/warningline : /obj/effect/turf_decal {dir = @OLD ;tag = @SKIP;icon_state = @SKIP}
-    /turf/open/floor/plasteel/warningline : /obj/effect/turf_decal {@OLD} , /obj/thing {icon_state = @OLD:name; name = "meme"}
+    /turf/open/floor/plasteel/warningline : /atom/movable/effect/turf_decal {dir = @OLD ;tag = @SKIP;icon_state = @SKIP}
+    /turf/open/floor/plasteel/warningline : /atom/movable/effect/turf_decal {@OLD} , /obj/thing {icon_state = @OLD:name; name = "meme"}
     /turf/open/floor/plasteel/warningline{dir=2} : /obj/thing
 New paths properties:
     @OLD - if used as property name copies all modified properties from original path to this one

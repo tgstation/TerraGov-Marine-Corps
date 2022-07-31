@@ -3,13 +3,13 @@
 //Xeno-style acids
 //Ideally we'll consolidate all the "effect" objects here
 //Also need to change the icons
-/obj/effect/xenomorph
+/atom/movable/effect/xenomorph
 	name = "alien thing"
 	desc = "You shouldn't be seeing this."
 	icon = 'icons/Xeno/effects.dmi'
 	layer = FLY_LAYER
 
-/obj/effect/xenomorph/splatter
+/atom/movable/effect/xenomorph/splatter
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "splatter"
@@ -17,11 +17,11 @@
 	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/xenomorph/splatter/Initialize() //Self-deletes after creation & animation
+/atom/movable/effect/xenomorph/splatter/Initialize() //Self-deletes after creation & animation
 	. = ..()
 	QDEL_IN(src, 8)
 
-/obj/effect/xenomorph/splatterblob
+/atom/movable/effect/xenomorph/splatterblob
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "acidblob"
@@ -29,11 +29,11 @@
 	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/xenomorph/splatterblob/Initialize() //Self-deletes after creation & animation
+/atom/movable/effect/xenomorph/splatterblob/Initialize() //Self-deletes after creation & animation
 	. = ..()
 	QDEL_IN(src, 4 SECONDS)
 
-/obj/effect/xenomorph/spray
+/atom/movable/effect/xenomorph/spray
 	name = "splatter"
 	desc = "It burns! It burns like hygiene!"
 	icon_state = "acid2"
@@ -49,7 +49,7 @@
 	/// Who created that spray
 	var/mob/xeno_owner
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
+/atom/movable/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = XENO_DEFAULT_ACID_PUDDLE_DAMAGE, mob/living/_xeno_owner) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
@@ -59,13 +59,13 @@
 	RegisterSignal(loc, COMSIG_ATOM_ENTERED, .proc/atom_enter_turf)
 	TIMER_COOLDOWN_START(src, COOLDOWN_PARALYSE_ACID, 5)
 
-/obj/effect/xenomorph/spray/Destroy()
+/atom/movable/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
 	xeno_owner = null
 	return ..()
 
 /// Signal handler to check if an human is entering the acid spray turf
-/obj/effect/xenomorph/spray/proc/atom_enter_turf(datum/source, atom/movable/moved_in, direction)
+/atom/movable/effect/xenomorph/spray/proc/atom_enter_turf(datum/source, atom/movable/moved_in, direction)
 	SIGNAL_HANDLER
 	if(!ishuman(moved_in))
 		return
@@ -75,12 +75,12 @@
 	victim.acid_spray_entered(null, src, acid_damage, slow_amt)
 
 /// Set xeno_owner to null to avoid hard del
-/obj/effect/xenomorph/spray/proc/clean_mob_owner()
+/atom/movable/effect/xenomorph/spray/proc/clean_mob_owner()
 	UnregisterSignal(xeno_owner, COMSIG_PARENT_QDELETING)
 	xeno_owner = null
 
 /// Signal handler to burn and maybe stun the human entering the acid spray
-/mob/living/carbon/human/proc/acid_spray_entered(datum/source, obj/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
+/mob/living/carbon/human/proc/acid_spray_entered(datum/source, atom/movable/effect/xenomorph/spray/acid_spray, acid_damage, slow_amt)
 	SIGNAL_HANDLER
 	if(CHECK_MULTIPLE_BITFIELDS(flags_pass, HOVERING) || stat == DEAD)
 		return
@@ -111,7 +111,7 @@
 	INVOKE_ASYNC(affecting, /datum/limb/.proc/take_damage_limb, 0, acid_damage/2, FALSE, FALSE, armor_block, TRUE)
 
 
-/obj/effect/xenomorph/spray/process()
+/atom/movable/effect/xenomorph/spray/process()
 	var/turf/T = loc
 	if(!istype(T))
 		qdel(src)
@@ -124,7 +124,7 @@
 		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src, acid_damage, slow_amt)
 
 //Medium-strength acid
-/obj/effect/xenomorph/acid
+/atom/movable/effect/xenomorph/acid
 	name = "acid"
 	desc = "Burbling corrosive stuff. I wouldn't want to touch it."
 	icon_state = "acid_normal"
@@ -138,31 +138,31 @@
 	var/strength_t
 
 //Sentinel weakest acid
-/obj/effect/xenomorph/acid/weak
+/atom/movable/effect/xenomorph/acid/weak
 	name = "weak acid"
 	acid_strength = 0.0016 //40% of base speed
 	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
-/obj/effect/xenomorph/acid/strong
+/atom/movable/effect/xenomorph/acid/strong
 	name = "strong acid"
 	acid_strength = 0.01 //250% normal speed
 	acid_damage = 175
 	icon_state = "acid_strong"
 
-/obj/effect/xenomorph/acid/Initialize(mapload, target)
+/atom/movable/effect/xenomorph/acid/Initialize(mapload, target)
 	. = ..()
 	acid_t = target
 	strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
 	START_PROCESSING(SSslowprocess, src)
 
-/obj/effect/xenomorph/acid/Destroy()
+/atom/movable/effect/xenomorph/acid/Destroy()
 	STOP_PROCESSING(SSslowprocess, src)
 	acid_t = null
 	return ..()
 
-/obj/effect/xenomorph/acid/process(delta_time)
+/atom/movable/effect/xenomorph/acid/process(delta_time)
 	if(!acid_t || !acid_t.loc)
 		qdel(src)
 		return
@@ -176,7 +176,7 @@
 		if(istype(acid_t, /turf))
 			if(iswallturf(acid_t))
 				var/turf/closed/wall/W = acid_t
-				new /obj/effect/acid_hole (W)
+				new /atom/movable/effect/acid_hole (W)
 			else
 				var/turf/T = acid_t
 				T.ChangeTurf(/turf/open/floor/plating)
@@ -203,7 +203,7 @@
 		if(2) visible_message(span_xenowarning("\The [acid_t] is struggling to withstand the acid!"))
 		if(0 to 1) visible_message(span_xenowarning("\The [acid_t] begins to crumble under the acid!"))
 
-/obj/effect/xenomorph/warp_shadow
+/atom/movable/effect/xenomorph/warp_shadow
 	name = "warp shadow"
 	desc = "A strange rift in space and time. You probably shouldn't touch this."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
@@ -214,6 +214,6 @@
 	opacity = FALSE
 	anchored = TRUE
 
-/obj/effect/xenomorph/warp_shadow/Initialize(mapload, target)
+/atom/movable/effect/xenomorph/warp_shadow/Initialize(mapload, target)
 	. = ..()
 	add_filter("wraith_warp_shadow", 4, list("type" = "blur", 5)) //Cool filter appear

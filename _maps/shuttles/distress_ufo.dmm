@@ -30,12 +30,12 @@
 /area/shuttle/ert)
 "g" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/distress_item,
+/atom/movable/effect/landmark/distress_item,
 /turf/open/floor/light,
 /area/shuttle/ert)
 "h" = (
 /obj/structure/bed/chair/dropship/passenger,
-/obj/effect/landmark/distress_item,
+/atom/movable/effect/landmark/distress_item,
 /turf/open/floor/podhatch/floor,
 /area/shuttle/ert)
 "i" = (
@@ -50,22 +50,22 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/effect/landmark/distress_item,
+/atom/movable/effect/landmark/distress_item,
 /turf/open/floor/light,
 /area/shuttle/ert)
 "l" = (
-/obj/effect/landmark/distress_item,
+/atom/movable/effect/landmark/distress_item,
 /turf/open/floor/podhatch/floor,
 /area/shuttle/ert)
 "m" = (
-/obj/effect/landmark/distress_item,
+/atom/movable/effect/landmark/distress_item,
 /turf/open/shuttle/brig,
 /area/shuttle/ert)
 "n" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/effect/landmark/distress_item,
+/atom/movable/effect/landmark/distress_item,
 /turf/open/floor/light,
 /area/shuttle/ert)
 "o" = (
@@ -77,11 +77,11 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/effect/landmark/distress_item,
+/atom/movable/effect/landmark/distress_item,
 /turf/open/floor/podhatch/floor,
 /area/shuttle/ert)
 "q" = (
-/obj/effect/landmark/distress,
+/atom/movable/effect/landmark/distress,
 /turf/open/shuttle/brig,
 /area/shuttle/ert)
 "r" = (
@@ -92,7 +92,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/effect/landmark/distress_item,
+/atom/movable/effect/landmark/distress_item,
 /turf/open/floor/podhatch/floor,
 /area/shuttle/ert)
 "t" = (

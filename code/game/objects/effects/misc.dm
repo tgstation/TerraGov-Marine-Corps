@@ -1,5 +1,5 @@
 //The effect when you wrap a dead body in gift wrap
-/obj/effect/spresent
+/atom/movable/effect/spresent
 	name = "strange present"
 	desc = "It's a ... present?"
 	icon = 'icons/obj/items/items.dmi'
@@ -8,13 +8,13 @@
 	anchored = FALSE
 
 
-/obj/effect/beam
+/atom/movable/effect/beam
 	name = "beam"
 	var/def_zone
 	flags_pass = PASSTABLE
 
 
-/obj/effect/begin
+/atom/movable/effect/begin
 	name = "begin"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "begin"
@@ -23,22 +23,22 @@
 
 
 
-/obj/effect/list_container
+/atom/movable/effect/list_container
 	name = "list container"
 
-/obj/effect/list_container/mobl
+/atom/movable/effect/list_container/mobl
 	name = "mobl"
 	var/master = null
 
 	var/list/container = list(  )
 
-/obj/effect/projection
+/atom/movable/effect/projection
 	name = "Projection"
 	desc = "This looks like a projection of something."
 	anchored = TRUE
 
 
-/obj/effect/shut_controller
+/atom/movable/effect/shut_controller
 	name = "shut controller"
 	var/moving = null
 	var/list/parts = list(  )
@@ -47,7 +47,7 @@
 
 
 //Exhaust effect
-/obj/effect/engine_exhaust
+/atom/movable/effect/engine_exhaust
 	name = "engine exhaust"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "exhaust"
@@ -62,10 +62,10 @@
 
 
 
-/obj/effect/rune/attunement
+/atom/movable/effect/rune/attunement
 	luminosity = 5
 
-/obj/effect/soundplayer
+/atom/movable/effect/soundplayer
 	anchored = TRUE
 	opacity = FALSE
 	density = TRUE
@@ -73,60 +73,60 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	var/datum/looping_sound/alarm_loop/deltalarm
 
-/obj/effect/soundplayer/Initialize()
+/atom/movable/effect/soundplayer/Initialize()
 	. = ..()
 	deltalarm = new(null, FALSE)
 	GLOB.ship_alarms += src
 	icon_state = ""
 
-/obj/effect/soundplayer/Destroy()
+/atom/movable/effect/soundplayer/Destroy()
 	. = ..()
 	QDEL_NULL(deltalarm)
 	GLOB.ship_alarms -= src
 
-/obj/effect/forcefield
+/atom/movable/effect/forcefield
 	anchored = TRUE
 	opacity = FALSE
 	density = TRUE
 	icon_state = "blocker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/effect/forcefield/Initialize()
+/atom/movable/effect/forcefield/Initialize()
 	. = ..()
 	if(icon_state == "blocker")
 		icon_state = ""
 
-/obj/effect/forcefield/fog
+/atom/movable/effect/forcefield/fog
 	name = "dense fog"
 	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	opacity = TRUE
 
-/obj/effect/forcefield/fog/Initialize()
+/atom/movable/effect/forcefield/fog/Initialize()
 	. = ..()
 	dir  = pick(CARDINAL_DIRS)
 	GLOB.fog_blockers += src
 
-/obj/effect/forcefield/fog/Destroy()
+/atom/movable/effect/forcefield/fog/Destroy()
 	GLOB.fog_blockers -= src
 	return ..()
 
 
-/obj/effect/forcefield/fog/attack_hand(mob/living/user)
+/atom/movable/effect/forcefield/fog/attack_hand(mob/living/user)
 	to_chat(user, span_notice("You peer through the fog, but it's impossible to tell what's on the other side..."))
 	return TRUE
 
 
-/obj/effect/forcefield/fog/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/atom/movable/effect/forcefield/fog/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	return attack_hand(X)
 
 
-/obj/effect/forcefield/fog/attack_animal(M)
+/atom/movable/effect/forcefield/fog/attack_animal(M)
 	return attack_hand(M)
 
 
-/obj/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
+/atom/movable/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(isobj(mover)) //No grenades/bullets should cross this
 		return FALSE
@@ -138,25 +138,25 @@
 			return TRUE
 	return FALSE
 
-/obj/effect/forcefield/fog/passable_fog
+/atom/movable/effect/forcefield/fog/passable_fog
 	name = "fog"
 	desc = "It looks dangerous to traverse."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	density = FALSE
 
-/obj/effect/forcefield/fog/passable_fog/Initialize()
+/atom/movable/effect/forcefield/fog/passable_fog/Initialize()
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_cross,
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
+/atom/movable/effect/forcefield/fog/passable_fog/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	return TRUE
 
-/obj/effect/forcefield/fog/passable_fog/proc/on_cross(datum/source, atom/movable/mover, oldloc, oldlocs)
+/atom/movable/effect/forcefield/fog/passable_fog/proc/on_cross(datum/source, atom/movable/mover, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(!opacity)
 		return
@@ -165,30 +165,30 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	addtimer(CALLBACK(src, .proc/reset), 30 SECONDS)
 
-/obj/effect/forcefield/fog/passable_fog/proc/reset()
+/atom/movable/effect/forcefield/fog/passable_fog/proc/reset()
 	alpha = initial(alpha)
 	mouse_opacity = initial(mouse_opacity)
 	set_opacity(TRUE)
 
 //used to control opacity of multitiles doors
-/obj/effect/opacifier
+/atom/movable/effect/opacifier
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
-/obj/effect/opacifier/Initialize(mapload, initial_opacity)
+/atom/movable/effect/opacifier/Initialize(mapload, initial_opacity)
 	. = ..()
 	set_opacity(initial_opacity)
 
 
-/obj/effect/supplypod_selector
+/atom/movable/effect/supplypod_selector
 	icon_state = "supplypod_selector"
 	layer = FLY_LAYER
 
 
-/obj/effect/dummy/lighting_obj
+/atom/movable/effect/dummy/lighting_obj
 	name = "lighting fx obj"
 	desc = "Tell a coder if you're seeing this."
 	icon_state = "nothing"
@@ -198,7 +198,7 @@
 	light_system = MOVABLE_LIGHT
 	blocks_emissive = NONE
 
-/obj/effect/dummy/lighting_obj/Initialize(mapload, _color, _range, _power, _duration)
+/atom/movable/effect/dummy/lighting_obj/Initialize(mapload, _color, _range, _power, _duration)
 	. = ..()
 	if(!isnull(_range))
 		set_light_range(_range)
@@ -210,25 +210,25 @@
 		QDEL_IN(src, _duration)
 
 
-/obj/effect/dummy/lighting_obj/moblight
+/atom/movable/effect/dummy/lighting_obj/moblight
 	name = "mob lighting fx"
 
 
-/obj/effect/dummy/lighting_obj/moblight/Initialize(mapload, _color, _range, _power, _duration)
+/atom/movable/effect/dummy/lighting_obj/moblight/Initialize(mapload, _color, _range, _power, _duration)
 	. = ..()
 	if(!ismob(loc))
 		return INITIALIZE_HINT_QDEL
 
 
 //Makes a tile fully lit no matter what
-/obj/effect/fullbright
+/atom/movable/effect/fullbright
 	icon = 'icons/effects/alphacolors.dmi'
 	icon_state = "white"
 	plane = LIGHTING_PLANE
 	layer = BACKGROUND_LAYER + LIGHTING_PRIMARY_LAYER
 	blend_mode = BLEND_ADD
 
-/obj/effect/overlay/temp/timestop_effect
+/atom/movable/effect/overlay/temp/timestop_effect
 	icon = 'icons/effects/160x160.dmi'
 	icon_state = "time"
 	layer = FLY_LAYER

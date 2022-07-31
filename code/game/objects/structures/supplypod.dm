@@ -213,7 +213,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 		if(ismob(AM) && !isliving(AM))
 			continue
 		AM.forceMove(holder)
-	var/obj/effect/temp_visual/risingPod = new /obj/effect/DPfall(get_turf(holder), src)
+	var/atom/movable/effect/temp_visual/risingPod = new /atom/movable/effect/DPfall(get_turf(holder), src)
 	risingPod.pixel_z = 0
 	holder.forceMove(bay)
 	animate(risingPod, pixel_z = 200, time = 10, easing = LINEAR_EASING)
@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	return ..()
 
 
-/obj/effect/DPfall
+/atom/movable/effect/DPfall
 	name = ""
 	icon = 'icons/obj/supplypods.dmi'
 	pixel_x = -16
@@ -246,7 +246,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	icon_state = ""
 
 
-/obj/effect/DPfall/Initialize(dropLocation, obj/structure/closet/supplypod/pod)
+/atom/movable/effect/DPfall/Initialize(dropLocation, obj/structure/closet/supplypod/pod)
 	if(pod.style == STYLE_SEETHROUGH)
 		pixel_x = -16
 		pixel_y = 0
@@ -262,21 +262,21 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	return ..()
 
 
-/obj/effect/DPtarget
+/atom/movable/effect/DPtarget
 	name = "Landing Zone Indicator"
 	desc = "A holographic projection designating the landing zone of something. It's probably best to stand back."
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "sniper_zoom"
 	layer = XENO_HIDING_LAYER
-	var/obj/effect/temp_visual/fallingPod
+	var/atom/movable/effect/temp_visual/fallingPod
 	var/obj/structure/closet/supplypod/pod
 
 
-/obj/effect/ex_act()
+/atom/movable/effect/ex_act()
 	return
 
 
-/obj/effect/DPtarget/Initialize(mapload, podParam, single_order)
+/atom/movable/effect/DPtarget/Initialize(mapload, podParam, single_order)
 	. = ..()
 	if(ispath(podParam))
 		podParam = new podParam()
@@ -306,12 +306,12 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	addtimer(CALLBACK(src, .proc/beginLaunch, pod.effectCircle), pod.landingDelay)
 
 
-/obj/effect/DPtarget/proc/playFallingSound()
+/atom/movable/effect/DPtarget/proc/playFallingSound()
 	playsound(src, pod.fallingSound, pod.soundVolume, 1, 6)
 
 
-/obj/effect/DPtarget/proc/beginLaunch(effectCircle)
-	fallingPod = new /obj/effect/DPfall(get_turf(src), pod)
+/atom/movable/effect/DPtarget/proc/beginLaunch(effectCircle)
+	fallingPod = new /atom/movable/effect/DPfall(get_turf(src), pod)
 	var/matrix/M = matrix(fallingPod.transform)
 	var/angle = effectCircle ? rand(0, 360) : rand(70, 110)
 	fallingPod.pixel_x = cos(angle) * 400
@@ -326,7 +326,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	addtimer(CALLBACK(src, .proc/endLaunch), pod.fallDuration, TIMER_CLIENT_TIME)
 
 
-/obj/effect/DPtarget/proc/endLaunch()
+/atom/movable/effect/DPtarget/proc/endLaunch()
 	pod.update_icon()
 	pod.forceMove(get_turf(src))
 	QDEL_NULL(fallingPod)

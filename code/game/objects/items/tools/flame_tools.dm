@@ -467,7 +467,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/turf/location = get_turf(src)
 	smoketime--
 	if(smoketime < 1)
-		new /obj/effect/decal/cleanable/ash(location)
+		new /atom/movable/effect/decal/cleanable/ash(location)
 		if(ismob(loc))
 			var/mob/living/M = loc
 			to_chat(M, span_notice("Your [name] goes out, and you empty the ash."))

@@ -10,5 +10,5 @@ SUBSYSTEM_DEF(nodes)
 //Call this to manually make adjacencies
 /datum/controller/subsystem/nodes/proc/repopulate_node_adjacencies()
 	for(var/nodes in GLOB.allnodes)
-		var/obj/effect/ai_node/node = nodes
+		var/atom/movable/effect/ai_node/node = nodes
 		node.make_adjacents()

@@ -26,13 +26,13 @@ SUBSYSTEM_DEF(excavation)
 
 ///Creates an excavation landmark at a random area from eligible areas
 /datum/controller/subsystem/excavation/proc/spawnExcavation()
-	var/obj/effect/landmark/excavation_site_spawner/site_spawner = pick_n_take(excavation_site_spawners)
+	var/atom/movable/effect/landmark/excavation_site_spawner/site_spawner = pick_n_take(excavation_site_spawners)
 	active_spawners += site_spawner
 	site_spawner.spawn_excavation_site()
 	excavations_count++
 
 ///Excavates an excavation site
-/datum/controller/subsystem/excavation/proc/excavate_site(obj/effect/landmark/excavation_site_spawner/site_spawner)
+/datum/controller/subsystem/excavation/proc/excavate_site(atom/movable/effect/landmark/excavation_site_spawner/site_spawner)
 	active_spawners -= site_spawner
 	excavation_site_spawners += site_spawner
 	site_spawner.excavate_site()

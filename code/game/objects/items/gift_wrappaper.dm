@@ -149,13 +149,13 @@
 	return TRUE
 
 
-/obj/effect/spresent/relaymove(mob/user)
+/atom/movable/effect/spresent/relaymove(mob/user)
 	if(user.stat != CONSCIOUS)
 		return
 	to_chat(user, span_notice("You can't move."))
 
 
-/obj/effect/spresent/attackby(obj/item/I, mob/user, params)
+/atom/movable/effect/spresent/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(!iswirecutter(I))
@@ -242,7 +242,7 @@
 		to_chat(user, span_notice("You need more paper."))
 		return
 
-	var/obj/effect/spresent/present = new(H.loc)
+	var/atom/movable/effect/spresent/present = new(H.loc)
 	amount -= 2
 
 	if(H.client)

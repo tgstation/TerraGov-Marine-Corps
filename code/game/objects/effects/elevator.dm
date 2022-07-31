@@ -1,4 +1,4 @@
-/obj/effect/elevator/supply
+/atom/movable/effect/elevator/supply
 	name = "\improper empty space"
 	desc = "There seems to be an awful lot of machinery down below"
 	icon = 'icons/effects/160x160.dmi'

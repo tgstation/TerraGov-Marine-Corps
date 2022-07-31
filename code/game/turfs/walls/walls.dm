@@ -30,7 +30,7 @@
 
 	var/d_state = 0 //Normal walls are now as difficult to remove as reinforced walls
 
-	var/obj/effect/acid_hole/acided_hole //the acid hole inside the wall
+	var/atom/movable/effect/acid_hole/acided_hole //the acid hole inside the wall
 
 
 /turf/closed/wall/Initialize(mapload, ...)
@@ -73,7 +73,7 @@
 			if(istype(O, /obj/structure/sign/poster))
 				var/obj/structure/sign/poster/P = O
 				P.roll_and_drop(src)
-			if(istype(O, /obj/effect/alien/weeds))
+			if(istype(O, /obj/alien/weeds))
 				qdel(O)
 
 

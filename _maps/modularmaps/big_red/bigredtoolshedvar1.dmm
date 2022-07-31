@@ -9,7 +9,7 @@
 	},
 /area/bigredv2/outside/c)
 "b" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
@@ -20,7 +20,7 @@
 	},
 /area/bigredv2/outside/c)
 "g" = (
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "h" = (
@@ -37,10 +37,10 @@
 	},
 /area/bigredv2/outside/c)
 "l" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes,
+/atom/movable/effect/decal/warning_stripes,
 /obj/structure/hoop{
 	dir = 4;
 	id = "basketball";
@@ -49,13 +49,13 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "m" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "n" = (
-/obj/effect/decal/warning_stripes/nscenter,
+/atom/movable/effect/decal/warning_stripes/nscenter,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "o" = (
@@ -66,10 +66,10 @@
 	},
 /area/bigredv2/outside/c)
 "p" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/nscenter,
+/atom/movable/effect/decal/warning_stripes/nscenter,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "q" = (
@@ -88,15 +88,15 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "s" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "u" = (
-/obj/effect/decal/warning_stripes/nscenter,
-/obj/effect/ai_node,
+/atom/movable/effect/decal/warning_stripes/nscenter,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "v" = (
@@ -111,7 +111,7 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /obj/structure/bed/chair{
 	dir = 8
 	},
@@ -120,34 +120,34 @@
 	},
 /area/bigredv2/outside/c)
 "z" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "A" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "C" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "F" = (
-/obj/effect/decal/warning_stripes,
+/atom/movable/effect/decal/warning_stripes,
 /obj/item/toy/beach_ball/basketball,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "G" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -155,8 +155,8 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "H" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/nscenter,
+/atom/movable/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/nscenter,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "I" = (
@@ -167,14 +167,14 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "L" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes,
+/atom/movable/effect/decal/warning_stripes,
 /obj/structure/hoop{
 	dir = 8;
 	id = "basketball";
@@ -183,10 +183,10 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "M" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin,
+/atom/movable/effect/decal/warning_stripes/thin,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "O" = (
@@ -197,10 +197,10 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "P" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
@@ -225,7 +225,7 @@
 	},
 /area/bigredv2/outside/c)
 "T" = (
-/obj/effect/decal/warning_stripes/thin{
+/atom/movable/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
@@ -243,7 +243,7 @@
 	dir = 10
 	},
 /obj/structure/cable,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 

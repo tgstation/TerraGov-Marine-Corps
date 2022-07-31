@@ -107,21 +107,21 @@
 	ambience = list()
 
 
-GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
+GLOBAL_DATUM(ai_camera_room_landmark, /atom/movable/effect/landmark/ai_multicam_room)
 
-/obj/effect/landmark/ai_multicam_room
+/atom/movable/effect/landmark/ai_multicam_room
 	name = "ai camera room"
 	icon = 'icons/mob/landmarks.dmi'
 	icon_state = "x"
 
 
-/obj/effect/landmark/ai_multicam_room/Initialize()
+/atom/movable/effect/landmark/ai_multicam_room/Initialize()
 	. = ..()
 	qdel(GLOB.ai_camera_room_landmark)
 	GLOB.ai_camera_room_landmark = src
 
 
-/obj/effect/landmark/ai_multicam_room/Destroy()
+/atom/movable/effect/landmark/ai_multicam_room/Destroy()
 	if(GLOB.ai_camera_room_landmark == src)
 		GLOB.ai_camera_room_landmark = null
 	return ..()

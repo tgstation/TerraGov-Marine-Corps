@@ -6,7 +6,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "c" = (
@@ -36,8 +36,8 @@
 	},
 /area/bigredv2/outside/library)
 "g" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "h" = (
@@ -65,7 +65,7 @@
 /area/bigredv2/outside/e)
 "k" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/corpsespawner/security,
+/atom/movable/effect/landmark/corpsespawner/security,
 /turf/open/floor/carpet/side{
 	dir = 4;
 	},
@@ -76,18 +76,18 @@
 	},
 /obj/machinery/power/apc,
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "m" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "n" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
 	dir = 6;
 	},
@@ -139,7 +139,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
 	},
 /area/bigredv2/outside/library)
@@ -167,7 +167,7 @@
 /area/bigredv2/outside/library)
 "B" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/carpet/side{
 	dir = 4;
 	},
@@ -189,7 +189,7 @@
 /obj/structure/bookcase{
 	density = 0
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "G" = (
@@ -215,7 +215,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "K" = (
@@ -233,7 +233,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "N" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "O" = (
@@ -243,7 +243,7 @@
 /area/bigredv2/outside/library)
 "P" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
 	dir = 4;
 	},
@@ -295,7 +295,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "X" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Y" = (

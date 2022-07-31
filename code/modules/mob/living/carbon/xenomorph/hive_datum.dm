@@ -721,7 +721,7 @@ to_chat will check for valid clients itself already so no need to double check f
 			arrow_hud.add_hud(X, target)
 			if(arrow_color) //Set the arrow to our custom colour if applicable
 				arrow_hud.color = arrow_color
-			new /obj/effect/temp_visual/xenomorph/xeno_tracker_target(target, target) //Ping the source of our alert
+			new /atom/movable/effect/temp_visual/xenomorph/xeno_tracker_target(target, target) //Ping the source of our alert
 
 		to_chat(X, "<span class='[span_class]'><font size=[size]> [message][report_distance ? " Distance: [get_dist(X, target)]" : ""]</font></span>")
 
@@ -1389,7 +1389,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /atom/proc/get_xeno_hivenumber()
 	return FALSE
 
-/obj/effect/alien/egg/get_xeno_hivenumber()
+/obj/alien/egg/get_xeno_hivenumber()
 	return hivenumber
 
 /obj/structure/xeno/trap/get_xeno_hivenumber()

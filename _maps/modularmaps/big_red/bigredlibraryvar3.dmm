@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ag" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/carpet/side{
 	dir = 8;
 	},
@@ -33,20 +33,20 @@
 	dir = 4
 	},
 /obj/structure/table/woodentable,
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/obj/effect/spawner/random/drink_alcohol_bottle{
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle{
 	pixel_x = 1;
 	pixel_y = 5
 	},
-/obj/effect/spawner/random/drink_alcohol_bottle{
+/atom/movable/effect/spawner/random/drink_alcohol_bottle{
 	pixel_y = 2
 	},
-/obj/effect/spawner/random/drink_alcohol_bottle{
+/atom/movable/effect/spawner/random/drink_alcohol_bottle{
 	pixel_x = -4;
 	pixel_y = 3
 	},
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
 /obj/item/pizzabox/meat{
 	pixel_x = -5;
 	pixel_y = 12
@@ -67,8 +67,8 @@
 	},
 /area/bigredv2/outside/library)
 "eV" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
+/atom/movable/effect/landmark/weed_node,
+/atom/movable/effect/ai_node,
 /obj/item/shard,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -79,15 +79,15 @@
 "gs" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "iG" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/effect/ai_node,
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/ai_node,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "jI" = (
@@ -102,14 +102,14 @@
 /turf/closed/wall,
 /area/bigredv2/outside/library)
 "ka" = (
-/obj/effect/landmark/corpsespawner/colonist,
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/landmark/corpsespawner/colonist,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/carpet/side{
 	dir = 5;
 	},
 /area/bigredv2/outside/library)
 "ke" = (
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "kf" = (
@@ -125,11 +125,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
-/obj/effect/decal/cleanable/blood/drip,
+/atom/movable/effect/decal/cleanable/blood/drip,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "lw" = (
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "lG" = (
@@ -140,7 +140,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Library Backroom"
 	},
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "nb" = (
@@ -152,7 +152,7 @@
 /obj/structure/bookcase{
 	density = 0
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "nL" = (
@@ -168,8 +168,8 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "rc" = (
-/obj/effect/landmark/corpsespawner/colonist,
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/landmark/corpsespawner/colonist,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "rt" = (
@@ -196,14 +196,14 @@
 /area/bigredv2/outside/library)
 "so" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/corpsespawner/security,
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/landmark/corpsespawner/security,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/carpet/side{
 	dir = 4;
 	},
 /area/bigredv2/outside/library)
 "up" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
 	dir = 6;
 	},
@@ -225,7 +225,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "ve" = (
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/carpet/side{
 	},
 /area/bigredv2/outside/library)
@@ -235,7 +235,7 @@
 	},
 /obj/machinery/power/apc,
 /obj/structure/cable,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "vX" = (
@@ -255,11 +255,11 @@
 /obj/structure/table/woodentable,
 /obj/item/toy/dice/d20,
 /obj/item/reagent_containers/food/snacks/meatpizzaslice,
-/obj/effect/spawner/random/drink_alcohol_bottle{
+/atom/movable/effect/spawner/random/drink_alcohol_bottle{
 	pixel_x = -1;
 	pixel_y = 3
 	},
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "yE" = (
@@ -278,19 +278,19 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/landmark/corpsespawner/colonist,
-/obj/effect/decal/cleanable/blood,
+/atom/movable/effect/landmark/corpsespawner/colonist,
+/atom/movable/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "BC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
+/atom/movable/effect/ai_node,
 /turf/open/floor/carpet/side{
 	dir = 4;
 	},
 /area/bigredv2/outside/library)
 "CH" = (
-/obj/effect/decal/cleanable/vomit,
+/atom/movable/effect/decal/cleanable/vomit,
 /turf/open/floor/carpet/side{
 	dir = 8;
 	},
@@ -299,7 +299,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
 	},
 /area/bigredv2/outside/library)
@@ -312,7 +312,7 @@
 	pixel_x = -3;
 	pixel_y = 4
 	},
-/obj/effect/spawner/random/outdoors_snacks,
+/atom/movable/effect/spawner/random/outdoors_snacks,
 /obj/item/tool/pen/invisible,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -325,7 +325,7 @@
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/blood/drip,
+/atom/movable/effect/decal/cleanable/blood/drip,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "FX" = (
@@ -344,7 +344,7 @@
 	},
 /area/bigredv2/outside/library)
 "HS" = (
-/obj/effect/spawner/random/trash,
+/atom/movable/effect/spawner/random/trash,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Jb" = (
@@ -354,7 +354,7 @@
 /area/bigredv2/outside/library)
 "Jz" = (
 /obj/item/toy/dice/d20,
-/obj/effect/decal/cleanable/blood/drip,
+/atom/movable/effect/decal/cleanable/blood/drip,
 /turf/open/floor/carpet/side{
 	dir = 8;
 	},
@@ -375,17 +375,17 @@
 "Nb" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/meatpizzaslice,
-/obj/effect/spawner/random/drink_alcohol_bottle,
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "NF" = (
 /obj/structure/cable,
-/obj/effect/decal/cleanable/vomit,
+/atom/movable/effect/decal/cleanable/vomit,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "PL" = (
-/obj/effect/decal/cleanable/blood/drip,
+/atom/movable/effect/decal/cleanable/blood/drip,
 /turf/open/floor/carpet/side{
 	dir = 8;
 	},
@@ -416,7 +416,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "St" = (
-/obj/effect/decal/cleanable/vomit,
+/atom/movable/effect/decal/cleanable/vomit,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "SH" = (
@@ -428,7 +428,7 @@
 /area/bigredv2/outside/library)
 "SU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/carpet/side{
 	dir = 4;
 	},
@@ -438,7 +438,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Tr" = (
-/obj/effect/decal/cleanable/blood/drip,
+/atom/movable/effect/decal/cleanable/blood/drip,
 /turf/open/floor/carpet/side{
 	dir = 1;
 	},
@@ -455,17 +455,17 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "VU" = (
 /obj/structure/table/woodentable,
 /obj/item/paper,
 /obj/item/paper/crumpled,
-/obj/effect/spawner/random/drink_alcohol_bottle{
+/atom/movable/effect/spawner/random/drink_alcohol_bottle{
 	pixel_x = -5
 	},
-/obj/effect/spawner/random/drink_alcohol_bottle,
+/atom/movable/effect/spawner/random/drink_alcohol_bottle,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "VX" = (
@@ -511,11 +511,11 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "Zn" = (
-/obj/effect/decal/cleanable/blood/drip,
+/atom/movable/effect/decal/cleanable/blood/drip,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "ZY" = (
-/obj/effect/landmark/weed_node,
+/atom/movable/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 

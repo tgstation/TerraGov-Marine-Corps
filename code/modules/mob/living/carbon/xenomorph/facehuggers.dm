@@ -249,10 +249,10 @@
 		return
 
 	for(var/check_smoke in get_turf(src)) //Check for pacifying smoke
-		if(!istype(check_smoke, /obj/effect/particle_effect/smoke/xeno))
+		if(!istype(check_smoke, /atom/movable/effect/particle_effect/smoke/xeno))
 			continue
 
-		var/obj/effect/particle_effect/smoke/xeno/xeno_smoke = check_smoke
+		var/atom/movable/effect/particle_effect/smoke/xeno/xeno_smoke = check_smoke
 		if(CHECK_BITFIELD(xeno_smoke.smoke_traits, SMOKE_HUGGER_PACIFY)) //Cancel out and make the hugger go idle if we have the xeno pacify tag
 			go_idle()
 			return
@@ -310,7 +310,7 @@
 		return FALSE
 
 	if(isturf(loc))
-		var/obj/effect/alien/egg/hugger/E = locate() in loc
+		var/obj/alien/egg/hugger/E = locate() in loc
 		if(E?.insert_new_hugger(src))
 			return FALSE
 		var/obj/structure/xeno/trap/T = locate() in loc
@@ -734,9 +734,9 @@
 	playsound(loc, 'sound/bullets/acid_impact1.ogg', 50, 1)
 
 	for(var/turf/acid_tile AS in RANGE_TURFS(1, loc))
-		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
-		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
-			new /obj/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
+		new /atom/movable/effect/temp_visual/acid_splatter(acid_tile) //SFX
+		if(!locate(/atom/movable/effect/xenomorph/spray) in acid_tile.contents)
+			new /atom/movable/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
 
 
 	var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src)) //Spawn acid smoke
@@ -764,8 +764,8 @@
 	playsound(loc, get_sfx("alien_resin_build"), 50, 1)
 
 	for(var/turf/sticky_tile AS in RANGE_TURFS(1, loc))
-		if(!locate(/obj/effect/xenomorph/spray) in sticky_tile.contents)
-			new /obj/effect/alien/resin/sticky/thin(sticky_tile)
+		if(!locate(/atom/movable/effect/xenomorph/spray) in sticky_tile.contents)
+			new /obj/alien/resin/sticky/thin(sticky_tile)
 
 	var/armor_block
 	for(var/mob/living/target in range(1, loc))

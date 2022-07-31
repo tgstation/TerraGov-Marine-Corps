@@ -8,7 +8,7 @@
 	var/on = FALSE
 	var/visible = FALSE
 	var/maxlength = 8
-	var/list/obj/effect/beam/i_beam/beams
+	var/list/atom/movable/effect/beam/i_beam/beams
 	var/olddir = 0
 	var/turf/listeningTo
 	var/hearing_range = 3
@@ -110,7 +110,7 @@
 	var/turf/_T = get_step(T, _dir)
 	if(_T)
 		for(var/i in 1 to maxlength)
-			var/obj/effect/beam/i_beam/I = new(T)
+			var/atom/movable/effect/beam/i_beam/I = new(T)
 			if(istype(holder, /obj/item/assembly_holder))
 				var/obj/item/assembly_holder/assembly_holder = holder
 				I.icon_state = "[initial(I.icon_state)]_[(assembly_holder.a_left == src) ? "l":"r"]" //Sync the offset of the beam with the position of the sensor.
@@ -189,7 +189,7 @@
 	SIGNAL_HANDLER_DOES_SLEEP
 	if(QDELETED(src))
 		return
-	if(offender == src || istype(offender,/obj/effect/beam/i_beam))
+	if(offender == src || istype(offender,/atom/movable/effect/beam/i_beam))
 		return
 	if(offender && isitem(offender))
 		var/obj/item/I = offender
@@ -248,7 +248,7 @@
 
 
 /***************************IBeam*********************************/
-/obj/effect/beam/i_beam
+/atom/movable/effect/beam/i_beam
 	name = "infrared beam"
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "ibeam"
@@ -257,14 +257,14 @@
 	density = FALSE
 	flags_pass = PASSTABLE|PASSGLASS|PASSGRILLE
 
-/obj/effect/beam/i_beam/Initialize()
+/atom/movable/effect/beam/i_beam/Initialize()
 	. = ..()
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = .proc/on_cross,
 	)
 
-/obj/effect/beam/i_beam/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
-	if(istype(AM, /obj/effect/beam))
+/atom/movable/effect/beam/i_beam/proc/on_cross(datum/source, atom/movable/AM, oldloc, oldlocs)
+	if(istype(AM, /atom/movable/effect/beam))
 		return
 	if(isitem(AM))
 		var/obj/item/I = AM

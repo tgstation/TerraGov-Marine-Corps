@@ -8,7 +8,7 @@ Contains most of the procs that are called when a xeno is attacked by something
 /mob/living/carbon/xenomorph/has_smoke_protection()
 	return TRUE
 
-/mob/living/carbon/xenomorph/smoke_contact(obj/effect/particle_effect/smoke/S)
+/mob/living/carbon/xenomorph/smoke_contact(atom/movable/effect/particle_effect/smoke/S)
 	var/protection = max(1 - get_permeability_protection() * S.bio_protection) //0.2 by default
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_EXTINGUISH))
 		ExtinguishMob()

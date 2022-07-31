@@ -36,7 +36,7 @@
 	QDEL_NULL(cockpit)
 	return ..()
 
-/obj/structure/caspart/caschair/proc/receive_laser_cas(datum/source, obj/effect/overlay/temp/laser_target/cas/incoming_laser)
+/obj/structure/caspart/caschair/proc/receive_laser_cas(datum/source, atom/movable/effect/overlay/temp/laser_target/cas/incoming_laser)
 	SIGNAL_HANDLER
 	playsound(src, 'sound/effects/binoctarget.ogg', 15)
 	if(occupant)

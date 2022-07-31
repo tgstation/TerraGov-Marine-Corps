@@ -398,10 +398,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		playsound(src, 'sound/effects/metal_crash.ogg', 35)
 		C.lastsound = world.time
 
-/obj/effect/alien/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/obj/alien/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	take_damage(40)
 
-/obj/effect/alien/weeds/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
+/obj/alien/weeds/tank_collision(obj/vehicle/multitile/hitbox/cm_armored/C, facing, turf/T, turf/temp)
 	return
 
 /obj/vehicle/multitile/hitbox/cm_armored/Move(atom/A, direction)
@@ -435,7 +435,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/hitbox/cm_armored/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
 	return root.attack_alien(X, damage_amount)
 
-/obj/vehicle/multitile/hitbox/cm_armored/effect_smoke(obj/effect/particle_effect/smoke/S)
+/obj/vehicle/multitile/hitbox/cm_armored/effect_smoke(atom/movable/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
