@@ -23,6 +23,8 @@
 	var/game_timer
 	///The length of time until round ends.
 	var/max_game_time = 35 MINUTES
+	///The length of time until next wave.
+	var/wave_timer = 5 MINUTES
 	///Whether the max game time has been reached
 	var/max_time_reached = FALSE
 	/// Time between two bioscan
@@ -45,8 +47,6 @@
 				area_to_lit.set_base_lighting(COLOR_WHITE, 25)
 	for(var/turf/T AS in GLOB.sensor_towers)
 		new /obj/structure/sensor_tower(T)
-	if(GLOB.zones_to_control.len)
-		points_per_zone_per_second = 1 / GLOB.zones_to_control.len
 	GLOB.join_as_robot_allowed = FALSE
 
 /datum/game_mode/combat_patrol/scale_roles()
@@ -84,7 +84,7 @@
 	//Starts the round timer when the game starts proper
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
 	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/set_game_timer), SSticker.round_start_time + shutters_drop_time + 5 MINUTES) //game cannot end until at least 5 minutes after shutter drop
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time + 10 MINUTES) //first respawn wave is 10 minutes after shutters
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), SSticker.round_start_time + shutters_drop_time + wave_timer) //first respawn wave is 5 minutes after shutters
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, SSticker.round_start_time + shutters_drop_time + 5 MINUTES)
 
 ///round timer
@@ -176,14 +176,14 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 ///Allows all the dead to respawn together
 /datum/game_mode/combat_patrol/proc/respawn_wave()
 	var/datum/game_mode/combat_patrol/D = SSticker.mode
-	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), 5 MINUTES)
+	addtimer(CALLBACK(D, /datum/game_mode/combat_patrol.proc/respawn_wave), wave_timer)
 
 	for(var/i in GLOB.observer_list)
 		var/mob/dead/observer/M = i
 		GLOB.key_to_time_of_role_death[M.key] = 0
 		M.playsound_local(M, 'sound/ambience/votestart.ogg', 75, 1)
 		M.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>RESPAWN WAVE AVAILABLE</u></span><br>" + "YOU CAN NOW RESPAWN.", /obj/screen/text/screen_text/command_order)
-		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!!")]</font><br>")
+		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!")]</font><br>")
 
 ///checks how many marines and SOM are still alive
 /datum/game_mode/combat_patrol/proc/count_humans(list/z_levels = SSmapping.levels_by_any_trait(list(ZTRAIT_GROUND)), count_flags)
