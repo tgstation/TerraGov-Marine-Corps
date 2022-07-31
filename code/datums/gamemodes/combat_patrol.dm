@@ -228,19 +228,29 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 		if(sensor_tower.faction)
 			LAZYSET(points_per_faction, sensor_tower.faction, LAZYACCESS(points_per_faction, sensor_tower.faction) + points_per_zone_per_second)
 
+	if(!max_time_reached)
+		return //fighting is ongoing
+
 	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) >= win_points_needed)
-		if(LAZYACCESS(points_per_faction, FACTION_SOM) >= win_points_needed)
-			message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //everyone got enough points at the same time, no one wins
-			round_finished = MODE_COMBAT_PATROL_DRAW
-			return TRUE
 		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_MARINE_MAJOR
+		return TRUE
+	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) > FACTION_SOM)
+		message_admins("Round finished: [MODE_COMBAT_PATROL_MARINE_MINOR]") //The TGMC has greater points than the SOM, TGMC minor victory
+		round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
+		return TRUE
+	if(LAZYACCESS(points_per_faction, FACTION_TERRAGOV) < FACTION_SOM)
+		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MINOR]") //The SOM has greater points than the TGMC, SOM minor victory
+		round_finished = MODE_COMBAT_PATROL_SOM_MINOR
 		return TRUE
 	if(LAZYACCESS(points_per_faction, FACTION_SOM) >= win_points_needed)
 		message_admins("Round finished: [MODE_COMBAT_PATROL_SOM_MAJOR]")
 		round_finished = MODE_COMBAT_PATROL_SOM_MAJOR
 		return TRUE
-	return FALSE
+
+	message_admins("Round finished: [MODE_COMBAT_PATROL_DRAW]") //equal number of kills, or any other edge cases
+	round_finished = MODE_COMBAT_PATROL_DRAW
+	return TRUE
 
 /datum/game_mode/combat_patrol/declare_completion()
 	. = ..()

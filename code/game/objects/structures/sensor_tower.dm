@@ -42,7 +42,7 @@
 	user.visible_message(span_notice("[user] starts to capture [src]!"), span_notice("You start to capture [src]."))
 	if(!do_after(user, 5 SECONDS, TRUE, src))
 		return
-	user.visible_message(span_notice("[user] captured [src]! For the [human_user.faction]s"), span_notice("You captured [src]! For the [human_user.faction]s"))
+	user.visible_message(span_notice("[user] captured [src]! For the [human_user.faction]s"), span_notice("You captured [src]! For the [human_user.faction]"))
 	faction = human_user.faction
 	for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 		human.playsound_local(human, "sound/effects/CIC_order.ogg", 10, 1)
