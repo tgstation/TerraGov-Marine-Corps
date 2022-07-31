@@ -100,8 +100,10 @@
 	var/list/limbs = list()
 	var/list/internal_organs_by_name = list() // so internal organs have less ickiness too
 
-	var/command_aura = null //The command aura we are using as a string. Need to be trained or higher in Leadership
-	var/command_aura_allowed = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS) //Auras we can create. Leadership checked separately
+	///The command aura we are using as a string. Should be an AURA define.
+	var/command_aura = null
+	///Auras we can create, used for the order choice UI.
+	var/static/command_aura_allowed = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS)
 	///Whether we can use another command order yet. Either null or a timer ID.
 	var/command_aura_cooldown
 

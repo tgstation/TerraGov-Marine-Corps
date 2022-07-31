@@ -60,8 +60,8 @@ SUBSYSTEM_DEF(aura)
 			affects_humans = TRUE
 		if(xeno_auras.Find(aura_type))
 			affects_xenos = TRUE
-		if(affects_xenos && affects_humans) //aura_types should never be a long enough list that this is actually worth checking, but.
-			break
+
+	SEND_SIGNAL(emitter, COMSIG_AURA_STARTED, aura_types)
 	RegisterSignal(emitter, COMSIG_PARENT_QDELETING, .proc/stop_emitting)
 
 ///Center gets destroyed, we run out of duration, or any other reason to finish. Perish immediately.
@@ -70,7 +70,7 @@ SUBSYSTEM_DEF(aura)
 	qdel(src)
 
 /datum/aura_bearer/Destroy()
-	SEND_SIGNAL(src, COMSIG_AURA_FINISHED) //For visuals, since mob huds need to track what and when they're personally emitting.
+	SEND_SIGNAL(emitter, COMSIG_AURA_FINISHED, aura_types) //For visuals, since mob huds need to track what and when they're personally emitting.
 	emitter = null
 	SSaura.active_auras -= src
 	return ..()
