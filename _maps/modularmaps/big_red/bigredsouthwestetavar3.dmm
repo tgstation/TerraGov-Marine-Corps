@@ -196,7 +196,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "oC" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "oL" = (
 /obj/effect/decal/sandedge/corner2{
@@ -657,7 +657,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Tr" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "TA" = (
 /turf/open/floor/tile/dark/red2{
@@ -685,7 +685,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Vu" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "VR" = (
 /obj/effect/decal/sandedge{
@@ -694,7 +694,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Wl" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "XP" = (
 /obj/effect/landmark/xeno_resin_door,

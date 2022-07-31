@@ -18,7 +18,7 @@
 "f" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "j" = (
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -37,7 +37,7 @@
 /area/bigredv2/outside/se)
 "q" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "s" = (
 /obj/effect/landmark/weed_node,
@@ -53,10 +53,10 @@
 /area/bigredv2/caves/east)
 "w" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "y" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "z" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -80,10 +80,10 @@
 /area/bigredv2/caves/east)
 "E" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "H" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "J" = (
 /obj/effect/ai_node,

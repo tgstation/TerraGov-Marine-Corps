@@ -745,6 +745,11 @@
 #define COMSIG_KB_AIMMODE "keybinding_aimmode"
 #define COMSIG_KB_FIREMODE "keybind_firemode"
 #define COMSIG_KB_GIVE "keybind_give"
+#define COMSIG_KB_MOVEORDER "keybind_moveorder"
+#define COMSIG_KB_HOLDORDER "keybind_holdorder"
+#define COMSIG_KB_FOCUSORDER "keybind_focusorder"
+#define COMSIG_KB_RALLYORDER "keybind_rallyorder"
+#define COMSIG_KB_SENDORDER "keybind_sendorder"
 
 // human modules signals for keybindings
 #define COMSIG_KB_VALI_CONFIGURE "keybinding_vali_configure"

@@ -146,6 +146,11 @@
 	action_icon_state = "rally"
 	verb_name = "rally to"
 	arrow_type = /obj/screen/arrow/rally_order_arrow
+	///What skill is needed to have this action
+	keybind_signal = COMSIG_KB_RALLYORDER
+	var/skill_name = "leadership"
+	///What minimum level in that skill is needed to have that action
+	var/skill_min = SKILL_LEAD_EXPERT
 
 /datum/action/innate/order/rally_order/should_show()
 	return owner.skills.getRating(skill_name) >= skill_min

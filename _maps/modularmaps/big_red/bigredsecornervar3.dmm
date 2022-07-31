@@ -36,7 +36,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "be" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "bn" = (
 /obj/structure/bed/chair/reinforced{
@@ -160,7 +160,7 @@
 /area/bigredv2/caves/southeast)
 "iD" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "iR" = (
 /obj/item/mecha_parts/part/durand_left_arm,
@@ -686,7 +686,7 @@
 /area/bigredv2/caves/undergroundrobotics)
 "Jn" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Jz" = (
 /obj/structure/table/mainship,
@@ -730,7 +730,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)
 "Mn" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Mq" = (
 /obj/structure/window/framed/colony,

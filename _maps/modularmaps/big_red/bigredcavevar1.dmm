@@ -12,14 +12,14 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "f" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "g" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
 "h" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "i" = (
 /obj/structure/fence,
@@ -53,14 +53,14 @@
 "x" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "y" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east)
 "B" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "D" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -97,7 +97,7 @@
 /area/bigredv2/caves/east)
 "S" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "T" = (
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -114,7 +114,7 @@
 /area/bigredv2/caves/east)
 "W" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "X" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,

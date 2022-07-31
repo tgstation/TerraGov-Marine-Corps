@@ -1,0 +1,4 @@
+author: "novaepee"
+delete-after: True
+changes: 
+  - qol: "Keybind for Move, Focus, Hold, Send, and Rally Order"

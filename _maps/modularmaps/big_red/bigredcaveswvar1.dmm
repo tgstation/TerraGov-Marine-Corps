@@ -12,7 +12,7 @@
 /area/bigredv2/caves/southwest)
 "g" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "h" = (
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -44,7 +44,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "x" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "A" = (
 /obj/effect/landmark/xeno_silo_spawn,
@@ -69,14 +69,14 @@
 /area/bigredv2/caves/southwest)
 "I" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "N" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
 "O" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "R" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,

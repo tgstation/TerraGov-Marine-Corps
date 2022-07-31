@@ -133,7 +133,7 @@
 /turf/open/floor/tile/cafe,
 /area/lv624/ground/caves/central2)
 "oz" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "pz" = (
 /obj/effect/decal/lvsanddecal,
@@ -223,7 +223,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "yr" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "yv" = (
 /turf/closed/wall/r_wall,
@@ -342,7 +342,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "Ji" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Jt" = (
 /obj/effect/landmark/weed_node,
@@ -416,7 +416,7 @@
 "SB" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "SN" = (
 /obj/item/stack/sheet/metal/small_stack,
@@ -453,7 +453,7 @@
 /area/lv624/ground/caves/central2)
 "Wc" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Xi" = (
 /obj/machinery/door/airlock/mainship/secure/locked/free_access{

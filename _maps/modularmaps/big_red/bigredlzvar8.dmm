@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ac" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "ad" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -279,7 +279,7 @@
 "iC" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "iF" = (
 /turf/open/floor/tile/red/redtaupecorner,
@@ -543,7 +543,7 @@
 /area/bigredv2/outside/space_port)
 "oO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "pm" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -848,7 +848,7 @@
 /area/bigredv2/outside/nw)
 "xa" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "xd" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -1531,7 +1531,7 @@
 "MT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Ne" = (
 /obj/effect/decal/cleanable/blood/gibs,
@@ -1783,7 +1783,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Ue" = (
 /obj/effect/landmark/weed_node,
@@ -1834,7 +1834,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Vs" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1844,7 +1844,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "VH" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/outside/space_port)
 "VL" = (
 /obj/machinery/computer/secure_data,

@@ -93,7 +93,7 @@
 	},
 /area/bigredv2/outside/se)
 "kn" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "kI" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -321,7 +321,7 @@
 /area/bigredv2/outside/filtration_plant)
 "CC" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Df" = (
 /obj/structure/cable,

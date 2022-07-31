@@ -621,7 +621,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/icarus/interior/lzone)
 "aLs" = (
 /obj/structure/lattice,
@@ -1959,7 +1959,7 @@
 /area/icarus/interior/research)
 "cqk" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/space)
 "cqo" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -2107,7 +2107,7 @@
 /turf/open/floor/mainship,
 /area/icarus/interior/cargo)
 "cCi" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/space)
 "cCp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -3613,7 +3613,7 @@
 "eGK" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/icarus/exterior)
 "eHF" = (
 /obj/structure/caspart/internalengine/left,
@@ -4752,7 +4752,7 @@
 /area/space)
 "fRt" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/icarus/exterior)
 "fRD" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -9216,7 +9216,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/swcaveslz)
 "lEV" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/icarus/interior/shipbayconnector)
 "lFa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -9548,7 +9548,7 @@
 /turf/closed/shuttle/cas/centertop,
 /area/icarus/interior/hangarone)
 "mcs" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/icarus/exterior/northeastcaves)
 "mcD" = (
 /turf/open/shuttle/dropship/floor,
@@ -9748,7 +9748,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/icarus/interior/lzone)
 "moy" = (
 /obj/structure/monorail,
@@ -10188,7 +10188,7 @@
 /area/icarus/exterior/northcaves)
 "nam" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/icarus/exterior)
 "nba" = (
 /turf/open/floor/prison/darkyellow{
@@ -14027,7 +14027,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/icarus/interior/disposals)
 "rXL" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/icarus/interior/lzone)
 "rXU" = (
 /obj/structure/prop/mainship/ship_memorial,
@@ -14623,7 +14623,7 @@
 /area/icarus/interior/disposals)
 "sND" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/bigredv2/caves/southwest)
 "sOs" = (
 /turf/closed/shuttle/dropship2{
@@ -15501,7 +15501,7 @@
 /area/icarus/interior/shipbayone)
 "tWD" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/icarus/interior/lzone)
 "tWF" = (
 /turf/open/floor/mainship/stripesquare,
@@ -15732,7 +15732,7 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/icarus/interior/lzone)
 "ups" = (
 /turf/open/floor/plating/plating_catwalk,
@@ -17206,7 +17206,7 @@
 /turf/open/floor/plating,
 /area/icarus/interior/engineering)
 "whP" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/icarus/exterior)
 "wjY" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -17853,11 +17853,11 @@
 /turf/open/floor/plating,
 /area/icarus/interior/medbay)
 "wXI" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/icarus/interior/swcaveslz)
 "wXJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/icarus/interior/lzone)
 "wXU" = (
 /turf/open/floor/mainship/mono,
@@ -18388,7 +18388,7 @@
 /area/icarus/exterior/swcaves)
 "xAm" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/icarus/exterior/swcaves)
 "xBa" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -18773,7 +18773,7 @@
 /turf/open/floor/mainship/floor,
 /area/icarus/interior/lzone)
 "xTs" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/icarus/exterior)
 "xTB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -18894,7 +18894,7 @@
 /area/icarus/exterior/northeastcaves)
 "ybb" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/icarus/exterior)
 "ybG" = (
 /obj/machinery/door/airlock/multi_tile/secure{
@@ -18944,7 +18944,7 @@
 /turf/open/floor/plating/mainship,
 /area/icarus/interior/shipbaytwo)
 "yeo" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/space)
 "yeG" = (
 /obj/structure/cable,

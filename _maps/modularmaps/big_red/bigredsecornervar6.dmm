@@ -95,7 +95,7 @@
 /turf/open/space/basic,
 /area/space)
 "gw" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/secomplex)
 "gP" = (
 /obj/structure/largecrate/supply/supplies/plasteel,
@@ -265,7 +265,7 @@
 /area/bigredv2/caves/secomplex)
 "nz" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "nS" = (
 /obj/effect/spawner/gibspawner/human,
@@ -300,7 +300,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "qp" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "rm" = (
 /turf/open/floor/tile/blue/taupeblue{
@@ -610,7 +610,7 @@
 /area/bigredv2/caves/secomplex)
 "Lj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Lq" = (
 /obj/item/limb/l_hand,
@@ -625,7 +625,7 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/secomplex)
 "Mk" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Nw" = (
 /obj/item/stack/sheet/metal,

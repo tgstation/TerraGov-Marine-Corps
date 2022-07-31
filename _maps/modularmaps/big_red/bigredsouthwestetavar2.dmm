@@ -154,7 +154,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "rp" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "rx" = (
 /obj/structure/closet/toolcloset,
@@ -201,7 +201,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "wt" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "xk" = (
 /obj/structure/bed/chair{
@@ -380,7 +380,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "NA" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "NF" = (
 /obj/effect/ai_node,
@@ -434,7 +434,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "TD" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "Un" = (
 /turf/open/floor/tile/dark/red2/corner{

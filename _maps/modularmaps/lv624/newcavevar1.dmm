@@ -44,7 +44,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "oz" = (
-/turf/closed/mineral/indestructible,
+/turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
 "rO" = (
 /obj/structure/rack,
@@ -150,7 +150,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "Ji" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "JG" = (
 /obj/effect/landmark/weed_node,
@@ -164,12 +164,12 @@
 /turf/closed/wall/r_wall,
 /area/lv624/ground/caves/central1)
 "RM" = (
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
 "SB" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Uf" = (
 /obj/structure/rack,
@@ -191,7 +191,7 @@
 /area/lv624/ground/caves/central2)
 "Wc" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral,
+/turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "Xi" = (
 /obj/machinery/door/airlock/mainship/secure/locked/free_access{

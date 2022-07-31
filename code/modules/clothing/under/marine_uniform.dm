@@ -394,10 +394,6 @@
 /obj/item/clothing/under/som/medic/vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
 
-//to be replaced
-/obj/item/clothing/under/som/medic/white_vest
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest/som)
-
 /obj/item/clothing/under/som/veteran
 	name = "\improper SoM veteran uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies. This one has markings indicating specialist status."
@@ -407,13 +403,6 @@
 /obj/item/clothing/under/som/veteran/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
-//below to be replaced
-/obj/item/clothing/under/som/veteran/highpower
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/highpower)
-
-/obj/item/clothing/under/som/veteran/webbing_vet
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest/som_vet)
-
 /obj/item/clothing/under/som/leader
 	name = "\improper SoM leader uniform"
 	desc = "The standard uniform of SOM military personnel. Its design shows a clear lineage from mining uniforms used in the old mining colonies. This one has leadership markings."
@@ -422,13 +411,6 @@
 
 /obj/item/clothing/under/som/leader/webbing
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
-
-/obj/item/clothing/under/som/leader/holster
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
-
-//to be replaced
-/obj/item/clothing/under/som/leader/highpower
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/highpower)
 
 /obj/item/clothing/under/sectoid
 	name = "psionic field"

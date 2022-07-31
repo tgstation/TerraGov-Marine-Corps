@@ -47,7 +47,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "cn" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "ds" = (
 /obj/effect/ai_node,
@@ -175,7 +175,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
 "lp" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "lw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,

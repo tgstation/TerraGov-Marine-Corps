@@ -145,7 +145,7 @@
 /area/space)
 "ou" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "oJ" = (
 /turf/open/floor/tile/dark/red2,
@@ -179,7 +179,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
 "rf" = (
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "rF" = (
 /obj/effect/landmark/xeno_resin_door,
@@ -451,7 +451,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Oc" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/bigred/indestructible,
 /area/space)
 "Oe" = (
 /obj/effect/landmark/weed_node,
@@ -471,7 +471,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "Pl" = (
 /obj/effect/landmark/lv624/fog_blocker,
-/turf/closed/mineral/bigred,
+/turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
 "PT" = (
 /turf/closed/wall/r_wall,
