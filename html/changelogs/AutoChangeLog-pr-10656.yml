@@ -1,0 +1,4 @@
+author: "BraveMole"
+delete-after: True
+changes: 
+  - bugfix: "Fix plural gender not able to chose gear"
