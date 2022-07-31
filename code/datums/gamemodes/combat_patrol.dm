@@ -3,7 +3,7 @@
 	config_tag = "Combat Patrol"
 	flags_round_type = MODE_LZ_SHUTTERS|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY|MODE_WIN_POINTS|MODE_SOM_OPFOR|MODE_SPECIFIC_SHIP_MAP //MODE_NO_PERMANENT_WOUNDS is for nerds
 	flags_landmarks = MODE_LANDMARK_SPAWN_SPECIFIC_SHUTTLE_CONSOLE
-	shutters_drop_time = 1 MINUTES
+	shutters_drop_time = 5 MINUTES
 	flags_xeno_abilities = ABILITY_CRASH
 	respawn_time = 7 MINUTES
 	time_between_round = 0 HOURS
@@ -22,7 +22,7 @@
 	/// Timer used to calculate how long till round ends
 	var/game_timer
 	///The length of time until round ends.
-	var/max_game_time = 1 MINUTES
+	var/max_game_time = 35 MINUTES
 	///The length of time until next wave.
 	var/wave_timer = 5 MINUTES
 	///Whether the max game time has been reached
