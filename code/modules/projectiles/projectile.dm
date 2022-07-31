@@ -734,8 +734,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 
 	//We want a temporary variable so accuracy doesn't change every time the bullet misses.
-	var/hit_chance
-	hit_chance += proj.accuracy
+	var/hit_chance = proj.accuracy
 	BULLET_DEBUG("Base accuracy is <b>[hit_chance]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range.
 		if(proj.distance_travelled <= proj.point_blank_range) //If bullet within point blank range, big accuracy buff.
